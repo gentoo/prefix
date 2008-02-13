@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3352 2008/02/10 11:58:32 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3354 2008/02/12 22:26:32 ikelos Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1843,8 +1843,9 @@ sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
 sci-geosciences/mapserver:postgis - Enables postgis support 
 sci-geosciences/mapserver:proj - Enables proj library support (geographic projections)
-sci-libs/acml:int64 - Install the 64 bits integer library.
+sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs ifc or gfortran >= 4.2)
+sci-libs/blas-goto:int64 - Build the 64 bits integer library
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs lapack)
 sci-libs/fftw:float - Links default library to single precision instead of double (symlinks only)
@@ -1864,10 +1865,10 @@ sci-libs/itpp:cblas - Adds support for the cblas numerical library
 sci-libs/libghemical:mopac7 - Use the MOPAC7 package for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use the MPQC package for quantum-mechanical calculations
 sci-libs/libsvm:tools - install support tools
-sci-libs/metis:int64 - Build the 64 bits integer library (version >=5)
+sci-libs/metis:int64 - Build the 64 bits integer library (metis >=5 only)
 sci-libs/metis:openmp - Build support for the OpenMP, needs openmp capable compiler
 sci-libs/mkl:fortran95 - Build static FORTRAN 95 BLAS/LAPACK interface
-sci-libs/mkl:int64 - Install the 64 bits integer library, double package size
+sci-libs/mkl:int64 - Install the 64 bits integer library (double package size)
 sci-libs/mkl:serial - Install the serial (as non-threaded) libraries as well, double package size
 sci-libs/plplot:itcl - Support for itcl bindings.
 sci-libs/plplot:octave - Support for Octave bindings.
@@ -2178,6 +2179,7 @@ x11-base/kdrive:type1 - Enables Type1 font support
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
 x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
+x11-drivers/linuxwacom:module - Build kernel module for linuxwacom 
 x11-drivers/nvidia-drivers:custom-cflags - Build with CFLAGS from /etc/make.conf (unsupported)
 x11-libs/cairo:glitz - Build with glitz support
 x11-libs/cairo:opengl - When used along with USE=glitz, enables glitz-glx usage. Requires hardware opengl support

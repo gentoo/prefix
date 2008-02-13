@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8269 2008/02/11 17:53:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8272 2008/02/12 22:18:57 ikelos Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,20 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Mike Auty <ikelos@gentoo.org> (12 Feb 2008)
+# Masked for testing
+=x11-drivers/linuxwacom-0.7.9_p7
+
+# Michael Sterrett <mr_bones_@gentoo.org> (12 Feb 2008)
+# Security mask (bug #209903)
+# https://bugs.gentoo.org/show_bug.cgi?id=209903
+games-mud/tintin
+
+# Samuli Suominen <drac@gentoo.org> (12 Feb 2008)
+# If 0.20 fails with hardmasked ffmpeg snapshot,
+# try this instead.
+~media-video/ffmpeg2theora-9999
 
 # Jim Ramsay <lack@gentoo.org> (11 Feb 2008)
 # Masked for testing purposes, will soon be unmasked: bug #207954
