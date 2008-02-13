@@ -294,7 +294,7 @@ for x in "$@"; do
 		;;
 
 		-v|--version)
-			echo "motif-config-0.9"
+			echo "motif-config-0.10"
 			exit 0
 		;;
 

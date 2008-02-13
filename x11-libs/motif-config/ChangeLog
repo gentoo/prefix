@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/motif-config
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.27 2007/09/27 01:41:12 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.28 2008/02/12 14:18:24 ulm Exp $
+
+*motif-config-0.10-r2 (12 Feb 2008)
+
+  12 Feb 2008; Ulrich Mueller <ulm@gentoo.org> files/motif-config-0.10,
+  -files/bindings.tbz2, -files/bitmaps.tbz2, +motif-config-0.10-r2.ebuild:
+  Install bindings and bitmaps, move their tarballs to mirrors. Add MOTIF
+  to LICENSE. Update dependencies. Ebuild by Jakub Moc <jakub@gentoo.org>,
+  bug 91951. Fix version number in motif-config script.
 
   27 Sep 2007; Jeroen Roovers <jer@gentoo.org> files/motif-config-0.9,
   files/motif-config-0.10:
