@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.6 2008/02/07 02:09:51 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.7 2008/02/12 13:01:15 steev Exp $
 
 EAPI="prefix"
 
@@ -43,12 +43,14 @@ src_compile() {
 	local myconf=""
 
 	hasq test ${FEATURES} && myconf="${myconf} --enable-tests=yes"
-
+	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
+	# not on an SELinux profile.
 	econf \
 		$(use_with X x) \
 		$(use_enable kernel_linux inotify) \
 		$(use_enable kernel_FreeBSD kqueue) \
 		$(use_enable selinux) \
+		$(use_enable selinux libaudit)	\
 		$(use_enable debug verbose-mode) \
 		$(use_enable debug asserts) \
 		--with-xml=expat \
