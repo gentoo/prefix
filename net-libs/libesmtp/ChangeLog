@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libesmtp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/ChangeLog,v 1.40 2008/02/11 17:06:14 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/ChangeLog,v 1.41 2008/02/12 12:14:58 flameeyes Exp $
+
+  12 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> libesmtp-1.0.4.ebuild:
+  Run elibtoolize.
 
   11 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
   Add documentation for ssl USE flag.

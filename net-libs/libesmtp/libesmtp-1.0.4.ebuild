@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/libesmtp-1.0.4.ebuild,v 1.11 2007/10/14 09:51:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/libesmtp-1.0.4.ebuild,v 1.12 2008/02/12 12:14:58 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs eutils libtool
 
 DESCRIPTION="libESMTP is a library that implements the client side of the SMTP protocol"
 SRC_URI="http://www.stafford.uklinux.net/${PN}/${P}.tar.bz2"
@@ -19,6 +19,12 @@ DEPEND=">=sys-devel/libtool-1.4.1
 IUSE="ssl debug"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+
+src_unpack() {
+	unpack ${A}
+
+	elibtoolize
+}
 
 src_compile() {
 	local myconf
