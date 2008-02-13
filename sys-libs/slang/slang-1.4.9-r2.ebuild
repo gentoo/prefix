@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.19 2007/10/14 07:04:57 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.20 2008/02/09 06:38:09 drac Exp $
 
 EAPI="prefix"
 
@@ -16,26 +16,26 @@ SRC_URI="ftp://space.mit.edu/pub/davis/slang/v1.4/${P}.tar.bz2
 
 LICENSE="|| ( GPL-2 Artistic )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="cjk unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
-	epatch ${WORKDIR}/${P}.patch
-	[[ ${CHOST} == *-darwin* ]] || use userland_BSD || epatch ${WORKDIR}/${P}-fsuid.patch
-	epatch ${WORKDIR}/${P}-autoconf.patch
+	epatch "${WORKDIR}"/${P}.patch
+	[[ ${CHOST} == *-darwin* ]] || use userland_BSD || epatch "${WORKDIR}"/${P}-fsuid.patch
+	epatch "${WORKDIR}"/${P}-autoconf.patch
 	if use unicode ; then
-		epatch ${WORKDIR}/slang-debian-utf8.patch
-		epatch ${WORKDIR}/slang-utf8-acs.patch
-		epatch ${WORKDIR}/slang-utf8-fix.patch
-		epatch ${WORKDIR}/slang-utf8-fix2.patch
+		epatch "${WORKDIR}"/slang-debian-utf8.patch
+		epatch "${WORKDIR}"/slang-utf8-acs.patch
+		epatch "${WORKDIR}"/slang-utf8-fix.patch
+		epatch "${WORKDIR}"/slang-utf8-fix2.patch
 	fi
 
-	epatch "${FILESDIR}/${P}-fbsdlink.patch"
+	epatch "${FILESDIR}"/${P}-fbsdlink.patch
 
 	if use cjk ; then
 		sed -i \
@@ -53,18 +53,18 @@ src_compile() {
 }
 
 src_install() {
-	make install install-elf DESTDIR=${D} || die "make install failed"
+	make install install-elf DESTDIR="${D}" || die "make install failed"
 	chmod a+rx "${ED}"/usr/$(get_libdir)/libslang*$(get_libname)* || die "chmod failed"
 
 	if use unicode ; then
-		for i in ${ED}/usr/$(get_libdir)/libslang-utf8* ; do
+		for i in "${ED}"/usr/$(get_libdir)/libslang-utf8* ; do
 			local libslang=${i/${ED}/}
 			dosym ${libslang} ${libslang/-utf8/}
 		done
 		dosym /usr/$(get_libdir)/libslang{-utf8,}.a
 	fi
 
-	rm -rf ${ED}/usr/doc
+	rm -rf "${ED}"/usr/doc
 	dodoc NEWS README *.txt
 	dodoc doc/*.txt doc/internal/*.txt doc/text/*.txt
 	dohtml doc/*.html

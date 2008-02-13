@@ -1,6 +1,50 @@
 # ChangeLog for sys-libs/slang
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.64 2007/11/16 16:51:49 fmccor Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.78 2008/02/11 15:46:51 jer Exp $
+
+  11 Feb 2008; Jeroen Roovers <jer@gentoo.org> slang-2.1.3-r1.ebuild:
+  Marked ~hppa (bug #209422).
+
+  11 Feb 2008; Raúl Porcel <armin76@gentoo.org> slang-2.1.3-r1.ebuild:
+  Re-add ~ia64/~sparc
+
+  11 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  Force -j1 for both building and installing wrt #209643, but it fails in many
+  different ways.
+
+  11 Feb 2008; Brent Baude <ranger@gentoo.org> slang-2.1.3-r1.ebuild:
+  Marking slang-2.1.3-r1 ~ppc64 for bug 209422
+
+  10 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> slang-2.1.3-r1.ebuild:
+  Keyword mips for bug #209422.
+
+*slang-2.1.3-r1 (10 Feb 2008)
+
+  10 Feb 2008; Samuli Suominen <drac@gentoo.org> +slang-2.1.3-r1.ebuild:
+  USE cjk for optional dev-libs/oniguruma dep.
+
+  10 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3.ebuild:
+  Use targets elf and static in src_compile and install-all in src_install to
+  avoid compiling at install phase.
+
+  10 Feb 2008; Raúl Porcel <armin76@gentoo.org> slang-2.1.3.ebuild:
+  Re-add ~alpha/~ia64 wrt #209422
+
+  10 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org> slang-2.1.3.ebuild:
+  Added ~ppc, bug #209422
+
+  09 Feb 2008; Brent Baude <ranger@gentoo.org> slang-2.1.3.ebuild:
+  keyworded ~arch for ppc64, bug 209434
+
+  09 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-1.4.9-r2.ebuild,
+  -slang-2.1.2.ebuild:
+  Remove unused version and fix quoting of stable.
+
+*slang-2.1.3 (09 Feb 2008)
+
+  09 Feb 2008; Samuli Suominen <drac@gentoo.org> +slang-2.1.3.ebuild:
+  Version bump wrt #202344, thanks to Arfrever Frehtes Taifersar Arahesis for
+  reporting.
 
   16 Nov 2007; Ferris McCormick <fmccor@gentoo.org> slang-2.1.2.ebuild:
   Add ~sparc for testing.  Why is this still package.masked?
