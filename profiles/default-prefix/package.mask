@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (13 Feb 2008)
+# This is an unmask to compensate the mask in the main profiles
+->=sys-apps/portage-2.2_alpha
+
 # Elias Pipping <pipping@gentoo.org> (10 Feb 2008)
 # Experimental version
 app-text/openrcs
