@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.2-r1.ebuild,v 1.3 2008/01/02 18:35:56 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.3.ebuild,v 1.1 2008/02/12 19:04:55 alonbl Exp $
 
 EAPI="prefix"
 
@@ -18,12 +18,6 @@ IUSE=""
 DEPEND=">=dev-libs/libgpg-error-1.2
 	dev-libs/libgcrypt"
 RDEPEND="${DEPEND}"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-segfault.patch"
-}
 
 src_install() {
 	emake DESTDIR="${D}" install || die
