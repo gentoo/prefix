@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.103 2008/02/04 16:34:55 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.104 2008/02/13 00:23:30 coldwind Exp $
+
+  13 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> tiff-3.8.2-r3.ebuild:
+  amd64 stable wrt bug #208547
 
   04 Feb 2008; Steve Arnold <nerdboy@gentoo.org> tiff-3.8.2-r2.ebuild:
   Updated homepage and fixed string quoting (www.remotesensing.org is not
