@@ -33,6 +33,8 @@ src_install() {
 pkg_postinst() {
 	elog "As of >=eix-0.5.4, \"metadata\" is the new default cache."
 	elog "It's independent of the portage-version and the cache used by portage."
+	elog "But as in Prefix this cache is not available, in Prefix this default"
+	elog "is set to \"none\" instead!"
 
 	elog /etc/eixrc will not get updated anymore by the eix ebuild.
 	elog Upstream strongly recommends to remove this file resp. to keep
