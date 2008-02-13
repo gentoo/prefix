@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/libsigsegv-2.4.ebuild,v 1.10 2008/02/04 20:31:36 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/libsigsegv-2.4.ebuild,v 1.11 2008/02/12 23:39:10 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -14,20 +14,21 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="virtual/libc"
+DEPEND=""
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
 	epatch "${FILESDIR}"/${P}-ppc-macos.patch
+	AT_M4DIR=m4 eautoreconf
 }
 
 src_compile() {
-	AT_M4DIR=m4 eautoreconf
 	econf --enable-shared
 	emake || die "emake failed."
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed."
-	dodoc AUTHORS ChangeLog* NEWS PORTING README*
+	emake DESTDIR="${D}" install || die "make install failed."
+	dodoc AUTHORS ChangeLog* NEWS PORTING README* || die
 }
