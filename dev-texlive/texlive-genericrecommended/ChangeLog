@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-genericrecommended
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericrecommended/ChangeLog,v 1.7 2007/12/18 19:59:52 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericrecommended/ChangeLog,v 1.8 2008/02/10 15:13:39 aballier Exp $
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-genericrecommended-2007.ebuild:
+  keyword ~x86-fbsd
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org>
   texlive-genericrecommended-2007.ebuild:
