@@ -1,18 +1,23 @@
 # ChangeLog for dev-java/log4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.58 2008/02/06 16:47:53 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.59 2008/02/13 04:16:05 ali_bush Exp $
+
+  13 Feb 2008; Alistair Bush <ali_bush@gentoo.org> log4j-1.2.14-r1.ebuild,
+  log4j-1.2.14-r2.ebuild, log4j-1.2.15.ebuild:
+  Replacing direct execution of xml-rewrite.py with a call to
+  java-ant_xml-rewrite. see #209956
 
 *log4j-1.2.15 (06 Feb 2008)
 
   06 Feb 2008; Miroslav Šulc <fordfrog@gentoo.org> +log4j-1.2.15.ebuild:
   Version bump
 
-  28 Nov 2007; <alistair@gentoo.org> log4j-1.2.14-r2.ebuild:
+  28 Nov 2007; <ali_bush@gentoo.org> log4j-1.2.14-r2.ebuild:
   Dropping ~arch's not keyworded in java-virtuals/javamail yet.
 
 *log4j-1.2.14-r2 (20 Nov 2007)
 
-  20 Nov 2007; <alistair@gentoo.org> +log4j-1.2.14-r2.ebuild:
+  20 Nov 2007; <ali_bush@gentoo.org> +log4j-1.2.14-r2.ebuild:
   Bumping to support javamail virtual.
 
   24 Jul 2007; Christian Faulhammer <opfer@gentoo.org>

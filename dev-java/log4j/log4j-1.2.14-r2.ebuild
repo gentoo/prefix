@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.14-r2.ebuild,v 1.3 2007/11/28 07:35:56 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.14-r2.ebuild,v 1.4 2008/02/13 04:16:05 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -44,7 +44,7 @@ src_unpack() {
 	cd "${S}"
 	rm -rf dist/
 	# Takes javamail from system env without this
-	xml-rewrite.py -f build.xml -c -e available -a ignoresystemclasses -v "true"
+	java-ant_xml-rewrite -f build.xml -c -e available -a ignoresystemclasses -v "true"
 	java-pkg_filter-compiler jikes
 }
 
