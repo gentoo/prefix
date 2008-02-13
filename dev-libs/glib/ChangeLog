@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.310 2008/02/08 15:55:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.311 2008/02/10 22:12:27 tester Exp $
+
+  10 Feb 2008; Olivier Crête <tester@gentoo.org> glib-2.14.6.ebuild:
+  Stable on amd64, security bug #209293
 
   08 Feb 2008; Raúl Porcel <armin76@gentoo.org> glib-2.14.6.ebuild:
   alpha/ia64/sparc stable wrt security #209293
