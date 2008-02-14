@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/commons-beanutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/ChangeLog,v 1.38 2007/05/17 21:36:46 betelgeuse Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/ChangeLog,v 1.39 2008/02/13 18:07:26 betelgeuse Exp $
+
+*commons-beanutils-1.7.0-r3 (13 Feb 2008)
+
+  13 Feb 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +commons-beanutils-1.7.0-r3.ebuild:
+  Don't use bundled commons-collections classes. Compile to 1.4 bytecode
+  instead of 1.3. Fixes bug #205999.
 
   17 May 2007; Petteri Räty <betelgeuse@gentoo.org>
   commons-beanutils-1.7.0-r2.ebuild:
