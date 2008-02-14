@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Standard commands to read man pages"
 HOMEPAGE="http://primates.ximian.com/~flucifredi/man/"
@@ -97,6 +97,8 @@ src_compile() {
 
 	local myconf=
 	use prefix || myconf="${myconf} +sgid"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_POSIX_SOURCE"
 
 	./configure \
 		-prefix="${EPREFIX}/usr" \
