@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/motif-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.28 2008/02/12 14:18:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.33 2008/02/13 14:33:56 armin76 Exp $
+
+  13 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  motif-config-0.10-r2.ebuild:
+  alpha/ia64/sparc stable wrt #204265
+
+  13 Feb 2008; Markus Rothe <corsair@gentoo.org>
+  motif-config-0.10-r2.ebuild:
+  Stable on ppc64; bug #204265
+
+  13 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  motif-config-0.10-r2.ebuild:
+  Fix bug #209982, thanks to Jakub
+
+  13 Feb 2008; Jeroen Roovers <jer@gentoo.org> motif-config-0.10-r2.ebuild:
+  Stable for HPPA (bug #204265).
+
+  13 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  motif-config-0.10-r2.ebuild:
+  stable x86, bug 204265
 
 *motif-config-0.10-r2 (12 Feb 2008)
 

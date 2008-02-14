@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/motif-config-0.10-r2.ebuild,v 1.1 2008/02/12 14:18:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/motif-config-0.10-r2.ebuild,v 1.6 2008/02/13 14:33:56 armin76 Exp $
 
 EAPI="prefix"
 
@@ -83,4 +83,11 @@ pkg_preinst() {
 			rm -rf "${EROOT}"${i}
 		fi
 	done
+}
+
+pkg_postinst() {
+	# when emerged after openmotif, then we need to set to a valid
+	# profile since we nuked the symlinks in pkg_preinst (Bug 209982)
+	# this sucky stuff can go away once openmotif is moved to SLOT=0
+	has_version x11-libs/openmotif && motif-config -s
 }
