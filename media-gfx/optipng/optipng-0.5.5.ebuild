@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.5.5.ebuild,v 1.2 2008/01/31 18:07:45 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.5.5.ebuild,v 1.5 2008/02/13 18:58:48 armin76 Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i \
-		-e "s:-O2:${CFLAGS}:" \
-		-e "s:-s:${LDFLAGS}:" \
+		-e "/^C/s: -O2.*: ${CFLAGS} -Wall:" \
+		-e "/^LD/s: -s$: ${LDFLAGS}:" \
 		src/scripts/gcc.mak \
 		lib/libpng/scripts/makefile.gcc \
 		lib/pngxtern/scripts/gcc.mak \
