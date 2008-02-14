@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/log4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.59 2008/02/13 04:16:05 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.60 2008/02/13 15:09:43 ranger Exp $
+
+  13 Feb 2008; Brent Baude <ranger@gentoo.org> log4j-1.2.14-r2.ebuild:
+  keyworded ~arch for ppc64, bug 209965
 
   13 Feb 2008; Alistair Bush <ali_bush@gentoo.org> log4j-1.2.14-r1.ebuild,
   log4j-1.2.14-r2.ebuild, log4j-1.2.15.ebuild:
