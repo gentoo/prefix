@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.84 2008/02/12 19:04:55 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.85 2008/02/13 10:57:45 alonbl Exp $
+
+  13 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> -libksba-1.0.0.ebuild:
+  Cleanup
 
 *libksba-1.0.3 (12 Feb 2008)
 
