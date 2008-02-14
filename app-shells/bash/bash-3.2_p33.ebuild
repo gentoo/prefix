@@ -94,8 +94,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.0-configs-prefix.patch
 	eprefixify config-top.h pathnames.h.in
 
-	# needed only for interix, although should work for others too
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-getcwd.patch
+	epatch "${FILESDIR}"/${PN}-3.2-getcwd-memcpy.patch
+	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 
 	# intmax_t and uintmax_t should be looked for in stdint.h on interix
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
