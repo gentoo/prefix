@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.25 2008/01/04 17:03:22 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.26 2008/02/13 13:52:35 bicatali Exp $
+
+  13 Feb 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/geos-2.2.3-python-shared.patch, geos-2.2.3.ebuild:
+  Fixed compilation of python bindings using shared lib (bug #208220)
 
 *geos-3.0.0 (04 Jan 2008)
 
