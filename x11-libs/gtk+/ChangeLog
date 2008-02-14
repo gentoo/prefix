@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.367 2008/02/04 04:16:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.368 2008/02/14 01:03:20 leio Exp $
+
+*gtk+-2.12.8 (14 Feb 2008)
+
+  14 Feb 2008; Mart Raudsepp <leio@gentoo.org> +gtk+-2.12.8.ebuild:
+  Version bump for assorted bug fixes, including multiple filechooser
+  improvements
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> gtk+-2.12.5-r1.ebuild:
   Stable for HPPA (bug #208366).
