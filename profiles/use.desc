@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.385 2008/01/17 21:28:14 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.386 2008/02/13 23:47:15 wltjr Exp $
 
 # Keep them sorted
 
@@ -157,6 +157,8 @@ ipv6 - Adds support for IP version 6
 jabber - Enable jabber IM protocol support
 jack - Adds support for the JACK Audio Connection Kit
 java - Adds support for Java
+java5 - Use Java 1.5 to build package || ( reduced deps, 1.5 features, source/target 1.5 )
+java6 - Use Java 1.6 to build package || ( reduced deps, 1.6 features, source/target 1.6 )
 javascript - Enables javascript support
 jbig - enables jbig-kit support for tiff, Hylafax, ImageMagick, etc
 jikes - Compile Java source code with jikes (faster)

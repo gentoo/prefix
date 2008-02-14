@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3354 2008/02/12 22:26:32 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3357 2008/02/13 20:12:54 fordfrog Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -417,7 +417,8 @@ dev-java/jdbc-mysql:c3p0 - Enable c3p0 support
 dev-java/jdbc-mysql:log4j - Enable log4 support
 dev-java/jdbc-oracle-bin:dms - Enable support for the Oracle Dynamic Monitoring Service
 dev-java/jdbc-oracle-bin:ons - Enable support for the Oracle Notification Services (ONS) deamon
-dev-java/jdbc-postgresql:java5 - Enable Java 5 specific features
+dev-java/jdbc-postgresql:java5 - Use Java 1.5 source/target for compilation (JDBC version 3)
+dev-java/jdbc-postgresql:java6 - Use Java 1.6 source/target for compilation (JDBC version 4)
 dev-java/jruby:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
@@ -576,6 +577,7 @@ dev-php5/php-gtk:scintilla - Enable Scintilla support
 dev-php5/php-gtk:sourceview - Enable GtkSourceView support
 dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/cgkit:ogre - enable support for Ogre rendering
+dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
 dev-python/kaa-metadata:css - Enables ripping/reading of encrypted dvds
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
@@ -1692,7 +1694,7 @@ net-misc/tightvnc:server - Build vncserver. Allows us to only build server on on
 net-misc/vino:keyring - Enable gnome-keyring support for storing passwords
 net-misc/vnc:server - Build VNC server
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
-net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolv-conf
+net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
 net-misc/wanpipe:adsl - Build with adsl support
 net-misc/xf4vnc:vncviewer - Install the vncviewer binary
 net-misc/xf4vnc:xvnc - Install the Xvnc binary

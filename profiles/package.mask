@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8272 2008/02/12 22:18:57 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8275 2008/02/13 21:06:40 ticho Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -43,10 +43,6 @@ games-mud/tintin
 # try this instead.
 ~media-video/ffmpeg2theora-9999
 
-# Jim Ramsay <lack@gentoo.org> (11 Feb 2008)
-# Masked for testing purposes, will soon be unmasked: bug #207954
-=net-wireless/ipw3945-1.2.2-r1
-
 # Christian Hoffmann <hoffie@gentoo.o> (11 Feb 2008)
 # Masked because of random (maybe MySQL-related) segfaults, bug #209606
 =dev-lang/php-5.2.5_p20080206
@@ -55,18 +51,6 @@ games-mud/tintin
 # Broken wrt bugs #167638 and #209416. Upstream
 # gone. Masked for removal in 30 days.
 media-video/freej
-
-# Andrej Kacian <ticho@gentoo.org> (09 Feb 2008)
-# Temp. mask until I bump all plugins
-=mail-client/claws-mail-3.3.0
-=mail-client/claws-mail-acpi-notifier-1.0.15
-=mail-client/claws-mail-attachwarner-0.2.9
-=mail-client/claws-mail-clamav-3.3
-=mail-client/claws-mail-gtkhtml-0.17.1
-=mail-client/claws-mail-notification-0.15
-=mail-client/claws-mail-pdf-viewer-0.9
-=mail-client/claws-mail-rssyl-0.18
-=mail-client/claws-mail-vcalendar-1.101
 
 # Wulf C. Krueger <philantrop@gentoo.org> (09 Feb 2008)
 # Masked for removal in 30 days. 
