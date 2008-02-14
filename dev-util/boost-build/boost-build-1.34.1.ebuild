@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.10 2008/02/05 15:40:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.12 2008/02/14 03:22:45 halcy0n Exp $
 
 EAPI="prefix"
 
@@ -15,9 +15,10 @@ SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE=""
+IUSE="python"
 
-DEPEND="!<dev-libs/boost-1.34.0"
+DEPEND="!<dev-libs/boost-1.34.0
+	python? ( dev-lang/python )"
 RDEPEND=""
 
 S=${WORKDIR}/boost_${MY_PV}/tools
@@ -57,7 +58,19 @@ src_compile() {
 
 	append-flags -fno-strict-aliasing
 
-	CC=$(tc-getCC) ./build.sh ${toolset} || die "building bjam failed"
+	# The build.jam file for building bjam using a bootstrapped jam0 ignores
+	# the LDFLAGS env var (bug #209794). We have now two options:
+	# a) change the cc-target definition in build.jam to include separate compile
+	#    and link targets to make it use the LDFLAGS var, or
+	# b) a simple dirty workaround by injecting the LDFLAGS in the LIBS env var
+	#    (which should not be set by us).
+	if [[ -z "${LDFLAGS}" ]] ; then
+		CC=$(tc-getCC) ./build.sh ${toolset} $(use_with python) \
+			|| die "building bjam failed"
+	else
+		LIBS="${LDFLAGS}" CC=$(tc-getCC) ./build.sh ${toolset} \
+			$(use_with python) || die "building bjam failed"
+	fi
 }
 
 src_install() {
