@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ps2eps
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.9 2008/02/11 07:24:34 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.10 2008/02/13 19:23:14 armin76 Exp $
+
+  13 Feb 2008; Raúl Porcel <armin76@gentoo.org> ps2eps-1.64.ebuild:
+  alpha/ia64 stable wrt #209463
 
   11 Feb 2008; Christian Faulhammer <opfer@gentoo.org> ps2eps-1.64.ebuild:
   stable x86, bug 209463
