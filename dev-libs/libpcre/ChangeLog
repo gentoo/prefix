@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.135 2008/02/10 21:54:48 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.136 2008/02/13 08:12:01 opfer Exp $
+
+*libpcre-7.6-r1 (13 Feb 2008)
+
+  13 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  +files/libpcre-7.6-ABI_correction.patch, -libpcre-7.6.ebuild,
+  +libpcre-7.6-r1.ebuild:
+  revision bump (direct stable), to fix ABI breakage reported in bug 209697 by
+  jakub
 
   10 Feb 2008; Olivier Crête <tester@gentoo.org> libpcre-7.6.ebuild:
   Stable on amd64, security bug #209067
