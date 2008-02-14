@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.55 2008/02/08 20:45:55 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.56 2008/02/13 10:53:55 alonbl Exp $
+
+  13 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> -libassuan-0.6.10.ebuild:
+  Cleanup
 
   08 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
   libassuan-1.0.4.ebuild:
