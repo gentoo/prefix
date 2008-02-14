@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/xpp2
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp2/ChangeLog,v 1.20 2007/06/03 22:37:36 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp2/ChangeLog,v 1.21 2008/02/13 17:47:37 betelgeuse Exp $
+
+  13 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> xpp2-2.1.10-r1.ebuild:
+  Don't use xml-rewrite.py directly. Fixes bug #209956. Switch to EAPI=1 for
+  slot deps.
 
   03 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> -xpp2-2.1.10.ebuild:
   Remove generation 1 ebuild.
