@@ -1,0 +1,21 @@
+Index: xmlrpc-c-1.06.09/src/Makefile
+===================================================================
+--- xmlrpc-c-1.06.09.orig/src/Makefile
++++ xmlrpc-c-1.06.09/src/Makefile
+@@ -48,6 +48,7 @@ endif
+ 
+ ifeq ($(ENABLE_LIBXML2_BACKEND),yes)
+   LIBXML_INCLUDES = $(shell xml2-config --cflags)
++  LIBXML_LIBS = $(shell xml2-config --libs)
+ else
+   LIBXML_INCLUDES = -I$(SRCDIR)/lib/expat/xmlparse
+ endif
+@@ -95,7 +96,7 @@ LIBXMLRPC_OBJS = \
+ 	xmlrpc_utf8.lo \
+ 	xmlrpc_authcookie.lo \
+ 
+-LIBXMLRPC_LIBDEP = -lxmlrpc_util
++LIBXMLRPC_LIBDEP = -lxmlrpc_util $(LIBXML_LIBS)
+ 
+ LIB_OBJS = $(LIBXMLRPC_CLIENT_OBJS) $(LIBXMLRPC_SERVER_OBJS)
+ 
