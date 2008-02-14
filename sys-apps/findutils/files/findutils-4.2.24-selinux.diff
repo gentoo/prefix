@@ -1,0 +1,445 @@
+diff -urN findutils-4.2.24.orig/find/Makefile.am findutils-4.2.24/find/Makefile.am
+--- findutils-4.2.24.orig/find/Makefile.am	2005-07-03 12:07:16.000000000 -0400
++++ findutils-4.2.24/find/Makefile.am	2005-09-28 23:46:09.953863889 -0400
+@@ -5,8 +5,9 @@
+ # regexprops_SOURCES = regexprops.c
+ find_SOURCES = find.c fstype.c parser.c pred.c tree.c util.c version.c
+ EXTRA_DIST = defs.h $(man_MANS)
++DEFS = @DEFS@ -I. -I$(srcdir) -I.. -DWITH_SELINUX
+ INCLUDES = -I../gnulib/lib -I$(top_srcdir)/lib -I$(top_srcdir)/gnulib/lib -I../intl -DLOCALEDIR=\"$(localedir)\"
+-LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@
++LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@ -lselinux
+ man_MANS = find.1
+ SUBDIRS = testsuite
+ 
+diff -urN findutils-4.2.24.orig/find/Makefile.in findutils-4.2.24/find/Makefile.in
+--- findutils-4.2.24.orig/find/Makefile.in	2005-07-29 18:13:56.000000000 -0400
++++ findutils-4.2.24/find/Makefile.in	2005-09-28 23:46:09.972862142 -0400
+@@ -177,7 +177,7 @@
+ CROSS_COMPILING_FALSE = @CROSS_COMPILING_FALSE@
+ CROSS_COMPILING_TRUE = @CROSS_COMPILING_TRUE@
+ CYGPATH_W = @CYGPATH_W@
+-DEFS = @DEFS@
++DEFS = @DEFS@ -I. -I$(srcdir) -I.. -DWITH_SELINUX
+ DEPDIR = @DEPDIR@
+ ECHO_C = @ECHO_C@
+ ECHO_N = @ECHO_N@
+@@ -272,7 +272,7 @@
+ # regexprops_SOURCES = regexprops.c
+ find_SOURCES = find.c fstype.c parser.c pred.c tree.c util.c version.c
+ EXTRA_DIST = defs.h $(man_MANS)
+-LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@
++LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@ -lselinux
+ man_MANS = find.1
+ SUBDIRS = testsuite
+ all: all-recursive
+diff -urN findutils-4.2.24.orig/find/defs.h findutils-4.2.24/find/defs.h
+--- findutils-4.2.24.orig/find/defs.h	2005-07-27 06:30:36.000000000 -0400
++++ findutils-4.2.24/find/defs.h	2005-09-28 23:46:09.850873361 -0400
+@@ -131,6 +131,10 @@
+ #define MODE_RWX	(S_IXUSR | S_IXGRP | S_IXOTH | MODE_RW)
+ #define MODE_ALL	(S_ISUID | S_ISGID | S_ISVTX | MODE_RWX)
+ 
++#ifdef WITH_SELINUX
++#include <selinux/selinux.h>
++#endif /*WITH_SELINUX*/
++
+ #if 1
+ #include <stdbool.h>
+ typedef bool boolean;
+@@ -320,6 +324,9 @@
+     struct dir_id   fileid;	/* samefile */
+     mode_t type;		/* type */
+     FILE *stream;		/* ls fls fprint0 */
++#ifdef WITH_SELINUX
++    security_context_t scontext; /* scontext */
++#endif /*WITH_SELINUX*/
+     struct format_val printf_vec; /* printf fprintf fprint  */
+   } args;
+ 
+@@ -479,6 +486,9 @@
+ boolean pred_used PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_user PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_xtype PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
++#ifdef WITH_SELINUX
++boolean pred_scontext PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
++#endif /* WITH_SELINUX */
+ 
+ 
+ 
+@@ -557,6 +567,9 @@
+   /* Pointer to the function used to stat files. */
+   int (*xstat) (const char *name, struct stat *statbuf);
+ 
++#ifdef WITH_SELINUX
++  int (*x_getfilecon) ();
++#endif /* WITH_SELINUX */
+ 
+   /* Indicate if we can implement safely_chdir() using the O_NOFOLLOW 
+    * flag to open(2). 
+diff -urN findutils-4.2.24.orig/find/find.1 findutils-4.2.24/find/find.1
+--- findutils-4.2.24.orig/find/find.1	2005-07-29 18:04:53.000000000 -0400
++++ findutils-4.2.24/find/find.1	2005-09-28 23:46:09.883870326 -0400
+@@ -452,6 +452,9 @@
+ link to a file of type \fIc\fR; if the \-L option has been given, true
+ if \fIc\fR is `l'.  In other words, for symbolic links, \-xtype checks
+ the type of the file that \-type does not check.
++.IP "\-context \fIscontext\fR"
++.IP "\--context \fIscontext\fR"
++(SELinux only) File has the security context \fIscontext\fR.
+ 
+ .SS ACTIONS
+ .IP "\-delete\fR"
+@@ -749,6 +752,8 @@
+ File's type (like in ls \-l), U=unknown type (shouldn't happen)
+ .IP %Y
+ File's type (like %y), plus follow symlinks: L=loop, N=nonexistent
++.IP %Z
++(SELinux only) file's security context.
+ .PP
+ A `%' character followed by any other character is discarded (but the
+ other character is printed).
+diff -urN findutils-4.2.24.orig/find/find.c findutils-4.2.24/find/find.c
+--- findutils-4.2.24.orig/find/find.c	2005-07-27 06:52:22.000000000 -0400
++++ findutils-4.2.24/find/find.c	2005-09-28 23:49:17.625591032 -0400
+@@ -244,6 +244,93 @@
+ {
+   return lstat(name, p);
+ }
++#ifdef WITH_SELINUX
++
++static int
++fallback_getfilecon(const char *name, security_context_t *p, int prev_rv)
++{
++  /* Our original getfilecon() call failed.  Perhaps we can't follow a
++   * symbolic link.  If that might be the problem, lgetfilecon() the link. 
++   * Otherwise, admit defeat. 
++   */
++  switch (errno)
++    {
++    case ENOENT:
++    case ENOTDIR:
++#ifdef DEBUG_STAT
++      fprintf(stderr, "fallback_getfilecon(): getfilecon(%s) failed; falling back on lgetfilecon()\n", name);
++#endif
++      return lgetfilecon(name, p);
++
++    case EACCES:
++    case EIO:
++    case ELOOP:
++    case ENAMETOOLONG:
++#ifdef EOVERFLOW
++    case EOVERFLOW:	    /* EOVERFLOW is not #defined on UNICOS. */
++#endif
++    default:
++      return prev_rv;	       
++    }
++}
++
++
++/* optionh_getfilecon() implements the getfilecon operation when the
++ * -H option is in effect.
++ * 
++ * If the item to be examined is a command-line argument, we follow
++ * symbolic links.  If the getfilecon() call fails on the command-line
++ * item, we fall back on the properties of the symbolic link.
++ *
++ * If the item to be examined is not a command-line argument, we
++ * examine the link itself.
++ */
++int 
++optionh_getfilecon(const char *name, security_context_t *p)
++{
++  if (0 == state.curdepth) 
++    {
++      /* This file is from the command line; deference the link (if it
++       * is a link).  
++       */
++      int rv = getfilecon(name, p);
++      if (0 == rv)
++	return 0;		/* success */
++      else
++	return fallback_getfilecon(name, p, rv);
++    }
++  else
++    {
++      /* Not a file on the command line; do not derefernce the link.
++       */
++      return lgetfilecon(name, p);
++    }
++}
++
++/* optionl_getfilecon() implements the getfilecon operation when the
++ * -L option is in effect.  That option makes us examine the thing the
++ * symbolic link points to, not the symbolic link itself.
++ */
++int 
++optionl_getfilecon(const char *name, security_context_t *p)
++{
++  int rv = getfilecon(name, p);
++  if (0 == rv)
++    return 0;			/* normal case. */
++  else
++    return fallback_getfilecon(name, p, rv);
++}
++
++/* optionp_getfilecon() implements the stat operation when the -P
++ * option is in effect (this is also the default).  That option makes
++ * us examine the symbolic link itself, not the thing it points to.
++ */
++int 
++optionp_getfilecon(const char *name, security_context_t *p)
++{
++  return lgetfilecon(name, p);
++}
++#endif /* WITH_SELINUX */
+ 
+ #ifdef DEBUG_STAT
+ static uintmax_t stat_count = 0u;
+@@ -272,11 +359,17 @@
+     {
+     case SYMLINK_ALWAYS_DEREF:  /* -L */
+       options.xstat = optionl_stat;
++#ifdef WITH_SELINUX
++      options.x_getfilecon = optionl_getfilecon;
++#endif /* WITH_SELINUX */
+       options.no_leaf_check = true;
+       break;
+       
+     case SYMLINK_NEVER_DEREF:	/* -P (default) */
+       options.xstat = optionp_stat;
++#ifdef WITH_SELINUX
++      options.x_getfilecon = optionp_getfilecon;
++#endif /* WITH_SELINUX */
+       /* Can't turn no_leaf_check off because the user might have specified 
+        * -noleaf anyway
+        */
+@@ -284,6 +377,9 @@
+       
+     case SYMLINK_DEREF_ARGSONLY: /* -H */
+       options.xstat = optionh_stat;
++#ifdef WITH_SELINUX
++      options.x_getfilecon = optionh_getfilecon;
++#endif /* WITH_SELINUX */
+       options.no_leaf_check = true;
+     }
+ 
+@@ -389,6 +485,9 @@
+ int
+ main (int argc, char **argv)
+ {
++#ifdef WITH_SELINUX
++  int is_selinux_enabled_flag = is_selinux_enabled()>0;
++#endif /* WITH_SELINUX */
+   int i;
+   const struct parser_table *parse_entry; /* Pointer to the parsing table entry for this expression. */
+   struct predicate *cur_pred;
+@@ -537,6 +636,14 @@
+       if (strchr ("-!(),", argv[i][0]) == NULL)
+ 	usage (_("paths must precede expression"));
+       predicate_name = argv[i];
++#ifdef WITH_SELINUX
++      if (! is_selinux_enabled_flag) {
++	if ((strncmp(predicate_name,"-context",strlen("-context"))==0) ||
++	    (strncmp(predicate_name,"--context",strlen("--context"))==0)) {
++	  error (1, 0,_("Error: invalid predicate %s: the kernel is not selinux-enabled.\n"),predicate_name);
++	}
++      }
++#endif
+       parse_entry = find_parser (predicate_name);
+       if (parse_entry == NULL)
+ 	{
+diff -urN findutils-4.2.24.orig/find/parser.c findutils-4.2.24/find/parser.c
+--- findutils-4.2.24.orig/find/parser.c	2005-07-27 06:28:15.000000000 -0400
++++ findutils-4.2.24/find/parser.c	2005-10-10 19:28:59.297008465 -0400
+@@ -47,6 +47,10 @@
+ /* We need <unistd.h> for isatty(). */
+ #include <unistd.h> 
+ 
++#ifdef WITH_SELINUX
++#include <selinux/selinux.h>
++#endif /*WITH_SELINUX*/
++
+ #if ENABLE_NLS
+ # include <libintl.h>
+ # define _(Text) gettext (Text)
+@@ -147,8 +151,9 @@
+ static boolean parse_warn          PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
+ static boolean parse_xtype         PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
+ static boolean parse_quit          PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
+-
+-
++#ifdef WITH_SELINUX
++static boolean parse_scontext      PARAMS((char *argv[], int *arg_ptr));
++#endif /*WITH_SELINUX*/
+ 
+ boolean parse_print             PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
+ boolean parse_open              PARAMS((const struct parser_table* entry, char *argv[], int *arg_ptr));
+@@ -280,6 +285,8 @@
+   PARSE_TEST_NP    ("wholename",             wholename), /* GNU, replaces -path */
+   PARSE_OPTION     ("xdev",                  xdev),
+   PARSE_TEST       ("xtype",                 xtype),	     /* GNU */
++  PARSE_TEST       ("context",               scontext),
++  PARSE_TEST       ("-context",              scontext),
+ #ifdef UNIMPLEMENTED_UNIX
+   /* It's pretty ugly for find to know about archive formats.
+      Plus what it could do with cpio archives is very limited.
+@@ -803,6 +810,10 @@
+       -nouser -nogroup -path PATTERN -perm [+-]MODE -regex PATTERN\n\
+       -wholename PATTERN -size N[bcwkMG] -true -type [bcdpflsD] -uid N\n\
+       -used N -user NAME -xtype [bcdpfls]\n"));
++#ifdef WITH_SELINUX
++  puts (_("\
++      -context CONTEXT\n"));
++#endif /*WITH_SELINUX*/
+   puts (_("\
+ actions: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print \n\
+       -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit\n\
+@@ -1650,6 +1661,32 @@
+   return true;
+ }
+ 
++#ifdef WITH_SELINUX
++
++static boolean
++parse_scontext ( argv, arg_ptr )
++     char *argv[];
++     int *arg_ptr;
++{
++  struct predicate *our_pred;
++
++  if ( (argv == NULL) || (argv[*arg_ptr] == NULL) )
++    return( false );
++
++  our_pred = insert_primary(pred_scontext);
++  our_pred->need_stat = 0;
++#ifdef DEBUG
++  our_pred->p_name = find_pred_name (pred_scontext);
++#endif /*DEBUG*/
++
++  our_pred->args.scontext = argv[*arg_ptr];;
++
++  (*arg_ptr)++;
++  return( true );
++}
++
++#endif /*WITH_SELINUX*/
++
+ static boolean
+ parse_version (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+@@ -1937,7 +1974,11 @@
+ 	  if (*scan2 == '.')
+ 	    for (scan2++; ISDIGIT (*scan2); scan2++)
+ 	      /* Do nothing. */ ;
++#ifdef WITH_SELINUX
++	  if (strchr ("abcdDfFgGhHiklmMnpPstuUyYZ", *scan2))
++#else  /* WITH_SELINUX */
+ 	  if (strchr ("abcdDfFgGhHiklmMnpPstuUyY", *scan2))
++#endif /* WITH_SELINUX */
+ 	    {
+ 	      segmentp = make_segment (segmentp, format, scan2 - format,
+ 				       (int) *scan2);
+diff -urN findutils-4.2.24.orig/find/pred.c findutils-4.2.24/find/pred.c
+--- findutils-4.2.24.orig/find/pred.c	2005-07-29 17:49:05.000000000 -0400
++++ findutils-4.2.24/find/pred.c	2005-09-28 23:56:47.192112653 -0400
+@@ -38,6 +38,14 @@
+ #include "buildcmd.h"
+ #include "yesno.h"
+ 
++#ifdef WITH_SELINUX
++#include <selinux/selinux.h>
++#endif /*WITH_SELINUX*/
++
++#ifndef FNM_CASEFOLD
++#define FNM_CASEFOLD (1<<4)
++#endif  /*FNM_CASEFOLD*/
++
+ #if ENABLE_NLS
+ # include <libintl.h>
+ # define _(Text) gettext (Text)
+@@ -215,6 +223,9 @@
+   {pred_used, "used    "},
+   {pred_user, "user    "},
+   {pred_xtype, "xtype   "},
++#ifdef WITH_SELINUX
++  {pred_scontext, "context"},
++#endif /*WITH_SELINUX*/
+   {0, "none    "}
+ };
+ 
+@@ -903,6 +914,26 @@
+ 		     mode_to_filetype(stat_buf->st_mode & S_IFMT));
+ 	  }
+ 	  break;
++#ifdef WITH_SELINUX
++      case 'Z':               /* SELinux security context */
++        {
++          security_context_t scontext;
++          int rv;
++          rv = (*options.x_getfilecon)(state.rel_pathname, &scontext);
++
++          if ( rv < 0 ) {
++            (void) fprintf(stderr, "getfileconf(%s): %s",
++                           pathname, strerror(errno));
++            (void) fflush(stderr);
++          }
++          else {
++	      segment->text[segment->text_len] = 's';
++	      (void) fprintf (fp, segment->text, scontext);
++	      freecon(scontext);
++          }
++        }
++        break ;
++#endif /* WITH_SELINUX */
+ 	}
+     }
+   return true;
+@@ -1480,6 +1511,34 @@
+    */
+   return (pred_type (pathname, &sbuf, pred_ptr));
+ }
++  
++
++#ifdef WITH_SELINUX
++
++boolean
++pred_scontext ( pathname, stat_buf, pred_ptr )
++     char *pathname;
++     struct stat *stat_buf;
++     struct predicate *pred_ptr;
++{
++  int rv;
++  security_context_t scontext;
++
++  rv = (* options.x_getfilecon)(state.rel_pathname, &scontext);
++
++  if ( rv < 0 ) {
++    (void) fprintf(stderr, "getfilecon(%s): %s\n", pathname, strerror(errno));
++    (void) fflush(stderr);
++    return ( false );
++  }
++
++  rv = (fnmatch(pred_ptr->args.scontext, scontext,0)==0);
++  freecon(scontext);
++  return rv;
++}
++
++#endif /*WITH_SELINUX*/
++
+ 
+ /*  1) fork to get a child; parent remembers the child pid
+     2) child execs the command requested
+diff -urN findutils-4.2.24.orig/find/util.c findutils-4.2.24/find/util.c
+--- findutils-4.2.24.orig/find/util.c	2005-06-19 16:01:58.000000000 -0400
++++ findutils-4.2.24/find/util.c	2005-09-28 23:46:10.144846325 -0400
+@@ -78,6 +78,9 @@
+   last_pred->need_stat = true;
+   last_pred->need_type = true;
+   last_pred->args.str = NULL;
++#ifdef WITH_SELINUX
++  last_pred->args.scontext = NULL;
++#endif
+   last_pred->pred_next = NULL;
+   last_pred->pred_left = NULL;
+   last_pred->pred_right = NULL;
