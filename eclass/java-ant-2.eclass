@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.28 2008/01/27 03:37:49 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.29 2008/02/13 19:44:15 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -269,7 +269,7 @@ java-ant_bsfix_files() {
 					die "Do not define JAVA_ANT_JAVADOC_OUTPUT_DIR!"
 				fi
 				# Where will our generated javadoc go.
-				readonly JAVA_ANT_JAVADOC_OUTPUT_DIR=${WORKDIR}/gentoo_javadoc
+				readonly JAVA_ANT_JAVADOC_OUTPUT_DIR="${WORKDIR}/gentoo_javadoc"
 				mkdir -p "${JAVA_ANT_JAVADOC_OUTPUT_DIR}" || die
 
 				if hasq doc ${IUSE}; then
@@ -387,8 +387,7 @@ java-ant_ignore-system-classes() {
 # Run the right xml-rewrite binary with the given arguments
 # ------------------------------------------------------------------------------
 java-ant_xml-rewrite() {
-	local bindir="${EROOT}/usr/bin/"
-	local gen2="${bindir}/xml-rewrite-2.py"
+	local gen2="/usr/bin/xml-rewrite-2.py"
 	# gen1 is deprecated
 	if [[ -x "${gen2}" ]]; then
 		${gen2} "${@}" || die "${gen2} failed"

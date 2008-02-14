@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.16 2007/09/15 00:42:41 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.17 2008/02/13 19:54:33 mr_bones_ Exp $
 
 # Variables to specify in an ebuild which uses this eclass:
 # GAME - (doom3, quake4 or ut2004, etc), unless ${PN} starts with e.g. "doom3-"
@@ -382,7 +382,7 @@ games-mods_src_install() {
 		if [[ -e ${FILESDIR}/server.cfg ]]
 		then
 			insinto "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}
-			doins ${FILESDIR}/server.cfg || die "Copying server config"
+			doins "${FILESDIR}"/server.cfg || die "Copying server config"
 			case ${GAME} in
 				doom3)
 					dodir "${GAMES_PREFIX}"/.doom3/${MOD_DIR}
@@ -487,7 +487,7 @@ EOF
 games-mods_make_conf.d() {
 	if [[ -e ${FILESDIR}/${GAME_EXE}-${MOD_DIR}.conf.d ]]
 	then
-		cp ${FILESDIR}/${GAME_EXE}-${MOD_DIR}.conf.d \
+		cp "${FILESDIR}"/${GAME_EXE}-${MOD_DIR}.conf.d \
 			"${T}"/${GAME_EXE}-${MOD_DIR}-ded.conf.d
 		return 0
 	fi

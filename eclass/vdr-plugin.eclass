@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.52 2007/12/12 17:43:50 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.53 2008/02/13 19:44:44 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -249,7 +249,7 @@ vdr-plugin_src_unpack() {
 
 			# Use a file instead of an variable as single-stepping via ebuild
 			# destroys environment.
-			touch ${WORKDIR}/.vdr-plugin_makefile_patched
+			touch "${WORKDIR}"/.vdr-plugin_makefile_patched
 			;;
 		add_local_patch)
 			cd "${S}"

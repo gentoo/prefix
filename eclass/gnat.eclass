@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.33 2008/01/06 19:30:24 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.34 2008/02/13 20:09:27 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -423,10 +423,10 @@ gnat_src_install() {
 				cp -dpR "${DLbin}-${compilers[${i}]}" "${ED}/${DLlocation}"/bin
 				cp -dpR "${DLgpr}-${compilers[${i}]}" "${ED}/${DLlocation}"/gpr
 				# create profile-specific specs file
-				cp ${LibEnv} ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
-				sed -i -e "s:%DL%:${DLlocation}/${PN}:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
-				sed -i -e "s:%DLbin%:${DLlocation}/bin:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
-				sed -i -e "s:%DLgpr%:${DLlocation}/gpr:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+				cp ${LibEnv} "${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}"
+				sed -i -e "s:%DL%:${DLlocation}/${PN}:g" "${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}"
+				sed -i -e "s:%DLbin%:${DLlocation}/bin:g" "${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}"
+				sed -i -e "s:%DLgpr%:${DLlocation}/gpr:g" "${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}"
 			else
 				einfo "skipping gnat profile ${compilers[${i}]}"
 			fi

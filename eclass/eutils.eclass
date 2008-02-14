@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.295 2008/02/07 04:17:06 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.296 2008/02/13 20:50:06 wolf31o2 Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1464,7 +1464,7 @@ cdrom_load_next_cd() {
 # (2) the user hits CTRL+C
 _cdrom_locate_file_on_cd() {
 	local mline=""
-	local showedmsg=0
+	local showedmsg=0 showjolietmsg=0
 
 	while [[ -z ${CDROM_ROOT} ]] ; do
 		local i=0
@@ -1515,10 +1515,15 @@ _cdrom_locate_file_on_cd() {
 		einfo "Press return to scan for the cd again"
 		einfo "or hit CTRL+C to abort the emerge."
 		echo
-		einfo "If you are having trouble with the detection"
-		einfo "of your CD, it is possible that you do not have"
-		einfo "Joliet support enabled in your kernel.  Please"
-		einfo "check that CONFIG_JOLIET is enabled in your kernel."
+		if [[ ${showjolietmsg} -eq 0 ]] ; then
+			showjolietmsg=1
+		else
+			ewarn "If you are having trouble with the detection"
+			ewarn "of your CD, it is possible that you do not have"
+			ewarn "Joliet support enabled in your kernel.  Please"
+			ewarn "check that CONFIG_JOLIET is enabled in your kernel."
+			ebeep 5
+		fi
 		read || die "something is screwed with your system"
 	done
 }

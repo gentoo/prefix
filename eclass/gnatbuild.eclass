@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.36 2008/02/11 15:12:31 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.37 2008/02/13 20:12:17 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -317,7 +317,7 @@ gnatbuild_src_unpack() {
 			unpack ${A}
 			pax-mark E $(find ${GNATBOOT} -name gnat1)
 
-			cd ${S}
+			cd "${S}"
 			# patching gcc sources, following the toolchain
 			if [[ -d "${FILESDIR}"/${SLOT} ]] ; then
 				EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
@@ -346,7 +346,7 @@ gnatbuild_src_unpack() {
 			done
 
 			# regenerate some configures tp fix ACT's omissions
-			pushd ${S}/gnattools &> /dev/null
+			pushd "${S}"/gnattools &> /dev/null
 				eautoconf
 			popd &> /dev/null
 		;;
@@ -364,7 +364,7 @@ gnatbuild_src_unpack() {
 			# add -fPIC flag to shared libs for 3.4* backend
 			if [ "3.4" == "${GCCBRANCH}" ] ; then
 				cd ada
-				epatch ${FILESDIR}/gnat-Make-lang.in.patch
+				epatch "${FILESDIR}"/gnat-Make-lang.in.patch
 			fi
 
 			mkdir -p "${GNATBUILD}"
@@ -476,10 +476,10 @@ gnatbuild_src_compile() {
 				debug-print-section make-tools
 				# Compile helper tools
 				cd "${GNATBOOT}"
-				cp ${S}/gcc/ada/xtreeprs.adb .
-				cp ${S}/gcc/ada/xsinfo.adb .
-				cp ${S}/gcc/ada/xeinfo.adb .
-				cp ${S}/gcc/ada/xnmake.adb .
+				cp "${S}"/gcc/ada/xtreeprs.adb .
+				cp "${S}"/gcc/ada/xsinfo.adb .
+				cp "${S}"/gcc/ada/xeinfo.adb .
+				cp "${S}"/gcc/ada/xnmake.adb .
 				gnatmake xtreeprs && \
 					gnatmake xsinfo && \
 					gnatmake xeinfo && \
@@ -562,7 +562,7 @@ gnatbuild_src_install() {
 
 
 		cd "${GNATBUILD}"
-		make DESTDIR=${D} install || die
+		make DESTDIR="${D}" install || die
 
 		#make a convenience info link
 		dosym ${DATAPATH}/info/gnat_ugn_unw.info ${DATAPATH}/info/gnat.info
