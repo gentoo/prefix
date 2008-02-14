@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.8 2008/01/05 21:07:43 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.13 2008/02/13 14:33:22 armin76 Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND="
 	xft? ( x11-libs/libXft )
 	jpeg? ( media-libs/jpeg )
 	png? ( media-libs/libpng )
-	>=x11-libs/motif-config-0.9"
+	>=x11-libs/motif-config-0.10-r2"
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
 	x11-misc/xbitmaps"
@@ -51,7 +51,7 @@ src_compile() {
 	econf --with-x \
 		--bindir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
 		--libdir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
-	    $(use_enable xft) \
+		$(use_enable xft) \
 		$(use_enable jpeg) \
 		$(use_enable png) || die "configuration failed"
 
@@ -59,12 +59,12 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 
 	# cleanups
-	rm -fR ${ED}/usr/$(get_libdir)/X11
-	rm -fR ${ED}/usr/$(get_libdir)/X11/bindings
-	rm -fR ${ED}/usr/include/X11/
+	rm -fR "${ED}"/usr/$(get_libdir)/X11
+	rm -fR "${ED}"/usr/$(get_libdir)/X11/bindings
+	rm -fR "${ED}"/usr/include/X11/
 
 	list="/usr/share/man/man1/mwm.1 /usr/share/man/man4/mwmrc.4"
 	for f in $list; do
@@ -75,7 +75,7 @@ src_install() {
 # we dealt with this in Prefix by just setting --bindir= and --libdir=
 #	einfo "Fixing binaries"
 #	dodir /usr/$(get_libdir)/openmotif-${SLOT}
-#	for file in `ls ${ED}/usr/bin`
+#	for file in `ls "${ED}"/usr/bin`
 #	do
 #		mv ${ED}/usr/bin/${file} ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/${file}
 #	done
@@ -85,37 +85,37 @@ src_install() {
 
 	einfo "Fixing includes"
 	dodir /usr/include/openmotif-${SLOT}/
-	mv ${ED}/usr/include/* ${ED}/usr/include/openmotif-${SLOT}
+	mv "${ED}"/usr/include/* "${ED}"/usr/include/openmotif-${SLOT}
 
 	einfo "Fixing man pages"
 	mans="1 3 4 5"
 	for man in $mans; do
 		dodir /usr/share/man/man${man}
-		for file in `ls ${ED}/usr/share/man/man${man}`
+		for file in `ls "${ED}"/usr/share/man/man${man}`
 		do
 			file=${file/.${man}/}
-			mv ${ED}/usr/share/man/man$man/${file}.${man} ${ED}/usr/share/man/man${man}/${file}-openmotif-${SLOT}.${man}
+			mv "${ED}"/usr/share/man/man$man/${file}.${man} "${ED}"/usr/share/man/man${man}/${file}-openmotif-${SLOT}.${man}
 		done
 	done
 
 	# install docs
 	dodoc README RELEASE RELNOTES BUGREPORT TODO
 
-	use doc && cp ${WORKDIR}/*.pdf ${ED}/usr/share/doc/${PF}
+	use doc && cp "${WORKDIR}"/*.pdf "${ED}"/usr/share/doc/${PF}
 
 	if ( use examples )
 	then
-	    dodir /usr/share/doc/${PF}/demos
-	    mv ${ED}/usr/share/Xm ${ED}/usr/share/doc/${PF}/demos
+		dodir /usr/share/doc/${PF}/demos
+		mv "${ED}"/usr/share/Xm "${ED}"/usr/share/doc/${PF}/demos
 	else
-	    rm -rf ${ED}/usr/share/Xm
+		rm -rf "${ED}"/usr/share/Xm
 	fi
 
 	# profile stuff
 	dodir /etc/env.d
-	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/openmotif-${SLOT}" > ${ED}/etc/env.d/15openmotif-${SLOT}
+	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/openmotif-${SLOT}" > "${ED}"/etc/env.d/15openmotif-${SLOT}
 	dodir /usr/$(get_libdir)/motif
-	echo "PROFILE=openmotif-${SLOT}" > ${ED}/usr/$(get_libdir)/motif/openmotif-${SLOT}
+	echo "PROFILE=openmotif-${SLOT}" > "${ED}"/usr/$(get_libdir)/motif/openmotif-${SLOT}
 }
 
 pkg_postinst() {

@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.145 2008/01/05 21:07:43 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.150 2008/02/13 14:33:22 armin76 Exp $
+
+  13 Feb 2008; Raúl Porcel <armin76@gentoo.org> openmotif-2.3.0.ebuild:
+  alpha/ia64/sparc stable wrt #204265
+
+  13 Feb 2008; Raúl Porcel <armin76@gentoo.org> openmotif-2.3.0.ebuild:
+  Bump DEPEND on motif-config
+
+  13 Feb 2008; Jeroen Roovers <jer@gentoo.org> openmotif-2.3.0.ebuild:
+  Stable for HPPA (bug #204265).
+
+  13 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  openmotif-2.3.0.ebuild:
+  use emake instead of plain make; quote a lot of variables
+
+  13 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  openmotif-2.3.0.ebuild:
+  stable x86, bug 204265
 
   05 Jan 2008; Mark Loeser <halcy0n@gentoo.org> openmotif-2.3.0.ebuild:
   Make openmotif actually respect USE flags when building (thanks to Jozef
