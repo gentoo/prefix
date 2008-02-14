@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/source-highlight
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.26 2007/09/01 16:21:54 dev-zero Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.27 2008/02/13 13:24:23 dev-zero Exp $
+
+*source-highlight-2.8 (13 Feb 2008)
+
+  13 Feb 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/source-highlight-2.8.bash-completion, -source-highlight-2.7.ebuild,
+  +source-highlight-2.8.ebuild:
+  Version bump (bug #207900, updated bash-completion file). Dropped old version.
 
 *source-highlight-2.7 (01 Sep 2007)
 

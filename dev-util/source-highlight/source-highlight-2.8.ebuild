@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.7.ebuild,v 1.1 2007/09/01 16:21:54 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.8.ebuild,v 1.1 2008/02/13 13:24:23 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="Generate highlighted source code as an (x)html document"
 HOMEPAGE="http://www.gnu.org/software/src-highlite/source-highlight.html"
 SRC_URI="mirror://gnu/src-highlite/${P}.tar.gz"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 SLOT="0"
 IUSE="doc"
 
@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	dobashcompletion "${FILESDIR}/${PN}-2.5.bash-completion"
+	dobashcompletion "${FILESDIR}/${PN}-2.8.bash-completion"
 
 	# That's not how we want it
 	rm -fr "${ED}/usr/share/doc"
