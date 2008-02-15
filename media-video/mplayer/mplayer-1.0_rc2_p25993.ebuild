@@ -200,8 +200,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
 	epatch "${FILESDIR}"/${PN}-1.0-quantize2.patch
 
-	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
-	eprefixify DOCS/xml/configure
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p25993-prefix.patch
 }
 
 src_compile() {

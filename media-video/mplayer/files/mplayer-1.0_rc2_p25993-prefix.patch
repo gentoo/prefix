@@ -1,0 +1,28 @@
+--- configure
++++ configure
+@@ -1306,16 +1306,6 @@
+ fi
+ 
+ 
+-if freebsd ; then
+-  _ld_extra="$_ld_extra -L/usr/local/lib"
+-  _inc_extra="$_inc_extra -I/usr/local/include"
+-fi
+-
+-if darwin; then
+-  _ld_extra="$_ld_extra -L/usr/local/lib"
+-  _inc_extra="$_inc_extra -I/usr/local/include"
+-fi
+-
+ if aix ; then
+   _ld_extra="$_ld_extra -lC"
+ fi
+@@ -3880,7 +3870,7 @@
+ echocheck "X11 headers presence"
+   _x11_headers="no"
+   _res_comment="check if the dev(el) packages are installed"
+-  for I in `echo $_inc_extra | sed s/-I//g` /usr/include ; do
++  for I in `echo $_inc_extra | sed s/-I//g`; do
+     if test -f "$I/X11/Xlib.h" ; then
+       _x11_headers="yes"
+       _res_comment=""
