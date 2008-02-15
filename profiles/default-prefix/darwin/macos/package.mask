@@ -1,5 +1,9 @@
 # $Header: $
 
+# Fabian Groffen <grobian@gentoo.org> (15 Feb 2007)
+# Doesn't compile, previous release (1.0.6) does.
+app-misc/ttyrec-1.0.8
+
 # Elias Pipping <pipping@gentoo.org> (29 Nov 2007)
 # testing only -- virtual/opengl and eselect opengl are still missing
 media-libs/libsdl

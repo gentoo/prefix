@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.mask:
+  Mask app-misc/ttyrec-1.0.8 as it doesn't compile
+
   13 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmask our Portages again after a global mask for Portage 2.2
 
