@@ -25,7 +25,9 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-ABI_correction.patch
+	# on Darwin: error: only weak aliases are supported in this configuration
+	[[ ${CHOST} != *-darwin* ]] && \
+		epatch "${FILESDIR}"/${P}-ABI_correction.patch
 	elibtoolize
 }
 
