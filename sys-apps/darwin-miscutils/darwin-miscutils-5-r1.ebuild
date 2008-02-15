@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit toolchain-funcs eutils
 
 MISC_VER=23
-SHELL_VER=116
+SHELL_VER=118
 DEV_VER=48
 
 DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems"
