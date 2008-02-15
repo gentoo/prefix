@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
@@ -36,6 +36,7 @@ pkg_setup() {
 src_compile() {
 	filter-flags "-fstack-protector"
 	replace-flags "-Os" "-O2" # work around gcc-4.1.1-r[01] bugs
+	[[ ${CHOST} == *-darwin* ]] && append-flags -D_DARWIN_C_SOURCE
 
 	econf --libdir="${EPREFIX}"/etc \
 		--with-x \
@@ -79,11 +80,11 @@ src_install() {
 	fperms 0755 /usr/bin/xterm
 
 	# restore the navy blue
-	sed -i "s:blue2$:blue:" "${ED}"${DEFAULTS_DIR}/XTerm-color
+	sed -i "s:blue2$:blue:" "${D}"${DEFAULTS_DIR}/XTerm-color
 
 	# Fix for bug #91453 at Thomas Dickey's suggestion:
-	echo "*allowWindowOps: 	false" >> "${ED}"/${DEFAULTS_DIR}/XTerm
-	echo "*allowWindowOps: 	false" >> "${ED}"/${DEFAULTS_DIR}/UXTerm
+	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/XTerm
+	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/UXTerm
 }
 
 pkg_postinst() {
