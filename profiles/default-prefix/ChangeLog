@@ -4,6 +4,11 @@
 
   15 Feb 2008; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask:
+  Mask dev-lang/swi-prolog-5.6.50 as it runs out of stack space during
+  compilation
+
+  15 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.mask:
   Mask app-misc/ttyrec-1.0.8 as it doesn't compile
 
   13 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
