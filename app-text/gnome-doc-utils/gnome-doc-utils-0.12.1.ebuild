@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.10.3.ebuild,v 1.10 2007/09/22 07:50:38 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.1 2008/02/14 08:06:17 leio Exp $
 
 EAPI="prefix"
 
-inherit python eutils gnome2
+inherit eutils python gnome2
 
 DESCRIPTION="A collection of documentation utilities for the Gnome project"
 HOMEPAGE="http://www.gnome.org/"
@@ -19,7 +19,7 @@ RDEPEND=">=dev-libs/libxml2-2.6.12
 	 >=dev-lang/python-2"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	>=dev-util/intltool-0.28
+	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
 	~app-text/docbook-xml-dtd-4.4"
 
@@ -35,11 +35,11 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	python_mod_optimize ${EROOT}usr/share/xml2po
+	python_mod_optimize "${EROOT}"usr/share/xml2po
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
-	python_mod_cleanup ${EROOT}usr/share/xml2po
+	python_mod_cleanup "${EROOT}"usr/share/xml2po
 	gnome2_pkg_postrm
 }
