@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libsndfile
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.79 2007/09/29 09:22:25 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.80 2008/02/15 12:16:53 drac Exp $
+
+  15 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  libsndfile-1.0.17-r1.ebuild:
+  If built with USE -sqlite don't install sndfile-regtest command wrt #210216
+  by Matthias B.
 
   29 Sep 2007; Raúl Porcel <armin76@gentoo.org>
   libsndfile-1.0.17-r1.ebuild:

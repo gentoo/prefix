@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.17-r1.ebuild,v 1.9 2007/12/11 23:46:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.17-r1.ebuild,v 1.11 2008/02/15 17:16:55 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -51,4 +51,7 @@ src_compile() {
 src_install() {
 	emake -j1 DESTDIR="${D}" htmldocdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed."
 	dodoc AUTHORS ChangeLog NEWS README TODO
+	# Only prints following message: "This program was not compiled
+	# with libsqlite3 and hence doesn't work." wrt bug #210161.
+	use sqlite || rm -f "${ED}"/usr/bin/sndfile-regtest
 }
