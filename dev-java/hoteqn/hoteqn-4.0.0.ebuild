@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/hoteqn/hoteqn-4.0.0.ebuild,v 1.2 2007/12/11 14:39:45 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/hoteqn/hoteqn-4.0.0.ebuild,v 1.3 2008/02/14 19:00:43 lu_zero Exp $
 
 EAPI="prefix"
 
