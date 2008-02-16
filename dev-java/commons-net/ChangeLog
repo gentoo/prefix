@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/commons-net
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-net/ChangeLog,v 1.43 2007/06/29 09:23:52 betelgeuse Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-net/ChangeLog,v 1.44 2008/02/15 03:55:43 betelgeuse Exp $
+
+  15 Feb 2008; Petteri Räty <betelgeuse@gentoo.org>
+  commons-net-1.4.1-r1.ebuild:
+  Add RESTRICT=test or the generic src_test that we will be adding will run test.
 
   29 Jun 2007; Petteri Räty <betelgeuse@gentoo.org>
   commons-net-1.4.1-r1.ebuild:

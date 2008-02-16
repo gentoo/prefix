@@ -1,11 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-net/commons-net-1.4.1-r1.ebuild,v 1.11 2007/06/29 09:23:52 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-net/commons-net-1.4.1-r1.ebuild,v 1.12 2008/02/15 03:55:43 betelgeuse Exp $
 
 EAPI="prefix"
 
-# disabling unit tests:
-# http://issues.apache.org/bugzilla/show_bug.cgi?id=37985
 JAVA_PKG_IUSE="doc examples source" # junit
 
 inherit eutils java-pkg-2 java-ant-2
@@ -26,7 +24,11 @@ DEPEND=">=virtual/jdk-1.3
 	${COMMON_DEP}"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+
+# disabling unit tests:
+# http://issues.apache.org/bugzilla/show_bug.cgi?id=37985
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
