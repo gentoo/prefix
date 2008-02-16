@@ -1,6 +1,19 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.135 2008/01/11 17:04:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.139 2008/02/15 21:39:35 nixnut Exp $
+
+  15 Feb 2008; nixnut <nixnut@gentoo.org> ChangeLog:
+  Stable on ppc wrt bug 210197
+
+  15 Feb 2008; Brent Baude <ranger@gentoo.org> graphviz-2.16.1-r3.ebuild:
+  stable ppc64, bug 210197
+
+  14 Feb 2008; Ferris McCormick <fmccor@gentoo.org>
+  graphviz-2.16.1-r3.ebuild:
+  Sparc stable, Bug #210197, good for a month now.
+
+  14 Feb 2008; Markus Meier <maekke@gentoo.org> graphviz-2.16.1-r3.ebuild:
+  x86 stable, bug #210197
 
 *graphviz-2.16.1-r3 (11 Jan 2008)
 
