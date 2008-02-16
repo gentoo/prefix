@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.73.2.ebuild,v 1.1 2007/08/31 19:19:32 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.73.2.ebuild,v 1.7 2008/02/16 00:04:31 cla Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/docbook/docbook-xsl-${PV}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-libs/libxml2
@@ -26,7 +26,7 @@ src_install() {
 	local i
 	for sheet in $(find . -maxdepth 1 -mindepth 1 -type d); do
 		i=$(basename $sheet)
-		cd ${S}/${i}
+		cd "${S}"/${i}
 		for doc in ChangeLog README; do
 			if [ -e "$doc" ]; then
 				mv ${doc} ${doc}.${i}
@@ -35,7 +35,7 @@ src_install() {
 			fi
 		done
 
-		doins -r ${S}/${i}
+		doins -r "${S}"/${i}
 	done
 
 	# Install misc. docs
