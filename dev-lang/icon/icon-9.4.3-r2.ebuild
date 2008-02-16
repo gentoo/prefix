@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.4.3-r2.ebuild,v 1.10 2007/12/18 21:12:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.4.3-r2.ebuild,v 1.12 2008/02/14 14:08:48 armin76 Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ DESCRIPTION="very high level language"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="X iplsrc"
 
 S=${WORKDIR}/icon.v${MY_PV}src
@@ -86,14 +86,14 @@ src_install() {
 	cd "${S}/man/man1"
 	doman icont.1
 	doman icon.1
-	rm -rf ${ED}/usr/lib/icon/man
+	rm -rf "${ED}"/usr/lib/icon/man
 
 	cd "${S}/doc"
 	dodoc *.txt *.sed ../README
 	# dohtml ignores all anything except .html files, no use here
-	mkdir -p ${ED}/usr/share/doc/${PF}/html
-	cp -dpR *.htm *.gif *.jpg *.css ${ED}/usr/share/doc/${PF}/html
-	rm -rf ${ED}/usr/lib/icon/{doc,README}
+	mkdir -p "${ED}"/usr/share/doc/${PF}/html
+	cp -dpR *.htm *.gif *.jpg *.css "${ED}"/usr/share/doc/${PF}/html
+	rm -rf "${ED}"/usr/lib/icon/{doc,README}
 
 	# optional Icon Programming Library
 	if use iplsrc; then
