@@ -1,12 +1,16 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.10 2007/12/21 20:38:44 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.11 2008/02/14 20:30:53 cardoe Exp $
 
+# @ECLASS: nvidia-driver.eclass
+# @MAINTAINER: Doug Klima <cardoe@gentoo.org>
 #
-# Original Author: Doug Goldstein <cardoe@gentoo.org>
-# Purpose: Provide useful messages for nvidia-drivers based on currently
-# installed Nvidia card
-#
+# Original Author: Doug Klima <cardoe@gentoo.org>
+# @BLURB: Provide useful messages for nvidia-drivers based on currently installed Nvidia card
+# @DESCRIPTION:
+# Provide useful messages for nvidia-drivers based on currently installed Nvidia
+# card. It inherits versionator
+
 inherit versionator
 
 DEPEND="sys-apps/pciutils"
@@ -24,6 +28,8 @@ drv_71xx="0020 0028 0029 002c 002d 00a0 0100 0101 0103 0150 0151 0152 0153"
 mask_96xx=">=x11-drivers/nvidia-drivers-97.0.0"
 mask_71xx=">=x11-drivers/nvidia-drivers-72.0.0"
 
+# @FUNCTION: nvidia-driver-get-card
+# @DESCRIPTION:
 # Retrieve the PCI device ID for each Nvidia video card you have
 nvidia-driver-get-card() {
 	local NVIDIA_CARD="$(/usr/sbin/lspci -d 10de: -n | \
@@ -59,6 +65,9 @@ nvidia-driver-get-mask() {
 	return 1;
 }
 
+# @FUNCTION: nvidia-driver-check-warning
+# @DESCRIPTION:
+# Prints out a warning if the driver does not work w/ the installed video card
 nvidia-driver-check-warning() {
 	local NVIDIA_MASK="$(nvidia-driver-get-mask)"
 	if [ -n "$NVIDIA_MASK" ]; then

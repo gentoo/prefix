@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.15 2007/08/07 18:30:04 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.16 2008/02/15 01:22:32 ribosome Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -47,9 +47,9 @@ embassy_src_unpack() {
 	cp "${EPREFIX}"/usr/$(get_libdir)/libajax.la EMBOSS-${EBOV}/ajax/
 	cp "${EPREFIX}"/usr/$(get_libdir)/libajaxg.la EMBOSS-${EBOV}/ajax/
 	cp "${EPREFIX}"/usr/$(get_libdir)/libnucleus.la EMBOSS-${EBOV}/nucleus/
-	if [ -e ${FILESDIR}/${PF}.patch ]; then
-		cd ${S}
-		epatch ${FILESDIR}/${PF}.patch
+	if [ -e "${FILESDIR}"/${PF}.patch ]; then
+		cd "${S}"
+		epatch "${FILESDIR}"/${PF}.patch
 	fi
 }
 

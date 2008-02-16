@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.1 2008/01/16 22:51:47 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.2 2008/02/15 19:48:40 zlin Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -400,6 +400,16 @@ kde4-meta_change_cmakelists() {
 					die "${LINENO}: sed died in the kdebase-startkde collision prevention section"
 				;;
 			esac
+		fi
+		;;
+		# This is sort of a hack to avoid patching 16 kdeutils packages with
+		# r775410 from upstream trunk which makes blitz optional so superkaramba
+		# only gets compiled when it is found. Bug #209324. Remove this no later
+		# than 4.1.
+		kdeutils)
+		if [[ ${PN} != superkaramba && ${SLOT} == kde-4 ]]; then
+			sed -i -e '/find_package(Blitz REQUIRED)/d' "${S}"/CMakeLists.txt \
+				|| die "${LINENO}: sed to remove dependency on Blitz failed."
 		fi
 		;;
 		koffice)

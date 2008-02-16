@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.296 2008/02/13 20:50:06 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.297 2008/02/15 07:43:45 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1593,6 +1593,9 @@ preserve_old_lib() {
 	fi
 	[[ -z $1 ]] && die "Usage: preserve_old_lib <library to preserve> [more libraries to preserve]"
 
+	# let portage worry about it
+	has preserve-libs ${FEATURES} && return 0
+
 	local lib dir
 	for lib in "$@" ; do
 		[[ -e ${EROOT}/${lib} ]] || continue
@@ -1612,6 +1615,9 @@ preserve_old_lib_notify() {
 		eerror "preserve_old_lib_notify() must be called from pkg_postinst() only"
 		die "Invalid preserve_old_lib_notify() usage"
 	fi
+
+	# let portage worry about it
+	has preserve-libs ${FEATURES} && return 0
 
 	local lib notice=0
 	for lib in "$@" ; do

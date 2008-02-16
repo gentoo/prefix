@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.123 2007/11/06 22:38:13 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.124 2008/02/15 00:15:51 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -219,13 +219,13 @@ games_ut_unpack() {
 
 # Unpacks .umod/.ut2mod/.ut4mod files for UT/UT2003/UT2004
 # Usage: games_umod_unpack $1
+# oh, and don't forget to set 'dir' and 'Ddir'
 games_umod_unpack() {
 	local umod=$1
-	mkdir -p "${Ddir}/System"
-	cp "${dir}"/System/{ucc-bin,{Manifest,Def{ault,User}}.ini,{Engine,Core,zlib,ogg,vorbis}.so,{Engine,Core}.int} ${Ddir}/System
-	export UT_DATA_PATH="${Ddir}/System"
-	cd "${UT_DATA_PATH}"
-	./ucc-bin umodunpack -x "${S}/${umod}" -nohomedir &> /dev/null \
+	mkdir -p "${Ddir}"/System
+	cp "${dir}"/System/{ucc-bin,{Manifest,Def{ault,User}}.ini,{Engine,Core,zlib,ogg,vorbis}.so,{Engine,Core}.int} "${Ddir}"/System
+	cd "${Ddir}"/System
+	UT_DATA_PATH=${Ddir}/System ./ucc-bin umodunpack -x "${S}/${umod}" -nohomedir &> /dev/null \
 		|| die "uncompressing file ${umod}"
 	rm -f "${Ddir}"/System/{ucc-bin,{Manifest,Def{ault,User},User,UT200{3,4}}.ini,{Engine,Core,zlib,ogg,vorbis}.so,{Engine,Core}.int,ucc.log} &>/dev/null \
 		|| die "Removing temporary files"
