@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.1 2008/02/11 12:13:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.2 2008/02/14 11:09:23 armin76 Exp $
 
 EAPI="prefix"
 
@@ -30,11 +30,13 @@ src_unpack() {
 src_compile() {
 	cd build
 
-	if use amd64 || use ppc64 || use ia64 || use s390; then
-		myconf="${myconf} --enable-64bit"
-	else
-		myconf=""
-	fi
+	echo > "${T}"/test.c
+	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
+	case $(file "${T}"/test.o) in
+	    *64-bit*) myconf="${myconf} --enable-64bit";;
+	    *32-bit*) ;;
+	    *) die "FAIL";;
+	esac
 
 	if use ipv6; then
 		myconf="${myconf} --enable-ipv6"
