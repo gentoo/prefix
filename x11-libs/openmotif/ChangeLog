@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.150 2008/02/13 14:33:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.154 2008/02/14 19:25:00 nixnut Exp $
+
+  14 Feb 2008; nixnut <nixnut@gentoo.org> openmotif-2.3.0.ebuild:
+  Stable on ppc wrt bug 204265
+
+  14 Feb 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0.ebuild,
+  openmotif-2.3.0-r1.ebuild:
+  Also remove stale symlinks for libraries and man pages.
+
+*openmotif-2.3.0-r1 (14 Feb 2008)
+
+  14 Feb 2008; Ulrich Mueller <ulm@gentoo.org> +files/motif-config-2.3,
+  +files/Mwm.defaults, openmotif-2.3.0.ebuild, +openmotif-2.3.0-r1.ebuild:
+  Install libraries and include files without slotting. Install application
+  defaults for Mwm and a stripped-down motif-config. Ebuild by Jakub Moc
+  <jakub@gentoo.org>, bug 210021. Don't compile demo binaries. Fix symlink for
+  system.mwmrc. Drop mips to unstable. Add missing OPL licence.
 
   13 Feb 2008; Raúl Porcel <armin76@gentoo.org> openmotif-2.3.0.ebuild:
   alpha/ia64/sparc stable wrt #204265

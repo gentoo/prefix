@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.13 2008/02/13 14:33:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.17 2008/02/14 19:25:00 nixnut Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,8 @@ HOMEPAGE="http://www.motifzone.org/"
 SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 	doc? ( http://www.motifzone.net/files/documents/${P}-manual.pdf.tgz )"
 
-LICENSE="MOTIF"
-SLOT="2.3"
+LICENSE="MOTIF doc? ( OPL )"
+SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="doc xft jpeg png examples"
 
@@ -74,18 +74,18 @@ src_install() {
 
 # we dealt with this in Prefix by just setting --bindir= and --libdir=
 #	einfo "Fixing binaries"
-#	dodir /usr/$(get_libdir)/openmotif-${SLOT}
+#	dodir /usr/$(get_libdir)/openmotif-2.3
 #	for file in `ls "${ED}"/usr/bin`
 #	do
-#		mv ${ED}/usr/bin/${file} ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/${file}
+#		mv ${ED}/usr/bin/${file} ${ED}/usr/$(get_libdir)/openmotif-2.3/${file}
 #	done
 #
 #	einfo "Fixing libraries"
-#	mv ${ED}/usr/$(get_libdir)/* ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/
+#	mv ${ED}/usr/$(get_libdir)/* ${ED}/usr/$(get_libdir)/openmotif-2.3/
 
 	einfo "Fixing includes"
-	dodir /usr/include/openmotif-${SLOT}/
-	mv "${ED}"/usr/include/* "${ED}"/usr/include/openmotif-${SLOT}
+	dodir /usr/include/openmotif-2.3/
+	mv "${ED}"/usr/include/* "${ED}"/usr/include/openmotif-2.3
 
 	einfo "Fixing man pages"
 	mans="1 3 4 5"
@@ -94,7 +94,7 @@ src_install() {
 		for file in `ls "${ED}"/usr/share/man/man${man}`
 		do
 			file=${file/.${man}/}
-			mv "${ED}"/usr/share/man/man$man/${file}.${man} "${ED}"/usr/share/man/man${man}/${file}-openmotif-${SLOT}.${man}
+			mv "${ED}"/usr/share/man/man$man/${file}.${man} "${ED}"/usr/share/man/man${man}/${file}-openmotif-2.3.${man}
 		done
 	done
 
@@ -113,9 +113,9 @@ src_install() {
 
 	# profile stuff
 	dodir /etc/env.d
-	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/openmotif-${SLOT}" > "${ED}"/etc/env.d/15openmotif-${SLOT}
+	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/openmotif-2.3" > "${ED}"/etc/env.d/15openmotif-2.3
 	dodir /usr/$(get_libdir)/motif
-	echo "PROFILE=openmotif-${SLOT}" > "${ED}"/usr/$(get_libdir)/motif/openmotif-${SLOT}
+	echo "PROFILE=openmotif-2.3" > "${ED}"/usr/$(get_libdir)/motif/openmotif-2.3
 }
 
 pkg_postinst() {

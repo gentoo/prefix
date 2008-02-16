@@ -1,0 +1,91 @@
+#!/bin/bash
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# based on gcc-config by Martin Schlemmer <azarah@gentoo.org
+# Author:  Heinrich Wendel <lanius@gentoo.org>
+
+# Stripped down minimal version for backwards compatibility only.
+# We now just provide the info that other applications might use
+# to compile and link against openmotif - Jakub Moc <jakub@gentoo.org>
+
+usage() {
+cat << "USAGE_END"
+Usage: motif-config [option]
+
+Options:
+
+  -L, --get-lib-path         Print path where openmotif libraries are located.
+
+  -I, --get-inc-path         Print path where openmotif includes are located.
+
+      --libs                 Print link flags for openmotif
+
+      --cflags               Print compilation flags for openmotif
+
+USAGE_END
+    exit $1
+}
+[[ $# -lt 1 ]] && usage 1
+[[ $# -gt 2 ]] && usage 1
+
+get_lib_path() {
+	echo "/usr/@@LIBDIR@@/"
+	exit 0
+}
+
+get_inc_path() {
+	echo "/usr/include/"
+	exit 0
+}
+
+get_cflags() {
+	echo "-I/usr/include/"
+	exit 0
+}
+
+get_libs() {
+	echo "-L/usr/@@LIBDIR@@/"
+	exit 0
+}
+
+for x in "$@"; do
+	case "${x}" in
+		-L|--get-lib-path)
+			[[ $# -gt 2 ]] && usage 1
+			get_lib_path $2
+		;;
+
+		-I|--get-inc-path)
+			[[ $# -gt 2 ]] && usage 1
+			get_inc_path $2
+		;;
+
+		--cflags)
+			[[ $# -gt 2 ]] && usage 1
+			get_cflags $2
+		;;
+
+		--libs)
+			[[ $# -gt 2 ]] && usage 1
+			get_libs $2
+		;;
+
+		-h|--help)
+			usage 0
+		;;
+
+		-v|--version)
+			echo "motif-config-2.3"
+			exit 0
+		;;
+
+		-*)
+			usage 1
+		;;
+
+		*)
+			usage 1
+		;;
+
+	esac
+done
