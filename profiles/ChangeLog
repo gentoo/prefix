@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1116 2008/02/13 20:12:54 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1120 2008/02/15 20:00:15 wolf31o2 Exp $
+
+  15 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use:
+  Added threads to guile's package.use for 2008.0's release.
+
+  14 Feb 2008; Gunnar Wrobel <wrobel@gentoo.org> package.mask:
+  Masked www-apps/wordpress for security reasons.
+  Masked www-apps/bugs-bug-genie and www-apps/disc-cover since they are
+  outdated.
+
+  14 Feb 2008; Ulrich Mueller <ulm@gentoo.org> updates/1Q-2008,
+  package.mask:
+  Slotmove x11-libs/openmotif. Mask openmotif-2.3.0-r1 for testing.
 
   13 Feb 2008; Miroslav Šulc <fordfrog@gentoo.org> use.local.desc:
   Added java6 USE flag for dev-java/jdbc-postgresql

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.107 2007/12/13 16:03:46 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.108 2008/02/14 15:44:18 armin76 Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -12,7 +12,6 @@ virtual/alsa				sys-kernel/gentoo-sources
 virtual/antivirus			app-antivirus/clamav
 virtual/aspell-dict			app-dicts/aspell-en
 virtual/baselayout			sys-apps/baselayout
-virtual/bittorrent			net-p2p/bittorrent
 virtual/blackbox			x11-wm/blackbox
 virtual/cdrtools			app-cdr/cdrkit
 virtual/commonlisp			dev-lisp/sbcl

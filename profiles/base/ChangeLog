@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.30 2008/01/29 14:45:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.31 2008/02/14 15:44:18 armin76 Exp $
+
+  14 Feb 2008; Raúl Porcel <armin76@gentoo.org> virtuals:
+  Remove useless virtual/bittorrent
 
   29 Jan 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Move bluetooth package.use.mask for app-pda/pilot-link from the amd64

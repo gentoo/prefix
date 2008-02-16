@@ -1,0 +1,9 @@
+# Copyright 2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/license_groups,v 1.2 2007/11/04 03:48:42 solar Exp $
+
+# GLEP-0023
+# http://www.gentoo.org/proj/en/glep/glep-0023.html
+# http://www.fsf.org/licensing/licenses/index_html
+
+GPL-COMPATIBLE Apache-2.0 Artistic Artistic-2 BSD BSD-2 Boost-1.0 GPL-2 GPL-3 Intel LGPL-2.1 LGPL-3 PYTHON Ruby W3C W3C-document X11 ZLIB public-domain ZPL

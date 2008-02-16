@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation.
+# Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3357 2008/02/13 20:12:54 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3359 2008/02/15 21:15:53 nyhm Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -237,7 +237,7 @@ app-office/gnucash:chipcard - Enable support for chipcard reading and processing
 app-office/gnucash:hbci - Enable HBCI support, for connecting to some internet banks
 app-office/gnucash:quotes - Enable Online Stock Quote retrieval.
 app-office/grisbi:print - Enable TeX and printing support
-app-office/imposter:iksemel - Enable externel iksemel parsing support.
+app-office/imposter:iksemel - Enable external iksemel parsing support.
 app-office/kmymoney2:hbci - Adds HBCI online banking support
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
@@ -656,7 +656,7 @@ dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/monodevelop:aspnet - Enable ASP.NET support
 dev-util/monodevelop:aspnetedit - Enable ASP.NET visual designer support
 dev-util/monodevelop:boo - Enable support for the boo programming language
-dev-util/monodevelop:c++ - Enable support for C/C++ programming languanges
+dev-util/monodevelop:c++ - Enable support for C/C++ programming languages
 dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
@@ -812,7 +812,7 @@ kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
 kde-base/kdelibs:pcre - Provide better regular expression support in K java script (KJS)
 kde-base/kdelibs:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
-kde-base/kdelibs:utempter - Records everytime a user logins in. Useful on multi-user systems
+kde-base/kdelibs:utempter - Records user logins. Useful on multi-user systems
 kde-base/kdemultimedia:akode - Support for the aKode audio-decoding frame-work
 kde-base/kdemultimedia:tunepimp - Provide MusicBrainz tagging in Juk
 kde-base/kdenetwork:addbookmarks - Builds Add Bookmarks plugin
@@ -840,7 +840,7 @@ kde-base/kdenetwork:winpopup - Builds WinPopUp protocol handler
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kdeutils:archive - Enable support for a variety of archive formats through libarchive
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
-kde-base/kdeutils:tpctl - Enable sypport for Thinkpad system control
+kde-base/kdeutils:tpctl - Enable support for Thinkpad system control
 kde-base/kdeutils:zip - Enable zip support through LibZip
 kde-base/kget:plasma - Build optional plasma widgets
 kde-base/kig:kig-scripting - Support Python scripting
@@ -1141,7 +1141,7 @@ media-sound/qsampler:libgig - Enable libgig support for loading Gigasampler file
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines
-media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), usefull for slower computers
+media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), useful for slower computers
 media-sound/rezound:soundtouch - compile with support for soundtouch
 media-sound/rhythmbox:daap - support for daap
 media-sound/rhythmbox:keyring - gnome-keyring support for daap share passwords
@@ -1220,7 +1220,6 @@ media-tv/zapping:vdr - Enable Real Time Encoding support (librte)
 media-tv/zapping:zvbi - Enable VBI Decoding Library
 media-video/avidemux:aften - Enable A/52 (AC-3) audio encoder support
 media-video/avidemux:amrnb - Enable Narrow Band Adaptive Multi-Rate Audio support
-media-video/avidemux:fontconfig - Enable fontconfig support
 media-video/chaplin:transcode - Enable DVD ripping and transcoding
 media-video/cinelerra-cvs:css - Enable support for encrypted files through libmpeg3
 media-video/cinepaint:gimpprint - Enable support for gimp-print (gutenprint)
@@ -1559,7 +1558,7 @@ net-im/sim:sms - Enable sms plugin
 net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it
 net-im/skype:qt-static - Installs binaries statically linked to Qt
 net-im/tkabber:extras - Enables extra non official patches
-net-im/tkabber:plugins - Enables instalation the extra plugins
+net-im/tkabber:plugins - Enables installation the extra plugins
 net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
 net-im/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
 net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermann
@@ -1680,10 +1679,10 @@ net-misc/quagga:fix-connected-rt - Remove interface connected routes from kernel
 net-misc/quagga:multipath - Enable multipath routes support for any number of routes
 net-misc/quagga:ospfapi - Enable OSPFAPI support for client applications accessing the OSPF link state database
 net-misc/quagga:realms - Enable realms support (see http://vcalinus.gemenii.ro/quaggarealms.html)
-net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are choosen otherwise.
+net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise.
 net-misc/quagga:tcpmd5 - Enable TCP MD5 checksumming
 net-misc/scponly:rsync - Enabling rsync compatibility with potential security risks
-net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites.  sftp is a much more secure protocol and is prefered.
+net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites.  sftp is a much more secure protocol and is preferred.
 net-misc/sitecopy:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support.  This system allows users to collaborate on websites using a web based interface.  See the ebuild for an FAQ page.  Enables neon as well to handle webdav support.
 net-misc/ssh:openssh - Allow ssh and openssh to be installed side by side
 net-misc/streamtuner:shout - Enable shoutcast plug-in.
@@ -2218,11 +2217,11 @@ x11-terms/aterm:background - Enable background image support via libAfterImage
 x11-terms/aterm:xgetdefault - Enable resources via X instead of aterm small version
 x11-terms/eterm:escreen - enable built in screen support
 x11-terms/eterm:etwin - enable twin support
-x11-terms/hanterm:utempter - Records everytime a user logins in. Useful on multi-user systems.
+x11-terms/hanterm:utempter - Records user logins. Useful on multi-user systems.
 x11-terms/mlterm:scim - Enable scim support
 x11-terms/mlterm:uim - Enable uim support
 x11-terms/mrxvt:menubar - Enable mrxvt menubar
-x11-terms/mrxvt:utempter - Records everytime a user logins in. Useful on multi-user systems.
+x11-terms/mrxvt:utempter - Records user logins. Useful on multi-user systems.
 x11-terms/rxvt-unicode:iso14755 - Enable ISO-14755 support
 x11-terms/rxvt:linuxkeys - Define LINUX_KEYS (changes Home/End key)
 x11-terms/rxvt:xgetdefault - Enable resources via X instead of rxvt small version
