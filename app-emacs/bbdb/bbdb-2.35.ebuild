@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.10 2007/11/24 23:30:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.11 2008/02/14 10:05:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://bbdb.sourceforge.net/${P}.tar.gz
 
 LICENSE="GPL-2 as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="tex tetex"
 
 DEPEND=""
@@ -31,7 +31,7 @@ src_unpack() {
 	sed -i -e '0,/^--- bbdb-mail-folders.el ---$/d;/^--- end ---$/,$d' \
 		bits/bbdb-mail-folders.el || die "sed failed"
 	sed -i -e '/^;/,$!d' bits/bbdb-sort-mailrc.el || die "sed failed"
-	cp ${DISTDIR}/{dates,point-at}.el bits
+	cp "${DISTDIR}"/{dates,point-at}.el bits
 }
 
 src_compile() {
