@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ps2eps-1.64.ebuild,v 1.10 2008/02/13 19:23:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ps2eps-1.64.ebuild,v 1.11 2008/02/14 13:00:44 jer Exp $
 
 EAPI="prefix"
 
