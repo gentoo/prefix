@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/ladspa-sdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.42 2008/01/31 15:28:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.43 2008/02/14 14:49:46 flameeyes Exp $
+
+*ladspa-sdk-1.13-r1 (14 Feb 2008)
+
+  14 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/ladspa-sdk-1.13-properbuild.patch, +ladspa-sdk-1.13-r1.ebuild:
+  Revision bump, use a new patch to handle the makefile, sent upstream hoping
+  for it to be integrated in the next release. This also solves bug #209718 as
+  it respect LDFLAGS (and also LD now).
 
   31 Jan 2008; nixnut <nixnut@gentoo.org> ladspa-sdk-1.13.ebuild:
   Stable on ppc wrt bug 208032
