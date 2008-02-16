@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/simplyhtml
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.4 2007/12/10 22:04:31 caster Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.5 2008/02/14 22:59:34 betelgeuse Exp $
+
+  27 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -simplyhtml-0.12.2_pre20070424.ebuild:
+  Delete old version.
 
 *simplyhtml-0.12.2_pre20071101 (10 Dec 2007)
 
