@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.6 2008/02/11 15:46:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.8 2008/02/15 19:58:42 drac Exp $
 
 EAPI="prefix"
 
@@ -13,13 +13,23 @@ SRC_URI="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PV%.*}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="cjk pcre png"
+IUSE="cjk pcre png readline"
 
-RDEPEND="pcre? ( dev-libs/libpcre )
+RDEPEND="sys-libs/ncurses
+	pcre? ( dev-libs/libpcre )
 	png? ( media-libs/libpng )
-	cjk? ( dev-libs/oniguruma )"
+	cjk? ( dev-libs/oniguruma )
+	readline? ( sys-libs/readline )"
 DEPEND="${RDEPEND}
 	!=sys-libs/slang-2.1.2"
+
+pkg_setup() {
+	local fail="Re-emerge sys-libs/ncurses with USE -minimal."
+	if built_with_use sys-libs/ncurses minimal; then
+		eerror "${fail}"
+		die "${fail}"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -28,15 +38,25 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_with pcre) $(use_with png) \
-		$(use_with cjk onig)
+	local readline
+
+	if use readline; then
+		readline=gnu
+	else
+		readline=slang
+	fi
+
+	econf $(use_with cjk onig) $(use_with pcre) $(use_with png) \
+		--with-readline=${readline}
+
 	emake -j1 elf static || die "emake elf static failed."
+
 	cd slsh
 	emake -j1 slsh || die "emake slsh failed."
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install-all || die "emake install failed."
+	emake -j1 DESTDIR="${D}" install-all || die "emake install-all failed."
 
 	rm -rf "${ED}"/usr/share/doc/{slang,slsh}
 

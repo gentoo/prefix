@@ -1,6 +1,14 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.78 2008/02/11 15:46:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.80 2008/02/15 19:58:42 drac Exp $
+
+  15 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  If USE readline is used, and it's enabled by default in profiles use system
+  readline for slsh instead of native slang.
+
+  15 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  sys-libs/ncurses is required for /usr/share/terminfo files which means it
+  cannot be built with USE minimal wrt #210063 by Saul Peebsen.
 
   11 Feb 2008; Jeroen Roovers <jer@gentoo.org> slang-2.1.3-r1.ebuild:
   Marked ~hppa (bug #209422).
