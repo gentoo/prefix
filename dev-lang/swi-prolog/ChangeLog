@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.132 2008/02/06 05:27:25 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.133 2008/02/16 03:25:59 keri Exp $
+
+  16 Feb 2008; keri <keri@gentoo.org> swi-prolog-5.6.49.ebuild,
+  swi-prolog-5.6.50.ebuild:
+  Add 2101-qcompile-atom.patch to fix atom-gc during qcompile.
 
 *swi-prolog-5.6.50 (06 Feb 2008)
 
