@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.2 2007/03/03 21:37:40 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.3 2008/02/15 22:27:12 keri Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ S=${WORKDIR}/${P}/src
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug doc examples"
 
 DEPEND=""
@@ -30,6 +30,7 @@ src_unpack() {
 src_compile() {
 	CFLAGS_MACHINE="`get-flag -march` `get-flag -mcpu` `get-flag -mtune`"
 
+	use amd64 && append-flags -fno-tree-dce
 	use debug && append-flags -DDEBUG
 
 	econf \
