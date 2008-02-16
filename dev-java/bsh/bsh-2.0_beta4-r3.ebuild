@@ -1,9 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/bsh-2.0_beta4-r3.ebuild,v 1.5 2007/11/25 11:05:14 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/bsh-2.0_beta4-r3.ebuild,v 1.6 2008/02/15 04:00:22 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 eutils java-ant-2
@@ -23,10 +22,10 @@ IUSE="bsf readline"
 RESTRICT="test"
 
 RDEPEND=">=virtual/jdk-1.4
-	=dev-java/servletapi-2.4*
-	readline? ( dev-java/libreadline-java )"
+	dev-java/servletapi:2.4
+	readline? ( dev-java/libreadline-java:0 )"
 DEPEND="${RDEPEND}
-	bsf? ( >=dev-java/bsf-2.3 )"
+	bsf? ( dev-java/bsf:2.3 )"
 
 S=${WORKDIR}/BeanShell-${MY_PV}
 
