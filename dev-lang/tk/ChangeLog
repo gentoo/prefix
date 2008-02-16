@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.102 2008/02/04 16:28:02 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.103 2008/02/16 04:43:31 matsuu Exp $
+
+*tk-8.5.1 (16 Feb 2008)
+*tk-8.4.18 (16 Feb 2008)
+
+  16 Feb 2008; MATSUU Takuto <matsuu@gentoo.org>
+  -files/tk-CVE-2006-4484.patch, -tk-8.4.9.ebuild, -tk-8.4.15-r2.ebuild,
+  -tk-8.4.17.ebuild, +tk-8.4.18.ebuild, -tk-8.5.0-r2.ebuild,
+  +tk-8.5.1.ebuild:
+  Version bumped, bug #208464.
+  Removed old versions.
 
 *tk-8.5.0-r2 (04 Feb 2008)
 *tk-8.4.17 (04 Feb 2008)
