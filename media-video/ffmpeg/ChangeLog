@@ -1,6 +1,14 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.213 2008/02/06 13:29:16 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.214 2008/02/14 15:17:09 drac Exp $
+
+  14 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  -ffmpeg-0.4.9_p20051216.ebuild, -ffmpeg-0.4.9_p20060302.ebuild,
+  -ffmpeg-0.4.9_p20060530.ebuild, -ffmpeg-0.4.9_p20060816.ebuild,
+  ffmpeg-0.4.9_p20061016.ebuild, -ffmpeg-0.4.9_p20070129.ebuild,
+  -ffmpeg-0.4.9_p20070325.ebuild, ffmpeg-0.4.9_p20070330.ebuild:
+  Remove USE dts from some old ebuilds, and remove some entirely because
+  libdts is replaced by libdca.
 
 *ffmpeg-0.4.9_p20080206 (06 Feb 2008)
 

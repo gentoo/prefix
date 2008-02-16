@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.12 2007/10/31 11:54:03 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.13 2008/02/14 15:17:09 drac Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="aac altivec amr debug doc ieee1394 a52 encode imlib mmx ogg vorbis oss
-	test theora threads truetype v4l x264 xvid dts network zlib sdl X"
+	test theora threads truetype v4l x264 xvid network zlib sdl X"
 
 RDEPEND="imlib? ( media-libs/imlib2 )
 	truetype? ( >=media-libs/freetype-2 )
@@ -33,7 +33,6 @@ RDEPEND="imlib? ( media-libs/imlib2 )
 	a52? ( >=media-libs/a52dec-0.7.4-r4 )
 	xvid? ( >=media-libs/xvid-1.1.0 )
 	zlib? ( sys-libs/zlib )
-	dts? ( media-libs/libdts )
 	ieee1394? ( =media-libs/libdc1394-1*
 				sys-libs/libraw1394 )
 	x264? ( >=media-libs/x264-svn-20061014 )
@@ -132,7 +131,6 @@ src_compile() {
 	use xvid && myconf="${myconf} --enable-xvid"
 	use X && myconf="${myconf} --enable-x11grab"
 	use ogg && myconf="${myconf} --enable-libogg"
-	use dts && myconf="${myconf} --enable-libdts"
 	use x264 && myconf="${myconf} --enable-x264"
 	use aac && myconf="${myconf} --enable-libfaad --enable-libfaac"
 	use amr && myconf="${myconf} --enable-amr-nb --enable-amr-wb \
