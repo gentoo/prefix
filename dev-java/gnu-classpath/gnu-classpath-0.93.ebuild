@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.93.ebuild,v 1.5 2007/07/11 19:58:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.93.ebuild,v 1.6 2008/02/15 20:56:02 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.gnu.org/software/classpath"
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="0.93"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 # Add the doc use flag after the upstream build system is improved
 # See their bug 24025
@@ -42,6 +42,8 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 				www-client/mozilla-firefox
 				net-libs/xulrunner
 				www-client/seamonkey
+				www-client/seamonkey-bin
+				www-client/mozilla-firefox-bin
 			)
 		)
 		xml? ( >=dev-libs/libxml2-2.6.8 >=dev-libs/libxslt-1.1.11 )"

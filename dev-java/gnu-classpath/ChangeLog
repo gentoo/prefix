@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gnu-classpath
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.72 2007/07/22 09:23:16 graaff Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.73 2008/02/15 20:56:02 wolf31o2 Exp $
+
+  15 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  gnu-classpath-0.93.ebuild:
+  Added www-client/mozilla-firefox-bin and www-client/seamonkey-bin to the
+  list of acceptable packages for nsplugin USE in RDEPEND. This would be for
+  bug #210189, but I didn't really see a point since this won't harm anything
+  for anyone that doesn't have these installed, since they're listed last.
 
   22 Jul 2007; Hans de Graaff <graaff@gentoo.org> gnu-classpath-0.90.ebuild,
   gnu-classpath-0.92.ebuild:
