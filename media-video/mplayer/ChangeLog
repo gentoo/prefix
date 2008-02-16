@@ -1,6 +1,32 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.547 2008/02/14 01:34:17 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.553 2008/02/15 20:30:16 armin76 Exp $
+
+  15 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc2_p25993.ebuild:
+  alpha/ia64 stable wrt security #208566
+
+  15 Feb 2008; Samuli Suominen <drac@gentoo.org> -files/mplayer-dpms.patch,
+  -files/mplayer-xshape.patch, -mplayer-1.0_rc1_p20070824.ebuild,
+  mplayer-1.0_rc2_p24929-r1.ebuild, mplayer-1.0_rc2_p24929-r2.ebuild,
+  -mplayer-1.0_rc2_p24929-r3.ebuild, mplayer-1.0_rc2_p25993.ebuild:
+  Remove libdts references, unused ebuilds and patches.
+
+  15 Feb 2008; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc2_p25993.ebuild:
+  Stable for HPPA (bug #208566).
+
+  15 Feb 2008; Brent Baude <ranger@gentoo.org>
+  mplayer-1.0_rc2_p25993.ebuild:
+  Marking mplayer-1.0_rc2_p25993 ppc64 for bug 208566
+
+  14 Feb 2008; Ferris McCormick <fmccor@gentoo.org>
+  mplayer-1.0_rc2_p25993.ebuild:
+  Sparc stable --- security Bug #208566.
+
+  14 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  mplayer-1.0_rc2_p25993.ebuild:
+  stable x86, security bug 208566
 
 *mplayer-1.0_rc2_p25993 (14 Feb 2008)
 
