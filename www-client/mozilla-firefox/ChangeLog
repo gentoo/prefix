@@ -1,6 +1,11 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.376 2008/02/11 00:17:30 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.377 2008/02/14 14:18:09 armin76 Exp $
+
+  14 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  files/icon/mozilla-firefox-1.5-unbranded.desktop,
+  files/icon/mozilla-firefox-1.5.desktop, files/icon/iceweasel.desktop:
+  Fix desktop files, bug #208304
 
   11 Feb 2008; Olivier Crête <tester@gentoo.org>
   mozilla-firefox-2.0.0.12.ebuild:
