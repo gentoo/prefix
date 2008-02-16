@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unarj
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unarj/ChangeLog,v 1.26 2008/02/13 15:08:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unarj/ChangeLog,v 1.27 2008/02/14 17:31:14 nixnut Exp $
+
+  14 Feb 2008; nixnut <nixnut@gentoo.org> unarj-2.65.ebuild:
+  Stable on ppc wrt bug 209888
 
   13 Feb 2008; Brent Baude <ranger@gentoo.org> unarj-2.65.ebuild:
   stable ppc64, bug 209888
