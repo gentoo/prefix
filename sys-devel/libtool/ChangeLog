@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.128 2008/02/15 20:44:35 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.129 2008/02/16 11:30:38 maekke Exp $
+
+  16 Feb 2008; Markus Meier <maekke@gentoo.org> libtool-1.5.26.ebuild:
+  x86 stable, bug #210266
 
   15 Feb 2008; nixnut <nixnut@gentoo.org> libtool-1.5.26.ebuild:
   Stable on ppc wrt bug 210266
