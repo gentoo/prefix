@@ -50,10 +50,9 @@ src_unpack() {
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
 	epatch "${FILESDIR}/${PN}-1.5-legacy-patches.diff"
 
-	# prefix search tools patch, plus OSX and Solaris fixes
-	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
-	epatch "${FILESDIR}"/${PN}-1.5.3-solaris.patch
-	epatch "${FILESDIR}"/${PN}-1.5.4-libiconv.patch
+	# prefix search tools patch, plus OSX fixes
+	epatch "${FILESDIR}"/${PN}-1.5.5-prefix-misc-alt.patch
+	epatch "${FILESDIR}"/${PN}-1.5.5-libiconv.patch
 
 	# remove internal libpng - see bug #210237
 	epatch "${FILESDIR}/${PN}-1.5-system-libpng.patch"
