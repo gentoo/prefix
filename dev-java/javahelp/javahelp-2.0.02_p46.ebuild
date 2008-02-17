@@ -18,7 +18,7 @@ SRC_URI="https://${PN}.dev.java.net/files/documents/5985/47404/${MY_PN}-src-${MY
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-fbsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 COMMON_DEP="
 	=dev-java/servletapi-2.4*"
