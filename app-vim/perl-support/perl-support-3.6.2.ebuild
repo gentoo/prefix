@@ -9,7 +9,7 @@ inherit vim-plugin
 DESCRIPTION="vim plugin: Perl-IDE - Write and run Perl scripts using menus and hotkeys"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=556"
 LICENSE="as-is"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 VIM_PLUGIN_HELPTEXT="This plugin provides a Perl IDE in vim."
