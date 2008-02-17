@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gentoo.org/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 IUSE="qt3"
 
 QA_EXECSTACK_amd64="emul/linux/x86/usr/lib/libgdk_pixbuf.so.2.0.0

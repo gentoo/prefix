@@ -17,7 +17,7 @@ SRC_URI="mirror://gentoo/atk-1.12.3.tbz2
 	mirror://gentoo/pango-1.14.9.tbz2"
 
 LICENSE="GPL-2 LGPL-2 LGPL-2.1 FTL || ( LGPL-2.1 MPL-1.1 )"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 
 IUSE="qt3"
 

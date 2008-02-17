@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit emul-linux-x86
 
 LICENSE="GPL-2 LGPL-2 LGPL-2.1 FTL || ( LGPL-2.1 MPL-1.1 )"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 
 IUSE="qt3"
 
