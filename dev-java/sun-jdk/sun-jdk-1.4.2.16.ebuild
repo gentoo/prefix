@@ -22,7 +22,7 @@ SRC_URI="x86? ( ${At} )
 		jce? ( ${jce_policy} )"
 SLOT="1.4"
 LICENSE="sun-bcla-java-vm"
-KEYWORDS="~x86-linux ~amd64-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 # files are prestripped
 RESTRICT="fetch strip"
 IUSE="X alsa doc examples jce nsplugin odbc"
