@@ -9,5 +9,5 @@ VIM_SPELL_LANGUAGE="Dutch"
 inherit vim-spell
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
