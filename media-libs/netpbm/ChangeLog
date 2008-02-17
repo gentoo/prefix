@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.182 2008/02/14 01:07:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.183 2008/02/16 20:56:18 vapier Exp $
+
+  16 Feb 2008; Mike Frysinger <vapier@gentoo.org> netpbm-10.41.0.ebuild:
+  Dont keep auto-package creation in default ebuild as it breaks things
+  #210074 by Colin Macdonald.
 
 *netpbm-10.26.50 (14 Feb 2008)
 
