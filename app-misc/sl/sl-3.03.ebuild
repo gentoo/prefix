@@ -16,7 +16,7 @@ SRC_URI="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/sl/${PN}.tar
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="linguas_ja debug"
 
 DEPEND="sys-libs/ncurses"
