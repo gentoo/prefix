@@ -17,7 +17,7 @@ SRC_URI="http://www.jgoodies.com/download/libraries/${MY_PN}/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-fbsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.4
