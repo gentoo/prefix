@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.267 2008/02/10 17:14:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.268 2008/02/16 16:42:16 maekke Exp $
+
+*imagemagick-6.3.8.3-r1 (16 Feb 2008)
+*imagemagick-6.3.7.9-r1 (16 Feb 2008)
+
+  16 Feb 2008; Markus Meier <maekke@gentoo.org>
+  +imagemagick-6.3.7.9-r1.ebuild, +imagemagick-6.3.8.3-r1.ebuild:
+  for now only enable svg support, when X is enabled, as librsvg pulls in
+  quite some X stuff. also fix bug #206937 in version 6.3.7.9
 
   10 Feb 2008; Raúl Porcel <armin76@gentoo.org> imagemagick-6.3.7.9.ebuild:
   alpha/ia64 stable wrt #209368
