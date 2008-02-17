@@ -17,7 +17,7 @@ LICENSE="GPL-2"
 
 IUSE=""
 SLOT="0"
-KEYWORDS="~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~x86-linux ~ppc-macos ~sparc-solaris"
 
 # set the script path to /usr/bin, rather than /usr/local/bin
 myconf="INSTALLSCRIPT=${EPREFIX}/usr/bin"
