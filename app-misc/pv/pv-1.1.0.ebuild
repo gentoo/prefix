@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/pipeviewer/${P}.tar.gz"
 
 LICENSE="Artistic-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug nls"
 
 src_unpack() {
