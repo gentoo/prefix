@@ -12,7 +12,7 @@ SRC_URI="http://ftp.squeak.org/current_stable/${MY_P}-full.zip
 
 LICENSE="Apple"
 SLOT="3.8"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 PROVIDE="virtual/squeak-image"
 
