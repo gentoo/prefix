@@ -12,7 +12,7 @@ HOMEPAGE="http://java.sun.com/products/jta/"
 SRC_URI="${At}"
 LICENSE="sun-bcla-jta"
 SLOT=0
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 DEPEND=">=app-arch/unzip-5.50-r1
 	>=virtual/jdk-1.3"
