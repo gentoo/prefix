@@ -17,7 +17,7 @@ SRC_URI="$javafile"
 
 LICENSE="sun-bcla-java-vm"
 SLOT="1.5"
-KEYWORDS="~x86-fbsd"
+KEYWORDS="~x86-freebsd"
 RESTRICT="fetch"
 IUSE="X examples nsplugin jce"
 
