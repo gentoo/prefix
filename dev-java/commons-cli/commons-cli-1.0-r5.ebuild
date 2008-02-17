@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/jakarta/commons/cli/source/cli-${PV}-src.tar.gz"
 
 LICENSE="Apache-1.1"
 SLOT="1"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 CDEPEND="dev-java/commons-logging
