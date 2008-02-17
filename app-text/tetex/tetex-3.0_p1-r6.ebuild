@@ -24,7 +24,7 @@ SRC_URI="mirror://gentoo/${TETEX_SRC}
 	mirror://gentoo/${P}-gentoo.tar.gz
 	mirror://gentoo/${P}-dviljk-security-fixes.patch.bz2"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 # these are defined in tetex.eclass and tetex-3.eclass
 IUSE=""
