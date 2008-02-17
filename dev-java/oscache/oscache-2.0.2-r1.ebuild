@@ -11,7 +11,7 @@ SRC_URI="https://oscache.dev.java.net/files/documents/629/2653/${P}-full.zip"
 HOMEPAGE="http://www.opensymphony.com/oscache/"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 COMMON_DEP="
 		dev-java/commons-collections
 		dev-java/commons-logging
