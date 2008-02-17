@@ -10,7 +10,7 @@ LICENSE="fontconfig FTL GPL-2 LGPL-2 glut libdrm libICE libSM libX11 libXau
 		libXaw libXcomposite libXcursor libXdamage libXdmcp libXext libXfixes libXft
 		libXi libXinerama libXmu libXp libXpm libXrandr libXrender libXScrnSaver libXt
 		libXtst libXv libXvMC libXxf86dga libXxf86dga libXxf86vm"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 IUSE="opengl"
 
 DEPEND="opengl? ( app-admin/eselect-opengl )"
