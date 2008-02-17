@@ -13,7 +13,7 @@ SRC_URI="http://www.oasis-open.org/docbook/sgml/${PV}/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="4.1"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41"
