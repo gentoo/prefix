@@ -13,7 +13,7 @@ DEPEND=">=sys-apps/sed-4"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 MY_PV=$(get_version_component_range 1-2 )
