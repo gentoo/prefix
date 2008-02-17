@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/trove4j/${P}.tar.gz"
 HOMEPAGE="http://trove4j.sourceforge.net"
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 RDEPEND=">=virtual/jre-1.4"
 DEPEND=">=virtual/jdk-1.4"
 
