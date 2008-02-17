@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~nwetters/${P}/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
