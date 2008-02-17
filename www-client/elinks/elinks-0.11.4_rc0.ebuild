@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.3.ebuild,v 1.10 2007/09/27 01:32:46 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.4_rc0.ebuild,v 1.1 2008/02/16 19:50:35 spock Exp $
 
 EAPI="prefix"
 
@@ -49,26 +49,25 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-	epatch ${FILESDIR}/${PN}-0.10.4.conf-syscharset.diff
+	epatch "${FILESDIR}"/${PN}-0.10.4.conf-syscharset.diff
 	mv "${PN}-0.10.4.conf" "${PN}.conf"
 	if ! use ftp ; then
 		sed -i -e 's/\(.*protocol.ftp.*\)/# \1/' ${PN}.conf
 	fi
 	sed -i -e 's/\(.*set protocol.ftp.use_epsv.*\)/# \1/' ${PN}.conf
-	cd ${S}
-	epatch ${FILESDIR}/${PN}-0.11.3-lua-5.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-0.11.3-lua-5.patch
 
 	if use lua && has_version ">=dev-lang/lua-5.1"; then
-		epatch ${FILESDIR}/${PN}-0.11.2-lua-5.1.patch
+		epatch "${FILESDIR}"/${PN}-0.11.2-lua-5.1.patch
 	fi
 
 	if use unicode ; then
-		epatch ${FILESDIR}/elinks-0.10.1-utf_8_io-default.patch
+		epatch "${FILESDIR}"/elinks-0.10.1-utf_8_io-default.patch
 	fi
 
-	epatch ${FILESDIR}/elinks-po-path.patch
-
 	sed -i -e 's/-Werror//' configure*
+	eautoreconf
 }
 
 src_compile() {
@@ -81,8 +80,6 @@ src_compile() {
 	# good one
 	sed -i -e "/for make in gnumake gmake make false; do/s/gnumake gmake//" \
 		${S}/configure.in
-
-	eautoreconf
 
 	if use debug ; then
 		myconf="--enable-debug"
