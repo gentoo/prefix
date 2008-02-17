@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/J/JG/JGMYERS/${P}.tar.gz"
 
 LICENSE="MPL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl
