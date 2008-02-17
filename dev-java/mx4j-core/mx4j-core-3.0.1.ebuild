@@ -27,7 +27,7 @@ RDEPEND="${RDEPEND}
 
 LICENSE="mx4j"
 SLOT="3.0"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 S="${WORKDIR}/${MY_P}"
