@@ -16,7 +16,7 @@ SRC_URI="http://www.jdom.org/dist/source/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="JDOM"
 SLOT="${PV}"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE=""
 
