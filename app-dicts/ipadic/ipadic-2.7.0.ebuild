@@ -11,7 +11,7 @@ HOMEPAGE="http://chasen.aist-nara.ac.jp/chasen/distribution.html.en"
 SRC_URI="http://chasen.aist-nara.ac.jp/stable/ipadic/${P}.tar.gz"
 
 LICENSE="ipadic"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 DEPEND=">=app-text/chasen-2.3.1"
