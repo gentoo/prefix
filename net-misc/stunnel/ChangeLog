@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/stunnel
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.89 2007/12/24 16:34:57 ranger Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.91 2008/02/16 16:38:26 ulm Exp $
+
+  16 Feb 2008; Ulrich Mueller <ulm@gentoo.org> -files/stunnel.rc6.4.20,
+  -stunnel-4.20.ebuild, -stunnel-4.21.ebuild:
+  Remove old.
+
+  16 Feb 2008; Robert Buchholz <rbu@gentoo.org> stunnel-4.21-r1.ebuild:
+  amd64 stable (bug #201896)
 
   24 Dec 2007; Brent Baude <ranger@gentoo.org> stunnel-4.21-r1.ebuild:
   Marking stunnel-4.21-r1 ppc64 stable for bug 201896
