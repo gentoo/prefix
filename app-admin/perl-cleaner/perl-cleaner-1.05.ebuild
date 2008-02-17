@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-1.05.ebuild,v 1.5 2008/02/15 19:43:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-1.05.ebuild,v 1.6 2008/02/16 10:05:44 maekke Exp $
 
 EAPI="prefix"
 
