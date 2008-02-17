@@ -15,7 +15,7 @@ HOMEPAGE="http://www.csg.is.titech.ac.jp/~chiba/javassist/"
 
 LICENSE="MPL-1.1"
 SLOT="3"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 RDEPEND=">=virtual/jre-1.4"
 DEPEND=">=virtual/jdk-1.4
