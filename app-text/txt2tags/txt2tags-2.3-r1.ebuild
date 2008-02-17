@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/txt2tags/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="emacs tk"
 
 DEPEND="virtual/python
