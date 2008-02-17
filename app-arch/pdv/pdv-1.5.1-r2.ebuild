@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/pdv/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE="nomotif"
 
 DEPEND="!nomotif? ( x11-libs/openmotif
