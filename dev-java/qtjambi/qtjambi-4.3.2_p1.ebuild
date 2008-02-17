@@ -19,7 +19,7 @@ S=${WORKDIR}/qtjambi-gpl-src-${MY_PV}
 
 LICENSE="GPL-2"
 SLOT="4"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE=""
 
