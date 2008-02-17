@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.1 2008/01/26 10:20:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.2 2008/02/16 22:21:08 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,14 +21,19 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-fix-install-ownership.patch #24178
-#	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
+	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
+	epatch "${FILESDIR}"/${P}-build.patch #209730
 	elibtoolize
 	append-lfs-flags
 }
 
 src_compile() {
 	use berkdb || export ac_cv_lib_dbm_main=no ac_cv_lib_ndbm_main=no
-	econf --includedir="${EPREFIX}"/usr/include/gdbm || die
+	econf \
+		--includedir="${EPREFIX}"/usr/include/gdbm \
+		--disable-dependency-tracking \
+		--enable-fast-install \
+		|| die
 	emake || die
 }
 
