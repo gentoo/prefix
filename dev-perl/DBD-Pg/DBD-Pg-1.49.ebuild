@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/D/DB/DBDPG/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="virtual/perl-Test-Simple
