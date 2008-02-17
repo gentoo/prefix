@@ -9,7 +9,7 @@ HOMEPAGE="http://cook.sourceforge.net/"
 SRC_URI="mirror://sourceforge/cook/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 DEPEND="virtual/libc"
 
