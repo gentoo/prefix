@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/vile/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="perl"
 
 RDEPEND=">=sys-libs/ncurses-5.2
