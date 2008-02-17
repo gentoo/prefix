@@ -14,7 +14,7 @@ SRC_URI="http://www.complang.tuwien.ac.at/forth/gforth/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 # KEYWORDS="~amd64 ~ppc ~x86"
-KEYWORDS="~x86-fbsd ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~x86-linux ~ppc-macos"
 IUSE="emacs force-reg"
 
 DEPEND="virtual/libc
