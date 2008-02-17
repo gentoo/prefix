@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/fte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.43 2008/02/09 11:52:30 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.44 2008/02/16 08:59:59 drac Exp $
+
+*fte-20051115-r1 (16 Feb 2008)
+
+  16 Feb 2008; Samuli Suominen <drac@gentoo.org> -files/configpath.patch,
+  -fte-20020324-r2.ebuild, -fte-20050108-r3.ebuild, fte-20051115.ebuild,
+  +fte-20051115-r1.ebuild:
+  Move -slang.patch to -r1, and remove unused versions.
 
   09 Feb 2008; Samuli Suominen <drac@gentoo.org> +files/fte-slang.patch,
   fte-20051115.ebuild:

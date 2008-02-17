@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/fte-20051115.ebuild,v 1.9 2008/02/16 08:59:59 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/fte-20051115-r1.ebuild,v 1.1 2008/02/16 08:59:59 drac Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ RDEPEND=">=sys-libs/ncurses-5.2
 	)
 	gpm? ( >=sys-libs/gpm-1.20 )"
 DEPEND="${RDEPEND}
-	slang? ( =sys-libs/slang-1* )
+	slang? ( >=sys-libs/slang-2.1.3 )
 	app-arch/unzip"
 
 set_targets() {
@@ -46,6 +46,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/fte-gcc34
 	epatch "${FILESDIR}"/${PN}-new_keyword.patch
+	epatch "${FILESDIR}"/${PN}-slang.patch
 
 	set_targets
 	sed \
