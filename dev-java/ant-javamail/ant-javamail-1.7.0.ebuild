@@ -8,7 +8,7 @@ ANT_TASK_DEPNAME="sun-javamail"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-solaris ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND=">=dev-java/sun-javamail-1.4
 	>=dev-java/sun-jaf-1.1"
