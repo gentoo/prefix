@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge.jp/${PN}/22231/${MY_P}.tar.gz"
 
 LICENSE="lha"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
