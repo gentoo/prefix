@@ -20,7 +20,7 @@ SRC_URI="mirror://sourceforge/monetdb/MonetDB-${COMMON_PV}.tar.gz
 
 LICENSE="MonetDBPL-1.1"
 SLOT="5"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="python perl php java"
 
 S=${WORKDIR}
