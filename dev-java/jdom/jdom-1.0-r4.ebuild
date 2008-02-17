@@ -13,7 +13,7 @@ SRC_URI="http://www.jdom.org/dist/source/${P}.tar.gz"
 HOMEPAGE="http://www.jdom.org"
 LICENSE="JDOM"
 SLOT="${PV}"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 COMMON_DEP="dev-java/saxpath
 		>=dev-java/xerces-2.7"
 RDEPEND=">=virtual/jre-1.4
