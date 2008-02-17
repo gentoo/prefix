@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gentoo.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 RESTRICT="strip"
 IUSE=""
 
