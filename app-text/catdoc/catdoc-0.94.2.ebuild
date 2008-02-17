@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 
 IUSE="tk"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 DEPEND="tk? ( >=dev-lang/tk-8.1 )"
 
