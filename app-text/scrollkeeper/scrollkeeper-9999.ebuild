@@ -9,7 +9,7 @@ HOMEPAGE="http://gnome.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 PDEPEND="app-text/rarian"
