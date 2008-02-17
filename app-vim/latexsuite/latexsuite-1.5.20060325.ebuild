@@ -10,7 +10,7 @@ DESCRIPTION="vim plugin: a comprehensive set of tools to view, edit and compile 
 HOMEPAGE="http://vim-latex.sourceforge.net/"
 
 LICENSE="vim"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 # See bug #112326 for why we have this nasty hack
