@@ -1,6 +1,17 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.141 2008/01/24 20:30:02 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.142 2008/02/16 20:24:36 nerdboy Exp $
+
+*doxygen-1.5.5 (16 Feb 2008)
+
+  16 Feb 2008; Steve Arnold <nerdboy@gentoo.org>
+  +files/doxygen-1.5-qtlibdir.patch, +files/doxygen-1.5-system-libpng.patch,
+  doxygen-1.5.2.ebuild, doxygen-1.5.3.ebuild, doxygen-1.5.4.ebuild,
+  +doxygen-1.5.5.ebuild:
+  Updated with patch from bug #210237 and added latest release.  Fixed
+  broken config with hack for lib64 path for QT and back-ported patches
+  to several previous versions (tested on both 32 and 64-bit machines).
+  Closes bugs #209977 and #210237.
 
   24 Jan 2008; Christoph Mende <angelos@gentoo.org> doxygen-1.5.4.ebuild:
   Stable on amd64, bug #203652

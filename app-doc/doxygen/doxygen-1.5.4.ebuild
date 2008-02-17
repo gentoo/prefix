@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.10 2008/01/24 20:30:02 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.11 2008/02/16 20:24:36 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
 	epatch "${FILESDIR}"/${PN}-1.5.3-solaris.patch
 	epatch "${FILESDIR}"/${PN}-1.5.4-libiconv.patch
+
+	# remove internal libpng - see bug #210237
+	epatch "${FILESDIR}/${PN}-1.5-system-libpng.patch"
+
+	if [ $(get_libdir) == "lib64" ] ; then
+	    epatch "${FILESDIR}/${PN}-1.5-qtlibdir.patch"
+	fi
 
 	if is-flagq "-O3" ; then
 	    echo
