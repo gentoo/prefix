@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.6.ebuild,v 1.1 2008/01/15 18:26:02 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.6.ebuild,v 1.2 2008/02/16 08:36:30 alonbl Exp $
 
 EAPI="prefix"
 
@@ -13,11 +13,11 @@ SRC_URI="mirror://gnupg/gpgme/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE=""
+IUSE="pth"
 
 DEPEND=">=dev-libs/libgpg-error-1.4
-	>=dev-libs/pth-1.2
-	>=app-crypt/gnupg-1.9.20-r1"
+	>=app-crypt/gnupg-1.9.20-r1
+	pth? ( >=dev-libs/pth-1.2 )"
 
 RDEPEND="${DEPEND}
 	dev-libs/libgcrypt"
@@ -37,15 +37,15 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		--with-pth=yes \
 		--includedir="${EPREFIX}"/usr/include/gpgme \
 		--with-gpg="${EPREFIX}"/usr/bin/gpg \
 		--with-gpgsm="${EPREFIX}"/usr/bin/gpgsm \
-		|| die "econf failed"
-	emake || die "emake failed"
+		$(use_with pth) \
+		|| die
+	emake || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO VERSION
 }
