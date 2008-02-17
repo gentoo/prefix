@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.299 2008/01/25 20:05:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.300 2008/02/16 16:27:22 opfer Exp $
+
+*python-2.4.4-r9 (16 Feb 2008)
+
+  16 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  +python-2.4.4-r9.ebuild:
+  fix bug 179377, with a dependency adjustment to proper slots of sys-libs/db,
+  provided by Petr Pisar <petr DOT pisar AT atlas DOT cz>
 
   25 Jan 2008; Markus Rothe <corsair@gentoo.org> python-2.3.6-r4.ebuild:
   Stable on ppc64; bug #198373
