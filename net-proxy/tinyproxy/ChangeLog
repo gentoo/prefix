@@ -1,6 +1,12 @@
 # ChangeLog for net-proxy/tinyproxy
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.9 2007/04/28 16:51:44 swegener Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.10 2008/02/16 07:11:25 mrness Exp $
+
+*tinyproxy-1.6.3-r1 (16 Feb 2008)
+
+  16 Feb 2008; Alin Năstac <mrness@gentoo.org> +files/tinyproxy.initd,
+  -files/tinyproxy.rc, -tinyproxy-1.6.3.ebuild, +tinyproxy-1.6.3-r1.ebuild:
+  Improve init script (#209115).
 
   28 Apr 2007; Sven Wegener <swegener@gentoo.org> tinyproxy-1.6.3.ebuild:
   Fix *initd, *confd and *envd calls (#17388, #174266)
