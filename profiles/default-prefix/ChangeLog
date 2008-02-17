@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  bsd/freebsd/6.2/x86/make.defaults, bsd/freebsd/6.3/x86/make.defaults:
+  Enable backwards compatible ARCH for FreeBSD
+
   15 Feb 2008; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask:
   Mask dev-lang/swi-prolog-5.6.50 as it runs out of stack space during
