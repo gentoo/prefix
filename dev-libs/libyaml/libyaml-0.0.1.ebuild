@@ -14,7 +14,7 @@ SRC_URI="http://pyyaml.org/download/${PN}/${MY_P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86 ~x86-macos"
+KEYWORDS="~x86-linux ~x86-macos"
 IUSE="doc examples"
 
 S="${WORKDIR}/${MY_P}"
