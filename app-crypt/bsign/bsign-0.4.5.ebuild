@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/b/bsign/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
