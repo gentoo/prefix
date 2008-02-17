@@ -10,7 +10,7 @@ SRC_URI="http://www.miketaylor.org.uk/tech/deb/${PN}"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="virtual/libc"
