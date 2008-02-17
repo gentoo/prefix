@@ -43,7 +43,7 @@ RDEPEND="${COMMON_DEP}"
 PDEPEND="dev-java/gjdoc"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~x86-macos"
+KEYWORDS="~x86-linux ~x86-macos"
 #X qt
 IUSE="alsa esd gmp gtk nls"
 
