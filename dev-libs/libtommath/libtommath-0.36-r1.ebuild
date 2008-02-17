@@ -12,7 +12,7 @@ SRC_URI="http://math.libtomcrypt.org/files/ltm-${PV}.tar.bz2"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-devel/libtool"
