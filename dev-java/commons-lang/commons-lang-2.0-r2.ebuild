@@ -15,7 +15,7 @@ DEPEND=">=virtual/jdk-1.4"
 RDEPEND=">=virtual/jre-1.4"
 LICENSE="Apache-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 S="${WORKDIR}/${P}-src"

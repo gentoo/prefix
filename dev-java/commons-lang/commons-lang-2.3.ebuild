@@ -18,7 +18,7 @@ RDEPEND=">=virtual/jre-1.4"
 
 LICENSE="Apache-2.0"
 SLOT="2.1"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 S="${WORKDIR}/${P}-src"
 
