@@ -14,7 +14,7 @@ SRC_URI="http://thierry.schmit.free.fr/dev/mbtPdfAsm/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="unicode"
 
 DEPEND=""
