@@ -12,7 +12,7 @@ SRC_URI="http://palcal.sourceforge.net/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="ical"
 
 RDEPEND=">=dev-libs/glib-2.0
