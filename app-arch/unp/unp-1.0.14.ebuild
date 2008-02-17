@@ -9,7 +9,7 @@ HOMEPAGE="http://packages.qa.debian.org/u/unp.html"
 SRC_URI="mirror://debian/pool/main/u/unp/${PN}_${PV}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 DEPEND="dev-lang/perl"
 
