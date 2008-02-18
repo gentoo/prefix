@@ -12,7 +12,7 @@ SRC_URI="http://www.hellanzb.com/distfiles/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="libnotify"
 
 RDEPEND=">=dev-python/twisted-2.0
