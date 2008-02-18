@@ -28,7 +28,7 @@ RDEPEND="${DEPEND}
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 if use gnustep; then
 	egnustep_install_domain "Local"
