@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.ebi.ac.uk/pub/software/unix/clustalw/${PN}${PV}.UNIX.tar.gz"
 
 LICENSE="clustalw"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 S="${WORKDIR}"/${PN}${PV}
