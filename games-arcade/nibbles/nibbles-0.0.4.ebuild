@@ -13,7 +13,7 @@ SRC_URI="http://www.earth.li/projectpurple/files/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-libs/ncurses"
