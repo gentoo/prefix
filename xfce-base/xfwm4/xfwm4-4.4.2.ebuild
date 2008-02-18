@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Window manager"
 HOMEPAGE="http://www.xfce.org/projects/xfwm4"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 
 IUSE="debug startup-notification xcomposite"
 
