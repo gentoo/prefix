@@ -124,6 +124,7 @@ src_compile() {
 
 	if use nls; then
 		[ -z "$LINGUAS" ] && export LINGUAS="`ls po/*.po | sed 's:po/\(.*\)\.po$:\1:'`"
+		[[ ${CHOST} == *-solaris* ]] && append-ldflags -lintl
 	else
 		myconf="${myconf} --disable-locale"
 	fi
