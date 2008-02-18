@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.1 2008/01/21 21:26:43 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.4 2008/02/17 17:04:50 nixnut Exp $
 
 EAPI="prefix"
 
@@ -52,6 +52,8 @@ src_compile() {
 	emake || die "make failed"
 }
 
+#tests are unmaintained upstream and have been removed for 3a6
+RESTRICT="test"
 #slib needs scm for tests, but scm needs slib so we can't depend on it
 src_test() {
 	if has_version dev-scheme/scm; then
