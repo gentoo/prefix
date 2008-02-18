@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/fonts/"
 LICENSE="BitstreamVera"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 FONT_SUFFIX="ttf"
