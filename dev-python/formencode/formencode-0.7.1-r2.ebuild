@@ -20,7 +20,7 @@ SRC_URI="http://cheeseshop.python.org/packages/source/${MY_P:0:1}/${MY_PN}/${MY_
 
 LICENSE="PSF-2.4"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 RDEPEND="dev-python/setuptools"
