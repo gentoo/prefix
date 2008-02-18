@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/tclx/${PN}${PV}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND=">=dev-lang/tcl-8.4.6
 	tk? ( >=dev-lang/tk-8.4.6 )"
