@@ -12,7 +12,7 @@ DESCRIPTION="Small CLI util to show EXIF infos hidden in JPEG files"
 SRC_URI="mirror://sourceforge/libexif/${P}.tar.gz"
 HOMEPAGE="http://libexif.sf.net"
 LICENSE="GPL-2"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 RDEPEND="dev-libs/popt
