@@ -12,7 +12,7 @@ SRC_URI="http://meme.nbcr.net/downloads/${PN}_${PV}.tar.gz"
 LICENSE="meme"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 # Other possible USE flags include "debug", "client", "server", "web",
 # "queue". Other variables must be set at compile time, but only when
 # the Web server is built. Right now, Web server and client are disabled.
