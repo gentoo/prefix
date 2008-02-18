@@ -1,0 +1,18 @@
+diff -ur work.old/build.xml work/build.xml
+--- work.old/build.xml	2008-02-17 18:33:06.000000000 +0200
++++ work/build.xml	2008-02-17 18:33:26.000000000 +0200
+@@ -124,14 +124,6 @@
+       <exclude name="samples/**" />
+     </jar> 
+ 
+-    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpathref="compile.classpath"/>
+-    <jarjar basedir="${build.home}/classes" jarfile="${dist.home}/${component.name}-nodep-${component.version}.jar" >
+-      <zipfileset dir="lib" includes="asm*.txt"/>
+-      <zipfileset src="lib/asm.jar" excludes="META-INF"/>
+-      <rule pattern="org.objectweb.asm.**" result="net.sf.cglib.asm.@1"/>
+-      <include name="**/*"/>
+-      <exclude name="samples/**"/>
+-    </jarjar> 
+   </target>
+ 
+   <target depends="compile,javadoc" description="Create docs and source distribution" name="srcjar">
