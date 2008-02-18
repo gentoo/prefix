@@ -13,7 +13,7 @@ SRC_URI="http://hocwp.free.fr/xbindkeys/${P}.tar.gz"
 HOMEPAGE="http://hocwp.free.fr/xbindkeys/"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 SLOT="0"
 
 IUSE="guile tk"
