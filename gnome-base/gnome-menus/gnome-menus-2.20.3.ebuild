@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.3.ebuild,v 1.7 2008/02/04 04:54:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.3.ebuild,v 1.8 2008/02/17 23:34:37 eva Exp $
 
 EAPI="prefix"
 
@@ -32,21 +32,35 @@ pkg_setup() {
 		linux-info_pkg_setup
 	fi
 
-	G2CONF="$(use_enable kernel_linux inotify) $(use_enable debug) $(use_enable python)"
+	G2CONF="${G2CONF}
+		$(use_enable kernel_linux inotify)
+		$(use_enable debug)
+		$(use_enable python)"
 }
 
 src_unpack() {
 	gnome2_src_unpack
+
 	# Don't show KDE standalone settings desktop files in GNOME others menu
 	epatch "${FILESDIR}/${PN}-2.18.3-ignore_kde_standalone.patch"
+
+	# disable pyc compiling
+	mv py-compile py-compile.orig
+	ln -s $(type -P true) py-compile
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	use python && python_mod_optimize "${EROOT}"usr/$(get_libdir)/python*/site-packages
+	if use python; then
+		python_version
+		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/GMenuSimpleEditor
+	fi
 }
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-	use python && python_mod_cleanup "${EROOT}"usr/$(get_libdir)/python*/site-packages
+	if use python; then
+		python_version
+		python_mod_cleanup /usr/$(get_libdir)/python${PYVER}/site-packages/GMenuSimpleEditor
+	fi
 }
