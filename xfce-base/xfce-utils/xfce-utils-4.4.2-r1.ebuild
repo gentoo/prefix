@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Collection of utils"
 HOMEPAGE="http://www.xfce.org/projects/xfce-utils"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="dbus debug"
 
 RDEPEND="x11-apps/xrdb
