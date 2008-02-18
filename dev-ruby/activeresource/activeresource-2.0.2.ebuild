@@ -11,7 +11,7 @@ HOMEPAGE="http://rubyforge.org/projects/activeresource/"
 
 LICENSE="MIT"
 SLOT="2"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-lang/ruby-1.8.5
