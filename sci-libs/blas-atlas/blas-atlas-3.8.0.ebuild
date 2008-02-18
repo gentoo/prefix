@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/math-atlas/${MY_PN}${PV}.tar.bz2
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 RDEPEND="app-admin/eselect-blas
