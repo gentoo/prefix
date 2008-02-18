@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r12.ebuild,v 1.1 2008/01/04 05:54:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r12.ebuild,v 1.2 2008/02/18 00:32:04 aballier Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ COMMON_DEP="dev-libs/popt
 DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )
 	userland_GNU? ( sys-apps/shadow )
 	dev-util/pkgconfig
-	dev-util/unifdef
+	|| ( dev-util/unifdef sys-freebsd/freebsd-ubin sys-apps/darwin-miscutils )
 	${COMMON_DEP}"
 RDEPEND="
 	gnome? (
