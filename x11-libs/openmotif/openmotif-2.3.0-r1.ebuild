@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.4 2008/02/14 22:01:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.5 2008/02/17 11:44:27 ulm Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic multilib autotools
+inherit eutils flag-o-matic multilib autotools
 
 DESCRIPTION="Open Motif"
 HOMEPAGE="http://www.motifzone.org/"
@@ -74,6 +74,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-sensitivity-invisible.patch"
 
 	# disable compilation of demo binaries
 	sed -i -e 's/^[ \t]*demos//' Makefile.in

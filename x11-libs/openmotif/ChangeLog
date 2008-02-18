@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.155 2008/02/16 16:17:20 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.156 2008/02/17 11:44:27 ulm Exp $
+
+  17 Feb 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/openmotif-2.3.0-sensitivity-invisible.patch,
+  openmotif-2.3.0-r1.ebuild:
+  Fix problem with invisible menu items in ddd, bug 210220.
 
   16 Feb 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0.ebuild:
   Stable on amd64, bug 204265.
