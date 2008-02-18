@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/gtk-doc/"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="doc emacs"
 
 RDEPEND=">=dev-lang/perl-5.6
