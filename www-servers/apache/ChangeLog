@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.61 2008/02/02 14:57:36 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.62 2008/02/17 13:14:17 angelos Exp $
+
+  17 Feb 2008; Christoph Mende <angelos@gentoo.org> apache-2.2.8.ebuild:
+  Stable on amd64, security bug #205195
 
 *apache-2.2.8-r1 (02 Feb 2008)
 
