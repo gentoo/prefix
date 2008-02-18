@@ -10,7 +10,7 @@ SRC_URI="http://www.tinc-vpn.org/packages/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 IUSE="nls kernel_linux"
 
 DEPEND=">=dev-libs/openssl-0.9.7c
