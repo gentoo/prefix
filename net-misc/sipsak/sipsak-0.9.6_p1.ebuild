@@ -12,7 +12,7 @@ SRC_URI="http://download.berlios.de/sipsak/${P/_p/-}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
 		net-dns/c-ares"
