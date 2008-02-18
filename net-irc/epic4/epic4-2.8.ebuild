@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.epicsol.org/pub/epic/EPIC4-PRODUCTION/${P}.tar.bz2
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="ipv6 perl ssl"
 
 DEPEND=">=sys-libs/ncurses-5.2
