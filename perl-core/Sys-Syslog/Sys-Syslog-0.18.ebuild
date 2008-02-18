@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/S/SA/SAPER/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
