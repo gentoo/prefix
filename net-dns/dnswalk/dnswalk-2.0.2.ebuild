@@ -13,7 +13,7 @@ DEPEND=">=dev-perl/Net-DNS-0.12"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 src_compile() {
