@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.26.ebuild,v 1.1 2007/04/21 00:00:19 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.29.ebuild,v 1.1 2008/01/16 16:42:59 solar Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="small and fast portage helper tools written in C"
 HOMEPAGE="http://www.gentoo.org/"
@@ -12,16 +12,18 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
 
 src_unpack() {
-	unpack "${A}"
-	cd "${S}" || die
+	unpack ${A}
+	cd ${S}
+
+	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify main.c
+	eprefixify main.c qlop.c
 }
 
 src_compile() {
