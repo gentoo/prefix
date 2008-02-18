@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/deb2targz-1.ebuild,v 1.8 2007/11/09 19:54:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/deb2targz-1.ebuild,v 1.10 2008/02/17 12:37:50 armin76 Exp $
 
 EAPI="prefix"
 
@@ -13,14 +13,13 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="virtual/libc"
-RDEPEND="${DEPEND}
-	dev-lang/perl"
+DEPEND=""
+RDEPEND="dev-lang/perl"
 
 S=${WORKDIR}
 
 src_unpack() {
-	cp ${DISTDIR}/${PN} ${S}
+	cp "${DISTDIR}"/${PN} "${S}"
 }
 
 src_install() {
