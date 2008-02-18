@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/checkstyle/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 COMMON_DEP="dev-java/antlr
 	=dev-java/commons-beanutils-1.7*
