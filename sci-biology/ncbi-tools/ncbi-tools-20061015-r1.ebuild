@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 	mpi? ( mirror://gentoo/mpiblast-20060625.tar.gz )"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc mpi X"
 
 DEPEND="app-shells/tcsh

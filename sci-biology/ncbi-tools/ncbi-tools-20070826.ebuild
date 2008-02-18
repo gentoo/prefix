@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 #	mpi? ( mirror://gentoo/mpiblast-20070826.tar.gz )
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 # IUSE="doc mpi X"
 # mpiblast 1.5.0beta1 doesn't compile as advertised with this ncbi release.
