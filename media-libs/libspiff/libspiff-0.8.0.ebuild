@@ -9,7 +9,7 @@ HOMEPAGE="http://libspiff.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="LGPL-2.1 BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 RDEPEND=">=dev-libs/expat-1.95.8"
 DEPEND="${RDEPEND}
