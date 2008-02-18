@@ -12,7 +12,7 @@ SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/bsdmanpages
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND="virtual/man"
