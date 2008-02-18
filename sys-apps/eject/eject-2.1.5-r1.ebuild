@@ -13,7 +13,7 @@ SRC_URI="http://www.ibiblio.org/pub/Linux/utils/disk-management/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="nls"
 
 DEPEND="!virtual/eject"
