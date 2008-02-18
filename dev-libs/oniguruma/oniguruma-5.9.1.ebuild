@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/oniguruma-5.9.1.ebuild,v 1.6 2008/02/11 15:23:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/oniguruma-5.9.1.ebuild,v 1.7 2008/02/17 22:49:16 aballier Exp $
 
 EAPI="prefix"
+
+inherit libtool
 
 MY_P=onig-${PV}
 
@@ -16,6 +18,13 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 S=${WORKDIR}/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	# Needed for a sane .so versionning on fbsd, please dont drop
+	elibtoolize
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
