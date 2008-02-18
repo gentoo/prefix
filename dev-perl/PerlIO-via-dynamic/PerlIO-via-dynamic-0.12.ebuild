@@ -13,7 +13,7 @@ HOMEPAGE="http://www.cpan.org/modules/by-module/PerlIO/${P}.readme"
 SLOT="0"
 LICENSE="Artistic"
 SRC_TEST="do"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=virtual/perl-File-Temp-0.14
