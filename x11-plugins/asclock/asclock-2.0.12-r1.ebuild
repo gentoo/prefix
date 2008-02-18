@@ -12,7 +12,7 @@ SRC_URI="http://www.tigr.net/afterstep/download/asclock/${P}.tar.gz"
 HOMEPAGE="http://www.tigr.net/afterstep/list.pl"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 DEPEND="x11-libs/libXpm"
 RDEPEND="${DEPEND}
