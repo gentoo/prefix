@@ -38,7 +38,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README*
-	if [[ ${USERLAND} != "GNU" ]] ; then
+	if [[ ${CHOST} != *-linux-gnu* ]] ; then
 		# we install everywhere as 'gmake' but on GNU systems,
 		# symlink 'make' to 'gmake'
 		dosym gmake /usr/bin/make
