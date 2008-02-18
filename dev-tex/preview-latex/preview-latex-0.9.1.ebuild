@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/preview-latex/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="emacs xemacs"
 
 # if you don't have either emacs or xemacs, defaults to emacs. bug #54183
