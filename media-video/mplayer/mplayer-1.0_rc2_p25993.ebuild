@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p25993.ebuild,v 1.7 2008/02/15 20:30:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p25993.ebuild,v 1.10 2008/02/17 14:18:02 drac Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,10 @@ IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
 cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb directfb
 dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 jack joystick jpeg
 kernel_linux ladspa libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3
-musepack nas nemesi unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
+musepack nas nemesi unicode vorbis opengl openal oss png pnm pulseaudio
+quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext
+tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama
+xscreensaver xv xvid xvmc zoran aqua"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -110,7 +113,8 @@ RDEPEND="sys-libs/ncurses
 	xvid? ( media-libs/xvid )
 	X? ( x11-libs/libXxf86vm
 		x11-libs/libXext
-	)"
+	)
+	xscreensaver? ( x11-libs/libXScrnSaver )"
 #	video_cards_vesa? ( sys-apps/vbetool ) restrict on x86 first
 
 DEPEND="${RDEPEND}
@@ -126,6 +130,7 @@ DEPEND="${RDEPEND}
 		   x11-proto/xf86vidmodeproto )
 	X? ( x11-proto/xextproto
 		 x11-proto/xf86vidmodeproto )
+	xscreensaver? ( x11-proto/scrnsaverproto )
 	iconv? ( virtual/libiconv )"
 # Make sure the assembler USE flags are unmasked on amd64
 # Remove this once default-linux/amd64/2006.1 is deprecated
@@ -161,7 +166,6 @@ pkg_setup() {
 }
 
 src_unpack() {
-
 	unpack ${A}
 
 	if ! use truetype ; then
@@ -190,7 +194,7 @@ src_unpack() {
 	fi
 
 	# Fix polish spelling errors
-	[[ -n ${LINGUAS} ]] && sed -e 's:ZarzÄdano:ZaÅ¼Ädano:' -i help/help_mp-pl.h
+	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.0-include-stdlib.patch
@@ -219,6 +223,7 @@ src_compile() {
 	################
 	#Optional features#
 	###############
+	use xscreensaver || myconf="${myconf} --disable-xss"
 	use bidi || myconf="${myconf} --disable-fribidi"
 	use bl && myconf="${myconf} --enable-bl"
 	use enca || myconf="${myconf} --disable-enca"
