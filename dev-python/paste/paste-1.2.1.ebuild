@@ -8,7 +8,7 @@ NEED_PYTHON=2.4
 
 inherit distutils
 
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 MY_PN=Paste
 MY_P=${MY_PN}-${PV}
