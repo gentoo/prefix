@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/gnu-arch/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
 
 DEPEND="sys-apps/coreutils
