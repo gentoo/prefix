@@ -168,7 +168,9 @@ src_unpack() {
 	# delete Makefile.
 	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
 
-	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
+	cp "${FILESDIR}"/${P}-lib64.patch "${T}"
+	( cd "${T}" && epatch "${FILESDIR}"/${P}-lib64-prefix.patch )
+	use amd64 && cd ${S} && epatch "${T}"/${P}-lib64.patch
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
