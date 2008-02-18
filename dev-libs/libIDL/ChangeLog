@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.85 2008/02/03 17:01:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.86 2008/02/17 22:22:09 leio Exp $
+
+  17 Feb 2008; Mart Raudsepp <leio@gentoo.org> libIDL-0.8.10.ebuild:
+  Increase glib dependency to 2.4, as G_STRFUNC is used now which is new since
+  then
 
 *libIDL-0.8.10 (03 Feb 2008)
 
