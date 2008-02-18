@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Session manager"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-session"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="dbus debug gnome"
 
 RDEPEND="x11-libs/libX11
