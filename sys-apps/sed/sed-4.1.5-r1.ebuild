@@ -39,6 +39,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-prototypes.patch
 	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
 	epatch "${FILESDIR}"/${P}-string.patch
+	epatch "${FILESDIR}"/${P}-regex-nobool.patch
 	# don't use sed here if we have to recover a broken host sed
 }
 

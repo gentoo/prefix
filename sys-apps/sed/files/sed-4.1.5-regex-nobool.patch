@@ -1,0 +1,17 @@
+* Most platforms don't define bool, true and false by default
+
+--- lib/regexec.c
++++ lib/regexec.c
+@@ -3289,6 +3289,12 @@
+ /* Build transition table for the state.
+    Return 1 if succeeded, otherwise return NULL.  */
+ 
++#ifndef bool
++# define bool  int
++# define false 0
++# define true  1
++#endif
++
+ static int
+ internal_function
+ build_trtable (const re_dfa_t *dfa, re_dfastate_t *state)
