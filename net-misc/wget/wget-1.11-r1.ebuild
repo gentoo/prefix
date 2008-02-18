@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11.ebuild,v 1.2 2008/01/28 17:36:04 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11-r1.ebuild,v 1.1 2008/02/16 22:12:23 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-no-solaris-md5.patch
 	epatch "${FILESDIR}"/${P}-linking.patch
+	epatch "${FILESDIR}"/${P}-progress-bar-assert.patch #208484
 }
 
 src_compile() {
