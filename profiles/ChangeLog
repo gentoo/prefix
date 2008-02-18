@@ -1,6 +1,38 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1120 2008/02/15 20:00:15 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1130 2008/02/17 20:05:41 swegener Exp $
+
+  17 Feb 2008; Sven Wegener <swegener@gentoo.org> base/package.use.mask:
+  Mask the workbench flag for mysql-gui-tools because dependencies have been
+  removed from the tree.
+
+  16 Feb 2008; Markus Meier <maekke@gentoo.org> use.desc, use.local.desc:
+  move css, cvs, cxx, djvu, fontconfig and hdf5 to global flags
+
+  16 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Remove java5 and java6 descriptions as they are global now.
+
+  16 Feb 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Unmasked all new nwn-data and nwn ebuilds.
+
+  16 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  app-emacs/pymacs beta versions removed.
+
+  16 Feb 2008; Olivier Crête <tester@gentoo.org> package.mask:
+  Removed net-im/gaim and plugins from the tree
+
+  16 Feb 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  remove mask for dev-tex/mpm
+
+  16 Feb 2008; Ulrich Mueller <ulm@gentoo.org> default-linux/arm/use.mask,
+  default-linux/s390/use.mask, default-linux/sh/use.mask, use.desc:
+  Remove unused lesstif USE flag.
+
+  16 Feb 2008; Steev Klimaszewski <steev@gentoo.org> package.mask:
+  Correct the version number so driftnet is properly masked
+
+  16 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Add app-crypt/gpgme:pth
 
   15 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use:
   Added threads to guile's package.use for 2008.0's release.

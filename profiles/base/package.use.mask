@@ -54,3 +54,7 @@ sys-apps/acl nfs
 # only works on x86, where this will be unmasked
 dev-java/ibm-jdk-bin alsa
 dev-java/ibm-jre-bin alsa
+
+# Sven Wegener <swegener@gentoo.org> (17 Feb 2008)
+# Needed depenencies have been removed from the tree
+dev-db/mysql-gui-tools workbench

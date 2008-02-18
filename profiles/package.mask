@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8286 2008/02/16 02:27:06 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8293 2008/02/17 18:59:39 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -87,10 +87,6 @@ net-ftp/nvemftp
 # Will be removed 08 Apr 2008
 # Bug 205482, many bugs, dead upstream
 net-ftp/swiftfxp
-
-# Ulrich Mueller <ulm@gentoo.org> (08 Feb 2008)
-# Pymacs beta release, needs testing.
-=app-emacs/pymacs-0.23_beta*
 
 # Petteri Räty <betelgeuse@gentoo.org> (08 Feb 2008)
 # Masked for removal to java junkyard in 30 days.
@@ -615,7 +611,7 @@ app-admin/hpasm
 # Broken on compilation, pending removal
 # see bug 192627 for details
 # -r4 is fixed, when it goes stable this should be removed from the tree
-=net-analyzer/driftnet-1.0.6-r3
+=net-analyzer/driftnet-0.1.6-r3
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (05 Jan 2008)
 # Mask for removal in 30 days.  This has been superceeded by Avahi.  Upstream
@@ -643,11 +639,6 @@ net-dialup/gprs-easy-connect
 # and has not been updated upstream for two years.
 # Pending removal 01 Feb 2008
 dev-haskell/hs-plugins
-
-# Diego Pettenò <flameeyes@gentoo.org> (31 Dec 2007)
-# Masked pending removal 31 Jan 2008
-# Superseded by dev-ruby/httpclient, drop-in replacement
-dev-ruby/http-access2
 
 # Mart Raudsepp <leio@gentoo.org> (28 Dec 2007)
 # Live Subversion ebuild until pending first upstream release
@@ -755,30 +746,6 @@ app-admin/grubconf
 # P.mask snapshots
 =dev-libs/nss-3.12_alpha*
 =dev-libs/nss-3.12_beta*
-
-# Olivier Crete <tester@gentoo.org> (08 Dec 2007)
-# Remove gaim and its plugins (now its called pidgin)
-net-im/gaim
-app-accessibility/festival-gaim
-net-im/gaim-blogger
-net-im/gaim-bnet
-net-im/gaim-meanwhile
-net-im/gaim-snpp
-x11-plugins/autoprofile
-x11-plugins/bangexec
-x11-plugins/gaim-assistant
-x11-plugins/gaim-encryption
-x11-plugins/gaim-extprefs
-x11-plugins/gaim-galago
-x11-plugins/gaim-hotkeys
-x11-plugins/gaim-latex
-x11-plugins/gaim-otr
-x11-plugins/gaim-rhythmbox
-x11-plugins/gaim-slashexec
-x11-plugins/gaim-xfire
-x11-plugins/gaimosd
-x11-plugins/ignorance
-x11-themes/gaim-smileys
 
 # Marijn Schouten <hkBst@gentoo.org> (07 Dec 2007)
 # Guile that installs to prefix=/ for einit.
@@ -996,11 +963,6 @@ dev-lisp/gcl-cvs
 # Markus Ullmann <jokey@gentoo.org> (05 Sept 2007)
 # masked for testing
 >=net-analyzer/snort-2.7
-
-# Denis Dupeyron <calchan@gentoo.org> (04 Sep 2007)
-# Masking new Neverwinter Nights ebuilds until they're confirmed to work
-=games-rpg/nwn-data-1.29-r2
-=games-rpg/nwn-1.68-r2
 
 # Doug Goldstein <cardoe@gentoo.org> (30 Aug 2007)
 # upstream has declared this module dead and broken
@@ -1538,10 +1500,6 @@ net-libs/libpcap-ringbuffer
 # Marius Mauch <genone@gentoo.org> (17 Jan 2006)
 # Development version
 >=dev-util/gambas-1.9
-
-# Alexandre Buisse <nattfodd@gentoo.org> (12 Jan 2006)
-# Masked for testing purposes
-dev-tex/mpm
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
 # This is the Gentoo Linux Installer.  This is currently masked because it will

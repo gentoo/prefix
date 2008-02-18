@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3359 2008/02/15 21:15:53 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3364 2008/02/17 16:32:15 mabi Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -58,7 +58,6 @@ app-cdr/brasero:totem - Enable support for Totem playlists.
 app-cdr/cdrdao:pccts - Use dev-util/pccts instead of the built-in substitution.
 app-cdr/cdrkit:hfs - Provide building of HFS (Apple) CD-images
 app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make www-apps/disc-cover work.
-app-cdr/k3b:css - Enables ripping of encrypted dvds
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
 app-cdr/mybashburn:normalize - Add support for normalizing audio file volume levels
 app-cdr/serpentine:muine - Enable support for the GNOME music player Muine
@@ -68,6 +67,7 @@ app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
 app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
+app-crypt/gpgme:pth - build pth enabled library
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:applet - Enable panel applet
@@ -272,11 +272,8 @@ app-text/crm114:mimencode - Adds support for using the mimencode mime
 app-text/crm114:normalizemime - Add support for using the normalizemime
 app-text/estraier:kakasi - Enable kakasi support for Estraier
 app-text/estraier:mecab - Enable mecab support for Estraier
-app-text/evince:djvu - Enable djvu viewer support for Evince
 app-text/evince:dvi - Enable the built-in DVI viewer for Evince
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer for Evince
-app-text/ghostscript-esp:djvu - Enable gsdjvu support
-app-text/ghostscript-gpl:djvu - Enable gsdjvu support
 app-text/hyperestraier:mecab - Enable mecab support for Estraier
 app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search library (TeX related)
 app-text/namazu:kakasi - Enable kakasi support for namazu
@@ -305,7 +302,6 @@ app-text/webgen:textile - Textile support
 app-text/webgen:thumbnail - Thumbnail creation support using rmagick
 app-text/xpdf:nodrm - Disable the drm feature decoder.
 app-vim/gentoo-syntax:ignore-glep31 - Remove GLEP 31 (UTF-8 file encodings) settings
-app-vim/vcscommand:cvs - Enable CVS support
 app-vim/vcscommand:svk - Enable SVK support
 dev-cpp/sptk:aspell - Enable Aspell support
 dev-cpp/sptk:excel - Enable Excel support
@@ -390,10 +386,8 @@ dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/antlr:nojava - Disable support for Java code backend
 dev-java/antlr:script - Install a script to run antlr
-dev-java/aspectwerkz:java5 - Enable Java 5 specific features
 dev-java/avalon-logkit:javamail - Enable support for javamail
 dev-java/avalon-logkit:jms - Enable support for JMS (Java Message Service)
-dev-java/backport-util-concurrent:java5 - Enable also the 1.6 > 1.5 backport.
 dev-java/bsh:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/commons-collections:test-framework - Install the test framework
 dev-java/commons-logging:avalon-framework - Add optional support for avalon-framework
@@ -417,8 +411,6 @@ dev-java/jdbc-mysql:c3p0 - Enable c3p0 support
 dev-java/jdbc-mysql:log4j - Enable log4 support
 dev-java/jdbc-oracle-bin:dms - Enable support for the Oracle Dynamic Monitoring Service
 dev-java/jdbc-oracle-bin:ons - Enable support for the Oracle Notification Services (ONS) deamon
-dev-java/jdbc-postgresql:java5 - Use Java 1.5 source/target for compilation (JDBC version 3)
-dev-java/jdbc-postgresql:java6 - Use Java 1.6 source/target for compilation (JDBC version 4)
 dev-java/jruby:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
@@ -433,18 +425,16 @@ dev-java/quartz:struts - Enable struts support
 dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
 dev-java/sun-jaxp-bin:dom4j - Enable dom4j
 dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
-dev-java/tomcat-servlet-api:java5 - Use Java 1.5 source/target for compilation
-dev-java/xstream:java5 - Enable Java 5 specific features
 dev-lang/erlang:hipe - HIgh Performance Erlang extension
 dev-lang/erlang:kpoll - Enable kernel polling support
 dev-lang/erlang:smp - Enable support for multiprocessors
 dev-lang/gdl:hdf - Adds support for the Hierarchical Data Format
-dev-lang/gdl:hdf5 - Adds support for the Hierarchical Data Format v 5
 dev-lang/gdl:proj - Adds proj library support (geographic projections)
 dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly large performance gains
 dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
 dev-lang/icon:iplsrc - install the icon programming library source
+dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
 dev-lang/php:cli - Enable CLI SAPI
@@ -508,7 +498,6 @@ dev-libs/libjit:interpreter - Enable the libjit interpreter
 dev-libs/libjit:long-double - Enable the use of long double for jit_nfloat
 dev-libs/libjit:new-reg-alloc - Enable new register allocator
 dev-libs/libmix:no-net2 - disable libpcap and libnet support
-dev-libs/libpcre:cxx - Build C++ bindings.
 dev-libs/libprelude:swig - Enable rebuild of swig bindings
 dev-libs/libpreludedb:swig - Enable rebuild of swig bindings
 dev-libs/libproccpuinfo:sender - Build a utility for sending the author your /proc/cpuinfo file.
@@ -579,7 +568,6 @@ dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/cgkit:ogre - enable support for Ogre rendering
 dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
-dev-python/kaa-metadata:css - Enables ripping/reading of encrypted dvds
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
@@ -642,13 +630,11 @@ dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV
 dev-util/global:vim - vim funny stuff for global
 dev-util/kdevelop:ada - Support for the Ada programming language.
 dev-util/kdevelop:clearcase - Support for the ClearCase version control system.
-dev-util/kdevelop:cvs - Support for CVS via kde-base/cervisia.
 dev-util/kdevelop:haskell - Support for the Haskell programming language.
 dev-util/kdevelop:pascal - Support for the Pascal programming language.
 dev-util/kdevelop:perforce - Support for the Perforce version control system.
 dev-util/kdevelop:sql - Support for the Structured Query Language (SQL).
 dev-util/mercurial:bugzilla - Support bugzilla integration.
-dev-util/mercurial:cvs - Support conversion of CVS repositories to Mercurial.
 dev-util/mercurial:darcs - Support conversion of Darcs repositories to Mercurial.
 dev-util/mercurial:git - Support conversion of Git repositories to Mercurial.
 dev-util/mercurial:gpg - Support signing with GnuPG.
@@ -807,7 +793,6 @@ kde-base/kdeedu:sbig - Enable support for SBIG
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
 kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdegraphics:chm - Enable Okular support for Microsoft Compiled HTML Help files
-kde-base/kdegraphics:djvu - Enable Okular support for DjVu files
 kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
 kde-base/kdelibs:pcre - Provide better regular expression support in K java script (KJS)
@@ -877,7 +862,6 @@ kde-base/kttsd:ktts - Enable KDE Text To Speech modules
 kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
-kde-base/okular:djvu - Enable support for DjVu files
 kde-base/systemsettings:usb - Configure USB and logitech mice
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client (vpnc)
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
@@ -986,8 +970,6 @@ media-gfx/gthumb:iptc - Add support for IPTC metadata
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/hugin:enblend - Pull media-gfx/enblend as a dependency
 media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
-media-gfx/imagemagick:djvu - Enable djvu support
-media-gfx/imagemagick:fontconfig - Support for managing custom fonts via fontconfig.
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
@@ -1004,18 +986,14 @@ media-gfx/pstoedit:emf - enables media-libs/libemf support
 media-gfx/showimg:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/splashutils:fbcondecor - Support for the fbcondecor kernel patch.
 media-libs/a52dec:djbfft - Prefer D.J. Bernstein's library for fourier transforms
-media-libs/aften:cxx - Enables C++ bindings
 media-libs/allegro:vga - Enables the VGA graphics driver
 media-libs/alsa-lib:alisp - Enable support for ALISP (ALSA LISP) interpreter for advanced features.
 media-libs/alsa-lib:midi - Enables MIDI output support (both Hardware and Software)
 media-libs/cal3d:16bit-indices - Enables use of 16bit indices
-media-libs/coin:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
 media-libs/faad2:drm - Add support for Digital Radio Mondiale (warning: disables other decoders)
-media-libs/flac:cxx - Enables FLAC++, C++ bindings to the FLAC library
 media-libs/freetype:kpathsea - Enable TeX support (ttf2pk and ttf2pfb)
 media-libs/freetype:utils - Install utilities and examples from ft2demos
-media-libs/gd:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
@@ -1036,7 +1014,6 @@ media-libs/panda3d:nspr - Enables support for the Netscape Portable Runtime, use
 media-libs/ploticus:cpulimit - Limit cpu usage when generating graphics
 media-libs/ploticus:flash - Adds support for creating SWF files using Ming
 media-libs/ploticus:svgz - Compressed svg graphics support
-media-libs/portaudio:cxx - Enable C++ bindings
 media-libs/sdif:ftruncate - Enables usage of ftruncate v. truncate
 media-libs/sdl-sound:physfs - Enable physfs support
 media-libs/sge:image - enable sdl-image support
@@ -1138,6 +1115,7 @@ media-sound/pulseaudio:asyncns - Use libasyncns for asynchronous name resolution
 media-sound/pulseaudio:glib - Enable glib eventloop support
 media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
 media-sound/qsampler:libgig - Enable libgig support for loading Gigasampler files and DLS (Downloadable Sounds) Level 1/2 files
+media-sound/qtractor:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines
@@ -1221,7 +1199,6 @@ media-tv/zapping:zvbi - Enable VBI Decoding Library
 media-video/avidemux:aften - Enable A/52 (AC-3) audio encoder support
 media-video/avidemux:amrnb - Enable Narrow Band Adaptive Multi-Rate Audio support
 media-video/chaplin:transcode - Enable DVD ripping and transcoding
-media-video/cinelerra-cvs:css - Enable support for encrypted files through libmpeg3
 media-video/cinepaint:gimpprint - Enable support for gimp-print (gutenprint)
 media-video/devede:psyco - psyco python accelerator
 media-video/dvd-slideshow:themes - Install theme pack 
@@ -1284,7 +1261,6 @@ media-video/transcode:mjpeg - Enables mjpegtools support
 media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
-media-video/undvd:css - Enables ripping of encrypted dvds
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
@@ -1355,7 +1331,6 @@ media-video/vlc:twolame - Enables twolame support (MPEG Audio Layer 2 encoder).
 media-video/vlc:upnp - Enables support for Intel UPnP stack.
 media-video/vlc:vcdx - Enables VCD with navigation via libvcdinfo (depends on cdio)
 media-video/vlc:vlm - New videolan (media) manager (vlm), a little manager designed to launch and manage multiple streams from within one instance of VLC.
-media-video/winki:css - Enables ripping of encrypted DVDs
 media-video/winki:mjpeg - Enables mjpegtools support
 media-video/x264-svn-encoder:mp4 - Enables mp4 encoding support
 media-video/xine-ui:vdr - Enables Video Disk Recorder support
@@ -1854,11 +1829,9 @@ sci-libs/gdal:fits - Enables support for NASA's cfitsio library
 sci-libs/gdal:geos - Adds support for geometry engine
 sci-libs/gdal:gml - Enables support for xerces-c API
 sci-libs/gdal:hdf - Adds support for the Hierarchical Data Format
-sci-libs/gdal:hdf5 - Adds support for the Hierarchical Data Format v 5
 sci-libs/gdal:ogdi - Enables support for the open geographic datastore interface
 sci-libs/gerris:dx - Enables support for opendx
 sci-libs/gsl:cblas - Builds gsl with external cblas by default
-sci-libs/hdf5:cxx - Builds C++ library support (conflicts with mpi support)
 sci-libs/hdf5:f90 - Flag to override fortran for externel compilers
 sci-libs/hdf5:hlapi - Enables support for high-level library
 sci-libs/hdf5:tools - install support and test tools
@@ -1891,7 +1864,6 @@ sci-mathematics/maxima:gcl - Adds GNU Common Lisp support to maxima
 sci-mathematics/maxima:sbcl - Adds Steel Bank Common Lisp support to maxima
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
-sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/singular:boost - Compile against external boost headers.
 sci-mathematics/yacas:server -  Build the network server version.
 sci-misc/boinc:server - Enable compilation of server
@@ -1899,7 +1871,6 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
-sci-physics/meep:hdf5 - Adds support for the Hierarchical Data Format version 5
 sci-physics/root:cern -Enable hbook i/o functionality to root (needs cernlib)
 sci-physics/root:cint7 - Build the experimental C/C++ interpretor version 7
 sci-physics/root:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
@@ -1907,13 +1878,11 @@ sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfi
 sci-visualization/hippodraw:numarray - Add numarray python array support
 sci-visualization/hippodraw:root - Add root i/o, and minuit support
 sci-visualization/labplot:cdf - Adds cdf data exchange format support
-sci-visualization/labplot:hdf5 - Adds support for the Hierarchical Data Format v 5
 sci-visualization/labplot:kexi - Import and export data from/to MySQL, PostgreSQL etc. via Kexi (app-office/kexi).
 sci-visualization/labplot:qhull - Adds media-libs/qhull (geometric extensions) support
 sci-visualization/labplot:R - Enable R support
 sci-visualization/opendx:cdf - Adds cdf data exchange format support
 sci-visualization/opendx:hdf - Adds support for the Hierarchical Data Format
-sci-visualization/paraview:hdf5 - Adds support for the Hierarchical Data Format v5
 sci-visualization/veusz:fits - Adds FITS format format, via pyfits
 sys-apps/acl:nfs - add support for NFS acls
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
@@ -1983,7 +1952,6 @@ sys-cluster/heartbeat:management - Adds support for management GUI.
 sys-cluster/lam-mpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/lam-mpi:romio - Enable romio, a high-performance portable MPI-IO implementation
 sys-cluster/lam-mpi:xmpi - Build support for the external XMPI debugging GUI
-sys-cluster/mpich2:cxx - Add cxx headers
 sys-cluster/mpich2:fast - Enabling fast turns off error checking and timing collection
 sys-cluster/mpich2:mpe - Add mpe support
 sys-cluster/mpich2:mpe-sdk - Include additional SDK support, jar files
@@ -2114,7 +2082,6 @@ www-apps/horde-passwd:clearpasswd - Enables cleartext password storage in the vp
 www-apps/knowledgetree:office - Allow to search in MSOffice documents
 www-apps/knowledgetree:opendoc - Allow to search in opendoc documents
 www-apps/knowledgetree:ps - Allow to search in postscript documents
-www-apps/lxr:cvs - Adds support for indexing CVS
 www-apps/lxr:freetext - Adds support for freetext search using swish-e
 www-apps/mantisbt:bundled-adodb - use adodb bundled with web-application instead of system wide
 www-apps/mediawiki:math - Adds math rendering support
@@ -2126,7 +2093,6 @@ www-apps/trac:silvercity - Add SilverCity support to colourize code stored in th
 www-apps/viewcvs:cvsgraph - Add cvsgraph support to show graphical views of revisions and branches
 www-apps/viewcvs:mod_python - Add mod_python support
 www-apps/viewcvs:standalone - Install the standalone client
-www-apps/viewvc:cvs - Add cvs support
 www-apps/viewvc:cvsgraph - Add cvsgraph support to show graphical views of revisions and branches
 www-apps/viewvc:highlight - Add highlight support to colourize code stored in the repository
 www-apps/viewvc:mod_python - Add mod_python support
@@ -2171,7 +2137,6 @@ www-servers/pound:unsafe - if you want the 'unsafe' characters passed through to
 www-servers/resin:admin - Enable Resin admin webapp
 www-servers/shttpd:dmalloc - Enable debugging with the dmalloc library
 www-servers/tomcat:admin - Enable Tomcat admin webapp
-www-servers/tomcat:java5 - Use Java 1.5 source/target for compilation
 x11-apps/xdpyinfo:dmx - Builds support for Distributed Multiheaded X
 x11-base/kdrive:fbdev - Enables framebuffer kdrive server
 x11-base/kdrive:font-server - Enables font server support
@@ -2198,7 +2163,6 @@ x11-libs/qt:pch - Enable precompiled header support for faster compilation times
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/wxGTK:pch - Enable precompiled header support for faster compilation at the expense of disk space and memory
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
-x11-misc/adesklets:fontconfig - Support for managing custom fonts via fontconfig
 x11-misc/fbdesk:imlib2 - Add support for imlib2 (pixmap themes)
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc

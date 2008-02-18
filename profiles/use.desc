@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.386 2008/02/13 23:47:15 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.388 2008/02/16 23:59:57 maekke Exp $
 
 # Keep them sorted
 
@@ -56,10 +56,13 @@ clamav - Adds support for Clam AntiVirus software (usually with a plugin)
 cracklib - Support for cracklib strong password checking
 crypt - Add support for encryption -- using mcrypt or gpg where applicable
 cscope - Enables cscope interface -- in vim for example
+css - Enables ripping of encrypted DVDs
 ctype - Enables ctype functions
 cups - Add support for CUPS (Common Unix Printing System)
 curl - Adds support for client-side URL transfer library
 curlwrappers - Adds support for using curl in streams
+cvs - Enable CVS (Concurrent Versions System) integration
+cxx - Builds support for C++ (bindings, extra libraries, code generation, ...)
 db2 - Enables support for IBM DB2 database server
 dbase - Adds support for dbase file format
 dbm - Adds support for generic DBM databases
@@ -70,6 +73,7 @@ debug - Enable extra debug codepaths, like asserts and extra output. If you want
 dedicated - Adds support for dedicated game servers (some packages do not provide clients and servers at the same time)
 dga - Adds DGA (Direct Graphic Access) support for X
 directfb - Adds support for DirectFB layer (library for FB devices)
+djvu - support DjVu, a PDF-like document format esp. suited for scanned documents
 doc - Adds extra documentation (API, Javadoc, etc)
 dri - Enable direct rendering: used for accelerated 3D and some 2D, like DMA
 dts - Enables DTS Coherent Acoustics decoder support
@@ -102,6 +106,7 @@ firefox - Build against Firefox instead of Seamonkey/Mozilla
 flac - Adds support for FLAC: Free Lossless Audio Codec
 flatfile - Adds dbm support for flat files
 fltk - Adds support for the Fast Light Toolkit gui interface
+fontconfig - Support for configuring and customizing font access via media-libs/fontconfig
 foomaticdb - Adds support for the foomatic printing driver database
 fortran - Adds support for fortran (formerly f77)
 freetds - Adds support for the TDS protocol to connect to MSSQL/Sybase databases
@@ -135,6 +140,7 @@ guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
 hardened - activate default security enhancements for toolchain (gcc, glibc, binutils)
 hddtemp - Enable monitoring of hdd temperature (app-admin/hddtemp)
+hdf5 - Adds support for the Hierarchical Data Format v5
 htmlhandbook - Enable HTML handbooks generation for KDE4.
 hyperwave-api - Adds support for Hyperwave document storage system
 ibm - Add support for IBM ppc64 specific systems
@@ -181,7 +187,6 @@ latex - Adds support for LaTeX (typesetting package)
 lcms - Adds lcms support (color management engine)
 ldap - Adds LDAP support (Lightweight Directory Access Protocol)
 leim - Adds input methods support to Emacs
-lesstif - Use lesstif over openmotif in cases where a program supports both
 libcaca - Add support for colored ASCII-art graphics
 libedit - Use the libedit library (replacement for readline)
 libgda - Adds GNOME Data Access support
