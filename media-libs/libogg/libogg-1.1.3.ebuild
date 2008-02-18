@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/ogg/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 src_unpack() {
