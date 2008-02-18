@@ -12,7 +12,7 @@ HOMEPAGE="http://openvpn.net/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="examples iproute2 minimal pam passwordsave selinux ssl static pkcs11 threads userland_BSD"
 
 DEPEND=">=dev-libs/lzo-1.07
