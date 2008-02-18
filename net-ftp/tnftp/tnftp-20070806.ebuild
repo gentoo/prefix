@@ -16,7 +16,7 @@ HOMEPAGE="ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="ipv6 socks5"
 
 DEPEND=">=sys-libs/ncurses-5.1
