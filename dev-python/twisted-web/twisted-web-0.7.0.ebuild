@@ -10,7 +10,7 @@ inherit twisted eutils
 
 DESCRIPTION="Twisted web server, programmable in Python"
 
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 DEPEND="=dev-python/twisted-2.5*"
 
