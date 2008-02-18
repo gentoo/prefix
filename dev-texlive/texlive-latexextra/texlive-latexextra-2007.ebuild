@@ -16,4 +16,4 @@ DESCRIPTION="TeXLive LaTeX supplementary packages"
 
 LICENSE="GPL-2 LPPL-1.3c Artistic"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
