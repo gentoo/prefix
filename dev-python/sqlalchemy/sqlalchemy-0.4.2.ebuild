@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 IUSE="doc examples firebird mssql mysql postgres sqlite test"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 # note: if you use psycopg-1, then you need egenix-mx-base
 RDEPEND="firebird? ( dev-python/kinterbasdb )
