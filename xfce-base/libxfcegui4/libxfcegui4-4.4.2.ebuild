@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Unified widgets library"
 HOMEPAGE="http://www.xfce.org/projects/libraries"
-KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="debug doc startup-notification"
 
 RDEPEND="x11-libs/libSM
