@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.256 2008/02/11 19:52:57 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.257 2008/02/17 12:12:40 ferdy Exp $
+
+*git-1.5.4.2 (17 Feb 2008)
+
+  17 Feb 2008; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.4.2.ebuild:
+  New upstream version
 
   11 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> git-1.5.4.ebuild:
   Fix sed for LDFLAGS, and make CFLAGS sed as robust as that.
