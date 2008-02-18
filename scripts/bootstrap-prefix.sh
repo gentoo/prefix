@@ -113,15 +113,12 @@ bootstrap_setup() {
 			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
-			keywords="~x86"
 			;;
 		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
-			keywords="~amd64"
 			;;
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
-			keywords="~ia64"
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
@@ -181,13 +178,6 @@ bootstrap_setup() {
 	
 	[[ -e ${ROOT}/etc/make.conf ]] && return
 	
-	# we need to do this untill all linux keywords are converted to
-	# their -linux variant.
-	if [[ -n ${keywords} ]] ; then
-		echo "ACCEPT_KEYWORDS=\"${keywords}\"" >> "${ROOT}"/etc/make.conf
-		einfo "Your ACCEPT_KEYWORDS is set to ${keywords}"
-	fi
-
 	einfo "Setting up sync uri"
 	echo 'SYNC="svn://overlays.gentoo.org/proj/alt/trunk/prefix-overlay"' >> ${ROOT}/etc/make.conf
 }

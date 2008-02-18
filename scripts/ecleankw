@@ -13,7 +13,7 @@
 # these need to reflect the keywords that are valid for the tree
 my_keywords="
 	ppc-aix
-	x86-fbsd
+	x86-freebsd
 	hppa-hpux ia64-hpux
 	x86-interix
 	amd64-linux ia64-linux mips-linux x86-linux
@@ -33,6 +33,7 @@ for f in $files ; do
 	eval $(egrep "^KEYWORDS=" "$f")
 	for kw in $KEYWORDS ; do
 		for mkw in $my_keywords ; do
+			kw=${kw/-fbsd/-freebsd}
 			mkws=${mkw%-linux}
 			kws=${kw%-linux}
 			if [[ $kws == $mkws || $kws == ~$mkws ]] ; then
