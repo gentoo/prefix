@@ -12,7 +12,7 @@ SRC_URI="http://www.s48.org/${PV}/${P}.tgz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc emacs"
 
 DEPEND="emacs? ( virtual/emacs )"
