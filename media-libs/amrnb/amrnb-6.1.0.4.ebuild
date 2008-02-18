@@ -13,7 +13,7 @@ SRC_URI="http://ftp.penguin.cz/pub/users/utx/amr/${P}.tar.bz2
 RESTRICT="mirror"
 LICENSE="LGPL-2 as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 DEPEND="app-arch/unzip"
 
