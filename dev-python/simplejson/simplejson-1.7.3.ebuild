@@ -8,7 +8,7 @@ NEED_PYTHON=2.3
 
 inherit distutils
 
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 DESCRIPTION="A simple, fast, complete, correct and extensible JSON encoder and decoder."
 HOMEPAGE="http://undefined.org/python/#simplejson"
