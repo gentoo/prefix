@@ -12,7 +12,7 @@ HOMEPAGE="http://rubyforge.org/projects/ruby-debug/"
 SRC_URI="http://gems.rubyforge.org/gems/${P}.gem"
 
 LICENSE="ruby-debug"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 DEPEND=">=dev-lang/ruby-1.8.4"
 RDEPEND="${DEPEND}"
