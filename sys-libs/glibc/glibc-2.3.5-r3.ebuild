@@ -18,7 +18,7 @@ EAPI="prefix"
 #  CHOST = CTARGET  - install into /
 #  CHOST != CTARGET - install into /usr/CTARGET/
 
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 
 BRANCH_UPDATE=""
 
