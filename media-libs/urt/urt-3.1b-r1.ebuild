@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.iastate.edu/pub/utah-raster/${P}.tar.Z"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="gif gs tiff X"
 
 DEPEND="X? ( x11-libs/libXext
