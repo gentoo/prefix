@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.8 2008/01/30 16:02:59 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.9 2008/02/17 22:45:15 eva Exp $
 
 EAPI="prefix"
 
@@ -32,12 +32,22 @@ DEPEND="${RDEPEND}
 
 PDEPEND="gnome? ( media-gfx/imagemagick )"
 
-G2CONF="${G2CONF} \
-	$(use_with bzip2 bz2) \
-	$(use_with gnome) \
-	$(use_with python)"
-
 DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README TODO"
+
+pkg_setup() {
+	G2CONF="${G2CONF}
+		$(use_with bzip2 bz2)
+		$(use_with gnome)
+		$(use_with python)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# disable pyc compiling
+	mv py-compile py-compile.orig
+	ln -s $(type -P true) py-compile
+}
 
 pkg_preinst() {
 	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.1
@@ -48,7 +58,10 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	use python && python_mod_optimize /usr/$(get_libdir)/python*/site-packages/gsf
+	if use python; then
+		python_version
+		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gsf
+	fi
 
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.1
@@ -58,5 +71,8 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-	use python && python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
+	if use python; then
+		python_version
+		python_mod_cleanup "${EROOT}"usr/$(get_libdir)/python${PYVER}/site-packages/gsf
+	fi
 }
