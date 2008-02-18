@@ -12,7 +12,7 @@ DESCRIPTION="EMBOSS integrated version of MSE - Multiple Sequence Screen Editor"
 SRC_URI="ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${EBOV}.tar.gz
 	mirror://gentoo/embassy-${EBOV}-${PN:8}-${PV}.tar.gz"
 
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~x86-linux ~ppc-macos"
 
 src_install() {
 	sed -e "s:libdir = \${exec_prefix}/lib:libdir = \${exec_prefix}/$(get_libdir):g" \
