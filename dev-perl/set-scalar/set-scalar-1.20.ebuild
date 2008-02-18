@@ -15,7 +15,7 @@ HOMEPAGE="http://search.cpan.org/~jhi/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 
 SRC_TEST="do"
 
