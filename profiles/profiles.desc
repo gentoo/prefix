@@ -11,16 +11,13 @@ amd64-linux		default-prefix/linux/amd64				dev
 mips-linux		default-prefix/linux/mips				dev
 ia64-linux		default-prefix/linux/ia64				dev
 x86-linux		default-prefix/linux/x86				dev
-# these are for temporal backwards compatibility
-amd64		default-prefix/linux/amd64					dev
-mips		default-prefix/linux/mips					dev
-ia64		default-prefix/linux/ia64					dev
-x86			default-prefix/linux/x86					dev
 
 # Mac OS X Profiles
 ppc-macos	default-prefix/darwin/macos/10.3			dev
 ppc-macos	default-prefix/darwin/macos/10.4/ppc		dev
 x86-macos	default-prefix/darwin/macos/10.4/x86		dev
+ppc-macos	default-prefix/darwin/macos/10.5/ppc		dev
+x86-macos	default-prefix/darwin/macos/10.5/x86		dev
 
 # Solaris Profiles
 sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
@@ -49,8 +46,6 @@ ia64-hpux	default-prefix/hpux/B.11.23/ia64			dev
 # FreeBSD Profiles
 x86-freebsd	default-prefix/bsd/freebsd/6.2/x86			dev
 x86-freebsd	default-prefix/bsd/freebsd/6.3/x86			dev
-# these are for temporal backwards compatibility
-x86-fbsd	default-prefix/bsd/freebsd/6.2/x86			dev
 
 # OpenBSD Profiles
 ppc-openbsd default-prefix/bsd/openbsd/4.2/ppc			dev
