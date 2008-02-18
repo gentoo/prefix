@@ -27,7 +27,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE=""
 
 DEPEND=""

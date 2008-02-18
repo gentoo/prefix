@@ -18,7 +18,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="" # untested, misses prefix patch
+KEYWORDS=""
 IUSE=""
 
 DEPEND=""
