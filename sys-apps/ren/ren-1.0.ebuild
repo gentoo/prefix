@@ -8,7 +8,7 @@ DESCRIPTION="Renames multiple files"
 HOMEPAGE="http://freshmeat.net/projects/ren"
 SRC_URI="http://www.ibiblio.org/pub/Linux/utils/file/${P}.tar.gz"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 SLOT="0"
 LICENSE="as-is"
