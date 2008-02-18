@@ -1,6 +1,21 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.37 2008/01/23 16:47:11 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.41 2008/02/17 16:40:09 opfer Exp $
+
+  17 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  guile-1.8.3-r2.ebuild, guile-1.8.3-r25.ebuild:
+  disable test if USE=regex is not set, fixes bug 164266, reported by zlin
+
+  17 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  guile-1.8.3-r2.ebuild:
+  stable x86, bug 210465
+
+  17 Feb 2008; nixnut <nixnut@gentoo.org> guile-1.8.3-r2.ebuild:
+  Stable on ppc wrt bug 210465
+
+  17 Feb 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.3-r2.ebuild:
+  dodir -> keepdir, or else emerging twice will not keep the directory as
+  needed for slib
 
 *guile-1.8.3-r2 (23 Jan 2008)
 
