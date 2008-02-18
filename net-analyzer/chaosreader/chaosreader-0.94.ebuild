@@ -10,7 +10,7 @@ DESCRIPTION="A tool to trace TCP/UDP/... sessions and fetch application data fro
 HOMEPAGE="http://users.tpg.com.au/bdgcvb/chaosreader.html"
 SRC_URI="http://dev.gentoo.org/~spock/portage/distfiles/${P}.bz2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 LICENSE="GPL-2"
 IUSE=""
 DEPEND=">=dev-lang/perl-5.8.0"
