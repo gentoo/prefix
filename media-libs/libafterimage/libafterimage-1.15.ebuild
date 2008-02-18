@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.afterstep.org/stable/${MY_PN}/${MY_PN}-${PV}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="gif jpeg mmx nls png tiff examples"
 
 RDEPEND="media-libs/freetype
