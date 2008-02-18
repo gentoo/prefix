@@ -11,6 +11,15 @@ Index: perl-5.8.8/Configure
  		dynixptx*) osname=dynixptx
  			osvers=`echo "$4"|sed 's/^v//'`
  			;;
+@@ -7889,7 +7891,7 @@
+ 	solaris)
+ 		xxx="-R $shrpdir"
+ 		;;
+-	freebsd|netbsd|openbsd|interix)
++	freebsd|netbsd|openbsd|dragonfly|interix)
+ 		xxx="-Wl,-R$shrpdir"
+ 		;;
+ 	bsdos|linux|irix*|dec_osf|gnu*)
 Index: perl-5.8.8/Makefile.SH
 ===================================================================
 --- perl-5.8.8.orig/Makefile.SH	2006-01-24 12:49:44 +0000
