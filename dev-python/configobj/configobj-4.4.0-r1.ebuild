@@ -8,7 +8,7 @@ NEED_PYTHON=2.3
 
 inherit distutils
 
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 DESCRIPTION="Simple but powerful config file reader and writer: an ini file round tripper."
 HOMEPAGE="http://www.voidspace.org.uk/python/configobj.html"
