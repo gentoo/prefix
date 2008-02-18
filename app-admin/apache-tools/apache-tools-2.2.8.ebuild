@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.8.ebuild,v 1.6 2008/01/31 20:00:40 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.8.ebuild,v 1.7 2008/02/17 13:13:21 angelos Exp $
 
 EAPI="prefix"
 
