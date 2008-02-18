@@ -1,6 +1,9 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.275 2008/02/16 20:42:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.276 2008/02/17 13:22:43 angelos Exp $
+
+  17 Feb 2008; Christoph Mende <angelos@gentoo.org> clamav-0.92.1.ebuild:
+  Stable on amd64, security bug #209915
 
   16 Feb 2008; Markus Meier <maekke@gentoo.org> clamav-0.92.1.ebuild:
   x86 stable, security bug #209915
