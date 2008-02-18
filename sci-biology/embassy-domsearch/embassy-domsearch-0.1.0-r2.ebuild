@@ -12,4 +12,4 @@ DESCRIPTION="Protein domain search add-on package for EMBOSS"
 SRC_URI="ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${EBOV}.tar.gz
 	mirror://gentoo/embassy-${EBOV}-${PN:8}-${PV}.tar.gz"
 
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~x86-linux ~ppc-macos"
