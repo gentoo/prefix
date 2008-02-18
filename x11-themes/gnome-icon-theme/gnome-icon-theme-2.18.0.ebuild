@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND="x11-themes/hicolor-icon-theme"
