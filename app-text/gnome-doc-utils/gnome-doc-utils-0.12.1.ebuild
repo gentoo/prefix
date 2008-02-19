@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.1 2008/02/14 08:06:17 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.2 2008/02/18 22:56:17 eva Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,13 @@ DEPEND="${RDEPEND}
 	~app-text/docbook-xml-dtd-4.4"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Fix LINGUAS
+	intltoolize --force || die "intltoolize failed"
+}
 
 pkg_setup() {
 	G2CONF="--disable-scrollkeeper"
