@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.20.3.ebuild,v 1.7 2008/02/04 04:43:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.20.3.ebuild,v 1.8 2008/02/18 22:07:29 eva Exp $
 
 EAPI="prefix"
 
@@ -54,6 +54,9 @@ src_unpack() {
 	# FIXME : uh yeah, this is nice
 	# We should patch in a switch here and send it upstream
 	sed -i 's:--load:-v:' "${S}/gnome-panel/Makefile.in" || die "sed failed"
+
+	# Fix LINGUAS
+	sed -i "2,2 s/ /\n/g" po/LINGUAS || die "Fixing LINGUAS failed"
 }
 
 pkg_postinst() {
