@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.0.ebuild,v 1.10 2007/12/06 12:08:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.0.ebuild,v 1.11 2008/02/18 23:39:08 voyageur Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,16 @@ DEPEND="${GNUSTEP_CORE_DEPEND}
 	>=dev-libs/openssl-0.9.7
 	>=sys-libs/zlib-1.2"
 RDEPEND="${DEPEND}"
+
+pkg_setup() {
+	gnustep-base_pkg_setup
+
+	if use gcc-libffi && ! built_with_use sys-devel/gcc libffi; then
+		eerror "You have enabled the gcc-libffi USE flag, however gcc was not compiled with USE=libffi"
+		eerror "Please recompile sys-libs/gcc with USE=libffi, or disable the gcc-libffi USE flag"
+		die "libffi support not available"
+	fi
+}
 
 src_compile() {
 	egnustep_env
