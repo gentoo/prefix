@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/files/eclass-to-manpage.awk,v 1.11 2007/09/01 21:31:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/files/eclass-to-manpage.awk,v 1.14 2008/02/19 05:22:38 vapier Exp $
 
 # This awk converts the comment documentation found in eclasses
 # into man pages for easier/nicer reading.
@@ -122,8 +122,10 @@ function handle_eclass() {
 	# finally display it
 	print ".SH \"NAME\""
 	print eclass " \\- " man_text(blurb)
-	print ".SH \"DESCRIPTION\""
-	print man_text(desc)
+	if (desc != "") {
+		print ".SH \"DESCRIPTION\""
+		print man_text(desc)
+	}
 	if (example != "") {
 		print ".SH \"EXAMPLE\""
 		print man_text(example)
@@ -132,8 +134,6 @@ function handle_eclass() {
 	# sanity checks
 	if (blurb == "")
 		fail(eclass ": no @BLURB found")
-	if (desc == "")
-		fail(eclass ": no @DESCRIPTION found")
 	if (eclass_maintainer == "")
 		warn(eclass ": no @MAINTAINER found")
 
@@ -258,6 +258,9 @@ BEGIN {
 		if ($0 ~ /^# @ECLASS:/) {
 			handle_eclass()
 			state = "funcvar"
+		} else if ($0 == "# @DEAD") {
+			eclass = "dead"
+			exit(10)
 		} else if ($0 ~ /^# @/)
 			warn("Unexpected tag in \"" state "\" state: " $0)
 	} else if (state == "funcvar") {
@@ -278,6 +281,6 @@ BEGIN {
 END {
 	if (eclass == "")
 		fail("eclass not documented yet (no @ECLASS found)");
-	else
+	else if (eclass != "dead")
 		handle_footer()
 }
