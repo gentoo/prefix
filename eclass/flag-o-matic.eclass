@@ -1,67 +1,17 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.120 2007/07/22 08:21:09 dberkholz Exp $
-#
-# Maintainer: toolchain@gentoo.org
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.122 2008/02/18 18:20:47 swegener Exp $
 
-# need access to emktemp()
+# @ECLASS: flag-o-matic.eclass
+# @MAINTAINER:
+# toolchain@gentoo.org
+# @BLURB: common functions to manipulate and query toolchain flags
+# @DESCRIPTION:
+# This eclass contains a suite of functions to help developers sanely
+# and safely manage toolchain flags in their builds.
+
 inherit eutils toolchain-funcs multilib
 
-#
-#### filter-flags <flags> ####
-# Remove particular flags from C[XX]FLAGS
-# Matches only complete flags
-#
-#### append-flags <flags> ####
-# Add extra flags to your current C[XX]FLAGS
-#
-#### replace-flags <orig.flag> <new.flag> ###
-# Replace a flag by another one
-#
-#### replace-cpu-flags <old.cpus> <new.cpu> ###
-# Replace march/mcpu flags that specify <old.cpus>
-# with flags that specify <new.cpu>
-#
-#### is-flag[q] <flag> ####
-# Returns "true" if flag is set in C[XX]FLAGS
-# Matches only complete a flag
-# q version sets return code but doesn't echo
-#
-#### is-ldflag[q] <flag> ####
-# Returns "true" if flag is set in LDFLAGS
-# Matches only complete a flag
-# q version sets return code but doesn't echo
-#
-#### strip-flags ####
-# Strip C[XX]FLAGS of everything except known
-# good options.
-#
-#### strip-unsupported-flags ####
-# Strip C[XX]FLAGS of any flags not supported by
-# installed version of gcc
-#
-#### get-flag <flag> ####
-# Find and echo the value for a particular flag
-#
-#### replace-sparc64-flags ####
-# Sets mcpu to v8 and uses the original value
-# as mtune if none specified.
-#
-#### filter-mfpmath <math types> ####
-# Remove specified math types from the fpmath specification
-# If the user has -mfpmath=sse,386, running `filter-mfpmath sse`
-# will leave the user with -mfpmath=386
-#
-#### append-ldflags ####
-# Add extra flags to your current LDFLAGS
-#
-#### filter-ldflags <flags> ####
-# Remove particular flags from LDFLAGS
-# Matches only complete flags
-#
-#### bindnow-flags ####
-# Returns the flags to enable "now" binding in the current selected linker.
-#
 ################ DEPRECATED functions ################
 # The following are still present to avoid breaking existing
 # code more than necessary; however they are deprecated. Please
@@ -69,27 +19,12 @@ inherit eutils toolchain-funcs multilib
 # need to know which hardened techs are active in the compiler.
 # See bug #100974
 #
-#### has_hardened ####
-# Returns true if the compiler has 'Hardened' in its version string,
-# (note; switched-spec vanilla compilers satisfy this condition) or
-# the specs file name contains 'hardened'.
-#
-#### has_pie ####
-# Returns true if the compiler by default or with current CFLAGS
-# builds position-independent code.
-#
-#### has_pic ####
-# Returns true if the compiler by default or with current CFLAGS
-# builds position-independent code.
-#
-#### has_ssp_all ####
-# Returns true if the compiler by default or with current CFLAGS
-# generates stack smash protections for all functions
-#
-#### has_ssp ####
-# Returns true if the compiler by default or with current CFLAGS
-# generates stack smash protections for most vulnerable functions
-#
+# has_hardened
+# has_pie
+# has_pic
+# has_ssp_all
+# has_ssp
+
 
 # C[XX]FLAGS that we allow in strip-flags
 # Note: shell globs and character lists are allowed
@@ -166,6 +101,10 @@ _filter-var() {
 	eval export ${VAR}=\${new\[*]}
 }
 
+# @FUNCTION: filter-flags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Remove particular <flags> from {C,CPP,CXX}FLAGS.  Accepts shell globs.
 filter-flags() {
 	_filter-hardened "$@"
 	_filter-var CFLAGS "$@"
@@ -174,22 +113,36 @@ filter-flags() {
 	return 0
 }
 
+# @FUNCTION: filter-lfs-flags
+# @DESCRIPTION:
+# Remove flags that enable Large File Support.
 filter-lfs-flags() {
 	[[ -n $@ ]] && die "filter-lfs-flags takes no arguments"
 	filter-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
 }
 
+# @FUNCTION: append-cppflags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Add extra <flags> to the current CPPFLAGS.
 append-cppflags() {
 	[[ -z $* ]] && return 0
 	export CPPFLAGS="${CPPFLAGS} $*"
 	return 0
 }
 
+# @FUNCTION: append-lfs-flags
+# @DESCRIPTION:
+# Add flags that enable Large File Support.
 append-lfs-flags() {
 	[[ -n $@ ]] && die "append-lfs-flags takes no arguments"
 	append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
 }
 
+# @FUNCTION: append-flags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Add extra <flags> to your current C[XX]FLAGS.
 append-flags() {
 	[[ -z $* ]] && return 0
 	export CFLAGS="${CFLAGS} $*"
@@ -197,6 +150,10 @@ append-flags() {
 	return 0
 }
 
+# @FUNCTION: replace-flags
+# @USAGE: <old> <new>
+# @DESCRIPTION:
+# Replace the <old> flag with <new>.  Accepts shell globs for <old>.
 replace-flags() {
 	[[ $# != 2 ]] \
 		&& echo && eerror "Usage: replace-flags <old flag> <new flag>" \
@@ -221,6 +178,11 @@ replace-flags() {
 	return 0
 }
 
+# @FUNCTION: replace-cpu-flags
+# @USAGE: <old> <new>
+# @DESCRIPTION:
+# Replace cpu flags (like -march/-mcpu/-mtune) that select the <old> cpu
+# with flags that select the <new> cpu.  Accepts shell globs for <old>.
 replace-cpu-flags() {
 	local newcpu="$#" ; newcpu="${!newcpu}"
 	while [ $# -gt 1 ] ; do
@@ -242,24 +204,46 @@ _is_flagq() {
 	return 1
 }
 
+# @FUNCTION: is-flagq
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Returns shell true if <flag> is in C[XX]FLAGS, else returns shell false.  Accepts shell globs.
 is-flagq() {
 	[[ -n $2 ]] && die "Usage: is-flag <flag>"
 	_is_flagq CFLAGS $1 || _is_flagq CXXFLAGS $1
 }
 
+# @FUNCTION: is-flag
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Echo's "true" if flag is set in C[XX]FLAGS.  Accepts shell globs.
 is-flag() {
 	is-flagq "$@" && echo true
 }
 
+# @FUNCTION: is-ldflagq
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Returns shell true if <flag> is in LDFLAGS, else returns shell false.  Accepts shell globs.
 is-ldflagq() {
 	[[ -n $2 ]] && die "Usage: is-ldflag <flag>"
 	_is_flagq LDFLAGS $1
 }
 
+# @FUNCTION: is-ldflag
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Echo's "true" if flag is set in LDFLAGS.  Accepts shell globs.
 is-ldflag() {
 	is-ldflagq "$@" && echo true
 }
 
+# @FUNCTION: filter-mfpmath
+# @USAGE: <math types>
+# @DESCRIPTION:
+# Remove specified math types from the fpmath flag.  For example, if the user
+# has -mfpmath=sse,386, running `filter-mfpmath sse` will leave the user with
+# -mfpmath=386.
 filter-mfpmath() {
 	local orig_mfpmath new_math prune_math
 
@@ -288,6 +272,9 @@ filter-mfpmath() {
 	return 0
 }
 
+# @FUNCTION: strip-flags
+# @DESCRIPTION:
+# Strip C[XX]FLAGS of everything except known good/safe flags.
 strip-flags() {
 	local x y flag NEW_CFLAGS NEW_CXXFLAGS
 
@@ -350,10 +337,16 @@ test-flag-PROG() {
 		> /dev/null 2>&1
 }
 
-# Returns true if C compiler support given flag
+# @FUNCTION: test-flag-CC
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Returns shell true if <flag> is supported by the C compiler, else returns shell false.
 test-flag-CC() { test-flag-PROG "CC" "$1"; }
 
-# Returns true if C++ compiler support given flag
+# @FUNCTION: test-flag-CXX
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Returns shell true if <flag> is supported by the C++ compiler, else returns shell false.
 test-flag-CXX() { test-flag-PROG "CXX" "$1"; }
 
 test-flags-PROG() {
@@ -376,23 +369,39 @@ test-flags-PROG() {
 	[[ -n ${flags} ]]
 }
 
-# Returns (echo's) the given flags supported by the C compiler
+# @FUNCTION: test-flags-CC
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Returns shell true if <flags> are supported by the C compiler, else returns shell false.
 test-flags-CC() { test-flags-PROG "CC" "$@"; }
 
-# Returns (echo's) the given flags supported by the C++ compiler
+# @FUNCTION: test-flags-CXX
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Returns shell true if <flags> are supported by the C++ compiler, else returns shell false.
 test-flags-CXX() { test-flags-PROG "CXX" "$@"; }
 
+# @FUNCTION: test-flags
+# @USAGE: <flags>
+# @DESCRIPTION:
 # Short-hand that should hopefully work for both C and C++ compiler, but
 # its really only present due to the append-flags() abomination.
 test-flags() { test-flags-CC "$@"; }
 
-# Depriciated, use test-flags()
+# @FUNCTION: test_flag
+# @DESCRIPTION:
+# DEPRICIATED, use test-flags()
 test_flag() {
 	ewarn "test_flag: deprecated, please use test-flags()!" >&2
 
 	test-flags-CC "$@"
 }
 
+# @FUNCTION: test_version_info
+# @USAGE: <version>
+# @DESCRIPTION:
+# Returns shell true if the current C compiler version matches <version>, else returns shell false.
+# Accepts shell globs.
 test_version_info() {
 	if [[ $($(tc-getCC) --version 2>&1) == *$1* ]]; then
 		return 0
@@ -401,11 +410,18 @@ test_version_info() {
 	fi
 }
 
+# @FUNCTION: strip-unsupported-flags
+# @DESCRIPTION:
+# Strip C[XX]FLAGS of any flags not supported by the active toolchain.
 strip-unsupported-flags() {
 	export CFLAGS=$(test-flags-CC ${CFLAGS})
 	export CXXFLAGS=$(test-flags-CXX ${CXXFLAGS})
 }
 
+# @FUNCTION: get-flag
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Find and echo the value for a particular flag.  Accepts shell globs.
 get-flag() {
 	local f findflag="$1"
 
@@ -423,6 +439,8 @@ get-flag() {
 	return 1
 }
 
+# @FUNCTION: has_hardened
+# @DESCRIPTION:
 # DEPRECATED - use gcc-specs-relro or gcc-specs-now from toolchain-funcs
 has_hardened() {
 	ewarn "has_hardened: deprecated, please use gcc-specs-{relro,now}()!" >&2
@@ -432,6 +450,8 @@ has_hardened() {
 	[[ -f ${GCC_SPECS} && ${GCC_SPECS} != ${GCC_SPECS/hardened/} ]]
 }
 
+# @FUNCTION: has_pic
+# @DESCRIPTION:
 # DEPRECATED - use gcc-specs-pie from toolchain-funcs
 # indicate whether PIC is set
 has_pic() {
@@ -442,6 +462,8 @@ has_pic() {
 	gcc-specs-pie
 }
 
+# @FUNCTION: has_pie
+# @DESCRIPTION:
 # DEPRECATED - use gcc-specs-pie from toolchain-funcs
 # indicate whether PIE is set
 has_pie() {
@@ -452,6 +474,8 @@ has_pie() {
 	gcc-specs-pie
 }
 
+# @FUNCTION: has_ssp_all
+# @DESCRIPTION:
 # DEPRECATED - use gcc-specs-ssp from toolchain-funcs
 # indicate whether code for SSP is being generated for all functions
 has_ssp_all() {
@@ -463,6 +487,8 @@ has_ssp_all() {
 	gcc-specs-ssp-all
 }
 
+# @FUNCTION: has_ssp
+# @DESCRIPTION:
 # DEPRECATED - use gcc-specs-ssp from toolchain-funcs
 # indicate whether code for SSP is being generated
 has_ssp() {
@@ -474,6 +500,11 @@ has_ssp() {
 	gcc-specs-ssp
 }
 
+# @FUNCTION: has_m64
+# @DESCRIPTION:
+# This doesn't test if the flag is accepted, it tests if the flag actually
+# WORKS. Non-multilib gcc will take both -m32 and -m64. If the flag works
+# return code is 0, else the return code is 1.
 has_m64() {
 	# this doesnt test if the flag is accepted, it tests if the flag
 	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
@@ -490,6 +521,11 @@ has_m64() {
 	return 1
 }
 
+# @FUNCTION: has_m32
+# @DESCRIPTION:
+# This doesn't test if the flag is accepted, it tests if the flag actually
+# WORKS. Non-mulilib gcc will take both -m32 and -64. If the flag works return
+# code is 0, else return code is 1.
 has_m32() {
 	# this doesnt test if the flag is accepted, it tests if the flag
 	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
@@ -508,6 +544,9 @@ has_m32() {
 	return 1
 }
 
+# @FUNCTION: replace-sparc64-flags
+# @DESCRIPTION:
+# Sets mcpu to v8 and uses the original value as mtune if none specified.
 replace-sparc64-flags() {
 	local SPARC64_CPUS="ultrasparc3 ultrasparc v9"
 
@@ -534,19 +573,28 @@ replace-sparc64-flags() {
 	export CFLAGS CXXFLAGS
 }
 
+# @FUNCTION: append-ldflags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Add extra <flags> to the current LDFLAGS.
 append-ldflags() {
 	[[ -z $* ]] && return 0
 	export LDFLAGS="${LDFLAGS} $*"
 	return 0
 }
 
-# Remove flags from LDFLAGS - it's up to the ebuild to filter
-# CFLAGS and CXXFLAGS via filter-flags if they need to.
+# @FUNCTION: filter-ldflags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Remove particular <flags> from LDFLAGS.  Accepts shell globs.
 filter-ldflags() {
 	_filter-var LDFLAGS "$@"
 	return 0
 }
 
+# @FUNCTION: raw-ldflags
+# @USAGE: <flags>
+# @DESCRIPTION:
 # Turn C style ldflags (-Wl,-foo) into straight ldflags - the results
 # are suitable for passing directly to 'ld'; note LDFLAGS is usually passed
 # to gcc where it needs the '-Wl,'.
@@ -561,8 +609,13 @@ raw-ldflags() {
 	echo "$@"
 }
 
-# Gets the flags needed for "NOW" binding
+# @FUNCTION: bindnow-flags
+# @RETURN: Returns the flags to enable "now" binding in the current selected linker.
+# @DESCRIPTION:
+# DEPRECATED - Gets the flags needed for "NOW" binding
 bindnow-flags() {
+	ewarn "QA: stop using the bindnow-flags function ... simply drop it from your ebuild" >&2
+
 	case $($(tc-getLD) -v 2>&1 </dev/null) in
 	*GNU* | *'with BFD'*) # GNU ld
 		echo "-Wl,-z,now" ;;

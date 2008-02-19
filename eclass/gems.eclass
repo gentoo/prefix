@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.20 2008/01/16 05:52:20 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.21 2008/02/17 08:49:19 rbrown Exp $
 #
 # Author: Rob Cakebread <pythonhead@gentoo.org>
 # Current Maintainer: Ruby Herd <ruby@gentoo.org>
@@ -25,8 +25,11 @@ SRC_URI="http://gems.rubyforge.org/gems/${P}.gem"
 
 IUSE="doc"
 
-DEPEND=">=dev-ruby/rubygems-0.9.4
-	!dev-ruby/rdoc"
+DEPEND="
+	>=dev-ruby/rubygems-0.9.4
+	!dev-ruby/rdoc
+"
+RDEPEND="${DEPEND}"
 
 gems_location() {
 	local sitelibdir

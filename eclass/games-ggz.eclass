@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.1 2007/02/22 09:36:03 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.2 2008/02/18 18:12:16 nyhm Exp $
 
 # For GGZ Gaming Zone packages
 
@@ -40,9 +40,11 @@ games-ggz_update_modules() {
 	[[ ${EBUILD_PHASE} == "postinst" ]] || [[ ${EBUILD_PHASE} == "postrm" ]] \
 	 	 || die "${FUNCNAME} can only be used in pkg_postinst or pkg_postrm"
 
-	type -p ggz-config > /dev/null || return 1
-	local confdir=${ROOT}/etc
-	local moddir=${ROOT}/${GGZ_MODDIR}
+	# ggz-config needs libggz, so it could be broken
+	ggz-config -h > /dev/null || return 1
+
+	local confdir=${EROOT}/etc
+	local moddir=${EROOT}/${GGZ_MODDIR}
 	local dsc rval=0
 
 	mkdir -p "${confdir}"
@@ -50,9 +52,8 @@ games-ggz_update_modules() {
 	if [[ -d ${moddir} ]] ; then
 		ebegin "Installing GGZ modules"
 		cd "${moddir}"
-		for dsc in $(find . -type f -name '*.dsc') ; do
-			debug-print ${dsc}
-			DESTDIR=${ROOT} ggz-config -Dim ${dsc} || rval=1
+		find . -type f -name '*.dsc' | while read dsc ; do
+			DESTDIR=${EROOT} ggz-config -Dim "${dsc}" || ((rval++))
 		done
 		eend ${rval}
 	fi

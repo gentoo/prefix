@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.32 2008/02/12 23:51:51 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.33 2008/02/16 20:12:58 betelgeuse Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org> (nowadays retired)
 #
@@ -34,10 +34,17 @@ base_src_unpack() {
 			debug-print-section autopatch
 			debug-print "$FUNCNAME: autopatch: PATCHES=$PATCHES, PATCHES1=$PATCHES1"
 			cd "${S}"
-			for x in $PATCHES $PATCHES1; do
-				debug-print "$FUNCNAME: autopatch: patching from ${x}"
-				epatch ${x}
-			done
+			if [[ ${#PATCHES[@]} -gt 1 ]]; then
+				for x in "${PATCHES[@]}"; do
+					debug-print "$FUNCNAME: autopatch: patching from ${x}"
+					epatch "${x}"
+				done
+			else
+				for x in ${PATCHES} ${PATCHES1}; do
+					debug-print "$FUNCNAME: autopatch: patching from ${x}"
+					epatch "${x}"
+				done
+			fi
 			;;
 		all)
 			debug-print-section all

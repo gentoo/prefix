@@ -1,6 +1,6 @@
 # Copyright 2004-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.15 2007/10/16 22:46:31 nixphoeni Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.16 2008/02/19 01:51:00 nixphoeni Exp $
 #
 # Authors:	Joe Sapp <nixphoeni@gentoo.org>
 #		Mike Gardiner <obz@gentoo.org>
@@ -42,13 +42,13 @@ gdesklets_src_install() {
 	addwrite "${ROOT}/root/.gnome2"
 
 	has_version ">=gnome-extra/gdesklets-core-0.33.1" || \
-				GDESKLETS_INST_DIR="/usr/share/gdesklets"
+				GDESKLETS_INST_DIR="${EPREFIX}/usr/share/gdesklets"
 
 	# This should be done by the gdesklets-core ebuild
 	# It makes the Displays or Controls directory in the
 	# global installation directory if it doesn't exist
 	[[ -d "${GDESKLETS_INST_DIR}/Displays" ]] || \
-		dodir "${GDESKLETS_INST_DIR}/Displays"
+		dodir "${GDESKLETS_INST_DIR#${EPREFIX}}/Displays"
 
 	# The displays only need to be readable
 	insopts -m0744
@@ -64,11 +64,11 @@ gdesklets_src_install() {
 	if [[ -n "${SENSOR_NAME}" ]]; then
 		for SENS in ${SENSOR_NAME[@]}; do
 			einfo "Installing Sensor ${SENS}"
-			/usr/bin/python "Install_${SENS}_Sensor.bin" \
-					--nomsg ${D}${GDESKLETS_INST_DIR}/Sensors || \
+			"${EPREFIX}"/usr/bin/python "Install_${SENS}_Sensor.bin" \
+					--nomsg "${D}${GDESKLETS_INST_DIR}/Sensors" || \
 					die "Couldn't Install Sensor"
 
-			chown -R root:0 ${D}${GDESKLETS_INST_DIR}/Sensors/${SENSOR_NAME}
+			chown -R root:0 "${D}${GDESKLETS_INST_DIR}/Sensors/${SENSOR_NAME}"
 		done # for in ${SENSOR_NAME}
 	fi # if -n "${SENSOR_NAME}"
 
@@ -86,7 +86,7 @@ gdesklets_src_install() {
 		# This creates the subdirectory of ${DESKLET_NAME}
 		# in the global Displays directory
 		[[ -d "${DESKLET_INSDIR}" ]] || \
-			dodir "${DESKLET_INSDIR}"
+			dodir "${DESKLET_INSDIR#${EPREFIX}}"
 
 		# For each of the Display files, there may be
 		# scripts included inline which don't necessarily
@@ -99,8 +99,8 @@ gdesklets_src_install() {
 			einfo "Installing Display `basename ${DSP} .display`"
 			debug-print "Installing ${DSP} into ${DESKLET_INSDIR}"
 			DSP=`basename ${DSP}`
-			insinto "${DESKLET_INSDIR}"
-			doins ${DSP}
+			insinto "${DESKLET_INSDIR#${EPREFIX}}"
+			doins "${DSP}"
 
 			SCRIPTS=$(grep "script .*uri" ${DSP} | \
 				sed -e 's:.*<script .*uri=": :g' -e 's:"/>.*: :g')
@@ -111,9 +111,9 @@ gdesklets_src_install() {
 			# relative to the display.
 			for SCR in ${SCRIPTS[@]}; do
 
-				insinto "${DESKLET_INSDIR}/`dirname ${SCR}`"
+				insinto "${DESKLET_INSDIR#${EPREFIX}}/`dirname ${SCR}`"
 				doins "${SCR}"
-				debug-print "Installed ${SCR} into ${DESKLET_INSDIR}/`dirname ${SCR}`"
+				debug-print "Installed ${SCR} into ${DESKLET_INSDIR#${EPREFIX}}/`dirname ${SCR}`"
 
 			done # for in ${SCRIPTS}
 
@@ -129,7 +129,7 @@ gdesklets_src_install() {
 
 			for G in ${GFX[@]}; do
 
-				insinto "${DESKLET_INSDIR}/`dirname ${G}`"
+				insinto "${DESKLET_INSDIR#${EPREFIX}}/`dirname ${G}`"
 				doins "${G}"
 				debug-print "Installed ${G} into ${DESKLET_INSDIR}/`dirname ${G}`"
 
@@ -160,14 +160,14 @@ gdesklets_src_install() {
 		for CTRL in ${CONTROL_INITS[@]}; do
 
 			cd `dirname ${CTRL}`
-			CTRL_NAME=$( ${GDESKLETS_INST_DIR}/gdesklets-control-getid `pwd` )
+			CTRL_NAME=$( "${GDESKLETS_INST_DIR}/gdesklets-control-getid" `pwd` )
 			einfo "Installing Control ${CTRL_NAME}"
 			# This creates the subdirectory of ${CTRL_NAME}
 			# in the global Controls directory
 			[[ -d "${CONTROL_INSDIR}/${CTRL_NAME}" ]] || \
-				dodir "${CONTROL_INSDIR}/${CTRL_NAME}"
+				dodir "${CONTROL_INSDIR#${EPREFIX}}/${CTRL_NAME}"
 
-			insinto "${CONTROL_INSDIR}/${CTRL_NAME}"
+			insinto "${CONTROL_INSDIR#${EPREFIX}}/${CTRL_NAME}"
 
 			doins -r *
 
@@ -188,7 +188,7 @@ gdesklets_src_install() {
 	if [[ -n "${GFX}" ]]; then
 
 		# Install to the Displays directory of the Desklet
-		insinto "${GDESKLETS_INST_DIR}/Displays/${DESKLET_NAME}"
+		insinto "${GDESKLETS_INST_DIR${EPREFIX}}/Displays/${DESKLET_NAME}"
 		doins "${GFX}"
 		debug-print "Installed ${GFX} into ${GDESKLETS_INST_DIR}/Displays/${DESKLET_NAME}"
 

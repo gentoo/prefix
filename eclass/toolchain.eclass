@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.345 2008/02/05 18:09:58 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.346 2008/02/16 22:27:51 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -159,8 +159,8 @@ else
 		[[ -n ${HTB_VER} ]] && IUSE="${IUSE} boundschecking"
 		[[ -n ${D_VER}	 ]] && IUSE="${IUSE} d"
 
-		if version_is_at_least 3 ; then
-			IUSE="${IUSE} bootstrap doc gcj gtk hardened multilib objc vanilla"
+		if tc_version_is_at_least 3 ; then
+			IUSE="${IUSE} bootstrap doc gcj gtk hardened libffi multilib objc vanilla"
 
 			# gcc-{nios2,bfin} don't accept these
 			if [[ ${PN} == "gcc" ]] ; then
@@ -977,6 +977,14 @@ gcc-compiler_src_unpack() {
 		einfo "updating configuration to build hardened GCC"
 		make_gcc_hard || die "failed to make gcc hard"
 	fi
+
+	if is_libffi ; then
+		# move the libffi target out of gcj and into all
+		sed -i \
+			-e '/^libgcj=/s:target-libffi::' \
+			-e '/^target_lib/s:=":="target-libffi :' \
+			"${S}"/configure || die
+	fi
 }
 gcc-library_src_unpack() {
 	:
@@ -1790,10 +1798,9 @@ gcc-compiler_src_install() {
 		#	"#include <ffitarget.h>" which (correctly, as it's an "extra" file)
 		#	is installed in .../GCCVER/include/libffi; the following fixes
 		#	ffi.'s include of ffitarget.h - Armando Di Cianno <fafhrd@gentoo.org>
-		if is_objc && ! is_gcj ; then
-			#dosed "s:<ffitarget.h>:<libffi/ffitarget.h>:g" /${LIBPATH}/include/ffi.h
-			mv "${ED}"${LIBPATH}/include/libffi/* "${ED}"${LIBPATH}/include
-			rm -Rf "${ED}"${LIBPATH}/include/libffi
+		if [[ -d ${ED}${LIBPATH}/include/libffi ]] ; then
+			mv -i "${ED}"${LIBPATH}/include/libffi/* "${ED}"${LIBPATH}/include || die
+			rm -r "${ED}"${LIBPATH}/include/libffi || die
 		fi
 	fi
 
@@ -2445,6 +2452,12 @@ is_gcj() {
 	gcc-lang-supported java || return 1
 	use build && return 1
 	use gcj
+}
+
+is_libffi() {
+	has libffi ${USE} || return 1
+	use build && return 1
+	use libffi
 }
 
 is_objc() {

@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.2 2008/01/18 02:37:08 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.3 2008/02/18 17:00:32 ingmar Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -88,10 +88,7 @@ case ${NEED_KDE} in
 		;;
 	# The ebuild handles dependencies, KDEDIR, SLOT.
 	none)
-		# This shouldn't be used for kde-base ebuilds.
-		if [[ -n ${KDEBASE} ]]; then
-			die 'Ebuilds part of kde-base ebuilds should not use NEED_KDE="none".'
-		fi
+		:
 		;;
 	# NEED_KDE=":${SLOT}"
 	:kde-4)

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.44 2007/07/03 08:27:40 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.45 2008/02/17 07:59:06 hattya Exp $
 
 ## --------------------------------------------------------------------------- #
 # Author: Akinori Hattori <hattya@gentoo.org>
@@ -31,7 +31,7 @@ DEPEND="dev-util/subversion"
 
 ## -- ESVN_STORE_DIR:  subversion sources store directory
 #
-ESVN_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/svn-src"
+[ -z "${ESVN_STORE_DIR}" ] && ESVN_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR:-${DISTDIR}}/svn-src"
 
 
 ## -- ESVN_FETCH_CMD:  subversion fetch command
@@ -47,7 +47,7 @@ ESVN_UPDATE_CMD="svn update"
 #
 # the options passed to checkout or update.
 #
-: ${ESVN_OPTIONS=}
+: ${ESVN_OPTIONS:=}
 
 
 ## -- ESVN_REPO_URI:  repository uri
@@ -60,7 +60,7 @@ ESVN_UPDATE_CMD="svn update"
 #   svn://
 #   svn+ssh://
 #
-: ${ESVN_REPO_URI=}
+: ${ESVN_REPO_URI:=}
 
 
 ## -- ESVN_PROJECT:  project name of your ebuild (= name space)
@@ -90,7 +90,7 @@ ESVN_UPDATE_CMD="svn update"
 #
 # bootstrap script or command like autogen.sh or etc..
 #
-: ${ESVN_BOOTSTRAP=}
+: ${ESVN_BOOTSTRAP:=}
 
 
 ## -- ESVN_PATCHES:
@@ -99,10 +99,12 @@ ESVN_UPDATE_CMD="svn update"
 # you can use regexp in this variable like *.diff or *.patch or etc.
 # NOTE: patches will be applied before ESVN_BOOTSTRAP is processed.
 #
-# Patches are searched both in / and ${FILESDIR}, if not found in both locations,
-# the installation dies.
+# the process of applying the patch is:
+#   1. just epatch it, if the patch exists in the path.
+#   2. scan it under FILESDIR and epatch it, if the patch exists in FILESDIR.
+#   3. die.
 #
-: ${ESVN_PATCHES=}
+: ${ESVN_PATCHES:=}
 
 
 ## -- ESVN_RESTRICT:
@@ -112,7 +114,7 @@ ESVN_UPDATE_CMD="svn update"
 #   export)
 #     don't export the working copy to S.
 #
-: ${ESVN_RESTRICT=}
+: ${ESVN_RESTRICT:=}
 
 
 ## -- subversion_fetch() ----------------------------------------------------- #
@@ -121,6 +123,7 @@ ESVN_UPDATE_CMD="svn update"
 # @param $2 - a check out path in S.
 #
 function subversion_fetch() {
+
 	local repo_uri="$(subversion__get_repository_uri "${1}")"
 	local S_dest="${2}"
 
@@ -144,6 +147,7 @@ function subversion_fetch() {
 			;;
 	esac
 
+	# every time
 	addread "/etc/subversion"
 	addwrite "${ESVN_STORE_DIR}"
 
@@ -172,9 +176,9 @@ function subversion_fetch() {
 		cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
 		${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch from ${repo_uri}."
 
-		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 	else
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
+
 		if [ "${ESVN_WC_URL}" != "$(subversion__get_repository_uri "${repo_uri}" 1)" ]; then
 			die "${ESVN}: ESVN_REPO_URI (or specified URI) and working copy's URL are not matched."
 		fi
@@ -187,6 +191,7 @@ function subversion_fetch() {
 
 		cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
 		${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update from ${repo_uri}."
+
 	fi
 
 	einfo "   working copy: ${wc_path}"
@@ -203,12 +208,14 @@ function subversion_fetch() {
 	fi
 
 	echo
+
 }
 
 
 ## -- subversion_bootstrap() ------------------------------------------------ #
 #
 function subversion_bootstrap() {
+
 	if has "export" ${ESVN_RESTRICT}; then
 		return
 	fi
@@ -219,19 +226,25 @@ function subversion_bootstrap() {
 		einfo "apply patches -->"
 
 		local patch fpatch
+
 		for patch in ${ESVN_PATCHES}; do
 			if [[ -f "${patch}" ]]; then
 				epatch "${patch}"
+
 			else
 				for fpatch in ${FILESDIR}/${patch}; do
 					if [[ -f "${fpatch}" ]]; then
 						epatch "${fpatch}"
+
 					else
 						die "${ESVN}: ${patch} not found"
+
 					fi
 				done
+
 			fi
 		done
+
 		echo
 	fi
 
@@ -241,41 +254,61 @@ function subversion_bootstrap() {
 		if [[ -f "${ESVN_BOOTSTRAP}" && -x "${ESVN_BOOTSTRAP}" ]]; then
 			einfo "   bootstrap with a file: ${ESVN_BOOTSTRAP}"
 			eval "./${ESVN_BOOTSTRAP}" || die "${ESVN}: can't execute ESVN_BOOTSTRAP."
+
 		else
 			einfo "   bootstrap with command: ${ESVN_BOOTSTRAP}"
 			eval "${ESVN_BOOTSTRAP}" || die "${ESVN}: can't eval ESVN_BOOTSTRAP."
+
 		fi
 	fi
+
 }
+
 
 ## -- subversion_src_unpack() ------------------------------------------------ #
 #
 function subversion_src_unpack() {
+
 	subversion_fetch     || die "${ESVN}: unknown problem occurred in subversion_fetch."
 	subversion_bootstrap || die "${ESVN}: unknown problem occurred in subversion_bootstrap."
+
 }
 
 
 ## -- subversion_wc_info() --------------------------------------------------- #
 #
+# the working copy information on the specified repository URI are set to
+# ESVN_WC_* variables.
+#
+# the available variables:
+#   ESVN_WC_URL
+#   ESVN_WC_REVISION
+#   ESVN_WC_PATH
+#
 # @param $1 - repository URI. default is ESVN_REPO_URI.
 #
 function subversion_wc_info() {
+
 	local repo_uri="$(subversion__get_repository_uri "${1}")"
 	local wc_path="$(subversion__get_wc_path "${repo_uri}")"
 
 	debug-print "${FUNCNAME}: repo_uri = ${repo_uri}"
 	debug-print "${FUNCNAME}: wc_path = ${wc_path}"
 
-	if [[ ! -e "${wc_path}" ]]; then
+	if [[ ! -d "${wc_path}" ]]; then
 		return 1
 	fi
 
 	local k
+
 	for k in url revision; do
 		export ESVN_WC_$(subversion__to_upper_case "${k}")="$(subversion__svn_info "${wc_path}" "${k}")"
 	done
+
+	export ESVN_WC_PATH="${wc_path}"
+
 }
+
 
 ## -- Private Functions
 
@@ -286,10 +319,12 @@ function subversion_wc_info() {
 # @param $2 - a key name.
 #
 function subversion__svn_info() {
+
 	local target="${1}"
 	local key="${2}"
 
 	env LC_ALL=C svn info "${target}" | grep -i "^${key}" | cut -d" " -f2-
+
 }
 
 
@@ -300,6 +335,7 @@ function subversion__svn_info() {
 #             specified.
 #
 function subversion__get_repository_uri() {
+
 	local repo_uri="${1:-${ESVN_REPO_URI}}"
 	local remove_peg_revision="${2}"
 
@@ -325,6 +361,7 @@ function subversion__get_repository_uri() {
 	fi
 
 	echo "${repo_uri}"
+
 }
 
 
@@ -333,11 +370,13 @@ function subversion__get_repository_uri() {
 # @param $1 - a repository URI.
 #
 function subversion__get_wc_path() {
+
 	local repo_uri="$(subversion__get_repository_uri "${1}" 1)"
 
 	debug-print "${FUNCNAME}: repo_uri = ${repo_uri}"
 
 	echo "${ESVN_STORE_DIR}/${ESVN_PROJECT}/${repo_uri##*/}"
+
 }
 
 
@@ -346,6 +385,7 @@ function subversion__get_wc_path() {
 # @param $1 - a repository URI.
 #
 function subversion__has_peg_revision() {
+
 	local repo_uri="${1}"
 
 	debug-print "${FUNCNAME}: repo_uri = ${repo_uri}"
@@ -376,6 +416,7 @@ function subversion__has_peg_revision() {
 	debug-print "${FUNCNAME}: peg_rev = ${peg_rev}"
 
 	return 0
+
 }
 
 
@@ -384,5 +425,7 @@ function subversion__has_peg_revision() {
 # @param $@ - the strings to upper case.
 #
 function subversion__to_upper_case() {
-	echo "${@}" | tr "[a-z]" "[A-Z]"
+
+	echo "${@}" | tr "[:lower:]" "[:upper:]"
+
 }

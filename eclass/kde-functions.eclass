@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.164 2008/02/14 19:17:30 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.165 2008/02/19 00:31:12 ingmar Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -349,39 +349,6 @@ is-parent-package() {
 $KDE_DERIVATION_MAP
 EOF
 	return 1
-}
-# convinience functions for requesting autotools versions
-need-automake() {
-
-	debug-print-function $FUNCNAME $*
-
-	echo "Please don't use need-automake function anymore, see bug #148719."
-
-	unset WANT_AUTOMAKE
-
-	case $1 in
-		1.4)	export WANT_AUTOMAKE=1.4;;
-		1.5)	export WANT_AUTOMAKE=1.5;;
-		1.6)	export WANT_AUTOMAKE=1.6;;
-		1.7)	export WANT_AUTOMAKE='1.7';;
-		*)		echo "!!! $FUNCNAME: Error: unrecognized automake version $1 requested";;
-	esac
-
-}
-
-need-autoconf() {
-
-	debug-print-function $FUNCNAME $*
-
-	echo "Please don't use need-autoconf function anymore, see bug #148719."
-
-	unset WANT_AUTOCONF
-	case $1 in
-		2.1)	export WANT_AUTOCONF=2.1;;
-		2.5)	export WANT_AUTOCONF=2.5;;
-		*)		echo "!!! $FUNCNAME: Error: unrecognized autoconf version $1 requested";;
-	esac
-
 }
 
 # Usage: deprange minver maxver package [...]

@@ -1,11 +1,15 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.31 2007/10/16 20:21:27 aballier Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.33 2008/02/17 19:03:07 aballier Exp $
+
+# @ECLASS: latex-package.eclass
+# @MAINTAINER:
+# TeX team <tex@gentoo.org>
+# 
 # Author Matthew Turk <satai@gentoo.org>
 # Martin Ehmsen <ehmsen@gentoo.org>
-# Maintained by the text-markup team <text-markup@gentoo.org>
-#
+# @BLURB: An eclass for easy installation of LaTeX packages
+# @DESCRIPTION:
 # This eClass is designed to be easy to use and implement.  The vast majority of
 # LaTeX packages will only need to define SRC_URI (and sometimes S) for a
 # successful installation.  If fonts need to be installed, then the variable
@@ -46,6 +50,8 @@
 # signatures EVERY TIME.  For this reason, if you are grabbing from the CTAN,
 # you must either grab each file individually, or find a place to mirror an
 # archive of them.  (iBiblio)
+#
+# It inherits base.
 
 inherit base
 
@@ -55,8 +61,18 @@ HOMEPAGE="http://www.tug.org/"
 SRC_URI="ftp://tug.ctan.org/macros/latex/"
 S=${WORKDIR}/${P}
 TEXMF="/usr/share/texmf"
-SUPPLIER="misc" # This refers to the font supplier; it should be overridden
 
+# @ECLASS-VARIABLE: SUPPLIER
+# @DESCRIPTION:
+# This refers to the font supplier; it should be overridden (see eclass
+# DESCRIPTION above)
+SUPPLIER="misc" 
+
+# @FUNCTION: latex-package_has_tetex3
+# @RETURN: true if at least one of (>=tetex-3 or >=ptex-3.1.8 or >=texlive-core-2007) is installed, else false
+# @DESCRIPTION:
+# It is often used to know if the current TeX installation supports gentoo's
+# texmf-update or if the package has to do it the old way
 latex-package_has_tetex_3() {
 	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' || has_version '>=app-text/texlive-core-2007' ; then
 		true
@@ -65,6 +81,14 @@ latex-package_has_tetex_3() {
 	fi
 }
 
+# @FUNCTION: latex-package_src_doinstall
+# @USAGE: [ module ]
+# @DESCRIPTION:
+# [module] can be one or more of: sh, sty, cls, fd, clo, def, cfg, dvi, ps, pdf,
+# tex, dtx, tfm, vf, afm, pfb, ttf, bst, styles, doc, fonts, bin, or all.
+# If [module] is not given, all is assumed.
+# It installs the files found in the current directory to the standard locations
+# for a TeX installation
 latex-package_src_doinstall() {
 	debug-print function $FUNCNAME $*
 	# This actually follows the directions for a "single-user" system
@@ -149,6 +173,10 @@ latex-package_src_doinstall() {
 	done
 }
 
+# @FUNCTION: latex-package_src_compile
+# @DESCRIPTION:
+# Calls latex for each *.ins in the current directory in order to generate the
+# relevant files that will be installed
 latex-package_src_compile() {
 	debug-print function $FUNCNAME $*
 	for i in `find \`pwd\` -maxdepth 1 -type f -name "*.ins"`
@@ -158,6 +186,9 @@ latex-package_src_compile() {
 	done
 }
 
+# @FUNCTION: latex-package_src_install
+# @DESCRIPTION:
+# Installs the package
 latex-package_src_install() {
 	debug-print function $FUNCNAME $*
 	latex-package_src_doinstall all
@@ -166,16 +197,27 @@ latex-package_src_install() {
 	fi
 }
 
+# @FUNCTION: latex-pacakge_pkg_postinst
+# @DESCRIPTION:
+# Calls latex-package_rehash to ensure the TeX installation is consistent with
+# the kpathsea database
 latex-package_pkg_postinst() {
 	debug-print function $FUNCNAME $*
 	latex-package_rehash
 }
 
+# @FUNCTION: latex-package_pkg_postrm
+# @DESCRIPTION:
+# Calls latex-package_rehash to ensure the TeX installation is consistent with
+# the kpathsea database
 latex-package_pkg_postrm() {
 	debug-print function $FUNCNAME $*
 	latex-package_rehash
 }
 
+# @FUNCTION: latex-package_rehash
+# @DESCRIPTION:
+# Rehashes the kpathsea database, according to the current TeX installation
 latex-package_rehash() {
 	debug-print function $FUNCNAME $*
 	if latex-package_has_tetex_3 ; then
