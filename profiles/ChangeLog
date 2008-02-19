@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1130 2008/02/17 20:05:41 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1133 2008/02/18 23:24:40 voyageur Exp $
+
+  18 Feb 2008; Bernard Cafarelli <voyageur@gentoo.org> use.local.desc:
+  Update gcc-libffi USE flag description for gnustep-base
+
+  18 Feb 2008; Robert Buchholz <rbu@gentoo.org> thirdpartymirrors:
+  Fixed typo in nero's FTP addresses, use->usw. Thanks Paul Philippov for the
+  help (bug #210314)
+
+  18 Feb 2008; Michele Noberasco <s4t4n@gentoo.org> use.local.desc:
+  Add gprof local USE flag for upcoming package app-emulation/vov.
 
   17 Feb 2008; Sven Wegener <swegener@gentoo.org> base/package.use.mask:
   Mask the workbench flag for mysql-gui-tools because dependencies have been
