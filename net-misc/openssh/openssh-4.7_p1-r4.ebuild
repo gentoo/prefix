@@ -94,6 +94,11 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-darwin9.patch
 	fi
 
+
+	if [[ ${CHOST} == *-darwin* ]]; then
+		epatch "${FILESDIR}"/${P}-darwin-display.patch
+	fi
+
 	eautoreconf
 }
 
