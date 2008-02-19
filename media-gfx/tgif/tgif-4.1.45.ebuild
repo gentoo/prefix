@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.2 2008/01/15 18:28:03 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.3 2008/02/19 01:46:18 ingmar Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ MY_P="${PN}-QPL-${PV}"
 
 DESCRIPTION="Tgif is an Xlib base 2-D drawing facility under X11."
 HOMEPAGE="http://bourbon.usc.edu/tgif/index.html"
-SRC_URI="ftp://bourbon.usc.edu/pub/tgif/${MY_P}.tar.gz"
+SRC_URI="ftp://bourbon.usc.edu/pub/${PN}/${MY_P}.tar.gz"
 
 LICENSE="QPL-1.0"
 SLOT="0"
@@ -20,7 +20,7 @@ IUSE="kde"
 DEPEND="x11-libs/libX11
 	x11-proto/xproto"
 RDEPEND="${DEPEND}
-	kde? ( || ( kde-base/kdeprint kde-base/kdebase ) )"
+	kde? ( || ( =kde-base/kdeprint-3.5* =kde-base/kdebase-3.5* ) )"
 
 S=${WORKDIR}/${MY_P}
 
