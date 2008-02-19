@@ -1,0 +1,135 @@
+# ChangeLog for dev-util/bzrtools
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.27 2008/01/15 09:29:36 lucass Exp $
+
+*bzrtools-1.1.0 (15 Jan 2008)
+
+  15 Jan 2008; Lukasz Strzygowski <lucass@gentoo.org>
+  -bzrtools-0.92.1.ebuild, -bzrtools-1.0.0.ebuild, +bzrtools-1.1.0.ebuild:
+  Version bump (bug #205914). Dropped old versions.
+
+*bzrtools-1.0.0 (14 Dec 2007)
+
+  14 Dec 2007; Ali Polatel <hawking@gentoo.org> +bzrtools-1.0.0.ebuild:
+  Version bump.
+
+*bzrtools-0.92.1 (14 Nov 2007)
+
+  14 Nov 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -bzrtools-0.16.1.ebuild, -bzrtools-0.90.0.ebuild, -bzrtools-0.91.0.ebuild,
+  +bzrtools-0.92.1.ebuild:
+  Version bump (bug #199112): cleanup. Dropped old versions.
+
+*bzrtools-0.91.0 (26 Sep 2007)
+
+  26 Sep 2007; Ali Polatel <hawking@gentoo.org> +bzrtools-0.91.0.ebuild:
+  version bump.
+
+*bzrtools-0.90.0 (06 Sep 2007)
+
+  06 Sep 2007; Ali Polatel <hawking@gentoo.org> +bzrtools-0.90.0.ebuild:
+  Version bump.
+
+*bzrtools-0.17.1 (22 Jun 2007)
+
+  22 Jun 2007; Marien Zwart <marienz@gentoo.org> -bzrtools-0.15.4.ebuild,
+  +bzrtools-0.17.1.ebuild:
+  Version bump.
+
+*bzrtools-0.16.1 (11 May 2007)
+
+  11 May 2007; Marien Zwart <marienz@gentoo.org> -bzrtools-0.14.0.ebuild,
+  +bzrtools-0.16.1.ebuild:
+  Version bump.
+
+*bzrtools-0.15.4 (02 Apr 2007)
+
+  02 Apr 2007; Marien Zwart <marienz@gentoo.org> -bzrtools-0.13.0.ebuild,
+  +bzrtools-0.15.4.ebuild:
+  Version bump.
+
+*bzrtools-0.14.0 (26 Jan 2007)
+
+  26 Jan 2007; Marien Zwart <marienz@gentoo.org> -bzrtools-0.12.0.ebuild,
+  -bzrtools-0.12.2.ebuild, +bzrtools-0.14.0.ebuild:
+  Version bump, remove old ebuilds.
+
+  18 Jan 2007; Ferris McCormick <fmccor@gentoo.org> bzrtools-0.13.0.ebuild:
+  Add ~sparc keyword --- seems fine.
+
+  05 Dec 2006; Marien Zwart <marienz@gentoo.org> -bzrtools-0.11.0.ebuild:
+  Clean old versions.
+
+*bzrtools-0.13.0 (28 Nov 2006)
+
+  28 Nov 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.13.0.ebuild:
+  Version bump (in package.mask).
+
+*bzrtools-0.12.2 (31 Oct 2006)
+
+  31 Oct 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.12.2.ebuild:
+  Version bump.
+
+*bzrtools-0.12.0 (30 Oct 2006)
+
+  30 Oct 2006; Marien Zwart <marienz@gentoo.org> -bzrtools-0.10.0.ebuild,
+  +bzrtools-0.12.0.ebuild:
+  Version bump.
+
+  02 Oct 2006; Marien Zwart <marienz@gentoo.org> -bzrtools-0.9.1.ebuild:
+  Remove old version for real.
+
+  02 Oct 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Remove old version.
+
+  26 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-bzrtools-0.11.0, Manifest:
+  Tarball changed on the server.
+
+*bzrtools-0.11.0 (25 Sep 2006)
+
+  25 Sep 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.11.0.ebuild:
+  Version bump (in package.mask because of bzr release candidate dependency).
+
+  25 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  -files/bzrtools-0.8-optional-pybaz.patch, -bzrtools-0.6.1.ebuild,
+  -bzrtools-0.7.ebuild, -bzrtools-0.8.ebuild:
+  Remove old ebuilds.
+
+*bzrtools-0.10.0 (04 Sep 2006)
+
+  04 Sep 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.10.0.ebuild:
+  Version bump.
+
+*bzrtools-0.9.1 (24 Aug 2006)
+
+  24 Aug 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.9.1.ebuild:
+  Version bump, closes bug #132984, thanks to Geoff Weber <janax99@yahoo.com>.
+
+*bzrtools-0.8 (14 May 2006)
+
+  14 May 2006; Marien Zwart <marienz@gentoo.org>
+  +files/bzrtools-0.8-optional-pybaz.patch, +bzrtools-0.8.ebuild:
+  Version bump, fixes part of bug #132984.
+
+  14 Apr 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  bzrtools-0.7.ebuild:
+  mark ~ppc (Bug #129993, reported by Jacob Smullyan)
+
+  01 Feb 2006; Marien Zwart <marienz@gentoo.org> bzrtools-0.7.ebuild:
+  Run unit tests.
+
+*bzrtools-0.7 (01 Feb 2006)
+
+  01 Feb 2006; Marien Zwart <marienz@gentoo.org> +bzrtools-0.7.ebuild:
+  Version bump.
+
+  14 Jan 2006; Diego Pettenò <flameeyes@gentoo.org> bzrtools-0.6.1.ebuild:
+  Add ~amd64 keyword.
+
+*bzrtools-0.6.1 (24 Nov 2005)
+
+  24 Nov 2005; Marien Zwart <marienz@gentoo.org> +metadata.xml,
+  +bzrtools-0.6.1.ebuild:
+  New ebuild.
+
