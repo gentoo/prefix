@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.38 2008/02/17 17:04:49 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.39 2008/02/18 20:00:10 armin76 Exp $
+
+  18 Feb 2008; Raúl Porcel <armin76@gentoo.org> slib-3.1.5-r1.ebuild:
+  alpha/ia64/sparc stable wrt #210467
 
   17 Feb 2008; nixnut <nixnut@gentoo.org> slib-3.1.5-r1.ebuild:
   Stable on ppc wrt bug 210467
