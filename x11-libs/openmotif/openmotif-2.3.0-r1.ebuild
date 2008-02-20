@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.5 2008/02/17 11:44:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.6 2008/02/19 07:11:35 ulm Exp $
 
 EAPI="prefix"
 
@@ -39,21 +39,9 @@ PROVIDE="virtual/motif"
 pkg_setup() {
 	# clean up orphaned cruft left over by motif-config
 	local i count=0
-	local stalesyms="usr/bin/mwm \
-				usr/bin/uil \
-				usr/bin/xmbind \
-				usr/include/Xm \
-				usr/include/uil \
-				usr/include/Mrm"
-
-	for i in ${stalesyms} ; do
-		if [[ -L "${EROOT}"${i} ]] ; then
-			einfo "Cleaning up orphaned ${EROOT}${i} symlink ..."
-			rm -f "${EROOT}"${i}
-		fi
-	done
-
-	for i in "${EROOT}"usr/$(get_libdir)/lib{Xm,Uil,Mrm}.*; do
+	for i in "${EROOT}"usr/bin/{mwm,uil,xmbind} \
+		"${EROOT}"usr/include/{Xm,uil,Mrm} \
+		"${EROOT}"usr/$(get_libdir)/lib{Xm,Uil,Mrm}.*; do
 		if [[ -L "${i}" && $(readlink "${i}") =~ (openmo|less)tif- ]]; then
 			einfo "Cleaning up orphaned ${i} symlink ..."
 			rm -f "${i}"
