@@ -1,9 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.13 2008/01/14 13:49:21 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.14 2008/02/20 00:31:28 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
 
 inherit eutils java-pkg-2 java-ant-2
@@ -15,8 +14,8 @@ HOMEPAGE="http://cglib.sourceforge.net"
 LICENSE="Apache-2.0"
 SLOT="2.1"
 KEYWORDS="~amd64-linux ~x86-linux"
-COMMON_DEP="=dev-java/asm-1.5*
-	=dev-java/aspectwerkz-2*
+COMMON_DEP="dev-java/asm:1.5
+	dev-java/aspectwerkz:2
 	dev-java/ant-core"
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
@@ -37,6 +36,7 @@ src_unpack() {
 	java-pkg_jar-from ant-core ant.jar
 }
 
+EANT_FILTER_COMPILER="ecj-3.3"
 EANT_ANT_TASKS="jarjar-1"
 
 # Does not work against our current version of aspectwerkz
