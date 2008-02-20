@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r5.ebuild,v 1.10 2008/01/10 09:13:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r5.ebuild,v 1.11 2008/02/20 04:23:38 vapier Exp $
 
 EAPI="prefix"
 

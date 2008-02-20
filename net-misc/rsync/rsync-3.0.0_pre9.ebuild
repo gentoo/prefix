@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre9.ebuild,v 1.1 2008/02/11 05:56:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre9.ebuild,v 1.2 2008/02/19 21:12:09 cardoe Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="acl ipv6 static xattr xinetd"
 
 DEPEND=">=dev-libs/popt-1.5
 	acl? ( kernel_linux? ( sys-apps/acl ) )
-	xattr? ( sys-apps/attr )
+	xattr? ( kernel_linux? ( sys-apps/attr ) )
 	xinetd? ( sys-apps/xinetd )"
 
 S=${WORKDIR}/${P/_/}
