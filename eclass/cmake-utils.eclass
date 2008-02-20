@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.4 2007/12/13 16:23:59 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.5 2008/02/20 00:35:11 zlin Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -29,6 +29,11 @@ _use_me_now() {
 	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
 	echo "-D$1_${3:-$2}=$(use $2 && echo ON || echo OFF)"
 }
+
+# @VARIABLE: DOCS
+# @USAGE: DOCS="README ChangeLog"
+# @DESCRIPTION:
+# Documents to dodoc
 
 # @FUNCTION: cmake-utils_use_with
 # @USAGE: <USE flag> [flag name]
@@ -165,6 +170,9 @@ cmake-utils_src_install() {
 	if [[ -d  ${WORKDIR}/${PN}_build ]]; then
 		popd > /dev/null
 	fi
+
+	# Manual document installation
+	[[ -n "${DOCS}" ]] && dodoc ${DOCS}
 }
 
 # @FUNCTION: cmake-utils_src_test
