@@ -51,6 +51,7 @@ src_unpack() {
 }
 
 src_compile() {
+	filter-flags -fast
 	local myconf
 
 	# nls is currently broken, and I don't feel like fix it properly, the

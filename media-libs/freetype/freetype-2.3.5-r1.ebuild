@@ -89,7 +89,6 @@ src_unpack() {
 
 src_compile() {
 	append-flags -fno-strict-aliasing
-	filter-flags -fast
 
 	type -P gmake &> /dev/null && export GNUMAKE=gmake
 	econf $(use_with zlib) || die "econf failed"
