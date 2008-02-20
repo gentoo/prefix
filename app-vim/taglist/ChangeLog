@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/taglist
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.53 2008/02/17 14:23:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.54 2008/02/19 20:02:25 angelos Exp $
+
+  19 Feb 2008; Christoph Mende <angelos@gentoo.org> taglist-4.5.ebuild:
+  Stable on amd64, bug #208468
 
   17 Feb 2008; Raúl Porcel <armin76@gentoo.org> taglist-4.5.ebuild:
   alpha/ia64 stable wrt #208468
