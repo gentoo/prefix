@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/eclass-manpages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.10 2008/02/19 05:20:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.11 2008/02/19 20:38:19 cardoe Exp $
+
+  19 Feb 2008; Doug Klima <cardoe@gentoo.org> metadata.xml:
+  fix herd
 
   19 Feb 2008; Mike Frysinger <vapier@gentoo.org>
   files/eclass-to-manpage.awk:
