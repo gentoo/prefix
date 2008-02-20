@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.75 2008/02/10 22:50:43 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.76 2008/02/20 04:17:04 beandog Exp $
+
+  20 Feb 2008; Steve Dibb <beandog@gentoo.org> icu-3.6-r2.ebuild:
+  amd64 stable, security bug 208001
 
   10 Feb 2008; Olivier Crête <tester@gentoo.org> icu-3.8.1-r1.ebuild:
   Stable amd64, security bug #208001
