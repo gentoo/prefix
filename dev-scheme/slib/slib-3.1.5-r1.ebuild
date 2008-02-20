@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.5 2008/02/18 20:00:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.6 2008/02/19 19:56:05 angelos Exp $
 
 EAPI="prefix"
 
