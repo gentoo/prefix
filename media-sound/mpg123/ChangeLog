@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.139 2008/02/18 17:49:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.140 2008/02/19 18:02:07 fmccor Exp $
+
+  19 Feb 2008; Ferris McCormick <fmccor@gentoo.org> mpg123-1.2.0.ebuild:
+  Sparc stable, Bug #210277.
 
   18 Feb 2008; Brent Baude <ranger@gentoo.org> mpg123-1.2.0.ebuild:
   stable ppc64, bug 210277
