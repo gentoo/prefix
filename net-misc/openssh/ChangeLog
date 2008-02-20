@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.277 2008/02/12 11:32:31 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.279 2008/02/20 00:09:03 flameeyes Exp $
+
+  20 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.7_p1-r20.ebuild:
+  Fix dependencies for pambase/pam.
+
+*openssh-4.7_p1-r20 (19 Feb 2008)
+
+  19 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/sshd.pam_include.2, +openssh-4.7_p1-r20.ebuild:
+  Add a new revision with pambase's system-remote-login as base stack. Now
+  also prints motd when using PAM.
 
   12 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
   openssh-4.7_p1-r3.ebuild:
