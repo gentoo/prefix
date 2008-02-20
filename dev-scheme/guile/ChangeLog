@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.43 2008/02/18 20:02:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.44 2008/02/19 19:53:14 angelos Exp $
+
+  19 Feb 2008; Christoph Mende <angelos@gentoo.org> guile-1.8.3-r2.ebuild:
+  Stable on amd64, bug #210465
 
   18 Feb 2008; Raúl Porcel <armin76@gentoo.org> guile-1.8.3-r2.ebuild:
   alpha/ia64/sparc stable wrt #210465
