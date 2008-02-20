@@ -1,6 +1,20 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.47 2008/01/02 13:47:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.50 2008/02/20 00:10:16 flameeyes Exp $
+
+  20 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Fix dependencies for pambase/pam.
+
+*netkit-rsh-0.17-r9 (19 Feb 2008)
+
+  19 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/rexec.pamd-pambase, +files/rlogin.pamd-pambase,
+  +files/rsh.pamd-pambase, +netkit-rsh-0.17-r9.ebuild:
+  Add a new revision with pambase's system-remote-login as base stack.
+
+  19 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> -files/rexec.pamd,
+  -files/rlogin.pamd, -files/rsh.pamd:
+  Remove older pamd files to avoid scaring me again with pam_stack.so.
 
   02 Jan 2008; Mike Frysinger <vapier@gentoo.org> netkit-rsh-0.17-r8.ebuild:
   Respect env LDFLAGS. Respect CC for everyone, not just cross-compilers
