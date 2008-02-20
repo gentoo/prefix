@@ -50,6 +50,7 @@ src_unpack() {
 
 src_compile() {
 	use static && append-ldflags -static
+	filter-flags -fast
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		# on interix _ALL_SOURCE is required for a correct definition
