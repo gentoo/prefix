@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/jibx
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/ChangeLog,v 1.5 2007/08/11 21:52:18 nelchael Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/ChangeLog,v 1.7 2008/02/20 00:26:36 betelgeuse Exp $
+
+  20 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> jibx-1.1.5.ebuild:
+  Fix jar installation to not install dep jars.
+
+*jibx-1.1.5 (20 Feb 2008)
+
+  20 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> +jibx-1.1.5.ebuild:
+  Version bump. Fixes bug #210199.
 
   11 Aug 2007; Krzysiek Pawlik <nelchael@gentoo.org> metadata.xml:
   Remove myself from <maintainer>.
