@@ -31,6 +31,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc4.patch
 	epatch "${FILESDIR}"/${P}-db4.patch
 	epatch "${FILESDIR}"/${P}-header.patch
+	epatch "${FILESDIR}"/${P}-darwin-sys5-pty.patch
+	#epatch "${FILESDIR}"/${P}-darwin-flat-namespace.patch
 	touch "${S}"/dist/{configure,aclocal.m4,Makefile.in,stamp-h.in}
 }
 

@@ -1,0 +1,11 @@
+--- dist/aclocal.m4
++++ dist/aclocal.m4
+@@ -2017,7 +2017,7 @@
+     ;;
+ 
+   darwin* | rhapsody*)
+-    allow_undefined_flag='-undefined suppress'
++    allow_undefined_flag='-undefined suppress -flat_namespace'
+     # FIXME: Relying on posixy $() will cause problems for
+     #        cross-compilation, but unfortunately the echo tests do not
+     #        yet detect zsh echo's removal of \ escapes.
