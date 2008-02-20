@@ -1,0 +1,102 @@
+Make sure nvi handles multibyte characters properly in more cases than
+before. Submitted by Karl Hakimian, http://bugs.gentoo.org/150169
+
+--- nvi-1.81.5/common/multibyte.h
++++ nvi-1.81.5/common/multibyte.h
+@@ -19,7 +19,12 @@
+ #define STRCMP		wcscmp
+ #define STRPBRK		wcspbrk
+ #define TOUPPER		towupper
++#define TOLOWER		towlower
++#define ISUPPER		iswupper
++#define ISLOWER		iswlower
+ #define STRSET		wmemset
++#define GETC		getwc
++#define VI_EOF		WEOF
+ 
+ #define L(ch)		L ## ch
+ 
+@@ -38,7 +43,12 @@
+ #define STRCMP		strcmp
+ #define STRPBRK		strpbrk
+ #define TOUPPER		toupper
++#define TOLOWER		tolower
++#define ISUPPER		isupper
++#define ISLOWER		islower
+ #define STRSET		memset
++#define GETC		getc
++#define VI_EOF		EOF
+ 
+ #define L(ch)		ch
+ 
+--- nvi-1.81.5/ex/ex_subst.c
++++ nvi-1.81.5/ex/ex_subst.c
+@@ -909,7 +909,7 @@
+ 	}
+ 	if (LF_ISSET(SEARCH_ICL)) {
+ iclower:	for (p = ptrn, len = plen; len > 0; ++p, --len)
+-			if (isupper(*p))
++			if (ISUPPER(*p))
+ 				break;
+ 		if (len == 0)
+ 			reflags |= REG_ICASE;
+@@ -1363,15 +1363,15 @@
+ 			conv = C_NOTSET;				\
+ 			/* FALLTHROUGH */				\
+ 		case C_LOWER:						\
+-			if (isupper(__ch))				\
++			if (ISUPPER(__ch))				\
+-				__ch = tolower(__ch);			\
++				__ch = TOLOWER(__ch);			\
+ 			break;						\
+ 		case C_ONEUPPER:					\
+ 			conv = C_NOTSET;				\
+ 			/* FALLTHROUGH */				\
+ 		case C_UPPER:						\
+-			if (islower(__ch))				\
++			if (ISLOWER(__ch))				\
+-				__ch = toupper(__ch);			\
++				__ch = TOUPPER(__ch);			\
+ 			break;						\
+ 		default:						\
+ 			abort();					\
+--- nvi-1.81.5/ex/ex_util.c
++++ nvi-1.81.5/ex/ex_util.c
+@@ -67,7 +67,7 @@
+ 			BINC_RETW(sp, exp->ibp, exp->ibp_len, off + 1);
+ 			p = exp->ibp + off;
+ 		}
+-		if ((ch = getc(fp)) == EOF && !feof(fp)) {
++		if ((ch = GETC(fp)) == VI_EOF && !feof(fp)) {
+ 			if (errno == EINTR) {
+ 				errno = 0;
+ 				clearerr(fp);
+@@ -75,8 +75,8 @@
+ 			}
+ 			return (1);
+ 		}
+-		if (ch == EOF || ch == '\n') {
++		if (ch == VI_EOF || ch == '\n') {
+-			if (ch == EOF && !off)
++			if (ch == VI_EOF && !off)
+ 				return (1);
+ 			*lenp = off;
+ 			return (0);
+--- nvi-1.81.5/vi/v_ulcase.c
++++ nvi-1.81.5/vi/v_ulcase.c
+@@ -154,11 +154,11 @@
+ 	change = rval = 0;
+ 	for (p = bp + scno, t = bp + ecno + 1; p < t; ++p) {
+ 		ch = *(u_char *)p;
+-		if (islower(ch)) {
++		if (ISLOWER(*p)) {
+-			*p = toupper(ch);
++			*p = TOUPPER(*p);
+ 			change = 1;
+-		} else if (isupper(ch)) {
++		} else if (ISUPPER(*p)) {
+-			*p = tolower(ch);
++			*p = TOLOWER(*p);
+ 			change = 1;
+ 		}
+ 	}
