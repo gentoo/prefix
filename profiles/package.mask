@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8298 2008/02/18 22:02:01 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8299 2008/02/19 23:32:43 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,13 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Diego Pettenò <flameeye@gentoo.org> (20 Feb 2008)
+# Pending removal on 20 April 2008.
+# Install broken; PAM totally broken (never tested, I suppose).
+# Please contact me to fix the PAM issue if you want to save this
+# package from its fate.
+net-misc/lsh
 
 # Raúl Porcel <armin76@gentoo.org> (18 Feb 2008)
 # Probably breaks a lot of stuff, needs testing
