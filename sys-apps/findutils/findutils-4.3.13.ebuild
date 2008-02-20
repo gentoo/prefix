@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.11.ebuild,v 1.9 2008/02/19 22:33:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.13.ebuild,v 1.1 2008/02/19 22:47:00 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-SELINUX_PATCH="findutils-4.3.11-selinux.diff"
+SELINUX_PATCH="findutils-4.3.12-selinux.diff"
 
 DESCRIPTION="GNU utilities for finding files"
 HOMEPAGE="http://www.gnu.org/software/findutils/"
@@ -34,7 +34,7 @@ src_unpack() {
 	# mounted filesystems.
 	# Need to patch configure directly besides ls-mntd-fs.m4,
 	# because during bootstrap not all m4-files might be installed.
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
 	touch aclocal.m4
 	touch configure
 
