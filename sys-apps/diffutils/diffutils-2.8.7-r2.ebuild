@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/diffutils-2.8.4-sdiff-no-waitpid.patch
 
 	# Fix utf8 support.  Patch from MDK. #71689
+	# Breaks compilation with -fast (therefore filtered)
 	epatch "${WORKDIR}"/${P}-i18n.patch
 
 	epatch "${FILESDIR}"/${P}-headers.patch
