@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/pdv
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.15 2007/07/22 08:30:55 omp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.16 2008/02/20 07:51:46 ulm Exp $
+
+  20 Feb 2008; Ulrich Mueller <ulm@gentoo.org> pdv-1.5.1-r2.ebuild:
+  Change USE flag "nomotif" to "X" (with inverted logic), bug 210565.
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org> pdv-1.5.1-r2.ebuild:
   Remove virtual/x11 from dependencies.
