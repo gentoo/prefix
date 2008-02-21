@@ -1,6 +1,10 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.135 2008/02/10 10:15:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.136 2008/02/20 22:32:50 solar Exp $
+
+  20 Feb 2008; <solar@gentoo.org> e2fsprogs-1.40.5-r1.ebuild,
+  e2fsprogs-1.40.6.ebuild:
+  - disable tls with uclibc. bug 204102 Natanael Copa
 
 *e2fsprogs-1.40.6 (10 Feb 2008)
 

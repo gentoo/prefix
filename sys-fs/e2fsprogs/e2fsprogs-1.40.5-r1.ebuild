@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.5-r1.ebuild,v 1.1 2008/01/28 12:39:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.5-r1.ebuild,v 1.2 2008/02/20 22:32:50 solar Exp $
 
 EAPI="prefix"
 
@@ -77,6 +77,7 @@ src_compile() {
 		--without-included-gettext \
 		$(use_enable nls) \
 		$(use_enable userland_GNU fsck) \
+		$(use_enable !elibc_uclibc tls) \
 		|| die
 	if [[ ${CHOST} != *-uclibc ]] && grep -qs 'USE_INCLUDED_LIBINTL.*yes' config.{log,status} ; then
 		eerror "INTL sanity check failed, aborting build."

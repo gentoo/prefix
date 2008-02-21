@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.6.ebuild,v 1.1 2008/02/10 10:15:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.6.ebuild,v 1.2 2008/02/20 22:32:50 solar Exp $
 
 EAPI="prefix"
 
@@ -73,6 +73,7 @@ src_compile() {
 		--enable-elf-shlibs \
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable !static dynamic-e2fsck) \
+		$(use_enable !elibc_uclibc tls) \
 		--without-included-gettext \
 		$(use_enable nls) \
 		$(use_enable userland_GNU fsck) \
