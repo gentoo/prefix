@@ -1,6 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1133 2008/02/18 23:24:40 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1139 2008/02/21 03:44:17 wolf31o2 Exp $
+
+  21 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use:
+  Adding slang to package.use for app-misc/mc since we ship with USE=unicode
+  almost universally.
+
+  20 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked qtruby and korundum because both are currently broken.
+
+  20 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masking livecd-tools, hwsetup, and mkxf86config in hopes that people quit
+  using these on their live systems.
+
+  20 Feb 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove mask on i810 driver snapshots as they are no longer in tree
+
+  20 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Remove nomotif flag from app-arch/pdv.
+
+  20 Feb 2008; Jeroen Roovers <jer@gentoo.org> thirdpartymirrors:
+  Remove ftp.scarlet.be from opera mirrors list as it apparently does not work.
 
   18 Feb 2008; Bernard Cafarelli <voyageur@gentoo.org> use.local.desc:
   Update gcc-libffi USE flag description for gnustep-base

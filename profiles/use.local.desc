@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3367 2008/02/19 05:05:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3368 2008/02/20 07:58:22 ulm Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -32,7 +32,6 @@ app-admin/webalizer:search - Include the search patch
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
 app-arch/dump:ermt - encrypted rmt support
-app-arch/pdv:nomotif - Disable motif frontend.
 app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
