@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.14-r2.ebuild,v 1.5 2008/02/13 15:09:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.14-r2.ebuild,v 1.6 2008/02/20 19:23:10 nixnut Exp $
 
 EAPI="prefix"
 
