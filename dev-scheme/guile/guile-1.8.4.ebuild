@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.1-r3.ebuild,v 1.6 2007/07/29 14:00:21 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4.ebuild,v 1.1 2008/02/20 11:52:27 hkbst Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,8 @@ HOMEPAGE="http://www.gnu.org/software/guile/"
 SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+RESTRICT="!regex? ( test )"
 
 DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
 
@@ -24,24 +25,9 @@ MAJOR="1.8"
 IUSE="networking regex discouraged deprecated elisp nls debug-freelist debug-malloc debug threads"
 
 src_unpack() {
-	unpack ${A}
-	cd ${S}
+	unpack ${A}; cd "${S}"
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
-
-	# for xbindkeys
-	cp "${EPREFIX}"/usr/share/gettext/config.rpath .
-	epatch ${FILESDIR}/guile-1.8.1-autotools_fixes.patch
-	epatch "${FILESDIR}"/guile-1.8.1-echo-n.patch
-
-	# for free-bsd, bug 179728
-	epatch $FILESDIR/guile-1.8.1-defaultincludes.patch
-	epatch $FILESDIR/guile-1.8.1-clog-cexp.patch
-
-	eautoreconf
-
-	# for lilypond 2.11.x
-	epatch ${FILESDIR}/guile-1.8-rational.patch
 }
 
 
@@ -77,9 +63,23 @@ src_install() {
 
 	# texmacs needs this, closing bug #23493
 	dodir /etc/env.d
+	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > "${ED}"/etc/env.d/50guile
 
-	# We don't slot the env.d entry because /usr/bin/guile-config is
-	# there anyway, and will only match the last guile installed.
-	# so the GUILE_LOAD_PATH will match the data available from guile-config.
-	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > ${ED}/etc/env.d/50guile
+	# necessary for registering slib, see bug 206896
+	keepdir /usr/share/guile/site
+}
+
+pkg_postinst() {
+	[ "${ROOT}" == "/" ] && pkg_config
+}
+
+pkg_config() {
+	if has_version dev-scheme/slib; then
+		einfo "Registering slib with guile"
+		install_slib_for_guile
+	fi
+}
+
+pkg_prerm() {
+	rm -f "${EROOT}"/usr/share/guile/site/slibcat
 }

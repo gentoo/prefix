@@ -1,6 +1,49 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.44 2008/02/19 19:53:14 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.47 2008/02/20 12:57:47 hkbst Exp $
+
+  20 Feb 2008; Marijn Schouten <hkBst@gentoo.org> +guile-1.6.8.ebuild:
+  put guile-1.6.8 back as some ebuilds still depend on it, thanks to tove
+
+  20 Feb 2008; Marijn Schouten <hkBst@gentoo.org> -guile-1.6.7.ebuild,
+  -guile-1.6.8.ebuild, -guile-1.8.1-r3.ebuild:
+  remove old stuff
+
+*guile-1.8.4 (20 Feb 2008)
+
+  20 Feb 2008; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.4.ebuild:
+  bump:
+  - Bugs fixed
+
+   - CR (ASCII 0x0d) is (again) recognized as a token delimiter by the
+     reader
+   - Fixed a segmentation fault which occurred when displaying the
+     backtrace of a stack with a promise object (made by `delay') in it
+   - Make `accept' leave guile mode while blocking
+   - `scm_c_read ()' and `scm_c_write ()' now type-check their port
+     argument
+   - Fixed a build problem on AIX (use of func_data identifier)
+   - Fixed a segmentation fault which occurred when hashx-ref or
+     hashx-set! was called with an associator proc that returns neither
+     a pair nor #f.
+   - Secondary threads now always return a valid module for
+     (current-module).
+   - Avoid MacOS build problems caused by incorrect combination of "64"
+     system and library calls.
+   - `guile-snarf' now honors `$TMPDIR'
+   - `guile-config compile' now reports CPPFLAGS used at compile-time
+   - Fixed build with Sun Studio (Solaris 9)
+   - Fixed wrong-type-arg errors when creating zero length SRFI-4
+     uniform vectors on AIX.
+   - Fixed a deadlock that occurs upon GC with multiple threads.
+   - Fixed compile problem with GCC on Solaris and AIX (use of _Complex_I)
+   - Fixed autotool-derived build problems on AIX 6.1.
+   - Fixed NetBSD/alpha support
+   - Fixed MacOS build problem caused by use of rl_get_keymap(_name)
+
+  - New modules (see the manual for details)
+
+   - `(srfi srfi-69)'
 
   19 Feb 2008; Christoph Mende <angelos@gentoo.org> guile-1.8.3-r2.ebuild:
   Stable on amd64, bug #210465
