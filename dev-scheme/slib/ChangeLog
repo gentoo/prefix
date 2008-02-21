@@ -1,6 +1,6 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.40 2008/02/19 19:56:05 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.41 2008/02/20 22:25:52 hkbst Exp $
 
   19 Feb 2008; Christoph Mende <angelos@gentoo.org> slib-3.1.5-r1.ebuild:
   Stable on amd64, bug #210467
@@ -13,6 +13,10 @@
 
   17 Feb 2008; Christian Faulhammer <opfer@gentoo.org> slib-3.1.5-r1.ebuild:
   stable x86, bug 210467
+
+  20 Feb 2008; Marijn Schouten <hkBst@gentoo.org> -slib-2.4.2.ebuild,
+  -slib-2.4.3.ebuild, -slib-2.4.6.ebuild, -slib-3.1.1.ebuild:
+  remove old stuff
 
   17 Feb 2008; Marijn Schouten <hkBst@gentoo.org> slib-3.1.5-r1.ebuild:
   restrict tests
