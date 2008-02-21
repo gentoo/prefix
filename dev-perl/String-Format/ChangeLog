@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/String-Format
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.7 2007/12/27 13:41:33 ticho Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.8 2008/02/20 19:50:24 nixnut Exp $
+
+  20 Feb 2008; nixnut <nixnut@gentoo.org> String-Format-1.14.ebuild:
+  Added ~ppc wrt bug 207343
 
   27 Dec 2007; Andrej Kacian <ticho@gentoo.org> String-Format-1.14.ebuild:
   Stable on x86.
