@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-SubCalls
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/ChangeLog,v 1.10 2007/12/27 13:53:16 ticho Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/ChangeLog,v 1.11 2008/02/20 19:57:08 nixnut Exp $
+
+  20 Feb 2008; nixnut <nixnut@gentoo.org> Test-SubCalls-1.06.ebuild:
+  Added ~ppc wrt bug 207343
 
   27 Dec 2007; Andrej Kacian <ticho@gentoo.org> Test-SubCalls-1.06.ebuild:
   Stable on x86.
