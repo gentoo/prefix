@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.04-r1.ebuild,v 1.1 2008/02/14 13:08:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.04-r1.ebuild,v 1.2 2008/02/21 00:57:32 ranger Exp $
 
 EAPI="prefix"
 
