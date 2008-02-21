@@ -1,9 +1,14 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.165 2008/02/19 00:31:12 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.166 2008/02/20 20:59:43 philantrop Exp $
+
+# @ECLASS: kde-functions.eclass
+# @MAINTAINER:
+# kde@gentoo.org
+# Original author Dan Armak <danarmak@gentoo.org>
 #
-# Author Dan Armak <danarmak@gentoo.org>
-#
+# @BLURB: This contains everything except things that modify ebuild variables and
+# @DESCRIPTION:
 # This contains everything except things that modify ebuild variables
 # and functions (e.g. $P, src_compile() etc.)
 
@@ -317,6 +322,9 @@ app-office/koffice app-office/kugar
 app-office/koffice app-office/kword
 '
 
+# @FUNCTION: get-parent-package
+# @USAGE: < name of split-ebuild >
+# @DESCRIPTION:
 # accepts 1 parameter, the name of a split ebuild; echoes the name of its mother package
 get-parent-package() {
 	local parent child
@@ -331,6 +339,9 @@ EOF
 	die "Package $1 not found in KDE_DERIVATION_MAP, please report bug"
 }
 
+# @FUNCTION: get-child-packages
+# @USAGE: < name of monolithic package >
+# @DESCRIPTION:
 # accepts 1 parameter, the name of a monolithic package; echoes the names of all ebuilds derived from it
 get-child-packages() {
 	local parent child
@@ -341,6 +352,9 @@ $KDE_DERIVATION_MAP
 EOF
 }
 
+# @FUNCTION: is-parent-package
+# @USAGE: < name >
+# @RETURN: 0 if <name> is a parent package, otherwise 1
 is-parent-package() {
 	local parent child
 	while read parent child; do
@@ -351,9 +365,12 @@ EOF
 	return 1
 }
 
-# Usage: deprange minver maxver package [...]
+# @FUNCTION: deprange
+# @USAGE: < minver > < maxver > < package > [...]
+# @DESCRIPTION:
 # For minver, a -rN part is supported. For both minver and maxver, _alpha/beta/pre/rc suffixes
 # are supported, but not _p suffixes or teminating letters (eg 3.3.1a).
+#
 # This function echoes a string of the form (for package="kde-base/kdelibs")
 # || ( =kde-base/kdelibs-3.3.1-r1 ~kde-base/kdelibs-3.3.2 ~kde-base/kdelibs-3.3.3 )
 # This dep means versions of package from maxver through minver will be acceptable.
@@ -375,30 +392,30 @@ deprange-list() {
 
 	# Workaround for 3.5.0_beta1 ebuilds being mistakenly versioned as 3.5_beta1
 	# Ugly kludge, but will disappear once 3.5 prerelease ebuilds are removed from portage
-	if [ "$MINVER" == "3.5_beta1" ]; then
+	if [[ "$MINVER" == "3.5_beta1" ]]; then
 
 		MINVER="3.5.0_beta1"
 		FINALOPTIONVER="3.5_beta1"
 	fi
-	if [ "$MAXVER" == "3.5_beta1" ]; then
+	if [[ "$MAXVER" == "3.5_beta1" ]]; then
 		MAXVER="3.5.0_beta1"
 	fi
 
 	# Get base version - the major X.Y components
 	local BASEVER=${MINVER%.*}
-	if [ "${MAXVER%.*}" != "$BASEVER" ]; then
+	if [[ "${MAXVER%.*}" != "$BASEVER" ]]; then
 		die "deprange(): unsupported parameters $MINVER $MAXVER - BASEVER must be identical"
 	fi
 
 	# Get version suffixes
 	local MINSUFFIX MAXSUFFIX
-	if [ "$MINVER" != "${MINVER/_}" ]; then
+	if [[ "$MINVER" != "${MINVER/_}" ]]; then
 		MINSUFFIX=${MINVER##*_}
 		SUFFIXLESSMINVER=${MINVER%_*}
 	else
 		SUFFIXLESSMINVER=$MINVER
 	fi
-	if [ "$MAXVER" != "${MAXVER/_}" ]; then
+	if [[ "$MAXVER" != "${MAXVER/_}" ]]; then
 		MAXSUFFIX=${MAXVER##*_}
 		SUFFIXLESSMAXVER=${MAXVER%_*}
 	else
@@ -406,7 +423,7 @@ deprange-list() {
 	fi
 
 	# Separate out the optional lower bound revision number
-	if [ "$MINVER" != "${MINVER/-}" ]; then
+	if [[ "$MINVER" != "${MINVER/-}" ]]; then
 		local MINREV=${MINVER##*-}
 	fi
 
@@ -415,51 +432,50 @@ deprange-list() {
 	local MAXMINOR=${SUFFIXLESSMAXVER##*.}
 
 	# Iterate over packages
-	while [ -n "$1" ]; do
+	while [[ -n "$1" ]]; do
 		local PACKAGE=$1
 		shift
 
 		local NEWDEP=""
 
 		# If the two versions are identical, our job is simple
-		if [ "$MINVER" == "$MAXVER" ]; then
+		if [[ "$MINVER" == "$MAXVER" ]]; then
 			NEWDEP="~$PACKAGE-$MINVER"
 
 		# If the range bounds differ only by their suffixes
-		elif [ "$MINMINOR" == "$MAXMINOR" ]; then
+		elif [[ "$MINMINOR" == "$MAXMINOR" ]]; then
 			NEWDEP="$(deprange-iterate-suffixes "~$PACKAGE-$BASEVER.$MINMINOR" $MINSUFFIX $MAXSUFFIX)"
 
 			# Revision constraint on lower bound
-			if [ -n "$MINREV" ]; then
+			if [[ -n "$MINREV" ]]; then
 				NEWDEP="$NEWDEP
 						$(deprange-iterate-numbers "=$PACKAGE-$BASEVER.${MINMINOR}_$MINSUFFIX-r" $MINREV 50)"
 			fi
 
 		# If the minor version numbers are different too
 		else
-
 			# Max version's allowed suffixes
-			if [ -n "$MAXSUFFIX" ]; then
+			if [[ -n "$MAXSUFFIX" ]]; then
 				NEWDEP="$(deprange-iterate-suffixes "~$PACKAGE-$BASEVER.$MAXMINOR" alpha1 $MAXSUFFIX)"
 			fi
 
 			STARTMINOR="${MINMINOR}"
 
 			# regular versions in between
-			if [ -n "$MINREV" -a -z "$MINSUFFIX" ]; then
+			if [[ -n "$MINREV" ]] && [[ -z "$MINSUFFIX" ]]; then
 				let STARTMINOR++
 			fi
 			NEWDEP="$NEWDEP
 					$(deprange-iterate-numbers "~${PACKAGE}-${BASEVER}." $STARTMINOR $MAXMINOR)"
 
 			# Min version's allowed suffixes
-			if [ -n "$MINSUFFIX" ]; then
+			if [[ -n "$MINSUFFIX" ]]; then
 				NEWDEP="$NEWDEP
 						$(deprange-iterate-suffixes "~$PACKAGE-$BASEVER.$MINMINOR" $MINSUFFIX rc10)"
 			fi
-			if [ -n "$MINREV" ]; then
+			if [[ -n "$MINREV" ]]; then
 				local BASE
-				if [ -n "$MINSUFFIX" ]; then
+				if [[ -n "$MINSUFFIX" ]]; then
 					BASE="=$PACKAGE-$BASEVER.${MINMINOR}_${MINSUFFIX%-r*}-r"
 				else
 					BASE="=$PACKAGE-$BASEVER.${MINMINOR%-r*}-r"
@@ -470,7 +486,7 @@ deprange-list() {
 		fi
 
 		# second part of kludge
-		if [ -n "$FINALOPTIONVER" ]; then
+		if [[ -n "$FINALOPTIONVER" ]]; then
 			NEWDEP="$NEWDEP ~$PACKAGE-$FINALOPTIONVER"
 		fi
 
@@ -497,32 +513,32 @@ deprange-iterate-suffixes() {
 	local NAME=$1 MINSUFFIX=$2 MAXSUFFIX=$3
 
 	# Separate out the optional lower bound revision number
-	if [ "$MINSUFFIX" != "${MINSUFFIX/-}" ]; then
+	if [[ "$MINSUFFIX" != "${MINSUFFIX/-}" ]]; then
 		local MINREV=${MINSUFFIX##*-}
 	fi
 	MINSUFFIX=${MINSUFFIX%-*}
 
 	# Separate out the version suffixes
 	local MINalpha MINbeta MINpre MINrc
-	if [ "$MINSUFFIX" != "${MINSUFFIX/alpha}" ]; then
+	if [[ "$MINSUFFIX" != "${MINSUFFIX/alpha}" ]]; then
 		MINalpha="${MINSUFFIX##alpha}"
-	elif [ "$MINSUFFIX" != "${MINSUFFIX/beta}" ]; then
+	elif [[ "$MINSUFFIX" != "${MINSUFFIX/beta}" ]]; then
 		MINbeta="${MINSUFFIX##beta}"
-	elif [ "$MINSUFFIX" != "${MINSUFFIX/pre}" ]; then
+	elif [[ "$MINSUFFIX" != "${MINSUFFIX/pre}" ]]; then
 		MINpre="${MINSUFFIX##pre}"
-	elif [ "$MINSUFFIX" != "${MINSUFFIX/rc}" ]; then
+	elif [[ "$MINSUFFIX" != "${MINSUFFIX/rc}" ]]; then
 		MINrc="${MINSUFFIX##rc}"
 	else
 		die "deprange(): version suffix $MINSUFFIX (probably _pN) not supported"
 	fi
 	local MAXalpha MAXbeta MAXpre MAXrc
-	if [ "$MAXSUFFIX" != "${MAXSUFFIX/alpha}" ]; then
+	if [[ "$MAXSUFFIX" != "${MAXSUFFIX/alpha}" ]]; then
 		MAXalpha="${MAXSUFFIX##alpha}"
-	elif [ "$MAXSUFFIX" != "${MAXSUFFIX/beta}" ]; then
+	elif [[ "$MAXSUFFIX" != "${MAXSUFFIX/beta}" ]]; then
 		MAXbeta="${MAXSUFFIX##beta}"
-	elif [ "$MAXSUFFIX" != "${MAXSUFFIX/pre}" ]; then
+	elif [[ "$MAXSUFFIX" != "${MAXSUFFIX/pre}" ]]; then
 		MAXpre="${MAXSUFFIX##pre}"
-	elif [ "$MAXSUFFIX" != "${MAXSUFFIX/rc}" ]; then
+	elif [[ "$MAXSUFFIX" != "${MAXSUFFIX/rc}" ]]; then
 		MAXrc="${MAXSUFFIX##rc}"
 	else
 		die "deprange(): version suffix $MAXSUFFIX (probably _pN) not supported"
@@ -536,29 +552,29 @@ deprange-iterate-suffixes() {
 
 		# If -n $started, we've encountered the upper bound in a previous iteration
 		# and so we use the maximum allowed upper bound for this prefix
-		if [ -n "$started" ]; then
+		if [[ -n "$started" ]]; then
 			upper=10
 
 		else
 
 			# Test for the upper bound in the current iteration
 			var=MAX$suffix
-			if [ -n "${!var}" ]; then
+			if [[ -n "${!var}" ]]; then
 				upper=${!var}
 				started=yes
 			fi
 		fi
 
 		# If the upper bound has been found
-		if [ -n "$upper" ]; then
+		if [[ -n "$upper" ]]; then
 
 			# Test for the lower bound in the current iteration (of the loop over prefixes)
 			var=MIN$suffix
-			if [ -n "${!var}" ]; then
+			if [[ -n "${!var}" ]]; then
 				lower=${!var}
 
 				# If the lower bound has a revision number, don't touch that yet
-				if [ -n "$MINREV" ]; then
+				if [[ -n "$MINREV" ]]; then
 					let lower++
 				fi
 
@@ -572,7 +588,7 @@ deprange-iterate-suffixes() {
 					$(deprange-iterate-numbers ${NAME}_${suffix} $lower $upper)"
 
 			# If we've encountered the lower bound on this iteration, don't consider additional prefixes
-			if [ -n "${!var}" ]; then
+			if [[ -n "${!var}" ]]; then
 				break
 			fi
 		fi
@@ -580,15 +596,19 @@ deprange-iterate-suffixes() {
 	echo -n $NEWDEP
 }
 
+# @FUNCTION: deprange-dual
+# @USAGE: < minver > < maxver > < package >
+# @DESCRIPTION:
 # Wrapper around deprange() used for deps between split ebuilds.
 # It adds the parent monolithic ebuild of the dep as an alternative dep.
+# See deprange above for more deatils.
 deprange-dual() {
 	local MIN=$1 MAX=$2 NEWDEP=""
 	shift; shift
 	for PACKAGE in $@; do
 		PARENT=$(get-parent-package $PACKAGE)
 		NEWDEP="$NEWDEP || ( $(deprange-list $MIN $MAX $PACKAGE)"
-		if [ "$PARENT" != "$(get-parent-package $CATEGORY/$PN)" ]; then
+		if [[ "$PARENT" != "$(get-parent-package $CATEGORY/$PN)" ]]; then
 			NEWDEP="$NEWDEP $(deprange-list $MIN $MAX $PARENT)"
 		fi
 		NEWDEP="$NEWDEP )"
@@ -600,20 +620,25 @@ deprange-dual() {
 # kde/qt directory management etc. functions, was kde-dirs.ebuild
 # ---------------------------------------------------------------
 
+# @FUNCTION: need-kde
+# @USAGE: < version >
+# @DESCRIPTION:
+# Sets the correct DEPEND and RDEPEND for the needed kde < version >. Also takes
+# care of the correct Qt-version and correct RDEPEND handling.
 need-kde() {
+	debug-print-function $FUNCNAME "$@"
 
-	debug-print-function $FUNCNAME $*
 	KDEVER="$1"
 
 	# determine install locations
 	set-kdedir ${KDEVER}
 
-	if [ "${RDEPEND-unset}" != "unset" ] ; then
+	if [[ -n "${RDEPEND}" ]]; then
 		x_DEPEND="${RDEPEND}"
 	else
 		x_DEPEND="${DEPEND}"
 	fi
-	if [ -n "${KDEBASE}" ]; then
+	if [[ -n "${KDEBASE}" ]]; then
 		# If we're a kde-base package, we need at least our own version of kdelibs.
 		# Also, split kde-base ebuilds are not updated with every KDE release, and so
 		# can require support of different versions of kdelibs.
@@ -621,7 +646,7 @@ need-kde() {
 		# max and min KDE versions. E.g. KM_DEPRANGE="$PV $MAXKDEVER".
 		# Note: we only set RDEPEND if it is already set, otherwise
 		# we break packages relying on portage copying RDEPEND from DEPEND.
-		if [ -n "${KM_DEPRANGE}" ]; then
+		if [[ -n "${KM_DEPRANGE}" ]]; then
 			DEPEND="${DEPEND} $(deprange ${KM_DEPRANGE} kde-base/kdelibs)"
 			RDEPEND="${x_DEPEND} $(deprange ${KM_DEPRANGE} kde-base/kdelibs)"
 		else
@@ -639,16 +664,20 @@ need-kde() {
 	qtver-from-kdever ${KDEVER}
 	need-qt ${selected_version}
 
-	if [ -n "${KDEBASE}" ]; then
+	if [[ -n "${KDEBASE}" ]]; then
 		SLOT="$KDEMAJORVER.$KDEMINORVER"
 	else
 		SLOT="0"
 	fi
 }
 
+# @FUNCTION: set-kdedir
+# @USAGE: < version >
+# @DESCRIPTION:
+# Sets the right directories for the kde <version> wrt what kind of package will
+# be installed, e. g. third-party-apps, kde-base-packages, ...
 set-kdedir() {
-
-	debug-print-function $FUNCNAME $*
+	debug-print-function $FUNCNAME "$@"
 
 
 	# set install location:
@@ -674,23 +703,23 @@ set-kdedir() {
 	IFSBACKUP="$IFS"
 	IFS=".-_"
 	for x in $1; do
-		if [ -z "$KDEMAJORVER" ]; then KDEMAJORVER=$x
-		else if [ -z "$KDEMINORVER" ]; then KDEMINORVER=$x
-		else if [ -z "$KDEREVISION" ]; then KDEREVISION=$x
+		if [[ -z "$KDEMAJORVER" ]]; then KDEMAJORVER=$x
+		else if [[ -z "$KDEMINORVER" ]]; then KDEMINORVER=$x
+		else if [[ -z "$KDEREVISION" ]]; then KDEREVISION=$x
 		fi; fi; fi
 	done
-	[ -z "$KDEMINORVER" ] && KDEMINORVER="0"
-	[ -z "$KDEREVISION" ] && KDEREVISION="0"
+	[[ -z "$KDEMINORVER" ]] && KDEMINORVER="0"
+	[[ -z "$KDEREVISION" ]] && KDEREVISION="0"
 	IFS="$IFSBACKUP"
 	debug-print "$FUNCNAME: version breakup: KDEMAJORVER=$KDEMAJORVER KDEMINORVER=$KDEMINORVER KDEREVISION=$KDEREVISION"
 
 	# install prefix
-	if [ -n "$KDEPREFIX" ]; then
+	if [[ -n "$KDEPREFIX" ]]; then
 		export PREFIX="$KDEPREFIX"
-	elif [ "$KDEMAJORVER" == "2" ]; then
+	elif [[ "$KDEMAJORVER" == "2" ]]; then
 		export PREFIX="/usr/kde/2"
 	else
-		if [ -z "$KDEBASE" ]; then
+		if [[ -z "$KDEBASE" ]]; then
 			export PREFIX="/usr"
 		else
 			case $KDEMAJORVER.$KDEMINORVER in
@@ -707,15 +736,16 @@ set-kdedir() {
 	fi
 
 	# kdelibs location
-	if [ -n "$KDELIBSDIR" ]; then
+	if [[ -n "$KDELIBSDIR" ]]; then
 		export KDEDIR="$KDELIBSDIR"
-	elif [ "$KDEMAJORVER" == "2" ]; then
+	elif [[ "$KDEMAJORVER" == "2" ]]; then
 		export KDEDIR="/usr/kde/2"
 	else
-		if [ -z "$KDEBASE" ]; then
+		if [[ -z "$KDEBASE" ]]; then
 			# find the latest kdelibs installed
-			for x in /usr/kde/{cvs,3.5,3.4,3.3,3.2,3.1,3.0,3} $PREFIX $KDE3LIBSDIR $KDELIBSDIR $KDE3DIR $KDEDIR /usr/kde/*; do
-				if [ -f "${x}/include/kwin.h" ]; then
+			for x in /usr/kde/{cvs,3.5,3.4,3.3,3.2,3.1,3.0,3} "${PREFIX}" \
+				"${KDE3LIBSDIR}" "${KDELIBSDIR}" "${KDE3DIR}" "${KDEDIR}" /usr/kde/*; do
+				if [[ -f "${x}/include/kwin.h" ]]; then
 					debug-print found
 					export KDEDIR="$x"
 					break
@@ -737,17 +767,20 @@ set-kdedir() {
 	fi
 
 	debug-print "$FUNCNAME: Will use the kdelibs installed in $KDEDIR, and install into $PREFIX."
-
 }
 
+# @FUNCTION: need-qt
+# @USAGE: < version >
+# @DESCRIPTION:
+# Sets the DEPEND and RDEPEND for Qt <version>.
 need-qt() {
+	debug-print-function $FUNCNAME "${@}"
 
-	debug-print-function $FUNCNAME $*
 	QTVER="$1"
 
 	QT=qt
 
-	if [ "${RDEPEND-unset}" != "unset" ] ; then
+	if [[ "${RDEPEND-unset}" != "unset" ]]; then
 		x_DEPEND="${RDEPEND}"
 	else
 		x_DEPEND="${DEPEND}"
@@ -759,23 +792,34 @@ need-qt() {
 			RDEPEND="${x_DEPEND} =x11-libs/${QT}-2.3*"
 			;;
 		3*)
-			DEPEND="${DEPEND} $(qt_min_version ${QTVER})"
-			RDEPEND="${x_DEPEND} $(qt_min_version ${QTVER})"
+			case ${EAPI:-0} in
+				# Add EAPIs without SLOT dependencies.
+				0)	DEPEND="${DEPEND} $(qt_min_version ${QTVER})"
+					RDEPEND="${x_DEPEND} $(qt_min_version ${QTVER})"
+					;;
+				*)	DEPEND="${DEPEND} >=x11-libs/qt-${QTVER}:3"
+					RDEPEND="${RDEPEND} >=x11-libs/qt-${QTVER}:3"
+					;;
+			esac
 			;;
 		*)	echo "!!! error: $FUNCNAME() called with invalid parameter: \"$QTVER\", please report bug" && exit 1;;
 	esac
 
 }
 
+# @FUNCTION: set-qtdir
+# @DESCRIPTION:
+# This function is not needed anymore.
 set-qtdir() {
-	DONOTHING=1
-	# Functionality not needed anymore
+	:
 }
 
+# @FUNCTION: qtver-from-kdever
+# @USAGE: < kde-version >
+# @DESCRIPTION:
 # returns minimal qt version needed for specified kde version
 qtver-from-kdever() {
-
-	debug-print-function $FUNCNAME $*
+	debug-print-function $FUNCNAME "$@"
 
 	local ver
 
@@ -796,8 +840,7 @@ qtver-from-kdever() {
 }
 
 min-kde-ver() {
-
-	debug-print-function $FUNCNAME $*
+	debug-print-function $FUNCNAME "$@"
 
 	case $1 in
 		2*)			selected_version="2.2.2";;
@@ -814,22 +857,25 @@ min-kde-ver() {
 
 }
 
+# @FUNCTION: kde_sandbox_patch
+# @USAGE: < dir > [ dir ] [ dir ] [...]
+# @DESCRIPTION:
 # generic makefile sed for sandbox compatibility. for some reason when the kde makefiles (of many packages
 # and versions) try to chown root and chmod 4755 some binaries (after installing, target install-exec-local),
 # they do it to the files in $(bindir), not $(DESTDIR)/$(bindir). Most of these have been fixed in latest cvs
 # but a few remain here and there.
+#
 # Pass a list of dirs to sed, Makefile.{am,in} in these dirs will be sed'ed.
 # This should be harmless if the makefile doesn't need fixing.
 kde_sandbox_patch() {
+	debug-print-function $FUNCNAME "$@"
 
-	debug-print-function $FUNCNAME $*
-
-	while [ -n "$1" ]; do
-	# can't use dosed, because it only works for things in ${D}, not ${S}
+	while [[ -n "$1" ]]; do
+	# can't use dosed, because it only works for things in ${ED}, not ${S}
 	cd $1
 	for x in Makefile.am Makefile.in Makefile
 	do
-		if [ -f "$x" ]; then
+		if [[ -f "$x" ]]; then
 			echo Running sed on $x
 			cp $x ${x}.orig
 			sed -e 's: $(bindir): $(DESTDIR)/$(bindir):g' -e 's: $(kde_datadir): $(DESTDIR)/$(kde_datadir):g' -e 's: $(TIMID_DIR): $(DESTDIR)/$(TIMID_DIR):g' ${x}.orig > ${x}
@@ -841,24 +887,23 @@ kde_sandbox_patch() {
 
 }
 
+# @FUNCTION: kde_remove_flag
+# @USAGE: < dir > < flag >
+# @DESCRIPTION:
 # remove an optimization flag from a specific subdirectory's makefiles.
 # currently kdebase and koffice use it to compile certain subdirs without
 # -fomit-frame-pointer which breaks some things.
-# Parameters:
-# $1: subdirectory
-# $2: flag to remove
 kde_remove_flag() {
+	debug-print-function $FUNCNAME "$@"
 
-	debug-print-function $FUNCNAME $*
-
-	cd ${S}/${1} || die
-	[ -n "$2" ] || die
+	cd "${S}"/${1}  || die "cd to '${S}/${1}' failed."
+	[[ -n "$2" ]] || die "missing argument to kde_remove_flag"
 
 	cp Makefile Makefile.orig
 	sed -e "/CFLAGS/ s/${2}//g
 /CXXFLAGS/ s/${2}//g" Makefile.orig > Makefile
 
-	cd $OLDPWD
+	cd "${OLDPWD}"
 
 }
 
@@ -878,7 +923,7 @@ buildsycoca() {
 		# before running kbuildsycoca. This makes sure they don't show up in the
 		# 3.5 K-menu unless the user manually adds them.
 		XDG_DATA_DIRS="/usr/share:${KDEDIR}/share:/usr/local/share"
-		${KDEDIR}/bin/kbuildsycoca --global --noincremental &> /dev/null
+		"${KDEDIR}"/bin/kbuildsycoca --global --noincremental &> /dev/null
 		eend $?
 	fi
 }
@@ -901,8 +946,8 @@ Hidden=true"
 				echo "${uninstall_file}" | diff -qs ${entry} - &> /dev/null
 				if [[ $? != 0 ]]; then
 					if [[ ! -f ${ED}${PREFIX}/share/applications/kde/$(basename ${entry}) ]]; then
-						dodir ${PREFIX}/share/applications/kde
-						mv ${entry} ${ED}${PREFIX}/share/applications/kde
+						dodir "${PREFIX}"/share/applications/kde
+						mv ${entry} "${ED}${PREFIX}"/share/applications/kde
 					else
 						ewarn "QA: $(basename ${entry}) already exists in ${PREFIX}/share/applications/kde."
 					fi
@@ -911,11 +956,12 @@ Hidden=true"
 		fi
 	fi
 
-	validate_desktop_entries ${PREFIX}/share/applications
+	validate_desktop_entries "${PREFIX}"/share/applications
 }
 
 # is this a kde-base ebuid?
-if [ "${CATEGORY}" == "kde-base" ]; then
+if [[ "${CATEGORY}" == "kde-base" ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	export KDEBASE="true"
 fi
+

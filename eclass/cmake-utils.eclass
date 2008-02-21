@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.5 2008/02/20 00:35:11 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.6 2008/02/20 14:33:20 zlin Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -31,7 +31,6 @@ _use_me_now() {
 }
 
 # @VARIABLE: DOCS
-# @USAGE: DOCS="README ChangeLog"
 # @DESCRIPTION:
 # Documents to dodoc
 

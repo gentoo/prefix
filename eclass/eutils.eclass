@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.297 2008/02/15 07:43:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.299 2008/02/20 17:32:02 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -47,6 +47,27 @@ ebeep() {
 			sleep 1
 		done
 	fi
+}
+
+# @FUNCTION: ecvs_clean
+# @USAGE: [list of dirs]
+# @DESCRIPTION:
+# Remove CVS directories recursiveley.  Useful when a source tarball contains
+# internal CVS directories.  Defaults to $PWD.
+ecvs_clean() {
+	[[ -z $* ]] && set -- .
+	find "$@" -type d -name 'CVS' -prune -print0 | xargs -0 rm -rf
+	find "$@" -type f -name '.cvs*' -print0 | xargs -0 rm -rf
+}
+
+# @FUNCTION: esvn_clean
+# @USAGE: [list of dirs]
+# @DESCRIPTION:
+# Remove .svn directories recursiveley.  Useful when a source tarball contains
+# internal Subversion directories.  Defaults to $PWD.
+esvn_clean() {
+	[[ -z $* ]] && set -- .
+	find "$@" -type d -name '.svn' -prune -print0 | xargs -0 rm -rf
 }
 
 # Default directory where patches are located

@@ -1,9 +1,14 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-dist.eclass,v 1.74 2006/01/01 01:14:59 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-dist.eclass,v 1.75 2008/02/20 20:59:43 philantrop Exp $
+
+# @ECLASS: kde-dist.eclass
+# @MAINTAINER:
+# kde@gentoo.org
 #
-# Author Dan Armak <danarmak@gentoo.org>
-#
+# original author Dan Armak <danarmak@gentoo.org>
+# @BLURB: This is the kde-dist eclass for >=2.2.1 kde base packages
+# @DESCRIPTION:
 # This is the kde-dist eclass for >=2.2.1 kde base packages.  Don't use for kdelibs though :-)
 # Don't use it for e.g. kdevelop, koffice because of their separate versioning schemes.
 
@@ -11,7 +16,7 @@ inherit kde
 
 # Upstream released 3.5.0_rc1 with tarballs labelled as just 3.5.0, so we have our own copies
 # on mirror://gentoo
-if [ "$PV" == "3.5.0_rc1" ]; then
+if [[ "$PV" == "3.5.0_rc1" ]]; then
 	SRC_URI="$SRC_URI mirror://gentoo/$P.tar.bz2"
 else
 
@@ -33,17 +38,17 @@ else
 					debug-print "${ECLASS}: cvs detected" ;;
 		*)			debug-print "${ECLASS}: Error: unrecognized version $PV, could not set SRC_URI" ;;
 	esac
-	[ -n "${SRC_PATH}" ] && SRC_URI="${SRC_URI} mirror://kde/${SRC_PATH}"
+	[[ -n "${SRC_PATH}" ]] && SRC_URI="${SRC_URI} mirror://kde/${SRC_PATH}"
 fi
 debug-print "${ECLASS}: finished, SRC_URI=${SRC_URI}"
 
 need-kde ${PV}
 
 # 3.5 prereleases
-[ "${PV}" == "3.5_alpha1" ] && S=${WORKDIR}/${PN}-3.4.90
-[ "${PV}" == "3.5_beta1" ] && S=${WORKDIR}/${PN}-3.4.91
-[ "${PV}" == "3.5.0_beta2" ] && S=${WORKDIR}/${PN}-3.4.92
-[ "${PV}" == "3.5.0_rc1" ] && S=${WORKDIR}/${PN}-3.5.0
+[[ "${PV}" == "3.5_alpha1" ]] && S=${WORKDIR}/${PN}-3.4.90
+[[ "${PV}" == "3.5_beta1" ]] && S=${WORKDIR}/${PN}-3.4.91
+[[ "${PV}" == "3.5.0_beta2" ]] && S=${WORKDIR}/${PN}-3.4.92
+[[ "${PV}" == "3.5.0_rc1" ]] && S=${WORKDIR}/${PN}-3.5.0
 
 DESCRIPTION="KDE ${PV} - "
 HOMEPAGE="http://www.kde.org/"
@@ -52,6 +57,14 @@ SLOT="${KDEMAJORVER}.${KDEMINORVER}"
 
 # add blockers on split packages derived from this one
 for x in $(get-child-packages ${CATEGORY}/${PN}); do
-	DEPEND="${DEPEND} !=${x}-${SLOT}*"
-	RDEPEND="${RDEPEND} !=${x}-${SLOT}*"
+	case ${EAPI:-0} in
+		# Add EAPIs without SLOT dependencies.
+		0)  DEPEND="${DEPEND} !=${x}-${KDEMAJORVER}.${KDEMINORVER}*"
+			RDEPEND="${RDEPEND} !=${x}-${KDEMAJORVER}.${KDEMINORVER}*"
+			;;
+		# EAPIs with SLOT dependencies.
+		*)  DEPEND="${DEPEND} !${x}:${SLOT}"
+			RDEPEND="${RDEPEND} !${x}:${SLOT}"
+			;;
+	esac
 done

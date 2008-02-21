@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.10 2008/02/14 22:41:49 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.11 2008/02/20 20:03:38 cardoe Exp $
 #
 # @ECLASS: mythtv.eclass
 # @MAINTAINER: Doug Goldstein <cardoe@gentoo.org>
@@ -21,8 +21,8 @@ esac
 
 # _pre is from SVN trunk while _p and _beta are from SVN ${MY_PV}-fixes
 # TODO: probably ought to do something smart if the regex doesn't match anything
-[[ "${PV}" =~ (_beta|_pre|_p)([0-9]+) ]] || {
-	eerror "Invalid version requested (_beta|_pre|_p) only"
+[[ "${PV}" =~ (_beta|_pre|_p|_alpha)([0-9]+) ]] || {
+	eerror "Invalid version requested (_alpha|_beta|_pre|_p) only"
 	exit 1
 }
 
@@ -31,13 +31,12 @@ MYTHTV_REV="${BASH_REMATCH[2]}" # revision number
 
 case $REV_PREFIX in
 	    _pre) MYTHTV_REPO="trunk/${MY_PN}";;
-	_p|_beta) VER_COMP=( $(get_version_components ${MY_PV}) )
+	_p|_beta|_alpha) VER_COMP=( $(get_version_components ${MY_PV}) )
 	          FIXES_VER="${VER_COMP[0]}-${VER_COMP[1]}"
 	          MYTHTV_REPO="branches/release-${FIXES_VER}-fixes/${MY_PN}";;
 esac
 
-ESVN_REPO_URI="http://svn.mythtv.org/svn/${MYTHTV_REPO}"
-ESVN_OPTIONS="-r ${MYTHTV_REV}"
+ESVN_REPO_URI="http://svn.mythtv.org/svn/${MYTHTV_REPO}@${MYTHTV_REV}"
 
 HOMEPAGE="http://www.mythtv.org"
 LICENSE="GPL-2"
