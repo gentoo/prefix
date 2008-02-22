@@ -183,7 +183,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	local def="20080202"
+	local def="20080222"
 	case ${CHOST} in
 		powerpc-ibm-aix*)            PV="${def}" ;;
 		i*86-apple-darwin8)          PV="${def}" ;;
