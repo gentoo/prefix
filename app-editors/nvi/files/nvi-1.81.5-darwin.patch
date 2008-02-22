@@ -1,0 +1,11 @@
+--- dist/configure
++++ dist/configure
+@@ -3560,7 +3560,7 @@
+     ;;
+ 
+   darwin* | rhapsody*)
+-    allow_undefined_flag='-undefined suppress'
++    allow_undefined_flag=''
+     # FIXME: Relying on posixy $() will cause problems for
+     #        cross-compilation, but unfortunately the echo tests do not
+     #        yet detect zsh echo's removal of \ escapes.

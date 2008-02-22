@@ -12,7 +12,7 @@ SRC_URI="http://www.kotnet.org/~skimo/nvi/devel/${P}.tar.gz"
 
 LICENSE="Sleepycat"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~mips-linux ~x86-linux"
 IUSE="perl unicode"
 
 DEPEND="=sys-libs/db-4*"
@@ -32,7 +32,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-db4.patch
 	epatch "${FILESDIR}"/${P}-header.patch
 	epatch "${FILESDIR}"/${P}-darwin-sys5-pty.patch
-	#epatch "${FILESDIR}"/${P}-darwin-flat-namespace.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	touch "${S}"/dist/{configure,aclocal.m4,Makefile.in,stamp-h.in}
 }
 
