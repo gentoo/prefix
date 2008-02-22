@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*openrcs-4.1_pre20080211195755 (22 Feb 2008)
+
+  22 Feb 2008; Elias Pipping <pipping@gentoo.org>
+  -openrcs-4.1_pre20080210230707.ebuild,
+  +openrcs-4.1_pre20080211195755.ebuild:
+  update to latest snapshot
+
 *openrcs-4.1_pre20080210230707 (10 Feb 2008)
 
   10 Feb 2008; Elias Pipping <pipping@gentoo.org>
