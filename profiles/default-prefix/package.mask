@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (Feb 22 2008)
+# Does nvi compile anywhere? Certainly not on Darwin for now
+app-editors/nvi
+
 # Fabian Groffen <grobian@gentoo.org> (13 Feb 2008)
 # This is an unmask to compensate the mask in the main profiles
 ->=sys-apps/portage-2.2_alpha
