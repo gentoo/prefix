@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Remove mask for Portage, the offending releases are no longer in the tree.
+
   17 Feb 2008; Fabian Groffen <grobian@gentoo.org>
   bsd/freebsd/6.2/x86/make.defaults, bsd/freebsd/6.3/x86/make.defaults:
   Enable backwards compatible ARCH for FreeBSD
