@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.156 2008/02/17 11:44:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.158 2008/02/23 19:11:23 ulm Exp $
+
+  23 Feb 2008; Ulrich Mueller <ulm@gentoo.org>
+  -files/openmotif-2.2.3-CAN-2004-0687-0688.patch,
+  -files/openmotif-2.2.3-CAN-2004-0914_sec8.patch,
+  -files/openmotif-2.2.3-XmResizeHashTable.patch,
+  -files/openmotif-2.2.3-automake.patch,
+  -files/openmotif-2.2.3-char_not_supported.patch,
+  -files/openmotif-2.2.3-mwm-configdir.patch,
+  -files/openmotif-2.2.3-no_demos.patch,
+  -files/openmotif-2.2.3-pixel_length.patch,
+  -files/openmotif-2.2.3-popup_timeout.patch,
+  -files/openmotif-2.2.3-uil.patch, -files/openmotif-2.2.3-utf8.patch,
+  -files/CAN-2005-0605.patch, openmotif-2.2.3-r9.ebuild:
+  Move old patches off to mirrors.
+
+  21 Feb 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
+  Add message about unslotting and backwards compatibility to pkg_postinst.
 
   17 Feb 2008; Ulrich Mueller <ulm@gentoo.org>
   +files/openmotif-2.3.0-sensitivity-invisible.patch,

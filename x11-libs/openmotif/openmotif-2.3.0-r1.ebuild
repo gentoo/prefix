@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.6 2008/02/19 07:11:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.7 2008/02/21 17:24:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -101,6 +101,7 @@ src_install() {
 	insinto /etc/X11/app-defaults
 	doins "${FILESDIR}"/Mwm.defaults
 
+	local f
 	for f in /usr/share/man/man1/mwm.1 /usr/share/man/man4/mwmrc.4; do
 		dosed 's:/usr/lib/X11/\(.*system\\&\.mwmrc\):'"${EPREFIX}"'/etc/X11/mwm/\1:g' ${f}
 		dosed 's:/usr/lib/X11/app-defaults:'"${EPREFIX}"'/etc/X11/app-defaults:g' ${f}
@@ -127,4 +128,21 @@ pkg_postinst() {
 
 pkg_postrm() {
 	"${EROOT}"/usr/bin/motif-config -s
+}
+
+pkg_postinst() {
+	local line
+	while read line; do elog "${line}"; done <<-EOF
+	Gentoo is no longer providing slotted Open Motif libraries.
+	See bug 204249 and its dependencies for the reasons.
+
+	From the Open Motif 2.3.0 (upstream) release notes:
+	"Open Motif 2.3 is an updated version of 2.2. Any applications
+	built against a previous 2.x release of Open Motif will be binary
+	compatible with this release."
+
+	If you have binary-only applications requiring libXm.so.3, you may
+	therefore create a symlink from libXm.so.3 to libXm.so.4.
+	Please note, however, that there will be no Gentoo support for this.
+	EOF
 }

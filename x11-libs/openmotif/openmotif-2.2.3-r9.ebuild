@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.2.3-r9.ebuild,v 1.16 2007/12/30 16:54:31 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.2.3-r9.ebuild,v 1.17 2008/02/23 19:11:23 ulm Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ S=${WORKDIR}/${MY_P}
 DESCRIPTION="Open Motif"
 HOMEPAGE="http://www.motifzone.org/"
 SRC_URI="ftp://ftp.motifzone.net/om${PV}/src/${MY_P}.tar.gz
-		mirror://gentoo/${P}-CAN-2004-0914-newer.patch.bz2"
+	mirror://gentoo/${P}-patches-1.tar.bz2"
 
 LICENSE="MOTIF"
 SLOT="2.2"
@@ -43,20 +43,7 @@ src_unpack() {
 	cd ${S}
 
 	# various patches
-	epatch ${FILESDIR}/${P}-mwm-configdir.patch
-	epatch ${FILESDIR}/${P}-CAN-2004-0687-0688.patch
-	epatch ${WORKDIR}/${P}-CAN-2004-0914-newer.patch
-	epatch ${FILESDIR}/${P}-CAN-2004-0914_sec8.patch
-	epatch ${FILESDIR}/${P}-char_not_supported.patch
-	epatch ${FILESDIR}/${P}-pixel_length.patch
-	epatch ${FILESDIR}/${P}-popup_timeout.patch
-	epatch ${FILESDIR}/${P}-XmResizeHashTable.patch
-	epatch ${FILESDIR}/${P}-utf8.patch
-	epatch ${FILESDIR}/${P}-no_demos.patch
-	epatch ${FILESDIR}/CAN-2005-0605.patch
-	epatch ${FILESDIR}/openmotif-2.2.3-uil.patch
-
-	epatch ${FILESDIR}/${P}-automake.patch
+	EPATCH_SUFFIX=patch epatch
 
 	# This replaces deprecated, obsoleted and now invalid AC_DEFINE
 	# with their proper alternatives.
