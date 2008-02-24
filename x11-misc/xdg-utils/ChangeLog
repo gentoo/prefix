@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.44 2008/02/03 13:58:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.45 2008/02/22 13:32:35 ulm Exp $
+
+  22 Feb 2008; Ulrich Mueller <ulm@gentoo.org> xdg-utils-1.0.2-r1.ebuild:
+  Move desktop-file-utils to PDEPEND because of dependency cycle, bug 208043.
 
   03 Feb 2008; Samuli Suominen <drac@gentoo.org> xdg-utils-1.0.2-r1.ebuild:
   Update HOMEPAGE.

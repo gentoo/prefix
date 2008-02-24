@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r1.ebuild,v 1.3 2008/02/03 13:58:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r1.ebuild,v 1.4 2008/02/22 13:32:35 ulm Exp $
 
 EAPI="prefix"
 
@@ -18,8 +18,8 @@ IUSE="doc"
 RESTRICT="test"
 
 RDEPEND="x11-apps/xprop
-	x11-misc/shared-mime-info
-	dev-util/desktop-file-utils"
+	x11-misc/shared-mime-info"
+PDEPEND="dev-util/desktop-file-utils"
 DEPEND=""
 
 src_unpack() {
