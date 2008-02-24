@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.11 2007/06/16 06:49:45 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.12 2008/02/22 13:22:44 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-automagic.patch"
+	epatch "${FILESDIR}/${P}-dontbuild-tests-examples.patch"
 	eautoreconf
 }
 

@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libsamplerate
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.49 2007/06/16 06:49:45 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.50 2008/02/22 13:22:44 flameeyes Exp $
+
+  22 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libsamplerate-0.1.2-dontbuild-tests-examples.patch,
+  libsamplerate-0.1.2-r1.ebuild:
+  Don't build tests and examples during standard make, this saves a few gcc/ld
+  calls for most users.
 
   20 Jun 2007; Joshua Kinard <kumba@gentoo.org>
   libsamplerate-0.1.2-r1.ebuild:
