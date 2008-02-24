@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.196 2008/02/20 20:13:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.197 2008/02/21 10:57:05 opfer Exp $
+
+  21 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-23.0.60-r2.ebuild:
+  README.unicode does not need to be installed anymore, see bug 210950,
+  reported by Tassilo Horn <tassilo@member.fsf.org>
 
   20 Feb 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.60-r2.ebuild:
   Add support for usage of m17n-lib for text shaping.
