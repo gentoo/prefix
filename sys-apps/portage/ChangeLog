@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9375 (24 Feb 2008)
+
+  24 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9300.ebuild, +portage-2.2.00.9375.ebuild:
+  New snapshot, replacing the older masked one, this one still has the same
+  problem, which I think is bug #209538
+
 *portage-2.2.00.9300 (08 Feb 2008)
 
   08 Feb 2008; Fabian Groffen <grobian@gentoo.org>
