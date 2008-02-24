@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libiconv
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.28 2007/01/23 07:17:54 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.29 2008/02/21 22:20:24 vapier Exp $
+
+*libiconv-1.12 (21 Feb 2008)
+
+  21 Feb 2008; Mike Frysinger <vapier@gentoo.org> +libiconv-1.12.ebuild:
+  Version bump -- needs iconv rpath fixed though.
 
   23 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> libiconv-1.11.ebuild:
   Use toolchain-funcs's gen_usr_ldscript. See bug #144529.
