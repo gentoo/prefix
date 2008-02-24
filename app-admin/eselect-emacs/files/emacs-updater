@@ -5,8 +5,37 @@
 # Christian Faulhammer <opfer@gentoo.org>
 # Ulrich Mueller <ulm@gentoo.org>
 
-# Only set colours if output is not redirected
-if tty -s <&1; then
+VERSION=0.4
+SITELISP=/usr/share/emacs/site-lisp
+TMPFILE="$(mktemp /tmp/emacs-updater.XXXXXX)"
+
+cat <<-EOF
+
+Emacs updater version ${VERSION}
+Written by the Gentoo Emacs team http://www.gentoo.org/proj/en/lisp/emacs/
+Find packages that are installed in the wrong location
+
+EOF
+
+# Read in all command-line options and force English output
+OPTIONS=$(LC_ALL=C getopt -o hpn --long help,pretend,nocolour \
+     -n 'emacs-updater' -- "$@")
+
+eval set -- "${OPTIONS}"
+
+while true
+do
+    case "${1}" in
+	-h|--help) echo "You have the following options: --pretend|-p and/or --no-colour|-n" ; exit 0 ;;
+	-p|--pretend) PRETEND="true"; shift 1 ;;
+	-n|--nocolour) NOCOLOUR="true"; shift 1;;
+	--) shift ; break ;;
+    esac
+done
+
+# Only set colours if output is not redirected or the --no-colour
+# option is not set
+if tty -s <&1 && [ -z ${NOCOLOUR} ] ; then
     BLUE=$'\e[34;01m'
     GREEN=$'\e[32;01m'
     RED=$'\e[31;01m'
@@ -15,11 +44,6 @@ if tty -s <&1; then
     BOLD=$'\e[0;01m'
     NORMAL=$'\e[0m'
 fi
-
-SITELISP=/usr/share/emacs/site-lisp
-VERSION=0.3
-TMPFILE="$(mktemp /tmp/emacs-updater.XXXXXX)"
-
 
 message() {
     local OUTPUT=$@
@@ -35,14 +59,6 @@ failure() {
     local OUTPUT=$@
     echo "${RED}*${NORMAL}${BOLD} ${OUTPUT}${NORMAL}" 
 }
-
-cat <<-EOF
-
-Emacs updater version ${VERSION}
-Written by the Gentoo Emacs team http://www.gentoo.org/proj/en/lisp/emacs/
-Find packages that are installed in the wrong location
-
-EOF
 
 if ! [ -x /usr/bin/qfile ]; then
     echo
@@ -66,14 +82,18 @@ fi
 message "Packages with site files in the wrong location:"
 cat "${TMPFILE}"
 
+if [ ${PRETEND} ]; then
+    exit 3
+fi
+
 echo
 echo -n "${BOLD}Remerge packages?${NORMAL} [${GREEN}Yes${NORMAL}/${RED}No${NORMAL}] "
 read choice
 echo
 case "${choice}" in
-     y*|Y*|"")
-          ;;
-     *)
+    y*|Y*|"")
+	;;
+    *)
 	warning "Quitting."
 	exit 10 ;;
 esac
