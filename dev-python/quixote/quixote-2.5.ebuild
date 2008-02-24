@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/quixote-2.4.ebuild,v 1.6 2008/02/23 23:04:32 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/quixote-2.5.ebuild,v 1.1 2008/02/23 23:04:32 hollow Exp $
 
 EAPI="prefix"
 

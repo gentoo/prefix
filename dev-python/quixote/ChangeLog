@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/quixote
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.22 2008/01/17 18:38:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.23 2008/02/23 23:04:32 hollow Exp $
+
+*quixote-2.5 (23 Feb 2008)
+*quixote-1.2 (23 Feb 2008)
+
+  23 Feb 2008; Benedikt Böhm <hollow@gentoo.org> metadata.xml,
+  quixote-0.6.1.ebuild, quixote-1.0.ebuild, +quixote-1.2.ebuild,
+  quixote-2.4.ebuild, +quixote-2.5.ebuild:
+  version bumps, bug #169030 and #206507
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> quixote-1.0.ebuild,
   quixote-2.4.ebuild:
