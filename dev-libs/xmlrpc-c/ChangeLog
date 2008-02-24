@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.41 2008/02/11 19:38:46 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.43 2008/02/22 23:24:14 ingmar Exp $
+
+*xmlrpc-c-1.06.09-r1 (22 Feb 2008)
+
+  22 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  +xmlrpc-c-1.06.09-r1.ebuild:
+  Revision bump to ensure that -Wl,--as-needed get Flameeyes' fix.
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org> xmlrpc-c-1.06.09.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   11 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
   +files/xmlrpc-c-1.06.09-asneeded.patch, xmlrpc-c-1.06.09.ebuild:
