@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.204 2008/02/20 20:59:43 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.205 2008/02/23 22:43:15 philantrop Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -13,7 +13,7 @@
 # @DESCRIPTION:
 # This eclass is inherited by all kde-* eclasses. Few ebuilds inherit straight from here.
 
-WANT_AUTOMAKE="1.9"
+[[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools
 

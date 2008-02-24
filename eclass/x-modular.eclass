@@ -1,50 +1,52 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.89 2007/11/13 22:50:04 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.92 2008/02/22 05:10:03 dberkholz Exp $
 #
-# Author: Donnie Berkholz <dberkholz@gentoo.org>
+# @ECLASS: x-modular.eclass
+# @MAINTAINER:
+# Donnie Berkholz <dberkholz@gentoo.org>, x11@gentoo.org
+# @BLURB: Reduces code duplication in the modularized X11 ebuilds.
+# @DESCRIPTION:
+# This eclass makes trivial X ebuilds possible for apps, fonts, drivers,
+# and more. Many things that would normally be done in various functions
+# can be accessed by setting variables instead, such as patching,
+# running eautoreconf, passing options to configure and installing docs.
 #
-# This eclass is designed to reduce code duplication in the modularized X11
-# ebuilds.
-#
-# Using this eclass:
-#
-# Inherit it. If you need to run autoreconf for any reason (e.g., your patches
-# apply to the autotools files rather than configure), set SNAPSHOT="yes". Set
-# CONFIGURE_OPTIONS to everything you want to pass to the configure script.
-#
-# If you have any patches to apply, set PATCHES to their locations and epatch
-# will apply them. It also handles epatch-style bulk patches, if you know how to
-# use them and set the correct variables. If you don't, read eutils.eclass.
-#
-# If you're creating a font package and the suffix of PN is not equal to the
-# subdirectory of /usr/share/fonts/ it should install into, set FONT_DIR to that
-# directory or directories.
-#
-# If you want to change the auto-application of the driver patchset or prevent
-# it from applying, edit XDPVER in the ebuild. Set it to -1 to prevent patch
-# application or positive integers for that patch version.
-#
-# IMPORTANT: SNAPSHOT, FONT_DIR and XDPVER must be set _before_ the inherit.
-#
-# If you want to install to a non-default prefix (e.g., /opt/xorg), change
-# XDIR. This has not been recently tested. You may need to uncomment the
-# setting of datadir and mandir in x-modular_src_install() or add it back in if
-# it's no longer there. You may also want to change the SLOT.
-#
-# Pretty much everything else should be automatic.
+# All you need to do in a basic ebuild is inherit this eclass and set
+# DESCRIPTION, KEYWORDS and RDEPEND/DEPEND. If your package is hosted
+# with the other X packages, you don't need to set SRC_URI. Pretty much
+# everything else should be automatic.
 
-# Directory prefix to use for everything
+# @ECLASS-VARIABLE: XDIR
+# @DESCRIPTION:
+# Directory prefix to use for everything. If you want to install to a
+# non-default prefix (e.g., /opt/xorg), change XDIR. This has not been
+# recently tested. You may need to uncomment the setting of datadir and
+# mandir in x-modular_src_install() or add it back in if it's no longer
+# there. You may also want to change the SLOT.
 XDIR="${EPREFIX}/usr"
 
 # Set up default patchset version(s) if necessary
 # x11-driver-patches
 if [[ -z "${XDPVER}" ]]; then
+# @ECLASS-VARIABLE: XDPVER
+# @DESCRIPTION:
+# Set up default patchset version(s) if necessary for driver patches. If
+# you want to change the auto-application of the driver patchset or
+# prevent it from applying, edit XDPVER in the ebuild. Set it to -1 to
+# prevent patch application or positive integers for that patch version.
+# Set before inheriting this eclass.
 	XDPVER="1"
 fi
 
 IUSE=""
 HOMEPAGE="http://xorg.freedesktop.org/"
+
+# @ECLASS-VARIABLE: SNAPSHOT
+# @DESCRIPTION:
+# If set to 'yes' and configure.ac exists, eautoreconf will run. Set
+# before inheriting this eclass.
+SNAPSHOT="no"
 
 if [[ ${PV} = 9999* ]]; then
 	GIT_ECLASS="git"
@@ -123,6 +125,12 @@ if [[ "${PN/#font-}" != "${PN}" ]] \
 
 	# Wrap in `if` so ebuilds can set it too
 	if [[ -z ${FONT_DIR} ]]; then
+# @ECLASS-VARIABLE: FONT_DIR
+# @DESCRIPTION:
+# If you're creating a font package and the suffix of PN is not equal to
+# the subdirectory of /usr/share/fonts/ it should install into, set
+# FONT_DIR to that directory or directories. Set before inheriting this
+# eclass.
 		FONT_DIR=${PN##*-}
 
 	fi
@@ -186,6 +194,10 @@ RDEPEND="${RDEPEND}
 inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools \
 	${FONT_ECLASS} ${GIT_ECLASS}
 
+# @FUNCTION: x-modular_specs_check
+# @USAGE:
+# @DESCRIPTION:
+# Make any necessary changes related to gcc specs (generally hardened)
 x-modular_specs_check() {
 	if [[ ${PN:0:11} = "xorg-server" ]] || [[ -n "${DRIVER}" ]]; then
 		append-ldflags -Wl,-z,lazy
@@ -194,6 +206,10 @@ x-modular_specs_check() {
 	fi
 }
 
+# @FUNCTION: x-modular_dri_check
+# @USAGE:
+# @DESCRIPTION:
+# Ensures the server supports DRI if building a driver with DRI support
 x-modular_dri_check() {
 	# (#120057) Enabling DRI in drivers requires that the server was built with
 	# support for it
@@ -207,6 +223,10 @@ x-modular_dri_check() {
 	fi
 }
 
+# @FUNCTION: x-modular_server_supports_drivers_check
+# @USAGE:
+# @DESCRIPTION:
+# Ensures the server SDK is installed if a driver is being built
 x-modular_server_supports_drivers_check() {
 	# (#135873) Only certain servers will actually use or be capable of
 	# building external drivers, including binary drivers.
@@ -220,6 +240,10 @@ x-modular_server_supports_drivers_check() {
 	fi
 }
 
+# @FUNCTION: x-modular_unpack_source
+# @USAGE:
+# @DESCRIPTION:
+# Simply unpack source code. Nothing else.
 x-modular_unpack_source() {
 	if [[ -n ${GIT_ECLASS} ]]; then
 		git_src_unpack
@@ -233,6 +257,10 @@ x-modular_unpack_source() {
 	fi
 }
 
+# @FUNCTION: x-modular_patch_source
+# @USAGE:
+# @DESCRIPTION:
+# Apply all patches
 x-modular_patch_source() {
 	# Use standardized names and locations with bulk patching
 	# Patch directory is ${WORKDIR}/patch
@@ -249,7 +277,11 @@ x-modular_patch_source() {
 		PATCHES="${PATCHES} ${DISTDIR}/x11-driver-patches-${XDPVER}.tar.bz2"
 	fi
 
-	# For specific list of patches
+# @VARIABLE: PATCHES
+# @DESCRIPTION:
+# If you have any patches to apply, set PATCHES to their locations and epatch
+# will apply them. It also handles epatch-style bulk patches, if you know how to
+# use them and set the correct variables. If you don't, read eutils.eclass.
 	if [[ -n "${PATCHES}" ]] ; then
 		for PATCH in ${PATCHES}
 		do
@@ -264,8 +296,11 @@ x-modular_patch_source() {
 	fi
 }
 
+# @FUNCTION: x-modular_reconf_source
+# @USAGE:
+# @DESCRIPTION:
+# Run eautoreconf if necessary, and run elibtoolize.
 x-modular_reconf_source() {
-	# Run autoreconf for CVS snapshots only
 	if [[ "${SNAPSHOT}" = "yes" ]]
 	then
 		# If possible, generate configure if it doesn't exist
@@ -280,6 +315,10 @@ x-modular_reconf_source() {
 	elibtoolize
 }
 
+# @FUNCTION: x-modular_src_unpack
+# @USAGE:
+# @DESCRIPTION:
+# Unpack a package, performing all X-related tasks.
 x-modular_src_unpack() {
 	x-modular_specs_check
 	x-modular_server_supports_drivers_check
@@ -289,6 +328,10 @@ x-modular_src_unpack() {
 	x-modular_reconf_source
 }
 
+# @FUNCTION: x-modular_font_configure
+# @USAGE:
+# @DESCRIPTION:
+# If a font package, perform any necessary configuration steps
 x-modular_font_configure() {
 	if [[ -n "${FONT}" ]]; then
 		# Might be worth adding an option to configure your desired font
@@ -316,6 +359,10 @@ x-modular_font_configure() {
 	fi
 }
 
+# @FUNCTION: x-modular_debug_setup
+# @USAGE:
+# @DESCRIPTION:
+# Set up CFLAGS for a debug build
 x-modular_debug_setup() {
 	if [[ -n "${DEBUGGABLE}" ]]; then
 		if use debug; then
@@ -325,9 +372,18 @@ x-modular_debug_setup() {
 	fi
 }
 
+# @FUNCTION: x-modular_src_configure
+# @USAGE:
+# @DESCRIPTION:
+# Perform any necessary pre-configuration steps, then run configure
 x-modular_src_configure() {
 	x-modular_font_configure
 	x-modular_debug_setup
+
+# @VARIABLE: CONFIGURE_OPTIONS
+# @DESCRIPTION:
+# Any options to pass to configure
+[[ -n ${CONFIGURE_OPTIONTS} ]]
 
 	# If prefix isn't set here, .pc files cause problems
 	if [[ -x ${ECONF_SOURCE:-.}/configure ]]; then
@@ -339,15 +395,28 @@ x-modular_src_configure() {
 	fi
 }
 
+# @FUNCTION: x-modular_src_make
+# @USAGE:
+# @DESCRIPTION:
+# Run make.
 x-modular_src_make() {
 	emake || die "emake failed"
 }
 
+# @FUNCTION: x-modular_src_configure
+# @USAGE:
+# @DESCRIPTION:
+# Compile a package, performing all X-related tasks.
 x-modular_src_compile() {
 	x-modular_src_configure
 	x-modular_src_make
 }
 
+# @FUNCTION: x-modular_src_install
+# @USAGE:
+# @DESCRIPTION:
+# Install a built package to ${ED}, performing any necessary steps.
+# Creates a ChangeLog from git if using live ebuilds.
 x-modular_src_install() {
 	# Install everything to ${XDIR}
 	make \
@@ -367,6 +436,10 @@ x-modular_src_install() {
 	if [[ -e ${S}/ChangeLog ]]; then
 		dodoc ${S}/ChangeLog
 	fi
+# @VARIABLE: DOCS
+# @DESCRIPTION:
+# Any documentation to install
+	[[ -n ${DOCS} ]] && dodoc ${DOCS}
 
 	# Make sure docs get compressed
 	prepalldocs
@@ -377,8 +450,6 @@ x-modular_src_install() {
 			| xargs rm -f
 	fi
 
-	# Don't install overlapping fonts.* files
-	# Generate them instead when possible
 	if [[ -n "${FONT}" ]]; then
 		remove_font_metadata
 	fi
@@ -388,17 +459,31 @@ x-modular_src_install() {
 	fi
 }
 
+# @FUNCTION: x-modular_pkg_preinst
+# @USAGE:
+# @DESCRIPTION:
+# This function doesn't do anything right now, but it may in the future.
 x-modular_pkg_preinst() {
 	# We no longer do anything here, but we can't remove it from the API
 	:
 }
 
+# @FUNCTION: x-modular_pkg_postinst
+# @USAGE:
+# @DESCRIPTION:
+# Run X-specific post-installation tasks on the live filesystem. The
+# only task right now is some setup for font packages.
 x-modular_pkg_postinst() {
 	if [[ -n "${FONT}" ]]; then
 		setup_fonts
 	fi
 }
 
+# @FUNCTION: x-modular_pkg_postrm
+# @USAGE:
+# @DESCRIPTION:
+# Run X-specific post-removal tasks on the live filesystem. The only
+# task right now is some cleanup for font packages.
 x-modular_pkg_postrm() {
 	if [[ -n "${FONT}" ]]; then
 		cleanup_fonts
@@ -406,6 +491,10 @@ x-modular_pkg_postrm() {
 	fi
 }
 
+# @FUNCTION: cleanup_fonts
+# @USAGE:
+# @DESCRIPTION:
+# Get rid of font directories that only contain generated files
 cleanup_fonts() {
 	local ALLOWED_FILES="encodings.dir fonts.cache-1 fonts.dir fonts.scale"
 	for DIR in ${FONT_DIR}; do
@@ -441,6 +530,10 @@ cleanup_fonts() {
 	done
 }
 
+# @FUNCTION: setup_fonts
+# @USAGE:
+# @DESCRIPTION:
+# Generates needed files for fonts and fixes font permissions
 setup_fonts() {
 	if [[ ! -n "${FONT_DIR}" ]]; then
 		msg="FONT_DIR is empty. The ebuild should set it to at least one subdir of /usr/share/fonts."
@@ -454,6 +547,11 @@ setup_fonts() {
 	create_font_cache
 }
 
+# @FUNCTION: remove_font_metadata
+# @USAGE:
+# @DESCRIPTION:
+# Don't let the package install generated font files that may overlap
+# with other packages. Instead, they're generated in pkg_postinst().
 remove_font_metadata() {
 	local DIR
 	for DIR in ${FONT_DIR}; do
@@ -466,8 +564,11 @@ remove_font_metadata() {
 	done
 }
 
-# Installs device-to-driver mappings for system-config-display
-# and anything else that uses hwdata
+# @FUNCTION: install_driver_hwdata
+# @USAGE:
+# @DESCRIPTION:
+# Installs device-to-driver mappings for system-config-display and 
+# anything else that uses hwdata.
 install_driver_hwdata() {
 	insinto /usr/share/hwdata/videoaliases
 	for i in "${FILESDIR}"/*.xinf; do
@@ -479,10 +580,18 @@ install_driver_hwdata() {
 	done
 }
 
+# @FUNCTION: discover_font_dirs
+# @USAGE:
+# @DESCRIPTION:
+# Deprecated. Sets up the now-unused FONT_DIRS variable.
 discover_font_dirs() {
 	FONT_DIRS="${FONT_DIR}"
 }
 
+# @FUNCTION: create_fonts_scale
+# @USAGE:
+# @DESCRIPTION:
+# Create fonts.scale file, used by the old server-side fonts subsystem.
 create_fonts_scale() {
 	ebegin "Creating fonts.scale files"
 		local x
@@ -506,6 +615,10 @@ create_fonts_scale() {
 	eend 0
 }
 
+# @FUNCTION: create_fonts_dir
+# @USAGE:
+# @DESCRIPTION:
+# Create fonts.dir file, used by the old server-side fonts subsystem.
 create_fonts_dir() {
 	ebegin "Generating fonts.dir files"
 		for DIR in ${FONT_DIR}; do
@@ -523,6 +636,10 @@ create_fonts_dir() {
 	eend 0
 }
 
+# @FUNCTION: fix_font_permissions
+# @USAGE:
+# @DESCRIPTION:
+# Font files should have 644 permissions. Ensure this is the case.
 fix_font_permissions() {
 	ebegin "Fixing permissions"
 		for DIR in ${FONT_DIR}; do
@@ -532,6 +649,11 @@ fix_font_permissions() {
 	eend 0
 }
 
+# @FUNCTION: create_font_cache
+# @USAGE:
+# @DESCRIPTION:
+# Create fonts.cache-1 files, used by the new client-side fonts
+# subsystem.
 create_font_cache() {
 	font_pkg_postinst
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.71 2008/01/25 22:45:23 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.72 2008/02/23 02:21:21 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -92,7 +92,11 @@ eautoreconf() {
 	einfo "Running eautoreconf in '$(pwd)' ..."
 	[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
 	eaclocal
-	_elibtoolize --copy --force
+	if ${LIBTOOLIZE:-libtoolize} -n --install >& /dev/null ; then
+		_elibtoolize --copy --force --install
+	else
+		_elibtoolize --copy --force
+	fi
 	eautoconf
 	eautoheader
 	FROM_EAUTORECONF="yes" eautomake ${AM_OPTS}

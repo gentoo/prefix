@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.84 2008/02/20 20:59:43 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.85 2008/02/21 10:33:11 zlin Exp $
 
 # @ECLASS: kde-meta.eclass
 # @MAINTAINER:
@@ -87,14 +87,28 @@ if [[ "${KMNAME}" != "koffice" ]]; then
 	RDEPEND="${RDEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${SLOT}*"
 else
 	case ${EAPI:-0} in
+		0)  
 		# EAPIs without SLOT dependencies.
-		0)  DEPEND="${DEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${KDEMAJORVER}.${KDEMINORVER}*"
-			RDEPEND="${RDEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${KDEMAJORVER}.${KDEMINORVER}*"
-			;;
+		IFSBACKUP="$IFS"
+		IFS=".-_"
+		for x in ${PV}; do
+			if [[ -z "$KOFFICEMAJORVER" ]]; then KOFFICEMAJORVER=$x
+			else if [[ -z "$KOFFICEMINORVER" ]]; then KOFFICEMINORVER=$x
+			else if [[ -z "$KOFFICEREVISION" ]]; then KOFFICEREVISION=$x
+			fi; fi; fi
+		done
+		[[ -z "$KOFFICEMINORVER" ]] && KOFFICEMINORVER="0"
+		[[ -z "$KOFFICEREVISION" ]] && KOFFICEREVISION="0"
+		IFS="$IFSBACKUP"
+		DEPEND="${DEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${KOFFICEMAJORVER}.${KOFFICEMINORVER}*"
+		RDEPEND="${RDEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${KOFFICEMAJORVER}.${KOFFICEMINORVER}*"
+		;;
 		# EAPIs with SLOT dependencies.
-		*)  DEPEND="${DEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
-			RDEPEND="${RDEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
-			;;
+		*)
+		[[ -z ${SLOT} ]] && SLOT="0"
+		DEPEND="${DEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
+		RDEPEND="${RDEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
+		;;
 	esac
 fi
 

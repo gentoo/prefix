@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.34 2007/12/28 17:48:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.36 2008/02/22 09:30:40 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
-# Copyright 2003 Jeremy Maitin-Shepard <jbms@attbi.com>
+# Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
 # Copyright 2004-2005 Mamoru Komachi <usata@gentoo.org>
-# Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
-# Copyright 2007 Ulrich Mueller <ulm@gentoo.org>
+# Copyright 2007-2008 Christian Faulhammer <opfer@gentoo.org>
+# Copyright 2007-2008 Ulrich Müller <ulm@gentoo.org>
 #
 # @ECLASS: elisp-common.eclass
 # @MAINTAINER:
@@ -386,6 +386,16 @@ for greater flexibility, users can load individual package-specific
 initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
 EOF
 		echo
+
+		if [ "${obsolete}" ]; then
+			while read line; do ewarn "${line}"; done <<-EOF
+			Site-initialisation files of Emacs packages are now installed in
+			/usr/share/emacs/site-lisp/site-gentoo.d/. You may consider using
+			/usr/sbin/emacs-updater to rebuild the installed Emacs packages.
+			However, the old location is still supported.
+			EOF
+			echo
+		fi
 	fi
 
 	# Kludge for backwards compatibility: During pkg_postrm, old versions
@@ -396,14 +406,4 @@ EOF
 		[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
 			&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
 	done
-
-#	if [ "${obsolete}" ]; then
-#		while read line; do ewarn "${line}"; done <<-EOF
-#		Site-initialisation files of Emacs packages are now installed in
-#		/usr/share/emacs/site-lisp/site-gentoo.d/. You may consider using
-#		/usr/sbin/emacs-updater to rebuild the installed Emacs packages.
-#		However, the old location is still supported.
-#		EOF
-#		echo
-#	fi
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.52 2008/02/20 22:35:40 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.55 2008/02/21 16:33:09 zlin Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -209,6 +209,9 @@ subversion_fetch() {
 	debug-print "${FUNCNAME}: options = \"${options}\""
 
 	if [[ ! -d ${wc_path}/.svn ]]; then
+		if [[ -n ${ESVN_OFFLINE} ]]; then
+			ewarn "ESVN_OFFLINE cannot be used when the there is no existing checkout."
+		fi
 		# first check out
 		einfo "subversion check out start -->"
 		einfo "     repository: ${repo_uri}${revision:+@}${revision}"
@@ -345,7 +348,7 @@ subversion_src_unpack() {
 # The working copy information on the specified repository URI are set to
 # ESVN_WC_* variables.
 subversion_wc_info() {
-	local repo_uri="$(subversion__get_repository_uri "${1}")"
+	local repo_uri="$(subversion__get_repository_uri "${1:-${ESVN_REPO_URI}}")"
 	local wc_path="$(subversion__get_wc_path "${repo_uri}")"
 
 	debug-print "${FUNCNAME}: repo_uri = ${repo_uri}"
@@ -380,7 +383,7 @@ subversion__svn_info() {
 #
 # param $1 - a repository URI.
 subversion__get_repository_uri() {
-	local repo_uri="${1}"
+	 local repo_uri="${1}"
 
 	debug-print "${FUNCNAME}: repo_uri = ${repo_uri}"
 
@@ -431,13 +434,14 @@ subversion__get_peg_revision() {
 }
 
 # @FUNCTION: subversion_pkg_preinst
+# @USAGE: [repo_uri]
 # @DESCRIPTION:
 # Log the svn revision of source code. Doing this in pkg_preinst because we
 # want the logs to stick around if packages are uninstalled without messing with
 # config protection.
 subversion_pkg_preinst() {
 	local pkgdate=$(date "+%Y%m%d %H:%M:%S")
-	subversion_wc_info
+	subversion_wc_info "${1:-${ESVN_REPO_URI}}"
 	if [[ -n ${ESCM_LOGDIR} ]]; then
 		local dir="${EROOT}/${ESCM_LOGDIR}/${CATEGORY}"
 		if [[ ! -d ${dir} ]]; then
