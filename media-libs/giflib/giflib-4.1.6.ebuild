@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/giflib-4.1.6.ebuild,v 1.9 2008/01/10 08:49:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/giflib-4.1.6.ebuild,v 1.10 2008/02/22 07:15:13 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -33,16 +33,14 @@ src_unpack() {
 }
 
 src_compile() {
-	econf \
-		$(use_enable X x11) \
-		$(
-			# prevent circular depend #111455
-			has_version media-libs/urt \
-				|| --disable-rle \
-				&& use_enable rle \
-		) \
-		--disable-gl \
-		|| die
+	local myconf="--disable-gl $(use_enable X x11)"
+	# prevent circular depend #111455
+	if has_version media-libs/urt ; then
+		myconf="${myconf} $(use_enable rle)"
+	else
+		myconf="${myconf} --disable-rle"
+	fi
+	econf ${myconf}
 	emake || die "emake failed"
 }
 
