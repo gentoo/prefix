@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9380 (24 Feb 2008)
+
+  24 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9376.ebuild, +portage-2.2.00.9380.ebuild:
+  New snapshot which fixes the masked packages output of the previous two
+  masked releases.
+
 *portage-2.2.00.9376 (24 Feb 2008)
 
   24 Feb 2008; Fabian Groffen <grobian@gentoo.org>
