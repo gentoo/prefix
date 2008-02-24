@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.178 2008/02/19 22:19:28 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.180 2008/02/22 17:26:38 jer Exp $
+
+  22 Feb 2008; Jeroen Roovers <jer@gentoo.org> libpng-1.2.24.ebuild:
+  Stable for HPPA (bug #210649).
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org> libpng-1.2.24.ebuild:
+  alpha/ia64/sparc stable wrt #210649
 
   19 Feb 2008; Christian Faulhammer <opfer@gentoo.org> libpng-1.2.24.ebuild:
   stable x86, bug 210649
