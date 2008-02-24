@@ -1,0 +1,12 @@
+--- perl/Makefile.PL.in.orig	2001-08-29 23:56:31.000000000 +0900
++++ perl/Makefile.PL.in	2006-06-20 08:38:44.000000000 +0900
+@@ -4,7 +4,7 @@
+ WriteMakefile(
+     'CC'		=> '@CXX@',
+     'NAME'		=> 'TinySVM',
+-    'INC'		=> '-I@prefix@/include',
+-    'LIBS'        	=> '-L@prefix@/lib -ltinysvm',
++    'INC'		=> '-I../src -I@prefix@/include',
++    'LIBS'        	=> '-L../src -L@prefix@/lib -ltinysvm',
+     'OBJECT'            => 'TinySVM_wrap.o'
+ );
