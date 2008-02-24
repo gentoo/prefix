@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.183 2008/02/15 18:43:49 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.184 2008/02/21 10:56:53 armin76 Exp $
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org> java-config-2.1.4.ebuild:
+  ia64 stable wrt #204252
 
   15 Feb 2008; William L. Thomson Jr. <wltjr@gentoo.org>
   java-config-2.1.4.ebuild:
