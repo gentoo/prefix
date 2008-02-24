@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.0.ebuild,v 1.8 2008/02/23 11:10:57 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.1.ebuild,v 1.2 2008/02/23 11:19:17 markusle Exp $
 
 EAPI="prefix"
 
@@ -67,11 +67,6 @@ src_unpack() {
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
-
-	# fix for pentium M
-	sed -e "s|iret = IntPM;|iret = IntPM;  break;|g" \
-		-i CONFIG/src/backend/archinfo_x86.c \
-		|| die "failed to fix pentium M arch detection"
 
 	BLD_DIR="${S}"/gentoo-build
 	mkdir "${BLD_DIR}" || die "failed to generate build directory"
