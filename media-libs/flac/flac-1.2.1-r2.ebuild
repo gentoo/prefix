@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r2.ebuild,v 1.2 2007/11/18 19:31:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r2.ebuild,v 1.3 2008/02/21 17:09:45 drac Exp $
 
 EAPI="prefix 1"
 
@@ -8,7 +8,8 @@ inherit autotools eutils
 
 DESCRIPTION="free lossless audio encoder and decoder"
 HOMEPAGE="http://flac.sourceforge.net"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
+	http://dev.gentoo.org/~drac/${P}-eautoreconf-gettext-0.17-m4.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
@@ -18,8 +19,7 @@ IUSE="3dnow altivec +cxx debug doc ogg sse"
 RDEPEND="ogg? ( >=media-libs/libogg-1.1.3 )"
 DEPEND="${RDEPEND}
 	x86? ( dev-lang/nasm )
-	sys-apps/gawk
-	sys-devel/gettext
+	!elibc_uclibc? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
 src_unpack() {
@@ -36,7 +36,7 @@ src_unpack() {
 	# Fix build with gcc 4.3, bug #199579
 	epatch "${FILESDIR}/${P}-gcc-4.3-includes.patch"
 
-	AT_M4DIR="m4" eautoreconf
+	AT_M4DIR="../m4 m4" eautoreconf
 }
 
 src_compile() {
@@ -56,7 +56,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
 
-	rm -rf "${ED}"/usr/share/doc/flac-1.2.1
+	rm -rf "${ED}"/usr/share/doc/${P}
 	dodoc AUTHORS README
 	use doc && dohtml -r doc/html/*
 }
