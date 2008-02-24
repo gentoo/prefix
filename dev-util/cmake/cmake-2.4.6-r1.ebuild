@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.6-r1.ebuild,v 1.10 2007/10/10 19:27:27 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.6-r1.ebuild,v 1.11 2008/02/22 18:00:15 ingmar Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,6 @@ SITEFILE="50${PN}-gentoo.el"
 VIMFILE="${PN}.vim"
 
 src_compile() {
-	cd ${S}
-
 	if [ "$(gcc-major-version)" -eq "3" ] ; then
 		append-flags "-fno-stack-protector"
 	fi
@@ -50,8 +48,8 @@ src_test() {
 }
 
 src_install() {
-	make install DESTDIR=${D} || die "install failed"
-	mv ${ED}usr/share/doc/cmake ${ED}usr/share/doc/${PF}
+	make install DESTDIR="${D}" || die "install failed"
+	mv "${ED}"usr/share/doc/cmake "${ED}"usr/share/doc/${PF}
 	if use emacs; then
 		elisp-install ${PN} Docs/cmake-mode.el Docs/cmake-mode.elc || die "elisp-install failed"
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
