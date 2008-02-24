@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.80 2008/02/15 12:16:53 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.81 2008/02/22 13:27:43 flameeyes Exp $
+
+  22 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libsndfile-1.0.17-dontbuild-tests-examples.patch,
+  +files/libsndfile-1.0.17-regtests-need-sqlite.patch,
+  libsndfile-1.0.17-r1.ebuild:
+  Don't build tests and examples during standard make, this saves a few gcc/ld
+  calls for most users. Don't build regtest if sqlite is disabled, rather than
+  just removing it after the fact. Don't request old version of automake, as
+  full eautoreconf is called.
 
   15 Feb 2008; Samuli Suominen <drac@gentoo.org>
   libsndfile-1.0.17-r1.ebuild:
