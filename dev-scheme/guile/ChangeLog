@@ -1,6 +1,12 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.47 2008/02/20 12:57:47 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.48 2008/02/21 13:02:57 hkbst Exp $
+
+  21 Feb 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.3-r2.ebuild,
+  guile-1.8.4.ebuild:
+  since we don't know whether we are uninstalling or merely cleaning an old
+  install, while leaving a new one, we CANNOT remove
+  /usr/share/guile/site/slibcat, fixes bug 210893, again
 
   20 Feb 2008; Marijn Schouten <hkBst@gentoo.org> +guile-1.6.8.ebuild:
   put guile-1.6.8 back as some ebuilds still depend on it, thanks to tove
