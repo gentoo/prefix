@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gperf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.38 2008/02/05 10:38:32 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.39 2008/02/21 14:05:33 armin76 Exp $
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org> gperf-3.0.3.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> gperf-3.0.3.ebuild:
   Stable on ppc64
