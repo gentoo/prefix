@@ -1,6 +1,10 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.280 2008/02/19 18:04:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.281 2008/02/23 22:37:23 ticho Exp $
+
+  23 Feb 2008; Andrej Kacian <ticho@gentoo.org> clamav-0.92.1.ebuild:
+  Enable AllowSupplementaryGroups option by default for better integration
+  with other apps out of the box.
 
   19 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   clamav-0.92.1.ebuild:

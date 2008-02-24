@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92.1.ebuild,v 1.7 2008/02/19 18:04:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92.1.ebuild,v 1.8 2008/02/23 22:37:23 ticho Exp $
 
 EAPI="prefix"
 
@@ -93,6 +93,7 @@ src_install() {
 		-e "s:.*\(User\) .*:\1 clamav:" \
 		-e "s:^\#\(LogFile\) .*:\1 ${EPREFIX}/var/log/clamav/clamd.log:" \
 		-e "s:^\#\(LogTime\).*:\1 yes:" \
+		-e "s:^\#\(AllowSupplementaryGroups\).*:\1 yes:" \
 		"${ED}"/etc/clamd.conf
 
 	# Do the same for /etc/freshclam.conf
@@ -102,6 +103,7 @@ src_install() {
 		-e "s:^\#\(UpdateLogFile\) .*:\1 ${EPREFIX}/var/log/clamav/freshclam.log:" \
 		-e "s:^\#\(NotifyClamd\).*:\1 ${EPREFIX}/etc/clamd.conf:" \
 		-e "s:^\#\(ScriptedUpdates\).*:\1 yes:" \
+		-e "s:^\#\(AllowSupplementaryGroups\).*:\1 yes:" \
 		"${ED}"/etc/freshclam.conf
 
 	if use milter ; then
