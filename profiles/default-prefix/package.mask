@@ -37,7 +37,9 @@ app-text/openrcs
 # Elias Pipping <pipping@gentoo.org> (09 Fev 2008)
 # There's a bug that causes a lot of pointless output with commands like
 # emerge -u system
-=sys-apps/portage-2.2.00.9300
+# A bit more nuanced: bug #209538 (which I (grobian) don't deem crucial,
+# but alas)
+=sys-apps/portage-2.2.00.9376
 
 # Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
 # Screws up things, see bug #204998
