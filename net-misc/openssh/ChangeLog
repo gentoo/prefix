@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.279 2008/02/20 00:09:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.281 2008/02/23 06:28:54 robbat2 Exp $
+
+  23 Feb 2008; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-4.4_p1-r6.ebuild, openssh-4.5_p1-r2.ebuild,
+  openssh-4.6_p1-r3.ebuild, openssh-4.7_p1-r1.ebuild:
+  Drop mips to ~mips because app-admin/skey has dropped the stable mips keyword.
+
+  23 Feb 2008; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Add myself as the contact point for LPK issues. I am on base-system for
+  everything else.
 
   20 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
   openssh-4.7_p1-r20.ebuild:
