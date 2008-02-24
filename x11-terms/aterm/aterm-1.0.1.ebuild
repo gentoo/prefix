@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1.ebuild,v 1.7 2008/02/20 19:31:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1.ebuild,v 1.8 2008/02/21 14:36:01 armin76 Exp $
 
 EAPI="prefix"
 
