@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8303 2008/02/20 20:26:40 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8315 2008/02/23 18:10:15 dev-zero Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,10 +29,40 @@
 
 ### END OF EXAMPLES
 
-# Wulf C. Krueger <philantrop@gentoo.org> (20 Feb 2008)
-# Currently broken.
-kde-base/korundum
-kde-base/qtruby
+# Benedikt Böhm <hollow@gentoo.org> (23 Feb 2008)
+# Masked due to constant security bugs.
+# https://bugs.gentoo.org/show_bug.cgi?id=211166
+www-apps/joomla
+www-apps/phpBB
+www-apps/wordpress
+www-apps/xoops
+
+# Alon Bar-Lev <alonbl@gentoo.org> (23 Feb 2008)
+# These are not yet stable.
+>=sys-fs/dazuko-2.3.5_pre
+sys-fs/redirfs
+
+# Ulrich Mueller <ulm@gentoo.org> (22 Feb 2008)
+# lesstif is not installable, can mask it as well.
+x11-libs/lesstif
+
+# Timo Gurr <tgurr@gentoo.org> (22 Feb 2008)
+# Mask KDE4 versions of ktorrent as long as KDE4 is masked.
+>=net-p2p/ktorrent-3.0.0
+
+# Diego Pettenò <flameeyes@gentoo.org> (21 Feb 2008)
+# New pambase framework for PAM configuration. See Tracker bug #210767.
+sys-auth/pambase
+=sys-libs/pam-0.99.9.0-r1
+=sys-apps/shadow-4.0.18.2-r2
+=sys-freebsd/freebsd-pam-modules-6.2-r1
+=sys-freessd/freebsd-ubin-6.2-r2
+=net-misc/openssh-4.7_p1-r20
+=net-misc/netkit-rsh-0.17-r9
+=net-misc/dropbear-0.50-r1
+=app-admin/conserver-8.1.16-r1
+=x11-misc/wdm-1.28-r2
+=x11-apps/xdm-1.1.6-r1
 
 # Mike Frysinger <vapier@gentoo.org> (20 Feb 2008)
 # Use a generic package like dev-util/devel-chroots. #193566
@@ -77,15 +107,6 @@ www-apps/disc-cover
 # Broken and outdated package. See
 # https://bugs.gentoo.org/show_bug.cgi?id=209029
 www-apps/bugs-bug-genie
-
-# Gunnar Wrobel <wrobel@gentoo.org> (14 Feb 2008)
-# Masked due to constant security bugs.
-# https://bugs.gentoo.org/show_bug.cgi?id=168529
-www-apps/wordpress
-
-# Ulrich Mueller <ulm@gentoo.org> (14 Feb 2008)
-# Unslotted openmotif, needs testing.
-=x11-libs/openmotif-2.3.0-r1
 
 # Mike Auty <ikelos@gentoo.org> (12 Feb 2008)
 # Masked for testing
@@ -297,12 +318,6 @@ dev-libs/liboobs
 # mask cvs-pulled version as it may not be ready for public use
 # see bug #205829
 >sys-libs/libraw1394-1.3.0
-
-# Ulrich Mueller <ulm@gentoo.org> (23 Jan 2008)
-# Last release in 2001. Doesn't work with recent mpg321;
-# writing of data CDs never implemented. 
-# Masked for removal in 30 days, bug 207133.
-app-emacs/cdrw
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (22 Jan 2008)
 # Never was stabled, and will not work with future versions of HAL.  Remove when
@@ -573,10 +588,6 @@ games-fps/doomsday-resources
 # IRC and email comments welcome.
 >=games-strategy/wesnoth-1.3.14
 
-# Ingmar Vanhassel <ingmar@gentoo.org> (14 Jan 2008)
-# Masked pending further testing.
->=dev-util/cmake-2.4.8_rc12
-
 # Markus Ullmann <jokey@gentoo.org> (13 Jan 2008)
 # contrib modules need to be added back and needs general testing
 >=net-nds/openldap-2.4
@@ -617,6 +628,7 @@ app-i18n/scim-cvs
 >=gnustep-base/gnustep-gui-0.13.0
 >=virtual/gnustep-back-0.13.0
 >=gnustep-apps/gorm-1.2.2
+>=gnustep-apps/price-0.8.2
 >=gnustep-apps/simpleagenda-0.33
 
 # Carsten Lohrke <carlo@gentoo.org> (09 Jan 2008)
@@ -825,10 +837,6 @@ sys-kernel/hppa-sources
 # known to mess with poppler and PDF rendering
 >=x11-libs/cairo-1.5.2
 
-# Olivier Crete <tester@gentoo.org> (20 Nov 2007)
-# There is now a better version include in gnome-base/gnome-keyring
-sys-auth/pam_keyring
-
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
 # There is a serious regression (bug #199450) due to
 # an incomplete fix for the non-remote vulnerability
@@ -1006,14 +1014,6 @@ net-misc/networkmanager-pptp
 # Masking out librtas-2.0.0 in favor of new version with smaller version number
 # to force an upgrade.
 =sys-libs/librtas-2.0.0
-
-# Gunnar Wrobel <wrobel@gentoo.org> (15 Aug 2007) 
-# Has open security bugs
-# http://bugs.gentoo.org/show_bug.cgi?id=172525
-# and upstream seems to be unable to deliver a useful 
-# up/downgrade path (will be unmasked with xoops-2.3)
-# http://www.xoops.org/modules/news/article.php?storyid=2905
-www-apps/xoops
 
 # Carsten Lohrke <carlo@gentoo.org> (11 Aug 2007)
 # Masked since KDE 3.5.7 doesn't come with KSync anymore.
@@ -1332,12 +1332,6 @@ app-portage/gatt-svn
 #     layman -ka armagetron
 games-action/armagetronad
 
-# Marien Zwart <marienz@gentoo.org> (11 Jan 2007)
-# Does not work with the latest twisted core,
-# upstream says "I don't think it should have ever been released anyway",
-# so mask until it stabilizes.
-dev-python/twisted-web2
-
 # Roy Marples <uberlord@gentoo.org> (08 Jan 2007)
 # Masked at the request of upstream, pending removal sometime Feb.
 # CVS version is preferred - or use the legacy drivers.
@@ -1560,10 +1554,6 @@ dev-lisp/cl-blog
 # all version contains a static copy of zlib-1.2.1.1 which has security
 # issues
 net-misc/zsync
-
-# Aaron Walker <ka0ttic@gentoo.org> (30 Jun 2005)
-# Masked due to constant security bugs.
-www-apps/phpBB
 
 # David Holm <dholm@gentoo.org> (11 Jun 2005)
 # Masked since it is known to create broken partition

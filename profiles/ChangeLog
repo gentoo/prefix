@@ -1,6 +1,43 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1139 2008/02/21 03:44:17 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1151 2008/02/23 18:10:14 dev-zero Exp $
+
+  23 Feb 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Removed twisted-web2 since upstream never released a stable API and it never
+  left p.mask (bug #208687).
+
+  23 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Mask dazuko pre-release
+
+  22 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask x11-libs/lesstif since it is not installable anyway.
+
+  22 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Unmask =dev-util/cmake-2.4.8.
+
+  22 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Unmask kde-base/{korundum,qtruby}, works fine.
+
+  22 Feb 2008; Timo Gurr <tgurr@gentoo.org> use.local.desc:
+  Add ktorrent-3.0.0 local USE flags for plugin selection.
+
+  22 Feb 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Mask KDE4 versions of ktorrent as long as KDE4 is masked.
+
+  22 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  app-emacs/cdrw removed, bug 207133.
+
+  22 Feb 2008; Gunnar Wrobel <wrobel@gentoo.org> use.desc:
+  Add kolab USE flag.
+
+  21 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add consolekit USE flag for pambase.
+
+  21 Feb 2008; <tester@gentoo.org> package.mask:
+  Remove sys-auth/pam_keyring, its out of the tree
+
+  21 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask for x11-libs/openmotif-2.3.0-r1.
 
   21 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use:
   Adding slang to package.use for app-misc/mc since we ship with USE=unicode

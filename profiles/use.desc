@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.388 2008/02/16 23:59:57 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.390 2008/02/22 17:05:44 cla Exp $
 
 # Keep them sorted
 
@@ -177,6 +177,7 @@ kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yield
 kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
 kdexdeltas - Makes kde ebuilds download binary diffs rather than entire new tarballs for every new release
 kerberos - Adds kerberos support
+kolab - Adds support for the Kolab groupware server
 krb4 - Adds optional kerberos 4 compatibility support
 ladcca - Adds Linux Audio Developer's Configuration and Connection API support (LADCCA) - DEPRECATED, will be replaced by lash
 ladspa - Enables the ability to support ladspa plugins
