@@ -1,6 +1,26 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.215 2008/02/21 00:57:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.220 2008/02/21 18:29:48 drac Exp $
+
+  21 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  files/xscreensaver-5.04-desktop-entry.patch:
+  Rename desktop file to xscreensaver-properties.desktop and add NotShowIn
+  GNOME to avoid duplicate entry with gnome-screensaver in Gnome environment.
+
+  21 Feb 2008; nixnut <nixnut@gentoo.org> xscreensaver-5.04-r1.ebuild:
+  Stable on ppc wrt bug 210913
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  xscreensaver-5.04-r1.ebuild:
+  alpha/ia64/sparc stable wrt #210913
+
+  21 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  files/desktop_entries/screensaver-properties.desktop:
+  make desktop file conform to FreeDesktop specifications
+
+  21 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  xscreensaver-5.04-r1.ebuild:
+  stable x86, bug 210913
 
   21 Feb 2008; Brent Baude <ranger@gentoo.org> xscreensaver-5.04-r1.ebuild:
   stable ppc64, bug 210913

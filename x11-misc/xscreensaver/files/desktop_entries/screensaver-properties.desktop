@@ -1,6 +1,6 @@
 [Desktop Entry]
 Exec=xscreensaver-demo
-Icon=xscreensaver.xpm
+Icon=xscreensaver
 Terminal=false
 Name=Screensaver
 Name[da]=Pauseskærm
@@ -29,4 +29,5 @@ Comment[fi]=Muuta näytönsäästäjän ominaisuuksia
 Comment[fr]=Modifier les propriétés de l'économiseur d'écran
 Comment[nl]=Verander schermbeveiliging voorkeuren
 Type=Application
-Categories=Application;Settings;Appearance;AdvancedSettings;
+Categories=Screensaver;Settings;
+OnlyShowIn=GNOME;KDE;ROX;XFCE;
