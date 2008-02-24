@@ -1,0 +1,131 @@
+diff -ur igal-1.4/Makefile igal-new/Makefile
+--- igal-1.4/Makefile	2003-02-04 01:41:31.000000000 -0500
++++ igal-new/Makefile	2003-03-16 00:39:12.000000000 -0500
+@@ -1,11 +1,14 @@
+ ############################################################################
+ # if you change this, please also modify the value at the top of igal code
+-DESTDIR=/usr/local
++DESTDIR=/usr
+ ############################################################################
+ 
+ BINDIR=$(DESTDIR)/bin
+-MANDIR=$(DESTDIR)/man/man1
+-LIBDIR=$(DESTDIR)/lib/igal
++MANDIR=$(DESTDIR)/share/man/man1
++LIBDIR=$(DESTDIR)/share/igal/lib
++
++default::
++
+ 
+ clean::
+ 	rm -rf $(LIBDIR)
+diff -ur igal-1.4/igal igal-new/igal
+--- igal-1.4/igal	2003-02-02 22:44:38.000000000 -0500
++++ igal-new/igal	2003-03-16 00:40:44.000000000 -0500
+@@ -5,7 +5,7 @@
+ ############################################################################
+ # Please change this accordingly if you change the DESTDIR in the tarball 
+ # distribution Makefile or the --prefix of the RPM installation
+-$LIBDIR = "/usr/local/lib/igal";
++$LIBDIR = "/usr/share/igal/lib";
+ # for example if you make DESTDIR=/usr then $LIBDIR="/usr/lib/igal"
+ ############################################################################
+ #
+@@ -24,7 +24,7 @@
+ # identify and convert) then setting this equal to 1 may speed up the code a
+ # bit (igal will stop checking for these commands every time it runs)
+ #
+-$HAVEIM = 0;
++$HAVEIM = 1;
+ ############################################################################
+ # If you KNOW you have the libjpeg stuff installed (e.g commands like cjpeg,
+ # djpeg and pnmscale) then setting this equal to 1 may speed up the code a
+diff -ur igal-1.4/igal.1 igal-new/igal.1
+--- igal-1.4/igal.1	2003-02-02 22:42:22.000000000 -0500
++++ igal-new/igal.1	2003-03-16 00:48:44.000000000 -0500
+@@ -26,7 +26,7 @@
+ .I "$HOME/.igal"
+ directory where users can store their own templates, overriding
+ the site-wide 
+-.IR "/usr/local/lib/igal" .
++.IR "/usr/share/igal" .
+ 
+ .BR igal " needs " Perl
+ to run and it also relies on a few other programs that come standard
+@@ -44,7 +44,7 @@
+ If you really like
+ .B igal
+ please see the file
+-.IR THANKS " (normally in " /usr/local/lib/igal/ ")."
++.IR THANKS " (in " /usr/share/doc/igal/ ")."
+ If you wish to make a donation (whatever
+ .B igal
+ is worth to you or however small) send it via PayPal to
+@@ -215,19 +215,19 @@
+ .B igal
+ files world-readable.
+ .SH FILES
+-.I /usr/local/lib/igal/indextemplate.html
++.I /usr/share/igal/lib/indextemplate.html
+ .RS
+ The default index template file.
+ .RE
+-.I /usr/local/lib/igal/slidetemplate.html
++.I /usr/share/igal/lib/slidetemplate.html
+ .RS
+ The default file used to generate slides.
+ .RE
+-.I /usr/local/lib/igal/igal.css
++.I /usr/share/igal/lib/igal.css
+ .RS
+ The default style sheet template.
+ .RE
+-.I /usr/local/lib/igal/tile.png
++.I /usr/share/igal/lib/tile.png
+ .RS
+ The tiled image used for the "film reel" effect.
+ .RE
+@@ -242,7 +242,7 @@
+ .I "$HOME/.igal"
+ directory where users can store their own templates, overriding
+ the site-wide 
+-.IR "/usr/local/lib/igal" .
++.IR "/usr/share/igal/lib" .
+ .SH EXAMPLES
+ Run
+ .B igal
+@@ -255,20 +255,9 @@
+ .I http://www.stanford.edu/~epop/igal
+ for online examples.
+ .SH BUGS
+-There are always some.  If you find any let me know.
+-I don't have much time to keep tweaking
+-.B igal
+-but if any major bugs pop up I probably ought to fix them.
++Report any bugs with this package to:
++.I http://bugs.gentoo.org/
+ .SH AUTHOR
+ Eric Pop <epop@stanford.edu>
+ .SH "SEE ALSO"
+ .BR cjpeg ", " djpeg ", " pnmscale ", " identify ", " convert ". "
+-If they didn't come standard with your Linux distribution
+-you can find them at
+-.I rpmfind.net
+-(inside libjpeg and libgr-progs) and at 
+-.IR "imagemagick.org" ,
+-respectively.  Also try
+-.I www.ijg.org
+-and
+-.IR "netpbm.sourceforge.net" .
+diff -ur igal-1.4/indextemplate.html igal-new/indextemplate.html
+--- igal-1.4/indextemplate.html	2003-01-30 01:46:07.000000000 -0500
++++ igal-new/indextemplate.html	2003-03-16 00:41:43.000000000 -0500
+@@ -21,7 +21,7 @@
+     </DIV>
+ 
+     <P class="small">created with
+-       <A href="http://www.stanford.edu/~epop/igal">igal</A></P>
++       <A href="http://www.stanford.edu/~epop/igal">igal</A> on <A HREF="http://www.gentoo.org">gentoo linux</A></P>
+ 
+   </BODY>
+ </HTML>
