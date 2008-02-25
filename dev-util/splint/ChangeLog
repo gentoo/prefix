@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/splint
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/splint/ChangeLog,v 1.19 2008/02/23 14:45:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/splint/ChangeLog,v 1.24 2008/02/24 22:38:05 jer Exp $
+
+  24 Feb 2008; Jeroen Roovers <jer@gentoo.org> -splint-3.0.1.6.ebuild,
+  -splint-3.1.1.ebuild:
+  Remove old versions.
+
+  24 Feb 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Pick up maintainership.
+
+  24 Feb 2008; Jeroen Roovers <jer@gentoo.org> splint-3.1.2.ebuild:
+  Stable for HPPA (bug #210010).
+
+  24 Feb 2008; Raúl Porcel <armin76@gentoo.org> splint-3.1.2.ebuild:
+  sparc stable wrt #210010
+
+  24 Feb 2008; Christian Faulhammer <opfer@gentoo.org> splint-3.1.2.ebuild:
+  stable x86, bug 210010
 
   23 Feb 2008; Brent Baude <ranger@gentoo.org> splint-3.1.2.ebuild:
   stable ppc, bug 210010
