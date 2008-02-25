@@ -1,6 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1151 2008/02/23 18:10:14 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1153 2008/02/24 16:37:53 aballier Exp $
+
+  24 Feb 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask ocaml release candidate
+
+  24 Feb 2008; Fabian Groffen <grobian@gentoo.org> arch.list,
+  -default-darwin/macos/10.4/make.defaults,
+  -default-darwin/macos/10.4/package.mask,
+  -default-darwin/macos/10.4/package.provided,
+  -default-darwin/macos/10.4/packages, -default-darwin/macos/10.4/parent,
+  -default-darwin/macos/10.4/profile.bashrc,
+  -default-darwin/macos/10.4/use.mask, -default-darwin/macos/make.defaults,
+  -default-darwin/macos/package.mask, -default-darwin/macos/parent,
+  -default-darwin/macos/use.mask, -default-darwin/macos/virtuals,
+  -default-darwin/make.defaults, -default-darwin/package.mask,
+  -default-darwin/package.provided, -default-darwin/packages,
+  -default-darwin/parent, -default-darwin/use.force,
+  -default-darwin/use.mask, -default-darwin/virtuals, profiles.desc:
+  Drop ppc-macos keyword and profiles. All of ppc-macos has been moved into
+  the Prefix tree.
 
   23 Feb 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
   Removed twisted-web2 since upstream never released a stable API and it never

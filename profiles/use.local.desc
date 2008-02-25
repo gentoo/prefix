@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3379 2008/02/23 21:21:47 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3380 2008/02/24 15:08:13 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1093,6 +1093,8 @@ media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/slimserver:alac - Enable support for alac
 media-sound/sonata:lyrics - Support for lyrics fetching
+media-sound/sox:amrnb - Enables Adaptive Multi-Rate Audio support (Narrow Band)
+media-sound/sox:amrwb - Enables Adaptive Multi-Rate Audio support (Wide Band)
 media-sound/sox:id3tag - Enables ID3 tagging with id3tag library
 media-sound/squeezecenter:alac - Enable support for alac
 media-sound/squeezecenter:bonjour - Enable support for bonjour
