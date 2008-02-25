@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.126 2008/02/06 00:43:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.127 2008/02/24 19:00:51 vapier Exp $
+
+*man-1.6f-r1 (24 Feb 2008)
+
+  24 Feb 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.6f-unicode.patch, +man-1.6f-r1.ebuild:
+  Do not force -c/-T anymore to groff so that it can work its locale magic
+  #146315 by Matthias Schwarzott.
 
   06 Feb 2008; Christian Faulhammer <opfer@gentoo.org> man-1.6f.ebuild:
   stable love, for bug 166190
