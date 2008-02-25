@@ -715,7 +715,8 @@ for pte in $pt ; do
 	last_rev=""
 	for mte in $mt ; do
 		# kill live CVS ebuilds
-		if [[ $(get_ebuildversion ${mte}) == 9999 ]] ; then
+		v=$(get_ebuildversion ${mte})
+		if [[ ${v} == 9999 || ${v} == 99999999 ]] ; then
 			mt=${mt/$mte/}
 			continue
 		fi
