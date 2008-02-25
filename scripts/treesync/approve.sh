@@ -16,12 +16,12 @@ echo "-------------------------------------------------------------------"
 cat eupdate.updates
 
 # try to figure out if there were real changes
-diffs=$(svn diff --diff-cmd diff -x -u0 $(find . -maxdepth 1 | sed -e 's|^\./||' -e '/^ChangeLog/d' -e '/^metadata.xml$/d' -e '/^Manifest$/d' -e '/^eupdate.updates$/d' -e '/\.svn\(\/.*\)\?$/d' -e '/^\.$/d')| sed -e '/^Index: /d' -e '/^======/d' -e '/^--- /d' -e '/^+++ /d' -e '/^@@ .* @@$/d' -e '/^[-+]# $Header: /d')
+diffs=$(svn diff --diff-cmd diff -x -u0 $(find . -maxdepth 1 | sed -e 's|^\./||' -e '/^ChangeLog/d' -e '/^metadata.xml$/d' -e '/^Manifest$/d' -e '/^eupdate.updates$/d' -e '/\.svn\(\/.*\)\?$/d' -e '/^\.$/d') 2>&1 | sed -e '/^Index: /d' -e '/^======/d' -e '/^--- /d' -e '/^+++ /d' -e '/^@@ .* @@$/d' -e '/^[-+]# $Header: /d' -e '/^[-+]# Copyright 1999-20/d')
 if [[ -z ${diffs} ]] ; then
 	# "trivial" changes, commit straight away
 	echo ">>> Trivial changes detected, committing right away"
 	echo "Full auto-sync (trivial changes)" > eupdate.msg
-	../../scripts/treesync/rqcommit.sh &
+	${PTREEDIR}/scripts/treesync/rqcommit.sh "${dir}" &
 	exit 0
 fi
 
@@ -52,4 +52,4 @@ while [[ -z $do_update ]]; do
 	esac
 done
 
-[[ -n $do_update ]] && ../../scripts/treesync/rqcommit.sh &
+[[ -n $do_update ]] && ${PTREEDIR}/scripts/treesync/rqcommit.sh "${dir}" &
