@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.12.ebuild,v 1.6 2008/02/14 13:12:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.12.ebuild,v 1.8 2008/02/24 11:38:13 vapier Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,15 @@ IUSE="nls python"
 DEPEND="python? ( dev-lang/python )"
 
 S=${WORKDIR}/${MY_P}
+
+pkg_setup() {
+	# workaround #195017
+	if has unmerge-orphans ${FEATURES} && has_version "<${CATEGORY}/${PN}-2.8.10" ; then
+		eerror "Upgrade path is broken with FEATURES=unmerge-orphans"
+		eerror "Please run: FEATURES=-unmerge-orphans emerge cracklib"
+		die "Please run: FEATURES=-unmerge-orphans emerge cracklib"
+	fi
+}
 
 src_compile() {
 	econf \

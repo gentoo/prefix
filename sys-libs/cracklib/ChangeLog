@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.119 2008/02/14 13:12:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.120 2008/02/24 11:38:13 vapier Exp $
+
+  24 Feb 2008; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.12.ebuild:
+  Add workaround for FEATURES=unmerge-orphans and upgrading from older
+  versions #195017 by Pacho Ramos.
 
   14 Feb 2008; Jeroen Roovers <jer@gentoo.org> cracklib-2.8.12.ebuild:
   Stable for HPPA (bug #209064).
