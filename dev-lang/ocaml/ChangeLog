@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.134 2008/01/11 12:03:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.136 2008/02/24 16:39:14 aballier Exp $
+
+*ocaml-3.10.2_rc1 (24 Feb 2008)
+
+  24 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  +ocaml-3.10.2_rc1.ebuild:
+  bump release candidate under pmask
+
+  24 Feb 2008; Alexis Ballier <aballier@gentoo.org> -ocaml-3.09.2.ebuild,
+  -ocaml-3.09.3.ebuild, -ocaml-3.10.0.ebuild:
+  remove unused versions
 
 *ocaml-3.10.1 (11 Jan 2008)
 

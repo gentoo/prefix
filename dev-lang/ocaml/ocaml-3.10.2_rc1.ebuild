@@ -1,14 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.0.ebuild,v 1.11 2008/01/03 18:04:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2_rc1.ebuild,v 1.1 2008/02/24 16:39:14 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
 EAPI="prefix 1"
 
+MY_P="${P/_rc/+rc}"
 DESCRIPTION="fast modern type-inferring functional programming language descended from the ML (Meta Language) family"
 HOMEPAGE="http://www.ocaml.org/"
-SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2)/${P}.tar.gz"
+SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.bz2"
 
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
@@ -23,6 +24,7 @@ DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
 PDEPEND="emacs? ( app-emacs/ocaml-mode )
 	xemacs? ( app-xemacs/ocaml )"
 
+S="${WORKDIR}/${MY_P}"
 pkg_setup() {
 	# dev-lang/ocaml creates its own objects but calls gcc for linking, which will
 	# results in relocations if gcc wants to create a PIE executable
@@ -39,21 +41,21 @@ src_unpack() {
 	cd "${S}"
 
 	# Fix the EXEC_STACK in ocaml compiled binaries (#153382)
-	epatch "${FILESDIR}"/${P}-exec-stack-fixes.patch
+	epatch "${FILESDIR}"/${PN}-3.10.0-exec-stack-fixes.patch
 
 	# The configure script doesn't inherit previous defined variables,
 	# overwriting previous declarations of bytecccompopts, bytecclinkopts,
 	# nativecccompopts and nativecclinkopts. Reported upstream as issue 0004267.
-	epatch "${FILESDIR}"/${P}-configure.patch
+	epatch "${FILESDIR}"/${PN}-3.10.0-configure.patch
 
 	# ocaml has automagics on libX11 and gdbm
 	# http://caml.inria.fr/mantis/view.php?id=4278
-	epatch "${FILESDIR}/${P}-automagic.patch"
+	epatch "${FILESDIR}/${PN}-3.10.0-automagic.patch"
 
 	# Call ld with proper flags, different from gcc ones
 	# This happens when calling ocamlc -pack
 	# See comment in the patch
-	epatch "${FILESDIR}/${P}-call-ld-with-proper-ldflags.patch"
+	epatch "${FILESDIR}/${PN}-3.10.0-call-ld-with-proper-ldflags.patch"
 
 }
 
@@ -103,8 +105,8 @@ src_install() {
 	dodir /usr/include
 	dosym /usr/$(get_libdir)/ocaml/caml /usr/include/
 
-	# Remove ${ED} from ld.conf, as the buildsystem isn't $(DESTDIR) aware
-	dosed "s:${ED}::g" /usr/$(get_libdir)/ocaml/ld.conf
+	# Remove ${D} from ld.conf, as the buildsystem isn't $(DESTDIR) aware
+	dosed "s:${D}::g" /usr/$(get_libdir)/ocaml/ld.conf
 
 	dodoc Changes INSTALL README Upgrading
 
