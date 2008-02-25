@@ -1,6 +1,12 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.48 2008/02/21 13:02:57 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.50 2008/02/24 19:46:45 jer Exp $
+
+  24 Feb 2008; Jeroen Roovers <jer@gentoo.org> guile-1.8.3-r2.ebuild:
+  Stable for HPPA (bug #210465).
+
+  24 Feb 2008; Jeroen Roovers <jer@gentoo.org> guile-1.8.2.ebuild:
+  Fix quoting issues.
 
   21 Feb 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.3-r2.ebuild,
   guile-1.8.4.ebuild:

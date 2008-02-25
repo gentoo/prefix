@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.2.ebuild,v 1.10 2007/12/14 13:49:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.2.ebuild,v 1.11 2008/02/24 19:11:31 jer Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ IUSE="networking regex discouraged deprecated elisp nls debug-freelist debug-mal
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
 
@@ -80,5 +80,5 @@ src_install() {
 	# We don't slot the env.d entry because /usr/bin/guile-config is
 	# there anyway, and will only match the last guile installed.
 	# so the GUILE_LOAD_PATH will match the data available from guile-config.
-	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > ${ED}/etc/env.d/50guile
+	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > "${ED}"/etc/env.d/50guile
 }
