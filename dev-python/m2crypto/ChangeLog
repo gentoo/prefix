@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/m2crypto
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.30 2007/09/20 01:18:51 hawking Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.31 2008/02/24 11:34:25 dev-zero Exp $
+
+*m2crypto-0.18.2 (24 Feb 2008)
+
+  24 Feb 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/m2crypto-0.18.2-timeval_struct_size.patch, +m2crypto-0.18.2.ebuild:
+  Version bump. Fixes one test-error (upstream bug:
+  http://bugzilla.osafoundation.org/show_bug.cgi?id=11893). Added ~sh keyword
+  wrt bug #172817).
 
   20 Sep 2007; Ali Polatel <hawking@gentoo.org>
   +files/m2crypto-0.18-ssize_t.patch, -m2crypto-0.17-r1.ebuild,
