@@ -1,13 +1,18 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/findlib.eclass,v 1.7 2008/02/02 21:10:16 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/findlib.eclass,v 1.8 2008/02/24 15:46:09 aballier Exp $
+
+# @ECLASS: findlib.eclass
+# @MAINTAINER:
+# ml@gentoo.org
 #
 # Original author : Matthieu Sozeau <mattam@gentoo.org> (retired)
 #
 # Changes: http://sources.gentoo.org/viewcvs.py/gentoo-x86/eclass/findlib.eclass?view=log
-# 
+# @BLURB: ocamlfind (a.k.a. findlib) eclass
+# @DESCRIPTION:
 # ocamlfind (a.k.a. findlib) eclass
-#
+
 
 
 # From this findlib version there is proper stublibs support.
@@ -23,6 +28,8 @@ check_ocamlfind() {
 	fi
 }
 
+# @FUNCTION: findlib_src_preinst
+# @DESCRIPTION:
 # Prepare the image for a findlib installation.
 # We use the stublibs style, so no ld.conf needs to be
 # updated when a package installs C shared libraries.
@@ -43,6 +50,8 @@ findlib_src_preinst() {
 	export OCAMLFIND_LDCONF=ignore
 }
 
+# @FUNCTION: findlib_src_install
+# @DESCRIPTION:
 # Install with a properly setup findlib
 findlib_src_install() {
 	findlib_src_preinst

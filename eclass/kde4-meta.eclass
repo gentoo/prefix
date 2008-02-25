@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.2 2008/02/15 19:48:40 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.3 2008/02/24 21:45:39 keytoaster Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -233,8 +233,13 @@ kde4-meta_create_extractlists() {
 	# Don't install cmake modules for split ebuilds to avoid collisions.
 	case ${KMNAME} in
 		kdebase-workspace|kdebase-runtime|kdepim|kdegames)
-			KMCOMPILEONLY="${KMCOMPILEONLY}
-				cmake/modules/"
+			if [[ ${PN} != "libkdegames" ]]; then
+				KMCOMPILEONLY="${KMCOMPILEONLY}
+					cmake/modules/"
+			else
+				KMEXTRA="${KMEXTRA}
+					cmake/modules/"
+			fi
 		;;
 	esac
 
