@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.23.ebuild,v 1.2 2008/02/03 13:57:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.23.ebuild,v 1.3 2008/02/24 14:31:09 leio Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
-	dodoc ChangeLog NEWS README
+	dodoc ChangeLog HACKING NEWS README
 	# in prefix, install an env.d entry such that prefix patch is used/added
 	dodir etc/env.d
 	echo "XDG_DATA_DIRS=${EPREFIX}/usr/share" > "${ED}"/etc/env.d/50mimeinfo
