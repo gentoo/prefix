@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.1 2008/01/30 08:05:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.2 2008/02/24 15:09:44 aballier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/sox/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="alsa ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss sndfile"
+IUSE="alsa amrnb amrwb ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss sndfile "
 
 DEPEND="alsa? ( media-libs/alsa-lib )
 	encode? ( media-sound/lame )
@@ -26,10 +26,9 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	ffmpeg? ( media-video/ffmpeg )
 	ladspa? ( media-libs/ladspa-sdk )
 	>=media-sound/gsm-1.0.12-r1
-	id3tag? ( media-libs/libid3tag )"
-# Fails to compile here ...
-# amrnb? ( media-libs/amrnb )
-# amrwb? ( media-libs/amrwb )
+	id3tag? ( media-libs/libid3tag )
+	amrnb? ( media-libs/amrnb )
+	amrwb? ( media-libs/amrwb )"
 
 src_compile () {
 	# Fixes wav segfaults. See Bug #35745.
@@ -48,8 +47,8 @@ src_compile () {
 		$(use_with ffmpeg) \
 		$(use_with ladspa) \
 		$(use_with id3tag) \
-		--without-amr-wb \
-		--without-amr-nb \
+		$(use_with amrwb amr-wb) \
+		$(use_with amrnb amr-nb) \
 		--enable-fast-ulaw \
 		--enable-fast-alaw \
 		|| die "configure failed"
