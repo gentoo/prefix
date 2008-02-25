@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.131 2008/01/22 22:49:38 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.133 2008/02/25 06:01:20 vapier Exp $
+
+*gdb-6.7.1-r3 (25 Feb 2008)
+
+  25 Feb 2008; Mike Frysinger <vapier@gentoo.org> +gdb-6.7.1-r3.ebuild:
+  Grab fix from upstream for crash #210636 by emerald.
+
+  24 Feb 2008; Raúl Porcel <armin76@gentoo.org> gdb-6.7.1-r2.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *gdb-6.7.1-r2 (22 Jan 2008)
 
