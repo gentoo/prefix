@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.1 2008/02/19 22:59:45 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.2 2008/02/25 15:43:21 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-maco
 IUSE="pam"
 
 DEPEND=">=sys-libs/ncurses-5.2
-	pam? ( >=sys-auth/pambase-20081902.1 )"
+	pam? ( >=sys-auth/pambase-20080219.1 )"
 
 src_unpack() {
 	unpack ${A}
