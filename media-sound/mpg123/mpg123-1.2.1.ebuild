@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.2.0.ebuild,v 1.9 2008/02/25 14:02:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.2.1.ebuild,v 1.1 2008/02/25 14:02:36 drac Exp $
 
 EAPI="prefix"
 
@@ -61,14 +61,13 @@ src_compile() {
 	# ASM on OSX/Intel is broken, bug #203708
 	[[ ${CHOST} == *86*-apple-darwin* ]] && mycpu="--with-cpu=generic"
 
-	econf --with-optimization=0 \
-		--with-audio="${myaudio}" \
-		${mycpu} || die "econf failed."
+	econf --with-optimization=0 ${mycpu} \
+		--with-audio="${myaudio}"
 
 	emake || die "emake failed."
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
-	dodoc AUTHORS ChangeLog NEWS README
+	dodoc AUTHORS ChangeLog NEWS* README
 }

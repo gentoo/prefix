@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.67.ebuild,v 1.10 2008/02/21 17:27:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.67.ebuild,v 1.11 2008/02/25 14:02:36 drac Exp $
 
 EAPI="prefix"
 
 inherit eutils autotools
 
-DESCRIPTION="Real Time mp3 player"
-HOMEPAGE="http://www.mpg123.de"
+DESCRIPTION="a realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3."
+HOMEPAGE="http://www.mpg123.org"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
@@ -70,7 +70,6 @@ src_compile() {
 	elog "of the following USE flags:"
 	elog "alsa oss sdl esd nas jack portaudio"
 	elog "and recompile ${PN}."
-	epause 5
 
 	econf --with-optimization=0 \
 		--with-audio=${audiodev} \
