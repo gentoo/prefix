@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_beta1-r1.ebuild,v 1.2 2008/02/11 12:16:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_beta2.ebuild,v 1.1 2008/02/25 10:38:57 armin76 Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic multilib
+inherit eutils flag-o-matic multilib toolchain-funcs
 
-NSPR_VER="4.7"
+NSPR_VER="4.7.1_beta1"
 RTM_NAME="NSS_${PV//./_}_RTM"
 DESCRIPTION="Mozilla's Network Security Services library that implements PKI support"
 HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
@@ -17,7 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="utils"
 
-DEPEND=">=dev-libs/nspr-${NSPR_VER}"
+DEPEND=">=dev-libs/nspr-${NSPR_VER}
+	>=dev-db/sqlite-3.5"
 
 S="${WORKDIR}"
 
@@ -38,16 +39,23 @@ src_unpack() {
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.11-config.patch
-	epatch "${FILESDIR}"/${PN}-3.11.5-config-1.patch
+	epatch "${FILESDIR}"/${PN}-3.12-config-1.patch
 	epatch "${FILESDIR}"/${PN}-mips64.patch
 }
 
 src_compile() {
 	strip-flags
-	if use amd64 || use ppc64 || use ia64 || use s390; then
-		export USE_64=1
-	fi
+
+	echo > "${T}"/test.c
+	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
+	case $(file "${T}"/test.o) in
+	*64-bit*) export USE_64=1;;
+	*32-bit*) ;;
+	*) die "FAIL";;
+	esac
+
 	export NSDISTMODE=copy
+	export NSS_USE_SYSTEM_SQLITE=1
 	cd "${S}"/mozilla/security/coreconf
 	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "coreconf make failed"
 	cd "${S}"/mozilla/security/dbm
