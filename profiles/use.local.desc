@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3380 2008/02/24 15:08:13 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3384 2008/02/26 02:16:52 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -73,6 +73,9 @@ app-crypt/seahorse:gedit - Enable the gedit plugin
 app-crypt/seahorse:keyring - Enable gnome-keyring support for storing passwords
 app-crypt/seahorse:nautilus - Add support for nautilus file manager
 app-dicts/aspell-be:classic - Support classic spelling by default
+app-dicts/stardict:espeak - Enable espeak text to speach plugin
+app-dicts/stardict:festival - Enable festival text to speach plugin
+app-dicts/stardict:gucharmap - Enable gucharmap dictionary plugin
 app-doc/doxygen:nodot - removes graphviz dependency, along with dot graphs
 app-doc/gimp-help:webinstall - optimize images for web installation (fewer colors, depends on imagemagick)
 app-editors/cssed:plugins - Install plugin development files
@@ -1198,14 +1201,12 @@ media-video/mplayer:color-console - Enable color console output (UNSUPPORTED)
 media-video/mplayer:cpudetection - Enables runtime cpudetection
 media-video/mplayer:custom-cflags - Enables custom cflags (not supported)
 media-video/mplayer:enca - Enables support for charset discovery and conversion
-media-video/mplayer:ivtv - Enable IVTV TV-Out video output
 media-video/mplayer:live - Enables live.com streaming media support
 media-video/mplayer:md5sum - Enables md5sum video output
 media-video/mplayer:mmxext - Enables mmx2 support
 media-video/mplayer:mp2 - Enables support for twolame, an MP2 audio library
 media-video/mplayer:nemesi - Enable Nemesi Streaming Media support
 media-video/mplayer:pnm - Add PNM video output option, to create PPM/PGM/PGMYUV images
-media-video/mplayer:pvr - Video4Linux2 MPEG PVR support
 media-video/mplayer:radio - Enable V4L2 radio interface and support
 media-video/mplayer:rar - Enable Unique RAR File Library
 media-video/mplayer:real - Adds real video support
@@ -1653,7 +1654,6 @@ net-misc/zaptel:ecsteve - Use the STEVE echo canceller
 net-misc/zaptel:ecsteve2 - Use the STEVE2 echo canceller
 net-misc/zaptel:florz - Enable florz enhancement patches for ISDN BRI
 net-misc/zaptel:rtc - Use the realtime clock on x86 and amd64 systems instead of kernel timers
-net-misc/zaptel:ukcid - Enable UK callerid support
 net-misc/zaptel:watchdog - Enable the watchdog to monitor unresponsive and misbehaving interfaces
 net-misc/zaptel:zapnet - Enable SyncPPP, CiscoHDLC and Frame-Relay support
 net-misc/zaptel:zapras - Enable PPP support for Remote-Access-Service
@@ -1670,6 +1670,7 @@ net-p2p/amule:stats - Enable statistic reporting
 net-p2p/btg:event-callback - Enable calling a script or executable for certain events
 net-p2p/btg:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:webinterface - install webBTG
+net-p2p/dbhub:switch_user - Enable support for switching user
 net-p2p/deluge:browser - Enable anonymous browser function
 net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
