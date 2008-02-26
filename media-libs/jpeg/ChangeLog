@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.65 2008/02/25 02:18:59 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.67 2008/02/25 18:29:11 coldwind Exp $
+
+  25 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> jpeg-6b-r8.ebuild:
+  amd64 stable wrt bug #208941
+
+  25 Feb 2008; Raúl Porcel <armin76@gentoo.org> jpeg-6b-r8.ebuild:
+  alpha/ia64/sparc stable wrt #208941
 
   25 Feb 2008; <cla@gentoo.org> jpeg-6b-r8.ebuild:
   Stable on x86 (bug #208941)
