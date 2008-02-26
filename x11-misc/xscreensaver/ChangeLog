@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.220 2008/02/21 18:29:48 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.221 2008/02/25 13:09:44 jer Exp $
+
+  25 Feb 2008; Jeroen Roovers <jer@gentoo.org> xscreensaver-5.04-r1.ebuild:
+  Stable for HPPA (bug #210913).
 
   21 Feb 2008; Samuli Suominen <drac@gentoo.org>
   files/xscreensaver-5.04-desktop-entry.patch:
