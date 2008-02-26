@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/ppmd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.28 2008/02/12 21:17:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.29 2008/02/25 15:55:44 beandog Exp $
+
+  25 Feb 2008; Steve Dibb <beandog@gentoo.org> ppmd-9.1_p8.ebuild,
+  ppmd-9.1_p10.ebuild, ppmd-9.1_p14.ebuild:
+  Keyword -amd64, bug 183365
 
 *ppmd-9.1_p14 (12 Feb 2008)
 
