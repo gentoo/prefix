@@ -8,7 +8,7 @@ inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
-EXTW_VER="0.2.1605"
+EXTW_VER="0.2.1606"
 SRC_URI="extwrapper? ( http://dev.gentoo.org/~haubi/distfiles/toolchain-prefix-wrapper-${EXTW_VER}.tar.bz2 )"
 
 LICENSE="GPL-2"
