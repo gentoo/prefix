@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsvg-cairo/libsvg-cairo-0.1.6.ebuild,v 1.21 2008/01/17 19:33:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsvg-cairo/libsvg-cairo-0.1.6.ebuild,v 1.23 2008/02/26 19:33:10 drac Exp $
 
 EAPI="prefix"
 
@@ -13,10 +13,12 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-DEPEND=">=x11-libs/cairo-0.5.0
-	>=media-libs/libsvg-0.1.2"
+RDEPEND="x11-libs/cairo
+	media-libs/libsvg"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake DESTDIR="${D}" install || die "emake install failed."
 	dodoc AUTHORS ChangeLog NEWS README
 }
