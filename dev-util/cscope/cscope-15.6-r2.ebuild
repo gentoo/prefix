@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit elisp-common eutils
+inherit elisp-common eutils flag-o-matic
 
 DESCRIPTION="Interactively examine a C program"
 HOMEPAGE="http://cscope.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/cscope/${P}.tar.gz"
 
 LICENSE="as-is GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="emacs"
 
 RDEPEND=">=sys-libs/ncurses-5.2"
@@ -31,10 +31,13 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-158831-warning_webscope.patch"
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
 	STRIP="no"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
 	econf --with-ncurses="${EPREFIX}"/usr || die "econf failed"
 	make clean || die "make clean failed"
