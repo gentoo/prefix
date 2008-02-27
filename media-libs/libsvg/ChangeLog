@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libsvg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsvg/ChangeLog,v 1.32 2008/02/12 12:39:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsvg/ChangeLog,v 1.34 2008/02/27 04:20:16 jer Exp $
+
+  27 Feb 2008; Jeroen Roovers <jer@gentoo.org> -libsvg-0.1.2.ebuild,
+  libsvg-0.1.4.ebuild:
+  Stable for HPPA (bug #211558).
+
+  26 Feb 2008; Samuli Suominen <drac@gentoo.org> -libsvg-0.1.3.ebuild,
+  libsvg-0.1.4.ebuild:
+  Use emake and change HOMEPAGE.
 
   12 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> libsvg-0.1.4.ebuild:
   Run elibtoolize.
