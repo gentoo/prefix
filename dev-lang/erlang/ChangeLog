@@ -1,6 +1,6 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.100 2008/02/07 19:41:39 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.101 2008/02/26 13:28:40 opfer Exp $
 
   07 Feb 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.1.ebuild:
   fix a typo pointed out by Holger Hoffstätte <holger AT wizards DOT de> in
@@ -220,11 +220,11 @@
   changed elisp.eclass to elisp-common.eclass as it was before. Thanks to
   ferdy for pointing out.
 
-  30 Dec 2006; <fauli@gentoo.org> -files/9c.patch, -erlang-9c-r2.ebuild,
+  30 Dec 2006; Christian Faulhammer <opfer@gentoo.org> -files/9c.patch, -erlang-9c-r2.ebuild,
   -erlang-10.2.5.ebuild, -erlang-11.2.0.ebuild:
   clean-up old versions
 
-  29 Dec 2006; <fauli@gentoo.org> erlang-11.2.2-r1.ebuild:
+  29 Dec 2006; Christian Faulhammer <opfer@gentoo.org> erlang-11.2.2-r1.ebuild:
   inherit elisp instead of elisp-common; order inherited eclasses
   alphabetically; add quotes around definition of $S
 
