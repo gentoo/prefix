@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~gaas/${P}/"
 IUSE="ssl"
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND="virtual/perl-libnet
 	>=dev-perl/HTML-Parser-3.34
@@ -30,9 +30,12 @@ src_compile() {
 
 src_install() {
 	perl-module_src_install
-	if [[ ${CHOST} != *-darwin* ]] ; then
+
+	touch "${T}"/lowercase
+	if [[ ! -f ${T}/LOWERCASE ]] ; then
 		# most OSX users are on a case-INsensitive filesystem, so don't install
 		# these, as in particular HEAD will collide with head (coreutils)
+		# this also applies for interix (windows underneath)
 		dosym /usr/bin/lwp-request /usr/bin/GET
 		dosym /usr/bin/lwp-request /usr/bin/POST
 		dosym /usr/bin/lwp-request /usr/bin/HEAD
