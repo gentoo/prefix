@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.107 2008/02/18 18:03:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.108 2008/02/25 13:04:09 jer Exp $
+
+  25 Feb 2008; Jeroen Roovers <jer@gentoo.org> tk-8.4.18.ebuild:
+  Stable for HPPA (bug #210326).
 
   18 Feb 2008; Brent Baude <ranger@gentoo.org> tk-8.4.18.ebuild:
   Marking tk-8.4.18 ppc64 for bug 210326
