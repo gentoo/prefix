@@ -1,6 +1,6 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.52 2007/12/17 18:42:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.53 2008/02/26 13:35:11 opfer Exp $
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org> exo-0.3.4.ebuild:
   Stable for HPPA (bug #201747).
@@ -92,7 +92,7 @@
   22 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +exo-0.3.2.ebuild:
   Version bump.
 
-  29 Dec 2006; <fauli@gentoo.org> exo-0.3.0-r1.ebuild:
+  29 Dec 2006; Christian Faulhammer <opfer@gentoo.org> exo-0.3.0-r1.ebuild:
   stable on x86, bug #158082
 
   28 Dec 2006; Joshua Nichols <nichoj@gentoo.org> exo-0.3.0-r1.ebuild:
