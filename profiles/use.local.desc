@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3384 2008/02/26 02:16:52 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3387 2008/02/27 03:54:40 robbat2 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -414,6 +414,7 @@ dev-java/jdbc-mysql:log4j - Enable log4 support
 dev-java/jdbc-oracle-bin:dms - Enable support for the Oracle Dynamic Monitoring Service
 dev-java/jdbc-oracle-bin:ons - Enable support for the Oracle Notification Services (ONS) deamon
 dev-java/jruby:bsf - Enable support for Apache Bean Scripting Framework
+dev-java/jython:servletapi - Add optional support for servlet-api
 dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
 dev-java/log4j:jmx - Build org.apace.log4j.jmx
@@ -626,6 +627,7 @@ dev-util/ctags:ada - Enable Ada support
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/eric:idl - Enable omniorb support
+dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
 dev-util/git:cgi - Install gitweb too
 dev-util/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
@@ -1532,6 +1534,7 @@ net-libs/aqbanking:geldkarte - Enable geldkarte backend
 net-libs/aqbanking:hbci - Enable support for HBCI
 net-libs/aqbanking:yellownet - Enable support for Yellownet
 net-libs/courier-authlib:vpopmail - Enable vpopmail support
+net-libs/cvm:vpopmail - Enable vpopmail support
 net-libs/libetpan:liblockfile - Enable support for liblockfile library
 net-libs/libfwbuilder:stlport - Enagle support for STLport
 net-libs/libpri:bri - Enable ISDN BRI support (bristuff)
