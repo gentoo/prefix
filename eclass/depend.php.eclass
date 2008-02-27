@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.24 2008/02/11 20:47:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.25 2008/02/26 16:26:08 armin76 Exp $
 
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -171,21 +171,13 @@ need_php_by_category() {
 # need to know which PHP version is being used and where the PHP binaries/data
 # are installed.
 has_php() {
-	# If PHP_PKG is already set, then we have remembered our PHP settings
-	# from last time
-	if [[ -n ${PHP_PKG} ]] ; then
-		return
-	fi
-
-	if [[ -z ${PHP_VERSION} ]] ; then
-		# Detect which PHP version we have installed
-		if has_version '=dev-lang/php-5*' ; then
-			PHP_VERSION="5"
-		elif has_version '=dev-lang/php-4*' ; then
-			PHP_VERSION="4"
-		else
-			die "Unable to find an installed dev-lang/php package"
-		fi
+	# Detect which PHP version we have installed
+	if has_version '=dev-lang/php-5*' ; then
+		PHP_VERSION="5"
+	elif has_version '=dev-lang/php-4*' ; then
+		PHP_VERSION="4"
+	else
+		die "Unable to find an installed dev-lang/php package"
 	fi
 
 	# If we get here, then PHP_VERSION tells us which version of PHP we
