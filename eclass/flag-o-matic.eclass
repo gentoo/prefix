@@ -616,6 +616,8 @@ raw-ldflags() {
 bindnow-flags() {
 	ewarn "QA: stop using the bindnow-flags function ... simply drop it from your ebuild" >&2
 
+	[[ ${CHOST} == *-interix* ]] && return 0
+
 	case $($(tc-getLD) -v 2>&1 </dev/null) in
 	*GNU* | *'with BFD'*) # GNU ld
 		echo "-Wl,-z,now" ;;
