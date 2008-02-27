@@ -27,6 +27,7 @@ arts - Adds support for aRts: the KDE sound daemon
 atm - Enable Asynchronous Transfer Mode protocol support
 audiofile - Adds support for libaudiofile where applicable
 avahi - Add avahi/Zeroconf support
+aqua - Include support for the Aqua / Carbon GUI
 bash-completion - Enable bash-completion support
 bcmath - Adds support for libbcmath
 berkdb - Adds support for sys-libs/db (Berkeley DB for MySQL)
@@ -53,6 +54,7 @@ cgi - Add CGI script support
 chasen - Enable chasen (Japanese Morphological Analysis System) support
 cjk - Adds support for Multi-byte character languages (Chinese, Japanese, Korean)
 clamav - Adds support for Clam AntiVirus software (usually with a plugin)
+coreaudio - Build the CoreAudio driver on Mac OS X systems
 cracklib - Support for cracklib strong password checking
 crypt - Add support for encryption -- using mcrypt or gpg where applicable
 cscope - Enables cscope interface -- in vim for example
