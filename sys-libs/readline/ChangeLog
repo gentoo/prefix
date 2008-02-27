@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.114 2008/02/26 00:20:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.115 2008/02/26 23:06:13 coldwind Exp $
+
+  26 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
+  readline-5.2_p12-r1.ebuild:
+  amd64 stable wrt bug #211332
 
   26 Feb 2008; Brent Baude <ranger@gentoo.org> readline-5.2_p12-r1.ebuild:
   stable ppc, bug 211332
