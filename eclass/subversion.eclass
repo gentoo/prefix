@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.55 2008/02/21 16:33:09 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.56 2008/02/27 12:54:35 zlin Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -227,7 +227,7 @@ subversion_fetch() {
 		if [[ -n ${ESVN_REVISION} && ${ESVN_REVISION} != ${ESVN_WC_REVISION} ]]; then
 			die "${ESVN}: You requested off-line updating and revision ${ESVN_REVISION} but only revision ${ESVN_WC_REVISION} is available locally."
 		fi
-		einfo "Fetching disabled: Using existing repository copy"
+		einfo "Fetching disabled: Using existing repository copy at revision ${ESVN_WC_REVISION}."
 	else
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 
@@ -236,7 +236,8 @@ subversion_fetch() {
 			if [[ -n ${ESVN_UP_FREQ//[[:digit:]]} ]]; then
 				die "${ESVN}: ESVN_UP_FREQ must be an integer value corresponding to the minimum number of hours between svn up."
 			elif [[ -z $(find "${wc_path}/.svn/entries" -mmin "+$((ESVN_UP_FREQ*60))") ]]; then
-				einfo "Fetching disabled since ${ESVN_UP_FREQ} hours hasn't passed since last update."
+				einfo "Fetching disabled since ${ESVN_UP_FREQ} hours has not passed since last update."
+				einfo "Using existing repository copy at revision ${ESVN_WC_REVISION}."
 				esvn_up_freq=no_update
 			fi
 		fi

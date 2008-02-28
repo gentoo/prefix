@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/confutils.eclass,v 1.21 2008/02/20 13:07:50 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/confutils.eclass,v 1.22 2008/02/27 09:53:04 hollow Exp $
 
 # @ECLASS: confutils.eclass
 # @MAINTAINER:
@@ -36,6 +36,39 @@ confutils_init() {
 	else
 		shared=
 	fi
+}
+
+# @FUNCTION: confutils_require_one
+# @USAGE: <flag> [more flags ...]
+# @DESCRIPTION:
+# Use this function to ensure exactly one of the specified USE flags have been
+# enabled
+confutils_require_one() {
+	local required_flags="$@"
+	local success=0
+
+	for flag in ${required_flags}; do
+		use ${flag} && ((success++))
+	done
+
+	[[ ${success} -eq 1 ]] && return
+
+	echo
+	eerror "You *must* enable *exactly* one of the following USE flags:"
+	eerror "  ${required_flags}"
+	eerror
+	eerror "You can do this by enabling *one* of these flag in /etc/portage/package.use:"
+
+	set -- ${required_flags}
+	eerror "     =${CATEGORY}/${PN}-${PVR} ${1}"
+	shift
+
+	for flag in $@; do
+		eerror "  OR =${CATEGORY}/${PN}-${PVR} ${flag}"
+	done
+
+	echo
+	die "Missing or conflicting USE flags"
 }
 
 # @FUNCTION: confutils_require_any
