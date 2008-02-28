@@ -1,6 +1,10 @@
 # ChangeLog for app-text/convertlit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/ChangeLog,v 1.14 2008/02/22 21:48:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/ChangeLog,v 1.15 2008/02/27 11:32:35 coldwind Exp $
+
+  27 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
+  convertlit-1.8-r1.ebuild:
+  amd64 stable wrt bug #211112
 
   22 Feb 2008; Markus Meier <maekke@gentoo.org> convertlit-1.8-r1.ebuild:
   x86 stable, bug #211112
