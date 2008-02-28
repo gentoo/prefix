@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/supybot
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.26 2008/02/20 19:57:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.27 2008/02/27 21:09:56 swegener Exp $
+
+  27 Feb 2008; Sven Wegener <swegener@gentoo.org> -supybot-0.83.2.ebuild:
+  Cleanup.
 
   20 Feb 2008; Raúl Porcel <armin76@gentoo.org> supybot-0.83.3.ebuild:
   x86 stable
