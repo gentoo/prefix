@@ -6,7 +6,7 @@
  # $Id: epm,v 1.33 2006/09/13 15:09:19 agriffis Exp $
  
  use Getopt::Long;
-@@ -7,7 +7,7 @@
+@@ -7,13 +7,13 @@
  # Global vars
  (my $version = '$Revision: 1.33 $') =~ s/.*?(\d.*\d).*/EPM version $1/;
  my $verbose = 0;
@@ -15,6 +15,13 @@
  my $pkgregex =
      '^.+?\/'.					# group (ignored)
      '(.+?)'.					# name
+     '-(\d+(?:\.\d+)*\w*)'.			# version, eg 1.23.4a
+     '((?:(?:_alpha|_beta|_pre|_rc)\d*)?)'.	# special suffix
+-    '((?:-r\d+)?)$';				# revision, eg r12
++    '((?:-r\d+)?(?:\.\d+)?)$';				# revision, eg r12 or r01.1
+ my $root = '/';
+ my %opt = (
+     'dbpath' => \$dbpath,
 @@ -266,11 +266,11 @@
      if ($opt{'c'}) {
  	# Read in CONFIG_PROTECT from /etc/make.{global,conf}
@@ -25,7 +32,7 @@
  	my ($confprotre) = join '|', @CONFIG_PROTECT;
  	@files = grep {
 -	    (split ' ', $_, 2)[1] =~ /^($confprotre)/o } @files;
-+	    (split ' ', $_, 2)[1] =~ /^@GENTOO_PORTAGE_EPREFIX@($confprotre)/o } @files;
++	    (split ' ', $_, 2)[1] =~ m!^@GENTOO_PORTAGE_EPREFIX@($confprotre)!o } @files;
      }
  
      # Trim @files if doc files requested
