@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.209 2008/02/12 13:01:15 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.212 2008/02/28 04:26:06 beandog Exp $
+
+  28 Feb 2008; Steve Dibb <beandog@gentoo.org> dbus-1.1.20.ebuild:
+  amd64 stable, sec bug 211451
+
+  28 Feb 2008; Steev Klimaszewski <steev@gentoo.org>
+  +files/dbus-1.1.20-fix-build.patch, dbus-1.1.20.ebuild:
+  Add patch so dbus 1.1.20 builds without X
+
+*dbus-1.1.20 (27 Feb 2008)
+
+  27 Feb 2008; Doug Klima <cardoe@gentoo.org> +dbus-1.1.20.ebuild:
+  fix for CVE-2008-0595. potentially fixes bug #211076
 
   12 Feb 2008; Steev Klimaszewski <steev@gentoo.org> dbus-1.1.4.ebuild:
   Disable libaudit when not using SELinux.  Should close bug #209571.  
