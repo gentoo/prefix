@@ -23,7 +23,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static pam tcpd kerberos skey selinux chroot X509 ldap smartcard hpn libedit X userland_GNU"
 
 RDEPEND="pam? ( virtual/pam )
@@ -97,6 +97,8 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-darwin9-display.patch
 	fi
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	eautoreconf
 }
 
@@ -112,6 +114,8 @@ src_compile() {
 	else
 		myconf="${myconf} $(use_with pam)"
 	fi
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
 	econf \
 		--with-ldflags="${LDFLAGS}" \
