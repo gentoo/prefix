@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.2 2008/01/10 08:02:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.3 2008/02/27 10:20:07 vapier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic toolchain-funcs eutils libtool
+inherit flag-o-matic toolchain-funcs eutils libtool autotools
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
@@ -75,12 +75,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-1.2.11-libcaca-new-api.patch #40224
+	epatch "${FILESDIR}"/${PN}-1.2.13-libcaca-new-api.patch #40224
 	epatch "${FILESDIR}"/${PN}-1.2.11-sdl-config.patch
 	epatch "${FILESDIR}"/${PN}-1.2.11-xinerama-head-0.patch #145917
 	epatch "${FILESDIR}"/${P}-pulseaudio.patch #198147
 
-	./autogen.sh || die "autogen failed"
+	./autogen.sh
 	elibtoolize
 }
 

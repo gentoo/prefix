@@ -1,6 +1,5 @@
-diff -Naur SDL-1.2.11-vanilla/configure.in SDL-1.2.11/configure.in
---- SDL-1.2.11-vanilla/configure.in	2006-06-27 06:48:33.000000000 +0200
-+++ SDL-1.2.11/configure.in	2006-09-28 00:59:04.485910345 +0200
+--- SDL-1.2.13/configure.in
++++ SDL-1.2.13/configure.in
 @@ -1338,6 +1338,38 @@
      fi
  }
@@ -48,9 +47,8 @@ diff -Naur SDL-1.2.11-vanilla/configure.in SDL-1.2.11/configure.in
          CheckQtopia
          CheckPicoGUI
          CheckOpenGLX11
-diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents.c SDL-1.2.11/src/video/caca/SDL_cacaevents.c
---- SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents.c	1970-01-01 01:00:00.000000000 +0100
-+++ SDL-1.2.11/src/video/caca/SDL_cacaevents.c	2006-09-28 01:00:37.750731937 +0200
+--- SDL-1.2.13/src/video/caca/SDL_cacaevents.c
++++ SDL-1.2.13/src/video/caca/SDL_cacaevents.c
 @@ -0,0 +1,101 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -76,7 +74,7 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents.c SDL-1.2.11/src/vid
 +
 +#ifdef SAVE_RCSID
 +static char rcsid =
-+ "@(#) $Id: libsdl-1.2.11-libcaca-new-api.patch,v 1.1 2006/09/27 23:24:55 hanno Exp $";
++ "@(#) $Id: libsdl-1.2.13-libcaca-new-api.patch,v 1.1 2008/02/27 10:20:08 vapier Exp $";
 +#endif
 +
 +#include <stdio.h>
@@ -153,9 +151,8 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents.c SDL-1.2.11/src/vid
 +}
 +
 +
-diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents_c.h SDL-1.2.11/src/video/caca/SDL_cacaevents_c.h
---- SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents_c.h	1970-01-01 01:00:00.000000000 +0100
-+++ SDL-1.2.11/src/video/caca/SDL_cacaevents_c.h	2006-09-28 00:59:04.516905633 +0200
+--- SDL-1.2.13/src/video/caca/SDL_cacaevents_c.h
++++ SDL-1.2.13/src/video/caca/SDL_cacaevents_c.h
 @@ -0,0 +1,35 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -181,7 +178,7 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents_c.h SDL-1.2.11/src/v
 +
 +#ifdef SAVE_RCSID
 +static char rcsid =
-+ "@(#) $Id: libsdl-1.2.11-libcaca-new-api.patch,v 1.1 2006/09/27 23:24:55 hanno Exp $";
++ "@(#) $Id: libsdl-1.2.13-libcaca-new-api.patch,v 1.1 2008/02/27 10:20:08 vapier Exp $";
 +#endif
 +
 +#include "SDL_cacavideo.h"
@@ -192,9 +189,8 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacaevents_c.h SDL-1.2.11/src/v
 +extern void Caca_PumpEvents(_THIS);
 +extern void Caca_InitOSKeymap(_THIS);
 +
-diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.c SDL-1.2.11/src/video/caca/SDL_cacavideo.c
---- SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.c	1970-01-01 01:00:00.000000000 +0100
-+++ SDL-1.2.11/src/video/caca/SDL_cacavideo.c	2006-09-28 01:00:37.994694849 +0200
+--- SDL-1.2.13/src/video/caca/SDL_cacavideo.c
++++ SDL-1.2.13/src/video/caca/SDL_cacavideo.c
 @@ -0,0 +1,304 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -220,7 +216,7 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.c SDL-1.2.11/src/vide
 +
 +#ifdef SAVE_RCSID
 +static char rcsid =
-+ "@(#) $Id: libsdl-1.2.11-libcaca-new-api.patch,v 1.1 2006/09/27 23:24:55 hanno Exp $";
++ "@(#) $Id: libsdl-1.2.13-libcaca-new-api.patch,v 1.1 2008/02/27 10:20:08 vapier Exp $";
 +#endif
 +
 +/* libcaca based SDL video driver implementation.
@@ -500,9 +496,8 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.c SDL-1.2.11/src/vide
 +	SDL_DestroyMutex(Caca_mutex);
 +}
 +
-diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.h SDL-1.2.11/src/video/caca/SDL_cacavideo.h
---- SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.h	1970-01-01 01:00:00.000000000 +0100
-+++ SDL-1.2.11/src/video/caca/SDL_cacavideo.h	2006-09-28 01:00:38.360639217 +0200
+--- SDL-1.2.13/src/video/caca/SDL_cacavideo.h
++++ SDL-1.2.13/src/video/caca/SDL_cacavideo.h
 @@ -0,0 +1,76 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -528,7 +523,7 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.h SDL-1.2.11/src/vide
 +
 +#ifdef SAVE_RCSID
 +static char rcsid =
-+ "@(#) $Id: libsdl-1.2.11-libcaca-new-api.patch,v 1.1 2006/09/27 23:24:55 hanno Exp $";
++ "@(#) $Id: libsdl-1.2.13-libcaca-new-api.patch,v 1.1 2008/02/27 10:20:08 vapier Exp $";
 +#endif
 +
 +#ifndef _SDL_cacavideo_h
@@ -580,29 +575,37 @@ diff -Naur SDL-1.2.11-vanilla/src/video/caca/SDL_cacavideo.h SDL-1.2.11/src/vide
 +
 +#endif /* _SDL_cacavideo_h */
 +
-diff -Naur SDL-1.2.11-vanilla/src/video/SDL_sysvideo.h SDL-1.2.11/src/video/SDL_sysvideo.h
---- SDL-1.2.11-vanilla/src/video/SDL_sysvideo.h	2006-05-01 10:02:48.000000000 +0200
-+++ SDL-1.2.11/src/video/SDL_sysvideo.h	2006-09-28 00:59:04.519905177 +0200
+--- SDL-1.2.13/src/video/SDL_sysvideo.h
++++ SDL-1.2.13/src/video/SDL_sysvideo.h
 @@ -404,6 +404,9 @@
  #if SDL_VIDEO_DRIVER_AALIB
  extern VideoBootStrap AALIB_bootstrap;
  #endif
 +#if SDL_VIDEO_DRIVER_CACA
-+extern VideoBootStrap CACA_bootstrap;
++extern VideoBootStrap Caca_bootstrap;
 +#endif
  #if SDL_VIDEO_DRIVER_DUMMY
  extern VideoBootStrap DUMMY_bootstrap;
  #endif
-diff -Naur SDL-1.2.11-vanilla/src/video/SDL_video.c SDL-1.2.11/src/video/SDL_video.c
---- SDL-1.2.11-vanilla/src/video/SDL_video.c	2006-05-01 10:02:48.000000000 +0200
-+++ SDL-1.2.11/src/video/SDL_video.c	2006-09-28 00:59:04.522904721 +0200
+--- SDL-1.2.13/src/video/SDL_video.c
++++ SDL-1.2.13/src/video/SDL_video.c
 @@ -120,6 +120,9 @@
  #if SDL_VIDEO_DRIVER_AALIB
  	&AALIB_bootstrap,
  #endif
 +#if SDL_VIDEO_DRIVER_CACA
-+	&CACA_bootstrap,
++	&Caca_bootstrap,
 +#endif
  #if SDL_VIDEO_DRIVER_DUMMY
  	&DUMMY_bootstrap,
  #endif
+--- SDL-1.2.13/include/SDL_config.h.in
++++ SDL-1.2.13/include/SDL_config.h.in
+@@ -253,6 +253,7 @@
+ /* Enable various video drivers */
+ #undef SDL_VIDEO_DRIVER_AALIB
+ #undef SDL_VIDEO_DRIVER_BWINDOW
++#undef SDL_VIDEO_DRIVER_CACA
+ #undef SDL_VIDEO_DRIVER_DC
+ #undef SDL_VIDEO_DRIVER_DDRAW
+ #undef SDL_VIDEO_DRIVER_DGA
