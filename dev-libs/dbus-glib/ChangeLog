@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/dbus-glib
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.28 2007/09/06 13:16:35 cardoe Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.29 2008/02/27 20:41:14 fmccor Exp $
+
+  27 Feb 2008; Ferris McCormick <fmccor@gentoo.org> dbus-glib-0.74.ebuild:
+  Sparc stable --- Bug #208917 --- around over 5 months and all tests pass.
 
 *dbus-glib-0.74 (06 Sep 2007)
 
