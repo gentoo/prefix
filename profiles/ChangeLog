@@ -1,11 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1157 2008/02/27 02:37:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1161 2008/02/28 05:56:50 ulm Exp $
+
+  28 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Drop local libotf USE flag from app-editors/emacs-cvs; use the global
+  m17n-lib flag instead.
+
+  27 Feb 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added pch local flag for sci-astronomy/celestia
+
+  27 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masking dev-util/catalyst pre-release versions so people will quit filing
+  bug reports on things that I've already fixed.
 
   27 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> ChangeLog:
   Remove avahi from mips use.mask.  This was masked waiting for avahi to go
   stable on mips, which now won't be happening.  If you need to drop your
   package to ~mips to prevent repoman from complaining, feel free.
+
+  27 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org> use.local.desc:
+  s/noweb/web for net-analyzer/nagios-core
 
   26 Feb 2008; Alistair Bush <ali_bush@gentoo.org> use.local.desc:
   Adding dev-java/jython:servletapi description.
