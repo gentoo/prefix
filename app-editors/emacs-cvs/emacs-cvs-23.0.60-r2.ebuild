@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.10 2008/02/21 10:57:05 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.11 2008/02/28 05:51:56 ulm Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="23"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos libotf m17n-lib motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xft xpm aqua"
+IUSE="aqua alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xft xpm"
 RESTRICT="strip"
 
 RDEPEND="sys-libs/ncurses
@@ -50,9 +50,9 @@ RDEPEND="sys-libs/ncurses
 			media-libs/fontconfig
 			media-libs/freetype
 			virtual/xft
-			libotf? (
+			m17n-lib? (
 				>=dev-libs/libotf-0.9.4
-				m17n-lib? ( >=dev-libs/m17n-lib-1.5.1 )
+				>=dev-libs/m17n-lib-1.5.1
 			)
 		)
 		gtk? ( =x11-libs/gtk+-2* )
@@ -140,14 +140,14 @@ src_compile() {
 
 		myconf="${myconf} $(use_enable xft font-backend)"
 		myconf="${myconf} $(use_with xft freetype) $(use_with xft)"
-		if use xft && use libotf; then
-			myconf="${myconf} --with-libotf $(use_with m17n-lib m17n-flt)"
+
+		if use xft; then
+			myconf="${myconf} $(use-with m17n-lib libotf)"
+			myconf="${myconf} $(use_with m17n-lib m17n-flt)"
 		else
 			myconf="${myconf} --without-libotf --without-m17n-flt"
-			use libotf && einfo \
-				"USE flag \"libotf\" has no effect because xft is not set."
-			use m17n-lib && einfo "USE flag \"m17n-lib\" has no effect" \
-				"because xft and libotf are not both set."
+			use m17n-lib && einfo \
+				"USE flag \"m17n-lib\" has no effect because xft is not set."
 		fi
 
 		# GTK+ is the default toolkit if USE=gtk is chosen with other
