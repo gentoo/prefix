@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/detex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.20 2008/02/10 16:51:32 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.21 2008/02/28 18:37:40 aballier Exp $
+
+*detex-2.8-r1 (28 Feb 2008)
+
+  28 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/detex-2.8-ldflags.patch, +detex-2.8-r1.ebuild:
+  respect ldflags, bug #209731, thanks Diego
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org> detex-2.8.ebuild:
   keyword ~x86-fbsd
