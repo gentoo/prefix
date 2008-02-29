@@ -13,18 +13,14 @@ cat << "USAGE_END"
 Usage: motif-config [option]
 
 Options:
-
   -L, --get-lib-path         Print path where openmotif libraries are located.
-
   -I, --get-inc-path         Print path where openmotif includes are located.
-
       --libs                 Print link flags for openmotif
-
       --cflags               Print compilation flags for openmotif
-
 USAGE_END
     exit $1
 }
+
 [[ $# -lt 1 ]] && usage 1
 [[ $# -gt 2 ]] && usage 1
 
@@ -51,22 +47,18 @@ get_libs() {
 for x in "$@"; do
 	case "${x}" in
 		-L|--get-lib-path)
-			[[ $# -gt 2 ]] && usage 1
 			get_lib_path $2
 		;;
 
 		-I|--get-inc-path)
-			[[ $# -gt 2 ]] && usage 1
 			get_inc_path $2
 		;;
 
 		--cflags)
-			[[ $# -gt 2 ]] && usage 1
 			get_cflags $2
 		;;
 
 		--libs)
-			[[ $# -gt 2 ]] && usage 1
 			get_libs $2
 		;;
 
@@ -77,10 +69,6 @@ for x in "$@"; do
 		-v|--version)
 			echo "motif-config-2.3"
 			exit 0
-		;;
-
-		-*)
-			usage 1
 		;;
 
 		*)
