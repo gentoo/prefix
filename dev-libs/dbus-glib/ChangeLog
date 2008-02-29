@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.29 2008/02/27 20:41:14 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.35 2008/02/29 05:38:12 jer Exp $
+
+  29 Feb 2008; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.74.ebuild:
+  Stable for HPPA (bug #208917).
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> dbus-glib-0.74.ebuild:
+  stable ppc64, bug 208917
+
+  28 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> dbus-glib-0.74.ebuild:
+  amd64 stable wrt bug #208917
+
+  28 Feb 2008; Raúl Porcel <armin76@gentoo.org> dbus-glib-0.74.ebuild:
+  alpha/ia64 stable wrt #208917
+
+  28 Feb 2008; nixnut <nixnut@gentoo.org> dbus-glib-0.74.ebuild:
+  Stable on ppc wrt bug 208917
+
+  28 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  dbus-glib-0.74.ebuild:
+  stable x86, bug 208917
 
   27 Feb 2008; Ferris McCormick <fmccor@gentoo.org> dbus-glib-0.74.ebuild:
   Sparc stable --- Bug #208917 --- around over 5 months and all tests pass.

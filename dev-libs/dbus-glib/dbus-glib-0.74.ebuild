@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.74.ebuild,v 1.2 2008/02/27 20:41:14 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.74.ebuild,v 1.8 2008/02/29 05:38:12 jer Exp $
 
 EAPI="prefix"
 
