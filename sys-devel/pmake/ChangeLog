@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/pmake
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.32 2007/02/22 00:51:25 jokey Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.33 2008/02/29 03:23:49 ranger Exp $
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> pmake-1.111.1.ebuild:
+  keyworded ~arch for ppc64, bug 211799
 
   22 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
   Redigest for Manifest2
