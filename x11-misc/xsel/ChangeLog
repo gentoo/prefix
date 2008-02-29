@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/xsel
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.8 2007/02/04 18:46:17 beandog Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.9 2008/02/28 20:05:39 drac Exp $
+
+*xsel-1.1.0 (28 Feb 2008)
+
+  28 Feb 2008; Samuli Suominen <drac@gentoo.org> +xsel-1.1.0.ebuild:
+  Version bump.
 
   04 Feb 2007; Steve Dibb <beandog@gentoo.org> xsel-0.9.6.ebuild:
   amd64 stable, bug 151899
