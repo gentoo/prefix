@@ -1,6 +1,10 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.214 2008/02/14 15:17:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.215 2008/02/28 18:49:22 aballier Exp $
+
+  28 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20080206.ebuild:
+  fix build with use ieee1394, dc1394->libdc1394. Bug #209610
 
   14 Feb 2008; Samuli Suominen <drac@gentoo.org>
   -ffmpeg-0.4.9_p20051216.ebuild, -ffmpeg-0.4.9_p20060302.ebuild,

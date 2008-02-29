@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080206.ebuild,v 1.1 2008/02/06 13:29:16 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080206.ebuild,v 1.2 2008/02/28 18:49:22 aballier Exp $
 
 EAPI="prefix"
 
@@ -103,7 +103,7 @@ src_compile() {
 		myconf="${myconf} --disable-encoders"
 	fi
 	use a52 && myconf="${myconf} --enable-liba52"
-	use ieee1394 && myconf="${myconf} --enable-dc1394"
+	use ieee1394 && myconf="${myconf} --enable-libdc1394"
 	use threads && myconf="${myconf} --enable-pthreads"
 	use X && myconf="${myconf} --enable-x11grab"
 	use aac && myconf="${myconf} --enable-libfaad"
