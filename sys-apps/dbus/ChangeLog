@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.212 2008/02/28 04:26:06 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.216 2008/02/29 05:38:21 jer Exp $
+
+  29 Feb 2008; Jeroen Roovers <jer@gentoo.org> dbus-1.1.20.ebuild:
+  Stable for HPPA (bug #211451).
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> dbus-1.1.20.ebuild:
+  Marking dbus-1.1.20 ppc64 for bug 211451
+
+  28 Feb 2008; Raúl Porcel <armin76@gentoo.org> dbus-1.1.20.ebuild:
+  alpha/ia64/sparc stable wrt security #211451
+
+  28 Feb 2008; Christian Faulhammer <opfer@gentoo.org> dbus-1.1.20.ebuild:
+  stable x86, security bug 211451
 
   28 Feb 2008; Steve Dibb <beandog@gentoo.org> dbus-1.1.20.ebuild:
   amd64 stable, sec bug 211451
