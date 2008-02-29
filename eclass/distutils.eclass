@@ -1,26 +1,24 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.45 2008/01/23 22:19:04 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.46 2008/02/28 20:20:32 dev-zero Exp $
+
+# @ECLASS: distutils.eclass
+# @MAINTAINER:
+# Alastair Tse <liquidx@gentoo.org>
 #
-# Author: Jon Nelson <jnelson@gentoo.org>
-# Current Maintainer: Alastair Tse <liquidx@gentoo.org>
-#
+# Original author: Jon Nelson <jnelson@gentoo.org>
+# @BLURB: This eclass allows easier installation of distutils-based python modules
+# @DESCRIPTION:
 # The distutils eclass is designed to allow easier installation of
 # distutils-based python modules and their incorporation into
 # the Gentoo Linux system.
 #
-# - Features:
-# distutils_src_compile()    - does python setup.py build
-# distutils_src_install()    - does python setup.py install and install docs
-# distutils_python_version() - sets PYVER/PYVER_MAJOR/PYVER_MINOR
-# distutils_python_tkinter() - checks for tkinter support in python
-#
-# - Variables:
-# PYTHON_SLOT_VERSION     - for Zope support
-# DOCS                    - additional DOCS
+# It inherits python, multilib, and eutils
 
 inherit python multilib eutils
 
+# @ECLASS-VARIABLE: PYTHON_SLOT_VERSION
+# @DESCRIPTION:
 # This helps make it possible to add extensions to python slots.
 # Normally only a -py21- ebuild would set PYTHON_SLOT_VERSION.
 if [ "${PYTHON_SLOT_VERSION}" = "2.1" ] ; then
@@ -34,6 +32,13 @@ else
 	python="python"
 fi
 
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION:
+# Additional DOCS
+
+# @FUNCTION: distutils_src_unpack
+# @DESCRIPTION:
+# The distutils src_unpack function, this function is exported
 distutils_src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -44,10 +49,18 @@ distutils_src_unpack() {
 	echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
 }
 
+# @FUNCTION: distutils_src_compile
+# @DESCRIPTION:
+# The distutils src_compile function, this function is exported
 distutils_src_compile() {
 	${python} setup.py build "$@" || die "compilation failed"
 }
 
+# @FUNCTION: distutils_src_install
+# @DESCRIPTION:
+# The distutils src_install function, this function is exported.
+# It also installs the "standard docs" (CHANGELOG, Change*, KNOWN_BUGS, MAINTAINERS,
+# PKG-INFO, CONTRIBUTORS, TODO, NEWS, MANIFEST*, README*, and AUTHORS)
 distutils_src_install() {
 
 	# need this for python-2.5 + setuptools in cases where
@@ -76,8 +89,9 @@ distutils_src_install() {
 	[ -n "${DOCS}" ] && dodoc ${DOCS}
 }
 
-# generic pyc/pyo cleanup script.
-
+# @FUNCTION: distutils_pkg_postrm
+# @DESCRIPTION:
+# Generic pyc/pyo cleanup script. This function is exported.
 distutils_pkg_postrm() {
 	PYTHON_MODNAME=${PYTHON_MODNAME:-${PN}}
 
@@ -96,9 +110,10 @@ distutils_pkg_postrm() {
 	fi
 }
 
-# this is a generic optimization, you should override it if your package
-# installs things in another directory
-
+# @FUNCTION: distutils_pkg_postinst
+# @DESCRIPTION:
+# This is a generic optimization, you should override it if your package
+# installs things in another directory. This function is exported
 distutils_pkg_postinst() {
 	PYTHON_MODNAME=${PYTHON_MODNAME:-${PN}}
 
@@ -115,13 +130,17 @@ distutils_pkg_postinst() {
 	fi
 }
 
-# e.g. insinto ${EROOT}/usr/include/python${PYVER}
-
+# @FUNCTION: distutils_python_version
+# @DESCRIPTION:
+# Calls python_version, so that you can use something like
+#  e.g. insinto ${EROOT}/usr/include/python${PYVER}
 distutils_python_version() {
 	python_version
 }
 
-# checks for if tkinter support is compiled into python
+# @FUNCTION: distutils_python_tkinter
+# @DESCRIPTION:
+# Checks for if tkinter support is compiled into python
 distutils_python_tkinter() {
 	python_tkinter_exists
 }
