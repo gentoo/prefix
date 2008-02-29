@@ -1,0 +1,20 @@
+--- src/configure
++++ src/configure
+@@ -37,6 +37,7 @@
+ #include <gnutls/openssl.h>
+ #include <errno.h>
+ #include <pthread.h>
++#include <gcrypt.h>
+ 
+ GCRY_THREAD_OPTION_PTHREAD_IMPL;
+ 
+--- src/mail.c
++++ src/mail.c
+@@ -40,6 +40,7 @@
+ #if defined(HAVE_GNUTLS)
+ #include <gnutls/openssl.h>
+ #include <pthread.h>
++#include <gcrypt.h>
+ #define MD5Init		MD5_Init
+ #define MD5Update	MD5_Update
+ #define MD5Final	MD5_Final

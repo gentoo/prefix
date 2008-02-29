@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.0.ebuild,v 1.9 2008/02/28 15:17:03 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.1.ebuild,v 1.1 2008/02/28 15:17:03 lack Exp $
 
 EAPI="prefix"
 
@@ -64,11 +64,11 @@ src_compile() {
 			|| die "emake failed"
 	else
 		cd server
-		emake ${TARGET} \
+			emake ${TARGET} \
 			CC="$(tc-getCC)" \
 			$(use lm_sensors || echo without-libsensors=yes) \
 			|| die "emake failed"
-	fi
+			fi
 }
 
 src_install() {
@@ -81,11 +81,11 @@ src_install() {
 			PKGCONFIGDIR="${ED}"/usr/$(get_libdir)/pkgconfig \
 			MANDIR="${ED}"/usr/share/man/man1 \
 			|| die "emake install failed"
-		dosym gkrellm /usr/bin/gkrellm2
+			dosym gkrellm /usr/bin/gkrellm2
 
-		dohtml *.html
+			dohtml *.html
 
-		newicon src/icon.xpm ${PN}.xpm
+			newicon src/icon.xpm ${PN}.xpm
 		make_desktop_entry ${PN} GKrellM ${PN}.xpm
 	else
 		dobin server/gkrellmd || die "dobin failed"
@@ -95,6 +95,7 @@ src_install() {
 	fi
 
 	doinitd "${FILESDIR}"/gkrellmd || die "doinitd failed"
+	doconfd "${FILESDIR}"/gkrellmd.conf || die "doconfd failed"
 
 	insinto /etc
 	doins server/gkrellmd.conf || die "doins failed"
