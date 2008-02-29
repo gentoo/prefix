@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/calc
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.15 2008/01/28 20:01:17 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.16 2008/02/29 03:28:22 ranger Exp $
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> calc-2.12.2.2.ebuild:
+  keyworded ~arch for ppc64, bug 211793
 
   28 Jan 2008; Fabian Groffen <grobian@gentoo.org> calc-2.11.9.3.ebuild,
   calc-2.11.10.1.ebuild, calc-2.12.1.5.ebuild, calc-2.12.2.2.ebuild:
