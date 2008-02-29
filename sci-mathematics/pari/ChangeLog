@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/pari
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.55 2007/12/01 14:17:19 nixnut Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.56 2008/02/29 03:25:49 ranger Exp $
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> pari-2.3.2-r1.ebuild:
+  keyworded ~arch for ppc64, bug 211795
 
   01 Dec 2007; nixnut <nixnut@gentoo.org> pari-2.3.2-r1.ebuild:
   Stable on ppc wrt bug 194265
