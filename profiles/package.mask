@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8329 2008/02/27 17:19:19 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8330 2008/02/28 21:32:31 bangert Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -873,10 +873,8 @@ sys-kernel/hppa-sources
 >=www-client/opera-9.50_beta2
 
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
-# Brokeness in these, but hanging on to them while getting 1.04 ready
+# Brokeness in these
 =mail-mta/nullmailer-1.03*
-# Block 1.04 until it's ready
->=mail-mta/nullmailer-1.04
 
 # Gustavo Felisberto <humpback@gentoo.org> (07 Nov 2007)
 # Beta version

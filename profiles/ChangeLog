@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1161 2008/02/28 05:56:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1162 2008/02/28 19:42:39 cedk Exp $
+
+  28 Feb 2008; Cédric Krier <cedk@gentoo.org> use.local.desc:
+  Add epiphany flag for app-misc/beagle
 
   28 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
   Drop local libotf USE flag from app-editors/emacs-cvs; use the global
