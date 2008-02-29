@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r1.ebuild,v 1.3 2008/02/28 15:27:57 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.2 2008/02/28 15:27:57 lack Exp $
 
 EAPI="prefix 1"
 inherit eutils
@@ -58,6 +58,9 @@ src_unpack() {
 
 	# A couple menu generation fixes, #199437 and #199439
 	epatch "${FILESDIR}/${PV}/generate-menu.patch"
+
+	# Patch for gcc-4.3, #211675
+	epatch "${FILESDIR}/${PV}/gcc-4.3.patch"
 
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then

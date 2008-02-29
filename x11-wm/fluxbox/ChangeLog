@@ -1,6 +1,16 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.245 2008/01/28 14:45:11 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.247 2008/02/28 15:27:57 lack Exp $
+
+  28 Feb 2008; Jim Ramsay <lack@gentoo.org> fluxbox-1.0.0-r1.ebuild,
+  fluxbox-1.0.0-r2.ebuild:
+  Oops, put the patch in -r1 instead of -r2!  Fixed now :)
+
+*fluxbox-1.0.0-r2 (28 Feb 2008)
+
+  28 Feb 2008; Jim Ramsay <lack@gentoo.org> +files/1.0.0/gcc-4.3.patch,
+  fluxbox-1.0.0-r1.ebuild, +fluxbox-1.0.0-r2.ebuild:
+  Patch for gcc-4.3 compatibility, from bug #211675
 
   28 Jan 2008; Jim Ramsay <lack@gentoo.org>
   -files/1.0_rc3/gentoo_style_location.patch, -fluxbox-1.0_rc3_p4983.ebuild:
