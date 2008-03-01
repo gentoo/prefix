@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.44 2008/01/31 04:22:14 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.45 2008/02/29 19:52:41 dberkholz Exp $
+
+*libXext-1.0.4 (29 Feb 2008)
+
+  29 Feb 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXext-1.0.4.ebuild:
+  Bump.
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   -files/fix_shadow_manpages.patch, -libXext-1.0.1.ebuild:
