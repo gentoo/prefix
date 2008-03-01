@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jython
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.54 2008/02/26 10:30:51 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.55 2008/03/01 02:42:28 ali_bush Exp $
+
+  01 Mar 2008; Alistair Bush <ali_bush@gentoo.org> jython-2.2.1-r1.ebuild:
+  Added block on versions of <=dev-java/freemarker-2.3.10. See #211503 and
+  #106239
 
 *jython-2.2.1-r1 (26 Feb 2008)
 

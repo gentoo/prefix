@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.2.1-r1.ebuild,v 1.2 2008/02/26 16:29:17 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.2.1-r1.ebuild,v 1.3 2008/03/01 02:42:28 ali_bush Exp $
 
 JAVA_PKG_IUSE="readline source doc servletapi mysql postgres examples oracle"
 #jdnc
@@ -28,7 +28,8 @@ CDEPEND="=dev-java/jakarta-oro-2.0*
 	mysql? ( >=dev-java/jdbc-mysql-3.1 )
 	postgres? ( dev-java/jdbc-postgresql )
 	oracle? ( dev-java/jdbc-oracle-bin:10.2 )
-	servletapi? ( java-virtuals/servlet-api:2.5 )"
+	servletapi? ( java-virtuals/servlet-api:2.5 )
+	!<=dev-java/freemarker-2.3.10"
 RDEPEND=">=virtual/jre-1.4
 	${CDEPEND}"
 DEPEND=">=virtual/jdk-1.4
