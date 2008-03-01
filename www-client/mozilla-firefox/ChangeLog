@@ -1,6 +1,12 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.377 2008/02/14 14:18:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.378 2008/02/29 15:02:58 armin76 Exp $
+
+  29 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/icon/firefox-icon.png, -files/icon/firefox-icon-unbranded.png,
+  mozilla-firefox-2.0.0.11.ebuild, mozilla-firefox-2.0.0.12.ebuild:
+  Use icons in the tarball instead, bug #204312, and report correct browser
+  name when iceweasel is enabled, bug #210308
 
   14 Feb 2008; Raúl Porcel <armin76@gentoo.org>
   files/icon/mozilla-firefox-1.5-unbranded.desktop,

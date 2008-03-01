@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.12.ebuild,v 1.6 2008/02/11 00:17:30 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.12.ebuild,v 1.7 2008/02/29 15:02:58 armin76 Exp $
 
 EAPI="prefix"
 
@@ -131,6 +131,7 @@ src_unpack() {
 
 	if use iceweasel; then
 		sed -i -e "s|Bon Echo|Iceweasel|" browser/locales/en-US/chrome/branding/brand.*
+		sed -i -e "s|BonEcho|Iceweasel|" configure.in
 	fi
 
 	eautoreconf
@@ -249,11 +250,11 @@ src_install() {
 		newmenu "${FILESDIR}"/icon/iceweasel.desktop \
 			mozilla-firefox-2.0.desktop
 	elif ! use bindist; then
-		doicon "${FILESDIR}"/icon/firefox-icon.png
+		newicon "${S}"/other-licenses/branding/firefox/content/icon48.png firefox-icon.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
 			mozilla-firefox-2.0.desktop
 	else
-		doicon "${FILESDIR}"/icon/firefox-icon-unbranded.png
+		newicon "${S}"/browser/base/branding/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			mozilla-firefox-2.0.desktop
 	fi
