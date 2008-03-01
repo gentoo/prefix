@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.239 2008/02/18 18:04:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.240 2008/02/29 18:43:03 coldwind Exp $
+
+  29 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> db-4.3.29-r2.ebuild:
+  amd64 stable wrt bug #204213
 
   18 Feb 2008; Jeroen Roovers <jer@gentoo.org> db-4.3.29-r2.ebuild:
   Stable for HPPA (bug #204213).
