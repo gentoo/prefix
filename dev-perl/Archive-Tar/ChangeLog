@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Archive-Tar
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.87 2007/12/29 10:33:54 welp Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.88 2008/02/29 19:55:32 ian Exp $
+
+*Archive-Tar-1.38 (29 Feb 2008)
+
+  29 Feb 2008; Christian Hartmann <ian@gentoo.org> +Archive-Tar-1.38.ebuild:
+  Version bump
 
   29 Dec 2007; <welp@gentoo.org> Archive-Tar-1.32.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
