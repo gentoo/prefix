@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/scheme48
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scheme48/ChangeLog,v 1.8 2007/07/28 20:06:56 araujo Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scheme48/ChangeLog,v 1.9 2008/02/29 16:40:33 hkbst Exp $
+
+*scheme48-1.8 (29 Feb 2008)
+
+  29 Feb 2008; Marijn Schouten <hkBst@gentoo.org> +scheme48-1.8.ebuild:
+  bump, now compiles on amd64 natively, yippeee
 
 *scheme48-1.6 (28 Jul 2007)
 
