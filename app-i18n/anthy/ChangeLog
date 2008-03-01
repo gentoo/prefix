@@ -1,6 +1,10 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.116 2008/02/04 16:52:38 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.117 2008/02/29 16:34:36 jer Exp $
+
+  29 Feb 2008; Jeroen Roovers <jer@gentoo.org> anthy-9100d.ebuild,
+  anthy-9100e.ebuild:
+  Marked ~hppa (bug #211728).
 
 *anthy-9100e (04 Feb 2008)
 
