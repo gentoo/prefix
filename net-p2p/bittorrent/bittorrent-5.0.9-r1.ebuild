@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.9-r1.ebuild,v 1.2 2008/01/17 14:15:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.9-r1.ebuild,v 1.3 2008/02/29 20:28:34 carlo Exp $
 
 EAPI="prefix"
 
@@ -59,7 +59,7 @@ src_install() {
 	if use gtk ; then
 		doicon images/logo/bittorrent.ico
 		newicon images/logo/bittorrent_icon_32.png bittorrent.png
-		make_desktop_entry "bittorrent" "BitTorrent" bittorrent.png "Network"
+		make_desktop_entry "bittorrent" "BitTorrent" bittorrent "Network"
 		echo "MimeType=application/x-bittorrent" \
 			>> "${ED}"/usr/share/applications/bittorrent-${PN}.desktop
 	fi
