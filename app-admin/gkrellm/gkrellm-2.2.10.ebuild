@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.2.10.ebuild,v 1.10 2007/08/21 14:24:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.2.10.ebuild,v 1.11 2008/02/29 17:40:13 carlo Exp $
 
 EAPI="prefix"
 
@@ -87,7 +87,7 @@ src_install() {
 		newman ${PN}.1 gkrellm2.1
 
 		newicon src/icon.xpm ${PN}.xpm
-		make_desktop_entry gkrellm2 GKrellM ${PN}.xpm
+		make_desktop_entry gkrellm2 GKrellM ${PN}
 	else
 		dobin server/gkrellmd || die "dobin failed"
 
