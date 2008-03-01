@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1162 2008/02/28 19:42:39 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1163 2008/02/29 16:48:02 aballier Exp $
+
+  29 Feb 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove ocaml mask now that its released
 
   28 Feb 2008; Cédric Krier <cedk@gentoo.org> use.local.desc:
   Add epiphany flag for app-misc/beagle

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8330 2008/02/28 21:32:31 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8331 2008/02/29 16:48:02 aballier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -55,11 +55,6 @@ mail-filter/dovecot-dspam
 # Masked until the portage tree is sanitized to work correctly with
 # this version, bug 199595
 >=dev-util/intltool-0.37.1
-
-# Alexis Ballier <aballier@gentoo.org> (24 Feb 2008)
-# Release candidate of ocaml.
-# Mask until a full release is out.
->=dev-lang/ocaml-3.10.2_rc1
 
 # Benedikt Böhm <hollow@gentoo.org> (23 Feb 2008)
 # Masked due to constant security bugs.
