@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/facets-1.8.54.ebuild,v 1.1 2007/07/14 14:29:37 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/facets-1.8.54.ebuild,v 1.2 2008/02/29 15:18:31 nixnut Exp $
 
 EAPI="prefix"
 
