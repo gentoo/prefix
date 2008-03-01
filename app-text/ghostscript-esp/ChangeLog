@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-esp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.57 2008/02/09 12:01:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.58 2008/02/29 12:00:42 pva Exp $
+
+*ghostscript-esp-8.15.4-r1 (29 Feb 2008)
+
+  29 Feb 2008; <pva@gentoo.org> +files/ghostscript-8.60-CVE-2008-0411.diff,
+  +ghostscript-esp-8.15.4-r1.ebuild:
+  Fixed security issue (CVE-2008-0411), bug #208999, thank Robert Buchholz for
+  report and coordination.
 
   09 Feb 2008; Raúl Porcel <armin76@gentoo.org>
   ghostscript-esp-8.15.4.ebuild:
