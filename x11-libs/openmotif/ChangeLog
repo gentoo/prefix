@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.161 2008/02/28 21:57:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.162 2008/02/29 22:54:11 ulm Exp $
+
+  29 Feb 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
+  Fix installation of demos. Thanks to fmccor for pointing this out.
 
   28 Feb 2008; Markus Meier <maekke@gentoo.org> openmotif-2.3.0-r1.ebuild:
   x86 stable, bug #211696

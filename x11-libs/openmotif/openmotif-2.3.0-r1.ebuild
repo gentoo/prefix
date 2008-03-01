@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.10 2008/02/28 21:57:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.11 2008/02/29 22:54:11 ulm Exp $
 
 EAPI="prefix"
 
@@ -112,6 +112,8 @@ src_install() {
 	dosym /etc/X11/mwm/system.mwmrc /usr/$(get_libdir)/X11/
 
 	if use examples ; then
+		emake -j1 -C demos DESTDIR="${D}" install-data \
+			|| die "installation of demos failed"
 		dodir /usr/share/doc/${PF}/demos
 		mv "${ED}"/usr/share/Xm/* "${ED}"/usr/share/doc/${PF}/demos
 	fi
