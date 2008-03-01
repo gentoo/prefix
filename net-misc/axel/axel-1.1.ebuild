@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-1.1.ebuild,v 1.1 2008/02/11 18:45:45 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-1.1.ebuild,v 1.2 2008/02/29 16:03:41 jer Exp $
 
 EAPI="prefix"
 
