@@ -1,6 +1,13 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.281 2008/02/23 22:37:23 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.282 2008/02/29 23:46:46 ticho Exp $
+
+*clamav-0.92.1-r1 (29 Feb 2008)
+
+  29 Feb 2008; Andrej Kacian <ticho@gentoo.org> files/clamd.conf,
+  files/clamd.rc, +clamav-0.92.1-r1.ebuild:
+  Add support for setting process niceness in conf.d file. Suggestion by Jens
+  Weibler <gentoo-bugzilla at jensthebrain de>, bug #211397.
 
   23 Feb 2008; Andrej Kacian <ticho@gentoo.org> clamav-0.92.1.ebuild:
   Enable AllowSupplementaryGroups option by default for better integration

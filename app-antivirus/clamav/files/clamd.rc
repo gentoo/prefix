@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/files/clamd.rc,v 1.15 2007/04/13 20:56:34 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/files/clamd.rc,v 1.16 2008/02/29 23:46:46 ticho Exp $
 
 opts="logfix"
 
@@ -21,14 +21,15 @@ start() {
 		fi
 		ebegin "Starting clamd"
 		start-stop-daemon --start --quiet \
+			--nicelevel ${CLAMD_NICELEVEL:-0} \
 			--exec /usr/sbin/clamd
 		eend $? "Failed to start clamd"
 	fi
 
 	if [ "${START_FRESHCLAM}" = "yes" ]; then
 		ebegin "Starting freshclam"
-
 		start-stop-daemon --start --quiet \
+			--nicelevel ${FRESHCLAM_NICELEVEL:-0} \
 			--exec /usr/bin/freshclam -- -d
 		retcode=$?
 		if [ ${retcode} = 1 ]; then
@@ -86,6 +87,7 @@ start() {
 			
 		ebegin "Starting clamav-milter"
 		start-stop-daemon --start --quiet \
+			--nicelevel ${MILTER_NICELEVEL:-0} \
 			--exec /usr/sbin/clamav-milter -- ${MILTER_OPTS} ${MILTER_SOCKET}
 		eend $? "Failed to start clamav-milter"
 	fi
