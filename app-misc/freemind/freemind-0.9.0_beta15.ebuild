@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_beta15.ebuild,v 1.3 2008/02/14 19:02:04 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_beta15.ebuild,v 1.4 2008/02/29 17:46:35 carlo Exp $
 
 EAPI="prefix"
 
@@ -74,5 +74,5 @@ src_install() {
 
 	newicon "${S}/images/FreeMindWindowIcon.png" freemind.png
 
-	make_desktop_entry freemind Freemind freemind.png Utility
+	make_desktop_entry freemind Freemind freemind Utility
 }
