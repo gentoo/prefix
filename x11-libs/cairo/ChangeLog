@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.163 2008/02/21 14:43:19 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.164 2008/02/29 22:10:08 cardoe Exp $
+
+*cairo-1.5.12 (29 Feb 2008)
+
+  29 Feb 2008; Doug Klima <cardoe@gentoo.org> -cairo-1.5.6.ebuild,
+  -cairo-1.5.8.ebuild, +cairo-1.5.12.ebuild:
+  bump to 1.5.12 and remove old versions. 1.5.12 includes 24.8 pixel addressing.
 
   21 Feb 2008; Doug Klima <cardoe@gentoo.org>
   -files/cairo-1.5.4-fix-private.patch:
