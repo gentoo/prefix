@@ -2402,7 +2402,7 @@ disable_multilib_libjava() {
 fix_libtool_libdir_paths() {
 	local dirpath
 	for archive in $* ; do
-		dirpath=$(dirname ${archive} | sed -e "s:^${ED}::")
+		dirpath=$(dirname ${archive} | sed -e "s:^${D}::")
 		sed -i ${archive} -e "s:^libdir.*:libdir=\'${dirpath}\':"
 	done
 }
