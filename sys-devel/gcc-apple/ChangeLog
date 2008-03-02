@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gcc-apple-4.0.1_p5465-r2 (02 Mar 2008)
+
+  02 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  +gcc-apple-4.0.1_p5465-r2.ebuild:
+  Add new revision (masked) that puts the libs by itself in usr/lib, which we
+  move out of the way and gcc-config should move back again.
+
   20 Jan 2008; Elias Pipping <pipping@gentoo.org>
   files/gcc-apple-4.2.1-texinfo.patch, gcc-apple-4.2.1_p5531.ebuild,
   gcc-apple-4.2.1_p5531.ebuild:
