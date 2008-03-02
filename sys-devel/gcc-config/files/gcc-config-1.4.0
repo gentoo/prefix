@@ -356,12 +356,13 @@ switch_profile() {
 
 			# we can copy the other libs to /usr/lib without funky
 			# copying, also we can use symlinks as it's non-critical
+			[[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib*${libname}* 2>/dev/null) ]] && \
 			for gcclib in "${ROOT}/${LDPATH}/${multilibdir}"/lib*${libname}* ; do
 				l=${gcclib##*/lib}
 				[[ "gcc_s unwind" == *${l%%.*}* ]] && continue
 				if mkdir -p "${EROOT}/usr/${libdir}" ; then
 					# make sure we don't overwrite the target
-					rm -f "${EROOT}/usr/${libdir}"/lib${l}
+					rm "${EROOT}/usr/${libdir}"/lib${l}
 					ln -sf "${gcclib}" "${EROOT}/usr/${libdir}"/lib${l}
 				fi
 			done
