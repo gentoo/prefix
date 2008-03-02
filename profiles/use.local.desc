@@ -1949,6 +1949,7 @@ sys-cluster/pvfs2:apidocs - Build API documentation directly from the code using
 sys-cluster/pvfs2:server - Enable compilation of server code
 sys-cluster/torque:server - Enable compilation of pbs_server and pbs_sched
 sys-cluster/vzctl:logrotate - Enable logrotate file installation
+sys-devel/binutils-config:extwrapper - Use haubi's rewritten ldwrapper
 sys-devel/binutils-hppa64:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-hppa64:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 sys-devel/binutils-nios2:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
