@@ -1,0 +1,66 @@
+# ChangeLog for media-libs/libfpx
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libfpx/ChangeLog,v 1.17 2007/09/28 13:40:11 uberlord Exp $
+
+  28 Sep 2007; Roy Marples <uberlord@gentoo.org> libfpx-1.2.0.13.ebuild:
+  Keyworded ~x86-fbsd, #194029.
+
+*libfpx-1.2.0.13 (21 May 2007)
+
+  21 May 2007; Karol Wojtaszek <sekretarz@gentoo.org>
+  +libfpx-1.2.0.13.ebuild:
+  Version bump, bug #174613
+
+  05 Mar 2006; Luca Barbato <lu_zero@gentoo.org> metadata.xml,
+  libfpx-1.2.0.12.ebuild:
+  minor changes
+
+*libfpx-1.2.0.12 (05 Aug 2005)
+
+  05 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/libfpx-1.2.0.12-makefile.patch, +libfpx-1.2.0.12.ebuild:
+  Version bump with build fix by Sergey S. Stasyuk #100690.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  08 Nov 2004; Hardave Riar <hardave@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Stable on mips, bug #69825.
+
+  06 Nov 2004; Markus Rothe <corsair@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Stable on ppc64; dependency of bug #69825
+
+  04 Nov 2004; Olivier Crete <tester@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Stable on x86 wrt #69825
+
+  03 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Stable on alpha, bug 69825.
+
+  02 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Stable on sparc wrt #69825
+
+  02 Nov 2004; Karol Wojtaszek,,, <sekretarz@gentoo.org>
+  libfpx-1.2.0.9.ebuild:
+  Stable on amd64
+
+  30 Oct 2004; Tom Gall <tgall@gentoo.org> libfpx-1.2.0.9.ebuild:
+  added ~pc64, bug #68145
+
+  30 Oct 2004; Stephen P. Becker <geoman@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Added ~mips keyword.
+
+  21 Oct 2004; Jason Wever <weeve@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Added ~sparc keyword wrt bug #68145.
+
+  19 Oct 2004; Michael Hanselmann <hansmi@gentoo.org> libfpx-1.2.0.9.ebuild:
+  Added to ~ppc.
+
+  19 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> libfpx-1.2.0.9.ebuild:
+  ~alpha keyword, bug 68145.
+
+*libfpx-1.2.0.9 (18 Oct 2004)
+
+  18 Oct 2004; Karol Wojtaszek <sekretarz@gentoo.org> +metadata.xml,
+  +libfpx-1.2.0.9.ebuild:
+  Initial add
+
