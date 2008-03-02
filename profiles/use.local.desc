@@ -1957,6 +1957,9 @@ sys-devel/binutils-nios2:multitarget - Adds support to binutils for cross compil
 sys-devel/binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 sys-devel/gcc-nios2:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
+sys-devel/gcc-apple:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
+sys-devel/gcc-apple:objc - Build support for the Objective C code language
+sys-devel/gcc-apple:objc++ - Build support for the Objective C++ language
 sys-devel/gcc:d - Enable support for the D programming language
 sys-devel/gcc:ip28 - Enable building a compiler capable of building a kernel for SGI Indigo2 Impact R10000 (IP28)
 sys-devel/gcc:ip32r10k - Enable building a compiler capable of building an experimental kernel for SGI O2 w/ R1x000 CPUs (IP32)
