@@ -10,7 +10,7 @@ VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 VIMRC_FILE_SUFFIX="-r3"
-PREFIX_VER="3"
+PREFIX_VER="4"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
