@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.45 2008/02/10 14:31:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.46 2008/03/02 11:09:07 aballier Exp $
+
+  02 Mar 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r12.ebuild:
+  Adapt build mpost at compile time patch according to Karl's comments
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r12.ebuild:
