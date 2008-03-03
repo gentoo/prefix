@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.0-r1.ebuild,v 1.4 2007/07/04 22:14:28 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.0-r1.ebuild,v 1.5 2008/03/02 14:10:41 elvanor Exp $
 
 EAPI="prefix"
 
@@ -86,7 +86,7 @@ src_unpack() {
 	#  be in files/
 	#  - remove all the junit-present stuff
 	#  - remove test dependency from jar target
-	cp ${FILESDIR}/build.xml-${PV} ${S}/build.xml || die "Failed to update build.xml"
+	cp "${FILESDIR}/build.xml-${PV}" "${S}/build.xml" || die "Failed to update build.xml"
 
 	cd src/main
 	# This won't compile without an incestuous relationship with radeox.

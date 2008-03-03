@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/groovy
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.25 2007/07/04 22:14:19 betelgeuse Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.26 2008/03/02 14:10:41 elvanor Exp $
+
+*groovy-1.5.4 (02 Mar 2008)
+
+  02 Mar 2008; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  +files/groovy-build.xml.patch, groovy-1.0-r1.ebuild, +groovy-1.5.4.ebuild:
+  Version bump to 1.5.4. Tests now compile and run with JDK 1.6, some fail
+  though.
 
   04 Jul 2007; Petteri Räty <betelgeuse@gentoo.org> -groovy-1.0.ebuild:
   Remove old revision.
