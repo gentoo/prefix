@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apg/apg-2.3.0b-r4.ebuild,v 1.1 2007/03/09 11:01:38 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apg/apg-2.3.0b-r4.ebuild,v 1.2 2008/03/02 13:39:37 swegener Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Another Password Generator"
 HOMEPAGE="http://www.adel.nursat.kz/apg/"
@@ -18,14 +18,14 @@ IUSE="cracklib"
 DEPEND="cracklib? ( sys-libs/cracklib )"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	chmod -R 0700 "${S}"
-	cd ${S}
+	cd "${S}"
 	if use cracklib; then
-		epatch ${FILESDIR}/${P}-cracklib.patch
-		epatch ${FILESDIR}/${PN}-glibc-2.4.patch
+		epatch "${FILESDIR}"/${P}-cracklib.patch
+		epatch "${FILESDIR}"/${PN}-glibc-2.4.patch
 	fi
-	epatch ${FILESDIR}/${P}-crypt_password.patch
+	epatch "${FILESDIR}"/${P}-crypt_password.patch
 }
 
 src_compile() {
@@ -33,8 +33,8 @@ src_compile() {
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i 's,^APG_CLIBS += -lcrypt,APG_CLIBS += ,' Makefile
 
-	emake standalone || die "compile problem"
-	emake -C bfconvert || die "compile problem"
+	emake standalone FLAGS="${CFLAGS}" CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "compile problem"
+	emake -C bfconvert FLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "compile problem"
 }
 
 src_install() {
