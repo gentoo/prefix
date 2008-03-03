@@ -1,6 +1,27 @@
 # ChangeLog for app-text/evince
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.129 2007/12/06 21:17:29 eva Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.135 2008/02/04 04:00:45 jer Exp $
+
+  04 Feb 2008; Jeroen Roovers <jer@gentoo.org> evince-2.20.2.ebuild:
+  Stable for HPPA (bug #208366).
+
+  03 Feb 2008; Raúl Porcel <armin76@gentoo.org> evince-2.20.2.ebuild:
+  alpha/ia64/sparc stable wrt #208366
+
+  02 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> evince-2.20.2.ebuild:
+  Stable on amd64 wrt bug #208366.
+
+  01 Feb 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/evince-0.5.3-links.patch, -files/evince-0.6.1-freebsd.patch,
+  -files/evince-0.6.1-gv-limit.patch, -evince-0.5.3-r1.ebuild,
+  -evince-0.6.1-r3.ebuild:
+  Remove Gnome 2.16 and older versions
+
+  01 Feb 2008; Brent Baude <ranger@gentoo.org> evince-2.20.2.ebuild:
+  Marking evince-2.20.2 ppc64 and ppc stable for bug 208366
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org> evince-2.20.2.ebuild:
+  stable x86, bug 208366
 
 *evince-2.20.2 (06 Dec 2007)
 
