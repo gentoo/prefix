@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant/ChangeLog,v 1.111 2007/05/12 17:44:08 wltjr Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant/ChangeLog,v 1.112 2008/03/03 08:15:03 caster Exp $
+
+  03 Mar 2008; Vlastimil Babka <caster@gentoo.org> -ant-1.6.5.ebuild:
+  Remove ant 1.6.5. Java packages already depend on 1.7.0.
 
   12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org> ant-1.7.0.ebuild:
   Stable on amd64, bug #176856
