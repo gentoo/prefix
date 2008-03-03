@@ -1,6 +1,12 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.121 2008/02/29 03:09:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.123 2008/03/02 10:33:19 pylon Exp $
+
+  02 Mar 2008; Lars Weiler <pylon@gentoo.org> enigmail-0.95.6-r2.ebuild:
+  stable ppc, security bug 208128
+
+  01 Mar 2008; Richard Freeman <rich0@gentoo.org> enigmail-0.95.6-r2.ebuild:
+  amd64 stable - needed for thunderbird 2.0.0.12
 
   29 Feb 2008; Brent Baude <ranger@gentoo.org> enigmail-0.95.6-r2.ebuild:
   Marking enigmail-0.95.6-r2 ppc64 for bug 208128
