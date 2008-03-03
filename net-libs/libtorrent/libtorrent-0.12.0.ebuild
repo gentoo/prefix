@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.11.8.ebuild,v 1.5 2007/11/13 16:30:42 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.0.ebuild,v 1.1 2008/03/01 11:12:42 drizzt Exp $
 
 EAPI="prefix"
 
@@ -11,9 +11,9 @@ HOMEPAGE="http://libtorrent.rakshasa.no/"
 SRC_URI="http://libtorrent.rakshasa.no/downloads/${P}.tar.gz"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="debug"
+IUSE="debug ipv6"
 
 RDEPEND=">=dev-libs/libsigc++-2"
 
@@ -30,6 +30,9 @@ src_compile() {
 	elibtoolize
 	econf \
 		$(use_enable debug) \
+		$(use_enable ipv6) \
+		--enable-static \
+		--enable-shared \
 		--disable-dependency-tracking \
 		|| die "econf failed"
 

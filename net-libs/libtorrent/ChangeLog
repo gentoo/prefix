@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.110 2008/02/06 20:55:41 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.111 2008/03/01 11:12:42 drizzt Exp $
+
+*libtorrent-0.12.0 (01 Mar 2008)
+
+  01 Mar 2008; Timothy Redaelli <drizzt@gentoo.org>
+  +libtorrent-0.12.0.ebuild:
+  Version Bump wrt bug #209361
+  Add ipv6 use flag wrt bug #207581
 
   06 Feb 2008; nixnut <nixnut@gentoo.org> libtorrent-0.11.9.ebuild:
   stable on ppc wrt bug #209140
