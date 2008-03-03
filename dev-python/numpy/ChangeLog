@@ -1,0 +1,239 @@
+# ChangeLog for dev-python/numpy
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.56 2008/03/02 13:32:54 nixnut Exp $
+
+  02 Mar 2008; nixnut <nixnut@gentoo.org> numpy-1.0.4-r2.ebuild:
+  Stable on ppc wrt bug 211876
+
+  29 Feb 2008; Raúl Porcel <armin76@gentoo.org> numpy-1.0.4-r2.ebuild:
+  alpha/ia64/sparc stable wrt #211876
+
+  29 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> numpy-1.0.4-r2.ebuild:
+  amd64 stable wrt bug #211876
+
+  29 Feb 2008; Jeroen Roovers <jer@gentoo.org> numpy-1.0.4-r2.ebuild:
+  Stable for HPPA (bug #211876).
+
+  29 Feb 2008; Ferris McCormick <fmccor@gentoo.org> numpy-1.0.4-r2.ebuild:
+  Sparc stable with USE=lapack --- Bug #211876.
+
+  29 Feb 2008; Brent Baude <ranger@gentoo.org> numpy-1.0.4-r2.ebuild:
+  stable ppc64, bug 211791
+
+*numpy-1.0.4-r2 (24 Jan 2008)
+
+  24 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +numpy-1.0.4-r2.ebuild:
+  Re-introduce fortran detection but only when lapack flag is set, to prevent
+  autodetection and forced multiple fortran linking. Fixed site configuration
+  file generation to really produce fast blas, some cleaning.
+
+*numpy-1.0.4-r1 (11 Jan 2008)
+
+  11 Jan 2008; Justin Bronder <jsbronder@gentoo.org>
+  +files/numpy-1.0.4-nocona-cpuinfo.patch, +numpy-1.0.4-r1.ebuild:
+  Fix cpuinfo to correctly detect nocona-based hardware.  Bug 183236.
+
+  04 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> -numpy-1.0.3.ebuild,
+  -numpy-1.0.3.1.ebuild:
+  Removed obsolete versions
+
+  26 Dec 2007; Samuli Suominen <drac@gentoo.org> numpy-1.0.4.ebuild:
+  amd64 stable wrt #202202
+
+  24 Dec 2007; Brent Baude <ranger@gentoo.org> numpy-1.0.4.ebuild:
+  Marking numpy-1.0.4 ppc64 for bug 202202
+
+  21 Dec 2007; nixnut <nixnut@gentoo.org> numpy-1.0.4.ebuild:
+  Stable on ppc wrt bug 202202
+
+  19 Dec 2007; Raúl Porcel <armin76@gentoo.org> numpy-1.0.4.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #202202
+
+  19 Dec 2007; Sébastien Fabbro <bicatali@gentoo.org> numpy-1.0.4.ebuild:
+  Fixed site.cfg generation for external blas/lapack
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> numpy-1.0.4.ebuild:
+  Stable for HPPA (bug #202202).
+
+  07 Dec 2007; Sébastien Fabbro <bicatali@gentoo.org> numpy-1.0.4.ebuild:
+  Fixed for LDFLAGS, now adding a -shared
+
+  21 Nov 2007; Joe Peterson <lavajoe@gentoo.org>
+  +files/numpy-1.0.4-freebsd.patch, numpy-1.0.4.ebuild:
+  Patch for FreeBSD, and add ~x86-fbsd keyword (bug #199825)
+
+*numpy-1.0.4 (12 Nov 2007)
+
+  12 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> -numpy-1.0.2.ebuild,
+  +numpy-1.0.4.ebuild:
+  Version bump
+
+  29 Oct 2007; Raúl Porcel <armin76@gentoo.org> numpy-1.0.3.ebuild:
+  alpha stable wrt #180713
+
+  15 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> numpy-1.0.3.1.ebuild:
+  Use the new virtual/cblas.
+
+  26 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> -numpy-0.9.8.ebuild:
+  Removed old version
+
+*numpy-1.0.3.1 (24 Aug 2007)
+
+  24 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +numpy-1.0.3.1.ebuild:
+  Version bump. Removed fortran dependencies, closing bug #186913.
+  Cleaned various configure settings. Thanks Vincent Legoll for his work.
+
+  22 Jul 2007; Christian Faulhammer <opfer@gentoo.org> numpy-1.0.3.ebuild:
+  stable x86, bug 180713
+
+  20 Jul 2007; nixnut <nixnut@gentoo.org> numpy-1.0.3.ebuild:
+  Stable on ppc wrt bug 180713
+
+  17 Jul 2007; Christoph Mende <angelos@gentoo.org> numpy-1.0.3.ebuild:
+  Stable on amd64 wrt bug #180713
+
+  17 Jul 2007; Raúl Porcel <armin76@gentoo.org> numpy-1.0.3.ebuild:
+  ia64 stable wrt #180713
+
+  17 Jul 2007; Markus Rothe <corsair@gentoo.org> numpy-1.0.3.ebuild:
+  Stable on ppc64; bug #180713
+
+  17 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> numpy-1.0.3.ebuild:
+  Stable on sparc wrt #180713
+
+  09 Jul 2007; Jeroen Roovers <jer@gentoo.org> numpy-1.0.3.ebuild:
+  Stable for HPPA (bug #180713).
+
+  14 Jun 2007; Jeroen Roovers <jer@gentoo.org> numpy-1.0.3.ebuild:
+  Marked ~hppa (bug #181888).
+
+  14 Jun 2007; Raúl Porcel <armin76@gentoo.org> numpy-1.0.3.ebuild:
+  Add ~alpha/~ia64 wrt #181888
+
+  14 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> numpy-1.0.3.ebuild:
+  Keyworded ~sparc wrt #181888
+
+  13 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org> numpy-1.0.3.ebuild:
+  Fixed src_test to be more verbose.
+
+*numpy-1.0.3 (25 May 2007)
+
+  25 May 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/numpy-1.0.1-cpuinfo.patch, -numpy-1.0.1.ebuild,
+  -numpy-1.0.1-r1.ebuild, +numpy-1.0.3.ebuild:
+  version bump and removed older version
+
+*numpy-1.0.2 (05 Apr 2007)
+
+  05 Apr 2007; Sébastien Fabbro <bicatali@gentoo.org> +numpy-1.0.2.ebuild:
+  Version bump. Closing #173359.
+
+  06 Mar 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  numpy-1.0.1-r1.ebuild:
+  Fixed a cblas requirement when lapack was not called. Allows F77FLAGS to 
+  be used along FFLAGS for FORTRAN flags.
+
+  05 Mar 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/numpy-1.0.1-cpuinfo.patch, numpy-1.0.1-r1.ebuild:
+  Fix bug #169262 with upstream patch. Thanks james@superbug.demon.co.uk 
+  for reporting.
+
+  20 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  numpy-1.0.1-r1.ebuild:
+  Updated cblas dependencies. Closing bug #167652, thanks 
+  Grante Edwards <grante@visi.com> for the report.
+
+*numpy-1.0.1-r1 (19 Feb 2007)
+
+  19 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/numpy-1.0.1-f2py.patch, metadata.xml, +numpy-1.0.1-r1.ebuild:
+  Fixed for cblas deps, better testing. Now works with test. Better 
+  compliance to python packages. Added ifc treatment for amd64.
+
+*numpy-1.0.1 (31 Jan 2007)
+
+  31 Jan 2007; Steve Arnold <nerdboy@gentoo.org> -numpy-1.0_beta2.ebuild,
+  -numpy-1.0_rc1.ebuild, +numpy-1.0.1.ebuild:
+  Bumped to latest full release and cleaned up rc and beta ebuilds (bug
+  154275).
+
+  26 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; numpy-0.9.8.ebuild:
+  Stable on ppc.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; numpy-0.9.8.ebuild,
+  numpy-1.0_beta2.ebuild, numpy-1.0_rc1.ebuild:
+  The LDFLAGS situation is worse than I thought. Setting LDFLAGS at all
+  entirely overrides the linker flags within the build and breaks it. See
+  comp.lang.python thread 'Building things with setup.py' from 21 Sept. 2006.
+
+  22 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  -files/0.9.6-recognize-more-gfortran-versions.patch:
+  Remove unused patch.
+
+  21 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; numpy-0.9.8.ebuild,
+  numpy-1.0_beta2.ebuild, numpy-1.0_rc1.ebuild:
+  It helps to inherit flag-o-matic.
+
+*numpy-1.0_rc1 (21 Sep 2006)
+
+  21 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  +numpy-1.0_rc1.ebuild:
+  Bump.
+
+  21 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; numpy-0.9.8.ebuild,
+  numpy-1.0_beta2.ebuild:
+  LDFLAGS='-Wl,-O1' breaks the compile.
+
+*numpy-1.0_beta2 (16 Aug 2006)
+
+  16 Aug 2006; Alastair Tse <liquidx@gentoo.org> +numpy-1.0_beta2.ebuild:
+  version bump (#143964). restricted test because it does not work in sandbox.
+
+  17 Jul 2006; Alastair Tse <liquidx@gentoo.org> -numpy-0.9.6.ebuild,
+  -numpy-0.9.6-r1.ebuild, numpy-0.9.8.ebuild:
+  Stable bump for x86. Block on !dev-python/f2py because numpy provides
+  this package. (#131833)
+
+*numpy-0.9.8 (14 Jun 2006)
+
+  14 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; +numpy-0.9.8.ebuild:
+  Bump. Incorporates many changes from the science overlay, mainly from bicatali.
+
+  13 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; metadata.xml:
+  Add sci herd as co-maintainer.
+
+  13 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  numpy-0.9.6-r1.ebuild:
+  Keyword ~ppc.
+
+  13 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  numpy-0.9.6-r1.ebuild:
+  Fix up weird dep syntax.
+
+*numpy-0.9.6-r1 (13 Jun 2006)
+
+  13 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/0.9.6-recognize-more-gfortran-versions.patch,
+  +numpy-0.9.6-r1.ebuild:
+  Patch to recognize Gentoo gfortran version strings.
+
+  01 Apr 2006; Olivier Fisette <ribosome@gentoo.org> -numpy-0.9.4.ebuild,
+  +numpy-0.9.6.ebuild:
+  Removed old version.
+
+*numpy-0.9.6 (01 Apr 2006)
+
+  01 Apr 2006; Olivier Fisette <ribosome@gentoo.org> +numpy-0.9.6.ebuild:
+  New version. Thanks to bicatali and Sebastien Fabbro <seb@ist.utl.pt> for
+  their work.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> numpy-0.9.4.ebuild:
+  Mark 0.9.4 ~ia64
+
+*numpy-0.9.4 (07 Feb 2006)
+
+  07 Feb 2006; Alastair Tse <liquidx@gentoo.org> +numpy-0.9.4.ebuild:
+  initial ebuild thanks to Alok Singhal (#119305)
+
