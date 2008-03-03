@@ -1,12 +1,12 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.29 2008/02/20 20:05:23 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.30 2008/03/03 16:13:38 cardoe Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
 # Installs MythTV plugins along with patches from the release-${PV}-fixes branch
 #
-inherit mythtv multilib qt3 versionator
+inherit mythtv multilib qt3 versionator subversion
 
 # Extra configure options to pass to econf
 MTVCONF=${MTVCONF:=""}
@@ -39,7 +39,7 @@ mythtv-plugins_pkg_setup() {
 		MYTHPLUGINS="${MYTHPLUGINS} mytharchive"
 	fi
 
-	if version_is_at_least "0.21_pre" ; then
+	if version_is_at_least "0.21_beta" ; then
 		MYTHPLUGINS="${MYTHPLUGINS} mythzoneminder mythmovies mythappearance"
 		MYTHPLUGINS="${MYTHPLUGINS/mythdvd/}"
 	fi

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.207 2007/12/17 16:05:13 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.208 2008/03/01 18:47:33 zlin Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -33,7 +33,8 @@
 # K_EXTRAEINFO			- this is a new-line seperated list of einfo displays in
 #						  postinst and can be used to carry additional postinst
 #						  messages
-# K_EXTRAEWARN			- same as K_EXTRAEINFO except ewarn's instead of einfo's
+# K_EXTRAELOG			- same as K_EXTRAEINFO except using elog instead of einfo
+# K_EXTRAEWARN			- same as K_EXTRAEINFO except using ewarn instead of einfo
 # K_SYMLINK				- if this is set, then forcably create symlink anyway
 #
 # K_DEFCONFIG			- Allow specifying a different defconfig target.
@@ -633,16 +634,22 @@ postinst_sources() {
 	[[ ! -d ${EROOT}sys ]] && kernel_is 2 6 && mkdir ${EROOT}sys
 
 	echo
-	einfo "If you are upgrading from a previous kernel, you may be interested"
-	einfo "in the following documents:"
-	einfo "  - General upgrade guide: http://www.gentoo.org/doc/en/kernel-upgrade.xml"
-	kernel_is_2_6 && einfo "  - 2.4 to 2.6 migration guide: http://www.gentoo.org/doc/en/migration-to-2.6.xml"
+	elog "If you are upgrading from a previous kernel, you may be interested"
+	elog "in the following documents:"
+	elog "  - General upgrade guide: http://www.gentoo.org/doc/en/kernel-upgrade.xml"
+	kernel_is_2_6 && elog "  - 2.4 to 2.6 migration guide: http://www.gentoo.org/doc/en/migration-to-2.6.xml"
 	echo
 
 	# if K_EXTRAEINFO is set then lets display it now
 	if [[ -n ${K_EXTRAEINFO} ]]; then
 		echo ${K_EXTRAEINFO} | fmt |
 		while read -s ELINE; do	einfo "${ELINE}"; done
+	fi
+
+	# if K_EXTRAELOG is set then lets display it now
+	if [[ -n ${K_EXTRAELOG} ]]; then
+		echo ${K_EXTRAELOG} | fmt |
+		while read -s ELINE; do	elog "${ELINE}"; done
 	fi
 
 	# if K_EXTRAEWARN is set then lets display it now
@@ -662,11 +669,11 @@ postinst_sources() {
 }
 
 postinst_headers() {
-	einfo "Kernel headers are usually only used when recompiling your system libc, as"
-	einfo "such, following the installation of newer headers, it is advised that you"
-	einfo "re-merge your system libc."
-	einfo "Failure to do so will cause your system libc to not make use of newer"
-	einfo "features present in the updated kernel headers."
+	elog "Kernel headers are usually only used when recompiling your system libc, as"
+	elog "such, following the installation of newer headers, it is advised that you"
+	elog "re-merge your system libc."
+	elog "Failure to do so will cause your system libc to not make use of newer"
+	elog "features present in the updated kernel headers."
 }
 
 # pkg_setup functions

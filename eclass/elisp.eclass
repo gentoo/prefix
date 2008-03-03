@@ -1,11 +1,11 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.28 2007/12/28 17:48:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.29 2008/03/03 15:21:47 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
-# Copyright 2003 Jeremy Maitin-Shepard <jbms@attbi.com>
-# Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
-# Copyright 2007 Ulrich Mueller <ulm@gentoo.org>
+# Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
+# Copyright 2007      Christian Faulhammer <opfer@gentoo.org>
+# Copyright 2007-2008 Ulrich Müller <ulm@gentoo.org>
 #
 # @ECLASS: elisp.eclass
 # @MAINTAINER:
@@ -86,5 +86,6 @@ elisp_pkg_postrm() {
 	elisp-site-regen
 }
 
-EXPORT_FUNCTIONS src_unpack src_compile src_install
-EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS \
+	src_unpack src_compile src_install \
+	pkg_setup pkg_postinst pkg_postrm

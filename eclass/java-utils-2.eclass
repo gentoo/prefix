@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.103 2008/01/12 15:08:47 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.104 2008/03/03 17:55:21 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -292,7 +292,6 @@ java-pkg_dojar() {
 
 	java-pkg_do_write_
 }
-
 
 # ------------------------------------------------------------------------------
 # @internal-function depend-java-query
@@ -649,13 +648,7 @@ java-pkg_dosrc() {
 
 	if ! [[ ${DEPEND} = *app-arch/zip* ]]; then
 		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
-		if is-java-strict; then
-			eerror "${msg}"
-			die "${msg}"
-		else
-			echo "${msg}"
-			echo "Please report this to http://bugs.gentoo.org."
-		fi
+		java-pkg_announce-qa-violation ${msg}
 	fi
 
 	java-pkg_init_paths_
@@ -2178,12 +2171,16 @@ java-pkg_init-compiler_() {
 	# If it hasn't been defined already, default to javac
 	if [[ -z ${GENTOO_COMPILER} ]]; then
 		if [[ -n ${compilers} ]]; then
-			einfo "No suitable compiler found: defaulting javac for compilation"
+			einfo "No suitable compiler found: defaulting to JDK default for compilation"
 		else
 			# probably don't need to notify users about the default.
 			:;#einfo "Defaulting to javac for compilation"
 		fi
-		export GENTOO_COMPILER=javac
+		if java-config -g GENTOO_COMPILER 2> /dev/null; then
+			export GENTOO_COMPILER=$(java-config -g GENTOO_COMPILER)
+		else
+			export GENTOO_COMPILER=javac
+		fi
 	else
 		einfo "Using ${GENTOO_COMPILER} for compilation"
 	fi
@@ -2244,6 +2241,7 @@ java-pkg_do_write_() {
 		(
 			echo "DESCRIPTION=\"${DESCRIPTION}\""
 			echo "GENERATION=\"2\""
+			echo "SLOT=\"${SLOT}\""
 
 			[[ -n "${JAVA_PKG_CLASSPATH}" ]] && echo "CLASSPATH=\"${JAVA_PKG_CLASSPATH}\""
 			[[ -n "${JAVA_PKG_LIBRARY}" ]] && echo "LIBRARY_PATH=\"${JAVA_PKG_LIBRARY}\""

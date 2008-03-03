@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.169 2008/01/09 21:13:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.170 2008/03/03 15:09:18 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -108,8 +108,11 @@ if [[ $(get_major_version ) -ge 7 ]] ; then
 	#fi
 	if [[ "${MY_PN}" == "gvim" ]] ; then
 		IUSE="${IUSE} netbeans aqua nextaw"
-		DEPEND="${DEPEND}   netbeans? ( dev-util/netbeans )"
-		RDEPEND="${RDEPEND} netbeans? ( dev-util/netbeans )"
+		# Vim implements netbeans external editor protocol when netbeans is
+		# enabled and doesn't necessarily need dev-util/netbeans.
+		# bug 184065
+		# DEPEND="${DEPEND}   netbeans? ( dev-util/netbeans )"
+		# RDEPEND="${RDEPEND} netbeans? ( dev-util/netbeans )"
 	fi
 	if [[ "${MY_PN}" == "vim" ]] ; then
 		IUSE="${IUSE} vim-pager"

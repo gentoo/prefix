@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.12 2007/11/29 23:11:04 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.13 2008/03/03 17:05:06 jokey Exp $
 
 # Based on robbat2's work on the php4 sapi eclass
 # Based on stuart's work on the php5 sapi eclass
@@ -20,18 +20,9 @@
 # ========================================================================
 
 php_check_cflags() {
-	# Filter the following from C[XX]FLAGS regardless, as apache won't be
-	# supporting LFS until 2.2 is released and in the tree. Fixes bug #24373.
-	filter-flags "-D_FILE_OFFSET_BITS=64"
-	filter-flags "-D_FILE_OFFSET_BITS=32"
-	filter-flags "-D_LARGEFILE_SOURCE=1"
-	filter-flags "-D_LARGEFILE_SOURCE"
-
 	# Fixes bug #14067.
 	# Changed order to run it in reverse for bug #32022 and #12021.
-	replace-flags "-march=k6-3" "-march=i586"
-	replace-flags "-march=k6-2" "-march=i586"
-	replace-flags "-march=k6" "-march=i586"
+	replace-cpu-flags "k6*" "i586"
 }
 
 # ========================================================================
@@ -56,6 +47,15 @@ php_check_imap() {
 			eerror "IMAP without SSL requested, but your IMAP C-Client libraries are built with SSL!"
 			eerror
 			die "Please recompile the IMAP C-Client libraries with SSL support disabled"
+		fi
+	fi
+
+	if use "kolab" || phpconfutils_usecheck "kolab" ; then
+		if ! built_with_use net-libs/c-client kolab ; then
+			eerror
+			eerror "IMAP with annotations support requested, but net-libs/c-client is built without it!"
+			eerror
+			die "Please recompile net-libs/c-client with USE=kolab."
 		fi
 	fi
 }

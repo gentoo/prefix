@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.17 2007/11/12 18:13:29 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.18 2008/03/03 17:06:16 jokey Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -70,6 +70,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		imap? ( virtual/imap-c-client )
 		iodbc? ( dev-db/libiodbc >=dev-db/unixODBC-1.8.13 )
 		kerberos? ( virtual/krb5 )
+		kolab? ( >=net-libs/c-client-2004g-r1 )
 		ldap? ( !oci8? ( >=net-nds/openldap-1.2.11 ) )
 		ldap-sasl? ( !oci8? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 ) )
 		libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
@@ -197,6 +198,7 @@ php5_2-sapi_check_use_flags() {
 	phpconfutils_use_depend_all "iodbc"			"odbc"
 	phpconfutils_use_depend_all "sapdb"			"odbc"
 	phpconfutils_use_depend_all "solid"			"odbc"
+	phpconfutils_use_depend_all "kolab"			"imap"
 
 	# Direct USE conflicts
 	phpconfutils_use_conflict "gd" "gd-external"
@@ -205,7 +207,7 @@ php5_2-sapi_check_use_flags() {
 	phpconfutils_use_conflict "zip" "zip-external"
 	phpconfutils_use_conflict "qdbm" "gdbm"
 	phpconfutils_use_conflict "readline" "libedit"
-	phpconfutils_use_conflict "recode" "mysql" "imap" "yaz"
+	phpconfutils_use_conflict "recode" "mysql" "imap" "yaz" "kolab"
 	phpconfutils_use_conflict "sharedmem" "threads"
 	phpconfutils_use_conflict "firebird" "interbase"
 
@@ -701,60 +703,29 @@ php5_2-sapi_src_install() {
 # @DESCRIPTION:
 # Provides important information to users after install is finished.
 php5_2-sapi_pkg_postinst() {
-	ewarn
-	ewarn "If you have additional third party PHP extensions (such as"
-	ewarn "dev-php5/phpdbg) you may need to recompile them now."
-	ewarn "A new way of enabling/disabling PHP extensions was introduced"
-	ewarn "with the newer PHP packages releases, so please reemerge any"
-	ewarn "PHP extensions you have installed to automatically adapt to"
-	ewarn "the new configuration layout."
-	if use sharedext ; then
-		ewarn "The core PHP extensions are now loaded through external"
-		ewarn ".ini files, not anymore using a 'extension=name.so' line"
-		ewarn "in the php.ini file. Portage will take care of this by"
-		ewarn "creating new, updated config-files, please make sure to"
-		ewarn "install those using etc-update or dispatch-conf."
-	fi
-	ewarn
+        ewarn "If you have additional third party PHP extensions (such as"
+        ewarn "dev-php5/phpdbg) you may need to recompile them now."
+        ewarn
 
-	if use curl ; then
-		ewarn "Please be aware that CURL can allow the bypass of open_basedir restrictions."
-		ewarn "This can be a security risk!"
+        if use sharedext ; then
+                ewarn "Make sure to use etc-update or dispatch-conf so that extension-specific"
+                ewarn "ini files get merged properly"
+                ewarn
+        fi
+
+	if has kolab ${IUSE} && use kolab ; then
+		ewarn "Please note that kolab support is still experimental!"
+		ewarn "Issues specific to USE=kolab must be reported to Gentoo bugzilla only!"
+		ewarn
+		ewarn "Kolab groupware server requires annotations support for IMAP, which is enabled"
+		ewarn "by a third-party patch. Please do NOT report issues with the imap extension"
+		ewarn "to bugs.php.net until you have recompiled both PHP and net-libs/c-client"
+		ewarn "with USE=\"-kolab\" and confirmed that those issues still exist!"
 		ewarn
 	fi
 
-	ewarn "The 'pic' USE flag was added to newer releases of dev-lang/php."
-	ewarn "With PIC enabled, your PHP installation may become slower, but"
-	ewarn "PIC is required on Hardened-Gentoo platforms (where the USE flag"
-	ewarn "is enabled automatically). You may also need this on other"
-	ewarn "configurations where TEXTRELs are disabled, for example when using"
-	ewarn "certain PaX options in the kernel."
-	ewarn
-
-	ewarn "With PHP 5.2, some extensions were removed from PHP because"
-	ewarn "they were unmaintained or moved to PECL. Our ebuilds reflect"
-	ewarn "this: the Filepro and HwAPI (Hyperwave-API) extensions were"
-	ewarn "removed altogether and have no available substitute."
-	ewarn "The Informix extension was also removed, as well as the optional"
-	ewarn "memory-limit setting: memory-limit is now always enforced!"
-	ewarn "The 'vm-goto' and 'vm-switch' USE flags were also removed,"
-	ewarn "since the alternative VMs aren't really supported upstream"
-	ewarn "and were found to behave badly with PHP 5.2. Once their"
-	ewarn "state becomes clearer, we'll consider readding the USE flags."
-	ewarn "The Ming extension was removed from our PHP 5.2 ebuild, because"
-	ewarn "there were serious problems with compilation and the required"
-	ewarn "Ming library. This functionality will be reintroduced later"
-	ewarn "as an independant, external PHP extension."
-	ewarn "The configure option --enable-gd-native-ttf (enabled by the"
-	ewarn "'truetype' USE flag) was removed at upstreams request,"
-	ewarn "as it's considered old and broken."
-	ewarn "Hardened-PHP was also removed from the PHP 5.2 ebuilds in"
-	ewarn "favour of its successor Suhosin, enable the 'suhosin' USE"
-	ewarn "flag to install it."
-	ewarn
-
-	ewarn "The 'xml' and 'xml2' USE flags were unified in only the 'xml' USE"
-	ewarn "flag. To get the features that were once controlled by the 'xml2'"
-	ewarn "USE flag, turn the 'xml' USE flag on."
-	ewarn
+        ewarn "USE=\"pic\" slows down PHP but has to be enabled on setups where TEXTRELs"
+        ewarn "are disabled (e.g. when using PaX in the kernel). On hardened profiles this"
+        ewarn "USE flag is enabled automatically"
+        ewarn
 }
