@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8331 2008/02/29 16:48:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8336 2008/03/02 12:21:22 aballier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -77,20 +77,6 @@ x11-libs/lesstif
 # Timo Gurr <tgurr@gentoo.org> (22 Feb 2008)
 # Mask KDE4 versions of ktorrent as long as KDE4 is masked.
 >=net-p2p/ktorrent-3.0.0
-
-# Diego Pettenò <flameeyes@gentoo.org> (21 Feb 2008)
-# New pambase framework for PAM configuration. See Tracker bug #210767.
-sys-auth/pambase
-=sys-libs/pam-0.99.9.0-r1
-=sys-apps/shadow-4.1.0-r1
-=sys-freebsd/freebsd-pam-modules-6.2-r1
-=sys-freessd/freebsd-ubin-6.2-r2
-=net-misc/openssh-4.7_p1-r20
-=net-misc/netkit-rsh-0.17-r9
-=net-misc/dropbear-0.50-r1
-=app-admin/conserver-8.1.16-r1
-=x11-misc/wdm-1.28-r2
-=x11-apps/xdm-1.1.6-r1
 
 # Mike Frysinger <vapier@gentoo.org> (20 Feb 2008)
 # Use a generic package like dev-util/devel-chroots. #193566
@@ -273,12 +259,6 @@ x11-plugins/gkrellm-bfm
 # the now obsolete 1.3 branch of Audacious.
 # Removal: March 2008
 media-plugins/audacious-plugins-ugly
-
-# Alexis Ballier <aballier@gentoo.org> (28 Jan 2008)
-# Provided by all our TeX distributions and thus
-# collides with them. Bug #153168
-# Masked for removal, due some day after 28 Feb 2008
-dev-tex/koma-script
 
 # Peter Volkov <pva@gentoo.org> (28 Jan 2008)
 # net-snmp and sussen are broken with it, bug #205280
@@ -471,6 +451,7 @@ sys-apps/list
 =kde-base/khelpcenter-4*
 =kde-base/khotkeys-4*
 =kde-base/kig-4*
+=kde-base/kinfocenter-4*
 =kde-base/kioclient-4*
 =kde-base/kiriki-4*
 =kde-base/kiten-4*
@@ -624,10 +605,6 @@ games-fps/doomsday-resources
 >=app-crypt/qca-logger-2.0.0_beta2
 >=app-crypt/qca-ossl-2.0.0_beta3
 >=app-crypt/qca-pkcs11-2.0.0_beta2
-
-# Benedikt Böhm <hollow@gentoo.org> (12 Jan 2008)
-# Masked for apache-2.0 removal, bug #203578
-dev-cpp/cppserv
 
 # Alon Bar-Lev <alonbl@gentoo.org> (11 Jan 2008)
 # Does not really work, bug#204662
@@ -1064,7 +1041,6 @@ media-fonts/artwiz-fonts
 # Raúl Porcel <armin76@gentoo.org> (18 Jul 2007)
 # Mask rc
 =net-p2p/qbittorrent-1.0.0_rc*
-=net-libs/rb_libtorrent-0.13_pre*
 
 # Olivier Fisette <ribosome@gentoo.org> (17 Jul 2007)
 # Software no longer available (redistribution not allowed).

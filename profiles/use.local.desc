@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3395 2008/02/28 19:42:39 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3409 2008/03/03 18:20:32 jokey Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -90,7 +90,8 @@ app-editors/emacs:sendmail - Build Emacs with MTA support
 app-editors/emacs:sound - Enable sound
 app-editors/emacs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
 app-editors/fe:sendmail - Send mail after editor abend
-app-editors/gvim:netbeans - Include netbeans integration support
+app-editors/gvim:aqua - Include support for the Aqua / Carbon GUI
+app-editors/gvim:netbeans - Include netbeans externaleditor integration support.
 app-editors/gvim:nextaw - Include support for the neXtaw GUI
 app-editors/jasspa-microemacs:nanoemacs - Build NanoEmacs instead of MicroEmacs
 app-editors/joe:xterm - Enable full xterm clipboard support
@@ -120,7 +121,6 @@ app-emacs/wanderlust:bbdb - Include support for app-emacs/bbdb
 app-emulation/bochs:debugger - Enable the bochs debugger
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
-app-emulation/emul-linux-x86-glibc:nptlonly - Disables installing the linuxthreads fallback in glibc ebuilds that support building both linuxthreads and nptl.
 app-emulation/emul-linux-x86-qtlibs:immqt-bc - Enable binary compatible version of immodule for Qt
 app-emulation/fuse:libdsk - Enable support for the floppy disk emulation library
 app-emulation/hercules:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default package CFLAGS (not supported)
@@ -260,6 +260,8 @@ app-pda/multisync:kdepim - Adds support for KDEPIM sync.
 app-pda/multisync:nokia6600 - Adds support for Nokia 6600.
 app-pda/synce-kde:avantgo - Adds support for syncing Avantgo accounts.
 app-portage/conf-update:colordiff - Use colors when displaying diffs
+app-portage/gatt-svn:libpaludis - Do some dependency resolution by using a Paludis interface
+app-portage/portato:etc-proposals - Use etc-proposals for updating CONFIG_PROTECTed stuff
 app-portage/portato:userpriv - Allow emerge processes as normal user
 app-shells/bash:bashlogger - Log ALL commands typed into bash; should ONLY be used in restricted environments such as honeypots
 app-shells/bash:plugins - Add support for loading builtin's at runtime via `enable`
@@ -271,8 +273,6 @@ app-shells/tcsh:catalogs - Adds support for NLS catalogs
 app-text/crm114:mew - Add support for using the mewdecode mime decoder.
 app-text/crm114:mimencode - Adds support for using the mimencode mime
 app-text/crm114:normalizemime - Add support for using the normalizemime
-app-text/estraier:kakasi - Enable kakasi support for Estraier
-app-text/estraier:mecab - Enable mecab support for Estraier
 app-text/evince:dvi - Enable the built-in DVI viewer for Evince
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer for Evince
 app-text/hyperestraier:mecab - Enable mecab support for Estraier
@@ -289,11 +289,13 @@ app-text/texlive:extra - Adds support for extra TeXLive packages
 app-text/texlive:games - Adds typesetting support for games (chess, etc.)
 app-text/texlive:graphics - Adds support for several graphics packages (pgf,tikz,...)
 app-text/texlive:humanities - Adds LaTeX support for the humanities
+app-text/texlive:jadetex - Adds jadetex support (for processing tex files produced by the TeX backend of Jade)
 app-text/texlive:music - Adds support for music typesetting
 app-text/texlive:omega - Adds omega packages
 app-text/texlive:pstricks - Adds pstricks packages
 app-text/texlive:publishers - Adds support for publishers
 app-text/texlive:science - Adds typesetting support for natural and computer sciences
+app-text/texlive:tex4ht - Adds support for tex4ht (for converting (La)TeX to (X)HTML, XML and OO.org)
 app-text/texlive:xetex - Adds support for XeTeX macros
 app-text/webgen:builder - Enable programmatic HTML/XML generation
 app-text/webgen:exif - Enable EXIF information in image galleries
@@ -363,25 +365,6 @@ dev-java/ant-tasks:jdepend - Enable Jdepend Ant tasks
 dev-java/ant-tasks:jmf - Enable JMF (Java Media Framework) Ant tasks
 dev-java/ant-tasks:jsch - Disable Jsch (ssh, scp and related) Ant tasks
 dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
-dev-java/ant-tasks:noantlr - Disable ANTLR Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nobcel - Disable bcel Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nobeanutils - Disable beanutils Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nobsf - Disable bsf Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nobsh - Disable bsh Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nocommonslogging - Disable commons-logging Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nocommonsnet - Disable commons-net Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nojdepend - Disable Jdepend Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nojmf - Disable JMF (Java Media Framework) Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nojsch - Disable Jsch Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nojython - Disable Jython Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nolog4j - Disable Apache log4j Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:nooro - Disable Oro Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:noregexp - Disable Apache Regexp Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:noresolver - Disable Apache Resolver Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:norhino - Disable Rhino Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:noswing - Disable Swing Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:noxalan - Disable Xalan Ant task -- Warning: Enabling this could break some of the Java packages!!
-dev-java/ant-tasks:noxerces - Disable Xerces Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
 dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
@@ -406,6 +389,7 @@ dev-java/gnu-classpath:gconf - Enable the GConf based util.peers backend
 dev-java/groovy:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/ibm-jdk-bin:javacomm - Enable Java Communications API support
 dev-java/jamvm:ffi - use dev-libs/libffi to call native methods
+dev-java/jamvm:libffi - use dev-libs/libffi to call native methods
 dev-java/jcs:admin - Enable JCS Admin servlets
 dev-java/jdbc-jaybird:jni - Build/Install JDBC Type 2 native components
 dev-java/jdbc-mysql:c3p0 - Enable c3p0 support
@@ -418,15 +402,7 @@ dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
 dev-java/log4j:jmx - Build org.apace.log4j.jmx
 dev-java/proguard:j2me - Adds support for J2ME Wireless Toolkit
-dev-java/quartz:dbcp - Enable dbcp support
-dev-java/quartz:jboss - Enable JBoss support
-dev-java/quartz:jmx - Enable jmx support
-dev-java/quartz:jta - Enable jta support
-dev-java/quartz:servlet-2_3 - Enable servlet-2.3 support
-dev-java/quartz:servlet-2_4 - Enable servlet-2.4 support
-dev-java/quartz:struts - Enable struts support
 dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
-dev-java/sun-jaxp-bin:dom4j - Enable dom4j
 dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
 dev-lang/erlang:hipe - HIgh Performance Erlang extension
 dev-lang/erlang:kpoll - Enable kernel polling support
@@ -437,6 +413,7 @@ dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly lar
 dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
 dev-lang/icon:iplsrc - install the icon programming library source
+dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
@@ -517,10 +494,6 @@ dev-libs/opensc:pcsc-lite - build with pcsc-lite
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/qsa:ide - enable the qsa ide
 dev-libs/soprano:clucene - Enable clucene backend support (recommended)
-dev-libs/wx-xmingw:gdb - Enable gdb debugging
-dev-libs/wx-xmingw:monolithic - Build a monolithic lib
-dev-libs/wx-xmingw:mslu - Enable mslu support
-dev-libs/wx-xmingw:shared - Enable shared libs
 dev-libs/xerces-c:icu - Use ICU as message loader and transcoder instead of builtin or iconv
 dev-libs/yaz:icu - Enable ICU (Internationalization Components for Unicode) support, using dev-libs/icu
 dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
@@ -681,7 +654,6 @@ games-board/grhino:gtp - Install the GTP (Go/Game Text Protocol) frontend
 games-board/pysol:extra-cardsets - Install extra cardsets
 games-board/xboard:zippy - Enable experimental zippy client
 games-emulation/generator:sdlaudio - Enable SDL Audio
-games-emulation/mupen64-glN64:asm - Enable use of asm routines to improve performance
 games-emulation/snes9x:netplay - Enable playing ROMs over the network (not recommended)
 games-emulation/xmame:net - Add network support
 games-emulation/xmess:net - Add network support
@@ -770,7 +742,6 @@ gnustep-base/gnustep-back-cairo:glitz - Build with glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Use libffi (from gcc) instead of ffcall library. Requires sys-libs/gcc built with USE=libffi
-kde-base/akonadi:nepomuk - Build Nepomuk feeder
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
 kde-base/ark:zip - Enable zip support through LibZip
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard
@@ -880,6 +851,7 @@ mail-filter/libmilter:poll - Use poll instead of select
 mail-filter/maildrop:authlib - Add courier-authlib suport
 mail-filter/qmail-scanner:spamassassin - Build faster spamassassin checks into qmail-scanner
 mail-filter/simscan:attachment - Enable attachment scanning
+mail-filter/simscan:custom-smtp-reject - Return smtp reject message with virus name.
 mail-filter/simscan:dropmsg - Drop messages in case of virus/spam
 mail-filter/simscan:passthru - Passthru messages in case of virus/spam
 mail-filter/simscan:per-domain - Enable support for per-domain settings
@@ -887,6 +859,8 @@ mail-filter/simscan:quarantine - Enable quarantine support
 mail-filter/simscan:received - Add Received: line to mail headers
 mail-filter/simscan:regex - Enable regular expression matching
 mail-filter/simscan:spamassassin - Use spamassassin for spam checking
+mail-filter/simscan:spamc-user - Set user option to spamc.
+mail-filter/simscan:spam-auth-user - Turn on spam scanning for authenticated users
 mail-filter/spamassassin-fuzzyocr:amavis - Enable support for amavis
 mail-filter/spamassassin-fuzzyocr:gocr - Enable support for the gocr OCR engine
 mail-filter/spamassassin-fuzzyocr:logrotate - Install support files for logrotate
@@ -929,10 +903,6 @@ media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums ba
 media-gfx/exiv2:xmp - Adds support for Adobe XMP
 media-gfx/gimp:gimpprint - Enable gimp-print printing support
 media-gfx/gimp:smp - Enable support for multiprocessors
-media-gfx/graphicsmagick:depth16 - use 16-bit color depth as default
-media-gfx/graphicsmagick:depth32 - use 32-bit color depth as default
-media-gfx/graphicsmagick:gs - enable ghostscript support
-media-gfx/graphicsmagick:lzw - enable LZW support
 media-gfx/graphviz:pango - Enables the rendering of the graphs using pango & cairo (with antialiasing support)
 media-gfx/gthumb:iptc - Add support for IPTC metadata
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
@@ -977,6 +947,7 @@ media-libs/libvorbis:aotuv - Allow users to enable aoTuV encoder enhancements
 media-libs/mediastreamer:gsm - Include support for the gsm audio codec
 media-libs/mediastreamer:video - Enable video support (display/capture)
 media-libs/netpbm:rle - Build converters for the RLE format (utah raster toolkit)
+media-libs/openjpeg:tools - Installs tools (j2k_to_image and image_to_j2k)
 media-libs/panda3d:fmod - Enables support for using mod files for audio support
 media-libs/panda3d:nspr - Enables support for the Netscape Portable Runtime, used in network interface functionality (ie. multiplayer online game networking).
 media-libs/ploticus:cpulimit - Limit cpu usage when generating graphics
@@ -990,7 +961,6 @@ media-libs/svgalib:no-helper - Do not build the helper kernel module
 media-libs/swfdec:soup - Enable HTTP support via libsoup
 media-libs/urt:gs - Add support for postscript
 media-libs/win32codecs:real - Installs the real video codecs
-media-libs/x264-svn:mp4 - Enables mp4 encoding support
 media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
 media-libs/xine-lib:real - Adds real video support
 media-libs/xine-lib:vidix - Support for vidix video output
@@ -1466,7 +1436,6 @@ net-im/ejabberd:mod_pubsub - Pubsub support in ejabberd
 net-im/ejabberd:web - Web support in ejabberd
 net-im/ekg2:gsm - Enable gsm plugin
 net-im/ekg2:nogg - Disable Gadu-Gadu plugin
-net-im/gaim:silc - Enable SILC protocol support
 net-im/gajim:idle - Enable idle module
 net-im/gajim:srv - SRV capabilities
 net-im/gajim:trayicon - Enable support for trayicon
@@ -1514,6 +1483,7 @@ net-irc/ezbounce:boost - Compile against boost libraries
 net-irc/inspircd:openssl - Build OpenSSL module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
+net-irc/quassel:server - Build the server part of Quassel.
 net-irc/rbot:aspell - Use aspell rather than ispell for the spell plugin.
 net-irc/rbot:dict - Enable the dict (RFC 2229) client plugin which deps on dev-ruby/ruby-dict.
 net-irc/rbot:shorturl - Enable the shortenurl plugin which deps on dev-ruby/shorturl.
@@ -1589,8 +1559,6 @@ net-misc/asterisk:osp - Enable support for the Open Settlement Protocol
 net-misc/asterisk:pri - Enables pri support (>=asterisk-1.0.1)
 net-misc/asterisk:ukcid - Enable UK callerid support
 net-misc/asterisk:zaptel - Enables zaptel support (>=asterisk-1.0.1)
-net-misc/bird:client - Enables the BIRD client
-net-misc/bird:ipv6only - Builds with only IPv6, note that this *disables* IPv4 entirely
 net-misc/bridge-utils:sysfs - Enable use of the sysfs filesystem (Linux-2.6+) via libsysfs
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2
@@ -1641,7 +1609,6 @@ net-misc/vino:keyring - Enable gnome-keyring support for storing passwords
 net-misc/vnc:server - Build VNC server
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
-net-misc/wanpipe:adsl - Build with adsl support
 net-misc/xf4vnc:vncviewer - Install the vncviewer binary
 net-misc/xf4vnc:xvnc - Install the Xvnc binary
 net-misc/xsupplicant:gsm - Add support for EAP-SIM authentication algorithm
@@ -1900,7 +1867,6 @@ sys-apps/qtparted:reiserfs - Include ReiserFS support
 sys-apps/qtparted:xfs - Include XFS support
 sys-apps/shadow:nousuid - When nousuid is enabled only su from the shadow package will be installed with the setuid bit (mainly for single user systems)
 sys-apps/suspend2-userui:fbsplash - Add support for framebuffer splash
-sys-apps/tcng:tcsim - enable traffic simulator
 sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
 sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
 sys-apps/ucspi-ssl:tls - Add TLS support (see also http://www.suspectclass.com/~sgifford/ucspi-tls/)
@@ -2010,7 +1976,6 @@ sys-fs/owfs:parport - Enable support for the DS1410E parallel port adapter
 sys-fs/owfs:server - Enable building the OWFS server (owserver)
 sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/unionfs:nfs - Adds support for NFS file system
-sys-kernel/ck-sources:ck-server - Tune the kernel for servers
 sys-kernel/gentoo-sources:ultra1 - If you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documentation
 sys-kernel/mips-headers:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
@@ -2074,13 +2039,8 @@ www-apps/lxr:freetext - Adds support for freetext search using swish-e
 www-apps/mantisbt:bundled-adodb - use adodb bundled with web-application instead of system wide
 www-apps/mediawiki:math - Adds math rendering support
 www-apps/mediawiki:restrict - Initial setup will only allow sysop user to create new accounts, read and edit any pages
-www-apps/open-xchange:sieve - Install Smartsieve-OX
-www-apps/open-xchange:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support.
 www-apps/rt:lighttpd - Add lighttpd support
 www-apps/trac:silvercity - Add SilverCity support to colourize code stored in the repository
-www-apps/viewcvs:cvsgraph - Add cvsgraph support to show graphical views of revisions and branches
-www-apps/viewcvs:mod_python - Add mod_python support
-www-apps/viewcvs:standalone - Install the standalone client
 www-apps/viewvc:cvsgraph - Add cvsgraph support to show graphical views of revisions and branches
 www-apps/viewvc:highlight - Add highlight support to colourize code stored in the repository
 www-apps/viewvc:mod_python - Add mod_python support
@@ -2105,7 +2065,6 @@ www-client/seamonkey:moznoroaming - sroaming extension support
 www-client/seamonkey:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
 www-client/w3m:async - Enables asynchronous fetch
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
-www-misc/nsxml:xslt - Enables xslt support
 www-misc/zoneminder:X10 - Enable support for X10 devices
 www-servers/apache:sni - Enable TLS Server Name Indication (SNI) - EXPERIMENTAL!
 www-servers/apache:suexec - Install suexec with apache
@@ -2164,7 +2123,6 @@ x11-plugins/gkrellm-plugins:audacious - Install the audacious plugin
 x11-plugins/gkrellmbups:nut - Enables monitoring Network-UPS (sys-power/nut)
 x11-plugins/purple-plugin_pack:talkfilters - Enable support for app-text/talkfilters
 x11-plugins/wmhdplop:gkrellm - Enable build of gkrellm module
-x11-plugins/wmspaceclock:stlport - Enable support for STLport, greatly reducing CPU usage
 x11-plugins/wmsysmon:high-ints - Enable support for monitoring 24 interrupts, useful on SMP machines
 x11-terms/aterm:background - Enable background image support via libAfterImage
 x11-terms/aterm:xgetdefault - Enable resources via X instead of aterm small version
@@ -2191,7 +2149,6 @@ x11-themes/redhat-artwork:icons - Install Bluecurve icons
 x11-themes/redhat-artwork:kdm - Install Bluecurve KDM theme
 x11-themes/redhat-artwork:nautilus - Install Bluecurve Nautilus icons
 x11-themes/skinenigmang-logos:dxr3 - install logos for lower osd color deep on dxr3 cards
-x11-wm/beryl:emerald - Add support for one of the three decorators for Beryl
 x11-wm/enlightenment:xrandr - Enable support for the X xrandr extension
 x11-wm/fluxbox:disableslit - Disable the slit. Works around bug 122380.
 x11-wm/fluxbox:disabletoolbar - Disable the toolbar.
@@ -2199,7 +2156,6 @@ x11-wm/fluxbox:slit - Enables the fluxbox slit
 x11-wm/fluxbox:toolbar - Enables the fluxbox toolbar
 x11-wm/fvwm:rplay - Enable rplay support
 x11-wm/fvwm:stroke - Mouse Gesture support
-x11-wm/ion3:ion3-voidupstreamsupport-truetype - Enable TrueType support, note this will *void* upstream support for your ion3 installation
 x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.

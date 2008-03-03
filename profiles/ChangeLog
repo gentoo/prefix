@@ -1,6 +1,37 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1163 2008/02/29 16:48:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1173 2008/03/03 17:27:35 betelgeuse Exp $
+
+  03 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add libffi use flag for dev-java/jamvm to unify the naming between gcc and
+  jamvm.
+
+  03 Mar 2008; Vlastimil Babka <caster@gentoo.org> use.local.desc:
+  Remove all no* flags for dev-java/ant-tasks, bug #177362.
+
+  02 Mar 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  USE=libpaludis for app-portage/gatt-svn
+
+  02 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add server USE flag for quassel.
+
+  03 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> updates/1Q-2008:
+  Package move - media-fonts/fonts-indic => media-fonts/lohit-fonts.
+
+  02 Mar 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  koma-script is gone, bug #153168
+
+  01 Mar 2008; Timothy Redaelli <drizzt@gentoo.org> use.local.desc:
+  Added the local USE flag tools for openjpeg
+
+  01 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added the local USE flag vim for lisaac.
+
+  01 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> package.mask:
+  Unmask rb_libtorrent svn snapshot, for use in net-p2p/lince.
+
+  02 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> default-linux/mips/use.mask:
+  Add laptop and dell to mips use.mask.
 
   29 Feb 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
   remove ocaml mask now that its released
