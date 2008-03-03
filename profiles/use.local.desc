@@ -90,7 +90,7 @@ app-editors/emacs:sendmail - Build Emacs with MTA support
 app-editors/emacs:sound - Enable sound
 app-editors/emacs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
 app-editors/fe:sendmail - Send mail after editor abend
-app-editors/gvim:aqua - Include support for the Aqua / Carbon GUI
+app-editors/gvim:carbon - Include support for the Carbon GUI
 app-editors/gvim:netbeans - Include netbeans externaleditor integration support.
 app-editors/gvim:nextaw - Include support for the neXtaw GUI
 app-editors/jasspa-microemacs:nanoemacs - Build NanoEmacs instead of MicroEmacs
