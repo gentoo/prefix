@@ -1,6 +1,10 @@
 # ChangeLog for app-text/lcdf-typetools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/ChangeLog,v 1.15 2008/02/10 16:32:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/ChangeLog,v 1.16 2008/03/02 10:30:52 coldwind Exp $
+
+  02 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  lcdf-typetools-2.66.ebuild:
+  amd64 stable wrt bug #208750
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
   lcdf-typetools-2.66.ebuild:
