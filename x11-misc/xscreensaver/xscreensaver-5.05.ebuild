@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.04.ebuild,v 1.9 2008/02/07 15:05:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.2 2008/03/02 14:47:14 drac Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils fixheadtails flag-o-matic pam
+inherit eutils flag-o-matic multilib pam
 
 DESCRIPTION="A modular screen saver and locker for the X Window System"
 SRC_URI="http://www.jwz.org/xscreensaver/${P}.tar.gz"
@@ -42,21 +42,14 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Gentoo specific hacks and settings.
-	epatch "${FILESDIR}"/${P}-gentoo.patch
-	epatch "${FILESDIR}"/${P}-nsfw.patch
-
+	epatch "${FILESDIR}"/${PN}-5.04-gentoo.patch
+	epatch "${FILESDIR}"/${PN}-5.04-nsfw.patch
 	epatch "${FILESDIR}"/${P}-desktop-entry.patch
-
-	eautoreconf
-
-	# TODO. Get this fixed upstream.
-	ht_fix_all
+	epatch "${FILESDIR}"/${P}-posix-head.patch
 }
 
 src_compile() {
-	# Simple workaround for the flurry screensaver. Still needed for 5.04.
+	# Simple workaround for the ppc* arches flurry screensaver, needed for <=5.04
 	filter-flags -mabi=altivec
 	filter-flags -maltivec
 	append-flags -U__VEC__
@@ -65,8 +58,8 @@ src_compile() {
 
 	econf \
 		--with-x-app-defaults="${EPREFIX}"/usr/share/X11/app-defaults \
-		--with-hackdir="${EPREFIX}"/usr/lib/misc/xscreensaver \
-		--with-configdir="${EPREFIX}"/usr/share/xscreensaver/config \
+		--with-hackdir="${EPREFIX}"/usr/$(get_libdir)/misc/xscreensaver \
+		--with-configdir="${EPREFIX}"/usr/share/${PN}/config \
 		--x-libraries="${EPREFIX}"/usr/$(get_libdir) \
 		--x-includes="${EPREFIX}"/usr/include \
 		--with-dpms-ext \
@@ -96,12 +89,11 @@ src_install() {
 
 	dodoc README*
 
-	use pam && fperms 755 /usr/bin/xscreensaver
-	pamd_mimic_system xscreensaver auth
+	use pam && fperms 755 /usr/bin/${PN}
+	pamd_mimic_system ${PN} auth
 
 	# Bug 135549.
-	rm -f "${ED}"/usr/share/xscreensaver/config/electricsheep.xml
-	rm -f "${ED}"/usr/share/xscreensaver/config/fireflies.xml
+	rm -f "${ED}"/usr/share/${PN}/config/{electricsheep,fireflies}.xml
 	dodir /usr/share/man/man6x
 	mv "${ED}"/usr/share/man/man6/worm.6 \
 		"${ED}"/usr/share/man/man6x/worm.6x
