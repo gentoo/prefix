@@ -35,6 +35,7 @@ sybase
 sybase-ct
 rtc
 uclibc
+unicode #  totally b0rked on interix
 voodoo3
 pvm
 v4l
