@@ -1,6 +1,9 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.378 2008/02/29 15:02:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.379 2008/03/01 21:23:37 pylon Exp $
+
+  01 Mar 2008; Lars Weiler <pylon@gentoo.org> ChangeLog:
+  stable ppc, security bug 208128
 
   29 Feb 2008; Raúl Porcel <armin76@gentoo.org>
   -files/icon/firefox-icon.png, -files/icon/firefox-icon-unbranded.png,
