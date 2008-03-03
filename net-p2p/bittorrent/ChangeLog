@@ -1,6 +1,11 @@
 # ChangeLog for net-p2p/bittorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.129 2008/02/29 20:28:34 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.130 2008/03/01 19:57:11 armin76 Exp $
+
+*bittorrent-5.2.0 (01 Mar 2008)
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org> +bittorrent-5.2.0.ebuild:
+  Version bump, bug #211863
 
   29 Feb 2008; Carsten Lohrke <carlo@gentoo.org> bittorrent-5.0.9-r1.ebuild:
   Remove icon extension from desktop entry to match Icon Theme Specification.
