@@ -326,6 +326,10 @@ switch_profile() {
 	#
 	# The funky move magic is required for proper updating of in-use files.
 	if ! is_cross_compiler ; then
+		[[ ${REAL_CHOST} == *-darwin* ]] \
+			&& libname="dylib" \
+			|| libname="so"
+
 		# Need to cut out extra paths in multilib case and pray the first path
 		# is the "root" multilib path ... maybe some day change this to use
 		# `gcc -print-file-name` ...
@@ -337,8 +341,8 @@ switch_profile() {
 			libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${EROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} 2>/dev/null) ]]; then
-						cp -pP "${EROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} "${EROOT}/${libdir}"/.gcc.config.new/
+					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* 2>/dev/null) ]]; then
+						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
 						# no need to sanity remove this as the `mv` should take
 						# care of it.  we also need this step to be completly atomic
 						# for systems that have even `mv` linked against libgcc_s.so.
@@ -349,6 +353,22 @@ switch_profile() {
 				done
 				rmdir "${EROOT}/${libdir}"/.gcc.config.new
 			fi
+
+			# we can copy the other libs to /usr/lib without funky
+			# copying, also we can use symlinks as it's non-critical
+			# "double" copy libgcc and unwind, as for instance on Darwin
+			# the install_name should be correct (pointing to usr/lib)
+			# and the platform stubs (libgcc_s.10.4.dylib) can be
+			# changed
+			[[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib*${libname}* 2>/dev/null) ]] && \
+			for gcclib in "${ROOT}/${LDPATH}/${multilibdir}"/lib*${libname}* ; do
+				l=${gcclib##*/lib}
+				if mkdir -p "${EROOT}/usr/${libdir}" ; then
+					# make sure we don't overwrite the target
+					rm "${EROOT}/usr/${libdir}"/lib${l}
+					ln -sf "${gcclib}" "${EROOT}/usr/${libdir}"/lib${l}
+				fi
+			done
 		done
 		unset multilib
 		unset multilibdir
