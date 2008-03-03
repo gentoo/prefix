@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.166 2008/01/02 16:36:27 spb Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.168 2008/03/01 21:09:26 grobian Exp $
+
+  01 Mar 2008; Fabian Groffen <grobian@gentoo.org> files/bashrc:
+  Add support for Interix's terminal, bug #211875 by Markus Duft
+
+  01 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.2-ldflags-for-build.patch, bash-3.2_p33.ebuild:
+  Fix from Takashi YOSHII to respect LDFLAGS_FOR_BUILD #211947.
 
   02 Jan 2008; Stephen Bennett <spb@gentoo.org> bash-3.2_p25.ebuild,
   bash-3.2_p33.ebuild:

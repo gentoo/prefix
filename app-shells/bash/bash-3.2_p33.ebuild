@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p33.ebuild,v 1.4 2008/01/02 17:51:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p33.ebuild,v 1.5 2008/03/01 20:38:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -70,6 +70,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
 		epatch "${FILESDIR}"/${PN}-3.2-loadables.patch
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
+		epatch "${FILESDIR}"/${PN}-3.2-ldflags-for-build.patch #211947
 
 		# Fix process substitution on BSD.
 		epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
