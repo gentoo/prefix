@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.11 2008/02/29 22:54:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.14 2008/03/03 15:36:55 fmccor Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.162 2008/02/29 22:54:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.165 2008/03/03 15:36:55 fmccor Exp $
+
+  03 Mar 2008; Ferris McCormick <fmccor@gentoo.org>
+  openmotif-2.3.0-r1.ebuild:
+  Sparc stable, Bug #211696.
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org> openmotif-2.3.0-r1.ebuild:
+  alpha/ia64 stable wrt #211696
+
+  01 Mar 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
+  Stable on amd64, bug 211696.
 
   29 Feb 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
   Fix installation of demos. Thanks to fmccor for pointing this out.
