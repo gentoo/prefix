@@ -54,7 +54,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 
-	# forgot patching 'support/shlib-install' in p12 (netbsd, aix5).
+	# forgot patching 'support/shlib-install' in p12 (netbsd, aix5, interix).
 	epatch "${FILESDIR}"/${P}-shlib-install.patch
 
 	if [[ ${CHOST} == *-darwin9 ]]; then

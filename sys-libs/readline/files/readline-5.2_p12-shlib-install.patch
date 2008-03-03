@@ -14,7 +14,7 @@
  	;;
  
 -solaris2*|aix4.[2-9]*|osf*|irix[56]*|sysv[45]*|dgux*)
-+solaris2*|aix4.[2-9]*|aix[5-9].*|osf*|irix[56]*|sysv[45]*|dgux*)
++solaris2*|aix4.[2-9]*|aix[5-9].*|osf*|irix[56]*|sysv[45]*|dgux*|interix*)
  	# libname.so -> libname.so.M
  	${echo} ${RM} ${INSTALLDIR}/$LINK1
  	if [ -z "$uninstall" ]; then
