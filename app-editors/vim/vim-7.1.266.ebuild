@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.213.ebuild,v 1.1 2008/01/09 21:26:52 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.266.ebuild,v 1.1 2008/03/03 14:59:18 hawking Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit vim autotools
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
-PREFIX_VER="3"
+PREFIX_VER="2"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
