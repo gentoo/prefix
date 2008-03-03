@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.3.ebuild,v 1.1 2008/01/22 07:45:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.1 2008/03/03 15:00:26 hanno Exp $
 
 EAPI="prefix"
 
-inherit fdo-mime flag-o-matic multilib python
+inherit fdo-mime flag-o-matic multilib python eutils autotools
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
@@ -14,7 +14,8 @@ LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
-IUSE="alsa aalib altivec curl dbus debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
+IUSE="alsa aalib altivec curl dbus debug doc exif gtkhtml gnome hal lcms mmx mng pdf png python smp sse svg tiff wmf"
+# jpeg temporarily removed, disabling jpeg requires upstream fix which will come in 2.5
 
 RDEPEND=">=dev-libs/glib-2.12.3
 	>=x11-libs/gtk+-2.10.13
@@ -29,15 +30,15 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	aalib? ( media-libs/aalib )
 	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
-	dbus? ( dev-libs/dbus-glib
-		sys-apps/hal )
+	dbus? ( dev-libs/dbus-glib )
+	hal? ( sys-apps/hal )
 	doc? ( app-doc/gimp-help )
 	gnome? ( >=gnome-base/gnome-vfs-2.10.0
 		>=gnome-base/libgnomeui-2.10.0
 		>=gnome-base/gnome-keyring-0.4.5 )
 	gtkhtml? ( =gnome-extra/gtkhtml-2* )
-	jpeg? ( >=media-libs/jpeg-6b-r2
-		>=media-libs/libexif-0.6.15 )
+	>=media-libs/jpeg-6b-r2
+	exif? ( >=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
 	pdf? ( >=app-text/poppler-bindings-0.3.1 )
@@ -64,6 +65,17 @@ pkg_setup() {
 	fi
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
+	# remove this with >= 2.5
+	use svg && epatch "${FILESDIR}/gimp-svg.diff"
+
+	eautoreconf
+}
+
 src_compile() {
 	# workaround portage variable leakage
 	local AA=
@@ -85,10 +97,11 @@ src_compile() {
 		$(use_enable debug) \
 		$(use_enable doc gtk-doc) \
 		$(use_with dbus) \
+		$(use_with hal) \
 		$(use_with gnome) \
 		$(use_with gtkhtml gtkhtml2) \
-		$(use_with jpeg libjpeg) \
-		$(use_with jpeg libexif) \
+		--with-libjpeg \
+		$(use_with exif libexif) \
 		$(use_with lcms) \
 		$(use_enable mmx) \
 		$(use_with mng libmng) \
