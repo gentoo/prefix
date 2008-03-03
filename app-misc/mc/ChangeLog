@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.136 2008/02/09 11:42:17 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.137 2008/03/01 14:02:55 flameeyes Exp $
+
+  01 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> mc-4.6.1-r3.ebuild,
+  mc-4.6.1-r4.ebuild:
+  Remove pam USE flag that was unbound to anything useful. mcserv is not even
+  installed anymore.
 
   09 Feb 2008; Samuli Suominen <drac@gentoo.org> mc-4.6.1-r4.ebuild:
   Fix mc to work with slang 2.1.3.

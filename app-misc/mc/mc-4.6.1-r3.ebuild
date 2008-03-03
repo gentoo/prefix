@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.17 2007/10/10 07:33:11 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.18 2008/03/01 14:02:55 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -17,12 +17,11 @@ SRC_URI="http://www.ibiblio.org/pub/Linux/utils/file/managers/${PN}/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE="7zip X gpm ncurses nls pam samba slang unicode"
+IUSE="7zip X gpm ncurses nls samba slang unicode"
 
 RDEPEND="kernel_linux? ( >=sys-fs/e2fsprogs-1.19 )
 	ncurses? ( >=sys-libs/ncurses-5.2-r5 )
 	=dev-libs/glib-2*
-	pam? ( >=sys-libs/pam-0.72 )
 	gpm? ( >=sys-libs/gpm-1.19.3 )
 	slang? ( ~sys-libs/slang-1.4.9 )
 	samba? ( >=net-fs/samba-3.0.0 )
