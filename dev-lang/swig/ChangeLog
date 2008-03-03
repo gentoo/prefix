@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.105 2008/02/06 18:23:08 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.106 2008/03/02 12:28:16 hkbst Exp $
+
+*swig-1.3.34 (02 Mar 2008)
+
+  02 Mar 2008; Marijn Schouten <hkBst@gentoo.org> +swig-1.3.34.ebuild:
+  bump
 
   06 Feb 2008; Ferris McCormick <fmccor@gentoo.org> swig-1.3.33.ebuild:
   Sparc stable, Bug #209052. (chicken is package-masked for swig because sparc
