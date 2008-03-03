@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.1.ebuild,v 1.4 2008/01/27 12:18:20 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.1.ebuild,v 1.7 2008/03/01 21:32:45 pylon Exp $
 
 inherit multilib eutils
 
