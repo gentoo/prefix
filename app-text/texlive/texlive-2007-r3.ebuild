@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.6 2008/02/10 17:31:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.7 2008/03/02 11:43:46 aballier Exp $
 
 EAPI="prefix"
 
@@ -11,8 +11,8 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="cjk context cyrillic doc extra games graphics humanities music omega
-	png pstricks publishers science xetex xml X"
+IUSE="cjk context cyrillic doc extra games graphics humanities jadetex music omega
+	png pstricks publishers science tex4ht xetex xml X"
 
 LANGS="af ar bg bn bo cs cy da de el en en_GB eo es et fi fr he hi hr hsb hu hy id
 	is it ja ko la ml mn nl no pl pt ro ru sk sl sr sv ta th tr uk vi zh"
@@ -74,7 +74,9 @@ RDEPEND="${DEPEND}
 	context? ( ${TEXLIVE_CAT}/texlive-context )
 	games? ( ${TEXLIVE_CAT}/texlive-games )
 	humanities? ( ${TEXLIVE_CAT}/texlive-humanities )
+	tex4ht? ( >=dev-tex/tex4ht-20071024 )
 	xml? ( ${TEXLIVE_CAT}/texlive-htmlxml )
+	jadetex? ( >=app-text/jadetex-3.13-r2 )
 	doc? (
 		${TEXLIVE_CAT}/texlive-documentation-base
 		linguas_bg? ( ${TEXLIVE_CAT}/texlive-documentation-bulgarian )
