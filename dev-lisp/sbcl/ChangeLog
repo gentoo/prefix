@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.138 2008/01/28 15:13:58 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.139 2008/03/02 18:03:50 hkbst Exp $
+
+*sbcl-1.0.15 (02 Mar 2008)
+
+  02 Mar 2008; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.15.ebuild:
+  bump, will hang on tests :(
 
 *sbcl-1.0.14 (28 Jan 2008)
 
