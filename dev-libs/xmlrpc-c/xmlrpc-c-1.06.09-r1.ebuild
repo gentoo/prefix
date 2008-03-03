@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r1.ebuild,v 1.1 2008/02/22 23:24:14 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r1.ebuild,v 1.2 2008/03/02 00:44:21 philantrop Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.05-pic.patch
 	epatch "${FILESDIR}"/${PN}-1.06.02-threadupdatestatus.patch
-	epatch "${FILESDIR}"/${PN}-1.06.02-strsol.patch
+	epatch "${FILESDIR}"/${P}-strsol.patch
 	epatch "${FILESDIR}"/${PN}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-asneeded.patch
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
@@ -44,6 +44,8 @@ src_unpack() {
 }
 
 src_compile() {
+	# Respect the user's LDFLAGS.
+	export LADD=${LDFLAGS}
 	econf --disable-wininet-client --enable-libxml2-backend \
 		$(use_enable threads abyss-threads) \
 		$(use_enable curl curl-client) \

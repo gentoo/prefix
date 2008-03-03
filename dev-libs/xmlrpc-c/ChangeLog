@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.43 2008/02/22 23:24:14 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.44 2008/03/02 00:44:21 philantrop Exp $
+
+  02 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  files/xmlrpc-c-1.06.09-asneeded.patch,
+  +files/xmlrpc-c-1.06.09-strsol.patch, xmlrpc-c-1.06.09-r1.ebuild:
+  Added an updated linking patch as kindly provided by corsair on bug 209138.
+  xmlrpc-c now respects the user's LDFLAGS. Fixes bug 209693.
 
 *xmlrpc-c-1.06.09-r1 (22 Feb 2008)
 
