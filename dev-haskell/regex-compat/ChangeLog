@@ -1,6 +1,13 @@
 # ChangeLog for dev-haskell/regex-compat
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.12 2007/12/20 02:39:29 dcoutts Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.14 2008/03/01 11:42:08 armin76 Exp $
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  regex-compat-0.71.0.1.ebuild:
+  Add ~alpha
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org> regex-compat-0.90.ebuild:
+  Add ~alpha
 
 *regex-compat-0.71.0.1 (20 Dec 2007)
 
