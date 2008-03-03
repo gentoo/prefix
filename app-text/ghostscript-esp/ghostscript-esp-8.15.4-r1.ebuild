@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4-r1.ebuild,v 1.1 2008/02/29 12:00:42 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4-r1.ebuild,v 1.2 2008/03/01 20:20:04 armin76 Exp $
 
 EAPI="prefix"
 
