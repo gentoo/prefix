@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1173 2008/03/03 17:27:35 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1177 2008/03/04 03:19:39 wolf31o2 Exp $
+
+  04 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masking a bunch of packages for bug #204067.
+
+  03 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  default-linux/make.defaults:
+  Removing bitmap-fonts, truetype-fonts, and type1-fonts USE flags from
+  default-linux, since they were last used by monolithic X ebuilds, which have
+  been removed from the tree.
+
+  03 Mar 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add USE=relaxng for sys-apps/einit
+
+  03 Mar 2008; Hans de Graaff <graaff@gentoo.org> use.local.desc:
+  Add amarok use flag for gnome-extra/gnome-do-plugins to control
+  building of the amarok plugin.
 
   03 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
   Add libffi use flag for dev-java/jamvm to unify the naming between gcc and

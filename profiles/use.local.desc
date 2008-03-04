@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3409 2008/03/03 18:20:32 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3413 2008/03/04 01:40:03 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -178,7 +178,6 @@ app-laptop/pbbuttonsd:macbook - Enable support for the Macbook and Macbook Pro
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - enable support for thinkpad models 760 and 765
 app-misc/beagle:chm - Enable indexing of MS HTML Help files (.chm)
-app-misc/beagle:epiphany - Enable Epiphany indexing
 app-misc/beagle:galago - Enable desktop presence via galago
 app-misc/beagle:ole - Enable ole support
 app-misc/beagle:thunderbird - Enable Mozilla Thunderbird indexing
@@ -726,6 +725,7 @@ gnome-base/gnome-mount:nautilus - Enable the nautilus plugin
 gnome-base/nautilus:beagle - Enable support for beagle searching
 gnome-base/nautilus:tracker - Enable support for tracker searching
 gnome-extra/evolution-data-server:keyring - Enable gnome-keyring support for storing passwords
+gnome-extra/gnome-do-plugins:amarok - Build the plugin for Amarok
 gnome-extra/gnome-games:artworkextra - Add extra Artwork to gnome-games
 gnome-extra/libgda:mdb - Enable Microsoft Access DB support for GnomeDB.
 gnome-extra/libgda:xbase - Enable support for xbase databases (dBase, FoxPro, etc)
@@ -901,7 +901,6 @@ media-gfx/blender:verse - Adds verse clustering features to blender
 media-gfx/comix:rar - Pulls app-arch/unrar for rar file support
 media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
 media-gfx/exiv2:xmp - Adds support for Adobe XMP
-media-gfx/gimp:gimpprint - Enable gimp-print printing support
 media-gfx/gimp:smp - Enable support for multiprocessors
 media-gfx/graphviz:pango - Enables the rendering of the graphs using pango & cairo (with antialiasing support)
 media-gfx/gthumb:iptc - Add support for IPTC metadata
@@ -1835,6 +1834,7 @@ sci-visualization/opendx:hdf - Adds support for the Hierarchical Data Format
 sci-visualization/veusz:fits - Adds FITS format format, via pyfits
 sys-apps/acl:nfs - add support for NFS acls
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
+sys-apps/einit:relaxng - Make validator for Relax NG available
 sys-apps/hal:dell - Adds support for Dell laptop smbios via libsmbios
 sys-apps/hal:disk-partition - Add support for partition editing via libparted
 sys-apps/hal:dmi - Adds support for DMI (Desktop Management Interface)

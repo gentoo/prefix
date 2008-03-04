@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8336 2008/03/02 12:21:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8337 2008/03/04 03:19:39 wolf31o2 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,28 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (3 Mar 2008)
+# Masking due to security bug #204067
+# If you only play on Punkbuster enabled servers, this is safe to unmask.
+games-fps/doom3
+games-fps/doom3-chextrek
+games-fps/doom3-data
+games-fps/doom3-demo
+games-fps/doom3-ducttape
+games-fps/doom3-dungeon
+games-fps/doom3-eventhorizon
+games-fps/doom3-hellcampaign
+games-fps/doom3-inhell
+games-fps/doom3-lms
+games-fps/doom3-mitm
+games-fps/doom3-opencoop
+games-fps/doom3-phantasm
+games-fps/doom3-roe
+games-fps/quake4-bin
+games-fps/quake4-data
+games-fps/quake4-deltactf
+games-fps/quake4-demo
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (27 Feb 2008)
 # Masking these versions because I'm sick of people reporting bugs that have
