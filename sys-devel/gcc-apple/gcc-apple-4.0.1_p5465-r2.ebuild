@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+ETYPE="gcc-compiler"
+
 inherit eutils toolchain
 
 GCC_VERS=${PV/_p*/}
@@ -12,6 +14,12 @@ DESCRIPTION="Apple branch of the GNU Compiler Collection, from 10.5"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 LICENSE="APSL-2 GPL-2"
+
+if is_crosscompile; then
+	SLOT="${CTARGET}-40"
+else
+	SLOT="40"
+fi
 
 #KEYWORDS="~ppc-macos ~x86-macos"
 
@@ -68,6 +76,7 @@ src_compile() {
 		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
+		--libdir=${EPREFIX}/lib/gcc/${CTARGET}/${GCC_VERS} \
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
 		--host=${CHOST}"
 
@@ -145,9 +154,6 @@ src_install() {
 
 	use build && rm -rf "${ED}"/usr/{man,share}
 	find "${ED}" -name libiberty.a -exec rm -f {} \;
-
-	# Move the libraries to the proper location
-	gcc_movelibs
 
 	# create gcc-config entry
 	dodir /etc/env.d/gcc
