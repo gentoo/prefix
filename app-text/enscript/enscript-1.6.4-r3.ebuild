@@ -22,13 +22,13 @@ RDEPEND="nls? ( virtual/libintl )"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/enscript-1.6.3-security.patch
-	epatch ${FILESDIR}/enscript-1.6.3-language.patch
-	epatch ${FILESDIR}/enscript-catmur.patch
-	epatch ${FILESDIR}/enscript-1.6.4-ebuild.st.patch
-	use ruby && epatch ${FILESDIR}/enscript-1.6.2-ruby.patch
-	epatch ${FILESDIR}/enscript-1.6.4-fsf-gcc-darwin.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/enscript-1.6.3-security.patch
+	epatch "${FILESDIR}"/enscript-1.6.3-language.patch
+	epatch "${FILESDIR}"/enscript-catmur.patch
+	epatch "${FILESDIR}"/enscript-1.6.4-ebuild.st.patch
+	use ruby && epatch "${FILESDIR}"/enscript-1.6.2-ruby.patch
+	epatch "${FILESDIR}"/enscript-1.6.4-fsf-gcc-darwin.patch
 }
 
 src_compile() {
