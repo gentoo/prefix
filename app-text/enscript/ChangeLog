@@ -1,6 +1,10 @@
 # ChangeLog for app-text/enscript
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.48 2007/04/12 20:04:58 twp Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.49 2008/03/04 03:07:51 jer Exp $
+
+  04 Mar 2008; Jeroen Roovers <jer@gentoo.org> enscript-1.6.4-r2.ebuild,
+  enscript-1.6.4-r3.ebuild:
+  Stable for HPPA (needed by kde-base/kdeprint). Fixed quoting issues.
 
 *enscript-1.6.4-r3 (12 Apr 2007)
 

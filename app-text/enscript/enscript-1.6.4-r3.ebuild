@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/enscript-1.6.4-r3.ebuild,v 1.1 2007/04/12 20:04:58 twp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/enscript-1.6.4-r3.ebuild,v 1.2 2008/03/04 03:07:51 jer Exp $
 
 EAPI="prefix"
 
@@ -41,8 +41,8 @@ src_install() {
 	einstall || die
 	dodoc AUTHORS ChangeLog FAQ.html NEWS README* THANKS TODO
 	insinto /usr/share/enscript/hl
-	doins ${FILESDIR}/ebuild.st
-	use ruby && doins ${FILESDIR}/ruby.st
+	doins "${FILESDIR}"/ebuild.st
+	use ruby && doins "${FILESDIR}"/ruby.st
 }
 
 pkg_postinst() {
