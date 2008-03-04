@@ -343,6 +343,17 @@ switch_profile() {
 				for gcclib in gcc_s unwind ; do
 					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* 2>/dev/null) ]]; then
 						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
+						# fix install_name on Darwin
+						if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
+							pushd "${EROOT}/${libdir}"/.gcc.config.new/ > /dev/null
+							for lib in * ; do
+								soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+								install_name_tool \
+									-id "${EPREFIX}"/lib/${soname##*/} \
+									${lib}
+							done
+							popd > /dev/null
+						fi
 						# no need to sanity remove this as the `mv` should take
 						# care of it.  we also need this step to be completly atomic
 						# for systems that have even `mv` linked against libgcc_s.so.
