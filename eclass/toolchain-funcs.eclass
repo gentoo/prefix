@@ -431,6 +431,12 @@ gen_usr_ldscript() {
 	[[ -n ${output_format} ]] && output_format="OUTPUT_FORMAT ( ${output_format} )"
 
 	for lib in "$@" ; do
+
+		# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
+		# This especially is for AIX where $(get_libname) can return ".a",
+		# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
+		[[ -r "${ED}"/${libdir}/${lib} ]] || continue
+
 		case ${CHOST} in
 		*-darwin*)
 			# Mach-O files have an id, which is like a soname, it tells how
