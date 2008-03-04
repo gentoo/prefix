@@ -22,7 +22,11 @@
 ##   End example
 ##
 
-# Elias Pipping <pipping@gentoo.org> (Feb 22 2008)
+# Fabian Groffen <grobian@gentoo.org> (04 Mar 2008)
+# segfaults during compilation on Darwin
+=dev-util/cmake-2.4.8
+
+# Elias Pipping <pipping@gentoo.org> (22 Feb 2008)
 # Does nvi compile anywhere? Certainly not on Darwin for now
 app-editors/nvi
 

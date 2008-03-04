@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Mar 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask dev-util/cmake-2.4.8 as it segfaults during compilation
+
   24 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Remove mask for Portage, the offending releases are no longer in the tree.
 
