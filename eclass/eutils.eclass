@@ -1617,6 +1617,12 @@ preserve_old_lib() {
 	# let portage worry about it
 	has preserve-libs ${FEATURES} && return 0
 
+	# cannot preserve-libs on aix yet.
+	[[ ${CHOST} == *-aix* ]] && {
+		einfo "Not preserving libs on AIX (yet), not implemented."
+		return 0
+	}
+
 	local lib dir
 	for lib in "$@" ; do
 		[[ -e ${EROOT}/${lib} ]] || continue
