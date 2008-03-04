@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/groovy
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.26 2008/03/02 14:10:41 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.27 2008/03/04 01:42:39 mr_bones_ Exp $
+
+  04 Mar 2008; Michael Sterrett <mr_bones_@gentoo.org> groovy-1.5.4.ebuild:
+  add missing test to IUSE
 
 *groovy-1.5.4 (02 Mar 2008)
 
