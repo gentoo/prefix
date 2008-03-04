@@ -76,7 +76,7 @@ src_compile() {
 		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
-		--libdir=${EPREFIX}/lib/gcc/${CTARGET}/${GCC_VERS} \
+		--libdir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS} \
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
 		--host=${CHOST}"
 
