@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.279 2008/03/03 14:57:35 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.280 2008/03/04 00:41:50 jer Exp $
+
+  04 Mar 2008; Jeroen Roovers <jer@gentoo.org> Manifest:
+  Fix Manifest.
 
 *vim-core-7.1.266 (03 Mar 2008)
 
