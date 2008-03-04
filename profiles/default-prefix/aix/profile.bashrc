@@ -74,7 +74,9 @@ pre_pkg_postrm() {
 	save_IFS=$IFS
 	IFS='
 ';
-	local -a contents=($(<"${EPREFIX}/var/db/pkg/${CATEGORY}/${P}${PR:+-}${PR}/CONTENTS"));
+	local MY_PR=${PR}
+	[[ ${MY_PR} == r0 ]] && MY_PR=
+	local -a contents=($(<"${EPREFIX}/var/db/pkg/${CATEGORY}/${P}${MY_PR:+-}${MY_PR}/CONTENTS"));
 	IFS=$save_IFS
 	local -a cont
 	for content in "${contents[@]}"; do
