@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.515 2008/02/25 14:27:08 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.517 2008/03/03 20:24:38 ingmar Exp $
+
+  03 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-3.3.8-r4.ebuild:
+  Drop ppc-macos patches, they're patiently awaiting you in prefix.
+
+  03 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  +files/qt-3.3.8-mips.patch, qt-3.3.8-r4.ebuild:
+  Added a patch for ~x11-libs/qt-3.3.8 to fix compilation on ~mips, thanks to
+  Ryan Hill in bug 210551.
 
   25 Feb 2008; Caleb Tennis <caleb@gentoo.org>
   -files/qt-4.3.1-powerpc64.patch, -qt-4.3.1-r1.ebuild, -qt-4.3.2.ebuild:
