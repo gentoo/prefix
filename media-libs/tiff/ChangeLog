@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.104 2008/02/13 00:23:30 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.105 2008/03/04 22:41:52 maekke Exp $
+
+  04 Mar 2008; Markus Meier <maekke@gentoo.org> tiff-3.8.2-r2.ebuild,
+  tiff-3.8.2-r3.ebuild:
+  update HOMEPAGE, bug #212260
 
   13 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> tiff-3.8.2-r3.ebuild:
   amd64 stable wrt bug #208547
