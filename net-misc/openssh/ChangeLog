@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.282 2008/03/03 05:07:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.284 2008/03/05 00:24:37 ranger Exp $
+
+  05 Mar 2008; Brent Baude <ranger@gentoo.org> openssh-4.7_p1-r20.ebuild:
+  keyworded ~arch for ppc64, bug 210777
+
+  04 Mar 2008; <cla@gentoo.org> openssh-4.7_p1-r20.ebuild:
+  Marked ~x86 (bug #210777). Thanks to Michał Wołonkiewicz <volon@vp.pl> for
+  testing.
 
   03 Mar 2008; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1-r20.ebuild:
   Marked ~hppa (bug #210777).
