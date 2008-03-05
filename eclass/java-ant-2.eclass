@@ -387,7 +387,7 @@ java-ant_ignore-system-classes() {
 # Run the right xml-rewrite binary with the given arguments
 # ------------------------------------------------------------------------------
 java-ant_xml-rewrite() {
-	local gen2="/usr/bin/xml-rewrite-2.py"
+	local gen2="${EPREFIX}/usr/bin/xml-rewrite-2.py"
 	# gen1 is deprecated
 	if [[ -x "${gen2}" ]]; then
 		${gen2} "${@}" || die "${gen2} failed"
