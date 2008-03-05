@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8337 2008/03/04 03:19:39 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8340 2008/03/04 18:39:10 opfer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -740,10 +740,10 @@ dev-lang/entity
 >=dev-scheme/gambit-4.1.1
 
 # Caleb Tennis <caleb@gentoo.org> (19 Dec 2007)
-# Christian Faulhammer <opfer@gentoo.org>
+# Christian Faulhammer <opfer@gentoo.org> (updated 04 Mar 2008)
 # Mask qt-4.4 package while testing them in portage
 # Plus packages depending on them
-=app-admin/keepassx-0.2.2-r2
+=app-admin/keepassx-0.3.0a-r20
 =x11-libs/qt-4.4*
 =x11-libs/qt-assistant-4.4*
 =x11-libs/qt-core-4.4*
@@ -1530,12 +1530,6 @@ net-libs/libpcap-ringbuffer
 # This package now is no longer safe to run except on a system where you are
 # planning on doing an install.
 sys-apps/gli
-
-# Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
-# This version is looking for something that is not existing in older patch
-# files, causing patching to fail.  I am currently masking this version and
-# most likely will be removing it in the near future.
-=games-util/loki_patch-20051209
 
 # Luca Longinotti <chtekk@gentoo.org> (12 Jan 2007)
 # Mask MySQL 5.1.* and the alpha versions

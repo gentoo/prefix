@@ -1,6 +1,15 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1177 2008/03/04 03:19:39 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1180 2008/03/04 15:55:33 wolf31o2 Exp $
+
+  04 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Removed mask for loki_patch, since that version has been removed from the tree.
+
+  04 Mar 2008; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add upnp use.local.desc for net-p2p/amule
+
+  04 Mar 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  mask newer revision of app-admin/keepassx
 
   04 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
   Masking a bunch of packages for bug #204067.
