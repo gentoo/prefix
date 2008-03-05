@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.59 2008/02/23 23:54:40 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.62 2008/03/04 18:54:41 hollow Exp $
 #
 # @ECLASS: webapp.eclass
 # @MAINTAINER:
@@ -10,16 +10,29 @@
 # The webapp eclass contains functions to handle web applications with
 # webapp-config. Part of the implementation of GLEP #11
 
+# @ECLASS-VARIABLE: WEBAPP_DEPEND
+# @DESCRIPTION:
+# An ebuild should use WEBAPP_DEPEND if a custom DEPEND needs to be build, most
+# notably in combination with WEBAPP_OPTIONAL.
+WEBAPP_DEPEND=">=app-admin/webapp-config-1.50.15"
+
 # @ECLASS-VARIABLE: WEBAPP_NO_AUTO_INSTALL
 # @DESCRIPTION:
 # An ebuild sets this to `yes' if an automatic installation and/or upgrade is
 # not possible. The ebuild should overwrite pkg_postinst() and explain the
 # reason for this BEFORE calling webapp_pkg_postinst().
-[[ "${WEBAPP_NO_AUTO_INSTALL}" == "yes" ]] || IUSE="vhosts"
 
-SLOT="${PVR}"
-DEPEND=">=app-admin/webapp-config-1.50.15"
-RDEPEND="${DEPEND}"
+# @ECLASS-VARIABLE: WEBAPP_OPTIONAL
+# @DESCRIPTION:
+# An ebuild sets this to `yes' to make webapp support optional, in which case
+# you also need to take care of USE-flags and dependencies.
+
+if [[ "${WEBAPP_OPTIONAL}" != "yes" ]]; then
+	[[ "${WEBAPP_NO_AUTO_INSTALL}" == "yes" ]] || IUSE="vhosts"
+	SLOT="${PVR}"
+	DEPEND="${WEBAPP_DEPEND}"
+	RDEPEND="${DEPEND}"
+fi
 
 EXPORT_FUNCTIONS pkg_postinst pkg_setup src_install pkg_prerm
 

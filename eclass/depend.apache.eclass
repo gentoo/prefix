@@ -1,9 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.43 2008/02/06 23:45:13 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.44 2008/03/04 10:59:27 hollow Exp $
 
 # @ECLASS: depend.apache.eclass
-# @MAINTAINER: apache-devs@gentoo.org
+# @MAINTAINER:
+# apache-devs@gentoo.org
 # @BLURB: Functions to allow ebuilds to depend on apache
 # @DESCRIPTION:
 # This eclass handles depending on apache in a sane way and provides information
@@ -21,18 +22,18 @@
 # Here is an example of an ebuild depending on apache:
 #
 # @CODE
-#   DEPEND="virtual/Perl-CGI"
-#   RDEPEND="${DEPEND}"
-#   need_apache2
+# DEPEND="virtual/Perl-CGI"
+# RDEPEND="${DEPEND}"
+# need_apache2
 # @CODE
 #
 # Another example which demonstrates non-standard IUSE options for optional
 # apache support:
 #
 # @CODE
-#   DEPEND="server? ( virtual/Perl-CGI )"
-#   RDEPEND="${DEPEND}"
-#   want_apache2 server
+# DEPEND="server? ( virtual/Perl-CGI )"
+# RDEPEND="${DEPEND}"
+# want_apache2 server
 # @CODE
 
 inherit multilib
@@ -154,7 +155,7 @@ want_apache2() {
 	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
 	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
 
-	if use ${myiuse} ; then
+	if use ${myiuse}; then
 		_init_apache2
 	else
 		_init_no_apache
@@ -175,7 +176,7 @@ want_apache2_2() {
 	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
 	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
 
-	if use ${myiuse} ; then
+	if use ${myiuse}; then
 		_init_apache2
 	else
 		_init_no_apache
@@ -212,6 +213,21 @@ need_apache2_2() {
 	_init_apache2
 }
 
+# @FUNCTION: has_apache
+# @DESCRIPTION:
+# An ebuild calls this to get runtime variables for an indirect apache
+# dependency without USE-flag, in which case want_apache does not work.
+# DO NOT call this function in global scope.
+has_apache() {
+	debug-print-function $FUNCNAME $*
+
+	if has_version '>=www-servers/apache-2'; then
+		_init_apache2
+	else
+		_init_no_apache
+	fi
+}
+
 # @FUNCTION: has_apache_threads
 # @USAGE: [myflag]
 # @DESCRIPTION:
@@ -221,13 +237,13 @@ need_apache2_2() {
 has_apache_threads() {
 	debug-print-function $FUNCNAME $*
 
-	if ! built_with_use www-servers/apache threads ; then
+	if ! built_with_use www-servers/apache threads; then
 		return
 	fi
 
 	local myflag="${1:-threads}"
 
-	if ! use ${myflag} ; then
+	if ! use ${myflag}; then
 		echo
 		eerror "You need to enable USE flag '${myflag}' to build a thread-safe version"
 		eerror "of ${CATEGORY}/${PN} for use with www-servers/apache"
@@ -244,14 +260,14 @@ has_apache_threads() {
 has_apache_threads_in() {
 	debug-print-function $FUNCNAME $*
 
-	if ! built_with_use www-servers/apache threads ; then
+	if ! built_with_use www-servers/apache threads; then
 		return
 	fi
 
 	local myforeign="$1"
 	local myflag="${2:-threads}"
 
-	if ! built_with_use ${myforeign} ${myflag} ; then
+	if ! built_with_use ${myforeign} ${myflag}; then
 		echo
 		eerror "You need to enable USE flag '${myflag}' in ${myforeign} to"
 		eerror "build a thread-safe version of ${CATEGORY}/${PN} for use"
