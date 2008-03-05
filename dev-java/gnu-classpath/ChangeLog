@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.74 2008/03/03 14:49:43 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.75 2008/03/04 22:46:04 betelgeuse Exp $
+
+*gnu-classpath-0.97-r1 (04 Mar 2008)
+
+  04 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +gnu-classpath-0.97-r1.ebuild:
+  Revision bump using our own tarballs because the upstream release was
+  missing a whole properties directory.
 
 *gnu-classpath-0.97 (03 Mar 2008)
 
