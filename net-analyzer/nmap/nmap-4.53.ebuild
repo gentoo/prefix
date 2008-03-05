@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.53.ebuild,v 1.3 2008/02/21 12:38:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.53.ebuild,v 1.4 2008/03/04 16:43:41 spock Exp $
 
 EAPI="prefix"
 
@@ -34,10 +34,20 @@ pkg_setup() {
 }
 
 src_compile() {
+	local myconf=""
+
+	if use lua ; then
+		if has_version dev-lang/lua && built_with_use dev-lang/lua deprecated ; then
+			myconf="--with-liblua"
+		else
+			myconf="--with-liblua=included"
+		fi
+	fi
+
 	econf \
 		--with-libdnet=included \
+		"${myconf}" \
 		$(use_with gtk zenmap) \
-		$(use_with lua liblua) \
 		$(use_with ssl openssl) || die
 	emake -j1 || die
 }
