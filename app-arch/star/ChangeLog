@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/star
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.63 2008/02/21 17:22:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.64 2008/03/04 16:05:49 pva Exp $
+
+*star-1.5_alpha88 (04 Mar 2008)
+
+  04 Mar 2008; <pva@gentoo.org> +star-1.5_alpha88.ebuild:
+  Version bump.
 
   21 Feb 2008; Raúl Porcel <armin76@gentoo.org>
   -files/star-1.5_alpha84-data-change-warn.patch, -star-1.5_alpha84.ebuild,
