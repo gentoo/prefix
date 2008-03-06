@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/which
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.24 2008/01/19 21:46:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.25 2008/03/05 19:06:15 armin76 Exp $
+
+  05 Mar 2008; Raúl Porcel <armin76@gentoo.org> which-2.19.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *which-2.19 (19 Jan 2008)
 
