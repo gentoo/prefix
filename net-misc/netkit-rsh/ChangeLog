@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.54 2008/03/05 00:25:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.55 2008/03/05 20:26:28 fmccor Exp $
+
+  05 Mar 2008; Ferris McCormick <fmccor@gentoo.org>
+  netkit-rsh-0.17-r9.ebuild:
+  Add back ~sparc for testing, Bug #210783.
 
   05 Mar 2008; Brent Baude <ranger@gentoo.org> netkit-rsh-0.17-r9.ebuild:
   keyworded ~arch for ppc64, bug 210783
