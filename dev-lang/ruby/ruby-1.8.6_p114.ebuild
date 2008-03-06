@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p113.ebuild,v 1.6 2007/12/11 09:45:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.6 2008/03/05 20:37:44 dertobi123 Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-ONIGURUMA="onigd2_5_8"
+ONIGURUMA="onigd2_5_9"
 
 inherit autotools eutils flag-o-matic multilib versionator
 
@@ -19,16 +19,17 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.gz
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.bz2
 	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE="berkdb cjk debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
-RDEPEND=">=sys-libs/gdbm-1.8.0
-	>=sys-libs/readline-4.1
-	>=sys-libs/ncurses-5.2
+RDEPEND="
+	berkdb? ( sys-libs/db )
+	gdbm? ( sys-libs/gdbm )
+	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
 	>=dev-ruby/ruby-config-0.3.1
@@ -36,6 +37,9 @@ RDEPEND=">=sys-libs/gdbm-1.8.0
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"
 DEPEND="${RDEPEND}"
+PDEPEND="emacs? ( app-emacs/ruby-mode )
+	xemacs? ( app-xemacs/ruby-modes )"
+
 PROVIDE="virtual/ruby"
 
 src_unpack() {
@@ -43,18 +47,26 @@ src_unpack() {
 
 	if use cjk ; then
 		einfo "Applying ${ONIGURUMA}"
-		pushd ${WORKDIR}/oniguruma
+		pushd "${WORKDIR}/oniguruma"
 		econf --with-rubydir="${S}" || die "oniguruma econf failed"
 		emake $MY_SUFFIX || die "oniguruma emake failed"
 		popd
 	fi
 
+	cd "${S}/ext/dl"
+	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-net-http-p114.patch"
+
+	epatch "${FILESDIR}/${PN}-1.8.6_p111-r13657.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
+	
+	# Fix hardcoded SHELL var in mkmf library
+	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
 
 	eautoreconf
 }
@@ -85,6 +97,9 @@ src_compile() {
 		$(use_enable threads pthread) \
 		$(use_enable ipv6) \
 		$(use_enable debug) \
+		$(use_with berkdb dbm) \
+		$(use_with gdbm) \
+		$(use_with ssl openssl) \
 		$(use_with tk) \
 		${myconf} \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
@@ -101,7 +116,7 @@ src_test() {
 	elog
 	if use rubytests; then
 		elog "You have enabled rubytests, so they will be installed to"
-		elog "${EPREFIX}/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
+		elog "/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
 		elog "than root, and you must place them into a writeable directory."
 		elog "Then call: "
 		elog
@@ -149,16 +164,11 @@ src_install() {
 
 pkg_postinst() {
 
-	ewarn "If you upgrade to >=sys-apps/coreutils-6.7-r1,"
-	ewarn "you should re-emerge ruby again."
-	ewarn "See bug #159922 for details"
-	ewarn
 	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
 		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
 	fi
-	einfo
-	einfo "You can change the default ruby interpreter by ${EROOT}/usr/sbin/ruby-config"
-	einfo
+	elog
+	elog "You can change the default ruby interpreter by ${EROOT}usr/sbin/ruby-config"
 }
 
 pkg_postrm() {
