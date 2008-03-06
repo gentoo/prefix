@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/xerces
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xerces/ChangeLog,v 1.103 2008/01/17 14:39:12 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xerces/ChangeLog,v 1.105 2008/03/06 03:06:34 ranger Exp $
+
+  06 Mar 2008; Brent Baude <ranger@gentoo.org> xerces-2.9.1.ebuild:
+  stable ppc64, bug 212431
+
+  05 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> xerces-2.9.1.ebuild:
+  Use EANT_ variables, slot deps and restrict tests so that the upcoming
+  generic src_test works.
 
   17 Jan 2008; Vlastimil Babka <caster@gentoo.org>
   -files/xerces-2.8.1-gentoo.patch, -files/xerces-2.8.1-no_dom3.patch,
