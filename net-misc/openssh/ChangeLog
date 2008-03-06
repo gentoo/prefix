@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.284 2008/03/05 00:24:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.285 2008/03/05 20:07:53 fmccor Exp $
+
+  05 Mar 2008; Ferris McCormick <fmccor@gentoo.org>
+  openssh-4.7_p1-r20.ebuild:
+  Add back ~sparc, Bug #210777, verified as still working with USE=pam.
 
   05 Mar 2008; Brent Baude <ranger@gentoo.org> openssh-4.7_p1-r20.ebuild:
   keyworded ~arch for ppc64, bug 210777
