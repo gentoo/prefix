@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/commons-lang
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.49 2007/11/25 10:08:06 nelchael Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.51 2008/03/05 19:50:19 betelgeuse Exp $
+
+  05 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  commons-lang-2.0-r2.ebuild:
+  Prepare for upcoming generic src_test.
+
+  05 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -commons-lang-2.1-r1.ebuild, commons-lang-2.3.ebuild:
+  Fix to work with generic src_test that will be soon added.
+
+  27 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -commons-lang-2.1-r1.ebuild:
+  Delete old version.
 
   25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org>
   commons-lang-2.3.ebuild:

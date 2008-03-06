@@ -1,17 +1,18 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.0-r2.ebuild,v 1.9 2007/07/12 22:33:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.0-r2.ebuild,v 1.10 2008/03/05 19:50:19 betelgeuse Exp $
 
 EAPI="prefix"
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Jakarta components to manipulate core java classes"
 HOMEPAGE="http://jakarta.apache.org/commons/lang/"
 SRC_URI="mirror://apache/jakarta/commons/lang/source/${P}-src.tar.gz"
-DEPEND=">=virtual/jdk-1.4"
+DEPEND=">=virtual/jdk-1.4
+	test? ( dev-java/ant-junit )"
 RDEPEND=">=virtual/jre-1.4"
 LICENSE="Apache-1.1"
 SLOT="0"

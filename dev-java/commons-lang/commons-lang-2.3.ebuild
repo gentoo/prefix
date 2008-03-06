@@ -1,10 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.3.ebuild,v 1.5 2007/11/25 10:08:06 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.3.ebuild,v 1.6 2008/03/05 17:25:17 betelgeuse Exp $
 
-EAPI="prefix"
-
-JAVA_PKG_IUSE="doc source"
+EAPI="prefix 1"
+JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2
 
@@ -13,7 +12,8 @@ HOMEPAGE="http://jakarta.apache.org/commons/lang/"
 SRC_URI="mirror://apache/jakarta/commons/lang/source/${P}-src.tar.gz"
 IUSE=""
 
-DEPEND=">=virtual/jdk-1.4"
+DEPEND=">=virtual/jdk-1.4
+	test? ( dev-java/ant-junit:0 )"
 RDEPEND=">=virtual/jre-1.4"
 
 LICENSE="Apache-2.0"
