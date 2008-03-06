@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3414 2008/03/04 12:17:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3417 2008/03/06 03:05:19 wolf31o2 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -629,6 +629,9 @@ dev-util/subversion:svnserve - Install scripts for svnserve
 dev-util/svk:pager - Enable perl pager selection support
 dev-util/svk:patch - Enable patch creation, import support
 dev-util/svk:svn-mirror - Enable SVN-Mirror support
+games-action/abuse:demo - Use the demo data instead of the full game
+games-action/abuse:levels - Install user-created levels (fRaBs)
+games-action/abuse:sounds - Install optional sound data
 games-action/d1x-rebirth:awe32 - Enable AWE32 support
 games-action/d1x-rebirth:demo - Use the demo data instead of the full game
 games-action/d1x-rebirth:mixer - Enable mixer support
@@ -1878,6 +1881,7 @@ sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support.
 sys-auth/pam_pkcs11:pcsc-lite - build with pcsc-lite instead of openct
 sys-auth/pambase:consolekit - Enable ConsoleKit support in local login sessions.
+sys-auth/pambase:passwdqc - Enable pam_passwdqc support in system authentication.
 sys-block/gparted:fat - Include FAT16/FAT32 support
 sys-block/gparted:hfs - Include HFS support
 sys-block/gparted:jfs - Include JFS support
@@ -2105,6 +2109,10 @@ x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings manage
 x11-libs/openmotif:xft - Build OpenMotif with support for XFT font renderer
 x11-libs/qt-core:glib - Enable glib eventloop support
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-gui:glib - Enable glib eventloop support
+x11-libs/qt-gui:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-opengl:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-sql:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt

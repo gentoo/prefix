@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1180 2008/03/04 15:55:33 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1184 2008/03/06 03:10:00 wolf31o2 Exp $
+
+  06 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> updates/1Q-2008:
+  Added a package move for games-action/abuse_sdl to games-action/abuse.
+
+  06 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> use.local.desc:
+  Added local USE flags for games-action/abuse.
+
+  05 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add passwdqc USE flag for pambase.
+
+  05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Added local USE descriptions for Qt-4.4.0_beta1.
 
   04 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
   Removed mask for loki_patch, since that version has been removed from the tree.
