@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/qt-script
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.1 2007/12/21 19:05:53 caleb Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.3 2008/03/05 23:24:19 ingmar Exp $
+
+  05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -qt-script-4.4.0_rc1.ebuild:
+  Old.
+
+*qt-script-4.4.0_beta1 (05 Mar 2008)
+
+  05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  +qt-script-4.4.0_beta1.ebuild:
+  Added Qt-4.4.0_beta, note that the RC1 is an accidentally mislabelled
+  `technical preview`, so this will appear as a downgrade if you installed
+  that version.
 
 *qt-script-4.4.0_rc1 (21 Dec 2007)
 
