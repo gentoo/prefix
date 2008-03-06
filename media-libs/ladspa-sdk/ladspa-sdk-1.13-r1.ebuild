@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-properbuild.patch"
 	epatch "${FILESDIR}/${P}-asneeded.patch"
 	epatch "${FILESDIR}/${P}-fbsd.patch"
+	epatch "${FILESDIR}/${P}-darwin.patch"
 	sed -i -e 's:-sndfile-play*:@echo Disabled \0:' \
 		"${S}/makefile" || die "sed makefile failed (sound playing tests)"
 }
@@ -42,8 +43,8 @@ src_compile() {
 
 src_install() {
 	emake \
-		INSTALL_PLUGINS_DIR="${EPREFIX}/usr/$(get_libdir)/ladspa" \
-		DESTDIR="${D}" \
+		INSTALL_PLUGINS_DIR="/usr/$(get_libdir)/ladspa" \
+		DESTDIR="${ED}" \
 		MKDIR_P="mkdir -p" \
 		install || die "make install failed"
 
