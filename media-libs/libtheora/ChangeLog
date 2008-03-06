@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.67 2008/03/04 15:18:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.68 2008/03/05 18:58:24 armin76 Exp $
+
+  05 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  libtheora-1.0_beta2-r1.ebuild:
+  alpha/ia64/sparc stable wrt #211211
 
   04 Mar 2008; Jeroen Roovers <jer@gentoo.org>
   libtheora-1.0_beta2-r1.ebuild:
