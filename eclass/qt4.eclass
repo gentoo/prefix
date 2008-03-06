@@ -1,12 +1,11 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.36 2008/02/26 01:11:13 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.38 2008/03/06 01:23:13 ingmar Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
 # Caleb Tennis <caleb@gentoo.org>
-# @BLURB:
-# Eclass for Qt4 packages
+# @BLURB: Eclass for Qt4 packages
 # @DESCRIPTION:
 # This eclass contains various functions that may be useful
 # when dealing with packages using Qt4 libraries.
@@ -18,7 +17,7 @@ inherit eutils multilib toolchain-funcs versionator
 
 QTPKG="x11-libs/qt-"
 QT4MAJORVERSIONS="4.4 4.3 4.2 4.1 4.0"
-QT4VERSIONS="4.4.0_rc1 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
+QT4VERSIONS="4.4.0_beta1 4.4.0_rc1 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
 
 # @FUNCTION: qt4_min_version
 # @USAGE: [minimum version]
@@ -26,16 +25,21 @@ QT4VERSIONS="4.4.0_rc1 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-
 # This function should be called in package DEPENDs whenever it depends on qt4.
 # Simple example - in your depend, do something like this:
 # DEPEND="$(qt4_min_version 4.2)"
-# if package can be build with qt-4.2 or higher.
+# if the package can be build with qt-4.2 or higher.
+#
+# For builds that use an EAPI with support for SLOT dependencies, this will
+# return a SLOT dependency, rather than a list of versions.
 qt4_min_version() {
-	# This is much simpler for EAPI 1, we can use a slot dependency
-	if [[ "${EAPI}" -ge 1 ]]; then
-		echo ">=${QTPKG}${1}:4"
-	else
-		echo "|| ("
-		qt4_min_version_list "$@"
-		echo ")"
-	fi
+	case ${EAPI:-0} in
+		# EAPIs without SLOT dependencies
+		0)	echo "|| ("
+			qt4_min_version_list "$@"
+			echo ")"
+			;;
+		# EAPIS with SLOT dependencies.
+		*)	echo ">=${QTPKG}${1}:4"
+			;;
+	esac
 }
 
 qt4_min_version_list() {

@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.29 2008/02/13 19:44:15 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.30 2008/03/05 19:30:29 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -110,6 +110,15 @@ JAVA_PKG_BSFIX_TARGET_TAGS=${JAVA_PKG_BSFIX_TARGET_TAGS:-"javac xjavac javac.pre
 # default: javacdoc javac xjavac javac.preset
 # ------------------------------------------------------------------------------
 JAVA_PKG_BSFIX_SOURCE_TAGS=${JAVA_PKG_BSFIX_SOURCE_TAGS:-"javadoc javac xjavac javac.preset"}
+
+# ------------------------------------------------------------------------------
+# @global JAVA_ANT_CLASSPATH_TAGS
+#
+# Targets to add the classpath attribute to
+#
+# default: javac xjavac
+# ------------------------------------------------------------------------------
+JAVA_ANT_CLASSPATH_TAGS="javac xjavac"
 
 # ------------------------------------------------------------------------------
 # @global JAVA_ANT_IGNORE_SYSTEM_CLASSES
@@ -344,6 +353,8 @@ java-ant_bsfix_one() {
 # @public java-ant_rewrite-classpath
 #
 # Adds 'classpath="${gentoo.classpath}"' to specified build file.
+# Affected by:
+#	JAVA_ANT_CLASSPATH_TAGS
 # @param $1 - the file to rewrite (defaults to build.xml)
 # ------------------------------------------------------------------------------
 java-ant_rewrite-classpath() {
@@ -360,7 +371,8 @@ java-ant_rewrite-classpath() {
 
 	chmod u+w "${file}"
 
-	java-ant_xml-rewrite -f "${file}" --change -e javac -e xjavac -a classpath -v '${gentoo.classpath}'
+	java-ant_xml-rewrite -f "${file}" --change \
+		-e ${JAVA_ANT_CLASSPATH_TAGS// / -e } -a classpath -v '${gentoo.classpath}'
 
 	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
 		diff -NurbB "${file}.orig" "${file}"

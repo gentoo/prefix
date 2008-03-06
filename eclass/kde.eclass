@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.205 2008/02/23 22:43:15 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.206 2008/03/06 01:50:16 zlin Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -64,7 +64,7 @@ fi
 # overridden in other places like kde-dist, kde-source and some individual ebuilds
 SLOT="0"
 
-# @VARIABLE: ARTS_REQUIRED
+# @ECLASS-VARIABLE: ARTS_REQUIRED
 # @DESCRIPTION:
 # Is aRTs-support required or not? Possible values are 'yes', 'never'. Otherwise
 # leave this variable unset. This results in an arts USE flag.
@@ -432,10 +432,15 @@ kde_src_install() {
 }
 
 # @FUNCTION: slot_rebuild
+# @USAGE: [ list_of_packages_to_check ]
 # @RETURN: False, if no rebuild is required
+# @DESCRIPTION:
+# Looks for packages in the supplied list of packages which have not been linked
+# against this kde SLOT. It does this by looking for lib*.la files that doesn't
+# contain the current ${KDEDIR}. If it finds any thus broken packages it prints
+# eerrors and return True.
 #
-# @MAINTAINER:
-# thanks to Carsten Lohrke in bug 98425.
+# Thanks to Carsten Lohrke in bug 98425.
 slot_rebuild() {
 	local VDB_PATH="$(portageq vdb_path)"
 	local REBUILD_LIST=""

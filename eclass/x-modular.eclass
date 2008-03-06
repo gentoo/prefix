@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.92 2008/02/22 05:10:03 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.93 2008/03/06 04:42:26 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -42,11 +42,13 @@ fi
 IUSE=""
 HOMEPAGE="http://xorg.freedesktop.org/"
 
+if [[ -z ${SNAPSHOT} ]]; then
 # @ECLASS-VARIABLE: SNAPSHOT
 # @DESCRIPTION:
 # If set to 'yes' and configure.ac exists, eautoreconf will run. Set
 # before inheriting this eclass.
-SNAPSHOT="no"
+	SNAPSHOT="no"
+fi
 
 if [[ ${PV} = 9999* ]]; then
 	GIT_ECLASS="git"

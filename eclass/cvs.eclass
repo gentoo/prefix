@@ -1,17 +1,19 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.68 2006/12/11 00:16:28 vapier Exp $
-#
-# Maintainer: vapier@gentoo.org (and anyone who wants to help)
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.69 2008/03/06 00:54:07 zlin Exp $
+
+# @ECLASS: cvs.eclass
+# @MAINTAINER:
+# vapier@gentoo.org (and anyone who wants to help)
+# @BLURB: This eclass provides generic cvs fetching functions
+# @DESCRIPTION:
+# This eclass provides the generic cvs fetching functions. To use this from an
+# ebuild, set the ECLASS VARIABLES as specified below in your ebuild before
+# inheriting. Then either leave the default src_unpack or extend over
+# cvs_src_unpack. If you find that you need to call the cvs_* functions
+# directly, I'd be interested to hear about it.
 
 inherit eutils
-
-# This eclass provides the generic cvs fetching functions.  To use
-# this from an ebuild, set the `ebuild-configurable settings' as
-# specified below in your ebuild before inheriting.  Then either leave
-# the default src_unpack or extend over cvs_src_unpack.  If you find
-# that you need to call the cvs_* functions directly, I'd be
-# interested to hear about it.
 
 # TODO:
 
@@ -21,40 +23,55 @@ inherit eutils
 # anyone actually need to use it with anything other than SSH?)
 
 
-
 # Users shouldn't change these settings!  The ebuild/eclass inheriting
 # this eclass will take care of that.  If you want to set the global
 # KDE cvs ebuilds' settings, see the comments in kde-source.eclass.
 
-# --- begin ebuild-configurable settings
-
-# ECVS_CVS_COMMAND -- CVS command to run
+# @ECLASS-VARIABLE: ECVS_CVS_COMMAND
+# @DESCRIPTION:
+# CVS command to run
 #
 # You can set, for example, "cvs -t" for extensive debug information
 # on the cvs connection.  The default of "cvs -q -f -z4" means to be
 # quiet, to disregard the ~/.cvsrc config file and to use maximum
 # compression.
 
+# @ECLASS-VARIABLE: ECVS_CVS_COMPRESS
+# @DESCRIPTION:
+# Set the compression level.
 [[ -z ${ECVS_CVS_COMPRESS} ]] && ECVS_CVS_COMPRESS="-z1"
+
+# @ECLASS-VARIABLE: ECVS_CVS_OPTIONS
+# @DESCRIPTION:
+# Additional options to the cvs commands.
 [[ -z ${ECVS_CVS_OPTIONS} ]] && ECVS_CVS_OPTIONS="-q -f"
+
+# @ECLASS-VARIABLE: ECVS_CVS_COMMAND
+# @DESCRIPTION:
+# The cvs command.
 [[ -z ${ECVS_CVS_COMMAND} ]] && ECVS_CVS_COMMAND="cvs ${ECVS_CVS_OPTIONS} ${ECVS_CVS_COMPRESS}"
 
-
-# ECVS_UP_OPTS, ECVS_CO_OPTS -- CVS options given after the cvs
-# command (update or checkout).
-#
-# Don't remove -dP from update or things won't work.
-
+# @ECLASS-VARIABLE: ECVS_UP_OPTS
+# @DESCRIPTION:
+# CVS options given after the cvs update command. Don't remove "-dP" or things
+# won't work.
 [ -z "$ECVS_UP_OPTS" ] && ECVS_UP_OPTS="-dP"
+
+# @ECLASS-VARIABLE: ECVS_CO_OPTS
+# @DESCRIPTION:
+# CVS options given after the cvs checkout command.
 [ -z "$ECVS_CO_OPTS" ] && ECVS_CO_OPTS=""
 
 
-# ECVS_LOCAL -- If this is set, the CVS module will be fetched
-# non-recursively.  Refer to the information in the CVS man page
-# regarding the -l command option (not the -l global option).
+# @ECLASS-VARIABLE: ECVS_LOCAL
+# @DESCRIPTION:
+# If this is set, the CVS module will be fetched non-recursively.
+# Refer to the information in the CVS man page regarding the -l
+# command option (not the -l global option).
 
-
-# ECVS_LOCALNAME -- local name of checkout directory
+# @ECLASS-VARIABLE: ECVS_LOCLANAME
+# @DESCRIPTION:
+# Local name of checkout directory
 #
 # This is useful if the module on the server is called something
 # common like 'driver' or is nested deep in a tree, and you don't like
@@ -64,13 +81,14 @@ inherit eutils
 # some such, things will break because the ebuild won't expect it and
 # have e.g. a wrong $S setting.
 
-
-# ECVS_TOP_DIR -- The directory under which CVS modules are checked
-# out.
-
+# @ECLASS-VARIABLE: ECVS_TOP_DIR
+# @DESCRIPTION:
+# The directory under which CVS modules are checked out.
 [ -z "$ECVS_TOP_DIR" ] && ECVS_TOP_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/cvs-src"
 
-# ECVS_SERVER -- CVS path
+# @ECLASS-VARIABLE: ECVS_SERVER
+# @DESCRIPTION:
+# CVS path
 #
 # The format is "server:/dir", e.g. "anoncvs.kde.org:/home/kde".
 # Remove the other parts of the full CVSROOT, which might look like
@@ -79,27 +97,29 @@ inherit eutils
 #
 # Set this to "offline" to disable fetching (i.e. to assume the module
 # is already checked out in ECVS_TOP_DIR).
-
 [ -z "$ECVS_SERVER" ] && ECVS_SERVER="offline"
 
-
-# ECVS_MODULE -- the name of the CVS module to be fetched
+# @ECLASS-VARIABLE: ECVS_MODULE
+# @DESCRIPTION:
+# The name of the CVS module to be fetched
 #
 # This must be set when cvs_src_unpack is called.  This can include
 # several directory levels, i.e. "foo/bar/baz"
 
 #[ -z "$ECVS_MODULE" ] && die "$ECLASS: error: ECVS_MODULE not set, cannot continue"
 
-
-# ECVS_BRANCH -- the name of the branch/tag to use
-
+# @ECLASS-VARIABLE: ECVS_BRANCH
+# @DESCRIPTION:
+# The name of the branch/tag to use
+#
 # The default is "HEAD".  The following default _will_ reset your
 # branch checkout to head if used.
 
 #[ -z "$ECVS_BRANCH" ] && ECVS_BRANCH="HEAD"
 
-
-# ECVS_AUTH -- authentication method to use
+# @ECLASS-VARIABLE: ECVS_AUTH
+# @DESCRIPTION:
+# Authentication method to use
 #
 # Possible values are "pserver" and "ext".  If `ext' authentication is
 # used, the remote shell to use can be specified in CVS_RSH (SSH is
@@ -114,15 +134,18 @@ inherit eutils
 #   ( from gnustep-apps/textedit )
 [ -z "$ECVS_AUTH" ] && ECVS_AUTH="pserver"
 
-# ECVS_USER -- Username to use for authentication on the remote server
+# @ECLASS-VARIABLE: ECVS_USER
+# @DESCRIPTION:
+# Username to use for authentication on the remote server.
 [ -z "$ECVS_USER" ] && ECVS_USER="anonymous"
 
-# ECVS_PASS -- Password to use for authentication on the remote server
+# @ECLASS-VARIABLE: ECVS_PASS
+# @DESCRIPTION:
+# Password to use for authentication on the remote server
 [ -z "$ECVS_PASS" ] && ECVS_PASS=""
 
-
-# ECVS_SSH_HOST_KEY
-#
+# @ECLASS-VARIABLE: ECVS_SSH_HOST_KEY
+# @DESCRIPTION:
 # If SSH is used for `ext' authentication, use this variable to
 # specify the host key of the remote server.  The format of the value
 # should be the same format that is used for the SSH known hosts file.
@@ -130,25 +153,21 @@ inherit eutils
 # WARNING: If a SSH host key is not specified using this variable, the
 # remote host key will not be verified.
 
-
-# ECVS_CLEAN -- Set this to get a clean copy when updating (passes the
+# @ECLASS-VARIABLE: ECVS_CLEAN
+# @DESCRIPTION:
+# Set this to get a clean copy when updating (passes the
 # -C option to cvs update)
 
-
-# ECVS_RUNAS
-#
+# @ECLASS-VARIABLE: ECVS_RUNAS
+# @DESCRIPTION: 
 # Specifies an alternate (non-root) user to use to run cvs.  Currently
 # b0rked and wouldn't work with portage userpriv anyway without
 # special magic.
 
 # [ -z "$ECVS_RUNAS" ] && ECVS_RUNAS="`whoami`"
 
-
 # ECVS_SUBDIR -- deprecated, do not use
 [ -n "$ECVS_SUBDIR" ] && die "ERROR: deprecated ECVS_SUBDIR defined. Please fix this ebuild."
-
-
-# --- end ebuild-configurable settings ---
 
 # add cvs to deps
 # ssh is used for ext auth
@@ -462,7 +481,9 @@ EOF
 
 }
 
-
+# @FUNCTION: cvs_src_unpack
+# @DESCRIPTION:
+# The cvs src_unpack function, which will be exported
 cvs_src_unpack() {
 
 	debug-print-function $FUNCNAME $*

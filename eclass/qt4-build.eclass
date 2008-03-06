@@ -1,12 +1,11 @@
-# Copyright 2005 Gentoo Foundation
+# Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.6 2007/12/23 20:48:30 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.8 2008/03/06 01:23:51 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
 # Caleb Tennis <caleb@gentoo.org>
-# @BLURB:
-# Eclass for Qt4 
+# @BLURB: Eclass for Qt4 split ebuilds.
 # @DESCRIPTION:
 # This eclass contains various functions that are used when building Qt4
 
@@ -14,9 +13,25 @@ inherit eutils multilib toolchain-funcs flag-o-matic
 
 IUSE="${IUSE} debug aqua"
 
-qt4-build_pkg_setup() {
-	# Set up installation directories
+case "${PV}" in
+	4.4.0_beta*)
+		SRCTYPE="${SRCTYPE:-opensource-src}"
+		MY_PV="${PV/_beta/-beta}"
+		;;
+	*)
+		SRCTYPE="${SRCTYPE:-opensource-src}"
+		MY_PV="${PV}"
+		;;
+esac
+S=${WORKDIR}/qt-x11-${SRCTYPE}-${MY_PV}
 
+SRC_URI="ftp://ftp.trolltech.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2"
+
+qt4-build_pkg_setup() {
+	# Check USE requirements
+	qt4-build_check_use
+
+	# Set up installation directories
 	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
 	QTPREFIXDIR=${EPREFIX}/usr
 	QTBINDIR=${EPREFIX}/usr/bin
@@ -42,6 +57,7 @@ qt4-build_pkg_setup() {
 }
 
 qt4-build_src_unpack() {
+	# TODO: partial unpacks, cfr split KDE ebuilds.
 	unpack ${A}
 	cd "${S}"
 
@@ -50,44 +66,74 @@ qt4-build_src_unpack() {
 		-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
 		-i mkspecs/macx-g++/qmake.conf || die "sed failed"
 
+	if [[ ${PN} != qt-core ]]; then
+		skip_qmake_build_patch
+		skip_project_generation_patch
+		symlink_binaries_to_buildtree
+	fi
+
+	sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
+		-e "s:X11R6/::" \
+		-i "${S}"/mkspecs/$(qt_mkspecs_dir)/qmake.conf || die "sed ${S}/mkspecs/$(qt_mkspecs_dir)/qmake.conf failed"
+
+	sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
+		-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
+}
+
+qt4-build_src_compile() {
 	# Don't let the user go too overboard with flags.  If you really want to, uncomment
 	# out the line below and give 'er a whirl.
 	strip-flags
 	replace-flags -O3 -O2
 
-	append-flags -finline-functions
-	append-flags -funswitch-loops
-
-	if [[ $( gcc-fullversion ) == "3.4.6" && gcc-specs-ssp ]] ; then
+	if [[ $(gcc-fullversion) == "3.4.6" && gcc-specs-ssp ]] ; then
 		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
 		append-flags -fno-stack-protector
 	fi
+
+	myconf="$(standard_configure_options) ${myconf}"
+
+	echo ./configure ${myconf}
+	./configure ${myconf} || die "./configure failed"
+
+	build_target_directories
 }
 
 qt4-build_src_install() {
 	install_directories "${QT4_TARGET_DIRECTORIES}"
+	install_qconfigs
 	fix_library_files
 }
 
 standard_configure_options() {
 	local myconf=""
 
-	[ $(get_libdir) != "lib" ] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
++ 	[[ $(get_libdir) != "lib" ]] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
 
 	# Disable visibility explicitly if gcc version isn't 4
-	if [[ "$(gcc-major-version)" != "4" ]]; then
+	if [[ "$(gcc-major-version)" -lt "4" ]]; then
 		myconf="${myconf} -no-reduce-exports"
 	fi
 
-	use debug && myconf="${myconf} -debug -no-separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
+	if use debug; then
+		myconf="${myconf} -debug -no-separate-debug-info"
+	else
+		myconf="${myconf} -release -no-separate-debug-info"
+	fi
 
 	use aqua && myconf="${myconf} -no-framework"
 
-	myconf="${myconf} -stl -verbose -largefile -confirm-license -no-rpath\
-	-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR} -datadir ${QTDATADIR} \
-	-docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR} -plugindir ${QTPLUGINDIR} \
-	-sysconfdir ${QTSYSCONFDIR} -translationdir ${QTTRANSDIR} \
-	-examplesdir ${QTEXAMPLESDIR} -demosdir ${QTDEMOSDIR}"
+	myconf="${myconf} -stl -verbose -largefile -confirm-license -no-rpath
+		-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR}
+		-datadir ${QTDATADIR} -docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR}
+		-plugindir ${QTPLUGINDIR} -sysconfdir ${QTSYSCONFDIR}
+		-translationdir ${QTTRANSDIR} -examplesdir ${QTEXAMPLESDIR}
+		-demosdir ${QTDEMOSDIR} -silent -fast -reduce-relocations
+		-nomake examples -nomake demos"
 
 	myconf="${myconf} -silent -fast -reduce-relocations -nomake examples -nomake demos"
 
@@ -102,70 +148,243 @@ build_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
 		cd "${S}"/${x}
-		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" && emake || die
+		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" || die "qmake failed"
+		emake || die "emake failed"
 	done
 }
 
 install_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
-		cd "${S}"/${x}
-		emake INSTALL_ROOT="${D}" install || die
+		pushd "${S}"/${x} >/dev/null || die "Can't pushd ${S}/${x}"
+		emake INSTALL_ROOT="${D}" install || die "emake install failed"
+		popd >/dev/null || die "Can't popd from ${S}/${x}"
 	done
 }
 
-qconfig_add_option() {
-	local option=$1
-	qconfig_remove_option $1
-	sed -i -e "s:QT_CONFIG +=:QT_CONFIG += ${option}:g" "${EPREFIX}"/usr/share/qt4/mkspecs/qconfig.pri
+# @ECLASS-VARIABLE: QCONFIG_ADD
+# @DESCRIPTION:
+# List options that need to be added to QT_CONFIG in qconfig.pri
+QCONFIG_ADD="${QCONFIG_ADD:-}"
+
+# @ECLASS-VARIABLE: QCONFIG_REMOVE
+# @DESCRIPTION:
+# List options that need to be removed from QT_CONFIG in qconfig.pri
+QCONFIG_REMOVE="${QCONFIG_REMOVE:-}"
+
+# @ECLASS-VARIABLE: QCONFIG_DEFINE
+# @DESCRIPTION:
+# List variables that should be defined at the top of QtCore/qconfig.h
+QCONFIG_DEFINE="${QCONFIG_DEFINE:-}"
+
+install_qconfigs() {
+	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} ]]; then
+		local x
+		for x in QCONFIG_ADD QCONFIG_REMOVE; do
+			[[ -n ${!x} ]] && echo ${x}=${!x} >> "${T}"/${PN}-qconfig.pri
+		done
+		insinto ${QTDATADIR}/mkspecs/gentoo
+		doins "${T}"/${PN}-qconfig.pri || die "installing ${PN}-qconfig.pri failed"
+
+		for x in ${QCONFIG_DEFINE}; do
+			echo "#define ${x}" >> "${T}"/gentoo-${PN}-qconfig.h
+		done
+		insinto ${QTHEADERDIR}/Gentoo
+		doins "${T}"/gentoo-${PN}-qconfig.h || die "installing ${PN}-qconfig.h failed"
+	fi
 }
 
-qconfig_remove_option() {
-	local option=$1
-	sed -i -e "s: ${option}::g" "${EPREFIX}"/usr/share/qt4/mkspecs/qconfig.pri
+# Stubs for functions used by the Qt 4.4.0_technical_preview_1.
+qconfig_add_option() { : ; }
+qconfig_remove_option() { : ; }
+
+generate_qconfigs() {
+	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${CATEGORY}/${PN} == x11-libs/qt-core ]]; then
+		local x qconfig_add qconfig_remove qconfig_new
+		for x in "${EROOT}${QTDATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
+			[[ -f ${x} ]] || continue
+			qconfig_add="${qconfig_add} $(sed -n 's/^QCONFIG_ADD=//p' "${x}")"
+			qconfig_remove="${qconfig_remove} $(sed -n 's/^QCONFIG_REMOVE=//p' "${x}")"
+		done
+
+		# these error checks do not use die because dying in pkg_post{inst,rm}
+		# just makes things worse.
+		if [[ -e "${EROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
+			# start with the qconfig.pri that qt-core installed
+			if ! cp "${EROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri \
+				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
+				eerror "cp qconfig failed."
+				return 1
+			fi
+
+			# generate list of QT_CONFIG entries from the existing list
+			# including qconfig_add and excluding qconfig_remove
+			for x in $(sed -n 's/^QT_CONFIG +=//p' \
+				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
+					hasq ${x} ${qconfig_remove} || qconfig_new="${qconfig_new} ${x}"
+			done
+
+			# replace the existing QT_CONFIG list with qconfig_new
+			if ! sed -i -e "s/QT_CONFIG +=.*/QT_CONFIG += ${qconfig_new}/" \
+				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
+				eerror "Sed for QT_CONFIG failed"
+				return 1
+			fi
+
+			# create Gentoo/qconfig.h
+			if [[ ! -e ${EROOT}${QTHEADERDIR}/Gentoo ]]; then
+				if ! mkdir -p "${EROOT}${QTHEADERDIR}"/Gentoo; then
+					eerror "mkdir ${QTHEADERDIR}/Gentoo failed"
+					return 1
+				fi
+			fi
+			: > "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+			for x in "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
+				[[ -f ${x} ]] || continue
+				cat "${x}" >> "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+			done
+		else
+			rm -f "${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri
+			rm -f "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+			rmdir "${EROOT}${QTDATADIR}"/mkspecs \
+				"${EROOT}${QTDATADIR}" \
+				"${EROOT}${QTHEADERDIR}"/Gentoo \
+				"${EROOT}${QTHEADERDIR}" 2>/dev/null
+		fi
+	fi
+}
+
+qt4-build_pkg_postrm() {
+	generate_qconfigs
+}
+
+qt4-build_pkg_postinst() {
+	generate_qconfigs
 }
 
 skip_qmake_build_patch() {
-	# Don't need to build qmake, as it's already installed from qmake-core
-	sed -i -e "s:if true:if false:g" "${S}"/configure
+	# Don't need to build qmake, as it's already installed from qt-core
+	sed -i -e "s:if true:if false:g" "${S}"/configure || die "Sed failed"
 }
 
 skip_project_generation_patch() {
 	# Exit the script early by throwing in an exit before all of the .pro files are scanned
-	sed -i -e "s:echo \"Finding:exit 0\n\necho \"Finding:g" "${S}"/configure
+	sed -e "s:echo \"Finding:exit 0\n\necho \"Finding:g" \
+		-i "${S}"/configure || die "Sed failed"
 }
 
-install_binaries_to_buildtree()
-{
-	cp ${QTBINDIR}/qmake ${S}/bin
-	cp ${QTBINDIR}/moc ${S}/bin
-	cp ${QTBINDIR}/uic ${S}/bin
-	cp ${QTBINDIR}/rcc ${S}/bin
+symlink_binaries_to_buildtree() {
+	for bin in qmake moc uic rcc; do
+		ln -s ${QTBINDIR}/${bin} "${S}"/bin/ || die "Symlinking ${bin} to ${S}/bin failed."
+	done
 }
 
 fix_library_files() {
-	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" "${D}"/${QTLIBDIR}/*.la
-	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" "${D}"/${QTLIBDIR}/*.prl
-	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" "${D}"/${QTLIBDIR}/pkgconfig/*.pc
+	for libfile in "${ED}"/${QTLIBDIR}/{*.la,*.prl,pkgconfig/*.pc}; do
+		if [[ -e ${libfile} ]]; then
+			sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${libfile} || die "Sed on ${libfile} failed."
+		fi
+	done
 
 	# pkgconfig files refer to WORKDIR/bin as the moc and uic locations.  Fix:
-	sed -i -e "s:${S}/bin:${QTBINDIR}:g" "${D}"/${QTLIBDIR}/pkgconfig/*.pc
+	for libfile in "${ED}"/${QTLIBDIR}/pkgconfig/*.pc; do
+		if [[ -e ${libfile} ]]; then
+			sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${libfile} || die "Sed failed"
 
 	# Move .pc files into the pkgconfig directory
-	dodir ${QTPCDIR#${EPREFIX}}
-	mv "${D}"/${QTLIBDIR}/pkgconfig/*.pc "${D}"/${QTPCDIR}
+
+		dodir ${QTPCDIR}
+		mv ${libfile} "${ED}"/${QTPCDIR}/ \
+			|| die "Moving ${libfile} to ${ED}/${QTPCDIR}/ failed."
+		fi
+	done
+
+	# Don't install an empty directory
+	rmdir "${ED}"/${QTLIBDIR}/pkgconfig
 }
 
 qt_use() {
-	local flag="$1"
-	local feature="$1"
+	local flag="${1}"
+	local feature="${1}"
 	local enableval=
 
-	[[ -n $2 ]] && feature=$2
-	[[ -n $3 ]] && enableval="-$3"
+	[[ -n ${2} ]] && feature=${2}
+	[[ -n ${3} ]] && enableval="-${3}"
 
-	useq $flag && echo "${enableval}-${feature}" || echo "-no-${feature}"
-	return 0
+	if use ${flag}; then
+		echo "${enableval}-${feature}"
+	else
+		echo "-no-${feature}"
+	fi
+}
+
+# @ECLASS-VARIABLE: QT4_BUILT_WITH_USE_CHECK
+# @DESCRIPTION:
+# The contents of $QT4_BUILT_WITH_USE_CHECK gets fed to built_with_use
+# (eutils.eclass), line per line.
+#
+# Example:
+# @CODE
+# pkg_setup() {
+# 	use qt3support && QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
+# 		~x11-libs/qt-gui-${PV} qt3support"
+# 	qt4-build_check_use
+# }
+# @CODE
+
+# Run built_with_use on each flag and print appropriate error messages if any
+# flags are missing
+_qt_built_with_use() {
+	local missing opt pkg flag flags
+
+	if [[ ${1} = "--missing" ]]; then
+		missing="${1} ${2}" && shift 2
+	fi
+	if [[ ${1:0:1} = "-" ]]; then
+		opt=${1} && shift
+	fi
+
+	pkg=${1} && shift
+
+	for flag in "${@}"; do
+		flags="${flags} ${flag}"
+		if ! built_with_use ${missing} ${opt} ${pkg} ${flag}; then
+			flags="${flags}*"
+		else
+			[[ ${opt} = "-o" ]] && return 0
+		fi
+	done
+	if [[ "${flags# }" = "${@}" ]]; then
+		return 0
+	fi
+	if [[ ${opt} = "-o" ]]; then
+		eerror "This package requires '${pkg}' to be built with any of the following USE flags: '$*'."
+	else
+		eerror "This package requires '${pkg}' to be built with the following USE flags: '${flags# }'."
+	fi
+	return 1
+}
+
+# @FUNCTION: qt4-build_check_use
+# @DESCRIPTION:
+# Check if the listed packages in $QT4_BUILT_WITH_USE_CHECK are built with the
+# USE flags listed.
+#
+# If any of the required USE flags are missing, an eerror will be printed for
+# each package with missing USE flags.
+qt4-build_check_use() {
+	local line missing
+	while read line; do
+		[[ -z ${line} ]] && continue
+		if ! _qt_built_with_use ${line}; then
+			missing=true
+		fi
+	done <<< "${QT4_BUILT_WITH_USE_CHECK}"
+	if [[ -n ${missing} ]]; then
+		echo
+		eerror "Flags marked with an * are missing."
+		die "Missing USE flags found"
+	fi
 }
 
 qt_mkspecs_dir() {
@@ -179,12 +398,12 @@ qt_mkspecs_dir() {
 			spec="openbsd" ;;
 		*-netbsd*)
 			spec="netbsd" ;;
- 		*-darwin*)
+		*-darwin*)
 			spec="darwin" ;;
 		*-linux-*|*-linux)
 			spec="linux" ;;
 		*)
-			die "Unknown CHOST, no platform choosed."
+			die "Unknown CHOST, no platform choosen."
 	esac
 
 	CXX=$(tc-getCXX)
@@ -199,4 +418,4 @@ qt_mkspecs_dir() {
 	echo "${spec}"
 }
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_install
+EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postrm pkg_postinst
