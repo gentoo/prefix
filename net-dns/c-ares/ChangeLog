@@ -1,6 +1,10 @@
 # ChangeLog for net-dns/c-ares
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/c-ares/ChangeLog,v 1.41 2008/01/25 22:13:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/c-ares/ChangeLog,v 1.42 2008/03/06 03:48:15 wolf31o2 Exp $
+
+  06 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> c-ares-1.4.0.ebuild:
+  Adding back ~x86-fbsd for games-action/bzflag. Someone dropped the KEYWORD
+  without a ChangeLog, so I am assuming that it was by accident.
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> c-ares-1.4.0.ebuild:
   Dropped ppc-macos keyword, see you in prefix
