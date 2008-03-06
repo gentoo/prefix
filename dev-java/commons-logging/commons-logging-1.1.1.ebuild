@@ -1,9 +1,9 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.1 2008/02/06 15:25:30 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.2 2008/03/05 17:10:08 betelgeuse Exp $
 
 EAPI="prefix 1"
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2 java-osgi
 
@@ -20,7 +20,8 @@ COMMON_DEP="
 	avalon-logkit? ( dev-java/avalon-logkit:1.2 )
 	log4j? ( dev-java/log4j:0 )
 	servletapi? ( java-virtuals/servlet-api:2.3 )
-	avalon-framework? ( dev-java/avalon-framework:4.2 )"
+	avalon-framework? ( dev-java/avalon-framework:4.2 )
+	test? ( dev-java/ant-junit:0 )"
 # ATTENTION: Add this when log4j-1.3 is out
 #	=dev-java/log4j-1.3*
 RDEPEND=">=virtual/jre-1.4
@@ -29,6 +30,8 @@ DEPEND=">=virtual/jdk-1.4
 	${COMMON_DEP}"
 
 S="${WORKDIR}/${P}-src/"
+
+RESTRICT="!servletapi? ( test )"
 
 src_unpack() {
 	unpack ${A}
@@ -51,6 +54,10 @@ src_unpack() {
 	use servletapi && echo "servletapi.jar=$(java-pkg_getjar --virtual servlet-api-2.3 servlet.jar)" >> build.properties
 	use avalon-framework && echo "avalon-framework.jar=$(java-pkg_getjars avalon-framework-4.2)" >> build.properties
 	java-pkg_filter-compiler jikes ecj-3.2
+
+	if use test && ! use servletapi; then
+		eerror "Tests need use servletapi, tests not executed"
+	fi
 }
 
 EANT_BUILD_TARGET="compile"
