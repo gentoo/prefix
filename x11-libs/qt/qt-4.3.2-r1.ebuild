@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.2-r1.ebuild,v 1.7 2007/12/10 13:12:35 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.2-r1.ebuild,v 1.8 2008/03/05 16:40:05 ingmar Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ RDEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXcursor
 	x11-libs/libXfont
 	x11-libs/libSM
+	!x11-libs/qt-core
 	xinerama? ( x11-proto/xineramaproto x11-libs/libXinerama )
 	media-libs/fontconfig )
 	>=media-libs/freetype-2
