@@ -350,7 +350,7 @@ switch_profile() {
 								soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
 								install_name_tool \
 									-id "${EPREFIX}"/lib/${soname##*/} \
-									${lib}
+									${lib} &> /dev/null
 							done
 							popd > /dev/null
 						fi
@@ -370,18 +370,18 @@ switch_profile() {
 			# the install_names of the objects.  Omit libgcc and unwind
 			# as we already dealt with those above.
 			pushd "${ROOT}/${LDPATH}/${multilibdir}" > /dev/null
-			[[ -n $(ls /lib*${libname}* 2>/dev/null) ]] && \
+			[[ -n $(ls lib*${libname}* 2>/dev/null) ]] && \
 			if mkdir -p "${EROOT}/usr/${libdir}" ; then
 				for lib in lib*${libname}* ; do
 					[[ ${lib} == libgcc* || ${lib} == unwind* ]] && continue
 					# use an intermediate copy for install_name_tooling
-					cp -pP ${lib} "${EROOT}/${libdir}"/${lib}.new
+					cp -pP ${lib} "${EROOT}/usr/${libdir}"/${lib}.new
 					# fix install_name on Darwin
 					if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
 						soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
 						install_name_tool \
 							-id "${EPREFIX}"/usr/lib/${soname##*/} \
-							"${EROOT}/usr/${libdir}"/${lib}.new
+							"${EROOT}/usr/${libdir}"/${lib}.new &> /dev/null
 					fi
 					mv -f "${EROOT}/usr/${libdir}"/${lib}{.new,}
 				done
