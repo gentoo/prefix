@@ -1,0 +1,21 @@
+# ChangeLog for dev-libs/libmemcached
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/ChangeLog,v 1.3 2008/02/19 23:24:33 robbat2 Exp $
+
+*libmemcached-0.16 (19 Feb 2008)
+
+  19 Feb 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +libmemcached-0.16.ebuild:
+  Version bump.
+
+*libmemcached-0.13 (14 Jan 2008)
+
+  14 Jan 2008; Samuli Suominen <drac@gentoo.org> +libmemcached-0.13.ebuild:
+  Version bump.
+
+*libmemcached-0.11 (28 Nov 2007)
+
+  28 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
+  +libmemcached-0.11.ebuild:
+  Initial commit. Ebuild by Robin H. Johnson <robbat2@gentoo.org>.
+

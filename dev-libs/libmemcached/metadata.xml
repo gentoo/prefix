@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>robbat2@gentoo.org</email>
+	</maintainer>
+	<longdescription>
+	libmemcached is a C client library to the memcached server
+	(http://danga.com/memcached). It has been designed to be light on memory
+	usage, thread safe, and provide full access to server side methods.
+	</longdescription>
+</pkgmetadata>
