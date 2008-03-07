@@ -1789,16 +1789,22 @@ make_wrapper() {
 	# We don't want to quote ${bin} so that people can pass complex
 	# things as $bin ... "./someprog --args"
 	cat << EOF > "${tmpwrapper}"
-#!/bin/sh
+#!${EPREFIX}/bin/sh
 cd "${chdir:-.}"
 if [ -n "${libdir}" ] ; then
 	if [ "\${LD_LIBRARY_PATH+set}" = "set" ] ; then
-		export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:${libdir}"
+		export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:${EPREFIX}${libdir}"
 	else
-		export LD_LIBRARY_PATH="${libdir}"
+		export LD_LIBRARY_PATH="${EPREFIX}${libdir}"
+	fi
+	# ultra-dirty, just do the same for Darwin
+	if [ "\${DYLD_LIBRARY_PATH+set}" = "set" ] ; then
+		export DYLD_LIBRARY_PATH="\${DYLD_LIBRARY_PATH}:${EPERFIX}${libdir}"
+	else
+		export DYLD_LIBRARY_PATH="${EPREFIX}${libdir}"
 	fi
 fi
-exec ${bin} "\$@"
+exec "${EPREFIX}"${bin} "\$@"
 EOF
 	chmod go+rx "${tmpwrapper}"
 	if [[ -n ${path} ]] ; then
