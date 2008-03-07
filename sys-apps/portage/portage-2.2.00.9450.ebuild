@@ -149,7 +149,7 @@ src_compile() {
 			| sed -e 's:/__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
 			 -e 's:/:.:g')" || die "error listing modules"
 		PYTHONPATH="${S}/pym:${PYTHONPATH}" epydoc -o "${WORKDIR}"/api \
-			-qqqqq --ignore-param-mismatch --no-frames --show-imports \
+			-qqqqq --no-frames --show-imports \
 			--name "${PN}" --url "${HOMEPAGE}" \
 			${my_modules} || die "epydoc failed"
 	fi
@@ -185,6 +185,17 @@ src_install() {
 }
 
 pkg_preinst() {
+	if ! use build && ! has_version dev-python/pycrypto && \
+		has_version '>=dev-lang/python-2.5' ; then
+		if ! built_with_use '>=dev-lang/python-2.5' ssl ; then
+			echo "If you are a Gentoo developer and you plan to" \
+			"commit ebuilds with this system then please install" \
+			"pycrypto or enable python's ssl USE flag in order" \
+			"to enable RMD160 hash support. See bug #198398 for" \
+			"more information." | \
+			fmt -w 70 | while read line ; do ewarn "${line}" ; done
+		fi
+	fi
 	local portage_base="/usr/$(get_libdir)/portage"
 	if has livecvsportage ${FEATURES} && [ "${ROOT}" = "/" ]; then
 		rm -rf "${ED}"/${portage_base}/pym/*
@@ -213,17 +224,12 @@ pkg_postinst() {
 	# will be identified and removed in postrm.
 	compile_all_python_bytecodes "${EROOT}usr/$(get_libdir)/portage/pym"
 
-	elog
-	elog "FEATURES=\"userfetch\" is now enabled by default. Depending on your \${DISTDIR}"
-	elog "permissions, this may result in Permission Denied errors. If you would like"
-	elog "to fetch with superuser privileges, add FEATURES=\"-userfetch\" to make.conf."
-	elog
-	elog "The world file now supports slot atoms such as 'sys-devel/gcc:3.4'. In some"
-	elog "cases, emerge --depclean may remove slots that it would not have removed"
-	elog "in the past. The emerge --noreplace command can be used to add an atom to"
-	elog "the world file and prevent matching packages from being removed.  A slot"
-	elog "atom will be recorded in the world file for any atom that is precise enough"
-	elog "to identify a specific slot."
+	echo "If you have an overlay then you should remove **/files/digest-*" \
+	"files (Manifest1) because they are no longer supported. If earlier" \
+	"versions of portage will be used to generate manifests for your overlay" \
+	"then you should add a file named manifest1_obsolete to the root of the" \
+	"repository in order to disable generation of the" \
+	"Manifest1 digest files." | fmt -w 75 | while read x ; do elog "$x" ; done
 
 	portage_docs
 }
