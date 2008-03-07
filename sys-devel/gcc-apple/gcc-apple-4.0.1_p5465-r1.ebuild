@@ -4,29 +4,17 @@
 
 EAPI="prefix"
 
-inherit eutils
+ETYPE="gcc-compiler"
+
+inherit eutils toolchain
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
 DESCRIPTION="Apple branch of the GNU Compiler Collection, from 10.5"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
-
-# Magic from toolchain.eclass
-export CTARGET=${CTARGET:-${CHOST}}
-if [[ ${CTARGET} = ${CHOST} ]] ; then
-	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
-		export CTARGET=${CATEGORY/cross-}
-	fi
-fi
-is_crosscompile() {
-	[[ ${CHOST} != ${CTARGET} ]]
-}
-
-# TPREFIX is the prefix of the CTARGET installation
-export TPREFIX=${TPREFIX:-${EPREFIX}}
-
 LICENSE="APSL-2 GPL-2"
+
 if is_crosscompile; then
 	SLOT="${CTARGET}-40"
 else
@@ -47,6 +35,9 @@ DEPEND="${RDEPEND}
 	>=${CATEGORY}/odcctools-20071104"
 
 S=${WORKDIR}/gcc-${APPLE_VERS}
+
+# TPREFIX is the prefix of the CTARGET installation
+export TPREFIX=${TPREFIX:-${EPREFIX}}
 
 if is_crosscompile ; then
 	BINPATH=${EPREFIX}/usr/${CHOST}/${CTARGET}/gcc-bin/${GCC_VERS}
@@ -85,9 +76,9 @@ src_compile() {
 		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
+		--libdir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS} \
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
-		--host=${CHOST} \
-		--enable-version-specific-runtime-libs"
+		--host=${CHOST}"
 
 	if is_crosscompile ; then
 		# Straight from the GCC install doc:
@@ -135,31 +126,8 @@ src_compile() {
 		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
 		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
-	# <grobian@gentoo.org> - 2006-09-19:
-	# figure out whether the CPU we're on is 64-bits capable using a
-	# simple C program and requesting the compiler to compile it with
-	# 64-bits if possible.  Since Apple ships multilib compilers, it
-	# will always compile 64-bits code, but might fail running,
-	# depending on the CPU, so the resulting program might fail.  Thanks
-	# Tobias Hahn for working that out.
-	if [[ ${CHOST} == *-apple-darwin* ]] && ! is_crosscompile ; then
-		cd "${T}"
-		echo '
-#include <stdio.h>
-
-int main() {
-	printf("%d\n", sizeof(size_t) * 8);
-}
-' > bits.c
-		# native gcc doesn't come in a ${CHOST}-gcc fashion if on older Xcode
-		gcc -m64 -o bits bits.c
-		if [[ $(./bits) != 64 ]] ; then
-			myconf="${myconf} --disable-multilib"
-		fi
-	else
-		# ld64 doesn't compile on non-Darwin hosts
-		myconf="${myconf} --disable-multilib"
-	fi
+	# make sure we never do multilib stuff, for that we need a different Prefix
+	myconf="${myconf} --disable-multilib"
 
 	# The produced libgcc_s.dylib is faulty if using a bit too much
 	# optimisation.  Nail it down to something sane
@@ -167,6 +135,8 @@ int main() {
 	CXXFLAGS=${CFLAGS}
 
 	# http://gcc.gnu.org/ml/gcc-patches/2006-11/msg00765.html
+	# (won't hurt if already 64-bits, but is essential when coming from a
+	# multilib compiler -- the default)
 	[[ ${CTARGET} == powerpc64-* || ${CTARGET} == x86_64-* ]] && \
 		export CC="gcc -m64"
 
@@ -197,10 +167,10 @@ src_install() {
 	LDPATH="${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}"
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
 
-	BITS=$(${ED}/usr/${CHOST}/gcc-bin/${GCC_VERS}/gcc -dumpspecs | grep -A1 multilib: | tail -n1 | grep -o 64 | head -n1)
-	[[ -z ${BITS} ]] \
-		&& BITS="32" \
-		|| BITS="32 ${BITS}"
+	# Since we're not multilib, we're either one of both
+	[[ ${CTARGET} == powerpc64-* || ${CTARGET} == x86_64-* ]] \
+		&& BITS="64" \
+		|| BITS="32"
 	echo "GCCBITS=\"${BITS}\"" >> ${gcc_envd_file}
 
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man\"" >> ${gcc_envd_file}

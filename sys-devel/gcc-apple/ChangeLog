@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5465-r1.ebuild, -gcc-apple-4.0.1_p5465-r2.ebuild,
+  gcc-apple-4.2.1_p5531.ebuild:
+  Cleaned up latest 4.0.1 and 4.2.1 ebuilds. Don't do multilib any more, its
+  broken by (partially our) design and quite useless.  Removed -r2 as it
+  was not a good idea.
+
 *gcc-apple-4.0.1_p5465-r2 (02 Mar 2008)
 
   02 Mar 2008; Fabian Groffen <grobian@gentoo.org>
