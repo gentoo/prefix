@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/sex/sex-1.0.ebuild,v 1.16 2008/01/14 19:59:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/sex/sex-1.0.ebuild,v 1.17 2008/03/07 01:18:34 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ DEPEND="virtual/libc"
 
 src_unpack() {
 	unpack ${A}
-	rm -f ${S}/Makefile
+	rm -f "${S}"/Makefile
 }
 
 src_compile() {
