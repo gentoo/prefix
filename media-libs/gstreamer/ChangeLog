@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.199 2008/02/10 17:38:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.200 2008/03/08 19:24:17 tester Exp $
+
+  08 Mar 2008; Olivier Crête <tester@gentoo.org> gstreamer-0.10.17.ebuild:
+  Check is needed to build libgstcheck, not just for gst's tests, making it
+  non-optional
 
   02 Feb 2008; Samuli Suominen <drac@gentoo.org> -gstreamer-0.10.15.ebuild:
   Remove unused version.
