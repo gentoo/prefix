@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/jmock-1.1.0-r2.ebuild,v 1.5 2007/07/05 23:15:58 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/jmock-1.1.0-r2.ebuild,v 1.6 2008/03/08 12:41:40 nelchael Exp $
 
 EAPI="prefix"
 

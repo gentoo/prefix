@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jmock
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/ChangeLog,v 1.14 2007/12/19 23:55:11 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/ChangeLog,v 1.15 2008/03/08 12:41:40 nelchael Exp $
+
+  08 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org> jmock-1.1.0-r2.ebuild:
+  Stable on ppc.
 
   19 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> -jmock-1.1.0-r1.ebuild:
   Delete old ebuild.
