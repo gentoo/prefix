@@ -1,6 +1,17 @@
 # ChangeLog for app-vim/colorschemes
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/ChangeLog,v 1.27 2007/07/10 19:10:44 nelchael Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/ChangeLog,v 1.30 2008/03/08 18:59:05 fmccor Exp $
+
+  08 Mar 2008; Ferris McCormick <fmccor@gentoo.org>
+  colorschemes-20070707.ebuild:
+  Sparc stable --- Bug #205337 --- thanks to Tiago Cunha for testing.
+
+  08 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  colorschemes-20070707.ebuild:
+  amd64 stable wrt bug #205337 (and ppc).
+
+  08 Mar 2008; nixnut <nixnut@gentoo.org> ChangeLog:
+  Stable on ppc wrt bug 205337
 
 *colorschemes-20070707 (10 Jul 2007)
 
