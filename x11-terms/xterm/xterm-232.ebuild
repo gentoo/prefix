@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-232.ebuild,v 1.1 2008/01/31 03:21:28 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-232.ebuild,v 1.2 2008/03/06 16:00:21 armin76 Exp $
 
 EAPI="prefix"
 
