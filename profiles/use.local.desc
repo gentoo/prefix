@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3417 2008/03/06 03:05:19 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3421 2008/03/08 13:32:38 betelgeuse Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -367,7 +367,6 @@ dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
 dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
 dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
-dev-java/antlr:nojava - Disable support for Java code backend
 dev-java/antlr:script - Install a script to run antlr
 dev-java/avalon-logkit:javamail - Enable support for javamail
 dev-java/avalon-logkit:jms - Enable support for JMS (Java Message Service)
@@ -1077,6 +1076,7 @@ media-sound/squeezecenter:alac - Enable support for alac
 media-sound/squeezecenter:bonjour - Enable support for bonjour
 media-sound/transkode:amarok - Build Amarok script
 media-sound/traverso:lv2 - Add support for Ladspa V2
+media-sound/vorbis-tools:ogg123 - Build ogg123 player, needs libao and curl
 media-tv/freevo:mixer - Enable support for adjusting volume via media-sound/aumix
 media-tv/freevo:tv - Enable support for the tv guide plugin
 media-tv/gentoo-vdr-scripts:nvram - Add support for using nvram-wakeup to set wakeup time in bios
@@ -1335,6 +1335,7 @@ net-analyzer/snort:sguil - Enable sguil (The Analyst Console for Network Securit
 net-analyzer/snort:snortsam - patches snort for use with snortsam
 net-analyzer/snort:timestats - Enable TimeStats functionality
 net-analyzer/tcpreplay:pcapnav - Enable if you want the jump to byte offset feature via libpcapnav
+net-analyzer/wireshark:smi - Use libsmi to resolve numeric OIDs into human readable format
 net-analyzer/zabbix:agent - Enable zabbix agent (for to-be-monitored machines)
 net-analyzer/zabbix:frontend - Enable zabbix web frontend
 net-analyzer/zabbix:server - Enable zabbix server
@@ -1881,6 +1882,7 @@ sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support.
 sys-auth/pam_pkcs11:pcsc-lite - build with pcsc-lite instead of openct
 sys-auth/pambase:consolekit - Enable ConsoleKit support in local login sessions.
+sys-auth/pambase:mktemp - Enable pam_mktemp support in system authentication.
 sys-auth/pambase:passwdqc - Enable pam_passwdqc support in system authentication.
 sys-block/gparted:fat - Include FAT16/FAT32 support
 sys-block/gparted:hfs - Include HFS support

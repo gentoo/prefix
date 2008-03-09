@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8342 2008/03/06 00:53:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8354 2008/03/08 23:33:25 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,19 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Ben de Groot <yngwin@gentoo.org> (8 Mar 2008)
+# Mask because it breaks things all over. Tracker bug: #212763
+=sys-devel/libtool-2.2
+
+# MATSUU Takuto <matsuu@gentoo.org> (8 Mar 2008)
+# Masked for Bug 173467
+=dev-lang/tcl-8.5*
+=dev-lang/tk-8.5*
+
+# Tiziano Müller <dev-zero@gentoo.org> (8 Mar 2008)
+# Mask pre-version
+=net-fs/samba-3.2*
 
 # Diego Pettenò <flameeyes@gentoo.org> (6 Mar 2008)
 # Mask pending fix for new pambase, see bug #212452
@@ -87,11 +100,13 @@ mail-filter/dovecot-dspam
 >=dev-util/intltool-0.37.1
 
 # Benedikt Böhm <hollow@gentoo.org> (23 Feb 2008)
-# Masked due to constant security bugs.
+# Masked due to security issues.
 # https://bugs.gentoo.org/show_bug.cgi?id=211166
 www-apps/joomla
 www-apps/mambo
-www-apps/phpBB
+www-apps/moregroupware
+www-apps/net2ftp
+=www-apps/phpBB-2*
 www-apps/wordpress
 www-apps/xoops
 
@@ -229,13 +244,6 @@ net-ftp/gtkfxp
 app-admin/ctcs
 # Doesn't compile, useless, bug #152493
 net-libs/libhttpd-persistent
-
-# Alexis Ballier <aballier@gentoo.org> (03 Feb 2008)
-# Masked for removal in 30 days. Has already been masked 
-# for a good while (bug #208689); included in recent TeX
-# distributions and thus collides with them.
-# Removal due: 03 Mar 2008
-dev-tex/dk-bib
 
 # Vlastimil Babka <caster@gentoo.org> (03 Feb 2008)
 # Still unmigrated, no release since 2005, some of the
@@ -617,24 +625,9 @@ sys-apps/list
 games-fps/doomsday
 games-fps/doomsday-resources
 
-# Michael Sterrett <mr_bones_@gentoo.org> (15 Jan 2008)
-# Beta version for package testing.
-# Don't even think about filing bugs in bugzilla about this version.
-# IRC and email comments welcome.
->=games-strategy/wesnoth-1.3.14
-
 # Markus Ullmann <jokey@gentoo.org> (13 Jan 2008)
 # contrib modules need to be added back and needs general testing
 >=net-nds/openldap-2.4
-
-# Wulf C. Krueger <philantrop@gentoo.org> (13 Jan 2008)
-# Masked qca-2.0 and dependencies for further testing, bug #129536
-=app-crypt/qca-2*
->=app-crypt/qca-cyrus-sasl-2.0.0_beta3
->=app-crypt/qca-gnupg-2.0.0_beta2
->=app-crypt/qca-logger-2.0.0_beta2
->=app-crypt/qca-ossl-2.0.0_beta3
->=app-crypt/qca-pkcs11-2.0.0_beta2
 
 # Alon Bar-Lev <alonbl@gentoo.org> (11 Jan 2008)
 # Does not really work, bug#204662
@@ -852,11 +845,6 @@ sys-kernel/hppa-sources
 # masked for security bug 198979
 <=dev-scheme/chicken-2.6
 
-# Doug Klima <cardoe@gentoo.org> (21 Nov 2007)
-# Experimental cairo snapshot for Firefox-3 usage
-# known to mess with poppler and PDF rendering
->=x11-libs/cairo-1.5.2
-
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
 # There is a serious regression (bug #199450) due to
 # an incomplete fix for the non-remote vulnerability
@@ -913,6 +901,8 @@ dev-lang/ghc-bin
 # Note: the init script might change without warning while
 # the ebuild is masked.
 =media-sound/pulseaudio-0.9.9-r2
+# When 0.9.10 is released this has to be removed.
+>=media-sound/pulseaudio-0.9.9-r50
 
 # Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
 # masked for security reasons, bug 189172, removal scheduled for beginning of
@@ -1124,11 +1114,6 @@ dev-util/larch
 # Mask livesvn ebuild
 =net-p2p/deluge-9999
 
-# MATSUU Takuto <matsuu@gentoo.org> (12 Jun 2007)
-# Mask alpha versions
-=dev-lang/tcl-8.5*
-=dev-lang/tk-8.5*
-
 # Roy Marples <uberlord@gentoo.org> (31 May 2007)
 # Masked, pending removal. Remove in 30 days
 # Use dash instead
@@ -1276,10 +1261,6 @@ media-video/dxr3player
 # Gustavo Felisberto <humpback@gentoo.org> (23 Feb 2007)
 # Masked for remove from tree. Contact me if you need this
 net-misc/ssh
-
-# Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
-# Depends on xkeyval which was masked earlier today.
-dev-tex/dk-bib
 
 # Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
 # All of those are provided by tetex-3 which is now stabilized everywhere.

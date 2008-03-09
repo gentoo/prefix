@@ -1,6 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1184 2008/03/06 03:10:00 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1192 2008/03/08 23:11:28 yngwin Exp $
+
+  08 Mar 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking sys-devel/libtool-2.2 which is causing breakage.
+
+  08 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Unmask app-crypt/qca:2 and dependencies.
+
+  08 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Remove nojava for antlr as it's no longer used.
+
+  08 Mar 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added mask for samba-3.2*
+
+  07 Mar 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  dk-bib is gone now, bug #208689, remove it from pmask
+
+  07 Mar 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Added smi USE flag for net-analyzer/wireshark.
+
+  07 Mar 2008; Ryan Hill <dirtyepic@gentoo.org>
+  default-linux/mips/package.use.mask:
+  Mask solver USE flag for kde-base/kdeedu on mips.
+
+  06 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add mktemp USE flag for pambase.
 
   06 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> updates/1Q-2008:
   Added a package move for games-action/abuse_sdl to games-action/abuse.
