@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jaf/sun-jaf-1.1.1.ebuild,v 1.1 2008/01/01 11:09:48 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jaf/sun-jaf-1.1.1.ebuild,v 1.4 2008/03/08 20:38:39 wltjr Exp $
 
 EAPI="prefix"
 
