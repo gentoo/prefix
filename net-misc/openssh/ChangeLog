@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.285 2008/03/05 20:07:53 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.286 2008/03/06 11:17:38 armin76 Exp $
+
+  06 Mar 2008; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1-r20.ebuild:
+  Add ~alpha/~ia64 wrt #210777
 
   05 Mar 2008; Ferris McCormick <fmccor@gentoo.org>
   openssh-4.7_p1-r20.ebuild:
