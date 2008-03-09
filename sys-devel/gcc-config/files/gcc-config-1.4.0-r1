@@ -379,7 +379,7 @@ switch_profile() {
 		# selected version.
 		GCC_PROFILES=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-*)
 		GCC_PROFILES="${GCC_PROFILES} ${GCC_ENV_D}/${CC_COMP}"
-		dstlib=${EROOT}/usr/${REAL_CHOST}/lib-gcc
+		dstlib=${EROOT}/usr/${REAL_CHOST}/lib/gcc
 		# When upgrading, we need to clean up libs
 		mkdir -p "${dstlib}"
 		find -L "${dstlib}" -name "*.${libname}*" -exec rm {} \;
@@ -396,7 +396,7 @@ switch_profile() {
 					if [[ ${REAL_CHOST} == *-darwin* ]] ; then
 						soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
 						install_name_tool \
-							-id "${EPREFIX}"/usr/${CHOST}/lib-gcc/${soname##*/} \
+							-id "${EPREFIX}"/usr/${CHOST}/lib/gcc/${soname##*/} \
 							"${dstlib}"/${lib} &> /dev/null
 					fi
 				done
