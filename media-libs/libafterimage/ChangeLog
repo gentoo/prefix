@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libafterimage
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.9 2007/11/27 15:27:08 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.10 2008/03/07 19:48:06 armin76 Exp $
+
+  07 Mar 2008; Raúl Porcel <armin76@gentoo.org> libafterimage-1.15.ebuild:
+  Add ~ia64
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org> libafterimage-1.15.ebuild:
   Add ~alpha/~sparc wrt #200316
