@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/jdom-jaxen-1.0-r1.ebuild,v 1.5 2008/01/05 23:20:08 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/jdom-jaxen-1.0-r1.ebuild,v 1.6 2008/03/08 16:59:36 maekke Exp $
 
 EAPI="prefix"
 
