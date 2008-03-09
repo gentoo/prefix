@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.4.ebuild,v 1.6 2008/02/11 18:56:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.4.ebuild,v 1.8 2008/03/07 13:21:48 coldwind Exp $
 
 EAPI="prefix"
 
