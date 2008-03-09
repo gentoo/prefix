@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.133 2008/02/22 12:01:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.134 2008/03/08 12:02:57 vapier Exp $
+
+*libtool-2.2 (08 Mar 2008)
+
+  08 Mar 2008; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.ebuild:
+  Version bump.
 
   22 Feb 2008; Jeroen Roovers <jer@gentoo.org> libtool-1.5.26.ebuild:
   Stable for HPPA (bug #210266).
