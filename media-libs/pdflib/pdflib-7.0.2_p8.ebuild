@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2_p8.ebuild,v 1.7 2008/03/04 20:53:47 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2_p8.ebuild,v 1.8 2008/03/06 23:48:44 dirtyepic Exp $
 
 EAPI="prefix 1"
 
@@ -41,6 +41,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-7.0.2-darwin.patch
+
+	epatch "${FILESDIR}"/${P}-gcc-4.3.patch
 
 	# fix broken configure option for ruby bindings.
 	# do NOT call eautoreconf here, it breaks configure horribly.
