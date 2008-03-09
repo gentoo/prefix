@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.315 2008/01/29 19:49:57 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.317 2008/03/07 07:33:20 alonbl Exp $
+
+  07 Mar 2008; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.7-r1.ebuild,
+  gnupg-2.0.8-r2.ebuild:
+  Fix dead link, bug#212559, thanks to Lars (Polynomial-C)
+
+*gnupg-2.0.8-r2 (06 Mar 2008)
+*gnupg-2.0.7-r1 (06 Mar 2008)
+
+  06 Mar 2008; Alon Bar-Lev <alonbl@gentoo.org> -gnupg-2.0.7.ebuild,
+  +gnupg-2.0.7-r1.ebuild, -gnupg-2.0.8-r1.ebuild, +gnupg-2.0.8-r2.ebuild:
+  More links for gpgv1 compatibility, bug#212405, thanks to Mario Lenz
 
   29 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.4.7-r1.ebuild,
   gnupg-1.4.8-r1.ebuild:
