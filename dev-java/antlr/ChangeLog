@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/antlr
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.60 2007/06/23 16:50:14 betelgeuse Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.62 2008/03/08 13:31:43 betelgeuse Exp $
+
+  08 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
+  Rename nocxx and nojava to cxx and java and turn them on by default using
+  EAPI 1.
+
+  08 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
+  Fix quoting and nocxx use under the examples use flag. Fixes bug #212703.
+  Thanks to maekke for the patch.
 
   23 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
   Fix bug #172104 so that antlr builds when pnet is installed.
