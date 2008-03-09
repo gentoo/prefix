@@ -26,7 +26,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.2-prefix.patch
 	cp "${FILESDIR}"/emacs-updater .
-	epatch "${FILESDIR}"/emacs-updater-prefix.patch
 	eprefixify *.eselect emacs-updater
 }
 

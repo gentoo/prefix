@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Licensed under GPL version 2
+# Copyright 2007-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id: emacs-updater,v 1.3 2008/03/08 06:53:06 ulm Exp $
+
 # Authors:
 # Christian Faulhammer <opfer@gentoo.org>
 # Ulrich Mueller <ulm@gentoo.org>
 
-VERSION=0.4
-SITELISP=/usr/share/emacs/site-lisp
+VERSION=0.6
+SITELISP="@GENTOO_PORTAGE_EPREFIX@"/usr/share/emacs/site-lisp
 TMPFILE="$(mktemp /tmp/emacs-updater.XXXXXX)"
 
 cat <<-EOF
@@ -17,32 +20,44 @@ Find packages that are installed in the wrong location
 
 EOF
 
+usage() {
+    sed -e 's/^X//' <<-EOF
+	Usage: ${0##*/} [OPTION]...
+	X  -n, --nocolour   disable colour in output
+	X  -p, --pretend    don't actually emerge packages
+	X  -h, --help       display this help and exit
+	EOF
+    exit ${1}
+}
+
 # Read in all command-line options and force English output
 OPTIONS=$(LC_ALL=C getopt -o hpn --long help,pretend,nocolour \
      -n 'emacs-updater' -- "$@")
+[ $? -eq 0 ] || usage 1
 
 eval set -- "${OPTIONS}"
 
 while true
 do
     case "${1}" in
-	-h|--help) echo "You have the following options: --pretend|-p and/or --no-colour|-n" ; exit 0 ;;
-	-p|--pretend) PRETEND="true"; shift 1 ;;
-	-n|--nocolour) NOCOLOUR="true"; shift 1;;
-	--) shift ; break ;;
+	-h|--help)      usage 0 ;;
+	-p|--pretend)   PRETEND="true"; shift 1 ;;
+	-n|--nocolour)  NOCOLOUR="true"; shift 1 ;;
+	--)             shift; break ;;
     esac
 done
 
 # Only set colours if output is not redirected or the --no-colour
 # option is not set
-if tty -s <&1 && [ -z ${NOCOLOUR} ] ; then
-    BLUE=$'\e[34;01m'
-    GREEN=$'\e[32;01m'
-    RED=$'\e[31;01m'
-    YELLOW=$'\e[33;01m'
-    CYAN=$'\e[36;01m'
-    BOLD=$'\e[0;01m'
-    NORMAL=$'\e[0m'
+if [ -t 1 ] && [ -z "${NOCOLOUR}" ] ; then
+    RED=$(tput -S <<<$'setaf 1\nbold')
+    GREEN=$(tput -S <<<$'setaf 2\nbold')
+    YELLOW=$(tput -S <<<$'setaf 3\nbold')
+    BLUE=$(tput -S <<<$'setaf 4\nbold')
+    MAGENTA=$(tput -S <<<$'setaf 5\nbold')
+    CYAN=$(tput -S <<<$'setaf 6\nbold')
+    BOLD=$(tput bold)
+    NORMAL=$(tput sgr0)
 fi
 
 message() {
@@ -60,7 +75,7 @@ failure() {
     echo "${RED}*${NORMAL}${BOLD} ${OUTPUT}${NORMAL}" 
 }
 
-if ! [ -x /usr/bin/qfile ]; then
+if ! [ -x "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/qfile ]; then
     echo
     failure "Please emerge app-portage/portage-utils to use this tool"
     exit 1
@@ -79,10 +94,13 @@ if [ ! -s "${TMPFILE}" ]; then
     exit 2
 fi
 
-message "Packages with site files in the wrong location:"
+NO_OF_PACKAGES=$(sed -n '$=' "${TMPFILE}")
+
+[ ${NO_OF_PACKAGES} -eq 1 ] && s= || s=s
+message "${NO_OF_PACKAGES} package${s} with site files in the wrong location:"
 cat "${TMPFILE}"
 
-if [ ${PRETEND} ]; then
+if [ "${PRETEND}" ]; then
     exit 3
 fi
 

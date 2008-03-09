@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.40 2008/02/21 11:06:19 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.41 2008/03/08 06:53:05 ulm Exp $
+
+  08 Mar 2008; Ulrich Mueller <ulm@gentoo.org> files/emacs-updater:
+  Update emacs-updater to version 0.6.
 
   21 Feb 2008; Christian Faulhammer <opfer@gentoo.org> files/emacs-updater:
   bump emacs-updater to version 0.4
