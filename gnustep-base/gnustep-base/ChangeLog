@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.62 2008/02/18 23:39:08 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.63 2008/03/08 13:08:07 coldwind Exp $
+
+  08 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  gnustep-base-1.14.1.ebuild:
+  amd64 stable wrt bug #207381
 
   18 Feb 2008; Bernard Cafarelli <voyageur@gentoo.org>
   gnustep-base-1.14.0.ebuild, gnustep-base-1.14.1.ebuild,
