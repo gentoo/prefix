@@ -1,6 +1,18 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.161 2008/03/04 17:41:02 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.165 2008/03/08 14:45:57 spock Exp $
+
+  08 Mar 2008; Michał Januszewski <spock@gentoo.org> nmap-4.53.ebuild:
+  Fix bug #212586.
+
+  08 Mar 2008; Jeroen Roovers <jer@gentoo.org> nmap-4.53.ebuild:
+  Stable for HPPA (bug #212482).
+
+  07 Mar 2008; Brent Baude <ranger@gentoo.org> nmap-4.53.ebuild:
+  stable ppc64, bug 212482
+
+  07 Mar 2008; Richard Freeman <rich0@gentoo.org> nmap-4.53.ebuild:
+  amd64 stable - 212482
 
   04 Mar 2008; <pva@gentoo.org> metadata.xml, nmap-4.20.ebuild:
   mips moved to unstable as dev-libs/libpcre dependency already did. Added
