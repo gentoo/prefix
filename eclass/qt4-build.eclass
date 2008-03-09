@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.8 2008/03/06 01:23:51 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.9 2008/03/06 14:44:13 zlin Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -178,14 +178,16 @@ QCONFIG_REMOVE="${QCONFIG_REMOVE:-}"
 QCONFIG_DEFINE="${QCONFIG_DEFINE:-}"
 
 install_qconfigs() {
-	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} ]]; then
-		local x
+	local x
+	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} ]]; then
 		for x in QCONFIG_ADD QCONFIG_REMOVE; do
 			[[ -n ${!x} ]] && echo ${x}=${!x} >> "${T}"/${PN}-qconfig.pri
 		done
 		insinto ${QTDATADIR}/mkspecs/gentoo
 		doins "${T}"/${PN}-qconfig.pri || die "installing ${PN}-qconfig.pri failed"
+	fi
 
+	if [[ -n ${QCONFIG_DEFINE} ]]; then
 		for x in ${QCONFIG_DEFINE}; do
 			echo "#define ${x}" >> "${T}"/gentoo-${PN}-qconfig.h
 		done

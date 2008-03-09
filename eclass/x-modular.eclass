@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.93 2008/03/06 04:42:26 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.94 2008/03/09 05:20:30 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -67,7 +67,7 @@ elif [[ ${CATEGORY} = x11-misc ]] || [[ ${CATEGORY} = x11-themes ]]; then
 	if [[ ${PN} == xbitmaps || ${PN} == xcursor-themes || ${PN} == xkbdata ]]; then
 		MODULE="data"
 	else
-		MODULE="data"
+		MODULE="util"
 	fi
 elif [[ ${CATEGORY} = x11-drivers ]]; then
 	MODULE="driver"

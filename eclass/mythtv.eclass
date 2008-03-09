@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.11 2008/02/20 20:03:38 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.12 2008/03/06 20:43:16 cardoe Exp $
 #
 # @ECLASS: mythtv.eclass
 # @MAINTAINER: Doug Goldstein <cardoe@gentoo.org>
@@ -30,8 +30,8 @@ REV_PREFIX="${BASH_REMATCH[1]}" # _beta, _pre, or _p
 MYTHTV_REV="${BASH_REMATCH[2]}" # revision number
 
 case $REV_PREFIX in
-	    _pre) MYTHTV_REPO="trunk/${MY_PN}";;
-	_p|_beta|_alpha) VER_COMP=( $(get_version_components ${MY_PV}) )
+	_pre|_alpha) MYTHTV_REPO="trunk/${MY_PN}";;
+	_p|_beta) VER_COMP=( $(get_version_components ${MY_PV}) )
 	          FIXES_VER="${VER_COMP[0]}-${VER_COMP[1]}"
 	          MYTHTV_REPO="branches/release-${FIXES_VER}-fixes/${MY_PN}";;
 esac

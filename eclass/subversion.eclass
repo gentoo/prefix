@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.56 2008/02/27 12:54:35 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.57 2008/03/06 09:23:39 zlin Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -244,7 +244,7 @@ subversion_fetch() {
 
 		if [[ -z ${esvn_up_freq} ]]; then
 			if [[ ${ESVN_WC_URL} != $(subversion__get_repository_uri "${repo_uri}") ]]; then
-				einfo "suversion switch start -->"
+				einfo "subversion switch start -->"
 				einfo "     old repository: ${ESVN_WC_URL}@${ESVN_WC_REVISION}"
 				einfo "     new repository: ${repo_uri}${revision:+@}${revision}"
 
