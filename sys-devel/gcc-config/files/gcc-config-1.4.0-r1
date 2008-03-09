@@ -364,34 +364,53 @@ switch_profile() {
 				done
 				rmdir "${EROOT}/${libdir}"/.gcc.config.new
 			fi
+		done
 
-			# we can copy the other libs to /usr/lib without funky
-			# copying, don't use symlinks as on Darwin we need to fix
-			# the install_names of the objects.  Omit libgcc and unwind
-			# as we already dealt with those above.
-			pushd "${ROOT}/${LDPATH}/${multilibdir}" > /dev/null
-			[[ -n $(ls lib*${libname}* 2>/dev/null) ]] && \
-			if mkdir -p "${EROOT}/usr/${libdir}" ; then
+		# We can copy the other libs to /usr/lib without funky copying,
+		# don't use symlinks as on Darwin we need to fix the
+		# install_names of the objects.  Omit libgcc and unwind as we
+		# already dealt with those above.  Remember that Prefix doesn't
+		# do multilib!
+		#
+		# To emulate properly what ld.so.conf magic does for non-prefix,
+		# we have to copy the libs of all installed (native) GCC's and
+		# make sure we do the current one as last, such that the
+		# pointers for the unversioned libs point to the currently
+		# selected version.
+		GCC_PROFILES=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-*)
+		GCC_PROFILES="${GCC_PROFILES} ${GCC_ENV_D}/${CC_COMP}"
+		dstlib=${EROOT}/usr/${REAL_CHOST}/lib-gcc
+		# When upgrading, we need to clean up libs
+		mkdir -p "${dstlib}"
+		find -L "${dstlib}" -name "*.${libname}*" -exec rm {} \;
+		for x in ${GCC_PROFILES} ; do
+			if [[ -f ${x} ]] ; then
+				LDPATH=$(source "${x}"; echo ${LDPATH})
+				LDPATH=${LDPATH%%:*}
+				pushd "${ROOT}/${LDPATH}" > /dev/null
+				[[ -n $(ls lib*${libname}* 2>/dev/null) ]] && \
 				for lib in lib*${libname}* ; do
 					[[ ${lib} == libgcc* || ${lib} == unwind* ]] && continue
-					# use an intermediate copy for install_name_tooling
-					cp -pP ${lib} "${EROOT}/usr/${libdir}"/${lib}.new
+					cp -pPf ${lib} "${dstlib}"/${lib}
 					# fix install_name on Darwin
-					if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
+					if [[ ${REAL_CHOST} == *-darwin* ]] ; then
 						soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
 						install_name_tool \
-							-id "${EPREFIX}"/usr/lib/${soname##*/} \
-							"${EROOT}/usr/${libdir}"/${lib}.new &> /dev/null
+							-id "${EPREFIX}"/usr/${CHOST}/lib-gcc/${soname##*/} \
+							"${dstlib}"/${lib} &> /dev/null
 					fi
-					mv -f "${EROOT}/usr/${libdir}"/${lib}{.new,}
 				done
+				popd > /dev/null
 			fi
-			popd > /dev/null
 		done
+
+		unset dstlib
 		unset multilib
 		unset multilibdir
 		unset multiarg
 		unset libdir
+		unset libname
+		unset soname
 	fi
 
 	if [[ ${ROOT} == "/" ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} || ${FORCE} == "yes" ]] ; then
