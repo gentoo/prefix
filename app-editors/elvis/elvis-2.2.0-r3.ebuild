@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.3 2007/10/10 06:16:37 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.5 2008/03/08 16:12:28 coldwind Exp $
 
 EAPI="prefix"
 
