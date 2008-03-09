@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.304 2008/03/03 23:27:46 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.305 2008/03/06 18:05:25 nixnut Exp $
+
+  06 Mar 2008; nixnut <nixnut@gentoo.org> python-2.4.4-r9.ebuild:
+  Stable on ppc wrt bug 211281
 
   03 Mar 2008; Christoph Mende <angelos@gentoo.org> python-2.4.4-r9.ebuild:
   Stable on amd64, bug #211281
