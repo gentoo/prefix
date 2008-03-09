@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.2 2008/02/07 18:37:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.3 2008/03/07 14:20:06 coldwind Exp $
 
 EAPI="prefix"
 
