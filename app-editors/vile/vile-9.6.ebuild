@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.5-r1.ebuild,v 1.5 2008/03/08 14:44:55 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.6.ebuild,v 1.1 2008/03/08 14:44:55 nelchael Exp $
 
 EAPI="prefix"
 
@@ -20,13 +20,6 @@ RDEPEND=">=sys-libs/ncurses-5.2
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	app-admin/eselect-vi"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}/${P}-define-LEAD-before-use.patch"
-}
 
 src_compile() {
 	econf \

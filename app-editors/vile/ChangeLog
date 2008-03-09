@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/vile
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.31 2007/10/10 07:26:10 opfer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.32 2008/03/08 14:44:55 nelchael Exp $
+
+*vile-9.6 (08 Mar 2008)
+
+  08 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org> metadata.xml,
+  -vile-9.5.ebuild, vile-9.5-r1.ebuild, +vile-9.6.ebuild:
+  Version bump, see bug #206928.
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> vile-9.3h.ebuild,
   vile-9.4d.ebuild, vile-9.5.ebuild, vile-9.5-r1.ebuild:
