@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.1 2008/02/06 14:46:12 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.3 2008/03/08 13:14:14 nelchael Exp $
 
 EAPI="prefix"
 
