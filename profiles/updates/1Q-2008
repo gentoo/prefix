@@ -10,3 +10,4 @@ slotmove x11-libs/openmotif 2.3 0
 move sys-fs/mtd sys-fs/mtd-utils
 move media-fonts/fonts-indic media-fonts/lohit-fonts
 move games-action/abuse_sdl games-action/abuse
+move app-misc/pv sys-apps/pv
