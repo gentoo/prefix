@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1.ebuild,v 1.2 2007/11/17 18:30:06 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1.ebuild,v 1.3 2008/03/09 16:21:33 leio Exp $
 
 EAPI="prefix"
 
@@ -62,4 +62,5 @@ src_unpack() {
 	sed -i -e '/AM_CHECK_PYMOD/d' configure.in
 
 	eautoreconf
+	intltoolize --force || die "intltoolize failed"
 }
