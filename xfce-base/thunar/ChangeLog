@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.46 2007/12/17 18:44:06 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.47 2008/03/10 01:55:13 ricmm Exp $
+
+  10 Mar 2008; <ricmm@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Drop to ~mips due to unstable deps
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org> thunar-0.9.0-r1.ebuild:
   Stable for HPPA (bug #201747).
