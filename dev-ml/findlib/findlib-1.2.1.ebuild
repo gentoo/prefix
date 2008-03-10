@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.1.ebuild,v 1.9 2008/03/04 12:57:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.1.ebuild,v 1.10 2008/03/09 11:49:46 aballier Exp $
 
 inherit multilib eutils
 
@@ -42,9 +42,12 @@ pkg_setup()
 }
 
 src_compile() {
+	local myconf
+	use tk && myconf="-with-toolbox"
 	./configure -bindir "${EPREFIX}"/usr/bin -mandir "${EPREFIX}"/usr/share/man \
 		-sitelib ${ocamlfind_destdir} \
-		-config ${ocamlfind_destdir}/findlib/findlib.conf || die "configure failed"
+		-config ${ocamlfind_destdir}/findlib/findlib.conf \
+		${myconf} || die "configure failed"
 
 	emake all || die
 	if use ocamlopt; then
