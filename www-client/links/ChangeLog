@@ -1,6 +1,9 @@
 # ChangeLog for www-client/links
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.102 2008/03/08 16:10:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.103 2008/03/09 11:06:55 armin76 Exp $
+
+  09 Mar 2008; Raúl Porcel <armin76@gentoo.org> links-2.1_pre33.ebuild:
+  alpha/ia64 stable wrt #212593
 
   08 Mar 2008; nixnut <nixnut@gentoo.org> links-2.1_pre33.ebuild:
   Stable on ppc wrt bug 212583

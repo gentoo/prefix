@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre33.ebuild,v 1.6 2008/03/08 16:10:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre33.ebuild,v 1.7 2008/03/09 11:06:55 armin76 Exp $
 
 EAPI="prefix"
 
