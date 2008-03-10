@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta2-r2.ebuild,v 1.7 2007/11/25 10:12:01 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta2-r2.ebuild,v 1.8 2008/03/09 15:15:39 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,9 @@ SRC_URI="mirror://sourceforge/ant-contrib/${PN}-${PV/_beta/b}-src.tar.bz2"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="doc source"
+IUSE=""
 
+#	test? ( dev-java/ant-junit dev-java/ant-testutil )
 RDEPEND=">=virtual/jre-1.4
 	>=dev-java/bcel-5.1
 	>=dev-java/xerces-2.7
@@ -27,14 +28,28 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/tests-visibility.patch"
 	cd "${S}/lib"
 	java-pkg_jar-from ant-core ant.jar
 	java-pkg_jar-from bcel bcel.jar bcel-5.1.jar
 	java-pkg_jar-from xerces-2
 }
 
-src_compile() {
-	eant jar -Dversion=${PV} $(use_doc docs)
+EANT_EXTRA_ARGS="-Dversion=${PV} -Ddep.available=true"
+EANT_DOC_TARGET="docs"
+
+# The tests fail to find bcel and fail
+RESTRICT="test"
+
+src_test() {
+	cd test/lib || die
+	java-pkg_jar-from junit junit.jar junit-3.8.1.jar
+	java-pkg_jar-from ant-testutil
+	cd "${S}"
+	local testutil=$(java-pkg_getjars ant-testutil)
+	EANT_TEST_EXTRA_ARGS="-Dtestutil.jar.location=${testutil}" \
+		java-pkg-2_src_test
 }
 
 src_install() {

@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/ant-contrib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ChangeLog,v 1.28 2008/01/04 20:16:17 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ChangeLog,v 1.29 2008/03/09 15:15:39 betelgeuse Exp $
+
+  09 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/tests-visibility.patch, ant-contrib-1.0_beta2-r2.ebuild:
+  Use EANT_ variables and add a src_test but had to RESTRICT it because they
+  failed to find bcel.
 
   04 Jan 2008; Vlastimil Babka <caster@gentoo.org>
   -ant-contrib-1.0_beta2-r1.ebuild:
