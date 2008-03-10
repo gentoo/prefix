@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.16.ebuild,v 1.11 2007/08/23 05:06:13 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.16.ebuild,v 1.12 2008/03/09 21:36:14 ricmm Exp $
 
 EAPI="prefix"
 
