@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.205 2008/02/28 21:47:39 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.206 2008/03/09 23:12:17 leio Exp $
+
+  09 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/libxml2-2.6.27-tar_in_tests.patch, -libxml2-2.6.28.ebuild,
+  -libxml2-2.6.29.ebuild, -libxml2-2.6.30.ebuild:
+  Remove security vulnerable old versions
 
 *libxml2-2.6.31 (28 Feb 2008)
 
