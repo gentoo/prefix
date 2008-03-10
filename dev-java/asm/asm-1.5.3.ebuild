@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-1.5.3.ebuild,v 1.5 2007/11/25 10:20:40 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-1.5.3.ebuild,v 1.6 2008/03/09 18:52:36 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ DEPEND=">=virtual/jdk-1.3
 	source? ( app-arch/zip )"
 RDEPEND=">=virtual/jre-1.3"
 
-EANT_DOC_TARGET=jdoc
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
@@ -27,6 +27,8 @@ src_unpack() {
 	echo "objectweb.ant.tasks.path ${EPREFIX}/usr/share/ant-owanttask/lib/ow_util_ant_tasks.jar" \
 		>> build.properties
 }
+
+EANT_DOC_TARGET=jdoc
 
 src_install() {
 	for x in output/dist/lib/*.jar ; do

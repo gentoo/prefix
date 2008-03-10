@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-3.1.ebuild,v 1.1 2007/11/25 13:08:36 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-3.1.ebuild,v 1.2 2008/03/09 20:43:21 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,9 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND=">=virtual/jdk-1.5"
 RDEPEND=">=virtual/jre-1.5"
+
+# Needs deps we don't have yet
+RESTRICT="test"
 
 EANT_DOC_TARGET="jdoc"
 
