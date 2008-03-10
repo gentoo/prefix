@@ -1,6 +1,9 @@
 # ChangeLog for dev-tcltk/expect
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.45 2007/04/07 14:48:02 jokey Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.46 2008/03/10 00:21:05 ricmm Exp $
+
+  09 Mar 2008; <ricmm@gentoo.org> expect-5.42.1-r1.ebuild:
+  Drop to ~mips to match dependencies
 
   07 Apr 2007; Markus Ullmann <jokey@gentoo.org> -expect-5.37.1-r2.ebuild,
   -expect-5.40.0.ebuild, -expect-5.40.0-r1.ebuild, -expect-5.42.1.ebuild:
