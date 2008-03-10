@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8354 2008/03/08 23:33:25 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8358 2008/03/10 03:41:22 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Jeroen Roovers <jer@gentoo.org> (10 Mar 2008)
+# development version:
+=app-admin/sysstat-8.1.1
+
+# Luis F. Araujo <araujo@gentoo.org> (9 Mar 2008)
+# Check bug #208666
+dev-lang/smalltalkx
 
 # Ben de Groot <yngwin@gentoo.org> (8 Mar 2008)
 # Mask because it breaks things all over. Tracker bug: #212763
@@ -93,11 +101,6 @@ mail-filter/dovecot-dspam
 # Diego Pettenò <flameeyes@gentoo.org> (25 Feb 2008)
 # Beta version, masked for testing.
 =app-admin/sudo-1.7_beta*
-
-# Mart Raudsepp <leio@gentoo.org> (25 Feb 2008)
-# Masked until the portage tree is sanitized to work correctly with
-# this version, bug 199595
->=dev-util/intltool-0.37.1
 
 # Benedikt Böhm <hollow@gentoo.org> (23 Feb 2008)
 # Masked due to security issues.
@@ -740,11 +743,13 @@ dev-lang/entity
 # Broken, bug 202880
 >=dev-scheme/gambit-4.1.1
 
-# Caleb Tennis <caleb@gentoo.org> (19 Dec 2007)
 # Christian Faulhammer <opfer@gentoo.org> (updated 04 Mar 2008)
-# Mask qt-4.4 package while testing them in portage
-# Plus packages depending on them
+# Needs masked qt-4.4
 =app-admin/keepassx-0.3.0a-r20
+
+# Ingmar Vanhassel <ingmar@gentoo.org> (10 Mar 2008)
+# Masked for testing, various dependencies still need to be updated...
+# Note that this version of Qt4 makes KDE 4.0.x roughly unusable.
 =x11-libs/qt-4.4*
 =x11-libs/qt-assistant-4.4*
 =x11-libs/qt-core-4.4*
