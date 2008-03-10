@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Michael Sterrett <mr_bones_@gentoo.org> (09 Mar 2008)
+# tcl version necessary has been masked so mask this for now.
+=app-editors/nvi-1.81.6 tcl
+
 # 03 Mar 2008: Christian Faulhammer <opfer@gentoo.org>
 # This feature is experimental and should be used by people willing to
 # test it
