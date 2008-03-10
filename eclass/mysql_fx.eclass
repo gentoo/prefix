@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.20 2007/04/23 19:35:05 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.21 2008/03/09 21:07:55 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -71,7 +71,7 @@ _mysql_test_patch_ver_pn() {
 	local flags=$1 pname=$2
 	if [[ $(( $flags & $(( 1 + 4 + 16 )) )) -eq 21 ]] ; then
 		einfo "using '${pname}'"
-		mv -f "${filesdir}/${pname}" "${EPATCH_SOURCE}" || die "Couldn't move ${pname}"
+		ln -sf "${filesdir}/${pname}" "${EPATCH_SOURCE}" || die "Couldn't move ${pname}"
 		return 0
 	fi
 

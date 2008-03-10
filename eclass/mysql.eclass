@@ -1,12 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.84 2008/01/16 04:01:14 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.88 2008/03/10 02:47:20 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
-# Maintainer: Luca Longinotti <chtekk@gentoo.org>
-
-# Both MYSQL_VERSION_ID and MYSQL_PATCHSET_REV must be set in the ebuild too!
-# Note that MYSQL_VERSION_ID must be empty!
+# Maintainer: MySQL Team <mysql-bugs@gentoo.org>
+#		- Luca Longinotti <chtekk@gentoo.org>
+#		- Robin H. Johnson <robbat2@gentoo.org>
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -18,6 +17,11 @@ inherit eutils flag-o-matic gnuconfig autotools mysql_fx
 S="${WORKDIR}/mysql"
 
 [[ "${MY_EXTRAS_VER}" == "latest" ]] && MY_EXTRAS_VER="20070108"
+if [[ "${MY_EXTRAS_VER}" == "live" ]]; then
+	EGIT_PROJECT=mysql-extras
+	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
+	inherit git
+fi
 
 if [[ ${PR#r} -lt 60 ]] ; then
 	IS_BITKEEPER=0
@@ -32,9 +36,11 @@ fi
 # This is an important part, because many of the choices the MySQL ebuild will do
 # depend on this variable.
 # In particular, the code below transforms a $PVR like "5.0.18-r3" in "5001803"
+# We also strip off upstream's trailing letter that they use to respin tarballs
 
 MYSQL_VERSION_ID=""
-tpv=( ${PV//[-._]/ } ) ; tpv[3]="${PVR:${#PV}}" ; tpv[3]="${tpv[3]##*-r}"
+tpv="${PV%[a-z]}"
+tpv=( ${tpv//[-._]/ } ) ; tpv[3]="${PVR:${#PV}}" ; tpv[3]="${tpv[3]##*-r}"
 for vatom in 0 1 2 3 ; do
 	# pad to length 2
 	tpv[${vatom}]="00${tpv[${vatom}]}"
@@ -81,7 +87,9 @@ if [ -z "${SERVER_URI}" ]; then
 fi
 
 # Define correct SRC_URIs
-SRC_URI="${SERVER_URI}
+SRC_URI="${SERVER_URI}"
+
+[[ ${MY_EXTRAS_VER} != live ]] && SRC_URI="${SRC_URI}
 		mirror://gentoo/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
 		http://g3nt8.org/patches/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
 mysql_version_is_at_least "5.1.12" \
@@ -503,6 +511,9 @@ mysql_src_unpack() {
 	mysql_init_vars
 
 	unpack ${A}
+	# Grab the patches
+	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git_src_unpack
+	# Bitkeeper checkout support
 	if [[ ${IS_BITKEEPER} -eq 90 ]] ; then
 		if mysql_check_version_range "5.1 to 5.1.99" ; then
 			bitkeeper_fetch "mysql-5.1-ndb"
@@ -522,7 +533,11 @@ mysql_src_unpack() {
 	# Apply the patches for this MySQL version
 	EPATCH_SUFFIX="patch"
 	mkdir -p "${EPATCH_SOURCE}" || die "Unable to create epatch directory"
+	# Clean out old items
+	rm -f "${EPATCH_SOURCE}"/*
+	# Now link in right patches
 	mysql_mv_patches
+	# And apply
 	epatch
 
 	# Additional checks, remove bundled zlib
@@ -830,7 +845,11 @@ mysql_pkg_config() {
 	help_tables="${TMPDIR}/fill_help_tables.sql"
 
 	pushd "${TMPDIR}" &>/dev/null
-	"${EROOT}/usr/bin/mysql_install_db" | grep -B5 -A999 -i "ERROR"
+	"${EROOT}/usr/bin/mysql_install_db" >"${TMPDIR}"/mysql_install_db.log 2>&1
+	if [ $? -ne 0 ]; then
+		grep -B5 -A999 -i "ERROR" "${TMPDIR}"/mysql_install_db.log 1>&2
+		die "Failed to run mysql_install_db. Please review /var/log/mysql/mysqld.err AND ${TMPDIR}/mysql_install_db.log"
+	fi
 	popd &>/dev/null
 	[[ -f "${EROOT}/${MY_DATADIR}/mysql/user.frm" ]] \
 	|| die "MySQL databases not installed"
