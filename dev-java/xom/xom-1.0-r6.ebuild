@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r6.ebuild,v 1.3 2008/03/08 20:05:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r6.ebuild,v 1.4 2008/03/09 20:29:22 betelgeuse Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 EAPI="prefix 1"
@@ -29,6 +29,10 @@ DEPEND=">=virtual/jdk-1.4
 
 S=${WORKDIR}/XOM
 
+# Test require network access to pass
+# They need a redirected http document on public web
+RESTRICT="test"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -44,12 +48,14 @@ src_unpack() {
 }
 
 src_compile() {
-	ant_flags="-Ddebug=off"
+	local ant_flags="-Ddebug=off"
 	use examples && ant_flags="${ant_flags} -Dservlet.jar=$(java-pkg_getjar servletapi-2.4 servlet-api.jar)"
 
 	eant jar ${ant_flags}\
 		$(use examples && echo samples)
 }
+
+EANT_TEST_ANT_TASKS="ant-trax"
 
 src_install() {
 	java-pkg_newjar build/${XOMVER}.jar ${PN}.jar
