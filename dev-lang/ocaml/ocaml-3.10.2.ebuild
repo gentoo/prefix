@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.1 2008/02/29 16:46:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.2 2008/03/09 11:56:14 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
@@ -57,6 +57,8 @@ src_unpack() {
 	# See comment in the patch
 	epatch "${FILESDIR}/${PN}-3.10.0-call-ld-with-proper-ldflags.patch"
 
+	# Adapted from mandriva to get labltk built with tk8.5
+	epatch "${FILESDIR}/${P}-tk85.patch"
 }
 
 src_compile() {

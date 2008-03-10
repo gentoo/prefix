@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.137 2008/02/29 16:46:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.139 2008/03/09 11:58:48 aballier Exp $
+
+  09 Mar 2008; Alexis Ballier <aballier@gentoo.org> -ocaml-3.09.3-r2.ebuild,
+  -ocaml-3.10.1.ebuild:
+  remove unused versions
+
+  09 Mar 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.10.2-tk85.patch, ocaml-3.10.2.ebuild:
+  Add a patch initially from mandriva modified by me to handle tk up to 8.5
 
 *ocaml-3.10.2 (29 Feb 2008)
 
