@@ -1,6 +1,9 @@
 # ChangeLog for app-text/jadetex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.40 2008/03/08 16:08:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.41 2008/03/09 16:26:17 armin76 Exp $
+
+  09 Mar 2008; Raúl Porcel <armin76@gentoo.org> jadetex-3.13-r2.ebuild:
+  alpha/ia64 stable wrt #212062
 
   08 Mar 2008; nixnut <nixnut@gentoo.org> jadetex-3.13-r2.ebuild:
   Stable on ppc wrt bug 212062
