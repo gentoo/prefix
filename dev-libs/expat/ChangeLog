@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/expat
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.68 2007/10/27 15:15:01 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.70 2008/03/10 01:39:03 ricmm Exp $
+
+  10 Mar 2008; <ricmm@gentoo.org> expat-1.95.8.ebuild:
+  Drop to ~mips due to unstable deps
+
+  09 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/expat-2.0.0-test-64bit.patch, -files/expat-2.0.0-test-cpp.patch,
+  -expat-1.95.7.ebuild, -expat-1.95.7-r1.ebuild, -expat-2.0.0.ebuild:
+  Remove old, leaving last stable version with the old ABI in place for now
 
   27 Oct 2007; Diego Pettenò <flameeyes@gentoo.org> expat-2.0.1.ebuild:
   Put elibtoolize back in. Please remember to leave it where present.
