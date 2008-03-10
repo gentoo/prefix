@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/DBD-Pg
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.56 2007/04/15 20:38:38 corsair Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.57 2008/03/09 23:37:57 ricmm Exp $
+
+  09 Mar 2008; <ricmm@gentoo.org> DBD-Pg-1.49.ebuild:
+  Drop to ~mips due to unstable deps
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> DBD-Pg-1.49.ebuild:
   Stable on ppc64
