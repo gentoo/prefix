@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.6 2007/11/25 10:52:24 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.7 2008/03/09 18:26:59 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -62,6 +62,11 @@ src_compile() {
 	# stupid clean
 	mv build/lib/${PN}.jar "${S}" || die
 	use doc && eant -Dgentoo.classpath="${cp}" ${antflags} javadocs
+}
+
+# does not have any, overwrite the one from java-pkg-2
+src_test() {
+	true;
 }
 
 src_install() {
