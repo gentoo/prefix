@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/most
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.38 2008/02/10 21:53:45 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.40 2008/03/09 14:59:19 nixnut Exp $
+
+  09 Mar 2008; nixnut <nixnut@gentoo.org> most-5.0.0a.ebuild:
+  Stable on ppc wrt bug 212788
+
+  09 Mar 2008; Markus Meier <maekke@gentoo.org> most-5.0.0a.ebuild:
+  x86 stable, bug #212788
 
   10 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> most-5.0.0a.ebuild:
   Rekeyword mips for bug #209507.
