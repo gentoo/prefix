@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/gtk-doc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.88 2007/11/06 22:28:37 lavajoe Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.89 2008/03/09 21:34:56 leio Exp $
+
+  09 Mar 2008; Mart Raudsepp <leio@gentoo.org> -files/60gtk-doc-gentoo.el,
+  -files/gtk-doc-1.6-no_dupe_ids.patch, -gtk-doc-1.4-r1.ebuild,
+  -gtk-doc-1.6-r1.ebuild, -gtk-doc-1.7.ebuild, -gtk-doc-1.8.ebuild:
+  Remove old versions
 
   06 Nov 2007; Joe Peterson <lavajoe@gentoo.org> gtk-doc-1.8-r2.ebuild:
   Add ~x86-fbsd keyword (bug #197349)
