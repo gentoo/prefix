@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.2 2008/02/18 22:56:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.3 2008/03/09 22:44:13 leio Exp $
 
 EAPI="prefix"
 
@@ -47,6 +47,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup "${EROOT}"usr/share/xml2po
+	# mod_cleanup adds $ROOT in front for us, while mod_optimize does not
+	python_mod_cleanup /usr/share/xml2po
 	gnome2_pkg_postrm
 }

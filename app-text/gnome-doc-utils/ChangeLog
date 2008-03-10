@@ -1,6 +1,11 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.96 2008/02/18 22:56:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.97 2008/03/09 22:44:13 leio Exp $
+
+  09 Mar 2008; Mart Raudsepp <leio@gentoo.org> gnome-doc-utils-0.6.1.ebuild,
+  -gnome-doc-utils-0.8.0.ebuild, gnome-doc-utils-0.10.3.ebuild,
+  gnome-doc-utils-0.12.1.ebuild:
+  Remove old, fix quoting in the rest and handle $ROOT properly in the latest
 
   18 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-doc-utils-0.12.1.ebuild:

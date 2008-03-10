@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.10.3.ebuild,v 1.10 2007/09/22 07:50:38 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.10.3.ebuild,v 1.11 2008/03/09 22:44:13 leio Exp $
 
 EAPI="prefix"
 
@@ -35,11 +35,11 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	python_mod_optimize ${EROOT}usr/share/xml2po
+	python_mod_optimize "${EROOT}"usr/share/xml2po
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
-	python_mod_cleanup ${EROOT}usr/share/xml2po
+	python_mod_cleanup "${EROOT}"usr/share/xml2po
 	gnome2_pkg_postrm
 }
