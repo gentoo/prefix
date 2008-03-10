@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-sql
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.3 2008/03/05 23:25:52 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.4 2008/03/09 15:31:29 ingmar Exp $
+
+  09 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  qt-sql-4.4.0_beta1.ebuild:
+  Fix SQL plugin handling, bug 212471.
 
   05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-sql-4.4.0_rc1.ebuild:
