@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/racc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/racc/ChangeLog,v 1.38 2008/01/27 15:52:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/racc/ChangeLog,v 1.39 2008/03/10 00:05:02 ricmm Exp $
+
+  09 Mar 2008; <ricmm@gentoo.org> racc-1.4.4.ebuild, racc-1.4.5.ebuild:
+  Drop to ~mips to match dev-lang/ruby
 
   27 Jan 2008; Fabian Groffen <grobian@gentoo.org> racc-1.4.4.ebuild,
   racc-1.4.5.ebuild:
