@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.1 2008/01/07 00:04:20 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.2 2008/03/09 22:17:58 eva Exp $
 
 EAPI="prefix"
 
@@ -9,14 +9,10 @@ inherit gnome.org python flag-o-matic eutils virtualx
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
 
-DOC_FILE="pygtk2reference-2.9.0.tar.bz2"
-SRC_URI="${SRC_URI}
-	doc? ( mirror://gnome/sources/pygtk2reference/2.9/${DOC_FILE} )"
-
 LICENSE="LGPL-2.1"
 SLOT="2"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
-IUSE="doc examples opengl"
+IUSE="doc examples"
 
 RDEPEND=">=dev-libs/glib-2.8.0
 	>=x11-libs/pango-1.16.0
@@ -26,11 +22,7 @@ RDEPEND=">=dev-libs/glib-2.8.0
 	>=dev-lang/python-2.4.4-r5
 	>=dev-python/pycairo-1.0.2
 	>=dev-python/pygobject-2.14
-	!arm? ( dev-python/numeric )
-	opengl?	(	virtual/opengl
-				dev-python/pyopengl
-				>=x11-libs/gtkglarea-1.99
-			)"
+	!arm? ( dev-python/numeric )"
 
 DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
@@ -38,7 +30,6 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	use doc || sed -e 's/\(SUBDIRS =.*\) docs$/\1/' -i "${S}"/Makefile.am
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
