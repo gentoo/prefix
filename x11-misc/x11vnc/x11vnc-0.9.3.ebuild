@@ -4,13 +4,15 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="A VNC server for real X displays"
 HOMEPAGE="http://www.karlrunge.com/x11vnc/"
 SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="jpeg zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
 RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.1 )
@@ -34,6 +36,13 @@ DEPEND="${RDEPEND}
 	x11-proto/recordproto
 	x11-proto/xproto
 	x11-proto/xextproto"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
 
 src_compile() {
 	local myconf=""
