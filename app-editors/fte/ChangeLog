@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/fte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.46 2008/03/09 14:39:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.47 2008/03/10 13:58:16 drac Exp $
+
+  10 Mar 2008; Samuli Suominen <drac@gentoo.org> -fte-20051115.ebuild,
+  fte-20051115-r1.ebuild:
+  amd64 stable wrt #211990
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> fte-20051115-r1.ebuild:
   Stable on ppc wrt bug 211990
