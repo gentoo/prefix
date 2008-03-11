@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/checkstyle
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.37 2008/03/08 20:46:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.38 2008/03/10 21:59:21 ken69267 Exp $
+
+  10 Mar 2008; Kenneth Prugh <ken69267@gentoo.org> checkstyle-4.4.ebuild:
+  amd64 stable, bug #212666
 
   08 Mar 2008; Markus Meier <maekke@gentoo.org> checkstyle-4.4.ebuild:
   x86 stable, bug #212666
