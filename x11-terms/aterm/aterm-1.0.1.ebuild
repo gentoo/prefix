@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.afterstep.org/apps/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="background cjk xgetdefault"
 
 RDEPEND="media-libs/jpeg
@@ -36,7 +36,11 @@ src_compile() {
 		--enable-thai
 		--enable-big5"
 
-	[[ ${CHOST} == *-darwin* ]] || myconf="${myconf} --enable-utmp"
+	case "${CHOST}" in
+	*-darwin*) myconf="${myconf} --enable-wtmp" ;;
+	*-interix*) ;;
+	*) myconf="${myconf} --enable-utmp --enable-wtmp"
+	esac
 
 	econf \
 		$(use_enable xgetdefault) \
@@ -47,7 +51,6 @@ src_compile() {
 		--enable-background-image \
 		--enable-menubar \
 		--enable-graphics \
-		--enable-wtmp \
 		--with-x \
 		${myconf} || die "econf failed"
 
