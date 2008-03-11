@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome.org
+inherit gnome.org autotools
 
 DESCRIPTION="Application startup notification and feedback library"
 HOMEPAGE="http://www.freedesktop.org/software/startup-notification"
 
 LICENSE="LGPL-2 BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
@@ -20,6 +20,13 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}
 	x11-proto/xproto
 	x11-libs/libXt"
+
+src_unpack() {
+	unpack "${A}"
+	cd "${S}"
+
+	eautoreconf # need new libtool for interix
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
