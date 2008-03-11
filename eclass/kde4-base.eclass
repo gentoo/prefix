@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.3 2008/02/18 17:00:32 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.4 2008/03/10 21:41:56 zlin Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -17,7 +17,37 @@ inherit base eutils multilib cmake-utils kde4-functions
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
 
-COMMONDEPEND=">=x11-libs/qt-4.3.3:4"
+COMMONDEPEND="|| ( (
+	x11-libs/qt-core:4
+	x11-libs/qt-gui:4
+	x11-libs/qt-qt3support:4
+	x11-libs/qt-svg:4
+	x11-libs/qt-test:4 )
+	>=x11-libs/qt-4.3.3:4 )"
+
+# @ECLASS-VARIABLE: OPENGL_REQUIRED
+# @DESCRIPTION:
+# Is qt-opengl required? Possible values are 'always', 'optional' and 'never'.
+# This variable must be set before inheriting any eclasses. Defaults to 'never'.
+OPENGL_REQUIRED="${OPENGL_REQUIRED:-never}"
+
+OPENGLDEPEND="|| ( x11-libs/qt-opengl:4
+	>=x11-libs/qt-4.3.3:4 )"
+case "${OPENGL_REQUIRED}" in
+	always)
+	COMMONDEPEND="${COMMONDEPEND}
+		${OPENGLDEPEND}"
+	;;
+	optional)
+	IUSE="${IUSE} opengl"
+	COMMONDEPEND="${COMMONDEPEND}
+		opengl? ( ${OPENGLDEPEND} )"
+	;;
+	*)
+	OPENGL_REQUIRED="never"
+	;;
+esac
+
 DEPEND="${DEPEND} ${COMMONDEPEND}
 	>=dev-util/cmake-2.4.7-r1
 	dev-util/pkgconfig
@@ -25,10 +55,25 @@ DEPEND="${DEPEND} ${COMMONDEPEND}
 	x11-proto/xf86vidmodeproto"
 RDEPEND="${RDEPEND} ${COMMONDEPEND}"
 
-if has test ${IUSE//+}; then
+# @ECLASS-VARIABLE: CPPUNIT_REQUIRED
+# @DESCRIPTION:
+# Is cppunit required for tests? Possible values are 'always', 'optional' and 'never'.
+# This variable must be set before inheriting any eclasses. Defaults to 'never'.
+CPPUNIT_REQUIRED="${CPPUNIT_REQUIRED:-never}"
+
+case "${CPPUNIT_REQUIRED}" in
+	always)
+	DEPEND="${DEPEND} dev-util/cppunit"
+	;;
+	optional)
+	IUSE="${IUSE} test"
 	DEPEND="${DEPEND}
 		test? ( dev-util/cppunit )"
-fi
+	;;
+	*)
+	CPPUNIT_REQUIRED="never"
+	;;
+esac
 
 # @ECLASS-VARIABLE: NEED_KDE
 # @DESCRIPTION:
@@ -207,25 +252,44 @@ kde4-base_pkg_setup() {
 	debug-print-function $FUNCNAME "$@"
 
 	# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".
-	QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
-
-	if has debug ${IUSE//+} && use debug; then
-		QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"
+	if has_version '<x11-libs/qt-4.4_alpha:4'; then
+		QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
+	else
+		KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
+			x11-libs/qt-core qt3support ssl
+			x11-libs/qt-gui accessibility dbus
+			x11-libs/qt-qt3support accessibility"
 	fi
 
-	if has opengl ${IUSE//+} && use opengl; then
-		QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} opengl"
+	if has debug ${IUSE//+} && use debug; then
+		if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
+			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"
+		else
+			KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
+				x11-libs/qt-core:4 debug
+				x11-libs/qt-gui:4 debug
+				x11-libs/qt-qt3support:4 debug
+				x11-libs/qt-svg:4 debug
+				x11-libs/qt-test:4 debug"
+			if [[ ${OPENGL_REQUIRED} == always ]] || has opengl ${IUSE//+} && use opengl; then
+				KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
+					x11-libs/qt-opengl:4 debug"
+			fi
+		fi
+	fi
+
+	if [[ ${OPENGL_REQUIRED} == always ]] || has opengl ${IUSE//+} && use opengl; then
+		if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
+			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} opengl"
+		fi
 	fi
 
 	kde4-functions_check_use
 }
 
-# @FUNCTION: kde4-base_src_unpack
+# @FUNCTION: kde4-base_apply_patches
 # @DESCRIPTION:
-# This function unpacks the source tarballs for KDE4 applications.
-#
-# If no argument is passed to this function, then standard src_unpack is
-# executed. Otherwise options are passed to base_src_unpack.
+# This function applies patches.
 #
 # If the directory ${WORKDIR}/patches/ exists, we apply all patches in that
 # directory, provided they follow this format:
@@ -243,33 +307,46 @@ kde4-base_pkg_setup() {
 # @CODE
 #
 # If ${PATCHES} is non-zero all patches in it gets applied.
+kde4-base_apply_patches() {
+	local _patchdir _packages _p
+	_patchdir="${WORKDIR}/patches/"
+	if [[ -d "${_patchdir}" ]]; then
+		if is-parent-package ${CATEGORY}/${PN} ; then
+			_packages="$(get-child-packages ${CATEGORY}/${PN})"
+			_packages="${_packages//${CATEGORY}\//} ${PN}"
+		else
+			_packages="${PN}"
+		fi
+		for _p in ${_packages}; do
+			PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null)"
+			if [[ -n "${KDEBASE}" ]]; then
+				PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null)"
+			fi
+		done
+	fi
+	[[ -n ${PATCHES} ]] && base_src_unpack autopatch
+}
+
+# @FUNCTION: kde4-base_src_unpack
+# @DESCRIPTION:
+# This function unpacks the source tarballs for KDE4 applications.
+#
+# If no argument is passed to this function, then standard src_unpack is
+# executed. Otherwise options are passed to base_src_unpack.
+#
+# In addition it calls kde4-base_apply_patches when no arguments are passed to
+# this function.
 kde4-base_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
 
-	local _patchdir _packages _p
-	_patchdir="${WORKDIR}/patches/"
 	if [[ -z $* ]]; then
 		# Unpack first and deal with KDE patches after examing possible patch sets.
 		# To be picked up, patches need to conform to the guidelines stated before.
 		# Monolithic ebuilds will use the split ebuild patches.
 		[[ -d "${KDE_S}" ]] || unpack ${A}
-		if [[ -d "${_patchdir}" ]]; then
-			if is-parent-package ${CATEGORY}/${PN} ; then
-				_packages="$(get-child-packages ${CATEGORY}/${PN})"
-				_packages="${_packages//${CATEGORY}\//} ${PN}"
-			else
-				_packages="${PN}"
-			fi
-			for _p in ${_packages}; do
-				PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null)"
-				if [[ -n "${KDEBASE}" ]]; then
-					PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null)"
-				fi
-			done
-		fi
-		[[ -n ${PATCHES} ]] && base_src_unpack autopatch
+		kde4-base_apply_patches
 	else
 		# Call base_src_unpack, which unpacks and patches
 		# step by step transparently as defined in the ebuild.

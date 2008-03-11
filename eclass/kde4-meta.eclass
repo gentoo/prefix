@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.3 2008/02/24 21:45:39 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.4 2008/03/10 21:43:10 zlin Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -157,7 +157,7 @@ kde4-meta_src_unpack() {
 # A function to unpack the source for a split KDE ebuild.
 # Also see KMMODULE, KMNOMODULE, KMEXTRA, KMCOMPILEONLY, KMEXTRACTONLY and KMTARPARAMS.
 kde4-meta_src_extract() {
-	local tarball tarfile f extractlist
+	local abort tarball tarfile f extractlist
 	tarball="${KMNAME}-${PV}.tar.bz2"
 	tarfile="${DISTDIR}"/${tarball}
 
@@ -174,12 +174,24 @@ kde4-meta_src_extract() {
 	KMTARPARAMS="${KMTARPARAMS} -j"
 
 	pushd "${WORKDIR}" > /dev/null
+	[[ -n ${KDE4_STRICTER} ]] && echo tar -xpf $tarfile $KMTARPARAMS $extractlist >&2
 	tar -xpf $tarfile $KMTARPARAMS $extractlist 2> /dev/null
 
 	# Default $S is based on $P; rename the extracted directory to match $S
 	mv ${KMNAME}-${PV} ${P} || die "Died while moving \"${KMNAME}-${PV}\" to \"${P}\""
 
 	popd > /dev/null
+
+	if [[ -n ${KDE4_STRICTER} ]]; then
+		for f in $(__list_needed_subdirectories fatal); do
+			if [[ ! -e ${S}/${f#*/} ]]; then
+				eerror "'${f#*/}' is missing"
+				abort=true
+			fi
+		done
+		[[ -n ${abort} ]] && die "There were missing files."
+	fi
+
 	kde4-base_src_unpack
 }
 
@@ -191,7 +203,7 @@ kde4-meta_create_extractlists() {
 	if has htmlhandbook ${IUSE//+} && use htmlhandbook; then
 		# We use the basename of $KMMODULE because $KMMODULE can contain
 		# the path to the module subdirectory.
-		KMEXTRA="${KMEXTRA} doc/${KMMODULE##*/}"
+		KMEXTRA_NONFATAL="${KMEXTRA_NONFATAL} doc/${KMMODULE##*/}"
 	fi
 
 	# Add some CMake-files to KMEXTRACTONLY.
@@ -232,7 +244,7 @@ kde4-meta_create_extractlists() {
 	esac
 	# Don't install cmake modules for split ebuilds to avoid collisions.
 	case ${KMNAME} in
-		kdebase-workspace|kdebase-runtime|kdepim|kdegames)
+		kdebase-workspace|kdebase-runtime|kdepim|kdegames|kdegraphics)
 			if [[ ${PN} != "libkdegames" ]]; then
 				KMCOMPILEONLY="${KMCOMPILEONLY}
 					cmake/modules/"
@@ -247,10 +259,12 @@ kde4-meta_create_extractlists() {
 }
 
 __list_needed_subdirectories() {
-	local i j kmextra_expanded kmmodule_expanded kmcompileonly_expanded extractlist topdir
+	local i j kmextra kmextra_expanded kmmodule_expanded kmcompileonly_expanded extractlist topdir
 
 	# We expand KMEXTRA by adding CMakeLists.txt files
-	for i in ${KMEXTRA}; do
+	kmextra="${KMEXTRA}"
+	[[ ${1} != fatal ]] && kmextra="${kmextra} ${KMEXTRA_NONFATAL}"
+	for i in ${kmextra}; do
 		kmextra_expanded="${kmextra_expanded} ${i}"
 		j=$(dirname ${i})
 		while [[ ${j} != "." ]]; do
@@ -362,15 +376,18 @@ kde4-meta_change_cmakelists() {
 	# KMEXTRA section
 	for i in ${KMEXTRA}; do
 		debug-print "${LINENO}: KMEXTRA section, processing ${i}"
-		# Ebuilds use KMEXTRA incorrectly to extract files which should be in $KMEXTRACTONLY 
+		find "${S}"/${i} -name CMakeLists.txt -print0 | \
+			xargs -0 sed -i -e 's/^#DONOTCOMPILE //g' || \
+			die "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
+		_change_cmakelists_parent_dirs ${i}
+	done
+	# KMEXTRA_NONFATAL section
+	for i in ${KMEXTRA_NONFATAL}; do
 		if [[ -d "${S}"/${i} ]]; then
 			find "${S}"/${i} -name CMakeLists.txt -print0 | \
 				xargs -0 sed -i -e 's/^#DONOTCOMPILE //g' || \
 				die "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
 			_change_cmakelists_parent_dirs ${i}
-		else
-			[[ ${i} == doc/* ]] || \
-			die "KMEXTRA should be used to compile and install subdirectories other than \$KMMODULE. Use KMEXTRACTONLY to extract some files."
 		fi
 	done
 

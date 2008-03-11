@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.2 2008/02/03 15:03:02 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.3 2008/03/10 21:40:05 zlin Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -65,6 +65,7 @@ kde-base/kdebase kde-base/kdepasswd
 kde-base/kdebase kde-base/kdialog
 kde-base/kdebase kde-base/keditbookmarks
 kde-base/kdebase kde-base/kfind
+kde-base/kdebase kde-base/kinfocenter
 kde-base/kdebase kde-base/konqueror
 kde-base/kdebase kde-base/konsole
 kde-base/kdebase kde-base/kwrite
