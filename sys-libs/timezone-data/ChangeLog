@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.118 2008/02/11 14:55:07 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.119 2008/03/10 15:23:32 vapier Exp $
+
+*timezone-data-2008a (10 Mar 2008)
+
+  10 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2008a.ebuild:
+  Version bump #212931 by Rodrigo Severo.
 
   11 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> ChangeLog:
   amd64 stable wrt bug #209259
