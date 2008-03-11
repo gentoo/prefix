@@ -1,0 +1,26 @@
+diff -ru netpbm-10.41.0.orig/editor/pamthreshold.c netpbm-10.41.0/editor/pamthreshold.c
+--- netpbm-10.41.0.orig/editor/pamthreshold.c	2008-03-11 08:52:44 +0100
++++ netpbm-10.41.0/editor/pamthreshold.c	2008-03-11 08:53:20 +0100
+@@ -23,6 +23,10 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
++#ifdef __INTERIX
++# include <stdint.h>
++#endif
++
+ #include "mallocvar.h"
+ #include "nstring.h"
+ #include "shhopt.h"
+diff -ru netpbm-10.41.0.orig/lib/util/vasprintf.c netpbm-10.41.0/lib/util/vasprintf.c
+--- netpbm-10.41.0.orig/lib/util/vasprintf.c	2008-03-11 08:54:55 +0100
++++ netpbm-10.41.0/lib/util/vasprintf.c	2008-03-11 08:34:13 +0100
+@@ -7,7 +7,7 @@
+ 
+ #include "nstring.h"
+ 
+-#ifdef __GNUC__
++#if defined(__GNUC__) && !defined(__INTERIX)
+   #define HAVE_VASPRINTF 1
+ #else
+   #define HAVE_VASPRINTF 0

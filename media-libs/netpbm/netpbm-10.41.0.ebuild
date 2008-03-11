@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.lzma
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
@@ -86,6 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 
 	epatch "${FILESDIR}"/netpbm-prefix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
