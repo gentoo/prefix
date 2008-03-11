@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/xsdlib
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/ChangeLog,v 1.22 2007/10/24 06:36:30 wltjr Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/ChangeLog,v 1.23 2008/03/11 00:39:45 betelgeuse Exp $
+
+*xsdlib-20050627-r2 (11 Mar 2008)
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/build-20050627-r2.xml, +xsdlib-20050627-r2.ebuild:
+  .properties files were missing from the installed jars
 
   24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   -xsdlib-20050627.ebuild:
