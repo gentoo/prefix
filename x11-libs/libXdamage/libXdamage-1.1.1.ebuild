@@ -11,13 +11,18 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xdamage library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXfixes
 	>=x11-proto/damageproto-1.1
 	x11-proto/xproto"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
 
 pkg_postinst() {
 	x-modular_pkg_postinst
