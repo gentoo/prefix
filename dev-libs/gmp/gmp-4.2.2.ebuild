@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc nocxx"
 
 RDEPEND=""
@@ -23,7 +23,11 @@ src_unpack () {
 	unpack ${A}
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
-	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
+
+	# This is linux (elf) only:
+	# The assembler on interix fex does not understand #ifdef.
+	[[ ${CHOST} == *-linux* ]] && epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
+
 	epatch "${FILESDIR}"/${PN}-4.2.2-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
 
