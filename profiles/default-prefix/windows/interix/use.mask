@@ -26,6 +26,7 @@ icc-pgo
 mmx
 mmx2
 on-the-fly-crypt  # requires device-mapper
+openmp # not working yet on interix
 oss
 solid
 sse
