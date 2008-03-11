@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="display information utility for X"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 IUSE="dga dmx xinerama"
 
