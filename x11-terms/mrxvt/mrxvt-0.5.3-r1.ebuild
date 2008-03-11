@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/materm/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
 
 LINGUAS_IUSE="linguas_el linguas_ja linguas_ko linguas_th linguas_zh_CN linguas_zh_TW"
 IUSE="debug png jpeg session truetype menubar utempter xpm ${LINGUAS_IUSE}"
@@ -64,6 +64,14 @@ src_compile() {
 	if use linguas_zh_TW ; then
 		myconf="${myconf} --enable-big5 --with-encoding=big5"
 	fi
+
+	[[ ${CHOST} == *-interix* ]] && {
+		append-flags -D_ALL_SOURCE
+		myconf="${myconf} --disable-wtmp"
+		myconf="${myconf} --disable-lastlog"
+
+		export ac_cv_header_wchar_h=no
+	}
 
 	# 2006-03-13 gi1242: mrxvt works best with TERM=rxvt AND correctly set
 	# termcap / terminfo entries. If the rxvt termcap / terminfo entries are
