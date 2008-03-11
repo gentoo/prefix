@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
@@ -33,10 +33,19 @@ pkg_setup() {
 	DEFAULTS_DIR="${EPREFIX}/usr/share/X11/app-defaults"
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# modifications needed to run on interix
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
 	filter-flags "-fstack-protector"
 	replace-flags "-Os" "-O2" # work around gcc-4.1.1-r[01] bugs
 	[[ ${CHOST} == *-darwin* ]] && append-flags -D_DARWIN_C_SOURCE
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf --libdir="${EPREFIX}"/etc \
 		--with-x \
