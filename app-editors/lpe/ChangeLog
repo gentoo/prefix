@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/lpe
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.19 2008/03/09 14:58:00 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.21 2008/03/10 14:10:52 drac Exp $
+
+  10 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -files/lpe-1.2.6.12-slang.patch, -lpe-1.2.6.12.ebuild,
+  lpe-1.2.6.13.ebuild:
+  amd64 stable wrt #212786
+
+  10 Mar 2008; Raúl Porcel <armin76@gentoo.org> lpe-1.2.6.13.ebuild:
+  sparc stable wrt #212786
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> lpe-1.2.6.13.ebuild:
   Stable on ppc wrt bug 212786
