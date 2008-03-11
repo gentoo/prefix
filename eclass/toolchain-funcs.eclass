@@ -461,6 +461,21 @@ gen_usr_ldscript() {
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
+		*-interix*)
+			# on interix, the linker scripts would work fine in _most_
+			# situations. if a library links to such a linker script the
+			# absolute path to the correct library is inserted into the binary,
+			# which is wrong, since anybody linking _without_ libtool will miss
+			# some dependencies, since the stupid linker cannot find libraries
+			# hardcoded with absolute paths (as opposed to the loader, which
+			# seems to be able to do this).
+			# this has been seen while building shared-mime-info which needs
+			# libxml2, but links without libtool (and does not add libz to the
+			# command line by itself).
+			pushd "${ED}/usr/${libdir}" > /dev/null
+			ln -snf "../../${libdir}/${lib}" "${lib}"
+			popd > /dev/null
+			;;
 		*)	
 			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
