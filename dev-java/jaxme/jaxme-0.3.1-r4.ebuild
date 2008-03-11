@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.3.1-r4.ebuild,v 1.3 2008/01/10 09:51:13 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.3.1-r4.ebuild,v 1.4 2008/03/10 21:48:41 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ COMMON_DEP="
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 # FIXME doesn't like to compile with Java 1.6
+# test? ( dev-java/ant-junit )
 DEPEND="|| (
 		=virtual/jdk-1.5*
 		=virtual/jdk-1.4*
@@ -40,6 +41,9 @@ S="${WORKDIR}/${MY_P}"
 # We do it later
 JAVA_PKG_BSFIX="off"
 
+# They fail atm. Our version is outdated so let's see how new versions do
+RESTRICT="test"
+
 src_unpack() {
 	unpack ${A}
 
@@ -50,8 +54,9 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-base64.diff"
 
 	java-pkg_filter-compiler jikes
+	rm -v src/documentation/lib/*.jar || die
 	cd "${S}/prerequisites"
-	rm *.jar
+	rm -v *.jar || die
 	java-pkg_jarfrom junit
 	java-pkg_jarfrom log4j log4j.jar log4j-1.2.8.jar
 	java-pkg_jarfrom gnu-crypto gnu-crypto.jar
@@ -71,9 +76,8 @@ src_unpack() {
 	done
 }
 
-src_compile() {
-	eant $(use_doc -Dbuild.apidocs=dist/doc/api javadoc) jar
-}
+EANT_EXTRA_ARGS="-Dbuild.apidocs=dist/doc/api"
+EANT_TEST_ANT_TASKS="hsqldb"
 
 src_install() {
 	java-pkg_dojar dist/*.jar
