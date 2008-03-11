@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic autotools
 
 MY_P=${P/opensp/OpenSP}
 S=${WORKDIR}/${MY_P}
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/openjade/${MY_P}.tar.gz"
 
 LICENSE="JamesClark"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="doc nls"
 
 DEPEND="nls? ( >=sys-devel/gettext-0.14.5 )
@@ -28,6 +28,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.5-gcc34.patch
+	
+	# multibyte char support is broken on interix!
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
+
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
@@ -44,6 +49,8 @@ src_compile() {
 	# Default CFLAGS and CXXFLAGS is -O2 but this make openjade segfault
 	# on hppa. Using -O1 works fine. So I force it here.
 	use hppa && replace-flags -O2 -O1
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
 	local myconf="--enable-http \
 		--enable-default-catalog=${EPREFIX}/etc/sgml/catalog   \
