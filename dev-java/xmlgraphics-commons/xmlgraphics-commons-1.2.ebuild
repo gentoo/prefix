@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/xmlgraphics-commons-1.2.ebuild,v 1.4 2007/11/25 09:36:52 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/xmlgraphics-commons-1.2.ebuild,v 1.5 2008/03/10 13:10:01 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ IUSE="jpeg"
 # fails connect to X even tho it sets java.awt.headless
 RESTRICT="test"
 CDEPEND=">=dev-java/commons-io-1"
-DEPEND=">=virtual/jdk-1.4
+DEPEND="|| ( =virtual/jdk-1.6* =virtual/jdk-1.5* =virtual/jdk-1.4* )
 		jpeg? (
 			|| (
 				>=dev-java/sun-jdk-1.4
