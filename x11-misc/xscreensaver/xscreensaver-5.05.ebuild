@@ -12,7 +12,7 @@ HOMEPAGE="http://www.jwz.org/xscreensaver"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
 IUSE="jpeg new-login opengl pam suid xinerama"
 
 RDEPEND="x11-libs/libXxf86misc
@@ -46,6 +46,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.04-nsfw.patch
 	epatch "${FILESDIR}"/${P}-desktop-entry.patch
 	epatch "${FILESDIR}"/${P}-posix-head.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
@@ -53,6 +54,8 @@ src_compile() {
 	filter-flags -mabi=altivec
 	filter-flags -maltivec
 	append-flags -U__VEC__
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	unset BC_ENV_ARGS
 
