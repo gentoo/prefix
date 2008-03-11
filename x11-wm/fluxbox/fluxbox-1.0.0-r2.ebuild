@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.2 2008/02/28 15:27:57 lack Exp $
 
 EAPI="prefix 1"
-inherit eutils
+inherit eutils flag-o-matic
 
 IUSE="nls xinerama truetype kde gnome imlib +slit +toolbar vim-syntax"
 
@@ -36,7 +36,7 @@ PROVIDE="virtual/blackbox"
 
 SLOT="0"
 LICENSE="MIT"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 
 pkg_setup() {
 	if use imlib && ! built_with_use media-libs/imlib2 X ; then
@@ -62,6 +62,9 @@ src_unpack() {
 	# Patch for gcc-4.3, #211675
 	epatch "${FILESDIR}/${PV}/gcc-4.3.patch"
 
+	# patch for interix (damaged langinfo.h)
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then
 		suffix="gentoo"
@@ -74,6 +77,8 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	econf \
 		$(use_enable nls) \
 		$(use_enable xinerama) \
