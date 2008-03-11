@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.73 2008/02/07 12:44:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.75 2008/03/10 19:37:22 robbat2 Exp $
+
+*smartmontools-5.38 (10 Mar 2008)
+
+  10 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +smartmontools-5.38.ebuild:
+  Version bump.
+
+*smartmontools-5.37-r1 (10 Mar 2008)
+
+  10 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +smartmontools-5.37-r1.ebuild:
+  Add USE=minimal support for setups without the smartd.
 
   07 Feb 2008; Raúl Porcel <armin76@gentoo.org> smartmontools-5.37.ebuild:
   alpha/ia64 stable
