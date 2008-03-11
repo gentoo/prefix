@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool sgml-catalog eutils flag-o-matic multilib
+inherit autotools sgml-catalog eutils flag-o-matic multilib
 
 DESCRIPTION="Jade is an implementation of DSSSL - an ISO standard for formatting SGML and XML documents"
 HOMEPAGE="http://openjade.sourceforge.net"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/openjade/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 RDEPEND="app-text/sgml-common
@@ -26,6 +26,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-msggen.pl.patch
 	epatch "${FILESDIR}"/${P}-ldflags.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
+
+	# this adds a m4 file containing the two macros which are
+	# otherwise missing (to keep down dependencies).
+	EPATCH_OPTS="-p1" epatch "${FILESDIR}"/${P}-bootstrap.patch
+
+	# this one disables multi byte chars for interix (support broken)
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
+
+	ln -s config/configure.in configure.in
+	AT_M4DIR="jade spgrove style config" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
@@ -38,9 +48,6 @@ src_compile() {
 	# Default CFLAGS and CXXFLAGS is -O2 but this make openjade segfault
 	# on hppa. Using -O1 works fine. So I force it here.
 	use hppa && replace-flags -O2 -O1
-
-	ln -s config/configure.in configure.in
-	elibtoolize
 
 	SGML_PREFIX="${EPREFIX}"/usr/share/sgml
 
