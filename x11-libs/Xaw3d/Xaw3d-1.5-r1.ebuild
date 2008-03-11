@@ -28,7 +28,7 @@ SRC_URI="ftp://ftp.x.org/contrib/widgets/Xaw3d/R6.3/${P}.tar.gz
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 # There _might_ be something else, but I doubt it.
@@ -42,6 +42,7 @@ DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
 	x11-misc/imake
 	x11-misc/gccmakedep"
+DEPEND="${DEPEND} x11-misc/makedepend" # on merge conflict, bug#213035 likely is resolved.
 
 src_unpack() {
 	unpack ${P}.tar.gz
