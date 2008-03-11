@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.epicsol.org/pub/epic/EPIC4-PRODUCTION/${P}.tar.bz2
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="ipv6 perl ssl"
 
 DEPEND=">=sys-libs/ncurses-5.2
@@ -36,6 +36,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/epic-defaultserver.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	rm -f "${WORKDIR}"/help/Makefile
 	find "${WORKDIR}"/help -type d -name CVS -print0 | xargs -0 rm -r
@@ -43,6 +44,8 @@ src_unpack() {
 
 src_compile() {
 	replace-flags "-O?" "-O"
+
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_getpgrp_void=yes
 
 	econf \
 		--libexecdir="${EPREFIX}"/usr/lib/misc \
