@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 	x11-libs/libXt"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 
 	eautoreconf # need new libtool for interix
