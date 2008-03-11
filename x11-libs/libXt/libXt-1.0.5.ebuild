@@ -7,11 +7,11 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular flag-o-matic
+inherit x-modular flag-o-matic autotools
 
 DESCRIPTION="X.Org Xt library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libSM
@@ -27,4 +27,14 @@ pkg_setup() {
 	filter-flags -Wl,-Bdirect
 	filter-ldflags -Bdirect
 	filter-ldflags -Wl,-Bdirect
+}
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+	x-modular_src_compile
 }
