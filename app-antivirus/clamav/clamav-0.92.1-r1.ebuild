@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="bzip2 crypt mailwrapper milter nls selinux"
 
 DEPEND="virtual/libc
@@ -43,6 +43,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
+
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify "${S}"/configure.in
 	eautoreconf
 }
 
@@ -60,6 +64,13 @@ src_compile() {
 		myconf="${myconf} --enable-milter"
 		use mailwrapper && \
 			myconf="${myconf} --with-sendmail=${EPREFIX}/usr/sbin/sendmail.sendmail"
+	}
+
+	[[ ${CHOST} == *-interix* ]] && {
+		append-flags -D_ALL_SOURCE
+		export ac_cv_func_poll=no
+		export ac_cv_func_mmap_fixed_mapped=yes
+		myconf="${myconf} --disable-gethostbyname_r"
 	}
 
 	ht_fix_file configure
