@@ -11,12 +11,15 @@ inherit x-modular
 
 DESCRIPTION="X.Org xproto protocol headers"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
 src_unpack() {
 	x-modular_unpack_source
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	x-modular_reconf_source
 }
