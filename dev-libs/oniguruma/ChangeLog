@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/oniguruma
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.32 2008/02/17 22:49:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.35 2008/03/10 13:55:29 drac Exp $
+
+  10 Mar 2008; Samuli Suominen <drac@gentoo.org> oniguruma-5.9.1.ebuild:
+  amd64 stable wrt #211986
+
+  10 Mar 2008; Raúl Porcel <armin76@gentoo.org> oniguruma-5.9.1.ebuild:
+  alpha/ia64/sparc stable
 
   17 Feb 2008; Alexis Ballier <aballier@gentoo.org> oniguruma-5.9.1.ebuild:
   keyword ~x86-fbsd, run elibtoolize
