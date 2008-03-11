@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xcursor library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXfixes
@@ -21,3 +21,8 @@ DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="--with-icondir=/usr/share/cursors/xorg-x11
 	--with-cursorpath=~/.cursors:~/.icons:/usr/local/share/cursors/xorg-x11:/usr/local/share/cursors:/usr/local/share/icons:/usr/local/share/pixmaps:/usr/share/cursors/xorg-x11:/usr/share/cursors:/usr/share/pixmaps/xorg-x11:/usr/share/icons:/usr/share/pixmaps"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
