@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.311 2008/02/10 22:12:27 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.313 2008/03/11 03:27:20 leio Exp $
+
+*glib-2.16.1 (11 Mar 2008)
+
+  11 Mar 2008; Mart Raudsepp <leio@gentoo.org> -glib-2.16.0.ebuild,
+  +glib-2.16.1.ebuild:
+  Quick follow-up to fix a GIO crasher and included pcre copy version to
+  secure version
+
+*glib-2.16.0 (10 Mar 2008)
+
+  10 Mar 2008; Mart Raudsepp <leio@gentoo.org> +glib-2.16.0.ebuild:
+  New major release. Major new features include: GIO - a virtual filesystem
+  API designed to replace gnome-vfs, carrying support for local filesystems
+  with gnome-base/gvfs containing backends for many other (samba, ftp, sftp,
+  http, etc); GChecksum providing MD5, SHA-1 and SHA-256 algorithms for
+  applications to use; GTest - a test framework
 
   10 Feb 2008; Olivier Crête <tester@gentoo.org> glib-2.14.6.ebuild:
   Stable on amd64, security bug #209293
