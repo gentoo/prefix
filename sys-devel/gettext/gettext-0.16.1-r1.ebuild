@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils multilib toolchain-funcs mono libtool
+inherit flag-o-matic eutils multilib toolchain-funcs mono libtool autotools
 
 DESCRIPTION="GNU locale utilities"
 HOMEPAGE="http://www.gnu.org/software/gettext/gettext.html"
@@ -12,8 +12,8 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="emacs nls doc nocxx"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="emacs nls doc nocxx openmp"
 
 DEPEND="virtual/libiconv
 	dev-libs/expat"
@@ -22,8 +22,6 @@ PDEPEND="emacs? ( app-emacs/po-mode )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epunt_cxx
 
 	epatch "${FILESDIR}"/${PN}-0.14.1-lib-path-tests.patch #81628
 	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch #85054
@@ -42,12 +40,24 @@ src_unpack() {
 		eerror "http://bugs.gentoo.org/105304"
 		die "Aborting to prevent screwing your system"
 	fi
+
+	for x in $(find "${S}" -type f -name 'libtool.m4'); do
+		cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 ${x}
+	done
+
+	( # need new libtool for interix
+		export AT_NO_RECURSIVE=yes
+		cd "${S}" && eautoreconf
+		cd "${S}"/gettext-tools && AT_M4DIR="m4 ../gettext-runtime/m4 ../autoconf-lib-link/m4 ../m4 gnulib-m4 libgettextpo/gnulib-m4" eautoreconf
+		cd "${S}"/gettext-runtime && AT_M4DIR="m4 ../autoconf-lib-link/m4 ../m4 gnulib-m4" eautoreconf
+		cd "${S}"/gettext-runtime/libasprintf && AT_M4DIR="../../m4 ../m4" eautoreconf
+		cd "${S}"/autoconf-lib-link && AT_M4DIR="m4 ../m4" eautoreconf
+	) || die "eautoreconf failed"
+
+	epunt_cxx
 }
 
 src_compile() {
-
-	elibtoolize
-
 	local myconf=""
 	# Build with --without-included-gettext (on glibc systems)
 	if use elibc_glibc ; then
@@ -63,6 +73,7 @@ src_compile() {
 		--without-emacs \
 		--disable-java \
 		${myconf} \
+		$(use_enable openmp) \
 		|| die
 	emake || die
 }
