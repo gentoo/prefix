@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit libtool eutils python
+inherit autotools eutils python
 
 DESCRIPTION="XSLT libraries and tools"
 HOMEPAGE="http://www.xmlsoft.org/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="crypt debug examples python"
 
 DEPEND=">=dev-libs/libxml2-2.6.27
@@ -34,8 +34,8 @@ src_unpack() {
 	# Patch Makefile to fix bug #99382 so that html gets installed in ${PF}
 	sed -i -e 's:libxslt-$(VERSION):${PF}:' doc/Makefile.in
 
+	eautoreconf # need new libtool for interix
 	epunt_cxx
-	elibtoolize
 }
 
 src_compile() {
