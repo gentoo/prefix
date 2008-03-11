@@ -7,11 +7,11 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular autotools
 
 DESCRIPTION="X.Org Xrandr library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
@@ -20,3 +20,8 @@ RDEPEND="x11-libs/libX11
 	x11-proto/xproto"
 DEPEND="${RDEPEND}
 	x11-proto/renderproto"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
