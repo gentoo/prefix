@@ -11,10 +11,15 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xfixes library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	>=x11-proto/fixesproto-4
 	x11-proto/xproto"
 DEPEND="${RDEPEND}
 	x11-proto/xextproto"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
