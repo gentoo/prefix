@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.0.ebuild,v 1.11 2007/12/11 23:38:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.0.ebuild,v 1.12 2008/03/10 21:37:59 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,8 @@ src_unpack() {
 	epunt_cxx #74493
 
 	# Insane.
-	sed -i -e "s:-O20::g" configure
+	sed -i -e "s:-O20::g" -e "s:-mfused-madd::g" configure
+	sed -i -e "s:-mcpu=750::g" configure
 }
 
 src_compile() {
