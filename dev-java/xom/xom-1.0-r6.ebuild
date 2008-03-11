@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r6.ebuild,v 1.4 2008/03/09 20:29:22 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r6.ebuild,v 1.5 2008/03/10 22:41:07 ken69267 Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 EAPI="prefix 1"

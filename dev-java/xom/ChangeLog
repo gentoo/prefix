@@ -1,7 +1,10 @@
 # ChangeLog for dev-java/xom
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.46 2008/03/09 20:29:22 betelgeuse Exp $
-  
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.47 2008/03/10 22:41:07 ken69267 Exp $
+
+  10 Mar 2008; Kenneth Prugh <ken69267@gentoo.org> xom-1.0-r6.ebuild:
+  amd64 stable, bug #212665
+
   09 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> xom-1.0-r6.ebuild:
   RESTRICT test because they need network access to pass.
 
