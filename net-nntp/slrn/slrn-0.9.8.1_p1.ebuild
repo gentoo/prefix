@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.8.1_p1.ebuild,v 1.4 2008/03/09 15:01:53 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.8.1_p1.ebuild,v 1.6 2008/03/10 14:02:31 drac Exp $
 
 EAPI="prefix"
 

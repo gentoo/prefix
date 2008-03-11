@@ -1,6 +1,15 @@
 # ChangeLog for net-nntp/slrn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/ChangeLog,v 1.13 2008/03/09 15:01:53 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/ChangeLog,v 1.15 2008/03/10 14:02:31 drac Exp $
+
+  10 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -files/0.9.8.1/slrn-0.9.8.1-lastchar2.diff, -files/0.9.8.1-utf8.patch,
+  -files/0.9.8.1/slrn-0.9.8.1-fetch.diff, -slrn-0.9.8.1.ebuild,
+  slrn-0.9.8.1_p1.ebuild:
+  amd64 stable wrt #212787
+
+  10 Mar 2008; Raúl Porcel <armin76@gentoo.org> slrn-0.9.8.1_p1.ebuild:
+  alpha/ia64/sparc stable wrt #212787
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> slrn-0.9.8.1_p1.ebuild:
   Stable on ppc wrt bug 212787
