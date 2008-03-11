@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit eutils gnome2 autotools
 
 DESCRIPTION="A documentation metadata library"
 HOMEPAGE="http://www.freedesktop.org"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="dev-libs/libxslt"
@@ -35,5 +35,6 @@ src_unpack() {
 	# Fix memory clobbering leading to outright crash on sparc and ia64
 	epatch "${FILESDIR}/${P}-reg-return.patch"
 
-	elibtoolize ${ELTCONF}
+	eautoreconf # need new libtool for interix
+	#elibtoolize ${ELTCONF}
 }
