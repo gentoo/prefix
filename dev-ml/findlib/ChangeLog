@@ -1,6 +1,9 @@
 # ChangeLog for dev-ml/findlib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.35 2008/03/09 11:49:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.36 2008/03/10 15:06:44 beandog Exp $
+
+  10 Mar 2008; Steve Dibb <beandog@gentoo.org> findlib-1.2.1.ebuild:
+  amd64 stable, bug 211966
 
   09 Mar 2008; Alexis Ballier <aballier@gentoo.org> findlib-1.2.1.ebuild:
   Actually build and install the toolbox with tk useflag
