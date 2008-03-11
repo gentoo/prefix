@@ -7,13 +7,18 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular autotools
 
 DESCRIPTION="X.Org Xcomposite library"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 RDEPEND="x11-libs/libX11
 	x11-libs/libXfixes
 	x11-libs/libXext
 	>=x11-proto/compositeproto-0.4
 	x11-proto/xproto"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
