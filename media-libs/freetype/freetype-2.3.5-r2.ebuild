@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic libtool
+inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A high-quality and portable font engine"
 HOMEPAGE="http://www.freetype.org/"
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
 
 LICENSE="FTL GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="X bindist debug doc utils"
 
 DEPEND="X?	( x11-libs/libX11
@@ -74,7 +74,9 @@ src_unpack() {
 		fi
 	fi
 
-	elibtoolize
+	# need new libtool for interix, but eautoreconf does not work,
+	# even not in builds/unix/
+	"${BASH}" ./autogen.sh || die "autogen.sh failed"
 	epunt_cxx
 }
 
