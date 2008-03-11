@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/most
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.40 2008/03/09 14:59:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.42 2008/03/10 14:05:32 drac Exp $
+
+  10 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -files/most-4.10.2-fix-goto-line.diff, -most-4.10.2-r1.ebuild,
+  most-5.0.0a.ebuild:
+  amd64 stable wrt #212788
+
+  10 Mar 2008; Raúl Porcel <armin76@gentoo.org> most-5.0.0a.ebuild:
+  alpha/sparc stable wrt #212788
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> most-5.0.0a.ebuild:
   Stable on ppc wrt bug 212788
