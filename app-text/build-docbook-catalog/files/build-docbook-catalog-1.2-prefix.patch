@@ -1,5 +1,11 @@
 --- build-docbook-catalog-1.2.old	2007-02-18 23:40:01 +0200
 +++ build-docbook-catalog-1.2	2007-02-18 23:39:22 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ # $Header: /var/cvsroot/gentoo-src/build-docbook-catalog/build-docbook-catalog,v 1.2 2004/07/22 22:35:18 agriffis Exp $
+ #
+ # build-docbook-catalog: populate /etc/xml/docbook based in
 @@ -9,9 +9,9 @@
  # written by Aron Griffis
  #
