@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.13 2008/03/10 14:13:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.15 2008/03/11 17:32:04 opfer Exp $
 
 EAPI="prefix"
 
@@ -44,8 +44,7 @@ src_compile() {
 			src/Makefile
 	fi
 
-	make clean || die
-
+	emake clean || die
 	emake || die
 
 	if use X ; then
@@ -57,7 +56,7 @@ src_install() {
 	# make install in ${S} claims everything is up-to-date,
 	# so we manually cd ${S}/src before installing
 	cd "${S}/src"
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 
 	cd "${S}"
 	dodoc INSTALL INSTALL.unx README changes.txt doc/manual/jed.tex
