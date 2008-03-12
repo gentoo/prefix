@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.18.0.1.ebuild,v 1.9 2007/08/28 16:38:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.18.0.1.ebuild,v 1.10 2008/03/11 20:12:56 leio Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,15 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.19"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README THANKS TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Fix deprecated API disabling in used libraries - this is not future-proof, bug 212801
+	sed -i -e '/DISABLE_DEPRECATED/d' \
+		"${S}/eel/Makefile.am" "${S}/eel/Makefile.in" \
+		"${S}/test/Makefile.am" "${S}/test/Makefile.in"
+}
 
 src_test() {
 	if hasq userpriv $FEATURES; then
