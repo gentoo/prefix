@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.305 2008/03/06 18:05:25 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.307 2008/03/11 16:01:07 corsair Exp $
+
+  11 Mar 2008; Markus Rothe <corsair@gentoo.org> python-2.4.4-r9.ebuild:
+  Stable on ppc64; bug #211281
+
+  11 Mar 2008; Tiziano Müller <dev-zero@gentoo.org> python-2.4.4-r9.ebuild,
+  python-2.5.1-r5.ebuild:
+  Changed newinitd/newconfd for pydoc to install the init.d/conf.d scripts as
+  pydoc-2.x (aka don't break slotting)
 
   06 Mar 2008; nixnut <nixnut@gentoo.org> python-2.4.4-r9.ebuild:
   Stable on ppc wrt bug 211281

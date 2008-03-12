@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r5.ebuild,v 1.2 2008/03/01 13:38:51 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r5.ebuild,v 1.3 2008/03/11 14:23:49 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -270,8 +270,8 @@ src_install() {
 		cp -r "${S}"/Tools "${ED}"/usr/share/doc/${P}/examples
 	fi
 
-	newinitd "${FILESDIR}/pydoc.init" pydoc
-	newconfd "${FILESDIR}/pydoc.conf" pydoc
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 }
 
 pkg_postrm() {
