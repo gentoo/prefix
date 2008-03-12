@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8364 2008/03/11 00:31:00 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8373 2008/03/12 00:02:08 genstef Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,10 +29,18 @@
 
 ### END OF EXAMPLES
 
+# Joerg Bornkessel <hd_brummy@gentoo.org> (11 Mar 2008)
+# masked for testing
+# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
+=net-www/xxv-1.2.1308
+
+# Christian Faulhammer <opfer@gentoo.org> (11 Mar 2008)
+# masked for testing
+=app-portage/gatt-9999
+
 # Mart Raudsepp <leio@gentoo.org> (10 Mar 2008)
 # Temporary swfdec mask due to need for matching versions
 # at once
->=dev-libs/glib-2.16.0
 >=net-libs/libsoup-2.4
 >=media-libs/swfdec-0.6.0
 >=net-www/swfdec-mozilla-0.6.0
@@ -327,11 +335,6 @@ dev-java/jasmin-sable
 # Emacs 23 virtual, unmask after Emacs 23 release
 >=virtual/emacs-23
 
-# Jim Ramsay <lack@gentoo.org> (31 Jan 2008)
-# Masked for removal in 30 days. Replaced by 
-# x11-plugins/bfm with USE=gkrellm.  Bug #207720
-x11-plugins/gkrellm-bfm
-
 # Tony Vroon <chainsaw@gentoo.org> (29 Jan 2008)
 # No longer maintained upstream, only available for
 # the now obsolete 1.3 branch of Audacious.
@@ -416,10 +419,6 @@ gnome-extra/hal-device-manager
 # see this maintained contact java@gentoo.org for paying
 # us a license. Otherwise in junkyard after 30 days.
 dev-java/jsx
-
-# Stefan Schweizer <genstef@gentoo.org> (19 Jan 2008)
-# Project abandoned. Masked for removal, bug 206105
-sys-apps/list
 
 # Ingmar Vanhassel <ingmar@gentoo.org> (16 Jan 2008)
 # Mask KDE 4.0.0 for testing. This release of KDE 4 will not be unmasked.
@@ -808,10 +807,6 @@ dev-lang/entity
 =x11-libs/qt-sql-4.4*
 =x11-libs/qt-xmlpatterns-4.4*
 
-# Petteri Räty <betelgeuse@gentoo.org> (17 Dec 2007)
-# Package.masked until builds without having tcl installed
-=dev-db/sqlite-3.5.4
-
 # Jeroen Roovers <jer@gentoo.org> (17 Dec 2007)
 # Masked pending removal - see bug #202391
 # Please switch to sys-kernel/gentoo-sources
@@ -1179,9 +1174,10 @@ app-shells/ash
 #   Mask for testing.
 =net-fs/sfs-0.8.0_pre20070512
 
-# Stefan Schweizer <genstef@gentoo.org> (9 may 2007)
-# 175933 cannot suspend because of missing org.freedesktop.PolicyKit
->=sys-power/powersave-0.15.0
+# Stefan Schweizer <genstef@gentoo.org> (11 Mar 2008)
+# Please use kpowersave-0.7.3 with dbus instead of the powersave daemon
+<sys-power/kpowersave-0.7.2
+sys-power/powersave
 
 # Mike Frysinger <vapier@gentoo.org> (5 May 2007)
 # Unsupported upstream; doesnt build with current cm3
@@ -1338,10 +1334,6 @@ games-strategy/ufo2000
 # Mask cvs version of net-p2p/linuxdcpp
 =net-p2p/linuxdcpp-9999
 
-# Christian Faulhammer <opfer@gentoo.org> (23 Jan 2007)
-# masked for testing
-app-portage/gatt-svn
-
 # Sandro Bonazzola <sanchan@gentoo.org> (16 Jan 2007)
 # Masked for testing
 =app-arch/rpm-4.4.7-r3
@@ -1381,10 +1373,6 @@ games-action/armagetronad
 # Marcus D. Hanwell <cryos@gentoo.org> (03 Nov 2006)
 # 5.5.6 does not work with all projects, please use 5.4 or >=5.8
 =sci-misc/boinc-5.5.6
-
-# Stefan Schweizer <genstef@gentoo.org> (21 Aug 2006)
-# beta psi, with jingle support
->=net-im/psi-0.11_alpha0
 
 # Roy Marples <uberlord@gentoo.org> (02 Oct 2006)
 # masked for testing due to major ebuild and installation changes

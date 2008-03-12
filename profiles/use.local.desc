@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3424 2008/03/10 20:44:04 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3427 2008/03/11 18:42:24 opfer Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -259,7 +259,7 @@ app-pda/multisync:kdepim - Adds support for KDEPIM sync.
 app-pda/multisync:nokia6600 - Adds support for Nokia 6600.
 app-pda/synce-kde:avantgo - Adds support for syncing Avantgo accounts.
 app-portage/conf-update:colordiff - Use colors when displaying diffs
-app-portage/gatt-svn:libpaludis - Do some dependency resolution by using a Paludis interface
+app-portage/gatt:libpaludis - Do some dependency resolution by using a Paludis interface
 app-portage/portato:etc-proposals - Use etc-proposals for updating CONFIG_PROTECTed stuff
 app-portage/portato:userpriv - Allow emerge processes as normal user
 app-shells/bash:bashlogger - Log ALL commands typed into bash; should ONLY be used in restricted environments such as honeypots
@@ -1362,7 +1362,7 @@ net-dialup/misdn:ecmg2 - Use the MG2 echo canceller (default)
 net-dialup/ppp:activefilter - Enables activefilter support
 net-dialup/ppp:dhcp - Enables the DHCP plugin
 net-dialup/ppp:eap-tls - Enables support for Extensible Authentication Protocol and Transport Level Security (EAP-TLS)
-net-dialup/ppp:mppe-mppc - Enables support for MPPE-MPPC
+net-dialup/ppp:mppe-mppc - Enables support for Microsoft Point-to-Point Encryption / Microsoft Point-to-Point Compression
 net-dialup/pptpd:gre-extreme-debug - Log all GRE accepted packages when in debug mode (required if you want upstream support)
 net-dns/avahi:autoipd - Build and install the IPv4LL (RFC3927) network address configuration daemon
 net-dns/avahi:bookmarks - Install the avahi-bookmarks application (requires dev-python/twisted)

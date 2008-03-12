@@ -1,6 +1,27 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1197 2008/03/11 00:31:00 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1204 2008/03/12 00:02:08 genstef Exp $
+
+  12 Mar 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  phase out old kpowersave powersave daemon
+
+  11 Mar 2008; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  net-www/xxv-1.2.1308; masked for testing
+
+  11 Mar 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  unmask psi-0.11 since qca is also already unmasked
+
+  11 Mar 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  list removed
+
+  11 Mar 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  adding USE=libpaludis for app-portage/gatt-svn
+
+  11 Mar 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  updated mask for Gatt
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove old mask for one sqlite version.
 
   11 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
   Added some more new packages for KDE 4.0.2.
