@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/sun-jaf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jaf/ChangeLog,v 1.13 2008/03/08 20:38:39 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jaf/ChangeLog,v 1.14 2008/03/11 15:17:50 ranger Exp $
+
+  11 Mar 2008; Brent Baude <ranger@gentoo.org> sun-jaf-1.1.1.ebuild:
+  stable ppc64, bug 212656
 
   08 Mar 2008; William L. Thomson Jr. <wltjr@gentoo.org>
   sun-jaf-1.1.1.ebuild:
