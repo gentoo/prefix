@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.1 2008/01/17 03:15:55 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.2 2008/03/11 14:34:41 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/7.1.2-lam_prog_f77.m4.patch
 	epatch "${FILESDIR}"/7.1.2-liblam-use-extra-libs.patch
+	epatch "${FILESDIR}"/7.1.4-as-needed.patch
 	eautoreconf
 }
 

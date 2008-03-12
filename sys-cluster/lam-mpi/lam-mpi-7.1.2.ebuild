@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.2.ebuild,v 1.16 2007/07/02 15:32:13 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.2.ebuild,v 1.17 2008/03/11 14:34:41 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -33,10 +33,10 @@ LICENSE="as-is"
 src_unpack() {
 	unpack ${A}
 
-	cd ${S}/romio/util/
+	cd "${S}"/romio/util/
 	sed -i "s|docdir=\"\$datadir/lam/doc\"|docdir=\"${ED}/usr/share/doc/${PF}\"|" romioinstall.in
 
-	for i in ${S}/share/memory/{ptmalloc,ptmalloc2,darwin7}/Makefile.in; do
+	for i in "${S}"/share/memory/{ptmalloc,ptmalloc2,darwin7}/Makefile.in; do
 	  sed -i -e 's@^\(docdir = \)\$(datadir)/lam/doc@\1'"${EPREFIX}"/usr/share/doc/${PF}'@' ${i}
 	done
 
@@ -86,15 +86,15 @@ src_install () {
 	# There are a bunch more tex docs we could make and install too,
 	# but they might be replicated in the pdf.
 	# They are replicated in the pdfs! Thus remove this comment?
-	dodoc README HISTORY LICENSE VERSION
-	cd ${S}/doc
+	dodoc README HISTORY VERSION
+	cd "${S}"/doc
 	dodoc {user,install}.pdf
 
 	# install examples
-	cd ${S}/examples
-	mkdir -p ${ED}/usr/share/${P}/examples
-	find -name README -or -iregex '.*\.[chf][c]?$' >${T}/testlist
+	cd "${S}"/examples
+	mkdir -p "${ED}"/usr/share/${P}/examples
+	find -name README -or -iregex '.*\.[chf][c]?$' > "${T}"/testlist
 	while read p; do
-		treecopy $p ${ED}/usr/share/${P}/examples ;
-	done < ${T}/testlist
+		treecopy $p "${ED}"/usr/share/${P}/examples ;
+	done < "${T}"/testlist
 }
