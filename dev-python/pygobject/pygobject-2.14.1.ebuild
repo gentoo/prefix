@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.1.ebuild,v 1.1 2008/01/03 23:50:39 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.1.ebuild,v 1.2 2008/03/12 01:47:41 ranger Exp $
 
 EAPI="prefix"
 
