@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.72 2008/02/10 21:54:42 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.73 2008/03/12 01:45:49 ranger Exp $
+
+  12 Mar 2008; Brent Baude <ranger@gentoo.org>
+  desktop-file-utils-0.14-r1.ebuild:
+  Marking desktop-file-utils-0.14-r1 ppc64 for bug 212986
 
 *desktop-file-utils-0.14-r1 (10 Feb 2008)
 
