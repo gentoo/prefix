@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.14 2008/02/20 00:31:28 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.15 2008/03/11 15:25:14 betelgeuse Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
@@ -20,6 +20,7 @@ COMMON_DEP="dev-java/asm:1.5
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 DEPEND=">=virtual/jdk-1.4
+	app-arch/unzip
 	dev-java/jarjar
 	${COMMON_DEP}"
 IUSE=""
@@ -41,10 +42,7 @@ EANT_ANT_TASKS="jarjar-1"
 
 # Does not work against our current version of aspectwerkz
 # https://bugs.gentoo.org/show_bug.cgi?id=183997
-#src_test() {
-#	java-pkg_jar-from --into lib junit
-#	eant test
-#}
+RESTRICT="test"
 
 src_install() {
 	java-pkg_newjar dist/${PN}-${MY_PV}.jar

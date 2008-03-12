@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.0.2-r2.ebuild,v 1.11 2008/02/20 00:26:20 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.0.2-r2.ebuild,v 1.13 2008/03/11 15:40:43 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
+
 inherit eutils java-pkg-2 java-ant-2
 
 DESCRIPTION="A powerful, high performance and quality Code Generation Library."
@@ -18,7 +18,9 @@ COMMON_DEP="=dev-java/asm-1.4.3*
 	dev-java/ant-core"
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
+#	test? ( dev-java/junit:0 )
 DEPEND=">=virtual/jdk-1.4
+	app-arch/unzip
 	${COMMON_DEP}"
 IUSE=""
 
@@ -38,6 +40,10 @@ src_unpack() {
 
 #Investigate why this fails
 EANT_FILTER_COMPILER="ecj-3.3"
+EANT_TEST_JUNIT_INTO="lib"
+
+# Fail and would need aspectwekrz-1.0
+RESTRICT="test"
 
 src_install() {
 	java-pkg_newjar dist/${P}.jar

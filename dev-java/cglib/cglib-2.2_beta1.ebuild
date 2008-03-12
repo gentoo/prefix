@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2_beta1.ebuild,v 1.5 2007/05/26 17:29:08 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2_beta1.ebuild,v 1.6 2008/03/11 15:27:14 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,7 @@ COMMON_DEP="=dev-java/asm-2.2*
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 DEPEND=">=virtual/jdk-1.4
+	app-arch/unzip
 	>=dev-java/jarjar-0.9
 	${COMMON_DEP}"
 IUSE=""
