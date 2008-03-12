@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.98 2008/03/10 21:25:18 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.99 2008/03/12 01:44:44 ranger Exp $
+
+  12 Mar 2008; Brent Baude <ranger@gentoo.org>
+  gnome-doc-utils-0.12.1.ebuild:
+  Marking gnome-doc-utils-0.12.1 ppc64 for bug 212986
 
 *gnome-doc-utils-0.12.2 (10 Mar 2008)
 
