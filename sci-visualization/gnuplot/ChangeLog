@@ -1,6 +1,12 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.65 2008/01/04 06:57:47 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.66 2008/03/11 07:44:00 opfer Exp $
+
+  11 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
+  files/gnuplot-4.2.2-disable_texi_generation.patch:
+  fix Header in patch so files outside the sandbox do not influence patching,
+  fixes bug 212486 reported by Clemens Fruhwirth <clemens AT endorphin DOT
+  org>
 
   04 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
   -gnuplot-4.0-r2.ebuild, -gnuplot-4.2.2.ebuild:
