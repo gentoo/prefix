@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/jsch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.62 2008/03/08 17:13:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.64 2008/03/11 19:40:25 ken69267 Exp $
+
+  11 Mar 2008; Kenneth Prugh <ken69267@gentoo.org> jsch-0.1.37.ebuild:
+  amd64 stable, bug #212654
+
+  11 Mar 2008; Brent Baude <ranger@gentoo.org> jsch-0.1.37.ebuild:
+  stable ppc64, bug 212654
 
   08 Mar 2008; Markus Meier <maekke@gentoo.org> jsch-0.1.37.ebuild:
   x86 stable, bug #212654
