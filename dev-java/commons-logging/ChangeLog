@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/commons-logging
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.62 2008/03/08 21:56:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.63 2008/03/11 15:08:14 ranger Exp $
+
+  11 Mar 2008; Brent Baude <ranger@gentoo.org> commons-logging-1.1.1.ebuild:
+  stable ppc64, bug 212641
 
   08 Mar 2008; Markus Meier <maekke@gentoo.org>
   commons-logging-1.1.1.ebuild:
