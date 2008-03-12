@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.3 2008/01/15 22:32:43 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.4 2008/03/11 08:52:09 elvanor Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ JAVA_PKG_IUSE="source"
 
 inherit java-pkg-2 java-ant-2 java-osgi
 
-DESCRIPTION="ICU4J is a mature, widely used set of Java libraries providing Unicode and Globalization support for software applications."
+DESCRIPTION="ICU4J is a set of Java libraries providing Unicode and Globalization support."
 MY_PV=${PV//./_}
 
 SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${PN}src_${MY_PV}.jar

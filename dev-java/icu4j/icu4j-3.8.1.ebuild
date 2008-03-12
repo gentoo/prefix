@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1-r1.ebuild,v 1.2 2008/03/11 08:52:09 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.8.1.ebuild,v 1.1 2008/03/11 08:52:09 elvanor Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,8 @@ inherit java-pkg-2 java-ant-2 java-osgi
 DESCRIPTION="ICU4J is a set of Java libraries providing Unicode and Globalization support."
 MY_PV=${PV//./_}
 
-SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${PN}src_${MY_PV}.jar
-	doc? ( http://download.icu-project.org/files/${PN}/${PV}/${PN}docs_${MY_PV}.jar )"
+SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${PN}-${MY_PV}-src.jar
+	doc? ( http://download.icu-project.org/files/${PN}/${PV}/${PN}-${MY_PV}-docs.jar )"
 
 HOMEPAGE="http://www.icu-project.org/"
 LICENSE="icu"
@@ -35,11 +35,11 @@ IUSE="doc test"
 S="${WORKDIR}"
 
 src_unpack() {
-	jar -xf "${DISTDIR}/${PN}src_${MY_PV}.jar" || die "Failed to unpack"
+	jar -xf "${DISTDIR}/${PN}-${MY_PV}-src.jar" || die "Failed to unpack"
 
 	if use doc; then
 		mkdir docs; cd docs
-		jar -xf "${DISTDIR}/${PN}docs_${MY_PV}.jar" || die "Failed to unpack docs"
+		jar -xf "${DISTDIR}/${PN}-${MY_PV}-docs.jar" || die "Failed to unpack docs"
 	fi
 }
 
