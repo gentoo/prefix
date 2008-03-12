@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/source-highlight
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.28 2008/03/10 11:20:59 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.29 2008/03/11 20:17:49 cla Exp $
+
+  11 Mar 2008; Dawid Węgliński <cla@gentoo.org>
+  source-highlight-2.8.ebuild:
+  Stable on x86 (bug #212917); Thanks to Michał Wołonkiewicz <volon@vp.pl>
+  for testing.
 
 *source-highlight-2.9 (10 Mar 2008)
 
