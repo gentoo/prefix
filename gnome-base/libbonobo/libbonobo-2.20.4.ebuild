@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.20.4.ebuild,v 1.1 2008/02/03 22:02:56 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.20.4.ebuild,v 1.3 2008/03/12 01:48:36 ranger Exp $
 
 EAPI="prefix"
 
@@ -29,4 +29,14 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable debug bonobo-activation-debug)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	sed -i -e '/DISABLE_DEPRECATED/d' \
+		"${S}/activation-server/Makefile.am" "${S}/activation-server/Makefile.in" \
+		"${S}/bonobo/Makefile.am" "${S}/bonobo/Makefile.in"
+	sed -i -e 's:-DG_DISABLE_DEPRECATED ::g' \
+		"${S}/tests/test-activation/Makefile.am" "${S}/tests/test-activation/Makefile.in"
 }
