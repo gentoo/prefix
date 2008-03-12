@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.13 2008/03/10 22:35:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.14 2008/03/11 21:58:27 leio Exp $
 
 EAPI="prefix"
 
@@ -88,6 +88,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.16.0-no-dbus-crash.patch
 
 	use doc || epatch "${FILESDIR}/${PN}-2.18.1-drop-gtk-doc-check.patch"
+
+	# Fix deprecated API disabling in used libraries - this is not future-proof, bug 212163
+	sed -i -e '/DISABLE_DEPRECATED/d' \
+		"${S}/daemon/Makefile.am" "${S}/daemon/Makefile.in" \
+		"${S}/libgnomevfs/Makefile.am" "${S}/libgnomevfs/Makefile.in" \
+		"${S}/modules/Makefile.am" "${S}/modules/Makefile.in" \
+		"${S}/test/Makefile.am" "${S}/test/Makefile.in"
+	sed -i -e 's:-DG_DISABLE_DEPRECATED:$(NULL):g' \
+		"${S}/programs/Makefile.am" "${S}/programs/Makefile.in"
 
 	eautoreconf
 	intltoolize --force
