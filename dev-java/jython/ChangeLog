@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jython
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.55 2008/03/01 02:42:28 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.56 2008/03/11 21:55:21 betelgeuse Exp $
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> jython-2.2.1-r1.ebuild:
+  Use --virtual instead of --build-only for servlet-api.
 
   01 Mar 2008; Alistair Bush <ali_bush@gentoo.org> jython-2.2.1-r1.ebuild:
   Added block on versions of <=dev-java/freemarker-2.3.10. See #211503 and
