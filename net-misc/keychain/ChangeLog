@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/keychain
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.71 2008/03/02 13:15:50 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.72 2008/03/11 17:09:10 ricmm Exp $
+
+  11 Mar 2008; <ricmm@gentoo.org> keychain-2.6.6.ebuild:
+  Drop to ~mips due to unstable deps
 
   02 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org>
   keychain-2.6.8.ebuild:
