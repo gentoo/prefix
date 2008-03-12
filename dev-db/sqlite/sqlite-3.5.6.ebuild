@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.6.ebuild,v 1.1 2008/02/10 20:57:33 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.6.ebuild,v 1.2 2008/03/11 18:24:52 betelgeuse Exp $
 
 EAPI="prefix 1"
 
@@ -18,8 +18,9 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solar
 IUSE="debug doc soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
-DEPEND="tcl? ( dev-lang/tcl )"
-RDEPEND="${DEPEND}"
+RDEPEND="tcl? ( dev-lang/tcl )"
+DEPEND="${RDEPEND}
+	doc? ( app-arch/unzip )"
 
 SOURCE="/usr/bin/lemon"
 ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"

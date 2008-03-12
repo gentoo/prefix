@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.180 2008/02/14 17:26:45 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.182 2008/03/11 18:26:08 betelgeuse Exp $
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -sqlite-3.5.4.ebuild:
+  Remove package.masked ebuild.
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -sqlite-3.3.17.ebuild,
+  sqlite-3.5.3.ebuild, sqlite-3.5.6.ebuild:
+  Add DEPEND on app-arch/unzip for use doc. Fixes bug #213055. Remove old
+  stable mips version because we don't have a stable tcl any more.
 
   14 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> sqlite-3.5.3.ebuild:
   amd64 stable wrt bug #205556
