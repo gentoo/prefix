@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/sun-javamail-1.4.1.ebuild,v 1.4 2008/03/08 20:37:24 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/sun-javamail-1.4.1.ebuild,v 1.5 2008/03/11 15:16:59 ranger Exp $
 
 EAPI="prefix"
 
