@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.17 2007/03/13 00:40:54 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.18 2008/03/11 18:01:01 jsbronder Exp $
 #
 # Author: Danny van Dyk <kugelfang@gentoo.org>
 #
@@ -159,7 +159,7 @@ need_fortran() {
 # patch_fortran():
 #  Apply necessary patches for ${FORTRANC}
 patch_fortran() {
-	if [ -z "${FORTRANC}" ]; then
+	if [[ -z "${FORTRANC}" || ! -d "${FILESDIR}" ]]; then
 		return
 	fi
 	local PATCHES=$(find ${FILESDIR} -name "${P}-${FORTRANC}-*")

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.31 2008/03/06 20:41:55 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.32 2008/03/11 14:52:45 cardoe Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
@@ -52,8 +52,6 @@ mythtv-plugins_src_unpack() {
 
 mythtv-plugins_src_unpack_patch() {
 	cd "${S}"
-
-	mythtv-fixes_patch
 
 	sed -e 's!PREFIX = /usr/local!PREFIX = /usr!' \
 	-i 'settings.pro' || die "fixing PREFIX to /usr failed"

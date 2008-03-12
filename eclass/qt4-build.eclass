@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.9 2008/03/06 14:44:13 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.10 2008/03/11 16:39:43 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -93,6 +93,12 @@ qt4-build_src_compile() {
 	if [[ $(gcc-fullversion) == "3.4.6" && gcc-specs-ssp ]] ; then
 		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
 		append-flags -fno-stack-protector
+	fi
+
+	# Bug 178652
+	if [[ "$(gcc-major-version)" == "3" ]] && use amd64; then
+		ewarn "Appending -fno-gcse to CFLAGS/CXXFLAGS"
+		append-flags -fno-gcse
 	fi
 
 	myconf="$(standard_configure_options) ${myconf}"
