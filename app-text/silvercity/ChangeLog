@@ -1,6 +1,9 @@
 # ChangeLog for app-text/silvercity
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.22 2008/01/20 15:45:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.23 2008/03/12 16:14:42 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> silvercity-0.9.7.ebuild:
+  sparc stable
 
   20 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   silvercity-0.9.5-r1.ebuild, silvercity-0.9.6-r1.ebuild,
