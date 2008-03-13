@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.226 2008/03/06 16:00:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.227 2008/03/12 23:15:38 dberkholz Exp $
+
+*xterm-234 (12 Mar 2008)
+
+  12 Mar 2008; Donnie Berkholz <dberkholz@gentoo.org>; +xterm-234.ebuild:
+  (#212974) Bump.
 
   06 Mar 2008; Raúl Porcel <armin76@gentoo.org> xterm-232.ebuild:
   alpha/ia64/sparc/x86 stable
