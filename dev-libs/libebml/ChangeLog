@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libebml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.83 2008/02/04 20:34:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.84 2008/03/13 00:07:43 beandog Exp $
+
+*libebml-0.7.8 (13 Mar 2008)
+
+  13 Mar 2008; Steve Dibb <beandog@gentoo.org> +libebml-0.7.8.ebuild:
+  Version bump, bug 213187
 
   04 Feb 2008; Fabian Groffen <grobian@gentoo.org> libebml-0.7.3.ebuild,
   libebml-0.7.7.ebuild, libebml-0.7.7-r1.ebuild:
