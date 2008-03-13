@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/figlet
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/ChangeLog,v 1.31 2007/07/20 16:10:55 drac Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/ChangeLog,v 1.32 2008/03/12 22:05:03 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/figlet-221-gentoo.diff, figlet-222.ebuild:
+  ia64 stable
 
   20 Jul 2007; Samuli Suominen <drac@gentoo.org> figlet-222.ebuild:
   Keyword for ~arm, armin76 made me.
