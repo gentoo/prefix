@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libsvg-cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsvg-cairo/ChangeLog,v 1.32 2008/02/26 19:33:10 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsvg-cairo/ChangeLog,v 1.33 2008/03/12 16:15:33 phreak Exp $
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Peter Johanson (latexer, #206688) from metadata.xml.
 
   26 Feb 2008; Samuli Suominen <drac@gentoo.org> libsvg-cairo-0.1.6.ebuild:
   Use emake and remove pkgconfig from RDEPEND.
