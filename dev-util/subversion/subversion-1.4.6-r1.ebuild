@@ -84,7 +84,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/subversion-1.4.6-neon-0.28.patch
 	epatch "${FILESDIR}"/subversion-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.4.2-interix-prompt.patch
-	epatch "${FILESDIR}"/${P}-neon-version-quotes.patch
 	eprefixify contrib/client-side/svn_load_dirs.pl.in
 
 	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.4\)"/\1 0.27.2 0.28.0"/' \
