@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/javamail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.9 2008/02/15 18:44:41 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.10 2008/03/12 15:15:58 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> javamail-1.0-r1.ebuild:
+  Add ~ia64 wrt #213006
 
   15 Feb 2008; William L. Thomson Jr. <wltjr@gentoo.org>
   javamail-1.0-r1.ebuild:
