@@ -3,9 +3,6 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>latexer@gentoo.org</email>
-	</maintainer>
-	<maintainer>
 		<email>killerfox@gentoo.org</email>
 	</maintainer>
 </pkgmetadata>
