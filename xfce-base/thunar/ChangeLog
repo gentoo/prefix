@@ -1,6 +1,13 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.47 2008/03/10 01:55:13 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.48 2008/03/12 18:14:18 drac Exp $
+
+*thunar-0.9.0-r2 (12 Mar 2008)
+
+  12 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  +files/thunar-0.9.0-fix-defuncts.patch, +thunar-0.9.0-r2.ebuild:
+  Fix problem with Thunar leaving defuncts by including a fix from upstream
+  bug 2983, thanks to VQuickSilver and tcunha.
 
   10 Mar 2008; <ricmm@gentoo.org> thunar-0.8.0-r3.ebuild:
   Drop to ~mips due to unstable deps
