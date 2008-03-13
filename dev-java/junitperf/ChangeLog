@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junitperf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.17 2008/01/10 09:48:14 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.18 2008/03/12 14:45:20 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> junitperf-1.9.1-r1.ebuild:
+  Add ~ia64 wrt #212999
 
   10 Jan 2008; Vlastimil Babka <caster@gentoo.org>
   junitperf-1.9.1-r1.ebuild:
