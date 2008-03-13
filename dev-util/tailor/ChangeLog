@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/tailor
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/tailor/ChangeLog,v 1.8 2007/11/14 08:24:51 robbat2 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tailor/ChangeLog,v 1.9 2008/03/12 18:58:47 phreak Exp $
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Marien Zwart (marienz, #107204) from metadata.xml.
 
 *tailor-0.9.30 (14 Nov 2007)
 
