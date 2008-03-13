@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.65 2008/03/08 13:06:00 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.66 2008/03/12 08:52:29 corsair Exp $
+
+  12 Mar 2008; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  Stable on ppc64; bug #207381
 
   08 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   gnustep-make-2.0.2.ebuild:
