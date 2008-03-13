@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.194 2008/02/04 04:21:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.195 2008/03/12 23:46:01 eva Exp $
+
+*vte-0.16.13 (12 Mar 2008)
+
+  12 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.13.ebuild:
+  bump to 0.16.13, removed useless python inherit and pkg_{postrm,postinst}
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> vte-0.16.12.ebuild:
   Stable for HPPA (bug #208366).
