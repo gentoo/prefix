@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.11 2008/02/16 20:24:36 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.12 2008/03/12 06:32:42 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -110,6 +110,7 @@ src_compile() {
 	    fi
 	    if use tetex; then
 		addwrite /var/cache/fonts
+		addwrite /var/cache/fontconfig
 		addwrite /usr/share/texmf/fonts/pk
 		addwrite /usr/share/texmf/ls-R
 		make pdf || ewarn '"make pdf docs" failed.'
