@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.45 2008/03/10 02:03:18 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.46 2008/03/12 17:00:44 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> autogen-5.9.4.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   10 Mar 2008; <ricmm@gentoo.org> autogen-5.7.1.ebuild, autogen-5.9.ebuild:
   Drop to ~mips due to unstable deps
