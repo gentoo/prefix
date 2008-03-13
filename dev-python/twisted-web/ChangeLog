@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted-web
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.29 2007/06/09 18:04:18 lavajoe Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.30 2008/03/12 18:40:55 phreak Exp $
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Marien Zwart (marienz, #107204) from metadata.xml.
 
   09 Jun 2007; Joe Peterson <lavajoe@gentoo.org> twisted-web-0.7.0.ebuild:
   Add ~x86-fbsd keyword
