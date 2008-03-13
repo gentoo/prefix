@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/dom4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.44 2008/03/11 02:17:19 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.45 2008/03/12 14:46:52 armin76 Exp $
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> dom4j-1.6.1-r3.ebuild:
+  Re-add ~ia64 wrt #212999
 
 *dom4j-1.6.1-r3 (11 Mar 2008)
 
