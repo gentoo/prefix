@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.294 2008/02/17 12:45:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.295 2008/03/02 11:26:25 hollow Exp $
+
+*subversion-1.4.6-r1 (02 Mar 2008)
+
+  02 Mar 2008; Benedikt Böhm <hollow@gentoo.org>
+  +files/subversion-1.4.6-neon-0.28.patch, +subversion-1.4.6-r1.ebuild:
+  add support for neon 0.28.0 wrt #210535
 
   17 Feb 2008; Christoph Mende <angelos@gentoo.org> subversion-1.4.6.ebuild:
   Stable on amd64, bug #207572

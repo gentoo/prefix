@@ -1,0 +1,58 @@
+--- build/ac-macros/neon.m4
++++ build/ac-macros/neon.m4
+@@ -50,14 +50,18 @@
+       NEON_VERSION=`cat $abs_srcdir/neon/.version`
+       AC_MSG_RESULT([$NEON_VERSION])
+ 
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.2[[56]]\.'`" ; then
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[5-8]\.'`"] ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_25], [1],
+                            [Define to 1 if you have Neon 0.25 or later.])
+       fi
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.26\.'`" ; then
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[6-8]\.'`"] ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_26], [1],
+                            [Define to 1 if you have Neon 0.26 or later.])
+       fi
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[7-8]\.'`"] ; then
++        AC_DEFINE_UNQUOTED([SVN_NEON_0_27], [1],
++                           [Define to 1 if you have Neon 0.27 or later.])
++      fi
+ 
+       for svn_allowed_neon in $NEON_ALLOWED_LIST; do
+         if test "$NEON_VERSION" = "$svn_allowed_neon" ||
+@@ -127,14 +131,18 @@
+       NEON_VERSION=`$neon_config --version | sed -e 's/^neon //'`
+       AC_MSG_RESULT([$NEON_VERSION])
+ 
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.2[[56]]\.'`" ; then
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[5-8]\.'`"] ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_25], [1],
+                            [Define to 1 if you have Neon 0.25 or later.])
+       fi
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.26\.'`" ; then
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[6-8]\.'`"] ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_26], [1],
+                            [Define to 1 if you have Neon 0.26 or later.])
+       fi
++      if test -n ["`echo "$NEON_VERSION" | grep '^0\.2[7-8]\.'`"] ; then
++        AC_DEFINE_UNQUOTED([SVN_NEON_0_27], [1],
++                           [Define to 1 if you have Neon 0.27 or later.])
++      fi
+ 
+       for svn_allowed_neon in $NEON_ALLOWED_LIST; do
+         if test "$NEON_VERSION" = "$svn_allowed_neon" ||
+--- subversion/libsvn_ra_dav/session.c
++++ subversion/libsvn_ra_dav/session.c
+@@ -575,7 +575,11 @@
+ } neonprogress_baton_t;
+ 
+ static void
++#ifdef SVN_NEON_0_27
++ra_dav_neonprogress(void *baton, ne_off_t progress, ne_off_t total)
++#else
+ ra_dav_neonprogress(void *baton, off_t progress, off_t total)
++#endif /* SVN_NEON_0_27 */
+ {
+   const neonprogress_baton_t *neonprogress_baton = baton;
+   if (neonprogress_baton->progress_func)
