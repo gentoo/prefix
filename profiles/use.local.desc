@@ -2110,6 +2110,7 @@ x11-libs/gtkmathview:t1lib - Enable t1lib support
 x11-libs/libmatchbox:pango - Enable pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management.
 x11-libs/openmotif:xft - Build OpenMotif with support for XFT font renderer
+x11-libs/vte:nowheelscroll - Disable annoying mouse wheel is arrow up/down behaviour
 x11-libs/qt-core:glib - Enable glib eventloop support
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-gui:glib - Enable glib eventloop support
