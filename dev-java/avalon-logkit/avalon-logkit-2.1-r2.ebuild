@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r2.ebuild,v 1.2 2007/11/28 07:08:45 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r2.ebuild,v 1.4 2008/03/12 15:17:31 armin76 Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/avalon-logkit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.56 2007/11/28 07:08:45 ali_bush Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.59 2008/03/12 20:22:53 betelgeuse Exp $
+
+  12 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  avalon-logkit-1.2-r3.ebuild:
+  Add empty src_test to overwrite upcoming generic src_test.
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  avalon-logkit-1.2-r3.ebuild, avalon-logkit-2.1-r2.ebuild:
+  Re-add ~ia64 wrt #213006
+
+  12 Mar 2008; Brent Baude <ranger@gentoo.org> avalon-logkit-1.2-r3.ebuild,
+  avalon-logkit-2.1-r2.ebuild:
+  Marking ~ppc64 per bug 213006
 
   28 Nov 2007; <alistair@gentoo.org> avalon-logkit-1.2-r3.ebuild,
   avalon-logkit-2.1-r2.ebuild:
