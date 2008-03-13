@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.76 2008/03/08 11:44:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.77 2008/03/13 01:09:50 dirtyepic Exp $
+
+  13 Mar 2008; Ryan Hill <dirtyepic@gentoo.org>
+  +files/fontforge-20080302-bad-apple.patch, fontforge-20080302.ebuild:
+  Add patch from upstream and Ed Catmur to fix segfault when generating fonts
+  containing a symbol cmap. Bug #212715.
 
 *fontforge-20080302 (08 Mar 2008)
 

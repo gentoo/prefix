@@ -1,0 +1,18 @@
+diff -Naurp fontforge-20080302-orig/fontforge/tottf.c fontforge-20080302/fontforge/tottf.c
+--- fontforge-20080302-orig/fontforge/tottf.c	2008-02-29 16:35:14.000000000 -0600
++++ fontforge-20080302/fontforge/tottf.c	2008-03-12 18:30:12.000000000 -0600
+@@ -4718,12 +4718,13 @@ static void dumpcmap(struct alltabs *at,
+     }
+ 
+     format4  = NeedsUCS2Table(sf,&ucs2len,map,modformat==ff_ttfsym);
++    apple2 = NULL;
+     if ( modformat!=ff_ttfsym ) {
+ 	format12 = NeedsUCS4Table(sf,&ucs4len,map);
+ 	format2  = Needs816Enc(sf,&cjklen,map,&apple2,&applecjklen);
+ 	format14 = NeedsVariationSequenceTable(sf,&vslen,map);
+     } else
+-	format12 = format2 = format14 = NULL;
++	format12 = format2 = format14 = apple2 = NULL;
+ 
+     /* Two/Three/Four encoding table pointers, one for ms, one for mac */
+     /*  usually one for mac big, just a copy of ms */

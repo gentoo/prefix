@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080302.ebuild,v 1.1 2008/03/08 11:44:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080302.ebuild,v 1.2 2008/03/13 01:09:50 dirtyepic Exp $
 
 EAPI="prefix"
+
+inherit eutils
 
 DESCRIPTION="postscript font editor and converter"
 HOMEPAGE="http://fontforge.sourceforge.net/"
@@ -30,6 +32,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i '3i#undef X_DISPLAY_MISSING' inc/config.h.in || die #205455
+
+	epatch "${FILESDIR}"/${P}-bad-apple.patch	#212715
 }
 
 src_compile() {
