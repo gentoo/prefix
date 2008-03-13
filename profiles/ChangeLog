@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1204 2008/03/12 00:02:08 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1208 2008/03/13 01:12:17 dirtyepic Exp $
+
+  13 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Remove fontforge from package.mask.  Bug #212715.
+
+  12 Mar 2008; Robert Buchholz <rbu@gentoo.org> use.local.desc:
+  Added ivtv use flag for freevo.
+
+  12 Mar 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  update p.mask for anjuta 2.4
+
+  12 Mar 2008; Justin Bronder <jsbronder@gentoo.org> use.local.desc:
+  Adding USE=cpusets for sys-cluster/torque-2.3.0.
 
   12 Mar 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
   phase out old kpowersave powersave daemon
