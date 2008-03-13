@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.87 2008/03/12 01:49:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.88 2008/03/12 07:31:41 opfer Exp $
+
+  12 Mar 2008; Christian Faulhammer <opfer@gentoo.org> libIDL-0.8.10.ebuild:
+  stable x86, bug 212986
 
   12 Mar 2008; Brent Baude <ranger@gentoo.org> libIDL-0.8.10.ebuild:
   Marking libIDL-0.8.10 ppc64 for bug 212986
