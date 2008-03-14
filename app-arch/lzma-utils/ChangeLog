@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.26 2008/03/11 14:37:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.27 2008/03/14 01:35:21 jer Exp $
+
+  14 Mar 2008; Jeroen Roovers <jer@gentoo.org> lzma-utils-4.32.5.ebuild:
+  Stable for HPPA (bug #213041).
 
   11 Mar 2008; Raúl Porcel <armin76@gentoo.org> lzma-utils-4.32.5.ebuild:
   alpha/ia64/sparc/x86 stable
