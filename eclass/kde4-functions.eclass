@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.3 2008/03/10 21:40:05 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.4 2008/03/13 17:57:51 ingmar Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -362,7 +362,7 @@ buildsycoca() {
 		# We have to start a new dbus session, because the DBUS_SESSION_BUS_ADDRESS in the environment
 		# could from from the user's environment (through su [without '-']), causing kbuildsycoca4 to hang.
 
-		einfo "Starting dbus session for kbuildsycoca4"
+		echo "Starting dbus session for kbuildsycoca4"
 		local _i
 		for _i in $(dbus-launch); do
 			# We export both the ADDRESS _and_ the PID. We need the latter only to kill our session.
@@ -377,7 +377,7 @@ buildsycoca() {
 		${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
 
-		einfo "Killing dbus session for kbuildsycoca4"
+		echo "Killing dbus session for kbuildsycoca4"
 		debug-print "ADDRES ${DBUS_SESSION_BUS_ADDRESS}"
 		debug-print "PID: ${DBUS_SESSION_BUS_PID}"
 		kill ${DBUS_SESSION_BUS_PID}
