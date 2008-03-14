@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/xalan-2.7.0-r5.ebuild,v 1.4 2008/02/12 09:50:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/xalan-2.7.0-r5.ebuild,v 1.5 2008/03/13 23:07:16 ken69267 Exp $
 
 EAPI="prefix"
 
