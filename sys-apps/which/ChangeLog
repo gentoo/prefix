@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/which
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.26 2008/03/07 14:24:06 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.28 2008/03/13 18:48:23 cardoe Exp $
+
+  13 Mar 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/which-2.19-remove-readline.patch, which-2.19.ebuild:
+  readline is not necessary. bug #207151. patch from Daniel Robbins
+  <drobbins@funtoo.org>
 
   07 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> which-2.19.ebuild:
   amd64 stable

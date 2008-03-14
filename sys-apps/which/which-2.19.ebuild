@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/which-2.19.ebuild,v 1.3 2008/03/07 14:24:06 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/which-2.19.ebuild,v 1.5 2008/03/13 18:48:23 cardoe Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/which-gentoo.patch
+	epatch "${FILESDIR}"/which-2.19-remove-readline.patch
 }
 
 src_install() {
