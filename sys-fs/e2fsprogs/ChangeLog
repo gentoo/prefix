@@ -1,6 +1,11 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.136 2008/02/20 22:32:50 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.137 2008/03/14 01:38:11 vapier Exp $
+
+*e2fsprogs-1.40.8 (14 Mar 2008)
+
+  14 Mar 2008; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.40.8.ebuild:
+  Version bump.
 
   20 Feb 2008; <solar@gentoo.org> e2fsprogs-1.40.5-r1.ebuild,
   e2fsprogs-1.40.6.ebuild:
