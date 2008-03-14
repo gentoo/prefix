@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.261 2008/03/04 00:42:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.262 2008/03/13 16:54:16 ricmm Exp $
+
+  13 Mar 2008; <ricmm@gentoo.org> gvim-6.4.ebuild, gvim-7.0.235.ebuild:
+  Drop to ~mips due to unstable deps
 
   04 Mar 2008; Jeroen Roovers <jer@gentoo.org> Manifest:
   Fix Manifest.
