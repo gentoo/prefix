@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libebml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.84 2008/03/13 00:07:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.86 2008/03/13 11:24:02 aballier Exp $
+
+  13 Mar 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/libebml-shared2.patch, -libebml-0.7.3.ebuild,
+  -libebml-0.7.7.ebuild:
+  remove old
+
+*libebml-0.7.8-r1 (13 Mar 2008)
+
+  13 Mar 2008; Alexis Ballier <aballier@gentoo.org> -libebml-0.7.8.ebuild,
+  +libebml-0.7.8-r1.ebuild:
+  fix regressions like wrong install locations for the library, dropped
+  keywords, bad gcc calls, etc. bug #213233
 
 *libebml-0.7.8 (13 Mar 2008)
 
