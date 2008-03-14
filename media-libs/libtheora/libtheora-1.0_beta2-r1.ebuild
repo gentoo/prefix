@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta2-r1.ebuild,v 1.7 2008/03/10 15:29:16 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta2-r1.ebuild,v 1.8 2008/03/13 09:37:38 corsair Exp $
 
 EAPI="prefix"
 
