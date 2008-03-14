@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/oniguruma
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.36 2008/03/11 14:46:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.37 2008/03/13 15:59:36 jer Exp $
+
+  13 Mar 2008; Jeroen Roovers <jer@gentoo.org> oniguruma-5.9.1.ebuild:
+  Stable for HPPA (bug #211986).
 
   11 Mar 2008; Brent Baude <ranger@gentoo.org> oniguruma-5.9.1.ebuild:
   Marking oniguruma-5.9.1 ppc64 for bug 211986
