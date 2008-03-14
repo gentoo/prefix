@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.48 2008/03/10 22:33:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.49 2008/03/13 20:01:15 aballier Exp $
+
+  13 Mar 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r12.ebuild:
+  Add a patch by Hanno Meyer-Thurow to fix build with gcc 4.3, bug #213144
 
   10 Mar 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r12.ebuild:
