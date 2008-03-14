@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8379 2008/03/13 01:12:17 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8381 2008/03/13 10:57:59 wschlich Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,9 +29,17 @@
 
 ### END OF EXAMPLES
 
+# Wolfram Schlich <wschlich@gentoo.org> (13 Mar 2008)
+# mondo-rescue previously was a candidate for complete
+# removal and is now a candidate for being proxy-maintained
+# (see bug #106497)
+app-backup/mondo-rescue
+app-backup/mindi
+app-backup/mindi-busybox
+
 # Markus Ullmann <jokey@gentoo.org> (12 Mar 2008)
 # mask test version
-=net-im/openfire-3.5_rc*
+=net-im/openfire-3.5.0_rc*
 
 # Christian Hartmann <ian@gentoo.org> (12 Mar 2008)
 # Pending removal
@@ -1538,11 +1546,6 @@ sys-apps/gli
 >=dev-db/mysql-community-5.1
 >=virtual/mysql-5.1
 =dev-db/mysql-4.1.23_alpha20070101-r61
-
-# Wolfram Schlich <wschlich@gentoo.org> (26 Nov 2005)
-# has security issues and will be removed from portage
-# due to upstream behaviour, see bug #106497
-app-backup/mondo-rescue
 
 # Matthew Kennedy <mkennedy@gentoo.org> (31 Jul 2005)
 # Upstream author requests official version ports only.
