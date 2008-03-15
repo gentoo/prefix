@@ -22,6 +22,7 @@ src_unpack() {
 	cd ${S}
 
 	epatch "${FILESDIR}"/${P}-solaris.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify main.c qlop.c
 }

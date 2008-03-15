@@ -55,7 +55,7 @@ main.c: Addition of prefix to various paths
 --- qlop.c
 +++ qlop.c
 @@ -21,7 +21,7 @@
- # include <sys/time.h>
+ # define ki_start kp_proc.p_starttime
  #endif
  
 -#define QLOP_DEFAULT_LOGFILE "/var/log/emerge.log"
