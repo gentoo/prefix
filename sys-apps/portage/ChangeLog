@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9468 (15 Mar 2008)
+
+  15 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9380.ebuild, +portage-2.2.00.9468.ebuild:
+  New snapshot, defaulting to parallel fetch
+
 *portage-2.2.00.9450 (07 Mar 2008)
 
   07 Mar 2008; Fabian Groffen <grobian@gentoo.org>
