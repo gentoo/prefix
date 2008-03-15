@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/libgnomekbd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.27 2008/03/12 07:42:17 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.28 2008/03/14 15:24:42 armin76 Exp $
+
+  14 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  libgnomekbd-2.20.0-r1.ebuild:
+  alpha/ia64/sparc stable wrt #212986
 
   12 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
   libgnomekbd-2.20.0-r1.ebuild:
