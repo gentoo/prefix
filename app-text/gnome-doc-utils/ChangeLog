@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.100 2008/03/12 07:34:55 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.101 2008/03/14 15:21:49 armin76 Exp $
+
+  14 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  gnome-doc-utils-0.12.1.ebuild:
+  alpha/ia64/sparc stable wrt #212986
 
   12 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
   gnome-doc-utils-0.12.1.ebuild:
