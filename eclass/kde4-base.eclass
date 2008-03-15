@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.4 2008/03/10 21:41:56 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.5 2008/03/14 15:51:50 ingmar Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -380,13 +380,13 @@ kde4-base_src_configure() {
 
 	# Final flag handling
 	if has kdeenablefinal ${IUSE//+} && use kdeenablefinal; then
-		einfo "Activating enable-final flag"
+		echo "Activating enable-final flag"
 		mycmakeargs="${mycmakeargs} -DKDE4_ENABLE_FINAL=ON"
 	fi
 
 	 # Enable generation of HTML handbook
 	if has htmlhandbook ${IUSE//+} && use htmlhandbook; then
-		einfo "Enabling building of HTML handbook"
+		echo "Enabling building of HTML handbook"
 		mycmakeargs="${mycmakeargs} -DKDE4_ENABLE_HTMLHANDBOOK=ON"
 	fi
 
