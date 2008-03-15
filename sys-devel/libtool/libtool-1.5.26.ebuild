@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.8 2008/03/01 19:47:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.9 2008/03/14 11:22:20 vapier Exp $
 
 EAPI="prefix"
 
@@ -65,6 +65,7 @@ src_unpack() {
 
 	# Now let's run all our autotool stuff so that files we patch
 	# below don't get regenerated on us later
+	einfo "Ignore any warnings below about QA/autotools"
 	cp libtool.m4 acinclude.m4
 	local d p
 	for d in . libltdl ; do
