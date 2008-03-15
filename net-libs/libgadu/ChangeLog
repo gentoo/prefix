@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libgadu
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/ChangeLog,v 1.22 2007/05/21 19:59:59 dertobi123 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/ChangeLog,v 1.23 2008/03/14 11:17:53 phreak Exp $
+
+  14 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Karol Wojtaszek (sekretarz, #56912) from metadata.xml.
 
   21 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   libgadu-1.7.1.ebuild:
