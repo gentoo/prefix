@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libart_lgpl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.57 2008/03/12 01:46:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.58 2008/03/14 15:25:30 armin76 Exp $
+
+  14 Mar 2008; Raúl Porcel <armin76@gentoo.org> libart_lgpl-2.3.20.ebuild:
+  alpha/ia64/sparc stable wrt #212986
 
   12 Mar 2008; Brent Baude <ranger@gentoo.org> libart_lgpl-2.3.20.ebuild:
   Marking libart_lgpl-2.3.20 ppc64 for bug 212986
