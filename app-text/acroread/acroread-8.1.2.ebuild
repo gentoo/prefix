@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2.ebuild,v 1.3 2008/02/10 23:04:57 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2.ebuild,v 1.4 2008/03/14 17:36:19 armin76 Exp $
 
 EAPI="prefix"
 
@@ -39,13 +39,13 @@ RESTRICT="strip mirror"
 RDEPEND="x86? ( >=x11-libs/gtk+-2.0
 			cups? ( net-print/cups )
 			ldap? ( net-nds/openldap )
-			|| ( net-libs/xulrunner
-				www-client/mozilla-firefox
-				www-client/seamonkey
-				www-client/seamonkey-bin ) )
+			|| ( =net-libs/xulrunner-1.8*
+				=www-client/mozilla-firefox-2*
+				=www-client/seamonkey-1*
+				=www-client/seamonkey-bin-1* ) )
 	amd64? ( >=app-emulation/emul-linux-x86-baselibs-2.4.2
 			>=app-emulation/emul-linux-x86-gtklibs-2.0
-			>=www-client/seamonkey-bin-1.1.7 )"
+			=www-client/seamonkey-bin-1* )"
 QA_TEXTRELS="opt/Adobe/Reader8/Reader/intellinux/plug_ins/PPKLite.api
 	opt/Adobe/Reader8/Browser/intellinux/nppdf.so
 	opt/netscape/plugins/nppdf.so"
