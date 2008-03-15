@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1211 2008/03/13 17:35:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1213 2008/03/15 01:03:59 dberkholz Exp $
+
+  15 Mar 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask xf86-video-ati 6.8 (and older RCs).
+
+  14 Mar 2008; Wolfram Schlich <wschlich@gentoo.org> package.mask:
+  fix mindi entries (thanks to tove for the headsup)
 
   13 Mar 2008; Raúl Porcel <armin76@gentoo.org> updates/1Q-2008:
   slotmove xulrunner-1.8* to slot 1.8

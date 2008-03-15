@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8381 2008/03/13 10:57:59 wschlich Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8385 2008/03/15 01:03:59 dberkholz Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,13 +29,18 @@
 
 ### END OF EXAMPLES
 
+# Marijn Schouten <hkBst@gentoo.org> (14 Mar 2008)
+# binary package, needs obsolete libcrypto, bug 202160.
+# will be removed
+dev-scheme/mit-scheme
+
 # Wolfram Schlich <wschlich@gentoo.org> (13 Mar 2008)
 # mondo-rescue previously was a candidate for complete
 # removal and is now a candidate for being proxy-maintained
 # (see bug #106497)
 app-backup/mondo-rescue
-app-backup/mindi
-app-backup/mindi-busybox
+sys-apps/mindi
+sys-apps/mindi-busybox
 
 # Markus Ullmann <jokey@gentoo.org> (12 Mar 2008)
 # mask test version
@@ -917,10 +922,6 @@ sys-kernel/hppa-sources
 # Brokeness in these
 =mail-mta/nullmailer-1.03*
 
-# Gustavo Felisberto <humpback@gentoo.org> (07 Nov 2007)
-# Beta version
->=net-im/skype-2.0.0.13
-
 # Hanno Boeck <hanno@gentoo.org> (11 Nov 2007)
 # Remaining beryl-related packages, beryl has been removed
 x11-wm/heliodor
@@ -1246,10 +1247,6 @@ games-rpg/openrpg
 # Piotr Jaroszyński <peper@gentoo.org> (28 Mar 2006)
 # Unusable for now.
 app-pda/libopensync-plugin-synce
-
-# Joshua Baergen <joshuabaergen@gentoo.org> (27 Mar 2007)
-# Release candidate ATI driver
->=x11-drivers/xf86-video-ati-6.6.191
 
 # Mike Doty <kingtaco@gentoo.org> (24 Mar 2007)
 # Sorting out media-video/{spca5xx,gspca{,v1}} bug 159176
