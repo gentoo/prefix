@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.32 2008/03/12 01:47:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.33 2008/03/14 15:26:52 armin76 Exp $
+
+  14 Mar 2008; Raúl Porcel <armin76@gentoo.org> pygobject-2.14.1.ebuild:
+  alpha/ia64/sparc stable wrt #212986
 
   12 Mar 2008; Brent Baude <ranger@gentoo.org> pygobject-2.14.1.ebuild:
   Marking pygobject-2.14.1 ppc64 for bug 212986
