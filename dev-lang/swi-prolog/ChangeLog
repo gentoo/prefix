@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.139 2008/03/08 21:07:10 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.140 2008/03/14 06:38:20 keri Exp $
+
+*swi-prolog-5.6.52 (14 Mar 2008)
+
+  14 Mar 2008; keri <keri@gentoo.org> +swi-prolog-5.6.52.ebuild:
+  Version bump.
 
   08 Mar 2008; keri <keri@gentoo.org> swi-prolog-5.6.51.ebuild:
   Support ibm-jdk-1.6.
