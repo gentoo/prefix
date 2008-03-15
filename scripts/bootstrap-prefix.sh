@@ -442,7 +442,7 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	PV=2.4.4
+	PV=2.5.1
 	A=Python-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
@@ -723,6 +723,9 @@ then
 					;;
 					i386)
 						CHOST="i386-pc-openbsd`uname -r`"
+					;;
+					amd64)
+						CHOST="amd64-pc-openbsd`uname -r`"
 					;;
 					*)
 						eerror "Sorry, don't know about OpenBSD on `uname -m` yet"
