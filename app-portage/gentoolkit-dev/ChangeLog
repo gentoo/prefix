@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.56 2008/03/14 03:09:40 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.57 2008/03/14 16:31:16 fuzzyray Exp $
+
+*gentoolkit-dev-0.2.6.8 (14 Mar 2008)
+
+  14 Mar 2008; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-dev-0.2.6.7.ebuild, +gentoolkit-dev-0.2.6.8.ebuild:
+  Revbump to fix compilation error in echangelog (Bug #213376)
 
 *gentoolkit-dev-0.2.6.7 (13 Mar 2008)
 
