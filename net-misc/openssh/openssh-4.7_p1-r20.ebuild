@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r20.ebuild,v 1.7 2008/03/06 11:17:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r20.ebuild,v 1.8 2008/03/14 11:53:30 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -150,9 +150,18 @@ src_install() {
 	keepdir /var/empty
 
 	newpamd "${FILESDIR}"/sshd.pam_include.2 sshd
-	use pam \
-		&& dosed "/^#UsePAM /s:.*:UsePAM yes:" /etc/ssh/sshd_config \
-		&& dosed "/^#PasswordAuthentication /s:.*:PasswordAuthentication no:" /etc/ssh/sshd_config
+	if use pam; then
+		# Whenever enabling the pam USE flag, enable PAM support on
+		# the configuration file. Also disable password authentication
+		# and printing of motd and last login. The latter is done to
+		# leave those tasks up to PAM itself, through pambase.
+		sed -i \
+			-e "/^#UsePAM /s:.*:UsePAM yes:" \
+			-e "/^#PasswordAuthentication /s:.*:PasswordAuthentication no:" \
+			-e "/^#PrintLastLog /s:.*:PrintLastLog no:" \
+			-e "/^#PrintMotd /s:.*:PrintMotd no:" \
+			"${ED}"/etc/ssh/sshd_config
+	fi
 
 	doman contrib/ssh-copy-id.1
 	dodoc ChangeLog CREDITS OVERVIEW README* TODO sshd_config

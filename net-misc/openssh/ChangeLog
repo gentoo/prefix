@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.286 2008/03/06 11:17:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.287 2008/03/14 11:53:30 flameeyes Exp $
+
+  14 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.7_p1-r20.ebuild:
+  Disable printing of motd and lastlog when enabling PAM, on the
+  pambase-dependent ebuild, as system-login takes care of that. Closes bug
+  #213234.
 
   06 Mar 2008; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1-r20.ebuild:
   Add ~alpha/~ia64 wrt #210777
