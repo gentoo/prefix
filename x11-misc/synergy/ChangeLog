@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/synergy
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/ChangeLog,v 1.54 2008/02/24 17:59:49 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/ChangeLog,v 1.55 2008/03/14 10:12:12 phreak Exp $
+
+  14 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml,
+  synergy-1.2.4.ebuild, synergy-1.2.7.ebuild, synergy-1.2.8.ebuild:
+  Removing Masatomo Nakano (nakano, #200340) from metadata.xml. Fixing the
+  minor syntax errors.
 
   24 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> synergy-1.3.1.ebuild:
   Fix building when extra warnings are enabled (think new version of GCC for
