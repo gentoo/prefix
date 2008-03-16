@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.0-r4.ebuild,v 1.10 2008/03/16 01:19:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.1.ebuild,v 1.1 2008/03/16 01:20:10 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 # Version of .c wrapper to use
-W_VER="1.5.0"
+W_VER="1.5.1"
 
 DESCRIPTION="Utility to change the gcc compiler being used"
 HOMEPAGE="http://www.gentoo.org/"
