@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.371 2008/03/14 15:26:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.372 2008/03/15 12:19:33 nixnut Exp $
+
+  15 Mar 2008; nixnut <nixnut@gentoo.org> gtk+-2.12.8.ebuild:
+  Stable on ppc wrt bug 212986
 
   14 Mar 2008; Raúl Porcel <armin76@gentoo.org> gtk+-2.12.8.ebuild:
   alpha/ia64/sparc stable wrt #212986
