@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.33 2008/03/14 15:26:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.34 2008/03/15 12:31:37 nixnut Exp $
+
+  15 Mar 2008; nixnut <nixnut@gentoo.org> pygobject-2.14.1.ebuild:
+  Stable on ppc wrt bug 212986
 
   14 Mar 2008; Raúl Porcel <armin76@gentoo.org> pygobject-2.14.1.ebuild:
   alpha/ia64/sparc stable wrt #212986
