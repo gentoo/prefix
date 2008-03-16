@@ -491,7 +491,7 @@ bootstrap_python() {
 	einfo "Installing ${A%-*}"
 	$MAKE altinstall || exit 1
 	cd "${ROOT}"/usr/bin
-	ln -sf python2.4 python
+	ln -sf python2.5 python
 
 	einfo "${A%-*} successfully bootstrapped"
 }
