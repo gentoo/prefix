@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.642 2008/02/19 05:47:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.643 2008/03/16 00:24:45 vapier Exp $
+
+  16 Mar 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.1.2.ebuild:
+  Post minor avr/mips updates.
 
   19 Feb 2008; Mike Frysinger <vapier@gentoo.org> files/awk/fixlafiles.awk:
   Fix from Roy Marples to fixup portability #210590.
