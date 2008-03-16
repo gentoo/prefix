@@ -50,6 +50,7 @@ x86-freebsd	default-prefix/bsd/freebsd/6.3/x86			dev
 # OpenBSD Profiles
 ppc-openbsd default-prefix/bsd/openbsd/4.2/ppc			dev
 x86-openbsd default-prefix/bsd/openbsd/4.2/x86			dev
+x64-openbsd	default-prefix/bsd/openbsd/4.2/x64			dev
 
 # NetBSD Profiles
 x86-netbsd	default-prefix/bsd/netbsd/4.0/x86			dev
