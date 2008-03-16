@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.75 2008/03/14 15:22:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.76 2008/03/15 12:24:45 nixnut Exp $
+
+  15 Mar 2008; nixnut <nixnut@gentoo.org> desktop-file-utils-0.14-r1.ebuild:
+  Stable on ppc wrt bug 212986
 
   14 Mar 2008; Raúl Porcel <armin76@gentoo.org>
   desktop-file-utils-0.14-r1.ebuild:
