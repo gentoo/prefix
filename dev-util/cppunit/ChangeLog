@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cppunit
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.40 2008/01/10 05:29:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.41 2008/03/15 17:39:45 dev-zero Exp $
+
+*cppunit-1.12.1 (15 Mar 2008)
+
+  15 Mar 2008; Tiziano Müller <dev-zero@gentoo.org> +cppunit-1.12.1.ebuild:
+  Version bump.
 
   10 Jan 2008; Jeroen Roovers <jer@gentoo.org> cppunit-1.12.0.ebuild:
   Marked ~hppa (mr_bones, media-libs/musicbrainz dep).
