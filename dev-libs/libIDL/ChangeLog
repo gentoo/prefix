@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.89 2008/03/14 15:23:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.90 2008/03/15 12:50:41 nixnut Exp $
+
+  15 Mar 2008; nixnut <nixnut@gentoo.org> libIDL-0.8.10.ebuild:
+  Stable on ppc wrt bug 212986
 
   14 Mar 2008; Raúl Porcel <armin76@gentoo.org> libIDL-0.8.10.ebuild:
   alpha/ia64/sparc stable wrt #212986
