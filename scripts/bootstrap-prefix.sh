@@ -461,6 +461,13 @@ bootstrap_python() {
 	S="${S}"/Python-${PV}
 	cd "${S}"
 
+	# fix OpenBSD detection
+	sed -e 's/OpenBSD\/4.\[\[0\]\]/OpenBSD\/4.\[\[0123456789\]\]/' \
+		configure > configure.new
+	mv -f configure.new configure
+	chmod 755 configure
+	[[ ${CHOST} == *-openbsd* ]] && CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
+
 	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
 	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
