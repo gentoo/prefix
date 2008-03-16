@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.21 2008/02/14 03:22:45 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.22 2008/03/15 13:45:12 dev-zero Exp $
+
+  15 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  boost-build-1.34.1.ebuild:
+  Fixed typo in description.
 
   14 Feb 2008; Mark Loeser <halcy0n@gentoo.org> boost-build-1.34.1.ebuild:
   Fix bug #210029; thanks to Daniel Pielmeier <daniel.pielmeier AT googlemail

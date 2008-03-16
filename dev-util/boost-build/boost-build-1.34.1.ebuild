@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.12 2008/02/14 03:22:45 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.13 2008/03/15 13:45:12 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
 
-DESCRIPTION="A system for large project software construction, which is simple to use and powerfull."
+DESCRIPTION="A system for large project software construction, which is simple to use and powerful."
 HOMEPAGE="http://www.boost.org/tools/build/v2/index.html"
 SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 
