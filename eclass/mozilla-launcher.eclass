@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla-launcher.eclass,v 1.19 2008/02/13 08:57:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla-launcher.eclass,v 1.20 2008/03/15 20:18:12 armin76 Exp $
 
 inherit nsplugins multilib
 
@@ -69,7 +69,8 @@ install_mozilla_launcher_stub() {
 	declare libdir=$2
 
 	# If we use xulrunner, the name of the binary should be the same
-	if [[ ! ${PV} < 3.0_beta1 ]] && [[ ${PN: -4} != "-bin" ]] && use xulrunner ; then
+	if [[ ${name: -3} == "xul" ]]; then
+		name=${name/xul/}
 		declare appname=xulrunner
 		declare xulparams="export XUL_PARAMS=${libdir}/application.ini"
 		declare libdir="/usr/$(get_libdir)/xulrunner"
