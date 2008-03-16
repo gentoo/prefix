@@ -121,6 +121,8 @@ src_unpack() {
 	# at least IRIX starts spitting out ugly errors, but we want to use prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${P}-no-hardcoded-grep.patch
+	# OpenBSD dies during compilation because of some missing defines
+	epatch "${FILESDIR}"/${P}-openbsd4.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
