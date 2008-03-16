@@ -1,6 +1,19 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.182 2008/03/11 18:26:08 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.186 2008/03/16 02:14:53 jer Exp $
+
+  16 Mar 2008; Jeroen Roovers <jer@gentoo.org> sqlite-3.5.6.ebuild:
+  Stable for HPPA (bug #213500).
+
+  16 Mar 2008; Dawid Węgliński <cla@gentoo.org> sqlite-3.5.6.ebuild:
+  Stable on x86 (bug #213500)
+
+  15 Mar 2008; Ferris McCormick <fmccor@gentoo.org> sqlite-3.5.6.ebuild:
+  Sparc stable --- Bug #213500 --- All 45751 tests good and running well for
+  over 30 days.
+
+  15 Mar 2008; Tobias Scherbaum <dertobi123@gentoo.org> sqlite-3.5.6.ebuild:
+  ppc stable, bug #213500
 
   11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -sqlite-3.5.4.ebuild:
   Remove package.masked ebuild.
