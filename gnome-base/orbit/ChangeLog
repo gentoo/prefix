@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/orbit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.123 2008/03/14 15:20:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.124 2008/03/15 12:52:04 nixnut Exp $
+
+  15 Mar 2008; nixnut <nixnut@gentoo.org> orbit-2.14.12.ebuild:
+  Stable on ppc wrt bug 212986
 
   14 Mar 2008; Raúl Porcel <armin76@gentoo.org> orbit-2.14.12.ebuild:
   alpha/ia64/sparc stable wrt #212986
