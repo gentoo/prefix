@@ -166,6 +166,9 @@ bootstrap_setup() {
 		i386-pc-openbsd*)
 			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
 			;;
+		x86_64-pc-openbsd*)
+			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
+			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
@@ -204,6 +207,7 @@ bootstrap_tree() {
 		i*86-pc-netbsdelf*)          PV="${def}" ;; 
 		powerpc-unknown-openbsd*)    PV="${def}" ;;
 		i*86-pc-openbsd*)            PV="${def}" ;;
+		x86_64-pc-openbsd*)          PV="${def}" ;;
 		i386-pc-solaris2.10)         PV="${def}" ;;
 		sparc-sun-solaris2.10)       PV="${def}" ;;
 		sparc-sun-solaris2.9)        PV="${def}" ;;
@@ -725,7 +729,7 @@ then
 						CHOST="i386-pc-openbsd`uname -r`"
 					;;
 					amd64)
-						CHOST="amd64-pc-openbsd`uname -r`"
+						CHOST="x86_64-pc-openbsd`uname -r`"
 					;;
 					*)
 						eerror "Sorry, don't know about OpenBSD on `uname -m` yet"
