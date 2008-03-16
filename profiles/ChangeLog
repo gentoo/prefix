@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1213 2008/03/15 01:03:59 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1215 2008/03/15 19:35:35 dertobi123 Exp $
+
+  15 Mar 2008; Tobias Scherbaum <dertobi123@gentoo.org> use.local.desc:
+  Add targrey for mail-filter/postgrey
+
+  15 Mar 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masked sci-electronics/lard for removal in 30 days.
 
   15 Mar 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
   Unmask xf86-video-ati 6.8 (and older RCs).

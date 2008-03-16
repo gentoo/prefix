@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3429 2008/03/12 17:47:28 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3430 2008/03/15 19:35:34 dertobi123 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -850,6 +850,7 @@ mail-filter/dspam:user-homedirs - Build with user homedir support
 mail-filter/dspam:virtual-users - Build with virtual-users support
 mail-filter/libmilter:poll - Use poll instead of select
 mail-filter/maildrop:authlib - Add courier-authlib suport
+mail-filter/postgrey:targrey - Enables the targrey patch
 mail-filter/qmail-scanner:spamassassin - Build faster spamassassin checks into qmail-scanner
 mail-filter/simscan:attachment - Enable attachment scanning
 mail-filter/simscan:custom-smtp-reject - Return smtp reject message with virus name.
