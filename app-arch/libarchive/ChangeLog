@@ -1,6 +1,26 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.18 2008/02/26 12:31:39 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.22 2008/03/15 22:15:35 flameeyes Exp $
+
+*libarchive-2.5.0_beta (15 Mar 2008)
+
+  15 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +libarchive-2.5.0_beta.ebuild:
+  Add new beta of libarchive 2.5. Not package.masked as there seems not to
+  be any huge changes for now.
+
+  15 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  libarchive-2.4.12.ebuild:
+  amd64 stable wrt bug #213503
+
+  15 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Signing failed, re-sign.
+
+*libarchive-2.4.14 (15 Mar 2008)
+
+  15 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -libarchive-2.4.13.ebuild, +libarchive-2.4.14.ebuild:
+  Version bump.
 
 *libarchive-2.4.13 (26 Feb 2008)
 
