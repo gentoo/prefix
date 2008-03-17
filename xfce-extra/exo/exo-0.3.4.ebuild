@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit xfce44 python
+inherit xfce44 python eutils
 
 XFCE_VERSION=4.4.2
 xfce44
 xfce44_core_package
 
 DESCRIPTION="Extensions, widgets and framework library with session management support"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="debug doc hal libnotify python"
 
 RDEPEND=">=dev-lang/perl-5.6
@@ -39,6 +39,17 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
 src_unpack() {
 	unpack ${A}
 	sed -i -e 's:-Werror::g' "${S}"/configure
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && {
+		# configure detects getmntent, which is false!
+		export ac_cv_func_getmntent=no
+	}
+
+	xfce44_src_compile
 }
 
 # See bug 164780 for reference

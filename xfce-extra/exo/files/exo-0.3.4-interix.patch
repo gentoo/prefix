@@ -1,0 +1,108 @@
+diff -ru -x '*.P[l]o' exo-0.3.4.orig/exo/exo-mount-point.c exo-0.3.4/exo/exo-mount-point.c
+--- exo-0.3.4.orig/exo/exo-mount-point.c	2008-03-13 08:08:55 +0100
++++ exo-0.3.4/exo/exo-mount-point.c	2008-03-13 08:58:10 +0100
+@@ -72,7 +72,10 @@
+ #include <exo/exo-string.h>
+ #include <exo/exo-alias.h>
+ 
+-
++#if defined(__INTERIX)
++#include <dirent.h>
++#include <sys/statvfs.h>
++#endif
+ 
+ /* define _PATH_FSTAB if undefined */
+ #ifndef _PATH_FSTAB
+@@ -309,6 +312,45 @@
+       /* release the buffer */
+       free (mntbuf);
+     }
++#elif defined(__INTERIX)
++  DIR* dirp = opendir("/dev/fs");
++  if(dirp == NULL) {
++    g_set_error (error, G_FILE_ERROR, g_file_error_from_errno (errno),
++                 _("Failed to open file \"%s\": %s"), "/dev/fs",
++                 g_strerror (errno));
++    return NULL;
++  } else {
++	char file_name[9 + NAME_MAX];
++	int saved_errno;
++
++	while(1) {
++	  struct statvfs stat_buf;
++	  struct dirent entry;
++	  struct dirent *result;
++
++	  if (readdir_r (dirp, &entry, &result) || result == NULL)
++		 break;
++
++	  strcpy (file_name, "/dev/fs/");
++	  strcat (file_name, entry.d_name);
++
++	  if(statvfs(file_name, &stat_buf) == 0)
++	  {
++		exo_mount_point_add_if_matches(mask, device, folder, fstype,
++										stat_buf.f_mntfromname,
++										stat_buf.f_mntonname,
++										stat_buf.f_fstypename,
++										((stat_buf.f_flag & ST_RDONLY) != 0),
++										&mount_points);
++	  }
++	  else
++	  {
++	  	/* this is ok for now... */
++	  }
++	}
++
++	closedir (dirp);
++  }
+ #else
+ #error "Add support for your operating system here."
+ #endif
+@@ -413,6 +455,46 @@
+ 
+   /* close the file handle */
+   endfsent ();
++#elif defined(__INTERIX)
++  DIR* dirp = opendir("/dev/fs");
++  if(dirp == NULL) {
++    g_set_error (error, G_FILE_ERROR, g_file_error_from_errno (errno),
++                 _("Failed to open file \"%s\": %s"), "/dev/fs",
++                 g_strerror (errno));
++    return NULL;
++  } else {
++	char file_name[9 + NAME_MAX];
++	int saved_errno;
++
++	while(1) {
++	  struct statvfs stat_buf;
++	  struct dirent entry;
++	  struct dirent *result;
++
++	  if (readdir_r (dirp, &entry, &result) || result == NULL)
++		 break;
++
++	  strcpy (file_name, "/dev/fs/");
++	  strcat (file_name, entry.d_name);
++
++	  if(statvfs(file_name, &stat_buf) == 0)
++	  {
++		exo_mount_point_add_if_matches(mask, device, folder, fstype,
++										stat_buf.f_mntfromname,
++										stat_buf.f_mntonname,
++										stat_buf.f_fstypename,
++										((stat_buf.f_flag & ST_RDONLY) != 0),
++										&mount_points);
++	  }
++	  else
++	  {
++	  	/* this is ok for now... */
++	  }
++	}
++
++	closedir (dirp);
++  }
++
+ #else
+ #error "Add support for your operating system here."
+ #endif
