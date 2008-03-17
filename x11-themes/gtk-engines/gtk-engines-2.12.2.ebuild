@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 autotools
 
 DESCRIPTION="GTK+2 standard engines and themes"
 HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="accessibility static"
 
 RDEPEND=">=x11-libs/gtk+-2.10
@@ -25,4 +25,9 @@ DOCS="AUTHORS ChangeLog NEWS README"
 pkg_setup() {
 	G2CONF="$(use_enable static) --enable-animation"
 	use accessibility || G2CONF="${G2CONF} --disable-hc"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
 }
