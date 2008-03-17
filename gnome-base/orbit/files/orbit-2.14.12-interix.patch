@@ -1,0 +1,34 @@
+diff -ru -x '*.Po' -x '*.Plo' -x '*.o' -x '*.lo' ORBit2-2.14.12.orig/linc2/src/linc-protocols.c ORBit2-2.14.12/linc2/src/linc-protocols.c
+--- ORBit2-2.14.12.orig/linc2/src/linc-protocols.c	2008-03-11 11:50:09 +0100
++++ ORBit2-2.14.12/linc2/src/linc-protocols.c	2008-03-11 11:51:45 +0100
+@@ -23,7 +23,13 @@
+ #endif
+ 
+ #ifndef G_OS_WIN32
+-#include <net/if.h>
++#if defined(__INTERIX)
++// no net/if.h on interix
++// unistd.h damaged on interix
++extern int gethostname(char*, size_t);
++#else
++# include <net/if.h>
++#endif
+ #include <sys/ioctl.h>
+ #endif
+ 
+@@ -161,6 +167,7 @@
+ 	if ((LINK_NET_ID_IS_IPADDR == which)
+ 	    || (LINK_NET_ID_IS_CUSTOM == which)) {
+ #ifndef G_OS_WIN32
++#ifndef __INTERIX
+ 		struct sockaddr_in *adr = NULL;
+ 		struct ifreq *my_ifreqs = NULL;
+ 		struct ifconf my_ifconf = { 0 };
+@@ -211,6 +218,7 @@
+ 		}
+ 		strncpy(buf, (const char*)inet_ntoa(adr->sin_addr), len);
+ 		free(my_ifconf.ifc_req);
++#endif /* __INTERIX */
+ 
+ 		/* will be 127.0.0.1 anyway, if no other address is defined... */
+ 		return buf;

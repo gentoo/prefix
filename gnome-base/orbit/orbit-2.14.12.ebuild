@@ -16,7 +16,7 @@ SRC_URI="mirror://gnome/sources/ORBit2/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -30,11 +30,20 @@ MAKEOPTS="${MAKEOPTS} -j1"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
 
+src_unpack() {
+	gnome2_src_unpack
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
 	# files to be not found by autotools when compiling ORBit.  See bug #58540
 	# for more information.  Please don't remove -- 8/18/06
 	unset IDL_DIR
+
+	# on interix poll is broken!
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
 	gnome2_src_compile
 }
