@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib autotools
 
 DESCRIPTION="The MAD id3tag library"
 HOMEPAGE="http://www.underbit.com/products/mad/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/mad/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="debug"
 
 DEPEND=">=sys-libs/zlib-1.1.3"
@@ -20,6 +20,8 @@ DEPEND=">=sys-libs/zlib-1.1.3"
 src_unpack() {
 	unpack ${A}
 	cd ${S}
+
+	eautoreconf # need new libtool for interix
 	epunt_cxx #74489
 }
 
