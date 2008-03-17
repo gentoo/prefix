@@ -67,18 +67,20 @@ src_unpack() {
 	gcc_src_unpack
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
-	epatch "${FILESDIR}"/4.2.2/targettools-checks.patch
+	#doesn't apply
+#	epatch "${FILESDIR}"/4.2.2/targettools-checks.patch
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=201490
 	epatch "${FILESDIR}"/4.2.2/gentoo-fixincludes.patch
 
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
-	epatch "${FILESDIR}"/4.2.2/treelang-nomakeinfo.patch
+	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	epatch "${FILESDIR}"/4.2.2/solarisx86_64.patch
 
 	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
-	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
+	#doesn't apply
+#	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
 	# gcc sources are polluted with old stuff for interix 3.5 not needed here
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
