@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.0_beta.ebuild,v 1.1 2008/03/15 22:15:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.0_beta.ebuild,v 1.2 2008/03/16 15:55:21 armin76 Exp $
 
 EAPI="prefix"
 
