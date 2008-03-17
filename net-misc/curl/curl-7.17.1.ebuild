@@ -6,7 +6,7 @@ EAPI="prefix"
 
 # NOTE: If you bump this ebuild, make sure you bump dev-python/pycurl!
 
-inherit libtool eutils
+inherit libtool eutils flag-o-matic
 
 #MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
@@ -16,7 +16,7 @@ SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ssl ipv6 ldap ares gnutls nss idn kerberos test"
 #IUSE="ssl ipv6 ldap ares gnutls libssh2 nss idn kerberos test"
 
@@ -51,6 +51,7 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	myconf="$(use_enable ldap)
 		$(use_with idn libidn)
