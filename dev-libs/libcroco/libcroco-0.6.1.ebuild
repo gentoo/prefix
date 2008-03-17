@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 autotools
 
 DESCRIPTION="Generic Cascading Style Sheet (CSS) parsing and manipulation toolkit"
 HOMEPAGE="http://www.freespiders.org/projects/libcroco/"
 
 LICENSE="LGPL-2"
 SLOT="0.6"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2
@@ -20,3 +20,8 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
+}
