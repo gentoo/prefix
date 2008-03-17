@@ -12,7 +12,7 @@ SRC_URI="http://www.redellipse.net/code/downloads/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="offensive elibc_glibc"
 
 DEPEND="app-text/recode"
@@ -44,7 +44,11 @@ src_unpack() {
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" prefix="${EPREFIX}" || die "emake failed"
+	local myrex=
+
+	[[ ${CHOST} == *-interix* ]] && myrex="REGEXDEFS=-DNO_REGEX"
+
+	emake CC="$(tc-getCC)" prefix="${EPREFIX}" $myrex || die "emake failed"
 }
 
 src_install() {
