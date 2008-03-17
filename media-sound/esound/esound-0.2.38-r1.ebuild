@@ -12,7 +12,7 @@ HOMEPAGE="http://www.tux.org/~ricdude/EsounD.html"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="alsa debug doc ipv6 tcpd"
 
 # esound comes with arts support, but it hasn't been tested yet, feel free to
@@ -44,6 +44,12 @@ src_compile() {
 	# Strict aliasing problem
 	append-flags -fno-strict-aliasing
 
+	local myconf=
+
+	# Interix does not have access to windows sound devices.
+	# Instead, one would need to run esound on windows natively.
+	[[ ${CHOST} == *-interix* ]] && myconf="${myconf} --disable-local-sound"
+
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/esd \
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
@@ -52,6 +58,7 @@ src_compile() {
 		$(use_enable alsa) \
 		$(use_with tcpd libwrap) \
 		--disable-dependency-tracking \
+		${myconf} \
 		|| die "Configure failed"
 
 	emake || die "Make failed"
