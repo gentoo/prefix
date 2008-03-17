@@ -1,6 +1,12 @@
 # ChangeLog for dev-cpp/glibmm
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.104 2007/11/23 17:55:02 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.105 2008/03/16 21:54:49 leio Exp $
+
+*glibmm-2.16.0 (16 Mar 2008)
+
+  16 Mar 2008; Mart Raudsepp <leio@gentoo.org> +glibmm-2.16.0.ebuild:
+  New major release, includes new GIO and GChecksum APIs and some new URI
+  helper functions, matching dev-libs/glib-2.16.
 
   23 Nov 2007; Jeroen Roovers <jer@gentoo.org> glibmm-2.14.2.ebuild:
   Stable for HPPA (bug #198845). Fixed quoting issues.
