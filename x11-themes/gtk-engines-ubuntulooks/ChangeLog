@@ -1,0 +1,24 @@
+# ChangeLog for x11-themes/gtk-engines-ubuntulooks
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-ubuntulooks/ChangeLog,v 1.4 2007/12/22 18:16:47 nixnut Exp $
+
+  22 Dec 2007; nixnut <nixnut@gentoo.org>
+  gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
+  Added ~ppc wrt bug 195000
+
+  01 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
+  Keyword ~amd64 wrt #194989.
+
+*gtk-engines-ubuntulooks-0.9.12-r1 (07 Oct 2007)
+
+  07 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  +gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
+  Update to PATCH_LEVEL=8.
+
+*gtk-engines-ubuntulooks-0.9.12 (07 Oct 2007)
+
+  07 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  +gtk-engines-ubuntulooks-0.9.12.ebuild:
+  Initial commit for bug 126966.
+
