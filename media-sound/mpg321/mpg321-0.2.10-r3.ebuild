@@ -18,7 +18,7 @@ DEPEND="media-libs/libmad
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 PROVIDE="virtual/mpg123"
 
