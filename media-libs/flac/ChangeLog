@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.136 2008/02/21 17:09:45 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.137 2008/03/16 12:09:14 drac Exp $
+
+  16 Mar 2008; Samuli Suominen <drac@gentoo.org> -flac-1.1.2-r8.ebuild,
+  flac-1.2.1-r2.ebuild:
+  amd64 stable. remove old for repoman, has unstable mips deps.
 
   21 Feb 2008; Samuli Suominen <drac@gentoo.org> flac-1.2.1-r2.ebuild:
   Use copy of m4 directory from gettext-0.17 to provide AM_ICONV for
@@ -8,7 +12,7 @@
 
   10 Jan 2008; Samuli Suominen <drac@gentoo.org> flac-1.1.2-r8.ebuild,
   -flac-1.1.4.ebuild:
-  Remove vulnerable versions but leave one ebuild behind for mips wrt #195700
+  Remove vulnerable version but leave one ebuild behind for mips wrt #195700
 
   18 Nov 2007; Alexis Ballier <aballier@gentoo.org>
   +files/flac-1.2.1-gcc-4.3-includes.patch, flac-1.2.1-r2.ebuild:
