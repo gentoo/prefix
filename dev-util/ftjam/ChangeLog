@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/ftjam
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ChangeLog,v 1.6 2007/12/22 18:30:15 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ChangeLog,v 1.11 2008/03/17 00:28:28 dirtyepic Exp $
+
+  17 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Stable on amd64.
+
+  16 Mar 2008; Dawid Węgliński <cla@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Stable on x86 (bug #213581)
+
+  16 Mar 2008; nixnut <nixnut@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Stable on ppc wrt bug 213581
+
+  16 Mar 2008; Ferris McCormick <fmccor@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Sparc stable --- Bug #213581 --- using as a jam alternative for 3.5 months.
+
+  16 Mar 2008; Brent Baude <ranger@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  stable ppc64, bug 213581
 
   22 Dec 2007; nixnut <nixnut@gentoo.org> ftjam-2.5.3_rc2.ebuild:
   Added ~ppc wrt bug 188194
