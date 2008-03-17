@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3430 2008/03/15 19:35:34 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3431 2008/03/16 19:49:54 pva Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1320,8 +1320,8 @@ net-analyzer/pchar:pcap - Use the pcap library
 net-analyzer/pmacct:64bit - Use 64bit counters instead of 32bit ones
 net-analyzer/rrdtool:rrdcgi - Build rrdcgi support
 net-analyzer/sancp:sguil - Enable sguil (The Analyst Console for Network Security Monitoring) support
-net-analyzer/scanlogd:nids - Use libnids for package capturing
-net-analyzer/scanlogd:pcap - Use libpcap for package capturing
+net-analyzer/scanlogd:nids - Use libnids for packet capturing
+net-analyzer/scanlogd:pcap - Use libpcap for packet capturing
 net-analyzer/scapy:pyx - Enable pyx support for psdump/pdfdump commands
 net-analyzer/scapy:visual - Enable visual support for 3d graphs
 net-analyzer/snort:dynamicplugin - Enable ability to dynamically load preprocessors, detection engine, and rules library
@@ -1336,6 +1336,9 @@ net-analyzer/snort:sguil - Enable sguil (The Analyst Console for Network Securit
 net-analyzer/snort:snortsam - patches snort for use with snortsam
 net-analyzer/snort:timestats - Enable TimeStats functionality
 net-analyzer/tcpreplay:pcapnav - Enable if you want the jump to byte offset feature via libpcapnav
+net-analyzer/wireshark:gcrypt - Use GNU crypto library (libgcrypt) to decrypt SSL traffic
+net-analyzer/wireshark:pcap - Use libpcap for network packet capturing (build dumpcap, rawshark)
+net-analyzer/wireshark:smi - Use libsmi to resolve numeric OIDs into human readable format
 net-analyzer/zabbix:agent - Enable zabbix agent (for to-be-monitored machines)
 net-analyzer/zabbix:frontend - Enable zabbix web frontend
 net-analyzer/zabbix:server - Enable zabbix server
