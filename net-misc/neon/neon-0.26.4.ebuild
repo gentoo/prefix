@@ -26,7 +26,9 @@ DEPEND="expat? ( dev-libs/expat )
 
 src_unpack() {
 	unpack ${A}
-	elibtoolize
+	cd "${S}"
+
+	AT_M4DIR="macros" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
