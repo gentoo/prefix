@@ -15,7 +15,7 @@ SRC_URI="http://savannah.gnu.org/download/${PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-apps/sed
@@ -30,10 +30,19 @@ pkg_setup() {
 	LIBDIR="${EPREFIX}"/usr/$(get_libdir)
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify bin/getlibdir
+}
+
 src_compile() { :; }
 
 src_install() {
 	PERLDIR="`perl bin/getlibdir`"
+	PERLDIR=${PERLDIR#${EPREFIX}}
 
 	insinto ${PERLDIR}/gnump3d
 	doins lib/gnump3d/*.pm

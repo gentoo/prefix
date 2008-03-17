@@ -1,0 +1,13 @@
+diff -ru gnump3d-3.0.orig/bin/getlibdir gnump3d-3.0/bin/getlibdir
+--- gnump3d-3.0.orig/bin/getlibdir	2008-03-14 10:34:48 +0100
++++ gnump3d-3.0/bin/getlibdir	2008-03-14 10:38:19 +0100
+@@ -41,7 +41,8 @@
+ #  Only examine directories beneath /usr or /Library
+ # (The latter is for Mac OS X).
+ #
+-my @dirs = grep( /^\/usr|^\/Library/, @INC );
++my $prefix="@GENTOO_PORTAGE_EPREFIX@";
++my @dirs = grep( /^$prefix/, @INC );
+ 
+ 
+ #
