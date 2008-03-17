@@ -45,6 +45,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# required for AIX (at least), accepted upstream somehow.
+	epatch "${FILESDIR}"/${PV}/hcdirect-destdir.patch
+
 	use vanilla && return 0
 
 	# Make sure non of the patches touch ltmain.sh, but rather ltmain.in
