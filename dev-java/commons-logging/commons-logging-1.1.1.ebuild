@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.5 2008/03/11 15:08:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.6 2008/03/16 17:44:04 ken69267 Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source test"
