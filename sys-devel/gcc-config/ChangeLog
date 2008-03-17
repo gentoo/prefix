@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.176 2008/03/16 01:20:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.177 2008/03/16 12:40:34 phreak Exp $
+
+  16 Mar 2008; Christian Heim <phreak@gentoo.org> Manifest:
+  Fixing the Manifest (emerge is complaining about missing
+  $FILESDIR/wrapper-1.5.0.o).
 
 *gcc-config-1.4.1 (16 Mar 2008)
 
