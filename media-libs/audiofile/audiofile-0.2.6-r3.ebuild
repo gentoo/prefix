@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool eutils flag-o-matic
+inherit autotools eutils flag-o-matic
 
 DESCRIPTION="An elegant API for accessing audio files"
 HOMEPAGE="http://www.68k.org/~michael/audiofile/"
@@ -12,7 +12,7 @@ SRC_URI="http://www.68k.org/~michael/audiofile/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 src_unpack() {
@@ -26,7 +26,7 @@ src_unpack() {
 
 	### Patch for bug #118600
 	epatch "${FILESDIR}"/${PN}-largefile.patch
-	elibtoolize
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
