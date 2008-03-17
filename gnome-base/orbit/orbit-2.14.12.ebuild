@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.12.ebuild,v 1.5 2008/03/15 12:52:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.12.ebuild,v 1.7 2008/03/17 00:21:09 jer Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,17 @@ src_unpack() {
 	gnome2_src_unpack
 
 	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Filter out G_DISABLE_DEPRECATED to be future-proof, related to bug 213434
+	sed -i -e '/DISABLE_DEPRECATED/d' \
+		"${S}/linc2/src/Makefile.am" "${S}/linc2/src/Makefile.in"
+
+	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' \
+		"${S}/configure.in" "${S}/configure"
 }
 
 src_compile() {

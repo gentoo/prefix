@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.10.ebuild,v 1.7 2007/11/27 03:52:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.10.ebuild,v 1.8 2008/03/16 21:46:57 leio Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,17 @@ DEPEND="${RDEPEND}
 MAKEOPTS="${MAKEOPTS} -j1"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Filter out G_DISABLE_DEPRECATED to work with glib-2.16 and be future-proof, bug 213434
+	sed -i -e '/DISABLE_DEPRECATED/d' \
+		"${S}/linc2/src/Makefile.am" "${S}/linc2/src/Makefile.in"
+
+	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' \
+		"${S}/configure.in" "${S}/configure"
+}
 
 src_compile() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
