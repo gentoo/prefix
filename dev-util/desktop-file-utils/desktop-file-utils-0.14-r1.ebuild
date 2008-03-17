@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils elisp-common
+inherit eutils elisp-common autotools
 
 DESCRIPTION="Command line utilities to work with desktop menu entries"
 HOMEPAGE="http://freedesktop.org/wiki/Software/desktop-file-utils"
@@ -12,7 +12,7 @@ SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="emacs"
 
 RDEPEND=">=dev-libs/glib-2.12
@@ -32,6 +32,8 @@ src_unpack() {
 
 	# handle broken input, bug #209582
 	epatch "${FILESDIR}"/${PN}-0.14-handle-borked.patch
+
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
