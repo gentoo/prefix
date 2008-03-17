@@ -1,6 +1,23 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.148 2008/03/01 22:13:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.151 2008/03/17 03:47:02 vapier Exp $
+
+*rsync-3.0.0-r2 (17 Mar 2008)
+
+  17 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/rsync-3.0.0-dry-run-hang.patch, +rsync-3.0.0-r2.ebuild:
+  Fix from upstream for hang with --dry-run #193243 by David Leverton.
+
+  16 Mar 2008; Mike Frysinger <vapier@gentoo.org> +files/rsyncd.logrotate,
+  rsync-3.0.0-r1.ebuild:
+  Add logrotate file from Anton Bolshakov #212876.
+
+*rsync-3.0.0-r1 (16 Mar 2008)
+
+  16 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/rsync-3.0.0-NULL-config.patch, +files/rsync-3.0.0-acl-crash.patch,
+  +files/rsync-3.0.0-fake-super-attrs.patch, +rsync-3.0.0-r1.ebuild:
+  Add some fixes from upstream.
 
 *rsync-3.0.0 (01 Mar 2008)
 

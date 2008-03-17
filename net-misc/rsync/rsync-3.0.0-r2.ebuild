@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0.ebuild,v 1.2 2008/03/16 06:20:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0-r2.ebuild,v 1.1 2008/03/17 03:47:02 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,15 @@ src_unpack() {
 	eprefixify rsyncd.*
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-acl-crash.patch
+	epatch "${FILESDIR}"/${P}-NULL-config.patch
+	epatch "${FILESDIR}"/${P}-fake-super-attrs.patch
+	epatch "${FILESDIR}"/${P}-dry-run-hang.patch #193243
+}
+
 src_compile() {
 	use static && append-ldflags -static
 	econf \
@@ -58,6 +67,10 @@ src_install() {
 	dodoc NEWS OLDNEWS README TODO tech_report.tex
 	insinto /etc
 	doins "${T}"/rsyncd.conf
+
+	insinto /etc/logrotate.d
+	newins "${FILESDIR}"/rsyncd.logrotate rsyncd
+
 	if use xinetd ; then
 		insinto /etc/xinetd.d
 		newins "${T}"/rsyncd.xinetd rsyncd
