@@ -19,19 +19,22 @@ guesscompress() {
 
 lesspipe_file() {
 	local out=$(file -L -- "$1")
+	local suffix
 	case ${out} in
-		*" ar archive"*)    lesspipe "$1" ".a" ;;
-		*" tar archive"*)   lesspipe "$1" ".tar" ;;
-		*" CAB-Installer"*) lesspipe "$1" ".cab" ;;
-		*" troff "*)        lesspipe "$1" ".man" ;;
-		*" shared object"*) lesspipe "$1" ".so" ;;
-		*" Zip archive"*)   lesspipe "$1" ".zip" ;;
-		*" LHa"*archive*)   lesspipe "$1" ".lha" ;;
-		*" cpio archive"*)  lesspipe "$1" ".cpio" ;;
-		*" ELF "*)          readelf -a -- "$1" ;;
-		*": data")          hexdump -C -- "$1" ;;
-		*)                  return 1 ;;
+		*" ar archive"*)    suffix="a";;
+		*" CAB-Installer"*) suffix="cab";;
+		*" cpio archive"*)  suffix="cpio";;
+		*" ELF "*)          suffix="elf";;
+		*" LHa"*archive*)   suffix="lha";;
+		*" troff "*)        suffix="man";;
+		*" script text"*)   suffix="sh";;
+		*" shared object"*) suffix="so";;
+		*" tar archive"*)   suffix="tar";;
+		*" Zip archive"*)   suffix="zip";;
+		*": data")          hexdump -C -- "$1"; return 0;;
+		*)                  return 1;;
 	esac
+	lesspipe "$1" ".${suffix}"
 	return 0
 }
 
@@ -105,6 +108,7 @@ lesspipe() {
 	*.zoo)        zoo -list "$1" ;;
 	*.7z)         7z l -- "$1" ;;
 	*.a)          ar tv "$1" ;;
+	*.elf)        readelf -a -- "$1" ;;
 	*.so)         readelf -h -d -s -- "$1" ;;
 	*.mo|*.gmo)   msgunfmt -- "$1" ;;
 
@@ -199,7 +203,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.26 2007/11/06 02:19:29 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.27 2008/03/16 13:01:51 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2006 Gentoo Foundation

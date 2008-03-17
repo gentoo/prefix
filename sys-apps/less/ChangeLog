@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.92 2008/02/21 00:55:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.93 2008/03/16 13:01:51 vapier Exp $
+
+  16 Mar 2008; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Add case for shell scripts for file output #213565 by Matthias B.
 
   21 Feb 2008; Brent Baude <ranger@gentoo.org> less-418.ebuild:
   stable ppc64, bug 210725
