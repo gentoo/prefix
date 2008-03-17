@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic eutils toolchain-funcs
+inherit autotools flag-o-matic eutils toolchain-funcs
 
 DESCRIPTION="the Ogg Vorbis sound file format library"
 HOMEPAGE="http://xiph.org/vorbis"
@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 
 RDEPEND=">=media-libs/libogg-1"
@@ -23,7 +23,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	elibtoolize
+	eautoreconf # need new libtool for interix
 
 	epunt_cxx #74493
 
