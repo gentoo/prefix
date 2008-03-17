@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="the audio output library"
 HOMEPAGE="http://www.xiph.org/ao"
@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/ao/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos"
 IUSE="alsa arts doc esd nas mmap pulseaudio"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
@@ -28,7 +28,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-alsa09-buffertime-milliseconds.patch
-	elibtoolize
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
