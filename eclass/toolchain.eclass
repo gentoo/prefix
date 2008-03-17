@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.346 2008/02/16 22:27:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.347 2008/03/17 01:51:49 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -577,7 +577,7 @@ make_gcc_hard() {
 	fi
 
 	# rebrand to make bug reports easier
-	release_version="${release_version/Gentoo/Gentoo Hardened}"
+	BRANDING_GCC_PKGVERSION=${BRANDING_GCC_PKGVERSION/Gentoo/Gentoo Hardened}
 }
 
 # now we generate different spec files so that the user can select a compiler
@@ -1029,7 +1029,7 @@ do_gcc_rename_java_bins() {
 	done
 }
 gcc_src_unpack() {
-	local release_version="Gentoo ${GCC_PVR}"
+	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
 
 	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && die "Sorry, this version does not support uClibc"
 
@@ -1043,7 +1043,7 @@ gcc_src_unpack() {
 			guess_patch_type_in_dir "${WORKDIR}"/patch
 			EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
 			epatch "${WORKDIR}"/patch
-			release_version="${release_version} p${PATCH_VER}"
+			BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION} p${PATCH_VER}"
 		fi
 		if [[ -n ${UCLIBC_VER} ]] ; then
 			guess_patch_type_in_dir "${WORKDIR}"/uclibc
@@ -1088,17 +1088,7 @@ gcc_src_unpack() {
 		disgusting_gcc_multilib_HACK || die "multilib hack failed"
 	fi
 
-	local version_string=${GCC_CONFIG_VER}
-
-	# Backwards support... add the BRANCH_UPDATE for 3.3.5-r1 and 3.4.3-r1
-	# which set it directly rather than using ${GCC_PV}
-	if [[ ${GCC_PVR} == "3.3.5-r1" || ${GCC_PVR} = "3.4.3-r1" ]] ; then
-		 version_string="${version_string} ${BRANCH_UPDATE}"
-	fi
-
-	einfo "patching gcc version: ${version_string} (${release_version})"
-	gcc_version_patch "${version_string}" "${release_version}"
-
+	gcc_version_patch
 	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.0 ]] ; then
 		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
 			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
@@ -1383,6 +1373,13 @@ gcc_do_configure() {
 	[[ ${CTARGET} == *-uclibc* ]] && [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] \
 		&& confgcc="${confgcc} --enable-clocale=uclibc"
 
+	set -- \
+		${confgcc} \
+		--with-bugurl=http://bugs.gentoo.org/ \
+		--with-pkgversion="${BRANDING_GCC_PKGVERSION}" \
+		"$@" \
+		${EXTRA_ECONF}
+
 	# Nothing wrong with a good dose of verbosity
 	echo
 	einfo "EPREFIX:         ${EPREFIX}"
@@ -1392,7 +1389,7 @@ gcc_do_configure() {
 	einfo "DATAPATH:        ${DATAPATH}"
 	einfo "STDCXX_INCDIR:   ${STDCXX_INCDIR}"
 	echo
-	einfo "Configuring GCC with: ${confgcc//--/\n\t--} ${@} ${EXTRA_ECONF}"
+	einfo "Configuring GCC with: ${@//--/\n\t--}"
 	echo
 
 	# Build in a separate build tree
@@ -1401,8 +1398,8 @@ gcc_do_configure() {
 
 	# and now to do the actual configuration
 	addwrite /dev/zero
-	"${S}"/configure ${confgcc} $@ ${EXTRA_ECONF} \
-		|| die "failed to run configure"
+	echo "${S}"/configure "$@"
+	"${S}"/configure "$@" || die "failed to run configure"
 
 	# return to whatever directory we were in before
 	popd > /dev/null
@@ -2044,7 +2041,7 @@ do_gcc_HTB_patches() {
 
 	# modify the bounds checking patch with a regression patch
 	epatch "${WORKDIR}/bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch"
-	release_version="${release_version}, HTB-${HTB_GCC_VER}-${HTB_VER}"
+	BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION}, HTB-${HTB_GCC_VER}-${HTB_VER}"
 }
 
 # patch in ProPolice Stack Smashing protection
@@ -2106,7 +2103,7 @@ do_gcc_SSP_patches() {
 		fi
 	fi
 
-	release_version="${release_version}, ssp-${PP_FVER:-${PP_GCC_VER}-${PP_VER}}"
+	BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION}, ssp-${PP_FVER:-${PP_GCC_VER}-${PP_VER}}"
 	if want_libssp ; then
 		update_gcc_for_libssp
 	else
@@ -2167,7 +2164,7 @@ do_gcc_PIE_patches() {
 		-e 's|^ALL_CFLAGS = |ALL_CFLAGS = $(HARD_CFLAGS) |' \
 		-i "${S}"/gcc/Makefile.in
 
-	release_version="${release_version}, pie-${PIE_VER}"
+	BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION}, pie-${PIE_VER}"
 }
 
 should_we_gcc_config() {
@@ -2337,17 +2334,20 @@ do_eselect_compiler() {
 
 # This function allows us to gentoo-ize gcc's version number and bugzilla
 # URL without needing to use patches.
-#
-# Travis Tilley <lv@gentoo.org> (02 Sep 2004)
-#
 gcc_version_patch() {
-	[[ -z $1 ]] && die "no arguments to gcc_version_patch"
+	# gcc-4.3+ has configure flags (whoo!)
+	tc_version_is_at_least 4.3 && return 0
+
+	local version_string=${GCC_CONFIG_VER}
+	[[ -n ${BRANCH_UPDATE} ]] && version_string="${version_string} ${BRANCH_UPDATE}"
+
+	einfo "patching gcc version: ${version_string} (${BRANDING_GCC_PKGVERSION})"
 
 	if grep -qs VERSUFFIX "${S}"/gcc/version.c ; then
-		sed -i -e "s~VERSUFFIX \"\"~VERSUFFIX \" ($2)\"~" \
+		sed -i -e "s~VERSUFFIX \"\"~VERSUFFIX \" (${BRANDING_GCC_PKGVERSION})\"~" \
 			"${S}"/gcc/version.c || die "failed to update VERSUFFIX with Gentoo branding"
 	else
-		version_string="$1 ($2)"
+		version_string="${version_string} (${BRANDING_GCC_PKGVERSION})"
 		sed -i -e "s~\(const char version_string\[\] = \"\).*\(\".*\)~\1$version_string\2~" \
 			"${S}"/gcc/version.c || die "failed to update version.c with Gentoo branding."
 	fi
