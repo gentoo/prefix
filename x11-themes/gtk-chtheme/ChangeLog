@@ -1,0 +1,40 @@
+# ChangeLog for x11-themes/gtk-chtheme
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/ChangeLog,v 1.11 2007/11/28 09:34:08 corsair Exp $
+
+  28 Nov 2007; Markus Rothe <corsair@gentoo.org> gtk-chtheme-0.3.1.ebuild:
+  Stable on amd64
+
+  21 Sep 2007; Markus Rothe <corsair@gentoo.org> gtk-chtheme-0.3.1.ebuild:
+  Stable on ppc
+
+  19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove ka0ttic from metadata.xml due to retirement.
+
+  03 Nov 2006; John N. Laliberte <allanonjl@gentoo.org>
+  gtk-chtheme-0.3.1.ebuild:
+  add pkgconfig dep, fixes #150621
+
+  12 Jun 2005; Sven Wegener <swegener@gentoo.org> gtk-chtheme-0.3.1.ebuild:
+  Removed * postfix from <, <=, >= and > dependencies.
+
+  20 Jan 2005; Aaron Walker <ka0ttic@gentoo.org> metadata.xml,
+  gtk-chtheme-0.3.1.ebuild:
+  Marked stable on x86 for bug 78808; updated metadata.xml.
+
+  22 Oct 2004; Simon Stelling <blubb@gentoo.org> gtk-chtheme-0.3.1.ebuild:
+  added ~amd64
+
+  24 Jun 2004; Jason Wever <weeve@gentoo.org> gtk-chtheme-0.3.1.ebuild:
+  ~sparcalicious
+
+*gtk-chtheme-0.3.1 (06 May 2004)
+
+  06 May 2004; Yi Qiang <khai@gentoo.org> +metadata.xml,
+  +gtk-chtheme-0.3.1.ebuild:
+  Second commmit of the same ebuild, moved from gnome-extra to x11-themes, also
+  fixed headers and fixed the src_install() routine.
+
+  05 May 2004; Yi Qiang <khai@gentoo.org> :
+  Initial commit, thanks to Hans Oluf Hagen for ebuild (Bug #39837)
+
