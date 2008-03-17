@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="Library for manipulation of TIFF (Tag Image File Format) images"
 HOMEPAGE="http://www.remotesensing.org/libtiff/"
@@ -29,7 +29,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-jbig.patch || die "epatch jbig failed"
 	fi
 	epatch "${FILESDIR}"/${P}-goo-sec.patch || die "epatch goo-sec failed"
-	elibtoolize
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
