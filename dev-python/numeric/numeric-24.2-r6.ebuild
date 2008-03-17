@@ -21,7 +21,7 @@ DEPEND="${RDEPEND}
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc lapack"
 
 S="${WORKDIR}/${MY_P}"
