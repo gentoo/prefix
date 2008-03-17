@@ -1,0 +1,42 @@
+# ChangeLog for x11-themes/gtk-engines-nimbus
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.7 2008/03/16 11:52:02 drac Exp $
+
+  16 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  gtk-engines-nimbus-0.0.11.ebuild:
+  amd64 stable
+
+*gtk-engines-nimbus-0.0.12 (12 Mar 2008)
+
+  12 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +gtk-engines-nimbus-0.0.12.ebuild:
+  Version bump.
+
+*gtk-engines-nimbus-0.0.11 (02 Feb 2008)
+
+  02 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -files/nimbus-0.0.10-declarations.patch,
+  -gtk-engines-nimbus-0.0.10.ebuild, +gtk-engines-nimbus-0.0.11.ebuild:
+  Version bump, remove old version, and obsoleted patch.
+
+  19 Dec 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/nimbus-0.0.10-declarations.patch, gtk-engines-nimbus-0.0.10.ebuild:
+  Add a patch to fix the poor programming practises.
+
+  19 Dec 2007; Vlastimil Babka <caster@gentoo.org>
+  gtk-engines-nimbus-0.0.10.ebuild:
+  Adding ~x86 keyword.
+
+*gtk-engines-nimbus-0.0.10 (24 Nov 2007)
+
+  24 Nov 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -gtk-engines-nimbus-0.0.9.ebuild, +gtk-engines-nimbus-0.0.10.ebuild:
+  Version bump and add missing intltool dependency.
+
+*gtk-engines-nimbus-0.0.9 (20 Oct 2007)
+
+  20 Oct 2007; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  +gtk-engines-nimbus-0.0.9.ebuild:
+  Initial import of gtk-engines-nimbus, used by Solaris Express. Ebuild partly
+  based on work by Mariusz in bug #186741.
+
