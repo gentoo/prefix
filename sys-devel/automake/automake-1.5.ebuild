@@ -26,6 +26,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/automake-1.4-nls-nuisances.patch #121151
 	epatch "${FILESDIR}"/${P}-target_hook.patch
 	epatch "${FILESDIR}"/${P}-slot.patch
+
+	# the slot patch hardcodes /usr/local/share/aclocal
+	epatch "${FILESDIR}"/${P}-slot-prefix.patch
+	eprefixify aclocal.in
+
 	epatch "${FILESDIR}"/${P}-test-fixes.patch #79505
 	sed -i \
 		-e "/^@setfilename/s|automake|automake${SLOT}|" \

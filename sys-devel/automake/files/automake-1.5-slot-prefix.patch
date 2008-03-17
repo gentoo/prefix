@@ -1,0 +1,21 @@
+diff -ru automake-1.5.orig/aclocal.in automake-1.5/aclocal.in
+--- automake-1.5.orig/aclocal.in	2008-03-13 14:55:10 +0100
++++ automake-1.5/aclocal.in	2008-03-13 14:55:31 +0100
+@@ -115,7 +115,7 @@
+ 
+ 
+ local (@dirlist) = &parse_arguments (@ARGV);
+-push (@dirlist, "/usr/share/aclocal") if (!grep(/^--acdir/, @ARGV));
++push (@dirlist, "@GENTOO_PORTAGE_EPREFIX@/usr/share/aclocal") if (!grep(/^--acdir/, @ARGV));
+ &scan_m4_files (@dirlist);
+ &scan_configure;
+ if (! $exit_status)
+@@ -203,7 +203,7 @@
+ 
+     if ($print_and_exit)
+     {
+-	print "/usr/share/aclocal", "\n";
++	print "@GENTOO_PORTAGE_EPREFIX@/usr/share/aclocal", "\n";
+ 	exit 0;
+     }
+ 
