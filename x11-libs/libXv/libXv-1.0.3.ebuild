@@ -11,10 +11,16 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xv library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
 	x11-proto/videoproto
 	x11-proto/xproto"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	x-modular_src_unpack
+	eautoreconf # need new libtool for interix
+}
+
