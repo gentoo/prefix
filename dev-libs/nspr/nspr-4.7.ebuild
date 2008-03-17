@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.ebuild,v 1.2 2008/02/14 11:09:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.ebuild,v 1.3 2008/03/16 16:06:51 armin76 Exp $
 
 EAPI="prefix"
 
@@ -77,9 +77,9 @@ src_install () {
 }
 
 pkg_preinst() {
-    preserve_old_lib /usr/$(get_libdir)/nspr/lib{nspr,plc,plds}4.so.6
+	preserve_old_lib /usr/$(get_libdir)/nspr/lib{nspr,plc,plds}4.so.6
 }
 
 pkg_postinst() {
-    preserve_old_lib_notify /usr/$(get_libdir)/nspr/lib{nspr,plc,plds}4.so.6
+	preserve_old_lib_notify /usr/$(get_libdir)/nspr/lib{nspr,plc,plds}4.so.6
 }
