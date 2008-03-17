@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="The MAD audio player"
 HOMEPAGE="http://www.underbit.com/products/mad/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/mad/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="debug nls esd alsa"
 
 #	~media-libs/libmad-${PV}
@@ -30,6 +30,8 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	eautoreconf # need new libtool for interix
 	epunt_cxx #74499
 	epatch "${FILESDIR}/${PN}-macos.patch"
 }
