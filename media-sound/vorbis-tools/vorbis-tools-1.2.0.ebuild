@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="flac nls +ogg123 speex"
 
 RDEPEND=">=media-libs/libvorbis-1.1
