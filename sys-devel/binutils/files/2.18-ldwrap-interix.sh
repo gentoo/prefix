@@ -32,6 +32,7 @@ for arg in "$@"; do
 	case $arg in
 	-soname)  arg="-h" ;;
 	-soname=*) OptArg="${arg#-soname=}"; arg="-h" ;;
+	--version-script=*) continue ;; # ignore. this only make troubles!
 	esac
 
 	Args="$Args '$arg'"
