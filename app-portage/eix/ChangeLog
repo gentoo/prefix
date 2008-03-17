@@ -1,6 +1,20 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.209 2008/03/15 09:06:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.213 2008/03/17 00:03:57 jer Exp $
+
+  16 Mar 2008; Jeroen Roovers <jer@gentoo.org> eix-0.9.9.ebuild,
+  eix-0.10.5.ebuild:
+  0.10.5 stable for HPPA (bug #208909). 0.9.9 back to ~mips because of
+  dev-db/sqlite.
+
+  16 Mar 2008; nixnut <nixnut@gentoo.org> eix-0.10.5.ebuild:
+  Stable on ppc wrt bug 208909
+
+  16 Mar 2008; Samuli Suominen <drac@gentoo.org> eix-0.10.5.ebuild:
+  amd64 stable
+
+  16 Mar 2008; Raúl Porcel <armin76@gentoo.org> eix-0.10.5.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   15 Mar 2008; nixnut <nixnut@gentoo.org> eix-0.10.3.ebuild:
   Stable on ppc wrt bug 208909
