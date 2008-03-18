@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/icu4j
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.20 2008/03/11 08:52:09 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.22 2008/03/17 21:40:31 betelgeuse Exp $
+
+  17 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> icu4j-3.0-r1.ebuild,
+  icu4j-3.6.1.ebuild, icu4j-3.6.1-r1.ebuild, icu4j-3.8.1.ebuild:
+  Add app-arch/unzip to DEPEND.
+
+  17 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> icu4j-3.8.1.ebuild:
+  Don't allow building with 1.7 as it fails. Fixes bug #213555.
 
 *icu4j-3.8.1 (11 Mar 2008)
 

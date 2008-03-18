@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.4 2008/03/11 08:52:09 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.5 2008/03/17 21:40:31 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 RDEPEND=">=virtual/jre-1.4"
 
 DEPEND="test? ( =virtual/jdk-1.5* )
-	!test? ( >=virtual/jdk-1.4 )"
+	!test? ( >=virtual/jdk-1.4 )
+	app-arch/unzip"
 
 IUSE="doc test"
 
