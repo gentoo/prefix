@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.6.ebuild,v 1.3 2008/03/16 15:51:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.6.ebuild,v 1.4 2008/03/17 17:45:36 phreak Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,7 @@ src_compile() {
 	econf \
 		--enable-${libtype}-shlibs \
 		--with-ldopts="${LDFLAGS}" \
+		$(use_enable !elibc_uclibc tls) \
 		$(use_enable nls) \
 		|| die
 	emake -j1 -C lib/et || die
