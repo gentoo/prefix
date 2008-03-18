@@ -26,6 +26,7 @@
 # segfaults during compilation on Darwin
 =dev-util/cmake-2.4.8
 =dev-lang/swi-prolog-5.6.51
+=dev-lang/swi-prolog-5.6.52
 
 # Elias Pipping <pipping@gentoo.org> (22 Feb 2008)
 # Does nvi compile anywhere? Certainly not on Darwin for now
