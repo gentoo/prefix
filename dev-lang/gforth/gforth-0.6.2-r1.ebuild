@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.6.2-r1.ebuild,v 1.4 2008/01/11 21:56:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.6.2-r1.ebuild,v 1.5 2008/03/17 15:56:08 coldwind Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,6 @@ SRC_URI="http://www.complang.tuwien.ac.at/forth/gforth/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-# KEYWORDS="~amd64 ~ppc ~x86"
 KEYWORDS="~x86-freebsd ~x86-linux ~ppc-macos"
 IUSE="emacs force-reg"
 
@@ -41,11 +40,11 @@ EOF
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${PV}-ppc-configure-gentoo.patch	# Bug #131931
-	epatch ${FILESDIR}/gforth.el-gentoo.patch
-	epatch ${FILESDIR}/${PV}-c-to-forth-to-c.patch
-	epatch ${DISTDIR}/${PV}-debug.diff
+	cd "${S}"
+	epatch "${FILESDIR}"/${PV}-ppc-configure-gentoo.patch	# Bug #131931
+	epatch "${FILESDIR}"/gforth.el-gentoo.patch
+	epatch "${FILESDIR}"/${PV}-c-to-forth-to-c.patch
+	epatch "${DISTDIR}"/${PV}-debug.diff
 
 }
 
@@ -64,18 +63,18 @@ src_compile() {
 
 src_install() {
 	make \
-		libdir=${ED}/usr/lib \
-		infodir=${ED}/usr/share/info \
-		mandir=${ED}/usr/share/man \
-		datadir=${ED}/usr/share \
-		bindir=${ED}/usr/bin \
+		libdir="${ED}"/usr/lib \
+		infodir="${ED}"/usr/share/info \
+		mandir="${ED}"/usr/share/man \
+		datadir="${ED}"/usr/share \
+		bindir="${ED}"/usr/bin \
 		install || die
 
 	dodoc AUTHORS BUGS ChangeLog NEWS* README* ToDo doc/glossaries.doc doc/*.ps
 
 	if use emacs; then
 		elisp-install ${PN} *.el *.elc
-		elisp-site-file-install ${FILESDIR}/${SITEFILE}
+		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
 	fi
 }
 

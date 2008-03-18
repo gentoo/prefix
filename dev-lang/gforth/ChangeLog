@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/gforth
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.23 2008/01/11 21:56:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.24 2008/03/17 15:56:08 coldwind Exp $
+
+  17 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  gforth-0.6.2-r1.ebuild:
+  Fix quoting.
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> gforth-0.6.2.ebuild,
   gforth-0.6.2-r1.ebuild:
