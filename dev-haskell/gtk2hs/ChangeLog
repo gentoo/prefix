@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.42 2008/01/26 20:14:36 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.43 2008/03/17 15:25:47 armin76 Exp $
+
+  17 Mar 2008; Raúl Porcel <armin76@gentoo.org> gtk2hs-0.9.11.ebuild,
+  gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
+  Fix deps for net-libs/xulrunner and www-client/mozilla-firefox
 
   26 Jan 2008; Duncan Coutts <dcoutts@gentoo.org> -gtk2hs-0.9.10-r1.ebuild,
   gtk2hs-0.9.12.1.ebuild:
