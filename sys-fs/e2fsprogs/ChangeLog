@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.139 2008/03/16 15:53:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.140 2008/03/17 19:07:52 phreak Exp $
+
+  17 Mar 2008; Christian Heim <phreak@gentoo.org> e2fsprogs-1.40.4.ebuild:
+  e2fsprogs-1.40.4 also needs tls disabled on uClibc.
 
   16 Mar 2008; Samuli Suominen <drac@gentoo.org> e2fsprogs-1.40.6.ebuild:
   amd64 stable
