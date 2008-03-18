@@ -45,13 +45,13 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# required for AIX (at least), accepted upstream somehow.
-	epatch "${FILESDIR}"/${PV}/hcdirect-destdir.patch
-
 	use vanilla && return 0
 
 	# Make sure non of the patches touch ltmain.sh, but rather ltmain.in
 	rm -f ltmain.sh*
+
+	# required for AIX (at least), basically accepted upstream.
+	epatch "${FILESDIR}"/${PV}/hcdirect-destdir.patch
 
 	epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
 	epatch "${FILESDIR}"/1.5.10/libtool-1.5.10-locking.patch #40992
