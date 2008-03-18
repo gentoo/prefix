@@ -1,18 +1,19 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p25993-r1.ebuild,v 1.1 2008/02/23 13:22:55 beandog Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26258.ebuild,v 1.1 2008/03/17 14:24:28 beandog Exp $
 
 inherit eutils flag-o-matic multilib
 
 RESTRICT="strip"
-IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
-color-console cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb directfb dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 jack joystick jpeg kernel_linux ladspa libcaca lirc live lzo mad md5sum mmx mmxext mp2 mp3
-musepack nas nemesi unicode vorbis opengl openal oss png pnm pulseaudio
-quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext
-tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama
-xscreensaver xv xvid xvmc zoran aqua"
+EAPI="prefix 1"
+IUSE="3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
+bindist -color-console cddb cdio cdparanoia cpudetection custom-cflags debug
+dga doc dts dvb directfb +dvd dv enca encode esd -fbcon ftp -gif ggi gtk iconv
+ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum
++mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png
+-pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2
+ssse3 svga teletext tga +theora -tivo +truetype v4l v4l2 vidix win32codecs +X
+x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -55,6 +56,7 @@ RDEPEND="sys-libs/ncurses
 	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( media-sound/cdparanoia )
 	directfb? ( dev-libs/DirectFB )
+	dga? ( x11-libs/libXxf86dga  )
 	dts? ( media-libs/libdca )
 	dv? ( media-libs/libdv )
 	dvb? ( media-tv/linuxtv-dvb-headers )
@@ -148,7 +150,7 @@ pkg_setup() {
 	fi
 
 	if use x86 || use amd64; then
-		if ! use mmx; then
+		if ! use mmx && use custom-cflags; then
 			ewarn "You have the 'mmx' use flag disabled for this package, which"
 			ewarn "means that no CPU optimizations will be used at all."
 			ewarn "The build will either break or encode very slowly.  Check your"
@@ -387,14 +389,20 @@ src_compile() {
 			myconf="${myconf} --enable-runtime-cpudetection"
 		fi
 	fi
-	if use mmx; then
-		for x in 3dnow 3dnowext mmxext sse sse2 ssse3; do
-			use ${x} || myconf="${myconf} --disable-${x}"
-		done
-	else
-		myconf="${myconf} --disable-mmx --disable-mmxext --disable-sse \
-		--disable-sse2 --disable-ssse3 --disable-3dnow \
-		--disable-3dnowext"
+	# Letting users turn off optimizations results in epic build fail
+	# across the board.  MPlayer's build system by default will
+	# detect them and use them just fine, so don't let them change
+	# them unless they really know what they are doing anyway.
+	if use custom-cflags; then
+		if use mmx; then
+			for x in 3dnow 3dnowext mmxext sse sse2 ssse3; do
+				use ${x} || myconf="${myconf} --disable-${x}"
+			done
+		else
+			myconf="${myconf} --disable-mmx --disable-mmxext --disable-sse \
+			--disable-sse2 --disable-ssse3 --disable-3dnow \
+			--disable-3dnowext"
+		fi
 	fi
 
 	use debug && myconf="${myconf} --enable-debug=3"
