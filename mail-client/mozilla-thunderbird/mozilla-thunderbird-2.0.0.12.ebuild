@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.12.ebuild,v 1.6 2008/03/02 10:36:34 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.12.ebuild,v 1.7 2008/03/17 12:23:22 armin76 Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ HOMEPAGE="http://www.mozilla.com/en-US/thunderbird/"
 
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 SLOT="0"
-LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
+LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="ldap crypt bindist mozdom replytolist"
 
 MOZ_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/${PV}"
