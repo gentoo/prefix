@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.7.ebuild,v 1.1 2008/02/03 15:47:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.9.ebuild,v 1.1 2008/03/17 21:24:53 leio Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="aqua cups debug doc jpeg tiff vim-syntax xinerama"
 
 RDEPEND="X? (
@@ -98,9 +98,6 @@ src_unpack() {
 	replace-flags -O3 -O2
 	strip-flags
 
-	# Kill -m* on ppc-macos, as it triggers altivec problems
-	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags "-m*"
-
 	use ppc64 && append-flags -mminimal-toc
 
 	# remember, eautoreconf applies elibtoolize.
@@ -117,6 +114,7 @@ src_compile() {
 		$(use_with jpeg libjpeg) \
 		$(use_with tiff libtiff) \
 		$(use_enable xinerama) \
+		$(use_enable cups) \
 		--with-libpng"
 	if use aqua; then
 		myconf="${myconf} --with-gdktarget=quartz"
@@ -127,6 +125,8 @@ src_compile() {
 
 	# Passing --disable-debug is not recommended for production use
 	use debug && myconf="${myconf} --enable-debug=yes"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
