@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.73 2008/03/16 17:29:26 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.74 2008/03/17 16:06:43 jer Exp $
+
+  17 Mar 2008; Jeroen Roovers <jer@gentoo.org> zip-2.32-r1.ebuild:
+  Stable for HPPA (bug #213585).
 
   16 Mar 2008; nixnut <nixnut@gentoo.org> zip-2.32-r1.ebuild:
   Stable on ppc wrt bug 213585
