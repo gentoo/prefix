@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.258 2008/02/27 02:19:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.260 2008/03/17 21:37:13 robbat2 Exp $
+
+  17 Mar 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.5.4.4.ebuild:
+  dev-perl/Authen-SASL is an indirect dependancy of Net-SMTP-SSL already w/
+  USE=sasl, so we can skip it here.
+
+*git-1.5.4.4 (17 Mar 2008)
+
+  17 Mar 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.5.4.4.ebuild:
+  Version bump, fixing bugs #213549, #213543, #212131.
 
 *git-1.5.4.3 (27 Feb 2008)
 
