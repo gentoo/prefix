@@ -1,6 +1,13 @@
 # ChangeLog for x11-themes/gnome-icon-theme
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.142 2007/11/29 05:16:20 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.143 2008/03/17 23:57:24 leio Exp $
+
+*gnome-icon-theme-2.22.0 (17 Mar 2008)
+
+  17 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  +gnome-icon-theme-2.22.0.ebuild:
+  New version for GNOME-2.22. Mostly adds more emote icons and touch-ups to
+  the existing ones
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org>
   gnome-icon-theme-2.20.0.ebuild:
