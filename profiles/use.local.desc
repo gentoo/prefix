@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3431 2008/03/16 19:49:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3432 2008/03/17 15:56:08 bass Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -2081,6 +2081,7 @@ www-misc/zoneminder:X10 - Enable support for X10 devices
 www-servers/apache:sni - Enable TLS Server Name Indication (SNI) - EXPERIMENTAL!
 www-servers/apache:suexec - Install suexec with apache
 www-servers/cherokee:coverpage - Installs the default cherokee coverpage
+www-servers/cherokee:admin - Install web based cherokee conf tool
 www-servers/fnord:auth - Enable HTTP authentication support
 www-servers/lighttpd:memcache - Enable memcache support for mod_cml and mod_trigger_b4_dl
 www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool

@@ -1,6 +1,15 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1217 2008/03/17 00:39:17 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1220 2008/03/17 22:33:19 tgurr Exp $
+
+  17 Mar 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Update keepassx mask for keepassx-0.3.1.
+
+  17 Mar 2008; Raúl Porcel <armin76@gentoo.org> updates/1Q-2008:
+  Unslot xulrunner
+
+  17 Mar 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Add mask for >=sys-apps/lm_sensors-3.
 
   17 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Mask dev-util/jam for removal.
