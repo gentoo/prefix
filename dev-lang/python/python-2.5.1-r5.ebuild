@@ -123,6 +123,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-no-hardcoded-grep.patch
 	# OpenBSD dies during compilation because of some missing defines
 	epatch "${FILESDIR}"/${P}-openbsd4.patch
+	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
+	epatch "${FILESDIR}"/${P}-distutils-aixnfs.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
