@@ -1,3 +1,6 @@
+# multilib is never going to work as expected in Prefix
+multilib
+
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
 elibc_glibc
