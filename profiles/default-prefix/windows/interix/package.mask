@@ -1,0 +1,5 @@
+# $Header: $
+
+# <haubi@gentoo.org> (18 Mar 2008)
+# Interix patches not working yet (mduft)
+>=sys-devel/gcc-4.3.0
