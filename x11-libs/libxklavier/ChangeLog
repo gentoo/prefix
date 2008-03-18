@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.107 2008/02/04 04:21:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.108 2008/03/17 23:24:13 leio Exp $
+
+*libxklavier-3.5 (17 Mar 2008)
+
+  17 Mar 2008; Mart Raudsepp <leio@gentoo.org> +libxklavier-3.5.ebuild:
+  Version bump, updating translation scheme to work with xkeyboard-config-1.2.
+  The upgrade from 3.3 to 3.5 will have an ABI break and revdep-rebuilding is
+  required, see ewarn message after upgrade for details
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> libxklavier-3.3.ebuild:
   Stable for HPPA (bug #208366).
