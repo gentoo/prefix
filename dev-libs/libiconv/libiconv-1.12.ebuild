@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/libiconv/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-#KEYWORDS="~sparc-fbsd ~x86-fbsd"
+#KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="!sys-libs/glibc
@@ -63,7 +63,7 @@ src_install() {
 
 	# Move static libs and creates ldscripts into /usr/lib
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}/$(get_libdir)" || die
+	mv "${ED}"/usr/$(get_libdir)/lib{charset,iconv}*$(get_libname)* "${ED}/$(get_libdir)" || die #210239
 	gen_usr_ldscript libiconv$(get_libname)
 	gen_usr_ldscript libcharset$(get_libname)
 

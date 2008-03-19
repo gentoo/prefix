@@ -66,7 +66,7 @@ src_install() {
 
 	# Move static libs and creates ldscripts into /usr/lib
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/lib*$(get_libname)* "${ED}/$(get_libdir)" #210239
+	mv "${ED}"/usr/$(get_libdir)/lib{charset,iconv}*$(get_libname)* "${ED}/$(get_libdir)" #210239
 	gen_usr_ldscript libiconv$(get_libname)
 	gen_usr_ldscript libcharset$(get_libname)
 
