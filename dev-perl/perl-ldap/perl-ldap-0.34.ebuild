@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-ldap/perl-ldap-0.34.ebuild,v 1.9 2007/07/13 17:05:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-ldap/perl-ldap-0.34.ebuild,v 1.10 2008/03/19 03:33:46 jer Exp $
 
 EAPI="prefix"
 
