@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.206 2008/03/06 01:50:16 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.207 2008/03/18 17:53:49 zlin Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -37,7 +37,9 @@ fi
 # @ECLASS-VARIABLE: USE_KEG_PACKAGING
 # @DESCRIPTION:
 # Set USE_KEG_PACKAGING=1 before inheriting if the package use extragear-like
-# packaging and then supports ${LANGS} and ${LANGS_DOC} variables.
+# packaging and then supports ${LANGS} and ${LANGS_DOC} variables. By default
+# translations are found in the po subdirectory of ${S}. Set KEG_PO_DIR to
+# override this default.
 if [[ -n ${USE_KEG_PACKAGING} && -n "${LANGS}${LANGS_DOC}" ]]; then
 	for lang in ${LANGS} ${LANGS_DOC}; do
 		IUSE="${IUSE} linguas_${lang}"
@@ -159,7 +161,7 @@ kde_src_unpack() {
 			if [[ -n ${LANGS} ]]; then
 				MAKE_PO=$(echo $(echo "${LINGUAS} ${LANGS}" | tr ' ' '\n' | sort | uniq -d))
 				einfo "Enabling translations for: ${MAKE_PO}"
-				sed -i -e "s:^SUBDIRS =.*:SUBDIRS = ${MAKE_PO}:" "${KDE_S}/po/Makefile.am" \
+				sed -i -e "s:^SUBDIRS[ \t]*=.*:SUBDIRS = ${MAKE_PO}:" "${KDE_S}/${KEG_PO_DIR:-po}/Makefile.am" \
 					|| die "sed for locale failed"
 				rm -f "${KDE_S}/configure"
 			fi
@@ -168,7 +170,7 @@ kde_src_unpack() {
 				MAKE_DOC=$(echo $(echo "${LINGUAS} ${LANGS_DOC}" | tr ' ' '\n' | sort | uniq -d))
 				einfo "Enabling documentation for: ${MAKE_DOC}"
 				[[ -n ${MAKE_DOC} ]] && [[ -n ${DOC_DIR_SUFFIX} ]] && MAKE_DOC=$(echo "${MAKE_DOC}" | tr '\n' ' ') && MAKE_DOC="${MAKE_DOC// /${DOC_DIR_SUFFIX} }"
-				sed -i -e "s:^SUBDIRS =.*:SUBDIRS = ${MAKE_DOC} ${PN}:" \
+				sed -i -e "s:^SUBDIRS[ \t]*=.*:SUBDIRS = ${MAKE_DOC} ${PN}:" \
 					"${KDE_S}/doc/Makefile.am" || die "sed for locale failed"
 				rm -f "${KDE_S}/configure"
 			fi
