@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cvs2svn
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.15 2007/12/14 14:22:31 cardoe Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.16 2008/03/18 21:58:52 cardoe Exp $
+
+*cvs2svn-2.1.0 (18 Mar 2008)
+
+  18 Mar 2008; Doug Goldstein <cardoe@gentoo.org> +cvs2svn-2.1.0.ebuild:
+  version bump. bug #213802
 
 *cvs2svn-2.0.1 (14 Dec 2007)
 *cvs2svn-1.5.1 (14 Dec 2007)
