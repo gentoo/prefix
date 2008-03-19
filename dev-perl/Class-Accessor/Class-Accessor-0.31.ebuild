@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Accessor/Class-Accessor-0.31.ebuild,v 1.5 2008/01/13 21:18:00 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Accessor/Class-Accessor-0.31.ebuild,v 1.6 2008/03/19 02:42:54 jer Exp $
 
 EAPI="prefix"
 
