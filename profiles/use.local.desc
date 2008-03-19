@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3432 2008/03/17 15:56:08 bass Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3433 2008/03/18 16:20:24 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1649,7 +1649,6 @@ net-p2p/btg:event-callback - Enable calling a script or executable for certain e
 net-p2p/btg:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:webinterface - install webBTG
 net-p2p/dbhub:switch_user - Enable support for switching user
-net-p2p/deluge:browser - Enable anonymous browser function
 net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin

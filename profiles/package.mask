@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8396 2008/03/17 23:25:03 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8398 2008/03/19 01:05:24 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,16 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeroen Roovers <jer@gentoo.org> (19 Mar 2008)
+# Development version:
+=net-firewall/conntrack-tools-0.9.6
+
+# Jeroen Roovers <jer@gentoo.org> (19 Mar 2008)
+# Deprecated in favour of net-firewall/conntrack-tools, which
+# merges both conntrack and conntrackd (bug #213084).
+# Going for removal on or about 19 Apr 2008:
+net-firewall/conntrack
 
 # Donnie Berkholz <dberkholz@gentoo.org> (17 Mar 2008)
 # Most apps that use lm_sensors aren't compatible with the new version
