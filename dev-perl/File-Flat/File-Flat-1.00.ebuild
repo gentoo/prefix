@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Flat/File-Flat-1.00.ebuild,v 1.8 2007/07/06 15:27:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Flat/File-Flat-1.00.ebuild,v 1.9 2008/03/19 03:20:11 jer Exp $
 
 EAPI="prefix"
 
