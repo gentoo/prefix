@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/ngrep
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.43 2008/01/16 20:42:01 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.44 2008/03/18 23:41:49 jer Exp $
+
+  18 Mar 2008; Jeroen Roovers <jer@gentoo.org>
+  +files/ngrep-1.45-Makefile.in.patch, ngrep-1.45-r1.ebuild:
+  Don't add MAKEFLAGS to submakes (bug #178684).
 
   16 Jan 2008; Fabian Groffen <grobian@gentoo.org> ngrep-1.42.ebuild,
   ngrep-1.43.ebuild, ngrep-1.44.ebuild, ngrep-1.45.ebuild,
