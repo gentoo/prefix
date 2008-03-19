@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.0.ebuild,v 1.1 2008/03/17 05:10:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.0.ebuild,v 1.2 2008/03/18 11:41:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,10 +23,8 @@ KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~
 RDEPEND=">=sys-libs/zlib-1.1.4
 	|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
 	virtual/libiconv
-	fortran? (
-		>=dev-libs/gmp-4.2.1
-		>=dev-libs/mpfr-2.2.0_p10
-	)
+	>=dev-libs/gmp-4.2.1
+	>=dev-libs/mpfr-2.3
 	!build? (
 		gcj? (
 			gtk? (

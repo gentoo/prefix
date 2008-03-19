@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.644 2008/03/17 05:10:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.645 2008/03/18 11:41:19 vapier Exp $
+
+  18 Mar 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild:
+  Fold mpfr/gmp depend updates from toolchain overlay #213687.
 
 *gcc-4.3.0 (17 Mar 2008)
 
