@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/File-Copy-Recursive
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/ChangeLog,v 1.13 2007/11/10 13:04:09 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/ChangeLog,v 1.14 2008/03/19 03:18:21 jer Exp $
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org>
+  File-Copy-Recursive-0.33.ebuild:
+  Stable for HPPA too.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org>
   File-Copy-Recursive-0.33.ebuild:

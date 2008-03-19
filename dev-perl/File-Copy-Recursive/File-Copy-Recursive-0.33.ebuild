@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/File-Copy-Recursive-0.33.ebuild,v 1.5 2007/11/10 13:04:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/File-Copy-Recursive-0.33.ebuild,v 1.6 2008/03/19 03:18:21 jer Exp $
 
 EAPI="prefix"
 
