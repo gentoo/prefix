@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/pdv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.16 2008/02/20 07:51:46 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.17 2008/03/18 13:26:08 flameeyes Exp $
+
+  18 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> pdv-1.5.1-r2.ebuild:
+  Run eautoconf during unpack phase. Closes bug #207487.
 
   20 Feb 2008; Ulrich Mueller <ulm@gentoo.org> pdv-1.5.1-r2.ebuild:
   Change USE flag "nomotif" to "X" (with inverted logic), bug 210565.

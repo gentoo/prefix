@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.6 2008/02/20 07:51:46 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.7 2008/03/18 13:26:08 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,14 +36,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-x-config.patch
 	# fix default args bug from assuming 'char' is signed
 	epatch "${FILESDIR}"/${P}-default-args.patch
-}
 
-src_compile() {
 	# re-build configure script since patch was applied to configure.in
 	cd "${S}"/X11
 	eautoreconf
+}
 
-	cd "${S}"
+src_compile() {
 	local myconf=""
 	use X || myconf="--without-x" # configure script is broken, cant use use_with
 	econf ${myconf} || die
