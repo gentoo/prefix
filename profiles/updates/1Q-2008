@@ -12,5 +12,5 @@ move media-fonts/fonts-indic media-fonts/lohit-fonts
 move games-action/abuse_sdl games-action/abuse
 move app-misc/pv sys-apps/pv
 move app-portage/gatt-svn app-portage/gatt
-slotmove =net-libs/xulrunner-1.8* 1.8 0
+slotmove =net-libs/xulrunner-1.8* 0 1.8
 move games-kids/tuxtype2 games-kids/tuxtype
