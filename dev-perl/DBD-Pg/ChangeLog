@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/DBD-Pg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.57 2008/03/09 23:37:57 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.58 2008/03/19 02:57:25 jer Exp $
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org> DBD-Pg-1.49.ebuild:
+  Stable for HPPA too.
 
   09 Mar 2008; <ricmm@gentoo.org> DBD-Pg-1.49.ebuild:
   Drop to ~mips due to unstable deps
