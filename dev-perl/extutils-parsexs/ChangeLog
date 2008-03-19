@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/extutils-parsexs
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/ChangeLog,v 1.48 2007/12/29 10:38:12 welp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/ChangeLog,v 1.49 2008/03/19 03:30:39 jer Exp $
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org> extutils-parsexs-2.18.ebuild:
+  Stable for HPPA too.
 
   29 Dec 2007; <welp@gentoo.org> extutils-parsexs-2.18.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
