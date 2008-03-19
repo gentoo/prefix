@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/qgit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.38 2008/01/13 17:01:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.39 2008/03/18 21:26:17 jokey Exp $
+
+  18 Mar 2008; Markus Ullmann <jokey@gentoo.org> qgit-2.1.ebuild:
+  Fix dependencies for qt4.4, thanks to Bernd Steinhauser in bug 212748
 
   13 Jan 2008; Markus Ullmann <jokey@gentoo.org> qgit-2.1.ebuild:
   Fix hardcoded debug flags for release version for bug #204827
