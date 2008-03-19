@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Taint
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Taint/ChangeLog,v 1.12 2007/07/14 14:31:55 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Taint/ChangeLog,v 1.13 2008/03/19 02:46:00 jer Exp $
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Test-Taint-1.04.ebuild:
+  Stable for HPPA too.
 
   14 Jul 2007; Raúl Porcel <armin76@gentoo.org> Test-Taint-1.04.ebuild:
   x86 stable
