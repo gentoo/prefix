@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pysqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.86 2008/03/08 06:31:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.87 2008/03/19 14:47:45 hoffie Exp $
+
+  19 Mar 2008; Christian Hoffmann <hoffie@gentoo.org> pysqlite-0.5.1.ebuild,
+  pysqlite-1.0.1.ebuild, pysqlite-2.3.5.ebuild, pysqlite-2.4.1.ebuild:
+  fixing HOMEPAGE, both (for <pysqlite-2 and for pysqlite-2*) are no longer
+  reachable
 
   08 Mar 2008; Jeroen Roovers <jer@gentoo.org> pysqlite-2.3.5.ebuild:
   Stable for HPPA (bug #212482).
