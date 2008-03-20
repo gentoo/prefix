@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool multilib
+inherit eutils libtool multilib flag-o-matic
 
 DESCRIPTION="A library to encapsulate CD-ROM reading and control"
 HOMEPAGE="http://www.gnu.org/software/libcdio/"
@@ -32,6 +32,8 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	econf \
 		$(use_enable nls) \
 		$(use_enable cddb) \
