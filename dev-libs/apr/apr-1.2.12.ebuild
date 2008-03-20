@@ -38,6 +38,8 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
 	# For now we always enable ipv6. Testing has shown that is still works
 	# correctly in ipv4 systems, and currently, the ipv4-only support
 	# is broken in apr. (ipv6 is enabled by default)
