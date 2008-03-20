@@ -163,6 +163,8 @@ src_configure() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
 	filter-flags -malign-double
 
 	# Seems to no longer be necessary
