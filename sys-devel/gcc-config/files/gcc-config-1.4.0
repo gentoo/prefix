@@ -18,6 +18,8 @@ umask 022
 # on software developers.
 SED=$(type -P gsed)
 SED=${SED:-$(type -P sed)}
+AWK=$(type -P gawk)
+AWK=${AWK:-$(type -P awk)}
 
 usage() {
 cat << "USAGE_END"
@@ -225,7 +227,7 @@ switch_profile() {
 		echo "CURRENT=${CC_COMP}" > "${GCC_ENV_D}/config-${CTARGET}"
 	else
 		# Pass all by default
-		awk '!/^(STDCXX_INCDIR|LDPATH|CC|CXX|CTARGET|GCCBITS|GCC_SPECS|GCC_PATH)=/ {print $0}' \
+		${AWK} '!/^(STDCXX_INCDIR|LDPATH|CC|CXX|CTARGET|GCCBITS|GCC_SPECS|GCC_PATH)=/ {print $0}' \
 			"${GCC_ENV_D}/${CC_COMP}" > "${ENV_D}/05gcc-${CTARGET}"
 		echo "LDPATH=\"${MY_LDPATH}\"" >> "${ENV_D}/05gcc-${CTARGET}"
 		echo "PATH=\"${GCC_PATH}\"" >> "${ENV_D}/05gcc-${CTARGET}"
@@ -337,8 +339,8 @@ switch_profile() {
 			libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${EROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} 2>/dev/null) ]]; then
-						cp -pP "${EROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} "${EROOT}/${libdir}"/.gcc.config.new/
+					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} 2>/dev/null) ]]; then
+						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} "${EROOT}/${libdir}"/.gcc.config.new/
 						# no need to sanity remove this as the `mv` should take
 						# care of it.  we also need this step to be completly atomic
 						# for systems that have even `mv` linked against libgcc_s.so.
@@ -546,7 +548,7 @@ split_gcc_ver() {
 	# target [1]
 	#    accept everything we have left
 	#
-	echo "$@" | awk -F- '
+	echo "$@" | ${AWK} -F- '
 	function pushit(onme, pushee) {
 		return (onme == "" ? pushee : pushee"-"onme);
 	}
@@ -743,7 +745,7 @@ if [[ ${DOIT} != "get_current_profile" ]] ; then
 		LDPATH=$(source "${GCC_ENV_D}/${CC_COMP}"; echo ${LDPATH})
 		echo ${LDPATH} | \
  			${SED} -e "s|${EPREFIX}/*|/|g" | \
-			awk -F/ '{ print "/"$2"/"$3"/"$4"/" }'
+			${AWK} -F/ '{ print "/"$2"/"$3"/"$4"/" }'
 	)
 
 	CC_COMP_VERSION=$(chop_gcc_ver_spec ${CC_COMP})
