@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils multilib
+inherit autotools eutils multilib flag-o-matic
 
 MY_P=${P/-bindings/}
 DESCRIPTION="rendering bindings for GUI toolkits for poppler"
@@ -51,6 +51,8 @@ src_compile() {
 	# Configure needs help finding qt libs on multilib systems
 	export QTLIB="${QTDIR}/$(get_libdir)"
 	echo $QTLIB
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
 
 	econf --enable-opi \
 		$(use_enable cairo cairo-output) \
