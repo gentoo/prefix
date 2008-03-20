@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.15 2008/03/13 16:00:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.16 2008/03/19 14:53:06 drac Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch
+	epatch "${FILESDIR}"/${P}-uclibc.patch
 }
 
 src_compile() {
