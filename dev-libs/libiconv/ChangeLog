@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libiconv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.29 2008/02/21 22:20:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.30 2008/03/19 17:24:02 haubi Exp $
+
+  19 Mar 2008; Michael Haubenwallner <haubi@gentoo.org>
+  libiconv-1.12.ebuild:
+  moving libraries with more specific names. See bug #210239
 
 *libiconv-1.12 (21 Feb 2008)
 
