@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav"
 
 DEPEND="
@@ -69,6 +69,16 @@ exportmakeopts() {
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
 	use threads && myopts="${myopts} THREADED_DELTA_SEARCH=YesPlease"
 
+	[[ ${CHOST} == *-interix* ]] && {
+		myopts="${myopts} NO_IPV6=YesPlease"
+		myopts="${myopts} NO_MEMMEM=YesPlease"
+		myopts="${myopts} NO_MKDTEMP=YesPlease"
+		myopts="${myopts} NO_STRTOUMAX=YesPlease"
+		myopts="${myopts} NO_STRTOULL=YesPlease"
+		myopts="${myopts} NO_INET_NTOP=YesPlease"
+		myopts="${myopts} NO_INET_PTON=YesPlease"
+	}
+
 	export MY_MAKEOPTS=${myopts}
 }
 
@@ -86,6 +96,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
+	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
 	sed -i \
 		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
