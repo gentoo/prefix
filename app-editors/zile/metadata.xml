@@ -2,4 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>emacs</herd>
+<longdescription>
+  Zile is a small, fast, and powerful Emacs clone. It is useful for small
+  footprint installations (e.g. on floppy disk), machines with little memory,
+  or quick editing sessions, especially on remote machines or as a different
+  user, e.g. root.
+</longdescription>
 </pkgmetadata>
