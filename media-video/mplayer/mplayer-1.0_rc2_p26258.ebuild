@@ -194,13 +194,9 @@ src_unpack() {
 	# Fix polish spelling errors
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
-	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
-	epatch "${FILESDIR}"/${PN}-1.0-include-stdlib.patch
-	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-sysctl.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26258-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-time.patch
-	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-user_ldt.patch
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
-	epatch "${FILESDIR}"/${PN}-1.0-quantize2.patch
 
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p25993-prefix.patch
 }
