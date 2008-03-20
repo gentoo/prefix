@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool
+inherit libtool flag-o-matic
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
@@ -25,6 +25,8 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	econf \
 		--disable-poppler-qt4 \
 		--disable-poppler-glib \
