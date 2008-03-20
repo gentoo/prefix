@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.63 2008/03/08 13:08:07 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.64 2008/03/19 16:34:19 voyageur Exp $
+
+*gnustep-base-1.15.3 (19 Mar 2008)
+
+  19 Mar 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-base-1.15.2.ebuild, +gnustep-base-1.15.3.ebuild:
+  Update unstable release, adds TLS/SSL and https support
 
   08 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   gnustep-base-1.14.1.ebuild:
