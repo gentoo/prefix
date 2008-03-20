@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit xfce44
+inherit xfce44 autotools
 
 XFCE_VERSION="4.4.1"
 xfce44
@@ -12,7 +12,7 @@ xfce44
 DESCRIPTION="Calendar"
 HOMEPAGE="http://www.kolumbus.fi/~w408237/orage"
 SRC_URI="http://www.kolumbus.fi/~w408237/${PN}/${P}.tar.bz2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="dbus debug libnotify"
 
 S="${WORKDIR}"/${P}-svn
@@ -28,11 +28,19 @@ RDEPEND=">=dev-libs/glib-2.6
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/intltool
+	x86-interix? ( xfce-extra/xfce4-dev-tools )
 	!xfce-extra/xfcalendar"
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
 XFCE_CONFIG="${XFCE_CONFIG} $(use_enable dbus) $(use_enable libnotify)"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	use x86-interix && NOCONFIGURE=yes xdt-autogen # need new libtool for interix
+}
 
 pkg_postinst() {
 	xfce44_pkg_postinst
