@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activesupport
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.53 2007/12/18 07:01:11 graaff Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.54 2008/03/19 19:36:14 graaff Exp $
+
+  19 Mar 2008; Hans de Graaff <graaff@gentoo.org> Manifest:
+  Redigest due to upstream repackaging
 
 *activesupport-2.0.2 (18 Dec 2007)
 
