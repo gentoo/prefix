@@ -1,0 +1,12 @@
+diff -ru -x '*.Po' liboil-0.3.12.orig/liboil/liboilcpu.c liboil-0.3.12/liboil/liboilcpu.c
+--- liboil-0.3.12.orig/liboil/liboilcpu.c	2008-03-17 12:09:18 +0100
++++ liboil-0.3.12/liboil/liboilcpu.c	2008-03-17 12:09:51 +0100
+@@ -598,7 +598,7 @@
+   /* Solaris is OK */
+ #elif defined(__NetBSD__)
+   /* NetBSD is OK */
+-#elif
++#else
+    
+   /* If we don't know that the operating system supports SSE, don't trust that
+    * it will properly support it.

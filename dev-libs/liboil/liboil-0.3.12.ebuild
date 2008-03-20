@@ -12,7 +12,7 @@ SRC_URI="http://liboil.freedesktop.org/download/${P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0.3"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc"
 
 DEPEND="=dev-libs/glib-2*"
@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/liboil-0.3.10-sse2revert.diff
 	epatch "${FILESDIR}"/${P}-dontbuild-examples.patch
+	epatch "${FILESDIR}"/${P}-preprocessor.patch
 	AT_M4DIR="m4" eautoreconf
 }
 
