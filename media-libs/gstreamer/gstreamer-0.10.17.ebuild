@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool
+inherit libtool flag-o-matic eutils
 
 # Create a major/minor combo for our SLOT and executables suffix
 PVP=(${PV//[-\._]/ })
@@ -32,11 +32,19 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && {
+		append-flags -D_ALL_SOURCE
+		export ac_cv_lib_dl_dladdr=no
+	}
+
 	econf --with-package-name="Gentoo GStreamer ebuild" \
 		--with-package-origin="http://www.gentoo.org" \
 		$(use_enable test tests) \
