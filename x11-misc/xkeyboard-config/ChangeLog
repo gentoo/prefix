@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.47 2008/02/05 11:50:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.49 2008/03/19 19:10:36 drac Exp $
+
+  19 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  xkeyboard-config-1.2.ebuild:
+  Revert stable keyword for amd64 because of Comment #1 in bug 213933.
+
+  19 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  xkeyboard-config-1.1.ebuild, xkeyboard-config-1.2.ebuild:
+  amd64 stable
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org>
   xkeyboard-config-1.1.ebuild:
