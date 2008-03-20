@@ -1,6 +1,30 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.170 2008/03/02 22:21:28 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.171 2008/03/20 04:18:28 dirtyepic Exp $
+
+*freetype-1.4_pre20080316 (20 Mar 2008)
+
+  20 Mar 2008; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-1.4_pre-contrib-destdir.patch,
+  +files/freetype-1.4_pre-malloc.patch,
+  +files/freetype-1.4_pre-silence-strict-aliasing.patch,
+  +files/freetype-1.4_pre-ttf2pk-tetex-3.patch,
+  +files/freetype-1.4_pre-ttf2tfm-segfault.patch,
+  +freetype-1.4_pre20080316.ebuild:
+  Version bump taken from upstream svn. The code hasn't changed in years but
+  is still more recent than the version we're currently packaging.
+
+  - bug #202017 - fix install on ppc64 (hopefully)
+  - bug #209303 - ttf2tfm segfault
+  - another ttf2tfm segfault (http://bugs.debian.org/395341)
+  - ttf2pk/ttf2tfm now work with tetex-3
+  - fix typo in kpathsea configure option
+  - make Makefiles in contrib honor DESTDIR
+  - remove manual src_install hacks
+  - silence strict-aliasing warnings
+  - major cleanup
+
+  nls is broken, but it doesn't work in the current stable either.
 
   02 Mar 2008; Ryan Hill <dirtyepic@gentoo.org>
   -files/freetype-2.1.9-fix_bci.patch,
