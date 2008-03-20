@@ -106,6 +106,11 @@ src_compile() {
 			# defined symbols, so disable nls
 			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
+		*-interix*)
+			# disable usage of poll() on interix, since poll() only
+			# works on the /proc filesystem (.......)
+			export glibcxx_cv_POLL=no
+		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
