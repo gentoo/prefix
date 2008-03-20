@@ -123,6 +123,7 @@ src_compile() {
 	econf \
 		--with-portage-user=${PORTAGE_USER:-portage} \
 		--with-portage-group=${PORTAGE_GROUP:-portage} \
+		--with-root-user=$(python -c 'from portage.const import rootuser; print rootuser') \
 		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"

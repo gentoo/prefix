@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9494 (20 Mar 2008)
+
+  20 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9405.ebuild, +portage-2.2.00.9494.ebuild:
+  New snapshot and ebuild to fix bug #212818, regarding retaining the
+  root-user when updating per ebuild
+
 *portage-2.2.00.9468 (15 Mar 2008)
 
   15 Mar 2008; Fabian Groffen <grobian@gentoo.org>
