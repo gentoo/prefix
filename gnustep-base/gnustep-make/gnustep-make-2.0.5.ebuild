@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.1.ebuild,v 1.12 2007/12/06 12:07:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.5.ebuild,v 1.1 2008/03/19 16:12:29 voyageur Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-destdir.patch
+	epatch "${FILESDIR}"/${PN}-2.0.1-destdir.patch
 	cp "${FILESDIR}"/gnustep-2.{csh,sh} "${T}"/
 	eprefixify "${T}"/gnustep-2.{csh,sh}
 }
