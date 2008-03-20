@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.89 2008/03/09 21:34:56 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.90 2008/03/19 23:40:36 leio Exp $
+
+*gtk-doc-1.10 (19 Mar 2008)
+
+  19 Mar 2008; Mart Raudsepp <leio@gentoo.org> +gtk-doc-1.10.ebuild:
+  Version bump.
 
   09 Mar 2008; Mart Raudsepp <leio@gentoo.org> -files/60gtk-doc-gentoo.el,
   -files/gtk-doc-1.6-no_dupe_ids.patch, -gtk-doc-1.4-r1.ebuild,
