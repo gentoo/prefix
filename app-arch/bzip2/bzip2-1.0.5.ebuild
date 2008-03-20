@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5.ebuild,v 1.5 2008/03/19 00:34:17 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5.ebuild,v 1.6 2008/03/19 18:58:42 corsair Exp $
 
 EAPI="prefix"
 
