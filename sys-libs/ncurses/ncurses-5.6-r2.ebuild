@@ -24,6 +24,12 @@ DEPEND="gpm? ( sys-libs/gpm )"
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
+	# need libtool to build aix-style shared objects inside archive libs, but
+	# cannot depend on libtool, as this would create circular dependencies...
+	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
+	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
+	[[ ${CHOST} == *-aix* ]] && ! type libtool >&/dev/null &&
+		die "Please make some working libtool available manually before emerging ncurses"
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
@@ -35,6 +41,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-solaris2.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
+	epatch "${FILESDIR}"/${P}-libtool.patch # used on aix
 }
 
 src_compile() {
@@ -53,6 +60,7 @@ src_compile() {
 	
 	# work around http://gcc.gnu.org/ml/gcc-help/2006-02/msg00173.html
 	[[ ${CHOST} == *-aix5.3* ]] && export ac_cv_sys_large_files=no
+	[[ ${CHOST} == *-aix5.3* ]] && myconf="${myconf} --with-libtool"
 
 	# First we build the regular ncurses ...
 	mkdir "${WORKDIR}"/narrowc
@@ -112,6 +120,8 @@ do_compile() {
 	# want those in lib not usr/lib.  We cannot move them lateron after
 	# installing, because that will result in broken install_names for
 	# platforms that store pointers to the libs instead of directories.
+	# But this only is true when building without libtool.
+	[[ ${CHOST} == *-aix* ]] ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
 	# A little hack to fix parallel builds ... they break when
@@ -133,12 +143,22 @@ src_install() {
 		emake DESTDIR="${D}" install || die "make widec install failed"
 	fi
 
+	if [[ ${CHOST} == *-aix* ]]; then
+		# Move dynamic ncurses libraries into /lib
+		dodir /$(get_libdir)
+		local f
+		for f in "${ED}"usr/$(get_libdir)/lib{,n}curses{,w}$(get_libname)*; do
+			[[ -f ${f} ]] || continue
+			mv "${f}" "${ED}"$(get_libdir)/ || die "could not move ${f#${ED}}"
+		done
+	else # keeping intendation to keep diff small
 	# Move static and extraneous ncurses static libraries out of /lib
 	cd "${ED}"/$(get_libdir)
 	mv *.a "${ED}"/usr/$(get_libdir)/
+	fi
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		[[ -f ${ED}/lib/libcursesw$(get_libname) ]] && \
+		[[ -f ${ED}/$(get_libdir)/libcursesw$(get_libname) ]] && \
 			gen_usr_ldscript libcursesw$(get_libname)
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi

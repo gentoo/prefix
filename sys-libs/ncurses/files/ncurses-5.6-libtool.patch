@@ -1,0 +1,38 @@
+--- configure.in.orig	2008-02-24 22:05:58 +0100
++++ configure.in	2008-02-24 22:06:06 +0100
+@@ -198,6 +198,7 @@
+ if test "$with_libtool" != "no" ; then
+ 
+ cf_list_models="$cf_list_models libtool"
++OBJEXT=lo
+ 
+ else
+ 
+--- aclocal.m4.orig	2008-02-25 22:06:37 +0100
++++ aclocal.m4	2008-02-25 22:05:54 +0100
+@@ -4758,6 +4758,7 @@
+ 	case $cf_cv_libtool_version in
+ 	1.[[5-9]]*|[[2-9]]*)
+ 		LIBTOOL_CXX="$LIBTOOL --tag=CXX"
++		LIBTOOL="$LIBTOOL --tag=CC"
+ 		;;
+ 	*)
+ 		LIBTOOL_CXX="$LIBTOOL"
+--- configure.orig	2008-02-24 22:06:21 +0100
++++ configure	2008-02-24 21:56:29 +0100
+@@ -4149,6 +4149,7 @@
+ 	case $cf_cv_libtool_version in
+ 	1.[5-9]*|[2-9]*)
+ 		LIBTOOL_CXX="$LIBTOOL --tag=CXX"
++		LIBTOOL="$LIBTOOL --tag=CC"
+ 		;;
+ 	*)
+ 		LIBTOOL_CXX="$LIBTOOL"
+@@ -4164,6 +4164,7 @@
+ if test "$with_libtool" != "no" ; then
+ 
+ cf_list_models="$cf_list_models libtool"
++OBJEXT=lo
+ 
+ else
+ 
