@@ -5,14 +5,14 @@
 EAPI="prefix"
 
 # order is important, gnome2 after gst-plugins
-inherit gst-plugins-base gst-plugins10 gnome2 libtool flag-o-matic
+inherit gst-plugins-base gst-plugins10 gnome2 libtool flag-o-matic eutils
 
 DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="http://gstreamer.sourceforge.net"
 SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug nls"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -29,6 +29,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
 }
@@ -38,6 +40,8 @@ src_compile() {
 	# tested with 0.10.15
 	strip-flags
 	replace-flags "-O3" "-O2"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	gst-plugins-base_src_configure \
 		$(use_enable nls) \
