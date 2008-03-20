@@ -44,6 +44,9 @@ src_unpack() {
 	for ((i=1; i<=PLEVEL; i++)); do
 		epatch "${DISTDIR}"/${PN}${MY_PV/\.}-$(printf '%03d' ${i})
 	done
+	# missing patch for 'support/shlib-install' in p12 (netbsd, aix5, interix).
+	epatch "${FILESDIR}"/${P}-shlib-install.patch
+
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-build.patch #151174
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
@@ -53,9 +56,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-irix.patch #209595
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
-
-	# forgot patching 'support/shlib-install' in p12 (netbsd, aix5, interix).
-	epatch "${FILESDIR}"/${P}-shlib-install.patch
+	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
 
 	if [[ ${CHOST} == *-darwin9 ]]; then
 		epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch || die
@@ -88,6 +89,7 @@ src_install() {
 
 	# Move static and extraneous ncurses libraries out of /lib
 	dodir /usr/$(get_libdir)
+	[[ $(get_libname) != .a ]] &&
 	mv "${ED}"/$(get_libdir)/lib{readline,history}.a "${ED}"/usr/$(get_libdir)/
 	chmod u+w "${ED}"/$(get_libdir)/*$(get_libname)*
 	# Bug #4411
