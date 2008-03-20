@@ -45,6 +45,11 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && {
+		export ac_cv_func_poll=no
+		export ac_cv_header_poll_h=no
+	}
+
 	tc-export BUILD_CC
 
 	# Protect the user from themselves #115036
