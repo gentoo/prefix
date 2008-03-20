@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.249 2008/01/30 15:42:10 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.251 2008/03/17 04:37:23 ricmm Exp $
+
+  17 Mar 2008; <ricmm@gentoo.org> alsa-lib-1.0.13.ebuild,
+  alsa-lib-1.0.14_rc2.ebuild, alsa-lib-1.0.14_rc3.ebuild,
+  alsa-lib-1.0.14a-r1.ebuild:
+  Drop to ~mips due to unstable deps
+
+*alsa-lib-1.0.16 (12 Mar 2008)
+
+  12 Mar 2008; Tony Vroon <chainsaw@gentoo.org> +alsa-lib-1.0.16.ebuild:
+  Version bump, for bug #210249.
 
 *alsa-lib-1.0.16_rc2 (30 Jan 2008)
 *alsa-lib-1.0.16_rc1 (30 Jan 2008)
