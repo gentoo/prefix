@@ -33,7 +33,7 @@ wget --no-glob "http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catp
 
 source $ebuild
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
-	mkdir files
+	mkdir -p files
 	wget --no-glob -P files "http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/$i"
 done
 eapify $ebuild
