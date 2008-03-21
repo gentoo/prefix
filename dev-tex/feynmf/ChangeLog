@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.19 2008/02/10 16:33:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.20 2008/03/20 21:43:01 ulm Exp $
+
+  20 Mar 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add longdescription to metadata.
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org> feynmf-1.08-r2.ebuild:
   keyword ~x86-fbsd
