@@ -19,9 +19,9 @@ IUSE="extwrapper"
 RDEPEND=">=sys-apps/findutils-4.2
 	>=sys-devel/gcc-config-1.4.0"
 
-W_VER=1.3-r1
+W_VER=1.3
 
-S="${WORKDIR}/toolchain-prefix-wrapper-${EXTW_VER}"
+S=${WORKDIR}/toolchain-prefix-wrapper-${EXTW_VER}
 
 pkg_setup() {
 	if ! use extwrapper; then
@@ -30,7 +30,7 @@ pkg_setup() {
 }
 
 localwrapper_src_unpack() {
-	cp "${FILESDIR}"/${PN}-${PV}-old "${T}"/${PN}-${PV}
+	cp "${FILESDIR}"/${PN}-${PV} "${T}"/${PN}-${PV}
 	cp "${FILESDIR}"/ldwrapper-${W_VER}.c "${T}"/
 	eprefixify "${T}"/${PN}-${PV} "${T}"/ldwrapper-${W_VER}.c
 	# YES, this binutils-config is NOT cross-compile safe

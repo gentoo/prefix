@@ -25,7 +25,6 @@
 
 #define BINUTILS_CONFIG    "@GENTOO_PORTAGE_EPREFIX@/usr/bin/binutils-config"
 #define ENVD_BASE_BINUTILS "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05binutils"
-#define ENVD_BASE_GCC      "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05gcc-@CHOST@"
 
 struct wrapper_data {
 	char name[MAXPATHLEN + 1];
@@ -396,13 +395,11 @@ int main(int argc, char *argv[])
 #endif
 
 	/* Get the include path for the compiler and linker */
-	if (find_ldpath_in_envd(&data, ENVD_BASE_GCC, 0) == 0) {
-		fprintf(stderr, "binutils-config: warning: no GCC found on your system!\n");
-	} else {
-		ADDPATH(data.ldpath);
-	}
 	if (find_ldpath_in_envd(&data, ENVD_BASE_BINUTILS, 0) != 0) {
 		ADDPATH(data.ldpath);
+		/* GCC's libs are in a subdir "gcc" */
+		snprintf(str, MAXPATHLEN, "%s/gcc", data.ldpath);
+		ADDPATH(str);
 	} else {
 		fprintf(stderr, "binutils-config: warning: no linker found on your system!");
 	}
