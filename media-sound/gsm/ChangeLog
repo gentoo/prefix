@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/gsm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.30 2008/03/20 04:25:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.31 2008/03/20 11:42:19 armin76 Exp $
+
+  20 Mar 2008; Raúl Porcel <armin76@gentoo.org> gsm-1.0.12-r1.ebuild:
+  alpha/sparc/x86 stable wrt #213686
 
   20 Mar 2008; Jeroen Roovers <jer@gentoo.org> gsm-1.0.12-r1.ebuild:
   Stable for HPPA (bug #213686).
