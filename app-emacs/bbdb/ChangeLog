@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.31 2007/11/24 23:30:35 ulm Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.32 2008/03/20 21:17:41 ulm Exp $
+
+  20 Mar 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add longdescription to metadata.
 
   24 Nov 2007; Ulrich Mueller <ulm@gentoo.org> bbdb-2.35.ebuild:
   Change RDEPEND from latex-base to tex-base.
