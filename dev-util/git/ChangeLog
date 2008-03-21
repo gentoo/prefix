@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.260 2008/03/17 21:37:13 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.262 2008/03/20 19:59:38 vapier Exp $
+
+  20 Mar 2008; Mike Frysinger <vapier@gentoo.org> git-1.5.4.4.ebuild:
+  Add support for USE=xinetd #213014.
+
+  20 Mar 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.5.4.4.ebuild:
+  The base Git.pm module now requires dev-perl/Error, so it is no longer
+  optional under USE=perl. dev-perl/Net-SMTP-SSL remains optional as it is
+  only used for git-send-email.
 
   17 Mar 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.5.4.4.ebuild:
   dev-perl/Authen-SASL is an indirect dependancy of Net-SMTP-SSL already w/

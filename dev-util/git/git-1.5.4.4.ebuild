@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.4.ebuild,v 1.2 2008/03/17 21:37:13 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.4.ebuild,v 1.4 2008/03/20 19:59:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,13 +20,14 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd"
 
 DEPEND="
 	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
 	dev-lang/perl
+	dev-perl/Error
 	app-arch/cpio
 	tk?     ( dev-lang/tk )
 	curl?   ( net-misc/curl )
@@ -34,7 +35,7 @@ DEPEND="
 	emacs?  ( virtual/emacs )"
 RDEPEND="${DEPEND}
 	cgi?    ( virtual/perl-CGI )
-	perl?   ( dev-perl/Error dev-perl/Net-SMTP-SSL )
+	perl?   ( dev-perl/Net-SMTP-SSL )
 	gtk?    ( >=dev-python/pygtk-2.8 )"
 
 SITEFILE=72${PN}-gentoo.el
@@ -186,8 +187,10 @@ src_install() {
 		newdoc  "${S}"/gitweb/README README.gitweb
 	fi
 
-	insinto /etc/xinetd.d
-	newins "${FILESDIR}"/git-daemon.xinetd git-daemon
+	if use xinetd ; then
+		insinto /etc/xinetd.d
+		newins "${FILESDIR}"/git-daemon.xinetd git-daemon
+	fi
 
 	newinitd "${FILESDIR}"/git-daemon.initd git-daemon
 	newconfd "${FILESDIR}"/git-daemon.confd git-daemon
