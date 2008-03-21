@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.53 2008/01/09 12:25:18 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.54 2008/03/20 17:39:06 voyageur Exp $
+
+  20 Mar 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-back-art-0.13.1.ebuild, +gnustep-back-art-0.13.2.ebuild:
+  Unstable version bump
 
 *gnustep-back-art-0.13.1 (09 Jan 2008)
 
