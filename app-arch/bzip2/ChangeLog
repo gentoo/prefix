@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.66 2008/03/19 18:58:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.67 2008/03/21 05:14:22 vapier Exp $
+
+  21 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  -files/bzip2-1.0.3-shared-largefile-support.patch,
+  files/bzip2-1.0.4-makefile-CFLAGS.patch, bzip2-1.0.4.ebuild,
+  bzip2-1.0.4-r1.ebuild, bzip2-1.0.5.ebuild:
+  Merge shared-largefile-support.patch into makefile-CFLAGS.patch #214093 by
+  Gilles Espinasse.
 
   19 Mar 2008; Markus Rothe <corsair@gentoo.org> bzip2-1.0.5.ebuild:
   Stable on ppc64; bug #213820

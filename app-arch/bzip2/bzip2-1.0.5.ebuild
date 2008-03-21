@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5.ebuild,v 1.6 2008/03/19 18:58:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5.ebuild,v 1.7 2008/03/21 05:14:22 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-saneso.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-man-links.patch #172986
-	epatch "${FILESDIR}"/${PN}-1.0.3-shared-largefile-support.patch
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
