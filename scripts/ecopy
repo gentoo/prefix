@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright Gentoo Foundation 2006-2008
 
-if [ "${1:0:1}" = '=' ] || [ "${1:0:1}" = '<' ] || [ "${1:0:1}" = '>' ]; then
+if [[ -z ${1} ]] ; then
+	cat <<-EOF
+usage: ecopy <category>/<package>
+  - make sure the scripts directory from the overlay is in your path
+  - make sure you call ecopy from the root of the overlay
+  - you can also specify a specific version, using the '=' prefix
+    and appending a version
+EOF
+	exit 0
+fi
+
+if [[ *${1:0:1}* == "=" ]] ; then
 	ebuildgrep=${1#*\/}
 	#catpkg=${1%-*}
-	catpkg=${1#<}
-	catpkg=${catpkg#>}
-	catpkg=${catpkg#=}
+	catpkg=${1#=}
 else
 	catpkg=$1
 fi
@@ -16,13 +25,20 @@ cd $catpkg
 wget --no-glob "http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/ChangeLog"
 wget --no-glob "http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/metadata.xml"
 wget --no-glob "http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/Manifest"
-if [ "${1:0:1}" = '=' ]; then
-	ebuild=${2:-$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")}
+
+if [[ ${1:0:1} == "=" ]] ; then
+	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
 else
-	ebuild=${2:-$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")}
+	ebuild=$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
 fi
 
-if [[ -z "$ebuild" ]]; then echo "please specify specific version as additional argument for example: $0 $1 ${catpkg#*/}-0.2.3.ebuild"; exit; fi
+if [[ -z "$ebuild" ]] ; then
+	echo "please specify a correct specific version"
+	[[ ${1:0:1} == "=" ]] \
+		&& echo "$1 doesn't match an existing ebuild" \
+		|| echo "example: =$1-0.2.3"
+	exit -1
+fi
 
 PF=${ebuild/.ebuild}
 P=${PF%-r[1-9]*}
