@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.19 2007/09/05 22:20:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.20 2008/03/20 20:39:50 vapier Exp $
 
 EAPI="prefix"
 
@@ -49,7 +49,7 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 # NOTE: we SHOULD be using at least binutils 2.15.90.0.1 everywhere for proper
 # .eh_frame ld optimisation and symbol visibility support, but it hasnt been
 # well tested in gentoo on any arch other than amd64!!
-RDEPEND="|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
+RDEPEND=">=sys-devel/gcc-config-1.4
 	>=sys-libs/zlib-1.1.4
 	virtual/libiconv
 	!prefix? ( elibc_glibc? (
@@ -81,7 +81,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/binutils-2.14.90.0.8-r1
 	amd64? ( >=sys-devel/binutils-2.15.90.0.1.1-r1 )"
-PDEPEND="|| ( sys-devel/gcc-config app-admin/eselect-compiler )"
+PDEPEND=">=sys-devel/gcc-config-1.4"
 
 src_unpack() {
 	gcc_src_unpack

@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.645 2008/03/18 11:41:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.646 2008/03/20 20:39:50 vapier Exp $
+
+  20 Mar 2008; Mike Frysinger <vapier@gentoo.org> gcc-2.95.3-r9.ebuild,
+  gcc-2.95.3-r10.ebuild, gcc-3.2.3-r4.ebuild, gcc-3.3.6-r1.ebuild,
+  gcc-3.4.6-r2.ebuild, gcc-4.0.3.ebuild, gcc-4.0.4.ebuild,
+  gcc-4.1.0-r1.ebuild, gcc-4.1.1-r3.ebuild, gcc-4.1.2.ebuild,
+  gcc-4.2.0.ebuild, gcc-4.2.1.ebuild, gcc-4.2.2.ebuild, gcc-4.2.3.ebuild,
+  gcc-4.3.0.ebuild:
+  Drop eselect-compiler from DEPENDs since it has been dropped from the tree.
 
   18 Mar 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild:
   Fold mpfr/gmp depend updates from toolchain overlay #213687.
