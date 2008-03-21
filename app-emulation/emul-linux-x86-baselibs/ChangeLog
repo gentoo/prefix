@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.92 2008/03/17 07:12:07 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.93 2008/03/20 22:24:09 maekke Exp $
+
+  20 Mar 2008; Markus Meier <maekke@gentoo.org>
+  emul-linux-x86-baselibs-20080316.ebuild:
+  amd64 stable, security bug #213823
 
 *emul-linux-x86-baselibs-20080316 (17 Mar 2008)
 
