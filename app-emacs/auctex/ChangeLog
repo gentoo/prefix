@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.83 2008/02/11 08:20:09 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.84 2008/03/20 21:14:57 ulm Exp $
+
+  20 Mar 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add longdescription to metadata.
 
 *auctex-11.85 (11 Feb 2008)
 
