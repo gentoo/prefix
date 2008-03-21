@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8402 2008/03/20 03:03:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8405 2008/03/20 19:59:05 tove Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Torsten Veller <tove@gentoo.org> (20 Mar 2008)
+# Masked for removal - Unfetchable and service down
+# bug #213349
+mail-client/ciphire-mail
+
+# Colin Morey <peitolm@gentoo.org> (20 Mar 2008)
+# Masked for testing, closing lots of little bugs
+=mail-mta/exim-4.69-r1
 
 # Ryan Hill <dirtyepic@gentoo.org> (19 Mar 2008)
 # Masked for testing.
@@ -1331,10 +1340,6 @@ app-pda/libopensync-plugin-synce
 # Sorting out media-video/{spca5xx,gspca{,v1}} bug 159176
 media-video/spca5xx
 media-video/gspca
-
-# Raúl Porcel <armin76@gentoo.org> (15 Mar 2007)
-# Mask snapshots
-=net-p2p/amule-2.2.0_pre*
 
 # Steve Dibb <beandog@gentoo.org> (12 Mar 2007)
 # needs testing

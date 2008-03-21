@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3433 2008/03/18 16:20:24 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3434 2008/03/20 15:38:47 jokey Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -830,6 +830,11 @@ mail-client/nail:net - Enable network support (thus enabling POP, IMAP and SMTP)
 mail-client/pine:largeterminal - Add support for large terminals by doubling the size of pine's internal display buffer
 mail-client/pine:passfile - Adds support for caching IMAP passwords into a file between sessions
 mail-client/squirrelmail:filter - Enable amavisd-new filtering
+mail-filter/MailScanner:bitdefender - Enable usage of bitdefender virus scanner
+mail-filter/MailScanner:exim - Set exim to used MTA
+mail-filter/MailScanner:f-prot - Enable usage of fprot virus scanner
+mail-filter/MailScanner:postfix - Set postfix to used MTA
+mail-filter/MailScanner:spamassassin - Enable usage of spamassassin for spam detection
 mail-filter/amavisd-new:courier - Add support for usage with courierfilter
 mail-filter/amavisd-new:qmail - Add support for qmail
 mail-filter/ask:procmail - Adds support for procmail
