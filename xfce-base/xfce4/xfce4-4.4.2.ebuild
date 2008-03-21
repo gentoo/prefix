@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.4.2.ebuild,v 1.9 2007/12/17 18:54:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.4.2.ebuild,v 1.10 2008/03/20 21:56:32 drac Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-li
 IUSE="alsa cups minimal oss xscreensaver"
 
 RDEPEND=">=x11-themes/gtk-engines-xfce-2.4.2
-	>=xfce-base/thunar-0.9.0
+	>=xfce-base/thunar-0.8.0
 	>=xfce-base/xfce-mcs-plugins-${XFCE_MASTER_VERSION}
 	>=xfce-base/xfce4-panel-${XFCE_MASTER_VERSION}
 	>=xfce-base/xfwm4-${XFCE_MASTER_VERSION}
