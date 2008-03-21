@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.70 2007/12/01 17:24:08 peper Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.71 2008/03/20 15:48:40 peper Exp $
+
+*eselect-1.0.11-r1 (20 Mar 2008)
+
+  20 Mar 2008; Piotr Jaroszyński <peper@gentoo.org>
+  +files/eselect-1.0.11-fix-paludis-command.patch,
+  +eselect-1.0.11-r1.ebuild:
+  Add -r1 with a patch fixing paludis_command().
 
 *eselect-1.0.11 (01 Dec 2007)
 
