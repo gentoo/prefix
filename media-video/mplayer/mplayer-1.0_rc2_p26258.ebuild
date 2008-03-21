@@ -7,7 +7,7 @@ EAPI="prefix 1"
 inherit eutils flag-o-matic multilib
 
 RESTRICT="strip"
-IUSE="3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
+IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
 bindist -color-console cddb cdio cdparanoia cpudetection custom-cflags debug
 dga doc dts dvb directfb +dvd dv enca encode esd -fbcon ftp -gif ggi gtk iconv
 ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum
