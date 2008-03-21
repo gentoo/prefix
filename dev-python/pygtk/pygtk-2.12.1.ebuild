@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.2 2008/03/09 22:17:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.3 2008/03/20 23:20:33 eva Exp $
 
 EAPI="prefix"
 
@@ -52,12 +52,6 @@ src_install() {
 		rm examples/Makefile*
 		insinto /usr/share/doc/${PF}
 		doins -r examples
-	fi
-
-	if use doc; then
-		insinto /usr/share/gtk-doc/html/pygtk
-		cd "${WORKDIR}"/pygtk2reference
-		doins -r cursors icons images
 	fi
 }
 

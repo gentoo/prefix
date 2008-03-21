@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.176 2008/03/09 22:17:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.177 2008/03/20 23:20:33 eva Exp $
+
+  20 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> pygtk-2.12.1.ebuild:
+  remove useless doc installation, fix bug #205676 again
 
   09 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> -pygtk-2.8.6.ebuild,
   pygtk-2.12.1.ebuild:
