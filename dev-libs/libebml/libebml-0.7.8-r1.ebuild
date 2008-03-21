@@ -22,6 +22,6 @@ src_compile() {
 }
 
 src_install() {
-	einstall libdir="${D}/usr/$(get_libdir)" || die "make install failed"
+	einstall libdir="${ED}/usr/$(get_libdir)" || die "make install failed"
 	dodoc "${WORKDIR}/${P}/ChangeLog"
 }
