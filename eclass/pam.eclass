@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.15 2008/02/20 00:00:01 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.16 2008/03/20 23:21:37 eva Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -176,7 +176,7 @@ pamd_mimic() {
 cleanpamd() {
 	while [[ -n $1 ]]; do
 		if ! has_version sys-libs/pam; then
-			sed -i -e '/pam_shells\|pam_console/s:^:#:' ${D}/etc/pam.d/$1
+			sed -i -e '/pam_shells\|pam_console/s:^:#:' "${ED}/etc/pam.d/$1"
 		fi
 
 		shift
