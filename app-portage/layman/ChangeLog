@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.56 2008/03/01 14:34:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.57 2008/03/20 16:17:29 jokey Exp $
+
+  20 Mar 2008; Markus Ullmann <jokey@gentoo.org> layman-1.1.1-r1.ebuild:
+  Works on arm
 
   01 Mar 2008; Jeroen Roovers <jer@gentoo.org> layman-1.1.1-r1.ebuild:
   Marked ~hppa.
