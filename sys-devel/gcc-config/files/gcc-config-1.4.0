@@ -328,6 +328,10 @@ switch_profile() {
 	#
 	# The funky move magic is required for proper updating of in-use files.
 	if ! is_cross_compiler ; then
+		[[ ${REAL_CHOST} == *-darwin* ]] \
+			&& libname="dylib" \
+			|| libname="so"
+
 		# Need to cut out extra paths in multilib case and pray the first path
 		# is the "root" multilib path ... maybe some day change this to use
 		# `gcc -print-file-name` ...
@@ -339,8 +343,19 @@ switch_profile() {
 			libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} 2>/dev/null) ]]; then
-						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} "${EROOT}/${libdir}"/.gcc.config.new/
+					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* 2>/dev/null) ]]; then
+						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
+						# fix install_name on Darwin
+						if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
+							pushd "${EROOT}/${libdir}"/.gcc.config.new/ > /dev/null
+							for lib in * ; do
+								soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+								install_name_tool \
+									-id "${EPREFIX}"/lib/${soname##*/} \
+									${lib} &> /dev/null
+							done
+							popd > /dev/null
+						fi
 						# no need to sanity remove this as the `mv` should take
 						# care of it.  we also need this step to be completly atomic
 						# for systems that have even `mv` linked against libgcc_s.so.
@@ -352,10 +367,52 @@ switch_profile() {
 				rmdir "${EROOT}/${libdir}"/.gcc.config.new
 			fi
 		done
+
+		# We can copy the other libs to /usr/lib without funky copying,
+		# don't use symlinks as on Darwin we need to fix the
+		# install_names of the objects.  Omit libgcc and unwind as we
+		# already dealt with those above.  Remember that Prefix doesn't
+		# do multilib!
+		#
+		# To emulate properly what ld.so.conf magic does for non-prefix,
+		# we have to copy the libs of all installed (native) GCC's and
+		# make sure we do the current one as last, such that the
+		# pointers for the unversioned libs point to the currently
+		# selected version.
+		GCC_PROFILES=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-*)
+		GCC_PROFILES="${GCC_PROFILES} ${GCC_ENV_D}/${CC_COMP}"
+		dstlib=${EROOT}/usr/${REAL_CHOST}/lib/gcc
+		# When upgrading, we need to clean up libs
+		mkdir -p "${dstlib}"
+		find -L "${dstlib}" -name "*.${libname}*" -exec rm {} \;
+		for x in ${GCC_PROFILES} ; do
+			if [[ -f ${x} ]] ; then
+				LDPATH=$(source "${x}"; echo ${LDPATH})
+				LDPATH=${LDPATH%%:*}
+				pushd "${ROOT}/${LDPATH}" > /dev/null
+				[[ -n $(ls lib*${libname}* 2>/dev/null) ]] && \
+				for lib in lib*${libname}* ; do
+					[[ ${lib} == libgcc* || ${lib} == unwind* ]] && continue
+					cp -pPf ${lib} "${dstlib}"/${lib}
+					# fix install_name on Darwin
+					if [[ ${REAL_CHOST} == *-darwin* ]] ; then
+						soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+						install_name_tool \
+							-id "${EPREFIX}"/usr/${CHOST}/lib/gcc/${soname##*/} \
+							"${dstlib}"/${lib} &> /dev/null
+					fi
+				done
+				popd > /dev/null
+			fi
+		done
+
+		unset dstlib
 		unset multilib
 		unset multilibdir
 		unset multiarg
 		unset libdir
+		unset libname
+		unset soname
 	fi
 
 	if [[ ${ROOT} == "/" ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} || ${FORCE} == "yes" ]] ; then
