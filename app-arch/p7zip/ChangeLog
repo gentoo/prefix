@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.94 2008/03/16 17:40:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.95 2008/03/21 11:23:03 radek Exp $
+
+  21 Mar 2008; Radoslaw Stachowiak <radek@gentoo.org>
+  -files/p7zip-4.55-open_lzma_alone.patch, -p7zip-4.55-r1.ebuild:
+  removed old version due to security problems #213889
 
   16 Mar 2008; nixnut <nixnut@gentoo.org> p7zip-4.57.ebuild:
   Stable on ppc wrt bug 213595
