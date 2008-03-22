@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.93 2008/03/16 13:01:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.94 2008/03/21 11:20:25 opfer Exp $
+
+  21 Mar 2008; Christian Faulhammer <opfer@gentoo.org> less-416.ebuild,
+  less-418.ebuild:
+  PROVIDE for virtual/pager not needed anymore, there is a new-style virtual
+  in the tree now
 
   16 Mar 2008; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
   Add case for shell scripts for file output #213565 by Matthias B.

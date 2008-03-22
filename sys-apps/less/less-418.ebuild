@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-418.ebuild,v 1.8 2008/03/16 07:49:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-418.ebuild,v 1.9 2008/03/21 11:20:25 opfer Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~
 IUSE="unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2"
-PROVIDE="virtual/pager"
 
 src_unpack() {
 	unpack ${P}.tar.gz
