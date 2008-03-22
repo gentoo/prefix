@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.262 2008/03/13 16:54:16 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.263 2008/03/21 18:57:16 hawking Exp $
+
+*gvim-7.1.285 (21 Mar 2008)
+
+  21 Mar 2008; Ali Polatel <hawking@gentoo.org> +gvim-7.1.285.ebuild:
+  Version bump.
 
   13 Mar 2008; <ricmm@gentoo.org> gvim-6.4.ebuild, gvim-7.0.235.ebuild:
   Drop to ~mips due to unstable deps
