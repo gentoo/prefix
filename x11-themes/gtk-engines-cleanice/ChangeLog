@@ -1,6 +1,14 @@
 # ChangeLog for x11-themes/gtk-engines-cleanice
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.23 2007/08/13 22:06:27 dertobi123 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.24 2008/03/21 12:40:54 drac Exp $
+
+*gtk-engines-cleanice-2.4.1 (21 Mar 2008)
+
+  21 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -gtk-engines-cleanice-0.8.5.ebuild, -gtk-engines-cleanice-0.8.5-r1.ebuild,
+  -gtk-engines-cleanice-1.2.7.ebuild, gtk-engines-cleanice-2.4.0.ebuild,
+  +gtk-engines-cleanice-2.4.1.ebuild:
+  Version bump, use emake, quoting and such.
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   gtk-engines-cleanice-0.8.5-r1.ebuild:
