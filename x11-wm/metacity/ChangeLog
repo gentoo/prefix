@@ -1,6 +1,14 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.210 2008/02/04 04:25:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.211 2008/03/21 19:26:51 leio Exp $
+
+*metacity-2.22.0 (21 Mar 2008)
+
+  21 Mar 2008; Mart Raudsepp <leio@gentoo.org> +metacity-2.22.0.ebuild:
+  New version for GNOME-2.22. In addition to many bug fixes, this version adds
+  a XRender based (2D) compositor for those who can and want to use it; see
+  http://library.gnome.org/misc/release-notes/2.22/#sect:metacity for how to
+  enable it.
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> metacity-2.20.2.ebuild:
   Stable for HPPA (bug #208366).
