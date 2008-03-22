@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.36 2008/03/17 00:35:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.37 2008/03/22 03:49:36 dang Exp $
+
+  22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> pygobject-2.14.1.ebuild:
+  Marked stable on amd64 for bug #212986
 
   17 Mar 2008; Jeroen Roovers <jer@gentoo.org> pygobject-2.14.1.ebuild:
   Stable for HPPA (bug #212986).
