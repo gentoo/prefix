@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libbonobo
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.155 2008/03/17 02:01:01 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.156 2008/03/22 03:51:49 dang Exp $
+
+  22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> libbonobo-2.20.4.ebuild:
+  Marked stable on amd64 for bug #212986
 
 *libbonobo-2.22.0 (17 Mar 2008)
 
