@@ -258,11 +258,13 @@ vim_src_unpack() {
 		epatch ${WORKDIR}/gentoo/patches-all/
 
 	# macvim patchset needs to be applied here (because it alters src/feature.h)
-	epatch "${WORKDIR}"/vim-misc-prefix/macvim-patchset
-	for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
-		cp "${WORKDIR}"/vim-misc-prefix/runtime/${aqua_file}  \
-		"${S}"/runtime/${aqua_file}
-	done
+	if [[ -f "${WORKDIR}"/vim-misc-prefix/macvim-patchset ]] ; then
+		epatch "${WORKDIR}"/vim-misc-prefix/macvim-patchset
+		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
+			cp "${WORKDIR}"/vim-misc-prefix/runtime/${aqua_file}  \
+			"${S}"/runtime/${aqua_file}
+		done
+	fi
 	# make sure we install our man-pages as vim, not as Vim
 	[[ ${MY_PN} != gvim ]] && \
 		sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
