@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libart_lgpl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.61 2008/03/17 00:30:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.62 2008/03/22 03:59:04 dang Exp $
+
+  22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org>
+  libart_lgpl-2.3.20.ebuild:
+  Marked stable on amd64 for bug #212986
 
   17 Mar 2008; Jeroen Roovers <jer@gentoo.org> libart_lgpl-2.3.20.ebuild:
   Stable for HPPA (bug #212986).
