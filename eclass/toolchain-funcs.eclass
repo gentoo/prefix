@@ -444,8 +444,12 @@ gen_usr_ldscript() {
 			# Since we moved the lib from usr/lib into lib this reference is
 			# wrong.  Hence, we update it here.  We don't configure with
 			# libdir=/lib because that messes up libtool files.
+			# Make sure we don't lose the specific version, so just modify the
+			# existing install_name
+			install_name=$(otool -DX "${ED}"/${libdir}/${lib})
+			[[ -z ${install_name} ]] && die "No install name found for ${ED}/${libdir}/${lib}"
 			install_name_tool \
-				-id "${EPREFIX}"/${libdir}/${lib} \
+				-id "${EPREFIX}"/${libdir}/${install_name##*/} \
 				"${ED}"/${libdir}/${lib}
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
