@@ -38,6 +38,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-NULL-config.patch
 	epatch "${FILESDIR}"/${P}-fake-super-attrs.patch
 	epatch "${FILESDIR}"/${P}-dry-run-hang.patch #193243
+	epatch "${FILESDIR}"/${P}-xattr-non-linux.patch #214239
 }
 
 src_compile() {

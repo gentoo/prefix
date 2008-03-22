@@ -1,0 +1,16 @@
+* http://bugs.gentoo.org/show_bug.cgi?id=214239
+
+--- xattrs.c
++++ xattrs.c
+@@ -355,9 +355,9 @@
+ 			/* Strip the rsync prefix from disguised namespaces. */
+ 			if (
+ #ifdef HAVE_LINUX_XATTRS
+-			    am_root < 0
++			    am_root < 0 &&
+ #endif
+-			 && name_len > RPRE_LEN && name[RPRE_LEN] != '%'
++			 name_len > RPRE_LEN && name[RPRE_LEN] != '%'
+ 			 && HAS_PREFIX(name, RSYNC_PREFIX)) {
+ 				name += RPRE_LEN;
+ 				name_len -= RPRE_LEN;
