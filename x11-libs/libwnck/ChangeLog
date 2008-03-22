@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/libwnck
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.193 2008/02/04 04:18:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.194 2008/03/21 12:38:10 leio Exp $
+
+*libwnck-2.22.0 (21 Mar 2008)
+
+  21 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/2.22.0/001-logout-crash.patch,
+  +files/2.22.0/002-demands-attention-visibility-with-viewports.patch,
+  +files/2.22.0/003-Unstick-windows-when-moving-them-to-another-viewport.pat
+  ch, +files/2.22.0/004-Fix-moving-window-to-an-arbitrary-viewport.patch,
+  +files/2.22.0/005-gtk-doc-die-die-die.patch, +libwnck-2.22.0.ebuild:
+  New version for GNOME-2.22, with mostly bug fixes and code correctness
+  improvements. Also apply patches from upstream for various viewport (compiz
+  usage) related fixes
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> libwnck-2.20.3.ebuild:
   Stable for HPPA (bug #208366).
