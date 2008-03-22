@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.54 2008/01/23 20:58:08 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.55 2008/03/21 11:11:27 dsd Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -404,6 +404,9 @@ check_extra_config() {
 	local	config negate die error reworkmodulenames
 	local	soft_errors_count=0 hard_errors_count=0 config_required=0
 
+	# if we haven't determined the version yet, we need to
+	get_version
+
 	# Determine if we really need a .config. The only time when we don't need
 	# one is when all of the CONFIG_CHECK options are prefixed with "~".
 	for config in ${CONFIG_CHECK}
@@ -424,9 +427,6 @@ check_extra_config() {
 	else
 		require_configured_kernel
 	fi
-
-	# if we haven't determined the version yet, we need too.
-	get_version
 
 	einfo "Checking for suitable kernel configuration options..."
 	

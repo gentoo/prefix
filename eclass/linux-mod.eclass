@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.78 2008/01/22 21:05:32 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.79 2008/03/22 01:10:19 robbat2 Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -513,10 +513,19 @@ linux-mod_src_compile() {
 				econf ${ECONF_PARAMS} || \
 				die "Unable to run econf ${ECONF_PARAMS}"
 			fi
-
-			emake HOSTCC="$(tc-getBUILD_CC)" CC="$(get-KERNEL_CC)" LDFLAGS="$(get_abi_LDFLAGS)" \
-				  ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS} \
-				|| die "Unable to make ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}."
+		
+			# This looks messy, but it is needed to handle multiple variables
+			# being passed in the BUILD_* stuff where the variables also have
+			# spaces that must be preserved. If don't do this, then the stuff
+			# inside the variables gets used as targets for Make, which then
+			# fails.
+			eval "emake HOSTCC=\"$(tc-getBUILD_CC)\" \
+						CC=\"$(get-KERNEL_CC)\" \
+						LDFLAGS=\"$(get_abi_LDFLAGS)\" \
+						${BUILD_FIXES} \
+						${BUILD_PARAMS} \
+						${BUILD_TARGETS} " \
+				|| die "Unable to emake HOSTCC="$(tc-getBUILD_CC)" CC="$(get-KERNEL_CC)" LDFLAGS="$(get_abi_LDFLAGS)" ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}"
 			touch ${srcdir}/.built
 			cd ${OLDPWD}
 		fi
