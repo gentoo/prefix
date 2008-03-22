@@ -26,11 +26,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	epatch "${FILESDIR}"/${PN}-1.0.3-dylib.patch # for Darwin
 	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch # for AIX
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
+	# this a makefile for Darwin, which already "includes" saneso
+	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
 	# - Generate symlinks instead of hardlinks
 	# - pass custom variables to control libdir
@@ -57,7 +58,7 @@ src_compile() {
 	"
 	case "${CHOST}" in
 		*-darwin*)
-			emake ${makeopts} PREFIX="${EPREFIX}"/usr/lib libbz2.dylib || die "Make failed libbz2"
+			emake ${makeopts} PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
 		;;
 		*-aix*)
 			emake ${makeopts} SOLDFLAGS=-shared -f Makefile-libbz2_so all || die "Make failed libbz2"
@@ -85,28 +86,13 @@ src_install() {
 	dosym bzip2 /bin/bunzip2
 	into /
 
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install-dylib \
-			|| die "install-dylib failed"
-		dodir $(get_libdir)
-		mv "${ED}"/usr/$(get_libdir)/*.dylib "${ED}"/$(get_libdir)/
-		gen_usr_ldscript libbz2.dylib
-		# fix library references
-		for obj in "${ED}"/bin/bzip2 ; do
-			l=$(otool -L "${obj}" | grep libbz2 | cut -d' ' -f1 | cut -f2)
-			install_name_tool -change \
-				"${l}" "${EPREFIX}"/lib/$(basename ${l}) \
-				"${obj}"
-		done
-	else
-		if ! use static ; then
-			newbin bzip2-shared bzip2 || die "dobin shared"
-		fi
-
-		dolib.so libbz2.so.${PV} || die "dolib shared"
-		for v in libbz2.so{,.{${PV%%.*},${PV%.*}}} ; do
-			dosym libbz2.so.${PV} /$(get_libdir)/${v}
-		done
-		gen_usr_ldscript libbz2.so
+	if ! use static ; then
+		newbin bzip2-shared bzip2 || die "dobin shared"
 	fi
+
+	dolib.so libbz2$(get_libname ${PV}) || die "dolib shared"
+	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
+		dosym libbz2$(get_libname ${PV}) /$(get_libdir)/${v}
+	done
+	gen_usr_ldscript libbz2$(get_libname)
 }
