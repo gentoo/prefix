@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/sox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.79 2008/02/24 15:09:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.82 2008/03/21 14:28:31 maekke Exp $
+
+  21 Mar 2008; Markus Meier <maekke@gentoo.org> sox-14.0.1.ebuild:
+  amd64/x86 stable, bug #214013
+
+  21 Mar 2008; Brent Baude <ranger@gentoo.org> sox-14.0.1.ebuild:
+  Marking sox-14.0.1 ppc64 for bug 214013
+
+  21 Mar 2008; Tobias Klausmann <klausman@gentoo.org> sox-14.0.1.ebuild:
+  Stable on alpha, bug #214013
 
   24 Feb 2008; Alexis Ballier <aballier@gentoo.org> sox-14.0.1.ebuild:
   Enable amr nb and wb now that is works, thanks to Sebastian
