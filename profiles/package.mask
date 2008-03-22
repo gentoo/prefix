@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8405 2008/03/20 19:59:05 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8408 2008/03/21 22:20:12 leio Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tristan Heaven <nyhm@gentoo.org> (21 Mar 2008)
+# Needs testing
+>=games-strategy/warzone2100-2.1_beta2
+
+# Rémi Cardona <remi@gentoo.org> (21 Mar 2008)
+# Masked for testing (2.3 Release Candidates)
+=x11-drivers/xf86-video-i810-2.2.99*
 
 # Torsten Veller <tove@gentoo.org> (20 Mar 2008)
 # Masked for removal - Unfetchable and service down
@@ -59,7 +67,7 @@ net-firewall/conntrack
 dev-util/jam
 
 # Mart Raudsepp <leio@gentoo.org> (16 Mar 2008)
-# The Great Gnome 2.22 Mask (tm)
+# The Great GNOME 2.22 Mask (tm)
 # Will be unmasked when everything is in, everything is ready and
 # there are no big bugs remaining.
 >=gnome-base/libgtop-2.22
@@ -129,6 +137,15 @@ gnome-base/gnome-settings-daemon
 >=gnome-base/gnome-light-2.22
 >=gnome-base/gnome-2.22
 
+# Mart Raudsepp <leio@gentoo.org> (10 Mar 2008)
+# Temporary swfdec mask due to need for matching versions
+# at once
+>=net-libs/libsoup-2.4
+>=media-libs/swfdec-0.6.0
+>=net-www/swfdec-mozilla-0.6.0
+>=gnome-extra/swfdec-gnome-2.21.91
+# End of GNOME 2.22 mask
+
 # Denis Dupeyron <calchan@gentoo.org> (15 Mar 2008)
 # Masked for removal in 30 days. Requires Tcl 8.3 which
 # isn't in the tree anymore. See bugs 172356 and 173467.
@@ -164,14 +181,6 @@ x11-misc/perlpanel
 # Christian Faulhammer <opfer@gentoo.org> (11 Mar 2008)
 # masked for testing
 =app-portage/gatt-9999
-
-# Mart Raudsepp <leio@gentoo.org> (10 Mar 2008)
-# Temporary swfdec mask due to need for matching versions
-# at once
->=net-libs/libsoup-2.4
->=media-libs/swfdec-0.6.0
->=net-www/swfdec-mozilla-0.6.0
->=gnome-extra/swfdec-gnome-2.21.91
 
 # Doug Goldstein <cardoe@gentoo.org> (10 Mar 2008)
 # upstream MythTV development versions
