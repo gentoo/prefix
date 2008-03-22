@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.46 2008/03/12 17:00:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.47 2008/03/21 16:29:29 maekke Exp $
+
+  21 Mar 2008; Markus Meier <maekke@gentoo.org> autogen-5.9.2.ebuild:
+  amd64 stable, bug #202170
 
   12 Mar 2008; Raúl Porcel <armin76@gentoo.org> autogen-5.9.4.ebuild:
   alpha/ia64/sparc/x86 stable
