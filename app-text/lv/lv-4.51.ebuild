@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51.ebuild,v 1.12 2008/01/22 19:35:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51.ebuild,v 1.13 2008/03/21 11:29:02 opfer Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,6 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-libs/ncurses"
-PROVIDE="virtual/pager"
 
 S=${WORKDIR}/${MY_P}/build
 
