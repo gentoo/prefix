@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/zsh-completion
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.30 2008/03/10 14:08:57 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.31 2008/03/21 11:43:10 cla Exp $
+
+  21 Mar 2008; Dawid Węgliński <cla@gentoo.org>
+  zsh-completion-20080310.ebuild:
+  zsh-completion-20080310 needs zsh in 4.3.5 version (bug #214124)
 
 *zsh-completion-20080310 (10 Mar 2008)
 
