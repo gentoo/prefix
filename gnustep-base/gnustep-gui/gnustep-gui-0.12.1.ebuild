@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.12.1.ebuild,v 1.1 2008/01/03 12:33:39 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.12.1.ebuild,v 1.2 2008/03/21 11:31:17 opfer Exp $
 
 EAPI="prefix"
 
