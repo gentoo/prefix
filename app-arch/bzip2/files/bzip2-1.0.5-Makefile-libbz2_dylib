@@ -25,7 +25,7 @@ BIGFILES=-D_FILE_OFFSET_BITS=64
 CFLAGS+=-fpic -fPIC -Wall -Winline $(BIGFILES)
 PREFIX=/usr
 LIBDIR=lib
-SOLDFLAGS=-dynamiclib -install_name $(PREFIX)/$(LIBDIR)/libbz2.1.dylib
+SOLDFLAGS=-dynamiclib -install_name $(PREFIX)/$(LIBDIR)/libbz2.1.dylib -compatibility_version 1.0.0 -current_version 1.0.5
 
 OBJS= blocksort.o  \
       huffman.o    \
