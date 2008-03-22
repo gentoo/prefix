@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.141 2008/02/22 08:14:46 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.142 2008/03/21 18:31:54 maekke Exp $
+
+  21 Mar 2008; Markus Meier <maekke@gentoo.org> gnutls-2.2.2.ebuild:
+  amd64/x86 stable, bug #209984
 
 *gnutls-2.2.2 (22 Feb 2008)
 
