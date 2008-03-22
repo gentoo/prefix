@@ -14,6 +14,6 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-sol
 IUSE=""
 
 src_install() {
-	emake DESTDIR="${D}" htmldir=/usr/share/doc/${PF}/html install || die
+	emake DESTDIR="${D}" htmldir="${EPREFIX}"/usr/share/doc/${PF}/html install || die
 	dodoc AUTHORS ChangeLog NEWS README
 }
