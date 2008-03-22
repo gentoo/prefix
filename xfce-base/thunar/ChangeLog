@@ -1,6 +1,16 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.48 2008/03/12 18:14:18 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.51 2008/03/21 15:33:31 klausman Exp $
+
+  21 Mar 2008; Tobias Klausmann <klausman@gentoo.org>
+  thunar-0.9.0-r2.ebuild:
+  Stable on alpha, bug #214130
+
+  21 Mar 2008; Dawid Węgliński <cla@gentoo.org> thunar-0.9.0-r2.ebuild:
+  Stable on x86 (bug #214130)
+
+  21 Mar 2008; Samuli Suominen <drac@gentoo.org> thunar-0.9.0-r2.ebuild:
+  pkg_setup clean up, amd64 stable
 
 *thunar-0.9.0-r2 (12 Mar 2008)
 

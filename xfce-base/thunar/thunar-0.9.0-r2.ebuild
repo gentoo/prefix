@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.0-r2.ebuild,v 1.1 2008/03/12 18:14:18 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.0-r2.ebuild,v 1.4 2008/03/21 15:33:31 klausman Exp $
 
 EAPI="prefix 1"
 
@@ -43,30 +43,25 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	doc? ( dev-util/gtk-doc )"
 
+DOCS="AUTHORS ChangeLog HACKING FAQ THANKS TODO README NEWS"
+
 pkg_setup() {
-	XFCE_CONFIG="${XFCE_CONFIG} $(use_enable exif)
-		$(use_enable gnome gnome-thumbnailers)
+	XFCE_CONFIG+=" $(use_enable exif) $(use_enable gnome gnome-thumbnailers)
 		$(use_enable dbus) $(use_enable pcre)"
 
-	local fail="Re-emerge xfce-extra/exo with USE hal."
-
 	if use hal; then
-		XFCE_CONFIG="${XFCE_CONFIG} --enable-dbus --with-volume-manager=hal"
+		XFCE_CONFIG+=" --enable-dbus --with-volume-manager=hal"
 	else
-		XFCE_CONFIG="${XFCE_CONFIG} --with-volume-manager=none"
+		XFCE_CONFIG+=" --with-volume-manager=none"
 	fi
 
-	if use trash-plugin && ! use dbus; then
-		XFCE_CONFIG="${XFCE_CONFIG} --enable-dbus"
-		ewarn "USE trash-plugin detected, enabling dbus for you."
+	if use trash-plugin; then
+		XFCE_CONFIG+=" --enable-dbus"
+	else
+		XFCE_CONFIG+=" --disable-tpa-plugin"
 	fi
 
-	use trash-plugin || XFCE_CONFIG="${XFCE_CONFIG} --disable-tpa-plugin"
-
-	if use hal && ! use dbus; then
-		ewarn "USE hal detected, enabling dbus for you."
-	fi
-
+	local fail="Re-emerge xfce-extra/exo with USE hal."
 	if use hal && ! built_with_use xfce-extra/exo hal; then
 		eerror "${fail}"
 		die "${fail}"
@@ -83,7 +78,5 @@ src_unpack() {
 src_test() {
 	Xemake check || die "emake check failed."
 }
-
-DOCS="AUTHORS ChangeLog HACKING FAQ THANKS TODO README NEWS"
 
 xfce44_extra_package
