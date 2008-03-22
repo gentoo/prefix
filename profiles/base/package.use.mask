@@ -1,15 +1,19 @@
 # This file requires >=portage-2.1.1
 
+# Markus Ullmann <jokey@gentoo.org> (21 Mar 2008)
+# still work in progress
+=net-irc/kvirc-3.4.0 qt4
+
 # Michael Sterrett <mr_bones_@gentoo.org> (09 Mar 2008)
 # tcl version necessary has been masked so mask this for now.
 =app-editors/nvi-1.81.6 tcl
 
-# 03 Mar 2008: Christian Faulhammer <opfer@gentoo.org>
+# Christian Faulhammer <opfer@gentoo.org> (03 Mar 2008) 
 # This feature is experimental and should be used by people willing to
 # test it
 app-portage/gatt libpaludis
 
-# 28 Jan 2008: Wulf Krueger <philantrop@gentoo.org>
+# Wulf Krueger <philantrop@gentoo.org> (28 Jan 2008)
 # Mask bluetooth for the KDE 3.5.8 stabilisation.
 app-pda/pilot-link bluetooth
 
