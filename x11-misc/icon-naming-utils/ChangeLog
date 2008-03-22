@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/icon-naming-utils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.63 2007/12/30 18:19:59 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.64 2008/03/21 06:20:37 drac Exp $
+
+  21 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -files/icon-naming-utils-0.8.2-pkgconfig.patch,
+  -icon-naming-utils-0.8.2-r1.ebuild, icon-naming-utils-0.8.6.ebuild:
+  Fix HOMEPAGE and SRC_URI.
 
   30 Dec 2007; Samuli Suominen <drac@gentoo.org>
   -icon-naming-utils-0.8.2.ebuild, icon-naming-utils-0.8.2-r1.ebuild:
