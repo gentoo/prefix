@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/ladspa-sdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.45 2008/03/01 13:29:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.46 2008/03/22 16:38:16 coldwind Exp $
+
+  22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  ladspa-sdk-1.13.ebuild:
+  amd64 stable wrt bug #208032
 
   01 Mar 2008; Alexis Ballier <aballier@gentoo.org>
   +files/ladspa-sdk-1.13-fbsd.patch, ladspa-sdk-1.13-r1.ebuild:
