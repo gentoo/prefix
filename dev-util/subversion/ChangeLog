@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.295 2008/03/02 11:26:25 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.296 2008/03/22 18:43:19 hollow Exp $
+
+*subversion-1.4.6-r2 (22 Mar 2008)
+
+  22 Mar 2008; Benedikt Böhm <hollow@gentoo.org>
+  files/subversion-1.1.1-perl-vendor.patch,
+  files/subversion-1.4.6-neon-0.28.patch, files/subversion-1.4-db4.patch,
+  files/subversion-1.4.3-debug-config.patch,
+  files/subversion-apr_cppflags.patch,
+  files/subversion-hotbackup-config.patch, +subversion-1.4.6-r2.ebuild:
+  add neon-0.28.1 support wrt #210535; refresh patches
 
 *subversion-1.4.6-r1 (02 Mar 2008)
 
