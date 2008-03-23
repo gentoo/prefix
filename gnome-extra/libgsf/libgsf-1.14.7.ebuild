@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.9 2008/02/17 22:45:15 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.10 2008/03/22 11:12:32 remi Exp $
 
 EAPI="prefix"
 
@@ -50,6 +50,7 @@ src_unpack() {
 }
 
 pkg_preinst() {
+	gnome2_pkg_preinst
 	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib /usr/$(get_libdir)/libgsf-gnome-1.so.1
 	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.113
