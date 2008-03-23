@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.60 2008/03/21 11:31:17 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.61 2008/03/22 17:03:31 coldwind Exp $
+
+  22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  gnustep-gui-0.12.1.ebuild:
+  amd64 stable wrt bug #207381, second round.
 
   21 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
   gnustep-gui-0.12.1.ebuild:
