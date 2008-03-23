@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3434 2008/03/20 15:38:47 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3439 2008/03/23 02:21:09 ulm Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -31,6 +31,7 @@ app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
 app-arch/dump:ermt - encrypted rmt support
+app-arch/file-roller:nautilus - Enable plugin for integrating into nautilus
 app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
@@ -113,6 +114,7 @@ app-emacs/auctex:preview-latex - Use bundled preview-latex
 app-emacs/bbdb:tex - Install plain TeX support files
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
+app-emacs/emhacks:jde - Enable support for Java Development Environment
 app-emacs/python-mode:pymacs - Enable Emacs extensions for Python as scripting language
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
 app-emacs/remember:planner - Include support for app-emacs/planner
@@ -247,6 +249,7 @@ app-office/openoffice:webdav - Enable webdav support
 app-office/rabbit:gnome-print - Gnome-Print support
 app-office/rabbit:gs - Ghostscript support
 app-office/rabbit:tgif - tgif support
+app-office/texmacs:netpbm - Add NetPBM support
 app-office/tpp:figlet - Installs app-misc/figlet to support the --huge command
 app-pda/libopensync-plugin-irmc:irda - Enable IrDA support.
 app-pda/libopensync-plugin-syncml:http - Enable http transports.
@@ -1523,6 +1526,7 @@ net-libs/libpri:bri - Enable ISDN BRI support (bristuff)
 net-libs/libssh2:libgcrypt - Use libgcrypt for crypto
 net-libs/libvncserver:no24bpp - disable 24bpp support
 net-libs/libvncserver:nobackchannel - disable backchannel support
+net-libs/loudmouth:asyncns - Use libasyncns for asynchronous name resolution.
 net-libs/opal:noaudio - Disable audio codecs
 net-libs/opal:novideo - Disable video codecs
 net-libs/openh323:noaudio - Disable audio codecs
@@ -1587,6 +1591,7 @@ net-misc/hylafax:html - Adds HTML documentation
 net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/kvpnc:cisco - Adds support for Cisco client
+net-misc/neon:pkcs11 - Add support PKCS11 support
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
 net-misc/nxserver-freenx:nxclient - Add support for the commercial nxclient

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8408 2008/03/21 22:20:12 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8412 2008/03/23 00:01:47 vapier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Denis Dupeyron <calchan@gentoo.org> (22 Mar 2008)
+# Not needed anymore. Was only used by old versions of
+# sci-libs/libgeda which were just punted. Will be removed
+# in 30 days.
+sci-libs/libgdgeda
 
 # Tristan Heaven <nyhm@gentoo.org> (21 Mar 2008)
 # Needs testing
@@ -134,6 +140,7 @@ gnome-base/gnome-settings-daemon
 >=gnome-base/eel-2.22
 >=gnome-base/nautilus-2.22
 >=gnome-extra/nautilus-cd-burner-2.22
+>=gnome-base/gdm-2.20.4
 >=gnome-base/gnome-light-2.22
 >=gnome-base/gnome-2.22
 
@@ -1476,6 +1483,7 @@ games-action/armagetronad
 # masked for testing due to major ebuild and installation changes
 sys-apps/makedev
 >=sys-apps/baselayout-1.13.0_alpha1
+sys-apps/openrc
 
 # Stefaan De Roeck <stefaan@gentoo.org> (09 Sep 2006)
 # 1.5.x is a development branch, people should test 1.4.x by default
@@ -1668,7 +1676,6 @@ media-video/dirac
 net-mail/mailer-config
 =net-mail/mailwrapper-0.2.1-r1
 =mail-mta/nbsmtp-1.00-r3
-=mail-mta/msmtp-1.4.9-r1
 >=mail-mta/ssmtp-2.61-r30
 >=mail-mta/esmtp-0.5.0-r2
 =mail-mta/postfix-2.2.10-r1
