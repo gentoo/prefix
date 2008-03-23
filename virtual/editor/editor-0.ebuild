@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.14 2008/02/15 07:27:34 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.15 2008/03/22 08:53:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -52,12 +52,10 @@ RDEPEND="|| ( app-editors/nano
 	app-editors/zile
 	app-misc/mc
 	dev-lisp/cmucl
-	dev-scheme/mit-scheme
 	mail-client/pine
 	sys-apps/ed )"
 
 # Packages outside app-editors providing an editor:
 #	app-misc/mc: mcedit (#62643)
 #	dev-lisp/cmucl: hemlock
-#	dev-scheme/mit-scheme: edwin (#193697)
 #	mail-client/pine: pico

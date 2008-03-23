@@ -1,6 +1,9 @@
 # ChangeLog for virtual/editor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/editor/ChangeLog,v 1.12 2008/02/15 07:27:34 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/editor/ChangeLog,v 1.13 2008/03/22 08:53:08 ulm Exp $
+
+  22 Mar 2008; Ulrich Mueller <ulm@gentoo.org> editor-0.ebuild:
+  Remove mit-scheme since it is masked for removal, bug 202160.
 
   15 Feb 2008; Christian Faulhammer <opfer@gentoo.org> editor-0.ebuild:
   add app-editors/efte
