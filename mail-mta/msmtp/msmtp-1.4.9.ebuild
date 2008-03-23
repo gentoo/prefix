@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/msmtp-1.4.9.ebuild,v 1.2 2008/01/14 20:59:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/msmtp-1.4.9.ebuild,v 1.3 2008/03/22 14:51:06 tove Exp $
 
 EAPI="prefix"
 
@@ -44,11 +44,11 @@ src_compile () {
 }
 
 src_install () {
-	make DESTDIR=${D} install || die "install failed"
+	make DESTDIR="${D}" install || die "install failed"
 
 	if use mailwrapper; then
 		insinto /etc/mail
-		doins ${FILESDIR}/mailer.conf
+		doins "${FILESDIR}"/mailer.conf
 	else
 		dodir /usr/sbin /usr/lib
 		dosym /usr/bin/msmtp /usr/sbin/sendmail || die "dosym failed"
