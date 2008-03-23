@@ -1,6 +1,16 @@
 # ChangeLog for app-i18n/skk-jisyo
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/ChangeLog,v 1.51 2007/08/15 18:24:27 opfer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/ChangeLog,v 1.52 2008/03/22 13:27:41 jokey Exp $
+
+  22 Mar 2008; Markus Ullmann <jokey@gentoo.org> skk-jisyo-200504.ebuild,
+  skk-jisyo-200507.ebuild, skk-jisyo-200705.ebuild, skk-jisyo-200707.ebuild:
+  Some fixes
+
+  22 Mar 2008; Jakub Moc <jakub@gentoo.org>
+  skk-jisyo-200504.ebuild, skk-jisyo-200507.ebuild,
+  skk-jisyo-200705.ebuild, skk-jisyo-200707.ebuild:
+  Remove dev-db/freecdb support wrt Bug 210730. Also nuke redundant DEPENDs
+  on app-arch/gzip
 
   15 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
   skk-jisyo-200705.ebuild:
