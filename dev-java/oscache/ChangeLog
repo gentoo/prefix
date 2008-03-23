@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/oscache
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/ChangeLog,v 1.7 2007/10/24 05:53:32 wltjr Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/ChangeLog,v 1.8 2008/03/22 21:21:19 wltjr Exp $
+
+*oscache-2.0.2-r2 (22 Mar 2008)
+
+  22 Mar 2008; William L. Thomson Jr. <wltjr@gentoo.org>
+  -oscache-2.0.2-r1.ebuild, +oscache-2.0.2-r2.ebuild:
+  Switched to java-virtuals/servlet-api, EAPI=1 slots, and removed previous
+  revision
 
   24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   -oscache-2.0.2.ebuild, oscache-2.0.2-r1.ebuild:

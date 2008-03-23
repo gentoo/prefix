@@ -1,8 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/oscache-2.0.2-r1.ebuild,v 1.3 2007/10/24 05:53:32 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/oscache-2.0.2-r2.ebuild,v 1.1 2008/03/22 21:21:19 wltjr Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
+JAVA_PKG_IUSE="doc"
 
 inherit java-pkg-2
 
@@ -15,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 COMMON_DEP="
 		dev-java/commons-collections
 		dev-java/commons-logging
-		=dev-java/servletapi-2.3*
+		java-virtuals/servlet-api:2.3
 		dev-java/sun-jms
 		dev-java/jgroups"
 RDEPEND=">=virtual/jre-1.3
@@ -23,7 +24,7 @@ RDEPEND=">=virtual/jre-1.3
 DEPEND=">=virtual/jdk-1.3
 		${COMMON_DEP}
 		app-arch/unzip"
-IUSE="doc"
+IUSE=""
 
 S=${WORKDIR}
 
@@ -33,8 +34,8 @@ src_unpack() {
 }
 
 src_compile() {
-	local build_dir=${S}/build
-	local classpath="-classpath $(java-pkg_getjars commons-logging,commons-collections,servletapi-2.3,sun-jms,jgroups):${build_dir}:."
+	local build_dir="${S}"/build
+	local classpath="-classpath $(java-pkg_getjars commons-logging,commons-collections,servlet-api-2.3,sun-jms,jgroups):${build_dir}:."
 	mkdir ${build_dir}
 
 	echo "Building core..."
