@@ -1,7 +1,7 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.62 2008/03/04 18:54:41 hollow Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.63 2008/03/23 00:11:20 hollow Exp $
+
 # @ECLASS: webapp.eclass
 # @MAINTAINER:
 # web-apps@gentoo.org
@@ -12,7 +12,7 @@
 
 # @ECLASS-VARIABLE: WEBAPP_DEPEND
 # @DESCRIPTION:
-# An ebuild should use WEBAPP_DEPEND if a custom DEPEND needs to be build, most
+# An ebuild should use WEBAPP_DEPEND if a custom DEPEND needs to be built, most
 # notably in combination with WEBAPP_OPTIONAL.
 WEBAPP_DEPEND=">=app-admin/webapp-config-1.50.15"
 
@@ -139,7 +139,7 @@ webapp_getinstalltype() {
 
 # @FUNCTION: need_httpd
 # @DESCRIPTION:
-# Call this function AFTER your ebuild's DEPEND line if any of the available
+# Call this function AFTER your ebuilds DEPEND line if any of the available
 # webservers are able to run this application.
 need_httpd() {
 	DEPEND="${DEPEND}
@@ -148,7 +148,7 @@ need_httpd() {
 
 # @FUNCTION: need_httpd_cgi
 # @DESCRIPTION:
-# Call this function AFTER your ebuild's DEPEND line if any of the available
+# Call this function AFTER your ebuilds DEPEND line if any of the available
 # CGI-capable webservers are able to run this application.
 need_httpd_cgi() {
 	DEPEND="${DEPEND}
@@ -157,7 +157,7 @@ need_httpd_cgi() {
 
 # @FUNCTION: need_httpd_fastcgi
 # @DESCRIPTION:
-# Call this function AFTER your ebuild's DEPEND line if any of the available
+# Call this function AFTER your ebuilds DEPEND line if any of the available
 # FastCGI-capabale webservers are able to run this application.
 need_httpd_fastcgi() {
 	DEPEND="${DEPEND}
@@ -321,6 +321,20 @@ webapp_sqlscript() {
 webapp_src_preinst() {
 	debug-print-function $FUNCNAME $*
 
+	# sanity checks, to catch bugs in the ebuild
+	if [[ ! -f "${T}/${SETUP_CHECK_FILE}" ]]; then
+		eerror
+		eerror "This ebuild did not call webapp_pkg_setup() at the beginning"
+		eerror "of the pkg_setup() function"
+		eerror
+		eerror "Please log a bug on http://bugs.gentoo.org"
+		eerror
+		eerror "You should use emerge -C to remove this package, as the"
+		eerror "installation is incomplete"
+		eerror
+		die "Ebuild did not call webapp_pkg_setup() - report to http://bugs.gentoo.org"
+	fi
+
 	dodir "${MY_HTDOCSDIR}"
 	dodir "${MY_HOSTROOTDIR}"
 	dodir "${MY_CGIBINDIR}"
@@ -415,20 +429,6 @@ webapp_src_install() {
 	# no longer rely on Portage calling both webapp_src_install() and
 	# webapp_pkg_postinst() within the same shell process
 	touch "${ED}/${MY_APPDIR}/${INSTALL_CHECK_FILE}"
-
-	# sanity checks, to catch bugs in the ebuild
-	if [[ ! -f "${T}/${SETUP_CHECK_FILE}" ]]; then
-		eerror
-		eerror "This ebuild did not call webapp_pkg_setup() at the beginning"
-		eerror "of the pkg_setup() function"
-		eerror
-		eerror "Please log a bug on http://bugs.gentoo.org"
-		eerror
-		eerror "You should use emerge -C to remove this package, as the"
-		eerror "installation is incomplete"
-		eerror
-		die "Ebuild did not call webapp_pkg_setup() - report to http://bugs.gentoo.org"
-	fi
 
 	chown -R "${VHOST_DEFAULT_UID}:${VHOST_DEFAULT_GID}" "${ED}/"
 	chmod -R u-s "${ED}/"

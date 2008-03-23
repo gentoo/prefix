@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.7 2008/02/10 14:47:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.10 2008/03/22 17:30:11 remi Exp $
 
 #
 # gnome2-utils.eclass
@@ -14,13 +14,13 @@
 
 
 # Path to gconftool-2
-GCONFTOOL_BIN=${GCONFTOOL_BIN:="${EROOT}usr/bin/gconftool-2"}
+: ${GCONFTOOL_BIN:="${EROOT}usr/bin/gconftool-2"}
 
 # Directory where scrollkeeper-update should do its work
-SCROLLKEEPER_DIR=${SCROLLKEEPER_DIR:="${EROOT}var/lib/scrollkeeper"}
+: ${SCROLLKEEPER_DIR:="${EROOT}var/lib/scrollkeeper"}
 
 # Path to scrollkeeper-update
-SCROLLKEEPER_UPDATE_BIN=${SCROLLKEEPER_UPDATE_BIN:="${EROOT}usr/bin/scrollkeeper-update"}
+: ${SCROLLKEEPER_UPDATE_BIN:="${EROOT}usr/bin/scrollkeeper-update"}
 
 
 
@@ -28,26 +28,39 @@ DEPEND=">=sys-apps/sed-4"
 
 
 
+# Find the GConf schemas that are about to be installed and save their location
+# in the GNOME2_ECLASS_SCHEMAS environment variable
+gnome2_gconf_savelist() {
+	pushd "${ED}" &> /dev/null
+	export GNOME2_ECLASS_SCHEMAS=$(find 'etc/gconf/schemas/' -name '*.schemas' 2> /dev/null)
+	popd &> /dev/null
+}
+
+
 # Applies any schema files installed by the current ebuild to Gconf's database
 # using gconftool-2
 gnome2_gconf_install() {
-	if [[ ! -x ${GCONFTOOL_BIN} ]]; then
+	local F
+
+	if [[ ! -x "${GCONFTOOL_BIN}" ]]; then
+		return
+	fi
+
+	if [[ -z "${GNOME2_ECLASS_SCHEMAS}" ]]; then
+		einfo "No GNOME 2 GConf schemas found"
 		return
 	fi
 
 	# We are ready to install the GCONF Scheme now
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
-	export GCONF_CONFIG_SOURCE=$(${GCONFTOOL_BIN} --get-default-source)
+	export GCONF_CONFIG_SOURCE="$("${GCONFTOOL_BIN}" --get-default-source)"
 
 	einfo "Installing GNOME 2 GConf schemas"
 
-	local contents="${EROOT}var/db/pkg/*/${PN}-${PVR}/CONTENTS"
-	local F
-
-	for F in $(grep "^obj /etc/gconf/schemas/.\+\.schemas\b" ${contents} | gawk '{print $2}' ); do
-		if [[ -e "${F}" ]]; then
+	for F in ${GNOME2_ECLASS_SCHEMAS}; do
+		if [[ -e "${EROOT}${F}" ]]; then
 			# echo "DEBUG::gconf install  ${F}"
-			${GCONFTOOL_BIN} --makefile-install-rule ${F} 1>/dev/null
+			"${GCONFTOOL_BIN}" --makefile-install-rule "${EROOT}${F}" 1>/dev/null
 		fi
 	done
 
@@ -64,54 +77,82 @@ gnome2_gconf_install() {
 # Removes schema files previously installed by the current ebuild from Gconf's
 # database.
 gnome2_gconf_uninstall() {
-	if [[ ! -x ${GCONFTOOL_BIN} ]]; then
+	local F
+
+	if [[ ! -x "${GCONFTOOL_BIN}" ]]; then
+		return
+	fi
+
+	if [[ -z "${GNOME2_ECLASS_SCHEMAS}" ]]; then
+		einfo "No GNOME 2 GConf schemas found"
 		return
 	fi
 
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
-	export GCONF_CONFIG_SOURCE=$(${GCONFTOOL_BIN} --get-default-source)
+	export GCONF_CONFIG_SOURCE=$("${GCONFTOOL_BIN}" --get-default-source)
 
 	einfo "Uninstalling GNOME 2 GConf schemas"
 
-	local contents="${EROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
-	local F
-
-	for F in $(grep "obj /etc/gconf/schemas" ${contents} | sed 's:obj \([^ ]*\) .*:\1:' ); do
-		# echo "DEBUG::gconf install  ${F}"
-		${GCONFTOOL_BIN} --makefile-uninstall-rule ${F} 1>/dev/null
+	for F in ${GNOME2_ECLASS_SCHEMAS}; do
+		if [[ -e "${EROOT}${F}" ]]; then
+			# echo "DEBUG::gconf uninstall  ${F}"
+			"${GCONFTOOL_BIN}" --makefile-uninstall-rule "${EROOT}${F}" 1>/dev/null
+		fi
 	done
+
+	# have gconf reload the new schemas
+	pids=$(pgrep -x gconfd-2)
+	if [[ $? == 0 ]] ; then
+		ebegin "Reloading GConf schemas"
+		kill -HUP ${pids}
+		eend $?
+	fi
+}
+
+
+# Find the icons that are about to be installed and save their location
+# in the GNOME2_ECLASS_ICONS environment variable
+# That function should be called from pkg_preinst
+gnome2_icon_savelist() {
+	pushd "${ED}" &> /dev/null
+	export GNOME2_ECLASS_ICONS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2> /dev/null)
+	popd &> /dev/null
 }
 
 
 # Updates Gtk+ icon cache files under /usr/share/icons if the current ebuild
 # have installed anything under that location.
 gnome2_icon_cache_update() {
-	local updater=$(type -p gtk-update-icon-cache 2> /dev/null)
+	local updater="$(type -p gtk-update-icon-cache 2> /dev/null)"
 
-	if [[ ! -x ${updater} ]] ; then
+	if [[ ! -x "${updater}" ]] ; then
 		debug-print "${updater} is not executable"
-
 		return
 	fi
+
+	if [[ -z "${GNOME2_ECLASS_ICONS}" ]]; then
+		return
+	fi
+
 
 	ebegin "Updating icons cache"
 
 	local retval=0
 	local fails=( )
 
-	for dir in $(find "${EROOT}/usr/share/icons" -maxdepth 1 -mindepth 1 -type d)
+	for dir in ${GNOME2_ECLASS_ICONS}
 	do
-		if [[ -f "${dir}/index.theme" ]] ; then
+		if [[ -f "${EROOT}${dir}/index.theme" ]] ; then
 			local rv=0
 
-			${updater} -qf ${dir}
+			"${updater}" -qf "${EROOT}${dir}"
 			rv=$?
 
 			if [[ ! $rv -eq 0 ]] ; then
-				debug-print "Updating cache failed on ${dir}"
+				debug-print "Updating cache failed on ${EROOT}${dir}"
 
 				# Add to the list of failures
-				fails[$(( ${#fails[@]} + 1 ))]=$dir
+				fails[$(( ${#fails[@]} + 1 ))]="${EROOT}${dir}"
 
 				retval=2
 			fi
@@ -120,16 +161,8 @@ gnome2_icon_cache_update() {
 
 	eend ${retval}
 
-	for (( i = 0 ; i < ${#fails[@]} ; i++ )) ; do
-		### HACK!! This is needed until bash 3.1 is unmasked.
-		## The current stable version of bash lists the sizeof fails to be 1
-		## when there are no elements in the list because it is declared local.
-		## In order to prevent the declaration from being in global scope, we
-		## this hack to prevent an empty error message being printed for stable
-		## users. -- compnerd && allanonjl
-		if [[ "${fails[i]}" != "" && "${fails[i]}" != "()" ]] ; then
-			eerror "Failed to update cache with icon ${fails[i]}"
-		fi
+	for f in "${fails[@]}" ; do
+		eerror "Failed to update cache with icon $f"
 	done
 }
 
@@ -158,7 +191,7 @@ gnome2_omf_fix() {
 	for omf in ${omf_makefiles} ; do
 		local rv=0
 
-		sed -i -e 's:scrollkeeper-update:true:' ${omf}
+		sed -i -e 's:scrollkeeper-update:true:' "${omf}"
 		retval=$?
 
 		if [[ ! $rv -eq 0 ]] ; then
@@ -173,25 +206,16 @@ gnome2_omf_fix() {
 
 	eend $retval
 
-	for (( i = 0 ; i < ${#fails[@]} ; i++ )) ; do
-		### HACK!! This is needed until bash 3.1 is unmasked.
-		## The current stable version of bash lists the sizeof fails to be 1
-		## when there are no elements in the list because it is declared local.
-		## In order to prevent the declaration from being in global scope, we
-		## this hack to prevent an empty error message being printed for stable
-		## users. -- compnerd && allanonjl
-		if [[ "${fails[i]}" != "" && "${fails[i]}" != "()" ]] ; then
-			eerror "Failed to update OMF Makefile ${fails[i]}"
-		fi
+	for f in "${fails[@]}" ; do
+		eerror "Failed to update OMF Makefile $f"
 	done
 }
 
 
 # Updates the global scrollkeeper database.
 gnome2_scrollkeeper_update() {
-	if [[ -x ${SCROLLKEEPER_UPDATE_BIN} ]]; then
+	if [[ -x "${SCROLLKEEPER_UPDATE_BIN}" ]]; then
 		einfo "Updating scrollkeeper database ..."
-		${SCROLLKEEPER_UPDATE_BIN} -q -p ${SCROLLKEEPER_DIR}
+		"${SCROLLKEEPER_UPDATE_BIN}" -q -p "${SCROLLKEEPER_DIR}"
 	fi
 }
-

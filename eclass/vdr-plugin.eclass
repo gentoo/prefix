@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.53 2008/02/13 19:44:44 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.54 2008/03/22 18:04:51 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -234,8 +234,9 @@ vdr-plugin_src_unpack() {
 			eend $?
 
 			ebegin "  Correcting Compile-Flags"
+			# Do not overwrite CXXFLAGS, add LDFLAGS if missing
 			sed -i Makefile \
-				-e 's:^CXXFLAGS:#CXXFLAGS:' \
+				-e '/^CXXFLAGS[[:space:]]*=/s/=/?=/' \
 				-e '/LDFLAGS/!s:-shared:$(LDFLAGS) -shared:'
 			eend $?
 
@@ -268,7 +269,8 @@ vdr-plugin_src_unpack() {
 				sed -i Makefile \
 					-e '/^all:/s/ i18n//'
 			elif [[ ${USE_GETTEXT} = 1 && ! -d po && ${NO_GETTEXT_HACK} != 1 ]]; then
-				einfo "Converting translations to gettext"
+				einfo "Plugin is not yet changed for new translation system."
+				einfo "Auto converting translations to gettext"
 
 				local i18n_tool="${EROOT}/usr/share/vdr/bin/i18n-to-gettext.pl"
 				if [[ ! -x ${i18n_tool} ]]; then
@@ -293,7 +295,11 @@ vdr-plugin_src_unpack() {
 				fi
 
 				# now use the modified Makefile
-				mv Makefile.new Makefile
+				if [[ -f Makefile.new ]]; then
+					mv Makefile.new Makefile
+				else
+					ewarn "Conversion to gettext failed. Plugin needs fixing."
+				fi
 			fi
 		esac
 
@@ -414,7 +420,6 @@ vdr-plugin_src_install() {
 }
 
 vdr-plugin_print_enable_command() {
-	ewarn "emerge --config ${PN} is deprecated"
 	elog
 	elog "To activate this vdr-plugin execute the following command:"
 	elog "\teselect vdr-plugin enable ${PN#vdr-}"
@@ -474,10 +479,8 @@ vdr-plugin_pkg_config_legacy() {
 }
 
 vdr-plugin_pkg_config() {
+	ewarn "emerge --config ${PN} is no longer supported"
 	vdr-plugin_print_enable_command
-
-	einfo "Calling this now"
-	eselect vdr-plugin enable "${PN#vdr-}"
 }
 
 fix_vdr_libsi_include()

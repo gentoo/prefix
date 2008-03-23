@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.83 2008/02/10 14:47:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.85 2008/03/22 10:19:05 remi Exp $
 
 #
 # gnome2.eclass
@@ -82,7 +82,7 @@ gnome2_src_install() {
 
 	if [[ -z "${USE_EINSTALL}" || "${USE_EINSTALL}" = "0" ]]; then
 		debug-print "Installing with 'make install'"
-		make DESTDIR="${D}" "scrollkeeper_localstate_dir=${D}${sk_tmp_dir} " "$@" install || die "install failed"
+		emake DESTDIR="${D}" "scrollkeeper_localstate_dir=${D}${sk_tmp_dir} " "$@" install || die "install failed"
 	else
 		debug-print "Installing with 'einstall'"
 		einstall "scrollkeeper_localstate_dir=${ED}${sk_tmp_dir} " "$@" || die "einstall failed"
@@ -97,13 +97,18 @@ gnome2_src_install() {
 	# 1. The scrollkeeper database is regenerated at pkg_postinst()
 	# 2. ${ED}/var/lib/scrollkeeper contains only indexes for the current pkg
 	#    thus it makes no sense if pkg_postinst ISN'T run for some reason.
-	if [[ -z "$(find ${ED} -name '*.omf')" ]]; then
+	if [[ -z "$(find "${ED}" -name '*.omf')" ]]; then
 		export SCROLLKEEPER_UPDATE="0"
 	fi
 	rm -rf "${ED}${sk_tmp_dir}"
 
 	# Make sure this one doesn't get in the portage db
 	rm -fr "${ED}/usr/share/applications/mimeinfo.cache"
+}
+
+gnome2_pkg_preinst() {
+	gnome2_gconf_savelist
+	gnome2_icon_savelist
 }
 
 gnome2_pkg_postinst() {
@@ -131,4 +136,5 @@ gnome2_pkg_postrm() {
 	fi
 }
 
-EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
+# pkg_prerm
+EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm

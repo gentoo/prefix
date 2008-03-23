@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.20 2007/05/24 19:05:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.22 2008/03/22 10:19:05 remi Exp $
 
 # Xfce44 Eclass
 #
@@ -145,6 +145,10 @@ xfce44_src_install() {
 	${INSTALL} ${JOBS} || die
 }
 
+xfce44_pkg_preinst() {
+	gnome2_icon_savelist
+}
+
 xfce44_pkg_postinst() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
@@ -157,4 +161,4 @@ xfce44_pkg_postrm() {
 	gnome2_icon_cache_update
 }
 
-EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS src_compile src_install pkg_preinst pkg_postinst pkg_postrm

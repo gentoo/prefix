@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.8 2008/02/02 10:10:36 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.9 2008/03/23 00:14:13 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -10,7 +10,7 @@
 # information about where certain interfaces are located such as LoadModule
 # generation and inter-module dependency checking.
 
-inherit autotools eutils flag-o-matic multilib
+inherit autotools confutils eutils flag-o-matic multilib
 
 # ==============================================================================
 # INTERNAL VARIABLES
@@ -27,12 +27,12 @@ GENTOO_PATCHNAME="gentoo-${PF}"
 # files are located
 GENTOO_PATCHDIR="${WORKDIR}/${GENTOO_PATCHNAME}"
 
-# @ECLASS-VARIABLE: GENTOO_DEVELOPER
+# @VARIABLE: GENTOO_DEVELOPER
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains the name of the
 # gentoo developer who created the patch tarball
 
-# @ECLASS-VARIABLE: GENTOO_PATCHSTAMP
+# @VARIABLE: GENTOO_PATCHSTAMP
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains the date the patch
 # tarball was created at in YYYYMMDD format
@@ -40,17 +40,17 @@ GENTOO_PATCHDIR="${WORKDIR}/${GENTOO_PATCHNAME}"
 SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
 	http://dev.gentoo.org/~${GENTOO_DEVELOPER}/dist/apache/${GENTOO_PATCHNAME}-${GENTOO_PATCHSTAMP}.tar.bz2"
 
-# @ECLASS-VARIABLE: IUSE_MPMS_FORK
+# @VARIABLE: IUSE_MPMS_FORK
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a list of forking
 # (i.e.  non-threaded) MPMS
 
-# @ECLASS-VARIABLE: IUSE_MPMS_THREAD
+# @VARIABLE: IUSE_MPMS_THREAD
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a list of threaded
 # MPMS
 
-# @ECLASS-VARIABLE: IUSE_MODULES
+# @VARIABLE: IUSE_MODULES
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a list of available
 # built-in modules
@@ -133,7 +133,7 @@ setup_mpm() {
 	fi
 }
 
-# @ECLASS-VARIABLE: MODULE_CRITICAL
+# @VARIABLE: MODULE_CRITICAL
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a space-separated
 # list of modules critical for the default apache. A user may still
@@ -164,7 +164,7 @@ check_module_critical() {
 	fi
 }
 
-# @ECLASS-VARIABLE: MODULE_DEPENDS
+# @VARIABLE: MODULE_DEPENDS
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a space-separated
 # list of dependency tokens each with a module and the module it depends on
@@ -219,12 +219,7 @@ setup_modules() {
 	MY_CONF="--enable-so=static"
 
 	if use ldap ; then
-		if ! built_with_use 'dev-libs/apr-util' ldap ; then
-			eerror "dev-libs/apr-util is missing LDAP support. For apache to have"
-			eerror "ldap support, apr-util must be built with the ldap USE-flag"
-			eerror "enabled."
-			die "ldap USE-flag enabled while not supported in apr-util"
-		fi
+		confutils_use_depend_built_with_all ldap dev-libs/apr-util ldap
 		MY_CONF="${MY_CONF} --enable-authnz_ldap=${mod_type} --enable-ldap=${mod_type}"
 		MY_MODS="${MY_MODS} ldap authnz_ldap"
 	else
@@ -290,7 +285,7 @@ setup_modules() {
 	check_module_critical
 }
 
-# @ECLASS-VARIABLE: MODULE_DEFINES
+# @VARIABLE: MODULE_DEFINES
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a space-separated
 # list of tokens each mapping a module to a runtime define which can be
