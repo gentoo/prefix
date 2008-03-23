@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/gtk-syntax
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/ChangeLog,v 1.24 2008/02/04 22:02:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/ChangeLog,v 1.25 2008/03/22 15:18:58 coldwind Exp $
+
+  22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  gtk-syntax-20060423.ebuild:
+  amd64 stable
 
   04 Feb 2008; Raúl Porcel <armin76@gentoo.org> gtk-syntax-20060423.ebuild:
   alpha/ia64/x86 stable
