@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.115 2008/03/17 15:40:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.116 2008/03/22 15:24:37 ranger Exp $
+
+  22 Mar 2008; Brent Baude <ranger@gentoo.org> nss-3.11.9.ebuild:
+  Marking nss-3.11.9 ppc64 for bug 213601
 
   17 Mar 2008; Jeroen Roovers <jer@gentoo.org> nss-3.11.9.ebuild:
   Stable for HPPA (bug #213601).
