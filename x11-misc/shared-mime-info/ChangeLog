@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.118 2008/02/24 14:31:09 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.119 2008/03/22 09:22:42 drac Exp $
+
+  22 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  -shared-mime-info-0.22.ebuild, shared-mime-info-0.23.ebuild:
+  amd64 stable
 
   24 Feb 2008; Mart Raudsepp <leio@gentoo.org> shared-mime-info-0.23.ebuild:
   Install new HACKING file as well
