@@ -15,10 +15,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="aqua debug directfb doc glitz opengl svg X xcb test"
 
-RDEPEND="!aqua? (
-			media-libs/fontconfig
-			>=media-libs/freetype-2.1.4
-		)
+RDEPEND="media-libs/fontconfig
+		>=media-libs/freetype-2.1.4
 		>=x11-libs/pixman-0.9.4
 		sys-libs/zlib
 		media-libs/libpng
@@ -70,7 +68,7 @@ src_compile() {
 	  	  $(use_enable directfb) \
 		  $(use_enable svg) $(use_enable glitz) $(use_enable X xlib-xrender) \
 		  $(use_enable debug test-surfaces) --enable-pdf  --enable-png \
-		  $(use_enable !aqua freetype) --enable-ps $(use_enable xcb) \
+		  --enable-freetype --enable-ps $(use_enable xcb) \
 		  $(use_enable aqua quartz) $(use_enable aqua atsui) \
 		  || die "configure failed"
 
