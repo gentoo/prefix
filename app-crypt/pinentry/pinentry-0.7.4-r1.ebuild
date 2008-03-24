@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.4-r1.ebuild,v 1.6 2008/01/21 21:10:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.4-r1.ebuild,v 1.7 2008/03/23 13:08:32 swegener Exp $
 
 EAPI="prefix"
 
-inherit qt3 multilib eutils flag-o-matic
+inherit qt3 multilib eutils
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
 HOMEPAGE="http://www.gnupg.org/aegypten/"
@@ -25,7 +25,9 @@ DEPEND="gtk? ( =x11-libs/gtk+-2* )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
 	epatch "${FILESDIR}/${P}-grab.patch"
+	epatch "${FILESDIR}/${PN}-gmem.patch"
 }
 
 src_compile() {
@@ -35,8 +37,6 @@ src_compile() {
 	then
 		myconf="--enable-pinentry-curses --enable-fallback-curses"
 	fi
-
-	append-ldflags $(bindnow-flags)
 
 	# Issues finding qt on multilib systems
 	export QTLIB="${QTDIR}/$(get_libdir)"

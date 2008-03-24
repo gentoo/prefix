@@ -1,6 +1,14 @@
 # ChangeLog for app-crypt/pinentry
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.82 2008/02/13 10:59:30 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.83 2008/03/23 13:08:32 swegener Exp $
+
+*pinentry-0.7.5 (23 Mar 2008)
+
+  23 Mar 2008; Sven Wegener <swegener@gentoo.org>
+  +files/pinentry-0.7.5-grab.patch, +files/pinentry-gmem.patch,
+  pinentry-0.7.3.ebuild, pinentry-0.7.4-r1.ebuild, +pinentry-0.7.5.ebuild:
+  Version bump, bug #213383. Drop bindnow-flags, bug #213669. Workaround for
+  API change in >=glib-2.16.1, bug #213382.
 
   13 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> -pinentry-0.7.2-r3.ebuild:
   Cleanup

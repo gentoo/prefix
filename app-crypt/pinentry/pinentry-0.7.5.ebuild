@@ -1,13 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.3.ebuild,v 1.10 2008/03/23 13:08:32 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5.ebuild,v 1.1 2008/03/23 13:08:32 swegener Exp $
 
 EAPI="prefix"
 
-#WANT_AUTOCONF="2.5"
-#WANT_AUTOMAKE="1.9"
-
-inherit qt3 multilib eutils autotools
+inherit qt3 multilib eutils
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
 HOMEPAGE="http://www.gnupg.org/aegypten/"
@@ -18,24 +15,19 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="gtk ncurses qt3 caps"
 
-# we need gettext because we run autoconf
 DEPEND="gtk? ( =x11-libs/gtk+-2* )
 	ncurses? ( sys-libs/ncurses )
 	qt3? ( $(qt_min_version 3.3) )
 	!gtk? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) )
 	caps? ( sys-libs/libcap )
-	sys-devel/gettext"
+	virtual/libiconv"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/0.7.2-libcap.patch"
-	epatch "${FILESDIR}/0.7.2-info.patch"
-	epatch "${FILESDIR}/${PN}-0.7.2-grab.patch"
+	epatch "${FILESDIR}/${P}-grab.patch"
 	epatch "${FILESDIR}/${PN}-gmem.patch"
-
-	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
