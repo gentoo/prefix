@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1237 2008/03/23 02:21:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1242 2008/03/24 00:10:39 leio Exp $
+
+  24 Mar 2008; Mart Raudsepp <leio@gentoo.org> use.local.desc:
+  Add local fuse and keyring USE flags for gnome-base/gvfs too
+
+  23 Mar 2008; Mart Raudsepp <leio@gentoo.org> use.local.desc:
+  Add local cdda USE flag for gnome-base/gvfs
+
+  23 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask,
+  use.local.desc:
+  add seahorse to GNOME 2.22 mask and add its new local use flag, epiphany
 
   23 Mar 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
   Add local jde USE flag for app-emacs/emhacks.

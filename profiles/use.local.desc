@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3439 2008/03/23 02:21:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3443 2008/03/24 00:10:39 leio Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -70,6 +70,7 @@ app-crypt/gpgme:pth - build pth enabled library
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:applet - Enable panel applet
+app-crypt/seahorse:epiphany - Enable epiphany extension
 app-crypt/seahorse:gedit - Enable the gedit plugin
 app-crypt/seahorse:keyring - Enable gnome-keyring support for storing passwords
 app-crypt/seahorse:nautilus - Add support for nautilus file manager
@@ -727,6 +728,9 @@ games-strategy/x2:modkit - Install the modkit
 gnome-base/gdm:dmx - Enable Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enable secure remote support
 gnome-base/gnome-mount:nautilus - Enable the nautilus plugin
+gnome-base/gvfs:cdda - Enable Compact Disc Digital Audio support (audio CD standard)
+gnome-base/gvfs:fuse - Enable fuse mount points in ~/.gvfs for legacy application access
+gnome-base/gvfs:keyring - Enable gnome-keyring support for storing passwords
 gnome-base/nautilus:beagle - Enable support for beagle searching
 gnome-base/nautilus:tracker - Enable support for tracker searching
 gnome-extra/evolution-data-server:keyring - Enable gnome-keyring support for storing passwords
@@ -739,6 +743,7 @@ gnome-extra/nautilus-sendto:pidgin - Enable support for pidgin
 gnome-extra/nautilus-sendto:sylpheed - Enable support for sylpheed mail client
 gnome-extra/nautilus-sendto:thunderbird - Enable support for thunderbird
 gnome-extra/sensors-applet:nvidia - Enable support for nvidia sensors
+gnome-extra/yelp:lzma - Enable support for lzma compressed info and man pages
 gnome-extra/yelp:beagle - Enable beagle support
 gnome-extra/zim:trayicon - Enable support for trayicon
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages.
