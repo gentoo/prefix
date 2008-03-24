@@ -1,6 +1,13 @@
 # ChangeLog for app-text/rarian
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.18 2007/11/29 05:07:42 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.19 2008/03/23 15:43:22 leio Exp $
+
+*rarian-0.8.0 (23 Mar 2008)
+
+  23 Mar 2008; Mart Raudsepp <leio@gentoo.org> +rarian-0.8.0.ebuild:
+  New version for GNOME-2.22. Recognizes lzma packed man and info pages,
+  follows new freedesktop specification for categorization which causes it to
+  not work well with yelp-2.20 - use a matching yelp-2.22
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> rarian-0.6.0-r1.ebuild:
   Stable for HPPA (bug #199740).
