@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/swarmcache
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.7 2007/12/25 02:07:58 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.8 2008/03/23 12:26:27 betelgeuse Exp $
+
+  23 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
+  swarmcache-1.0_pre20050106-r1.ebuild:
+  RESTRICT test as it starts a server that just gets stuck but we don't have
+  the needed classes in classpath.
 
   25 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
   -swarmcache-1.0_pre20050106.ebuild:

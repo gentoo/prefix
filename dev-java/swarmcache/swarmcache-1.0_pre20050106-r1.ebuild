@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/swarmcache-1.0_pre20050106-r1.ebuild,v 1.4 2007/12/08 09:06:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/swarmcache-1.0_pre20050106-r1.ebuild,v 1.5 2008/03/23 12:26:27 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,7 @@ src_unpack() {
 #src_test() {
 #	eant test
 #}
+RESTRICT="test"
 
 src_install() {
 	java-pkg_dojar dist/${PN}.jar
