@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.100 2008/03/22 18:39:59 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.101 2008/03/23 11:42:00 hollow Exp $
+
+  23 Mar 2008; Benedikt Böhm <hollow@gentoo.org> neon-0.28.1.ebuild:
+  fix LINGUAS
 
 *neon-0.28.1 (22 Mar 2008)
 
