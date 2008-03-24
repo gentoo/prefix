@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.69 2008/03/22 17:01:10 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.71 2008/03/23 18:32:20 nixnut Exp $
+
+  23 Mar 2008; nixnut <nixnut@gentoo.org> gnustep-make-2.0.4.ebuild:
+  Stable on ppc wrt bug 207381
+
+  23 Mar 2008; Raúl Porcel <armin76@gentoo.org> gnustep-make-2.0.4.ebuild:
+  sparc stable wrt #207381
 
   22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   gnustep-make-2.0.4.ebuild:
