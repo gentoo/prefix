@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.117 2008/02/04 04:50:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.118 2008/03/23 11:24:03 eva Exp $
+
+*gnome-keyring-2.22.0-r2 (23 Mar 2008)
+
+  23 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-keyring-2.22.0-r2.ebuild:
+  New version for GNOME-2.22. Features an SSH agent, adds support for X.509
+  certificates and key store and a PKCS#11 module for accessing them.
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> gnome-keyring-2.20.3.ebuild:
   Stable for HPPA (bug #208366).
