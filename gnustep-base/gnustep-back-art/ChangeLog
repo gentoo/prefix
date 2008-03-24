@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.56 2008/03/22 17:07:36 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.58 2008/03/23 18:37:55 nixnut Exp $
+
+  23 Mar 2008; nixnut <nixnut@gentoo.org> gnustep-back-art-0.12.1.ebuild:
+  Stable on ppc wrt bug 207381
+
+  23 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  gnustep-back-art-0.12.1.ebuild:
+  sparc stable wrt #207381
 
   22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   gnustep-back-art-0.12.1.ebuild:
