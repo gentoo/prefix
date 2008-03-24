@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Mar 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  Mask gvim-7.1.285.
+
   18 Mar 2008; Fabian Groffen <grobian@gentoo.org> use.mask:
   Mask multilib for entire default-prefix profile, since multilib will most
   probably never work as expected, one should bootstrap as native {32,64}-bits

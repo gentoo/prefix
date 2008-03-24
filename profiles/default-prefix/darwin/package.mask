@@ -1,5 +1,9 @@
 # $Header: $
 
+# Fabian Groffen <grobian@gentoo.org> (24 Mar 2008)
+# Doesn't link, needs figuring out how we're going to do the GUI anyway
+=app-editors/gvim-7.1.285
+
 # Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
 # experimenting on this -- not yet working
 sci-libs/blas-atlas
