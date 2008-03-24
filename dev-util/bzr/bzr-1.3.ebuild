@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.3.ebuild,v 1.1 2008/03/20 21:32:18 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.3.ebuild,v 1.2 2008/03/23 14:40:03 hawking Exp $
 
 EAPI="prefix"
 
@@ -99,5 +99,9 @@ pkg_postrm() {
 }
 
 src_test() {
+	# Some tests expect the usual pyc compiling behaviour.
+	unset PYTHON_DONTCOMPILE
 	"${python}" bzr --no-plugins selftest || die "bzr selftest failed"
+	# Just to make sure we don't hit any errors on later stages.
+	export PYTHON_DONTCOMPILE=1
 }
