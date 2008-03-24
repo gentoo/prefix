@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.347 2008/03/17 01:51:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.348 2008/03/23 16:33:17 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1623,7 +1623,7 @@ gcc_src_compile() {
 
 gcc_src_test() {
 	cd "${WORKDIR}"/build
-	make check || ewarn "check failed and that sucks :("
+	make -k check || ewarn "check failed and that sucks :("
 }
 
 gcc-library_src_install() {
@@ -1828,6 +1828,14 @@ gcc-compiler_src_install() {
 	fi
 	# prune empty dirs left behind
 	find "${ED}" -type d | xargs rmdir >& /dev/null
+
+	# install testsuite results
+	if use test; then
+		docinto testsuite
+		find "${WORKDIR}"/build -type f -name "*.sum" -print0 | xargs -0 dodoc
+		find "${WORKDIR}"/build -type f -path "*/testsuite/*.log" -print0 \
+			| xargs -0 dodoc
+	fi
 
 	# Rather install the script, else portage with changing $FILESDIR
 	# between binary and source package borks things ....

@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.9 2008/03/23 00:14:13 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.11 2008/03/23 13:03:53 hollow Exp $
 
-# @ECLASS: apache-2
-# @MAINTAINER: apache-devs@gentoo.org
-# @BLURB: Provides a common set of functions for >=apache-2.2* ebuilds
+# @ECLASS: apache-2.eclass
+# @MAINTAINER:
+# apache-devs@gentoo.org
+# @BLURB: Provides a common set of functions for apache-2.x ebuilds
 # @DESCRIPTION:
-# This eclass handles common apache ebuild functions in a sane way and providing
-# information about where certain interfaces are located such as LoadModule
-# generation and inter-module dependency checking.
+# This eclass handles apache-2.x ebuild functions such as LoadModule generation
+# and inter-module dependency checking.
 
 inherit autotools confutils eutils flag-o-matic multilib
 
@@ -43,12 +43,12 @@ SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
 # @VARIABLE: IUSE_MPMS_FORK
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a list of forking
-# (i.e.  non-threaded) MPMS
+# (i.e.  non-threaded) MPMs
 
 # @VARIABLE: IUSE_MPMS_THREAD
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains a list of threaded
-# MPMS
+# MPMs
 
 # @VARIABLE: IUSE_MODULES
 # @DESCRIPTION:
@@ -359,16 +359,16 @@ check_upgrade() {
 apache-2_pkg_setup() {
 	check_upgrade
 
+	# setup apache user and group
+	enewgroup apache 81
+	enewuser apache 81 -1 /var/www apache
+
 	setup_mpm
 	setup_modules
 
 	if use debug; then
 		MY_CONF="${MY_CONF} --enable-maintainer-mode --enable-exception-hook"
 	fi
-
-	# setup apache user and group
-	enewgroup apache 81
-	enewuser apache 81 -1 /var/www apache
 
 	elog "Please note that you need SysV IPC support in your kernel."
 	elog "Make sure CONFIG_SYSVIPC=y is set."
@@ -444,7 +444,7 @@ apache-2_src_compile() {
 
 # @FUNCTION: apache-2_src_install
 # @DESCRIPTION:
-# This function runs emake install and generates, installs and adapts the gentoo
+# This function runs `emake install' and generates, installs and adapts the gentoo
 # specific configuration files found in the tarball
 apache-2_src_install() {
 	make DESTDIR="${D}" install || die "make install failed"
@@ -495,11 +495,11 @@ apache-2_src_install() {
 		rm -Rf "${D}/usr/share/doc/${PF}/manual"
 	fi
 
-	# the default webroot gets stored in /usr/share/doc
-	ebegin "Installing default webroot to /usr/share/doc/${PF}"
-	mv -f "${D}/var/www/localhost" "${D}/usr/share/doc/${PF}/webroot"
+	# the default webroot gets stored in /usr/share/${PF}/webroot
+	ebegin "Installing default webroot to /usr/share/${PF}/webroot"
+	dodir /usr/share/${PF}
+	mv -f "${ED}/var/www/localhost" "${ED}/usr/share/${PF}/webroot"
 	eend $?
-	keepdir /var/www/localhost/htdocs
 
 	# set some sane permissions for suexec
 	if use suexec ; then
@@ -523,13 +523,14 @@ apache-2_src_install() {
 # @FUNCTION: apache-2_pkg_postinst
 # @DESCRIPTION:
 # This function creates test certificates if SSL is enabled and installs the
-# default webroot if /var/www/localhost does not exist. We do this here because
-# the default webroot is a copy of the files that exist elsewhere and we don't
-# want them to be managed/removed by portage when apache is upgraded.
+# default webroot to /var/www/localhost if it does not exist. We do this here
+# because the default webroot is a copy of the files that exist elsewhere and we
+# don't want them to be managed/removed by portage when apache is upgraded.
 apache-2_pkg_postinst() {
+	einfo
+
 	if use ssl && [[ ! -e "${ROOT}/etc/apache2/ssl/server.crt" ]] ; then
 		cd "${ROOT}"/etc/apache2/ssl
-		einfo
 		einfo "Generating self-signed test certificate in ${ROOT}etc/apache2/ssl ..."
 		yes "" 2>/dev/null | \
 			"${ROOT}"/usr/sbin/gentestcrt.sh >/dev/null 2>&1 || \
@@ -548,19 +549,19 @@ apache-2_pkg_postinst() {
 	else
 		einfo "Installing default webroot to ${ROOT}var/www/localhost"
 		mkdir -p "${ROOT}"/var/www/localhost
-		cp -R "${ROOT}"/usr/share/doc/${PF}/webroot/* "${ROOT}"/var/www/localhost
-		chown -R apache:0 "${ROOT}"/var/www/localhost
+		cp -R "${EROOT}"/usr/share/${PF}/webroot/* "${EROOT}"/var/www/localhost/
+		einfo
 	fi
 }
 
 # @FUNCTION: apache-2_pkg_config
 # @DESCRIPTION:
-# This function installs -- and removes a previously existing -- default webroot
-# to /var/www/localhost
+# This function installs -- and overwrites -- the default webroot to
+# /var/www/localhost
 apache-2_pkg_config() {
 	einfo "Installing default webroot to ${ROOT}var/www/localhost"
-	mkdir "${ROOT}"var{,/www{,/localhost}}
-	cp -R "${ROOT}"usr/share/doc/${PF}/webroot/* "${ROOT}"var/www/localhost/
+	mkdir -p "${EROOT}"/var/www/localhost
+	cp -R "${EROOT}"/usr/share/${PF}/webroot/* "${EROOT}"/var/www/localhost/
 }
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_config

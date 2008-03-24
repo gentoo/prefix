@@ -1,75 +1,106 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.22 2008/02/02 12:31:00 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.23 2008/03/23 12:11:52 hollow Exp $
 
-# @ECLASS: apache-module
-# @MAINTAINER: apache-devs@gentoo.org
+# @ECLASS: apache-module.eclass
+# @MAINTAINER:
+# apache-devs@gentoo.org
 # @BLURB: Provides a common set of functions for apache modules
 # @DESCRIPTION:
-# This eclass handles apache modules in a sane way and providing information
-# about where certain interfaces are located.
+# This eclass handles apache modules in a sane way.
 #
-# @NOTE: If you use this, be sure you use the need_* call after you have defined
-# DEPEND and RDEPEND. Also note that you can not rely on the automatic
-# RDEPEND=DEPEND that Portage does if you use this eclass.
+# To make use of this eclass simply call one of the need/want_apache functions
+# described in depend.apache.eclass. Make sure you use the need/want_apache call
+# after you have defined DEPEND and RDEPEND. Also note that you can not rely on
+# the automatic RDEPEND=DEPEND that portage does if you use this eclass.
 #
-# See bug 107127 for more information.
+# See Bug 107127 for more information.
+#
+# @EXAMPLE:
+#
+# Here is a simple example of an ebuild for mod_foo:
+#
+# @CODE
+# APACHE2_MOD_CONF="42_mod_foo"
+# APACHE2_MOD_DEFINE="FOO"
+# need_apache2
+# @CODE
+#
+# A more complicated example for a module with non-standard locations:
+#
+# @CODE
+# APXS2_S="${S}/apache22/src"
+# APACHE2_MOD_FILE="${APXS2_S}/${PN}.so"
+# APACHE2_MOD_CONF="42_${PN}"
+# APACHE2_MOD_DEFINE="FOO"
+# DOCFILES="docs/*.html"
+# need_apache2_2
+# @CODE
+#
+# A basic module configuration which just loads the module into apache:
+#
+# @CODE
+# <IfDefine FOO>
+# LoadModule foo_module modules/mod_foo.so
+# </IfDefine>
+# @CODE
 
 inherit depend.apache
 
 # ==============================================================================
-# INTERNAL VARIABLES
+# PUBLIC VARIABLES
 # ==============================================================================
 
-# @ECLASS-VARIABLE: APXS2_S
+# @VARIABLE: APXS2_S
 # @DESCRIPTION:
-# Path to temporary build directory
-APXS2_S=""
+# Path to temporary build directory. (Defaults to `${S}/src' if it exists,
+# `${S}' otherwise)
 
-# @ECLASS-VARIABLE: APXS2_ARGS
+# @VARIABLE: APXS2_ARGS
 # @DESCRIPTION:
-# Arguments to pass to the apxs tool
-APXS2_ARGS=""
+# Arguments to pass to the apxs tool. (Defaults to `-c ${PN}.c')
 
-# @ECLASS-VARIABLE: APACHE2_MOD_CONF
+# @VARIABLE: APACHE2_EXECFILES
 # @DESCRIPTION:
-# Configuration file installed by src_install
-APACHE2_MOD_CONF=""
+# List of files that will be installed into ${APACHE_MODULE_DIR} beside
+# ${APACHE2_MOD_FILE}. In addition, this function also sets the executable
+# permission on those files.
 
-# @ECLASS-VARIABLE: APACHE2_MOD_DEFINE
+# @VARIABLE: APACHE2_MOD_CONF
 # @DESCRIPTION:
-# Name of define (eg FOO) to use in conditional loading of the installed
-# module/it's config file, multiple defines should be space separated
-APACHE2_MOD_DEFINE=""
+# Module configuration file installed by src_install (minus the .conf suffix and
+# relative to ${FILESDIR}).
 
-# @ECLASS-VARIABLE: APACHE2_MOD_FILE
+# @VARIABLE: APACHE2_MOD_DEFINE
 # @DESCRIPTION:
-# Name of the module that src_install installs (minus the .so)
-APACHE2_MOD_FILE=""
+# Name of define (e.g. FOO) to use in conditional loading of the installed
+# module/its config file, multiple defines should be space separated.
 
-# @ECLASS-VARIABLE: APACHE2_VHOST_CONF
+# @VARIABLE: APACHE2_MOD_FILE
 # @DESCRIPTION:
-# Virtual host configuration file installed by src_install
-APACHE2_VHOST_CONF=""
+# Name of the module that src_install installs minus the .so suffix. (Defaults
+# to `${APXS2_S}/.libs/${PN}.so')
 
-# @ECLASS-VARIABLE: DOCFILES
+# @VARIABLE: APACHE2_VHOST_CONF
+# @DESCRIPTION:
+# Virtual host configuration file installed by src_install (minus the .conf
+# suffix and relative to ${FILESDIR}).
+
+# @VARIABLE: DOCFILES
 # @DESCRIPTION:
 # If the exported src_install() is being used, and ${DOCFILES} is non-zero, some
 # sed-fu is applied to split out html documentation (if any) from normal
-# documentation, and dodoc'd or dohtml'd
-DOCFILES=""
+# documentation, and dodoc'd or dohtml'd.
 
 # ==============================================================================
-# PUBLIC FUNCTIONS
+# INTERNAL FUNCTIONS
 # ==============================================================================
 
-# @FUNCTION: apache_cd_dir
-# @DESCRIPTION:
-# Return the path to our temporary build dir
+# Internal function to construct the default ${APXS2_S} path if required.
 apache_cd_dir() {
 	debug-print-function $FUNCNAME $*
 
-	[[ -n "${APXS2_S}" ]] && CD_DIR="${APXS2_S}"
+	local CD_DIR="${APXS2_S}"
 
 	if [[ -z "${CD_DIR}" ]] ; then
 		if [[ -d "${S}/src" ]] ; then
@@ -79,30 +110,27 @@ apache_cd_dir() {
 		fi
 	fi
 
-	debug-print apache_cd_dir: "CD_DIR=${CD_DIR}"
+	debug-print $FUNCNAME "CD_DIR=${CD_DIR}"
 	echo "${CD_DIR}"
 }
 
-# @FUNCTION: apache_mod_file
-# @DESCRIPTION:
-# Return the path to the module file
+# Internal function to construct the default ${APACHE2_MOD_FILE} if required.
 apache_mod_file() {
 	debug-print-function $FUNCNAME $*
 
-	[[ -n "${APACHE2_MOD_FILE}" ]] && MOD_FILE="${APACHE2_MOD_FILE}"
-	[[ -z "${MOD_FILE}" ]] && MOD_FILE="$(apache_cd_dir)/.libs/${PN}.so"
+	local MOD_FILE="${APACHE2_MOD_FILE:-$(apache_cd_dir)/.libs/${PN}.so}"
 
-	debug-print apache_mod_file: "MOD_FILE=${MOD_FILE}"
+	debug-print $FUNCNAME "MOD_FILE=${MOD_FILE}"
 	echo "${MOD_FILE}"
 }
 
-# @FUNCTION: apache_doc_magic
-# @DESCRIPTION:
-# Some magic for picking out html files from ${DOCFILES}. It takes an optional
-# first argument `html'; if the first argument is equals `html', only html files
-# are returned, otherwise normal (non-html) docs are returned.
+# Internal function for picking out html files from ${DOCFILES}. It takes an
+# optional first argument `html'; if the first argument is equals `html', only
+# html files are returned, otherwise normal (non-html) docs are returned.
 apache_doc_magic() {
 	debug-print-function $FUNCNAME $*
+
+	local DOCS=
 
 	if [[ -n "${DOCFILES}" ]] ; then
 		if [[ "x$1" == "xhtml" ]] ; then
@@ -110,11 +138,15 @@ apache_doc_magic() {
 		else
 			DOCS="`echo ${DOCFILES} | sed 's, *[^ ]*\+.html, ,g'`"
 		fi
-
-		debug-print apache_doc_magic: "DOCS=${DOCS}"
-		echo "${DOCS}"
 	fi
+
+	debug-print $FUNCNAME "DOCS=${DOCS}"
+	echo "${DOCS}"
 }
+
+# ==============================================================================
+# EXPORTED FUNCTIONS
+# ==============================================================================
 
 # @FUNCTION: apache-module_pkg_setup
 # @DESCRIPTION:
@@ -151,8 +183,9 @@ apache-module_pkg_setup() {
 apache-module_src_compile() {
 	debug-print-function $FUNCNAME $*
 
-	CD_DIR=$(apache_cd_dir)
+	local CD_DIR=$(apache_cd_dir)
 	cd "${CD_DIR}" || die "cd ${CD_DIR} failed"
+
 	APXS2_ARGS="${APXS2_ARGS:--c ${PN}.c}"
 	${APXS} ${APXS2_ARGS} || die "${APXS} ${APXS2_ARGS} failed"
 }
@@ -160,19 +193,19 @@ apache-module_src_compile() {
 # @FUNCTION: apache-module_src_install
 # @DESCRIPTION:
 # This installs the files into apache's directories. The module is installed
-# from a directory chosen as above (APXS2_S or ${S}/src). In addition, this
-# function can also set the executable permission on files listed in
-# APACHE2_EXECFILES.  The configuration file name is listed in APACHE2_MOD_CONF
-# without the .conf extensions, so if you configuration is 55_mod_foo.conf,
-# APACHE2_MOD_CONF would be 55_mod_foo.  DOCFILES contains the list of files you
-# want filed as documentation.
+# from a directory chosen as above (apache_cd_dir). In addition, this function
+# can also set the executable permission on files listed in
+# ${APACHE2_EXECFILES}.  The configuration file name is listed in
+# ${APACHE2_MOD_CONF} without the .conf extensions, so if you configuration is
+# 55_mod_foo.conf, APACHE2_MOD_CONF would be 55_mod_foo. ${DOCFILES} contains
+# the list of files you want filed as documentation.
 apache-module_src_install() {
 	debug-print-function $FUNCNAME $*
 
-	CD_DIR=$(apache_cd_dir)
+	local CD_DIR=$(apache_cd_dir)
 	cd "${CD_DIR}" || die "cd ${CD_DIR} failed"
 
-	MOD_FILE=$(apache_mod_file)
+	local MOD_FILE=$(apache_mod_file)
 
 	exeinto "${APACHE_MODULESDIR}"
 	doexe ${MOD_FILE} || die "internal ebuild error: '${MOD_FILE}' not found"
@@ -195,8 +228,8 @@ apache-module_src_install() {
 	cd "${S}"
 
 	if [[ -n "${DOCFILES}" ]] ; then
-		OTHER_DOCS=$(apache_doc_magic)
-		HTML_DOCS=$(apache_doc_magic html)
+		local OTHER_DOCS=$(apache_doc_magic)
+		local HTML_DOCS=$(apache_doc_magic html)
 
 		[[ -n "${OTHER_DOCS}" ]] && dodoc ${OTHER_DOCS}
 		[[ -n "${HTML_DOCS}" ]] && dohtml ${HTML_DOCS}
@@ -226,23 +259,6 @@ apache-module_pkg_postinst() {
 		einfo "You may want to edit it before turning the module on in /etc/conf.d/apache2"
 		einfo
 	fi
-
-	if [[ -n "${APACHE2_SAFE_MPMS}" ]] ; then
-		INSTALLED_MPM="$(${EROOT}/usr/sbin/apxs2 -q MPM_NAME)"
-
-		if ! hasq ${INSTALLED_MPM} ${APACHE2_SAFE_MPMS} ; then
-			INSTALLED_MPM_UNSAFE="${INSTALLED_MPM_UNSAFE} ${mpm}"
-		else
-			INSTALLED_MPM_SAFE="${INSTALLED_MPM_SAFE} ${mpm}"
-		fi
-
-		if [[ -n "${INSTALLED_MPM_UNSAFE}" ]] ; then
-			ewarn "Your installed MPM will not work with this module (${PN})."
-			ewarn "Please make sure that you only enable this module"
-			ewarn "if you are using one of the following MPMs:"
-			ewarn "    ${INSTALLED_MPM_SAFE}"
-		fi
-	fi
 }
 
-EXPORT_FUNCTIONS pkg_setup src_compile src_install pkg_postinst
+EXPORT_FUNCTIONS src_compile src_install pkg_postinst
