@@ -11,7 +11,7 @@ HOMEPAGE="http://mdf2iso.berlios.de/"
 SRC_URI="http://download.berlios.de/${PN}/${P}-src.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 DEPEND="virtual/libc"
 
