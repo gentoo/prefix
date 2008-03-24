@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.22.0.ebuild,v 1.1 2008/03/22 23:04:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.22.0.ebuild,v 1.2 2008/03/23 20:11:35 leio Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,8 @@ RDEPEND=">=gnome-base/libgnomecanvas-1.116
 	>=x11-libs/gtk+-2.8.12
 	>=dev-libs/glib-2.6.0
 	>=gnome-base/gnome-vfs-2.8
-	>=gnome-base/libglade-1.99.11"
+	>=gnome-base/libglade-1.99.11
+	>=dev-libs/popt-1.5"
 
 DEPEND="${RDEPEND}
 	x11-apps/xrdb
