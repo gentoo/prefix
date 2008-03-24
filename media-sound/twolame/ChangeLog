@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/twolame
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.34 2008/03/22 19:39:11 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.37 2008/03/23 17:34:31 armin76 Exp $
+
+  23 Mar 2008; Raúl Porcel <armin76@gentoo.org> twolame-0.3.12.ebuild:
+  alpha/ia64/sparc stable wrt #214281
+
+  23 Mar 2008; nixnut <nixnut@gentoo.org> twolame-0.3.12.ebuild:
+  Stable on ppc wrt bug 214281
+
+  23 Mar 2008; Brent Baude <ranger@gentoo.org> twolame-0.3.12.ebuild:
+  stable ppc64, bug 214281
 
   22 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
   twolame-0.3.12.ebuild:
