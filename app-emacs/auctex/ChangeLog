@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.87 2008/03/22 20:11:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.88 2008/03/23 13:49:53 ranger Exp $
+
+  23 Mar 2008; Brent Baude <ranger@gentoo.org> auctex-11.85.ebuild:
+  stable ppc64, bug 213992
 
   22 Mar 2008; Raúl Porcel <armin76@gentoo.org> auctex-11.85.ebuild:
   sparc stable wrt #213992
