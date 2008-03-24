@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.119 2008/03/22 09:22:42 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.120 2008/03/24 01:16:57 leio Exp $
+
+*shared-mime-info-0.23-r1 (24 Mar 2008)
+
+  24 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/shared-mime-info-0.23-ignore-x-content.patch,
+  +shared-mime-info-0.23-r1.ebuild:
+  Include x-content/* in media_types to not warn about them with GNOME-2.22
 
   22 Mar 2008; Samuli Suominen <drac@gentoo.org>
   -shared-mime-info-0.22.ebuild, shared-mime-info-0.23.ebuild:
