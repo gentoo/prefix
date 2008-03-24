@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11-r1.ebuild,v 1.1 2007/11/12 07:25:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11-r1.ebuild,v 1.2 2008/03/23 18:37:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,8 @@ src_unpack() {
 	# but _after_ config.h (or have troubles with _LARGE_FILES on aix)
 	sed -i '/include[ \t]*["<]config\.h[>"]/a#include <ctype.h>' system.h 
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
+	epatch "${FILESDIR}"/${P}-test-tex.patch #195313
+
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-high-precision.patch #200662
 	epatch "${FILESDIR}"/${P}-aix.patch

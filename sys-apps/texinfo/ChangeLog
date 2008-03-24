@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/texinfo
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.88 2007/11/12 07:25:39 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.89 2008/03/23 18:37:52 vapier Exp $
+
+  23 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.11-test-tex.patch, texinfo-4.11-r1.ebuild:
+  Fix from upstream for test failure when tex isnt installed #195313 by Ryan
+  Hill.
 
 *texinfo-4.11-r1 (12 Nov 2007)
 
