@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/ctags
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.67 2008/01/22 19:42:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.68 2008/03/24 00:37:48 dirtyepic Exp $
+
+  24 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> ctags-5.7.ebuild:
+  Re-add mips keyword, bug #202947.
 
   22 Jan 2008; Raúl Porcel <armin76@gentoo.org> ctags-5.7.ebuild:
   alpha/ia64/sparc stable wrt #182369
