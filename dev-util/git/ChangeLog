@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.262 2008/03/20 19:59:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.263 2008/03/24 00:05:01 robbat2 Exp $
+
+*git-1.5.4.4-r1 (24 Mar 2008)
+
+  24 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/20080322-git-1.5.5.4-noperl.patch, +git-1.5.4.4-r1.ebuild:
+  Per bug 214168, some users are really picky about wanting a Perl-free Git.
+  This new revision makes that a possibility, and now also introduces most
+  of the dependancies that were only previously stated in the pkg_postinst
+  phase. The following arch keywords have been dropped per bug 214464 until
+  the arches can keyword the dependancies: arm, ia64, s390, sh.
 
   20 Mar 2008; Mike Frysinger <vapier@gentoo.org> git-1.5.4.4.ebuild:
   Add support for USE=xinetd #213014.
