@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/markaby
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/markaby/ChangeLog,v 1.9 2007/10/13 06:01:56 tgall Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/markaby/ChangeLog,v 1.10 2008/03/24 15:46:21 coldwind Exp $
+
+  24 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> markaby-0.5.ebuild:
+  amd64 stable
 
   13 Oct 2007; Tom Gall <tgall@gentoo.org> markaby-0.5.ebuild:
   stable on ppc64
