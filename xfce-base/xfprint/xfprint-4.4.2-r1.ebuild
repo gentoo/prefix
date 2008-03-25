@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfprint/xfprint-4.4.2-r1.ebuild,v 1.5 2008/03/22 22:51:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfprint/xfprint-4.4.2-r1.ebuild,v 1.6 2008/03/24 11:03:41 armin76 Exp $
 
 EAPI="prefix"
 
