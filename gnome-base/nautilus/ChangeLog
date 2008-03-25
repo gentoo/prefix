@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.256 2008/02/18 23:53:35 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.257 2008/03/24 06:52:13 leio Exp $
+
+*nautilus-2.22.0 (24 Mar 2008)
+
+  24 Mar 2008; Mart Raudsepp <leio@gentoo.org> +nautilus-2.22.0.ebuild:
+  New version for GNOME-2.22. Big rewrite of parts to use GIO/GVFS instead of
+  gnome-vfs; shared copy progress dialog and much more made possible with GVFS
 
   18 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org>
   nautilus-2.20.0-r1.ebuild:
