@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.53 2008/03/22 22:51:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.54 2008/03/24 11:05:17 armin76 Exp $
+
+  24 Mar 2008; Raúl Porcel <armin76@gentoo.org> thunar-0.9.0-r2.ebuild:
+  ia64/sparc stable wrt #214130
 
   22 Mar 2008; Brent Baude <ranger@gentoo.org> thunar-0.9.0-r2.ebuild:
   Marking thunar-0.9.0-r2 ppc64 for bug 214130
