@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.145 2008/03/22 19:27:56 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.146 2008/03/24 10:57:00 armin76 Exp $
+
+  24 Mar 2008; Raúl Porcel <armin76@gentoo.org> gpgme-1.1.6.ebuild:
+  alpha/ia64/sparc stable wrt #205998
 
   22 Mar 2008; Alon Bar-Lev <alonbl@gentoo.org> gpgme-1.1.6.ebuild:
   Add m4 dir to include, bug#214290, thanks to forlk
