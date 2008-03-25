@@ -1,13 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3443 2008/03/24 00:10:39 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3449 2008/03/24 16:13:48 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 
 # Keep it sorted.
 
-app-accessibility/festival:asterisk - adds a new command named tts_textasterisk that is required by net-misc/asterisk to communicate with the Festival server
 app-accessibility/festival:mbrola - Adds support for mbrola voices
 app-accessibility/freetts:jsapi - build Java Speech API (JSAPI) support
 app-accessibility/freetts:mbrola - Adds support for mbrola voices
@@ -40,7 +39,6 @@ app-backup/bacula:bacula-console - Build (GUI) console program(s)
 app-backup/bacula:bacula-nodir - Disable building of director in 1.38.x and later.
 app-backup/bacula:bacula-nosd - Disable building of storage daemon in 1.38.x and later.
 app-backup/bacula:bacula-split-init - Use separate init scripts for fd/sd/dir
-app-backup/bacula:client-only - Disable DB support, and just build a client
 app-backup/bacula:logrotate - Install support files for logrotate
 app-backup/bacula:logwatch - Install support files for logwatch
 app-backup/boxbackup:client-only - Disable server support, and just build a client
@@ -1213,7 +1211,9 @@ media-video/mplayer:zoran - Enables ZR360[56]7/ZR36060 video output
 media-video/ogmrip:srt - Support for SRT subtitle format
 media-video/oxine:polling - Enables support to automatically check the drive for a new disc
 media-video/totem:galago - Enable the galago plugin
+media-video/totem:nautilus - Enable the nautilus extension
 media-video/totem:nvtv - Support for nvtv to use tv in on nvidia cards
+media-video/totem:tracker - Enable the search plugin using app-misc/tracker
 media-video/transcode:extrafilters - Install some filters only if we ask for them
 media-video/transcode:fame - Enables libfame support
 media-video/transcode:mjpeg - Enables mjpegtools support
@@ -1221,6 +1221,7 @@ media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
+media-video/vdr:atsc - Support for NorthAmerican Broadcast ( rudimentary )
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
 media-video/vdr:cmdctrl - allows switching remote control on/off
@@ -1229,6 +1230,7 @@ media-video/vdr:cutterlimit - Limit IO bandwith used for cutting
 media-video/vdr:cutterqueue - Adds a queue of recordings to be cutted
 media-video/vdr:cuttime - Adjust starttime of cutted recording by length of cut out parts
 media-video/vdr:ddepgentry - remove duplicate EPG entries
+media-video/vdr:deltimeshiftrec - Auto delete timeshift recordings
 media-video/vdr:dolby-record-switch - Allows to control separately to record / to replay dolby digital
 media-video/vdr:dolbyinrec - add a dedicated switch to control recording of dolby digital
 media-video/vdr:dvbplayer - Use some special mpeg-repacker features. Most usable for old recordings or software output devices.
@@ -1263,6 +1265,7 @@ media-video/vdr:submenu - Enable support for the plugin vdr-submenu.
 media-video/vdr:subtitles - Enable support for the subtitles-plugin
 media-video/vdr:switchtimer - support for timer that do not record but only switch to a channel
 media-video/vdr:syncearly - start live display as soon as possible, not waiting for sync of audio and video
+media-video/vdr:ttxtsubs - support for ttxtsubs plugin
 media-video/vdr:timercmd - Adds submenu for user defined commands in timer menu
 media-video/vdr:timerinfo - Show with chars +/- if space on HD will suffice for a timer
 media-video/vdr:validinput - Signal if it is possible to go left/right in lists with chars < >
@@ -1277,7 +1280,6 @@ media-video/vlc:dc1394 - Enables IIDC cameras support.
 media-video/vlc:fluidsynth - Enables  Fluidsynth MIDI software synthesis (with external sound fonts).
 media-video/vlc:httpd - Enables a web based interface for vlc.
 media-video/vlc:id3tag - Enables id3tag metadata reader plugin.
-media-video/vlc:libgcrypt - Enables libgcrypt support (depends on gnutls).
 media-video/vlc:live - Enables LIVE.com support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
 media-video/vlc:pvr - Enables PVR cards access module.
@@ -1313,7 +1315,6 @@ net-analyzer/munin:munin-dhcp - installs deps for monitoring DHCP
 net-analyzer/munin:munin-irc - installs deps for monitoring IRC
 net-analyzer/munin:munin-squid - installs deps for monitoring squid
 net-analyzer/munin:munin-surfboard - installs deps for monitoring a Motoro Surfboard Cable modem
-net-analyzer/nagios-core:noweb - disable web interface
 net-analyzer/nagios-core:web - enable web interface
 net-analyzer/nagios-nrpe:command-args - allow clients to specify command arguments
 net-analyzer/nagios-plugins:nagios-dns - installs deps for dns monitoring
