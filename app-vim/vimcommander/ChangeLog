@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/vimcommander
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vimcommander/ChangeLog,v 1.20 2007/02/22 00:15:24 peper Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vimcommander/ChangeLog,v 1.21 2008/03/24 17:02:22 coldwind Exp $
+
+  24 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  vimcommander-1.54.2.9.ebuild:
+  amd64 stable, quoting fixed.
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
