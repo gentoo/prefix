@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10.ebuild,v 1.1 2008/03/19 23:40:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10-r1.ebuild,v 1.1 2008/03/24 15:39:45 dang Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ RDEPEND=">=dev-lang/perl-5.6
 	emacs? ( virtual/emacs )"
 
 DEPEND="${RDEPEND}
+	=dev-util/gtk-doc-am-${PV}
 	>=dev-util/pkgconfig-0.19
 	>=app-text/scrollkeeper-0.3.5"
 
@@ -40,6 +41,9 @@ src_unpack() {
 
 	# Remove global Emacs keybindings.
 	epatch "${FILESDIR}"/${PN}-1.8-emacs-keybindings.patch
+
+	# Don't install gtk-doc.m4; it's in gtk-doc-am now
+	epatch "${FILESDIR}"/${PN}-1.10-no-m4.patch
 }
 
 src_compile() {

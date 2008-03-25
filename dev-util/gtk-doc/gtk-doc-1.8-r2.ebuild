@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.8-r2.ebuild,v 1.2 2007/11/06 22:28:37 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.8-r2.ebuild,v 1.3 2008/03/24 15:39:45 dang Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,8 @@ RDEPEND=">=dev-lang/perl-5.6
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.19
-	>=app-text/scrollkeeper-0.3.5"
+	>=app-text/scrollkeeper-0.3.5
+	!dev-util/gtk-doc-am"
 
 SITEFILE=61${PN}-gentoo.el
 

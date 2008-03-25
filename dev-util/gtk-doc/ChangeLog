@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.90 2008/03/19 23:40:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.91 2008/03/24 15:39:45 dang Exp $
+
+*gtk-doc-1.10-r1 (24 Mar 2008)
+
+  24 Mar 2008; Daniel Gryniewicz <dang@gentoo.org>
+  +files/gtk-doc-1.10-no-m4.patch, gtk-doc-1.8-r2.ebuild,
+  -gtk-doc-1.10.ebuild, +gtk-doc-1.10-r1.ebuild:
+  Split gtk-doc.m4 out into dev-util/gtk-doc-am so that packages needing it
+  to run automake can depend on just that.
 
 *gtk-doc-1.10 (19 Mar 2008)
 
