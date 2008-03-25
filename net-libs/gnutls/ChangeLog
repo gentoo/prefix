@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.144 2008/03/22 16:22:54 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.145 2008/03/24 10:58:04 armin76 Exp $
+
+  24 Mar 2008; Raúl Porcel <armin76@gentoo.org> gnutls-2.2.2.ebuild:
+  alpha/ia64/sparc stable wrt #209984
 
   22 Mar 2008; Markus Rothe <corsair@gentoo.org> gnutls-2.2.2.ebuild:
   Stable on ppc64; bug #209984
