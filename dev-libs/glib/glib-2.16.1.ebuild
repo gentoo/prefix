@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
@@ -54,7 +54,14 @@ src_unpack() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	[[ ${CHOST} == *-freebsd* ]] && elibtoolize
+	# add support for reading file systems on interix.
+	epatch "${FILESDIR}"/${P}-interix.patch
+
+	# freebsd: elibtoolize would suffice
+	# interix: need recent libtool
+	# but doing eautoreconf needs gtk-doc.m4.
+	# To avoid hard dependency on gtk-doc, provide gtk-doc.m4 in ${FILESDIR}/m4
+	AT_M4DIR="m4macros ${FILESDIR}/m4" eautoreconf 
 }
 
 src_compile() {
@@ -71,6 +78,12 @@ src_compile() {
 	# non-glibc platforms use GNU libiconv, but configure needs to know about
 	# that not to get confused when it finds something outside the prefix too
 	use elibc_glibc || myconf="${myconf} --with-libiconv=gnu"
+
+	[[ ${CHOST} == *-interix* ]] && {
+		append-flags "-D_ALL_SOURCE"
+		export ac_cv_func_mmap_fixed_mapped=yes
+		export ac_cv_func_poll=no
+	}
 
 	# always build static libs, see #153807
 	econf ${myconf}                 \
