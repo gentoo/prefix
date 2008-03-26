@@ -122,6 +122,8 @@ src_unpack() {
 	URTLIB = $(netpbm_config rle)
 	URTHDR_DIR =
 	EOF
+
+	[[ ${CHOST} == *-interix3* ]] && echo "INTTYPES_H = <stdint.h>" >> Makefile.config
 }
 
 src_compile() {
