@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-2.2.3-r1.ebuild,v 1.3 2008/03/09 18:46:57 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-2.2.3-r1.ebuild,v 1.4 2008/03/26 01:42:01 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ src_unpack() {
 	echo "objectweb.ant.tasks.path = $(java-pkg_getjar --build-only ant-owanttask ow_util_ant_tasks.jar)" >> build.properties
 }
 
-EANT_DOCS_TARGET="jdoc"
+EANT_DOC_TARGET="jdoc"
 
 src_install() {
 	for x in output/dist/lib/*.jar ; do
