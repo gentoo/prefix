@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007j.ebuild,v 1.8 2008/01/10 09:56:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008b.ebuild,v 1.2 2008/03/25 20:25:51 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs flag-o-matic
 
-code_ver=${PV}
+code_ver=${PV/b/a}
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
@@ -54,21 +54,29 @@ src_install() {
 
 pkg_config() {
 	# make sure the /etc/localtime file does not get stale #127899
-	local tz=$(unset TIMEZONE ; source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE-FOOKABLOIE})
-	[[ -z ${tz} ]] && return 0
-	if [[ ${tz} == "FOOKABLOIE" ]] ; then
-		elog "You do not have TIMEZONE set in ${EPREFIX}/etc/conf.d/clock."
-		if [[ ! -e ${EROOT}/etc/localtime ]] ; then
-			cp -f "${EROOT}"/usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
-			elog "Setting ${EPREFIX}/etc/localtime to Factory."
-		else
-			elog "Skipping auto-update of ${EPREFIX}/etc/localtime."
+	local tz src
+
+	if [[ -e ${EROOT}/etc/timezone ]] ; then
+		src="/etc/timezone"
+		tz=$(<"${EROOT}"/etc/timezone)
+	else
+		src="/etc/conf.d/clock"
+		tz=$(unset TIMEZONE ; source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE-FOOKABLOIE})
+		[[ -z ${tz} ]] && return 0
+		if [[ ${tz} == "FOOKABLOIE" ]] ; then
+			elog "You do not have TIMEZONE set in ${EPREFIX}/etc/conf.d/clock."
+			if [[ ! -e ${EROOT}/etc/localtime ]] ; then
+				cp -f "${EROOT}"/usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
+				elog "Setting /etc/localtime to Factory."
+			else
+				elog "Skipping auto-update of ${EPREFIX}/etc/localtime."
+			fi
+			return 0
 		fi
-		return 0
 	fi
 
 	if [[ ! -e ${EROOT}/usr/share/zoneinfo/${tz} ]] ; then
-		elog "You have an invalid TIMEZONE setting in ${EPREFIX}/etc/conf.d/clock."
+		elog "You have an invalid TIMEZONE setting in ${EPREFIX}${src}"
 		elog "Your ${EPREFIX}/etc/localtime has been reset to Factory; enjoy!"
 		tz="Factory"
 	fi
