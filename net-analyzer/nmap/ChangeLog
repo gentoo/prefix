@@ -1,6 +1,14 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.166 2008/03/09 15:53:49 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.168 2008/03/25 14:46:23 spock Exp $
+
+*nmap-4.60 (25 Mar 2008)
+
+  25 Mar 2008; Michał Januszewski <spock@gentoo.org> +nmap-4.60.ebuild:
+  Version bump (bug #214320).
+
+  25 Mar 2008; Michał Januszewski <spock@gentoo.org> nmap-4.53.ebuild:
+  Fix bug #214648.
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> nmap-4.53.ebuild:
   Stable on ppc wrt bug 212482
