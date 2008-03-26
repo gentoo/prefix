@@ -122,15 +122,23 @@ src_compile() {
 src_install() {
 	toolchain_src_install
 
-	case ${CTARGET} in
-		*-interix*)
-			# interix delivers libdl and dlfcn.h with gcc-3.3.
-			# Since those parts are perfectly usable by this gcc (and
-			# required for example by perl), we simply can reuse them.
-			# As libdl is in /usr/lib, we only need to copy dlfcn.h.
-			cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-			|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
-		;;
-	esac
+	if [[ ${CTARGET} == *-interix* ]] && ! is_crosscompile; then
+		# interix delivers libdl and dlfcn.h with gcc-3.3.
+		# Since those parts are perfectly usable by this gcc (and
+		# required for example by perl), we simply can reuse them.
+		# As libdl is in /usr/lib, we only need to copy dlfcn.h.
+		# When cross compiling for interix once, ensure that sysroot
+		# contains dlfcn.h.
+		cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
+		|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
+	fi
+
+	if [[ ${CTARGET} == *-interix3* ]]; then
+		# interix 3.5 has no stdint.h and no inttypes.h. This breaks
+		# so many packages, that i just install interix 5.2's stdint.h
+		# which should be ok.
+		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
+		|| die "Cannot install stdint.h for interix3"
+	fi
 }
 
