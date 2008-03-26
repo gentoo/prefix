@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/mksh
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/ChangeLog,v 1.10 2007/09/12 14:27:50 hanno Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/ChangeLog,v 1.11 2008/03/26 00:12:51 hanno Exp $
+
+*mksh-33 (26 Mar 2008)
+
+  26 Mar 2008; Hanno Boeck <hanno@gentoo.org> +mksh-33.ebuild:
+  Version bump.
 
 *mksh-31c (12 Sep 2007)
 
