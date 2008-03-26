@@ -166,8 +166,8 @@ src_unpack() {
 	# on interix, $firstmakefile may not be 'makefile', since the
 	# filesystem may be case insensitive, and perl will wrongly
 	# delete Makefile.
-	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
-	epatch ${FILESDIR}/${P}-interix-misc.patch
+	epatch "${FILESDIR}"/${P}-interix-firstmakefile.patch
+	epatch "${FILESDIR}"/${P}-interix-misc.patch
 
 	cp "${FILESDIR}"/${P}-lib64.patch "${T}"
 	( cd "${T}" && epatch "${FILESDIR}"/${P}-lib64-prefix.patch )
