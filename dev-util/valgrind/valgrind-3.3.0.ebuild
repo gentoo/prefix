@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.3.0.ebuild,v 1.1 2007/12/13 20:50:50 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.3.0.ebuild,v 1.2 2008/03/25 19:33:58 griffon26 Exp $
 
 EAPI="prefix"
 
@@ -81,4 +81,13 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die "Install failed!"
 	dodoc ACKNOWLEDGEMENTS AUTHORS FAQ.txt NEWS README*
+}
+
+pkg_postinst() {
+	if use ppc || use ppc64 ; then
+		ewarn "Valgrind will not work on ppc or ppc64 if glibc does not have"
+		ewarn "debug symbols (see https://bugs.gentoo.org/show_bug.cgi?id=214065)"
+		ewarn "To fix this you can add splitdebug to FEATURES in make.conf and"
+		ewarn "remerge glibc."
+	fi
 }
