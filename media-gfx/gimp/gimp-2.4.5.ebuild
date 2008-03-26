@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.1 2008/03/03 15:00:26 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.2 2008/03/26 01:23:33 hanno Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	sys-libs/zlib
 	dev-libs/libxml2
 	dev-libs/libxslt
+	x11-misc/xdg-utils
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
 	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
@@ -68,6 +69,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/gimp-web-browser.patch"
 
 	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
 	# remove this with >= 2.5
@@ -98,7 +100,7 @@ src_compile() {
 		$(use_enable doc gtk-doc) \
 		$(use_with dbus) \
 		$(use_with hal) \
-		$(use_with gnome) \
+		$(use_with gnome gnomevfs) \
 		$(use_with gtkhtml gtkhtml2) \
 		--with-libjpeg \
 		$(use_with exif libexif) \
