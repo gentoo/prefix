@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.0.ebuild,v 1.1 2008/03/16 21:54:49 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.0.ebuild,v 1.2 2008/03/25 22:50:51 cardoe Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		doc? ( app-doc/doxygen )"
 
-DOCS="AUTHORS CHANGES ChangeLog NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
