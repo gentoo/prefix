@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.172 2008/02/28 22:55:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.173 2008/03/26 03:41:42 ricmm Exp $
+
+  25 Mar 2008; <ricmm@gentoo.org> libxslt-1.1.20.ebuild,
+  libxslt-1.1.20-r1.ebuild, libxslt-1.1.22.ebuild:
+  Drop to ~mips due to unstable deps
 
   28 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org> libxslt-1.1.22.ebuild:
   add examples flag, bug #111508
