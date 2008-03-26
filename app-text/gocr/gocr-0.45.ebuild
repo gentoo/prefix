@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.45.ebuild,v 1.1 2008/01/26 17:02:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.45.ebuild,v 1.4 2008/03/26 02:18:39 ranger Exp $
 
 EAPI="prefix"
 
@@ -9,11 +9,11 @@ inherit eutils
 DESCRIPTION="An OCR (Optical Character Recognition) reader"
 HOMEPAGE="http://jocr.sourceforge.net"
 SRC_URI="mirror://sourceforge/jocr/${P}.tar.gz"
-LICENSE="GPL-2"
 
-IUSE="doc tk"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+IUSE="doc tk"
 
 DEPEND=">=media-libs/netpbm-9.12
 	doc? ( >=media-gfx/transfig-3.2 virtual/ghostscript )
@@ -26,7 +26,6 @@ DOCS="AUTHORS BUGS CREDITS HISTORY RE* TODO"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
 	epatch "${FILESDIR}/${P}-makefile.patch"
 }
 
