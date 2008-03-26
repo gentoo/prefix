@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.84 2008/02/08 20:29:23 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.85 2008/03/26 03:29:59 ricmm Exp $
+
+  25 Mar 2008; <ricmm@gentoo.org> rubygems-0.8.11-r6.ebuild:
+  Drop to ~mips due to unstable deps
 
   08 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
   rubygems-0.9.4-r2.ebuild:
