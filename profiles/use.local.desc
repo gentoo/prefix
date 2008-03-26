@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3449 2008/03/24 16:13:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3452 2008/03/25 22:23:37 cedk Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -179,7 +179,9 @@ app-laptop/pbbuttonsd:macbook - Enable support for the Macbook and Macbook Pro
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - enable support for thinkpad models 760 and 765
 app-misc/beagle:chm - Enable indexing of MS HTML Help files (.chm)
+app-misc/beagle:epiphany - Enable Epiphany Extension
 app-misc/beagle:galago - Enable desktop presence via galago
+app-misc/beagle:inotify - Enable inotify filesystem monitoring support
 app-misc/beagle:ole - Enable ole support
 app-misc/beagle:thunderbird - Enable Mozilla Thunderbird indexing
 app-misc/booh:transcode - Use transcode to extract video thumbnails
@@ -552,6 +554,8 @@ dev-python/psycopg:mxdatetime - choose MX DateTime support instead of built-in d
 dev-python/pycairo:numeric - enable Numeric support
 dev-python/pyyaml:libyaml - enable libyaml support
 dev-python/pyzor:pyzord - enable support for pyzord
+dev-python/rdflib:redland - enable support for Redland triplestore
+dev-python/rdflib:zodb - enable support for Zope Object Databse triplestore
 dev-python/soya:ode - include support for Open Dynamics Engine
 dev-python/twisted:serial - include serial port support
 dev-python/visual:numarray - enable support for numarray
@@ -1910,6 +1914,8 @@ sys-block/gparted:ntfs - Include NTFS support
 sys-block/gparted:reiser4 - Include ReiserFS4 support
 sys-block/gparted:reiserfs - Include ReiserFS support
 sys-block/gparted:xfs - Include XFS support
+sys-block/open-iscsi:modules - Build the open-iscsi modules
+sys-block/open-iscsi:utils - Build the open-iscsi utilities
 sys-block/partimage:nologin - Do not include login support
 sys-block/unieject:pmount - Make use of pmount wrapper and pmount-like permissions
 sys-boot/arcboot:cobalt - Disables support for Cobalt Microserver hardware (Qube2/RaQ2)

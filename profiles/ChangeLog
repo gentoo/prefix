@@ -1,6 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1244 2008/03/24 13:27:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1250 2008/03/25 02:29:11 kingtaco Exp $
+
+  25 Mar 2008; Mike Doty <kingtaco@gentoo.org> use.local.desc:
+  adding sys-block/open-iscsi local use flags
+
+  25 Mar 2008; Mike Doty <kingtaco@gentoo.org> package.mask:
+  p.mask >=sys-block/open-iscsi-2.0.868-rc1 for testing.
+
+  25 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask new old freetype snapshot.
+
+  24 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  www-servers/orion and dev-java/jsx moved to Java junkyard
+
+  24 Mar 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Remove few dev-java packages that were punted after last rites.
+
+  24 Mar 2008; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  =net-www/xxv-1.2.1315 masked for testing
 
   24 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
   add tracker and nautilus local use flag for media-video/totem

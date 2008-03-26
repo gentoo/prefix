@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8418 2008/03/24 00:01:44 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8427 2008/03/25 22:18:34 cedk Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,32 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Cédric Krier <cedk@gentoo.org> (25 Mar 2008)
+#Masked waiting bug #201093
+=app-misc/beagle-0.3.3
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
+# Masked due to bugs and availability of forked alternative Frostwire.
+# Which is more equivalent to Limewire Pro and has been added to portage.
+# This ebuild will be moved in 30 days to the java junkyard overlay.
+net-p2p/limewire
+
+# Robin H. Johnson <robbat2@gentoo.org> (24 Mar 2008)
+# Testing for GPT changes, small ext3 inodes, AOE support for grub-install,
+# some extra sync calls in grub-install.
+=sys-boot/grub-0.97-r5
+
+# Mike Doty <kingtaco@gentoo.org> (24 Mar 2008)
+# Masked due to lack of testing and user rewritten ebuild/conf.d/init.d.
+# Use at your own risk.  Bug 196096.
+>=sys-block/open-iscsi-2.0.868_rc1
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (11 Mar 2008)
+# masked for testing
+# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
+=net-www/xxv-1.2.1308
+=net-www/xxv-1.2.1315
 
 # Andreas Proschofsky <suka@gentoo.org> (23 Mar 2008)
 # Mask release candidates for OpenOffice.org 2.4.0
@@ -62,10 +88,6 @@ mail-client/ciphire-mail
 # Colin Morey <peitolm@gentoo.org> (20 Mar 2008)
 # Masked for testing, closing lots of little bugs
 =mail-mta/exim-4.69-r1
-
-# Ryan Hill <dirtyepic@gentoo.org> (19 Mar 2008)
-# Masked for testing.
-=media-libs/freetype-1.4*
 
 # Jeroen Roovers <jer@gentoo.org> (19 Mar 2008)
 # Deprecated in favour of net-firewall/conntrack-tools, which
@@ -192,11 +214,6 @@ sys-apps/mindi-busybox
 # Pending removal
 # See bug #138755
 x11-misc/perlpanel
-
-# Joerg Bornkessel <hd_brummy@gentoo.org> (11 Mar 2008)
-# masked for testing
-# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
-=net-www/xxv-1.2.1308
 
 # Christian Faulhammer <opfer@gentoo.org> (11 Mar 2008)
 # masked for testing
@@ -355,11 +372,6 @@ www-apps/disc-cover
 # https://bugs.gentoo.org/show_bug.cgi?id=209029
 www-apps/bugs-bug-genie
 
-# Michael Sterrett <mr_bones_@gentoo.org> (12 Feb 2008)
-# Security mask (bug #209903)
-# https://bugs.gentoo.org/show_bug.cgi?id=209903
-games-mud/tintin
-
 # Samuli Suominen <drac@gentoo.org> (12 Feb 2008)
 # If 0.20 fails with hardmasked ffmpeg snapshot,
 # try this instead.
@@ -390,15 +402,6 @@ net-ftp/nvemftp
 # Will be removed 08 Apr 2008
 # Bug 205482, many bugs, dead upstream
 net-ftp/swiftfxp
-
-# Petteri Räty <betelgeuse@gentoo.org> (08 Feb 2008)
-# Masked for removal to java junkyard in 30 days.
-# Proprietary software that is not used by anyone
-# in the java herd. Unmigrated to generation 2.
-# Lagging behind in versions. If you have a need for
-# this, please contact the java herd for proxy
-# maintainership plans.
-www-servers/orion
 
 # Bernard Cafarelli <voyageur@gentoo.org> (07 Feb 2008)
 # Masked for removal in 30 days. Does not work, needs patching,
@@ -433,41 +436,10 @@ app-admin/ctcs
 # Doesn't compile, useless, bug #152493
 net-libs/libhttpd-persistent
 
-# Vlastimil Babka <caster@gentoo.org> (03 Feb 2008)
-# Still unmigrated, no release since 2005, some of the
-# packages declared dead by upstream. Nothing depends
-# on it. Masked for removal in 30 days.
-# Unless someone shows interest in it, will be moved
-# to java junkyard.
-dev-java/cryptix
-dev-java/cryptix-asn1-bin
-dev-java/cryptix-jce-bin
-
 # Michael Sterrett <mr_bones_@gentoo.org> (02 Feb 2008)
 # needs a version of media-sound/audacious which is no
 # longer in the tree.
 app-mobilephone/bemused
-
-# Vlastimil Babka <caster@gentoo.org> (02 Feb 2008)
-# Still unmigrated, untouched since 2005, nothing
-# depends on it. Masked for removal in 30 days.
-# Unless someone shows interest in it, will be moved
-# to java junkyard.
-dev-java/javamake-bin
-
-# Vlastimil Babka <caster@gentoo.org> (02 Feb 2008)
-# Still unmigrated, last upstream release 2001, nothing
-# depends on it. Masked for removal in 30 days.
-# Unless someone shows interest in it, will be moved
-# to java junkyard.
-dev-java/minml2
-
-# Vlastimil Babka <caster@gentoo.org> (02 Feb 2008)
-# Still unmigrated, untouched since 2005, nothing
-# depends on it. Masked for removal in 30 days.
-# Unless someone shows interest in it, will be moved
-# to java junkyard.
-dev-java/jasmin-sable
 
 # Ulrich Mueller <ulm@gentoo.org> (01 Feb 2008)
 # Live CVS ebuild of Emacs 22 base branch
@@ -548,13 +520,6 @@ gnome-extra/hal-device-manager
 # Krzysiek Pawlik <nelchael@gentoo.org> (21 Jan 2008)
 # Does not build, broken JSP dependencies.
 =dev-java/freemarker-2.3.11
-
-# Petteri Räty <betelgeuse@gentoo.org> (19 Jan 2008)
-# Commercial application for which the devs don't have
-# licenses. Lagging behind in versions. If you want to
-# see this maintained contact java@gentoo.org for paying
-# us a license. Otherwise in junkyard after 30 days.
-dev-java/jsx
 
 # Ingmar Vanhassel <ingmar@gentoo.org> (16 Jan 2008)
 # Mask KDE 4.0.0 for testing. This release of KDE 4 will not be unmasked.
