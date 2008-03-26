@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.168 2008/03/07 22:19:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.169 2008/03/25 18:05:32 ulm Exp $
+
+  25 Mar 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
+  Add a note about the openmotif-compat package.
 
   07 Mar 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r1.ebuild:
   Fix syntax in pkg_setup, so that it works also with older bash versions.
