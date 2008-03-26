@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.133 2008/02/25 06:01:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.134 2008/03/25 19:45:17 coldwind Exp $
+
+  25 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> gdb-6.7.1-r3.ebuild:
+  amd64 stable
 
 *gdb-6.7.1-r3 (25 Feb 2008)
 
