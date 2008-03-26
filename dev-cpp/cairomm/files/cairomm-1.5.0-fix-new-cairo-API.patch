@@ -1,0 +1,40 @@
+From: Murray Cumming <murrayc@murrayc.com>
+Date: Sun, 23 Mar 2008 10:19:54 +0000 (+0100)
+Subject: 2008-03-23  Murray Cumming  <murrayc@murrayc.com>
+X-Git-Url: http://gitweb.cairographics.org/?p=cairomm.git;a=commitdiff;h=56d68c7dda87aaf7da08a64e8640222654b6ab22
+
+2008-03-23  Murray Cumming  <murrayc@murrayc.com>
+
+        * cairomm/enums.h (FONT_TYPE_ATSUI, FONT_TYPE_QUARTZ):
+        Change the definition of FONT_TYPE_ATSUI from CAIRO_FONT_TYPE_ATSUI to
+        CAIRO_FONT_TYPE_QUARTZ (the same numerical value) and document it as
+        deprecated. The others should be documented too.
+        Added FONT_TYPE_QUARTZ.
+---
+
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,3 +1,11 @@
++2008-03-23  Murray Cumming  <murrayc@murrayc.com>
++
++	* cairomm/enums.h (FONT_TYPE_ATSUI, FONT_TYPE_QUARTZ):
++	Change the definition of FONT_TYPE_ATSUI from CAIRO_FONT_TYPE_ATSUI to 
++	CAIRO_FONT_TYPE_QUARTZ (the same numerical value) and document it as 
++	deprecated. The others should be documented too.
++	Added FONT_TYPE_QUARTZ.
++
+ == 1.5.0 ==
+ 
+ 2008-03-10  Jonathon Jongsma  <jjongsma@gnome.org>
+--- a/cairomm/enums.h
++++ b/cairomm/enums.h
+@@ -192,7 +192,8 @@ typedef enum
+     FONT_TYPE_TOY = CAIRO_FONT_TYPE_TOY,
+     FONT_TYPE_FT = CAIRO_FONT_TYPE_FT,
+     FONT_TYPE_WIN32 = CAIRO_FONT_TYPE_WIN32,
+-    FONT_TYPE_ATSUI = CAIRO_FONT_TYPE_ATSUI
++    FONT_TYPE_ATSUI = CAIRO_FONT_TYPE_QUARTZ, /**< @deprecated Use FONT_TYPE_QUARTZ instead. */
++    FONT_TYPE_QUARTZ = CAIRO_FONT_TYPE_QUARTZ
+ } FontType;
+ 
+ } // namespace Cairo
