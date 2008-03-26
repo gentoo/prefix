@@ -1,0 +1,28 @@
+ndex: ssl/t1_lib.c
+===================================================================
+RCS file: /home/ossl-cvs/openssl/ssl/t1_lib.c,v
+retrieving revision 1.51
+diff -p -u -r1.51 t1_lib.c
+--- ssl/t1_lib.c	26 Oct 2007 12:06:35 -0000	1.51
++++ ssl/t1_lib.c	26 Feb 2008 18:02:50 -0000
+@@ -267,6 +267,10 @@ unsigned char *ssl_add_clienthello_tlsex
+ 	int extdatalen=0;
+ 	unsigned char *ret = p;
+ 
++	/* don't add extensions for SSLv3 */
++	if (s->client_version == SSL3_VERSION)
++		return p;
++
+ 	ret+=2;
+ 
+ 	if (ret>=limit) return NULL; /* this really never occurs, but ... */
+@@ -448,6 +452,10 @@ unsigned char *ssl_add_serverhello_tlsex
+ 	int extdatalen=0;
+ 	unsigned char *ret = p;
+ 
++	/* don't add extensions for SSLv3 */
++	if (s->version == SSL3_VERSION)
++		return p;
++	
+ 	ret+=2;
+ 	if (ret>=limit) return NULL; /* this really never occurs, but ... */
