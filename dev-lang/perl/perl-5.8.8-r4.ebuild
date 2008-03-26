@@ -181,6 +181,7 @@ src_unpack() {
 	# filesystem may be case insensitive, and perl will wrongly
 	# delete Makefile.
 	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
+	epatch ${FILESDIR}/${P}-interix-misc.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then
@@ -227,6 +228,7 @@ src_configure() {
 			;;
 		*-aix*) osname="aix" ;;
 		*-hpux*) osname="hpux" ;;
+		*-interix*) osname='interix' ;;
 
 		*) osname="linux" ;;
 	esac
