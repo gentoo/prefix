@@ -1,0 +1,103 @@
+diff -ru dialog-1.1-20080316.orig/configure dialog-1.1-20080316/configure
+--- dialog-1.1-20080316.orig/configure	2008-03-25 13:54:12 +0100
++++ dialog-1.1-20080316/configure	2008-03-25 14:18:09 +0100
+@@ -5447,15 +5449,15 @@
+ 	test -d "$HOME/gettext/include/gettext" &&    cf_search="$cf_search $HOME/gettext/include/gettext"
+ }
+ 
+-test "$prefix" != /usr/local && \
+-test -d /usr/local && {
+-	test -n "$verbose" && echo "	... testing include-directories under /usr/local"
+-	test -d /usr/local/include &&       cf_search="$cf_search /usr/local/include"
+-	test -d /usr/local/include/gettext &&    cf_search="$cf_search /usr/local/include/gettext"
+-	test -d /usr/local/include/gettext/include && cf_search="$cf_search /usr/local/include/gettext/include"
+-	test -d /usr/local/gettext/include &&    cf_search="$cf_search /usr/local/gettext/include"
+-	test -d /usr/local/gettext/include/gettext && cf_search="$cf_search /usr/local/gettext/include/gettext"
+-}
++#test "$prefix" != /usr/local && \
++#test -d /usr/local && {
++#	test -n "$verbose" && echo "	... testing include-directories under /usr/local"
++#	test -d /usr/local/include &&       cf_search="$cf_search /usr/local/include"
++#	test -d /usr/local/include/gettext &&    cf_search="$cf_search /usr/local/include/gettext"
++#	test -d /usr/local/include/gettext/include && cf_search="$cf_search /usr/local/include/gettext/include"
++#	test -d /usr/local/gettext/include &&    cf_search="$cf_search /usr/local/gettext/include"
++#	test -d /usr/local/gettext/include/gettext && cf_search="$cf_search /usr/local/gettext/include/gettext"
++#}
+ 
+ test "$prefix" != NONE && \
+ test -d $prefix && {
+@@ -5681,15 +5683,15 @@
+ 	test -d "$HOME/intl/lib/intl" &&    cf_search="$cf_search $HOME/intl/lib/intl"
+ }
+ 
+-test "$prefix" != /usr/local && \
+-test -d /usr/local && {
+-	test -n "$verbose" && echo "	... testing lib-directories under /usr/local"
+-	test -d /usr/local/lib &&       cf_search="$cf_search /usr/local/lib"
+-	test -d /usr/local/lib/intl &&    cf_search="$cf_search /usr/local/lib/intl"
+-	test -d /usr/local/lib/intl/lib && cf_search="$cf_search /usr/local/lib/intl/lib"
+-	test -d /usr/local/intl/lib &&    cf_search="$cf_search /usr/local/intl/lib"
+-	test -d /usr/local/intl/lib/intl && cf_search="$cf_search /usr/local/intl/lib/intl"
+-}
++#test "$prefix" != /usr/local && \
++#test -d /usr/local && {
++#	test -n "$verbose" && echo "	... testing lib-directories under /usr/local"
++#	test -d /usr/local/lib &&       cf_search="$cf_search /usr/local/lib"
++#	test -d /usr/local/lib/intl &&    cf_search="$cf_search /usr/local/lib/intl"
++#	test -d /usr/local/lib/intl/lib && cf_search="$cf_search /usr/local/lib/intl/lib"
++#	test -d /usr/local/intl/lib &&    cf_search="$cf_search /usr/local/intl/lib"
++#	test -d /usr/local/intl/lib/intl && cf_search="$cf_search /usr/local/intl/lib/intl"
++#}
+ 
+ test "$prefix" != NONE && \
+ test -d $prefix && {
+@@ -7596,15 +7598,15 @@
+ 	test -d "$HOME/$cf_ncuhdr_root/include/$cf_ncuhdr_root" &&    cf_search="$cf_search $HOME/$cf_ncuhdr_root/include/$cf_ncuhdr_root"
+ }
+ 
+-test "$prefix" != /usr/local && \
+-test -d /usr/local && {
+-	test -n "$verbose" && echo "	... testing include-directories under /usr/local"
+-	test -d /usr/local/include &&       cf_search="$cf_search /usr/local/include"
+-	test -d /usr/local/include/$cf_ncuhdr_root &&    cf_search="$cf_search /usr/local/include/$cf_ncuhdr_root"
+-	test -d /usr/local/include/$cf_ncuhdr_root/include && cf_search="$cf_search /usr/local/include/$cf_ncuhdr_root/include"
+-	test -d /usr/local/$cf_ncuhdr_root/include &&    cf_search="$cf_search /usr/local/$cf_ncuhdr_root/include"
+-	test -d /usr/local/$cf_ncuhdr_root/include/$cf_ncuhdr_root && cf_search="$cf_search /usr/local/$cf_ncuhdr_root/include/$cf_ncuhdr_root"
+-}
++#test "$prefix" != /usr/local && \
++#test -d /usr/local && {
++	#test -n "$verbose" && echo "	... testing include-directories under /usr/local"
++	#test -d /usr/local/include &&       cf_search="$cf_search /usr/local/include"
++	#test -d /usr/local/include/$cf_ncuhdr_root &&    cf_search="$cf_search /usr/local/include/$cf_ncuhdr_root"
++	#test -d /usr/local/include/$cf_ncuhdr_root/include && cf_search="$cf_search /usr/local/include/$cf_ncuhdr_root/include"
++	#test -d /usr/local/$cf_ncuhdr_root/include &&    cf_search="$cf_search /usr/local/$cf_ncuhdr_root/include"
++	#test -d /usr/local/$cf_ncuhdr_root/include/$cf_ncuhdr_root && cf_search="$cf_search /usr/local/$cf_ncuhdr_root/include/$cf_ncuhdr_root"
++#}
+ 
+ test "$prefix" != NONE && \
+ test -d $prefix && {
+@@ -8350,15 +8352,15 @@
+ 	test -d "$HOME/$cf_nculib_root/lib/$cf_nculib_root" &&    cf_search="$cf_search $HOME/$cf_nculib_root/lib/$cf_nculib_root"
+ }
+ 
+-test "$prefix" != /usr/local && \
+-test -d /usr/local && {
+-	test -n "$verbose" && echo "	... testing lib-directories under /usr/local"
+-	test -d /usr/local/lib &&       cf_search="$cf_search /usr/local/lib"
+-	test -d /usr/local/lib/$cf_nculib_root &&    cf_search="$cf_search /usr/local/lib/$cf_nculib_root"
+-	test -d /usr/local/lib/$cf_nculib_root/lib && cf_search="$cf_search /usr/local/lib/$cf_nculib_root/lib"
+-	test -d /usr/local/$cf_nculib_root/lib &&    cf_search="$cf_search /usr/local/$cf_nculib_root/lib"
+-	test -d /usr/local/$cf_nculib_root/lib/$cf_nculib_root && cf_search="$cf_search /usr/local/$cf_nculib_root/lib/$cf_nculib_root"
+-}
++#test "$prefix" != /usr/local && \
++#test -d /usr/local && {
++#	test -n "$verbose" && echo "	... testing lib-directories under /usr/local"
++#	test -d /usr/local/lib &&       cf_search="$cf_search /usr/local/lib"
++#	test -d /usr/local/lib/$cf_nculib_root &&    cf_search="$cf_search /usr/local/lib/$cf_nculib_root"
++#	test -d /usr/local/lib/$cf_nculib_root/lib && cf_search="$cf_search /usr/local/lib/$cf_nculib_root/lib"
++#	test -d /usr/local/$cf_nculib_root/lib &&    cf_search="$cf_search /usr/local/$cf_nculib_root/lib"
++#	test -d /usr/local/$cf_nculib_root/lib/$cf_nculib_root && cf_search="$cf_search /usr/local/$cf_nculib_root/lib/$cf_nculib_root"
++#}
+ 
+ test "$prefix" != NONE && \
+ test -d $prefix && {

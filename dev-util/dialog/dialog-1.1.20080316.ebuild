@@ -36,6 +36,14 @@ pkg_setup() {
 	fi
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# configure searches all over the world for some things...
+	epatch "${FILESDIR}"/${PN}-1.1-no-usr-local.patch
+}
+
 src_compile() {
 	use unicode && ncursesw="w"
 	econf $(use_enable nls) \
