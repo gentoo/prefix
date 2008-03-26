@@ -23,5 +23,8 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 
 src_unpack() {
 	gnome2_src_unpack
-	eautoreconf # need new libtool for interix
+
+	# added gtk-doc.m4 to FILESDIR ro avoid a dependency on gtk-doc, and
+	# still be able to bootstrap this.
+	AT_M4DIR="${FILESDIR}/m4" eautoreconf # need new libtool for interix
 }
