@@ -61,7 +61,7 @@ src_unpack() {
 	# interix: need recent libtool
 	# but doing eautoreconf needs gtk-doc.m4.
 	# To avoid hard dependency on gtk-doc, provide gtk-doc.m4 in ${FILESDIR}/m4
-	AT_M4DIR="m4macros ${FILESDIR}/m4" eautoreconf 
+	AT_M4DIR="m4macros ${FILESDIR}/m4" eautoreconf
 }
 
 src_compile() {
