@@ -167,6 +167,7 @@ src_unpack() {
 	# filesystem may be case insensitive, and perl will wrongly
 	# delete Makefile.
 	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
+	epatch ${FILESDIR}/${P}-interix-misc.patch
 
 	cp "${FILESDIR}"/${P}-lib64.patch "${T}"
 	( cd "${T}" && epatch "${FILESDIR}"/${P}-lib64-prefix.patch )
@@ -223,6 +224,7 @@ src_compile() {
 			;;
 		*-aix*) osname="aix" ;;
 		*-hpux*) osname="hpux" ;;
+		*-interix*) osname="interix" ;;
 
 		*) osname="linux" ;;
 	esac
