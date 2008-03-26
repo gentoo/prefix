@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.10 2006/12/18 20:59:12 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.11 2008/03/24 19:48:51 armin76 Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,8 @@ src_compile() {
 	# comes with wdiff is too old to understand the standard
 	# options.
 
-	./configure --prefix=/usr || die
+	./configure --prefix="${EPREFIX}"/usr || die
+	echo '#define HAVE_TPUTS 1' >>config.h
 	emake || die
 }
 
