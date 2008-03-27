@@ -31,6 +31,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.2.1-fPIC.patch
 	epatch "${FILESDIR}"/${PN}-1.2.3-r1-bsd-soname.patch #123571
 	epatch "${FILESDIR}"/${PN}-1.2.3-LDFLAGS.patch #126718
+
+	# put libz.so.1 into libz.a on AIX
+	epatch "${FILESDIR}"/${P}-shlib-aix.patch
+
 	sed -i -e '/ldconfig/d' Makefile.in
 }
 
@@ -64,7 +68,9 @@ src_install() {
 		cd "${ED}"/$(get_libdir)
 		chmod 755 libz*$(get_libname)*
 	)
+	[[ $(get_libname ${PV}) != $(get_libname) ]] && {
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
+	}
 	gen_usr_ldscript libz$(get_libname)
 }
