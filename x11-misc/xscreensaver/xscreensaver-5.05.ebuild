@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.2 2008/03/02 14:47:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.5 2008/03/26 18:53:45 fmccor Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic multilib pam
+inherit autotools eutils flag-o-matic multilib pam
 
 DESCRIPTION="A modular screen saver and locker for the X Window System"
 SRC_URI="http://www.jwz.org/xscreensaver/${P}.tar.gz"
@@ -42,22 +42,27 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# phew, posted everything to upstream so lets
+	# see what version 5.06 brings us..
 	epatch "${FILESDIR}"/${PN}-5.04-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-5.04-nsfw.patch
 	epatch "${FILESDIR}"/${P}-desktop-entry.patch
 	epatch "${FILESDIR}"/${P}-posix-head.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+	eautoreconf # bug 113681
 }
 
 src_compile() {
-	# Simple workaround for the ppc* arches flurry screensaver, needed for <=5.04
-	filter-flags -mabi=altivec
-	filter-flags -maltivec
-	append-flags -U__VEC__
-
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+	if use ppc || use ppc64; then
+		# Simple workaround for the ppc* arches flurry screensaver, needed for <=5.04
+		filter-flags -mabi=altivec
+		filter-flags -maltivec
+		append-flags -U__VEC__
+	fi
 
 	unset BC_ENV_ARGS
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf \
 		--with-x-app-defaults="${EPREFIX}"/usr/share/X11/app-defaults \
