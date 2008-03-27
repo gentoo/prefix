@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/hilite
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/hilite/ChangeLog,v 1.16 2008/02/03 15:27:23 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/hilite/ChangeLog,v 1.17 2008/03/26 17:15:27 armin76 Exp $
+
+  26 Mar 2008; Raúl Porcel <armin76@gentoo.org> hilite-1.5.ebuild:
+  Add ~ia64
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> hilite-1.5.ebuild:
   Dropped ppc-macos keyword, see you in prefix
