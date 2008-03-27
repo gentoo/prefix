@@ -1,6 +1,11 @@
 # ChangeLog for app-vim/vimcommander
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vimcommander/ChangeLog,v 1.21 2008/03/24 17:02:22 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vimcommander/ChangeLog,v 1.22 2008/03/26 08:06:17 hawking Exp $
+
+*vimcommander-75 (26 Mar 2008)
+
+  26 Mar 2008; Ali Polatel <hawking@gentoo.org> +vimcommander-75.ebuild:
+  Version bump.
 
   24 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   vimcommander-1.54.2.9.ebuild:
