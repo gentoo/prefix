@@ -44,6 +44,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
