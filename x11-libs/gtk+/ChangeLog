@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.375 2008/03/22 03:54:46 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.376 2008/03/26 09:15:37 remi Exp $
+
+*gtk+-2.12.9-r1 (26 Mar 2008)
+
+  26 Mar 2008; Rémi Cardona <remi@gentoo.org> +gtk+-2.12.9-r1.ebuild:
+  fix cups support (fixes bug #214017, patch by Octavio Ruiz)
 
   22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> gtk+-2.12.8.ebuild:
   Marked stable on amd64 for bug #212986
