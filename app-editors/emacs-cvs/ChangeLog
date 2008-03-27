@@ -1,6 +1,19 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.200 2008/03/07 17:49:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.202 2008/03/26 16:55:52 ulm Exp $
+
+  26 Mar 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-cvs-22.1.91.ebuild,
+  -emacs-cvs-22.1.92.ebuild, emacs-cvs-22.2.9999.ebuild:
+  Remove pretest versions. Remove blocker on emacs-22.2.
+
+*emacs-cvs-23.0.9999 (26 Mar 2008)
+*emacs-cvs-22.2.9999 (26 Mar 2008)
+
+  26 Mar 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-cvs-22.1.9999.ebuild,
+  +emacs-cvs-22.2.9999.ebuild, -emacs-cvs-23.0.60-r2.ebuild,
+  +emacs-cvs-23.0.9999.ebuild:
+  Rename, to reflect upstream change of version number and to emphasise that
+  these are live CVS ebuilds.
 
 *emacs-cvs-22.1.92 (07 Mar 2008)
 

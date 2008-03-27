@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.12 2008/03/03 01:55:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.1 2008/03/26 14:43:00 ulm Exp $
 
 EAPI="prefix"
 
@@ -85,8 +85,8 @@ src_unpack() {
 	echo
 	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
 	einfo "Emacs version number: ${FULL_VERSION}"
-	[ "${FULL_VERSION}" = ${PV} ] \
-		|| die "Upstream version number changed to ${FULL_VERSION}"
+	#[ "${FULL_VERSION}" = ${PV} ] \
+	#	|| die "Upstream version number changed to ${FULL_VERSION}"
 	echo
 
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
@@ -154,7 +154,7 @@ src_compile() {
 		# possibilities. Emacs upstream thinks this should be standard
 		# policy on all distributions
 		if use gtk; then
-			einfo "Configuring to build with GTK+ support, disabling all other toolkits"
+			einfo "Configuring to build with GTK+ support"
 			myconf="${myconf} --with-x-toolkit=gtk"
 		elif use Xaw3d; then
 			einfo "Configuring to build with Xaw3d (athena) support"
@@ -271,12 +271,12 @@ emacs-infodir-rebuild() {
 }
 
 pkg_postinst() {
-	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
-		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	[ -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ] \
+		|| cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
-		test -e "${f}" || touch "${f}"
+		[ -e "${f}" ] || touch "${f}"
 	done
 
 	elisp-site-regen
