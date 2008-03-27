@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jdom
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom/ChangeLog,v 1.66 2008/03/09 15:10:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom/ChangeLog,v 1.67 2008/03/26 16:16:55 corsair Exp $
+
+  26 Mar 2008; Markus Rothe <corsair@gentoo.org> jdom-1.0_beta9-r4.ebuild,
+  jdom-1.0_beta10-r6.ebuild, jdom-1.0-r4.ebuild:
+  Stable on ppc64; bug #212652
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> jdom-1.0_beta9-r4.ebuild,
   jdom-1.0_beta10-r6.ebuild, jdom-1.0-r4.ebuild:
