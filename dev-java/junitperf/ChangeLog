@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junitperf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.18 2008/03/12 14:45:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.19 2008/03/26 16:30:32 corsair Exp $
+
+  26 Mar 2008; Markus Rothe <corsair@gentoo.org> junitperf-1.9.1-r1.ebuild:
+  Added ~ppc64; bug #212999
 
   12 Mar 2008; Raúl Porcel <armin76@gentoo.org> junitperf-1.9.1-r1.ebuild:
   Add ~ia64 wrt #212999
