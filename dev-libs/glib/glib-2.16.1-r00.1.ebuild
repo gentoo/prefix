@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome.org libtool eutils flag-o-matic
+inherit gnome.org libtool eutils flag-o-matic multilib
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -77,7 +77,12 @@ src_compile() {
 
 	# non-glibc platforms use GNU libiconv, but configure needs to know about
 	# that not to get confused when it finds something outside the prefix too
-	use elibc_glibc || myconf="${myconf} --with-libiconv=gnu"
+	if use !elibc_glibc ; then
+		myconf="${myconf} --with-libiconv=gnu"
+		# add the libdir for libtoo, otherwise it'll make love with system
+		# installed libiconv
+		append-ldflags "-L${EPREFIX}/usr/$(get_libdir)"
+	fi
 
 	[[ ${CHOST} == *-interix* ]] && {
 		append-flags "-D_ALL_SOURCE"
