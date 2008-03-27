@@ -26,7 +26,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch # for AIX
+	epatch "${FILESDIR}"/${PN}-1.0.5-soldflags.patch # for AIX
+	epatch "${FILESDIR}"/${PN}-1.0.5-checkenv.patch # for AIX, Darwin?
+	epatch "${FILESDIR}"/${PN}-1.0.5-aix.patch # for AIX, needs checkenv, soldflags.
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
@@ -56,12 +58,16 @@ src_compile() {
 		AR=$(tc-getAR)
 		RANLIB=$(tc-getRANLIB)
 	"
+	local checkopts=
 	case "${CHOST}" in
 		*-darwin*)
 			emake ${makeopts} PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
 		;;
 		*-aix*)
-			emake ${makeopts} SOLDFLAGS=-shared -f Makefile-libbz2_so all || die "Make failed libbz2"
+			# AIX has shared object libbz2.so.1 inside libbz2.a.
+			# We build libbz2.a here to avoid static-only libbz2.a below.
+			emake ${makeopts} SOLDFLAGS=-shared -f Makefile-libbz2_so all-aix || die "Make failed libbz2"
+			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)
 			emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
@@ -72,7 +78,7 @@ src_compile() {
 
 	if ! tc-is-cross-compiler ; then
 		# bzip2 is a "core" package and the tests are quick ...
-		emake check || die "test failed"
+		emake check ${checkopts} || die "test failed"
 	fi
 }
 
@@ -92,6 +98,7 @@ src_install() {
 
 	dolib.so libbz2$(get_libname ${PV}) || die "dolib shared"
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
+		[[ libbz2$(get_libname ${PV}) != ${v} ]] &&
 		dosym libbz2$(get_libname ${PV}) /$(get_libdir)/${v}
 	done
 	gen_usr_ldscript libbz2$(get_libname)

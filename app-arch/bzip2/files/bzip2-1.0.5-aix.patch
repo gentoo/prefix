@@ -1,0 +1,20 @@
+--- Makefile-libbz2_so.orig	2008-02-28 11:21:00 +0100
++++ Makefile-libbz2_so	2008-02-28 11:30:28 +0100
+@@ -40,8 +40,17 @@
+ 	rm -f libbz2.so.1.0
+ 	ln -s libbz2.so.1.0.4 libbz2.so.1.0
+ 
++# AIX has dynamic libraries packed into archive library.
++.PHONY: all-aix
++all-aix: libbz2.a
++libbz2.a: $(OBJS)
++	$(CC) $(LDFLAGS) -shared -Wl,-G -o $(SONAME) $(OBJS)
++	$(AR) q libbz2.a $(SONAME)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.a
++
+ clean: 
+ 	rm -f $(OBJS) bzip2.o libbz2.so.1.0.4 libbz2.so.1.0 bzip2-shared
++	rm -f $(SONAME) libbz2.a
+ 
+ blocksort.o: blocksort.c
+ 	$(CC) $(CFLAGS) -c blocksort.c
