@@ -1,6 +1,25 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.373 2008/01/20 00:07:25 mjolnir Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.375 2008/03/26 14:01:24 caleb Exp $
+
+*postgresql-8.3.1 (26 Mar 2008)
+
+  26 Mar 2008; Caleb Tennis <caleb@gentoo.org> +files/postgresql.conf-8.3,
+  +files/postgresql.init-8.3, +files/postgresql-8.3.1-gentoo.patch,
+  +files/postgresql-8.3.1-regress_su.patch,
+  +files/postgresql-8.3.1-sh.patch, +postgresql-8.3.1.ebuild:
+  Version bump, with ebuilds and modifications from 206725
+
+*postgresql-8.2.7 (26 Mar 2008)
+
+  26 Mar 2008; Caleb Tennis <caleb@gentoo.org>
+  +files/postgresql-8.2.7-gentoo.patch,
+  +files/postgresql-8.2.7-no-test.patch,
+  +files/postgresql-8.2.7-python-threads.patch,
+  +files/postgresql-8.2.7-regress_fix.patch,
+  +files/postgresql-8.2.7-regress_su.patch,
+  +files/postgresql-8.2.7-sh.patch, +postgresql-8.2.7.ebuild:
+  Version bump
 
   20 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
   -files/postgresql-7.3.19-cubeparse.patch,
