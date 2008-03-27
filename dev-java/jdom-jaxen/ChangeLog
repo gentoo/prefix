@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/jdom-jaxen
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/ChangeLog,v 1.11 2008/03/09 15:09:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/ChangeLog,v 1.12 2008/03/26 16:13:42 corsair Exp $
+
+  26 Mar 2008; Markus Rothe <corsair@gentoo.org>
+  jdom-jaxen-1.0_beta9-r2.ebuild, jdom-jaxen-1.0_beta10-r1.ebuild,
+  jdom-jaxen-1.0-r1.ebuild:
+  Stable on ppc64; bug #212652
 
   09 Mar 2008; nixnut <nixnut@gentoo.org> jdom-jaxen-1.0_beta9-r2.ebuild,
   jdom-jaxen-1.0_beta10-r1.ebuild, jdom-jaxen-1.0-r1.ebuild:
