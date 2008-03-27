@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.7.ebuild,v 1.2 2008/03/26 17:45:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.11.ebuild,v 1.1 2008/03/26 17:44:10 armin76 Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake ${PN}.html || die "emake failed"
+	return
 }
 
 src_test() {
@@ -43,5 +43,4 @@ src_install() {
 	dobin ${PN} || die "dobin failed"
 	doman ${PN}.1 || die "doman failed"
 	dodoc README
-	dohtml ${PN}.html || die "dohtml failed"
 }
