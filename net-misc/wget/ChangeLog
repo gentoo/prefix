@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.92 2008/02/16 22:12:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.93 2008/03/26 20:57:24 vapier Exp $
+
+*wget-1.11.1 (26 Mar 2008)
+
+  26 Mar 2008; Mike Frysinger <vapier@gentoo.org> +wget-1.11.1.ebuild:
+  Version bump.
 
 *wget-1.11-r1 (16 Feb 2008)
 
