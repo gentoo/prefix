@@ -1,6 +1,9 @@
 # ChangeLog for app-text/gocr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.52 2008/03/26 02:18:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.53 2008/03/26 15:48:26 corsair Exp $
+
+  26 Mar 2008; Markus Rothe <corsair@gentoo.org> gocr-0.45.ebuild:
+  Stable on ppc64; bug #189461
 
   26 Mar 2008; Brent Baude <ranger@gentoo.org> gocr-0.45.ebuild:
   stable ppc, bug 189461
