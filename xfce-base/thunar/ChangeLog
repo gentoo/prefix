@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.54 2008/03/24 11:05:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.55 2008/03/26 11:39:48 jer Exp $
+
+  26 Mar 2008; Jeroen Roovers <jer@gentoo.org> thunar-0.9.0-r2.ebuild:
+  Stable for HPPA (bug #214130).
 
   24 Mar 2008; Raúl Porcel <armin76@gentoo.org> thunar-0.9.0-r2.ebuild:
   ia64/sparc stable wrt #214130
