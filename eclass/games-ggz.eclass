@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.2 2008/02/18 18:12:16 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.3 2008/03/26 14:35:11 nyhm Exp $
 
 # For GGZ Gaming Zone packages
 
@@ -41,7 +41,7 @@ games-ggz_update_modules() {
 	 	 || die "${FUNCNAME} can only be used in pkg_postinst or pkg_postrm"
 
 	# ggz-config needs libggz, so it could be broken
-	ggz-config -h > /dev/null || return 1
+	ggz-config -h &> /dev/null || return 1
 
 	local confdir=${EROOT}/etc
 	local moddir=${EROOT}/${GGZ_MODDIR}

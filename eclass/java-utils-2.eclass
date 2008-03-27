@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.104 2008/03/03 17:55:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.105 2008/03/26 23:00:23 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -898,6 +898,10 @@ java-pkg_jar-from() {
 
 	[[ -z ${target_pkg} ]] && die "Must specify a package"
 
+	if [[ "${EAPI}" == "1" ]]; then
+		target_pkg="${target_pkg//:/-}"
+	fi
+
 	# default destjar to the target jar
 	[[ -z "${destjar}" ]] && destjar="${target_jar}"
 
@@ -1019,6 +1023,11 @@ java-pkg_getjars() {
 
 
 	local classpath pkgs="${1}"
+
+	if [[ "${EAPI}" == "1" ]]; then
+		pkgs="${pkgs//:/-}"
+	fi
+
 	jars="$(java-config ${deep} --classpath=${pkgs})"
 	[[ $? != 0 || -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
 	debug-print "${pkgs}:${jars}"
@@ -1086,6 +1095,11 @@ java-pkg_getjar() {
 	[[ ${#} -ne 2 ]] && die "${FUNCNAME} takes only two arguments besides --*"
 
 	local pkg="${1}" target_jar="${2}" jar
+
+	if [[ "${EAPI}" == "1" ]]; then
+		pkg="${pkg//:/-}"
+	fi
+
 	[[ -z ${pkg} ]] && die "Must specify package to get a jar from"
 	[[ -z ${target_jar} ]] && die "Must specify jar to get"
 
@@ -1157,6 +1171,10 @@ java-pkg_register-dependency() {
 
 	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
 
+	if [[ "${EAPI}" == "1" ]]; then
+		pkgs="${pkgs//:/-}"
+	fi
+
 	if [[ -z "${jar}" ]]; then
 		for pkg in ${pkgs//,/ }; do
 			java-pkg_ensure-dep runtime "${pkg}"
@@ -1207,6 +1225,10 @@ java-pkg_register-optional-dependency() {
 	local jar="${2}"
 
 	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
+
+	if [[ "${EAPI}" == "1" ]]; then
+		pkgs="${pkgs//:/-}"
+	fi
 
 	if [[ -z "${jar}" ]]; then
 		for pkg in ${pkgs//,/ }; do

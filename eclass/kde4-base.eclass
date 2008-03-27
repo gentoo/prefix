@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.5 2008/03/14 15:51:50 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.6 2008/03/26 20:39:05 zlin Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -271,14 +271,14 @@ kde4-base_pkg_setup() {
 				x11-libs/qt-qt3support:4 debug
 				x11-libs/qt-svg:4 debug
 				x11-libs/qt-test:4 debug"
-			if [[ ${OPENGL_REQUIRED} == always ]] || has opengl ${IUSE//+} && use opengl; then
+			if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
 				KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
 					x11-libs/qt-opengl:4 debug"
 			fi
 		fi
 	fi
 
-	if [[ ${OPENGL_REQUIRED} == always ]] || has opengl ${IUSE//+} && use opengl; then
+	if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
 		if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
 			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} opengl"
 		fi
