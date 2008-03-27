@@ -1,6 +1,15 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.144 2008/01/20 00:17:21 mjolnir Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.146 2008/03/26 14:22:50 caleb Exp $
+
+  26 Mar 2008; Caleb Tennis <caleb@gentoo.org> libpq-8.3.1.ebuild:
+  add debug use flag
+
+*libpq-8.2.7 (26 Mar 2008)
+
+  26 Mar 2008; Caleb Tennis <caleb@gentoo.org>
+  +files/libpq-8.2.7-gentoo.patch, +libpq-8.2.7.ebuild:
+  version bump
 
   20 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
   -files/libpq-7.3.19-gentoo.patch, -files/libpq-7.4.17-gentoo.patch,
