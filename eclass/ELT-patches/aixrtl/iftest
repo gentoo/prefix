@@ -1,23 +1,21 @@
 Always create runtime-link using sharedlibs on aix.
 
-Note that if you update this patch, please update the appropriate hunk
-in this one as well:
-
-  sys-devel/libtool/files/libtool-1.5.23b-aixrtl.patch
-
 --- configure.aixrtl	2007-04-03 11:08:36 +0200
 +++ configure	2007-04-03 11:13:25 +0200
-@@ -9663,12 +9663,7 @@
- 	# AIX style linking. If -brtl is somewhere in LDFLAGS, we
- 	# need to do runtime linking.
- 	case $host_os in aix4.[23]|aix4.[23].*|aix5*)
--	  for ld_flag in $LDFLAGS; do
--  	  if (test $ld_flag = "-brtl" || test $ld_flag = "-Wl,-brtl"); then
--  	    aix_use_runtimelinking=yes
--  	    break
--  	  fi
--	  done
-+  	  aix_use_runtimelinking=yes
- 	  ;;
- 	esac
- 
+@@ -3067,16 +3067,0 @@
+-
+-      # Test if we are trying to use run time linking or normal
+-      # AIX style linking. If -brtl is somewhere in LDFLAGS, we
+-      # need to do runtime linking.
+-      case $host_os in aix4.[[23]]|aix4.[[23]].*|aix[[5-9]]*)
+-	for ld_flag in $LDFLAGS; do
+-	  case $ld_flag in
+-	  *-brtl*)
+-	    aix_use_runtimelinking=yes
+-	    break
+-	    ;;
+-	  esac
+-	done
+-	;;
+-      esac
+-

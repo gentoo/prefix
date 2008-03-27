@@ -87,6 +87,8 @@ ___ECLASS_RECUR_MULTILIB="yes"
 # get_libname [version]
 # returns libname with proper suffix {.so,.dylib} and optionally supplied version
 # for ELF/MACH-O shared objects
+# For AIX, shared objects (fex liblib.so.1) are packed into lib.a archives,
+# which do not have version numbers on the filename level.
 #
 # Example:
 # get_libname libfoo ${PV}
@@ -536,6 +538,7 @@ get_libname() {
 	local ver=$1
 	case ${CHOST} in
 		*-darwin*) libname="dylib";;
+		*-aix*)    libname="a";;
 		*)         libname="so";;
 	esac
 
@@ -545,6 +548,7 @@ get_libname() {
 		for ver in "$@" ; do
 			case ${CHOST} in
 				*-darwin*) echo ".${ver}.${libname}";;
+				*-aix*)    echo ".${libname}";;
 				*)         echo ".${libname}.${ver}";;
 			esac
 		done

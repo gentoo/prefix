@@ -175,8 +175,8 @@ elibtoolize() {
 	[[ ${CHOST} == *"-freebsd"* ]] && \
 		elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
 
-	[[ ${CHOST} == *"-aix"* ]] && \
-		elt_patches="${elt_patches} aixrtl instprefixlink"
+	[[ ${CHOST} == *"-aix"* ]] &&
+		elt_patches="${elt_patches} hc-relink aixrtl"
 
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
@@ -267,7 +267,7 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
-				"aixrtl")
+				"aixrtl" | "aix-hc-L")
 					ret=1
 					local subret=0
 					while [[ $subret -eq 0 ]]; do
