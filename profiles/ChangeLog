@@ -1,6 +1,28 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1250 2008/03/25 02:29:11 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1257 2008/03/27 00:12:10 eva Exp $
+
+  27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add local mtp flag for rhythmbox
+
+  26 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  add gnome-extra/gnome-media-2.22 to gnome-2.22 pmask
+
+  26 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  adding rhythmbox-0.11.4 and an updated version of gst-plugins-meta to the
+  gnome-2.22 pmask
+
+  26 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  add nautilus-open-terminal-0.9 to GNOME 2.22 pmask
+
+  26 Mar 2008; Hans de Graaff <graaff@gentoo.org> use.local.desc:
+  Add mh USE flag for mail-notification
+
+  26 Mar 2008; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  initial ebuild app-misc/iguanaIR masked for testing
+
+  26 Mar 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask for emacs-cvs-22.1.9999; emacs-22.2 is released.
 
   25 Mar 2008; Mike Doty <kingtaco@gentoo.org> use.local.desc:
   adding sys-block/open-iscsi local use flags

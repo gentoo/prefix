@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3452 2008/03/25 22:23:37 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3454 2008/03/27 00:12:10 eva Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -825,6 +825,7 @@ mail-client/claws-mail:bogofilter - Build bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline http email viewing with a plugin (which depends on the dillo browser)
 mail-client/claws-mail:spamassassin - Build spamassassin plugin
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
+mail-client/mail-notification:mh - Enable MH mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
 mail-client/mail-notification:sylpheed - Enable support for MH mailboxes used by sylpheed
 mail-client/mozilla-thunderbird:mozdom - Enable Mozilla's DOM inspector
@@ -1078,6 +1079,7 @@ media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), 
 media-sound/rezound:soundtouch - compile with support for soundtouch
 media-sound/rhythmbox:daap - support for daap
 media-sound/rhythmbox:keyring - gnome-keyring support for daap share passwords
+media-sound/rhythmbox:mtp - Enable support for MTP devices
 media-sound/rhythmbox:tagwriting - support for tag writing in certain audio files
 media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper

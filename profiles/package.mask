@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8427 2008/03/25 22:18:34 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8436 2008/03/26 23:23:44 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,9 +29,24 @@
 
 #--- END OF EXAMPLES ---
 
+# Joerg Bornkessel <hd_brummy@gentoo.org (26 Mar 2008)
+# initial ebuild masked for testing
+=app-misc/iguanaIR-0.93
+
+# Caleb Tennis <caleb@gentoo.org> (26 Mar 2008)
+# Masking per dev-zero request for more testing time
+=dev-db/libpq-8.3*
+=dev-db/postgresql-8.3*
+
+# Luca Barbato <lu_zero@gentoo.org> (26 Mar 2008)
+# huge ffmpeg migration mask, append to this further packages working
+# with the new include layout
+>=media-video/ffmpeg-0.4.9_p20080326
+=media-gfx/blender-2.45-r1
+
 # Cédric Krier <cedk@gentoo.org> (25 Mar 2008)
 #Masked waiting bug #201093
-=app-misc/beagle-0.3.3
+>=app-misc/beagle-0.3.3
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
@@ -167,6 +182,8 @@ dev-libs/libgweather
 >=gnome-extra/gnome-screensaver-2.22
 >=gnome-extra/gnome-power-manager-2.22
 dev-libs/totem-pl-parser
+>=media-plugins/gst-plugins-meta-0.10-r2
+>=media-sound/rhythmbox-0.11.4
 >=media-video/totem-2.22
 gnome-base/gnome-settings-daemon
 >=gnome-base/control-center-2.22
@@ -175,7 +192,9 @@ gnome-base/gnome-settings-daemon
 gnome-base/gvfs
 >=gnome-base/nautilus-2.22
 >=gnome-extra/nautilus-cd-burner-2.22
+>=gnome-extra/nautilus-open-terminal-0.9
 >=gnome-base/gdm-2.20.4
+>=gnome-extra/gnome-media-2.22
 >=gnome-base/gnome-light-2.22
 >=gnome-base/gnome-2.22
 
@@ -442,8 +461,6 @@ net-libs/libhttpd-persistent
 app-mobilephone/bemused
 
 # Ulrich Mueller <ulm@gentoo.org> (01 Feb 2008)
-# Live CVS ebuild of Emacs 22 base branch
-~app-editors/emacs-cvs-22.1.9999
 # Emacs 23 virtual, unmask after Emacs 23 release
 >=virtual/emacs-23
 
