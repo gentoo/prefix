@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/glpk
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.17 2008/03/25 18:07:22 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.18 2008/03/26 14:03:08 bicatali Exp $
+
+  26 Mar 2008; Sébastien Fabbro <bicatali@gentoo.org> glpk-4.27.ebuild:
+  Fixed syntax errors
 
   25 Mar 2008; Sébastien Fabbro <bicatali@gentoo.org> glpk-4.27.ebuild:
   Added proper dependencies and use flag iodbc, mysql and gmp. Fixed
