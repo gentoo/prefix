@@ -1,6 +1,15 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.265 2008/02/04 04:49:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.266 2008/03/27 00:53:21 leio Exp $
+
+*control-center-2.22.0 (27 Mar 2008)
+
+  27 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  +control-center-2.22.0.ebuild:
+  New version for GNOME-2.22. Has the settings daemon part broken out into
+  gnome-settings-daemon, which involves blocks being in place due to file
+  collisions. Keyboard accessibility preferences moved to the rest of keyboard
+  prefs. Lots of other new small features and bug fixes
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> control-center-2.20.3.ebuild:
   Stable for HPPA (bug #208366).
