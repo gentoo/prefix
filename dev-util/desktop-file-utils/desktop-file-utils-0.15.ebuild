@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.15.ebuild,v 1.1 2008/03/12 13:42:37 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.15.ebuild,v 1.3 2008/03/27 10:14:03 drac Exp $
 
 EAPI="prefix"
 
-inherit eutils elisp-common
+inherit elisp-common
 
 DESCRIPTION="Command line utilities to work with desktop menu entries"
 HOMEPAGE="http://freedesktop.org/wiki/Software/desktop-file-utils"
@@ -24,11 +24,7 @@ SITEFILE=50${PN}-gentoo.el
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"
-	sed -i -e 's:misc::' Makefile.in
-
-	# add manpages from bug 85354
-	epatch "${FILESDIR}"/${PN}-0.10-man.patch
+	sed -i -e 's:misc::' "${S}"/Makefile.in
 }
 
 src_compile() {
@@ -46,7 +42,6 @@ src_install() {
 	fi
 
 	dodoc AUTHORS ChangeLog NEWS README
-	doman man/*
 }
 
 pkg_postinst() {
