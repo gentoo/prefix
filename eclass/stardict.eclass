@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/stardict.eclass,v 1.12 2007/07/02 14:24:27 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/stardict.eclass,v 1.13 2008/03/27 13:56:41 pva Exp $
 
 # Author : Alastair Tse <liquidx@gentoo.org>
 #
@@ -16,7 +16,7 @@
 
 RESTRICT="strip"
 
-[ -z "${DICT_SUFFIX}" ] && DICT_SUFFIX=${PN#stardict-[a-z]*-}
+[ -z "${DICT_SUFFIX}" ] && DICT_SUFFIX=${PN#stardict-[[:lower:]]*-}
 [ -z "${DICT_P}" ] && DICT_P=stardict-${DICT_PREFIX}${DICT_SUFFIX}-${PV}
 
 if [ -n "${FROM_LANG}" -a -n "${TO_LANG}" ]; then
@@ -31,9 +31,8 @@ SRC_URI="mirror://sourceforge/stardict/${DICT_P}.tar.bz2"
 IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~sparc ~x86"
 
-DEPEND=">=app-dicts/stardict-2.1"
+DEPEND=">=app-dicts/stardict-2.4.2"
 
 S=${WORKDIR}/${DICT_P}
 
@@ -42,7 +41,7 @@ stardict_src_compile() {
 }
 
 stardict_src_install() {
-	cd ${S}
+	cd "${S}"
 	insinto /usr/share/stardict/dic
 	doins *.dict.dz
 	doins *.idx*
