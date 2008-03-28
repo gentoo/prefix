@@ -29,6 +29,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-texinfo.patch
+	epatch "${FILESDIR}"/${P}-darwin-arch.patch
 
 	# for FSF gcc / gcc-apple:42
 	sed -e 's/-Wno-long-double//' -i gdb/config/*/macosx.mh

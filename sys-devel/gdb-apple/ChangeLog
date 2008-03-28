@@ -2,6 +2,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gdb-apple-908 (28 Mar 2008)
+*gdb-apple-768-r1 (28 Mar 2008)
+
+  28 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  +files/gdb-apple-768-darwin-arch.patch, -gdb-apple-768.ebuild,
+  +gdb-apple-768-r1.ebuild, +gdb-apple-908.ebuild:
+  Bump to Xcode Tools 3.1 Beta version, add patch for 768 to become actually
+  useful on Leopard systems by using /usr/bin/arch
+
   02 Feb 2008; Elias Pipping <pipping@gentoo.org> gdb-apple-563.ebuild,
   gdb-apple-563.ebuild, gdb-apple-768.ebuild:
   port texinfo/-Wno-long-double changes back to 563
