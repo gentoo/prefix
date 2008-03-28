@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.45.ebuild,v 1.5 2008/03/26 15:48:26 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.45.ebuild,v 1.6 2008/03/27 18:00:32 opfer Exp $
 
 EAPI="prefix"
 
