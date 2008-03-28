@@ -10,7 +10,8 @@ inherit eutils toolchain
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}.3
-DESCRIPTION="Apple branch of the GNU Compiler Collection, from DevToolsMar2008"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode Tools 3.1
+Beta"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 LICENSE="APSL-2 GPL-2"
