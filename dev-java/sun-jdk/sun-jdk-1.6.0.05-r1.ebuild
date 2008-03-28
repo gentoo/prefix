@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.05.ebuild,v 1.1 2008/03/26 22:14:35 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.05-r1.ebuild,v 1.1 2008/03/27 20:18:28 caster Exp $
 
 EAPI="prefix"
 
@@ -61,6 +61,13 @@ src_unpack() {
 		done
 	else 
 		sh ${DISTDIR}/${A} --accept-license --unpack || die "Failed to unpack"
+
+		# see bug #207282
+		if use x86; then
+			einfo "Creating the Class Data Sharing archives"
+			"${S}"/bin/java -client -Xshare:dump || die
+			"${S}"/bin/java -server -Xshare:dump || die
+		fi
 	fi
 
 	cp "${FILESDIR}"/fontconfig.Gentoo.properties "${T}"/

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.4.2.16.ebuild,v 1.6 2007/12/16 21:10:16 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.4.2.17.ebuild,v 1.2 2008/03/06 07:54:56 opfer Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ IUSE="X alsa doc examples jce nsplugin odbc"
 DEPEND="sys-apps/sed
 	app-arch/unzip"
 
-RDEPEND="net-libs/libnet
+RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	doc? ( =dev-java/java-sdk-docs-1.4.2* )
 	X? (
@@ -45,7 +45,7 @@ RDEPEND="net-libs/libnet
 
 JAVA_PROVIDE="jdbc-stdext"
 
-DOWNLOAD_URL="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=j2sdk-${MY_PV}-oth-JPR&SiteId=JSC&TransactionId=noreg"
+DOWNLOAD_URL="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=8&PartDetailId=j2sdk-${MY_PV}-oth-JPR&SiteId=JSC&TransactionId=noreg"
 DOWNLOAD_URL_JCE="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=7503-jce-${MY_PVB}-oth-JPR&SiteId=JSC&TransactionId=noreg"
 
 QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/libawt.so
