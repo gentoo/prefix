@@ -1,6 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1257 2008/03/27 00:12:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1263 2008/03/27 23:23:28 eva Exp $
+
+  27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  add gnome-extra/evolution-exchange to GNOME 2.22 mask
+
+  27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add keyring use flag for app-text/evince and fix description where needed.
+  enhance description of daap use flag on media-sound/rhythmbox
+
+  27 Mar 2008; David Shakaryan <omp@gentoo.org> use.local.desc:
+  Add smapi USE flag for conky.
+
+  27 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> updates/1Q-2008:
+  Move sys-apps/tcb to sys-auth/tcb.
+
+  27 Mar 2008; Markus Ullmann <jokey@gentoo.org> package.mask:
+  Mask new MailScanner beta
+
+  27 Mar 2008; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Removed >=app-crypt/gnupg-2.0.8
 
   27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
   add local mtp flag for rhythmbox
