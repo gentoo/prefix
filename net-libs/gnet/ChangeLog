@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/gnet
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.52 2007/09/12 22:19:30 eva Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.55 2008/03/28 02:03:06 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> gnet-2.0.7-r1.ebuild:
+  Stable for HPPA (bug #214763).
+
+  27 Mar 2008; Markus Rothe <corsair@gentoo.org> gnet-2.0.7-r1.ebuild:
+  Stable on ppc64; bug #214763
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> gnet-2.0.7-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #214763
 
 *gnet-2.0.7-r1 (12 Sep 2007)
 
