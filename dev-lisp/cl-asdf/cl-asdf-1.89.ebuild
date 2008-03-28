@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/cl-asdf-1.89.ebuild,v 1.3 2007/11/28 15:24:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/cl-asdf-1.89.ebuild,v 1.4 2008/03/27 16:37:30 armin76 Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ DEB_PV=1
 inherit eutils
 
 DESCRIPTION="ASDF is Another System Definition Facility for Common Lisp"
-HOMEPAGE="http://packages.debian.org/unstable/devel/cl-asdf.html"
+HOMEPAGE="http://packages.debian.org/unstable/devel/cl-asdf"
 SRC_URI="mirror://gentoo/${PN}_${PV}.orig.tar.gz
 	mirror://gentoo/cl-asdf_${PV}-${DEB_PV}.diff.gz"
 

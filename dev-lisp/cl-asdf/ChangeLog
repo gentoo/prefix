@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/cl-asdf
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.28 2007/11/28 15:24:16 grobian Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.29 2008/03/27 16:37:30 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> cl-asdf-1.86-r1.ebuild,
+  cl-asdf-1.89.ebuild:
+  Fix debian HOMEPAGE
 
   28 Nov 2007; Fabian Groffen <grobian@gentoo.org> cl-asdf-1.86-r1.ebuild,
   cl-asdf-1.89.ebuild:
