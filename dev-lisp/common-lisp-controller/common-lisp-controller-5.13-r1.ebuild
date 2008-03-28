@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.2 2007/11/28 15:30:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.3 2008/03/27 16:23:11 armin76 Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="Common Lisp Controller"
-HOMEPAGE="http://packages.debian.org/unstable/devel/common-lisp-controller.html"
+HOMEPAGE="http://packages.debian.org/unstable/devel/common-lisp-controller"
 SRC_URI="mirror://gentoo/common-lisp-controller_${PV}.tar.gz"
 
 LICENSE="LLGPL-2.1"
