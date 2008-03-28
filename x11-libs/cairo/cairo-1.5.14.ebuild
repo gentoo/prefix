@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.14.ebuild,v 1.1 2008/03/24 00:44:57 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.14.ebuild,v 1.2 2008/03/27 14:31:00 cardoe Exp $
 
 EAPI="prefix"
 
@@ -77,5 +77,5 @@ src_compile() {
 
 src_install() {
 	make DESTDIR="${D}" install || die "Installation failed"
-	dodoc AUTHORS ChangeLog NEWS README TODO
+	dodoc AUTHORS ChangeLog NEWS README
 }
