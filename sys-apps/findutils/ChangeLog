@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.159 2008/03/24 19:30:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.160 2008/03/27 13:53:19 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> findutils-4.2.33.ebuild,
+  findutils-4.3.13.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *findutils-4.4.0 (24 Mar 2008)
 
