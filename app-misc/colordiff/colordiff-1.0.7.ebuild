@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/colordiff-1.0.7.ebuild,v 1.1 2008/01/11 09:18:25 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/colordiff-1.0.7.ebuild,v 1.5 2008/03/28 04:25:38 beandog Exp $
 
 EAPI="prefix"
 
