@@ -1,6 +1,21 @@
 # ChangeLog for x11-terms/aterm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.99 2008/02/21 14:36:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.100 2008/03/27 20:13:39 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/aterm-0.4.2-borderless.patch, -files/aterm-0.4.2-copynpaste.patch,
+  -files/aterm-0.4.2-copynpaste-r2.patch,
+  -files/aterm-0.4.2-copynpaste-r3.patch,
+  -files/aterm-0.4.2-internal-border.patch,
+  -files/aterm-0.4.2-ja-savelines.patch, -files/aterm-0.4.2-paste.patch,
+  -files/aterm-0.4.2-paste_mouse_outside.patch,
+  -files/aterm-0.4.2-patch-pack000.patch, -files/aterm-0.4.2-qtpaste.patch,
+  -files/aterm-0.4.2-savelines.patch,
+  -files/aterm-0.4.2-scroll-double-free.patch,
+  -files/aterm-1.00-beta2-bgfix.patch, -aterm-0.4.2-r9.ebuild,
+  -aterm-0.4.2-r11.ebuild, -aterm-0.4.2-r13.ebuild, -aterm-1.0.0.ebuild,
+  -aterm-1.0.0-r1.ebuild, aterm-1.0.1.ebuild:
+  alpha/ia64 stable, remove old
 
   21 Feb 2008; Raúl Porcel <armin76@gentoo.org> aterm-1.0.1.ebuild:
   Re-add ~alpha/~ia64
