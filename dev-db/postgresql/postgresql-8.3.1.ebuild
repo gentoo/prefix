@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.3.1.ebuild,v 1.1 2008/03/26 14:01:24 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.3.1.ebuild,v 1.2 2008/03/27 16:15:33 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -233,4 +233,3 @@ src_test() {
 	einfo "If you think other tests are necessary, please submit a"
 	einfo "bug including a patch for this ebuild to enable them."
 }
-
