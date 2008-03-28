@@ -1,8 +1,7 @@
 * reverse patch to gain 10.4 behaviour for AltiVec.
 
-diff -aur gcc-apple-4.0.1_p5363-r1/work/gcc-5363/gcc/config/rs6000/rs6000-c.c gcc-apple-4.0.1_p5465/work/gcc-5465/gcc/config/rs6000/rs6000-c.c
---- gcc-apple-4.0.1_p5363-r1/work/gcc-5363/gcc/config/rs6000/rs6000-c.c	2005-07-10 00:14:08 +0200
-+++ gcc-apple-4.0.1_p5465/work/gcc-5465/gcc/config/rs6000/rs6000-c.c	2006-03-22 00:45:38 +0100
+--- gcc/config/rs6000/rs6000-c.c
++++ gcc/config/rs6000/rs6000-c.c
 @@ -245,22 +245,22 @@
        builtin_define ("__bool=__attribute__((altivec(bool__))) unsigned");
  

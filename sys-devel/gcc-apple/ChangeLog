@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gcc-apple-4.0.1_p5470 (28 Mar 2008)
+
+  28 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  files/gcc-apple-4.0.1_p5465-default-altivec.patch,
+  +gcc-apple-4.0.1_p5470.ebuild:
+  Bump to Xcode Tools 3.1 Beta version
+
   07 Mar 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5465-r1.ebuild, -gcc-apple-4.0.1_p5465-r2.ebuild,
   gcc-apple-4.2.1_p5531.ebuild:
