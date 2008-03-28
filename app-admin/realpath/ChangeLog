@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/realpath
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.29 2007/11/28 15:33:38 grobian Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.30 2008/03/27 16:12:54 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> realpath-1.9.16.ebuild,
+  realpath-1.9.28.ebuild:
+  Fix debian HOMEPAGE
 
   28 Nov 2007; Fabian Groffen <grobian@gentoo.org> realpath-1.9.16.ebuild,
   realpath-1.9.28.ebuild:
