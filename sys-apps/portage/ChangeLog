@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9583 (28 Mar 2008)
+
+  28 Mar 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9468.ebuild, +portage-2.2.00.9583.ebuild:
+  New snapshot, important fixes for NEEDED recording such that preserve-libs
+  doesn't get all upset
+
 *portage-2.2.00.9500 (24 Mar 2008)
 
   24 Mar 2008; Fabian Groffen <grobian@gentoo.org>
