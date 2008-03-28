@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/hteditor
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/ChangeLog,v 1.36 2008/03/26 15:50:28 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/ChangeLog,v 1.37 2008/03/27 18:52:01 nixnut Exp $
+
+  27 Mar 2008; nixnut <nixnut@gentoo.org> hteditor-2.0.10.ebuild:
+  Stable on ppc wrt bug 214891
 
   26 Mar 2008; Samuli Suominen <drac@gentoo.org> hteditor-2.0.10.ebuild:
   amd64 stable wrt #214891
