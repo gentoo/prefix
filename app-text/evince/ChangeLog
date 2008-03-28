@@ -1,6 +1,13 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.135 2008/02/04 04:00:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.136 2008/03/27 23:10:40 eva Exp $
+
+*evince-2.22.0 (27 Mar 2008)
+
+  27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/evince-2.22.0-gtk-doc-die-die-die.patch, +evince-2.22.0.ebuild:
+  New version for GNOME 2.22. Uses GIO, lots of bug and crash fixes. Uses
+  libspectre in place of ghostscript. gnome-keyring is now optional.
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> evince-2.20.2.ebuild:
   Stable for HPPA (bug #208366).
