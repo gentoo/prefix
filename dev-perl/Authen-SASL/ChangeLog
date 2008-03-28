@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Authen-SASL
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Authen-SASL/ChangeLog,v 1.48 2008/03/24 10:16:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Authen-SASL/ChangeLog,v 1.49 2008/03/27 22:03:23 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> Authen-SASL-2.10-r1.ebuild:
+  Add ~sparc-fbsd wrt #215094
 
   24 Mar 2008; Alexis Ballier <aballier@gentoo.org>
   Authen-SASL-2.10-r1.ebuild:
