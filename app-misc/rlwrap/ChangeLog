@@ -1,6 +1,15 @@
 # ChangeLog for app-misc/rlwrap
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.16 2008/03/26 17:20:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.17 2008/03/27 10:01:44 hkbst Exp $
+
+  27 Mar 2008; Marijn Schouten <hkBst@gentoo.org> -rlwrap-0.16.ebuild,
+  -rlwrap-0.18.ebuild, +rlwrap-0.30.ebuild:
+  remove some old stuff
+
+*rlwrap-0.30 (27 Mar 2008)
+
+  27 Mar 2008; Marijn Schouten <hkBst@gentoo.org> +rlwrap-0.30.ebuild:
+  bump, bug 208347
 
   26 Mar 2008; Raúl Porcel <armin76@gentoo.org> rlwrap-0.24.ebuild:
   sparc/x86 stable
