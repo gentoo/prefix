@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-SSLeay
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SSLeay/ChangeLog,v 1.48 2008/03/19 01:59:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SSLeay/ChangeLog,v 1.49 2008/03/27 21:59:59 armin76 Exp $
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> Net-SSLeay-1.30.ebuild:
+  Add ~sparc-fbsd wrt #215094
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Net-SSLeay-1.30.ebuild:
   Stable for HPPA too.
