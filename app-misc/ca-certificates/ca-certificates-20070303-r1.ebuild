@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20070303-r1.ebuild,v 1.4 2008/01/31 16:37:30 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20070303-r1.ebuild,v 1.5 2008/03/27 21:50:07 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,10 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
-RDEPEND="dev-libs/openssl"
+DEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp )
+	kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
+RDEPEND="${DEPEND}
+	dev-libs/openssl"
 
 S=${WORKDIR}
 
