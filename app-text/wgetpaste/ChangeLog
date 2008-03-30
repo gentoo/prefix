@@ -1,6 +1,12 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.68 2008/03/04 12:56:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.69 2008/03/29 14:17:24 zlin Exp $
+
+*wgetpaste-2.10 (29 Mar 2008)
+
+  29 Mar 2008; Bo Ørsted Andresen <zlin@gentoo.org> +wgetpaste-2.10.ebuild:
+  Bump. 2.10 fixes a bug with handling of pastebins that set expiration by
+  value (osl). Thanks to Daniel Pielmeier for reporting this bug.
 
   04 Mar 2008; Brent Baude <ranger@gentoo.org> wgetpaste-2.9.ebuild:
   stable ppc64, bug 211894
