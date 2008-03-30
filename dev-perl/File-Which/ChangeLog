@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/File-Which
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Which/ChangeLog,v 1.10 2007/05/12 05:33:48 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Which/ChangeLog,v 1.11 2008/03/28 09:51:18 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> File-Which-0.05.ebuild:
+  Stable for HPPA too.
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> File-Which-0.05.ebuild:
   Stable on mips.
