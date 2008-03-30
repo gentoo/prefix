@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7.ebuild,v 1.11 2007/07/21 20:03:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7.ebuild,v 1.12 2008/03/29 12:04:30 eva Exp $
 
 EAPI="prefix"
 
@@ -27,8 +27,8 @@ G2CONF="${G2CONF} $(use_enable static)"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# Fix integer size mismatches on 64-bit arches
-	epatch ${FILESDIR}/${P}-amd64-fixes.patch
+	epatch "${FILESDIR}/${P}-amd64-fixes.patch"
 }

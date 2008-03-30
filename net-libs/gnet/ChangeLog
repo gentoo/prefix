@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/gnet
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.55 2008/03/28 02:03:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.56 2008/03/29 12:04:30 eva Exp $
+
+*gnet-2.0.8 (29 Mar 2008)
+
+  29 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> gnet-2.0.7.ebuild,
+  gnet-2.0.7-r1.ebuild, +gnet-2.0.8.ebuild:
+  Bump to 2.0.8, fix bug #215135. Mainly bug/build/leak fixes. Fixed quoting
+  on older ebuilds.
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> gnet-2.0.7-r1.ebuild:
   Stable for HPPA (bug #214763).
