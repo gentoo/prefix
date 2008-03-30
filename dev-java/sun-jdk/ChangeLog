@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.231 2008/03/27 20:18:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.232 2008/03/28 23:11:01 caster Exp $
+
+  28 Mar 2008; Vlastimil Babka <caster@gentoo.org>
+  sun-jdk-1.5.0.15-r1.ebuild, sun-jdk-1.6.0.05-r1.ebuild:
+  Fix CDS generation on hardened, bug #215225.
 
 *sun-jdk-1.6.0.05-r1 (27 Mar 2008)
 *sun-jdk-1.5.0.15-r1 (27 Mar 2008)

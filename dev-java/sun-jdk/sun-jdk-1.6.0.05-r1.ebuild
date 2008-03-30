@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.05-r1.ebuild,v 1.1 2008/03/27 20:18:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.05-r1.ebuild,v 1.3 2008/03/29 08:11:04 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -61,13 +61,6 @@ src_unpack() {
 		done
 	else 
 		sh ${DISTDIR}/${A} --accept-license --unpack || die "Failed to unpack"
-
-		# see bug #207282
-		if use x86; then
-			einfo "Creating the Class Data Sharing archives"
-			"${S}"/bin/java -client -Xshare:dump || die
-			"${S}"/bin/java -server -Xshare:dump || die
-		fi
 	fi
 
 	cp "${FILESDIR}"/fontconfig.Gentoo.properties "${T}"/
@@ -75,12 +68,21 @@ src_unpack() {
 	epatch "${FILESDIR}"/fontconfig.Gentoo.properties-prefix.patch
 }
 
+src_compile() {
+	# Set PaX markings on all JDK/JRE executables to allow code-generation on
+	# the heap by the JIT compiler. This needs to be done before CDS - #215225
+	pax-mark m $(list-paxables "${S}"{,/jre}/bin/*)
+
+	# see bug #207282
+	if use x86; then
+		einfo "Creating the Class Data Sharing archives"
+		"${S}"/bin/java -client -Xshare:dump || die
+		"${S}"/bin/java -server -Xshare:dump || die
+	fi
+}
+
 src_install() {
 	local dirs="bin include jre lib man"
-
-	# Set PaX markings on all JDK/JRE executables to allow code-generation on
-	# the heap by the JIT compiler.
-	pax-mark m $(list-paxables "${S}"{,/jre}/bin/*)
 
 	dodir /opt/${P}
 
