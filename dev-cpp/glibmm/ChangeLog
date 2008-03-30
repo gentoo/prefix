@@ -1,6 +1,14 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.105 2008/03/16 21:54:49 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.106 2008/03/29 22:08:39 eva Exp $
+
+*glibmm-2.16.1 (29 Mar 2008)
+
+  29 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -glibmm-2.4.7-r1.ebuild, -glibmm-2.6.1.ebuild, -glibmm-2.9.1.ebuild,
+  -glibmm-2.12.10.ebuild, +glibmm-2.16.1.ebuild:
+  bump to 2.16.1. g++ 4.3 warning and some bug fixes.
+  Cleaning up old revisions.
 
 *glibmm-2.16.0 (16 Mar 2008)
 
