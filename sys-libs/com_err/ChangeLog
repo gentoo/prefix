@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/com_err
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.61 2008/03/17 19:19:36 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.62 2008/03/28 08:14:34 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> com_err-1.40.6.ebuild:
+  Stable for HPPA too.
 
   17 Mar 2008; Christian Heim <phreak@gentoo.org> com_err-1.40.4.ebuild:
   com_err-1.40.4 also needs tls disabled on uClibc.
