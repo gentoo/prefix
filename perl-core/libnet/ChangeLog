@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/libnet
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/ChangeLog,v 1.17 2008/03/27 22:01:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/ChangeLog,v 1.18 2008/03/28 07:11:46 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> libnet-1.21.ebuild:
+  Stable for HPPA too.
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org> libnet-1.21.ebuild:
   Add ~sparc-fbsd wrt #215094
