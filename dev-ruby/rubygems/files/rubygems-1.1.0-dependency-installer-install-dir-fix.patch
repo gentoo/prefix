@@ -1,0 +1,13 @@
+Index: lib/rubygems/dependency_installer.rb
+===================================================================
+--- lib/rubygems/dependency_installer.rb	(revision 1678)
++++ lib/rubygems/dependency_installer.rb	(working copy)
+@@ -189,7 +189,7 @@
+       say "Installing gem #{spec.full_name}" if Gem.configuration.really_verbose
+ 
+       _, source_uri = @specs_and_sources.assoc spec
+-      local_gem_path = Gem::RemoteFetcher.fetcher.download spec, source_uri
++      local_gem_path = Gem::RemoteFetcher.fetcher.download spec, source_uri, @install_dir
+ 
+       inst = Gem::Installer.new local_gem_path,
+                                 :env_shebang => @env_shebang,

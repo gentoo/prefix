@@ -1,6 +1,19 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.85 2008/03/26 03:29:59 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.87 2008/03/30 03:37:36 mr_bones_ Exp $
+
+*rubygems-1.1.0 (30 Mar 2008)
+
+  30 Mar 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +rubygems-1.1.0.ebuild, -rubygems-1.1.0-r0.ebuild:
+  rename rubygems-1.1.0-r0.ebuild to match ebuild howto guidelines
+
+*rubygems-1.1.0-r0 (29 Mar 2008)
+
+  29 Mar 2008; Richard Brown <rbrown@gentoo.org>
+  +files/rubygems-1.1.0-dependency-installer-install-dir-fix.patch,
+  +files/rubygems-1.1.0-setup.patch, +rubygems-1.1.0-r0.ebuild:
+  Version bump. Fixes bug #215293
 
   25 Mar 2008; <ricmm@gentoo.org> rubygems-0.8.11-r6.ebuild:
   Drop to ~mips due to unstable deps
