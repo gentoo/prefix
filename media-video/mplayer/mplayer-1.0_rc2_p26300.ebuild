@@ -195,7 +195,7 @@ src_unpack() {
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p25993-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26300-prefix.patch
 }
 
 src_compile() {
