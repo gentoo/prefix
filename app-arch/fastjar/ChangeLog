@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/fastjar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/ChangeLog,v 1.7 2008/03/27 15:34:13 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/ChangeLog,v 1.8 2008/03/28 15:53:28 ranger Exp $
+
+  28 Mar 2008; Brent Baude <ranger@gentoo.org> fastjar-0.95.ebuild:
+  stable ppc, bug 214938
 
   27 Mar 2008; Markus Rothe <corsair@gentoo.org> fastjar-0.95.ebuild:
   Stable on ppc64; bug #214938
