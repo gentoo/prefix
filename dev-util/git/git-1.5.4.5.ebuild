@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.4.ebuild,v 1.4 2008/03/20 19:59:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.5.ebuild,v 1.1 2008/03/29 07:59:42 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -20,26 +20,43 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion"
 
 DEPEND="
 	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
-	dev-lang/perl
-	dev-perl/Error
 	app-arch/cpio
-	tk?     ( dev-lang/tk )
-	curl?   ( net-misc/curl )
+	perl?	( dev-lang/perl )
+	tk?		( dev-lang/tk )
+	curl?	( net-misc/curl )
 	webdav? ( dev-libs/expat )
 	emacs?  ( virtual/emacs )"
+# dev-perl/{Authen-SASL,Net-SMTP-SSL} are used by git-send-email
+
 RDEPEND="${DEPEND}
-	cgi?    ( virtual/perl-CGI )
-	perl?   ( dev-perl/Net-SMTP-SSL )
-	gtk?    ( >=dev-python/pygtk-2.8 )"
+	perl? ( dev-perl/Error
+			dev-perl/Net-SMTP-SSL
+			dev-perl/Authen-SASL
+			cgi? ( virtual/perl-CGI )
+			cvs? ( >=dev-util/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
+			subversion? ( dev-util/subversion dev-perl/libwww-perl dev-perl/TermReadKey )
+			)
+	gtk?  ( >=dev-python/pygtk-2.8 )"
 
 SITEFILE=72${PN}-gentoo.el
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	if ! use perl ; then
+		if use cgi || use cvs || use subversion ; then
+			eerror "You must built dev-util/git with USE=perl and the"
+			eerror "applicable USE flag to use any of the following:"
+			eerror "gitweb, git-cvs*, git-svn, git-archimport, git-quiltimport"
+			die "You need USE=perl to satisfy your other USE= requests!"
+		fi
+	fi
+}
 
 # This is needed because for some obscure reasons future calls to make don't
 # pick up these exports if we export them in src_unpack()
@@ -59,7 +76,6 @@ exportmakeopts() {
 		use webdav && ewarn "USE=webdav only matters with USE=curl. Ignoring."
 	fi
 
-	myopts="${myopts} WITH_SEND_EMAIL=YesPlease"
 	# broken assumptions, because of broken build system ...
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 	[[ ${CHOST} == *-solaris* ]] &&
@@ -68,9 +84,11 @@ exportmakeopts() {
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
+	use perl || myopts="${myopts} NO_PERL=YesPlease"
 	use threads && myopts="${myopts} THREADED_DELTA_SEARCH=YesPlease"
+	use subversion || myopts="${myopts} NO_SVN_TESTS=YesPlease"
 
-	[[ ${CHOST} == *-interix* ]] && {
+	if [[ ${CHOST} == *-interix* ]] ; then
 		myopts="${myopts} NO_IPV6=YesPlease"
 		myopts="${myopts} NO_MEMMEM=YesPlease"
 		myopts="${myopts} NO_MKDTEMP=YesPlease"
@@ -78,15 +96,9 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRTOULL=YesPlease"
 		myopts="${myopts} NO_INET_NTOP=YesPlease"
 		myopts="${myopts} NO_INET_PTON=YesPlease"
-	}
+	fi
 
-	export MY_MAKEOPTS=${myopts}
-}
-
-showpkgdeps() {
-	local pkg=$1
-	shift
-	elog "  $(printf "%-17s:" ${pkg}) ${@}"
+	export MY_MAKEOPTS="${myopts}"
 }
 
 src_unpack() {
@@ -97,6 +109,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
+	epatch "${FILESDIR}"/20080322-${PN}-1.5.5.4-noperl.patch
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
 	sed -i \
@@ -119,7 +132,7 @@ src_compile() {
 	if use emacs ; then
 		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
 	fi
-	if use cgi ; then
+	if use perl && use cgi ; then
 		emake ${MY_MAKEOPTS} \
 		DESTDIR="${ED}" \
 		prefix=/usr \
@@ -176,7 +189,7 @@ src_install() {
 			|| die "Failed contrib ${i}"
 	done
 
-	if use cgi ; then
+	if use perl && use cgi ; then
 		dodir /usr/share/${PN}/gitweb
 		insinto /usr/share/${PN}/gitweb
 		doins "${S}"/gitweb/gitweb.{cgi,css}
@@ -199,21 +212,58 @@ src_install() {
 }
 
 src_test() {
-	has_version dev-util/subversion || \
-		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
+	local disabled=""
+	local tests_cvs="t9200-git-cvsexportcommit.sh \
+					t9400-git-cvsserver-server.sh \
+					t9600-cvsimport.sh"
+	local tests_perl="t5502-quickfetch.sh \
+					t5512-ls-remote.sh \
+					t5520-pull.sh"
+
+	# Unzip is used only for the testcase code, not by any normal parts of Git.
 	has_version app-arch/unzip || \
-		mv -f "${S}"/t/t5000-tar-tree.sh{,.DISABLED}
+		einfo "Disabling tar-tree tests" && \
+		disabled="${disabled} \
+					t5000-tar-tree.sh"
+
 	if ! has userpriv "${FEATURES}"; then
 		ewarn "Skipping CVS tests because CVS does not work as root!"
 		ewarn "You should retest with FEATURES=userpriv!"
-		for i in t9200-git-cvsexportcommit.sh t9600-cvsimport.sh ; do
-			mv -f "${S}"/t/${i}{,.DISABLED}
-		done
+		disabled="${disabled} \
+					${tests_cvs}"
 	fi
-	has_version dev-util/cvs && \
-		built_with_use dev-util/cvs server \
-		|| mv -f "${S}"/t/t9600-cvsimport.sh{,.DISABLED}
+
+	use cvs && \
+		has_version dev-util/cvs && \
+		built_with_use dev-util/cvs server || \
+		einfo "Disabling CVS tests (needs dev-util/cvs[USE=server])" && \
+		disabled="${disabled} \
+					${tests_cvs}"
+
+	use perl || \
+		einfo "Disabling tests that need Perl" && \
+		disabled="${disabled} \
+					${tests_perl}"
+
+	# Reset all previously disabled tests
+	cd "${S}/t"
+	for i in *.sh.DISABLED ; do
+		[[ -f "${i}" ]] && mv -f "${i}" "${i%.DISABLED}"
+	done
+	einfo "Disabled tests:"
+	for i in ${disabled} ; do
+		[[ -f "${i}" ]] && mv -f "${i}" "${i}.DISABLED" && einfo "Disabled $i"
+	done
+	cd "${S}"
+	# Now run the tests
+	einfo "Start test run"
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
+}
+
+showpkgdeps() {
+	local pkg=$1
+	shift
+	elog "  $(printf "%-17s:" ${pkg}) ${@}"
 }
 
 pkg_postinst() {
@@ -223,22 +273,16 @@ pkg_postinst() {
 		elog "You can disable the emacs USE flag for dev-util/git"
 		elog "if you are using such a version."
 	fi
+	if use subversion && ! built_with_use dev-util/subversion perl ; then
+		ewarn "You must build dev-util/subversion with USE=perl"
+		ewarn "to get the full functionality of git-svn!"
+	fi
 	elog "These additional scripts need some dependencies:"
-	elog "(These are also needed for FEATURES=test)"
 	echo
 	showpkgdeps git-archimport "dev-util/tla"
-	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
-	showpkgdeps git-svn \
-		"USE=perl" \
-		"dev-util/subversion(USE=perl)" \
-		"dev-perl/libwww-perl" \
-		"dev-perl/TermReadKey"
 	showpkgdeps git-quiltimport "dev-util/quilt"
-	showpkgdeps git-cvsserver "dev-perl/DBI" "dev-perl/DBD-SQLite"
 	showpkgdeps git-instaweb \
 		"|| ( www-servers/lighttpd www-servers/apache )"
-	showpkgdeps git-send-email "USE=perl"
-	showpkgdeps git-remote "USE=perl"
 	echo
 }
 
