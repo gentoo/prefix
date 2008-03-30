@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/lsof
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.41 2007/12/01 17:37:31 corsair Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.42 2008/03/28 07:43:08 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> lsof-4.78-r1.ebuild:
+  Stable for HPPA too.
 
   01 Dec 2007; Markus Rothe <corsair@gentoo.org> lsof-4.78-r1.ebuild:
   Stable on ppc64
