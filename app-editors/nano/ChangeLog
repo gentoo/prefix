@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.183 2008/03/19 06:10:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.184 2008/03/29 20:15:07 vapier Exp $
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org> nano-2.1.0.ebuild:
+  Bind the color/multibuffer/nanorc options to USE=-minimal #214132 by John SJ
+  Anderson.
 
 *nano-2.1.0 (19 Mar 2008)
 
