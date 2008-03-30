@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.7.1-r3.ebuild,v 1.6 2008/03/29 23:52:42 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.ebuild,v 1.1 2008/03/29 16:02:49 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	fi
 fi
 
-PATCH_VER="1.3"
+PATCH_VER="1.0"
 DESCRIPTION="GNU debugger"
 HOMEPAGE="http://sources.redhat.com/gdb/"
 SRC_URI="http://ftp.gnu.org/gnu/gdb/${P}.tar.bz2
@@ -25,7 +25,7 @@ LICENSE="GPL-2 LGPL-2"
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="nls test vanilla"
+IUSE="multitarget nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
 	sys-libs/readline"
@@ -37,7 +37,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	use vanilla || EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
-	epatch "${FILESDIR}"/${P}-solaris.patch
+	epatch "${FILESDIR}"/${PN}-6.7.1-solaris.patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
@@ -47,6 +47,7 @@ src_compile() {
 		--disable-werror \
 		--with-system-readline \
 		$(use_enable nls) \
+		$(use multitarget && echo --enable-targets=all) \
 		|| die
 	emake || die
 }

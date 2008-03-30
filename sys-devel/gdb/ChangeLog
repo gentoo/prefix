@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.134 2008/03/25 19:45:17 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.138 2008/03/29 23:52:42 cla Exp $
+
+  29 Mar 2008; Dawid Węgliński <cla@gentoo.org> gdb-6.7.1-r3.ebuild:
+  Stable on x86 (bug #215339)
+
+  29 Mar 2008; Jeroen Roovers <jer@gentoo.org> gdb-6.7.1-r3.ebuild:
+  Stable for HPPA (bug #215339).
+
+*gdb-6.8 (29 Mar 2008)
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org> +gdb-6.8.ebuild:
+  Version bump.
+
+  29 Mar 2008; Brent Baude <ranger@gentoo.org> gdb-6.7.1-r3.ebuild:
+  stable ppc, bug 215339
 
   25 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> gdb-6.7.1-r3.ebuild:
   amd64 stable
