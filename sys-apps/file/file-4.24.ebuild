@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.23.ebuild,v 1.7 2008/03/29 15:23:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.24.ebuild,v 1.1 2008/03/28 18:49:07 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,10 +24,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 
+# don't apply, needs to be fixed or removed, see bug #215413
 	# on interix there is no strtoull implementation, so patch one in.
-	epatch "${FILESDIR}"/${P}-strtoull.patch
+#	epatch "${FILESDIR}"/${PN}-4.23-strtoull.patch
 	# interix 3.5 need stddef for intptr_t
-	epatch "${FILESDIR}"/${P}-intptr_t.patch
+#	epatch "${FILESDIR}"/${PN}-4.23-intptr_t.patch
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
