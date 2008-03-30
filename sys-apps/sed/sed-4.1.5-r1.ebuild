@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5-r1.ebuild,v 1.1 2008/01/30 00:26:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5-r1.ebuild,v 1.6 2008/03/29 16:45:30 armin76 Exp $
 
 EAPI="prefix"
 

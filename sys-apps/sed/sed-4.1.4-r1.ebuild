@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/sed/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="nls static build bootstrap gnuprefix"
+IUSE="nls static build bootstrap"
 
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
@@ -55,7 +55,6 @@ src_compile() {
 	src_bootstrap_sed
 
 	local myconf=""
-	use gnuprefix && myconf="--program-prefix=g"
 	econf \
 		--bindir=${EPREFIX}/bin \
 		$(use_enable nls) \
