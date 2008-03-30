@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/cogito-0.18.2.ebuild,v 1.3 2008/01/14 18:58:39 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/cogito-0.18.2.ebuild,v 1.4 2008/03/29 22:39:25 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit eutils
 MY_PV=${PV//_/}
 
 DESCRIPTION="The GIT scripted toolkit"
-HOMEPAGE="http://kernel.org/pub/software/scm/cogito/"
+HOMEPAGE="http://git.or.cz/cogito/"
 SRC_URI="mirror://kernel/software/scm/${PN}/${PN}-${MY_PV}.tar.bz2
 	mirror://gentoo/${PN}-doc-${MY_PV}.tar.bz2"
 
