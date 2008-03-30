@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.13 2008/03/27 21:50:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.14 2008/03/28 17:59:30 aballier Exp $
+
+  28 Mar 2008; Alexis Ballier <aballier@gentoo.org>
+  ca-certificates-20070303-r1.ebuild:
+  freebsd-ubin also provides mktemp, this allows us to install
+  ca-certificates again; bug #215209
 
   27 Mar 2008; Mike Frysinger <vapier@gentoo.org>
   ca-certificates-20070303-r1.ebuild:
