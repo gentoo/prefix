@@ -1,6 +1,29 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.288 2008/03/17 15:02:23 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.293 2008/03/29 19:12:20 rich0 Exp $
+
+  29 Mar 2008; Richard Freeman <rich0@gentoo.org> openssh-4.7_p1-r5.ebuild:
+  amd64 stable - 214985
+
+  29 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
+  openssh-4.7_p1-r5.ebuild:
+  stable x86, security bug 214985
+
+  29 Mar 2008; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1-r5.ebuild:
+  Stable for HPPA (bug #214985).
+
+  29 Mar 2008; Brent Baude <ranger@gentoo.org> openssh-4.7_p1-r5.ebuild:
+  Marking openssh-4.7_p1-r5 ppc64 and ppc for bug 214985
+
+*openssh-4.7_p1-r5 (29 Mar 2008)
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.7_p1-CVE-2008-1483.patch,
+  +files/openssh-4.7_p1-lpk-64bit.patch,
+  +files/openssh-4.7_p1-packet-size.patch, +openssh-4.7_p1-r5.ebuild:
+  Fix CVE-2008-1483 #214985. Fix from upstream for scp/packet problems #212433
+  by Steven Parkes. Fix from Piotr Stolc for some LPK configs under 64bit
+  systems #210110. Add gsskex patch (for now) #115553.
 
   17 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   openssh-4.7_p1-r20.ebuild:
