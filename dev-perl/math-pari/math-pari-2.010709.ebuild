@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010709.ebuild,v 1.5 2007/06/26 01:58:55 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010709.ebuild,v 1.6 2008/03/28 09:10:02 jer Exp $
 
 EAPI="prefix"
 
