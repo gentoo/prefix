@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.19 2008/02/02 21:08:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.20 2008/03/28 06:29:03 ulm Exp $
 
 EAPI="prefix"
 
@@ -184,7 +184,8 @@ src_install () {
 	# avoid collision between slots, see bug #169033 e.g.
 	rm "${ED}"/usr/share/emacs/site-lisp/subdirs.el
 	rm "${ED}"/var/lib/games/emacs/{snake,tetris}-scores
-	keepdir /var/lib/games/emacs/
+	keepdir /usr/share/emacs/site-lisp
+	keepdir /var/lib/games/emacs
 
 	if use source; then
 		insinto /usr/share/emacs/${FULL_VERSION}/src

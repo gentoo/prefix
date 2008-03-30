@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.233 2008/03/26 14:36:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.234 2008/03/28 06:29:03 ulm Exp $
+
+  28 Mar 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild,
+  emacs-22.1-r3.ebuild, emacs-22.2.ebuild:
+  Add keepdir for site-lisp dir again, bug 93329; no idea why it was removed.
+  Remove redundant dodir command.
 
 *emacs-22.2 (26 Mar 2008)
 
