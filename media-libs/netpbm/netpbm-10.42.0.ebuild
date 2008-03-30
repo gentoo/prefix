@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.42.0.ebuild,v 1.1 2008/03/28 03:29:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.42.0.ebuild,v 1.2 2008/03/29 16:18:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -84,6 +84,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
+	epatch "${FILESDIR}"/netpbm-10.42.0-gcc43.patch #211296
 
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
