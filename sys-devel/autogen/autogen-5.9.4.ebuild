@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.4.ebuild,v 1.2 2008/03/12 17:00:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.4.ebuild,v 1.3 2008/03/28 08:18:02 jer Exp $
 
 EAPI="prefix"
 
