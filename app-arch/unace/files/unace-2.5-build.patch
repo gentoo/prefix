@@ -1,0 +1,34 @@
+--- makefile
++++ makefile
+@@ -14,17 +14,16 @@
+ SRCSsl          = $(BASIC_DIR)source
+ SRCS            = $(SRCSsl)/
+ 
++ifdef SYSINC
+ INCLSYSDIR 	= //usr/include/sys
+ INCLDIR 	= //usr/include
+-
+-DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
+-
+-ifdef DEBUG
+-LSWITCHES	=
++INCLS		= -I$(INCLDIR) -idirafter $(INCLSYSDIR)
+ else
+-LSWITCHES	= -Wl,-s
++INCLS		=
+ endif
+ 
++DEFINES		= -D__LINUX__ -D__unix__ -D__GCC__ -U__HAS_IO_H__
++
+ ##############################################################################
+ all: unace
+ 
+@@ -47,7 +46,7 @@
+   $(APPS_UNACEEXE_CFILES)
+ 
+ unace: $(UNACEEXELIN_CFILES)
+-	$(CC) $(CFLAGS) $(LSWITCHES) -I$(INCLDIR) -idirafter $(INCLSYSDIR) -I$(SRCSsl) $(DEFINES) $(UNACEEXELIN_CFILES) -ggdb -o$(EXECS_DIR)unace
++	$(CC) $(CFLAGS) $(LDFLAGS) $(INCLS) -I$(SRCSsl) $(DEFINES) $(UNACEEXELIN_CFILES) -ggdb -o$(EXECS_DIR)unace
+ ifndef DEBUG
+ 	tar cfvz linunace25.tgz unace file_id.diz licence
+ 	#sh linpack.sh
