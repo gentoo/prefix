@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.1 2008/03/26 14:43:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.3 2008/03/28 06:55:30 ulm Exp $
 
 EAPI="prefix"
 
@@ -85,8 +85,8 @@ src_unpack() {
 	echo
 	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
 	einfo "Emacs version number: ${FULL_VERSION}"
-	#[ "${FULL_VERSION}" = ${PV} ] \
-	#	|| die "Upstream version number changed to ${FULL_VERSION}"
+	[ "${FULL_VERSION%.*}" = ${PV%.*} ] \
+		|| die "Upstream version number changed to ${FULL_VERSION}"
 	echo
 
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
@@ -233,7 +233,8 @@ src_install () {
 	rm "${ED}"/usr/share/emacs/site-lisp/subdirs.el
 	rm -rf "${ED}"/usr/share/{applications,icons}
 	rm "${ED}"/var/lib/games/emacs/{snake,tetris}-scores
-	keepdir /var/lib/games/emacs/
+	keepdir /usr/share/emacs/site-lisp
+	keepdir /var/lib/games/emacs
 
 	if use source; then
 		insinto /usr/share/emacs/${FULL_VERSION}/src
