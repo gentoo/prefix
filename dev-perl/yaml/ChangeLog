@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/yaml
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/ChangeLog,v 1.62 2007/12/29 10:18:53 welp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/ChangeLog,v 1.63 2008/03/28 08:43:36 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> yaml-0.65.ebuild:
+  Stable for HPPA too.
 
   29 Dec 2007; <welp@gentoo.org> yaml-0.65.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
