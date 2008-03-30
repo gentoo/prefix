@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/log4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.62 2008/03/25 19:57:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.63 2008/03/29 18:48:06 opfer Exp $
+
+  29 Mar 2008; Christian Faulhammer <opfer@gentoo.org> log4j-1.2.15.ebuild:
+  stable x86, bug 214782
 
   25 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> log4j-1.2.15.ebuild:
   Add ~ppc and ~ppc64 that should have been added to this version too when
