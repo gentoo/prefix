@@ -1,3 +1,5 @@
+Fix for BSD systems pulled from upstream.
+
 diff -ur a/src/output.c b/src/output.c
 --- a/src/output.c	2007-07-05 04:56:06 +0100
 +++ b/src/output.c	2007-10-15 09:56:23 +0100
