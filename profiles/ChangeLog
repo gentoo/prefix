@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1263 2008/03/27 23:23:28 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1266 2008/03/29 21:55:25 eva Exp $
+
+  29 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  adding gnome-mag and dasher to gnome 2.22 mask
+
+  29 Mar 2008; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  media-video/vdr2jpeg-0.1.0 masked depend on bug #214740, wait for unmask
+  depend ffmpeg version
+
+  28 Mar 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask the the new xf86-video-i810 release candidates
 
   27 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   add gnome-extra/evolution-exchange to GNOME 2.22 mask

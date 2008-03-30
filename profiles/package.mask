@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8440 2008/03/27 23:23:28 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8444 2008/03/29 21:55:25 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (29 Mar 2008
+# masked depend on bug #214740, wait for unmask depend ffmpeg version
+=media-video/vdr2jpeg-0.1.0
 
 # Markus Ullmann <jokey@gentoo.org> (27 Mar 2008)
 # mask beta version
@@ -90,10 +94,6 @@ sci-libs/libgdgeda
 # Needs testing
 >=games-strategy/warzone2100-2.1_beta2
 
-# Rémi Cardona <remi@gentoo.org> (21 Mar 2008)
-# Masked for testing (2.3 Release Candidates)
-=x11-drivers/xf86-video-i810-2.2.99*
-
 # Torsten Veller <tove@gentoo.org> (20 Mar 2008)
 # Masked for removal - Unfetchable and service down
 # bug #213349
@@ -123,6 +123,8 @@ dev-util/jam
 # The Great GNOME 2.22 Mask (tm)
 # Will be unmasked when everything is in, everything is ready and
 # there are no big bugs remaining.
+>=app-accessibility/dasher-4.7
+>=app-accessibility/gnome-mag-0.15.0
 >=app-crypt/seahorse-2.22
 >=gnome-base/libgtop-2.22
 >=x11-themes/gtk-engines-2.14
@@ -195,6 +197,7 @@ gnome-base/gvfs
 >=gnome-extra/nautilus-open-terminal-0.9
 >=gnome-base/gdm-2.20.4
 >=gnome-extra/gnome-media-2.22
+>=gnome-extra/gnome2-user-docs-2.22
 >=gnome-base/gnome-light-2.22
 >=gnome-base/gnome-2.22
 
