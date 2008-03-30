@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-ClassAPI
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/ChangeLog,v 1.26 2007/11/10 11:47:00 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/ChangeLog,v 1.27 2008/03/28 09:49:07 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> Test-ClassAPI-1.04-r1.ebuild:
+  Stable for HPPA too.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org>
   Test-ClassAPI-1.04-r1.ebuild:
