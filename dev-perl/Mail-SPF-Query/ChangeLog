@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Mail-SPF-Query
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-SPF-Query/ChangeLog,v 1.32 2007/04/16 06:14:05 corsair Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-SPF-Query/ChangeLog,v 1.33 2008/03/30 01:43:55 halcy0n Exp $
+
+  30 Mar 2008; Mark Loeser <halcy0n@gentoo.org> Mail-SPF-Query-1.997.ebuild,
+  Mail-SPF-Query-1.998.ebuild, Mail-SPF-Query-1.999.1.ebuild:
+  Added a block on mail-filter/libspf2; bug #154297
 
   16 Apr 2007; Markus Rothe <corsair@gentoo.org>
   Mail-SPF-Query-1.999.1.ebuild:

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-SPF-Query/Mail-SPF-Query-1.999.1.ebuild,v 1.14 2007/07/10 23:33:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-SPF-Query/Mail-SPF-Query-1.999.1.ebuild,v 1.15 2008/03/30 01:43:55 halcy0n Exp $
 
 EAPI="prefix"
 
@@ -26,5 +26,8 @@ DEPEND=">=dev-perl/Net-DNS-0.46
 		dev-perl/Sys-Hostname-Long
 		dev-perl/URI
 	dev-lang/perl"
+
+RDEPEND="${DEPEND}
+	!mail-filter/libspf2"
 
 mydoc="TODO README sample/*"
