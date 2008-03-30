@@ -1,6 +1,27 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.50 2008/02/08 15:09:57 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.56 2008/03/29 16:57:06 jer Exp $
+
+  29 Mar 2008; Jeroen Roovers <jer@gentoo.org> unzip-5.52-r2.ebuild:
+  Stable for HPPA (bug #213761).
+
+  29 Mar 2008; Raúl Porcel <armin76@gentoo.org> unzip-5.52-r2.ebuild:
+  alpha/ia64/sparc stable wrt security #213761
+
+  29 Mar 2008; Brent Baude <ranger@gentoo.org> unzip-5.52-r2.ebuild:
+  Marking unzip-5.52-r2 ppc64 and ppc for bug 213761
+
+  29 Mar 2008; Christian Faulhammer <opfer@gentoo.org> unzip-5.52-r2.ebuild:
+  stable x86, security bug 213761
+
+  29 Mar 2008; Robert Buchholz <rbu@gentoo.org> unzip-5.52-r2.ebuild:
+  amd64 stable, bug 213761
+
+*unzip-5.52-r2 (29 Mar 2008)
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/unzip-5.52-CVE-2008-0888.patch, +unzip-5.52-r2.ebuild:
+  Fix for CVE-2008-0888 #213761.
 
   08 Feb 2008; Dawid Węgliński <cla@gentoo.org> unzip-5.52-r1.ebuild:
   Change SRC_URI as the old url wasn't fetchable
