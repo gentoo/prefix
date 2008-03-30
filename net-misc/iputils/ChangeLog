@@ -1,6 +1,27 @@
 # ChangeLog for net-misc/iputils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.64 2008/02/09 20:37:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.71 2008/03/29 21:44:59 armin76 Exp $
+
+  29 Mar 2008; Raúl Porcel <armin76@gentoo.org> iputils-20071127.ebuild:
+  alpha/ia64/sparc stable wrt #214734
+
+  29 Mar 2008; Jeroen Roovers <jer@gentoo.org> iputils-20071127.ebuild:
+  Stable for HPPA (bug #214734).
+
+  29 Mar 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking iputils-20071127 ppc for bug 214734
+
+  29 Mar 2008; Brent Baude <ranger@gentoo.org> iputils-20071127.ebuild:
+  stable ppc64, bug 214734
+
+  29 Mar 2008; Dawid Węgliński <cla@gentoo.org> iputils-20071127.ebuild:
+  Stable on x86 (bug #214734)
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org> iputils-20071127.ebuild:
+  Fixup manpage install.
+
+  28 Mar 2008; Brent Baude <ranger@gentoo.org> iputils-20071127.ebuild:
+  stable ppc, bug 214734
 
 *iputils-20071127 (26 Jan 2008)
 

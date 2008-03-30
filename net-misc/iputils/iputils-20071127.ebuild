@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20071127.ebuild,v 1.1 2008/01/26 07:09:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20071127.ebuild,v 1.7 2008/03/29 21:44:59 armin76 Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,8 @@ inherit flag-o-matic eutils toolchain-funcs
 
 DESCRIPTION="Network monitoring tools including ping and ping6"
 HOMEPAGE="http://www.skbuff.net/iputils/"
-SRC_URI="http://www.skbuff.net/iputils/iputils-s${PV}.tar.bz2"
+SRC_URI="http://www.skbuff.net/iputils/iputils-s${PV}.tar.bz2
+	iputils-s${PV}-manpages.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
@@ -47,8 +48,8 @@ src_compile() {
 	# We include the extra check for docbook2html
 	# because when we emerge from a stage1/stage2,
 	# it may not exist #23156
-	if use doc && type -p docbook2html ; then
-		emake -j1 html man || die
+	if use doc && type -P docbook2html >/dev/null ; then
+		emake -j1 html || die
 	fi
 }
 
@@ -66,14 +67,11 @@ src_install() {
 	use ipv6 && fperms 4711 /bin/ping6 /usr/sbin/traceroute6
 
 	dodoc INSTALL RELNOTES
+	use ipv6 \
+		&& dosym ping.8 /usr/share/man/man8/ping6.8 \
+		|| rm -f doc/*6.8
+	rm -f doc/setkey.8
+	doman doc/*.8
 
-	if use doc ; then
-		rm -f doc/setkey.8
-		use ipv6 \
-			&& dosym ping.8 /usr/share/man/man8/ping6.8 \
-			|| rm -f doc/*6.8
-		doman doc/*.8
-
-		dohtml doc/*.html
-	fi
+	use doc && dohtml doc/*.html
 }
