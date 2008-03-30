@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.92 2008/03/27 13:59:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.94 2008/03/29 21:14:34 vapier Exp $
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.11-test.patch, texinfo-4.11-r1.ebuild:
+  Make sure we test the newly compiled version #215359.
+
+  29 Mar 2008; Dawid Węgliński <cla@gentoo.org> texinfo-4.11-r1.ebuild:
+  Stable on x86 (bug #214428)
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org> texinfo-4.11-r1.ebuild:
   alpha/ia64 stable wrt #214428
