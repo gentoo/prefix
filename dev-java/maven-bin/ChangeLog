@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/maven-bin
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.48 2008/03/08 20:41:07 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.49 2008/03/28 22:56:12 maekke Exp $
+
+  28 Mar 2008; Markus Meier <maekke@gentoo.org> maven-bin-2.0.8.ebuild:
+  amd64 stable, bug #208512
 
   08 Mar 2008; William L. Thomson Jr. <wltjr@gentoo.org>
   maven-bin-1.1.ebuild:
