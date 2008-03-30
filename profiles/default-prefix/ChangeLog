@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask sys-apps/file-4.24 because it doesn't build on Solaris (at least) due
+  to autotools screwup, I can't fix it easily.
+
   28 Mar 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   Mask Xcode Tools 3.1 Beta tools (gcc-apple for the moment)
 

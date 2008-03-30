@@ -22,6 +22,12 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (30 Mar 2008)
+# has autotool problems of linking in funcs.o containing replacement
+# functions (vasprintf), masking globally because I don't like this
+# broken
+=sys-apps/file-4.24
+
 # Fabian Groffen <grobian@gentoo.org> (04 Mar 2008)
 # segfaults during compilation on Darwin
 =dev-util/cmake-2.4.8
