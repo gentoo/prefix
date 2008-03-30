@@ -1,12 +1,27 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/freedict.eclass,v 1.17 2007/01/25 21:56:21 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/freedict.eclass,v 1.18 2008/03/29 02:08:46 philantrop Exp $
 
-# Author: Seemant Kulleen <seemant@gentoo.org>
+# @ECLASS: freedict.eclass
+# @MAINTAINER:
+# app-dicts@gentoo.org
+# 
+# Original author: Seemant Kulleen
+#
+# @BLURB: Ease the installation of freedict translation dictionaries
+# @DESCRIPTION:
 # This eclass exists to ease the installation of freedict translation
 # dictionaries.  The only variables which need to be defined in the actual
 # ebuilds are FORLANG and TOLANG for the source and target languages,
 # respectively.
+
+# @ECLASS-VARIABLE: FORLANG
+# @DESCRIPTION:
+# Please see above for a description.
+
+# @ECLASS-VARIABLE: TOLANG
+# @DESCRIPTION:
+# Please see above for a description.
 
 inherit eutils
 
@@ -14,7 +29,7 @@ IUSE=""
 
 MY_P=${PN/freedict-/}
 
-S=${WORKDIR}
+S="${WORKDIR}"
 DESCRIPTION="Freedict for language translation from ${FORLANG} to ${TOLANG}"
 HOMEPAGE="http://www.freedict.de"
 SRC_URI="http://freedict.sourceforge.net/download/linux/${MY_P}.tar.gz"
@@ -24,6 +39,9 @@ LICENSE="GPL-2"
 
 DEPEND="app-text/dictd"
 
+# @FUNCTION: freedict_src_install
+# @DESCRIPTION:
+# The freedict src_install function, which is exported
 freedict_src_install() {
 	insinto /usr/$(get_libdir)/dict
 	doins ${MY_P}.dict.dz
