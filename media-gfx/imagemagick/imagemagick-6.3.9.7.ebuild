@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.9.8.ebuild,v 1.1 2008/03/16 18:15:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.9.7.ebuild,v 1.1 2008/03/17 20:51:42 maekke Exp $
 
 EAPI="prefix"
 
@@ -77,7 +77,7 @@ src_unpack() {
 		"${S}"/configure || die
 
 	# bug 206925
-	epatch "${FILESDIR}"/${P}-hpgl.patch
+	epatch "${FILESDIR}"/${PN}-6.3.9.8-hpgl.patch
 }
 
 src_compile() {
@@ -98,6 +98,7 @@ src_compile() {
 
 	econf \
 		${myconf} \
+		--without-included-ltdl \
 		--with-ltdl-include="${EPREFIX}"/usr/include \
 		--with-ltdl-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-threads \
