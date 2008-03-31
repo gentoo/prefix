@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/unace-2.5-r1.ebuild,v 1.1 2008/03/29 20:48:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/unace-2.5-r1.ebuild,v 1.3 2008/03/30 15:54:28 corsair Exp $
 
 EAPI="prefix"
 
