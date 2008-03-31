@@ -1,0 +1,560 @@
+# ChangeLog for net-libs/libsoup
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.144 2008/03/12 20:20:19 leio Exp $
+
+*libsoup-2.4.0 (12 Mar 2008)
+
+  12 Mar 2008; Mart Raudsepp <leio@gentoo.org> +libsoup-2.4.0.ebuild:
+  First version in a new series with a better API. All libraries and
+  applications depending on libsoup-2.2 are expected to eventually port over
+
+*libsoup-2.2.105-r2 (09 Mar 2008)
+
+  09 Mar 2008; Mart Raudsepp <leio@gentoo.org> -libsoup-2.2.105-r1.ebuild,
+  +libsoup-2.2.105-r2.ebuild:
+  Fix up build with USE=doc that broke with the previous change, bug 211352.
+  Thanks to P.L.Hayes, Ed Catmur and co
+
+*libsoup-2.2.105-r1 (24 Feb 2008)
+
+  24 Feb 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/libsoup-2.2.105-fix-devhelp-docs.patch, -libsoup-2.2.3-r1.ebuild,
+  -libsoup-2.2.105.ebuild, +libsoup-2.2.105-r1.ebuild:
+  Fix gtk-docs not showing up in devhelp
+
+*libsoup-2.2.105 (11 Feb 2008)
+
+  11 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +libsoup-2.2.105.ebuild:
+  bump to 2.2.105,
+   * fix bugs affecting evolution-exchange and rhythmbox
+   * fix gtk-doc installation dir to avoid file-collision
+
+  04 Feb 2008; Jeroen Roovers <jer@gentoo.org> libsoup-2.2.104.ebuild:
+  Stable for HPPA (bug #208366).
+
+  03 Feb 2008; Raúl Porcel <armin76@gentoo.org> libsoup-2.2.104.ebuild:
+  alpha/ia64/sparc stable wrt #208366
+
+  02 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  libsoup-2.2.104.ebuild:
+  Stable on amd64 wrt bug #208366.
+
+  01 Feb 2008; Brent Baude <ranger@gentoo.org> libsoup-2.2.104.ebuild:
+  Marking libsoup-2.2.104 ppc64 and ppc stable for bug 208366
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  libsoup-2.2.104.ebuild:
+  stable x86, bug 208366
+
+*libsoup-2.2.104 (05 Dec 2007)
+
+  05 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  +libsoup-2.2.104.ebuild:
+  bump to 2.2.104
+
+  27 Nov 2007; Jeroen Roovers <jer@gentoo.org> libsoup-2.2.103.ebuild:
+  Stable for HPPA (bug #199322).
+
+  20 Nov 2007; Markus Rothe <corsair@gentoo.org> libsoup-2.2.103.ebuild:
+  Stable on ppc64; bug #199322
+
+  17 Nov 2007; Raúl Porcel <armin76@gentoo.org> libsoup-2.2.103.ebuild:
+  alpha/ia64/sparc stable wrt #199322
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> libsoup-2.2.103.ebuild:
+  Stable on ppc wrt bug 199322
+
+  17 Nov 2007; Dawid Węgliński <cla@gentoo.org> libsoup-2.2.103.ebuild:
+  Stable on x86 (bug #199322)
+
+  16 Nov 2007; Samuli Suominen <drac@gentoo.org> libsoup-2.2.103.ebuild:
+  amd64 stable wrt #199322
+
+*libsoup-2.2.103 (29 Oct 2007)
+
+  29 Oct 2007; Mart Raudsepp <leio@gentoo.org> -libsoup-2.2.101.ebuild,
+  +libsoup-2.2.103.ebuild:
+  Version bump. Fixes crash on rhythmbox exit among other things
+
+*libsoup-2.2.102 (16 Oct 2007)
+
+  16 Oct 2007; Mart Raudsepp <leio@gentoo.org> +libsoup-2.2.102.ebuild:
+  Version bump to 2.2.102, which fixes compilation without SSL support and
+  therefore bug 196003
+
+*libsoup-2.2.101 (09 Oct 2007)
+
+  09 Oct 2007; Mart Raudsepp <leio@gentoo.org> +libsoup-2.2.101.ebuild:
+  Version bump
+
+  25 Jun 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/libsoup-2.2.99-fix-tests.patch, -libsoup-2.2.98.ebuild,
+  -libsoup-2.2.99.ebuild:
+  Remove old
+
+  02 Jun 2007; Brent Baude <ranger@gentoo.org> libsoup-2.2.100.ebuild:
+  Marking libsoup-2.2.100 ppc stable for bug #171107
+
+  31 May 2007; Jeroen Roovers <jer@gentoo.org> libsoup-2.2.100.ebuild:
+  Stable for HPPA (bug #171107).
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> libsoup-2.2.100.ebuild:
+  Marked stable on amd64 for bug #171107
+
+  31 May 2007; Brent Baude <ranger@gentoo.org> libsoup-2.2.100.ebuild:
+  Marking libsoup-2.2.100 ppc64 stable for bug #171107
+
+  30 May 2007; Raúl Porcel <armin76@gentoo.org> libsoup-2.2.100.ebuild:
+  alpha/ia64 stable wrt #171107
+
+  29 May 2007; Andrej Kacian <ticho@gentoo.org> libsoup-2.2.100.ebuild:
+  Stable on x86, bug #171107.
+
+  29 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  libsoup-2.2.100.ebuild:
+  Stable on sparc wrt #171107
+
+*libsoup-2.2.100 (17 Mar 2007)
+
+  17 Mar 2007; Mart Raudsepp <leio@gentoo.org> +libsoup-2.2.100.ebuild:
+  Bump to 2.2.100 for a WebDAV fix
+
+  10 Mar 2007; Roy Marples <uberlord@gentoo.org> libsoup-2.2.99.ebuild:
+  Added ~x86-fbsd keyword.
+
+  26 Jan 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/libsoup-2.2.99-fix-tests.patch, libsoup-2.2.99.ebuild:
+  Fix broken tests.  Bug #162044
+
+  23 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.99.ebuild:
+  Stable on Alpha + IA64.
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.99.ebuild:
+  Stable on sparc wrt security #161887 and disabled tests
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.98.ebuild:
+  Stable on IA64, bug 156662.
+
+  17 Jan 2007; Christian Faulhammer <opfer@gentoo.org>
+  libsoup-2.2.99.ebuild:
+  stable x86, security bug #161887
+
+  16 Jan 2007; Jeroen Roovers <jer@gentoo.org> libsoup-2.2.99.ebuild:
+  Stable for HPPA (bug #161887).
+
+  15 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libsoup-2.2.99.ebuild:
+  Stable on ppc wrt bug #161887.
+
+  15 Jan 2007; Markus Rothe <corsair@gentoo.org> libsoup-2.2.99.ebuild:
+  Stable on ppc64; bug #161887
+
+  15 Jan 2007; Luis Medinas <metalgod@gentoo.org> libsoup-2.2.99.ebuild:
+  Stable on amd64. See security bug #161887.
+
+  14 Jan 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/libsoup-1.99.26-msn.patch, -files/libsoup-1.99.26-with_ssl.patch,
+  -files/libsoup-1.99.28-gnutls.patch, -libsoup-1.99.28.ebuild,
+  -libsoup-1.99.28-r1.ebuild:
+  Remove old versions that fail with gcc4, bug 152295
+
+*libsoup-2.2.99 (14 Jan 2007)
+
+  14 Jan 2007; Mart Raudsepp <leio@gentoo.org> +libsoup-2.2.99.ebuild:
+  Version bump, bug 161887
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.98.ebuild:
+  Stable on Alpha.
+
+  10 Jan 2007; Mart Raudsepp <leio@gentoo.org> -libsoup-2.2.96.ebuild,
+  -libsoup-2.2.97.ebuild:
+  Prune old versions
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> libsoup-2.2.98.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.98.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libsoup-2.2.98.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  11 Dec 2006; Daniel Gryniewicz <dang@gentoo.org> libsoup-2.2.98.ebuild:
+  Marked stable on amd64 for bug #156662
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> libsoup-2.2.98.ebuild:
+  Stable on x86, bug #156662.
+
+*libsoup-2.2.98 (21 Nov 2006)
+
+  21 Nov 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +libsoup-2.2.98.ebuild:
+  Version bump. Dropped 'static' USE flag.
+
+*libsoup-2.2.97 (14 Nov 2006)
+
+  14 Nov 2006; Luis Medinas <metalgod@gentoo.org> +libsoup-2.2.97.ebuild:
+  Version Bump.
+
+*libsoup-2.2.96 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +libsoup-2.2.96.ebuild:
+  New version for gnome 2.16
+
+  23 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> -libsoup-2.2.92.ebuild,
+  -libsoup-2.2.93.ebuild:
+  Clean up unnecessary versions
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> ChangeLog:
+  Marked stable on amd64 for bug #139612
+
+*libsoup-2.2.94 (27 Jun 2006)
+
+  27 Jun 2006; Daniel Gryniewicz <dang@gentoo.org> +libsoup-2.2.94.ebuild:
+  Bump for libsoup; add static flag
+
+*libsoup-2.2.93 (06 Jun 2006)
+
+  06 Jun 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +libsoup-2.2.93.ebuild:
+  New release. Dropped 'static' USE flag. Updated dependencies.
+
+*libsoup-2.2.92 (02 May 2006)
+
+  02 May 2006; Daniel Gryniewicz <dang@gentoo.org> +libsoup-2.2.92.ebuild:
+  Bump for 2.14.1
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org>
+  files/digest-libsoup-1.99.28, files/digest-libsoup-1.99.28-r1,
+  files/digest-libsoup-2.2.3, files/digest-libsoup-2.2.3-r1,
+  files/digest-libsoup-2.2.6.1, files/digest-libsoup-2.2.7, Manifest:
+  Fixing SHA256 digest, pass four
+
+*libsoup-2.2.91 (18 Mar 2006)
+
+  18 Mar 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +libsoup-2.2.91.ebuild:
+  Version bump from upstream
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> libsoup-2.2.7.ebuild:
+  Mark 2.2.7 stable on alpha
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> libsoup-2.2.7.ebuild:
+  Stable on hppa.
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> libsoup-2.2.7.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> libsoup-2.2.7.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libsoup-2.2.7.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> libsoup-2.2.7.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.7.ebuild:
+  Stable on sparc wrt #119634
+
+*libsoup-2.2.7 (05 Dec 2005)
+
+  05 Dec 2005; <dang@gentoo.org> +libsoup-2.2.7.ebuild:
+  New version
+
+  04 Dec 2005; Tom Gall <tgall@gentoo.org>
+  libsoup-2.2.6.1.ebuild:
+  stable on ppc64
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libsoup-2.2.6.1.ebuild:
+  Stable on ppc.
+
+  02 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libsoup-2.2.6.1.ebuild:
+  Stable on sparc
+
+  01 Nov 2005; John N. Laliberte <allanonjl@gentoo.org>
+  libsoup-2.2.6.1.ebuild:
+  stable on x86
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> libsoup-2.2.3-r1.ebuild:
+  Stable on mips.
+
+*libsoup-2.2.6.1 (26 Aug 2005)
+
+  26 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  +libsoup-2.2.6.1.ebuild:
+  New version.
+
+  14 Aug 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libsoup-2.2.3-r1.ebuild:
+  Stable on ppc.
+
+*libsoup-2.2.5 (08 Aug 2005)
+
+  08 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> libsoup-2.2.5.ebuild:
+  New version.
+
+  06 Aug 2005; Bryan Østergaard <kloeri@gentoo.org>
+  libsoup-2.2.3-r1.ebuild:
+  Stable on alpha.
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org> libsoup-2.2.3.ebuild:
+  stable on mips
+
+  09 Jul 2005; Markus Rothe <corsair@gentoo.org> libsoup-2.2.3-r1.ebuild:
+  Stable on ppc64
+
+  06 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  libsoup-2.2.3-r1.ebuild:
+  Stable on hppa.
+
+  06 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libsoup-2.2.3-r1.ebuild:
+  Stable on sparc
+
+  06 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libsoup-2.2.3-r1.ebuild, libsoup-1.99.28-r1.ebuild:
+  Stable on x86.
+
+  05 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on hppa.
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on ppc.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on alpha.
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on ppc64
+
+  30 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on sparc
+
+*libsoup-2.2.3-r1 (30 May 2005)
+
+  30 May 2005; Leonardo Boshell <leonardop@gentoo.org> libsoup-2.2.3-r1.ebuild:
+  New revision. Implements the 'static' USE flag. Remove useless 'ipv6'
+  flag. Don't inherit from eutils since it's not necessary.
+
+*libsoup-1.99.28-r1 (30 May 2005)
+
+  30 May 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libsoup-1.99.28-r1.ebuild:
+  New revision. Implements the 'static' USE flag.
+
+  30 May 2005; Leonardo Boshell <leonardop@gentoo.org> libsoup-1.99.28.ebuild,
+  files/libsoup-1.99.28-gnutls.patch:
+  Modified gnutls patch so libsoup compiles with recent versions of it.
+  Resolves bug #82654.
+
+  29 May 2005; Leonardo Boshell <leonardop@gentoo.org> libsoup-2.2.3.ebuild:
+  Stable on x86.
+
+  11 May 2005; Guy Martin <gmsoft@gentoo.org> libsoup-2.2.2.ebuild:
+  Stable on hppa.
+
+  08 May 2005; Herbie Hopkins <herbs@gentoo.org> libsoup-2.2.2.ebuild:
+  Stable on amd64.
+
+  29 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.2.ebuild:
+  Stable on sparc
+
+  27 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.2.ebuild:
+  Stable on ia64.
+
+  26 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.2.ebuild:
+  Stable on alpha.
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> libsoup-2.2.2.ebuild:
+  Keyworded ppc x86
+
+*libsoup-2.2.3 (21 Mar 2005)
+
+  21 Mar 2005; Mike Gardiner <obz@gentoo.org> +libsoup-2.2.3.ebuild:
+  New version
+
+  19 Feb 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/libsoup-2.2.2-gnutls.patch, libsoup-2.2.1.ebuild,
+  libsoup-2.2.2.ebuild:
+  Changed to use patch from Martin Wolf <pazo_bug@shiba.dk> in upstream bug
+  http://bugzilla.ximian.com/show_bug.cgi?id=57811 to fix bug #79161
+
+  10 Feb 2005; Daniel Black <dragonheart@gentoo.org> libsoup-2.2.1.ebuild,
+  libsoup-2.2.2.ebuild:
+  Bad sed in last fix - bug #79161 refers.
+
+  04 Feb 2005; Stephen P. Becker <geoman@gentoo.org> libsoup-2.2.1.ebuild:
+  stable on mips
+
+*libsoup-2.2.2 (03 Feb 2005)
+
+  03 Feb 2005; Joe McCann <joem@gentoo.org> +libsoup-2.2.2.ebuild:
+  Version bump
+
+  22 Jan 2005; Scott W Taylor <swtaylor@gentoo.org> libsoup-2.2.1.ebuild:
+  nuke GNUTLS_CERT_NOT_TRUSTED which does not exist in gnutls-1.1.23. closes
+  #79161
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> libsoup-2.2.1.ebuild:
+  Stable on hppa.
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> libsoup-2.2.1.ebuild:
+  Stable on ppc64
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> libsoup-2.2.1.ebuild:
+  Stable on alpha.
+
+  26 Nov 2004; Tom Martin <slarti@gentoo.org> libsoup-2.2.1.ebuild:
+  Stable on amd64.
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-2.2.1.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Markus Rothe <corsair@gentoo.org> libsoup-2.2.1.ebuild:
+  Marked ~ppc64
+
+*libsoup-2.2.1 (16 Oct 2004)
+
+  16 Oct 2004; Alastair Tse <liquidx@gentoo.org> +libsoup-2.2.1.ebuild:
+  version bump
+
+  30 Sep 2004; Stephen P. Becker <geoman@gentoo.org> libsoup-2.2.0.ebuild:
+  added ~mips keyword
+
+*libsoup-2.2.0 (13 Sep 2004)
+
+  13 Sep 2004; Brandon Hale <tseng@gentoo.org> +libsoup-2.2.0.ebuild:
+  Version bump, closes bug #62583
+
+*libsoup-2.1.13 (24 Aug 2004)
+
+  24 Aug 2004; Brandon Hale <tseng@gentoo.org> +libsoup-2.1.13.ebuild:
+  Version bump.
+
+*libsoup-2.1.12 (06 Aug 2004)
+
+  06 Aug 2004; Alastair Tse <liquidx@gentoo.org> +libsoup-2.1.12.ebuild:
+  evo-1.5 devel version libraries (#35456)
+
+  27 Jul 2004; <agriffis@gentoo.org> libsoup-1.99.28.ebuild:
+  stable on ia64
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libsoup-1.99.28.ebuild:
+  Stable on alpha.
+
+  01 Jun 2004; Travis Tilley <lv@gentoo.org> libsoup-1.99.28.ebuild:
+  stable on amd64
+
+  26 May 2004; Guy Martin <gmsoft@gentoo.org> libsoup-1.99.28.ebuild:
+  Marked stable on hppa.
+
+  14 May 2004; Lars Weiler <pylon@gentoo.org> libsoup-1.99.28.ebuild:
+  Stable on ppc
+
+  29 Apr 2004; Gustavo Zacarias <gustavoz@gentoo.org> libsoup-1.99.28.ebuild:
+  Stable on sparc
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> libsoup-1.99.26-r1.ebuild,
+  libsoup-1.99.26.ebuild, libsoup-1.99.28.ebuild:
+  Add inherit eutils
+
+*libsoup-1.99.28 (22 Mar 2004)
+
+  22 Mar 2004; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.28.ebuild:
+  version bump
+
+  04 Feb 2004; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  added patch to deal with libgcrypt-1.1.91 changes. (#40016,#37732)
+
+  05 Jan 2004; Jason Wever <weeve@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  Marked stable on sparc.
+
+  16 Dec 2003; Guy Martin <gmsoft@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  Marked stable on hppa.
+
+  14 Dec 2003; Lars Weiler <pylon@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  Make stable on ppc
+
+  13 Dec 2003; Brad House <brad_mssw@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  mark stable on amd64
+
+  10 Dec 2003; <agriffis@gentoo.org> libsoup-1.99.26-r1.ebuild:
+  stable on ia64
+
+  06 Dec 2003; foser <foser@gentoo.org> libsoup-1.99.26{-r1}.ebuild :
+  Remove aclocal and automake steps, not needed. Fixes #33999
+
+  28 Nov 2003; Jason Wever <weeve@gentoo.org> libsoup-1.99.26.ebuild:
+  Marked stable on sparc.
+
+  29 Nov 2003; Chuck Short <zul@gentoo.org> libsoup-1.99.26.ebuild:
+  Added ~amd64 to keywords, closes #34442.
+
+*libsoup-1.99.26-r1 (22 Nov 2003)
+
+  22 Nov 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.26-r1.ebuild,
+  files/libsoup-1.99.26-msn.patch:
+  add timeout patch to libsoup so it works with msn servers (#32833)
+  (http://get.bitlbee.org/libsoup/)
+
+  20 Oct 2003; Aron Griffis <agriffis@gentoo.org> libsoup-1.99.26.ebuild:
+  Stable on alpha
+
+  13 Oct 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.26.ebuild:
+  stable bump for x86
+
+  28 Sep 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.26.ebuild,
+  files/libsoup-1.99.26-with_ssl.patch:
+  add patch to switch between openssl and gnutls
+
+*libsoup-1.99.26 (24 Sep 2003)
+
+  24 Sep 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.26.ebuild:
+  version bump
+
+*libsoup-1.99.23 (10 Jun 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> libsoup-1.99.23.ebuild :
+  Added hppa to KEYWORDS.
+
+  10 Jun 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.23.ebuild:
+  version bump for evo 1.4
+
+*libsoup-1.99.22 (03 Jun 2003)
+
+  03 Jun 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.22.ebuild:
+  version bump. part of evo 1.3.92 update.
+
+*libsoup-1.99.20 (07 May 2003)
+
+  07 May 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.20.ebuild:
+  version bump
+
+  01 May 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.17.ebuild:
+  remove ssl option. ssl is now compulsory
+
+*libsoup-1.99.17 (21 Apr 2003)
+
+  21 Apr 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.17.ebuild:
+  evo-1.3.2 version bump
+
+*libsoup-1.99.12 (14 Mar 2003)
+
+  19 Mar 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.12.ebuild:
+  sourcing from gnome.org rather than ximian.com
+
+  14 Mar 2003; Alastair Tse <liquidx@gentoo.org> libsoup-1.99.12.ebuild:
+  inital ebuild. new version of soup that uses glib2 rather than glib1.
+
