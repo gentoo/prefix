@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26300.ebuild,v 1.1 2008/03/29 23:55:32 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26300-r1.ebuild,v 1.1 2008/03/30 14:49:59 beandog Exp $
 
 EAPI="prefix 1"
 
@@ -116,6 +116,7 @@ RDEPEND="sys-libs/ncurses
 	)"
 
 DEPEND="${RDEPEND}
+	!>=media-libs/libdvdnav-4.1.1
 	doc? ( >=app-text/docbook-sgml-dtd-4.1.2
 		app-text/docbook-xml-dtd
 		>=app-text/docbook-xml-simple-dtd-1.50.0
