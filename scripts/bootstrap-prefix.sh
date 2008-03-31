@@ -432,6 +432,9 @@ bootstrap_gnu() {
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
+	# Solaris has openssl in /usr/sfw/lib(/64), this is fine until you
+	# do 64-bits compilation
+	[[ $CHOST == *-solaris* ]] && myconf="${myconf} --without-ssl"
 
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
@@ -500,7 +503,7 @@ bootstrap_python() {
 	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE altinstall || exit 1
+	$MAKE -k altinstall || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/usr/bin
 	ln -sf python2.5 python
 
