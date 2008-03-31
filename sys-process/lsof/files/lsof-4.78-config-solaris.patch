@@ -1,0 +1,13 @@
+--- a/Configure
++++ b/Configure
+@@ -4267,8 +4267,8 @@
+ 	    rm -f $LSOF_HLP
+ 	    exit 1
+           fi	# }
+-          LSOF_TMP4=`$LSOF_TMP3 $LSOF_TMP2`
+-	  if test $? -eq 0	# {
++          LSOF_TMP4=''
++	  if true	# {
+ 	  then
+ 
+ 	  # ZFS support has been requested.

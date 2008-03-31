@@ -15,7 +15,7 @@ SRC_URI="ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/${MY_P}.tar.bz2
 
 LICENSE="lsof"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
 IUSE="static"
 
 DEPEND=""
@@ -33,6 +33,7 @@ src_unpack() {
 	touch .neverInv
 	epatch "${FILESDIR}"/${P}-answer-config.patch
 	epatch "${FILESDIR}"/${P}-freebsd.patch
+	epatch "${FILESDIR}"/${P}-config-solaris.patch
 }
 
 src_compile() {
@@ -40,11 +41,12 @@ src_compile() {
 
 	local target="linux"
 	use kernel_FreeBSD && target=freebsd
+	[[ ${CHOST} == *-solaris* ]] && target=solaris
 	./Configure ${target} || die "configure failed"
 
 	# Make sure we use proper toolchain
 	sed -i \
-		-e "/^CC=/s:cc:$(tc-getCC):" \
+		-e "/^CC=/s:g\?cc:$(tc-getCC):" \
 		-e "/^AR=/s:ar:$(tc-getAR):" \
 		-e "/^RANLIB=/s:ranlib:$(tc-getRANLIB):" \
 		Makefile lib/Makefile
