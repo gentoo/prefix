@@ -1,0 +1,11 @@
+# ChangeLog for dev-libs/libgweather
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.1 2008/03/24 00:22:10 eva Exp $
+
+*libgweather-2.22.0 (24 Mar 2008)
+
+  24 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgweather-2.22.0.ebuild:
+  New ebuild for GNOME-2.22. Library to access weather information from
+  online services.
+
