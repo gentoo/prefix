@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.106 2008/03/30 00:08:07 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.108 2008/03/30 12:35:13 coldwind Exp $
+
+  30 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> m4-1.4.10-r1.ebuild:
+  amd64 stable wrt bug #215348
+
+  30 Mar 2008; Raúl Porcel <armin76@gentoo.org> m4-1.4.10-r1.ebuild:
+  alpha/ia64/sparc stable wrt #215348
 
   30 Mar 2008; Dawid Węgliński <cla@gentoo.org> m4-1.4.10-r1.ebuild:
   Stable on x86 (bug #215348)
