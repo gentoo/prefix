@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cogito
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.54 2008/01/14 18:58:39 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.55 2008/03/30 15:58:19 corsair Exp $
+
+  30 Mar 2008; Markus Rothe <corsair@gentoo.org> cogito-0.18.2.ebuild:
+  Stable on ppc64; bug #215381
 
   14 Jan 2008; Fabian Groffen <grobian@gentoo.org> cogito-0.17.3.ebuild,
   cogito-0.18.2.ebuild:
