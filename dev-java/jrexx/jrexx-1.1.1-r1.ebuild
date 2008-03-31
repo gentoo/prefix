@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jrexx/jrexx-1.1.1-r1.ebuild,v 1.7 2007/10/24 05:23:02 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jrexx/jrexx-1.1.1-r1.ebuild,v 1.8 2008/03/30 17:05:02 corsair Exp $
 
 EAPI="prefix"
 

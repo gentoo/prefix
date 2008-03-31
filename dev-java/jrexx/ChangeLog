@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jrexx
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jrexx/ChangeLog,v 1.10 2007/10/24 05:24:54 wltjr Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jrexx/ChangeLog,v 1.11 2008/03/30 17:05:02 corsair Exp $
+
+  30 Mar 2008; Markus Rothe <corsair@gentoo.org> jrexx-1.1.1-r1.ebuild:
+  Added ~ppc64
 
   24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   -jrexx-1.1.1.ebuild:
