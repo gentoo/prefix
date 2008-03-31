@@ -7,20 +7,36 @@
 # NOTE: Please add your entry at the top!
 #
 
+## Example:
 ##
-##  This is an example
+## # Dev E. Loper <developer@gentoo.org> (28 Jun 2012)
+## # Masking  these versions until we can get the
+## # v4l stuff to work properly again
+## =media-video/mplayer-0.90_pre5
+## =media-video/mplayer-0.90_pre5-r1
+#
+# - Best last rites (removal) practices -
+# Include the following info:
+# a) reason for masking
+# b) bug # for the removal (and yes you should have one)
+# c) date of removal (either the date or "in x days")
+# d) the word "removal"
+#
+## Example:
 ##
-# <bangert@gentoo.org> (28 Jun 2002)
-# psypete says these are broken and i am using the
-# opporturnity to test the masking style :)
-# <bangert@gentoo.org> (28 Jun 2002)
-# psypete says these are not really broken - its just
-# the v4l stuff that does not work
-#=media-video/mplayer-0.90_pre5
-#=media-video/mplayer-0.90_pre5-r1
-##
-##   End example
-##
+## Dev E. Loper <developer@gentoo.org> (25 Jan 2012)
+## Masked for removal in 30 days.  Doesn't work
+## with new libfoo. Upstream dead, gtk-1, smells
+## funny. (bug #987654)
+## app-misc/some-package
+
+#--- END OF EXAMPLES ---
+
+
+# Fabian Groffen <grobian@gentoo.org> (31 Mar 2008)
+# Seems not to be ready for wide usage; multiple bugs and segfaults when
+# bootstrapping.
+~sys-devel/gcc-4.3.0
 
 # Fabian Groffen <grobian@gentoo.org> (30 Mar 2008)
 # has autotool problems of linking in funcs.o containing replacement
