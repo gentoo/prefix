@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.7.1-r3.ebuild,v 1.6 2008/03/29 23:52:42 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.7.1-r3.ebuild,v 1.9 2008/03/30 16:17:56 vapier Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,7 @@ src_unpack() {
 }
 
 src_compile() {
-	replace-flags -O? -O2
+	strip-unsupported-flags
 	econf \
 		--disable-werror \
 		--with-system-readline \
