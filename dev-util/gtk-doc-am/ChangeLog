@@ -1,0 +1,14 @@
+# ChangeLog for dev-util/gtk-doc-am
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.2 2008/03/24 15:45:05 dang Exp $
+
+  24 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> gtk-doc-am-1.10.ebuild:
+  block gtk-doc-1.10 as well, since -r1 was the first to work with
+  gtk-doc-am
+
+*gtk-doc-am-1.10 (24 Mar 2008)
+
+  24 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> +gtk-doc-am-1.10.ebuild:
+  Package to install just gtk-doc.m4, so that other packages needing it for
+  eautreconf can dep on it
+
