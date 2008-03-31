@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-3.0.ebuild,v 1.6 2007/10/06 15:07:20 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-3.0.ebuild,v 1.7 2008/03/30 16:59:25 corsair Exp $
 
 EAPI="prefix"
 
