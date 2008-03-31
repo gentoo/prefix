@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.94 2008/03/29 21:14:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.95 2008/03/30 09:40:42 armin76 Exp $
+
+  30 Mar 2008; Raúl Porcel <armin76@gentoo.org> texinfo-4.11-r1.ebuild:
+  sparc stable wrt #214428
 
   29 Mar 2008; Mike Frysinger <vapier@gentoo.org>
   +files/texinfo-4.11-test.patch, texinfo-4.11-r1.ebuild:
