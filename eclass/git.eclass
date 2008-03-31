@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.8 2007/12/27 01:02:30 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.10 2008/03/30 05:52:27 robbat2 Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -95,6 +95,12 @@ EGIT_DIFFSTAT_CMD="git diff --stat"
 #
 : ${EGIT_BOOTSTRAP:=}
 
+# @ECLASS-VARIABLE: EGIT_OFFLINE
+# @DESCRIPTION:
+# Set this variable to a non-empty value to disable the automatic updating of
+# an GIT source tree. This is intended to be set outside the git source
+# tree by users.
+EGIT_OFFLINE="${EGIT_OFFLINE:-${ESCM_OFFLINE}}"
 
 ## -- EGIT_PATCHES:
 #
@@ -198,6 +204,11 @@ git_fetch() {
 
 		# We use --bare cloning, so git doesn't do this for us.
 		git config remote.origin.url "${EGIT_REPO_URI}"
+	elif [[ -n ${EGIT_OFFLINE} ]] ; then
+		local oldsha1=$(git rev-parse ${EGIT_BRANCH})
+		einfo "git update offline mode -->"
+		einfo "   repository: ${EGIT_REPO_URI}"
+		einfo "   commit: ${oldsha1}"
 	else
 		# Git urls might change, so unconditionally set it here
 		git config remote.origin.url "${EGIT_REPO_URI}"
