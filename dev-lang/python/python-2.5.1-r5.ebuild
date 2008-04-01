@@ -128,7 +128,12 @@ src_unpack() {
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
+	[[ ${CHOST} == *-interix* ]] && {
+		epatch "${FILESDIR}"/${P}-interix.patch
+		# this one could be applied unconditionally, but to keep it
+		# clean, i do it together with the conditional one.
+		epatch "${FILESDIR}"/${P}-interix-sleep.patch
+	}
 
 	eautoreconf
 }
