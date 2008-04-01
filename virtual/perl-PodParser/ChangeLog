@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-PodParser
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.27 2007/11/19 03:29:03 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.28 2008/03/31 17:07:41 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org> perl-PodParser-1.35.ebuild:
+  Stable for HPPA too.
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> ChangeLog:
   Stable on mips.
