@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.1.ebuild,v 1.7 2008/03/11 15:28:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.1.ebuild,v 1.8 2008/03/31 07:00:10 opfer Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,17 @@ S="${WORKDIR}/${MY_P}"
 
 SITEFILE=50erlang-gentoo.el
 
+pkg_setup() {
+	if use ssl; then
+		if is-ldflag --as-needed || is-flag --as-needed; then
+			eerror "Don't use --as-needed in your LDFLAGS or CFLAGS for SSL support, this will fail."
+			eerror "Emerge with"
+			eerror "      LDFLAGS=\"\" emerge ${PN}"
+			die
+		fi
+	fi
+}
+
 src_unpack() {
 
 	unpack ${A}
@@ -57,7 +68,7 @@ src_unpack() {
 		ewarn
 		ewarn "You enabled High performance Erlang. Be aware that this extension"
 		ewarn "can break the compilation in many ways, especially on hardened systems."
-		ewarn "Don't cry, don't file bugs, just disable it!"
+		ewarn "Don't cry, don't file bugs, just disable it! If you have fix, tell us."
 		ewarn
 	fi
 }
@@ -148,8 +159,8 @@ src_install() {
 pkg_postinst() {
 	use emacs && elisp-site-regen
 	elog
-	elog "If you need a symlink to one of erlang's binaries,"
-	elog "please open a bug and tell the maintainers."
+	elog "If you need a symlink to one of Erlang's binaries,"
+	elog "please open a bug on http://bugs.gentoo.org/"
 	elog
 	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as R12B-1"
 	elog
