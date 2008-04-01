@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-0.8.1.ebuild,v 1.10 2007/09/22 05:15:17 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-0.8.1.ebuild,v 1.11 2008/03/31 04:32:04 ricmm Exp $
 
 EAPI="prefix"
 
