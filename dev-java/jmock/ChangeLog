@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jmock
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/ChangeLog,v 1.15 2008/03/08 12:41:40 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jmock/ChangeLog,v 1.16 2008/03/30 17:16:33 corsair Exp $
+
+  30 Mar 2008; Markus Rothe <corsair@gentoo.org> jmock-1.1.0-r2.ebuild:
+  Added ~ppc64
 
   08 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org> jmock-1.1.0-r2.ebuild:
   Stable on ppc.
