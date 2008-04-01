@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gob
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.61 2008/03/19 04:02:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.62 2008/03/31 16:32:30 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org> gob-2.0.15.ebuild:
+  Stable for HPPA (bug #215541).
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> gob-2.0.14.ebuild:
   Stable for HPPA too.
