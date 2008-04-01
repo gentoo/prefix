@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.bitwizard.nl/mtr/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="gtk ipv6"
 
 DEPEND="dev-util/pkgconfig
@@ -43,6 +43,11 @@ src_install() {
 	if use !prefix ; then
 		fowners root:wheel /usr/bin/mtr
 		fperms 4710 /usr/bin/mtr
+	else
+		# if we're non-privileged (assumption here, not a valid one though)
+		# we should make sure it's not suid, such that privileged users can
+		# run the binary (even though in use-case this is a bit limited)
+		fperms 0711 /usr/bin/mtr
 	fi
 
 	dodoc AUTHORS ChangeLog FORMATS NEWS README SECURITY TODO
