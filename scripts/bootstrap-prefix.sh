@@ -432,9 +432,6 @@ bootstrap_gnu() {
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
-	# Solaris has openssl in /usr/sfw/lib(/64), this is fine until you
-	# do 64-bits compilation
-	[[ $CHOST == *-solaris* ]] && myconf="${myconf} --without-ssl"
 
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
