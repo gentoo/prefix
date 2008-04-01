@@ -1,6 +1,10 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.561 2008/03/30 14:49:59 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.562 2008/03/30 19:37:31 zzam Exp $
+
+  30 Mar 2008; Matthias Schwarzott <zzam@gentoo.org>
+  mplayer-1.0_rc2_p26300-r1.ebuild:
+  Fix the hack for USE="-quicktime win32codecs", Bug #213836.
 
 *mplayer-1.0_rc2_p26300-r1 (30 Mar 2008)
 
