@@ -1,6 +1,12 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.19 2008/03/23 15:43:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.20 2008/03/30 21:06:20 compnerd Exp $
+
+*rarian-0.8.0-r1 (30 Mar 2008)
+
+  30 Mar 2008; Saleem Abdulrasool <compnerd@gentoo.org>
+  +files/rarian-0.8.0-info-segfault.patch, +rarian-0.8.0-r1.ebuild:
+  Revbump with a patch to fix a segfault
 
 *rarian-0.8.0 (23 Mar 2008)
 
