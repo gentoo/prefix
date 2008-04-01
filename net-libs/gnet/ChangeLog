@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnet
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.56 2008/03/29 12:04:30 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.57 2008/03/30 23:09:14 coldwind Exp $
+
+  30 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> gnet-2.0.7-r1.ebuild:
+  amd64 stable wrt bug #214763
 
 *gnet-2.0.8 (29 Mar 2008)
 
