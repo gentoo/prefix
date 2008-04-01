@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.232 2008/03/28 23:11:01 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.233 2008/03/30 23:57:24 robbat2 Exp $
+
+  30 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
+  sun-jdk-1.5.0.15-r1.ebuild:
+  Force mtime to change to try and resolve bug #215288.
 
   28 Mar 2008; Vlastimil Babka <caster@gentoo.org>
   sun-jdk-1.5.0.15-r1.ebuild, sun-jdk-1.6.0.05-r1.ebuild:
