@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Test-Harness
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Harness/ChangeLog,v 1.27 2007/12/29 10:23:59 welp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Harness/ChangeLog,v 1.28 2008/03/31 17:13:15 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org>
+  perl-Test-Harness-2.64.ebuild:
+  Stable for HPPA too.
 
   29 Dec 2007; <welp@gentoo.org> perl-Test-Harness-2.64.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
