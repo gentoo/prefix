@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.0.ebuild,v 1.1 2008/03/30 03:37:36 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.0.ebuild,v 1.2 2008/03/31 20:59:49 rbrown Exp $
 
 EAPI="prefix"
 
@@ -61,29 +61,24 @@ src_install() {
 
 	${RUBY} setup.rb $myconf --prefix="${D}" || die "setup.rb install failed"
 
-	dosym /usr/bin/gem18 /usr/bin/gem || die "dosym gem failed"
+	dosym gem18 /usr/bin/gem || die "dosym gem failed"
 
-	#This is used to update rubygems, do not want.
-	rm "${ED}/usr/bin/update_rubygems18"
-
-	dodoc README
+	dodoc README || die "dodoc README failed"
 	if use examples; then
-		cp -pPR examples "${ED}/usr/share/doc/${PF}"
+		cp -pPR examples "${ED}/usr/share/doc/${PF}" || die "cp examples failed"
 	fi
 
-	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
-	keepdir /usr/$(get_libdir)/ruby/gems/$ver/doc
-	doenvd "${FILESDIR}/10rubygems"
+	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
+	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
 
 	if use server; then
-		newinitd "${FILESDIR}/init.d-gem_server" gem_server
-		newconfd "${FILESDIR}/conf.d-gem_server" gem_server
+		newinitd "${FILESDIR}/init.d-gem_server" gem_server || die "newinitd failed"
+		newconfd "${FILESDIR}/conf.d-gem_server" gem_server || die "newconfd failed"
 	fi
 }
 
 pkg_postinst()
 {
-	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 	SOURCE_CACHE="${EPREFIX}/usr/$(get_libdir)/ruby/gems/$ver/source_cache"
 	if [[ -e "${SOURCE_CACHE}" ]]; then
 		rm "${SOURCE_CACHE}"

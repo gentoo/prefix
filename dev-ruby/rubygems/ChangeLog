@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.87 2008/03/30 03:37:36 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.88 2008/03/31 20:59:49 rbrown Exp $
+
+  31 Mar 2008; Richard Brown <rbrown@gentoo.org> rubygems-1.1.0.ebuild:
+  Incorporate suggestions from Message-ID:
+  <20080330053631.GB24954@comet.had1.or.comcast.net>
 
 *rubygems-1.1.0 (30 Mar 2008)
 
