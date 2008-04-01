@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.177 2008/03/20 23:20:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.178 2008/03/31 04:21:28 ricmm Exp $
+
+  31 Mar 2008; <ricmm@gentoo.org> pygtk-2.10.6.ebuild:
+  Drop to ~mips due to unstable deps
 
   20 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> pygtk-2.12.1.ebuild:
   remove useless doc installation, fix bug #205676 again
