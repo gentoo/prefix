@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/iputils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.71 2008/03/29 21:44:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.72 2008/03/31 00:25:52 swegener Exp $
+
+  31 Mar 2008; Sven Wegener <swegener@gentoo.org> iputils-20071127.ebuild:
+  Use mirror://gentoo/ for the manpages.
 
   29 Mar 2008; Raúl Porcel <armin76@gentoo.org> iputils-20071127.ebuild:
   alpha/ia64/sparc stable wrt #214734
