@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.195 2008/03/12 23:46:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.196 2008/03/31 04:34:35 ricmm Exp $
+
+  31 Mar 2008; <ricmm@gentoo.org> vte-0.16.8.ebuild:
+  Drop to ~mips due to unstable deps
 
 *vte-0.16.13 (12 Mar 2008)
 
