@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1266 2008/03/29 21:55:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1271 2008/03/31 14:55:33 flameeyes Exp $
+
+  31 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask new openrc-needing ebuild, drop old mask.
+
+  31 Mar 2008; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  thirdpartymirrors:
+  Added rubyforge mirrors
+
+  31 Mar 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masked >=sci-electronics/gwave-20070514.
+
+  31 Mar 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  removing mask on gtk-engines-mist, package has been removed from portage
+
+  30 Mar 2008; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added smp local USE flag for media-plugins/gimp-greycstoration.
 
   29 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   adding gnome-mag and dasher to gnome 2.22 mask

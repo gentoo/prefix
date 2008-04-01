@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8444 2008/03/29 21:55:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8449 2008/03/31 14:55:33 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,20 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Denis Dupeyron <calchan@gentoo.org> (31 Mar 2008)
+# New versions using guile-1.8 and gtk-2 used to build and run at some point,
+# but not anymore. If you know how or want to fix this feel free to contact
+# me. Warning: dependency hell.
+>=sci-electronics/gwave-20070514
+
+# Raúl Porcel <armin76@gentoo.org> (31 Mar 2008)
+# For treecleaners, removal in 7 days, bug #213754
+app-misc/pastemecli
+
+# Hanno Boeck <hanno@gentoo.org> (31 Mar 2008)
+# As 1.3.3.x became a stable series and 1.3.4 has crash issues, mask it for now.
+=app-office/scribus-1.3.4-r1
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (29 Mar 2008
 # masked depend on bug #214740, wait for unmask depend ffmpeg version
@@ -419,12 +433,6 @@ net-ftp/nvemftp
 # First public test releases of portage-2.2
 >=sys-apps/portage-2.2_alpha
 
-# Raúl Porcel <armin76@gentoo.org> (08 Feb 2008)
-# Removal for treecleaners in 60 days
-# Will be removed 08 Apr 2008
-# Bug 205482, many bugs, dead upstream
-net-ftp/swiftfxp
-
 # Bernard Cafarelli <voyageur@gentoo.org> (07 Feb 2008)
 # Masked for removal in 30 days. Does not work, needs patching,
 # dead upstream, last release in 2002 (bug #150670)
@@ -442,21 +450,6 @@ x11-misc/ASFiles
 # This package has been pretty much broken since 3.5.6.
 # cf. bug 164027
 >=kde-base/pykde-3.5.6
-
-# Raúl Porcel <armin76@gentoo.org> (04 Feb 2008)
-# Masked for removal in 60 days. That is, 04 Apr 2008
-# For treecleaners,
-# doesn't compile, last release in 2002,
-# bug #152044
-dev-libs/tinyq
-# Various bugs, upstream dead, gtk-1, last release 2003
-# bug 205481
-net-ftp/gtkfxp
-# Last release 2003, unfixable, doesn't compile
-# bug #193415
-app-admin/ctcs
-# Doesn't compile, useless, bug #152493
-net-libs/libhttpd-persistent
 
 # Michael Sterrett <mr_bones_@gentoo.org> (02 Feb 2008)
 # needs a version of media-sound/audacious which is no
@@ -510,10 +503,6 @@ sys-apps/rlocate
 # Support library for old versions of syslog-ng
 # No longer needed.  Removal in 30 days.
 dev-libs/libol
-
-# Rémi Cardona <remi@gentoo.org> (25 Jan 2008)
-# Masked for removal, seems to have been broken for ages
-x11-themes/gtk-engines-mist
 
 # Krzysiek Pawlik <nelchael@gentoo.org> (25 Jan 2008)
 # Masked for removal, please use tuxonice-sources.
@@ -1050,9 +1039,8 @@ dev-lang/ghc-bin
 # needs baselayout-2, wait masked here till that's available.
 # Note: the init script might change without warning while
 # the ebuild is masked.
-=media-sound/pulseaudio-0.9.9-r2
-# When 0.9.10 is released this has to be removed.
->=media-sound/pulseaudio-0.9.9-r50
+# When 0.9.11 is released this has to be removed.
+>=media-sound/pulseaudio-0.9.10-r50
 
 # Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
 # masked for security reasons, bug 189172, removal scheduled for beginning of
