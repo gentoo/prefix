@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/fastjar-0.95.ebuild,v 1.5 2008/03/28 15:53:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/fastjar-0.95.ebuild,v 1.7 2008/03/31 22:02:38 maekke Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,6 @@ RDEPEND="!<=dev-java/kaffe-1.1.7-r5"
 DEPEND=""
 
 src_install() {
-	emake DESTDIR=${D} install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO || die
 }
