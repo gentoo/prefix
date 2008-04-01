@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/perl-libnet-1.21.ebuild,v 1.9 2008/03/27 22:02:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/perl-libnet-1.21.ebuild,v 1.10 2008/03/31 17:18:13 jer Exp $
 
 EAPI="prefix"
 
