@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xstream
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.14 2008/03/08 13:00:39 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.15 2008/03/30 17:18:52 corsair Exp $
+
+  30 Mar 2008; Markus Rothe <corsair@gentoo.org> xstream-1.2-r1.ebuild:
+  Added ~ppc64
 
   08 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org> xstream-1.2-r1.ebuild:
   Stable on ppc, see bug #211286.
