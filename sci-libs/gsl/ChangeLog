@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.42 2008/01/09 16:15:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.43 2008/03/31 09:51:36 bicatali Exp $
+
+*gsl-1.11 (31 Mar 2008)
+
+  31 Mar 2008; Sébastien Fabbro <bicatali@gentoo.org> -gsl-1.8.ebuild,
+  +gsl-1.11.ebuild:
+  Version bump. Removed icc test since it now compiles and tests are fine
 
   09 Jan 2008; Jeroen Roovers <jer@gentoo.org> gsl-1.9-r1.ebuild,
   gsl-1.10.ebuild:
