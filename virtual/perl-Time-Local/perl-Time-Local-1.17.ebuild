@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/perl-Time-Local-1.17.ebuild,v 1.8 2007/10/15 15:08:08 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/perl-Time-Local-1.17.ebuild,v 1.9 2008/03/31 17:17:30 jer Exp $
 
 EAPI="prefix"
 

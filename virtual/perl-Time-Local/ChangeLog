@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-Time-Local
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/ChangeLog,v 1.25 2007/10/15 15:08:08 corsair Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/ChangeLog,v 1.26 2008/03/31 17:17:30 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org> perl-Time-Local-1.17.ebuild:
+  Stable for HPPA too.
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org>
   perl-Time-Local-1.17.ebuild:
