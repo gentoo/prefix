@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.8.7-r2.ebuild,v 1.3 2007/11/04 03:33:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.8.7-r2.ebuild,v 1.4 2008/03/30 23:19:53 ricmm Exp $
 
 EAPI="prefix"
 
