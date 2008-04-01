@@ -145,3 +145,8 @@ dev-java/kaffe
 # dies with "exhausted memory" errors on Darwin, doesn't understand
 # arguments on Solaris.  Probably more problems...
 =dev-util/cvs-1.12.12*
+
+
+# These masks are because the packages need root access to run, even
+# though they compile fine
+net-analyzer/mtr
