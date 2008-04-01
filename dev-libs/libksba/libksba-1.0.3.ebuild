@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.3.ebuild,v 1.5 2008/03/24 10:55:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.3.ebuild,v 1.6 2008/03/31 03:26:29 jer Exp $
 
 EAPI="prefix"
 
