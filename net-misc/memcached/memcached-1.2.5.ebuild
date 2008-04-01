@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.2.4.ebuild,v 1.5 2008/03/31 12:29:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.2.5.ebuild,v 1.2 2008/03/31 12:16:58 caleb Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-maco
 IUSE="nptl test"
 
 RDEPEND=">=dev-libs/libevent-0.6
-		dev-lang/perl"
+		 dev-lang/perl"
 DEPEND="${RDEPEND}
 		test? ( virtual/perl-Test-Harness >=dev-perl/Cache-Memcached-1.24 )"
 
@@ -43,8 +43,8 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/{CONTRIBUTORS,*.txt}
 
-	newconfd "${FILESDIR}"/1.2.4/conf memcached
-	newinitd "${FILESDIR}"/1.2.4/init memcached
+	newconfd "${FILESDIR}"/1.2.5/conf memcached
+	newinitd "${FILESDIR}"/1.2.5/init memcached
 }
 
 pkg_postinst() {

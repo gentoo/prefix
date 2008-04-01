@@ -1,6 +1,28 @@
 # ChangeLog for net-misc/memcached
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.59 2008/02/22 18:39:02 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.64 2008/03/31 12:29:22 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org> memcached-1.2.4.ebuild:
+  Stable for HPPA (bug #215561).
+
+  31 Mar 2008; Caleb Tennis <caleb@gentoo.org> +files/1.2.5/conf,
+  +files/1.2.5/init, memcached-1.2.5.ebuild:
+  Fix directory structure
+
+  31 Mar 2008; Caleb Tennis <caleb@gentoo.org> memcached-1.2.4.ebuild:
+  stable on amd64
+
+  31 Mar 2008; Caleb Tennis <caleb@gentoo.org> -memcached-1.1.11.ebuild,
+  -memcached-1.1.12.ebuild, -memcached-1.1.12-r1.ebuild,
+  -memcached-1.1.12-r3.ebuild, -memcached-1.1.13_pre.ebuild,
+  -memcached-1.2.1.ebuild, -memcached-1.2.2-r2.ebuild:
+  remove older ebuilds
+
+*memcached-1.2.5 (31 Mar 2008)
+
+  31 Mar 2008; Caleb Tennis <caleb@gentoo.org> memcached-1.2.4.ebuild,
+  +memcached-1.2.5.ebuild:
+  bump to 1.2.5
 
   22 Feb 2008; Robin H. Johnson <robbat2@gentoo.org> memcached-1.2.4.ebuild:
   Cache::Memcached is only used for some testcases in 1.2.4, so move it under
