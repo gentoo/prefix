@@ -1,14 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r1.ebuild,v 1.7 2008/01/26 11:05:34 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r2.ebuild,v 1.1 2008/03/31 19:45:24 maekke Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="compressor for black-and-white images, in particular scanned documents"
-HOMEPAGE="http://www.cs.waikato.ac.nz/~singlis/"
-SRC_URI="http://www.cs.waikato.ac.nz/~singlis/${P}.tar.gz"
+HOMEPAGE="http://membled.com/work/mirror/tic98/"
+SRC_URI="http://membled.com/work/mirror/tic98/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,4 +34,7 @@ src_compile() {
 src_install() {
 	dodir /usr/bin
 	emake BIN="${ED}"usr/bin install || die
+
+	# collision with media-gfx/netpbm, see bug #207534
+	rm "${ED}"/usr/bin/pbmclean || die
 }
