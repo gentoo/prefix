@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Scalar-List-Utils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/ChangeLog,v 1.20 2007/12/29 10:13:55 welp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/ChangeLog,v 1.21 2008/03/31 17:09:27 jer Exp $
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org>
+  perl-Scalar-List-Utils-1.19.ebuild:
+  Stable for HPPA too.
 
   29 Dec 2007; <welp@gentoo.org> perl-Scalar-List-Utils-1.18.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
