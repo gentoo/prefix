@@ -340,7 +340,11 @@ switch_profile() {
 			multiarg=${multilib#*;}
 			multiarg=${multiarg/@/-}
 			multilibdir=${multilib%;*}
-			libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
+			# in Prefix we don't do multilib, and this below results in
+			# getting a subdir for your 64-bits targets which breaks
+			# things badly...
+			#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
+			libdir="lib"
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
 					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* 2>/dev/null) ]]; then
