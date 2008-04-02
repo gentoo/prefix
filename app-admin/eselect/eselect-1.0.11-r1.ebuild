@@ -28,7 +28,9 @@ RDEPEND="sys-apps/sed
 
 src_unpack() {
 	unpack ${A}
+
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-fix-paludis-command.patch"
 
 	epatch "${FILESDIR}/${PN}-no-pgrep.patch"
 
@@ -41,13 +43,6 @@ src_unpack() {
 }
 
 PDEPEND="vim-syntax? ( app-vim/eselect-syntax )"
-
-src_unpack() {
-	unpack ${A}
-
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-fix-paludis-command.patch"
-}
 
 src_compile() {
 	econf || die "econf failed"
