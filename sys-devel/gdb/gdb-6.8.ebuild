@@ -24,7 +24,7 @@ LICENSE="GPL-2 LGPL-2"
 [[ ${CTARGET} != ${CHOST} ]] \
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="multitarget nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
@@ -38,6 +38,7 @@ src_unpack() {
 	cd "${S}"
 	use vanilla || EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	epatch "${FILESDIR}"/${PN}-6.7.1-solaris.patch
+	epatch "${FILESDIR}"/${P}-solaris64.patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
