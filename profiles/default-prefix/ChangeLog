@@ -2,7 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  01 Apr 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
+  02 Apr 2008; Fabian Groffen <grobian@gentoo.org> packages:
+  Add sys-apps/baselayout-prefix to packages, since the base profile now adds
+  sys-apps/baselayout which don't have/use
+
+  01 Apr 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Create a mask entry for root-requiring packages, initially with
   net-analyzer/mtr
 

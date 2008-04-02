@@ -14,6 +14,7 @@
 # This file removes everything from the base profile which is not
 # necessary/desired in a prefix environment.
 
+-*sys-apps/baselayout
 -*net-misc/iputils
 -*sys-apps/kbd
 -*sys-apps/net-tools
@@ -23,6 +24,9 @@
 -*sys-fs/e2fsprogs
 -*virtual/dev-manager
 -*virtual/modutils
+
+# add back prefix baselayout
+*sys-apps/baselayout-prefix
 
 # we don't want binutils everywhere, only in linux and solaris
 -*sys-devel/binutils
