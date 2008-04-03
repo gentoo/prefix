@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3460 2008/03/30 21:10:30 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3462 2008/04/01 23:48:04 dirtyepic Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -65,7 +65,7 @@ app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
 app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
-app-crypt/gpgme:pth - build pth enabled library
+app-crypt/gpgme:pth - Enable support for GNU Portable Threads multithreading library
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:applet - Enable panel applet
@@ -525,7 +525,7 @@ dev-lisp/sbcl:ldb - include support for the SBCL low level debugger
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
 dev-ml/lablgtk:sourceview - Enable GtkSourceView support
-dev-ml/ocamlnet:httpd - Enables nethttpd web server component 
+dev-ml/ocamlnet:httpd - Enables nethttpd web server component
 dev-perl/Eidetic:auth - Enables Apache-AuthTicket based cookie authentication
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/HTML-Mason:modperl - Enable modperl support
@@ -669,7 +669,7 @@ games-emulation/xmame:net - Add network support
 games-emulation/xmess:net - Add network support
 games-emulation/zsnes:custom-cflags - Enables custom cflags (not supported)
 games-engines/scummvm:fluidsynth - compile with support for fluidsynth
-games-fps/alephone:smpeg - Enables use of smpeg 
+games-fps/alephone:smpeg - Enables use of smpeg
 games-fps/darkplaces:cdsound - Enables using CD audio in the engine
 games-fps/darkplaces:demo - Uses the demo data from quake1 (quake1-demodata)
 games-fps/darkplaces:dpmod - Sets up the darkplaces mod from icculus
@@ -1001,7 +1001,7 @@ media-plugins/mythdvd:transcode - Enable DVD ripping and transcoding
 media-plugins/mythmusic:libvisual - Enables libvisual support for effects
 media-plugins/mythphone:festival - Enable festival support
 media-plugins/vdr-burn:projectx - Enables support fur projectx
-media-plugins/vdr-dvdconvert:projectx - Enables support for projectx 
+media-plugins/vdr-dvdconvert:projectx - Enables support for projectx
 media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
 media-plugins/vdr-music:4mb-mod - Enables support for modded FF-Card to 4MB ram or softdecoder
 media-plugins/vdr-music:ff-card - Enables scrollmode on FF Card
@@ -1087,6 +1087,8 @@ media-sound/rhythmbox:mtp - Enable support for MTP devices
 media-sound/rhythmbox:tagwriting - support for tag writing in certain audio files
 media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper
+media-sound/rubyripper:normalize - Add support for normalizing audio file volume levels
+media-sound/rubyripper:wav - Add support for wavegain
 media-sound/slimserver:alac - Enable support for alac
 media-sound/sonata:lyrics - Support for lyrics fetching
 media-sound/sonic-visualiser:id3tag - Enables ID3 tagging with id3tag library
@@ -1169,7 +1171,7 @@ media-video/avidemux:amrnb - Enable Narrow Band Adaptive Multi-Rate Audio suppor
 media-video/chaplin:transcode - Enable DVD ripping and transcoding
 media-video/cinepaint:gimpprint - Enable support for gimp-print (gutenprint)
 media-video/devede:psyco - psyco python accelerator
-media-video/dvd-slideshow:themes - Install theme pack 
+media-video/dvd-slideshow:themes - Install theme pack
 media-video/dvdrip:fping - Enables fping support for cluster rendering
 media-video/dvdrip:subtitles - Enables support for subtitle ripping
 media-video/dxr3player:3dnowext - Enable 3dnowext cpu instructions
@@ -1800,7 +1802,7 @@ sci-geosciences/mapserver:agg - Enables agg library support
 sci-geosciences/mapserver:flash - Adds support for creating SWF files using Ming
 sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
-sci-geosciences/mapserver:postgis - Enables postgis support 
+sci-geosciences/mapserver:postgis - Enables postgis support
 sci-geosciences/mapserver:proj - Enables proj library support (geographic projections)
 sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs ifc or gfortran >= 4.2)
@@ -2135,7 +2137,7 @@ x11-base/kdrive:type1 - Enables Type1 font support
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
 x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
-x11-drivers/linuxwacom:module - Build kernel module for linuxwacom 
+x11-drivers/linuxwacom:module - Build kernel module for linuxwacom
 x11-drivers/nvidia-drivers:custom-cflags - Build with CFLAGS from /etc/make.conf (unsupported)
 x11-libs/cairo:glitz - Build with glitz support
 x11-libs/cairo:opengl - When used along with USE=glitz, enables glitz-glx usage. Requires hardware opengl support
