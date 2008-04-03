@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Apr 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask openssh-4.9_p1 since it doesn't compile at least on Solaris
+
   02 Apr 2008; Fabian Groffen <grobian@gentoo.org> packages:
   Add sys-apps/baselayout-prefix to packages, since the base profile now adds
   sys-apps/baselayout which don't have/use
