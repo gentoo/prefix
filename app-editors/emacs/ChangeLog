@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.234 2008/03/28 06:29:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.235 2008/04/01 11:43:24 ulm Exp $
+
+  01 Apr 2008; Ulrich Mueller <ulm@gentoo.org> emacs-22.2.ebuild:
+  Explicitely depend on mit-krb5 instead of virtual/kerberos, bug 215558.
 
   28 Mar 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild,
   emacs-22.1-r3.ebuild, emacs-22.2.ebuild:
