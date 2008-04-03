@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.1.ebuild,v 1.1 2008/03/11 03:27:20 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.2.ebuild,v 1.1 2008/04/02 19:18:04 leio Exp $
 
 EAPI="prefix"
 
-inherit gnome.org libtool eutils flag-o-matic multilib
+inherit gnome.org libtool eutils flag-o-matic multilib autotools
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -56,7 +56,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
 	# add support for reading file systems on interix.
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
