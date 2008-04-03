@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.0.ebuild,v 1.2 2008/04/02 14:25:52 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.1.ebuild,v 1.2 2008/04/02 14:25:52 dang Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit virtualx eutils gnome2
 
 DESCRIPTION="A file manager for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/projects/nautilus/"
-SRC_URI="${SRC_URI} http://dev.gentoo.org/~leio/distfiles/${P}-gentoo-patchset.tar.bz2"
+SRC_URI="${SRC_URI} http://dev.gentoo.org/~leio/distfiles/${PN}-2.22.0-gentoo-patchset.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
@@ -50,12 +50,13 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 
-	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
+	# Disable compilation with esound
+	epatch "${WORKDIR}/patches/13-no-esound.patch"
 }
 
 src_test() {
 	addwrite "/root/.gnome2_private"
-	Xmake check || die "Test phase failed"
+	Xemake check || die "Test phase failed"
 }
 
 pkg_postinst() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.20.0-r1.ebuild,v 1.8 2008/02/18 23:53:35 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.20.0-r1.ebuild,v 1.9 2008/04/02 14:25:52 dang Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ RDEPEND=">=media-libs/libart_lgpl-2.3.10
 	>=media-libs/libexif-0.5.12
 	>=gnome-base/gconf-2
 	media-libs/audiofile
-	beagle? ( >=app-misc/beagle-0.0.12 )
+	beagle? ( =app-misc/beagle-0.2* )
 	x86? ( tracker? ( >=app-misc/tracker-0.0.1 ) )
 	x11-libs/libICE
 	x11-libs/libSM
