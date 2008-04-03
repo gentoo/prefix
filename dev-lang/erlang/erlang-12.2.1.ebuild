@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.1.ebuild,v 1.8 2008/03/31 07:00:10 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.1.ebuild,v 1.9 2008/04/01 18:16:44 opfer Exp $
 
 EAPI="prefix"
 
@@ -46,8 +46,6 @@ pkg_setup() {
 	if use ssl; then
 		if is-ldflag --as-needed || is-flag --as-needed; then
 			eerror "Don't use --as-needed in your LDFLAGS or CFLAGS for SSL support, this will fail."
-			eerror "Emerge with"
-			eerror "      LDFLAGS=\"\" emerge ${PN}"
 			die
 		fi
 	fi
