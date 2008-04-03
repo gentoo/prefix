@@ -75,6 +75,7 @@ src_compile() {
 		--with-tcl="${EPREFIX}"/usr/${mylibdir} \
 		$(use_enable threads) \
 		$(use_enable aqua) \
+		$(use_enable !aqua x) \
 		$(use_enable debug symbols) || die
 
 	emake || die
