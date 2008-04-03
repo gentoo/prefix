@@ -1,6 +1,11 @@
 # ChangeLog for dev-ml/findlib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.36 2008/03/10 15:06:44 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.37 2008/04/01 18:19:34 aballier Exp $
+
+  01 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/findlib-1.1.2_p1-sandbox.patch, -findlib-1.0.4-r1.ebuild,
+  -findlib-1.1.2_p1.ebuild:
+  remove old
 
   10 Mar 2008; Steve Dibb <beandog@gentoo.org> findlib-1.2.1.ebuild:
   amd64 stable, bug 211966
