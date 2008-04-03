@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.49 2008/03/13 20:01:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.50 2008/04/01 22:38:18 opfer Exp $
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  texlive-core-2007-r12.ebuild:
+  stable x86, bug 215735
 
   13 Mar 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r12.ebuild:
