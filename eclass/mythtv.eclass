@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.12 2008/03/06 20:43:16 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.13 2008/04/01 04:05:02 cardoe Exp $
 #
 # @ECLASS: mythtv.eclass
 # @MAINTAINER: Doug Goldstein <cardoe@gentoo.org>
@@ -16,6 +16,7 @@ MY_PV="${PV%_*}"
 case "${PN}" in
 	       mythtv) MY_PN="mythtv";;
 	mythtv-themes) MY_PN="myththemes";;
+	mythtv-themes-extra) MY_PN="themes";;
 	            *) MY_PN="mythplugins";;
 esac
 
