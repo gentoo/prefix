@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/tnftp
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.27 2008/03/31 09:27:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.28 2008/04/03 01:35:38 ranger Exp $
+
+  03 Apr 2008; Brent Baude <ranger@gentoo.org> tnftp-20070806.ebuild:
+  stable ppc, bug 215491
 
   31 Mar 2008; Raúl Porcel <armin76@gentoo.org> tnftp-20070806.ebuild:
   alpha/sparc/x86 stable wrt #215491
