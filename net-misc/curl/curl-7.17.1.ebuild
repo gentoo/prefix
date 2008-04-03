@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.6 2008/02/10 09:12:28 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.7 2008/04/01 13:46:49 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -58,8 +58,9 @@ src_compile() {
 	}
 
 	myconf="$(use_enable ldap)
+		$(use_enable ldap ldaps)
 		$(use_with idn libidn)
-		$(use_enable kerberos gssapi)
+		$(use_with kerberos gssapi)
 		$(use_enable ipv6)
 		--enable-http
 		--enable-ftp
@@ -77,6 +78,10 @@ src_compile() {
 		--without-libssh2
 		--without-spnego"
 #		$(use_with libssh2)
+
+	if use ldap && use kerberos; then
+		die 'ldap and kerberos (gssapi) not playing nicely try version >=7.18.1'
+	fi
 
 	if use ipv6 && use ares; then
 		elog "c-ares support disabled because it is incompatible with ipv6."
@@ -97,6 +102,18 @@ src_compile() {
 
 	econf ${myconf} || die 'configure failed'
 	emake || die "install failed for current version"
+}
+
+src_test() {
+	if use gnutls; then
+		elog 'disabling test 405 ftps as gnutls does differing return codes'
+		elog 'that the test case does not allow for. '
+		elog 'https://bugs.gentoo.org/show_bug.cgi?id=204130 refers'
+		cd "${S}"/tests
+		./runtests.pl -a -s '!405' || die 'self test failed'
+	else
+		make check || die 'self test failed'
+	fi
 }
 
 src_install() {
