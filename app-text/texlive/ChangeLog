@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.31 2008/03/02 11:43:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.32 2008/04/01 22:39:52 opfer Exp $
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  texlive-2007-r3.ebuild:
+  stable x86, bug 215735
 
   02 Mar 2008; Alexis Ballier <aballier@gentoo.org> texlive-2007-r3.ebuild:
   Add more modularity: tex4ht and jadetex split out of xml
