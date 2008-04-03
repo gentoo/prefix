@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.161 2008/03/29 15:24:54 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.162 2008/04/01 15:53:50 pebenito Exp $
+
+  01 Apr 2008; Chris PeBenito <pebenito@gentoo.org>
+  files/findutils-4.3.12-selinux.diff:
+  Remove cruft from selinux patch.
 
   29 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   findutils-4.3.13.ebuild:
