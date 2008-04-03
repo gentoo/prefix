@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.4.ebuild,v 1.1 2007/10/28 17:07:50 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.4.ebuild,v 1.2 2008/04/01 22:20:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ DEPEND="app-arch/unzip
 		>=media-libs/sdl-mixer-1.2.4
 		media-libs/sdl-net
 		>=media-libs/sdl-image-1.2.2
+		media-libs/smpeg
 	)"
 
 src_unpack() {
