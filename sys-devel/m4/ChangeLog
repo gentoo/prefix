@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.108 2008/03/30 12:35:13 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.109 2008/04/02 20:32:17 vapier Exp $
+
+*m4-1.4.11 (02 Apr 2008)
+
+  02 Apr 2008; Mike Frysinger <vapier@gentoo.org> +m4-1.4.11.ebuild:
+  Version bump.
 
   30 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> m4-1.4.10-r1.ebuild:
   amd64 stable wrt bug #215348
