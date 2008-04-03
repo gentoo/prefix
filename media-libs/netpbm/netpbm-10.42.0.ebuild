@@ -86,6 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 	epatch "${FILESDIR}"/netpbm-10.42.0-gcc43.patch #211296
 
+	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
