@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-latexextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.10 2008/02/10 15:53:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.11 2008/04/01 22:58:36 opfer Exp $
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  texlive-latexextra-2007.ebuild:
+  stable x86, bug 215735
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-latexextra-2007.ebuild:
