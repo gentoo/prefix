@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/pgf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.41 2008/03/15 23:03:28 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.42 2008/04/01 18:25:40 aballier Exp $
+
+  01 Apr 2008; Alexis Ballier <aballier@gentoo.org> -pgf-0.64-r1.ebuild:
+  remove old
 
   15 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> pgf-1.18.ebuild:
   amd64 stable wrt bug #209461
