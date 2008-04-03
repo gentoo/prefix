@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.1 2008/03/24 00:22:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.2 2008/04/02 20:01:52 armin76 Exp $
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> libgweather-2.22.0.ebuild:
+  Add ~alpha/~ia64/~sparc
 
 *libgweather-2.22.0 (24 Mar 2008)
 
