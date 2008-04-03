@@ -1,6 +1,16 @@
 # ChangeLog for app-arch/lzop
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.20 2007/02/21 19:55:32 peper Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.23 2008/04/03 01:43:24 ranger Exp $
+
+  03 Apr 2008; Brent Baude <ranger@gentoo.org> lzop-1.02_rc1-r1.ebuild:
+  stable ppc, bug 214971
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> lzop-1.02_rc1-r1.ebuild:
+  ia64/sparc stable wrt #214971
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  lzop-1.02_rc1-r1.ebuild:
+  stable x86, bug 214971
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
