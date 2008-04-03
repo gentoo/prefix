@@ -1,6 +1,48 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.294 2008/03/30 09:33:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.304 2008/04/02 21:01:28 vapier Exp $
+
+  02 Apr 2008; Mike Frysinger <vapier@gentoo.org> openssh-4.9_p1-r1.ebuild:
+  Drop unnecessary USE=chroot #215820 by Cybertinus.
+
+  02 Apr 2008; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1-r6.ebuild:
+  Stable for HPPA (bug #215702).
+
+  02 Apr 2008; Markus Rothe <corsair@gentoo.org> openssh-4.7_p1-r6.ebuild:
+  Stable on ppc64; bug #215702
+
+*openssh-4.9_p1-r1 (02 Apr 2008)
+
+  02 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.9_p1-x509-hpn-glue.patch, -openssh-4.9_p1.ebuild,
+  +openssh-4.9_p1-r1.ebuild:
+  Add updated X509/hpn patches.
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1-r6.ebuild:
+  alpha/ia64/sparc stable wrt security #215702
+
+  02 Apr 2008; Richard Freeman <rich0@gentoo.org> openssh-4.7_p1-r6.ebuild:
+  amd64 stable - 215702
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  openssh-4.7_p1-r6.ebuild:
+  stable x86, security bug 215702
+
+*openssh-4.7_p1-r6 (01 Apr 2008)
+
+  01 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.7_p1-ForceCommand.patch, +openssh-4.7_p1-r6.ebuild:
+  Fix for ForceCommand bypass #215702.
+
+*openssh-4.9_p1 (01 Apr 2008)
+
+  01 Apr 2008; Mike Frysinger <vapier@gentoo.org> +openssh-4.9_p1.ebuild:
+  Version bump.
+
+  01 Apr 2008; Chris PeBenito <pebenito@gentoo.org>
+  +files/openssh-4.7p1-selinux.diff, openssh-4.7_p1-r5.ebuild,
+  openssh-4.7_p1-r20.ebuild:
+  fix bug #191665, in selinux portion of configure script.
 
   30 Mar 2008; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1-r5.ebuild:
   alpha/ia64/sparc stable wrt security #214985
