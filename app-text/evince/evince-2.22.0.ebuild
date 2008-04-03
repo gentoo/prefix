@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.0.ebuild,v 1.1 2008/03/27 23:10:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.0.ebuild,v 1.2 2008/04/02 15:02:25 dang Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
 	>=sys-devel/automake-1.9
 	>=dev-util/intltool-0.35
+	dev-util/gtk-doc-am
 	doc? ( dev-util/gtk-doc )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
@@ -73,8 +74,6 @@ src_unpack() {
 
 	# Make dbus actually switchable
 	epatch "${FILESDIR}"/${PN}-0.6.1-dbus-switch.patch
-
-	use doc || epatch "${FILESDIR}/${PN}-2.22.0-gtk-doc-die-die-die.patch"
 
 	eautoreconf
 }
