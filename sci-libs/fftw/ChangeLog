@@ -1,6 +1,17 @@
 # ChangeLog for sci-libs/fftw
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.62 2007/10/26 13:40:02 markusle Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.63 2008/04/01 22:10:25 bicatali Exp $
+
+  01 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/fftw-2.1.5-configure.in.patch, -files/3-tmpfile.patch,
+  files/fftw-2.1.5-as-needed.patch, -files/fftw-3.0.1-altivec.patch,
+  -files/fftw-3.0.1-amd64.patch, +files/fftw-3.1.2-configure.ac.patch,
+  -files/fftw-altivec-headers.patch, metadata.xml, fftw-2.1.5-r3.ebuild,
+  -fftw-3.0.1-r2.ebuild, fftw-3.1.2.ebuild:
+  fftw-2.1.5-r3: Fix more as-needed stuff for mpi, added fortran use flag,
+  link more libs and headers, changed float use flag to single. fftw-3.1.2:
+  Added a configure.ac patch in hope of fixing bug #215269, added a fortran
+  use flag. Cleaning ebuilds and removed 3.0 version.
 
   26 Oct 2007; Markus Dittrich <markusle@gentoo.org> fftw-3.0.1-r2.ebuild:
   Added missing quotation marks.

@@ -1,30 +1,35 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.1.2.ebuild,v 1.11 2007/08/25 14:28:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.1.2.ebuild,v 1.12 2008/04/01 22:10:25 bicatali Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils toolchain-funcs autotools
+inherit flag-o-matic eutils toolchain-funcs autotools fortran
 
-DESCRIPTION="C subroutine library for computing the Discrete Fourier Transform (DFT)"
+DESCRIPTION="Fast C library for the Discrete Fourier Transform"
 HOMEPAGE="http://www.fftw.org/"
 SRC_URI="http://www.fftw.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3.0"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="altivec sse sse2 test"
+IUSE="altivec fortran sse sse2 test"
 
 DEPEND="test? ( dev-lang/perl )"
+
+pkg_setup() {
+	FORTRAN="gfortran ifc g77"
+	use fortran && fortran_pkg_setup
+}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
+	epatch "${FILESDIR}"/${P}-configure.ac.patch
 	# fix info file
 	sed -e 's/Texinfo documentation system/Libraries/' \
 		-i doc/fftw3.info || die "failed to fix info file"
-
+	AT_M4DIR=m4 eautoreconf
 	cd "${WORKDIR}"
 	mv ${P} ${P}-single
 	cp -pPR ${P}-single ${P}-double
@@ -35,7 +40,7 @@ src_compile() {
 	# filter -Os according to docs
 	replace-flags -Os -O2
 
-	local myconfcommon="--enable-shared --enable-threads"
+	local myconfcommon="--enable-shared --enable-threads $(use_enable fortran)"
 	local myconfsingle=""
 	local myconfdouble=""
 	local myconflongdouble=""
@@ -57,7 +62,7 @@ src_compile() {
 		--enable-float \
 		${myconfsingle} || \
 			die "./configure in single failed"
-	emake || die
+	emake || die "emake single failed"
 
 	#the only difference here is no --enable-float
 	cd "${S}-double"
@@ -65,7 +70,7 @@ src_compile() {
 		${myconfcommon} \
 		${myconfdouble} || \
 		die "./configure in double failed"
-	emake || die
+	emake || die "emake double failed"
 
 	#the only difference here is --enable-long-double
 	cd "${S}-longdouble"
@@ -74,26 +79,20 @@ src_compile() {
 		--enable-long-double \
 		${myconflongdouble} || \
 		die "./configure in long double failed"
-	emake || die
+	emake || die "emake long double failed"
 }
 
 src_install () {
-	#all builds are installed in the same place
-	#libs have distinuguished names; include files, docs etc. identical.
-	cd "${S}-single"
-	emake DESTDIR="${D}" install || die
-
-	cd "${S}-double"
-	emake DESTDIR="${D}" install || die
-
-	cd "${S}-longdouble"
-	emake DESTDIR="${D}" install || die
+	# all builds are installed in the same place
+	# libs have distinuguished names; include files, docs etc. identical.
+	for i in single double longdouble; do
+		cd "${S}-${i}"
+		emake DESTDIR="${D}" install || die "emake install for ${i} failed"
+	done
 
 	# Install documentation.
 	cd "${S}-single"
-
-	dodoc AUTHORS ChangeLog NEWS README TODO COPYRIGHT CONVENTIONS
-
+	dodoc AUTHORS ChangeLog NEWS README TODO COPYRIGHT CONVENTIONS || die
 	cd doc/html
 	dohtml -r .
 }

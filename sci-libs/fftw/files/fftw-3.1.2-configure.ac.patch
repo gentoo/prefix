@@ -1,0 +1,20 @@
+--- configure.ac.orig	2008-03-31 23:03:45.200210228 +0100
++++ configure.ac	2008-03-31 23:06:57.111081976 +0100
+@@ -135,7 +135,7 @@
+ AC_PROG_CC
+ AX_COMPILER_VENDOR
+ AC_PROG_CC_STDC
+-AMX_PROG_AS     dnl AM_PROG_AS breaks at least one version of libtool
++AM_PROG_AS
+ AC_PROG_INSTALL
+ AC_PROG_LN_S
+ AC_PROG_MAKE_SET
+@@ -229,6 +229,8 @@
+ fi
+ fi
+ AC_SUBST(SIMD_CFLAGS)
++# pass simd flags to preprocessor/compiler for proper intrinsics detection.
++CPPFLAGS="$CPPFLAGS $SIMD_CFLAGS"
+ 
+ dnl Checks for header files.
+ AC_HEADER_STDC
