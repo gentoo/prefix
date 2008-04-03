@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/tinc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/ChangeLog,v 1.14 2007/04/24 17:06:43 tove Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/ChangeLog,v 1.15 2008/04/01 14:08:44 dragonheart Exp $
+
+*tinc-1.0.8 (01 Apr 2008)
+
+  01 Apr 2008; Daniel Black <dragonheart@gentoo.org> +files/tinc.networks,
+  files/tincd, -tinc-1.0.5.ebuild, tinc-1.0.7.ebuild, +tinc-1.0.8.ebuild:
+  fix init script and add an example as per bug #211807 thanks to Sebastian
+  Droppelmann. added /etc/tinc directory as per bug #207113 thanks to Jens.
+  version bump as per bug #204016
 
 *tinc-1.0.7 (19 Apr 2007)
 

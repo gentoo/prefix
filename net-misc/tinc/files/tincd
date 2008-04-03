@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd,v 1.4 2007/04/19 08:45:08 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/files/tincd,v 1.5 2008/04/01 14:08:45 dragonheart Exp $
 
 opts="reload"
 
@@ -38,7 +38,7 @@ start() {
 stop() {
 	ebegin "Stopping tinc VPN networks"
 	eend 0
-	awk '^ *NETWORK:/{print $2}' /etc/conf.d/tinc.networks | while read TINCNET
+	awk '/^ *NETWORK:/ { print $2 }' /etc/conf.d/tinc.networks | while read TINCNET
 	do
 		if [ -f /var/run/tinc."$TINCNET".pid ]
 		then
@@ -52,7 +52,7 @@ stop() {
 reload() {
 	ebegin "Reloading configuration for tinc VPN networks"
 	eend 0
-	awk '^ *NETWORK:/{print $2}' /etc/conf.d/tinc.networks | while read TINCNET
+	awk '/^ *NETWORK:/ { print $2 }' /etc/conf.d/tinc.networks | while read TINCNET
 	do
 		if [ -f /var/run/tinc."$TINCNET".pid ]
 		then
