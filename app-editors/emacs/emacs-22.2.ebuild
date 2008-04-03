@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/emacs/${P}.tar.gz"
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm aqua"
 RESTRICT="strip"
 
 RDEPEND="!<app-editors/emacs-cvs-22.1
@@ -104,6 +104,10 @@ src_compile() {
 		myconf="${myconf} $(use_with sound)"
 	fi
 
+	if use X && use aqua; then
+		die "the X and aqua USE-flags cannot be used together, please use one"
+	fi
+
 	if use X; then
 		myconf="${myconf} --with-x"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
@@ -130,8 +134,14 @@ src_compile() {
 			myconf="${myconf} --with-x-toolkit=no"
 			myconf="${myconf} --without-gtk"
 		fi
+	elif use aqua; then
+		einfo "Configuring to build with Carbon support"
+		myconf="${myconf} --without-x"
+		myconf="${myconf} --with-carbon"
+		myconf="${myconf} --enable-carbon-app=${EPREFIX}/Applications/Gentoo"
 	else
 		myconf="${myconf} --without-x"
+		myconf="${myconf} --without-carbon"
 	fi
 
 	myconf="${myconf} $(use_with hesiod)"
@@ -140,7 +150,6 @@ src_compile() {
 	econf \
 		--program-suffix=-emacs-${SLOT} \
 		--infodir="${EPREFIX}"/usr/share/info/emacs-${SLOT} \
-		--without-carbon \
 		${myconf} || die "econf emacs failed"
 
 	emake CC="$(tc-getCC)" || die "emake failed"
@@ -196,6 +205,11 @@ src_install () {
 	fi
 
 	dodoc AUTHORS BUGS CONTRIBUTE README || die "dodoc failed"
+
+	if use carbon; then
+		einfo "Emacs.app is in $EPREFIX/Applications/Gentoo."
+		einfo "You may want to copy or symlink it into /Applications by yourself."
+	fi
 }
 
 emacs-infodir-rebuild() {
