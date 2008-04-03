@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.118 2008/03/26 23:38:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.119 2008/04/02 17:53:20 armin76 Exp $
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> -nss-3.12_beta2.ebuild,
+  nss-3.12_beta3.ebuild:
+  Restore keywords, remove old
 
   26 Mar 2008; Markus Meier <maekke@gentoo.org> nss-3.11.9.ebuild:
   amd64 stable, bug #213601
