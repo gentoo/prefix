@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cogito
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.55 2008/03/30 15:58:19 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.58 2008/04/02 18:21:42 armin76 Exp $
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> cogito-0.18.2.ebuild:
+  alpha/ia64/sparc stable wrt #215381
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org> cogito-0.18.2.ebuild:
+  don't install COPYING file
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org> cogito-0.18.2.ebuild:
+  stable x86, bug 215381
 
   30 Mar 2008; Markus Rothe <corsair@gentoo.org> cogito-0.18.2.ebuild:
   Stable on ppc64; bug #215381
