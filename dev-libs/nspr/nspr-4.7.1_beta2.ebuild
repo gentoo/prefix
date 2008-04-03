@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.1_beta2.ebuild,v 1.1 2008/03/17 12:10:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.1_beta2.ebuild,v 1.2 2008/04/02 17:52:40 armin76 Exp $
 
 EAPI="prefix"
 

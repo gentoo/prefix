@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.102 2008/03/26 23:36:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.103 2008/04/02 17:52:40 armin76 Exp $
+
+  02 Apr 2008; Raúl Porcel <armin76@gentoo.org> -nspr-4.7.1_beta1.ebuild,
+  nspr-4.7.1_beta2.ebuild:
+  Restore keywords, remove old
 
   26 Mar 2008; Markus Meier <maekke@gentoo.org> nspr-4.6.8.ebuild:
   amd64 stable, bug #213601
