@@ -61,6 +61,7 @@ src_unpack() {
 	sed -i "s:@_LT_VERSION@:${PV}:" libtool.m4 || die "sed libtool.m4"
 	epatch "${FILESDIR}"/1.5.6/libtool-1.5-filter-host-tags.patch
 	epatch "${FILESDIR}"/1.5.20/libtool-1.5.20-override-LD_LIBRARY_PATH.patch
+	epatch "${FILESDIR}"/1.5.26/libtool-1.5.26-aixrtl.patch
 
 	ebegin "Generating ltmain.sh"
 	gen_ltmain_sh || die "Failed to generate ltmain.sh!"
