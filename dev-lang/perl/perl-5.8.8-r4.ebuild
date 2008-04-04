@@ -359,9 +359,11 @@ src_install() {
 	# the library ...
 	local coredir="/usr/$(get_libdir)/perl5/${MY_PV}/${myarch}${mythreading}/CORE"
 	dodir ${coredir}
+	[[ $(get_libname) != .a ]] && { # for AIX
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${PERLSLOT})
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
+	}
 
 	# Fix for "stupid" modules and programs
 	dodir /usr/$(get_libdir)/perl5/site_perl/${MY_PV}/${myarch}${mythreading}
