@@ -318,7 +318,7 @@ src_compile() {
 		"${myconf[@]}" || die "Unable to configure"
 
 	emake -j1 -f Makefile depend || die "Couldn't make libperl$(get_libname) depends"
-	emake -j1 -f Makefile LIBPERL=${LIBPERL} ${LIBPERL} || die "Unable to make libperl$(get_libname)"
+	emake -j1 -f Makefile LIBPERL=${LIBPERL} LIBPERL_SOVERSION=${PERLSLOT} ${LIBPERL} || die "Unable to make libperl$(get_libname)"
 	mv ${LIBPERL} ${WORKDIR}
 }
 
@@ -329,6 +329,7 @@ src_install() {
 	if [ "${PN}" = "libperl" ]
 	then
 		dolib.so ${WORKDIR}/${LIBPERL}
+		[[ libperl$(get_libname ${PERLSLOT}) != ${LIBPERL} ]] &&
 		dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname ${PERLSLOT})
 	else
 		# Need to do this, else apps do not link to dynamic version of
@@ -405,6 +406,10 @@ EOF
 }
 
 pkg_postinst() {
+
+	# If we do not have any versioning on the filename level (like on AIX),
+	# we don't need to set up any symlinks.
+	[[ libperl$(get_libname ${PERLSLOT}) != ${LIBPERL} ]] || return 0
 
 	# Make sure we do not have stale/invalid libperl.so 's ...
 	if [ -f "${EROOT}/usr/$(get_libdir)/libperl$(get_libname)" -a ! -L "${EROOT}/usr/$(get_libdir)/libperl$(get_libname)" ]
