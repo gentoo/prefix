@@ -1,0 +1,28 @@
+diff -ru -x *.Po -x *.Plo wget-1.11.1.orig/src/connect.c wget-1.11.1/src/connect.c
+--- wget-1.11.1.orig/src/connect.c	Thu Apr  3 13:11:16 2008
++++ wget-1.11.1/src/connect.c	Thu Apr  3 13:12:00 2008
+@@ -55,6 +55,10 @@
+ # include <sys/time.h>
+ #endif
+ 
++#ifdef HAVE_STDINT_H
++# include <stdint.h>
++#endif
++
+ #include "wget.h"
+ #include "utils.h"
+ #include "host.h"
+diff -ru -x *.Po -x *.Plo wget-1.11.1.orig/src/hash.c wget-1.11.1/src/hash.c
+--- wget-1.11.1.orig/src/hash.c	Thu Apr  3 13:11:16 2008
++++ wget-1.11.1/src/hash.c	Thu Apr  3 13:12:58 2008
+@@ -35,6 +35,10 @@
+ # include <config.h>
+ #endif
+ 
++#ifdef HAVE_STDINT_H
++# include <stdint.h>
++#endif
++
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <assert.h>

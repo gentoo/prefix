@@ -25,11 +25,14 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.11-linking.patch
 	epatch "${FILESDIR}"/${PN}-1.11-no-solaris-md5.patch
+	epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
 src_compile() {
 	# openssl-0.9.8 now builds with -pthread on the BSD's
 	use elibc_FreeBSD && use ssl && append-ldflags -pthread
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	use static && append-ldflags -static
 	econf \
