@@ -53,6 +53,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-dotblas.patch
 	# fix gettimeofday issue on NetBSD
 	epatch "${FILESDIR}"/${PN}-24.2.ranf.c.patch
+	# rename z_abs on interix3, since there is a name colission with the system math.h
+	epatch "${FILESDIR}"/${P}-interix3.patch
 
 	# adapt lapack/cblas support
 	if use lapack; then
