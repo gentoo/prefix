@@ -12,7 +12,7 @@ SRC_URI="http://www.caliban.org/files/bash/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
@@ -38,6 +38,9 @@ src_install() {
 	# 2. /usr/share/bash-completion/default -- eselectable
 	# 3. /usr/share/bash-completion/.post   -- hidden from eselect
 	dodir /usr/share/bash-completion
+
+	eprefixify bash_completion
+
 	awk -v D="$ED" '
 		BEGIN { out=".pre" }
 		/^# A lot of the following one-liners/ { out="base" }
@@ -47,7 +50,10 @@ src_install() {
 		bash_completion || die "failed to split bash_completion"
 
 	exeinto /etc/profile.d
-	doexe ${FILESDIR}/bash-completion.sh || die "failed to install profile.d"
+	cp "${FILESDIR}"/bash-completion.sh "${T}"/bash-completion.sh ||
+	die "cannot copy '${FILESDIR}/bash-completion.sh' to '${T}'"
+	eprefixify "${T}"/bash-completion.sh
+	doexe "${T}"/bash-completion.sh || die "failed to install profile.d"
 
 	# dev-util/subversion provides an extremely superior completion
 	# fails rm contrib/subversion

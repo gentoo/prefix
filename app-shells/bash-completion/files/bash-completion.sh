@@ -20,8 +20,8 @@ then
 		# Some modules, including base, depend on the definitions
 		# in .pre.  See the ebuild for how this is created.
 		if ! $loaded_pre; then
-		    BASH_COMPLETION=/usr/share/bash-completion/base
-		    source /usr/share/bash-completion/.pre
+		    BASH_COMPLETION="@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/base
+		    source "@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/.pre
 		    loaded_pre=true
 		fi
 
@@ -30,7 +30,7 @@ then
 	done
 
 	# Clean up
-	$loaded_pre && source /usr/share/bash-completion/.post
+	$loaded_pre && source "@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/.post
 	unset -f _load_completions  # not designed to be called more than once
     }
 
@@ -40,9 +40,9 @@ then
     # 3. Load user completion modules, maintained via eselect bashcomp
     # 4. Load user completion file last, overrides modules at user discretion
     _load_completions \
-	/etc/bash_completion.d/base \
+	"@GENTOO_PORTAGE_EPREFIX@"/etc/bash_completion.d/base \
 	~/.bash_completion.d/base \
-	/etc/bash_completion.d/* \
+	"@GENTOO_PORTAGE_EPREFIX@"/etc/bash_completion.d/* \
 	~/.bash_completion.d/* \
 	~/.bash_completion
 fi
