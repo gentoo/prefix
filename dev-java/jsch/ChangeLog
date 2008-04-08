@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jsch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.65 2008/03/25 19:54:40 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.66 2008/04/05 20:42:30 caster Exp $
+
+  05 Apr 2008; Vlastimil Babka <caster@gentoo.org> -jsch-0.1.34.ebuild:
+  Version dump.
 
   25 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -jsch-0.1.33.ebuild,
   -jsch-0.1.36.ebuild, -jsch-0.1.36-r1.ebuild:
