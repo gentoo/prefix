@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.116 2008/04/02 10:54:54 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.118 2008/04/05 12:42:58 dragonheart Exp $
+
+  05 Apr 2008; Daniel Black <dragonheart@gentoo.org> curl-7.17.1.ebuild:
+  fix for USE=kerberos/-ldap as per bug #216273 thanks to Graham Russell.
+
+  04 Apr 2008; Daniel Black <dragonheart@gentoo.org> curl-7.18.1.ebuild:
+  correct compile fault with heimdal as a gssapi provider - thanks to Doug in
+  bug #216096
 
   02 Apr 2008; Daniel Black <dragonheart@gentoo.org> curl-7.18.1.ebuild:
   hopefully fixed bug #215713 and bug #193149 thanks to Olivier, Rafal and

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.7 2008/04/01 13:46:49 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.8 2008/04/05 12:42:58 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -60,7 +60,7 @@ src_compile() {
 	myconf="$(use_enable ldap)
 		$(use_enable ldap ldaps)
 		$(use_with idn libidn)
-		$(use_with kerberos gssapi)
+		$(use_with kerberos gssapi "${EPREFIX}"/usr)
 		$(use_enable ipv6)
 		--enable-http
 		--enable-ftp
