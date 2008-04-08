@@ -1,0 +1,29 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-devel/autoconf-archive/autoconf-archive-2008.02.21.ebuild,v 1.1 2008/02/22 04:49:22 vapier Exp $
+
+EAPI="prefix"
+
+inherit eutils
+
+MY_PV=${PV//./-}
+DESCRIPTION="GNU Autoconf Macro Archive"
+HOMEPAGE="http://autoconf-archive.cryp.to/"
+SRC_URI="http://autoconf-archive.cryp.to/${PN}-${MY_PV}.tar.bz2"
+
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+IUSE=""
+
+DEPEND=""
+RDEPEND="sys-devel/automake
+	sys-devel/autoconf"
+
+S=${WORKDIR}/${PN}-${MY_PV}
+
+src_install() {
+	emake install DESTDIR="${D}" || die
+	dodir /usr/share/doc
+	mv "${ED}"/usr/share/{${PN},doc/${PF}} || die
+}
