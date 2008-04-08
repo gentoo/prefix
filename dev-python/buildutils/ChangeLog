@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/buildutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/ChangeLog,v 1.4 2007/07/31 09:10:13 dev-zero Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/ChangeLog,v 1.5 2008/04/05 14:51:48 hawking Exp $
+
+*buildutils-0.3 (05 Apr 2008)
+
+  05 Apr 2008; Ali Polatel <hawking@gentoo.org>
+  +files/buildutils-0.3-pudge_addcommand.patch, -buildutils-0.1.2.ebuild,
+  +buildutils-0.3.ebuild:
+  Version bump. Dropped old version and removed useless test use flag.
 
   31 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
   buildutils-0.1.2.ebuild:
