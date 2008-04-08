@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/libnet
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/ChangeLog,v 1.18 2008/03/28 07:11:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/ChangeLog,v 1.19 2008/04/06 14:35:56 aballier Exp $
+
+  06 Apr 2008; Alexis Ballier <aballier@gentoo.org> libnet-1.21.ebuild:
+  keyword ~x86-fbsd
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> libnet-1.21.ebuild:
   Stable for HPPA too.
