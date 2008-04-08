@@ -32,10 +32,6 @@
 
 #--- END OF EXAMPLES ---
 
-# Michael Haubenwallner <haubi@gentoo.org> (08 Apr 2008)
-# extwrapper with new runpath style from gcc-config, masked for testing.
-~sys-devel/binutils-config-1.9-r04.8
-
 # Fabian Groffen <grobian@gentoo.org> (03 Apr 2008)
 # Had undefined references all over the place on Solaris, don't like it
 # not compiling, masking globally
