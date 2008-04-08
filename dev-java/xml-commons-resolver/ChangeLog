@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/xml-commons-resolver
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xml-commons-resolver/ChangeLog,v 1.31 2007/06/26 19:01:53 pylon Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xml-commons-resolver/ChangeLog,v 1.32 2008/04/05 20:32:56 caster Exp $
+
+  05 Apr 2008; Vlastimil Babka <caster@gentoo.org>
+  -files/xml-commons-resolver-1.1-build.xml,
+  -xml-commons-resolver-1.1-r1.ebuild:
+  Remove old version.
 
   26 Jun 2007; Lars Weiler <pylon@gentoo.org>
   xml-commons-resolver-1.2.ebuild:
