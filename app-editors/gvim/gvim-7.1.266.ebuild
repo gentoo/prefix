@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.1.266.ebuild,v 1.1 2008/03/03 15:03:19 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.1.266.ebuild,v 1.6 2008/04/04 19:22:01 rich0 Exp $
 
 EAPI="prefix"
 
