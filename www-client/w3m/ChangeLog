@@ -1,6 +1,12 @@
 # ChangeLog for www-client/w3m
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.43 2008/03/07 13:32:34 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.44 2008/04/03 16:17:42 matsuu Exp $
+
+  03 Apr 2008; MATSUU Takuto <matsuu@gentoo.org>
+  -files/w3m-0.5.1-security.patch, -files/w3m-w3mman-gentoo.diff,
+  -w3m-0.5.1-r4.ebuild, w3m-0.5.2-r1.ebuild:
+  Added -j1, bug #215394.
+  Removed old version.
 
   07 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> w3m-0.5.2-r1.ebuild:
   amd64 stable

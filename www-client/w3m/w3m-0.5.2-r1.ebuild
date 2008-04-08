@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2-r1.ebuild,v 1.4 2008/03/07 13:32:34 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2-r1.ebuild,v 1.5 2008/04/03 16:17:42 matsuu Exp $
 
 EAPI="prefix"
 
@@ -97,7 +97,8 @@ src_compile() {
 		$(use_enable xface) \
 		${myconf} || die
 
-	emake || die "emake failed"
+	# parallel make borks, bug #215394.
+	emake -j1 || die "emake failed"
 }
 
 src_install() {
