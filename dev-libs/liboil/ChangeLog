@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/liboil
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.57 2008/02/12 13:02:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.59 2008/04/06 09:50:39 tove Exp $
+
+*liboil-0.3.14 (03 Apr 2008)
+
+  03 Apr 2008; Zaheer Abbas Merali <zaheerm@gentoo.org> +liboil-0.3.14.ebuild:
+  version bump
 
   12 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
   +files/liboil-0.3.12-dontbuild-examples.patch, liboil-0.3.12.ebuild:
