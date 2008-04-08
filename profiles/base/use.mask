@@ -2,6 +2,7 @@
 # Don't put hardened in here.
 selinux
 uclibc
+multilib
 
 # amd64/x86 arch specific USE flags
 kqemu
