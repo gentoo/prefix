@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0.ebuild,v 1.2 2008/03/16 06:20:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.1.ebuild,v 1.1 2008/04/04 15:57:57 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ S=${WORKDIR}/${P/_/}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
 
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
@@ -58,6 +59,10 @@ src_install() {
 	dodoc NEWS OLDNEWS README TODO tech_report.tex
 	insinto /etc
 	doins "${T}"/rsyncd.conf
+
+	insinto /etc/logrotate.d
+	newins "${FILESDIR}"/rsyncd.logrotate rsyncd
+
 	if use xinetd ; then
 		insinto /etc/xinetd.d
 		newins "${T}"/rsyncd.xinetd rsyncd
