@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.22.0.ebuild,v 1.1 2008/03/23 01:54:51 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.22.0.ebuild,v 1.2 2008/04/05 16:50:38 eva Exp $
 
 EAPI="prefix"
 
@@ -13,14 +13,13 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
-IUSE="acl avahi doc gnutls hal ipv6 kerberos samba ssl"
+IUSE="acl avahi doc fam gnutls hal ipv6 kerberos samba ssl"
 
 RDEPEND=">=gnome-base/gconf-2
 	>=dev-libs/glib-2.9.3
 	>=dev-libs/libxml2-2.6
-	>=net-misc/neon-0.25.3
 	app-arch/bzip2
-	virtual/fam
+	fam? ( virtual/fam )
 	gnome-base/gnome-mime-data
 	>=x11-misc/shared-mime-info-0.14
 	>=dev-libs/dbus-glib-0.71
@@ -48,7 +47,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
 	doc? ( >=dev-util/gtk-doc-1 )"
-PDEPEND="hal? ( >=gnome-base/gnome-mount-0.4 )"
+PDEPEND="hal? ( >=gnome-base/gnome-mount-0.6 )"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 
@@ -57,15 +56,16 @@ pkg_setup() {
 		--disable-schemas-install
 		--disable-cdda
 		--disable-howl
-		--enable-http-neon
-		$(use_enable ssl openssl)
-		$(use_enable gnutls)
-		$(use_enable samba)
-		$(use_enable ipv6)
-		$(use_enable hal)
+		$(use_enable acl)
 		$(use_enable avahi)
+		$(use_enable fam)
+		$(use_enable gnutls)
+		$(use_enable hal)
+		$(use_enable ipv6)
 		$(use_enable kerberos krb5)
-		$(use_enable acl)"
+		$(use_enable samba)
+		$(use_enable ssl openssl)"
+		# Useless ? --enable-http-neon
 
 	if use hal ; then
 		G2CONF="${G2CONF}
@@ -74,7 +74,7 @@ pkg_setup() {
 			--with-hal-eject=${EPREFIX}/usr/bin/gnome-eject"
 	fi
 
-	# this works because of the order of conifgure parsing
+	# this works because of the order of configure parsing
 	# so should always be behind the use_enable options
 	# foser <foser@gentoo.org 19 Apr 2004
 	use gnutls && use ssl && G2CONF="${G2CONF} --disable-openssl"
