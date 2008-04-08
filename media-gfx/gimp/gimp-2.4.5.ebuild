@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.2 2008/03/26 01:23:33 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.3 2008/04/06 20:10:18 hanno Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.12.0
 	>=dev-util/intltool-0.31
-	sys-devel/gettext
+	>=sys-devel/gettext-0.17
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 pkg_setup() {
