@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.2.1-r1.ebuild,v 1.4 2008/03/11 21:55:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.2.1-r1.ebuild,v 1.5 2008/04/03 18:13:05 wltjr Exp $
 
 JAVA_PKG_IUSE="readline source doc servletapi mysql postgres examples oracle"
 #jdnc
@@ -57,7 +57,7 @@ src_unpack() {
 		ant.properties
 	fi
 	if use servletapi; then
-		echo "servlet.jar=$(java-pkg_getjar --virtual servlet-api-2.5 servlet.jar)" \
+		echo "servlet.jar=$(java-pkg_getjar --virtual servlet-api-2.5 servlet-api.jar)" \
 		>> ant.properties
 	fi
 	if use mysql; then

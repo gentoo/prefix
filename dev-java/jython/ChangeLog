@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jython
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.56 2008/03/11 21:55:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.57 2008/04/03 18:13:05 wltjr Exp $
+
+  03 Apr 2008; William L. Thomson Jr. <wltjr@gentoo.org>
+  jython-2.2.1-r1.ebuild:
+  Corrected java-pkg_getjar call for servlet-api.jar per bug #212915
 
   11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> jython-2.2.1-r1.ebuild:
   Use --virtual instead of --build-only for servlet-api.
