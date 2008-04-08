@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.56 2008/02/29 03:25:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.57 2008/04/03 12:37:59 markusle Exp $
+
+  03 Apr 2008; Markus Dittrich <markusle@gentoo.org> pari-2.3.2-r1.ebuild:
+  Made the ebuild mode generic for it to work on BSD also (see bug #214379).
+  Thanks much to Henning Schild <henning@wh9.tu-dresden.de> for his patch.
 
   29 Feb 2008; Brent Baude <ranger@gentoo.org> pari-2.3.2-r1.ebuild:
   keyworded ~arch for ppc64, bug 211795

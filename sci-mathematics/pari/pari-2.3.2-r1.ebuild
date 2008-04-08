@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.2-r1.ebuild,v 1.8 2008/02/29 03:25:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.2-r1.ebuild,v 1.10 2008/04/03 15:41:01 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,14 @@ DEPEND="doc? ( virtual/tetex )
 		X? ( x11-libs/libX11 )
 		emacs? ( virtual/emacs )"
 SITEFILE=50${PN}-gentoo.el
+
+get_compile_dir() {
+	pushd "${S}/config" >& /dev/null
+	local fastread=yes
+	source ./get_archos
+	popd >& /dev/null
+	echo "O${osname}-${arch}"
+}
 
 src_unpack() {
 	unpack ${A}
@@ -54,8 +62,9 @@ src_compile() {
 	# Shared libraries should be PIC on ALL architectures.
 	# Danny van Dyk <kugelfang@gentoo.org> 2005/03/31
 	# Fixes BUG #49583
+	local installdir=$(get_compile_dir)
 	einfo "Building shared library..."
-	cd O*-* || die "Bad directory. File a BUG!"
+	cd "${installdir}" || die "Bad directory. File a BUG!"
 	emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE -fPIC" lib-dyn || die "Building shared library failed!"
 
 	einfo "Building executables..."
