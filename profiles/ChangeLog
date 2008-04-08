@@ -1,6 +1,96 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1280 2008/04/03 05:04:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1302 2008/04/07 22:39:04 yngwin Exp $
+
+  07 Apr 2008; Ben de Groot <yngwin@gentoo.org> updates/2Q-2008,
+  package.mask, use.local.desc:
+  pkgmove x264-svn(,-encoder) to x264(,-encoder) with versioning scheme
+  change
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Added dbi and relp USE flags for app-admin/rsyslog
+
+  07 Apr 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add nemiver 0.5.2 and deps to p.mask
+
+  06 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  default/linux/packages.build, targets/vserver/packages,
+  +targets/vserver/packages.build, targets/vserver/virtuals:
+  Cleaning up remaining virtual/baselayout remnants.
+
+  06 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  arch/hppa/package.use.mask, arch/hppa/use.mask:
+  Sync package.use.mask and use.mask from default-linux/hppa.
+
+  06 Apr 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Sort use.local.desc since some entries were out of order.
+
+  06 Apr 2008; Ulrich Mueller <ulm@gentoo.org> use.desc, use.local.desc:
+  Move leim global USE flag to app-editors/emacs:leim local flag.
+
+  06 Apr 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask app-laptop/omnibook-svn.
+
+  05 Apr 2008; Mark Loeser <halcy0n@gentoo.org> +base/package.mask,
+  +embedded/package.mask, package.mask, selinux/package.mask:
+  Move the Gnome 2.22 mask to the parent profiles' package.mask files (base,
+  embedded, and selinux); bug #216193
+
+  05 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  arch/amd64/package.mask, arch/x86/package.mask,
+  default-linux/amd64/package.mask, default-linux/x86/package.mask,
+  package.mask:
+  add >=x11-themes/gnome-themes-extras-2.22 to gnome 2.22 masks
+
+  05 Apr 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added the local plasma USE flag for kmldonkey.
+
+  05 Apr 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added the local plasma USE flag for rsibreak.
+
+  05 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Add media-video/vdr:dxr3 use-flag to enable dxr3-card related tweaks.
+
+  05 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  arch/m68k/package.use.mask, default-linux/alpha/2006.1/package.use.mask,
+  default-linux/alpha/no-nptl/package.use.mask,
+  default-linux/hppa/2006.1/package.use.mask,
+  default-linux/ia64/2006.0/package.use.mask,
+  default-linux/m68k/package.use.mask,
+  hardened/linux/powerpc/ppc64/package.use.mask,
+  hardened/ppc/package.use.mask, hardened/ppc64/package.use.mask:
+  Update masking for test flag on PAM 0.99 and 1.0 series.
+
+  05 Apr 2008; Stefan Schweizer <genstef@gentoo.org> use.local.desc:
+  gimp-print -> gutenprint
+
+  04 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  hardened/linux/powerpc/ppc32/parent:
+  Added ppc32 to the parent of hardened/linux/powerpc/ppc32 so ARCH gets set.
+  This is for bug #216074.
+
+  04 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  targets/developer/make.defaults, +targets/developer/profile.bashrc:
+  Added splitdebug to the developer profile and added a profile.bashrc to add
+  -g to CFLAGS/CXXFLAGS. This is for bug #215946.
+
+  04 Apr 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Removed mail-client/ciphire-mail
+
+  04 Apr 2008; Michele Noberasco <s4t4n@gentoo.org> package.mask:
+  Masked gai and gai-pal.
+  Removed smcinit since it has ben removed from the Tree.
+
+  04 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  features/64bit-native/package.mask:
+  Added masks for games-fps/etqw-bin games-fps/etqw-data games-fps/etqw-demo
+  and games-rpg/nwmovies, which all require 32-bit support.
+
+  03 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask also >=udev-119-r1.
+
+  03 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask udev-119-r1 to hack on udev-start.sh
 
   03 Apr 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
   Add cadaver 0.23.2 to the neon package mask as it only works with masked
