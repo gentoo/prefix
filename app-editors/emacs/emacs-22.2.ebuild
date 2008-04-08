@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2.ebuild,v 1.3 2008/04/01 11:43:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2.ebuild,v 1.4 2008/04/06 22:05:14 ulm Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ RDEPEND="!<app-editors/emacs-cvs-22.1
 	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
-	kerberos? ( app-crypt/mit-krb5 )
+	kerberos? ( virtual/krb5 )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
@@ -58,6 +58,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/emacs-22.1-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/emacs-22.1-freebsd-sparc.patch"
+	epatch "${FILESDIR}/${P}-heimdal-gentoo.patch"
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
