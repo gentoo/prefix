@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.1.ebuild,v 1.2 2008/04/02 14:25:52 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.1.ebuild,v 1.3 2008/04/04 20:29:48 eva Exp $
 
 EAPI="prefix"
 
@@ -56,6 +56,7 @@ src_unpack() {
 
 src_test() {
 	addwrite "/root/.gnome2_private"
+	unset SESSION_MANAGER
 	Xemake check || die "Test phase failed"
 }
 
