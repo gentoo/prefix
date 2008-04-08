@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.63 2008/04/01 22:10:25 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.64 2008/04/03 17:11:30 bicatali Exp $
+
+  03 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/fftw-2.1.5-as-needed.patch:
+  Fixed the as-needed patch in order to internally link test_sched.c
 
   01 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
   +files/fftw-2.1.5-configure.in.patch, -files/3-tmpfile.patch,
