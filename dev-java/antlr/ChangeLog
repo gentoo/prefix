@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/antlr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.62 2008/03/08 13:31:43 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.64 2008/04/05 09:56:54 betelgeuse Exp $
+
+  05 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
+  Call base_src_unpack explicitly in src_unpack. Fixes bug #207361.
+
+  04 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/2.7.7-gcc-4.3.patch, antlr-2.7.7.ebuild:
+  Add patch for gcc-4.3. Fixes bug #207631. Thanks to impulze@impulze.org for
+  the patch.
 
   08 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
   Rename nocxx and nojava to cxx and java and turn them on by default using

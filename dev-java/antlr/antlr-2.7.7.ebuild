@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.10 2008/03/08 13:31:43 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.12 2008/04/05 09:56:54 betelgeuse Exp $
 
 EAPI="prefix 1"
 
-inherit java-pkg-2 mono distutils multilib
+inherit base java-pkg-2 mono distutils multilib
 
 DESCRIPTION="A parser generator for C++, C#, Java, and Python"
 HOMEPAGE="http://www.antlr.org/"
@@ -22,6 +22,12 @@ RDEPEND=">=virtual/jdk-1.3
 DEPEND="${RDEPEND}
 	script? ( !dev-util/pccts )
 	source? ( app-arch/zip )"
+
+PATCHES=( "${FILESDIR}/2.7.7-gcc-4.3.patch" )
+
+src_unpack() {
+	base_src_unpack
+}
 
 src_compile() {
 	# don't ask why, but this is needed for stuff to get built properly
