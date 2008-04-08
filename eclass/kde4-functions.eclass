@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.4 2008/03/13 17:57:51 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.5 2008/04/04 22:15:24 zlin Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -399,6 +399,35 @@ comment_all_add_subdirectory() {
 	find "$@" -name CMakeLists.txt -print0 | grep -vFzZ "./cmake" | \
 		xargs -0 sed -i -e '/add_subdirectory/s/^/#DONOTCOMPILE /' || \
 		die "${LINENO}: Initial sed died"
+}
+
+# @ECLASS-VARIABLE: KDE_LINGUAS
+# @DESCRIPTION:
+# This is a whitespace-separated list of translations that this ebuild supports.
+# These translations automatically get added to IUSE. Therefore ebuilds must set
+# this variable before inheriting any eclasses. To only enable selected
+# translations ebuilds must call enable_selected_linguas(). kde4-base.eclass does
+# this for you.
+#
+# Example: KDE_LINGUAS="en_GB de nl"
+for _lingua in ${KDE_LINGUAS}; do
+	IUSE="${IUSE} linguas_${_lingua}"
+done
+
+# @FUNCTION: enable_selected_linguas
+# @DESCRIPTION:
+# Enable translations based on LINGUAS settings and what translations are
+# supported (see KDE_LINGUAS). By default translations are found in "${S}"/po
+# but this default can be overridden by defining KDE_LINGUAS_DIR.
+enable_selected_linguas() {
+	local lingua
+	comment_all_add_subdirectory "${KDE_LINGUAS_DIR:-${S}/po}"
+	for lingua in ${KDE_LINGUAS}; do
+		if use linguas_${lingua}; then
+			sed -e "/add_subdirectory(\s*${lingua}\s*)\s*$/ s/^#DONOTCOMPILE //" \
+				-i "${KDE_LINGUAS_DIR:-${S}/po}"/CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
+		fi
+	done
 }
 
 # @ECLASS-VARIABLE: QT4_BUILT_WITH_USE_CHECK

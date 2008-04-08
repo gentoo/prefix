@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.6 2008/03/26 20:39:05 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.9 2008/04/06 21:36:53 zlin Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -17,36 +17,67 @@ inherit base eutils multilib cmake-utils kde4-functions
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
 
-COMMONDEPEND="|| ( (
-	x11-libs/qt-core:4
-	x11-libs/qt-gui:4
-	x11-libs/qt-qt3support:4
-	x11-libs/qt-svg:4
-	x11-libs/qt-test:4 )
-	>=x11-libs/qt-4.3.3:4 )"
+kde4-base_set_qt_dependencies() {
+	local qt qtcore qtgui qt3support qtsvg qttest qtopengl qtdepend qtopengldepend
 
-# @ECLASS-VARIABLE: OPENGL_REQUIRED
-# @DESCRIPTION:
-# Is qt-opengl required? Possible values are 'always', 'optional' and 'never'.
-# This variable must be set before inheriting any eclasses. Defaults to 'never'.
-OPENGL_REQUIRED="${OPENGL_REQUIRED:-never}"
+	# use dependencies
+	case "${EAPI}" in
+		kdebuild-1)
+		qt="[accessibility][dbus][debug?][gif][jpeg][png][qt3support][ssl][zlib]"
+		qtcore="[debug?][qt3support][ssl]"
+		qtgui="[accessibility][dbus][debug?]"
+		qt3support="[accessibility][debug?]"
+		qtsvg="[debug?]"
+		qttest="[debug?]"
+		qtopengl="[debug?]"
+		case "${OPENGL_REQUIRED}" in
+			always)
+			qt="${qt}[opengl]"
+			;;
+			optional)
+			qt="${qt}[opengl?]"
+			;;
+		esac
+		;;
+	esac
 
-OPENGLDEPEND="|| ( x11-libs/qt-opengl:4
-	>=x11-libs/qt-4.3.3:4 )"
-case "${OPENGL_REQUIRED}" in
-	always)
-	COMMONDEPEND="${COMMONDEPEND}
-		${OPENGLDEPEND}"
-	;;
-	optional)
-	IUSE="${IUSE} opengl"
-	COMMONDEPEND="${COMMONDEPEND}
-		opengl? ( ${OPENGLDEPEND} )"
-	;;
-	*)
-	OPENGL_REQUIRED="never"
-	;;
-esac
+	# split qt
+	qtdepend="
+		x11-libs/qt-core:4${qtcore}
+		x11-libs/qt-gui:4${qtgui}
+		x11-libs/qt-qt3support:4${qt3support}
+		x11-libs/qt-svg:4${qtsvg}
+		x11-libs/qt-test:4${qttest}"
+	qtopengldepend="x11-libs/qt-opengl:4${qtopengl}"
+
+	# allow monolithic qt for PV < 4.1
+	case "${PV}" in
+		scm|9999.4|4.1*) : ;;
+		*)
+		qtdepend="|| ( ( ${qtdepend} ) >=x11-libs/qt-4.3.3:4${qt} )"
+		qtopengldepend="|| ( ${qtopengldepend} >=x11-libs/qt-4.3.3:4 )"
+		;;
+	esac
+
+	# opengl dependencies
+	case "${OPENGL_REQUIRED}" in
+		always)
+		qtdepend="${qtdepend}
+			${qtopengldepend}"
+		;;
+		optional)
+		IUSE="${IUSE} opengl"
+		qtdepend="${qtdepend}
+			opengl? ( ${qtopengldepend} )"
+		;;
+		*)
+		OPENGL_REQUIRED="never"
+		;;
+	esac
+
+	COMMONDEPEND="${COMMONDEPEND} ${qtdepend}"
+}
+kde4-base_set_qt_dependencies
 
 DEPEND="${DEPEND} ${COMMONDEPEND}
 	>=dev-util/cmake-2.4.7-r1
@@ -54,6 +85,12 @@ DEPEND="${DEPEND} ${COMMONDEPEND}
 	x11-libs/libXt
 	x11-proto/xf86vidmodeproto"
 RDEPEND="${RDEPEND} ${COMMONDEPEND}"
+
+# @ECLASS-VARIABLE: OPENGL_REQUIRED
+# @DESCRIPTION:
+# Is qt-opengl required? Possible values are 'always', 'optional' and 'never'.
+# This variable must be set before inheriting any eclasses. Defaults to 'never'.
+OPENGL_REQUIRED="${OPENGL_REQUIRED:-never}"
 
 # @ECLASS-VARIABLE: CPPUNIT_REQUIRED
 # @DESCRIPTION:
@@ -120,7 +157,7 @@ case ${NEED_KDE} in
 			_pv=":kde-4"
 		fi
 		;;
-	svn|9999*|:kde-svn)
+	scm|svn|9999*|:kde-svn)
 		_kdedir="svn"
 		_pv=":kde-svn"
 		export NEED_KDE="svn"
@@ -251,40 +288,47 @@ debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SLOT ${SLOT} - KDEDIR ${KDEDIR} - 
 kde4-base_pkg_setup() {
 	debug-print-function $FUNCNAME "$@"
 
-	# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".
-	if has_version '<x11-libs/qt-4.4_alpha:4'; then
-		QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
-	else
-		KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-			x11-libs/qt-core qt3support ssl
-			x11-libs/qt-gui accessibility dbus
-			x11-libs/qt-qt3support accessibility"
-	fi
-
-	if has debug ${IUSE//+} && use debug; then
-		if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
-			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"
+	case "${EAPI}" in
+		kdebuild-1)
+		[[ -n ${QT4_BUILT_WITH_USE_CHECK} || -n ${KDE4_BUILT_WITH_USE_CHECK} ]] && \
+			die "built_with_use illegal in this EAPI!"
+		;;
+		*)
+		# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".
+		if has_version '<x11-libs/qt-4.4_alpha:4'; then
+			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
 		else
 			KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-				x11-libs/qt-core:4 debug
-				x11-libs/qt-gui:4 debug
-				x11-libs/qt-qt3support:4 debug
-				x11-libs/qt-svg:4 debug
-				x11-libs/qt-test:4 debug"
-			if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
+				x11-libs/qt-core qt3support ssl
+				x11-libs/qt-gui accessibility dbus
+				x11-libs/qt-qt3support accessibility"
+		fi
+
+		if has debug ${IUSE//+} && use debug; then
+			if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
+				QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"
+			else
 				KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-					x11-libs/qt-opengl:4 debug"
+					x11-libs/qt-core:4 debug
+					x11-libs/qt-gui:4 debug
+					x11-libs/qt-qt3support:4 debug
+					x11-libs/qt-svg:4 debug
+					x11-libs/qt-test:4 debug"
+				if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
+					KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
+						x11-libs/qt-opengl:4 debug"
+				fi
 			fi
 		fi
-	fi
 
-	if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
-		if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
-			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} opengl"
+		if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
+			if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
+				QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} opengl"
+			fi
 		fi
-	fi
-
-	kde4-functions_check_use
+		kde4-functions_check_use
+		;;
+	esac
 }
 
 # @FUNCTION: kde4-base_apply_patches
@@ -306,7 +350,8 @@ kde4-base_pkg_setup() {
 #			Apply ${PN}-${PV}-*{diff,patch}
 # @CODE
 #
-# If ${PATCHES} is non-zero all patches in it gets applied.
+# If ${PATCHES} is non-zero all patches in it get applied. If there is more
+# than one patch please make ${PATCHES} an array for proper quoting.
 kde4-base_apply_patches() {
 	local _patchdir _packages _p
 	_patchdir="${WORKDIR}/patches/"
@@ -317,14 +362,23 @@ kde4-base_apply_patches() {
 		else
 			_packages="${PN}"
 		fi
-		for _p in ${_packages}; do
-			PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null)"
-			if [[ -n "${KDEBASE}" ]]; then
-				PATCHES="${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null)"
-			fi
-		done
+		if [[ ${#PATCHES[@]} -gt 1 ]]; then
+			for _p in ${_packages}; do
+				PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null) )
+				if [[ -n "${KDEBASE}" ]]; then
+					PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null) )
+				fi
+			done
+		else
+			for _p in ${_packages}; do
+				PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null))
+				if [[ -n "${KDEBASE}" ]]; then
+					PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null))
+				fi
+			done
+		fi
 	fi
-	[[ -n ${PATCHES} ]] && base_src_unpack autopatch
+	[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
 }
 
 # @FUNCTION: kde4-base_src_unpack
@@ -336,6 +390,9 @@ kde4-base_apply_patches() {
 #
 # In addition it calls kde4-base_apply_patches when no arguments are passed to
 # this function.
+#
+# It also handles translations if KDE_LINGUAS is defined. See KDE_LINGUAS and
+# enable_selected_linguas() in kde4-functions.eclass(5) for further details.
 kde4-base_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
@@ -358,7 +415,12 @@ kde4-base_src_unpack() {
 		ebegin "Updating cmake/ directory..."
 		rm -rf "${KDE_S}/cmake" || die "Unable to remove old cmake/ directory"
 		ln -s "${WORKDIR}/cmake" "${KDE_S}/cmake" || die "Unable to symlink the new cmake/ directory"
-	eend 0
+		eend 0
+	fi
+
+	# Only enable selected languages, used for KDE extragear apps.
+	if [[ -n ${KDE_LINGUAS} ]]; then
+		enable_selected_linguas
 	fi
 }
 

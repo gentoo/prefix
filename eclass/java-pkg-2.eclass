@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.25 2007/11/13 19:36:50 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.26 2008/04/06 16:35:18 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -42,6 +42,12 @@ DEPEND="${JAVA_PKG_E_DEPEND}"
 # Nothing special for RDEPEND... just the same as DEPEND.
 # ------------------------------------------------------------------------------
 RDEPEND="${DEPEND}"
+
+# Commons packages follow the same rules so do it here
+if [[ ${CATEGORY} = dev-java && ${PN} = commons-* ]]; then
+	HOMEPAGE="http://commons.apache.org/${PN#commons-}/"
+	SRC_URI="mirror://apache/${PN/-///}/source/${P}-src.tar.gz"
+fi
 
 EXPORT_FUNCTIONS pkg_setup src_compile
 

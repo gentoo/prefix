@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.88 2008/03/10 02:47:20 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.89 2008/04/05 00:43:26 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -226,7 +226,8 @@ mysql_init_vars() {
 				| tail -n1`
 			if [[ -z "${MY_DATADIR}" ]] ; then
 				MY_DATADIR=`grep ^datadir ${EPREFIX}${MY_SYSCONFDIR}/my.cnf \
-				| sed -e 's/.*=\s*//'`
+				| sed -e 's/.*=\s*//' \
+				| tail -n1`
 			fi
 		fi
 		if [[ -z "${MY_DATADIR}" ]] ; then

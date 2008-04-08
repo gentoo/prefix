@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.79 2008/03/22 01:10:19 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.81 2008/04/03 16:11:24 cardoe Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -57,7 +57,7 @@
 # if the libdir isnt specified, it assumes misc.
 # if the objdir isnt specified, it assumes srcdir
 
-# There is also support for automatyed modules.d file generation.
+# There is also support for automated modprobe.d/modules.d(2.4) file generation.
 # This can be explicitly enabled by setting any of the following variables.
 #
 #
@@ -404,7 +404,11 @@ generate_modulesd() {
 		#-----------------------------------------------------------------------
 
 		# then we install it
-		insinto /etc/modules.d
+		if kernel_is ge 2 6; then
+			insinto /etc/modprobe.d
+		else
+			insinto /etc/modules.d
+		fi
 		newins ${module_config} ${currm_path//*\/}
 
 		# and install any documentation we might have.

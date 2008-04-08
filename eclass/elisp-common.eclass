@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.37 2008/03/07 08:19:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.38 2008/04/04 18:11:28 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -143,7 +143,7 @@ ESITEETC=${EPREFIX}${SITEETC}
 SITEFILE=50${PN}-gentoo.el
 
 EMACS=${EPREFIX}/usr/bin/emacs
-# The following works for Emacs versions 18--23, don't change it.
+# The following works for Emacs versions 18-23, don't change it.
 EMACSFLAGS="-batch -q --no-site-file"
 
 # @FUNCTION: elisp-compile
@@ -202,7 +202,7 @@ elisp-comp() {
 # Output version of currently active Emacs.
 
 elisp-emacs-version() {
-	# The following will work for at least versions 18--23.
+	# The following will work for at least versions 18-23.
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
 	${EMACS} ${EMACSFLAGS} -l "${T}"/emacs-version.el
 	rm -f "${T}"/emacs-version.el
@@ -290,7 +290,13 @@ elisp-site-file-install() {
 elisp-site-regen() {
 	local i sf line obsolete
 	local -a sflist
+	# Work around Paludis borkage: variable T is empty in pkg_postrm
 	local tmpdir=${T:-/tmp}
+
+	if [ ! -d "${EROOT}${SITELISP}" ]; then
+		eerror "Directory ${SITELISP} does not exist"
+		return 1
+	fi
 
 	if [ ! -e "${EROOT}${SITELISP}"/site-gentoo.el ] \
 		&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ]; then

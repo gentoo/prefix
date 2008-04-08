@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.300 2008/03/01 21:59:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.301 2008/04/05 22:38:26 zmedico Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1726,7 +1726,7 @@ built_with_use() {
 	fi
 
 	if [[ ${hidden} == "no" ]] ; then
-		local IUSE_BUILT=$(<${IUSEFILE})
+		local IUSE_BUILT=( $(<"${IUSEFILE}") )
 		# Don't check USE_EXPAND #147237
 		local expand
 		for expand in $(echo ${USE_EXPAND} | tr '[:upper:]' '[:lower:]') ; do
@@ -1736,7 +1736,7 @@ built_with_use() {
 			fi
 		done
 		if [[ -n ${expand} ]] ; then
-			if ! has $1 ${IUSE_BUILT} ; then
+			if ! has $1 ${IUSE_BUILT[@]#[-+]} ; then
 				case ${missing_action} in
 					true)  return 0;;
 					false) return 1;;

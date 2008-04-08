@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.207 2008/03/18 17:53:49 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.209 2008/04/06 21:39:05 zlin Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -134,14 +134,23 @@ kde_src_unpack() {
 			else
 				packages="${PN}"
 			fi
-			for _p in ${packages} ; do
-				PATCHES="${PATCHES} $(ls ${PATCHDIR}/${_p}-${PV}-*{diff,patch} 2>/dev/null)"
-				if [[ -n "${KDEBASE}" ]] ; then
-					PATCHES="${PATCHES} $(ls ${PATCHDIR}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null)"
-				fi
-			done
+			if [[ ${#PATCHES[@]} -gt 1 ]]; then
+				for _p in ${_packages}; do
+					PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null) )
+					if [[ -n "${KDEBASE}" ]]; then
+						PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null) )
+					fi
+				done
+			else
+				for _p in ${_packages}; do
+					PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null))
+					if [[ -n "${KDEBASE}" ]]; then
+						PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null))
+					fi
+				done
+			fi
 		fi
-		[[ -n ${PATCHES} ]] && base_src_unpack autopatch
+		[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
 		# step by step transparently as defined in the ebuild.
@@ -230,7 +239,6 @@ kde_src_compile() {
 
 	# things that should access the real homedir
 	[[ -d "$REALHOME/.ccache" ]] && ln -sf "$REALHOME/.ccache" "$HOME/"
-	[[ -n "$UNSERMAKE" ]] && addwrite "/usr/kde/unsermake"
 
 	while [[ "$1" ]]; do
 
@@ -239,7 +247,7 @@ kde_src_compile() {
 				debug-print-section myconf
 				myconf="$myconf --with-x --enable-mitshm $(use_with xinerama) --with-qt-dir=${QTDIR} --enable-mt --with-qt-libraries=${QTDIR}/$(get_libdir)"
 				# calculate dependencies separately from compiling, enables ccache to work on kde compiles
-				[[ -z "$UNSERMAKE" ]] && myconf="$myconf --disable-dependency-tracking"
+				myconf="$myconf --disable-dependency-tracking"
 				if use debug ; then
 					myconf="$myconf --enable-debug=full --with-debug"
 				else
@@ -266,7 +274,7 @@ kde_src_compile() {
 
 				# rebuild configure script, etc
 				# This can happen with e.g. a cvs snapshot
-				if [[ ! -f "./configure" ]] || [[ -n "$UNSERMAKE" ]]; then
+				if [[ ! -f "./configure" ]]; then
 					# This is needed to fix building with autoconf 2.60.
 					# Many thanks to who preferred such a stupid check rather
 					# than a working arithmetic comparison.
