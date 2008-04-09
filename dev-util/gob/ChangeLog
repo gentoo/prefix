@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/gob
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.65 2008/04/03 14:24:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.67 2008/04/07 17:07:29 drac Exp $
+
+  07 Apr 2008; Samuli Suominen <drac@gentoo.org> -gob-2.0.9.ebuild,
+  -gob-2.0.11.ebuild, -gob-2.0.12.ebuild, gob-2.0.15.ebuild:
+  amd64 stable wrt #215541
+
+  07 Apr 2008; Markus Rothe <corsair@gentoo.org> gob-2.0.15.ebuild:
+  Stable on ppc64; bug #215541
 
   03 Apr 2008; Brent Baude <ranger@gentoo.org> gob-2.0.15.ebuild:
   stable ppc, bug 215541
