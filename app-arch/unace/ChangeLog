@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unace
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/ChangeLog,v 1.33 2008/03/31 00:04:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/ChangeLog,v 1.34 2008/04/05 23:31:49 josejx Exp $
+
+  05 Apr 2008; Joseph Jezak <josejx@gentoo.org> unace-2.5-r1.ebuild:
+  Marked ~ppc for bug #215366.
 
   31 Mar 2008; Jeroen Roovers <jer@gentoo.org> unace-2.5-r1.ebuild:
   Marked -hppa (bug #215366).
