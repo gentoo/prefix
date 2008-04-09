@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.ebuild,v 1.2 2008/03/30 16:17:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.ebuild,v 1.3 2008/04/07 00:27:34 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,12 +13,12 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	fi
 fi
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 DESCRIPTION="GNU debugger"
 HOMEPAGE="http://sources.redhat.com/gdb/"
 SRC_URI="http://ftp.gnu.org/gnu/gdb/${P}.tar.bz2
 	ftp://sources.redhat.com/pub/gdb/releases/${P}.tar.bz2
-	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.bz2"
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma"
 
 LICENSE="GPL-2 LGPL-2"
 [[ ${CTARGET} != ${CHOST} ]] \
@@ -30,6 +30,7 @@ IUSE="multitarget nls test vanilla"
 RDEPEND=">=sys-libs/ncurses-5.2-r2
 	sys-libs/readline"
 DEPEND="${RDEPEND}
+	app-arch/lzma-utils
 	test? ( dev-util/dejagnu )
 	nls? ( sys-devel/gettext )"
 
