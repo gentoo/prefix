@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.348 2008/03/23 16:33:17 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.351 2008/04/08 03:07:58 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -854,12 +854,6 @@ gcc-compiler_pkg_preinst() {
 }
 
 gcc-compiler_pkg_postinst() {
-	# This breaks hard for a cross-compile, and I have no clue why it would be
-	# necessary either.
-#	[[ ${CHOST} == *-darwin* ]] \
-#		&& export DYLD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${DYLD_LIBRARY_PATH} \
-#		|| export LD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${LD_LIBRARY_PATH}
-
 	if has_version 'app-admin/eselect-compiler' ; then
 		do_eselect_compiler
 	else
@@ -1135,6 +1129,7 @@ gcc_src_unpack() {
 			|| eerror "Please file a bug about this"
 		eend $?
 	done
+	sed -i 's|A-Za-z0-9|[:alnum:]|g' "${S}"/gcc/*.awk #215828
 
 	if [[ -x contrib/gcc_update ]] ; then
 		einfo "Touching generated files"
@@ -1373,12 +1368,10 @@ gcc_do_configure() {
 	[[ ${CTARGET} == *-uclibc* ]] && [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] \
 		&& confgcc="${confgcc} --enable-clocale=uclibc"
 
-	set -- \
-		${confgcc} \
+	tc_version_is_at_least 4.3 && set -- "$@" \
 		--with-bugurl=http://bugs.gentoo.org/ \
-		--with-pkgversion="${BRANDING_GCC_PKGVERSION}" \
-		"$@" \
-		${EXTRA_ECONF}
+		--with-pkgversion="${BRANDING_GCC_PKGVERSION}"
+	set -- ${confgcc} "$@" ${EXTRA_ECONF}
 
 	# Nothing wrong with a good dose of verbosity
 	echo
