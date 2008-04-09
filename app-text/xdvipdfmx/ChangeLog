@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvipdfmx
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.24 2008/04/01 22:35:20 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.25 2008/04/08 14:39:38 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> xdvipdfmx-0.4.ebuild:
+  alpha/ia64/sparc stable wrt #215735
 
   01 Apr 2008; Christian Faulhammer <opfer@gentoo.org> xdvipdfmx-0.4.ebuild:
   stable x86, bug 215735

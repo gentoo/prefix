@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.4.ebuild,v 1.7 2008/04/01 22:35:20 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.4.ebuild,v 1.8 2008/04/08 14:39:38 armin76 Exp $
 
 EAPI="prefix"
 
