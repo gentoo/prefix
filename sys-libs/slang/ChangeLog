@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.89 2008/03/19 14:53:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.90 2008/04/04 13:32:55 drac Exp $
+
+  04 Apr 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  Keyword ~sparc-fbsd, thanks to Uberlord for testing.
 
   19 Mar 2008; Samuli Suominen <drac@gentoo.org>
   +files/slang-2.1.3-uclibc.patch, slang-2.1.3-r1.ebuild:
