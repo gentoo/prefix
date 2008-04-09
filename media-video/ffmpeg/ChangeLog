@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.217 2008/03/27 09:05:18 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.218 2008/04/07 22:14:42 yngwin Exp $
+
+  07 Apr 2008; Ben de Groot <yngwin@gentoo.org>
+  ffmpeg-0.4.9_p20070616.ebuild, ffmpeg-0.4.9_p20070616-r1.ebuild,
+  ffmpeg-0.4.9_p20070616-r2.ebuild, ffmpeg-0.4.9_p20080206.ebuild,
+  ffmpeg-0.4.9_p20080326.ebuild:
+  Pkgmove x264-svn to x264
 
   27 Mar 2008; Joerg Bornkessel <hd_brummy@gentoo.org> Manifest:
   manifest fixed; #bug 214967

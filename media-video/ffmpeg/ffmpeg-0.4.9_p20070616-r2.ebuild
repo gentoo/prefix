@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616-r2.ebuild,v 1.2 2007/10/31 11:54:03 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616-r2.ebuild,v 1.3 2008/04/07 22:14:42 yngwin Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ RDEPEND="imlib? ( media-libs/imlib2 )
 	zlib? ( sys-libs/zlib )
 	ieee1394? ( =media-libs/libdc1394-1*
 				sys-libs/libraw1394 )
-	x264? ( >=media-libs/x264-svn-20061014 )
+	x264? ( media-libs/x264 )
 	X? ( x11-libs/libX11 x11-libs/libXext )
 	amr? ( media-libs/amrnb media-libs/amrwb )"
 
