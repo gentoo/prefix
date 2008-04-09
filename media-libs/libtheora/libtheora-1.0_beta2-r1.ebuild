@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta2-r1.ebuild,v 1.8 2008/03/13 09:37:38 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta2-r1.ebuild,v 1.9 2008/04/03 18:27:35 pva Exp $
 
 EAPI="prefix"
 
@@ -32,17 +32,12 @@ src_unpack() {
 }
 
 src_compile() {
-	# Hardened still uses gcc-3.4, bug #200549
-	if [[ $(gcc-version) == 3.4 ]] ; then
-		ewarn "-fforce-addr -frename-registers flags are filtered"
-		filter-flags -fforce-addr -frename-registers
-	fi
-	local myconf
+	use x86 && filter-flags -fforce-addr -frename-registers #200549
 
 	use doc || export ac_cv_prog_HAVE_DOXYGEN="false"
 
 	econf --disable-dependency-tracking --disable-examples \
-		--disable-sdltest $(use_enable encode) ${myconf}
+		--disable-sdltest $(use_enable encode)
 
 	emake || die "emake failed."
 }

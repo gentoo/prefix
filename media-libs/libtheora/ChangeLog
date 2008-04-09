@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.70 2008/03/13 09:37:38 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.71 2008/04/03 18:27:35 pva Exp $
+
+  03 Apr 2008; Peter Volkov <pva@gentoo.org> libtheora-1.0_alpha6-r1.ebuild,
+  libtheora-1.0_beta2-r1.ebuild:
+  Filtering out -fforce-addr and -frename-registers on x86, bug #200549.
+  Dropping stable mips as deps are unstable.
 
   13 Mar 2008; Markus Rothe <corsair@gentoo.org>
   libtheora-1.0_beta2-r1.ebuild:
