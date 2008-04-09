@@ -1,6 +1,15 @@
 # ChangeLog for app-office/dia
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.99 2008/03/09 16:21:33 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.100 2008/04/03 13:41:46 eva Exp $
+
+*dia-0.96.1-r1 (03 Apr 2008)
+
+  03 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/dia-0.96.1-gnome-doc.patch, +files/dia-0.96.1-xml-fixes.patch,
+  +dia-0.96.1-r1.ebuild:
+  Remove man generation if USE="-doc", fix bug #205067. Always install
+  documentation where gnome can find it. Conditional destination doesn't do
+  any good anyway, fix #159381.
 
   09 Mar 2008; Mart Raudsepp <leio@gentoo.org> dia-0.95.1.ebuild,
   dia-0.96.1.ebuild:
