@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/lzop-1.02_rc1-r1.ebuild,v 1.8 2008/04/03 01:43:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/lzop-1.02_rc1-r1.ebuild,v 1.10 2008/04/04 12:58:59 ranger Exp $
 
 EAPI="prefix"
 
