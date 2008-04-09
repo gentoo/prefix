@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.4.0.ebuild,v 1.1 2008/03/12 20:20:19 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.4.1.ebuild,v 1.1 2008/04/07 21:40:19 eva Exp $
 
 EAPI="prefix"
 
@@ -24,5 +24,5 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
-	G2CONF="$(use_enable ssl)"
+	G2CONF="${G2CONF} $(use_enable ssl)"
 }
