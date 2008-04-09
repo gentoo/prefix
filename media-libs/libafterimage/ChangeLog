@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libafterimage
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.14 2008/04/04 13:20:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.16 2008/04/08 09:20:34 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> libafterimage-1.15.ebuild:
+  ia64/sparc stable wrt #215898
+
+  07 Apr 2008; Tobias Klausmann <klausman@gentoo.org>
+  libafterimage-1.15.ebuild:
+  Stable on alpha, bug #215898
 
   04 Apr 2008; Brent Baude <ranger@gentoo.org> libafterimage-1.15.ebuild:
   stable ppc64, bug 215898
