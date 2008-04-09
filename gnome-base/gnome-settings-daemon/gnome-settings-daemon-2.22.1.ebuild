@@ -1,6 +1,6 @@
 # Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.0.ebuild,v 1.2 2008/03/27 00:09:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.1.ebuild,v 1.1 2008/04/07 21:39:13 eva Exp $
 
 EAPI="prefix"
 
