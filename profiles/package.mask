@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8480 2008/04/07 22:39:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8481 2008/04/08 18:57:58 armin76 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
+# Masked for testing
+>=net-libs/xulrunner-1.9_beta4
+>=www-client/mozilla-firefox-3.0_beta4
 
 # Ben de Groot <yngwin@gentoo.org> (7 Apr 2008)
 # Versioning scheme change after pkgmove from -svn

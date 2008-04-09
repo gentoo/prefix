@@ -1,6 +1,17 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1302 2008/04/07 22:39:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1304 2008/04/08 15:54:12 wolf31o2 Exp $
+
+  08 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  targets/developer/profile.bashrc:
+  Change the profile.bashrc on the developer profile to not touch CFLAGS.
+
+  08 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  arch/powerpc/ppc64/package.mask, arch/powerpc/ppc64/use.mask,
+  +default/linux/powerpc/ppc64/2008.0/64bit-userland/package.mask,
+  default/linux/powerpc/ppc64/2008.0/64bit-userland/use.mask:
+  Moved ppc64 masks to default/linux/powerpc/ppc64/2008.0/64bit-userland
+  (for now) for bug #216614.
 
   07 Apr 2008; Ben de Groot <yngwin@gentoo.org> updates/2Q-2008,
   package.mask, use.local.desc:
