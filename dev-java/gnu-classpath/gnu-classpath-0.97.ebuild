@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97.ebuild,v 1.1 2008/03/03 14:49:43 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97.ebuild,v 1.2 2008/04/08 16:20:27 armin76 Exp $
 
 EAPI="prefix"
 
@@ -37,11 +37,11 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 		nsplugin? (
 			>=x11-libs/gtk+-2.8
 			|| (
-				www-client/mozilla-firefox
-				net-libs/xulrunner
-				www-client/seamonkey
-				www-client/seamonkey-bin
-				www-client/mozilla-firefox-bin
+				=www-client/mozilla-firefox-2*
+				=net-libs/xulrunner-1.8*
+				=www-client/seamonkey-1*
+				=www-client/seamonkey-bin-1*
+				=www-client/mozilla-firefox-bin-2*
 			)
 		)
 		qt4? ( >=x11-libs/qt-4.1.0 )
