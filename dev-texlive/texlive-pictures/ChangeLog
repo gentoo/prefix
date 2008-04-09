@@ -1,6 +1,25 @@
 # ChangeLog for dev-texlive/texlive-pictures
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.8 2008/02/10 15:58:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.13 2008/04/08 14:59:06 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org>
+  texlive-pictures-2007.ebuild:
+  alpha/ia64/sparc stable wrt #215735
+
+  08 Apr 2008; Jeroen Roovers <jer@gentoo.org> texlive-pictures-2007.ebuild:
+  Stable for HPPA (bug #215735).
+
+  06 Apr 2008; Markus Rothe <corsair@gentoo.org>
+  texlive-pictures-2007.ebuild:
+  Added ~ppc; bug #195815
+
+  06 Apr 2008; Markus Rothe <corsair@gentoo.org>
+  texlive-pictures-2007.ebuild:
+  Stable on ppc64; bug #215735
+
+  01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  texlive-pictures-2007.ebuild:
+  stable x86, bug 215735
 
   10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-pictures-2007.ebuild:
