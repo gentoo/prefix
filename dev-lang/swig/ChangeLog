@@ -1,6 +1,25 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.107 2008/03/11 05:10:55 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.112 2008/04/09 01:54:48 jer Exp $
+
+  09 Apr 2008; Jeroen Roovers <jer@gentoo.org> swig-1.3.35.ebuild:
+  Marked ~hppa (bug #216855).
+
+  08 Apr 2008; Alexis Ballier <aballier@gentoo.org> swig-1.3.35.ebuild:
+  keyword ~x86-fbsd
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> swig-1.3.35.ebuild:
+  Re-add ~ia64 wrt #216855
+
+  08 Apr 2008; Marijn Schouten <hkBst@gentoo.org> -swig-1.3.21.ebuild,
+  -swig-1.3.25.ebuild, -swig-1.3.27.ebuild, -swig-1.3.29.ebuild,
+  -swig-1.3.29-r1.ebuild:
+  remove old cruft
+
+*swig-1.3.35 (08 Apr 2008)
+
+  08 Apr 2008; Marijn Schouten <hkBst@gentoo.org> +swig-1.3.35.ebuild:
+  bump, adds octave support
 
   11 Mar 2008; <ricmm@gentoo.org> swig-1.3.21.ebuild, swig-1.3.25.ebuild,
   swig-1.3.31.ebuild:
