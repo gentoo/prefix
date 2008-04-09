@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.304 2008/04/04 19:16:32 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.305 2008/04/07 22:42:18 armin76 Exp $
+
+  07 Apr 2008; Raúl Porcel <armin76@gentoo.org> vim-7.1.266.ebuild:
+  ia64/sparc stable wrt #216151
 
   04 Apr 2008; Richard Freeman <rich0@gentoo.org> vim-7.1.266.ebuild:
   amd64 stable - 216151
