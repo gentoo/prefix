@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipdfm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/ChangeLog,v 1.23 2008/04/01 22:34:08 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/ChangeLog,v 1.24 2008/04/06 14:35:18 corsair Exp $
+
+  06 Apr 2008; Markus Rothe <corsair@gentoo.org> dvipdfm-0.13.2d-r1.ebuild:
+  Stable on ppc64; bug #215735
 
   01 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
   dvipdfm-0.13.2d-r1.ebuild:
