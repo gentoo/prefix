@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008a.ebuild,v 1.7 2008/04/03 01:45:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008a.ebuild,v 1.9 2008/04/04 13:00:17 ranger Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,9 @@ data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
 SRC_URI="ftp://elsie.nci.nih.gov/pub/tzdata${data_ver}.tar.gz
-	ftp://elsie.nci.nih.gov/pub/tzcode${code_ver}.tar.gz"
+	ftp://elsie.nci.nih.gov/pub/tzcode${code_ver}.tar.gz
+	mirror://gentoo/tzdata${data_ver}.tar.gz
+	mirror://gentoo/tzcode${code_ver}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
