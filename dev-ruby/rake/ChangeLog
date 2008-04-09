@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.52 2008/01/22 21:59:45 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.53 2008/04/08 18:29:00 klausman Exp $
+
+  08 Apr 2008; Tobias Klausmann <klausman@gentoo.org> rake-0.8.1.ebuild:
+  Keyworded on alpha, bug #216480
 
 *rake-0.8.1 (22 Jan 2008)
 
