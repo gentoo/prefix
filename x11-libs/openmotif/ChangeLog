@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.170 2008/04/04 12:38:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.171 2008/04/07 18:34:50 ulm Exp $
+
+*openmotif-2.3.0-r2 (07 Apr 2008)
+
+  07 Apr 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/openmotif-2.3.0-fix-nedit-segfaults.patch,
+  +openmotif-2.3.0-r2.ebuild:
+  Fix segmentation faults affecting nedit, bug 216710. Patch extracted from
+  upstream CVS. Thanks to Evan Teran <eteran@alum.rit.edu> for reporting.
 
   04 Apr 2008; Ulrich Mueller <ulm@gentoo.org>
   files/openmotif-2.3.0-sensitivity-invisible.patch:
