@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.16.ebuild,v 1.1 2008/04/02 13:37:18 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.16.ebuild,v 1.2 2008/04/06 17:31:14 cardoe Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos
 IUSE="debug directfb doc glitz opengl svg test X xcb aqua"
 
 RDEPEND="media-libs/fontconfig
-		>=media-libs/freetype-2.1.4
+		>=media-libs/freetype-2.1.9
 		sys-libs/zlib
 		media-libs/libpng
 		>=x11-libs/pixman-0.10.0
