@@ -1,6 +1,11 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.137 2008/04/02 15:02:25 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.138 2008/04/08 21:31:57 remi Exp $
+
+*evince-2.22.1.1 (08 Apr 2008)
+
+  08 Apr 2008; Rémi Cardona <remi@gentoo.org> +evince-2.22.1.1.ebuild:
+  Bump to 2.22.1.1, bugfix release, contains our dbus patch
 
   02 Apr 2008; Daniel Gryniewicz <dang@gentoo.org>
   -files/evince-2.22.0-gtk-doc-die-die-die.patch, evince-2.22.0.ebuild:
