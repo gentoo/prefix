@@ -1,38 +1,52 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ucspi-tcp-0.88-r16.ebuild,v 1.7 2008/04/06 18:23:13 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ucspi-tcp-0.88-r17.ebuild,v 1.1 2008/04/06 16:57:17 hollow Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs fixheadtails flag-o-matic
+inherit eutils fixheadtails flag-o-matic qmail
 
 DESCRIPTION="Collection of tools for managing UNIX services"
 HOMEPAGE="http://cr.yp.to/ucspi-tcp.html"
 SRC_URI="
 	http://cr.yp.to/${PN}/${P}.tar.gz
 	mirror://qmail/ucspi-rss.diff
+	http://smarden.org/pape/djb/manpages/${P}-man.tar.gz
+	http://xs3.b92.net/tomislavr/${P}-rblspp.patch
 "
 
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
-IUSE="selinux doc"
+IUSE="qmail-spp selinux"
 RESTRICT="test"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	doc? ( app-doc/ucspi-tcp-man )
+	!app-doc/ucspi-tcp-man
 	selinux? ( sec-policy/selinux-ucspi-tcp )"
 PROVIDE="virtual/inetd"
 
+pkg_setup() {
+	if [[ -n "${UCSPI_TCP_PATCH_DIR}" ]]; then
+		eerror
+		eerror "The UCSPI_TCP_PATCH_DIR variable for custom patches"
+		eerror "has been removed from ${PN}. If you need custom patches"
+		eerror "you should create a copy of this ebuild in an overlay."
+		eerror
+		die "UCSPI_TCP_PATCH_DIR is not supported anymore"
+	fi
+}
+
 src_unpack() {
-	unpack "${P}.tar.gz"
+	unpack ${A}
 	cd "${S}"
 
-	epatch \
-		"${FILESDIR}"/${PV}-errno.patch \
-		"${DISTDIR}"/ucspi-rss.diff \
-		"${FILESDIR}"/${PV}-rblsmtpd-ignore-on-RELAYCLIENT.patch
+	epatch "${FILESDIR}"/${PV}-errno.patch
+	epatch "${FILESDIR}"/${PV}-exit.patch
+	epatch "${DISTDIR}"/ucspi-rss.diff
+	epatch "${FILESDIR}"/${PV}-rblsmtpd-ignore-on-RELAYCLIENT.patch
+	epatch "${DISTDIR}"/${P}-rblspp.patch
 
 	ht_fix_file Makefile
 
@@ -42,24 +56,12 @@ src_unpack() {
 	# To work around this, we use -O1 here instead.
 	replace-flags -O? -O1
 
-	echo "$(tc-getCC) ${CFLAGS}" > conf-cc
-	echo "$(tc-getCC) ${LDFLAGS}" > conf-ld
+	qmail_set_cc
 	echo "/usr/" > conf-home
 
 	# allow larger responses
-	sed -i 's|if (text.len > 200) text.len = 200;|if (text.len > 500) text.len = 500;|g' \
-		"${S}/rblsmtpd.c"
-
-	if [[ -n "${UCSPI_TCP_PATCH_DIR}" && -d "${UCSPI_TCP_PATCH_DIR}" ]]
-	then
-		echo
-		ewarn "You enabled custom patches from ${UCSPI_TCP_PATCH_DIR}."
-		ewarn "Be warned that you won't get any support when using "
-		ewarn "this feature. You're on your own from now!"
-		echo
-		ebeep
-		epatch "${UCSPI_TCP_PATCH_DIR}/"*
-	fi
+	sed -i -e 's|if (text.len > 200) text.len = 200;|if (text.len > 500) text.len = 500;|g' \
+		rblsmtpd.c rblspp.c
 }
 
 src_compile() {
@@ -69,15 +71,24 @@ src_compile() {
 src_install() {
 	dobin tcpserver tcprules tcprulescheck argv0 recordio tcpclient *\@ \
 		tcpcat mconnect mconnect-io addcr delcr fixcrio rblsmtpd || die
-	doman *.[15]
+
+	if use qmail-spp; then
+		insinto "${QMAIL_HOME}"/plugins
+		insopts -m 755
+		doins rblspp
+	fi
+
+	doman "${WORKDIR}"/${P}-man/*.[1-8]
 	dodoc CHANGES FILES README SYSDEPS TARGETS TODO VERSION
-	dodoc README.tcpserver-limits-patch
+
 	insinto /etc/tcprules.d/
 	newins "${FILESDIR}"/tcprules-Makefile Makefile
 }
 
 pkg_postinst() {
+	einfo
 	einfo "We have started a move to get all tcprules files into"
 	einfo "/etc/tcprules.d/, where we have provided a Makefile to"
 	einfo "easily update the CDB file."
+	einfo
 }
