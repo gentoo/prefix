@@ -86,7 +86,11 @@ localwrapper_src_compile() {
 extwrapper_src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
-	econf
+# TODO: enable this once we have a snapshot which has this support
+	# --with-macosx-version-min is ignored on non Darwin hosts
+#	econf --with-macosx-version-min=${MACOSX_DEPLOYMENT_TARGET}
+
+	econf --with-macosx-version-min=${MACOSX_DEPLOYMENT_TARGET}
 	emake || die "emake failed."
 }
 
