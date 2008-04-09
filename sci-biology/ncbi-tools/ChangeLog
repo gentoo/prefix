@@ -1,6 +1,19 @@
 # ChangeLog for sci-biology/ncbi-tools
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.57 2007/12/31 15:42:24 je_fro Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.60 2008/04/08 21:35:34 dberkholz Exp $
+
+  08 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; Manifest:
+  Fix manifest, connection dropped mid-commit.
+
+  08 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  ncbi-tools-20070826.ebuild:
+  (#195251) Fix build with --as-needed by always linking against dynamic
+  libraries (Till Korten).
+
+  08 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  ncbi-tools-20070826.ebuild:
+  Respect CFLAGS and compiler on 64-bit systems. Apparently I'm the only
+  person on amd64 who actually watches it build. =)
 
   31 Dec 2007; Jeff Gardner <je_fro@gentoo.org> ChangeLog:
   fixing my email address

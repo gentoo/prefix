@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.3 2007/10/19 22:22:41 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.5 2008/04/08 21:29:59 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -94,6 +94,11 @@ src_unpack() {
 		-e "s/NCBI_LDFLAGS1 = -O2/NCBI_LDFLAGS1 = ${CFLAGS}/" \
 		-e "s/NCBI_OPTFLAG = -O2/NCBI_OPTFLAG = ${CFLAGS}/" \
 		-i ppclinux.ncbi.mk || die
+	# ... on generic 64-bit Linux...
+	sed -e "s/NCBI_CFLAGS1 = -c/NCBI_CFLAGS1 = -c ${CFLAGS}/" \
+		-e "s/NCBI_LDFLAGS1 = -O3/NCBI_LDFLAGS1 = ${CFLAGS}/" \
+		-e "s/NCBI_OPTFLAG = -O3/NCBI_OPTFLAG = ${CFLAGS}/" \
+		-i linux64.ncbi.mk || die
 	# ... on generic Linux.
 	sed -e "s/NCBI_CFLAGS1 = -c/NCBI_CFLAGS1 = -c ${CFLAGS}/" \
 		-e "s/NCBI_LDFLAGS1 = -O3/NCBI_LDFLAGS1 = ${CFLAGS}/" \
@@ -112,8 +117,13 @@ src_unpack() {
 	sed -i -e "s/NCBI_CC = gcc/NCBI_CC = $(tc-getCC)/" hppalinux.ncbi.mk || die
 	# ... on ppc...
 	sed -i -e "s/NCBI_CC = gcc/NCBI_CC = $(tc-getCC)/" ppclinux.ncbi.mk || die
+	# ... on generic 64-bit Linux...
+	sed -i -e "s/NCBI_CC = gcc/NCBI_CC = $(tc-getCC)/" linux64.ncbi.mk || die
 	# ... on generic Linux.
 	sed -i -e "s/NCBI_CC = gcc/NCBI_CC = $(tc-getCC)/" linux.ncbi.mk || die
+
+	# We use dynamic libraries
+	sed -i -e "s/-Wl,-Bstatic//" *linux*.ncbi.mk || die
 
 	# GNU make 3.81 is confused by those nightmarish Makefiles, so we use pmake
 	# instead. The right solution would be to fix the Makefiles. (Be my guest.)
