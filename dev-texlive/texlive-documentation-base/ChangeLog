@@ -1,6 +1,14 @@
 # ChangeLog for dev-texlive/texlive-documentation-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-documentation-base/ChangeLog,v 1.11 2008/04/06 17:26:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-documentation-base/ChangeLog,v 1.13 2008/04/08 14:59:17 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org>
+  texlive-documentation-base-2007.ebuild:
+  alpha/ia64/sparc stable wrt #215735
+
+  08 Apr 2008; Jeroen Roovers <jer@gentoo.org>
+  texlive-documentation-base-2007.ebuild:
+  Stable for HPPA (bug #215735).
 
   06 Apr 2008; Markus Rothe <corsair@gentoo.org>
   texlive-documentation-base-2007.ebuild:
