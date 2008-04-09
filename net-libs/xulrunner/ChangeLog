@@ -1,0 +1,352 @@
+# ChangeLog for net-libs/xulrunner
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.98 2008/03/28 01:05:09 jer Exp $
+
+  28 Mar 2008; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.13.ebuild:
+  Stable for HPPA (bug #214816).
+
+  27 Mar 2008; Brent Baude <ranger@gentoo.org> xulrunner-1.8.1.13.ebuild:
+  Marking xulrunner-1.8.1.13 ppc64 and ppc for bug 214816
+
+  27 Mar 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.13.ebuild:
+  alpha/ia64/sparc stable wrt #214816
+
+  27 Mar 2008; Markus Meier <maekke@gentoo.org> xulrunner-1.8.1.13.ebuild:
+  amd64/x86 stable, security bug #214816
+
+*xulrunner-1.8.1.13 (26 Mar 2008)
+
+  26 Mar 2008; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.13.ebuild:
+  Version bump
+
+  18 Mar 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild,
+  xulrunner-1.8.1.12.ebuild:
+  Slot again
+
+  18 Mar 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild,
+  xulrunner-1.8.1.12.ebuild:
+  Fix LICENSE, thanks to zlin
+
+  17 Mar 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild,
+  xulrunner-1.8.1.12.ebuild:
+  We won't slot xulrunner
+
+  12 Mar 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.12.ebuild:
+  Prepare to slot and some cosmetic fixes
+
+  02 Mar 2008; Lars Weiler <pylon@gentoo.org> ChangeLog:
+  stable ppc, security bug 208128
+
+  11 Feb 2008; Olivier Crête <tester@gentoo.org> xulrunner-1.8.1.12.ebuild:
+  Stable on amd64, security bug #208128
+
+  09 Feb 2008; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.12.ebuild:
+  Stable for HPPA (bug #208128).
+
+  08 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  xulrunner-1.8.1.12.ebuild:
+  stable x86, security bug 208128
+
+  08 Feb 2008; Brent Baude <ranger@gentoo.org> xulrunner-1.8.1.12.ebuild:
+  Marking xulrunner-1.8.1.12 ppc and ppc64 for bug 208128
+
+  08 Feb 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.12.ebuild:
+  alpha/ia64/sparc stable wrt security #208128
+
+*xulrunner-1.8.1.12 (08 Feb 2008)
+
+  08 Feb 2008; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.12.ebuild:
+  Version bump
+
+  02 Feb 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  Bump patchset to fix bug #208212
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  Bump patchset to fix building with GCC-4.3, bug #204703, and to fix building
+  with nss-3.12
+
+  10 Jan 2008; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.6.ebuild:
+  old
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.9.ebuild:
+  old
+
+  12 Dec 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  Stable for HPPA (bug #198965).
+
+  07 Dec 2007; Peter Weller <welp@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  Stable on amd64
+
+  04 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xulrunner-1.8.1.11.ebuild:
+  ppc stable, bug #198965
+
+  04 Dec 2007; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  Stable on ppc64; bug #198965
+
+  04 Dec 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.11.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+*xulrunner-1.8.1.11 (04 Dec 2007)
+
+  04 Dec 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.8.ebuild,
+  -xulrunner-1.8.1.10.ebuild, +xulrunner-1.8.1.11.ebuild:
+  Version bump, remove old
+
+*xulrunner-1.8.1.10 (29 Nov 2007)
+
+  29 Nov 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.10.ebuild:
+  Version bump
+
+  12 Nov 2007; Samuli Suominen <drac@gentoo.org> xulrunner-1.8.1.9.ebuild:
+  amd64 stable wrt security #196480
+
+  06 Nov 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.9.ebuild:
+  Stable for HPPA (bug #196480).
+
+  05 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xulrunner-1.8.1.9.ebuild:
+  ppc stable, bug #196480
+
+  03 Nov 2007; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.1.9.ebuild:
+  Stable on ppc64; bug #196480
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.9.ebuild:
+  alpha/ia64/sparc stable wrt security #196480
+
+  03 Nov 2007; Jurek Bartuszek <jurek@gentoo.org> xulrunner-1.8.1.9.ebuild:
+  x86 stable (bug #196480)
+
+*xulrunner-1.8.1.9 (02 Nov 2007)
+
+  02 Nov 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.9.ebuild:
+  Version bump
+
+  24 Oct 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.8.ebuild:
+  Stable for HPPA (bug #196480). Fixed quoting issues.
+
+  23 Oct 2007; Christoph Mende <angelos@gentoo.org>
+  xulrunner-1.8.1.8.ebuild:
+  Stable on amd64 wrt security bug #196480
+
+  23 Oct 2007; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.1.8.ebuild:
+  Stable on ppc64; bug #196480
+
+  22 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xulrunner-1.8.1.8.ebuild:
+  ppc stable, bug #196480
+
+  22 Oct 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.8.ebuild:
+  alpha/ia64/sparc stable wrt security #196480
+
+  21 Oct 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.8.ebuild:
+  Bump patchset to fix bug #196444, bug #188636, and fix bug #186750 thanks to
+  Walter Meinl <wuno at lsvw dot de> for the patches
+
+  21 Oct 2007; Markus Meier <maekke@gentoo.org> xulrunner-1.8.1.8.ebuild:
+  x86 stable, security bug #196480
+
+*xulrunner-1.8.1.8 (19 Oct 2007)
+
+  19 Oct 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.7.ebuild,
+  +xulrunner-1.8.1.8.ebuild:
+  Version bump
+
+*xulrunner-1.8.1.7 (19 Sep 2007)
+
+  19 Sep 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.7.ebuild:
+  Version bump
+
+  09 Aug 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.5.ebuild:
+  old
+
+  08 Aug 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.6.ebuild:
+  Stable for HPPA (bug #187205).
+
+  05 Aug 2007; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.1.6.ebuild:
+  Stable on ppc64; bug #187205
+
+  03 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xulrunner-1.8.1.6.ebuild:
+  ppc stable, bug #187205
+
+  03 Aug 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.6.ebuild:
+  alpha/ia64/x86 stable wrt security #187205
+
+  02 Aug 2007; Carlos Silva <r3pek@gentoo.org> xulrunner-1.8.1.6.ebuild:
+  amd64 stable wrt bug #187205
+
+  02 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xulrunner-1.8.1.6.ebuild:
+  Stable on sparc wrt security #187205
+
+*xulrunner-1.8.1.6 (02 Aug 2007)
+
+  02 Aug 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.6.ebuild:
+  Version bump wrt security #187205
+
+  29 Jul 2007; Tom Gall <tgall@gentoo.org> xulrunner-1.8.1.5.ebuild:
+  stable on ppc64
+
+  28 Jul 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.1.4.ebuild:
+  old
+
+  28 Jul 2007; Steve Dibb <beandog@gentoo.org> xulrunner-1.8.1.5.ebuild:
+  amd64 stable, security bug 185737
+
+  27 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xulrunner-1.8.1.5.ebuild:
+  Stable on ppc wrt security #185737
+
+  24 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xulrunner-1.8.1.5.ebuild:
+  Stable on sparc wrt security #185737
+
+  24 Jul 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.5.ebuild:
+  Stable for HPPA (bug #185737).
+
+  23 Jul 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.5.ebuild:
+  alpha/ia64/x86 stable wrt security #185737
+
+*xulrunner-1.8.1.5 (20 Jul 2007)
+
+  20 Jul 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.5.ebuild:
+  Version bump wrt security #185737
+
+  10 Jul 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  alpha stable
+
+  04 Jul 2007; Roy Marples <uberlord@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  Keyworded ~x86-fbsd, #184099.
+
+  04 Jul 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  Make it work in fbsd, patches provided by Roy Marples <uberlord at gentoo
+  dot org>, bug 184099
+
+  15 Jun 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  Enable parallel compile, bug 181722
+
+  13 Jun 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.0.4.ebuild,
+  -xulrunner-1.8.1.3.ebuild:
+  clean old
+
+  13 Jun 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xulrunner-1.8.1.4.ebuild:
+  ppc stable, bug #180436
+
+  04 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xulrunner-1.8.1.4.ebuild:
+  Stable on sparc wrt security #180436
+
+  02 Jun 2007; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  Stable for HPPA (bug #180436).
+
+  01 Jun 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.4.ebuild:
+  ia64/x86 stable wrt security #180436
+
+  01 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  xulrunner-1.8.1.4.ebuild:
+  Stable on amd64 wrt security bug 180436
+
+*xulrunner-1.8.1.4 (01 Jun 2007)
+
+  01 Jun 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.4.ebuild:
+  Version bump wrt security #180436, thanks to Gergan Penkov <gpp666_999 at
+  yahoo dot de> for the patchset
+
+  23 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xulrunner-1.8.1.3.ebuild:
+  Stable on sparc
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Add ~alpha wrt #172559
+
+  18 Apr 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Add patch to fix compile failure if use debug, bug 155349, thanks to Gergan
+  Penkov <gergan at gmail dot com> for the patch
+
+  17 Apr 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Disable python extension, bug 174944
+
+  16 Apr 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Add elog in postinst, thanks to dang for the suggestion
+
+  16 Apr 2007; Daniel Gryniewicz <dang@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Marked stable on amd64 for bug #170101
+
+  16 Apr 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.3.ebuild:
+  Add back ~arch keywords i dropped
+
+*xulrunner-1.8.1.3 (16 Apr 2007)
+
+  16 Apr 2007; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.8.0.11.ebuild,
+  +xulrunner-1.8.1.3.ebuild:
+  Bump to 1.8.1.3, many thanks to Gergan Penkov <gergan at gmail dot com> for
+  the patchset
+
+  15 Apr 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.11.ebuild:
+  Fix patchset, bug 174645
+
+*xulrunner-1.8.0.11 (14 Apr 2007)
+
+  14 Apr 2007; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.0.11.ebuild:
+  Version bump, wrt security fixes, and stable to x86
+
+  29 Mar 2007; Jeroen Roovers <jer@gentoo.org> :
+  Marked ~hppa (bug #172559).
+
+  24 Mar 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Bump patchset wrt bug 171901, patch by Roy Marples <uberlord at gentoo dot org>
+
+  23 Mar 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Add missing IUSE
+
+  15 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Marked stable on amd64 for bug #170101
+
+  09 Mar 2007; nixnut <nixnut@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Stable on ppc wrt bug 170101
+
+  09 Mar 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  x86 stable wrt bug 170101
+
+  08 Mar 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Bump patchset to make this work in g/fbsd wrt bug 169825
+
+  07 Mar 2007; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Added ~ppc64; bug #155053
+
+  07 Mar 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Bump patchset to fix bug 165777 and bug 168893
+
+  11 Jan 2007; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  license change, bug 150118
+
+  06 Dec 2006; Jason Wever <weeve@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Added ~sparc keyword wrt bug #155053.
+
+  19 Nov 2006; Stuart Longland <redhatter@gentoo.org>
+  xulrunner-1.8.0.4.ebuild:
+  Minor tweaks committed on Anarchy's behalf: relocated WANT_AUTOCONF
+  variable, force -j1 when compiling.
+
+  17 Nov 2006; nixnut <nixnut@gentoo.org> xulrunner-1.8.0.4.ebuild:
+  Added ~ppc keyword wrt bug 155053
+
+  12 Nov 2006; Stefan Schweizer <genstef@gentoo.org>
+  -xulrunner-1.8.0.1.ebuild, xulrunner-1.8.0.4.ebuild:
+  Remove old, WANT_AUTOCONF="2.1", thanks anarchy
+
+*xulrunner-1.8.0.4 (27 Jul 2006)
+
+  27 Jul 2006; Stefan Schweizer <genstef@gentoo.org> +files/xulrunner.conf,
+  +xulrunner-1.8.0.4.ebuild:
+  Version bump thanks to Gergan Penkov <gpp666_999@yahoo.de> and Walter Meinl
+  in bug 142791
+
+*xulrunner-1.8.0.1 (02 Jun 2006)
+
+  02 Jun 2006; Jory A. Pratt <anarchy@gentoo.org> +metadata.xml,
+  +xulrunner-1.8.0.1.ebuild:
+  initial import to tree
+
