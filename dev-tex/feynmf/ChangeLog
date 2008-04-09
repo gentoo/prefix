@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.21 2008/04/06 16:56:43 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.23 2008/04/08 15:02:13 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> feynmf-1.08-r2.ebuild:
+  alpha/ia64/sparc stable wrt #215735
+
+  08 Apr 2008; Jeroen Roovers <jer@gentoo.org> feynmf-1.08-r2.ebuild:
+  Stable for HPPA (bug #215735).
 
   06 Apr 2008; Markus Rothe <corsair@gentoo.org> feynmf-1.08-r2.ebuild:
   Stable on ppc64; bug #215735
