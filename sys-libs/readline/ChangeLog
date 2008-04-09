@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.115 2008/02/26 23:06:13 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.116 2008/04/08 21:43:06 vapier Exp $
+
+  08 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/readline-5.2-no-ignore-shlib-errors.patch,
+  readline-5.2_p12-r1.ebuild:
+  Dont ignore errors in the shlib subdir #216952 by Markus Ullmann.
 
   26 Feb 2008; Santiago M. Mola <coldwind@gentoo.org>
   readline-5.2_p12-r1.ebuild:

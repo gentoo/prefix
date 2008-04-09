@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p12-r1.ebuild,v 1.7 2008/02/26 23:06:13 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p12-r1.ebuild,v 1.8 2008/04/08 21:43:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -50,6 +50,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-build.patch #151174
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
+	epatch "${FILESDIR}"/${PN}-5.2-no-ignore-shlib-errors.patch #216952
+
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
@@ -58,10 +60,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
 	epatch "${FILESDIR}"/${PN}-5.2-solaris-fPIC.patch
-
-	if [[ ${CHOST} == *-darwin9 ]]; then
-		epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch || die
-	fi
+	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch
 
 	ln -s ../.. examples/rlfe/readline
 
