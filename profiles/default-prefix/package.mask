@@ -35,7 +35,7 @@
 # Fabian Groffen <grobian@gentoo.org> (03 Apr 2008)
 # Had undefined references all over the place on Solaris, don't like it
 # not compiling, masking globally
-~net-misc/openssh-4.9_p1
+~net-misc/openssh-5.0_p1
 
 # Fabian Groffen <grobian@gentoo.org> (31 Mar 2008)
 # Seems not to be ready for wide usage; multiple bugs and segfaults when
