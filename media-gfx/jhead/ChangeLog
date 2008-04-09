@@ -1,6 +1,28 @@
 # ChangeLog for media-gfx/jhead
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.65 2008/04/06 15:59:15 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.73 2008/04/08 09:12:40 armin76 Exp $
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> jhead-2.8.ebuild:
+  ia64/sparc stable wrt #216570
+
+  07 Apr 2008; Tobias Klausmann <klausman@gentoo.org> jhead-2.8.ebuild:
+  Stable on alpha, bug #216570
+
+  07 Apr 2008; Brent Baude <ranger@gentoo.org> jhead-2.8.ebuild:
+  stable ppc64, bug 216570
+
+  07 Apr 2008; Samuli Suominen <drac@gentoo.org> jhead-2.8.ebuild,
+  jhead-2.82.ebuild:
+  Marked 2.8 stable for amd64 wrt #216570. Modified 2.82 so it doesn't dep. on
+  media-libs/jpeg because it doesn't use it as per NEEDED entries, makefile
+  and headers. Use toolchain-funcs correctly and stop inheriting unused
+  eutils.
+
+  07 Apr 2008; Jeroen Roovers <jer@gentoo.org> jhead-2.8.ebuild:
+  Stable for HPPA (bug #216570).
+
+  07 Apr 2008; Dawid Węgliński <cla@gentoo.org> jhead-2.8.ebuild:
+  Stable on x86 (bug #216570)
 
 *jhead-2.82 (06 Apr 2008)
 
