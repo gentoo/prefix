@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/plotutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.40 2007/07/22 09:33:22 dberkholz Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.41 2008/04/05 12:47:47 genstef Exp $
+
+*plotutils-2.5 (05 Apr 2008)
+
+  05 Apr 2008; Stefan Schweizer <genstef@gentoo.org>
+  +files/plotutils-2.5-rangecheck.patch, -plotutils-2.4.1-r2.ebuild,
+  -plotutils-2.4.1-r3.ebuild, +plotutils-2.5.ebuild:
+  Version bump thnks to Hanno Meyer-Thurow <h.mth@web.de> in bug 213188
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   plotutils-2.4.1-r2.ebuild, plotutils-2.4.1-r3.ebuild,
