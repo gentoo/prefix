@@ -1,6 +1,9 @@
 # ChangeLog for app-text/cwtext
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.14 2008/01/19 15:10:32 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.15 2008/04/07 20:18:14 armin76 Exp $
+
+  07 Apr 2008; Raúl Porcel <armin76@gentoo.org> cwtext-0.94.ebuild:
+  Some fixes and sparc stable, thanks to Tiago Cunha
 
   19 Jan 2008; Fabian Groffen <grobian@gentoo.org> cwtext-0.94.ebuild:
   Dropped ppc-macos keyword, see you in prefix
