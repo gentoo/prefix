@@ -1,22 +1,3 @@
---- openmotif-2.3.0-orig/lib/Xm/I18List.c	2005-12-09 15:29:01.000000000 +0100
-+++ openmotif-2.3.0/lib/Xm/I18List.c	2008-02-16 00:48:53.000000000 +0100
-@@ -2086,7 +2086,7 @@
-     values.graphics_exposures = False;
- 
-     mask = GCForeground | GCBackground | GCFont | GCGraphicsExposures;
--    smask = mask | GCStipple | GCFillStyle;
-+    smask = mask | GCFillStyle;
-     
-     XmI18List_gc(ilist) = XtGetGC(w, mask, &values);
- 
-@@ -2117,6 +2117,7 @@
-     	XmI18List_entry_background_gc(ilist) = XtGetGC(w, mask, &values);
-     }
- 
-+    values.foreground = _XmAssignInsensitiveColor(w);
-     XmI18List_stippled_gc(ilist) = XtGetGC(w, smask, &values);
- 
-     if (XmI18List_entry_background_use(ilist))
 --- openmotif-2.3.0-orig/lib/Xm/IconButton.c	2005-10-17 15:15:51.000000000 +0200
 +++ openmotif-2.3.0/lib/Xm/IconButton.c	2008-02-16 00:48:53.000000000 +0100
 @@ -1836,7 +1836,7 @@
