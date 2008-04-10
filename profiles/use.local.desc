@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3479 2008/04/09 01:35:15 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3482 2008/04/09 18:01:16 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -742,6 +742,7 @@ gnome-base/gvfs:fuse - Enable fuse mount points in ~/.gvfs for legacy applicatio
 gnome-base/gvfs:keyring - Enable gnome-keyring support for storing passwords
 gnome-base/nautilus:beagle - Enable support for beagle searching
 gnome-base/nautilus:tracker - Enable support for tracker searching
+gnome-extra/avant-window-navigator:xfce - Enable support for libs XFCE provides
 gnome-extra/evolution-data-server:keyring - Enable gnome-keyring support for storing passwords
 gnome-extra/gnome-do-plugins:amarok - Build the plugin for Amarok
 gnome-extra/gnome-games:artworkextra - Add extra Artwork to gnome-games
@@ -1289,6 +1290,7 @@ media-video/vdr:validinput - Signal if it is possible to go left/right in lists 
 media-video/vdr:volctrl - allows volume control using left/right keys
 media-video/vdr:wareagleicon - Replace original icon set in menu
 media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
+media-video/vlc:atmo - Enables support for AtmoLight (homebrew Ambient Lighting Technology)
 media-video/vlc:cdda - Enables libcdda cd audio playback support.
 media-video/vlc:cdio - Enables CD input and control library support.
 media-video/vlc:corba - Enables corba interface support.
@@ -1832,7 +1834,6 @@ sci-libs/gsl:cblas - Builds gsl with external cblas by default
 sci-libs/hdf5:f90 - Flag to override fortran for externel compilers
 sci-libs/hdf5:hlapi - Enables support for high-level library
 sci-libs/hdf5:tools - install support and test tools
-sci-libs/itpp:cblas - Adds support for the cblas numerical library
 sci-libs/libghemical:mopac7 - Use the MOPAC7 package for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use the MPQC package for quantum-mechanical calculations
 sci-libs/libsvm:tools - install support tools
