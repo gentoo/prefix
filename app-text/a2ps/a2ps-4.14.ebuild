@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14.ebuild,v 1.1 2008/04/06 11:40:00 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14.ebuild,v 1.2 2008/04/09 12:36:37 ulm Exp $
 
 EAPI="prefix"
 
@@ -80,14 +80,8 @@ src_unpack() {
 }
 
 src_compile() {
-	addpredict /usr/$(get_libdir)/mozilla-firefox/components/xpti.dat
-	addpredict /usr/$(get_libdir)/mozilla-firefox/components/xpti.dat.tmp
-	addpredict /usr/$(get_libdir)/mozilla-firefox/components/compreg.dat.tmp
-
-	addpredict /usr/$(get_libdir)/mozilla/components/xpti.dat
-	addpredict /usr/$(get_libdir)/mozilla/components/xpti.dat.tmp
-
 	#export YACC=yacc
+	export COM_netscape=no
 	econf --sysconfdir="${EPREFIX}"/etc/a2ps \
 		--includedir="${EPREFIX}"/usr/include \
 		$(useq emacs || echo EMACS=no) \
