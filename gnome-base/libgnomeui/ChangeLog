@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/libgnomeui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.153 2008/03/23 00:25:57 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.154 2008/04/09 23:00:34 eva Exp $
+
+*libgnomeui-2.22.1 (09 Apr 2008)
+
+  09 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgnomeui-2.22.1.ebuild:
+  bump to 2.22.1. Fix crashes in remote backend, bug fixes and translation
+  updates.
 
 *libgnomeui-2.22.01 (23 Mar 2008)
 
