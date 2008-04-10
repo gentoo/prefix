@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/autoconf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.110 2007/11/02 06:30:50 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.111 2008/04/10 04:31:40 vapier Exp $
+
+*autoconf-2.62 (10 Apr 2008)
+
+  10 Apr 2008; Mike Frysinger <vapier@gentoo.org> +autoconf-2.62.ebuild:
+  Version bump.
 
 *autoconf-9999 (02 Nov 2007)
 
