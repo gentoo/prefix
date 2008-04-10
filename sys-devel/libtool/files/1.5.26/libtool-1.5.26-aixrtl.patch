@@ -1,7 +1,16 @@
 http://bugs.gentoo.org/show_bug.cgi?id=213277
 
---- libtool.m4.orig	2008-04-04 16:59:15 +0200
-+++ libtool.m4	2008-04-04 17:01:42 +0200
+--- libtool.m4.orig	2008-04-10 18:10:03 +0200
++++ libtool.m4	2008-04-10 18:10:38 +0200
+@@ -1414,7 +1414,7 @@
+ aix[[4-9]]*)
+   version_type=linux
+   need_lib_prefix=no
+-  need_version=no
++  need_version=yes
+   hardcode_into_libs=yes
+   if test "$host_cpu" = ia64; then
+     # AIX 5 supports IA64
 @@ -3075,7 +3075,7 @@
  	for ld_flag in $LDFLAGS; do
  	  case $ld_flag in
