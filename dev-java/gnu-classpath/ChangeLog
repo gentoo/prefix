@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.76 2008/04/08 16:20:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.77 2008/04/09 21:26:09 maekke Exp $
+
+  09 Apr 2008; Markus Meier <maekke@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild:
+  amd64/x86 stable, bug #216689
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> gnu-classpath-0.93.ebuild,
   gnu-classpath-0.97.ebuild, gnu-classpath-0.97-r1.ebuild:
