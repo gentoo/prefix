@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/star
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.69 2008/04/08 13:32:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.70 2008/04/09 17:23:42 nixnut Exp $
+
+  09 Apr 2008; nixnut <nixnut@gentoo.org> star-1.5_alpha88.ebuild:
+  Stable on ppc wrt bug #216658
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> star-1.5_alpha88.ebuild:
   ia64/sparc/x86 stable wrt #216658
