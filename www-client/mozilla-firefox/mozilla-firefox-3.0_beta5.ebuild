@@ -168,7 +168,7 @@ src_compile() {
 	mozconfig_annotate '' --with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME}
 	if use xulrunner; then
 		# Add xulrunner variable
-		mozconfig_annotate '' --with-libxul-sdk=/usr/$(get_libdir)/xulrunner-1.9
+		mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-1.9
 	fi
 
 	if ! use bindist; then

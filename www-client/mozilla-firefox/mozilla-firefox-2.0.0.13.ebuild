@@ -242,7 +242,7 @@ src_install() {
 	fi
 
 	# Create /usr/bin/firefox
-	install_mozilla_launcher_stub firefox "${EPREFIX}${MOZILLA_FIVE_HOME}"
+	install_mozilla_launcher_stub firefox ${MOZILLA_FIVE_HOME}
 
 	# Install icon and .desktop for menu entry
 	if use iceweasel; then
