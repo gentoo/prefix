@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.54 2008/04/08 14:40:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.55 2008/04/09 16:18:16 aballier Exp $
+
+  09 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r12.ebuild:
+  Add an elog message about texmfind as suggested by EvaSDK
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org>
   texlive-core-2007-r12.ebuild:

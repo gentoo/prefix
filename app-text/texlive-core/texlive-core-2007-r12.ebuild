@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r12.ebuild,v 1.13 2008/04/08 14:40:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r12.ebuild,v 1.14 2008/04/09 16:18:16 aballier Exp $
 
 EAPI="prefix"
 
@@ -278,4 +278,9 @@ pkg_postinst() {
 	ewarn "Please make sure you have read:"
 	ewarn "http://www.gentoo.org/proj/en/tex/texlive-migration-guide.xml"
 	ewarn "in order to avoid possible problems"
+	elog
+	elog "TeXLive has been split in various ebuilds. If you are missing a"
+	elog "package to process your TeX documents, you can install"
+	elog "dev-tex/texmfind to easily search for them."
+	elog
 }
