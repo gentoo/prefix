@@ -1,6 +1,20 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.376 2008/03/26 09:15:37 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.377 2008/04/10 01:28:03 leio Exp $
+
+*gtk+-2.12.9-r2 (10 Apr 2008)
+
+  10 Apr 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gtk+-2.12.9-filechooser-fix-icon-size.patch,
+  +files/gtk+-2.12.9-gtk-filesystem-backend-tilde-fix.patch,
+  +files/gtk+-2.12.9-print-backend-64bit.patch,
+  +files/gtk+-2.12.9-treeview-search-window-type.patch,
+  +gtk+-2.12.9-r2.ebuild:
+  Fix 64bit printing dialogs, especially seen in Eclipse, bugs 214863 and
+  215318; Improve ~ handling in gtk+ filechooser backend (outside GNOME usage
+  mostly), bug 215146; Also add patches to fix treeview search popup window
+  type for compiz benefits and filechooser icon size inconsistencies that were
+  best seen with GVFS bookmark icons
 
 *gtk+-2.12.9-r1 (26 Mar 2008)
 
