@@ -49,6 +49,13 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify \
+		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
+		xpcom/build/nsXPCOMPrivate.h \
+		xulrunner/installer/Makefile.in \
+		xulrunner/app/nsRegisterGREUnix.cpp
+
 	eautoreconf || die "failed  running eautoreconf"
 }
 
