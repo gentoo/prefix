@@ -1,6 +1,9 @@
 # ChangeLog for app-text/new
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/new/ChangeLog,v 1.17 2007/05/14 20:13:35 bangert Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/new/ChangeLog,v 1.18 2008/04/09 18:05:49 armin76 Exp $
+
+  09 Apr 2008; Raúl Porcel <armin76@gentoo.org> new-1.3.5.ebuild:
+  Add missing deps wrt #216426
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/new/new-1.3.5.ebuild,v 1.4 2007/02/04 18:27:40 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/new/new-1.3.5.ebuild,v 1.5 2008/04/09 18:05:49 armin76 Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,9 @@ src_unpack() {
 	# stack_t is in the system headers on at least Darwin
 	sed -i -e 's/stack_t/flyn_stack_t/g' src/fmt_ptrn.c
 }
+
+DEPEND=">=dev-libs/glib-2
+	dev-util/pkgconfig"
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
