@@ -66,14 +66,14 @@ update_mozilla_launcher_symlinks() {
 install_mozilla_launcher_stub() {
 	[[ -n $2 ]] || die "install_launcher_stub requires two arguments"
 	declare name=$1
-	declare libdir=$2
+	declare libdir=${EPREFIX}$2
 
 	# If we use xulrunner, the name of the binary should be the same
 	if [[ ${name: -3} == "xul" ]]; then
 		name=${name/xul/}
 		declare appname=xulrunner
 		declare xulparams="export XUL_PARAMS=${libdir}/application.ini"
-		declare libdir="/usr/$(get_libdir)/xulrunner-1.9"
+		declare libdir="${EPREFIX}/usr/$(get_libdir)/xulrunner-1.9"
 	else
 		declare appname=${name}
 	fi
@@ -89,7 +89,7 @@ install_mozilla_launcher_stub() {
 # http://bugs.gentoo.org/show_bug.cgi?id=78890
 
 export MOZILLA_LAUNCHER=${appname}
-export MOZILLA_LIBDIR=${EPREFIX}${libdir}
+export MOZILLA_LIBDIR=${libdir}
 export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-${EPREFIX}/usr/$(get_libdir)/$PLUGINS_DIR}
 ${xulparams}
 exec ${EPREFIX}/usr/libexec/mozilla-launcher "\$@"
@@ -103,7 +103,7 @@ EOF
 # http://bugs.gentoo.org/show_bug.cgi?id=78890
 
 export MOZILLA_LAUNCHER=${appname}
-export MOZILLA_LIBDIR=${EPREFIX}${libdir}
+export MOZILLA_LIBDIR=${libdir}
 export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-${EPREFIX}/usr/$(get_libdir)/$PLUGINS_DIR}
 ${xulparams}
 export MOZ_DISABLE_PANGO=1
