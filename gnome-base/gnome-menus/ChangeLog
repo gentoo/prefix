@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.105 2008/03/18 00:10:41 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.106 2008/04/09 21:34:27 eva Exp $
+
+*gnome-menus-2.22.1 (09 Apr 2008)
+
+  09 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-menus-2.22.1.ebuild:
+  bump to 2.22.1. Remove shebangs from non-executable Python scripts and
+  translation updates.
 
 *gnome-menus-2.22.0 (18 Mar 2008)
 
