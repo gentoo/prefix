@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.3.ebuild,v 1.2 2008/03/01 04:54:28 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.3.ebuild,v 1.3 2008/04/11 00:20:52 dang Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,9 @@ src_unpack(){
 	cd "${S}"
 
 	epatch "${FILESDIR}"/poppler-0.6-bindings.patch
+
+	# Don't run password test; the test file is not there. Bug #201448
+	epatch "${FILESDIR}"/poppler-0.6.3-no-password-test.patch
 
 	AT_M4DIR="m4" eautoreconf
 }

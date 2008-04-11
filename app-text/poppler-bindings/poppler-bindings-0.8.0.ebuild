@@ -1,9 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.0.ebuild,v 1.1 2008/04/01 16:18:44 genstef Exp $
-
-EAPI="prefix"
-
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.0.ebuild,v 1.3 2008/04/11 00:20:52 dang Exp $
+  
+EAPI="prefix 1"
 inherit autotools eutils multilib flag-o-matic
 
 MY_P=${P/-bindings/}
@@ -32,17 +31,23 @@ RDEPEND="~app-text/poppler-${PV}
 		>=gnome-base/libglade-2
 	)
 	qt3? ( =x11-libs/qt-3* )
-	qt4? ( =x11-libs/qt-4* )"
+	qt4? ( || ( ( x11-libs/qt-core:4
+			x11-libs/qt-gui:4
+			x11-libs/qt-test:4 )
+		>=x11-libs/qt-4.3:4 ) )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
 src_unpack(){
 	unpack ${A}
 	cd "${S}"
 
 	epatch "${FILESDIR}"/poppler-0.6-bindings.patch
+
+	# Don't run password test; the test file is not there. Bug #201448
+	epatch "${FILESDIR}"/poppler-0.8.0-no-password-test.patch
 
 	AT_M4DIR="m4" eautoreconf
 	cd poppler
