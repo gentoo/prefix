@@ -39,13 +39,29 @@ src_compile() {
 	[[ ${ARCH} == alpha && ${CC} == ccc ]] && \
 		die "Dont compile fontconfig with ccc, it doesnt work very well"
 
+		# harvest some font locations, such that users can benefit from the
+		# host OS's installed fonts
+		case ${CHOST} in
+			*-darwin)
+				addfonts=",/Library/Fonts,/System/Library/Fonts"
+			;;
+			*-solaris)
+				[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
+					addfonts=",/usr/X/lib/X11/fonts/TrueType"
+			;;
+			*-linux-gnu)
+				[[ -d /usr/share/fonts ]] && \
+					addfonts=",/usr/share/fonts"
+			;;
+		esac
+
 	# disable docs only disables local docs generation, they come with the tarball
 	econf $(use_enable doc docs) \
 		$(use_enable doc docbook) \
 		--localstatedir="${EPREFIX}"/var \
 		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
-		--with-add-fonts="${EPREFIX}"/usr/local/share/fonts \
+		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
 		$(use_enable xml libxml2) \
 		|| die
 
