@@ -54,7 +54,9 @@ pkg_setup() {
 		$(use_with python)
 		$(use_enable doc db2html)
 		$(use_enable gnome)
-		$(use_with gnome-print gnomeprint)"
+		$(use_with gnome-print gnomeprint)
+		--exec-prefix=${EPREFIX}/usr"
+	# --exec-prefix makes Python look for modules in the Prefix
 }
 
 src_unpack() {
