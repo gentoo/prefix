@@ -27,7 +27,7 @@ src_unpack() {
 	cd "${S}"
 
 	# usr/bin/libtool is provided by odcctools
-	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-2.61-darwin.patch
+	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-2.61-darwin.patch
 }
 
 src_compile() {
