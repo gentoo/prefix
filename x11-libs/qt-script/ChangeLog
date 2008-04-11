@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-script
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.3 2008/03/05 23:24:19 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.4 2008/04/10 13:42:44 ingmar Exp $
+
+  10 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -qt-script-4.4.0_beta1.ebuild, +qt-script-4.4.0_rc1.ebuild:
+  Version bump qt-script to 4.4.0_rc1. Thanks to Bo Andresen and Bernd
+  Steinhauser.
 
   05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-script-4.4.0_rc1.ebuild:
