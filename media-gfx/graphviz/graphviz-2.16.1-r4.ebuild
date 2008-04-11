@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r4.ebuild,v 1.6 2008/04/07 20:50:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r4.ebuild,v 1.7 2008/04/10 16:48:54 ken69267 Exp $
 
 EAPI="prefix"
 
