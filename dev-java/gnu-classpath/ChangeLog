@@ -1,6 +1,6 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.77 2008/04/09 21:26:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.78 2008/04/10 19:42:19 betelgeuse Exp $
 
   09 Apr 2008; Markus Meier <maekke@gentoo.org>
   gnu-classpath-0.97-r1.ebuild:
@@ -9,6 +9,10 @@
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> gnu-classpath-0.93.ebuild,
   gnu-classpath-0.97.ebuild, gnu-classpath-0.97-r1.ebuild:
   Fix deps on mozilla products
+
+  10 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild:
+  Add support for split qt4. Fixes bug #217173.
 
 *gnu-classpath-0.97-r1 (04 Mar 2008)
 
