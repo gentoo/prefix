@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.7.0-r3.ebuild,v 1.3 2008/04/07 15:49:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.7.0-r3.ebuild,v 1.4 2008/04/10 19:19:35 betelgeuse Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source test"
@@ -20,6 +20,7 @@ COMMON_DEP="
 	>=dev-java/commons-collections-2.1
 	>=dev-java/commons-logging-1.0.2"
 RDEPEND=">=virtual/jre-1.4
+	!<=dev-java/commons-betwixt-0.7-r1:0.7
 	${COMMON_DEP}"
 DEPEND="!test? ( >=virtual/jdk-1.4 )
 	test? ( dev-java/junit:0 || ( =virtual/jdk-1.5* =virtual/jdk-1.4* ) )

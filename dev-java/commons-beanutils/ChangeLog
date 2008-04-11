@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/commons-beanutils
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/ChangeLog,v 1.42 2008/04/07 15:49:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/ChangeLog,v 1.43 2008/04/10 19:19:35 betelgeuse Exp $
+
+  10 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  commons-beanutils-1.7.0-r3.ebuild:
+  Add a blocker to commons-betwixt versions that haven't been updated to work
+  with commons-collections classes removed.
 
   07 Apr 2008; Markus Rothe <corsair@gentoo.org>
   commons-beanutils-1.7.0-r3.ebuild:
