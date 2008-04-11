@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Apr 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask autoconf-2.62 for bug #217264
+
   03 Apr 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask openssh-4.9_p1 since it doesn't compile at least on Solaris
 
