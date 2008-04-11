@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/autoconf-wrapper
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.51 2007/01/05 16:04:43 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.52 2008/04/10 08:05:51 vapier Exp $
+
+*autoconf-wrapper-5 (10 Apr 2008)
+
+  10 Apr 2008; Mike Frysinger <vapier@gentoo.org> +files/ac-wrapper-5.sh,
+  +autoconf-wrapper-5.ebuild:
+  Add support for autoconf-2.62 #217087.
 
   05 Jan 2007; Jeroen Roovers <jer@gentoo.org> autoconf-wrapper-4-r3.ebuild:
   Stable for HPPA (bug #159416).
