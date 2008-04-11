@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1307 2008/04/09 18:40:44 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1312 2008/04/10 22:44:10 flameeyes Exp $
+
+  10 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Add a mask for amarok 1.4.9.1.
+
+  10 Apr 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  Mask the Gnome 2.22.1 meta until all deps are in portage
+
+  10 Apr 2008; Santiago M. Mola <coldwind@gentoo.org> use.local.desc:
+  Add use local desc for net-im/telepathy-mission-control:keyring.
+
+  10 Apr 2008; Santiago M. Mola <coldwind@gentoo.org> base/package.mask,
+  selinux/package.mask:
+  Add telepathy-mission-control-4.65 to Gnome 2.22 mask.
+
+  10 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add libextractor USE flag description.
 
   09 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
   +default/linux/amd64/2008.0/server/profile.bashrc,

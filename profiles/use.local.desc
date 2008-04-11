@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3482 2008/04/09 18:01:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3484 2008/04/10 11:03:14 coldwind Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1512,6 +1512,7 @@ net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal
 net-im/sim:sms - Enable sms plugin
 net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it
 net-im/skype:qt-static - Installs binaries statically linked to Qt
+net-im/telepathy-mission-control:keyring - Enable gnome-keyring support for storing passwords
 net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables installation the extra plugins
 net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
@@ -1623,6 +1624,7 @@ net-misc/hylafax:html - Adds HTML documentation
 net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/kvpnc:cisco - Adds support for Cisco client
+net-misc/mediatomb:libextractor - Use libextractor to gather files' metadata.
 net-misc/neon:pkcs11 - Add support PKCS11 support
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks

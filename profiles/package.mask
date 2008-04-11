@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8486 2008/04/09 18:35:52 humpback Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8489 2008/04/10 22:44:10 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,20 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Diego Pettenò <flameeyes@gentoo.org> (11 Apr 2008)
+# Amarok pre-release, the tarball won't be available officially until Saturday
+# but is present for those who wants to test it.
+=media-sound/amarok-1.4.9.1
+
+# Alin Nastac <mrness@gentoo.org> (11 Apr 2008)
+# Masked for removal on April the 25th (#174109).
+# Use net-proxy/privoxy instead.
+net-proxy/junkbuster
+
+# Rémi Cardona <remi@gentoo.org> (10 Apr 2008)
+# Masked until all deps are in portage
+=gnome-base/gnome-2.22.1
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing
