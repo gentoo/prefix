@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/unison
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.46 2008/04/07 21:35:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.47 2008/04/10 19:36:15 maekke Exp $
+
+  10 Apr 2008; Markus Meier <maekke@gentoo.org> unison-2.27.57-r1.ebuild:
+  add ~x86, bug #207746
 
 *unison-2.27.57-r1 (07 Apr 2008)
 
