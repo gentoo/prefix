@@ -12,7 +12,7 @@ SRC_URI="http://david-peter.de/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="linguas_it"
 
 RDEPEND=">=dev-lang/python-2.2
