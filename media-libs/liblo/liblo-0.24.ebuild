@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/liblo-0.24.ebuild,v 1.1 2008/03/27 12:02:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/liblo-0.24.ebuild,v 1.2 2008/04/10 14:49:07 drac Exp $
 
 EAPI="prefix"
 
