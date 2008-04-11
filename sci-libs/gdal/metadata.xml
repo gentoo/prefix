@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>sci-geosciences</herd>
+<maintainer>
+  <email>nerdboy@gentoo.org</email>
+  <name>Steve Arnold</name>
+  <description>Primary Maintainer</description>
+</maintainer>
+<longdescription>GDAL is the Geospatial Data Abstraction Library, a set of tools for
+ converting between geospatial raster data formats (includes OGR for vector data).</longdescription>
+</pkgmetadata>

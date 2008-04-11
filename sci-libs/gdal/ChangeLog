@@ -1,0 +1,205 @@
+# ChangeLog for sci-libs/gdal
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.39 2008/03/22 06:14:33 nerdboy Exp $
+
+*gdal-1.5.0-r1 (22 Mar 2008)
+
+  22 Mar 2008; Steve Arnold <nerdboy@gentoo.org> -gdal-1.5.0.ebuild,
+  +gdal-1.5.0-r1.ebuild:
+  Updated for optional libgrass rebuild support (avoids circular 
+  dependency issue).
+
+  09 Feb 2008; Steve Arnold <nerdboy@gentoo.org> ChangeLog:
+  removed stale digest files; had to force it again after a tree update...
+
+  09 Feb 2008; Steve Arnold <nerdboy@gentoo.org>
+  files/gdal-1.5.0-python-install.patch, gdal-1.5.0.ebuild:
+  Updated python patch, deps, and use flags (the first should fix the install
+  bug reported in #206608).  The rest picks up new features/depends in 1.5.0.
+
+*gdal-1.5.0 (03 Feb 2008)
+
+  03 Feb 2008; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.5.0-makefile.patch, +files/gdal-1.5.0-python-install.patch,
+  +files/gdal-1.5.0-soname.patch, +gdal-1.5.0.ebuild:
+  updated to latest upstream release plus patches
+
+  04 Jan 2008; Steve Arnold <nerdboy@gentoo.org> gdal-1.4.2.ebuild:
+  fixed mysql borkage; no idea what happened...
+
+  04 Jan 2008; Steve Arnold <nerdboy@gentoo.org>
+  -files/gdal-1.2.6-installpathfix.patch,
+  -files/gdal-1.3.0-installpathfix.patch, -gdal-1.2.6-r4.ebuild,
+  -gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild, gdal-1.3.2.ebuild,
+  gdal-1.4.2.ebuild:
+  Updated xerces-c dep for API change (bug 203019) and removed stale versions.
+  The 1.4.3 release of GDAL was pulled, however, 1.4.4 will be updated for the
+  2.8.0 version of xerces-c.
+
+*gdal-1.4.2 (02 Jul 2007)
+
+  02 Jul 2007; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.4.2-datadir.patch, +files/gdal-1.4.2-ruby-install.patch,
+  +gdal-1.4.2.ebuild:
+  Update to latest release (fixes bug 182306). Test away...
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild, gdal-1.3.2.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
+
+  23 Nov 2006; Francesco Riosa <vivo@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild:
+  dev-db/mysql => virtual/mysql
+
+  07 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> gdal-1.3.1.ebuild:
+  Stable on sparc
+
+  08 Jul 2006; Markus Rothe <corsair@gentoo.org> gdal-1.3.1.ebuild:
+  Stable on ppc64
+
+  28 Jun 2006; Steve Arnold <nerdboy@gentoo.org>
+  files/gdal-1.3.2-gcc4-stl.patch:
+  Fixed patch borkage (bug 138212) caused by rcs keyword expansion.
+
+  09 Jun 2006; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.3.2-gcc4-stl.patch, gdal-1.3.2.ebuild, gdal-1.3.1.ebuild:
+  Added upstream CVS patch for bug 134498; thanks to Matteo Spreafico 
+  <matteo _at_ fsfe.org> for posting the patch. Stable bump for amd64
+  and ppc (1.3.1).
+
+  25 May 2006; Steve Arnold <nerdboy@gentoo.org> gdal-1.3.0-r1.ebuild,
+  gdal-1.3.1.ebuild, gdal-1.3.2.ebuild:
+  Updated geos dependency for gcc 4; added ~ppc64 to testing versions.
+  See hdf5 ChangeLog for Todo list.
+
+  23 May 2006; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.3.2-destdir.patch, +files/gdal-1.3.2-ruby-install.patch:
+  Sorry, dropped patches on the floor somehow...
+
+*gdal-1.3.2 (22 May 2006)
+
+  22 May 2006; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, +gdal-1.3.2.ebuild:
+  Version bump for more features (ruby bindings), plus adjusted keywords
+  to work around hdf5 borkage.
+
+  20 May 2006; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild:
+  Overdue stable bump for my current arches (my sparc broke).
+
+  23 Dec 2005; Carsten Lohrke <carlo@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild:
+  Use global jpeg2k use flag.
+
+  16 Dec 2005; Diego Pettenò <flameeyes@gentoo.org> gdal-1.3.1.ebuild:
+  Remove --with-gnu-ld option, bug #108386.
+
+  03 Dec 2005; Steve Arnold <nerdboy@gentoo.org> +files/gdal-gcc4.patch,
+  gdal-1.2.6-r4.ebuild, gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild:
+  Fixes for bugs 111688 and 113480; thanks to Robert Marmorstein
+  <rmmarm@wm.edu> for the patch.
+
+  21 Nov 2005; Simon Stelling <blubb@gentoo.org> gdal-1.2.6-r4.ebuild:
+  stable on amd64; bug 98593
+
+  02 Nov 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild:
+  fixed typos that caused bug 111164 (I should listen to myself)
+
+  31 Oct 2005; Simon Stelling <blubb@gentoo.org> gdal-1.2.6-r4.ebuild:
+  stable on amd64
+
+  26 Oct 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, gdal-1.3.1.ebuild:
+  fixed libgif glitch (I shouldn't fix anything "extra" late at night...)
+
+*gdal-1.3.1 (25 Oct 2005)
+
+  25 Oct 2005; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.3.1-installpathfix.patch, gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild, +gdal-1.3.1.ebuild:
+  Removed grass deps and added new version (really fixes bug 106287).
+  New ebuild coming for gdal-grass driver (mysql is currently borked
+  on 1.3.1).
+
+  13 Oct 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r4.ebuild,
+  gdal-1.3.0-r1.ebuild:
+  updated grass dep for latest grass (more or less fixes bug 106287)
+
+*gdal-1.3.0-r1 (08 Oct 2005)
+*gdal-1.2.6-r4 (08 Oct 2005)
+
+  08 Oct 2005; Steve Arnold <nerdboy@gentoo.org> -gdal-1.2.5-r1.ebuild,
+  -gdal-1.2.6-r3.ebuild, +gdal-1.2.6-r4.ebuild, -gdal-1.3.0.ebuild,
+  +gdal-1.3.0-r1.ebuild:
+  revision bump for glsa and cleanup of old ebuilds
+
+  06 Oct 2005; Steve Arnold <nerdboy@gentoo.org>
+  +files/gdal-1.2.6-installpathfix.patch,
+  +files/gdal-1.3.0-installpathfix.patch, gdal-1.2.6-r3.ebuild,
+  gdal-1.3.0.ebuild:
+  Added fix for bug #105760 (patch courtesy of dragonheart and his sed
+  foo).
+
+  21 Sep 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.6-r3.ebuild,
+  gdal-1.3.0.ebuild:
+  added ogr docs for bug #106704 and minor cleanup
+
+  17 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> gdal-1.2.6-r3.ebuild:
+  Stable on ppc.
+
+*gdal-1.3.0 (11 Sep 2005)
+
+  11 Sep 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.5-r1.ebuild,
+  gdal-1.2.6-r3.ebuild, +gdal-1.3.0.ebuild:
+  added new version and local use flag for xerces (bugs #102859 and #104937)
+  and hdf5, plus stable bump for sparc and x86.
+
+*gdal-1.2.6-r3 (04 Aug 2005)
+
+  04 Aug 2005; Steve Arnold <nerdboy@gentoo.org> -gdal-1.2.6-r2.ebuild,
+  +gdal-1.2.6-r3.ebuild:
+  heavily reworked to accomodate arch-neutral install and doc flag
+
+  02 Aug 2005; Herbie Hopkins <herbs@gentoo.org> gdal-1.2.5-r1.ebuild,
+  gdal-1.2.6-r2.ebuild:
+  Multilib fixes.
+
+*gdal-1.2.6-r2 (30 Jul 2005)
+
+  30 Jul 2005; Steve Arnold <nerdboy@gentoo.org> -gdal-1.2.6-r1.ebuild,
+  +gdal-1.2.6-r2.ebuild:
+  removed x86-specific libtool switch to take a stab at bug 100294
+
+*gdal-1.2.6-r1 (25 Jul 2005)
+
+  25 Jul 2005; Steve Arnold <nerdboy@gentoo.org> -gdal-1.2.6.ebuild,
+  +gdal-1.2.6-r1.ebuild:
+  fix for bug 100103, giflib, and general cleanup
+
+  11 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  gdal-1.2.5-r1.ebuild:
+  ppc stable, #98593
+
+  11 Jul 2005; Markus Rothe <corsair@gentoo.org> gdal-1.2.5-r1.ebuild:
+  added ~ppc64 (bug #98593)
+
+*gdal-1.2.5-r1 (10 Jul 2005)
+
+  10 Jul 2005; Steve Arnold <nerdboy@gentoo.org> -gdal-1.2.5.ebuild,
+  +gdal-1.2.5-r1.ebuild:
+  fixing lib silliness on non-x86 arches (informal bug report), a 
+  small but important change to fix the libgdal.so install (which
+  requires stablizing libgeotiff, proj, and ogdi).  Add sparc to
+  the list of heavily tested arches...
+
+  21 Feb 2005; Steve Arnold <nerdboy@gentoo.org> gdal-1.2.5.ebuild:
+  added debug flag at user request
+
+*gdal-1.2.5 (20 Feb 2005)
+
+  20 Feb 2005; Steve Arnold <nerdboy@gentoo.org> +metadata.xml,
+  +gdal-1.2.5.ebuild:
+  Adding new ebuild for geographic apps (still working on grass support).
+  Tested heavily on x86 only so far...
+
