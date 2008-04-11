@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.3 2008/03/05 23:25:22 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.4 2008/04/10 13:40:47 ingmar Exp $
+
+  10 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -qt-gui-4.4.0_beta1.ebuild, +qt-gui-4.4.0_rc1.ebuild:
+  Version bump qt-gui to 4.4.0_rc1. Thanks to Bo Andresen and Bernd
+  Steinhauser.
 
   05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-gui-4.4.0_rc1.ebuild:
