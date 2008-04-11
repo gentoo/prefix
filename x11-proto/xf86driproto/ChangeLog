@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/xf86driproto
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.20 2006/07/10 17:08:51 agriffis Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.21 2008/04/10 20:59:20 hanno Exp $
+
+*xf86driproto-2.0.4 (10 Apr 2008)
+
+  10 Apr 2008; Hanno Boeck <hanno@gentoo.org> +xf86driproto-2.0.4.ebuild:
+  Version bump.
 
   10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xf86driproto-2.0.3.ebuild:
   Mark 2.0.3 stable on ia64
