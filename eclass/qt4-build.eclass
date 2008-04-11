@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.10 2008/03/11 16:39:43 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.11 2008/04/10 14:23:45 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -18,14 +18,27 @@ case "${PV}" in
 		SRCTYPE="${SRCTYPE:-opensource-src}"
 		MY_PV="${PV/_beta/-beta}"
 		;;
+	4.4.0_rc*)
+		SRCTYPE="${SRCTYPE:-opensource-src}"
+		MY_PV="${PV/_rc/-rc}"
+		;;
 	*)
 		SRCTYPE="${SRCTYPE:-opensource-src}"
 		MY_PV="${PV}"
 		;;
 esac
-S=${WORKDIR}/qt-x11-${SRCTYPE}-${MY_PV}
+MY_P=qt-x11-${SRCTYPE}-${MY_PV}
+S=${WORKDIR}/${MY_P}
 
-SRC_URI="ftp://ftp.trolltech.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2"
+SRC_URI="ftp://ftp.trolltech.com/qt/source/${MY_P}.tar.bz2"
+
+case "${PV}" in
+	4.4.0_rc*)
+		SRC_URI="${SRC_URI} mirror://gentoo/${MY_P}-headers.tar.bz2"
+		;;
+	*)
+		;;
+esac
 
 qt4-build_pkg_setup() {
 	# Check USE requirements
@@ -56,10 +69,27 @@ qt4-build_pkg_setup() {
 	fi
 }
 
+qt4_unpack() {
+	local target targets
+	for target in configure LICENSE.{GPL2,GPL3,QPL} projects.pro \
+		src/{qbase,qt_targets,qt_install}.pri bin config.tests mkspecs qmake \
+		${QT4_EXTRACT_DIRECTORIES} ${QT4_TARGET_DIRECTORIES}; do
+			targets="${targets} ${MY_P}/${target}"
+	done
+
+	echo tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
+	tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
+
+	case "${PV}" in
+		4.4.0_rc*)
+			echo tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
+			tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
+			;;
+	esac
+}
+
 qt4-build_src_unpack() {
-	# TODO: partial unpacks, cfr split KDE ebuilds.
-	unpack ${A}
-	cd "${S}"
+	qt4_unpack
 
 	use aqua && sed \
 		-e '/^CONFIG/s:app_bundle::' \
@@ -67,6 +97,7 @@ qt4-build_src_unpack() {
 		-i mkspecs/macx-g++/qmake.conf || die "sed failed"
 
 	if [[ ${PN} != qt-core ]]; then
+		cd "${S}"
 		skip_qmake_build_patch
 		skip_project_generation_patch
 		symlink_binaries_to_buildtree
@@ -132,6 +163,17 @@ standard_configure_options() {
 	fi
 
 	use aqua && myconf="${myconf} -no-framework"
+
+	# ARCH is set on Gentoo. QT now falls back to generic on an unsupported
+	# ${ARCH}. Therefore we convert it to supported values.
+	case "${ARCH}" in
+		amd64) myconf="${myconf} -arch x86_64" ;;
+		ppc|ppc64) myconf="${myconf} -arch powerpc" ;;
+		x86) myconf="${myconf} -arch i386" ;;
+		alpha|arm|ia64|mips|s390|sparc) myconf="${myconf} -arch ${ARCH}" ;;
+		hppa|sh) myconf="${myconf} -arch generic" ;;
+		*) die "${ARCH} is unsupported by this eclass. Please file a bug." ;;
+	esac
 
 	myconf="${myconf} -stl -verbose -largefile -confirm-license -no-rpath
 		-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR}
