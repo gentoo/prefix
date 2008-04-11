@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.36 2008/03/21 19:34:15 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.37 2008/04/10 06:34:03 dberkholz Exp $
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
 
   21 Mar 2008; Markus Ullmann <jokey@gentoo.org> package.use.mask:
   use mask qt4 on net-irc/kvirc-3.4.0
