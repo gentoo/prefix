@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.11 2007/11/01 15:43:39 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.12 2008/04/10 21:13:43 vapier Exp $
 
 EAPI="prefix"
 
@@ -56,7 +56,7 @@ src_unpack() {
 }
 
 src_compile() {
-	tc-export CC
+	tc-export AR CC
 	emake libdir || die "emake libdir failed"
 	emake || die "emake failed"
 	emake -C ethercard-diag || die "emake ethercard-diag failed"
@@ -67,8 +67,8 @@ src_compile() {
 }
 
 src_install() {
-	make BASEDIR="${ED}" install || die "make install failed"
-	make -C ethercard-diag DESTDIR="${ED}" install || die "make install ethercard-diag failed"
+	emake BASEDIR="${ED}" install || die "make install failed"
+	emake -C ethercard-diag DESTDIR="${ED}" install || die "make install ethercard-diag failed"
 	mv "${ED}"/usr/share/man/man8/ether{,-}wake.8
 	mv "${ED}"/usr/sbin/mii-diag "${ED}"/sbin/ || die "mv mii-diag failed"
 	mv "${ED}"/bin/* "${ED}"/sbin/ || die "mv bin to sbin failed"
