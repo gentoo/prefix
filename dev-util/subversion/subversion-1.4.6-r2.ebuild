@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6-r2.ebuild,v 1.1 2008/03/22 18:43:19 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6-r2.ebuild,v 1.2 2008/04/10 19:02:24 hollow Exp $
 
 EAPI="prefix"
 
@@ -23,17 +23,20 @@ COMMONDEPEND=">=dev-libs/apr-util-1.2.8
 			emacs? ( virtual/emacs )
 			nls? ( sys-devel/gettext )
 			!nowebdav? ( >=net-misc/neon-0.26.4 )
-			ruby? ( >=dev-lang/ruby-1.8.2 dev-lang/swig )
-			perl? ( >=dev-lang/perl-5.8.8 dev-lang/swig )
-			python? ( >=dev-lang/python-2.0 dev-lang/swig )"
+			ruby? ( >=dev-lang/ruby-1.8.2 )
+			perl? ( >=dev-lang/perl-5.8.8 )
+			python? ( >=dev-lang/python-2.0 )"
 
 RDEPEND="${COMMONDEPEND}
 		java? ( >=virtual/jre-1.4 )
 		perl? ( dev-perl/URI )"
 
 DEPEND="${COMMONDEPEND}
+		>=sys-devel/autoconf-2.59
 		java? ( >=virtual/jdk-1.4 )
-		>=sys-devel/autoconf-2.59"
+		ruby? ( dev-lang/swig )
+		perl? ( dev-lang/swig )
+		python? ( dev-lang/swig )"
 
 want_apache
 
