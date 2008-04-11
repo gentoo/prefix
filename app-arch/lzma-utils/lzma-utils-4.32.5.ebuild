@@ -29,6 +29,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 
 	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
 }
