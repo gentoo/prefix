@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>sci-geosciences</herd>
+<maintainer>
+  <email>djay@gentoo.org</email>
+  <name>Gerald Fenoy</name>
+  <description>Primary Maintainer</description>
+</maintainer>
+<longdescription>Proj.4 cartograpic projection code for forward and inverse 
+coordinate and projection transformations.</longdescription>
+</pkgmetadata>
