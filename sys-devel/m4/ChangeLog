@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.110 2008/04/07 03:22:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.113 2008/04/11 15:24:41 corsair Exp $
+
+  11 Apr 2008; Markus Rothe <corsair@gentoo.org> m4-1.4.11.ebuild:
+  Stable on ppc64; bug #217229
+
+  11 Apr 2008; Santiago M. Mola <coldwind@gentoo.org> m4-1.4.11.ebuild:
+  amd64 stable wrt security bug #217229
+
+  11 Apr 2008; Raúl Porcel <armin76@gentoo.org> m4-1.4.11.ebuild:
+  alpha/ia64/sparc/x86 stable wrt security #217229
 
 *m4-1.4.10-r3 (07 Apr 2008)
 
