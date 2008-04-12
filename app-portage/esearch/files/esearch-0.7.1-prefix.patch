@@ -1,0 +1,130 @@
+diff -ur esearch-0.7.1.orig/common.py esearch-0.7.1/common.py
+--- esearch-0.7.1.orig/common.py	2005-02-13 17:23:38 +0100
++++ esearch-0.7.1/common.py	2008-04-12 09:55:53 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python
+ #
+ # Some functions for esearch,
+ # eupdatedb and esync.
+diff -ur esearch-0.7.1.orig/esearch.py esearch-0.7.1/esearch.py
+--- esearch-0.7.1.orig/esearch.py	2005-02-17 11:40:35 +0100
++++ esearch-0.7.1/esearch.py	2008-04-12 09:57:32 +0200
+@@ -10,8 +10,8 @@
+ from getopt import *
+ import sys
+ 
+-sys.path.insert(0, "/usr/lib/portage/pym")
+-sys.path.insert(0, "/usr/lib/esearch")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/lib/esearch")
+ 
+ from output import bold, red, green, darkgreen, turquoise, nocolor
+ from os.path import exists
+@@ -19,7 +19,7 @@
+ 
+ from common import needdbversion
+ 
+-esearchdbdir =  "/var/cache/edb/"
++esearchdbdir =  "@GENTOO_PORTAGE_EPREFIX@/var/cache/edb/"
+ 
+ def usage():
+     print "esearch (0.7.1) - Replacement for 'emerge search' with search-index"
+diff -ur esearch-0.7.1.orig/esync.py esearch-0.7.1/esync.py
+--- esearch-0.7.1.orig/esync.py	2005-02-13 17:53:38 +0100
++++ esearch-0.7.1/esync.py	2008-04-12 09:58:39 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python -u
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -u
+ #
+ # 'python -u' for unbuffered output, so you can call
+ #   $ esync | tee esync.log
+@@ -15,18 +15,18 @@
+ import sys
+ from getopt import *
+ 
+-sys.path.insert(0, "/usr/lib/portage/pym")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym")
+ 
+ import portage
+ from output import red, green, bold, darkgreen, nocolor, xtermTitle
+ 
+ from common import needdbversion
+ 
+-syncprogram =   "EMERGE_DEFAULT_OPTS=\"\" /usr/bin/emerge sync"
+-logfile_sync =  "/var/log/emerge-sync.log"
+-tmp_prefix =    "/tmp/esync"
++syncprogram =   "EMERGE_DEFAULT_OPTS=\"\" @GENTOO_PORTAGE_EPREFIX@/usr/bin/emerge sync"
++logfile_sync =  "@GENTOO_PORTAGE_EPREFIX@/var/log/emerge-sync.log"
++tmp_prefix =    "@GENTOO_PORTAGE_EPREFIX@/tmp/esync"
+ 
+-sys.path.append("/tmp")
++sys.path.append("@GENTOO_PORTAGE_EPREFIX@/tmp")
+ 
+ eoptions = ""
+ eupdatedb_extra_options = ""
+@@ -69,9 +69,9 @@
+     if arg in ("-h", "--help"):
+         usage()
+     elif arg in ("-w", "--webrsync"):
+-        syncprogram = "EMERGE_DEFAULT_OPTS=\"\" /usr/sbin/emerge-webrsync"
++        syncprogram = "EMERGE_DEFAULT_OPTS=\"\" @GENTOO_PORTAGE_EPREFIX@/usr/sbin/emerge-webrsync"
+     elif arg in ("-m", "--metadata"):
+-        syncprogram = "EMERGE_DEFAULT_OPTS=\"\" /usr/bin/emerge --metadata"
++        syncprogram = "EMERGE_DEFAULT_OPTS=\"\" @GENTOO_PORTAGE_EPREFIX@/usr/bin/emerge --metadata"
+     elif arg in ("-n", "--nocolor"):
+         eoptions = "-n"
+         nocolor()
+@@ -97,7 +97,7 @@
+         target = tmp_prefix + tree + "tree.pyc"
+         if os.path.exists(target):
+             os.unlink(target)
+-        os.symlink("/var/cache/edb/esearchdb.pyc", target)
++        os.symlink("@GENTOO_PORTAGE_EPREFIX@/var/cache/edb/esearchdb.pyc", target)
+     except OSError, e:
+         if e.errno != 17:
+             print e
+@@ -139,7 +139,7 @@
+ 
+ emsg("Doing 'eupdatedb' now")
+ print ""
+-if os.system("/usr/sbin/eupdatedb " + eoptions + " " + eupdatedb_extra_options) != 0:
++if os.system("@GENTOO_PORTAGE_EPREFIX@/usr/sbin/eupdatedb " + eoptions + " " + eupdatedb_extra_options) != 0:
+     print ""
+     print red(" * Error:"), "eupdatedb failed"
+     sys.exit(1)
+@@ -171,8 +171,8 @@
+ 
+ for (pkg, version) in items:
+     if (pkg not in old_keys) or (old[pkg] != new[pkg]):
+-        os.system("/usr/bin/esearch " + eoptions + " -Fc ^" + pkg + "$ | head -n1")
++        os.system("@GENTOO_PORTAGE_EPREFIX@/usr/bin/esearch " + eoptions + " -Fc ^" + pkg + "$ | head -n1")
+         haspkg = True
+ 
+ if not haspkg:
+-    emsg("No updates found")
++	    emsg("No updates found")
+diff -ur esearch-0.7.1.orig/eupdatedb.py esearch-0.7.1/eupdatedb.py
+--- esearch-0.7.1.orig/eupdatedb.py	2005-02-13 17:52:22 +0100
++++ esearch-0.7.1/eupdatedb.py	2008-04-12 09:59:28 +0200
+@@ -16,16 +16,16 @@
+ from shutil import copyfile
+ from getopt import *
+ 
+-sys.path.insert(0, "/usr/lib/portage/pym")
+-sys.path.insert(0, "/usr/lib/esearch")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/lib/esearch")
+ 
+ import portage
+ from output import red, darkgreen, green, bold, nocolor
+ 
+ from common import needdbversion, version
+ 
+-esearchdbdir =  "/var/cache/edb/"
+-tmpfile =       "/tmp/esearchdb.py.tmp"
++esearchdbdir =  "@GENTOO_PORTAGE_EPREFIX@/var/cache/edb/"
++tmpfile =       "@GENTOO_PORTAGE_EPREFIX@/tmp/esearchdb.py.tmp"
+ 
+ vartree = portage.vartree()
+ 

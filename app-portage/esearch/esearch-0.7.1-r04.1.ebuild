@@ -33,8 +33,11 @@ src_compile() {
 	epatch ${FILESDIR}/97969-ignore-missing-ebuilds.patch || die "Failed to patch sources!"
 	epatch ${FILESDIR}/120817-unset-emergedefaultopts.patch || die "Failed to patch sources!"
 	epatch ${FILESDIR}/132548-multiple-overlay.patch || die "Failed to patch sources!"
+	epatch "${FILESDIR}"/${PN}-0.7.1-prefix.patch
+	eprefixify "${S}"/*.py
 	echo "Fixing deprecated emerge syntax."
-	sed -i -e 's:/usr/bin/emerge sync:${EPREFIX}/usr/bin/emerge --sync:g' esync.py
+	sed -i -e 's:/usr/bin/emerge sync:/usr/bin/emerge --sync:g' esync.py
+
 }
 
 src_install() {
