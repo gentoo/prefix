@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.0.ebuild,v 1.4 2008/04/11 07:00:30 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.1.ebuild,v 1.1 2008/04/11 06:55:49 rbrown Exp $
 
 EAPI="prefix"
 
@@ -15,21 +15,21 @@ RESTRICT="test"
 
 # The URL depends implicitly on the version, unfortunately. Even if you
 # change the filename on the end, it still downloads the same file.
-SRC_URI="http://rubyforge.org/frs/download.php/34638/${P}.tgz"
+SRC_URI="mirror://rubyforge/${PN}/${P}.tgz"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 SLOT="0"
-IUSE="doc server examples"
+IUSE="doc server"
+DEPEND=">=dev-lang/ruby-1.8"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
 
 USE_RUBY="ruby18"
 
-PATCHES="${FILESDIR}/${P}-setup.patch
-	${FILESDIR}/${P}-dependency-installer-install-dir-fix.patch
-	"
-
 src_unpack() {
-	ruby_src_unpack
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}/${P}-setup.patch"
 
 	# Delete mis-packaged . files
 	cd "${S}"
@@ -64,9 +64,6 @@ src_install() {
 	dosym gem18 /usr/bin/gem || die "dosym gem failed"
 
 	dodoc README || die "dodoc README failed"
-	if use examples; then
-		cp -pPR examples "${ED}/usr/share/doc/${PF}" || die "cp examples failed"
-	fi
 
 	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
 	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
