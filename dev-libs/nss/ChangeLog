@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.120 2008/04/09 14:45:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.121 2008/04/11 17:15:38 armin76 Exp $
+
+  11 Apr 2008; Raúl Porcel <armin76@gentoo.org> nss-3.11.7.ebuild,
+  nss-3.11.9.ebuild, nss-3.12_beta3.ebuild, nss-3.12_rc2.ebuild:
+  Use the right compiler call, bug #216877
 
 *nss-3.12_rc2 (09 Apr 2008)
 

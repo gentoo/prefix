@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_rc2.ebuild,v 1.1 2008/04/09 14:45:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_rc2.ebuild,v 1.2 2008/04/11 17:15:38 armin76 Exp $
 
 EAPI="prefix"
 
@@ -57,11 +57,11 @@ src_compile() {
 	export NSDISTMODE=copy
 	export NSS_USE_SYSTEM_SQLITE=1
 	cd "${S}"/mozilla/security/coreconf
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "coreconf make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "coreconf make failed"
 	cd "${S}"/mozilla/security/dbm
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "dbm make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "dbm make failed"
 	cd "${S}"/mozilla/security/nss
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "nss make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "nss make failed"
 }
 
 src_install () {

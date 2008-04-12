@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.7 2008/03/26 23:38:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.8 2008/04/11 17:15:38 armin76 Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic multilib
+inherit eutils flag-o-matic multilib toolchain-funcs
 
 NSPR_VER="4.6.8"
 RTM_NAME="NSS_${PV//./_}_RTM"
@@ -47,11 +47,11 @@ src_compile() {
 	fi
 	export NSDISTMODE=copy
 	cd "${S}"/mozilla/security/coreconf
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "coreconf make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "coreconf make failed"
 	cd "${S}"/mozilla/security/dbm
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "dbm make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "dbm make failed"
 	cd "${S}"/mozilla/security/nss
-	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" || die "nss make failed"
+	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "nss make failed"
 }
 
 src_install () {
