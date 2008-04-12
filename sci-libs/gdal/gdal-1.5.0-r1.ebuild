@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.0-r1.ebuild,v 1.1 2008/03/22 06:14:33 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.0-r1.ebuild,v 1.2 2008/04/11 18:16:41 grobian Exp $
 
 EAPI="prefix"
 
