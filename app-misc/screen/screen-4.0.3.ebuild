@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.16 2007/08/07 19:59:29 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.17 2008/04/11 18:44:35 swegener Exp $
 
 EAPI="prefix"
 
@@ -62,6 +62,9 @@ src_unpack() {
 	# Open tty in non-blocking mode
 	epatch "${FILESDIR}"/4.0.2-nonblock.patch
 
+	# compability for sys-devel/autoconf-2.62
+	epatch "${FILESDIR}"/screen-4.0.3-config.h-autoconf-2.62.patch
+
 	# Fix manpage.
 	sed -i \
 		-e "s:/usr/local/etc/screenrc:${EPREFIX}/etc/screenrc:g" \
@@ -81,7 +84,7 @@ src_unpack() {
 
 src_compile() {
 	append-flags "-DMAXWIN=${MAX_SCREEN_WINDOWS:-100}"
-	append-ldflags $(bindnow-flags)
+
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lsocket -lnsl
 
 	use nethack || append-flags "-DNONETHACK"
