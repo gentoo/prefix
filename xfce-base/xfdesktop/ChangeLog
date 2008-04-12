@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfdesktop
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.123 2008/04/10 19:59:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.124 2008/04/11 14:57:23 armin76 Exp $
+
+  11 Apr 2008; Raúl Porcel <armin76@gentoo.org> xfdesktop-4.4.2-r2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #217156
 
   10 Apr 2008; Jeroen Roovers <jer@gentoo.org> xfdesktop-4.4.2-r2.ebuild:
   Stable for HPPA (bug #217156).
