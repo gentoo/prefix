@@ -98,6 +98,8 @@ qt_mkspecs_dir() {
 			spec="openbsd" ;;
 		*-netbsd*)
 			spec="netbsd" ;;
+		*-solaris*)
+			spec="solaris" ;;
 		*-apple-darwin*)
 			spec="macx" ;;
 		*-linux-*|*-linux)
@@ -124,6 +126,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/qt-4.2.3-hppa-ldcw-fix.patch
 	epatch "${FILESDIR}"/qt-4.3.1-darwin.patch
+	epatch "${FILESDIR}"/qt-4.3.3-solaris.patch
 
 	cd "${S}"/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
