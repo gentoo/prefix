@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.176 2008/04/08 12:13:17 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.180 2008/04/11 23:50:59 cardoe Exp $
+
+  11 Apr 2008; Doug Goldstein <cardoe@gentoo.org> cairo-1.6.4.ebuild:
+  I fail. Forgot to remove epatch calls
+
+*cairo-1.6.4 (11 Apr 2008)
+
+  11 Apr 2008; Doug Goldstein <cardoe@gentoo.org> -cairo-1.6.2.ebuild,
+  +cairo-1.6.4.ebuild:
+  bump to cairo 1.6.4 which includes the previous 1.6.2 patches
+
+*cairo-1.6.2 (11 Apr 2008)
+
+  11 Apr 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/cairo-1.6.2-fix-g++-linking.patch, +cairo-1.6.2.ebuild:
+  add working cairo 1.6.x release with g++ linking patch and mutex crash fix
 
 *cairo-1.5.20 (08 Apr 2008)
 
