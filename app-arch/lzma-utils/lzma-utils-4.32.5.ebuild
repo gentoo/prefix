@@ -31,7 +31,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
 
-	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
+	# can't run eautoreconf here, would introduce a circular dependency, since
+	# m4 needs us (its sources come in lzma format)
+#	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
 }
 
 src_install() {
