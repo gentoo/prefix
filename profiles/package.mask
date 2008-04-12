@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8489 2008/04/10 22:44:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8491 2008/04/11 14:55:41 wolf31o2 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mike Pagano <mpagano@gentoo.org> (11 Apr 2008)
+# Needs masked qt-4.4 (bug #217175)
+=sys-kernel/kccmp-0.2-r1
 
 # Diego Pettenò <flameeyes@gentoo.org> (11 Apr 2008)
 # Amarok pre-release, the tarball won't be available officially until Saturday
@@ -249,8 +253,7 @@ x11-misc/perlpanel
 =x11-apps/xdm-1.1.6-r1
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (3 Mar 2008)
-# Masking due to security bug #204067
-# If you only play on Punkbuster enabled servers, this is safe to unmask.
+# Masking due to security bug #194607 and isecurity bug #204067
 games-fps/doom3
 games-fps/doom3-chextrek
 games-fps/doom3-data
