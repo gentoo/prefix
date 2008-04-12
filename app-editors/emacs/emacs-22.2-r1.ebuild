@@ -1,11 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.20 2008/03/28 06:29:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r1.ebuild,v 1.1 2008/04/11 14:00:08 ulm Exp $
 
 EAPI="prefix"
-
-WANT_AUTOCONF="2.5"
-WANT_AUTOMAKE="latest"
 
 inherit autotools elisp-common eutils flag-o-matic
 
@@ -13,10 +10,10 @@ DESCRIPTION="The extensible, customizable, self-documenting real-time display ed
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}.tar.gz"
 
-LICENSE="GPL-2 FDL-1.2 BSD"
+LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm aqua"
 RESTRICT="strip"
 
 RDEPEND="!<app-editors/emacs-cvs-22.1
@@ -24,6 +21,7 @@ RDEPEND="!<app-editors/emacs-cvs-22.1
 	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
+	kerberos? ( virtual/krb5 )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
@@ -58,13 +56,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-Xaw3d-headers.patch"
-	epatch "${FILESDIR}/${P}-freebsd-sparc.patch"
-	epatch "${FILESDIR}/${P}-oldxmenu-qa.patch"
-	epatch "${FILESDIR}/${P}-backup-buffer.patch"
-	epatch "${FILESDIR}/${P}-hack-local-variables.patch"
-	epatch "${FILESDIR}/${P}-format-int.patch"
-	epatch "${FILESDIR}/${P}-s390x-non-multilib.patch"
+	epatch "${FILESDIR}/emacs-22.1-Xaw3d-headers.patch"
+	epatch "${FILESDIR}/emacs-22.1-freebsd-sparc.patch"
+	epatch "${FILESDIR}/emacs-22.1-vcdiff-tmp-race.patch"
+	epatch "${FILESDIR}/${P}-heimdal-gentoo.patch"
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
@@ -91,7 +86,7 @@ src_compile() {
 	export SANDBOX_ON=0			# for the unbelievers, see Bug #131505
 	ALLOWED_FLAGS=""
 	strip-flags
-	unset LDFLAGS
+	#unset LDFLAGS
 	if use hppa; then # bug #193703
 		replace-flags -O[2-9] -O
 	else
@@ -111,6 +106,10 @@ src_compile() {
 		myconf="${myconf} $(use_with sound)"
 	fi
 
+	if use X && use aqua; then
+		die "the X and aqua USE-flags cannot be used together, please use one"
+	fi
+
 	if use X; then
 		myconf="${myconf} --with-x"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
@@ -122,9 +121,7 @@ src_compile() {
 		# possibilities. Emacs upstream thinks this should be standard
 		# policy on all distributions
 		if use gtk; then
-			echo
-			einfo "Configuring to build with GTK support, disabling all other toolkits"
-			echo
+			einfo "Configuring to build with GTK+ support"
 			myconf="${myconf} --with-x-toolkit=gtk"
 		elif use Xaw3d; then
 			einfo "Configuring to build with Xaw3d (athena) support"
@@ -139,16 +136,22 @@ src_compile() {
 			myconf="${myconf} --with-x-toolkit=no"
 			myconf="${myconf} --without-gtk"
 		fi
+	elif use aqua; then
+		einfo "Configuring to build with Carbon support"
+		myconf="${myconf} --without-x"
+		myconf="${myconf} --with-carbon"
+		myconf="${myconf} --enable-carbon-app=${EPREFIX}/Applications/Gentoo"
 	else
 		myconf="${myconf} --without-x"
+		myconf="${myconf} --without-carbon"
 	fi
 
 	myconf="${myconf} $(use_with hesiod)"
+	myconf="${myconf} $(use_with kerberos) $(use_with kerberos kerberos5)"
 
 	econf \
 		--program-suffix=-emacs-${SLOT} \
 		--infodir="${EPREFIX}"/usr/share/info/emacs-${SLOT} \
-		--without-carbon \
 		${myconf} || die "econf emacs failed"
 
 	emake CC="$(tc-getCC)" || die "emake failed"
@@ -204,6 +207,11 @@ src_install () {
 	fi
 
 	dodoc AUTHORS BUGS CONTRIBUTE README || die "dodoc failed"
+
+	if use carbon; then
+		einfo "Emacs.app is in $EPREFIX/Applications/Gentoo."
+		einfo "You may want to copy or symlink it into /Applications by yourself."
+	fi
 }
 
 emacs-infodir-rebuild() {
@@ -223,12 +231,12 @@ emacs-infodir-rebuild() {
 }
 
 pkg_postinst() {
-	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
-		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	[ -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ] \
+		|| cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
-		test -e "${f}" || touch "${f}"
+		[ -e "${f}" ] || touch "${f}"
 	done
 
 	elisp-site-regen

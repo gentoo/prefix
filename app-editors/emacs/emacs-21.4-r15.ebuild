@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.14 2008/02/02 21:08:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r15.ebuild,v 1.1 2008/04/11 14:00:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ inherit flag-o-matic eutils toolchain-funcs autotools
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
-	mirror://gentoo/${P}-patches-1.tar.bz2
+	mirror://gentoo/${P}-patches-2.tar.bz2
 	leim? ( mirror://gnu/emacs/leim-${PV}.tar.gz )"
 
 LICENSE="GPL-2 FDL-1.1 BSD"
@@ -57,6 +57,8 @@ src_unpack() {
 	# This will need to be updated for X-Compilation
 	sed -i -e "s:/usr/lib/\([^ ]*\).o:/usr/$(get_libdir)/\1.o:g" \
 		"${S}/src/s/gnu-linux.h" || die
+
+	eautoconf
 }
 
 src_compile() {
@@ -73,8 +75,6 @@ src_compile() {
 
 	# -march is known to cause signal 6 on some environment
 	filter-flags "-march=*"
-
-	eautoconf
 
 	local myconf
 	use nls || myconf="${myconf} --disable-nls"

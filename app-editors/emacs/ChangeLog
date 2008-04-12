@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.236 2008/04/06 22:05:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.238 2008/04/11 21:51:50 ulm Exp $
+
+*emacs-22.2-r1 (08 Apr 2008)
+*emacs-22.1-r4 (08 Apr 2008)
+*emacs-21.4-r15 (08 Apr 2008)
+
+  08 Apr 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-vcdiff-tmp-race.patch, -emacs-21.4-r14.ebuild,
+  +emacs-21.4-r15.ebuild, -emacs-22.1-r3.ebuild, +emacs-22.1-r4.ebuild,
+  -emacs-22.2.ebuild, +emacs-22.2-r1.ebuild:
+  Security fix for vcdiff insecure temporary file creation, CVE-2008-1694,
+  bug 216880. Straight to stable, since there is no sensible way for arch
+  teams to test (vcdiff was used for SCCS only). Remove vulnerable revisions.
 
   06 Apr 2008; Ulrich Mueller <ulm@gentoo.org>
   +files/emacs-22.2-heimdal-gentoo.patch, emacs-22.2.ebuild:
@@ -10,7 +22,7 @@
   Martin Mokrejš <mmokrejs@ribosome.natur.cuni.cz> for their help.
 
   01 Apr 2008; Ulrich Mueller <ulm@gentoo.org> emacs-22.2.ebuild:
-  Explicitely depend on mit-krb5 instead of virtual/kerberos, bug 215558.
+  Explicitely depend on mit-krb5 instead of virtual/krb5, bug 215558.
 
   28 Mar 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild,
   emacs-22.1-r3.ebuild, emacs-22.2.ebuild:
