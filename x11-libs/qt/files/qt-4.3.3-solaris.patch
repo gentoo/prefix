@@ -1,6 +1,5 @@
-diff -ur a/mkspecs/solaris-g++/qmake.conf b/mkspecs/solaris-g++/qmake.conf
---- a/mkspecs/solaris-g++/qmake.conf	2007-12-04 17:42:48.000000000 +0100
-+++ b/mkspecs/solaris-g++/qmake.conf	2008-04-05 00:40:58.097063240 +0200
+--- mkspecs/solaris-g++/qmake.conf
++++ mkspecs/solaris-g++/qmake.conf
 @@ -59,6 +59,7 @@
  QMAKE_LFLAGS_PLUGIN	= $$QMAKE_LFLAGS_SHLIB
  QMAKE_LFLAGS_SONAME	= -h$$LITERAL_WHITESPACE

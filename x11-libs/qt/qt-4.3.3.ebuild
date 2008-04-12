@@ -17,7 +17,7 @@ use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${PV}
 
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 
@@ -127,6 +127,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/qt-4.2.3-hppa-ldcw-fix.patch
 	epatch "${FILESDIR}"/qt-4.3.1-darwin.patch
 	epatch "${FILESDIR}"/qt-4.3.3-solaris.patch
+	epatch "${FILESDIR}"/qt-4.3.3-solaris-prefix.patch
 
 	cd "${S}"/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
