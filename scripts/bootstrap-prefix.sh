@@ -220,8 +220,15 @@ bootstrap_tree() {
 	esac
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
-		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
+		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
+	if [[ ${CHOST} == x86_64-pc-linux-gnu ]] ; then
+		# this is our only (and last remaining) multilib system, we need
+		# to be ahead of Portage to create usr/lib, otherwise baselayout
+		# can't create the lib -> lib64 symlink, see bug #183874
+		mkdir -p "${ROOT}"/usr/lib64
+		( cd "${ROOT}"/usr && ln -s lib64 lib )
+	fi
 	if [ ! -e "${ROOT}"/usr/portage/.unpacked ]; then
 		cd "${ROOT}"/usr
 		efetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
