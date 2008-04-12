@@ -1,17 +1,23 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.5 2006/02/15 12:51:25 ciaranm Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.6 2008/04/11 13:52:55 zlin Exp $
+
+# @ECLASS: check-reqs.eclass
+# @MAINTAINER:
+# Bo Ørsted Andresen <zlin@gentoo.org>
+# 
 # Original Author: Ciaran McCreesh <ciaranm@gentoo.org>
-#
+# @BLURB: Provides a uniform way of handling ebuild which have very high build requirements
+# @DESCRIPTION:
 # This eclass provides a uniform way of handling ebuilds which have very high
-# build requirements in terms of memory or disc space. It provides a function
+# build requirements in terms of memory or disk space. It provides a function
 # which should usually be called during pkg_setup().
 #
 # From a user perspective, the variable CHECKREQS_ACTION can be set to:
 #    * "warn" (default), which will display a warning and wait for 15s
 #    * "error", which will make the ebuild error out
 #    * "ignore", which will not take any action
+#
 # The chosen action only happens when the system's resources are detected
 # correctly and only if they are below the threshold specified by the package.
 #
@@ -20,6 +26,7 @@
 # unless the ebuild needs >256MBytes RAM or >1GByte temporary or install space.
 # The code should look something like:
 #
+# @CODE
 # pkg_setup() {
 #     # values in MBytes
 #
@@ -38,6 +45,7 @@
 #     # go!
 #     check_reqs
 # }
+# @CODE
 #
 # Alternatively, the check_reqs_conditional function can be used to carry out
 # alternate actions (e.g. using a much slower but far less memory intensive
@@ -56,22 +64,41 @@
 
 inherit eutils
 
+# @ECLASS-VARIABLE: CHECKREQS_MEMORY
+# @DESCRIPTION:
+# How much RAM is needed in MB?
 
+# @ECLASS-VARIABLE:  CHECKREQS_DISK_BUILD
+# @DESCRIPTION:
+# How much diskspace is needed to build the package? In MB
+
+# @ECLASS-VARIABLE: CHECKREQS_DISK_USR
+# @DESCRIPTION:
+# How much space in /usr is needed to install the package? In MB
+
+# @ECLASS-VARIABLE: CHECKREQS_DISK_VAR
+# @DESCRIPTION:
+# How much space is needed in /var? In MB
+
+# @FUNCTION: check_reqs
+# @DESCRIPTION:
+# Checks the requirements given in the specific variables. If not reached,
+# either prints a warning or dies.
 check_reqs() {
-	[ -n "$1" ] && die "Usage: check_reqs"
+	[[ -n "${1}" ]] && die "Usage: check_reqs"
 
 	export CHECKREQS_NEED_SLEEP="" CHECKREQS_NEED_DIE=""
-	if [ "$CHECKREQS_ACTION" != "ignore" ] ; then
-		[ -n "$CHECKREQS_MEMORY" ] && check_build_memory
-		[ -n "$CHECKREQS_DISK_BUILD" ] && check_build_disk \
-			"${PORTAGE_TMPDIR}" "\${PORTAGE_TMPDIR}" "${CHECKREQS_DISK_BUILD}"
-		[ -n "$CHECKREQS_DISK_USR" ] && check_build_disk \
-			"${ROOT}/usr"  "\${ROOT}/usr" "${CHECKREQS_DISK_USR}"
-		[ -n "$CHECKREQS_DISK_VAR" ] && check_build_disk \
-			"${ROOT}/var"  "\${ROOT}/var" "${CHECKREQS_DISK_VAR}"
+	if [[ "$CHECKREQS_ACTION" != "ignore" ]] ; then
+		[[ -n "$CHECKREQS_MEMORY" ]] && check_build_memory
+		[[ -n "$CHECKREQS_DISK_BUILD" ]] && check_build_disk \
+			"${T}" "\${T}" "${CHECKREQS_DISK_BUILD}"
+		[[ -n "$CHECKREQS_DISK_USR" ]] && check_build_disk \
+			"${EROOT}/usr"  "\${EROOT}/usr" "${CHECKREQS_DISK_USR}"
+		[[ -n "$CHECKREQS_DISK_VAR" ]] && check_build_disk \
+			"${EROOT}/var"  "\${EROOT}/var" "${CHECKREQS_DISK_VAR}"
 	fi
 
-	if [ -n "${CHECKREQS_NEED_SLEEP}" ] ; then
+	if [[ -n "${CHECKREQS_NEED_SLEEP}" ]] ; then
 		echo
 		ewarn "Bad things may happen! You may abort the build by pressing ctrl+c in"
 		ewarn "the next 15 seconds."
@@ -82,43 +109,47 @@ check_reqs() {
 		epause 15
 	fi
 
-	if [ -n "${CHECKREQS_NEED_DIE}" ] ; then
+	if [[ -n "${CHECKREQS_NEED_DIE}" ]] ; then
 		eerror "Bailing out as specified by CHECKREQS_ACTION"
 		die "Build requirements not met"
 	fi
 }
 
+# @FUNCTION: check_reqs_conditional
+# @RETURN: True if requirements check passed, else False
+# @DESCRIPTION:
+# Checks the requirements given in the specific variables
 check_reqs_conditional() {
-	[ -n "$1" ] && die "Usage: check_reqs"
+	[[ -n "${1}" ]] && die "Usage: check_reqs"
 
 	export CHECKREQS_NEED_SLEEP="" CHECKREQS_NEED_DIE=""
-	if [ "$CHECKREQS_ACTION" != "ignore" ] ; then
-		[ -n "$CHECKREQS_MEMORY" ] && check_build_memory
-		[ -n "$CHECKREQS_DISK_BUILD" ] && check_build_disk \
-			"${PORTAGE_TMPDIR}" "\${PORTAGE_TMPDIR}" "${CHECKREQS_DISK_BUILD}"
-		[ -n "$CHECKREQS_DISK_USR" ] && check_build_disk \
-			"${ROOT}/usr"  "\${ROOT}/usr" "${CHECKREQS_DISK_USR}"
-		[ -n "$CHECKREQS_DISK_VAR" ] && check_build_disk \
-			"${ROOT}/var"  "\${ROOT}/var" "${CHECKREQS_DISK_VAR}"
+	if [[ "$CHECKREQS_ACTION" != "ignore" ]] ; then
+		[[ -n "$CHECKREQS_MEMORY" ]] && check_build_memory
+		[[ -n "$CHECKREQS_DISK_BUILD" ]] && check_build_disk \
+			"${T}" "\${T}" "${CHECKREQS_DISK_BUILD}"
+		[[ -n "$CHECKREQS_DISK_USR" ]] && check_build_disk \
+			"${EROOT}/usr"  "\${EROOT}/usr" "${CHECKREQS_DISK_USR}"
+		[[ -n "$CHECKREQS_DISK_VAR" ]] && check_build_disk \
+			"${EROOT}/var"  "\${EROOT}/var" "${CHECKREQS_DISK_VAR}"
 	fi
 
-	[ -z "${CHECKREQS_NEED_SLEEP}" ] && [ -z "${CHECKREQS_NEED_DIE}" ]
+	[[ -z "${CHECKREQS_NEED_SLEEP}" && -z "${CHECKREQS_NEED_DIE}" ]]
 }
 
 # internal use only!
 check_build_memory() {
-	[ -n "$1" ] && die "Usage: check_build_memory"
+	[[ -n "${1}" ]] && die "Usage: check_build_memory"
 	check_build_msg_begin "${CHECKREQS_MEMORY}" "MBytes" "RAM"
-	if [ -r /proc/meminfo ] ; then
+	if [[ -r /proc/meminfo ]] ; then
 		actual_memory=$(sed -n -e '/MemTotal:/s/^[^:]*: *\([0-9]\+\) kB/\1/p' \
 			/proc/meminfo)
 	else
-		actual_memory=$(env PATH=${PATH}:/usr/sbin sysctl hw.physmem 2>/dev/null )
-		[ "$?" == "0" ] &&
+		actual_memory=$(sysctl hw.physmem 2>/dev/null )
+		[[ "$?" == "0" ]] &&
 			actual_memory=$(echo $actual_memory | sed -e 's/^[^:=]*[:=]//' )
 	fi
-	if [ -n "${actual_memory}" ] ; then
-		if [ ${actual_memory} -lt $((1024 * ${CHECKREQS_MEMORY})) ] ; then
+	if [[ -n "${actual_memory}" ]] ; then
+		if [[ ${actual_memory} -lt $((1024 * ${CHECKREQS_MEMORY})) ]] ; then
 			eend 1
 			check_build_msg_ick "${CHECKREQS_MEMORY}" "MBytes" "RAM"
 		else
@@ -132,13 +163,13 @@ check_build_memory() {
 
 # internal use only!
 check_build_disk() {
-	[ -z "$3" ] && die "Usage: check_build_disk where name needed"
+	[[ -z "${3}" ]] && die "Usage: check_build_disk where name needed"
 	check_build_msg_begin "${3}" "MBytes" \
 			"disk space at ${2}"
 	actual_space=$(df -Pm ${1} 2>/dev/null | sed -n \
 			'$s/\(\S\+\s\+\)\{3\}\([0-9]\+\).*/\2/p' 2>/dev/null )
-	if [ "$?" == "0" ] && [ -n "${actual_space}" ] ; then
-		if [ ${actual_space} -lt ${3} ] ; then
+	if [[ "$?" == "0" && -n "${actual_space}" ]] ; then
+		if [[ ${actual_space} -lt ${3} ]] ; then
 			eend 1
 			check_build_msg_ick "${3}" "MBytes" \
 					"disk space at ${2}"
@@ -163,7 +194,7 @@ check_build_msg_skip() {
 
 # internal use only!
 check_build_msg_ick() {
-	if [ "${CHECKREQS_ACTION}" == "error" ] ; then
+	if [[ "${CHECKREQS_ACTION}" == "error" ]] ; then
 		eerror "Don't have at least ${1}${2} ${3}"
 		echo
 		export CHECKREQS_NEED_DIE="yes"
