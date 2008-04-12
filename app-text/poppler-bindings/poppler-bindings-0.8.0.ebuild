@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.0.ebuild,v 1.3 2008/04/11 00:20:52 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.0.ebuild,v 1.4 2008/04/11 17:46:15 dang Exp $
   
 EAPI="prefix 1"
 inherit autotools eutils multilib flag-o-matic
@@ -11,13 +11,13 @@ HOMEPAGE="http://poppler.freedesktop.org/"
 
 # Creating the testsuite tarball (must be done for every release)
 #
-# cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/poppler login
-# cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/poppler co test
-# tar czf poppler-test-${PV}.tar.gz
+# git clone git://anongit.freedesktop.org/git/poppler/test
+# rm -rf test/.git
+# tar czf poppler-test-${PV}.tar.gz test
 # upload to d.g.o/space/distfiles-local
 
 SRC_URI="http://poppler.freedesktop.org/${MY_P}.tar.gz
-		test? ( mirror://gentoo/poppler-test-0.6.1.tar.gz )"
+		test? ( mirror://gentoo/poppler-test-${PV}.tar.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -45,9 +45,6 @@ src_unpack(){
 	cd "${S}"
 
 	epatch "${FILESDIR}"/poppler-0.6-bindings.patch
-
-	# Don't run password test; the test file is not there. Bug #201448
-	epatch "${FILESDIR}"/poppler-0.8.0-no-password-test.patch
 
 	AT_M4DIR="m4" eautoreconf
 	cd poppler

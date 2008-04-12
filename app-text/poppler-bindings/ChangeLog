@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.85 2008/04/11 00:20:52 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.86 2008/04/11 17:46:15 dang Exp $
+
+  11 Apr 2008; Daniel Gryniewicz <dang@gentoo.org>
+  poppler-bindings-0.8.0.ebuild:
+  New poppler-test tarball for 0.8.0
 
   11 Apr 2008; Daniel Gryniewicz <dang@gentoo.org>
   +files/poppler-0.6.3-no-password-test.patch,
