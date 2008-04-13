@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.34 2008/02/13 20:09:27 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.35 2008/04/12 07:42:47 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -60,7 +60,7 @@ AdalibLibTop=${PREFIX}/$(get_libdir)/ada
 
 # build-time locations
 # SL is a "localized" S, - location where sources are copied for
-# profile-specific build
+#bi profile-specific build
 SL=${WORKDIR}/LocalSource
 
 # DL* are "localized destinations" where ARCH/SLOT dependent stuff should be
@@ -279,6 +279,12 @@ gnat_pkg_setup() {
 		if [[ ! -f ${SPECSDIR}/${fn} ]]; then 
 			elog "The ${fn} Ada compiler profile is specified as primary, but is not installed."
 			elog "Please rectify the situation before emerging Ada library!"
+			elog "Please either install again all the missing compilers listed"
+			elog "as primary, or edit /etc/ada/primary_compilers and update the"
+			elog "list of primary compilers there."
+			einfo ""
+			ewarn "If you do the latter, please don't forget to rebuild all"
+			ewarn "affected libs!"
 			die "Primary compiler is missing"
 		fi
 	done

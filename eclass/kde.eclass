@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.209 2008/04/06 21:39:05 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.210 2008/04/12 16:22:59 zlin Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -167,8 +167,11 @@ kde_src_unpack() {
 			einfo
 			einfo "Enabling all languages"
 		else
+			# we sanitise LINGUAS to avoid issues when a user specifies the same
+			# linguas twice. bug #215016.
+			local sanitised_linguas=$(echo "${LINGUAS}" | tr '[[:space:]]' '\n' | sort | uniq)
 			if [[ -n ${LANGS} ]]; then
-				MAKE_PO=$(echo $(echo "${LINGUAS} ${LANGS}" | tr ' ' '\n' | sort | uniq -d))
+				MAKE_PO=$(echo "${sanitised_linguas} ${LANGS}" | tr '[[:space:]]' '\n' | sort | uniq -d | tr '\n' ' ')
 				einfo "Enabling translations for: ${MAKE_PO}"
 				sed -i -e "s:^SUBDIRS[ \t]*=.*:SUBDIRS = ${MAKE_PO}:" "${KDE_S}/${KEG_PO_DIR:-po}/Makefile.am" \
 					|| die "sed for locale failed"
@@ -176,7 +179,7 @@ kde_src_unpack() {
 			fi
 
 			if [[ -n ${LANGS_DOC} ]]; then
-				MAKE_DOC=$(echo $(echo "${LINGUAS} ${LANGS_DOC}" | tr ' ' '\n' | sort | uniq -d))
+				MAKE_DOC=$(echo "${sanitised_linguas} ${LANGS_DOC}" | tr '[[:space:]]' '\n' | sort | uniq -d | tr '\n' ' ')
 				einfo "Enabling documentation for: ${MAKE_DOC}"
 				[[ -n ${MAKE_DOC} ]] && [[ -n ${DOC_DIR_SUFFIX} ]] && MAKE_DOC=$(echo "${MAKE_DOC}" | tr '\n' ' ') && MAKE_DOC="${MAKE_DOC// /${DOC_DIR_SUFFIX} }"
 				sed -i -e "s:^SUBDIRS[ \t]*=.*:SUBDIRS = ${MAKE_DOC} ${PN}:" \

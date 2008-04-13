@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.209 2008/04/05 12:29:26 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.210 2008/04/12 22:45:56 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -733,18 +733,7 @@ unipatch() {
 
 	#unpack any passed tarballs
 	for i in ${UNIPATCH_LIST}; do
-		if [ -n "$(echo ${i} | grep -e "\.tar" -e "\.tbz" -e "\.tgz")" ]; then
-			extention=${i/*./}
-			extention=${extention/:*/}
-			case ${extention} in
-				tbz2) PIPE_CMD="tar -xvjf";;
-				 bz2) PIPE_CMD="tar -xvjf";;
-				 tgz) PIPE_CMD="tar -xvzf";;
-				  gz) PIPE_CMD="tar -xvzf";;
-				   *) eerror "Unrecognized tarball compression"
-				      die "Unrecognized tarball compression";;
-			esac
-
+		if echo ${i} | grep -qs -e "\.tar" -e "\.tbz" -e "\.tgz" ; then
 			if [ -n "${UNIPATCH_STRICTORDER}" ]; then
 				unset z
 				STRICT_COUNT=$((10#${STRICT_COUNT} + 1))
@@ -753,19 +742,17 @@ unipatch() {
 				done
 				PATCH_ORDER="${z}${STRICT_COUNT}"
 
-				mkdir -p ${KPATCH_DIR}/${PATCH_ORDER}/
-				${PIPE_CMD} ${i/:*/} -C ${KPATCH_DIR}/${PATCH_ORDER}/ 1>/dev/null
+				mkdir -p "${KPATCH_DIR}/${PATCH_ORDER}"
+				pushd "${KPATCH_DIR}/${PATCH_ORDER}" >/dev/null
+				unpack ${i##*/}
+				popd >/dev/null
 			else
-				${PIPE_CMD} ${i/:*/} -C ${KPATCH_DIR} 1>/dev/null
+				pushd "${KPATCH_DIR}" >/dev/null
+				unpack ${i##*/}
+				popd >/dev/null
 			fi
 
-			if [ $? == 0 ]; then
-				einfo "${i/*\//} unpacked"
-				[ -n "$(echo ${i} | grep ':')" ] && echo ">>> Strict patch levels not currently supported for tarballed patchsets"
-			else
-				eerror "Failed to unpack ${i/:*/}"
-				die "unable to unpack patch tarball"
-			fi
+			[[ ${i} == *:* ]] && echo ">>> Strict patch levels not currently supported for tarballed patchsets"
 		else
 			extention=${i/*./}
 			extention=${extention/:*/}

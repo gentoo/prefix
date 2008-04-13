@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.351 2008/04/08 03:07:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.352 2008/04/12 22:54:40 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1663,12 +1663,12 @@ gcc-compiler_src_install() {
 
 	# Do allow symlinks in ${PREFIX}/lib/gcc-lib/${CHOST}/${GCC_CONFIG_VER}/include as
 	# this can break the build.
-	for x in "${WORKDIR}"/build/gcc/include/* ; do
+	for x in "${WORKDIR}"/build/gcc/include*/* ; do
 		[[ -L ${x} ]] && rm -f "${x}"
 	done
 	# Remove generated headers, as they can cause things to break
 	# (ncurses, openssl, etc), unless when in a prefix.
-	for x in $(find "${WORKDIR}"/build/gcc/include/ -name '*.h') ; do
+	for x in $(find "${WORKDIR}"/build/gcc/include*/ -name '*.h') ; do
 		grep -q 'It has been auto-edited by fixincludes from' "${x}" \
 			&& use !prefix && rm -f "${x}"
 	done

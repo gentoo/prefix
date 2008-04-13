@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.38 2008/04/04 18:11:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.39 2008/04/12 08:40:46 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -291,7 +291,7 @@ elisp-site-regen() {
 	local i sf line obsolete
 	local -a sflist
 	# Work around Paludis borkage: variable T is empty in pkg_postrm
-	local tmpdir=${T:-/tmp}
+	local tmpdir=${T:-$(mktemp -d)}
 
 	if [ ! -d "${EROOT}${SITELISP}" ]; then
 		eerror "Directory ${SITELISP} does not exist"

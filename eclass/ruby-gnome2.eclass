@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.11 2007/01/26 15:53:18 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.12 2008/04/12 08:36:28 graaff Exp $
 #
 # This eclass simplifies installation of the various pieces of
 # ruby-gnome2 since they share a very common installation procedure.
@@ -46,9 +46,13 @@ END
 	unpack ${A}
 	cd ${S}
 	# apply bulk patches
-	if [[ -n "${PATCHES}" ]] ; then
-		for p in ${PATCHES} ; do
-			epatch $p
+	if [[ ${#PATCHES[@]} -gt 1 ]]; then
+		for x in "${PATCHES[@]}"; do
+			epatch "${x}"
+		done
+	else
+		for x in ${PATCHES}; do
+			epatch "${x}"
 		done
 	fi
 }
