@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.15.ebuild,v 1.6 2008/04/11 15:19:56 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.15.ebuild,v 1.7 2008/04/12 07:46:51 nixnut Exp $
 
 EAPI="prefix"
 
