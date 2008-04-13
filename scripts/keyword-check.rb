@@ -14,7 +14,7 @@ start = Time.now
 problemCnt = 0
 
 Pathname.new( '.' ).find {|file| 
-	next unless file.fnmatch? '*.ebuild'
+	next unless file.fnmatch? '*/*/*.ebuild'
 	file.readlines.each {|line|
 		unless line.slice( 0, 9 ) == 'KEYWORDS='
 			next
