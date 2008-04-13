@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.1.ebuild,v 1.3 2008/04/04 16:06:14 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.1.ebuild,v 1.4 2008/04/12 13:44:26 leio Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,8 @@ RDEPEND=">=dev-libs/glib-2.16
 		 gnome? ( >=gnome-base/gconf-2.0 )
 		 hal? ( >=sys-apps/hal-0.5.10 )
 		 bluetooth? (
-		 	dev-libs/dbus-glib
-		 	>=net-wireless/bluez-libs-3.12
+			dev-libs/dbus-glib
+			>=net-wireless/bluez-libs-3.12
 			dev-libs/expat
 			)
 		 gphoto2? ( >=media-libs/libgphoto2-2.4 )
