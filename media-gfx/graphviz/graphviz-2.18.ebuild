@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.18.ebuild,v 1.2 2008/03/16 20:56:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.18.ebuild,v 1.3 2008/04/12 09:48:34 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="doc examples gnome gtk jpeg nls perl png python ruby tcl tk"
+IUSE="doc examples gnome gtk java jpeg nls perl png python ruby tcl tk"
 
 # Requires ksh
 RESTRICT="test"
@@ -43,6 +43,7 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.20
+	java?	( dev-lang/swig )
 	nls?	( >=sys-devel/gettext-0.14.5 )
 	perl?	( dev-lang/swig )
 	python?	( dev-lang/swig )
@@ -176,13 +177,14 @@ src_compile() {
 	# Bindings:
 	myconf="${myconf}
 		--disable-guile
-		--disable-java
+		$(use_enable java)
 		--disable-io
 		--disable-lua
 		--disable-ocaml
 		$(use_enable perl)
 		--disable-php
 		$(use_enable python)
+		--disable-r
 		$(use_enable ruby)
 		--disable-sharp
 		$(use_enable tcl)

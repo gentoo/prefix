@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.154 2008/04/10 18:19:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.155 2008/04/12 09:48:34 maekke Exp $
+
+  12 Apr 2008; Markus Meier <maekke@gentoo.org> graphviz-2.18.ebuild:
+  add java USE-flag for bug #186372 and disable R-bindings for bug #213825
 
   10 Apr 2008; Markus Meier <maekke@gentoo.org> -graphviz-2.16.1-r1.ebuild,
   -graphviz-2.16.1-r2.ebuild, -graphviz-2.16.1-r3.ebuild:
