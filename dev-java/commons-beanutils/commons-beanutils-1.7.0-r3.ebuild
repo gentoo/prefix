@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.7.0-r3.ebuild,v 1.4 2008/04/10 19:19:35 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.7.0-r3.ebuild,v 1.5 2008/04/12 19:10:10 dertobi123 Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source test"
