@@ -38,6 +38,7 @@ Pathname.new( '.' ).find {|file|
 				puts
 				problemCnt += 1
 			end
+			break
 		end
 	}
 }
