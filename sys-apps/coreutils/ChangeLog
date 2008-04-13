@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.219 2008/02/23 04:15:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.221 2008/04/12 19:40:27 cla Exp $
+
+  12 Apr 2008; Dawid Węgliński <cla@gentoo.org> coreutils-6.10-r1.ebuild:
+  Stable on x86 (bug #217239)
+
+*coreutils-6.10-r2 (12 Apr 2008)
+
+  12 Apr 2008; Mike Frysinger <vapier@gentoo.org> +coreutils-6.10-r2.ebuild:
+  Add i18n patch from Fedora and some fixes from upstream for #210133.
 
   23 Feb 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.9-r1.ebuild:
   Fix build error on some systems #206841 by Markus Duft.

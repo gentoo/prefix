@@ -1,19 +1,19 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r1.ebuild,v 1.3 2008/04/12 19:40:27 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r2.ebuild,v 1.1 2008/04/12 19:17:09 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.1"
+PATCH_VER="1.2"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
 	mirror://gnu/${PN}/${P}.tar.lzma
 	mirror://gentoo/${P}.tar.lzma
-	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.bz2
-	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.bz2"
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma
+	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.lzma"
 
 LICENSE="GPL-3"
 SLOT="0"
