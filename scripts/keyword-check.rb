@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby -w
-# Copyright Gentoo Foundation 2007
+# Copyright Gentoo Foundation 2008
 
 %w{ pathname set }.each {|lib| require lib}
 
 lines = Pathname.new( 'profiles/arch.list' ).readlines
 allowed = lines.collect {|line| line.chomp }.reject {|line|
-	line.slice( 0, 1 ) == '#' or line.empty? or line == 'prefix'
+	line.slice( 0, 1 ) == '#' or line.empty?
 }
 
 kmods = Set.new %w{ ~ - }
