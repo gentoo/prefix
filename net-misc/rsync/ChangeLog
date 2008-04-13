@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.159 2008/04/10 19:48:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.160 2008/04/12 22:34:51 cla Exp $
+
+  12 Apr 2008; Dawid Węgliński <cla@gentoo.org> rsync-2.6.9-r6.ebuild:
+  Stable on x86 (bug #216887)
 
   10 Apr 2008; Jeroen Roovers <jer@gentoo.org> rsync-2.6.9-r6.ebuild:
   Stable for HPPA (bug #216887).
