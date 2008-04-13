@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.196 2008/03/31 04:34:35 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.199 2008/04/12 16:42:05 cla Exp $
+
+  12 Apr 2008; Dawid Węgliński <cla@gentoo.org> vte-0.16.13.ebuild:
+  Stable on x86 (bug #217395)
+
+  12 Apr 2008; Samuli Suominen <drac@gentoo.org> vte-0.16.13.ebuild:
+  amd64 stable wrt #217395
+
+  12 Apr 2008; nixnut <nixnut@gentoo.org> vte-0.16.13.ebuild:
+  Stable on ppc wrt bug 217395
 
   31 Mar 2008; <ricmm@gentoo.org> vte-0.16.8.ebuild:
   Drop to ~mips due to unstable deps
