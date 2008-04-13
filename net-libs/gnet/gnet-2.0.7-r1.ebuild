@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7-r1.ebuild,v 1.6 2008/03/30 23:09:14 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7-r1.ebuild,v 1.7 2008/04/12 18:35:45 dertobi123 Exp $
 
 EAPI="prefix"
 
