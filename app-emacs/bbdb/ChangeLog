@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.32 2008/03/20 21:17:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.33 2008/04/12 13:08:40 ulm Exp $
+
+  12 Apr 2008; Ulrich Mueller <ulm@gentoo.org> bbdb-2.35.ebuild:
+  Finally drop tetex USE flag, bug #196745.
 
   20 Mar 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add longdescription to metadata.
