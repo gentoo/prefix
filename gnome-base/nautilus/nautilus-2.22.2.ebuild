@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.2.ebuild,v 1.2 2008/04/10 10:27:38 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.2.ebuild,v 1.3 2008/04/12 13:48:12 leio Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ RDEPEND=">=x11-libs/startup-notification-0.8
 		 >=gnome-base/gconf-2.0
 		 >=gnome-base/gvfs-0.1.2
 		 beagle? ( || (
-		 	dev-libs/libbeagle
+			dev-libs/libbeagle
 			=app-misc/beagle-0.2*
 			) )
 		 tracker? ( >=app-misc/tracker-0.6.4 )
