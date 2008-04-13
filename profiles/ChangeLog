@@ -1,6 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1312 2008/04/10 22:44:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1319 2008/04/12 20:02:55 nelchael Exp $
+
+  12 Apr 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  suspend2 packages removed.
+
+  12 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add local use desc for app-laptop/kthinkbat:smapi
+
+  12 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  default-linux/x86/use.mask, use.local.desc:
+  Switch tetex to local jadetex for sci-libs/plplot
+
+  12 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Masking gnome-system-tools because it is broken,
+  to help fix it, see bug #214265
+
+  12 Apr 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  last-riting dev-libs/libsigcx, see bug #191855
+
+  12 Apr 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking media-sound/lastfmproxy as the ebuild needs more work.
 
   10 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> package.mask:
   Add a mask for amarok 1.4.9.1.
