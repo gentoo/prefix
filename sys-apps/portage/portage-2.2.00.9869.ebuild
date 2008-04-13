@@ -32,9 +32,6 @@ RDEPEND=">=dev-lang/python-2.4
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.13 )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
-	doc? (
-		|| ( app-portage/eclass-manpages app-portage/portage-manpages )
-	)
 	!build? (
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
@@ -43,6 +40,15 @@ PDEPEND="
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
 SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
+
+prefix_src_archives() {
+	local x y
+	for x in ${@}; do
+		for y in ${SRC_ARCHIVES}; do
+			echo ${y}/${x}
+		done
+	done
+}
 
 PV_PL="2.1.2"
 PATCHVER_PL=""
@@ -58,15 +64,12 @@ if [ -n "${PATCHVER}" ]; then
 	${SRC_ARCHIVES}/${PN}-${PATCHVER}.patch.bz2"
 fi
 
-if [ -n "${PATCHVER_PL}" ]; then
-	SRC_URI="${SRC_URI} linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}${PATCHVER_PL}.patch.bz2
-	${SRC_ARCHIVES}/${PN}-man-pl-${PV_PL}${PATCHVER_PL}.patch.bz2 )"
-fi
-
 S="${WORKDIR}"/prefix-${PN}-${PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 pkg_setup() {
+	MINOR_UPGRADE=$(has_version '>=sys-apps/portage-2.2_alpha' && echo true)
+
 	[[ -n ${PREFIX_PORTAGE_DONT_CHECK_MY_REPO} ]] && return
 	# This function is EVIL by definition because it dies, however, given that
 	# infra really wants to expel http access we have no choice.
@@ -98,24 +101,12 @@ pkg_setup() {
 	fi
 }
 
-portage_docs() {
-	elog ""
-	elog "For help with using portage please consult the Gentoo Handbook"
-	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
-	elog ""
-}
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	if [ -n "${PATCHVER}" ]; then
 		cd "${S}"
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
-	fi
-
-	if [ -n "${PATCHVER_PL}" ]; then
-		use linguas_pl && \
-			epatch "${WORKDIR}/${PN}-man-pl-${PV_PL}${PATCHVER_PL}.patch"
 	fi
 }
 
@@ -138,8 +129,7 @@ src_compile() {
 	if use doc; then
 		cd "${S}"/doc
 		touch fragment/date
-		sed -i "s/svn-trunk/${PVR}/" fragment/version
-		make xhtml-nochunks || die "failed to make docs"
+		make xhtml xhtml-nochunks || die "failed to make docs"
 	fi
 
 	if use epydoc; then
@@ -148,7 +138,7 @@ src_compile() {
 		local my_modules
 		my_modules="$(find "${S}/pym" -name "*.py" \
 			| sed -e 's:/__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
-			 -e 's:/:.:g')" || die "error listing modules"
+			 -e 's:/:.:g' | sort)" || die "error listing modules"
 		PYTHONPATH="${S}/pym:${PYTHONPATH}" epydoc -o "${WORKDIR}"/api \
 			-qqqqq --no-frames --show-imports \
 			--name "${PN}" --url "${HOMEPAGE}" \
@@ -157,7 +147,7 @@ src_compile() {
 }
 
 src_test() {
-	./tests/runTests || \
+	./pym/portage/tests/runTests || \
 		die "test(s) failed"
 }
 
@@ -168,20 +158,29 @@ src_install() {
 	make DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
 
+	# Symlinks to directories cause up/downgrade issues and the use of these
+	# modules outside of portage is probably negligible.
+	for x in "${ED}${portage_base}/pym/"{cache,elog_modules} ; do
+		[ ! -L "${x}" ] && continue
+		die "symlink to directory will cause upgrade/downgrade issues: '${x}'"
+	done
+
+	exeinto ${portage_base}/pym/portage/tests
+	doexe  "${S}"/pym/portage/tests/runTests
+
 
 	if use linguas_pl; then
 		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9]
 		doman -i18n=pl_PL.UTF-8 "${S_PL}"/man/pl_PL.UTF-8/*.[0-9]
 	fi
-	dodoc "${S}"/ChangeLog
-	dodoc "${S}"/NEWS
-	dodoc "${S}"/RELEASE-NOTES
-	use doc && dohtml "${S}"/doc/*.html
+
+	dodoc "${S}"/{ChangeLog,NEWS,RELEASE-NOTES}
+	use doc && dohtml -r "${S}"/doc/*
 	use epydoc && dohtml -r "${WORKDIR}"/api
 	dodir /etc/portage
 	keepdir /etc/portage
 
-	echo PYTHONPATH=\"${EPREFIX}${portage_base}/pym\" > "${WORKDIR}"/05portage.envd
+	echo "PYTHONPATH=\"${EPREFIX}${portage_base}/pym\"" > "${WORKDIR}"/05portage.envd
 	doenvd "${WORKDIR}"/05portage.envd
 }
 
@@ -189,33 +188,16 @@ pkg_preinst() {
 	if ! use build && ! has_version dev-python/pycrypto && \
 		has_version '>=dev-lang/python-2.5' ; then
 		if ! built_with_use '>=dev-lang/python-2.5' ssl ; then
-			echo "If you are a Gentoo developer and you plan to" \
-			"commit ebuilds with this system then please install" \
-			"pycrypto or enable python's ssl USE flag in order" \
-			"to enable RMD160 hash support. See bug #198398 for" \
-			"more information." | \
-			fmt -w 70 | while read line ; do ewarn "${line}" ; done
+			ewarn "If you are an ebuild developer and you plan to commit ebuilds"
+			ewarn "with this system then please install dev-python/pycrypto or"
+			ewarn "enable the ssl USE flag for >=dev-lang/python-2.5 in order"
+			ewarn "to enable RMD160 hash support."
+			ewarn "See bug #198398 for more information."
 		fi
-	fi
-	local portage_base="/usr/$(get_libdir)/portage"
-	if has livecvsportage ${FEATURES} && [ "${ROOT}" = "/" ]; then
-		rm -rf "${ED}"/${portage_base}/pym/*
-		mv "${ED}"/${portage_base}/bin/tbz2tool "${T}"
-		rm -rf "${ED}"/${portage_base}/bin/*
-		mv "${T}"/tbz2tool "${ED}"/${portage_base}/bin/
 	fi
 }
 
 pkg_postinst() {
-	local x
-
-	if [ ! -f "${EROOT}/var/lib/portage/world" ] &&
-	   [ -f ${EROOT}/var/cache/edb/world ] &&
-	   [ ! -h ${EROOT}/var/cache/edb/world ]; then
-		mv ${EROOT}/var/cache/edb/world ${EROOT}/var/lib/portage/world
-		ln -s ../../lib/portage/world ${EROOT}/var/cache/edb/world
-	fi
-
 	for x in ${EROOT}/etc/._cfg????_make.globals; do
 		# Overwrite the globals file automatically.
 		[ -e "${x}" ] && mv -f "${x}" "${EROOT}/etc/make.globals"
@@ -223,33 +205,28 @@ pkg_postinst() {
 
 	# Compile all source files recursively. Any orphans
 	# will be identified and removed in postrm.
-	compile_all_python_bytecodes "${EROOT}usr/$(get_libdir)/portage/pym"
+	python_mod_optimize "${EROOT}usr/$(get_libdir)/portage/pym"
 
-	echo "If you have an overlay then you should remove **/files/digest-*" \
-	"files (Manifest1) because they are no longer supported. If earlier" \
-	"versions of portage will be used to generate manifests for your overlay" \
-	"then you should add a file named manifest1_obsolete to the root of the" \
-	"repository in order to disable generation of the" \
-	"Manifest1 digest files." | fmt -w 75 | while read x ; do elog "$x" ; done
+	elog
+	elog "For help with using portage please consult the Gentoo Handbook"
+	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
+	elog
 
-	portage_docs
+	if [ -z "${MINOR_UPGRADE}" ]; then
+		elog "If you're upgrading from a pre-2.2 version of portage you might"
+		elog "want to remerge world (emerge -e world) to take full advantage"
+		elog "of some of the new features in 2.2."
+		elog "This is not required however for portage to function properly."
+		elog
+	fi
+
+	if [ -z "${PV/*_pre*}" ]; then
+		elog "If you always want to use the latest development version of portage"
+		elog "please read http://www.gentoo.org/proj/en/portage/doc/testing.xml"
+		elog
+	fi
 }
 
 pkg_postrm() {
-	remove_orphan_python_bytecodes "${ROOT}usr/$(get_libdir)/portage/pym"
-}
-
-compile_all_python_bytecodes() {
-	python -c "from compileall import compile_dir; compile_dir('${1}', quiet=True)"
-	python -O -c "from compileall import compile_dir; compile_dir('${1}', quiet=True)"
-}
-
-remove_orphan_python_bytecodes() {
-	[[ -d ${1} ]] || return
-	find "${1}" -name '*.py[co]' -print0 | \
-	while read -d $'\0' f ; do
-		src_py=${f%[co]}
-		[[ -f ${src_py} ]] && continue
-		rm -f "${src_py}"[co]
-	done
+	python_mod_cleanup "${EROOT}usr/$(get_libdir)/portage/pym"
 }
