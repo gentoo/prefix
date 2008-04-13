@@ -20,7 +20,7 @@ Pathname.new( '.' ).find {|file|
 			next
 		else
 			kws = line.chomp.slice( 10..-2 )
-			next if kws.empty?
+			break if kws.empty?
 			forbidden = Array.new
 			stable    = Array.new
 			kws.split.each {|kw|
