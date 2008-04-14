@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.4.ebuild,v 1.8 2008/01/10 09:14:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.4.ebuild,v 1.9 2008/04/13 14:22:12 hollow Exp $
 
 EAPI="prefix"
 
@@ -57,7 +57,7 @@ src_compile() {
 		--enable-shared \
 		$(use_with zlib) \
 		$(use_with kerberos gssapi) \
-		$(use_enable socks5 socks) \
+		$(use_with socks5 socks) \
 		$(use_enable nls) \
 		${myconf} \
 		|| die "econf failed"

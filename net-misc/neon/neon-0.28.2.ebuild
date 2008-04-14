@@ -1,10 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.27.2.ebuild,v 1.2 2008/01/27 20:43:23 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.2.ebuild,v 1.1 2008/04/13 15:21:20 hollow Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool versionator autotools
+inherit autotools eutils libtool versionator
+
+RESTRICT="test"
 
 DESCRIPTION="HTTP and WebDAV client library"
 HOMEPAGE="http://www.webdav.org/neon/"
@@ -13,29 +15,40 @@ SRC_URI="http://www.webdav.org/neon/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="expat kerberos nls socks5 ssl zlib"
-RESTRICT="test"
+IUSE="doc expat gnutls kerberos nls pkcs11 socks5 ssl zlib"
+IUSE_LINGUAS="cs de fr ja nn pl ru tr zh_CN"
+for lingua in ${IUSE_LINGUAS}; do
+	IUSE="${IUSE} linguas_${lingua}"
+done
 
-DEPEND="expat? ( dev-libs/expat )
+RDEPEND="expat? ( dev-libs/expat )
 	!expat? ( dev-libs/libxml2 )
+	gnutls? (
+		>=net-libs/gnutls-2.0
+		pkcs11? ( dev-libs/pakchois )
+	)
+	!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6f ) )
 	kerberos? ( virtual/krb5 )
 	nls? ( virtual/libintl )
 	socks5? ( net-proxy/dante )
-	ssl? ( >=dev-libs/openssl-0.9.6f )
 	zlib? ( sys-libs/zlib )"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-linguas.patch
-	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${LINGUAS}\"/g" \
-		./configure.in
-	AT_M4DIR=./macros eautoreconf
+	local lingua linguas
+	for lingua in ${IUSE_LINGUAS}; do
+		use linguas_${lingua} && linguas="${linguas} ${lingua}"
+	done
+	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${linguas}\"/g" configure.in
+
+	AT_M4DIR="macros" eautoreconf
 }
 
 src_compile() {
-	local myconf=
+	local myconf
 
 	if has_version sys-libs/glibc; then
 		if built_with_use --missing true sys-libs/glibc nptlonly \
@@ -51,44 +64,47 @@ src_compile() {
 		myconf="${myconf} --with-libxml2"
 	fi
 
-	if use ssl; then
+	if use gnutls; then
+		myconf="${myconf} --with-ssl=gnutls"
+	elif use ssl; then
 		myconf="${myconf} --with-ssl=openssl"
 	fi
 
 	econf \
 		--enable-static \
 		--enable-shared \
-		$(use_with zlib) \
 		$(use_with kerberos gssapi) \
-		$(use_enable socks5 socks) \
 		$(use_enable nls) \
-		${myconf} \
-		|| die "econf failed"
+		$(use_with pkcs11 pakchois) \
+		$(use_with socks5 socks) \
+		$(use_with zlib) \
+		${myconf}
 	emake || die "emake failed"
 }
 
 src_test() {
-	make check || die "Trying make check without success."
+	emake check || die "Trying make check without success."
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die 'install failed'
-	dodoc AUTHORS BUGS ChangeLog NEWS README THANKS TODO doc/*
+	emake DESTDIR="${D}" install-lib install-headers install-config install-nls || die "emake install failed"
+
+	if use doc; then
+		emake DESTDIR="${D}" install-docs || die "emake install-docs failed"
+	fi
+
+	dodoc AUTHORS BUGS NEWS README THANKS TODO
+	doman doc/man/*.[1-8]
 }
 
 pkg_postinst() {
-	ewarn "There are new features in this version; please beware that"
-	ewarn "upstream considers the socks support experimental.  If you"
-	ewarn "experience test failures (eg, bug 135863) then try rebuilding"
-	ewarn "glibc."
-	ewarn
-	ewarn "Neon has a policy of breaking API across versions, this means"
-	ewarn "that any packages that links against neon will be broken after"
+	ewarn "Neon has a policy of breaking API across minor versions, this means"
+	ewarn "that any package that links against neon may be broken after"
 	ewarn "updating. They will remain broken until they are ported to the"
 	ewarn "new API. You can downgrade neon to the previous version by doing:"
 	ewarn
 	ewarn "  emerge --oneshot '<net-misc/neon-$(get_version_component_range 1-2 ${PV})'"
 	ewarn
-	ewarn "You may also have to downgrade any packages that have already been"
+	ewarn "You may also have to downgrade any package that has already been"
 	ewarn "ported to the new API."
 }

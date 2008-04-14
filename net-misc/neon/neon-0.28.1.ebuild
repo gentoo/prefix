@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.1.ebuild,v 1.3 2008/03/30 03:55:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.1.ebuild,v 1.5 2008/04/13 15:12:57 hollow Exp $
 
 EAPI="prefix"
 
@@ -76,7 +76,7 @@ src_compile() {
 		$(use_with kerberos gssapi) \
 		$(use_enable nls) \
 		$(use_with pkcs11 pakchois) \
-		$(use_enable socks5 socks) \
+		$(use_with socks5 socks) \
 		$(use_with zlib) \
 		${myconf}
 	emake || die "emake failed"
@@ -93,7 +93,8 @@ src_install() {
 		emake DESTDIR="${D}" install-docs || die "emake install-docs failed"
 	fi
 
-	dodoc AUTHORS BUGS NEWS README THANKS TODO doc/*
+	dodoc AUTHORS BUGS NEWS README THANKS TODO
+	doman doc/man/*.[1-8]
 }
 
 pkg_postinst() {
