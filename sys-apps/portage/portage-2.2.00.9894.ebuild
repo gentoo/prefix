@@ -5,7 +5,7 @@
 EAPI="prefix"
 RESTRICT="mirror"
 
-inherit toolchain-funcs eutils flag-o-matic multilib
+inherit toolchain-funcs eutils flag-o-matic python multilib
 
 DESCRIPTION="Prefix branch of the Portage Package Management System. The primary package management and distribution system for Gentoo."
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
@@ -194,6 +194,19 @@ pkg_preinst() {
 			ewarn "to enable RMD160 hash support."
 			ewarn "See bug #198398 for more information."
 		fi
+	fi
+
+	if [[ ! -e ${EROOT}/var/lib/portage/world_sets ]] ; then
+		ewarn "This version of Portage has 'sets' stored separately.  Your"
+		ewarn "'world' file is now automatically splitted to reflect the"
+		ewarn "new situation.  A backup of your 'world' file is stored at"
+		ewarn "  ${EPREFIX}/var/lib/portage/world.pre-sets-split"
+		ewarn "If your installation appears to works fine, it is safe to"
+		ewarn "remove the backup file."
+		cp -a "${EPREFIX}"/var/lib/portage/world{,.pre-sets-split}
+		grep "^@" "${EPREFIX}"/var/lib/portage/world > \
+			"${EPREFIX}"/var/lib/portage/world_sets
+		sed -i -e '/^@/d' "${EPREFIX}"/var/lib/portage/world
 	fi
 }
 

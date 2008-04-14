@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9894 (14 Apr 2008)
+
+  14 Apr 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9869.ebuild, +portage-2.2.00.9894.ebuild:
+  Replace previous snapshot which contains a backtrace on unmerging packages
+  which have preserved-libs
+
 *portage-2.2.00.9869 (13 Apr 2008)
 
   13 Apr 2008; Fabian Groffen <grobian@gentoo.org>
