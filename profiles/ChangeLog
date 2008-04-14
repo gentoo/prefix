@@ -1,6 +1,21 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1319 2008/04/12 20:02:55 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1324 2008/04/13 23:35:21 ulm Exp $
+
+  13 Apr 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask x11-libs/motif-config for removal.
+
+  13 Apr 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Adding x11-misc/xvidcap-1.1.7_rc1 to ffmpeg new include layout mask
+
+  13 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> updates/2Q-2008:
+  Move media-fonts/skinenigmang-fonts to media-fonts/vdrsymbols-ttf.
+
+  13 Apr 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local metric USE flag for media-gfx/jpeg2ps.
+
+  13 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove amarok mask now that it's officially released.
 
   12 Apr 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
   suspend2 packages removed.
