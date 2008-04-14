@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.8.3.ebuild,v 1.1 2008/02/03 15:18:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.0.6.ebuild,v 1.1 2008/04/13 13:01:21 caleb Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,6 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	openexr? ( media-libs/openexr )
 	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
 	png? ( media-libs/libpng )
-	svg? ( >=gnome-base/librsvg-2.9.0 )
 	tiff? ( >=media-libs/tiff-3.5.5 )
 	xml? ( >=dev-libs/libxml2-2.4.10 )
 	truetype? ( =media-libs/freetype-2* media-fonts/corefonts )
@@ -44,6 +43,7 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 		x11-libs/libXt
 		x11-libs/libICE
 		x11-libs/libSM
+		svg? ( >=gnome-base/librsvg-2.9.0 )
 	)
 	!dev-perl/perlmagick
 	!sys-apps/compare"
@@ -60,6 +60,12 @@ pkg_setup() {
 		eerror "app-text/djvu has to be built with threads support."
 		die "build app-text/djvu with USE=\"threads\""
 	fi
+	# for now, only build svg support when X is enabled, as librsvg
+	# pulls in quite some X dependencies.
+	if use svg && ! use X ; then
+		elog "the svg USE-flag requires the X USE-flag set."
+		elog "disabling svg support for now."
+	fi
 }
 
 src_unpack() {
@@ -70,28 +76,33 @@ src_unpack() {
 		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="${EPREFIX}/usr/share/doc/${PF}":g' \
 		"${S}"/configure || die
 
-	# bug 206925
-	epatch "${FILESDIR}"/${P}-hpgl.patch
 }
 
 src_compile() {
-	local quantum
+	local myconf
 	if use q32 ; then
-		quantum="${quantum} --with-quantum-depth=32"
+		myconf="${myconf} --with-quantum-depth=32"
 	elif use q8 ; then
-		quantum="${quantum} --with-quantum-depth=8"
+		myconf="${myconf} --with-quantum-depth=8"
 	else
-		quantum="${quantum} --with-quantum-depth=16"
+		myconf="${myconf} --with-quantum-depth=16"
+	fi
+
+	if use X && use svg ; then
+		myconf="${myconf} --with-rsvg"
+	else
+		myconf="${myconf} --without-rsvg"
 	fi
 
 	econf \
+		${myconf} \
+		--without-included-ltdl \
 		--with-ltdl-include="${EPREFIX}"/usr/include \
 		--with-ltdl-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-threads \
 		--with-modules \
 		$(use_with perl) \
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
-		${quantum} \
 		$(use_enable hdri) \
 		$(use_with truetype windows-font-dir "${EPREFIX}"/usr/share/fonts/corefonts) \
 		$(use_with !nocxx magick-plus-plus) \
@@ -126,7 +137,7 @@ src_install() {
 	rm -f "${ED}"/usr/$(get_libdir)/*/*/*.{la,a}
 
 	use doc || rm -r "${ED}"/usr/share/doc/${PF}/{www,images,index.html}
-	dodoc NEWS ChangeLog AUTHORS README.txt
+	dodoc NEWS.txt ChangeLog AUTHORS.txt README.txt
 
 	# Fix perllocal.pod file collision
 	use perl && fixlocalpod
