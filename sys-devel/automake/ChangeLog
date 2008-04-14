@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.110 2008/04/12 19:35:23 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.112 2008/04/13 23:23:10 vapier Exp $
+
+  13 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/automake-1.10.1-tests.patch, automake-1.10.1.ebuild:
+  Add fix from upstream for instsh2.test failure #217513 by Markus Rothe.
+
+  13 Apr 2008; Benedikt Böhm <hollow@gentoo.org> automake-1.10.1.ebuild:
+  amd64 stable wrt #217239
 
   12 Apr 2008; Dawid Węgliński <cla@gentoo.org> automake-1.10.1.ebuild:
   Stable on x86 (bug #217239)
