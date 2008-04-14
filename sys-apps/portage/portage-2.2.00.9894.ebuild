@@ -198,8 +198,9 @@ pkg_preinst() {
 
 	if [[ ! -e ${EROOT}/var/lib/portage/world_sets ]] ; then
 		ewarn "This version of Portage has 'sets' stored separately.  Your"
-		ewarn "'world' file is now automatically splitted to reflect the"
-		ewarn "new situation.  A backup of your 'world' file is stored at"
+		ewarn "'world' file is now automatically split into multiple files"
+		ewarn "to reflect the new situation.  A backup of your 'world' file"
+		ewarn "is stored at:"
 		ewarn "  ${EPREFIX}/var/lib/portage/world.pre-sets-split"
 		ewarn "If your installation appears to works fine, it is safe to"
 		ewarn "remove the backup file."
