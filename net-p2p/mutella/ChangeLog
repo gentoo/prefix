@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/mutella
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.23 2008/01/25 19:49:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.24 2008/04/13 21:52:25 betelgeuse Exp $
+
+  13 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> mutella-0.4.5.ebuild:
+  Remove DEPEND on virtual/libc.
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> mutella-0.4.5.ebuild:
   Dropped ppc-macos keyword, see you in prefix

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/mutella-0.4.5.ebuild,v 1.6 2008/01/25 19:49:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/mutella-0.4.5.ebuild,v 1.7 2008/04/13 21:52:25 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -13,14 +13,13 @@ SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="debug"
-DEPEND="virtual/libc
-	sys-libs/readline"
+DEPEND="sys-libs/readline"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
-	epatch ${FILESDIR}/${P}-gcc41.patch
+	epatch "${FILESDIR}/${P}-gcc41.patch"
 }
 
 src_compile() {
@@ -30,6 +29,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog COPYING INSTALL LICENSE KNOWN-BUGS README TODO
 }
