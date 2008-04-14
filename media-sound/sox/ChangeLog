@@ -1,6 +1,17 @@
 # ChangeLog for media-sound/sox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.85 2008/03/22 17:54:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.87 2008/04/13 20:47:35 aballier Exp $
+
+  13 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/sox-14.0.1-ffmpegheaders.patch, sox-14.0.1.ebuild:
+  Add a patch to let it build with latest ffmpeg headers layout, bug #215926
+
+  13 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/sox-12.17.9-destdir.patch, -files/sox-12.17.9-largefile.patch,
+  -files/sox-12.18.2-destdir.patch, -files/sox-14.0.0-noexternalgsm.patch,
+  -sox-12.17.9.ebuild, -sox-12.18.2.ebuild, -sox-14.0.0.ebuild,
+  -sox-14.0.0-r1.ebuild:
+  remove unused versions
 
   22 Mar 2008; Jeroen Roovers <jer@gentoo.org> sox-14.0.1.ebuild:
   Stable for HPPA (bug #214013).

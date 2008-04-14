@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.8 2008/03/22 17:54:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.9 2008/04/13 20:47:35 aballier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils autotools
 
 DESCRIPTION="The swiss army knife of sound processing programs"
 HOMEPAGE="http://sox.sourceforge.net"
@@ -29,6 +29,13 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	id3tag? ( media-libs/libid3tag )
 	amrnb? ( media-libs/amrnb )
 	amrwb? ( media-libs/amrwb )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-ffmpegheaders.patch"
+	AT_M4DIR="m4" eautoreconf
+}
 
 src_compile () {
 	# Fixes wav segfaults. See Bug #35745.
