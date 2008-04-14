@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.12-r1.ebuild,v 1.6 2008/03/29 12:29:42 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.12-r1.ebuild,v 1.7 2008/04/13 22:55:54 vapier Exp $
 
 EAPI="prefix"
 
