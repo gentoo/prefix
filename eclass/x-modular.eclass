@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.94 2008/03/09 05:20:30 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.95 2008/04/13 04:44:16 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -284,10 +284,13 @@ x-modular_patch_source() {
 # If you have any patches to apply, set PATCHES to their locations and epatch
 # will apply them. It also handles epatch-style bulk patches, if you know how to
 # use them and set the correct variables. If you don't, read eutils.eclass.
-	if [[ -n "${PATCHES}" ]] ; then
-		for PATCH in ${PATCHES}
-		do
-			epatch ${PATCH}
+	if [[ ${#PATCHES[@]} -gt 1 ]]; then
+		for x in "${PATCHES[@]}"; do
+			epatch "${x}"
+		done
+	elif [[ -n "${PATCHES}" ]]; then
+		for x in ${PATCHES}; do
+			epatch "${x}"
 		done
 	# For non-default directory bulk patching
 	elif [[ -n "${PATCH_LOC}" ]] ; then

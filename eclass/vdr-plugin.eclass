@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.54 2008/03/22 18:04:51 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.55 2008/04/13 16:26:05 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -147,6 +147,146 @@ create_header_checksum_file()
 	fi
 }
 
+fix_vdr_libsi_include()
+{
+	einfo "Fixing include of libsi-headers"
+	local f
+	for f; do
+		sed -i "${f}" \
+			-e '/#include/s:"\(.*libsi.*\)":<\1>:' \
+			-e '/#include/s:<.*\(libsi/.*\)>:<vdr/\1>:'
+	done
+}
+
+vdr_patchmakefile() {
+	einfo "Patching Makefile"
+	[[ -e Makefile ]] || die "Makefile of plugin can not be found!"
+	cp Makefile "${WORKDIR}"/Makefile.before
+
+	ebegin "  Setting Pathes"
+	sed -i Makefile \
+		-e "s:^VDRDIR.*$:VDRDIR = ${VDR_INCLUDE_DIR}:" \
+		-e "s:^LIBDIR.*$:LIBDIR = ${S}:" \
+		-e "s:^TMPDIR.*$:TMPDIR = ${T}:" \
+		-e 's:-I$(VDRDIR)/include:-I'"${VDR_INCLUDE_DIR%vdr}"':' \
+		-e "/^DVBDIR/d" \
+		-e 's:-I$(DVBDIR)/include::'
+	eend $?
+
+	# maybe needed for multiproto:
+	#sed -i Makefile \
+	#	-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
+	#	-e 's:-I$(VDRDIR)/include -I$(DVBDIR)/include:-I$(DVBDIR)/include -I$(VDRDIR)/include:' \
+	#	-e 's:-I$(DVBDIR)/include:-I$(DVBDIR):'
+
+	if ! grep -q APIVERSION Makefile; then
+		ebegin "  Converting to APIVERSION"
+		sed -i Makefile \
+			-e 's:^APIVERSION = :APIVERSION ?= :' \
+			-e 's:$(LIBDIR)/$@.$(VDRVERSION):$(LIBDIR)/$@.$(APIVERSION):' \
+			-e '/VDRVERSION =/a\APIVERSION = $(shell sed -ne '"'"'/define APIVERSION/s/^.*"\\(.*\\)".*$$/\\1/p'"'"' $(VDRDIR)/config.h)'
+		eend $?
+	fi
+
+	# Correcting Compile-Flags
+	# Do not overwrite CXXFLAGS, add LDFLAGS if missing
+	sed -i Makefile \
+		-e '/^CXXFLAGS[[:space:]]*=/s/=/?=/' \
+		-e '/LDFLAGS/!s:-shared:$(LDFLAGS) -shared:'
+
+	# Disabling file stripping, useful for debugging
+	sed -i Makefile \
+		-e '/@.*strip/d' \
+		-e '/strip \$(LIBDIR)\/\$@/d' \
+		-e '/@.*\$(STRIP)/d'
+
+	# Use a file instead of a variable as single-stepping via ebuild
+	# destroys environment.
+	touch "${WORKDIR}"/.vdr-plugin_makefile_patched
+}
+
+vdr_add_local_patch() {
+	if test -d "${VDR_LOCAL_PATCHES_DIR}/${PN}"; then
+		echo
+		einfo "Applying local patches"
+		for LOCALPATCH in "${VDR_LOCAL_PATCHES_DIR}/${PN}/${PV}"/*.{diff,patch}; do
+			test -f "${LOCALPATCH}" && epatch "${LOCALPATCH}"
+		done
+	fi
+}
+
+vdr_i18n() {
+	if [[ ${USE_GETTEXT} = 0 ]]; then
+		# Remove i18n Target if using older vdr
+		sed -i Makefile \
+			-e '/^all:/s/ i18n//'
+	elif [[ ${USE_GETTEXT} = 1 && ! -d po && ${NO_GETTEXT_HACK} != 1 ]]; then
+		einfo "Plugin is not yet changed for new translation system."
+		einfo "Auto converting translations to gettext"
+
+		local i18n_tool="${EROOT}/usr/share/vdr/bin/i18n-to-gettext.pl"
+		if [[ ! -x ${i18n_tool} ]]; then
+			eerror "Missing ${i18n_tool}"
+			eerror "Please re-emerge vdr"
+			die "Missing ${i18n_tool}"
+		fi
+
+		# call i18n-to-gettext tool
+		# take all texts missing tr call into special file
+		"${i18n_tool}" 2>/dev/null \
+			|sed -e '/^"/!d' \
+				-e '/^""$/d' \
+				-e 's/\(.*\)/trNOOP(\1)/' \
+			> dummy-translations-trNOOP.c
+
+		# if there were untranslated texts just run it again
+		# now the missing calls are listed in
+		# dummy-translations-trNOOP.c
+		if [[ -s dummy-translations-trNOOP.c ]]; then
+			"${i18n_tool}" &>/dev/null
+		fi
+
+		# now use the modified Makefile
+		if [[ -f Makefile.new ]]; then
+			mv Makefile.new Makefile
+		else
+			ewarn "Conversion to gettext failed. Plugin needs fixing."
+		fi
+	fi
+}
+
+vdr-plugin_copy_source_tree() {
+	pushd . >/dev/null
+	cp -r "${S}" "${T}"/source-tree
+	cd "${T}"/source-tree
+	cp "${WORKDIR}"/Makefile.before Makefile
+	sed -i Makefile \
+		-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
+		-e 's:^CXXFLAGS:#CXXFLAGS:' \
+		-e 's:-I$(DVBDIR)/include:-I$(DVBDIR):' \
+		-e 's:-I$(VDRDIR) -I$(DVBDIR):-I$(DVBDIR) -I$(VDRDIR):'
+	popd >/dev/null
+}
+
+vdr-plugin_install_source_tree() {
+	einfo "Installing sources"
+	destdir="${VDRSOURCE_DIR}/vdr-${VDRVERSION}/PLUGINS/src/${VDRPLUGIN}"
+	insinto "${destdir}-${PV}"
+	doins -r "${T}"/source-tree/*
+
+	dosym "${VDRPLUGIN}-${PV}" "${destdir}"
+}
+
+vdr-plugin_print_enable_command() {
+	elog
+	elog "To activate this vdr-plugin execute the following command:"
+	elog "\teselect vdr-plugin enable ${PN#vdr-}"
+	elog
+}
+
+
+## exported functions
+
 vdr-plugin_pkg_setup() {
 	# -fPIC is needed for shared objects on some platforms (amd64 and others)
 	append-flags -fPIC
@@ -176,8 +316,8 @@ vdr-plugin_pkg_setup() {
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	[[ -z ${APIVERSION} ]] && APIVERSION="${VDRVERSION}"
 
-	einfo "Building ${PF} against vdr-${VDRVERSION}"
-	einfo "APIVERSION: ${APIVERSION}"
+	einfo "Compiling against"
+	einfo "\tvdr-${VDRVERSION} [API version ${APIVERSION}]"
 }
 
 vdr-plugin_src_unpack() {
@@ -199,134 +339,22 @@ vdr-plugin_src_unpack() {
 		unpack)
 			base_src_unpack
 			;;
-		patchmakefile)
-			if ! cd "${S}"; then
-				ewarn "There seems to be no plugin-directory with the name ${S##*/}"
-				ewarn "Perhaps you find one among these:"
-				cd "${WORKDIR}"
-				ewarn "$(/bin/ls -1 "${WORKDIR}")"
-				die "Could not change to plugin-source-directory!"
-			fi
-
-			einfo "Patching Makefile"
-			[[ -e Makefile ]] || die "Makefile of plugin can not be found!"
-			cp Makefile "${WORKDIR}"/Makefile.before
-
-			sed -i Makefile \
-				-e '1i\#Makefile was patched by vdr-plugin.eclass'
-
-			ebegin "  Setting Pathes"
-			sed -i Makefile \
-				-e "s:^VDRDIR.*$:VDRDIR = ${VDR_INCLUDE_DIR}:" \
-				-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
-				-e "s:^LIBDIR.*$:LIBDIR = ${S}:" \
-				-e "s:^TMPDIR.*$:TMPDIR = ${T}:" \
-				-e 's:-I$(VDRDIR)/include -I$(DVBDIR)/include:-I$(DVBDIR)/include -I$(VDRDIR)/include:' \
-				-e 's:-I$(VDRDIR)/include:-I'"${VDR_INCLUDE_DIR%vdr}"':' \
-				-e 's:-I$(DVBDIR)/include:-I$(DVBDIR):'
-			eend $?
-
-			ebegin "  Converting to APIVERSION"
-			sed -i Makefile \
-				-e 's:^APIVERSION = :APIVERSION ?= :' \
-				-e 's:$(LIBDIR)/$@.$(VDRVERSION):$(LIBDIR)/$@.$(APIVERSION):' \
-				-e '2i\APIVERSION = '"${APIVERSION}"
-			eend $?
-
-			ebegin "  Correcting Compile-Flags"
-			# Do not overwrite CXXFLAGS, add LDFLAGS if missing
-			sed -i Makefile \
-				-e '/^CXXFLAGS[[:space:]]*=/s/=/?=/' \
-				-e '/LDFLAGS/!s:-shared:$(LDFLAGS) -shared:'
-			eend $?
-
-			ebegin "  Disabling file stripping"
-			sed -i Makefile \
-				-e '/@.*strip/d' \
-				-e '/strip \$(LIBDIR)\/\$@/d' \
-				-e '/^STRIP =/d' \
-				-e '/@.*\$(STRIP)/d'
-			eend $?
-
-			# Use a file instead of an variable as single-stepping via ebuild
-			# destroys environment.
-			touch "${WORKDIR}"/.vdr-plugin_makefile_patched
-			;;
 		add_local_patch)
-			cd "${S}"
-			if test -d "${VDR_LOCAL_PATCHES_DIR}/${PN}"; then
-				echo
-				einfo "Applying local patches"
-				for LOCALPATCH in "${VDR_LOCAL_PATCHES_DIR}/${PN}/${PV}"/*.{diff,patch}; do
-					test -f "${LOCALPATCH}" && epatch "${LOCALPATCH}"
-				done
-			fi
+			cd "${S}" || die "Could not change to plugin-source-directory!"
+			vdr_add_local_patch
+			;;
+		patchmakefile)
+			cd "${S}" || die "Could not change to plugin-source-directory!"
+			vdr_patchmakefile
 			;;
 		i18n)
-			cd "${S}"
-			if [[ ${USE_GETTEXT} = 0 ]]; then
-				# Remove i18n Target if using older vdr
-				sed -i Makefile \
-					-e '/^all:/s/ i18n//'
-			elif [[ ${USE_GETTEXT} = 1 && ! -d po && ${NO_GETTEXT_HACK} != 1 ]]; then
-				einfo "Plugin is not yet changed for new translation system."
-				einfo "Auto converting translations to gettext"
-
-				local i18n_tool="${EROOT}/usr/share/vdr/bin/i18n-to-gettext.pl"
-				if [[ ! -x ${i18n_tool} ]]; then
-					eerror "Missing ${i18n_tool}"
-					eerror "Please re-emerge vdr"
-					die "Missing ${i18n_tool}"
-				fi
-
-				# call i18n-to-gettext tool
-				# take all texts missing tr call into special file
-				"${i18n_tool}" 2>/dev/null \
-					|sed -e '/^"/!d' \
-						-e '/^""$/d' \
-						-e 's/\(.*\)/trNOOP(\1)/' \
-					> dummy-translations-trNOOP.c
-
-				# if there were untranslated texts just run it again
-				# now the missing calls are listed in
-				# dummy-translations-trNOOP.c
-				if [[ -s dummy-translations-trNOOP.c ]]; then
-					"${i18n_tool}" &>/dev/null
-				fi
-
-				# now use the modified Makefile
-				if [[ -f Makefile.new ]]; then
-					mv Makefile.new Makefile
-				else
-					ewarn "Conversion to gettext failed. Plugin needs fixing."
-				fi
-			fi
+			cd "${S}" || die "Could not change to plugin-source-directory!"
+			vdr_i18n
+			;;
 		esac
 
 		shift
 	done
-}
-
-vdr-plugin_copy_source_tree() {
-	pushd . >/dev/null
-	cp -r "${S}" "${T}"/source-tree
-	cd "${T}"/source-tree
-	cp "${WORKDIR}"/Makefile.before Makefile
-	sed -i Makefile \
-		-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
-		-e 's:^CXXFLAGS:#CXXFLAGS:' \
-		-e 's:-I$(DVBDIR)/include:-I$(DVBDIR):' \
-		-e 's:-I$(VDRDIR) -I$(DVBDIR):-I$(DVBDIR) -I$(VDRDIR):'
-	popd >/dev/null
-}
-
-vdr-plugin_install_source_tree() {
-	einfo "Installing sources"
-	destdir="${VDRSOURCE_DIR}/vdr-${VDRVERSION}/PLUGINS/src/${VDRPLUGIN}"
-	insinto "${destdir}-${PV}"
-	doins -r "${T}"/source-tree/*
-
-	dosym "${VDRPLUGIN}-${PV}" "${destdir}"
 }
 
 vdr-plugin_src_compile() {
@@ -419,13 +447,6 @@ vdr-plugin_src_install() {
 	create_plugindb_file
 }
 
-vdr-plugin_print_enable_command() {
-	elog
-	elog "To activate this vdr-plugin execute the following command:"
-	elog "\teselect vdr-plugin enable ${PN#vdr-}"
-	elog
-}
-
 vdr-plugin_pkg_postinst() {
 	vdr-plugin_print_enable_command
 
@@ -440,58 +461,9 @@ vdr-plugin_pkg_postrm() {
 	delete_orphan_plugindb_file
 }
 
-vdr-plugin_pkg_config_legacy() {
-	elog "Using old interface to gentoo-vdr-scripts-0.3.7"
-	if [[ -z "${INSTALLPLUGIN}" ]]; then
-		INSTALLPLUGIN="${VDRPLUGIN}"
-	fi
-
-	active=0
-	# First test if plugin is already inside PLUGINS
-	local conf=/etc/conf.d/vdr.plugins
-	exec 3<${conf}
-	while read -u 3 line; do
-		[[ ${line} == "" ]] && continue
-		[[ ${line:0:1} == "#" ]] && continue
-		set -- ${line}
-		[[ ${1} == ${INSTALLPLUGIN} ]] && active=1
-	done
-	exec 3<&-
-
-	if [[ $active == 0 ]]; then
-		elog "Adding ${INSTALLPLUGIN} to active plugins."
-
-		# The pure edit process.
-		echo "${INSTALLPLUGIN}" >> "${conf}"
-	else
-		elog "${INSTALLPLUGIN} already activated"
-		echo
-		read -p "Do you want to deactivate ${INSTALLPLUGIN} (yes/no) " answer
-		if [[ "${answer}" != "yes" ]]; then
-			elog "aborted"
-			return
-		fi
-		elog "Removing ${INSTALLPLUGIN} from active plugins."
-
-		# The pure edit process
-		sed -i "${conf}" -e "/^[[:space:]]*${INSTALLPLUGIN}[[:space:]]*\$/d"
-	fi
-}
-
 vdr-plugin_pkg_config() {
 	ewarn "emerge --config ${PN} is no longer supported"
 	vdr-plugin_print_enable_command
-}
-
-fix_vdr_libsi_include()
-{
-	einfo "Fixing include of libsi-headers"
-	local f
-	for f; do
-		sed -i "${f}" \
-			-e '/#include/s:"\(.*libsi.*\)":<\1>:' \
-			-e '/#include/s:<.*\(libsi/.*\)>:<vdr/\1>:'
-	done
 }
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_postrm pkg_config
