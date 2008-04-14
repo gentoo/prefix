@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xom
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.48 2008/03/11 15:13:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.49 2008/04/13 22:10:46 betelgeuse Exp $
+
+  13 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> -xom-1.0-r4.ebuild:
+  Remove old revision.
 
   11 Mar 2008; Brent Baude <ranger@gentoo.org> xom-1.0-r6.ebuild:
   stable ppc64, bug 212665
