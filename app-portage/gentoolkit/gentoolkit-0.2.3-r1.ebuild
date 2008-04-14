@@ -26,6 +26,7 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-modular-portage.patch
 	epatch "${FILESDIR}"/${P}-revdep-prefix-darwin.patch
+	epatch "${FILESDIR}"/${P}-revdep-aix.patch
 	cd "${S}"
 	# Remove extraneous debug print statement from equery
 	epatch "${FILESDIR}"/${PF}-equery.patch
