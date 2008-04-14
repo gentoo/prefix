@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils db flag-o-matic java-pkg-opt-2
+inherit eutils db flag-o-matic java-pkg-opt-2 autotools
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -47,6 +47,18 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
+
+	# need to upgrade local copy of libtool.m4 (named libtool.ac)
+	# for correct shared libs on aix (#213277).
+	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 dist/aclocal/libtool.ac || die "cannot update ${f}"
+
+	# need to upgrade ltmain.sh for AIX,
+	# but aclocal.m4 is created in ./s_config,
+	# and elibtoolize does not work when there is no aclocal.m4, so:
+	libtoolize --force --copy || die "libtoolize failed."
+	# now let shipped script do the autoconf stuff, it really knows best.
+	sh ./s_config || die "Cannot execute ./s_config"
+
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
 
 	# use the includes from the prefix
