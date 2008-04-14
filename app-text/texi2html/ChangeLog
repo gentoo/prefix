@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texi2html
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texi2html/ChangeLog,v 1.37 2007/11/23 18:24:49 aballier Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texi2html/ChangeLog,v 1.38 2008/04/13 19:24:27 grobian Exp $
+
+  13 Apr 2008; Fabian Groffen <grobian@gentoo.org> texi2html-1.76.ebuild,
+  texi2html-1.78.ebuild:
+  Dropped ppc-macos keyword, see you in Prefix
 
   23 Nov 2007; Alexis Ballier <aballier@gentoo.org> -texi2html-1.64.ebuild,
   texi2html-1.64-r1.ebuild:
