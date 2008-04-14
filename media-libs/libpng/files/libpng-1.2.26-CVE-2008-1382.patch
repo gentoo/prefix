@@ -1,0 +1,191 @@
+diff -ru4N libpng-1.2.26/png.h libpng-1.2.27beta01/png.h
+--- libpng-1.2.26/png.h	2008-04-02 12:27:29.867681595 -0500
++++ libpng-1.2.27beta01/png.h	2008-04-05 21:41:14.644268554 -0500
+@@ -180,8 +180,11 @@
+  *    1.0.31                  10    10031  10.so.0.31[.0]
+  *    1.2.25                  13    10225  12.so.0.25[.0]
+  *    1.2.26beta01-06         13    10226  12.so.0.26[.0]
+  *    1.2.26rc01              13    10226  12.so.0.26[.0]
++ *    1.2.26                  13    10226  12.so.0.26[.0]
++ *    1.0.32                  10    10032  10.so.0.32[.0]
++ *    1.2.27beta01            13    10227  12.so.0.27[.0]
+  *
+  *    Henceforth the source version will match the shared-library major
+  *    and minor numbers; the shared-library major version number will be
+  *    used for changes in backward compatibility, as it is intended.  The
+diff -ru4N libpng-1.2.26/pngpread.c libpng-1.2.27beta01/pngpread.c
+--- libpng-1.2.26/pngpread.c	2008-04-05 21:37:29.944173338 -0500
++++ libpng-1.2.27beta01/pngpread.c	2008-04-05 21:41:14.898914350 -0500
+@@ -1,8 +1,8 @@
+ 
+ /* pngpread.c - read a png file in push mode
+  *
+- * Last changed in libpng 1.2.26 [April 2, 2008]
++ * Last changed in libpng 1.2.27 [April 6, 2008]
+  * For conditions of distribution and use, see copyright notice in png.h
+  * Copyright (c) 1998-2008 Glenn Randers-Pehrson
+  * (Version 0.96 Copyright (c) 1996, 1997 Andreas Dilger)
+  * (Version 0.88 Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.)
+@@ -1501,11 +1501,16 @@
+                  (png_charp)png_ptr->chunk_name, 
+                  png_sizeof(png_ptr->unknown_chunk.name));
+       png_ptr->unknown_chunk.name[png_sizeof(png_ptr->unknown_chunk.name)-1]='\0';
+ 
+-      png_ptr->unknown_chunk.data = (png_bytep)png_malloc(png_ptr, length);
+       png_ptr->unknown_chunk.size = (png_size_t)length;
+-      png_crc_read(png_ptr, (png_bytep)png_ptr->unknown_chunk.data, length);
++      if (length == 0)
++         png_ptr->unknown_chunk.data = NULL;
++      else
++      {
++         png_ptr->unknown_chunk.data = (png_bytep)png_malloc(png_ptr, length);
++         png_crc_read(png_ptr, (png_bytep)png_ptr->unknown_chunk.data, length);
++      }
+ #if defined(PNG_READ_USER_CHUNKS_SUPPORTED)
+       if(png_ptr->read_user_chunk_fn != NULL)
+       {
+          /* callback to user unknown chunk handler */
+@@ -1526,10 +1531,13 @@
+       }
+       else
+ #endif
+         png_set_unknown_chunks(png_ptr, info_ptr, &png_ptr->unknown_chunk, 1);
+-      png_free(png_ptr, png_ptr->unknown_chunk.data);
+-      png_ptr->unknown_chunk.data = NULL;
++      if (png_ptr->unknown_chunk.data)
++      {
++        png_free(png_ptr, png_ptr->unknown_chunk.data);
++        png_ptr->unknown_chunk.data = NULL;
++      }
+    }
+    else
+ #endif
+       skip=length;
+diff -ru4N libpng-1.2.26/pngrutil.c libpng-1.2.27beta01/pngrutil.c
+--- libpng-1.2.26/pngrutil.c	2008-04-05 21:37:32.785260077 -0500
++++ libpng-1.2.27beta01/pngrutil.c	2008-04-05 21:41:15.202296784 -0500
+@@ -1,8 +1,8 @@
+ 
+ /* pngrutil.c - utilities to read a PNG file
+  *
+- * Last changed in libpng 1.2.26 [April 2, 2008]
++ * Last changed in libpng 1.2.27 [April 6, 2008]
+  * For conditions of distribution and use, see copyright notice in png.h
+  * Copyright (c) 1998-2008 Glenn Randers-Pehrson
+  * (Version 0.96 Copyright (c) 1996, 1997 Andreas Dilger)
+  * (Version 0.88 Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.)
+@@ -2226,11 +2226,16 @@
+        png_memcpy((png_charp)png_ptr->unknown_chunk.name,
+                   (png_charp)png_ptr->chunk_name, 
+                   png_sizeof(png_ptr->unknown_chunk.name));
+        png_ptr->unknown_chunk.name[png_sizeof(png_ptr->unknown_chunk.name)-1] = '\0';
+-       png_ptr->unknown_chunk.data = (png_bytep)png_malloc(png_ptr, length);
+        png_ptr->unknown_chunk.size = (png_size_t)length;
+-       png_crc_read(png_ptr, (png_bytep)png_ptr->unknown_chunk.data, length);
++       if (length == 0)
++         png_ptr->unknown_chunk.data = NULL;
++       else
++       {
++         png_ptr->unknown_chunk.data = (png_bytep)png_malloc(png_ptr, length);
++         png_crc_read(png_ptr, (png_bytep)png_ptr->unknown_chunk.data, length);
++       }
+ #if defined(PNG_READ_USER_CHUNKS_SUPPORTED)
+        if(png_ptr->read_user_chunk_fn != NULL)
+        {
+           /* callback to user unknown chunk handler */
+@@ -2251,10 +2256,13 @@
+        }
+        else
+ #endif
+          png_set_unknown_chunks(png_ptr, info_ptr, &png_ptr->unknown_chunk, 1);
+-       png_free(png_ptr, png_ptr->unknown_chunk.data);
+-       png_ptr->unknown_chunk.data = NULL;
++       if (png_ptr->unknown_chunk.data)
++       {
++         png_free(png_ptr, png_ptr->unknown_chunk.data);
++         png_ptr->unknown_chunk.data = NULL;
++       }
+    }
+    else
+ #endif
+       skip = length;
+diff -ru4N libpng-1.2.26/pngset.c libpng-1.2.27beta01/pngset.c
+--- libpng-1.2.26/pngset.c	2008-04-02 12:27:30.621225067 -0500
++++ libpng-1.2.27beta01/pngset.c	2008-04-05 21:41:15.248946598 -0500
+@@ -1,8 +1,8 @@
+ 
+ /* pngset.c - storage of image information into info struct
+  *
+- * Last changed in libpng 1.2.25 [February 18, 2008]
++ * Last changed in libpng 1.2.27 [April 6, 2008]
+  * For conditions of distribution and use, see copyright notice in png.h
+  * Copyright (c) 1998-2008 Glenn Randers-Pehrson
+  * (Version 0.96 Copyright (c) 1996, 1997 Andreas Dilger)
+  * (Version 0.88 Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.)
+@@ -1039,30 +1039,33 @@
+     info_ptr->unknown_chunks=NULL;
+ 
+     for (i = 0; i < num_unknowns; i++)
+     {
+-        png_unknown_chunkp to = np + info_ptr->unknown_chunks_num + i;
+-        png_unknown_chunkp from = unknowns + i;
++       png_unknown_chunkp to = np + info_ptr->unknown_chunks_num + i;
++       png_unknown_chunkp from = unknowns + i;
+ 
+-        png_memcpy((png_charp)to->name, 
+-                   (png_charp)from->name, 
+-                   png_sizeof(from->name));
+-        to->name[png_sizeof(to->name)-1] = '\0';
++       png_memcpy((png_charp)to->name, 
++                  (png_charp)from->name, 
++                  png_sizeof(from->name));
++       to->name[png_sizeof(to->name)-1] = '\0';
++       to->size = from->size;
++       /* note our location in the read or write sequence */
++       to->location = (png_byte)(png_ptr->mode & 0xff);
+ 
+-        to->data = (png_bytep)png_malloc_warn(png_ptr, from->size);
+-        if (to->data == NULL)
+-        {
+-           png_warning(png_ptr,
++       if (from->size == 0)
++          to->data=NULL;
++       else
++       {
++          to->data = (png_bytep)png_malloc_warn(png_ptr, from->size);
++          if (to->data == NULL)
++          {
++             png_warning(png_ptr,
+               "Out of memory while processing unknown chunk.");
+-        }
+-        else
+-        {
+-           png_memcpy(to->data, from->data, from->size);
+-           to->size = from->size;
+-
+-           /* note our location in the read or write sequence */
+-           to->location = (png_byte)(png_ptr->mode & 0xff);
+-        }
++             to->size=0;
++          }
++          else
++             png_memcpy(to->data, from->data, from->size);
++       }
+     }
+ 
+     info_ptr->unknown_chunks = np;
+     info_ptr->unknown_chunks_num += num_unknowns;
+diff -ru4N libpng-1.2.26/pngwrite.c libpng-1.2.27beta01/pngwrite.c
+--- libpng-1.2.26/pngwrite.c	2008-04-02 12:27:30.775542734 -0500
++++ libpng-1.2.27beta01/pngwrite.c	2008-04-05 21:41:15.402698604 -0500
+@@ -111,8 +111,10 @@
+             !(up->location & PNG_HAVE_IDAT) &&
+             ((up->name[3] & 0x20) || keep == PNG_HANDLE_CHUNK_ALWAYS ||
+             (png_ptr->flags & PNG_FLAG_KEEP_UNSAFE_CHUNKS)))
+          {
++            if (up->size == 0)
++               png_warning(png_ptr, "Writing zero-length unknown chunk");
+             png_write_chunk(png_ptr, up->name, up->data, up->size);
+          }
+        }
+    }
