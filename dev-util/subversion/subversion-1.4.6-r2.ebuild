@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6-r2.ebuild,v 1.2 2008/04/10 19:02:24 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6-r2.ebuild,v 1.3 2008/04/13 16:49:23 hollow Exp $
 
 EAPI="prefix"
 
@@ -89,7 +89,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.4.2-interix-prompt.patch
 	eprefixify contrib/client-side/svn_load_dirs.pl.in
 
-	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.4\)"/\1 0.27.2 0.28.0 0.28.1"/' \
+	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.4\)"/\1 0.27.2 0.28.0 0.28.1 0.28.2"/' \
 		-i configure.in
 
 	sed -e "s:apr-config:apr-1-config:g" \

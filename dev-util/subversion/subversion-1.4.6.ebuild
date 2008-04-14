@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6.ebuild,v 1.11 2008/04/10 19:02:24 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6.ebuild,v 1.12 2008/04/13 16:49:23 hollow Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ COMMONDEPEND=">=dev-libs/apr-util-1.2.8
 			doc? ( app-doc/doxygen )
 			emacs? ( virtual/emacs )
 			nls? ( sys-devel/gettext )
-			!nowebdav? ( >=net-misc/neon-0.26.4 )
+			!nowebdav? ( =net-misc/neon-0.26* )
 			ruby? ( >=dev-lang/ruby-1.8.2 )
 			perl? ( >=dev-lang/perl-5.8.8 )
 			python? ( >=dev-lang/python-2.0 )"
