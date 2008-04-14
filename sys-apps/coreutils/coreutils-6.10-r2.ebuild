@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r2.ebuild,v 1.1 2008/04/12 19:17:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r2.ebuild,v 1.5 2008/04/14 00:29:46 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.2"
+PATCH_VER="1.3"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
@@ -18,12 +18,13 @@ SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl nls selinux static xattr"
+IUSE="acl nls selinux static xattr vanilla"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
 	acl? ( sys-apps/acl )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
+	!<sys-apps/util-linux-2.13
 	!net-mail/base64
 	!sys-apps/mktemp
 	>=sys-libs/ncurses-5.3-r5"
@@ -50,13 +51,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	EPATCH_SUFFIX="patch" \
-	PATCHDIR="${WORKDIR}/patch" \
-	EPATCH_EXCLUDE="001_all_coreutils-gen-progress-bar.patch" \
-	epatch
-
-# fails to apply
-	#epatch "${FILESDIR}"/6.9-iswblank.patch
+	if ! use vanilla ; then
+		EPATCH_SUFFIX="patch" \
+		PATCHDIR="${WORKDIR}/patch" \
+		EPATCH_EXCLUDE="001_all_coreutils-gen-progress-bar.patch" \
+		epatch
+	fi
 
 	# no need to abort when unable to 'list mounted fs'
 	epatch "${FILESDIR}"/6.9-without-mountfs.patch
@@ -70,7 +70,7 @@ src_unpack() {
 	# There's no reason for this crap to use the private version
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
 
-	AT_M4DIR="m4" eautoreconf
+	use vanilla || AT_M4DIR="m4" eautoreconf
 
 	# For platforms which don't have /usr/bin/perl (like FreeBSD) make sure we
 	# don't regenerate wheel.h after above patches
@@ -124,7 +124,6 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable acl) \
 		$(use_enable xattr) \
-		$(use_enable selinux) \
 		${myconf} \
 		|| die "econf"
 	emake || die "emake"

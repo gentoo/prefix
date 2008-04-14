@@ -1,6 +1,22 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.221 2008/04/12 19:40:27 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.225 2008/04/13 22:14:59 vapier Exp $
+
+  13 Apr 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.10-r1.ebuild,
+  coreutils-6.10-r2.ebuild:
+  Add support for USE=vanilla.
+
+  13 Apr 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.10-r1.ebuild,
+  coreutils-6.10-r2.ebuild:
+  Drop unneeded selinux configure options.
+
+  13 Apr 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.10-r1.ebuild,
+  coreutils-6.10-r2.ebuild:
+  Block older versions of util-linux for the lazy who havent updated in a
+  while #217482.
+
+  13 Apr 2008; Benedikt Böhm <hollow@gentoo.org> coreutils-6.10-r1.ebuild:
+  amd64 stable wrt #217239
 
   12 Apr 2008; Dawid Węgliński <cla@gentoo.org> coreutils-6.10-r1.ebuild:
   Stable on x86 (bug #217239)
