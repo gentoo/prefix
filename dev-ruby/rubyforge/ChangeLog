@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.23 2008/04/12 14:06:22 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.24 2008/04/13 12:58:31 corsair Exp $
+
+  13 Apr 2008; Markus Rothe <corsair@gentoo.org> rubyforge-0.4.5.ebuild:
+  Stable on ppc64; bug #217389
 
   12 Apr 2008; Dawid Węgliński <cla@gentoo.org> rubyforge-0.4.5.ebuild:
   Stable on x86 (bug #217389)
