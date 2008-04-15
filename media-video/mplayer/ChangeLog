@@ -1,6 +1,20 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.563 2008/04/07 22:22:18 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.565 2008/04/15 02:22:32 beandog Exp $
+
+*mplayer-1.0_rc2_p24929-r4 (15 Apr 2008)
+
+  15 Apr 2008; Steve Dibb <beandog@gentoo.org>
+  +files/mplayer-1.0_rc2_p24929-pulse.patch,
+  +mplayer-1.0_rc2_p24929-r4.ebuild:
+  Restore an old snapshot to provide some now lost functionality
+
+*mplayer-1.0_rc2_p26450 (15 Apr 2008)
+
+  15 Apr 2008; Ben de Groot <yngwin@gentoo.org>
+  +mplayer-1.0_rc2_p26450.ebuild:
+  Snapshot bump. Removed color-console useflag, as it's no longer an
+  available option. Removed libdvdnav block on beandog's advice.
 
   07 Apr 2008; Ben de Groot <yngwin@gentoo.org>
   mplayer-1.0_rc2_p25993.ebuild, mplayer-1.0_rc2_p26258.ebuild,
