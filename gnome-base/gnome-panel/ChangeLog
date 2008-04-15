@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.248 2008/04/09 22:32:52 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.249 2008/04/14 22:00:02 remi Exp $
+
+*gnome-panel-2.22.1.2 (13 Apr 2008)
+
+  13 Apr 2008; Rémi Cardona <remi@gentoo.org> +gnome-panel-2.22.1.2.ebuild:
+  Bump to 2.22.1.2. Beware, some big changes for a minor releases (from the
+  NEWS file) :
+
+  Distributors: this release rewrites the way the system timezone is
+  read/set. Please check that it correctly works on your OS (including
+  changing the right configuration files), and if not, file a bug.
 
 *gnome-panel-2.22.1.1 (09 Apr 2008)
 
