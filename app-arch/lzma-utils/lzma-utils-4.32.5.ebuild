@@ -28,7 +28,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
+#	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# can't run eautoreconf here, would introduce a circular dependency, since
