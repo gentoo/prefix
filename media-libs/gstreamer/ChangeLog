@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.201 2008/04/03 17:29:38 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.203 2008/04/14 19:10:41 fmccor Exp $
+
+  14 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
+  gstreamer-0.10.17.ebuild:
+  Sparc stable, required for Security Bug #217609.
+
+  14 Apr 2008; Markus Rothe <corsair@gentoo.org> gstreamer-0.10.17.ebuild:
+  Stable on ppc64
 
 *gstreamer-0.10.19 (03 Apr 2008)
 
