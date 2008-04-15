@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.74 2008/04/10 21:13:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.75 2008/04/14 05:07:31 vapier Exp $
+
+*net-tools-1.60_p20071202044231 (14 Apr 2008)
+
+  14 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/1.60_p20071202044231/0001-git-ignores.patch,
+  +files/1.60_p20071202044231/0002-respect-normal-toolchain-envvars.patch,
+  +files/1.60_p20071202044231/0003-libdir-needs-version.h.patch,
+  +files/1.60_p20071202044231/0004-document-the-e-option.patch,
+  +files/1.60_p20071202044231/0006-handle-just-raw-IP-info.patch,
+  +files/1.60_p20071202044231/0005-all-of-the-8-man-pages-are-administrator-
+  not-pr.patch,
+  +files/1.60_p20071202044231/0007-prevent-overflows-in-interface-buffers.pa
+  tch, +files/1.60_p20071202044231/0008-Mads-Martin-Joergensen-writes.patch,
+  +files/1.60_p20071202044231/0009-Patch-by-pasi.valminen-hut.fi-to-fix-FQDN
+  -handling-w.patch,
+  +files/1.60_p20071202044231/0010-Patch-by-Tom-Duffy-tduffy-sun.com-to-teac
+  h-ifconfi.patch,
+  +files/1.60_p20071202044231/0011-comabug-gmail.com-writes.patch,
+  +net-tools-1.60_p20071202044231.ebuild:
+  New version based on current cvs.
 
   10 Apr 2008; Mike Frysinger <vapier@gentoo.org> net-tools-1.60-r13.ebuild:
   Use proper ar binary #217217 by Aleksey Lim and use emake in src_install.
