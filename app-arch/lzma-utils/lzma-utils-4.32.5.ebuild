@@ -28,12 +28,18 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-#	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# can't run eautoreconf here, would introduce a circular dependency, since
 	# m4 needs us (its sources come in lzma format)
 #	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
+
+	# instead, patch in what would be done by eautoreconf. No need to keep
+	# diffs for config.guess/config.sub, econf updates them anyway.
+	# We have gzip already, or we weren't able to unpack ${A}.
+	epatch "${FILESDIR}"/${P}-${PR}-eautoreconf.patch.gz
+	touch config.h.in # avoid the need for autoheader
 }
 
 src_install() {
