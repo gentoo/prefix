@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/libspiff
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.17 2007/10/27 17:27:59 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.19 2008/04/14 18:19:59 drac Exp $
+
+  14 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  +files/libspiff-0.8.3-cstring-test-suite.patch, libspiff-0.8.3.ebuild:
+  Fix test suite to build with GCC 4.3.
+
+*libspiff-0.8.3 (14 Apr 2008)
+
+  14 Apr 2008; Samuli Suominen <drac@gentoo.org> -libspiff-0.7.2.ebuild,
+  -libspiff-0.8.2.ebuild, +libspiff-0.8.3.ebuild:
+  Version bump for bug 217645, thanks to Peter Alfredsen for reporting.
 
   27 Oct 2007; nixnut <nixnut@gentoo.org> libspiff-0.8.0.ebuild:
   Stable on ppc wrt bug 196074
