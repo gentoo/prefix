@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.75 2008/02/02 13:50:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.77 2008/04/14 19:34:14 fmccor Exp $
+
+  14 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
+  gst-plugins-base-0.10.17.ebuild:
+  Sparc stable, required for Security Bug #217609.
+
+  14 Apr 2008; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-base-0.10.17.ebuild:
+  Stable on ppc64
 
   02 Feb 2008; Samuli Suominen <drac@gentoo.org>
   -files/gst-plugins-base-0.10.15-netinet.patch,
