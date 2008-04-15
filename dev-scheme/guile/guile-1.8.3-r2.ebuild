@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4.ebuild,v 1.6 2008/04/14 18:22:07 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.3-r2.ebuild,v 1.10 2008/02/24 19:46:45 jer Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="Scheme interpreter"
 HOMEPAGE="http://www.gnu.org/software/guile/"
 SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 RESTRICT="!regex? ( test )"
 
@@ -26,6 +26,8 @@ IUSE="networking regex discouraged deprecated elisp nls debug-freelist debug-mal
 
 src_unpack() {
 	unpack ${A}; cd "${S}"
+
+	epatch "${FILESDIR}"/fix-reader-cr.diff
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
 }
