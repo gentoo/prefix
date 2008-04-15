@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.3.ebuild,v 1.2 2008/04/12 13:44:26 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.3.ebuild,v 1.3 2008/04/15 02:47:41 dang Exp $
 
 EAPI="prefix"
 
-inherit autotools gnome2
+inherit autotools gnome2 eutils
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
@@ -54,4 +54,11 @@ pkg_setup() {
 			$(use_enable hal)
 			$(use_enable keyring)
 			$(use_enable samba)"
+
+	if use cdda && built_with_use dev-libs/libcdio minimal; then
+		ewarn
+		ewarn "CDDA support in gvfs requires dev-libs/libcdio to be built"
+		ewarn "without the minimal USE flag."
+		die "Please re-emerge dev-libs/libcdio without the minimal USE flag"
+	fi
 }
