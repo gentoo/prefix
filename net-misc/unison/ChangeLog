@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/unison
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.47 2008/04/10 19:36:15 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.48 2008/04/14 18:11:59 armin76 Exp $
+
+  14 Apr 2008; Raúl Porcel <armin76@gentoo.org> unison-2.27.57-r1.ebuild:
+  Add ~sparc wrt #207746
 
   10 Apr 2008; Markus Meier <maekke@gentoo.org> unison-2.27.57-r1.ebuild:
   add ~x86, bug #207746
