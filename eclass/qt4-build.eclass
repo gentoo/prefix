@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.11 2008/04/10 14:23:45 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.12 2008/04/14 21:51:15 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -11,7 +11,7 @@
 
 inherit eutils multilib toolchain-funcs flag-o-matic
 
-IUSE="${IUSE} debug aqua"
+IUSE="${IUSE} debug pch aqua"
 
 case "${PV}" in
 	4.4.0_beta*)
@@ -154,6 +154,13 @@ standard_configure_options() {
 	# Disable visibility explicitly if gcc version isn't 4
 	if [[ "$(gcc-major-version)" -lt "4" ]]; then
 		myconf="${myconf} -no-reduce-exports"
+	fi
+
+	# precompiled headers doesn't work on hardened, where the flag is masked.
+	if use pch; then
+		myconf="${myconf} -pch"
+	else
+		myconf="${myconf} -no-pch"
 	fi
 
 	if use debug; then

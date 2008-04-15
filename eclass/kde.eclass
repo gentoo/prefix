@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.210 2008/04/12 16:22:59 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.212 2008/04/14 12:46:58 zlin Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -128,27 +128,26 @@ kde_src_unpack() {
 		# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
 		[[ -d ${KDE_S} ]] || base_src_unpack unpack
 		if [[ -d "${PATCHDIR}" ]] ; then
+			local packages p f
 			if is-parent-package ${CATEGORY}/${PN} ; then
 				packages="$(get-child-packages ${CATEGORY}/${PN})"
 				packages="${packages//${CATEGORY}\//} ${PN}"
 			else
 				packages="${PN}"
 			fi
-			if [[ ${#PATCHES[@]} -gt 1 ]]; then
-				for _p in ${_packages}; do
-					PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null) )
-					if [[ -n "${KDEBASE}" ]]; then
-						PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null) )
-					fi
-				done
-			else
-				for _p in ${_packages}; do
-					PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null))
-					if [[ -n "${KDEBASE}" ]]; then
-						PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null))
-					fi
-				done
+			if [[ $(declare -p PATCHES) != 'declare -a '* ]]; then
+				PATCHES=(${PATCHES})
 			fi
+			for p in ${packages}; do
+				for f in "${PATCHDIR}"/${p}-${PV}-*{diff,patch}; do
+					[[ -e ${f} ]] && PATCHES+=("${f}")
+				done
+				if [[ -n "${KDEBASE}" ]]; then
+					for f in "${PATCHDIR}"/${p}-${SLOT}-*{diff,patch}; do
+						[[ -e ${f} ]] && PATCHES+=("${f}")
+					done
+				fi
+			done
 		fi
 		[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
 	else

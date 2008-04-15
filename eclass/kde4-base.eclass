@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.9 2008/04/06 21:36:53 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.10 2008/04/14 13:23:14 zlin Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -353,7 +353,7 @@ kde4-base_pkg_setup() {
 # If ${PATCHES} is non-zero all patches in it get applied. If there is more
 # than one patch please make ${PATCHES} an array for proper quoting.
 kde4-base_apply_patches() {
-	local _patchdir _packages _p
+	local _patchdir _packages _p _f
 	_patchdir="${WORKDIR}/patches/"
 	if [[ -d "${_patchdir}" ]]; then
 		if is-parent-package ${CATEGORY}/${PN} ; then
@@ -362,21 +362,19 @@ kde4-base_apply_patches() {
 		else
 			_packages="${PN}"
 		fi
-		if [[ ${#PATCHES[@]} -gt 1 ]]; then
-			for _p in ${_packages}; do
-				PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null) )
-				if [[ -n "${KDEBASE}" ]]; then
-					PATCHES=( "${PATCHES[@]}" $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null) )
-				fi
-			done
-		else
-			for _p in ${_packages}; do
-				PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${PV}-*{diff,patch} 2>/dev/null))
-				if [[ -n "${KDEBASE}" ]]; then
-					PATCHES=(${PATCHES} $(ls ${_patchdir}/${_p}-${SLOT}-*{diff,patch} 2>/dev/null))
-				fi
-			done
+		if [[ $(declare -p PATCHES) != 'declare -a '* ]]; then
+			PATCHES=(${PATCHES})
 		fi
+		for _p in ${_packages}; do
+			for _f in "${_patchdir}"/${_p}-${PV}-*{diff,patch}; do
+				[[ -e ${_f} ]] && PATCHES+=("${_f}")
+			done
+			if [[ -n "${KDEBASE}" ]]; then
+				for _f in "${_patchdir}"/${_p}-${SLOT}-*{diff,patch}; do
+					[[ -e ${_f} ]] && PATCHES+=("${_f}")
+				done
+			fi
+		done
 	fi
 	[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
 }

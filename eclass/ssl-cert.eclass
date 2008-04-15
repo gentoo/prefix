@@ -1,17 +1,25 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.14 2007/12/28 17:51:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.16 2008/04/14 06:37:44 ulm Exp $
 #
+# @ECLASS: ssl-cert.eclass
+# @MAINTAINER:
 # Author: Max Kalika <max@gentoo.org>
-#
-# This eclass implements standard installation procedure for installing
+# @BLURB: Eclass for SSL certificates
+# @DESCRIPTION:
+# This eclass implements a standard installation procedure for installing
 # self-signed SSL certificates.
+# @EXAMPLE:
+# "install_cert /foo/bar" installs ${EROOT}/foo/bar.{key,csr,crt,pem}
 
 # Conditionally depend on OpenSSL: allows inheretence
 # without pulling extra packages if not needed
 DEPEND="ssl? ( dev-libs/openssl )"
 IUSE="ssl"
 
+# @FUNCTION: gen_cnf
+# @USAGE:
+# @DESCRIPTION:
 # Initializes variables and generates the needed
 # OpenSSL configuration file and a CA serial file
 #
@@ -60,6 +68,10 @@ gen_cnf() {
 	return $?
 }
 
+# @FUNCTION: get_base
+# @USAGE: [if_ca]
+# @RETURN: <base path>
+# @DESCRIPTION:
 # Simple function to determine whether we're creating
 # a CA (which should only be done once) or final part
 #
@@ -72,6 +84,9 @@ get_base() {
 	fi
 }
 
+# @FUNCTION: gen_key
+# @USAGE: <base path>
+# @DESCRIPTION:
 # Generates an RSA key
 #
 # Access: private
@@ -85,6 +100,9 @@ gen_key() {
 	return $?
 }
 
+# @FUNCTION: gen_csr
+# @USAGE: <base path>
+# @DESCRIPTION:
 # Generates a certificate signing request using
 # the key made by gen_key()
 #
@@ -99,6 +117,9 @@ gen_csr() {
 	return $?
 }
 
+# @FUNCTION: gen_crt
+# @USAGE: <base path>
+# @DESCRIPTION:
 # Generates either a self-signed CA certificate using
 # the csr and key made by gen_csr() and gen_key() or
 # a signed server certificate using the CA cert previously
@@ -125,6 +146,9 @@ gen_crt() {
 	return $?
 }
 
+# @FUNCTION: gen_pem
+# @USAGE: <base path>
+# @DESCRIPTION:
 # Generates a PEM file by concatinating the key
 # and cert file created by gen_key() and gen_cert()
 #
@@ -138,81 +162,19 @@ gen_pem() {
 	return $?
 }
 
-# Uses all the private functions above to generate
-# and install the requested certificates
-# Note: This function is deprecated, use install_cert instead
-#
-# Access: public
+# Removed due to bug 174759
 docert() {
-	ewarn "Function \"docert\" is deprecated for security reasons."
-	ewarn "\"install_cert\" should be used instead. See bug #174759."
-
-	if [ $# -lt 1 ] ; then
-		eerror "At least one argument needed"
-		return 1;
-	fi
-
-	# Initialize configuration
-	gen_cnf || return 1
-	echo
-
-	# Generate a CA environment
-	gen_key 1 || return 1
-	gen_csr 1 || return 1
-	gen_crt 1 || return 1
-	echo
-
-	local count=0
-	for cert in "$@" ; do
-		# Sanitize and check the requested certificate
-		cert="`"${EPREFIX}"/usr/bin/basename "${cert}"`"
-		if [ -z "${cert}" ] ; then
-			ewarn "Invalid certification requested, skipping"
-			continue
-		fi
-
-		# Check for previous existence of generated files
-		for type in key crt pem ; do
-			if [ -e "${D}${INSDESTTREE}/${cert}.${type}" ] ; then
-				ewarn "${D}${INSDESTTREE}/${cert}.${type}: exists, skipping"
-				continue 2
-			fi
-		done
-
-		# Generate the requested files
-		gen_key || continue
-		gen_csr || continue
-		gen_crt || continue
-		gen_pem || continue
-		echo
-
-		# Install the generated files and set sane permissions
-		local base=`get_base`
-		newins "${base}.key" "${cert}.key"
-		fperms 0400 "${INSDESTTREE}/${cert}.key"
-		newins "${base}.csr" "${cert}.csr"
-		fperms 0444 "${INSDESTTREE}/${cert}.csr"
-		newins "${base}.crt" "${cert}.crt"
-		fperms 0444 "${INSDESTTREE}/${cert}.crt"
-		newins "${base}.pem" "${cert}.pem"
-		fperms 0400 "${INSDESTTREE}/${cert}.pem"
-		count=$((${count}+1))
-	done
-
-	# Resulting status
-	if [ ! ${count} ] ; then
-		eerror "No certificates were generated"
-		return 1
-	elif [ ${count} != ${#} ] ; then
-		ewarn "Some requested certificates were not generated"
-	fi
+	eerror "Function \"docert\" has been removed for security reasons."
+	eerror "\"install_cert\" should be used instead. See bug 174759."
+	die
 }
 
-# Uses all the private functions above to generate
-# and install the requested certificates
-#
-# Usage: install_cert <certificates>
-# where <certificates> are full pathnames relative to ROOT, without extension.
+# @FUNCTION: install_cert
+# @USAGE: <certificates>
+# @DESCRIPTION:
+# Uses all the private functions above to generate and install the
+# requested certificates.
+# <certificates> are full pathnames relative to ROOT, without extension.
 #
 # Example: "install_cert /foo/bar" installs ${EROOT}/foo/bar.{key,csr,crt,pem}
 #

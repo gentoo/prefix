@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.38 2008/04/12 07:47:00 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.39 2008/04/14 14:54:21 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -200,9 +200,7 @@ should_we_eselect_gnat() {
 	curr_config=$(eselect --no-color gnat show | grep ${CTARGET} | awk '{ print $1 }') || return 0
 	[[ -z ${curr_config} ]] && return 0
 
-	# extraction of profile prats and all the relevant logic of toolchain.eclass
-	# is contained  here in SLOT and PN vars. The answer basically is, whether
-	# we have the same profile. A new one should not be enacted
+	# The logic is basically "try to keep the same profile if possible"
 
 	if [[ ${curr_config} == ${CTARGET}-${PN}-${SLOT} ]] ; then
 		return 0
@@ -285,6 +283,8 @@ gnatbuild_pkg_setup() {
 gnatbuild_pkg_postinst() {
 	if should_we_eselect_gnat; then
 		do_gnat_config
+	else
+		eselect gnat update
 	fi
 
 	# if primary compiler list is empty, add this profile to the list, so
@@ -302,10 +302,12 @@ gnatbuild_pkg_postinst() {
 
 
 gnatbuild_pkg_postrm() {
-	elog "If you are removing the last version of gnat in this SLOT, please manually run:"
-	elog "   rm /etc/env.d/55gnat-*"
-	elog "(running this automatically from every pgk_postrm will break"
-	elog "configuration in case an update was performed)."
+	# "eselect gnat update" now removes the env.d file if the corresponding 
+	# gnat profile was unmerged
+	eselect gnat update
+	elog "If you just unmerged the last gnat in this SLOT, your active gnat"
+	elog "profile got unset. Please check what eselect gnat show tells you"
+	elog "and set the desired profile"
 }
 #---->> pkg_* <<----
 
