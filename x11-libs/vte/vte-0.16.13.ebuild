@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.16.13.ebuild,v 1.6 2008/04/13 22:06:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.16.13.ebuild,v 1.7 2008/04/14 14:32:58 armin76 Exp $
 
 EAPI="prefix"
 
