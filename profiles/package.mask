@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8500 2008/04/13 23:35:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8505 2008/04/14 21:36:58 zzam Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Marijn Schouten <hkBst@gentoo.org> (14 Apr 2008)
+# binary package, now subsumed by binary use flag on mlton itself
+# will be removed
+dev-lang/mlton-bin
 
 # Ulrich Mueller <ulm@gentoo.org> (13 Apr 2008)
 # Broken as designed. Not needed by openmotif anymore; no longer
@@ -96,10 +101,6 @@ net-proxy/junkbuster
 # Masked for removal on 5 May 2008, please use app-laptop/omnibook.
 # Live SVN ebuild, not needed as app-laptop/omnibook has been updated.
 app-laptop/omnibook-svn
-
-# Matthias Schwarzott <zzam@gentoo.org> (3 Apr 2008)
-# Masked for testing udev-start.sh
->=sys-fs/udev-119-r1
 
 # Mark Loeser <halcy0n@gentoo.org> (2 Apr 2008)
 # Mask due to dead upstream and not working properly; bug #206163
@@ -207,11 +208,6 @@ dev-util/jam
 # Masked for removal in 30 days. Requires Tcl 8.3 which
 # isn't in the tree anymore. See bugs 172356 and 173467.
 sci-electronics/lard
-
-# Marijn Schouten <hkBst@gentoo.org> (14 Mar 2008)
-# binary package, needs obsolete libcrypto, bug 202160.
-# will be removed
-dev-scheme/mit-scheme
 
 # Wolfram Schlich <wschlich@gentoo.org> (13 Mar 2008)
 # mondo-rescue previously was a candidate for complete
@@ -897,10 +893,6 @@ sys-kernel/hppa-sources
 >=dev-libs/nss-3.12_alpha1
 >=dev-libs/nspr-4.7.1_beta1
 
-# Marijn Schouten <hkBst@gentoo.org> (07 Dec 2007)
-# Guile that installs to prefix=/ for einit.
-=dev-scheme/guile-1.8.3-r25
-
 # Raúl Porcel <armin76@gentoo.org> (04 Dec 2007)
 # Mozilla stopped supporting 1.5 series in October 2007
 # Will be removed when mips stabilizes 2.0
@@ -1065,11 +1057,6 @@ x11-plugins/gai
 # This is masked for removal in 30 days due to security bug #194609 and no
 # newer version of the package being available.  Sorry, folks.
 games-fps/americas-army
-
-# Marijn Schouten <hkBst@gentoo.org> (05 Oct 2007)
-# masked for removal, broken live ebuild with several open bugs
-# gcl to follow soon as it is unmaintained with lots of open bugs
-dev-lisp/gcl-cvs
 
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing

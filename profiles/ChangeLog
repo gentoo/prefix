@@ -1,6 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1324 2008/04/13 23:35:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1332 2008/04/15 03:01:27 yngwin Exp $
+
+  15 Apr 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
+  Adding cdda and systray local useflags for media-sound/aqualung
+
+  15 Apr 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
+  Adding description for loop-playback local useflag for
+  media-sound/aqualung
+
+  14 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Add description for pch USE flag to Qt:4 split ebuilds.
+
+  14 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Unmasked >=udev-119-r1
+
+  14 Apr 2008; Marijn Schouten <hkBst@gentoo.org> ChangeLog:
+  gcl-cvs is removed so mask removed too
+
+  14 Apr 2008; Marijn Schouten <hkBst@gentoo.org> package.mask:
+  remove mask for prefix=/ guile that was removed
+
+  14 Apr 2008; Marijn Schouten <hkBst@gentoo.org> package.mask:
+  mit-scheme is removed so mask removed too
+
+  14 Apr 2008; Marijn Schouten <hkBst@gentoo.org> package.mask,
+  use.local.desc:
+  mask obsoleted mlton-bin for removal
+
+  14 Apr 2008; Marijn Schouten <hkBst@gentoo.org> use.local.desc:
+  add mlton:binary use flag
 
   13 Apr 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Mask x11-libs/motif-config for removal.

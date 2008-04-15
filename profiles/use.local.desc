@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3488 2008/04/14 03:12:48 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3492 2008/04/15 03:01:27 yngwin Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -424,6 +424,7 @@ dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC install
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
+dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
 dev-lang/php:cli - Enable CLI SAPI
@@ -1031,6 +1032,9 @@ media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access t
 media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
+media-sound/aqualung:cdda - Enables libcdda cd audio playback support
+media-sound/aqualung:loop-playback - Enable adjustable loop playback support
+media-sound/aqualung:systray - Enable system tray support
 media-sound/ardour:freesound - Enables direct searching and download of samples from Freesound via the Import dialog
 media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-sound/audacity:id3tag - Enables ID3 tagging with id3tag library
@@ -2171,12 +2175,25 @@ x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-assistant:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-core:glib - Enable glib eventloop support
+x11-libs/qt-core:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-dbus:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-gui:glib - Enable glib eventloop support
+x11-libs/qt-gui:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-gui:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-opengl:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-opengl:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-phonon:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-qt3support:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-script:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-sql:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-sql:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-svg:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-test:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-webkit:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-xmlpatterns:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/wxGTK:pch - Enable precompiled header support for faster compilation at the expense of disk space and memory
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/fbdesk:imlib2 - Add support for imlib2 (pixmap themes)
