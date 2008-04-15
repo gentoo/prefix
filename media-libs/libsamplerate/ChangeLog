@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libsamplerate
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.50 2008/02/22 13:22:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.51 2008/04/14 13:52:31 flameeyes Exp $
+
+*libsamplerate-0.1.3 (14 Apr 2008)
+
+  14 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libsamplerate-0.1.3-dontbuild-tests-examples.patch,
+  +libsamplerate-0.1.3.ebuild:
+  Version bump, and fix building with autoconf 2.62, see bug #217318.
 
   22 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
   +files/libsamplerate-0.1.2-dontbuild-tests-examples.patch,
