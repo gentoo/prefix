@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="xml qt3 jpeg tiff debug threads nls nsplugin kde doc"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
@@ -47,13 +47,17 @@ src_unpack() {
 
 	# Do not strip binaries as portage does this for us. bug #135208
 	find -name Makefile.in -exec sed -i 's:${INSTALL_PROGRAM} -s:${INSTALL_PROGRAM}:' \{\} \;
-	eautomake
+
+	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 config/libtool.m4
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
 	# assembler problems and hence non-building with pentium4
 	# <obz@gentoo.org>
 	replace-flags -march=pentium4 -march=pentium3
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
 
 	local I18N
 	if use nls; then
