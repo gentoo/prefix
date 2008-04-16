@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib flag-o-matic
 
 DESCRIPTION="Port of 7-Zip archiver for Unix"
 HOMEPAGE="http://p7zip.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}_src_all.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="static doc"
 
 DEPEND=""
@@ -22,6 +22,10 @@ S=${WORKDIR}/${PN}_${PV}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# need to do this here, since the sed below hardcodes the flags
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	sed -i \
 		-e "/^CXX=/s:g++:$(tc-getCXX):" \
 		-e "/^CC=/s:gcc:$(tc-getCC):" \
