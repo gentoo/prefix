@@ -18,7 +18,7 @@ SRC_URI="http://http.us.debian.org/debian/pool/main/p/ppmd/${MY_P}.orig.tar.gz
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=sys-apps/sed-4
