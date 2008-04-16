@@ -1,0 +1,77 @@
+# ChangeLog for media-sound/cmus
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/cmus/ChangeLog,v 1.17 2007/10/14 11:34:11 opfer Exp $
+
+  14 Oct 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.2.0.ebuild:
+  new HOMEPAGE value and new download location
+
+  22 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/cmus-2.1.0-faad-2.0.patch, -cmus-2.1.0-r1.ebuild:
+  clean up
+
+  22 Sep 2007; Christoph Mende <angelos@gentoo.org> cmus-2.2.0.ebuild:
+  Stable on amd64 wrt bug #193205
+
+  20 Sep 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.2.0.ebuild:
+  stable x86, bug 193205
+
+  01 Aug 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.2.0.ebuild:
+  put the correct entries in RDEPEND and not DEPEND
+
+*cmus-2.2.0 (30 Jul 2007)
+
+  30 Jul 2007; Christian Faulhammer <opfer@gentoo.org> metadata.xml,
+  +cmus-2.2.0.ebuild:
+  version bump with new features:
+  support for WMA (USE=wma) and wavpack (USE=wavpack)
+  several bugs fixed (partly been patched already in 2.1.0-r1)
+  install support script for net-im/pidgin (USE=pidgin)
+  install command completion for Zshell (USE=zsh-completion)
+  some rework on the ebuild itself
+
+  01 Jun 2007; Christian Faulhammer <opfer@gentoo.org> -cmus-2.1.0.ebuild,
+  cmus-2.1.0-r1.ebuild:
+  Add examples USE flag and clean up
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> cmus-2.1.0-r1.ebuild:
+  Marked stable on amd64 for bug #180295
+
+  31 May 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.1.0-r1.ebuild:
+  fixed installation of example file, reported by Jonas Pedersen in bug 180295
+
+  30 May 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.1.0-r1.ebuild:
+  stable x86, bug 180295
+
+*cmus-2.1.0-r1 (14 Feb 2007)
+
+  14 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/cmus-2.1.0-faad-2.0.patch, +cmus-2.1.0-r1.ebuild:
+  add a patch from cmus mailing list that allows building against
+  media-libs/faad2 2.0, so now I can provide aac and mp4 USE flags
+
+  29 Jan 2007; Christian Faulhammer <opfer@gentoo.org> -cmus-2.0.4.ebuild:
+  clean up
+
+  25 Jan 2007; Steve Dibb <beandog@gentoo.org> cmus-2.1.0.ebuild:
+  Add ~amd64, bug 162375
+
+  25 Jan 2007; Christian Faulhammer <opfer@gentoo.org> cmus-2.1.0.ebuild:
+  added multilib capabilities, so amd64 can keyword this; thanks to beandog
+  for pointing out
+
+*cmus-2.1.0 (03 Jan 2007)
+
+  03 Jan 2007; Christian Faulhammer <opfer@gentoo.org> +cmus-2.1.0.ebuild:
+  version bump, added mikmod support via mikmod USE flac; support for flac 1.1.3
+
+  11 Dec 2006; Christian Faulhammer <opfer@gentoo.org> cmus-2.0.4.ebuild:
+  corrected flac dependency
+
+*cmus-2.0.4 (08 Nov 2006)
+
+  08 Nov 2006; Christian Faulhammer <opfer@gentoo.org> +metadata.xml,
+  +cmus-2.0.4.ebuild:
+  initial import. A nice console player with support for many formats via
+  plugins. See bug #88025, thanks to Timo Hirvonen <tihirvon@ee.oulu.fi> and
+  Nikolai Weibull <now@bitwi.se>.
+
