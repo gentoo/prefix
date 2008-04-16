@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/projects/evince/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="dbus djvu doc dvi gnome t1lib tiff"
 
 RDEPEND="
@@ -73,6 +73,8 @@ src_unpack() {
 
 	# Make dbus actually switchable
 	epatch "${FILESDIR}"/${PN}-0.6.1-dbus-switch.patch
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	cp aclocal.m4 old_macros.m4
 	AT_M4DIR="." eautoreconf
