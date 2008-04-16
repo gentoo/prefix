@@ -14,13 +14,20 @@ SRC_URI="mirror://gnu/${PN}/REL-${PV}/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls doc"
 
 DEPEND="sys-apps/texinfo
 	nls? ( >=sys-devel/gettext-0.10.35 )"
 
 S=${WORKDIR}/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
 
 src_compile() {
 	strip-linguas -u po
