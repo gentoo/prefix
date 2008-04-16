@@ -13,7 +13,7 @@ SRC_URI="mirror://gnupg/libgcrypt/${P}.tar.bz2
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls bindist idea"
 
 RDEPEND="nls? ( virtual/libintl )
@@ -31,9 +31,18 @@ src_unpack() {
 		else
 			ewarn "Please read http://www.gnupg.org/(en)/faq/why-not-idea.html"
 			epatch "${WORKDIR}/${P}-idea.diff"
-			AT_M4DIR="m4" eautoreconf
 		fi
 	fi
+
+	# include sys/time.h for fd_set on interix
+	epatch "${FILESDIR}"/${P}-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
+	# remove the included libtool.m4 to force a new libtool
+	# to be used.
+	rm -f m4/libtool.m4
+
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
