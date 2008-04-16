@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge.jp/${PN}/22231/${MY_P}.tar.gz"
 
 LICENSE="lha"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
@@ -27,6 +27,16 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-file-list-from-stdin.patch
 	eautoreconf
+}
+
+src_compile() {
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_inttypes_h=no
+		export ac_cv_func_iconv=no
+	fi
+
+	econf || die "econf failed"
+	emake || die "emake failed"
 }
 
 src_install() {
