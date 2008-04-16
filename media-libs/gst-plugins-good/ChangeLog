@@ -1,0 +1,206 @@
+# ChangeLog for media-libs/gst-plugins-good
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.46 2008/02/21 10:19:41 zaheerm Exp $
+
+*gst-plugins-good-0.10.7 (21 Feb 2008)
+
+  21 Feb 2008; Zaheer Abbas Merali <zaheerm@gentoo.org> 
+  +gst-plugins-good-0.10.7.ebuild:
+  version bump
+
+  02 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  -gst-plugins-good-0.10.2.ebuild, -gst-plugins-good-0.10.3.ebuild,
+  -gst-plugins-good-0.10.4.ebuild, -gst-plugins-good-0.10.5.ebuild:
+  Remove unused versions.
+
+  01 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  sparc stable wrt #190900, thanks to Alex Maclean for testing
+
+  11 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  Stable on ppc64; bug #190900
+
+  26 Sep 2007; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  alpha/ia64 stable wrt #190900
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  Stable on amd64 wrt bug #190900.
+
+  10 Sep 2007; nixnut <nixnut@gentoo.org> gst-plugins-good-0.10.6.ebuild:
+  Stable on ppc wrt bug 190900
+
+  09 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  x86 stable, bug 190900
+
+  09 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  Remove INSTALL and TODO from dodoc.
+
+  03 Sep 2007; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  Stable for HPPA (bug #190900).
+
+  01 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  gst-plugins-good-0.10.6.ebuild:
+  Add block against old gst-plugins-bad since some plugins have been moved
+  around. Bug 190941, thanks to Olivier Crete for reporting.
+
+*gst-plugins-good-0.10.6 (30 Aug 2007)
+
+  30 Aug 2007; Samuli Suominen <drac@gentoo.org>
+  +gst-plugins-good-0.10.6.ebuild:
+  Version bump.
+
+  26 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gst-plugins-good-0.10.5.ebuild:
+  Stable on sparc
+
+  28 Jun 2007; Joseph Jezak <josejx@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Marked ppc stable for bug #163541.
+
+  30 Apr 2007; Marius Mauch <genone@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild, gst-plugins-good-0.10.3.ebuild,
+  gst-plugins-good-0.10.4.ebuild, gst-plugins-good-0.10.5.ebuild:
+  Replacing einfo with elog
+
+  16 Feb 2007; Roy Marples <uberlord@gentoo.org>
+  gst-plugins-good-0.10.5.ebuild:
+  Added ~x86-fbsd keyword.
+
+  12 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  stable x86; bug 163541
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Stable on ppc64; bug #163541
+
+  30 Jan 2007; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Stable for HPPA (bug #163541).
+
+  27 Jan 2007; Olivier Crête <tester@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Stable on amd64 per bug #163541
+
+*gst-plugins-good-0.10.5 (25 Jan 2007)
+
+  25 Jan 2007; Jim Ramsay <lack@gentoo.org> +gst-plugins-good-0.10.5.ebuild:
+  Version bump - gst-plugins-good-0.10.5 is released
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Stable on sparc
+
+  22 Oct 2006; Hanno Boeck <hanno@gentoo.org>
+  gst-plugins-good-0.10.4.ebuild:
+  Update dep to gst-plugins-base-0.10.10, bug #152180.
+
+*gst-plugins-good-0.10.4 (19 Oct 2006)
+
+  19 Oct 2006; Hanno Boeck <hanno@gentoo.org>
+  +gst-plugins-good-0.10.4.ebuild:
+  Version bump.
+
+  19 Sep 2006; Aron Griffis <agriffis@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Mark 0.10.3 stable on ia64. #139612
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Add ~ia64 keyword.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Stable on ppc64
+
+  22 Jul 2006; Thomas Cort <tcort@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Stable on alpha.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Stable on sparc wrt #139612
+
+  21 May 2006; Thomas Cort <tcort@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Stable on alpha.
+
+  14 May 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-plugins-good-0.10.3.ebuild:
+  Added ~hppa
+
+  05 May 2006; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Stable on ppc64
+
+*gst-plugins-good-0.10.3 (05 May 2006)
+
+  05 May 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-plugins-good-0.10.3.ebuild:
+  version bump
+
+  13 Apr 2006; Thomas Cort <tcort@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Added ~alpha keyword wrt Bug #125232.
+
+  08 Apr 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Added to ~ppc
+
+  05 Apr 2006; Marinus Schraal <foser@gentoo.org> :
+  Fix gst-plugins-base dep (#128885)
+
+  23 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Keyworded ~sparc wrt #125232
+
+  16 Mar 2006; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-good-0.10.2.ebuild:
+  Added ~ppc64
+
+*gst-plugins-good-0.10.2 (15 Feb 2006)
+
+  15 Feb 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-plugins-good-0.10.2.ebuild:
+  Version bump from upstream
+
+*gst-plugins-good-0.10.1 (14 Jan 2006)
+
+  14 Jan 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-plugins-good-0.10.1.ebuild:
+  Version bump from upstream
+
+*gst-plugins-good-0.10.0 (05 Dec 2005)
+
+  05 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -gst-plugins-good-0.9.7.ebuild, +gst-plugins-good-0.10.0.ebuild:
+  0.10.0 Release
+
+*gst-plugins-good-0.9.7 (02 Dec 2005)
+
+  02 Dec 2005; <zaheer@gentoo.org> +metadata.xml,
+  +gst-plugins-good-0.9.7.ebuild:
+  0.10 Prerelease
+
