@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs flag-o-matic
 
 MY_PN=${PN}src
 DESCRIPTION="Uncompress rar files"
@@ -13,7 +13,7 @@ SRC_URI="http://www.rarlab.com/rar/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="unRAR"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="!app-arch/unrar-gpl"
@@ -21,6 +21,8 @@ DEPEND="!app-arch/unrar-gpl"
 S=${WORKDIR}/unrar
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	emake \
 		-f makefile.unix \
 		CXXFLAGS="${CXXFLAGS}" \
