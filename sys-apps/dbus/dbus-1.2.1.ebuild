@@ -12,7 +12,7 @@ SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="debug doc selinux X"
 
 RDEPEND="X? ( x11-libs/libXt x11-libs/libX11 )
@@ -29,11 +29,36 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.2.1-darwin.patch
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
+	eautoreconf
 }
 
 src_compile() {
-	# so we can get backtraces from apps
-	append-flags -rdynamic
+	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
+	local socketdir="${EPREFIX}"/tmp
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_poll=no
+		append-flags -D_ALL_SOURCE -D_REENTRANT
+	fi
+
+	if [[ ${CHOST} == *-interix5* ]]; then
+		# interix 5.2 socket paths may not be longer than 14
+		# chars including the zero. (bug alarm...)
+		syssocket="/tmp/dbus_ss"
+		socketdir="/tmp"
+
+		myconf="${myconf} --with-test-socket-dir=/tmp"
+	fi
+
+	if [[ ${CHOST} != *-interix* ]]; then
+		# so we can get backtraces from apps
+		append-flags -rdynamic
+	fi
 
 	local myconf=""
 
@@ -50,8 +75,8 @@ src_compile() {
 		$(use_enable debug asserts) \
 		--with-xml=expat \
 		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid \
-		--with-system-socket="${EPREFIX}"/var/run/dbus/system_bus_socket \
-		--with-session-socket-dir="${EPREFIX}"/tmp \
+		--with-system-socket="${syssocket}" \
+		--with-session-socket-dir="${socketdir}" \
 		--with-dbus-user=messagebus \
 		--localstatedir="${EPREFIX}"/var \
 		$(use_enable doc doxygen-docs) \

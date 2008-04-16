@@ -1,0 +1,41 @@
+diff -ru -x '*.Po' -x '*.Plo' dbus-1.1.20.orig/dbus/dbus-sysdeps-unix.c dbus-1.1.20/dbus/dbus-sysdeps-unix.c
+--- dbus-1.1.20.orig/dbus/dbus-sysdeps-unix.c	2008-04-07 16:33:10 +0200
++++ dbus-1.1.20/dbus/dbus-sysdeps-unix.c	2008-04-07 16:45:47 +0200
+@@ -1268,8 +1268,10 @@
+                                 DBusCredentials *credentials,
+                                 DBusError       *error)
+ {
++#if defined(HAVE_CMSGCRED) || defined(LOCAL_CREDS)
+   struct msghdr msg;
+   struct iovec iov;
++#endif
+   char buf;
+   dbus_uid_t uid_read;
+   dbus_pid_t pid_read;
+@@ -1303,6 +1305,7 @@
+ 
+   _dbus_credentials_clear (credentials);
+ 
++#if defined(HAVE_CMSGCRED) || defined(LOCAL_CREDS)
+   /* Systems supporting LOCAL_CREDS are configured to have this feature
+    * enabled (if it does not conflict with HAVE_CMSGCRED) prior accepting
+    * the connection.  Therefore, the received message must carry the
+@@ -1316,14 +1319,17 @@
+   msg.msg_iov = &iov;
+   msg.msg_iovlen = 1;
+ 
+-#if defined(HAVE_CMSGCRED) || defined(LOCAL_CREDS)
+   memset (&cmsg, 0, sizeof (cmsg));
+   msg.msg_control = &cmsg;
+   msg.msg_controllen = sizeof (cmsg);
+ #endif
+ 
+  again:
++#if defined(HAVE_CMSGCRED) || defined(LOCAL_CREDS)
+   bytes_read = recvmsg (client_fd, &msg, 0);
++#else
++  bytes_read = read(client_fd, &buf, 0);
++#endif
+ 
+   if (bytes_read < 0)
+     {
