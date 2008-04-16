@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Move/copy/append/link multiple files according to a set of wildcard patterns."
 HOMEPAGE="http://packages.debian.org/unstable/utils/mmv"
@@ -17,7 +17,7 @@ SRC_URI="mirror://debian/pool/main/m/mmv/${PN}_${MY_VER}.orig.tar.gz
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}/${PN}-${MY_VER}.orig
@@ -28,7 +28,11 @@ src_unpack() {
 }
 
 src_compile() {
-	mmv_CFLAGS=" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+	local mmv_CFLAGS=
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+	[[ ${CHOST} == *-interix* ]] || mmv_CFLAGS=" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+
 	emake CC="$(tc-getCC)" CFLAGS="${mmv_CFLAGS} ${CFLAGS}" LDFLAGS="${LDFLAGS}" || die
 }
 
