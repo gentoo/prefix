@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit autotools eutils gnome2
+inherit autotools eutils gnome2 flag-o-matic
 
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc eds networkmanager"
 
 RDEPEND=">=gnome-base/gnome-desktop-2.12
@@ -61,6 +61,14 @@ src_unpack() {
 	# FIXME : uh yeah, this is nice
 	# We should patch in a switch here and send it upstream
 	sed -i 's:--load:-v:' "${S}/gnome-panel/Makefile.in" || die "sed failed"
+
+	eautoreconf # need new libtool for interix
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
+	gnome2_src_compile
 }
 
 pkg_postinst() {
