@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4.ebuild,v 1.6 2008/04/14 18:22:07 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4.ebuild,v 1.7 2008/04/15 14:46:31 jer Exp $
 
 EAPI="prefix"
 
