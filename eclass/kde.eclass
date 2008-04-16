@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.212 2008/04/14 12:46:58 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.213 2008/04/15 15:57:35 ingmar Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -135,7 +135,7 @@ kde_src_unpack() {
 			else
 				packages="${PN}"
 			fi
-			if [[ $(declare -p PATCHES) != 'declare -a '* ]]; then
+			if [[ -n ${PATCHES[@]} && $(declare -p PATCHES) != 'declare -a '* ]]; then
 				PATCHES=(${PATCHES})
 			fi
 			for p in ${packages}; do
