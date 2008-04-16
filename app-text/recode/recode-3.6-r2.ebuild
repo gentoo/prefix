@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils libtool toolchain-funcs
+inherit flag-o-matic eutils autotools toolchain-funcs
 
 DEB_VER=11
 DESCRIPTION="Convert files between various character sets"
@@ -27,7 +27,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-ppc-macos.diff
 	cp lib/error.c lib/xstrdup.c src/ || die "file copy failed"
 
-	elibtoolize
+	# really need the new libtool... (they try quite hard to keep
+	# theirs ...)
+	rm -f m4/libtool.m4 acinclude.m4
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
