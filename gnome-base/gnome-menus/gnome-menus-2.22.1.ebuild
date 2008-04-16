@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2 python
+inherit eutils gnome2 python autotools
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug python"
 
 RDEPEND=">=dev-libs/glib-2.15.2
@@ -39,6 +39,8 @@ src_unpack() {
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
+
+	eautoreconf # need new libtool for interix
 }
 
 pkg_postinst() {
