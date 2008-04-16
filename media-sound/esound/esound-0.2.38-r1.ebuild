@@ -36,6 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-0.2.36-mode_t.patch"
 	epatch "${FILESDIR}/${PN}-0.2.38-as-needed.patch"
 	epatch "${FILESDIR}/${PN}-0.2.38-doc.patch"
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 
 	AT_M4DIR="m4" eautoreconf
 }
