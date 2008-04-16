@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="Library for parsing, editing, and saving EXIF data"
 HOMEPAGE="http://libexif.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc nls"
 
 DEPEND="dev-util/pkgconfig
@@ -29,8 +29,9 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-CVE-2007-6351.patch"
 	epatch "${FILESDIR}/${PN}-CVE-2007-6352.patch"
 
-	# We do this for sane .so versioning on FreeBSD
-	elibtoolize
+	# elibtoolize: We do this for sane .so versioning on FreeBSD
+	# eautoreconf: instead of elibtoolize for new libtool on interix
+	AT_M4DIR="m4m auto-m4" eautoreconf
 }
 
 src_compile() {
