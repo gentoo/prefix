@@ -1,0 +1,183 @@
+# ChangeLog for dev-python/gst-python
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.37 2008/02/24 19:45:32 eva Exp $
+
+  24 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  gst-python-0.10.10.ebuild:
+  fix python eclass use, bug #207667
+  add examples USE flag, bug #111508
+
+*gst-python-0.10.10 (29 Jan 2008)
+
+  29 Jan 2008; Samuli Suominen <drac@gentoo.org> +gst-python-0.10.10.ebuild:
+  Version bump.
+
+  22 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-python-0.10.9.ebuild:
+  ppc stable, bug #202174
+
+  13 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-python-0.10.9.ebuild:
+  x86 stable
+
+  13 Dec 2007; Samuli Suominen <drac@gentoo.org> gst-python-0.10.9.ebuild:
+  amd64 stable
+
+  30 Nov 2007; Samuli Suominen <drac@gentoo.org> gst-python-0.10.9.ebuild:
+  Remove xmlto dep. since it's not used.
+
+*gst-python-0.10.9 (28 Nov 2007)
+
+  28 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  +files/gst-python-0.10.9-lazy.patch, +gst-python-0.10.9.ebuild:
+  Version bump, applying a -Wl,-z,lazy patch wrt #166221.
+
+  24 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  gst-python-0.10.8-r1.ebuild:
+  This version is known to fail with current pygobject, upstream has been
+  informed and while waiting for next release restrict test suite.
+
+*gst-python-0.10.8-r1 (04 Nov 2007)
+
+  04 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  +files/gst-python-0.10.8-atexit.patch, +gst-python-0.10.8-r1.ebuild:
+  Patch from upstream CVS, fixing Segmentation Fault with media-sound/exaile.
+  gst/gstmodule.c (DL_EXPORT): Remove the atexit(gst_deinit) Atexit handlers
+  are run after python has finalized (see Py_Exit in pythonrun.c), but
+  gst_deinit can potentially call back into python e.g. for python-defined
+  plugins.
+
+  03 Sep 2007; Samuli Suominen <drac@gentoo.org> gst-python-0.10.8.ebuild:
+  Instead of filtering -z,now, append -z,lazy wrt #166221.
+
+  01 Sep 2007; Samuli Suominen <drac@gentoo.org> gst-python-0.10.8.ebuild:
+  Fix depends.
+
+  01 Sep 2007; Samuli Suominen <drac@gentoo.org> gst-python-0.10.8.ebuild:
+  Filter some ricing LDFLAGS wrt #168326.
+
+*gst-python-0.10.8 (31 Aug 2007)
+
+  31 Aug 2007; Samuli Suominen <drac@gentoo.org> +gst-python-0.10.8.ebuild:
+  Version bump.
+
+  29 Mar 2007; Markus Rothe <corsair@gentoo.org> gst-python-0.10.6.ebuild:
+  Added ~ppc64; bug #172367
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*gst-python-0.10.6 (07 Dec 2006)
+
+  07 Dec 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-python-0.10.6.ebuild:
+  version bump
+
+  21 Jul 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  gst-python-0.10.4.ebuild, gst-python-0.10.5.ebuild:
+  fix invalid dep atom
+
+*gst-python-0.10.5 (21 Jul 2006)
+
+  21 Jul 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  gst-python-0.10.4.ebuild, +gst-python-0.10.5.ebuild:
+  version bump
+
+  16 Jul 2006; Alastair Tse <liquidx@gentoo.org> -gst-python-0.8.1.ebuild,
+  -gst-python-0.8.2.ebuild, -gst-python-0.10.0.ebuild,
+  -gst-python-0.10.1.ebuild, -gst-python-0.10.2.ebuild,
+  -gst-python-0.10.3.ebuild:
+  old ebuild cleanups
+
+  12 Jun 2006; Jason Wever <weeve@gentoo.org> gst-python-0.10.4.ebuild:
+  Added ~sparc keyword wrt bug #130382.
+
+  06 Jun 2006; Carsten Lohrke <carlo@gentoo.org> gst-python-0.10.1.ebuild,
+  gst-python-0.10.2.ebuild, gst-python-0.10.3.ebuild,
+  gst-python-0.10.4.ebuild:
+  Fix use of nonexistent versioned virtual/python.
+
+  06 Jun 2006; Carsten Lohrke <carlo@gentoo.org> gst-python-0.10.1.ebuild,
+  gst-python-0.10.2.ebuild, gst-python-0.10.3.ebuild,
+  gst-python-0.10.4.ebuild:
+  Fix use of nonexistent versioned virtual/python.
+
+*gst-python-0.10.4 (02 May 2006)
+
+  02 May 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-python-0.10.4.ebuild:
+  version bump
+
+  26 Apr 2006; Luca Barbato <lu_zero@gentoo.org> gst-python-0.10.3.ebuild:
+  Marked ~ppc
+
+  13 Apr 2006; Thomas Cort <tcort@gentoo.org> gst-python-0.10.3.ebuild:
+  Added ~alpha keyword.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> gst-python-0.10.3.ebuild:
+  Mark 0.10.3 ~ia64
+
+*gst-python-0.10.3 (22 Mar 2006)
+
+  22 Mar 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-python-0.10.3.ebuild:
+  version bump
+
+*gst-python-0.8.4 (11 Mar 2006)
+
+  11 Mar 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-python-0.8.4.ebuild:
+  Version bump from upstream
+
+  06 Mar 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +files/gst-python-0.10-leakfix.diff, gst-python-0.10.2.ebuild:
+  fix gst-python leak
+
+*gst-python-0.10.2 (18 Jan 2006)
+
+  18 Jan 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-python-0.10.2.ebuild:
+  Version bump from upstream
+
+*gst-python-0.10.1 (29 Dec 2005)
+
+  29 Dec 2005; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-python-0.10.1.ebuild:
+  Version bump from upstream (bug #116688)
+
+*gst-python-0.10.0 (05 Dec 2005)
+
+  05 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -gst-python-0.9.7.ebuild, +gst-python-0.10.0.ebuild:
+  0.10.0 Release
+
+  04 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  gst-python-0.8.1.ebuild, gst-python-0.8.2.ebuild:
+  Fix GStreamer dependencies
+
+*gst-python-0.9.7 (04 Dec 2005)
+
+  04 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-python-0.9.7.ebuild:
+  0.10 Prerelease
+
+  06 Sep 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  gst-python-0.8.1.ebuild, gst-python-0.8.2.ebuild:
+  dont use cp -a, fixes bug
+
+*gst-python-0.8.2 (21 Jun 2005)
+
+  21 Jun 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-python-0.8.2.ebuild:
+  version bump
+
+*gst-python-0.8.1 (16 Mar 2005)
+
+  16 Mar 2005; <zaheerm@gentoo.org> gst-python-0.8.1.ebuild:
+  Cosmetic changes
+
+  16 Mar 2005; <zaheerm@gentoo.org> :
+  Initial Commit
+  Python bindings for GStreamer (#56621)
+  Added to gstreamer herd
+
