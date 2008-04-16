@@ -1,0 +1,68 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-office/texmacs/texmacs-1.0.6.14.ebuild,v 1.1 2008/03/22 13:55:42 graaff Exp $
+
+EAPI="prefix"
+inherit eutils flag-o-matic
+MY_P=${P/tex/TeX}-src
+DESCRIPTION="Wysiwyg text processor with high-quality maths"
+
+SRC_URI="ftp://ftp.texmacs.org/pub/TeXmacs/targz/${MY_P}.tar.gz
+	ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-600dpi-fonts.tar.gz"
+
+HOMEPAGE="http://www.texmacs.org/"
+LICENSE="GPL-2"
+SLOT="0"
+IUSE="imlib jpeg svg netpbm spell"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+
+RDEPEND="virtual/latex-base
+	virtual/ghostscript
+	>=dev-scheme/guile-1.4
+	media-libs/freetype
+	x11-libs/libXext
+	imlib? ( media-libs/imlib2 )
+	jpeg? ( || ( media-gfx/imagemagick media-gfx/jpeg2ps ) )
+	svg? ( || ( media-gfx/inkscape gnome-base/librsvg ) )
+	netpbm? ( media-libs/netpbm )
+	spell? ( || ( >=app-text/ispell-3.2 >=app-text/aspell-0.5 ) )"
+
+DEPEND="${RDEPEND}
+	x11-proto/xproto"
+
+S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	if has_version ">=dev-scheme/guile-1.8"; then
+		if ! built_with_use dev-scheme/guile deprecated; then
+			eerror "Please re-emerge dev-scheme/guile with the USE flag +deprecated"
+			die "Bad guile version"
+		fi
+	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
+	econf $(use_with imlib imlib2 ) \
+		--enable-optimize="${CXXFLAGS}" \
+		|| die "econf failed"
+	emake || die "emake failed"
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "emake install failed"
+	dodoc TODO || die "dodoc failed"
+	domenu "${FILESDIR}/TeXmacs.desktop" || die "domenu failed"
+
+	# now install the fonts
+	insinto /usr/share/texmf
+	doins -r "${WORKDIR}/fonts" || die "installing fonts failed"
+}
