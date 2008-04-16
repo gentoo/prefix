@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="avahi bluetooth cdda doc fuse gnome gphoto2 hal keyring samba"
 
 RDEPEND=">=dev-libs/glib-2.16
@@ -61,4 +61,15 @@ pkg_setup() {
 		ewarn "without the minimal USE flag."
 		die "Please re-emerge dev-libs/libcdio without the minimal USE flag"
 	fi
+}
+
+src_unpack() {
+	gnome2_src_unpack
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_header_stropts_h=no
+
+	gnome2_src_compile
 }
