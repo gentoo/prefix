@@ -12,7 +12,7 @@ SRC_URI="mirror://gimp/v2.4/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
 IUSE="alsa aalib altivec curl dbus debug doc exif gtkhtml gnome hal lcms mmx mng pdf png python smp sse svg tiff wmf"
 # jpeg temporarily removed, disabling jpeg requires upstream fix which will come in 2.5
@@ -74,6 +74,11 @@ src_unpack() {
 	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
 	# remove this with >= 2.5
 	use svg && epatch "${FILESDIR}/gimp-svg.diff"
+
+	# interix has a problem linking gimp, although everything is there.
+	# this is solved by first extracting all the private static libs and
+	# linking the objects, which works perfectly. nobody else wants this :)
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf
 }
