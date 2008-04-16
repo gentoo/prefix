@@ -14,7 +14,7 @@ IUSE=""
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="dev-lang/perl
 	sys-apps/grep
