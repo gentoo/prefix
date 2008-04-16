@@ -12,7 +12,7 @@ SRC_URI="mirror://freebsd/ports/local-distfiles/ache/${P}.tgz"
 
 LICENSE="arj"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 src_unpack() {
