@@ -1,6 +1,11 @@
 # ChangeLog for app-text/libwpd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.56 2008/01/20 16:20:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.57 2008/04/15 13:22:06 grobian Exp $
+
+*libwpd-0.8.14 (15 Apr 2008)
+
+  15 Apr 2008; Fabian Groffen <grobian@gentoo.org> +libwpd-0.8.14.ebuild:
+  Version bump, bug #217781
 
   20 Jan 2008; Fabian Groffen <grobian@gentoo.org> libwpd-0.8.9.ebuild,
   libwpd-0.8.10.ebuild:
