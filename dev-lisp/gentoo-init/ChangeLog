@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/gentoo-init
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/gentoo-init/ChangeLog,v 1.5 2007/12/08 16:42:41 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/gentoo-init/ChangeLog,v 1.6 2008/04/15 05:48:04 corsair Exp $
+
+  15 Apr 2008; Markus Rothe <corsair@gentoo.org> gentoo-init-0.1.ebuild:
+  Stable on ppc64; bug #217700
 
   08 Dec 2007; Samuli Suominen <drac@gentoo.org> gentoo-init-0.1.ebuild:
   amd64 stable wrt #201216
