@@ -11,7 +11,7 @@ HOMEPAGE="ftp://us.aminet.net/pub/aminet/misc/unix/${PN}.c.gz.readme"
 SLOT="0"
 LICENSE="freedist"
 IUSE=""
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 src_unpack() {
 	mkdir ${S}
