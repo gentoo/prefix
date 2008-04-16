@@ -1,6 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1332 2008/04/15 03:01:27 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1338 2008/04/15 18:38:02 zzam Exp $
+
+  15 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Masked media-plugins/vdr-dvdselect for removal.
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added blocks for =dev-db/postgresql-{base,server}-8.3*
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Added uuid USE-flag for dev-db/postgresql-server
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Added pg-intdatime USE-flag for dev-db/postgresql-base
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  forgot to add dev-db/postgresql-docs
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added masks for new postgresql stuff
 
   15 Apr 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
   Adding cdda and systray local useflags for media-sound/aqualung

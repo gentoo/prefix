@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8505 2008/04/14 21:36:58 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8511 2008/04/15 18:38:02 zzam Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,23 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Matthias Schwarzott <zzam@gentoo.org> (15 Apr 2008)
+# Superseded by vdr-dvdswitch and no longer maintained
+media-plugins/vdr-dvdselect
+
+# Andrej Kacian <ticho@gentoo.org> (15 Apr 2008)
+# Mask until I figure out what's wrong with this release (bug #213762)
+=app-antivirus/clamav-0.93
+
+# Tiziano Müller <dev-zero@gentoo.org> (15 Apr 2008)
+# mask for testing
+app-admin/eselect-postgresql
+dev-db/postgresql-base
+dev-db/postgresql-server
+dev-db/postgresql-docs
+=virtual/postgresql-base-8.3*
+=virtual/postgresql-server-8.3*
 
 # Marijn Schouten <hkBst@gentoo.org> (14 Apr 2008)
 # binary package, now subsumed by binary use flag on mlton itself
@@ -1394,12 +1411,6 @@ games-action/armagetronad
 # Marcus D. Hanwell <cryos@gentoo.org> (03 Nov 2006)
 # 5.5.6 does not work with all projects, please use 5.4 or >=5.8
 =sci-misc/boinc-5.5.6
-
-# Roy Marples <uberlord@gentoo.org> (02 Oct 2006)
-# masked for testing due to major ebuild and installation changes
-sys-apps/makedev
->=sys-apps/baselayout-1.13.0_alpha1
-sys-apps/openrc
 
 # Stefaan De Roeck <stefaan@gentoo.org> (09 Sep 2006)
 # 1.5.x is a development branch, people should test 1.4.x by default
