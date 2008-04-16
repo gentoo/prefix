@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Apr 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.use,
+  windows/interix/profile.bashrc, windows/interix/use.mask:
+  fixed and updated interix profile
+
   16 Apr 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
   Unmask autoconf-2.62, autoconf-wrapper has support for it now
 
