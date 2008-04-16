@@ -34,3 +34,8 @@ src_unpack() {
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
 	epatch "${FILESDIR}"/${P}-darwin-x11link.patch
 }
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigaction=no
+	vim_src_compile || die "vim_src_compile failed"
+}

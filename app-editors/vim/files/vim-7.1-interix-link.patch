@@ -10,7 +10,7 @@ diff -ru vim71.orig/src/link.sh vim71/src/link.sh
      touch auto/link.sed
      cp link.cmd linkit.sh
 -    for libname in SM ICE nsl dnet dnet_stub inet socket dir elf iconv Xt Xmu Xp Xpm X11 Xdmcp x w dl pthread thread readline m perl crypt attr; do
-+    for libname in SM ICE nsl dnet dnet_stub inet dir elf Xt Xmu Xp Xpm X11 Xdmcp x w thread m attr; do
++    for libname in dummy; do
        cont=yes
        while test -n "$cont"; do
          if grep "l$libname " linkit.sh >/dev/null; then
