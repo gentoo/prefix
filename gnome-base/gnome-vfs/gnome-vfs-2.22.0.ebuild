@@ -5,14 +5,14 @@
 EAPI="prefix"
 
 WANT_AUTOMAKE=1.8
-inherit eutils gnome2 autotools
+inherit eutils gnome2 autotools flag-o-matic
 
 DESCRIPTION="Gnome Virtual Filesystem"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="acl avahi doc fam gnutls hal ipv6 kerberos samba ssl"
 
 RDEPEND=">=gnome-base/gconf-2
@@ -78,6 +78,14 @@ pkg_setup() {
 	# so should always be behind the use_enable options
 	# foser <foser@gentoo.org 19 Apr 2004
 	use gnutls && use ssl && G2CONF="${G2CONF} --disable-openssl"
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_poll=no
+		export ac_cv_header_poll_h=no
+		export ac_cv_header_stropts_h=no
+
+		append-flags -D_ALL_SOURCE
+	fi
 }
 
 src_unpack() {
@@ -110,6 +118,15 @@ src_unpack() {
 		"${S}/test/Makefile.am" "${S}/test/Makefile.in"
 	sed -i -e 's:-DG_DISABLE_DEPRECATED:$(NULL):g' \
 		"${S}/programs/Makefile.am" "${S}/programs/Makefile.in"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-interix6.patch
+
+	# this patch would break other interix versions where this is fixed.
+	# sadly enough there is no define which let's me check which version
+	# of interix i'm compiling on, so the patch needs to be applied
+	# conditionally.
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 
 	eautoreconf
 	intltoolize --force
