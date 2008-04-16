@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnu.org/software/guile/"
 SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 RESTRICT="!regex? ( test )"
 
 DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
@@ -26,6 +26,8 @@ IUSE="networking regex discouraged deprecated elisp nls debug-freelist debug-mal
 
 src_unpack() {
 	unpack ${A}; cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
 }
