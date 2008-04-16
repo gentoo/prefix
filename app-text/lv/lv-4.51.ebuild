@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 MY_P=${PN}${PV//./}
 DESCRIPTION="Powerful Multilingual File Viewer"
 HOMEPAGE="http://www.ff.iij4u.or.jp/~nrt/lv/"
@@ -11,14 +13,23 @@ SRC_URI="http://www.ff.iij4u.or.jp/~nrt/freeware/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-libs/ncurses"
 
 S=${WORKDIR}/${MY_P}/build
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"/..
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigvec=no
+
 	LIBS=-lncurses ../src/configure \
 		--host=${HOST} \
 		--prefix="${EPREFIX}"/usr \
