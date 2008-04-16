@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="VI Like Emacs -- yet another full-featured vi clone"
 HOMEPAGE="http://invisible-island.net/vile/"
@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/vile/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="perl"
 
 RDEPEND=">=sys-libs/ncurses-5.2
@@ -22,6 +22,8 @@ DEPEND="${RDEPEND}
 	app-admin/eselect-vi"
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-ldflags -liconv
+
 	econf \
 		--with-ncurses \
 		$(use_with perl ) \
