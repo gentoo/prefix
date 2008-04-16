@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P/o/m}-darwin.patch
 	epatch "${FILESDIR}"/${P/o/m}-gentoo-fbsd.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	sed -i -e 's/CFLAGS = $(OPT) $(SYSTEM)/CFLAGS += $(SYSTEM)/' Makefile
 }
 
