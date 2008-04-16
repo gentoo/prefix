@@ -33,6 +33,11 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-freebsd.patch"
 	epatch "${FILESDIR}/${P}-solaris.patch"
 	epatch "${FILESDIR}/${P}-interix.patch"
+	[[ ${CHOST} == *-interix5* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
+
+	# this one may help on other interix versions too, since it changes the
+	# behaviour a little, so apply for all interix versions.
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 
 	# autoconf is required as the user-cflags patch modifies configure.in
 	# however, elibtoolize is also required, so when the above patch is
