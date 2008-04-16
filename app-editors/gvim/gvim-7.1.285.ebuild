@@ -22,7 +22,7 @@ SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="GUI version of the Vim text editor"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="gnome gtk motif nextaw carbon"
 DEPEND="${DEPEND}
 	~app-editors/vim-core-${PV}
@@ -45,3 +45,14 @@ DEPEND="${DEPEND}
 			)
 		)
 	)"
+
+src_unpack() {
+	vim_src_unpack || die "vim_src_unpack failed"
+
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigaction=no
+	vim_src_compile || die "vim_src_compile failed"
+}
