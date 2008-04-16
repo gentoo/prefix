@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2 autotools
+inherit eutils gnome2 autotools flag-o-matic
 
 DESCRIPTION="Gnome terminal widget"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 # pcre is broken in this release
 IUSE="debug doc python opengl nowheelscroll"
 
@@ -49,9 +49,23 @@ src_unpack() {
 	gnome2_src_unpack
 
 	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
-	epatch "${FILESDIR}/${PN}-0.13.2-no-lazy-bindings.patch"
+	[[ ${CHOST} != *-interix* ]] && epatch "${FILESDIR}/${PN}-0.13.2-no-lazy-bindings.patch"
+	epatch "${FILESDIR}"/${P}-interix.patch
 	cd "${S}/gnome-pty-helper"
 
 	# eautoreconf will break on systems without gtk-doc
 	eautomake
+}
+
+src_compile() {
+	local myconf=
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_stropts_h=no
+		append-flags -D_ALL_SOURCE -D_REENTRANT
+	fi
+
+	[[ ${CHOST} == *-interix3* ]] && myconf="${myconf} --disable-gnome-pty-helper"
+
+	gnome2_src_compile ${myconf}
 }
