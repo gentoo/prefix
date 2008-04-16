@@ -13,7 +13,7 @@ SRC_URI="http://josefsson.org/gnutls/releases/${P}.tar.bz2"
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="zlib lzo doc nls guile bindist"
 
 RDEPEND="dev-libs/libgpg-error
@@ -45,6 +45,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	elibtoolize # for sane .so versioning on FreeBSD
 }
 
