@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit flag-o-matic eutils
+
 IUSE=""
 
 DESCRIPTION="Simple Hex EDitor"
@@ -11,12 +13,21 @@ HOMEPAGE="http://shed.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 DEPEND=">=sys-libs/ncurses-5.3"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf || die
 	emake AM_CFLAGS="${CFLAGS}" || die
