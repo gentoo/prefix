@@ -9,7 +9,7 @@ inherit tetex-2 flag-o-matic
 DESCRIPTION="a complete TeX distribution"
 HOMEPAGE="http://tug.org/teTeX/"
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 src_unpack() {
@@ -48,9 +48,17 @@ src_unpack() {
 	# bug 115775 (from comment 17)
 	EPATCH_OPTS="-d ${S} -p1" epatch ${FILESDIR}/${P}-skip_bibtex_test.patch
 
+	# make tetex recognize interix as UNIX derivate.
+	EPATCH_OPTS="-d ${S} -p1" epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_poll=no
+		export ac_cv_header_poll_h=no
+		append-flags -D_ALL_SOURCE
+	fi
+
 	use amd64 && replace-flags "-O3" "-O2"
 	tetex_src_compile
 }
