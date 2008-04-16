@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.cwi.nl/pub/dik/${MY_P/-/}.shar.Z"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~x86-linux ~ppc-macos"
 IUSE=""
 RDEPEND=""
 DEPEND="sys-apps/sed"
