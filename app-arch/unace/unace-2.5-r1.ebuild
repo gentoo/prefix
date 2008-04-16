@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/unace-2.5-r1.ebuild,v 1.5 2008/04/05 23:31:49 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/unace-2.5-r1.ebuild,v 1.6 2008/04/15 15:13:09 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs
 
-DEB_VER="4"
+DEB_VER="5"
 DESCRIPTION="ACE unarchiver"
 HOMEPAGE="http://www.winace.com/"
 SRC_URI="mirror://debian/pool/non-free/u/unace-nonfree/unace-nonfree_${PV}.orig.tar.gz
@@ -27,7 +27,6 @@ src_unpack() {
 	for p in $(<unace-nonfree-${PV}/debian/patches/00list) ; do
 		epatch unace-nonfree-${PV}/debian/patches/${p}.dpatch
 	done
-	epatch "${FILESDIR}"/${P}-build.patch
 	tc-export CC
 }
 
