@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/tcl/${PN}${PV}-src.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug threads aqua"
 
 RDEPEND="!aqua? ( x11-libs/libX11 )
@@ -62,6 +62,10 @@ src_unpack() {
 	done
 
 	cd "${S}"/unix
+
+	# Interix support (same patch as for tcl!)
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	eautoreconf
 }
 
