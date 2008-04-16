@@ -1,6 +1,24 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.164 2008/03/14 09:01:14 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.166 2008/04/07 21:24:50 eva Exp $
+
+*gnome-terminal-2.22.1 (07 Apr 2008)
+
+  07 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-terminal-2.22.1.ebuild:
+  bump to 2.22.1, fix a few bugs.
+
+*gnome-terminal-2.22.0 (22 Mar 2008)
+
+  22 Mar 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-terminal-2.22.0-default_shell.patch,
+  +files/gnome-terminal-2.22.0-fix-detach-tab.patch,
+  +gnome-terminal-2.22.0.ebuild:
+  New version for GNOME 2.22. Uses GtkNotebook provided reordable tabs for
+  better effects and no code duplication, GOption instead of popt, many bug
+  fixes and more. Also honors the desktop cursor blink setting, disabling of
+  which in keyboard preferences is good for your laptops battery if you have
+  one.
 
   14 Mar 2008; Mart Raudsepp <leio@gentoo.org> gnome-terminal-2.18.2.ebuild,
   gnome-terminal-2.18.4.ebuild:
