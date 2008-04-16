@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/arj/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE=""
 RESTRICT="strip"
 
@@ -26,6 +26,7 @@ src_unpack() {
 	epatch "${FILESDIR}/002_no_remove_static_const.patch"
 	epatch "${FILESDIR}/003_64_bit_clean.patch"
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	cd "${S}/gnu"
 	eautoreconf
