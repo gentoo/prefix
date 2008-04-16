@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit versionator alternatives eutils flag-o-matic libtool
+inherit versionator alternatives eutils flag-o-matic autotools
 
 DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
@@ -14,7 +14,7 @@ SRC_URI="http://www.sqlite.org/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="3"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
@@ -45,7 +45,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/sandbox-fix2.patch
 
-	elibtoolize
+	eautoreconf # need new libtool for interix
 	epunt_cxx
 }
 
