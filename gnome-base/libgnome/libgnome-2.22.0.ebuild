@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 flag-o-matic
 
 DESCRIPTION="Essential Gnome Libraries"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="doc esd"
 
 RDEPEND=">=gnome-base/gconf-2
@@ -34,3 +34,9 @@ DOCS="AUTHORS ChangeLog NEWS README"
 pkg_setup() {
 	G2CONF="${G2CONF} --disable-schemas-install $(use_enable esd)"
 }
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+	gnome2_src_compile
+}
+
