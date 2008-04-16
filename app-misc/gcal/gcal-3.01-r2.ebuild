@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="The GNU Calendar - a replacement for cal"
 HOMEPAGE="http://www.gnu.org/software/gcal/gcal.html"
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/gcal/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="ncurses nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -24,6 +24,9 @@ src_unpack() {
 }
 
 src_compile() {
+	# i'm really out of ideas here...
+	[[ ${CHOST} == *-interix* ]] && append-ldflags -lintl
+
 	econf $(use_enable nls) $(use_enable ncurses) || die
 	emake || die
 }
