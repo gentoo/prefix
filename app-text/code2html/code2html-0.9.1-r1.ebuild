@@ -14,7 +14,7 @@ SRC_URI="http://www.palfrader.org/code2html/all/${P}.tar.gz
 LICENSE="as-is"
 SLOT="0"
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
