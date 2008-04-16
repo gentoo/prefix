@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils pam
+inherit gnome2 eutils pam flag-o-matic
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="debug doc hal pam test"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -39,3 +39,16 @@ pkg_setup() {
 		$(use_with pam pam-dir $(getpam_mod_dir))
 		--with-root-certs=/usr/share/ca-certificates/"
 }
+
+src_unpack() {
+	gnome2_src_unpack
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
+	gnome2_src_compile
+}
+
