@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigsegv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.30 2008/02/12 23:46:36 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.31 2008/04/15 05:45:38 corsair Exp $
+
+  15 Apr 2008; Markus Rothe <corsair@gentoo.org> libsigsegv-2.4.ebuild:
+  Stable on ppc64; bug #217700
 
   12 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> -libsigsegv-2.1.ebuild,
   -libsigsegv-2.2.ebuild:
