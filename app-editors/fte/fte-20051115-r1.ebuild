@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="Lightweight text-mode editor"
 HOMEPAGE="http://fte.sourceforge.net"
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/fte/${P}-src.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="gpm slang X"
 S=${WORKDIR}/${PN}
 
@@ -47,6 +47,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/fte-gcc34
 	epatch "${FILESDIR}"/${PN}-new_keyword.patch
 	epatch "${FILESDIR}"/${PN}-slang.patch
+	epatch "${FILESDIR}"/${PN}-interix.patch
 
 	set_targets
 	sed \
@@ -80,8 +81,16 @@ src_unpack() {
 }
 
 src_compile() {
+	local optimize=
+	local os="-DLINUX" # by now the default in makefile
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		optimize="-D_ALL_SOURCE"
+		os=
+	fi
+
 	DEFFLAGS="PREFIX='${EPREFIX}'/usr CONFIGDIR='${EPREFIX}'/usr/share/fte \
-		DEFAULT_FTE_CONFIG=../config/main.fte OPTIMIZE="
+		DEFAULT_FTE_CONFIG=../config/main.fte OPTIMIZE=${optimize} UOS=${os}"
 
 	set_targets
 	emake $DEFFLAGS TARGETS="$TARGETS" all || die
