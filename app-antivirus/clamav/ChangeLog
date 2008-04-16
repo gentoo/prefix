@@ -1,6 +1,12 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.282 2008/02/29 23:46:46 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.283 2008/04/15 13:55:39 falco Exp $
+
+*clamav-0.93 (15 Apr 2008)
+
+  15 Apr 2008; Raphael Marichez <falco@gentoo.org>
+  +files/clamav-0.93-nls.patch, +clamav-0.93.ebuild:
+  Security bump, bug #213762 and add -I m4 in aclocal
 
 *clamav-0.92.1-r1 (29 Feb 2008)
 
