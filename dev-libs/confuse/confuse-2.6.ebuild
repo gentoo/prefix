@@ -4,13 +4,15 @@
 
 EAPI="prefix"
 
+inherit autotools flag-o-matic
+
 DESCRIPTION="a configuration file parser library"
 HOMEPAGE="http://www.nongnu.org/confuse/"
 SRC_URI="http://bzero.se/confuse/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
 DEPEND="sys-devel/libtool
@@ -18,7 +20,16 @@ DEPEND="sys-devel/libtool
 	nls? ( sys-devel/gettext )"
 RDEPEND="nls? ( virtual/libintl )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	eautoreconf # need new libtool for interix
+}
+
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	econf \
 		--enable-shared \
 		$(use_enable nls) || die
