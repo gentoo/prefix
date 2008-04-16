@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/bvi/${P}.src.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="sys-libs/ncurses"
 
