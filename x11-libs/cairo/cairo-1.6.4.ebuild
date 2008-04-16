@@ -12,7 +12,7 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug directfb doc glitz opengl svg test X xcb aqua"
 
 RDEPEND="media-libs/fontconfig
@@ -59,6 +59,8 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT -D_ALL_SOURCE
+
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
 
