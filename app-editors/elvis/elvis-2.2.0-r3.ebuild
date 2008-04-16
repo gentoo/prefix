@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.cs.pdx.edu/pub/elvis/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="X"
 
 DEPEND=">=sys-libs/ncurses-5.2
@@ -32,6 +32,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/ft2.3-symbol-collision-fix.patch"
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
