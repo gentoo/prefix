@@ -33,18 +33,14 @@ DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
 src_unpack() {
 	gnome2_src_unpack
 
-	epatch "${FILESDIR}"/${P}-interix.patch
-}
-
-src_unpack() {
-	gnome2_src_unpack
-
 	# Filter out G_DISABLE_DEPRECATED to be future-proof, related to bug 213434
 	sed -i -e '/DISABLE_DEPRECATED/d' \
 		"${S}/linc2/src/Makefile.am" "${S}/linc2/src/Makefile.in"
 
 	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' \
 		"${S}/configure.in" "${S}/configure"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
