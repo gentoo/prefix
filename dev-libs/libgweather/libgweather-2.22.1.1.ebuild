@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 autotools
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=x11-libs/gtk+-2.11
@@ -23,6 +23,11 @@ RDEPEND=">=x11-libs/gtk+-2.11
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.19"
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
+}
 
 pkg_postinst() {
 	gnome2_pkg_postinst
