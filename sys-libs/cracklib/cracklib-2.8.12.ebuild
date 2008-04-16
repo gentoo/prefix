@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs multilib
+inherit toolchain-funcs multilib autotools
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 
 LICENSE="CRACKLIB"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="nls python"
 
 DEPEND="python? ( dev-lang/python )"
@@ -27,6 +27,15 @@ pkg_setup() {
 		eerror "Please run: FEATURES=-unmerge-orphans emerge cracklib"
 		die "Please run: FEATURES=-unmerge-orphans emerge cracklib"
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
