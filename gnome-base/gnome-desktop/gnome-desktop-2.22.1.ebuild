@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 DESCRIPTION="Libraries for the gnome desktop that is not part of the UI"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/libxml2-2.4.20
@@ -34,4 +34,9 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} --with-gnome-distributor=Gentoo --disable-scrollkeeper"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
 }
