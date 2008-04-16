@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="Flexible remote checksum-based differencing"
 HOMEPAGE="http://librsync.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 src_unpack() {
@@ -22,8 +22,8 @@ src_unpack() {
 	# Bug #142945
 	epatch "${FILESDIR}"/${P}-huge-files.patch
 
-	# Bug #185600
-	elibtoolize
+	# Bug #185600 (was elibtoolize; extended to eautoreconf for interix)
+	eautoreconf # need new libtool for interix
 	epunt_cxx
 }
 
