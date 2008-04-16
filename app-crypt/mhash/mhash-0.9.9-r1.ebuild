@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="library providing a uniform interface to a large number of hash algorithms"
 HOMEPAGE="http://mhash.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/mhash/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -22,6 +22,8 @@ src_unpack() {
 	# Fix for issues in bug #181563
 	unpack ${A} && cd "${S}"
 	epatch "${FILESDIR}/${P}-mutils-align.patch"
+
+	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
