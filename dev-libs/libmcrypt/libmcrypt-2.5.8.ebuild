@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="libmcrypt is a library that provides uniform interface to access several encryption algorithms."
 HOMEPAGE="http://mcrypt.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/mcrypt/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -20,8 +20,8 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# freebsd?
-	elibtoolize
+
+	eautoreconf # need new libtool for interix (elibtoolize would suffice for freebsd)
 }
 
 src_install() {
