@@ -1,0 +1,71 @@
+# ChangeLog for x11-terms/tilda
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.15 2008/03/17 14:28:01 cla Exp $
+
+  17 Mar 2008; Dawid Węgliński <cla@gentoo.org> tilda-0.9.5.ebuild:
+  Stable on x86 (bug #213482)
+
+  16 Mar 2008; nixnut <nixnut@gentoo.org> tilda-0.9.5.ebuild:
+  Stable on ppc wrt bug 213482
+
+  16 Mar 2008; Richard Freeman <rich0@gentoo.org> tilda-0.9.5.ebuild:
+  amd64 stable - 213482
+
+*tilda-0.9.5 (16 Jan 2008)
+
+  16 Jan 2008; Steev Klimaszewski <steev@gentoo.org> -tilda-0.09.2.ebuild,
+  -tilda-0.09.3.ebuild, +tilda-0.9.5.ebuild:
+  New 0.9.5 release.  Closes bug #202409, thanks to Pacho Ramos 
+  <pacho@condmat1.ciencias.uniovi.es> for reporting.  Also add the 
+  pkgconfig dep which closes bug #205078, thanks to bonsaikitten for 
+  reporting. Minor cleanups with quoting.
+
+  17 Apr 2007; <welp@gentoo.org> tilda-0.9.4.ebuild:
+  Stable on amd64 wrt bug 172156
+
+  30 Mar 2007; nixnut <nixnut@gentoo.org> tilda-0.9.4.ebuild:
+  Stable on ppc wrt bug 172156
+
+  25 Mar 2007; Andrej Kacian <ticho@gentoo.org> tilda-0.9.4.ebuild:
+  Stable on x86, bug #172156.
+
+*tilda-0.9.4 (30 Nov 2006)
+
+  30 Nov 2006; Steev Klimaszewski <steev@gentoo.org> +tilda-0.9.4.ebuild:
+  New upstream release.  Version naming from being 0.09.x to 0.9.x.  Please
+  test.
+
+*tilda-0.09.3 (29 Jun 2006)
+
+  29 Jun 2006; Steev Klimaszewski <steev@gentoo.org> +tilda-0.09.3.ebuild:
+  New upstream release.
+
+  15 May 2006; Mark Loeser <halcy0n@gentoo.org> tilda-0.09.2.ebuild:
+  Stable on x86; bug #133379
+
+  17 Apr 2006; Steev Klimaszewski <steev@gentoo.org> tilda-0.09.2.ebuild:
+  Cosmetic change to ebuild, based off the gentoo.tampered.net/stabe url.
+
+*tilda-0.09.2 (27 Feb 2006)
+
+  27 Feb 2006; Steev Klimaszewski <steev@gentoo.org> -tilda-0.09.1.ebuild,
+  +tilda-0.09.2.ebuild:
+  Version bump to 0.09.2. Introduces dependency on confuse and glib.
+  Closes bug #77857.  Thank you to Tristan Sloughter for the report.
+
+  03 Nov 2005; Steev Klimaszewski <steev@gentoo.org> tilda-0.09.1.ebuild:
+  Add ~amd64 and ~ppc
+
+*tilda-0.09.1 (01 Nov 2005)
+
+  01 Nov 2005; Steev Klimaszewski <steev@gentoo.org> metadata.xml,
+  -tilda-0.02.ebuild, +tilda-0.09.1.ebuild:
+  Version bump to 0.09.1.  Remove 0.02.  Removal from p.mask.
+
+*tilda-0.02 (08 Jan 2005)
+
+  08 Jan 2005; Stuart Herbert <stuart@gentoo.org> +metadata.xml,
+  +tilda-0.02.ebuild:
+  Initial import; thanks to Tristan Sloughter <kungfooguru@gmail.com>; see bug
+  #77052
+
