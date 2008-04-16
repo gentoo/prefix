@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/extract-xiso/${PN}_v${MY_PV}_src.tgz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
@@ -25,6 +25,7 @@ src_unpack() {
 	sed -i -e "s:-O2:${CFLAGS}:g" ${S}/Makefile || die "sed failed"
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {

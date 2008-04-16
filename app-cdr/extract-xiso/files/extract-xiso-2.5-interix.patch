@@ -1,0 +1,56 @@
+diff -ru extract-xiso.orig/extract-xiso.c extract-xiso/extract-xiso.c
+--- extract-xiso.orig/extract-xiso.c	2008-04-01 12:19:28 +0200
++++ extract-xiso/extract-xiso.c	2008-04-01 12:22:56 +0200
+@@ -341,6 +341,19 @@
+ 
+ 	typedef __int32						int32_t;
+     typedef __int64                     xoff_t;
++#elif defined(__INTERIX)
++	#define exiso_target				"interix"
++
++	#define PATH_CHAR					'/'
++	#define PATH_CHAR_STR				"/"
++	
++	#define BURN_ENABLED				0
++	
++	#define READFLAGS					O_RDONLY
++	#define WRITEFLAGS					O_WRONLY | O_CREAT | O_TRUNC
++	#define READWRITEFLAGS				O_RDWR
++
++	typedef off_t						xoff_t;
+ #else
+ 	#error unknown target, cannot compile!
+ #endif
+diff -ru extract-xiso.orig/libftp-5.0.1.modified.by.in/FtpMessage.c extract-xiso/libftp-5.0.1.modified.by.in/FtpMessage.c
+--- extract-xiso.orig/libftp-5.0.1.modified.by.in/FtpMessage.c	2008-04-01 12:19:29 +0200
++++ extract-xiso/libftp-5.0.1.modified.by.in/FtpMessage.c	2008-04-01 12:23:42 +0200
+@@ -98,7 +98,7 @@
+ 
+ char *FtpMessage(int number)
+ {
+-#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ )
++#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ ) && !defined(__INTERIX)
+   extern int sys_nerr,errno;
+   extern char *sys_errlist[];
+ #endif
+@@ -106,7 +106,7 @@
+   FtpInitMessageList();
+ 
+   if ( number == 0 )
+-#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ )
++#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ ) && !defined(__INTERIX)
+     return sys_errlist[errno];
+ #else
+ 	return (char *) strerror( errno );
+diff -ru extract-xiso.orig/libftp-5.0.1.modified.by.in/FtpPasv.c extract-xiso/libftp-5.0.1.modified.by.in/FtpPasv.c
+--- extract-xiso.orig/libftp-5.0.1.modified.by.in/FtpPasv.c	2008-04-01 12:19:29 +0200
++++ extract-xiso/libftp-5.0.1.modified.by.in/FtpPasv.c	2008-04-01 12:20:13 +0200
+@@ -68,7 +68,7 @@
+   
+   if (select(getdtablesize(),&fds,0,0,0)<0)
+     {
+-#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ )
++#if ! defined( __DARWIN__ ) && ! defined( __LINUX__ ) && ! defined( __FREEBSD__ ) && !defined(__INTERIX)
+       if (ftp1->error!=NULL)
+ 	return (*(ftp1->error))(ftp1,QUIT,sys_errlist[errno]);
+       if (ftp2->error!=NULL)
