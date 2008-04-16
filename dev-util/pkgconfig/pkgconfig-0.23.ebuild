@@ -22,13 +22,6 @@ DEPEND=""
 
 S=${WORKDIR}/${MY_P}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-#	epatch "${FILESDIR}"/${MY_PN}-0.22-interix.patch
-}
-
 src_compile() {
 	local myconf
 
