@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="Cooledit is a full featured multiple window text editor"
 HOMEPAGE="http://freshmeat.net/projects/cooledit/"
 SRC_URI="ftp://ftp.ibiblio.org/pub/Linux/apps/editors/X/cooledit/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="nls spell"
 
 RDEPEND="x11-libs/libX11
@@ -23,9 +23,14 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch ${FILESDIR}/cooledit-3.17.17-gcc4.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
+
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_header_wchar_h=no
+
 	# Fix for bug 40152 (04 Feb 2004 agriffis)
 	addwrite /dev/ptym/clone:/dev/ptmx
 	econf $(use_enable nls)
