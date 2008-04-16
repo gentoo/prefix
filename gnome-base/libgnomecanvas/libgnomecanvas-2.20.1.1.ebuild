@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit virtualx gnome2
+inherit virtualx gnome2 autotools
 
 DESCRIPTION="The Gnome 2 Canvas library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="doc"
 
 # gail dep at 1.19.6 to ensure both gail and libgnomecanvas aren't providing GailCanvas (got moved to here with gail-1.19.6)
@@ -28,6 +28,11 @@ DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
+}
 
 src_test() {
 	Xmake check || die "Test phase failed"
