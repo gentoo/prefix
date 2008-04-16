@@ -4,19 +4,28 @@
 
 EAPI="prefix"
 
+inherit autotools
+
 DESCRIPTION="A jar program written in C"
 HOMEPAGE="https://savannah.nongnu.org/projects/fastjar"
 SRC_URI="http://download.savannah.nongnu.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 
 IUSE=""
 
 # bug #188542
 RDEPEND="!<=dev-java/kaffe-1.1.7-r5"
 DEPEND=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
