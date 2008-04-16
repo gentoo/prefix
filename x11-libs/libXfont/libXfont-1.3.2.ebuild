@@ -11,7 +11,7 @@ inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xfont library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/xtrans
@@ -33,4 +33,14 @@ pkg_setup() {
 	filter-flags -Wl,-Bdirect
 	filter-ldflags -Bdirect
 	filter-ldflags -Wl,-Bdirect
+}
+
+src_compile() {
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_poll=no
+		export ac_cv_header_poll_h=no
+		append-flags -D_ALL_SOURCE
+	fi
+
+	x-modular_src_compile
 }
