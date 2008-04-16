@@ -1,0 +1,105 @@
+# ChangeLog for media-libs/libmpd
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.28 2008/03/03 00:16:40 cla Exp $
+
+  03 Mar 2008; <cla@gentoo.org> libmpd-0.15.0.ebuild:
+  Stable on x86 (bug #212077)
+
+  02 Mar 2008; nixnut <nixnut@gentoo.org> libmpd-0.15.0.ebuild:
+  Stable on ppc wrt bug 212077
+
+  02 Mar 2008; Christoph Mende <angelos@gentoo.org> libmpd-0.15.0.ebuild:
+  Stable on amd64, bug #212077
+
+  20 Jan 2008; Christoph Mende <angelos@gentoo.org> -libmpd-0.13.0.ebuild:
+  Prune old version
+
+  19 Jan 2008; Christian Faulhammer <opfer@gentoo.org> libmpd-0.14.0.ebuild:
+  stable x86, bug 206637
+
+*libmpd-0.15.0 (19 Jan 2008)
+
+  19 Jan 2008; Christoph Mende <angelos@gentoo.org> metadata.xml,
+  -libmpd-0.01.ebuild, -libmpd-0.12.0.ebuild, +libmpd-0.15.0.ebuild:
+  Bump to 0.15.0, remove old and take over maintainership
+
+  01 Sep 2007; Christoph Mende <angelos@gentoo.org> libmpd-0.14.0.ebuild:
+  Stable on amd64
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libmpd-0.14.0.ebuild:
+  ppc. stable
+
+  17 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> libmpd-0.14.0.ebuild:
+  Stable on sparc
+
+*libmpd-0.14.0 (21 May 2007)
+
+  21 May 2007; Andrej Kacian <ticho@gentoo.org> +libmpd-0.14.0.ebuild:
+  Version bump for new gmpc.
+
+  17 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> libmpd-0.13.0.ebuild:
+  Stable on sparc wrt #174098
+
+  15 Apr 2007; nixnut <nixnut@gentoo.org> libmpd-0.13.0.ebuild:
+  Stable on ppc wrt bug 174098
+
+  11 Apr 2007; Peter Weller <welp@gentoo.org> libmpd-0.13.0.ebuild:
+  Stable on amd64 wrt bug 174098
+
+  11 Apr 2007; Christian Faulhammer <opfer@gentoo.org> libmpd-0.13.0.ebuild:
+  stable x86, bug 174098
+
+*libmpd-0.13.0 (03 Mar 2007)
+
+  03 Mar 2007; Andrej Kacian <ticho@gentoo.org> +libmpd-0.13.0.ebuild:
+  Version bump for bug #169098.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-libmpd-0.01,
+  files/digest-libmpd-0.12.0, Manifest:
+  Fixing SHA256 digest, pass four
+
+  27 Mar 2006; <ticho@gentoo.org> libmpd-0.01.ebuild, libmpd-0.12.0.ebuild:
+  HOMEPAGE update.
+
+*libmpd-0.12.0 (27 Mar 2006)
+
+  27 Mar 2006; <ticho@gentoo.org> -libmpd-0.12.0_rc1.ebuild,
+  +libmpd-0.12.0.ebuild:
+  Version bump.
+
+*libmpd-0.12.0_rc1 (25 Feb 2006)
+
+  25 Feb 2006; Andrej Kacian <ticho@gentoo.org> +libmpd-0.12.0_rc1.ebuild:
+  Version bump.
+
+  12 Feb 2006; Luis Medinas <metalgod@gentoo.org> libmpd-0.01.ebuild:
+  Stable on amd64.
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org> libmpd-0.01.ebuild:
+  Stable on ppc.
+
+  25 Oct 2005; Gustavo Zacarias <gustavoz@gentoo.org> libmpd-0.01.ebuild:
+  Stable on sparc
+
+  25 Oct 2005; Andrej Kacian <ticho@gentoo.org> libmpd-0.01.ebuild:
+  Stable on x86 - a dependency of >=media-sound/gmpc-0.12.0.
+
+  24 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> libmpd-0.01.ebuild:
+  ~sparc wrt #103486
+
+  23 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libmpd-0.01.ebuild:
+  Marked ~amd64 wrt bug #103486.
+
+  23 Aug 2005; Lars Weiler <pylon@gentoo.org> libmpd-0.01.ebuild:
+  Added ~ppc-keyword as requested in Bug #103486.
+
+*libmpd-0.01 (23 Aug 2005)
+
+  23 Aug 2005; Andrej Kacian <ticho@gentoo.org> +metadata.xml,
+  +libmpd-0.01.ebuild:
+  Initial import.
+
