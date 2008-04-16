@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~mips-linux ~x86-linux"
 IUSE="gnome kde"
 
-RDEPEND=">=dev-util/pkgconfig-0.9.0
-	>=dev-libs/libmowgli-0.6.1
+RDEPEND=">=dev-libs/libmowgli-0.6.1
 	gnome? ( >=gnome-base/gconf-2.6.0 )
 	kde? ( kde-base/kdelibs )"
 
