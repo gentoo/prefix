@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
-inherit autotools eutils multilib toolchain-funcs
+inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
 DESCRIPTION="Tool Command Language"
 HOMEPAGE="http://www.tcl.tk/"
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/tcl/${PN}${PV}-src.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug threads"
 
 DEPEND=""
@@ -51,10 +51,16 @@ src_unpack() {
 	done
 
 	cd "${S}"/unix
+
+	# Interix support.
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	eautoreconf
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
+
 	tc-export CC
 	local local_config_use=""
 
