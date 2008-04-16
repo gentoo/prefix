@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit eutils gnome2 flag-o-matic
 
 DESCRIPTION="User Interface routines for Gnome"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc jpeg"
 
 RDEPEND=">=dev-libs/libxml2-2.4.20
@@ -46,4 +46,9 @@ src_unpack() {
 
 	# Re-enable deprecated gnome druid code
 	epatch "${FILESDIR}"/${PN}-2.19.1-enable-druid.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+	gnome2_src_compile
 }
