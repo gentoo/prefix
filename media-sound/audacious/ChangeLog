@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/audacious/ChangeLog,v 1.144 2008/03/14 01:23:20 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.145 2008/04/09 12:56:14 armin76 Exp $
+
+  09 Apr 2008; Raúl Porcel <armin76@gentoo.org> audacious-1.4.6.ebuild:
+  sparc/x86 stable
 
 *audacious-1.5.0 (14 Mar 2008)
 
