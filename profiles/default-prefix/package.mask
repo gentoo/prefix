@@ -37,10 +37,6 @@
 # Doesn't compile on amd64-linux the least (gcc-4.3.0)
 =sys-apps/net-tools-1.60_p20071202044231
 
-# Fabian Groffen <grobian@gentoo.org> (11 Apr 2008)
-# A bit too new currently, see bug #217264
-~sys-devel/autoconf-2.62
-
 # Fabian Groffen <grobian@gentoo.org> (03 Apr 2008)
 # Had undefined references all over the place on Solaris, don't like it
 # not compiling, masking globally

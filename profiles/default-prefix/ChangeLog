@@ -3,6 +3,9 @@
 # $Header: $
 
   16 Apr 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
+  Unmask autoconf-2.62, autoconf-wrapper has support for it now
+
+  16 Apr 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
   Mask =sys-apps/net-tools-1.60_p20071202044231
 
   14 Apr 2008; Michael Haubenwallner <haubi@gentoo.org> aix/packages:
