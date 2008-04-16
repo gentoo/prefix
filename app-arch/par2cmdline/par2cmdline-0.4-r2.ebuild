@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="A PAR-2.0 file verification and repair tool"
 HOMEPAGE="http://parchive.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/parchive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
@@ -25,6 +25,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-offset.patch
 	epatch "${FILESDIR}"/${P}-letype.patch
 	epatch "${FILESDIR}"/${P}-gcc4.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
+	econf || die "econf failed"
+	emake || die "emake failed"
 }
 
 src_install() {
