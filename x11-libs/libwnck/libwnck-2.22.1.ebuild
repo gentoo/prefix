@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 DESCRIPTION="A window navigation construction kit"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc"
 
 RDEPEND=">=x11-libs/gtk+-2.11.3
@@ -27,3 +27,8 @@ DEPEND="${RDEPEND}
 		doc? ( >=dev-util/gtk-doc-1.9 )"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
+
+src_unpack() {
+	gnome2_src_unpack
+	eautoreconf # need new libtool for interix
+}
