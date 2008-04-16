@@ -90,14 +90,14 @@ gnuconfig_do_update() {
 # returns the directory where they can be found.
 gnuconfig_findnewest() {
 	local locations="
-		/usr/share/gnuconfig/config.sub
-		/usr/share/automake-1.9/config.sub
-		/usr/share/automake-1.8/config.sub
-		/usr/share/automake-1.7/config.sub
-		/usr/share/automake-1.6/config.sub
-		/usr/share/automake-1.5/config.sub
-		/usr/share/automake-1.4/config.sub
-		/usr/share/libtool/config.sub
+		${EPREFIX}/usr/share/gnuconfig/config.sub
+		${EPREFIX}/usr/share/automake-1.9/config.sub
+		${EPREFIX}/usr/share/automake-1.8/config.sub
+		${EPREFIX}/usr/share/automake-1.7/config.sub
+		${EPREFIX}/usr/share/automake-1.6/config.sub
+		${EPREFIX}/usr/share/automake-1.5/config.sub
+		${EPREFIX}/usr/share/automake-1.4/config.sub
+		${EPREFIX}/usr/share/libtool/config.sub
 	"
 	grep -s '^timestamp' ${locations} | sort -n -t\' -k2 | tail -n 1 | sed 's,/config.sub:.*$,,'
 }
