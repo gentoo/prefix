@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnu.org/software/${PN}/"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE=""
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="dev-lang/perl"
 
