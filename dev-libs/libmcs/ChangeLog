@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libmcs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.35 2008/02/18 14:54:15 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.36 2008/04/11 11:25:49 chainsaw Exp $
+
+  11 Apr 2008; Tony Vroon <chainsaw@gentoo.org> libmcs-0.6.0.ebuild,
+  libmcs-0.7.0.ebuild:
+  Add explicit pkg-config dependency to make Evil Compile Person happy,
+  closes bug #216401.
 
 *libmcs-0.7.0 (18 Feb 2008)
 
