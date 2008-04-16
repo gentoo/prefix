@@ -17,7 +17,7 @@ SRC_URI="http://${PN}.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT=${PV_MAJ_MIN}
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug nls test"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -34,6 +34,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.10.17-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
@@ -43,6 +44,7 @@ src_compile() {
 	if [[ ${CHOST} == *-interix* ]] ; then
 		append-flags -D_ALL_SOURCE
 		export ac_cv_lib_dl_dladdr=no
+		export ac_cv_func_poll=no
 	fi
 
 	econf --with-package-name="Gentoo GStreamer ebuild" \
