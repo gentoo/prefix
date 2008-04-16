@@ -17,7 +17,7 @@ SRC_URI="ftp://ftp.zsh.org/pub/${P}.tar.bz2
 
 LICENSE="ZSH"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="maildir static doc examples pcre caps unicode"
 
 RDEPEND=">=sys-libs/ncurses-5.1
@@ -43,6 +43,11 @@ src_unpack() {
 
 src_compile() {
 	local myconf=
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_poll_h=no
+		export ac_cv_func_poll=no
+	fi
 
 	if use static ; then
 		myconf="${myconf} --disable-dynamic"
