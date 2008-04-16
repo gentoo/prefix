@@ -12,7 +12,7 @@ SRC_URI="http://www.adel.nursat.kz/apg/download/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="cracklib"
 
 DEPEND="cracklib? ( sys-libs/cracklib )"
