@@ -24,6 +24,7 @@ src_unpack() {
 	cd ${S}
 	epatch ${FILESDIR}/cooledit-3.17.17-gcc4.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-interix5.patch
 
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
