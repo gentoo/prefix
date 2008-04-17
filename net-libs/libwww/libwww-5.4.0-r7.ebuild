@@ -35,6 +35,7 @@ src_unpack() {
 	rm -f configure.in
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	epatch "${FILESDIR}"/${P}-more-ssl-fixing.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	eautoreconf || die "autoreconf failed"
 }
 
