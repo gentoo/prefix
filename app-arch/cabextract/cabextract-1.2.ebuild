@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit flag-o-matic
+
 DESCRIPTION="Extracts files from Microsoft .cab files"
 HOMEPAGE="http://www.kyz.uklinux.net/cabextract.php"
 SRC_URI="http://www.kyz.uklinux.net/downloads/${P}.tar.gz"
@@ -15,6 +17,16 @@ IUSE=""
 
 DEPEND=""
 RDEPEND=""
+
+src_compile() {
+	# cabextract doesn't think about linking libintl at all.
+	# on interix[35] this means linking fails, since there is no
+	# getopt(), and only the included getopt needs gettext.
+	[[ ${CHOST} == *-interix[35]* ]] && append-ldflags -lintl
+
+	econf || die "econf failed"
+	emake || die "emake failed"
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake failed"
