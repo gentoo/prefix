@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Apr 2008; Markus Duft <mduft@gentoo.org> package.mask:
+  masked autoconf 2.62 because it breaks bootstrap of various packages
+
   17 Apr 2008; Markus Duft <mduft@gentoo.org> -windows/interix/package.use,
   +windows/interix/package.use.force, +windows/interix/package.use.mask:
   corrected maskings for interix profiles
