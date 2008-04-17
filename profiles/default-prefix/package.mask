@@ -34,7 +34,7 @@
 
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
-# circular dependencies while running aclocal
+# circular dependencies while running aclocal (bug #218122)
 =sys-devel/autoconf-2.62
 
 # Fabian Groffen <grobian@gentoo.org> (16 Apr 2008)
