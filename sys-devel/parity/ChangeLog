@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*parity-1.0.4 (17 Apr 2008)
+
+  17 Apr 2008; Markus Duft <mduft@gentoo.org> metadata.xml,
+  parity-1.0.3.ebuild, +parity-1.0.4.ebuild:
+  update parity-1.0.3.ebuild formatting, nothing serious. added version 1.0.4
+
 *parity-1.0.3 (04 Feb 2008)
 
   04 Feb 2008; Michael Haubenwallner <haubi@gentoo.org> +., +files,
