@@ -175,8 +175,29 @@ elibtoolize() {
 	[[ ${CHOST} == *"-freebsd"* ]] && \
 		elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
 
+	# Hardcoding library path does not work with DESTDIR installs.
+	#
+	# Affects any platform with 'hardcode_direct=yes' or 'hardcode_minus_L=yes'.
+	# According to libtool.m4 (as of libtool-1.5.26), these are:
+	#    *-aix*
+	#    *-hpux9
+	#    hppa-hpux* (not hppa64 or ia64)
+	#    *-netbsd
+	#    *-openbsd
+	#    *-freebsd
+	#    *-dragonfly
+	#    *-newsos6
+	#    *-os2
+	#    *-amigaos
+	#    *-sunos4
+	#    *-sysv4
+	# It definitely is required for aix (to support DESTDIR),
+	# although it should help for others too...
 	[[ ${CHOST} == *"-aix"* ]] &&
-		elt_patches="${elt_patches} hc-relink aixrtl"
+		elt_patches="${elt_patches} hardcode"
+
+	[[ ${CHOST} == *"-aix"* ]] &&
+		elt_patches="${elt_patches} aixrtl"
 
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
