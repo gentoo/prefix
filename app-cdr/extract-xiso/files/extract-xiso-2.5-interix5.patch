@@ -1,0 +1,13 @@
+diff -ru extract-xiso.orig/extract-xiso.c extract-xiso/extract-xiso.c
+--- extract-xiso.orig/extract-xiso.c	2008-04-17 11:43:36 +0200
++++ extract-xiso/extract-xiso.c	2008-04-17 11:43:39 +0200
+@@ -353,6 +353,9 @@
+ 	#define WRITEFLAGS					O_WRONLY | O_CREAT | O_TRUNC
+ 	#define READWRITEFLAGS				O_RDWR
+ 
++	#include "win32/getopt.c"
++	#include "win32/asprintf.c"
++
+ 	typedef off_t						xoff_t;
+ #else
+ 	#error unknown target, cannot compile!

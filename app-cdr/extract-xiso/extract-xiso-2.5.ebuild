@@ -26,6 +26,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+	# older interix versions need some help...
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
 }
 
 src_compile() {
