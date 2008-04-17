@@ -21,6 +21,7 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch ${FILESDIR}/${PV}-respect-CFLAGS-and-dont-strip.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
