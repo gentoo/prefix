@@ -1,8 +1,9 @@
 http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
 
-but this patch disables hardcoding independent of inst_prefix_dir at all.
+but this patch disables hardcoding independent of inst_prefix_dir at all,
+for both hardcode_direct=yes and hardcode_minus_L=yes.
 
-If you update this patch, please also update libtool/files/1.5.26/hcdirect-destdir.patch
+If you update this patch, please also update libtool/files/libtool-1.3d-hardcode.patch
 
 --- ltmain.in.orig	2008-04-16 15:54:04.000000000 +0200
 +++ ltmain.in	2008-04-16 16:21:04.000000000 +0200
