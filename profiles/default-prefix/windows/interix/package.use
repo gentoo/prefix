@@ -1,3 +1,0 @@
-# must use toolchain-prefix-wrapper on interix
-sys-devel/binutils-config extwrapper
-x11-wm/fluxbox -nls
