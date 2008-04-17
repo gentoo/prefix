@@ -31,7 +31,10 @@ src_compile() {
 	# lines are inherited between libraries
 	use elibc_FreeBSD && myconf="${myconf} --enable-indirect-deps"
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+	if [[ ${CHOST} == *-interix* ]]; then 
+		append-flags "-D_ALL_SOURCE"
+		export ac_cv_func_poll=no
+	fi
 
 	econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
