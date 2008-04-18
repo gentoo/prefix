@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3494 2008/04/15 09:28:45 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3495 2008/04/17 07:56:46 chtekk Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1458,15 +1458,19 @@ net-fs/samba:swat - Enables support for swat configuration gui
 net-fs/samba:winbind - Enables support for the winbind auth daemon
 net-fs/shfs:amd - Enable automounter support
 net-ftp/ftpcube:sftp - Enable sftp connection support
-net-ftp/proftpd:authfile - Enable support for auth-file module
+net-ftp/proftpd:authfile - Enable support for the auth-file module
+net-ftp/proftpd:ban - Enable support for the mod_ban module
+net-ftp/proftpd:case - Enable support for the mod_case module
+net-ftp/proftpd:deflate - Enable support for the mod_deflate module
+net-ftp/proftpd:gzipfs - Enable support for the mod_gzipfs module
 net-ftp/proftpd:ifsession - Enable support for the ifsession module
-net-ftp/proftpd:noauthunix - Disable support for auth-unix module
-net-ftp/proftpd:opensslcrypt - Enable support for openssly crypto
-net-ftp/proftpd:rewrite - Enable support for rewrite module
-net-ftp/proftpd:shaper - Enable support for the mod_shaper
-net-ftp/proftpd:sitemisc - Enable support for sitemisc module
-net-ftp/proftpd:softquota - Enable support for the mod_quotatab
-net-ftp/proftpd:vroot - Enable support for virtual root module
+net-ftp/proftpd:noauthunix - Disable support for the auth-unix module
+net-ftp/proftpd:opensslcrypt - Enable support for OpenSSL crypto
+net-ftp/proftpd:rewrite - Enable support for the rewrite module
+net-ftp/proftpd:shaper - Enable support for the mod_shaper module
+net-ftp/proftpd:sitemisc - Enable support for the sitemisc module
+net-ftp/proftpd:softquota - Enable support for the quotatab module
+net-ftp/proftpd:vroot - Enable support for the virtual root module
 net-ftp/pure-ftpd:charconv - Enables charset conversion
 net-ftp/pure-ftpd:noiplog - Disables logging of IP addresses
 net-ftp/pure-ftpd:paranoidmsg - Display paranoid messages instead of normal ones
