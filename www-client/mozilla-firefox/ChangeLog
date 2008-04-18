@@ -1,6 +1,16 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.387 2008/04/10 22:46:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.389 2008/04/18 03:02:48 jer Exp $
+
+  18 Apr 2008; Jeroen Roovers <jer@gentoo.org>
+  mozilla-firefox-2.0.0.14.ebuild:
+  Stable for HPPA (bug #218065).
+
+*mozilla-firefox-2.0.0.14 (17 Apr 2008)
+
+  17 Apr 2008; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-firefox-2.0.0.14.ebuild:
+  Version bump
 
   10 Apr 2008; Raúl Porcel <armin76@gentoo.org>
   mozilla-firefox-3.0_beta5.ebuild:
