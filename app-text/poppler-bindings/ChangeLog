@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.90 2008/04/14 20:58:57 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.91 2008/04/17 11:25:20 rbu Exp $
+
+  17 Apr 2008; Robert Buchholz <rbu@gentoo.org>
+  poppler-bindings-0.6.3.ebuild:
+  ppc stable (proxy commit for dertobi123)
 
   14 Apr 2008; Markus Meier <maekke@gentoo.org>
   poppler-bindings-0.6.3.ebuild:
