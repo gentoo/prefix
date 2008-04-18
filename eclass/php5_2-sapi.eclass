@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.19 2008/03/03 20:49:07 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.20 2008/04/16 18:14:51 hoffie Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -387,21 +387,14 @@ php5_2-sapi_src_unpack() {
 		fi
 	fi
 
-	# Fix configure scripts to correctly support Suhosin
-	einfo "Running aclocal"
-	aclocal --force || die "Unable to run aclocal successfully"
-	einfo "Running libtoolize"
-	libtoolize --copy --force || die "Unable to run libtoolize successfully"
+	# We are heavily patching autotools base files (configure.in) because
+	# of suhosin etc., so let's regenerate the whole stuff now
 
-	# Rebuild configure to make sure it's up to date
-	einfo "Rebuilding configure script"
-	autoreconf --force -W no-cross || die "Unable to regenerate configure script successfully"
+	# eaclocal doesn't accept --force, so we try to force re-generation
+	# this way
+	rm aclocal.m4
+	eautoreconf --force -W no-cross
 
-	# Run elibtoolize
-	elibtoolize
-
-	# Just in case ;-)
-	chmod 0755 configure || die "Failed to chmod configure to 0755"
 }
 
 # @FUNCTION: php5_2-sapi_src_compile

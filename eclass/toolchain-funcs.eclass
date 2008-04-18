@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.75 2008/01/02 01:01:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.76 2008/04/16 14:16:45 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -324,7 +324,7 @@ gcc-micro-version() {
 # Returns the installation directory - internal toolchain
 # function for use by _gcc-specs-exists (for flag-o-matic).
 _gcc-install-dir() {
-	echo "$($(tc-getCC) -print-search-dirs 2> /dev/null |\
+	echo "$(LC_ALL=C $(tc-getCC) -print-search-dirs 2> /dev/null |\
 		awk '$1=="install:" {print $2}')"
 }
 # Returns true if the indicated specs file exists - internal toolchain
