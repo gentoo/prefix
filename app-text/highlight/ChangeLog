@@ -1,6 +1,9 @@
 # ChangeLog for app-text/highlight
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.14 2007/09/06 18:47:55 beandog Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.15 2008/04/16 16:18:28 jer Exp $
+
+  16 Apr 2008; Jeroen Roovers <jer@gentoo.org> highlight-2.4.8.ebuild:
+  Marked ~hppa too.
 
   06 Sep 2007; Steve Dibb <beandog@gentoo.org> highlight-2.4.8.ebuild:
   amd64 stable
