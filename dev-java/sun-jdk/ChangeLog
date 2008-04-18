@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.233 2008/03/30 23:57:24 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.235 2008/04/17 08:48:05 caster Exp $
+
+  17 Apr 2008; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.6.0.06.ebuild:
+  Add note about reinstalling eclipse-sdk for bug #215150.
+
+*sun-jdk-1.6.0.06 (16 Apr 2008)
+
+  16 Apr 2008; Vlastimil Babka <caster@gentoo.org> +sun-jdk-1.6.0.06.ebuild:
+  Version bump. Fixes problems with xcb - bug #156353.
 
   30 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
   sun-jdk-1.5.0.15-r1.ebuild:
