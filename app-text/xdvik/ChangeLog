@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.47 2008/01/31 11:58:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.48 2008/04/16 14:05:07 pva Exp $
+
+  16 Apr 2008; Peter Volkov <pva@gentoo.org> xdvik-22.84.10.ebuild:
+  amd64 stable, bug #215735.
 
   31 Jan 2008; Alexis Ballier <aballier@gentoo.org> -xdvik-22.84.5.ebuild:
   remove unused version
