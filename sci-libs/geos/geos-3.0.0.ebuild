@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/geos-3.0.0.ebuild,v 1.2 2008/02/29 03:36:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/geos-3.0.0.ebuild,v 1.3 2008/04/17 14:16:54 bicatali Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,11 @@ DEPEND="${RDEPEND}
 	python? ( >=dev-lang/swig-1.3.29 )"
 
 S="${WORKDIR}/${MY_P}"
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/${P}-gcc43.patch
+}
 
 src_compile() {
 	local myconf
