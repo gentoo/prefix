@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.45-r1.ebuild,v 1.4 2008/04/08 15:01:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.45-r1.ebuild,v 1.5 2008/04/16 13:59:18 pva Exp $
 
 EAPI="prefix"
 

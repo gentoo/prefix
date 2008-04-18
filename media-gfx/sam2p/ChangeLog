@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/sam2p
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.25 2008/04/08 15:01:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.26 2008/04/16 13:59:18 pva Exp $
+
+  16 Apr 2008; Peter Volkov <pva@gentoo.org> sam2p-0.45-r1.ebuild:
+  amd64 stable, bug #215735.
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> sam2p-0.45-r1.ebuild:
   alpha/ia64/sparc stable wrt #215735
