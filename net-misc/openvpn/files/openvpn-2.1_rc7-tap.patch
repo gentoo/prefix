@@ -41,7 +41,7 @@ Index: tun.c
 -			  print_in_addr_t (tt->local, 0, &gc),
 -			  print_in_addr_t (tt->remote_netmask, 0, &gc)
 -			  );
-+			IFCONFIG_PATH "%s addr 0.0.0.0",
++			IFCONFIG_PATH " %s addr 0.0.0.0",
 +			tt->actual_name
 +			);
 +#endif
