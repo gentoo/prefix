@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pyopenssl
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/ChangeLog,v 1.21 2007/11/23 01:06:29 hawking Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/ChangeLog,v 1.22 2008/04/16 11:07:38 hawking Exp $
+
+*pyopenssl-0.7 (16 Apr 2008)
+
+  16 Apr 2008; Ali Polatel <hawking@gentoo.org>
+  +files/pyopenssl-0.7-test.patch, pyopenssl-0.5.1.ebuild,
+  pyopenssl-0.6.ebuild, +pyopenssl-0.7.ebuild:
+  Version bump. Added src_test. Quoting.
 
   23 Nov 2007; Ali Polatel <hawking@gentoo.org> pyopenssl-0.5.1.ebuild,
   pyopenssl-0.6.ebuild:
