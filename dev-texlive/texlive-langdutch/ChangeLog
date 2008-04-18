@@ -1,6 +1,9 @@
 # ChangeLog for dev-texlive/texlive-langdutch
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langdutch/ChangeLog,v 1.13 2008/04/08 14:59:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langdutch/ChangeLog,v 1.14 2008/04/16 14:36:33 pva Exp $
+
+  16 Apr 2008; Peter Volkov <pva@gentoo.org> texlive-langdutch-2007.ebuild:
+  amd64 stable, bug #215735.
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org>
   texlive-langdutch-2007.ebuild:
