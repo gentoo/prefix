@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9.ebuild,v 1.1 2008/03/27 06:06:04 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9.ebuild,v 1.5 2008/04/17 16:51:24 nixnut Exp $
 
 EAPI="prefix"
 
@@ -39,6 +39,12 @@ RDEPEND="${COMMON_DEPEND}
 	virtual/mta
 	selinux? ( sec-policy/selinux-gnupg )
 	nls? ( virtual/libintl )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-gcc-4.3.patch"
+}
 
 src_compile() {
 	# symcryptrun does some non-portable stuff, which breaks on Solaris,
