@@ -1,6 +1,13 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.283 2008/04/15 13:55:39 falco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.284 2008/04/17 19:37:47 ticho Exp $
+
+  17 Apr 2008; Andrej Kacian <ticho@gentoo.org>
+  +files/clamav-0.93-buildfix.patch, files/clamav-0.93-nls.patch,
+  clamav-0.93.ebuild:
+  Added iconv support to ebuild. Added patch to fix bad dynamic linking by
+  Raphael Marichez <falco at gentoo org>, so the build is actually usable.
+  Bug #213762.
 
 *clamav-0.93 (15 Apr 2008)
 
