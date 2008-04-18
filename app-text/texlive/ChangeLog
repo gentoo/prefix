@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.36 2008/04/08 15:04:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.37 2008/04/16 15:10:24 pva Exp $
+
+  16 Apr 2008; Peter Volkov <pva@gentoo.org> texlive-2007-r3.ebuild:
+  amd64 stable, bug #215735.
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> texlive-2007-r3.ebuild:
   alpha/ia64/sparc stable wrt #215735
