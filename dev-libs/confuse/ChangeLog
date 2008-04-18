@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.26 2008/04/15 19:09:58 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.30 2008/04/17 18:25:32 nixnut Exp $
+
+  17 Apr 2008; nixnut <nixnut@gentoo.org> confuse-2.6.ebuild:
+  Stable on ppc wrt bug 217815
+
+  17 Apr 2008; Raúl Porcel <armin76@gentoo.org> confuse-2.6.ebuild:
+  ia64/x86 stable wrt #217815
+
+  16 Apr 2008; Tobias Klausmann <klausman@gentoo.org> confuse-2.6.ebuild:
+  Stable on alpha, bug #217815
+
+  16 Apr 2008; Markus Rothe <corsair@gentoo.org> confuse-2.6.ebuild:
+  Stable on ppc64; bug #217815
 
   15 Apr 2008; Ferris McCormick <fmccor@gentoo.org> confuse-2.6.ebuild:
   Sparc stable --- Bug #217815 --- all tests pass.
