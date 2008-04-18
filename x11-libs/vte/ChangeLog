@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.201 2008/04/14 14:32:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.202 2008/04/17 20:53:58 jer Exp $
+
+  17 Apr 2008; Jeroen Roovers <jer@gentoo.org> vte-0.16.13.ebuild:
+  Stable for HPPA (bug #217395).
 
   14 Apr 2008; Raúl Porcel <armin76@gentoo.org> vte-0.16.13.ebuild:
   alpha/ia64/sparc stable wrt #217395
