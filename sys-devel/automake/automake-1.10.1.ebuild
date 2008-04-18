@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.1.ebuild,v 1.8 2008/04/15 18:10:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.1.ebuild,v 1.9 2008/04/17 17:26:41 nixnut Exp $
 
 EAPI="prefix"
 
