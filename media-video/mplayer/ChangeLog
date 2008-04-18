@@ -1,6 +1,26 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.565 2008/04/15 02:22:32 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.568 2008/04/17 04:00:47 beandog Exp $
+
+*mplayer-1.0_rc2_p26454-r2 (17 Apr 2008)
+
+  17 Apr 2008; Steve Dibb <beandog@gentoo.org>
+  +files/configure-unsetauto-v2.patch, -mplayer-1.0_rc2_p26454-r1.ebuild,
+  +mplayer-1.0_rc2_p26454-r2.ebuild:
+  Add patch to build on non-x86 arches
+
+*mplayer-1.0_rc2_p26454-r1 (16 Apr 2008)
+
+  16 Apr 2008; Steve Dibb <beandog@gentoo.org>
+  +files/mplayer-1.0_rc2_p26454-makefile.patch,
+  -mplayer-1.0_rc2_p26454.ebuild, +mplayer-1.0_rc2_p26454-r1.ebuild:
+  Fix installing man pages, bug 217769, thanks to Daniel Pielmeier for patch
+
+*mplayer-1.0_rc2_p26454 (16 Apr 2008)
+
+  16 Apr 2008; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc2_p26454.ebuild:
+  Snapshot bump
 
 *mplayer-1.0_rc2_p24929-r4 (15 Apr 2008)
 
