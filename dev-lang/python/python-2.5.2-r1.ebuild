@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r4.ebuild,v 1.1 2007/11/18 22:43:32 hawking Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r1.ebuild,v 1.1 2008/04/18 22:23:25 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
 #   in dev-lang/python. It _WILL_ stop people installing from
 #   Gentoo 1.4 images.
+
+EAPI="prefix 1"
 
 inherit eutils autotools flag-o-matic python multilib versionator toolchain-funcs alternatives libtool
 
@@ -22,12 +22,12 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r2.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}-r1.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc nothreads examples elibc_uclibc"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc +threads examples elibc_uclibc wininst"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
 #       do not conflict with the ones in python proper. - liquidx
@@ -41,7 +41,7 @@ DEPEND=">=sys-libs/zlib-1.1.3
 		berkdb? ( >=sys-libs/db-3.1 )
 		gdbm? ( sys-libs/gdbm )
 		ssl? ( dev-libs/openssl )
-		doc? ( =dev-python/python-docs-${PV}* )
+		doc? ( dev-python/python-docs:2.5 )
 		dev-libs/expat
 	)"
 
@@ -85,34 +85,55 @@ src_unpack() {
 	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
 	[ "${ARCH}" = "hppa" ] && sed -e 's/utimes //' -i "${S}"/configure
 
-	# remove microsoft windows executables
-	rm Lib/distutils/command/wininst-*.exe
+	if ! use wininst; then
+		# remove microsoft windows executables
+		rm Lib/distutils/command/wininst-*.exe
+	fi
 
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# python doesn't build a libpython2.5.dylib by itself...
-	epatch "${FILESDIR}"/${P}-darwin-libpython2.5.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-libpython2.5.patch
 	# and to build this lib, we need -fno-common, which python doesn't use, and
 	# to have _NSGetEnviron being used, which by default it isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
-	use prefix && epatch "${FILESDIR}"/${P}-no-usrlocal.patch
+	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+
+	[[ ${CHOST} == *-darwin9 ]] && \
+		epatch "${FILESDIR}"/${PN}-2.5.1-darwin9.patch
+
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 
 	# set RUNSHARED for 'regen' in Lib/plat-*
-	epatch "${FILESDIR}"/${P}-platdir-runshared.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-platdir-runshared.patch
 
 	# on hpux, use gcc to link if used to compile
-	epatch "${FILESDIR}"/${P}-hpux-ldshared.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
 	# better use mutexes on aix5 instead of semaphores.
-	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
+#	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
 	# build shared library on aix
-	epatch "${FILESDIR}"/${P}-aix-ldshared.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
+	# at least IRIX starts spitting out ugly errors, but we want to use prefix
+	# grep anyway
+	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
+	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
+	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
+
+	# patch to make python behave nice with interix. There is one part
+	# maybe affecting other x86-platforms, thus conditional.
+	[[ ${CHOST} == *-interix* ]] && {
+		epatch "${FILESDIR}"/${PN}-2.5.1-interix.patch
+		# this one could be applied unconditionally, but to keep it
+		# clean, i do it together with the conditional one.
+		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
+	}
 
 	eautoreconf
 }
@@ -123,10 +144,14 @@ src_configure() {
 		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _sqlite3"
 		export PYTHON_DISABLE_SSL=1
 	else
+		# dbm module can link to berkdb or gdbm -- defaults to gdbm when
+		# both are enabled, see #204343
+		use berkdb || use gdbm \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm"
 		use gdbm \
 			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} gdbm"
 		use berkdb \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm bsddb"
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} bsddb"
 		use readline \
 			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} readline"
 		use tk \
@@ -143,6 +168,8 @@ src_configure() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
 	filter-flags -malign-double
 
 	# Seems to no longer be necessary
@@ -166,9 +193,9 @@ src_compile() {
 		&& myconf="${myconf} --enable-unicode=ucs2" \
 		|| myconf="${myconf} --enable-unicode=ucs4"
 
-	use nothreads \
-		&& myconf="${myconf} --without-threads" \
-		|| myconf="${myconf} --with-threads"
+	use threads \
+		&& myconf="${myconf} --with-threads" \
+		|| myconf="${myconf} --without-threads"
 
 	src_configure
 
@@ -253,6 +280,9 @@ src_install() {
 		mkdir -p "${ED}"/usr/share/doc/${P}/examples
 		cp -r "${S}"/Tools "${ED}"/usr/share/doc/${P}/examples
 	fi
+
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 }
 
 pkg_postrm() {
