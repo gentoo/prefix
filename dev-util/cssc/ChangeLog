@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cssc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cssc/ChangeLog,v 1.9 2008/01/15 01:29:19 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cssc/ChangeLog,v 1.10 2008/04/18 22:05:05 maekke Exp $
+
+  18 Apr 2008; Markus Meier <maekke@gentoo.org> -cssc-0.15_alpha0.ebuild,
+  cssc-1.0.1.ebuild:
+  x86 stable and drop old, bug #217302
 
   15 Jan 2008; Mark Loeser <halcy0n@gentoo.org> cssc-1.0.1.ebuild:
   Add in RESTRICT=test for bug #85901
