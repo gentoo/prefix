@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.72 2008/04/17 11:27:38 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.74 2008/04/18 23:26:57 flameeyes Exp $
+
+  18 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  libtheora-1.0_beta3.ebuild:
+  Disable building of the spec PDF, as that will cause sandbox violations,
+  and most users aren't likely interested in it.
+
+  18 Apr 2008; Samuli Suominen <drac@gentoo.org> libtheora-1.0_beta3.ebuild:
+  TEXTRELs are back and filter-flags isn't needed anymore according to bug
+  #200549, comment #28. Updated PIC patch is needed.
 
 *libtheora-1.0_beta3 (17 Apr 2008)
 
