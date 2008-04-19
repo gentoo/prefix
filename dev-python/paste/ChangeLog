@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/paste
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.1 2007/02/27 23:40:20 dev-zero Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.2 2008/04/18 12:09:59 hawking Exp $
+
+*paste-1.6 (18 Apr 2008)
+
+  18 Apr 2008; Ali Polatel <hawking@gentoo.org> metadata.xml,
+  -paste-1.2.1.ebuild, +paste-1.6.ebuild:
+  Version bump, fixes bug 168715. Added long description. Drop old.
 
   04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> paste-1.2.1.ebuild:
   Added ~amd64 keyword.

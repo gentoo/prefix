@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>python</herd>
+	<herd>python</herd>
+	<longdescription lang="en">
+	This package provides several pieces of "middleware" (or filters) that can
+	be nested to build web applications. Each piece of middleware uses the WSGI
+	(PEP 333) interface, and should be compatible with other middleware based on
+	those interfaces.
+	</longdescription>
 </pkgmetadata>
+

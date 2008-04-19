@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/paste-1.2.1.ebuild,v 1.1 2007/02/27 23:40:20 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/paste-1.6.ebuild,v 1.1 2008/04/18 12:09:59 hawking Exp $
 
 EAPI="prefix"
 
