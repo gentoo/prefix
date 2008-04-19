@@ -42,10 +42,10 @@ src_compile() {
 		# harvest some font locations, such that users can benefit from the
 		# host OS's installed fonts
 		case ${CHOST} in
-			*-darwin)
+			*-darwin*)
 				addfonts=",/Library/Fonts,/System/Library/Fonts"
 			;;
-			*-solaris)
+			*-solaris*)
 				[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
 					addfonts=",/usr/X/lib/X11/fonts/TrueType"
 			;;
