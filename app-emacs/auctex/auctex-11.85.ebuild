@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.5 2008/03/23 13:49:53 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.6 2008/04/18 15:20:21 ulm Exp $
 
 EAPI="prefix"
 
@@ -37,7 +37,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 	elisp-site-file-install "${FILESDIR}/50${PN}-gentoo.el" || die
 	if use preview-latex; then
 		elisp-site-file-install "${FILESDIR}/60${PN}-gentoo.el" || die
