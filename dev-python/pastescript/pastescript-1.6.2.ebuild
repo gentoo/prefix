@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/pastescript-1.1.ebuild,v 1.3 2007/07/04 20:55:13 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/pastescript-1.6.2.ebuild,v 1.1 2008/04/18 13:19:07 hawking Exp $
 
 EAPI="prefix"
 
@@ -48,5 +48,12 @@ src_install() {
 }
 
 src_test() {
-	PYTHONPATH=build/lib "${python}" setup.py nosetests || die "tests failed"
+	# Tests can't import paste from site-packages
+	# so we copy them over.
+	# The files that will be installed are already copied to build/lib
+	# so this shouldn't generate any collisions.
+	distutils_python_version
+	cp -pPR /usr/$(get_libdir)/python${PYVER}/site-packages/paste/* paste/
+
+	PYTHONPATH=. "${python}" setup.py nosetests || die "tests failed"
 }
