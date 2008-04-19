@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3495 2008/04/17 07:56:46 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3497 2008/04/18 14:28:17 hawking Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -452,6 +452,7 @@ dev-lang/php:zip - Enable ZIP file support
 dev-lang/php:zip-external - Enable ZIP file support (external PECL extension)
 dev-lang/python:nothreads - Disable threads (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
 dev-lang/python:ucs2 - Enable byte size 2 unicode (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
+dev-lang/python:wininst - Install required Windows executables to create an executable installer for MS Windows.
 dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/smarteiffel:tcc - use tcc instead of gcc for build (g++ is still used for c++ code)
@@ -1471,6 +1472,10 @@ net-ftp/proftpd:shaper - Enable support for the mod_shaper module
 net-ftp/proftpd:sitemisc - Enable support for the sitemisc module
 net-ftp/proftpd:softquota - Enable support for the quotatab module
 net-ftp/proftpd:vroot - Enable support for the virtual root module
+net-ftp/pure-ftpd:anondel - Permit anonymous to delete files
+net-ftp/pure-ftpd:anonperm - Permit anonymous to change file permissions
+net-ftp/pure-ftpd:anonren - Permit anonymous to rename files
+net-ftp/pure-ftpd:anonres - Permit anonymous to resume file transfers
 net-ftp/pure-ftpd:charconv - Enables charset conversion
 net-ftp/pure-ftpd:noiplog - Disables logging of IP addresses
 net-ftp/pure-ftpd:paranoidmsg - Display paranoid messages instead of normal ones

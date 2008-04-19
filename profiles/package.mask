@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8513 2008/04/17 20:14:42 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8514 2008/04/18 13:40:33 hkbst Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -50,6 +50,7 @@ dev-db/postgresql-docs
 # binary package, now subsumed by binary use flag on mlton itself
 # will be removed
 dev-lang/mlton-bin
+=dev-lang/mlton-20040227
 
 # Ulrich Mueller <ulm@gentoo.org> (13 Apr 2008)
 # Broken as designed. Not needed by openmotif anymore; no longer
