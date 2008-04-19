@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Apr 2008; Fabian Groffen <grobian@gentoo.org>
+  portage-2.2.00.9894.ebuild:
+  Don't do repo check if we don't have svn availble, saves us from an ugly
+  error message during bootstrap.
+
 *portage-2.2.00.9894 (14 Apr 2008)
 
   14 Apr 2008; Fabian Groffen <grobian@gentoo.org>

@@ -71,6 +71,8 @@ pkg_setup() {
 	MINOR_UPGRADE=$(has_version '>=sys-apps/portage-2.2_alpha' && echo true)
 
 	[[ -n ${PREFIX_PORTAGE_DONT_CHECK_MY_REPO} ]] && return
+	[[ $(type -P svn) == "" ]] && return
+
 	# This function is EVIL by definition because it dies, however, given that
 	# infra really wants to expel http access we have no choice.
 	# http://thread.gmane.org/gmane.linux.gentoo.devel.announce/98
