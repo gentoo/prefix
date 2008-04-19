@@ -1,16 +1,16 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/mksh-31c.ebuild,v 1.2 2008/03/26 00:12:51 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/mksh-33d.ebuild,v 1.1 2008/04/18 12:50:55 hanno Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="MirBSD KSH Shell"
 HOMEPAGE="http://mirbsd.de/mksh"
 SRC_URI="http://www.mirbsd.org/MirOS/dist/mir/mksh/${PN}-R${PV}.cpio.gz
-	http://www.mirbsd.org/cvs.cgi/~checkout~/contrib/code/Snippets/arc4random.c?rev=1.2"
+	http://www.mirbsd.org/cvs.cgi/~checkout~/contrib/code/Snippets/arc4random.c?rev=1.3"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 DEPEND="app-arch/cpio"
 RDEPEND=""
@@ -18,7 +18,7 @@ S="${WORKDIR}/${PN}"
 
 src_unpack() {
 	gzip -dc "${DISTDIR}/${PN}-R${PV}.cpio.gz" | cpio -mid
-	cp "${DISTDIR}/arc4random.c?rev=1.2" "${S}/arc4random.c"
+	cp "${DISTDIR}/arc4random.c?rev=1.3" "${S}/arc4random.c" || die
 }
 
 src_compile() {
