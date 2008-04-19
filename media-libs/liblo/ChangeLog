@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/liblo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.14 2008/04/17 16:54:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.15 2008/04/18 22:10:48 maekke Exp $
+
+  18 Apr 2008; Markus Meier <maekke@gentoo.org> -liblo-0.23.ebuild,
+  liblo-0.24.ebuild:
+  x86 stable and remove old, bug #217523
 
   17 Apr 2008; nixnut <nixnut@gentoo.org> liblo-0.24.ebuild:
   Stable on ppc wrt bug 217523
