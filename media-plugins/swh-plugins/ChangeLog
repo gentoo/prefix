@@ -1,6 +1,10 @@
 # ChangeLog for media-plugins/swh-plugins
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/ChangeLog,v 1.35 2008/01/31 21:05:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/ChangeLog,v 1.36 2008/04/18 22:08:08 maekke Exp $
+
+  18 Apr 2008; Markus Meier <maekke@gentoo.org> -swh-plugins-0.4.14.ebuild,
+  swh-plugins-0.4.15.ebuild:
+  amd64/x86 stable and remove old, bug #217520
 
   31 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   swh-plugins-0.4.14.ebuild, swh-plugins-0.4.15.ebuild:
