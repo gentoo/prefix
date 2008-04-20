@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3497 2008/04/18 14:28:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3499 2008/04/20 01:33:10 vapier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -348,7 +348,12 @@ dev-db/rekall:xbase - Support for the Xbase db family, covering dBase, Clipper, 
 dev-db/sqlite:nothreadsafe - turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
+dev-embedded/openocd:ft2232 - Enable support for USB chips via libftd2xx
+dev-embedded/openocd:ftdi - Enable support for USB FTDI chips
+dev-embedded/openocd:parport - Enable support for parport JTAG devices
+dev-embedded/openocd:presto - Enable support for AXIS PRESTO devices
 dev-embedded/ponyprog:epiphany - Enable epiphany support
+dev-embedded/urjtag:ftdi - Enable support for USB FTDI chips
 dev-games/cegui:devil - Enable image loading via DevIL
 dev-games/cegui:irrlicht - Enable the Irrlicht renderer
 dev-games/cegui:xerces-c - Enable the Xerces-C++ XML parser module
