@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.20.0.ebuild,v 1.8 2008/03/23 20:11:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.20.0.ebuild,v 1.9 2008/04/20 01:36:04 vapier Exp $
 
 EAPI="prefix"
 
