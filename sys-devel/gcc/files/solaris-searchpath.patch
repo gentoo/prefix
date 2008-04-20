@@ -1,0 +1,60 @@
+* don't inject /usr/lib{/64,} and /lib{/64,} before any other thing in the
+  call to the linker, that breaks the entire idea of Prefix
+
+--- gcc/config/i386/sol2-10.h
++++ gcc/config/i386/sol2-10.h
+@@ -76,12 +76,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/64:/usr/lib/libp/64:/lib/64:/usr/lib/64} \
+-             %{!p:%{!pg:-Y P,/usr/ucblib/64:/lib:/usr/lib/64}}} \
++     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/64:/usr/lib/libp/64} \
++             %{!p:%{!pg:-Y P,/usr/ucblib/64}}} \
+              -R /usr/ucblib/64} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/64:/lib/64:/usr/lib/64} \
+-             %{!p:%{!pg:-Y P,/lib/64:/usr/lib/64}}}}"
++     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/64} \
++             }}"
+ 
+ #undef LINK_ARCH64_SPEC
+ #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
+--- gcc/config/sparc/sol2-bi.h
++++ gcc/config/sparc/sol2-bi.h
+@@ -162,12 +162,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/sparcv9:/usr/lib/libp/sparcv9:/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,/usr/ucblib/sparcv9:/usr/lib/sparcv9}}} \
++     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/sparcv9:/usr/lib/libp/sparcv9} \
++       %{!p:%{!pg:-Y P,/usr/ucblib/sparcv9}}} \
+      -R /usr/ucblib/sparcv9} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/sparcv9:/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,/usr/lib/sparcv9}}}}"
++     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/sparcv9} \
++       }}"
+ 
+ #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
+ 
+--- gcc/config/sol2.h
++++ gcc/config/sol2.h
+@@ -123,12 +123,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/ucblib:/usr/ccs/lib/libp:/usr/lib/libp:/usr/ccs/lib:/usr/lib} \
+-             %{!p:%{!pg:-Y P,/usr/ucblib:/usr/ccs/lib:/usr/lib}}} \
++     %{!YP,*:%{p|pg:-Y P,/usr/ucblib:/usr/ccs/lib/libp:/usr/lib/libp:/usr/ccs/lib} \
++             %{!p:%{!pg:-Y P,/usr/ucblib:/usr/ccs/lib}}} \
+              -R /usr/ucblib} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/ccs/lib/libp:/usr/lib/libp:/usr/ccs/lib:/usr/lib} \
+-             %{!p:%{!pg:-Y P,/usr/ccs/lib:/usr/lib}}}}"
++     %{!YP,*:%{p|pg:-Y P,/usr/ccs/lib/libp:/usr/lib/libp:/usr/ccs/lib} \
++             %{!p:%{!pg:-Y P,/usr/ccs/lib}}}}"
+ 
+ #undef LINK_ARCH32_SPEC
+ #define LINK_ARCH32_SPEC LINK_ARCH32_SPEC_BASE
