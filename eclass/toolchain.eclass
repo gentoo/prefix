@@ -1838,8 +1838,8 @@ gcc-compiler_src_install() {
 		cp "${GCC_FILESDIR}"/awk/fixlafiles.awk "${T}"
 		eprefixify \
 			"${T}"/fix_libtool_files.sh \
-			"${T}"/awk/fixlafiles.awk-no_gcc_la \
-			"${T}"/awk/fixlafiles.awk
+			"${T}"/fixlafiles.awk-no_gcc_la \
+			"${T}"/fixlafiles.awk
 
 		insinto "${DATAPATH}"
 		if tc_version_is_at_least 4.0 ; then
