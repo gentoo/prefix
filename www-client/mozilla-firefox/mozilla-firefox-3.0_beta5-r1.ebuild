@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5.ebuild,v 1.3 2008/04/10 22:46:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5-r1.ebuild,v 1.4 2008/04/19 17:01:56 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
-inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozilla-launcher mozextension
+inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
 PATCH="${P}-patches-0.1"
 
-LANGS="af ar be ca cs de el en-GB es-AR es-ES eu fi fr fy-NL gu-IN he hu id it ja ka ko ku lt mk mn nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru sk sq sv-SE tr uk zh-CN zh-TW"
+LANGS="af ar be ca cs de el en-GB en-US es-AR es-ES eu fi fr fy-NL gu-IN he hu id it ja ka ko ku lt mk mn nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru sk sq sv-SE tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
 
 MY_PV=${PV/_beta/b}
@@ -32,19 +32,22 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 #
 # for i in $LANGS $SHORTLANGS; do wget $i.xpi -O ${P}-$i.xpi; done
 for X in ${LANGS} ; do
-	SRC_URI="${SRC_URI}
-		linguas_${X/-/_}? ( http://dev.gentooexperimental.org/~armin76/dist/${MY_P}-xpi/${MY_P}-${X}.xpi )"
+	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
+		SRC_URI="${SRC_URI}
+			linguas_${X/-/_}? ( http://dev.gentooexperimental.org/~armin76/dist/${MY_P}-xpi/${MY_P}-${X}.xpi )"
+	fi
 	IUSE="${IUSE} linguas_${X/-/_}"
 	# english is handled internally
 	if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
-		SRC_URI="${SRC_URI}
-			linguas_${X%%-*}? ( http://dev.gentooexperimental.org/~armin76/dist/${MY_P}-xpi/${MY_P}-${X}.xpi )"
+		if [ "${X}" != "en-US" ]; then
+			SRC_URI="${SRC_URI}
+				linguas_${X%%-*}? ( http://dev.gentooexperimental.org/~armin76/dist/${MY_P}-xpi/${MY_P}-${X}.xpi )"
+		fi
 		IUSE="${IUSE} linguas_${X%%-*}"
 	fi
 done
 
 RDEPEND="java? ( virtual/jre )
-	>=www-client/mozilla-launcher-1.58
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12_beta3
 	>=dev-libs/nspr-4.7.1_beta2
@@ -96,6 +99,12 @@ pkg_setup(){
 		die "Cairo needs X"
 	fi
 
+	if ! built_with_use --missing true x11-libs/pango X; then
+		eerror "Pango is not built with X useflag."
+		eerror "Please add 'X' to your USE flags, and re-emerge pango."
+		die "Pango needs X"
+	fi
+
 	if ! use bindist; then
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
@@ -103,8 +112,6 @@ pkg_setup(){
 		elog "You can disable it by emerging ${PN} _with_ the bindist USE-flag"
 
 	fi
-
-	use moznopango && warn_mozilla_launcher_stub
 }
 
 src_unpack() {
@@ -115,7 +122,7 @@ src_unpack() {
 	for X in ${linguas}; do
 		[[ ${X} != "en" ]] && xpi_unpack "${MY_P}-${X}.xpi"
 	done
-	if [[ ${linguas} != "" ]]; then
+	if [[ ${linguas} != "" && ${linguas} != "en" ]]; then
 		einfo "Selected language packs (first will be default): ${linguas}"
 	fi
 
@@ -125,7 +132,7 @@ src_unpack() {
 	# Apply our patches
 	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
-	EPATCH_FORCE="yes" \
+EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
 	eautoreconf || die "failed  running eautoreconf"
@@ -224,11 +231,6 @@ pkg_preinst() {
 
 src_install() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-	if use xulrunner; then
-		PKG_CONFIG=`which pkg-config`
-		X_DATE=`date +%Y%m%d`
-		XULRUNNER_VERSION=`${PKG_CONFIG} --modversion libxul`
-	fi
 
 	emake DESTDIR="${D}" install || die "emake install failed"
 	rm "${ED}"/usr/bin/firefox
@@ -262,15 +264,19 @@ src_install() {
 	cp "${FILESDIR}"/gentoo-default-prefs.js "${ED}"${MOZILLA_FIVE_HOME}/defaults/preferences/all-gentoo.js
 
 	if use xulrunner; then
+		PKG_CONFIG=`which pkg-config`
+		X_DATE=`date +%Y%m%d`
+		XULRUNNER_VERSION=`${PKG_CONFIG} --modversion libxul`
+
 		#set the application.ini
 		sed -i -e "s|BuildID=.*$|BuildID=${X_DATE}GentooMozillaFirefox|"	"${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
-		install_mozilla_launcher_stub firefoxxul ${MOZILLA_FIVE_HOME}
+		make_wrapper firefox "/usr/bin/xulrunner-1.9 ${MOZILLA_FIVE_HOME}/application.ini"
 	else
 		# Create /usr/bin/firefox
-		install_mozilla_launcher_stub firefox ${MOZILLA_FIVE_HOME}
+		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox-bin"
 	fi
 }
 
@@ -282,17 +288,6 @@ pkg_postinst() {
 	ewarn "therefore you should check if your package builds against"
 	ewarn "xulrunner and if it doesn't, file a bug, thanks."
 
-	# This should be called in the postinst and postrm of all the
-	# mozilla, mozilla-bin, firefox, firefox-bin, thunderbird and
-	# thunderbird-bin ebuilds.
-	update_mozilla_launcher_symlinks
-
 	# Update mimedb for the new .desktop file
 	fdo-mime_desktop_database_update
-}
-
-pkg_postrm() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	update_mozilla_launcher_symlinks
 }
