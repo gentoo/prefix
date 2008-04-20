@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.229 2008/04/17 17:27:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.230 2008/04/19 22:20:22 vapier Exp $
+
+*coreutils-6.11 (19 Apr 2008)
+
+  19 Apr 2008; Mike Frysinger <vapier@gentoo.org> +coreutils-6.11.ebuild:
+  Version bump.
 
   17 Apr 2008; nixnut <nixnut@gentoo.org> coreutils-6.10-r1.ebuild:
   Stable on ppc wrt bug 217239

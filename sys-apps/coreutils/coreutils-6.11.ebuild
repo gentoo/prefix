@@ -1,19 +1,19 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r1.ebuild,v 1.12 2008/04/19 22:09:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.11.ebuild,v 1.1 2008/04/19 22:20:22 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.1"
+PATCH_VER="1.0"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
 	mirror://gnu/${PN}/${P}.tar.lzma
 	mirror://gentoo/${P}.tar.lzma
-	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.bz2
-	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.bz2"
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma
+	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.lzma"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -147,10 +147,6 @@ src_install() {
 
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS || die
-
-	# workaround bug in build system where `group` does not
-	# work with --enable-no-install-program configure option
-	rm "${ED}"/usr/bin/groups "${ED}"/usr/share/man/man1/groups.1 || die
 
 	if [[ ${USERLAND} == "GNU" || ${EPREFIX%/} != "" ]] ; then
 		cd "${ED}"/usr/bin
