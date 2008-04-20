@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14.ebuild,v 1.3 2008/04/17 20:31:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14.ebuild,v 1.4 2008/04/19 14:13:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.inf.enst.fr/~demaille/a2ps/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz
 	cjk? ( mirror://gentoo/${P}-ja_nls.patch.gz )"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
 IUSE="cjk emacs nls tetex vanilla userland_BSD userland_GNU"
