@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.1 2008/03/27 06:06:04 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.2 2008/04/19 13:41:57 alonbl Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 ECCVER="0.2.0"
 ECCVER_GNUPG="1.4.8"
@@ -111,6 +111,7 @@ src_compile() {
 		--enable-static-rnd=linux \
 		--libexecdir="${EPREFIX}"/usr/libexec \
 		--enable-noexecstack \
+		CC_FOR_BUILD=$(tc-getBUILD_CC) \
 		${myconf} || die
 	# this is because it will run some tests directly
 	emake || die

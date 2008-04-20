@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9.ebuild,v 1.5 2008/04/17 16:51:24 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9.ebuild,v 1.6 2008/04/19 13:41:57 alonbl Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils toolchain-funcs
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
@@ -63,6 +63,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable ldap) \
 		--disable-capabilities \
+		CC_FOR_BUILD=$(tc-getBUILD_CC) \
 		${myconf} \
 		|| die
 	emake || die
