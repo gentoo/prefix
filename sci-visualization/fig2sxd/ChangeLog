@@ -1,6 +1,11 @@
 # ChangeLog for sci-visualization/fig2sxd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.4 2008/02/06 21:36:30 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.5 2008/04/19 09:39:43 bicatali Exp $
+
+*fig2sxd-0.17 (19 Apr 2008)
+
+  19 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org> +fig2sxd-0.17.ebuild:
+  Bump with fix from Debian, thanks to Peter Alfredsen (bug #218325)
 
   06 Feb 2008; Fabian Groffen <grobian@gentoo.org> fig2sxd-0.13.ebuild:
   Dropped ppc-macos keyword, see you in prefix
