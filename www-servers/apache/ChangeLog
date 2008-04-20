@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.63 2008/03/22 15:45:21 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.64 2008/04/19 09:04:42 hollow Exp $
+
+  19 Apr 2008; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.8-r1.ebuild,
+  apache-2.2.8-r2.ebuild:
+  add mod_substitute wrt #218356
 
 *apache-2.2.8-r2 (22 Mar 2008)
 
