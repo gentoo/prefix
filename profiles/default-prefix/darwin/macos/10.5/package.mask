@@ -6,7 +6,7 @@
 
 # Elias Pipping <pipping@gentoo.org> (12 Jan 2008)
 # ocaml 3.10.0 does not compile -- 3.09 and 3.10.1 do, though
-~dev-lang/ocaml-3.10.0*
+~dev-lang/ocaml-3.10.0
 
 # Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
 # emacs 21.x does not support darwin9, 22.x fails to compile

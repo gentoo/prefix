@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Apr 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.5/package.mask:
+  Fix mask entry, as reported by dm-bgp on #gentoo-alt
+
   17 Apr 2008; Markus Duft <mduft@gentoo.org> package.mask:
   masked autoconf 2.62 because it breaks bootstrap of various packages
 
