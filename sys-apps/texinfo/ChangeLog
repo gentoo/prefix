@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.96 2008/04/03 14:12:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.98 2008/04/19 06:57:14 vapier Exp $
+
+  19 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.11-parallel-build.patch, texinfo-4.11-r1.ebuild:
+  Add fix from upstream for parallel build issues #214127 by Michael
+  Haubenwallner.
+
+  19 Apr 2008; Mike Frysinger <vapier@gentoo.org> texinfo-4.11-r1.ebuild:
+  Mark amd64 stable #214428.
 
   03 Apr 2008; Brent Baude <ranger@gentoo.org> texinfo-4.11-r1.ebuild:
   stable ppc, bug 214428

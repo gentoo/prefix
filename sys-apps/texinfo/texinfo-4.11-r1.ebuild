@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11-r1.ebuild,v 1.9 2008/04/03 14:12:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11-r1.ebuild,v 1.12 2008/04/19 06:57:14 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
 	epatch "${FILESDIR}"/${P}-test-tex.patch #195313
 	epatch "${FILESDIR}"/${P}-test.patch #215359
+	epatch "${FILESDIR}"/${P}-parallel-build.patch #214127
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-high-precision.patch #200662
