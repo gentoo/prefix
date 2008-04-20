@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.75 2008/04/14 05:07:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.76 2008/04/19 07:11:08 vapier Exp $
+
+*net-tools-1.60_p20071202044231-r1 (19 Apr 2008)
+
+  19 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/1.60_p20071202044231/0001-revert-621a2f376334f8097604b9fee5783e0f11
+  41e66d-for.patch, -net-tools-1.60_p20071202044231.ebuild,
+  +net-tools-1.60_p20071202044231-r1.ebuild:
+  Revert ifconfig output style until packages can be updated #217775.
 
 *net-tools-1.60_p20071202044231 (14 Apr 2008)
 
