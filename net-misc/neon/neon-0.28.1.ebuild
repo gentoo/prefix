@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.1.ebuild,v 1.5 2008/04/13 15:12:57 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.1.ebuild,v 1.6 2008/04/19 09:38:13 hollow Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,7 @@ src_unpack() {
 		use linguas_${lingua} && linguas="${linguas} ${lingua}"
 	done
 	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${linguas}\"/g" configure.in
+	sed -i -e "s/socks5/socks/g" macros/neon.m4
 
 	AT_M4DIR="macros" eautoreconf
 }

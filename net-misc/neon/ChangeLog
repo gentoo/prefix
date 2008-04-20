@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.104 2008/04/13 15:21:20 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.105 2008/04/19 09:38:13 hollow Exp $
+
+  19 Apr 2008; Benedikt Böhm <hollow@gentoo.org> neon-0.28.1.ebuild,
+  neon-0.28.2.ebuild:
+  fix socks support wrt #217538
 
 *neon-0.28.2 (13 Apr 2008)
 
