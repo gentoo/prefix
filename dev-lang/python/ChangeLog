@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.309 2008/04/18 22:23:25 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.310 2008/04/19 14:43:44 hawking Exp $
+
+*python-2.5.2-r2 (19 Apr 2008)
+*python-2.4.4-r11 (19 Apr 2008)
+
+  19 Apr 2008; Ali Polatel <hawking@gentoo.org> +python-2.4.4-r11.ebuild,
+  +python-2.5.2-r2.ebuild:
+  Revbumps. Updated patchset to fix compilation of extensions when CXXFLAGS
+  is unset.
 
 *python-2.5.2-r1 (18 Apr 2008)
 
