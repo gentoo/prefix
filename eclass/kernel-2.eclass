@@ -498,8 +498,8 @@ install_headers() {
 		emake headers_install INSTALL_HDR_PATH="${D}"/${ddir}/.. ${xmakeopts} || die
 
 		# let other packages install some of these headers
-		rm -rf "${ED}"/${ddir}/sound #alsa-headers
-		rm -rf "${ED}"/${ddir}/scsi  #glibc/uclibc/etc...
+		rm -rf "${D}"/${ddir}/sound #alsa-headers
+		rm -rf "${D}"/${ddir}/scsi  #glibc/uclibc/etc...
 		return 0
 	fi
 
@@ -507,8 +507,8 @@ install_headers() {
 	# $S values where the cmdline to cp is too long
 	cd "${S}"
 	dodir ${ddir}/linux
-	cp -pPR "${S}"/include/linux "${ED}"/${ddir}/ || die
-	rm -rf "${ED}"/${ddir}/linux/modules
+	cp -pPR "${S}"/include/linux "${D}"/${ddir}/ || die
+	rm -rf "${D}"/${ddir}/linux/modules
 
 	# Handle multilib headers and crap
 	local multi_dirs="" multi_defs=""
@@ -530,29 +530,29 @@ install_headers() {
 			multi_defs="!__s390x__ __s390x__"
 			;;
 		arm)
-			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* "${ED}"/${ddir}/asm
-			[[ ! -e ${ED}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${ED}"/${ddir}/asm/arch
-			[[ ! -e ${ED}/${ddir}/asm/proc ]] && ln -sf proc-armv "${ED}"/${ddir}/asm/proc
+			dodir ${ddir#{EPREFIX}}/asm
+			cp -pPR "${S}"/include/asm/* "${D}"/${ddir}/asm
+			[[ ! -e ${D}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${D}"/${ddir}/asm/arch
+			[[ ! -e ${D}/${ddir}/asm/proc ]] && ln -sf proc-armv "${D}"/${ddir}/asm/proc
 			;;
 		powerpc)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${ED}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
 			if [[ -e "${S}"/include/asm-ppc ]] ; then
 				dodir ${ddir}/asm-ppc
-				cp -pPR "${S}"/include/asm-ppc/* ${ED}/${ddir}/asm-ppc
+				cp -pPR "${S}"/include/asm-ppc/* ${D}/${ddir}/asm-ppc
 			fi
 			;;
 		*)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${ED}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
 			;;
 	esac
 	if [[ -n ${multi_dirs} ]] ; then
 		local d ml_inc=""
 		for d in ${multi_dirs} ; do
 			dodir ${ddir}/asm-${d}
-			cp -pPR "${S}"/include/asm-${d}/* ${ED}/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
+			cp -pPR "${S}"/include/asm-${d}/* ${D}/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
 
 			ml_inc="${ml_inc} ${multi_defs%% *}:${ddir}/asm-${d}"
 			multi_defs=${multi_defs#* }
@@ -562,7 +562,7 @@ install_headers() {
 
 	if kernel_is 2 6; then
 		dodir ${ddir}/asm-generic
-		cp -pPR "${S}"/include/asm-generic/* ${ED}/${ddir}/asm-generic
+		cp -pPR "${S}"/include/asm-generic/* ${D}/${ddir}/asm-generic
 	fi
 
 	# clean up
