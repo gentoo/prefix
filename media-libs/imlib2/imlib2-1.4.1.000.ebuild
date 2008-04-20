@@ -1,15 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.0.ebuild,v 1.15 2008/04/19 20:55:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.1.000.ebuild,v 1.1 2008/04/19 21:05:30 vapier Exp $
 
 EAPI="prefix"
 
-EKEY_STATE="release"
 inherit enlightenment toolchain-funcs
 
 MY_P=${P/_/-}
 DESCRIPTION="Version 2 of an advanced replacement library for libraries like libXpm"
 HOMEPAGE="http://www.enlightenment.org/"
+SRC_URI="http://download.enlightenment.org/snapshots/2008-01-25/${P}.tar.bz2"
 
 
 IUSE="X bzip2 gif jpeg mmx mp3 png tiff zlib"
@@ -34,6 +34,7 @@ src_compile() {
 	fi
 
 	export MY_ECONF="
+		--enable-visibility-hiding
 		$(use_with X x) \
 		$(use_with jpeg) \
 		$(use_with png) \
