@@ -3,6 +3,11 @@
 # $Header: $
 
   20 Apr 2008; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/5.10/sparc64/package.use.mask,
+  sunos/solaris/5.10/x64/package.use.mask:
+  Drop nls USE-flag mask for wget on 64-bits Solaris, the GCC patches work.
+
+  20 Apr 2008; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/10.5/package.mask:
   Fix mask entry, as reported by dm-bgp on #gentoo-alt
 
