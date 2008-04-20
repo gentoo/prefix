@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.20.0.ebuild,v 1.7 2008/02/04 04:28:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.20.0.ebuild,v 1.8 2008/04/20 01:35:57 vapier Exp $
 
 EAPI="prefix"
 
