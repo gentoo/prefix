@@ -157,6 +157,8 @@ switch_profile() {
 	ln -sf "${EPREFIX}/${LIBPATH}/ldscripts" "${dstlib}"/ldscripts
 	find -L "${dstlib}" -type l -exec rm {} \;
 	for x in lib* ; do
+		# avoid symlink 'lib*' -> '/...' when no libs (native binutils)
+		[[ ${x} != 'lib*' ]] || continue
 		ln -sf "${EPREFIX}/${LIBPATH}/${x}" "${dstlib}/${x}"
 	done
 
