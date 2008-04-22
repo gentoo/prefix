@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.48.ebuild,v 1.3 2008/01/20 03:47:12 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.54.ebuild,v 1.1 2008/04/21 07:47:13 keri Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
-PATCHSET_VER="1"
+PATCHSET_VER="0"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
@@ -52,6 +52,7 @@ src_unpack() {
 src_compile() {
 	einfo "Building SWI-Prolog compiler"
 
+	append-flags -fno-strict-aliasing
 	use hardened && append-flags -fno-unit-at-a-time
 	use debug && append-flags -DO_DEBUG
 
@@ -73,7 +74,7 @@ src_compile() {
 		$(use_enable gmp) \
 		$(use_enable readline) \
 		$(use_enable !static shared) \
-		--disable-custom-flags \
+		--enable-custom-flags COFLAGS="${CFLAGS}" \
 		|| die "econf failed"
 	emake || die "emake failed"
 
@@ -107,6 +108,7 @@ src_compile() {
 			--with-table \
 			$(use_with X xpce) \
 			$(use_with zlib) \
+			COFLAGS='"${CFLAGS}"' \
 			|| die "packages econf failed"
 
 		emake || die "packages emake failed"
