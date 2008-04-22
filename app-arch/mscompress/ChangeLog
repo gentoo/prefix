@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/mscompress
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/mscompress/ChangeLog,v 1.16 2008/01/26 18:51:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/mscompress/ChangeLog,v 1.17 2008/04/21 16:21:34 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> mscompress-0.3.ebuild:
   Dropped ppc-macos keyword, see you in prefix
