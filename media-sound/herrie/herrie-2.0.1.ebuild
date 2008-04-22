@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-1.9.2.ebuild,v 1.3 2008/03/16 17:01:07 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.0.1.ebuild,v 1.1 2008/04/20 20:03:09 rbu Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="ao alsa pulseaudio oss http modplug mp3 sndfile vorbis xspf unicode nls coreaudio"
 
 # Supported languages
-APP_LINGUAS="ca da de es fi ga nl pl ru sv tr vi"
+APP_LINGUAS="ca da de es fi ga nl pl pt_BR ru sv tr vi zh_CN"
 for X in ${APP_LINGUAS}; do
 	IUSE="${IUSE} linguas_${X}"
 done
