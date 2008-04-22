@@ -17,8 +17,8 @@ start() {
 
 	export PATH="${PATH}:/opt/bin"
         start-stop-daemon --quiet --start -c ${HELLA_USER} \
-		-g ${HELLA_GROUP} \
-                --exec /usr/bin/python /usr/bin/hellanzb.py -- \
+		-g ${HELLA_GROUP} --name hellanzb.py \
+                --exec /usr/bin/hellanzb.py -- \
                 -D -c ${HELLA_CONFIGFILE} ${HELLA_OPTS} &> /dev/null
 	eend $?
 }
