@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.393 2008/04/06 16:45:06 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.394 2008/04/21 16:54:05 welp Exp $
 
 # Keep them sorted
 
@@ -127,6 +127,7 @@ ginac - Adds sci-mathematics/ginac (symbolic math) support
 glut - Build an OpenGL plugin using the GLUT library
 gmp - Adds support for dev-libs/gmp (GNU MP library)
 gnome - Adds GNOME support
+gnome-keyring - Enable support for storing passwords via gnome-keyring
 gnuplot - Enable support for gnuplot (data and function plotting)
 gnustep - Adds integration with GNUstep environment
 gnutls - Adds support for net-libs/gnutls (TLS 1.0 and SSL 3.0 support)

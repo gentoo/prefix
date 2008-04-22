@@ -1,6 +1,56 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1338 2008/04/15 18:38:02 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1353 2008/04/22 11:37:04 flameeyes Exp $
+
+  22 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> arch/m68k/use.mask,
+  arch/s390/use.mask:
+  Mask gnome-keyring on new m68k and s390 profiles, for the same reason.
+
+  22 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  default-linux/s390/use.mask:
+  Mask gnome-keyring on s390 too for pambase is changing its USE flag.
+
+  22 Apr 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Mask app-vim/conky-syntax for removal in 30 days. (bug #208878)
+
+  21 Apr 2008; Markus Ullmann <jokey@gentoo.org> package.mask:
+  Mark sys-fs/python-fuse for removal
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org>
+  hardened/linux/make.defaults, hardened/linux/x86/make.defaults,
+  hardened/linux/x86/2008.0/make.defaults:
+  Fixing the "new style" hardened profile, to *not* enable either USE=ipv6,
+  USE=nls or USE=unicode by default.
+ 
+  21 Apr 2008; Markus Ullmann <jokey@gentoo.org> package.mask:
+  Mask gloox beta version
+
+  21 Apr 2008; <welp@gentoo.org> use.local.desc:
+  keyring to gnome-keyring
+
+  21 Apr 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Deleted mask on sci-libs/libgdgeda which was removed from the tree.
+
+  21 Apr 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Deleted mask on sci-electronics/lard which was removed from the tree.
+
+  21 Apr 2008; <welp@gentoo.org> use.desc:
+  Add gnome-keyring to use.desc
+
+  21 Apr 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Removal of net-firewall/conntrack's mask (bug #213084).
+
+  20 Apr 2008; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Adjusted mask on sci-electronics/gwave.
+
+  20 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add keyring use flag to gnome-base/gdm for 2.20.5 bugfix to #216664.
+
+  20 Apr 2008; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local use flag 'boehmgc' for dev-embedded/sdcc.
+
+  20 Apr 2008; <welp@gentoo.org> use.local.desc:
+  New local USE flag for twitux
 
   15 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
   Masked media-plugins/vdr-dvdselect for removal.

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8515 2008/04/19 20:04:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8524 2008/04/22 07:02:28 omp Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,33 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# David Shakaryan <omp@gentoo.org> (22 Apr 2008)
+# Masked for removal in 30 days. (bug #208878)
+# Dropping conky-syntax in favour of upstream syntax script.
+# Please enable the vim-syntax flag for conky instead.
+app-vim/conky-syntax
+
+# Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
+# Masked for removal in 30 days.
+# unmaintained, broken and not used anywhere
+# use dev-python/fuse-python instead
+sys-fs/python-fuse
+
+# Samuli Suominen <drac@gentoo.org> (21 Apr 2008)
+# Masked for removal in 30 days. Doesn't build
+# wrt bug 178036 and has open CVE-2007-4773 wrt
+# security bug 203195.
+sys-apps/systrace
+
+# Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
+# mask beta version
+=net-libs/gloox-1.0_beta*
+
+# Samuli Suominen <drac@gentoo.org> (21 Apr 2008)
+# Masked by treecleaners for bug 160267. Removed in ~60 days.
+# Has been included in 2.6 kernel series.
+net-fs/coda-kernel
 
 # Diego Pettenò <flameeyes@gentoo.org> (19 Apr 2008)
 # Masked until we remove "children" .la files, or get better tools -
@@ -147,7 +174,7 @@ dev-libs/swl
 # New versions using guile-1.8 and gtk-2 used to build and run at some point,
 # but not anymore. If you know how or want to fix this feel free to contact
 # me. Warning: dependency hell.
->=sci-electronics/gwave-20070514
+=sci-electronics/gwave-20070514
 
 # Hanno Boeck <hanno@gentoo.org> (31 Mar 2008)
 # As 1.3.3.x became a stable series and 1.3.4 has crash issues, mask it for now.
@@ -198,12 +225,6 @@ net-p2p/limewire
 =net-www/xxv-1.2.1308
 =net-www/xxv-1.2.1315
 
-# Denis Dupeyron <calchan@gentoo.org> (22 Mar 2008)
-# Not needed anymore. Was only used by old versions of
-# sci-libs/libgeda which were just punted. Will be removed
-# in 30 days.
-sci-libs/libgdgeda
-
 # Tristan Heaven <nyhm@gentoo.org> (21 Mar 2008)
 # Needs testing
 >=games-strategy/warzone2100-2.1_beta2
@@ -211,12 +232,6 @@ sci-libs/libgdgeda
 # Colin Morey <peitolm@gentoo.org> (20 Mar 2008)
 # Masked for testing, closing lots of little bugs
 =mail-mta/exim-4.69-r1
-
-# Jeroen Roovers <jer@gentoo.org> (19 Mar 2008)
-# Deprecated in favour of net-firewall/conntrack-tools, which
-# merges both conntrack and conntrackd (bug #213084).
-# Going for removal on or about 19 Apr 2008:
-net-firewall/conntrack
 
 # Donnie Berkholz <dberkholz@gentoo.org> (17 Mar 2008)
 # Most apps that use lm_sensors aren't compatible with the new version
@@ -227,11 +242,6 @@ net-firewall/conntrack
 # upstream unresponsive, replaced by dev-util/ftjam
 # Bug #173703
 dev-util/jam
-
-# Denis Dupeyron <calchan@gentoo.org> (15 Mar 2008)
-# Masked for removal in 30 days. Requires Tcl 8.3 which
-# isn't in the tree anymore. See bugs 172356 and 173467.
-sci-electronics/lard
 
 # Wolfram Schlich <wschlich@gentoo.org> (13 Mar 2008)
 # mondo-rescue previously was a candidate for complete

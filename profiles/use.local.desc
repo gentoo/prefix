@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3499 2008/04/20 01:33:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3511 2008/04/21 22:17:31 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -31,7 +31,6 @@ app-admin/syslog-ng:spoof-source - Enable support for spoofed source addresses
 app-admin/testdisk:ntfs - Include the ability to read NTFS filesystems
 app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/webalizer:xtended - Include the 404 extension
-app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
 app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable plugin for integrating into nautilus
 app-arch/rpm:file - add magic file support
@@ -73,7 +72,6 @@ app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:applet - Enable panel applet
 app-crypt/seahorse:epiphany - Enable epiphany extension
 app-crypt/seahorse:gedit - Enable the gedit plugin
-app-crypt/seahorse:keyring - Enable gnome-keyring support for storing passwords
 app-crypt/seahorse:nautilus - Add support for nautilus file manager
 app-dicts/aspell-be:classic - Support classic spelling by default
 app-dicts/stardict:espeak - Enable espeak text to speach plugin
@@ -214,6 +212,7 @@ app-misc/roadnav:openstreetmap - Enable openstreetmap support
 app-misc/roadnav:scripting - Enable scripting support
 app-misc/screen:multiuser - Enable multiuser support (by setting correct permissions)
 app-misc/screen:nethack - Express error messages in nethack style
+app-misc/sphinx:stemmer - Enable language stemming support for sphinx
 app-misc/strigi:clucene - Enable clucene backend support (recommended)
 app-misc/strigi:exiv2 - Enable support for exif/iptc metadata (recommended)
 app-misc/strigi:hyperestraier - Enable hyperestraier backend support (experimental)
@@ -282,7 +281,6 @@ app-text/crm114:mew - Add support for using the mewdecode mime decoder.
 app-text/crm114:mimencode - Adds support for using the mimencode mime
 app-text/crm114:normalizemime - Add support for using the normalizemime
 app-text/evince:dvi - Enable the built-in DVI viewer for Evince
-app-text/evince:keyring - Enable gnome-keyring support for storing passwords
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer for Evince
 app-text/hyperestraier:mecab - Enable mecab support for Estraier
 app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search library (TeX related)
@@ -353,6 +351,7 @@ dev-embedded/openocd:ftdi - Enable support for USB FTDI chips
 dev-embedded/openocd:parport - Enable support for parport JTAG devices
 dev-embedded/openocd:presto - Enable support for AXIS PRESTO devices
 dev-embedded/ponyprog:epiphany - Enable epiphany support
+dev-embedded/sdcc:boehmgc - Enable Hans Boehm's garbage collector
 dev-embedded/urjtag:ftdi - Enable support for USB FTDI chips
 dev-games/cegui:devil - Enable image loading via DevIL
 dev-games/cegui:irrlicht - Enable the Irrlicht renderer
@@ -404,7 +403,6 @@ dev-java/gnu-classpath:dssi - Enable the DSSI midi synthesizer provider
 dev-java/gnu-classpath:gconf - Enable the GConf based util.peers backend
 dev-java/groovy:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/ibm-jdk-bin:javacomm - Enable Java Communications API support
-dev-java/jamvm:ffi - use dev-libs/libffi to call native methods
 dev-java/jamvm:libffi - use dev-libs/libffi to call native methods
 dev-java/jcs:admin - Enable JCS Admin servlets
 dev-java/jdbc-jaybird:jni - Build/Install JDBC Type 2 native components
@@ -749,11 +747,9 @@ gnome-base/gdm:remote - Enable secure remote support
 gnome-base/gnome-mount:nautilus - Enable the nautilus plugin
 gnome-base/gvfs:cdda - Enable Compact Disc Digital Audio support (audio CD standard)
 gnome-base/gvfs:fuse - Enable fuse mount points in ~/.gvfs for legacy application access
-gnome-base/gvfs:keyring - Enable gnome-keyring support for storing passwords
 gnome-base/nautilus:beagle - Enable support for beagle searching
 gnome-base/nautilus:tracker - Enable support for tracker searching
 gnome-extra/avant-window-navigator:xfce - Enable support for libs XFCE provides
-gnome-extra/evolution-data-server:keyring - Enable gnome-keyring support for storing passwords
 gnome-extra/gnome-do-plugins:amarok - Build the plugin for Amarok
 gnome-extra/gnome-games:artworkextra - Add extra Artwork to gnome-games
 gnome-extra/libgda:mdb - Enable Microsoft Access DB support for GnomeDB.
@@ -908,6 +904,8 @@ mail-filter/spamassassin-fuzzyocr:tesseract - Enable support for the tesseract O
 mail-filter/spamdyke:tls - Enables tls protocol for spamdyke
 mail-mta/courier:fax - Enables fax support in the courier mail server
 mail-mta/courier:norewrite - Prevents courier mail server from mangling virtual user addresses when sending
+mail-mta/courier:web - Enable the web interface
+mail-mta/courier:webmail - Enable the webmail interface
 mail-mta/exim:dnsdb - Adds support for a DNS search for a record whose domain name is the supplied query
 mail-mta/exim:domainkeys - Adds support for Yahoo!'s Domainkey sender verification system
 mail-mta/exim:dovecot-sasl - Adds support for Dovecot's authentication
@@ -994,7 +992,6 @@ media-libs/sdl-sound:physfs - Enable physfs support
 media-libs/sge:image - enable sdl-image support
 media-libs/speex:vorbis-psy - Enable Vorbis-style psychoacoustics
 media-libs/svgalib:no-helper - Do not build the helper kernel module
-media-libs/swfdec:soup - Enable HTTP support via libsoup
 media-libs/urt:gs - Add support for postscript
 media-libs/win32codecs:real - Installs the real video codecs
 media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
@@ -1011,7 +1008,6 @@ media-plugins/audacious-plugins-ugly:cube - Build with CUBE input plugin (suppor
 media-plugins/audacious-plugins-ugly:iris - Build with Iris 3D visual plugin
 media-plugins/gimp-greycstoration:smp - Enable multicore/multiprocessor support
 media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compression library
-media-plugins/gst-plugins-farsight:jrtplib - Support for the Real-time Transport Protocol (RTP) library
 media-plugins/gst-plugins-meta:mythtv - Support for retrieval from Mythtv backend
 media-plugins/mythdvd:transcode - Enable DVD ripping and transcoding
 media-plugins/mythmusic:libvisual - Enables libvisual support for effects
@@ -1103,7 +1099,6 @@ media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer ro
 media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), useful for slower computers
 media-sound/rezound:soundtouch - compile with support for soundtouch
 media-sound/rhythmbox:daap - Enable support for local network music sharing via daap
-media-sound/rhythmbox:keyring - Enable gnome-keyring support for storing passwords
 media-sound/rhythmbox:mtp - Enable support for MTP devices
 media-sound/rhythmbox:tagwriting - support for tag writing in certain audio files
 media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
@@ -1468,7 +1463,6 @@ net-ftp/proftpd:authfile - Enable support for the auth-file module
 net-ftp/proftpd:ban - Enable support for the mod_ban module
 net-ftp/proftpd:case - Enable support for the mod_case module
 net-ftp/proftpd:deflate - Enable support for the mod_deflate module
-net-ftp/proftpd:gzipfs - Enable support for the mod_gzipfs module
 net-ftp/proftpd:ifsession - Enable support for the ifsession module
 net-ftp/proftpd:noauthunix - Disable support for the auth-unix module
 net-ftp/proftpd:opensslcrypt - Enable support for OpenSSL crypto
@@ -1505,7 +1499,6 @@ net-im/gajim:trayicon - Enable support for trayicon
 net-im/gajim:xhtml - Enable XHTML support
 net-im/gnugadu:tlen - Enable Tlen.pl protocol support
 net-im/gossip:galago - Enable desktop presence with galago
-net-im/gossip:keyring - Enable gnome-keyring support for storing passwords
 net-im/jabberd2:memdebug - Enable nad and pool debug
 net-im/jabberd2:pipe - Enable pipe auth
 net-im/kadu:amarok - Enables amarok support in kadu
@@ -1535,7 +1528,6 @@ net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal
 net-im/sim:sms - Enable sms plugin
 net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it
 net-im/skype:qt-static - Installs binaries statically linked to Qt
-net-im/telepathy-mission-control:keyring - Enable gnome-keyring support for storing passwords
 net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables installation the extra plugins
 net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
@@ -1678,7 +1670,6 @@ net-misc/streamtuner:xiph - Enable xiph.org plug-in.
 net-misc/strongswan:cisco - Enable support of Cisco VPN client
 net-misc/strongswan:nat - Enable NAT traversal with IPsec transport mode
 net-misc/tightvnc:server - Build vncserver. Allows us to only build server on one machine if set, build only viewer otherwise.
-net-misc/vino:keyring - Enable gnome-keyring support for storing passwords
 net-misc/vnc:server - Build VNC server
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
@@ -2217,7 +2208,6 @@ x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
-x11-misc/xscreensaver:insecure-savers - Installs some screensaver modules as setuid root to enable cooler effects
 x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
 x11-plugins/bfm:gkrellm - Enable build of gkrellm module
 x11-plugins/gkrellm-plugins:audacious - Install the audacious plugin
