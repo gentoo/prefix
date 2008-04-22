@@ -1,6 +1,10 @@
 # ChangeLog for net-nntp/nget
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.10 2007/04/15 00:08:45 swegener Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.11 2008/04/21 18:12:26 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   15 Apr 2007; Sven Wegener <swegener@gentoo.org> -nget-0.26.ebuild,
   -nget-0.27.ebuild:
