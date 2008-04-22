@@ -5,7 +5,7 @@ diff -ur distcc-2.18.3.old/configure.ac distcc-2.18.3/configure.ac
      [#include <sys/socket.h>])
  
  dnl check for avahi
-+AC_ARG_ENABLE(avahi, AC_HELP_STRING([--enable-avahi], [enable avahi support], [], [enable_avahi=auto]))
++AC_ARG_ENABLE(avahi, AC_HELP_STRING([--enable-avahi], [enable avahi support]), [], [enable_avahi=auto])
 +ZEROCONF_DISTCC_OBJS=""
 +ZEROCONF_DISTCCD_OBJS=""
  PKG_CHECK_MODULES(AVAHI, [avahi-client >= 0.6.5],
