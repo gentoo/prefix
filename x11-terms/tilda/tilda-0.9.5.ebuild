@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-terms/tilda/tilda-0.9.5.ebuild,v 1.4 2008/03/17 14:28:01 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/tilda-0.9.5.ebuild,v 1.5 2008/04/22 13:23:56 drac Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A drop down terminal, similar to the consoles found in first person shooters"
 HOMEPAGE="http://tilda.sourceforge.net"
@@ -15,12 +13,13 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND="x11-libs/vte
+RDEPEND="x11-libs/vte
 	>=dev-libs/glib-2.8.4
-	dev-libs/confuse
+	dev-libs/confuse"
+DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_install() {
-	emake DESTDIR="${D}" install
+	emake DESTDIR="${D}" install || die "emake install failed."
 	dodoc AUTHORS ChangeLog README TODO
 }

@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/tilda
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.15 2008/03/17 14:28:01 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.16 2008/04/22 13:23:56 drac Exp $
+
+  22 Apr 2008; Samuli Suominen <drac@gentoo.org> -tilda-0.9.4.ebuild,
+  tilda-0.9.5.ebuild:
+  Move pkgconfig from RDEPEND to DEPEND and remove unused version.
 
   17 Mar 2008; Dawid Węgliński <cla@gentoo.org> tilda-0.9.5.ebuild:
   Stable on x86 (bug #213482)
