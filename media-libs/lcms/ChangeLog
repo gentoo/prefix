@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/lcms
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.88 2008/01/29 21:53:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.89 2008/04/20 17:01:55 flameeyes Exp $
+
+  20 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> lcms-1.17.ebuild:
+  Make swig a build-time only dependency, fixes bug #216993.
 
   29 Jan 2008; Fabian Groffen <grobian@gentoo.org> lcms-1.14-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
