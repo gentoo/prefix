@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/rzip
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.23 2008/02/07 21:59:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.25 2008/04/21 16:36:13 drac Exp $
+
+  21 Apr 2008; Samuli Suominen <drac@gentoo.org> -rzip-2.0-r1.ebuild,
+  -rzip-2.0-r2.ebuild, rzip-2.1.ebuild:
+  Instead of placing WANT_AUTOCONF in front of eautoreconf, leave it unset
+  so it defaults on latest. Use emake.
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   07 Feb 2008; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
   The original proxy-maint is long gone. Package needs new maintainers.
