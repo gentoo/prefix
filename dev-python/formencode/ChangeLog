@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/formencode
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.14 2008/03/23 15:13:17 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.16 2008/04/22 13:44:38 chtekk Exp $
+
+  22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> formencode-1.0.1.ebuild:
+  Empty RDEPEND.
+
+*formencode-1.0.1 (22 Apr 2008)
+
+  22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> -formencode-1.0.ebuild,
+  +formencode-1.0.1.ebuild:
+  Version bump.
 
 *formencode-1.0 (23 Mar 2008)
 

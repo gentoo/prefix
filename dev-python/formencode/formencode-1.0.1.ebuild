@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/formencode-1.0.ebuild,v 1.1 2008/03/23 15:13:17 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/formencode-1.0.1.ebuild,v 1.2 2008/04/22 13:44:38 chtekk Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 DEPEND="dev-python/setuptools"
+RDEPEND=""
 
 S="${WORKDIR}/${MY_P}"
 
