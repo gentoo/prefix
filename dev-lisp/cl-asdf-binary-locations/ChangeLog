@@ -1,6 +1,14 @@
 # ChangeLog for dev-lisp/cl-asdf-binary-locations
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/ChangeLog,v 1.5 2008/04/15 05:47:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/ChangeLog,v 1.7 2008/04/21 12:41:39 fmccor Exp $
+
+  21 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
+  cl-asdf-binary-locations-20061018.ebuild:
+  Sparc stable, required by Bug #218706.
+
+  20 Apr 2008; Markus Meier <maekke@gentoo.org>
+  cl-asdf-binary-locations-20061018.ebuild:
+  x86 stable, bug #217700
 
   15 Apr 2008; Markus Rothe <corsair@gentoo.org>
   cl-asdf-binary-locations-20061018.ebuild:
