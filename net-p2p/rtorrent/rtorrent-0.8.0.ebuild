@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.0.ebuild,v 1.1 2008/03/01 11:17:24 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.0.ebuild,v 1.2 2008/04/21 15:08:51 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,13 @@ RDEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
 	sys-libs/ncurses
 	xmlrpc? ( dev-libs/xmlrpc-c )"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}/${P}+gcc-4.3.patch"
+}
 
 src_compile() {
 	replace-flags -Os -O2
