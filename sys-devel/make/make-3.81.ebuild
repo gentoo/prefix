@@ -24,8 +24,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-tests-lang.patch
 	# https://savannah.gnu.org/bugs/index.php?18680
 	epatch "${FILESDIR}"/${P}-eintr-loop.patch
-	# should be ok unconditionally
-	epatch "${FILESDIR}"/${P}-interix3.patch
+
+	# breaks build on other interix systems.
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
 src_compile() {
