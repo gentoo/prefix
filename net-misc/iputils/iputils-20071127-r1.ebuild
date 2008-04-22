@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20071127.ebuild,v 1.10 2008/04/20 20:55:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20071127-r1.ebuild,v 1.1 2008/04/20 20:56:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.skbuff.net/iputils/iputils-s${PV}.tar.bz2
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="static ipv6 doc"
+IUSE="doc idn ipv6 static"
 
 DEPEND="virtual/os-headers
 	doc? (
@@ -23,7 +23,8 @@ DEPEND="virtual/os-headers
 		app-text/docbook-sgml-dtd
 		app-text/docbook-sgml-utils
 	)"
-RDEPEND="!net-misc/rarpd"
+RDEPEND="!net-misc/rarpd
+	idn? ( net-dns/libidn )"
 
 S=${WORKDIR}/${PN}-s${PV}
 
@@ -36,9 +37,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-kernel-ifaddr.patch
 	epatch "${FILESDIR}"/${PN}-20060512-linux-headers.patch
 	epatch "${FILESDIR}"/${PN}-20070202-no-open-max.patch #195861
+	epatch "${FILESDIR}"/${PN}-20070202-idn.patch #218638
 
 	use static && append-ldflags -static
 	use ipv6 || sed -i -e 's:IPV6_TARGETS=:#IPV6_TARGETS=:' Makefile
+	export IDN=$(use idn && echo yes)
 }
 
 src_compile() {

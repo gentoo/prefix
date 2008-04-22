@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.11 2007/10/28 21:24:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.12 2008/04/20 20:05:48 vapier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic eutils toolchain-funcs
 
 DESCRIPTION="Network monitoring tools including ping and ping6"
-HOMEPAGE="http://www.skbuff.net/iputils/"
+HOMEPAGE="http://www.linux-foundation.org/en/Net:Iputils"
 SRC_URI="http://www.skbuff.net/iputils/iputils-s${PV}.tar.bz2"
 
 LICENSE="BSD"
