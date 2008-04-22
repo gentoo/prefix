@@ -1,6 +1,10 @@
 # ChangeLog for app-text/rcs
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.32 2007/08/25 16:51:40 beandog Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.33 2008/04/21 17:05:58 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   25 Aug 2007; Steve Dibb <beandog@gentoo.org> rcs-5.7-r3.ebuild:
   amd64 stable
