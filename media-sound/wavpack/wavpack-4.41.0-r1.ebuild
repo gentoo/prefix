@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.41.0.ebuild,v 1.13 2008/04/20 21:43:29 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.41.0-r1.ebuild,v 1.1 2008/04/20 21:43:29 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic autotools
+inherit libtool eutils flag-o-matic autotools
 
 DESCRIPTION="WavPack audio compression tools"
 HOMEPAGE="http://www.wavpack.com"
@@ -19,6 +19,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}/${P}-constant.patch"
 	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf # need new libtool for interix

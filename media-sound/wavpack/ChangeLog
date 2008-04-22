@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/wavpack
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.35 2008/03/07 07:39:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.36 2008/04/20 21:43:29 flameeyes Exp $
+
+*wavpack-4.41.0-r1 (20 Apr 2008)
+
+  20 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/wavpack-4.41.0-constant.patch, wavpack-4.41.0.ebuild,
+  +wavpack-4.41.0-r1.ebuild:
+  Fix building with GCC 4.3, thanks to Peter Alfredsen in bug #217828. Also
+  add a new revision with a patch to mark more stuff constant in a new
+  revision.
 
   16 Nov 2007; nixnut <nixnut@gentoo.org> wavpack-4.41.0.ebuild:
   Stable on ppc wrt bug 198823
