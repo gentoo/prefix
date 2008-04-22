@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.3 2008/02/27 10:20:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.4 2008/04/20 08:51:31 vapier Exp $
 
 EAPI="prefix"
 
@@ -79,6 +79,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-sdl-config.patch
 	epatch "${FILESDIR}"/${PN}-1.2.11-xinerama-head-0.patch #145917
 	epatch "${FILESDIR}"/${P}-pulseaudio.patch #198147
+	epatch "${FILESDIR}"/${P}-cld.patch #217097
 
 	./autogen.sh
 	elibtoolize

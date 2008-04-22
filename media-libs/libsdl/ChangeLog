@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.140 2008/02/27 10:20:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.141 2008/04/20 08:51:31 vapier Exp $
+
+  20 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/libsdl-1.2.13-cld.patch, libsdl-1.2.11-r2.ebuild,
+  libsdl-1.2.13.ebuild:
+  Add fix from upstream for the cld issue on x86 #217097 by Peter Alfredsen.
 
   27 Feb 2008; Mike Frysinger <vapier@gentoo.org>
   +files/libsdl-1.2.13-libcaca-new-api.patch, libsdl-1.2.13.ebuild:
