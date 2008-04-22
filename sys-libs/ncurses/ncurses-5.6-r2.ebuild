@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r2.ebuild,v 1.9 2008/01/02 07:09:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r2.ebuild,v 1.11 2008/04/20 16:53:33 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
 LICENSE="MIT"
 SLOT="5"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bootstrap build debug doc gpm minimal nocxx profile trace unicode"
+IUSE="debug doc gpm minimal nocxx profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
 
@@ -55,13 +55,9 @@ src_compile() {
 	# Protect the user from themselves #115036
 	unset TERMINFO
 
-	# From version 5.3, ncurses also build c++ bindings, and as
-	# we do not have a c++ compiler during bootstrap, disable
-	# building it.  We will rebuild ncurses after gcc's second
-	# build in bootstrap.sh.
 	local myconf=""
-	( use build || use bootstrap || use nocxx ) \
-		&& myconf="${myconf} --without-cxx --without-cxx-binding --without-ada"
+	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
+	use ada || myconf="${myconf} --without-ada"
 	
 	# work around http://gcc.gnu.org/ml/gcc-help/2006-02/msg00173.html
 	[[ ${CHOST} == *-aix5.3* ]] && export ac_cv_sys_large_files=no
@@ -171,7 +167,7 @@ src_install() {
 	# We need the basic terminfo files in /etc, bug #37026
 	einfo "Installing basic terminfo files in /etc..."
 	for x in ansi console dumb linux rxvt screen sun vt{52,100,102,200,220} \
-	         xterm xterm-color xterm-xfree86
+			 xterm xterm-color xterm-xfree86
 	do
 		local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
 		local basedir=$(basename $(dirname "${termfile}"))
