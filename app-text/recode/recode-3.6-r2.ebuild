@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6-r2.ebuild,v 1.21 2008/01/19 15:00:07 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6-r2.ebuild,v 1.22 2008/04/20 08:32:59 vapier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils autotools toolchain-funcs
+inherit eutils libtool toolchain-funcs autotools
 
 DEB_VER=11
 DESCRIPTION="Convert files between various character sets"
@@ -22,6 +22,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-debian-${DEB_VER}.patch
+	epatch "${FILESDIR}"/${P}-gcc43.patch #209036
+	sed -i '1i#include <stdlib.h>' src/argmatch.c || die
 
 	# Needed under FreeBSD, too
 	epatch "${FILESDIR}"/${P}-ppc-macos.diff
@@ -42,7 +44,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS BACKLOG ChangeLog NEWS README THANKS TODO
 	rm -f "${ED}"/usr/lib/charset.alias
 }
