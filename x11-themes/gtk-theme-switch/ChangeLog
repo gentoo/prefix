@@ -1,6 +1,11 @@
 # ChangeLog for x11-themes/gtk-theme-switch
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-theme-switch/ChangeLog,v 1.36 2007/12/25 15:24:22 phreak Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-theme-switch/ChangeLog,v 1.37 2008/04/20 15:29:14 drac Exp $
+
+  20 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  gtk-theme-switch-2.0.0_rc2-r2.ebuild:
+  Move pkgconfig from RDEPEND to DEPEND. Use toolchain-funcs for CC, respect
+  CFLAGS, use emake, use die messages and fix quoting.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469.
