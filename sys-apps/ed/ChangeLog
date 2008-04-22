@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/ed
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.61 2007/09/28 17:07:36 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.62 2008/04/21 18:28:25 vapier Exp $
+
+*ed-0.9 (21 Apr 2008)
+
+  21 Apr 2008; Mike Frysinger <vapier@gentoo.org> +ed-0.9.ebuild:
+  Version bump #218755.
 
   28 Sep 2007; nixnut <nixnut@gentoo.org> ed-0.8.ebuild:
   Stable on ppc wrt bug 194011
