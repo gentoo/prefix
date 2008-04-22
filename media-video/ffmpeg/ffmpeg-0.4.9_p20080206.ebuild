@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080206.ebuild,v 1.3 2008/04/07 22:14:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080206.ebuild,v 1.4 2008/04/20 07:28:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -59,6 +59,7 @@ src_unpack() {
 	# To make sure the ffserver test will work
 	sed -i -e "s:-e debug=off::" tests/server-regression.sh
 
+	epatch "${FILESDIR}"/${PN}-arm-pld.patch
 	epatch "${FILESDIR}/${PN}-shared-gcc4.1.patch"
 	# disable non pic safe asm, bug #172877, bug #172845 and dupes
 	# epatch "${FILESDIR}/${PN}-0.4.9_p20070330-asmpic.patch"
