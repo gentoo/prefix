@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.1.1.ebuild,v 1.1 2008/04/08 21:31:57 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.1.1.ebuild,v 1.2 2008/04/21 17:01:10 welp Exp $
 
 EAPI="prefix"
 
@@ -12,13 +12,13 @@ HOMEPAGE="http://www.gnome.org/projects/evince/"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="dbus djvu doc dvi gnome keyring t1lib tiff"
+IUSE="dbus djvu doc dvi gnome gnome-keyring t1lib tiff"
 
 RDEPEND="
 	dbus? ( >=dev-libs/dbus-glib-0.71 )
 	>=x11-libs/gtk+-2.10
 	>=dev-libs/glib-2.15.6
-	keyring? ( >=gnome-base/gnome-keyring-2.20.1 )
+	gnome-keyring? ( >=gnome-base/gnome-keyring-2.20.1 )
 	>=gnome-base/libgnomeui-2.14
 	>=gnome-base/libgnome-2.14
 	>=x11-themes/gnome-icon-theme-2.17.1
@@ -55,7 +55,7 @@ pkg_setup() {
 		$(use_enable dbus)
 		$(use_enable djvu)
 		$(use_enable dvi)
-		$(use_with keyring)
+		$(use_with gnome-keyring keyring)
 		$(use_enable t1lib)
 		$(use_enable tiff)
 		$(use_enable gnome nautilus)"
