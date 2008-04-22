@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r1.ebuild,v 1.2 2008/03/02 00:44:21 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r1.ebuild,v 1.3 2008/04/21 16:19:53 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-strsol.patch
 	epatch "${FILESDIR}"/${PN}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-asneeded.patch
+	epatch "${FILESDIR}"/${P}+curl-7.18.patch
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
 
 	# Respect the user's CFLAGS/CXXFLAGS.
