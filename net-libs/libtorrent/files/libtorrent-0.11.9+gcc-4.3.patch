@@ -1,0 +1,72 @@
+--- libtorrent-0.11.9.orig/src/data/chunk.cc
++++ libtorrent-0.11.9/src/data/chunk.cc
+@@ -38,6 +38,7 @@
+ 
+ #include <algorithm>
+ #include <functional>
++#include <cstring>
+ 
+ #include "torrent/exceptions.h"
+ 
+--- libtorrent-0.11.9.orig/src/data/chunk_list.h
++++ libtorrent-0.11.9/src/data/chunk_list.h
+@@ -38,6 +38,7 @@
+ #define LIBTORRENT_DATA_CHUNK_LIST_H
+ 
+ #include <vector>
++#include <string>
+ #include <rak/error_number.h>
+ #include <rak/functional.h>
+ 
+--- libtorrent-0.11.9.orig/src/net/address_list.cc
++++ libtorrent-0.11.9/src/net/address_list.cc
+@@ -38,6 +38,8 @@
+ 
+ #include <rak/functional.h>
+ 
++#include <algorithm>
++
+ #include "download/download_info.h"  // for SocketAddressCompact
+ 
+ #include "address_list.h"
+--- libtorrent-0.11.9.orig/src/torrent/exceptions.cc
++++ libtorrent-0.11.9/src/torrent/exceptions.cc
+@@ -37,6 +37,7 @@
+ #include "config.h"
+ 
+ #include <cerrno>
++#include <cstring>
+ 
+ #include "exceptions.h"
+ 
+--- libtorrent-0.11.9.orig/src/torrent/data/file_list_iterator.h
++++ libtorrent-0.11.9/src/torrent/data/file_list_iterator.h
+@@ -40,6 +40,8 @@
+ #include <torrent/common.h>
+ #include <torrent/data/file_list.h>
+ 
++#include <cstdlib>
++
+ namespace torrent {
+ 
+ class File;
+--- libtorrent-0.11.9.orig/src/utils/diffie_hellman.cc
++++ libtorrent-0.11.9/src/utils/diffie_hellman.cc
+@@ -37,6 +37,7 @@
+ #include "config.h"
+ 
+ #include <string>
++#include <cstring>
+ 
+ #ifdef USE_OPENSSL
+ #include <openssl/bn.h>
+--- libtorrent-0.11.9.orig/rak/functional.h
++++ libtorrent-0.11.9/rak/functional.h
+@@ -37,6 +37,7 @@
+ #ifndef RAK_FUNCTIONAL_H
+ #define RAK_FUNCTIONAL_H
+ 
++#include <cstdlib>
+ #include <functional>
+ 
+ namespace rak {

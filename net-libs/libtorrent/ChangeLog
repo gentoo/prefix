@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.111 2008/03/01 11:12:42 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.112 2008/04/21 14:33:39 flameeyes Exp $
+
+  21 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libtorrent-0.11.9+gcc-4.3.patch, libtorrent-0.12.0.ebuild:
+  Add patch to fix building with GCC 4.3 (taken from Debian). Closes bug
+  #212824.
 
 *libtorrent-0.12.0 (01 Mar 2008)
 

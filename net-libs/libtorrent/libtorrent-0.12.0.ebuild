@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.0.ebuild,v 1.1 2008/03/01 11:12:42 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.0.ebuild,v 1.2 2008/04/21 14:33:39 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,14 @@ RDEPEND=">=dev-libs/libsigc++-2"
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.11"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Patch taken from Debian.
+	epatch "${FILESDIR}/${PN}-0.11.9+gcc-4.3.patch"
+}
 
 src_compile() {
 	replace-flags -Os -O2
