@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-archive/autoconf-archive-2008.02.21.ebuild,v 1.2 2008/04/20 19:12:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-archive/autoconf-archive-2008.04.17.ebuild,v 1.1 2008/04/20 19:13:13 vapier Exp $
 
 EAPI="prefix"
 
