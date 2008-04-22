@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/blas-reference
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.42 2008/03/04 10:43:19 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.43 2008/04/21 14:52:16 bicatali Exp $
+
+  21 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  blas-reference-20070226.ebuild:
+  Removed pkg-config in RDEPEND (see bug #217278) and moved doc to RDEPEND
 
   04 Mar 2008; Markus Dittrich <markusle@gentoo.org>
   blas-reference-20070226.ebuild:
