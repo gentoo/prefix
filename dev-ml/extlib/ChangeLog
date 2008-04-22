@@ -1,6 +1,14 @@
 # ChangeLog for dev-ml/extlib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/extlib/ChangeLog,v 1.7 2008/04/19 14:50:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/extlib/ChangeLog,v 1.9 2008/04/20 14:20:27 aballier Exp $
+
+  20 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/extlib-1.5-ExtList.remove.patch, -extlib-1.4.ebuild,
+  -extlib-1.5.ebuild:
+  remove old
+
+  20 Apr 2008; Markus Meier <maekke@gentoo.org> extlib-1.5.1.ebuild:
+  amd64/x86 stable, bug #217537
 
   19 Apr 2008; nixnut <nixnut@gentoo.org> extlib-1.5.1.ebuild:
   Stable on ppc wrt bug 217537
