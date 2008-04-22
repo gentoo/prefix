@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.173 2008/03/26 03:41:42 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.174 2008/04/20 11:20:23 eva Exp $
+
+*libxslt-1.1.23 (20 Apr 2008)
+
+  20 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/libxslt-1.1.23-parallel-install.patch, -libxslt-1.1.20.ebuild,
+  -libxslt-1.1.20-r1.ebuild, +libxslt-1.1.23.ebuild:
+  bump to 1.1.23. Bug and build fixes. Fix bug #212784.
 
   25 Mar 2008; <ricmm@gentoo.org> libxslt-1.1.20.ebuild,
   libxslt-1.1.20-r1.ebuild, libxslt-1.1.22.ebuild:
