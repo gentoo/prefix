@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.104 2008/04/19 15:43:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.105 2008/04/21 14:22:59 armin76 Exp $
+
+*xulrunner-1.9_beta5-r1 (21 Apr 2008)
+
+  21 Apr 2008; Raúl Porcel <armin76@gentoo.org>
+  -xulrunner-1.9_beta5.ebuild, +xulrunner-1.9_beta5-r1.ebuild:
+  Fix symlink, thanks to hoffie for the report
 
   19 Apr 2008; Markus Rothe <corsair@gentoo.org> xulrunner-1.8.1.14.ebuild:
   Stable on ppc64; bug #218065
