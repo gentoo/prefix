@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.35 2008/02/29 05:38:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.36 2008/04/22 02:54:54 compnerd Exp $
+
+*dbus-glib-0.74-r1 (22 Apr 2008)
+
+  22 Apr 2008; Saleem Abdulrasool <compnerd@gentoo.org>
+  +files/dbus-glib-0.73-namespaces.patch, +dbus-glib-0.74-r1.ebuild:
+  Add patch for namespace support in dbus-binding-tool
 
   29 Feb 2008; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.74.ebuild:
   Stable for HPPA (bug #208917).
