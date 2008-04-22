@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20080302.ebuild,v 1.1 2008/04/15 01:21:30 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20080302.ebuild,v 1.2 2008/04/22 00:22:03 ribosome Exp $
 
 EAPI="prefix"
 

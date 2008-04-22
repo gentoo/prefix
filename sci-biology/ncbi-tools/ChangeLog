@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.61 2008/04/15 01:21:30 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.62 2008/04/22 00:22:03 ribosome Exp $
+
+  22 Apr 2008; Olivier Fisette <ribosome@gentoo.org>
+  -ncbi-tools-20050605.ebuild, ncbi-tools-20080302.ebuild:
+  Pruned old version. Added 20080302 to x86 and amd64 (fixes bug #218233).
 
 *ncbi-tools-20080302 (15 Apr 2008)
 
