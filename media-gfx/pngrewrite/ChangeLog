@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/pngrewrite
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.12 2008/01/26 11:01:27 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.13 2008/04/21 17:32:20 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> pngrewrite-1.2.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
