@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libmpcdec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.32 2008/04/18 21:13:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.33 2008/04/20 17:33:31 flameeyes Exp $
+
+  20 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libmpcdec-1.2.6+libtool22.patch, libmpcdec-1.2.6-r2.ebuild:
+  Add patch to build with libtool 2.2, thanks to Arfrever Frehtes Taifersar
+  Arahesis in bug #218444 for reporting.
 
 *libmpcdec-1.2.6-r2 (18 Apr 2008)
 

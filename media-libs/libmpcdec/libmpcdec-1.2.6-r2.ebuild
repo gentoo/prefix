@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/libmpcdec-1.2.6-r2.ebuild,v 1.1 2008/04/18 21:13:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/libmpcdec-1.2.6-r2.ebuild,v 1.2 2008/04/20 17:33:31 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-riceitdown.patch"
+	epatch "${FILESDIR}/${P}+libtool22.patch"
 
 	eautoreconf
 	elibtoolize
