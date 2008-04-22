@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.25.ebuild,v 1.1 2008/04/20 03:23:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.25-r1.ebuild,v 1.1 2008/04/20 20:46:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,13 +9,13 @@ H_SUPPORTEDARCH="alpha amd64 arm cris hppa m68k mips ia64 ppc ppc64 s390 sh spar
 inherit kernel-2
 detect_version
 
-PATCH_VER="1"
+PATCH_VER="2"
 SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.lzma"
 [[ -n ${PATCH_VER} ]] && SRC_URI="${SRC_URI} mirror://gentoo/gentoo-headers-${PV}-${PATCH_VER}.tar.lzma"
 
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 
-DEPEND=""
+DEPEND="app-arch/lzma-utils"
 RDEPEND=""
 
 S=${WORKDIR}/gentoo-headers-base-${PV}
