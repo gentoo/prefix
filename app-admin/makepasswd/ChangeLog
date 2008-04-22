@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/makepasswd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.16 2008/03/27 16:11:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.17 2008/04/21 16:06:56 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org> makepasswd-1.10.ebuild:
   Fix debian HOMEPAGE
