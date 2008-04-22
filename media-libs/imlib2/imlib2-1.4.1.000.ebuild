@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.1.000.ebuild,v 1.1 2008/04/19 21:05:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.1.000.ebuild,v 1.2 2008/04/20 12:27:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -26,15 +26,16 @@ DEPEND="=media-libs/freetype-2*
 
 src_compile() {
 	# imlib2 has diff configure options for x86/amd64 mmx
-	local mymmx=""
+	local myconf=""
 	if [[ $(tc-arch) == "amd64" ]] ; then
-		mymmx="$(use_enable mmx amd64) --disable-mmx"
+		myconf="$(use_enable mmx amd64) --disable-mmx"
 	else
-		mymmx="--disable-amd64 $(use_enable mmx)"
+		myconf="--disable-amd64 $(use_enable mmx)"
 	fi
 
+	[[ $(gcc-major-version) -ge 4 ]] && myconf="${myconf} --enable-visibility-hiding"
+
 	export MY_ECONF="
-		--enable-visibility-hiding
 		$(use_with X x) \
 		$(use_with jpeg) \
 		$(use_with png) \
@@ -43,7 +44,7 @@ src_compile() {
 		$(use_with zlib) \
 		$(use_with bzip2) \
 		$(use_with mp3 id3) \
-		${mymmx} \
+		${myconf} \
 	"
 	enlightenment_src_compile
 }
