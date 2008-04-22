@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.17-r1.ebuild,v 1.13 2008/04/14 13:54:54 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.17-r1.ebuild,v 1.14 2008/04/21 07:15:33 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,10 +33,10 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-flac-buffer-overflow.patch"
 	epatch "${FILESDIR}/${P}-dontbuild-tests-examples.patch"
 	epatch "${FILESDIR}/${P}-regtests-need-sqlite.patch"
+	epatch "${FILESDIR}"/${P}-autotools.patch
 
 	# Fix for autoconf 2.62
-	sed -i -e '/AC_MSG_WARN(\[\[/d' \
-		"${S}/acinclude.m4"
+	sed -i -e '/AC_MSG_WARN(\[\[/d' acinclude.m4 || die
 
 	eautoreconf
 	epunt_cxx

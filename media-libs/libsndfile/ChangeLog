@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libsndfile
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.83 2008/04/14 13:54:54 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.84 2008/04/21 07:15:33 vapier Exp $
+
+  21 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/libsndfile-1.0.17-autotools.patch, libsndfile-1.0.17-r1.ebuild:
+  Fixup errors in autotool code caught by libtool-2.2 #218666 by Lars
+  (Polynomial-C).
 
   14 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
   libsndfile-1.0.17-r1.ebuild:
