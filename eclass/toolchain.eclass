@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.352 2008/04/12 22:54:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.353 2008/04/22 05:53:02 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1196,8 +1196,7 @@ gcc-compiler-configure() {
 			;;
 		# Enable sjlj exceptions for backward compatibility on hppa
 		hppa)
-			[[ ${GCC_PV:0:1} == "3" ]] && \
-			confgcc="${confgcc} --enable-sjlj-exceptions"
+			[[ ${GCCMAJOR} == "3" ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
 			;;
 	esac
 
@@ -1290,13 +1289,11 @@ gcc_do_configure() {
 	fi
 
 	# reasonably sane globals (hopefully)
-	# --disable-libunwind-exceptions needed till unwind sections get fixed. see ps.m for details
 	confgcc="${confgcc} \
 		--with-system-zlib \
 		--disable-checking \
 		--disable-werror \
-		--enable-secureplt \
-		--disable-libunwind-exceptions"
+		--enable-secureplt"
 
 	# etype specific configuration
 	einfo "running ${ETYPE}-configure"
@@ -1355,18 +1352,17 @@ gcc_do_configure() {
 	# so use setjmp/longjmp exceptions by default
 	if [[ ${CTARGET} == *-uclibc* ]] ; then
 		confgcc="${confgcc} --disable-__cxa_atexit --enable-target-optspace"
-		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && \
-			confgcc="${confgcc} --enable-sjlj-exceptions"
+		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
+		[[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] && confgcc="${confgcc} --enable-clocale=uclibc"
 	elif [[ ${CTARGET} == *-gnu* ]] ; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
+		confgcc="${confgcc} --enable-clocale=gnu"
 	elif [[ ${CTARGET} == *-freebsd* ]]; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	elif [[ ${CTARGET} == *-solaris* ]]; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	fi
-	[[ ${CTARGET} == *-gnu* ]] && confgcc="${confgcc} --enable-clocale=gnu"
-	[[ ${CTARGET} == *-uclibc* ]] && [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] \
-		&& confgcc="${confgcc} --enable-clocale=uclibc"
+	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} ---disable-libunwind-exceptions"
 
 	tc_version_is_at_least 4.3 && set -- "$@" \
 		--with-bugurl=http://bugs.gentoo.org/ \

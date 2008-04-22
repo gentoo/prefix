@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.55 2008/04/13 16:26:05 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.58 2008/04/22 11:04:05 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -215,42 +215,79 @@ vdr_add_local_patch() {
 	fi
 }
 
+vdr_has_gettext() {
+	has_version ">=media-video/vdr-1.5.7"
+}
+
+plugin_has_gettext() {
+	[[ -d po ]]
+}
+
+vdr_i18n_convert_to_gettext() {
+	local i18n_tool="${EROOT}/usr/share/vdr/bin/i18n-to-gettext.pl"
+
+	if [[ ${NO_GETTEXT_HACK} == "1" ]]; then
+		ewarn "Conversion to gettext disabled in ebuild"
+		return 1
+	fi
+
+	if [[ ! -x ${i18n_tool} ]]; then
+		eerror "Missing ${i18n_tool}"
+		eerror "Please re-emerge vdr"
+		die "Missing ${i18n_tool}"
+	fi
+
+	ebegin "Auto converting translations to gettext"
+	# call i18n-to-gettext tool
+	# take all texts missing tr call into special file
+	"${i18n_tool}" 2>/dev/null \
+		|sed -e '/^"/!d' \
+			-e '/^""$/d' \
+			-e 's/\(.*\)/trNOOP(\1)/' \
+		> dummy-translations-trNOOP.c
+
+	# if there were untranslated texts just run it again
+	# now the missing calls are listed in
+	# dummy-translations-trNOOP.c
+	if [[ -s dummy-translations-trNOOP.c ]]; then
+		"${i18n_tool}" &>/dev/null
+	fi
+
+	# now use the modified Makefile
+	if [[ -f Makefile.new ]]; then
+		mv Makefile.new Makefile
+		eend 0 ""
+	else
+		eend 1 "Conversion to gettext failed. Plugin needs fixing."
+		return 1
+	fi
+}
+
+vdr_i18n_disable_gettext() {
+	ebegin "Disabling gettext support in plugin"
+	# Remove i18n Target if using older vdr
+	sed -i Makefile \
+		-e '/^all:/s/ i18n//'
+	eend 0
+}
+
 vdr_i18n() {
-	if [[ ${USE_GETTEXT} = 0 ]]; then
-		# Remove i18n Target if using older vdr
-		sed -i Makefile \
-			-e '/^all:/s/ i18n//'
-	elif [[ ${USE_GETTEXT} = 1 && ! -d po && ${NO_GETTEXT_HACK} != 1 ]]; then
-		einfo "Plugin is not yet changed for new translation system."
-		einfo "Auto converting translations to gettext"
-
-		local i18n_tool="${EROOT}/usr/share/vdr/bin/i18n-to-gettext.pl"
-		if [[ ! -x ${i18n_tool} ]]; then
-			eerror "Missing ${i18n_tool}"
-			eerror "Please re-emerge vdr"
-			die "Missing ${i18n_tool}"
-		fi
-
-		# call i18n-to-gettext tool
-		# take all texts missing tr call into special file
-		"${i18n_tool}" 2>/dev/null \
-			|sed -e '/^"/!d' \
-				-e '/^""$/d' \
-				-e 's/\(.*\)/trNOOP(\1)/' \
-			> dummy-translations-trNOOP.c
-
-		# if there were untranslated texts just run it again
-		# now the missing calls are listed in
-		# dummy-translations-trNOOP.c
-		if [[ -s dummy-translations-trNOOP.c ]]; then
-			"${i18n_tool}" &>/dev/null
-		fi
-
-		# now use the modified Makefile
-		if [[ -f Makefile.new ]]; then
-			mv Makefile.new Makefile
+	if vdr_has_gettext; then
+		einfo "VDR has gettext support"
+		if plugin_has_gettext; then
+			einfo "Plugin has gettext support, fine"
 		else
-			ewarn "Conversion to gettext failed. Plugin needs fixing."
+			vdr_i18n_convert_to_gettext
+			if [[ $? != 0 ]]; then
+				eerror ""
+				eerror "Plugin will have only english OSD texts"
+				eerror "it needs manual fixing."
+			fi
+		fi
+	else
+		einfo "VDR has no gettext support"
+		if plugin_has_gettext; then
+			vdr_i18n_disable_gettext
 		fi
 	fi
 }
@@ -306,11 +343,6 @@ vdr-plugin_pkg_setup() {
 
 	TMP_LOCALE_DIR="${WORKDIR}/tmp-locale"
 	LOCDIR="/usr/share/vdr/locale"
-	if has_version ">=media-video/vdr-1.5.7"; then
-		USE_GETTEXT=1
-	else
-		USE_GETTEXT=0
-	fi
 
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
@@ -414,7 +446,7 @@ vdr-plugin_src_install() {
 	insinto "${VDR_PLUGIN_DIR}"
 	doins libvdr-*.so.*
 
-	if [[ ${USE_GETTEXT} = 1 && -d ${TMP_LOCALE_DIR} ]]; then
+	if vdr_has_gettext && [[ -d ${TMP_LOCALE_DIR} ]]; then
 		einfo "Installing locales"
 		cd "${TMP_LOCALE_DIR}"
 		insinto "${LOCDIR}"
