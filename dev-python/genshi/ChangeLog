@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/genshi
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.7 2007/10/29 13:02:08 jokey Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.10 2008/04/22 13:42:56 chtekk Exp $
+
+  22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> genshi-0.4.4.ebuild:
+  Empty RDEPEND.
+
+  22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> genshi-0.4.4.ebuild:
+  setuptools is not needed as RDEPEND, thanks to gentoofan23 and ciaranm for
+  the info.
+
+  22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> metadata.xml,
+  -genshi-0.4.3.ebuild, genshi-0.4.4.ebuild:
+  Cleanup ebuild, drop old version.
 
 *genshi-0.4.4 (29 Oct 2007)
 
