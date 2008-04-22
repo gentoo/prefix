@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/motif-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.35 2008/02/16 16:16:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.36 2008/04/21 19:19:49 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   16 Feb 2008; Ulrich Mueller <ulm@gentoo.org> motif-config-0.10-r2.ebuild:
   Stable on amd64, bug 204265.
