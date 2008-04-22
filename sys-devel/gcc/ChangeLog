@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.646 2008/03/20 20:39:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.647 2008/04/20 09:28:53 vapier Exp $
+
+  20 Apr 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild:
+  Revert cld behavior (for now), add back GNU-stack fixes for libffi, and add
+  fixes for upstream PR24170, PR27880, PR34571, PR35440, PR35705.
 
   20 Mar 2008; Mike Frysinger <vapier@gentoo.org> gcc-2.95.3-r9.ebuild,
   gcc-2.95.3-r10.ebuild, gcc-3.2.3-r4.ebuild, gcc-3.3.6-r1.ebuild,
