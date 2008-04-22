@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/xli
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.41 2008/01/15 18:33:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.42 2008/04/21 17:34:38 phreak Exp $
+
+  21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Fix up metadata.xml. If there's no maintainer for the package, the metadata
+  also needs to contain m-needed@g.o.
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> xli-1.17.0-r2.ebuild,
   xli-1.17.0-r3.ebuild:
