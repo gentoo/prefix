@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.79-r1.ebuild,v 1.1 2008/01/13 16:17:58 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.79-r1.ebuild,v 1.2 2008/04/20 22:35:37 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${PN}-0.78.2-bug203777-ter.patch"
+	epatch "${FILESDIR}"/${P}-gcc-4.3-include.patch
 	elibtoolize
 }
 
