@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/exif
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.18 2008/04/20 15:36:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.20 2008/04/22 19:10:37 armin76 Exp $
+
+  22 Apr 2008; Raúl Porcel <armin76@gentoo.org> exif-0.6.15.ebuild:
+  Add ~ia64
 
   20 Apr 2008; Markus Meier <maekke@gentoo.org> -exif-0.6.9.ebuild:
   old
