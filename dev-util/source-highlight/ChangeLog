@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/source-highlight
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.30 2008/03/12 10:32:33 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.31 2008/04/22 17:03:00 welp Exp $
+
+  22 Apr 2008; <welp@gentoo.org> source-highlight-2.9.ebuild:
+  Stable on amd64; bug 217413
 
   12 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   source-highlight-2.8.ebuild:
