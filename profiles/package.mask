@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8524 2008/04/22 07:02:28 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8525 2008/04/22 16:18:50 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Michael Sterrett <mr_bones_@gentoo.org> (22 Apr 2008)
+# masked until bug #217901 is fixed.
+games-server/greenhouse
 
 # David Shakaryan <omp@gentoo.org> (22 Apr 2008)
 # Masked for removal in 30 days. (bug #208878)
