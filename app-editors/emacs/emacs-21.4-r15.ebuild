@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r15.ebuild,v 1.1 2008/04/11 14:00:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r15.ebuild,v 1.2 2008/04/22 17:48:57 ulm Exp $
 
 EAPI="prefix"
 
@@ -87,10 +87,10 @@ src_compile() {
 			--with-gif
 			--with-png"
 		if use Xaw3d ; then
-			einfo "Configuring to build with Xaw3d (athena) support"
+			einfo "Configuring to build with Xaw3d (Athena) toolkit"
 			myconf="${myconf} --with-x-toolkit=athena"
 		elif use motif ; then
-			einfo "Configuring to build with motif toolkit support"
+			einfo "Configuring to build with Motif toolkit"
 			myconf="${myconf} --with-x-toolkit=motif"
 		else
 			# do not build emacs with any toolkit, bug 35300

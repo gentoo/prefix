@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r4.ebuild,v 1.1 2008/04/11 14:00:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r4.ebuild,v 1.2 2008/04/22 17:48:57 ulm Exp $
 
 EAPI="prefix"
 
@@ -123,16 +123,14 @@ src_compile() {
 		# possibilities. Emacs upstream thinks this should be standard
 		# policy on all distributions
 		if use gtk; then
-			echo
-			einfo "Configuring to build with GTK support, disabling all other toolkits"
-			echo
+			einfo "Configuring to build with GIMP Toolkit (GTK+)"
 			myconf="${myconf} --with-x-toolkit=gtk"
 		elif use Xaw3d; then
-			einfo "Configuring to build with Xaw3d (athena) support"
+			einfo "Configuring to build with Xaw3d (Athena) toolkit"
 			myconf="${myconf} --with-x-toolkit=athena"
 			myconf="${myconf} --without-gtk"
 		elif use motif; then
-			einfo "Configuring to build with motif toolkit support"
+			einfo "Configuring to build with Motif toolkit"
 			myconf="${myconf} --with-x-toolkit=motif"
 			myconf="${myconf} --without-gtk"
 		else
