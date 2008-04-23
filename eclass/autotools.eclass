@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.73 2008/03/31 14:19:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.74 2008/04/22 22:38:22 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -116,6 +116,13 @@ eautoreconf() {
 # They also force installing the support files for safety.
 eaclocal() {
 	local aclocal_opts
+
+	local amflags_file
+	for amflags_file in GNUmakefile.am Makefile.am GNUmakefile.in Makefile.in ; do
+		[[ -e ${amflags_file} ]] || continue
+		aclocal_opts=$(sed -n '/^ACLOCAL_AMFLAGS[[:space:]]*=/s:[^=]*=::p' ${amflags_file})
+		break
+	done
 
 	if [[ -n ${AT_M4DIR} ]] ; then
 		for x in ${AT_M4DIR} ; do

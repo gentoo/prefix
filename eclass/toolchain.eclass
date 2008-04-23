@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.353 2008/04/22 05:53:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.354 2008/04/22 19:26:52 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1362,7 +1362,7 @@ gcc_do_configure() {
 	elif [[ ${CTARGET} == *-solaris* ]]; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	fi
-	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} ---disable-libunwind-exceptions"
+	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} --disable-libunwind-exceptions"
 
 	tc_version_is_at_least 4.3 && set -- "$@" \
 		--with-bugurl=http://bugs.gentoo.org/ \
