@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.135 2008/04/02 03:08:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.136 2008/04/22 22:43:45 vapier Exp $
+
+*libtool-2.2.2-r1 (22 Apr 2008)
+
+  22 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/libtool-2.2.2-AC_ENABLE_SHARED.patch,
+  +files/libtool-2.2.2-AC_LIBLTDL_CONVENIENCE.patch,
+  +files/libtool-2.2.2-flag-order.patch, +libtool-2.2.2-r1.ebuild:
+  Add some fixes from upstream.
 
 *libtool-2.2.2 (02 Apr 2008)
 
