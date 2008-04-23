@@ -273,7 +273,7 @@ src_install() {
 		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
-		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox ${EPREFIX}${MOZILLA_FIVE_HOME}/application.ini"
+		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
 	else
 		# Create /usr/bin/firefox
 		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox-bin"
