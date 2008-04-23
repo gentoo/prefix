@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.45 2008/04/21 16:19:53 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.46 2008/04/22 18:38:49 cardoe Exp $
+
+*xmlrpc-c-1.06.09-r2 (22 Apr 2008)
+
+  22 Apr 2008; Doug Goldstein <cardoe@gentoo.org>
+  +xmlrpc-c-1.06.09-r2.ebuild:
+  rev bump to bump EAPI so everything builds properly with default USE flags
 
   21 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
   +files/xmlrpc-c-1.06.09+curl-7.18.patch, xmlrpc-c-1.06.09-r1.ebuild:
