@@ -1,0 +1,163 @@
+diff -ur pngcrush-1.6.4-nolib.orig/Makefile pngcrush-1.6.4-nolib/Makefile
+--- pngcrush-1.6.4-nolib.orig/Makefile	2006-03-31 04:39:16.000000000 +0300
++++ pngcrush-1.6.4-nolib/Makefile	2008-04-23 17:30:34.000000000 +0300
+@@ -10,34 +10,40 @@
+ 
+ # macros --------------------------------------------------------------------
+ 
+-GAS_VERSION := $(shell as --version | grep "GNU assembler" | sed -e 's/GNU assembler //' -e 's/ .*//')
++#GAS_VERSION := $(shell as --version | grep "GNU assembler" | sed -e 's/GNU assembler //' -e 's/ .*//')
++GAS_VERSION := $(shell as --version < /dev/null 2&>1 | grep "GNU assembler" | sed -e 's/GNU assembler //' -e 's/ .*//')
+ 
+ # uncomment these 2 lines only if you are using an external copy of libpng:
+-PNGINC = /usr/local/include
+-PNGLIB = /usr/local/lib
++#PNGINC = /usr/local/include
++PNGINC = /usr/include
++#PNGLIB = /usr/local/lib
+ # uncomment these 2 lines only if you are using an external copy of zlib:
+-ZINC = /usr/local/include
+-ZLIB = /usr/local/lib
++#ZINC = /usr/local/include
++#ZLIB = /usr/local/lib
+ 
+-CC = gcc
+-LD = gcc
++CC ?= gcc
+ RM = rm -f
+ #CFLAGS = -I. -O -Wall
+ #CFLAGS = -I. -O3 -fomit-frame-pointer -Wall -DPNG_USE_PNGGCCRD
+-# CFLAGS = -I. -O3 -fomit-frame-pointer -Wall -DPNG_USE_PNGGCCRD \
+-         -DGAS_VERSION="\"${GAS_VERSION}\""
+-CFLAGS = -I${ZINC} -I. -g -O3 -fomit-frame-pointer -Wall -DPNG_USE_PNGGCCRD \
++
++CFLAGS = -I. -Wall
++
++#CFLAGS = -I${ZINC} -I. -g -O3 -fomit-frame-pointer -Wall -DPNG_USE_PNGGCCRD \
+ #         -DGAS_VERSION="\"${GAS_VERSION}\""
+ # [note that -Wall is a gcc-specific compilation flag ("all warnings on")]
+-LDFLAGS =
++LDFLAGS +=
+ O = .o
+ E =
+ 
++# additional defines
++DEFINES = -DPNG_USE_PNGGCCRD -DPNG_iCCP_SUPPORTED -DPNGCRUSH_USE_LOCAL_ARRAYS \
++         -DPNG_iTXt_SUPPORTED -DGAS_VERSION="\"${GAS_VERSION}\""
++
+ PNGCRUSH  = pngcrush
+ 
+ # LIBS = -lm
+-LIBS = -L$(PNGLIB) -lpng -lz -lm
+-# LIBS = -lpng -lz -lm
++# LIBS = -L$(PNGLIB) -lpng -lz -lm
++LIBS = -lpng -lz
+ #LIBS = ${ZLIB}/libz.a -lm
+ 
+ # uncomment these 4 lines only if you are NOT using an external copy of zlib:
+@@ -58,7 +64,7 @@
+ # implicit make rules -------------------------------------------------------
+ 
+ .c$(O): png.h cexcept.h $(ZHDR)
+-	$(CC) -c $(CFLAGS) $<
++	$(CC) -c $(CFLAGS) $(DEFINES) $<
+ #.c$(O): png.h pngconf.h pngcrush.h cexcept.h $(ZHDR)
+ #	$(CC) -c $(CFLAGS) $<
+ 
+@@ -71,12 +77,12 @@
+ 	ln -s $(PNGINC)/png.h png.h
+  
+ pngcrush$(O): pngcrush.c cexcept.h
+-	$(CC) -c $(CFLAGS) $<
++	$(CC) -c $(CFLAGS) $(DEFINES) $<
+ # pngcrush$(O): pngcrush.c png.h pngconf.h pngcrush.h cexcept.h $(ZHDR)
+ # 	$(CC) -c $(CFLAGS) $<
+ 
+ $(PNGCRUSH)$(E): $(OBJS)
+-	$(LD) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
++	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+ 
+ # maintenance ---------------------------------------------------------------
+ 
+diff -ur pngcrush-1.6.4-nolib.orig/pngcrush.c pngcrush-1.6.4-nolib/pngcrush.c
+--- pngcrush-1.6.4-nolib.orig/pngcrush.c	2006-06-08 19:14:31.000000000 +0300
++++ pngcrush-1.6.4-nolib/pngcrush.c	2008-04-23 17:24:21.000000000 +0300
+@@ -128,12 +128,10 @@
+ #define PNG_iCCP const png_byte png_iCCP[5] = {105,  67,  67,  80, '\0'}
+ #define PNG_IEND const png_byte png_IEND[5] = { 73,  69,  78,  68, '\0'}
+ 
+-#if 0
+ PNG_EXPORT_VAR (const png_byte FARDATA) png_IHDR[5];
+ PNG_EXPORT_VAR (const png_byte FARDATA) png_IDAT[5];
+ PNG_EXPORT_VAR (const png_byte FARDATA) png_IEND[5];
+ PNG_EXPORT_VAR (const png_byte FARDATA) png_iCCP[5];
+-#endif
+ 
+ #define PNG_FLAG_CRC_CRITICAL_USE         0x0400
+ #define PNG_FLAG_CRC_CRITICAL_IGNORE      0x0800
+@@ -1384,13 +1382,6 @@
+     do_color_count = do_color_count;    /* silence compiler warning */
+ #endif
+ 
+-    if (strcmp(png_libpng_ver, PNG_LIBPNG_VER_STRING)) {
+-        fprintf(STDERR,
+-                "Warning: versions are different between png.h and png.c\n");
+-        fprintf(STDERR, "  png.h version: %s\n", PNG_LIBPNG_VER_STRING);
+-        fprintf(STDERR, "  png.c version: %s\n\n", png_libpng_ver);
+-    }
+-
+     t_start = (TIME_T) clock();
+ 
+     strncpy(prog_string, argv[0], STR_BUF_SIZE);
+@@ -1829,7 +1820,7 @@
+                 if (!strncmp(argv[i], "-zi", 3)) {
+                     text_compression[text_inputs] =
+                         PNG_ITXT_COMPRESSION_zTXt;
+-                    names += 2;
++                    /* names += 2; */
+                 } else
+ #endif
+                 if (!strncmp(argv[i], "-z", 2))
+@@ -1842,7 +1833,7 @@
+                 else {
+                     text_compression[text_inputs] =
+                         PNG_ITXT_COMPRESSION_NONE;
+-                    names += 2;
++                    /* names += 2; */
+                 }
+ #endif
+                 names += 3;
+@@ -1856,6 +1847,10 @@
+                     text_lang[text_inputs * 80] = '\0';
+                     text_lang_key[text_inputs * 80] = '\0';
+                 } else {
++                    i += 2;
++                    BUMP_I;
++                    i -= 3;
++                    names += 2;
+                     strcpy(&text_lang[text_inputs * 80], argv[++i]);
+                     /* libpng-1.0.5j and later */
+                     strcpy(&text_lang_key[text_inputs * 80], argv[++i]);
+@@ -4360,7 +4355,7 @@
+ 
+     for (;;) {
+ #ifndef PNG_UINT_IDAT
+-#ifdef PNG_USE_LOCAL_ARRAYS
++#if defined(PNG_USE_LOCAL_ARRAYS) || defined(PNGCRUSH_USE_LOCAL_ARRAYS)
+         PNG_IDAT;
+         PNG_IEND;
+         PNG_IHDR;
+@@ -4979,6 +4974,12 @@
+       PNGCRUSH_VERSION, progname, PNG_LIBPNG_VER_STRING,
+       png_get_header_version(NULL), ZLIB_VERSION);
+ 
++      if (strcmp(png_libpng_ver, PNG_LIBPNG_VER_STRING)) {
++        fprintf(STDERR, "|| Warning: versions are different between png.h and png.c\n");
++        fprintf(STDERR, "||   png.h version: %s\n", PNG_LIBPNG_VER_STRING);
++        fprintf(STDERR, "||   png.c version: %s\n\n", png_libpng_ver);
++      }
++
+ #if defined(__GNUC__)
+     fprintf(STDERR,
+       " | It was compiled with gcc version %s", __VERSION__);
+Vain hakemistossa pngcrush-1.6.4-nolib: pngcrush.c.orig

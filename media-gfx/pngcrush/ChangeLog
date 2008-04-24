@@ -1,6 +1,23 @@
 # ChangeLog for media-gfx/pngcrush
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.24 2008/01/15 18:18:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.29 2008/04/23 21:12:44 maekke Exp $
+
+  23 Apr 2008; Markus Meier <maekke@gentoo.org> pngcrush-1.6.4-r1.ebuild:
+  x86 stable, security bug #219033
+
+  23 Apr 2008; Samuli Suominen <drac@gentoo.org> pngcrush-1.6.4-r1.ebuild:
+  amd64 stable wrt #219033, thanks to gentoofan23 for testing.
+
+  23 Apr 2008; Samuli Suominen <drac@gentoo.org> metadata.xml:
+  s/no-herd/graphics/
+
+*pngcrush-1.6.4-r1 (23 Apr 2008)
+
+  23 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  +files/pngcrush-1.6.4-modified-debian-patchset-5.patch,
+  +pngcrush-1.6.4-r1.ebuild:
+  Use system libpng wrt security #219033, thanks to _mika and hoffie.
+  Using modified Debian patchset -5.
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> pngcrush-1.6.4.ebuild:
   Dropped ppc-macos keyword, see you in prefix
