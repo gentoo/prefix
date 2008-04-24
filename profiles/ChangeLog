@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1353 2008/04/22 11:37:04 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1354 2008/04/24 04:13:21 jer Exp $
+
+  24 Apr 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Fix type in gdl USE flag description (bug #219075).
 
   22 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> arch/m68k/use.mask,
   arch/s390/use.mask:

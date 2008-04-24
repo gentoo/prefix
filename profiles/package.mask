@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8525 2008/04/22 16:18:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8526 2008/04/23 13:24:16 caleb Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Caleb Tennis <caleb@gentoo.org (23 Apr 2008)
+# New Ice Ebuilds
+=dev-cpp/Ice-3.3*
+=dev-ruby/IceRuby-3.3*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (22 Apr 2008)
 # masked until bug #217901 is fixed.

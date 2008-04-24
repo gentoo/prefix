@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3511 2008/04/21 22:17:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3512 2008/04/24 04:13:21 jer Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -51,7 +51,7 @@ app-backup/kdar:dar64 - Support libdar64.so to use.
 app-benchmarks/bootchart:acct - Enable process accounting
 app-benchmarks/jmeter:beanshell - Enable BeanShell scripting support
 app-cdr/brasero:beagle - Enable Beagle support for searches.
-app-cdr/brasero:gdl - Enable gld support for customisable GUI.
+app-cdr/brasero:gdl - Enable gdl support for customisable GUI.
 app-cdr/brasero:libburn - Enable libburn backend.
 app-cdr/brasero:totem - Enable support for Totem playlists.
 app-cdr/cdrdao:pccts - Use dev-util/pccts instead of the built-in substitution.
