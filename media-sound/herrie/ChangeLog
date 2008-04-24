@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.23 2008/04/22 18:46:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.24 2008/04/23 21:12:33 rbu Exp $
+
+*herrie-2.0.2 (23 Apr 2008)
+
+  23 Apr 2008; Robert Buchholz <rbu@gentoo.org> -herrie-2.0.1.ebuild,
+  +herrie-2.0.2.ebuild:
+  Version bump, bug fixes for the ALSA volume manager.
 
   22 Apr 2008; Raúl Porcel <armin76@gentoo.org> herrie-2.0.ebuild:
   x86 stable wrt #218645
