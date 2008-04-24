@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/Error
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/ChangeLog,v 1.51 2008/03/28 09:42:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/ChangeLog,v 1.52 2008/04/23 11:23:37 tove Exp $
+
+  23 Apr 2008; Torsten Veller <tove@gentoo.org> -Error-0.15-r2.ebuild,
+  -Error-0.17.ebuild, -Error-0.17.004.ebuild, -Error-0.17.007.ebuild:
+  Cleaning
+
+*Error-0.17.012 (23 Apr 2008)
+
+  23 Apr 2008; Torsten Veller <tove@gentoo.org> +Error-0.17.012.ebuild:
+  Version bump (#216923)
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> Error-0.17.008.ebuild:
   Stable for HPPA too.
