@@ -1,6 +1,21 @@
 # ChangeLog for dev-perl/Net-DNS
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.122 2008/03/28 09:14:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.126 2008/04/23 21:16:18 maekke Exp $
+
+  23 Apr 2008; Markus Meier <maekke@gentoo.org> Net-DNS-0.63.ebuild:
+  amd64/x86 stable, security bug #203074
+
+  23 Apr 2008; Jeroen Roovers <jer@gentoo.org> Net-DNS-0.63.ebuild:
+  Stable for HPPA (bug #203074).
+
+  23 Apr 2008; Ferris McCormick <fmccor@gentoo.org> Net-DNS-0.63.ebuild:
+  Sparc stable, Security Bug #203074. All tests successful (except for the
+  ones skipped).
+
+*Net-DNS-0.63 (23 Apr 2008)
+
+  23 Apr 2008; Torsten Veller <tove@gentoo.org> +Net-DNS-0.63.ebuild:
+  Version bump
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> Net-DNS-0.61.ebuild:
   Stable for HPPA too.
