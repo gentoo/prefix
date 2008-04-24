@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.74 2008/04/22 22:38:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.75 2008/04/24 03:15:43 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -121,6 +121,7 @@ eaclocal() {
 	for amflags_file in GNUmakefile.am Makefile.am GNUmakefile.in Makefile.in ; do
 		[[ -e ${amflags_file} ]] || continue
 		aclocal_opts=$(sed -n '/^ACLOCAL_AMFLAGS[[:space:]]*=/s:[^=]*=::p' ${amflags_file})
+		eval aclocal_opts=\"${aclocal_opts}\"
 		break
 	done
 

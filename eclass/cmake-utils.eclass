@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.7 2008/03/29 21:33:17 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.8 2008/04/23 11:55:51 ingmar Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -19,7 +19,7 @@ inherit toolchain-funcs multilib
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-DEPEND="dev-util/cmake"
+DEPEND=">=dev-util/cmake-2.4.6"
 
 EXPORT_FUNCTIONS src_compile src_test src_install
 

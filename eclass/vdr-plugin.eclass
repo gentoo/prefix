@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.58 2008/04/22 11:04:05 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.59 2008/04/23 13:56:20 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -170,7 +170,8 @@ vdr_patchmakefile() {
 		-e "s:^TMPDIR.*$:TMPDIR = ${T}:" \
 		-e 's:-I$(VDRDIR)/include:-I'"${VDR_INCLUDE_DIR%vdr}"':' \
 		-e "/^DVBDIR/d" \
-		-e 's:-I$(DVBDIR)/include::'
+		-e 's:-I$(DVBDIR)/include::' \
+		-e 's:-I$(DVBDIR)::'
 	eend $?
 
 	# maybe needed for multiproto:
@@ -297,6 +298,7 @@ vdr-plugin_copy_source_tree() {
 	cp -r "${S}" "${T}"/source-tree
 	cd "${T}"/source-tree
 	cp "${WORKDIR}"/Makefile.before Makefile
+	# TODO: Fix this, maybe no longer needed
 	sed -i Makefile \
 		-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
 		-e 's:^CXXFLAGS:#CXXFLAGS:' \
