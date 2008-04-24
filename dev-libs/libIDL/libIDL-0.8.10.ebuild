@@ -26,3 +26,8 @@ src_unpack() {
 	gnome2_src_unpack
 	epunt_cxx
 }
+
+src_compile() {
+	[[ ${CHOST} == *-interix3* ]] && export libIDL_cv_long_long_format=ll
+	gnome2_src_compile
+}
