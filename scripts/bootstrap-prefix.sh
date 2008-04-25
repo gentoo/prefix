@@ -440,6 +440,10 @@ bootstrap_gnu() {
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
 
+	# Darwin9 in particular doesn't compile when using system readline,
+	# but we don't need any groovy input at all, so just disable it
+	[[ ${A%-*} == "bash" ]] && myconf="${myconf} --disable-readline"
+
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
