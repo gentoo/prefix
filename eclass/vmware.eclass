@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.30 2008/01/26 01:13:05 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.31 2008/04/26 13:51:40 ikelos Exp $
 
 # This eclass is for all vmware-* ebuilds in the tree and should contain all
 # of the common components across the multiple packages.
@@ -270,7 +270,7 @@ vmware_src_install() {
 	fi
 
 	# Do we have vmware-ping/vmware-vmx?  If so, make them setuid.
-	for p in /bin/vmware-ping /lib/bin/vmware-vmx /lib/bin-debug/vmware-vmx /sbin/vmware-authd;
+	for p in /bin/vmware-ping /lib/bin/vmware-vmx /lib/bin-debug/vmware-vmx /lib/bin/vmware-vmx-debug /sbin/vmware-authd;
 	do
 		if [ -x "${D}${VMWARE_INSTALL_DIR}${p}" ]
 		then

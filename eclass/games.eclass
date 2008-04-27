@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.124 2008/02/15 00:15:51 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.125 2008/04/26 15:50:35 mr_bones_ Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -83,7 +83,7 @@ games_make_wrapper() { gameswrapper ${FUNCNAME/games_} "$@"; }
 gamesowners() { use prefix && chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
 gamesperms() { use prefix && chmod u+rw,g+r-w,o-rwx "$@"; }
 prepgamesdirs() {
-	local dir f
+	local dir f mode
 	for dir in \
 		"${GAMES_PREFIX}" "${GAMES_PREFIX_OPT}" "${GAMES_DATADIR}" \
 		"${GAMES_SYSCONFDIR}" "${GAMES_STATEDIR}" "$(games_get_libdir)" \
@@ -93,7 +93,9 @@ prepgamesdirs() {
 		use prefix || (
 			gamesowners -R "${D}/${dir}"
 			find "${D}/${dir}" -type d -print0 | xargs -0 chmod 750
-			find "${D}/${dir}" -type f -print0 | xargs -0 chmod o-rwx,g+r
+			mode=o-rwx,g+r,g-w
+			[[ ${dir} = ${GAMES_STATEDIR} ]] && mode=o-rwx,g+r
+			find "${D}/${dir}" -type f -print0 | xargs -0 chmod $mode
 		) &>/dev/null
 		f=$(find "${D}/${dir}" -perm +4000 -a -uid 0 2>/dev/null)
 		if [[ -n ${f} ]] ; then
