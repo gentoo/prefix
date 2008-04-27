@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.3.ebuild,v 1.8 2008/04/20 01:35:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.3.ebuild,v 1.9 2008/04/24 21:00:31 dang Exp $
 EAPI="prefix 1"
 
 inherit eutils gnome2 autotools
@@ -96,6 +96,6 @@ src_unpack() {
 	# This patch is conditional (bug #201730)
 	use esd || epatch "${FILESDIR}/${PN}-2.19.90-no-esd.patch"
 
-	eautoreconf
 	intltoolize --force || die
+	eautoreconf
 }
