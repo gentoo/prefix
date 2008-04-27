@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.230 2008/04/19 22:20:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.234 2008/04/24 19:10:29 jer Exp $
+
+  24 Apr 2008; Jeroen Roovers <jer@gentoo.org> coreutils-6.10-r2.ebuild:
+  Stable for HPPA (bug #218927).
+
+  24 Apr 2008; Markus Rothe <corsair@gentoo.org> coreutils-6.10-r2.ebuild:
+  Stable on ppc64; bug #218927
+
+  24 Apr 2008; <welp@gentoo.org> coreutils-6.10-r2.ebuild:
+  Stable on amd64; bug 218927
+
+  24 Apr 2008; Raúl Porcel <armin76@gentoo.org> coreutils-6.10-r2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #218927
 
 *coreutils-6.11 (19 Apr 2008)
 
