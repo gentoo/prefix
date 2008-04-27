@@ -1,6 +1,12 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.56 2008/04/17 18:33:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.57 2008/04/25 23:22:02 hkbst Exp $
+
+*guile-1.8.4-r1 (25 Apr 2008)
+
+  25 Apr 2008; Marijn Schouten <hkBst@gentoo.org> +files/gcc-4.3.patch,
+  +guile-1.8.4-r1.ebuild:
+  add fixes for libtool-2.2 bug 212723 and gcc-4.3, bug 214787
 
   17 Apr 2008; nixnut <nixnut@gentoo.org> guile-1.8.4.ebuild:
   Stable on ppc wrt bug 217410
