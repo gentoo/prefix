@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.14 2008/04/24 12:11:00 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.3.ebuild,v 1.1 2008/04/24 12:19:54 opfer Exp $
 
 EAPI="prefix"
 
@@ -64,7 +64,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2.0-libggi.patch
 	# Texinfo source is already shipped, so separate preparation not needed
 	# and error-prone, see bug 194216
-	epatch "${FILESDIR}"/${P}-disable_texi_generation.patch
+	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch
 }
 
 src_compile() {

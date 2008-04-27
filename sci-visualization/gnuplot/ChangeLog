@@ -1,6 +1,22 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.66 2008/03/11 07:44:00 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.69 2008/04/24 12:24:24 opfer Exp $
+
+  24 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/gnuplot-4.0-filled-arrow.patch, -files/gnuplot-4.0-libggi.patch,
+  -files/pdflib-6-compat.patch, -files/header-order.patch:
+  clean up
+
+*gnuplot-4.2.3 (24 Apr 2008)
+
+  24 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  +gnuplot-4.2.3.ebuild:
+  version bump
+
+  24 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.2-r1.ebuild:
+  remove all die comments and add virtual/ghostscript for USE=doc, see bug
+  217931 reported by <D DOT Allain AT bath DOT ac DOT uk>
 
   11 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
   files/gnuplot-4.2.2-disable_texi_generation.patch:
