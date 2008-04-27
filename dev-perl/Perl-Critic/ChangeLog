@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/Perl-Critic
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.36 2008/02/20 19:59:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.38 2008/04/24 19:41:17 fmccor Exp $
+
+  24 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
+  Perl-Critic-1.082.ebuild:
+  Add ~sparc for testing, Bug #219164, most tests pass.
+
+*Perl-Critic-1.082 (24 Apr 2008)
+
+  24 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Perl-Critic-1.082.ebuild:
+  Version bump, keywords dropped due to a new dep on dev-perl/Readonly
 
   20 Feb 2008; nixnut <nixnut@gentoo.org> Perl-Critic-1.061.ebuild:
   Added ~ppc wrt bug 207343
