@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.172 2008/04/13 23:16:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.174 2008/04/25 19:08:42 ulm Exp $
+
+  25 Apr 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/openmotif-2.3.0-freebsd-libiconv.patch, openmotif-2.3.0-r2.ebuild:
+  Depend on virtual/libiconv and fix FreeBSD linking problem, bug 219040.
+  Remove defunct sed tweaks of man pages. Install app-defaults as "Mwm".
 
   13 Apr 2008; Ulrich Mueller <ulm@gentoo.org> -openmotif-2.2.3-r9.ebuild:
   Remove old version; no package needs SLOT 2.2 anymore.

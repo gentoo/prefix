@@ -1,0 +1,12 @@
+--- openmotif-2.3.0-orig/configure.ac	2006-12-05 12:53:29.000000000 +0100
++++ openmotif-2.3.0/configure.ac	2008-04-24 18:39:42.000000000 +0200
+@@ -221,7 +221,8 @@
+ if test "$enable_utf8" = "yes"
+ then
+   AC_DEFINE([UTF8_SUPPORTED], [1], [UTF8 is supported])
+-  AC_CHECK_LIB([iconv], [iconv_open])
++  AC_SEARCH_LIBS([iconv_open], [iconv], ,
++    AC_SEARCH_LIBS([libiconv_open], [iconv]))
+ fi
+ 
+ AC_FIND_XFT

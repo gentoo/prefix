@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.1 2008/04/07 18:34:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.3 2008/04/25 19:08:42 ulm Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ RDEPEND="!x11-libs/motif-config
 	x11-libs/libXmu
 	x11-libs/libXaw
 	x11-libs/libXp
-	x11-proto/printproto
+	virtual/libiconv
 	xft? ( x11-libs/libXft )
 	jpeg? ( media-libs/jpeg )
 	png? ( media-libs/libpng )"
@@ -67,9 +67,12 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-sensitivity-invisible.patch"
 	epatch "${FILESDIR}/${P}-fix-nedit-segfaults.patch"
+	epatch "${FILESDIR}/${P}-freebsd-libiconv.patch"
 
 	# disable compilation of demo binaries
-	sed -i -e 's/^[ \t]*demos//' Makefile.in
+	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
+
+	AT_M4DIR=. eautoreconf
 }
 
 src_compile() {
@@ -103,13 +106,7 @@ src_install() {
 
 	# mwm default configs
 	insinto /etc/X11/app-defaults
-	doins "${FILESDIR}"/Mwm.defaults
-
-	local f
-	for f in /usr/share/man/man1/mwm.1 /usr/share/man/man4/mwmrc.4; do
-		dosed 's:/usr/lib/X11/\(.*system\\&\.mwmrc\):'"${EPREFIX}"'/etc/X11/mwm/\1:g' ${f}
-		dosed 's:/usr/lib/X11/app-defaults:'"${EPREFIX}"'/etc/X11/app-defaults:g' ${f}
-	done
+	newins "${FILESDIR}"/Mwm.defaults Mwm
 
 	dodir /etc/X11/mwm
 	mv -f "${ED}"/usr/$(get_libdir)/X11/system.mwmrc "${ED}"/etc/X11/mwm
