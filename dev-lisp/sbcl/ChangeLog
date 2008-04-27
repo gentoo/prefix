@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.140 2008/04/21 13:53:59 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.141 2008/04/26 22:06:32 maekke Exp $
+
+  26 Apr 2008; Markus Meier <maekke@gentoo.org> sbcl-1.0.14.ebuild:
+  amd64/x86 stable, bug #218706
 
   21 Apr 2008; Ferris McCormick <fmccor@gentoo.org> sbcl-1.0.14.ebuild:
   Sparc stable --- Bug #218706 --- tests run fine.
