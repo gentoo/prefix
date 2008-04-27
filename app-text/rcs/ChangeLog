@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rcs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.33 2008/04/21 17:05:58 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.34 2008/04/25 22:11:05 ricmm Exp $
+
+  25 Apr 2008; <ricmm@gentoo.org> rcs-5.7-r3.ebuild:
+  Drop to ~mips due to unstable deps
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
