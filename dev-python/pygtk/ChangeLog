@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.178 2008/03/31 04:21:28 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.180 2008/04/25 17:11:06 drac Exp $
+
+  25 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  +files/pygtk-2.12.0-extrafuncs.patch, +pygtk-2.12.0-r1.ebuild:
+  Restore pygtk-2.12.0-r1 from Attic.
+
+  24 Apr 2008; Samuli Suominen <drac@gentoo.org> pygtk-2.12.1.ebuild:
+  Marked -amd64 because of bug 209531.
 
   31 Mar 2008; <ricmm@gentoo.org> pygtk-2.10.6.ebuild:
   Drop to ~mips due to unstable deps
