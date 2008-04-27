@@ -1,6 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1354 2008/04/24 04:13:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1362 2008/04/26 10:09:19 cedk Exp $
+
+  26 Apr 2008; Cédric Krier <cedk@gentoo.org> package.mask:
+  Unmask app-misc/beagle
+
+  25 Apr 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add USE=logrotate for net-misc/tor
+
+  24 Apr 2008; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Added local use-flag media-plugins/vdr-xineliboutput:libextractor.
+
+  24 Apr 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Fix the www-client/opera versioning scheme once again.
+
+  24 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Add some comments for the mask :-)
+
+  24 Apr 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added masks for boost{,-build}-1.35.0
+
+  24 Apr 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Unmask only www-client/opera-9.50_beta2 and not its previews.
+
+  24 Apr 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Mask x11-themes/openbox-themes for removal in 30 days. (bug #197277)
 
   24 Apr 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
   Fix type in gdl USE flag description (bug #219075).

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3512 2008/04/24 04:13:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3516 2008/04/27 02:07:36 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -761,6 +761,7 @@ gnome-extra/nautilus-sendto:thunderbird - Enable support for thunderbird
 gnome-extra/sensors-applet:nvidia - Enable support for nvidia sensors
 gnome-extra/yelp:beagle - Enable beagle support
 gnome-extra/yelp:lzma - Enable support for lzma compressed info and man pages
+gnome-extra/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
 gnome-extra/zim:trayicon - Enable support for trayicon
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages.
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
@@ -1022,6 +1023,7 @@ media-plugins/vdr-pvr350:yaepg - Enables full support for the ouput format of vd
 media-plugins/vdr-softdevice:mmxext - enables mmx2 support
 media-plugins/vdr-text2skin:direct_blit - not buffer picture, faster, but only for modified skins
 media-plugins/vdr-weatherng:dxr3 - enables lower osd color deep for dxr3 cards
+media-plugins/vdr-xineliboutput:libextractor - Use libextractor to gather files' metadata in media-player
 media-sound/abcde:id3 - Support ID3, ID3v2 tagging of audio files
 media-sound/abcde:normalize - Add support for normalizing audio file volume levels
 media-sound/abcde:replaygain - Support for Replay Gain metadata, for relative volume adjustment
@@ -1670,6 +1672,7 @@ net-misc/streamtuner:xiph - Enable xiph.org plug-in.
 net-misc/strongswan:cisco - Enable support of Cisco VPN client
 net-misc/strongswan:nat - Enable NAT traversal with IPsec transport mode
 net-misc/tightvnc:server - Build vncserver. Allows us to only build server on one machine if set, build only viewer otherwise.
+net-misc/tor:logrotate - Enable logrotate file installation
 net-misc/vnc:server - Build VNC server
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
@@ -2261,3 +2264,4 @@ xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce4-cpu-freq dependency.
 xfce-base/xfdesktop:file-icons - Build support for application launchers using Thunar and libexo.
 xfce-base/xfdesktop:menu-plugin - Build Menu plug-in for panel.
 xfce-extra/thunar-thumbnailers:grace - Enable support for grace thumbnails.
+xfce-extra/xfce4-mpc:libmpd - Build using libmpd backend, instead of native fallback which is preferred.

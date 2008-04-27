@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8526 2008/04/23 13:24:16 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8538 2008/04/27 04:51:44 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,7 +29,53 @@
 
 #--- END OF EXAMPLES ---
 
-# Caleb Tennis <caleb@gentoo.org (23 Apr 2008)
+# Michael Sterrett <mr_bones_@gentoo.org> (27 Apr 2008)
+# masked until tmw works with the newer version.
+>=dev-games/guichan-0.8
+
+# Samuli Suominen <drac@gentoo.org> (27 Apr 2008)
+# Spring clean unported GTK+-1.2 media applications.
+# Tracked in bug 214788.
+# iv - replacements: gqview, mirage, pornview
+# gqcam - replacements: camorama, cheese
+# gtkguitune - replacement: k3guitune
+# playspc_gtk - replacement: playspc
+media-gfx/iv
+media-video/gqcam
+media-sound/gtkguitune
+media-sound/playspc_gtk
+media-sound/yconsole
+
+# Mike Auty <ikelos@gentoo.org> (26 Apr 2008)
+# Masking all app-emulation/vmware-workstation-tools packages
+# in favour of app-emulation/open-vm-tools
+=app-emulation/vmware-workstation-tools-4.5.3-r1
+=app-emulation/vmware-workstation-tools-5.5.1-r2
+=app-emulation/vmware-workstation-tools-5.5.2
+=app-emulation/vmware-workstation-tools-5.5.3
+
+# Andrej Kacian <ticho@gentoo.org> (26 Apr 2008)
+# Temp. mask until all plugins are in the tree
+=mail-client/claws-mail-3.4.0
+
+# Samuli Suominen <drac@gentoo.org> (24 Apr 2008)
+# Linkage 0.1.4 only works with ~net-libs/rb_libtorrent-0.12.
+# Linkage 0.1.5 needs unreleased C++ bindings for DBUS.
+# Mask it until I figure out the best way to handle 0.1.5.
+net-p2p/linkage
+
+# Tiziano Müller <dev-zero@gentoo.org> (24 Apr 2008)
+# Mask for testing. NOT finished yet and largely untested!
+=dev-util/boost-build-1.35.0
+=dev-libs/boost-1.35.0
+
+# David Shakaryan <omp@gentoo.org> (24 Apr 2008)
+# Masked for removal in 30 days. (bug #197277)
+# Extremely old compilation of themes not utilising new features.
+# Openbox is intended to move to a new theme format in the future.
+x11-themes/openbox-themes
+
+# Caleb Tennis <caleb@gentoo.org> (23 Apr 2008)
 # New Ice Ebuilds
 =dev-cpp/Ice-3.3*
 =dev-ruby/IceRuby-3.3*
@@ -212,10 +258,6 @@ dev-libs/swl
 >=media-video/ffmpeg-0.4.9_p20080326
 =media-gfx/blender-2.45-r1
 =x11-misc/xvidcap-1.1.7_rc1
-
-# Cédric Krier <cedk@gentoo.org> (25 Mar 2008)
-#Masked waiting bug #201093
->=app-misc/beagle-0.3.3
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
@@ -996,7 +1038,7 @@ sys-kernel/hppa-sources
 # Jeroen Roovers <jer@gentoo.org> (13 Nov 2007)
 # These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
 # much less stable, so I am masking them for now.
->=www-client/opera-9.50_beta2
+=www-client/opera-9.50_beta2_pre*
 
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
 # Brokeness in these
@@ -1108,16 +1150,6 @@ games-fps/americas-army
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release
 =app-portage/gentoolkit-0.2.4_rc1
-
-# Mike Auty <ikelos@gentoo.org> (20 Sep 2007)
-# Vmware security masking (bug 193196)
-# Packages will be masked once alternatives are available in the tree
-=app-emulation/vmware-server-1.0.3.44356
-=app-emulation/vmware-server-console-1.0.3.44356
-#=app-emulation/vmware-workstation-4.5.3.19414-r7
-#=app-emulation/vmware-workstation-5.5.4.44386
-#=app-emulation/vmware-player-1.0.2.29634
-#=app-emulation/vmware-player-1.0.3.34682-r1
 
 # Benedikt Boehm <hollow@gentoo.org> (08 Sep 2007)
 # breaks apr and openldap
