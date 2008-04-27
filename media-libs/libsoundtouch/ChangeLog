@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.24 2008/04/13 21:14:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.25 2008/04/26 08:19:41 drac Exp $
+
+  26 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  files/libsoundtouch-1.3.1-Makefile.patch, libsoundtouch-1.3.1-r1.ebuild:
+  Replace patching of Makefile.am with patching of Makefile.in files, and
+  run elibtoolize instead of eautoreconf because it fails. Thanks to
+  WiLLiKiZu for reporting.
 
   13 Apr 2008; Alexis Ballier <aballier@gentoo.org>
   +files/libsoundtouch-1.3.1-gcc-4.3.patch, libsoundtouch-1.3.1-r1.ebuild:

@@ -1,14 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.12 2008/04/13 21:14:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.14 2008/04/26 08:27:32 drac Exp $
 
 EAPI="prefix"
 
-inherit autotools flag-o-matic
+inherit libtool flag-o-matic
 
-IUSE="sse"
-
-MY_P="${P/lib}"
+MY_P=${P/lib}
 
 DESCRIPTION="Audio processing library for changing tempo, pitch and playback rates."
 HOMEPAGE="http://www.surina.net/soundtouch/"
@@ -17,18 +15,16 @@ SRC_URI="http://www.surina.net/soundtouch/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+IUSE="sse"
 
-DEPEND=""
-
-S="${WORKDIR}/${MY_P}"
+S=${WORKDIR}/${MY_P}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-Makefile.patch
-	epatch "${FILESDIR}"/${P}-gcc-4.3.patch
-	eautoreconf
+	epatch "${FILESDIR}"/${P}-Makefile.patch \
+		"${FILESDIR}"/${P}-gcc-4.3.patch
+	elibtoolize
 
 	# Bug #148695
 	if use sse; then
@@ -39,15 +35,12 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $myconf \
-		--enable-shared \
-		--disable-integer-samples \
-		|| die "./configure failed"
-	# fixes C(XX)FLAGS from configure, so we can use *ours*
-	emake CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" || die "emake failed"
+	econf --enable-shared --disable-integer-samples
+	emake CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" || die "emake failed."
 }
 
 src_install() {
-	make DESTDIR="${D}" pkgdocdir="${EPREFIX}/usr/share/doc/${PF}" install || die
-	rm -f "${ED}"/usr/share/doc/${PF}/COPYING.TXT	# remove obsolete LICENCE file
+	emake DESTDIR="${D}" pkgdocdir="${EPREFIX}/usr/share/doc/${PF}/html" install \
+		|| die "emake install failed."
+	rm -f "${ED}"/usr/share/doc/${PF}/html/COPYING.TXT
 }
