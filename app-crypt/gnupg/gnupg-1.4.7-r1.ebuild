@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.7-r1.ebuild,v 1.11 2008/01/29 19:49:57 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.7-r1.ebuild,v 1.12 2008/04/24 04:48:10 ricmm Exp $
 
 EAPI="prefix"
 
