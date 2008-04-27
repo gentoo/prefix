@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xmlto
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.44 2008/01/23 04:29:25 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.45 2008/04/26 21:44:43 ricmm Exp $
+
+  26 Apr 2008; <ricmm@gentoo.org> xmlto-0.0.18.ebuild:
+  Drop to ~mips due to unstable deps
 
   23 Jan 2008; Doug Klima <cardoe@gentoo.org> xmlto-0.0.18.ebuild:
   sys-apps/coreutils-6.10-r1 and higher now provides /bin/mktemp
