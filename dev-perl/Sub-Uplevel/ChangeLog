@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Sub-Uplevel
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/ChangeLog,v 1.47 2008/03/28 09:43:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/ChangeLog,v 1.48 2008/04/24 16:56:32 yuval Exp $
+
+*Sub-Uplevel-0.19.01 (24 Apr 2008)
+
+  24 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Sub-Uplevel-0.19.01.ebuild:
+  Version bump
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> Sub-Uplevel-0.16.ebuild:
   Stable for HPPA too.
