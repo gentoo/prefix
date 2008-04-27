@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/colordiff
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.68 2008/03/28 04:25:38 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.69 2008/04/25 20:39:02 ricmm Exp $
+
+  25 Apr 2008; <ricmm@gentoo.org> colordiff-1.0.6-r1.ebuild:
+  Drop to ~mips due to unstable deps
 
   28 Mar 2008; Steve Dibb <beandog@gentoo.org> colordiff-1.0.7.ebuild:
   amd64 stable, bug 214917
