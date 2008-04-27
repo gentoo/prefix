@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r12.ebuild,v 1.3 2008/04/22 10:57:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r12.ebuild,v 1.4 2008/04/25 12:15:18 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )
 	userland_GNU? ( sys-apps/shadow )
 	dev-util/pkgconfig
 	|| ( dev-util/unifdef sys-freebsd/freebsd-ubin sys-apps/darwin-miscutils )
+	>=sys-devel/autoconf-2.60
 	${COMMON_DEP}"
 RDEPEND="
 	gnome? (
@@ -70,13 +71,14 @@ src_unpack() {
 	if use avahi; then
 		epatch "${DISTDIR}/${PN}-2.18-avahi.patch.bz2"
 		epatch "${FILESDIR}/${PN}-avahi-configure.patch"
-		eautoreconf
 	fi
 
 	# prefix awareness
 	cp "${FILESDIR}"/distcc-config .
 	epatch "${FILESDIR}"/distcc-config-prefix.patch
 	eprefixify distcc-config
+
+	eautoreconf
 }
 
 src_compile() {
