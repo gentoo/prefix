@@ -34,6 +34,10 @@ src_unpack() {
 	#bug 214787
 	epatch "${FILESDIR}"/gcc-4.3.patch
 
+	#echo -n doesn't work everywhere. top level configure.in made
+	#it right anyway, only on guile-readline it was wrong.
+	epatch "${FILESDIR}"/${P}-echo.patch
+
 	#for libtool-2.2*, bug 212723
 	eautoreconf
 }
