@@ -53,6 +53,9 @@ src_unpack() {
 	# hpux does not have setenv()
 	epatch "${FILESDIR}"/man-1.6e-hpux.patch
 
+	# irix support is a bit messed up in defines
+	epatch "${FILESDIR}"/man-1.6f-irix.patch
+
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
 	epatch "${FILESDIR}"/man-1.6e-prefix-path.patch
