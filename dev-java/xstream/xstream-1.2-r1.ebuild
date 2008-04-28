@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/xstream-1.2-r1.ebuild,v 1.5 2008/03/30 17:18:52 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/xstream-1.2-r1.ebuild,v 1.6 2008/04/27 20:03:49 maekke Exp $
 
 EAPI="prefix"
 
