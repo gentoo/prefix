@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.69 2008/03/06 00:54:07 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.70 2008/04/27 07:00:40 ulm Exp $
 
 # @ECLASS: cvs.eclass
 # @MAINTAINER:
@@ -69,7 +69,7 @@ inherit eutils
 # Refer to the information in the CVS man page regarding the -l
 # command option (not the -l global option).
 
-# @ECLASS-VARIABLE: ECVS_LOCLANAME
+# @ECLASS-VARIABLE: ECVS_LOCALNAME
 # @DESCRIPTION:
 # Local name of checkout directory
 #
@@ -159,7 +159,7 @@ inherit eutils
 # -C option to cvs update)
 
 # @ECLASS-VARIABLE: ECVS_RUNAS
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # Specifies an alternate (non-root) user to use to run cvs.  Currently
 # b0rked and wouldn't work with portage userpriv anyway without
 # special magic.
