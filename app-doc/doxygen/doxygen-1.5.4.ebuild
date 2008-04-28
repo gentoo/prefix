@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.12 2008/03/12 06:32:42 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.13 2008/04/27 17:54:40 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -153,7 +153,7 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 
 	elog
-	elog "The USE flags qt, doc, and tetex will enable doxywizard, or"
+	elog "The USE flags qt3, doc, and tetex will enable doxywizard, or"
 	elog "the html and pdf documentation, respectively.  For examples"
 	elog "and other goodies, see the source tarball.  For some example"
 	elog "output, run doxygen on the doxygen source using the Doxyfile"
