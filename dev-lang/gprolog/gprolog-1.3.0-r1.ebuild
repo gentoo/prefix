@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.5 2008/02/17 11:43:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.6 2008/04/27 19:47:14 maekke Exp $
 
 EAPI="prefix"
 
