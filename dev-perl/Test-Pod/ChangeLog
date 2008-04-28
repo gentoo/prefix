@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Pod
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/ChangeLog,v 1.46 2007/04/24 08:54:33 kloeri Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/ChangeLog,v 1.47 2008/04/27 20:17:33 aballier Exp $
+
+  27 Apr 2008; Alexis Ballier <aballier@gentoo.org> Test-Pod-1.26.ebuild:
+  keyword ~x86-fbsd
 
   24 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> Test-Pod-1.26.ebuild:
   Add ~mips keyword, bug 173295.
