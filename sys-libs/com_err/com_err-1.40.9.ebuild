@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.3.ebuild,v 1.9 2008/01/01 12:35:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.9.ebuild,v 1.1 2008/04/27 22:22:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.40-darwin-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.40-headers.patch
+	epatch "${FILESDIR}"/${PN}-1.40.5-darwin-makefile.patch
 }
 
 src_compile() {
@@ -45,6 +44,7 @@ src_compile() {
 	econf \
 		--enable-${libtype}-shlibs \
 		--with-ldopts="${LDFLAGS}" \
+		$(use_enable !elibc_uclibc tls) \
 		$(use_enable nls) \
 		|| die
 	emake -j1 -C lib/et || die
@@ -59,7 +59,7 @@ src_install() {
 	export CC=$(tc-getCC)
 	export STRIP="${EPREFIX}"/bin/true
 
-	make -C lib/et DESTDIR="${D}" install || die
+	emake -C lib/et DESTDIR="${D}" install || die
 	dosed '/^ET_DIR=/s:=.*:='"${EPREFIX}"'/usr/share/et:' /usr/bin/compile_et
 	dosym et/com_err.h /usr/include/com_err.h
 
@@ -72,10 +72,10 @@ src_install() {
 pkg_postinst() {
 	echo
 	ewarn "PLEASE PLEASE take note of this"
-	ewarn "Please make *sure* to run revdep-rebuild now"
-	ewarn "Certain things on your system may have linked against a"
-	ewarn "different version of com_err -- those things need to be"
-	ewarn "recompiled.  Sorry for the inconvenience"
+	ewarn "Please make *sure* to run revdep-rebuild now."
+	ewarn "Certain things on your system may have linked against a different"
+	ewarn "version of com_err -- those things need to be recompiled."
+	ewarn "Sorry for the inconvenience"
 	echo
 	epause 10
 	ebeep

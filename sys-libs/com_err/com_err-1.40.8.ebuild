@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.8.ebuild,v 1.3 2008/03/17 17:45:36 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.8.ebuild,v 1.4 2008/04/27 23:09:42 jer Exp $
 
 EAPI="prefix"
 
