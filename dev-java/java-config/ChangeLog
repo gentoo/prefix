@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.185 2008/02/26 18:15:03 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.186 2008/04/28 00:51:47 betelgeuse Exp $
+
+*java-config-2.1.6 (27 Apr 2008)
+
+  27 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +java-config-2.1.6.ebuild:
+  Version bump. Java virtual handling fixes.
 
 *java-config-2.1.5 (26 Feb 2008)
 
