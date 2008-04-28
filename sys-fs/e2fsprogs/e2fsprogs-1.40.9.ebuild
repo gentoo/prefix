@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.3.ebuild,v 1.10 2008/01/01 12:36:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.9.ebuild,v 1.1 2008/04/27 22:22:57 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -25,15 +25,11 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# Fix locale issues while running tests #99766
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
-	epatch "${FILESDIR}"/e2fsprogs-1.39-util-strptime.patch
 	chmod u+w po/*.po # Userpriv fix #27348
 	# Clean up makefile to suck less
 	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
-
-	# Fix compile on FreeBSD
+	epatch "${FILESDIR}"/${PN}-1.40.5-libintl.patch #122368
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
@@ -48,11 +44,14 @@ src_unpack() {
 		-e '/^LIB_SUBDIRS/s:lib/ss::' \
 		Makefile.in || die "remove subdirs"
 
-	ln -s "${EROOT}"/usr/$(get_libdir)/libcom_err.a lib/libcom_err.a
-	ln -s "${EROOT}"/$(get_libdir)/libcom_err.so lib/libcom_err.so
+	# since we've split out com_err/ss into their own ebuilds, we
+	# need to fake out the local files.  let the toolchain find them.
+	echo "GROUP ( /usr/$(get_libdir)/libcom_err.a )" > lib/libcom_err.a
+	echo "GROUP ( /usr/$(get_libdir)/libcom_err.so )" > lib/libcom_err.so
+	echo "GROUP ( /usr/$(get_libdir)/libss.a )" > lib/libss.a
+	echo "GROUP ( /usr/$(get_libdir)/libss.so )" > lib/libss.so
+	echo '#include_next <ss/ss_err.h>' > lib/ss/ss_err.h
 	ln -s /usr/bin/mk_cmds lib/ss/mk_cmds
-	ln -s "${EROOT}"/usr/include/ss/ss_err.h lib/ss/
-	ln -s "${EROOT}"/$(get_libdir)/libss.so lib/libss.so
 
 	# sanity check for Bug 105304
 	if [[ -z ${USERLAND} ]] ; then
@@ -74,6 +73,7 @@ src_compile() {
 		--enable-elf-shlibs \
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable !static dynamic-e2fsck) \
+		$(use_enable !elibc_uclibc tls) \
 		--without-included-gettext \
 		$(use_enable nls) \
 		$(use_enable userland_GNU fsck) \
@@ -103,7 +103,7 @@ src_install() {
 	dodir /$(get_libdir)
 	mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)/
 	dolib.a lib/*.a || die "dolib.a"
-	rm -f "${ED}"/usr/$(get_libdir)/libcom_err.a #125146
+	rm -f "${ED}"/usr/$(get_libdir)/lib{com_err,ss}.a #125146
 	local x
 	cd "${ED}"/$(get_libdir)
 	for x in *.so ; do
