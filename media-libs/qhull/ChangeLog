@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/qhull
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.22 2007/12/11 02:21:23 markusle Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.23 2008/04/28 00:09:28 jer Exp $
+
+  28 Apr 2008; Jeroen Roovers <jer@gentoo.org> qhull-3.1-r1.ebuild:
+  Marked ~hppa (bug #219456).
 
 *qhull-2003.1-r1 (10 Dec 2007)
 
