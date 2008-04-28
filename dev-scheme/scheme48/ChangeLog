@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/scheme48
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scheme48/ChangeLog,v 1.9 2008/02/29 16:40:33 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scheme48/ChangeLog,v 1.10 2008/04/27 12:09:44 hkbst Exp $
+
+  27 Apr 2008; Marijn Schouten <hkBst@gentoo.org> -scheme48-1.3-r1.ebuild,
+  -scheme48-1.5.ebuild, -scheme48-1.6.ebuild:
+  remove old versions some of which have trouble with their mirrored
+  tarballs
 
 *scheme48-1.8 (29 Feb 2008)
 
