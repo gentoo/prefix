@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.18 2008/04/13 22:06:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r1.ebuild,v 1.19 2008/04/27 21:24:23 ulm Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.motifzone.org/"
 SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 	doc? ( http://www.motifzone.net/files/documents/${P}-manual.pdf.tgz )"
 
-LICENSE="MOTIF doc? ( OPL )"
+LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
 KEYWORDS=""
 # NEED TO FIX THIS FOR PREFIX (config file in filesdir)
