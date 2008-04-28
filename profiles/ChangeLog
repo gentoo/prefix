@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1362 2008/04/26 10:09:19 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1366 2008/04/27 18:38:33 dertobi123 Exp $
+
+  27 Apr 2008; Tobias Scherbaum <dertobi123@gentoo.org> use.local.desc:
+  Add lighttpd local use flag for nagios-core-3*
+
+  27 Apr 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Nagios-3 mask
+
+  27 Apr 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  remove removed blender revision
+
+  27 Apr 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  add new blender revision to the mask
 
   26 Apr 2008; Cédric Krier <cedk@gentoo.org> package.mask:
   Unmask app-misc/beagle
