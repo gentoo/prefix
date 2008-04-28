@@ -3,7 +3,8 @@
 # $Header: $
 
   28 Apr 2008; Fabian Groffen <grobian@gentoo.org>
-  darwin/macos/package.use.mask:
+  darwin/macos/10.4/x86/package.use.mask,
+  darwin/macos/10.5/x86/package.use.mask, darwin/macos/package.use.mask:
   Mask hipe for dev-lang/erlang, as it is highly experimental on OSX as per
   upstream.
 
