@@ -42,6 +42,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 	epatch "${FILESDIR}"/${P}-libtool.patch # used on aix
+
+	# irix /bin/sh is no good
+	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
 }
 
 src_compile() {
