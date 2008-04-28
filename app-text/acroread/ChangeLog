@@ -1,6 +1,9 @@
 # ChangeLog for app-text/acroread
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.114 2008/03/29 15:02:59 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.115 2008/04/27 13:56:39 maekke Exp $
+
+  27 Apr 2008; Markus Meier <maekke@gentoo.org> acroread-8.1.2-r2.ebuild:
+  amd64/x86 stable, bug #219207
 
 *acroread-8.1.2-r2 (29 Mar 2008)
 
