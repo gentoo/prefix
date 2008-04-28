@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.5.0.ebuild,v 1.9 2006/11/09 04:31:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.5.0.ebuild,v 1.10 2008/04/28 01:19:59 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -13,6 +13,7 @@ SLOT="1.5"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
+# Keep this list in sync with java-virtuals/jmx
 RDEPEND="|| (
 		=dev-java/apple-jdk-bin-1.5.0*
 		=dev-java/sun-jdk-1.5.0*
