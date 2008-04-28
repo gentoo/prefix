@@ -9,7 +9,7 @@ context default
     keyword linestart RESTRICT brightcyan
     keyword linestart DEPEND brightcyan
     keyword linestart RDEPEND brightcyan
-    keyword linestart PROVIDE brightcyan
+    keyword linestart EAPI brightcyan
     keyword linestart S brightcyan
 
     keyword whole local yellow
@@ -18,12 +18,12 @@ context default
     keyword whole best_version yellow
     keyword whole use_with yellow
     keyword whole use_enable yellow
-    keyword whole check_KV yellow
     keyword whole keepdir yellow
     keyword whole econf yellow
     keyword whole einstall yellow
     keyword whole die yellow
     keyword whole einfo yellow
+    keyword whole elog yellow
     keyword whole emake yellow
     keyword whole eerror yellow
     keyword whole epatch yellow

@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.137 2008/03/01 14:02:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.139 2008/04/27 10:58:47 drac Exp $
+
+  27 Apr 2008; Samuli Suominen <drac@gentoo.org> files/ebuild.syntax:
+  Syntax update. Remove check_KV and PROVIDE. Add elog and EAPI.
+
+*mc-4.6.2_pre1 (27 Apr 2008)
+
+  27 Apr 2008; Samuli Suominen <drac@gentoo.org> +mc-4.6.2_pre1.ebuild:
+  Version bump wrt #218921 with patchset.
 
   01 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> mc-4.6.1-r3.ebuild,
   mc-4.6.1-r4.ebuild:
@@ -8,7 +16,7 @@
   installed anymore.
 
   09 Feb 2008; Samuli Suominen <drac@gentoo.org> mc-4.6.1-r4.ebuild:
-  Fix mc to work with slang 2.1.3.
+  Change slang dep. to allow 2.1.3.
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> mc-4.6.1-r4.ebuild:
   Stable on mips, per #197144.
