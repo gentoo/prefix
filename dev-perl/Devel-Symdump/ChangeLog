@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Devel-Symdump
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Symdump/ChangeLog,v 1.53 2008/03/19 02:00:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Symdump/ChangeLog,v 1.54 2008/04/27 20:09:06 aballier Exp $
+
+  27 Apr 2008; Alexis Ballier <aballier@gentoo.org>
+  Devel-Symdump-2.07.ebuild:
+  keyword ~x86-fbsd
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Devel-Symdump-2.07.ebuild:
   Stable for HPPA too.
