@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Pod-Simple
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/ChangeLog,v 1.37 2008/02/23 16:44:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/ChangeLog,v 1.38 2008/04/27 20:12:15 aballier Exp $
+
+  27 Apr 2008; Alexis Ballier <aballier@gentoo.org> Pod-Simple-3.05.ebuild:
+  keyword ~x86-fbsd
 
   23 Feb 2008; Jeroen Roovers <jer@gentoo.org> Pod-Simple-3.05.ebuild:
   Stable for HPPA too.
