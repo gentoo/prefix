@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.2.ebuild,v 1.1 2008/04/25 10:23:15 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.2.ebuild,v 1.3 2008/04/29 00:06:04 opfer Exp $
 
 EAPI="prefix"
 
 inherit elisp-common eutils flag-o-matic multilib versionator
 
-# NOTE: You need to adjust the version number in the last comment.  If you need symlinks for
-# binaries please tell maintainers or open up a bug to let it be created.
+# NOTE: If you need symlinks for binaries please tell maintainers or
+# open up a bug to let it be created.
 
 # erlang uses a really weird versioning scheme which caused quite a few problems
 # already. Thus we do a slight modification converting all letters to digits to
@@ -42,20 +42,14 @@ S="${WORKDIR}/${MY_P}"
 
 SITEFILE=50erlang-gentoo.el
 
-pkg_setup() {
-	if use ssl; then
-		if is-ldflag --as-needed || is-flag --as-needed; then
-			eerror "Don't use --as-needed in your LDFLAGS or CFLAGS for SSL support, this will fail."
-			die
-		fi
-	fi
-}
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
 	use odbc || sed -i 's: odbc : :' lib/Makefile
+
+	# fix builds with --as-needed LDFLAGS, bug 203157
+	epatch "${FILESDIR}"/${P}-as-needed.patch
 
 	# make sure we only link ssl dynamically
 	# will not be integrated by upstream for various reasons
@@ -159,7 +153,7 @@ pkg_postinst() {
 	elog "If you need a symlink to one of Erlang's binaries,"
 	elog "please open a bug on http://bugs.gentoo.org/"
 	elog
-	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as R12B-1"
+	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as ${MY_PV}"
 	elog
 }
 

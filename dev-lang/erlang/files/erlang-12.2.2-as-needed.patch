@@ -1,0 +1,22 @@
+--- erts/configure.in.orig	2008-04-24 23:16:09.000000000 +0400
++++ erts/configure.in	2008-04-24 23:17:05.000000000 +0400
+@@ -2874,8 +2874,10 @@
+ 				else
+ 					saveCFLAGS="$CFLAGS"
+  					saveLDFLAGS="$LDFLAGS"
++					saveLIBS="$LIBS"
+  					CFLAGS="$CFLAGS $SSL_INCLUDE"
+- 					LDFLAGS="$LDFLAGS -L$SSL_LIBDIR -lcrypto"
++ 					LDFLAGS="$LDFLAGS -L$SSL_LIBDIR"
++					LIBS="-lcrypto"
+  					AC_TRY_LINK([
+ 					#include <stdio.h>
+  					#include <openssl/hmac.h>],
+@@ -2887,6 +2889,7 @@
+  					[ssl_linkable=no])
+  					CFLAGS="$saveCFLAGS"
+  					LDFLAGS="$saveLDFLAGS"
++					LIBS="$saveLIBS"
+ 				fi
+  			fi
+ 	 		if test "x$ssl_found" = "xyes" -a "x$ssl_linkable" = "xyes"  ; then
