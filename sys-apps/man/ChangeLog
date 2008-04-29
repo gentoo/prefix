@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.135 2008/04/27 01:40:30 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.136 2008/04/28 11:15:52 armin76 Exp $
+
+  28 Apr 2008; Raúl Porcel <armin76@gentoo.org> man-1.6f-r1.ebuild:
+  ia64 stable wrt #218669
 
   27 Apr 2008; Ferris McCormick <fmccor@gentoo.org> man-1.6f-r1.ebuild:
   Sparc stable --- Bug #218669 --- working for 2 months now.
