@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/glpk
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.21 2008/04/27 23:58:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.22 2008/04/28 18:53:13 klausman Exp $
+
+  28 Apr 2008; Tobias Klausmann <klausman@gentoo.org> glpk-4.28.ebuild:
+  Keyworded on alpha, bug #219454
 
   27 Apr 2008; Jeroen Roovers <jer@gentoo.org> glpk-4.28.ebuild:
   Marked ~hppa (bug #219454).
