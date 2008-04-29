@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15.ebuild,v 1.5 2008/04/04 01:01:32 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15.ebuild,v 1.6 2008/04/28 21:02:15 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ MY_P="apache-${P}"
 DESCRIPTION="A low-overhead robust logging package for Java"
 SRC_URI="mirror://apache/logging/${PN}/${PV}/${MY_P}.tar.gz"
 HOMEPAGE="http://logging.apache.org/log4j/"
-LICENSE="Apache-1.1"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # jikes support disabled: bug #108819

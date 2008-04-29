@@ -1,6 +1,20 @@
 # ChangeLog for dev-java/log4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.64 2008/04/04 01:01:32 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.67 2008/04/28 21:26:42 betelgeuse Exp $
+
+  28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -log4j-1.2.14-r2.ebuild:
+  Remove useless revision.
+
+  28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> log4j-1.2.15.ebuild:
+  LICENSE to Apache-2.0.
+
+*log4j-1.2.15-r1 (28 Apr 2008)
+
+  28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +log4j-1.2.15-r1.ebuild:
+  Use java-virtuals/jaf, fix LICENSE to Apache-2.0 and use
+  java-pkg-2_src_compile.
 
   04 Apr 2008; Kenneth Prugh <ken69267@gentoo.org> log4j-1.2.15.ebuild:
   amd64 stable, bug #214782
