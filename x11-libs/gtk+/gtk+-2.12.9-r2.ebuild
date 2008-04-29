@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.9-r2.ebuild,v 1.1 2008/04/10 01:28:03 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.9-r2.ebuild,v 1.2 2008/04/28 21:12:50 eva Exp $
 
 EAPI="prefix"
 
@@ -50,8 +50,9 @@ DEPEND="${RDEPEND}
 		x11-proto/damageproto
 	)
 	xinerama? ( x11-proto/xineramaproto )
+	>=dev-util/gtk-doc-am-1.8
 	doc? (
-			>=dev-util/gtk-doc-1.6
+			>=dev-util/gtk-doc-1.8
 			~app-text/docbook-xml-dtd-4.1.2
 		 )"
 PDEPEND="vim-syntax? ( app-vim/gtk-syntax )"
@@ -110,10 +111,12 @@ src_unpack() {
 
 	use ppc64 && append-flags -mminimal-toc
 
+	# Fix libtool usage for configure stage, bug #213789
+	epatch "${FILESDIR}/${P}-libtool-2.patch"
+
 	# remember, eautoreconf applies elibtoolize.
 	# if you remove this, you should manually run elibtoolize
-	cp aclocal.m4 old_macros.m4
-	AT_M4DIR="." eautoreconf
+	eautoreconf
 
 	epunt_cxx
 }

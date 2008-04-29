@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.377 2008/04/10 01:28:03 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.378 2008/04/28 21:12:50 eva Exp $
+
+  28 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gtk+-2.12.9-libtool-2.patch, gtk+-2.12.9-r2.ebuild:
+  Fix libtool usage for configure stage, bug #213789. Fix bug #197899 by
+  raising gtk-doc to 1.8 (as per upstream svn).
 
 *gtk+-2.12.9-r2 (10 Apr 2008)
 

@@ -1,0 +1,25 @@
+#############
+# Taken from 
+# http://www.mail-archive.com/pld-cvs-commit@lists.pld-linux.org/msg135168.html
+#############
+
+--- gtk+-2.12.9/configure.in.orig	2008-03-12 05:17:28.000000000 +0100
++++ gtk+-2.12.9/configure.in	2008-04-22 14:48:55.434333756 +0200
+@@ -166,6 +166,8 @@
+ 
+ AC_LIBTOOL_WIN32_DLL
+ AM_PROG_LIBTOOL
++dnl when using libtool 2.x create libtool early, because it's used in configure
++m4_ifdef([LT_OUTPUT], [LT_OUTPUT])
+ 
+ # Make sure we use 64-bit versions of various file stuff.
+ AC_SYS_LARGEFILE
+@@ -377,7 +379,7 @@
+ case $enable_explicit_deps in
+   auto)
+     export SED
+-    deplibs_check_method=`(./libtool --config; echo 'eval echo $deplibs_check_method') | sh`
++    deplibs_check_method=`(./libtool --config; echo 'eval echo \"$deplibs_check_method\"') | sh`
+     if test "x$deplibs_check_method" '!=' xpass_all || test "x$enable_static" = xyes ; then
+       enable_explicit_deps=yes  
+     else
