@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Task-Weaken
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.10 2008/02/21 16:46:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.11 2008/04/28 23:57:53 yuval Exp $
+
+*Task-Weaken-1.02 (28 Apr 2008)
+
+  28 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Task-Weaken-1.02.ebuild:
+  Version bump
 
   20 Feb 2008; nixnut <nixnut@gentoo.org> Task-Weaken-1.01.ebuild:
   Added ~ppc wrt bug 207343
