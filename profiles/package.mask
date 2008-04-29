@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8544 2008/04/27 18:08:07 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8545 2008/04/28 13:24:28 drac Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -41,11 +41,6 @@
 # Ulrich Mueller <ulm@gentoo.org> (27 Apr 2008)
 # CVS snapshot masked for testing, bug 219449.
 =app-emacs/navi2ch-1.7.5_p*
-
-# Samuli Suominen <drac@gentoo.org> (27 Apr 2008)
-# New Midnight Commander masked for testing.
-# Functional ebuild, but it needs still work.
-=app-misc/mc-4.6.2_pre1
 
 # Michael Sterrett <mr_bones_@gentoo.org> (27 Apr 2008)
 # masked until tmw works with the newer version.

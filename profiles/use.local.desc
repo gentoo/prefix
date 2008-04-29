@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3517 2008/04/27 18:38:33 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3520 2008/04/28 18:10:07 cardoe Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -74,9 +74,11 @@ app-crypt/seahorse:epiphany - Enable epiphany extension
 app-crypt/seahorse:gedit - Enable the gedit plugin
 app-crypt/seahorse:nautilus - Add support for nautilus file manager
 app-dicts/aspell-be:classic - Support classic spelling by default
-app-dicts/stardict:espeak - Enable espeak text to speach plugin
-app-dicts/stardict:festival - Enable festival text to speach plugin
+app-dicts/stardict:espeak - Enable text to speech synthesizer using espeak engine
+app-dicts/stardict:festival - Enable text to speech synthesizer using festival engine
 app-dicts/stardict:gucharmap - Enable gucharmap dictionary plugin
+app-dicts/stardict:pronounce - Install WyabdcRealPeopleTTS package (it is just many .wav files) to make StarDict pronounce English words
+app-dicts/stardict:qqwry - Enable QQWry plugin, which provides information (in Chinees language) about geographical position, owner, etc. for IP address
 app-doc/doxygen:nodot - removes graphviz dependency, along with dot graphs
 app-doc/gimp-help:webinstall - optimize images for web installation (fewer colors, depends on imagemagick)
 app-editors/cssed:plugins - Install plugin development files
@@ -93,7 +95,7 @@ app-editors/emacs-cvs:toolkit-scroll-bars - Use the selected toolkit's scrollbar
 app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer
 app-editors/fe:sendmail - Send mail after editor abend
 app-editors/gvim:carbon - Include support for the Carbon GUI
-app-editors/gvim:netbeans - Include netbeans externaleditor integration support.
+app-editors/gvim:netbeans - Include netbeans externaleditor integration support
 app-editors/gvim:nextaw - Include support for the neXtaw GUI
 app-editors/jasspa-microemacs:nanoemacs - Build NanoEmacs instead of MicroEmacs
 app-editors/joe:xterm - Enable full xterm clipboard support
@@ -1625,7 +1627,6 @@ net-misc/asterisk:ukcid - Enable UK callerid support
 net-misc/asterisk:zaptel - Enables zaptel support (>=asterisk-1.0.1)
 net-misc/asterisk-addons:h323 - Build the chan_ooh323c H.323 channel driver
 net-misc/asterisk-chan_capi:fax - Build chan_capi with fax support
-net-misc/bridge-utils:sysfs - Enable use of the sysfs filesystem (Linux-2.6+) via libsysfs
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2
 net-misc/curl:nss - Use NSS as the crypto engine
