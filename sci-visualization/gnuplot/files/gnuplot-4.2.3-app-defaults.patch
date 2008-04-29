@@ -1,0 +1,33 @@
+--- gnuplot-4.2.3-orig/share/Makefile.am	2008-03-05 04:38:59.000000000 +0100
++++ gnuplot-4.2.3/share/Makefile.am	2008-04-26 11:44:59.000000000 +0200
+@@ -5,7 +5,7 @@
+ 
+ SUBDIRS = LaTeX
+ 
+-appdefaultdir = $(libdir)/X11/app-defaults
++appdefaultdir = /etc/X11/app-defaults
+ 
+ APPDEFAULTFILES = Gnuplot
+ 
+--- gnuplot-4.2.3-orig/share/Makefile.in	2008-03-08 21:06:28.000000000 +0100
++++ gnuplot-4.2.3/share/Makefile.in	2008-04-26 11:45:11.000000000 +0200
+@@ -190,7 +190,7 @@
+ AUTOMAKE_OPTIONS = foreign 1.2h
+ EXTRA_DIST = Gnuplot.app-defaults
+ SUBDIRS = LaTeX
+-appdefaultdir = $(libdir)/X11/app-defaults
++appdefaultdir = /etc/X11/app-defaults
+ APPDEFAULTFILES = Gnuplot
+ appdefault_DATA = $(APPDEFAULTFILES)
+ CLEANFILES = $(APPDEFAULTFILES)
+--- gnuplot-4.2.3-orig/src/gplt_x11.c	2007-12-10 00:55:27.000000000 +0100
++++ gnuplot-4.2.3/src/gplt_x11.c	2008-04-26 11:45:18.000000000 +0200
+@@ -4787,7 +4787,7 @@
+ */
+ #define On(v) ( !strncasecmp(v, "on", 2) || !strncasecmp(v, "true", 4) )
+ 
+-#define AppDefDir "/usr/lib/X11/app-defaults"
++#define AppDefDir "/etc/X11/app-defaults"
+ #ifndef MAXHOSTNAMELEN
+ #define MAXHOSTNAMELEN 64
+ #endif

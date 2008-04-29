@@ -1,6 +1,14 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.69 2008/04/24 12:24:24 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.70 2008/04/28 23:42:54 opfer Exp $
+
+*gnuplot-4.2.3-r1 (28 Apr 2008)
+
+  28 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
+  +files/gnuplot-4.2.3-app-defaults.patch, -gnuplot-4.2.3.ebuild,
+  +gnuplot-4.2.3-r1.ebuild:
+  Install resource file into non-deprecated location, patch provided by ulm in
+  bug 219323
 
   24 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
   -files/gnuplot-4.0-filled-arrow.patch, -files/gnuplot-4.0-libggi.patch,
