@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgtop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.192 2008/04/27 14:08:04 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.193 2008/04/28 18:22:09 nixnut Exp $
+
+  28 Apr 2008; nixnut <nixnut@gentoo.org> libgtop-2.20.2.ebuild:
+  Stable on ppc wrt bug 219336
 
   27 Apr 2008; Markus Meier <maekke@gentoo.org> libgtop-2.20.2.ebuild:
   amd64/x86 stable, bug #219336
