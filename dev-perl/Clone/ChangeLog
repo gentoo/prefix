@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Clone
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.44 2008/03/19 01:45:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.45 2008/04/29 04:19:17 yuval Exp $
+
+*Clone-0.28 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Clone-0.28.ebuild:
+  Version bump
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Clone-0.23.ebuild:
   Stable for HPPA too.
