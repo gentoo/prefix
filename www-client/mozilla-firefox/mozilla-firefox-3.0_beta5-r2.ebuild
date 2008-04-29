@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5-r1.ebuild,v 1.4 2008/04/19 17:01:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5-r2.ebuild,v 1.1 2008/04/28 16:00:21 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -273,10 +273,10 @@ src_install() {
 		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
-		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
+		make_wrapper firefox "/usr/bin/xulrunner-1.9 ${EPREFIX}${MOZILLA_FIVE_HOME}/application.ini"
 	else
 		# Create /usr/bin/firefox
-		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox-bin"
+		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
 	fi
 }
 
