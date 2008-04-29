@@ -1,6 +1,14 @@
 # ChangeLog for app-portage/ufed
 # Copyright 2003-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.60 2008/01/07 20:53:27 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.61 2008/04/28 16:37:38 truedfx Exp $
+
+*ufed-0.40-r8 (28 Apr 2008)
+
+  28 Apr 2008; Harald van Dĳk <truedfx@gentoo.org>
+  +files/ufed-0.40-termsize.patch, +ufed-0.40-r8.ebuild:
+  Bug #219578: Don't try to draw the scroll thumb if the terminal window is
+  large enough to not need one. It caused ufed to abort and is pointless
+  anyway.
 
 *ufed-0.40-r7 (07 Jan 2008)
 
