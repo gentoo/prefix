@@ -1,6 +1,11 @@
 # ChangeLog for virtual/perl-File-Temp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/ChangeLog,v 1.24 2008/03/31 16:56:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/ChangeLog,v 1.25 2008/04/29 03:09:52 yuval Exp $
+
+*perl-File-Temp-0.20 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +perl-File-Temp-0.20.ebuild:
+  Version bump
 
   31 Mar 2008; Jeroen Roovers <jer@gentoo.org> perl-File-Temp-0.18.ebuild:
   Stable for HPPA too.
