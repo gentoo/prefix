@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/YAML-Syck
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/YAML-Syck/ChangeLog,v 1.10 2007/08/19 15:31:16 yuval Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/YAML-Syck/ChangeLog,v 1.11 2008/04/28 23:31:44 yuval Exp $
+
+*YAML-Syck-1.04 (28 Apr 2008)
+
+  28 Apr 2008; Yuval Yaari <yuval@gentoo.org> +YAML-Syck-1.04.ebuild:
+  Version bump
 
 *YAML-Syck-0.96 (19 Aug 2007)
 
