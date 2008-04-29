@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/WWW-Mechanize
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.44 2007/11/10 18:07:47 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.45 2008/04/28 23:30:43 yuval Exp $
+
+*WWW-Mechanize-1.34 (28 Apr 2008)
+
+  28 Apr 2008; Yuval Yaari <yuval@gentoo.org> +WWW-Mechanize-1.34.ebuild:
+  Version bump
 
   10 Nov 2007; Raúl Porcel <armin76@gentoo.org> WWW-Mechanize-1.30.ebuild:
   ia64 stable
