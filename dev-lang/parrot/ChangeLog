@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/parrot
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.18 2008/01/29 21:30:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.19 2008/04/29 01:29:11 yuval Exp $
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +parrot-0.6.1.ebuild:
+  Version bump
+
+*parrot-0.6.1 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +parrot-0.6.1.ebuild:
+  Version bump
 
   29 Jan 2008; Fabian Groffen <grobian@gentoo.org> parrot-0.4.0.ebuild,
   parrot-0.4.3.ebuild, parrot-0.4.5.ebuild, parrot-0.4.6.ebuild:
