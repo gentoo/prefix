@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.46 2008/04/22 18:38:49 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.47 2008/04/28 15:51:37 phreak Exp $
+
+  28 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Remove Wulf C. Krueger (philantrop) from metadata.xml (as per #168573).
 
 *xmlrpc-c-1.06.09-r2 (22 Apr 2008)
 
