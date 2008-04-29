@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.139 2008/04/27 10:58:47 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.140 2008/04/28 13:21:25 drac Exp $
+
+  28 Apr 2008; Samuli Suominen <drac@gentoo.org> mc-4.6.2_pre1.ebuild:
+  Prepare unmasking. Unkeyword arm/s390/sh because slang-2 is required for
+  new unicode patch. Restore cons.server setuid hack.
 
   27 Apr 2008; Samuli Suominen <drac@gentoo.org> files/ebuild.syntax:
   Syntax update. Remove check_KV and PROVIDE. Add elog and EAPI.
