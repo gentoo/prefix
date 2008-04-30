@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/rpm2targz
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.60 2007/09/28 12:03:40 angelos Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.61 2008/04/29 07:53:41 pva Exp $
+
+*rpm2targz-9.0-r7 (29 Apr 2008)
+
+  29 Apr 2008; Peter Volkov <pva@gentoo.org>
+  +files/rpm2targz-9.0-increase-RPMBUFSIZ.patch, +rpm2targz-9.0-r7.ebuild:
+  Increased RPMBUFSIZ to allow rpm2targz unpack Nessus binaries, thank
+  Cyberjun, bug #187219.
 
   28 Sep 2007; Christoph Mende <angelos@gentoo.org> rpm2targz-9.0-r6.ebuild:
   Stable on amd64 wrt bug #193886

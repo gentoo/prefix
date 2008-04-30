@@ -1,0 +1,11 @@
+--- rpmoffset.c.orig	2008-04-29 10:39:13.000000000 +0400
++++ rpmoffset.c	2008-04-29 10:39:57.000000000 +0400
+@@ -10,7 +10,7 @@
+ /* chunk of RAM right away so that we have enough.  Yeah, horrible */
+ /* quick and dirty implementation, but hey -- it gets the job done. */
+ 
+-#define RPMBUFSIZ 2097152
++#define RPMBUFSIZ 3145728
+ 
+ main()
+ {
