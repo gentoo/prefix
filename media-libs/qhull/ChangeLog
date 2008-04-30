@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/qhull
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.25 2008/04/28 19:01:01 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.26 2008/04/29 16:31:57 ranger Exp $
+
+  29 Apr 2008; Brent Baude <ranger@gentoo.org> qhull-2003.1-r1.ebuild:
+  keyworded ~arch for ppc64, bug 219456
 
   28 Apr 2008; Tobias Klausmann <klausman@gentoo.org>
   qhull-2003.1-r1.ebuild:
