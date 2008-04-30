@@ -24,7 +24,7 @@ PYTHON_MODNAME="java_config_2"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.1.4-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.1.6-prefix.patch
 
 	eprefixify \
 		config/20java-config setup.py \
