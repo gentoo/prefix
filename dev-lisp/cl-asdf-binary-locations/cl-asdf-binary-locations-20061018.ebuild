@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/cl-asdf-binary-locations-20061018.ebuild,v 1.6 2008/04/21 12:41:39 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/cl-asdf-binary-locations-20061018.ebuild,v 1.7 2008/04/29 17:57:30 ranger Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/cl-asdf-binary-locations
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/ChangeLog,v 1.7 2008/04/21 12:41:39 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf-binary-locations/ChangeLog,v 1.8 2008/04/29 17:57:30 ranger Exp $
+
+  29 Apr 2008; Brent Baude <ranger@gentoo.org>
+  cl-asdf-binary-locations-20061018.ebuild:
+  stable ppc, bug 217700
 
   21 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
   cl-asdf-binary-locations-20061018.ebuild:
