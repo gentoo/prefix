@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.268 2008/04/24 08:24:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.269 2008/04/29 22:35:26 robbat2 Exp $
+
+*git-1.5.5.1-r1 (29 Apr 2008)
+
+  29 Apr 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.5.5.1-r1.ebuild:
+  The gitweb.cgi did not contain the build-time replacements. Ensure that it
+  does, and also make it executable by default so that portage does not
+  strip the executability on upgrade.
 
   24 Apr 2008; Robin H. Johnson <robbat2@gentoo.org>
   +files/20080322-git-1.5.4.4-noperl.patch,
