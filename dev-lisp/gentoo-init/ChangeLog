@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/gentoo-init
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/gentoo-init/ChangeLog,v 1.8 2008/04/21 12:43:03 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/gentoo-init/ChangeLog,v 1.9 2008/04/29 17:59:24 ranger Exp $
+
+  29 Apr 2008; Brent Baude <ranger@gentoo.org> gentoo-init-0.1.ebuild:
+  stable ppc, bug 217700
 
   21 Apr 2008; Ferris McCormick <fmccor@gentoo.org> gentoo-init-0.1.ebuild:
   Sparc stable, required by Bug #218706.
