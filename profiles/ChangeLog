@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1368 2008/04/28 15:53:05 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1371 2008/04/29 20:32:05 dirtyepic Exp $
+
+  29 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask media-fonts/sharefonts for removal (bug #218288).
+
+  29 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> arch/mips/package.use.mask:
+  Sync package.use.mask in both old and new mips arch profiles.
+
+  29 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> arch/mips/use.mask,
+  default-linux/mips/use.mask:
+  Sync use.mask in both old and new mips arch profiles.
 
   27 Apr 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
   Changed wording for stardict local USE flags description, bug #217895
