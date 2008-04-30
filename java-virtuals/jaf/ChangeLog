@@ -1,0 +1,16 @@
+# ChangeLog for java-virtuals/jaf
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/ChangeLog,v 1.2 2008/04/28 01:45:35 betelgeuse Exp $
+
+*jaf-1.1 (28 Apr 2008)
+
+  28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> -jaf-1.0.ebuild,
+  +jaf-1.1.ebuild:
+  Providers were to javamail instead of jaf.
+
+*jaf-1.0 (28 Apr 2008)
+
+  28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> +metadata.xml,
+  +jaf-1.0.ebuild:
+  Add virtual for jaf.
+
