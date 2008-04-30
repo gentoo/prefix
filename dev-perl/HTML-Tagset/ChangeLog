@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/HTML-Tagset
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tagset/ChangeLog,v 1.33 2006/10/09 15:33:25 mcummings Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tagset/ChangeLog,v 1.34 2008/04/29 05:05:08 yuval Exp $
+
+*HTML-Tagset-3.20 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +HTML-Tagset-3.20.ebuild:
+  Version bump
 
   09 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   -HTML-Tagset-3.03-r1.ebuild, -HTML-Tagset-3.03-r2.ebuild,
