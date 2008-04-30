@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgtop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.193 2008/04/28 18:22:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.194 2008/04/29 09:10:38 armin76 Exp $
+
+  29 Apr 2008; Raúl Porcel <armin76@gentoo.org> libgtop-2.20.2.ebuild:
+  alpha/ia64/sparc stable wrt #219336
 
   28 Apr 2008; nixnut <nixnut@gentoo.org> libgtop-2.20.2.ebuild:
   Stable on ppc wrt bug 219336
