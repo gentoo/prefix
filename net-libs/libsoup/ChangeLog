@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.149 2008/04/28 18:58:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.150 2008/04/29 19:58:18 dang Exp $
+
+  29 Apr 2008; Daniel Gryniewicz <dang@gentoo.org>
+  libsoup-2.2.105-r2.ebuild:
+  Marked stable on amd64 for bug #219512
 
   28 Apr 2008; Raúl Porcel <armin76@gentoo.org> libsoup-2.2.105-r2.ebuild:
   alpha/ia64/sparc stable wrt #219512
