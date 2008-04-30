@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.2.ebuild,v 1.3 2008/04/29 00:06:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.2.ebuild,v 1.4 2008/04/29 15:35:19 opfer Exp $
 
 EAPI="prefix"
 
-inherit elisp-common eutils flag-o-matic multilib versionator
+inherit autotools elisp-common eutils flag-o-matic multilib versionator
 
 # NOTE: If you need symlinks for binaries please tell maintainers or
 # open up a bug to let it be created.
@@ -62,6 +62,7 @@ src_unpack() {
 		ewarn "Don't cry, don't file bugs, just disable it! If you have fix, tell us."
 		ewarn
 	fi
+	eautoreconf
 }
 
 src_compile() {

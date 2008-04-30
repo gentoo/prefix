@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.112 2008/04/29 00:06:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.113 2008/04/29 15:35:19 opfer Exp $
+
+  29 Apr 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.2.ebuild:
+  make previous patch really work by regenerating needed files, pointed out by
+  Holger Hoffstätte <holger AT wizards DOT de>
 
   29 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
   +files/erlang-12.2.2-as-needed.patch, erlang-12.2.2.ebuild:
