@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Email-Address
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/ChangeLog,v 1.41 2007/12/08 12:04:17 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/ChangeLog,v 1.42 2008/04/29 06:08:50 yuval Exp $
+
+*Email-Address-1.88.9 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Email-Address-1.88.9.ebuild:
+  Version bump
 
   08 Dec 2007; Raúl Porcel <armin76@gentoo.org>
   Email-Address-1.88.8.ebuild:
