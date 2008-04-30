@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Test-NoWarnings
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.14 2007/07/13 21:31:02 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.15 2008/04/29 06:16:41 yuval Exp $
+
+*Test-NoWarnings-0.084 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Test-NoWarnings-0.084.ebuild:
+  Version bump
 
   13 Jul 2007; Raúl Porcel <armin76@gentoo.org>
   Test-NoWarnings-0.083.ebuild:
