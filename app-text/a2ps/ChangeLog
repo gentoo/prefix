@@ -1,6 +1,9 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.78 2008/04/26 16:23:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.79 2008/04/29 12:22:18 armin76 Exp $
+
+  29 Apr 2008; Raúl Porcel <armin76@gentoo.org> a2ps-4.13c-r6.ebuild:
+  ia64 stable wrt #212050
 
   26 Apr 2008; nixnut <nixnut@gentoo.org> a2ps-4.13c-r6.ebuild:
   Stable on ppc wrt bug 212050
