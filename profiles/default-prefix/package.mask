@@ -32,6 +32,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (01 May 2008)
+# Please try, quite different ebuild, I don't dare to unleash this
+# untested
+=dev-util/subversion-1.5.0_rc4
+
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
 # circular dependencies while running aclocal (bug #218122)
