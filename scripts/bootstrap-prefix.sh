@@ -469,13 +469,18 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	PV=2.5.1
+	PV=2.5.2
 	A=Python-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch http://www.python.org/ftp/python/${PV%_*}/${A}
+	if [[ ${CHOST} == *-interix* ]] ; then
+		A=python-${PV}-interix.tar.bz2
+		efetch http://www.gentoo.org/~grobian/distfiles/${A}
+	else
+		efetch http://www.python.org/ftp/python/${PV%_*}/${A}
+	fi
 
-	einfo "Unpacking ${A%-*}"
+	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
@@ -485,10 +490,8 @@ bootstrap_python() {
 	cd "${S}"
 
 	# fix OpenBSD detection
-	sed -e 's/OpenBSD\/4.\[\[0\]\]/OpenBSD\/4.\[\[0123456789\]\]/' \
-		configure > configure.new
-	mv -f configure.new configure
-	chmod 755 configure
+	sed -i -e 's/OpenBSD\/4.\[\[0\]\]/OpenBSD\/4.\[\[0123456789\]\]/' \
+		configure 
 	[[ ${CHOST} == *-openbsd* ]] && CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
 
 	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
