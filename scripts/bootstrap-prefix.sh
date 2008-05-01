@@ -832,7 +832,7 @@ PORTDIR=${ROOT}/usr/portage
 DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 PORTAGE_URL="http://dev.gentoo.org/~grobian/distfiles"
-GNU_URL="http://ftp.gnu.org/gnu"
+GNU_URL="ftp://ftp.gnu.org/gnu"
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 GENTOO_URL="http://gentoo.osuosl.org"
 
