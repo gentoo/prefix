@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.4 2008/04/10 19:42:19 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.5 2008/04/30 10:51:48 betelgeuse Exp $
 
 EAPI="prefix 1"
 
@@ -57,7 +57,10 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 		sys-apps/file"
 
 DEPEND="app-arch/zip
-		>=virtual/jdk-1.6.0
+		|| (
+			dev-java/eclipse-ecj:3.3
+			>=virtual/jdk-1.6.0
+		)
 		gtk? (
 			x11-proto/xextproto
 			x11-proto/xproto
@@ -65,6 +68,15 @@ DEPEND="app-arch/zip
 		${REPEND}"
 
 S=${WORKDIR}/${MY_P}
+
+pkg_setup() {
+	has_version dev-java/eclipse-ecj:3.3 && export HAVE_ECJ=true
+	if [[ ${HAVE_ECJ} ]]; then
+		export JAVAC="${EPREFIX}/usr/bin/ecj-3.3 -nowarn"
+	else
+		java-pkg-2_pkg_setup
+	fi
+}
 
 src_compile() {
 	# Upstreams sets proper -source and -target
@@ -80,6 +92,9 @@ src_compile() {
 	#	die "Unusable JDK + compiler combination"
 	#fi
 
+	if [[ ${HAVE_ECJ} ]]; then
+		local myconf="--with-ecj-jar=$(java-pkg_getjars --build-only eclipse-ecj-3.3)"
+	fi
 	# don't use econf, because it ends up putting things under /usr, which may
 	# collide with other slots of classpath
 	./configure ${compiler} \
