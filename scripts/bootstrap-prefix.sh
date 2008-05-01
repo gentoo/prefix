@@ -447,7 +447,7 @@ bootstrap_gnu() {
 
 	# Interix doesn't have filesystem listing stuff, but that means all
 	# other utilities but df aren't useless at all, so don't die
-	[[ $CHOST == *-interix* ]] && \
+	[[ ${A%-*} == "coreutils" && $CHOST == *-interix* ]] && \
 		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
 	# Fix a compilation error due to a missing definition
 	[[ ${A%-*} == "coreutils" && $CHOST == *-interix* ]] && \
@@ -537,7 +537,7 @@ bootstrap_wget() {
 }
 
 bootstrap_grep() {
-	bootstrap_gnu grep 2.5.3
+	bootstrap_gnu grep 2.5.1a
 }
 
 bootstrap_coreutils() {
