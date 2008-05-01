@@ -17,12 +17,14 @@ einfo() { echo "* $*"; }
 
 econf() {
 	./configure \
+		--host=${CHOST} \
 		--prefix="${ROOT}"/usr \
 		--mandir="${ROOT}"/usr/share/man \
 		--infodir="${ROOT}"/usr/share/info \
 		--datadir="${ROOT}"/usr/share \
 		--sysconfdir="${ROOT}"/etc \
 		--localstatedir="${ROOT}"/var/lib \
+		--build=${CHOST} \
 		"$@" || exit 1
 }
 
