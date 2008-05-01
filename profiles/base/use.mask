@@ -8,9 +8,6 @@ multilib
 kqemu
 3dnow
 3dnowext
-icc
-icc-pgo
-ifc
 mmx
 mmxext
 sse
