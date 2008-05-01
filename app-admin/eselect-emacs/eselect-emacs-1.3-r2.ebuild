@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.3-r2.ebuild,v 1.9 2008/01/22 08:14:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.3-r2.ebuild,v 1.10 2008/04/30 13:49:24 ulm Exp $
 
 EAPI="prefix"
 
@@ -16,10 +16,8 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux
 IUSE=""
 
 DEPEND=""
-RDEPEND=">=app-admin/eselect-1.0.10"
-# Now this should really be in RDEPEND, but it would result in blockers when
-# updating from <=eselect-emacs-1.3. Leave it as PDEPEND for the time being.
-PDEPEND="app-admin/eselect-ctags"
+RDEPEND=">=app-admin/eselect-1.0.10
+	~app-admin/eselect-ctags-${PV}"
 
 src_unpack() {
 	unpack ${A}
