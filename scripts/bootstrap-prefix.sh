@@ -419,7 +419,8 @@ bootstrap_gnu() {
 	[[ $PN == "gzip" ]] && A=${PN}-${PV}.tar
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GNU_URL}/${PN}/${A}
+	URL=${3-${GNU_URL}/${PN}/${A}}
+	efetch ${URL}
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -531,7 +532,9 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils() {
-	bootstrap_gnu findutils 4.2.31
+	# distfile with included patches for IRIX and Interix
+	bootstrap_gnu findutils 4.4.0 \
+		"http://www.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
 }
 
 bootstrap_wget() {
@@ -563,38 +566,8 @@ bootstrap_make() {
 }
 
 bootstrap_patch9() {
-	local PN PV A S
-	PN=patch
-	PV=2.5.9
-	A=${PN}-${PV}.tar.gz
-	einfo "Bootstrapping ${A%-*}"
-
-	efetch http://distfiles.gentoo.org/distfiles/${A}
-
-	einfo "Unpacking ${A%-*}"
-	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
-	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
-	S="${S}"/${PN}-${PV}
-	cd "${S}"
-
-	local myconf=""
-	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
-	# when it's not.  Solaris and Linux build fine with --disable-nls.
-	[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
-
-	einfo "Compiling ${A%-*}"
-	econf ${myconf}
-	$MAKE || exit 1
-
-	einfo "Installing ${A%-*}"
-	$MAKE install || exit 1
-
-	cd "${ROOT}"
-	rm -Rf "${S}"
-	einfo "${A%-*} successfully bootstrapped"
+	bootstrap_gnu patch 2.5.9 \
+		"http://distfiles.gentoo.org/distfiles/patch-2.5.9.tar.gz"
 }
 
 bootstrap_gawk() {
@@ -614,7 +587,7 @@ bootstrap_bash() {
 }
 
 bootstrap_gzip() {
-	 bootstrap_gnu gzip 1.3.12
+	bootstrap_gnu gzip 1.3.12
 }
 
 bootstrap_bzip2() {
