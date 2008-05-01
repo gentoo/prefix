@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/avalon-logkit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.60 2008/04/29 00:39:29 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.61 2008/04/30 15:42:46 nixnut Exp $
+
+  30 Apr 2008; nixnut <nixnut@gentoo.org> avalon-logkit-1.2-r3.ebuild,
+  avalon-logkit-2.1-r2.ebuild:
+  Stable on ppc wrt bug 219638
 
   29 Apr 2008; Kenneth Prugh <ken69267@gentoo.org>
   avalon-logkit-1.2-r3.ebuild, avalon-logkit-2.1-r2.ebuild:
