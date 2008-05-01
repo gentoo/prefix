@@ -291,8 +291,8 @@ bootstrap_portage() {
 	einfo "Compiling ${A%-*}"
 	econf \
 		--with-offset-prefix="${ROOT}" \
-		--with-portage-user=`id -un` \
-		--with-portage-group=`id -gn` \
+		--with-portage-user="`id -un`" \
+		--with-portage-group="`id -gn`" \
 		--with-eapi='"prefix"' \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE ${MAKEOPTS} || exit 1
