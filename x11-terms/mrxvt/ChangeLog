@@ -1,6 +1,14 @@
 # ChangeLog for x11-terms/mrxvt
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.60 2007/12/25 17:16:14 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.61 2008/04/30 07:02:27 nelchael Exp $
+
+*mrxvt-0.5.3-r2 (30 Apr 2008)
+
+  30 Apr 2008; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/mrxvt-0.5.3-display-security.patch, mrxvt-0.5.1.ebuild,
+  mrxvt-0.5.3-r1.ebuild, +mrxvt-0.5.3-r2.ebuild:
+  Added patch to fix unsecure default DISPLAY, patch created by Gautam Iyer.
+  See bug #219750. Dropped stable mips keyword.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing usata from metadata.xml as per #22931.
