@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.298 2008/04/13 16:49:23 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.299 2008/04/30 21:16:43 hollow Exp $
+
+*subversion-1.5.0_rc4 (30 Apr 2008)
+
+  30 Apr 2008; Benedikt Böhm <hollow@gentoo.org>
+  +files/1.5.0/70svn-gentoo.el, +files/1.5.0/80subversion-extras,
+  +files/1.5.0/disable-unneeded-linking.patch, +subversion-1.5.0_rc4.ebuild:
+  version bump wrt #219395
 
   13 Apr 2008; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.5.ebuild,
   subversion-1.4.6.ebuild, subversion-1.4.6-r2.ebuild:
