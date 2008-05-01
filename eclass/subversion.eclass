@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.57 2008/03/06 09:23:39 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.58 2008/04/30 18:57:10 hollow Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -169,12 +169,14 @@ subversion_fetch() {
 
 	case "${protocol}" in
 		http|https)
-			if built_with_use dev-util/subversion nowebdav; then
+			if ! built_with_use --missing true -o dev-util/subversion webdav-neon webdav-serf || \
+			built_with_use --missing false dev-util/subversion nowebdav ; then
 				echo
 				eerror "In order to emerge this package, you need to"
-				eerror "re-emerge subversion with USE=-nowebdav"
+				eerror "reinstall Subversion with support for WebDAV."
+				eerror "Subversion requires either Neon or Serf to support WebDAV."
 				echo
-				die "${ESVN}: please run 'USE=-nowebdav emerge subversion'"
+				die "${ESVN}: reinstall Subversion with support for WebDAV."
 			fi
 			;;
 		svn|svn+ssh)

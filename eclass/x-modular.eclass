@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.95 2008/04/13 04:44:16 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.96 2008/04/30 17:37:42 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -147,7 +147,7 @@ if [[ "${PN/#font-}" != "${PN}" ]] \
 	FONT_OPTIONS="--with-fontdir=\"${EROOT}/usr/share/fonts/${FONT_DIR}\""
 
 	if [[ -n "${FONT}" ]]; then
-		if [[ ${PN##*-} = misc ]] || [[ ${PN##*-} = 75dpi ]] || [[ ${PN##*-} = 100dpi ]]; then
+		if [[ ${PN##*-} = misc ]] || [[ ${PN##*-} = 75dpi ]] || [[ ${PN##*-} = 100dpi ]] || [[ ${PN##*-} = cyrillic ]]; then
 			IUSE="${IUSE} nls"
 		fi
 	fi
