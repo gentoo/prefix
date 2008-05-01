@@ -444,6 +444,15 @@ bootstrap_gnu() {
 	# but we don't need any groovy input at all, so just disable it
 	[[ ${A%-*} == "bash" ]] && myconf="${myconf} --disable-readline"
 
+
+	# Interix doesn't have filesystem listing stuff, but that means all
+	# other utilities but df aren't useless at all, so don't die
+	[[ $CHOST == *-interix* ]] && \
+		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
+	# Fix a compilation error due to a missing definition
+	[[ ${A%-*} == "coreutils" && $CHOST == *-interix* ]] && \
+		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
+
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
@@ -501,10 +510,7 @@ bootstrap_python() {
 	einfo "Compiling ${A%-*}"
 	econf \
 		--disable-toolbox-glue \
-		--enable-unicode=ucs4 \
-		--with-fpectl \
 		--disable-ipv6 \
-		--with-threads \
 		--with-cxx=no \
 		--disable-shared \
 		${myconf}
@@ -531,7 +537,7 @@ bootstrap_wget() {
 }
 
 bootstrap_grep() {
-	bootstrap_gnu grep 2.5.1a
+	bootstrap_gnu grep 2.5.3
 }
 
 bootstrap_coreutils() {
@@ -543,7 +549,7 @@ bootstrap_coreutils6() {
 }
 
 bootstrap_tar() {
-	bootstrap_gnu tar 1.15.1
+	bootstrap_gnu tar 1.19
 }
 
 bootstrap_patch() {
