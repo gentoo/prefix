@@ -1,6 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1371 2008/04/29 20:32:05 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1376 2008/04/30 23:40:26 wolf31o2 Exp $
+
+  30 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  default/linux/alpha/2008.0/parent, default/linux/amd64/2008.0/parent,
+  default/linux/arm/2008.0/parent, default/linux/hppa/2008.0/parent,
+  default/linux/ia64/2008.0/parent, default/linux/m68k/2008.0/parent,
+  default/linux/mips/2008.0/parent,
+  default/linux/powerpc/ppc32/2008.0/parent,
+  default/linux/powerpc/ppc64/2008.0/parent,
+  default/linux/s390/2008.0/parent, default/linux/sh/2008.0/parent,
+  default/linux/sparc/2008.0/parent, default/linux/x86/2008.0/parent:
+  The 2008.0 sub-profiles should inherit .. before releases/2008.0, so fixing
+  that.
+
+  30 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  -default/linux/powerpc/ppc64/2008.0/32bit-userland/make.defaults,
+  default/linux/powerpc/ppc64/2008.0/32bit-userland/parent,
+  -default/linux/powerpc/ppc64/2008.0/32bit-userland/use.mask,
+  -default/linux/powerpc/ppc64/2008.0/64bit-userland/package.mask,
+  default/linux/powerpc/ppc64/2008.0/64bit-userland/parent,
+  -default/linux/powerpc/ppc64/2008.0/64bit-userland/use.mask,
+  -default/linux/powerpc/ppc64/2008.0/64bit-userland/virtuals:
+  Changing parent on the ppc64 profiles to point to the new 32ul and 64ul
+  sub-profiles for arch/powerpc/ppc64.
+
+  30 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> arch/mips/use.mask,
+  default-linux/mips/use.mask:
+  Mask blas/lapack USE flags on MIPS.
+
+  30 Apr 2008; Raúl Porcel <armin76@gentoo.org> thirdpartymirrors:
+  Update mirrors
+
+  30 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org> use.desc,
+  use.local.desc:
+  Removed global icc and ifc use flags. Added local icc and ifc for
+  dev-lang/idb and sci-libs/acml, added gfortran local flag for
+  sci-libs/acml
 
   29 Apr 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Mask media-fonts/sharefonts for removal (bug #218288).

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3520 2008/04/28 18:10:07 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3522 2008/04/30 21:20:13 hollow Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -429,6 +429,8 @@ dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly lar
 dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
 dev-lang/icon:iplsrc - install the icon programming library source
+dev-lang/idb:icc - Use icc to install idb (default)
+dev-lang/idb:ifc - Use ifc to install idb
 dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
@@ -648,6 +650,8 @@ dev-util/strace:aio - Enable libaio support
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
 dev-util/subversion:nowebdav - Disables WebDAV support via neon library
 dev-util/subversion:svnserve - Install scripts for svnserve
+dev-util/subversion:webdav-neon - Enable WebDAV support using net-misc/neon
+dev-util/subversion:webdav-serf - Enable WebDAV support using net-libs/serf
 dev-util/svk:pager - Enable perl pager selection support
 dev-util/svk:patch - Enable patch creation, import support
 dev-util/svk:svn-mirror - Enable SVN-Mirror support
@@ -1839,6 +1843,8 @@ sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
 sci-geosciences/mapserver:postgis - Enables postgis support
 sci-geosciences/mapserver:proj - Enables proj library support (geographic projections)
+sci-libs/acml:gfortran - Fetch and install acml compiled with GNU gfortran
+sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler
 sci-libs/acml:int64 - Install the 64 bits integer library
 sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs ifc or gfortran >= 4.2)
 sci-libs/blas-goto:int64 - Build the 64 bits integer library
