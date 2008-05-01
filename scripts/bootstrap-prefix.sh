@@ -430,7 +430,7 @@ bootstrap_gnu() {
 	if [[ $PN == "gzip" ]]; then
 		$TAR -xf "${DISTDIR}"/${A} || exit 1
 	else
-		gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+		gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || exit 1
 	fi
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
