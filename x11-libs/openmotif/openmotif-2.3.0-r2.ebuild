@@ -13,9 +13,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS=""
-# NEED TO FIX THIS FOR PREFIX (config file in filesdir)
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 IUSE="doc examples jpeg png xft"
 
 # make people unmerge motif-config and all previous slots
@@ -69,6 +67,12 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-fix-nedit-segfaults.patch"
 	epatch "${FILESDIR}/${P}-freebsd-libiconv.patch"
 
+	cp "${FILESDIR}"/motif-config-2.3 "${T}"/
+	pushd "${T}" > /dev/null
+	epatch "${FILESDIR}"/motif-config-2.3-prefix.patch
+	eprefixify motif-config-2.3
+	popd > /dev/null
+
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
 
@@ -101,7 +105,7 @@ src_compile() {
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 
-	newbin "${FILESDIR}"/motif-config-2.3 motif-config
+	newbin "${T}"/motif-config-2.3 motif-config
 	dosed "s:@@LIBDIR@@:$(get_libdir):g" /usr/bin/motif-config
 
 	# mwm default configs
