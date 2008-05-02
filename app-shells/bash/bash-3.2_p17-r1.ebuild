@@ -33,7 +33,7 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
@@ -91,6 +91,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.0-configs-prefix.patch
 	eprefixify config-top.h pathnames.h.in
 
+	epatch "${FILESDIR}"/${PN}-3.2-getcwd-memcpy.patch
+	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
+
+	# intmax_t and uintmax_t should be looked for in stdint.h on interix
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
 	cd "${T}"
@@ -123,6 +129,12 @@ src_compile() {
 	# Parallel building is still broken with USE=nls
 	local mymake=
 	use nls && mymake=-j1
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_inttypes_h=no
+		export gt_cv_header_inttypes_h=no
+		export jm_ac_cv_header_inttypes_h=no
+	fi
 
 	use plugins && append-ldflags -Wl,-rpath,/usr/$(get_libdir)/bash
 	econf \
