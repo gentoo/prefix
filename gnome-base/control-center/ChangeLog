@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.268 2008/04/24 21:00:31 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.269 2008/05/01 13:23:09 eva Exp $
+
+  01 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/control-center-2.11-gentoo_xcursor.patch,
+  -files/control-center-2.13.5-disable-master-pty.patch,
+  -files/control-center-2.18.1-fbsd.patch, -control-center-2.18.1.ebuild,
+  -control-center-2.22.0.ebuild:
+  cleaning up old revisions.
 
   24 Apr 2008; Daniel Gryniewicz <dang@gentoo.org>
   control-center-2.20.3.ebuild:
