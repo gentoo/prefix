@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~x86-linux ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc examples jpeg png xft"
 
 # make people unmerge motif-config and all previous slots
@@ -66,6 +66,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-sensitivity-invisible.patch"
 	epatch "${FILESDIR}/${P}-fix-nedit-segfaults.patch"
 	epatch "${FILESDIR}/${P}-freebsd-libiconv.patch"
+	epatch "${FILESDIR}"/${P}-List.c-compile.patch
 
 	cp "${FILESDIR}"/motif-config-2.3 "${T}"/
 	pushd "${T}" > /dev/null
