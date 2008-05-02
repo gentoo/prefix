@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8548 2008/04/30 13:49:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8549 2008/05/01 21:30:18 hkbst Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Marijn Schouten <hkBst@gentoo.org> (1 May 2008)
+# to be removed: live, broken, obsolete
+# bugs 196982, 204935
+# 0.9.2 release in our overlay
+dev-lisp/stumpwm-cvs
 
 # Ryan Hill <dirtyepic@gentoo.org> (29 Apr 2008)
 # Masked for removal in 30 days due to licensing issues.

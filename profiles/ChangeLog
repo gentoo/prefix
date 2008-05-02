@@ -1,6 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1376 2008/04/30 23:40:26 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1378 2008/05/02 02:40:35 wolf31o2 Exp $
+
+  02 May 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  default-linux/ppc/ppc64/2006.1/64bit-userland/use.mask,
+  default-linux/ppc/ppc64/2007.0/64bit-userland/use.mask,
+  default-linux/ppc/ppc64/use.mask, hardened/linux/powerpc/package.mask,
+  +hardened/linux/powerpc/package.use.mask,
+  -hardened/linux/powerpc/ppc64/package.mask,
+  -hardened/linux/powerpc/ppc64/package.use.mask,
+  hardened/linux/powerpc/ppc64/parent, profiles.desc:
+  Fixing powerpc profiles for sys-libs/pam.
+
+  01 May 2008; Marijn Schouten <hkBst@gentoo.org> package.mask:
+  mask stumpwm-cvs
 
   30 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
   default/linux/alpha/2008.0/parent, default/linux/amd64/2008.0/parent,
