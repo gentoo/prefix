@@ -144,7 +144,6 @@ move kde-base/konqueror-webarchiver kde-base/konq-plugins
 move sys-libs/device-mapper sys-fs/device-mapper
 move sys-apps/mdadm sys-fs/mdadm
 move net-analyzer/snort_inline net-analyzer/snort
-slotmove x11-libs/lesstif 0 2.1
 move sys-apps/lsof sys-process/lsof
 move sys-apps/htop sys-process/htop
 move sys-apps/acctail sys-process/acctail
