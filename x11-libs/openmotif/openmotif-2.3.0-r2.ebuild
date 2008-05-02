@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~x86-macos"
+KEYWORDS="~x86-linux ~x86-macos"
 IUSE="doc examples jpeg png xft"
 
 # make people unmerge motif-config and all previous slots
