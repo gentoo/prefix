@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.0_rc4.ebuild,v 1.1 2008/04/30 21:16:43 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.0_rc4.ebuild,v 1.3 2008/05/01 13:19:14 hollow Exp $
 
 EAPI="prefix 1"
 
-inherit autotools bash-completion confutils depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python subversion
+inherit autotools bash-completion confutils depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
 
 DESCRIPTION="Advanced version control system"
 HOMEPAGE="http://subversion.tigris.org/"
@@ -63,13 +63,6 @@ pkg_setup() {
 		ewarn
 		ebeep
 	fi
-
-	if use webdav-neon && use webdav-serf; then
-		einfo
-		einfo "Both neon and serf are enabled for WebDAV support."
-		einfo "Defaulting to neon."
-		einfo
-	fi
 }
 
 src_unpack() {
@@ -86,7 +79,9 @@ src_unpack() {
 		-e 's:@bindir@/svn-tools:@libdir@/subversion/bin:' \
 		-i Makefile.in
 
-	eautoreconf
+	# eautoreconf does not work with libtool 2.2
+	./autogen.sh || die "autogen.sh failed"
+	elibtoolize
 }
 
 src_compile() {
