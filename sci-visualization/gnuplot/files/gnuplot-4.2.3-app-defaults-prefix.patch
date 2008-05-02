@@ -1,3 +1,7 @@
+* patch uses sysconfdir iso hardcoded /etc, but also patches the
+  sources, which sulks, since it just coincidentially equals to
+  $(sysconfdir) here.
+
 --- gnuplot-4.2.3-orig/share/Makefile.am	2008-03-05 04:38:59.000000000 +0100
 +++ gnuplot-4.2.3/share/Makefile.am	2008-04-26 11:44:59.000000000 +0200
 @@ -5,7 +5,7 @@
@@ -5,7 +9,7 @@
  SUBDIRS = LaTeX
  
 -appdefaultdir = $(libdir)/X11/app-defaults
-+appdefaultdir = /etc/X11/app-defaults
++appdefaultdir = $(sysconfdir)/X11/app-defaults
  
  APPDEFAULTFILES = Gnuplot
  
@@ -16,7 +20,7 @@
  EXTRA_DIST = Gnuplot.app-defaults
  SUBDIRS = LaTeX
 -appdefaultdir = $(libdir)/X11/app-defaults
-+appdefaultdir = /etc/X11/app-defaults
++appdefaultdir = $(sysconfdir)/X11/app-defaults
  APPDEFAULTFILES = Gnuplot
  appdefault_DATA = $(APPDEFAULTFILES)
  CLEANFILES = $(APPDEFAULTFILES)
@@ -27,7 +31,7 @@
  #define On(v) ( !strncasecmp(v, "on", 2) || !strncasecmp(v, "true", 4) )
  
 -#define AppDefDir "/usr/lib/X11/app-defaults"
-+#define AppDefDir "/etc/X11/app-defaults"
++#define AppDefDir "@GENTOO_PORTAGE_EPREFIX@/etc/X11/app-defaults"
  #ifndef MAXHOSTNAMELEN
  #define MAXHOSTNAMELEN 64
  #endif

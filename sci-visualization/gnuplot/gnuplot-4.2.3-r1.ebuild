@@ -67,7 +67,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch
 	# Don't store resource files in deprecated location, reported upstream:
 	# http://sourceforge.net/tracker/index.php?func=detail&aid=1953742&group_id=2055&atid=102055
-	epatch "${FILESDIR}"/${P}-app-defaults.patch
+	epatch "${FILESDIR}"/${P}-app-defaults-prefix.patch
+	eprefixify src/gplt_x11.c
 }
 
 src_compile() {
