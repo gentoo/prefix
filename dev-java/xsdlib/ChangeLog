@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xsdlib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/ChangeLog,v 1.24 2008/04/29 16:23:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/ChangeLog,v 1.25 2008/05/01 15:50:59 ranger Exp $
+
+  01 May 2008; Brent Baude <ranger@gentoo.org> xsdlib-20050627-r2.ebuild:
+  stable ppc64, bug 219669
 
   29 Apr 2008; Brent Baude <ranger@gentoo.org> xsdlib-20050627-r2.ebuild:
   stable ppc, bug 219669
