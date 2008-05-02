@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/jde
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.28 2007/10/06 19:28:20 ulm Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.29 2008/05/01 19:16:44 ulm Exp $
+
+  01 May 2008; Ulrich Mueller <ulm@gentoo.org> -files/2.3.5-70jde-gentoo.el,
+  -files/2.3.5.1-70jde-gentoo.el,
+  -files/2.3.3-jde-new-buffer-menu-gentoo.patch,
+  -files/2.3.5-cedet-version-adjust-gentoo.patch, files/70jde-gentoo.el,
+  jde-2.3.5.1.ebuild:
+  Move virtual/jdk to RDEPEND, bug 219943. Update HOMEPAGE and SRC_URI.
+  Don't inherit eutils. Remove stray patches and init files.
 
   06 Oct 2007; Ulrich Mueller <ulm@gentoo.org> jde-2.3.5.1.ebuild:
   Minor QA: quote some variables, remove redundant virtual/emacs dependency.

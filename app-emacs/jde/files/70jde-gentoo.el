@@ -1,5 +1,5 @@
 
-;;; JDE site-lisp configuration
+;;; jde site-lisp configuration
 
 (add-to-list 'load-path "@SITELISP@/lisp")
 (require 'jde-autoload)
