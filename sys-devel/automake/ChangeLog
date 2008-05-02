@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.116 2008/04/17 17:26:41 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.117 2008/05/01 21:33:27 ulm Exp $
+
+*automake-1.10.1-r1 (01 May 2008)
+
+  01 May 2008; Ulrich Mueller <ulm@gentoo.org> +automake-1.10.1-r1.ebuild:
+  Fix internal cross references in Info files, bug 183697. Thanks to
+  Alfredo Tupone <tupone@gentoo.org> for the patch.
 
   17 Apr 2008; nixnut <nixnut@gentoo.org> automake-1.10.1.ebuild:
   Stable on ppc wrt bug 217239
