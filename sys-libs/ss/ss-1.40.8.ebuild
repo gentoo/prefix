@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.8.ebuild,v 1.4 2008/04/30 17:55:48 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.8.ebuild,v 1.5 2008/05/01 14:48:49 maekke Exp $
 
 EAPI="prefix"
 
