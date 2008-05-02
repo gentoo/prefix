@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libpcap
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.96 2007/11/19 06:54:32 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.97 2008/05/01 11:28:06 dragonheart Exp $
+
+*libpcap-0.9.8-r1 (01 Apr 2008)
+
+  01 Apr 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/libpcap-0.9.8-largefile.patch, +libpcap-0.9.8-r1.ebuild:
+  added large file support as per bug #175239
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> libpcap-0.9.8.ebuild:
   Stable on mips, per #198476.
