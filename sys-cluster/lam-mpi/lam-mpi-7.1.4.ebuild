@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.2 2008/03/11 14:34:41 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.3 2008/05/02 03:10:28 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,22 @@ src_unpack() {
 	epatch "${FILESDIR}"/7.1.2-lam_prog_f77.m4.patch
 	epatch "${FILESDIR}"/7.1.2-liblam-use-extra-libs.patch
 	epatch "${FILESDIR}"/7.1.4-as-needed.patch
+
+	# gcc-4.3.0 fix.  char *argv[] -> char **argv.
+	# replaces a few more than necessary, but should be harmless.
+	# TODO:  Already applied upstream, will be in 7.1.5
+	for f in config/*.m4; do
+		sed -i 's:^\(int main(int argc, char\)[^{]*\([{]\?\):\1** argv) \2:g' $f
+	done
+
+	# eautoreconf doesn't work correctly as lam-mpi uses their own 
+	# LAM_CONFIG_SUBDIR instead of AC_CONFIG_SUBDIRS.  Even better, they use
+	# variables inside of the definitions, so --trace doesn't work.
+	for f in $(find ./ -name 'configure.ac'); do
+		pushd $(dirname $f) &>/dev/null
+		eautoreconf
+		popd &>/dev/null
+	done
 	eautoreconf
 }
 

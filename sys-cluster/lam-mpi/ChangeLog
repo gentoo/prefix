@@ -1,6 +1,10 @@
 # ChangeLog for sys-cluster/lam-mpi
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.66 2008/03/11 14:34:41 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.67 2008/05/02 03:10:28 jsbronder Exp $
+
+  02 May 2008; Justin Bronder <jsbronder@gentoo.org> lam-mpi-7.1.4.ebuild:
+  gcc-4.3.0 compile fix (char *argv[] -> char **argv).  Thanks to Peter
+  Alfredsen (peter.alfredsen at gmail) for the report and fix.  Bug #219675
 
   11 Mar 2008; Justin Bronder <jsbronder@gentoo.org>
   +files/7.1.4-as-needed.patch, lam-mpi-7.0.4.ebuild, lam-mpi-7.1.2.ebuild,
