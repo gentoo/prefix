@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.14.ebuild,v 1.3 2008/04/26 22:06:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.14.ebuild,v 1.4 2008/05/01 09:13:47 dertobi123 Exp $
 
 EAPI="prefix"
 
