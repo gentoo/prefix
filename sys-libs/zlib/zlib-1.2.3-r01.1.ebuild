@@ -71,7 +71,7 @@ src_install() {
 		;;
 	*)
 		into /
-		dolib libz$(get_libame ${PV})
+		dolib libz$(get_libname ${PV})
 		( cd "${ED}"/$(get_libdir) ; chmod 755 libz*$(get_libname)* )
 		[[ $(get_libname ${PV}) != $(get_libname) ]] && {
 		dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
