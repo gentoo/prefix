@@ -553,7 +553,7 @@ bootstrap_coreutils() {
 }
 
 bootstrap_coreutils6() {
-	bootstrap_gnu coreutils 6.9
+	bootstrap_gnu coreutils 6.11
 }
 
 bootstrap_tar() {
