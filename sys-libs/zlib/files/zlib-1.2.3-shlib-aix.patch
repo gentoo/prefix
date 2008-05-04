@@ -14,9 +14,9 @@
  	fi
  
 -libz.a: $(OBJS) $(OBJA)
--	$(AR) $@ $(OBJS) $(OBJA)
+-	$(AR) rc $@ $(OBJS) $(OBJA)
 +libz.a: $(LIB_OBJS) $(OBJA)
-+	$(AR) $@ $(LIB_OBJS) $(OBJA)
++	$(AR) rc $@ $(LIB_OBJS) $(OBJA)
  	-@ ($(RANLIB) $@ || true) >/dev/null 2>&1
  
  match.o: match.S
