@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.4 2008/04/27 21:24:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.5 2008/05/02 15:35:03 ulm Exp $
 
 EAPI="prefix"
 
@@ -110,7 +110,7 @@ src_install() {
 	dosed "s:@@LIBDIR@@:$(get_libdir):g" /usr/bin/motif-config
 
 	# mwm default configs
-	insinto /etc/X11/app-defaults
+	insinto /usr/share/X11/app-defaults
 	newins "${FILESDIR}"/Mwm.defaults Mwm
 
 	dodir /etc/X11/mwm
