@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="Darwin assembler as(1) and static linker ld(1)"
 HOMEPAGE="http://trac.macosforge.org/projects/odcctools"
-SRC_URI="http://www.gentoo.org/~pipping/distfiles/${P}.tar.bz2"
+SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
 
 LICENSE="APSL-2"
 

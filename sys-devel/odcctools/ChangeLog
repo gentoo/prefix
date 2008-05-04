@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 May 2008; Fabian Groffen <grobian@gentoo.org>
+  odcctools-20071104.ebuild, odcctools-20080215.ebuild:
+  Move the SRC_URI's from pipping's to my homespace, as pipping is definite
+  about retiring, so his devspace my disappear sooner or later
+
 *odcctools-20080215 (15 Feb 2008)
 
   15 Feb 2008; Elias Pipping <pipping@gentoo.org>
