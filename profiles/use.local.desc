@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3523 2008/05/01 23:24:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3526 2008/05/04 01:53:59 jmglov Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -110,7 +110,12 @@ app-editors/vim:vim-with-x - Link console vim against X11 libraries to enable ti
 app-editors/xemacs:athena - Chooses the MIT Athena widget set
 app-editors/xemacs:dnd - Enables support for the x11-libs/dnd drag-n-drop library
 app-editors/xemacs:eolconv - Support detection and translation of newline conventions.
-app-editors/xemacs:pop - Support POP for mail retrieval.
+app-editors/xemacs:hesiod - Support Hesiod to get the POP server host
+app-editors/xemacs:pop - Support POP for mail retrieval
+app-editors/xemacs:purify - Support memory debugging using Purify
+app-editors/xemacs:quantify - Support performance debugging using Quantify
+app-editors/xemacs:tooltalk - Support the ToolTalk IPC protocol
+app-editors/xemacs:xft - Compile with support for Xft client-side font rendering and anti-aliasing
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-editors/xmlcopyeditor:guidexml - Install GuideXML templates to work with Gentoo official docs
 app-emacs/auctex:preview-latex - Use bundled preview-latex
@@ -1921,8 +1926,6 @@ sys-apps/hwdata-gentoo:binary-drivers - Adds support for ATI/NVIDIA binary drive
 sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/memtest86+:serial - Compile with serial console support
-sys-apps/paludis:contrarius - Build the contrarius client, for building cross toolchains.
-sys-apps/paludis:cran - Enable CRAN repository support.
 sys-apps/paludis:glsa - Enable parsing of GLSA files
 sys-apps/paludis:inquisitio - Enable inquisitio, the search client
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
@@ -2263,6 +2266,8 @@ x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification fe
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.
 x11-wm/sawfish:pango - Enable pango support
+x11-wm/stumpwm:clisp - Use CLISP for the runtime
+x11-wm/stumpwm:sbcl - Use SBCL for the runtime
 x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
 x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime
 x11-wm/vtwm:rplay - Enable rplay support, needed for sound.

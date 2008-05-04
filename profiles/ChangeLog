@@ -1,6 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1378 2008/05/02 02:40:35 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1382 2008/05/04 04:47:47 zzam Exp $
+
+  04 May 2008; Matthias Schwarzott <zzam@gentoo.org> desc/lirc_devices.desc:
+  Added imon_knob to possible LIRC_DEVICES, Bug #208719.
+
+  03 May 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Remove mask on bind(-tools) 9.2.7 and 9.3.3
+
+  02 May 2008; Samuli Suominen <drac@gentoo.org> thirdpartymirrors:
+  Flip mirrors around and try download #2 first since download #1
+  always timeouts for large amount of people.
+
+  02 May 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  remove media-gfx/hugin-0.7 from mask, requested in bug #187002
 
   02 May 2008; Chris Gianelloni <wolf31o2@gentoo.org>
   default-linux/ppc/ppc64/2006.1/64bit-userland/use.mask,

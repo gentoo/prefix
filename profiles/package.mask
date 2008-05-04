@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8549 2008/05/01 21:30:18 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8552 2008/05/04 04:07:07 jmglov Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -103,10 +103,6 @@ x11-themes/openbox-themes
 # New Ice Ebuilds
 =dev-cpp/Ice-3.3*
 =dev-ruby/IceRuby-3.3*
-
-# Michael Sterrett <mr_bones_@gentoo.org> (22 Apr 2008)
-# masked until bug #217901 is fixed.
-games-server/greenhouse
 
 # David Shakaryan <omp@gentoo.org> (22 Apr 2008)
 # Masked for removal in 30 days. (bug #208878)
@@ -1355,11 +1351,6 @@ games-rpg/openrpg
 >=net-analyzer/nessus-plugins-2.3.1
 >=net-analyzer/nessus-2.3.1
 
-# Marcelo Goes <vanquirius@gentoo.org> (1 Apr 2007)
-# Masked for testing
-# See bug 141617 for more information
->=media-gfx/hugin-0.7_beta4
-
 # Alexis Ballier <aballier@gentoo.org> (30 Mar 2007)
 # Portaudio v19 : api changes
 >=media-libs/portaudio-19_pre061121
@@ -1473,13 +1464,6 @@ games-action/armagetronad
 # Mike Frysinger <vapier@gentoo.org> (28 Dec 2006)
 # Build failure on big-endian #154294 and breaks non-default journals #154974
 ~sys-fs/reiserfsprogs-3.6.20
-
-# Konstantin V. Arkhipov <voxus@gentoo.org> (22 Dec 2006)
-# Stability issues on hardened systems: bugs #158217, #158664
-~net-dns/bind-9.2.7
-~net-dns/bind-tools-9.2.7
-~net-dns/bind-9.3.3
-~net-dns/bind-tools-9.3.3
 
 # Timothy Redaelli <drizzt@gentoo.org> (28 Nov 2006)
 # Masked for testing.
