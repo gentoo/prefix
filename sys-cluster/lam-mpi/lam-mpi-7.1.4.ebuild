@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.3 2008/05/02 03:10:28 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.4 2008/05/02 16:55:37 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -49,7 +49,7 @@ src_unpack() {
 		sed -i 's:^\(int main(int argc, char\)[^{]*\([{]\?\):\1** argv) \2:g' $f
 	done
 
-	# eautoreconf doesn't work correctly as lam-mpi uses their own 
+	# eautoreconf doesn't work correctly as lam-mpi uses their own
 	# LAM_CONFIG_SUBDIR instead of AC_CONFIG_SUBDIRS.  Even better, they use
 	# variables inside of the definitions, so --trace doesn't work.
 	for f in $(find ./ -name 'configure.ac'); do
