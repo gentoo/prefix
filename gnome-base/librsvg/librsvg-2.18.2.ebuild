@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.18.2.ebuild,v 1.8 2008/04/20 01:35:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.18.2.ebuild,v 1.9 2008/05/02 15:12:48 cardoe Exp $
 
 EAPI="prefix"
 
@@ -34,16 +34,18 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.12
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-# FIXME: USEify croco support (?)
-G2CONF="${G2CONF} \
-	$(use_with zlib svgz) \
-	$(use_enable gnome gnome-vfs) \
-	$(use_enable gnome gnome-print) \
-	--disable-mozilla-plugin --with-croco \
-	--enable-pixbuf-loader \
-	--enable-gtk-theme"
+pkg_setup() {
+	# FIXME: USEify croco support (?)
+	G2CONF="${G2CONF} \
+		$(use_with zlib svgz) \
+		$(use_enable gnome gnome-vfs) \
+		$(use_enable gnome gnome-print) \
+		--disable-mozilla-plugin --with-croco \
+		--enable-pixbuf-loader \
+		--enable-gtk-theme"
 
-DOCS="AUTHORS ChangeLog README NEWS TODO"
+	DOCS="AUTHORS ChangeLog README NEWS TODO"
+}
 
 set_gtk_confdir() {
 	# An arch specific config directory is used on multilib systems

@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/librsvg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.171 2008/03/23 11:50:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.172 2008/05/02 15:12:48 cardoe Exp $
+
+  02 May 2008; Doug Goldstein <cardoe@gentoo.org> librsvg-2.18.2.ebuild:
+  move G2CONF and DOCS into pkg_setup()
 
 *librsvg-2.22.2 (23 Mar 2008)
 
