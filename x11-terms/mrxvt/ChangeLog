@@ -1,6 +1,13 @@
 # ChangeLog for x11-terms/mrxvt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.61 2008/04/30 07:02:27 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.63 2008/05/03 15:41:31 opfer Exp $
+
+  03 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  mrxvt-0.5.3-r2.ebuild:
+  stable x86, security bug 219750
+
+  03 May 2008; Christian Hoffmann <hoffie@gentoo.org> mrxvt-0.5.3-r2.ebuild:
+  stable on amd64 wrt security bug 219750
 
 *mrxvt-0.5.3-r2 (30 Apr 2008)
 
