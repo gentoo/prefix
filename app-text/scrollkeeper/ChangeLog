@@ -1,6 +1,9 @@
 # ChangeLog for app-text/scrollkeeper
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.88 2007/11/29 05:08:30 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.89 2008/05/03 21:41:11 dirtyepic Exp $
+
+  03 May 2008; Ryan Hill <dirtyepic@gentoo.org> scrollkeeper-9999.ebuild:
+  Keyword ~mips.
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> scrollkeeper-9999.ebuild:
   Stable for HPPA (bug #199740).
