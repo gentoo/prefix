@@ -1,6 +1,11 @@
 # ChangeLog for net-irc/epic4
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.81 2007/11/10 16:00:40 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.82 2008/05/02 15:59:23 armin76 Exp $
+
+*epic4-2.10 (02 May 2008)
+
+  02 May 2008; Raúl Porcel <armin76@gentoo.org> +epic4-2.10.ebuild:
+  Version bump
 
   10 Nov 2007; Raúl Porcel <armin76@gentoo.org> -epic4-2.6.ebuild:
   old
