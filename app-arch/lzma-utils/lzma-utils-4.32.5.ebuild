@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils autotools flag-o-matic
+inherit eutils flag-o-matic
 
 DESCRIPTION="LZMA interface made easy"
 HOMEPAGE="http://tukaani.org/lzma/"
