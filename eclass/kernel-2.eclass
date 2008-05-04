@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.211 2008/04/28 19:22:44 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.212 2008/05/03 16:07:34 dsd Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -632,18 +632,6 @@ postinst_sources() {
 
 	# Don't forget to make directory for sysfs
 	[[ ! -d ${EROOT}sys ]] && kernel_is 2 6 && mkdir ${EROOT}sys
-
-	# fix for bug #215442 due to the change for x86 to use a 
-	# different file name for the default configuration
-	if kernel_is ge 2 6 24 && [[ ! -e ${EROOT}/usr/src/linux-${KV_FULL}/.config ]] ; then
-		case $(tc-arch-kernel) in
-			x86|x86_64)
-				einfo "Running make defconfig as a temporary workaround for bug #215442"
-				cd ${EROOT}/usr/src/linux-${KV_FULL}
-				make -s defconfig ${xmakeopts} &>/dev/null 2>&1
-				;;
-		esac
-	fi
 
 	echo
 	elog "If you are upgrading from a previous kernel, you may be interested"

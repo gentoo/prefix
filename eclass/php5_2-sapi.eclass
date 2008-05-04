@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.20 2008/04/16 18:14:51 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.21 2008/05/03 14:38:25 hoffie Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -486,9 +486,9 @@ php5_2-sapi_src_compile() {
 	# DBA drivers support
 	phpconfutils_extension_with 	"cdb"			"cdb"			0
 	phpconfutils_extension_with 	"db4"			"berkdb"		0
-	phpconfutils_extension_with 	"flatfile"		"flatfile"		0
+	phpconfutils_extension_disable 	"flatfile"		"flatfile"		0
 	phpconfutils_extension_with 	"gdbm"			"gdbm"			0
-	phpconfutils_extension_with 	"inifile"		"inifile"		0
+	phpconfutils_extension_disable 	"inifile"		"inifile"		0
 	phpconfutils_extension_with	"qdbm"			"qdbm"			0
 
 	# Support for the GD graphics library

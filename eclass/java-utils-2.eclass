@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.105 2008/03/26 23:00:23 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.107 2008/05/03 21:28:45 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -614,6 +614,7 @@ java-pkg_dojavadoc() {
 	dosym ${dest}/api "${JAVA_PKG_SHAREPATH}/api" || die
 
 	if [[ ${symlink} ]]; then
+		debug-print "symlinking ${dest}/{api,${symlink}}"
 		dosym ${dest}/{api,${symlink}} || die
 	fi
 }
@@ -1022,25 +1023,19 @@ java-pkg_getjars() {
 	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --*"
 
 
-	local classpath pkgs="${1}"
+	local pkgs="${1}"
 
 	if [[ "${EAPI}" == "1" ]]; then
 		pkgs="${pkgs//:/-}"
 	fi
 
 	jars="$(java-config ${deep} --classpath=${pkgs})"
-	[[ $? != 0 || -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
+	[[ $? != 0 ]] && die "java-config --classpath=${pkgs} failed"
 	debug-print "${pkgs}:${jars}"
 
 	for pkg in ${pkgs//,/ }; do
 		java-pkg_ensure-dep "${build_only}" "${pkg}"
 	done
-
-	if [[ -z "${classpath}" ]]; then
-		classpath="${jars}"
-	else
-		classpath="${classpath}:${jars}"
-	fi
 
 	# Only record jars that aren't build-only
 	if [[ -z "${build_only}" ]]; then
@@ -1049,7 +1044,7 @@ java-pkg_getjars() {
 		done
 	fi
 
-	echo "${classpath}"
+	echo "${jars}"
 }
 
 # ------------------------------------------------------------------------------
@@ -1781,9 +1776,11 @@ ejunit() {
 	debug-print-function ${FUNCNAME} $*
 
 	local pkgs
-	for atom in $(cat ${JAVA_PKG_DEPEND_FILE} | tr : ' '); do
-		pkgs=${pkgs},$(echo ${atom} | sed -re "s/^.*@//")
-	done
+	if [[ -f ${JAVA_PKG_DEPEND_FILE} ]]; then
+		for atom in $(cat ${JAVA_PKG_DEPEND_FILE} | tr : ' '); do
+			pkgs=${pkgs},$(echo ${atom} | sed -re "s/^.*@//")
+		done
+	fi
 
 	local cp=$(java-pkg_getjars --with-dependencies junit${pkgs})
 	if [[ ${1} = -cp || ${1} = -classpath ]]; then
