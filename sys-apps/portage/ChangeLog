@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10181 (04 May 2008)
+
+  04 May 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9831.ebuild, +portage-2.2.00.10181.ebuild:
+  New version that includes fixes for Interix' usernames with spaces in them.
+  Preserve-libs may be wonky (broken).
+
 *portage-2.2.00.9962 (24 Apr 2008)
 
   24 Apr 2008; Fabian Groffen <grobian@gentoo.org>
