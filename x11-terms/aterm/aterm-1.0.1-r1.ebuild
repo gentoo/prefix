@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.0-r1.ebuild,v 1.9 2007/07/22 05:42:08 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r1.ebuild,v 1.4 2008/05/03 15:39:33 opfer Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.afterstep.org/apps/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="background cjk xgetdefault"
 
 RDEPEND="media-libs/jpeg
@@ -26,6 +26,14 @@ DEPEND="${RDEPEND}
 	x11-libs/libXt
 	x11-proto/xproto"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Security bug #219746
+	epatch "${FILESDIR}/${P}-display-security-issue.patch"
+}
+
 src_compile() {
 	local myconf
 
@@ -36,6 +44,12 @@ src_compile() {
 		--enable-thai
 		--enable-big5"
 
+	case "${CHOST}" in
+	*-darwin*) myconf="${myconf} --enable-wtmp" ;;
+	*-interix*) ;;
+	*) myconf="${myconf} --enable-utmp --enable-wtmp"
+	esac
+
 	econf \
 		$(use_enable xgetdefault) \
 		$(use_enable background background-image) \
@@ -45,8 +59,6 @@ src_compile() {
 		--enable-background-image \
 		--enable-menubar \
 		--enable-graphics \
-		--enable-utmp \
-		--enable-wtmp \
 		--with-x \
 		${myconf} || die "econf failed"
 
@@ -60,7 +72,7 @@ src_install() {
 	fperms g+s /usr/bin/aterm
 
 	doman doc/aterm.1
-	dodoc ChangeLog doc/BUGS doc/FAQ doc/README.*
+	dodoc ChangeLog doc/FAQ doc/README.*
 	docinto menu
 	dodoc doc/menu/*
 	dohtml -r .

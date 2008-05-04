@@ -1,6 +1,20 @@
 # ChangeLog for x11-terms/aterm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.100 2008/03/27 20:13:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.103 2008/05/03 15:39:33 opfer Exp $
+
+  03 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  aterm-1.0.1-r1.ebuild:
+  stable x86, security bug 219746
+
+  03 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  aterm-1.0.1-r1.ebuild:
+  remove doc/BUGS from doc installation
+
+*aterm-1.0.1-r1 (03 May 2008)
+
+  03 May 2008; Tobias Heinlein <keytoaster@gentoo.org>
+  +files/aterm-1.0.1-display-security-issue.patch, +aterm-1.0.1-r1.ebuild:
+  Adding patch to fix security bug #219746
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org>
   -files/aterm-0.4.2-borderless.patch, -files/aterm-0.4.2-copynpaste.patch,
