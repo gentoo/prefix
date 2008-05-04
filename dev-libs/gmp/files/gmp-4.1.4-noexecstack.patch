@@ -1,19 +1,20 @@
-fixed executable stack as per bug #115038 thanks to Petteri Räty
+fixed executable stack
+
+http://bugs.gentoo.org/115038
 
 --- gmp-4.1.4/configure
 +++ gmp-4.1.4/configure
-@@ -21689,6 +21689,7 @@
+@@ -21689,6 +21689,13 @@
  fi
  echo "')" >> $gmp_configm4
  echo "define(\`__CONFIG_M4_INCLUDED__')" >> $gmp_configm4
-+cat nostackexec>>$gmp_configm4
++# Gentoo hack
++case $host_os in
++	*linux*)
++		echo '.section .note.GNU-stack,"",%progbits' >> $gmp_configm4
++		echo '.previous' >> $gmp_configm4
++		;;
++esac
  
  # Create Makefiles
  # FIXME: Upcoming version of autoconf/automake may not like broken lines.
---- gmp-4.1.4/nostackexec
-+++ gmp-4.1.4/nostackexec
-@@ -0,0 +1,4 @@
-+#if defined(__linux__) && defined(__ELF__)
-+.section .note.GNU-stack,"",%progbits
-+.previous
-+#endif
