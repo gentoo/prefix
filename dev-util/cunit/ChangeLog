@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cunit
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.17 2007/08/13 20:46:58 dertobi123 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.18 2008/05/04 03:22:38 jmglov Exp $
+
+*cunit-2.1 (06 Apr 2008)
+
+  06 Apr 2008; Josh Glover <jmglov@gentoo.org> +cunit-2.1.ebuild:
+  This package was submitted by Hal Ashburner in bug #214465
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> cunit-2.0.ebuild:
   ppc. stable
