@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 May 2008; Fabian Groffen <grobian@gentoo.org>
+  +darwin/macos/10.5/package.use.mask,
+  darwin/macos/10.5/x86/package.use.mask:
+  Mask acl on OSX 10.5, it breaks things there
+
   01 May 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask subversion-1.5.0_rc4 as I don't dare to unleash it without testing
 

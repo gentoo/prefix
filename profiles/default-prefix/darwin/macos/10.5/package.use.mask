@@ -1,0 +1,5 @@
+
+# Fabian Groffen <grobian@gentoo.org> (04 May 2008)
+# enabling acl gets you a broken `install`, dieing on setting the
+# properties (Invalid argument)
+sys-devel/coreutils acl
