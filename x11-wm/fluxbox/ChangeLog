@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.247 2008/02/28 15:27:57 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.248 2008/05/02 16:37:59 armin76 Exp $
+
+  02 May 2008; Raúl Porcel <armin76@gentoo.org> fluxbox-1.0.0-r2.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   28 Feb 2008; Jim Ramsay <lack@gentoo.org> fluxbox-1.0.0-r1.ebuild,
   fluxbox-1.0.0-r2.ebuild:
