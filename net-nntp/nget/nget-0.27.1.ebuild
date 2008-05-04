@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/nget-0.27.1.ebuild,v 1.9 2006/09/23 08:00:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/nget-0.27.1.ebuild,v 1.10 2008/05/04 01:34:25 dragonheart Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit flag-o-matic eutils
 
 DESCRIPTION="Network utility to retrieve files from an NNTP news server"
 HOMEPAGE="http://nget.sourceforge.net/"
@@ -20,6 +20,12 @@ RDEPEND="dev-libs/popt
 	pcre? ( dev-libs/libpcre )
 	zlib? ( sys-libs/zlib )"
 DEPEND="dev-libs/uulib"
+
+src_unpack() {
+	unpack "${A}"
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gcc-4.3.patch
+}
 
 src_compile() {
 	use static && append-flags -static

@@ -1,6 +1,11 @@
 # ChangeLog for net-nntp/nget
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.11 2008/04/21 18:12:26 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.12 2008/05/04 01:34:25 dragonheart Exp $
+
+  04 May 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/nget-0.27.1-gcc-4.3.patch, nget-0.27.1.ebuild:
+  gcc-4.3 fix as per bug #199587 thanks to upstream for the patch, Mark for
+  pointing me to it and Diego for reporting the bug
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
