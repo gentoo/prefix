@@ -77,7 +77,7 @@ src_install() {
 		dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
 		dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
 		}
-		gen_usr_ldscript libz$(get_libame)
+		gen_usr_ldscript libz$(get_libname)
 		;;
 	esac
 }
