@@ -211,6 +211,26 @@ pkg_preinst() {
 			"${EPREFIX}"/var/lib/portage/world_sets
 		sed -i -e '/^@/d' "${EPREFIX}"/var/lib/portage/world
 	fi
+
+	einfo "converting NEEDED files to new syntax, please wait"
+	cd "${EROOT}/var/db/pkg"
+	for cpv in */*/NEEDED ; do
+		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.2 ]] ; then
+			while read line; do
+				filename=${line% *}
+				needed=${line#* }
+				install_name=$(otool -DX "${filename}")
+				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
+			done < "${cpv}"
+		elif [[ ! -f ${cpv}.ELF.2 ]] ; then
+			while read line; do
+				filename=${line% *}
+				needed=${line#* }
+				newline=$(scanelf -BF "%a;%F;%S;$needed;%r" $filename)
+				echo "${newline:3}" >> "${cpv}".ELF.2
+			done < "${cpv}"
+		fi
+	done
 }
 
 pkg_postinst() {
