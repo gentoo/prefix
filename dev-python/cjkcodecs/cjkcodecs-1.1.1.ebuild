@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cjkcodecs/cjkcodecs-1.1.1.ebuild,v 1.12 2008/01/17 18:28:53 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cjkcodecs/cjkcodecs-1.1.1.ebuild,v 1.13 2008/05/02 18:31:06 pythonhead Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit distutils
 
 DESCRIPTION="Python Codecs for CJK Encodings. Aimed at replacing ChineseCodecs, JapaneseCodecs and KoreanCodecs"
 HOMEPAGE="http://cjkpython.i18n.org/"
-SRC_URI="http://download.berlios.de/cjkpython/${P}.tar.bz2"
+SRC_URI="mirror://berlios/cjkpython/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"

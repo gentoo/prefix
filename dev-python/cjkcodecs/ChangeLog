@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/cjkcodecs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cjkcodecs/ChangeLog,v 1.20 2008/01/17 18:28:53 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cjkcodecs/ChangeLog,v 1.21 2008/05/02 18:31:06 pythonhead Exp $
+
+  02 May 2008; Rob Cakebread <pythonhead@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  Use berlios mirror. bug #218657
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> cjkcodecs-1.1.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
