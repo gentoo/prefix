@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.1.ebuild,v 1.6 2008/04/20 01:38:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.1.ebuild,v 1.7 2008/05/02 04:55:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -38,14 +38,6 @@ src_unpack() {
 			die "patch ${i} missing - please report to bugs.gentoo.org"
 		fi
 	done
-}
-
-src_compile() {
-	econf \
-		--enable-shared \
-		--enable-static \
-		|| die
-	emake || die
 }
 
 src_install() {
