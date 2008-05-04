@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.152 2008/05/01 15:23:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.153 2008/05/03 21:33:18 dirtyepic Exp $
+
+  03 May 2008; Ryan Hill <dirtyepic@gentoo.org> libsoup-2.2.105-r2.ebuild,
+  libsoup-2.4.1.ebuild:
+  Keyword mips.
 
   01 May 2008; Markus Meier <maekke@gentoo.org> libsoup-2.2.105-r2.ebuild:
   x86 stable, bug #219512
