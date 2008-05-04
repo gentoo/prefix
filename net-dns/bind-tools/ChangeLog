@@ -1,6 +1,16 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.92 2008/02/29 21:57:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.94 2008/05/03 18:31:38 dertobi123 Exp $
+
+  03 May 2008; Tobias Scherbaum <dertobi123@gentoo.org> -files/nslookup.8,
+  -bind-tools-9.2.7.ebuild, -bind-tools-9.3.3.ebuild:
+  Nuke 9.2.7 and 9.3.3 (# 208676)
+
+*bind-tools-9.4.2 (03 May 2008)
+
+  03 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +bind-tools-9.4.2.ebuild:
+  Bump to 9.4.2, include dnssec-keygen (# 198721).
 
   29 Feb 2008; Raúl Porcel <armin76@gentoo.org> bind-tools-9.2.6-r3.ebuild,
   bind-tools-9.2.8-r1.ebuild, bind-tools-9.3.2-r3.ebuild,
