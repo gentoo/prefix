@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.3-r1.ebuild,v 1.12 2007/05/14 23:51:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.3-r1.ebuild,v 1.13 2008/05/02 04:13:33 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,28 +21,33 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-build.patch
 	epatch "${FILESDIR}"/${P}-visibility-support.patch #149929
-	# Make sure we link with glibc at all times
 	epatch "${FILESDIR}"/${PN}-1.2.1-glibc.patch
-	# Needed for Alpha and prelink
 	epatch "${FILESDIR}"/${PN}-1.2.1-build-fPIC.patch
 	epatch "${FILESDIR}"/${PN}-1.2.1-configure.patch #55434
-	# fix shared library test on -fPIC dependant archs
 	epatch "${FILESDIR}"/${PN}-1.2.1-fPIC.patch
 	epatch "${FILESDIR}"/${PN}-1.2.3-r1-bsd-soname.patch #123571
 	epatch "${FILESDIR}"/${PN}-1.2.3-LDFLAGS.patch #126718
+	sed -i -e '/ldconfig/d' Makefile*
 
 	# put libz.so.1 into libz.a on AIX
 	epatch "${FILESDIR}"/${P}-shlib-aix.patch
-
-	sed -i -e '/ldconfig/d' Makefile.in
 }
 
 src_compile() {
-	tc-export CC RANLIB
-	export AR="$(tc-getAR) rc"
-	./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
-	emake || die
+	tc-export AR CC RANLIB
+	case ${CHOST} in
+	*-mingw*|mingw*)
+		export RC=${CHOST}-windres DLLWRAP=${CHOST}-dllwrap
+		emake -f win32/Makefile.gcc prefix=/usr || die
+		;;
+	*)
+		# not an autoconf script, so cant use econf
+		./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
+		emake || die
+		;;
+	esac
 }
 
 src_install() {
@@ -52,9 +57,7 @@ src_install() {
 	doins zconf.h zlib.h
 
 	doman zlib.3
-	dodoc FAQ README ChangeLog
-	docinto txt
-	dodoc algorithm.txt
+	dodoc FAQ README ChangeLog algorithm.txt
 
 	# we don't need the static lib in /lib
 	# as it's only for compiling against
@@ -62,15 +65,19 @@ src_install() {
 
 	# all the shared libs go into /lib
 	# for NFS based /usr
-	into /
-	dolib libz$(get_libname ${PV})
-	(
-		cd "${ED}"/$(get_libdir)
-		chmod 755 libz*$(get_libname)*
-	)
-	[[ $(get_libname ${PV}) != $(get_libname) ]] && {
-	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
-	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
-	}
-	gen_usr_ldscript libz$(get_libname)
+	case ${CHOST} in
+	*-mingw*|mingw*)
+		dolib zlib1.dll libzdll.a || die
+		;;
+	*)
+		into /
+		dolib libz$(get_libame ${PV})
+		( cd "${ED}"/$(get_libdir) ; chmod 755 libz*$(get_libname)* )
+		[[ $(get_libname ${PV}) != $(get_libname) ]] && {
+		dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
+		dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
+		}
+		gen_usr_ldscript libz$(get_libame)
+		;;
+	esac
 }
