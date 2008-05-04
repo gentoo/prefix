@@ -447,13 +447,16 @@ bootstrap_gnu() {
 	# but we don't need any groovy input at all, so just disable it
 	[[ ${A%-*} == "bash" ]] && myconf="${myconf} --disable-readline"
 
+	# Don't do ACL stuff on Darwin, especially Darwin9 will make
+	# coreutils completely useless (install failing on everything)
+	[[ ${A%-*} == "coreutils" ]] && myconf="${myconf} --disable-acl"
 
 	# Interix doesn't have filesystem listing stuff, but that means all
 	# other utilities but df aren't useless at all, so don't die
-	[[ ${A%-*} == "coreutils" && $CHOST == *-interix* ]] && \
+	[[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] && \
 		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
 	# Fix a compilation error due to a missing definition
-	[[ ${A%-*} == "coreutils" && $CHOST == *-interix* ]] && \
+	[[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] && \
 		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
 
 	einfo "Compiling ${A%-*}"
