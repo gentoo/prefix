@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7.ebuild,v 1.12 2008/03/29 12:04:30 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.7.ebuild,v 1.13 2008/05/02 15:15:48 cardoe Exp $
 
 EAPI="prefix"
 
@@ -21,9 +21,11 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.2 )"
 
-DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README* TODO"
+pkg_setup() {
+	DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README* TODO"
 
-G2CONF="${G2CONF} $(use_enable static)"
+	G2CONF="${G2CONF} $(use_enable static)"
+}
 
 src_unpack() {
 	unpack ${A}
