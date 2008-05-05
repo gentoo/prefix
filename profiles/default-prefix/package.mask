@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (05 May 2008)
+# tetex is old cruft that you shouldn't use, texlive is the way to go!
+app-text/tetex
+
 # Fabian Groffen <grobian@gentoo.org> (01 May 2008)
 # Please try, quite different ebuild, I don't dare to unleash this
 # untested
@@ -149,10 +153,6 @@ dev-java/kaffe
 # echangelog is completely useless with SVN, probably remains like that
 # for a while
 >=app-portage/gentoolkit-dev-0.2.6.6
-
-# Fabian Groffen <grobian@gentoo.org> (30 Oct 2006)
-# doesn't install pdflatex in prefix
->=app-text/tetex-3.0
 
 # Fabian Groffen <grobian@gentoo.org> (21 Jan 2007)
 # dies with "exhausted memory" errors on Darwin, doesn't understand

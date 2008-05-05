@@ -3,6 +3,9 @@
 # $Header: $
 
   05 May 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask tetex entirely, such that e.g. pdfjam doesn't draw in tetex as dependency.
+
+  05 May 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Drop sbcl mask, it's been superceeded by newer versions, and I probably need
   the version on Darwin
 
