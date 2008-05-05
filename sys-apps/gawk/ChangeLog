@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/gawk
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.115 2007/11/19 07:05:37 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.116 2008/05/05 04:43:50 vapier Exp $
+
+*gawk-3.1.6 (05 May 2008)
+
+  05 May 2008; Mike Frysinger <vapier@gentoo.org> +gawk-3.1.6.ebuild:
+  Version bump #219476 by Conrad Kostecki.
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> gawk-3.1.5-r5.ebuild:
   Stable on mips, per #195212.
