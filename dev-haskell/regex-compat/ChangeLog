@@ -1,6 +1,12 @@
 # ChangeLog for dev-haskell/regex-compat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.14 2008/03/01 11:42:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.15 2008/05/04 12:36:51 kolmodin Exp $
+
+*regex-compat-0.91 (04 May 2008)
+
+  04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  +regex-compat-0.91.ebuild:
+  Version bump. This should work with ghc-6.8.
 
   01 Mar 2008; Raúl Porcel <armin76@gentoo.org>
   regex-compat-0.71.0.1.ebuild:
