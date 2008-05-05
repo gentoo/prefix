@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/Attic/libid3tag-0.15.1b-r1.ebuild,v 1.1 2008/05/05 02:53:45 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/libid3tag-0.15.1b-r1.ebuild,v 1.1 2008/05/05 02:53:45 tester Exp $
 
 EAPI="prefix"
 
