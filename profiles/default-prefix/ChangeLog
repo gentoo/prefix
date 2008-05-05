@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 May 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Drop sbcl mask, it's been superceeded by newer versions, and I probably need
+  the version on Darwin
+
   04 May 2008; Fabian Groffen <grobian@gentoo.org>
   +darwin/macos/10.5/package.use.mask,
   darwin/macos/10.5/x86/package.use.mask:
