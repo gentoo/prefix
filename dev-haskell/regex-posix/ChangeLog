@@ -1,6 +1,12 @@
 # ChangeLog for dev-haskell/regex-posix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/ChangeLog,v 1.14 2008/03/01 11:41:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/ChangeLog,v 1.15 2008/05/04 12:31:11 kolmodin Exp $
+
+*regex-posix-0.93.1 (04 May 2008)
+
+  04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  +regex-posix-0.93.1.ebuild:
+  Version bump. This version should work with ghc-6.8.
 
   01 Mar 2008; Raúl Porcel <armin76@gentoo.org>
   regex-posix-0.72.0.2.ebuild:
