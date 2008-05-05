@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.12 2007/12/27 12:01:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.13 2008/05/04 12:20:46 pva Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
 HOMEPAGE="http://developer.berlios.de/projects/gentoo-bashcomp/"
-SRC_URI="http://download.berlios.de/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://berlios/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
