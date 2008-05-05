@@ -1,6 +1,16 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.43 2008/03/17 15:25:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.45 2008/05/04 14:10:01 kolmodin Exp $
+
+  04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  -files/gtk2hs-0.9.10-cflags.patch, -files/gtk2hs-0.9.10-ghc622.patch,
+  -files/gtk2hs-0.9.10-store.patch, gtk2hs-0.9.12.ebuild:
+  Remove unused patches, and fix a ebuild.minorsyn.
+
+  04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  gtk2hs-0.9.12.1.ebuild:
+  Add Duncan Coutts' fix when using haddock 0.9.
+  This should close bug #220185.
 
   17 Mar 2008; Raúl Porcel <armin76@gentoo.org> gtk2hs-0.9.11.ebuild,
   gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:

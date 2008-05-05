@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.6 2008/03/17 15:25:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.7 2008/05/04 13:56:19 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,15 @@ RDEPEND=">=dev-lang/ghc-6.4
 DEPEND="${RDEPEND}
 		doc? ( >=dev-haskell/haddock-0.8 )
 		dev-util/pkgconfig"
+
+src_unpack() {
+	unpack ${A}
+
+	sed -i -e '\|docs/reference/haddock.js|d' \
+		   -e '/$(foreach LETTER,/,+1 d' \
+		   -e '\|\tdocs/reference/gtk2hs.haddock| s/\\//' \
+		   "${S}/Makefile.in"
+}
 
 src_compile() {
 	econf \
