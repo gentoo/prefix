@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.5 2008/05/02 15:35:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.6 2008/05/04 11:13:23 ulm Exp $
 
 EAPI="prefix"
 
@@ -76,6 +76,9 @@ src_unpack() {
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
+
+	# add X.Org vendor string to aliases for virtual bindings
+	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
 
 	AT_M4DIR=. eautoreconf
 }
