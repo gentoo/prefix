@@ -1,0 +1,15 @@
+diff -NrU5 highlight-2.6.9.old/src/gui/gui.cpp highlight-2.6.9/src/gui/gui.cpp
+--- highlight-2.6.9.old/src/gui/gui.cpp	2008-03-27 01:25:28.000000000 +0100
++++ highlight-2.6.9/src/gui/gui.cpp	2008-05-04 21:19:16.000000000 +0200
+@@ -20,10 +20,11 @@
+ #include <wx/stdpaths.h>
+ #include <wx/filefn.h>
+ #include <wx/ffile.h>
+ #include <wx/fileconf.h>
+ #include <wx/clipbrd.h>
++#include <memory>
+ 
+ #include "gui_failure_dlg.h"
+ #include "gui_showfile_dlg.h"
+ #include "highlight.xpm"
+ 
