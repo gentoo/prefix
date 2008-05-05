@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/uriparser
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.12 2008/04/14 16:20:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.13 2008/05/04 18:16:05 drac Exp $
+
+*uriparser-0.7.1 (04 May 2008)
+
+  04 May 2008; Samuli Suominen <drac@gentoo.org> -uriparser-0.7.0.ebuild,
+  +uriparser-0.7.1.ebuild:
+  Version bump with more complete documentation install.
 
 *uriparser-0.7.0 (14 Apr 2008)
 

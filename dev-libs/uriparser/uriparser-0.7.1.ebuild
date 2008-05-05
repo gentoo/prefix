@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/uriparser-0.7.0.ebuild,v 1.1 2008/04/14 16:20:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/uriparser-0.7.1.ebuild,v 1.1 2008/05/04 18:16:05 drac Exp $
 
 EAPI="prefix"
 
@@ -21,14 +21,16 @@ src_compile() {
 	emake || die "emake failed"
 
 	if use doc; then
-		cd "${S}/doc"
+		cd doc
+		econf
 		doxygen Doxyfile || die "doxygen failed."
 	fi
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog
+	dodoc AUTHORS ChangeLog THANKS doc/*.txt
+	dohtml doc/*.htm
 
 	if use doc; then
 		dohtml doc/html/*
