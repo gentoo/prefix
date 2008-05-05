@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r7.ebuild,v 1.1 2008/04/29 07:53:41 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r7.ebuild,v 1.2 2008/05/05 03:32:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -45,13 +45,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-sh.patch
 	# remove warnings from the compiler (and QA warnings too)
 	epatch "${FILESDIR}"/${P}-warnings.patch
-	# Increase RPMBUFSIZ to increase the possibility to find magic compression
-	# identifier #187219, comment 13
-	epatch "${FILESDIR}"/${P}-increase-RPMBUFSIZ.patch
+	epatch "${FILESDIR}"/${P}-increase-RPMBUFSIZ.patch #187219
 }
 
 src_compile() {
-	emake rpmoffset CC=$(tc-getCC) || die
+	emake rpmoffset CC="$(tc-getCC)" || die
 }
 
 src_install() {
