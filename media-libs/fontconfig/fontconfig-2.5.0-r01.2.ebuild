@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.5.0-r1.ebuild,v 1.9 2008/01/16 15:40:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.5.0-r1.ebuild,v 1.10 2008/05/04 13:27:41 pva Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ src_unpack() {
 	cd "${S}"
 	# add docbook switch so we can disable it
 	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch
+	epatch "${FILESDIR}"/${P}-libtool-2.2.patch #213831 Fix libtool-2.2 brekage
 
 	eautoreconf
 	epunt_cxx #74077
