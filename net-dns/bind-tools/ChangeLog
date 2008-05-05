@@ -1,6 +1,10 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.94 2008/05/03 18:31:38 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.95 2008/05/04 08:14:38 dertobi123 Exp $
+
+  04 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  bind-tools-9.4.2.ebuild:
+  Do actually link libidnkit when USE=idn, #218686
 
   03 May 2008; Tobias Scherbaum <dertobi123@gentoo.org> -files/nslookup.8,
   -bind-tools-9.2.7.ebuild, -bind-tools-9.3.3.ebuild:

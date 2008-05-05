@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.2.ebuild,v 1.1 2008/05/03 18:09:11 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.2.ebuild,v 1.3 2008/05/04 09:12:09 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="idn ipv6"
 
-DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv ) )"
+DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv )
+			net-dns/idnkit )"
 
 src_unpack() {
 	unpack ${A} || die
@@ -41,6 +42,9 @@ src_unpack() {
 src_compile() {
 	local myconf=
 	use ipv6 && myconf="${myconf} --enable-ipv6" || myconf="${myconf} --enable-ipv6=no"
+	use idn  && myconf="${myconf} --with-idn"
+
+	has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
 	
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
@@ -62,14 +66,6 @@ src_compile() {
 
 	cd "${S}"/bin/dnssec/
 	emake -j1 || die "make failed in /bin/dnssec"
-
-	use idn && {
-		cd "${S}"/contrib/idn/idnkit-1.0-src
-		local myconf=
-		has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
-		econf ${myconf} || die "idn econf failed"
-		emake -j1 || die "idn emake failed"
-	}
 }
 
 src_install() {
