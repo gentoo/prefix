@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1382 2008/05/04 04:47:47 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1384 2008/05/04 12:45:23 kolmodin Exp $
+
+  04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Rewrite the package masks on the dev-haskell/regex-* packages.
+  The new masks are less restrictive as there are now non-experimental
+  versions in the 0.9x series. This replaces the package masks by Duncan
+  Coutts.
+
+  04 May 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask broken xemacs version with security problems added by jmglov without even
+  consulting with the herd.
 
   04 May 2008; Matthias Schwarzott <zzam@gentoo.org> desc/lirc_devices.desc:
   Added imon_knob to possible LIRC_DEVICES, Bug #208719.
