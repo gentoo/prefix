@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.14.1.ebuild,v 1.1 2008/04/09 21:20:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.14.1.ebuild,v 1.2 2008/05/05 01:41:44 dirtyepic Exp $
 
 EAPI="prefix"
 
