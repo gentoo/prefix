@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/libid3tag
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.31 2006/10/04 17:34:19 grobian Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.32 2008/05/05 02:53:45 tester Exp $
+
+*libid3tag-0.15.1b-r1 (05 May 2008)
+
+  05 May 2008; Olivier Crête <tester@gentoo.org>
+  +files/0.15.1b/libid3tag-0.15.1b-64bit-long.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-a_capella.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-compat.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-file-write.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-tag.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-unknown-encoding.patch,
+  +files/0.15.1b/libid3tag-0.15.1b-utf16.patchlibid3tag-0.15.1b-utf16.patch,
+  +libid3tag-0.15.1b-r1.ebuild:
+  Add various patches from debian pkg revision 10, from bugs #188754 and
+  #210564 and also a patch to make tag-writing work on amd64
 
   04 Oct 2006; Fabian Groffen <grobian@gentoo.org> libid3tag-0.15.1b.ebuild:
   Dropped ~ppc-macos, see you in prefix.
