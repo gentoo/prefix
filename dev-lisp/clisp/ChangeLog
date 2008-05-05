@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.74 2008/04/20 14:27:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.75 2008/05/04 17:37:05 nixnut Exp $
+
+  04 May 2008; nixnut <nixnut@gentoo.org> clisp-2.43-r1.ebuild:
+  Stable on ppc wrt bug 217700
 
   20 Apr 2008; Markus Meier <maekke@gentoo.org> clisp-2.43-r1.ebuild:
   amd64/x86 stable, bug #217700
