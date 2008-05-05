@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.4.2.ebuild,v 1.7 2007/12/17 18:35:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.4.2.ebuild,v 1.8 2008/05/04 19:05:18 drac Exp $
 
 EAPI="prefix"
 
@@ -24,5 +24,10 @@ DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
+
+src_unpack() {
+	unpack ${A}
+	sed -i -e "s:-Werror::g" "${S}"/configure || die "sed failed."
+}
 
 xfce44_core_package
