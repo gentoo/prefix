@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/tilda
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.16 2008/04/22 13:23:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.17 2008/05/06 00:18:08 steev Exp $
+
+*tilda-0.9.6 (06 May 2008)
+
+  06 May 2008; Steev Klimaszewski <steev@gentoo.org> +tilda-0.9.6.ebuild:
+  New tilda release, thanks to Pacho Ramos
+  <pacho@condmat1.ciencias.uniovi.es> for reporting. Closes bug #219930
 
   22 Apr 2008; Samuli Suominen <drac@gentoo.org> -tilda-0.9.4.ebuild,
   tilda-0.9.5.ebuild:
