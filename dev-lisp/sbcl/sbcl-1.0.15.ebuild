@@ -15,9 +15,10 @@ BV_ALPHA=0.9.12
 BV_MIPS=1.0.12
 BV_MIPSEL=1.0.12
 
-BV_PPC_MACOS=1.0.2
-BV_X86_MACOS=1.0.7
+BV_PPC_MACOS=0.9.15
+BV_X86_MACOS=0.9.16
 BV_X86_SOLARIS=0.9.14
+
 
 DESCRIPTION="Steel Bank Common Lisp (SBCL) is an implementation of ANSI Common Lisp."
 HOMEPAGE="http://sbcl.sourceforge.net/"
