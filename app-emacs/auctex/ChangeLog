@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.89 2008/04/18 15:20:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.90 2008/05/05 20:50:06 maekke Exp $
+
+  05 May 2008; Markus Meier <maekke@gentoo.org> auctex-11.85.ebuild:
+  amd64 stable, bug #213992
 
   18 Apr 2008; Ulrich Mueller <ulm@gentoo.org> auctex-11.85.ebuild:
   Parallel install does not work, bug 213992 comment 5.
