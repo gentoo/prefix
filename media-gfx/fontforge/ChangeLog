@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.79 2008/03/31 00:42:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.80 2008/05/06 04:19:37 vapier Exp $
+
+*fontforge-20080429 (06 May 2008)
+
+  06 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20080429.ebuild:
+  Version bump.
 
 *fontforge-20080330 (31 Mar 2008)
 
