@@ -1,4 +1,4 @@
-# never use /bin/sh as CONFIG_SHELL on AIX: it works, but is ways to slow.
+# never use /bin/sh as CONFIG_SHELL on AIX: it works, but is way to slow.
 export CONFIG_SHELL=${BASH}
 
 aixdll_find_unprepared() {
