@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="userland_GNU"
 
-KEYWORDS="~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 
 DEPEND=">=sys-apps/portage-2.1.1_pre1
 	>=dev-lang/python-2.0
@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.2.4_pre7-revdep-prefix-darwin.patch
 	epatch "${FILESDIR}"/${PN}-0.2.4_pre7-revdep-prefix-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.2.3-revdep-aix.patch
 	epatch "${FILESDIR}"/${PN}-0.2.4_pre6-deprecate.patch
 	ebegin "Adjusting to prefix (sloppyly)"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
