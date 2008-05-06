@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 May 2008; Michael Haubenwallner <haubi@gentoo.org> aix/profile.bashrc:
+  always set CONFIG_SHELL to current bash on aix
+
   06 May 2008; Markus Duft <mduft@gentoo.org>
   default-prefix/windows/interix/package.mask:
   added masks for clamav and mc for interix
