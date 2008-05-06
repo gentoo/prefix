@@ -1,6 +1,26 @@
 # ChangeLog for media-libs/libid3tag
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.32 2008/05/05 02:53:45 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.37 2008/05/05 20:14:43 maekke Exp $
+
+  05 May 2008; Markus Meier <maekke@gentoo.org> libid3tag-0.15.1b-r2.ebuild:
+  amd64/x86 stable, security bug #210564
+
+  05 May 2008; Jeroen Roovers <jer@gentoo.org> libid3tag-0.15.1b-r2.ebuild:
+  Stable for HPPA (bug #210564).
+
+*libid3tag-0.15.1b-r2 (05 May 2008)
+
+  05 May 2008; Olivier Crête <tester@gentoo.org>
+  -libid3tag-0.15.1b-r1.ebuild, +libid3tag-0.15.1b-r2.ebuild:
+  Bump revision to make sure everyone get the latest patch
+
+  05 May 2008; Olivier Crête <tester@gentoo.org>
+  +files/0.15.1b/libid3tag-0.15.1b-fix_overflow.patch:
+  Really add patch for bug #210564
+
+  05 May 2008; Robert Buchholz <rbu@gentoo.org> libid3tag-0.15.1b-r1.ebuild:
+  Fix quoting so patches are found and applied, thanks to Natanael Copa (bug
+  #220325).
 
 *libid3tag-0.15.1b-r1 (05 May 2008)
 
