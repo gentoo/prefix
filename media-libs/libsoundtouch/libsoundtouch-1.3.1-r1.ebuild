@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.14 2008/04/26 08:27:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.15 2008/05/05 22:17:19 drac Exp $
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic
+inherit autotools eutils flag-o-matic libtool
 
 MY_P=${P/lib}
 
@@ -24,7 +24,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-Makefile.patch \
 		"${FILESDIR}"/${P}-gcc-4.3.patch
-	elibtoolize
+	edos2unix Makefile.am
+	eautoreconf
 
 	# Bug #148695
 	if use sse; then

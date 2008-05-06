@@ -1,38 +1,40 @@
-diff -ur soundtouch-1.3.1.orig/source/example/bpm/Makefile.in soundtouch-1.3.1/source/example/bpm/Makefile.in
---- soundtouch-1.3.1.orig/source/example/bpm/Makefile.in	2006-03-19 14:09:42.000000000 +0200
-+++ soundtouch-1.3.1/source/example/bpm/Makefile.in	2008-04-26 10:07:12.000000000 +0300
-@@ -186,7 +186,7 @@
- libBPM_la_SOURCES = BPMDetect.cpp PeakFinder.cpp
+diff -Naur soundtouch-1.3.1-orig/source/example/bpm/Makefile.am soundtouch-1.3.1/source/example/bpm/Makefile.am
+--- soundtouch-1.3.1-orig/source/example/bpm/Makefile.am	2006-03-19 06:08:36.000000000 -0600
++++ soundtouch-1.3.1/source/example/bpm/Makefile.am	2007-02-24 11:52:13.000000000 -0600
+@@ -33,7 +33,7 @@
+ 
  
  # other compiler flags to add
--AM_CXXFLAGS = -O3 -I../../../include
-+AM_CXXFLAGS = -I../../../include
- all: all-am
+-AM_CXXFLAGS=-O3 -I../../../include
++AM_CXXFLAGS=-I../../../include
  
- .SUFFIXES:
-diff -ur soundtouch-1.3.1.orig/source/example/SoundStretch/Makefile.in soundtouch-1.3.1/source/example/SoundStretch/Makefile.in
---- soundtouch-1.3.1.orig/source/example/SoundStretch/Makefile.in	2006-03-19 14:09:41.000000000 +0200
-+++ soundtouch-1.3.1/source/example/SoundStretch/Makefile.in	2008-04-26 10:06:54.000000000 +0300
-@@ -182,8 +182,8 @@
- EXTRA_DIST = soundstretch.dsp soundstretch.dsw
- soundstretch_SOURCES = main.cpp RunParameters.cpp WavFile.cpp 
- soundstretch_LDADD = ../../SoundTouch/libSoundTouch.la ../bpm/libBPM.la -lm
--soundstretch_LDFLAGS = -s
--soundstretch_CXXFLAGS = -O3 -I../bpm
-+soundstretch_LDFLAGS =
-+soundstretch_CXXFLAGS = -I../bpm
- all: all-am
+ # other linking flags to add
+ #libBPM_la_LIBADD=
+diff -Naur soundtouch-1.3.1-orig/source/example/SoundStretch/Makefile.am soundtouch-1.3.1/source/example/SoundStretch/Makefile.am
+--- soundtouch-1.3.1-orig/source/example/SoundStretch/Makefile.am	2006-03-19 06:08:36.000000000 -0600
++++ soundtouch-1.3.1/source/example/SoundStretch/Makefile.am	2007-02-24 11:51:52.000000000 -0600
+@@ -44,10 +44,10 @@
+ soundstretch_LDADD=../../SoundTouch/libSoundTouch.la ../bpm/libBPM.la -lm
  
- .SUFFIXES:
-diff -ur soundtouch-1.3.1.orig/source/SoundTouch/Makefile.in soundtouch-1.3.1/source/SoundTouch/Makefile.in
---- soundtouch-1.3.1.orig/source/SoundTouch/Makefile.in	2006-03-19 14:09:39.000000000 +0200
-+++ soundtouch-1.3.1/source/SoundTouch/Makefile.in	2008-04-26 10:07:51.000000000 +0300
-@@ -191,7 +191,7 @@
+ ## linker flags
+-soundstretch_LDFLAGS=-s
++soundstretch_LDFLAGS=
+ 
+ ## additional compiler flags
+-soundstretch_CXXFLAGS=-O3 -I../bpm
++soundstretch_CXXFLAGS=-I../bpm
+ 
+ #clean-local: 
+ #	-rm -f additional-files-to-remove-on-make-clean
+diff -Naur soundtouch-1.3.1-orig/source/SoundTouch/Makefile.am soundtouch-1.3.1/source/SoundTouch/Makefile.am
+--- soundtouch-1.3.1-orig/source/SoundTouch/Makefile.am	2006-03-19 06:08:36.000000000 -0600
++++ soundtouch-1.3.1/source/SoundTouch/Makefile.am	2007-02-24 11:50:21.000000000 -0600
+@@ -35,7 +35,7 @@
  
  # ??? test for -fcheck-new in configure.ac
  # other compiler flags to add
--AM_CXXFLAGS = -O3 -msse -fcheck-new -I../../include
-+AM_CXXFLAGS = -fcheck-new -I../../include
- all: all-am
+-AM_CXXFLAGS=-O3 -msse -fcheck-new -I../../include
++AM_CXXFLAGS=-fcheck-new -I../../include
  
- .SUFFIXES:
+ # other linking flags to add
+ #libSoundTouch_la_LIBADD=
