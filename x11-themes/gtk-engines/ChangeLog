@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.119 2008/05/05 01:41:44 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.120 2008/05/05 13:31:52 eva Exp $
+
+  05 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -gtk-engines-2.14.0.ebuild, gtk-engines-2.14.1.ebuild:
+  add virtualx eclass to avoid random failures in tests
 
   05 May 2008; Ryan Hill <dirtyepic@gentoo.org> gtk-engines-2.14.1.ebuild:
   Keyword for mips.
