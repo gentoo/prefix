@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.3 2008/04/28 13:21:25 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.4 2008/05/05 17:12:22 drac Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit eutils
 
@@ -16,10 +16,11 @@ SRC_URI="http://ftp.gnu.org/gnu/mc/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="gpm nls samba X"
+IUSE="gpm nls samba +unicode X"
 
 RDEPEND=">=dev-libs/glib-2
-	>=sys-libs/slang-2.1.3
+	unicode? ( >=sys-libs/slang-2.1.3 )
+	!unicode? ( sys-libs/ncurses )
 	gpm? ( sys-libs/gpm )
 	X? ( x11-libs/libX11
 		x11-libs/libICE
@@ -39,6 +40,10 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	use unicode || \
+		EPATCH_EXCLUDE="48_all_deb_utf8-slang2.patch 60_all_deb_recode.patch"
+
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patches
 
 	# Prevent lazy bindings in cons.saver binary for bug #135009
@@ -47,8 +52,13 @@ src_unpack() {
 }
 
 src_compile() {
-	# Default is slang for unicode in Gentoo (which is also upstream default)
-	local myconf="--with-vfs --with-ext2undel --with-edit --enable-charset --with-screen=slang"
+	local myconf="--with-vfs --with-ext2undel --enable-charset --with-edit"
+
+	if use unicode; then
+		myconf+=" --with-screen=slang"
+	else
+		myconf+=" --with-screen=ncurses"
+	fi
 
 	if use samba; then
 		myconf+=" --with-samba --with-configdir=${EPREFIX}/etc/samba --with-codepagedir=${EPREFIX}/var/lib/samba/codepages"
