@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.116 2008/05/05 04:43:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.117 2008/05/05 05:54:00 vapier Exp $
+
+  05 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/autoconf-mktime-2.61.patch, gawk-3.1.6.ebuild:
+  Update mktime test #220040.
 
 *gawk-3.1.6 (05 May 2008)
 
