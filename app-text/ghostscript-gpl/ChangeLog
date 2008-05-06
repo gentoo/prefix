@@ -1,0 +1,270 @@
+# ChangeLog for app-text/ghostscript-gpl
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.45 2008/03/04 21:02:22 tgurr Exp $
+
+*ghostscript-gpl-8.62 (04 Mar 2008)
+
+  04 Mar 2008; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.62.ebuild:
+  Add ghostscript-gpl-8.62.ebuild, remove patches which got fixed upstream.
+  Reintroduce jasper dependency and make ghostscript use the system jasper,
+  thanks for the patch goes to Fedora.
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.61-r3.ebuild:
+  alpha/ia64 stable wrt #208999
+
+*ghostscript-gpl-8.61-r3 (29 Feb 2008)
+
+  29 Feb 2008; <pva@gentoo.org> +ghostscript-gpl-8.61-r3.ebuild:
+  Fixed security issue (CVE-2008-0411), bug #208999, thank Robert Buchholz for
+  report and coordination.
+
+  15 Feb 2008; Timo Gurr <tgurr@gentoo.org>
+  -files/ghostscript-esp-8.15.2-FAPIcidfmap.cjk,
+  -files/ghostscript-esp-8.15.2-cidfmap.cjk,
+  -files/ghostscript-afpl-8.54-big-cmap-post.patch,
+  -files/ghostscript-afpl-8.54-cups-destdir.diff,
+  -files/ghostscript-afpl-8.54-cups-lib.patch,
+  -files/ghostscript-afpl-8.54-destdir.diff,
+  -files/ghostscript-afpl-8.54-gtk2.patch,
+  -files/ghostscript-afpl-8.54-ps2epsi-afpl.diff,
+  -files/ghostscript-afpl-8.54-rinkj.patch,
+  -files/ghostscript-afpl-8.54-segfault.patch,
+  -files/ghostscript-afpl-8.57-cups-lib.patch,
+  -files/ghostscript-8.60-fPIC.patch,
+  -files/ghostscript-8.60-ijs-krgb.patch,
+  -files/ghostscript-8.60-include.patch,
+  -files/ghostscript-8.60-multilib.patch,
+  -files/ghostscript-8.60-noopt.patch,
+  -files/ghostscript-8.60-scripts.patch, -files/djvu-gs-gpl-8.60.patch,
+  -files/ghostscript-CVE-2007-2721.patch, -files/djvu-gs-gpl.patch,
+  -files/gdevcups.patch, -files/gdevhl12-hl1250.mak:
+  Clean out old ghostscript-gpl patches, everything has been moved into a
+  patch tarball.
+
+*ghostscript-gpl-8.61-r2 (15 Feb 2008)
+
+  15 Feb 2008; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.61-r2.ebuild:
+  Add ghostscript-gpl-8.61-r2.ebuild, fixes bug #197993, partially fixes bug
+  #206893. Bumped to the latest hpijs patch and also include a fix for
+  upstream bug #689577.
+
+  23 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  -ghostscript-gpl-8.54.ebuild, -ghostscript-gpl-8.54-r1.ebuild,
+  -ghostscript-gpl-8.57-r1.ebuild, -ghostscript-gpl-8.60-r1.ebuild,
+  ghostscript-gpl-8.61-r1.ebuild:
+  clean up and readd sparc-fbsd
+
+  23 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  stable amd64, bug 202217
+
+  08 Jan 2008; Jeroen Roovers <jer@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  Stable for HPPA (bug #202217).
+
+  08 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  alpha/ia64/sparc stable wrt #202217
+
+  03 Jan 2008; Brent Baude <ranger@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  Marking ghostscript-gpl-8.61-r1 ppc64 for bug 202217
+
+  03 Jan 2008; Brent Baude <ranger@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  Marking ghostscript-gpl-8.61-r1 ppc for bug 202217
+
+  03 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  ghostscript-gpl-8.61-r1.ebuild:
+  stable x86, bug 202217
+
+*ghostscript-gpl-8.61-r1 (03 Dec 2007)
+
+  03 Dec 2007; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.61.ebuild,
+  +ghostscript-gpl-8.61-r1.ebuild:
+  Add ghostscript-gpl-8.61-r1.ebuild, fixes bug #200906.
+
+*ghostscript-gpl-8.61 (30 Nov 2007)
+
+  30 Nov 2007; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.60.ebuild,
+  +ghostscript-gpl-8.61.ebuild:
+  Add ghostscript-gpl-8.61.ebuild, fixes bug #200383. Remove a vulnerable 8.60
+  version.
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  Stable on ppc64; bug #197346
+
+  06 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  Stable on amd64 wrt bug #196860.
+
+  06 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  Added ~ppc64; bug #197346
+
+  05 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  ppc stable, bug #196860
+
+  05 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  Stable for HPPA (bug #196860).
+
+  04 Nov 2007; Markus Meier <maekke@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  x86 stable, security bug #196860
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  alpha/ia64 stable wrt #197346
+
+  03 Nov 2007; Ferris McCormick <fmccor@gentoo.org>
+  ghostscript-gpl-8.60-r1.ebuild:
+  Sparc stable --- security Bug #196860 --- no problems seen
+
+  02 Nov 2007; Lars Weiler <pylon@gentoo.org> ghostscript-gpl-8.60.ebuild:
+  stable ppc, bug #197346
+
+*ghostscript-gpl-8.60-r1 (02 Nov 2007)
+*ghostscript-gpl-8.57-r1 (02 Nov 2007)
+*ghostscript-gpl-8.54-r1 (02 Nov 2007)
+
+  02 Nov 2007; Timo Gurr <tgurr@gentoo.org>
+  +files/ghostscript-CVE-2007-2721.patch, +ghostscript-gpl-8.54-r1.ebuild,
+  -ghostscript-gpl-8.57.ebuild, +ghostscript-gpl-8.57-r1.ebuild,
+  +ghostscript-gpl-8.60-r1.ebuild:
+  Revbump adding the patch to fix CVE-2007-2721 in all available versions, see
+  bug #196860. Also fix bug #197818, thanks Sven for reporting.
+
+  01 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  ghostscript-gpl-8.60.ebuild:
+  stable x86, bug 197346
+
+  31 Oct 2007; Jeroen Roovers <jer@gentoo.org> ghostscript-gpl-8.60.ebuild:
+  Stable for HPPA (bug #197346).
+
+  29 Oct 2007; Daniel Gryniewicz <dang@gentoo.org>
+  ghostscript-gpl-8.60.ebuild:
+  Marked stable on amd64 for bug #197346
+
+  29 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  ghostscript-gpl-8.60.ebuild:
+  Sparc stable --- Bug #197346 --- has been good for quite some time.
+
+  23 Oct 2007; Timo Gurr <tgurr@gentoo.org>
+  files/ghostscript-8.60-include.patch, ghostscript-gpl-8.60.ebuild:
+  Add missing fontconfig dependency and fix bug #196289 with a corrected
+  upstream patch, thanks Sebastian for reporting.
+
+  19 Oct 2007; Timo Gurr <tgurr@gentoo.org>
+  +files/ghostscript-8.60-include.patch, ghostscript-gpl-8.60.ebuild:
+  Ebuild cleanup, added missing dependency and fix bug #196289.
+
+*ghostscript-gpl-8.60 (17 Oct 2007)
+
+  17 Oct 2007; Timo Gurr <tgurr@gentoo.org>
+  +files/ghostscript-8.60-fPIC.patch,
+  +files/ghostscript-8.60-ijs-krgb.patch,
+  +files/ghostscript-8.60-multilib.patch,
+  +files/ghostscript-8.60-noopt.patch,
+  +files/ghostscript-8.60-scripts.patch, +files/djvu-gs-gpl-8.60.patch,
+  +ghostscript-gpl-8.60.ebuild:
+  Add ghostscript-gpl-8.60, first release with ghostscript-esp merged. Fixes
+  bug #187502.
+
+  15 Aug 2007; Ferris McCormick <fmccor@gentoo.org> ChangeLog:
+  That's Bug #187280 we need the ~sparc keyword for, of course.  This cures it.
+
+  15 Aug 2007; Ferris McCormick <fmccor@gentoo.org>
+  ghostscript-gpl-8.57.ebuild:
+  Add ~sparc keyword.  Builds as expected, gv works, and this also fixes Bug
+  #187502 --- needed in preparation of retiring ghostscript-esp.
+
+  13 Jul 2007; Roy Marples <uberlord@gentoo.org>
+  ghostscript-gpl-8.57.ebuild:
+  Keyworded ~sparc-fbsd
+
+  04 Jul 2007; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild, ghostscript-gpl-8.57.ebuild:
+  Drop emacs support thanks opfer in bug 184167
+
+*ghostscript-gpl-8.57 (12 Jun 2007)
+
+  12 Jun 2007; Stefan Schweizer <genstef@gentoo.org>
+  +files/ghostscript-afpl-8.57-cups-lib.patch, +ghostscript-gpl-8.57.ebuild:
+  Version bump thanks to jakub, hkbst and Timo Gurr <psy@monsterserver.de>, see bug 171847
+  
+  - only build djvu support w/ USE="-bindist" (see
+  http://djvu.sourceforge.net/gsdjvu/COPYING for reasons), adjust LICENSE
+  accordingly, adjust IUSE accordingly
+  - Fix SRC_URI and S for new tarball name
+  - add loads of quoting all over the place
+
+  fixed upstream:
+  ghostscript-afpl-8.54-ps2epsi-afpl.diff - fixed in 8.57
+  ghostscript-afpl-8.54-destdir.diff - fixed in 8.57
+  ghostscript-afpl-8.54-segfault.patch - fixed in 8.57
+  ghostscript-afpl-8.54-gtk2.patch - seems to be fixed in 8.57
+  
+  updated/still needed patches:
+  ghostscript-afpl-8.56-cups-lib.patch - updated patch
+  ghostscript-afpl-8.54-rinkj.patch - not fixed, still needed
+  
+  still needed addon patches
+  ghostscript-afpl-8.54-cups-destdir.diff - still needed
+  gdevcups.patch - still needed
+  djvu-gs-gpl.patch - still needed
+  
+  failing/commented out patches:
+  ghostscript-afpl-8.54-big-cmap-post.patch - does not apply, couldn't find any
+  references on http://bugs.ghostscript.com/ about what this patch is good for
+
+  14 Dec 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/djvu-gs-gpl.patch, ghostscript-gpl-8.54.ebuild:
+  Add hacked up djvu fix for -gpl for bug 158079
+
+  12 Dec 2006; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  Add djvu support, fix emake -j1 bug 147998 for phreak
+
+  04 Nov 2006; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  Add missing libXext dep thanks to jkt in bug 153976
+
+  22 Sep 2006; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  automake fixes #148368.
+
+  14 Sep 2006; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  properly fix bug 142802 thanks to Nick Cunningham <nick@burstfire.net> and
+  pylon in bug 145985
+
+  02 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  Add ~x86-fbsd keyword, fixing deptree for virtual/ghostscript.
+
+  30 Aug 2006; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-gpl-8.54.ebuild:
+  add STDDIRS to make targets to fix parallel build issues thanks to Bruno
+  Roggeri <bruno.roggeri@metz.supelec.fr> in bug 142802
+
+*ghostscript-gpl-8.54 (27 Jun 2006)
+
+  27 Jun 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/ghostscript-esp-8.15.2-FAPIcidfmap.cjk,
+  +files/ghostscript-esp-8.15.2-cidfmap.cjk,
+  +files/ghostscript-afpl-8.54-big-cmap-post.patch,
+  +files/ghostscript-afpl-8.54-cups-destdir.diff,
+  +files/ghostscript-afpl-8.54-cups-lib.patch,
+  +files/ghostscript-afpl-8.54-destdir.diff,
+  +files/ghostscript-afpl-8.54-gtk2.patch,
+  +files/ghostscript-afpl-8.54-ps2epsi-afpl.diff,
+  +files/ghostscript-afpl-8.54-rinkj.patch,
+  +files/ghostscript-afpl-8.54-segfault.patch, +files/gdevcups.patch,
+  +files/gdevhl12-hl1250.mak, +metadata.xml, +ghostscript-gpl-8.54.ebuild:
+  Move ghostscript-afpl to ghostscript-gpl and change the license, thanks to
+  Ernst Rohlicek <ernst.rohlicek@inode.at> in bug 137289
+
