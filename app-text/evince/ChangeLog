@@ -1,6 +1,9 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.139 2008/04/21 17:01:10 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.140 2008/05/05 19:23:58 dang Exp $
+
+  05 May 2008; Daniel Gryniewicz <dang@gentoo.org> evince-2.22.1.1.ebuild:
+  Use virtual/tex-base rather than virtual/tetex; bug #219322
 
   21 Apr 2008; <welp@gentoo.org> evince-2.22.0.ebuild,
   evince-2.22.1.1.ebuild:

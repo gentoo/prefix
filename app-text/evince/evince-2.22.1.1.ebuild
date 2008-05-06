@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.1.1.ebuild,v 1.2 2008/04/21 17:01:10 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.1.1.ebuild,v 1.3 2008/05/05 19:23:58 dang Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ RDEPEND="
 	gnome? ( >=gnome-base/nautilus-2.10 )
 	>=app-text/poppler-bindings-0.6
 	dvi? (
-		virtual/tetex
+		virtual/tex-base
 		t1lib? ( >=media-libs/t1lib-5.0.0 )
 	)
 	tiff? ( >=media-libs/tiff-3.6 )
