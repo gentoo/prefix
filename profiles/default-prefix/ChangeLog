@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 May 2008; Markus Duft <mduft@gentoo.org>
+  default-prefix/windows/interix/package.mask:
+  added masks for clamav and mc for interix
+
   05 May 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask tetex entirely, such that e.g. pdfjam doesn't draw in tetex as dependency.
 

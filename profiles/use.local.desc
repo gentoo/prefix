@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3526 2008/05/04 01:53:59 jmglov Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3528 2008/05/05 21:49:21 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -54,6 +54,7 @@ app-cdr/brasero:beagle - Enable Beagle support for searches.
 app-cdr/brasero:gdl - Enable gdl support for customisable GUI.
 app-cdr/brasero:libburn - Enable libburn backend.
 app-cdr/brasero:totem - Enable support for Totem playlists.
+app-cdr/cdrdao:gcdmaster - Enable building of gcdmaster application
 app-cdr/cdrdao:pccts - Use dev-util/pccts instead of the built-in substitution.
 app-cdr/cdrkit:hfs - Provide building of HFS (Apple) CD-images
 app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make www-apps/disc-cover work.
