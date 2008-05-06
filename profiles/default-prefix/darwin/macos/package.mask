@@ -17,14 +17,5 @@
 media-libs/libsdl
 
 # Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
-# OSX and java6 is still experimental/beta
-=virtual/jdk-1.6.0
-=virtual/jre-1.6.0
-
-# Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
-# apple java6 on macosx is only available as a developer preview
-dev-java/apple-jdk-bin:1.6
-
-# Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
 # experimenting here -- with bsd java6 on macosx
 dev-java/soylatte-jdk-bin

@@ -3,6 +3,11 @@
 # $Header: $
 
   06 May 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.4/package.mask, darwin/macos/package.mask:
+  Move Java 1.6 mask to the 10.4 profile, since Apple released 1.6 (and for
+  10.5 only :( )
+
+  06 May 2008; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask:
   Mask dev-perl/Net-DNS-0.63, it doesn't compile
 
