@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/glpk
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.22 2008/04/28 18:53:13 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.23 2008/05/06 19:31:50 ranger Exp $
+
+  06 May 2008; Brent Baude <ranger@gentoo.org> glpk-4.28.ebuild:
+  Marking glpk-4.28 ~ppc64 for bug 219454
 
   28 Apr 2008; Tobias Klausmann <klausman@gentoo.org> glpk-4.28.ebuild:
   Keyworded on alpha, bug #219454
