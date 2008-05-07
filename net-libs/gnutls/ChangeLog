@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.146 2008/03/26 13:05:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.147 2008/05/06 17:27:20 alonbl Exp $
+
+*gnutls-2.2.3 (06 May 2008)
+
+  06 May 2008; Alon Bar-Lev <alonbl@gentoo.org> +gnutls-2.2.3.ebuild:
+  Version bump
 
   26 Mar 2008; Jeroen Roovers <jer@gentoo.org> gnutls-2.2.2.ebuild:
   Stable for HPPA (bug #209984).
