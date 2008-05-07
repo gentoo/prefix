@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.0.ebuild,v 1.7 2007/11/16 17:31:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.0.ebuild,v 1.8 2008/05/06 16:56:03 drac Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,7 @@ LICENSE="LGPL-2 as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
+RDEPEND=""
 DEPEND="app-arch/unzip"
 
 src_unpack() {
