@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/xv
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.89 2007/11/09 22:32:58 grobian Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.90 2008/05/06 22:31:25 lavajoe Exp $
+
+*xv-3.10a-r15 (06 May 2008)
+
+  06 May 2008; Joe Peterson <lavajoe@gentoo.org>
+  +files/xv-3.10a-fix-wait-20070520.patch, +xv-3.10a-r15.ebuild:
+  Fix -wait option (bug #149270)
 
   09 Nov 2007; Fabian Groffen <grobian@gentoo.org> xv-3.10a-r12.ebuild,
   xv-3.10a-r14.ebuild:
