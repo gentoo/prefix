@@ -28,6 +28,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${PN}-io.patch
 
 	# can't run eautoreconf here, would introduce a circular dependency, since
 	# m4 needs us (its sources come in lzma format)
