@@ -1,0 +1,71 @@
+# ChangeLog for xfce-extra/xfce4-mailwatch
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-mailwatch/ChangeLog,v 1.17 2007/05/18 11:51:39 armin76 Exp $
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  alpha stable wrt #178510
+
+  22 Apr 2007; Raúl Porcel <armin76@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  ia64 stable
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Stable on ppc64; bug #169987
+
+  12 Mar 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Add ~alpha + ~ia64 keywords.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> xfce4-mailwatch-1.0.1.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-mailwatch-1.0.1.ebuild:
+  Keyworded ~x86-fbsd
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-mailwatch-1.0.1.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> xfce4-mailwatch-1.0.1.ebuild:
+  Stable for HPPA (bug #164776).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Stable on sparc wrt #169987
+
+  26 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Fix bug 168373.
+
+  04 Feb 2007; Joshua Nichols <nichoj@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Updated to use final 4.4 release.
+
+  03 Feb 2007; Joshua Nichols <nichoj@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Added ~ppc, see bug #164776.
+
+  02 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Keyworded ~sparc wrt #164776
+
+  01 Feb 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  Added ~ppc64; bug #164776
+
+  22 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  xfce4-mailwatch-1.0.1.ebuild:
+  keywording ~amd64
+
+*xfce4-mailwatch-1.0.1 (28 Dec 2006)
+
+  28 Dec 2006; Joshua Nichols <nichoj@gentoo.org> +metadata.xml,
+  +xfce4-mailwatch-1.0.1.ebuild:
+  Initial import. Contributed by Sideris Michael <msid@daemons.gr> on bug
+  #130573.
+
