@@ -35,8 +35,10 @@ src_unpack() {
 	# Need to patch configure directly besides ls-mntd-fs.m4,
 	# because during bootstrap not all m4-files might be installed.
 	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
+	# avoid regeneration
 	touch aclocal.m4
 	touch configure
+	touch doc/find.info
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
@@ -49,7 +51,7 @@ src_compile() {
 	use static && append-ldflags -static
 
 	local myconf
-	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] && \
+	[[ ${USERLAND} != "GNU" ]] && \
 		myconf=" --program-prefix=g"
 
 	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
