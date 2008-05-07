@@ -1,0 +1,38 @@
+diff -ur xfce4-screenshooter-plugin-1.0.0.orig/panel-plugin/screenshooter.c xfce4-screenshooter-plugin-1.0.0/panel-plugin/screenshooter.c
+--- xfce4-screenshooter-plugin-1.0.0.orig/panel-plugin/screenshooter.c	2006-04-23 20:12:15.000000000 +0300
++++ xfce4-screenshooter-plugin-1.0.0/panel-plugin/screenshooter.c	2007-07-01 20:17:09.000000000 +0300
+@@ -227,6 +227,7 @@
+ 
+     gint width;
+     gint height;
++    gint dialog_response;
+ 
+     gchar * filename = NULL;
+     gchar * basename = NULL;
+@@ -266,12 +267,14 @@
+     
+     gtk_image_set_from_pixbuf (GTK_IMAGE (sd->preview), thumbnail);
+     g_object_unref (thumbnail);
+-            filename = generate_filename_for_uri (xfce_file_chooser_get_current_folder(XFCE_FILE_CHOOSER (sd->chooser)));
++    filename = generate_filename_for_uri (xfce_file_chooser_get_current_folder(XFCE_FILE_CHOOSER (sd->chooser)));
+     
+     if (sd->ask_for_file && filename)
+     {    
+         gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (sd->chooser), filename);
+-        if (gtk_dialog_run (GTK_DIALOG (sd->chooser)) == GTK_RESPONSE_ACCEPT)
++        
++        dialog_response = gtk_dialog_run (GTK_DIALOG (sd->chooser));
++        if (dialog_response == GTK_RESPONSE_ACCEPT)
+         {    
+         filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(sd->chooser));
+         }
+@@ -289,7 +292,8 @@
+     }
+     
+     if (filename) {
+-        gdk_pixbuf_save (screenshot, filename, "png", NULL, NULL);
++        if (!(sd->ask_for_file) || dialog_response == GTK_RESPONSE_ACCEPT) 
++            gdk_pixbuf_save (screenshot, filename, "png", NULL, NULL);
+         g_free (filename);
+     }
+ }

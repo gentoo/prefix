@@ -1,0 +1,80 @@
+# ChangeLog for xfce-extra/xfce4-screenshooter
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.18 2007/10/15 16:26:42 drac Exp $
+
+  15 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  arm stable.
+
+  14 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  Stable on ppc64; bug #195250
+
+  01 Sep 2007; nixnut <nixnut@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  Stable on ppc wrt bug 190072
+
+  30 Aug 2007; Jeroen Roovers <jer@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  Stable for HPPA (bug #190072).
+
+  27 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  Stable on sparc wrt #190072
+
+  26 Aug 2007; Raúl Porcel <armin76@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  alpha/ia64/x86 stable wrt #190072
+
+  24 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  xfce4-screenshooter-1.0.0-r1.ebuild:
+  Stable on amd64
+
+*xfce4-screenshooter-1.0.0-r1 (01 Jul 2007)
+
+  01 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  +files/xfce4-screenshooter-1.0.0-cancel-save.patch,
+  +xfce4-screenshooter-1.0.0-r1.ebuild:
+  Apply patch from upstream, reported by Debian, backported by Christoph Mende
+  to fix behavior of Cancel button. Bug 183803.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Stable on ppc64; bug #169987
+
+  12 Mar 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Stable on Alpha + IA64.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> xfce4-screenshooter-1.0.0.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Stable for HPPA (bug #169987).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Stable on sparc wrt #169987
+
+  02 Mar 2007; Peter Weller <welp@gentoo.org> ChangeLog:
+  Keyworded on x86-fbsd
+
+  04 Feb 2007; Joshua Nichols <nichoj@gentoo.org>
+  xfce4-screenshooter-1.0.0.ebuild:
+  Updated to use final 4.4 release.
+
+*xfce4-screenshooter-1.0.0 (21 Jan 2007)
+
+  21 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +metadata.xml,
+  +xfce4-screenshooter-1.0.0.ebuild:
+  Initial import. Ebuild provided by Samuli Suominen <sasuomin@uusikaupunki.fi>.
+
