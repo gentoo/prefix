@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.0.4-r2.ebuild,v 1.8 2008/04/30 20:41:59 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.0.4-r2.ebuild,v 1.9 2008/05/06 19:24:08 markusle Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,11 @@ S="${WORKDIR}/${MY_P}"
 
 # whatever LDFLAGS set will break linking
 # see progress in http://projects.scipy.org/scipy/numpy/ticket/573
-[ -n "${LDFLAGS}" ] && append-ldflags -shared
+if [ -n "${LDFLAGS}" ]; then
+	append-ldflags -shared
+else
+	LDFLAGS="-shared"
+fi
 
 pkg_setup() {
 	# only one fortran to link with:
