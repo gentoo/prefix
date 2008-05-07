@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/emacs-desktop-0.3.ebuild,v 1.2 2008/01/10 09:33:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/emacs-desktop-0.3.ebuild,v 1.5 2008/05/06 19:41:51 opfer Exp $
 
 EAPI="prefix"
 
