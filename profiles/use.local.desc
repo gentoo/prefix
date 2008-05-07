@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3528 2008/05/05 21:49:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3529 2008/05/06 14:27:04 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1641,6 +1641,7 @@ net-misc/asterisk-chan_capi:fax - Build chan_capi with fax support
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2
 net-misc/curl:nss - Use NSS as the crypto engine
+net-misc/dhcpcd:compat - Enable commandline compability with dhcpcd-3.x
 net-misc/dhcpcd:vram - Disable DUID due to volatile media, such as a LiveCD
 net-misc/directvnc:mouse - Adds mouse support
 net-misc/drivel:rhythmbox - Enables support for currently playing song in rhythmbox
