@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4-r1.ebuild,v 1.1 2008/04/25 23:22:02 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.4-r1.ebuild,v 1.2 2008/05/06 22:09:30 hkbst Exp $
 
 EAPI="prefix"
 
@@ -38,7 +38,13 @@ src_unpack() {
 	#it right anyway, only on guile-readline it was wrong.
 	epatch "${FILESDIR}"/${P}-echo.patch
 
+#	cp configure.in configure.in.old
+
 	#for libtool-2.2*, bug 212723
+	sed 's/AC_CONFIG_MACRO_DIR(\[m4\])/AC_CONFIG_MACRO_DIR(\[guile-config\])/' -i configure.in
+
+#	diff -u configure.in.old configure.in
+
 	eautoreconf
 }
 

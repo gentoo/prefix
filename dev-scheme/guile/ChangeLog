@@ -1,6 +1,10 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.57 2008/04/25 23:22:02 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.58 2008/05/06 22:09:30 hkbst Exp $
+
+  06 May 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.4-r1.ebuild:
+  add new fix for libtool-2.2.4, thanks to Panagiotis Christopoulos
+  <pxrist@gmail.com>
 
 *guile-1.8.4-r1 (25 Apr 2008)
 
