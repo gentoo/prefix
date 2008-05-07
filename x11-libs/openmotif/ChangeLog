@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.176 2008/05/04 11:13:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.177 2008/05/06 20:49:18 ulm Exp $
+
+  06 May 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r2.ebuild:
+  Call eautoconf and eautomake explicitely, fixes breakage with libtool-2.2,
+  bug 220599.
 
   04 May 2008; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.0-r2.ebuild:
   Add X.Org vendor string to aliases for virtual bindings.

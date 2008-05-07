@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.6 2008/05/04 11:13:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.7 2008/05/06 20:49:18 ulm Exp $
 
 EAPI="prefix"
+
+WANT_AUTOMAKE=1.9
 
 inherit eutils flag-o-matic multilib autotools
 
@@ -80,7 +82,8 @@ src_unpack() {
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
 
-	AT_M4DIR=. eautoreconf
+	eautoconf
+	eautomake
 }
 
 src_compile() {
@@ -128,7 +131,6 @@ src_install() {
 	fi
 	rm -rf "${ED}"/usr/share/Xm
 
-	# documentation
 	dodoc README RELEASE RELNOTES BUGREPORT TODO
 	use doc && cp "${WORKDIR}"/*.pdf "${ED}"/usr/share/doc/${PF}
 }
