@@ -1,6 +1,20 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.93 2008/03/26 20:57:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.97 2008/05/06 16:02:47 ranger Exp $
+
+  06 May 2008; Brent Baude <ranger@gentoo.org> wget-1.11.1.ebuild:
+  stable ppc, bug 220569
+
+  06 May 2008; Raúl Porcel <armin76@gentoo.org> wget-1.11.1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #220569
+
+  06 May 2008; Jeroen Roovers <jer@gentoo.org> wget-1.11.1.ebuild:
+  Stable for HPPA (bug #220569).
+
+*wget-1.11.2 (06 May 2008)
+
+  06 May 2008; Mike Frysinger <vapier@gentoo.org> +wget-1.11.2.ebuild:
+  Version bump #220439 by Petr Pisar.
 
 *wget-1.11.1 (26 Mar 2008)
 
