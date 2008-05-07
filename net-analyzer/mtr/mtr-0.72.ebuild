@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.72.ebuild,v 1.11 2007/07/20 09:15:42 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.72.ebuild,v 1.12 2008/05/06 13:47:24 drac Exp $
 
 EAPI="prefix"
 
@@ -15,9 +15,10 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="gtk ipv6"
 
-DEPEND="dev-util/pkgconfig
-	sys-libs/ncurses
+RDEPEND="sys-libs/ncurses
 	gtk? ( >=x11-libs/gtk+-2 )"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 src_compile() {
 	local myconf
