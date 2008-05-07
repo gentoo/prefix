@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.1 2008/05/03 04:42:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.2 2008/05/06 19:06:34 vapier Exp $
 
 EAPI="prefix"
 
@@ -67,6 +67,7 @@ src_unpack() {
 	cd ../..
 
 	if ! use vanilla ; then
+		epatch "${FILESDIR}"/autoconf-mktime-2.59.patch #220040
 		epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
 		epatch "${FILESDIR}"/${PN}-3.2-loadables.patch
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671

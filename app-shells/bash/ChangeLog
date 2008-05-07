@@ -1,6 +1,19 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.172 2008/05/05 20:42:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.176 2008/05/06 19:06:34 vapier Exp $
+
+  06 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/autoconf-mktime-2.59.patch, bash-3.2_p39.ebuild:
+  Add patch for mktime issue #220040.
+
+  06 May 2008; Jeroen Roovers <jer@gentoo.org> bash-3.2_p33.ebuild:
+  Stable for HPPA (bug #220091).
+
+  06 May 2008; Christian Faulhammer <opfer@gentoo.org> bash-3.2_p33.ebuild:
+  stable x86, bug 220091
+
+  06 May 2008; Raúl Porcel <armin76@gentoo.org> bash-3.2_p33.ebuild:
+  alpha/ia64/sparc stable wrt #220091
 
   05 May 2008; Markus Meier <maekke@gentoo.org> bash-3.2_p33.ebuild:
   amd64 stable, bug #220091
