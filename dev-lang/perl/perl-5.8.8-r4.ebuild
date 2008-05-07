@@ -125,8 +125,6 @@ src_unpack() {
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
-	# fix a typo in hints/aix.sh.
-	# do not create sharedlib-archive, but sharedlib directly.
 	epatch "${FILESDIR}"/${P}-aix.patch
 
 	# do not assume '.' being in PATH on hpux,
