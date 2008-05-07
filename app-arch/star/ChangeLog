@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/star
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.71 2008/04/18 10:25:03 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.72 2008/05/06 07:23:09 pva Exp $
+
+  06 May 2008; Peter Volkov <pva@gentoo.org> star-1.5_alpha88.ebuild:
+  amd64 stable, bug #216658. Thank Víctor Enríquez for tests.
 
 *star-1.5 (18 Apr 2008)
 
