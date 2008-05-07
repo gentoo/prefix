@@ -62,8 +62,6 @@ src_compile() {
 	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
 	use ada || myconf="${myconf} --without-ada"
 	
-	# work around http://gcc.gnu.org/ml/gcc-help/2006-02/msg00173.html
-	[[ ${CHOST} == *-aix5.3* ]] && export ac_cv_sys_large_files=no
 	[[ ${CHOST} == *-aix5.3* ]] && myconf="${myconf} --with-libtool"
 
 	# First we build the regular ncurses ...
