@@ -1,0 +1,33 @@
+diff -urNad ecasound~/ecatools/ecasignalview.cpp ecasound/ecatools/ecasignalview.cpp
+--- ecasound~/ecatools/ecasignalview.cpp	2007-08-20 22:03:30.000000000 +0900
++++ ecasound/ecatools/ecasignalview.cpp	2007-12-13 23:26:40.905257369 +0900
+@@ -31,6 +31,7 @@
+ #include <cassert>
+ #include <cmath>
+ #include <cstdio>
++#include <cstring>
+ 
+ #include <signal.h>
+ #include <unistd.h>
+diff -urNad ecasound~/kvutils/kvu_procedure_timer.cpp ecasound/kvutils/kvu_procedure_timer.cpp
+--- ecasound~/kvutils/kvu_procedure_timer.cpp	2007-08-20 22:03:30.000000000 +0900
++++ ecasound/kvutils/kvu_procedure_timer.cpp	2007-12-13 23:26:40.905257369 +0900
+@@ -19,6 +19,7 @@
+ // ------------------------------------------------------------------------
+ 
+ #include <cmath>
++#include <cstring>
+ #include <math.h> /* floor() */
+ #include "kvu_numtostr.h"
+ #include "kvu_procedure_timer.h"
+diff -urNad ecasound~/libecasound/plugins/audioio_jack_manager.cpp ecasound/libecasound/plugins/audioio_jack_manager.cpp
+--- ecasound~/libecasound/plugins/audioio_jack_manager.cpp	2007-08-20 22:03:30.000000000 +0900
++++ ecasound/libecasound/plugins/audioio_jack_manager.cpp	2007-12-13 23:26:40.906256145 +0900
+@@ -31,6 +31,7 @@
+ #include <iostream>
+ #include <string>
+ 
++#include <cstring>
+ #include <sys/time.h> /* gettimeofday() */
+ #include <errno.h> /* ETIMEDOUT */
+ #include <jack/jack.h>
