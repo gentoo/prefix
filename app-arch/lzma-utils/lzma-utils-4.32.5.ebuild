@@ -20,8 +20,6 @@ RDEPEND="!app-arch/lzma"
 S=${WORKDIR}/lzma-${PV/_}
 
 pkg_setup() {
-	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20366
-	[[ ${CHOST} == *-aix* ]] && export ac_cv_sys_large_files=no
 	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 }
 
