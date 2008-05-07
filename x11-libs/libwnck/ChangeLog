@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libwnck
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.195 2008/04/09 21:41:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.196 2008/05/07 03:37:46 dirtyepic Exp $
+
+  07 May 2008; Ryan Hill <dirtyepic@gentoo.org> libwnck-2.22.1.ebuild:
+  Keyword for mips.
 
 *libwnck-2.22.1 (09 Apr 2008)
 
