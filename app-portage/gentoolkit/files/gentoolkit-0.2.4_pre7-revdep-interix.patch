@@ -59,19 +59,3 @@ diff -ru gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  esac
  
  # Update the incremental variables using /etc/profile.env, /etc/ld.so.conf,
-@@ -478,12 +529,14 @@
- 	# with complete path (special add ons are rare).
- 
- 	# How can one enter the block below, when $SONAME_SEARCH is set up the way it is?
-+	$EXTRA_VERBOSE && echo "inspecting $FILE..."
- 	if ldd_f $FILE 2>>$LLIST.3_ldd_errors | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
-+		$EXTRA_VERBOSE && echo " -> found occurence using \"$SONAME_SEARCH\"!"
- 		if $SEARCH_BROKEN && $FULL_LD_PATH ; then
- 			if LD_LIBRARY_PATH="$COMPLETE_LD_LIBRARY_PATH" ldd_f $FILE 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
- 				# FIX: I hate duplicating code
- 				# Only build missing direct dependencies
--				ALL_MISSING_LIBS=$(ldd "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
-+				ALL_MISSING_LIBS=$(ldd_f "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
- 				ALL_MISSING_LIBS=$(all_missing_libs_f $FILE)
- 				REQUIRED_LIBS=$(required_libs_f $FILE)
- 				for lib in $ALL_MISSING_LIBS

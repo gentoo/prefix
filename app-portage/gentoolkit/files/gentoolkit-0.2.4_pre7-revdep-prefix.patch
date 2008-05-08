@@ -1,14 +1,11 @@
-Only in gentoolkit-0.2.4_pre7: revdep.patch
 diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/99revdep-rebuild gentoolkit-0.2.4_pre7/src/revdep-rebuild/99revdep-rebuild
 --- gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/99revdep-rebuild	2007-09-14 16:03:13 +0200
 +++ gentoolkit-0.2.4_pre7/src/revdep-rebuild/99revdep-rebuild	2007-09-14 16:25:21 +0200
-@@ -15,7 +15,7 @@
- #
+@@ -16,6 +16,6 @@
  # Note: This file is sourced using bash by the revdep-rebuild script
  
--LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so"
+ LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so"
 -SEARCH_DIRS="/bin /sbin /usr/bin /usr/sbin /lib* /usr/lib*"
-+LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so libodbcinst.dylib libodbc.dylib libjava.dylib libjvm.dylib"
 +SEARCH_DIRS="@GENTOO_PORTAGE_EPREFIX@/bin @GENTOO_PORTAGE_EPREFIX@/sbin @GENTOO_PORTAGE_EPREFIX@/usr/bin @GENTOO_PORTAGE_EPREFIX@/usr/sbin @GENTOO_PORTAGE_EPREFIX@/lib* @GENTOO_PORTAGE_EPREFIX@/usr/lib*"
  SEARCH_DIRS_MASK=""
  
@@ -29,9 +26,9 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/Makefile gentoolkit-0.2.4
  	install -m 0644 AUTHORS README TODO $(docdir)/revdep-rebuild/
  	install -m 0644 revdep-rebuild.1 $(mandir)/
 diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit-0.2.4_pre7/src/revdep-rebuild/revdep-rebuild
---- gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild	2007-09-14 16:03:12 +0200
-+++ gentoolkit-0.2.4_pre7/src/revdep-rebuild/revdep-rebuild	2007-09-14 16:25:21 +0200
-@@ -67,6 +67,44 @@
+--- gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild	2007-09-13 04:58:22.000000000 +0200
++++ gentoolkit-0.2.4_pre7/src/revdep-rebuild/revdep-rebuild	2008-04-23 16:45:39.357222000 +0200
+@@ -67,6 +67,27 @@
  PORTAGE_ROOT=$(portageq envvar ROOT)
  [ -z "$PORTAGE_ROOT" ] && PORTAGE_ROOT="/"
  
@@ -39,23 +36,6 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
 +EROOT="${PORTAGE_ROOT%/}${EPREFIX}"
 +
 +case `uname` in
-+	Darwin )
-+		SONAME_SUFFIX=".dylib"
-+		function all_missing_libs_f () {
-+			otool -L "$1" 2>/dev/null | sort -u | awk '/^\t/{if (system("test -e "$ 1) != 0) print $ 1;}' | tr '\n' ' ' | sed 's/ $//'
-+		}
-+		function ldd_f () {
-+			otool -L "$1"
-+		}
-+		# FIXME!! I don't know how to check for required libs on Darwin
-+		function required_libs_f () {
-+			all_missing_libs_f $1
-+		}
-+		function search_lib_f () {
-+			otool -L "$1" 2>/dev/null | sort -u | $2 "$3" | awk '{print $ 1}' | tr '\n' ' ' | sed 's/ $//'
-+		}
-+	;;
-+
 +	Linux)
 +		SONAME_SUFFIX=".so"
 +		function all_missing_libs_f () {
@@ -76,7 +56,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  # Update the incremental variables using /etc/profile.env, /etc/ld.so.conf,
  # portage, and the environment
  
-@@ -78,30 +116,30 @@
+@@ -78,30 +99,30 @@
  PRELIMINARY_LD_LIBRARY_MASK="$LD_LIBRARY_MASK $(unset LD_LIBRARY_MASK; portageq envvar LD_LIBRARY_MASK)"
  
  # Add the defaults
@@ -119,7 +99,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  fi	
  
  # Set the final variables
-@@ -142,14 +180,14 @@
+@@ -142,14 +163,14 @@
  	rm ~/.revdep-rebuild_0.test
  else
  	# Try to use /var/tmp since $HOME is not available
@@ -138,7 +118,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  		echo
  		exit 1
  	fi
-@@ -372,10 +410,10 @@
+@@ -372,10 +393,10 @@
  
  	# Hack for the different versions of find.
  	# Be extra paranoid and pipe results through sed to remove multiple slashes
@@ -151,7 +131,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  		if [ -z $find_results ]
  		then
  			echo -e "\n"
-@@ -385,13 +423,17 @@
+@@ -385,13 +406,17 @@
  			exit 1
  		else
  			# using -perm +u+x for find command
@@ -171,7 +151,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  	# Remove files that match SEARCH_DIR_MASK
  	for dir in $SEARCH_DIRS_MASK
  	do
-@@ -412,8 +454,8 @@
+@@ -412,8 +437,8 @@
  		set_trap "$LIST.2_ldpath"
  		# Ensure that the "trusted" lib directories are at the start of the path
  		(
@@ -182,28 +162,31 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  			sed 's:/[^/]*$::' <$LIST.1_files | sort -ru
  		) | tr '\n' : | tr -d '\r' | sed 's/:$//' >$LIST.2_ldpath
  		echo -e " done.\n  ($LIST.2_ldpath)"
-@@ -434,14 +476,16 @@
+@@ -434,14 +459,18 @@
  	cat $LIST.1_files | egrep -v '*\.la$' | while read FILE ; do
  	# Note: double checking seems to be faster than single
  	# with complete path (special add ons are rare).
 -	if ldd "$FILE" 2>>$LLIST.3_ldd_errors | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
 +
 +	# How can one enter the block below, when $SONAME_SEARCH is set up the way it is?
++	$EXTRA_VERBOSE && echo "inspecting $FILE..."
 +	if ldd_f $FILE 2>>$LLIST.3_ldd_errors | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
++		$EXTRA_VERBOSE && echo " -> found occurence using \"$SONAME_SEARCH\"!"
  		if $SEARCH_BROKEN && $FULL_LD_PATH ; then
 -			if LD_LIBRARY_PATH="$COMPLETE_LD_LIBRARY_PATH" ldd "$FILE" 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
 +			if LD_LIBRARY_PATH="$COMPLETE_LD_LIBRARY_PATH" ldd_f $FILE 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
  				# FIX: I hate duplicating code
  				# Only build missing direct dependencies
- 				ALL_MISSING_LIBS=$(ldd "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
+-				ALL_MISSING_LIBS=$(ldd "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
 -				REQUIRED_LIBS=$(objdump -x $FILE | grep NEEDED | awk '{print $2}' | tr '\n' ' ' | sed 's/ $//')
 -				MISSING_LIBS=""
++				ALL_MISSING_LIBS=$(ldd_f "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
 +				ALL_MISSING_LIBS=$(all_missing_libs_f $FILE)
 +				REQUIRED_LIBS=$(required_libs_f $FILE)
  				for lib in $ALL_MISSING_LIBS
  				do
  					if echo $REQUIRED_LIBS | grep -q $lib
-@@ -458,8 +502,8 @@
+@@ -458,8 +487,8 @@
  		else
  			# FIX: I hate duplicating code
  			# Only rebuild for direct dependencies
@@ -214,7 +197,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  			MISSING_LIBS=""
  			for lib in $ALL_MISSING_LIBS
  			do
-@@ -515,7 +559,7 @@
+@@ -515,7 +544,7 @@
  			if $PORTAGE_UTILS ; then
  				EXACT_PKG="$(qfile -qvC ${FILE} )"
  			else
@@ -223,7 +206,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  			fi
  			# Ugly sed hack to strip version information
  			PKG="$(echo $EXACT_PKG | sed 's/-r[0-9].*$//;s/\(^.*\/*\)-.*$/\1/')"
-@@ -554,8 +598,8 @@
+@@ -554,8 +583,8 @@
  			do
  				# Get the slot
  				PKG="$(echo $EXACT_PKG | sed 's/-r[0-9].*$//;s/\(^.*\/*\)-.*$/\1/')"
@@ -234,7 +217,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  				# If SLOT is equal to 0, then just see what portage says is latest version
  				if [ "$SLOT" = "0" -o "x$OTHER_VERSIONS" = "x" ]
  				then
-@@ -564,24 +608,24 @@
+@@ -564,24 +593,24 @@
  					continue
  				fi
  				# Otherwise mask the other SLOTTED versions and check for latest
@@ -268,7 +251,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  				fi
  			done > $LLIST.4_ebuilds
  			echo -e " done.\n  ($LLIST.4_ebuilds)"
-@@ -600,8 +644,8 @@
+@@ -600,8 +629,8 @@
  	else
  		if [ -s "$LLIST.3_rebuild" ] ; then
  			set_trap "$LLIST.4_ebuilds"
@@ -279,7 +262,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  			echo -e " done.\n  ($LLIST.4_ebuilds)"
  		else
  			echo " Nothing to rebuild"
-@@ -626,8 +670,8 @@
+@@ -626,8 +655,8 @@
  			echo -e "Will merge in \"random\" order!${NO}"
  			echo "Possible reasons:"
  			echo "- An ebuild is no longer in the portage tree."
@@ -290,7 +273,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  			for i in . . . . . ; do
  				echo -n -e '\a.'
  				sleep 1
-@@ -641,8 +685,8 @@
+@@ -641,8 +670,8 @@
  				echo -e "Will merge in \"random\" order!${NO}"
  				echo "Possible reasons:"
  				echo "- An ebuild is no longer in the portage tree."
@@ -301,7 +284,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  				for i in . . . . . ; do
  					echo -n -e '\a.'
  					sleep 1
-@@ -704,7 +748,7 @@
+@@ -704,7 +733,7 @@
  exec 0<&6 6<&-
  
  #if $EXACT_EBUILDS ; then
@@ -310,7 +293,7 @@ diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit
  #	trap - SIGHUP SIGINT SIGQUIT SIGABRT SIGTERM
  #fi
  
-@@ -718,7 +762,7 @@
+@@ -718,7 +747,7 @@
  	echo "- use -X or --package-names as first argument (trys to rebuild package, not exact"
  	echo "  ebuild)"
  	echo "    or"

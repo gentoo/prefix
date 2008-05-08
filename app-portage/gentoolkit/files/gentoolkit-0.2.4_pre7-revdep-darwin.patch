@@ -1,0 +1,39 @@
+Only in gentoolkit-0.2.4_pre7: revdep.patch
+diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/99revdep-rebuild gentoolkit-0.2.4_pre7/src/revdep-rebuild/99revdep-rebuild
+--- gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/99revdep-rebuild	2007-09-14 16:03:13 +0200
++++ gentoolkit-0.2.4_pre7/src/revdep-rebuild/99revdep-rebuild	2007-09-14 16:25:21 +0200
+@@ -16,6 +16,7 @@
+ # Note: This file is sourced using bash by the revdep-rebuild script
+ 
+ LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so"
++LD_LIBRARY_MASK="${LD_LIBRARY_MASK} libodbcinst.dylib libodbc.dylib libjava.dylib libjvm.dylib"
+ SEARCH_DIRS="@GENTOO_PORTAGE_EPREFIX@/bin @GENTOO_PORTAGE_EPREFIX@/sbin @GENTOO_PORTAGE_EPREFIX@/usr/bin @GENTOO_PORTAGE_EPREFIX@/usr/sbin @GENTOO_PORTAGE_EPREFIX@/lib* @GENTOO_PORTAGE_EPREFIX@/usr/lib*"
+ SEARCH_DIRS_MASK=""
+ 
+diff -ur gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild gentoolkit-0.2.4_pre7/src/revdep-rebuild/revdep-rebuild
+--- gentoolkit-0.2.4_pre7.orig/src/revdep-rebuild/revdep-rebuild	2007-09-14 16:03:12 +0200
++++ gentoolkit-0.2.4_pre7/src/revdep-rebuild/revdep-rebuild	2007-09-14 16:25:21 +0200
+@@ -71,6 +71,23 @@
+ EROOT="${PORTAGE_ROOT%/}${EPREFIX}"
+ 
+ case `uname` in
++	Darwin )
++		SONAME_SUFFIX=".dylib"
++		function all_missing_libs_f () {
++			otool -L "$1" 2>/dev/null | sort -u | awk '/^\t/{if (system("test -e "$ 1) != 0) print $ 1;}' | tr '\n' ' ' | sed 's/ $//'
++		}
++		function ldd_f () {
++			otool -L "$1"
++		}
++		# FIXME!! I don't know how to check for required libs on Darwin
++		function required_libs_f () {
++			all_missing_libs_f $1
++		}
++		function search_lib_f () {
++			otool -L "$1" 2>/dev/null | sort -u | $2 "$3" | awk '{print $ 1}' | tr '\n' ' ' | sed 's/ $//'
++		}
++	;;
++
+ 	Linux)
+ 		SONAME_SUFFIX=".so"
+ 		function all_missing_libs_f () {
