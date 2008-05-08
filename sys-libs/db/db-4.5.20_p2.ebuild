@@ -48,9 +48,12 @@ src_unpack() {
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
 
+	cd dist || die "Cannot cd to 'dist'"
+
 	# need to upgrade local copy of libtool.m4 (named libtool.ac)
 	# for correct shared libs on aix (#213277).
-	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 dist/aclocal/libtool.ac || die "cannot update ${f}"
+	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.ac \
+	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
 	# but aclocal.m4 is created in ./s_config,
@@ -112,9 +115,6 @@ src_compile() {
 		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
-
-	# AIX's g++ doesn't grok large files (yet)
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --disable-largefile"
 
 	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
 		--prefix="${EPREFIX}"/usr \

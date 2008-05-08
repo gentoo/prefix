@@ -101,9 +101,6 @@ src_compile() {
 		append-ldflags -Wl,--default-symver
 	fi
 
-	# AIX's g++ doesn't grok large files (yet)
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --disable-largefile"
-
 	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
 		--prefix="${EPREFIX}"/usr \
 		--mandir="${EPREFIX}"/usr/share/man \
