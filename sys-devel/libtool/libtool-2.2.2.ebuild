@@ -51,6 +51,6 @@ src_install() {
 	done
 
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
-		rm -f "${x}" ; ln -sf /usr/share/gnuconfig/${x##*/} "${x}"
+		rm -f "${x}" ; ln -sf "${EPREFIX}"/usr/share/gnuconfig/${x##*/} "${x}"
 	done
 }
