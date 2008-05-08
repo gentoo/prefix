@@ -1,0 +1,12 @@
+diff -ur xfce4-netload-plugin-0.4.0.orig/panel-plugin/Makefile.am xfce4-netload-plugin-0.4.0/panel-plugin/Makefile.am
+--- xfce4-netload-plugin-0.4.0.orig/panel-plugin/Makefile.am	2005-09-30 10:53:07.000000000 +0300
++++ xfce4-netload-plugin-0.4.0/panel-plugin/Makefile.am	2007-01-21 23:09:59.000000000 +0200
+@@ -18,7 +18,7 @@
+ 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
+ 	@LIBXFCE4PANEL_CFLAGS@
+ 
+-xfce4_netload_plugin_LDFLAGS =						\
++xfce4_netload_plugin_LDADD =						\
+ 	@SOLLIBS@                                   			\
+ 	@LIBXFCE4PANEL_LIBS@
+ 
