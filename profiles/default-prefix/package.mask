@@ -34,6 +34,7 @@
 
 # Fabian Groffen <grobian@gentoo.org> (08 May 2008)
 # Still breaks several packages among which expat, see bug #220901
+# Consider un-masking when bug #212763 is resolved
 >=sys-devel/libtool-2.2
 
 # Fabian Groffen <grobian@gentoo.org> (05 May 2008)
