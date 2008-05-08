@@ -33,11 +33,12 @@ RDEPEND=">=dev-lang/python-2.4
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
-		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 		|| ( >=dev-lang/python-2.5 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
+# >=net-misc/rsync-2.6.4 not in !build? PDEPEND, since we don't use it in
+# Prefix (yet)
 # rsync-2.6.4 rdep is for the --filter option #167668
 SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
 
@@ -114,9 +115,9 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		--with-portage-user=${PORTAGE_USER:-portage} \
-		--with-portage-group=${PORTAGE_GROUP:-portage} \
-		--with-root-user=$(python -c 'from portage.const import rootuser; print rootuser') \
+		--with-portage-user="${PORTAGE_USER:-portage}" \
+		--with-portage-group="${PORTAGE_GROUP:-portage}" \
+		--with-root-user="$(python -c 'from portage.const import rootuser; print rootuser')" \
 		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
@@ -211,6 +212,26 @@ pkg_preinst() {
 			"${EPREFIX}"/var/lib/portage/world_sets
 		sed -i -e '/^@/d' "${EPREFIX}"/var/lib/portage/world
 	fi
+
+	einfo "converting NEEDED files to new syntax, please wait"
+	cd "${EROOT}/var/db/pkg"
+	for cpv in */*/NEEDED ; do
+		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.2 ]] ; then
+			while read line; do
+				filename=${line% *}
+				needed=${line#* }
+				install_name=$(otool -DX "${filename}")
+				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
+			done < "${cpv}"
+		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
+			while read line; do
+				filename=${line% *}
+				needed=${line#* }
+				newline=$(scanelf -BF "%a;%F;%S;$needed;%r" $filename)
+				echo "${newline:3}" >> "${cpv}".ELF.2
+			done < "${cpv}"
+		fi
+	done
 }
 
 pkg_postinst() {
