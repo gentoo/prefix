@@ -47,6 +47,21 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
+
+	cd dist || die "Cannot cd to 'dist'"
+
+	# need to upgrade local copy of libtool.m4
+	# for correct shared libs on aix (#213277).
+	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	|| die "cannot update libtool.ac from libtool.m4"
+
+	# need to upgrade ltmain.sh for AIX,
+	# but aclocal.m4 is created in ./s_config,
+	# and elibtoolize does not work when there is no aclocal.m4, so:
+	libtoolize --force --copy || die "libtoolize failed."
+	# now let shipped script do the autoconf stuff, it really knows best.
+	sh ./s_config || die "Cannot execute ./s_config"
+
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
 
 	# use the includes from the prefix
