@@ -1,0 +1,184 @@
+# ChangeLog for xfce-extra/xfce4-notes
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.47 2008/03/26 11:51:20 jer Exp $
+
+  26 Mar 2008; Jeroen Roovers <jer@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  Stable for HPPA (bug #214130).
+
+  24 Mar 2008; Raúl Porcel <armin76@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  ia64/sparc stable wrt #214130
+
+  22 Mar 2008; Brent Baude <ranger@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  Marking xfce4-notes-1.6.1 ppc64 for bug 214130
+
+  22 Mar 2008; nixnut <nixnut@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  Stable on ppc wrt bug 214130
+
+  21 Mar 2008; Tobias Klausmann <klausman@gentoo.org>
+  xfce4-notes-1.6.1.ebuild:
+  Stable on alpha, bug #214130
+
+  21 Mar 2008; Dawid Węgliński <cla@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  Stable on x86 (bug #214130)
+
+  20 Mar 2008; Samuli Suominen <drac@gentoo.org> xfce4-notes-1.6.1.ebuild:
+  amd64 stable
+
+*xfce4-notes-1.6.1 (24 Jan 2008)
+
+  24 Jan 2008; Christoph Mende <angelos@gentoo.org>
+  -files/notes_applet.c.patch, -xfce4-notes-1.4.1.ebuild,
+  +xfce4-notes-1.6.1.ebuild:
+  Version bump and remove old
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> xfce4-notes-1.6.0.ebuild:
+  Stable for HPPA (bug #201747).
+
+  12 Dec 2007; Brent Baude <ranger@gentoo.org> xfce4-notes-1.6.0.ebuild:
+  Marking xfce4-notes-1.6.0 ppc64 stable for bug 201747
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org> xfce4-notes-1.6.0.ebuild:
+  alpha/ia64/sparc stable wrt #201747
+
+  09 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xfce4-notes-1.6.0.ebuild:
+  ppc stable, bug #201747
+
+  09 Dec 2007; Dawid Węgliński <cla@gentoo.org> xfce4-notes-1.6.0.ebuild:
+  Stable on amd64/x86 (bug #201747)
+
+  28 Nov 2007; Christoph Mende <angelos@gentoo.org>
+  xfce4-notes-1.6.0.ebuild:
+  Added DOCS
+
+*xfce4-notes-1.6.0 (28 Nov 2007)
+
+  28 Nov 2007; Christoph Mende <angelos@gentoo.org>
+  +xfce4-notes-1.6.0.ebuild:
+  Version bump
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Stable on ppc64; bug #169987
+
+  12 Mar 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-notes-1.4.1.ebuild:
+  Stable on Alpha + IA64.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Keyworded ~x86-fbsd
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  10 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  xfce4-notes-0.10.0-r1.ebuild, -xfce4-notes-0.10.0-r2.ebuild:
+  Porting to Modular X.
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Stable for HPPA (bug #169987).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-notes-1.4.1.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-notes-1.4.1.ebuild:
+  Stable on sparc wrt #169987
+
+  03 Mar 2007; nixnut <nixnut@gentoo.org> xfce4-notes-0.10.0-r2.ebuild:
+  Stable on ppc wrt bug 154314
+
+  03 Mar 2007; Guy Martin <gmsoft@gentoo.org> xfce4-notes-0.10.0-r2.ebuild:
+  Stable on hppa
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-notes-0.10.0-r2.ebuild:
+  stable x86; bug 154314
+
+  25 Feb 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-notes-0.10.0-r2.ebuild:
+  Stable on ppc64; bug #154314
+
+  04 Feb 2007; Joshua Nichols <nichoj@gentoo.org> xfce4-notes-1.4.1.ebuild:
+  Updated to use final 4.4 release.
+
+*xfce4-notes-1.4.1 (22 Jan 2007)
+
+  22 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +xfce4-notes-1.4.1.ebuild:
+  Version bump.
+
+*xfce4-notes-1.4-r1 (21 Jan 2007)
+
+  21 Jan 2007; Joshua Nichols <nichoj@gentoo.org>
+  +files/xfce4-notes-1.4-asneeded.patch, +xfce4-notes-1.4-r1.ebuild:
+  Fixed compilation with --as-needed. Fix provided by Samuli Suominen
+  <sasuomin@uusikaupunki.fi> on bug #160295.
+
+  12 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  -xfce4-notes-0.9.7-r1.ebuild, -xfce4-notes-0.10.0.ebuild:
+  Pruned old versions with new versions with same or better keywords.
+
+*xfce4-notes-1.4 (10 Dec 2006)
+
+  10 Dec 2006; Joshua Nichols <nichoj@gentoo.org> +xfce4-notes-1.4.ebuild:
+  Version bump for XFCE 4.4. See bug #148007.
+
+  02 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  xfce4-notes-0.10.0-r2.ebuild:
+  ~x86-fbsd keyword added
+
+  18 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  xfce4-notes-0.10.0-r1.ebuild:
+  Mark 0.10.0-r1 stable on alpha
+
+*xfce4-notes-0.10.0-r2 (06 Oct 2005)
+
+  06 Oct 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-notes-0.10.0-r2.ebuild:
+  Xfce builds for new eclass and modular Xorg.
+
+  20 Jul 2005; Markus Rothe <corsair@gentoo.org>
+  xfce4-notes-0.10.0-r1.ebuild:
+  Stable on ppc64
+
+  07 Jul 2005; Daniel Ostrow <dostrow@gentoo.org>
+  xfce4-notes-0.9.7-r1.ebuild:
+  Stable on ppc and ppc64.
+
+*xfce4-notes-0.10.0-r1 (09 Apr 2005)
+
+  09 Apr 2005; Brad Cowan <bcowan@gentoo.org> +files/notes_applet.c.patch,
+  xfce4-notes-0.10.0.ebuild, +xfce4-notes-0.10.0-r1.ebuild:
+  Fix for bug #80478.
+
+  31 Jan 2005; lanius@gentoo.org xfce4-notes-0.10.0.ebuild:
+  stable on amd64
+
+  29 Jan 2005; Lars Weiler <pylon@gentoo.org> xfce4-notes-0.10.0.ebuild:
+  Stable on ppc.
+
+*xfce4-notes-0.10.0 (19 Jan 2005)
+
+  19 Jan 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-notes-0.10.0.ebuild:
+  Version bump.
+
+*xfce4-notes-0.9.7-r1 (06 Jan 2005)
+
+  06 Jan 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-notes-0.9.7-r1.ebuild:
+  Updated to use Xfce4 eclass.
+
+  19 Jun 2004; Jason Wever <weeve@gentoo.org> xfce4-notes-0.9.7.ebuild:
+  Stable on sparc.
+
+*xfce4-notes-0.9.7 (26 Oct 2003)
+
+  26 Oct 2003; Daniel Ahlberg <aliz@gentoo.org xfce4-notes-0.9.7.ebuild:
+  Version bump
+
+*xfce4-notes-0.9.6 (10 Oct 2003)
+
+  10 Oct 2003; Brad Cowan <bcowan@gentoo.org> xfce4-notes-0.9.6.ebuild:
+  Initial import.
+
