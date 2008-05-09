@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.16 2008/01/06 19:30:24 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.17 2008/05/07 16:07:57 hoffie Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -21,7 +21,7 @@ WANT_AUTOMAKE="latest"
 
 inherit php-ext-base-r1 flag-o-matic autotools depend.php
 
-EXPORT_FUNCTIONS src_compile src_install
+EXPORT_FUNCTIONS src_unpack src_compile src_install
 
 # @ECLASS-VARIABLE: PHP_EXT_NAME
 # @DESCRIPTION:
@@ -34,6 +34,30 @@ DEPEND=">=sys-devel/m4-1.4.3
 		>=sys-devel/libtool-1.5.18"
 RDEPEND=""
 
+
+# @FUNCTION: php-ext-source-r1_src_unpack
+# @DESCRIPTION:
+# Default src_unpack to allow for moving the phpize call to src_unpack
+# gracefully (we need to fix all ebuilds to explicitly run src_unpack if
+# they have their own)
+## Runs phpize and autotools in addition to the standard src_unpack
+##
+## @VARIABLE: PHP_EXT_SKIP_PHPIZE
+## @DESCRIPTION:
+## phpize will be run by default for all ebuilds that use php-ext-source-r1_src_compile.
+## Set PHP_EXT_SKIP_PHPIZE="yes" in your ebuild if you do not want to run phpize.
+php-ext-source-r1_src_unpack() {
+	unpack ${A}
+	cd "${S}"
+#	# Create configure out of config.m4
+#	if [[ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]] ; then
+#		${PHPIZE}
+#		# force run of libtoolize and regeneration of related autotools
+#		# files (bug 220519)
+#		rm aclocal.m4
+#		eautoreconf
+#	fi
+}
 
 # @FUNCTION: php-ext-source-r1_src_compile
 # @DESCRIPTION:

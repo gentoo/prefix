@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.11 2008/02/14 20:30:53 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.12 2008/05/07 14:54:34 cardoe Exp $
 
 # @ECLASS: nvidia-driver.eclass
-# @MAINTAINER: Doug Klima <cardoe@gentoo.org>
+# @MAINTAINER: <chainsaw@gentoo.org>
 #
-# Original Author: Doug Klima <cardoe@gentoo.org>
+# Original Author: Doug Goldstein <cardoe@gentoo.org>
 # @BLURB: Provide useful messages for nvidia-drivers based on currently installed Nvidia card
 # @DESCRIPTION:
 # Provide useful messages for nvidia-drivers based on currently installed Nvidia
