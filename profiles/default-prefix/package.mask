@@ -45,6 +45,7 @@ app-text/tetex
 # Please try, quite different ebuild, I don't dare to unleash this
 # untested
 =dev-util/subversion-1.5.0_rc4
+=dev-util/subversion-1.5.0_rc5
 
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
