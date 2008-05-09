@@ -1,6 +1,9 @@
 # ChangeLog for app-office/dia
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.104 2008/05/06 21:01:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.105 2008/05/07 18:50:06 corsair Exp $
+
+  07 May 2008; Markus Rothe <corsair@gentoo.org> dia-0.96.1-r1.ebuild:
+  Stable on ppc64; bug #191673
 
   06 May 2008; Jeroen Roovers <jer@gentoo.org> dia-0.96.1-r1.ebuild:
   Stable for HPPA (bug #191673).
