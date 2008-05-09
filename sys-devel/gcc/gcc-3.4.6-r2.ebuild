@@ -107,6 +107,9 @@ src_unpack() {
 	# Fix cross-compiling
 	epatch "${FILESDIR}"/3.4.4/gcc-3.4.4-cross-compile.patch
 
+	# http://gcc.gnu.org/PR20366
+	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
+
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/3.4.4/gcc-3.4.4-softfloat.patch
 
 	# Arch stuff
