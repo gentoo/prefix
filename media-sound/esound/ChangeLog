@@ -1,6 +1,18 @@
 # ChangeLog for media-sound/esound
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.111 2007/11/27 03:47:48 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.114 2008/05/07 09:04:31 remi Exp $
+
+  07 May 2008; Rémi Cardona <remi@gentoo.org>
+  -files/esound-0.2.37-cpu-drain.patch, -files/esound-0.2.37-debug.patch:
+  removing patches that are no longer used
+
+  07 May 2008; Rémi Cardona <remi@gentoo.org> -esound-0.2.36-r2.ebuild,
+  -esound-0.2.37.ebuild, -esound-0.2.37-r1.ebuild:
+  starting the spring cleaning, removing old ebuilds
+
+  07 May 2008; Rémi Cardona <remi@gentoo.org>
+  +files/esound-0.2.38-libtool-2.2.patch, esound-0.2.38-r1.ebuild:
+  add oneliner fix for libtool-2.2
 
   27 Nov 2007; Jeroen Roovers <jer@gentoo.org> esound-0.2.38-r1.ebuild:
   Stable for HPPA (bug #199322).
