@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libid3tag
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.39 2008/05/06 18:01:41 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.40 2008/05/07 18:46:14 corsair Exp $
+
+  07 May 2008; Markus Rothe <corsair@gentoo.org>
+  libid3tag-0.15.1b-r2.ebuild:
+  Stable on ppc64; bug #210564
 
   06 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   libid3tag-0.15.1b-r2.ebuild:
