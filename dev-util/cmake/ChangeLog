@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.71 2008/02/22 18:00:15 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.72 2008/05/08 15:53:11 cryos Exp $
+
+*cmake-2.6.0 (08 May 2008)
+
+  08 May 2008; Marcus D. Hanwell <cryos@gentoo.org>
+  +files/cmake-FindPythonLibs.patch, +cmake-2.6.0.ebuild:
+  Version bump, masked for now until it receives wider testing.
 
   22 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> -cmake-2.0.6-r1.ebuild,
   -cmake-2.4.3.ebuild, -cmake-2.4.4.ebuild, -cmake-2.4.5.ebuild,
