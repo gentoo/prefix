@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.1 2008/05/06 22:31:25 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.2 2008/05/07 12:41:39 lavajoe Exp $
 
 EAPI="prefix"
 
@@ -79,7 +79,7 @@ src_compile() {
 
 	emake	CC="$(tc-getCC)" CCOPTS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 			PREFIX="${EPREFIX}"/usr \
-			DOCDIR="${EPREFIX}/usr/share/doc/${P}" \
+			DOCDIR="${EPREFIX}/usr/share/doc/${PF}" \
 			LIBDIR="${T}" || die
 }
 
