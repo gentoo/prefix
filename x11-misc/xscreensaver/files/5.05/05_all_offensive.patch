@@ -1,6 +1,6 @@
-diff -ur xscreensaver-5.04.orig/hacks/barcode.c xscreensaver-5.04/hacks/barcode.c
---- xscreensaver-5.04.orig/hacks/barcode.c	2006-04-06 09:40:32.000000000 +0300
-+++ xscreensaver-5.04/hacks/barcode.c	2008-01-01 18:21:08.000000000 +0200
+diff -ur xscreensaver-5.05.orig/hacks/barcode.c xscreensaver-5.05/hacks/barcode.c
+--- xscreensaver-5.05.orig/hacks/barcode.c	2006-04-06 09:40:32.000000000 +0300
++++ xscreensaver-5.05/hacks/barcode.c	2008-05-07 20:49:16.000000000 +0300
 @@ -131,7 +131,6 @@
    "children",
    "chocolate",
@@ -26,9 +26,9 @@ diff -ur xscreensaver-5.04.orig/hacks/barcode.c xscreensaver-5.04/hacks/barcode.
    "victim",
    "vignette",
    "villainy",
-diff -ur xscreensaver-5.04.orig/hacks/glx/glsnake.c xscreensaver-5.04/hacks/glx/glsnake.c
---- xscreensaver-5.04.orig/hacks/glx/glsnake.c	2006-05-03 22:39:21.000000000 +0300
-+++ xscreensaver-5.04/hacks/glx/glsnake.c	2008-01-01 18:18:34.000000000 +0200
+diff -ur xscreensaver-5.05.orig/hacks/glx/glsnake.c xscreensaver-5.05/hacks/glx/glsnake.c
+--- xscreensaver-5.05.orig/hacks/glx/glsnake.c	2006-05-03 22:39:21.000000000 +0300
++++ xscreensaver-5.05/hacks/glx/glsnake.c	2008-05-07 20:49:16.000000000 +0300
 @@ -565,17 +565,17 @@
  	ZERO, PIN, ZERO, ZERO, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, ZERO,
  	ZERO, PIN, ZERO }

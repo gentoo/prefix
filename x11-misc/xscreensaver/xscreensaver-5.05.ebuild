@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.10 2008/04/20 02:30:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.11 2008/05/07 19:03:33 drac Exp $
 
 EAPI="prefix"
 
@@ -42,12 +42,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# phew, posted everything to upstream so lets
-	# see what version 5.06 brings us..
-	epatch "${FILESDIR}"/${PN}-5.04-gentoo.patch
-	epatch "${FILESDIR}"/${PN}-5.04-nsfw.patch
-	epatch "${FILESDIR}"/${P}-desktop-entry.patch
-	epatch "${FILESDIR}"/${P}-posix-head.patch
+	EPATCH_SUFFIX="patch" EPATCH_EXCLUDE="07_all_xinerama.patch" epatch	"${FILESDIR}"/${PV}
 	epatch "${FILESDIR}"/${P}-interix.patch
 	eautoreconf # bug 113681
 }

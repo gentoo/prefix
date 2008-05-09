@@ -1,6 +1,6 @@
 diff -ur xscreensaver-5.05.orig/driver/Makefile.in xscreensaver-5.05/driver/Makefile.in
 --- xscreensaver-5.05.orig/driver/Makefile.in	2008-03-02 07:34:46.000000000 +0200
-+++ xscreensaver-5.05/driver/Makefile.in	2008-03-02 16:07:29.000000000 +0200
++++ xscreensaver-5.05/driver/Makefile.in	2008-05-07 20:31:30.000000000 +0300
 @@ -498,7 +498,7 @@
  	     echo $(INSTALL_DIRS) "$(install_prefix)$(GTK_APPDIR)"	     ;\
  		  $(INSTALL_DIRS) "$(install_prefix)$(GTK_APPDIR)"	     ;\
@@ -21,9 +21,12 @@ diff -ur xscreensaver-5.05.orig/driver/Makefile.in xscreensaver-5.05/driver/Make
          fi
 diff -ur xscreensaver-5.05.orig/driver/screensaver-properties.desktop.in xscreensaver-5.05/driver/screensaver-properties.desktop.in
 --- xscreensaver-5.05.orig/driver/screensaver-properties.desktop.in	2008-01-27 01:16:59.000000000 +0200
-+++ xscreensaver-5.05/driver/screensaver-properties.desktop.in	2008-03-02 16:08:00.000000000 +0200
-@@ -6,3 +6,4 @@
++++ xscreensaver-5.05/driver/screensaver-properties.desktop.in	2008-05-07 20:31:51.000000000 +0300
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Exec=xscreensaver-demo
+-Icon=xscreensaver
++Icon=/usr/share/pixmaps/xscreensaver.xpm
+ Terminal=false
+ _Name=Screensaver
  _Comment=Change screensaver properties
- Type=Application
- Categories=Settings;DesktopSettings;Security;
-+NotShowIn=GNOME;

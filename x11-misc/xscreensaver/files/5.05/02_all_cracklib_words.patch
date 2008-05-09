@@ -1,0 +1,14 @@
+diff -ur xscreensaver-5.05.orig/hacks/webcollage xscreensaver-5.05/hacks/webcollage
+--- xscreensaver-5.05.orig/hacks/webcollage	2007-11-08 05:05:23.000000000 +0200
++++ xscreensaver-5.05/hacks/webcollage	2008-05-07 20:52:08.000000000 +0300
+@@ -860,7 +860,9 @@
+ 
+ 
+ sub pick_dictionary() {
+-  my @dicts = ("/usr/dict/words",
++  my @dicts = ("/usr/share/dict/cracklib-small",
++               "/usr/share/dict/cracklib-words",
++               "/usr/dict/words",
+                "/usr/share/dict/words",
+                "/usr/share/lib/dict/words");
+   foreach my $f (@dicts) {

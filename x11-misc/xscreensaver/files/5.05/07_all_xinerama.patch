@@ -1,0 +1,12 @@
+diff -ur xscreensaver-5.05.orig/driver/xscreensaver.c xscreensaver-5.05/driver/xscreensaver.c
+--- xscreensaver-5.05.orig/driver/xscreensaver.c	2008-03-01 06:05:12.000000000 +0200
++++ xscreensaver-5.05/driver/xscreensaver.c	2008-05-07 21:03:52.000000000 +0300
+@@ -816,7 +816,7 @@
+       if (i != j &&
+           xsi[i].screen_number >= 0 &&
+           xsi[j].screen_number >= 0 &&
+-          X1 >= X2 && Y1 >= Y2 && (X1+W1) <= (X2+W2) && (X1+H1) <= (X2+H2))
++          X1 >= X2 && Y1 >= Y2 && (X1+W1) <= (X2+W2) && (Y1+H1) <= (Y2+H2))
+         {
+           sprintf (err, "%dx%d+%d+%d enclosed by %dx%d+%d+%d",
+                    W1, H1, X1, Y1,

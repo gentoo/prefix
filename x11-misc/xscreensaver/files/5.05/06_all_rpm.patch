@@ -1,0 +1,46 @@
+diff -ur xscreensaver-5.05.orig/configure.in xscreensaver-5.05/configure.in
+--- xscreensaver-5.05.orig/configure.in	2008-03-02 00:14:30.000000000 +0200
++++ xscreensaver-5.05/configure.in	2008-05-07 20:53:26.000000000 +0300
+@@ -4169,41 +4169,7 @@
+ # Now let's warn if there's a previous RPM version already installed.
+ # But don't bother with this test if we are currently *building* an RPM.
+ 
+-if test -z "$RPM_PACKAGE_VERSION" ; then
+-
+-  rpmnames="xscreensaver xscreensaver-base xscreensaver-extras"
+-
+-  # M4 sucks!!
+-  changequote(X,Y)
+-  rpmv=`(rpm -qv $rpmnames) 2>/dev/null | \
+-        sed -n 's/^[-a-z]*-\([0-9][0-9]*[.][0-9][0-9a-z]*\)-.*$/\1/p' | \
+-        head -1`
+-  changequote([,])
+-
+-  if test \! -z "$rpmv" ; then
+-    rpmbdir=`rpm -ql $rpmnames | sed -n 's@^\(.*\)/xscreensaver-demo$@\1@p'`
+-    rpmhdir=`rpm -ql $rpmnames | sed -n 's@^\(.*\)/attraction$@\1@p'`
+-
+-    warning=no
+-    warnL "There is already an installed RPM of xscreensaver $rpmv"
+-    warn2 'on this system.  You might want to remove it ("rpm -ve")'
+-    warn2 'before running "make install" in this directory.'
+-    echo ""
+-    warn2 "Alternately, you could build this version of xscreensaver"
+-    warn2 'as an RPM, and then install that.  An "xscreensaver.spec"'
+-    warn2 'file is included.  Try "rpmbuild -v -ba xscreensaver.spec".'
+-    warn2 "See the RPM documentation for more info."
+-    echo ""
+-
+-    if test "$rpmbdir" = "$rpmhdir" ; then
+-      warn2 "The RPM version was installed in $rpmbdir/."
+-      do_dir_warning=yes
+-    else
+-      warn2 "The RPM version was installed in $rpmbdir/,"
+-      warn2 "with demos in $rpmhdir/."
+-    fi
+-  fi
+-fi
++# Nope - breaks compilation with sandbox violation
+ 
+ if test "${bindir}" = "${HACKDIR}" ; then
+   do_dir_warning=yes

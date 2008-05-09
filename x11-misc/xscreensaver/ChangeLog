@@ -1,6 +1,19 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.232 2008/04/02 17:48:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.234 2008/05/07 19:06:28 drac Exp $
+
+*xscreensaver-5.05-r1 (07 May 2008)
+
+  07 May 2008; Samuli Suominen <drac@gentoo.org>
+  +files/5.05/01_all_default_settings.patch,
+  +files/5.05/03_all_desktop_entry.patch,
+  +files/5.05/05_all_offensive.patch,
+  +files/5.05/02_all_cracklib_words.patch,
+  +files/5.05/04_all_posix_head.patch, +files/5.05/06_all_rpm.patch,
+  +files/5.05/07_all_xinerama.patch, +xscreensaver-5.05-r1.ebuild:
+  Remove NotShowIn=GNOME; and use xscreensaver.xpm for unique appearance in
+  desktop entry. Split -5.04-gentoo.patch into separate patches. Add
+  directory for cracklib-words. Fix bug with Xinerama wrt #219172.
 
   02 Apr 2008; Raúl Porcel <armin76@gentoo.org> xscreensaver-5.05.ebuild:
   ia64 stable

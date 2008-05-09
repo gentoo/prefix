@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.04-r1.ebuild,v 1.8 2008/04/20 02:30:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05-r1.ebuild,v 1.1 2008/05/07 19:03:33 drac Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils fixheadtails flag-o-matic multilib pam
+inherit autotools eutils flag-o-matic multilib pam
 
 DESCRIPTION="A modular screen saver and locker for the X Window System"
 SRC_URI="http://www.jwz.org/xscreensaver/${P}.tar.gz"
@@ -12,10 +12,16 @@ HOMEPAGE="http://www.jwz.org/xscreensaver"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
 IUSE="jpeg new-login opengl pam suid xinerama"
 
-RDEPEND="x11-libs/libXxf86misc
+RDEPEND="x11-libs/libXmu
+	x11-libs/libXxf86vm
+	x11-libs/libXrandr
+	x11-libs/libXxf86misc
+	x11-libs/libXt
+	x11-libs/libX11
+	x11-libs/libXext
 	x11-apps/xwininfo
 	x11-apps/appres
 	media-libs/netpbm
@@ -42,21 +48,22 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-gentoo.patch
-	epatch "${FILESDIR}"/${P}-nsfw.patch
-	epatch "${FILESDIR}"/${P}-desktop-entry.patch
-	epatch "${FILESDIR}"/${P}-build.patch
-	eautoreconf
-	ht_fix_all
+	EPATCH_SUFFIX="patch" epatch "${FILESDIR}"/${PV}
+	epatch "${FILESDIR}"/${P}-interix.patch
+	eautoreconf # bug 113681
 }
 
 src_compile() {
-	# Simple workaround for the ppc* arches flurry screensaver, needed for <=5.04
-	filter-flags -mabi=altivec
-	filter-flags -maltivec
-	append-flags -U__VEC__
+	if use ppc || use ppc64; then
+		# Still fails to build "flurry" screensaver.
+		filter-flags -mabi=altivec
+		filter-flags -maltivec
+		append-flags -U__VEC__
+	fi
 
 	unset BC_ENV_ARGS
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf \
 		--with-x-app-defaults="${EPREFIX}"/usr/share/X11/app-defaults \
@@ -67,6 +74,7 @@ src_compile() {
 		--with-dpms-ext \
 		--with-xf86vmode-ext \
 		--with-xf86gamma-ext \
+		--with-randr-ext \
 		--with-proc-interrupts \
 		--with-xpm \
 		--with-xshm-ext \
@@ -82,21 +90,19 @@ src_compile() {
 		$(use_with opengl gl) \
 		$(use_with jpeg)
 
-	# Bug 155049.
-	emake -j1 || die "emake failed."
+	emake -j1 || die "emake failed." # bug 155049
 }
 
 src_install() {
 	emake install_prefix="${D}" install || die "emake install failed."
 
-	dodoc README*
+	dodoc README{,.hacking}
 
 	use pam && fperms 755 /usr/bin/${PN}
 	pamd_mimic_system ${PN} auth
 
-	# Bug 135549.
-	rm -f "${ED}"/usr/share/${PN}/config/electricsheep.xml
-	rm -f "${ED}"/usr/share/${PN}/config/fireflies.xml
+	# bug 135549
+	rm -f "${ED}"/usr/share/${PN}/config/{electricsheep,fireflies}.xml
 	dodir /usr/share/man/man6x
 	mv "${ED}"/usr/share/man/man6/worm.6 \
 		"${ED}"/usr/share/man/man6x/worm.6x
