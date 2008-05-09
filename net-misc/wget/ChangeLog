@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.97 2008/05/06 16:02:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.98 2008/05/07 20:54:13 maekke Exp $
+
+  07 May 2008; Markus Meier <maekke@gentoo.org> wget-1.11.1.ebuild:
+  amd64 stable, bug #220569
 
   06 May 2008; Brent Baude <ranger@gentoo.org> wget-1.11.1.ebuild:
   stable ppc, bug 220569
