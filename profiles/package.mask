@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8556 2008/05/05 20:47:35 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8562 2008/05/08 15:47:44 cryos Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,26 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Marcus D. Hanwell <cryos@gentoo.org> (08 May 2008)
+# Masking new version until it has received a little more testing
+~dev-util/cmake-2.6.0
+
+# Tony Vroon <chainsaw@gentoo.org> (29 Jan 2008)
+# Beta driver, unsupported by nVidia
+~x11-drivers/nvidia-drivers-173.08
+
+# Gilles Dartiguelongue <eva@gentoo.org> (08 May 2008)
+# Masked for removal on 8 June 2008.
+# Builds but as issues here and there.
+# Not bumpable without fixing dead libs.
+# See bug #216566.
+gnome-extra/shermans-aquarium
+
+# Michael Sterrett <mr_bones_@gentoo.org> (05 May 2008)
+# masked until bug #217901 is fixed, again.
+# Still has broken deps and missing license.
+games-server/greenhouse
 
 # Samuli Suominen <drac@gentoo.org> (05 May 2008)
 # Masked for removal by treecleaners wrt bug 212331
@@ -207,10 +227,6 @@ media-sound/lastfmproxy
 # Masked for removal on April the 25th (#174109).
 # Use net-proxy/privoxy instead.
 net-proxy/junkbuster
-
-# Rémi Cardona <remi@gentoo.org> (10 Apr 2008)
-# Masked until all deps are in portage
-=gnome-base/gnome-2.22.1
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing
@@ -1062,6 +1078,7 @@ sys-kernel/hppa-sources
 # These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
 # much less stable, so I am masking them for now.
 =www-client/opera-9.50_beta2_pre*
+=www-client/opera-9.50_pre*
 
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
 # Brokeness in these
@@ -1082,11 +1099,6 @@ dev-db/monetdb
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
 # You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
 dev-lang/ghc-bin
-
-# Steve Dibb <beandog@gentoo.org> (01 Nov 2007)
-# Forked version of libdvdnav provided by upstream MPlayer
-# May work for you.  May not.
->=media-libs/libdvdnav-4.1.1
 
 # Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
 # beta NVIDIA drivers, not supported. bug #196679

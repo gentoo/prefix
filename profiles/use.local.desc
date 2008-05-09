@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3529 2008/05/06 14:27:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3534 2008/05/08 13:57:00 eva Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -411,6 +411,8 @@ dev-java/gnu-classpath:dssi - Enable the DSSI midi synthesizer provider
 dev-java/gnu-classpath:gconf - Enable the GConf based util.peers backend
 dev-java/groovy:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/ibm-jdk-bin:javacomm - Enable Java Communications API support
+dev-java/itext:rtf - Build and provide libraries for rich text format
+dev-java/itext:rups - Build and provide GUI for Reading/Updating PDF Syntax
 dev-java/jamvm:libffi - use dev-libs/libffi to call native methods
 dev-java/jcs:admin - Enable JCS Admin servlets
 dev-java/jdbc-jaybird:jni - Build/Install JDBC Type 2 native components
@@ -766,6 +768,7 @@ gnome-extra/gnome-do-plugins:amarok - Build the plugin for Amarok
 gnome-extra/gnome-games:artworkextra - Add extra Artwork to gnome-games
 gnome-extra/libgda:mdb - Enable Microsoft Access DB support for GnomeDB.
 gnome-extra/libgda:xbase - Enable support for xbase databases (dBase, FoxPro, etc)
+gnome-extra/gnome-media:gnomecd - Build gnome cd player
 gnome-extra/nautilus-sendto:gajim - Enable support for gajim client
 gnome-extra/nautilus-sendto:pidgin - Enable support for pidgin
 gnome-extra/nautilus-sendto:sylpheed - Enable support for sylpheed mail client
@@ -1746,7 +1749,6 @@ net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
 net-p2p/museek+:trayicon - Enable support for trayicon
-net-p2p/transmission:daemon - Enable data collection daemon
 net-print/hplip:fax - Enable fax support
 net-print/hplip:parport - Enable parallel port support
 net-print/omni:epson - include the epson drivers

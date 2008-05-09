@@ -1,6 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1386 2008/05/05 13:33:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1391 2008/05/08 13:57:00 eva Exp $
+
+  08 May 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add gnomecd USE flag for gnome-media, bug #200502.
+
+  08 May 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  pmask gnome-extra/shermans-aquarium, remove gnome-2.22.1 meta mask.
+
+  07 May 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask non-beta www-client/opera-9.50 snapshots too.
+
+  07 May 2008; <chainsaw@gentoo.org> package.mask:
+  Mask new ebuild x11-drivers/nvidia-drivers-173.08, it is an unsupported
+  beta.
+
+  07 May 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  +arch/m68k/package.mask, hardened/linux/powerpc/package.mask:
+  Masking openrc on new profiles where it requires a newer glibc than
+  supported.
 
   05 May 2008; Mike Frysinger <vapier@gentoo.org> package.mask:
   Drop libtool-2.2 mask so we can actually find broken packages instead of
