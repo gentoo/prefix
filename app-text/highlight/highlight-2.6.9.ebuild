@@ -31,21 +31,21 @@ src_unpack() {
 }
 
 src_compile() {
-	emake -f makefile CXX="$(tc-getCXX)" all || die "emake all failed."
+	emake -f makefile PREFIX="${EPREFIX}" CXX="$(tc-getCXX)" all || die "emake all failed."
 	if use wxwindows; then
 		need-wxwidgets ansi
-		emake -f makefile CXX="$(tc-getCXX)" all-gui || die "emake all-gui failed."
+		emake -f makefile PREFIX="${EPREFIX}" CXX="$(tc-getCXX)" all-gui || die "emake all-gui failed."
 	fi
 }
 
 src_install() {
 	dodir /usr/bin
 	emake -f makefile \
-		DESTDIR="${D}" \
+		DESTDIR="${D}" PREFIX="${EPREFIX}" \
 		install || die "emake install failed."
 	if use wxwindows; then
 		emake -f makefile \
-			DESTDIR="${D}" \
+			DESTDIR="${D}" PREFIX="${EPREFIX}" \
 			install-gui || die "emake install-gui failed."
 	fi
 }
