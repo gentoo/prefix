@@ -1,6 +1,55 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.58 2008/05/06 22:09:30 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.59 2008/05/07 21:32:00 hkbst Exp $
+
+*guile-1.8.5 (07 May 2008)
+
+  07 May 2008; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.5.ebuild:
+  bump:
+  - Infrastructure changes
+
+    - Guile repository switched from CVS to Git
+    - Add support for `pkg-config'
+
+  - New modules (see the manual for details)
+
+    - `(srfi srfi-88)'
+
+  - New features (see the manual for details)
+
+    - New `postfix' read option, for SRFI-88 keyword syntax
+    - Some I/O primitives have been inlined, which improves I/O performance
+    - New object-based traps infrastructure
+    - New support for working on Guile code from within Emacs
+
+  - Bugs fixed
+
+    - `scm_add_slot ()' no longer segfaults (fixes bug #22369)
+    - Fixed `(ice-9 match)' for patterns like `((_ ...) ...)'
+    - `(oop goops describe)' now properly provides the `describe' feature
+    - Fixed `args-fold' from `(srfi srfi-37)'
+    - `(srfi srfi-35)' is now visible through `cond-expand'
+    - Fixed type-checking for the second argument of `eval'
+    - Fixed type-checking for SRFI-1 `partition'
+    - Fixed `struct-ref' and `struct-set!' on "light structs"
+    - Honor struct field access rights in GOOPS
+    - Changed the storage strategy of source properties, which fixes
+      a deadlock
+    - Allow compilation of Guile-using programs in C99 mode with GCC 4.3
+      and later
+    - Fixed build issue for GNU/Linux on IA64
+    - Fixed build issues on NetBSD 1.6
+    - Fixed build issue on Solaris 2.10 x86_64
+    - Fixed build issue with DEC/Compaq/HP's compiler
+    - Fixed `scm_from_complex_double' build issue on FreeBSD
+    - Fixed `alloca' build issue on FreeBSD 6
+    - Removed use of non-portable makefile constructs
+    - Fixed shadowing of libc's <random.h> on Tru64, which broke compilation
+    - Make sure all tests honor `$TMPDIR'
+
+  - Changes to the distribution
+
+    - New FAQ
 
   06 May 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.4-r1.ebuild:
   add new fix for libtool-2.2.4, thanks to Panagiotis Christopoulos
