@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnomeui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.154 2008/04/09 23:00:34 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.155 2008/05/07 05:06:51 dirtyepic Exp $
+
+  07 May 2008; Ryan Hill <dirtyepic@gentoo.org> libgnomeui-2.22.1.ebuild:
+  Keyword for mips.
 
 *libgnomeui-2.22.1 (09 Apr 2008)
 
