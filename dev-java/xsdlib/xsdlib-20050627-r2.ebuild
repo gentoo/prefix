@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/xsdlib-20050627-r2.ebuild,v 1.3 2008/05/01 15:50:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xsdlib/xsdlib-20050627-r2.ebuild,v 1.5 2008/05/08 16:12:08 opfer Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
@@ -22,6 +22,8 @@ RDEPEND=">=virtual/jre-1.4
 DEPEND=">=virtual/jdk-1.4
 	app-arch/unzip
 	${RDEPEND}"
+
+JAVA_PKG_FILTER_COMPILER="jikes"
 
 src_unpack() {
 	unpack ${A}
