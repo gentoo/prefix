@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/DateManip-5.50.ebuild,v 1.2 2008/05/07 16:58:12 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/DateManip-5.52.ebuild,v 1.1 2008/05/09 13:13:11 tove Exp $
 
 EAPI="prefix"
 
@@ -17,11 +17,8 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux 
 IUSE=""
 
 RDEPEND="dev-lang/perl"
-DEPEND="${RDEPEND}"
-#	dev-perl/module-build"
-
-# Build.PL doesn't work with 5.50
-PREFER_BUILDPL=no
+DEPEND="${RDEPEND}
+	dev-perl/module-build"
 
 S=${WORKDIR}/Date-Manip-${PV}
 
