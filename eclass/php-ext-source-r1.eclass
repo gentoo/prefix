@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.17 2008/05/07 16:07:57 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.19 2008/05/09 13:02:04 hoffie Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -37,36 +37,37 @@ RDEPEND=""
 
 # @FUNCTION: php-ext-source-r1_src_unpack
 # @DESCRIPTION:
-# Default src_unpack to allow for moving the phpize call to src_unpack
-# gracefully (we need to fix all ebuilds to explicitly run src_unpack if
-# they have their own)
-## Runs phpize and autotools in addition to the standard src_unpack
-##
-## @VARIABLE: PHP_EXT_SKIP_PHPIZE
-## @DESCRIPTION:
-## phpize will be run by default for all ebuilds that use php-ext-source-r1_src_compile.
-## Set PHP_EXT_SKIP_PHPIZE="yes" in your ebuild if you do not want to run phpize.
+# runs standard src_unpack + _phpize
+#
+# @VARIABLE: PHP_EXT_SKIP_PHPIZE
+# @DESCRIPTION:
+# phpize will be run by default for all ebuilds that use
+# php-ext-source-r1_src_unpack
+# Set PHP_EXT_SKIP_PHPIZE="yes" in your ebuild if you do not want to run phpize.
 php-ext-source-r1_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-#	# Create configure out of config.m4
-#	if [[ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]] ; then
-#		${PHPIZE}
-#		# force run of libtoolize and regeneration of related autotools
-#		# files (bug 220519)
-#		rm aclocal.m4
-#		eautoreconf
-#	fi
+	if [[ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]] ; then
+		php-ext-source-r1_phpize
+	fi
+}
+
+# @FUNCTION php-ext-source-r1_phpize
+# @DESCRIPTION:
+# Runs phpize and autotools in addition to the standard src_unpack
+php-ext-source-r1_phpize() {
+	has_php
+	# Create configure out of config.m4
+	${PHPIZE}
+	# force run of libtoolize and regeneration of related autotools
+	# files (bug 220519)
+	rm aclocal.m4
+	eautoreconf
 }
 
 # @FUNCTION: php-ext-source-r1_src_compile
 # @DESCRIPTION:
 # Takes care of standard compile for PHP extensions (modules).
-
-# @VARIABLE: PHP_EXT_SKIP_PHPIZE
-# @DESCRIPTION:
-# phpize will be run by default for all ebuilds that use php-ext-source-r1_src_compile.
-# Set PHP_EXT_SKIP_PHPIZE="yes" in your ebuild if you do not want to run phpize.
 
 # @VARIABLE: my_conf
 # @DESCRIPTION:
@@ -79,11 +80,6 @@ php-ext-source-r1_src_compile() {
 
 	# Set the correct config options
 	my_conf="--prefix=${PHPPREFIX} --with-php-config=${PHPCONFIG} ${my_conf}"
-
-	# Create configure out of config.m4
-	if [[ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]] ; then
-		${PHPIZE}
-	fi
 
 	# Concurrent PHP Apache2 modules support
 	if has_concurrentmodphp ; then

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.96 2008/04/30 17:37:42 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.97 2008/05/09 07:18:19 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -25,19 +25,6 @@
 # mandir in x-modular_src_install() or add it back in if it's no longer
 # there. You may also want to change the SLOT.
 XDIR="${EPREFIX}/usr"
-
-# Set up default patchset version(s) if necessary
-# x11-driver-patches
-if [[ -z "${XDPVER}" ]]; then
-# @ECLASS-VARIABLE: XDPVER
-# @DESCRIPTION:
-# Set up default patchset version(s) if necessary for driver patches. If
-# you want to change the auto-application of the driver patchset or
-# prevent it from applying, edit XDPVER in the ebuild. Set it to -1 to
-# prevent patch application or positive integers for that patch version.
-# Set before inheriting this eclass.
-	XDPVER="1"
-fi
 
 IUSE=""
 HOMEPAGE="http://xorg.freedesktop.org/"
@@ -157,12 +144,6 @@ fi
 if [[ "${PN/#xf86-video}" != "${PN}" ]] || [[ "${PN/#xf86-input}" != "${PN}" ]]; then
 	# Enable driver code in the rest of the eclass
 	DRIVER="yes"
-
-	if [[ ${XDPVER} != -1 ]]; then
-		# Add driver patchset to SRC_URI
-		SRC_URI="${SRC_URI}
-			mirror://gentoo/x11-driver-patches-${XDPVER}.tar.bz2"
-	fi
 fi
 
 # Debugging -- ignore packages that can't be built with debugging
@@ -269,14 +250,6 @@ x-modular_patch_source() {
 	# See epatch() in eutils.eclass for more documentation
 	if [[ -z "${EPATCH_SUFFIX}" ]] ; then
 		EPATCH_SUFFIX="patch"
-	fi
-
-	# If this is a driver package we need to fix man page install location.
-	# Running autoreconf will use the patched util-macros to make the
-	# change for us, so we only need to patch if it is not going to run.
-	if [[ -n "${DRIVER}" ]] && [[ "${SNAPSHOT}" != "yes" ]]\
-		&& [[ ${XDPVER} != -1 ]]; then
-		PATCHES="${PATCHES} ${DISTDIR}/x11-driver-patches-${XDPVER}.tar.bz2"
 	fi
 
 # @VARIABLE: PATCHES
