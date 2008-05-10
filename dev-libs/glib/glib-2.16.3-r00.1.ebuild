@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.2.ebuild,v 1.1 2008/04/02 19:18:04 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3.ebuild,v 1.1 2008/04/09 23:59:43 leio Exp $
 
 EAPI="prefix"
 
@@ -57,6 +57,9 @@ src_unpack() {
 
 	# add support for reading file systems on interix.
 	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
+
+	# properly keep symbols inside; bug #221075
+	epatch "${FILESDIR}"/${P}-macos-inline.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
