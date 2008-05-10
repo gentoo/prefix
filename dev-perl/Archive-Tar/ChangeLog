@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Archive-Tar
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.89 2008/03/19 02:37:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.90 2008/05/09 15:09:13 tove Exp $
+
+  09 May 2008; Torsten Veller <tove@gentoo.org> Archive-Tar-1.32.ebuild,
+  Archive-Tar-1.38.ebuild:
+  #221083 - Remove >=virtual/perl-Test-Harness-2.26 from DEPEND
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Archive-Tar-1.32.ebuild:
   Stable for HPPA too.

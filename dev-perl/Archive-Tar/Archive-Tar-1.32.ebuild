@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/Archive-Tar-1.32.ebuild,v 1.11 2008/03/19 02:37:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/Archive-Tar-1.32.ebuild,v 1.12 2008/05/09 15:09:13 tove Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ IUSE=""
 
 DEPEND="dev-perl/IO-Zlib
 	dev-perl/IO-String
-	>=virtual/perl-Test-Harness-2.26
 	dev-lang/perl"
 
 SRC_TEST="do"
