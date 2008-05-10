@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/perl
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.262 2007/11/19 09:55:56 ian Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.263 2008/05/09 11:11:59 tove Exp $
+
+*perl-5.8.8-r5 (09 May 2008)
+
+  09 May 2008; Torsten Veller <tove@gentoo.org>
+  +files/perl-5.8.8-CVE-2008-1927.patch, +perl-5.8.8-r5.ebuild:
+  #219203 - Fix for CVE-2008-1927
 
 *perl-5.8.8-r4 (19 Nov 2007)
 
