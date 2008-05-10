@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.3-r1.ebuild,v 1.1 2008/04/28 23:42:54 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.3-r2.ebuild,v 1.2 2008/05/09 20:42:50 ulm Exp $
 
 EAPI="prefix"
 
-inherit eutils elisp-common multilib wxwidgets flag-o-matic
+inherit autotools elisp-common eutils multilib wxwidgets flag-o-matic
 
 MY_P="${P/_/.}"
 
@@ -67,8 +67,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch
 	# Don't store resource files in deprecated location, reported upstream:
 	# http://sourceforge.net/tracker/index.php?func=detail&aid=1953742&group_id=2055&atid=102055
-	epatch "${FILESDIR}"/${P}-app-defaults-prefix.patch
-	eprefixify src/gplt_x11.c
+	epatch "${FILESDIR}"/${P}-app-defaults.patch
+
+	eautoreconf
 }
 
 src_compile() {
