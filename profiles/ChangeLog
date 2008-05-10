@@ -1,6 +1,15 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1391 2008/05/08 13:57:00 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1393 2008/05/09 20:28:56 leio Exp $
+
+  09 May 2008; Mart Raudsepp <leio@gentoo.org> updates/2Q-2008:
+  Move x11-drivers/xf86-video-amd to xf86-video-geode for a painless
+  migration from upstream rename together with bump
+
+  09 May 2008; Mart Raudsepp <leio@gentoo.org> arch/x86/use.mask,
+  base/use.mask, default-linux/x86/use.mask:
+  Mask video_cards_geode USE flag on all platforms but x86, as it is a video
+  card integrated into the Geode GX/LX CPU chip, which is x86.
 
   08 May 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
   add gnomecd USE flag for gnome-media, bug #200502.
