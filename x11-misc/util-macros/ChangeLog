@@ -1,6 +1,12 @@
 # ChangeLog for x11-misc/util-macros
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.58 2008/03/10 03:02:01 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.59 2008/05/09 07:20:14 dberkholz Exp $
+
+*util-macros-1.1.6-r1 (09 May 2008)
+
+  09 May 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +util-macros-1.1.6-r1.ebuild:
+  (#219581) Stop applying driver patch to install manpages to 4x.
 
 *util-macros-1.1.6 (10 Mar 2008)
 
