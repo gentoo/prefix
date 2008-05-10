@@ -1,6 +1,12 @@
 # ChangeLog for x11-apps/xkbcomp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/ChangeLog,v 1.45 2008/03/10 01:58:56 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/ChangeLog,v 1.46 2008/05/09 07:56:03 dberkholz Exp $
+
+*xkbcomp-1.0.5 (09 May 2008)
+
+  09 May 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xkbcomp-1.0.5.ebuild:
+  Bump.
 
 *xkbcomp-1.0.4 (10 Mar 2008)
 
