@@ -1,6 +1,5 @@
-diff -ru perl-5.8.8.orig/lib/File/Find.pm perl-5.8.8/lib/File/Find.pm
---- perl-5.8.8.orig/lib/File/Find.pm	Mon Mar 24 13:27:30 2008
-+++ perl-5.8.8/lib/File/Find.pm	Mon Mar 24 13:29:35 2008
+--- perl-5.8.8/lib/File/Find.pm
++++ perl-5.8.8/lib/File/Find.pm
 @@ -1252,7 +1252,7 @@
  $File::Find::dont_use_nlink = 1
      if $^O eq 'os2' || $^O eq 'dos' || $^O eq 'amigaos' || $^O eq 'MSWin32' ||

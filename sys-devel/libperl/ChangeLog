@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/libperl
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.127 2007/08/06 16:34:27 truedfx Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.128 2008/05/09 11:04:54 tove Exp $
+
+*libperl-5.8.8-r2 (09 May 2008)
+
+  09 May 2008; Torsten Veller <tove@gentoo.org>
+  +files/libperl-5.8.8-CVE-2008-1927.patch,
+  +files/libperl-5.8.8-utf8-boundary.patch, +libperl-5.8.8-r2.ebuild:
+  #219203 - Version bump. Added patch from bug #198196. Apply
+  libperl-5.8.8-lib64.patch for ppc64 too like dev-lang/perl-5.8.8.
 
   06 Aug 2007; <truedfx@gentoo.org>
   +files/libperl-5.8.8-makedepend-syntax.patch, libperl-5.8.8-r1.ebuild:
