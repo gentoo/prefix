@@ -1,6 +1,13 @@
 # ChangeLog for app-portage/ufed
 # Copyright 2003-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.61 2008/04/28 16:37:38 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.62 2008/05/10 16:27:40 truedfx Exp $
+
+*ufed-0.40-r9 (10 May 2008)
+
+  10 May 2008; Harald van Dĳk <truedfx@gentoo.org>
+  +files/ufed-0.40-multiple-inheritance.patch, -ufed-0.40-r7.ebuild,
+  +ufed-0.40-r9.ebuild:
+  Handle multiple parent profiles, bug #221151
 
 *ufed-0.40-r8 (28 Apr 2008)
 
