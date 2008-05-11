@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r2.ebuild,v 1.9 2008/05/08 10:41:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r3.ebuild,v 1.1 2008/05/10 08:54:21 ulm Exp $
 
 EAPI="prefix"
 
@@ -69,12 +69,6 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-freebsd-libiconv.patch"
 	epatch "${FILESDIR}"/${P}-List.c-compile.patch
 
-	cp "${FILESDIR}"/motif-config-2.3 "${T}"/
-	pushd "${T}" > /dev/null
-	epatch "${FILESDIR}"/motif-config-2.3-prefix.patch
-	eprefixify motif-config-2.3
-	popd > /dev/null
-
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
 
@@ -113,9 +107,6 @@ src_compile() {
 
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "emake install failed"
-
-	newbin "${T}"/motif-config-2.3 motif-config
-	dosed "s:@@LIBDIR@@:$(get_libdir):g" /usr/bin/motif-config
 
 	# mwm default configs
 	insinto /usr/share/X11/app-defaults
