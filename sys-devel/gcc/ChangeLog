@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.647 2008/04/20 09:28:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.648 2008/05/10 11:57:06 vapier Exp $
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild:
+  Drop ia64 libunwind patch and fix ice on ppc building mplayer.
 
   20 Apr 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild:
   Revert cld behavior (for now), add back GNU-stack fixes for libffi, and add
