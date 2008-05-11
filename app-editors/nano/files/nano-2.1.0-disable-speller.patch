@@ -1,0 +1,19 @@
+fix building with --disable-speller
+
+http://bugs.gentoo.org/221219
+https://savannah.gnu.org/bugs/index.php?23227
+
+--- src/global.c
++++ src/global.c
+@@ -1033,9 +1033,11 @@ void shortcut_init(bool unjustify)
+     add_to_sclist(MMAIN, "^C", do_cursorpos_void, 0, TRUE);
+     add_to_sclist(MMAIN, "F11", do_cursorpos_void, 0, TRUE);
+ #ifndef NANO_TINY
++#ifndef DISABLE_SPELLER
+     add_to_sclist(MMAIN, "^T", do_spell, 0, TRUE);
+     add_to_sclist(MMAIN, "F12", do_spell, 0, TRUE);
+ #endif
++#endif
+     add_to_sclist(MMAIN, "^_", do_gotolinecolumn_void, 0, TRUE);
+     add_to_sclist(MMAIN, "F13", do_gotolinecolumn_void, 0, TRUE);
+     add_to_sclist(MMAIN, "M-G", do_gotolinecolumn_void, 0, TRUE);

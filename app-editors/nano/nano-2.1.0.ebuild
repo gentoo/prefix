@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.0.ebuild,v 1.2 2008/03/29 20:15:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.0.ebuild,v 1.4 2008/05/10 21:38:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ DEPEND=">=sys-libs/ncurses-5.2
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-disable-speller.patch #221219
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
@@ -48,7 +49,7 @@ src_compile() {
 		$(use_enable !minimal multibuffer) \
 		$(use_enable !minimal nanorc) \
 		--disable-wrapping-as-root \
-		$(use_enable spell) \
+		$(use_enable spell speller) \
 		$(use_enable justify) \
 		$(use_enable debug) \
 		$(use_enable nls) \

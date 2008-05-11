@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.1.ebuild,v 1.5 2008/05/10 21:38:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.1-r1.ebuild,v 1.3 2008/05/10 21:38:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -70,6 +70,14 @@ src_install() {
 
 	dodir /usr/bin
 	dosym /bin/nano /usr/bin/nano
+
+	insinto /usr/share/nano
+	local f
+	for f in "${FILESDIR}"/*.nanorc ; do
+		[[ -e ${ED}/usr/share/nano/${f##*/} ]] && continue
+		doins "${f}" || die
+		echo "# include \"/usr/share/nano/${f##*/}\"" >> "${ED}"/etc/nanorc
+	done
 }
 
 pkg_postinst() {

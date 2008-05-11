@@ -1,6 +1,23 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.186 2008/05/01 10:25:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.189 2008/05/10 21:38:29 vapier Exp $
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/nano-2.1.0-disable-speller.patch, nano-2.1.0.ebuild,
+  nano-2.1.1.ebuild, nano-2.1.1-r1.ebuild:
+  Fix building with USE=-spell #221219 by Jan.
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> nano-1.2.5.ebuild,
+  nano-1.3.12-r1.ebuild, nano-2.0.7.ebuild, nano-2.1.0.ebuild,
+  nano-2.1.1.ebuild, nano-2.1.1-r1.ebuild:
+  Fix spell configure flag: it is --enable-speller, not --enable-spell.
+
+*nano-2.1.1-r1 (10 May 2008)
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> +files/awk.nanorc,
+  +files/css.nanorc, +files/xml.nanorc, +nano-2.1.1-r1.ebuild:
+  Add awk syntax #220821 by Donnie Berkholz and xml/css #163723 by Jan
+  Vansteenkiste.
 
   01 May 2008; Raúl Porcel <armin76@gentoo.org> nano-2.1.1.ebuild:
   alpha/ia64/sparc/x86 stable

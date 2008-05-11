@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.7.ebuild,v 1.7 2008/02/26 02:20:30 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.7.ebuild,v 1.8 2008/05/10 10:28:58 vapier Exp $
 
 EAPI="prefix"
 
@@ -48,7 +48,7 @@ src_compile() {
 		--enable-multibuffer \
 		--enable-nanorc \
 		--disable-wrapping-as-root \
-		$(use_enable spell) \
+		$(use_enable spell speller) \
 		$(use_enable justify) \
 		$(use_enable debug) \
 		$(use_enable nls) \
