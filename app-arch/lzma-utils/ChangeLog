@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.31 2008/04/03 18:19:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.33 2008/05/10 10:38:40 vapier Exp $
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> files/lzma-nocxx.sh:
+  Handle just -d in wrapper script as this is how tar calls it #220899 by
+  Ulrich Müller.
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> +files/lzma-nocxx.sh,
+  lzma-utils-4.32.5.ebuild:
+  If building with USE=nocxx, neuter lzma-utils to only provide decompressor
+  #220899 by Ulrich Müller.
 
   03 Apr 2008; Raúl Porcel <armin76@gentoo.org> lzma-utils-4.32.5.ebuild:
   Add ~sparc-fbsd
