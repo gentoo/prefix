@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/phrack-all-64.ebuild,v 1.2 2008/02/04 18:35:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/phrack-all-65.ebuild,v 1.1 2008/05/10 10:34:51 vapier Exp $
 
 EAPI="prefix"
 
@@ -79,4 +79,5 @@ RDEPEND="
 	=app-doc/phrack-62
 	=app-doc/phrack-63
 	=app-doc/phrack-64
+	=app-doc/phrack-65
 	"
