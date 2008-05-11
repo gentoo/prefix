@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20071202044231-r1.ebuild,v 1.1 2008/04/19 07:11:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20071202044231-r1.ebuild,v 1.2 2008/05/10 07:26:33 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,8 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="nls static"
 
 RDEPEND=""
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="nls? ( sys-devel/gettext )
+	app-arch/lzma-utils"
 
 maint_pkg_create() {
 	cd /usr/local/src/net-tools

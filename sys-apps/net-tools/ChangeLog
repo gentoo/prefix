@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.76 2008/04/19 07:11:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.77 2008/05/10 07:26:33 vapier Exp $
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  Pull in lzma-utils in DEPEND #220935 by Mart Raudsepp.
 
 *net-tools-1.60_p20071202044231-r1 (19 Apr 2008)
 
