@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack/phrack-61.ebuild,v 1.11 2008/05/10 10:32:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack/phrack-65.ebuild,v 1.1 2008/05/10 10:33:55 vapier Exp $
 
 EAPI="prefix"
 
