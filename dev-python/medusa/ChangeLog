@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/medusa
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.20 2008/01/17 18:52:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.21 2008/05/10 09:44:43 welp Exp $
+
+  10 May 2008; <welp@gentoo.org> medusa-0.5.4.ebuild:
+  Mark ~x86-fbsd for dev-util/bzr
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> medusa-0.5.4.ebuild:
   Dropped ppc-macos keyword, see you in prefix
