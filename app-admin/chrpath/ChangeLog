@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/chrpath
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.7 2007/12/25 15:25:42 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.8 2008/05/11 01:06:47 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> chrpath-0.13.ebuild:
+  - keyworded for ~arm
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing taviso from metadata.xml as per #202471. Assigning to
