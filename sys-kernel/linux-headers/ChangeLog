@@ -1,6 +1,12 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.266 2008/04/22 19:13:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.267 2008/05/10 12:42:49 vapier Exp $
+
+*linux-headers-2.6.25-r2 (10 May 2008)
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +linux-headers-2.6.25-r2.ebuild:
+  Fix up HZ on alpha and friends #218858 by Tobias Klausmann.
 
   22 Apr 2008; Raúl Porcel <armin76@gentoo.org>
   linux-headers-2.6.25-r1.ebuild:
