@@ -58,13 +58,13 @@ http://bugs.gentoo.org/204610
 @@ -633,6 +633,12 @@
  
  /* Inline optimizations.  */
- #ifdef __OPTIMIZE__
-+# if defined(__GNUC_STDC_INLINE__) || defined(__GNUC_GNU_INLINE__)
-+#  define __gnu_inline inline __attribute__ ((__gnu_inline__))
-+# else
-+#  define __gnu_inline inline
-+# endif
++#if defined(__GNUC_STDC_INLINE__) || defined(__GNUC_GNU_INLINE__)
++# define __gnu_inline inline __attribute__ ((__gnu_inline__))
++#else
++# define __gnu_inline inline
++#endif
 +
+ #ifdef __OPTIMIZE__
  /* Return attribute code of given attribute.  */
  __libdw_extern_inline unsigned int
  dwarf_whatattr (Dwarf_Attribute *attr)

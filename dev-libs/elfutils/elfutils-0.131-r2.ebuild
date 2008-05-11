@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.131-r2.ebuild,v 1.1 2008/04/20 08:20:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.131-r2.ebuild,v 1.2 2008/05/10 12:05:34 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gnu-inline.patch #204610
+	epatch "${FILESDIR}"/${PN}-0.118-PaX-support.patch
 	find . -name Makefile.in -print0 | xargs -0 sed -i -e 's:-W\(error\|extra\)::g'
 	sed -i 's:\<off64_t\>:__off64_t:g' libelf/libelf.h || die #204502
 }
