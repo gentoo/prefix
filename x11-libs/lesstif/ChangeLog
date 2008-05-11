@@ -1,6 +1,20 @@
 # ChangeLog for x11-libs/lesstif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.86 2008/04/21 18:26:02 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.87 2008/05/10 10:09:27 ulm Exp $
+
+*lesstif-0.95.0-r1 (10 May 2008)
+
+  10 May 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/lesstif-0.95.0-vendorsp-cxx.patch, +lesstif-0.95.0-r1.ebuild:
+  Ebuild completely rewritten: SLOTting is finally gone. Install libraries,
+  include files, and man pages in their standard locations. No more need for
+  motif-config and profile manipulation. Libtool tweaks to fix linkage against
+  already installed version are no longer needed. Fix issue with inclusion
+  of VendorSP.h in C++ code, original issue of bug 193505, patch extracted
+  from upstream CVS. Update LICENSE: add libXpm; add GPL-2 and FVWM for mwm.
+  Dependencies scrutinised and fixed: libXft/freetype is needed also at run
+  time, remove unnecessary libXaw and perl, remove redundant printproto.
+  Block against openmotif and motif-config.
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
