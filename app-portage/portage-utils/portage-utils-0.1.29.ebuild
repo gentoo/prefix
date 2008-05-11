@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.29.ebuild,v 1.6 2008/02/23 18:08:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.29.ebuild,v 1.8 2008/05/11 04:21:16 solar Exp $
 
 EAPI="prefix"
 
@@ -41,11 +41,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	ROOT=${EROOT}
-	[ -e ${EROOT}/etc/portage/bin/post_sync ] && return 0
-	mkdir -p ${EROOT}/etc/portage/bin/
+	[ -e "${EROOT}"/etc/portage/bin/post_sync ] && return 0
+	mkdir -p "${EROOT}"/etc/portage/bin/
 
-cat <<__EOF__ > ${EROOT}/etc/portage/bin/post_sync
+cat <<__EOF__ > "${EROOT}"/etc/portage/bin/post_sync
 #!${EPREFIX}/bin/sh
 # Copyright 2006-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
@@ -60,10 +59,10 @@ else
 	:
 fi
 __EOF__
-	chmod 755 ${EROOT}/etc/portage/bin/post_sync
-	if [ ! -e ${EROOT}/etc/portage/postsync.d/q-reinitialize ]; then
-		mkdir -p ${EROOT}/etc/portage/postsync.d/
-		echo '[ -x '"${EPREFIX}"'/usr/bin/q ] && '"${EPREFIX}"'/usr/bin/q -qr' > ${EROOT}/etc/portage/postsync.d/q-reinitialize
+	chmod 755 "${EROOT}"/etc/portage/bin/post_sync
+	if [ ! -e "${EROOT}"/etc/portage/postsync.d/q-reinitialize ]; then
+		mkdir -p "${EROOT}"/etc/portage/postsync.d/
+		echo '[ -x '"${EPREFIX}"'/usr/bin/q ] && '"${EPREFIX}"'/usr/bin/q -qr' > "${EROOT}"/etc/portage/postsync.d/q-reinitialize
 		elog "${EROOT}/etc/portage/postsync.d/q-reinitialize has been installed for convenience"
 		elog "If you wish for it to be automatically run at the end of every --sync simply chmod +x ${EROOT}/etc/portage/postsync.d/q-reinitialize"
 		elog "Normally this should only take a few seconds to run but file systems such as ext3 can take a lot longer."

@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.97 2008/02/23 18:08:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.98 2008/05/11 04:16:14 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> portage-utils-0.1.29.ebuild:
+  - stable on arm/sh
 
   23 Feb 2008; Jeroen Roovers <jer@gentoo.org> portage-utils-0.1.29.ebuild:
   Stable for HPPA (bug #211114).
