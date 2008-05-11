@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8563 2008/05/09 10:56:19 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8570 2008/05/10 17:11:30 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,10 +29,20 @@
 
 #--- END OF EXAMPLES ---
 
-# Torsten Veller <tove@gentoo.org> (09 May 2008)
-# Masked for testing
-=dev-lang/perl-5.8.8-r5
-=sys-devel/libperl-5.8.8-r2
+# Hans de Graaff <graaff@gentoo.org> (10 May 2008)
+# xemacs-packages-sumo cannot be installed together with any of the separate
+# xemacs packages. Please use xemacs-packages-all instead to install all
+# xemacs packages. See bug 23949.
+app-xemacs/xemacs-packages-sumo
+
+# Ulrich Mueller <ulm@gentoo.org> (10 May 2008)
+# LessTif is unsupported since it has open issues with several packages.
+# See bug 193505 and bug 204249. You are on your own here.
+x11-libs/lesstif
+
+# Mike Frysinger <vapier@gentoo.org> (10 May 2008)
+# Wait for the # of broken packages to go back down #212763
+>=sys-devel/libtool-2.2
 
 # Marcus D. Hanwell <cryos@gentoo.org> (08 May 2008)
 # Masking new version until it has received a little more testing
@@ -69,7 +79,7 @@ sys-process/daemontools-scripts
 
 # Hans de Graaff <graaff@gentoo.org> (4 May 2008)
 # Mask broken and insecure xemacs version added by jmglov
->=app-editors/xemacs-21.5.28
+=app-editors/xemacs-21.5.28
 
 # Marijn Schouten <hkBst@gentoo.org> (1 May 2008)
 # to be removed: live, broken, obsolete
@@ -463,10 +473,6 @@ www-apps/xoops
 # These are not yet stable.
 >=sys-fs/dazuko-2.3.5_pre
 sys-fs/redirfs
-
-# Ulrich Mueller <ulm@gentoo.org> (22 Feb 2008)
-# lesstif is not installable, can mask it as well.
-x11-libs/lesstif
 
 # Timo Gurr <tgurr@gentoo.org> (22 Feb 2008)
 # Mask KDE4 versions of ktorrent as long as KDE4 is masked.
@@ -1083,7 +1089,7 @@ sys-kernel/hppa-sources
 # These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
 # much less stable, so I am masking them for now.
 =www-client/opera-9.50_beta2_pre*
-=www-client/opera-9.50_pre*
+=www-client/opera-9.50_beta2_p*
 
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
 # Brokeness in these

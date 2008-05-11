@@ -1,6 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1393 2008/05/09 20:28:56 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1398 2008/05/10 19:41:30 leio Exp $
+
+  10 May 2008; Mart Raudsepp <leio@gentoo.org> arch/sparc/package.mask,
+  arch/x86/use.mask, base/use.mask, default-linux/x86/use.mask,
+  selinux/package.mask:
+  Remove video_cards_amd USE flag handling as it is called video_cards_geode now
+
+  10 May 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Tweak www-client/opera beta2 mask.
+
+  10 May 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask xemacs-packages-sumo as per bug 23949
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org> package.mask:
+  Add libtool-2.2 back to package.mask so people have time to fixup their
+  broken packages #212763.
+
+  10 May 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Adjust the xemacs mask so that it only affects the version in CVS, not the
+  versions in the official xemacs overlay.
 
   09 May 2008; Mart Raudsepp <leio@gentoo.org> updates/2Q-2008:
   Move x11-drivers/xf86-video-amd to xf86-video-geode for a painless
