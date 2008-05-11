@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/povray
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.72 2008/05/09 13:06:07 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.73 2008/05/10 17:22:29 lavajoe Exp $
+
+  10 May 2008; Joe Peterson <lavajoe@gentoo.org> -povray-3.6.1-r1.ebuild:
+  Remove old
 
 *povray-3.7.0_beta25-r1 (09 May 2008)
 
