@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.52 2008/05/05 03:29:27 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.53 2008/05/10 09:24:24 hawking Exp $
+
+*bzr-1.4 (10 May 2008)
+
+  10 May 2008; Ali Polatel <hawking@gentoo.org> +bzr-1.4.ebuild:
+  Version bump.
 
   05 May 2008; Olivier Crête <tester@gentoo.org> bzr-1.3.ebuild:
   amd64 Stable
