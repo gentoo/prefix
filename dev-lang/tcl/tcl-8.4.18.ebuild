@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.18.ebuild,v 1.7 2008/03/07 22:16:01 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.18.ebuild,v 1.8 2008/05/11 02:53:27 solar Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,8 @@ src_unpack() {
 
 	# Bug 125971
 	epatch "${FILESDIR}"/${PN}-8.4.15-tclm4-soname.patch
+	# cross-compile fix from buildroot.
+	epatch "${FILESDIR}"/${PN}-8.4.9-strtod.patch
 
 	local d
 	for d in */configure ; do

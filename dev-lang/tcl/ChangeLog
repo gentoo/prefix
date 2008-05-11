@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.99 2008/03/07 22:16:01 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.100 2008/05/11 02:53:27 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> +files/tcl-8.4.9-strtod.patch,
+  tcl-8.4.18.ebuild:
+  - cross compile fix from buildroot
 
   07 Mar 2008; Christoph Mende <angelos@gentoo.org> tcl-8.4.18.ebuild:
   Stable on amd64, bug #210326
