@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/lesstif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.87 2008/05/10 10:09:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.88 2008/05/11 16:12:11 ulm Exp $
+
+  11 May 2008; Ulrich Mueller <ulm@gentoo.org> -lesstif-0.94.4.ebuild,
+  -lesstif-0.95.0.ebuild:
+  Remove old versions that depend on motif-config.
 
 *lesstif-0.95.0-r1 (10 May 2008)
 
