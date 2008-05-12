@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta3.ebuild,v 1.3 2008/04/18 23:26:57 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta3-r1.ebuild,v 1.1 2008/05/11 21:13:33 aballier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://downloads.xiph.org/releases/theora/${P/_}.tar.bz2"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc encode examples pic"
+IUSE="doc encode examples"
 
 RDEPEND="media-libs/libogg
 	encode? ( media-libs/libvorbis )"
@@ -27,11 +27,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.0_beta2-flags.patch
+	epatch "${FILESDIR}"/${P}-pic-fix.patch
 	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
-	use pic && local myconf="--disable-asm" #200549, comment #28
+	use x86 && filter-flags -fforce-addr -frename-registers #200549
 	use doc || export ac_cv_prog_HAVE_DOXYGEN="false"
 
 	# Don't build specs even with doc enabled, just a few people would need
@@ -39,7 +40,7 @@ src_compile() {
 	export ac_cv_prog_HAVE_PDFLATEX="false"
 
 	econf --disable-dependency-tracking --disable-examples \
-		--disable-sdltest $(use_enable encode) ${myconf}
+		--disable-sdltest $(use_enable encode)
 
 	emake || die "emake failed."
 }
