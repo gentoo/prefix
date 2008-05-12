@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.243 2008/05/06 20:37:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.244 2008/05/11 21:24:04 ulm Exp $
+
+*emacs-21.4-r16 (11 May 2008)
+*emacs-18.59-r5 (11 May 2008)
+
+  11 May 2008; Ulrich Mueller <ulm@gentoo.org> +emacs-18.59-r5.ebuild,
+  +emacs-21.4-r16.ebuild:
+  Fix temacs segmentation fault when dumping with kernel 2.6.25, bug 221281.
+  Patch backported from Emacs 22.
 
   06 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-22.2-r1.ebuild:
   Stable for HPPA (bug #220535).
