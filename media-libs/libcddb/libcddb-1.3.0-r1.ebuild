@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcddb/libcddb-1.3.0-r1.ebuild,v 1.7 2008/04/24 17:36:50 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcddb/libcddb-1.3.0-r1.ebuild,v 1.8 2008/05/11 16:28:49 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ IUSE="doc"
 
 RESTRICT="test"
 
+RDEPEND=""
 DEPEND="doc? ( app-doc/doxygen )"
 
 src_unpack() {
