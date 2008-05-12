@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3535 2008/05/10 02:36:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3537 2008/05/11 14:24:22 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -259,7 +259,6 @@ app-office/kmymoney2:hbci - Adds HBCI online banking support
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
 app-office/openoffice:odk - Build the Office Development Kit
-app-office/openoffice:sound - Enable sound support through portaudio and libsndfile
 app-office/openoffice:webdav - Enable webdav support
 app-office/rabbit:gnome-print - Gnome-Print support
 app-office/rabbit:gs - Ghostscript support
@@ -778,8 +777,6 @@ gnome-extra/nautilus-sendto:thunderbird - Enable support for thunderbird
 gnome-extra/sensors-applet:nvidia - Enable support for nvidia sensors
 gnome-extra/yelp:beagle - Enable beagle support
 gnome-extra/yelp:lzma - Enable support for lzma compressed info and man pages
-gnome-extra/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
-gnome-extra/zim:trayicon - Enable support for trayicon
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages.
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-cairo:glitz - Build with glitz support
@@ -2230,6 +2227,8 @@ x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
 x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
+x11-misc/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
+x11-misc/zim:trayicon - Enable support for trayicon
 x11-plugins/bfm:gkrellm - Enable build of gkrellm module
 x11-plugins/gkrellm-plugins:audacious - Install the audacious plugin
 x11-plugins/gkrellmbups:nut - Enables monitoring Network-UPS (sys-power/nut)

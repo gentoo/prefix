@@ -1,6 +1,17 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1398 2008/05/10 19:41:30 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1401 2008/05/11 16:35:11 ulm Exp $
+
+  11 May 2008; Ulrich Mueller <ulm@gentoo.org> updates/1Q-2005,
+  updates/2Q-2008, package.mask:
+  Package x11-libs/motif-config removed. Slotting for x11-libs/openmotif and
+  x11-libs/lesstif is finally gone.
+
+  11 May 2008; Ulrich Mueller <ulm@gentoo.org> updates/2Q-2008:
+  Package move skey and otpcalc from app-admin to sys-auth.
+
+  11 May 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Remove x11-misc/perlpanel mask (#138755)
 
   10 May 2008; Mart Raudsepp <leio@gentoo.org> arch/sparc/package.mask,
   arch/x86/use.mask, base/use.mask, default-linux/x86/use.mask,
