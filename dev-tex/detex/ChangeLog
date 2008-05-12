@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/detex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.25 2008/05/10 15:01:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.26 2008/05/11 19:04:03 aballier Exp $
+
+  11 May 2008; Alexis Ballier <aballier@gentoo.org> detex-2.7.ebuild,
+  detex-2.8-r1.ebuild:
+  make flex a build time only dep, thanks Diego, bug #221329
 
   10 May 2008; Alexis Ballier <aballier@gentoo.org> -detex-2.8.ebuild:
   unused version

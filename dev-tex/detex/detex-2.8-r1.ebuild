@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/detex-2.8-r1.ebuild,v 1.2 2008/04/16 14:03:01 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/detex-2.8-r1.ebuild,v 1.3 2008/05/11 19:04:03 aballier Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="virtual/libc
-	sys-devel/flex"
+DEPEND="sys-devel/flex"
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
