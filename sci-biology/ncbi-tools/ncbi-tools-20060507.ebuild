@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20060507.ebuild,v 1.10 2007/06/05 11:00:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20060507.ebuild,v 1.11 2008/05/12 00:04:15 je_fro Exp $
 
 EAPI="prefix"
 
@@ -20,9 +20,11 @@ IUSE="doc mpi X"
 DEPEND="app-shells/tcsh
 	dev-lang/perl
 	media-libs/libpng
-	sys-devel/pmake
 	mpi? ( virtual/mpi )
 	X? ( virtual/motif )"
+
+DEPEND="${RDEPEND}
+	sys-devel/pmake"
 
 S="${WORKDIR}/ncbi"
 

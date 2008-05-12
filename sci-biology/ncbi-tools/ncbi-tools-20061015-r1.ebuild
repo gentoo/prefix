@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20061015-r1.ebuild,v 1.1 2007/03/09 03:55:37 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20061015-r1.ebuild,v 1.2 2008/05/12 00:04:15 je_fro Exp $
 
 EAPI="prefix"
 
@@ -20,9 +20,11 @@ IUSE="doc mpi X"
 DEPEND="app-shells/tcsh
 	dev-lang/perl
 	media-libs/libpng
-	sys-devel/pmake
 	mpi? ( virtual/mpi )
 	X? ( virtual/motif )"
+
+DEPEND="${RDEPEND}
+	sys-devel/pmake"
 
 S="${WORKDIR}/ncbi"
 
