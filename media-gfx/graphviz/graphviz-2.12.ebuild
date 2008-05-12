@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.22 2008/03/11 16:44:56 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.23 2008/05/11 19:54:58 maekke Exp $
 
 EAPI="prefix"
 
@@ -39,6 +39,7 @@ RDEPEND=">=media-libs/gd-2.0.28
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
+	sys-devel/flex
 	perl? ( dev-lang/swig )
 	python? ( dev-lang/swig )
 	ruby? ( dev-lang/swig )

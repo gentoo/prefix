@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.155 2008/04/12 09:48:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.156 2008/05/11 19:54:58 maekke Exp $
+
+  11 May 2008; Markus Meier <maekke@gentoo.org> graphviz-2.12.ebuild,
+  graphviz-2.16.1.ebuild, graphviz-2.16.1-r4.ebuild, graphviz-2.18.ebuild:
+  add missing flex dependency, bug #221391
 
   12 Apr 2008; Markus Meier <maekke@gentoo.org> graphviz-2.18.ebuild:
   add java USE-flag for bug #186372 and disable R-bindings for bug #213825
