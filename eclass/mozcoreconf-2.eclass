@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.1 2008/03/15 18:09:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.2 2008/05/11 10:29:59 armin76 Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -172,7 +172,8 @@ mozconfig_init() {
 		--enable-svg-renderer=cairo \
 		--enable-system-cairo \
 		--disable-strip \
-		--disable-strip-libs
+		--disable-strip-libs \
+		--disable-install-strip
 
 		# This doesn't work yet
 		#--with-system-png \
