@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/figlet
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/ChangeLog,v 1.32 2008/03/12 22:05:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/ChangeLog,v 1.33 2008/05/11 20:35:07 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> figlet-222.ebuild:
+  - cross compile love. fixes /usr/bin/chkfont being installed with the wrong
+  EM_TYPE. Allows the use of -I$ROOT/include/paths/ in CFLAGS by switching /
+  to @ in the sed statement
 
   12 Mar 2008; Raúl Porcel <armin76@gentoo.org>
   -files/figlet-221-gentoo.diff, figlet-222.ebuild:

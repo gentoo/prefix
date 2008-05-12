@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/figlet-222.ebuild,v 1.13 2008/03/12 22:05:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/figlet-222.ebuild,v 1.14 2008/05/11 20:35:07 solar Exp $
 
 EAPI="prefix"
 
-inherit eutils bash-completion
+inherit eutils bash-completion toolchain-funcs
 
 MY_P=${P/-/}
 DESCRIPTION="program for making large letters out of ordinary text"
@@ -36,15 +36,13 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-gentoo.diff
 	sed -i \
-		-e "s/CFLAGS = -g/CFLAGS = ${CFLAGS}/g" Makefile \
+		-e "s@CFLAGS = -g@CFLAGS = ${CFLAGS}@g" Makefile \
 		|| die "sed failed"
 }
 
 src_compile() {
-	make clean || die "make clean failed"
-	emake \
-	    DEFAULTFONTDIR="${EPREFIX}"/usr/share/figlet \
-		figlet || die "emake failed"
+	tc-export CC
+	emake CC="${CC}" DEFAULTFONTDIR="${EPREFIX}"/usr/share/figlet clean all || die "emake failed"
 }
 
 src_install() {
