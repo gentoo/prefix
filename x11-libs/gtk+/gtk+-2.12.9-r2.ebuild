@@ -33,7 +33,7 @@ RDEPEND="X? (
 	>=x11-libs/pango-1.17.3
 	>=dev-libs/atk-1.10.1
 	>=x11-libs/cairo-1.2.0
-	!aqua? ( media-libs/fontconfig )
+	media-libs/fontconfig
 	x11-misc/shared-mime-info
 	>=media-libs/libpng-1.2.1
 	cups? ( net-print/cups )
