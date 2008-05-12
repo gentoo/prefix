@@ -6,7 +6,6 @@ move dev-lisp/emacs-cl-cvs dev-lisp/emacs-cl
 slotmove app-editors/emacs-cvs 22.0.0 23
 slotmove app-editors/emacs-cvs 23.0.0 23
 slotmove app-editors/emacs-cvs 23-unicode 23
-slotmove x11-libs/openmotif 2.3 0
 move sys-fs/mtd sys-fs/mtd-utils
 move media-fonts/fonts-indic media-fonts/lohit-fonts
 move games-action/abuse_sdl games-action/abuse
