@@ -1,6 +1,18 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.98 2008/03/19 19:44:48 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.102 2008/05/11 17:07:34 fmccor Exp $
+
+  11 May 2008; Ferris McCormick <fmccor@gentoo.org> rails-2.0.2.ebuild:
+  Back to ~sparc because of Friedrich Oslage's comments in Bug #221309.
+
+  11 May 2008; Ferris McCormick <fmccor@gentoo.org> rails-2.0.2.ebuild:
+  Sparc stable --- part of Bug #221309 --- Good for about 5 months.
+
+  11 May 2008; Markus Meier <maekke@gentoo.org> rails-2.0.2.ebuild:
+  x86 stable, bug #221309
+
+  11 May 2008; Hans de Graaff <graaff@gentoo.org> rails-2.0.2.ebuild:
+  Stable on amd64, bug #221309
 
   19 Mar 2008; Hans de Graaff <graaff@gentoo.org> Manifest:
   Redigest due to upstream repackaging
