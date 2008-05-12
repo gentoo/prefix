@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/transfig
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.42 2007/07/22 07:25:51 pva Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.43 2008/05/11 12:04:31 pva Exp $
+
+*transfig-3.2.5-r1 (11 May 2008)
+
+  11 May 2008; Peter Volkov <pva@gentoo.org>
+  -files/transfig-3.2.4-gcc-3.3.patch, -files/transfig-3.2.4.patch,
+  -transfig-3.2.4-r2.ebuild, +transfig-3.2.5-r1.ebuild:
+  Removed executalbe permission and fixed location of misc files which are
+  installed into XFIGLIBDIR, bug #221243 thank Volkmar Glauche for report.
 
   22 Jul 2007; <pva@gentoo.org> transfig-3.2.4-r2.ebuild,
   transfig-3.2.5.ebuild:
