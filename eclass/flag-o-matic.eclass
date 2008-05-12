@@ -52,6 +52,12 @@ setup-allowed-flags() {
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
 		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
 		-msecure-plt -D*"
+	
+	# killing these two on OSX/Intel will disable SSE, resulting in failing
+	# compilations, as the headers expect SSE to be enabled (Apple knows what
+	# hardware they run on afterall, don't they?)
+	[[ ${CHOST} == i?86-apple-darwin* ]] \
+		&& ALLOWED_FLAGS="${ALLOWED_FLAGS} -march=prescott -march=nocona"
 
 	# C[XX]FLAGS that we are think is ok, but needs testing
 	# NOTE:  currently -Os have issues with gcc3 and K6* arch's
