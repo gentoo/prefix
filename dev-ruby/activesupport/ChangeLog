@@ -1,6 +1,17 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.54 2008/03/19 19:36:14 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.57 2008/05/11 16:57:36 fmccor Exp $
+
+  11 May 2008; Ferris McCormick <fmccor@gentoo.org>
+  activesupport-2.0.2.ebuild:
+  Sparc stable --- part of Bug #221309 --- Good for about 5 months.
+
+  11 May 2008; Markus Meier <maekke@gentoo.org> activesupport-2.0.2.ebuild:
+  x86 stable, bug #221309
+
+  11 May 2008; Hans de Graaff <graaff@gentoo.org>
+  activesupport-2.0.2.ebuild:
+  Stable on amd64, bug #221309
 
   19 Mar 2008; Hans de Graaff <graaff@gentoo.org> Manifest:
   Redigest due to upstream repackaging
