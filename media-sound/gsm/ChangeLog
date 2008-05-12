@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/gsm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.33 2008/03/22 15:37:29 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.34 2008/05/11 09:01:55 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> gsm-1.0.12-r1.ebuild:
+  - cross compile fixes and keyworded for ~arm
 
   22 Mar 2008; Joseph Jezak <josejx@gentoo.org> gsm-1.0.12-r1.ebuild:
   Marked ppc stable.

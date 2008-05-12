@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.11 2008/03/22 15:37:29 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.12 2008/05/11 09:01:55 solar Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ src_compile() {
 	use sparc && append-flags -DUSE_FLOAT_MUL -DFAST
 
 	emake -j1 CCFLAGS="${CFLAGS} -c -DNeedFunctionPrototypes=1" \
-		CC="$(tc-getCC)" \
+		LD="$(tc-getCC)" AR="$(tc-getAR)" CC="$(tc-getCC)" \
 		GSM_INSTALL_LIB="${EPREFIX}"/usr/$(get_libdir) || die "emake failed."
 }
 
