@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.302 2008/05/07 18:06:39 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.303 2008/05/11 16:27:22 corsair Exp $
+
+  11 May 2008; Markus Rothe <corsair@gentoo.org>
+  subversion-1.5.0_rc5.ebuild:
+  Added ~ppc64; bug #219882
 
 *subversion-1.5.0_rc5 (07 May 2008)
 
