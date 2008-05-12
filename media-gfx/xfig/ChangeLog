@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/xfig
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.50 2007/07/22 07:28:32 pva Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.51 2008/05/11 12:09:54 pva Exp $
+
+*xfig-3.2.5-r2 (11 May 2008)
+
+  11 May 2008; Peter Volkov <pva@gentoo.org> -files/xfig-3.2.4-gcc4.patch,
+  -files/xfig-3.2.4-xaw3d.diff, -xfig-3.2.4-r3.ebuild,
+  +xfig-3.2.5-r2.ebuild:
+  Removed executalbe permission and fixed location of misc files which are
+  installed into XFIGLIBDIR, bug #221243 thank Volkmar Glauche for report.
+  Cleaned old ebuild.
 
   22 Jul 2007; <pva@gentoo.org> xfig-3.2.4-r3.ebuild, xfig-3.2.5-r1.ebuild:
   Removed virtual/x11 dependency.
