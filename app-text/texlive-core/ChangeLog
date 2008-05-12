@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.56 2008/04/16 14:08:19 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.57 2008/05/11 18:34:03 aballier Exp $
+
+  11 May 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r12.ebuild:
+  Add missing flex build dep, thanks Diego, bug #221371
 
   16 Apr 2008; Peter Volkov <pva@gentoo.org> texlive-core-2007-r12.ebuild:
   amd64 stable, bug #215735.

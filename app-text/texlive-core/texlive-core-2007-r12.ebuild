@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r12.ebuild,v 1.15 2008/04/16 14:08:19 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r12.ebuild,v 1.16 2008/05/11 18:34:03 aballier Exp $
 
 EAPI="prefix"
 
@@ -65,6 +65,7 @@ RDEPEND="${MODULAR_X_DEPEND}
 	media-libs/fontconfig"
 
 DEPEND="${RDEPEND}
+	sys-devel/flex
 	app-arch/unzip"
 
 S="${WORKDIR}"
