@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lzma
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.10 2008/01/30 16:03:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.11 2008/05/11 19:44:38 solar Exp $
+
+  11 May 2008; <solar@gentoo.org> lzma-4.57.ebuild:
+  - Keyworded ~arm
 
   30 Jan 2008; Raúl Porcel <armin76@gentoo.org> lzma-4.57.ebuild:
   Add ~ia64/~sparc
