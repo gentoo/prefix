@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.0_p1-r1.ebuild,v 1.1 2008/04/10 03:51:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.0_p1-r1.ebuild,v 1.2 2008/05/11 13:12:32 ulm Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ IUSE="static pam tcpd kerberos skey selinux X509 ldap smartcard hpn libedit X"
 RDEPEND="pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
 	selinux? ( >=sys-libs/libselinux-1.28 )
-	skey? ( >=app-admin/skey-1.1.5-r1 )
+	skey? ( >=sys-auth/skey-1.1.5-r1 )
 	ldap? ( net-nds/openldap )
 	libedit? ( dev-libs/libedit )
 	>=dev-libs/openssl-0.9.6d
