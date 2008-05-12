@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/net-sftp
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/ChangeLog,v 1.19 2007/09/17 20:30:05 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/ChangeLog,v 1.20 2008/05/11 12:48:03 graaff Exp $
+
+*net-sftp-1.1.1 (11 May 2008)
+
+  11 May 2008; Hans de Graaff <graaff@gentoo.org> +net-sftp-1.1.1.ebuild:
+  Version bump in preparation of incompatible v2 release; adjusted dependency
+  accordingly
 
   17 Sep 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing citizen428 from metadata.xml (see #56803 for reference).
