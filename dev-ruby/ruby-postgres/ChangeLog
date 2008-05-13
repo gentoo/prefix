@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-postgres
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ChangeLog,v 1.18 2008/02/29 16:00:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ChangeLog,v 1.19 2008/05/12 09:53:57 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org>
+  ruby-postgres-0.7.1.20060406.ebuild:
+  Stable on ppc64; bug #221309
 
   29 Feb 2008; Jeroen Roovers <jer@gentoo.org>
   ruby-postgres-0.7.1.20051221-r1.ebuild,
