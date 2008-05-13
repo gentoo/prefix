@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.244 2008/05/11 21:24:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.246 2008/05/13 14:41:51 armin76 Exp $
+
+  13 May 2008; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.2-r2.ebuild:
+  alpha/ia64/sparc stable wrt #221197
+
+*emacs-22.2-r2 (12 May 2008)
+*emacs-21.4-r17 (12 May 2008)
+
+  12 May 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.2-fast-lock.patch, -emacs-21.4-r16.ebuild,
+  +emacs-21.4-r17.ebuild, +emacs-22.2-r2.ebuild:
+  Security fix for fast-lock cache, CVE-2008-2142, bug 221197.
 
 *emacs-21.4-r16 (11 May 2008)
 *emacs-18.59-r5 (11 May 2008)
