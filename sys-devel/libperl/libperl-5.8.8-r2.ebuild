@@ -153,7 +153,9 @@ src_unpack() {
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
-	use amd64 || use ppc64 && cd "${S}" && epatch "${FILESDIR}"/${P}-lib64.patch
+	cp "${FILESDIR}"/${P}-lib64.patch "${T}"
+	( cd "${T}" && epatch "${FILESDIR}"/${P}-lib64-prefix.patch )
+	use amd64 || use ppc64 && cd "${S}" && epatch "${T}"/${P}-lib64.patch
 	[[ ${CHOST} == *-dragonfly* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-fbsdhints.patch
 	cd "${S}"; epatch "${FILESDIR}"/${P}-cplusplus.patch
