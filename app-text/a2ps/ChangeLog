@@ -1,6 +1,19 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.79 2008/04/29 12:22:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.82 2008/05/12 15:05:17 jer Exp $
+
+  12 May 2008; Jeroen Roovers <jer@gentoo.org> a2ps-4.14.ebuild:
+  Marked ~hppa (bug #221791).
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> a2ps-4.14.ebuild:
+  Added ~ppc64; bug #221791
+
+  12 May 2008; Christian Faulhammer <opfer@gentoo.org> a2ps-4.14.ebuild:
+  move from USE=tetex to USE=latex and change virtual/tetex to
+  virtual/latex-base; clean up the applied patches; quote some variables; add
+  app-text/wdiff as RDEPEND, reported in bug 218796 by Matthias Wieding-Drewes
+  <m AT wieding-drewes DOT de>; dropped KEYWORDS for arm, sh, s390, ppc64 and
+  hppa
 
   29 Apr 2008; Raúl Porcel <armin76@gentoo.org> a2ps-4.13c-r6.ebuild:
   ia64 stable wrt #212050
