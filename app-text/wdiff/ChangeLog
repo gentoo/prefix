@@ -1,6 +1,15 @@
 # ChangeLog for app-text/wdiff
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.24 2008/03/24 19:48:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.27 2008/05/12 14:47:19 jer Exp $
+
+  12 May 2008; Jeroen Roovers <jer@gentoo.org> wdiff-0.5-r2.ebuild:
+  Marked ~hppa (bug #221791).
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> wdiff-0.5-r2.ebuild:
+  Added ~ppc64; bug #221791
+
+  12 May 2008; Alexis Ballier <aballier@gentoo.org> wdiff-0.5-r2.ebuild:
+  keyword ~x86-fbsd
 
   24 Mar 2008; Raúl Porcel <armin76@gentoo.org> wdiff-0.5-r2.ebuild:
   Fix bug #89250
