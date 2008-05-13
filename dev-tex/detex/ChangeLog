@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/detex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.26 2008/05/11 19:04:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.27 2008/05/12 14:33:01 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> detex-2.8-r1.ebuild:
+  Stable on ppc64
 
   11 May 2008; Alexis Ballier <aballier@gentoo.org> detex-2.7.ebuild,
   detex-2.8-r1.ebuild:
