@@ -12,7 +12,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-linux"
 IUSE="apache2 berkdb debug doc emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
@@ -71,9 +71,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/1.5.0/disable-unneeded-linking.patch
 
-	epatch "${FILESDIR}"/subversion-prefix.patch
-	epatch "${FILESDIR}"/${PN}-1.4.2-interix-prompt.patch
-	eprefixify contrib/client-side/svn_load_dirs.pl.in
+	#epatch "${FILESDIR}"/subversion-prefix.patch
+	#epatch "${FILESDIR}"/${PN}-1.4.2-interix-prompt.patch
+	#eprefixify contrib/client-side/svn_load_dirs.pl.in
 
 	sed -e 's:@bindir@/svn-contrib:@libdir@/subversion/bin:' \
 		-e 's:@bindir@/svn-tools:@libdir@/subversion/bin:' \
@@ -97,21 +97,21 @@ src_compile() {
 		append-cppflags -DSVN_DEBUG -DAP_DEBUG
 	fi
 
-	case ${CHOST} in
-		*-darwin7)
-			# KeyChain support on OSX Panther is broken, due to some library
-			# includes which don't exist
-			myconf="${myconf} --disable-keychain"
-		;;
-		*-solaris*)
-			# -lintl isn't added for some reason
-			use nls && append-ldflags -lintl
-		;;
-		*-aix*)
-			# avoid recording immediate path to sharedlibs into executables
-			append-ldflags -Wl,-bnoipath
-		;;
-	esac
+#	case ${CHOST} in
+#		*-darwin7)
+#			# KeyChain support on OSX Panther is broken, due to some library
+#			# includes which don't exist
+#			myconf="${myconf} --disable-keychain"
+#		;;
+#		*-solaris*)
+#			# -lintl isn't added for some reason
+#			use nls && append-ldflags -lintl
+#		;;
+#		*-aix*)
+#			# avoid recording immediate path to sharedlibs into executables
+#			append-ldflags -Wl,-bnoipath
+#		;;
+#	esac
 
 	append-flags -fno-strict-aliasing
 
@@ -122,8 +122,8 @@ src_compile() {
 		$(use_with java jdk "${JAVA_HOME}") \
 		$(use_enable nls) \
 		$(use_with sasl) \
-		$(use_with webdav-neon neon /usr) \
-		$(use_with webdav-serf serf /usr) \
+		$(use_with webdav-neon neon ${EPREFIX}/usr) \
+		$(use_with webdav-serf serf ${EPREFIX}/usr) \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
 		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		--disable-experimental-libtool \
