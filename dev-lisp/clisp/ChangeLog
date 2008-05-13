@@ -1,6 +1,18 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.75 2008/05/04 17:37:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.77 2008/05/13 11:36:55 hkbst Exp $
+
+  13 May 2008; Marijn Schouten <hkBst@gentoo.org> -clisp-2.38.ebuild,
+  -clisp-2.38-r1.ebuild, -clisp-2.38-r2.ebuild, -clisp-2.39.ebuild,
+  -clisp-2.41.ebuild, -clisp-2.42.ebuild, -clisp-2.42-r1.ebuild,
+  -clisp-2.43.ebuild:
+  drop old versions
+
+*clisp-2.44.1 (13 May 2008)
+
+  13 May 2008; Marijn Schouten <hkBst@gentoo.org> +clisp-2.44.1.ebuild:
+  bump, bug 218739 and fix bug 155402, thanks to Stelian Ionescu
+  <stelian.ionescu-zeus@poste.it>
 
   04 May 2008; nixnut <nixnut@gentoo.org> clisp-2.43-r1.ebuild:
   Stable on ppc wrt bug 217700
