@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Socket-SSL
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.85 2008/03/27 21:58:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.86 2008/05/12 14:25:26 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> IO-Socket-SSL-1.13.ebuild:
+  Stable on ppc64
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org> IO-Socket-SSL-1.13.ebuild:
   Add ~sparc-fbsd wrt #215094
