@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ps2eps
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.13 2008/04/06 19:23:20 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.14 2008/05/12 18:49:52 nixnut Exp $
+
+  12 May 2008; nixnut <nixnut@gentoo.org> ps2eps-1.64.ebuild:
+  Stable on ppc wrt bug 220651
 
   06 Apr 2008; Markus Rothe <corsair@gentoo.org> ps2eps-1.64.ebuild:
   Added ~ppc; bug #195815
