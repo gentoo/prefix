@@ -1,0 +1,10 @@
+# ChangeLog for dev-util/confix-wrapper
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/confix-wrapper/ChangeLog,v 1.1 2008/05/13 14:40:06 haubi Exp $
+
+*confix-wrapper-0 (13 May 2008)
+
+  13 May 2008; Michael Haubenwallner <haubi@gentoo.org> +metadata.xml,
+  +confix-wrapper-0.ebuild:
+  initial import of dev-util/confix-wrapper (ebuild from me).
+
