@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.257 2008/04/18 18:34:28 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.259 2008/05/13 14:48:12 beandog Exp $
+
+  13 May 2008; Steve Dibb <beandog@gentoo.org> alsa-lib-1.0.16.ebuild:
+  amd64 stable, bug 217075
+
+*alsa-lib-1.0.16-r1 (13 May 2008)
+
+  13 May 2008; Steve Dibb <beandog@gentoo.org> +alsa-lib-1.0.16-r1.ebuild:
+  Add python use flag, bug 217075
 
   18 Apr 2008; Ferris McCormick <fmccor@gentoo.org> alsa-lib-1.0.16.ebuild:
   Sparc stable, Bug #217075.

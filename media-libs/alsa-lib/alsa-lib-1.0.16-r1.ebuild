@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.16.ebuild,v 1.8 2008/05/13 14:48:12 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.16-r1.ebuild,v 1.1 2008/05/13 14:40:14 beandog Exp $
 
 EAPI="prefix"
 
@@ -19,10 +19,11 @@ SRC_URI="mirror://alsaproject/lib/${MY_P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
-IUSE="doc debug alisp midi"
+IUSE="doc debug alisp midi python"
 
-RDEPEND=""
-DEPEND=">=media-sound/alsa-headers-${PV}
+RDEPEND="python? ( dev-lang/python )"
+DEPEND="${RDEPEND}
+	>=media-sound/alsa-headers-${PV}
 	doc? ( >=app-doc/doxygen-1.2.6 )"
 
 IUSE_PCM_PLUGIN="copy linear route mulaw alaw adpcm rate plug multi shm file null empty share meter hooks lfloat ladspa dmix dshare dsnoop asym iec958
@@ -62,6 +63,7 @@ src_compile() {
 		--disable-resmgr \
 		$(use_with debug) \
 		$(use_enable alisp) \
+		$(use_enable python) \
 		$(use_enable midi instr) \
 		$(use_enable midi seq) $(use_enable midi aload) \
 		--with-pcm-plugins="${ALSA_PCM_PLUGINS}" \
