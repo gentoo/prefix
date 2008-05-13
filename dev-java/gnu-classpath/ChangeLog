@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.79 2008/04/30 10:51:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.80 2008/05/12 14:10:45 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild:
+  Stable on ppc64
 
   30 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
   gnu-classpath-0.97-r1.ebuild:
