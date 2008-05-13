@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.155 2008/04/20 11:03:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.156 2008/05/12 13:43:29 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> gkrellm-2.3.1.ebuild:
+  Stable on ppc64
 
   20 Apr 2008; Raúl Porcel <armin76@gentoo.org> gkrellm-2.3.1.ebuild:
   alpha/ia64/sparc/x86 stable
