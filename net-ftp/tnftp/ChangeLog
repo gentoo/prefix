@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/tnftp
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.29 2008/04/11 18:50:03 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.30 2008/05/12 15:53:34 maekke Exp $
+
+  12 May 2008; Markus Meier <maekke@gentoo.org> tnftp-20070806.ebuild:
+  amd64 stable, bug #215491
 
   11 Apr 2008; Sven Wegener <swegener@gentoo.org>
   -files/tnftp-20050625-libedit.patch, -tnftp-20050625-r1.ebuild:

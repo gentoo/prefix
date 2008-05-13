@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/tnftp-20070806.ebuild,v 1.5 2008/04/03 01:35:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/tnftp-20070806.ebuild,v 1.6 2008/05/12 15:53:34 maekke Exp $
 
 EAPI="prefix"
 
