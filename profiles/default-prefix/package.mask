@@ -32,6 +32,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (13 May 2008)
+# Subversion works for me on x86-linux but still shouldn't be unleashed without
+# more testing on other ARCHs
+=dev-util/subversion-1.5.0_rc5
+
 # Fabian Groffen <grobian@gentoo.org> (08 May 2008)
 # Still breaks several packages among which expat, see bug #220901
 # Consider un-masking when bug #212763 is resolved
@@ -40,12 +45,6 @@
 # Fabian Groffen <grobian@gentoo.org> (05 May 2008)
 # tetex is old cruft that you shouldn't use, texlive is the way to go!
 app-text/tetex
-
-# Fabian Groffen <grobian@gentoo.org> (01 May 2008)
-# Please try, quite different ebuild, I don't dare to unleash this
-# untested
-=dev-util/subversion-1.5.0_rc4
-=dev-util/subversion-1.5.0_rc5
 
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
