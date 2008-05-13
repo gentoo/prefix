@@ -1,6 +1,21 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.58 2008/05/04 16:34:52 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.60 2008/05/13 01:44:37 markusle Exp $
+
+  13 May 2008; Markus Dittrich <markusle@gentoo.org>
+  +files/pari-2.3.3-alglin.patch, pari-2.3.3.ebuild:
+  Added enhancements to pari ebuild needed for future sage ebuild (see 
+  bug #220521). Thanks much to Francois Bissey 
+  <f.r.bissey@massey.ac.nz> for his patches.
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> pari-2.3.2-r1.ebuild:
+  Stable on ppc64
+
+  07 May 2008; Markus Dittrich <markusle@gentoo.org>
+  +files/pari-2.3.3-alglin.patch, pari-2.3.3.ebuild:
+  Added additional bits eventually needed by sage (see bug #220521). Many
+  thanks go to Francois Bissey <f.r.bissey@massey.ac.nz> for providing the
+  necessary patches.
 
 *pari-2.3.3 (04 May 2008)
 
