@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.133 2008/04/18 06:22:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.134 2008/05/13 07:55:07 cedk Exp $
+
+  13 May 2008; Cédric Krier <cedk@gentoo.org> metadata.xml:
+  Take ownership, after Alon Bar-Lev left
 
 *openvpn-2.1_rc7-r2 (18 Apr 2008)
 

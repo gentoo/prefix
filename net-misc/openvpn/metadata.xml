@@ -3,8 +3,8 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-  <email>alonbl@gentoo.org</email>
-  <name>Alon Bar-Lev</name>
+  <email>cedk@gentoo.org</email>
+  <name>Cédric Krier</name>
 </maintainer>
 <longdescription>OpenVPN is an easy-to-use, robust and highly 
 configurable VPN daemon which can be used to securely link two or more 
