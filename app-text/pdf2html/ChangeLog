@@ -1,6 +1,10 @@
 # ChangeLog for app-text/pdf2html
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.16 2008/01/17 20:13:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.17 2008/05/12 15:57:26 aballier Exp $
+
+  12 May 2008; Alexis Ballier <aballier@gentoo.org> pdf2html-1.4.ebuild:
+  improve deps, dont prestrip files (bug #152263), honour ldflags and
+  friends, appears to work fine here so its saved from last riting
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> pdf2html-1.4.ebuild:
   Dropped ppc-macos keyword, see you in prefix
