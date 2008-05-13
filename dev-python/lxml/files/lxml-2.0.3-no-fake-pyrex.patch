@@ -1,0 +1,15 @@
+--- setup.py	2008-04-07 15:10:32.989740409 +0300
++++ setup.py	2008-04-07 15:11:13.897709903 +0300
+@@ -4,10 +4,9 @@
+ 
+ try:
+     import Cython
+-    # may need to work around setuptools bug by providing a fake Pyrex
+-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "fake_pyrex"))
+ except ImportError:
+-    pass
++    print >>sys.stderr, "lxml requires cython-0.9.6.10 or later."
++    sys.exit(1)
+ 
+ try:
+     import pkg_resources
