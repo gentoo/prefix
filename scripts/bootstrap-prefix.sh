@@ -146,6 +146,9 @@ bootstrap_setup() {
 		i586-pc-interix*)
 			profile="${PORTDIR}/profiles/default-prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
 			;;
+		i586-pc-winnt*)
+			profile="${PORTDIR}/profiles/default-prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
+			;;
 		hppa*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
 			case "${CHOST}" in
@@ -202,6 +205,7 @@ bootstrap_tree() {
 		hppa*-hp-hpux11*)            PV="${def}" ;;
 		ia64-hp-hpux11*)             PV="${def}" ;;
 		i586-pc-interix*)            PV="${def}" ;;
+		i586-pc-winnt*)              PV="${def}" ;;
 		mips-sgi-irix*)              PV="${def}" ;;
 		i*86-pc-linux-gnu)           PV="${def}" ;;
 		ia64-pc-linux-gnu)           PV="${def}" ;;
