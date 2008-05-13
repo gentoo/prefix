@@ -151,3 +151,4 @@ dev-java/kaffe
 # These masks are because the packages need root access to run, even
 # though they compile fine
 net-analyzer/mtr
+net-analyzer/tcpdump
