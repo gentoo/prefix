@@ -1,0 +1,30 @@
+Index: setuptools/command/egg_info.py
+===================================================================
+--- setuptools/command/egg_info.py	(revision 61076)
++++ setuptools/command/egg_info.py	(working copy)
+@@ -217,9 +217,9 @@
+             data = f.read()
+             f.close()
+ 
+-            if data.startswith('8'):
++            if data.startswith('8') or data.startswith('9'):
+                 data = map(str.splitlines,data.split('\n\x0c\n'))
+-                del data[0][0]  # get rid of the '8'
++                del data[0][0]  # get rid of the '8' or '9'
+                 dirurl = data[0][3]
+                 localrev = max([int(d[9]) for d in data if len(d)>9 and d[9]]+[0])
+             elif data.startswith('<?xml'):
+Index: setuptools/command/sdist.py
+===================================================================
+--- setuptools/command/sdist.py	(revision 61076)
++++ setuptools/command/sdist.py	(working copy)
+@@ -86,7 +86,7 @@
+     f = open(filename,'rU')
+     data = f.read()
+     f.close()
+-    if data.startswith('8'):    # subversion 1.4
++    if data.startswith('8') or data.startswith('9'):  # subversion 1.4 or 1.5
+         for record in map(str.splitlines, data.split('\n\x0c\n')[1:]):
+             if not record or len(record)>=6 and record[5]=="delete":
+                 continue    # skip deleted
+

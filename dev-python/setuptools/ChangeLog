@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.38 2008/02/23 09:18:10 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.39 2008/05/13 09:57:31 hawking Exp $
+
+*setuptools-0.6_rc8-r1 (13 May 2008)
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org>
+  +files/setuptools-0.6_rc8-svn-1.5.patch, +setuptools-0.6_rc8-r1.ebuild:
+  Revbump. Added patch from distutils mailing list by Augie Fackler for
+  subversion-1.5. Thanks to Darren Dale, #220389.
 
 *setuptools-0.6_rc8 (23 Feb 2008)
 
