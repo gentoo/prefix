@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.156 2008/05/11 19:54:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.159 2008/05/13 13:00:12 armin76 Exp $
+
+  13 May 2008; Raúl Porcel <armin76@gentoo.org> graphviz-2.18.ebuild:
+  alpha/ia64 stable wrt #221843
+
+  13 May 2008; Joseph Jezak <josejx@gentoo.org> graphviz-2.18.ebuild:
+  Marked ppc/ppc64 stable for bug #221843.
+
+  12 May 2008; Christian Faulhammer <opfer@gentoo.org> graphviz-2.18.ebuild:
+  stable x86, bug 221843
 
   11 May 2008; Markus Meier <maekke@gentoo.org> graphviz-2.12.ebuild,
   graphviz-2.16.1.ebuild, graphviz-2.16.1-r4.ebuild, graphviz-2.18.ebuild:
