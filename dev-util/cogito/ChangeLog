@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cogito
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.59 2008/04/12 08:07:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.60 2008/05/12 15:49:19 maekke Exp $
+
+  12 May 2008; Markus Meier <maekke@gentoo.org> cogito-0.18.2.ebuild:
+  amd64 stable, bug #215381
 
   12 Apr 2008; nixnut <nixnut@gentoo.org> cogito-0.18.2.ebuild:
   Stable on ppc wrt bug 215381
