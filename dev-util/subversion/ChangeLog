@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.303 2008/05/11 16:27:22 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.304 2008/05/12 18:46:43 armin76 Exp $
+
+  12 May 2008; Raúl Porcel <armin76@gentoo.org>
+  subversion-1.5.0_rc5.ebuild:
+  Readd ~alpha/~ia64 wrt #219882
 
   11 May 2008; Markus Rothe <corsair@gentoo.org>
   subversion-1.5.0_rc5.ebuild:
