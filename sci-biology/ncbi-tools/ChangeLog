@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.63 2008/05/12 00:06:12 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.64 2008/05/12 16:00:44 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> ncbi-tools-20080302.ebuild:
+  Stable on ppc64
 
   12 May 2008; Jeff Gardner <je_fro@gentoo.org> ChangeLog:
   Move pmake to DEPEND fixing bug #221441
