@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.19 2007/05/24 14:05:35 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.21 2008/05/12 09:52:28 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> sqlite3-ruby-1.2.1.ebuild:
+  Stable on ppc64; bug #221309
+
+  12 May 2008; Hans de Graaff <graaff@gentoo.org> sqlite3-ruby-1.2.1.ebuild:
+  swig is not a runtime dependency; fixes #221479
 
   24 May 2007; Diego Pettenò <flameeyes@gentoo.org>
   sqlite3-ruby-1.2.1.ebuild:

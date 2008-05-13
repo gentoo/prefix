@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.1.ebuild,v 1.8 2007/05/24 14:05:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.1.ebuild,v 1.10 2008/05/12 09:52:28 corsair Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,8 @@ SLOT="0"
 IUSE="doc swig"
 
 USE_RUBY="ruby18 ruby19"
-DEPEND="=dev-db/sqlite-3*
+RDEPEND="=dev-db/sqlite-3*"
+DEPEND="${RDEPEND}
 	swig? ( dev-lang/swig )"
 
 pkg_setup() {
@@ -47,7 +48,7 @@ src_compile() {
 }
 
 src_install() {
-	${RUBY} setup.rb install --prefix=${D} \
+	${RUBY} setup.rb install --prefix="${D}" \
 		|| die "setup.rb install failed"
 
 	dodoc README ChangeLog
