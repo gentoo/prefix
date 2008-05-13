@@ -51,10 +51,6 @@ app-text/tetex
 # circular dependencies while running aclocal (bug #218122)
 =sys-devel/autoconf-2.62
 
-# Fabian Groffen <grobian@gentoo.org> (16 Apr 2008)
-# Doesn't compile on amd64-linux the least (gcc-4.3.0)
-=sys-apps/net-tools-1.60_p20071202044231
-
 # Fabian Groffen <grobian@gentoo.org> (03 Apr 2008)
 # Had undefined references all over the place on Solaris, don't like it
 # not compiling, masking globally
@@ -74,8 +70,6 @@ app-text/tetex
 # Fabian Groffen <grobian@gentoo.org> (04 Mar 2008)
 # segfaults during compilation on Darwin
 =dev-util/cmake-2.4.8
-=dev-lang/swi-prolog-5.6.51
-=dev-lang/swi-prolog-5.6.52
 
 # Elias Pipping <pipping@gentoo.org> (22 Feb 2008)
 # Does nvi compile anywhere? Certainly not on Darwin for now
@@ -122,11 +116,6 @@ net-misc/netkit-rsh
 www-servers/apache
 
 # Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
-# This is a completely rewritten from scratch version to facilitate
-# cross-compilation.  Testing this out.
-=sys-devel/binutils-config-1.9-r04.1
-
-# Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
 # This package isn't prefix ready, work in progress
 sys-apps/slocate
 
@@ -137,12 +126,6 @@ sys-apps/darwin-miscutils
 # Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # bsd-man-pages are only available on darwin, bsd
 sys-apps/bsd-man-pages
-
-# Michael Haubenwallner <haubi@gentoo.org> (03 Oct 2007)
-# too broken, waiting for gcc-4.2.2 in main tree (bug #186321),
-# masked because no stable keywords in prefix yet.
-=sys-devel/gcc-4.2.0*
-=sys-devel/gcc-4.2.1*
 
 # Elias Pipping <pipping@gentoo.org>
 # work in progress (in prefix)

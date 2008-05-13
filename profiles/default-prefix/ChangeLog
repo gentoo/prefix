@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2008; Jeremy Olexa <jolexa@gentoo.org> package.mask:
+  cleanup, removed masks for packages that no longer exist in the tree
+
   13 May 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Updated subversion-1.5 mask.
 
