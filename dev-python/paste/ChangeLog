@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/paste
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.2 2008/04/18 12:09:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.3 2008/05/13 13:21:08 hawking Exp $
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org> paste-1.6.ebuild:
+  Use distutils_src_unpack.
 
 *paste-1.6 (18 Apr 2008)
 
