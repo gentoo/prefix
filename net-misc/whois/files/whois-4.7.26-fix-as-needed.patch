@@ -1,0 +1,15 @@
+--- Makefile	2008-05-05 14:32:24.000000000 +0200
++++ Makefile	2008-05-05 14:33:24.000000000 +0200
+@@ -33,10 +33,10 @@
+ 	$(CC) $(CFLAGS) $(OPTS) -c $<
+ 
+ whois: whois.o utils.o
+-	$(CC) $(LDFLAGS) $(whois_LDADD) -o $@ $^
++	$(CC) $(LDFLAGS) -o $@ $^ $(whois_LDADD)
+ 
+ mkpasswd: mkpasswd.o utils.o
+-	$(CC) $(LDFLAGS) $(mkpasswd_LDADD) -o $@ $^
++	$(CC) $(LDFLAGS) -o $@ $^ $(mkpasswd_LDADD)
+ 
+ ##############################################################################
+ as_del.h: as_del_list make_as_del.pl
