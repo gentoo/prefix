@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.102 2008/05/11 17:07:34 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.105 2008/05/13 13:38:52 armin76 Exp $
+
+  13 May 2008; Raúl Porcel <armin76@gentoo.org> rails-2.0.2.ebuild:
+  ia64 stable wrt #221309
+
+  13 May 2008; Ferris McCormick <fmccor@gentoo.org> rails-2.0.2.ebuild:
+  Sparc stable (again), following Hans de Graff's comment 7 in Bug #221309.
+  RMD160 for rails-2.0.2.gem should now be correct.
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> rails-2.0.2.ebuild:
+  Stable on ppc64; bug #221309
 
   11 May 2008; Ferris McCormick <fmccor@gentoo.org> rails-2.0.2.ebuild:
   Back to ~sparc because of Friedrich Oslage's comments in Bug #221309.
