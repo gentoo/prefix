@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/pinentry
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.87 2008/05/03 12:18:21 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.88 2008/05/12 13:45:15 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> pinentry-0.7.5.ebuild:
+  Stable on ppc64
 
   03 May 2008; Richard Freeman <rich0@gentoo.org> pinentry-0.7.5.ebuild:
   amd64 stable - 217845
