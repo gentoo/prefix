@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/libgeotiff
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/libgeotiff/ChangeLog,v 1.23 2008/03/02 00:13:06 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/libgeotiff/ChangeLog,v 1.24 2008/05/12 16:02:34 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> libgeotiff-1.2.4.ebuild:
+  Stable on ppc64
 
   02 Mar 2008; Steve Arnold <nerdboy@gentoo.org>
   files/libgeotiff-1.2.4-soname.patch, libgeotiff-1.2.4.ebuild:
