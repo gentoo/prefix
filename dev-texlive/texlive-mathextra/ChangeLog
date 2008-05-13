@@ -1,6 +1,9 @@
 # ChangeLog for dev-texlive/texlive-mathextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/ChangeLog,v 1.14 2008/04/16 14:57:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/ChangeLog,v 1.15 2008/05/12 20:30:50 nixnut Exp $
+
+  12 May 2008; nixnut <nixnut@gentoo.org> texlive-mathextra-2007.ebuild:
+  Stable on ppc wrt bug 220651
 
   16 Apr 2008; Peter Volkov <pva@gentoo.org> texlive-mathextra-2007.ebuild:
   amd64 stable, bug #215735.
