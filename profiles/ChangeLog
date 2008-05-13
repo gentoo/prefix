@@ -1,6 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1401 2008/05/11 16:35:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1405 2008/05/13 10:19:40 pva Exp $
+
+  13 May 2008; Peter Volkov <pva@gentoo.org> updates/2Q-2008::
+  move app-doc/kchmviewer into app-text/kchmviewer, bug #220741.
+
+  13 May 2008; Peter Volkov <pva@gentoo.org> updates/2Q-2008::
+  Finaly all deps in the tree are updated so we move app-doc/chmlib to a better
+  place (dev-libs/chmlib)
+
+  13 May 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Added md5sum-external USE flag for app-misc/fdupes
+
+  12 May 2008; Ferris McCormick <fmccor@gentoo.org> package.mask:
+  Correct typo --- we need a mask on =mail-client/claws-mail-vcalendar-1.102
 
   11 May 2008; Ulrich Mueller <ulm@gentoo.org> updates/1Q-2005,
   updates/2Q-2008, package.mask:

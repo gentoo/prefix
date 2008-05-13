@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3537 2008/05/11 14:24:22 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3540 2008/05/13 11:14:13 hkbst Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -201,6 +201,7 @@ app-misc/booh:transcode - Use transcode to extract video thumbnails
 app-misc/digitemp:ds2490 - Build support for the ds2490 sensor
 app-misc/digitemp:ds9097 - Build support for the ds9097 sensor
 app-misc/digitemp:ds9097u - Build support for the ds9097u sensor
+app-misc/fdupes:md5sum-external - Use external md5sum program instead of bundled md5sum routines
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/geneweb:ocamlopt - Enable ocamlopt support (ocaml native code compiler)
 app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
@@ -536,6 +537,7 @@ dev-lisp/cl-araneida:standalone - tired of waiting for the lisp team to add this
 dev-lisp/cl-tbnl:standalone - use TBNL without a front-end (ie. no Apache dependency)
 dev-lisp/clisp:new-clx - Build CLISP with support for the NEW-CLX module which is a C binding to the Xorg libraries
 dev-lisp/clisp:svm - Build CLISP with support for the Support Vector Machine module
+dev-lisp/clisp:hyperspec - use local hyperspec instead of online version
 dev-lisp/cmucl:nosource - don't include source code for CMUCL in installation
 dev-lisp/ecls:c++ - Build ECL with a C++ compiler
 dev-lisp/gcl:ansi - build a GCL with ANSI support (else build a traditional CLtL1 image)
@@ -1898,6 +1900,8 @@ sci-mathematics/maxima:gcl - Adds GNU Common Lisp support to maxima
 sci-mathematics/maxima:sbcl - Adds Steel Bank Common Lisp support to maxima
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
+sci-mathematics/pari:elliptic - Add additional elliptic curve data
+sci-mathematics/pari:galois - Add additional data to compute Galois groups of degree 8 to 11
 sci-mathematics/singular:boost - Compile against external boost headers.
 sci-mathematics/yacas:server -  Build the network server version.
 sci-misc/boinc:server - Enable compilation of server

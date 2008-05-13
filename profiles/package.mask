@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8574 2008/05/11 17:18:56 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8585 2008/05/13 05:46:06 drac Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -118,7 +118,7 @@ media-fonts/sharefonts
 # Tracked in bug 214788.
 # iv - replacements: gqview, mirage, pornview
 # gqcam - replacements: camorama, cheese
-# gtkguitune - replacement: k3guitune
+# gtkguitune - replacement: lingot, k3guitune
 # playspc_gtk - replacement: playspc
 media-gfx/iv
 media-video/gqcam
@@ -133,10 +133,6 @@ media-sound/yconsole
 =app-emulation/vmware-workstation-tools-5.5.1-r2
 =app-emulation/vmware-workstation-tools-5.5.2
 =app-emulation/vmware-workstation-tools-5.5.3
-
-# Andrej Kacian <ticho@gentoo.org> (26 Apr 2008)
-# Temp. mask until all plugins are in the tree
-=mail-client/claws-mail-3.4.0
 
 # Samuli Suominen <drac@gentoo.org> (24 Apr 2008)
 # Linkage 0.1.4 only works with ~net-libs/rb_libtorrent-0.12.
@@ -324,7 +320,8 @@ dev-libs/swl
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
 # Which is more equivalent to Limewire Pro and has been added to portage.
-# This ebuild will be moved in 30 days to the java junkyard overlay.
+# This ebuild will be moved to the java junkyard overlay when Frostwire
+# is unmasked or stabilized.
 net-p2p/limewire
 
 # Mike Doty <kingtaco@gentoo.org> (24 Mar 2008)
@@ -508,11 +505,6 @@ www-apps/bugs-bug-genie
 # Christian Hoffmann <hoffie@gentoo.o> (11 Feb 2008)
 # Masked because of random (maybe MySQL-related) segfaults, bug #209606
 =dev-lang/php-5.2.5_p20080206
-
-# Samuli Suominen <drac@gentoo.org> (10 Feb 2008)
-# Broken wrt bugs #167638 and #209416. Upstream
-# gone. Masked for removal in 30 days.
-media-video/freej
 
 # Wulf C. Krueger <philantrop@gentoo.org> (09 Feb 2008)
 # Masked for removal in 30 days. 
