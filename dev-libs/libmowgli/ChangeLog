@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libmowgli
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.37 2008/03/01 20:15:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.38 2008/05/12 14:23:24 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> libmowgli-0.6.1.ebuild:
+  Stable on ppc64
 
   01 Mar 2008; Raúl Porcel <armin76@gentoo.org> libmowgli-0.6.1.ebuild:
   alpha stable wrt #208255

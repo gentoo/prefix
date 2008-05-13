@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libmowgli/libmowgli-0.6.1.ebuild,v 1.6 2008/03/01 20:15:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/libmowgli-0.6.1.ebuild,v 1.7 2008/05/12 14:23:24 corsair Exp $
 
 EAPI="prefix"
 
