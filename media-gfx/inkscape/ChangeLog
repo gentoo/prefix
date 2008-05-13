@@ -1,0 +1,351 @@
+# ChangeLog for media-gfx/inkscape
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.94 2008/04/06 13:53:05 maekke Exp $
+
+  06 Apr 2008; Markus Meier <maekke@gentoo.org>
+  +files/inkscape-0.46-gcc43.patch, inkscape-0.46-r2.ebuild:
+  fix building with gcc-4.3, thanks Bert Karwatzki for the patch (bug
+  #215574)
+
+  29 Mar 2008; Markus Meier <maekke@gentoo.org> -inkscape-0.46.ebuild,
+  -inkscape-0.46-r1.ebuild:
+  old
+
+*inkscape-0.46-r2 (29 Mar 2008)
+
+  29 Mar 2008; Markus Meier <maekke@gentoo.org> +inkscape-0.46-r2.ebuild:
+  remove pdf USE-flag references, bug #215144; raise gtkmm dependency, bug
+  #215248
+
+  20 Mar 2008; Ferris McCormick <fmccor@gentoo.org> inkscape-0.46-r1.ebuild:
+  Put back ~sparc into keywords, Bug #213611.  Now we have a version of lxml.
+
+  20 Mar 2008; Brent Baude <ranger@gentoo.org> inkscape-0.46-r1.ebuild:
+  keyworded ~arch for ppc64, bug 213611
+
+  17 Mar 2008; Markus Meier <maekke@gentoo.org> inkscape-0.46-r1.ebuild:
+  app-text/poppler-bindings needs to be built with cairo support in any way
+  (bug #213706) - so remove the pdf USE-flag
+
+  16 Mar 2008; Jeroen Roovers <jer@gentoo.org> inkscape-0.46-r1.ebuild:
+  Marked ~hppa (bug #213611).
+
+  16 Mar 2008; Markus Meier <maekke@gentoo.org> inkscape-0.45.1-r1.ebuild,
+  inkscape-0.46.ebuild, inkscape-0.46-r1.ebuild:
+  don't install COPYING - pointed out by opfer
+
+*inkscape-0.46-r1 (16 Mar 2008)
+
+  16 Mar 2008; Markus Meier <maekke@gentoo.org> +inkscape-0.46-r1.ebuild:
+  add dev-python/lxml dependency (bug #213526) - drop hppa/ppc64/sparc
+  keywords as they don't have dev-python/lxml keyworded
+
+  15 Mar 2008; Markus Meier <maekke@gentoo.org> inkscape-0.46.ebuild:
+  fix building with poppler, reported in bug #213026
+
+  15 Mar 2008; Markus Meier <maekke@gentoo.org> inkscape-0.46.ebuild:
+  add missing boost (bug #213454) and imagemagick dependency. reorder the deps
+
+*inkscape-0.46 (14 Mar 2008)
+
+  14 Mar 2008; Markus Meier <maekke@gentoo.org> +inkscape-0.46.ebuild:
+  bump to 0.46, reported in bug #213026
+
+  23 Jan 2008; Markus Meier <maekke@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  media-gfx/pstoedit needs plotutils enabled for USE=postscript, bug #207070
+
+  15 Jan 2008; Markus Meier <maekke@gentoo.org> -inkscape-0.45.1.ebuild:
+  old
+
+  14 Jan 2008; <welp@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  Stable on amd64; bug 205160
+
+  13 Jan 2008; Brent Baude <ranger@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  Marking inkscape-0.45.1-r1 ppc64 for bug 205160
+
+  11 Jan 2008; nixnut <nixnut@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  Stable on ppc wrt bug 205160
+
+  10 Jan 2008; Jeroen Roovers <jer@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  Stable for HPPA (bug #205160).
+
+  10 Jan 2008; Ferris McCormick <fmccor@gentoo.org>
+  inkscape-0.45.1-r1.ebuild:
+  Sparc stable --- Bug #205160 --- seems fine.
+
+  10 Jan 2008; Markus Meier <maekke@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  x86 stable, bug #205160
+
+  10 Jan 2008; Markus Meier <maekke@gentoo.org>
+  -files/inkscape-0.41-configure.ac.patch,
+  -files/inkscape-0.41_gnome-print.patch, -files/inkscape-0.43-gcc41.patch,
+  -files/inkscape-gcc42.diff, -files/0.40-radial.patch, -files/string.patch,
+  -inkscape-0.44.ebuild, -inkscape-0.44.1.ebuild, -inkscape-0.45.ebuild:
+  remove old ebuilds and cruft
+
+  05 Jan 2008; Markus Meier <maekke@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  remove loudmouth dep, bug #204414
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing zeypher from metadata.xml as per #141801.
+
+  10 Dec 2007; Markus Meier <maekke@gentoo.org> inkscape-0.45.1.ebuild,
+  inkscape-0.45.1-r1.ebuild:
+  add numpy to RDEPEND, bug #201733
+
+  08 Dec 2007; Jeroen Roovers <jer@gentoo.org> inkscape-0.45.1-r1.ebuild:
+  Marked ~hppa (bug #201532).
+
+*inkscape-0.45.1-r1 (06 Dec 2007)
+
+  06 Dec 2007; Markus Meier <maekke@gentoo.org> +inkscape-0.45.1-r1.ebuild:
+  add perl USE-flag (bug #199410) and readd jabber USE-flag (bug #162620),
+  drop hppa keyword (loudmouth not keyworded)
+
+  06 Dec 2007; Markus Meier <maekke@gentoo.org> inkscape-0.45.1.ebuild:
+  readd libxslt dep, bug #86629 and bug #191939
+
+  16 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> -inkscape-0.43.ebuild,
+  -inkscape-0.43-r1.ebuild:
+  Remove old version with broken autotools handling for bug #160013.
+
+  09 Apr 2007; Marcus D. Hanwell <cryos@gentoo.org> inkscape-0.45.1.ebuild:
+  Stable on amd64, bug 171799.
+
+  09 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  inkscape-0.45.1.ebuild:
+  Stable on sparc wrt security #171799
+
+  09 Apr 2007; Jeroen Roovers <jer@gentoo.org> inkscape-0.45.1.ebuild:
+  Stable for HPPA (bug #171799).
+
+  08 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  inkscape-0.45.1.ebuild:
+  ppc stable, bug #171799
+
+  08 Apr 2007; Markus Rothe <corsair@gentoo.org> inkscape-0.45.1.ebuild:
+  Stable on ppc64; bug #171799
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  inkscape-0.45.1.ebuild:
+  stable x86, security bug 171799
+
+*inkscape-0.45.1 (07 Apr 2007)
+
+  07 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> metadata.xml,
+  +inkscape-0.45.1.ebuild:
+  Version bump for security bug #171799. Also fixes bugs #106123 (importing
+  postscript), bug #147822, bug #162237, bug #169308 (useless dep on boost).
+  In this version the plugin use flag was splitted to wmf, postcript and dia
+  use flags and the ebuild in general cleaned.
+
+  06 Feb 2007; Jeroen Roovers <jer@gentoo.org> inkscape-0.45.ebuild:
+  Increase minimal x11-libs/gtk+ version in accordance with Release Notes.
+
+*inkscape-0.45 (06 Feb 2007)
+
+  06 Feb 2007; Jeroen Roovers <jer@gentoo.org> +inkscape-0.45.ebuild:
+  Version bump.
+
+  05 Feb 2007; Jeroen Roovers <jer@gentoo.org> inkscape-0.44.1.ebuild:
+  Stable for HPPA (inkscape).
+
+  04 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> inkscape-0.44.ebuild:
+  Fix broken autotools handling.
+
+*inkscape-0.44.1 (11 Oct 2006)
+
+  11 Oct 2006; Hanno Boeck <hanno@gentoo.org> +inkscape-0.44.1.ebuild:
+  Version bump.
+
+  07 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> inkscape-0.44.ebuild:
+  Stable on sparc
+
+  26 Aug 2006; Hanno Boeck <hanno@gentoo.org> +files/inkscape-gcc42.diff,
+  inkscape-0.44.ebuild:
+  Fix for gcc42.
+
+  02 Jul 2006; Michael Sterrett <mr_bones_@gentoo.org> inkscape-0.44.ebuild:
+  fix invalid dep
+
+  28 Jun 2006; Jeroen Roovers <jer@gentoo.org> inkscape-0.44.ebuild:
+  Marked ~hppa.
+
+  27 Jun 2006; Luca Barbato <lu_zero@gentoo.org> inkscape-0.44.ebuild:
+  dep bump for lcms, thanks to <jackdoozer@yahoo.com> for the report in the
+  bug #138260
+
+  24 Jun 2006; Luca Barbato <lu_zero@gentoo.org> inkscape-0.44.ebuild:
+  inkboard on hold
+
+*inkscape-0.44 (24 Jun 2006)
+
+  24 Jun 2006; Luca Barbato <lu_zero@gentoo.org> +inkscape-0.44.ebuild:
+  New version, ebuild provided by R Stephan <ralf@ark.in-berlin.de> on behalf
+  of upstream in bug #135030
+
+  25 Dec 2005; Marcelo Goes <vanquirius@gentoo.org> -inkscape-0.37.ebuild,
+  -inkscape-0.38.ebuild, -inkscape-0.38.1.ebuild, -inkscape-0.39.ebuild,
+  -inkscape-0.40.ebuild, -inkscape-0.40-r1.ebuild, -inkscape-0.41.ebuild,
+  -inkscape-0.41-r1.ebuild, -inkscape-0.42.ebuild, -inkscape-0.42.2.ebuild:
+  Clean out old ebuilds. There was really a lot of them.
+
+  24 Dec 2005; Marcelo Goes <vanquirius@gentoo.org> inkscape-0.43.ebuild,
+  inkscape-0.43-r1.ebuild:
+  Add glib-2.6 dependency for bug 104476. Thanks to Samuel Penn <sam at
+  glendale dot org dot uk> and Simon Stelling <blubb at gentoo dot org>.
+
+  17 Dec 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.43-r1.ebuild:
+  Added ~ppc64
+
+*inkscape-0.43-r1 (12 Dec 2005)
+
+  12 Dec 2005; Luca Barbato <lu_zero@gentoo.org> inkscape-0.43.ebuild,
+  +inkscape-0.43-r1.ebuild:
+  Added jabber support
+
+  28 Nov 2005; Hanno Boeck <hanno@gentoo.org>
+  +files/inkscape-0.43-gcc41.patch, inkscape-0.43.ebuild:
+  Fix for gcc 4.1.
+
+  27 Nov 2005; Joseph Jezak <josejx@gentoo.org> inkscape-0.43.ebuild:
+  Marked ppc stable for bug #109993.
+
+  22 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org> inkscape-0.43.ebuild:
+  Stable on sparc wrt security #109993
+
+  22 Nov 2005; Chris White <chriswhite@gentoo.org> inkscape-0.43.ebuild:
+  x86 stable wrt bug #109993.
+
+  22 Nov 2005; Simon Stelling <blubb@gentoo.org> inkscape-0.43.ebuild:
+  stable on amd64 wrt bug 109993
+
+  22 Nov 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.43.ebuild:
+  Stable on ppc64; bug #109993
+
+*inkscape-0.43 (22 Nov 2005)
+
+  22 Nov 2005; Karol Wojtaszek <sekretarz@gentoo.org> inkscape-0.42.ebuild,
+  +inkscape-0.43.ebuild:
+  Version bump, this release fixes security bug #109993. Updated
+  dev-libs/libxml2 depend, bug #108131
+
+  19 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> inkscape-0.42.2.ebuild:
+  Depend on a gcc equal or major than 3, as it seems to work fine with gcc4.
+
+  30 Aug 2005; Michael Hanselmann <hansmi@gentoo.org>
+  inkscape-0.42.2.ebuild:
+  Stable on ppc.
+
+  30 Aug 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.42.2.ebuild:
+  Stable on ppc64 (bug #101842)
+
+  30 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  inkscape-0.42.2.ebuild:
+  Stable on sparc wrt #101842
+
+  30 Aug 2005; Simon Stelling <blubb@gentoo.org> inkscape-0.42.2.ebuild:
+  stable on amd64 wrt bug 101842
+
+*inkscape-0.42.2 (29 Aug 2005)
+
+  29 Aug 2005; Marcelo Goes <vanquirius@gentoo.org> +inkscape-0.42.2.ebuild:
+  Version bump. Should fix bug 104006, bug 101842 and bug 101637. x86 stable
+  because of bug 101842.
+
+  28 Aug 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.42.ebuild:
+  added ~ppc64
+
+*inkscape-0.42 (30 Jul 2005)
+
+  30 Jul 2005; <sekretarz@gentoo.org> +inkscape-0.42.ebuild:
+  Version bump, bug #100386
+
+  05 Jul 2005; Marc Hildebrand <zypher@gentoo.org>
+  inkscape-0.41-r1.ebuild:
+  Stable on x86
+
+  27 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  inkscape-0.41-r1.ebuild:
+  Stable on sparc
+
+  11 Jun 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.41-r1.ebuild:
+  Stable on ppc64; bug #92995
+
+  10 Jun 2005; Joseph Jezak <josejx@gentoo.org> inkscape-0.41-r1.ebuild:
+  Marked ppc stable.
+
+  10 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  inkscape-0.40-r1.ebuild:
+  Stable on sparc wrt #92995
+
+  09 Jun 2005; <sekretarz@gentoo.org> inkscape-0.41-r1.ebuild:
+  Stable on amd64, bug #92995
+
+  05 Jun 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.41.ebuild:
+  Stable on ppc64; bug #92995
+
+  24 May 2005; Marc Hildebrand <zypher@gentoo.org> inkscape-0.41-r1.ebuild:
+  Added inkscape-0.41-configure.ac.patch, should close bug #84323
+  Thanks to motaboy for the actual work on this.
+
+  21 May 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.41.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  27 Apr 2005; Karol Wojtaszek <sekretarz@gentoo.org> inkscape-0.41.ebuild:
+  dev-libs/libxslt added to DEPEND, bug #86629
+
+  06 Apr 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.40-r1.ebuild:
+  Stable on ppc64
+
+  26 Mar 2005; Jason Wever <weeve@gentoo.org> inkscape-0.41.ebuild:
+  Added ~sparc keyword wrt bug #86280.
+
+*inkscape-0.41 (22 Mar 2005)
+
+  22 Mar 2005; Karol Wojtaszek <sekretarz@gentoo.org>
+  +files/inkscape-0.41_gnome-print.patch, +inkscape-0.41.ebuild:
+  Version bump, bug #81529
+
+  28 Feb 2005; Markus Rothe <corsair@gentoo.org> inkscape-0.40-r1.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  19 Jan 2005; Marc Hildebrand <zypher@gentoo.org> inkscape-0.40-r1.ebuild:
+  Added Radial-patch, closes bug #78592. Thanks to Jens Ansorg for
+  the patch.
+
+  22 Dec 2004; Hanno Boeck <hanno@gentoo.org> inkscape-0.37.ebuild,
+  inkscape-0.38.ebuild:
+  Fix libsigc++-dep in all versions of the ebuild (bug #66342).
+
+*inkscape-0.40 (07 Dec 2004)
+
+  07 Dec 2004; Chris Bainbridge <chrb@gentoo.org> +inkscape-0.40.ebuild:
+  Version bump.
+
+*inkscape-0.39 (18 Jul 2004)
+
+  18 Jul 2004; Marc Hildebrand <zypher@gentoo.org> :
+  Version bump.
+
+*inkscape-0.38.1 (14 Jun 2004)
+
+  14 Jun 2004; Hanno Boeck <hanno@gentoo.org> +files/string.patch,
+  inkscape-0.38.1.ebuild:
+  Compilation fix for gcc 3.4.
+
+  25 May 2004; Marc Hildebrand <zypher@gentoo.org> inkscape-0.38.1.ebuild:
+  Changed libsigc++ dep from >=v.1.2 to =v.1.2* resolves bug #51325.
+
+  02 May 2004; Jason Wever <weeve@gentoo.org> inkscape-0.38.1.ebuild:
+  Added ~sparc keyword, resolves bug #49703.
+
+*inkscape-0.38 (07 Apr 2004)
+
+  09 Apr 2004; Marc Hildebrand <zypher@gentoo.org> :
+  Version bump.
+
+*inkscape-0.37 (15 Feb 2004)
+
+  18 Feb 2004; Marc Hildebrand <zypher@gentoo.org> :
+  Initial ebuild.
