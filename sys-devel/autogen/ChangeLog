@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.49 2008/04/13 04:27:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.50 2008/05/12 16:11:29 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> autogen-5.9.4.ebuild:
+  Stable on ppc64
 
   13 Apr 2008; Mike Frysinger <vapier@gentoo.org> autogen-5.9.4.ebuild:
   Mark amd64 stable.
