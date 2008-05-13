@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/zoo
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.39 2007/08/22 14:00:08 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.40 2008/05/13 14:08:23 jer Exp $
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> zoo-2.10-r4.ebuild:
+  Stable for HPPA (LuckyLuke).
 
   22 Aug 2007; Roy Marples <uberlord@gentoo.org> zoo-2.10-r4.ebuild:
   emake no workie on FreeBSD
