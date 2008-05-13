@@ -75,9 +75,9 @@
 +#  if (_MIPS_SZLONG == 64)
 +#   define SIZE_MAX                UINT64_MAX
 +#  endif
++# else
++#  define SIZE_MAX (~(size_t)0)
 +# endif
-+#else
-+# define SIZE_MAX (~(size_t)0)
  #endif
  
  #define LZMADEC_NO_STDIO
