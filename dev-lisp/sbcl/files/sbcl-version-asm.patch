@@ -1,0 +1,12 @@
+# bug 216871, comment #1. binutils-2.18.50.0.4 or greater
+--- src/runtime/x86-assem.S-orig	2008-04-09 17:27:25.281902000 -0500
++++ src/runtime/x86-assem.S	2008-04-09 17:27:46.961617000 -0500
+@@ -130,7 +130,7 @@
+ 
+ /* Check for a return FP value. */
+ 	fxam
+-	fnstsw	%eax
++	fnstsw	%ax
+ 	andl	$0x4500,%eax
+ 	cmpl	$0x4100,%eax
+ 	jne	Lfp_rtn_value

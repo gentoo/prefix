@@ -103,7 +103,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.0.6-solaris.patch
-	epatch "${FILESDIR}"/${PN}-binutils-prefix.patch
+	epatch "${FILESDIR}"/${PN}-version-asm.patch #216871
 #	epatch "${FILESDIR}/disable-tests-gentoo-${PV}.patch"
 	use source && sed 's%"$(build_root)%$(module).lisp "$(build_root)%' -i contrib/vanilla-module.mk
 
