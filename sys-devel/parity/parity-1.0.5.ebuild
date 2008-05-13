@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix"
+KEYWORDS="~x86-interix ~x86-winnt"
 IUSE=""
 
 pkg_setup() {
