@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/astyle
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.20 2008/02/04 03:58:43 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.21 2008/05/12 06:03:36 nerdboy Exp $
+
+*astyle-1.22 (12 May 2008)
+
+  12 May 2008; Steve Arnold <nerdboy@gentoo.org>
+  +files/astyle-1.22-strip.patch, +astyle-1.22.ebuild:
+  Updated for bug #217262 and added some basic java support and a soname;
+  thanks to Adam <ediap@users.sourceforge.net> for the updated patch.
 
   04 Feb 2008; Steve Arnold <nerdboy@gentoo.org> astyle-1.21.ebuild:
   Fixed string quoting and added some dies to the manual install commands,
@@ -11,7 +18,7 @@
   Dropped ppc-macos keyword, see you in prefix
 
   14 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> astyle-1.21.ebuild:
-  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.20 2008/02/04 03:58:43 nerdboy Exp $ string.
+  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.21 2008/05/12 06:03:36 nerdboy Exp $ string.
 
 *astyle-1.21 (07 Oct 2007)
 

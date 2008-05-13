@@ -1,0 +1,29 @@
+--- astyle.orig/buildgcc/Makefile	2008-04-11 11:25:13.000000000 +0200
++++ astyle/buildgcc/Makefile		2008-04-11 11:25:52.000000000 +0200
+@@ -104,7 +104,7 @@
+ release:  astyle
+ astyle:  $(OBJ)
+ 	@ mkdir -p $(bindir)
+-	$(CXX) -s -o $(bindir)/$@ $^
++	$(CXX) -o $(bindir)/$@ $^
+ 	@ echo
+ 
+ debug:  astyled
+@@ -116,7 +116,7 @@
+ shared:  libastyle.so
+ libastyle.so:  $(OBJs)
+ 	@ mkdir -p $(bindir)
+-	$(CXX) -shared -s -o $(bindir)/$@ $^
++	$(CXX) -shared -o $(bindir)/$@ $^
+ 	@ echo
+ 
+ shareddebug:  libastyled.so
+@@ -140,7 +140,7 @@
+ java:  libastylej.so
+ libastylej.so:  $(OBJsj)
+ 	@ mkdir -p $(bindir)
+-	$(CXX) -shared -s -o $(bindir)/$@ $^
++	$(CXX) -shared -o $(bindir)/$@ $^
+ 	@ echo
+ 
+ javadebug:  libastylejd.so
