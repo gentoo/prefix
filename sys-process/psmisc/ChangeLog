@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.78 2008/03/07 14:20:06 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.79 2008/05/12 18:02:20 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> psmisc-22.6.ebuild:
+  Stable on ppc64
 
   07 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> psmisc-22.6.ebuild:
   amd64 stable
