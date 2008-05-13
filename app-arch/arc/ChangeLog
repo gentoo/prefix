@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/arc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.33 2008/02/22 00:39:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.34 2008/05/13 14:12:31 jer Exp $
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> arc-5.21o.ebuild:
+  Stable for HPPA (LuckyLuke).
 
   22 Feb 2008; Brent Baude <ranger@gentoo.org> arc-5.21o.ebuild:
   stable ppc64, bug 210983
