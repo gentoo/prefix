@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/epydoc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.34 2008/01/31 21:02:25 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.35 2008/05/12 09:45:31 aballier Exp $
+
+  12 May 2008; Alexis Ballier <aballier@gentoo.org> epydoc-3.0.1.ebuild:
+  Fix deps with texlive, bug #213310
 
 *epydoc-3.0.1 (31 Jan 2008)
 
