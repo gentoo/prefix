@@ -1,6 +1,9 @@
 # ChangeLog for dev-texlive/texlive-latexextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.16 2008/04/16 14:58:11 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.17 2008/05/12 20:05:59 nixnut Exp $
+
+  12 May 2008; nixnut <nixnut@gentoo.org> texlive-latexextra-2007.ebuild:
+  Stable on ppc wrt bug 220651
 
   16 Apr 2008; Peter Volkov <pva@gentoo.org> texlive-latexextra-2007.ebuild:
   amd64 stable, bug #215735.
