@@ -1,0 +1,47 @@
+--- libssh-0.2.orig/Makefile.in	2007-01-03 20:34:37.000000000 -0500
++++ libssh-0.2/Makefile.in	2007-01-03 20:36:41.000000000 -0500
+@@ -21,14 +21,12 @@
+ INSTALL = @INSTALL@
+ LN = @LN_S@
+ LIBTOOL = @LIBTOOL@
+-OBJECTS = sample.o samplesshd.o
+-APPS = samplessh samplesftp samplesshd
+ VERSION = 0.2
+ DISTLIB = libssh-$(VERSION)
+ CONFIG = include/libssh/config.h
+ 
+ .PHONY: all
+-all: $(CONFIG) SUBDIRS $(OBJECTS) $(APPS)
++all: $(CONFIG) SUBDIRS
+ 
+ .PHONY: SUBDIRS
+ SUBDIRS:
+@@ -40,12 +38,6 @@
+ % : %.o
+ 	$(LIBTOOL) --mode=link $(CC) -o $@ $< $(LDFLAGS) $(LIBS)
+ 
+-samplessh: sample.o
+-	$(LIBTOOL) --mode=link $(CC) -o $@ $< $(LDFLAGS) $(LIBS)
+-
+-samplesftp: samplessh
+-	$(LN) -f samplessh samplesftp
+-
+ $(CONFIG):
+ 	$(LN) -f ../../config.h $(CONFIG)
+ 
+@@ -94,14 +86,12 @@
+ install-doc: doc
+ 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(docdir)/libssh/html
+ 	$(INSTALL) doxygen/html/* $(DESTDIR)$(docdir)/libssh/html
+-	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(docdir)/libssh/examples
+-	$(INSTALL) sample.c samplesshd.c $(DESTDIR)$(docdir)/libssh/examples
+ 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir)/man3
+ 	$(INSTALL) doxygen/man/man3/* $(DESTDIR)$(mandir)/man3
+ 
+ .PHONY: clean
+ clean:
+-	$(LIBTOOL) --mode=clean rm -f *~ *.o samplessh samplesftp samplesshd include/libssh/config.h
++	$(LIBTOOL) --mode=clean rm -f *~ *.o include/libssh/config.h
+ 	rm -rf doxygen
+ 	@for dir in ${subdirs}; do \
+ 	  (cd $$dir && $(MAKE) clean) \
