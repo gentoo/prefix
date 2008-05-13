@@ -1,0 +1,12 @@
+# ChangeLog for dev-util/confix
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/confix/ChangeLog,v 1.1 2008/05/13 14:44:10 haubi Exp $
+
+*confix-2.1.0 (13 May 2008)
+
+  13 May 2008; Michael Haubenwallner <haubi@gentoo.org>
+  +files/2.1.0/CALL_RESCAN_HACK.patch, +files/2.1.0/exeext.patch,
+  +files/2.1.0/ext-ac-archive.patch, +files/2.1.0/jni-hpux.patch,
+  +metadata.xml, +confix-2.1.0.ebuild:
+  initial import of dev-util/confix (ebuild from me).
+
