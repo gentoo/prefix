@@ -1,0 +1,13 @@
+--- ../50-openoffice-bin	2007-12-19 09:52:40.781534000 -0600
++++ ../temp/50-openoffice-bin	2007-12-19 10:08:44.675812000 -0600
+@@ -1 +1 @@
+-SEARCH_DIRS_MASK="/usr/lib/openoffice /usr/lib32/openoffice"
++SEARCH_DIRS_MASK="@GENTOO_PORTAGE_EPREFIX@/usr/lib/openoffice @GENTOO_PORTAGE_EPREFIX@/usr/lib32/openoffice"
+--- ../wrapper.in	2007-12-19 09:52:51.946068000 -0600
++++ ../temp/wrapper.in	2007-12-19 10:08:51.330073000 -0600
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+ export OOO_EXTRA_ARG=''
+ unset PYTHONPATH
+-/usr/LIBDIR/openoffice/program/soffice  "$@"
++@GENTOO_PORTAGE_EPREFIX@/usr/LIBDIR/openoffice/program/soffice  "$@"
