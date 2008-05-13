@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-genmon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.19 2008/04/10 14:43:45 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.20 2008/05/12 18:41:25 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> xfce4-genmon-3.2.ebuild:
+  Stable on ppc64
 
   10 Apr 2008; Samuli Suominen <drac@gentoo.org> xfce4-genmon-3.2.ebuild:
   amd64 stable
