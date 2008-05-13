@@ -1,0 +1,327 @@
+diff -ur eselect-emacs-1.4.orig/ctags.eselect eselect-emacs-1.4/ctags.eselect
+--- eselect-emacs-1.4.orig/ctags.eselect	2008-05-03 13:43:45.000000000 +0200
++++ eselect-emacs-1.4/ctags.eselect	2008-05-13 22:49:37.223371460 +0200
+@@ -23,7 +23,7 @@
+ #CTAGS=$(basename ${BASH_SOURCE%.*})
+ CTAGS=ctags
+ 
+-DESCRIPTION="Manage /usr/bin/${CTAGS} implementations"
++DESCRIPTION="Manage @GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS} implementations"
+ MAINTAINER="emacs@gentoo.org"
+ SVN_DATE='$Date: 2008-05-03 13:43:18 +0200 (Sat, 03 May 2008) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+@@ -35,12 +35,12 @@
+ 	# currently active Emacs version (selected by emacs.eselect)
+ 	# The logic here is the same as in emacs.eselect, don't change it!
+ 	local emacs
+-	if [[ -L "${ROOT}/usr/bin/emacs" && \
+-		  -e $(canonicalise "${ROOT}/usr/bin/emacs") ]]; then
+-		emacs=$(basename $(canonicalise "${ROOT}/usr/bin/emacs") )
+-		[[ -f "${ROOT}/usr/bin/${CTAGS}-${emacs}" ]] && echo ${CTAGS}-${emacs}
+-	elif [[ -f "${ROOT}/usr/bin/xemacs" ]]; then
+-		[[ -f "${ROOT}/usr/bin/${CTAGS}-xemacs" ]] && echo ${CTAGS}-xemacs
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" && \
++		  -e $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") ]]; then
++		emacs=$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") )
++		[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}-${emacs}" ]] && echo ${CTAGS}-${emacs}
++	elif [[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/xemacs" ]]; then
++		[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}-xemacs" ]] && echo ${CTAGS}-xemacs
+ 	elif [[ ${CTAGS} == etags ]]; then
+ 		# We are called as etags module, but no (X)Emacs is installed.
+ 		# Return an empty list in this case, because we don't want
+@@ -50,31 +50,31 @@
+ 	fi
+ 
+ 	# Exuberant ctags
+-	[[ -f "${ROOT}"/usr/bin/exuberant-ctags ]] && echo exuberant-ctags
++	[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/bin/exuberant-ctags ]] && echo exuberant-ctags
+ }
+ 
+ remove_symlinks() {
+ 	# Remove existing symlinks to binary and man page
+-	rm -f "${ROOT}"/usr/bin/${CTAGS}
+-	rm -f "${ROOT}"/usr/share/man/man1/${CTAGS}.1*
++	rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/bin/${CTAGS}
++	rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/${CTAGS}.1*
+ }
+ 
+ set_bin_symlinks() {
+ 	# Set symlink to binary
+ 	local target=${1}
+-	ln -s "${target}" "${ROOT}/usr/bin/${CTAGS}" \
+-		|| die "Couldn't set ${target} ${ROOT}/usr/bin/${CTAGS} symlink"
++	ln -s "${target}" "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" \
++		|| die "Couldn't set ${target} ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS} symlink"
+ }
+ 
+ set_man_symlinks() {
+ 	# Set symlink to man page
+ 	local target=${1} extension i
+-	for i in "${ROOT}"/usr/share/man/man1/${target}.1*; do
++	for i in "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/${target}.1*; do
+ 		if [[ -f ${i} ]]; then
+ 			# target file exists; determine compress extension
+ 			extension=${i##*/${target}.1}
+ 			ln -s "${target}.1${extension}" \
+-				"${ROOT}/usr/share/man/man1/${CTAGS}.1${extension}"
++				"${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/man/man1/${CTAGS}.1${extension}"
+ 		fi
+ 	done
+ }
+@@ -92,7 +92,7 @@
+ 	fi
+ 
+ 	# is the target valid, i.e. does a ctags binary with this name exist?
+-	[[ -f "${ROOT}/usr/bin/${target}" ]] \
++	[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${target}" ]] \
+ 		|| die -q "Target \"${1}\" doesn't appear to be valid!"
+ 
+ 	echo "Switching ${CTAGS} to ${target} ..."
+@@ -104,7 +104,7 @@
+ 
+ test_for_root() {
+ 	# checks if the user has rights to modify /usr/bin/
+-	[[ -w "${ROOT}/usr/bin" ]] || die -q "You need to be root!"
++	[[ -w "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin" ]] || die -q "You need to be root!"
+ }
+ 
+ ### show action ###
+@@ -117,11 +117,11 @@
+ 	[[ ${#@} -gt 0 ]] && die -q "Too many parameters"
+ 
+ 	write_list_start "Current target of ${CTAGS} symlink:"
+-	if [[ -L "${ROOT}/usr/bin/${CTAGS}" && \
+-		  -e $(canonicalise "${ROOT}/usr/bin/${CTAGS}") ]]; then
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" && \
++		  -e $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}") ]]; then
+ 		write_kv_list_entry \
+-			$(basename $(canonicalise "${ROOT}/usr/bin/${CTAGS}") ) ""
+-	elif [[ -e "${ROOT}/usr/bin/${CTAGS}" ]]; then
++			$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}") ) ""
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" ]]; then
+ 		write_kv_list_entry \
+ 			"(not a symlink or target of symlink does not exist)" ""
+ 	else
+@@ -145,7 +145,7 @@
+ 		for (( i = 0; i < ${#targets[@]}; i = i + 1 )); do
+ 			# Display a star to indicate the currently chosen version
+ 			[[ ${targets[${i}]} = \
+-				$(basename $(canonicalise "${ROOT}/usr/bin/${CTAGS}") ) ]] \
++				$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}") ) ]] \
+ 				&& targets[${i}]="${targets[${i}]} $(highlight '*')"
+ 		done
+ 		write_list_start "Available ${CTAGS} symlink targets:"
+@@ -174,9 +174,9 @@
+ 	[[ ${#@} -gt 1 ]] && die -q "Too many parameters"
+ 	test_for_root
+ 
+-	if [[ -e "${ROOT}/usr/bin/${CTAGS}" && ! -L "${ROOT}/usr/bin/${CTAGS}" ]]
++	if [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" && ! -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" ]]
+ 	then
+-		die -q "Sorry, ${ROOT}/usr/bin/${CTAGS} exists but is not a symlink"
++		die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS} exists but is not a symlink"
+ 	fi
+ 
+ 	set_symlinks "${1}" || die -q "Couldn't set a new symlink"
+@@ -193,15 +193,15 @@
+ 	test_for_root
+ 
+ 	local current=""
+-	if [[ -L "${ROOT}/usr/bin/${CTAGS}" ]]; then
+-		current=$(basename $(canonicalise "${ROOT}/usr/bin/${CTAGS}") )
+-		if [[ ! -e $(canonicalise "${ROOT}/usr/bin/${CTAGS}") ]]; then
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" ]]; then
++		current=$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}") )
++		if [[ ! -e $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}") ]]; then
+ 			# clean up dead symlinks
+ 			remove_symlinks || die -q "Couldn't remove existing symlink"
+ 		fi
+-	elif [[ -e "${ROOT}/usr/bin/${CTAGS}" ]]; then
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS}" ]]; then
+ 		if ! [[ ${CTAGS} == ctags && $(uname) == FreeBSD ]]; then
+-			die -q "Sorry, ${ROOT}/usr/bin/${CTAGS} exists but is not a symlink"
++			die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${CTAGS} exists but is not a symlink"
+ 		fi
+ 		# On FreeBSD ctags is a real file, installed by freebsd-ubin
+ 		current=nolink
+diff -ur eselect-emacs-1.4.orig/emacs.eselect eselect-emacs-1.4/emacs.eselect
+--- eselect-emacs-1.4.orig/emacs.eselect	2008-05-02 22:46:07.000000000 +0200
++++ eselect-emacs-1.4/emacs.eselect	2008-05-13 22:25:29.164817493 +0200
+@@ -20,7 +20,7 @@
+ # do_update(): Set the target to the highest version available
+ #	(optionally: only if not set)
+ 
+-DESCRIPTION="Manage /usr/bin/emacs version"
++DESCRIPTION="Manage @GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs version"
+ MAINTAINER="emacs@gentoo.org"
+ SVN_DATE='$Date: 2008-05-02 22:45:39 +0200 (Fri, 02 May 2008) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+@@ -32,32 +32,32 @@
+ find_targets() {
+ 	# Return the list of available Emacs binaries
+ 	local j
+-	for j in "${ROOT}"/usr/bin/emacs-[0-9]*; do
++	for j in "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/bin/emacs-[0-9]*; do
+ 		[[ -f ${j} ]] && basename ${j}
+ 	done
+ }
+ 
+ remove_infopath() {
+ 	# When cleaning symlinks this takes care of the info documentation settings
+-	rm -f "${ROOT}/etc/env.d/50emacs"
++	rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/50emacs"
+ }
+ 
+ # Define INFOPATH environment variable in env file
+ set_infopath() {
+-	[[ -d "${ROOT}"/usr/share/info/${1} ]] || return 1
+-	echo "INFOPATH=/usr/share/info/${1}" > "${ROOT}/etc/env.d/50emacs"
++	[[ -d "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/share/info/${1} ]] || return 1
++	echo "INFOPATH=@GENTOO_PORTAGE_EPREFIX@/usr/share/info/${1}" > "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/50emacs"
+ }
+ 
+ remove_symlinks() {
+ 	# Remove existing symlinks to binaries, man pages,
+ 	# and the env file (own function)
+ 	local f
+-	rm -f "${ROOT}"/usr/bin/emacs
++	rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/bin/emacs
+ 	for f in ${BINARYLIST}; do
+-		rm -f "${ROOT}"/usr/bin/${f}
++		rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/bin/${f}
+ 	done
+ 	for f in ${MANPAGELIST}; do
+-		rm -f "${ROOT}"/usr/share/man/man1/${f}.1*
++		rm -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/${f}.1*
+ 	done
+ 	remove_infopath
+ }
+@@ -67,9 +67,9 @@
+ 	local target=${1} f
+ 	for f in ${BINARYLIST}; do
+ 		# set symlink only if target binary actually exists
+-		if [[ -f "${ROOT}/usr/bin/${f}-${target}" ]]; then
+-			ln -s "${f}-${target}" "${ROOT}/usr/bin/${f}" ||
+-				die "Couldn't set ${f}-${target} ${ROOT}/usr/bin/${f} symlink"
++		if [[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${f}-${target}" ]]; then
++			ln -s "${f}-${target}" "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${f}" ||
++				die "Couldn't set ${f}-${target} ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${f} symlink"
+ 		fi
+ 	done
+ }
+@@ -78,12 +78,12 @@
+ 	# Set symlinks to man pages
+ 	local target=${1} extension f i
+ 	for f in ${MANPAGELIST}; do
+-		for i in "${ROOT}"/usr/share/man/man1/${f}-${target}.1*; do
++		for i in "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/${f}-${target}.1*; do
+ 			if [[ -f ${i} ]]; then
+ 				# target file exists; determine compress extension
+ 				extension=${i##*/${f}-${target}.1}
+ 				ln -s "${f}-${target}.1${extension}" \
+-					"${ROOT}/usr/share/man/man1/${f}.1${extension}"
++					"${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/man/man1/${f}.1${extension}"
+ 			fi
+ 		done
+ 	done
+@@ -102,7 +102,7 @@
+ 	fi
+ 
+ 	# is the target valid, i.e. does an Emacs binary with this name exist?
+-	[[ -f "${ROOT}/usr/bin/${target}" ]] \
++	[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${target}" ]] \
+ 		|| die -q "Target \"${1}\" doesn't appear to be valid!"
+ 
+ 	echo "Switching emacs to ${target} ..."
+@@ -110,8 +110,8 @@
+ 	# the main /usr/bin/emacs symlink is only set for Emacs binaries
+ 	# (but not for other providers of auxiliary programs, e.g., XEmacs)
+ 	if [[ ${target} == emacs-* ]]; then
+-		ln -s "${target}" "${ROOT}/usr/bin/emacs" \
+-			|| die "Couldn't set ${target} ${ROOT}/usr/bin/emacs symlink"
++		ln -s "${target}" "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" \
++			|| die "Couldn't set ${target} ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs symlink"
+ 	fi
+ 	set_bin_symlinks "${target}"
+ 	set_man_symlinks "${target}"
+@@ -127,7 +127,7 @@
+ xemacs_info() {
+ 	# This is just informational to tell that XEmacs has been found,
+ 	# a wish from graaff
+-	if [[ -e "${ROOT}/usr/bin/xemacs" ]]; then
++	if [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/xemacs" ]]; then
+ 		echo
+ 		write_list_start "XEmacs is also installed"
+ 	fi
+@@ -143,7 +143,7 @@
+ 
+ test_for_root() {
+ 	# checks if the user has rights to modify /usr/bin/
+-	[[ -w "${ROOT}/usr/bin" ]] || die -q "You need to be root!"
++	[[ -w "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin" ]] || die -q "You need to be root!"
+ }
+ 
+ ### show action ###
+@@ -156,11 +156,11 @@
+ 	[[ ${#@} -gt 0 ]] && die -q "Too many parameters"
+ 
+ 	write_list_start "Current target of GNU Emacs symlink:"
+-	if [[ -L "${ROOT}/usr/bin/emacs" && \
+-		  -e $(canonicalise "${ROOT}/usr/bin/emacs") ]]; then
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" && \
++		  -e $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") ]]; then
+ 		write_kv_list_entry \
+-			$(basename $(canonicalise "${ROOT}/usr/bin/emacs") ) ""
+-	elif [[ -e "${ROOT}/usr/bin/emacs" ]]; then
++			$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") ) ""
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" ]]; then
+ 		write_kv_list_entry \
+ 			"(not a symlink or target of symlink does not exist)" ""
+ 	else
+@@ -186,7 +186,7 @@
+ 		for (( i = 0; i < ${#targets[@]}; i = i + 1 )); do
+ 			# Display a star to indicate the currently chosen version
+ 			[[ ${targets[${i}]} = \
+-				$(basename $(canonicalise "${ROOT}/usr/bin/emacs") ) ]] \
++				$(basename $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") ) ]] \
+ 				&& targets[${i}]="${targets[${i}]} $(highlight '*')"
+ 		done
+ 		write_list_start "Available GNU Emacs symlink targets:"
+@@ -217,8 +217,8 @@
+ 	[[ ${#@} -gt 1 ]] && die -q "Too many parameters"
+ 	test_for_root
+ 
+-	if [[ -e "${ROOT}/usr/bin/emacs" && ! -L "${ROOT}/usr/bin/emacs" ]]; then
+-		die -q "Sorry, ${ROOT}/usr/bin/emacs exists but is not a symlink"
++	if [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" && ! -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" ]]; then
++		die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs exists but is not a symlink"
+ 	fi
+ 
+ 	set_symlinks "${1}" || die -q "Couldn't set a new symlink"
+@@ -243,20 +243,20 @@
+ 	[[ ${#@} -gt 1 ]] && die -q "Too many parameters"
+ 	test_for_root
+ 
+-	if [[ -L "${ROOT}/usr/bin/emacs" ]]; then
+-		[[ ${1} == *if*unset && -e $(canonicalise "${ROOT}/usr/bin/emacs") ]] \
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" ]]; then
++		[[ ${1} == *if*unset && -e $(canonicalise "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs") ]] \
+ 			&& return
+ 		# this is not redundant: "update" is called in pkg_postrm() of emacs
+ 		# and should clean up any dead symlinks if no valid target exists
+ 		remove_symlinks || die -q "Couldn't remove existing symlink"
+-	elif [[ -e "${ROOT}/usr/bin/emacs" ]]; then
+-		die -q "Sorry, ${ROOT}/usr/bin/emacs exists but is not a symlink"
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs" ]]; then
++		die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/emacs exists but is not a symlink"
+ 	fi
+ 
+ 	local targets=( $(find_targets) )
+ 	if [[ ${#targets[@]} -gt 0 ]]; then
+ 		set_symlinks ${#targets[@]} || die -q "Couldn't set a new symlink"
+-	elif [[ -f "${ROOT}/usr/bin/xemacs" ]]; then
++	elif [[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/xemacs" ]]; then
+ 		# no Emacs target found -- link ctags, etags etc. to XEmacs versions
+ 		set_symlinks xemacs
+ 	fi
+Only in eselect-emacs-1.4: prefix.patch

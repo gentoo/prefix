@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.42 2008/04/30 13:49:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.43 2008/05/13 10:53:17 ulm Exp $
+
+*eselect-emacs-1.4 (13 May 2008)
+
+  13 May 2008; Ulrich Mueller <ulm@gentoo.org> +eselect-emacs-1.4.ebuild:
+  Version bump. New module for etags.
 
   30 Apr 2008; Ulrich Mueller <ulm@gentoo.org> eselect-emacs-1.3-r2.ebuild:
   Move eselect-ctags to RDEPEND where it belongs.
