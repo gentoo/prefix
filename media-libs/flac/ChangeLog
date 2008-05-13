@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.137 2008/03/16 12:09:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.138 2008/05/12 15:23:35 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> flac-1.2.1-r2.ebuild:
+  Stable on ppc64
 
   16 Mar 2008; Samuli Suominen <drac@gentoo.org> -flac-1.1.2-r8.ebuild,
   flac-1.2.1-r2.ebuild:
