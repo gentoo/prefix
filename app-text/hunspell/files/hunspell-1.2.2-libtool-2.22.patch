@@ -1,0 +1,16 @@
+=== modified file 'configure.ac'
+--- configure.ac	2008-05-04 18:40:59 +0000
++++ configure.ac	2008-05-04 18:41:05 +0000
+@@ -15,11 +15,6 @@
+ AC_SUBST(HUNSPELL_VERSION_MAJOR)
+ AC_SUBST(HUNSPELL_VERSION_MINOR)
+ 
+-# library version
+-LT_CURRENT=1
+-LT_REVISION=0
+-LT_AGE=0
+-
+ AC_CONFIG_SRCDIR([config.h.in])
+ AC_CONFIG_HEADER([config.h])
+ 
+

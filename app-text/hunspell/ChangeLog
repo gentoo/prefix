@@ -1,6 +1,16 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.36 2008/03/12 12:51:52 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.37 2008/05/12 22:40:28 pva Exp $
+
+*hunspell-1.2.2 (12 May 2008)
+
+  12 May 2008; Peter Volkov <pva@gentoo.org>
+  +files/hunspell-1.2.2-libtool-2.22.patch,
+  +files/hunspell-1.2.2-renameexes.patch, -hunspell-1.1.3.ebuild,
+  +hunspell-1.2.2.ebuild:
+  Version bump, bug #219811, thank András for report. Fixed libtool-2.x
+  breakage, bug #220114, reported by Alessandro Guido. Removed very old
+  ebuild.
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Kevin Quinn (kevquinn, #93689) from metadata.xml.
