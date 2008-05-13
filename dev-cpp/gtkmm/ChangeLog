@@ -1,0 +1,615 @@
+# ChangeLog for dev-cpp/gtkmm
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.142 2008/04/11 17:00:29 remi Exp $
+
+*gtkmm-2.12.7 (11 Apr 2008)
+
+  11 Apr 2008; Rémi Cardona <remi@gentoo.org> +gtkmm-2.12.7.ebuild:
+  Bump to 2.12.7, small bugfix and fixes for gcc 4.3
+
+*gtkmm-2.12.5 (12 Mar 2008)
+
+  12 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org> +gtkmm-2.12.5.ebuild:
+  bump to 2.12.5, more gcc 4.3 fixes
+
+*gtkmm-2.12.4 (10 Feb 2008)
+
+  10 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org> +gtkmm-2.12.4.ebuild:
+  bump to 2.12.4, gcc 4.3 fixes and implement Gtk::RecentAction
+
+*gtkmm-2.12.3 (16 Dec 2007)
+
+  16 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> +gtkmm-2.12.3.ebuild:
+  bump to 2.12.3
+
+  23 Nov 2007; Jeroen Roovers <jer@gentoo.org> gtkmm-2.12.1.ebuild:
+  Stable for HPPA (bug #198845).
+
+  19 Nov 2007; Markus Rothe <corsair@gentoo.org> gtkmm-2.12.1.ebuild:
+  Stable on ppc64; bug #198845
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> gtkmm-2.12.1.ebuild:
+  Stable on ppc wrt bug 198845
+
+  16 Nov 2007; Daniel Gryniewicz <dang@gentoo.org> gtkmm-2.12.1.ebuild:
+  Bump glibmm dep; bug #199366
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> gtkmm-2.12.1.ebuild:
+  sparc stable wrt #198845
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> gtkmm-2.12.1.ebuild:
+  alpha/ia64 stable wrt #198845
+
+  13 Nov 2007; Christian Faulhammer <opfer@gentoo.org> gtkmm-2.12.1.ebuild:
+  stable x86, bug 198845
+
+  12 Nov 2007; Samuli Suominen <drac@gentoo.org> gtkmm-2.12.1.ebuild:
+  amd64 stable wrt #198845
+
+*gtkmm-2.12.1 (28 Oct 2007)
+
+  28 Oct 2007; Rémi Cardona <remi@gentoo.org> +gtkmm-2.12.1.ebuild:
+  bump to 2.12.1 (bugfix)
+
+  14 Oct 2007; Markus Rothe <corsair@gentoo.org> gtkmm-2.10.10.ebuild:
+  Stable on ppc64; bug #194277
+
+  03 Oct 2007; Raúl Porcel <armin76@gentoo.org> gtkmm-2.10.10.ebuild:
+  alpha/ia64/sparc stable wrt #194277
+
+  03 Oct 2007; Christoph Mende <angelos@gentoo.org> gtkmm-2.10.10.ebuild:
+  Stable on amd64 wrt bug #194277
+
+  03 Oct 2007; Jeroen Roovers <jer@gentoo.org> gtkmm-2.10.10.ebuild:
+  Stable for HPPA (bug #194277).
+
+  02 Oct 2007; Lars Weiler <pylon@gentoo.org> gtkmm-2.10.10.ebuild:
+  stable ppc, bug #194277
+
+  02 Oct 2007; Christian Faulhammer <opfer@gentoo.org> gtkmm-2.10.10.ebuild:
+  stable x86, bug 194277
+
+  29 Sep 2007; Mart Raudsepp <leio@gentoo.org> -gtkmm-2.4.11.ebuild,
+  -gtkmm-2.8.3.ebuild:
+  Removing ancient versions in the 2.4 SLOT
+
+*gtkmm-2.12.0 (23 Sep 2007)
+
+  23 Sep 2007; Rémi Cardona <remi@gentoo.org> +gtkmm-2.12.0.ebuild:
+  Add gtkmm-2.12 (Gnome 2.20)
+
+  20 Jul 2007; Raúl Porcel <armin76@gentoo.org> gtkmm-2.10.10.ebuild:
+  Back to ~arch, commited straight to stable
+
+*gtkmm-2.10.10 (20 Jul 2007)
+
+  20 Jul 2007; Remi Cardona <remi@gentoo.org> +gtkmm-2.10.10.ebuild:
+  bump to 2.10.10
+
+  10 Jul 2007; Jeroen Roovers <jer@gentoo.org> gtkmm-2.10.9.ebuild:
+  Stable for HPPA (bug #180420).
+
+  27 Jun 2007; Christoph Mende <angelos@gentoo.org> gtkmm-2.10.9.ebuild:
+  Stable on amd64
+
+  27 Jun 2007; Raúl Porcel <armin76@gentoo.org> gtkmm-2.10.9.ebuild:
+  alpha/ia64/x86 stable wrt #180420
+
+  27 Jun 2007; Markus Rothe <corsair@gentoo.org> gtkmm-2.10.9.ebuild:
+  Stable on ppc64; bug #180420
+
+  27 Jun 2007; Lars Weiler <pylon@gentoo.org> gtkmm-2.10.9.ebuild:
+  Stable on ppc; bug #180420.
+
+  26 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.10.9.ebuild:
+  Stable on sparc wrt #180420
+
+  12 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> gtkmm-2.10.9.ebuild:
+  Add ~x86-fbsd keyword.
+
+*gtkmm-2.10.9 (27 Apr 2007)
+
+  27 Apr 2007; Daniel Gryniewicz <dang@gentoo.org> +gtkmm-2.10.9.ebuild:
+  Bump to 2.10.9
+
+  30 Mar 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/gtkmm-2.2.12-gcc41.patch, gtkmm-2.2.12.ebuild:
+  Fix build w/ GCC-4.1.  Thanks to Steve Everson in bug #164997.
+
+*gtkmm-2.10.8 (19 Mar 2007)
+
+  19 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +gtkmm-2.10.8.ebuild:
+  Bump to 2.10.8
+
+  16 Feb 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gtkmm-2.4.11.ebuild:
+  2.4.11 was not to be removed, restore it
+
+  16 Feb 2007; Saleem Abdulrasool <compnerd@gentoo.org> -gtkmm-2.2.8.ebuild,
+  -gtkmm-2.2.11.ebuild, -gtkmm-2.4.11.ebuild, -gtkmm-2.6.5.ebuild:
+  prune unneeded releases, and fix up bug #159991
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.2.12.ebuild:
+  Stable on IA64.
+
+  11 Jan 2007; Michael Sterrett <mr_bones_@gentoo.org> +gtkmm-2.2.11.ebuild:
+  resurrect gtkmm-2.2.11.ebuild since it's still in use by
+  media-sound/gnomoradio-0.13
+
+  10 Jan 2007; Mart Raudsepp <leio@gentoo.org> -gtkmm-2.2.10.ebuild,
+  -gtkmm-2.2.11.ebuild, -gtkmm-2.4.8.ebuild, -gtkmm-2.6.2.ebuild,
+  -gtkmm-2.6.3.ebuild, -gtkmm-2.6.4.ebuild, -gtkmm-2.8.0.ebuild,
+  -gtkmm-2.8.1.ebuild:
+  Prune old versions
+
+*gtkmm-2.10.6 (05 Jan 2007)
+
+  05 Jan 2007; Remi Cardona <remi@gentoo.org> +gtkmm-2.10.6.ebuild:
+  bumping gtkmm to 2.10.6
+
+  25 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.10.2-r1.ebuild:
+  Add ~alpha keyword.
+
+*gtkmm-2.10.2-r1 (21 Nov 2006)
+
+  21 Nov 2006; Remi Cardona <remi@gentoo.fr>
+  +files/gtkmm-2.10.2-remove_atk_from_gtk_pc_during_configure.patch,
+  +gtkmm-2.10.2-r1.ebuild:
+  Patch for bug #153294 (remove atkmm from gtkmm-2.4.pc if -accessibility is set)
+  Submitted patch upstream : http://bugzilla.gnome.org/show_bug.cgi?id=366930
+
+  20 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> gtkmm-2.10.2.ebuild:
+  Remove ~x86-fbsd keyword till I can get glibmm to build.
+
+*gtkmm-2.10.2 (29 Oct 2006)
+
+  29 Oct 2006; John N. Laliberte <allanonjl@gentoo.org>
+  -gtkmm-2.10.1.ebuild, +gtkmm-2.10.2.ebuild:
+  new version. bump glibmm required version, add accessibility useflag for new
+  configure switch, compile demos if examples use flag is set. fixes #143588,
+  and #150590
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.8.3.ebuild:
+  Stable on Alpha.
+
+*gtkmm-2.10.1 (11 Sep 2006)
+
+  11 Sep 2006; John N. Laliberte <allanonjl@gentoo.org>
+  +gtkmm-2.10.1.ebuild:
+  new version.  add doc and examples use flags.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> gtkmm-2.8.3.ebuild:
+  Stable on ppc64
+
+  18 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> gtkmm-2.8.3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> gtkmm-2.8.3.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> gtkmm-2.8.3.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> gtkmm-2.8.3.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> gtkmm-2.8.3.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.8.3.ebuild:
+  Stable on sparc wrt #139612
+
+  24 Mar 2006; Aron Griffis <agriffis@gentoo.org> gtkmm-2.8.3.ebuild:
+  Mark 2.8.3 ~ia64
+
+  14 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.8.1.ebuild:
+  Stable on hppa
+
+*gtkmm-2.8.3 (09 Feb 2006)
+
+  09 Feb 2006; John N. Laliberte <allanonjl@gentoo.org> +gtkmm-2.8.3.ebuild:
+  new version
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> gtkmm-2.8.1.ebuild:
+  Mark 2.8.1 stable on alpha
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> gtkmm-2.8.1.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> gtkmm-2.8.1.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org> gtkmm-2.8.1.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> gtkmm-2.8.1.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.8.1.ebuild:
+  Stable on sparc wrt #119634
+
+  30 Nov 2005; Daniel Goller <morfic@gentoo.org>
+  +files/gtkmm-1.2.9-gcc4.patch, gtkmm-1.2.9-r2.ebuild:
+  Adding gcc4 patch to allow compilation with gcc4
+
+*gtkmm-2.8.1 (21 Oct 2005)
+*gtkmm-2.6.5 (21 Oct 2005)
+
+  21 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> +gtkmm-2.6.5.ebuild,
+  +gtkmm-2.8.1.ebuild:
+  Dual version bumps.
+
+*gtkmm-2.8.0 (09 Sep 2005)
+
+  09 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> -gtkmm-2.7.3.ebuild,
+  -gtkmm-2.7.4.ebuild, +gtkmm-2.8.0.ebuild:
+  Version bump; removed 2.7.x ebuilds.
+
+*gtkmm-2.7.4 (30 Aug 2005)
+
+  30 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> +gtkmm-2.7.4.ebuild:
+  Version bump.
+
+*gtkmm-2.6.4 (20 Aug 2005)
+
+  20 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> +gtkmm-2.6.4.ebuild:
+  Version bump.
+
+  03 Aug 2005; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.4.11.ebuild:
+  Stable on alpha.
+
+*gtkmm-2.7.3 (01 Aug 2005)
+
+  01 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> +gtkmm-2.7.3.ebuild:
+  Version bump.
+
+  03 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.4.11.ebuild,
+  gtkmm-2.6.3.ebuild:
+  Add ~alpha keyword.
+
+*gtkmm-2.6.3 (13 Jun 2005)
+
+  13 Jun 2005; Marcus D. Hanwell <cryos@gentoo.org> +gtkmm-2.6.3.ebuild:
+  Version bump.
+
+  04 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org> gtkmm-2.4.11.ebuild:
+  Stable on ppc.
+
+  18 May 2005; Markus Rothe <corsair@gentoo.org> gtkmm-2.2.12.ebuild:
+  Stable on ppc64
+
+  18 May 2005; Markus Rothe <corsair@gentoo.org> gtkmm-2.4.11.ebuild:
+  Stable on ppc64
+
+  13 May 2005; Rene Nussbaumer <killerfox@gentoo.org> gtkmm-2.4.11.ebuild:
+  stable on hppa
+
+  09 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.4.11.ebuild:
+  Stable on sparc
+
+  08 May 2005; Aron Griffis <agriffis@gentoo.org> gtkmm-2.4.11.ebuild:
+  stable on ia64
+
+  08 May 2005; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.4.11.ebuild:
+  ~ia64 keyword.
+
+  08 May 2005; Marcus D. Hanwell <cryos@gentoo.org> gtkmm-2.4.11.ebuild:
+  Marked stable on amd64 and x86.
+
+*gtkmm-2.6.2 (03 May 2005)
+
+  03 May 2005; Marcus D. Hanwell <cryos@gentoo.org> -gtkmm-2.6.1.ebuild,
+  +gtkmm-2.6.2.ebuild:
+  Version bump.
+
+  13 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org> gtkmm-2.6.1.ebuild:
+  Changed to SLOT=2.4, thought I had left it at that. Thanks to Sudrien
+  <sudrien@fusemail.com> for spotting it.
+
+  10 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org> gtkmm-2.4.11.ebuild,
+  gtkmm-2.6.1.ebuild:
+  Added ~hppa back to KEYWORDS, as it seems they got dropped by mistake.
+
+*gtkmm-2.6.1 (10 Apr 2005)
+
+  10 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org> -gtkmm-2.4.1.ebuild,
+  -gtkmm-2.4.3.ebuild, -gtkmm-2.4.5.ebuild, +gtkmm-2.6.1.ebuild:
+  Version bump, removed old ebuilds.
+
+  06 Apr 2005; Markus Rothe <corsair@gentoo.org> gtkmm-2.4.8.ebuild:
+  Stable on ppc64
+
+  28 Mar 2005; Guy Martin <gmsoft@gentoo.org> gtkmm-2.4.8.ebuild:
+  Stable on hppa.
+
+  26 Mar 2005; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.4.8.ebuild:
+  Add ~alpha keyword.
+
+  20 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> gtkmm-2.4.8.ebuild:
+  Stable on ppc.
+
+*gtkmm-2.4.11 (17 Mar 2005)
+
+  17 Mar 2005; Marcus D. Hanwell <cryos@gentoo.org> +gtkmm-2.4.11.ebuild:
+  Version bump, thanks to plors <gparted@users.sf.net> for the updated ebuild,
+  closes bug 79888.
+
+  16 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.4.8.ebuild:
+  Stable on sparc
+
+  17 Mar 2005; Marcus D. Hanwell <cryos@gentoo.org> gtkmm-2.4.8.ebuild:
+  Marked stable on x86 and amd64.
+
+  13 Mar 2005; Markus Rothe <corsair@gentoo.org> gtkmm-2.2.12.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  28 Feb 2005; Markus Rothe <corsair@gentoo.org> gtkmm-2.4.8.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  20 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.2.12.ebuild:
+  Stable on alpha.
+
+*gtkmm-2.4.8 (11 Dec 2004)
+
+  11 Dec 2004; Joe McCann <joem@gentoo.org> +gtkmm-2.4.8.ebuild:
+  Bumping to latest version and stop building examples. Thanks to plors on bug
+  #72759
+
+  11 Oct 2004; Guy Martin <gmsoft@gentoo.org> gtkmm-2.2.12.ebuild:
+  Marked stable on hppa.
+
+  05 Oct 2004; Jason Wever <weeve@gentoo.org> gtkmm-2.4.5.ebuild:
+  Added ~sparc keyword.
+
+  08 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.2.12.ebuild:
+  Stable on sparc
+
+  07 Sep 2004; Daniel Goller <morfic@gentoo.org> gtkmm-2.2.12.ebuild:
+  stable on x86, closing bug# 49350
+
+*gtkmm-2.4.5 (10 Aug 2004)
+
+  10 Aug 2004; Mike Gardiner <obz@gentoo.org> +gtkmm-2.4.5.ebuild:
+  New version
+
+  04 Aug 2004; Travis Tilley <lv@gentoo.org> gtkmm-2.4.3.ebuild:
+  removed amd64 fix that's no longer needed, should close bug 58470
+
+  14 Jul 2004; Travis Tilley <lv@gentoo.org> gtkmm-2.2.12.ebuild:
+  stable on amd64 for gcc 3.4 fixes
+
+  13 Jul 2004; Travis Tilley <lv@gentoo.org> gtkmm-2.4.1.ebuild:
+  stable on amd64
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> gtkmm-2.2.11.ebuild:
+  Stable on alpha.
+
+*gtkmm-2.4.3 (20 Jun 2004)
+
+  20 Jun 2004; Michael Hanselmann <hansmi@gentoo.org> gtkmm-2.4.1.ebuild,
+  gtkmm-2.4.3.ebuild:
+  Marked as ~ppc.
+
+  18 Jun 2004; Yi Qiang <khai@gentoo.org> gtkmm-2.2.10.ebuild,
+  gtkmm-2.2.11.ebuild, gtkmm-2.2.8.ebuild:
+  Version bump, closes #54383
+
+  18 Jun 2004; Luca Barbato <lu_zero@gentoo.org> gtkmm-2.2.12.ebuild:
+  Marked ~arches
+
+*gtkmm-2.2.12 (18 Jun 2004)
+
+  18 Jun 2004; Luca Barbato <lu_zero@gentoo.org> +gtkmm-2.2.12.ebuild:
+  Bumped version to prepare ~ppc to the gcc-3.4 move
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org> gtkmm-1.2.9-r2.ebuild,
+  gtkmm-2.2.10.ebuild, gtkmm-2.2.11.ebuild, gtkmm-2.2.8.ebuild,
+  gtkmm-2.4.1.ebuild:
+  Fix use invocation
+
+  30 May 2004; Danny van Dyk <kugelfang@gentoo.org> gtkmm-2.4.1.ebuild:
+  Fixing BUG #52389.
+
+  23 May 2004; Luca Barbato <lu_zero@gentoo.org>
+  +files/gtkmm-1.2.9-gcc3.4-gentoo.patch, gtkmm-1.2.9-r2.ebuild:
+  Fixes for gcc-3.4
+
+  21 May 2004; Danny van Dyk <kugelfang@gentoo.org> gtkmm-2.4.1.ebuild:
+  Added aclocal/automake/autoconf before gnome2_src_compile; necessary on amd64.
+  Marked ~amd64.
+
+  13 May 2004; Yi Qiang <khai@gentoo.org> gtkmm-2.4.1.ebuild:
+  Added DEP for atk-1.6, added IUSE and changed SLOT
+
+  12 May 2004; Daniel Ahlberg <aliz@gentoo.org> gtkmm-2.2.10.ebuild,
+  gtkmm-2.2.11.ebuild:
+  Added IUSE.
+
+*gtkmm-2.4.1 (09 May 2004)
+
+  12 May 2004; Yi Qiang <khai@gentoo.org> gtkmm-2.2.11.ebuild:
+  Fixed libsigc++ dep
+
+  09 May 2004; Yi Qiang <khai@gentoo.org> :
+  Major version bump.
+
+  01 May 2004; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.2.11.ebuild:
+  Stable on sparc
+
+  25 Apr 2004; Travis Tilley <lv@gentoo.org> gtkmm-2.2.10.ebuild,
+  gtkmm-2.2.11.ebuild:
+  stable on amd64 - see bug #34357 for more information
+
+  12 Apr 2004; Guy Martin <gmsoft@gentoo.org> gtkmm-2.2.10.ebuild:
+  Marked stable on hppa.
+
+  12 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> gtkmm-2.2.8.ebuild:
+  Added IUSE=.
+
+  11 Apr 2004; Gustavo Zacarias <gustavoz@gentoo.org> gtkmm-2.2.10.ebuild:
+  stable on sparc
+
+*gtkmm-2.2.11 (07 Apr 2004)
+
+  07 Apr 2004; foser <foser@gentoo.org> gtkmm-2.2.11.ebuild :
+  New release
+
+  31 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> gtkmm-2.2.10.ebuild:
+  Fixes for amd64, contributed by Danny van Dyk <danny.van.dyk@gmx.de> in #46305.
+
+*gtkmm-2.2.10 (26 Mar 2004)
+
+  26 Mar 2004; foser <foser@gentoo.org> gtkmm-2.2.10.ebuild :
+  New release, fixes issues building with gtk+-2.4
+
+  11 Mar 2004; Lars Weiler <pylon@gentoo.org> :
+  stable on ppc
+
+  09 Mar 2004; <agriffis@gentoo.org> gtkmm-2.2.8.ebuild:
+  stable on alpha and ia64
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> gtkmm-1.2.9-r2.ebuild:
+  stable on alpha and ia64
+
+  18 Jan 2004; <gustavoz@gentoo.org> gtkmm-2.2.8.ebuild:
+  stable on sparc
+
+  14 Jan 2004; <gustavoz@gentoo.org> gtkmm-2.2.8.ebuild:
+  stable on hppa
+
+  14 Jan 2004; Aron Griffis <agriffis@gentoo.org> gtkmm-1.2.9-r2.ebuild,
+  gtkmm-2.2.8.ebuild:
+  add ~alpha
+
+  13 Jan 2004; Kris Kersey <augustus@gentoo.org> gtkmm-2.2.8.ebuild:
+  Added ~amd64 keyword and necessary libtoolize. Bug 34357. Needs testing with
+  some gtkmm apps.
+
+  26 Oct 2003; Brad House <brad_mssw@gentoo.org> gtkmm-1.2.9-r2.ebuild:
+  add amd64 flag
+
+*gtkmm-2.2.8 (01 Oct 2003)
+
+  28 Oct 2003; foser <foser@gentoo.org> gtkmm-2.2.8.ebuild :
+  Bugfix release, should fix gcc3 problems (#29770)
+
+*gtkmm-2.2.7 (27 Aug 2003)
+
+  27 Aug 2003; Mike Gardiner <obz@gentoo.org> gtkmm-2.2.5.ebuild,
+  gtkmm-2.2.7.ebuild:
+  New version
+
+*gtkmm-2.2.5 (19 Aug 2003)
+
+  23 Aug 2003; Guy Martin <gmsoft@gentoo.org> gtkmm-2.2.5.ebuild :
+  Marked stable on hppa.
+
+  19 Aug 2003; foser <foser@gentoo.org> gtkmm-2.2.5.ebuild :
+  Added forgotten 2.2.5 ChangeLog entry, readded gcc-3.3.0 block (#25372)
+
+*gtkmm-2.2.3 (23 May 2003)
+
+  23 Jul 2003; Guy Martin <gmsoft@gentoo.org> gtkmm-2.2.3.ebuild :
+  Added hppa to KEYWORDS.
+
+  12 Jul 2003; foser <foser@gentoo.org> gtkmm-2.2.3.ebuild :
+  Moved gtkmm from x11-libs to dev-cpp
+  Added blocking dep for gcc-3.3.0 (#21637)
+
+  23 May 2003; foser <foser@gentoo.org> gtkmm-2.2.3.ebuild :
+  2.2.2 had some serious so installation problem, this release should fix that
+
+*gtkmm-2.2.2 (22 May 2003)
+
+  22 May 2003; foser <foser@gentoo.org> gtkmm-2.2.2.ebuild :
+  New version, use gnome2 eclass
+
+  07 Jan 2003; foser <foser@gentoo.org> gtkmm-2.0.2.ebuild :
+  Fixed deps to depend on gtk+-2.0
+
+*gtkmm-2.2.0 (06 Jan 2003)
+
+  07 Jan 2003; foser <foser@gentoo.org> gtkmm-2.2.0.ebuild :
+  Now use gnome.org eclass for SRC_URI
+
+  06 Jan 2003; foser <foser@gentoo.org> gtkmm-2.2.0.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*gtkmm-2.0.2 (06 Dec 2002)
+
+  06 Dec 2002; foser <foser@gentoo.org> gtkmm-2.0.2.ebuild :
+  New version
+
+*gtkmm-2.0.1 (16 Nov 2002)
+  
+  16 Nov 2002; Spider <spider@gentoo.org> gtkmm-2.0.1.ebuild :
+  Even stabler version :)   changed the download URI to be 
+  mirror://sourceforge
+  made sure the $myconf was actually passed
+  
+*gtkmm-2.0.0 (1 Nov 2002)
+
+  01 Nov 2002; foser <foser@gentoo.org> gtkmm-2.0.0.ebuild :
+  New stable version
+
+*gtkmm-1.3.22 (13 Sep 2002)
+  13 Sep 2002; Spider <spider@gentoo.org> gtkmm-1.3.22.ebuild :
+  new version by Markus Bertheau <twanger@bluetwanger.de>
+      
+*gtkmm-1.3.18 (15 Jul 2002)
+  15 Jul 2002; Mark Guertin <gerk@gentoo.org>
+  Added ppc to keywords
+
+  15 Jul 2002 ; Gabriele Giorgetti <stroke@gentoo.org> gtkmm-1.3.18.ebuild :
+  New version. 
+
+*gtkmm-1.3.15 (17 Jun 2002)
+  17 Jun 2002 ;Spider <spider@gentoo.org> gtkmm-1.3.15.ebuild :
+  New version. updated libsigc++ dep
+  
+*gtkmm-1.2.9-r2 (13 Jun 2002)
+
+  13 Jun 2002; Spider <spider@gentoo.org> gtkmm-1.2.9-r2.ebuild :
+  fixing up some dependencies before gnome2 release. I'm not maintaining this, just fixing bugs I've helped introduce :)
+  
+
+*gtkmm-1.2.9 (22 May 2002)
+
+  22 May 2002; Matthew Kennedy <mkennedy@gentoo.org>;
+  gtkmm-1.2.9-r1.ebuild, ChangeLog, files/digest-gtkmm-1.2.9,
+  files/gtkmm-1.2.9-gcc3.1-gentoo.patch :
+
+  Patch to support gcc3.1 (only required for 1.2.9 -- fixed upstream
+  in CVS)
+
+*gtkmm-1.3.14 (14 May 2002)
+  14 May 2002; Spider <spider@gentoo.org>; gtkmm-1.3.14.ebuild :
+  version update
+    
+
+*gtkmm-1.3.13 (1 May 2002)
+  1 May 2002; Spider <spider@gentoo.org>; gtkmm-1.3.13.ebuild :
+  version update
+
+*gtkmm-1.3.11 (18 Apr 2002)
+  18 Apr 2002; Spider <spider@gentoo.org>; gtkmm-1.3.11.ebuild
+  add the development branch
+    
+*gtkmm-1.2.9 (09 Apr 2002)
+  09 Apr 2002; Spider <spider@gentoo.org>; gtkmm-1.2.9.ebuild
+  update to latest version. 
+
+*gtkmm-1.2.8 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
