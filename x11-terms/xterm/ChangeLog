@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.231 2008/04/21 06:55:25 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.232 2008/05/12 18:34:08 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> xterm-234.ebuild:
+  Stable on ppc64
 
   21 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; xterm-234.ebuild:
   amd64 stable.
