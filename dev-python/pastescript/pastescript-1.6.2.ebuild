@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/pastescript-1.6.2.ebuild,v 1.1 2008/04/18 13:19:07 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/pastescript-1.6.2.ebuild,v 1.2 2008/05/13 16:01:15 hawking Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ RDEPEND="dev-python/paste
 	dev-python/cheetah"
 DEPEND="${RDEPEND}
 	dev-python/setuptools
-	doc? ( dev-python/pudge dev-python/buildutils )
+	doc? ( dev-python/buildutils dev-python/pygments dev-python/pudge )
 	test? ( dev-python/nose )"
 
 # The tests are currently broken, needs further investigation
