@@ -15,7 +15,7 @@ my_keywords="
 	ppc-aix
 	x86-freebsd
 	hppa-hpux ia64-hpux
-	x86-interix
+	x86-interix x86-winnt
 	amd64-linux ia64-linux mips-linux x86-linux
 	ppc-macos x86-macos
 	sparc-solaris sparc64-solaris x86-solaris x64-solaris
