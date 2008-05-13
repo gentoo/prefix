@@ -1,0 +1,29 @@
+# ChangeLog for net-analyzer/cryptcat
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-analyzer/cryptcat/ChangeLog,v 1.13 2007/06/02 22:48:57 jokey Exp $
+
+  02 Jun 2007; Markus Ullmann <jokey@gentoo.org>
+  -cryptcat-0.20031202.ebuild, cryptcat-1.2.1.ebuild:
+  quotes and cleanup
+
+  20 Mar 2007; Raúl Porcel <armin76@gentoo.org> cryptcat-1.2.1.ebuild:
+  x86 stable
+
+*cryptcat-1.2.1 (19 Aug 2006)
+
+  19 Aug 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/cryptcat-1.2.1-build.patch, +cryptcat-1.2.1.ebuild:
+  Version bump #144063 by Jon Hood.
+
+  09 Sep 2005; Marcelo Goes <vanquirius@gentoo.org>
+  cryptcat-20031202.ebuild:
+  ChangeLog is actually Changelog. Fixed so that it gets installed properly.
+
+  11 Jul 2004; Eldad Zack <eldad@gentoo.org> metadata.xml,
+  cryptcat-20031202.ebuild:
+  Updated SRC_URI to use debian mirrors, marked x86 stable.
+
+*cryptcat-0.20031202 (13 Feb 2004)
+
+  13 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Daniel Fullmer #41182.
