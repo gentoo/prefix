@@ -2,6 +2,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2008; <mduft@gentoo.org> +windows/winnt,
+  windows/winnt/3.5/package.provided, windows/winnt/3.5/x86/make.defaults,
+  windows/winnt/5.2/package.provided, windows/winnt/5.2/x86/make.defaults,
+  windows/winnt/6.0/x86/make.defaults, windows/winnt/make.defaults,
+  -windows/winnt/package.mask, -windows/winnt/package.use.force,
+  -windows/winnt/package.use.mask, windows/winnt/use.mask,
+  windows/winnt/virtuals:
+  added profiles for x86-winnt (for native windows cross prefixing)
+
   09 May 2008; Michael Haubenwallner <haubi@gentoo.org>
   +aix/package.use.force:
   forcing USE=nopie for gcc-3 on aix (would check for ld w/ pie).

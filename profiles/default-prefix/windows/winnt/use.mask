@@ -1,0 +1,80 @@
+# Re-add Interix libc
+-elibc_Winnt
+-kernel_Winnt
+
+# these need a review, since they are just copied from interix
+# these will more than likely never work on Windows
+3dfx
+acpi
+alsa
+altivec
+apm
+arts
+aqua
+bluetooth
+cap
+caps
+cdr
+coreaudio
+dga
+directfb
+divx4linux
+djbfft
+dri
+dvdr
+emacs # missing implementation for unexec()
+emul-linux-x86
+fbcon
+fdftk
+fmod
+ggi
+glut
+gpm
+gps
+hal
+hardened
+hddtemp
+ibm
+icc
+icc-pgo
+ieee1394
+ifc
+ipod
+ipv6
+lm_sensors
+matrox
+netboot
+old-linux
+on-the-fly-crypt  # requires device-mapper
+opengl
+oss
+pcmcia
+pda
+rtc
+selinux
+scanner
+smartcard
+svga
+uclibc
+unicode #  totally b0rked on interix
+usb
+voodoo3
+pvm
+v4l
+v4l2
+wifi
+
+# these are USE flags that don't _currently_ work, but may will in the future.
+ffmpeg
+fftw
+flac
+jack
+joystick
+ladspa
+openmp # not working yet on interix
+portaudio
+pulseaudio
+qt3
+qt4
+tiff # libtiff only static, so avoid this!
+timidity
