@@ -1,21 +1,22 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/fhist-1.14.ebuild,v 1.5 2008/05/12 22:23:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/fhist-1.16.ebuild,v 1.1 2008/05/12 22:23:54 pva Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="File history and comparison tools"
-HOMEPAGE="http://www.canb.auug.org.au/~millerp/fhist.html"
-SRC_URI="http://www.canb.auug.org.au/~millerp/${P}.tar.gz"
+HOMEPAGE="http://fhist.sourceforge.net/fhist.html"
+SRC_URI="http://fhist.sourceforge.net/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE=""
+IUSE="test"
 
 RDEPEND="sys-devel/gettext
 		sys-apps/groff"
 DEPEND="${RDEPEND}
+		test? ( app-arch/sharutils )
 		sys-devel/bison"
 
 src_compile() {
@@ -37,5 +38,5 @@ src_install () {
 	# remove duplicate docs etc.
 	rm -r "${ED}"/usr/share/fhist
 
-	dodoc LICENSE MANIFEST README
+	dodoc MANIFEST README
 }
