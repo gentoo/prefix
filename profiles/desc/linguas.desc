@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.23 2007/11/13 18:14:06 aballier Exp $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/profiles/desc/linguas.desc,v 1.25 2008/03/23 10:05:44 suka Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -86,6 +86,7 @@ no - Norwegian locale
 nr - Ndebele (South) locale
 ns - Northern Sotho locale
 nso - Northern Sotho locale
+oc - Occitan locale
 or_IN - Oriya for India
 pa - Punjabi locale for India
 pa_IN - Punjabi locale for India
@@ -97,6 +98,7 @@ ro - Romanian locale
 ru - Russian locale
 rw - Kinyarwanda locale
 se - Northern Saami locale
+sh - Serbo-Croatian locale
 sh_YU - Serbo-Croatian locale
 sk - Slovak locale
 sl - Slovenian locale
@@ -130,5 +132,6 @@ wa - Walloon locale
 xh - Xhosa locale
 zh - Chinese locale
 zh_CN - Chinese locale for Peoples Republic of China
+zh_HK - Chinese locale for Hong Kong
 zh_TW - Chinese locale for Taiwan
 zu - Zulu locale
