@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.189 2008/05/10 21:38:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.190 2008/05/12 13:48:13 corsair Exp $
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> nano-2.1.1.ebuild:
+  Stable on ppc64
 
   10 May 2008; Mike Frysinger <vapier@gentoo.org>
   +files/nano-2.1.0-disable-speller.patch, nano-2.1.0.ebuild,
