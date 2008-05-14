@@ -541,6 +541,10 @@ bootstrap_sed() {
 	bootstrap_gnu sed 4.1.4
 }
 
+bootstrap_findutils3() {
+	bootstrap_gnu findutils 4.3.11
+}
+
 bootstrap_findutils() {
 	# distfile with included patches for IRIX and Interix
 	bootstrap_gnu findutils 4.4.0 \
