@@ -542,7 +542,7 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils3() {
-	bootstrap_gnu findutils 4.3.11
+	bootstrap_gnu findutils 4.2.33
 }
 
 bootstrap_findutils() {
