@@ -1,5 +1,6 @@
 * do not generate multilib paths, since adding those dirs, e.g.
-  /usr/lib/amd64 or /usr/lib64, screws up Prefix badly
+  /usr/lib/amd64 or /usr/lib64, screws up Prefix badly (in %D)
+  see also: http://article.gmane.org/gmane.linux.gentoo.alt/3575
 
 --- gcc/gcc.c
 +++ gcc/gcc.c
