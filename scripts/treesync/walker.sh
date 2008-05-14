@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export PTREEDIR="$(pwd -P)"
-for d in profiles/base profiles/updates eclass licenses *-*/* virtual/* ; do
+for d in profiles/base profiles/desc profiles/updates eclass licenses *-*/* virtual/* ; do
 	pushd ${d} > /dev/null
 	if [[ -f eupdate.noupdate ]] || [[ -f eupdate.skip ]] ; then
 		echo "S skipping $d"
