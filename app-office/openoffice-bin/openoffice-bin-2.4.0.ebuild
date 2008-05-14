@@ -31,9 +31,9 @@ LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 
-#glibc removed from RDEPEND for prefix, can be assumed host OS has glibc
 RDEPEND="!app-office/openoffice
 	x11-libs/libXaw
+	!prefix? ( sys-libs/glibc )
 	>=dev-lang/perl-5.0
 	app-arch/zip
 	app-arch/unzip
