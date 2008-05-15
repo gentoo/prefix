@@ -1,6 +1,11 @@
 # ChangeLog for app-crypt/steghide
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/ChangeLog,v 1.14 2007/05/12 04:13:16 dirtyepic Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/ChangeLog,v 1.15 2008/05/13 20:42:48 drac Exp $
+
+  13 May 2008; Samuli Suominen <drac@gentoo.org>
+  +files/steghide-0.5.1-gcc43.patch, -files/fix-libtool-invocation.patch,
+  steghide-0.5.1.ebuild:
+  Fix building with GCC 4.3 wrt #221129, thanks to Peter Alfredsen.
 
   12 May 2007; Ryan Hill <dirtyepic@gentoo.org>
   files/steghide-0.5.1-gcc4.patch, metadata.xml:
