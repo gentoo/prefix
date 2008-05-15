@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/foo2zjs_devices.desc,v 1.6 2007/11/05 11:01:50 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/foo2zjs_devices.desc,v 1.7 2008/03/18 19:51:22 genstef Exp $
 
 # This file contains descriptions of FOO2ZJS_DEVICES USE_EXPAND flags.
 # created by http://gentooexperimental.org/~genstef/dist/foo2zjs-helper.sh
@@ -30,7 +30,20 @@ xp6110	- Get Xerox Phaser 6110 and 6110MFP .ICM files
 
 lm500	- Get Lexmark C500 .ICM files
 
-hp1020	- Get HP LJ1020 firmware file
-hp1018	- Get HP LJ1005 firmware file
-hp1005	- Get HP LJ1005 firmware file
-hp1000	- Get HP LJ1000 firmware file
+oki3200	- Get Oki C3200 .ICM files
+oki3300	- Get Oki C3300 .ICM files
+oki3400	- Get Oki C3400 .ICM files
+oki5100	- Get Oki C5100 .ICM files
+oki5200	- Get Oki C5200 .ICM files
+oki5500	- Get Oki C5500 .ICM files
+oki5600	- Get Oki C5600 .ICM files
+oki5800	- Get Oki C5800 .ICM files
+
+hp1020	- Get HP LJ 1020 firmware file
+hp1018	- Get HP LJ 1005 firmware file
+hp1005	- Get HP LJ 1005 firmware file
+hp1000	- Get HP LJ 1000 firmware file
+
+hpp1505	- Get HP LJ P1505 firmware file
+hpp1006	- Get HP LJ P1006 firmware file
+hpp1005	- Get HP LJ P1005 firmware file
