@@ -25,7 +25,7 @@ src_install () {
 }
 
 pkg_postinst() {
-	python_mod_optimize /usr/lib/scons/SCons
+	python_mod_optimize "${EPREFIX}"/usr/lib/scons/SCons
 }
 
 pkg_postrm() {
