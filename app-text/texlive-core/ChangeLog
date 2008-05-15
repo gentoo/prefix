@@ -1,6 +1,14 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.59 2008/05/12 18:48:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.60 2008/05/13 21:23:32 aballier Exp $
+
+*texlive-core-2007-r13 (13 May 2008)
+
+  13 May 2008; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2007-r13.ebuild:
+  Revision bump with updated default config files so that we can search in
+  global font cache even if VARTEXFONTS is overridden to tell it to write
+  fonts somewhere else
 
   12 May 2008; nixnut <nixnut@gentoo.org> texlive-core-2007-r12.ebuild:
   Stable on ppc wrt bug 220651
