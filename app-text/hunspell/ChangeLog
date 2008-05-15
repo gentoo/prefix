@@ -1,6 +1,9 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.37 2008/05/12 22:40:28 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.38 2008/05/13 20:47:15 aballier Exp $
+
+  13 May 2008; Alexis Ballier <aballier@gentoo.org> ChangeLog:
+  keyword ~x86-fbsd
 
 *hunspell-1.2.2 (12 May 2008)
 
