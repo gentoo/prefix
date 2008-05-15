@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/msv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/msv/ChangeLog,v 1.24 2008/05/06 14:55:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/msv/ChangeLog,v 1.25 2008/05/14 00:40:07 ken69267 Exp $
+
+  14 May 2008; Kenneth Prugh <ken69267@gentoo.org> msv-20050627-r2.ebuild:
+  amd64 stable, bug #219661
 
   06 May 2008; Christian Faulhammer <opfer@gentoo.org>
   msv-20050627-r2.ebuild:
