@@ -94,6 +94,7 @@ src_unpack() {
 	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-4.7_p1-darwin9-display.patch
 
 	epatch "${FILESDIR}"/${PN}-4.7_p1-interix.patch
+	epatch "${FILESDIR}"/${P}-root-uid.patch
 
 	eautoreconf
 }
