@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.75 2008/05/13 13:38:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.76 2008/05/13 18:24:58 graaff Exp $
+
+  13 May 2008; Hans de Graaff <graaff@gentoo.org> Manifest:
+  Redigest packages due to packaging changes upstream, bug 221829
 
   13 May 2008; Raúl Porcel <armin76@gentoo.org> activerecord-2.0.2.ebuild:
   ia64 stable wrt #221309
