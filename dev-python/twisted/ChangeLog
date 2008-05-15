@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.88 2008/03/12 18:19:07 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.89 2008/05/13 20:29:16 hawking Exp $
+
+*twisted-8.0.1 (13 May 2008)
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org> +twisted-8.0.1.ebuild:
+  Version bump.
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Marien Zwart (marienz, #107204) from metadata.xml.
