@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.246 2008/05/13 14:41:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.248 2008/05/13 19:16:31 jer Exp $
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-22.2-r2.ebuild:
+  Stable for HPPA (bug #221197).
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r17.ebuild:
+  Stable for HPPA (bug #221197).
 
   13 May 2008; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r17.ebuild,
   emacs-22.2-r2.ebuild:
