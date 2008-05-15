@@ -1,18 +1,18 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/twisted-web-0.7.0.ebuild,v 1.3 2007/06/09 18:04:18 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/twisted-web-8.0.0.ebuild,v 1.2 2008/05/13 20:42:24 hawking Exp $
 
 EAPI="prefix"
 
 MY_PACKAGE=Web
 
-inherit twisted eutils
+inherit twisted eutils versionator
 
 DESCRIPTION="Twisted web server, programmable in Python"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-DEPEND="=dev-python/twisted-2.5*"
+DEPEND="=dev-python/twisted-$(get_version_component_range 1-2)*"
 
 src_unpack() {
 	unpack ${A}
