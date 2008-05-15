@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8585 2008/05/13 05:46:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8589 2008/05/14 22:38:12 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -55,6 +55,7 @@ x11-libs/lesstif
 # Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-173.08
+~media-video/nvidia-settings-173.08
 
 # Gilles Dartiguelongue <eva@gentoo.org> (08 May 2008)
 # Masked for removal on 8 June 2008.
@@ -218,12 +219,6 @@ dev-lang/mlton-bin
 =app-admin/gnome-system-tools-2.14*
 =app-admin/system-tools-backends-1.4*
 
-# Rémi Cardona <remi@gentoo.org> (12 Apr 2008)
-# Masked for removal in 30 days. Still builds but
-# nothing in the tree deps on it, upstream dead
-# See bug #191855
-dev-libs/libsigcx
-
 # Ben de Groot <yngwin@gentoo.org> (12 Apr 2008)
 # Ebuild needs more work
 media-sound/lastfmproxy
@@ -231,11 +226,6 @@ media-sound/lastfmproxy
 # Mike Pagano <mpagano@gentoo.org> (11 Apr 2008)
 # Needs masked qt-4.4 (bug #217175)
 =sys-kernel/kccmp-0.2-r1
-
-# Alin Nastac <mrness@gentoo.org> (11 Apr 2008)
-# Masked for removal on April the 25th (#174109).
-# Use net-proxy/privoxy instead.
-net-proxy/junkbuster
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing
@@ -475,13 +465,6 @@ app-emulation/x86-chroot
 app-misc/livecd-tools
 sys-apps/hwsetup
 x11-misc/mkxf86config
-
-# Diego Pettenò <flameeyes@gentoo.org> (20 Feb 2008)
-# Pending removal on 20 April 2008.
-# Install broken; PAM totally broken (never tested, I suppose).
-# Please contact me to fix the PAM issue if you want to save this
-# package from its fate.
-net-misc/lsh
 
 # Raúl Porcel <armin76@gentoo.org> (18 Feb 2008)
 # Probably breaks a lot of stuff, needs testing
@@ -911,10 +894,6 @@ app-admin/hpasm
 # Pending removal
 media-video/fenice
 media-video/nemesi
-
-# Alin Năstac <mrness@gentoo.org> (03 Jan 2008)
-# The project has been closed; will be removed in 30 days
-net-dialup/gprs-easy-connect
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (01 Jan 2008)
 # hs-plugins only works with the outdated GHC 6.4.2 compiler,

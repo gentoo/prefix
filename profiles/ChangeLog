@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1405 2008/05/13 10:19:40 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1410 2008/05/14 21:41:11 mrness Exp $
+
+  14 May 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove net-proxy/junkbuster (#174109) and net-dialup/gprs-easy-connect masks
+  (packages were removed).
+
+  14 May 2008; David Shakaryan <omp@gentoo.org> use.local.desc:
+  Add netpbm and gtk2-perl local USE flags to x11-wm/fvwm.
+
+  14 May 2008; Markus Meier <maekke@gentoo.org> use.desc, use.local.desc:
+  add pch to global USE-flags
+
+  14 May 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove dev-libs/libsigcx, p.masked for a month
+
+  14 May 2008; <chainsaw@gentoo.org> package.mask:
+  Add mask for 173.08 nvidia-settings.
 
   13 May 2008; Peter Volkov <pva@gentoo.org> updates/2Q-2008::
   move app-doc/kchmviewer into app-text/kchmviewer, bug #220741.

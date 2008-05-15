@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.395 2008/04/30 11:54:57 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.397 2008/05/14 20:42:39 maekke Exp $
 
 # Keep them sorted
 
@@ -220,7 +220,7 @@ mng - Adds support for libmng (MNG images)
 mnogosearch - Adds support for the mnoGoSearch search engine
 modplug - Adds libmodplug support
 mono - Build Mono bindings to support dotnet type stuff
-motif - Adds motif support (x11-libs/openmotif x11-libs/lesstif)
+motif - Adds support for the Motif toolkit
 mozilla - Adds support for the Mozilla web-browser
 mp3 - Add support for reading mp3 files
 mpeg - Adds libmpeg3 support to various packages
@@ -266,6 +266,7 @@ osc - Enables support for Open Sound Control
 oscar - Enable Oscar (AIM/ICQ) IM protocol support
 oss - Adds support for OSS (Open Sound System)
 pam - Adds support PAM (Pluggable Authentication Modules) - DANGEROUS to arbitrarily flip
+pch - Enable precompiled header support for faster compilation at the expense of disk space and memory (>=sys-devel/gcc-3.4 only)
 pcmcia - Adds support for PCMCIA slots/devices found on laptop computers
 pcntl - Adds support for process creation functions
 pcre - Adds support for Perl Compatible Regular Expressions
