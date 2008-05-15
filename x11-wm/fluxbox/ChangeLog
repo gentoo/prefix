@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.249 2008/05/12 18:36:57 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.250 2008/05/13 18:34:39 josejx Exp $
+
+  13 May 2008; Joseph Jezak <josejx@gentoo.org> fluxbox-1.0.0-r2.ebuild:
+  Marked ppc stable.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> fluxbox-1.0.0-r2.ebuild:
   Stable on ppc64
