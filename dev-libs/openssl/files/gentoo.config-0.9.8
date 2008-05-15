@@ -113,7 +113,7 @@ solaris)
 	case ${chost_machine} in
 		i386)         machine=x86-${compiler} ;;
 		x86_64*)      machine=x86_64-${compiler}; system=${system}64;;
-		sparcv9*)     machine=sparcv9-${compiler};;
+		sparcv9*)     machine=sparcv9-${compiler}; system=${system}64;;
 		sparc*)       machine=sparcv8-${compiler};;
 	esac
 	;;
@@ -122,8 +122,8 @@ aix)
 	;;
 darwin)
 	case ${chost_machine} in
-		powerpc)      machine=ppc-cc;;
 		powerpc64)    machine=ppc-cc; system=${system}64;;
+		powerpc)      machine=ppc-cc;;
 		i?86*)        machine=i386-cc;;
 		x86_64)       machine=x86_64-cc; system=${system}64;;
 	esac
