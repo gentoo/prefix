@@ -13,4 +13,4 @@ DESCRIPTION="TeXLive Packages for drawings graphics"
 
 LICENSE="GPL-2 LPPL-1.3c"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
