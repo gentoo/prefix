@@ -1,6 +1,13 @@
 # ChangeLog for app-text/xml2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xml2/ChangeLog,v 1.7 2008/01/19 15:12:46 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xml2/ChangeLog,v 1.8 2008/05/14 18:16:25 drac Exp $
+
+*xml2-0.4 (14 May 2008)
+
+  14 May 2008; Samuli Suominen <drac@gentoo.org>
+  -files/xml2-0.3-libxml2.patch, +files/xml2-0.4-libxml2.patch,
+  -xml2-0.3-r1.ebuild, +xml2-0.4.ebuild:
+  Version bump.
 
   19 Jan 2008; Fabian Groffen <grobian@gentoo.org> xml2-0.3-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
