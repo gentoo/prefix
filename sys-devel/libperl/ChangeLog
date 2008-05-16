@@ -1,6 +1,25 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.128 2008/05/09 11:04:54 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.134 2008/05/15 09:41:26 armin76 Exp $
+
+  15 May 2008; Raúl Porcel <armin76@gentoo.org> libperl-5.8.8-r2.ebuild:
+  alpha/ia64 stable wrt security #219203
+
+  14 May 2008; Markus Meier <maekke@gentoo.org> libperl-5.8.8-r2.ebuild:
+  amd64 stable, bug #219203
+
+  14 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  libperl-5.8.8-r2.ebuild:
+  stable x86, security bug 219203
+
+  14 May 2008; Markus Rothe <corsair@gentoo.org> libperl-5.8.8-r2.ebuild:
+  Stable on ppc64; bug #219203
+
+  14 May 2008; Jeroen Roovers <jer@gentoo.org> libperl-5.8.8-r2.ebuild:
+  Stable for HPPA (bug #219203).
+
+  14 May 2008; Ferris McCormick <fmccor@gentoo.org> libperl-5.8.8-r2.ebuild:
+  Sparc stable, Security Bug #219203.
 
 *libperl-5.8.8-r2 (09 May 2008)
 
