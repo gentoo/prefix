@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.12 2008/04/14 21:51:15 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.13 2008/05/15 12:33:53 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -33,7 +33,7 @@ S=${WORKDIR}/${MY_P}
 SRC_URI="ftp://ftp.trolltech.com/qt/source/${MY_P}.tar.bz2"
 
 case "${PV}" in
-	4.4.0_rc*)
+	4.4.0|4.4.0_rc*)
 		SRC_URI="${SRC_URI} mirror://gentoo/${MY_P}-headers.tar.bz2"
 		;;
 	*)
@@ -73,7 +73,7 @@ qt4_unpack() {
 	local target targets
 	for target in configure LICENSE.{GPL2,GPL3,QPL} projects.pro \
 		src/{qbase,qt_targets,qt_install}.pri bin config.tests mkspecs qmake \
-		${QT4_EXTRACT_DIRECTORIES} ${QT4_TARGET_DIRECTORIES}; do
+		${QT4_EXTRACT_DIRECTORIES}; do
 			targets="${targets} ${MY_P}/${target}"
 	done
 
@@ -81,7 +81,7 @@ qt4_unpack() {
 	tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
 
 	case "${PV}" in
-		4.4.0_rc*)
+		4.4.0|4.4.0_rc*)
 			echo tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
 			tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
 			;;

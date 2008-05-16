@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.6 2007/11/01 19:24:24 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.7 2008/05/14 18:13:14 kolmodin Exp $
 #
 # darcs eclass author:  Andres Loeh <kosmikus@gentoo.org>
 # tla eclass author:    <rphillips@gentoo.org>
@@ -43,11 +43,6 @@ SRC_URI=""
 # The URI to the repository.
 [ -z "$EDARCS_REPOSITORY" ] && EDARCS_REPOSITORY=""
 
-# The local directory to store the repository (useful to ensure a
-# unique local name); relative to EDARCS_TOP_DIR
-[ -z "$EDARCS_LOCALREPO" ] && [ -n "$EDARCS_REPOSITORY" ] \
-	&& EDARCS_LOCALREPO=${EDARCS_REPOSITORY%/} \
-	&& EDARCS_LOCALREPO=${EDARCS_LOCALREPO##*/}
 
 # EDARCS_CLEAN: set this to something to get a clean copy when updating
 # (removes the working directory, then uses $EDARCS_GET_CMD to
@@ -60,6 +55,12 @@ DEPEND="dev-util/darcs"
 
 # is called from darcs_src_unpack
 darcs_fetch() {
+
+	# The local directory to store the repository (useful to ensure a
+	# unique local name); relative to EDARCS_TOP_DIR
+	[ -z "$EDARCS_LOCALREPO" ] && [ -n "$EDARCS_REPOSITORY" ] \
+		&& EDARCS_LOCALREPO=${EDARCS_REPOSITORY%/} \
+		&& EDARCS_LOCALREPO=${EDARCS_LOCALREPO##*/}
 
 	debug-print-function $FUNCNAME $*
 
@@ -116,6 +117,11 @@ darcs_fetch() {
 
 
 darcs_src_unpack() {
+	# The local directory to store the repository (useful to ensure a
+	# unique local name); relative to EDARCS_TOP_DIR
+	[ -z "$EDARCS_LOCALREPO" ] && [ -n "$EDARCS_REPOSITORY" ] \
+		&& EDARCS_LOCALREPO=${EDARCS_REPOSITORY%/} \
+		&& EDARCS_LOCALREPO=${EDARCS_LOCALREPO##*/}
 	local EDARCS_SHOPT
 
 	debug-print-function $FUNCNAME $*

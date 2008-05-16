@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.10 2008/04/14 13:23:14 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.11 2008/05/15 19:49:32 ingmar Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -18,18 +18,15 @@ inherit base eutils multilib cmake-utils kde4-functions
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
 
 kde4-base_set_qt_dependencies() {
-	local qt qtcore qtgui qt3support qtsvg qttest qtopengl qtdepend qtopengldepend
+	local qt qtcore qtgui qt3support qtdepend qtopengldepend
 
 	# use dependencies
 	case "${EAPI}" in
 		kdebuild-1)
-		qt="[accessibility][dbus][debug?][gif][jpeg][png][qt3support][ssl][zlib]"
-		qtcore="[debug?][qt3support][ssl]"
-		qtgui="[accessibility][dbus][debug?]"
-		qt3support="[accessibility][debug?]"
-		qtsvg="[debug?]"
-		qttest="[debug?]"
-		qtopengl="[debug?]"
+		qt="[accessibility][dbus][gif][jpeg][png][qt3support][ssl][zlib]"
+		qtcore="[qt3support][ssl]"
+		qtgui="[accessibility][dbus]"
+		qt3support="[accessibility]"
 		case "${OPENGL_REQUIRED}" in
 			always)
 			qt="${qt}[opengl]"
@@ -46,9 +43,10 @@ kde4-base_set_qt_dependencies() {
 		x11-libs/qt-core:4${qtcore}
 		x11-libs/qt-gui:4${qtgui}
 		x11-libs/qt-qt3support:4${qt3support}
-		x11-libs/qt-svg:4${qtsvg}
-		x11-libs/qt-test:4${qttest}"
-	qtopengldepend="x11-libs/qt-opengl:4${qtopengl}"
+		x11-libs/qt-script:4
+		x11-libs/qt-svg:4
+		x11-libs/qt-test:4"
+	qtopengldepend="x11-libs/qt-opengl:4"
 
 	# allow monolithic qt for PV < 4.1
 	case "${PV}" in
@@ -290,35 +288,28 @@ kde4-base_pkg_setup() {
 
 	case "${EAPI}" in
 		kdebuild-1)
-		[[ -n ${QT4_BUILT_WITH_USE_CHECK} || -n ${KDE4_BUILT_WITH_USE_CHECK} ]] && \
+		[[ -n ${QT4_BUILT_WITH_USE_CHECK} || -n ${KDE4_BUILT_WITH_USE_CHECK[@]} ]] && \
 			die "built_with_use illegal in this EAPI!"
 		;;
 		*)
+		# Make KDE4_BUILT_WITH_USE_CHECK an array if it isn't already
+		local line kde4_built_with_use_check=()
+		if [[ -n ${KDE4_BUILT_WITH_USE_CHECK[@]} && $(declare -p KDE4_BUILT_WITH_USE_CHECK) != 'declare -a '* ]]; then
+			while read line; do
+				[[ -z ${line} ]] && continue
+				kde4_built_with_use_check+=("${line}")
+			done <<< "${KDE4_BUILT_WITH_USE_CHECK}"
+			KDE4_BUILT_WITH_USE_CHECK="${kde4_built_with_use_check[@]}"
+		fi
+
 		# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".
 		if has_version '<x11-libs/qt-4.4_alpha:4'; then
 			QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
 		else
-			KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-				x11-libs/qt-core qt3support ssl
-				x11-libs/qt-gui accessibility dbus
-				x11-libs/qt-qt3support accessibility"
-		fi
-
-		if has debug ${IUSE//+} && use debug; then
-			if has_version '<x11-libs/qt-4.4.0_alpha:4'; then
-				QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"
-			else
-				KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-					x11-libs/qt-core:4 debug
-					x11-libs/qt-gui:4 debug
-					x11-libs/qt-qt3support:4 debug
-					x11-libs/qt-svg:4 debug
-					x11-libs/qt-test:4 debug"
-				if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then
-					KDE4_BUILT_WITH_USE_CHECK="${KDE4_BUILT_WITH_USE_CHECK}
-						x11-libs/qt-opengl:4 debug"
-				fi
-			fi
+			KDE4_BUILT_WITH_USE_CHECK=("${KDE4_BUILT_WITH_USE_CHECK[@]}"
+				"x11-libs/qt-core qt3support ssl"
+				"x11-libs/qt-gui accessibility dbus"
+				"x11-libs/qt-qt3support accessibility")
 		fi
 
 		if has opengl ${IUSE//+} && use opengl || [[ ${OPENGL_REQUIRED} == always ]]; then

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.5 2008/03/13 17:57:51 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.6 2008/05/15 19:49:32 ingmar Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -28,15 +28,16 @@ case ${KDEBASE} in
 				LICENSE="GPL-2" ;;
 	koffice)	HOMEPAGE="http://www.koffice.org/"
 				LICENSE="GPL-2" ;;
-	*)			die "KDEBASE=${KDEBASE} is unsupported." ;;
 esac
 
 debug-print "${BASH_SOURCE} ${LINENO} ${ECLASS}: DEPEND ${DEPEND} - before blockers"
 debug-print "${BASH_SOURCE} ${LINENO} ${ECLASS}: RDEPEND ${RDEPEND} - before blockers"
 
 # Add a blocker on the package we're derived from
-DEPEND="${DEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
-RDEPEND="${RDEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
+if [[ -n ${KDEBASE} ]]; then
+	DEPEND="${DEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
+	RDEPEND="${RDEPEND} !$(get-parent-package ${CATEGORY}/${PN}):${SLOT}"
+fi
 
 debug-print "line ${LINENO} ${ECLASS}: DEPEND ${DEPEND} - after blockers"
 debug-print "line ${LINENO} ${ECLASS}: RDEPEND ${RDEPEND} - after blockers"
@@ -48,6 +49,8 @@ case ${KMNAME} in
 		RDEPEND="${RDEPEND} >=kde-base/qimageblitz-0.0.4"
 	;;
 	kdepim)
+		DEPEND="${DEPEND} dev-libs/boost"
+		RDEPEND="${RDEPEND} dev-libs/boost"
 		if [[ ${PN} != kode ]]; then
 			DEPEND="${DEPEND} >=kde-base/kode-${PV}:${SLOT}"
 			RDEPEND="${RDEPEND} >=kde-base/kode-${PV}:${SLOT}"
@@ -141,13 +144,6 @@ kde4-meta_pkg_setup() {
 kde4-meta_src_unpack() {
 	debug-print-function  ${FUNCNAME} "$@"
 
-	if [[ ${KMNAME} = kdepim ]] && \
-		has kontact ${IUSE//+} && \
-		use kontact; then
-			KMEXTRA="${KMEXTRA} kontact/plugins/${PLUGINNAME:-${PN}}"
-			KMEXTRACTONLY="${KMEXTRACTONLY} kontact/interfaces/"
-	fi
-
 	kde4-meta_src_extract
 	kde4-meta_change_cmakelists
 }
@@ -233,6 +229,14 @@ kde4-meta_create_extractlists() {
 				libkdegames"
 		fi
 		;;
+		kdepim)
+		KMEXTRACTONLY="${KMEXTRACTONLY}
+			kleopatra/ConfigureChecks.cmake"
+		if has kontact ${IUSE//+} && use kontact; then
+			KMEXTRA="${KMEXTRA} kontact/plugins/${PLUGINNAME:-${PN}}"
+			KMEXTRACTONLY="${KMEXTRACTONLY} kontact/interfaces/"
+		fi
+		;;
 		koffice)
 			KMEXTRACTONLY="${KMEXTRACTONLY}
 				config-endian.h.cmake
@@ -298,8 +302,8 @@ __list_needed_subdirectories() {
 	debug-print "line ${LINENO} ${ECLASS} ${FUNCNAME} - kmcompileonly_expanded: ${kmcompileonly_expanded}"
 
 
-	case ${NEED_KDE} in
-		svn) : ;;
+	case ${PV} in
+		scm|9999.4) : ;;
 		*) topdir="${KMNAME}-${PV}/" ;;
 	esac
 
@@ -311,6 +315,35 @@ __list_needed_subdirectories() {
 	done
 
 	echo ${extractlist}
+}
+
+save_library_dependencies() {
+	local depsfile="${T}/${PN}:${SLOT}"
+
+	echo "Saving library dependendencies in ${depsfile##*/}"
+	echo "EXPORT_LIBRARY_DEPENDENCIES(\"${depsfile}\")" >> "${S}/CMakeLists.txt" || \
+		die "Failed to save the library dependencies."
+}
+
+install_library_dependencies() {
+	local depsfile="${T}/${PN}:${SLOT}"
+	echo "Installing library dependendencies as ${depsfile##*/}"
+	insinto /var/lib/kde
+	doins "${depsfile}" || die "Failed to install library dependencies."
+}
+
+load_library_dependencies() {
+	local pn i depsfile
+	echo "Injecting library dependendencies from '${KMLOADLIBS}'"
+
+	i=0
+	for pn in ${KMLOADLIBS} ; do
+		((i++))
+		depsfile="/var/lib/kde/${pn}:${SLOT}"
+		[[ -r "${depsfile}" ]] || die "Depsfile '${depsfile}' not accessible. You probably need to reinstall ${pn}."
+		sed -i -e "${i}iINCLUDE(\"${depsfile}\")" "${S}/CMakeLists.txt" || \
+			die "Failed to include library dependencies for ${pn}"
+	done
 }
 
 # @FUNCTION: kde4-meta_src_compile
@@ -329,12 +362,13 @@ _change_cmakelists_parent_dirs() {
 	local _olddir _dir
 	_dir="${S}"/${1}
 	until [[ ${_dir} == "${S}" ]]; do
-		_olddir=$(basename ${_dir})
-		_dir=$(dirname ${_dir})
+		_olddir=$(basename "${_dir}")
+		_dir=$(dirname "${_dir}")
 		debug-print "${LINENO}: processing ${_dir} CMakeLists.txt searching for ${_olddir}"
 		if [[ -f ${_dir}/CMakeLists.txt ]]; then
-			sed -i -e "/[[:space:]]*${_olddir}[[:space:]]*/s/^#DONOTCOMPILE //" ${_dir}/CMakeLists.txt || \
-				die "${LINENO}: died in ${FUNCNAME} while processing ${_dir}"
+			sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${_olddir}[[:space:]]*)/s/#DONOTCOMPILE //g" \
+				-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${_olddir}[[:space:]]*)/s/#DONOTCOMPILE //g" \
+				-i ${_dir}/CMakeLists.txt || die "${LINENO}: died in ${FUNCNAME} while processing ${_dir}"
 		fi
 	done
 }
@@ -344,11 +378,21 @@ kde4-meta_change_cmakelists() {
 
 	pushd "${S}" > /dev/null
 
+	if [[ -n ${KMSAVELIBS} ]] ; then
+		save_library_dependencies
+	fi
+
+	if [[ -n ${KMLOADLIBS} ]] ; then
+		load_library_dependencies
+	fi
+
 	comment_all_add_subdirectory ./
 
 	# Restore "add_subdirectory( cmake )" in ${S}/CMakeLists.txt
 	if [[ -f "${S}"/CMakeLists.txt ]]; then
-		sed -i -e '/ *cmake */s/^#DONOTCOMPILE //' "${S}"/CMakeLists.txt || die "${LINENO}: cmake sed died"
+		sed -e '/add_subdirectory[[:space:]]*([[:space:]]*cmake[[:space:]]*)/s/^#DONOTCOMPILE //' \
+			-e '/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*cmake[[:space:]]*)/s/^#DONOTCOMPILE //' \
+			-i "${S}"/CMakeLists.txt || die "${LINENO}: cmake sed died"
 	fi
 
 	if [[ -z ${KMNOMODULE} ]]; then
@@ -391,30 +435,19 @@ kde4-meta_change_cmakelists() {
 		fi
 	done
 
-	# Documentation section
-	if [[ -n ${docs} ]]; then
-		sed -i -e '/ *doc */s/^#DONOTCOMPILE //g' "${S}"/CMakeLists.txt || \
-			die "${LINENO}: sed died while uncommenting doc dir"
-
-		if [[ -f "${S}"/doc/CMakeLists.txt ]]; then
-			sed -i -e "/( *${KMMODULE##*/} *)/s/^#DONOTCOMPILE //g" "${S}"/doc/CMakeLists.txt \
-				|| die "${LINENO}: sed died while uncommenting apps documentation in doc subdir "
-		fi
-	fi
-
 	# KMEXTRACTONLY section - Some ebuilds need to comment out some subdirs in KMMODULE and they use KMEXTRACTONLY
 	for i in ${KMEXTRACTONLY}; do
 		if [[ -d "${S}"/${i} && -f "${S}"/${i}/../CMakeLists.txt ]]; then
-			sed -i -e "/( *$(basename $i) *)/s/^/#DONOTCOMPILE /" "${S}"/${i}/../CMakeLists.txt || \
+			sed -i -e "/([[:space:]]*$(basename $i)[[:space:]]*)/s/^/#DONOTCOMPILE /" "${S}"/${i}/../CMakeLists.txt || \
 				die "${LINENO}: sed died while working in the KMEXTRACTONLY section while processing ${i}"
 		fi
 	done
 
-	# COLLISION PROTECT section
-	# Only install the startkde script as part of kde-base/kdebase-startkde,
-	# instead of with every package.
 	case ${KMNAME} in
 		kdebase-workspace)
+		# COLLISION PROTECT section
+		# Only install the startkde script as part of kde-base/kdebase-startkde,
+		# instead of with every package.
 		if [[ ${PN} != "kdebase-startkde" && -f "${S}"/CMakeLists.txt ]]; then
 			case ${PV} in
 				*) # The startkde script moved to kdebase-workspace for KDE4 versions > 3.93.0.
@@ -424,11 +457,28 @@ kde4-meta_change_cmakelists() {
 			esac
 		fi
 		;;
+		kdebase-runtime)
+		# COLLISION PROTECT section
+		# Only install the kde4 script as part of kde-base/kdebase-data
+		if [[ ${PN} != "kdebase-data" && -f "${S}"/CMakeLists.txt ]]; then
+			sed -i -e '/^install(PROGRAMS[[:space:]]*[^[:space:]]*\/kde4[[:space:]]/s/^/#DONOTINSTALL /' \
+				"${S}"/CMakeLists.txt || die "Sed to exclude bin/kde4 failed"
+		fi
+		;;
+		kdepim)
+		case ${PN} in
+			kaddressbook|kmailcvt|kontact|korganizer)
+			sed -i -n -e '/qt4_generate_dbus_interface(.*org\.kde\.kmail\.\(kmail\|mailcomposer\)\.xml/p' \
+				-e '/add_custom_target(kmail_xml /,/)/p' "${S}"/kmail/CMakeLists.txt || die "uncommenting xml failed"
+			_change_cmakelists_parent_dirs kmail
+			;;
+		esac
+		;;
+		kdeutils)
 		# This is sort of a hack to avoid patching 16 kdeutils packages with
 		# r775410 from upstream trunk which makes blitz optional so superkaramba
 		# only gets compiled when it is found. Bug #209324. Remove this no later
 		# than 4.1.
-		kdeutils)
 		if [[ ${PN} != superkaramba && ${SLOT} == kde-4 ]]; then
 			sed -i -e '/find_package(Blitz REQUIRED)/d' "${S}"/CMakeLists.txt \
 				|| die "${LINENO}: sed to remove dependency on Blitz failed."
@@ -484,6 +534,10 @@ kde4-meta_src_install() {
 
 	kde4-meta_src_make_doc
 	cmake-utils_src_install
+
+	if [[ -n ${KMSAVELIBS} ]] ; then
+		install_library_dependencies
+	fi
 }
 
 # @FUNCTION: kde4-meta_src_make_doc

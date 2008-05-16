@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.58 2008/04/30 18:57:10 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.59 2008/05/15 13:27:40 zlin Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -222,7 +222,7 @@ subversion_fetch() {
 
 		mkdir -p "${ESVN_PROJECT}" || die "${ESVN}: can't mkdir ${ESVN_PROJECT}."
 		cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
-		${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch from ${repo_uri}."
+		${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
 
 	elif [[ -n ${ESVN_OFFLINE} ]]; then
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
@@ -253,7 +253,7 @@ subversion_fetch() {
 				debug-print "${FUNCNAME}: ${ESVN_SWITCH_CMD} ${options} ${repo_uri}"
 
 				cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
-				${ESVN_SWITCH_CMD} ${options} ${repo_uri} || die "${ESVN}: can't update from ${repo_uri}"
+				${ESVN_SWITCH_CMD} ${options} ${repo_uri} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}"
 			else
 				# update working copy
 				einfo "subversion update start -->"
@@ -262,7 +262,7 @@ subversion_fetch() {
 				debug-print "${FUNCNAME}: ${ESVN_UPDATE_CMD} ${options}"
 
 				cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
-				${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update from ${repo_uri}."
+				${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
 			fi
 		fi
 	fi

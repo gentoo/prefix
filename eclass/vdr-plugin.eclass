@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.59 2008/04/23 13:56:20 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.60 2008/05/15 14:03:15 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -99,6 +99,7 @@ create_plugindb_file() {
 		echo "CREATOR=ECLASS"
 		echo "EBUILD=${CATEGORY}/${PN}"
 		echo "EBUILD_V=${PVR}"
+		echo "PLUGINS=\"$@\""
 	} > "${ED}/${DB_FILE}"
 }
 
@@ -132,19 +133,24 @@ create_header_checksum_file()
 	# Danger: Not using $ROOT here, as compile will also not use it !!!
 	# If vdr in $ROOT and / differ, plugins will not run anyway
 
-	insinto "${VDR_CHECKSUM_DIR}"
+	local CHKSUM="header-md5-vdr"
+
 	if [[ -f ${VDR_CHECKSUM_DIR}/header-md5-vdr ]]; then
-		newins "${VDR_CHECKSUM_DIR}/header-md5-vdr header-md5-${PN}"
+		cp "${VDR_CHECKSUM_DIR}/header-md5-vdr" "${CHKSUM}"
+	elif type -p md5sum >/dev/null 2>&1; then
+		(
+			cd "${VDR_INCLUDE_DIR}"
+			md5sum *.h libsi/*.h|LC_ALL=C sort --key=2
+		) > "${CHKSUM}"
 	else
-		if type -p md5sum >/dev/null 2>&1; then
-			cd "${S}"
-			(
-				cd "${VDR_INCLUDE_DIR}"
-				md5sum *.h libsi/*.h|LC_ALL=C sort --key=2
-			) > header-md5-${PN}
-			doins header-md5-${PN}
-		fi
+		die "Could not create md5 checksum of headers"
 	fi
+
+	insinto "${VDR_CHECKSUM_DIR}"
+	local p_name
+	for p_name; do
+		newins "${CHKSUM}" "header-md5-${p_name}"
+	done
 }
 
 fix_vdr_libsi_include()
@@ -163,21 +169,35 @@ vdr_patchmakefile() {
 	[[ -e Makefile ]] || die "Makefile of plugin can not be found!"
 	cp Makefile "${WORKDIR}"/Makefile.before
 
+	# plugin makefiles use VDRDIR in strange ways
+	# assumptions:
+	#   1. $(VDRDIR) contains Make.config
+	#   2. $(VDRDIR) contains config.h
+	#   3. $(VDRDIR)/include/vdr contains the headers
+	#   4. $(VDRDIR) contains main vdr Makefile
+	#   5. $(VDRDIR)/locale exists
+	#   6. $(VDRDIR) allows to access vdr source files
+	#
+	# We only have one directory (for now /usr/include/vdr),
+	# that contains vdr-headers and Make.config.
+	# To satisfy 1-3 we do this:
+	#   Set VDRDIR=/usr/include/vdr
+	#   Set VDRINCDIR=/usr/include
+	#   Change $(VDRDIR)/include to $(VDRINCDIR)
+
 	ebegin "  Setting Pathes"
 	sed -i Makefile \
 		-e "s:^VDRDIR.*$:VDRDIR = ${VDR_INCLUDE_DIR}:" \
-		-e "s:^LIBDIR.*$:LIBDIR = ${S}:" \
-		-e "s:^TMPDIR.*$:TMPDIR = ${T}:" \
-		-e 's:-I$(VDRDIR)/include:-I'"${VDR_INCLUDE_DIR%vdr}"':' \
-		-e "/^DVBDIR/d" \
+		-e "/^VDRDIR/a VDRINCDIR = ${VDR_INCLUDE_DIR%/vdr}" \
+		-e '/VDRINCDIR.*=/!s:$(VDRDIR)/include:$(VDRINCDIR):' \
+		\
 		-e 's:-I$(DVBDIR)/include::' \
 		-e 's:-I$(DVBDIR)::'
-	eend $?
+	eend 0
 
 	# maybe needed for multiproto:
 	#sed -i Makefile \
 	#	-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
-	#	-e 's:-I$(VDRDIR)/include -I$(DVBDIR)/include:-I$(DVBDIR)/include -I$(VDRDIR)/include:' \
 	#	-e 's:-I$(DVBDIR)/include:-I$(DVBDIR):'
 
 	if ! grep -q APIVERSION Makefile; then
@@ -342,9 +362,10 @@ vdr-plugin_pkg_setup() {
 	VDR_INCLUDE_DIR="/usr/include/vdr"
 	DVB_INCLUDE_DIR="/usr/include"
 
-
 	TMP_LOCALE_DIR="${WORKDIR}/tmp-locale"
 	LOCDIR="/usr/share/vdr/locale"
+
+	TMP_LIBDIR="${WORKDIR}/tmp-libdir"
 
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
@@ -411,9 +432,12 @@ vdr-plugin_src_compile() {
 			fi
 			cd "${S}"
 
+			mkdir -p "${TMP_LIBDIR}"
 			emake ${BUILD_PARAMS} \
 				${VDRPLUGIN_MAKE_TARGET:-all} \
 				LOCALEDIR="${TMP_LOCALE_DIR}" \
+				LIBDIR="${TMP_LIBDIR}" \
+				TMPDIR="${T}" \
 			|| die "emake failed"
 			;;
 		esac
@@ -444,9 +468,21 @@ vdr-plugin_src_install() {
 
 	fi
 
-	cd "${S}"
-	insinto "${VDR_PLUGIN_DIR}"
-	doins libvdr-*.so.*
+
+	local p_list="" p_name
+
+	cd "${TMP_LIBDIR}"
+	for p in libvdr-*.so.*; do
+		p_name="${p%.so*}"
+		p_name="${p_name#lib}"
+		p_list="${p_list} ${p_name}"
+
+		insinto "${VDR_PLUGIN_DIR}"
+		doins "$p"
+	done
+
+	create_header_checksum_file ${p_list}
+	create_plugindb_file ${p_list}
 
 	if vdr_has_gettext && [[ -d ${TMP_LOCALE_DIR} ]]; then
 		einfo "Installing locales"
@@ -476,9 +512,6 @@ vdr-plugin_src_install() {
 		insinto "${VDR_RC_DIR}"
 		newins "${VDR_RCADDON_FILE}" plugin-${VDRPLUGIN}.sh
 	fi
-
-	create_header_checksum_file
-	create_plugindb_file
 }
 
 vdr-plugin_pkg_postinst() {

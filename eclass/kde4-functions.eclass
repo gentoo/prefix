@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.5 2008/04/04 22:15:24 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.6 2008/05/15 19:49:32 ingmar Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -81,6 +81,7 @@ kde-base/kdebase kde-base/kde-menu
 kde-base/kdebase kde-base/kdesu
 kde-base/kdebase kde-base/kfile
 kde-base/kdebase kde-base/khelpcenter
+kde-base/kdebase kde-base/kiconfinder
 kde-base/kdebase kde-base/kioclient
 kde-base/kdebase kde-base/kmimetypefinder
 kde-base/kdebase kde-base/knetattach
@@ -97,6 +98,7 @@ kde-base/kdebase kde-base/kuiserver
 kde-base/kdebase kde-base/kurifilter-plugins
 kde-base/kdebase kde-base/nepomuk
 kde-base/kdebase kde-base/phonon
+kde-base/kdebase kde-base/solid-hardware
 kde-base/kdebase kde-base/soliduiserver
 kde-base/kdebase kde-base/kcheckpass
 kde-base/kdebase kde-base/kcminit
@@ -155,11 +157,13 @@ kde-base/kdeedu kde-base/kwordquiz
 kde-base/kdeedu kde-base/libkdeedu
 kde-base/kdeedu kde-base/marble
 kde-base/kdeedu kde-base/parley
+kde-base/kdeedu kde-base/step
 kde-base/kdegames kde-base/bovo
 kde-base/kdegames kde-base/katomic
 kde-base/kdegames kde-base/kbattleship
 kde-base/kdegames kde-base/kblackbox
 kde-base/kdegames kde-base/kbounce
+kde-base/kdegames kde-base/kdiamond
 kde-base/kdegames kde-base/kfourinline
 kde-base/kdegames kde-base/kgoldrunner
 kde-base/kdegames kde-base/kiriki
@@ -169,6 +173,7 @@ kde-base/kdegames kde-base/kmahjongg
 kde-base/kdegames kde-base/kmines
 kde-base/kdegames kde-base/knetwalk
 kde-base/kdegames kde-base/kolf
+kde-base/kdegames kde-base/kollision
 kde-base/kdegames kde-base/konquest
 kde-base/kdegames kde-base/kpat
 kde-base/kdegames kde-base/kreversi
@@ -178,6 +183,7 @@ kde-base/kdegames kde-base/kspaceduel
 kde-base/kdegames kde-base/ksquares
 kde-base/kdegames kde-base/ksudoku
 kde-base/kdegames kde-base/ktuberling
+kde-base/kdegames kde-base/kubrick
 kde-base/kdegames kde-base/libkdegames
 kde-base/kdegames kde-base/libkmahjongg
 kde-base/kdegames kde-base/lskat
@@ -192,6 +198,7 @@ kde-base/kdegraphics kde-base/ksnapshot
 kde-base/kdegraphics kde-base/libkscan
 kde-base/kdegraphics kde-base/okular
 kde-base/kdegraphics kde-base/svgpart
+kde-base/kdemultimedia kde-base/dragonplayer
 kde-base/kdemultimedia kde-base/juk
 kde-base/kdemultimedia kde-base/kdemultimedia-kioslaves
 kde-base/kdemultimedia kde-base/kmix
@@ -270,10 +277,8 @@ kde-base/kdeutils kde-base/kcalc
 kde-base/kdeutils kde-base/kcharselect
 kde-base/kdeutils kde-base/kdessh
 kde-base/kdeutils kde-base/kdf
-kde-base/kdeutils kde-base/kedit
 kde-base/kdeutils kde-base/kfloppy
 kde-base/kdeutils kde-base/kgpg
-kde-base/kdeutils kde-base/khexedit
 kde-base/kdeutils kde-base/kjots
 kde-base/kdeutils kde-base/kmilo
 kde-base/kdeutils kde-base/kregexpeditor
@@ -351,12 +356,12 @@ is-parent-package() {
 buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ -x ${KDEDIR}/bin/kbuildsycoca4 ]] && [[ -z "${ROOT}" || "${ROOT}" == "/" ]]; then
+	if [[ -x ${KDEDIR}/bin/kbuildsycoca4 && -z "${ROOT%%/}" ]]; then
 		# First of all, make sure that the /usr/share/services directory exists
 		# and it has the right permissions
-		mkdir -p /usr/share/services
-		chown root:0 /usr/share/services
-		chmod 0755 /usr/share/services
+		mkdir -p "${EPREFIX}"/usr/share/services
+		chown root:0 "${EPREFIX}"/usr/share/services
+		chmod 0755 "${EPREFIX}"/usr/share/services
 
 		# kbuildsycoca4 needs a running dbus session to work correctly.
 		# We have to start a new dbus session, because the DBUS_SESSION_BUS_ADDRESS in the environment
@@ -373,16 +378,16 @@ buildsycoca() {
 
 		ebegin "Running kbuildsycoca4 to build global database"
 		# This is needed because we support multiple kde versions installed together.
-		XDG_DATA_DIRS="/usr/share:${KDEDIRS}/share:/usr/local/share"
+		XDG_DATA_DIRS="/usr/share:${KDEDIRS//:/\/share:}/share:/usr/local/share" \
 		${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
 
 		echo "Killing dbus session for kbuildsycoca4"
-		debug-print "ADDRES ${DBUS_SESSION_BUS_ADDRESS}"
+		debug-print "ADDRESS ${DBUS_SESSION_BUS_ADDRESS}"
 		debug-print "PID: ${DBUS_SESSION_BUS_PID}"
 		kill ${DBUS_SESSION_BUS_PID}
 		eend $?
-		unset DBUS_SESSION_BUS_ADDRES DBUS_SESSION_BUS_PID
+		unset DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID
 
 		# For some reason this directory gets created with noone other than root
 		# being able to read it. Hence we chmod it.
@@ -397,7 +402,7 @@ buildsycoca() {
 # except the ones in cmake/.
 comment_all_add_subdirectory() {
 	find "$@" -name CMakeLists.txt -print0 | grep -vFzZ "./cmake" | \
-		xargs -0 sed -i -e '/add_subdirectory/s/^/#DONOTCOMPILE /' || \
+		xargs -0 sed -i -e '/add_subdirectory/s/^/#DONOTCOMPILE /' -e '/ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' || \
 		die "${LINENO}: Initial sed died"
 }
 
@@ -424,7 +429,8 @@ enable_selected_linguas() {
 	comment_all_add_subdirectory "${KDE_LINGUAS_DIR:-${S}/po}"
 	for lingua in ${KDE_LINGUAS}; do
 		if use linguas_${lingua}; then
-			sed -e "/add_subdirectory(\s*${lingua}\s*)\s*$/ s/^#DONOTCOMPILE //" \
+			sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
+				-e "/ADD_SUBDIRECTORY([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 				-i "${KDE_LINGUAS_DIR:-${S}/po}"/CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
 		fi
 	done
@@ -500,16 +506,28 @@ kde4-functions_check_use() {
 	QT4_BUILT_WITH_USE_CHECK=$(echo "${QT4_BUILT_WITH_USE_CHECK}" | \
 		tr '[:space:]' '\n' | sort | xargs)
 
-	KDE4_BUILT_WITH_USE_CHECK="x11-libs/qt:4 ${QT4_BUILT_WITH_USE_CHECK}
+	local line missing
+	if [[ -n ${KDE4_BUILT_WITH_USE_CHECK[@]} && $(declare -p KDE4_BUILT_WITH_USE_CHECK) = 'declare -a '* ]]; then
+		KDE4_BUILT_WITH_USE_CHECK=("x11-libs/qt:4 ${QT4_BUILT_WITH_USE_CHECK}"
+			"${KDE4_BUILT_WITH_USE_CHECK[@]}")
+
+		for line in "${KDE4_BUILT_WITH_USE_CHECK[@]}"; do
+			[[ -z ${line} ]] && continue
+			if ! _kde4-functions_built_with_use ${line}; then
+				missing=true
+			fi
+		done
+	else
+		KDE4_BUILT_WITH_USE_CHECK="x11-libs/qt:4 ${QT4_BUILT_WITH_USE_CHECK}
 				${KDE4_BUILT_WITH_USE_CHECK}"
 
-	local line missing
-	while read line; do
-		[[ -z ${line} ]] && continue
-		if ! _kde4-functions_built_with_use ${line}; then
-			missing=true
-		fi
-	done <<< "${KDE4_BUILT_WITH_USE_CHECK}"
+		while read line; do
+			[[ -z ${line} ]] && continue
+			if ! _kde4-functions_built_with_use ${line}; then
+				missing=true
+			fi
+		done <<< "${KDE4_BUILT_WITH_USE_CHECK}"
+	fi
 	if [[ -n ${missing} ]]; then
 		echo
 		eerror "Flags marked with an * are missing."
