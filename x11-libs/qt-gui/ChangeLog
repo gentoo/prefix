@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.4 2008/04/10 13:40:47 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.5 2008/05/15 12:45:33 ingmar Exp $
+
+*qt-gui-4.4.0 (15 May 2008)
+
+  15 May 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  +files/qt-gui-4.4.0-scrollbars.patch, +qt-gui-4.4.0.ebuild:
+  Version bump to Qt-4.4.0.
 
   10 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-gui-4.4.0_beta1.ebuild, +qt-gui-4.4.0_rc1.ebuild:
