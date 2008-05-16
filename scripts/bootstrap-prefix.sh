@@ -185,13 +185,10 @@ bootstrap_setup() {
 	fi
 	
 	[[ -e ${ROOT}/etc/make.conf ]] && return
-	
-	einfo "Setting up sync uri"
-	echo 'SYNC="svn://overlays.gentoo.org/proj/alt/trunk/prefix-overlay"' >> ${ROOT}/etc/make.conf
 }
 
 bootstrap_tree() {
-	local def="20080504"
+	local def="20080516"
 	case ${CHOST} in
 		powerpc-ibm-aix*)            PV="${def}" ;;
 		i*86-apple-darwin8)          PV="${def}" ;;
@@ -276,7 +273,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV="2.2.00.10181"
+	PV="2.2.00.10345"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -304,8 +301,10 @@ bootstrap_portage() {
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
-	einfo "making a symlink for sed in ${ROOT}/usr/bin"
-	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
+# I think this is no longer an issue since Portage doesn't install the
+# wrapper any more
+#	einfo "making a symlink for sed in ${ROOT}/usr/bin"
+#	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
 
 	if [[ $MAKE != "make" ]] ; then
 		einfo "making a symlink for $MAKE"
