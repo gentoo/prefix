@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10345 (16 May 2008)
+
+  16 May 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9894.ebuild, +portage-2.2.00.10345.ebuild:
+  New snapshot, readded rsync dependency, since we're about to switch to rsync
+  for normal installations
+
 *portage-2.2.00.10249 (08 May 2008)
 
   08 May 2008; Fabian Groffen <grobian@gentoo.org>
