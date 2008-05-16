@@ -34,9 +34,3 @@
 # we don't ever will install these, so no need to depend on them
 -*virtual/libc
 -*virtual/os-headers
-
-# For as long as prefix uses an svn tree as it's main tree, we don't
-# strictly require rsync, but we do need subversion.  Ideally eventually
-# we will have rsync too.
--*net-misc/rsync
-*dev-util/subversion

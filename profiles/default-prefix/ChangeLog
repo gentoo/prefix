@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 May 2008; Fabian Groffen <grobian@gentoo.org> packages:
+  Readd rsync in the system set instead of subversion, since we're about to
+  switch to rsync based tree snapshots
+
   13 May 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   added net-analyzer/tcpdump to package.mask because it requires root access. 
   bug #204136
