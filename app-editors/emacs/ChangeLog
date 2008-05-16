@@ -1,11 +1,21 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.248 2008/05/13 19:16:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.254 2008/05/15 15:01:31 ulm Exp $
 
-  13 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-22.2-r2.ebuild:
-  Stable for HPPA (bug #221197).
+  14 May 2008; Markus Meier <maekke@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.2-r2.ebuild:
+  amd64 stable, bug #221197
 
-  13 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r17.ebuild:
+  14 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  emacs-21.4-r17.ebuild, emacs-22.2-r2.ebuild:
+  stable x86, security bug 221197
+
+  14 May 2008; Markus Rothe <corsair@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.2-r2.ebuild:
+  Stable on ppc64; bug #221197
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.2-r2.ebuild:
   Stable for HPPA (bug #221197).
 
   13 May 2008; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r17.ebuild,
@@ -32,10 +42,7 @@
   Stable for HPPA (bug #220535).
 
   06 May 2008; Brent Baude <ranger@gentoo.org> emacs-22.2-r1.ebuild:
-  stable ppc64, bug 220535
-
-  06 May 2008; Brent Baude <ranger@gentoo.org> emacs-22.2-r1.ebuild:
-  stable ppc, bug 220535
+  stable ppc/ppc64, bug 220535
 
   06 May 2008; Christian Faulhammer <opfer@gentoo.org> emacs-22.2-r1.ebuild:
   stable x86/amd64, bug 220535
@@ -149,10 +156,8 @@
   emacs-21.4-r14.ebuild, emacs-22.1-r3.ebuild:
   stable x86
 
-  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-22.1-r3.ebuild:
-  Stable for HPPA.
-
-  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r14.ebuild:
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r14.ebuild,
+  emacs-22.1-r3.ebuild:
   Stable for HPPA.
 
 *emacs-22.1-r3 (25 Nov 2007)
@@ -333,10 +338,7 @@
   Quiet QA compilation warnings, patch submitted and accepted upstream.
 
   04 Jun 2007; Brent Baude <ranger@gentoo.org> emacs-22.1.ebuild:
-  Marking emacs-22.1 ppc ~ for bug#180642
-
-  04 Jun 2007; Brent Baude <ranger@gentoo.org> emacs-22.1.ebuild:
-  Marking emacs-22.1 ppc64 ~ for bug#180642
+  Marking emacs-22.1 ppc/ppc64 ~ for bug#180642
 
   02 Jun 2007; deedra waters <dmwaters@gentoo.org> emacs-22.1.ebuild:
   Adding ~amd64 keyword
@@ -405,10 +407,8 @@
   Removed dependency on sys-devel/gettext. Removed old (non-eselect) revision.
 
   29 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
-  Don't assign CPPFLAGS, use append-cppflags instead.
-
-  29 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
   Apply emacs-21.4-ppc64-fix-unexelf.patch only on ppc64 architecture.
+  Don't assign CPPFLAGS, use append-cppflags instead.
 
   29 Apr 2007; Markus Rothe <corsair@gentoo.org>
   +files/emacs-21.4-ppc64-fix-unexelf.patch, emacs-21.4-r12.ebuild:
@@ -455,11 +455,7 @@
   prepared for the new eselect module
 
   26 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
-  -files/60emacs-22.0.50.envd:
-  clean up
-
-  26 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
-  -emacs-21.4-r7.ebuild:
+  -files/60emacs-22.0.50.envd, -emacs-21.4-r7.ebuild:
   clean up
 
   07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
@@ -530,9 +526,6 @@
 
   03 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
   determine compression suffix correctly and finally
-
-  02 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
-  hopefully fix man page symlinks again, part II
 
   02 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
   hopefully fix man page symlinks again
@@ -764,7 +757,7 @@
   08 Feb 2005; Markus Rothe <corsair@gentoo.org> emacs-21.4.ebuild:
   Stable on ppc64; bug #79686
 
-  08 Feb 2005; Olivier Cr??te <tester@gentoo.org> emacs-21.4.ebuild:
+  08 Feb 2005; Olivier Crête <tester@gentoo.org> emacs-21.4.ebuild:
   Stable on x86 wrt bug #79686
 
   08 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org> emacs-21.4.ebuild:
