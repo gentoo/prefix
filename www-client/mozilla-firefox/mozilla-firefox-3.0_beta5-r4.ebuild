@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5-r2.ebuild,v 1.1 2008/04/28 16:00:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_beta5-r4.ebuild,v 1.3 2008/05/15 18:40:29 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -15,9 +15,9 @@ MY_P="${PN}-${MY_PV}"
 MY_PV=${PV/3.0/}
 
 DESCRIPTION="Firefox Web Browser"
-HOMEPAGE="http://www.mozilla.org/projects/firefox/"
+HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="java mozdevelop bindist restrict-javascript +xulrunner"
@@ -240,12 +240,15 @@ src_install() {
 		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}"/"${MY_P}-${X}"
 	done
 
+	use xulrunner && prefs=preferences || prefs=pref
+	cp "${FILESDIR}"/gentoo-default-prefs.js "${ED}"${MOZILLA_FIVE_HOME}/defaults/${prefs}/all-gentoo.js
+
 	local LANG=${linguas%% *}
 	if [[ -n ${LANG} && ${LANG} != "en" ]]; then
 		elog "Setting default locale to ${LANG}"
 		dosed -e "s:general.useragent.locale\", \"en-US\":general.useragent.locale\", \"${LANG}\":" \
-			${MOZILLA_FIVE_HOME}/defaults/preferences/firefox.js \
-			${MOZILLA_FIVE_HOME}/defaults/preferences/firefox-l10n.js || \
+			${MOZILLA_FIVE_HOME}/defaults/${prefs}/firefox.js \
+			${MOZILLA_FIVE_HOME}/defaults/${prefs}/firefox-l10n.js || \
 			die "sed failed to change locale"
 	fi
 
@@ -260,16 +263,13 @@ src_install() {
 			mozilla-firefox-3.0.desktop
 	fi
 
-	dodir ${MOZILLA_FIVE_HOME}/defaults/preferences
-	cp "${FILESDIR}"/gentoo-default-prefs.js "${ED}"${MOZILLA_FIVE_HOME}/defaults/preferences/all-gentoo.js
-
 	if use xulrunner; then
 		PKG_CONFIG=`which pkg-config`
 		X_DATE=`date +%Y%m%d`
 		XULRUNNER_VERSION=`${PKG_CONFIG} --modversion libxul`
 
 		#set the application.ini
-		sed -i -e "s|BuildID=.*$|BuildID=${X_DATE}GentooMozillaFirefox|"	"${ED}"${MOZILLA_FIVE_HOME}/application.ini
+		sed -i -e "s|BuildID=.*$|BuildID=${X_DATE}GentooMozillaFirefox|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
@@ -278,6 +278,7 @@ src_install() {
 		# Create /usr/bin/firefox
 		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
 	fi
+
 }
 
 pkg_postinst() {
