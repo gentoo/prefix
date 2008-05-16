@@ -32,6 +32,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (16 May 2008)
+# distcc-config --install is rather 'interesting' in prefix and I am not 
+# convinced that it works correctly. Also, you will have to add CHOST=<...> to
+# your make.conf. bug #210268
+sys-devel/distcc
+
 # Jeremy Olexa <darkside@gentoo.org> (13 May 2008)
 # Subversion works for me on x86-linux but still shouldn't be unleashed without
 # more testing on other ARCHs
