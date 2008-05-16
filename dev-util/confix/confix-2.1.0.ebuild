@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/confix/Confix-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-linux"
+KEYWORDS="~ppc-aix ~x86-interix ~x86-linux"
 
 DEPEND="dev-lang/python"
 RDEPEND="${DEPEND}
