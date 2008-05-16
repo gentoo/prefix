@@ -1,14 +1,14 @@
 #!/sbin/runscript
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/files/3.0.0-spamd.init,v 1.7 2007/02/11 19:46:32 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/files/3.0.0-spamd.init,v 1.8 2008/05/14 21:25:56 sbriesen Exp $
 
 # NB: Config is in /etc/conf.d/spamd
 
 # Provide a default location if they haven't in /etc/conf.d/spamd
 PIDFILE=${PIDFILE:-/var/run/spamd.pid}
 
-opts="${opts} reload"
+opts="reload"
 
 depend() {
 	need net
@@ -19,6 +19,7 @@ depend() {
 start() {
 	ebegin "Starting spamd"
 	start-stop-daemon --start --quiet \
+		--name spamd \
 		--nicelevel ${SPAMD_NICELEVEL:-0} \
 		--exec /usr/sbin/spamd -- -d -r ${PIDFILE} \
 			${SPAMD_OPTS}

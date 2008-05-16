@@ -15,7 +15,7 @@ SRC_URI="http://archive.apache.org/dist/spamassassin/source/${MY_P}.tar.bz2 mirr
 SRC_TEST="do"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="berkdb qmail ssl doc ldap mysql postgres sqlite tools ipv6"
 
 DEPEND=">=dev-lang/perl-5.8.2-r1
