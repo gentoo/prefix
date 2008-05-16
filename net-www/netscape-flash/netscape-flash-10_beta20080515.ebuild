@@ -1,13 +1,22 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-9.0.48.0-r1.ebuild,v 1.1 2007/07/19 16:48:16 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_beta20080515.ebuild,v 1.1 2008/05/15 14:35:11 lack Exp $
 
 EAPI="prefix"
 
-inherit nsplugins rpm
+inherit nsplugins versionator
+
+MV=$(get_major_version)
+
+# Excellent, Adobe uses that unsortable though surprisingly popular date
+# convention "MMDDYY", so build that out of a proper "YYYYMMDD" beta version
+# component:
+BETA=$(get_version_component_range 2)
+BETA=${BETA#beta}
+BV=${BETA:4:2}${BETA:6:2}${BETA:2:2}
 
 DESCRIPTION="Adobe Flash Player"
-SRC_URI="http://fpdownload.macromedia.com/get/flashplayer/current/flash-plugin-${PV}-release.i386.rpm"
+SRC_URI="http://download.macromedia.com/pub/labs/flashplayer${MV}/flashplayer${MV}_install_linux_${BV}.tar.gz"
 HOMEPAGE="http://www.adobe.com/"
 IUSE=""
 SLOT="0"
@@ -16,7 +25,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 LICENSE="AdobeFlash-9.0.31.0"
 RESTRICT="strip mirror"
 
-S=${WORKDIR}
+S="${WORKDIR}/install_flash_player_${MV}_linux"
 
 DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 			app-emulation/emul-linux-x86-gtklibs
@@ -37,12 +46,7 @@ pkg_setup() {
 }
 
 src_install() {
-	cd ${S}/usr/lib/flash-plugin
 	exeinto /opt/netscape/plugins
 	doexe libflashplayer.so
 	inst_plugin /opt/netscape/plugins/libflashplayer.so
-
-	dodoc README
-	cd ${S}/usr/share/doc/flash-plugin-${PV}/
-	dodoc readme.txt
 }
