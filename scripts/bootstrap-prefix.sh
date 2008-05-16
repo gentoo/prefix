@@ -643,8 +643,8 @@ bootstrap_bzip2() {
 # We do not want stray $TMP, $TMPDIR or $TEMP settings
 unset TMP TMPDIR TEMP
 
-# Try to guess the CHOST if not set.  We currently only support Linux,
-# Darwin, Solaris and AIX guessing on a very sloppy base.
+# Try to guess the CHOST if not set.  We currently only support guessing
+# on a very sloppy base.
 if [ -z "${CHOST}" ];
 then
 	if [ x$(type -t uname) == "xfile" ];
@@ -817,6 +817,20 @@ then
 fi
 
 ROOT="$1"
+
+case $ROOT in
+	chost.guess)
+		# undocumented feature that sort of is our own config.guess, if
+		# CHOST was unset, it now contains the guessed CHOST
+		echo "$CHOST"
+		exit 0
+	;;
+	/*) ;;
+	*)
+		echo "Your path offset needs to be absolute!" 1>&2
+		exit 1
+	;;
+esac
 
 CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS:--O2 -pipe}"
