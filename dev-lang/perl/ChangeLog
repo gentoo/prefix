@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.263 2008/05/09 11:11:59 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.269 2008/05/15 09:39:55 armin76 Exp $
+
+  15 May 2008; Raúl Porcel <armin76@gentoo.org> perl-5.8.8-r5.ebuild:
+  alpha/ia64 stable wrt security #219203
+
+  14 May 2008; Markus Meier <maekke@gentoo.org> perl-5.8.8-r5.ebuild:
+  amd64 stable, bug #219203
+
+  14 May 2008; Christian Faulhammer <opfer@gentoo.org> perl-5.8.8-r5.ebuild:
+  stable x86, security bug 219203
+
+  14 May 2008; Markus Rothe <corsair@gentoo.org> perl-5.8.8-r5.ebuild:
+  Stable on ppc64; bug #219203
+
+  14 May 2008; Ferris McCormick <fmccor@gentoo.org> perl-5.8.8-r5.ebuild:
+  Sparc stable, Security Bug #219203 (UTF regex problem) --- all tests good.
+
+  14 May 2008; Jeroen Roovers <jer@gentoo.org> perl-5.8.8-r5.ebuild:
+  Stable for HPPA (bug #219203).
 
 *perl-5.8.8-r5 (09 May 2008)
 
