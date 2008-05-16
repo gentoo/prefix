@@ -239,7 +239,7 @@ bootstrap_tree() {
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles distfiles
 		rm -Rf portage
-		mv prefix-overlay* portage
+		mv rsync* portage
 		mv distfiles portage/
 		touch portage/.unpacked
 	fi
