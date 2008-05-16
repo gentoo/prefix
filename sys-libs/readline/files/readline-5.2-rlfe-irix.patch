@@ -1,9 +1,11 @@
 --- examples/rlfe/rlfe.c
 +++ examples/rlfe/rlfe.c
-@@ -67,6 +67,9 @@
+@@ -67,6 +67,11 @@
  #include <errno.h>
  #include <grp.h>
++#ifndef __sgi
  #include <string.h>
++#endif
 +#ifdef HAVE_STRINGS_H
 +#include <strings.h>
 +#endif
