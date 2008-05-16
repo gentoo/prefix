@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.134 2008/05/13 07:55:07 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.135 2008/05/14 17:02:24 cedk Exp $
+
+*openvpn-2.0.9 (14 May 2008)
+
+  14 May 2008; Cédric Krier <cedk@gentoo.org>
+  +files/openvpn-2.0.9-pam.patch, +files/openvpn-2.0.9-persistent.patch,
+  +openvpn-2.0.9.ebuild:
+  Version bump
 
   13 May 2008; Cédric Krier <cedk@gentoo.org> metadata.xml:
   Take ownership, after Alon Bar-Lev left
