@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/moldy-2.16e.ebuild,v 1.7 2008/01/31 19:58:00 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/moldy-2.16e.ebuild,v 1.8 2008/05/14 17:33:39 grozin Exp $
 
 EAPI="prefix"
 
@@ -18,8 +18,6 @@ KEYWORDS="~x86-linux ~ppc-macos"
 
 DEPEND="virtual/libc
 	virtual/tetex"
-
-addwrite /var/cache/fonts
 
 src_compile() {
 #Individuals may want to edit the OPT* variables below.
@@ -39,7 +37,8 @@ src_compile() {
 		|| die
 
 	emake || die
-	make moldy.pdf || die
+	# To prevent sandbox violations by metafont
+	VARTEXFONTS="${T}"/fonts make moldy.pdf || die
 }
 
 src_install() {
