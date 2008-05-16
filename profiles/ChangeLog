@@ -1,6 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1410 2008/05/14 21:41:11 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1416 2008/05/16 02:42:12 dirtyepic Exp $
+
+  16 May 2008; Ryan Hill <dirtyepic@gentoo.org> arch/mips/package.mask,
+  default-linux/mips/package.mask, package.mask:
+  Remove artwiz-fonts mask.
+
+  15 May 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Last rites for net-dialup/{mclient,mserver,linesrv,xlc}.
+
+  15 May 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Update mask for app-doc/kchmviewer to app-text/kchmviewer as it was moved,
+  thank Samuli Suominen for report.
+
+  15 May 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove mask app-laptop/omnibook-svn.
+
+  15 May 2008; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  removing old masking of php-5.2.5_p* (no longer in the tree), updating
+  comment of php-4 mask
+
+  15 May 2008; Mart Raudsepp <leio@gentoo.org> arch/amd64/package.mask,
+  arch/x86/package.mask, base/package.mask,
+  default-linux/amd64/package.mask, default-linux/x86/package.mask,
+  embedded/package.mask:
+  Unmask gst-plugins-meta-0.10-r2 for everyone
 
   14 May 2008; Alin Năstac <mrness@gentoo.org> package.mask:
   Remove net-proxy/junkbuster (#174109) and net-dialup/gprs-easy-connect masks

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3542 2008/05/14 21:23:43 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3543 2008/05/15 10:13:04 dberkholz Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -137,6 +137,10 @@ app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-qtlibs:immqt-bc - Enable binary compatible version of immodule for Qt
 app-emulation/fuse:libdsk - Enable support for the floppy disk emulation library
 app-emulation/hercules:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default package CFLAGS (not supported)
+app-emulation/libvirt:iscsi - Add support for iSCSI (Internet SCSI) remote storage
+app-emulation/libvirt:lvm - Add support for the Logical Volume Manager
+app-emulation/libvirt:openvz - Add support for OpenVZ-based virtual machines
+app-emulation/libvirt:parted - Add support for the parted partition editor
 app-emulation/libvirt:qemu - Add support for QEMU/KVM-based virtual machines
 app-emulation/libvirt:xen - Add support for Xen-based virtual machines
 app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
