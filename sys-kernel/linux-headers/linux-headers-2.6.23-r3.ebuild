@@ -13,7 +13,7 @@ PATCH_VER="5"
 SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.bz2"
 [[ -n ${PATCH_VER} ]] && SRC_URI="${SRC_URI} mirror://gentoo/gentoo-headers-${PV}-${PATCH_VER}.tar.bz2"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 DEPEND="dev-util/unifdef"
 RDEPEND=""

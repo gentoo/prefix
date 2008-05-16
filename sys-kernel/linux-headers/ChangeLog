@@ -1,6 +1,12 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.268 2008/05/12 16:14:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.269 2008/05/15 02:30:36 vapier Exp $
+
+*linux-headers-2.6.25-r3 (15 May 2008)
+
+  15 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +linux-headers-2.6.25-r3.ebuild:
+  Adjust HZ on alpha according to feedback from Linus.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org>
   linux-headers-2.6.24.ebuild:
