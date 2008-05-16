@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r2.ebuild,v 1.5 2008/05/12 15:23:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r2.ebuild,v 1.6 2008/05/15 20:39:51 drac Exp $
 
 EAPI="prefix 1"
 
@@ -8,12 +8,11 @@ inherit autotools eutils
 
 DESCRIPTION="free lossless audio encoder and decoder"
 HOMEPAGE="http://flac.sourceforge.net"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
-	http://dev.gentoo.org/~drac/${P}-eautoreconf-gettext-0.17-m4.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="3dnow altivec +cxx debug doc ogg sse"
 
 RDEPEND="ogg? ( >=media-libs/libogg-1.1.3 )"
@@ -22,21 +21,22 @@ DEPEND="${RDEPEND}
 	!elibc_uclibc? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
+RESTRICT="test"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Stop using upstream CFLAGS. Fix building with
-	# ldflag asneeded on non glibc systems. Fix
-	# broken asm causing text relocations.
-	epatch "${FILESDIR}"/${P}-asneeded.patch
-	epatch "${FILESDIR}"/${P}-cflags.patch
-	epatch "${FILESDIR}"/${P}-asm.patch
+	# Fix building with asneeded on non-glibc systems.
+	# Fix text relocations. Fix {C,XX}FLAGS.
+	epatch "${FILESDIR}"/${P}-asneeded.patch \
+		"${FILESDIR}"/${P}-cflags.patch \
+		"${FILESDIR}"/${P}-asm.patch
 
 	# Fix build with gcc 4.3, bug #199579
 	epatch "${FILESDIR}/${P}-gcc-4.3-includes.patch"
 
-	AT_M4DIR="../m4 m4" eautoreconf
+	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {

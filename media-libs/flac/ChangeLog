@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.138 2008/05/12 15:23:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.139 2008/05/15 20:39:51 drac Exp $
+
+  15 May 2008; Samuli Suominen <drac@gentoo.org> flac-1.2.1-r2.ebuild:
+  Revert commit for bug 173464, it doesn't solve the entire problem. Stop
+  wasting time with this too long, and known to fail testsuite wrt #197122.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> flac-1.2.1-r2.ebuild:
   Stable on ppc64
