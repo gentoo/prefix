@@ -1,6 +1,11 @@
 # ChangeLog for www-client/links
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.104 2008/03/11 18:16:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.105 2008/05/15 00:50:51 vanquirius Exp $
+
+*links-2.1_pre36 (14 May 2008)
+
+  14 May 2008; Marcelo Goes <vanquirius@gentoo.org> +links-2.1_pre36.ebuild:
+  2.1_pre36 version bump.
 
   11 Mar 2008; Jeroen Roovers <jer@gentoo.org> links-2.1_pre33.ebuild:
   Stable for HPPA (bug #212593).
