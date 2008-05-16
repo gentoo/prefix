@@ -1,5 +1,5 @@
---- distcc-config.orig	2006-11-09 21:27:01 +0100
-+++ distcc-config	2006-11-09 21:35:59 +0100
+--- distcc-config.orig	2008-05-16 16:09:38.440367000 -0500
++++ distcc-config	2008-05-16 16:10:01.875483000 -0500
 @@ -21,7 +21,7 @@
  
  tmpcmdline=sys.argv[1:]
@@ -84,7 +84,8 @@
 +		os.WEXITSTATUS(commands.getstatusoutput('@GENTOO_PORTAGE_EPREFIX@/usr/sbin/usermod -g daemon -s /bin/false -d /dev/null -c "distccd" distcc')[0])
 +	"""
  
- 	foobar = pwd.getpwnam('distcc')
+-	foobar = pwd.getpwnam('distcc')
++	foobar = pwd.getpwnam('$USER')
  	user   = foobar[2]
  	group  = foobar[3]
  
