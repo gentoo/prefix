@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.60 2008/05/13 01:44:37 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.61 2008/05/14 17:13:39 grozin Exp $
+
+  15 May 2008; Andrey Grozin <grozin@gentoo.org> pari-2.3.3.ebuild:
+  Set VARTEXFONTS (bug #221921)
 
   13 May 2008; Markus Dittrich <markusle@gentoo.org>
   +files/pari-2.3.3-alglin.patch, pari-2.3.3.ebuild:
