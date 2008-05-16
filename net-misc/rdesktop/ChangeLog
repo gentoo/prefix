@@ -1,6 +1,22 @@
 # ChangeLog for net-misc/rdesktop
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.101 2007/09/27 14:03:50 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.105 2008/05/15 04:04:37 jer Exp $
+
+  15 May 2008; Jeroen Roovers <jer@gentoo.org> rdesktop-1.6.0.ebuild:
+  Stable for HPPA (bug #220911).
+
+  14 May 2008; Markus Meier <maekke@gentoo.org> rdesktop-1.6.0.ebuild:
+  amd64/x86 stable, bug #220911
+
+  14 May 2008; Markus Rothe <corsair@gentoo.org> rdesktop-1.6.0.ebuild:
+  Stable on ppc64; bug #220911
+
+*rdesktop-1.6.0 (14 May 2008)
+
+  14 May 2008; Robert Buchholz <rbu@gentoo.org> metadata.xml,
+  +rdesktop-1.6.0.ebuild:
+  Non-maintainer-commit: Version bump for security bug #220911, marking
+  package as maintainer-needed.
 
   27 Sep 2007; Raúl Porcel <armin76@gentoo.org> rdesktop-1.5.0-r3.ebuild:
   sparc stable wrt #190927
