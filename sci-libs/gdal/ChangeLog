@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.40 2008/04/11 18:16:41 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.41 2008/05/15 06:24:07 nerdboy Exp $
+
+  15 May 2008; Steve Arnold <nerdboy@gentoo.org> gdal-1.5.0-r1.ebuild:
+  updated depends for bugs 221687 and 221493
 
   11 Apr 2008; Fabian Groffen <grobian@gentoo.org> gdal-1.5.0-r1.ebuild:
   Correct configure argument for sqlite: it's sqlite3

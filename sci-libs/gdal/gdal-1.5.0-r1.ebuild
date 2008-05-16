@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.0-r1.ebuild,v 1.2 2008/04/11 18:16:41 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.0-r1.ebuild,v 1.3 2008/05/15 06:24:07 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # need to get these arches updated on several libs first
 #KEYWORDS="~alpha ~hppa"
 
-DEPEND=">=sys-libs/zlib-1.1.4
+RDEPEND=">=sys-libs/zlib-1.1.4
 	>=media-libs/tiff-3.7.0
 	sci-libs/libgeotiff
 	dev-libs/expat
@@ -31,8 +31,7 @@ DEPEND=">=sys-libs/zlib-1.1.4
 	perl? ( dev-lang/perl )
 	python? ( virtual/python
 		dev-python/numpy )
-	ruby? ( >=dev-lang/ruby-1.8.4.20060226
-		>=dev-lang/swig-1.3.28 )
+	ruby? ( >=dev-lang/ruby-1.8.4.20060226 )
 	fits? ( sci-libs/cfitsio )
 	ogdi? ( sci-libs/ogdi )
 	gml? ( >=dev-libs/xerces-c-2.8.0 )
@@ -46,7 +45,10 @@ DEPEND=">=sys-libs/zlib-1.1.4
 	mysql? ( virtual/mysql )
 	odbc?   ( dev-db/unixODBC )
 	geos?   ( >=sci-libs/geos-2.2.1 )
-	sqlite? ( >=dev-db/sqlite-3 )
+	sqlite? ( >=dev-db/sqlite-3 )"
+
+DEPEND="${RDEPEND}
+	ruby? ( >=dev-lang/swig-1.3.28 )
 	doc? ( app-doc/doxygen )"
 
 AT_M4DIR="${S}/m4"
