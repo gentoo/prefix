@@ -1,6 +1,12 @@
 # ChangeLog for www-client/w3m
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.44 2008/04/03 16:17:42 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.45 2008/05/15 23:53:33 matsuu Exp $
+
+*w3m-0.5.2-r2 (15 May 2008)
+
+  15 May 2008; MATSUU Takuto <matsuu@gentoo.org> +files/w3m.mailcap,
+  +files/w3m-0.5.2-form.patch, +w3m-0.5.2-r2.ebuild:
+  application/xhtml+xml support. Fixed history back issue.
 
   03 Apr 2008; MATSUU Takuto <matsuu@gentoo.org>
   -files/w3m-0.5.1-security.patch, -files/w3m-w3mman-gentoo.diff,

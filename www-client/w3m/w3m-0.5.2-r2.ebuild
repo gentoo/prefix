@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2-r1.ebuild,v 1.5 2008/04/03 16:17:42 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2-r2.ebuild,v 1.1 2008/05/15 23:53:33 matsuu Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-ambwidth.patch"
+	# http://www.sic.med.tohoku.ac.jp/~satodai/w3m-dev/200708.month/4286.html
+	epatch "${FILESDIR}/${P}-form.patch"
 }
 
 src_compile() {
@@ -104,6 +106,10 @@ src_compile() {
 src_install() {
 
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	# http://www.sic.med.tohoku.ac.jp/~satodai/w3m-dev/200307.month/3944.html
+	insinto /etc/${PN}
+	newins "${FILESDIR}/${PN}.mailcap" mailcap
 
 	insinto /usr/share/${PN}/Bonus
 	doins Bonus/*
