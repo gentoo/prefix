@@ -15,7 +15,7 @@ MY_PV_MM=$(get_version_component_range 1-2 )
 SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${P}.tar.bz2"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
 # the doc USE flag doesn't seem to do anything without docbook2html
 IUSE="cairo doc gnome gnome-print png python zlib"
 
