@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.57.ebuild,v 1.4 2008/05/10 09:05:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.57.ebuild,v 1.5 2008/05/14 11:12:15 ulm Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="Zile is a small Emacs clone"
-HOMEPAGE="http://zile.sourceforge.net/"
+HOMEPAGE="http://www.gnu.org/software/zile/"
 SRC_URI="mirror://sourceforge/zile/${P}.tar.gz"
 
 LICENSE="GPL-2"
