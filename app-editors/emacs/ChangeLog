@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.254 2008/05/15 15:01:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.256 2008/05/16 20:25:23 ulm Exp $
+
+  16 May 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-22.2-r1.ebuild:
+  Remove intermediate version.
+
+  16 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  emacs-21.4-r17.ebuild, emacs-22.2-r2.ebuild:
+  ppc stable, bug #221197
 
   14 May 2008; Markus Meier <maekke@gentoo.org> emacs-21.4-r17.ebuild,
   emacs-22.2-r2.ebuild:
