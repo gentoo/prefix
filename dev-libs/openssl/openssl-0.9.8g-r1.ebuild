@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g-r1.ebuild,v 1.1 2008/03/25 00:27:14 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g-r1.ebuild,v 1.2 2008/05/16 15:52:48 ulm Exp $
 
 EAPI="prefix"
 
@@ -12,8 +12,8 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bindist emacs gmp kerberos sse2 test zlib"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="bindist gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
 	zlib? ( sys-libs/zlib )
@@ -169,13 +169,8 @@ src_test() {
 
 src_install() {
 	emake -j1 INSTALL_PREFIX="${D}" install || die
-	dodoc CHANGES* FAQ NEWS README doc/*.txt
+	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
 	dohtml doc/*
-
-	if use emacs ; then
-		insinto /usr/share/emacs/site-lisp
-		doins doc/c-indentation.el
-	fi
 
 	# create the certs directory
 	dodir /etc/ssl/certs

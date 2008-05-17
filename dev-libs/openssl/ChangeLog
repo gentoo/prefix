@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.258 2008/03/25 00:27:14 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.259 2008/05/16 15:52:48 ulm Exp $
+
+  16 May 2008; Ulrich Mueller <ulm@gentoo.org> openssl-0.9.8g-r1.ebuild:
+  Don't install bogus Emacs support file, bug 222337.
 
 *openssl-0.9.8g-r1 (25 Mar 2008)
 
