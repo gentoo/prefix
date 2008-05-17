@@ -15,7 +15,7 @@ SRC_URI="http://gems.rubyonrails.org/gems/${P}.gem"
 
 LICENSE="MIT"
 SLOT="1.2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 RESTRICT="test"
 

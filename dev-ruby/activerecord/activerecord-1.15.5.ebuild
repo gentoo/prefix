@@ -11,7 +11,7 @@ HOMEPAGE="http://rubyforge.org/projects/activerecord/"
 
 LICENSE="MIT"
 SLOT="1.2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 RESTRICT="test"
 
