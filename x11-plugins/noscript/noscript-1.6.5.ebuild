@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.4.9.ebuild,v 1.1 2008/03/02 15:50:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.6.5.ebuild,v 1.1 2008/05/16 09:47:18 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://software.informaction.com/data/releases/${P}.xpi"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="|| (
