@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.102 2008/02/05 04:47:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.103 2008/05/16 17:43:28 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -331,7 +331,7 @@ GCAT="sys-devel"  ; GPKG="gcc"           ; GVER="" ; GUSE=""
 KCAT="sys-kernel" ; KPKG="linux-headers" ; KVER="" ; KUSE=""
 LCAT="sys-libs"   ; LPKG=""              ; LVER="" ; LUSE=""
 DEFAULT_VER="[latest]"
-GUSE_DISABLE="-boundschecking -fortran -gtk -gcj -mudflap -objc -objc++ -objc-gc -d"
+GUSE_DISABLE="-boundschecking -d -fortran -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -openmp"
 GUSE_DISABLE_STAGE_2=${GUSE_DISABLE/-fortran}
 WITH_HEADERS="COW"   WITH_DEF_HEADERS="no"
 EX_FAST="no"

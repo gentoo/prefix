@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/crossdev
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.57 2008/02/05 04:47:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.58 2008/05/16 17:43:28 vapier Exp $
+
+*crossdev-0.9.18-r8 (16 May 2008)
+
+  16 May 2008; Mike Frysinger <vapier@gentoo.org> files/crossdev,
+  +crossdev-0.9.18-r8.ebuild:
+  Disable openmp and libffi when building gcc stage1 #222227 by Donnie Berkholz.
 
 *crossdev-0.9.18-r7 (05 Feb 2008)
 
