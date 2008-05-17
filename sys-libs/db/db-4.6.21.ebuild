@@ -58,7 +58,11 @@ src_unpack() {
 	# need to upgrade ltmain.sh for AIX,
 	# but aclocal.m4 is created in ./s_config,
 	# and elibtoolize does not work when there is no aclocal.m4, so:
-	libtoolize --force --copy || die "libtoolize failed."
+	if type -P glibtoolize > /dev/null ; then
+		glibtoolize --force --copy || die "glibtoolize failed."
+	else
+		libtoolize --force --copy || die "libtoolize failed."
+	fi
 	# now let shipped script do the autoconf stuff, it really knows best.
 	sh ./s_config || die "Cannot execute ./s_config"
 
