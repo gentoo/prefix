@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.60 2008/05/13 18:16:09 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.61 2008/05/16 17:30:10 nixnut Exp $
+
+  16 May 2008; nixnut <nixnut@gentoo.org> activesupport-2.0.2.ebuild:
+  Stable on ppc wrt bug 221309
 
   13 May 2008; Hans de Graaff <graaff@gentoo.org> Manifest:
   Redigest packages due to packaging changes upstream, bug 221829
