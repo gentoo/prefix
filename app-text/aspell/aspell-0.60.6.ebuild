@@ -53,6 +53,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-0.60.5-nls.patch"
 
 	epatch "${FILESDIR}"/${PN}-0.60.5-solaris.patch
+	epatch "${FILESDIR}"/${PN}-0.60.6-darwin-bundles.patch
 
 	eautomake
 	elibtoolize --reverse-deps
