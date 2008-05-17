@@ -60,6 +60,8 @@ src_unpack() {
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT -D_ALL_SOURCE
+	# http://bugs.freedesktop.org/show_bug.cgi?id=15463
+	[[ ${CHOST} == *-solaris* ]] && append-flags -D_POSIX_PTHREAD_SEMANTICS
 
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
