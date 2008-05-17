@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.60 2008/05/15 14:03:15 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.61 2008/05/16 13:52:16 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -365,8 +365,6 @@ vdr-plugin_pkg_setup() {
 	TMP_LOCALE_DIR="${WORKDIR}/tmp-locale"
 	LOCDIR="/usr/share/vdr/locale"
 
-	TMP_LIBDIR="${WORKDIR}/tmp-libdir"
-
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	[[ -z ${APIVERSION} ]] && APIVERSION="${VDRVERSION}"
@@ -432,11 +430,10 @@ vdr-plugin_src_compile() {
 			fi
 			cd "${S}"
 
-			mkdir -p "${TMP_LIBDIR}"
 			emake ${BUILD_PARAMS} \
 				${VDRPLUGIN_MAKE_TARGET:-all} \
 				LOCALEDIR="${TMP_LOCALE_DIR}" \
-				LIBDIR="${TMP_LIBDIR}" \
+				LIBDIR="${S}" \
 				TMPDIR="${T}" \
 			|| die "emake failed"
 			;;
@@ -469,16 +466,17 @@ vdr-plugin_src_install() {
 	fi
 
 
-	local p_list="" p_name
 
-	cd "${TMP_LIBDIR}"
+	cd "${S}"
+	insinto "${VDR_PLUGIN_DIR}"
+	doins libvdr-*.so.*
+
+	# create list of all created plugin libs
+	local p_list="" p_name
 	for p in libvdr-*.so.*; do
 		p_name="${p%.so*}"
 		p_name="${p_name#lib}"
 		p_list="${p_list} ${p_name}"
-
-		insinto "${VDR_PLUGIN_DIR}"
-		doins "$p"
 	done
 
 	create_header_checksum_file ${p_list}
