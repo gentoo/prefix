@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8622 2008/05/16 02:42:12 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8627 2008/05/17 01:35:24 beandog Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,15 @@
 
 #--- END OF EXAMPLES ---
 
+# Steve Dibb <beandog@gentoo.org> (16 May 2008)
+# Masked for removal, will be replaced with a virtual
+=app-text/sword-modules-20041209
+
+# Rémi Cardona <remi@gentoo.org> (16 Apr 2008)
+# Masked for removal in 30 days, uses old libraries
+# glademm's upstream is dead
+dev-util/glademm
+dev-cpp/bakery
 
 # Markus Dittrich <markusle@gentoo.org> (15 May 2008)
 # new cvs snapshot; needs a bit of testing
@@ -172,11 +181,6 @@ net-p2p/linkage
 # Extremely old compilation of themes not utilising new features.
 # Openbox is intended to move to a new theme format in the future.
 x11-themes/openbox-themes
-
-# Caleb Tennis <caleb@gentoo.org> (23 Apr 2008)
-# New Ice Ebuilds
-=dev-cpp/Ice-3.3*
-=dev-ruby/IceRuby-3.3*
 
 # David Shakaryan <omp@gentoo.org> (22 Apr 2008)
 # Masked for removal in 30 days. (bug #208878)
@@ -939,10 +943,6 @@ sys-kernel/hppa-sources
 =app-pda/libopensync-plugin-syncml-9999
 =app-pda/libopensync-plugin-vformat-9999
 
-# Jeffrey Gardner <je_fro@gentoo.org> (26 Nov 2007)
-# Masked as new version fixes multiple issues.
-=x11-drivers/ati-drivers-8.42.3
-
 # Samuli Suominen <drac@gentoo.org> (25 Nov 2007)
 # sci-electronics/gwave segmentation faults with this.
 # this version builds on ~amd64. also see bug 200702.
@@ -1081,10 +1081,6 @@ games-fps/americas-army
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release
 =app-portage/gentoolkit-0.2.4_rc1
-
-# Benedikt Boehm <hollow@gentoo.org> (08 Sep 2007)
-# breaks apr and openldap
-=sys-libs/db-4.6*
 
 # Markus Ullmann <jokey@gentoo.org> (05 Sept 2007)
 # masked for testing
