@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.97 2008/05/01 11:28:06 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.99 2008/05/17 01:28:06 vanquirius Exp $
+
+  16 May 2008; Marcelo Goes <vanquirius@gentoo.org> libpcap-0.9.8.ebuild,
+  libpcap-0.9.8-r1.ebuild:
+  Add sys-devel/flex dependency for bug 221397. Thanks to Diego Petteno
+  <flameeyes at gentoo dot org>.
+
+  16 May 2008; Marcelo Goes <vanquirius@gentoo.org> -libpcap-0.9.5.ebuild,
+  -libpcap-0.9.6.ebuild, -libpcap-0.9.7.ebuild:
+  Remove old ebuilds.
 
 *libpcap-0.9.8-r1 (01 Apr 2008)
 
