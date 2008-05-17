@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/eselect-rails-0.11.ebuild,v 1.6 2008/05/13 13:36:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/eselect-rails-0.11.ebuild,v 1.7 2008/05/16 17:28:37 nixnut Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=app-admin/eselect-1.0.10"
