@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.31 2008/05/12 16:22:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.32 2008/05/17 03:07:07 matsuu Exp $
+
+  17 May 2008; MATSUU Takuto <matsuu@gentoo.org>
+  -files/confuse-2.5-libintl.patch, -files/confuse-2.5-maketest.patch,
+  -confuse-2.5.ebuild, confuse-2.6.ebuild, confuse-2.6-r1.ebuild:
+  Added sys-devel/flex to DEPEND, bug #221379.
+  Removed old version.
 
   12 May 2008; Markus Meier <maekke@gentoo.org> confuse-2.6.ebuild:
   amd64 stable, bug #217815
