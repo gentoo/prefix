@@ -1,5 +1,6 @@
 * don't inject /usr/lib{/64,} and /lib{/64,} before any other thing in the
   call to the linker, that breaks the entire idea of Prefix
+* -rpath-link overrides the entire search path, so don't use it
 
 --- gcc/config/i386/sol2-10.h
 +++ gcc/config/i386/sol2-10.h
@@ -39,6 +40,22 @@
  
  #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
  
+--- gcc/config/sparc/sol2-gld-bi.h
++++ gcc/config/sparc/sol2-gld-bi.h
+@@ -3,11 +3,11 @@
+ 
+ #undef LINK_ARCH32_SPEC
+ #define LINK_ARCH32_SPEC \
+-  LINK_ARCH32_SPEC_BASE "%{!static: -rpath-link %R/usr/lib}"
++  LINK_ARCH32_SPEC_BASE ""
+ 
+ #undef LINK_ARCH64_SPEC
+ #define LINK_ARCH64_SPEC \
+-  LINK_ARCH64_SPEC_BASE "%{!static: -rpath-link %R/usr/lib/sparcv9}"
++  LINK_ARCH64_SPEC_BASE ""
+ 
+ #undef LINK_ARCH_SPEC
+ #if DISABLE_MULTILIB
 --- gcc/config/sol2.h
 +++ gcc/config/sol2.h
 @@ -123,12 +123,12 @@
