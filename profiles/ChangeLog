@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1418 2008/05/16 15:35:11 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1420 2008/05/17 19:35:15 halcy0n Exp $
+
+  17 May 2008; Mark Loeser <halcy0n@gentoo.org> -gxs/linux/make.defaults,
+  -gxs/linux/package.mask, -gxs/linux/package.use.mask, -gxs/linux/parent,
+  -gxs/linux/use.force, -gxs/linux/use.mask, -gxs/linux/virtuals,
+  -gxs/linux/x86/2008.0/make.defaults, -gxs/linux/x86/2008.0/parent,
+  -gxs/linux/x86/2008.0/server/parent,
+  -gxs/linux/x86/2008.0/server/profile.bashrc, -gxs/linux/x86/make.defaults,
+  -gxs/linux/x86/package.mask, -gxs/linux/x86/package.use.mask,
+  -gxs/linux/x86/parent, -gxs/linux/x86/use.mask, -gxs/make.defaults,
+  -gxs/package.mask, -gxs/package.use.mask, -gxs/packages,
+  -gxs/packages.build, -gxs/parent, -gxs/use.mask, -gxs/virtuals:
+  Removing the gxs profile as this should be developed in an overlay before
+  coming to the main tree
+
+  17 May 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Unmasked new-style postgresql packages
 
   16 May 2008; Rémi Cardona <remi@gentoo.org> package.mask:
   add dev-util/glademm and dev-cpp/bakery to package.mask

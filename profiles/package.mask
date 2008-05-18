@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8627 2008/05/17 01:35:24 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8632 2008/05/17 19:24:29 dev-zero Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -216,15 +216,6 @@ net-fs/coda-kernel
 # Matthias Schwarzott <zzam@gentoo.org> (15 Apr 2008)
 # Superseded by vdr-dvdswitch and no longer maintained
 media-plugins/vdr-dvdselect
-
-# Tiziano Müller <dev-zero@gentoo.org> (15 Apr 2008)
-# mask for testing
-app-admin/eselect-postgresql
-dev-db/postgresql-base
-dev-db/postgresql-server
-dev-db/postgresql-docs
-=virtual/postgresql-base-8.3*
-=virtual/postgresql-server-8.3*
 
 # Marijn Schouten <hkBst@gentoo.org> (14 Apr 2008)
 # binary package, now subsumed by binary use flag on mlton itself
@@ -815,12 +806,6 @@ games-fps/doomsday-resources
 # Masked unstable sources
 >=sys-kernel/openvz-sources-2.6.22
 
-# Markus Ullmann <jokey@gentoo.org> (06 Jan 2008)
-# Broken on compilation, pending removal
-# see bug 192627 for details
-# -r4 is fixed, when it goes stable this should be removed from the tree
-=net-analyzer/driftnet-0.1.6-r3
-
 # Julien Allanos <dju@gentoo.org> (06 Jan 2008)
 # Masked for testing
 >=www-apps/trac-0.11_beta1
@@ -987,10 +972,6 @@ x11-wm/aquamarine
 <=x11-wm/emerald-0.2.1
 <=x11-themes/emerald-themes-0.2.1
 
-# Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
-# Needs some thorough testing, feel welcome to try it out
-dev-db/monetdb
-
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
 # You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
@@ -1062,7 +1043,8 @@ dev-php4/pecl-http
 # open bugs and is not worth fixing.
 # See bug #207741, bug #207744 and bug #207749.
 x11-plugins/gai-pal
-x11-plugins/gai
+x11-plugins/gai-pager
+x11-libs/gai
 
 # Sébastien Fabbro <bicatali@gentoo.org> (05 Oct 2007)
 # Masked. Still buggy with gsl-1.10 and fail many tests.
@@ -1099,11 +1081,6 @@ games-fps/americas-army
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
-
-# Brent J. Baude <ranger@gentoo.org> (21 Aug 2007)
-# Masking out librtas-2.0.0 in favor of new version with smaller version number
-# to force an upgrade.
-=sys-libs/librtas-2.0.0
 
 # Carsten Lohrke <carlo@gentoo.org> (11 Aug 2007)
 # Masked since KDE 3.5.7 doesn't come with KSync anymore.
@@ -1256,12 +1233,6 @@ media-video/gspca
 # Steve Dibb <beandog@gentoo.org> (12 Mar 2007)
 # needs testing
 >=media-video/transcode-1.1.0_alpha4
-
-# Joe Sapp <nixphoeni@gentoo.org> (09 Mar 2007)
-# Masking until I can verify this works with a more recent
-# version of gnome-extra/gdesklets-core.  I blindly removed
-# the version it depended on...
-x11-plugins/desklet-hypertail
 
 # Stefan Cornelius <dercorny@gentoo.org> (7 Mar 2007)
 # Masking net-misc/xsupplicant due to security bug 154995
