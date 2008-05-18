@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.3 2008/04/06 20:10:18 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.5.ebuild,v 1.4 2008/05/18 02:08:03 hanno Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gimp/v2.4/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE="alsa aalib altivec curl dbus debug doc exif gtkhtml gnome hal lcms mmx mng pdf png python smp sse svg tiff wmf"
 # jpeg temporarily removed, disabling jpeg requires upstream fix which will come in 2.5
@@ -33,7 +33,6 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	hal? ( sys-apps/hal )
-	doc? ( app-doc/gimp-help )
 	gnome? ( >=gnome-base/gnome-vfs-2.10.0
 		>=gnome-base/libgnomeui-2.10.0
 		>=gnome-base/gnome-keyring-0.4.5 )
