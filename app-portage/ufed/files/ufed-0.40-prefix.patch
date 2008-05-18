@@ -46,9 +46,9 @@ diff -ru ufed-0.40.orig/Portage.pm ufed-0.40/Portage.pm
 +	$_ = readlink '@GENTOO_PORTAGE_EPREFIX@/etc/make.profile';
 +	die "@GENTOO_PORTAGE_EPREFIX@/etc/make.profile is not a symlink\n" if not defined $_;
 +	@profiles = norm_path '@GENTOO_PORTAGE_EPREFIX@/etc', $_;
- 	PARENT: {
- 		for(noncomments "$profiles[0]/parent") {
- 			unshift @profiles, norm_path $profiles[0], $_;
+ 	for (my $i = -1; $i >= -@profiles; $i--) {
+ 		for(noncomments "$profiles[$i]/parent") {
+ 			splice @profiles, $i, 0, norm_path $profiles[$i], $_;
 diff -ru ufed-0.40.orig/ufed-curses-help.c ufed-0.40/ufed-curses-help.c
 --- ufed-0.40.orig/ufed-curses-help.c	2005-11-26 17:24:15 +0100
 +++ ufed-0.40/ufed-curses-help.c	2007-03-07 13:15:32 +0100
