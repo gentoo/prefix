@@ -1,6 +1,11 @@
 # ChangeLog for net-irc/irssi
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.133 2008/02/27 21:08:34 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.134 2008/05/17 09:59:06 swegener Exp $
+
+  17 May 2008; Sven Wegener <swegener@gentoo.org>
+  +files/irssi-0.8.12-svn-4829.patch, irssi-0.8.12.ebuild:
+  Add a patch submitted to upstream that fixes a segfault in irssi, that
+  happens when we have no /usr/lib/gconv available, bug #163685.
 
   27 Feb 2008; Sven Wegener <swegener@gentoo.org> -irssi-0.8.11.ebuild:
   Cleanup.

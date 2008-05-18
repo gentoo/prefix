@@ -1,0 +1,19 @@
+r4829 | exg | 2008-05-17 11:42:23 +0200 (Sa, 17 Mai 2008) | 4 lines
+
+Pass NULL to settings_set_str to reset recode_fallback to its default
+value rather than hardcoding the string, fixes also a possible invalid
+g_free reported by Sven Wegener.
+
+Index: irssi/src/fe-common/core/fe-recode.c
+===================================================================
+--- irssi/src/fe-common/core/fe-recode.c	(revision 4828)
++++ irssi/src/fe-common/core/fe-recode.c	(revision 4829)
+@@ -160,7 +160,7 @@
+ 	if (!is_valid_charset(recode_fallback)) {
+ 		signal_emit("error command", 2, GINT_TO_POINTER(CMDERR_INVALID_CHARSET), recode_fallback);
+ 		g_free(recode_fallback);
+-		recode_fallback = is_valid_charset(old_recode_fallback) ? g_strdup(old_recode_fallback) : "ISO8859-1";
++		recode_fallback = is_valid_charset(old_recode_fallback) ? g_strdup(old_recode_fallback) : NULL;
+ 		settings_set_str("recode_fallback", recode_fallback);
+ 	}
+ 

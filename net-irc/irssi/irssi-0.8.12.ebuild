@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12.ebuild,v 1.9 2008/02/20 20:05:06 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12.ebuild,v 1.10 2008/05/17 09:59:06 swegener Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://irssi.org/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="ipv6 perl ssl socks5"
 
 RDEPEND="sys-libs/ncurses
@@ -33,6 +33,7 @@ src_unpack() {
 	epunt_cxx
 
 	epatch "${FILESDIR}"/${P}-svn-4627.patch
+	epatch "${FILESDIR}"/${P}-svn-4829.patch
 }
 
 src_compile() {
