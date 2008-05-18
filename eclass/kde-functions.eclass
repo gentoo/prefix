@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.166 2008/02/20 20:59:43 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.168 2008/05/17 15:19:56 carlo Exp $
 
 # @ECLASS: kde-functions.eclass
 # @MAINTAINER:
@@ -633,7 +633,7 @@ need-kde() {
 	# determine install locations
 	set-kdedir ${KDEVER}
 
-	if [[ -n "${RDEPEND}" ]]; then
+	if [[ "${RDEPEND-unset}" != "unset" ]]; then
 		x_DEPEND="${RDEPEND}"
 	else
 		x_DEPEND="${DEPEND}"
@@ -716,20 +716,13 @@ set-kdedir() {
 	# install prefix
 	if [[ -n "$KDEPREFIX" ]]; then
 		export PREFIX="$KDEPREFIX"
-	elif [[ "$KDEMAJORVER" == "2" ]]; then
-		export PREFIX="/usr/kde/2"
 	else
 		if [[ -z "$KDEBASE" ]]; then
 			export PREFIX="/usr"
 		else
 			case $KDEMAJORVER.$KDEMINORVER in
-				3.0) export PREFIX="/usr/kde/3";;
-				3.1) export PREFIX="/usr/kde/3.1";;
-				3.2) export PREFIX="/usr/kde/3.2";;
-				3.3) export PREFIX="/usr/kde/3.3";;
-				3.4) export PREFIX="/usr/kde/3.4";;
 				3.5) export PREFIX="/usr/kde/3.5";;
-				5.0) export PREFIX="/usr/kde/cvs";;
+				5.0) export PREFIX="/usr/kde/svn";;
 				*) die "failed to set PREFIX";;
 			esac
 		fi
@@ -738,12 +731,10 @@ set-kdedir() {
 	# kdelibs location
 	if [[ -n "$KDELIBSDIR" ]]; then
 		export KDEDIR="$KDELIBSDIR"
-	elif [[ "$KDEMAJORVER" == "2" ]]; then
-		export KDEDIR="/usr/kde/2"
 	else
 		if [[ -z "$KDEBASE" ]]; then
 			# find the latest kdelibs installed
-			for x in /usr/kde/{cvs,3.5,3.4,3.3,3.2,3.1,3.0,3} "${PREFIX}" \
+			for x in /usr/kde/{svn,3.5} "${PREFIX}" \
 				"${KDE3LIBSDIR}" "${KDELIBSDIR}" "${KDE3DIR}" "${KDEDIR}" /usr/kde/*; do
 				if [[ -f "${x}/include/kwin.h" ]]; then
 					debug-print found
@@ -754,13 +745,8 @@ set-kdedir() {
 		else
 			# kde-base ebuilds must always use the exact version of kdelibs they came with
 			case $KDEMAJORVER.$KDEMINORVER in
-				3.0) export KDEDIR="/usr/kde/3";;
-				3.1) export KDEDIR="/usr/kde/3.1";;
-				3.2) export KDEDIR="/usr/kde/3.2";;
-				3.3) export KDEDIR="/usr/kde/3.3";;
-				3.4) export KDEDIR="/usr/kde/3.4";;
 				3.5) export KDEDIR="/usr/kde/3.5";;
-				5.0) export KDEDIR="/usr/kde/cvs";;
+				5.0) export KDEDIR="/usr/kde/svn";;
 				*) die "failed to set KDEDIR";;
 			esac
 		fi
@@ -787,10 +773,6 @@ need-qt() {
 	fi
 
 	case ${QTVER} in
-		2*)
-			DEPEND="${DEPEND} =x11-libs/${QT}-2.3*"
-			RDEPEND="${x_DEPEND} =x11-libs/${QT}-2.3*"
-			;;
 		3*)
 			case ${EAPI:-0} in
 				# Add EAPIs without SLOT dependencies.
@@ -824,7 +806,6 @@ qtver-from-kdever() {
 	local ver
 
 	case $1 in
-		2*)	ver=2.3.1;;
 		3.1*)	ver=3.1;;
 		3.2*)	ver=3.2;;
 		3.3*)	ver=3.3;;
@@ -843,7 +824,6 @@ min-kde-ver() {
 	debug-print-function $FUNCNAME "$@"
 
 	case $1 in
-		2*)			selected_version="2.2.2";;
 		3.0*)			selected_version="3.0";;
 		3.1*)			selected_version="3.1";;
 		3.2*)			selected_version="3.2";;
@@ -896,7 +876,7 @@ kde_sandbox_patch() {
 kde_remove_flag() {
 	debug-print-function $FUNCNAME "$@"
 
-	cd "${S}"/${1}  || die "cd to '${S}/${1}' failed."
+	cd "${S}"/${1} || die "cd to '${S}/${1}' failed."
 	[[ -n "$2" ]] || die "missing argument to kde_remove_flag"
 
 	cp Makefile Makefile.orig
@@ -937,20 +917,11 @@ postprocess_desktop_entries() {
 		local desktop_entries="$(find "${ED}${PREFIX}/share/applnk" -mindepth 2 -maxdepth 2 \
 									-name '*\.desktop' -not -path '*.hidden*' 2>/dev/null)"
 
-		local uninstall_file="[Desktop Entry]
-Encoding=UTF-8
-Hidden=true"
-
 		if [[ -n ${desktop_entries} ]]; then
 			for entry in ${desktop_entries} ; do
-				echo "${uninstall_file}" | diff -qs ${entry} - &> /dev/null
-				if [[ $? != 0 ]]; then
-					if [[ ! -f ${ED}${PREFIX}/share/applications/kde/$(basename ${entry}) ]]; then
-						dodir "${PREFIX}"/share/applications/kde
-						mv ${entry} "${ED}${PREFIX}"/share/applications/kde
-					else
-						ewarn "QA: $(basename ${entry}) already exists in ${PREFIX}/share/applications/kde."
-					fi
+				if ! [[ -f "${ED}${PREFIX}"/share/applications/kde/${entry##*/} ]] ; then
+					dodir "${PREFIX}"/share/applications/kde
+					mv ${entry} "${ED}${PREFIX}"/share/applications/kde
 				fi
 			done
 		fi
@@ -964,4 +935,3 @@ if [[ "${CATEGORY}" == "kde-base" ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	export KDEBASE="true"
 fi
-

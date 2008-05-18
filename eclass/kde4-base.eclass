@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.11 2008/05/15 19:49:32 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.12 2008/05/17 14:09:03 zlin Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -299,7 +299,7 @@ kde4-base_pkg_setup() {
 				[[ -z ${line} ]] && continue
 				kde4_built_with_use_check+=("${line}")
 			done <<< "${KDE4_BUILT_WITH_USE_CHECK}"
-			KDE4_BUILT_WITH_USE_CHECK="${kde4_built_with_use_check[@]}"
+			KDE4_BUILT_WITH_USE_CHECK=("${kde4_built_with_use_check[@]}")
 		fi
 
 		# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".

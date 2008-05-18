@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.6 2008/05/15 19:49:32 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.7 2008/05/17 14:09:03 zlin Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -504,7 +504,7 @@ _kde4-functions_built_with_use() {
 kde4-functions_check_use() {
 	# I like to keep flags sorted
 	QT4_BUILT_WITH_USE_CHECK=$(echo "${QT4_BUILT_WITH_USE_CHECK}" | \
-		tr '[:space:]' '\n' | sort | xargs)
+		tr '[:space:]' '\n' | sort | uniq | xargs)
 
 	local line missing
 	if [[ -n ${KDE4_BUILT_WITH_USE_CHECK[@]} && $(declare -p KDE4_BUILT_WITH_USE_CHECK) = 'declare -a '* ]]; then
