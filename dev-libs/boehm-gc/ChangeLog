@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/boehm-gc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.68 2008/01/17 04:27:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.69 2008/05/17 04:27:48 matsuu Exp $
+
+*boehm-gc-7.1 (17 May 2008)
+
+  17 May 2008; MATSUU Takuto <matsuu@gentoo.org> -boehm-gc-6.5.ebuild,
+  -boehm-gc-6.7.ebuild, boehm-gc-6.8.ebuild, -boehm-gc-7.0.ebuild,
+  +boehm-gc-7.1.ebuild:
+  Version bumped. Removed old versions.
 
   17 Jan 2008; Jeroen Roovers <jer@gentoo.org> boehm-gc-6.8.ebuild:
   Stable for HPPA too.
