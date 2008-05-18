@@ -1,6 +1,11 @@
 # ChangeLog for gnustep-base/gnustep-back-cairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.5 2008/03/20 17:39:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.6 2008/05/17 20:12:35 grobian Exp $
+
+  17 May 2008; Fabian Groffen <grobian@gentoo.org>
+  gnustep-back-cairo-0.12.0.ebuild, gnustep-back-cairo-0.12.1.ebuild,
+  gnustep-back-cairo-0.13.2.ebuild:
+  put dev-util/pkgconfig only in DEPEND, bug #217278
 
 *gnustep-back-cairo-0.13.2 (20 Mar 2008)
 
