@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libwnck
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.196 2008/05/07 03:37:46 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.197 2008/05/17 18:43:11 leio Exp $
+
+  17 May 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/2.22.0/001-logout-crash.patch,
+  -files/2.22.0/003-Unstick-windows-when-moving-them-to-another-viewport.pat
+  ch, -files/2.22.0/002-demands-attention-visibility-with-viewports.patch,
+  -files/2.22.0/004-Fix-moving-window-to-an-arbitrary-viewport.patch,
+  -files/2.22.0/005-gtk-doc-die-die-die.patch, -libwnck-2.20.1.ebuild,
+  -libwnck-2.22.0.ebuild:
+  Remove old
 
   07 May 2008; Ryan Hill <dirtyepic@gentoo.org> libwnck-2.22.1.ebuild:
   Keyword for mips.
