@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Inline
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.56 2008/04/29 17:39:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.57 2008/05/17 15:07:54 nixnut Exp $
+
+  17 May 2008; nixnut <nixnut@gentoo.org> Test-Inline-2.208.ebuild:
+  Added ~ppc wrt bug 219723
 
   29 Apr 2008; Jeroen Roovers <jer@gentoo.org> Test-Inline-2.208.ebuild:
   Marked ~hppa (bug #219723).
