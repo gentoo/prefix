@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10-r3.ebuild,v 1.4 2007/01/05 17:37:11 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10-r3.ebuild,v 1.9 2008/05/17 18:20:57 klausman Exp $
 
 EAPI="prefix"
 
@@ -20,17 +20,15 @@ SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-PROVIDE="virtual/mpg123"
-
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# fix file descriptors leak (from Debian?)
-	epatch ${FILESDIR}/${P}.diff
+	epatch "${FILESDIR}"/${P}.diff
 	# provide an User-Agent when requesting via HTTP
 	# By Frank Ruell, in FreeBSD PR 84898
-	epatch ${FILESDIR}/${P}-useragent.patch
+	epatch "${FILESDIR}"/${P}-useragent.patch
 }
 
 src_compile() {
@@ -46,16 +44,16 @@ src_install () {
 
 pkg_postinst() {
 	# We create a symlink for /usr/bin/mpg123 if it doesn't already exist
-	if ! [ -f ${EROOT}/usr/bin/mpg123 ]; then
-		ln -s mpg321 ${EROOT}/usr/bin/mpg123
+	if ! [ -f "${EROOT}"usr/bin/mpg123 ]; then
+		ln -s mpg321 "${EROOT}"usr/bin/mpg123
 	fi
 }
 
 pkg_postrm() {
 	# We delete the symlink if it's nolonger valid.
-	if [ -L "${EROOT}/usr/bin/mpg123" ] && [ ! -x "${EROOT}/usr/bin/mpg123" ]; then
-		elog "We are removing the ${EROOT}/usr/bin/mpg123 symlink since it is no longer valid."
+	if [ -L "${EROOT}usr/bin/mpg123" ] && [ ! -x "${EROOT}usr/bin/mpg123" ]; then
+		elog "We are removing the ${EROOT}usr/bin/mpg123 symlink since it is no longer valid."
 		elog "If you are using another virtual/mpg123 program, you should setup the appropriate symlink."
-		rm ${EROOT}/usr/bin/mpg123
+		rm "${EROOT}"usr/bin/mpg123
 	fi
 }
