@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_beta5-r1.ebuild,v 1.2 2008/04/23 19:34:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc1.ebuild,v 1.2 2008/05/17 17:08:46 armin76 Exp $
 
 EAPI="prefix"
 
@@ -21,8 +21,8 @@ IUSE=""
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12_beta3
-	>=dev-libs/nspr-4.7.1_beta2
+	>=dev-libs/nss-3.12_rc3
+	>=dev-libs/nspr-4.7.1
 	>=app-text/hunspell-1.1.9
 	>=media-libs/lcms-1.17
 	>=dev-db/sqlite-3.5"
@@ -49,7 +49,7 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
 		xpcom/build/nsXPCOMPrivate.h \
@@ -126,8 +126,8 @@ src_compile() {
 	# to econf, but the quotes cause configure to fail.
 	sed -i -e \
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"${EPREFIX}/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"${EPREFIX}/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
-		${S}/config/autoconf.mk \
-		${S}/toolkit/content/buildconfig.html
+		"${S}"/config/autoconf.mk \
+		"${S}"/toolkit/content/buildconfig.html
 
 	# This removes extraneous CFLAGS from the Makefiles to reduce RAM
 	# requirements while compiling
@@ -159,7 +159,7 @@ src_install() {
 		>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 
 	if use java ; then
-	    java-pkg_dojar ${ED}${MOZILLA_FIVE_HOME}/javaxpcom.jar
-	    rm -f ${ED}${MOZILLA_FIVE_HOME}/javaxpcom.jar
+	    java-pkg_dojar "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
+	    rm -f "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
 	fi
 }

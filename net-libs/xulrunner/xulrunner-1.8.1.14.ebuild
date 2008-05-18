@@ -16,7 +16,7 @@ SRC_URI="mirror://gentoo/${P}-source.tar.bz2
 
 SLOT="1.8"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=sys-libs/zlib-1.1.4
