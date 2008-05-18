@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit bash-completion depend.apache flag-o-matic elisp-common eutils java-pkg-opt-2 libtool multilib perl-module python
 
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 
 DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"

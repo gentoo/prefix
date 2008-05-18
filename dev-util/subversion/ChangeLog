@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.304 2008/05/12 18:46:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.305 2008/05/17 05:22:29 jer Exp $
+
+  17 May 2008; Jeroen Roovers <jer@gentoo.org> subversion-1.5.0_rc5.ebuild:
+  Marked ~hppa (bug #219882).
 
   12 May 2008; Raúl Porcel <armin76@gentoo.org>
   subversion-1.5.0_rc5.ebuild:
