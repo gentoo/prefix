@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IP-Country
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IP-Country/ChangeLog,v 1.32 2008/03/28 09:15:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IP-Country/ChangeLog,v 1.33 2008/05/17 11:31:06 nixnut Exp $
+
+  17 May 2008; nixnut <nixnut@gentoo.org> IP-Country-2.23.ebuild:
+  Stable on ppc wrt bug 222443
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> IP-Country-2.23.ebuild:
   Stable for HPPA too.
