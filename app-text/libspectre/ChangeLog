@@ -1,6 +1,9 @@
 # ChangeLog for app-text/libspectre
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/libspectre/ChangeLog,v 1.6 2008/04/26 15:22:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/ChangeLog,v 1.7 2008/05/17 19:00:58 aballier Exp $
+
+  17 May 2008; Alexis Ballier <aballier@gentoo.org> libspectre-0.2.0.ebuild:
+  keyword ~x86-fbsd
 
   26 Apr 2008; Jeroen Roovers <jer@gentoo.org> libspectre-0.2.0.ebuild:
   Marked ~hppa (bug #218417).
