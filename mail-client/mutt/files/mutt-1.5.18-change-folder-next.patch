@@ -1,0 +1,64 @@
+* Revised patch to work with mutt after the original (and modified)
+  version was applied.  This patch brings back the original behaviour
+  which I find the only useful one.
+
+diff -ur mutt-1.5.17.orig/curs_main.c mutt-1.5.16/curs_main.c
+--- mutt-1.5.17.orig/curs_main.c	2007-08-06 20:48:16 +0200
++++ mutt-1.5.18/curs_main.c	2007-08-06 20:59:31 +0200
+@@ -1085,6 +1085,11 @@
+ 	}
+ 	else
+ 	{
++	  if (option (OPTCHANGEFOLDERNEXT) && Context && Context->path)
++	  {
++	    strfcpy (buf, Context->path, sizeof (buf));
++	    mutt_pretty_mailbox (buf);
++	  }
+ 	  mutt_buffy (buf, sizeof (buf));
+ 
+ 	  if (mutt_enter_fname (cp, buf, sizeof (buf), &menu->redraw, 1) == -1)
+diff -ur mutt-1.5.17.orig/init.h mutt-1.5.16/init.h
+--- mutt-1.5.17.orig/init.h	2007-08-06 20:48:18 +0200
++++ mutt-1.5.18/init.h	2007-08-06 21:00:22 +0200
+@@ -314,6 +314,13 @@
+   ** .pp
+   ** Character set your terminal uses to display and enter textual data.
+   */
++  { "change_folder_next", DT_BOOL, R_NONE, OPTCHANGEFOLDERNEXT, 0 },
++  /*
++  ** .pp
++  ** When this variable is set, the change-folder command will start at the
++  ** next folder after the current folder in your mailbox list instead of
++  ** starting at the first folder.
++  */
+   { "check_new",	DT_BOOL, R_NONE, OPTCHECKNEW, 1 },
+   /*
+   ** .pp
+diff -ur mutt-1.5.17.orig/mutt.h mutt-1.5.16/mutt.h
+--- mutt-1.5.17.orig/mutt.h	2007-08-06 20:48:16 +0200
++++ mutt-1.5.18/mutt.h	2007-08-06 21:01:19 +0200
+@@ -339,6 +339,7 @@
+   OPTBEEP,
+   OPTBEEPNEW,
+   OPTBOUNCEDELIVERED,
++  OPTCHANGEFOLDERNEXT,
+   OPTBRAILLEFRIENDLY,
+   OPTCHECKMBOXSIZE,
+   OPTCHECKNEW,
+--- mutt-1.5.16-gentoo-patches-r1/06-nntp.patch
++++ mutt-1.5.16-gentoo-patches-r1/06-nntp.patch
+@@ -2430,10 +2430,10 @@
+            cp = _("Open mailbox in read-only mode");
+          else
+            cp = _("Open mailbox");
+-@@ -1085,6 +1255,21 @@ int mutt_index_menu (void)
+- 	}
+- 	else
+- 	{
++@@ -1090,6 +1260,21 @@ int mutt_index_menu (void)
++ 	    strfcpy (buf, Context->path, sizeof (buf));
++ 	    mutt_pretty_mailbox (buf);
++ 	  }
+ +#ifdef USE_NNTP
+ +	  if (op == OP_MAIN_CHANGE_GROUP ||
+ +	      op == OP_MAIN_CHANGE_GROUP_READONLY)
