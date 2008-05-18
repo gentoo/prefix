@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.2 2008/05/06 19:06:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.3 2008/05/17 09:02:36 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -33,8 +33,8 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs bashlogger nls plugins vanilla"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+IUSE="afs bashlogger examples nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
 RDEPEND="${DEPEND}
@@ -187,6 +187,20 @@ src_install() {
 	if use plugins ; then
 		exeinto /usr/$(get_libdir)/bash
 		doexe $(echo examples/loadables/*.o | sed 's:\.o::g') || die
+	fi
+
+	if use examples ; then
+		for d in examples/{functions,misc,scripts,scripts.noah,scripts.v2} ; do
+			exeinto /usr/share/doc/${PF}/${d}
+			insinto /usr/share/doc/${PF}/${d}
+			for f in ${d}/* ; do
+				if [[ ${f##*/} != PERMISSION ]] && [[ ${f##*/} != *README ]] ; then
+					doexe ${f}
+				else
+					doins ${f}
+				fi
+			done
+		done
 	fi
 
 	doman doc/*.1
