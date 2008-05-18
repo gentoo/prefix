@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.4.2.17.ebuild,v 1.2 2008/03/06 07:54:56 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.4.2.17.ebuild,v 1.3 2008/05/17 18:06:49 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,8 @@ JAVA_SUPPORTS_GENERATION_1="true"
 inherit pax-utils java-vm-2 eutils
 
 MY_PV=${PV%.*}_${PV##*.}
-MY_P=j2sdk${MY_PV}
+MY_PN=j2sdk
+MY_P=${MY_PN}${MY_PV}
 MY_PVB=${PV%.*}
 
 At="j2sdk-${PV//./_}-linux-i586.bin"
@@ -45,8 +46,9 @@ RDEPEND="
 
 JAVA_PROVIDE="jdbc-stdext"
 
-DOWNLOAD_URL="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=8&PartDetailId=j2sdk-${MY_PV}-oth-JPR&SiteId=JSC&TransactionId=noreg"
-DOWNLOAD_URL_JCE="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=7503-jce-${MY_PVB}-oth-JPR&SiteId=JSC&TransactionId=noreg"
+DL_PREFIX="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef="
+DOWNLOAD_URL="${DL_PREFIX}${MY_PN}-${MY_PV}-oth-JPR@CDS-CDS_Developer"
+DOWNLOAD_URL_JCE="${DL_PREFIX}7503-jce-1.4.2-oth-JPR@CDS-CDS_Developer"
 
 QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/libawt.so
 	opt/${P}/jre/plugin/i386/ns4/libjavaplugin.so

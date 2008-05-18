@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.235 2008/04/17 08:48:05 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.236 2008/05/17 18:06:49 betelgeuse Exp $
+
+  17 May 2008; Petteri Räty <betelgeuse@gentoo.org>
+  sun-jdk-1.4.2.17.ebuild:
+  Fix download URLs because of changes in Sun web site. Fixes bug #220375.
 
   17 Apr 2008; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.6.0.06.ebuild:
   Add note about reinstalling eclipse-sdk for bug #215150.
