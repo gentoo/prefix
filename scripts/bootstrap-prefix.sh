@@ -221,7 +221,7 @@ bootstrap_tree() {
 			PV="${def}"
 		;;
 	esac
-	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
+	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
