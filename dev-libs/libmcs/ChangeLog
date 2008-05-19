@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libmcs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.38 2008/05/17 18:38:25 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.39 2008/05/18 16:08:22 drac Exp $
+
+  18 May 2008; Samuli Suominen <drac@gentoo.org> libmcs-0.6.0.ebuild:
+  Move pkgconfig to DEPEND.
 
 *libmcs-0.7.1-r1 (17 May 2008)
 
