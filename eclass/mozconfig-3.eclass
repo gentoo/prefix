@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.1 2008/03/15 18:09:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.2 2008/05/18 14:39:35 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -27,7 +27,7 @@ RDEPEND="x11-libs/libXrender
 	dbus? ( >=dev-libs/dbus-glib-0.72 )
 	startup-notification? ( >=x11-libs/startup-notification-0.8 )
 	!<x11-base/xorg-x11-6.7.0-r2
-	>=x11-libs/cairo-1.5.12"
+	>=x11-libs/cairo-1.6.0"
 	#According to bugs #18573, #204520, and couple of others in Mozilla's
 	#bugzilla. libmng and mng support has been removed in 2003.
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.39 2008/04/12 08:40:46 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.40 2008/05/18 06:15:12 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -401,9 +401,9 @@ EOF
 		if [ "${obsolete}" ]; then
 			while read line; do ewarn "${line}"; done <<-EOF
 			Site-initialisation files of Emacs packages are now installed in
-			/usr/share/emacs/site-lisp/site-gentoo.d/. You may consider using
-			/usr/sbin/emacs-updater to rebuild the installed Emacs packages.
-			However, the old location is still supported.
+			/usr/share/emacs/site-lisp/site-gentoo.d/. We strongly recommend
+			that you use /usr/sbin/emacs-updater to rebuild the installed
+			Emacs packages.
 			EOF
 			echo
 		fi
