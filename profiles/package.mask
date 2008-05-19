@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8632 2008/05/17 19:24:29 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8635 2008/05/18 18:47:43 zmedico Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Zac Medico <zmedico@gentoo.org> (18 May 2008)
+# Masked to ensure that pseudo-downgrade happens correctly, following
+# version scheme change from YYYYMMDD to 3.0.YYYYMMDD.
+>net-print/foomatic-db-ppds-20000000
+>net-print/foomatic-db-20000000
 
 # Steve Dibb <beandog@gentoo.org> (16 May 2008)
 # Masked for removal, will be replaced with a virtual
@@ -425,10 +431,6 @@ games-fps/quake4-demo
 # it.  It really does help out tremendously to not have to dig through tons of
 # code only to find that the issue was already resolved 5 revisions ago.
 >=dev-util/catalyst-2.0.6_pre1
-
-# Diego Pettenò <flameeyes@gentoo.org> (26 Feb 2008)
-# Alpha version, mask until final.
-=net-irc/quassel-0.2.0_alpha*
 
 # Benedikt Böhm <hollow@gentoo.org> (23 Feb 2008)
 # Masked due to security issues.
@@ -1242,10 +1244,6 @@ net-misc/xsupplicant
 # Masked because it's affected by 7 GLSAs or so, nobody should use it
 <=dev-db/mysql-3.23.58-r1
 
-# Samuli Suominen <drac@gentoo.org> (1 Mar 2007)
-# Multiple QA notices. Masked for testing. See bug 146443.
-media-video/dxr3player
-
 # Gustavo Felisberto <humpback@gentoo.org> (23 Feb 2007)
 # Masked for remove from tree. Contact me if you need this
 net-misc/ssh
@@ -1359,11 +1357,6 @@ net-dns/bind-dns-keygen
 # Tuấn Văn <langthang@gentoo.org> (15 Jul 2006)
 # Initial import. Masked for testing
 mail-filter/sid-milter
-
-# Tuấn Văn <langthang@gentoo.org> (15 Jul 2006)
-# Initial import. Masked for testing
-#mail-filter/libmilter
-#mail-filter/dk-milter
 
 # Matthew Kennedy <mkennedy@gentoo.org>
 # libecl.so linking problem

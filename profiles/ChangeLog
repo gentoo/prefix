@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1420 2008/05/17 19:35:15 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1424 2008/05/19 04:49:24 dirtyepic Exp $
+
+  19 May 2008; Ryan Hill <dirtyepic@gentoo.org> updates/2Q-2008:
+  Move ttf-gentium -> sil-gentium.
+
+  19 May 2008; Ryan Hill <dirtyepic@gentoo.org> updates/2Q-2008:
+  Move ttf-sil-ezra -> sil-ezra.
+
+  19 May 2008; Ryan Hill <dirtyepic@gentoo.org> updates/2Q-2008:
+  Move ttf-sil-arabicfonts -> sil-arabicfonts.
+
+  19 May 2008; Ryan Hill <dirtyepic@gentoo.org> updates/2Q-2008:
+  Move ttf-sil-charis -> sil-charis.
 
   17 May 2008; Mark Loeser <halcy0n@gentoo.org> -gxs/linux/make.defaults,
   -gxs/linux/package.mask, -gxs/linux/package.use.mask, -gxs/linux/parent,
