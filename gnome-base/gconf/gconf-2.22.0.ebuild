@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.1 2008/03/22 17:52:45 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.2 2008/05/18 12:37:45 eva Exp $
 
 EAPI="prefix"
 
@@ -16,13 +16,14 @@ SRC_URI="mirror://gnome/sources/${MY_PN}/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc ldap"
 
 RDEPEND=">=dev-libs/glib-2.10
 		 >=x11-libs/gtk+-2.8.16
 		 >=gnome-base/orbit-2.4
-		 >=dev-libs/libxml2-2"
+		 >=dev-libs/libxml2-2
+		 ldap? ( net-nds/openldap )"
 DEPEND="${RDEPEND}
 		>=dev-util/intltool-0.35
 		>=dev-util/pkgconfig-0.9
