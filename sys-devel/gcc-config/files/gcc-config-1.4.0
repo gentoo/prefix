@@ -342,13 +342,24 @@ switch_profile() {
 			multilibdir=${multilib%;*}
 			# in Prefix we don't do multilib, and this below results in
 			# getting a subdir for your 64-bits targets which breaks
-			# things badly...
+			# things badly...  Need to solve it when we go mainstream...
 			#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 			libdir="lib"
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* 2>/dev/null) ]]; then
-						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
+					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.${libname} 2>/dev/null) ]]; then
+						# the soname should *always* point to the latest
+						# GCC, thus first copy over all libs from the
+						# latest GCC, and then let the .so version point
+						# to the currently selected GCC
+						last_gcc=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-* | head -n1)
+						last_gcc_ldpath=$(source "${last_gcc}"; echo ${LDPATH})
+						last_gcc_ldpath=${last_gcc_ldpath%%:*}
+						cp -pP "${ROOT}/${last_gcc_ldpath}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
+						rm "${EROOT}/${libdir}"/.gcc.config.new/lib${gcclib}.${libname}
+						# this is the target, make it a real object
+						cp -pL "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.${libname} "${EROOT}/${libdir}"/.gcc.config.new/
+
 						# fix install_name on Darwin
 						if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
 							pushd "${EROOT}/${libdir}"/.gcc.config.new/ > /dev/null
