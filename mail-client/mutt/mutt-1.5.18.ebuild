@@ -71,6 +71,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
 	# get back real change-folder-next behaviour!
 	( cd "${WORKDIR}" && epatch "${FILESDIR}"/${P}-change-folder-next.patch )
+	# fix bdb detection
+	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch
 
 	if ! use vanilla && ! use sidebar ; then
 		rm "${PATCHDIR}"/02-compressed.patch  # fails to apply
