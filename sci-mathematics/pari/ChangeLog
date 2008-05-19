@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.61 2008/05/14 17:13:39 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.62 2008/05/18 11:40:06 markusle Exp $
+
+  18 May 2008; Markus Dittrich <markusle@gentoo.org> pari-2.1.6.ebuild,
+  pari-2.1.7-r1.ebuild, pari-2.3.2.ebuild, pari-2.3.2-r1.ebuild,
+  pari-2.3.3.ebuild:
+  Switched virtual/tetex -> virtual/latex-base (see bug #222501).
 
   15 May 2008; Andrey Grozin <grozin@gentoo.org> pari-2.3.3.ebuild:
   Set VARTEXFONTS (bug #221921)

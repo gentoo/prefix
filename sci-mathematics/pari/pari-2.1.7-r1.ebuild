@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.1.7-r1.ebuild,v 1.10 2007/11/16 15:46:32 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.1.7-r1.ebuild,v 1.11 2008/05/18 11:40:06 markusle Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc emacs"
 
-DEPEND="doc? ( virtual/tetex )"
+DEPEND="doc? ( virtual/latex-base )"
 
 src_unpack() {
 	unpack ${A}
