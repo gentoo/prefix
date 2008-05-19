@@ -1,6 +1,12 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.155 2008/05/17 11:43:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.157 2008/05/18 17:46:50 armin76 Exp $
+
+  18 May 2008; Raúl Porcel <armin76@gentoo.org> lftp-3.7.0.ebuild:
+  ia64/sparc/x86 stable wrt #222365
+
+  18 May 2008; Markus Rothe <corsair@gentoo.org> lftp-3.7.0.ebuild:
+  Stable on ppc64; bug #222365
 
   17 May 2008; nixnut <nixnut@gentoo.org> lftp-3.7.0.ebuild:
   Stable on ppc wrt bug 222365
