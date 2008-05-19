@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.86 2008/03/25 19:33:58 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.87 2008/05/18 10:22:48 griffon26 Exp $
+
+*valgrind-3.3.0-r1 (18 May 2008)
+
+  18 May 2008; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.3.0-massif-cplusplus.patch, +valgrind-3.3.0-r1.ebuild:
+  Added a patch to make massif usable for C++. Requested by Fernando J. Pereda
+  <ferdy@gentoo.org> in bug #221067.
 
   25 Mar 2008; Maurice van der Pot <griffon26@gentoo.org>
   valgrind-3.3.0.ebuild:
