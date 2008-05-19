@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.72.ebuild,v 1.12 2008/05/06 13:47:24 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73.ebuild,v 1.1 2008/05/18 12:21:59 cedk Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit flag-o-matic autotools eutils
 
 DESCRIPTION="My TraceRoute. Excellent network diagnostic tool."
 HOMEPAGE="http://www.bitwizard.nl/mtr/"
@@ -20,12 +20,18 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-am_path_gtk.patch"
+	eautoreconf
+}
+
 src_compile() {
 	local myconf
 	use gtk || myconf="${myconf} --without-gtk"
 
 	[[ ${CHOST} == *-darwin* ]] && append-flags "-DBIND_8_COMPAT"
-	append-ldflags $(bindnow-flags)
 
 	econf ${myconf} \
 		$(use_enable gtk gtk2) \
@@ -37,9 +43,10 @@ src_compile() {
 
 src_install() {
 	# this binary is universal. ie: it does both console and gtk.
-	make DESTDIR="${D}" sbindir="${EPREFIX}"/usr/bin install || die "make install failed"
+	emake DESTDIR="${D}" sbindir="${EPREFIX}"/usr/bin install || die "make install failed"
 
-	insinto /usr/share/${PN} ; doins img/mtr_icon.xpm
+	insinto /usr/share/${PN}
+	doins img/mtr_icon.xpm
 
 	if use !prefix ; then
 		fowners root:wheel /usr/bin/mtr

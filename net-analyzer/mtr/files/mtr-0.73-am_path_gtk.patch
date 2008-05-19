@@ -1,0 +1,18 @@
+diff -ru mtr-0.73~/configure.in mtr-0.73/configure.in
+--- mtr-0.73~/configure.in	2008-05-18 14:04:04.000000000 +0200
++++ mtr-0.73/configure.in	2008-05-18 14:05:26.000000000 +0200
+@@ -61,11 +61,9 @@
+                            AC_DEFINE(NO_GTK)
+                            GTK_OBJ="")
+         else
+-		AM_PATH_GTK(1.0.0, CFLAGS="$CFLAGS $GTK_CFLAGS"
+-                           LIBS="$LIBS $GTK_LIBS",
+-                           AC_MSG_WARN(Building without GTK+ display support)
+-                           AC_DEFINE(NO_GTK)
+-                           GTK_OBJ="")
++                AC_MSG_WARN(Building without GTK+ display support)
++                AC_DEFINE(NO_GTK)
++                GTK_OBJ=""
+ 	fi
+ else
+ 	AC_DEFINE(NO_GTK)
