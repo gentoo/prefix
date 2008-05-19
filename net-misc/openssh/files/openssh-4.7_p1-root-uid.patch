@@ -181,7 +181,7 @@ diff -ru -x '*.Po' -x '*.Plo' openssh-4.7p1.orig/loginrec.c openssh-4.7p1/loginr
 diff -ru -x '*.Po' -x '*.Plo' openssh-4.7p1.orig/misc.h openssh-4.7p1/misc.h
 --- openssh-4.7p1.orig/misc.h	2008-05-14 10:37:16 +0200
 +++ openssh-4.7p1/misc.h	2008-05-14 10:42:32 +0200
-@@ -15,6 +15,16 @@
+@@ -15,6 +15,18 @@
  #ifndef _MISC_H
  #define _MISC_H
  
@@ -191,8 +191,10 @@ diff -ru -x '*.Po' -x '*.Plo' openssh-4.7p1.orig/misc.h openssh-4.7p1/misc.h
 + * root uid...) */
 +#ifdef __INTERIX
 +# define ROOT_UID 197108
++# define ROOT_GID 131616
 +#else
 +# define ROOT_UID 0
++# define ROOT_GID 0
 +#endif
 +
  /* misc.c */
@@ -500,7 +502,7 @@ diff -ru openssh-4.7p1.orig/sshpty.c openssh-4.7p1/sshpty.c
  pty_release(const char *tty)
  {
 -	if (chown(tty, (uid_t) 0, (gid_t) 0) < 0)
-+	if (chown(tty, (uid_t) ROOT_UID, (gid_t) 0) < 0)
++	if (chown(tty, (uid_t) ROOT_UID, (gid_t) ROOT_GID) < 0)
  		error("chown %.100s 0 0 failed: %.100s", tty, strerror(errno));
  	if (chmod(tty, (mode_t) 0666) < 0)
  		error("chmod %.100s 0666 failed: %.100s", tty, strerror(errno));
