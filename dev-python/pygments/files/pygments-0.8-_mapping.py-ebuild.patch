@@ -1,0 +1,11 @@
+--- pygments/lexers/_mapping.py.orig	2007-04-14 10:37:23.000000000 -0700
++++ pygments/lexers/_mapping.py	2007-04-14 10:38:18.000000000 -0700
+@@ -16,7 +16,7 @@
+ LEXERS = {
+     'ApacheConfLexer': ('pygments.lexers.text', 'ApacheConf', ('apacheconf', 'aconf', 'apache'), ('.htaccess', 'apache.conf', 'apache2.conf'), ('text/x-apacheconf',)),
+     'BBCodeLexer': ('pygments.lexers.text', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
+-    'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh'), ('*.sh',), ('application/x-sh', 'application/x-shellscript')),
++    'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh', 'ebuild'), ('*.sh','*.ebuild',), ('application/x-sh', 'application/x-shellscript')),
+     'BatchLexer': ('pygments.lexers.other', 'Batchfile', ('bat',), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
+     'BefungeLexer': ('pygments.lexers.other', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
+     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),

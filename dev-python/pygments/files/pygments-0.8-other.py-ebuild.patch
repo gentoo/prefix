@@ -1,0 +1,11 @@
+--- pygments/lexers/other.py.orig	2007-04-14 10:37:15.000000000 -0700
++++ pygments/lexers/other.py	2007-04-14 10:37:46.000000000 -0700
+@@ -205,7 +205,7 @@
+     """
+ 
+     name = 'Bash'
+-    aliases = ['bash', 'sh']
++    aliases = ['bash', 'sh', 'ebuild']
+     filenames = ['*.sh']
+     mimetypes = ['application/x-sh', 'application/x-shellscript']
+ 
