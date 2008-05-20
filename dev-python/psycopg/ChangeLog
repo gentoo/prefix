@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/psycopg
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.61 2007/08/05 21:42:19 mjolnir Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.62 2008/05/19 19:47:13 dev-zero Exp $
+
+  19 May 2008; Tiziano Müller <dev-zero@gentoo.org> psycopg-1.1.21.ebuild,
+  psycopg-2.0.2.ebuild, psycopg-2.0.5.1.ebuild, psycopg-2.0.6.ebuild:
+  Changed dependency for postgresql to virtual/postgresql-base
 
   05 Aug 2007; Martin Jackson <mjolnir@gentoo.org> -psycopg-1.1.18.ebuild:
   Remove 1.1.18
