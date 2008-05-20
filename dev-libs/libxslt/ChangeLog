@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.174 2008/04/20 11:20:23 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.175 2008/05/19 17:39:31 dang Exp $
+
+*libxslt-1.1.24 (19 May 2008)
+
+  19 May 2008; Daniel Gryniewicz <dang@gentoo.org> +libxslt-1.1.24.ebuild:
+  Bump to 1.1.24
+
+  - Documentation: man page fix (Vincent Lefevre).
+
+  - Bug fixes: pattern bug fix, key initialization problems, exclusion of
+
+  unknown namespaced element on top of stylesheets, python generator
+
+  syntactic cleanup (Martin)
 
 *libxslt-1.1.23 (20 Apr 2008)
 
