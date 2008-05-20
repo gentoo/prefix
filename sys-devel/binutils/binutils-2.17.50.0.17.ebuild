@@ -6,6 +6,14 @@ EAPI="prefix"
 
 PATCHVER="1.1"
 ELF2FLT_VER=""
-inherit toolchain-binutils
+inherit toolchain-binutils eutils
 
 KEYWORDS="~amd64-linux ~ia64-linux ~sparc-solaris ~x86-solaris"
+
+src_unpack() {
+	toolchain-binutils_src_unpack
+	if [[ ${CHOST} == *-interix* ]] ; then
+		cd "${S}"
+		epatch "${FILESDIR}"/binutils-2.17-interix.patch
+	fi
+}
