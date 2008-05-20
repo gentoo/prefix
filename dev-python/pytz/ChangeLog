@@ -1,0 +1,54 @@
+# ChangeLog for dev-python/pytz
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/pytz/ChangeLog,v 1.14 2008/04/03 21:53:33 lordvan Exp $
+
+*pytz-2008a (03 Apr 2008)
+
+  03 Apr 2008; Thomas Raschbacher <lordvan@gentoo.org> +pytz-2008a.ebuild:
+  added 2008a version
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Marien Zwart (marienz, #107204) from metadata.xml.
+
+  14 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org> pytz-2007f.ebuild:
+  ppc. stable
+
+  16 Dec 2007; Samuli Suominen <drac@gentoo.org> pytz-2007f.ebuild:
+  amd64 stable
+
+  26 Jul 2007; Markus Rothe <corsair@gentoo.org> pytz-2007f.ebuild:
+  Added ~ppc64; bug #186188
+
+*pytz-2007f (03 Jun 2007)
+
+  03 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org> +pytz-2007f.ebuild:
+  Version bump.
+
+  21 Oct 2006; Aron Griffis <agriffis@gentoo.org> pytz-2005m.ebuild:
+  Mark 2005m stable on ia64
+
+  19 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org> pytz-2005m.ebuild:
+  ppc stable
+
+  27 Jul 2006; Alastair Tse <liquidx@gentoo.org> pytz-2005m.ebuild:
+  stable bump for x86
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-pytz-2005m,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> pytz-2005m.ebuild:
+  Mark 2005m ~ia64
+
+  24 Dec 2005; Tobias Scherbaum <dertobi123@gentoo.org> pytz-2005m.ebuild:
+  Added to ~ppc, #114776
+
+  10 Dec 2005; Luis Medinas <metalgod@gentoo.org> pytz-2005m.ebuild:
+  Added ~amd64 keyword. Bug #114776.
+
+*pytz-2005m (24 Nov 2005)
+
+  24 Nov 2005; Marien Zwart <marienz@gentoo.org> +metadata.xml,
+  +pytz-2005m.ebuild:
+  New ebuild, based on an ebuild from André Malo <nd@perlig.de> (bug #111513)
+
