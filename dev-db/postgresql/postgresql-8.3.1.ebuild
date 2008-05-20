@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.3.1.ebuild,v 1.2 2008/03/27 16:15:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.3.1.ebuild,v 1.3 2008/05/19 19:22:40 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,8 @@ RDEPEND="~dev-db/libpq-${PV}
 		ssl? ( >=dev-libs/openssl-0.9.6-r1 )
 		tcl? ( >=dev-lang/tcl-8 )
 		xml? ( dev-libs/libxml2 dev-libs/libxslt )
-		zlib? ( >=sys-libs/zlib-1.1.3 )"
+		zlib? ( >=sys-libs/zlib-1.1.3 )
+		!dev-db/postgresql-server"
 DEPEND="${RDEPEND}
 		sys-devel/autoconf
 		>=sys-devel/bison-1.875
