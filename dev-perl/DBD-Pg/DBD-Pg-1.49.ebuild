@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/DBD-Pg-1.49.ebuild,v 1.14 2008/03/19 02:57:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/DBD-Pg-1.49.ebuild,v 1.15 2008/05/19 19:44:09 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -12,13 +12,13 @@ SRC_URI="mirror://cpan/authors/id/D/DB/DBDPG/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="virtual/perl-Test-Simple
 	>=virtual/perl-Test-Harness-2.03
 	>=dev-perl/DBI-1.45
-	>=dev-db/libpq-7.3.15
+	>=virtual/postgresql-base-7.3
 	dev-lang/perl"
 
 # env variables for compilation:
