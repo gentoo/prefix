@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="python"
 
 DEPEND="!<dev-libs/boost-1.34.0
@@ -27,6 +27,8 @@ src_unpack() {
 	unpack ${A}
 
 	epatch "${FILESDIR}"/${PN}-darwin.patch
+	epatch "${FILESDIR}"/${PV}-aix-gcc.patch
+	epatch "${FILESDIR}"/${PV}-aix-python.patch
 
 	# Remove stripping option
 	cd "${S}/jam/src"
