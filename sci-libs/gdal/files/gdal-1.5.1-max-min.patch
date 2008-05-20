@@ -1,0 +1,114 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## max.dpatch by Francesco Paolo Lovergine <frankie@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/arraylist.c gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/arraylist.c
+--- gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/arraylist.c	2007-11-07 05:00:48.000000000 +0100
++++ gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/arraylist.c	2008-04-07 13:26:42.000000000 +0200
+@@ -23,6 +23,8 @@
+ #include "bits.h"
+ #include "arraylist.h"
+ 
++#include <cpl_port.h> /* MIN and MAX macros */ 
++
+ struct array_list*
+ array_list_new(array_list_free_fn *free_fn)
+ {
+@@ -62,7 +64,7 @@
+   int new_size;
+ 
+   if(max < this->size) return 0;
+-  new_size = max(this->size << 1, max);
++  new_size = MAX(this->size << 1, max);
+   if(!(t = realloc(this->array, new_size*sizeof(void*)))) return -1;
+   this->array = t;
+   (void)memset(this->array + this->size, 0, (new_size-this->size)*sizeof(void*));
+diff -urNad gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/bits.h gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/bits.h
+--- gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/bits.h	2007-11-07 05:00:48.000000000 +0100
++++ gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/bits.h	2008-04-07 13:25:45.000000000 +0200
+@@ -12,14 +12,6 @@
+ #ifndef _bits_h_
+ #define _bits_h_
+ 
+-#ifndef min
+-#define min(a,b) ((a) < (b) ? (a) : (b))
+-#endif
+-
+-#ifndef max
+-#define max(a,b) ((a) > (b) ? (a) : (b))
+-#endif
+-
+ #define hexdigit(x) (((x) <= '9') ? (x) - '0' : ((x) & 7) + 9)
+ #define error_ptr(error) ((void*)error)
+ #define is_error(ptr) ((unsigned long)ptr > (unsigned long)-4000L)
+diff -urNad gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/json_tokener.c gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/json_tokener.c
+--- gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/json_tokener.c	2007-11-07 12:51:17.000000000 +0100
++++ gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/json_tokener.c	2008-04-07 13:30:21.000000000 +0200
+@@ -23,6 +23,7 @@
+ #include "json_object.h"
+ #include "json_tokener.h"
+ 
++#include <cpl_port.h> /* MIN and MAX macros */ 
+ 
+ #if !HAVE_STRNCASECMP && defined(_MSC_VER)
+   /* MSC has the version as _strnicmp */
+@@ -106,7 +107,7 @@
+ {
+   if(str) {
+     size_t len = strlen(str);
+-    size_t nn = min(len,n);
++    size_t nn = MIN(len,n);
+     char* s = (char*)malloc(sizeof(char) * (nn + 1));
+ 
+     if(s) {
+@@ -230,7 +231,7 @@
+     case json_tokener_state_null:
+       printbuf_memappend(tok->pb, &c, 1);
+       if(strncasecmp(json_null_str, tok->pb->buf,
+-		     min(tok->st_pos+1, strlen(json_null_str))) == 0) {
++		     MIN(tok->st_pos+1, strlen(json_null_str))) == 0) {
+ 	if(tok->st_pos == strlen(json_null_str)) {
+ 	  current = NULL;
+ 	  saved_state = json_tokener_state_finish;
+@@ -351,7 +352,7 @@
+     case json_tokener_state_boolean:
+       printbuf_memappend(tok->pb, &c, 1);
+       if(strncasecmp(json_true_str, tok->pb->buf,
+-		     min(tok->st_pos+1, strlen(json_true_str))) == 0) {
++		     MIN(tok->st_pos+1, strlen(json_true_str))) == 0) {
+ 	if(tok->st_pos == strlen(json_true_str)) {
+ 	  current = json_object_new_boolean(1);
+ 	  saved_state = json_tokener_state_finish;
+@@ -359,7 +360,7 @@
+ 	  goto redo_char;
+ 	}
+       } else if(strncasecmp(json_false_str, tok->pb->buf,
+-			    min(tok->st_pos+1, strlen(json_false_str))) == 0) {
++			    MIN(tok->st_pos+1, strlen(json_false_str))) == 0) {
+ 	if(tok->st_pos == strlen(json_false_str)) {
+ 	  current = json_object_new_boolean(0);
+ 	  saved_state = json_tokener_state_finish;
+diff -urNad gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/printbuf.c gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/printbuf.c
+--- gdal-1.5.1~/ogr/ogrsf_frmts/geojson/jsonc/printbuf.c	2007-12-02 19:32:25.000000000 +0100
++++ gdal-1.5.1/ogr/ogrsf_frmts/geojson/jsonc/printbuf.c	2008-04-07 13:27:06.000000000 +0200
+@@ -28,6 +28,8 @@
+ 
+ #include "cpl_string.h"
+ 
++#include <cpl_port.h> /* MIN and MAX macros */ 
++
+ struct printbuf* printbuf_new()
+ {
+   struct printbuf *p;
+@@ -47,7 +49,7 @@
+ {
+   char *t;
+   if(p->size - p->bpos <= size) {
+-    int new_size = max(p->size * 2, p->bpos + size + 8);
++    int new_size = MAX(p->size * 2, p->bpos + size + 8);
+ #ifdef PRINTBUF_DEBUG
+     mc_debug("printbuf_memappend: realloc "
+ 	     "bpos=%d wrsize=%d old_size=%d new_size=%d\n",
