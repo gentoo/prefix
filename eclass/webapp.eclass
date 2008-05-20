@@ -194,8 +194,8 @@ webapp_hook_script() {
 	webapp_checkfileexists "${1}"
 
 	elog "(hook) ${1}"
-	cp "${1}" "${ED}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")" || die "Unable to install ${1} into ${ED}/${MY_HOOKSCRIPTSDIR}/"
-	chmod 555 "${ED}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")"
+	cp "${1}" "${D}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")" || die "Unable to install ${1} into ${D}/${MY_HOOKSCRIPTSDIR}/"
+	chmod 555 "${D}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")"
 }
 
 # @FUNCTION: webapp_postinst_txt
@@ -208,7 +208,7 @@ webapp_postinst_txt() {
 	webapp_checkfileexists "${2}"
 
 	elog "(info) ${2} (lang: ${1})"
-	cp "${2}" "${ED}/${MY_APPDIR}/postinst-${1}.txt"
+	cp "${2}" "${D}/${MY_APPDIR}/postinst-${1}.txt"
 }
 
 # @FUNCTION: webapp_postupgrade_txt
@@ -221,7 +221,7 @@ webapp_postupgrade_txt() {
 	webapp_checkfileexists "${2}"
 
 	elog "(info) ${2} (lang: ${1})"
-	cp "${2}" "${ED}/${MY_APPDIR}/postupgrade-${1}.txt"
+	cp "${2}" "${D}/${MY_APPDIR}/postupgrade-${1}.txt"
 }
 
 # helper for webapp_serverowned()
@@ -233,7 +233,7 @@ _webapp_serverowned() {
 	my_file="$(webapp_strip_cwd "${my_file}")"
 
 	elog "(server owned) ${my_file}"
-	echo "${my_file}" >> "${ED}/${WA_SOLIST}"
+	echo "${my_file}" >> "${D}/${WA_SOLIST}"
 }
 
 # @FUNCTION: webapp_serverowned
@@ -281,7 +281,7 @@ webapp_server_configfile() {
 	local my_file="${1}-${3:-$(basename "${2}")}"
 
 	elog "(${1}) config file '${my_file}'"
-	cp "${2}" "${ED}/${MY_SERVERCONFIGDIR}/${my_file}"
+	cp "${2}" "${D}/${MY_SERVERCONFIGDIR}/${my_file}"
 }
 
 # @FUNCTION: webapp_sqlscript
@@ -305,12 +305,12 @@ webapp_sqlscript() {
 
 	if [[ -n "${3}" ]]; then
 		elog "(${1}) upgrade script for ${PN}-${3} to ${PVR}"
-		cp "${2}" "${ED}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
-		chmod 600 "${ED}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
+		cp "${2}" "${D}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
+		chmod 600 "${D}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
 	else
 		elog "(${1}) create script for ${PN}-${PVR}"
-		cp "${2}" "${ED}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
-		chmod 600 "${ED}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
+		cp "${2}" "${D}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
+		chmod 600 "${D}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
 	fi
 }
 
@@ -335,14 +335,14 @@ webapp_src_preinst() {
 		die "Ebuild did not call webapp_pkg_setup() - report to http://bugs.gentoo.org"
 	fi
 
-	dodir "${MY_HTDOCSDIR}"
-	dodir "${MY_HOSTROOTDIR}"
-	dodir "${MY_CGIBINDIR}"
-	dodir "${MY_ICONSDIR}"
-	dodir "${MY_ERRORSDIR}"
-	dodir "${MY_SQLSCRIPTSDIR}"
-	dodir "${MY_HOOKSCRIPTSDIR}"
-	dodir "${MY_SERVERCONFIGDIR}"
+	dodir "${MY_HTDOCSDIR#${EPREFIX}}"
+	dodir "${MY_HOSTROOTDIR#${EPREFIX}}"
+	dodir "${MY_CGIBINDIR#${EPREFIX}}"
+	dodir "${MY_ICONSDIR#${EPREFIX}}"
+	dodir "${MY_ERRORSDIR#${EPREFIX}}"
+	dodir "${MY_SQLSCRIPTSDIR#${EPREFIX}}"
+	dodir "${MY_HOOKSCRIPTSDIR#${EPREFIX}}"
+	dodir "${MY_SERVERCONFIGDIR#${EPREFIX}}"
 }
 
 # ==============================================================================
@@ -428,15 +428,16 @@ webapp_src_install() {
 	# we used to just set a variable in the shell script, but we can
 	# no longer rely on Portage calling both webapp_src_install() and
 	# webapp_pkg_postinst() within the same shell process
-	touch "${ED}/${MY_APPDIR}/${INSTALL_CHECK_FILE}"
+	touch "${D}/${MY_APPDIR}/${INSTALL_CHECK_FILE}"
 
-	chown -R "${VHOST_DEFAULT_UID}:${VHOST_DEFAULT_GID}" "${ED}/"
+	use prefix || chown -R "${VHOST_DEFAULT_UID}:${VHOST_DEFAULT_GID}" "${ED}/"
 	chmod -R u-s "${ED}/"
 	chmod -R g-s "${ED}/"
 
-	keepdir "${MY_PERSISTDIR}"
-	fowners "root:0" "${MY_PERSISTDIR}"
-	fperms 755 "${MY_PERSISTDIR}"
+	keepdir "${MY_PERSISTDIR#${EPREFIX}}"
+	#don't chown to root in prefix
+	use prefix || fowners "root:0" "${MY_PERSISTDIR#${EPREFIX}}"
+	fperms 755 "${MY_PERSISTDIR#${EPREFIX}}"
 }
 
 # @FUNCTION: webapp_pkg_postinst
@@ -453,7 +454,7 @@ webapp_pkg_postinst() {
 	webapp_read_config
 
 	# sanity checks, to catch bugs in the ebuild
-	if [[ ! -f "${EROOT}${MY_APPDIR}/${INSTALL_CHECK_FILE}" ]]; then
+	if [[ ! -f "${ROOT}${MY_APPDIR}/${INSTALL_CHECK_FILE}" ]]; then
 		eerror
 		eerror "This ebuild did not call webapp_src_install() at the end"
 		eerror "of the src_install() function"
