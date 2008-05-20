@@ -1,0 +1,186 @@
+diff -u -r webapp-config-1.50.16/WebappConfig/config.py webapp-config-1.50.16-patched/WebappConfig/config.py
+--- webapp-config-1.50.16/WebappConfig/config.py	2006-12-30 12:38:36.000000000 -0600
++++ webapp-config-1.50.16-patched/WebappConfig/config.py	2007-12-31 13:40:16.038414000 -0600
+@@ -206,7 +206,7 @@
+         self.__d = {
+             'config_protect'               : wrapper.config_protect,
+             # Necessary to load the config file
+-            'my_etcconfig'                 : '/etc/vhosts/webapp-config',
++            'my_etcconfig'                 : '@GENTOO_PORTAGE_EPREFIX@/etc/vhosts/webapp-config',
+             'my_dotconfig'                 : '.webapp',
+             'my_version'                   : WCVERSION,
+             'my_conf_version'              : '7',
+@@ -248,7 +248,7 @@
+             # -- wrobel
+             'vhost_server_uid'  : 'root',
+             'vhost_server_gid'  : 'root',
+-            'vhost_root'        : '/var/www/%(vhost_hostname)s',
++            'vhost_root'        : '@GENTOO_PORTAGE_EPREFIX@/var/www/%(vhost_hostname)s',
+             'g_htdocsdir'       : '%(vhost_root)s/%(my_htdocsbase)s',
+             'my_appdir'         : '%(my_approot)s/%(my_appsuffix)s',
+             'my_htdocsdir'      : '%(my_appdir)s/htdocs',
+@@ -257,9 +257,9 @@
+             'my_cgibindir'      : '%(my_hostrootdir)s/%(my_cgibinbase)s',
+             'my_iconsdir'       : '%(my_hostrootdir)s/%(my_iconsbase)s',
+             'my_errorsdir'      : '%(my_hostrootdir)s/%(my_errorsbase)s',
+-            'my_approot'        : '/usr/share/webapps',
++            'my_approot'        : '@GENTOO_PORTAGE_EPREFIX@/usr/share/webapps',
+             'my_appsuffix'      : '%(pn)s/%(pvr)s',
+-            'my_persistroot'    : '/var/db/webapps',
++            'my_persistroot'    : '@GENTOO_PORTAGE_EPREFIX@/var/db/webapps',
+             'my_hostrootbase'   : 'hostroot',
+             'my_cgibinbase'     : 'cgi-bin',
+             'my_iconsbase'      : 'icons',
+diff -u -r webapp-config-1.50.16/WebappConfig/db.py webapp-config-1.50.16-patched/WebappConfig/db.py
+--- webapp-config-1.50.16/WebappConfig/db.py	2006-12-30 12:38:35.000000000 -0600
++++ webapp-config-1.50.16-patched/WebappConfig/db.py	2007-12-31 13:32:09.626904000 -0600
+@@ -161,20 +161,20 @@
+ 
+     This lists the database:
+     >>> a.listinstalls()
+-    /var/www/localhost/htdocs/gallery
+-    /var/www/localhost/htdocs/horde
+-    /var/www/localhost/htdocs/phpldapadmin
++    @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/gallery
++    @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/horde
++    @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/phpldapadmin
+ 
+     Which is also possible in a more user friendly way:
+ 
+     >>> b = WebappDB(here + '/tests/testfiles/webapps', verbose = True)
+     >>> b.listinstalls()
+     * Installs for gallery-1.4.4_p6
+-    *   /var/www/localhost/htdocs/gallery
++    *   @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/gallery
+     * Installs for horde-3.0.5
+-    *   /var/www/localhost/htdocs/horde
++    *   @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/horde
+     * Installs for phpldapadmin-0.9.7_alpha4
+-    *   /var/www/localhost/htdocs/phpldapadmin
++    *   @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/phpldapadmin
+ 
+     The function 'get_inst_files' handles the file locations within the
+     database. If no package has been specified while initializing
+@@ -225,8 +225,8 @@
+     * Entry:
+     * ... me me /my/really/weird/hierarchy/for/horde
+     * 
+-    >>> d.remove('/var/www/localhost/htdocs/horde')
+-    * Pretended to remove installation /var/www/localhost/htdocs/horde
++    >>> d.remove('@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/horde')
++    * Pretended to remove installation @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/horde
+     * Final DB content:
+     * 
+     * 
+@@ -235,13 +235,13 @@
+     * Installation at "/my/really/weird/hierarchy/for/horde" could not be found in the database file. Check the entries in ".../tests/testfiles/webapps/horde/3.0.5/installs"!
+     * Pretended to remove installation /my/really/weird/hierarchy/for/horde
+     * Final DB content:
+-    * 1124612110 root root /var/www/localhost/htdocs/horde
++    * 1124612110 root root @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/horde
+     * 
+ 
+     '''
+ 
+     def __init__(self,
+-                 root       = '/var/db/webapps',
++                 root       = '@GENTOO_PORTAGE_EPREFIX@/var/db/webapps',
+                  package    = '',
+                  version    = '',
+                  installs   = 'installs',
+@@ -437,7 +437,7 @@
+ class WebappSource(AppHierarchy):
+     '''
+     The WebappSource class handles a web application hierarchy under
+-    /usr/share/webapps.
++    @GENTOO_PORTAGE_EPREFIX@/usr/share/webapps.
+ 
+     Some test files are needed to test the functionality. This localizes
+     the current position:
+@@ -461,7 +461,7 @@
+     '''
+ 
+     def __init__(self,
+-                 root = '/usr/share/webapps',
++                 root = '@GENTOO_PORTAGE_EPREFIX@/usr/share/webapps',
+                  package    = '',
+                  version    = '',
+                  installed  = 'installed_by_webapp_eclass'):
+diff -u -r webapp-config-1.50.16/WebappConfig/sandbox.py webapp-config-1.50.16-patched/WebappConfig/sandbox.py
+--- webapp-config-1.50.16/WebappConfig/sandbox.py	2006-12-30 12:38:36.000000000 -0600
++++ webapp-config-1.50.16-patched/WebappConfig/sandbox.py	2007-12-31 13:38:49.514678000 -0600
+@@ -40,19 +40,20 @@
+ 
+         self.config     = config
+         self.__path     =  [config_libdir + '/libsandbox.so',
+-                           '/usr/lib/libsandbox.so', '/lib/libsandbox.so']
++                           '@GENTOO_PORTAGE_EPREFIX@/usr/lib/libsandbox.so',
++                           '@GENTOO_PORTAGE_EPREFIX@/lib/libsandbox.so']
+         self.__export   = {}
+         self.__write    = ['g_installdir',
+                            'g_htdocsdir',
+                            'g_cgibindir',
+                            'vhost_root']
+-        self.__read     =  '/'
++        self.__read     =  '@GENTOO_PORTAGE_EPREFIX@/'
+ 
+-        self.__syswrite = ':/dev/tty:/dev/pts:/dev/null:/tmp'
++        self.__syswrite = ':/dev/tty:/dev/pts:/dev/null:@GENTOO_PORTAGE_EPREFIX@/tmp'
+ 
+         self.sandbox    = ''
+ 
+-        self.log        = '/tmp/w-c.sandbox-' \
++        self.log        = '@GENTOO_PORTAGE_EPREFIX@/tmp/w-c.sandbox-' \
+                             + time.strftime("%Y-%m-%d-%H.%M.%S",time.gmtime())\
+                             + '.log'
+         self.debug_log        = self.log + '.debug'
+diff -u -r webapp-config-1.50.16/WebappConfig/wrapper.py webapp-config-1.50.16-patched/WebappConfig/wrapper.py
+--- webapp-config-1.50.16/WebappConfig/wrapper.py	2006-12-30 12:38:35.000000000 -0600
++++ webapp-config-1.50.16-patched/WebappConfig/wrapper.py	2007-12-31 12:12:46.012040000 -0600
+@@ -52,12 +52,12 @@
+ # example, if ABI == 'amd64' then read LIBDIR_amd64. This routine should work on
+ # all arches as it sets '/usr/lib' as a fallback. See bugs #125032 and #125156.
+ 
+-config_libdir = '/usr/lib'
++config_libdir = '@GENTOO_PORTAGE_EPREFIX@/usr/lib'
+ 
+ if 'ABI' in portage.settings.keys():
+     config_abi  = portage.settings['ABI']
+     if 'LIBDIR_' + config_abi in portage.settings.keys():
+-        config_libdir = '/usr/' + portage.settings['LIBDIR_' + config_abi]
++        config_libdir = '@GENTOO_PORTAGE_EPREFIX@/usr/' + portage.settings['LIBDIR_' + config_abi]
+     else:
+         # This shouldn't happen but we want to know if it ever does
+         OUT.warn('Failed to determine libdir from portage.settings[\'LIBDIR_' + config_abi + '\']\n')
+diff -u -r webapp-config-1.50.16/sbin/webapp-cleaner webapp-config-1.50.16-patched/sbin/webapp-cleaner
+--- webapp-config-1.50.16/sbin/webapp-cleaner	2007-12-31 12:08:23.638026000 -0600
++++ webapp-config-1.50.16-patched/sbin/webapp-cleaner	2007-12-31 13:45:16.446345000 -0600
+@@ -8,10 +8,10 @@
+ PRETEND=
+ 
+ CMD="emerge -Cav"
+-WEBAPP_DIR="/usr/share/webapps"
++WEBAPP_DIR="@GENTOO_PORTAGE_EPREFIX@/usr/share/webapps"
+ WEBAPP_CONFIG=
+ 
+-[[ -z ${RC_GOT_FUNCTIONS} ]] && source /etc/init.d/functions.sh
++[[ -z ${RC_GOT_FUNCTIONS} ]] && source @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh
+ 
+ function help() {
+ 	echo "Remove obsolete and unused versions of web applications"
+diff -ur webapp-config-1.50.16/config/webapp-config webapp-config-1.50.16-patched/config/webapp-config
+--- webapp-config-1.50.16/config/webapp-config	2006-12-30 12:39:13.000000000 -0600
++++ webapp-config-1.50.16-patched/config/webapp-config	2007-12-31 14:02:07.755728000 -0600
+@@ -42,9 +42,9 @@
+ # If you want to have fine grained control over the location the web
+ # applications get installed, you can use the third setting
+ 
+-vhost_root="/var/www/${vhost_hostname}"
+-#vhost_root="/srv/${vhost_hostname}/www"
+-#vhost_root="/var/www/${vhost_subdomain_1}/${vhost_subdomain_2}/${vhost_subdomain_3}"
++vhost_root="@GENTOO_PORTAGE_EPREFIX@/var/www/${vhost_hostname}"
++#vhost_root="@GENTOO_PORTAGE_EPREFIX@/srv/${vhost_hostname}/www"
++#vhost_root="@GENTOO_PORTAGE_EPREFIX@/var/www/${vhost_subdomain_1}/${vhost_subdomain_2}/${vhost_subdomain_3}"
+ 
+ # some web applications need to know what host they are serving up pages
+ # for.  this information is configured when the application is installed
