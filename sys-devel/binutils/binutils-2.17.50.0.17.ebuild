@@ -10,6 +10,17 @@ inherit toolchain-binutils eutils
 
 KEYWORDS="~amd64-linux ~ia64-linux ~sparc-solaris ~x86-solaris"
 
+src_compile() {
+	if has noinfo "${FEATURES}" \
+	|| ! type -p makeinfo >/dev/null
+	then
+		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
+		export EXTRA_EMAKE="MAKEINFO=true"
+	fi
+
+	toolchain-binutils_src_compile
+}
+
 src_unpack() {
 	toolchain-binutils_src_unpack
 	if [[ ${CHOST} == *-interix* ]] ; then
