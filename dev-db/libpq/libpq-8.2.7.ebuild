@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/libpq-8.2.7.ebuild,v 1.1 2008/03/26 13:14:47 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/libpq-8.2.7.ebuild,v 1.2 2008/05/19 19:19:30 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ RDEPEND="!<=dev-db/postgresql-8.1.4
 		pam? ( virtual/pam )
 		readline? ( >=sys-libs/readline-4.1 )
 		ssl? ( >=dev-libs/openssl-0.9.6-r1 )
-		zlib? ( >=sys-libs/zlib-1.1.3 )"
+		zlib? ( >=sys-libs/zlib-1.1.3 )
+		!dev-db/postgresql-base"
 DEPEND="${RDEPEND}
 		sys-devel/autoconf
 		>=sys-devel/bison-1.875
