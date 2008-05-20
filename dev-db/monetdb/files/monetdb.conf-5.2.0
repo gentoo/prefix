@@ -1,7 +1,0 @@
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/monetdb/files/monetdb.conf-5.2.0,v 1.1 2007/11/06 10:44:07 grobian Exp $
-
-# The user to run the MonetDB database as.  It is recommended to
-# leave this as is, portage created this user during installation
-MDB_USER=monetdb
-MDB_GROUP=monetdb
