@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3544 2008/05/16 05:49:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3546 2008/05/20 04:42:08 compnerd Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -258,7 +258,7 @@ app-office/dia:gnome-print - Gnome-Print support
 app-office/gnucash:chipcard - Enable support for chipcard reading and processing.
 app-office/gnucash:hbci - Enable HBCI support, for connecting to some internet banks
 app-office/gnucash:quotes - Enable Online Stock Quote retrieval.
-app-office/grisbi:print - Enable TeX and printing support
+app-office/grisbi:print - Enable printing support
 app-office/imposter:iksemel - Enable external iksemel parsing support.
 app-office/kmymoney2:hbci - Adds HBCI online banking support
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
@@ -2106,6 +2106,7 @@ sys-power/apcupsd:lighttpd - Enable support for lighttpd
 sys-power/cpufreqd:nforce2 - Enable for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
+sys-power/pm-utils:ntp - install deps for NTP support
 sys-power/suspend:fbsplash - Add support for framebuffer splash
 sys-process/daemontools-scripts:withsamplescripts - Installs sample supervise scripts
 sys-process/procps:n32 - Enable n32 ABI support on mips
