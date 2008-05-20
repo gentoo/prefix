@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/ruby-postgres
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ChangeLog,v 1.19 2008/05/12 09:53:57 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ChangeLog,v 1.20 2008/05/19 19:54:29 dev-zero Exp $
+
+  19 May 2008; Tiziano Müller <dev-zero@gentoo.org>
+  ruby-postgres-0.7.1.ebuild, ruby-postgres-0.7.1.20051221-r1.ebuild,
+  ruby-postgres-0.7.1.20060406.ebuild:
+  Changed dependency for postgresql to virtual/postgresql-base
 
   12 May 2008; Markus Rothe <corsair@gentoo.org>
   ruby-postgres-0.7.1.20060406.ebuild:
