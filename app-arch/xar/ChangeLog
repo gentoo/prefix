@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/xar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.14 2008/04/21 16:29:01 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.15 2008/05/19 15:17:30 drac Exp $
+
+  19 May 2008; Samuli Suominen <drac@gentoo.org>
+  +files/xar-1.5.2-automagic_acl_and_bzip2.patch, -xar-1.5.1.ebuild,
+  xar-1.5.2.ebuild:
+  Fix automagic libacl and libbz2 linking; amd64 stable.
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
