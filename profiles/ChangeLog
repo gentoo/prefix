@@ -1,6 +1,28 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1434 2008/05/20 04:42:08 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1440 2008/05/21 00:15:30 jer Exp $
+#
+# This ChangeLog should include records for all changes in profiles directory.
+# Only typo fixes which don't affect portage/repoman behaviour could be avoided
+# here. If doubt put a record here!
+
+  21 May 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  =www-client/opera-9.50_beta2_pre* left the tree.
+
+  21 May 2008; Samuli Suominen <drac@gentoo.org> use.local.desc,
+  package.mask:
+  Added use flags for mixxx-1.6.0_beta2 and masked it, because it needs
+  masked portaudio v19.
+
+  20 May 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removed masking for lightspeed
+
+  20 May 2008; <chainsaw@gentoo.org> package.mask:
+  Mask audacious-crossfade for planned removal on June 30; bug #222883.
+
+  20 May 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Split one app-arch/rpm mask to two masks - one for a specific revision of
+  4.4.7, one for 5.0.
 
   20 May 2008; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
   Add ntp useflag for pm-utils
