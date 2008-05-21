@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.108 2008/05/17 17:08:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.109 2008/05/20 16:36:11 armin76 Exp $
+
+  20 May 2008; Raúl Porcel <armin76@gentoo.org>
+  xulrunner-1.9_beta5-r1.ebuild, xulrunner-1.9_rc1.ebuild:
+  Fix sqlite dep
 
   17 May 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9_rc1.ebuild:
   Raise nspr/nss dep

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc1.ebuild,v 1.2 2008/05/17 17:08:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc1.ebuild,v 1.3 2008/05/20 16:36:11 armin76 Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-libs/nspr-4.7.1
 	>=app-text/hunspell-1.1.9
 	>=media-libs/lcms-1.17
-	>=dev-db/sqlite-3.5"
+	>=dev-db/sqlite-3.5.6"
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
