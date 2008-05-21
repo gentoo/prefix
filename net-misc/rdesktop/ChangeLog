@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.109 2008/05/17 13:31:27 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.110 2008/05/20 13:13:57 voyageur Exp $
+
+  20 May 2008; Bernard Cafarelli <voyageur@gentoo.org> metadata.xml:
+  Taking over maintainership
 
   17 May 2008; Tobias Klausmann <klausman@gentoo.org> rdesktop-1.6.0.ebuild:
   Stable on alpha, bug #220911
