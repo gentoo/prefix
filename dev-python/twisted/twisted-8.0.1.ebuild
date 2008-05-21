@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.0.1.ebuild,v 1.1 2008/05/13 20:29:16 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.0.1.ebuild,v 1.2 2008/05/20 17:53:17 cardoe Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://tmrc.mit.edu/mirror/${PN}/Core/$(get_version_component_range 1-2
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="gtk serial crypt"
 
 DEPEND=">=dev-lang/python-2.3
@@ -26,7 +26,7 @@ DEPEND=">=dev-lang/python-2.3
 
 S=${WORKDIR}/${MY_P}
 
-DOCS="CREDITS INSTALL NEWS README"
+DOCS="CREDITS NEWS README"
 
 src_unpack() {
 	unpack ${A}
