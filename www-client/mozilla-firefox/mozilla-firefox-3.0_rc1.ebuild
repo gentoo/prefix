@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_rc1.ebuild,v 1.2 2008/05/17 17:12:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/Attic/mozilla-firefox-3.0_rc1.ebuild,v 1.3 2008/05/20 16:43:43 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -53,7 +53,7 @@ RDEPEND="java? ( virtual/jre )
 	>=dev-libs/nspr-4.7.1
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.1.9
-	>=dev-db/sqlite-3.5
+	>=dev-db/sqlite-3.5.6
 	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV} )"
 
 DEPEND="${RDEPEND}
