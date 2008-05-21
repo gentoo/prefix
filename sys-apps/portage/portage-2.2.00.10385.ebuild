@@ -33,12 +33,11 @@ RDEPEND=">=dev-lang/python-2.4
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
+		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 		|| ( >=dev-lang/python-2.5 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
-# >=net-misc/rsync-2.6.4 not in !build? PDEPEND, since we don't use it in
-# Prefix (yet)
 # rsync-2.6.4 rdep is for the --filter option #167668
 SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
 
@@ -223,7 +222,7 @@ pkg_preinst() {
 				install_name=$(otool -DX "${filename}")
 				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
 			done < "${cpv}"
-		elif [[ ! -f ${cpv}.ELF.2 ]] ; then
+		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
 			while read line; do
 				filename=${line% *}
 				needed=${line#* }
