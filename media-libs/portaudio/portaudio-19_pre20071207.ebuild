@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-19_pre20071207.ebuild,v 1.2 2008/05/19 19:18:11 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-19_pre20071207.ebuild,v 1.3 2008/05/20 09:22:41 drac Exp $
 
 EAPI="prefix 1"
 
@@ -13,21 +13,18 @@ SRC_URI="http://www.portaudio.com/archives/${MY_P}.tar.gz"
 LICENSE="as-is"
 SLOT="18"
 KEYWORDS="~ppc-macos"
-IUSE="alsa +cxx debug oss"
+IUSE="alsa +cxx debug jack oss"
 
-DEPEND="alsa? ( media-libs/alsa-lib )"
+RDEPEND="alsa? ( media-libs/alsa-lib )
+	jack? ( >=media-sound/jack-audio-connection-kit-0.109.2-r1 )"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 S=${WORKDIR}/${PN}
 
 src_compile() {
-	# Jack is disabled, it seems to have runtime issues
-	# Moreover it fails to compile on some arches (like amd64)
-	# And this could cause cyclic dependencies with jack portaudio support
-	econf --without-jack \
-		$(use_with alsa) \
-		$(use_with oss) \
-		$(use_with debug debug-output) \
-		$(use_enable cxx)
+	econf $(use_enable cxx) $(use_with jack) $(use_with alsa) \
+		$(use_with oss) $(use_with debug debug-output)
 
 	emake || die "emake failed."
 }
