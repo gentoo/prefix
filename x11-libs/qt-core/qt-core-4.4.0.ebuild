@@ -10,7 +10,7 @@ HOMEPAGE="http://www.trolltech.com/"
 
 LICENSE="|| ( QPL-1.0 GPL-3 GPL-2 )"
 SLOT="4"
-KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="doc glib +qt3support ssl"
 
 RDEPEND="sys-libs/zlib
@@ -150,13 +150,13 @@ src_install() {
 	EOF
 	doenvd "${T}/44qt4"
 
-	dodir /${QTDATADIR}/mkspecs/gentoo
-	mv "${ED}"/${QTDATADIR}/mkspecs/qconfig.pri "${ED}${QTDATADIR}"/mkspecs/gentoo || \
+	dodir ${QTDATADIR#${EPREFIX}}/mkspecs/gentoo
+	mv "${ED}"/${QTDATADIR#${EPREFIX}}/mkspecs/qconfig.pri "${ED}/${QTDATADIR#${EPREFIX}}"/mkspecs/gentoo || \
 		die "Failed to move qconfig.pri"
 
 	sed -i -e '2a#include <Gentoo/gentoo-qconfig.h>\n' \
-		"${ED}${QTHEADERDIR}"/QtCore/qconfig.h \
-		"${ED}${QTHEADERDIR}"/Qt/qconfig.h || die "sed for qconfig.h failed."
+		"${ED}${QTHEADERDIR#${EPREFIX}}"/QtCore/qconfig.h \
+		"${ED}${QTHEADERDIR#${EPREFIX}}"/Qt/qconfig.h || die "sed for qconfig.h failed."
 
 	if use glib; then
 		QCONFIG_DEFINE="$(use glib && echo QT_GLIB)
@@ -164,5 +164,5 @@ src_install() {
 		install_qconfigs
 	fi
 
-	keepdir "${QTSYSCONFDIR}"
+	keepdir "${QTSYSCONFDIR#${EPREFIX}}"
 }
