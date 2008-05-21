@@ -13,7 +13,7 @@ SRC_URI="http://josefsson.org/gnutls/releases/${P}.tar.bz2"
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="zlib lzo doc nls guile bindist"
 
 RDEPEND="dev-libs/libgpg-error

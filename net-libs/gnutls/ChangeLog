@@ -1,6 +1,23 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.147 2008/05/06 17:27:20 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.152 2008/05/20 21:56:27 dragonheart Exp $
+
+  20 May 2008; Daniel Black <dragonheart@gentoo.org> gnutls-2.2.5.ebuild:
+  -m moved URL to mirror:// thanks to Blackbird on irc
+
+  20 May 2008; Markus Rothe <corsair@gentoo.org> gnutls-2.2.5.ebuild:
+  Stable on ppc64. Fix double lzo enabling. Bug #222823
+
+  20 May 2008; Raúl Porcel <armin76@gentoo.org> gnutls-2.2.5.ebuild:
+  alpha/ia64/sparc/x86 stable wrt security #222823
+
+  20 May 2008; Jeroen Roovers <jer@gentoo.org> gnutls-2.2.5.ebuild:
+  Stable for HPPA (bug #222823).
+
+*gnutls-2.2.5 (20 May 2008)
+
+  20 May 2008; Daniel Black <dragonheart@gentoo.org> +gnutls-2.2.5.ebuild:
+  version bump - ref security bug #222823
 
 *gnutls-2.2.3 (06 May 2008)
 
