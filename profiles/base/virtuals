@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.111 2008/05/18 08:20:37 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.112 2008/05/20 08:45:26 drac Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -40,7 +40,6 @@ virtual/man					sys-apps/man
 virtual/mda					mail-filter/procmail
 virtual/modutils			sys-apps/module-init-tools
 virtual/motif				x11-libs/openmotif
-virtual/mpg123				media-sound/mpg123
 virtual/mta					mail-mta/ssmtp
 virtual/ooo					app-office/openoffice-bin
 # Only have this for >=pam-0.78, as we want to make use of the 'include'
