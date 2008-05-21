@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.89 2008/03/30 03:49:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.90 2008/05/20 07:44:25 caster Exp $
+
+*rpm-4.4.7-r4 (20 May 2008)
+*rpm-4.4.6-r5 (20 May 2008)
+
+  20 May 2008; Vlastimil Babka <caster@gentoo.org>
+  +files/rpm-4.4.6-neon-0.28.patch, +rpm-4.4.6-r5.ebuild,
+  +rpm-4.4.7-r4.ebuild:
+  Revbumps to update to neon 0.28 API, patch by Honza Machacek
+  <Hloupy.Honza@centrum.cz>, fixes bug #214799. Dropped ~ppc and ~mips which
+  don't have neon 0.28 keyworded. 4.4.6-r5 is based on -r4. 4.4.7-r4 on -r2
+  - the p.masked -r3 was skipped.
 
 *rpm-5.0.3 (30 Mar 2008)
 

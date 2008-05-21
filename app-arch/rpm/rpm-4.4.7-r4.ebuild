@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r2.ebuild,v 1.2 2007/02/12 19:44:53 sanchan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r4.ebuild,v 1.1 2008/05/20 07:44:25 caster Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND="=sys-libs/db-3.2*
 	perl? ( >=dev-lang/perl-5.8.8 )
 	nls? ( virtual/libintl )
 	sqlite? ( >=dev-db/sqlite-3.3.5 )
-	net-misc/neon"
+	>=net-misc/neon-0.28"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"
@@ -41,6 +41,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/rpm-4.4.6-buffer-overflow.patch
 	epatch "${FILESDIR}"/${P}-qa-implicit-function-to-pointer.patch
 	epatch "${FILESDIR}"/${P}-qa-fix-undefined.patch
+	# bug 214799
+	epatch "${FILESDIR}"/${PN}-4.4.6-neon-0.28.patch
 
 	# rpm uses AM_GNU_GETTEXT() but fails to actually
 	# include any of the required gettext files
