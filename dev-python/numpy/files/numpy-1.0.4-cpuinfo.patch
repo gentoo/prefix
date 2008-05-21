@@ -1,0 +1,133 @@
+--- numpy-1.0.4/numpy/distutils/cpuinfo.py	2007-11-07 23:05:15.000000000 +0100
++++ numpy-1.0.4_changed/numpy/distutils/cpuinfo.py	2008-05-19 20:30:40.000000000 +0200
+@@ -18,6 +18,7 @@
+ import os
+ import commands
+ import warnings
++import platform
+ 
+ def getoutput(cmd, successful_status=(0,), stacklevel=1):
+     try:
+@@ -80,8 +81,16 @@
+     def _getNCPUs(self):
+         return 1
+ 
++    def __get_nbits(self):
++        abits = platform.architecture()[0]
++        nbits = re.compile('(\d+)bit').search(abits).group(1)
++        return nbits
++
+     def _is_32bit(self):
+-        return not self.is_64bit()
++        return self.__get_nbits() == '32'
++
++    def _is_64bit(self):
++        return self.__get_nbits() == '64'
+ 
+ class LinuxCPUInfo(CPUInfoBase):
+ 
+@@ -104,7 +113,7 @@
+                 if len(name_value) != 2:
+                     continue
+                 name, value = name_value
+-                if not info or info[-1].has_key(name): # next processor
++                if not info or name in info[-1]: # next processor
+                     info.append({})
+                 info[-1][name] = value
+             fo.close()
+@@ -134,7 +143,16 @@
+                         self.info[0]['model name']) is not None
+ 
+     def _is_AMD64(self):
+-        return self.is_AMD() and self.info[0]['family'] == '15'
++        if 'family' in self.info[0]:
++          family=self.info[0]['family'] in ['15','16']
++        else:
++          family=False
++        if 'cpu family' in self.info[0]:
++          cpu_family=self.info[0]['cpu family']in ['15','16']
++        else:
++          cpu_family=False
++        result=(self.is_AMD() and family) or cpu_family
++        return result    	
+ 
+     def _is_Athlon64(self):
+         return re.match(r'.*?Athlon\(tm\) 64\b',
+@@ -152,6 +170,10 @@
+         return re.match(r'.*?Hammer\b',
+                         self.info[0]['model name']) is not None
+ 
++    def _is_Phenom(self):
++	return re.match(r'.*?Phenom\b',
++			self.info[0]['model name']) is not None
++
+     # Alpha
+ 
+     def _is_Alpha(self):
+@@ -222,7 +244,11 @@
+         return self.is_PentiumIV() and self.has_sse3()
+ 
+     def _is_Nocona(self):
+-        return self.is_64bit() and self.is_PentiumIV()
++        return self.is_Intel() \
++               and (self.info[0]['cpu family'] == '6' \
++                    or self.info[0]['cpu family'] == '15' ) \
++               and (self.has_sse3() and not self.has_ssse3())\
++               and re.match(r'.*?\blm\b',self.info[0]['flags']) is not None
+ 
+     def _is_Core2(self):
+         return self.is_64bit() and self.is_Intel() and \
+@@ -263,7 +289,10 @@
+         return re.match(r'.*?\bsse2\b',self.info[0]['flags']) is not None
+ 
+     def _has_sse3(self):
+-        return re.match(r'.*?\bsse3\b',self.info[0]['flags']) is not None
++        return re.match(r'.*?\bpni\b',self.info[0]['flags']) is not None
++
++    def _has_ssse3(self):
++        return re.match(r'.*?\bssse3\b',self.info[0]['flags']) is not None
+ 
+     def _has_3dnow(self):
+         return re.match(r'.*?\b3dnow\b',self.info[0]['flags']) is not None
+@@ -271,20 +300,6 @@
+     def _has_3dnowext(self):
+         return re.match(r'.*?\b3dnowext\b',self.info[0]['flags']) is not None
+ 
+-    def _is_64bit(self):
+-        if self.is_Alpha():
+-            return True
+-        if self.info[0].get('clflush size','')=='64':
+-            return True
+-        if self.info[0].get('uname_m','')=='x86_64':
+-            return True
+-        if self.info[0].get('arch','')=='IA-64':
+-            return True
+-        return False
+-
+-    def _is_32bit(self):
+-        return not self.is_64bit()
+-
+ class IRIXCPUInfo(CPUInfoBase):
+     info = None
+ 
+@@ -412,11 +427,6 @@
+ 
+     def _not_impl(self): pass
+ 
+-    def _is_32bit(self):
+-        return self.info['isainfo_b']=='32'
+-    def _is_64bit(self):
+-        return self.info['isainfo_b']=='64'
+-
+     def _is_i386(self):
+         return self.info['isainfo_n']=='i386'
+     def _is_sparc(self):
+@@ -552,7 +562,7 @@
+     # require looking at the 'brand' from cpuid
+ 
+     def _is_AMD64(self):
+-        return self.is_AMD() and self.info[0]['Family'] == 15
++        return self.is_AMD() and self.info[0]['Family'] in [15,16]
+ 
+     # Intel
+ 

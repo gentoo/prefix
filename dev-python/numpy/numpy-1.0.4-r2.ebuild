@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.0.4-r2.ebuild,v 1.9 2008/05/06 19:24:08 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.0.4-r2.ebuild,v 1.10 2008/05/20 13:52:31 bicatali Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ DEPEND="${RDEPEND}
 
 IUSE="lapack"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 LICENSE="BSD"
 
 S="${WORKDIR}/${MY_P}"
@@ -75,8 +75,8 @@ src_unpack() {
 	# Patch to use feclearexcept(3) rather than fpsetsticky(3) on FreeBSD 5.3+
 	epatch "${FILESDIR}"/${P}-freebsd.patch
 
-	# Detect nocona hardware correctly.  Bug #183236.
-	epatch "${FILESDIR}"/${P}-nocona-cpuinfo.patch
+	# Detect phenom and nocona hardware correctly.  Bug #183236.
+	epatch "${FILESDIR}"/${P}-cpuinfo.patch
 
 	# Gentoo patch for ATLAS library and include dirs
 	sed -i \
