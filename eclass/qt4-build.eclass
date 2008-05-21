@@ -91,10 +91,11 @@ qt4_unpack() {
 qt4-build_src_unpack() {
 	qt4_unpack
 
-	use aqua && sed \
-		-e '/^CONFIG/s:app_bundle::' \
-		-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
+	if use aqua; then
+		sed -e '/^CONFIG/s:app_bundle::' \
+			-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
 		-i mkspecs/macx-g++/qmake.conf || die "sed failed"
+	fi
 
 	if [[ ${PN} != qt-core ]]; then
 		cd "${S}"
@@ -149,7 +150,7 @@ qt4-build_src_install() {
 standard_configure_options() {
 	local myconf=""
 
-+ 	[[ $(get_libdir) != "lib" ]] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
+	[[ $(get_libdir) != "lib" ]] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
 
 	# Disable visibility explicitly if gcc version isn't 4
 	if [[ "$(gcc-major-version)" -lt "4" ]]; then
