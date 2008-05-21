@@ -1,6 +1,6 @@
 Opera Browser Information: LICENSE.TXT
 ===========================================
-Copyright (C) Opera Software 1995-2006
+Copyright (C) Opera Software 1995-2008
 
 IMPORTANT NOTE
 
@@ -8,7 +8,7 @@ The Software, as defined below, is protected by copyright, which is vested in Op
 
 The Software may only be used in accordance with the terms and conditions set out in this document.
 
-If you do not read and agree to be bound by the terms and conditions defined in this document, you are not permitted to keep or use the Software or in any way whatsoever and must destroy or return all copies of these items which are in your possession.
+If you do not read and agree to be bound by the terms and conditions defined in this document, you are not permitted to keep or use the Software in any way whatsoever and must destroy or return all copies of these items which are in your possession.
 
 
 
@@ -30,21 +30,20 @@ means a particular person.
 
 TERMS OF AGREEMENT
 
-This is a legal agreement between you, the users, and Opera Software ASA. By installing or using this Software, you agree to be bound by the terms of this agreement. If you do not agree to those terms, you may not use or install the Software.
+This is a legal agreement between you, the users, and Opera Software ASA. By installing or using this Software, you agree to be bound by the terms of this agreement. If you do not agree to these terms, you may not use or install the Software.
 
 You are entitled to use the Software on all personal computers (laptops/desktops). "Use" means loaded in temporary memory or permanent storage on the computer.
 
 You may not use the Software on non-PC products, devices, or embedded in any other product, including, but not limited to, mobile devices, internet appliances, set top boxes (STB), handhelds, PDAs, phones, web pads, tablets, game consoles, TVs, gaming machines, home automation systems, or any other consumer electronics devices or mobile/cable/satellite/television or closed system based service.
 
 
-You may not sell, rent, lease or sublicense the Software, without the explicit 
-written consent of Opera Software ASA.
+You may not sell, rent, lease or sublicense the Software, without the explicit written consent of Opera Software ASA.
 
 The Software is protected by copyright laws and international treaties. 
 
 All intellectual property rights such as but not limited to patents, trademarks, copyrights or trade secret rights related to the Software are the property of and remains vested in Opera Software ASA/its suppliers.
 
-You shall not modify, translate, reverse engineer, decompile or disassemble the Software or any part thereof or otherwise attempt to derive source code or create derivative works therefrom.
+You shall not modify, translate, reverse engineer, decompile or disassemble the Software or any part thereof or otherwise attempt to derive source code, create or use derivative works therefrom.
 
 You are not allowed to remove, alter or destroy any proprietary, trademark or copyright markings or notices placed upon or contained with the Software.
 
@@ -53,7 +52,7 @@ YOU EXPRESSLY ACKNOWLEDGE AND AGREE THAT USE OF THE SOFTWARE IS AT YOUR OWN RISK
 
 YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT INTENDED FOR USE IN (I) ON-LINE CONTROL OF AIRCRAFT, AIR TRAFFIC, AIRCRAFT NAVIGATION OR AIRCRAFT COMMUNICATIONS; OR (II) IN THE DESIGN, CONSTRUCTION, OPERATION OR MAINTENANCE OF ANY NUCLEAR FACILITY.
 
-OPERA SOFTWARE ASA AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES RELATED TO: NON-INFRINGEMENT, LACK OF VIRUSES, ACCURACY OR COMPLETENESS OF RESPONSES OR RESULTS, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE .
+OPERA SOFTWARE ASA AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES RELATED TO: NON-INFRINGEMENT, LACK OF VIRUSES, ACCURACY OR COMPLETENESS OF RESPONSES OR RESULTS, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 IN NO EVENT SHALL OPERA SOFTWARE ASA OR ITS SUPPLIERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES OR FOR ANY DAMAGES WHATSOEVER (INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, PERSONAL INJURY, LOSS OF PRIVACY OR OTHER PECUNIARY OR OTHER LOSS WHATSOEVER) ARISING OUT OF USE OR INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
 
@@ -63,7 +62,7 @@ The Software may be subject to export or import regulations, and the user agrees
 
 Notice to U.S. Government Users: The Software and any associated documentation are "Commercial Items," as that term is defined at 48 C.F.R. 2.101, consisting of "Commercial Computer Software" and "Commercial Computer Software Documentation," as such terms are used in 48 C.F.R. 12.212 or 48 C.F.R. 227.7202, as applicable. Consistent with 48 C.F.R. 12.212 or 48 C.F.R. 227.7202-1 through 227.7202-4, as applicable, the Commercial Computer Software and Commercial Computer Software Documentation are licensed to U.S. Government end users (a) only as Commercial Items and (b) with only those rights as are granted to all other end users pursuant to the terms and conditions herein.
 
-Privacy statement: Opera Software ASA strives to protect the security and privacy of the users of its products, and will strictly protect the security of the usersí personal information, within the confines of the Opera domain. The Opera Software ASA privacy statement found at <http://www.opera.com/privacy/>, is incorporated in this Agreement by reference.
+Privacy statement: Opera Software ASA strives to protect the security and privacy of the users of its products, and will strictly protect the security of the users’ personal information, within the confines of the Opera domain. The Opera Software ASA privacy statement found at <http://www.opera.com/privacy/>, is incorporated in this Agreement by reference.
 
 Any variation to the terms of this Agreement shall only be valid if made in writing by Opera Software ASA.
 
@@ -91,3 +90,4 @@ Web site:
 
 Contact us:
 <http://www.opera.com/contact/>
+
