@@ -239,9 +239,7 @@ install_qconfigs() {
 		for x in QCONFIG_ADD QCONFIG_REMOVE; do
 			[[ -n ${!x} ]] && echo ${x}=${!x} >> "${T}"/${PN}-qconfig.pri
 		done
-		echo "blah"
 		insinto ${QTDATADIR#${EPREFIX}}/mkspecs/gentoo
-		echo "blah2"
 		doins "${T}"/${PN}-qconfig.pri || die "installing ${PN}-qconfig.pri failed"
 	fi
 
