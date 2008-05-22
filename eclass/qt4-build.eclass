@@ -261,7 +261,7 @@ qconfig_remove_option() { : ; }
 generate_qconfigs() {
 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${CATEGORY}/${PN} == x11-libs/qt-core ]]; then
 		local x qconfig_add qconfig_remove qconfig_new
-		for x in "${EROOT}${QTDATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
+		for x in "${ROOT}${QTDATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
 			[[ -f ${x} ]] || continue
 			qconfig_add="${qconfig_add} $(sed -n 's/^QCONFIG_ADD=//p' "${x}")"
 			qconfig_remove="${qconfig_remove} $(sed -n 's/^QCONFIG_REMOVE=//p' "${x}")"
@@ -269,10 +269,10 @@ generate_qconfigs() {
 
 		# these error checks do not use die because dying in pkg_post{inst,rm}
 		# just makes things worse.
-		if [[ -e "${EROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
+		if [[ -e "${ROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
 			# start with the qconfig.pri that qt-core installed
-			if ! cp "${EROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri \
-				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
+			if ! cp "${ROOT}${QTDATADIR}"/mkspecs/gentoo/qconfig.pri \
+				"${ROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
 				eerror "cp qconfig failed."
 				return 1
 			fi
@@ -280,36 +280,36 @@ generate_qconfigs() {
 			# generate list of QT_CONFIG entries from the existing list
 			# including qconfig_add and excluding qconfig_remove
 			for x in $(sed -n 's/^QT_CONFIG +=//p' \
-				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
+				"${ROOT}${QTDATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
 					hasq ${x} ${qconfig_remove} || qconfig_new="${qconfig_new} ${x}"
 			done
 
 			# replace the existing QT_CONFIG list with qconfig_new
 			if ! sed -i -e "s/QT_CONFIG +=.*/QT_CONFIG += ${qconfig_new}/" \
-				"${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
+				"${ROOT}${QTDATADIR}"/mkspecs/qconfig.pri; then
 				eerror "Sed for QT_CONFIG failed"
 				return 1
 			fi
 
 			# create Gentoo/qconfig.h
-			if [[ ! -e ${EROOT}${QTHEADERDIR}/Gentoo ]]; then
-				if ! mkdir -p "${EROOT}${QTHEADERDIR}"/Gentoo; then
+			if [[ ! -e ${ROOT}${QTHEADERDIR}/Gentoo ]]; then
+				if ! mkdir -p "${ROOT}${QTHEADERDIR}"/Gentoo; then
 					eerror "mkdir ${QTHEADERDIR}/Gentoo failed"
 					return 1
 				fi
 			fi
-			: > "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
-			for x in "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
+			: > "${ROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+			for x in "${ROOT}${QTHEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
 				[[ -f ${x} ]] || continue
-				cat "${x}" >> "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+				cat "${x}" >> "${ROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
 			done
 		else
-			rm -f "${EROOT}${QTDATADIR}"/mkspecs/qconfig.pri
-			rm -f "${EROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
-			rmdir "${EROOT}${QTDATADIR}"/mkspecs \
-				"${EROOT}${QTDATADIR}" \
-				"${EROOT}${QTHEADERDIR}"/Gentoo \
-				"${EROOT}${QTHEADERDIR}" 2>/dev/null
+			rm -f "${ROOT}${QTDATADIR}"/mkspecs/qconfig.pri
+			rm -f "${ROOT}${QTHEADERDIR}"/Gentoo/gentoo-qconfig.h
+			rmdir "${ROOT}${QTDATADIR}"/mkspecs \
+				"${ROOT}${QTDATADIR}" \
+				"${ROOT}${QTHEADERDIR}"/Gentoo \
+				"${ROOT}${QTHEADERDIR}" 2>/dev/null
 		fi
 	fi
 }
