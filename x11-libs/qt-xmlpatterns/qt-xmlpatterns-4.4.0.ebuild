@@ -11,7 +11,7 @@ HOMEPAGE="http://www.trolltech.com/"
 
 LICENSE="|| ( QPL-1.0 GPL-3 GPL-2 )"
 SLOT="4"
-KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND="~x11-libs/qt-core-${PV}"
@@ -27,14 +27,4 @@ src_compile() {
 	myconf="${myconf} -xmlpatterns"
 
 	qt4-build_src_compile
-}
-
-pkg_postinst()
-{
-	qconfig_add_option xmlpatterns
-}
-
-pkg_postrm()
-{
-	qconfig_remove_option xmlpatterns
 }
