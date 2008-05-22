@@ -239,7 +239,9 @@ install_qconfigs() {
 		for x in QCONFIG_ADD QCONFIG_REMOVE; do
 			[[ -n ${!x} ]] && echo ${x}=${!x} >> "${T}"/${PN}-qconfig.pri
 		done
-		insinto ${QTDATADIR}/mkspecs/gentoo
+		echo "blah"
+		insinto ${QTDATADIR#${EPREFIX}}/mkspecs/gentoo
+		echo "blah2"
 		doins "${T}"/${PN}-qconfig.pri || die "installing ${PN}-qconfig.pri failed"
 	fi
 
@@ -247,7 +249,7 @@ install_qconfigs() {
 		for x in ${QCONFIG_DEFINE}; do
 			echo "#define ${x}" >> "${T}"/gentoo-${PN}-qconfig.h
 		done
-		insinto ${QTHEADERDIR}/Gentoo
+		insinto ${QTHEADERDIR#${EPREFIX}}/Gentoo
 		doins "${T}"/gentoo-${PN}-qconfig.h || die "installing ${PN}-qconfig.h failed"
 	fi
 }
