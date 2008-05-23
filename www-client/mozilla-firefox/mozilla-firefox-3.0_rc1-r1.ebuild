@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_rc1.ebuild,v 1.3 2008/05/20 16:43:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_rc1-r1.ebuild,v 1.1 2008/05/21 10:45:54 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -142,9 +142,6 @@ src_compile() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 	MEXTENSIONS="default,typeaheadfind"
 
-	#if use xforms; then
-	#	MEXTENSIONS="${MEXTENSIONS},xforms"
-	#fi
 	####################################
 	#
 	# mozconfig, CFLAGS and CXXFLAGS setup
@@ -273,7 +270,12 @@ src_install() {
 		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
-		make_wrapper firefox "/usr/bin/xulrunner-1.9 ${EPREFIX}${MOZILLA_FIVE_HOME}/application.ini"
+		cat <<EOF >${ED}/usr/bin/firefox
+#!${EPREFIX}/bin/sh
+export LD_LIBRARY_PATH="${EPREFIX}/usr/$(get_libdir)/mozilla-firefox"
+exec "${EPREFIX}"/usr/$(get_libdir)/mozilla-firefox/firefox "\$@"
+EOF
+		fperms 0755 /usr/bin/firefox
 	else
 		# Create /usr/bin/firefox
 		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
