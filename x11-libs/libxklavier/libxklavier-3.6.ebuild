@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.5.ebuild,v 1.1 2008/03/17 23:24:13 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.6.ebuild,v 1.1 2008/05/22 21:28:38 eva Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ RDEPEND="|| ( x11-misc/xkeyboard-config x11-misc/xkbdata )
 		 x11-apps/xkbcomp
 		 x11-libs/libxkbfile
 		 >=dev-libs/glib-2.6
-		 >=dev-libs/libxml2-2.0"
+		 >=dev-libs/libxml2-2.0
+		 app-text/iso-codes"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		doc? ( app-doc/doxygen )"
