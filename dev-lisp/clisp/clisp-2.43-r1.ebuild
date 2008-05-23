@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43-r1.ebuild,v 1.4 2008/05/04 17:37:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43-r1.ebuild,v 1.5 2008/05/21 15:59:59 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ RDEPEND="dev-lisp/gentoo-init
 		 fastcgi? ( dev-libs/fcgi )
 		 gdbm? ( sys-libs/gdbm )
 		 gtk? ( >=x11-libs/gtk+-2.10 >=gnome-base/libglade-2.6 )
-		 postgres? ( >=dev-db/postgresql-8.0 )
+		 postgres? ( >=virtual/postgresql-server-8.0 )
 		 readline? ( sys-libs/readline )
 		 pcre? ( dev-libs/libpcre )
 		 svm? ( sci-libs/libsvm )

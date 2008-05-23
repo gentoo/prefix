@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.78 2008/05/17 16:04:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.79 2008/05/21 15:59:59 dev-zero Exp $
+
+  21 May 2008; Tiziano Müller <dev-zero@gentoo.org> clisp-2.43-r1.ebuild,
+  clisp-2.44.1.ebuild, clisp-2.44.1-r1.ebuild:
+  Changed dependency for postgresql from dev-db/postgresql to
+  virtual/postgresql-server
 
 *clisp-2.44.1-r1 (17 May 2008)
 
