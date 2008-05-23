@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.106 2008/04/09 21:34:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.107 2008/05/21 10:22:44 eva Exp $
+
+  21 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gnome-menus-2.18.3-other_category_fix.patch,
+  -gnome-menus-2.18.2.ebuild, -gnome-menus-2.18.3-r1.ebuild,
+  -gnome-menus-2.22.0.ebuild:
+  clean up old revisions.
 
 *gnome-menus-2.22.1 (09 Apr 2008)
 
