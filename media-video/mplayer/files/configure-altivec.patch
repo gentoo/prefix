@@ -1,0 +1,16 @@
+--- configure.orig	2008-05-20 22:18:27.000000000 -0600
++++ configure	2008-05-20 22:21:21.000000000 -0600
+@@ -2418,10 +2418,9 @@
+     cat > $TMPC << EOF
+ int main(void) { return 0; }
+ EOF
+-    cc_check -maltivec -mabi=altivec \
+-        && _altivec_gcc_flags="-maltivec -mabi=altivec" \
+-        || cc_check -faltivec && _altivec_gcc_flags=-faltivec \
+-        || _altivec=no
++    cc_check -maltivec -mabi=altivec && _altivec_gcc_flags="-maltivec -mabi=altivec"
++    test "x$_altivec_gcc_flags" = "x" && cc_check -faltivec && _altivec_gcc_flags=-faltivec
++    test "x$_altivec_gcc_flags" = "x" && _altivec=no
+     echores "$_altivec_gcc_flags"
+ 
+     # check if <altivec.h> should be included

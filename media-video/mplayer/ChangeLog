@@ -1,6 +1,36 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.572 2008/05/17 14:04:09 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.577 2008/05/22 17:45:39 armin76 Exp $
+
+  22 May 2008; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc2_p26753-r1.ebuild:
+  ia64/x86 stable
+
+  21 May 2008; Markus Rothe <corsair@gentoo.org>
+  mplayer-1.0_rc2_p26753-r1.ebuild:
+  Stable on ppc; bug #215006
+
+  21 May 2008; Ferris McCormick <fmccor@gentoo.org>
+  mplayer-1.0_rc2_p26753-r1.ebuild:
+  Sparc stable, Security Bug #215006.  All works well.
+
+  21 May 2008; Markus Rothe <corsair@gentoo.org>
+  mplayer-1.0_rc2_p26753-r1.ebuild:
+  Stable on ppc64; bug #215006
+
+*mplayer-1.0_rc2_p26753-r1 (21 May 2008)
+
+  21 May 2008; Steve Dibb <beandog@gentoo.org>
+  +files/configure-altivec.patch, +files/libswscale-sparc.patch,
+  +mplayer-1.0_rc2_p26753-r1.ebuild:
+  Fix compilation on ppc, sparc, bugs 217773, 222447 and 215006
+
+  Fix installing mplayer.desktop and mplayer.xpm, bug 219133
+
+  Remove strip restriction, bug 164492
+
+  Move CPU optimization checks out of custom-cflags use flag check, bug
+  212318
 
   17 May 2008; Tobias Klausmann <klausman@gentoo.org>
   mplayer-1.0_rc2_p26753.ebuild:

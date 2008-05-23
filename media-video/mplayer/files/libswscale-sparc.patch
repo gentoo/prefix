@@ -1,0 +1,21 @@
+--- libswscale/Makefile-	2008-05-17 19:28:46.000000000 +0000
++++ libswscale/Makefile	2008-05-17 19:29:16.000000000 +0000
+@@ -9,7 +9,7 @@
+ OBJS-$(CONFIG_GPL)         +=  yuv2rgb.o
+ OBJS-$(CONFIG_MLIB)        +=  yuv2rgb_mlib.c
+ OBJS-$(HAVE_ALTIVEC)       +=  yuv2rgb_altivec.o
+-OBJS-$(HAVE_VIS)           +=  yuv2rgb_vis.c
++OBJS-$(HAVE_VIS)           +=  yuv2rgb_vis.o
+ 
+ ASM_OBJS-$(ARCH_BFIN)      +=  internal_bfin.o
+ 
+--- libswscale/yuv2rgb_vis.c-	2008-05-17 19:28:59.000000000 +0000
++++ libswscale/yuv2rgb_vis.c	2008-05-17 19:30:01.000000000 +0000
+@@ -23,6 +23,7 @@
+ #include <stdlib.h>
+ 
+ #include "swscale.h"
++#include "swscale_internal.h"
+ 
+ #define YUV2RGB_INIT \
+     "wr %%g0, 0x10, %%gsr \n\t" \

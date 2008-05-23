@@ -1,20 +1,21 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26300-r1.ebuild,v 1.3 2008/04/07 22:22:18 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26753-r1.ebuild,v 1.5 2008/05/22 17:45:39 armin76 Exp $
 
 EAPI="prefix 1"
 
 inherit eutils flag-o-matic multilib
 
-RESTRICT="strip"
+MPLAYER_REVISION=26753
+
 IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
-bindist -color-console cddb cdio cdparanoia cpudetection custom-cflags debug
-dga doc dts dvb directfb +dvd dv enca encode esd -fbcon ftp -gif ggi gtk iconv
-ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum
-+mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png
--pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2
-ssse3 svga teletext tga +theora -tivo +truetype v4l v4l2 vidix win32codecs +X
-x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
+bindist cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb
+directfb +dvd dv enca encode esd -fbcon ftp -gif ggi gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum +mmx mmxext mp2
+-jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum +mmx mmxext mp2
++mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png -pnm pulseaudio
+quicktime radio -rar real rtc -samba sdl speex srt sse sse2 ssse3 svga teletext
+tga +theora +truetype v4l v4l2 vidix win32codecs +X x264 xanim xinerama
++xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -116,7 +117,6 @@ RDEPEND="sys-libs/ncurses
 	)"
 
 DEPEND="${RDEPEND}
-	!>=media-libs/libdvdnav-4.1.1
 	doc? ( >=app-text/docbook-sgml-dtd-4.1.2
 		app-text/docbook-xml-dtd
 		>=app-text/docbook-xml-simple-dtd-1.50.0
@@ -152,13 +152,18 @@ pkg_setup() {
 	fi
 
 	if use x86 || use amd64; then
-		if ! use mmx && use custom-cflags; then
+		if ! use mmx; then
 			ewarn "You have the 'mmx' use flag disabled for this package, which"
 			ewarn "means that no CPU optimizations will be used at all."
-			ewarn "The build will either break or encode very slowly.  Check your"
-			ewarn "/proc/cpuinfo for possible CPU optimization flags that"
-			ewarn "apply to this ebuild (mmx, mmxext, 3dnow, 3dnowext, sse,"
-			ewarn "sse2)."
+			ewarn ""
+			ewarn "The build will either break or playback and encode very"
+			ewarn "slowly."
+			ewarn ""
+			ewarn "Check /proc/cpuinfo for possible CPU optimization"
+			ewarn "flags that apply to this ebuild (mmx, mmxext, 3dnow,"
+			ewarn "3dnowext, sse, sse2), or if you are unsure enable them"
+			ewarn "for this package in /etc/portage/package.use and they"
+			ewarn "will be automatically detected by the build process."
 		fi
 	fi
 
@@ -179,6 +184,15 @@ src_unpack() {
 
 	cd "${S}"
 
+	# Fix sparc compilation, bug 215006
+	epatch "${FILESDIR}/libswscale-sparc.patch"
+
+	# Fix PPC configure check, but 222447
+	epatch "${FILESDIR}/configure-altivec.patch"
+
+	# Set version #
+	sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
+
 	# Fix hppa compilation
 	use hppa && sed -i -e "s/-O4/-O1/" "${S}/configure"
 
@@ -196,7 +210,7 @@ src_unpack() {
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26300-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26450-prefix.patch
 }
 
 src_compile() {
@@ -217,11 +231,9 @@ src_compile() {
 	###############
 	use bidi || myconf="${myconf} --disable-fribidi"
 	use bl && myconf="${myconf} --enable-bl"
-	use color-console && myconf="${myconf} --enable-color-console"
 	use enca || myconf="${myconf} --disable-enca"
 	use ftp || myconf="${myconf} --disable-ftp"
 	use nemesi || myconf="${myconf} --disable-nemesi"
-	use tivo || myconf="${myconf} --disable-vstream"
 	use xscreensaver || myconf="${myconf} --disable-xss"
 
 	# libcdio support: prefer libcdio over cdparanoia
@@ -245,9 +257,11 @@ src_compile() {
 	fi
 
 	if use encode; then
-		use aac || myconf="${myconf} --disable-faac"
+		use aac || myconf="${myconf} --disable-faac --disable-faac-lavc"
 		use dv || myconf="${myconf} --disable-libdv"
-		use x264 || myconf="${myconf} --disable-x264"
+		use mp3 || myconf="${myconf} --disable-mp3lame --disable-mp3lame-lavc"
+		use x264 || myconf="${myconf} --disable-x264 --disable-x264-lavc"
+		use xvid || myconf="${myconf} --disable-xvid --disable-xvid-lavc"
 	else
 		myconf="${myconf} --disable-mencoder --disable-libdv --disable-x264 \
 			--disable-faac"
@@ -288,16 +302,16 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
-			--disable-dvb --disable-dvbhead --disable-tv-teletext"
+			--disable-dvb --disable-dvbhead --disable-tv-teletext \
+			--disable-v4l2"
 	fi
 
 	#########
 	# Codecs #
 	########
-	for x in gif jpeg live mad musepack pnm speex tga theora xanim xvid; do
+	for x in gif jpeg live mad musepack pnm speex tga theora xanim; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
-	use aac || myconf="${myconf} --disable-faad-internal"
 	use amrnb || myconf="${myconf} --disable-libamr_nb"
 	use amrwb || myconf="${myconf} --disable-libamr_wb"
 	use dts || myconf="${myconf} --disable-libdca"
@@ -387,24 +401,23 @@ src_compile() {
 			myconf="${myconf} --enable-runtime-cpudetection"
 		fi
 	fi
-	# Letting users turn off optimizations results in epic build fail
-	# across the board.  MPlayer's build system by default will
-	# detect them and use them just fine, so don't let them change
-	# them unless they really know what they are doing anyway.
-	if use custom-cflags; then
-		if use mmx; then
-			for x in 3dnow 3dnowext mmxext sse sse2 ssse3; do
-				use ${x} || myconf="${myconf} --disable-${x}"
-			done
-		else
-			myconf="${myconf} --disable-mmx --disable-mmxext --disable-sse \
-			--disable-sse2 --disable-ssse3 --disable-3dnow \
-			--disable-3dnowext"
-		fi
+
+	# Turning off CPU optimizations usually will break the build.  Forcbily
+	# enabling them isn't an option, so ewarn from above hopefully will
+	# suffice.
+	if use mmx; then
+		for x in 3dnow 3dnowext mmxext sse sse2 ssse3; do
+			use ${x} || myconf="${myconf} --disable-${x}"
+		done
+	else
+		myconf="${myconf} --disable-mmx --disable-mmxext --disable-sse \
+		--disable-sse2 --disable-ssse3 --disable-3dnow \
+		--disable-3dnowext"
 	fi
 
 	use debug && myconf="${myconf} --enable-debug=3"
 
+	# This should be use masked on non ppc arches
 	myconf="${myconf} $(use_enable altivec)"
 
 	if use custom-cflags; then
@@ -475,6 +488,10 @@ src_install() {
 		# Fix the symlink
 		rm -rf "${ED}/usr/bin/gmplayer"
 		dosym mplayer /usr/bin/gmplayer
+
+		# This version of Makefile doesn't call install-gui directly,
+		# leaving out mplayer.{desktop,xpm}, bug 219133
+		emake DESTDIR="${D}" install-gui
 	fi
 
 	if ! use srt && ! use truetype; then
