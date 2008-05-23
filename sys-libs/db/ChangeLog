@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.242 2008/03/20 00:34:02 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.243 2008/05/21 18:31:01 caleb Exp $
+
+*db-4.6.21_p1 (21 May 2008)
+
+  21 May 2008; Caleb Tennis <caleb@gentoo.org> -db-4.6.19.ebuild,
+  -db-4.6.21.ebuild, +db-4.6.21_p1.ebuild:
+  patch rev bump, remove older versions of 4.6
 
   20 Mar 2008; Ryan Hill <dirtyepic@gentoo.org> db-4.5.20_p2.ebuild:
   Keyword ~mips for bug #178750.
