@@ -11,7 +11,7 @@ SRC_URI="mirror://openldap/openldap-release/${P}.tgz"
 
 LICENSE="OPENLDAP"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 IUSE_DAEMON="crypt samba slp tcpd experimental minimal"
 IUSE_BACKEND="+berkdb"
