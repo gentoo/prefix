@@ -1,6 +1,74 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.521 2008/03/05 23:32:09 ingmar Exp $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/qt/ChangeLog,v 1.539 2008/05/19 20:23:47 dev-zero Exp $
+
+  19 May 2008; Tiziano Müller <dev-zero@gentoo.org> qt-3.3.8-r4.ebuild,
+  qt-4.3.3.ebuild, qt-4.3.4-r1.ebuild:
+  Changed dependency for postgresql to virtual/postgresql-base
+
+  16 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> -qt-3.3.4-r8.ebuild,
+  -qt-4.3.2-r1.ebuild, -qt-4.4.0_rc1.ebuild:
+  Old.
+
+*qt-4.4.0 (15 May 2008)
+
+  15 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-4.4.0_rc1.ebuild,
+  +qt-4.4.0.ebuild:
+  Version bump to Qt-4.4.0.
+
+  11 May 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/qt-3.3.8-immqt+gcc-4.3.patch, qt-3.3.8-r4.ebuild:
+  Add patch to build with gcc-4.3 and immqt-bc USE flag enabled. Thanks to
+  Matsuu for linking the Debian patch in bug #218447.
+
+  18 Apr 2008; Markus Meier <maekke@gentoo.org> qt-4.3.3.ebuild:
+  amd64 stable, bug #217529
+
+  18 Apr 2008; Raúl Porcel <armin76@gentoo.org> qt-4.3.3.ebuild:
+  x86 stable wrt #217529
+
+  17 Apr 2008; nixnut <nixnut@gentoo.org> qt-4.3.3.ebuild:
+  Stable on ppc wrt bug 217529
+
+  14 Apr 2008; Markus Rothe <corsair@gentoo.org> qt-4.3.3.ebuild:
+  Stable on ppc64; bug #217529
+
+  14 Apr 2008; Raúl Porcel <armin76@gentoo.org> qt-4.3.3.ebuild:
+  alpha/ia64 stable wrt #217529
+
+  13 Apr 2008; Ferris McCormick <fmccor@gentoo.org> qt-4.3.3.ebuild:
+  Sparc stable --- Bug #217529 --- Good since 2007-12-06.
+
+  13 Apr 2008; Jeroen Roovers <jer@gentoo.org> qt-4.3.3.ebuild:
+  Stable for HPPA (bug #217529).
+
+  13 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-4.3.3.ebuild,
+  -qt-4.3.4.ebuild, qt-4.3.4-r1.ebuild:
+  Make USE="accessibility qt3support" default through IUSE defaults, bug
+  217400. Remove old.
+
+  10 Apr 2008; Ingmar Vanhassel <ingmar@gentoo.org> -qt-4.4.0_beta1.ebuild,
+  +qt-4.4.0_rc1.ebuild:
+  Version bump qt to 4.4.0_rc1. Thanks to Bo Andresen and Bernd Steinhauser.
+
+  19 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> ChangeLog:
+  Anti-aliasing rules are broken in qt-4.3*, causing random runtime failures
+  in Qt programs. bug 213411. Fixed by appending -fno-strict-aliasing.
+
+  16 Mar 2008; Bo Ørsted Andresen <zlin@gentoo.org> qt-4.4.0_beta1.ebuild:
+  The qt meta ebuild needs to block previous versions of qt:4 too.
+
+  11 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-4.3.2-r1.ebuild,
+  qt-4.3.4.ebuild:
+  "append-flags -fno-gcse" on amd64 with gcc 3, bug 178652.
+
+  09 Mar 2008; Bo Ørsted Andresen <zlin@gentoo.org> qt-4.4.0_beta1.ebuild:
+  Revert last commit.
+
+  09 Mar 2008; Bo Ørsted Andresen <zlin@gentoo.org> -qt-4.4.0_beta1.ebuild:
+  Removing the qt-4.4 meta ebuild. Packages are not supposed to DEPEND on meta
+  ebuilds and this causes pain without ranged dependencies. If a meta ebuild
+  is needed it should be added as qt-meta-4.4.0_beta1 instead.
 
   05 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> -qt-4.4.0_rc1.ebuild:
   Old.
