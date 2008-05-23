@@ -36,7 +36,7 @@ PROVIDE="virtual/blackbox"
 
 SLOT="0"
 LICENSE="MIT"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 pkg_setup() {
 	if use imlib && ! built_with_use media-libs/imlib2 X ; then
