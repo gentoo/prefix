@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.5.0-r3.ebuild,v 1.9 2007/09/27 14:03:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r1.ebuild,v 1.1 2008/05/21 14:13:19 voyageur Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="ao debug ipv6 oss"
+IUSE="ao debug ipv6 oss pcsc-lite"
 
 S=${WORKDIR}/${PN}-${MY_PV}
 
@@ -24,41 +24,42 @@ RDEPEND=">=dev-libs/openssl-0.9.6b
 	x11-libs/libXext
 	x11-libs/libXau
 	x11-libs/libXdmcp
-	ao? ( >=media-libs/libao-0.8.6 )"
+	ao? ( >=media-libs/libao-0.8.6 )
+	pcsc-lite? ( sys-apps/pcsc-lite )"
 DEPEND="${RDEPEND}
 	x11-libs/libXt"
 
 src_unpack() {
-	unpack ${A} && cd "${S}"
+	unpack ${A}
+	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-libX11-segfault-fix.patch"
-}
-
-src_compile() {
-	sed -i -e '/-O2/c\' -e 'cflags="$cflags ${CFLAGS}"' configure
+	# Prevent automatic stripping
 	local strip="$(echo '$(STRIP) $(DESTDIR)$(bindir)/rdesktop')"
 	sed -i -e "s:${strip}::" Makefile.in \
 		|| die "sed failed in Makefile.in"
+}
 
+src_compile() {
 	if use oss; then
-		extra_conf=`use_with oss sound`
+		extra_conf=$(use_with oss sound)
 	else
-		extra_conf=`use_with ao sound libao`
+		extra_conf=$(use_with ao sound libao)
 	fi
 
 	econf \
 		--with-openssl="${EPREFIX}"/usr \
-		`use_with debug` \
-		`use_with ipv6` \
+		$(use_with debug) \
+		$(use_with ipv6) \
+		$(use_enable pcsc-lite smartcard) \
 		${extra_conf} \
-		|| die
+		|| die "configuration failed"
 
-	emake || die
+	emake || die "compilation failed"
 }
 
 src_install() {
-	make DESTDIR=${D} install
-	dodoc COPYING doc/HACKING doc/TODO doc/keymapping.txt
+	emake DESTDIR="${D}" install || die "installation failed"
+	dodoc doc/HACKING doc/TODO doc/keymapping.txt
 
 	# For #180313 - applies to versions >= 1.5.0
 	# Fixes sf.net bug
