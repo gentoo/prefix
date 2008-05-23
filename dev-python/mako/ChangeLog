@@ -1,0 +1,17 @@
+# ChangeLog for dev-python/mako
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/mako/ChangeLog,v 1.3 2008/05/02 05:06:39 pythonhead Exp $
+
+  02 May 2008; Rob Cakebread <pythonhead@gentoo.org> metadata.xml,
+  mako-0.1.10.ebuild:
+  Added unit tests and documentation, python herd to maintainer
+
+  09 Mar 2008; Alec Warner <antarus@gentoo.org> mako-0.1.10.ebuild:
+  create and use MY_P
+
+*mako-0.1.10 (09 Mar 2008)
+
+  09 Mar 2008; Alec Warner <antarus@gentoo.org> +metadata.xml,
+  +mako-0.1.10.ebuild:
+  Initial import of mako templating thing
+

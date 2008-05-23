@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!-- 
+$Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/mako/metadata.xml,v 1.2 2008/05/02 05:06:39 pythonhead Exp $
+-->
+<pkgmetadata>
+<herd>python</herd>
+<maintainer>
+  <email>antarus@gentoo.org</email>
+</maintainer>
+</pkgmetadata>
