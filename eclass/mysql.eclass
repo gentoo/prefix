@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.89 2008/04/05 00:43:26 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.90 2008/05/22 18:13:33 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -50,6 +50,7 @@ done
 MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
 
 # Be warned, *DEPEND are version-dependant
+# These are used for both runtime and compiletime
 DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 		kernel_linux? ( sys-process/procps )
 		>=sys-apps/sed-4
@@ -63,17 +64,24 @@ for i in "" "-community" ; do
 	DEPEND="${DEPEND} !dev-db/mysql${i}"
 done
 
+RDEPEND="${DEPEND}
+		!minimal? ( dev-db/mysql-init-scripts )
+		selinux? ( sec-policy/selinux-mysql )"
+
+# compile-time-only
 mysql_version_is_at_least "5.1" \
 || DEPEND="${DEPEND} berkdb? ( sys-apps/ed )"
 
+# compile-time-only
 mysql_version_is_at_least "5.1.12" \
 && DEPEND="${DEPEND} innodb? ( >=dev-util/cmake-2.4.3 )"
 
-# dev-perl/DBD-mysql is needed by some scripts installed by MySQL
-PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
-
 # BitKeeper dependency, compile-time only
 [[ ${IS_BITKEEPER} -eq 90 ]] && DEPEND="${DEPEND} dev-util/bk_client"
+
+
+# dev-perl/DBD-mysql is needed by some scripts installed by MySQL
+PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
 # Work out the default SERVER_URI correctly
 if [ -z "${SERVER_URI}" ]; then
@@ -122,10 +130,6 @@ mysql_version_is_at_least "5.1" \
 
 mysql_version_is_at_least "5.1.12" \
 && IUSE="${IUSE} pbxt"
-
-RDEPEND="${DEPEND}
-		!minimal? ( dev-db/mysql-init-scripts )
-		selinux? ( sec-policy/selinux-mysql )"
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst \
 				pkg_postinst pkg_config pkg_postrm

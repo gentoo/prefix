@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.215 2008/05/17 15:41:01 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.216 2008/05/22 23:12:27 ingmar Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -454,7 +454,7 @@ kde_src_install() {
 #
 # Thanks to Carsten Lohrke in bug 98425.
 slot_rebuild() {
- :
+	:
 }
 
 # @FUNCTION: kde_pkg_preinst
