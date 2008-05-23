@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/xar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.15 2008/05/19 15:17:30 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.16 2008/05/21 09:09:29 armin76 Exp $
+
+  21 May 2008; Raúl Porcel <armin76@gentoo.org> xar-1.5.2.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   19 May 2008; Samuli Suominen <drac@gentoo.org>
   +files/xar-1.5.2-automagic_acl_and_bzip2.patch, -xar-1.5.1.ebuild,
