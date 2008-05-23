@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/portaudio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.50 2008/05/20 09:22:41 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.54 2008/05/22 17:46:56 armin76 Exp $
+
+  22 May 2008; Raúl Porcel <armin76@gentoo.org>
+  portaudio-19_pre20071207.ebuild:
+  Add ~ia64
+
+  22 May 2008; Tobias Klausmann <klausman@gentoo.org>
+  portaudio-19_pre20071207.ebuild:
+  Keyworded on alpha, bug #223059
+
+  22 May 2008; Markus Rothe <corsair@gentoo.org>
+  portaudio-19_pre20071207.ebuild:
+  Added ~ppc64; bug #223059
+
+  21 May 2008; Ferris McCormick <fmccor@gentoo.org>
+  portaudio-19_pre20071207.ebuild:
+  Add ~sparc in preparation for Bug #223015.
 
   20 May 2008; Samuli Suominen <drac@gentoo.org>
   portaudio-19_pre20071207.ebuild:
