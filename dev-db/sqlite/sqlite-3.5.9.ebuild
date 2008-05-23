@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.3.ebuild,v 1.9 2008/03/11 18:24:52 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.9.ebuild,v 1.1 2008/05/22 22:53:37 betelgeuse Exp $
 
 EAPI="prefix 1"
 
-inherit versionator alternatives eutils flag-o-matic libtool
+inherit versionator eutils flag-o-matic libtool autotools
 
 DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
@@ -14,7 +14,7 @@ SRC_URI="http://www.sqlite.org/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="3"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
@@ -22,10 +22,7 @@ RDEPEND="tcl? ( dev-lang/tcl )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )"
 
-SOURCE="/usr/bin/lemon"
-ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"
-
-src_unpack() {
+pkg_setup() {
 	# test
 	if has test ${FEATURES}; then
 		if ! has userpriv ${FEATURES}; then
@@ -33,18 +30,19 @@ src_unpack() {
 			eerror "Testsuite will not be run."
 		fi
 		if ! use tcl; then
-			ewarn "You must enable the tcl use flag if you want to run the test"
-			ewarn "suite."
+			ewarn "You must enable the tcl use flag if you want to run the testsuite."
 			eerror "Testsuite will not be run."
 		fi
 	fi
+}
 
+src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
 	epatch "${FILESDIR}"/sandbox-fix2.patch
 
-	elibtoolize
+	eautoreconf # need new libtool for interix
 	epunt_cxx
 }
 
@@ -52,12 +50,12 @@ src_compile() {
 	# not available via configure and requested in bug #143794
 	use soundex && append-flags -DSQLITE_SOUNDEX=1
 
-	econf ${myconf} \
+	econf \
 		$(use_enable debug) \
 		$(use_enable threadsafe) \
 		$(use_enable threadsafe cross-thread-connections) \
-		$(use_enable tcl)
-
+		$(use_enable tcl) \
+		|| die
 	emake all || die "emake all failed"
 }
 
@@ -73,14 +71,12 @@ src_test() {
 	fi
 }
 
-src_install () {
+src_install() {
 	emake \
 		DESTDIR="${D}" \
 		TCLLIBDIR="${EPREFIX}/usr/$(get_libdir)" \
 		install \
 		|| die "emake install failed"
-
-	newbin lemon lemon-${SLOT} || die
 
 	dodoc README VERSION || die
 	doman sqlite3.1 || die
@@ -90,4 +86,8 @@ src_install () {
 	if use doc; then
 		dohtml -r "${WORKDIR}"/${PN}-docs-${PV}/* || die
 	fi
+}
+
+pkg_postinst() {
+	einfo "lemon is not installed any more because it's an internal build tool"
 }
