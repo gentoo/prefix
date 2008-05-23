@@ -1,23 +1,23 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.13 2008/05/04 12:20:46 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20080521.ebuild,v 1.1 2008/05/21 19:00:17 nyhm Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
-HOMEPAGE="http://developer.berlios.de/projects/gentoo-bashcomp/"
-SRC_URI="mirror://berlios/${PN}/${P}.tar.bz2"
+HOMEPAGE="http://www.gentoo.org/"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-RDEPEND=">=app-shells/bash-completion-20050121-r3"
+RDEPEND="app-shells/bash-completion"
 
 src_install() {
-	emake DESTDIR="${ED}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog TODO
+	emake DESTDIR="${D}${EPREFIX}" install || die "emake install failed"
+	dodoc AUTHORS ChangeLog NEWS TODO
 }
 
 pkg_postinst() {
