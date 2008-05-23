@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${MY_P}.zip"
 
 LICENSE="as-is Apache-1.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 RDEPEND=">=virtual/jre-1.3
 	>=dev-java/xerces-2.7
