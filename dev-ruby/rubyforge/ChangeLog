@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.25 2008/04/17 10:54:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.26 2008/05/22 17:54:50 graaff Exp $
+
+*rubyforge-1.0.0 (22 May 2008)
+
+  22 May 2008; Hans de Graaff <graaff@gentoo.org> +rubyforge-1.0.0.ebuild:
+  Version bump: 
+  
+   * Removed HTTPAccess2, thanks to Aaron Patterson. Even tho he's whiny.
+   * Changed initialize/configure to make testing scream. 100x faster.
 
   17 Apr 2008; Raúl Porcel <armin76@gentoo.org> rubyforge-0.4.5.ebuild:
   ia64 stable wrt #217389
