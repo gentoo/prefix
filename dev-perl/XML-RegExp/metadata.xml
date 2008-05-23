@@ -6,5 +6,9 @@
 		<email>perl@gentoo.org</email>
 		<description>Primary Maintainer</description>
 	</maintainer>
-	<longdescription></longdescription>
+	<longdescription>
+		This package contains regular expressions for the following XML tokens:
+		BaseChar, Ideographic, Letter, Digit, Extender, CombiningChar, NameChar,
+		EntityRef, CharRef, Reference, Name, NmToken, and AttValue.
+	</longdescription>
 </pkgmetadata>
