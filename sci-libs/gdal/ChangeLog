@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.42 2008/05/20 00:37:33 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.43 2008/05/21 19:01:41 dev-zero Exp $
+
+  21 May 2008; Tiziano Müller <dev-zero@gentoo.org> gdal-1.3.1.ebuild,
+  gdal-1.3.2.ebuild, gdal-1.4.2.ebuild, gdal-1.5.0-r1.ebuild,
+  gdal-1.5.1.ebuild:
+  Changed dependency for postgresql from dev-db/postgresql to
+  virtual/postgresql-server
 
 *gdal-1.5.1 (20 May 2008)
 
