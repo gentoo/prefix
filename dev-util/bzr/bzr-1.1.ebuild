@@ -16,7 +16,7 @@ SRC_URI="http://bazaar-vcs.org/releases/src/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="curl emacs sftp test"
 
 RDEPEND="|| ( dev-python/celementtree >=dev-lang/python-2.5 )
