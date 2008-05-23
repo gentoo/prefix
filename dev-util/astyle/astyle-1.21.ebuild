@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.21.ebuild,v 1.5 2008/05/17 13:54:53 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.21.ebuild,v 1.6 2008/05/21 19:15:05 opfer Exp $
 
 EAPI="prefix"
 
