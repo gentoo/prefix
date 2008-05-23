@@ -338,27 +338,27 @@ symlink_binaries_to_buildtree() {
 }
 
 fix_library_files() {
-	for libfile in "${ED}"/${QTLIBDIR}/{*.la,*.prl,pkgconfig/*.pc}; do
+	for libfile in "${D}"/${QTLIBDIR}/{*.la,*.prl,pkgconfig/*.pc}; do
 		if [[ -e ${libfile} ]]; then
 			sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${libfile} || die "Sed on ${libfile} failed."
 		fi
 	done
 
 	# pkgconfig files refer to WORKDIR/bin as the moc and uic locations.  Fix:
-	for libfile in "${ED}"/${QTLIBDIR}/pkgconfig/*.pc; do
+	for libfile in "${D}"/${QTLIBDIR}/pkgconfig/*.pc; do
 		if [[ -e ${libfile} ]]; then
 			sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${libfile} || die "Sed failed"
 
 	# Move .pc files into the pkgconfig directory
 
-		dodir ${QTPCDIR}
-		mv ${libfile} "${ED}"/${QTPCDIR}/ \
-			|| die "Moving ${libfile} to ${ED}/${QTPCDIR}/ failed."
+		dodir ${QTPCDIR#${EPREFIX}}
+		mv ${libfile} "${D}"/${QTPCDIR}/ \
+			|| die "Moving ${libfile} to ${D}/${QTPCDIR}/ failed."
 		fi
 	done
 
 	# Don't install an empty directory
-	rmdir "${ED}"/${QTLIBDIR}/pkgconfig
+	rmdir "${D}"/${QTLIBDIR}/pkgconfig
 }
 
 qt_use() {
