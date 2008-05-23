@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pycurl
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.47 2007/10/08 08:45:39 tgall Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.48 2008/05/21 21:12:31 hawking Exp $
+
+*pycurl-7.18.1 (21 May 2008)
+
+  21 May 2008; Ali Polatel <hawking@gentoo.org> +pycurl-7.18.1.ebuild:
+  Version bump.
 
   08 Aug 2007; Tom Gall <tgall@gentoo.org> pycurl-7.16.4.ebuild:
   stable on ppc64
