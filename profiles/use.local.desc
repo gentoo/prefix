@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3547 2008/05/20 23:53:10 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3552 2008/05/22 13:49:00 dev-zero Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -209,6 +209,7 @@ app-misc/fdupes:md5sum-external - Use external md5sum program instead of bundled
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/geneweb:ocamlopt - Enable ocamlopt support (ocaml native code compiler)
 app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
+app-misc/gramps:reports - All external software that is needed for graphical reports will be installed
 app-misc/graphlcd-base:g15 - Add support for g15daemon driver ( e.g Logitech G15 Keybord )
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music
 app-misc/lcd4linux:mpd - Add support for display of mpd controlled music
@@ -530,6 +531,7 @@ dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/qsa:ide - enable the qsa ide
 dev-libs/soprano:clucene - Enable clucene backend support (recommended)
 dev-libs/xerces-c:icu - Use ICU as message loader and transcoder instead of builtin or iconv
+dev-libs/xerces-c:xqilla - Apply patches from the XQilla project and install additional header files
 dev-libs/yaz:icu - Enable ICU (Internationalization Components for Unicode) support, using dev-libs/icu
 dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
 dev-lisp/abcl:clisp - Build Armed Bear Common Lisp using GNU CLISP
@@ -1276,6 +1278,7 @@ media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
+media-video/vdr:analogtv - Add support for the analogtv plugin
 media-video/vdr:atsc - Support for NorthAmerican Broadcast ( rudimentary )
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
@@ -1297,6 +1300,7 @@ media-video/vdr:dvlrecscriptaddon - enhancement for record-script
 media-video/vdr:dvlvidprefer - controls video-dir choice on recording
 media-video/vdr:dxr3 - Enable tweaks to improve vdr behaviour on dxr3-cards
 media-video/vdr:dxr3-audio-denoise - Mutes audio noise occurring with dxr3-cards using analog audio-out when e.g. cutting
+media-video/vdr:em84xx - Add support for em84xx plugin
 media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.7
 media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
 media-video/vdr:iptv - Enables support for vdr-iptv
@@ -1690,6 +1694,7 @@ net-misc/quagga:ospfapi - Enable OSPFAPI support for client applications accessi
 net-misc/quagga:realms - Enable realms support (see http://vcalinus.gemenii.ro/quaggarealms.html)
 net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise.
 net-misc/quagga:tcpmd5 - Enable TCP MD5 checksumming
+net-misc/rdesktop:pcsc-lite - Enable smartcard support with pcsc-lite driver
 net-misc/scponly:rsync - Enabling rsync compatibility with potential security risks
 net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites.  sftp is a much more secure protocol and is preferred.
 net-misc/sitecopy:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support.  This system allows users to collaborate on websites using a web based interface.  See the ebuild for an FAQ page.  Enables neon as well to handle webdav support.
@@ -1759,6 +1764,7 @@ net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
 net-p2p/museek+:trayicon - Enable support for trayicon
+net-print/hplip:cupsddk - Enable dynamic PPD files through cupsddk
 net-print/hplip:fax - Enable fax support
 net-print/hplip:parport - Enable parallel port support
 net-print/omni:epson - include the epson drivers

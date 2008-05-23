@@ -1,10 +1,34 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1440 2008/05/21 00:15:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1449 2008/05/22 13:49:00 dev-zero Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  22 May 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Add xqilla USE-flag for xerces-c
+
+  22 May 2008; Mark Loeser <halcy0n@gentoo.org> package.mask:
+  Mask dev-cpp/libwrapiter for removal
+
+  21 May 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Add revision of timidity++ into portaudio v19 mask.
+
+  21 May 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  USE flag reports for app-misc/gramps
+
+  21 May 2008; Bernard Cafarelli <voyageur@gentoo.org> use.local.desc:
+  Add pcsc-lite USE flag for net-misc/rdesktop
+
+  21 May 2008; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Added two local use-flags for media-video/vdr: analogtv and em84xx.
+
+  21 May 2008; Samuli Suominen <drac@gentoo.org> updates/2Q-2008:
+  Move xfce-extra/xfmpc to media-sound/xfmpc.
+
+  21 May 2008; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local USE flag 'cupsddk' for net-print/hplip.
 
   21 May 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
   =www-client/opera-9.50_beta2_pre* left the tree.

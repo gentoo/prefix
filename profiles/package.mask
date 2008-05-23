@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8646 2008/05/21 00:15:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8650 2008/05/22 02:43:04 halcy0n Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mark Loeser <halcy0n@gentoo.org> (21 May 2008)
+# Dead upstream and not used by anything
+# Masked for removal in 30 days
+dev-cpp/libwrapiter
 
 # Tony Vroon <chainsaw@gentoo.org> (20 May 2008)
 # This package is unmaintained and is unstable for
@@ -275,6 +280,8 @@ media-sound/lastfmproxy
 >=www-client/mozilla-firefox-bin-3.0_beta1
 >=dev-libs/nss-3.12_alpha1
 >=dev-libs/nspr-4.7.1_beta1
+>=mail-client/mozilla-thunderbird-3.0_alpha1
+>=mail-client/mozilla-thunderbird-bin-3.0_alpha1
 
 # Ben de Groot <yngwin@gentoo.org> (7 Apr 2008)
 # Versioning scheme change after pkgmove from -svn
@@ -335,6 +342,7 @@ media-sound/lastfmproxy
 # with the new include layout
 >=media-video/ffmpeg-0.4.9_p20080206
 =media-gfx/blender-2.45-r3
+=media-gfx/blender-2.46-r1
 =x11-misc/xvidcap-1.1.7_rc1
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
@@ -1231,8 +1239,9 @@ games-rpg/openrpg
 # Alexis Ballier <aballier@gentoo.org> (30 Mar 2007)
 # Portaudio v19 : api changes
 >=media-libs/portaudio-19_pre061121
-=media-sound/jack-audio-connection-kit-0.109.2-r1
+>=media-sound/jack-audio-connection-kit-0.109.2-r1
 >=media-sound/mixxx-1.6.0_beta2
+>=media-sound/timidity++-2.13.2-r7
 
 # Piotr Jaroszyński <peper@gentoo.org> (28 Mar 2006)
 # Unusable for now.
