@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.24.ebuild,v 1.6 2008/05/20 18:38:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.24.ebuild,v 1.9 2008/05/22 22:46:12 eva Exp $
 
 EAPI="prefix"
 
@@ -34,8 +34,12 @@ src_unpack() {
 	# Patch Makefile to fix bug #99382 so that html gets installed in ${PF}
 	sed -i -e "s:libxslt-\$(VERSION):${PF}:" doc/Makefile.am
 
-	#eautomake
-	eautoreconf # need new libtool for interix
+	# Fix broken <python-2.5 site-packages detection
+	# see bug #86756 and bug #218643
+	python_version
+	sed -i "s:^\(AC_SUBST(PYTHON_SITE_PACKAGES)\):PYTHON_SITE_PACKAGES=\"${EPREFIX}/usr/$(get_libdir)/python${PYVER}/site-packages\"\n\1:" configure.in
+
+	eautoreconf # also needed for new libtool on Interix
 	epunt_cxx
 	elibtoolize
 }
