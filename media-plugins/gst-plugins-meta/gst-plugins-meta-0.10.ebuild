@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0.10"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="alsa esd oss X xv"
 
 RDEPEND="oss? ( >=media-plugins/gst-plugins-oss-0.10 )

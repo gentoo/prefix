@@ -1,6 +1,10 @@
 # ChangeLog for media-plugins/gst-plugins-meta
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/ChangeLog,v 1.10 2008/04/02 23:42:58 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/ChangeLog,v 1.11 2008/05/22 07:44:30 corsair Exp $
+
+  22 May 2008; Markus Rothe <corsair@gentoo.org>
+  gst-plugins-meta-0.10-r1.ebuild:
+  Added ~ppc64; bug #215972
 
   02 Apr 2008; Mart Raudsepp <leio@gentoo.org>
   gst-plugins-meta-0.10-r2.ebuild:

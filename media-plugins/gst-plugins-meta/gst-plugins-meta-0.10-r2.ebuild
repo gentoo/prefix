@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0.10"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="a52 alsa dvb dvd esd ffmpeg flac mad mpeg mythtv ogg oss theora vorbis X xv"
 
 RDEPEND="a52? ( >=media-plugins/gst-plugins-a52dec-0.10 )
