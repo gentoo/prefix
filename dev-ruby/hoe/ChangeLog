@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.30 2008/04/17 10:56:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.32 2008/05/22 18:00:15 graaff Exp $
+
+*hoe-1.5.3 (22 May 2008)
+
+  22 May 2008; Hans de Graaff <graaff@gentoo.org> +hoe-1.5.3.ebuild:
+  Version bump: minor bugfixes
+
+  22 May 2008; Hans de Graaff <graaff@gentoo.org> -hoe-1.2.2.ebuild,
+  -hoe-1.3.0.ebuild, -hoe-1.5.0.ebuild:
+  Remove old versions
 
   17 Apr 2008; Raúl Porcel <armin76@gentoo.org> hoe-1.5.1.ebuild:
   ia64 stable wrt #217389
