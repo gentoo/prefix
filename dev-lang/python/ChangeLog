@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.310 2008/04/19 14:43:44 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.313 2008/05/21 08:02:42 hawking Exp $
+
+*python-2.5.2-r4 (21 May 2008)
+*python-2.4.4-r13 (21 May 2008)
+*python-2.3.6-r6 (21 May 2008)
+
+  21 May 2008; Ali Polatel <hawking@gentoo.org> +python-2.3.6-r6.ebuild,
+  +python-2.4.4-r13.ebuild, +python-2.5.2-r4.ebuild:
+  Revision bumps. Don't build the imageop module on 32 bit as well, #216673.
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org> python-2.4.4-r12.ebuild,
+  python-2.5.2-r3.ebuild:
+  Drop dev-python/python-fchksum from PDEPEND. It's not needed anymore.
+
+*python-2.5.2-r3 (13 May 2008)
+*python-2.4.4-r12 (13 May 2008)
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org> +python-2.4.4-r12.ebuild,
+  +python-2.5.2-r3.ebuild:
+  Revbumps. Updated CXXFLAGS patch so packages overriding
+  distutils.CCompiler._compile won't fail to build, #219238. Added patch to
+  fix executable stack for ctypes, thanks to Sandro Bonazzola, #218753.
+  Added patch to build with system expat, thanks to Diego, #178921.
 
 *python-2.5.2-r2 (19 Apr 2008)
 *python-2.4.4-r11 (19 Apr 2008)
