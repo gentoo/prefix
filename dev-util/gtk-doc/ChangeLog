@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.92 2008/04/08 17:22:23 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.95 2008/05/24 20:10:07 nixnut Exp $
+
+  24 May 2008; nixnut <nixnut@gentoo.org> gtk-doc-1.10-r1.ebuild:
+  Stable on ppc wrt bug 223297
+
+  24 May 2008; Tobias Klausmann <klausman@gentoo.org>
+  gtk-doc-1.10-r1.ebuild:
+  Stable on alpha, bug #223297
+
+  23 May 2008; Ferris McCormick <fmccor@gentoo.org> gtk-doc-1.10-r1.ebuild:
+  Add sparc keyword, required for Bug #223297.
 
   08 Apr 2008; Rémi Cardona <remi@gentoo.org> gtk-doc-1.10-r1.ebuild:
   allow deps on gtk-doc-am to be revbumps (fixes bug #216910)
