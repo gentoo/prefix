@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.110 2008/05/04 13:27:41 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.111 2008/05/25 01:48:30 dirtyepic Exp $
+
+*fontconfig-2.5.92 (25 May 2008)
+
+  25 May 2008; Ryan Hill <dirtyepic@gentoo.org> +fontconfig-2.5.92.ebuild:
+  Version bump.
 
   04 May 2008; Peter Volkov <pva@gentoo.org>
   +files/fontconfig-2.5.0-libtool-2.2.patch, fontconfig-2.5.0-r1.ebuild:

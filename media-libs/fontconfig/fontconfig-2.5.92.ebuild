@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.4.2.ebuild,v 1.15 2008/03/30 23:04:48 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.5.92.ebuild,v 1.1 2008/05/25 01:48:30 dirtyepic Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool autotools
+inherit eutils
 
 DESCRIPTION="A library for configuring and customizing font access"
 HOMEPAGE="http://fontconfig.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://fontconfig.org/release/${P}.tar.gz"
 
 LICENSE="fontconfig"
 SLOT="1.0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc xml"
 
 RDEPEND=">=media-libs/freetype-2.1.4
@@ -21,35 +21,41 @@ RDEPEND=">=media-libs/freetype-2.1.4
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( app-text/docbook-sgml-utils )"
+PDEPEND="app-admin/eselect-fontconfig"
 
 src_unpack() {
 	unpack ${A}
-
 	cd "${S}"
-	# add docbook switch so we can disable it
-	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch
 
-	eautoreconf
-
-	# elibtoolize
 	epunt_cxx #74077
 }
 
 src_compile() {
-	[ "${ARCH}" == "alpha" -a "${CC}" == "ccc" ] && \
-		die "Dont compile fontconfig with ccc, it doesnt work very well"
+	# harvest some font locations, such that users can benefit from the
+	# host OS's installed fonts
+	case ${CHOST} in
+		*-darwin*)
+			addfonts=",/Library/Fonts,/System/Library/Fonts"
+		;;
+		*-solaris*)
+			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
+				addfonts=",/usr/X/lib/X11/fonts/TrueType"
+		;;
+		*-linux-gnu)
+			[[ -d /usr/share/fonts ]] && \
+				addfonts=",/usr/share/fonts"
+		;;
+	esac
 
-	# disable docs only disables local docs generation, they come with the tarball
 	econf $(use_enable doc docs) \
-		$(use_enable doc docbook) \
 		--localstatedir="${EPREFIX}"/var \
 		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
-		--with-add-fonts="${EPREFIX}"/usr/local/share/fonts,"${EPREFIX}"/usr/X11R6/lib/X11/fonts \
+		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
 		$(use_enable xml libxml2) \
 		|| die
 
-	emake -j1 || die
+	emake || die
 }
 
 src_install() {
@@ -58,20 +64,17 @@ src_install() {
 	insinto /etc/fonts
 	doins "${S}"/fonts.conf
 
-	cd "${S}"
-	newman doc/fonts-conf.5 fonts-conf.5
-
-	dohtml doc/fontconfig-user.html
+	doman $(find "${S}" -type f -name *.1 -print)
+	newman doc/fonts-conf.5 fonts.conf.5
 	dodoc doc/fontconfig-user.{txt,pdf}
 
 	if use doc; then
 		doman doc/Fc*.3
 		dohtml doc/fontconfig-devel.html doc
-		dohtml -r doc/fontconfig-devel
 		dodoc doc/fontconfig-devel.{txt,pdf}
 	fi
 
-	dodoc AUTHORS ChangeLog NEWS README
+	dodoc AUTHORS ChangeLog README
 
 	# Changes should be made to /etc/fonts/local.conf, and as we had
 	# too much problems with broken fonts.conf, we force update it ...
@@ -86,8 +89,7 @@ pkg_postinst() {
 	ewarn "and NOT to ${EPREFIX}/etc/fonts/fonts.conf, as it will be replaced!"
 	echo
 
-	if [ "${ROOT}" = "/" ]
-	then
+	if [[ ${ROOT} = / ]]; then
 		ebegin "Creating global font cache..."
 		"${EPREFIX}"/usr/bin/fc-cache -sr
 		eend $?
