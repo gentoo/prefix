@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/rzip
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.25 2008/04/21 16:36:13 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.26 2008/05/23 23:12:17 darkside Exp $
+
+  23 May 2008; Jeremy Olexa <darkside@gentoo.org> rzip-2.1.ebuild:
+  added a warning wrt to files larger than 4GB. see bug #217552
 
   21 Apr 2008; Samuli Suominen <drac@gentoo.org> -rzip-2.0-r1.ebuild,
   -rzip-2.0-r2.ebuild, rzip-2.1.ebuild:
