@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.147 2008/05/12 15:35:51 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.148 2008/05/24 00:34:54 chainsaw Exp $
+
+*audacious-1.5.1 (24 May 2008)
+
+  24 May 2008; <chainsaw@gentoo.org> +audacious-1.5.1.ebuild:
+  Version bump. Now supports session management through libSM.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> audacious-1.4.6.ebuild:
   Stable on ppc64
