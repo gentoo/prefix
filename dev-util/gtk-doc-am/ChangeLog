@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/gtk-doc-am
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.4 2008/04/08 09:08:48 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.7 2008/05/24 20:09:07 nixnut Exp $
+
+  24 May 2008; nixnut <nixnut@gentoo.org> gtk-doc-am-1.10.ebuild:
+  Stable on ppc wrt bug 223297
+
+  23 May 2008; Tobias Klausmann <klausman@gentoo.org>
+  gtk-doc-am-1.10-r1.ebuild:
+  Stable on alpha, bug #223297
+
+  23 May 2008; Ferris McCormick <fmccor@gentoo.org>
+  gtk-doc-am-1.10-r1.ebuild:
+  Sparc stable, required for Bug #223297.
 
   08 Apr 2008; Rémi Cardona <remi@gentoo.org> gtk-doc-am-1.10-r1.ebuild:
   add empty src_compile(), nothing needs to be built
