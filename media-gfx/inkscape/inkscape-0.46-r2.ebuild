@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r2.ebuild,v 1.2 2008/04/06 13:53:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r2.ebuild,v 1.4 2008/05/24 19:50:04 nixnut Exp $
 
 EAPI="prefix"
 
