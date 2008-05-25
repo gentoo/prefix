@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Perl-Critic
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.38 2008/04/24 19:41:17 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.39 2008/05/23 15:47:51 drac Exp $
+
+  23 May 2008; Samuli Suominen <drac@gentoo.org> Perl-Critic-1.082.ebuild:
+  ~amd64 wrt #219164
 
   24 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
   Perl-Critic-1.082.ebuild:
