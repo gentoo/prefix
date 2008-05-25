@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.269 2008/05/01 13:23:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.270 2008/05/24 12:29:14 eva Exp $
+
+  24 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  control-center-2.22.1.ebuild:
+  remove gnome-doc-utils patch, bug #211592.
 
   01 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -files/control-center-2.11-gentoo_xcursor.patch,

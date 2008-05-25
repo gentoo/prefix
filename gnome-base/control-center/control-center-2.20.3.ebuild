@@ -11,7 +11,7 @@ SRC_URI="mirror://gnome/sources/gnome-${PN}/${PVP[0]}.${PVP[1]}/gnome-${P}.tar.b
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="alsa eds esd hal"
 
 RDEPEND=">=gnome-base/gnome-vfs-2.2
