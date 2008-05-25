@@ -36,9 +36,7 @@ src_unpack() {
 	# because during bootstrap not all m4-files might be installed.
 	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
 	# avoid regeneration
-	touch aclocal.m4
-	touch configure
-	touch doc/find.info
+	touch aclocal.m4 config.h.in configure doc/find.texi doc/find.info
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
