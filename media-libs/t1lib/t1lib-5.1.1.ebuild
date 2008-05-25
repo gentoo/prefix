@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.7 2007/10/15 12:55:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.8 2008/05/24 00:41:21 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="ftp://sunsite.unc.edu/pub/Linux/libs/graphics/${P}.tar.gz"
 
 LICENSE="LGPL-2 GPL-2"
 SLOT="5"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="X doc"
 
 RDEPEND="X? ( x11-libs/libXaw
@@ -45,7 +45,7 @@ src_compile() {
 	if ! use doc; then
 		myopt="without_doc"
 	else
-		addwrite /var/cache/fonts
+		VARTEXFONTS=${T}/fonts
 	fi
 
 	econf \

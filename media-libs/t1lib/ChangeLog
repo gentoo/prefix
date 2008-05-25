@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.69 2008/05/04 15:11:50 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.70 2008/05/24 00:41:21 dirtyepic Exp $
+
+  24 May 2008; Ryan Hill <dirtyepic@gentoo.org> t1lib-5.1.1.ebuild,
+  t1lib-5.1.2.ebuild:
+  Change addwrite to VARTEXFONTS for bug #221921.
 
 *t1lib-5.1.2 (04 May 2008)
 
