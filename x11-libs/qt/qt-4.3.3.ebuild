@@ -1,9 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.4 2008/03/05 16:40:05 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.13 2008/05/19 20:23:47 dev-zero Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 SRCTYPE="opensource-src"
@@ -17,11 +16,13 @@ use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${PV}
 
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 
-IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 ssl tiff xinerama zlib ${IUSE_INPUT_DEVICES}"
+IUSE="aqua +accessibility cups dbus debug doc examples firebird gif glib jpeg mng
+mysql nas nis odbc opengl pch png postgres +qt3support sqlite sqlite3 ssl tiff
+xinerama zlib ${IUSE_INPUT_DEVICES}"
 
 RDEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXcursor
@@ -42,7 +43,7 @@ RDEPEND="!aqua? ( x11-libs/libXrandr
 	sqlite3? ( =dev-db/sqlite-3* )
 	sqlite? ( =dev-db/sqlite-2* )
 	opengl? ( virtual/opengl virtual/glu )
-	postgres? ( dev-db/libpq )
+	postgres? ( virtual/postgresql-base )
 	cups? ( net-print/cups )
 	zlib? ( sys-libs/zlib )
 	glib? ( dev-libs/glib )
