@@ -441,7 +441,13 @@ bootstrap_gnu() {
 	local myconf=""
 	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
 	# when it's not.  Solaris and Linux build fine with --disable-nls.
-	[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
+	# However, (horror) grep on OSX fails with --disable-nls :(
+	if [[ ${A%-*} == "grep" ]] ;
+		[[ ${CHOST} == *-aix* || ${CHOST} == *-darwin* ]] || \
+			myconf="${myconf} --disable-nls"
+	else
+		[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
+	fi
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
