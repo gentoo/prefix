@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Inline
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.57 2008/05/17 15:07:54 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.58 2008/05/23 16:04:43 drac Exp $
+
+  23 May 2008; Samuli Suominen <drac@gentoo.org> Test-Inline-2.208.ebuild:
+  ~amd64 wrt #219723
 
   17 May 2008; nixnut <nixnut@gentoo.org> Test-Inline-2.208.ebuild:
   Added ~ppc wrt bug 219723
