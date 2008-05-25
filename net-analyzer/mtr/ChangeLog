@@ -1,6 +1,14 @@
 # ChangeLog for net-analyzer/mtr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.72 2008/05/18 12:21:59 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.73 2008/05/24 15:37:20 pva Exp $
+
+*mtr-0.73-r1 (24 May 2008)
+
+  24 May 2008; Peter Volkov <pva@gentoo.org>
+  +files/mtr-0.73-CVE-2008-2357.patch, +mtr-0.73-r1.ebuild:
+  Added patch to fix stack-based buffer overflow (CVE-2008-2357), bug
+  223017, thank Robert Buchholz for report and digging patch. Fixed build
+  problem, bug #222909, thank Andrei Ivanov for report.
 
 *mtr-0.73 (18 May 2008)
 
