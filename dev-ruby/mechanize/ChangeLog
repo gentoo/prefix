@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/mechanize
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.9 2008/03/26 22:51:50 agorf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.10 2008/05/23 07:45:12 agorf Exp $
+
+*mechanize-0.7.6 (23 May 2008)
+
+  23 May 2008; <agorf@gentoo.org> +mechanize-0.7.6.ebuild:
+  Version bump to 0.7.6.
 
 *mechanize-0.7.5 (26 Mar 2008)
 
