@@ -7,7 +7,7 @@ diff -ruN findutils-4.3.11.orig/gnulib/m4/ls-mntd-fs.m4 findutils-4.3.11/gnulib/
  
 +case $host_os in
 +interix*)
-+  ac_list_mounted_fs="not supported on windows"
++  ac_list_mounted_fs="not_supported_on_windows"
 +  ;;
 +esac
 +
@@ -23,7 +23,7 @@ diff -ruN findutils-4.3.11.orig/configure findutils-4.3.11/configure
  
 +case $host_os in
 +interix*)
-+  ac_list_mounted_fs="not supported on windows"
++  ac_list_mounted_fs="not_supported_on_windows"
 +  ;;
 +esac
 +

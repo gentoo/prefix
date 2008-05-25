@@ -34,9 +34,16 @@ src_unpack() {
 	# mounted filesystems.
 	# Need to patch configure directly besides ls-mntd-fs.m4,
 	# because during bootstrap not all m4-files might be installed.
+	cp -a configure{,.ts} || die
+	cp -a find/fstype.c{,.ts} || die
+	cp -a gnulib/lib/mountlist.c{,.ts} || die
+	cp -a gnulib/m4/ls-mntd-fs.m4{,.ts} || die
 	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
 	# avoid regeneration
-	touch aclocal.m4 config.h.in configure doc/find.texi doc/find.info
+	touch -r configure{.ts,} || die
+	touch -r find/fstype.c{.ts,} || die
+	touch -r gnulib/lib/mountlist.c{.ts,} || die
+	touch -r gnulib/m4/ls-mntd-fs.m4{.ts,} || die
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
