@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1449 2008/05/22 13:49:00 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1451 2008/05/24 22:08:33 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  24 May 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
+  Added qt3support useflag for dev-python/PyQt4
+
+  23 May 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Masked wulfstat and xmlsysd wrt #193635, replaced by wulfware.
 
   22 May 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
   Add xqilla USE-flag for xerces-c

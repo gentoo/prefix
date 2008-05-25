@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8650 2008/05/22 02:43:04 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8651 2008/05/23 10:29:10 drac Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Samuli Suominen <drac@gentoo.org> (23 May 2008)
+# Replaced by sys-cluster/wulfware wrt bug #193635.
+# Unversioned and old tarballs, and an ebuild
+# altering /etc/services which is wrong.
+# Removed in ~60 days by treecleaners.
+sys-cluster/wulfstat
+sys-cluster/xmlsysd
 
 # Mark Loeser <halcy0n@gentoo.org> (21 May 2008)
 # Dead upstream and not used by anything
