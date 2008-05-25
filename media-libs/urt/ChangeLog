@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/urt
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.29 2007/07/22 09:27:12 dberkholz Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.30 2008/05/23 16:36:43 maekke Exp $
+
+  23 May 2008; Markus Meier <maekke@gentoo.org> urt-3.1b-r1.ebuild:
+  drop to ~mips (unstable deps)
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; urt-3.1b-r1.ebuild:
   Drop virtual/x11 references.
