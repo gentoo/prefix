@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.187 2008/04/13 07:06:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.188 2008/05/23 16:42:23 maekke Exp $
+
+  23 May 2008; Markus Meier <maekke@gentoo.org> netpbm-10.26.52.ebuild,
+  netpbm-10.26.53.ebuild, netpbm-10.40.0.ebuild:
+  drop to ~mips (unstable deps)
 
 *netpbm-10.26.53 (13 Apr 2008)
 
