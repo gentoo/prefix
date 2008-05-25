@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.313 2008/05/21 08:02:42 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.314 2008/05/24 06:23:19 jer Exp $
+
+  24 May 2008; Jeroen Roovers <jer@gentoo.org> python-2.3.6-r6.ebuild,
+  python-2.4.4-r13.ebuild:
+  Stable for HPPA (bug #216673).
 
 *python-2.5.2-r4 (21 May 2008)
 *python-2.4.4-r13 (21 May 2008)
