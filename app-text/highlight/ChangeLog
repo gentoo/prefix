@@ -1,6 +1,13 @@
 # ChangeLog for app-text/highlight
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.17 2008/05/05 12:32:38 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.18 2008/05/23 14:12:21 drac Exp $
+
+*highlight-2.6.10 (23 May 2008)
+
+  23 May 2008; Samuli Suominen <drac@gentoo.org>
+  +files/highlight-2.6.10-conf_dir.patch, +highlight-2.6.10.ebuild:
+  Version bump. Move filetypes.conf back to where it belongs wrt #222751,
+  thanks to Jeroen Roovers.
 
   05 May 2008; Samuli Suominen <drac@gentoo.org> highlight-2.6.9.ebuild:
   Replace CFLAGS with CXXFLAGS since it's g++ we are calling.
