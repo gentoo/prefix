@@ -1,0 +1,17 @@
+diff -Naur ATLAS/src/blas/gemm/ATL_cmmJITcp.c ATLAS.new/src/blas/gemm/ATL_cmmJITcp.c
+--- ATLAS/src/blas/gemm/ATL_cmmJITcp.c	2008-02-22 11:38:58.000000000 -0500
++++ ATLAS.new/src/blas/gemm/ATL_cmmJITcp.c	2008-05-23 18:07:34.000000000 -0400
+@@ -264,8 +264,11 @@
+       NBmm1 = Mjoin(PATLU,pMBmm_b1);
+       NBmmX = Mjoin(PATLU,pMBmm_bX);
+    }
+-   else  /* two or more dim < NB, requires generated cleanup */
+-      NBmm0 = NBmm1 = NBmmX = Mjoin(PATLU,pKBmm);
++   else 
++   { 
++     NBmm0 = NBmm1 = NBmmX = Mjoin(PATLU,pKBmm);
++     if (SCALAR_IS_ZERO(beta)) Mjoin(PATL,gezero)(M, N, C, ldc); 
++   }
+    if (nblk)
+    {
+       if (B)

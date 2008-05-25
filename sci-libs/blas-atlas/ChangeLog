@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/blas-atlas
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.76 2008/02/23 11:10:57 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.77 2008/05/24 17:39:38 markusle Exp $
+
+  24 May 2008; Markus Dittrich <markusle@gentoo.org>
+  +files/blas-atlas-3.8.1-gemm-fix.patch, -blas-atlas-3.7.39.ebuild,
+  blas-atlas-3.8.1.ebuild:
+  Added upstream fix for complex GEMM bug (issue 1970660 in atlas' bug
+  tracker). Removed old version.
 
 *blas-atlas-3.8.1 (22 Feb 2008)
 
