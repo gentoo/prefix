@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/cython
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/cython/ChangeLog,v 1.7 2008/04/08 09:37:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.8 2008/05/24 15:02:18 jer Exp $
+
+  24 May 2008; Jeroen Roovers <jer@gentoo.org> cython-0.9.6.12.ebuild:
+  Stable for HPPA (bug #223443).
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> cython-0.9.6.12.ebuild:
   Add ~ia64 wrt #215557
