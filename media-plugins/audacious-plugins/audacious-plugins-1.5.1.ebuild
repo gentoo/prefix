@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.0.ebuild,v 1.2 2008/05/24 00:45:35 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1.ebuild,v 1.2 2008/05/24 00:45:35 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -23,20 +23,20 @@ RDEPEND="app-arch/unzip
 	dev-libs/libxml2
 	>=gnome-base/libglade-2.3.1
 	>=media-libs/libcddb-1.2.1
-	>=media-sound/audacious-1.5.0
+	>=media-sound/audacious-1.5.1
 	>=net-misc/neon-0.26.4
 	>=x11-libs/gtk+-2.10
 	adplug? ( >=dev-cpp/libbinio-1.4 )
-	alsa? ( >=media-libs/alsa-lib-1.0.13 )
+	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	arts? ( kde-base/arts )
-	esd? ( >=media-sound/esound-0.2.30 )
+	esd? ( >=media-sound/esound-0.2.38-r1 )
 	flac? ( >=media-libs/libvorbis-1.0
 		>=media-libs/flac-1.2.1-r1 )
 	jack? ( >=media-libs/bio2jack-0.4
 		media-sound/jack-audio-connection-kit )
 	lirc? ( app-misc/lirc )
 	mp3? ( media-libs/libmad )
-	mtp? ( >=media-libs/libmtp-0.2.5-r1 )
+	mtp? ( >=media-libs/libmtp-0.2.6.1 )
 	musepack? ( media-libs/libmpcdec media-libs/taglib )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
 	sdl? (	>=media-libs/libsdl-1.2.5 )
@@ -46,7 +46,7 @@ RDEPEND="app-arch/unzip
 	tta? ( media-libs/libid3tag )
 	vorbis? ( >=media-libs/libvorbis-1.0
 		  >=media-libs/libogg-1.0 )
-	wavpack? ( >=media-sound/wavpack-4.31 )
+	wavpack? ( >=media-sound/wavpack-4.41.0 )
 	wma? ( >=media-libs/libmms-0.3 )"
 
 DEPEND="${RDEPEND}
@@ -63,7 +63,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.5.0-interix.patch
 	AT_M4DIR="m4" eautoreconf
 }
 

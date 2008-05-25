@@ -1,6 +1,16 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.89 2008/05/12 15:40:16 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.91 2008/05/24 00:45:35 chainsaw Exp $
+
+  24 May 2008; <chainsaw@gentoo.org> audacious-plugins-1.5.0.ebuild,
+  audacious-plugins-1.5.1.ebuild:
+  Do not try to install non-existent NEWS file. Closes bug #216234 by
+  Arfrever Frehtes Taifersar Arahesis <Arfrever.FTA@GMail.Com>.
+
+*audacious-plugins-1.5.1 (24 May 2008)
+
+  24 May 2008; <chainsaw@gentoo.org> +audacious-plugins-1.5.1.ebuild:
+  Version bump. Bugfixes, lots of bugfixes...
 
   12 May 2008; Markus Rothe <corsair@gentoo.org>
   audacious-plugins-1.4.5.ebuild:
