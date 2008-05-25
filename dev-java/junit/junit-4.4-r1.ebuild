@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip"
 HOMEPAGE="http://www.junit.org/"
 LICENSE="CPL-1.0"
 SLOT="4"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 CDEPEND="dev-java/hamcrest-core"
