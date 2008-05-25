@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r7.ebuild,v 1.16 2007/02/15 09:43:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r7.ebuild,v 1.17 2008/05/23 16:45:26 maekke Exp $
 
 EAPI="prefix"
 

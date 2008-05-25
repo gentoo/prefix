@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.67 2008/02/25 18:29:11 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.68 2008/05/23 16:45:26 maekke Exp $
+
+  23 May 2008; Markus Meier <maekke@gentoo.org> jpeg-6b-r7.ebuild:
+  drop to ~mips (unstable deps)
 
   25 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> jpeg-6b-r8.ebuild:
   amd64 stable wrt bug #208941
