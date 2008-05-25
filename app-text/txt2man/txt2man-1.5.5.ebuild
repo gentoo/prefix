@@ -1,10 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/txt2man-1.5.1.ebuild,v 1.1 2006/10/26 08:35:43 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/txt2man-1.5.5.ebuild,v 1.1 2008/05/24 08:56:25 drac Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A simple script to convert ASCII text to man page."
 HOMEPAGE="http://mvertes.free.fr/"
@@ -15,17 +13,13 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
-RDEPEND="app-shells/bash
+DEPEND="app-shells/bash
 	sys-apps/gawk"
-DEPEND="${RDEPEND}"
 
-src_compile() {
-	PATH="${S}:$PATH" make txt2man.1 || die "make failed"
-}
+src_compile() { :; }
 
 src_install() {
-	dobin txt2man
-	doman txt2man.1
-
-	dodoc README
+	dobin bookman src2man txt2man || die "dobin failed."
+	doman *.1
+	dodoc Changelog README
 }

@@ -1,6 +1,11 @@
 # ChangeLog for app-text/txt2man
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/ChangeLog,v 1.14 2008/03/14 09:25:15 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/ChangeLog,v 1.15 2008/05/24 08:56:25 drac Exp $
+
+*txt2man-1.5.5 (24 May 2008)
+
+  24 May 2008; Samuli Suominen <drac@gentoo.org> +txt2man-1.5.5.ebuild:
+  Version bump; with new tools bookman and src2man.
 
   14 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Charlie Shepherd (masterdriverz, #153940) from metadata.xml.
