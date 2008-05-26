@@ -442,7 +442,7 @@ bootstrap_gnu() {
 	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
 	# when it's not.  Solaris and Linux build fine with --disable-nls.
 	# However, (horror) grep on OSX fails with --disable-nls :(
-	if [[ ${A%-*} == "grep" ]] ;
+	if [[ ${A%-*} == "grep" ]] ; then
 		[[ ${CHOST} == *-aix* || ${CHOST} == *-darwin* ]] || \
 			myconf="${myconf} --disable-nls"
 	else
