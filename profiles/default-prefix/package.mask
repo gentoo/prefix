@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (27 May 2008)
+# Masked due to non-prefix'd config file and root access needed (probably)
+# See bug #223305
+www-servers/lighttpd
 
 # Fabian Groffen <grobian@gentoo.org> (25 May 2008)
 # Masking globally, because in Prefix non-Linux is the majority
