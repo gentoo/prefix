@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.8.ebuild,v 1.5 2008/05/01 14:48:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.8.ebuild,v 1.6 2008/05/26 08:35:49 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
 RDEPEND="~sys-libs/com_err-${PV}"

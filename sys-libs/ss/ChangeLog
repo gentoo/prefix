@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ss
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.60 2008/05/01 14:48:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.61 2008/05/26 08:35:49 armin76 Exp $
+
+  26 May 2008; Raúl Porcel <armin76@gentoo.org> ss-1.40.8.ebuild:
+  ia64 stable wrt #213588
 
   01 May 2008; Markus Meier <maekke@gentoo.org> ss-1.40.8.ebuild:
   amd64/x86 stable, bug #213588
