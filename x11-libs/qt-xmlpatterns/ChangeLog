@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-xmlpatterns
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/ChangeLog,v 1.6 2008/05/16 09:32:47 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/ChangeLog,v 1.8 2008/05/26 18:37:17 jer Exp $
+
+  26 May 2008; Jeroen Roovers <jer@gentoo.org> qt-xmlpatterns-4.4.0.ebuild:
+  Marked ~hppa (bug #223557).
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org>
+  qt-xmlpatterns-4.4.0.ebuild:
+  Added ~ppc/~ppc64
 
   16 May 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-xmlpatterns-4.4.0_rc1.ebuild:
