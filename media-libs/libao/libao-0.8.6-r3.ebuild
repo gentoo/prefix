@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.6-r3.ebuild,v 1.18 2007/11/07 18:19:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.6-r3.ebuild,v 1.19 2008/05/26 15:30:46 drac Exp $
 
 EAPI="prefix"
 

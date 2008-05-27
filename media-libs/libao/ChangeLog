@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libao
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.81 2008/01/31 16:02:10 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.82 2008/05/26 15:30:46 drac Exp $
+
+  26 May 2008; Samuli Suominen <drac@gentoo.org> libao-0.8.6-r3.ebuild,
+  libao-0.8.8.ebuild:
+  arm stable, revert back to ~mips (unstable deps)
 
   31 Jan 2008; nixnut <nixnut@gentoo.org> libao-0.8.8.ebuild:
   Stable on ppc wrt bug 2067682
