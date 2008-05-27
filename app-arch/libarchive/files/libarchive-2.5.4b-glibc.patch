@@ -1,0 +1,15 @@
+Index: libarchive-2.5.4b/tar/subst.c
+===================================================================
+--- libarchive-2.5.4b.orig/tar/subst.c
++++ libarchive-2.5.4b/tar/subst.c
+@@ -29,6 +29,10 @@ __FBSDID("$FreeBSD$");
+ #if HAVE_REGEX_H
+ #include "bsdtar.h"
+ 
++#ifndef REG_BASIC
++# define REG_BASIC 0
++#endif
++
+ #include <errno.h>
+ #include <regex.h>
+ #include <stdlib.h>
