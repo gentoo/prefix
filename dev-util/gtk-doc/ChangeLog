@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.95 2008/05/24 20:10:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.96 2008/05/25 12:34:51 maekke Exp $
+
+  25 May 2008; Markus Meier <maekke@gentoo.org> gtk-doc-1.10-r1.ebuild:
+  amd64/x86 stable, bug #223297
 
   24 May 2008; nixnut <nixnut@gentoo.org> gtk-doc-1.10-r1.ebuild:
   Stable on ppc wrt bug 223297

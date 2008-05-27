@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10-r1.ebuild,v 1.5 2008/05/24 20:10:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10-r1.ebuild,v 1.6 2008/05/25 12:34:51 maekke Exp $
 
 EAPI="prefix"
 
