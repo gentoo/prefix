@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.13 2008/05/15 12:33:53 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.14 2008/05/26 14:30:44 ingmar Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -177,7 +177,7 @@ standard_configure_options() {
 	case "${ARCH}" in
 		amd64) myconf="${myconf} -arch x86_64" ;;
 		ppc|ppc64) myconf="${myconf} -arch powerpc" ;;
-		x86) myconf="${myconf} -arch i386" ;;
+		x86|x86-*) myconf="${myconf} -arch i386" ;;
 		alpha|arm|ia64|mips|s390|sparc) myconf="${myconf} -arch ${ARCH}" ;;
 		hppa|sh) myconf="${myconf} -arch generic" ;;
 		*) die "${ARCH} is unsupported by this eclass. Please file a bug." ;;

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.42 2007/11/12 18:13:29 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.43 2008/05/25 09:27:48 hoffie Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -83,7 +83,8 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		nls? ( sys-devel/gettext )
 		oci8-instant-client? ( dev-db/oracle-instantclient-basic )
 		odbc? ( >=dev-db/unixODBC-1.8.13 )
-		postgres? ( >=dev-db/libpq-7.1 )
+		postgres? ( || ( >=dev-db/libpq-7.1 ( app-admin/eselect-postgresql
+			>=dev-db/postgresql-base-7.1 ) ) )
 		readline? ( sys-libs/readline )
 		recode? ( app-text/recode )
 		sapdb? ( >=dev-db/unixODBC-1.8.13 )
