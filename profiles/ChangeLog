@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1451 2008/05/24 22:08:33 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1456 2008/05/25 21:15:30 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  25 May 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  Add libffi use flag for dev-python/pygobject
+
+  25 May 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add automount USE flag for gnome-base/gnome-volume-manager
+
+  25 May 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Correct PyQt4 package.mask - it's PyQt4, not PyQt
+
+  25 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Add x11-libs/qt-demo to the Qt-4.4.0 mask.
+
+  25 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Package.mask dev-python/PyQt-4.4.2.
 
   24 May 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
   Added qt3support useflag for dev-python/PyQt4

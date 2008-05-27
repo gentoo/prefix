@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3554 2008/05/25 04:23:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3557 2008/05/26 00:36:30 beandog Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -587,6 +587,7 @@ dev-python/paste:flup - enable support for flup (and therefore for various wgsi 
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - choose MX DateTime support instead of built-in datetime
 dev-python/pycairo:numeric - enable Numeric support
+dev-python/pygobject:libffi - Enable support to connect to signals on python objects from C.
 dev-python/PyQt4:qt3support - enable the Qt3Support libraries for Qt4
 dev-python/pyyaml:libyaml - enable libyaml support
 dev-python/pyzor:pyzord - enable support for pyzord
@@ -768,6 +769,7 @@ games-strategy/x2:modkit - Install the modkit
 gnome-base/gdm:dmx - Enable Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enable secure remote support
 gnome-base/gnome-mount:nautilus - Enable the nautilus plugin
+gnome-base/gnome-volume-manager:automount - Enable automount of devices supported by nautilus
 gnome-base/gvfs:cdda - Enable Compact Disc Digital Audio support (audio CD standard)
 gnome-base/gvfs:fuse - Enable fuse mount points in ~/.gvfs for legacy application access
 gnome-base/nautilus:beagle - Enable support for beagle searching
@@ -1244,7 +1246,10 @@ media-video/mplayer:bl - Enables Blinkenlights support in mplayer
 media-video/mplayer:cdio - Use libcdio for CD support (instead of cdparanoia)
 media-video/mplayer:color-console - Enable color console output (UNSUPPORTED)
 media-video/mplayer:cpudetection - Enables runtime cpudetection
-media-video/mplayer:custom-cflags - Enables custom cflags (not supported)
+media-video/mplayer:custom-cflags - Enables custom CFLAGS (UNSUPPORTED)
+media-video/mplayer:custom-cpuopts - Fine-tune custom CPU optimizations (UNSUPPORTED)
+media-video/mplayer:dxr2 - Enable DXR2 video output
+media-video/mplayer:dxr3 - Enable DXR3/H+ video output
 media-video/mplayer:enca - Enables support for charset discovery and conversion
 media-video/mplayer:live - Enables live.com streaming media support
 media-video/mplayer:md5sum - Enables md5sum video output
