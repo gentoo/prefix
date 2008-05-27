@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.314 2008/05/24 06:23:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.319 2008/05/26 19:19:11 dertobi123 Exp $
+
+  26 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  python-2.3.6-r6.ebuild, python-2.4.4-r13.ebuild:
+  ppc stable, bug #216673
+
+  26 May 2008; Raúl Porcel <armin76@gentoo.org> python-2.3.6-r6.ebuild,
+  python-2.4.4-r13.ebuild:
+  ia64/sparc stable wrt security #216673
+
+  25 May 2008; Tobias Klausmann <klausman@gentoo.org>
+  python-2.3.6-r6.ebuild:
+  Stable on alpha, bug #216673
+
+  25 May 2008; Tobias Klausmann <klausman@gentoo.org>
+  python-2.4.4-r13.ebuild:
+  Stable on alpha, bug #216673
+
+  25 May 2008; Ali Polatel <hawking@gentoo.org>
+  +files/python-2.3.6-disable-failing-tests.patch, python-2.3.6-r6.ebuild,
+  python-2.4.4-r13.ebuild, python-2.5.2-r4.ebuild:
+  Added patch to disable failing test_bsddb test for 2.3. Disable test_pow
+  on alpha until upstream comes up with a fix.
 
   24 May 2008; Jeroen Roovers <jer@gentoo.org> python-2.3.6-r6.ebuild,
   python-2.4.4-r13.ebuild:

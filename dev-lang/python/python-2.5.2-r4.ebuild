@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r4.ebuild,v 1.1 2008/05/21 08:02:42 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r4.ebuild,v 1.2 2008/05/25 13:06:30 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -350,6 +350,10 @@ src_test() {
 	#skip all tests that fail during emerge but pass without emerge:
 	#(See bug# 67970)
 	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 webbrowser xml_etree"
+
+	# test_pow fails on alpha.
+	# http://bugs.python.org/issue756093
+	[[ ${ARCH} == "alpha" ]] && skip_tests="${skip_tests} pow"
 
 	for test in ${skip_tests} ; do
 		mv "${S}"/Lib/test/test_${test}.py "${T}"
