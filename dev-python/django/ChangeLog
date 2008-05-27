@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/django
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.21 2007/12/25 14:50:09 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.22 2008/05/26 18:15:28 nelchael Exp $
+
+*django-0.96.2 (26 May 2008)
+
+  26 May 2008; Krzysiek Pawlik <nelchael@gentoo.org> -django-0.96.1.ebuild,
+  +django-0.96.2.ebuild:
+  Version bump to fix security bug, see bug #222029.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469.

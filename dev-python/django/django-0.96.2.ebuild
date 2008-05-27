@@ -1,21 +1,25 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.1.ebuild,v 1.1 2007/10/27 12:10:14 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.2.ebuild,v 1.1 2008/05/26 18:15:28 nelchael Exp $
 
 EAPI="prefix"
 
 inherit bash-completion distutils eutils versionator
 
 RPV=$(get_version_component_range 1-2)
+EXTRAS_VERSION="0.96.1"
 
 MY_P="Django-${PV}"
 
 DESCRIPTION="high-level python web framework"
 HOMEPAGE="http://www.djangoproject.com/"
-SRC_URI="http://media.djangoproject.com/releases/${RPV}/${MY_P}.tar.gz"
+SRC_URI="http://media.djangoproject.com/releases/${RPV}/${MY_P}.tar.gz
+		http://media.djangoproject.com/releases/${RPV}/Django-${EXTRAS_VERSION}.tar.gz"
+		# We need ${EXTRAS_VERSION} in SRC_URI, because it's the last release that
+		# contains extras, tests and examples, see also src_unpack
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="examples mysql postgres sqlite test"
 
 RDEPEND="dev-python/imaging
@@ -32,6 +36,20 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 DOCS="docs/* AUTHORS"
+
+src_unpack() {
+
+	distutils_src_unpack
+
+	# Those directories are missing from 0.96.2, so we copy them over from
+	# Django-${EXTRAS_VERSION}:
+	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/examples" "${S}/" || die
+	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/extras" "${S}/" || die
+	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/tests" "${S}/" || die
+	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/django/contrib/formtools/templates" \
+		"${S}/django/contrib/formtools/" || die
+
+}
 
 src_test() {
 	cat >> tests/settings.py << __EOF__
