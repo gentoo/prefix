@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/gtk-doc-am-1.10.ebuild,v 1.3 2008/05/24 20:09:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/gtk-doc-am-1.10.ebuild,v 1.4 2008/05/26 17:21:50 leio Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ IUSE=""
 RDEPEND=""
 
 DEPEND="${RDEPEND}
-	!<=dev-utils/gtk-doc-1.10"
+	!<=dev-util/gtk-doc-1.10"
 
 S=${WORKDIR}/${MY_P}
 
