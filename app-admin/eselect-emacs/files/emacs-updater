@@ -2,7 +2,7 @@
 
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: emacs-updater,v 1.3 2008/03/08 06:53:06 ulm Exp $
+# $Id: emacs-updater,v 1.4 2008/05/25 17:26:28 ulm Exp $
 
 # Authors:
 # Christian Faulhammer <opfer@gentoo.org>
@@ -60,6 +60,7 @@ if [ -t 1 ] && [ -z "${NOCOLOUR}" ] ; then
     NORMAL=$(tput sgr0)
 fi
 
+# Some type of output can be prettified and capsulated in functions
 message() {
     local OUTPUT=$@
     echo "${GREEN}*${NORMAL}${BOLD} ${OUTPUT}${NORMAL}"
