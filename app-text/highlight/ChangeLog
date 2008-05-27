@@ -1,6 +1,9 @@
 # ChangeLog for app-text/highlight
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.18 2008/05/23 14:12:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.19 2008/05/26 15:20:39 drac Exp $
+
+  26 May 2008; Samuli Suominen <drac@gentoo.org> highlight-2.6.10.ebuild:
+  Desktop entry with icon.
 
 *highlight-2.6.10 (23 May 2008)
 
