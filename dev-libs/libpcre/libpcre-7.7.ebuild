@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.6-r1.ebuild,v 1.1 2008/02/13 08:12:01 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.7.ebuild,v 1.1 2008/05/26 14:16:24 loki_val Exp $
 
 EAPI="prefix 1"
 
@@ -25,9 +25,6 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# on Darwin: error: only weak aliases are supported in this configuration
-	[[ ${CHOST} != *-darwin* ]] && \
-		epatch "${FILESDIR}"/${P}-ABI_correction.patch
 	elibtoolize
 }
 
