@@ -1,17 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.22.0.ebuild,v 1.1 2008/03/18 00:10:41 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.22.2.ebuild,v 1.1 2008/05/26 21:14:55 eva Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2 python
+inherit eutils gnome2 python autotools
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug python"
 
 RDEPEND=">=dev-libs/glib-2.15.2
@@ -39,6 +39,8 @@ src_unpack() {
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
+
+	eautoreconf # need new libtool for interix
 }
 
 pkg_postinst() {
