@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls static elibc_FreeBSD"
 
 RDEPEND="~sys-libs/com_err-${PV}
