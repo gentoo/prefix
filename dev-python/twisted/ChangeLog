@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.89 2008/05/13 20:29:16 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.90 2008/05/25 20:23:51 lordvan Exp $
+
+*twisted-8.1.0 (25 May 2008)
+
+  25 May 2008; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.2.0.ebuild,
+  twisted-1.3.0.ebuild, +twisted-8.1.0.ebuild:
+  Version bump to 8.1.0 + some minor fixes to older ebuilds
 
 *twisted-8.0.1 (13 May 2008)
 
