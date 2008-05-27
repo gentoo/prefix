@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/qt-assistant
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.6 2008/05/16 09:24:17 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.8 2008/05/26 14:15:54 ingmar Exp $
+
+*qt-assistant-4.4.0-r1 (26 May 2008)
+
+  26 May 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  +qt-assistant-4.4.0-r1.ebuild:
+  Install qt-assistant docs in to the correct dir. Fixes bug 217709, thanks
+  to Bernd Steinhauser <berniyh@exherbo.org>.
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> qt-assistant-4.4.0.ebuild:
+  Added ~ppc/~ppc64
 
   16 May 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -qt-assistant-4.4.0_rc1.ebuild:

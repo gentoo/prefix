@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.4.0.ebuild,v 1.2 2008/05/25 08:27:55 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.4.0-r1.ebuild,v 1.1 2008/05/26 14:15:54 ingmar Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.trolltech.com/"
 LICENSE="|| ( QPL-1.0 GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="doc"
+IUSE=""
 
 DEPEND="~x11-libs/qt-gui-${PV}
 	~x11-libs/qt-sql-${PV}"
@@ -23,7 +23,6 @@ RDEPEND="${DEPEND}"
 QT4_TARGET_DIRECTORIES="tools/assistant tools/pixeltool"
 QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
 doc/qch/
-doc/html/
 src/3rdparty/clucene/
 tools/shared/fontpanel"
 
@@ -51,10 +50,7 @@ src_compile() {
 src_install() {
 	qt4-build_src_install
 	domenu "${FILESDIR}"/Assistant.desktop || die "domenu failed"
-	if use doc; then
-		dohtml -r doc/html/* || die "dohtml failed"
-	fi
 
-	insinto /usr/share/doc
-	doins -r doc/qch/ || die 'doins failed.'
+	insinto ${QTDOCDIR}
+	doins -r doc/qch/ || die 'Installing qch files failed.'
 }
