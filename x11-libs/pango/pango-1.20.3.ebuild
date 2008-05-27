@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.20.0.ebuild,v 1.1 2008/03/16 20:14:52 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.20.3.ebuild,v 1.1 2008/05/25 20:22:34 eva Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="X doc"
 
-RDEPEND=">=dev-libs/glib-2.14
+# glib-2.16.3 dependency instead of 2.14 ensures Unicode 5.1 support on the system
+RDEPEND=">=dev-libs/glib-2.16.3
 		 >=media-libs/fontconfig-1.0.1
 		 >=media-libs/freetype-2
 		 >=x11-libs/cairo-1.2.6
