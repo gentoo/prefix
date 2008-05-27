@@ -17,7 +17,7 @@ SRC_URI="http://distcc.samba.org/ftp/distcc/distcc-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="gnome gtk selinux ipv6"
 
 DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )

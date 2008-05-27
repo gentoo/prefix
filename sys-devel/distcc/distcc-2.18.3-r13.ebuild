@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r11.ebuild,v 1.1 2008/01/04 03:53:14 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r13.ebuild,v 1.1 2008/05/26 01:34:38 dirtyepic Exp $
 
 EAPI="prefix"
 
 # If you change this in any way please email lisa@gentoo.org and make an
 # entry in the ChangeLog (this means you spanky :P). (2004-04-11) Lisa Seelye
 
-inherit autotools eutils flag-o-matic toolchain-funcs
+inherit autotools eutils flag-o-matic toolchain-funcs fdo-mime
 
 PATCHLEVEL="2.18-r1"
 
@@ -26,7 +26,8 @@ COMMON_DEP="dev-libs/popt
 DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )
 	userland_GNU? ( sys-apps/shadow )
 	dev-util/pkgconfig
-	dev-util/unifdef
+	|| ( dev-util/unifdef sys-freebsd/freebsd-ubin sys-apps/darwin-miscutils )
+	>=sys-devel/autoconf-2.60
 	${COMMON_DEP}"
 RDEPEND="
 	gnome? (
@@ -63,28 +64,26 @@ src_unpack() {
 	epatch "${FILESDIR}/distcc-gentoo-multilib-r1.patch"
 	einfo "Please report to bug #75420 success or failure of this patch."
 
+	epatch "${FILESDIR}/distcc-freedesktop.patch"
+	epatch "${FILESDIR}/distcc-create-dir.patch"
+	epatch "${FILESDIR}"/${PN}-march-native.patch
+
 	rm -v popt/*.c || die
 	if use avahi; then
 		epatch "${DISTDIR}/${PN}-2.18-avahi.patch.bz2"
 		epatch "${FILESDIR}/${PN}-avahi-configure.patch"
-		eautoreconf
 	fi
 
 	# prefix awareness
 	cp "${FILESDIR}"/distcc-config .
 	epatch "${FILESDIR}"/distcc-config-prefix.patch
 	eprefixify distcc-config
+
+	eautoreconf
 }
 
 src_compile() {
-	local myconf="--without-included-popt "
-
-	#not taking any chances here, guessing which takes precedence in the
-	#configure script, so we'll just make the distinction here:
-	#gnome takes precedence over gtk if both are specified (gnome pulls
-	#in gtk anyways...)
-	use gtk && ! use gnome && myconf="${myconf} --with-gtk"
-	use gtk && use gnome && myconf="${myconf} --with-gnome"
+	local myconf="--without-included-popt --docdir=${EPREFIX}/usr/share/doc/${PF}"
 
 	#More legacy stuff?
 	[ `gcc-major-version` -eq 2 ] && filter-lfs-flags
@@ -96,7 +95,7 @@ src_compile() {
 		myconf=" ${myconf} --enable-rfc2553 "
 		epause 5
 	fi
-	econf ${myconf} $(use_enable avahi)  || die "econf ${myconf} failed"
+	econf ${myconf} $(use_enable avahi) $(use_with gnome) $(use_with gtk) || die "econf ${myconf} failed"
 	emake || die "emake failed"
 }
 
@@ -109,8 +108,7 @@ handle_avahi() {
 src_install() {
 	make DESTDIR="${D%/}" install
 
-	insinto /usr/share/doc/${PN}
-	doins "${S}/survey.txt"
+	dodoc "${S}/survey.txt"
 
 	exeinto /usr/bin
 	doexe "${S}/distcc-config"
@@ -148,6 +146,8 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	fdo-mime_desktop_database_update
+
 	#are we doing bootstrap with has no useradd?
 	if [[ ${CHOST} != *-*-gnu && ${CHOST} != *-linux* ]] || [ -x /usr/sbin/useradd ]; then
 	  enewuser distcc 240
@@ -187,4 +187,8 @@ pkg_postinst() {
 	ewarn "update your /etc/conf.d/distccd and /etc/init.d/distccd files with"
 	ewarn "added security precautions (the --listen and --allow directives)"
 #	ebeep 5
+}
+
+pkg_postrm() {
+	fdo-mime_desktop_database_update
 }
