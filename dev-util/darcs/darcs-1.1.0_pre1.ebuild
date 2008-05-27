@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.4 2008/01/26 19:57:12 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.5 2008/05/25 11:59:07 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -14,18 +14,18 @@ SRC_URI="http://darcs.net/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 DEPEND=">=net-misc/curl-7.10.2
 	>=dev-lang/ghc-6.2.2
-	dev-haskell/quickcheck
+	=dev-haskell/quickcheck-1*
 	dev-haskell/mtl
 	dev-haskell/html
 	dev-haskell/parsec
 	dev-haskell/regex-compat
 	sys-apps/diffutils
-	doc?  ( virtual/tetex
+	doc?  ( virtual/latex-base
 		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
 
 RDEPEND=">=net-misc/curl-7.10.2
@@ -67,6 +67,7 @@ src_unpack() {
 	use ia64 && sed -i 's/-funfolding-use-threshold20//' "${S}/GNUmakefile"
 
 	# Since we've patched the build system:
+	cd "${S}"
 	eautoreconf
 }
 
