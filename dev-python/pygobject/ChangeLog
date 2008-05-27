@@ -1,6 +1,16 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.37 2008/03/22 03:49:36 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.38 2008/05/25 21:19:59 eva Exp $
+
+  25 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  pygobject-2.12.3.ebuild:
+  fix QA on 2.12.3, changing to ~mips, mips is experimental.
+
+*pygobject-2.14.2 (25 May 2008)
+
+  25 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +pygobject-2.14.2.ebuild:
+  bump to 2.14.2. Fix bug #198875.
 
   22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org> pygobject-2.14.1.ebuild:
   Marked stable on amd64 for bug #212986

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.16 2007/07/26 21:32:44 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.17 2008/05/25 21:19:59 eva Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 RDEPEND=">=dev-lang/python-2.3.5
@@ -50,10 +50,10 @@ src_install() {
 	doins -r examples
 
 	python_version
-	mv ${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py \
-		${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py-2.0
-	mv ${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth \
-		${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth-2.0
+	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py \
+		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py-2.0
+	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth \
+		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth-2.0
 }
 
 pkg_postinst() {

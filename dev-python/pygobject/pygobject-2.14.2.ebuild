@@ -1,10 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.0-r1.ebuild,v 1.1 2007/12/27 18:04:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.2.ebuild,v 1.1 2008/05/25 21:19:59 eva Exp $
 
 EAPI="prefix"
 
-WANT_AUTOMAKE=1.8
 inherit gnome2 python autotools
 
 DESCRIPTION="GLib's GObject library bindings for Python"
@@ -12,8 +11,8 @@ HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
-IUSE="doc examples"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="doc examples libffi"
 
 # glib higher dep than in configure.in comes from a runtime version check and ensures that
 # timeout_add_seconds is available for any packages that depend on pygobject and use it
@@ -28,8 +27,11 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
-	# activate libffi when bug #199850 is solved
-	G2CONF="${G2CONF} $(use_enable doc docs) --without-libffi"
+	if use libffi && ! built_with_use sys-devel/gcc libffi; then
+		eerror "libffi support not found in sys-devel/gcc." && die
+	fi
+
+	G2CONF="${G2CONF} $(use_enable doc docs) $(use_with libffi ffi)"
 }
 
 src_unpack() {
@@ -39,14 +41,7 @@ src_unpack() {
 	# this is caused by upstream's automake-1.8 lacking some Gentoo-specific
 	# patches (for tmpfs amongst other things). Upstreams hit by this should
 	# move to newer automake versions ideally.
-	# eautomake
-
-	# fix bug #198875 and bug #194632
-	epatch "${FILESDIR}/${P}-libffi-magic.patch"
-
-	# uncomment above eautomake when eautoreconf isn't needed anymore
-	cp aclocal.m4 old.m4
-	AT_M4DIR="." eautoreconf
+	AT_M4DIR="m4" eautomake
 
 	# disable pyc compiling
 	mv py-compile py-compile.orig
