@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.41 2008/05/24 19:47:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.43 2008/05/26 15:30:14 armin76 Exp $
+
+  26 May 2008; Raúl Porcel <armin76@gentoo.org> lxml-1.3.6.ebuild,
+  lxml-2.0.5.ebuild:
+  sparc stable and add ~sparc
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> lxml-2.0.5.ebuild:
+  Stable on ppc64; bug #223443
 
   24 May 2008; nixnut <nixnut@gentoo.org> lxml-1.3.6.ebuild:
   Stable on ppc wrt bug 223443
