@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.114 2008/05/24 14:11:06 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.116 2008/05/26 18:41:48 nixnut Exp $
+
+  26 May 2008; nixnut <nixnut@gentoo.org> erlang-12.2.2.ebuild:
+  Stable on ppc wrt bug 223707
+
+  26 May 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.2.ebuild:
+  stable x86, bug 223707
 
   24 May 2008; Christian Faulhammer <opfer@gentoo.org>
   files/erlang-11.2.5-odbc-support-amd64.patch:
