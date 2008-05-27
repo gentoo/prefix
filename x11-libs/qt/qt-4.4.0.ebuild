@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/qt/qt-4.4.0.ebuild,v 1.1 2008/05/15 12:40:50 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.4.0.ebuild,v 1.2 2008/05/25 08:43:24 corsair Exp $
 
 EAPI="prefix"
 
