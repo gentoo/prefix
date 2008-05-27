@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.71 2008/03/20 15:48:40 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.72 2008/05/25 06:45:27 corsair Exp $
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> eselect-1.0.11-r1.ebuild:
+  Stable on ppc64
 
 *eselect-1.0.11-r1 (20 Mar 2008)
 
