@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/memcached
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.67 2008/05/24 16:54:47 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.71 2008/05/26 08:52:28 armin76 Exp $
+
+  26 May 2008; Raúl Porcel <armin76@gentoo.org> memcached-1.2.5.ebuild:
+  alpha/ia64/sparc stable wrt #223371
+
+  25 May 2008; Jeroen Roovers <jer@gentoo.org> memcached-1.2.5.ebuild:
+  Stable for HPPA (bug #223371).
+
+  25 May 2008; Markus Meier <maekke@gentoo.org> memcached-1.2.5.ebuild:
+  amd64/x86 stable, bug #223371
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> memcached-1.2.5.ebuild:
+  Stable on ppc64; bug #223371
 
   24 May 2008; nixnut <nixnut@gentoo.org> memcached-1.2.5.ebuild:
   Stable on ppc wrt bug 223371

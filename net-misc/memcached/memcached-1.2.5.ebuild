@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.2.5.ebuild,v 1.3 2008/05/24 16:54:47 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.2.5.ebuild,v 1.7 2008/05/26 08:52:28 armin76 Exp $
 
 EAPI="prefix"
 
