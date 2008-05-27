@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.9.6.12.ebuild,v 1.5 2008/05/24 15:02:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.9.6.12.ebuild,v 1.7 2008/05/26 15:29:02 armin76 Exp $
 
 EAPI="prefix"
 

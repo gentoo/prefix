@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/cython
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.8 2008/05/24 15:02:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.10 2008/05/26 15:29:02 armin76 Exp $
+
+  26 May 2008; Raúl Porcel <armin76@gentoo.org> cython-0.9.6.12.ebuild:
+  Add ~sparc
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> cython-0.9.6.12.ebuild:
+  Stable on ppc64; bug #223443
 
   24 May 2008; Jeroen Roovers <jer@gentoo.org> cython-0.9.6.12.ebuild:
   Stable for HPPA (bug #223443).
