@@ -1,0 +1,179 @@
+diff -ur lighttpd-1.4.11.orig/src/base.h lighttpd-1.4.11/src/base.h
+--- lighttpd-1.4.11.orig/src/base.h	2006-01-13 06:51:04.000000000 -0800
++++ lighttpd-1.4.11/src/base.h	2006-12-17 18:01:39.000000000 -0800
+@@ -505,7 +505,7 @@
+ 	
+ 	/* the errorlog */
+ 	int errorlog_fd;
+-	enum { ERRORLOG_STDERR, ERRORLOG_FILE, ERRORLOG_SYSLOG } errorlog_mode;
++	enum { ERRORLOG_STDERR, ERRORLOG_FILE, ERRORLOG_SYSLOG, ERRORLOG_PIPE } errorlog_mode;
+ 	buffer *errorlog_buf;
+ 	
+ 	fdevents *ev, *ev_ins;
+diff -ur lighttpd-1.4.11.orig/src/log.c lighttpd-1.4.11/src/log.c
+--- lighttpd-1.4.11.orig/src/log.c	2005-13-07 05:01:35.000000000 -0800
++++ lighttpd-1.4.11/src/log.c	2006-12-17 18:09:43.000000000 -0800
+@@ -34,10 +34,11 @@
+ /** 
+  * open the errorlog
+  * 
+- * we have 3 possibilities:
++ * we have 4 possibilities:
+  * - stderr (default)
+  * - syslog 
+  * - logfile
++ * - pipe
+  * 
+  * if the open failed, report to the user and die
+  * 
+@@ -57,21 +58,81 @@
+ 		srv->errorlog_mode = ERRORLOG_SYSLOG;
+ 	} else if (!buffer_is_empty(srv->srvconf.errorlog_file)) {
+ 		const char *logfile = srv->srvconf.errorlog_file->ptr;
+-		
+-		if (-1 == (srv->errorlog_fd = open(logfile, O_APPEND | O_WRONLY | O_CREAT | O_LARGEFILE, 0644))) {
+-			log_error_write(srv, __FILE__, __LINE__, "SSSS", 
+-					"opening errorlog '", logfile,
+-					"' failed: ", strerror(errno));
+-			
++
++		if (logfile[0] == '|') {
++#ifdef HAVE_FORK
++			/* create write pipe and spawn process */
++
++			int to_log_fds[2];
++			pid_t pid;
++
++			if (pipe(to_log_fds)) {
++				log_error_write(srv, __FILE__, __LINE__, "ss",
++				"pipe failed: ", strerror(errno));
++				return -1;
++			}
++
++			/* fork, execve */
++			switch (pid = fork()) {
++			case 0:
++				/* child */
++
++				close(STDIN_FILENO);
++				dup2(to_log_fds[0], STDIN_FILENO);
++				close(to_log_fds[0]);
++				/* not needed */
++				close(to_log_fds[1]);
++
++				/* we don't need the client socket */
++				for (fd = 3; fd < 256; fd++) {
++					close(fd);
++				}
++
++				/* exec the log-process (skip the | )
++				 *
++				 */
++
++				execl("/bin/sh", "sh", "-c", logfile + 1, NULL);
++				
++				log_error_write(srv, __FILE__, __LINE__, "sss",
++					"spawning log-process failed: ",
++					strerror(errno), logfile + 1);
++
++				exit(-1);
++				break;
++			case -1:
++				/* error */
++				log_error_write(srv, __FILE__, __LINE__, "ss", "fork failed:", strerror(errno));
++				break;
++			default:
++				close(to_log_fds[0]);
++
++				srv->errorlog_fd = to_log_fds[1];
++
++				break;
++			}
++			srv->errorlog_mode = ERRORLOG_PIPE;
++#else
++			log_error_write(srv, __FILE__, __LINE__, "SSS",
++				"opening errorlog '", logfile,"' impossible");
+ 			return -1;
+-		}
++#endif
++		} else {
++			if (-1 == (srv->errorlog_fd = open(logfile, O_APPEND | O_WRONLY | O_CREAT | O_LARGEFILE, 0644))) {
++				log_error_write(srv, __FILE__, __LINE__, "SSSS",
++  					"opening errorlog '", logfile,
++  					"' failed: ", strerror(errno));
++  
++				return -1;
++			}
++			srv->errorlog_mode = ERRORLOG_FILE;
++  		}
+ #ifdef FD_CLOEXEC
+-		/* close fd on exec (cgi) */
+-		fcntl(srv->errorlog_fd, F_SETFD, FD_CLOEXEC);
++  		/* close fd on exec (cgi) */
++  		fcntl(srv->errorlog_fd, F_SETFD, FD_CLOEXEC);
+ #endif
+-		srv->errorlog_mode = ERRORLOG_FILE;
+-	}
+-	
++  	}
++  
+ 	log_error_write(srv, __FILE__, __LINE__, "s", "server started");
+ 	
+ #ifdef HAVE_VALGRIND_VALGRIND_H
+@@ -99,7 +160,7 @@
+  */
+ 
+ int log_error_cycle(server *srv) {
+-	/* only cycle if we are not in syslog-mode */
++	/* only cycle if the error log is a file */
+ 	
+ 	if (srv->errorlog_mode == ERRORLOG_FILE) {
+ 		const char *logfile = srv->srvconf.errorlog_file->ptr;
+@@ -135,6 +196,7 @@
+ 	log_error_write(srv, __FILE__, __LINE__, "s", "server stopped");
+ 	
+ 	switch(srv->errorlog_mode) {
++	case ERRORLOG_PIPE: /* fall through */
+ 	case ERRORLOG_FILE:
+ 		close(srv->errorlog_fd);
+ 		break;
+@@ -154,6 +216,7 @@
+ 	va_list ap;
+ 	
+ 	switch(srv->errorlog_mode) {
++	case ERRORLOG_PIPE:
+ 	case ERRORLOG_FILE:
+ 	case ERRORLOG_STDERR:
+ 		/* cache the generated timestamp */
+@@ -238,6 +301,7 @@
+ 	va_end(ap);
+ 	
+ 	switch(srv->errorlog_mode) {
++	case ERRORLOG_PIPE: /* fall through */
+ 	case ERRORLOG_FILE:
+ 		BUFFER_APPEND_STRING_CONST(srv->errorlog_buf, "\n");
+ 		write(srv->errorlog_fd, srv->errorlog_buf->ptr, srv->errorlog_buf->used - 1);
+diff -ur lighttpd-1.4.11.orig/src/mod_cgi.c lighttpd-1.4.11/src/mod_cgi.c
+--- lighttpd-1.4.11.orig/src/mod_cgi.c	2006-02-22 05:15:10.000000000 -0800
++++ lighttpd-1.4.11/src/mod_cgi.c	2006-12-17 18:01:39.000000000 -0800
+@@ -750,7 +750,7 @@
+ 		 *
+ 		 * we feed the stderr of the CGI to our errorlog, if possible
+ 		 */
+-		if (srv->errorlog_mode == ERRORLOG_FILE) {
++		if ((srv->errorlog_mode == ERRORLOG_FILE) || (srv->errorlog_mode == ERRORLOG_PIPE)) {
+ 			close(STDERR_FILENO);
+ 			dup2(srv->errorlog_fd, STDERR_FILENO);
+ 		}
+diff -ur lighttpd-1.4.11.orig/src/mod_rrdtool.c lighttpd-1.4.11/src/mod_rrdtool.c
+--- lighttpd-1.4.11.orig/src/mod_rrdtool.c	2005-08-21 15:52:24.000000000 -0700
++++ lighttpd-1.4.11/src/mod_rrdtool.c	2006-12-17 18:01:39.000000000 -0800
+@@ -134,7 +134,7 @@
+ 		
+ 		close(STDERR_FILENO);
+ 		
+-		if (srv->errorlog_mode == ERRORLOG_FILE) {
++		if ((srv->errorlog_mode == ERRORLOG_FILE) || (srv->errorlog_mode == ERRORLOG_PIPE)) {
+ 			dup2(srv->errorlog_fd, STDERR_FILENO);
+ 			close(srv->errorlog_fd);
+ 		}

@@ -1,0 +1,100 @@
+diff -r ade3eead0e8d -r 82c24356bcd0 NEWS
+--- a/NEWS	Fri Mar 28 16:30:14 2008 +0100
++++ b/NEWS	Fri Mar 28 17:45:28 2008 +0100
+@@ -8,6 +8,7 @@
+   * added support for If-Range: <date> (#1346)
+   * added support for matching $HTTP["scheme"] in configs
+   * fixed initgroups() called after chroot (#1384)
++  * Fix #285 again: read error after SSL_shutdown (thx marton.illes@balabit.com) and clear the error queue before some other calls
+   * fixed case-sensitive check for Auth-Method (#1456)
+   * execute fcgi app without /bin/sh if used as argument to spawn-fcgi (#1428)
+   * fixed a bug that made /-prefixed extensions being handled also when
+diff -r ade3eead0e8d -r 82c24356bcd0 src/connections.c
+--- a/src/connections.c	Fri Mar 28 16:30:14 2008 +0100
++++ b/src/connections.c	Fri Mar 28 17:45:28 2008 +0100
+@@ -199,6 +199,7 @@
+ 
+ 	/* don't resize the buffer if we were in SSL_ERROR_WANT_* */
+ 
++	ERR_clear_error();
+ 	do {
+ 		if (!con->ssl_error_want_reuse_buffer) {
+ 			b = buffer_init();
+@@ -1668,21 +1669,51 @@
+ 			}
+ #ifdef USE_OPENSSL
+ 			if (srv_sock->is_ssl) {
+-				int ret;
++				int ret, ssl_r;
++				unsigned long err;
++				ERR_clear_error();
+ 				switch ((ret = SSL_shutdown(con->ssl))) {
+ 				case 1:
+ 					/* ok */
+ 					break;
+ 				case 0:
+-					SSL_shutdown(con->ssl);
+-					break;
++					ERR_clear_error();
++					if (-1 != (ret = SSL_shutdown(con->ssl))) break;
++
++					// fall through
+ 				default:
+-					log_error_write(srv, __FILE__, __LINE__, "sds", "SSL:",
+-							SSL_get_error(con->ssl, ret),
+-							ERR_error_string(ERR_get_error(), NULL));
+-					return -1;
++
++					switch ((ssl_r = SSL_get_error(con->ssl, ret))) {
++					case SSL_ERROR_WANT_WRITE:
++					case SSL_ERROR_WANT_READ:
++						break;
++					case SSL_ERROR_SYSCALL:
++						/* perhaps we have error waiting in our error-queue */
++						if (0 != (err = ERR_get_error())) {
++							do {
++								log_error_write(srv, __FILE__, __LINE__, "sdds", "SSL:",
++										ssl_r, ret,
++										ERR_error_string(err, NULL));
++							} while((err = ERR_get_error()));
++						} else {
++							log_error_write(srv, __FILE__, __LINE__, "sddds", "SSL (error):",
++									ssl_r, r, errno,
++									strerror(errno));
++						}
++	
++						break;
++					default:
++						while((err = ERR_get_error())) {
++							log_error_write(srv, __FILE__, __LINE__, "sdds", "SSL:",
++									ssl_r, ret,
++									ERR_error_string(err, NULL));
++						}
++	
++						break;
++					}
+ 				}
+ 			}
++			ERR_clear_error();
+ #endif
+ 
+ 			switch(con->mode) {
+diff -r ade3eead0e8d -r 82c24356bcd0 src/network_openssl.c
+--- a/src/network_openssl.c	Fri Mar 28 16:30:14 2008 +0100
++++ b/src/network_openssl.c	Fri Mar 28 17:45:28 2008 +0100
+@@ -85,6 +85,7 @@
+ 			 *
+ 			 */
+ 
++			ERR_clear_error();
+ 			if ((r = SSL_write(ssl, offset, toSend)) <= 0) {
+ 				unsigned long err;
+ 
+@@ -187,6 +188,7 @@
+ 
+ 				close(ifd);
+ 
++				ERR_clear_error();
+ 				if ((r = SSL_write(ssl, s, toSend)) <= 0) {
+ 					unsigned long err;
+ 
