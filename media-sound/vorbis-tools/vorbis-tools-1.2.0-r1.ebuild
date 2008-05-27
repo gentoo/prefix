@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.2.0-r1.ebuild,v 1.9 2008/04/17 17:01:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.2.0-r1.ebuild,v 1.10 2008/05/26 16:57:30 drac Exp $
 
 EAPI="prefix 1"
 
@@ -28,18 +28,22 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-with-args.patch \
 		"${FILESDIR}"/${P}-sec.patch
+
 	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
-	econf --docdir=/usr/share/doc/${PF} --enable-vcut \
+	econf --enable-vcut \
 		$(use_enable nls) $(use_enable ogg123) \
 		$(use_with flac) $(use_with speex)
+
 	emake || die "emake failed."
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake docdir="${EPREFIX}"/usr/share/doc/${PF} DESTDIR="${D}" \
+		install || die "emake install failed."
+
 	dodoc AUTHORS CHANGES README
 	prepalldocs
 }
