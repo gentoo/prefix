@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73-r1.ebuild,v 1.2 2008/05/25 15:52:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73-r2.ebuild,v 1.6 2008/05/26 18:25:55 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -53,13 +53,13 @@ src_install() {
 	doins img/mtr_icon.xpm
 
 	if use !prefix ; then
-		fowners root:wheel /usr/bin/mtr
-		fperms 4710 /usr/bin/mtr
+		fowners root:0 /usr/sbin/mtr
+		fperms 4710 /usr/sbin/mtr
 	else
 		# if we're non-privileged (assumption here, not a valid one though)
 		# we should make sure it's not suid, such that privileged users can
 		# run the binary (even though in use-case this is a bit limited)
-		fperms 0711 /usr/bin/mtr
+		fperms 0711 /usr/sbin/mtr
 	fi
 
 	dodoc AUTHORS ChangeLog FORMATS NEWS README SECURITY TODO
