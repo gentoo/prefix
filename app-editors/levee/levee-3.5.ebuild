@@ -12,7 +12,7 @@ SRC_URI="http://www.pell.chi.il.us/~orc/Code/levee/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="levee"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 IUSE=""
 DEPEND="sys-libs/ncurses"
