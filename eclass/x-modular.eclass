@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.97 2008/05/09 07:18:19 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.100 2008/05/28 01:48:10 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -45,28 +45,22 @@ fi
 
 # Set up SRC_URI for individual modular releases
 BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
-if [[ ${CATEGORY} = x11-apps ]] || [[ ${CATEGORY} = x11-wm ]]; then
-	MODULE="app"
-elif [[ ${CATEGORY} = app-doc ]]; then
-	MODULE="doc"
-# x11-misc contains data and util, x11-themes contains data
-elif [[ ${CATEGORY} = x11-misc ]] || [[ ${CATEGORY} = x11-themes ]]; then
-	if [[ ${PN} == xbitmaps || ${PN} == xcursor-themes || ${PN} == xkbdata ]]; then
-		MODULE="data"
-	else
-		MODULE="util"
-	fi
-elif [[ ${CATEGORY} = x11-drivers ]]; then
-	MODULE="driver"
-elif [[ ${CATEGORY} = media-fonts ]]; then
-	MODULE="font"
-elif [[ ${CATEGORY} = x11-libs ]]; then
-	MODULE="lib"
-elif [[ ${CATEGORY} = x11-proto ]]; then
-	MODULE="proto"
-elif [[ ${CATEGORY} = x11-base ]]; then
-	MODULE="xserver"
-fi
+# @ECLASS-VARIABLE: MODULE
+# @DESCRIPTION:
+# The subdirectory to download source from. Possible settings are app,
+# doc, data, util, driver, font, lib, proto, xserver. Set above the
+# inherit to override the default autoconfigured module.
+[[ -z ${MODULE} ]] && MODULE=""
+case ${CATEGORY} in
+	app-doc)             MODULE="doc"     ;;
+	media-fonts)         MODULE="font"    ;;
+	x11-apps|x11-wm)     MODULE="app"     ;;
+	x11-misc|x11-themes) MODULE="util"    ;;
+	x11-drivers)         MODULE="driver"  ;;
+	x11-base)            MODULE="xserver" ;;
+	x11-proto)           MODULE="proto"   ;;
+	x11-libs)            MODULE="lib"     ;;
+esac
 
 if [[ -n ${GIT_ECLASS} ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/${MODULE}/${PN}"
@@ -361,7 +355,7 @@ x-modular_src_configure() {
 # @VARIABLE: CONFIGURE_OPTIONS
 # @DESCRIPTION:
 # Any options to pass to configure
-[[ -n ${CONFIGURE_OPTIONTS} ]]
+[[ -n ${CONFIGURE_OPTIONS} ]]
 
 	# If prefix isn't set here, .pc files cause problems
 	if [[ -x ${ECONF_SOURCE:-.}/configure ]]; then

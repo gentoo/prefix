@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.59 2008/05/15 13:27:40 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.60 2008/05/27 09:49:09 zlin Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -273,6 +273,7 @@ subversion_fetch() {
 		cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
 
 		local S="${S}/${S_dest}"
+		mkdir -p "${S}"
 
 		# export to the ${WORKDIR}
 		#*  "svn export" has a bug.  see http://bugs.gentoo.org/119236
