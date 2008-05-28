@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1.ebuild,v 1.2 2008/05/24 00:45:35 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1.ebuild,v 1.3 2008/05/27 10:01:59 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -44,8 +44,8 @@ RDEPEND="app-arch/unzip
 	sndfile? ( >=media-libs/libsndfile-1.0.17-r1 )
 	timidity? ( media-sound/timidity++ )
 	tta? ( media-libs/libid3tag )
-	vorbis? ( >=media-libs/libvorbis-1.0
-		  >=media-libs/libogg-1.0 )
+	vorbis? ( >=media-libs/libvorbis-1.2.0
+		  >=media-libs/libogg-1.1.3 )
 	wavpack? ( >=media-sound/wavpack-4.41.0 )
 	wma? ( >=media-libs/libmms-0.3 )"
 
