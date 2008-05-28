@@ -28,8 +28,7 @@ src_unpack() {
 	rm -f control.tar.gz data.tar.gz debian-binary
 	# dirty prefix job (someone gotta do it...)
 	sed -i -e "1s|^.*$|#!${EPREFIX}/bin/bash -e|" \
-		-e "/^\(CERTSCONF\|CERTSDIR\)=/s|=|=\"${EPREFIX}\"|" \
-		-e "s|^cd /etc/ssl/certs$|cd \"${EPREFIX}\"/etc/ssl/certs|" \
+		-e "/^\(CERTSCONF\|CERTSDIR\|ETCCERTSDIR\)=/s|=|=\"${EPREFIX}\"|" \
 		usr/sbin/update-ca-certificates || die "Can't prefixify"
 }
 src_install() {
