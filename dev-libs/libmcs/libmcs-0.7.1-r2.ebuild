@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/libmcs-0.7.1-r1.ebuild,v 1.1 2008/05/17 18:38:25 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/libmcs-0.7.1-r2.ebuild,v 1.1 2008/05/27 16:19:37 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ RDEPEND=">=dev-libs/libmowgli-0.6.1
 
 src_compile() {
 	econf \
+		--disable-kconfig \
 		$(use_enable gnome gconf) \
 		|| die "econf failed"
 	emake || die "emake failed"
