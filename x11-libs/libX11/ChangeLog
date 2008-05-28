@@ -1,6 +1,6 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.91 2008/03/10 01:49:57 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.92 2008/05/27 19:16:40 cardoe Exp $
 
 *libX11-1.1.4 (10 Mar 2008)
 
@@ -9,11 +9,11 @@
 
 *libX11-1.1.3-r1 (28 Feb 2008)
 
-  28 Feb 2008; Doug Klima <cardoe@gentoo.org>
+  28 Feb 2008; Doug Goldstein <cardoe@gentoo.org>
   +files/libX11-1.1.3-xcb-locking.patch, +libX11-1.1.3-r1.ebuild:
   add patch to fix fd.o bug #14029. Related to XCB locking.
 
-  19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libX11-1.1.3.ebuild:
+  19 Dec 2007; Dawid WÄgliÅski <cla@gentoo.org> libX11-1.1.3.ebuild:
   Stable on x86 (bug #202087)
 
   16 Dec 2007; Markus Rothe <corsair@gentoo.org> libX11-1.1.3.ebuild:
@@ -22,10 +22,10 @@
   16 Dec 2007; nixnut <nixnut@gentoo.org> libX11-1.1.3.ebuild:
   Stable on ppc wrt bug 202087
 
-  15 Dec 2007; Doug Klima <cardoe@gentoo.org> libX11-1.1.3.ebuild:
+  15 Dec 2007; Doug Goldstein <cardoe@gentoo.org> libX11-1.1.3.ebuild:
   amd64 stable bug #202087
 
-  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> libX11-1.1.3.ebuild:
+  13 Dec 2007; RaÃºl Porcel <armin76@gentoo.org> libX11-1.1.3.ebuild:
   alpha/ia64 stable wrt #202087
 
   12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libX11-1.1.3.ebuild:
@@ -44,7 +44,7 @@
   10 Sep 2007; Jeroen Roovers <jer@gentoo.org> libX11-1.1.2-r1.ebuild:
   Stable for HPPA (bug #191615).
 
-  09 Sep 2007; Raúl Porcel <armin76@gentoo.org> libX11-1.1.2-r1.ebuild:
+  09 Sep 2007; RaÃºl Porcel <armin76@gentoo.org> libX11-1.1.2-r1.ebuild:
   alpha/ia64 stable wrt #191615
 
   08 Sep 2007; Joseph Jezak <josejx@gentoo.org> libX11-1.1.2-r1.ebuild:
@@ -108,7 +108,7 @@
   11 Apr 2007; Jeroen Roovers <jer@gentoo.org> libX11-1.1.1-r1.ebuild:
   Stable for HPPA (bug #172752).
 
-  11 Apr 2007; Raúl Porcel <armin76@gentoo.org> libX11-1.1.1-r1.ebuild:
+  11 Apr 2007; RaÃºl Porcel <armin76@gentoo.org> libX11-1.1.1-r1.ebuild:
   ia64 + x86 stable wrt security bug 172752
 
   11 Apr 2007; Peter Weller <welp@gentoo.org> libX11-1.1.1-r1.ebuild:
@@ -129,7 +129,7 @@
   libX11-1.0.1-r1.ebuild, libX11-1.0.3.ebuild, libX11-1.0.3-r1.ebuild:
   Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
-  06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libX11-1.0.3.ebuild:
+  06 Jan 2007; Bryan Ãstergaard <kloeri@gentoo.org> libX11-1.0.3.ebuild:
   Stable on Alpha.
 
 *libX11-1.1.1 (02 Dec 2006)
@@ -272,7 +272,7 @@
   13 May 2006; Donnie Berkholz <spyderous@gentoo.org>; +libX11-1.0.1.ebuild:
   Bump.
 
-  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> libX11-1.0.0-r2.ebuild:
+  31 Mar 2006; Diego PettenÃ² <flameeyes@gentoo.org> libX11-1.0.0-r2.ebuild:
   Add ~x86-fbsd keyword.
 
   26 Mar 2006; Joshua Baergen <joshuabaergen@gentoo.org>
