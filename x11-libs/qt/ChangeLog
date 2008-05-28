@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.540 2008/05/25 08:43:24 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.541 2008/05/27 13:23:32 armin76 Exp $
+
+  27 May 2008; Raúl Porcel <armin76@gentoo.org> qt-4.4.0.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #223557
 
   25 May 2008; Markus Rothe <corsair@gentoo.org> qt-4.4.0.ebuild:
   Added ~ppc/~ppc64
