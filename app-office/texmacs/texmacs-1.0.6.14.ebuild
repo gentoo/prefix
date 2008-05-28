@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.14.ebuild,v 1.3 2008/05/26 17:38:30 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.14.ebuild,v 1.4 2008/05/27 16:30:41 opfer Exp $
 
 EAPI="prefix"
 inherit eutils flag-o-matic
