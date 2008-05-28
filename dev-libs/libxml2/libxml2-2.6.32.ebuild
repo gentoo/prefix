@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30-r1.ebuild,v 1.3 2008/02/08 19:29:16 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.32.ebuild,v 1.1 2008/05/27 15:35:19 remi Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.xmlsoft.org/"
 LICENSE="MIT"
 SLOT="2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bootstrap build debug doc ipv6 python readline test"
+IUSE="bootstrap build debug doc examples ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
 XSTS_NAME_1="xmlschema2002-01-16"
@@ -37,8 +37,8 @@ src_unpack() {
 	cd "${S}"
 
 	if use test; then
-		cp ${DISTDIR}/${XSTS_TARBALL_1} \
-			${DISTDIR}/${XSTS_TARBALL_2} \
+		cp "${DISTDIR}/${XSTS_TARBALL_1}" \
+			"${DISTDIR}/${XSTS_TARBALL_2}" \
 			"${S}"/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
@@ -46,8 +46,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.6.29-catalog_path.patch
 
 	eprefixify catalog.c runtest.c xmllint.c
-
-	epatch "${FILESDIR}"/${P}-CVE-2007-6284.patch
 
 	epunt_cxx
 }
@@ -88,17 +86,22 @@ src_compile() {
 			|| die "sed failed"
 	done
 
-	emake || die "Copilation failed"
+	emake || die "Compilation failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "Installation failed"
+	emake DESTDIR="${D}" install || die "Installation failed"
 
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO*
 
 	if ! use doc; then
 		rm -rf "${ED}"/usr/share/gtk-doc
 		rm -rf "${ED}"/usr/share/doc/${P}/html
+	fi
+
+	if ! use examples; then
+		rm -rf "${ED}/usr/share/doc/${P}/examples"
+		rm -rf "${ED}/usr/share/doc/${PN}-python-${PV}/examples"
 	fi
 }
 
