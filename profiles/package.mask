@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8655 2008/05/26 00:49:35 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8660 2008/05/28 03:22:47 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (28 May 2008)
+# Dead upstream, broken package. Removal request via netmon team. bug #223479
+# Masked for removal in 30 days by the treecleaners.
+net-analyzer/sonar
+
+# Andreas Proschofsky <suka@gentoo.org> (27 May 2008)
+# Release Candidate, masked for testing
+>=app-office/openoffice-2.4.1_rc1
+
+# Rémi Cardona <remi@gentoo.org> (27 Mai 2008)
+# mildly broken, see bug #156583
+=app-text/gtranslator-1.1.7
 
 # Steve Dibb <beandog@gentoo.org> (25 May 2008)
 # Needs testing 
@@ -90,10 +103,6 @@ dev-util/lincvs
 # glademm's upstream is dead
 dev-util/glademm
 dev-cpp/bakery
-
-# Markus Dittrich <markusle@gentoo.org> (15 May 2008)
-# new cvs snapshot; needs a bit of testing
-=sci-visualization/paraview-3.3_pre20080514
 
 # Alin Nastac <mrness@gentoo.org> (15 May 2008)
 # Dead upstream. To be removed in 30 days.
@@ -196,19 +205,6 @@ media-fonts/sharefonts
 # masked until tmw works with the newer version.
 >=dev-games/guichan-0.8
 
-# Samuli Suominen <drac@gentoo.org> (27 Apr 2008)
-# Spring clean unported GTK+-1.2 media applications.
-# Tracked in bug 214788.
-# iv - replacements: gqview, mirage, pornview
-# gqcam - replacements: camorama, cheese
-# gtkguitune - replacement: lingot, k3guitune
-# playspc_gtk - replacement: playspc
-media-gfx/iv
-media-video/gqcam
-media-sound/gtkguitune
-media-sound/playspc_gtk
-media-sound/yconsole
-
 # Mike Auty <ikelos@gentoo.org> (26 Apr 2008)
 # Masking all app-emulation/vmware-workstation-tools packages
 # in favour of app-emulation/open-vm-tools
@@ -240,20 +236,9 @@ x11-themes/openbox-themes
 # Please enable the vim-syntax flag for conky instead.
 app-vim/conky-syntax
 
-# Samuli Suominen <drac@gentoo.org> (21 Apr 2008)
-# Masked for removal in 30 days. Doesn't build
-# wrt bug 178036 and has open CVE-2007-4773 wrt
-# security bug 203195.
-sys-apps/systrace
-
 # Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
 # mask beta version
 =net-libs/gloox-1.0_beta*
-
-# Samuli Suominen <drac@gentoo.org> (21 Apr 2008)
-# Masked by treecleaners for bug 160267. Removed in ~60 days.
-# Has been included in 2.6 kernel series.
-net-fs/coda-kernel
 
 # Diego Pettenò <flameeyes@gentoo.org> (19 Apr 2008)
 # Masked until we remove "children" .la files, or get better tools -

@@ -1,10 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1456 2008/05/25 21:15:30 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1460 2008/05/28 03:22:47 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  28 May 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  mask net-analyzer/sonar wrt bug #223479
+
+  27 May 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add app-text/gtranslator-1.1.7 to package.mask
+
+  27 May 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Removed sci-mathematics/paraview-3.3_pre20080514 from mask.
+
+  27 May 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Removed GTK+-1.2 software qgcam, iv, playspc_gtk, yconsole and gtkguitune
+  for media herd(s). Removed systrace for security (open CVE) and
+  treecleaners. Removed coda-kernel for treecleaners by maintainers request.
 
   25 May 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
   Add libffi use flag for dev-python/pygobject
