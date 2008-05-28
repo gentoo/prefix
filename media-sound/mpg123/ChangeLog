@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.157 2008/05/17 18:20:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.158 2008/05/27 07:12:58 aballier Exp $
+
+*mpg123-1.4.3 (27 May 2008)
+
+  27 May 2008; Alexis Ballier <aballier@gentoo.org> +mpg123-1.4.3.ebuild:
+  version bump
 
   17 May 2008; Alexis Ballier <aballier@gentoo.org> mpg123-1.4.2.ebuild:
   keyword ~x86-fbsd
