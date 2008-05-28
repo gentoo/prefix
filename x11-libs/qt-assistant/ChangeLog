@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-assistant
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.8 2008/05/26 14:15:54 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.9 2008/05/27 13:17:10 armin76 Exp $
+
+  27 May 2008; Raúl Porcel <armin76@gentoo.org>
+  qt-assistant-4.4.0-r1.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #223557
 
 *qt-assistant-4.4.0-r1 (26 May 2008)
 
