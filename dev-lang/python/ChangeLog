@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.320 2008/05/27 05:24:11 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.321 2008/05/28 19:18:43 maekke Exp $
+
+  28 May 2008; Markus Meier <maekke@gentoo.org> python-2.3.6-r6.ebuild,
+  python-2.4.4-r13.ebuild:
+  amd64/x86 stable, security bug #216673
 
   27 May 2008; Markus Rothe <corsair@gentoo.org> python-2.3.6-r6.ebuild,
   python-2.4.4-r13.ebuild:
