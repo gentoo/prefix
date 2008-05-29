@@ -449,6 +449,9 @@ bootstrap_gnu() {
 	if [[ ${A%-*} == "grep" ]] ; then
 		[[ ${CHOST} == *-aix* || ${CHOST} == *-darwin* ]] || \
 			myconf="${myconf} --disable-nls"
+		# Solaris 11 has a messed up prce installation.  We don't need
+		# it anyway, so just disable it
+		myconf="${myconf} --disable-perl-regexp"
 	else
 		[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
 	fi
