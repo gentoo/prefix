@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/povray
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.73 2008/05/10 17:22:29 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.75 2008/05/29 01:40:07 lavajoe Exp $
+
+  29 May 2008; Joe Peterson <lavajoe@gentoo.org> povray-3.6.1-r3.ebuild:
+  Use eautoreconf with AT_NO_RECURSIVE set
+
+*povray-3.6.1-r3 (28 May 2008)
+
+  28 May 2008; Joe Peterson <lavajoe@gentoo.org> +povray-3.6.1-r3.ebuild,
+  povray-3.7.0_beta25-r1.ebuild:
+  Backport location changes to 3.6.1; fix up some autoconf stuff
 
   10 May 2008; Joe Peterson <lavajoe@gentoo.org> -povray-3.6.1-r1.ebuild:
   Remove old

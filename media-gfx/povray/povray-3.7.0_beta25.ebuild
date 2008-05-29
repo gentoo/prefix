@@ -19,7 +19,7 @@ SRC_URI="http://www.povray.org/beta/source/${PN}-src-${MY_PV}.tar.bz2"
 
 LICENSE="povlegal-3.6"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="svga tiff X"
 
 DEPEND="media-libs/libpng
