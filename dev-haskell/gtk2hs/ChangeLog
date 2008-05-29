@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.45 2008/05/04 14:10:01 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.46 2008/05/28 19:20:32 phreak Exp $
+
+  28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Duncan Coutts (dcoutts) from metadata.xml (as per #85695).
 
   04 May 2008; Lennart Kolmodin <kolmodin@gentoo.org>
   -files/gtk2hs-0.9.10-cflags.patch, -files/gtk2hs-0.9.10-ghc622.patch,
