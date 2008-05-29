@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-<email>centic@gentoo.org</email>
-<name>Dominik Stadler</name>
-<!--description></description-->
-</maintainer>
-<longdescription lang="en">
-Asymptote is a powerful descriptive vector graphics language that provides a natural coordinate-based framework for technical drawing. Labels and equations are typeset with LaTeX, for high-quality PostScript output.
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>maintainer-needed@gentoo.org</email>
+		<name>Default assignee for orphaned packages</name>
+	</maintainer>
+	<longdescription lang="en">
+		Asymptote is a powerful descriptive vector graphics language that
+		provides a natural coordinate-based framework for technical drawing.
+		Labels and equations are typeset with LaTeX, for high-quality PostScript
+		output.
 
-A major advantage of Asymptote over other graphics packages is that it is a programming language, as opposed to just a graphics program.
-</longdescription>
+		A major advantage of Asymptote over other graphics packages is that it
+		is a programming language, as opposed to just a graphics program.
+	</longdescription>
 </pkgmetadata>
