@@ -1,6 +1,9 @@
 # ChangeLog for app-text/silvercity
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.23 2008/03/12 16:14:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.24 2008/05/28 19:23:25 phreak Exp $
+
+  28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Julien Allanos (dju) from metadata.xml (as per #87168).
 
   12 Mar 2008; Raúl Porcel <armin76@gentoo.org> silvercity-0.9.7.ebuild:
   sparc stable
