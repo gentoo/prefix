@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.1.1.ebuild,v 1.3 2008/05/05 19:23:58 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2.ebuild,v 1.1 2008/05/29 01:08:20 dang Exp $
 
 EAPI="prefix"
 
