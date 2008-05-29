@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8660 2008/05/28 03:22:47 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8661 2008/05/29 02:07:51 lavajoe Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Joe Peterson <lavajoe@gentoo.org> (28 May 1008)
+# Beta 25 is broken - intermittently does not work (bombs out).
+# Will test new beta (26) and unmask if working.
+>=media-gfx/povray-3.7.0_beta
 
 # Jeremy Olexa <darkside@gentoo.org> (28 May 2008)
 # Dead upstream, broken package. Removal request via netmon team. bug #223479
