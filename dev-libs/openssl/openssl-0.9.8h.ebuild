@@ -41,7 +41,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
