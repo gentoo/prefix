@@ -3,10 +3,6 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>aross@gentoo.org</email>
-		<name>Andrew Ross</name>
-	</maintainer>
-	<maintainer>
 		<email>nelchael@gentoo.org</email>
 		<name>Krzysiek Pawlik</name>
 	</maintainer>

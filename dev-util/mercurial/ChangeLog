@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.67 2008/05/25 10:56:51 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.68 2008/05/28 19:01:53 phreak Exp $
+
+  28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Andrew Ross (aross) from metadata.xml (as per #139633).
 
 *mercurial-1.0.1 (25 May 2008)
 
