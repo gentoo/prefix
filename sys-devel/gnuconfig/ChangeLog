@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gnuconfig
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.32 2008/01/30 01:40:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.33 2008/05/28 19:43:19 vapier Exp $
+
+  28 May 2008; Mike Frysinger <vapier@gentoo.org> gnuconfig-20080123.ebuild:
+  Stabilize all relevant arches.
 
 *gnuconfig-20080123 (30 Jan 2008)
 
