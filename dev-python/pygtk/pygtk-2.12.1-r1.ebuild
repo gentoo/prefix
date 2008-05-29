@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.4 2008/04/24 19:27:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1-r1.ebuild,v 1.1 2008/05/28 14:03:44 remi Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,13 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
+
+	# fix for bug #209531
+	epatch "${FILESDIR}/${PN}-2.12.1-fix-amd64.patch"
+
+	# fix for bug #194343
+	epatch "${FILESDIR}/${PN}-2.12.1-fix-codegen-location.patch"
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
@@ -62,13 +69,12 @@ src_test() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize /usr/share/pygtk/2.0/codegen /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 }
 
 pkg_postrm() {
 	python_version
-	python_mod_cleanup /usr/share/pygtk/2.0/codegen
-	python_mod_cleanup
+	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 	rm -f "${EROOT}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.{py,pth}
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]

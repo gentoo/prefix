@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.180 2008/04/25 17:11:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.182 2008/05/29 02:28:17 dang Exp $
+
+  29 May 2008; Daniel Gryniewicz <dang@gentoo.org>
+  files/pygtk-2.12.1-fix-codegen-location.patch:
+  Set exec_prefix in codegen patch; bug #194343
+
+*pygtk-2.12.1-r1 (28 May 2008)
+
+  28 May 2008; Rémi Cardona <remi@gentoo.org>
+  +files/pygtk-2.12.1-fix-amd64.patch,
+  +files/pygtk-2.12.1-fix-codegen-location.patch, +pygtk-2.12.1-r1.ebuild:
+  fix bug #194343 and bug #209531, add amd64 keyword back
 
   25 Apr 2008; Samuli Suominen <drac@gentoo.org>
   +files/pygtk-2.12.0-extrafuncs.patch, +pygtk-2.12.0-r1.ebuild:
