@@ -1,0 +1,57 @@
+--- autounmask
++++ autounmask
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
+ 
+ # -----------------------------------------------------------------------------
+ #
+@@ -31,11 +31,12 @@
+ 
+ $|=1;
+ 
++my $EPREFIX     = '@GENTOO_PORTAGE_EPREFIX@';
+ # - init vars & constants >
+ my $VERSION		= '0.21';
+ my $pxs			= PortageXS->new();
+-my $keywordsFile	= '/etc/portage/package.keywords';
+-my $unmaskFile		= '/etc/portage/package.unmask';
++my $keywordsFile	= $EPREFIX.'/etc/portage/package.keywords';
++my $unmaskFile		= $EPREFIX.'/etc/portage/package.unmask';
+ my ($p,$x,$r);
+ my @l			= ();
+ my $packageToUnmask	= '';
+@@ -127,13 +128,13 @@
+ 
+ # - Figure out if $keywordsFile is a directory >
+ if (-d $keywordsFile) {
+-	$keywordsFile='/etc/portage/package.keywords/autounmask-'.$pn;
++	$keywordsFile=$EPREFIX.'/etc/portage/package.keywords/autounmask-'.$pn;
+ }
+ $pxs->print_ok('Using package.keywords file: '.$keywordsFile."\n");
+ 
+ # - Figure out if $unmaskFile is a directory >
+ if (-d $unmaskFile) {
+-	$unmaskFile='/etc/portage/package.unmask/autounmask-'.$pn;
++	$unmaskFile=$EPREFIX.'/etc/portage/package.unmask/autounmask-'.$pn;
+ }
+ $pxs->print_ok('Using package.unmask file: '.$unmaskFile."\n");
+ print "\n";
+@@ -293,7 +294,7 @@
+ sub getPortageMakeParam {
+ 	my $param		= shift;
+ 	my @files		= ();
+-	my @etcfiles		= qw(/etc/make.globals /etc/make.conf);
++	my @etcfiles		= ($EPREFIX.'/etc/make.globals', $EPREFIX.'/etc/make.conf');
+ 	my @profilefiles	= ();
+ 	my $v			= '';
+ 	my $parent		= '';
+@@ -341,7 +342,7 @@
+ 	
+ 	# - Defaults >
+ 	if ($param eq 'PORTDIR' && !$v) {
+-		$v='/usr/portage';
++		$v=$EPREFIX.'/usr/portage';
+ 	}
+ 	
+ 	return $v;

@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="autounmask - Unmasking packages the easy way"
 HOMEPAGE="http://download.mpsna.de/opensource/autounmask/"
 SRC_URI="http://download.mpsna.de/opensource/autounmask/${P}.tar.gz"
@@ -19,6 +21,13 @@ DEPEND="dev-lang/perl
 		dev-perl/Shell-EnvImporter"
 RDEPEND="${DEPEND}
 		sys-apps/portage"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify autounmask
+}
 
 src_install() {
 	dobin autounmask || die
