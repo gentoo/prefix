@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit perl-module
+inherit perl-module eutils
 DESCRIPTION="Portage abstraction layer for perl"
 HOMEPAGE="http://download.mpsna.de/opensource/PortageXS/"
 SRC_URI="http://download.mpsna.de/opensource/PortageXS/${P}.tar.gz"
@@ -22,6 +22,14 @@ DEPEND="dev-lang/perl
 
 src_unpack() {
 	unpack ${A}
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	cd "${S}"
+	eprefixify \
+		lib/PortageXS/Core.pm \
+		lib/PortageXS.pm \
+		usr/bin/portagexs_client \
+		usr/sbin/portagexsd
+
 	if use minimal ; then
 		rm -r ${S}/usr
 		rm -r ${S}/etc/init.d
