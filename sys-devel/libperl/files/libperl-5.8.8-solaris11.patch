@@ -1,5 +1,7 @@
 Thanks to the nice OpenSolaris guys, I finally figured out that on
-OpenSolaris 11, the header dependencies have changed.
+OpenSolaris 11 the header dependencies have changed.  Also, the
+struct that eventually makes up FILE no longer carries the _fileno
+attribute, so revert to perl-5.8.4 behaviour on that.
 
 --- perl.h
 +++ perl.h
@@ -12,3 +14,16 @@ OpenSolaris 11, the header dependencies have changed.
  #include <sys/mode.h>
  #endif
  
+--- perlio.c
++++ perlio.c
+@@ -2874,7 +2874,9 @@
+     f->_fileno = -1;
+     return 1;
+ #  elif defined(__sun__)
+-#    if defined(_LP64)
++#    if defined(SOLARIS11)
++    return 0;
++#    elif defined(_LP64)
+     /* On solaris, if _LP64 is defined, the FILE structure is this:
+      *
+      *  struct FILE {

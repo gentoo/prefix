@@ -137,6 +137,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix-firstmakefile.patch
 	epatch "${FILESDIR}"/${P}-interix-misc.patch
 
+	# activate Solaris 11 workaround...
+	[[ ${CHOST} == *-solaris2.11 ]] && append-flags -DSOLARIS11
+
 	# Configure makes an unwarranted assumption that /bin/ksh is a
 	# good shell. This patch makes it revert to using /bin/sh unless
 	# /bin/ksh really is executable. Should fix bug 42665.
