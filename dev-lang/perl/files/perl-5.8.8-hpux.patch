@@ -1,3 +1,6 @@
+# do not assume '.' being in PATH on hpux,
+# use 'gcc' as linker, link with '-lm'.
+
 --- hints/hpux.sh.orig	2007-11-23 10:07:52 +0100
 +++ hints/hpux.sh	2007-11-23 12:03:11 +0100
 @@ -190,7 +190,7 @@

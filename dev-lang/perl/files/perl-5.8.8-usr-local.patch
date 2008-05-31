@@ -1,3 +1,6 @@
+# remove /usr/local paths from all stuff thats used
+# in Configure script
+
 diff -rubB perl-5.8.8.orig/Configure perl-5.8.8/Configure
 --- perl-5.8.8.orig/Configure	Tue Jan 15 10:41:29 2008
 +++ perl-5.8.8/Configure	Tue Jan 15 10:44:59 2008

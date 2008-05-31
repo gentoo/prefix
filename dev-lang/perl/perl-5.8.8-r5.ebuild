@@ -126,21 +126,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
 	epatch "${FILESDIR}"/${P}-aix.patch
-
-	# do not assume '.' being in PATH on hpux,
-	# use 'gcc' as linker, link with '-lm'.
 	epatch "${FILESDIR}"/${P}-hpux.patch
-
-	# Solaris 64-bits also uses a GNU linker in Prefix
-	epatch "${FILESDIR}"/${P}-solaris-64bit.patch
+	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # may clash with native linker
 	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
-
-	# cut the crap of inventing paths, or adding search paths that we don't use
+	epatch "${FILESDIR}"/${P}-solaris11.patch
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
-
-	# remove /usr/local paths from all stuff thats used
-	# in Configure script
 	epatch "${FILESDIR}"/${P}-usr-local.patch
+
+	# activate Solaris 11 workaround...
+	[[ ${CHOST} == *-solaris2.11 ]] && append-flags -DSOLARIS11
 
 	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 	cp "${FILESDIR}"/${P}-lib64.patch "${T}"
