@@ -30,7 +30,8 @@ src_unpack() {
 src_compile() {
 	strip-flags
 	use kernel_linux && append-flags -DLINUX
-	append-flags -D_XOPEN_SOURCE=500
+	# _XOPEN_SOURCE=500 on Solaris 11 results in "fseek: invalid argument"
+	[[ ${CHOST} != *-solaris2.11 ]] && append-flags -D_XOPEN_SOURCE=500
 	use static && append-ldflags -static
 
 	local myconf=""
