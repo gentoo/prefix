@@ -130,6 +130,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-hpux.patch
 	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # could disrupt if using native ld
 	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
+	epatch "${FILESDIR}"/${P}-solaris11.patch
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 	epatch "${FILESDIR}"/${P}-usr-local.patch # should be merged with cleanup-paths
