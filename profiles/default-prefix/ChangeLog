@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2008; Fabian Groffen <grobian@gentoo.org>
+  +sunos/solaris/5.11/package.provided, +sunos/solaris/5.11/parent:
+  Add missing files for the Solaris 11 profile, bad me ... ;)
+
   29 May 2008; Fabian Groffen <grobian@gentoo.org> +sunos/solaris/5.11,
   +sunos/solaris/5.11/x86, sunos/solaris/5.11/x86/make.defaults:
   LinuxTag 2008: add Solaris 11 (OpenSolaris) profile
