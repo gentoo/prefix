@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.3.ebuild,v 1.9 2008/04/20 01:35:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.3.ebuild,v 1.10 2008/05/29 16:59:45 hawking Exp $
 
 EAPI="prefix"
 
@@ -60,7 +60,6 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_pkg_postrm
 	if use python; then
-		python_version
-		python_mod_cleanup /usr/$(get_libdir)/python${PYVER}/site-packages/GMenuSimpleEditor
+		python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/GMenuSimpleEditor
 	fi
 }
