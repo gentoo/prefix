@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r2.ebuild,v 1.1 2008/04/19 14:43:44 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r2.ebuild,v 1.3 2008/05/29 21:29:02 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -313,11 +313,11 @@ pkg_postinst() {
 								"python[0-9].[0-9].1${mansuffix}"
 
 	python_mod_optimize
-	python_mod_optimize -x site-packages \
-						-x test ${myroot}/usr/lib/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" \
+						/usr/lib/python${PYVER}
 	[[ "$(get_libdir)" == "lib" ]] || \
-		python_mod_optimize -x site-packages \
-							-x test ${myroot}/usr/$(get_libdir)/python${PYVER}
+		python_mod_optimize -x "(site-packages|test)" \
+							/usr/$(get_libdir)/python${PYVER}
 
 	# workaround possible python-upgrade-breaks-portage situation
 	if [ ! -f ${myroot}/usr/lib/portage/pym/portage.py ]; then
@@ -325,7 +325,7 @@ pkg_postinst() {
 			einfo "Working around possible python-portage upgrade breakage"
 			mkdir -p ${myroot}/usr/lib/portage/pym
 			cp ${myroot}/usr/lib/python2.4/site-packages/{portage,xpak,output,cvstree,getbinpkg,emergehelp,dispatch_conf}.py ${myroot}/usr/lib/portage/pym
-			python_mod_optimize ${myroot}/usr/lib/portage/pym
+			python_mod_optimize /usr/lib/portage/pym
 		fi
 	fi
 

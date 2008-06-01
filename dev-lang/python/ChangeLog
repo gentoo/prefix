@@ -1,6 +1,25 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.321 2008/05/28 19:18:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.323 2008/05/29 21:29:02 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> python-2.3.5-r2.ebuild,
+  python-2.3.5-r3.ebuild, python-2.3.6.ebuild, python-2.3.6-r3.ebuild,
+  python-2.3.6-r4.ebuild, python-2.3.6-r5.ebuild, python-2.3.6-r6.ebuild,
+  python-2.4.4-r5.ebuild, python-2.4.4-r6.ebuild, python-2.4.4-r9.ebuild,
+  python-2.4.4-r10.ebuild, python-2.4.4-r11.ebuild, python-2.4.4-r12.ebuild,
+  python-2.4.4-r13.ebuild, python-2.5.2-r1.ebuild, python-2.5.2-r2.ebuild,
+  python-2.5.2-r3.ebuild, python-2.5.2-r4.ebuild:
+  Fix -x option passed to python_mod_optimize, thanks to Remy Blank,
+  #224137.
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> python-2.3.5-r2.ebuild,
+  python-2.3.5-r3.ebuild, python-2.3.6.ebuild, python-2.3.6-r3.ebuild,
+  python-2.3.6-r4.ebuild, python-2.3.6-r5.ebuild, python-2.3.6-r6.ebuild,
+  python-2.4.4-r5.ebuild, python-2.4.4-r6.ebuild, python-2.4.4-r9.ebuild,
+  python-2.4.4-r10.ebuild, python-2.4.4-r11.ebuild, python-2.4.4-r12.ebuild,
+  python-2.4.4-r13.ebuild, python-2.5.2-r1.ebuild, python-2.5.2-r2.ebuild,
+  python-2.5.2-r3.ebuild, python-2.5.2-r4.ebuild:
+  python_mod_optimize is ROOT aware.
 
   28 May 2008; Markus Meier <maekke@gentoo.org> python-2.3.6-r6.ebuild,
   python-2.4.4-r13.ebuild:
