@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/oniguruma
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.38 2008/04/04 17:13:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.39 2008/05/29 15:33:20 drac Exp $
+
+  29 May 2008; Samuli Suominen <drac@gentoo.org> oniguruma-5.9.1.ebuild:
+  keyword ~arm
 
   04 Apr 2008; Samuli Suominen <drac@gentoo.org> oniguruma-5.9.1.ebuild:
   Keyword ~sparc-fbsd, thanks to Uberlord for testing.
