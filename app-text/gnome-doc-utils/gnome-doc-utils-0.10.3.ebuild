@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.10.3.ebuild,v 1.11 2008/03/09 22:44:13 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.10.3.ebuild,v 1.12 2008/05/29 15:54:17 hawking Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND=">=dev-libs/libxml2-2.6.12
@@ -35,11 +35,11 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	python_mod_optimize "${EROOT}"usr/share/xml2po
+	python_mod_optimize /usr/share/xml2po
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
-	python_mod_cleanup "${EROOT}"usr/share/xml2po
+	python_mod_cleanup /usr/share/xml2po
 	gnome2_pkg_postrm
 }
