@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.215 2008/04/09 21:53:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.216 2008/05/31 12:32:13 eva Exp $
+
+*gnome-desktop-2.22.2 (31 May 2008)
+
+  31 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-desktop-2.18.2.ebuild, -gnome-desktop-2.18.3.ebuild,
+  -gnome-desktop-2.22.0.ebuild, +gnome-desktop-2.22.2.ebuild:
+  New version for GNOME-2.22.2. Various fixes.
+  Clean up old revisions.
 
 *gnome-desktop-2.22.1 (09 Apr 2008)
 
