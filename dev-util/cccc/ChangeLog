@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cccc
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/ChangeLog,v 1.11 2006/06/30 10:42:50 tchiwam Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/ChangeLog,v 1.12 2008/05/29 07:29:08 phreak Exp $
+
+  29 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Philippe Trottier (tchiwam) from metadata.xml (as per #52828).
+  Assigning to maintainer-needed.
 
   30 Jun 2006; Philippe Trottier <tchiwam@gentoo.org> :
   No bugs for >30 days. I am using this on amd64, marked stable.
