@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.2.6.ebuild,v 1.6 2008/03/10 05:04:17 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.2.6.ebuild,v 1.7 2008/05/29 16:24:40 hawking Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="examples numeric"
 
 RDEPEND=">=x11-libs/cairo-1.2.6
@@ -58,7 +58,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	python_mod_optimize ${EROOT}usr/$(get_libdir)/python*/site-packages/cairo
+	python_version
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/cairo
 }
 
 pkg_postrm() {

@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.54 2008/05/12 14:29:03 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.55 2008/05/29 16:24:40 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> pycairo-1.2.2.ebuild,
+  pycairo-1.2.6.ebuild:
+  python_mod_optimize is ROOT aware.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> pycairo-1.4.12.ebuild:
   Stable on ppc64
