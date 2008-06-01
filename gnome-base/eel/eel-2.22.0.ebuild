@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.15
