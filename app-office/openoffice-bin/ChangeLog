@@ -1,6 +1,9 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.188 2008/04/18 06:22:10 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.189 2008/05/29 12:15:13 suka Exp $
+
+  29 May 2008; Andreas Proschofsky <suka@gentoo.org> Manifest:
+  Manifest recommit to fix bug #222919
 
   18 Apr 2008; Andreas Proschofsky <suka@gentoo.org>
   -openoffice-bin-2.3.1.ebuild:
