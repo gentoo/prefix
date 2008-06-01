@@ -63,6 +63,8 @@ src_compile() {
 src_install() {
 	emake install DESTDIR="${D}" || die
 
+	rm -f "${ED}"/usr/lib/charset.alias
+
 	dodoc BUGS ChangeLog FAQ FEATURES MIRRORS \
 			NEWS README* THANKS TODO
 }
