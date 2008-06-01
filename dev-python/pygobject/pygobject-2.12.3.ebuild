@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.17 2008/05/25 21:19:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.18 2008/05/29 16:26:20 hawking Exp $
 
 EAPI="prefix"
 
@@ -58,7 +58,7 @@ src_install() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize /usr/lib/python${PYVER}/site-packages/gtk-2.0
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
 	python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py

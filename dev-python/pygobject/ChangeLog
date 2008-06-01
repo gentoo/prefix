@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.38 2008/05/25 21:19:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.40 2008/05/29 16:26:20 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> pygobject-2.12.3.ebuild:
+  Use get_libdir.
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> pygobject-2.14.0.ebuild,
+  pygobject-2.14.1.ebuild, pygobject-2.14.2.ebuild:
+  python_mod_compile is ROOT aware.
 
   25 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
   pygobject-2.12.3.ebuild:
