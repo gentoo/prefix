@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/astyle
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.24 2008/05/24 13:38:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.25 2008/05/30 18:53:54 corsair Exp $
+
+  30 May 2008; Markus Rothe <corsair@gentoo.org> astyle-1.22.ebuild:
+  Does not compile on ppc64. mark it -ppc64. error is
+  "../src/astyle_main.cpp:56:17: error: jni.h: No such file or directory"
 
   24 May 2008; Markus Meier <maekke@gentoo.org> astyle-1.21.ebuild:
   amd64 stable, bug #220739
@@ -27,7 +31,7 @@
   Dropped ppc-macos keyword, see you in prefix
 
   14 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> astyle-1.21.ebuild:
-  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.24 2008/05/24 13:38:45 maekke Exp $ string.
+  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.25 2008/05/30 18:53:54 corsair Exp $ string.
 
 *astyle-1.21 (07 Oct 2007)
 
