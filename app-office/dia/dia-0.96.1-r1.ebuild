@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.6 2008/05/07 18:50:06 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.7 2008/05/29 15:46:28 hawking Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ MY_PV_MM=$(get_version_component_range 1-2 )
 SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${P}.tar.bz2"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 # the doc USE flag doesn't seem to do anything without docbook2html
 IUSE="cairo doc gnome gnome-print png python zlib"
 
@@ -85,7 +85,7 @@ src_unpack() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	use python && python_mod_optimize "${EROOT}"/usr/share/dia
+	use python && python_mod_optimize /usr/share/dia
 }
 
 pkg_postrm() {
