@@ -15,7 +15,7 @@ SRC_URI="http://www.enderunix.org/${PN}/${P}.tar.gz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 DEPEND="virtual/libc"
 
