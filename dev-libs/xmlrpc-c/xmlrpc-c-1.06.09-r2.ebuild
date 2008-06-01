@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r2.ebuild,v 1.2 2008/05/27 19:21:43 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r2.ebuild,v 1.5 2008/05/31 15:50:39 jer Exp $
 
 EAPI="prefix 1"
 
@@ -45,6 +45,9 @@ src_unpack() {
 }
 
 src_compile() {
+	#Bug 214137: We need to filter this.
+	unset SRCDIR
+
 	# Respect the user's LDFLAGS.
 	export LADD=${LDFLAGS}
 	econf --disable-wininet-client --enable-libxml2-backend \
@@ -55,6 +58,7 @@ src_compile() {
 }
 
 src_install() {
+	unset SRCDIR
 	emake -j1 DESTDIR="${D}" install || die "installation failed"
 
 	dodoc README doc/CREDITS doc/DEVELOPING doc/HISTORY doc/SECURITY doc/TESTING \
