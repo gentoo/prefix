@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/gst-python/gst-python-0.10.10.ebuild,v 1.3 2008/02/24 19:45:32 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.10.ebuild,v 1.4 2008/05/29 16:14:52 hawking Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0.10"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="examples"
 
 RDEPEND=">=dev-python/pygtk-2.6.3
@@ -51,7 +51,7 @@ src_install() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize	"${EROOT}"usr/$(get_libdir)/python${PYVER}/site-packages/gst-0.10
+	python_mod_optimize	/usr/$(get_libdir)/python${PYVER}/site-packages/gst-0.10
 }
 
 pkg_postrm() {
