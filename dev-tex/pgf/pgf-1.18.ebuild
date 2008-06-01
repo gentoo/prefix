@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/pgf/${P}.tar.gz"
 
 LICENSE="GPL-2 LPPL-1.3c FDL-1.2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc"
 DEPEND="|| ( ( dev-texlive/texlive-latexrecommended >=dev-tex/xcolor-2.11 )
 	>=app-text/tetex-3.0
