@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/ecasound
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.44 2008/05/06 19:18:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.45 2008/05/29 14:26:59 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> ecasound-2.4.6.1.ebuild:
+  python_mod_compile is ROOT aware.
 
 *ecasound-2.4.6.1 (06 May 2008)
 

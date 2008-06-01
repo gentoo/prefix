@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.4.6.1.ebuild,v 1.1 2008/05/06 19:18:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.4.6.1.ebuild,v 1.2 2008/05/29 14:26:59 hawking Exp $
 
 EAPI="prefix"
 
@@ -87,7 +87,7 @@ pkg_postinst() {
 		python_version
 		local PYMODULE
 		for PYMODULE in ecacontrol.py pyeca.py eci.py; do
-			python_mod_compile "${EROOT}"usr/$(get_libdir)/python${PYVER}/site-packages/${PYMODULE}
+			python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/${PYMODULE}
 		done
 		eend $?
 	fi
