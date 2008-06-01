@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.119 2008/05/28 19:47:35 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.120 2008/05/29 10:05:24 opfer Exp $
+
+  29 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/erlang-10.2.6-export-TARGET.patch,
+  -files/erlang-11.2.5-build.patch,
+  -files/erlang-11.2.5-gethostbyname.patch, -files/erlang-11.2.5-hipe.patch,
+  -files/erlang-11.2.5-odbc-support-amd64.patch, -erlang-11.2.5-r3.ebuild,
+  -erlang-12.2.1.ebuild:
+  clean up
 
   28 May 2008; Peter Volkov <pva@gentoo.org> erlang-12.2.2.ebuild:
   amd64 stable, bug #223707.
