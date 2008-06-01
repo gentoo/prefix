@@ -1,6 +1,9 @@
 # ChangeLog for virtual/flim
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/flim/ChangeLog,v 1.3 2007/10/15 22:03:47 opfer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/flim/ChangeLog,v 1.4 2008/05/29 13:47:44 ulm Exp $
+
+  29 May 2008; Ulrich Mueller <ulm@gentoo.org> flim-0.ebuild:
+  Empty HOMEPAGE according to devmanual.
 
   15 Oct 2007; Christian Faulhammer <opfer@gentoo.org> flim-0.ebuild:
   stable amd64, bug 195107
