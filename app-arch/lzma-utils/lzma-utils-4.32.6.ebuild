@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.5.ebuild,v 1.9 2008/05/10 08:35:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.6.ebuild,v 1.1 2008/05/31 07:56:43 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,12 +29,9 @@ src_unpack() {
 	cd "${S}"
 	if use nocxx ; then
 		epatch "${WORKDIR}"/${P}-nocxx.patch
+		find -type f -print0 | xargs -0 touch -r configure
 		epunt_cxx
 	fi
-
-	epatch "${FILESDIR}"/${PN}-4.32.4-interix.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
-	epatch "${FILESDIR}"/${PN}-io.patch #220815
 
 	# can't run eautoreconf here, would introduce a circular dependency, since
 	# m4 needs us (its sources come in lzma format)
@@ -43,8 +40,8 @@ src_unpack() {
 	# instead, patch in what would be done by eautoreconf. No need to keep
 	# diffs for config.guess/config.sub, econf updates them anyway.
 	# We have gzip already, or we weren't able to unpack ${A}.
-	epatch "${FILESDIR}"/${P}-${PR}-eautoreconf.patch.gz
-	touch config.h.in # avoid the need for autoheader
+#	epatch "${FILESDIR}"/${P}-${PR}-eautoreconf.patch.gz
+#	touch config.h.in # avoid the need for autoheader
 }
 
 pkg_setup() {
