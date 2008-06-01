@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.4.0.ebuild,v 1.3 2008/05/27 13:20:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.4.0.ebuild,v 1.4 2008/05/30 04:07:18 jer Exp $
 
 EAPI="prefix"
 

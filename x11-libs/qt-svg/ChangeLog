@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-svg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.8 2008/05/27 13:20:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.9 2008/05/30 04:07:18 jer Exp $
+
+  30 May 2008; Jeroen Roovers <jer@gentoo.org> qt-svg-4.4.0.ebuild:
+  Marked ~hppa (bug #223557).
 
   27 May 2008; Raúl Porcel <armin76@gentoo.org> qt-svg-4.4.0.ebuild:
   Add ~alpha/~ia64/~sparc wrt #223557
