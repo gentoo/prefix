@@ -1,6 +1,13 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.72 2008/05/09 20:42:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.74 2008/05/31 10:06:09 armin76 Exp $
+
+  31 May 2008; Raúl Porcel <armin76@gentoo.org> gnuplot-4.2.3-r2.ebuild:
+  alpha/ia64/sparc stable wrt #224071
+
+  29 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.3-r2.ebuild:
+  stable x86, bug 224071
 
   09 May 2008; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.3-r2.ebuild:
   Inherit autotools and call eautoreconf, bug 219323 comment 8.

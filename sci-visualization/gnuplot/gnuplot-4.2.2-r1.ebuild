@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc emacs gd ggi latex pdf plotutils readline svga wxwindows X xemacs"
 RESTRICT="wxwindows? ( test )"
 
