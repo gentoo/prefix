@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.28 2008/04/17 14:16:54 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.29 2008/05/29 17:51:17 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> geos-2.2.1.ebuild,
+  geos-2.2.3.ebuild:
+  python_mod_optimize is ROOT aware. Quoting.
 
   17 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
   +files/geos-3.0.0-gcc43.patch, -files/geos-3.0.0_rc3-amd64.patch,
