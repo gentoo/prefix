@@ -14,7 +14,7 @@ SRC_URI="http://www.packetfactory.net/libnet/dist/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="1.1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 
 DEPEND="sys-devel/autoconf"

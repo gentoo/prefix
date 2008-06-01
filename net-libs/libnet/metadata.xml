@@ -2,9 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>netmon</herd>
-<maintainer>
-  <email>vapier@gentoo.org</email>
-</maintainer>
 <longdescription>
 Libnet is a high-level API (toolkit) allowing the application 
 programmer to construct and inject network packets. It provides a 
