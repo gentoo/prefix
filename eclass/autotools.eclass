@@ -1,17 +1,27 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.75 2008/04/24 03:15:43 vapier Exp $
-#
-# Maintainer: base-system@gentoo.org
-#
-# This eclass is for handling autotooled software packages that
-# needs to regenerate their build scripts.
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.76 2008/06/01 01:43:06 vapier Exp $
+
+# @ECLASS: autotools.eclass
+# @MAINTAINER:
+# base-system@gentoo.org
+# @BLURB: Regenerates auto* build scripts
+# @DESCRIPTION:
+# This eclass is for safely handling autotooled software packages that need to
+# regenerate their build scripts.  All functions will abort in case of errors.
 #
 # NB:  If you add anything, please comment it!
 
 inherit eutils libtool
 
+# @ECLASS-VARIABLE: WANT_AUTOCONF
+# @DESCRIPTION:
+# The major version of autoconf your package needs
 [[ -z ${WANT_AUTOCONF} ]] && WANT_AUTOCONF="latest"
+
+# @ECLASS-VARIABLE: WANT_AUTOMAKE
+# @DESCRIPTION:
+# The major version of automake your package needs
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="latest"
 
 _automake_atom="sys-devel/automake"
@@ -42,37 +52,33 @@ DEPEND="${_automake_atom}
 RDEPEND=""
 unset _automake_atom _autoconf_atom
 
-# Variables:
-#
-#	AT_M4DIR		  - Additional director(y|ies) aclocal should search
-#	AM_OPTS			  - Additional options to pass to automake during
-#						eautoreconf call.
-#	AT_NOELIBTOOLIZE  - Don't run elibtoolize command if set to 'yes',
-#						useful when elibtoolize needs to be ran with
-#						particular options
+# @ECLASS-VARIABLE: AM_OPTS
+# @DESCRIPTION:
+# Additional options to pass to automake during
+# eautoreconf call.
 
-# Functions:
-#
-#	eautoreconf()  - Should do a full autoreconf - normally what most people
-#					 will be interested in.	 Also should handle additional
-#					 directories specified by AC_CONFIG_SUBDIRS.
-#	eaclocal()	   - Runs aclocal.	Respects AT_M4DIR for additional directories
-#					 to search for macro's.
-#	_elibtoolize() - Runs libtoolize.  Note the '_' prefix .. to not collide
-#					 with elibtoolize() from libtool.eclass
-#	eautoconf	   - Runs autoconf.
-#	eautoheader	   - Runs autoheader.
-#	eautomake	   - Runs automake
-#
+# @ECLASS-VARIABLE: AT_NOELIBTOOLIZE
+# @DESCRIPTION:
+# Don't run elibtoolize command if set to 'yes',
+# useful when elibtoolize needs to be ran with
+# particular options
 
 # XXX: M4DIR should be deprecated
+# @ECLASS-VARIABLE: AT_M4DIR
+# @DESCRIPTION:
+# Additional director(y|ies) aclocal should search
 AT_M4DIR=${AT_M4DIR:-${M4DIR}}
 AT_GNUCONF_UPDATE="no"
 
 
+# @FUNCTION: eautoreconf
+# @DESCRIPTION:
 # This function mimes the behavior of autoreconf, but uses the different
 # eauto* functions to run the tools. It doesn't accept parameters, but
 # the directory with include files can be specified with AT_M4DIR variable.
+# 
+# Should do a full autoreconf - normally what most people will be interested in.
+# Also should handle additional directories specified by AC_CONFIG_SUBDIRS.
 eautoreconf() {
 	local pwd=$(pwd) x auxdir
 
@@ -110,10 +116,13 @@ eautoreconf() {
 	return 0
 }
 
+# @FUNCTION: eaclocal
+# @DESCRIPTION:
 # These functions runs the autotools using autotools_run_tool with the
 # specified parametes. The name of the tool run is the same of the function
 # without e prefix.
 # They also force installing the support files for safety.
+# Respects AT_M4DIR for additional directories to search for macro's.
 eaclocal() {
 	local aclocal_opts
 
@@ -143,6 +152,10 @@ eaclocal() {
 		autotools_run_tool aclocal "$@" ${aclocal_opts}
 }
 
+# @FUNCTION: _elibtoolize
+# @DESCRIPTION:
+# Runs libtoolize.  Note the '_' prefix .. to not collide with elibtoolize() from
+# libtool.eclass.
 _elibtoolize() {
 	local opts
 	local lttest
@@ -161,12 +174,18 @@ _elibtoolize() {
 	eaclocal
 }
 
+# @FUNCTION: eautoheader
+# @DESCRIPTION:
+# Runs autoheader.
 eautoheader() {
 	# Check if we should run autoheader
 	[[ -n $(autotools_check_macro "AC_CONFIG_HEADERS") ]] || return 0
 	NO_FAIL=1 autotools_run_tool autoheader "$@"
 }
 
+# @FUNCTION: eautoconf
+# @DESCRIPTION:
+# Runs autoconf.
 eautoconf() {
 	if [[ ! -f configure.ac && ! -f configure.in ]] ; then
 		echo
@@ -178,6 +197,9 @@ eautoconf() {
 	autotools_run_tool autoconf "$@"
 }
 
+# @FUNCTION: eautomake
+# @DESCRIPTION:
+# Runs automake.
 eautomake() {
 	local extra_opts
 	local makefile_name

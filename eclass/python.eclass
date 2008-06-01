@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.34 2008/03/28 07:11:57 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.41 2008/05/30 09:58:28 hawking Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -124,15 +124,21 @@ python_mod_exists() {
 }
 
 # @FUNCTION: python_mod_compile
-# @USAGE: < file >
+# @USAGE: < file > [more files ...]
 # @DESCRIPTION:
-# Given a filename, it will pre-compile the module's .pyc and .pyo.
-# should only be run in pkg_postinst()
+# Given filenames, it will pre-compile the module's .pyc and .pyo.
+# This function should only be run in pkg_postinst()
 #
 # Example:
-#         python_mod_compile ${EROOT}usr/lib/python2.3/site-packages/pygoogle.py
+#         python_mod_compile /usr/lib/python2.3/site-packages/pygoogle.py
 #
 python_mod_compile() {
+	local f myroot
+
+	# Check if phase is pkg_postinst()
+	[[ ${EBUILD_PHASE} != postinst ]] &&\
+		die "${FUNCNAME} should only be run in pkg_postinst()"
+
 	# allow compiling for older python versions
 	if [ -n "${PYTHON_OVERRIDE_PYVER}" ]; then
 		PYVER=${PYTHON_OVERRIDE_PYVER}
@@ -140,13 +146,19 @@ python_mod_compile() {
 		python_version
 	fi
 
-	if [ -f "$1" ]; then
-		python${PYVER} -c "import py_compile; py_compile.compile('${1}')" || \
-			ewarn "Failed to compile ${1}"
-		python${PYVER} -O -c "import py_compile; py_compile.compile('${1}')" || \
-			ewarn "Failed to compile ${1}"
+	# strip trailing slash
+	myroot="${ROOT%/}"
+
+	# respect ROOT
+	for f in $@; do
+		[ -f "${myroot}/${f}" ] && myfiles="${myfiles} ${myroot}/${f}"
+	done
+
+	if [ -n "${myfiles}" ]; then
+		python${PYVER} ${myroot}/usr/$(get_libdir)/python${PYVER}/py_compile.py ${myfiles}
+		python${PYVER} -O ${myroot}/usr/$(get_libdir)/python${PYVER}/py_compile.py ${myfiles}
 	else
-		ewarn "Unable to find ${1}"
+		ewarn "No files to compile!"
 	fi
 }
 
@@ -159,13 +171,44 @@ python_mod_compile() {
 #
 # If supplied with arguments, it will recompile all modules recursively
 # in the supplied directory
+# This function should only be run in pkg_postinst()
+#
+# Options passed to this function are passed to compileall.py
 #
 # Example:
-#         python_mod_optimize ${EROOT}usr/share/codegen
+#         python_mod_optimize /usr/share/codegen
 python_mod_optimize() {
-	local myroot
+	local mydirs myfiles myroot myopts
+
+	# Check if phase is pkg_postinst()
+	[[ ${EBUILD_PHASE} != postinst ]] &&\
+		die "${FUNCNAME} should only be run in pkg_postinst()"
+
 	# strip trailing slash
 	myroot="${EROOT%/}"
+
+	# respect ROOT and options passed to compileall.py
+	while [ $# -gt 0 ]; do
+		case $1 in
+			-l|-f|-q)
+				myopts="${myopts} $1"
+				;;
+			-d|-x)
+				myopts="${myopts} $1 $2"
+				shift
+				;;
+			-*)
+				ewarn "${FUNCNAME}: Ignoring compile option $1"
+				;;
+			*)
+				[ ! -e "${myroot}/${1}" ] && ewarn "${myroot}/${1} doesn't exist!"
+				[ -d "${myroot}/${1#/}" ] && mydirs="${mydirs} ${myroot}/${1#/}"
+				# Files are passed to python_mod_compile which is ROOT-aware
+				[ -f "${myroot}/${1}" ] && myfiles="${myfiles} ${1}"
+				;;
+		esac
+		shift
+	done
 
 	# allow compiling for older python versions
 	if [ -n "${PYTHON_OVERRIDE_PYVER}" ]; then
@@ -174,16 +217,23 @@ python_mod_optimize() {
 		python_version
 	fi
 
-	# set opts
-	if [ "${PYVER}" = "2.2" ]; then
-		compileopts=""
-	else
-		compileopts="-q"
-	fi
+	# set additional opts
+	myopts="${myopts} -q"
 
 	ebegin "Byte compiling python modules for python-${PYVER} .."
-	python${PYVER} ${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py ${compileopts} $@
-	python${PYVER} -O ${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py ${compileopts} $@
+	if [ -n "${mydirs}" ]; then
+		python${PYVER} \
+			${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py \
+			${myopts} ${mydirs}
+		python${PYVER} -O \
+			${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py \
+			${myopts} ${mydirs}
+	fi
+
+	if [ -n "${myfiles}" ]; then
+		python_mod_compile ${myfiles}
+	fi
+
 	eend $?
 }
 
@@ -196,8 +246,14 @@ python_mod_optimize() {
 # It will recursively scan all compiled python modules in the directories
 # and determine if they are orphaned (eg. their corresponding .py is missing.)
 # if they are, then it will remove their corresponding .pyc and .pyo
+#
+# This function should only be run in pkg_postrm()
 python_mod_cleanup() {
 	local SEARCH_PATH myroot
+
+	# Check if phase is pkg_postrm()
+	[[ ${EBUILD_PHASE} != postrm ]] &&\
+		die "${FUNCNAME} should only be run in pkg_postrm()"
 
 	# strip trailing slash
 	myroot="${ROOT%/}"

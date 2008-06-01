@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.15 2008/05/27 10:14:34 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.16 2008/05/29 14:45:38 hoffie Exp $
 
 # Based on robbat2's work on the php4 sapi eclass
 # Based on stuart's work on the php5 sapi eclass
@@ -210,8 +210,9 @@ php_check_oracle_8() {
 
 php_check_pgsql() {
 	if use "postgres" && use "apache2" && use "threads" ; then
-		if has_version ">=dev-db/libpq-8.1.3-r1" ; then
-			if ! built_with_use ">=dev-db/libpq-8.1.3-r1" "threads" ; then
+		if has_version dev-db/libpq ; then
+			if has_version ">=dev-db/libpq-8" && \
+				! built_with_use ">=dev-db/libpq-8" "threads" ; then
 				eerror
 				eerror "You must build dev-db/libpq with USE=threads"
 				eerror "if you want to build PHP with threads support!"

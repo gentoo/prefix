@@ -1,32 +1,21 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.13 2007/04/23 19:35:05 swegener Exp $
-#
-# Original Author: Ciaran McCreesh <ciaranm@gentoo.org>
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.14 2008/06/01 01:30:31 vapier Exp $
+
+# @ECLASS: versionator.eclass
+# @MAINTAINER:
+# base-system@gentoo.org
+# @BLURB: functions which simplify manipulation of ${PV} and similar version strings
+# @DESCRIPTION:
 # This eclass provides functions which simplify manipulating $PV and similar
 # variables. Most functions default to working with $PV, although other
 # values can be used.
-#
+# @EXAMPLE:
 # Simple Example 1: $PV is 1.2.3b, we want 1_2.3b:
 #     MY_PV=$(replace_version_separator 1 '_' )
 #
 # Simple Example 2: $PV is 1.4.5, we want 1:
 #     MY_MAJORV=$(get_major_version )
-#
-# Full list of user usable functions provided by this eclass (see the functions
-# themselves for documentation):
-#     get_all_version_components          ver_str
-#     get_version_components              ver_str
-#     get_major_version                   ver_str
-#     get_version_component_range         range     ver_str
-#     get_after_major_version             ver_str
-#     replace_version_separator           index     newvalue   ver_str
-#     replace_all_version_separators      newvalue  ver_str
-#     delete_version_separator            index ver_str
-#     delete_all_version_separators       ver_str
-#     get_version_component_count         ver_str
-#     get_last_version_component_index    ver_str
 #
 # Rather than being a number, the index parameter can be a separator character
 # such as '-', '.' or '_'. In this case, the first separator of this kind is
@@ -34,7 +23,7 @@
 #
 # There's also:
 #     version_is_at_least             want      have
-# which may be buggy, so use with caution.
+#  which may be buggy, so use with caution.
 
 # Quick function to toggle the shopts required for some functions on and off
 # Used because we can't set extglob in global scope anymore (QA Violation)
@@ -58,6 +47,9 @@ __versionator_shopt_toggle() {
 	return 0
 }
 
+# @FUNCTION: get_all_version_components
+# @USAGE: [version]
+# @DESCRIPTION:
 # Split up a version string into its component parts. If no parameter is
 # supplied, defaults to $PV.
 #     0.8.3       ->  0 . 8 . 3
@@ -117,6 +109,9 @@ get_all_version_components() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_version_components
+# @USAGE: [version]
+# @DESCRIPTION:
 # Get the important version components, excluding '.', '-' and '_'. Defaults to
 # $PV if no parameter is supplied.
 #     0.8.3       ->  0 8 3
@@ -132,6 +127,9 @@ get_version_components() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_major_version
+# @USAGE: [version]
+# @DESCRIPTION:
 # Get the major version of a value. Defaults to $PV if no parameter is supplied.
 #     0.8.3       ->  0
 #     7c          ->  7
@@ -146,6 +144,9 @@ get_major_version() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_version_component_range
+# @USAGE: [version]
+# @DESCRIPTION:
 # Get a particular component or range of components from the version. If no
 # version parameter is supplied, defaults to $PV.
 #    1      1.2.3       -> 1
@@ -173,6 +174,9 @@ get_version_component_range() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_after_major_version
+# @USAGE: [version]
+# @DESCRIPTION:
 # Get everything after the major version and its separator (if present) of a
 # value. Defaults to $PV if no parameter is supplied.
 #     0.8.3       ->  8.3
@@ -186,6 +190,9 @@ get_after_major_version() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: replace_version_sepaator
+# @USAGE: <search> <replacement> [subject]
+# @DESCRIPTION:
 # Replace the $1th separator with $2 in $3 (defaults to $PV if $3 is not
 # supplied). If there are fewer than $1 separators, don't change anything.
 #     1 '_' 1.2.3       -> 1_2.3
@@ -222,6 +229,9 @@ replace_version_separator() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: replace_all_version_separators
+# @USAGE: <replacement> [subject]
+# @DESCRIPTION:
 # Replace all version separators in $2 (defaults to $PV) with $1.
 #     '_' 1b.2.3        -> 1b_2_3
 replace_all_version_separators() {
@@ -233,6 +243,9 @@ replace_all_version_separators() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: delete_version_separator
+# @USAGE: <search> [subject]
+# @DESCRIPTION:
 # Delete the $1th separator in $2 (defaults to $PV if $2 is not supplied). If
 # there are fewer than $1 separators, don't change anything.
 #     1 1.2.3       -> 12.3
@@ -246,6 +259,9 @@ delete_version_separator() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: delete_all_version_separators
+# @USAGE: [subject]
+# @DESCRIPTION:
 # Delete all version separators in $1 (defaults to $PV).
 #     1b.2.3        -> 1b23
 delete_all_version_separators() {
@@ -254,10 +270,12 @@ delete_all_version_separators() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_version_component_count
+# @USAGE: [version]
+# @DESCRIPTION:
 # How many version components are there in $1 (defaults to $PV)?
 #     1.0.1       ->  3
 #     3.0c-r1     ->  4
-#
 get_version_component_count() {
 	__versionator_shopt_toggle on
 	local a
@@ -266,20 +284,25 @@ get_version_component_count() {
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: get_last_version_component_index
+# @USAGE: [version]
+# @DESCRIPTION:
 # What is the index of the last version component in $1 (defaults to $PV)?
 # Equivalent to get_version_component_count - 1.
 #     1.0.1       ->  3
 #     3.0c-r1     ->  4
-#
 get_last_version_component_index() {
 	__versionator_shopt_toggle on
 	echo $(( $(get_version_component_count "${1:-${PV}}" ) - 1 ))
 	__versionator_shopt_toggle off
 }
 
+# @FUNCTION: version_is_at_least
+# @USAGE: <want> [have]
+# @DESCRIPTION:
 # Is $2 (defaults to $PVR) at least version $1? Intended for use in eclasses
 # only. May not be reliable, be sure to do very careful testing before actually
-# using this. Prod ciaranm if you find something it can't handle.
+# using this.
 version_is_at_least() {
 	__versionator_shopt_toggle on
 	local want_s="$1" have_s="${2:-${PVR}}" r
@@ -302,8 +325,11 @@ version_is_at_least() {
 	__versionator_shopt_toggle off
 }
 
-# Takes two parameters (a, b) which are versions. If a is an earlier version
-# than b, returns 1. If a is identical to b, return 2. If b is later than a,
+# @FUNCTION: version_compare
+# @USAGE: <A> <B>
+# @DESCRIPTION:
+# Takes two parameters (A, B) which are versions. If A is an earlier version
+# than B, returns 1. If A is identical to B, return 2. If A is later than B,
 # return 3. You probably want version_is_at_least rather than this function.
 # May not be very reliable. Test carefully before using this.
 version_compare() {
@@ -417,6 +443,9 @@ version_compare() {
 	return 2
 }
 
+# @FUNCTION: version_sort
+# @USAGE: <version> [more versions...]
+# @DESCRIPTION:
 # Returns its parameters sorted, highest version last. We're using a quadratic
 # algorithm for simplicity, so don't call it with more than a few dozen items.
 # Uses version_compare, so be careful.
@@ -548,4 +577,3 @@ __versionator__test_version_compare() {
 	done
 	__versionator_shopt_toggle off
 }
-
