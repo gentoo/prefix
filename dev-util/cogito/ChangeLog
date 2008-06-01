@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cogito
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.60 2008/05/12 15:49:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.61 2008/05/29 07:17:23 phreak Exp $
+
+  29 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Carlos Silva (r3pek) from metadata.xml (as per #80351).
 
   12 May 2008; Markus Meier <maekke@gentoo.org> cogito-0.18.2.ebuild:
   amd64 stable, bug #215381
