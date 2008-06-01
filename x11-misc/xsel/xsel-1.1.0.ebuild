@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/xsel-1.1.0.ebuild,v 1.1 2008/02/28 20:05:39 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/xsel-1.1.0.ebuild,v 1.2 2008/05/31 23:17:49 coldwind Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="http://www.vergenet.net/~conrad/software/${PN}/download/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="x11-libs/libX11

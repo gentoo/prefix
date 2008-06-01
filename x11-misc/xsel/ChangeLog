@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xsel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.9 2008/02/28 20:05:39 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.10 2008/05/31 23:17:49 coldwind Exp $
+
+  31 May 2008; Santiago M. Mola <coldwind@gentoo.org> xsel-1.1.0.ebuild:
+  amd64 stable
 
 *xsel-1.1.0 (28 Feb 2008)
 

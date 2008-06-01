@@ -10,7 +10,7 @@ SRC_URI="http://www.vergenet.net/~conrad/software/xsel/download/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
