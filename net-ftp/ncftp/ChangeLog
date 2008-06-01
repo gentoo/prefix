@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/ncftp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.67 2008/05/11 08:35:57 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.68 2008/05/31 16:30:47 jer Exp $
+
+  31 May 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Pick up maintainership.
 
   11 May 2008; <solar@gentoo.org> ncftp-3.2.1.ebuild:
   - cross compile fix
