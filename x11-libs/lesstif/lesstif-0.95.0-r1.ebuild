@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.95.0-r1.ebuild,v 1.1 2008/05/10 10:09:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.95.0-r1.ebuild,v 1.2 2008/05/29 11:05:47 ulm Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2 GPL-2 libXpm FVWM"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="static"
 
 RDEPEND="!x11-libs/motif-config
@@ -23,8 +23,6 @@ RDEPEND="!x11-libs/motif-config
 	x11-libs/libXft"
 
 DEPEND="${RDEPEND}"
-
-PROVIDE="virtual/motif"
 
 src_unpack() {
 	unpack ${A}
