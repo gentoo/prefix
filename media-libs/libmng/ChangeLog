@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libmng
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.64 2008/03/26 17:27:01 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.66 2008/05/31 16:41:26 drac Exp $
+
+  31 May 2008; Samuli Suominen <drac@gentoo.org> libmng-1.0.9-r1.ebuild,
+  libmng-1.0.10.ebuild:
+  revert to ~mips (unstable deps) and arm stable
 
   26 Mar 2008; Markus Rothe <corsair@gentoo.org> libmng-1.0.10.ebuild:
   Stable on ppc64; bug #214766
