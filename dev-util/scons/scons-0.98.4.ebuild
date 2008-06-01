@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.96.94.ebuild,v 1.6 2008/05/13 18:36:19 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.98.4.ebuild,v 1.1 2008/05/29 13:41:17 hawking Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.scons.org/"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DOCS="RELEASE.txt CHANGES.txt LICENSE.txt"
