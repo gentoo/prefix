@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.11 2008/04/20 02:10:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.12 2008/05/29 17:10:11 hawking Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="bzip2 doc gnome python"
 
 RDEPEND="
@@ -73,7 +73,6 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_pkg_postrm
 	if use python; then
-		python_version
-		python_mod_cleanup "${EROOT}"usr/$(get_libdir)/python${PYVER}/site-packages/gsf
+		python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
 	fi
 }

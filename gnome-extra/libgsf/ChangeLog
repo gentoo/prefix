@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.116 2008/03/22 11:12:32 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.117 2008/05/29 17:10:11 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> libgsf-1.14.3.ebuild,
+  libgsf-1.14.7.ebuild:
+  python_mod_optimize is ROOT aware. Fixed python_mod_cleanup.
 
   22 Mar 2008; Rémi Cardona <remi@gentoo.org> libgsf-1.14.3.ebuild,
   libgsf-1.14.7.ebuild:

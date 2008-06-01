@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.3.ebuild,v 1.12 2008/03/22 11:12:32 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.3.ebuild,v 1.13 2008/05/29 17:10:11 hawking Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="bzip2 doc gnome python"
 
 RDEPEND=">=dev-libs/libxml2-2.4.16
@@ -52,7 +52,10 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	use python && python_mod_optimize /usr/$(get_libdir)/python*/site-packages/gsf
+	if use python; then
+		python_version
+		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gsf
+	fi
 
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.1
