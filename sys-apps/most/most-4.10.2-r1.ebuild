@@ -17,7 +17,7 @@ IUSE=""
 # Note to arch maintainers: you'll need to add to src_install() for your
 # arch, since the app's Makefile does strange things with different
 # directories for each arch. -- ciaranm, 27 June 2004
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND=">=sys-libs/slang-1.4
 	>=sys-libs/ncurses-5.2-r2"

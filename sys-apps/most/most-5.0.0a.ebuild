@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-5.0.0a.ebuild,v 1.7 2008/03/10 14:05:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-5.0.0a.ebuild,v 1.8 2008/05/29 15:34:21 drac Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="ftp://space.mit.edu/pub/davis/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 RDEPEND=">=sys-libs/slang-2.1.3"

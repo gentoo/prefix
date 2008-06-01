@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/most
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.42 2008/03/10 14:05:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.43 2008/05/29 15:34:21 drac Exp $
+
+  29 May 2008; Samuli Suominen <drac@gentoo.org> most-5.0.0a.ebuild:
+  keyword ~arm
 
   10 Mar 2008; Samuli Suominen <drac@gentoo.org>
   -files/most-4.10.2-fix-goto-line.diff, -most-4.10.2-r1.ebuild,
