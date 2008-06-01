@@ -16,7 +16,7 @@ SRC_URI="ftp://space.mit.edu/pub/davis/slang/v1.4/${P}.tar.bz2
 
 LICENSE="|| ( GPL-2 Artistic )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="cjk unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
