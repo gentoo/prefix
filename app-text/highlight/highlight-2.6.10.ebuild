@@ -32,21 +32,21 @@ src_unpack() {
 }
 
 src_compile() {
-	emake -f makefile PREFIX="${EPREFIX}" CXX="$(tc-getCXX)" all || die "emake all failed."
+	emake -f makefile PREFIX="${EPREFIX}" conf_dir="${EPREFIX}"/etc/highlight/ CXX="$(tc-getCXX)" all || die "emake all failed."
 	if use wxwindows; then
 		need-wxwidgets ansi
-		emake -f makefile PREFIX="${EPREFIX}" CXX="$(tc-getCXX)" all-gui || die "emake all-gui failed."
+		emake -f makefile PREFIX="${EPREFIX}" conf_dir="${EPREFIX}"/etc/highlight/ CXX="$(tc-getCXX)" all-gui || die "emake all-gui failed."
 	fi
 }
 
 src_install() {
 	dodir /usr/bin
 	emake -f makefile \
-		DESTDIR="${D}" PREFIX="${EPREFIX}" \
+		DESTDIR="${D}" PREFIX="${EPREFIX}" conf_dir="${EPREFIX}"/etc/highlight/ \
 		install || die "emake install failed."
 	if use wxwindows; then
 		emake -f makefile \
-			DESTDIR="${D}" PREFIX="${EPREFIX}" \
+			DESTDIR="${D}" PREFIX="${EPREFIX}" conf_dir="${EPREFIX}"/etc/highlight/ \
 			install-gui || die "emake install-gui failed."
 		doicon src/gui/${PN}.xpm
 		make_desktop_entry ${PN}-gui Highlight ${PN} "Utility;TextTools"
