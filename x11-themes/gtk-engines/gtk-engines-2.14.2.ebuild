@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.12.2.ebuild,v 1.8 2007/12/11 10:46:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.14.2.ebuild,v 1.1 2008/05/31 10:36:25 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2 autotools
+inherit gnome2 virtualx autotools
 
 DESCRIPTION="GTK+2 standard engines and themes"
 HOMEPAGE="http://www.gtk.org/"
@@ -14,7 +14,7 @@ SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="accessibility static"
 
-RDEPEND=">=x11-libs/gtk+-2.10
+RDEPEND=">=x11-libs/gtk+-2.12
 	!<=x11-themes/gnome-themes-2.8.2"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.31
@@ -30,4 +30,10 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 	eautoreconf # need new libtool for interix
+}
+
+src_test() {
+	# It seems Xvfb is necessary to avoid random failure in tests
+	# see upstream bug #530743
+	Xemake check || die "tests failed"
 }
