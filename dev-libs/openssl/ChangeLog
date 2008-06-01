@@ -1,6 +1,23 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.260 2008/05/28 16:30:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.264 2008/05/31 19:57:45 corsair Exp $
+
+  31 May 2008; Markus Rothe <corsair@gentoo.org> openssl-0.9.8g-r2.ebuild:
+  Stable on ppc64; bug #223429
+
+  31 May 2008; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8g-r2.ebuild:
+  Stable for HPPA (bug #223429).
+
+  31 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  openssl-0.9.8g-r2.ebuild:
+  stable x86, security bug 223429
+
+*openssl-0.9.8g-r2 (30 May 2008)
+
+  30 May 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/openssl-0.9.8g-CVE-2008-0891.patch,
+  +files/openssl-0.9.8g-CVE-2008-1672.patch, +openssl-0.9.8g-r2.ebuild:
+  Security fix for CVE-2008-0891 & CVE-2008-1672. bug #223429
 
 *openssl-0.9.8h (28 May 2008)
 
@@ -29,7 +46,7 @@
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> openssl-0.9.8g.ebuild:
   Stable on mips, per #198370.
 
-  16 Nov 2007; Doug Klima <cardoe@gentoo.org> openssl-0.9.8g.ebuild:
+  16 Nov 2007; Doug Goldstein <cardoe@gentoo.org> openssl-0.9.8g.ebuild:
   change depend to mit-krb5 since openssl's Configure script specifically
   states they don't support building against heimdal and it will break. Which
   results in a die during the ebuild
