@@ -40,6 +40,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gcc43.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${PN}-2.4.5-prefix.patch
 	eautoreconf
 }
