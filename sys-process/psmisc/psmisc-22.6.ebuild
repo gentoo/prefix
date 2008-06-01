@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.5 2008/05/14 14:34:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.6 2008/06/01 02:14:33 vapier Exp $
 
 EAPI="prefix"
 
@@ -32,9 +32,12 @@ src_unpack() {
 }
 
 src_compile() {
+	# the nls looks weird, but it's because we actually delete the nls stuff
+	# above when USE=-nls.  this should get cleaned up so we dont have to patch
+	# it out, but until then, let's not confuse users ... #220787
 	econf \
 		$(use_enable selinux) \
-		$(use_enable nls) \
+		$(use nls && use_enable nls) \
 		$(use_enable ipv6) \
 		|| die
 	emake || die
