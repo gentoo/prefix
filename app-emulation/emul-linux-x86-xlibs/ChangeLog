@@ -1,6 +1,14 @@
 # ChangeLog for app-emulation/emul-linux-x86-xlibs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.74 2008/04/11 22:16:26 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.75 2008/05/31 19:53:17 ulm Exp $
+
+  31 May 2008; Ulrich Mueller <ulm@gentoo.org>
+  emul-linux-x86-xlibs-10.0.ebuild, emul-linux-x86-xlibs-10.1.ebuild,
+  emul-linux-x86-xlibs-20071114.ebuild, emul-linux-x86-xlibs-20071128.ebuild,
+  emul-linux-x86-xlibs-20071128-r1.ebuild,
+  emul-linux-x86-xlibs-20071128-r2.ebuild,
+  emul-linux-x86-xlibs-20071230.ebuild, emul-linux-x86-xlibs-20080316.ebuild:
+  Add MOTIF to LICENSE, fixes bug 213750.
 
   11 Apr 2008; Markus Meier <maekke@gentoo.org>
   emul-linux-x86-xlibs-20080316.ebuild:

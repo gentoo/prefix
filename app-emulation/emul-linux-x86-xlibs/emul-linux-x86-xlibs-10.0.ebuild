@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-10.0.ebuild,v 1.5 2007/07/30 07:42:25 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-10.0.ebuild,v 1.6 2008/05/31 19:53:17 ulm Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,7 @@ SRC_URI="mirror://gentoo/fontconfig-2.4.2.tbz2
 LICENSE="fontconfig FTL GPL-2 LGPL-2 glut libdrm libICE libSM libX11 libXau
 		libXaw libXcomposite libXcursor libXdamage libXdmcp libXext libXfixes libXft
 		libXi libXinerama libXmu libXp libXpm libXrandr libXrender libXScrnSaver libXt
-		libXtst libXv libXvMC libXxf86dga libXxf86dga libXxf86vm"
+		libXtst libXv libXvMC libXxf86dga libXxf86dga libXxf86vm MOTIF"
 KEYWORDS="~amd64-linux"
 IUSE="opengl"
 
