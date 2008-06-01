@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3557 2008/05/26 00:36:30 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3562 2008/06/01 00:41:14 jurek Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -449,6 +449,7 @@ dev-lang/idb:ifc - Use ifc to install idb
 dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
+dev-lang/mono:moonlight - add moonlight support
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
 dev-lang/php:cli - Enable CLI SAPI
@@ -658,7 +659,6 @@ dev-util/mercurial:git - Support conversion of Git repositories to Mercurial.
 dev-util/mercurial:gpg - Support signing with GnuPG.
 dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/monodevelop:aspnet - Enable ASP.NET support
-dev-util/monodevelop:aspnetedit - Enable ASP.NET visual designer support
 dev-util/monodevelop:boo - Enable support for the boo programming language
 dev-util/monodevelop:c++ - Enable support for C/C++ programming languages
 dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
@@ -1125,6 +1125,7 @@ media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
 media-sound/qsampler:libgig - Enable libgig support for loading Gigasampler files and DLS (Downloadable Sounds) Level 1/2 files
 media-sound/qtractor:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/qtractor:rubberband - Enable support for in-place audio clip pitch-shifting through the rubberband library
+media-sound/qtscrobbler:cli - Build commandline client
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines
@@ -1738,6 +1739,7 @@ net-nds/openldap:smbkrb5passwd - Enable overlay for syncing ldap, unix and lanma
 net-nds/tac_plus:finger - Adds support for checking user counts via fingering the NAS
 net-nntp/inn:innkeywords - Enable automatic keyword generation support
 net-nntp/inn:inntaggedhash - Use tagged hash table for history (disables large file support)
+net-nntp/nzbget:parcheck - Enable support for checking PAR archives
 net-nntp/slrn:uudeview - Add support for yEnc coding and more using dev-libs/uulib
 net-p2p/amule:daemon - Enable amule daemon
 net-p2p/amule:remote - Enable remote controlling of the client
@@ -1928,8 +1930,10 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
-sci-physics/root:cern -Enable hbook i/o functionality to root (needs cernlib)
+sci-physics/root:cern - Enable hbook i/o functionality to root (needs cernlib)
 sci-physics/root:cint7 - Build the experimental C/C++ interpretor version 7
+sci-physics/root:math - Build extra math and numerical libraries for root (needs gsl)
+sci-physics/root:xrootd - Adds xrootd support, a low latency file server
 sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfitsio
 sci-visualization/hippodraw:numarray - Add numarray python array support
 sci-visualization/hippodraw:root - Add root i/o, and minuit support
