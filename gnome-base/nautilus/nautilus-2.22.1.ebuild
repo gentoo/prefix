@@ -12,7 +12,7 @@ SRC_URI="${SRC_URI} http://dev.gentoo.org/~leio/distfiles/${PN}-2.22.0-gentoo-pa
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="beagle gnome tracker"
 
 RDEPEND=">=x11-libs/startup-notification-0.8

@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/projects/nautilus/"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="beagle esd gnome tracker"
 # cups flac gstreamer mad ogg vorbis
 
