@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.177 2008/05/17 09:02:36 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.178 2008/05/31 06:57:52 vapier Exp $
+
+  31 May 2008; Mike Frysinger <vapier@gentoo.org> bash-3.2_p39.ebuild:
+  Make sure /bin/sh always exists #222721 by Davide Pesavento.
 
   17 May 2008; Donnie Berkholz <dberkholz@gentoo.org>; bash-3.2_p39.ebuild:
   (222211) Install examples with USE=examples. Approved by vapier.

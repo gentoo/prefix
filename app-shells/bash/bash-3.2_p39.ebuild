@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.3 2008/05/17 09:02:36 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.4 2008/05/31 06:57:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -219,14 +219,9 @@ pkg_preinst() {
 	if [[ -e ${EROOT}/etc/bash/bash_logout ]] ; then
 		rm -f "${ED}"/etc/bash/bash_logout
 	fi
+}
 
-	# If /bin/sh does not exist or is bash, then provide it
-	# Otherwise leave it alone
-	if [[ ! -e ${EROOT}/bin/sh ]] ; then
-		ln -s bash "${EROOT}"/bin/sh
-	elif [[ -L ${EROOT}/bin/sh ]] ; then
-		case $(readlink "${EROOT}"/bin/sh) in
-			bash|/bin/bash) cp -pPR "${EROOT}"/bin/sh "${ED}"/bin/ ;;
-		esac
-	fi
+pkg_postinst() {
+	# If /bin/sh does not exist, provide it
+	[[ ! -e ${EROOT}/bin/sh ]] && ln -sf bash "${EROOT}"/bin/sh
 }
