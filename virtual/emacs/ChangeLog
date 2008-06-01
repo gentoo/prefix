@@ -1,6 +1,10 @@
 # ChangeLog for virtual/emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.22 2008/02/09 12:54:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.23 2008/05/29 13:35:11 ulm Exp $
+
+  29 May 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.ebuild,
+  emacs-22.ebuild, emacs-23.ebuild:
+  Empty HOMEPAGE according to devmanual.
 
   09 Feb 2008; Jeroen Roovers <jer@gentoo.org> emacs-23.ebuild:
   Marked ~hppa too.
