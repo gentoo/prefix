@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.18.4.ebuild,v 1.8 2008/03/14 09:01:14 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.22.2.ebuild,v 1.1 2008/05/31 10:56:45 eva Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit eutils gnome2 autotools
 
 DESCRIPTION="The Gnome Terminal"
 HOMEPAGE="http://www.gnome.org/"
@@ -15,21 +15,20 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="virtual/xft
-	>=x11-libs/gtk+-2.10
+	>=dev-libs/glib-2.15.2
+	>=x11-libs/gtk+-2.12
 	>=gnome-base/gconf-2.14
 	>=x11-libs/startup-notification-0.8
 	>=x11-libs/vte-0.15.3
-	>=gnome-base/gnome-vfs-2.4
 	>=gnome-base/libglade-2
+	>=gnome-base/libgnome-2.14
 	>=gnome-base/libgnomeui-2"
 DEPEND="${RDEPEND}
-	!gnome-base/gnome-core
 	sys-devel/gettext
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
 	>=app-text/gnome-doc-utils-0.3.2
 	>=app-text/scrollkeeper-0.3.11"
-# gnome-core overwrite /usr/bin/gnome-terminal
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 
@@ -37,13 +36,14 @@ src_unpack() {
 	gnome2_src_unpack
 
 	# Use login shell by default (#12900)
-	epatch "${FILESDIR}"/${PN}-2-default_shell.patch
+	epatch "${FILESDIR}"/${PN}-2.22.0-default_shell.patch
 
 	# terminal enhancement, inserts a space after a DND URL
 	# patch by Zach Bagnall <yem@y3m.net> in #13801
 	epatch "${FILESDIR}"/${PN}-2-dnd_url_add_space.patch
 
 	# Fix deprecated API disabling in used libraries - this is not future-proof, bug 213340
+	# Upstream bug: http://bugzilla.gnome.org/show_bug.cgi?id=523737
 	sed -i -e '/DISABLE_DEPRECATED/d' \
 		"${S}/src/Makefile.am" "${S}/src/Makefile.in"
 
@@ -51,4 +51,6 @@ src_unpack() {
 	# This needs to resolve a few bugs (#120294,)
 	# Leave out for now; causing too many problems
 	#epatch ${FILESDIR}/${PN}-2.13.90-TERM-gnome.patch
+
+	eautomake
 }

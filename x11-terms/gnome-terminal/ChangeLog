@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.166 2008/04/07 21:24:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.167 2008/05/31 10:56:45 eva Exp $
+
+*gnome-terminal-2.22.2 (31 May 2008)
+
+  31 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-terminal-2.22.2.ebuild:
+  New version for GNOME-2.22.2. Bug fixes and translation updates.
 
 *gnome-terminal-2.22.1 (07 Apr 2008)
 
