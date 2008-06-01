@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.120 2008/04/07 20:34:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.121 2008/05/31 12:13:47 eva Exp $
+
+*gnome-keyring-2.22.2 (31 May 2008)
+
+  31 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-keyring-0.8.1.ebuild, -gnome-keyring-2.22.0-r2.ebuild,
+  +gnome-keyring-2.22.2.ebuild:
+  New version for GNOME-2.22.2. Build, crash and bug fixes.
+  Clean up old revisions.
 
 *gnome-keyring-2.22.1 (07 Apr 2008)
 

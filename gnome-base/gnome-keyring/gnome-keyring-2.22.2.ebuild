@@ -1,17 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.0-r2.ebuild,v 1.1 2008/03/23 11:24:03 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.2.ebuild,v 1.1 2008/05/31 12:13:47 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils pam
+inherit gnome2 eutils pam flag-o-matic
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc hal pam test"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -30,13 +30,6 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
-src_unpack() {
-	gnome2_src_unpack
-
-	echo "gkr-pk-object-storage.c" >> po/POTFILES.in
-	echo "gkr-ask-tool.c" >> po/POTFILES.in
-}
-
 pkg_setup() {
 	G2CONF="${G2CONF}
 		$(use_enable debug)
@@ -44,5 +37,19 @@ pkg_setup() {
 		$(use_enable test tests)
 		$(use_enable pam)
 		$(use_with pam pam-dir $(getpam_mod_dir))
-		--with-root-certs=/usr/share/ca-certificates/"
+		--with-root-certs=${EPREFIX}/usr/share/ca-certificates/"
 }
+
+src_unpack() {
+	gnome2_src_unpack
+
+	epatch "${FILESDIR}"/${PN}-2.22.1-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.22.1-interix3.patch
+}
+
+src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
+	gnome2_src_compile
+}
+

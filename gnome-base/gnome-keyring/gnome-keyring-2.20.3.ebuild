@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="doc hal pam test"
 
 RDEPEND=">=dev-libs/glib-2.6
