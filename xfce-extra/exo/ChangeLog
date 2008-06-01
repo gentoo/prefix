@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/exo
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.53 2008/02/26 13:35:11 opfer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.55 2008/05/29 18:25:48 hawking Exp $
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> exo-0.3.2.ebuild,
+  exo-0.3.4.ebuild:
+  Fix python_mod* usage. Multilib love.
+
+  29 May 2008; Christoph Mende <angelos@gentoo.org> exo-0.3.2.ebuild,
+  exo-0.3.4.ebuild:
+  python_mod_* functions are already aware
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org> exo-0.3.4.ebuild:
   Stable for HPPA (bug #201747).

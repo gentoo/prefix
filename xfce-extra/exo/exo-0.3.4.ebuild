@@ -1,17 +1,17 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4.ebuild,v 1.8 2007/12/17 18:42:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4.ebuild,v 1.10 2008/05/29 18:25:48 hawking Exp $
 
 EAPI="prefix"
 
-inherit xfce44 python eutils
+inherit xfce44 python multilib eutils
 
 XFCE_VERSION=4.4.2
 xfce44
 xfce44_core_package
 
 DESCRIPTION="Extensions, widgets and framework library with session management support"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc hal libnotify python"
 
 RDEPEND=">=dev-lang/perl-5.6
@@ -61,10 +61,11 @@ src_install() {
 
 pkg_postinst() {
 	xfce44_pkg_postinst
-	python_mod_optimize "${EROOT}"usr/lib*/python*/site-packages
+	python_version
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
 }
 
 pkg_postrm() {
 	xfce44_pkg_postrm
-	python_mod_cleanup "${EROOT}"usr/lib*/python*/site-packages
+	python_mod_cleanup
 }
