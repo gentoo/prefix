@@ -31,6 +31,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${PN}-2.16.3-libtool.patch" #223845
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1

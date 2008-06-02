@@ -1,0 +1,10 @@
+--- configure.in.old	2008-06-02 09:28:34.954174000 -0500
++++ configure.in	2008-06-02 09:29:06.087819000 -0500
+@@ -492,6 +492,7 @@
+ AM_DISABLE_STATIC
+ AC_LIBTOOL_WIN32_DLL
+ AM_PROG_LIBTOOL
++m4_ifdef([LT_OUTPUT], [LT_OUTPUT])
+ 
+ if test "x$GCC" = "xyes"; then
+   case " $CFLAGS " in
