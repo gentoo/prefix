@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1475 2008/06/01 00:47:29 jurek Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1480 2008/06/01 21:29:43 beandog Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  01 Jun 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  p.mask realplayer 11 for testing
+
+  01 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> use.local.desc:
+  Add fontforge useflags for dejavu
+
+  01 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Adding package.mask for fontforge dejavu font.
+
+  01 Jun 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Masked new sci-visualization/hippodraw-1.21.3 for a bit more testing.
+
+  01 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> package.mask:
+  Remove app-vim/exheres-syntax-99999999 p.mask, it's no longer in the tree.
 
   01 Jun 2008; Jurek Bartuszek <jurek@gentoo.org> package.mask:
   Last rites for dev-dotnet/jscall-sharp
