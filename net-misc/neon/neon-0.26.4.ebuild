@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.4.ebuild,v 1.9 2008/04/13 14:22:12 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.4.ebuild,v 1.10 2008/06/01 12:08:15 hollow Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.webdav.org/neon/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="expat kerberos nls socks5 ssl zlib"
 RESTRICT="test"
 
@@ -28,7 +28,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	AT_M4DIR="macros" eautoreconf # need new libtool for interix
+	sed -i -e "s/socks5/socks/g" macros/neon.m4
+	AT_M4DIR="macros" eautoreconf
 }
 
 src_compile() {
