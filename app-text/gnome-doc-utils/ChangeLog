@@ -1,6 +1,13 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.105 2008/05/29 15:54:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.106 2008/06/01 22:30:56 eva Exp $
+
+*gnome-doc-utils-0.12.2-r1 (01 Jun 2008)
+
+  01 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-doc-utils-0.12.2-fhs.patch,
+  +gnome-doc-utils-0.12.2-r1.ebuild:
+  make xml2po FHS compliant, bug #190798.
 
   29 May 2008; Ali Polatel <hawking@gentoo.org>
   gnome-doc-utils-0.10.3.ebuild, gnome-doc-utils-0.12.0.ebuild,
