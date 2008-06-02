@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.76 2008/04/16 14:16:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.77 2008/06/01 08:56:56 aballier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -200,7 +200,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		i?86*)
 			# Starting with linux-2.6.24, the 'x86_64' and 'i386'
 			# trees have been unified into 'x86'.
-			if [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -lt $(KV_to_int 2.6.24) ]] ; then
+			# FreeBSD still uses i386
+			if [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -lt $(KV_to_int 2.6.24) || ${host} == *freebsd* ]] ; then
 				echo i386
 			else
 				echo x86
