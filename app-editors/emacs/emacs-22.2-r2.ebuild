@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r2.ebuild,v 1.7 2008/05/16 19:58:01 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r2.ebuild,v 1.8 2008/06/01 11:49:14 ulm Exp $
 
 EAPI="prefix"
 
@@ -37,9 +37,7 @@ RDEPEND="!<app-editors/emacs-cvs-22.1
 		gtk? ( =x11-libs/gtk+-2* )
 		!gtk? (
 			Xaw3d? ( x11-libs/Xaw3d )
-			!Xaw3d? (
-				motif? ( virtual/motif )
-			)
+			!Xaw3d? ( motif? ( x11-libs/openmotif ) )
 		)
 	)"
 
