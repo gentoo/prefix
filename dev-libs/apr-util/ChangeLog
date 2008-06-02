@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.106 2008/01/28 23:51:51 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.107 2008/06/01 11:42:35 hollow Exp $
+
+  01 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apr-util-1.2.10.ebuild,
+  apr-util-1.2.12.ebuild:
+  fix #221653
 
   28 Jan 2008; Benedikt Böhm <hollow@gentoo.org>
   -files/apr-util-0.9.12-db-4.5.patch, -files/apr-util-0.9.12-linking.patch,
