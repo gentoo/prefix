@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.4 2008/04/22 17:49:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.5 2008/06/01 11:33:58 ulm Exp $
 
 EAPI="prefix"
 
@@ -58,9 +58,7 @@ RDEPEND="sys-libs/ncurses
 		gtk? ( =x11-libs/gtk+-2* )
 		!gtk? (
 			Xaw3d? ( x11-libs/Xaw3d )
-			!Xaw3d? (
-				motif? ( virtual/motif )
-			)
+			!Xaw3d? ( motif? ( x11-libs/openmotif ) )
 		)
 	)"
 
@@ -197,6 +195,9 @@ src_compile() {
 	fi # end crappy indenting
 
 	emake CC="$(tc-getCC)" bootstrap || die "make bootstrap failed"
+	# cleanup, otherwise emacs will be dumped again in src_install
+	(cd src; emake versionclean)
+	emake CC="$(tc-getCC)" || die "emake failed"
 }
 
 src_install () {
