@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>apache</herd>
+	<maintainer>
+		<email>hollow@gentoo.org</email>
+		<name>Benedikt Böhm</name>
+		<description>Gentoo Subversion maintainer</description>
+	</maintainer>
+	<maintainer>
+		<email>Arfrever.FTA@GMail.Com</email>
+		<name>Arfrever Frehtes Taifersar Arahesis</name>
+		<description>Subversion upstream representative</description>
+	</maintainer>
 </pkgmetadata>
