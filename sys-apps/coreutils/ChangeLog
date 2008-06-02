@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.235 2008/04/29 16:44:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.236 2008/06/01 12:11:25 vapier Exp $
+
+*coreutils-6.12 (01 Jun 2008)
+
+  01 Jun 2008; Mike Frysinger <vapier@gentoo.org> +coreutils-6.12.ebuild:
+  Version bump.
 
   29 Apr 2008; Brent Baude <ranger@gentoo.org> coreutils-6.10-r2.ebuild:
   stable ppc, bug 218927

@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r2.ebuild,v 1.10 2008/04/29 16:44:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.12.ebuild,v 1.1 2008/06/01 12:11:25 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.3"
+PATCH_VER="1.0"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
@@ -147,10 +147,6 @@ src_install() {
 
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS || die
-
-	# workaround bug in build system where `group` does not
-	# work with --enable-no-install-program configure option
-	rm "${ED}"/usr/bin/groups "${ED}"/usr/share/man/man1/groups.1 || die
 
 	if [[ ${USERLAND} == "GNU" || ${EPREFIX%/} != "" ]] ; then
 		cd "${ED}"/usr/bin
