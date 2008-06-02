@@ -1,6 +1,6 @@
 # Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.0.ebuild,v 1.2 2008/03/27 00:09:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.0.ebuild,v 1.3 2008/06/01 10:01:02 eva Exp $
 
 EAPI="prefix"
 
@@ -47,6 +47,6 @@ DEPEND="${RDEPEND}
 		x11-proto/inputproto
 		x11-proto/xproto"
 
-pkg_config() {
+pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable alsa) $(use_enable debug) $(use_enable esd) $(use_enable gstreamer)"
 }
