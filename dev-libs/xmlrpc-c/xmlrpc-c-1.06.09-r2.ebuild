@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r2.ebuild,v 1.5 2008/05/31 15:50:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.06.09-r2.ebuild,v 1.6 2008/06/01 13:15:22 nixnut Exp $
 
 EAPI="prefix 1"
 
