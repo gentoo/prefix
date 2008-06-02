@@ -1,0 +1,12 @@
+--- adig.c
++++ adig.c
+@@ -27,6 +27,9 @@
+ #include <netinet/in.h>
+ #include <arpa/inet.h>
+ #include <arpa/nameser.h>
++#ifdef __MACH__
++#include <arpa/nameser_compat.h>
++#endif
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif

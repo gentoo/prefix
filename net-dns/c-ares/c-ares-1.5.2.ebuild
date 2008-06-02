@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="C library that resolves names asynchronously"
 HOMEPAGE="http://daniel.haxx.se/projects/c-ares/"
 SRC_URI="http://daniel.haxx.se/projects/c-ares/${P}.tar.gz"
@@ -14,6 +16,12 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin8.patch
+}
 
 src_compile() {
 	econf --enable-shared || die
