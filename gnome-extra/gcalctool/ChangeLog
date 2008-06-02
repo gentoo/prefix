@@ -1,6 +1,15 @@
 # ChangeLog for gnome-extra/gcalctool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.156 2008/04/10 22:25:18 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.157 2008/06/01 23:51:54 leio Exp $
+
+*gcalctool-5.22.2 (01 Jun 2008)
+
+  01 Jun 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/gcalctool-5.8.25-hex-float.patch,
+  -files/gcalctool-5.9.14-gtk+-2.12.0-compat.patch,
+  -gcalctool-5.9.14.ebuild, -gcalctool-5.9.14-r1.ebuild,
+  -gcalctool-5.22.0.ebuild, +gcalctool-5.22.2.ebuild:
+  Version bump for bug fixes and translation updates. Remove old
 
 *gcalctool-5.22.1 (10 Apr 2008)
 
