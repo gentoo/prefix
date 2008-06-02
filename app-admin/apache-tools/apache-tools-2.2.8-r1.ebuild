@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.6.ebuild,v 1.10 2007/10/08 01:31:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.8-r1.ebuild,v 1.1 2008/06/01 11:57:12 hollow Exp $
 
 EAPI="prefix"
 
@@ -93,6 +93,9 @@ src_install () {
 		dosym /usr/sbin/ab /usr/sbin/ab-ssl
 		dosym /usr/sbin/ab /usr/sbin/ab2-ssl
 	fi
+
+	# make htpasswd accessible for non-root users
+	dosym /usr/sbin/htpasswd /usr/bin/htpasswd
 
 	dodoc "${S}"/CHANGES
 }
