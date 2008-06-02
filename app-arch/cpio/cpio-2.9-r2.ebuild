@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9-r1.ebuild,v 1.9 2007/11/18 02:43:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9-r2.ebuild,v 1.1 2008/06/01 23:04:31 vapier Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CVE-2007-4476.patch #196978
 	epatch "${FILESDIR}"/${P}-gnu-inline.patch #198817
+	epatch "${FILESDIR}"/${P}-restore-perms-owners.patch #218040
 }
 
 src_compile() {

@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/cpio
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.89 2007/11/18 02:43:01 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.90 2008/06/01 23:04:31 vapier Exp $
+
+*cpio-2.9-r2 (01 Jun 2008)
+
+  01 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.9-restore-perms-owners.patch, +cpio-2.9-r2.ebuild:
+  Add fix from upstream for restoring perms/owners properly #218040 by alexsaa.
 
   18 Nov 2007; Mike Frysinger <vapier@gentoo.org>
   +files/cpio-2.9-gnu-inline.patch, cpio-2.9-r1.ebuild:
