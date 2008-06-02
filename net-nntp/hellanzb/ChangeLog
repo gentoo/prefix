@@ -1,6 +1,10 @@
 # ChangeLog for net-nntp/hellanzb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.6 2008/04/22 12:17:22 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.7 2008/06/01 22:20:11 aballier Exp $
+
+  01 Jun 2008; Alexis Ballier <aballier@gentoo.org> hellanzb-0.13-r5.ebuild:
+  Add optional dep on pyopenssl for nntps support, by Michiel de Bruijne
+  <m.debruijne@matrict.nl>, bug #224415
 
 *hellanzb-0.13-r5 (22 Apr 2008)
 

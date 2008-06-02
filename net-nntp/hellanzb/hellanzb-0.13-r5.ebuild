@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/hellanzb-0.13-r5.ebuild,v 1.1 2008/04/22 12:17:22 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/hellanzb-0.13-r5.ebuild,v 1.2 2008/06/01 22:20:11 aballier Exp $
 
 EAPI="prefix"
 
@@ -13,13 +13,14 @@ SRC_URI="http://www.hellanzb.com/distfiles/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="libnotify"
+IUSE="libnotify ssl"
 
 RDEPEND=">=dev-python/twisted-2.0
 		dev-python/twisted-web
 		|| ( app-arch/unrar
 			 app-arch/rar )
 		app-arch/par2cmdline
+		ssl? ( dev-python/pyopenssl )
 		libnotify? ( dev-python/notify-python )"
 
 DEPEND=""
