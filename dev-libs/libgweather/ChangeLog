@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.7 2008/05/31 09:20:04 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.8 2008/06/01 11:07:25 nixnut Exp $
+
+  01 Jun 2008; nixnut <nixnut@gentoo.org> libgweather-2.22.1.1.ebuild,
+  libgweather-2.22.2.ebuild:
+  Added ~ppc wrt bug 218794
 
 *libgweather-2.22.2 (31 May 2008)
 
