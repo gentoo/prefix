@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.101 2008/01/28 23:53:34 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.102 2008/06/01 11:35:11 hollow Exp $
+
+  01 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apr-1.2.11.ebuild,
+  apr-1.2.12.ebuild:
+  fix #221653
 
   28 Jan 2008; Benedikt Böhm <hollow@gentoo.org>
   -files/apr-0.9.12-linking.patch, -apr-0.9.12.ebuild, -apr-0.9.13.ebuild:
