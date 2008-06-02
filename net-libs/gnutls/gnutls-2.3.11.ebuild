@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.2.ebuild,v 1.6 2008/03/26 13:05:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.3.11.ebuild,v 1.2 2008/06/01 15:19:30 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,8 @@ inherit libtool autotools eutils
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
-SRC_URI="http://josefsson.org/gnutls/releases/${P}.tar.bz2"
+SRC_URI="http://www.gnu.org/software/gnutls/releases/${P}.tar.bz2"
+#SRC_URI="mirror://gnu/gnutls/${P}.tar.bz2"
 
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
@@ -46,18 +47,19 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}/${P}+gcc-4.3.patch"
+
+	epatch "${FILESDIR}"/${PN}-2.2.2-interix.patch
 
 	elibtoolize # for sane .so versioning on FreeBSD
 }
 
 src_compile() {
 	local myconf
-	use bindist && myconf="--disable-lzo" || myconf="$(use_enable lzo)"
+	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
 	econf  \
 		--without-included-opencdk \
 		$(use_with zlib) \
-		$(use_with lzo) \
 		$(use_enable nls) \
 		$(use_enable guile) \
 		$(use_enable doc gtk-doc) \

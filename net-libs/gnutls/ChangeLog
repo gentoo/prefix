@@ -1,6 +1,16 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.154 2008/05/21 16:17:21 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.156 2008/06/01 15:19:30 flameeyes Exp $
+
+  01 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/gnutls-2.3.11+gcc-4.3.patch, gnutls-2.3.11.ebuild:
+  Add patch to fix building examples with GCC 4.3. See bug #224453.
+
+*gnutls-2.3.11 (01 Jun 2008)
+
+  01 Jun 2008; Daniel Black <dragonheart@gentoo.org> -gnutls-2.2.2.ebuild,
+  -gnutls-2.2.3.ebuild, +gnutls-2.3.11.ebuild:
+  version bump _ old version cleanout
 
   21 May 2008; Tobias Scherbaum <dertobi123@gentoo.org> gnutls-2.2.5.ebuild:
   ppc stable, bug #222823
