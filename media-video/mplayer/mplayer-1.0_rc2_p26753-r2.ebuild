@@ -183,8 +183,8 @@ src_unpack() {
 	# Fix sparc compilation, bug 215006
 	epatch "${FILESDIR}/libswscale-sparc.patch"
 
-	# Fix PPC configure check, but 222447
-	epatch "${FILESDIR}/configure-altivec.patch"
+	# Fix PPC configure check, but 222447 (breaks PPC/OSX)
+	[[ ${CHOST} == powerpc-*-linux* ]] && epatch "${FILESDIR}/configure-altivec.patch"
 
 	# Set version #
 	sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
