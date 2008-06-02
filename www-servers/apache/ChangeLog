@@ -1,6 +1,14 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.64 2008/04/19 09:04:42 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.66 2008/06/02 04:11:41 jer Exp $
+
+  02 Jun 2008; Jeroen Roovers <jer@gentoo.org> apache-2.2.8-r3.ebuild:
+  Stable for HPPA (bug #222643).
+
+*apache-2.2.8-r3 (01 Jun 2008)
+
+  01 Jun 2008; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.8-r3.ebuild:
+  fix mod_ssl memory leak wrt #222643
 
   19 Apr 2008; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.8-r1.ebuild,
   apache-2.2.8-r2.ebuild:
