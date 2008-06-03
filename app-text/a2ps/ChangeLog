@@ -1,6 +1,9 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.82 2008/05/12 15:05:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.83 2008/06/02 21:59:57 ulm Exp $
+
+  02 Jun 2008; Ulrich Mueller <ulm@gentoo.org> a2ps-4.13c-r6.ebuild:
+  Fix compile issues, bug 216588.
 
   12 May 2008; Jeroen Roovers <jer@gentoo.org> a2ps-4.14.ebuild:
   Marked ~hppa (bug #221791).
