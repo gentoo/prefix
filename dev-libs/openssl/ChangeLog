@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.264 2008/05/31 19:57:45 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.265 2008/06/02 10:02:05 armin76 Exp $
+
+  02 Jun 2008; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8g-r2.ebuild:
+  alpha/ia64/sparc stable wrt security #223429
 
   31 May 2008; Markus Rothe <corsair@gentoo.org> openssl-0.9.8g-r2.ebuild:
   Stable on ppc64; bug #223429
