@@ -15,7 +15,7 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.
 
 LICENSE="CMake"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="emacs vim-syntax"
 
 DEPEND=">=net-misc/curl-7.16.4
@@ -48,12 +48,15 @@ src_unpack() {
 
 	# Link against the shared Python library rather than the static one
 	epatch "${FILESDIR}/${PN}-FindPythonLibs.patch"
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
 	if [[ "$(gcc-major-version)" -eq "3" ]] ; then
 		append-flags "-fno-stack-protector"
 	fi
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	tc-export CC CXX LD
 
