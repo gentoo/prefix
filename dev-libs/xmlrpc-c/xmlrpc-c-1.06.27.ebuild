@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://sourceforge/${PN}/${P/-c}.tgz"
@@ -36,6 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc43-test-fix.patch
 	epatch "${FILESDIR}"/${PN}-1.06.09-asneeded.patch
 	epatch "${FILESDIR}"/${PN}-1.05-pic.patch
+	epatch "${FILESDIR}"/${PN}-1.06.09-interix.patch
 
 #	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-1.06.09-darwin.patch
 
@@ -45,11 +46,14 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+
 	#Bug 214137: We need to filter this.
 	unset SRCDIR
 
 	# Respect the user's LDFLAGS.
 	export LADD=${LDFLAGS}
+	export CFLAGS_PERSONAL=${CFLAGS}
 	econf --disable-wininet-client --enable-libxml2-backend --disable-libwww-client \
 		$(use_enable threads abyss-threads) \
 		$(use_enable curl curl-client) || die "econf failed"
