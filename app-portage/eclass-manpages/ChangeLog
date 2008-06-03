@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/eclass-manpages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.13 2008/06/01 01:56:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.14 2008/06/02 05:57:55 zmedico Exp $
+
+  02 Jun 2008; Zac Medico <zmedico@gentoo.org>
+  eclass-manpages-20070615.ebuild, eclass-manpages-20080531.ebuild:
+  Bug #224421 - Drop the webapp-config blocker since it no longer
+  installs webapp.eclass.5.
 
 *eclass-manpages-20080531 (01 Jun 2008)
 
