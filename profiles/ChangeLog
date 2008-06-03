@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1480 2008/06/01 21:29:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1483 2008/06/03 00:46:23 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  03 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask sys-apps/nictools for removal in 30 days by treecleaners, bug #222595
+
+  02 Jun 2008; Gunnar Wrobel <wrobel@gentoo.org> use.local.desc:
+  Add git useflag for layman.
+
+  02 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Masking app-i18n/unicode-data-5.2.0 to force downgrade.
 
   01 Jun 2008; Steve Dibb <beandog@gentoo.org> package.mask:
   p.mask realplayer 11 for testing
