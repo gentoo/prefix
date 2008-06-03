@@ -1,6 +1,9 @@
 # ChangeLog for sci-chemistry/tinker
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.8 2008/01/31 19:53:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.9 2008/06/03 02:36:33 mr_bones_ Exp $
+
+  03 Jun 2008; Michael Sterrett <mr_bones_@gentoo.org> tinker-4.2-r1.ebuild:
+  remove reference to dev-java/blackdown-java3d-bin which has been removed
 
   31 Jan 2008; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   Dropped ppc-macos keyword, see you in prefix
