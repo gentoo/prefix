@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jun 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask Portage versions that seem to suffer from multiple bugs
+
   31 May 2008; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.11/package.provided, +sunos/solaris/5.11/parent:
   Add missing files for the Solaris 11 profile, bad me ... ;)
