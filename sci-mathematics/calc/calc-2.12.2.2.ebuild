@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/calc-2.12.2.2.ebuild,v 1.4 2008/02/29 03:28:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/calc-2.12.2.2.ebuild,v 1.5 2008/06/02 22:39:34 coldwind Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}
 		>=sys-apps/less-348"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-libdir-fix.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
