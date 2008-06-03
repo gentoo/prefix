@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.13 2007/05/25 05:04:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.14 2008/06/02 15:38:52 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -16,10 +16,10 @@ mount-boot_mount_boot_partition() {
 	if [[ -n ${DONT_MOUNT_BOOT} ]] ; then
 		return
 	else
-		einfo
-		einfo "To avoid automounting and autoinstalling with /boot,"
-		einfo "just export the DONT_MOUNT_BOOT variable."
-		einfo
+		elog
+		elog "To avoid automounting and autoinstalling with /boot,"
+		elog "just export the DONT_MOUNT_BOOT variable."
+		elog
 	fi
 
 	# note that /dev/BOOT is in the Gentoo default /etc/fstab file

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.61 2008/05/16 13:52:16 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.62 2008/06/02 05:15:27 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -297,6 +297,9 @@ vdr_i18n() {
 		einfo "VDR has gettext support"
 		if plugin_has_gettext; then
 			einfo "Plugin has gettext support, fine"
+			if [[ ${NO_GETTEXT_HACK} == "1" ]]; then
+				ewarn "Please remove left over NO_GETTEXT_HACK."
+			fi
 		else
 			vdr_i18n_convert_to_gettext
 			if [[ $? != 0 ]]; then
