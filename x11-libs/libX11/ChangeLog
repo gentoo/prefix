@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.97 2008/06/02 04:20:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.98 2008/06/02 10:45:46 armin76 Exp $
+
+  02 Jun 2008; Raúl Porcel <armin76@gentoo.org> libX11-1.1.4.ebuild:
+  ia64/sparc stable wrt #223879
 
   02 Jun 2008; Jeroen Roovers <jer@gentoo.org> libX11-1.1.4.ebuild:
   Stable for HPPA (bug #223879).
