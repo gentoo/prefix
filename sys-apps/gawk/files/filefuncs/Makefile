@@ -51,7 +51,7 @@ SHLDFLAGS =
 SHLIB = -shared
 SHLDFLAGS = -Wl,+h -Wl,$(TARGET_LIB_M)
     else
-	  ifeq ($(KERNEL),Interix)
+      ifeq ($(KERNEL),Interix)
 SHLIB = -shared
 SHLDFLAGS = -Wl,-h -Wl,$(TARGET_LIB_M)
       else
