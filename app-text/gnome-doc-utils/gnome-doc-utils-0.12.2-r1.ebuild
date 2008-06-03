@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.2-r1.ebuild,v 1.1 2008/06/01 22:30:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.2-r1.ebuild,v 1.2 2008/06/02 18:42:39 eva Exp $
 
 EAPI="prefix"
 
@@ -28,9 +28,11 @@ DOCS="AUTHORS ChangeLog NEWS README"
 src_unpack() {
 	gnome2_src_unpack
 
-	# Make xml2po FHS compliant, bug #
+	# Make xml2po FHS compliant, bug #190798
 	epatch "${FILESDIR}/${P}-fhs.patch"
-	eautomake
+
+	# Beware of first install, bug #224609
+	AT_M4DIR="tools" eautomake
 
 	# Fix LINGUAS
 	intltoolize --force || die "intltoolize failed"

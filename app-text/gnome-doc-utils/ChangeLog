@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.106 2008/06/01 22:30:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.107 2008/06/02 18:42:39 eva Exp $
+
+  02 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  gnome-doc-utils needs its own macros to autoreconf, bug #224609
 
 *gnome-doc-utils-0.12.2-r1 (01 Jun 2008)
 
