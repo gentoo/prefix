@@ -1,0 +1,191 @@
+# ChangeLog for app-cdr/cdrkit
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.54 2008/04/18 14:39:11 beandog Exp $
+
+*cdrkit-1.1.7.1 (18 Apr 2008)
+
+  18 Apr 2008; Steve Dibb <beandog@gentoo.org> +cdrkit-1.1.7.1.ebuild:
+  Version bump, bug 215409
+
+  07 Nov 2007; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.6.ebuild:
+  Add ~alpha, thanks to Tobias Klausmann for testing
+
+  04 Nov 2007; Lars Weiler <pylon@gentoo.org>
+  -files/cdrkit-readom-clone.patch, -cdrkit-1.1.2.ebuild,
+  -cdrkit-1.1.4.ebuild, -cdrkit-1.1.5.1.ebuild:
+  Clean out old versions.
+
+  24 Aug 2007; Roy Marples <uberlord@gentoo.org> cdrkit-1.1.6.ebuild:
+  Fix broken depend
+
+  24 Aug 2007; <metalgod@gentoo.org> cdrkit-1.1.6.ebuild:
+  Add libcap dependency. Closes Bug #189482.
+
+  10 Jul 2007; Jeroen Roovers <jer@gentoo.org> cdrkit-1.1.6.ebuild:
+  Stable for HPPA (bug #184425).
+
+  08 Jul 2007; Christoph Mende <angelos@gentoo.org> cdrkit-1.1.6.ebuild:
+  Stable on amd64 wrt bug #184425
+
+  07 Jul 2007; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.6.ebuild:
+  ia64 stable wrt #184425
+
+  07 Jul 2007; Christian Faulhammer <opfer@gentoo.org> cdrkit-1.1.6.ebuild:
+  stable x86, bug 184425
+
+  06 Jul 2007; Markus Rothe <corsair@gentoo.org> cdrkit-1.1.6.ebuild:
+  Stable on ppc64; bug #184425
+
+  06 Jul 2007; Lars Weiler <pylon@gentoo.org> cdrkit-1.1.6.ebuild:
+  Stable on ppc; bug #184425.
+
+  06 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> cdrkit-1.1.6.ebuild:
+  Stable on sparc wrt #184425
+
+*cdrkit-1.1.6 (07 May 2007)
+
+  07 May 2007; Lars Weiler <pylon@gentoo.org> +cdrkit-1.1.6.ebuild:
+  Version bump.
+
+*cdrkit-1.1.5.1 (21 Apr 2007)
+
+  21 Apr 2007; Lars Weiler <pylon@gentoo.org> -cdrkit-1.0.ebuild,
+  +cdrkit-1.1.5.1.ebuild:
+  Version bump.
+
+  16 Apr 2007; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.2.ebuild:
+  ia64 stable wrt bug 170482
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> cdrkit-1.1.4.ebuild:
+  Marked ~hppa (bug #146631).
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> cdrkit-1.1.2.ebuild:
+  Stable for HPPA (bug #146631).
+
+  10 Apr 2007; Lars Weiler <pylon@gentoo.org>
+  +files/cdrkit-readom-clone.patch, cdrkit-1.1.4.ebuild:
+  Added patch for uclibc. The patch is already included upstream and fixed in
+  the upcoming cdrkit-1.1.5.
+
+*cdrkit-1.1.4 (01 Apr 2007)
+
+  01 Apr 2007; Lars Weiler <pylon@gentoo.org> +cdrkit-1.1.4.ebuild:
+  Version bump.  Fixed cmake-call for building cross-targets; bug #172225.
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org> cdrkit-1.1.2.ebuild:
+  amd64 stable, bug 170482
+
+  16 Mar 2007; Lars Weiler <pylon@gentoo.org> cdrkit-1.0.ebuild,
+  cdrkit-1.1.2.ebuild:
+  Removed the usage of  in the ebuild; see gentoo-dev-mailing-list.
+
+  16 Mar 2007; Lars Weiler <pylon@gentoo.org> -cdrkit-1.0_pre5.ebuild,
+  -cdrkit-1.1.0.ebuild, -cdrkit-1.1.1.ebuild:
+  Remove old or unneeded versions.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> cdrkit-1.1.2.ebuild:
+  Stable on ppc64; bug #170482
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> cdrkit-1.1.2.ebuild:
+  Stable on sparc wrt #170482
+
+  12 Mar 2007; Christian Faulhammer <opfer@gentoo.org> cdrkit-1.1.2.ebuild:
+  stable x86, bug 170482
+
+  11 Mar 2007; Lars Weiler <pylon@gentoo.org> cdrkit-1.1.2.ebuild:
+  Stable on ppc; bug #170482.
+
+  12 Feb 2007; Bryan Østergaard <kloeri@gentoo.org> cdrkit-1.0.ebuild:
+  Stable on IA64, bug 158780.
+
+*cdrkit-1.1.2 (18 Jan 2007)
+
+  18 Jan 2007; Lars Weiler <pylon@gentoo.org> +cdrkit-1.1.2.ebuild:
+  Version bump.
+
+  14 Jan 2007; Olivier Crête <tester@gentoo.org> cdrkit-1.0.ebuild:
+  Stable on amd64 wrt bug #158780
+
+*cdrkit-1.1.1 (04 Jan 2007)
+
+  04 Jan 2007; Lars Weiler <pylon@gentoo.org> +cdrkit-1.1.1.ebuild:
+  Version bump.
+
+  30 Dec 2006; Christian Faulhammer <opfer@gentoo.org> cdrkit-1.0.ebuild:
+  stable on x86, bug #158780
+
+  22 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> cdrkit-1.0.ebuild:
+  Stable on sparc wrt #158780
+
+  22 Dec 2006; Markus Rothe <corsair@gentoo.org> cdrkit-1.0.ebuild:
+  Stable on ppc64; bug #158780
+
+  22 Dec 2006; Lars Weiler <pylon@gentoo.org> cdrkit-1.0.ebuild:
+  Stable on ppc; bug #158780.
+
+  03 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> cdrkit-1.1.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+*cdrkit-1.1.0 (03 Dec 2006)
+
+  03 Dec 2006; Lars Weiler <pylon@gentoo.org> +cdrkit-1.1.0.ebuild:
+  Version bump. Renamed applications are provided with symlinks. Added support
+  for non-linux systems (FreeBSD, Darwin). netscsid (former rscsi) might work,
+  but testing is not possible.
+
+*cdrkit-1.0 (23 Nov 2006)
+
+  23 Nov 2006; Lars Weiler <pylon@gentoo.org> -cdrkit-1.0_pre4.ebuild,
+  -cdrkit-1.0_pre4-r1.ebuild, +cdrkit-1.0.ebuild:
+  Version bump to final 1.0. Changed DESCRIPTION, HOMEPAGE, and SRC_URI.
+  Removed old versions.
+
+  13 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  cdrkit-1.0_pre4.ebuild, cdrkit-1.0_pre4-r1.ebuild:
+  Rolling back to ~sparc wrt #146631
+
+*cdrkit-1.0_pre5 (11 Nov 2006)
+
+  11 Nov 2006; Lars Weiler <pylon@gentoo.org> -cdrkit-1.0_pre3.ebuild,
+  +cdrkit-1.0_pre5.ebuild:
+  Version bump.  Also fixed the installation of docs.
+
+*cdrkit-1.0_pre4-r1 (31 Oct 2006)
+
+  31 Oct 2006; Lars Weiler <pylon@gentoo.org> +cdrkit-1.0_pre4-r1.ebuild:
+  scsilib-headers were not installed in the previous versions. And as
+  everybody wants them, I increased the revision.
+
+  26 Sep 2006; Jason Wever <weeve@gentoo.org> cdrkit-1.0_pre4.ebuild:
+  Added ~sparc keyword wrt bug #146631.
+
+  24 Sep 2006; Lars Weiler <pylon@gentoo.org> cdrkit-1.0_pre4.ebuild:
+  Adding a sample wodim config into /etc/default/wodim.
+
+  12 Sep 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  cdrkit-1.0_pre4.ebuild:
+  mark ~ppc (Bug #146631)
+
+  07 Sep 2006; Tim Yamin <plasmaroo@gentoo.org> cdrkit-1.0_pre3.ebuild,
+  cdrkit-1.0_pre4.ebuild:
+  Keyword ~ia64. Also add sys-libs/libcap to DEPEND. Bug #146631.
+
+  07 Sep 2006; Markus Rothe <corsair@gentoo.org> cdrkit-1.0_pre3.ebuild,
+  cdrkit-1.0_pre4.ebuild:
+  Added ~ppc64; bug #146631
+
+*cdrkit-1.0_pre4 (07 Sep 2006)
+
+  07 Sep 2006; Luis Medinas <metalgod@gentoo.org> +cdrkit-1.0_pre4.ebuild:
+  Version Bump. Added a symlink to cdrecord so it can be used by all frontends
+  and add virtual to cdrtools.
+
+  05 Sep 2006; Luis Medinas <metalgod@gentoo.org> ChangeLog:
+  add a blocker for app-cdr/cdrtools.
+
+*cdrkit-1.0_pre3 (05 Sep 2006)
+
+  05 Sep 2006; Luis Medinas <metalgod@gentoo.org> +metadata.xml,
+  +cdrkit-1.0_pre3.ebuild:
+  Initial import of cdrkit the fork of the latest complete free cdrtools sources.
+
