@@ -1,0 +1,3 @@
+# Re-add OpenBSD OS
+kernel_OpenBSD
+elibc_OpenBSD

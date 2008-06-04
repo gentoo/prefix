@@ -10,6 +10,7 @@ elibc_FreeBSD
 elibc_HPUX
 elibc_IRIX
 elibc_Interix
+elibc_NetBSD
 elibc_OpenBSD
 elibc_SunOS
 
@@ -20,6 +21,7 @@ kernel_FreeBSD
 kernel_HPUX
 kernel_IRIX
 kernel_Interix
+kernel_NetBSD
 kernel_OpenBSD
 kernel_SunOS
 

@@ -1,0 +1,3 @@
+# Re-add FreeBSD OS
+kernel_FreeBSD
+elibc_FreeBSD

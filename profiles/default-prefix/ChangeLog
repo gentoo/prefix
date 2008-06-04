@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Jun 2008; Fabian Groffen <grobian@gentoo.org> +aix/use.force,
+  +bsd/freebsd/use.force, +bsd/netbsd/use.force, +bsd/openbsd/use.force,
+  +darwin/use.force, +hpux/use.force, +irix/use.force, +linux/use.force,
+  +sunos/use.force, use.mask, +windows/interix/use.force:
+  Add use.force files which force the right elibc_ and kernel_ USE-expanded
+  variables to cope with newer Portages which are stricter, see bug #224711
+
   03 Jun 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask Portage versions that seem to suffer from multiple bugs
 

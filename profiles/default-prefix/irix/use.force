@@ -1,0 +1,3 @@
+# Re-add IRIX OS
+kernel_IRIX
+elibc_IRIX
