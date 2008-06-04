@@ -32,10 +32,6 @@
 
 #--- END OF EXAMPLES ---
 
-# Fabian Groffen <grobian@gentoo.org> (03 Jun 2008)
-# These Portage versions suffer at least from bugs #224711 and #224713
-=sys-apps/portage-2.2.00.10385
-=sys-apps/portage-2.2.00.10418
 
 # Jeremy Olexa <darkside@gentoo.org> (27 May 2008)
 # Masked due to non-prefix'd config file and root access needed (probably)
