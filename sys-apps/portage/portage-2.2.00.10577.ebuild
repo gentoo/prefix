@@ -241,7 +241,7 @@ pkg_postinst() {
 
 	# Compile all source files recursively. Any orphans
 	# will be identified and removed in postrm.
-	python_mod_optimize "${EROOT}usr/$(get_libdir)/portage/pym"
+	python_mod_optimize /usr/$(get_libdir)/portage/pym
 
 	elog
 	elog "For help with using portage please consult the Gentoo Handbook"
@@ -264,5 +264,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup "${EROOT}usr/$(get_libdir)/portage/pym"
+	python_mod_cleanup /usr/$(get_libdir)/portage/pym
 }
