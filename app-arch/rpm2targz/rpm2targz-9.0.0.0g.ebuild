@@ -21,6 +21,12 @@ RDEPEND="app-arch/cpio"
 DEPEND="${DEPEND}
 	app-arch/lzma-utils"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
+}
+
 src_install() {
 	emake install DESTDIR="${D}" || die
 	dodoc *.README*
