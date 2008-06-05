@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.139 2008/03/09 11:58:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.140 2008/06/04 19:31:08 corsair Exp $
+
+  04 Jun 2008; Markus Rothe <corsair@gentoo.org> ocaml-3.10.2.ebuild:
+  Stable on ppc64; bug #224893
 
   09 Mar 2008; Alexis Ballier <aballier@gentoo.org> -ocaml-3.09.3-r2.ebuild,
   -ocaml-3.10.1.ebuild:
