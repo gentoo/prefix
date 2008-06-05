@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xclip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/ChangeLog,v 1.28 2008/03/31 01:50:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/ChangeLog,v 1.29 2008/06/03 19:24:49 coldwind Exp $
+
+  03 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> -xclip-0.08-r1.ebuild:
+  Remove old.
 
   31 Mar 2008; Jeroen Roovers <jer@gentoo.org> xclip-0.08-r2.ebuild:
   Stable for HPPA (bug #214394).
