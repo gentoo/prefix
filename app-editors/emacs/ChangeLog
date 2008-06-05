@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.259 2008/06/01 11:49:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.260 2008/06/04 12:26:51 ulm Exp $
+
+  04 Jun 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.1-r4.ebuild, emacs-22.2-r2.ebuild:
+  Warn about inconsistent toolkit USE flags.
 
   01 Jun 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r15.ebuild,
   emacs-21.4-r17.ebuild, emacs-22.1-r4.ebuild, emacs-22.2-r2.ebuild:

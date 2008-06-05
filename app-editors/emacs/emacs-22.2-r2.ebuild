@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r2.ebuild,v 1.8 2008/06/01 11:49:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r2.ebuild,v 1.9 2008/06/04 12:26:51 ulm Exp $
 
 EAPI="prefix"
 
@@ -138,6 +138,14 @@ src_compile() {
 			myconf="${myconf} --with-x-toolkit=no"
 			myconf="${myconf} --without-gtk"
 		fi
+
+		local f tk=
+		for f in gtk Xaw3d motif; do
+			use ${f} || continue
+			[ "${tk}" ] \
+				&& ewarn "USE flag \"${f}\" ignored (superseded by \"${tk}\")"
+			tk="${tk}${tk:+ }${f}"
+		done
 	elif use aqua; then
 		einfo "Configuring to build with Carbon support"
 		myconf="${myconf} --without-x"

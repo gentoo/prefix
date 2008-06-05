@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r4.ebuild,v 1.3 2008/06/01 11:49:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r4.ebuild,v 1.4 2008/06/04 12:26:51 ulm Exp $
 
 EAPI="prefix"
 
@@ -136,6 +136,14 @@ src_compile() {
 			myconf="${myconf} --with-x-toolkit=no"
 			myconf="${myconf} --without-gtk"
 		fi
+
+		local f tk=
+		for f in gtk Xaw3d motif; do
+			use ${f} || continue
+			[ "${tk}" ] \
+				&& ewarn "USE flag \"${f}\" ignored (superseded by \"${tk}\")"
+			tk="${tk}${tk:+ }${f}"
+		done
 	else
 		myconf="${myconf} --without-x"
 	fi
@@ -220,12 +228,12 @@ emacs-infodir-rebuild() {
 }
 
 pkg_postinst() {
-	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
-		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	[ -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ] \
+		|| cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
-		test -e "${f}" || touch "${f}"
+		[ -e "${f}" ] || touch "${f}"
 	done
 
 	elisp-site-regen
