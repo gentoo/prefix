@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.25-r1.ebuild,v 1.2 2008/06/02 01:27:23 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.25-r1.ebuild,v 1.5 2008/06/04 14:25:37 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -24,7 +24,7 @@ DEPEND="fontforge? ( x11-apps/mkfontscale
 		x11-apps/mkfontdir
 		dev-perl/Font-TTF
 		app-i18n/unicode-data
-		>media-libs/fontconfig-2.5.93 )"
+		>media-libs/fontconfig-2.6.0 )"
 RDEPEND=""
 
 if use fontforge

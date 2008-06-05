@@ -1,6 +1,15 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.112 2008/06/01 21:28:00 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.115 2008/06/04 14:25:37 aballier Exp $
+
+  04 Jun 2008; Alexis Ballier <aballier@gentoo.org> dejavu-2.25-r1.ebuild:
+  keyword ~x86-fbsd
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> dejavu-2.25-r1.ebuild:
+  Update deps
+
+  04 Jun 2008; Markus Rothe <corsair@gentoo.org> dejavu-2.25-r1.ebuild:
+  Added ~ppc64; bug #224541
 
 *dejavu-2.25-r1 (01 Jun 2008)
 
