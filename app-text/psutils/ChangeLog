@@ -1,6 +1,15 @@
 # ChangeLog for app-text/psutils
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/psutils/ChangeLog,v 1.19 2006/05/25 22:32:19 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/psutils/ChangeLog,v 1.21 2008/06/04 18:19:07 aballier Exp $
+
+*psutils-1.17-r1 (04 Jun 2008)
+
+  04 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/psutils-1.17-ldflags.patch, +psutils-1.17-r1.ebuild:
+  Dont ignore ldflags, bug #209707
+
+  04 Jun 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  add tex as herd, not optimal but better than noone
 
   25 May 2006; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
   psutils-1.17.ebuild:
