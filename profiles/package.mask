@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8675 2008/06/03 02:23:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8683 2008/06/04 22:30:49 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,35 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (4 Jun 2008)
+# Can't download distfile. Newer versions in tree. bug #193625
+# Removed in 60 days by treecleaners
+=dev-lisp/cl-flexi-streams-0.6.3
+
+# Jeremy Olexa <darkside@gentoo.org> (4 Jun 2008)
+# Can't download distfile. Newer versions in tree. bug #193624
+# Removed in 60 days by treecleaners
+=dev-lisp/cl-drakma-0.4.0
+
+# Alexis Ballier <aballier@gentoo.org> (4 Jun 2008)
+# Beta versions, need testing
+>=app-office/lyx-1.6.0_beta
+
+# Ben de Groot <yngwin@gentoo.org> (4 Jun 2008)
+# depends on p.masked qt-webkit-4.4
+www-client/arora
+
+# Peter Alfredsen <loki_val@gentoo.org> (4 Jun 2008)
+# xmlrpc-c-1.14.07 is experimental but has the advantage of being current.
+# o Adds 64 bit integers (whoo!)
+# o Fails its own tests in horrendous ways (buuh!)
+=dev-libs/xmlrpc-c-1.14.07*
+
+# Raúl Porcel <armin76@gentoo.org> (3 Jun 2008)
+# P.mask snapshots
+>=net-libs/rb_libtorrent-0.13_p2335
+>=net-p2p/qbittorrent-1.1.0_beta1
 
 # Jeremy Olexa <darkside@gentoo.org> (2 Jun 2008)
 # Doesn't compile, dead project. Masked via maintainer request, bug #222595
@@ -337,11 +366,6 @@ media-sound/lastfmproxy
 # Christian Faulhammer <opfer@gentoo.org> (01 Apr 2008)
 # Masked for security reasons: bug 215699
 <net-misc/ltsp-5
-
-# Stefan Schweizer <genstef@gentoo.org> (1 Apr 2008)
-# New library, API compatibility with evince/xpdf/okular/epdfview needs to be checked first
->=app-text/poppler-0.8.0
->=app-text/poppler-bindings-0.8.0
 
 # Denis Dupeyron <calchan@gentoo.org> (31 Mar 2008)
 # New versions using guile-1.8 and gtk-2 used to build and run at some point,

@@ -1,10 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1483 2008/06/03 00:46:23 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1493 2008/06/04 22:30:49 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  04 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-lisp/cl-flexi-streams-0.6.3 & dev-lisp/cl-drakma-0.4.0. bug
+  #193624 & bug #193624
+
+  05 Jun 2008; Dawid Węgliński <cla@gentoo.org> use.local.desc:
+  Add local useflags for net-im/kadu-0.6.0.1
+
+  04 Jun 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask lyx 1.6 beta
+
+  04 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Add local gs for sci-mathematics/dataplot
+
+  04 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Adding mask for www-client/arora because it depends on p.masked qt-webkit.
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  masking app-text/docbook-to-man cause it really sucks. See bug 224679.
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  package.mask xmlrpc-c-1.14.07
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing poppler-0.8.3 from package.mask, per agreement with genstef.
+
+  04 Jun 2008; Jeremy Olexa <darkside@gentoo.org> use.local.desc:
+  add apop to local USE flags for net-mail/qpopper, bug #106367
+
+  03 Jun 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
+  P.mask net-libs/rb_libtorrent snapshots and the qbittorrent ebuild
+  depending on them
 
   03 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask sys-apps/nictools for removal in 30 days by treecleaners, bug #222595
