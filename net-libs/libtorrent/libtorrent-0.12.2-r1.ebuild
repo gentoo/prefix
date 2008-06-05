@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/Attic/libtorrent-0.12.2-r1.ebuild,v 1.1 2008/06/04 11:52:36 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.2-r1.ebuild,v 1.1 2008/06/04 11:52:36 loki_val Exp $
 
 EAPI="prefix"
 
