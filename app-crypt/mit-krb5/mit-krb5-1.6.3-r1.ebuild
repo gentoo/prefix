@@ -17,7 +17,7 @@ SRC_URI="http://web.mit.edu/kerberos/dist/krb5/${P_DIR}/${MY_P}-signed.tar
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="krb4 tcl ipv6 doc"
 
 RDEPEND="!virtual/krb5

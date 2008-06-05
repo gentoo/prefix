@@ -1,6 +1,11 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.177 2008/03/19 21:47:32 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.178 2008/06/03 13:56:15 cardoe Exp $
+
+  03 Jun 2008; Doug Goldstein <cardoe@gentoo.org> mit-krb5-1.5.3.ebuild,
+  mit-krb5-1.5.3-r1.ebuild:
+  Fix depend issue in bug #217021. Thanks Fabio Erculiani
+  <lxnay@lxnaydesign.net> for the good debug.
 
 *mit-krb5-1.6.3-r1 (19 Mar 2008)
 
