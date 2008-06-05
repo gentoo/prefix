@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libuninameslist
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.18 2008/06/02 12:17:17 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.19 2008/06/04 11:34:29 jer Exp $
+
+  04 Jun 2008; Jeroen Roovers <jer@gentoo.org>
+  libuninameslist-20060907.ebuild:
+  Stable for HPPA (bug #224599).
 
 *libuninameslist-20080409 (02 Jun 2008)
 
