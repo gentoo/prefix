@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/mutagen/mutagen-1.13.ebuild,v 1.2 2007/12/15 08:44:35 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.14.ebuild,v 1.1 2008/06/04 07:57:28 aballier Exp $
 
 EAPI="prefix"
 
@@ -23,8 +23,6 @@ DEPEND="${RDEPEND}
 		media-sound/vorbis-tools )"
 
 DOCS="API-NOTES NEWS README TODO TUTORIAL"
-
-RESTRICT="test"
 
 src_test() {
 	python setup.py test || die "src_test failed."
