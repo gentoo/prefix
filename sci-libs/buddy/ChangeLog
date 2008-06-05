@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/buddy
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/ChangeLog,v 1.4 2007/02/22 01:18:05 jokey Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/ChangeLog,v 1.5 2008/06/03 10:37:38 markusle Exp $
+
+  03 Jun 2008; Markus Dittrich <markusle@gentoo.org> buddy-2.2.ebuild,
+  buddy-2.4.ebuild:
+  Fixed QA and added amd64 keyword.
 
   22 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
   Redigest for Manifest2
