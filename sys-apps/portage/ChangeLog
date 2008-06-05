@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10585 (05 Jun 2008)
+
+  05 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.10577.ebuild, +portage-2.2.00.10585.ebuild:
+  Replace previous snapshot with new one which got a fix for bug #224713
+
 *portage-2.2.00.10577 (04 Jun 2008)
 
   04 Jun 2008; Fabian Groffen <grobian@gentoo.org>
