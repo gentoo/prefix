@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/blas-atlas
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.77 2008/05/24 17:39:38 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.78 2008/06/04 13:09:55 markusle Exp $
+
+  04 Jun 2008; Markus Dittrich <markusle@gentoo.org>
+  blas-atlas-3.8.1.ebuild:
+  Added single quotes around the default FFLAGS since some machines seem to
+  choke without them (bug #224831).
 
   24 May 2008; Markus Dittrich <markusle@gentoo.org>
   +files/blas-atlas-3.8.1-gemm-fix.patch, -blas-atlas-3.7.39.ebuild,

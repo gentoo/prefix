@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.1.ebuild,v 1.5 2008/05/24 17:39:38 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.1.ebuild,v 1.6 2008/06/04 13:09:55 markusle Exp $
 
 EAPI="prefix"
 
@@ -88,7 +88,7 @@ src_unpack() {
 		--libdir="${ED}/${DESTTREE}"/$(get_libdir)/atlas \
 		--incdir="${ED}/${DESTTREE}"/include \
 		-C ac "$(tc-getCC)" -F ac "${CFLAGS}" \
-		-C if ${FORTRANC} -F if "${FFLAGS:--O2}" \
+		-C if ${FORTRANC} -F if "${FFLAGS:-'-O2'}" \
 		-Ss pmake "\$(MAKE) ${MAKEOPTS}" \
 		-Si cputhrchk 0 ${archselect} \
 		|| die "configure failed"
