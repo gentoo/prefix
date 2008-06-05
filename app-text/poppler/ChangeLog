@@ -1,6 +1,12 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.158 2008/04/17 11:25:20 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.159 2008/06/04 08:43:49 loki_val Exp $
+
+*poppler-0.8.3 (04 Jun 2008)
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> -poppler-0.8.0.ebuild,
+  +poppler-0.8.3.ebuild:
+  Bump to 0.8.3
 
   17 Apr 2008; Robert Buchholz <rbu@gentoo.org> poppler-0.6.3.ebuild:
   ppc stable (proxy commit for dertobi123)
