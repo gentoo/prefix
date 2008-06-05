@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.5 2008/06/01 11:33:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.6 2008/06/04 12:28:46 ulm Exp $
 
 EAPI="prefix"
 
@@ -164,6 +164,14 @@ src_compile() {
 			einfo "Configuring to build with no toolkit"
 			myconf="${myconf} --with-x-toolkit=no"
 		fi
+
+		local f tk=
+		for f in gtk Xaw3d motif; do
+			use ${f} || continue
+			[ "${tk}" ] \
+				&& ewarn "USE flag \"${f}\" ignored (superseded by \"${tk}\")"
+			tk="${tk}${tk:+ }${f}"
+		done
 	else
 		myconf="${myconf} --without-x"
 	fi
