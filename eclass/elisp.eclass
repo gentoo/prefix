@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.29 2008/03/03 15:21:47 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.30 2008/06/03 15:48:44 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -19,13 +19,10 @@
 # Emacs support for other than pure elisp packages is handled by
 # elisp-common.eclass where you won't have a dependency on Emacs itself.
 # All elisp-* functions are documented there.
-
-# @ECLASS-VARIABLE: SIMPLE_ELISP
-# @DESCRIPTION:
-# Setting SIMPLE_ELISP=t in an ebuild means, that the package's source
-# is a single (in whatever way) compressed elisp file with the file name
-# ${PN}-${PV}.  This eclass will then redefine ${S}, and move
-# ${PN}-${PV}.el to ${PN}.el in src_unpack().
+#
+# If the package's source is a single (in whatever way) compressed elisp
+# file with the file name ${P}.el, then this eclass will move ${P}.el to
+# ${PN}.el in src_unpack().
 
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
@@ -45,10 +42,6 @@ DEPEND=">=virtual/emacs-${VERSION}"
 RDEPEND=">=virtual/emacs-${VERSION}"
 IUSE=""
 
-if [ "${SIMPLE_ELISP}" = 't' ]; then
-	S="${WORKDIR}"
-fi
-
 elisp_pkg_setup() {
 	local emacs_version="$(elisp-emacs-version)"
 	if ! version_is_at_least "${VERSION}" "${emacs_version}"; then
@@ -60,7 +53,7 @@ elisp_pkg_setup() {
 
 elisp_src_unpack() {
 	unpack ${A}
-	if [ "${SIMPLE_ELISP}" = 't' ]; then
+	if [ -f ${P}.el ]; then
 		mv ${P}.el ${PN}.el || die "mv ${P}.el ${PN}.el failed"
 	fi
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.27 2008/01/02 13:22:13 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.29 2008/06/04 13:12:23 lack Exp $
 
 # ROX eclass Version 3
 
@@ -292,12 +292,11 @@ rox_src_install() {
 
 	# Install the .desktop application file
 	rox_install_desktop
-
-	# Finally, optimize any python files
-	python_mod_optimize "${ED}${APPDIR}/${APPNAME}" >/dev/null 2>&1
 }
 
 rox_pkg_postinst() {
+	python_mod_optimize "${APPDIR}/${APPNAME}" >/dev/null 2>&1
+
 	einfo "${APPNAME} has been installed into ${APPDIR}"
 	if [[ "${WRAPPERNAME}" != "skip" ]]; then
 		einfo "You can run it by typing ${WRAPPERNAME} at the command line."
@@ -309,4 +308,9 @@ rox_pkg_postinst() {
 	einfo "on ${APPNAME}'s icon, drag it to a panel, desktop, etc."
 }
 
-EXPORT_FUNCTIONS src_compile src_install pkg_postinst
+rox_pkg_postrm() {
+	python_mod_cleanup "${APPDIR}"
+}
+
+
+EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
