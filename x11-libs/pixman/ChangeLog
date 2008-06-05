@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.5 2008/04/02 01:19:10 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.6 2008/06/04 19:53:33 corsair Exp $
+
+  04 Jun 2008; Markus Rothe <corsair@gentoo.org> pixman-0.10.0.ebuild:
+  Stable on ppc64; bug #224929
 
 *pixman-0.10.0 (02 Apr 2008)
 
