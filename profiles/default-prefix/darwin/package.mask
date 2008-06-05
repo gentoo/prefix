@@ -1,10 +1,12 @@
 # $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
-# These are versions taken from Xcode Tools 3.1 Beta
+# These are versions taken from Xcode Tools 3.1 Beta, and iPhone SDK Beta 5
 =sys-devel/gcc-apple-4.0.1_p5470
+=sys-devel/gcc-apple-4.0.1_p5483
 =sys-devel/gcc-apple-4.2.1_p5553
 =sys-devel/gdb-apple-908
+=sys-devel/gdb-apple-956
 
 # Fabian Groffen <grobian@gentoo.org> (24 Mar 2008)
 # Doesn't link, needs figuring out how we're going to do the GUI anyway
