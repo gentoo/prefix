@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.224 2008/06/02 18:45:43 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.226 2008/06/04 08:35:45 aballier Exp $
+
+  04 Jun 2008; Alexis Ballier <aballier@gentoo.org> eix-0.12.5.ebuild:
+  keyword ~sparc-fbsd
+
+  04 Jun 2008; Markus Rothe <corsair@gentoo.org> eix-0.12.4.ebuild:
+  Stable on ppc64; bug #224297
 
   02 Jun 2008; Robert Buchholz <rbu@gentoo.org> eix-0.12.4.ebuild:
   amd64 stable (bug #224297)
