@@ -1,18 +1,20 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.10.14.ebuild,v 1.11 2008/03/09 23:11:21 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.10.ebuild,v 1.1 2008/06/04 00:37:33 leio Exp $
 
 EAPI="prefix"
 
-inherit gnome.org flag-o-matic eutils autotools virtualx
+WANT_AUTOMAKE="1.7"
+
+inherit gnome.org flag-o-matic eutils autotools virtualx multilib
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="aqua debug doc jpeg tiff X xinerama"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE="cups debug doc jpeg tiff vim-syntax xinerama aqua"
 
 RDEPEND="X? (
 		x11-libs/libXrender
@@ -23,44 +25,49 @@ RDEPEND="X? (
 		x11-libs/libXcursor
 		x11-libs/libXrandr
 		x11-libs/libXfixes
+		x11-libs/libXcomposite
+		x11-libs/libXdamage
 	)
 	xinerama? ( x11-libs/libXinerama )
-	>=dev-libs/glib-2.12.1
-	>=x11-libs/pango-1.12.0
+	>=dev-libs/glib-2.13.5
+	>=x11-libs/pango-1.17.3
 	>=dev-libs/atk-1.10.1
 	>=x11-libs/cairo-1.2.0
-	!aqua? ( media-libs/fontconfig )
+	media-libs/fontconfig
 	x11-misc/shared-mime-info
 	>=media-libs/libpng-1.2.1
+	cups? ( net-print/cups )
 	jpeg? ( >=media-libs/jpeg-6b-r2 )
 	tiff? ( >=media-libs/tiff-3.5.7 )"
 
 DEPEND="${RDEPEND}
 	sys-devel/autoconf
 	>=dev-util/pkgconfig-0.9
-	=sys-devel/automake-1.7*
 	X? (
 		x11-proto/xextproto
 		x11-proto/xproto
 		x11-proto/inputproto
+		x11-proto/damageproto
 	)
 	xinerama? ( x11-proto/xineramaproto )
+	>=dev-util/gtk-doc-am-1.8
 	doc? (
-			>=dev-util/gtk-doc-1.4
+			>=dev-util/gtk-doc-1.8
 			~app-text/docbook-xml-dtd-4.1.2
 		 )"
+PDEPEND="vim-syntax? ( app-vim/gtk-syntax )"
 
 pkg_setup() {
 	if use X && use aqua; then
-		einfo "Please enable either X or aqua USE flag, not both"
+		eerror "Please enable either X or aqua USE flag, not both"
 		die "can't build with X and aqua"
 	fi
-	if use X && ! built_with_use x11-libs/cairo X; then
-		einfo "Please re-emerge x11-libs/cairo with the X USE flag set"
+	if use !aqua && ! built_with_use x11-libs/cairo X; then
+		eerror "Please re-emerge x11-libs/cairo with the X USE flag set"
 		die "cairo needs the X flag set"
 	fi
 	if use aqua && ! built_with_use x11-libs/cairo aqua; then
-		einfo "Please re-emerge x11-libs/cairo with the aqua USE flag set"
+		eerror "Please re-emerge x11-libs/cairo with the aqua USE flag set"
 		die "cairo needs the aqua flag set"
 	fi
 }
@@ -75,21 +82,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Optionalize xinerama support
-	epatch "${FILESDIR}/${PN}-2.8.10-xinerama.patch"
-
-	# Make gtk-update-icon-cache check subdirs in it's update check
-	epatch "${FILESDIR}"/${PN}-2.10.11-update-icon-subdirs.patch
-
-	# http://lists.macosforge.org/pipermail/macports-users/2007-March/002213.html
-	epatch "${FILESDIR}"/${PN}-2.10.12-cairo_quartz.patch
-
 	# use an arch-specific config directory so that 32bit and 64bit versions
 	# dont clash on multilib systems
 	has_multilib_profile && epatch "${FILESDIR}/${PN}-2.8.0-multilib.patch"
 
-	# Revert DND change that makes mozilla products DND broken
-	EPATCH_OPTS="-R" epatch "${FILESDIR}/${PN}-2.10.7-mozilla-dnd-fix.patch"
+	# Workaround adobe flash infinite loop. Patch from http://bugzilla.gnome.org/show_bug.cgi?id=463773#c11
+	epatch "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
+
+	# OpenOffice.org might hang at startup (on non-gnome env) without this workaround, bug #193513
+	epatch "${FILESDIR}/${PN}-2.12.0-openoffice-freeze-workaround.patch"
+
+	# Firefox print review crash fix, bug #195644
+	epatch "${FILESDIR}/${PN}-2.12.1-firefox-print-preview.patch"
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
@@ -97,11 +101,11 @@ src_unpack() {
 
 	use ppc64 && append-flags -mminimal-toc
 
+	# Fix libtool usage for configure stage, bug #213789
+	epatch "${FILESDIR}/${PN}-2.12.9-libtool-2.patch"
+
 	# remember, eautoreconf applies elibtoolize.
 	# if you remove this, you should manually run elibtoolize
-	export WANT_AUTOMAKE=1.7
-	cp aclocal.m4 old_macros.m4
-	AT_M4DIR="."
 	eautoreconf
 
 	epunt_cxx
@@ -113,6 +117,7 @@ src_compile() {
 		$(use_with jpeg libjpeg) \
 		$(use_with tiff libtiff) \
 		$(use_enable xinerama) \
+		$(use_enable cups cups auto) \
 		--with-libpng"
 	if use aqua; then
 		myconf="${myconf} --with-gdktarget=quartz"
@@ -124,7 +129,11 @@ src_compile() {
 	# Passing --disable-debug is not recommended for production use
 	use debug && myconf="${myconf} --enable-debug=yes"
 
-	econf ${myconf} || die "configure failed"
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+
+	# need libdir here to avoid a double slash in a path that libtool doesn't
+	# grok so well during install (// between $EPREFIX and usr ...)
+	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
 
 	# add correct framework linking options
 	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
@@ -135,11 +144,11 @@ src_compile() {
 }
 
 src_test() {
-	Xmake check || die
+	Xemake check || die
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "Installation failed"
+	emake DESTDIR="${D}" install || die "Installation failed"
 
 	set_gtk2_confdir
 	dodir ${GTK2_CONFDIR}
@@ -153,6 +162,10 @@ src_install() {
 	echo "GDK_USE_XFT=1" > "${ED}/etc/env.d/50gtk2"
 
 	dodoc AUTHORS ChangeLog* HACKING NEWS* README*
+
+	# This has to be removed, because it's multilib specific; generated in
+	# postinst
+	rm "${ED}/etc/gtk-2.0/gtk.immodules"
 }
 
 pkg_postinst() {
@@ -180,4 +193,6 @@ pkg_postinst() {
 		elog "to do that you can use qfile from portage-utils:"
 		elog "emerge -va1 \$(qfile -qC ${EPREFIX}/usr/lib/gtk-2.0/2.[^1]*)"
 	fi
+
+	elog "Please install app-text/evince for print preview functionality"
 }

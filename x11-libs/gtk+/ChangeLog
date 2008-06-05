@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.378 2008/04/28 21:12:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.383 2008/06/04 17:28:52 armin76 Exp $
+
+  04 Jun 2008; Raúl Porcel <armin76@gentoo.org> gtk+-2.12.9-r2.ebuild:
+  alpha/ia64/sparc stable wrt #224817
+
+  04 Jun 2008; Markus Rothe <corsair@gentoo.org> gtk+-2.12.9-r2.ebuild:
+  Stable on ppc64; bug #224817
+
+  04 Jun 2008; Dawid Węgliński <cla@gentoo.org> gtk+-2.12.9-r2.ebuild:
+  Stable on x86 (bug #224817)
+
+  04 Jun 2008; Jeroen Roovers <jer@gentoo.org> gtk+-2.12.9-r2.ebuild:
+  Stable for HPPA (bug #224817).
+
+*gtk+-2.12.10 (04 Jun 2008)
+
+  04 Jun 2008; Mart Raudsepp <leio@gentoo.org> +gtk+-2.12.10.ebuild:
+  Version bump for various bug fixes
 
   28 Apr 2008; Gilles Dartiguelongue <eva@gentoo.org>
   +files/gtk+-2.12.9-libtool-2.patch, gtk+-2.12.9-r2.ebuild:
