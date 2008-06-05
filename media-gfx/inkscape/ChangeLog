@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.100 2008/05/28 19:24:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.101 2008/06/04 23:50:29 loki_val Exp $
+
+*inkscape-0.46-r3 (04 Jun 2008)
+
+  04 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/inkscape-0.46-poppler-0.8.3.patch, inkscape-0.46-r2.ebuild,
+  +inkscape-0.46-r3.ebuild:
+  Bump to -r3 and patch for bug 224883
 
   28 May 2008; Markus Meier <maekke@gentoo.org> -inkscape-0.45.1-r1.ebuild:
   old
