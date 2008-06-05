@@ -1,6 +1,11 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.54 2008/04/18 14:39:11 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.55 2008/06/04 15:26:44 beandog Exp $
+
+*cdrkit-1.1.8 (04 Jun 2008)
+
+  04 Jun 2008; Steve Dibb <beandog@gentoo.org> +cdrkit-1.1.8.ebuild:
+  Version bump, bug 224337
 
 *cdrkit-1.1.7.1 (18 Apr 2008)
 
