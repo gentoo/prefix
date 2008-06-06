@@ -26,6 +26,7 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
 
 	econf \
 		--disable-poppler-qt4 \
