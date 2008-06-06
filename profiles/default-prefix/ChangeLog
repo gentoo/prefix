@@ -2,6 +2,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  linux/amd64/make.defaults, -linux/amd64/no-multilib/make.defaults,
+  -linux/amd64/no-multilib/package.mask,
+  -linux/amd64/no-multilib/package.use.mask,
+  -linux/amd64/no-multilib/use.mask, linux/amd64/package.mask,
+  +linux/amd64/package.use.mask, linux/amd64/use.mask:
+  Make no-multilib profile for linux/amd64 default, by merging it into the
+  default profile.
+
   04 Jun 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Masked Portage versions have been removed
 

@@ -2,13 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+# note: this is no-multilib!
+
 ARCH=amd64
 CHOST="x86_64-pc-linux-gnu"
 ACCEPT_KEYWORDS="~amd64-linux"
 
 # 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
 # Multilib settings for all amd64 subprofiles.
-MULTILIB_ABIS="amd64 x86"
+MULTILIB_ABIS="amd64"
 DEFAULT_ABI="amd64"
 ABI=amd64
 
