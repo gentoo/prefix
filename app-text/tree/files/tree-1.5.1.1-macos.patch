@@ -1,0 +1,21 @@
+--- tree.c.orig 2007-06-11 06:22:06 -0700
++++ tree.c 2008-06-05 18:06:27 -0700
+@@ -17,7 +17,9 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#ifndef __APPLE__
+ #include <features.h>
++#endif
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <time.h>
+@@ -181,6 +183,8 @@
+ 
+ #ifdef CYGWIN
+ extern int MB_CUR_MAX;
++#elif __APPLE__
++extern int MB_CUR_MAX;
+ #else
+ extern size_t MB_CUR_MAX;
+ #endif

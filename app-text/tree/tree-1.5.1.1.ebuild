@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs bash-completion
+inherit toolchain-funcs bash-completion eutils
 
 DESCRIPTION="Lists directories recursively, and produces an indented listing of files."
 HOMEPAGE="http://mama.indstate.edu/users/ice/tree/"
@@ -12,13 +12,19 @@ SRC_URI="ftp://mama.indstate.edu/linux/tree/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch ${FILESDIR}/${P}-macos.patch
+}
 
 src_compile() {
 	emake \
 		CC="$(tc-getCC)" \
-		CFLAGS="${CFLAGS} -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DCYGWIN" \
+		CFLAGS="${CFLAGS} -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" \
 		LDFLAGS="${LDFLAGS}" \
 		|| die "emake failed"
 }
