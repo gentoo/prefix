@@ -2,10 +2,8 @@
 
 # Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
 # These are versions taken from Xcode Tools 3.1 Beta, and iPhone SDK Beta 5
-=sys-devel/gcc-apple-4.0.1_p5470
 =sys-devel/gcc-apple-4.0.1_p5483
 =sys-devel/gcc-apple-4.2.1_p5553
-=sys-devel/gdb-apple-908
 =sys-devel/gdb-apple-956
 
 # Fabian Groffen <grobian@gentoo.org> (24 Mar 2008)
@@ -19,11 +17,6 @@ sci-libs/blas-atlas
 # Elias Pipping <pipping@gentoo.org> (08 Dec 2007)
 # fails to link because of duplicate symbols
 dev-perl/math-pari
-
-# Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
-# This seems to be some developer snapshot, geared towards objc2, not
-# being able to do any useful c++ compilation
-=sys-devel/gcc-apple-4.2.1_p5531
 
 # Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # darwin-miscutils are only available on darwin
