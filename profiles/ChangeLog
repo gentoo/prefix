@@ -1,10 +1,45 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1493 2008/06/04 22:30:49 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1503 2008/06/06 20:34:12 drac Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  06 Jun 2008; Samuli Suominen <drac@gentoo.org> desc/linguas.desc:
+  Add et_EE for bug 204322, app-cdr/dvd95. Hope I got it right.
+
+  06 Jun 2008; Matthias Schwarzott <zzam@gentoo.org> desc/lirc_devices.desc:
+  Added imon_lcd to list of possible lirc_devices, thanks to Jan Paesmans
+  <jan.paesmans@gmail.com>.
+
+  06 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added athena, data, dawn, gdml, geant3, global, openinventor, raytracerx,
+  vrml use flags for sci-physics/geant:4
+
+  06 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added exceptions local flag for sci-physics/clhep
+
+  06 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  All dependencies checked, is dotted, ts crossed. Unleash libopensync unto
+  the world.
+
+  05 Jun 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Removed boost from package.mask
+
+  05 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  adding kdepim-3.5.9-r2 and kitchensync-3.5.9-r1 to p.mask per IRC convo
+  with zlin in preparation for unmasking.
+
+  05 Jun 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Removing America's Army.
+
+  05 Jun 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Masked dev-libs/libffi for removal wrt #163724.
+
+  05 Jun 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask dirac now that it passes its tests and ffmpeg trunk can use it, it
+  encodes and play videos fine
 
   04 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask dev-lisp/cl-flexi-streams-0.6.3 & dev-lisp/cl-drakma-0.4.0. bug

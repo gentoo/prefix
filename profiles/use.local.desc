@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3571 2008/06/04 22:00:25 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3573 2008/06/06 19:11:27 bicatali Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -670,6 +670,7 @@ dev-util/monodevelop:aspnet - Enable ASP.NET support
 dev-util/monodevelop:c++ - Enable support for C/C++ programming languages
 dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
+dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
 dev-util/strace:aio - Enable libaio support
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
@@ -1943,6 +1944,7 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
+sci-physics/clhep:exceptions - Enable zoom exceptions for user intervention
 sci-physics/root:cern - Enable hbook i/o functionality to root (needs cernlib)
 sci-physics/root:cint7 - Build the experimental C/C++ interpretor version 7
 sci-physics/root:math - Build extra math and numerical libraries for root (needs gsl)

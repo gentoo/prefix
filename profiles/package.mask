@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8683 2008/06/04 22:30:49 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8689 2008/06/06 00:27:05 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,41 +29,48 @@
 
 #--- END OF EXAMPLES ---
 
-# Jeremy Olexa <darkside@gentoo.org> (4 Jun 2008)
+# Samuli Suominen <drac@gentoo.org> (05 Jun 2008)
+# Masked for removal in ~30 days by treecleaners.
+# Replaced by USE libffi in sys-devel/gcc. Bug 163724.
+dev-libs/libffi
+dev-lang/squeak
+x11-libs/gtk-server
+
+# Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
 # Can't download distfile. Newer versions in tree. bug #193625
 # Removed in 60 days by treecleaners
 =dev-lisp/cl-flexi-streams-0.6.3
 
-# Jeremy Olexa <darkside@gentoo.org> (4 Jun 2008)
+# Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
 # Can't download distfile. Newer versions in tree. bug #193624
 # Removed in 60 days by treecleaners
 =dev-lisp/cl-drakma-0.4.0
 
-# Alexis Ballier <aballier@gentoo.org> (4 Jun 2008)
+# Alexis Ballier <aballier@gentoo.org> (04 Jun 2008)
 # Beta versions, need testing
 >=app-office/lyx-1.6.0_beta
 
-# Ben de Groot <yngwin@gentoo.org> (4 Jun 2008)
+# Ben de Groot <yngwin@gentoo.org> (04 Jun 2008)
 # depends on p.masked qt-webkit-4.4
 www-client/arora
 
-# Peter Alfredsen <loki_val@gentoo.org> (4 Jun 2008)
+# Peter Alfredsen <loki_val@gentoo.org> (04 Jun 2008)
 # xmlrpc-c-1.14.07 is experimental but has the advantage of being current.
 # o Adds 64 bit integers (whoo!)
 # o Fails its own tests in horrendous ways (buuh!)
 =dev-libs/xmlrpc-c-1.14.07*
 
-# Raúl Porcel <armin76@gentoo.org> (3 Jun 2008)
+# Raúl Porcel <armin76@gentoo.org> (03 Jun 2008)
 # P.mask snapshots
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
 
-# Jeremy Olexa <darkside@gentoo.org> (2 Jun 2008)
+# Jeremy Olexa <darkside@gentoo.org> (02 Jun 2008)
 # Doesn't compile, dead project. Masked via maintainer request, bug #222595
 # Use net-misc/ethercard-diag instead. Removed by treecleaners in ~30 days.
 sys-apps/nictools
 
-# Peter Alfredsen <loki_val@gentoo.org> (2 June 2008)
+# Peter Alfredsen <loki_val@gentoo.org> (02 Jun 2008)
 # Masking to force downgrade. Remove August 2008.
 =app-i18n/unicode-data-5.2.0
 
@@ -71,7 +78,7 @@ sys-apps/nictools
 # Ugly ebuild, needs testing
 >=media-video/realplayer-11.0.0.4028
 
-# Peter Alfredsen <loki_val@gentoo.org> (1 June 2008)
+# Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
 # Masked for keywording and testing
 =media-fonts/dejavu-2.25-r1
 
@@ -279,11 +286,6 @@ media-fonts/sharefonts
 # Linkage 0.1.5 needs unreleased C++ bindings for DBUS.
 # Mask it until I figure out the best way to handle 0.1.5.
 net-p2p/linkage
-
-# Tiziano Müller <dev-zero@gentoo.org> (24 Apr 2008)
-# Mask for testing. NOT finished yet and largely untested!
-=dev-util/boost-build-1.35.0
-=dev-libs/boost-1.35.0
 
 # David Shakaryan <omp@gentoo.org> (24 Apr 2008)
 # Masked for removal in 30 days. (bug #197277)
@@ -572,25 +574,6 @@ x11-misc/mkxf86config
 # Luca Barbato <lu_zero@gentoo.org> (28 Jan 2008)
 # linking broken
 =app-emulation/qemu-user-0.9.1
-
-# Piotr Jaroszyński <peper@gentoo.org> (27 Jan 2008)
-# opensync 0.3x is still experimental
-# Peter Alfredsen <loki_val@gentoo.org> (31 May 2008)
-# adding multisync-gui that compiles with libopensync-0.36
->=app-pda/libopensync-0.35
->=app-pda/msynctool-0.35
->=app-pda/libopensync-plugin-evolution2-0.35
->=app-pda/libopensync-plugin-file-0.35
->=app-pda/libopensync-plugin-gnokii-0.35
->=app-pda/libopensync-plugin-google-calendar-0.35
->=app-pda/libopensync-plugin-gpe-0.35
->=app-pda/libopensync-plugin-irmc-0.35
->=app-pda/libopensync-plugin-kdepim-0.35
->=app-pda/libopensync-plugin-palm-0.35
->=app-pda/libopensync-plugin-python-0.35
->=app-pda/libopensync-plugin-syncml-0.35
->=app-pda/libopensync-plugin-vformat-0.35
-=app-pda/multisync-gui-0.92.0_pre20080531
 
 # Mike Frysinger <vapier@gentoo.org> (26 Jan 2008)
 # Requires modular LSM support in the kernel which was
@@ -1115,11 +1098,6 @@ x11-plugins/gai-pal
 x11-plugins/gai-pager
 x11-libs/gai
 
-# Chris Gianelloni <wolf31o2@gentoo.org> (05 Oct 2007)
-# This is masked for removal in 30 days due to security bug #194609 and no
-# newer version of the package being available.  Sorry, folks.
-games-fps/americas-army
-
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
 >=app-text/kchmviewer-4.0_beta1
@@ -1527,11 +1505,6 @@ sys-apps/gli
 # Matthew Kennedy <mkennedy@gentoo.org> (31 Jul 2005)
 # Upstream author requests official version ports only.
 dev-lisp/cl-blog
-
-# Diego Pettenò <flameeyes@gentoo.org> (10 Jun 2005)
-# Still no way to test this, waiting ofr upstream or someone to come up
-# with a decent test suite.
-media-video/dirac
 
 # Sven Wegener <swegener@gentoo.org> (05 May 2005)
 # Development versions, without this mask users will not get the upstream
