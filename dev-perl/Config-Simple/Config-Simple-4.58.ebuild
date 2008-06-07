@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~sherzodr/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 SRC_TEST="do"
