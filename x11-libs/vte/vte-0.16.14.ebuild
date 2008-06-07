@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.16.13.ebuild,v 1.8 2008/04/17 20:53:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.16.14.ebuild,v 1.1 2008/06/05 21:10:21 eva Exp $
 
 EAPI="prefix"
 
@@ -41,8 +41,11 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
-	G2CONF="${G2CONF} $(use_enable debug) $(use_enable python)
-		$(use_with opengl glX) --with-xft2 --with-pangox"
+	G2CONF="${G2CONF}
+		$(use_enable debug)
+		$(use_enable python)
+		$(use_with opengl glX)
+		--with-xft2 --with-pangox"
 }
 
 src_unpack() {
@@ -50,7 +53,7 @@ src_unpack() {
 
 	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
 	[[ ${CHOST} != *-interix* ]] && epatch "${FILESDIR}/${PN}-0.13.2-no-lazy-bindings.patch"
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.16.13-interix.patch
 	cd "${S}/gnome-pty-helper"
 
 	# eautoreconf will break on systems without gtk-doc

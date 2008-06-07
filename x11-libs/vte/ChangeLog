@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.203 2008/05/08 14:32:23 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.204 2008/06/05 21:10:21 eva Exp $
+
+*vte-0.16.14 (05 Jun 2008)
+
+  05 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.14.ebuild:
+  bump to 0.16.14. Bug fixes.
 
   08 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -files/vte-0.16.6-cursor-modifers-to-csi.patch, -vte-0.16.9.ebuild,
