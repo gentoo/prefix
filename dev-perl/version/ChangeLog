@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/version
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.55 2008/04/23 09:05:20 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.56 2008/06/06 08:54:53 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org> version-0.74.ebuild:
+  keyword ~sparc-fbsd
 
 *version-0.74 (23 Apr 2008)
 
