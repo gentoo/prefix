@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/Devel-Symdump
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Symdump/ChangeLog,v 1.55 2008/04/29 06:06:21 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Symdump/ChangeLog,v 1.57 2008/06/06 08:59:08 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  Devel-Symdump-2.08.ebuild:
+  keyword ~x86-fbsd
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  Devel-Symdump-2.08.ebuild:
+  keyword ~sparc-fbsd
 
 *Devel-Symdump-2.08 (29 Apr 2008)
 
