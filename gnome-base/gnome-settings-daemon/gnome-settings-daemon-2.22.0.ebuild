@@ -1,6 +1,6 @@
 # Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.0.ebuild,v 1.3 2008/06/01 10:01:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.0.ebuild,v 1.4 2008/06/05 11:53:50 remi Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.74
 						>=media-libs/gstreamer-0.10.1.2
 						>=media-libs/gst-plugins-base-0.10.1.2
 					)
-		!<gnome-base/control-center-2.22"
+		!<gnome-base/gnome-control-center-2.22"
 DEPEND="${RDEPEND}
 		  sys-devel/gettext
 		>=dev-util/intltool-0.35.0
