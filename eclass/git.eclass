@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.10 2008/03/30 05:52:27 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.11 2008/06/05 15:44:01 zlin Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -176,8 +176,6 @@ git_fetch() {
 		addwrite /
 		mkdir -p "${EGIT_STORE_DIR}" \
 			|| die "${EGIT}: can't mkdir ${EGIT_STORE_DIR}."
-		chmod -f o+rw "${EGIT_STORE_DIR}" \
-			|| die "${EGIT}: can't chmod ${EGIT_STORE_DIR}."
 		export SANDBOX_WRITE="${SANDBOX_WRITE%%:/}"
 	fi
 
