@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Test-Simple
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.50 2008/05/09 09:55:48 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.51 2008/06/06 09:01:14 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org> Test-Simple-0.80.ebuild:
+  keyword ~sparc-fbsd
 
 *Test-Simple-0.80 (09 May 2008)
 
