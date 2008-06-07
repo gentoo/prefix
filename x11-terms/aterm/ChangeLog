@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/aterm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.108 2008/05/05 13:45:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.109 2008/06/06 03:28:03 darkside Exp $
+
+  06 Jun 2008; Jeremy Olexa <darkside@gentoo.org> aterm-1.0.1-r1.ebuild:
+  Fix x11-term/aterm's ewarn message in pkg_postint(), it was slightly
+  inaccurate. Thanks to Mark Tiefenbruck for the edit/suggestion in bug
+  #222053
 
   05 May 2008; Brent Baude <ranger@gentoo.org> aterm-1.0.1-r1.ebuild:
   Marking aterm-1.0.1-r1 ppc for bug 219746
