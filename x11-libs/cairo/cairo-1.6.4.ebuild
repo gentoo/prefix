@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.6.4.ebuild,v 1.4 2008/06/04 19:55:27 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.6.4.ebuild,v 1.6 2008/06/05 11:20:35 armin76 Exp $
 
 EAPI="prefix"
 
@@ -72,7 +72,7 @@ src_compile() {
 		export glitz_LIBS=-lglitz-glx
 	fi
 
-	use_xcb="--disable_xcb"
+	use_xcb="--disable-xcb"
 	use X && use xcb && use_xcb="--enable-xcb"
 
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \

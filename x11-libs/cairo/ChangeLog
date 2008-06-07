@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.182 2008/06/04 19:55:27 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.184 2008/06/05 11:20:35 armin76 Exp $
+
+  05 Jun 2008; Raúl Porcel <armin76@gentoo.org> cairo-1.6.4.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #224929
+
+  05 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> cairo-1.6.4.ebuild:
+  fixed typo in ebuild. Fixes bug 224955.
 
   04 Jun 2008; Markus Rothe <corsair@gentoo.org> cairo-1.6.4.ebuild:
   Stable on ppc64; bug #224929
