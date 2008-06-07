@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.2-r1.ebuild,v 1.1 2008/06/04 11:52:36 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.2-r2.ebuild,v 1.1 2008/06/05 06:41:55 loki_val Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs flag-o-matic libtool
+inherit autotools eutils toolchain-funcs flag-o-matic libtool
 
 DESCRIPTION="LibTorrent is a BitTorrent library written in C++ for *nix."
 HOMEPAGE="http://libtorrent.rakshasa.no/"
@@ -22,9 +22,14 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	elibtoolize
 	epatch "${FILESDIR}"/${PN}-0.11.9+gcc-4.3.patch
+	epatch "${FILESDIR}"/${P}-dht_bounds_fix.patch
+	epatch "${FILESDIR}"/${P}-fix_cull.patch
+	epatch "${FILESDIR}"/${P}-fix_dht_target.patch
+	epatch "${FILESDIR}"/${P}-lt-ver.patch
 	epatch "${FILESDIR}"/${P}-tracker_timer_fix.patch
+	elibtoolize #Don't remove
+	eautoreconf
 }
 
 src_compile() {

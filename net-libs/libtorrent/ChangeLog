@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.115 2008/06/04 11:52:36 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.116 2008/06/05 06:41:55 loki_val Exp $
+
+*libtorrent-0.12.2-r2 (05 Jun 2008)
+
+  05 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/libtorrent-0.12.2-dht_bounds_fix.patch,
+  +files/libtorrent-0.12.2-fix_cull.patch,
+  +files/libtorrent-0.12.2-fix_dht_target.patch,
+  +files/libtorrent-0.12.2-fix_start_stop_filter.patch,
+  +files/libtorrent-0.12.2-lt-ver.patch, metadata.xml,
+  -libtorrent-0.12.0.ebuild, -libtorrent-0.12.2-r1.ebuild,
+  +libtorrent-0.12.2-r2.ebuild:
+  Adding bugfix patches recommended by upstream.
 
 *libtorrent-0.12.2-r1 (04 Jun 2008)
 

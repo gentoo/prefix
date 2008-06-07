@@ -3,7 +3,12 @@
 <pkgmetadata>
 <herd>net-p2p</herd>
 <maintainer>
- <email>drizzt@gentoo.org</email>
- <description>Secondary Maintainer</description>
+	<email>loki_val@gentoo.org</email>
+	<name>Peter Alfredsen</name>
+	<description>I've changed too much to avoid adding myself</description>
+</maintainer>
+<maintainer>
+	<email>drizzt@gentoo.org</email>
+	<description>Secondary Maintainer</description>
 </maintainer>
 </pkgmetadata>
