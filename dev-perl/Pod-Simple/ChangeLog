@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Pod-Simple
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/ChangeLog,v 1.38 2008/04/27 20:12:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/ChangeLog,v 1.39 2008/06/06 08:53:08 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org> Pod-Simple-3.05.ebuild:
+  keyword ~sparc-fbsd
 
   27 Apr 2008; Alexis Ballier <aballier@gentoo.org> Pod-Simple-3.05.ebuild:
   keyword ~x86-fbsd
