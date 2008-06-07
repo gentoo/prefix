@@ -1,6 +1,13 @@
 # ChangeLog for x11-proto/xextproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.26 2007/02/04 18:08:36 joshuabaergen Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.27 2008/06/06 21:23:49 dberkholz Exp $
+
+*xextproto-7.0.3 (06 Jun 2008)
+
+  06 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xextproto-7.0.3.ebuild:
+  Bump to latest, added support for multi-pointer X. It won't actually be in
+  xorg-server till 1.6 or so, but it's available in the git ebuilds.
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   xextproto-7.0.2.ebuild:
