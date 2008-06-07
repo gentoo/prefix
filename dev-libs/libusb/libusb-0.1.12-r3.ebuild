@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r1.ebuild,v 1.10 2008/04/20 11:34:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r3.ebuild,v 1.1 2008/06/07 00:59:04 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/libusb/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="debug doc"
+IUSE="debug doc nocxx"
 RESTRICT="test"
 
 RDEPEND=""
@@ -30,6 +30,7 @@ src_unpack() {
 	sed -i -e 's:-Werror::' Makefile.am
 	sed -i 's:AC_LANG_CPLUSPLUS:AC_PROG_CXX:' configure.in #213800
 	epatch "${FILESDIR}"/${PV}-fbsd.patch
+	use nocxx && epatch "${FILESDIR}"/libusb-0.1.12-nocpp.patch
 	eautoreconf
 	elibtoolize
 
@@ -38,7 +39,7 @@ src_unpack() {
 	sysid='"-//OASIS//DTD DocBook V4.2//EN"'
 	sed -r -i -e \
 	"s,(${sysid}) \[\$,\1 \"${docbookdtd}\" \[,g" \
-	${S}/doc/manual.sgml
+	"${S}"/doc/manual.sgml
 }
 
 src_compile() {
@@ -52,11 +53,16 @@ src_compile() {
 
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "make install failed"
-	#dodir /$(get_libdir)
-	#mv ${ED}/usr/$(get_libdir)/*.so* ${ED}/$(get_libdir) \
-	#	|| die "Failed to put dynamic libs in /$(get_libdir)"
+
+	dodir /$(get_libdir)
+	mv ${ED}/usr/$(get_libdir)/*.so* ${ED}/$(get_libdir) \
+		|| die "Failed to put dynamic libs in /$(get_libdir)"
+
+	use nocxx && rm -f "${ED}"/usr/include/usbpp.h
+
 	gen_usr_ldscript libusb.so
-	gen_usr_ldscript libusbpp.so
+	use nocxx || gen_usr_ldscript libusbpp.so
+
 	dodoc AUTHORS NEWS README || die "dodoc failed"
 	if use doc ; then
 		dohtml doc/html/*.html || die "dohtml failed"

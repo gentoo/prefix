@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.79 2008/05/11 02:28:05 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.80 2008/06/07 00:59:04 robbat2 Exp $
+
+*libusb-0.1.12-r3 (07 Jun 2008)
+
+  07 Jun 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +libusb-0.1.12-r3.ebuild:
+  Make the CXX support optional, but not removed by default, per bug
+  #175117.
 
 *libusb-0.1.12-r2 (11 May 2008)
 
