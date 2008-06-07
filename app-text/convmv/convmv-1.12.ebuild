@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/convmv-1.10.ebuild,v 1.14 2008/06/07 01:53:16 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/convmv-1.12.ebuild,v 1.1 2008/06/07 01:53:16 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -35,8 +35,11 @@ src_install() {
 src_test() {
 	cd ${S}
 	unpack ./testsuite.tar
+
+	# Patch merged by upstream
 	# Never make assumptions as to the ordering of files inside a directory!
-	epatch "${FILESDIR}"/${PN}-1.10-testcase-cleanup.patch
+	#EPATCH_OPTS="-d ${S}/suite/" epatch "${FILESDIR}"/${PN}-1.10-testcase-cleanup.patch
+
 	cd "${S}"/suite
 	./dotests.sh || die "Tests failed"
 }
