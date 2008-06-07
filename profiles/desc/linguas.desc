@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.27 2008/05/20 23:06:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.28 2008/06/06 20:34:13 drac Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -36,6 +36,7 @@ es_AR - Spanish locale for Argentina
 es_ES - Spanish locale for Spain
 es_LA - Spanish locale for Latin America
 et - Estonian locale
+et_EE - Estonian locale
 eu - Basque locale
 fa - Persian locale
 fi - Finnish locale

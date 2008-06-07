@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.8 2008/05/04 04:47:47 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.9 2008/06/06 19:56:59 zzam Exp $
 
 # This file contains descriptions of LIRC_DEVICES USE_EXPAND flags.
 
@@ -49,6 +49,7 @@ hercules_smarttv_stereo - LIRC_DEVICES setting to add support for hercules_smart
 igorplugusb - LIRC_DEVICES setting to add support for igorplugusb receiver device
 imon - LIRC_DEVICES setting to add support for imon receiver device
 imon_knob - LIRC_DEVICES setting to add support for imon_knob device
+imon_lcd - LIRC_DEVICES setting to add support for imon_lcd receiver device
 imon_pad - LIRC_DEVICES setting to add support for imon_pad receiver device
 imon_pad2keys - LIRC_DEVICES setting to add support for imon_pad receiver device (converting pad events to keypresses)
 imon_rsc - LIRC_DEVICES setting to add support for imon_rsc receiver device
