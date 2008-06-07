@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.122 2008/05/11 14:30:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.123 2008/06/05 13:08:22 armin76 Exp $
+
+*nss-3.12_rc4 (05 Jun 2008)
+
+  05 Jun 2008; Raúl Porcel <armin76@gentoo.org> +nss-3.12_rc4.ebuild:
+  Version bump
 
 *nss-3.12_rc3 (11 May 2008)
 
