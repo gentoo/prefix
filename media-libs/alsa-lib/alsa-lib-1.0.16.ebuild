@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.16.ebuild,v 1.8 2008/05/13 14:48:12 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.16.ebuild,v 1.9 2008/06/05 07:41:25 armin76 Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ SRC_URI="mirror://alsaproject/lib/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="doc debug alisp midi"
 
 RDEPEND=""
