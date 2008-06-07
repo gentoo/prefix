@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Peter Alfredsen <loki_val@gentoo.org> (6 Jun 2008)
+# qt4 requires masked qt-4.4. Unmask when it's ready.
+x11-misc/google-gadgets qt4
+
 # Markus Ullmann <jokey@gentoo.org> (21 Mar 2008)
 # still work in progress
 =net-irc/kvirc-3.4.0 qt4
