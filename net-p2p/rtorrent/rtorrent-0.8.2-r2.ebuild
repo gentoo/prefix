@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.2.ebuild,v 1.1 2008/05/27 16:59:02 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.2-r2.ebuild,v 1.1 2008/06/05 06:43:55 loki_val Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.8.0+gcc-4.3.patch
+	epatch "${FILESDIR}"/${P}-fix_start_stop_filter.patch
 }
 
 src_compile() {
