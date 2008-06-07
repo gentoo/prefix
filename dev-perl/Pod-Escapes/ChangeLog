@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Pod-Escapes
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Escapes/ChangeLog,v 1.19 2008/04/27 20:10:32 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Escapes/ChangeLog,v 1.20 2008/06/06 08:52:08 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org> Pod-Escapes-1.04.ebuild:
+  keyword ~sparc-fbsd
 
   27 Apr 2008; Alexis Ballier <aballier@gentoo.org> Pod-Escapes-1.04.ebuild:
   keyword ~x86-fbsd
