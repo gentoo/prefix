@@ -16,7 +16,7 @@ HOMEPAGE="http://sqlobject.org/"
 SRC_URI="http://cheeseshop.python.org/packages/source/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="postgres mysql sqlite firebird doc"
 
 RDEPEND="postgres? ( dev-python/psycopg )
