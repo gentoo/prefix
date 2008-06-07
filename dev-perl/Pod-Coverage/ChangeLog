@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Pod-Coverage
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Coverage/ChangeLog,v 1.55 2008/04/27 20:13:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Coverage/ChangeLog,v 1.56 2008/06/06 09:06:28 aballier Exp $
+
+  06 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  Pod-Coverage-0.19.ebuild:
+  keyword ~sparc-fbsd
 
   27 Apr 2008; Alexis Ballier <aballier@gentoo.org>
   Pod-Coverage-0.19.ebuild:
