@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.2.ebuild,v 1.10 2007/09/22 07:36:24 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.2.ebuild,v 1.11 2008/06/05 11:55:52 remi Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="dev-libs/dbus-glib
@@ -22,7 +22,7 @@ RDEPEND="dev-libs/dbus-glib
 	>=gnome-base/libgnome-2.16
 	>=gnome-base/libgnomeui-2.16
 	>=x11-libs/libxklavier-3
-	!<gnome-base/control-center-2.17.0"
+	!<gnome-base/gnome-control-center-2.17.0"
 DEPEND="${RDEPEND}
 	>=sys-devel/autoconf-2.59
 	=sys-devel/automake-1.8*
