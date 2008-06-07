@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-antlr
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.9 2007/05/12 17:46:35 wltjr Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.10 2008/06/05 20:25:24 serkan Exp $
+
+  05 Jun 2008; Serkan Kaba <serkan@gentoo.org> ant-antlr-1.7.0.ebuild:
+  Add a built_with_use check for dev-java/antlr and the java use flag. Fixes
+  bug #225003.
 
   12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   ant-antlr-1.7.0.ebuild:
