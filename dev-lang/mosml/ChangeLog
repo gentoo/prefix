@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/mosml
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/ChangeLog,v 1.8 2007/03/19 00:04:10 kloeri Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/ChangeLog,v 1.9 2008/06/06 01:26:53 darkside Exp $
+
+*mosml-2.01-r1 (06 Jun 2008)
+
+  06 Jun 2008; Jeremy Olexa <darkside@gentoo.org>
+  +files/mosml-2.01-malloc.patch, +mosml-2.01-r1.ebuild:
+  Fixed HOMEPAGE/SRC_URI. Added patch provided from upstream to fix: 'may
+  crash on 64 bit architectures as well as on those 32 bit architectures that
+  use glibc 2.7'. Thanks Michael Helmling for reporting, bug #154859
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove plasmaroo from metadata.xml due to retirement.
