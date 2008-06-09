@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080302.ebuild,v 1.2 2008/03/13 01:09:50 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080607.ebuild,v 1.1 2008/06/09 01:16:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -32,8 +32,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i '3i#undef X_DISPLAY_MISSING' inc/config.h.in || die #205455
-
-	epatch "${FILESDIR}"/${P}-bad-apple.patch	#212715
 }
 
 src_compile() {
