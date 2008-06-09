@@ -29,6 +29,14 @@ src_unpack() {
 }
 
 src_compile() {
+	# IRIX needs some help...
+	if [[ ${CHOST} == mips-sgi-irix* ]]; then
+		export ac_cv_func_strtoll=no            # C99 only
+		export lt_cv_prog_compiler_c_o=yes
+		export lt_cv_prog_compiler_c_o_CXX=yes
+		export ac_cv_type_long_long=no          # missing strtoll
+		export ac_cv_type_unsigned_long_long=no # missing strtoll
+	fi
 	# Enable building of static libs too - grep and others
 	# depend on them being built: bug 164099
 	econf --with-match-limit-recursion=8192 \
