@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.812.ebuild,v 1.1 2008/04/28 23:22:51 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.812.ebuild,v 1.2 2008/06/07 12:06:22 aballier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~gaas/${P}/"
 IUSE="ssl"
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND="virtual/perl-libnet
 	>=dev-perl/HTML-Parser-3.34

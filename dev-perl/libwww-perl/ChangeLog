@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/libwww-perl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.81 2008/04/28 23:22:51 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.82 2008/06/07 12:06:22 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  libwww-perl-5.812.ebuild:
+  keyword ~sparc-fbsd
 
 *libwww-perl-5.812 (28 Apr 2008)
 
