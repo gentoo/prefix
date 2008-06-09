@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12.ebuild,v 1.10 2008/05/17 09:59:06 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12.ebuild,v 1.12 2008/06/07 21:48:31 swegener Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,8 @@ src_unpack() {
 	epunt_cxx
 
 	epatch "${FILESDIR}"/${P}-svn-4627.patch
+	epatch "${FILESDIR}"/${P}-svn-4637.patch
+	epatch "${FILESDIR}"/${P}-svn-4640.patch
 	epatch "${FILESDIR}"/${P}-svn-4829.patch
 }
 

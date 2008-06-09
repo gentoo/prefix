@@ -1,0 +1,22 @@
+r4637 | jilles | 2007-11-03 00:24:55 +0000 (Sat, 03 Nov 2007) | 3 lines
+
+Fix mode display in whois with unreal (379 numeric).
+Bug #479
+
+Index: trunk/src/fe-common/irc/fe-whois.c
+===================================================================
+--- trunk/src/fe-common/irc/fe-whois.c	(revision 4636)
++++ trunk/src/fe-common/irc/fe-whois.c	(revision 4637)
+@@ -113,8 +113,10 @@
+ 
+ 	g_return_if_fail(data != NULL);
+ 
+-	params = event_get_params(data, 6, NULL, &nick,
+-				  NULL, NULL, NULL, &modes);
++	params = event_get_params(data, 3 | PARAM_FLAG_GETREST,
++			NULL, &nick, &modes);
++	if (!strncmp(modes, "is using modes ", 15))
++		modes += 15;
+ 	printformat(server, nick, MSGLEVEL_CRAP,
+ 		    IRCTXT_WHOIS_MODES, nick, modes);
+ 	g_free(params);
