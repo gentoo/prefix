@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-PodParser
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.28 2008/03/31 17:07:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.29 2008/06/07 08:22:36 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  perl-PodParser-1.35.ebuild:
+  keyword ~sparc-fbsd
 
   31 Mar 2008; Jeroen Roovers <jer@gentoo.org> perl-PodParser-1.35.ebuild:
   Stable for HPPA too.
