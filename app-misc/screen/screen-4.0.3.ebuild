@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.17 2008/04/11 18:44:35 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.18 2008/06/07 19:05:56 swegener Exp $
 
 EAPI="prefix"
 
@@ -64,6 +64,12 @@ src_unpack() {
 
 	# compability for sys-devel/autoconf-2.62
 	epatch "${FILESDIR}"/screen-4.0.3-config.h-autoconf-2.62.patch
+
+	# Allow for more rendition (color/attribute) changes in status bars
+	sed -i \
+		-e "s:#define MAX_WINMSG_REND 16:#define MAX_WINMSG_REND 64:" \
+		screen.c \
+		|| die "sed screen.c failed"
 
 	# Fix manpage.
 	sed -i \

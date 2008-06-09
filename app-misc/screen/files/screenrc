@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 #
 # /etc/screenrc
@@ -105,6 +105,8 @@
 # don't kill window after the process died
 # zombie "^["
 
+# ignore displays that block on output
+defnonblock on
 
 # XTERM TWEAKS
 # ===============================================================
