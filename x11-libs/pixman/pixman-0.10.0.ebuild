@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.10.0.ebuild,v 1.3 2008/06/05 11:19:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.10.0.ebuild,v 1.5 2008/06/07 19:00:52 ken69267 Exp $
 
 EAPI="prefix"
 
