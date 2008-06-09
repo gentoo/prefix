@@ -1,0 +1,10 @@
+--- pidgin-2.4.2/libpurple/protocols/jabber/auth.c	2008-05-06 14:04:00.000000000 +0200
++++ pidgin-2.4.3/libpurple/protocols/jabber/auth.c	2008-05-23 17:48:44.000000000 +0200
+@@ -936,6 +945,7 @@
+ 					_("Invalid challenge from server"));
+ 			}
+ 			g_free(js->expected_rspauth);
++			js->expected_rspauth = NULL;
+ 		} else {
+ 			/* assemble a response, and send it */
+ 			/* see RFC 2831 */

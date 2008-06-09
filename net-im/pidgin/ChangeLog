@@ -1,0 +1,224 @@
+# ChangeLog for net-im/pidgin
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-im/pidgin/ChangeLog,v 1.54 2008/05/26 17:26:14 tester Exp $
+
+  26 May 2008; Olivier Crête <tester@gentoo.org>
+  +files/pidgin-2.4.2-jabber_crash_fix.patch, pidgin-2.4.2.ebuild:
+  Add patch for xmpp crash, from upstream, bug #223361
+
+  19 May 2008; Olivier Crête <tester@gentoo.org> pidgin-2.4.2.ebuild:
+  Add build-time dep for x11-proto/scrnsaverproto
+
+  18 May 2008; Olivier Crête <tester@gentoo.org> pidgin-2.4.2.ebuild:
+  Explicitly enable/disable avahi support for bonjour flag, bug #222575
+
+*pidgin-2.4.2 (18 May 2008)
+
+  18 May 2008; Olivier Crête <tester@gentoo.org> +pidgin-2.4.2.ebuild:
+  Version bump
+
+*pidgin-2.4.1 (01 Apr 2008)
+
+  01 Apr 2008; Olivier Crête <tester@gentoo.org> -pidgin-2.4.0.ebuild,
+  +pidgin-2.4.1.ebuild:
+  Version bump
+
+*pidgin-2.4.0 (01 Mar 2008)
+
+  01 Mar 2008; <tester@gentoo.org> -pidgin-2.2.1.ebuild,
+  -pidgin-2.2.2.ebuild, +pidgin-2.4.0.ebuild:
+  Version bump
+
+  19 Feb 2008; Christoph Mende <angelos@gentoo.org> pidgin-2.3.1.ebuild:
+  Stable on amd64, bug #210396
+
+  18 Feb 2008; Jeroen Roovers <jer@gentoo.org> pidgin-2.3.1.ebuild:
+  Stable for HPPA (bug #210396).
+
+  18 Feb 2008; Raúl Porcel <armin76@gentoo.org> pidgin-2.3.1.ebuild:
+  alpha/ia64/sparc stable wrt #210396
+
+  17 Feb 2008; nixnut <nixnut@gentoo.org> pidgin-2.3.1.ebuild:
+  Stable on ppc wrt bug 210396
+
+  16 Feb 2008; Christian Faulhammer <opfer@gentoo.org> pidgin-2.3.1.ebuild:
+  stable x86, bug 210396
+
+  16 Feb 2008; Olivier Crête <tester@gentoo.org> pidgin-2.3.1.ebuild:
+  Make the doxygen dep compile-time only, remove zephyr from the defaults,
+  reduce the ewarn stuff
+
+*pidgin-2.3.1 (10 Dec 2007)
+
+  10 Dec 2007; Olivier Crête <tester@gentoo.org> -pidgin-2.3.0.ebuild,
+  +pidgin-2.3.1.ebuild:
+  Version bump
+
+  06 Dec 2007; <tester@gentoo.org> pidgin-2.3.0.ebuild:
+  Remove the desktop file on USE=-gtk
+
+*pidgin-2.3.0 (30 Nov 2007)
+
+  30 Nov 2007; Olivier Crête <tester@gentoo.org> pidgin-2.2.2.ebuild,
+  +pidgin-2.3.0.ebuild:
+  Version bump, now allow building libpurple without a UI, in preparation for
+  telepathy-haze
+
+*pidgin-2.2.2 (26 Oct 2007)
+
+  26 Oct 2007; Olivier Crête <tester@gentoo.org> +pidgin-2.2.2.ebuild:
+  Version bump for security bug #197006
+
+  04 Oct 2007; Olivier Crête <tester@gentoo.org> -pidgin-2.1.0.ebuild:
+  Remove vulnerable version to bug #194278
+
+  04 Oct 2007; Steve Dibb <beandog@gentoo.org> pidgin-2.2.1.ebuild:
+  amd64 stable, security bug 194278
+
+  03 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org> pidgin-2.2.1.ebuild:
+  ppc stable, bug #194278
+
+  01 Oct 2007; Jeroen Roovers <jer@gentoo.org> pidgin-2.2.1.ebuild:
+  Stable for HPPA (bug #194278).
+
+  01 Oct 2007; Raúl Porcel <armin76@gentoo.org> pidgin-2.2.1.ebuild:
+  alpha/ia64/x86 stable wrt security #194278
+
+  30 Sep 2007; Ferris McCormick <fmccor@gentoo.org> pidgin-2.2.1.ebuild:
+  Sparc stable --- security Bug #194278 --- nice; seems good.
+
+*pidgin-2.2.1 (30 Sep 2007)
+
+  30 Sep 2007; Olivier Crête <tester@gentoo.org>
+  -files/pidgin-2.2.0-proxy.patch, -pidgin-2.1.1.ebuild,
+  -pidgin-2.2.0.ebuild, -pidgin-2.2.0-r1.ebuild, +pidgin-2.2.1.ebuild:
+  Add new version to fix security bug #194278 (CVE CVE-2007-4996), remove old
+  potentially vulnerable versions
+
+*pidgin-2.2.0-r1 (20 Sep 2007)
+
+  20 Sep 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/pidgin-2.2.0-proxy.patch, +pidgin-2.2.0-r1.ebuild:
+  Applied upstream patch wrt bug #193034.
+  Thanks to deadhead for reporting.
+
+  16 Sep 2007; Olivier Crête <tester@gentoo.org> pidgin-2.2.0.ebuild:
+  Add MyspaceIM, fixes bug #192713
+
+*pidgin-2.2.0 (16 Sep 2007)
+
+  16 Sep 2007; Olivier Crête <tester@gentoo.org> +pidgin-2.2.0.ebuild:
+  Version bump
+
+  28 Aug 2007; nixnut <nixnut@gentoo.org> pidgin-2.1.0.ebuild:
+  Stable on ppc wrt bug 189781
+
+  27 Aug 2007; Raúl Porcel <armin76@gentoo.org> pidgin-2.1.1.ebuild:
+  Add ~alpha/~ia64 wrt #189781
+
+  26 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org> pidgin-2.1.0.ebuild:
+  Marked stable on amd64 as per bug 189781.
+
+  26 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org> pidgin-2.1.0.ebuild:
+  Marked stable on amd64 as per bug 189781.
+
+  24 Aug 2007; Christian Faulhammer <opfer@gentoo.org> pidgin-2.1.0.ebuild:
+  stable x86, bug 189781
+
+  23 Aug 2007; Olivier Crête <tester@gentoo.org> pidgin-2.1.1.ebuild:
+  Removed separate xscreensaver and startup-notification use flags, they are
+  now enabled by the gtk use flag
+
+  23 Aug 2007; Jeroen Roovers <jer@gentoo.org> pidgin-2.1.0.ebuild:
+  Stable for HPPA (bug #189781).
+
+  22 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> pidgin-2.1.0.ebuild:
+  Stable on sparc wrt #189781
+
+*pidgin-2.1.1 (22 Aug 2007)
+
+  22 Aug 2007; Olivier Crête <tester@gentoo.org>
+  -files/pidgin-2.0.0-cchar_t-undeclared.patch,
+  -files/pidgin-2.0.1-desktop.patch,
+  -files/pidgin-2.0.1-purple-remote-syntax-fix.patch, -pidgin-2.0.2.ebuild,
+  pidgin-2.1.0.ebuild, +pidgin-2.1.1.ebuild:
+  Version bump, remove old version
+
+*pidgin-2.1.0 (07 Aug 2007)
+
+  07 Aug 2007; Olivier Crête <tester@gentoo.org> -pidgin-2.0.0.ebuild,
+  -pidgin-2.0.1.ebuild, +pidgin-2.1.0.ebuild:
+  Version bump, bug #187192
+
+  03 Aug 2007; Tristan Heaven <nyhm@gentoo.org> pidgin-2.0.0.ebuild,
+  pidgin-2.0.1.ebuild, pidgin-2.0.2.ebuild:
+  Fix sqlite dependencies, bug #186800
+
+  20 Jul 2007; <tester@gentoo.org> pidgin-2.0.2.ebuild:
+  Always enable msn protocol and remove ssl use flag since its not compulsory
+
+  30 Jun 2007; Olivier Crête <tester@gentoo.org> pidgin-2.0.2.ebuild:
+  Disable gtk ui if neither gtk or ncurses use flags are present
+
+*pidgin-2.0.2 (18 Jun 2007)
+
+  18 Jun 2007; Olivier Crête <tester@gentoo.org> +pidgin-2.0.2.ebuild:
+  Version bump
+
+  29 May 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/pidgin-2.0.1-desktop.patch, pidgin-2.0.1.ebuild:
+  Do not install .desktop file if we don't compile GTK UI.
+
+  27 May 2007; <tester@gentoo.org>
+  +files/pidgin-2.0.1-purple-remote-syntax-fix.patch, pidgin-2.0.1.ebuild:
+  Add patch to fix purple-remote, bug #179958
+
+  26 May 2007; Olivier Crête <tester@gentoo.org> pidgin-2.0.0.ebuild,
+  pidgin-2.0.1.ebuild:
+  Rename console use flag to ncurses to match standard and remove evil
+  custom-cflags use flag
+
+*pidgin-2.0.1 (26 May 2007)
+
+  26 May 2007; Olivier Crête <tester@gentoo.org> +pidgin-2.0.1.ebuild:
+  Version bump
+
+  25 May 2007; Timothy Redaelli <drizzt@gentoo.org> pidgin-2.0.0.ebuild:
+  Add kerberos support.
+  Thanks to Mike Kelly for reporting wrt bug #179697.
+
+  24 May 2007; Olivier Crête <tester@gentoo.org> pidgin-2.0.0.ebuild:
+  Add networkmanager local use flag, bug #179525
+
+  22 May 2007; Jeroen Roovers <jer@gentoo.org> pidgin-2.0.0.ebuild:
+  Marked ~hppa (again, in a way).
+
+  20 May 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/pidgin-2.0.0-cchar_t-undeclared.patch, pidgin-2.0.0.ebuild:
+  Add emake to src_compile.
+  Add a patch for Gentoo/FreeBSD (tested also on Linux)
+  Add ~x86-fbsd keyword.
+
+  13 May 2007; Timothy Redaelli <drizzt@gentoo.org> pidgin-2.0.0.ebuild:
+  Fix FAQ link.
+  Thanks to Eric Polino wrt bug #178276.
+
+*pidgin-2.0.0 (04 May 2007)
+
+  04 May 2007; Olivier Crête <tester@gentoo.org> +pidgin-2.0.0.ebuild:
+  Bump to final version!
+
+  04 May 2007; Timothy Redaelli <drizzt@gentoo.org>
+  pidgin-2.0.0_beta7.ebuild:
+  Add prediction use flag for pidgin wrt bug #176923.
+  Thanks to Tristan Heaven for reporting.
+
+  01 May 2007; Olivier Crête <tester@gentoo.org> pidgin-2.0.0_beta7.ebuild:
+  Disabled mono support because it causes to many problems
+
+  01 May 2007; Olivier Crête <tester@gentoo.org> pidgin-2.0.0_beta7.ebuild:
+  Add build dep on perl, and fix ewarn
+
+  01 May 2007; Olivier Crête <tester@gentoo.org> ChangeLog:
+  Add pidgin, which is the renamed version of net-im/gaim
+

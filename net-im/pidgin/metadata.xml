@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>net-im</herd>
+<longdescription>
+Pidgin is an instant messaging program for Windows, Linux, BSD, and other Unixes. You can talk to your friends using AIM, ICQ, Jabber/XMPP, MSN Messenger, Yahoo!, Bonjour, Gadu-Gadu, IRC, Novell GroupWise Messenger, QQ, Lotus Sametime, SILC, SIMPLE, and Zephyr.
+</longdescription>
+</pkgmetadata>
