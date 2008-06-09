@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/HTML-Tree
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tree/ChangeLog,v 1.52 2008/03/19 03:01:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tree/ChangeLog,v 1.53 2008/06/07 12:01:16 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org> HTML-Tree-3.23.ebuild:
+  keyword ~sparc-fbsd
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> HTML-Tree-3.23.ebuild:
   Stable for HPPA too.
