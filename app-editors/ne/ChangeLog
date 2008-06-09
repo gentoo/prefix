@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/ne
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ChangeLog,v 1.32 2007/10/10 07:09:25 opfer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ChangeLog,v 1.33 2008/06/07 22:18:26 swegener Exp $
+
+*ne-1.43 (07 Jun 2008)
+
+  07 Jun 2008; Sven Wegener <swegener@gentoo.org> +ne-1.43.ebuild:
+  Version bump.
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> ne-1.42.ebuild:
   remove PROVIDE=virtual/editor as we have now a new-style virtual
