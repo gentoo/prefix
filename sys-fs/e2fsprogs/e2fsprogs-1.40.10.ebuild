@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.9.ebuild,v 1.3 2008/06/08 12:20:49 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.10.ebuild,v 1.1 2008/06/07 17:07:08 vapier Exp $
 
 EAPI="prefix"
 
@@ -46,12 +46,17 @@ src_unpack() {
 
 	# since we've split out com_err/ss into their own ebuilds, we
 	# need to fake out the local files.  let the toolchain find them.
-	echo "GROUP ( /usr/$(get_libdir)/libcom_err.a )" > lib/libcom_err.a
-	echo "GROUP ( /usr/$(get_libdir)/libcom_err.so )" > lib/libcom_err.so
-	echo "GROUP ( /usr/$(get_libdir)/libss.a )" > lib/libss.a
-	echo "GROUP ( /usr/$(get_libdir)/libss.so )" > lib/libss.so
+	mkdir tc || die
+	echo "GROUP ( libcom_err.a )" > tc/libcom_err.a
+	echo "GROUP ( libcom_err.so )" > tc/libcom_err.so
+	echo "GROUP ( libss.a )" > tc/libss.a
+	echo "GROUP ( libss.so )" > tc/libss.so
+	sed -i \
+		-e '/^LIB\(SS\|COM_ERR\)/s:$(LIB):$(top_builddir)/tc:' \
+		MCONFIG.in || die
 	echo '#include_next <ss/ss_err.h>' > lib/ss/ss_err.h
-	ln -s /usr/bin/mk_cmds lib/ss/mk_cmds
+	ln -s $(type -P mk_cmds) lib/ss/mk_cmds
+	ln -s $(type -P compile_et) lib/et/compile_et
 
 	# sanity check for Bug 105304
 	if [[ -z ${USERLAND} ]] ; then
