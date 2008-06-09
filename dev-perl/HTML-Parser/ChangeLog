@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/HTML-Parser
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.92 2008/03/28 08:57:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.93 2008/06/07 11:59:35 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org> HTML-Parser-3.56.ebuild:
+  keyword ~sparc-fbsd
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> HTML-Parser-3.56.ebuild:
   Stable for HPPA too.
