@@ -1,6 +1,14 @@
 # ChangeLog for virtual/perl-Sys-Syslog
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.20 2007/07/03 14:23:29 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.22 2008/06/07 09:58:20 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  keyword ~x86-fbsd
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  keyword ~sparc-fbsd
 
   03 Jul 2007; Raúl Porcel <armin76@gentoo.org>
   perl-Sys-Syslog-0.18.ebuild:
