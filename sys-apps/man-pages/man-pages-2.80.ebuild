@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.76.ebuild,v 1.4 2008/03/10 05:19:58 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.80.ebuild,v 1.1 2008/06/07 15:54:09 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,8 +12,9 @@ SRC_URI="mirror://kernel/linux/docs/manpages/${P}.tar.bz2"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="nls"
+KEYWORDS="~amd64-linux ~x86-linux"
+IUSE="nls linguas_cs linguas_da linguas_de linguas_es linguas_fr linguas_it
+	linguas_ja linguas_nl linguas_pl linguas_ro linguas_ru linguas_zh_CN"
 RESTRICT="binchecks"
 
 RDEPEND="virtual/man"

@@ -12,7 +12,7 @@ SRC_URI="mirror://kernel/linux/docs/manpages/${P}.tar.bz2"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls linguas_cs linguas_da linguas_de linguas_es linguas_fr linguas_it
 	linguas_ja linguas_nl linguas_pl linguas_ro linguas_ru linguas_zh_CN"
 RESTRICT="binchecks"
