@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jnlp-bin/jnlp-bin-1.2-r1.ebuild,v 1.4 2008/05/09 22:29:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jnlp-bin/jnlp-bin-1.2-r1.ebuild,v 1.5 2008/06/07 10:53:43 serkan Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RESTRICT="fetch"
 
 S=${WORKDIR}
 
-DOWNLOAD_URL="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=7026-jaws_dev_pack-1.2-oth-JPR&SiteId=JSC&TransactionId=noreg"
+DOWNLOAD_URL="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=7026-jaws_dev_pack-1.2-oth-JPR@CDS-CDS_Developer"
 
 pkg_nofetch() {
 	einfo "Please download ${A} and place it in ${DISTDIR}"
