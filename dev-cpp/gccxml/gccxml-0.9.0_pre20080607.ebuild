@@ -1,27 +1,24 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/gccxml-0.9.0_pre20071228.ebuild,v 1.2 2008/02/13 14:00:00 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/gccxml-0.9.0_pre20080607.ebuild,v 1.1 2008/06/07 16:57:59 dev-zero Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs
 
-MY_PNV=${PN}_${PV/_pre/+cvs}.orig
-
 DESCRIPTION="XML output extension to GCC"
 HOMEPAGE="http://www.gccxml.org/"
-SRC_URI="mirror://debian/pool/main/g/${PN}/${MY_PNV}.tar.gz"
-
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-util/cmake-2.4.6"
 RDEPEND=""
 
-S=${WORKDIR}/${MY_PNV/_/-}
-MYBUILDDIR=${WORKDIR}/build
+S="${WORKDIR}/${P}"
+MYBUILDDIR="${WORKDIR}/build"
 
 src_unpack() {
 	mkdir "${MYBUILDDIR}"
