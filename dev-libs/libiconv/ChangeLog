@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libiconv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.30 2008/03/19 17:24:02 haubi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.31 2008/06/08 20:41:36 the_paya Exp $
+
+  08 Jun 2008; Javier Villavicencio <the_paya@gentoo.org>
+  libiconv-1.12.ebuild:
+  Rekeywording, builds fine on g/fbsd 6.2 and 7.0.
 
   19 Mar 2008; Michael Haubenwallner <haubi@gentoo.org>
   libiconv-1.12.ebuild:
