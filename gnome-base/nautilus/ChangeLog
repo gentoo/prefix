@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.264 2008/05/29 09:04:30 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.265 2008/06/08 20:51:58 eva Exp $
+
+  08 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -nautilus-2.18.1-r1.ebuild, -nautilus-2.18.3-r1.ebuild,
+  -nautilus-2.22.1.ebuild:
+  clean up old revisions.
 
 *nautilus-2.22.3 (29 May 2008)
 
