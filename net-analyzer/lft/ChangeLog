@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/lft
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.24 2008/03/13 13:42:48 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.25 2008/06/07 16:48:12 vanquirius Exp $
+
+  07 Jun 2008; Marcelo Goes <vanquirius@gentoo.org> -lft-2.5.ebuild,
+  -lft-2.31.ebuild:
+  Remove old ebuilds.
 
   13 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> lft-3.0.ebuild:
   amd64 stable
