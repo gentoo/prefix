@@ -11,7 +11,7 @@ HOMEPAGE="http://librsvg.sourceforge.net/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="doc gnome zlib"
 
 RDEPEND="
