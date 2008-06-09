@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-MIME-Base64
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-MIME-Base64/ChangeLog,v 1.15 2006/10/25 02:36:32 mcummings Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-MIME-Base64/ChangeLog,v 1.16 2008/06/07 12:04:29 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  keyword ~sparc-fbsd
 
   25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   perl-MIME-Base64-3.05.ebuild:
