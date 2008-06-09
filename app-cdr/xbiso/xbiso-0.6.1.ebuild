@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/xbiso/xbiso-0.6.1.ebuild,v 1.2 2006/02/01 23:04:58 metalgod Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/xbiso/xbiso-0.6.1.ebuild,v 1.3 2008/06/08 09:02:50 drac Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit flag-o-matic
 
 DESCRIPTION="Xbox xdvdfs ISO extraction utility"
 HOMEPAGE="http://sourceforge.net/projects/xbiso/"
@@ -15,10 +15,6 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
-}
-
 src_compile() {
 	# for this package, interix behaves the same as BSD
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_BSD
@@ -28,6 +24,6 @@ src_compile() {
 }
 
 src_install() {
-	dobin xbiso || die "install failed"
-	dodoc README CHANGELOG
+	dobin xbiso || die "dobin failed."
+	dodoc CHANGELOG README
 }
