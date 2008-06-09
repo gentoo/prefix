@@ -35,14 +35,8 @@ do
   toclean="=$category/$pkg $toclean"
   tocleanstr="\"$category/$pkg\" $tocleanstr"
 
-  if [ $slot -eq 0 ]
-  then
-	tobuild=">=$category/$pkg $tobuild"
-	tobuildstr="\">=$category/$pkg\" $tobuildstr"
-  else
-  	tobuild="=$category/$pkg $tobuild"
-	tobuildstr="\"=$category/$pkg\" $tobuildstr"
-  fi
+  tobuild=">=$category/$pkg:$slot $tobuild"
+  tobuildstr="\">=$category/$pkg:$slot\" $tobuildstr"
 done
 
 echo Cleaning $tocleanstr

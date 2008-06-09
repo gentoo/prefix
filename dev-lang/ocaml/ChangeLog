@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.141 2008/06/05 15:15:18 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.145 2008/06/08 19:21:58 ken69267 Exp $
+
+  08 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> ocaml-3.10.2.ebuild:
+  amd64 stable, bug #224893
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org> files/ocaml-rebuild.sh:
+  Tune up a bit ocaml-rebuild.sh so that it does not give syntax errors on
+  non integer slots.
+
+  07 Jun 2008; nixnut <nixnut@gentoo.org> ocaml-3.10.2.ebuild:
+  Stable on ppc wrt bug 224893
+
+  07 Jun 2008; Jeroen Roovers <jer@gentoo.org> ocaml-3.10.2.ebuild:
+  Stable for HPPA (bug #224893).
 
   05 Jun 2008; Christian Faulhammer <opfer@gentoo.org> ocaml-3.10.2.ebuild:
   stable x86, bug 224893
