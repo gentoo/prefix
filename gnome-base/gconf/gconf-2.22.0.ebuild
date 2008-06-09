@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.3 2008/06/06 15:15:17 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.4 2008/06/07 11:22:12 eva Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc ldap"
 
 RDEPEND=">=dev-libs/glib-2.10
+		 >=x11-libs/gtk+-2.8.16
 		 >=gnome-base/orbit-2.4
 		 >=dev-libs/libxml2-2
 		 ldap? ( net-nds/openldap )"
@@ -34,7 +35,7 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	G2CONF="${G2CONF} --disable-gtk $(use_enable debug) $(use_with ldap openldap)"
+	G2CONF="${G2CONF} --enable-gtk $(use_enable debug) $(use_with ldap openldap)"
 	kill_gconf
 }
 
