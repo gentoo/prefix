@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mime-types
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.65 2007/06/30 17:23:17 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.66 2008/06/07 13:56:08 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org> mime-types-7.ebuild:
+  keyword ~sparc-fbsd
 
   30 Jun 2007; Raúl Porcel <armin76@gentoo.org> mime-types-7.ebuild:
   alpha stable
