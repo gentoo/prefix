@@ -77,6 +77,7 @@ app-text/tetex
 # Seems not to be ready for wide usage; multiple bugs and segfaults when
 # bootstrapping.
 ~sys-devel/gcc-4.3.0
+~sys-devel/gcc-4.3.1
 
 # Fabian Groffen <grobian@gentoo.org> (30 Mar 2008)
 # has autotool problems of linking in funcs.o containing replacement
