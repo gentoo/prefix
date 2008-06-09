@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.355 2008/06/02 15:38:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.356 2008/06/09 02:33:06 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1169,6 +1169,15 @@ gcc-compiler-configure() {
 		else
 			export gcc_cv_libc_provides_ssp=yes
 			confgcc="${confgcc} --disable-libssp"
+		fi
+
+		# enable the cld workaround until we move things to stable.
+		# by that point, the rest of the software out there should
+		# have caught up.
+		if tc_version_is_at_least "4.3" ; then
+			if ! has ${ARCH} ${KEYWORDS} ; then
+				confgcc="${confgcc} --enable-cld"
+			fi
 		fi
 	fi
 

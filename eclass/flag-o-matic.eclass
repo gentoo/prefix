@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.122 2008/02/18 18:20:47 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.123 2008/06/07 16:42:32 flameeyes Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -585,6 +585,12 @@ replace-sparc64-flags() {
 # Add extra <flags> to the current LDFLAGS.
 append-ldflags() {
 	[[ -z $* ]] && return 0
+	local flag
+	for flag in "$@"; do
+		[[ ${flag} == -l* ]] && \
+			ewarn "Appending a library link instruction (${flag}); libraries to link to should not be passed through LDFLAGS"
+	done
+
 	export LDFLAGS="${LDFLAGS} $*"
 	return 0
 }
