@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.49 2008/06/05 22:06:22 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.51 2008/06/07 19:37:09 armin76 Exp $
+
+  07 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.62.ebuild:
+  ia64/sparc stable wrt #224531
+
+  07 Jun 2008; nixnut <nixnut@gentoo.org> ghostscript-gpl-8.62.ebuild:
+  Stable on ppc wrt bug 224531
 
   05 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
   ghostscript-gpl-8.62.ebuild:
