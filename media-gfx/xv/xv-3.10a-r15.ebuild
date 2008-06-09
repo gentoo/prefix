@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.4 2008/06/06 08:14:48 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.8 2008/06/07 19:45:37 armin76 Exp $
 
 EAPI="prefix"
 
