@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-Daemon
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-Daemon/ChangeLog,v 1.53 2007/11/10 14:10:23 drac Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-Daemon/ChangeLog,v 1.54 2008/06/07 09:37:31 aballier Exp $
+
+  07 Jun 2008; Alexis Ballier <aballier@gentoo.org> Net-Daemon-0.43.ebuild:
+  keyword ~sparc-fbsd
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> Net-Daemon-0.43.ebuild:
   amd64 stable
