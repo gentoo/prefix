@@ -29,13 +29,8 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-1.10-link.patch
 
 	# Make sure that libtool support is updated to link "the linux way" on
-	# FreeBSD. elibtoolize would be sufficient here, but
-	# we explicitly want the installed libtool, since thats the only one thats
-	# capable of everything we need, especially shared libs on interix.
-	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 m4/libtool.m4
-	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 libcharset/m4/libtool.m4
-
-	AT_M4DIR="m4" eautoreconf
+	# FreeBSD.
+	elibtoolize
 }
 
 src_compile() {
