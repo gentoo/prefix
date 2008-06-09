@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/mhash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.53 2008/02/03 02:37:58 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.54 2008/06/08 21:38:23 the_paya Exp $
+
+  08 Jun 2008; Javier Villavicencio <the_paya@gentoo.org>
+  mhash-0.9.9-r1.ebuild:
+  Keyworded ~x86-fbsd.
 
   03 Feb 2008; Robin H. Johnson <robbat2@gentoo.org>
   -files/mhash-0.9.3-mhash_free.patch, -mhash-0.9.1.ebuild,
