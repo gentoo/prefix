@@ -1,0 +1,25 @@
+# ChangeLog for dev-tex/algorithms
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/algorithms/ChangeLog,v 1.5 2008/05/04 08:03:03 drac Exp $
+
+  04 May 2008; Samuli Suominen <drac@gentoo.org>
+  algorithms-2005.07.05.ebuild:
+  Use berlios mirrors://
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  21 Jan 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  algorithms-2005.07.05.ebuild:
+  Do not install COPYING file
+
+*algorithms-2005.07.05 (20 Jan 2006)
+
+  20 Jan 2006; Martin Ehmsen <ehmsen@gentoo.org> +metadata.xml,
+  +algorithms-2005.07.05.ebuild:
+  Initial import. Ebuild submitted by Tivadar Szemethy
+  <tivadar.szemethy@gmail.com> in bug #116733.
+
