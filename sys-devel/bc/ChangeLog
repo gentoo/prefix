@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/bc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bc/ChangeLog,v 1.31 2008/06/06 07:51:54 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bc/ChangeLog,v 1.34 2008/06/07 19:54:45 ken69267 Exp $
+
+  07 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> bc-1.06.95.ebuild:
+  amd64 stable, bug #224863
+
+  07 Jun 2008; nixnut <nixnut@gentoo.org> bc-1.06.95.ebuild:
+  Stable on ppc wrt bug 224863
+
+  07 Jun 2008; Raúl Porcel <armin76@gentoo.org> bc-1.06.95.ebuild:
+  ia64/sparc stable wrt #224863
 
   06 Jun 2008; Christian Faulhammer <opfer@gentoo.org> bc-1.06.95.ebuild:
   stable x86, bug 224863
