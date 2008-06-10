@@ -87,6 +87,8 @@ src_unpack() {
 	# gcc sources are polluted with old stuff for interix 3.5 not needed here
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
+	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
