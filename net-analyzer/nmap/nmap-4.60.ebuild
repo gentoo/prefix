@@ -12,7 +12,7 @@ SRC_URI="http://download.insecure.org/nmap/dist/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="gtk lua ssl"
 
 DEPEND="dev-libs/libpcre
