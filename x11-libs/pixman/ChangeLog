@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.9 2008/06/07 19:00:52 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.11 2008/06/10 00:39:14 dberkholz Exp $
+
+*pixman-0.11.4 (10 Jun 2008)
+
+  10 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -pixman-0.11.2.ebuild, +pixman-0.11.4.ebuild:
+  Bump to fix some compilation issues with the last one.
+
+*pixman-0.11.2 (09 Jun 2008)
+
+  09 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +pixman-0.11.2.ebuild:
+  Bump. Notable new features: many compositing operations in SSE2 & VMX
+  (AltiVec), opacity-based optimization for operators, and 32-bit regions.
 
   07 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> pixman-0.10.0.ebuild:
   amd64 stable, bug #224929
