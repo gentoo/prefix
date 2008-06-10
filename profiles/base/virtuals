@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.112 2008/05/20 08:45:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.113 2008/06/09 18:09:23 araujo Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -52,7 +52,7 @@ virtual/python				dev-lang/python
 virtual/quicktime			media-libs/libquicktime
 virtual/ruby				dev-lang/ruby
 virtual/skkserv				app-i18n/skkserv
-virtual/squeak-image		dev-lang/squeak-fullimage
+virtual/squeak-image		dev-lang/squeak-basicimage
 virtual/ssh					net-misc/openssh
 virtual/sylpheed			mail-client/sylpheed
 virtual/tetex				app-text/tetex
