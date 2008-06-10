@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libtommath
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/ChangeLog,v 1.21 2008/02/22 14:02:53 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/ChangeLog,v 1.23 2008/06/10 03:39:59 darkside Exp $
+
+  10 Jun 2008; Jeremy Olexa <darkside@gentoo.org> libtommath-0.36-r1.ebuild:
+  RESTRICT test as a workaround for bug #211139. Tests appears to pass in
+  newer version of package. Thanks maekke for reporting
+
+*libtommath-0.41 (10 Jun 2008)
+
+  10 Jun 2008; Jeremy Olexa <darkside@gentoo.org>
+  +files/libtommath-0.41-LDFLAGS.patch, +libtommath-0.41.ebuild:
+  Version bump. bug #162161. Thanks to hawking & Rafa# Mu#y#o for the
+  contributions
 
   22 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
   libtommath-0.36-r1.ebuild:

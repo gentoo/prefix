@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.36-r1.ebuild,v 1.9 2008/06/10 03:39:59 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.41.ebuild,v 1.1 2008/06/10 02:36:04 darkside Exp $
 
 EAPI="prefix"
 
@@ -18,28 +18,24 @@ IUSE=""
 DEPEND="sys-devel/libtool"
 RDEPEND=""
 
-RESTRICT="test"
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-shared-lib.patch
 	epatch "${FILESDIR}"/${P}-LDFLAGS.patch
-	epatch "${FILESDIR}"/${P}-darwin.patch
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/libtool/glibtool/g' makefile.shared
-	sed -i \
+	use prefix && sed -i \
 		-e 's:install -d -g $(GROUP) -o $(USER):install -d:g' \
 		-e 's:install -g $(GROUP) -o $(USER):install:g' \
 		makefile.shared
 }
 
 src_compile() {
-	emake -f makefile.shared IGNORE_SPEED=1 LIBPATH="${EPREFIX}/usr/$(get_libdir)" || die
+	emake -f makefile.shared IGNORE_SPEED=1 LIBPATH="${EPREFIX}/usr/$(get_libdir)" || die "emake failed"
 }
 
 src_install() {
 	make -f makefile.shared install DESTDIR="${D}" LIBPATH="${EPREFIX}/usr/$(get_libdir)" INCPATH="${EPREFIX}/usr/include" || die
 	dodoc changes.txt *.pdf
-	docinto demo ; dodoc demo/*
+	docinto demo ; dodoc demo/*.c
 }
