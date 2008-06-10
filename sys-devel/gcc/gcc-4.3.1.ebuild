@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.1.ebuild,v 1.1 2008/06/09 02:37:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.1.ebuild,v 1.2 2008/06/09 18:40:50 vapier Exp $
 
 EAPI="prefix"
 
@@ -52,9 +52,10 @@ case ${CTARGET} in
 	*-aix*)    DEPEND="${DEPEND} ${CATEGORY}/native-cctools" ;;
 # future: for Solaris || ( binutils native-cctools ) ?
 	*)         DEPEND="${DEPEND}
-		|| ( ppc? ( >=${CATEGORY}/binutils-2.17 )
-			ppc64? ( >=${CATEGORY}/binutils-2.17 )
-			>=${CATEGORY}/binutils-2.15.94 )" ;;
+		amd64? ( >=sys-libs/glibc-2.7-r2 )
+		ppc? ( >=${CATEGORY}/binutils-2.17 )
+		ppc64? ( >=${CATEGORY}/binutils-2.17 )
+		>=${CATEGORY}/binutils-2.15.94" ;;
 esac
 PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
