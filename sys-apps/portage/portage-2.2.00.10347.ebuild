@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI="prefix"
-RESTRICT="mirror"
+RESTRICT="mirror test"
 
 inherit toolchain-funcs eutils flag-o-matic python multilib
 
