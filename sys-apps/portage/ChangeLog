@@ -5,8 +5,8 @@
   10 Jun 2008; Fabian Groffen <grobian@gentoo.org>
   portage-2.2.00.10347.ebuild, portage-2.2.00.10585.ebuild,
   portage-2.2.00.10625.ebuild:
-  Restrict 'test' as the portage testsuite is known to be broken in Prefix,
-  and I don't feel like fixing them up, bug #223193
+  Restrict 'test', it can't work in Prefix currently, since it needs the
+  sources to be installed first.  bug #223193
 
 *portage-2.2.00.10625 (09 Jun 2008)
 
