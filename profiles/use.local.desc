@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3577 2008/06/08 22:51:00 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3578 2008/06/09 21:54:39 robbat2 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1393,6 +1393,7 @@ net-analyzer/munin:munin-dhcp - installs deps for monitoring DHCP
 net-analyzer/munin:munin-irc - installs deps for monitoring IRC
 net-analyzer/munin:munin-squid - installs deps for monitoring squid
 net-analyzer/munin:munin-surfboard - installs deps for monitoring a Motoro Surfboard Cable modem
+net-analyzer/munin:irc - installs deps for monitoring IRC
 net-analyzer/nagios-core:lighttpd - install lighttpd config
 net-analyzer/nagios-core:web - enable web interface
 net-analyzer/nagios-nrpe:command-args - allow clients to specify command arguments

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8698 2008/06/09 01:25:18 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8705 2008/06/09 18:12:09 araujo Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
+# Live ebuilds too volatile for normal use.
+# User's who need to test these should unmask explicitly.
+=sys-fs/btrfs-9999
+=sys-fs/btrfs-progs-9999
+
 # Alfredo Tupone <tupone@gentoo.org> (08 Jun 2008)
 # Masked for removal in 30 days.
 # Depend on dev-lang/python 2.3 (bug #222037) that is 
@@ -38,10 +44,6 @@
 net-zope/calendarx
 net-zope/plonelanguagetool
 <net-zope/plonepopoll-2.6
-
-# Sven Wegener <swegener@gentoo.org> (07 Jun 2008)
-# Not working properly, bug #225181
-=x11-drivers/xf86-input-evdev-1.99.2
 
 # Tiziano Müller <dev-zero@gentoo.org> (07 Jun 2008)
 # Various bugs and dead upstream
@@ -65,7 +67,6 @@ www-apps/gitweb
 # Masked for removal in ~30 days by treecleaners.
 # Replaced by USE libffi in sys-devel/gcc. Bug 163724.
 dev-libs/libffi
-dev-lang/squeak
 x11-libs/gtk-server
 
 # Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
@@ -235,10 +236,6 @@ app-xemacs/xemacs-packages-sumo
 # See bug 193505 and bug 204249. You are on your own here.
 x11-libs/lesstif
 
-# Mike Frysinger <vapier@gentoo.org> (10 May 2008)
-# Wait for the # of broken packages to go back down #212763
->=sys-devel/libtool-2.2
-
 # Marcus D. Hanwell <cryos@gentoo.org> (08 May 2008)
 # Masking new version until it has received a little more testing
 ~dev-util/cmake-2.6.0
@@ -252,11 +249,6 @@ x11-libs/lesstif
 # masked until bug #217901 is fixed, again.
 # Still has broken deps and missing license.
 games-server/greenhouse
-
-# Samuli Suominen <drac@gentoo.org> (05 May 2008)
-# Masked for removal by treecleaners wrt bug 212331
-# As requested by base-system. Gone in 30 days.
-sys-process/daemontools-scripts
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (04 May 2008)
 # Some of the older 0.9x regex packages are experimental versions and does
@@ -1116,14 +1108,6 @@ dev-php4/pecl-http
 >=net-misc/zaptel-1.4.0
 >=net-misc/asterisk-1.4.0
 
-# Michele Noberasco <s4t4n@gentoo.org> (04 Apr 2008)
-# Masked pending removal. This package has several
-# open bugs and is not worth fixing.
-# See bug #207741, bug #207744 and bug #207749.
-x11-plugins/gai-pal
-x11-plugins/gai-pager
-x11-libs/gai
-
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
 >=app-text/kchmviewer-4.0_beta1
@@ -1400,10 +1384,6 @@ dev-libs/alchemist
 dev-python/pycups
 # for system-config-bind
 net-dns/bind-dns-keygen
-
-# Luca Longinotti <chtekk@gentoo.org> (29 Aug 2006)
-# Masking media-libs/ming-0.3.0, breaks PHP compilation
-=media-libs/ming-0.3.0*
 
 # Alastair Tse <liquidx@gentoo.org> (27 Jul 2006)
 # Masking synce-0.9.2 because of breakages (#141466) (#141491)
