@@ -1,21 +1,23 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.9.7.ebuild,v 1.5 2008/06/09 19:24:37 araujo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.10.ebuild,v 1.1 2008/06/09 17:55:03 araujo Exp $
 
 EAPI="prefix"
 
-inherit base versionator fixheadtails eutils
+inherit base fixheadtails eutils
 
-MY_PV=$(replace_version_separator 2 '-')
+MY_PV="${PV}-1"
+
 DESCRIPTION="Highly-portable Smalltalk-80 implementation"
 HOMEPAGE="http://www.squeak.org/"
-SRC_URI="http://squeakvm.org/unix/release/Squeak-${MY_PV}.src.tar.gz"
+SRC_URI="http://ftp.squeak.org/${PV}/unix-linux/Squeak-${MY_PV}.src.tar.gz  "
 LICENSE="Apple"
 SLOT="0"
 KEYWORDS="~ppc-macos"
-IUSE="X mmx threads iconv"
+IUSE="X mmx threads iconv opengl"
 
-DEPEND="X? ( x11-libs/libX11 x11-libs/libXext x11-libs/libXt )"
+DEPEND="X? ( x11-libs/libX11 x11-libs/libXext x11-libs/libXt )
+	opengl? ( virtual/opengl )"
 RDEPEND="${DEPEND}
 	virtual/squeak-image"
 
@@ -23,22 +25,23 @@ S="${WORKDIR}/Squeak-${MY_PV}"
 
 src_unpack() {
 	base_src_unpack
-	epatch "${FILESDIR}"/${P}-no-cflag-injection.patch
-	cd ${S}
+	epatch "${FILESDIR}"/${PN}-3.9.7-no-cflag-injection.patch
+	cd "${S}"
 	ht_fix_all
-	cd "${S}"/platforms/unix/config
-	# eautoreconf/eautoconf doesn't work, the packge uses some non-standard
-	# stuff, so sed out what we don't like here manually
-	sed -i -e 's/ac_optflags=.*$//g' configure
+	einfo "Patch for inisqueak"
+	sed -i s/\${MAJOR}/39/ "${S}/platforms/unix/config/inisqueak.in"
+	# ht_fix_all doesn't catch this because there's no number
+	sed -i -e 's/tail +/tail -n +/' platforms/unix/config/inisqueak.in
 }
 
 src_compile() {
 	local myconf=""
-	use X || myconf="--without-x"
+	use X || myconf="--without-x --without-npsqueak"
 	use mmx && myconf="${myconf} --enable-mpg-mmx"
 	use threads && myconf="${myconf} --enable-mpg-pthread"
+	use opengl || myconf="${myconf} --without-gl"
 	use iconv || myconf="${myconf} --disable-iconv"
-	cd ${S}
+	cd "${S}"
 	mkdir build
 	cd build
 	../platforms/unix/config/configure \
@@ -46,13 +49,12 @@ src_compile() {
 		--infodir="${EPREFIX}"/usr/share/info \
 		--mandir="${EPREFIX}"/usr/share/man \
 		${myconf} || die "configure failed"
-		#--with-ffi=x86-sysv \
 	emake || die
 }
 
 src_install() {
-	cd ${S}/build
-	make ROOT="${D}" docdir="${EPREFIX}"/usr/share/doc/${PF} install || die
+	cd "${S}/build"
+	make ROOT="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}" install || die
 	exeinto /usr/lib/squeak
 	doexe inisqueak
 	dosym /usr/lib/squeak/inisqueak /usr/bin/inisqueak

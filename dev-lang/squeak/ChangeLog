@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/squeak
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.25 2007/07/22 08:43:03 graaff Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.27 2008/06/09 19:24:37 araujo Exp $
+
+  09 Jun 2008; Luis F. Araujo <araujo@gentoo.org> squeak-3.7.7-r1.ebuild,
+  squeak-3.9.7.ebuild:
+  Bye libffi...
+
+*squeak-3.10 (09 Jun 2008)
+
+  09 Jun 2008; Luis F. Araujo <araujo@gentoo.org> +squeak-3.10.ebuild:
+  Adding new version. Solving bug #196984
 
   22 Jul 2007; Hans de Graaff <graaff@gentoo.org> squeak-3.4.1-r2.ebuild,
   squeak-3.6_p3.ebuild, squeak-3.7.7-r1.ebuild, squeak-3.9.7.ebuild:
