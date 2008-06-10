@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.76 2008/06/01 01:43:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.77 2008/06/09 09:09:58 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -158,12 +158,10 @@ eaclocal() {
 # libtool.eclass.
 _elibtoolize() {
 	local opts
-	local lttest
 
 	# Check if we should run libtoolize (AM_PROG_LIBTOOL is an older macro,
 	# check for both it and the current AC_PROG_LIBTOOL)
-	lttest="$(autotools_check_macro "AC_PROG_LIBTOOL")$(autotools_check_macro "AM_PROG_LIBTOOL")"
-	[[ -n $lttest ]] || return 0
+	[[ -n $(autotools_check_macro AC_PROG_LIBTOOL AM_PROG_LIBTOOL LT_INIT) ]] || return 0
 
 	[[ -f GNUmakefile.am || -f Makefile.am ]] && opts="--automake"
 
@@ -266,8 +264,11 @@ autotools_run_tool() {
 
 # Internal function to check for support
 autotools_check_macro() {
-	[[ -f configure.ac || -f configure.in ]] && \
-		WANT_AUTOCONF="2.5" autoconf --trace=$1 2>/dev/null
+	[[ -f configure.ac || -f configure.in ]] || return 0
+	local macro
+	for macro ; do
+		WANT_AUTOCONF="2.5" autoconf --trace="${macro}" 2>/dev/null
+	done
 	return 0
 }
 
