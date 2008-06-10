@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/moldy-2.16e.ebuild,v 1.8 2008/05/14 17:33:39 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/moldy-2.16e.ebuild,v 1.9 2008/06/09 10:30:12 markusle Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~x86-linux ~ppc-macos"
 
 DEPEND="virtual/libc
-	virtual/tetex"
+	virtual/latex-base"
 
 src_compile() {
 #Individuals may want to edit the OPT* variables below.
@@ -47,7 +47,7 @@ src_install() {
 	rm Makefile.in configure.in config.h.in
 	insinto /usr/share/${PN}/examples/
 	doins *.in *.out control.*
-	dodoc BENCHMARK COPYING READ.ME RELNOTES
+	dodoc BENCHMARK READ.ME RELNOTES
 	insinto /usr/share/doc/${P}/pdf
 	newins moldy.pdf moldy-manual.pdf
 }
