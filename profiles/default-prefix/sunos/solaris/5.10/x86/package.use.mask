@@ -1,0 +1,5 @@
+
+# *** This configuration is not supported in the following
+# subdirectories:
+#    target-libada gnattools target-libmudflap target-libssp
+sys-devel/gcc:4.3 mudflap
