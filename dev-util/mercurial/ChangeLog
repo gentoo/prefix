@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.68 2008/05/28 19:01:53 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.70 2008/06/09 19:34:22 nelchael Exp $
+
+  09 Jun 2008; Krzysiek Pawlik <nelchael@gentoo.org>
+  mercurial-1.0.1-r1.ebuild:
+  Install env.d file containing HG variable needed for hgk.
+
+*mercurial-1.0.1-r1 (09 Jun 2008)
+
+  09 Jun 2008; Krzysiek Pawlik <nelchael@gentoo.org>
+  +mercurial-1.0.1-r1.ebuild:
+  Install additional tools into bin directory, see bug #186042.
 
   28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Andrew Ross (aross) from metadata.xml (as per #139633).
