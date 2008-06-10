@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.77 2008/05/10 07:26:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.78 2008/06/09 05:26:56 vapier Exp $
+
+  09 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/1.60_p20071202044231/0013-Pull-in-stdlib.h-for-NULL-definition-to-f
+  ix-225425.patch:
+  Fix building with gcc-4.3 #225425 by Jose daLuz.
 
   10 May 2008; Mike Frysinger <vapier@gentoo.org>
   net-tools-1.60_p20071202044231-r1.ebuild:

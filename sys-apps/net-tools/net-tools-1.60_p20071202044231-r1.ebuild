@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls static"
 
 RDEPEND=""
