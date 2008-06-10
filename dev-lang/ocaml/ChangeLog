@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.145 2008/06/08 19:21:58 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.146 2008/06/09 09:27:26 armin76 Exp $
+
+  09 Jun 2008; Raúl Porcel <armin76@gentoo.org> ocaml-3.10.2.ebuild:
+  alpha/ia64/sparc stable wrt #224893
 
   08 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> ocaml-3.10.2.ebuild:
   amd64 stable, bug #224893
