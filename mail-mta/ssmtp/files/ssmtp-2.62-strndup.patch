@@ -13,21 +13,19 @@ Compensate for platforms that don't have strndup, like Solaris and Darwin
  AC_ARG_ENABLE(logfile, 
 --- ssmtp.c
 +++ ssmtp.c
-@@ -842,7 +842,18 @@
+@@ -842,7 +842,16 @@
  	if (!rest) {
  		return NULL;
  	}
 +#ifdef HAVE_STRNDUP
  	tok=strndup(*s,rest-(*s));
-+#elif HAVE_STRDUP
++#else
 +	{
 +		size_t len = rest - (*s);
 +		tok = malloc(sizeof(char) * (len + 1));
 +		memcpy(tok, *s, len);
 +		tok[len] = '\0';
 +	}
-+#else
-+# error no strdup or strndup on your platform!
 +#endif
  	if (!tok) {
  		die("firsttok() -- strndup() failed");
