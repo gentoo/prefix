@@ -2,4 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>fonts</herd>
+	<maintainer>
+		<email>dirtyepic@gentoo.org</email>
+		<name>Ryan Hill</name>
+		<description>co-maintainer</description>
+	</maintainer>
 </pkgmetadata>

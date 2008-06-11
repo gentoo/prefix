@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.177 2008/04/29 16:35:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.179 2008/06/11 02:37:30 dirtyepic Exp $
+
+  11 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
+  Add myself to metadata.xml as co-maintainer.
+
+*freetype-2.3.6 (11 Jun 2008)
+
+  11 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.3.6.ebuild:
+  Version bump.
 
   29 Apr 2008; Brent Baude <ranger@gentoo.org>
   freetype-1.4_pre20080316.ebuild:
