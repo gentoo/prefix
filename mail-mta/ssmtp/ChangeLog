@@ -1,6 +1,13 @@
 # ChangeLog for mail-mta/ssmtp
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.46 2007/01/06 00:54:36 ferdy Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.47 2008/06/10 20:14:06 dertobi123 Exp $
+
+*ssmtp-2.62 (10 Jun 2008)
+
+  10 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> +ssmtp-2.62.ebuild:
+  Version bump, restrict access to ssmtp.conf (#187841), drop mailwrapper
+  support (#222157), drop needless virtual/libc dependency (#211886),
+  upstream fixed date header creation on uclibc (#145456)
 
   06 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> -ssmtp-2.61.ebuild:
   QA: Clean unused versions.
