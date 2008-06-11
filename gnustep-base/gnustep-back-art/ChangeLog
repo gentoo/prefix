@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.58 2008/03/23 18:37:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.59 2008/06/10 14:17:51 voyageur Exp $
+
+  10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-back-art-0.12.0.ebuild:
+  Stable gnustep versions cleanup
 
   23 Mar 2008; nixnut <nixnut@gentoo.org> gnustep-back-art-0.12.1.ebuild:
   Stable on ppc wrt bug 207381
