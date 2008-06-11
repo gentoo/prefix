@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080514-r1.ebuild,v 1.2 2008/05/31 18:40:25 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080514-r1.ebuild,v 1.3 2008/06/10 18:00:30 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,8 @@ IUSE=""
 DEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-ubin )
 	kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
 RDEPEND="${DEPEND}
-	dev-libs/openssl"
+	dev-libs/openssl
+	sys-apps/debianutils"
 
 S=${WORKDIR}
 
