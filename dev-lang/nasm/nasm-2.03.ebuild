@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.01.ebuild,v 1.1 2008/01/21 20:00:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.03.ebuild,v 1.1 2008/06/10 16:44:49 mr_bones_ Exp $
 
 EAPI="prefix"
 
