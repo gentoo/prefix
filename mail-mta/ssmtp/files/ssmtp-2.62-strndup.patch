@@ -1,4 +1,4 @@
-Compensate for platforms that don't have strndup, like Solaris and Darwin
+Compensate for platforms that don't have strndup, like Solaris
 
 --- configure.in
 +++ configure.in
