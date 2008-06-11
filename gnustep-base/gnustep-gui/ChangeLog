@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.64 2008/04/28 07:48:49 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.65 2008/06/10 14:17:58 voyageur Exp $
+
+  10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-gui-0.12.0.ebuild:
+  Stable gnustep versions cleanup
 
   28 Apr 2008; Bernard Cafarelli <voyageur@gentoo.org> Manifest:
   Fix digest on gnustep-gui-0.12.0, bug #219429
