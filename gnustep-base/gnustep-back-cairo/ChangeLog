@@ -1,6 +1,14 @@
 # ChangeLog for gnustep-base/gnustep-back-cairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.6 2008/05/17 20:12:35 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.8 2008/06/10 14:31:18 voyageur Exp $
+
+  10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  gnustep-back-cairo-0.12.1.ebuild, gnustep-back-cairo-0.13.2.ebuild:
+  Check that cairo was built with USE=X, bug #225225
+
+  10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-back-cairo-0.12.0.ebuild:
+  Stable gnustep versions cleanup
 
   17 May 2008; Fabian Groffen <grobian@gentoo.org>
   gnustep-back-cairo-0.12.0.ebuild, gnustep-back-cairo-0.12.1.ebuild,
