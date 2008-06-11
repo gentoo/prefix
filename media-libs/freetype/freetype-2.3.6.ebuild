@@ -73,9 +73,6 @@ src_unpack() {
 		fi
 	fi
 
-	# need new libtool for interix, but eautoreconf does not work,
-	# even not in builds/unix/
-	"${BASH}" ./autogen.sh || die "autogen.sh failed"
 	epunt_cxx
 }
 
