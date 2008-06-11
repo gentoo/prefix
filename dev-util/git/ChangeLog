@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.273 2008/06/09 19:25:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.275 2008/06/11 03:45:33 robbat2 Exp $
+
+*git-1.5.5.4 (11 Jun 2008)
+
+  11 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.5.5.4.ebuild:
+  Version bump.
+
+  10 Jun 2008; Raúl Porcel <armin76@gentoo.org> git-1.5.4.5.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #225231
 
   09 Jun 2008; Brent Baude <ranger@gentoo.org> git-1.5.4.5.ebuild:
   stable ppc64, bug 225231

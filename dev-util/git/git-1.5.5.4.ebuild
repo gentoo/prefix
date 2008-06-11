@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.5.ebuild,v 1.4 2008/06/10 18:18:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.5.4.ebuild,v 1.1 2008/06/11 03:45:33 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -20,19 +20,20 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion vim-syntax"
 
 DEPEND="
 	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
 	app-arch/cpio
-	perl?	( dev-lang/perl )
-	tk?		( dev-lang/tk )
-	curl?	( net-misc/curl )
-	webdav? ( dev-libs/expat )
+	perl?   ( dev-lang/perl )
+	tk?     ( dev-lang/tk )
+	curl?   (
+		net-misc/curl
+		webdav? ( dev-libs/expat )
+	)
 	emacs?  ( virtual/emacs )"
-# dev-perl/{Authen-SASL,Net-SMTP-SSL} are used by git-send-email
 
 RDEPEND="${DEPEND}
 	perl? ( dev-perl/Error
@@ -49,12 +50,12 @@ S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	if ! use perl ; then
-		if use cgi || use cvs || use subversion ; then
-			eerror "You must built dev-util/git with USE=perl and the"
-			eerror "applicable USE flag to use any of the following:"
-			eerror "gitweb, git-cvs*, git-svn, git-archimport, git-quiltimport"
-			die "You need USE=perl to satisfy your other USE= requests!"
-		fi
+		use cgi && ewarn "gitweb needs USE=perl, ignoring USE=cgi"
+		use cvs && ewarn "CVS integration needs USE=perl, ignoring USE=cvs"
+		use subversion && "git-svn needs USE=perl, it won't work"
+	fi
+	if use webdav && ! use curl ; then
+		ewarn "USE=webdav needs USE=curl. Ignoring"
 	fi
 }
 
@@ -73,7 +74,6 @@ exportmakeopts() {
 		use webdav || myopts="${myopts} NO_EXPAT=YesPlease"
 	else
 		myopts="${myopts} NO_CURL=YesPlease"
-		use webdav && ewarn "USE=webdav only matters with USE=curl. Ignoring."
 	fi
 
 	# broken assumptions, because of broken build system ...
@@ -108,9 +108,7 @@ src_unpack() {
 	use doc && cd "${S}"/Documentation && unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
-	epatch "${FILESDIR}"/20080322-${PN}-1.5.4.4-noperl.patch
-
+	epatch "${FILESDIR}"/20080528-${PN}-1.5.5.3-noperl.patch
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
 	sed -i \
@@ -118,7 +116,6 @@ src_unpack() {
 		-e "s:^\(LDFLAGS =\).*$:\1 ${LDFLAGS}:" \
 		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
 		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
-		-e 's:ln :ln -s :g' \
 		-e "s:\(PYTHON_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		-e "s:\(PERL_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		Makefile || die "sed failed"
@@ -175,6 +172,13 @@ src_install() {
 	dodoc contrib/fast-import/git-p4.txt
 	newbin contrib/fast-import/import-tars.perl import-tars
 
+	if use vim-syntax ; then
+		insinto /usr/share/vim/vimfiles/syntax/
+		doins contrib/vim/syntax/gitcommit.vim
+		insinto /usr/share/vim/vimfiles/ftdetect/
+		newins "${FILESDIR}"/vim-ftdetect-gitcommit.vim gitcommit.vim
+	fi
+
 	dodir /usr/share/${PN}/contrib
 	# The following are excluded:
 	# svnimport - use git-svn
@@ -182,7 +186,7 @@ src_install() {
 	# examples - these are stuff that is not used in Git anymore actually
 	# patches - stuff the Git guys made to go upstream to other places
 	for i in continuous fast-import hg-to-git \
-		hooks remotes2config.sh vim stats \
+		hooks remotes2config.sh stats \
 		workdir convert-objects blameview ; do
 		cp -rf \
 			"${S}"/contrib/${i} \
@@ -193,10 +197,15 @@ src_install() {
 	if use perl && use cgi ; then
 		dodir /usr/share/${PN}/gitweb
 		insinto /usr/share/${PN}/gitweb
-		doins "${S}"/gitweb/gitweb.{cgi,css}
+		doins "${S}"/gitweb/gitweb.cgi
+		doins "${S}"/gitweb/gitweb.css
 		doins "${S}"/gitweb/git-{favicon,logo}.png
-		docinto /
+
+		# Make sure it can run
+		fperms 0755 /usr/share/${PN}/gitweb/gitweb.cgi
+
 		# INSTALL discusses configuration issues, not just installation
+		docinto /
 		newdoc  "${S}"/gitweb/INSTALL INSTALL.gitweb
 		newdoc  "${S}"/gitweb/README README.gitweb
 	fi
