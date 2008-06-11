@@ -48,16 +48,14 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
-	>=sys-devel/bison-1.875"
-case ${CTARGET} in
-	*-darwin*) DEPEND="${DEPEND} ${CATEGORY}/odcctools" ;;
-	*-aix*)    DEPEND="${DEPEND} ${CATEGORY}/native-cctools" ;;
-# future: for Solaris || ( binutils native-cctools ) ?
-	*)         DEPEND="${DEPEND}
-		|| ( ppc? ( >=${CATEGORY}/binutils-2.17 )
-			ppc64? ( >=${CATEGORY}/binutils-2.17 )
-			>=${CATEGORY}/binutils-2.15.94 )" ;;
-esac
+	>=sys-devel/bison-1.875
+	kernel_Darwin? ( ${CATEGORY}/odcctools )
+	kernel_AIX? ( ${CATEGORY}/native-cctools )
+	!kernel_Darwin? ( !kernel_AIX? (
+		ppc? ( >=${CATEGORY}/binutils-2.17 )
+		ppc64? ( >=${CATEGORY}/binutils-2.17 )
+		>=${CATEGORY}/binutils-2.15.94
+	) )"
 PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.6 ) )"
