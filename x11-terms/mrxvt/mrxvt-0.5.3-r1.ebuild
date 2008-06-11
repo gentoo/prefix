@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/materm/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 LINGUAS_IUSE="linguas_el linguas_ja linguas_ko linguas_th linguas_zh_CN linguas_zh_TW"
 IUSE="debug png jpeg session truetype menubar utempter xpm ${LINGUAS_IUSE}"
