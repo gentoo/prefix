@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs flag-o-matic
+inherit eutils toolchain-funcs autotools flag-o-matic
 
 DESCRIPTION="Extremely simple MTA to get mail off the system to a Mailhub"
 HOMEPAGE="ftp://ftp.debian.org/debian/pool/main/s/ssmtp/"
@@ -28,6 +28,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
+	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
+	eautoreconf
 
 	# Respect LDFLAGS (bug #152197)
 	sed -i -e 's:$(CC) -o:$(CC) @LDFLAGS@ -o:' Makefile.in
