@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.24 2008/03/24 22:08:02 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.25 2008/06/10 14:40:41 remi Exp $
+
+*cairomm-1.6.0 (10 Jun 2008)
+
+  10 Jun 2008; Rémi Cardona <remi@gentoo.org> +cairomm-1.6.0.ebuild:
+  bump to 1.6.0
 
 *cairomm-1.5.0 (24 Mar 2008)
 
