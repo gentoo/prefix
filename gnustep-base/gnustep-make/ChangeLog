@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.72 2008/05/12 15:17:27 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.73 2008/06/10 14:10:43 voyageur Exp $
+
+  10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-make-2.0.2.ebuild:
+  Stable gnustep versions cleanup
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> gnustep-make-2.0.4.ebuild:
   Stable on ppc64
