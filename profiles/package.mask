@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8705 2008/06/09 18:12:09 araujo Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8712 2008/06/10 20:17:23 dertobi123 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tobias Heinlein <keytoaster@gentoo.org> (10 Jun 2008)
+# Masked for removal on 20 Jun 2008.
+# Pulls in kdelibs of which all current versions are providing
+# the same functionality, thus already blocking ksync.
+kde-base/ksync
+
+# Donnie Berkholz <dberkholz@gentoo.org> (10 Jun 2008)
+# xorg-server-1.5 prerelease
+=x11-base/xorg-server-1.4.99*
+=media-libs/mesa-7.1*
+>=x11-proto/dri2proto-9999
+=x11-libs/libdrm-2.3.1_pre*
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
 # Live ebuilds too volatile for normal use.
@@ -138,10 +151,6 @@ net-dns/resolvconf-gentoo
 # Dead upstream, broken package. Removal request via netmon team. bug #223479
 # Masked for removal in 30 days by the treecleaners.
 net-analyzer/sonar
-
-# Andreas Proschofsky <suka@gentoo.org> (27 May 2008)
-# Release Candidate, masked for testing
->=app-office/openoffice-2.4.1_rc1
 
 # Rémi Cardona <remi@gentoo.org> (27 Mai 2008)
 # mildly broken, see bug #156583
@@ -330,7 +339,7 @@ app-vim/conky-syntax
 
 # Richard Brown <rbrown@gentoo.org> (16 Apr 2008)
 # Masked for test
-=dev-lang/ruby-1.8.7_pre*
+=dev-lang/ruby-1.8.7*
 
 # Matthias Schwarzott <zzam@gentoo.org> (15 Apr 2008)
 # Superseded by vdr-dvdswitch and no longer maintained
@@ -1524,7 +1533,8 @@ dev-lisp/cl-blog
 net-mail/mailer-config
 =net-mail/mailwrapper-0.2.1-r1
 =mail-mta/nbsmtp-1.00-r3
->=mail-mta/ssmtp-2.61-r30
+=mail-mta/ssmtp-2.61-r30
+=mail-mta/ssmtp-2.61-r31
 >=mail-mta/esmtp-0.5.0-r2
 =mail-mta/postfix-2.2.10-r1
 
