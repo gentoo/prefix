@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-SMTP-SSL
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SMTP-SSL/ChangeLog,v 1.5 2008/06/09 19:24:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SMTP-SSL/ChangeLog,v 1.6 2008/06/10 18:14:44 armin76 Exp $
+
+  10 Jun 2008; Raúl Porcel <armin76@gentoo.org> Net-SMTP-SSL-1.01.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   09 Jun 2008; Brent Baude <ranger@gentoo.org> Net-SMTP-SSL-1.01.ebuild:
   stable ppc64, bug 225231
