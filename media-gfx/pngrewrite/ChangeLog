@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/pngrewrite
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.14 2008/05/14 19:37:28 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.15 2008/06/10 15:42:13 drac Exp $
+
+  10 Jun 2008; Samuli Suominen <drac@gentoo.org> pngrewrite-1.2.1.ebuild:
+  amd64 stable
 
   14 May 2008; Samuli Suominen <drac@gentoo.org> pngrewrite-1.2.1.ebuild:
   Keyword ~amd64 wrt #222111. Remove -lz and zlib depend as it's not really
