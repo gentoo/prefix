@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.49 2008/03/19 19:10:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.50 2008/06/10 06:58:04 dberkholz Exp $
+
+*xkeyboard-config-1.3 (10 Jun 2008)
+
+  10 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xkeyboard-config-1.3.ebuild:
+  Bump. Around 40 bugs from freedesktop.org bugzilla were fixed. Dropped old
+  rulesets sgi and sun. Added a lot of metadata, related to countries and
+  languages.
 
   19 Mar 2008; Samuli Suominen <drac@gentoo.org>
   xkeyboard-config-1.2.ebuild:
