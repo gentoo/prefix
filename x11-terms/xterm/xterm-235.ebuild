@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-235.ebuild,v 1.1 2008/04/21 04:53:17 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-235.ebuild,v 1.2 2008/06/10 19:19:00 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
