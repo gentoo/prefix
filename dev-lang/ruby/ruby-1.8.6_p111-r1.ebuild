@@ -24,7 +24,7 @@ SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.bz2
 	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="berkdb cjk debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="

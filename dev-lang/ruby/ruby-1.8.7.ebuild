@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_pre2.ebuild,v 1.1 2008/04/21 19:24:18 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7.ebuild,v 1.1 2008/06/10 13:23:02 caleb Exp $
 
 EAPI="prefix"
 
@@ -12,22 +12,16 @@ WANT_AUTOMAKE="latest"
 
 inherit autotools eutils flag-o-matic multilib versionator
 
-MY_PV="$(replace_version_separator 3 '-')"
-MY_PV="${MY_PV/pre/preview}"
-MY_P="${PN}-${MY_PV}"
-
-S=${WORKDIR}/${MY_P}
-
 SLOT=$(get_version_component_range 1-2)
 MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
+SRC_URI="mirror://ruby/${SLOT}/${P}.tar.bz2"
 #	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs" #cjk
 
 RDEPEND="
