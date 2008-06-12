@@ -11,7 +11,7 @@ HOMEPAGE="http://net-ssh.rubyforge.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-ruby/needle-1.2.1-r1"
