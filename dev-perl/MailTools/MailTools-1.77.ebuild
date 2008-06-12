@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~markov/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 
