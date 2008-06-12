@@ -11,7 +11,7 @@ HOMEPAGE="http://namazu.org/~satoru/ruby-romkan/"
 SRC_URI="http://namazu.org/~satoru/ruby-romkan/${P}.tar.gz"
 LICENSE="Ruby"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 DEPEND="virtual/ruby"
 
