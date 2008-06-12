@@ -15,7 +15,7 @@ SRC_URI="http://liba52.sourceforge.net/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="oss djbfft"
 
 RDEPEND="djbfft? ( sci-libs/djbfft )"
