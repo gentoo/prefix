@@ -12,7 +12,7 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${P}.tar
 
 LICENSE="CMake"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="emacs vim-syntax"
 
 DEPEND="emacs? ( virtual/emacs )
