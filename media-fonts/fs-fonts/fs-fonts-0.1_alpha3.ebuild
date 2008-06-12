@@ -13,7 +13,7 @@ DESCRIPTION="Japanese TrueType fonts designed for screen and print"
 HOMEPAGE="http://x-tt.sourceforge.jp/fs_fonts/"
 SRC_URI="mirror://sourceforge.jp/x-tt/7862/${MY_P}.tar.gz"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 LICENSE="public-domain"
 SLOT=0
 
