@@ -15,7 +15,7 @@ SRC_URI="http://www.amk.ca/files/python/${P}.tar.gz"
 IUSE=""
 LICENSE="PYTHON"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 src_install() {
 	DOCS="CHANGES.txt docs/*.txt"
