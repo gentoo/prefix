@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/I/IR/IROBERTS/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="dev-perl/Crypt-OpenSSL-Bignum
