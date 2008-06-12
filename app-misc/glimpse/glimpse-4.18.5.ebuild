@@ -12,7 +12,7 @@ SRC_URI="http://webglimpse.net/trial/${P}.tar.gz"
 
 LICENSE="glimpse"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="static"
 
 RDEPEND="!dev-libs/tre
