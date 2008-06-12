@@ -1,6 +1,18 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.159 2008/06/04 08:43:49 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.161 2008/06/11 13:08:59 loki_val Exp $
+
+  11 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  poppler-0.6.1-r1.ebuild:
+  Dropping keywords for all but arm/sh/m68k/s390 on poppler-0.6.1-r1 due to
+  bug #216850
+
+  11 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -files/004_CVE-2007-0104.patch, -files/poppler-cve-2007-3387.patch,
+  -poppler-0.5.3.ebuild, -poppler-0.5.4.ebuild, -poppler-0.5.4-r1.ebuild,
+  -poppler-0.5.4-r2.ebuild, -poppler-0.6.ebuild, -poppler-0.6.1.ebuild,
+  -poppler-0.6.2.ebuild:
+  Spring clean of poppler-related packages.
 
 *poppler-0.8.3 (04 Jun 2008)
 

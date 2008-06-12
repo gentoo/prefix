@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.1-r1.ebuild,v 1.9 2007/12/11 09:30:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.1-r1.ebuild,v 1.10 2008/06/11 13:08:59 loki_val Exp $
 
 EAPI="prefix"
 
