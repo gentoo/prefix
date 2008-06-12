@@ -11,7 +11,7 @@ HOMEPAGE="http://razor.sourceforge.net/"
 SRC_URI="mirror://sourceforge/razor/razor-agents-${PV}.tar.bz2"
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
