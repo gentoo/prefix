@@ -14,7 +14,7 @@ SRC_URI="http://fmg-www.cs.ucla.edu/geoff/tars/${P}.tar.gz
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND="sys-apps/miscfiles
