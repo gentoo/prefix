@@ -12,7 +12,7 @@ SRC_URI="http://folk.uio.no/gisle/enjoy/${PN}${PV//./}.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="app-arch/unzip"
