@@ -13,7 +13,7 @@ SRC_URI="http://download.cherrypy.org/cherrypy/${PV}/${MY_P}.tar.gz"
 HOMEPAGE="http://www.cherrypy.org/"
 IUSE="doc"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 LICENSE="BSD"
 
 DEPEND=""
