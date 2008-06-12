@@ -9,7 +9,7 @@ inherit vim-plugin
 DESCRIPTION="vim plugin: Screensaver inspired by the Matrix"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1189"
 LICENSE="as-is"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 VIM_PLUGIN_HELPTEXT=\
