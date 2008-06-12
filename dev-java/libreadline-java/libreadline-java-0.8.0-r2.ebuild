@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/java-readline/${P}-src.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="elibc_FreeBSD"
 
 COMMON_DEP="sys-libs/ncurses"
