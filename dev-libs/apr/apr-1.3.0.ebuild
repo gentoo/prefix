@@ -23,16 +23,15 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# the included libtool.m4 is causing big trouble, use the system one
-	rm -f build/libtool.m4
-	epatch "${FILESDIR}"/${PN}-1.2.8-libtool.patch
+#	# the included libtool.m4 is causing big trouble, use the system one
+#	rm -f build/libtool.m4
+#	epatch "${FILESDIR}"/${PN}-1.2.8-libtool.patch
 
-	# for some reason not all the .m4 files that are referenced in 
+	# for some reason not all the .m4 files that are referenced in
 	# configure.in exist, so we remove all references and include every
 	# .m4 file in build using aclocal via eautoreconf
 	# See bug 135463
 	sed -i -e '/sinclude/d' configure.in
-
 	AT_M4DIR="build" eautoreconf
 
 	epatch "${FILESDIR}"/config.layout.patch
@@ -73,6 +72,15 @@ src_compile() {
 		--enable-nonportable-atomics \
 		${myconf}
 
+	# Make sure we use the system libtool
+	local LIBTL
+	[[ ${CHOST} == *-darwin* ]] \
+		&& LIBTL="${EPREFIX}"/usr/bin/libtool \
+		|| LIBTL="${EPREFIX}"/usr/bin/libtool
+	sed -i 's,$(apr_builddir)/libtool,'"${LIBTL}"',' "${S}"/build/apr_rules.mk
+	sed -i 's,${installbuilddir}/libtool,'"${LIBTL}"',' "${S}"/apr-1-config
+	rm -f "${S}"/libtool
+
 	emake || die "Make failed"
 
 	if use doc; then
@@ -81,11 +89,6 @@ src_compile() {
 }
 
 src_install() {
-	# rules.mk is copied over, so make reference to libtool correct
-	sed -i \
-		-e 's/^top_builddir=.*$/top_builddir=$(apr_builddir)/' \
-		build/apr_rules.mk
-
 	make DESTDIR="${D}" install || die "make install failed"
 
 	# This file is only used on AIX systems, which gentoo is not,
