@@ -15,7 +15,7 @@ SRC_URI="mirror://apache/commons/io/source/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="test"
 
 DEPEND=">=virtual/jdk-1.4
