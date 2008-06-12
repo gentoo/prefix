@@ -24,8 +24,8 @@ src_unpack() {
 	cd "${S}"
 
 	# the included libtool.m4 is causing big trouble, use the system one
-	rm -f build/libtool.m4
-	epatch "${FILESDIR}"/${PN}-1.2.8-libtool.patch
+#	rm -f build/libtool.m4
+#	epatch "${FILESDIR}"/${PN}-1.2.8-libtool.patch
 
 	# for some reason not all the .m4 files that are referenced in 
 	# configure.in exist, so we remove all references and include every
