@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/cscope/${P}.tar.gz"
 
 LICENSE="as-is GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="emacs"
 
 RDEPEND=">=sys-libs/ncurses-5.2"
