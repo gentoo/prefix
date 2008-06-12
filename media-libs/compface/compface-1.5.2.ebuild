@@ -13,7 +13,7 @@ HOMEPAGE="http://www.xemacs.org/Download/optLibs.html"
 SRC_URI="http://ftp.xemacs.org/pub/xemacs/aux/${P}.tar.gz"
 
 LICENSE="MIT"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 src_unpack() {
