@@ -11,7 +11,7 @@ HOMEPAGE="http://openlab.ring.gr.jp/skk/dic.html"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 DEPEND=""
