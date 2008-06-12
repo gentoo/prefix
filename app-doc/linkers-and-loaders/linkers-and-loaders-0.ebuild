@@ -12,7 +12,7 @@ SRC_URI="${SRC_URI//|/${HOMEPAGE}linker}"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
 RESTRICT="mirror"
 
