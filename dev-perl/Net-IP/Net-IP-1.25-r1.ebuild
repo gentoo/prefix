@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/M/MA/MANU/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 PATCHES="${FILESDIR}/initip-0.patch"
