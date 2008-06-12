@@ -111,7 +111,7 @@ src_compile() {
 
 	# Add linker versions to the symbols. Easier to do, and safer than header file
 	# mumbo jumbo.
-	if [[ ${CHOST} == *-linux-gnu ]] ; then
+	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
 		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
