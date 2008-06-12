@@ -16,7 +16,7 @@ HOMEPAGE="http://www.cheetahtemplate.org/"
 SRC_URI="mirror://sourceforge/cheetahtemplate/${MY_P}.tar.gz"
 LICENSE="PSF-2.2"
 IUSE=""
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 SLOT="0"
 
 DEPEND="dev-python/setuptools"
