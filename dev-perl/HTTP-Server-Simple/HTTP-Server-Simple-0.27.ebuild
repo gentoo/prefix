@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~jesse/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 
