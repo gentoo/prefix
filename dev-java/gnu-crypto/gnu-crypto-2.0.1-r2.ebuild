@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.gnupg.org/GnuPG/gnu-crypto/gnu-crypto-2.0.1.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.3"
