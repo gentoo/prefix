@@ -12,7 +12,7 @@ SRC_URI="http://www.polhode.com/pccts133mr33.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="app-arch/unzip"
