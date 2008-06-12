@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~JMEHNLE/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 # Disabling tests for now. Ticho got them to magically work on his end,
