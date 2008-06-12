@@ -15,7 +15,7 @@ HOMEPAGE="http://search.cpan.org/~jesse/"
 SRC_TEST="do"
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 DEPEND="dev-perl/text-autoformat
 	dev-perl/Text-Tabs+Wrap
