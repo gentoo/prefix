@@ -8,8 +8,6 @@
 
 # Linux Profiles
 amd64-linux		default-prefix/linux/amd64				dev
-mips-linux		default-prefix/linux/mips				dev
-ia64-linux		default-prefix/linux/ia64				dev
 x86-linux		default-prefix/linux/x86				dev
 
 # Mac OS X Profiles
