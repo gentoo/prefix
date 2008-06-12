@@ -10,7 +10,7 @@ SRC_URI="http://www.canb.auug.org.au/~millerp/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND="sys-devel/gettext

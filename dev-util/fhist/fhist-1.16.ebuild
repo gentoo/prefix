@@ -10,7 +10,7 @@ SRC_URI="http://fhist.sourceforge.net/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 IUSE="test"
 
 RDEPEND="sys-devel/gettext
