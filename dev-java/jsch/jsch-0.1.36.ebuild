@@ -13,7 +13,7 @@ HOMEPAGE="http://www.jcraft.com/jsch/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.zip"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=virtual/jdk-1.4
