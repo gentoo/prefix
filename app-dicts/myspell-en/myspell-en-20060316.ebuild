@@ -55,4 +55,4 @@ DESCRIPTION="English dictionaries for myspell/hunspell"
 LICENSE="LGPL-2.1 myspell-en_CA-KevinAtkinson WordNet-1.6 myspell-ispell-GeoffKuenning myspell-en_CA-JRossBeresford"
 HOMEPAGE="http://lingucomponent.openoffice.org/"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
