@@ -20,7 +20,7 @@ mirror://sourceforge/${PN}/${PN}_${MY_PV}.jar"
 
 LICENSE="JPython"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 CDEPEND="=dev-java/jakarta-oro-2.0*

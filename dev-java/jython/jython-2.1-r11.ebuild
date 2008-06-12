@@ -13,7 +13,7 @@ MY_PV="21"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="JPython"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="readline source doc"
 # servlet
 
