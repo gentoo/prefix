@@ -8,7 +8,7 @@ ANT_TASK_DEPNAME="jakarta-regexp-1.4"
 
 inherit ant-tasks
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 # could use slot deps
 DEPEND="=dev-java/jakarta-regexp-1.4*"
