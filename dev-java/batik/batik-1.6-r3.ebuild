@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/xml/batik/${PN}-src-${PV}.zip"
 
 LICENSE="Apache-2.0"
 SLOT="1.6"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="doc python tcl"
 
 CDEPEND="=dev-java/rhino-1.5*
