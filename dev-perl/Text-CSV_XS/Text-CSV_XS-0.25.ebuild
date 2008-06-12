@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~hmbrand/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 SRC_TEST="do"
