@@ -12,7 +12,7 @@ DESCRIPTION="A simple and Pythonic XML template language"
 SRC_URI="http://www.kid-templating.org/dist/${PV}/dist/${P}.tar.gz"
 HOMEPAGE="http://www.kid-templating.org/"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 LICENSE="MIT"
 SLOT="0"
 IUSE="doc examples"
