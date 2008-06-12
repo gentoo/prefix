@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~grantm/"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=dev-perl/XML-NamespaceSupport-1.04
