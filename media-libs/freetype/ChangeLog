@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.179 2008/06/11 02:37:30 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.185 2008/06/12 03:27:00 jer Exp $
+
+  12 Jun 2008; Jeroen Roovers <jer@gentoo.org> freetype-2.3.6.ebuild:
+  Stable for HPPA (bug #225851).
+
+  11 Jun 2008; Brent Baude <ranger@gentoo.org> freetype-2.3.6.ebuild:
+  Marking freetype-2.3.6 ppc64 for bug 225851
+
+  11 Jun 2008; Steve Dibb <beandog@gentoo.org> freetype-2.3.6.ebuild:
+  amd64 stable, bug 225851
+
+  11 Jun 2008; Raúl Porcel <armin76@gentoo.org> freetype-2.3.6.ebuild:
+  alpha/ia64 stable wrt #225851
+
+  11 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> freetype-2.3.6.ebuild:
+  stable on sparc, security bug #225851
+
+  11 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  freetype-2.3.6.ebuild:
+  stable x86, security bug 225851
 
   11 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Add myself to metadata.xml as co-maintainer.
