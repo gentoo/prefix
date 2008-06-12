@@ -10,7 +10,7 @@ DESCRIPTION="Text to Morse Code converter"
 HOMEPAGE="http://cwtext.sourceforge.net"
 SRC_URI="mirror://sourceforge/cwtext/${P}.tar.gz"
 
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE=""
