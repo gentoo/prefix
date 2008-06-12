@@ -21,7 +21,7 @@ SRC_URI="mirror://gentoo/${P}-gentoo.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.4
