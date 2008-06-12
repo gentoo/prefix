@@ -9,7 +9,7 @@ inherit vim-plugin
 DESCRIPTION="vim plugin: PHPDoc Support in VIM"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=520"
 LICENSE="vim"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 DEPEND="${DEPEND} >=sys-apps/sed-4"
 VIM_PLUGIN_HELPURI="http://www.vim.org/scripts/script.php?script_id=520"
