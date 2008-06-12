@@ -12,7 +12,7 @@ RDEPEND=">=dev-lang/perl-5"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 
 src_install () {
