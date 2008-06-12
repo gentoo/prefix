@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/incrtcl/${MY_P}.tar.gz"
 IUSE=""
 SLOT="0"
 LICENSE="BSD"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND="dev-lang/tcl"
 
