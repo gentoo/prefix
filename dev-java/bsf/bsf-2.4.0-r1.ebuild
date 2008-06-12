@@ -12,7 +12,7 @@ HOMEPAGE="http://jakarta.apache.org/bsf/"
 SRC_URI="mirror://apache/jakarta/bsf/source/${PN}-src-${PV}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="2.3"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="javascript python tcl"
 
 COMMON_DEP="dev-java/commons-logging
