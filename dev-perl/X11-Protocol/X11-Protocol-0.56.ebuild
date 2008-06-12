@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/S/SM/SMCCAM/${P}.tar.gz"
 
 LICENSE="Artistic X11"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND="x11-libs/libXrender
