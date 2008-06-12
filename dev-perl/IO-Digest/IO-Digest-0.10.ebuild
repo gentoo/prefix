@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~clkao/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 SRC_TEST="do"
 IUSE=""
 DEPEND=">=dev-perl/PerlIO-via-dynamic-0.10
