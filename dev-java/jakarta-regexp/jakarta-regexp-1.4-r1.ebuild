@@ -12,7 +12,7 @@ HOMEPAGE="http://jakarta.apache.org/"
 SLOT="1.4"
 IUSE="doc source"
 LICENSE="Apache-1.1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/ant-core
 	source? ( app-arch/zip )"
