@@ -13,7 +13,7 @@ HOMEPAGE="http://search.cpan.org/~clkao/"
 SLOT="0"
 LICENSE="Artistic"
 SRC_TEST="do"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="dev-lang/perl"
