@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit gst-plugins-base
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=media-libs/gst-plugins-base-0.10.13.1
