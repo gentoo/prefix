@@ -13,7 +13,7 @@ HOMEPAGE="http://search.perl.com/~drolsky/${P}/"
 SRC_TEST="do"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 src_install () {
