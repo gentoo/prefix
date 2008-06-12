@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit gnome2 gst-plugins-good gst-plugins10
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=gnome-base/gconf-2
