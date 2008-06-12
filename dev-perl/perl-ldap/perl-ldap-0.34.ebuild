@@ -13,7 +13,7 @@ SRC_URI="mirror://cpan/authors/id/G/GB/GBARR/${P}.tar.gz"
 LICENSE="Artistic"
 SLOT="0"
 #KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="sasl xml ssl"
 
 DEPEND="dev-perl/Convert-ASN1
