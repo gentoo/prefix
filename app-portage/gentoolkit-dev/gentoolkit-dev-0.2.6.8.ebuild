@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz http://dev.gentoo.org/~fuzzyray/distfiles/$
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ia64-linux ~x64-solaris"
+KEYWORDS="~x64-solaris"
 IUSE=""
 
 DEPEND=">=sys-apps/portage-2.0.50
