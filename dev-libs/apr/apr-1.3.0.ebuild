@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.9.ebuild,v 1.2 2007/07/31 09:00:08 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.0.ebuild,v 1.1 2008/06/11 19:12:54 hollow Exp $
 
 EAPI="prefix"
 
-inherit autotools
+inherit autotools flag-o-matic
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -12,11 +12,12 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="ipv6 urandom debug"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="doc ipv6 urandom debug"
 RESTRICT="test"
 
-DEPEND=""
+DEPEND="doc? ( app-doc/doxygen )"
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
@@ -31,12 +32,15 @@ src_unpack() {
 	# .m4 file in build using aclocal via eautoreconf
 	# See bug 135463
 	sed -i -e '/sinclude/d' configure.in
+
 	AT_M4DIR="build" eautoreconf
 
 	epatch "${FILESDIR}"/config.layout.patch
 }
 
 src_compile() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
 	# For now we always enable ipv6. Testing has shown that is still works
 	# correctly in ipv4 systems, and currently, the ipv4-only support
 	# is broken in apr. (ipv6 is enabled by default)
@@ -48,7 +52,10 @@ src_compile() {
 		myconf="${myconf} --with-devrandom=/dev/random"
 	fi
 
-	use debug && myconf="${myconf} --enable-maintainer-mode"
+	if use debug; then
+		myconf="${myconf} --enable-maintainer-mode"
+		myconf="${myconf} --enable-pool-debug=all"
+	fi
 
 	# We pre-load the cache with the correct answer!  This avoids
 	# it violating the sandbox.  This may have to be changed for
@@ -58,12 +65,19 @@ src_compile() {
 	# See bugs 24215 and 133573
 	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> "${S}"/config.cache
 
+	# on interix, we need _ALL_SOURCE defined
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+
 	econf --enable-layout=gentoo \
-		 --enable-threads \
-		 --enable-nonportable-atomics \
-		 ${myconf} || die "econf failed!"
+		--enable-threads \
+		--enable-nonportable-atomics \
+		${myconf}
 
 	emake || die "Make failed"
+
+	if use doc; then
+		emake dox || die "make dox failed"
+	fi
 }
 
 src_install() {
@@ -79,6 +93,10 @@ src_install() {
 	rm "${ED}"/usr/$(get_libdir)/apr.exp
 
 	dodoc CHANGES NOTICE
+
+	if use doc; then
+		dohtml docs/dox/html/* || die
+	fi
 }
 
 pkg_postinst() {
