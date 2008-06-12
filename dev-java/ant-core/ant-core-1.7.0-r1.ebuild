@@ -19,7 +19,7 @@ SRC_URI="mirror://apache/ant/source/${MY_P}-src.tar.bz2
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc source"
 
 # 1.7.0 instead of $PV in blocks is intentional, >1.7.0 upgrades should
