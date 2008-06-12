@@ -15,7 +15,7 @@ SRC_URI="http://haskell.org/haddock/${MY_PF}-src.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="doc"
 
