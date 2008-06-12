@@ -13,7 +13,7 @@ SRC_URI="mirror://apache/jakarta/tomcat-5/v${TC_VERSION}/src/apache-tomcat-${TC_
 
 LICENSE="Apache-1.1"
 SLOT="2.4"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 DEPEND=">=virtual/jdk-1.4
