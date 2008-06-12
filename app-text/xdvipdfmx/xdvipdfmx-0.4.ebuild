@@ -12,7 +12,7 @@ SRC_URI="http://scripts.sil.org/svn-view/xdvipdfmx/TAGS/${P}.tar.gz"
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=media-libs/freetype-2.0 virtual/latex-base"
