@@ -14,7 +14,7 @@ SRC_URI="http://www.dnspython.org/kits/${PV}/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="examples"
 
 DOCS="TODO"
