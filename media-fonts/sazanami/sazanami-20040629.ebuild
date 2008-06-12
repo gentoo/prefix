@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge.jp/efont/10087/${P}.tar.bz2"
 # shinonome, ayu, kappa -> public-domain
 LICENSE="as-is public-domain"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 FONT_SUFFIX="ttf"
