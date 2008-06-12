@@ -12,7 +12,7 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 # WARNING:
 # if you have the noaudio, novideo, nojoystick, or custom-cflags use flags
 # in USE and something breaks, you pick up the pieces.  Be prepared for
