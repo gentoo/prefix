@@ -11,7 +11,7 @@ HOMEPAGE="http://sary.sourceforge.net/"
 SRC_URI="http://sary.sourceforge.net/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 RESTRICT="test"
 
