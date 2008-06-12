@@ -1,0 +1,21 @@
+Fix build on a system with a USE=nocxx gcc
+
+From http://svn.gnome.org/viewvc/gtk%2B?view=revision&revision=19688 and backported,
+as the order of tests listed was juggled around in trunk:
+
+2008-03-02  Johan Dahlin
+
+	* tests/Makefile.am (noinst_PROGRAMS): Remove autotestkeywords, it's added later,
+	fixes non-C++ build.
+	(#496032, Nelson Benitez)
+
+--- trunk/tests/Makefile.am	2008/03/02 15:31:49	19687
++++ trunk/tests/Makefile.am	2008/03/02 17:19:52	19688
+@@ -54,7 +54,6 @@
+ 
+ noinst_PROGRAMS =  $(TEST_PROGS)	\
+ 	autotestfilechooser		\
+-	autotestkeywords		\
+ 	floatingtest			\
+ 	buildertest			\
+ 	simple				\

@@ -1,0 +1,42 @@
+2008-06-06  Matthias Clasen  <mclasen@redhat.com>
+
+        Bug 536757 – regression: openoffice.org menus are placed at wrong
+        position since 2.12.10
+
+        * gdk/x11/gdkwindow-x11.c (gdk_window_get_frame_extents):
+        Return the right coordinates.
+
+diff --git a/gdk/x11/gdkwindow-x11.c b/gdk/x11/gdkwindow-x11.c
+index cc1f6fd..68e9e69 100644
+--- a/gdk/x11/gdkwindow-x11.c
++++ b/gdk/x11/gdkwindow-x11.c
+@@ -3412,6 +3412,7 @@ gdk_window_get_frame_extents (GdkWindow    *window,
+   Window xwindow;
+   Window xparent;
+   Window root;
++  Window child;
+   Window *children;
+   guchar *data;
+   Window *vroots;
+@@ -3470,13 +3471,15 @@ gdk_window_get_frame_extents (GdkWindow    *window,
+       if ((type_return == XA_CARDINAL) && (format_return == 32) &&
+ 	  (nitems_return == 4) && (data))
+         {
+-	  guint32 *ldata = (guint32 *) data;
++	  gulong *ldata = (gulong *) data;
+ 	  got_frame_extents = TRUE;
+ 
+ 	  /* try to get the real client window geometry */
+ 	  if (XGetGeometry (GDK_DISPLAY_XDISPLAY (display), xwindow,
+-			    &root, &wx, &wy, &ww, &wh, &wb, &wd))
+-	    {
++			    &root, &wx, &wy, &ww, &wh, &wb, &wd) &&
++              XTranslateCoordinates (GDK_DISPLAY_XDISPLAY (display),
++	  			     xwindow, root, 0, 0, &wx, &wy, &child))
++            {
+ 	      rect->x = wx;
+ 	      rect->y = wy;
+ 	      rect->width = ww;
+-- 
+1.5.4.5
+

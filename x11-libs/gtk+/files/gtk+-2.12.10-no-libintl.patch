@@ -1,0 +1,26 @@
+Use glib/gi18n.h instead of libintl.h, as is done everywhere else.
+In addition to following the common style, this allows building against
+a patched glib on an embedded uclibc system
+
+--- gtk/gtktrayicon-x11.c.orig	2008-06-10 11:15:21 +0000
++++ gtk/gtktrayicon-x11.c	2008-06-10 11:15:32 +0000
+@@ -24,7 +24,7 @@
+ 
+ #include <config.h>
+ #include <string.h>
+-#include <libintl.h>
++#include <glib/gi18n.h>
+ 
+ #include "gtkintl.h"
+ #include "gtkprivate.h"
+--- tests/buildertest.c.orig	2008-06-10 13:25:32 +0000
++++ tests/buildertest.c	2008-06-10 13:26:12 +0000
+@@ -20,7 +20,7 @@
+  */
+ 
+ #include <string.h>
+-#include <libintl.h>
++#include <glib/gi18n.h>
+ #include <locale.h>
+ #include <math.h>
+ 
