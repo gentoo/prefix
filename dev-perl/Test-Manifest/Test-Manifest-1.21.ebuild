@@ -13,7 +13,7 @@ HOMEPAGE="http://search.cpan.org/~bdfoy/${P}/"
 IUSE=""
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 SRC_TEST="do"
 
