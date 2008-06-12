@@ -13,7 +13,7 @@ HOMEPAGE="http://search.cpan.org/~petdance/${P}/"
 IUSE=""
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 #SRC_TEST="do"
 
 DEPEND=">=dev-perl/WWW-Mechanize-1.24
