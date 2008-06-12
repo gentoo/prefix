@@ -13,7 +13,7 @@ SRC_URI="http://www.nicemice.net/par/${MY_P/./}.tar.gz"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND="!dev-util/par
