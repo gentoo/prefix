@@ -1,6 +1,12 @@
 # ChangeLog for app-misc/devtodo
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-misc/devtodo/ChangeLog,v 1.79 2008/04/21 19:23:10 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/devtodo/ChangeLog,v 1.80 2008/06/11 22:04:02 opfer Exp $
+
+  11 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/devtodo-0.1.18-gcc4.diff,
+  -files/devtodo-0.1.19-fix-multiline-segv.diff,
+  -files/devtodo-0.1.19-r2-gentoo.diff, -devtodo-0.1.19-r2.ebuild:
+  clean up
 
   21 Apr 2008; Markus Ullmann <jokey@gentoo.org>
   +files/devtodo-0.1.20-gcc43.patch, devtodo-0.1.20.ebuild:
