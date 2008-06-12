@@ -1,3 +1,0 @@
-ARCH=mips
-CHOST="mips-pc-linux-gnu"
-ACCEPT_KEYWORDS="~mips-linux"

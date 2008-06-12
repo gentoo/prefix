@@ -1,7 +1,0 @@
-# Copyright 1999-2007 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
-ARCH="ia64"
-CHOST="ia64-unknown-linux-gnu"
-ACCEPT_KEYWORDS="~ia64-linux"
