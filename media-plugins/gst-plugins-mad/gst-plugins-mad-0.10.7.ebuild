@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit gst-plugins-ugly
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=media-libs/gst-plugins-base-0.10.17
