@@ -20,7 +20,7 @@ SRC_URI="${SRC_URI}
 
 S=${WORKDIR}/vim${VIM_VERSION/.}
 DESCRIPTION="Vim, an improved vi-style text editor"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls minimal"
 DEPEND="${DEPEND}
 	!minimal? ( ~app-editors/vim-core-${PV} )"
