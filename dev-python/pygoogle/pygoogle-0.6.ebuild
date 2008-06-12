@@ -13,7 +13,7 @@ HOMEPAGE="http://pygoogle.sourceforge.net/"
 IUSE=""
 SLOT="0"
 LICENSE="PYTHON"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="virtual/python
 	>=dev-python/soappy-0.11.3"
