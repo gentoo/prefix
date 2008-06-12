@@ -9,7 +9,7 @@ inherit font
 DESCRIPTION="A Collection of Free Type1 Fonts"
 SRC_URI="mirror://gimp/fonts/${P}.tar.gz"
 HOMEPAGE="http://www.gimp.org"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
 SLOT="0"
 LICENSE="freedist"
 IUSE="X"
