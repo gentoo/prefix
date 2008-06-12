@@ -15,7 +15,7 @@ IUSE=""
 
 SLOT="0"
 LICENSE="BSD"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 RDEPEND="x11-libs/libXpm
 	>=media-libs/jpeg-6
