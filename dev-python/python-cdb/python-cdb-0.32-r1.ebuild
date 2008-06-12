@@ -13,7 +13,7 @@ HOMEPAGE="http://pilcrow.madison.wi.us/#pycdb"
 SLOT="0"
 IUSE=""
 LICENSE="GPL-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND=">=dev-lang/python-2.2
 	dev-db/cdb"
