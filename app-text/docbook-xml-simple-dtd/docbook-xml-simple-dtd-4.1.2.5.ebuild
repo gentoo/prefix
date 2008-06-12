@@ -10,7 +10,7 @@ SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/simple4125.zip"
 
 LICENSE="X11"
 SLOT="4.1.2.5"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41
