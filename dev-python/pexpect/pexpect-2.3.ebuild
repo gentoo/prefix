@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/pexpect/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc examples"
 
 src_install() {
