@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.93.ebuild,v 1.8 2008/05/11 11:35:39 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.93.1.ebuild,v 1.1 2008/06/11 12:58:06 falco Exp $
 
 EAPI="prefix"
 
@@ -44,11 +44,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.92.1-interix.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
 	eprefixify "${S}"/configure.in
 
-	epatch "${FILESDIR}"/${P}-buildfix.patch
-	epatch "${FILESDIR}"/${P}-nls.patch
+	epatch "${FILESDIR}"/${PN}-0.93-buildfix.patch
+	epatch "${FILESDIR}"/${PN}-0.93-nls.patch
 
 	# If nls flag is disabled, gettext may not be available, but eautoreconf
 	# needs this file (bug #218892).
