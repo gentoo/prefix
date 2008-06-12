@@ -10,7 +10,7 @@ SRC_URI="http://www.moria.de/~michael/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="unicode"
 
 DEPEND="sys-devel/gettext
