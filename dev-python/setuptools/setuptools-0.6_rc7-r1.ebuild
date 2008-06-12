@@ -17,7 +17,7 @@ SRC_URI="http://cheeseshop.python.org/packages/source/s/setuptools/${MY_P}.tar.g
 
 LICENSE="PSF-2.2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DOCS="EasyInstall.txt api_tests.txt pkg_resources.txt setuptools.txt README.txt"

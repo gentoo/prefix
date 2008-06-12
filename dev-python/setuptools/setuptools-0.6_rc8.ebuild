@@ -15,7 +15,7 @@ HOMEPAGE="http://peak.telecommunity.com/DevCenter/setuptools"
 SRC_URI="http://cheeseshop.python.org/packages/source/s/setuptools/${MY_P}.tar.gz"
 LICENSE="PSF-2.2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
