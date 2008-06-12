@@ -10,7 +10,7 @@ DESCRIPTION="File searcher similar to grep but with fancy output"
 HOMEPAGE="http://www.incava.org/projects/glark/"
 SRC_URI="http://www.incava.org/pub/${PN}/${P}.tar.gz"
 
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 LICENSE="LGPL-2.1"
 IUSE=""
