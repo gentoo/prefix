@@ -12,7 +12,7 @@ SRC_URI="http://download.berlios.de/diffball/${P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND=">=sys-libs/zlib-1.1.4
 	>=app-arch/bzip2-1.0.2"
