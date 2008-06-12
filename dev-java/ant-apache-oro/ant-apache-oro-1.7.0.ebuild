@@ -8,7 +8,7 @@ ANT_TASK_DEPNAME="jakarta-oro-2.0"
 
 inherit ant-tasks
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND=">=dev-java/jakarta-oro-2.0.8-r2"
 RDEPEND="${DEPEND}"
