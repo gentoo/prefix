@@ -15,7 +15,7 @@ SRC_URI="http://dist.codehaus.org/${PN}/distributions/${MY_P}-src.tar.gz"
 
 LICENSE="jaxen"
 SLOT="1.1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source test"
 
 COMMON_DEP="~dev-java/jdom-1.0
