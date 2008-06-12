@@ -16,7 +16,7 @@ SRC_URI="ftp://www-126.ibm.com/pub/icu4j/${PV}/${PN}src_${MY_PV}.jar
 		doc? ( ftp://www-126.ibm.com/pub/icu4j/${PV}/${PN}docs_${MY_PV}.jar )"
 LICENSE="icu"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 DEPEND=">=virtual/jdk-1.4
 	app-arch/unzip"
