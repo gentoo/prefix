@@ -14,7 +14,7 @@ SRC_URI="http://aquablue.milkcafe.to/tears/font/${MY_P}.zip"
 
 LICENSE="aquafont"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
