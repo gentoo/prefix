@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${PN}_${PV}.orig.tar.gz
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=""
