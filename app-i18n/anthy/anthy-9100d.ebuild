@@ -13,7 +13,7 @@ HOMEPAGE="http://anthy.sourceforge.jp/"
 SRC_URI="mirror://sourceforge.jp/anthy/27771/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
 DEPEND="!app-i18n/anthy-ss
