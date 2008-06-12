@@ -11,7 +11,7 @@ HOMEPAGE="http://search.cpan.org/~dskoll/"
 SRC_URI="mirror://cpan/authors/id/D/DS/DSKOLL/${P}.tar.gz"
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 SRC_TEST="do"
