@@ -24,7 +24,7 @@ HOMEPAGE="http://www.latex2html.org/"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="gif png"
 
 DEPEND="virtual/ghostscript
