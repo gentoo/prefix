@@ -13,7 +13,7 @@ SRC_URI="mirror://cpan/authors/id/D/DA/DAGOLDEN/${P}.tar.gz"
 IUSE=""
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 SRC_TEST="do"
 
