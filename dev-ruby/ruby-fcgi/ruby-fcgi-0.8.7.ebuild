@@ -10,7 +10,7 @@ DESCRIPTION="FastCGI library for Ruby"
 HOMEPAGE="http://rubyforge.org/projects/fcgi/"
 SRC_URI="http://rubyforge.org/frs/download.php/11368/${P}.tar.gz"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 LICENSE="Ruby"
 
 DEPEND="dev-libs/fcgi"
