@@ -12,7 +12,7 @@ SRC_URI="http://gregory.kokanosky.free.fr/v4/linux/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND="virtual/libc"
