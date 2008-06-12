@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/jakarta/commons/beanutils/source/${P}-src.tar.gz"
 
 LICENSE="Apache-1.1"
 SLOT="1.6"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 COMMON_DEP="
