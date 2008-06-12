@@ -12,7 +12,7 @@ SRC_URI="http://members.dslextreme.com/users/billw/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="hddtemp gnutls lm_sensors nls ssl X kernel_FreeBSD"
 
 RDEPEND=">=dev-libs/glib-2
