@@ -14,7 +14,7 @@ SRC_URI="http://www.mindspring.com/~jamoyers/software/colorgcc/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 DEPEND="dev-lang/perl"
 
