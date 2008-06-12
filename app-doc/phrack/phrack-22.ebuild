@@ -11,7 +11,7 @@ SRC_URI="http://www.phrack.org/archives/tgz/${MY_P}.tar.gz"
 
 LICENSE="phrack"
 SLOT="${PV}"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 S=${WORKDIR}/${MY_P}
