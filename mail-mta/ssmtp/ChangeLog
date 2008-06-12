@@ -1,6 +1,15 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.47 2008/06/10 20:14:06 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.50 2008/06/11 18:00:53 dertobi123 Exp $
+
+  11 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> ssmtp-2.62.ebuild:
+  Fix virtual/mta blocker
+
+  11 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> ssmtp-2.62.ebuild:
+  re-add PROVIDE=virtual/mta
+
+  11 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> ssmtp-2.62.ebuild:
+  Add block on net-mail/mailwrapper as per #222157
 
 *ssmtp-2.62 (10 Jun 2008)
 
