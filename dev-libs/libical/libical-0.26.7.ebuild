@@ -13,7 +13,7 @@ HOMEPAGE="http://www.aurore.net/projects/libical/"
 SRC_URI="http://www.aurore.net/projects/libical/${PN}-${MY_VER}.aurore.tar.bz2"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 LGPL-2 )"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 RDEPEND=""
