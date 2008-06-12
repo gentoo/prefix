@@ -13,7 +13,7 @@ HOMEPAGE="http://search.cpan.org/~fdaly/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 SRC_TEST="do"
 DEPEND="dev-perl/Test-NoWarnings
