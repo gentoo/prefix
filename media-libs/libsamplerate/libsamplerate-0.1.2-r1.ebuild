@@ -14,7 +14,7 @@ SRC_URI="http://www.mega-nerd.com/SRC/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="sndfile fftw"
 
 RDEPEND="fftw? ( >=sci-libs/fftw-3.0.1 )
