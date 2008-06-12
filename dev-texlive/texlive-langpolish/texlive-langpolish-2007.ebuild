@@ -13,4 +13,4 @@ DESCRIPTION="TeXLive Polish"
 
 LICENSE="GPL-2 LPPL-1.3c Aladdin"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
