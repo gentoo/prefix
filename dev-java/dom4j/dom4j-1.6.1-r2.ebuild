@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/dom4j/${P}.tar.gz
 	mirror://gentoo/${P}-java5.patch.bz2"
 LICENSE="dom4j"
 SLOT="1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 RDEPEND=">=virtual/jre-1.3
 	dev-java/jaxme
