@@ -12,7 +12,7 @@ SRC_URI="ftp://ulrik.haugen.se/pub/unix/bogosort/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
