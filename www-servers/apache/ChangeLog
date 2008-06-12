@@ -1,6 +1,12 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.72 2008/06/07 14:04:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.73 2008/06/11 19:08:59 hollow Exp $
+
+*apache-2.2.8-r4 (11 Jun 2008)
+
+  11 Jun 2008; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.6-r7.ebuild,
+  -apache-2.2.8-r2.ebuild, +apache-2.2.8-r4.ebuild:
+  fix #220353
 
   07 Jun 2008; Alexis Ballier <aballier@gentoo.org> apache-2.2.8-r3.ebuild:
   keyword ~sparc-fbsd
