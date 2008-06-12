@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~adamk/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=virtual/perl-File-Spec-0.83
