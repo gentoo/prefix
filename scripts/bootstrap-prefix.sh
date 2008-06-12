@@ -191,7 +191,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	local def="20080611"
+	local def="20080612"
 	case ${CHOST} in
 		powerpc-ibm-aix*)            PV="${def}" ;;
 		i*86-apple-darwin8)          PV="${def}" ;;
@@ -243,7 +243,7 @@ bootstrap_tree() {
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles distfiles
 		rm -Rf portage
-		mv prefix-overlay* portage
+		mv rsync1* portage
 		mv distfiles portage/
 		touch portage/.unpacked
 	fi
