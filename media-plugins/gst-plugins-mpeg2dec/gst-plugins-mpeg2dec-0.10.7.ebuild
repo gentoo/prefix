@@ -8,7 +8,7 @@ inherit gst-plugins-ugly
 
 DESCRIPTION="Libmpeg2 based decoder plug-in for gstreamer"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=media-libs/gst-plugins-base-0.10.17
