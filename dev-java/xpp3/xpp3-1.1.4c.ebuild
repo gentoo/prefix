@@ -17,7 +17,7 @@ SRC_URI="http://www.extreme.indiana.edu/dist/java-repository/${PN}/distributions
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="test"
 
 DEPEND=">=virtual/jdk-1.4
