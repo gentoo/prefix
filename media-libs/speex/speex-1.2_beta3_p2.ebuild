@@ -14,7 +14,7 @@ SRC_URI="http://downloads.xiph.org/releases/speex/${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ogg sse"
 
 RDEPEND="ogg? ( media-libs/libogg )"
