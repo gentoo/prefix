@@ -13,7 +13,7 @@ DESCRIPTION="A utility which highlights stderr text in red"
 SLOT="0"
 
 LICENSE="GPL-2"
-KEYWORDS="~x86-interix ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 S=${WORKDIR}
 
 IUSE=""
