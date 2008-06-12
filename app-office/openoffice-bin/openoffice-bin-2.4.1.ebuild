@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-2.4.1.ebuild,v 1.1 2008/06/10 09:56:03 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-2.4.1.ebuild,v 1.2 2008/06/11 14:06:27 opfer Exp $
 
 EAPI="prefix"
 
