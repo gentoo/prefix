@@ -39,7 +39,7 @@ SRC_URI="mirror://sourceforge/sbcl/${P}-source.tar.bz2
 LICENSE="MIT"
 SLOT="0"
 
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="ldb source threads unicode doc cobalt"
 
