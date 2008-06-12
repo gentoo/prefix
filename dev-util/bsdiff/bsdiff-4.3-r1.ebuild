@@ -14,7 +14,7 @@ SRC_URI="http://www.daemonology.net/bsdiff/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="BSD-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="app-arch/bzip2"
 RDEPEND="${DEPEND}"
