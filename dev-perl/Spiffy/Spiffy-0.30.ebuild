@@ -11,7 +11,7 @@ HOMEPAGE="http://search.cpan.org/~ingy/"
 SRC_URI="mirror://cpan/authors/id/I/IN/INGY/${P}.tar.gz"
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
