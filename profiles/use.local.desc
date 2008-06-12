@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3579 2008/06/10 10:35:09 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3582 2008/06/12 02:59:32 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -70,6 +70,7 @@ app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
 app-crypt/gpgme:pth - Enable support for GNU Portable Threads multithreading library
+app-crypt/heimdal:pkinit - Enable pkinit support to get the initial ticket
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:applet - Enable panel applet
@@ -1085,6 +1086,7 @@ media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:mtp - Build with Media Transfer Protocol support
 media-sound/banshee:njb - Build with njb audio player support
+media-sound/banshee:podcast - Build with podcasting support
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
 media-sound/cmus:mp4 - enable mp4 decoding
 media-sound/cmus:pidgin - install support script for net-im/pidgin
@@ -1393,7 +1395,6 @@ net-analyzer/munin:munin-dhcp - installs deps for monitoring DHCP
 net-analyzer/munin:munin-irc - installs deps for monitoring IRC
 net-analyzer/munin:munin-squid - installs deps for monitoring squid
 net-analyzer/munin:munin-surfboard - installs deps for monitoring a Motoro Surfboard Cable modem
-net-analyzer/munin:irc - installs deps for monitoring IRC
 net-analyzer/nagios-core:lighttpd - install lighttpd config
 net-analyzer/nagios-core:web - enable web interface
 net-analyzer/nagios-nrpe:command-args - allow clients to specify command arguments

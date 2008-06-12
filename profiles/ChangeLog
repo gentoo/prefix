@@ -1,10 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1532 2008/06/11 04:11:23 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1536 2008/06/11 22:21:14 dberkholz Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  11 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get
+  people off it.
+
+  11 Jun 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Masked mail-mta/xmail for removal
+
+  11 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> use.local.desc:
+  media-sound/banshee:podcast - Build with podcasting support
+
+  11 Jun 2008; Michael Hammer <mueli@gentoo.org>;
+  use.local.desc:
+  Add USE=pkinit for app-crypt/heimdal.
 
   11 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   desc/video_cards.desc:

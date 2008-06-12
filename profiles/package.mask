@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8712 2008/06/10 20:17:23 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8715 2008/06/11 22:21:14 dberkholz Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,24 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Donnie Berkholz <dberkholz@gentoo.org> (11 Jun 2008)
+# (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get 
+# people off it.
+=x11-libs/pixman-0.11.2
+=x11-libs/pixman-0.11.4
+
+# Torsten Veller <tove@gentoo.org> (11 Jun 2008)
+# Masked for removal in 30 days
+# Bugs: 99776 128014 131249 197816
+mail-mta/xmail
+
+# Hanno Böck <hanno@gentoo.org> (11 Jun 2008)
+# Masking till gnucash and other apps are ported
+>=net-libs/aqbanking-3.0.0
+>=sys-libs/libchipcard-4.0.0
+>=sys-libs/gwenhywfar-3.0.0
+>=app-office/qbankmanager-0.9.48
 
 # Tobias Heinlein <keytoaster@gentoo.org> (10 Jun 2008)
 # Masked for removal on 20 Jun 2008.
