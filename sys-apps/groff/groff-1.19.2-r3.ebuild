@@ -63,7 +63,8 @@ src_compile() {
 		$(use_with X x) \
 		$(use_enable cjk japanese) \
 		|| die
-	emake || die
+	emake -j1 || die #Apparently needed on amd64-linux in prefix.
+					# (12 Jun 2008, darkside)
 }
 
 src_install() {
