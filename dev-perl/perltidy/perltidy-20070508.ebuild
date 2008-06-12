@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/perltidy/${P/perltidy/Perl-Tidy}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 SRC_TEST="do"
