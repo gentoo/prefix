@@ -11,7 +11,7 @@ DESCRIPTION="Perl Net::DNS - Perl DNS Resolver Module"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="ipv6"
 
 RDEPEND="virtual/perl-Digest-MD5

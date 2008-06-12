@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/O/OL/OLAF/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="ipv6"
 
 DEPEND="virtual/perl-Digest-MD5
