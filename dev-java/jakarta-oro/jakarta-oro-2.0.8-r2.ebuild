@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/jakarta/oro/source/${P}.tar.gz"
 
 LICENSE="Apache-1.1"
 SLOT="2.0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="examples"
 
 DEPEND=">=virtual/jdk-1.3"
