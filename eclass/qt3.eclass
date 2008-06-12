@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.32 2008/03/06 01:22:36 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.33 2008/06/11 13:25:08 zlin Exp $
 
 # @ECLASS: qt3.eclass
 # @MAINTAINER:
@@ -17,7 +17,7 @@ QT3MAJORVERSIONS="3.3 3.2 3.1 3.0"
 QT3VERSIONS="3.3.8-r4 3.3.8-r3 3.3.8-r2 3.3.8-r1 3.3.8 3.3.6-r5 3.3.6-r4 3.3.6-r3 3.3.6-r2 3.3.6-r1 3.3.6 3.3.5-r1 3.3.5 3.3.4-r9 3.3.4-r8 3.3.4-r7 3.3.4-r6 3.3.4-r5 3.3.4-r4 3.3.4-r3 3.3.4-r2 3.3.4-r1 3.3.4 3.3.3-r3 3.3.3-r2 3.3.3-r1 3.3.3 3.3.2 3.3.1-r2 3.3.1-r1 3.3.1 3.3.0-r1 3.3.0 3.2.3-r1 3.2.3 3.2.2-r1 3.2.2 3.2.1-r2 3.2.1-r1 3.2.1 3.2.0 3.1.2-r4 3.1.2-r3 3.1.2-r2 3.1.2-r1 3.1.2 3.1.1-r2 3.1.1-r1 3.1.1 3.1.0-r3 3.1.0-r2 3.1.0-r1 3.1.0"
 
 if [[ -z "${QTDIR}" ]]; then
-	QTDIR="/usr/qt/3"
+	export QTDIR="/usr/qt/3"
 fi
 
 addwrite "${QTDIR}/etc/settings"
