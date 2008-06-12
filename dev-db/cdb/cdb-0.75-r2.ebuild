@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils toolchain-funcs
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 
 DESCRIPTION="Fast, reliable, simple package for creating and reading constant databases."
 HOMEPAGE="http://cr.yp.to/cdb.html"
