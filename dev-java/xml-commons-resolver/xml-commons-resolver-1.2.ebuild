@@ -15,7 +15,7 @@ DEPEND=">=virtual/jdk-1.3"
 RDEPEND=">=virtual/jre-1.3"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 JAVA_PKG_BSFIX_NAME="resolver.xml"
