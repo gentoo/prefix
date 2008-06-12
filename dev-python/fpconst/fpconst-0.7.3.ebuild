@@ -10,7 +10,7 @@ DESCRIPTION="Python Module for handling IEEE 754 floating point special values"
 HOMEPAGE="http://chaco.bst.rochester.edu:8080/statcomp/projects/RStatServer/fpconst/"
 SRC_URI="mirror://sourceforge/rsoap/${P}.tar.gz"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE=""
