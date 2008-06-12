@@ -16,7 +16,7 @@ HOMEPAGE="http://formencode.org/"
 SRC_URI="http://cheeseshop.python.org/packages/source/${MY_P:0:1}/${MY_PN}/${MY_P}.tar.gz"
 LICENSE="PSF-2.4"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 DEPEND="dev-python/setuptools"
