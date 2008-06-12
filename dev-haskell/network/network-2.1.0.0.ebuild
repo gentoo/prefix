@@ -13,7 +13,7 @@ SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-lang/ghc-6.4
