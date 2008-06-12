@@ -12,7 +12,7 @@ DESCRIPTION="Perl extension for SHA-1/224/256/384/512"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
