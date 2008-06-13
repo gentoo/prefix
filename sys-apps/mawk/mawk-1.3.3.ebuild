@@ -10,7 +10,7 @@ HOMEPAGE="http://freshmeat.net/projects/mawk/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND="virtual/libc"
 IUSE=""
