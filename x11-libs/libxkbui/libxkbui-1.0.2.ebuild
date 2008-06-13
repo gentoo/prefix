@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org xkbui library"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
 RDEPEND="x11-libs/libXt
 	>=x11-libs/libxkbfile-1.0.3
