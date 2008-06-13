@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org xlsfonts application"
 
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 
 RDEPEND="x11-libs/libX11"
 DEPEND="${RDEPEND}"
