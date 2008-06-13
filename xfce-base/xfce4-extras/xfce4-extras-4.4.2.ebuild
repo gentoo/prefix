@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="battery cpufreq hal gnome lm_sensors wifi"
 
 RDEPEND=">=xfce-extra/xfce4-time-out-0.1.1
