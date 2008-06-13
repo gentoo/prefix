@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.120 2008/05/29 10:05:24 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.122 2008/06/12 20:59:48 ranger Exp $
+
+  12 Jun 2008; Brent Baude <ranger@gentoo.org> erlang-12.2.3.ebuild:
+  Marking erlang-12.2.3 ~ppc64 for bug 226085
+
+*erlang-12.2.3 (12 Jun 2008)
+
+  12 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  +erlang-12.2.3.ebuild:
+  version bump: A bugfix release. Ebuild has been cleaned up a bit: some die
+  statements, added support for USE=sctp (see bug 223555 by Maxim Treskin
+  <zerthurd AT gmail DOT com>)
 
   29 May 2008; Christian Faulhammer <opfer@gentoo.org>
   -files/erlang-10.2.6-export-TARGET.patch,

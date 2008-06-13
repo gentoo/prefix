@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.1.ebuild,v 1.9 2008/04/01 18:16:44 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3.ebuild,v 1.2 2008/06/12 20:59:48 ranger Exp $
 
 EAPI="prefix"
 
-inherit elisp-common eutils flag-o-matic multilib versionator
+inherit autotools elisp-common eutils flag-o-matic multilib versionator
 
-# NOTE: You need to adjust the version number in the last comment.  If you need symlinks for
-# binaries please tell maintainers or open up a bug to let it be created.
+# NOTE: If you need symlinks for binaries please tell maintainers or
+# open up a bug to let it be created.
 
 # erlang uses a really weird versioning scheme which caused quite a few problems
 # already. Thus we do a slight modification converting all letters to digits to
@@ -28,7 +28,7 @@ SRC_URI="http://www.erlang.org/download/${MY_P}.tar.gz
 LICENSE="EPL"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc emacs hipe java kpoll odbc smp ssl tk"
+IUSE="doc emacs hipe java kpoll odbc smp sctp ssl tk"
 
 RDEPEND=">=dev-lang/perl-5.6.1
 	ssl? ( >=dev-libs/openssl-0.9.7d )
@@ -36,23 +36,14 @@ RDEPEND=">=dev-lang/perl-5.6.1
 	java? ( >=virtual/jdk-1.2 )
 	odbc? ( dev-db/unixODBC )"
 DEPEND="${RDEPEND}
+	sctp? ( net-misc/lksctp-tools )
 	tk? ( dev-lang/tk )"
 
 S="${WORKDIR}/${MY_P}"
 
-SITEFILE=50erlang-gentoo.el
-
-pkg_setup() {
-	if use ssl; then
-		if is-ldflag --as-needed || is-flag --as-needed; then
-			eerror "Don't use --as-needed in your LDFLAGS or CFLAGS for SSL support, this will fail."
-			die
-		fi
-	fi
-}
+SITEFILE=50${PN}-gentoo.el
 
 src_unpack() {
-
 	unpack ${A}
 	cd "${S}"
 
@@ -69,6 +60,7 @@ src_unpack() {
 		ewarn "Don't cry, don't file bugs, just disable it! If you have fix, tell us."
 		ewarn
 	fi
+	eautoreconf
 }
 
 src_compile() {
@@ -78,6 +70,7 @@ src_compile() {
 	use ssl && myconf="--with-ssl=${EPREFIX}/usr" || myconf="--without-ssl"
 	econf \
 		--enable-threads \
+		$(use_enable sctp) \
 		$(use_enable hipe) \
 		"${myconf}" \
 		$(use_enable kpoll kernel-poll) \
@@ -87,7 +80,7 @@ src_compile() {
 
 	if use emacs ; then
 		pushd lib/tools/emacs
-		elisp-compile *.el
+		elisp-compile *.el || die
 		popd
 	fi
 }
@@ -160,7 +153,7 @@ pkg_postinst() {
 	elog "If you need a symlink to one of Erlang's binaries,"
 	elog "please open a bug on http://bugs.gentoo.org/"
 	elog
-	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as R12B-1"
+	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as ${MY_PV}"
 	elog
 }
 
