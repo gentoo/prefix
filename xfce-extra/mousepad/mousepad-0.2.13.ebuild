@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Text editor"
 HOMEPAGE="http://www.xfce.org/projects/mousepad"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND=">=x11-libs/gtk+-2.6
