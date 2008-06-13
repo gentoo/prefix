@@ -1,0 +1,8 @@
+--- beecrypt-4.1.2/python/test/Makefile.am	2004-07-19 08:07:59.000000000 +0200
++++ beecrypt-cvs/python/test/Makefile.am	2006-05-06 15:04:17.000000000 +0200
+@@ -11,4 +11,4 @@
+ all:
+ 
+ check:
+-	$(VALGRIND) PYTHONPATH=.. python test_all.py verbose
++	$(VALGRIND) PYTHONPATH="..:../.libs" python test_all.py verbose
