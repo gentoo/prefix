@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="analog / digital clock for X"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="xprint"
 
 RDEPEND="x11-libs/libX11
