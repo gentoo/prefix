@@ -12,7 +12,7 @@ HOMEPAGE="http://www.cpan.org/modules/by-authors/id/J/JV/JV/${P}.readme"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="virtual/perl-PodParser
