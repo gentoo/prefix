@@ -21,7 +21,7 @@ SRC_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/${TBVE
 	mirror://gentoo/mozilla-thunderbird-${TBPATCH}.tar.bz2
 	http://www.mozilla-enigmail.org/downloads/src/enigmail-${EMVER}.tar.gz"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="MPL-1.1 GPL-2"
 IUSE=""
