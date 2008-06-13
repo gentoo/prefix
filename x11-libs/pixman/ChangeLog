@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.11 2008/06/10 00:39:14 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.12 2008/06/12 14:56:11 cardoe Exp $
+
+*pixman-0.11.4-r1 (12 Jun 2008)
+
+  12 Jun 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/pixman-0.11.4-memleak.patch, +pixman-0.11.4-r1.ebuild:
+  fix #225907. Patch by Maximilian Grothusmann <maxi@own-hero.net> fixing
+  the memory leak
 
 *pixman-0.11.4 (10 Jun 2008)
 
