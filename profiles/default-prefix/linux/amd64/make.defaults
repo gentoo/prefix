@@ -2,35 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# note: this is no-multilib!
+#Note: this is Gentoo Prefix specific! (13 Jul 2008, darkside)
 
 ARCH=amd64
 CHOST="x86_64-pc-linux-gnu"
 ACCEPT_KEYWORDS="~amd64-linux"
-
-# 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
-# Multilib settings for all amd64 subprofiles.
-MULTILIB_ABIS="amd64"
-DEFAULT_ABI="amd64"
-ABI=amd64
-
-# 64bit specific settings.
-CHOST_amd64="x86_64-pc-linux-gnu"
-CDEFINE_amd64="__x86_64__"
-LIBDIR_amd64="lib64"
-
-# 32bit specific settings.
-CFLAGS_x86="-m32"
-LDFLAGS_x86="-m elf_i386"
-ASFLAGS_x86="--32"
-CHOST_x86="i686-pc-linux-gnu"
-CDEFINE_x86="__i386__"
-LIBDIR_x86="lib32"
-
-# FEATURES="multilib-strict" specific settings.
-MULTILIB_STRICT_DIRS="/lib /usr/lib /usr/kde/*/lib /usr/qt/*/lib /usr/X11R6/lib"
-MULTILIB_STRICT_DENY="64-bit.*shared object"
-MULTILIB_STRICT_EXEMPT="(perl5|gcc|gcc-lib|binutils|eclipse-3|debug|portage)"
-
-# Let sys-apps/baselayout create the lib symlink.
-SYMLINK_LIB="yes"
