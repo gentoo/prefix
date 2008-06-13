@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_rc1-r1.ebuild,v 1.1 2008/05/21 10:45:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0_rc3.ebuild,v 1.1 2008/06/12 15:23:37 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
-PATCH="${P}-patches-0.1"
+PATCH="${PN}-3.0_rc1-patches-0.1"
 
-LANGS="af ar be ca cs de el en-GB en-US es-AR es-ES eu fi fr fy-NL ga-IE gu-IN he hu id it ja ka ko ku lt mk mn nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru sk sq sr sv-SE tr uk zh-CN zh-TW"
+LANGS="af ar be ca cs da de el en-GB en-US es-AR es-ES eu fi fr fy-NL ga-IE gu-IN he hu id it ja ka ko ku lt mk mn nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
 
 MY_PV=${PV/_rc/rc}
@@ -49,7 +49,7 @@ done
 
 RDEPEND="java? ( virtual/jre )
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12_rc3
+	>=dev-libs/nss-3.12_rc4
 	>=dev-libs/nspr-4.7.1
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.1.9
