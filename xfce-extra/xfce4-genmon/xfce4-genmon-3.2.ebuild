@@ -9,7 +9,7 @@ inherit xfce44
 xfce44
 
 DESCRIPTION="Cyclically spawns the executable, captures its output and displays the result into the panel."
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 RDEPEND=">=xfce-base/xfce4-panel-4.3.22"
 DEPEND="${RDEPEND}
