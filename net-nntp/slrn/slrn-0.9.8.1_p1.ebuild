@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.sourceforge.net/patches/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="nls ssl uudeview"
 
 RDEPEND="virtual/mta
