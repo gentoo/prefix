@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/com_err
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.72 2008/06/09 19:13:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.73 2008/06/12 18:55:56 klausman Exp $
+
+  12 Jun 2008; Tobias Klausmann <klausman@gentoo.org> com_err-1.40.9.ebuild:
+  Stable on alpha, bug #225239, thanks to Matt Turner for testing
 
   09 Jun 2008; Brent Baude <ranger@gentoo.org> com_err-1.40.9.ebuild:
   Marking com_err-1.40.9 ppc64 for bug 225239
