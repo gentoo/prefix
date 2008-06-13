@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Basic utilities library"
 HOMEPAGE="http://www.xfce.org/projects/libraries"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc"
 
 RDEPEND=">=dev-libs/glib-2.6"
