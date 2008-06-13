@@ -14,7 +14,7 @@ DESCRIPTION="A modular textUI IRC client with IPv6 support"
 HOMEPAGE="http://irssi.org/"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="ipv6 perl ssl socks5"
 
 RDEPEND="sys-libs/ncurses
