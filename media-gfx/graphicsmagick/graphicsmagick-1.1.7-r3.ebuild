@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="X gs jbig jpeg2k jpeg lcms lzw perl png tiff truetype wmf xml doc depth16 depth32"
 
 RDEPEND="app-arch/bzip2
