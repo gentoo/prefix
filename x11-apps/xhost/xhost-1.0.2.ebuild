@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="Controls host and/or user access to a running X server."
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/libX11
