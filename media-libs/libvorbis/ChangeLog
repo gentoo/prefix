@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/libvorbis
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.94 2008/05/18 09:18:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.98 2008/06/12 20:24:46 ranger Exp $
+
+  12 Jun 2008; Brent Baude <ranger@gentoo.org> libvorbis-1.2.1_rc1.ebuild:
+  Marking libvorbis-1.2.1_rc1 ppc64 for bug 222085
+
+  12 Jun 2008; Friedrich Oslage <bluebird@gentoo.org>
+  libvorbis-1.2.1_rc1.ebuild:
+  stable on sparc, bug #222085
+
+  12 Jun 2008; Jeroen Roovers <jer@gentoo.org> libvorbis-1.2.1_rc1.ebuild:
+  Stable for HPPA (bug #222085).
+
+*libvorbis-1.2.1_rc1 (12 Jun 2008)
+
+  12 Jun 2008; Ben de Groot <yngwin@gentoo.org> +libvorbis-1.2.1_rc1.ebuild:
+  Version bump to 1.2.1_rc1 which includes all the recent security fixes.
 
   18 May 2008; Alexis Ballier <aballier@gentoo.org>
   files/libvorbis-1.2.0-CVE-2008-1419.patch,
