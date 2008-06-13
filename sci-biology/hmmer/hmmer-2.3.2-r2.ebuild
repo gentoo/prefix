@@ -11,7 +11,7 @@ SRC_URI="ftp://ftp.genetics.wustl.edu/pub/eddy/${PN}/${PV}/${P}.tar.gz"
 
 SLOT="0"
 IUSE="pvm threads"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND="pvm? ( sys-cluster/pvm )"
 
