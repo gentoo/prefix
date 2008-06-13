@@ -12,7 +12,7 @@ SRC_URI="http://alumnit.ca/~apenwarr/netselect/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}/${PN}
