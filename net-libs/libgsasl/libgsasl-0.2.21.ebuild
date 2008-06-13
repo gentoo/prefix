@@ -11,7 +11,7 @@ LICENSE="LGPL-3"
 SLOT="0"
 # TODO: check http://www.gnu.org/software/gsasl/#dependencies for more
 # 	optional external libraries.
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="idn kerberos nls static"
 PROVIDE="virtual/gsasl"
 DEPEND="virtual/libc
