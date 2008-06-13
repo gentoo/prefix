@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.altlinux.org/pub/people/ldv/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="elibc_FreeBSD"
 
 DEPEND="!virtual/utempter"
