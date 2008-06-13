@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/pv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pv/ChangeLog,v 1.5 2008/06/12 00:43:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pv/ChangeLog,v 1.6 2008/06/12 18:46:03 armin76 Exp $
+
+  12 Jun 2008; Raúl Porcel <armin76@gentoo.org> pv-1.1.4.ebuild:
+  alpha/sparc/x86 stable wrt #225947
 
   12 Jun 2008; Brent Baude <ranger@gentoo.org> pv-1.1.4.ebuild:
   stable ppc64, bug 225947
