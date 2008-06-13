@@ -18,7 +18,7 @@ DEPEND=">=sys-devel/libtool-1.4.1
 
 IUSE="ssl debug"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 src_unpack() {
 	unpack ${A}
