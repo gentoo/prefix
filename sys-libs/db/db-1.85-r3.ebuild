@@ -20,6 +20,15 @@ DEPEND=""
 
 S=${WORKDIR}/db.${PV}
 
+get_port() {
+	local port
+	case ${CHOST} in
+		*-aix*)     port=aix.3.2 ;;
+		*)          port=linux ;;
+	esac
+	echo $port
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -27,19 +36,19 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gentoo-paths.patch
 	sed -i \
 		-e "s:@GENTOO_LIBDIR@:$(get_libdir):" \
-		PORT/linux/Makefile || die
+		PORT/$(get_port)/Makefile || die
 }
 
 src_compile() {
 	tc-export CC AR RANLIB
-	emake -C PORT/linux OORG="${CFLAGS}" || die
+	emake -C PORT/$(get_port) OORG="${CFLAGS}" || die
 }
 
 src_install() {
-	make -C PORT/linux install DESTDIR="${D}" || die
+	make -C PORT/$(get_port) install DESTDIR="${D}" || die
 
 	# binary compat symlink
-	dosym libdb1.so.2 /usr/$(get_libdir)/libdb.so.2 || die
+	dosym libdb1$(get_libname 2) /usr/$(get_libdir)/libdb$(get_libname 2) || die
 
 	dosed "s:<db.h>:<db1/db.h>:" /usr/include/db1/ndbm.h
 	dosym db1/ndbm.h /usr/include/ndbm.h
