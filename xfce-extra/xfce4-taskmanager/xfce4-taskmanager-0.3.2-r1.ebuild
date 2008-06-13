@@ -9,7 +9,7 @@ inherit autotools eutils xfce44
 xfce44
 
 DESCRIPTION="Task Manager"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 HOMEPAGE="http://goodies.xfce.org/projects/applications/xfce4-taskmanager"
 SRC_URI="http://goodies.xfce.org/releases/${PN}/${P}${COMPRESS}"
 
