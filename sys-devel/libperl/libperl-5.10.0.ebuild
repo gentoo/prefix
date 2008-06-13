@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r2.ebuild,v 1.9 2008/05/16 19:20:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.21 2007/02/17 22:31:17 grobian Exp $
+
+EAPI="prefix"
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -52,8 +54,6 @@
 #
 # Martin Schlemmer <azarah@gentoo.org> (28 Dec 2002).
 
-EAPI="prefix"
-
 IUSE="berkdb debug gdbm ithreads"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
@@ -65,7 +65,7 @@ SHORT_PV="${PV%.*}"
 MY_P="perl-${PV/_rc/-RC}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Larry Wall's Practical Extraction and Reporting Language"
-SRC_URI="mirror://cpan/src/${MY_P}.tar.bz2"
+SRC_URI="mirror://cpan/src/${MY_P}.tar.gz"
 HOMEPAGE="http://www.perl.org"
 SLOT="${PERLSLOT}"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
@@ -84,7 +84,7 @@ RESTRICT="test"
 
 DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
-	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs ) )"
+	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -98,7 +98,7 @@ pkg_setup() {
 	if use ithreads
 	then
 		ewarn ""
-		ewarn "PLEASE NOTE: You are compiling perl-5.8 with"
+		ewarn "PLEASE NOTE: You are compiling perl-5.10 with"
 		ewarn "interpreter-level threading enabled."
 		ewarn "Threading is not supported by all applications "
 		ewarn "that compile against perl. You use threading at "
@@ -113,7 +113,7 @@ src_unpack() {
 	unpack ${A}
 
 	# Fix the build scripts to create libperl with a soname of ${SLOT}.
-	# We basically add (for platforms which support it):
+	# We basically add:
 	#
 	#   -Wl,-soname -Wl,libperl.so.`echo $(LIBPERL) | cut -d. -f3`
 	#
@@ -123,22 +123,17 @@ src_unpack() {
 	#
 	cd "${S}";
 	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* || ${CHOST} == *64-*-hpux* ]] &&
-		epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
+		epatch ${FILESDIR}/${P}-create-libperl-soname.patch
 	[[ ${CHOST} == *64-*-hpux* ]] && sed -i -e 's,-soname,+h,g' Makefile.SH
 
 	epatch "${FILESDIR}"/${P}-aix.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
-	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # could disrupt if using native ld
-	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
-	epatch "${FILESDIR}"/${P}-solaris11.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
-	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
+	epatch "${FILESDIR}"/${P}-cleanup-paths.patch
 	epatch "${FILESDIR}"/${P}-usr-local.patch # should be merged with cleanup-paths
-	epatch "${FILESDIR}"/${P}-interix-firstmakefile.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-interix-firstmakefile.patch
 	epatch "${FILESDIR}"/${P}-interix-misc.patch
-
-	# activate Solaris 11 workaround...
-	[[ ${CHOST} == *-solaris2.11 ]] && append-flags -DSOLARIS11
 
 	# Configure makes an unwarranted assumption that /bin/ksh is a
 	# good shell. This patch makes it revert to using /bin/sh unless
@@ -149,26 +144,15 @@ src_unpack() {
 	# we need the same @INC-inversion magic here we do in perl
 	cd "${S}"; epatch "${FILESDIR}"/${P}-reorder-INC.patch
 
-	# makedepend.SH contains a syntax error which is ignored by bash but causes
-	# dash to abort
-	epatch "${FILESDIR}"/${P}-makedepend-syntax.patch
-
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
 	use !prefix && cd "${S}" && epatch "${T}"/${P}-lib64.patch
-	[[ ${CHOST} == *-dragonfly* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
-	[[ ${CHOST} == *-freebsd* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-fbsdhints.patch
-	cd "${S}"; epatch "${FILESDIR}"/${P}-cplusplus.patch
-	has_version '>=sys-devel/gcc-4.2' && epatch "${FILESDIR}"/${P}-gcc42-command-line.patch
-
-	# patch to fix bug #198196
-	# UTF/Regular expressions boundary error (CVE-2007-5116)
-	epatch "${FILESDIR}"/${P}-utf8-boundary.patch
-
-	# patch to fix bug #219203
-	epatch "${FILESDIR}"/${P}-CVE-2008-1927.patch
+#	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
+#	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
+#	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
+#	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then

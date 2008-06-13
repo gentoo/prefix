@@ -1,0 +1,36 @@
+--- hints/hpux.sh.orig	2007-12-18 11:47:07 +0100
++++ hints/hpux.sh	2008-06-13 21:50:18 +0200
+@@ -190,7 +190,7 @@
+     $define|true|[Yy])
+ 	echo '#include <stdio.h>\nint main(){long l;printf("%d\\n",sizeof(l));}'>try.c
+ 	$cc -o try $ccflags $ldflags try.c
+-	if [ "`try`" = "8" ]; then
++	if [ "`./try`" = "8" ]; then
+ 	    case "$use64bitall" in
+ 		$define|true|[Yy]) ;;
+ 		*)  cat <<EOM >&4
+@@ -350,7 +350,7 @@
+     } /* main */
+ EOF
+ $cc -o try $ccflags $ldflags try.c
+-	maxdsiz=`try`
++	maxdsiz=`./try`
+ rm -f try try.c core
+ if [ $maxdsiz -le 64 ]; then
+     # 64 Mb is probably not enough to optimize toke.c
+@@ -375,11 +375,11 @@
+ 	    "")           optimize="-g -O" ;;
+ 	    *O[3456789]*) optimize=`echo "$optimize" | sed -e 's/O[3-9]/O2/'` ;;
+ 	    esac
+-	#ld="$cc"
+-	ld=/usr/bin/ld
++	ld="$cc"
++	#ld=/usr/bin/ld
+ 	cccdlflags='-fPIC'
+-	#lddlflags='-shared'
+-	lddlflags='-b'
++	lddlflags='-shared'
++	#lddlflags='-b'
+ 	case "$optimize" in
+ 	    *-g*-O*|*-O*-g*)
+ 		# gcc without gas will not accept -g
