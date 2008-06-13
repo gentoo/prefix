@@ -11,7 +11,7 @@ xfce44
 
 DESCRIPTION="Frontend for printing, management and job queue."
 HOMEPAGE="http://www.xfce.org/projects/xfprint"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="cups debug doc"
 
 RDEPEND="cups? ( net-print/cups )
