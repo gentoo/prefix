@@ -10,7 +10,7 @@ SRC_URI="http://dev.gentoo.org/~haubi/distfiles/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="-* ~ppc-aix"
+KEYWORDS="~ppc-aix"
 IUSE=""
 
 src_install() {
