@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.83 2008/05/29 15:28:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.84 2008/06/12 11:09:42 yngwin Exp $
+
+  12 Jun 2008; Ben de Groot <yngwin@gentoo.org> gamin-0.1.9-r1.ebuild:
+  Adding append-flags -D_GNU_SOURCE to fix bug 225403. Commit approved by
+  mraudsepp.
 
   29 May 2008; Ali Polatel <hawking@gentoo.org> gamin-0.1.9-r1.ebuild:
   python_mod_optimize is ROOT aware.

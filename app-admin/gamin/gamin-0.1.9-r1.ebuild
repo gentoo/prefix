@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.9-r1.ebuild,v 1.3 2008/05/29 15:28:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.9-r1.ebuild,v 1.4 2008/06/12 11:09:42 yngwin Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils libtool python flag-o-matic
+inherit autotools eutils flag-o-matic libtool python
 
 DESCRIPTION="Library providing the FAM File Alteration Monitor API"
 HOMEPAGE="http://www.gnome.org/~veillard/gamin/"
@@ -46,9 +46,10 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
-	}
+	# fixes bug 225403
+	use elibc_glibc && append-flags "-D_GNU_SOURCE"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf --disable-debug \
 		$(use_enable kernel_linux inotify) \
