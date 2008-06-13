@@ -1,0 +1,36 @@
+* see http://bugs.gentoo.org/show_bug.cgi?id=209135
+
+--- lib/regcomp.c
++++ lib/regcomp.c
+@@ -558,7 +558,18 @@
+ static const bitset_t utf8_sb_map =
+ {
+   /* Set the first 128 bits.  */
+-  [0 ... 0x80 / BITSET_WORD_BITS - 1] = BITSET_WORD_MAX
++  /* [0 ... 0x80 / BITSET_WORD_BITS - 1] = BITSET_WORD_MAX */
++#if BITSET_WORD_MAX == 0xffffffffULL
++  [0] = BITSET_WORD_MAX,
++  [1] = BITSET_WORD_MAX,
++  [2] = BITSET_WORD_MAX,
++  [3] = BITSET_WORD_MAX
++#elif BITSET_WORD_MAX == 0xffffffffffffffffULL
++  [0] = BITSET_WORD_MAX,
++  [1] = BITSET_WORD_MAX
++#else
++# error "Unknown value for BITSET_WORD_MAX"
++#endif
+ };
+ #endif
+ 
+--- lib/regexec.c
++++ lib/regexec.c
+@@ -2894,7 +2894,8 @@
+ 	      sizeof (re_dfastate_t *) * (path->alloc - old_alloc));
+     }
+ 
+-  str_idx = path->next_idx ?: top_str;
++  /* str_idx = path->next_idx ?: top_str; */
++  str_idx = path->next_idx ? path->next_idx : top_str;
+ 
+   /* Temporary modify MCTX.  */
+   backup_state_log = mctx->state_log;
