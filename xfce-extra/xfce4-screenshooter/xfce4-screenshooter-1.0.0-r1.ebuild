@@ -9,7 +9,7 @@ inherit eutils xfce44
 xfce44
 
 DESCRIPTION="Xfce4 panel screenshooter plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 src_unpack() {
 	unpack ${A}
