@@ -14,7 +14,7 @@ SRC_URI="mirror://cpan/authors/id/B/BB/BBB/${MY_P}.tar.gz"
 HOMEPAGE="http://search.cpan.org/~bbb/"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
