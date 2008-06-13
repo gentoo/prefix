@@ -1,6 +1,20 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.178 2008/05/31 06:57:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.180 2008/06/13 04:29:22 zmedico Exp $
+
+  13 Jun 2008; Zac Medico <zmedico@gentoo.org> bash-3.2_p39.ebuild:
+  Bug #222721 - Replace the !<sys-apps/portage-2.1.4_rc1 blocker
+  (from bug #190128) with !<sys-apps/portage-2.1.5 to ensure that
+  phase execution order is such that the /bin/sh symlink will be
+  created in the postinst phase when necessary. This eliminates the
+  need for an associated die call in pkg_setup(). The blocker will
+  be solved automatically by emerge since it can adjust install order
+  such that the upgrade from portage-2.1.4.x to portage-2.1.5.x occurs
+  before the upgrade to bash-3.2_p39.
+
+  12 Jun 2008; Bo Ørsted Andresen <zlin@gentoo.org> bash-3.2_p39.ebuild:
+  Ensure that portage < 2.1.5 upgrade bash with FEATURES=-unmerge-orphans.
+  Rewrite /bin/sh to prevent it from being uninstalled by changing its mtime.
 
   31 May 2008; Mike Frysinger <vapier@gentoo.org> bash-3.2_p39.ebuild:
   Make sure /bin/sh always exists #222721 by Davide Pesavento.

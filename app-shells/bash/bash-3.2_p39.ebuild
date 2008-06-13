@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.4 2008/05/31 06:57:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.6 2008/06/13 04:29:22 zmedico Exp $
 
 EAPI="prefix"
 
@@ -38,7 +38,7 @@ IUSE="afs bashlogger examples nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
 RDEPEND="${DEPEND}
-	!<sys-apps/portage-2.1.4_rc1
+	!<sys-apps/portage-2.1.5
 	!<sys-apps/paludis-0.26.0_alpha5"
 
 S=${WORKDIR}/${MY_P}
@@ -223,5 +223,11 @@ pkg_preinst() {
 
 pkg_postinst() {
 	# If /bin/sh does not exist, provide it
-	[[ ! -e ${EROOT}/bin/sh ]] && ln -sf bash "${EROOT}"/bin/sh
+	if [[ ! -e ${EROOT}/bin/sh ]]; then
+		ln -sf bash "${EROOT}"/bin/sh
+	elif [[ -L ${EROOT}/bin/sh ]]; then
+		# rewrite the symlink to ensure that its mtime changes
+		local target=$(readlink "${EROOT}"/bin/sh)
+		ln -sf "${target}" "${EROOT}"/bin/sh
+	fi
 }
