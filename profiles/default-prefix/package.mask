@@ -52,7 +52,7 @@ sys-devel/distcc
 # Jeremy Olexa <darkside@gentoo.org> (13 May 2008)
 # Subversion works for me on x86-linux but still shouldn't be unleashed without
 # more testing on other ARCHs
-=dev-util/subversion-1.5.0_rc5
+>=dev-util/subversion-1.5
 
 # Fabian Groffen <grobian@gentoo.org> (08 May 2008)
 # Still breaks several packages among which expat, see bug #220901
