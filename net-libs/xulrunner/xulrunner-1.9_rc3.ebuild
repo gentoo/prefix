@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc2.ebuild,v 1.1 2008/06/05 14:01:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc3.ebuild,v 1.1 2008/06/12 15:18:54 armin76 Exp $
 
 EAPI="prefix"
 
