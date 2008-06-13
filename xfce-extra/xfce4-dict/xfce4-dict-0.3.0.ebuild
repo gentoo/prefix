@@ -10,7 +10,7 @@ xfce44
 xfce44_gzipped
 
 DESCRIPTION="A plugin to query a Dict server and other dictionary sources"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="dev-util/intltool"
