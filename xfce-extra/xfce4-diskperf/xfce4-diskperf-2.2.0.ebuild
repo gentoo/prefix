@@ -10,7 +10,7 @@ xfce44
 xfce44_goodies_panel_plugin
 
 DESCRIPTION="Disk usage and performance panel plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 DEPEND="xfce-extra/xfce4-dev-tools
 	dev-util/intltool"
