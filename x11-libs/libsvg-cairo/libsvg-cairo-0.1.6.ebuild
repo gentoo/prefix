@@ -10,7 +10,7 @@ SRC_URI="http://cairographics.org/snapshots/${P}.tar.gz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 RDEPEND="x11-libs/cairo
