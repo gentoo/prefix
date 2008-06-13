@@ -9,7 +9,7 @@ inherit autotools xfce44
 xfce44
 
 DESCRIPTION="System load monitor panel plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DEPEND="xfce-extra/xfce4-dev-tools
 	dev-util/intltool"
