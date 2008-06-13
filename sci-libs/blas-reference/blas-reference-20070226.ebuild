@@ -16,7 +16,7 @@ SRC_URI="http://www.netlib.org/lapack/${LAPACKPN}-${LAPACKPV}.tgz"
 
 SLOT="0"
 IUSE="doc"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND="app-admin/eselect-blas"
 RDEPEND="${DEPEND}
