@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.14 2008/06/01 01:30:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.15 2008/06/12 12:48:34 opfer Exp $
 
 # @ECLASS: versionator.eclass
 # @MAINTAINER:
@@ -190,7 +190,7 @@ get_after_major_version() {
 	__versionator_shopt_toggle off
 }
 
-# @FUNCTION: replace_version_sepaator
+# @FUNCTION: replace_version_separator
 # @USAGE: <search> <replacement> [subject]
 # @DESCRIPTION:
 # Replace the $1th separator with $2 in $3 (defaults to $PV if $3 is not
