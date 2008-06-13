@@ -13,7 +13,7 @@ DESCRIPTION="Thunar archive plugin"
 HOMEPAGE="http://www.foo-projects.org/~benny/projects/thunar-archive-plugin"
 SRC_URI="mirror://berlios/xfce-goodies/${MY_P}${COMPRESS}"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="|| ( app-arch/xarchiver app-arch/file-roller app-arch/squeeze kde-base/ark )"
