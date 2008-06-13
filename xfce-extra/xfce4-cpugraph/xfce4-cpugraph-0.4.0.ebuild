@@ -10,7 +10,7 @@ xfce44
 xfce44_gzipped
 
 DESCRIPTION="CPU load panel plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
