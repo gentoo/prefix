@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
 
 LICENSE="MIT"
 SLOT="5"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc gpm minimal nocxx profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
