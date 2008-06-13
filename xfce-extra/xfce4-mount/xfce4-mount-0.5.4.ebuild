@@ -9,7 +9,7 @@ inherit autotools xfce44
 xfce44
 
 DESCRIPTION="Mount plug-in for panel"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 src_unpack() {
 	unpack ${A}
