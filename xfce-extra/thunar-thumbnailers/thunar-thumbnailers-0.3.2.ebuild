@@ -12,7 +12,7 @@ DESCRIPTION="Thunar thumbnailers plugin"
 HOMEPAGE="http://goodies.xfce.org/projects/thunar-plugins/thunar-thumbnailers"
 SRC_URI="http://goodies.xfce.org/releases/${PN}/${P}${COMPRESS}"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="ffmpeg grace latex raw"
 
 RDEPEND="xfce-base/thunar
