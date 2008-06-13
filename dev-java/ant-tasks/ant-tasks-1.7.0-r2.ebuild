@@ -11,7 +11,7 @@ HOMEPAGE="http://ant.apache.org/"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="jai javamail noantlr nobcel nobsf nocommonsnet nocommonslogging nojdepend
 	nojmf nojsch nolog4j nooro noregexp noresolver noswing noxalan"
 # nobeanutils nobsh nojython norhino noxerces
