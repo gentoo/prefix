@@ -131,7 +131,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 
 	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
-	use amd64 || use ppc64 && cd "${S}" && epatch "${FILESDIR}"/${P}-lib64.patch
+	use !prefix && cd "${S}" && epatch "${FILESDIR}"/${P}-lib64.patch
 
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-fbsdhints.patch
