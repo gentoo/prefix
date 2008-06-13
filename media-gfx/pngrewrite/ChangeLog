@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/pngrewrite
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.15 2008/06/10 15:42:13 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngrewrite/ChangeLog,v 1.16 2008/06/12 08:42:15 armin76 Exp $
+
+  12 Jun 2008; Raúl Porcel <armin76@gentoo.org> pngrewrite-1.2.1.ebuild:
+  Add ~alpha wrt #225987
 
   10 Jun 2008; Samuli Suominen <drac@gentoo.org> pngrewrite-1.2.1.ebuild:
   amd64 stable
