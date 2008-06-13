@@ -12,7 +12,7 @@ xfce44
 DESCRIPTION="Calendar"
 HOMEPAGE="http://www.kolumbus.fi/~w408237/orage"
 SRC_URI="http://www.kolumbus.fi/~w408237/${PN}/${P}.tar.bz2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="dbus debug libnotify"
 
 S="${WORKDIR}"/${P}-svn
