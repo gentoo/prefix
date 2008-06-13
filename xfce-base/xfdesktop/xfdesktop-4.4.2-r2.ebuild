@@ -12,7 +12,7 @@ xfce44_core_package
 
 DESCRIPTION="Desktop manager"
 HOMEPAGE="http://www.xfce.org/projects/xfdesktop"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug doc +file-icons +menu-plugin"
 
 LANG="be ca cs da de el es et eu fi fr he hu it ja ko nb_NO nl pa pl pt_BR ro ru sk sv tr uk vi zh_CN zh_TW"
