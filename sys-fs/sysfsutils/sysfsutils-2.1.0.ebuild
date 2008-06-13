@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/linux-diag/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 src_install() {
