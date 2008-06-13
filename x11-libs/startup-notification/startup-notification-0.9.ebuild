@@ -11,7 +11,7 @@ HOMEPAGE="http://www.freedesktop.org/software/startup-notification"
 
 LICENSE="LGPL-2 BSD"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
