@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.117 2008/06/06 18:51:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.118 2008/06/12 18:06:14 nixnut Exp $
+
+  12 Jun 2008; nixnut <nixnut@gentoo.org> dejavu-2.25-r1.ebuild:
+  Added ~ppc wrt bug 224541
 
   06 Jun 2008; Peter Volkov <pva@gentoo.org> dejavu-2.25-r1.ebuild:
   keyword ~amd64, bug #224541
