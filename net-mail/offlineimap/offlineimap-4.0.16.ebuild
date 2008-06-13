@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/o/offlineimap/${P/-/_}.tar.gz"
 HOMEPAGE="http://software.complete.org/offlineimap"
 LICENSE="GPL-2"
 IUSE=""
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 
 DEPEND=""
