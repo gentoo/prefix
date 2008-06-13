@@ -9,7 +9,7 @@ inherit xfce44 eutils autotools
 xfce44
 
 DESCRIPTION="Netload panel plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DEPEND=">=xfce-extra/xfce4-dev-tools-${XFCE_MASTER_VERSION}
 	dev-util/intltool"
