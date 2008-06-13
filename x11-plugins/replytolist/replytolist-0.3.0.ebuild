@@ -10,7 +10,7 @@ DESCRIPTION="Thunderbird extension to reply to mailing list"
 HOMEPAGE="http://alumnit.ca/wiki/index.php?page=ReplyToListThunderbirdExtension"
 SRC_URI="http://alumnit.ca/wiki/attachments/${P}.xpi"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE=""
