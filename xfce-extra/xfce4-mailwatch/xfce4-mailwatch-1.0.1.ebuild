@@ -13,7 +13,7 @@ DESCRIPTION="Mail notification panel plugin"
 HOMEPAGE="http://spuriousinterrupt.org/projects/mailwatch"
 SRC_URI="http://spuriousinterrupt.org/files/mailwatch/${MY_P}.tar.bz2"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="ssl"
 
 RDEPEND="ssl? ( >=net-libs/gnutls-1.2 )"
