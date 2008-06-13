@@ -15,7 +15,7 @@ S=${WORKDIR}/${MY_P}
 DESCRIPTION="Terminal for Xfce desktop environment, based on vte library."
 HOMEPAGE="http://www.xfce.org/projects/terminal"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="dbus debug startup-notification doc"
 
 RDEPEND=">=dev-libs/glib-2.6
