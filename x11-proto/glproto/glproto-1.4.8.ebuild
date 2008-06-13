@@ -13,7 +13,7 @@ OPENGL_DIR="xorg-x11"
 
 DESCRIPTION="X.Org GL protocol headers"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
 RDEPEND="app-admin/eselect-opengl"
 DEPEND=""
