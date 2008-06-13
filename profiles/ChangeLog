@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1536 2008/06/11 22:21:14 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1540 2008/06/13 00:56:31 ingmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  13 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Add local USE flag descriptions for app-doc/pms.
+
+  12 Jun 2008; Raúl Porcel <armin76@gentoo.org> desc/linguas.desc:
+  Add Sinhala locale
+
+  12 Jun 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add USE=sctp for dev-lang/erlang
+
+  12 Jun 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask new version: dev-java/hessian.
 
   11 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
   (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8715 2008/06/11 22:21:14 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8716 2008/06/12 10:58:34 nelchael Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Krzysiek Pawlik <nelchael@gentoo.org> (12 Jun 2008)
+# Testing new version.
+>=dev-java/hessian-3.0.20
 
 # Donnie Berkholz <dberkholz@gentoo.org> (11 Jun 2008)
 # (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get 

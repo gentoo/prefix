@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3582 2008/06/12 02:59:32 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3585 2008/06/13 03:29:35 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -85,6 +85,8 @@ app-dicts/stardict:pronounce - Install WyabdcRealPeopleTTS package (it is just m
 app-dicts/stardict:qqwry - Enable QQWry plugin, which provides information (in Chinees language) about geographical position, owner, etc. for IP address
 app-doc/doxygen:nodot - removes graphviz dependency, along with dot graphs
 app-doc/gimp-help:webinstall - optimize images for web installation (fewer colors, depends on imagemagick)
+app-doc/pms:all-options - Include both sides of kdebuild conditionals, shown in different colours
+app-doc/pms:kdebuild - Include specification for the kdebuild EAPI, see http://www.gentoo.org/proj/en/desktop/kde/kdebuild-1.xml
 app-editors/cssed:plugins - Install plugin development files
 app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-cvs:hesiod - Enable support for hesiod
@@ -444,6 +446,7 @@ dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
 dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
 dev-lang/erlang:hipe - HIgh Performance Erlang extension
 dev-lang/erlang:kpoll - Enable kernel polling support
+dev-lang/erlang:sctp - Support for Stream Control Transmission Protocol
 dev-lang/erlang:smp - Enable support for multiprocessors
 dev-lang/gdl:hdf - Adds support for the Hierarchical Data Format
 dev-lang/gdl:proj - Adds proj library support (geographic projections)
@@ -1390,6 +1393,7 @@ net-analyzer/echoping:smtp - enable support for SMTP protocol.
 net-analyzer/echoping:tos - enable support for TOS (TYpe Of Service).
 net-analyzer/fprobe:messages - enable console messages
 net-analyzer/metasploit:httpd - Enable web interface
+net-analyzer/munin:irc - installs deps for monitoring IRC
 net-analyzer/munin:munin-apache - installs deps for monitoring apache
 net-analyzer/munin:munin-dhcp - installs deps for monitoring DHCP
 net-analyzer/munin:munin-irc - installs deps for monitoring IRC
