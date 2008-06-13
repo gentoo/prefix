@@ -33,6 +33,11 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (13 Jun 2008)
+# Experimental of nature, because it's not yet in gentoo-x86
+=sys-devel/libperl-5.10.0
+=dev-lang/perl-5.10.0
+
 # Jeremy Olexa <darkside@gentoo.org> (27 May 2008)
 # Masked due to non-prefix'd config file and root access needed (probably)
 # See bug #223305
