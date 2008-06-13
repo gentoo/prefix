@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="X Session Manager"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="xprint"
 RDEPEND="x11-libs/libXaw
 	!elibc_Darwin? ( net-misc/netkit-rsh )"
