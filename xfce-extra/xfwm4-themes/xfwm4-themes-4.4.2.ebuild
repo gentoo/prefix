@@ -10,7 +10,7 @@ XFCE_VERSION=4.4.2
 xfce44
 
 DESCRIPTION="Window manager themes"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 RESTRICT="binchecks strip"
 
 RDEPEND=">=xfce-base/xfwm4-${XFCE_MASTER_VERSION}"
