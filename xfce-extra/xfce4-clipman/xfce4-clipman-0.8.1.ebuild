@@ -9,7 +9,7 @@ inherit xfce44
 xfce44
 
 DESCRIPTION="a simple cliboard history manager for Xfce4 Panel"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DOCS="AUTHORS ChangeLog README THANKS"
 
