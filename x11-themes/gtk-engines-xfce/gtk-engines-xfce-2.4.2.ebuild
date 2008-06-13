@@ -14,7 +14,7 @@ XFCE_VERSION=4.4.2
 xfce44
 
 DESCRIPTION="GTK+ Theme Engine"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 
 RDEPEND=">=x11-libs/gtk+-2.6
 	>=dev-libs/glib-2.6
