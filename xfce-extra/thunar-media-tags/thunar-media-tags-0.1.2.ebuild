@@ -9,7 +9,7 @@ inherit xfce44
 xfce44
 
 DESCRIPTION="Thunar media tags plugin"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 RDEPEND=">=media-libs/taglib-1.4"
 DEPEND="${RDEPEND}"
