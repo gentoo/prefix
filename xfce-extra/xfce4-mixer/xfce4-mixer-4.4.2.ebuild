@@ -14,7 +14,7 @@ xfce44_single_make
 
 DESCRIPTION="Volume control application (ALSA or OSS)"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-mixer"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 IUSE="alsa debug"
 
