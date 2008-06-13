@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="property displayer for X"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 RDEPEND="x11-libs/libXmu
 	x11-libs/libX11"
 DEPEND="${RDEPEND}"
