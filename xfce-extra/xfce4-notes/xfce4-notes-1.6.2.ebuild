@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit xfce44
 
 DESCRIPTION="Xfce4 panel sticky notes plugin"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
