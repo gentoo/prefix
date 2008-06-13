@@ -10,7 +10,7 @@ SRC_URI="http://jodies.de/ipcalc-archive/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 RDEPEND=">=dev-lang/perl-5.6.0"
