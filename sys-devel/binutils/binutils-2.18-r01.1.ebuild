@@ -8,7 +8,7 @@ PATCHVER="1.5"
 ELF2FLT_VER=""
 inherit toolchain-binutils autotools
 
-KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack

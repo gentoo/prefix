@@ -8,7 +8,7 @@ PATCHVER="1.1"
 ELF2FLT_VER=""
 inherit toolchain-binutils eutils
 
-KEYWORDS="~amd64-linux ~ia64-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~sparc-solaris ~x86-solaris"
 
 src_compile() {
 	if has noinfo "${FEATURES}" \
