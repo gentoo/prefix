@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit xfce44
 
 DESCRIPTION="Panel plugin displaying date, time and small calendar"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-freebsd ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 xfce44
 xfce44_gzipped
