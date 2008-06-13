@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.76 2008/06/11 21:54:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.77 2008/06/12 16:09:25 armin76 Exp $
+
+  12 Jun 2008; Raúl Porcel <armin76@gentoo.org> smartmontools-5.38.ebuild:
+  alpha/ia64/sparc stable wrt #225935
 
   11 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
   smartmontools-5.38.ebuild:
