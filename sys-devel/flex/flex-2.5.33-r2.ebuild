@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/flex/${P}.tar.bz2"
 
 LICENSE="FLEX"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
