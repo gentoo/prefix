@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="list X application resource database"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXt"
