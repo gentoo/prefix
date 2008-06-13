@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="display a message or query in a window (X-based /bin/echo)"
 
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="xprint"
 
 RDEPEND="x11-libs/libXaw"
