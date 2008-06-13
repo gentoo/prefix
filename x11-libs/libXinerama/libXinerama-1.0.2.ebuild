@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xinerama library"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext"
