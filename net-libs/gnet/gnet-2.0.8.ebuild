@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnetlibrary.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 IUSE="doc test"
 
