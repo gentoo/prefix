@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r5.ebuild,v 1.8 2008/05/16 19:21:15 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.29 2007/02/11 14:15:44 grobian Exp $
 
 EAPI="prefix"
 
@@ -14,32 +14,26 @@ MY_P="perl-${PV/_rc/-RC}"
 MY_PV="${PV%_rc*}"
 DESCRIPTION="Larry Wall's Practical Extraction and Report Language"
 S="${WORKDIR}/${MY_P}"
-SRC_URI="mirror://cpan/src/${MY_P}.tar.bz2"
+SRC_URI="mirror://cpan/src/${MY_P}.tar.gz"
 HOMEPAGE="http://www.perl.org/"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc gdbm ithreads perlsuid build elibc_FreeBSD"
-PERL_OLDVERSEN="5.8.0 5.8.2 5.8.4 5.8.5 5.8.6 5.8.7"
+IUSE="berkdb debug doc gdbm ithreads perlsuid build"
+PERL_OLDVERSEN=""
 
 DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.3 )
-	>=sys-devel/libperl-${PV}-r1
-	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs ) )
-	<sys-devel/libperl-5.9
+	>=sys-devel/libperl-${PV}
+	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )
 	!<perl-core/File-Spec-0.87
 	!<perl-core/Test-Simple-0.47-r1"
 
 RDEPEND="~sys-devel/libperl-${PV}
 	berkdb? ( sys-libs/db )
-	gdbm? ( >=sys-libs/gdbm-1.8.3 )
-	build? (
-		!perl-core/Test-Harness
-		!perl-core/PodParser
-		!dev-perl/Locale-gettext
-	)"
+	gdbm? ( >=sys-libs/gdbm-1.8.3 )"
 
 PDEPEND=">=app-admin/perl-cleaner-1.03
 		!build? (
@@ -79,12 +73,6 @@ src_unpack() {
 	# reinstated to try to avoid sdl segfaults 03.10.02
 	cd "${S}"; epatch "${FILESDIR}"/${PN}-prelink-lpthread.patch
 
-	# Patch perldoc to not abort when it attempts to search
-	# nonexistent directories; fixes bug #16589.
-	# <rac@gentoo.org> (28 Feb 2003)
-
-	cd "${S}"; epatch "${FILESDIR}"/${PN}-perldoc-emptydirs.patch
-
 	# this lays the groundwork for solving the issue of what happens
 	# when people (or ebuilds) install different versiosn of modules
 	# that are in the core, by rearranging the @INC directory to look
@@ -104,10 +92,6 @@ src_unpack() {
 	# rac 2004.06.09
 	cd "${S}"; epatch "${FILESDIR}"/${PN}-noksh.patch
 
-	# makedepend.SH contains a syntax error which is ignored by bash but causes
-	# dash to abort
-	epatch "${FILESDIR}"/${P}-makedepend-syntax.patch
-
 	# We do not want the build root in the linked perl module's RUNPATH, so
 	# strip paths containing PORTAGE_TMPDIR if its set.  This is for the
 	# MakeMaker module, bug #105054.
@@ -119,7 +103,7 @@ src_unpack() {
 	# temporally disable ssp on two regexp files till upstream has a
 	# chance to work it out. Bug #97452
 	[[ -n $(test-flags -fno-stack-protector) ]] && \
-		epatch "${FILESDIR}"/${PN}-regexp-nossp.patch
+		epatch "${FILESDIR}"/${P}-regexp-nossp.patch
 
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
@@ -127,54 +111,16 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-aix.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
-	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # may clash with native linker
-	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
-	epatch "${FILESDIR}"/${P}-solaris11.patch
-	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
-	epatch "${FILESDIR}"/${P}-usr-local.patch
-
-	# activate Solaris 11 workaround...
-	[[ ${CHOST} == *-solaris2.11 ]] && append-flags -DSOLARIS11
-
-	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
-	use !prefix && cd "${S}" && epatch "${FILESDIR}"/${P}-lib64.patch
-
-	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
-	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-fbsdhints.patch
-	cd ${S}; epatch "${FILESDIR}"/${P}-USE_MM_LD_RUN_PATH.patch
-	cd ${S}; epatch "${FILESDIR}"/${P}-links.patch
-	# c++ patch - should address swig related items
-	cd ${S}; epatch "${FILESDIR}"/${P}-cplusplus.patch
-
-	epatch "${FILESDIR}"/${P}-gcc42-command-line.patch
-
-	# Newer linux-headers don't include asm/page.h. Fix this.
-	# Patch from bug 168312, thanks Peter!
-	# Cannot test for '>sys-kernel/linux-headers-2.6.20' in prefix,
-	# so try to compile snippet in question instead.
-	cat > "${T}"/test-asm-page.c <<-EOF
-		#ifdef __linux__
-		#include <asm/page.h>
-		#endif
-	EOF
-	$(tc-getCC) -o "${T}"/test-asm-page.o -c "${T}"/test-asm-page.c >& /dev/null \
-	|| epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
-
-	# perlcc fix patch - bug #181229
-	epatch "${FILESDIR}"/${P}-perlcc.patch
-
-	# patch to fix bug #198196
-	# UTF/Regular expressions boundary error (CVE-2007-5116)
-	epatch "${FILESDIR}"/${P}-utf8-boundary.patch
-
-	# patch to fix bug #219203
-	epatch "${FILESDIR}"/${P}-CVE-2008-1927.patch
-
-	# on interix, $firstmakefile may not be 'makefile', since the
-	# filesystem may be case insensitive, and perl will wrongly
-	# delete Makefile.
-	epatch "${FILESDIR}"/${P}-interix-firstmakefile.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
+	epatch "${FILESDIR}"/${P}-cleanup-paths.patch
+	epatch "${FILESDIR}"/${P}-usr-local.patch # should be merged with cleanup-paths
+	epatch "${FILESDIR}"/${PN}-5.8.8-interix-firstmakefile.patch
 	epatch "${FILESDIR}"/${P}-interix-misc.patch
+
+	use !prefix && cd "${S}" && epatch "${T}"/${P}-lib64.patch
+#	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
+#	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
+	cd ${S}; epatch "${FILESDIR}"/${PN}-5.8.8-USE_MM_LD_RUN_PATH.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then
@@ -198,7 +144,7 @@ src_configure() {
 	use elibc_uclibc || replace-flags "-Os" "-O2"
 	( gcc-specs-ssp && use ia64 ) && append-flags -fno-stack-protector
 	# This flag makes compiling crash in interesting ways
-	filter-flags -malign-double
+	filter-flags "-malign-double"
 	# Fixes bug #97645
 	use ppc && filter-flags -mpowerpc-gpopt
 	# Fixes bug #143895 on gcc-4.1.1
@@ -216,12 +162,13 @@ src_configure() {
 			osname="solaris"
 			# solaris2.9 has /lib/libgdbm.so.2 and /lib/libgdbm.so.3,
 			# but no linkable /lib/libgdbm.so.
-			# This might apply to others too, but seen on solaris only yet.
+			# This might apply to others too, but encountered on solaris only.
 			myconf -Dignore_versioned_solibs
 			;;
 		*-aix*) osname="aix" ;;
 		*-hpux*) osname="hpux" ;;
-		*-interix*) osname='interix' ;;
+		*-interix*) osname="interix" ;;
+		*-irix*) osname="irix" ;;
 
 		*) osname="linux" ;;
 	esac
@@ -296,6 +243,8 @@ src_configure() {
 
 	[[ ${ELIBC} == "FreeBSD" ]] && myconf "-Dlibc=/usr/$(get_libdir)/libc.a"
 
+	[[ ${CHOST} != *-irix* ]] && myconf "-Dcccdlflags=\"-fPIC\""
+
 	# We need to use " and not ', as the written config.sh use ' ...
 	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 
@@ -322,6 +271,7 @@ src_configure() {
 		-Dman1ext='1' \
 		-Dman3ext='3pm' \
 		-Dinc_version_list="$inclist" \
+		-Dlocincpth="/usr/src/linux/include" \
 		-Dcf_by='Gentoo' \
 		-Ud_csh \
 		-Dusenm \
@@ -335,7 +285,6 @@ src_compile() {
 
 	src_configure
 
-	emake -j1 -f Makefile depend || die "Couldn't make depends"
 	emake -j1 || die "Unable to make"
 }
 
@@ -427,9 +376,6 @@ EOF
 			--libpods='perlfunc:perlguts:perlvar:perlrun:perlop'
 	fi
 	cd `find "${ED}" -name Path.pm|sed -e 's/Path.pm//'`
-	# CAN patch in bug 79685
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree.patch
 
 	# Remove those items we PDPEND on
 	rm -f "${ED}"/usr/bin/pod2usage
