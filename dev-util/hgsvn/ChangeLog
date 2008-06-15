@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/hgsvn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/hgsvn/ChangeLog,v 1.5 2008/01/19 18:21:08 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/hgsvn/ChangeLog,v 1.6 2008/06/13 05:49:49 wormo Exp $
+
+  13 Jun 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  hgsvn-0.1.4.ebuild:
+  mark ~ppc (bug #215869)
 
 *hgsvn-0.1.4 (19 Jan 2008)
 
