@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/zile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.57 2008/05/14 11:12:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.59 2008/06/14 18:21:39 nixnut Exp $
+
+  14 Jun 2008; nixnut <nixnut@gentoo.org> zile-2.2.59.ebuild:
+  Stable on ppc wrt bug 226741
+
+  14 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> zile-2.2.59.ebuild:
+  amd64 stable wrt bug #226741
 
 *zile-2.2.59 (14 May 2008)
 
