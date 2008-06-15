@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.310 2008/06/11 19:28:59 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.311 2008/06/14 16:43:39 nixnut Exp $
+
+  14 Jun 2008; nixnut <nixnut@gentoo.org> subversion-1.5.0_rc9.ebuild:
+  Added ~ppc
 
 *subversion-1.5.0_rc9 (11 Jun 2008)
 
