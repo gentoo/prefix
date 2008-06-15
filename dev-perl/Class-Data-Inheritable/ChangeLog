@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-Data-Inheritable
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/ChangeLog,v 1.31 2008/04/29 03:19:35 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/ChangeLog,v 1.32 2008/06/13 16:41:46 armin76 Exp $
+
+  13 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  Class-Data-Inheritable-0.08.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *Class-Data-Inheritable-0.08 (29 Apr 2008)
 
