@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Clone
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.45 2008/04/29 04:19:17 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.46 2008/06/13 16:56:51 armin76 Exp $
+
+  13 Jun 2008; Raúl Porcel <armin76@gentoo.org> Clone-0.28.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *Clone-0.28 (29 Apr 2008)
 
