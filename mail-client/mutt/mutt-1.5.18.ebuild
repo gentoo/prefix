@@ -8,7 +8,7 @@ inherit eutils flag-o-matic autotools
 
 PATCHSET_REV="-r1"
 
-SIDEBAR_PATCH_N="patch-1.5.16.sidebar.20070704.txt"
+SIDEBAR_PATCH_N="patch-1.5.18.sidebar.20080611.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
@@ -17,6 +17,8 @@ SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 		!sidebar? (
 			mirror://gentoo/${PN}-1.5.16-gentoo-patches${PATCHSET_REV}.tar.bz2
 		)
+		http://www.mutt.org.ua/download/mutt-1.5.18/patch-1.5.18.rr.compressed.gz
+		http://www.mutt.org.ua/download/mutt-1.5.18/patch-1.5.18.vvv.nntp.gz
 	)
 	sidebar? (
 		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
@@ -64,6 +66,10 @@ PATCHDIR="${WORKDIR}"/${PN}-1.5.16-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
 	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
+	use sidebar && mkdir -p "${PATCHDIR}"
+	mv "${WORKDIR}"/patch-1.5.18.rr.compressed "${PATCHDIR}"/02-compressed.patch
+	mv "${WORKDIR}"/patch-1.5.18.vvv.nntp "${PATCHDIR}"/06-nntp.patch
+	cp "${FILESDIR}"/${P}-mbox_hook.patch "${PATCHDIR}"/04-mbox_hook.patch
 
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
@@ -75,11 +81,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch
 
 	if ! use vanilla && ! use sidebar ; then
-		rm "${PATCHDIR}"/02-compressed.patch  # fails to apply
-		rm "${PATCHDIR}"/04-mbox_hook.patch   # fails to apply
-		rm "${PATCHDIR}"/05-pgp_timeout.patch # fails to apply
-		rm "${PATCHDIR}"/06-nntp.patch        # fails to apply
-#		use nntp || rm "${PATCHDIR}"/06-nntp.patch
+		use nntp || rm "${PATCHDIR}"/06-nntp.patch
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done

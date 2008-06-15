@@ -51,7 +51,7 @@ diff -ur mutt-1.5.17.orig/mutt.h mutt-1.5.16/mutt.h
             cp = _("Open mailbox in read-only mode");
           else
             cp = _("Open mailbox");
--@@ -1085,6 +1255,21 @@ int mutt_index_menu (void)
+-@@ -1081,6 +1251,21 @@ int mutt_index_menu (void)
 - 	}
 - 	else
 - 	{

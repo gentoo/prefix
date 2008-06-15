@@ -1,0 +1,252 @@
+mbox_hook from http://www.woolridge.org/mutt/
+
+--- PATCHES
++++ PATCHES
+@@ -0,0 +1 @@
++patch-1.5.6.dw.mbox-hook.1
+--- mx.c
++++ mx.c
+@@ -834,14 +834,30 @@
+   return rc;
+ }
+ 
++
++static int mx_matches_mbox (const char *m, LIST *l)
++{
++  for (; l; l = l->next)
++  {
++    if (!mutt_strncmp (m, l->data, mutt_strlen (l->data)))
++      return 1;
++  }
++  return 0;
++}
++
++
+ /* save changes and close mailbox */
+ int mx_close_mailbox (CONTEXT *ctx, int *index_hint)
+ {
+-  int i, move_messages = 0, purge = 1, read_msgs = 0;
++  int i, move_messages = 0, purge = 1, read_msgs = 0, moved_msgs = 0;
+   int check;
+   int isSpool = 0;
++  char *mboxHook = 0;
+   CONTEXT f;
+   char mbox[_POSIX_PATH_MAX];
++  char hbox[_POSIX_PATH_MAX];
++  LIST * mbox_list = NULL;
++  LIST * move_list = NULL;
+   char buf[SHORT_STRING];
+ 
+   if (!ctx) return 0;
+@@ -874,28 +890,53 @@
+ 
+   if (read_msgs && quadoption (OPT_MOVE) != M_NO)
+   {
+-    char *p;
+-
+-    if ((p = mutt_find_hook (M_MBOXHOOK, ctx->path)))
++    if ((mboxHook = mutt_find_hook (M_MBOXHOOK, ctx->path)))
+     {
+       isSpool = 1;
+-      strfcpy (mbox, p, sizeof (mbox));
++      strfcpy (hbox, mboxHook, sizeof (mbox));
++      mutt_expand_path (hbox, sizeof (hbox));
+     }
+     else
+     {
+       strfcpy (mbox, NONULL(Inbox), sizeof (mbox));
+       isSpool = mutt_is_spool (ctx->path) && !mutt_is_spool (mbox);
++      mutt_expand_path (mbox, sizeof (mbox));
+     }
+ 
+     if (isSpool && *mbox)
+     {
+       mutt_expand_path (mbox, sizeof (mbox));
+-      snprintf (buf, sizeof (buf), _("Move read messages to %s?"), mbox);
+-      if ((move_messages = query_quadoption (OPT_MOVE, buf)) == -1)
++      /*
++       * walk the headers cause mboxHook needs them for mutt_make_string
++       */
++      for (i = 0; i < ctx->msgcount; i++)
+       {
+-	ctx->closing = 0;
+-	return (-1);
++	if (mboxHook != NULL)
++	{
++	  /*
++	   * mbox hook may contain printf-like sequences
++	   */
++	  mutt_make_string (mbox, sizeof (mbox), hbox, ctx, ctx->hdrs[i]);
++	}
++	if (!i || !mx_matches_mbox (mbox,mbox_list))
++	{
++	  snprintf (buf, sizeof (buf), _("Move read messages to %s?"), mbox);
++	  if ((move_messages = query_quadoption (OPT_MOVE, buf)) == -1)
++	  {
++	    ctx->closing = 0;
++	    mutt_free_list (&mbox_list);
++	    return (-1);
++	  }
++	  mbox_list = mutt_add_list (mbox_list, mbox);
++	  if (move_messages)
++	    move_list = mutt_add_list (move_list, mbox);
++	}
++
++	if (mboxHook == NULL)
++	  break;
+       }
++      move_messages = (move_list != NULL);
++      mutt_free_list (&mbox_list);
+     }
+   }
+ 
+@@ -911,6 +952,7 @@
+     if ((purge = query_quadoption (OPT_DELETE, buf)) < 0)
+     {
+       ctx->closing = 0;
++      mutt_free_list (&move_list);
+       return (-1);
+     }
+   }
+@@ -926,62 +968,90 @@
+ 
+   if (move_messages)
+   {
+-    mutt_message (_("Moving read messages to %s..."), mbox);
++    LIST *ml = move_list;
++    char *p_mbox = NULL;
+ 
+-#ifdef USE_IMAP
+-    /* try to use server-side copy first */
+-    i = 1;
+-    
+-    if (ctx->magic == M_IMAP && mx_is_imap (mbox))
++    while (ml)
+     {
+-      /* tag messages for moving, and clear old tags, if any */
+-      for (i = 0; i < ctx->msgcount; i++)
+-	if (ctx->hdrs[i]->read && !ctx->hdrs[i]->deleted
+-            && !(ctx->hdrs[i]->flagged && option (OPTKEEPFLAGGED))) 
+-	  ctx->hdrs[i]->tagged = 1;
+-	else
+-	  ctx->hdrs[i]->tagged = 0;
++      p_mbox = ml->data;
++
++      mutt_message (_("Moving read messages to %s..."), p_mbox);
++
++#ifdef USE_IMAP
++      /* try to use server-side copy first */
++      i = 1;
+       
+-      i = imap_copy_messages (ctx, NULL, mbox, 1);
+-    }
+-    
+-    if (i == 0) /* success */
+-      mutt_clear_error ();
+-    else if (i == -1) /* horrible error, bail */
+-    {
+-      ctx->closing=0;
+-      return -1;
+-    }
+-    else /* use regular append-copy mode */
+-#endif
+-    {
+-      if (mx_open_mailbox (mbox, M_APPEND, &f) == NULL)
++      if (ctx->magic == M_IMAP && mx_is_imap (p_mbox))
+       {
+-	ctx->closing = 0;
+-	return -1;
+-      }
++	/* tag messages for moving, and clear old tags, if any */
++	for (i = 0; i < ctx->msgcount; i++)
++	{
++	  if (mboxHook != NULL)
++	    mutt_make_string (mbox, sizeof (mbox), hbox, ctx, ctx->hdrs[i]);
+ 
+-      for (i = 0; i < ctx->msgcount; i++)
+-      {
+-	if (ctx->hdrs[i]->read && !ctx->hdrs[i]->deleted
+-            && !(ctx->hdrs[i]->flagged && option (OPTKEEPFLAGGED)))
+-        {
+-	  if (mutt_append_message (&f, ctx, ctx->hdrs[i], 0, CH_UPDATE_LEN) == 0)
++	  if (ctx->hdrs[i]->read && !ctx->hdrs[i]->deleted
++	      && !(ctx->hdrs[i]->flagged && option (OPTKEEPFLAGGED))
++	      && !mutt_strncmp (p_mbox, mbox, mutt_strlen (mbox)))
+ 	  {
+-	    mutt_set_flag (ctx, ctx->hdrs[i], M_DELETE, 1);
++	    ctx->hdrs[i]->tagged = 1;
++	    moved_msgs++;
+ 	  }
+ 	  else
++	    ctx->hdrs[i]->tagged = 0;
++	}
++	
++	i = imap_copy_messages (ctx, NULL, mbox, 1);
++      }
++    
++      if (i == 0) /* success */
++	mutt_clear_error ();
++      else if (i == -1) /* horrible error, bail */
++      {
++	ctx->closing=0;
++	mutt_free_list (&move_list);
++	return -1;
++      }
++      else /* use regular append-copy mode */
++#endif
++      {
++	if (mx_open_mailbox (p_mbox, M_APPEND, &f) == NULL)
++	{
++	  ctx->closing = 0;
++	  mutt_free_list (&move_list);
++	  return -1;
++	}
++
++	for (i = 0; i < ctx->msgcount; i++)
++	{
++	  if (mboxHook != NULL)
++	    mutt_make_string (mbox, sizeof (mbox), hbox, ctx, ctx->hdrs[i]);
++
++	  if (ctx->hdrs[i]->read && !ctx->hdrs[i]->deleted
++	      && !(ctx->hdrs[i]->flagged && option (OPTKEEPFLAGGED))
++	      && !mutt_strncmp (p_mbox, mbox, mutt_strlen (mbox)))
+ 	  {
+-	    mx_close_mailbox (&f, NULL);
+-	    ctx->closing = 0;
+-	    return -1;
++	    if (mutt_append_message (&f, ctx, ctx->hdrs[i], 0, CH_UPDATE_LEN) == 0)
++	    {
++	      mutt_set_flag (ctx, ctx->hdrs[i], M_DELETE, 1);
++	      moved_msgs++;
++	    }
++	    else
++	    {
++	      mx_close_mailbox (&f, NULL);
++	      ctx->closing = 0;
++	      mutt_free_list (&move_list);
++	      return -1;
++	    }
+ 	  }
+ 	}
++      
++	mx_close_mailbox (&f, NULL);
+       }
+-    
+-      mx_close_mailbox (&f, NULL);
++
++      ml = ml->next;
+     }
+     
++    mutt_free_list (&move_list);
+   }
+   else if (!ctx->changed && ctx->deleted == 0)
+   {
+@@ -1022,7 +1092,7 @@
+ 
+   if (move_messages)
+      mutt_message (_("%d kept, %d moved, %d deleted."),
+-       ctx->msgcount - ctx->deleted, read_msgs, ctx->deleted);
++       ctx->msgcount - ctx->deleted, moved_msgs, ctx->deleted);
+   else
+     mutt_message (_("%d kept, %d deleted."),
+       ctx->msgcount - ctx->deleted, ctx->deleted);
