@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Rijndael/Crypt-Rijndael-1.06.ebuild,v 1.1 2008/04/29 05:59:44 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Rijndael/Crypt-Rijndael-1.06.ebuild,v 1.2 2008/06/13 17:01:43 armin76 Exp $
 
 EAPI="prefix"
 
