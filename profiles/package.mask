@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8716 2008/06/12 10:58:34 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8724 2008/06/14 21:28:28 je_fro Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (14 Jul 2008)
+# Doesn't compile. Removed by treecleaners in ~30 days. bug #199168
+# Later version in tree works.
+=net-analyzer/nepenthes-0.2.0
 
 # Krzysiek Pawlik <nelchael@gentoo.org> (12 Jun 2008)
 # Testing new version.
@@ -61,7 +66,7 @@ kde-base/ksync
 # xorg-server-1.5 prerelease
 =x11-base/xorg-server-1.4.99*
 =media-libs/mesa-7.1*
->=x11-proto/dri2proto-9999
+x11-proto/dri2proto
 =x11-libs/libdrm-2.3.1_pre*
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
@@ -99,8 +104,7 @@ www-apps/gitweb
 =dev-python/django-9999
 
 # Samuli Suominen <drac@gentoo.org> (05 Jun 2008)
-# Masked for removal in ~30 days by treecleaners.
-# Replaced by USE libffi in sys-devel/gcc. Bug 163724.
+# Masked for testing wrt #163724
 dev-libs/libffi
 x11-libs/gtk-server
 
@@ -186,14 +190,6 @@ net-analyzer/sonar
 # Needs Qt-4.4.0, which is package.mask'ed.
 >=dev-python/PyQt4-4.4.2
 
-# Samuli Suominen <drac@gentoo.org> (23 May 2008)
-# Replaced by sys-cluster/wulfware wrt bug #193635.
-# Unversioned and old tarballs, and an ebuild
-# altering /etc/services which is wrong.
-# Removed in ~60 days by treecleaners.
-sys-cluster/wulfstat
-sys-cluster/xmlsysd
-
 # Mark Loeser <halcy0n@gentoo.org> (21 May 2008)
 # Dead upstream and not used by anything
 # Masked for removal in 30 days
@@ -246,11 +242,6 @@ net-dialup/xlc
 # Jim Ramsay <lack@gentoo.org> (15 May 2008)
 # New beta version of netscape-flash released, masked for testing.
 =net-www/netscape-flash-10_beta*
-
-# Samuli Suominen <drac@gentoo.org> (15 May 2008)
-# Doesn't compile wrt bug #206250. Masked for treecleaners.
-# Removed in ~60 days.
-dev-util/rhide
 
 # Diego Pettenò <flameeyes@gentoo.org> (11 May 2008)
 # Release candidate version, masked for testing.
@@ -453,6 +444,8 @@ media-sound/lastfmproxy
 =media-gfx/blender-2.45-r3
 =media-gfx/blender-2.46-r1
 =x11-misc/xvidcap-1.1.7_rc1
+>=media-sound/picard-0.10.0_rc1
+>=media-video/ffmpeg2theora-0.21
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
@@ -1059,11 +1052,6 @@ sys-kernel/hppa-sources
 # from seemant would make both of us happy
 =app-crypt/heimdal-1.0.1
 
-# Jeroen Roovers <jer@gentoo.org> (13 Nov 2007)
-# These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
-# much less stable, so I am masking them for now.
-=www-client/opera-9.50_beta2_p*
-
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
 # Brokeness in these
 =mail-mta/nullmailer-1.03*
@@ -1263,11 +1251,6 @@ games-rpg/openrpg
 # Roy Marples <uberlord@gentoo.org> (15 Apr 2007)
 # Masked as it segfaults and fails with our scripts, #174693.
 =net-wireless/wireless-tools-29_pre17
-
-# Jeffrey Gardner <je_fro@gentoo.org> (10 Apr 2007)
-# Initial import of experimental folding@home client.
-# Currently it's only for brave amd64 users.
-=sci-biology/foldingathome-5.91_beta
 
 # Benedikt Böhm <hollow@gentoo.org> (07 Apr 2007)
 # masked for testing

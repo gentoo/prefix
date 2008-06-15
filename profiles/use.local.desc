@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3585 2008/06/13 03:29:35 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3588 2008/06/14 18:20:02 dertobi123 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -70,6 +70,7 @@ app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
 app-crypt/gpgme:pth - Enable support for GNU Portable Threads multithreading library
+app-crypt/heimdal:otp - Enable support for one-time passwords (OTP) in some heimdal apps
 app-crypt/heimdal:pkinit - Enable pkinit support to get the initial ticket
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
@@ -159,8 +160,11 @@ app-emulation/uae:ui - Build User Interface (could be gtk or ncurses based, depe
 app-emulation/vice:resid - Enable support for ReSID
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:chm - Install help files and add chm reader dependency
+app-emulation/virtualbox-bin:headless - Install without any graphic frontend
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
+app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
+app-emulation/virtualbox:headless - Build without any graphic frontend
 app-emulation/virtualbox:sdk - Enable building of SDK
 app-emulation/vov:gprof - build vov with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
@@ -900,6 +904,7 @@ mail-filter/MailScanner:f-prot - Enable usage of fprot virus scanner
 mail-filter/MailScanner:postfix - Set postfix to used MTA
 mail-filter/MailScanner:spamassassin - Enable usage of spamassassin for spam detection
 mail-filter/amavisd-new:courier - Add support for usage with courierfilter
+mail-filter/amavisd-new:dkim - Add optional DomainKeys support
 mail-filter/amavisd-new:qmail - Add support for qmail
 mail-filter/ask:procmail - Adds support for procmail
 mail-filter/assp:spf - Adds support for Sender Policy Framework
