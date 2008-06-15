@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.122 2008/06/12 20:59:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.123 2008/06/13 19:31:06 opfer Exp $
+
+  13 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  +files/erlang-12.2.3-glibc28.patch, erlang-12.2.3.ebuild:
+  fix build failure with Glibc 2.8, see bug 226063, patch provided by Holger
+  Hoffstätte <holger AT wizards DOT de>
 
   12 Jun 2008; Brent Baude <ranger@gentoo.org> erlang-12.2.3.ebuild:
   Marking erlang-12.2.3 ~ppc64 for bug 226085

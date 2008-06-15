@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3.ebuild,v 1.2 2008/06/12 20:59:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3.ebuild,v 1.3 2008/06/13 19:31:06 opfer Exp $
 
 EAPI="prefix"
 
@@ -48,6 +48,9 @@ src_unpack() {
 	cd "${S}"
 
 	use odbc || sed -i 's: odbc : :' lib/Makefile
+
+	# fixes bug 226063, reported and accepted upstream for R12B-4
+	epatch "${FILESDIR}"/${P}-glibc28.patch
 
 	# make sure we only link ssl dynamically
 	# will not be integrated by upstream for various reasons
