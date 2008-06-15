@@ -143,7 +143,7 @@ src_unpack() {
 
 	# we need the same @INC-inversion magic here we do in perl
 	cp "${FILESDIR}"/${P}-reorder-INC.patch "${T}"/
-	sed -i -e 's:"/etc/perl":/"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
+	sed -i -e 's:"/etc/perl":"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
 	cd "${S}"; epatch "${T}"/${P}-reorder-INC.patch
 
 	# On PA7200, uname -a contains a single quote and we need to
