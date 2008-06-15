@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r1.ebuild,v 1.1 2008/06/05 20:33:53 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r1.ebuild,v 1.2 2008/06/14 18:30:10 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -110,8 +110,8 @@ generate_userconfig() {
 
 	cat > "${S}/user-config.jam" << __EOF__
 
-variant gentoorelease : release : <optimization>none ;
-variant gentoodebug : debug : <optimization>none ;
+variant gentoorelease : release : <optimization>none <debug-symbols>none ;
+variant gentoodebug : debug : <optimization>none <debug-symbols>none ;
 
 using ${compiler} : ${compilerVersion} : ${compilerExecutable} : <cxxflags>"${CXXFLAGS}" <linkflags>"${LDFLAGS}" ;
 using python : ${PYVER} : ${EPREFIX}/usr : ${EPREFIX}/usr/include/python${PYVER} : ${EPREFIX}/usr/lib/python${PYVER} ;
