@@ -1,6 +1,9 @@
 # ChangeLog for app-text/highlight
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.19 2008/05/26 15:20:39 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.20 2008/06/14 15:04:14 nixnut Exp $
+
+  14 Jun 2008; nixnut <nixnut@gentoo.org> highlight-2.6.10.ebuild:
+  Stable on ppc wrt bug 226657
 
   26 May 2008; Samuli Suominen <drac@gentoo.org> highlight-2.6.10.ebuild:
   Desktop entry with icon.
