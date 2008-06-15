@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.186 2008/06/07 19:01:26 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.187 2008/06/13 18:50:41 cardoe Exp $
+
+  13 Jun 2008; Doug Goldstein <cardoe@gentoo.org> cairo-1.6.4.ebuild:
+  remove USE=test DEPEND section to stop circular depend
 
   07 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> cairo-1.6.4.ebuild:
   amd64 stable, bug #224929
