@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/crypt-cbc
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-cbc/ChangeLog,v 1.59 2008/04/29 06:19:06 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-cbc/ChangeLog,v 1.60 2008/06/13 16:59:28 armin76 Exp $
+
+  13 Jun 2008; Raúl Porcel <armin76@gentoo.org> crypt-cbc-2.29.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *crypt-cbc-2.29 (29 Apr 2008)
 
