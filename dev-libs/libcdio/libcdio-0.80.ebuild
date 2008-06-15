@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.79-r1.ebuild,v 1.2 2008/04/20 22:35:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.4 2008/06/14 11:02:00 flameeyes Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
-inherit eutils libtool multilib flag-o-matic
+inherit eutils libtool multilib autotools flag-o-matic
 
 DESCRIPTION="A library to encapsulate CD-ROM reading and control"
 HOMEPAGE="http://www.gnu.org/software/libcdio/"
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="cddb minimal nls nocxx"
+IUSE="cddb minimal nls +cxx"
 
 RDEPEND="cddb? ( >=media-libs/libcddb-1.0.1 )
 	nls? ( virtual/libintl )"
@@ -21,14 +21,16 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
-RESTRICT="test"
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${PN}-0.78.2-bug203777-ter.patch"
-	epatch "${FILESDIR}"/${P}-gcc-4.3-include.patch
+	epatch "${FILESDIR}"/${P}-minimal.patch
+
+	sed -i -e 's:noinst_PROGRAMS:EXTRA_PROGRAMS:' test/Makefile.am \
+		|| die "unable to remove testdefault build"
+
+	eautomake
 	elibtoolize
 }
 
@@ -45,10 +47,12 @@ src_compile() {
 		$(use_with !minimal cd-read) \
 		$(use_with !minimal iso-info) \
 		$(use_with !minimal iso-read) \
-		$(use_enable !nocxx cxx) \
+		$(use_enable cxx) \
+		--disable-example-progs --disable-cpp-progs \
 		--with-cd-paranoia-name=libcdio-paranoia \
 		--disable-vcd-info \
-		--disable-dependency-tracking || die "configure failed"
+		--disable-dependency-tracking \
+		--disable-maintainer-mode || die "configure failed"
 	emake || die "make failed"
 }
 
@@ -57,9 +61,9 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 
 	# maybe next version is fixed
-	if use minimal; then
-		rm -f "${ED}/usr/$(get_libdir)/pkgconfig/libcdio_cdda.pc"
-		rm -f "${ED}/usr/include/cdio/cdda.h"
+	# yes it's a different one than before
+	if ! use cxx; then
+		rm "${ED}"/usr/$(get_libdir)/pkgconfig/{libcdio,libiso9660}++.pc
 	fi
 }
 

@@ -1,6 +1,38 @@
 # ChangeLog for dev-libs/libcdio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.93 2008/04/20 22:35:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.99 2008/06/14 11:05:39 flameeyes Exp $
+
+  14 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Force manifest regen (Attic/ issue).
+
+  14 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libcdio-0.78.2-bug203777.patch, +libcdio-0.78.2-r3.ebuild:
+  Restore ebuild I removed by mistake. Sorry Mike (only your arches are
+  involved).
+
+  14 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -files/libcdio-0.77-nocxx.patch, -files/libcdio-0.78.2-bug203777.patch,
+  -files/libcdio-0.79-gcc-4.3-include.patch, -libcdio-0.73.ebuild,
+  -libcdio-0.78.2.ebuild, -libcdio-0.78.2-r3.ebuild,
+  -libcdio-0.79-r1.ebuild, libcdio-0.80.ebuild:
+  Remove old versions and old patches. The 4.3 fix is no more needed in 0.80
+  either.
+
+  14 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> libcdio-0.80.ebuild:
+  Disable testdefault build during src_compile phase (fixed upstream too);
+  remove test restriction as they should pass now.
+
+  13 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libcdio-0.80-minimal.patch, libcdio-0.80.ebuild:
+  Fix building with minimal USE flag enabled. Remove C++ bindings pkg-config
+  datafiles when cxx USE flag is disabled (fixed upstream).
+
+*libcdio-0.80 (13 Jun 2008)
+
+  13 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> +libcdio-0.80.ebuild:
+  Finally the libcdio version bump. This also fixes building of examples
+  that was unneeded. Rename nocxx USE flag in cxx and enable it by default
+  through EAPI=1.
 
   20 Apr 2008; Ryan Hill <dirtyepic@gentoo.org>
   +files/libcdio-0.79-gcc-4.3-include.patch, libcdio-0.79-r1.ebuild:
