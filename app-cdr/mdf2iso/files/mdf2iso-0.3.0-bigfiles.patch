@@ -7,29 +7,6 @@ diff -bur mdf2iso/src/Makefile.am mdf2iso.new/src/Makefile.am
  bin_PROGRAMS = mdf2iso
  mdf2iso_SOURCES = mdf2iso.c
 +AM_CFLAGS = -D_FILE_OFFSET_BITS=64 -Wall
-diff -bur mdf2iso/src/Makefile.in mdf2iso.new/src/Makefile.in
---- mdf2iso/src/Makefile.in	2005-05-22 21:42:09.000000000 +0200
-+++ mdf2iso.new/src/Makefile.in	2005-07-31 17:49:16.000000000 +0200
-@@ -136,6 +136,7 @@
- sysconfdir = @sysconfdir@
- target_alias = @target_alias@
- mdf2iso_SOURCES = mdf2iso.c
-+AM_CFLAGS = -D_FILE_OFFSET_BITS=64 -Wall
- all: all-am
- 
- .SUFFIXES:
-@@ -149,9 +150,9 @@
- 	      exit 1;; \
- 	  esac; \
- 	done; \
--	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  src/Makefile'; \
-+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  src/Makefile'; \
- 	cd $(top_srcdir) && \
--	  $(AUTOMAKE) --foreign  src/Makefile
-+	  $(AUTOMAKE) --gnu  src/Makefile
- .PRECIOUS: Makefile
- Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
- 	@case '$?' in \
 diff -bur mdf2iso/src/mdf2iso.c mdf2iso.new/src/mdf2iso.c
 --- mdf2iso/src/mdf2iso.c	2005-05-22 21:52:08.000000000 +0200
 +++ mdf2iso.new/src/mdf2iso.c	2005-07-31 19:41:56.000000000 +0200

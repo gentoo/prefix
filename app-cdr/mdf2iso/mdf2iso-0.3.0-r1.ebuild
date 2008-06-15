@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/mdf2iso/mdf2iso-0.3.0-r1.ebuild,v 1.4 2008/06/06 21:08:37 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/mdf2iso/mdf2iso-0.3.0-r1.ebuild,v 1.5 2008/06/14 15:55:39 drac Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit autotools eutils
 
 DESCRIPTION="Alcohol 120% bin image to ISO image file converter"
 HOMEPAGE="http://mdf2iso.berlios.de/"
@@ -21,9 +21,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-bigfiles.patch
+	eautoreconf
 }
 
 src_install() {
-	dodoc ChangeLog
 	dobin src/${PN} || die "dobin failed."
+	dodoc ChangeLog
 }
