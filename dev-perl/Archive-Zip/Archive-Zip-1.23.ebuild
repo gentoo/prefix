@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.23.ebuild,v 1.1 2008/04/29 05:56:21 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.23.ebuild,v 1.2 2008/06/13 16:11:24 armin76 Exp $
 
 EAPI="prefix"
 
