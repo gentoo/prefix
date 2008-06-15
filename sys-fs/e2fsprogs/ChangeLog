@@ -1,6 +1,15 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.152 2008/06/12 19:01:32 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.154 2008/06/14 11:50:06 drac Exp $
+
+  14 Jun 2008; Samuli Suominen <drac@gentoo.org> e2fsprogs-1.40.10.ebuild:
+  Prevent sandbox violation. addwrite /var/cache/fonts; Font
+  \circle=lcircle10 not loadable: Metric (TFM) file not found. kpathsea:
+  Running mktextfm lcircle10. ACCESS DENIED mkdir: /var/cache/fonts/tfm.
+  VARTEXFONTS doesn't seem to help.
+
+  14 Jun 2008; Christoph Mende <angelos@gentoo.org> e2fsprogs-1.40.9.ebuild:
+  Stable on amd64, bug #225239
 
   12 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
   e2fsprogs-1.40.9.ebuild:

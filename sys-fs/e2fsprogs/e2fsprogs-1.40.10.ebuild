@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.10.ebuild,v 1.1 2008/06/07 17:07:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.10.ebuild,v 1.2 2008/06/14 11:50:06 drac Exp $
 
 EAPI="prefix"
 
@@ -68,6 +68,7 @@ src_unpack() {
 
 src_compile() {
 	# Keep the package from doing silly things
+	addwrite /var/cache/fonts
 	export LDCONFIG=:
 	export CC=$(tc-getCC)
 	export STRIP=:
