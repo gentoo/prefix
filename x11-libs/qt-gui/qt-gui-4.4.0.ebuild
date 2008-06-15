@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.0.ebuild,v 1.4 2008/05/30 03:51:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.0.ebuild,v 1.5 2008/06/13 23:21:49 ingmar Exp $
 
 EAPI="prefix 1"
 inherit eutils qt4-build
@@ -16,6 +16,7 @@ IUSE_INPUT_DEVICES="input_devices_wacom"
 IUSE="+accessibility cups dbus debug glib mng nas nis tiff +qt3support xinerama ${IUSE_INPUT_DEVICES}"
 
 RDEPEND="
+	!<=x11-libs/qt-4.4.0_alpha:${SLOT}
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/jpeg
