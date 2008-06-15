@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.98.4.ebuild,v 1.1 2008/05/29 13:41:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.98.4.ebuild,v 1.2 2008/06/14 11:45:06 zmedico Exp $
 
 EAPI="prefix"
 
@@ -26,11 +26,16 @@ src_install () {
 	mv "${ED}"/usr/man "${ED}"/usr/share
 }
 
+pkg_preinst() {
+	has_version "<${CATEGORY}/${PN}-0.96.92-r1"
+	clean_stale_junk=$?
+}
+
 pkg_postinst() {
 	python_mod_optimize "${EPREFIX}"/usr/$(get_libdir)/${P}
 	# clean up stale junk left there by old faulty ebuilds
 	# see Bug 118022 and Bug 132448
-	if has_version "<dev-util/scons-0.96.92-r1" ; then
+	if [[ $clean_stale_junk = 0 ]] ; then
 		einfo "Cleaning up stale orphaned py[co] files..."
 		[[ -d "${EROOT}/usr/$(get_libdir)/scons/SCons" ]] \
 		    && rm -rf "${EROOT}/usr/$(get_libdir)/scons/SCons"
