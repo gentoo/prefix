@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.16.ebuild,v 1.12 2007/12/18 17:33:40 eradicator Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.16.ebuild,v 1.13 2008/06/14 18:18:51 zmedico Exp $
 
 EAPI="prefix"
 
@@ -54,8 +54,13 @@ src_install() {
 	use nls || rm -rf "${ED}usr/share/locale"
 }
 
+pkg_preinst() {
+	has_version "<${CATEGORY}/${PN}-0.6.13-r2"
+	previous_less_than_0_6_13_r2=$?
+}
+
 pkg_postinst() {
-	if has_version '<media-libs/libexif-0.6.13-r2'; then
+	if [[ $previous_less_than_0_6_13_r2 = 0 ]] ; then
 		elog "If you are upgrading from a version of libexif older than 0.6.13-r2,"
 		elog "you will need to do the following to rebuild dependencies:"
 		elog "# revdep-rebuild --soname libexif.so.9"
