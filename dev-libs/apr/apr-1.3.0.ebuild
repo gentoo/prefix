@@ -75,7 +75,7 @@ src_compile() {
 	# Make sure we use the system libtool
 	local LIBTL
 	[[ ${CHOST} == *-darwin* ]] \
-		&& LIBTL="${EPREFIX}"/usr/bin/libtool \
+		&& LIBTL="${EPREFIX}"/usr/bin/glibtool \
 		|| LIBTL="${EPREFIX}"/usr/bin/libtool
 	sed -i 's,$(apr_builddir)/libtool,'"${LIBTL}"',' "${S}"/build/apr_rules.mk
 	sed -i 's,${installbuilddir}/libtool,'"${LIBTL}"',' "${S}"/apr-1-config
