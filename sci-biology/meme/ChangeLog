@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/meme
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.6 2007/12/31 15:34:20 je_fro Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.7 2008/06/14 12:34:50 markusle Exp $
+
+  14 Jun 2008; Markus Dittrich <markusle@gentoo.org> -meme-3.5.4.ebuild:
+  Removed old ebuild with bad autotools usage (fixes bug #226609).
 
   31 Dec 2007; Jeff Gardner <je_fro@gentoo.org> ChangeLog, Manifest:
   Fixing my email addy.
