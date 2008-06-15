@@ -29,7 +29,10 @@ DEPEND="berkdb? ( sys-libs/db )
 	>=sys-devel/libperl-${PV}
 	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )
 	!<perl-core/File-Spec-0.87
-	!<perl-core/Test-Simple-0.47-r1"
+	!<perl-core/Test-Simple-0.47-r1
+	!dev-perl/Archive-Tar
+	!dev-perl/module-build
+	!dev-perl/Module-CoreList"
 
 RDEPEND="~sys-devel/libperl-${PV}
 	berkdb? ( sys-libs/db )
