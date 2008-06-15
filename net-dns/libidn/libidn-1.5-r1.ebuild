@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-dns/libidn/libidn-1.5-r1.ebuild,v 1.5 2008/05/12 14:44:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.5-r1.ebuild,v 1.6 2008/06/14 11:44:14 nixnut Exp $
 
 EAPI="prefix"
 
