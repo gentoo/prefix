@@ -13,7 +13,7 @@ SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 RDEPEND=">=media-libs/libogg-1"
@@ -25,7 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	eautoreconf # need new libtool for interix
+	AT_M4DIR=m4 eautoreconf # need new libtool for interix
 
 	epunt_cxx #74493
 
