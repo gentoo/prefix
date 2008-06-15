@@ -142,17 +142,15 @@ src_unpack() {
 	cd "${S}"; epatch "${FILESDIR}"/${PN}-noksh.patch
 
 	# we need the same @INC-inversion magic here we do in perl
-	cd "${S}"; epatch "${FILESDIR}"/${P}-reorder-INC.patch
+	cp "${FILESDIR}"/${P}-reorder-INC.patch "${T}"/
+	sed -i -e 's:"/etc/perl":/"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
+	cd "${S}"; epatch "${T}"/${P}-reorder-INC.patch
 
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
 	use !prefix && cd "${S}" && epatch "${T}"/${P}-lib64.patch
-#	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
-#	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
-#	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
-#	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then
