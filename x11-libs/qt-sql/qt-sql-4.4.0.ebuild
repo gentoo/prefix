@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.0.ebuild,v 1.6 2008/05/27 13:08:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.0.ebuild,v 1.7 2008/06/13 23:24:34 ingmar Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
@@ -16,6 +16,7 @@ IUSE="firebird mysql odbc postgres +qt3support +sqlite"
 
 DEPEND="
 	~x11-libs/qt-core-${PV}
+	!<=x11-libs/qt-4.4.0_alpha:${SLOT}
 	firebird? ( dev-db/firebird )
 	sqlite? ( dev-db/sqlite:3 )
 	mysql? ( virtual/mysql )
