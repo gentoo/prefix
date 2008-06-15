@@ -1,0 +1,121 @@
+diff -NrU5 flac-1.2.1.orig/configure.in flac-1.2.1/configure.in
+--- flac-1.2.1.orig/configure.in	2008-06-13 16:20:47.000000000 +0200
++++ flac-1.2.1/configure.in	2008-06-13 23:26:57.000000000 +0200
+@@ -253,10 +253,24 @@
+ if test "x$have_ogg" = xyes ; then
+ AC_DEFINE(FLAC__HAS_OGG)
+ AH_TEMPLATE(FLAC__HAS_OGG, [define if you have the ogg library])
+ fi
+ 
++
++dnl Build tests?
++AC_ARG_ENABLE(tests,
++       AS_HELP_STRING([--disable-tests], [Don't build tests during make]),,
++       enable_tests="yes")
++AM_CONDITIONAL(TESTS, [test "$enable_tests" = "yes"])
++
++dnl Build examples?
++AC_ARG_ENABLE(examples,
++       AS_HELP_STRING([--disable-examples], [Don't build examples during make]),,
++       enable_examples="yes")
++AM_CONDITIONAL(EXAMPLES, [test "$enable_examples" = "yes"])
++
++
+ dnl check for i18n(internationalization); these are from libiconv/gettext
+ AM_ICONV
+ AM_LANGINFO_CODESET
+ 
+ AC_CHECK_PROGS(DOCBOOK_TO_MAN, docbook-to-man docbook2man)
+diff -NrU5 flac-1.2.1.orig/examples/Makefile.am flac-1.2.1/examples/Makefile.am
+--- flac-1.2.1.orig/examples/Makefile.am	2008-06-13 16:20:47.000000000 +0200
++++ flac-1.2.1/examples/Makefile.am	2008-06-13 23:24:27.000000000 +0200
+@@ -13,15 +13,19 @@
+ #  Since this particular file is relevant to all components of FLAC,
+ #  it may be distributed under the Xiph.Org license, which is the least
+ #  restrictive of those mentioned above.  See the file COPYING.Xiph in this
+ #  distribution.
+ 
++if EXAMPLES
++
+ if FLaC__WITH_CPPLIBS
+ CPPLIBS_DIRS = cpp
+ endif
+ 
+ SUBDIRS = c $(CPPLIBS_DIRS)
+ 
+ EXTRA_DIST = \
+ 	examples.dsp \
+ 	Makefile.lite \
+ 	README
++
++endif
+diff -NrU5 flac-1.2.1.orig/Makefile.am flac-1.2.1/Makefile.am
+--- flac-1.2.1.orig/Makefile.am	2008-06-13 16:20:47.000000000 +0200
++++ flac-1.2.1/Makefile.am	2008-06-13 16:30:03.000000000 +0200
+@@ -28,11 +28,15 @@
+ # distclean: remove everything except what goes in the distribution
+ #
+ 
+ AUTOMAKE_OPTIONS = foreign 1.7
+ 
+-SUBDIRS = doc include m4 man src examples test build obj
++SUBDIRS = doc include m4 man src examples build obj
++
++if TESTS
++SUBDIRS += test
++endif
+ 
+ DISTCLEANFILES = libtool-disable-static
+ 
+ EXTRA_DIST = \
+ 	COPYING.FDL \
+diff -NrU5 flac-1.2.1.orig/src/Makefile.am flac-1.2.1/src/Makefile.am
+--- flac-1.2.1.orig/src/Makefile.am	2008-06-13 16:20:47.000000000 +0200
++++ flac-1.2.1/src/Makefile.am	2008-06-13 23:17:42.000000000 +0200
+@@ -18,25 +18,39 @@
+ if FLaC__HAS_XMMS
+ XMMS_DIRS = plugin_common plugin_xmms
+ endif
+ 
+ if FLaC__WITH_CPPLIBS
+-CPPLIBS_DIRS = libFLAC++ test_libFLAC++
++
++CPPLIBS_DIRS = libFLAC++
++
++endif
++
++if TESTS
++
++TESTDIRS = \
++	test_grabbag \
++	test_libs_common \
++	test_libFLAC \
++	test_seeking \
++	test_streams
++
++if FLaC__WITH_CPPLIBS
++TESTDIRS += test_libFLAC++
+ endif
+ 
++endif
++
++
+ SUBDIRS = \
+ 	libFLAC \
+ 	share \
+ 	flac \
+ 	metaflac \
+ 	monkeys_audio_utilities \
+ 	$(XMMS_DIRS) \
+ 	plugin_winamp2 \
+-	test_grabbag \
+-	test_libs_common \
+-	test_libFLAC \
+-	test_seeking \
+-	test_streams \
+-	$(CPPLIBS_DIRS)
++	$(CPPLIBS_DIRS) \
++	$(TESTDIRS)
+ 
+ EXTRA_DIST = \
+ 	Makefile.lite

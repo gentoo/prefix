@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.139 2008/05/15 20:39:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.140 2008/06/13 21:45:02 loki_val Exp $
+
+*flac-1.2.1-r3 (13 Jun 2008)
+
+  13 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/flac-1.2.1-tests-optional.patch, +flac-1.2.1-r3.ebuild:
+  Don't build tests and examples which aren't installed anyway wrt bug
+  226301.
 
   15 May 2008; Samuli Suominen <drac@gentoo.org> flac-1.2.1-r2.ebuild:
   Revert commit for bug 173464, it doesn't solve the entire problem. Stop
