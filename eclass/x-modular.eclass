@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.100 2008/05/28 01:48:10 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.101 2008/06/13 16:40:21 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -50,17 +50,19 @@ BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
 # The subdirectory to download source from. Possible settings are app,
 # doc, data, util, driver, font, lib, proto, xserver. Set above the
 # inherit to override the default autoconfigured module.
-[[ -z ${MODULE} ]] && MODULE=""
-case ${CATEGORY} in
-	app-doc)             MODULE="doc"     ;;
-	media-fonts)         MODULE="font"    ;;
-	x11-apps|x11-wm)     MODULE="app"     ;;
-	x11-misc|x11-themes) MODULE="util"    ;;
-	x11-drivers)         MODULE="driver"  ;;
-	x11-base)            MODULE="xserver" ;;
-	x11-proto)           MODULE="proto"   ;;
-	x11-libs)            MODULE="lib"     ;;
-esac
+if [[ -z ${MODULE} ]]; then
+	MODULE=""
+	case ${CATEGORY} in
+		app-doc)             MODULE="doc"     ;;
+		media-fonts)         MODULE="font"    ;;
+		x11-apps|x11-wm)     MODULE="app"     ;;
+		x11-misc|x11-themes) MODULE="util"    ;;
+		x11-drivers)         MODULE="driver"  ;;
+		x11-base)            MODULE="xserver" ;;
+		x11-proto)           MODULE="proto"   ;;
+		x11-libs)            MODULE="lib"     ;;
+	esac
+fi
 
 if [[ -n ${GIT_ECLASS} ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/${MODULE}/${PN}"
