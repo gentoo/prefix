@@ -1,6 +1,11 @@
 # ChangeLog for net-irc/xchat
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.264 2008/02/07 22:54:45 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.265 2008/06/13 09:56:37 armin76 Exp $
+
+*xchat-2.8.6 (13 Jun 2008)
+
+  13 Jun 2008; Raúl Porcel <armin76@gentoo.org> +xchat-2.8.6.ebuild:
+  Version bump
 
   07 Feb 2008; Dawid Węgliński <cla@gentoo.org>
   +files/xchat-fix-uk_UA-locale.diff, xchat-2.8.4-r3.ebuild:
