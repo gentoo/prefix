@@ -1,9 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.4.0.ebuild,v 1.4 2008/05/30 04:07:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.4.0.ebuild,v 1.5 2008/06/13 23:25:06 ingmar Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 inherit qt4-build
 
 DESCRIPTION="The SVG module for the Qt toolkit."
@@ -14,7 +13,8 @@ SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND="~x11-libs/qt-gui-${PV}"
+DEPEND="~x11-libs/qt-gui-${PV}
+	!<=x11-libs/qt-4.4.0_alpha:${SLOT}"
 RDEPEND="${DEPEND}"
 
 QCONFIG_ADD="svg"

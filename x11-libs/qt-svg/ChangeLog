@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-svg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.9 2008/05/30 04:07:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.10 2008/06/13 23:25:06 ingmar Exp $
+
+  13 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-svg-4.4.0.ebuild:
+  Make all split Qt4 ebuilds block the old monolithic ebuild.
 
   30 May 2008; Jeroen Roovers <jer@gentoo.org> qt-svg-4.4.0.ebuild:
   Marked ~hppa (bug #223557).
