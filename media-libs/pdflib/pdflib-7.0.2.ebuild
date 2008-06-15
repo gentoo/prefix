@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2.ebuild,v 1.10 2007/12/11 23:53:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2.ebuild,v 1.11 2008/06/14 17:49:57 zmedico Exp $
 
 EAPI="prefix"
 
@@ -119,8 +119,14 @@ src_install() {
 	fi
 }
 
+pkg_preinst () {
+	perl-module_pkg_preinst
+	has_version "<${CATEGORY}/${PN}-7.0.1"
+	previous_less_than_7_0_1=$?
+}
+
 pkg_postinst() {
-	if has_version "<media-libs/pdflib-7.0.1" ; then
+	if [[ $previous_less_than_7_0_1 = 0 ]] ; then
 		ewarn "Please run revdep-rebuild now! All packages that linked with"
 		ewarn "previous versions of PDFLib will no longer work unless you"
 		ewarn "run it."
