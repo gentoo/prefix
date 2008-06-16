@@ -148,7 +148,7 @@ src_unpack() {
 
 	# we need the same @INC-inversion magic here we do in perl
 	cp "${FILESDIR}"/${P}-reorder-INC.patch "${T}"/
-	sed -i -e 's:"/etc/perl":/"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
+	sed -i -e 's:"/etc/perl":"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
 	cd "${S}"; epatch "${T}"/${P}-reorder-INC.patch
 
 	# makedepend.SH contains a syntax error which is ignored by bash but causes
