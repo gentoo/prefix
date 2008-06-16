@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.1.5.ebuild,v 1.7 2007/10/13 01:21:52 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.1.5.ebuild,v 1.8 2008/06/15 11:15:19 zmedico Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,11 @@ src_install() {
 	dobashcompletion surfraw-bash-completion
 }
 
+pkg_preinst() {
+	has_version "=${CATEGORY}/${PN}-1.0.7"
+	upgrade_from_1_0_7=$?
+}
+
 pkg_postinst() {
 	bash-completion_pkg_postinst
 	einfo
@@ -56,7 +61,7 @@ pkg_postinst() {
 	einfo
 	einfo "surfraw works with any graphical and/or text WWW browser"
 	einfo
-	if has_version '=www-client/surfraw-1.0.7'; then
+	if [[ $upgrade_from_1_0_7 = 0 ]] ; then
 		ewarn "surfraw usage has changed slightly since version 1.0.7, elvi are now called"
 		ewarn "using the 'sr' wrapper script as described above.  If you wish to return to"
 		ewarn "the old behaviour you can add /usr/share/surfraw to your \$PATH"
