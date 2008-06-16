@@ -1,0 +1,22 @@
+diff -NrU5 xmlrpc-c-1.14.07.orig/src/cpp/Makefile xmlrpc-c-1.14.07/src/cpp/Makefile
+--- xmlrpc-c-1.14.07.orig/src/cpp/Makefile	2008-06-15 16:12:38.000000000 +0200
++++ xmlrpc-c-1.14.07/src/cpp/Makefile	2008-06-15 16:15:54.000000000 +0200
+@@ -15,14 +15,17 @@
+ 
+ TARGET_LIB_NAMES_PP := \
+   libxmlrpc_cpp \
+   libxmlrpc++ \
+   libxmlrpc_server++ \
+-  libxmlrpc_server_abyss++ \
+   libxmlrpc_server_pstream++ \
+   libxmlrpc_packetsocket \
+ 
++ifeq ($(ENABLE_ABYSS_SERVER),yes)
++  TARGET_LIB_NAMES_PP += libxmlrpc_server_abyss++
++endif
++
+ ifeq ($(MUST_BUILD_CLIENT),yes)
+   TARGET_LIB_NAMES_PP += libxmlrpc_client++
+ endif
+ 
+ STATIC_LIBRARIES_TO_INSTALL = $(TARGET_STATIC_LIBRARIES)
