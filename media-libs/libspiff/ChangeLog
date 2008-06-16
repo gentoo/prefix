@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libspiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.19 2008/04/14 18:19:59 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.20 2008/06/15 20:52:48 coldwind Exp $
+
+  15 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> libspiff-0.8.3.ebuild:
+  amd64 stable wrt bug #227107
 
   14 Apr 2008; Samuli Suominen <drac@gentoo.org>
   +files/libspiff-0.8.3-cstring-test-suite.patch, libspiff-0.8.3.ebuild:
