@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/nvi
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/ChangeLog,v 1.56 2008/03/08 16:35:56 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/ChangeLog,v 1.58 2008/06/15 11:53:15 ranger Exp $
+
+  15 Jun 2008; Brent Baude <ranger@gentoo.org> nvi-1.81.6.ebuild:
+  Marking nvi-1.81.6 ppc64 for bug 226685
+
+  15 Jun 2008; Tobias Klausmann <klausman@gentoo.org> nvi-1.81.6.ebuild:
+  Stable on alpha, bug #226685
 
 *nvi-1.81.6 (08 Mar 2008)
 
