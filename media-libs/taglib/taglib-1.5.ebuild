@@ -12,22 +12,17 @@ SRC_URI="http://developer.kde.org/~wheeler/files/src/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug"
 
 RDEPEND=""
 DEPEND="dev-util/pkgconfig"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	eautoreconf # need new libtool for interix
-}
-
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
-	econf $(use_enable debug) || die "econf failed."
+	# prefix: do not "invent" lib64 (--disable-libsuffix)
+	econf $(use_enable debug) --disable-libsuffix || die "econf failed."
 	emake || die "emake failed."
 }
 
