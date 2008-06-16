@@ -97,8 +97,6 @@ src_compile() {
 	append-flags -fno-strict-aliasing
 
 	econf --with-x \
-		--bindir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
-		--libdir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
 		$(use_enable xft) \
 		$(use_enable jpeg) \
 		$(use_enable png)
