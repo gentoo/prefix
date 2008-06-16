@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.79 2008/06/14 10:00:18 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.80 2008/06/16 03:23:16 jer Exp $
+
+  16 Jun 2008; Jeroen Roovers <jer@gentoo.org> smartmontools-5.38.ebuild:
+  Stable for HPPA (bug #225935).
 
   14 Jun 2008; Christoph Mende <angelos@gentoo.org>
   smartmontools-5.38.ebuild:
