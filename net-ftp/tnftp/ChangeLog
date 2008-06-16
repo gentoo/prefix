@@ -1,6 +1,10 @@
 # ChangeLog for net-ftp/tnftp
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.30 2008/05/12 15:53:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.31 2008/06/15 18:39:45 swegener Exp $
+
+  15 Jun 2008; Sven Wegener <swegener@gentoo.org>
+  +files/tnftp-20070806-glibc-2.8-ARG_MAX.patch, tnftp-20070806.ebuild:
+  Add glibc-2.8 compability patch.
 
   12 May 2008; Markus Meier <maekke@gentoo.org> tnftp-20070806.ebuild:
   amd64 stable, bug #215491
