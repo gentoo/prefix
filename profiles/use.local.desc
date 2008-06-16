@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3588 2008/06/14 18:20:02 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3590 2008/06/15 18:52:50 eva Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -86,7 +86,8 @@ app-dicts/stardict:pronounce - Install WyabdcRealPeopleTTS package (it is just m
 app-dicts/stardict:qqwry - Enable QQWry plugin, which provides information (in Chinees language) about geographical position, owner, etc. for IP address
 app-doc/doxygen:nodot - removes graphviz dependency, along with dot graphs
 app-doc/gimp-help:webinstall - optimize images for web installation (fewer colors, depends on imagemagick)
-app-doc/pms:all-options - Include both sides of kdebuild conditionals, shown in different colours
+app-doc/pms:all-options - Include both sides of kdebuild conditionals, shown in different colours (PDF only)
+app-doc/pms:html - Generate PMS as .html as well
 app-doc/pms:kdebuild - Include specification for the kdebuild EAPI, see http://www.gentoo.org/proj/en/desktop/kde/kdebuild-1.xml
 app-editors/cssed:plugins - Install plugin development files
 app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
@@ -2041,6 +2042,7 @@ sys-block/gparted:ntfs - Include NTFS support
 sys-block/gparted:reiser4 - Include ReiserFS4 support
 sys-block/gparted:reiserfs - Include ReiserFS support
 sys-block/gparted:xfs - Include XFS support
+sys-block/gparted:xfce - Enable integration in XFCE desktop
 sys-block/open-iscsi:modules - Build the open-iscsi modules
 sys-block/open-iscsi:utils - Build the open-iscsi utilities
 sys-block/partimage:nologin - Do not include login support

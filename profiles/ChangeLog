@@ -1,13 +1,34 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1549 2008/06/14 18:33:48 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1555 2008/06/16 00:29:26 je_fro Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
 
+  15 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add xfce use flag for sys-block/gparted
+
+  15 Jun 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove net-dialup/{mclient,mserver,linesrv,xlc} p.mask (packages were removed).
+
+  15 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Describe USE=html for app-doc/pms.
+
+  15 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
+  arch/alpha/package.use.mask, default-linux/alpha/package.use.mask:
+  Since we can't test net-dialup/linux-atm on alpha, use mask the
+  corresponding use flags on iproute2 and ppp.
+
+  15 Jun 2008; Mike Auty <ikelos@gentoo.org> package.mask:
+  Masking vmware-workstation-4.5.3 for removal due to no upstream support
+  and multiple security advisories.
+
   14 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
   Adding media-video/ffmpeg2theora-0.21 to the ffmpeg migration mask
+
+  14 Jun 2008; Jeffrey Gardner <je_fro@gentoo.org> package.mask:
+  Removing foldingathome-5.91_beta as it's leaving soon
 
   14 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> use.local.desc:
   Add dkim use-flag for >=mail-filter/amavisd-new-2.6.0
