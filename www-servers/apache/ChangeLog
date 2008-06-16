@@ -1,6 +1,20 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.74 2008/06/14 13:13:42 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.78 2008/06/16 00:17:11 jer Exp $
+
+  16 Jun 2008; Jeroen Roovers <jer@gentoo.org> apache-2.2.9.ebuild:
+  Stable for HPPA (bug #227111).
+
+  15 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> apache-2.2.9.ebuild:
+  ppc stable, bug #227111
+
+  15 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apache-2.2.9.ebuild:
+  remove old warning cruft
+
+*apache-2.2.9 (15 Jun 2008)
+
+  15 Jun 2008; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.9.ebuild:
+  version bump wrt security #227111
 
   14 Jun 2008; Zac Medico <zmedico@gentoo.org> apache-2.2.8.ebuild,
   apache-2.2.8-r3.ebuild, apache-2.2.8-r4.ebuild:
