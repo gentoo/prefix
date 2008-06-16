@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.0_rc9.ebuild,v 1.2 2008/06/14 16:43:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.0_rc9.ebuild,v 1.3 2008/06/15 07:53:03 hollow Exp $
 
 EAPI="prefix 1"
 
@@ -79,9 +79,7 @@ src_unpack() {
 		-e 's:@bindir@/svn-tools:@libdir@/subversion/bin:' \
 		-i Makefile.in
 
-	# eautoreconf does not work with libtool 2.2
-	./autogen.sh || die "autogen.sh failed"
-	elibtoolize
+	eautoreconf
 }
 
 src_compile() {

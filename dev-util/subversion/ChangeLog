@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.311 2008/06/14 16:43:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.312 2008/06/15 07:53:03 hollow Exp $
+
+  15 Jun 2008; Benedikt Böhm <hollow@gentoo.org>
+  -subversion-1.5.0_rc5.ebuild, subversion-1.5.0_rc9.ebuild:
+  fix #226577
 
   14 Jun 2008; nixnut <nixnut@gentoo.org> subversion-1.5.0_rc9.ebuild:
   Added ~ppc
