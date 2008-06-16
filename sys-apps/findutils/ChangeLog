@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.164 2008/06/12 12:50:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.165 2008/06/16 03:54:54 josejx Exp $
+
+  16 Jun 2008; Joseph Jezak <josejx@gentoo.org> findutils-4.3.13.ebuild:
+  Marked ppc/ppc64 stable.
 
   12 Jun 2008; Jeroen Roovers <jer@gentoo.org> ChangeLog:
   Stable for HPPA too.
