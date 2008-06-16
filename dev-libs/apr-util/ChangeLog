@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.108 2008/06/11 19:14:22 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.109 2008/06/15 16:21:55 hollow Exp $
+
+  15 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apr-util-1.2.12.ebuild,
+  apr-util-1.3.0.ebuild:
+  do not run buildconf wrt #226051
 
 *apr-util-1.3.0 (11 Jun 2008)
 

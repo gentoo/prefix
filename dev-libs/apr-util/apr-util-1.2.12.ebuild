@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.12.ebuild,v 1.3 2008/06/01 11:42:35 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.12.ebuild,v 1.4 2008/06/15 16:21:55 hollow Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic libtool db-use
+inherit eutils flag-o-matic libtool db-use
 
 DESCRIPTION="Apache Portable Runtime Utility Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -28,14 +28,6 @@ RDEPEND="dev-libs/expat
 	sqlite3? ( =dev-db/sqlite-3* )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	./buildconf --with-apr=../apr-${PV} || die "buildconf failed"
-	elibtoolize || die "elibtoolize failed"
-}
 
 src_compile() {
 	local myconf=""
