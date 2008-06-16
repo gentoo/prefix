@@ -90,7 +90,7 @@ src_unpack() {
 	# that are in the core, by rearranging the @INC directory to look
 	# site -> vendor -> core.
 	cp "${FILESDIR}"/${P}-reorder-INC.patch "${T}"/
-	sed -i -e 's:"/etc/perl":/"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
+	sed -i -e 's:"/etc/perl":"'"${EPREFIX}"'/etc/perl":' "${T}"/${P}-reorder-INC.patch
 	cd "${S}"; epatch "${T}"/${P}-reorder-INC.patch
 
 	# some well-intentioned stuff in http://groups.google.com/groups?hl=en&lr=&ie=UTF-8&selm=Pine.SOL.4.10.10205231231200.5399-100000%40maxwell.phys.lafayette.edu
