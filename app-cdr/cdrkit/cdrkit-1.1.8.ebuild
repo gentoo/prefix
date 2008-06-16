@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.8.ebuild,v 1.1 2008/06/04 15:26:44 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.8.ebuild,v 1.2 2008/06/15 11:43:09 drac Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs flag-o-matic
 
-DESCRIPTION="A suite of programs for recording CDs and DVDs, blanking CD-RW media, creating ISO-9660 filesystem images, extracting audio CD data, and more."
+DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
 HOMEPAGE="http://cdrkit.org/"
 SRC_URI="http://cdrkit.org/releases/${P}.tar.gz"
 
