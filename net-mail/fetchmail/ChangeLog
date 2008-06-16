@@ -1,6 +1,30 @@
 # ChangeLog for net-mail/fetchmail
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.139 2007/09/03 14:33:43 falco Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.145 2008/06/15 18:45:09 dertobi123 Exp $
+
+  15 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  fetchmail-6.3.8-r2.ebuild:
+  ppc stable, bug #227105
+
+  15 Jun 2008; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.8-r2.ebuild:
+  ia64/sparc/x86 stable wrt security #227105
+
+  15 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
+  fetchmail-6.3.8-r2.ebuild:
+  Stable on alpha, bug #227105
+
+  15 Jun 2008; Brent Baude <ranger@gentoo.org> fetchmail-6.3.8-r2.ebuild:
+  Marking fetchmail-6.3.8-r2 ppc64 for bug 227105
+
+  15 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  fetchmail-6.3.8-r2.ebuild:
+  remove useless dodoc ABOUT-NLS
+
+*fetchmail-6.3.8-r2 (15 Jun 2008)
+
+  15 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +files/fetchmail-6.3.8-resize-buffer.patch, +fetchmail-6.3.8-r2.ebuild:
+  revbump, include fix for security bug #227105
 
   03 Sep 2007; Raphael Marichez <falco@gentoo.org> ChangeLog:
   Fix possible security issue (DoS), bug 191154
