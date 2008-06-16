@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10-r1.ebuild,v 1.6 2008/05/25 12:34:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.10-r1.ebuild,v 1.7 2008/06/15 22:21:12 eva Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="doc emacs"
 
-RDEPEND=">=dev-lang/perl-5.6
+RDEPEND=">=dev-libs/glib-2.6
+	>=dev-lang/perl-5.6
 	>=app-text/openjade-1.3.1
 	dev-libs/libxslt
 	>=dev-libs/libxml2-2.3.6
