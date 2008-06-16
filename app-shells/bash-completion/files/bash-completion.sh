@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-shells/bash-completion/files/bash-completion.sh,v 1.2 2006/11/22 14:54:21 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/files/bash-completion.sh,v 1.3 2008/06/15 23:22:32 zlin Exp $
 #
 # START bash completion -- do not remove this line
 
@@ -20,7 +20,9 @@ then
 		# Some modules, including base, depend on the definitions
 		# in .pre.  See the ebuild for how this is created.
 		if ! $loaded_pre; then
-		    BASH_COMPLETION="@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/base
+		    if [[ ${BASH_COMPLETION-unset} == unset ]]; then
+			BASH_COMPLETION="@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/base
+		    fi
 		    source "@GENTOO_PORTAGE_EPREFIX@"/usr/share/bash-completion/.pre
 		    loaded_pre=true
 		fi

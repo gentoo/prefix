@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.141 2008/01/12 18:35:56 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.142 2008/06/15 23:22:31 zlin Exp $
+
+*bash-completion-20060301-r3 (15 Jun 2008)
+
+  15 Jun 2008; Bo Ørsted Andresen <zlin@gentoo.org>
+  files/bash-completion.sh, -bash-completion-20060301-r2.ebuild,
+  +bash-completion-20060301-r3.ebuild:
+  Get rid of 'bash: BASH_COMPLETION: readonly variable' message.
 
   12 Jan 2008; Vlastimil Babka <caster@gentoo.org>
   bash-completion-20050121-r10.ebuild, bash-completion-20050721.ebuild,

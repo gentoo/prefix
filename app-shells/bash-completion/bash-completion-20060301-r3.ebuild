@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r2.ebuild,v 1.3 2008/01/12 18:35:56 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r3.ebuild,v 1.1 2008/06/15 23:22:31 zlin Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ S="${WORKDIR}/${PN/-/_}"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	EPATCH_SUFFIX="diff" epatch ${FILESDIR}/20050721
 	EPATCH_SUFFIX="diff" epatch ${FILESDIR}/${PV}
 }
@@ -69,7 +69,7 @@ pkg_preinst() {
 	if [[ -f ${EROOT}/etc/profile.d/bash-completion && \
 		! -f ${EROOT}/etc/profile.d/bash-completion.sh ]]
 	then
-		mv ${EROOT}/etc/profile.d/bash-completion{,.sh}
+		mv "${EROOT}"/etc/profile.d/bash-completion{,.sh}
 	fi
 }
 
