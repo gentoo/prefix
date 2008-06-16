@@ -1,6 +1,15 @@
 # ChangeLog for mail-filter/procmail
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.28 2007/02/22 01:00:33 peper Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.29 2008/06/15 10:22:20 dertobi123 Exp $
+
+*procmail-3.22-r9 (15 Jun 2008)
+
+  15 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +files/gentoo-maildir3.diff, +files/procmail-pipealloc.diff,
+  +procmail-3.22-r9.ebuild:
+  fix lockfile perms (#121221), fix locking issues w/ NFS (#156493), fix
+  memory allocation when piping mail through a filter (#200006), unset
+  MAILSPOOLHOME (#108869)
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
