@@ -1,6 +1,10 @@
 # ChangeLog for app-text/duconv
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/duconv/ChangeLog,v 1.16 2008/01/25 19:38:20 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/duconv/ChangeLog,v 1.17 2008/06/15 20:12:14 loki_val Exp $
+
+  15 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/duconv-1.1-gcc43.patch, duconv-1.1.ebuild:
+  Fix 227301, tidy up ebuild.
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> duconv-1.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
