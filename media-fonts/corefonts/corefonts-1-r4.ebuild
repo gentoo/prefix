@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.5 2008/03/21 12:12:23 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.6 2008/06/16 03:45:57 josejx Exp $
 
 EAPI="prefix"
 
