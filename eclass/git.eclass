@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.11 2008/06/05 15:44:01 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.12 2008/06/15 17:47:57 zlin Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -190,7 +190,7 @@ git_fetch() {
 
 	debug-print "${FUNCNAME}: EGIT_OPTIONS = \"${EGIT_OPTIONS}\""
 
-	export GIT_DIR="${EGIT_CLONE_DIR}"
+	export GIT_DIR="${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
 
 	if [[ ! -d ${EGIT_CLONE_DIR} ]] ; then
 		# first clone
