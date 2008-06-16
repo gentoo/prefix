@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.6.ebuild,v 1.10 2007/10/08 01:31:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.9.ebuild,v 1.3 2008/06/16 00:16:33 jer Exp $
 
 EAPI="prefix"
 
@@ -51,13 +51,10 @@ src_compile() {
 
 	if use ssl ; then
 		myconf="${myconf} --with-ssl=${EPREFIX}/usr --enable-ssl"
-		append-flags -DHAVE_OPENSSL -DUSE_SSL -I"${EPREFIX}"/usr/include/openssl
-		append-ldflags -lssl
 	fi
 
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
-
 	econf \
 		--sbindir="${EPREFIX}"/usr/sbin \
 		--with-perl="${EPREFIX}"/usr/bin/perl \
@@ -93,6 +90,9 @@ src_install () {
 		dosym /usr/sbin/ab /usr/sbin/ab-ssl
 		dosym /usr/sbin/ab /usr/sbin/ab2-ssl
 	fi
+
+	# make htpasswd accessible for non-root users
+	dosym /usr/sbin/htpasswd /usr/bin/htpasswd
 
 	dodoc "${S}"/CHANGES
 }
