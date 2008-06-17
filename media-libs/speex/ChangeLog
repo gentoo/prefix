@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/speex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.85 2008/04/17 10:16:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.86 2008/06/16 11:01:24 flameeyes Exp $
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  speex-1.2_beta3_p2.ebuild:
+  Disable tests building during src_compile, closes bug #226245.
 
   17 Apr 2008; Raúl Porcel <armin76@gentoo.org> speex-1.2_beta3_p2.ebuild:
   ia64 stable
