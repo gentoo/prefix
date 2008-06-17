@@ -1,6 +1,19 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.39 2008/06/16 00:16:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.43 2008/06/16 16:09:36 ranger Exp $
+
+  16 Jun 2008; Brent Baude <ranger@gentoo.org> apache-tools-2.2.9.ebuild:
+  Marking apache-tools-2.2.9 ppc64 for bug 227111
+
+  16 Jun 2008; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.9.ebuild:
+  alpha/ia64/sparc stable wrt #227111
+
+  16 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apache-tools-2.2.9.ebuild:
+  stable amd64, security bug 227111
+
+  16 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  apache-tools-2.2.9.ebuild:
+  stable x86, security bug 227111
 
   16 Jun 2008; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.9.ebuild:
   Stable for HPPA (bug #227111).
