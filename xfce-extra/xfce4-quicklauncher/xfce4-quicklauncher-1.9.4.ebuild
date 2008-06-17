@@ -20,7 +20,7 @@ src_unpack() {
 	cd "${S}"
 	sed -i -e "/^AC_INIT/s/quicklauncher_version()/quicklauncher_version/" configure.ac
 	intltoolize --force --copy --automake || die "intltoolize failed."
-	AT_M4DIR=/usr/share/xfce4/dev-tools/m4macros eautoreconf
+	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 }
 
 DOCS="AUTHORS NEWS README TODO"
