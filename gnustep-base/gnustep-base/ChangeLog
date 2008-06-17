@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.66 2008/06/10 14:20:16 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.67 2008/06/16 09:49:30 voyageur Exp $
+
+*gnustep-base-1.16.0 (16 Jun 2008)
+
+  16 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-base-1.15.3.ebuild, +gnustep-base-1.16.0.ebuild:
+  New stable branch, remove unstable version
 
   10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
   -gnustep-base-1.14.0.ebuild, -gnustep-base-1.14.2.ebuild:

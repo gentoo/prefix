@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.2.ebuild,v 1.2 2008/02/18 23:39:08 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.0.ebuild,v 1.1 2008/06/16 09:49:30 voyageur Exp $
 
 EAPI="prefix"
 
@@ -14,12 +14,13 @@ KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
 
-IUSE="gcc-libffi"
+IUSE="gcc-libffi gnutls"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
 	>=gnustep-base/gnustep-make-2.0
 	!gcc-libffi? ( dev-libs/ffcall )
 	gcc-libffi? ( >=sys-devel/gcc-3.3.5 )
+	gnutls? ( net-libs/gnutls )
 	>=dev-libs/libxml2-2.6
 	>=dev-libs/libxslt-1.1
 	>=dev-libs/gmp-4.1
@@ -49,6 +50,7 @@ src_compile() {
 		myconf="--disable-libffi --enable-ffcall"
 	fi
 
+	myconf="$myconf $(use_enable gnutls tls)"
 	myconf="$myconf --with-xml-prefix=${EPREFIX}/usr"
 	myconf="$myconf --with-gmp-include=${EPREFIX}/usr/include --with-gmp-library=${EPREFIX}/usr/lib"
 	myconf="$myconf --with-default-config=${EPREFIX}/etc/GNUstep/GNUstep.conf"
@@ -84,5 +86,5 @@ pkg_postinst() {
 	ewarn "You will need to recompile all Applications/Tools/etc in order"
 	ewarn "to use this library."
 	ewarn "Run:"
-	ewarn "revdep-rebuild --library \"libgnustep-base.so.1.1[0-3]\""
+	ewarn "revdep-rebuild --library \"libgnustep-base.so.1.1[0-4]\""
 }
