@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/makepasswd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.17 2008/04/21 16:06:56 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.18 2008/06/16 12:32:53 yngwin Exp $
+
+  16 Jun 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml:
+  Taking ownership of this maintainer-needed package
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata

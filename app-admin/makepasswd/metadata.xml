@@ -6,7 +6,7 @@
 		A random password generator, for all your secure password needs.
 	</longdescription>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
-		<name>Default assignee for orphaned packages</name>
+		<email>yngwin@gentoo.org</email>
+		<name>Ben de Groot</name>
 	</maintainer>
 </pkgmetadata>
