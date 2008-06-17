@@ -22,7 +22,7 @@
 -		elif [[ -f /etc/DIR_COLORS ]] ; then
 -			eval $(dircolors -b /etc/DIR_COLORS)
 +		elif [[ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS ]] ; then
-+			eval $(dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
++			eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
  		fi
  	fi
  
