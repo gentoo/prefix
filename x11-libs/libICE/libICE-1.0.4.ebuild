@@ -11,7 +11,7 @@ inherit x-modular autotools
 
 DESCRIPTION="X.Org ICE library"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/xtrans
