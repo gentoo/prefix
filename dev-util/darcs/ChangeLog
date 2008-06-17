@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.85 2008/05/25 11:59:07 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.86 2008/06/17 00:19:51 jer Exp $
+
+  17 Jun 2008; Jeroen Roovers <jer@gentoo.org> darcs-1.0.9.ebuild,
+  darcs-1.1.0_pre1.ebuild:
+  Marked one stable for HPPA, another one ~hppa (bug #227677).
 
   25 May 2008; Lennart Kolmodin <kolmodin@gentoo.org> darcs-1.0.5.ebuild,
   darcs-1.0.6.ebuild, darcs-1.0.7.ebuild, darcs-1.0.8-r2.ebuild,
