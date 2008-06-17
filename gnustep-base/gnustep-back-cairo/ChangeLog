@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-back-cairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.8 2008/06/10 14:31:18 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.9 2008/06/16 09:57:19 voyageur Exp $
+
+*gnustep-back-cairo-0.14.0 (16 Jun 2008)
+
+  16 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-back-cairo-0.13.2.ebuild, +gnustep-back-cairo-0.14.0.ebuild:
+  New stable branch, remove unstable version
 
   10 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
   gnustep-back-cairo-0.12.1.ebuild, gnustep-back-cairo-0.13.2.ebuild:
