@@ -1,6 +1,12 @@
 # ChangeLog for app-text/unrtf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/ChangeLog,v 1.28 2008/06/16 03:56:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/ChangeLog,v 1.30 2008/06/16 20:54:08 ranger Exp $
+
+  16 Jun 2008; Brent Baude <ranger@gentoo.org> unrtf-0.20.1.ebuild:
+  Marking unrtf-0.20.1 ~ppc64 for bug 225877
+
+  16 Jun 2008; Raúl Porcel <armin76@gentoo.org> unrtf-0.20.1.ebuild:
+  Add ~alpha/~ia64 wrt #225877
 
   16 Jun 2008; Jeroen Roovers <jer@gentoo.org> unrtf-0.20.1.ebuild:
   Marked ~hppa (bug #225877).
