@@ -12,7 +12,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="apache2 berkdb debug doc emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
