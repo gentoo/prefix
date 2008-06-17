@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r4.ebuild,v 1.16 2008/06/16 18:11:58 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r5.ebuild,v 1.1 2008/06/16 18:14:45 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-IUSE="crypt doc emacs kerberos nls pam server"
+IUSE="crypt doc kerberos nls pam server"
 
 DEPEND=">=sys-libs/zlib-1.1.4
 	kerberos? ( virtual/krb5 )
@@ -57,10 +57,9 @@ src_install() {
 	dodoc BUGS ChangeLog* DEVEL* FAQ HACKING \
 		MINOR* NEWS PROJECTS README* TESTS TODO
 
-	if use emacs; then
-		insinto /usr/share/emacs/site-lisp
-		doins cvs-format.el || die "doins failed"
-	fi
+	# Not installed into emacs site-lisp because it clobbers the normal C
+	# indentations.
+	dodoc cvs-format.el || die "dodoc failed"
 
 	use server && newdoc "${FILESDIR}"/cvs-1.12.12-cvs-custom.c cvs-custom.c
 

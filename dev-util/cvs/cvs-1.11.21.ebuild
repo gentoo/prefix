@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.11.21.ebuild,v 1.1 2006/03/07 09:25:09 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.11.21.ebuild,v 1.2 2008/06/16 18:11:58 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ src_install() {
 	einstall || die
 
 	insinto /etc/xinetd.d
-	newins ${FILESDIR}/cvspserver.xinetd.d cvspserver || die "newins failed"
+	newins "${FILESDIR}"/cvspserver.xinetd.d cvspserver || die "newins failed"
 
 	dodoc BUGS ChangeLog* DEVEL* FAQ HACKING \
 		MINOR* NEWS PROJECTS README* TESTS TODO
@@ -38,11 +38,11 @@ src_install() {
 	fi
 
 	if use doc; then
-		dodoc ${DISTDIR}/cederqvist-${PV}.pdf
-		dodoc ${DISTDIR}/cederqvist-${PV}.ps
-		tar xjf ${DISTDIR}/cederqvist-${PV}.html.tar.bz2
+		dodoc "${DISTDIR}"/cederqvist-${PV}.pdf
+		dodoc "${DISTDIR}"/cederqvist-${PV}.ps
+		tar xjf "${DISTDIR}"/cederqvist-${PV}.html.tar.bz2
 		dohtml -r cederqvist-${PV}.html/*
-		cd ${D}/usr/share/doc/${PF}/html/
+		cd "${ED}"/usr/share/doc/${PF}/html/
 		ln -s cvs.html index.html
 	fi
 }

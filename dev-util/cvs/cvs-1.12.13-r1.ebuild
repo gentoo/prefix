@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.13-r1.ebuild,v 1.5 2007/12/07 00:34:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.13-r1.ebuild,v 1.6 2008/06/16 18:11:58 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ src_unpack() {
 	unpack ${P}.tar.bz2
 	use doc && unpack cederqvist-${PV}.html.tar.bz2
 	EPATCH_OPTS="-p1 -d ${S}" epatch "${FILESDIR}"/${PN}-1.12.12-cvsbug-tmpfix.patch
-	epatch ${FILESDIR}/${P}-openat.patch
+	epatch "${FILESDIR}"/${P}-openat.patch
 	EPATCH_OPTS="-p0 -d ${S}" epatch "${FILESDIR}"/${P}-zlib.patch
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12.12-install-sh.patch
@@ -37,7 +37,7 @@ src_unpack() {
 	#  ${S}/src/sanity.sh
 	# this one fails when the testpath path contains '.'
 	sed -i.orig -e '/newfile config3/s,a-z,a-z.,g' \
-	  ${S}/src/sanity.sh
+	  "${S}"/src/sanity.sh
 }
 
 src_compile() {
@@ -67,7 +67,7 @@ src_install() {
 
 	if use server; then
 	  insinto /etc/xinetd.d
-	  newins ${FILESDIR}/cvspserver.xinetd.d cvspserver || die "newins failed"
+	  newins "${FILESDIR}"/cvspserver.xinetd.d cvspserver || die "newins failed"
 	fi
 
 	dodoc BUGS ChangeLog* DEVEL* FAQ HACKING \
@@ -79,15 +79,15 @@ src_install() {
 	fi
 
 	if use doc; then
-		dodoc ${DISTDIR}/cederqvist-${PV}.pdf
-		dodoc ${DISTDIR}/cederqvist-${PV}.ps
-		tar xjf ${DISTDIR}/cederqvist-${PV}.html.tar.bz2
+		dodoc "${DISTDIR}"/cederqvist-${PV}.pdf
+		dodoc "${DISTDIR}"/cederqvist-${PV}.ps
+		tar xjf "${DISTDIR}"/cederqvist-${PV}.html.tar.bz2
 		dohtml -r cederqvist-${PV}.html/*
-		cd ${D}/usr/share/doc/${PF}/html/
+		cd "${ED}"/usr/share/doc/${PF}/html/
 		ln -s cvs.html index.html
 	fi
 
-	newpamd ${FILESDIR}/cvs.pam-include-1.12.12 cvs
+	newpamd "${FILESDIR}"/cvs.pam-include-1.12.12 cvs
 }
 
 src_test() {
@@ -99,7 +99,7 @@ src_test() {
 		einfo "Only testing local mode. Please see ebuild for other modes."
 	fi
 
-	cd ${S}/src
+	cd "${S}"/src
 	export TESTDIR="${T}/tests-local"
 	mkdir -p "$TESTDIR"
 	# we only do the local tests by default
@@ -113,13 +113,13 @@ src_test() {
 	# We do not do this by default, as it is unsafe from a security point of
 	# view, and requires root level ssh changes.
 	if [ -n "$TEST_REMOTE_AND_PROXY" ]; then
-		cd ${S}/src
+		cd "${S}"/src
 		export TESTDIR="${T}/tests-remote"
 		mkdir -p "$TESTDIR"
 		make remotecheck || die "Some remote test failed."
 		mv -f check.log check.log-remote
 
-		cd ${S}/src
+		cd "${S}"/src
 		export TESTDIR="${T}/tests-proxy"
 		mkdir -p "$TESTDIR"
 		make proxycheck || die "Some proxy test failed."

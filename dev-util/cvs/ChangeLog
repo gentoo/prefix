@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/cvs
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.124 2007/12/07 00:49:05 robbat2 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.127 2008/06/16 18:14:45 robbat2 Exp $
+
+*cvs-1.12.12-r5 (16 Jun 2008)
+
+  16 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> +cvs-1.12.12-r5.ebuild,
+  cvs-1.12.13.1.ebuild:
+  Bug #222341, do not install the cvs-format emacs lisp file, as it clobbers
+  the normal C indentation when loaded.
+
+  16 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> cvs-1.11.20.ebuild,
+  cvs-1.11.21.ebuild, cvs-1.11.22.1.ebuild, cvs-1.12.12-r2.ebuild,
+  cvs-1.12.12-r3.ebuild, cvs-1.12.12-r4.ebuild, cvs-1.12.13-r1.ebuild:
+  Repoman cleanup pass 2.
+
+  16 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> cvs-1.12.12-r2.ebuild:
+  Repoman cleanups, first pass.
 
   01 Oct 2006; Robin H. Johnson <robbat2@gentoo.org> +cvs-1.12.13.1.ebuild,
   cvs-1.12.13-r1.ebuild, cvs-1.12.13.1-block-requests.patch,
