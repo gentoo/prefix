@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.13 2008/02/03 17:10:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.14 2008/06/16 11:31:15 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -37,6 +37,10 @@ src_unpack() {
 
 	# Fix character encoding from 8859-15 to utf8
 	epatch "${FILESDIR}/${P}-latex-character-encoding.patch"
+
+	sed -i -e 's:noinst_PROGRAMS:check_PROGRAMS:' \
+		"${S}"/test/Makefile.am \
+		|| die "unable to disable tests building"
 
 	eautoreconf
 }
