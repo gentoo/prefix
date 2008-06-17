@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jms/sun-jms-1.1-r2.ebuild,v 1.11 2007/07/11 19:58:38 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jms/sun-jms-1.1-r2.ebuild,v 1.12 2008/06/16 19:18:02 serkan Exp $
 
 EAPI="prefix"
 
 inherit java-pkg-2
 
-DOWNLOAD_PAGE="http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=7542-jms-1.1-fr-doc-oth-JSpec&SiteId=JSC&TransactionId=noreg"
+DOWNLOAD_PAGE="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=7542-jms-1.1-fr-doc-oth-JSpec@CDS-CDS_Developer"
 At="jms-${PV/./_}-fr-apidocs.zip"
 DESCRIPTION="The Java Message Service (JMS) API."
 HOMEPAGE="http://java.sun.com/products/jms/"
@@ -35,20 +35,20 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	rm -v "${S}"/lib/*.jar
 }
 
 src_compile() {
 	mkdir build
 	cd src/share
-	ejavac -nowarn -d ${S}/build $(find . -name "*.java") || die "failed too build"
+	ejavac -nowarn -d "${S}"/build $(find . -name "*.java") || die "failed too build"
 	if use doc ; then
-		mkdir ${S}/api
-		javadoc -d ${S}/api -quiet javax.jms
+		mkdir "${S}"/api
+		javadoc -d "${S}"/api -quiet javax.jms
 	fi
 
-	cd ${S}
+	cd "${S}"
 	jar cf jms.jar -C build . || die "failed too create jar"
 }
 
