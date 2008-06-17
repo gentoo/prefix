@@ -1,5 +1,5 @@
---- sfconvert.c.orig	2004-04-04 23:39:56.000000000 -0700
-+++ sfconvert.c	2004-04-05 00:00:25.000000000 -0700
+--- audiofile/sfcommands/sfconvert.c.orig	2004-04-04 23:39:56.000000000 -0700
++++ audiofile/sfcommands/sfconvert.c	2004-04-05 00:00:25.000000000 -0700
 @@ -66,12 +66,14 @@
  
  	AFfilehandle	infile, outfile;
