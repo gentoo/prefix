@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/liblrdf-0.4.0.ebuild,v 1.8 2008/02/12 12:37:57 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/liblrdf-0.4.0.ebuild,v 1.9 2008/06/16 12:00:50 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit libtool
+inherit autotools libtool base
 
 DESCRIPTION="A library for the manipulation of RDF file in LADSPA plugins"
 HOMEPAGE="http://lrdf.sourceforge.net"
@@ -19,9 +19,15 @@ RDEPEND=">=media-libs/raptor-0.9.12
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-src_unpack() {
-	unpack ${A}
+PATCHES=(
+	"${FILESDIR}"/${P}-dontbuild-tests.patch
+)
 
+src_unpack() {
+	base_src_unpack
+	cd "${S}"
+
+	eautoreconf
 	elibtoolize
 }
 

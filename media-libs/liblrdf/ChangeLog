@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/liblrdf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.31 2008/02/12 12:37:57 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.32 2008/06/16 12:00:50 flameeyes Exp $
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/liblrdf-0.4.0-dontbuild-tests.patch, liblrdf-0.4.0.ebuild:
+  Add a patch to build tests only during make check rather than make all;
+  also run the tests during make check. Fixes bug #226281
 
   12 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> liblrdf-0.4.0.ebuild:
   Run elibtoolize.
