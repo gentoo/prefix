@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/confix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/ChangeLog,v 1.2 2008/05/28 18:07:14 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/ChangeLog,v 1.3 2008/06/16 08:36:21 haubi Exp $
+
+  16 Jun 2008; Michael Haubenwallner <haubi@gentoo.org> confix-2.1.0.ebuild:
+  set IUSE to empty (#224359)
 
   28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fixing bogus herd tag in metadata.xml.
