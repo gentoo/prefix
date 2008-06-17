@@ -1,5 +1,5 @@
---- bashrc	2007-06-01 21:49:32 +0200
-+++ bashrc.prefix	2007-07-09 21:16:10 +0200
+--- bashrc	2008-06-17 14:58:37.038100000 -0500
++++ bashrc.prefix	2008-06-17 15:55:37.934213000 -0500
 @@ -1,4 +1,4 @@
 -# /etc/bash/bashrc
 +# @GENTOO_PORTAGE_EPREFIX@/etc/bash/bashrc
@@ -15,14 +15,26 @@
  [[ -z ${match_lhs}    ]] \
  	&& type -P dircolors >/dev/null \
  	&& match_lhs=$(dircolors --print-database)
-@@ -59,8 +59,8 @@
- 	if type -P dircolors >/dev/null ; then
- 		if [[ -f ~/.dir_colors ]] ; then
- 			eval $(dircolors -b ~/.dir_colors)
+@@ -56,15 +56,13 @@
+ 
+ if ${use_color} ; then
+ 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+-	if type -P dircolors >/dev/null ; then
+-		if [[ -f ~/.dir_colors ]] ; then
+-			eval $(dircolors -b ~/.dir_colors)
 -		elif [[ -f /etc/DIR_COLORS ]] ; then
 -			eval $(dircolors -b /etc/DIR_COLORS)
-+		elif [[ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS ]] ; then
-+			eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
- 		fi
- 	fi
- 
+-		fi
+-	fi
+-
+-	if [[ ${EUID} == 0 ]] ; then
++    if [[ -f ~/.dir_colors ]] ; then
++	    eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b ~/.dir_colors);
++    fi
++       	elif [[ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS ]] ; then
++    		eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
++		   
++    if [[ ${EUID} == 0 ]] ; then
+ 		PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+ 	else
+ 		PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
