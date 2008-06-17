@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.8 2008/06/09 09:27:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.9 2008/06/16 19:44:37 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
 EAPI="prefix 1"
 
 MY_P="${P/_rc/+rc}"
-DESCRIPTION="fast modern type-inferring functional programming language descended from the ML (Meta Language) family"
+DESCRIPTION="Fast modern type-inferring functional programming language descended from the ML family"
 HOMEPAGE="http://www.ocaml.org/"
 SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.bz2"
 

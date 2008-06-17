@@ -1,6 +1,20 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.146 2008/06/09 09:27:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.148 2008/06/16 19:44:37 aballier Exp $
+
+  16 Jun 2008; Alexis Ballier <aballier@gentoo.org> ocaml-3.08.4.ebuild,
+  ocaml-3.10.2.ebuild:
+  shorten description to please repoman
+
+  16 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/ocaml-3.09.3-Makefile.patch, -files/ocaml-3.09.3-automagic.patch,
+  -files/ocaml-3.09.3-call_ld_with_proper_flags.patch,
+  -files/ocaml-3.09.3-configure.patch,
+  -files/ocaml-3.09.3-exec-stack-fixes.patch,
+  -files/ocaml-3.09.3-execheap.patch,
+  -files/ocaml-3.09.3-hppa-optimize-for-size-ocamlp4.patch,
+  -ocaml-3.09.3-r1.ebuild:
+  remove old version
 
   09 Jun 2008; Raúl Porcel <armin76@gentoo.org> ocaml-3.10.2.ebuild:
   alpha/ia64/sparc stable wrt #224893
