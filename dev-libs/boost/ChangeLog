@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.137 2008/06/14 18:30:10 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.138 2008/06/16 04:49:39 jer Exp $
+
+  16 Jun 2008; Jeroen Roovers <jer@gentoo.org> boost-1.35.0-r1.ebuild:
+  Marked ~hppa again (bug #225045).
 
   14 Jun 2008; Tiziano Müller <dev-zero@gentoo.org> ChangeLog:
   Added <debug-symbols>none to avoid auto-strip (bug #226011)
