@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/html
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.27 2007/12/16 20:23:50 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.28 2008/06/17 00:47:30 jer Exp $
+
+  17 Jun 2008; Jeroen Roovers <jer@gentoo.org> html-1.0.1.1.ebuild:
+  Marked ~hppa again.
 
   16 Dec 2007; Samuli Suominen <drac@gentoo.org> html-1.0.1.ebuild:
   amd64 stable wrt #201984
