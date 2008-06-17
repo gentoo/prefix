@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright Gentoo Foundation 2006-2008
 
+# <grobian@gentoo.org> -- 2008-06-17
+# switch to fully sourcing ebuilds (and their eclasses) in fetch_files
+# such that we catch more cases in which patches can be referenced
 # <grobian@gentoo.org> -- 2007-11-27
 # ignore live CVS ebuilds (version 9999)
 # <grobian@gentoo.org> -- 2007-11-11
@@ -437,41 +440,6 @@ fetch_files() {
 	local p=$pn-$pv
 	local t=""
 
-	# Sometimes patches or other things in the FILESDIR refer to some
-	# variable stored globally.  We grab them from the ebuild for those
-	# cases.  Actually, also local variables are sometimes used :(
-	# GNU grep can (unlike UNIX grep) not match the meta character \t,
-	# so sed it out as workaround :(
-	local gvars=$(sed -e 's/^\t\+//' -e 's/^local //' -e 's/\\$//' $1 | egrep '^[A-Za-z_]+=(".+"|[^"]+)$' | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
-
-	# Figure out if versionator eclass is being used
-	local eclass=$(egrep '^inherit ' $1 | grep -o versionator)
-	[[ -n ${eclass} ]] && eclass="source ${PTREEDIR}/eclass/${eclass}.eclass;"
-
-	# Provide some functions to silence bash here, these functions need
-	# not to carry the actual implementation, as when they are used for
-	# patches, it will go wrong in real life (tm) anyway.
-	local funcs='
-	get_libdir() {
-		echo "lib"
-	}
-	get_libname() {
-		echo "$1".so
-	}
-	use_enable() {
-		echo ""
-	}
-	use_with() {
-		echo ""
-	}
-	gcc-major-version() {
-		echo "4"
-	}
-	gcc-minor-version() {
-		echo "2"
-	}
-	'
-
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
 	# path.
@@ -484,7 +452,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-	 	t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files $(type -P bash) -c "${eclass} ${funcs} ${gvars}; echo $t")
+		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files $(type -P bash) -c "EXPORT_FUNCTIONS() { :; }; inherit() { for p in \$*; do source $PTREEDIR/eclass/\${p}.eclass; done }; source $1; echo $t")
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
