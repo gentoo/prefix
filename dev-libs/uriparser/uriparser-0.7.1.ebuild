@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/uriparser-0.7.1.ebuild,v 1.2 2008/06/15 20:51:38 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/uriparser-0.7.1.ebuild,v 1.4 2008/06/16 19:21:16 bluebird Exp $
 
 EAPI="prefix"
 
