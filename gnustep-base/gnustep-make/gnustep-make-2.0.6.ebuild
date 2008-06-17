@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.2.ebuild,v 1.6 2008/03/08 13:06:00 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.6.ebuild,v 1.1 2008/06/16 09:32:14 voyageur Exp $
 
 EAPI="prefix"
 
