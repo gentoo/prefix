@@ -23,7 +23,7 @@ src_unpack() {
 	cd "${S}"
 	sed -i -e "/^AC_INIT/s/taskmanager_version()/taskmanager_version/" configure.in
 	intltoolize --force --copy --automake || die "intltoolize failed."
-	AT_M4DIR=/usr/share/xfce4/dev-tools/m4macros eautoreconf
+	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 }
 
 src_install() {
