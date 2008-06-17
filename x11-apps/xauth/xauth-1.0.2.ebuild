@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X authority file utility"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/libX11
