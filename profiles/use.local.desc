@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3590 2008/06/15 18:52:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3591 2008/06/16 08:35:29 hollow Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -682,6 +682,7 @@ dev-util/nsis:config-log - Enable the logging facility (useful in debugging inst
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
 dev-util/strace:aio - Enable libaio support
+dev-util/subversion:dso - Enable runtime module search
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
 dev-util/subversion:nowebdav - Disables WebDAV support via neon library
 dev-util/subversion:svnserve - Install scripts for svnserve
