@@ -19,7 +19,7 @@ src_unpack() {
 	cd "${S}"
 	sed -i -e "/^AC_INIT/s/systemload_version()/systemload_version/" configure.in
 	intltoolize --force --copy --automake || die "intltoolize failed."
-	AT_M4DIR=/usr/share/xfce4/dev-tools/m4macros eautoreconf
+	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 }
 
 DOCS="AUTHORS ChangeLog NEWS README"
