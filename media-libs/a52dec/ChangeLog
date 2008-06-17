@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/a52dec
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.52 2008/06/13 14:06:16 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.53 2008/06/16 10:42:16 flameeyes Exp $
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  files/a52dec-0.7.4-tests-optional.patch, a52dec-0.7.4-r6.ebuild:
+  Fix the test building with a slightly different patch, that doesn't expose
+  a conditional during configure (and thus an USE flag).
 
 *a52dec-0.7.4-r6 (13 Jun 2008)
 
