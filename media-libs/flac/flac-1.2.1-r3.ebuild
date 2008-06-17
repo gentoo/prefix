@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.2 2008/06/13 22:01:47 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.3 2008/06/16 11:15:01 flameeyes Exp $
 
 EAPI="prefix 1"
 
@@ -26,7 +26,8 @@ RESTRICT="test"
 PATCHES=( "${FILESDIR}/${P}-asneeded.patch"
 	"${FILESDIR}/${P}-cflags.patch"
 	"${FILESDIR}/${P}-asm.patch"
-	"${FILESDIR}/${P}-tests-optional.patch"
+	"${FILESDIR}/${P}-dontbuild-tests.patch"
+	"${FILESDIR}/${P}-dontbuild-examples.patch"
 	"${FILESDIR}/${P}-gcc-4.3-includes.patch" )
 
 src_unpack() {
@@ -43,7 +44,6 @@ src_compile() {
 		$(use_enable debug) \
 		$(use_enable cxx cpplibs) \
 		--disable-examples \
-		--disable-tests \
 		--disable-doxygen-docs \
 		--disable-dependency-tracking \
 		--disable-xmms-plugin

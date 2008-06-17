@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.140 2008/06/13 21:45:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.141 2008/06/16 11:15:01 flameeyes Exp $
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/flac-1.2.1-dontbuild-examples.patch,
+  +files/flac-1.2.1-dontbuild-tests.patch,
+  -files/flac-1.2.1-tests-optional.patch, flac-1.2.1-r3.ebuild:
+  Replace the patch to disable tests with two, one disable examples and one
+  makes the test build during 'make check'.
 
 *flac-1.2.1-r3 (13 Jun 2008)
 
