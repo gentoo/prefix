@@ -1,0 +1,181 @@
+# ChangeLog for dev-java/eclipse-ecj
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.41 2008/04/07 01:21:16 ken69267 Exp $
+
+  07 Apr 2008; Kenneth Prugh <ken69267@gentoo.org> eclipse-ecj-3.2.2.ebuild:
+  amd64 stable, bug #212643
+
+  22 Mar 2008; Markus Meier <maekke@gentoo.org> eclipse-ecj-3.3.0-r2.ebuild:
+  amd64 stable, bug #204484
+
+  11 Mar 2008; Brent Baude <ranger@gentoo.org> eclipse-ecj-3.2.2.ebuild:
+  stable ppc64, bug 212643
+
+  08 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org>
+  eclipse-ecj-3.2.2.ebuild:
+  Stable on ppc, see bug #212643.
+
+  08 Mar 2008; Markus Meier <maekke@gentoo.org> eclipse-ecj-3.2.2.ebuild:
+  x86 stable, bug #212643
+
+  11 Feb 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking eclipse-ecj-3.3.0-r2 ppc64 for bug 204484
+
+  05 Feb 2008; Markus Rothe <corsair@gentoo.org>
+  eclipse-ecj-3.3.0-r2.ebuild:
+  Stable on ppc64
+
+  24 Jan 2008; nixnut <nixnut@gentoo.org> eclipse-ecj-3.3.0-r2.ebuild:
+  Stable on ppc wrt bug 204484
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  eclipse-ecj-3.3.0-r2.ebuild:
+  Re-add ~ia64 wrt #204484
+
+  23 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  eclipse-ecj-3.3.0-r2.ebuild:
+  stable x86, bug 204484
+
+*eclipse-ecj-3.3.0-r2 (23 Jan 2008)
+
+  23 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  +eclipse-ecj-3.3.0-r2.ebuild:
+  Revbump to inherit proper eclass, fixed bug #207000.
+
+  06 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  -files/compiler-settings-3.1, -eclipse-ecj-3.1-r13.ebuild:
+  Removing ecj-3.1 - old, and does not work correctly with 1.6 JDK and ant 1.7.0.
+
+  05 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -eclipse-ecj-3.3.0.ebuild:
+  Delete old revision.
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org>
+  eclipse-ecj-3.3.0-r1.ebuild:
+  Stable on ppc64
+
+  27 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  eclipse-ecj-3.3.0-r1.ebuild:
+  Stable on ppc.
+
+  17 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  eclipse-ecj-3.3.0-r1.ebuild:
+  Added ~ppc64; bug #191729
+
+  12 Oct 2007; Roy Marples <uberlord@gentoo.org> eclipse-ecj-3.3.0.ebuild,
+  eclipse-ecj-3.3.0-r1.ebuild:
+  Added ~x86-fbsd keyword back - don't drop it again! #191729
+
+  12 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  eclipse-ecj-3.3.0-r1.ebuild:
+  stable x86, security bug 195571
+
+  12 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild, eclipse-ecj-3.2.ebuild,
+  eclipse-ecj-3.2.2.ebuild, eclipse-ecj-3.3.0.ebuild,
+  eclipse-ecj-3.3.0-r1.ebuild:
+  QA fixed copyright, added quotes.
+
+  12 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  eclipse-ecj-3.3.0-r1.ebuild:
+  amd64 stable, bug #195571.
+
+*eclipse-ecj-3.3.0-r1 (07 Sep 2007)
+
+  07 Sep 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +eclipse-ecj-3.3.0-r1.ebuild:
+  Use java-pkg_dolauncher instead of the hand written wrapper script.
+
+*eclipse-ecj-3.3.0 (27 Jul 2007)
+
+  27 Jul 2007; Joshua Nichols <nichoj@gentoo.org> +files/ecj-3.3,
+  +files/eclipse-ecj-3.3.0-gcj.patch, +eclipse-ecj-3.3.0.ebuild:
+  Version bump imported from gcj-overlay.
+
+  08 May 2007; Raúl Porcel <armin76@gentoo.org> eclipse-ecj-3.2.2.ebuild:
+  Add ~ia64 wrt #177466
+
+*eclipse-ecj-3.2.2 (25 Apr 2007)
+
+  25 Apr 2007; Vlastimil Babka <caster@gentoo.org>
+  +eclipse-ecj-3.2.2.ebuild:
+  Version bump, bug #168806.
+
+  25 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild:
+  Add dev-java/ant-core to RDEPEND and use java-pkg_dojavadoc.
+
+  08 Mar 2007; Petteri Räty <betelgeuse@gentoo.org>
+  files/eclipse-ecj-3.2-build-gentoo.patch, -eclipse-ecj-3.1-r2.ebuild:
+  Remove old revision and fix javadoc installation for 3.2.
+
+  09 Dec 2006; Diego Pettenò <flameeyes@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild:
+  Add ~x86-fbsd keyword.
+
+  07 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> eclipse-ecj-3.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild, eclipse-ecj-3.2.ebuild:
+  ppc stable. bug #147254
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild, eclipse-ecj-3.2.ebuild:
+  Stabilizing on amd64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Jackson <tsunam@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild, eclipse-ecj-3.2.ebuild:
+  New java stable on x86; bug #147254
+
+  14 Sep 2006; Joshua Nichols <nichoj@gentoo.org> metadata.xml,
+  eclipse-ecj-3.1-r2.ebuild, eclipse-ecj-3.1-r13.ebuild,
+  eclipse-ecj-3.2.ebuild:
+  Added ~ppc64. Moved SRC_URI to Gentoo mirrors. Other minor whitespace cleanups.
+
+*eclipse-ecj-3.2 (10 Aug 2006)
+
+  10 Aug 2006; Joshua Nichols <nichoj@gentoo.org>
+  +files/compiler-settings-3.2, +files/eclipse-ecj-3.2-build-gentoo.patch,
+  +eclipse-ecj-3.2.ebuild:
+  Version bump, thanks to Caster.
+
+  07 Aug 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild:
+  Added classpath.
+
+  22 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  eclipse-ecj-3.1-r13.ebuild:
+  Added ~ppc, bug #105223
+
+  25 Jun 2006; <nichoj@gentoo.org> +files/compiler-settings-3.1:
+  Revision bump to add support for new Java system.
+
+  10 Mar 2006; Markus Rothe <corsair@gentoo.org> eclipse-ecj-3.1-r2.ebuild:
+  Added ~ppc64; bug #125715
+
+  24 Dec 2005; Thomas Matthijs <axxo@gentoo.org> -eclipse-ecj-3.1.ebuild:
+  remove
+
+  18 Dec 2005; Joshua Nichols <nichoj@gentoo.org> eclipse-ecj-3.1-r2.ebuild:
+  Added ~amd64 keyword.
+
+*eclipse-ecj-3.1-r2 (04 Sep 2005)
+
+  04 Sep 2005; Karl Trygve Kalleberg <karltk@gentoo.org>
+  +eclipse-ecj-3.1-r2.ebuild:
+  Added updates from Joshua. Also forgot to mention that this stuff is
+  inspired by the of work Scott Carr <scarr@progbits.com> over at #80526.
+
+*eclipse-ecj-3.1 (24 Aug 2005)
+
+  24 Aug 2005; Karl Trygve Kalleberg <karltk@gentoo.org>
+  +eclipse-ecj-3.1.ebuild:
+  Initial import. The source snapshot was ripped straight out of
+  plugins/org.eclipse.jdt.core from the 3.1 zipfile. Note that the
+  directory layout has changed a bit; I don't maintain separate
+  batch and compiler directories. Our layout looks exactly like the
+  one used for the bootstrap compiler in jdtcoresrc/.
+
+
+
