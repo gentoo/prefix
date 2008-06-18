@@ -1,0 +1,11 @@
+diff -ur esound-0.2.38.old/configure.ac esound-0.2.38/configure.ac
+--- esound-0.2.38.old/configure.ac	2008-05-07 10:12:51.000000000 +0200
++++ esound-0.2.38/configure.ac	2008-05-07 10:16:05.000000000 +0200
+@@ -26,6 +26,7 @@
+ AC_SUBST(ESD_VERSION_INFO)
+ 
+ AC_PROG_CC
++AC_PROG_CXX
+ AC_PROG_CPP
+ AC_LIBTOOL_WIN32_DLL
+ AM_PROG_LIBTOOL

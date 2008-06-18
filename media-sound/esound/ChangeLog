@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.114 2008/05/07 09:04:31 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.115 2008/06/17 13:09:45 remi Exp $
+
+  17 Jun 2008; Rémi Cardona <remi@gentoo.org> esound-0.2.38-r1.ebuild:
+  add missing pkg-config dep (fixes bug #227589)
 
   07 May 2008; Rémi Cardona <remi@gentoo.org>
   -files/esound-0.2.37-cpu-drain.patch, -files/esound-0.2.37-debug.patch:

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.38-r1.ebuild,v 1.9 2008/05/07 08:50:00 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.38-r1.ebuild,v 1.10 2008/06/17 13:09:45 remi Exp $
 
 EAPI="prefix"
 
@@ -17,13 +17,16 @@ IUSE="alsa debug doc ipv6 tcpd"
 
 # esound comes with arts support, but it hasn't been tested yet, feel free to
 # submit patches/improvements
-DEPEND=">=media-libs/audiofile-0.1.5
+COMMON_DEPEND=">=media-libs/audiofile-0.1.5
 	alsa? ( >=media-libs/alsa-lib-0.5.10b )
 	doc?  ( app-text/docbook-sgml-utils )
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6-r2 )"
 #	arts? ( kde-base/arts )
 
-RDEPEND="${DEPEND}
+DEPEND="${COMMON_DEPEND}
+	dev-util/pkgconfig"
+
+RDEPEND="${COMMON_DEPEND}
 	app-admin/eselect-esd"
 
 src_unpack() {
