@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9_rc3.ebuild,v 1.1 2008/06/12 15:18:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.ebuild,v 1.3 2008/06/17 19:34:51 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,6 +12,7 @@ PATCH="${PN}-1.9_rc1-patches-0.1"
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
 SRC_URI="mirror://gentoo/${P}.tar.bz2
+	http://dev.gentoo.org/~armin76/${P}.tar.bz2
 	mirror://gentoo/${PATCH}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux"
