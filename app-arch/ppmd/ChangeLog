@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/ppmd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.33 2008/04/21 16:22:35 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.34 2008/06/18 02:42:22 darkside Exp $
+
+  18 Jun 2008; Jeremy Olexa <darkside@gentoo.org> -ppmd-9.1_p8.ebuild:
+  remove old. bug #226529
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
