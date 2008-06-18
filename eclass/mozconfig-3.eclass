@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.2 2008/05/18 14:39:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.3 2008/06/17 11:51:37 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
 inherit multilib flag-o-matic mozcoreconf-2
 
-IUSE="debug gnome ipv6 dbus startup-notification"
+IUSE="gnome ipv6 dbus startup-notification"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
@@ -50,24 +50,24 @@ mozconfig_config() {
 	# is required for it to build
 	mozconfig_annotate gentoo --disable-freetype2
 
-	if use debug; then
-		mozconfig_annotate +debug \
-			--enable-debug \
-			--enable-tests \
-			--disable-reorder \
-			--enable-debugger-info-modules=ALL_MODULES
-	else
-		mozconfig_annotate -debug \
-			--disable-debug \
-			--disable-tests \
-			--enable-reorder \
+#	if use debug; then
+#		mozconfig_annotate +debug \
+#			--enable-debug \
+#			--enable-tests \
+#			--disable-reorder \
+#			--enable-debugger-info-modules=ALL_MODULES
+#	else
+	mozconfig_annotate -debug \
+		--disable-debug \
+		--disable-tests \
+		--enable-reorder
 
-		# Currently --enable-elf-dynstr-gc only works for x86 and ppc,
-		# thanks to Jason Wever <weeve@gentoo.org> for the fix.
-		if use x86 || use ppc && [[ ${enable_optimize} != -O0 ]]; then
-			mozconfig_annotate "${ARCH} optimized build" --enable-elf-dynstr-gc
-		fi
+	# Currently --enable-elf-dynstr-gc only works for x86 and ppc,
+	# thanks to Jason Wever <weeve@gentoo.org> for the fix.
+	if use x86 || use ppc && [[ ${enable_optimize} != -O0 ]]; then
+		mozconfig_annotate "${ARCH} optimized build" --enable-elf-dynstr-gc
 	fi
+#	fi
 
 	if ! use gnome; then
 		mozconfig_annotate -gnome --disable-gnomevfs
