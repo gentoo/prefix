@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="aqua debug doc jpeg tiff X xinerama"
 
 RDEPEND="X? (
