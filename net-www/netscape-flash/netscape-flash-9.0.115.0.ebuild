@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-9.0.115.0.ebuild,v 1.3 2008/01/01 16:05:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-9.0.115.0.ebuild,v 1.4 2008/06/17 12:47:45 nelchael Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,8 @@ DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 		x11-libs/libXt
 		=x11-libs/gtk+-2*
 		media-libs/freetype
-		media-libs/fontconfig )"
+		media-libs/fontconfig )
+	media-fonts/corefonts"
 
 pkg_setup() {
 	# This is a binary x86 package => ABI=x86
