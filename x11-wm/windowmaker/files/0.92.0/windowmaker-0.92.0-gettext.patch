@@ -1,0 +1,19 @@
+* drawback of not using AM_GNU_GETTEXT is that you have to cope with
+  Solaris defining gettext(), but we want GNU gettext, which is in
+  -lintl
+
+--- configure.ac
++++ configure.ac
+@@ -247,9 +247,9 @@
+ 
+ INTLIBS=""
+ 
+-AC_CHECK_FUNC(gettext, [HAVEGETTEXT="yes"], 
+-	AC_CHECK_LIB(intl, gettext, [INTLIBS="-lintl" HAVEGETTEXT="yes"],
+-			 INTLIBS="" ))
++AC_CHECK_LIB(intl, gettext, [INTLIBS="-lintl" [HAVEGETTEXT="yes"]], [
++	INTLIBS=""
++	AC_CHECK_FUNC(gettext, [HAVEGETTEXT="yes"]) ])
+ 
+ AC_CHECK_PROG(XGETTEXT, xgettext, xgettext)
+ 

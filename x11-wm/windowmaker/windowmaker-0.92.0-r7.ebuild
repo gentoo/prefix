@@ -47,6 +47,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV/0.92/0.91}/wlist-0.9x.patch
 	epatch "${FILESDIR}"/${PV}/${P}-gif-before-ungif.patch
 	epatch "${FILESDIR}"/${PV}/${P}-math_h.patch
+	epatch "${FILESDIR}"/${PV}/${P}-gettext.patch
 
 	# Patches from altlinux
 	epatch "${psd}"/WindowMaker-0.91.0-alt-session.patch
@@ -124,7 +125,6 @@ src_compile() {
 
 	if use nls; then
 		[ -z "$LINGUAS" ] && export LINGUAS="`ls po/*.po | sed 's:po/\(.*\)\.po$:\1:'`"
-		[[ ${CHOST} == *-solaris* ]] && append-ldflags -lintl
 	else
 		myconf="${myconf} --disable-locale"
 	fi
@@ -133,7 +133,7 @@ src_compile() {
 	append-flags -DBOUNCE_APP -DNEWAPPICON -DVIRTUAL_DESKTOP
 
 	# Solaris has inet_aton, but it's hidden in -lresolv
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lresolv
+#	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lresolv
 
 	# default settings with $myconf appended
 	econf \
