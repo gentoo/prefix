@@ -1,0 +1,41 @@
+--- goffice-0.6.2/docs/reference/html/goffice.devhelp	2008-03-10 23:28:55.000000000 +0100
++++ goffice-0.6.2/docs/reference/html/goffice.devhelp	2008-03-10 23:29:29.000000000 +0100
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8" standalone="no"?>
+ <!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+-<book xmlns="http://www.devhelp.net/book" title="Goffice Reference Manual" link="index.html" author="" name="goffice">
++<book xmlns="http://www.devhelp.net/book" title="Goffice Reference Manual" link="index.html" author="" name="goffice-0.6">
+   <chapters>
+     <sub name="Graphs" link="pt01.html">
+       <sub name="Objects" link="ch01.html">
+--- goffice-0.6.2/docs/reference/html/goffice.devhelp2	2008-03-10 23:29:02.000000000 +0100
++++ goffice-0.6.2/docs/reference/html/goffice.devhelp2	2008-03-10 23:29:42.000000000 +0100
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8" standalone="no"?>
+ <!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+-<book xmlns="http://www.devhelp.net/book" title="Goffice Reference Manual" link="index.html" author="" name="goffice" version="2">
++<book xmlns="http://www.devhelp.net/book" title="Goffice Reference Manual" link="index.html" author="" name="goffice-0.6" version="2">
+   <chapters>
+     <sub name="Graphs" link="pt01.html">
+       <sub name="Objects" link="ch01.html">
+--- goffice-0.6.2/docs/reference/Makefile.am	2008-03-10 23:33:48.000000000 +0100
++++ goffice-0.6.2/docs/reference/Makefile.am	2008-03-10 23:34:30.000000000 +0100
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-DOC_MODULE=goffice
++DOC_MODULE=goffice-0.6
+ 
+ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.sgml
+ 
+--- goffice-0.6.2/docs/reference/Makefile.in	2008-03-10 23:33:55.000000000 +0100
++++ goffice-0.6.2/docs/reference/Makefile.in	2008-03-10 23:34:10.000000000 +0100
+@@ -234,7 +234,7 @@
+ target_alias = @target_alias@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-DOC_MODULE = goffice
++DOC_MODULE = goffice-0.6
+ DOC_MAIN_SGML_FILE = $(DOC_MODULE)-docs.sgml
+ DOC_SOURCE_DIR = ../../goffice
+ SCANGOBJ_OPTIONS = --nogtkinit --type-init-func="g_type_init ()"
