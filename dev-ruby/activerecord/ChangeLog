@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.77 2008/05/16 17:36:32 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.78 2008/06/17 05:53:14 graaff Exp $
+
+  17 Jun 2008; Hans de Graaff <graaff@gentoo.org>
+  -activerecord-1.14.4.5618.ebuild, -activerecord-1.15.5.ebuild:
+  Remove old versions
 
   16 May 2008; nixnut <nixnut@gentoo.org> activerecord-2.0.2.ebuild:
   Stable on ppc wrt bug 221309
