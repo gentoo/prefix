@@ -1,6 +1,20 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.38 2008/05/13 20:47:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.39 2008/06/17 09:41:28 pva Exp $
+
+*hunspell-1.2.3 (17 Jun 2008)
+
+  17 Jun 2008; Peter Volkov <pva@gentoo.org>
+  -files/hunspell-1.1.3-renameexes.patch,
+  -files/hunspell-1.1.4-gettext.patch, -files/hunspell-1.1.4-libtool.patch,
+  -files/hunspell-1.1.4-renameexes.patch,
+  -files/hunspell-1.2.2b-renameexes.patch, -hunspell-1.1.4.ebuild,
+  -hunspell-1.1.4-r1.ebuild, -hunspell-1.1.4-r2.ebuild,
+  -hunspell-1.1.5.ebuild, hunspell-1.1.9.ebuild,
+  -hunspell-1.2.2_beta.ebuild, +hunspell-1.2.3.ebuild:
+  Version bump. Added nls flag again, bug #225753, thank Mart Raudsepp for
+  report. Changed to use eatoreconf, bug #226541 in hunspell-1.1.9, thank
+  Diego Pettenò for report. Removed old versions.
 
   13 May 2008; Alexis Ballier <aballier@gentoo.org> ChangeLog:
   keyword ~x86-fbsd
