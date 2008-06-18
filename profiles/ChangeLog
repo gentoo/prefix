@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1559 2008/06/17 01:41:22 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1562 2008/06/17 18:56:10 armin76 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  17 Jun 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Unmask firefox-3.0, xulrunner-1.9, nss, and nspr
+
+  17 Jun 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking <=www-client-opera-9.27 for security bug #226079.
+
+  17 Jun 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Include mx4j in hessian mask.
 
   17 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask dev-cpp/libwefts for removal in 30 days

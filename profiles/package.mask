@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8731 2008/06/17 01:44:31 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8735 2008/06/17 18:56:10 armin76 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
+# Masked for security bug #226079.
+<=www-client/opera-9.27
+
 # Jeremy Olexa <darkside@gentoo.org> (17 Jun 2008)
 # Masked for removal in ~30 days by treecleaners at maintainer's request.
 # Dead upstream, doesn't compile. bug #227481
@@ -47,10 +51,13 @@ dev-cpp/libwefts
 # Krzysiek Pawlik <nelchael@gentoo.org> (12 Jun 2008)
 # Testing new version.
 >=dev-java/hessian-3.0.20
+=dev-java/mx4j-core-3.0.2
+=dev-java/mx4j-tools-3.0.2
+=dev-java/mx4j-3.0.2
 
 # Donnie Berkholz <dberkholz@gentoo.org> (11 Jun 2008)
 # (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get 
-# people off it.
+# people off it. (#225843) Font readability issues
 =x11-libs/pixman-0.11*
 
 # Torsten Veller <tove@gentoo.org> (11 Jun 2008)
@@ -382,11 +389,6 @@ media-sound/lastfmproxy
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing
->=net-libs/xulrunner-1.9_beta4
->=www-client/mozilla-firefox-3.0_beta4
->=www-client/mozilla-firefox-bin-3.0_beta1
->=dev-libs/nss-3.12_alpha1
->=dev-libs/nspr-4.7.1_beta1
 >=mail-client/mozilla-thunderbird-3.0_alpha1
 >=mail-client/mozilla-thunderbird-bin-3.0_alpha1
 
