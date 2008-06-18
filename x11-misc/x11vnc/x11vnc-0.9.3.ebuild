@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="jpeg zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
 RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.1 )
