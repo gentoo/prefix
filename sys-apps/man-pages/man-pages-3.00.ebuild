@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.78.ebuild,v 1.3 2008/03/14 10:11:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.00.ebuild,v 1.2 2008/06/17 12:02:59 vapier Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A somewhat comprehensive collection of Linux man pages"
 HOMEPAGE="http://www.win.tue.nl/~aeb/linux/man/"
@@ -31,13 +29,8 @@ PDEPEND="nls? (
 	linguas_ro? ( app-i18n/man-pages-ro )
 	linguas_ru? ( app-i18n/man-pages-ru )
 	linguas_zh_CN? ( app-i18n/man-pages-zh_CN )
-	)"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.08-updates.patch
-}
+	)
+	sys-apps/man-pages-posix"
 
 src_compile() { :; }
 
