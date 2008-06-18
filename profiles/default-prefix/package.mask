@@ -33,6 +33,11 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (18 Jun 2008)
+# Uses an empty host in the default From: address making other MTAs
+# bail out (need to file a bug for this still)
+=mail-mta/ssmtp-2.62
+
 # Fabian Groffen <grobian@gentoo.org> (13 Jun 2008)
 # Experimental of nature, because it's not yet in gentoo-x86
 =sys-devel/libperl-5.10.0
