@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.78 2008/05/16 17:33:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.80 2008/06/17 05:54:44 graaff Exp $
+
+  17 Jun 2008; Hans de Graaff <graaff@gentoo.org>
+  -actionpack-1.12.5.5618.ebuild, -actionpack-1.13.5.ebuild:
+  Remove old versions
+
+*actionpack-2.1.0 (17 Jun 2008)
+
+  17 Jun 2008; Hans de Graaff <graaff@gentoo.org> +actionpack-2.1.0.ebuild:
+  Version bump for Rails 2.1.0
 
   16 May 2008; nixnut <nixnut@gentoo.org> actionpack-2.0.2.ebuild:
   Stable on ppc wrt bug 221309
