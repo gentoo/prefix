@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.112 2008/06/16 21:21:40 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.114 2008/06/17 11:40:34 armin76 Exp $
+
+  17 Jun 2008; Raúl Porcel <armin76@gentoo.org> debianutils-2.28.5.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+  17 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  debianutils-2.28.5.ebuild:
+  keyword ~sparc-fbsd
 
   16 Jun 2008; Alexis Ballier <aballier@gentoo.org>
   debianutils-2.28.5.ebuild:
