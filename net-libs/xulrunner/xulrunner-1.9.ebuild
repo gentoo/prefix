@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.ebuild,v 1.3 2008/06/17 19:34:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/Attic/xulrunner-1.9.ebuild,v 1.6 2008/06/18 16:20:47 armin76 Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools
-PATCH="${PN}-1.9_rc1-patches-0.1"
+PATCH="${P}-patches-0.1"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
@@ -22,7 +22,7 @@ IUSE=""
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12_rc4
+	>=dev-libs/nss-3.12
 	>=dev-libs/nspr-4.7.1
 	>=app-text/hunspell-1.1.9
 	>=media-libs/lcms-1.17
@@ -90,6 +90,7 @@ src_compile() {
 	# regardless of java setting.
 	mozconfig_annotate '' --enable-oji --enable-mathml
 	mozconfig_annotate 'places' --enable-storage --enable-places --enable-places_bookmarks
+	mozconfig_annotate '' --enable-safe-browsing
 
 	# Other ff-specific settings
 	mozconfig_annotate '' --enable-jsd
