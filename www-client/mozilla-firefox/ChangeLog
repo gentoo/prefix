@@ -1,6 +1,16 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.411 2008/06/17 18:55:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.414 2008/06/18 18:49:27 armin76 Exp $
+
+  18 Jun 2008; Raúl Porcel <armin76@gentoo.org> mozilla-firefox-3.0.ebuild:
+  Bump patchset to fix bug #219444
+
+  18 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  files/gentoo-default-prefs.js, mozilla-firefox-3.0.ebuild:
+  Fix nss dep, remove EULA stuff
+
+  18 Jun 2008; Raúl Porcel <armin76@gentoo.org> mozilla-firefox-3.0.ebuild:
+  Bump patchset to fix bug #228005
 
 *mozilla-firefox-3.0 (17 Jun 2008)
 
