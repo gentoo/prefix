@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/unrar
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.114 2007/12/11 16:50:19 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.115 2008/06/18 16:43:04 vapier Exp $
+
+*unrar-3.8.2 (18 Jun 2008)
+
+  18 Jun 2008; Mike Frysinger <vapier@gentoo.org> +unrar-3.8.2.ebuild:
+  Version bump #228067 by Conrad Kostecki.
 
   11 Dec 2007; nixnut <nixnut@gentoo.org> unrar-3.7.8.ebuild:
   Stable on ppc wrt bug 193611
