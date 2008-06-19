@@ -1,6 +1,11 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.154 2008/06/14 11:50:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.155 2008/06/18 09:33:56 vapier Exp $
+
+*e2fsprogs-1.40.11 (18 Jun 2008)
+
+  18 Jun 2008; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.40.11.ebuild:
+  Version bump.
 
   14 Jun 2008; Samuli Suominen <drac@gentoo.org> e2fsprogs-1.40.10.ebuild:
   Prevent sandbox violation. addwrite /var/cache/fonts; Font
