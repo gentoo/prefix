@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.315 2008/04/09 23:59:43 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.317 2008/06/19 03:47:35 tester Exp $
+
+  19 Jun 2008; Olivier Crête <tester@gentoo.org> glib-2.16.3.ebuild:
+  amd64 stable, bug #227679
+
+  18 Jun 2008; Raúl Porcel <armin76@gentoo.org> glib-2.16.3.ebuild:
+  Fix test failure on alpha/ppc/sparc and probably other arches, authorized
+  by leio, GNOME bug #538836
 
 *glib-2.16.3 (09 Apr 2008)
 

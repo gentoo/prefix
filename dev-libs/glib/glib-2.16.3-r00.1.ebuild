@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3.ebuild,v 1.1 2008/04/09 23:59:43 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3.ebuild,v 1.4 2008/06/19 03:47:35 tester Exp $
 
 EAPI="prefix"
 
@@ -52,6 +52,10 @@ src_unpack() {
 
 	sed -e "s/MATCH_LIMIT_RECURSION=10000000/MATCH_LIMIT_RECURSION=8192/g" \
 		-i "${S}/glib/pcre/Makefile.in" "${S}/glib/pcre/Makefile.am"
+
+	# GNOME bug #538836, fix gio test failure on various arches
+	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
+		"${S}/gio/pltcheck.sh"
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
