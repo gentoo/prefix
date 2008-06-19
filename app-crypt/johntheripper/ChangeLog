@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.83 2008/02/13 10:34:49 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.85 2008/06/16 19:48:53 jer Exp $
+
+  16 Jun 2008; Jeroen Roovers <jer@gentoo.org>
+  johntheripper-1.7.2-r5.ebuild:
+  Marked ~hppa again (bug #227631).
+
+*johntheripper-1.7.2-r5 (16 Jun 2008)
+
+  16 Jun 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +johntheripper-1.7.2-r5.ebuild:
+  Re-add the MPI support. Tested with OpenMPI+Torque running 8 instances
+  between a ppc (G5) and an amd64 box. ~hppa and ~mips dropped per bug #227631.
 
   13 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> -johntheripper-1.7.2.ebuild:
   Cleanup
