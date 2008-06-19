@@ -1,6 +1,10 @@
 # ChangeLog for x11-wm/windowmaker
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.93 2007/12/08 23:18:54 voyageur Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.94 2008/06/18 18:01:12 truedfx Exp $
+
+  18 Jun 2008; Harald van Dĳk <truedfx@gentoo.org>
+  windowmaker-0.92.0-r7.ebuild:
+  Don't try to add -lresolv, configure picks it up already (#226931)
 
   08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org>
   -files/0.91.0/64bit+endian-fixes-0.9x.patch,

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r7.ebuild,v 1.1 2007/11/22 22:09:59 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r7.ebuild,v 1.2 2008/06/18 18:01:12 truedfx Exp $
 
 EAPI="prefix"
 
@@ -131,9 +131,6 @@ src_compile() {
 
 	# enable new features, need to be done via defines
 	append-flags -DBOUNCE_APP -DNEWAPPICON -DVIRTUAL_DESKTOP
-
-	# Solaris has inet_aton, but it's hidden in -lresolv
-#	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lresolv
 
 	# default settings with $myconf appended
 	econf \
