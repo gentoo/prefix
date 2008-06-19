@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8735 2008/06/17 18:56:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8738 2008/06/19 04:50:43 dirtyepic Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,18 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ryan Hill <dirtyepic@gentoo.org> (18 Jun 2008)
+# Consolidated linuxfromscratch ebuilds into one.
+# Please use app-doc/linuxfromscratch instead.
+# Masked for removal 20080718.
+app-doc/linuxfromscratch-html
+app-doc/linuxfromscratch-pdf
+app-doc/linuxfromscratch-text
+
+# Hanno Böck <hanno@gentoo.org (18 Jun 2008)
+# Masked for now, see #226021.
+=net-analyzer/rrdtool-1.3.0
 
 # Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
 # Masked for security bug #226079.
@@ -1145,10 +1157,6 @@ dev-php4/pecl-http
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
-
-# Carsten Lohrke <carlo@gentoo.org> (11 Aug 2007)
-# Masked since KDE 3.5.7 doesn't come with KSync anymore.
-app-pda/syncekonnector
 
 # Tristan Heaven <nyhm@gentoo.org> (11 Aug 2007)
 # Masked until bug #178110 can be resolved properly.
