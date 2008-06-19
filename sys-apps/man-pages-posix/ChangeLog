@@ -1,0 +1,13 @@
+# ChangeLog for sys-apps/man-pages-posix
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages-posix/ChangeLog,v 1.2 2008/06/18 08:46:26 zmedico Exp $
+
+  18 Jun 2008; Zac Medico <zmedico@gentoo.org> man-pages-posix-2003a.ebuild:
+  Add !<sys-apps/man-pages-3 blocker due to a large number of file collisions.
+
+*man-pages-posix-2003a (17 Jun 2008)
+
+  17 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/man-pages-2.08-updates.patch, +metadata.xml,
+  +man-pages-posix-2003a.ebuild:
+  Initial version of package split from man-pages.
