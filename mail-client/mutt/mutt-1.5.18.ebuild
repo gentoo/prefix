@@ -79,6 +79,8 @@ src_unpack() {
 	( cd "${WORKDIR}" && epatch "${FILESDIR}"/${P}-change-folder-next.patch )
 	# fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch
+	# fix fatal warning on 64-bits Solaris
+	epatch "${FILESDIR}"/mutt-1.5.18-solaris64.patch
 
 	if ! use vanilla && ! use sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
