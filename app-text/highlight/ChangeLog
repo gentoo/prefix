@@ -1,6 +1,10 @@
 # ChangeLog for app-text/highlight
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.21 2008/06/17 22:13:06 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.22 2008/06/18 17:49:15 bluebird Exp $
+
+  18 Jun 2008; Friedrich Oslage <bluebird@gentoo.org>
+  highlight-2.6.10.ebuild:
+  stable on sparc, bug #226657
 
   17 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
   highlight-2.6.10.ebuild:
