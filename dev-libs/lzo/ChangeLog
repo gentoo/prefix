@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/lzo
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.47 2008/02/12 13:07:41 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.48 2008/06/18 08:21:09 dragonheart Exp $
+
+*lzo-2.03 (18 Jun 2008)
+
+  18 Jun 2008; Daniel Black <dragonheart@gentoo.org> +lzo-2.03.ebuild:
+  version bump as per bug #227769 thanks Sergiy Borodych
 
   12 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> lzo-2.02-r1.ebuild:
   Run elibtoolize.
