@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.235 2008/06/16 18:53:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.236 2008/06/18 11:41:56 cla Exp $
+
+  18 Jun 2008; Dawid Węgliński <cla@gentoo.org> xterm-235.ebuild:
+  Stable on amd64 (bug #227525)
 
   16 Jun 2008; Jeroen Roovers <jer@gentoo.org> xterm-235.ebuild:
   Stable for HPPA (bug #227525).
