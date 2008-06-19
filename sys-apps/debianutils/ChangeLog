@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.114 2008/06/17 11:40:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.115 2008/06/19 01:09:06 vapier Exp $
+
+*debianutils-2.29 (19 Jun 2008)
+
+  19 Jun 2008; Mike Frysinger <vapier@gentoo.org> +debianutils-2.29.ebuild:
+  Version bumps #228015.
 
   17 Jun 2008; Raúl Porcel <armin76@gentoo.org> debianutils-2.28.5.ebuild:
   alpha/ia64/sparc/x86 stable
