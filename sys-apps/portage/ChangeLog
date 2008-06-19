@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10729 (19 Jun 2008)
+
+  19 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.10708.ebuild, +portage-2.2.00.10729.ebuild:
+  Fix brokenness for Darwin users
+
 *portage-2.2.00.10708 (17 Jun 2008)
 
   17 Jun 2008; Fabian Groffen <grobian@gentoo.org>
