@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.118 2008/06/12 18:06:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.119 2008/06/18 16:49:49 loki_val Exp $
+
+  18 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> dejavu-2.25-r1.ebuild:
+  Snapshot support
 
   12 Jun 2008; nixnut <nixnut@gentoo.org> dejavu-2.25-r1.ebuild:
   Added ~ppc wrt bug 224541

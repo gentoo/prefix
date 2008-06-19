@@ -1,24 +1,38 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.25-r1.ebuild,v 1.8 2008/06/12 18:06:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.25-r1.ebuild,v 1.9 2008/06/18 16:49:49 loki_val Exp $
 
 EAPI="prefix 1"
 
-inherit font
+inherit font versionator
 
 DESCRIPTION="DejaVu fonts, bitstream vera with ISO-8859-2 characters"
 HOMEPAGE="http://dejavu.sourceforge.net/"
 LICENSE="BitstreamVera"
 
-MY_BP=${PN}-fonts-ttf-${PV}
-MY_SP=${PN}-fonts-${PV}
-SRC_URI="!fontforge? (  mirror://sourceforge/${PN}/${MY_BP}.tar.bz2 )
-	fontforge? ( mirror://sourceforge/${PN}/${MY_SP}.tar.bz2 )"
+# If you want to test snapshot from dejavu.sf.net/snapshots/
+# just rename ebuild to dejavu-2.22.20071220.2156.ebuild
+MY_PV=$(get_version_component_range 1-2)
+snapv=$(get_version_component_range 3-4)
+snapv=${snapv/./-}
+MY_BP=${PN}-fonts-ttf-${MY_PV}
+MY_SP=${PN}-fonts-${MY_PV}
+
+if [ -z ${snapv} ]
+then
+	SRC_URI="!fontforge? (  mirror://sourceforge/${PN}/${MY_BP}.tar.bz2 )
+		fontforge? ( mirror://sourceforge/${PN}/${MY_SP}.tar.bz2 )"
+else
+	MY_BP=${MY_BP}-${snapv}
+	MY_SP=${MY_SP}-${snapv}
+	SRC_URI="!fontforge? ( http://dejavu.sourceforge.net/snapshots/${MY_BP}.tar.bz2 )
+		fontforge? ( http://dejavu.sourceforge.net/snapshots/${MY_SP}.tar.bz2 )"
+fi
 
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
-IUSE="+fontforge"
+IUSE="fontforge"
 DEPEND="fontforge? ( x11-apps/mkfontscale
 		>=media-gfx/fontforge-20080429
 		x11-apps/mkfontdir
@@ -35,10 +49,12 @@ else
 	S=${WORKDIR}/${MY_BP}
 	FONT_S=${S}/ttf
 fi
+
 FONT_CONF=( 	"${S}/fontconfig/20-unhint-small-dejavu.conf"
 		"${S}/fontconfig/20-unhint-small-dejavu-experimental.conf"
 		"${S}/fontconfig/57-dejavu.conf"
 		"${S}/fontconfig/61-dejavu-experimental.conf" )
+
 FONT_SUFFIX="ttf"
 DOCS="AUTHORS NEWS README status.txt langcover.txt unicover.txt"
 
