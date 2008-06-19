@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5.ebuild,v 1.6 2008/05/12 13:45:15 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5.ebuild,v 1.7 2008/06/18 16:09:20 jer Exp $
 
 EAPI="prefix"
 
