@@ -1,6 +1,13 @@
 # ChangeLog for net-nntp/hellanzb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.7 2008/06/01 22:20:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.8 2008/06/18 14:05:56 yngwin Exp $
+
+*hellanzb-0.13-r6 (18 Jun 2008)
+
+  18 Jun 2008; Ben de Groot <yngwin@gentoo.org>
+  +files/hellanzb-0.13-strip-extra-space-in-group.patch,
+  +hellanzb-0.13-r6.ebuild:
+  Add patch to fix bug 224945 (upstream bug 393).
 
   01 Jun 2008; Alexis Ballier <aballier@gentoo.org> hellanzb-0.13-r5.ebuild:
   Add optional dep on pyopenssl for nntps support, by Michiel de Bruijne

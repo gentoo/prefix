@@ -1,0 +1,11 @@
+--- hellanzb-0.13-orig/Hellanzb/NZBLeecher/NZBParser.py	2008-06-18 15:41:16.000000000 +0200
++++ hellanzb-0.13/Hellanzb/NZBLeecher/NZBParser.py	2008-06-18 15:42:39.000000000 +0200
+@@ -149,7 +149,7 @@
+             self.fileNeedsDownload = None
+                 
+         elif name == 'group':
+-            newsgroup = self.parseUnicode(''.join(self.chars))
++            newsgroup = self.parseUnicode(''.join(self.chars)).strip()
+             self.file.groups.append(newsgroup)
+                         
+             self.chars = None
