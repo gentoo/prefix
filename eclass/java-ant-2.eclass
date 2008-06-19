@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.32 2008/04/15 09:33:36 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.33 2008/06/18 10:27:22 ali_bush Exp $
 
 inherit java-utils-2
 
@@ -240,6 +240,11 @@ java-ant_bsfix_files() {
 
 		# for javadoc target and all in one pass, we need the new rewriter.
 		local rewriter3="${EPREFIX}/usr/share/javatoolkit/xml-rewrite-3.py"
+
+		if [[ ! -f ${rewriter3} ]]; then
+			rewriter3="${EPREFIX}/usr/$(get_libdir)/javatoolkit/bin/xml-rewrite-3.py"
+		fi
+
 		if [[ ! -f ${rewriter3} ]]; then
 			debug-print "Using second generation rewriter"
 			eval echo "Rewriting source attributes" ${output}
@@ -400,9 +405,12 @@ java-ant_ignore-system-classes() {
 # ------------------------------------------------------------------------------
 java-ant_xml-rewrite() {
 	local gen2="${EPREFIX}/usr/bin/xml-rewrite-2.py"
+	local gen2_1="${EPREFIX}/usr/$(get_libdir)/javatoolkit/bin/xml-rewrite-2.py"
 	# gen1 is deprecated
 	if [[ -x "${gen2}" ]]; then
 		${gen2} "${@}" || die "${gen2} failed"
+	elif [[ "${gen2_1}" ]]; then
+		${gen2} "${@}" || die "${gen2_1} failed"
 	else
 		eerror "No binary for rewriting found."
 		eerror "Do you have dev-java/javatoolkit installed?"

@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.107 2008/05/03 21:28:45 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.108 2008/06/18 10:27:22 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2578,15 +2578,29 @@ java-pkg_jar-list() {
 # ------------------------------------------------------------------------------
 java-pkg_verify-classes() {
 	#$(find ${ED} -type f -name '*.jar' -o -name '*.class')
+
+	local version_verify="/usr/bin/class-version-verify.py"
+
+	if [[ ! -x "${version_verify}" ]]; then
+		version_verify="/usr/$(get_libdir)/javatoolkit/bin/class-version-verify.py"
+	fi
+
+	if [[ ! -x "${version_verify}" ]]; then
+		ewarn "Unable to perform class version checks as"
+		ewarn "class-version-verify.py is unavailable"
+		ewarn "Please install dev-java/javatoolkit."
+		return
+	fi
+
 	local target=$(java-pkg_get-target)
 	local result
 	local log="${T}/class-version-verify.log"
 	if [[ -n "${1}" ]]; then
-		class-version-verify.py -v -t ${target} "${1}" > "${log}"
+		${EPREFIX}${version_verify} -v -t ${target} "${1}" > "${log}"
 		result=$?
 	else
 		ebegin "Verifying java class versions (target: ${target})"
-		class-version-verify.py -v -t ${target} -r "${ED}" > "${log}"
+		${EPREFIX}${version_verify} -v -t ${target} -r "${ED}" > "${log}"
 		result=$?
 		eend ${result}
 	fi
