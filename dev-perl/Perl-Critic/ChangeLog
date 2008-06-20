@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Perl-Critic
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.39 2008/05/23 15:47:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.40 2008/06/19 04:53:58 wormo Exp $
+
+  19 Jun 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  Perl-Critic-1.082.ebuild:
+  mark ~ppc (bug #219164)
 
   23 May 2008; Samuli Suominen <drac@gentoo.org> Perl-Critic-1.082.ebuild:
   ~amd64 wrt #219164

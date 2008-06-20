@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.082.ebuild,v 1.3 2008/05/23 15:47:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.082.ebuild,v 1.4 2008/06/19 04:53:58 wormo Exp $
 
 EAPI="prefix"
 
