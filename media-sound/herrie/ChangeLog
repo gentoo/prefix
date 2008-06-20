@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.28 2008/06/16 19:25:25 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.29 2008/06/19 11:50:12 opfer Exp $
+
+  19 Jun 2008; Christian Faulhammer <opfer@gentoo.org> herrie-2.0.2.ebuild:
+  stable x86, bug 227107
 
   16 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> herrie-2.0.2.ebuild:
   sparc stable, bug #227107
