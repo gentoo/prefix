@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.116 2008/06/18 16:20:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.117 2008/06/19 08:52:48 armin76 Exp $
+
+*xulrunner-1.9-r1 (19 Jun 2008)
+
+  19 Jun 2008; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.9.ebuild,
+  +xulrunner-1.9-r1.ebuild:
+  Revision bump so users get the changes, see the changelog to see whats
+  new
 
   18 Jun 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.ebuild:
   Enable safe-browsing, bug #227983
