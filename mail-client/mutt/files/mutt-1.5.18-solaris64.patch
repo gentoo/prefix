@@ -1,18 +1,38 @@
-* strsep is not available on Solaris, but mutt ships with replacement
-  code.  Make the signature known though, as Gentoo on 64-bits platforms
-  doesn't like warnings about "implicit declarations" of functions.
+# HG changeset patch
+# User Rocco Rutte <pdmef@gmx.net>
+# Date 1212156897 -7200
+# Node ID 2f59be26ad22e443da85f862584f6a8fe84ce387
+# Parent bf74c85070c4ea755664d4ec87c6eb3fff3f6da5
+Define prototypes for compatibility functions in protos.h to silence compiler warnings
 
---- rfc3676.c
-+++ rfc3676.c
-@@ -37,6 +37,11 @@
- #include "ascii.h"
- #include "lib.h"
+--- a/protos.h	Thu May 29 14:18:25 2008 +0200
++++ b/protos.h	Fri May 30 16:14:57 2008 +0200
+@@ -523,4 +523,26 @@
+ void ci_bounce_message (HEADER *, int *);
+ int ci_send_message (int, HEADER *, char *, CONTEXT *, HEADER *);
  
-+#if !HAVE_STRSEP
-+/* from included strsep.c */
-+char *strsep (char **stringp, const char *delim);
+-
++/* prototypes for compatibility functions */
++
++#ifndef HAVE_SETENV
++int setenv (const char *, const char *, int);
 +#endif
 +
- #define FLOWED_MAX 77
- 
- static int get_quote_level (const char *line)
++#ifndef HAVE_STRCASECMP
++int strcasecmp (char *, char *);
++int strncasecmp (char *, char *, size_t);
++#endif
++
++#ifndef HAVE_STRDUP
++char *strdup (const char *);
++#endif
++
++#ifndef HAVE_STRSEP
++char *strsep (char **, const char *);
++#endif
++
++#ifndef HAVE_STRTOK_R
++char *strtok_r (char *, const char *, char **)
++#endif
++
+
