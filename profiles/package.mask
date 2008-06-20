@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8738 2008/06/19 04:50:43 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8741 2008/06/20 02:46:05 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,22 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Jun 2008)
+# Masked for removal in ~30 days by the treecleaners
+# Dead project and predecessor to dev-util/bzr, use that instead. bug #219236
+dev-util/bazaar
+
+# Michael Sterrett <mr_bones_@gentoo.org> (19 Jun 2008)
+# masked until bug #217901 is fixed
+# http://bugs.gentoo.org/show_bug.cgi?id=225883
+# Patches welcome.
+=games-kids/gcompris-8.4.5
+
+# Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
+# Beta driver, unsupported by nVidia
+~x11-drivers/nvidia-drivers-177.13
+~media-video/nvidia-settings-177.13
 
 # Ryan Hill <dirtyepic@gentoo.org> (18 Jun 2008)
 # Consolidated linuxfromscratch ebuilds into one.

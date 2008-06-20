@@ -1,10 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1562 2008/06/17 18:56:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1570 2008/06/20 02:46:05 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  20 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-util/bazaar, bug #219236
+
+  19 Jun 2008; <chainsaw@gentoo.org> package.mask:
+  Add mask for x11-drivers/nvidia-drivers-177.13, unsupported beta ebuilds.
+
+  19 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask app-doc/linuxfromscratch-* for removal.
+
+  19 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add local htmlsingle USE flag for app-doc/linuxfromscratch.
+
+  19 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Remove app-pda/syncekonnector from p.mask, removed from tree. bug #180883
+
+  18 Jun 2008; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Mask rrdtool-1.3.0, see #226021.
+
+  18 Jun 2008; Markus Dittrich <markusle@gentoo.org> use.local.desc:
+  Added numpy use flag for sci-visualization/hippodraw.
 
   17 Jun 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
   Unmask firefox-3.0, xulrunner-1.9, nss, and nspr
