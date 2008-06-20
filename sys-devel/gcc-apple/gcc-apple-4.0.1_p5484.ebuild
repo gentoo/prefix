@@ -10,7 +10,7 @@ inherit eutils toolchain
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
-DESCRIPTION="Apple branch of the GNU Compiler Collection, iPhone SDK Beta 5"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, iPhone SDK Beta 7"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 LICENSE="APSL-2 GPL-2"

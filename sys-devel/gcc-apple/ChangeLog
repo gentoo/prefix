@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gcc-apple-4.0.1_p5484 (20 Jun 2008)
+
+  20 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  -gcc-apple-4.0.1_p5483.ebuild, +gcc-apple-4.0.1_p5484.ebuild:
+  Bump to iPhone SDK Beta 7
+
 *gcc-apple-4.2.1_p5553 (28 Mar 2008)
 *gcc-apple-4.0.1_p5470 (28 Mar 2008)
 
