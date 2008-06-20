@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.85 2008/06/18 17:09:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.86 2008/06/19 18:00:51 nixnut Exp $
+
+  19 Jun 2008; nixnut <nixnut@gentoo.org> gamin-0.1.9-r1.ebuild:
+  Stable on ppc wrt bug 228087
 
   18 Jun 2008; Raúl Porcel <armin76@gentoo.org> gamin-0.1.9-r1.ebuild:
   alpha/ia64/sparc/x86 stable wrt #228087
