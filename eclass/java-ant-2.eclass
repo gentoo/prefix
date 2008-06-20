@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.33 2008/06/18 10:27:22 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.34 2008/06/19 19:48:40 ali_bush Exp $
 
 inherit java-utils-2
 
@@ -409,7 +409,7 @@ java-ant_xml-rewrite() {
 	# gen1 is deprecated
 	if [[ -x "${gen2}" ]]; then
 		${gen2} "${@}" || die "${gen2} failed"
-	elif [[ "${gen2_1}" ]]; then
+	elif [[ -x "${gen2_1}" ]]; then
 		${gen2} "${@}" || die "${gen2_1} failed"
 	else
 		eerror "No binary for rewriting found."
