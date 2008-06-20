@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.3.11.ebuild,v 1.3 2008/06/19 09:11:03 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.4.0.ebuild,v 1.1 2008/06/19 09:26:25 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -46,7 +46,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}+gcc-4.3.patch"
+	epatch "${FILESDIR}"/${PN}-2.3.11+gcc-4.3.patch
+	epatch "${FILESDIR}"/${PN}-2.3.15-qa_gnutls_session_is_psk.patch
 
 	epatch "${FILESDIR}"/${PN}-2.2.2-interix.patch
 

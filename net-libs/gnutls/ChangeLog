@@ -1,6 +1,20 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.156 2008/06/01 15:19:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.158 2008/06/19 09:26:25 dragonheart Exp $
+
+*gnutls-2.4.0 (19 Jun 2008)
+
+  19 Jun 2008; Daniel Black <dragonheart@gentoo.org> -gnutls-2.3.15.ebuild,
+  +gnutls-2.4.0.ebuild:
+  version bump - using proper release
+
+*gnutls-2.3.15 (19 Jun 2008)
+
+  19 Jun 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-2.3.15-qa_gnutls_session_is_psk.patch, gnutls-2.3.11.ebuild,
+  +gnutls-2.3.15.ebuild:
+  version bump thanks to bug #227385. opencdk notlonger supported as per bug
+  #227381. Thanks to Arfrever Frehtes Taifersar Arahesis and Franz Metz
 
   01 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
   +files/gnutls-2.3.11+gcc-4.3.patch, gnutls-2.3.11.ebuild:
