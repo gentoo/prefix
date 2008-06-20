@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic
 
-DESCRIPTION="Apple branch of the GNU Debugger, Xcode Tools 3.1 Beta"
+DESCRIPTION="Apple branch of the GNU Debugger, iPhone SDK Beta 7"
 HOMEPAGE="http://sources.redhat.com/gdb/"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gdb-${PV}.tar.gz"
 
