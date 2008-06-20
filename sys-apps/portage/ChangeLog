@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10738 (20 Jun 2008)
+
+  20 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.10729.ebuild, +portage-2.2.00.10738.ebuild:
+  Replace previous snapshot, this new snapshot has better 'working'
+  preserve-libs support for Darwin
+
 *portage-2.2.00.10729 (19 Jun 2008)
 
   19 Jun 2008; Fabian Groffen <grobian@gentoo.org>
