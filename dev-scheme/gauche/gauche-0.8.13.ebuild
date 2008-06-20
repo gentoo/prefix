@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/gauche-0.8.11-r1.ebuild,v 1.2 2007/10/08 16:32:45 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/gauche-0.8.13.ebuild,v 1.1 2008/06/19 15:52:29 hattya Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-gauche.m4.diff
 	epatch "${FILESDIR}"/${PN}-runpath.diff
-	epatch "${FILESDIR}"/${P}-socket-buffering.diff
 	eautoconf
 
 }
