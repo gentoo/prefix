@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.124 2008/06/15 13:05:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.125 2008/06/19 21:59:02 bluebird Exp $
+
+  19 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> erlang-12.2.3.ebuild:
+  Re-add ~sparc keyword, drop ~x86-fbsd keyword, bug #226085
 
   15 Jun 2008; Tobias Klausmann <klausman@gentoo.org> erlang-12.2.3.ebuild:
   Keyworded on alpha, bug #226085
