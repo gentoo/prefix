@@ -233,7 +233,7 @@ uninstall() {
 
 	[[ -d ${PORTDIR_OVERLAY}/cross-${CTARGET} ]] \
 		&& rm -r ${PORTDIR_OVERLAY}/cross-${CTARGET}
-	sed -i -e "/^cross-${CTARGET}$/d" /etc/portage/categories
+	sed -i -e "/^cross-${CTARGET}$/d" "${EPREFIX}"/etc/portage/categories
 	for f in package.{mask,keywords,use} ; do
 		f="${EPREFIX}/etc/portage/${f}"
 		if [[ -d ${f} ]] ; then
@@ -533,11 +533,11 @@ set_portage() {
 	set_links ${cat} ${pkg}
 }
 
-mkdir -p /etc/portage
-grep -qs "^cross-${CTARGET}$" /etc/portage/categories \
-	|| echo cross-${CTARGET} >> /etc/portage/categories
+mkdir -p "${EPREFIX}"/etc/portage
+grep -qs "^cross-${CTARGET}$" "${EPREFIX}"/etc/portage/categories \
+	|| echo cross-${CTARGET} >> "${EPREFIX}"/etc/portage/categories
 mkdir -p "${PORTDIR_OVERLAY}"/cross-${CTARGET}
-cd /etc/portage
+cd "${EPREFIX}"/etc/portage
 for f in package.{keywords,mask,use} ; do
 	[[ -f ${f} ]] && continue
 	mkdir -p ${f}
