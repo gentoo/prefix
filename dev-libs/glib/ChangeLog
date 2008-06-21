@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.319 2008/06/19 19:29:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.320 2008/06/20 10:33:12 opfer Exp $
+
+  20 Jun 2008; Christian Faulhammer <opfer@gentoo.org> glib-2.16.3.ebuild:
+  stable x86, bug 227679
 
   19 Jun 2008; Raúl Porcel <armin76@gentoo.org> glib-2.16.3.ebuild:
   alpha/ia64/sparc stable wrt #227679
