@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.28 2008/05/11 18:04:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.29 2008/06/20 06:00:15 graaff Exp $
+
+  20 Jun 2008; Hans de Graaff <graaff@gentoo.org> capistrano-1.4.2.ebuild:
+  Mark stable for amd64 #228453
 
 *capistrano-1.4.2 (11 May 2008)
 
