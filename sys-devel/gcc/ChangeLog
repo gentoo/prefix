@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.652 2008/06/10 22:31:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.653 2008/06/21 04:23:11 vapier Exp $
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild,
+  gcc-4.3.1.ebuild:
+  Force newer glibc to keep things sane #228631 by Andrey Kislyuk.
 
   10 Jun 2008; Jeroen Roovers <jer@gentoo.org> gcc-4.3.1.ebuild:
   Marked ~hppa too.
