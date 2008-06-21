@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.6.ebuild,v 1.1 2008/05/31 07:56:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.6.ebuild,v 1.2 2008/06/21 04:25:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nocxx"
 
-RDEPEND="!app-arch/lzma"
+RDEPEND="!app-arch/lzma
+	!<app-arch/p7zip-4.57"
 
 S=${WORKDIR}/${MY_P}
 
