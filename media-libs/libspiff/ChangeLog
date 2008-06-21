@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libspiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.22 2008/06/16 19:23:10 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.23 2008/06/20 10:36:04 opfer Exp $
+
+  20 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  libspiff-0.8.3.ebuild:
+  x86 stable, bug 227107
 
   16 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> libspiff-0.8.3.ebuild:
   sparc stable, bug #227107
