@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/taglib
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.63 2008/03/20 21:58:53 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.64 2008/06/20 15:08:52 loki_val Exp $
+
+  20 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/taglib-1.5-gcc43-tests.patch, taglib-1.5.ebuild:
+  Add fix to get tests for taglib-1.5 to compile with gcc-4.3. Bug 228413.
+  Thanks to Olivier Huber <oli.huber@gmail.com>.
 
   20 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> -taglib-1.4.ebuild:
   Old.
