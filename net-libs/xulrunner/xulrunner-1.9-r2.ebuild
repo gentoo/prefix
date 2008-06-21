@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9-r1.ebuild,v 1.1 2008/06/19 08:52:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9-r2.ebuild,v 1.4 2008/06/20 15:03:42 armin76 Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,7 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-libs/nss-3.12
 	>=dev-libs/nspr-4.7.1
 	>=app-text/hunspell-1.1.9
-	>=media-libs/lcms-1.17
-	>=dev-db/sqlite-3.5.6"
+	>=media-libs/lcms-1.17"
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
@@ -40,6 +39,20 @@ S="${WORKDIR}/mozilla"
 export MOZ_CO_PROJECT=xulrunner
 export BUILD_OFFICIAL=1
 export MOZILLA_OFFICIAL=1
+
+pkg_setup(){
+	if ! built_with_use x11-libs/cairo X; then
+		eerror "Cairo is not built with X useflag."
+		eerror "Please add 'X' to your USE flags, and re-emerge cairo."
+		die "Cairo needs X"
+	fi
+
+	if ! built_with_use --missing true x11-libs/pango X; then
+		eerror "Pango is not built with X useflag."
+		eerror "Please add 'X' to your USE flags, and re-emerge pango."
+		die "Pango needs X"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -58,6 +71,9 @@ src_unpack() {
 		xulrunner/app/nsRegisterGREUnix.cpp
 
 	eautoreconf || die "failed  running eautoreconf"
+
+	# We need to re-patch this because autoreconf overwrites it
+	epatch "${WORKDIR}"/patch/000_flex-configure-LANG.patch
 }
 
 src_compile() {
@@ -77,7 +93,7 @@ src_compile() {
 	mozconfig_annotate 'broken' --disable-mochitest
 	mozconfig_annotate 'broken' --disable-crashreporter
 	mozconfig_annotate '' --enable-system-hunspell
-	mozconfig_annotate '' --enable-system-sqlite
+	#mozconfig_annotate '' --enable-system-sqlite
 	mozconfig_annotate '' --enable-image-encoder=all
 	mozconfig_annotate '' --enable-canvas
 	#mozconfig_annotate '' --enable-js-binary
