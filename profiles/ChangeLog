@@ -1,10 +1,37 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1570 2008/06/20 02:46:05 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1578 2008/06/21 01:33:38 mrness Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  21 Jun 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-libs/wvstreams-4.4.1 (#211327).
+
+  20 Jun 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask gnusound, same rant as for motion
+
+  20 Jun 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove dev-java/freemarker mask.
+
+  20 Jun 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask media-video/motion, please don't mask packages just because you can
+  and are too lazy to propose a fix
+
+  20 Jun 2008; Ali Polatel <hawking@gentoo.org> use.local.desc:
+  Add local git use flag to app-vim/vcscommand
+
+  20 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmasking another stray package that depends on new ffmpeg
+
+  20 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmasking media-video/ffmpeg-0.4.9_p20080326 and packages depending on
+  that version. Masing ~arch packages that are incompatible. See bug
+  #214740.
+
+  20 Jun 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Update spandsp mask from = to >= so new version can be introduced.
 
   20 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask dev-util/bazaar, bug #219236

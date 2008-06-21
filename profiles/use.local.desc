@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3594 2008/06/19 04:41:15 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3595 2008/06/20 13:13:07 hawking Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -342,6 +342,7 @@ app-text/webgen:textile - Textile support
 app-text/webgen:thumbnail - Thumbnail creation support using rmagick
 app-text/xpdf:nodrm - Disable the drm feature decoder.
 app-vim/gentoo-syntax:ignore-glep31 - Remove GLEP 31 (UTF-8 file encodings) settings
+app-vim/vcscommand:git - Enable Git support
 app-vim/vcscommand:svk - Enable SVK support
 dev-cpp/sptk:aspell - Enable Aspell support
 dev-cpp/sptk:excel - Enable Excel support

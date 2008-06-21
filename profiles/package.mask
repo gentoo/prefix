@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8741 2008/06/20 02:46:05 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8750 2008/06/21 03:42:40 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,30 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
+# Non-working version (#211327)
+=net-libs/wvstreams-4.4.1*
+
+# Ben de Groot <yngwin@gentoo.org> (20 Jun 2008)
+# == The great ffmpeg new headers mask (bug #214740) ==
+# Maintainers have been given ample advance warning of the change in headers
+# location of media-video/ffmpeg-0.4.9_p20080326, see bug 214740 and dependant
+# bugs. The following packages are masked now because they are incompatible,
+# and have not yet been fixed. (~arch versions only, because stable versions
+# will build against current stable ffmpeg)
+# games herd, bug 218089:
+games-arcade/stepmania
+# media-tv herd, bug 218094:
+media-plugins/vdr-graphtft
+# sound herd, bug 218099:
+media-sound/potamus
+# voip herd, bug 218102:
+media-libs/mediastreamer
+# no herd, bug 218105:
+>=media-video/mpeg4ip-1.5.0.1-r3
+net-www/gnash
+
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Jun 2008)
 # Masked for removal in ~30 days by the treecleaners
@@ -84,7 +108,7 @@ dev-cpp/libwefts
 =dev-java/mx4j-3.0.2
 
 # Donnie Berkholz <dberkholz@gentoo.org> (11 Jun 2008)
-# (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get 
+# (#225907) Huge memory leaks, and 0.11.2 is just broken so try to get
 # people off it. (#225843) Font readability issues
 =x11-libs/pixman-0.11*
 
@@ -121,7 +145,7 @@ x11-proto/dri2proto
 
 # Alfredo Tupone <tupone@gentoo.org> (08 Jun 2008)
 # Masked for removal in 30 days.
-# Depend on dev-lang/python 2.3 (bug #222037) that is 
+# Depend on dev-lang/python 2.3 (bug #222037) that is
 # going to be dropped
 <net-zope/zope-2.9
 <net-zope/plone-2.5
@@ -227,7 +251,7 @@ net-analyzer/sonar
 =app-text/gtranslator-1.1.7
 
 # Steve Dibb <beandog@gentoo.org> (25 May 2008)
-# Needs testing 
+# Needs testing
 >=media-video/mplayer-1.0_rc2_p26753-r2
 
 # Ingmar Vanhassel <ingmar@gentoo.org (25 May 2008)
@@ -452,10 +476,6 @@ media-sound/lastfmproxy
 # As 1.3.3.x became a stable series and 1.3.4 has crash issues, mask it for now.
 =app-office/scribus-1.3.4-r1
 
-# Joerg Bornkessel <hd_brummy@gentoo.org> (29 Mar 2008
-# masked depend on bug #214740, wait for unmask depend ffmpeg version
-=media-video/vdr2jpeg-0.1.0
-
 # Markus Ullmann <jokey@gentoo.org> (27 Mar 2008)
 # mask beta version
 =mail-filter/MailScanner-4.68.6.1
@@ -470,14 +490,9 @@ media-sound/lastfmproxy
 =dev-db/postgresql-8.3*
 
 # Luca Barbato <lu_zero@gentoo.org> (26 Mar 2008)
-# huge ffmpeg migration mask, append to this further packages working
-# with the new include layout
->=media-video/ffmpeg-0.4.9_p20080206
-=media-gfx/blender-2.45-r3
-=media-gfx/blender-2.46-r1
-=x11-misc/xvidcap-1.1.7_rc1
->=media-sound/picard-0.10.0_rc1
->=media-video/ffmpeg2theora-0.21
+# huge ffmpeg migration mask
+# we leave intermediate version masked, unmasking 20080326 -yngwin
+=media-video/ffmpeg-0.4.9_p20080206
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
@@ -625,10 +640,6 @@ x11-misc/mkxf86config
 # try this instead.
 ~media-video/ffmpeg2theora-9999
 
-# Marius Mauch <genone@gentoo.org> (09 Feb 2008)
-# First public test releases of portage-2.2
->=sys-apps/portage-2.2_alpha
-
 # Sebastien Fabbro <bicatali@gentoo.org> (05 Feb 2008)
 # sci-libs/metis-5.* still experimental
 >=sci-libs/metis-4.99
@@ -671,10 +682,6 @@ dev-libs/liboobs
 # Never was stabled, and will not work with future versions of HAL.  Remove when
 # HAL 0.5.10 is stabled on all arches.
 gnome-extra/hal-device-manager
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (21 Jan 2008)
-# Does not build, broken JSP dependencies.
-=dev-java/freemarker-2.3.11
 
 # Ingmar Vanhassel <ingmar@gentoo.org> (16 Jan 2008)
 # Mask KDE 4.0.x for testing. This release of KDE 4 will not be unmasked.
@@ -1077,11 +1084,6 @@ sys-kernel/hppa-sources
 # Brokeness in these
 =mail-mta/nullmailer-1.03*
 
-# Hanno Boeck <hanno@gentoo.org> (11 Nov 2007)
-# Remaining beryl-related packages, beryl has been removed
-x11-wm/heliodor
-x11-wm/aquamarine
-
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
 # You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
@@ -1384,7 +1386,7 @@ games-action/armagetronad
 
 # Timothy Redaelli <drizzt@gentoo.org> (28 Nov 2006)
 # Masked for testing.
-=media-libs/spandsp-0.0.3*
+>=media-libs/spandsp-0.0.3_pre
 
 # Aron Griffis <agriffis@gentoo.org>
 # Masked for testing new enablement via eselect
