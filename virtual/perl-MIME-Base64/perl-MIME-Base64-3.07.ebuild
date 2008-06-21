@@ -14,4 +14,4 @@ KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x
 IUSE=""
 
 DEPEND=""
-RDEPEND="|| ( ~dev-lang/perl-5.8.8 ~perl-core/MIME-Base64-${PV} )"
+RDEPEND="|| ( >=dev-lang/perl-5.8.8 ~perl-core/MIME-Base64-${PV} )"
