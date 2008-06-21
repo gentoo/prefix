@@ -14,4 +14,4 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~s
 IUSE=""
 
 DEPEND=""
-RDEPEND="|| ( ~dev-lang/perl-5.8.8 ~perl-core/Digest-MD5-${PV} )"
+RDEPEND="|| ( >=dev-lang/perl-5.8.8 ~perl-core/Digest-MD5-${PV} )"
