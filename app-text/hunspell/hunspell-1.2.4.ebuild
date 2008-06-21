@@ -15,7 +15,7 @@ HOMEPAGE="http://hunspell.sourceforge.net/"
 SLOT="0"
 LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 IUSE="ncurses nls readline"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
 
 DEPEND="readline? ( sys-libs/readline )
 	ncurses? ( sys-libs/ncurses )
