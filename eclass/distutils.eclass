@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.48 2008/05/30 10:22:35 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.49 2008/06/20 18:21:39 hawking Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -93,7 +93,10 @@ distutils_src_install() {
 # @DESCRIPTION:
 # Generic pyc/pyo cleanup script. This function is exported.
 distutils_pkg_postrm() {
-	PYTHON_MODNAME=${PYTHON_MODNAME:-${PN}}
+	if [[ -z "${PYTHON_MODNAME}" &&\
+		-d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]]; then
+		PYTHON_MODNAME=${PN}
+	fi
 
 	if has_version ">=dev-lang/python-2.3"; then
 		ebegin "Performing Python Module Cleanup .."
