@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.7-r1.ebuild,v 1.2 2008/03/07 07:33:20 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.7-r1.ebuild,v 1.3 2008/06/20 10:48:36 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -48,9 +48,6 @@ src_unpack() {
 }
 
 src_compile() {
-
-	append-ldflags $(bindnow-flags)
-
 	# symcryptrun does some non-portable stuff, which breaks on Solaris,
 	# disable for now, can't easily come up with a patch
 	[[ ${CHOST} != *-solaris* ]] \

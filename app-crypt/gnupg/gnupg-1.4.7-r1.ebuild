@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.7-r1.ebuild,v 1.12 2008/04/24 04:48:10 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.7-r1.ebuild,v 1.13 2008/06/20 10:48:36 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -97,8 +97,6 @@ src_compile() {
 
 	# 'USE=static' support was requested in #29299
 	use static &&append-ldflags -static
-
-	append-ldflags $(bindnow-flags)
 
 	# fix compile problem on ppc64
 	use ppc64 && myconf="${myconf} --disable-asm"
