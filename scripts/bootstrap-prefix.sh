@@ -494,7 +494,7 @@ bootstrap_python() {
 
 	if [[ ${CHOST} == *-interix* ]] ; then
 		A=python-${PV}-interix.tar.bz2
-		efetch http://www.gentoo.org/~grobian/distfiles/${A}
+		efetch http://dev.gentoo.org/~grobian/distfiles/${A}
 	else
 		efetch http://www.python.org/ftp/python/${PV%_*}/${A}
 	fi
@@ -560,7 +560,7 @@ bootstrap_findutils3() {
 bootstrap_findutils() {
 	# distfile with included patches for IRIX and Interix
 	bootstrap_gnu findutils 4.4.0 \
-		"http://www.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
+		"http://dev.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
 }
 
 bootstrap_wget() {
