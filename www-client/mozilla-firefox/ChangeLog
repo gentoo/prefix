@@ -1,6 +1,17 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.414 2008/06/18 18:49:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.416 2008/06/20 14:41:05 armin76 Exp $
+
+  20 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0-r1.ebuild:
+  Re-fix bug #228005
+
+*mozilla-firefox-3.0-r1 (20 Jun 2008)
+
+  20 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  -mozilla-firefox-3.0.ebuild, +mozilla-firefox-3.0-r1.ebuild:
+  Don't use external sqlite, since it seems to give some problems, bug
+  #228305, and fix bindist icon, bug #228317
 
   18 Jun 2008; Raúl Porcel <armin76@gentoo.org> mozilla-firefox-3.0.ebuild:
   Bump patchset to fix bug #219444
