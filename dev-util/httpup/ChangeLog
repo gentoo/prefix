@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/httpup
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/ChangeLog,v 1.4 2007/05/15 09:10:31 bangert Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/ChangeLog,v 1.5 2008/06/20 14:07:12 loki_val Exp $
+
+  20 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/httpup-0.3.2-gcc43.patch, httpup-0.3.2.ebuild:
+  GCC-4.3 build fix (missing headers). Bug 227879.
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
