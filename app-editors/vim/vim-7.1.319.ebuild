@@ -32,4 +32,5 @@ src_unpack() {
 	vim_src_unpack || die "vim_src_unpack failed"
 
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 }
