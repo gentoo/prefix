@@ -28,7 +28,9 @@ src_unpack() {
 	cd "${S}"
 
 	# Fix multilib-strict; bug #185294
-	epatch "${FILESDIR}"/${P}-multilib.patch
+#	epatch "${FILESDIR}"/${P}-multilib.patch
+	# use sed expression due to bug #228711
+	sed -i -e '/LCMS_PYEXECDIR=/s/sysconfig\.get_python_lib()/sysconfig.get_python_lib(True)/g' configure{.ac,}
 
 	elibtoolize
 
