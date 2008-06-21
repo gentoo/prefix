@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-sql
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.13 2008/06/13 23:24:34 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.14 2008/06/20 10:28:07 ingmar Exp $
+
+  20 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-sql-4.4.0.ebuild:
+  Fix qt-sql[postgres] for the case where the only postgresql package
+  installed is dev-db/libpq. Patch by Rafał Mużyło in bug 227439.
 
   13 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-sql-4.4.0.ebuild:
   Make all split Qt4 ebuilds block the old monolithic ebuild.
