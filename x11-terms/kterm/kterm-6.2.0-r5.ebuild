@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r4.ebuild,v 1.7 2008/06/20 18:01:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.1 2008/06/20 18:01:50 matsuu Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 IUSE="Xaw3d"
 
@@ -34,27 +34,27 @@ DEPEND="${RDEPEND}
 src_unpack(){
 	unpack ${A}
 
-	cd ${S}
-	epatch ${WORKDIR}/${P}-wpi.patch		# wallpaper patch
-	epatch ${WORKDIR}/${P}.ext02.patch		# JIS 0213 support
-	epatch ${FILESDIR}/${P}-openpty.patch
-	epatch ${FILESDIR}/${P}-gentoo.patch
-	epatch ${FILESDIR}/${PN}-ad-gentoo.diff
-	epatch ${FILESDIR}/${PV}-underline.patch
+	cd "${S}"
+	epatch "${WORKDIR}"/${P}-wpi.patch		# wallpaper patch
+	epatch "${WORKDIR}"/${P}.ext02.patch		# JIS 0213 support
+	epatch "${FILESDIR}"/${P}-openpty.patch
+	epatch "${FILESDIR}"/${P}-gentoo.patch
+	epatch "${FILESDIR}"/${PN}-ad-gentoo.diff
+	epatch "${FILESDIR}"/${PV}-underline.patch
 
 	if use Xaw3d ; then
-		epatch ${FILESDIR}/kterm-6.2.0-Xaw3d.patch
+		epatch "${FILESDIR}"/kterm-6.2.0-Xaw3d.patch
 	fi
 }
 
 src_compile(){
 	xmkmf -a || die
 	emake CC="$(tc-getCC)" CDEBUGFLAGS="${CFLAGS}" LOCAL_LDFLAGS="${LDFLAGS}" \
-		XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults EXTRA_LDOPTIONS="$(bindnow-flags)" || die "emake failed"
+		XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults || die "emake failed"
 }
 
 src_install(){
-	einstall DESTDIR=${D} BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults || die
+	emake DESTDIR="${D}" BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults install || die
 
 	# install man pages
 	newman kterm.man kterm.1
@@ -63,21 +63,21 @@ src_install(){
 	newins kterm.ja.1 kterm.1
 
 	# Remove link to avoid collision
-	rm -f ${ED}/usr/lib/X11/app-defaults
+	rm -f "${ED}"/usr/lib/X11/app-defaults
 
 	dodoc README.kt
 }
 
 pkg_postinst() {
-	einfo
-	einfo "KTerm wallpaper support is enabled."
-	einfo "In order to use this feature,"
-	einfo "you need specify favourite xpm file with -wp option"
-	einfo
-	einfo "\t% kterm -wp filename.xpm"
-	einfo
-	einfo "or set it with X resource"
-	einfo
-	einfo "\tKTerm*wallPaper: /path/to/filename.xpm"
-	einfo
+	elog
+	elog "KTerm wallpaper support is enabled."
+	elog "In order to use this feature,"
+	elog "you need specify favourite xpm file with -wp option"
+	elog
+	elog "\t% kterm -wp filename.xpm"
+	elog
+	elog "or set it with X resource"
+	elog
+	elog "\tKTerm*wallPaper: /path/to/filename.xpm"
+	elog
 }
