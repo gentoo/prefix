@@ -1,6 +1,13 @@
 # ChangeLog for app-vim/vcscommand
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vcscommand/ChangeLog,v 1.2 2007/09/06 13:02:41 hawking Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vcscommand/ChangeLog,v 1.3 2008/06/20 13:12:16 hawking Exp $
+
+*vcscommand-0.1_beta26 (20 Jun 2008)
+
+  20 Jun 2008; Ali Polatel <hawking@gentoo.org>
+  -vcscommand-0.1_beta16.ebuild, -vcscommand-0.1_beta19.ebuild,
+  +vcscommand-0.1_beta26.ebuild:
+  Version bump. Keyworded ~amd64. Dropped old.
 
 *vcscommand-0.1_beta19 (06 Sep 2007)
 
