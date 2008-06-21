@@ -5,6 +5,7 @@
 =sys-devel/gcc-apple-4.0.1_p5484
 =sys-devel/gcc-apple-4.2.1_p5553
 =sys-devel/gdb-apple-961
+=sys-devel/odcctools-20080621
 
 # Fabian Groffen <grobian@gentoo.org> (24 Mar 2008)
 # Doesn't link, needs figuring out how we're going to do the GUI anyway
