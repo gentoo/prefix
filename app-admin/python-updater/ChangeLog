@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/python-updater
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.23 2008/04/24 04:40:45 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.24 2008/06/20 17:56:02 hawking Exp $
+
+*python-updater-9999 (20 Jun 2008)
+
+  20 Jun 2008; Ali Polatel <hawking@gentoo.org> +python-updater-9999.ebuild:
+  Added scm ebuild for testing.
 
   24 Apr 2008; <ricmm@gentoo.org> python-updater-0.2.ebuild:
   Drop to ~mips due to unstable deps
