@@ -33,6 +33,10 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (21 Jun 2008)
+# dies during compilation on Solaris, I don't trust it
+=media-video/ffmpeg-0.4.9_p20080326
+
 # Fabian Groffen <grobian@gentoo.org> (18 Jun 2008)
 # Uses an empty host in the default From: address making other MTAs
 # bail out (need to file a bug for this still)

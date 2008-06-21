@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Jun 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask media-video/ffmpeg-0.4.9_p20080326 as it dies on Solaris and looks crappy
+
   18 Jun 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
   mask mail-mta/ssmtp-2.62 as it uses an empty host in the default From:
   address making other MTAs bail out
