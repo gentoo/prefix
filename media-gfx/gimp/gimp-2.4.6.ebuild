@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.6.ebuild,v 1.1 2008/06/02 13:28:21 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.6.ebuild,v 1.2 2008/06/21 18:53:45 hanno Exp $
 
 EAPI="prefix"
 
-inherit fdo-mime flag-o-matic multilib python eutils autotools
+inherit gnome2 fdo-mime flag-o-matic multilib python eutils autotools
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
@@ -54,6 +54,8 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.17
 	doc? ( >=dev-util/gtk-doc-1 )"
 
+DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
+
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
 		eerror "This package requires app-text/poppler-bindings compiled with GTK+ support."
@@ -63,45 +65,13 @@ pkg_setup() {
 		eerror "This package requires media-libs/alsa-lib compiled with midi support."
 		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
 	fi
-}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/gimp-web-browser.patch"
-
-	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
-	# remove this with >= 2.5
-	use svg && epatch "${FILESDIR}/gimp-svg.diff"
-
-	# interix has a problem linking gimp, although everything is there.
-	# this is solved by first extracting all the private static libs and
-	# linking the objects, which works perfectly. nobody else wants this :)
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
-
-	eautoreconf
-}
-
-src_compile() {
-	# workaround portage variable leakage
-	local AA=
-
-	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
-	# gimp uses floating point math, needs accuracy (#98685)
-	filter-flags "-fno-inline" "-ffast-math"
-	# gimp assumes char is signed (fixes preview corruption)
-	if use ppc || use ppc64; then
-		append-flags "-fsigned-char"
-	fi
-
-	econf --enable-default-binary \
+	G2CONF="--enable-default-binary \
 		--with-x \
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
-		$(use_with curl) \
-		$(use_enable debug) \
-		$(use_enable doc gtk-doc) \
+		$(use_with curl libcurl) \
 		$(use_with dbus) \
 		$(use_with hal) \
 		$(use_with gnome gnomevfs) \
@@ -118,21 +88,49 @@ src_compile() {
 		$(use_enable sse) \
 		$(use_with svg librsvg) \
 		$(use_with tiff libtiff) \
-		$(use_with wmf) \
-		|| die "econf failed"
-
-	emake || die "emake failed"
+		$(use_with wmf)"
 }
 
-src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
 
-	dodoc AUTHORS ChangeLog* HACKING NEWS README*
+	# interix has a problem linking gimp, although everything is there.
+	# this is solved by first extracting all the private static libs and
+	# linking the objects, which works perfectly. nobody else wants this :)
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
+
+	eautomake
+}
+
+src_unpack() {
+	gnome2_src_unpack
+	epatch "${FILESDIR}/gimp-web-browser.patch"
+
+	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
+	# remove this with >= 2.5
+	use svg && epatch "${FILESDIR}/gimp-svg.diff"
+
+	eautoreconf
+}
+
+src_compile() {
+	# workaround portage variable leakage
+	local AA=
+
+	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
+	# gimp uses floating point math, needs accuracy (#98685)
+	filter-flags "-fno-inline" "-ffast-math"
+	# gimp assumes char is signed (fixes preview corruption)
+	if use ppc || use ppc64; then
+		append-flags "-fsigned-char"
+	fi
+
+	gnome2_src_compile
 }
 
 pkg_postinst() {
-	fdo-mime_desktop_database_update
-	fdo-mime_mime_database_update
+	gnome2_pkg_postinst
 
 	elog
 	elog "If you want Postscript file support, emerge ghostscript."
@@ -143,8 +141,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	fdo-mime_desktop_database_update
-	fdo-mime_mime_database_update
+	gnome2_pkg_postrm
 	python_mod_cleanup /usr/$(get_libdir)/gimp/2.0/python \
 		/usr/$(get_libdir)/gimp/2.0/plug-ins
 }
