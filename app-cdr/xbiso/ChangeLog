@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/xbiso
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/xbiso/ChangeLog,v 1.13 2008/06/13 17:14:32 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/xbiso/ChangeLog,v 1.14 2008/06/21 08:18:17 opfer Exp $
+
+  21 Jun 2008; Christian Faulhammer <opfer@gentoo.org> xbiso-0.6.1.ebuild:
+  stable x86, bug 227149
 
   13 Jun 2008; Matti Bickel <mabi@gentoo.org> xbiso-0.6.1.ebuild:
   restored ~ppc (bug #211722)
