@@ -1,6 +1,27 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.112 2008/04/10 08:06:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.117 2008/06/21 19:40:37 corsair Exp $
+
+  21 Jun 2008; Markus Rothe <corsair@gentoo.org> autoconf-2.61-r2.ebuild:
+  Stable on ppc64; bug #225105
+
+  21 Jun 2008; Raúl Porcel <armin76@gentoo.org> autoconf-2.61-r2.ebuild:
+  alpha/ia64/sparc stable wrt #227603
+
+  21 Jun 2008; nixnut <nixnut@gentoo.org> autoconf-2.61-r2.ebuild:
+  Stable on ppc wrt bug 227603
+
+  21 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  autoconf-2.61-r2.ebuild:
+  stable x86, bug 227603
+
+*autoconf-2.61-r2 (21 Jun 2008)
+
+  21 Jun 2008; Peter Volkov <pva@gentoo.org>
+  +files/autoconf-2.61-GETMNTENT.patch, autoconf-2.13.ebuild,
+  autoconf-2.59-r7.ebuild, autoconf-2.61-r1.ebuild,
+  +autoconf-2.61-r2.ebuild:
+  Fixed getmntent issue in 2.61, bug #227603. Dropped stable mips.
 
   10 Apr 2008; Mike Frysinger <vapier@gentoo.org> autoconf-2.62.ebuild:
   Force newer autoconf-wrapper #217087.

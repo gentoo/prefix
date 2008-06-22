@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.61-r1.ebuild,v 1.15 2008/06/21 06:27:48 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.61-r2.ebuild,v 1.5 2008/06/21 19:40:37 corsair Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ PDEPEND="emacs? ( app-emacs/autoconf-mode )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-GETMNTENT.patch
 
 	# usr/bin/libtool is provided by odcctools
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
