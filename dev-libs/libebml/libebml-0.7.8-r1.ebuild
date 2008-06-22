@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/libebml-0.7.8-r1.ebuild,v 1.1 2008/03/13 11:08:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/libebml-0.7.8-r1.ebuild,v 1.3 2008/06/21 20:30:11 corsair Exp $
 
 EAPI="prefix"
 
