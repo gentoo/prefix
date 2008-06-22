@@ -1,37 +1,29 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.23-r1.ebuild,v 1.1 2008/03/24 01:16:57 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.40.ebuild,v 1.1 2008/06/21 09:00:21 drac Exp $
 
 EAPI="prefix"
 
-inherit fdo-mime eutils
+inherit fdo-mime
 
 DESCRIPTION="The Shared MIME-info Database specification"
 HOMEPAGE="http://freedesktop.org/wiki/Software/shared-mime-info"
-SRC_URI="http://www.freedesktop.org/~hadess/${P}.tar.bz2"
+SRC_URI="http://people.freedesktop.org/~hadess/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-RDEPEND=">=dev-libs/glib-2.3.2
+RDEPEND=">=dev-libs/glib-2.6
 	>=dev-libs/libxml2-2.4"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/intltool
 	sys-devel/gettext"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# Fix warning spew from x-content/*, used by GNOME-2.22
-	epatch "${FILESDIR}/${P}-ignore-x-content.patch"
-}
-
 src_compile() {
-	econf --disable-update-mimedb
+	econf --disable-dependency-tracking --disable-update-mimedb
 	emake || die "emake failed."
 }
 
