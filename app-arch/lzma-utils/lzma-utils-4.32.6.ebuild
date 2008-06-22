@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.6.ebuild,v 1.2 2008/06/21 04:25:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.6.ebuild,v 1.9 2008/06/22 01:18:08 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,21 +28,12 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-semicolon.patch #228725
 	if use nocxx ; then
 		epatch "${WORKDIR}"/${P}-nocxx.patch
 		find -type f -print0 | xargs -0 touch -r configure
 		epunt_cxx
 	fi
-
-	# can't run eautoreconf here, would introduce a circular dependency, since
-	# m4 needs us (its sources come in lzma format)
-#	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
-
-	# instead, patch in what would be done by eautoreconf. No need to keep
-	# diffs for config.guess/config.sub, econf updates them anyway.
-	# We have gzip already, or we weren't able to unpack ${A}.
-#	epatch "${FILESDIR}"/${P}-${PR}-eautoreconf.patch.gz
-#	touch config.h.in # avoid the need for autoheader
 }
 
 pkg_setup() {
