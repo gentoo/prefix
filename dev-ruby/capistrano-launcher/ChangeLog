@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/capistrano-launcher
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/ChangeLog,v 1.7 2008/04/09 22:02:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/ChangeLog,v 1.8 2008/06/21 13:27:01 nixnut Exp $
+
+  21 Jun 2008; nixnut <nixnut@gentoo.org> capistrano-launcher-1.ebuild:
+  Stable on ppc wrt bug 228453
 
   09 Apr 2008; Robin H. Johnson <robbat2@gentoo.org>
   capistrano-launcher-1.ebuild:
