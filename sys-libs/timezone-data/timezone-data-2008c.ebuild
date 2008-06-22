@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008c.ebuild,v 1.3 2008/06/03 20:02:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008c.ebuild,v 1.10 2008/06/21 20:27:09 corsair Exp $
 
 EAPI="prefix"
 
@@ -41,14 +41,14 @@ src_compile() {
 	fi
 	emake || die "emake failed"
 	if tc-is-cross-compiler ; then
-		make -C "${S}"-native CC=$(tc-getBUILD_CC) CFLAGS="${BUILD_CFLAGS}" zic || die
+		emake -C "${S}"-native CC=$(tc-getBUILD_CC) CFLAGS="${BUILD_CFLAGS}" zic || die
 	fi
 }
 
 src_install() {
 	local zic=""
 	tc-is-cross-compiler && zic="zic=${S}-native/zic"
-	make install ${zic} DESTDIR="${D}${EPREFIX}" || die
+	emake install ${zic} DESTDIR="${D}${EPREFIX}" || die
 	rm -rf "${ED}"/usr/share/zoneinfo-leaps
 	dodoc README Theory
 	dohtml *.htm *.jpg

@@ -1,6 +1,31 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.133 2008/06/04 07:34:49 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.140 2008/06/21 20:27:09 corsair Exp $
+
+  21 Jun 2008; Markus Rothe <corsair@gentoo.org> timezone-data-2008c.ebuild:
+  Stable on ppc64; bug #228675
+
+  21 Jun 2008; Olivier Crête <tester@gentoo.org>
+  timezone-data-2008c.ebuild:
+  Stable on amd64 per bug #228675
+
+  21 Jun 2008; nixnut <nixnut@gentoo.org> timezone-data-2008c.ebuild:
+  Stable on ppc wrt bug 228675
+
+  21 Jun 2008; Raúl Porcel <armin76@gentoo.org> timezone-data-2008c.ebuild:
+  alpha/ia64 stable wrt #228675
+
+  21 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  timezone-data-2008c.ebuild:
+  stable x86, bug 228675
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  timezone-data-2008c.ebuild:
+  Use emake rather than make.
+
+  21 Jun 2008; Ferris McCormick <fmccor@gentoo.org>
+  timezone-data-2008c.ebuild:
+  Sparc stable --- Bug #228675 --- No problems.
 
   04 Jun 2008; Markus Rothe <corsair@gentoo.org> timezone-data-2008b.ebuild:
   Stable on ppc64; bug #224305
