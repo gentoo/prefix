@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.4 2008/06/14 11:02:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.5 2008/06/21 10:28:36 flameeyes Exp $
 
 EAPI="prefix 1"
 
@@ -13,12 +13,12 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="cddb minimal nls +cxx"
+IUSE="cddb minimal +cxx"
 
 RDEPEND="cddb? ( >=media-libs/libcddb-1.0.1 )
-	nls? ( virtual/libintl )"
+	virtual/libintl"
 DEPEND="${RDEPEND}
-	nls? ( sys-devel/gettext )
+	sys-devel/gettext
 	dev-util/pkgconfig"
 
 src_unpack() {
@@ -26,6 +26,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-minimal.patch
+	epatch "${FILESDIR}"/${P}-fix-pkgconfig.patch
 
 	sed -i -e 's:noinst_PROGRAMS:EXTRA_PROGRAMS:' test/Makefile.am \
 		|| die "unable to remove testdefault build"
@@ -38,7 +39,6 @@ src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf \
-		$(use_enable nls) \
 		$(use_enable cddb) \
 		$(use_with !minimal cd-drive) \
 		$(use_with !minimal cd-info) \
@@ -59,12 +59,6 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS
-
-	# maybe next version is fixed
-	# yes it's a different one than before
-	if ! use cxx; then
-		rm "${ED}"/usr/$(get_libdir)/pkgconfig/{libcdio,libiso9660}++.pc
-	fi
 }
 
 pkg_postinst() {
