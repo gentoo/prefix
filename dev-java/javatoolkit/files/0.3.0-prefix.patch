@@ -1,0 +1,32 @@
+diff -ur src.orig/py/buildparser src/py/buildparser
+--- src.orig/py/buildparser	2008-06-17 10:18:57.000000000 +0200
++++ src/py/buildparser	2008-06-22 19:08:36.861548159 +0200
+@@ -11,7 +11,7 @@
+ import sys
+ from optparse import OptionParser
+ 
+-sys.path.insert(0, "/usr/share/javatoolkit/pym")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym")
+ 
+ from javatoolkit.parser.parser import Parser
+ from javatoolkit.parser.buildproperties import BuildPropertiesParser
+diff -ur src.orig/py/findclass src/py/findclass
+--- src.orig/py/findclass	2008-06-17 10:18:57.000000000 +0200
++++ src/py/findclass	2008-06-22 19:09:43.859991165 +0200
+@@ -64,13 +64,13 @@
+ 
+ def get_all_packages():
+ 
+-    pkg = glob.glob('/usr/share/*/package.env')
++    pkg = glob.glob('@GENTOO_PORTAGE_EPREFIX@/usr/share/*/package.env')
+     pkg = [os.path.basename(os.path.dirname(i)) for i in pkg]
+     
+-    classpath = glob.glob('/usr/share/*/classpath.env')
++    classpath = glob.glob('@GENTOO_PORTAGE_EPREFIX@/usr/share/*/classpath.env')
+     classpath = [os.path.basename(os.path.dirname(i)) for i in classpath]
+     
+-    dir = glob.glob('/usr/share/java/packages/*')
++    dir = glob.glob('@GENTOO_PORTAGE_EPREFIX@/usr/share/java/packages/*')
+     dir = [os.path.basename(i) for i in dir]
+     
+     pkg.extend(classpath)

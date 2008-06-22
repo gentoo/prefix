@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/javatoolkit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.31 2007/03/15 13:27:00 caster Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.32 2008/06/21 14:20:33 ali_bush Exp $
+
+*javatoolkit-0.3.0 (21 Jun 2008)
+
+  21 Jun 2008; Alistair Bush <ali_bush@gentoo.org>
+  +javatoolkit-0.3.0.ebuild:
+  Version Bump.
 
   15 Mar 2007; Vlastimil Babka <caster@gentoo.org>
   -files/javatoolkit-0.1.9-make.patch, -javatoolkit-0.1.9-r1.ebuild:
