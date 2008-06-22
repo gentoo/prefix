@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g-r2.ebuild,v 1.8 2008/06/21 04:54:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8h-r1.ebuild,v 1.1 2008/06/21 05:36:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -37,21 +37,18 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
-	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	epatch "${FILESDIR}"/${PN}-0.9.8h-pkcs12.patch #224843
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
-
-	# Security Fixes
-	epatch "${FILESDIR}"/${PN}-0.9.8g-CVE-2008-0891.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-CVE-2008-1672.patch
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
