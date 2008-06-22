@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3595 2008/06/20 13:13:07 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3597 2008/06/21 18:17:30 killerfox Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -976,6 +976,14 @@ mail-mta/qmail-ldap:rfc822 - Add support for RFC822 compliant mail attributes
 mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 media-fonts/dejavu:fontforge - Enables fontforge build
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
+media-fonts/terminus-font:a-like-o - Changes view of letter 'a' - a looks like o (see homepage)
+media-fonts/terminus-font:bolddiag - Boldified diagonal parts of '4', 'k', 'x' and some other chars
+media-fonts/terminus-font:ru-dv - Changes view of russian letters 'de' and 've' (see homepage)
+media-fonts/terminus-font:ru-i - Changes view of russian letter 'i' - not like latin u, but like "mirrored" N (see homepage)
+media-fonts/terminus-font:ru-g - Changes view of russian letter 'ge' (see homepage)
+media-fonts/terminus-font:ru-k - Changes view of russian letter 'k' (see homepage)
+media-fonts/terminus-font:qoute - Changes view of quotes: symetric ` and ' instead of asymetric one (see homepage)
+media-fonts/terminus-font:width - Wider versions of some font elements
 media-gfx/asymptote:boehm-gc - Enables using the Boehm-Demers-Weiser conservative garbage collector
 media-gfx/autotrace:flash - Adds support for creating SWF files using Ming
 media-gfx/blender:blender-game - Adds game engine support to blender
@@ -2306,6 +2314,7 @@ x11-terms/mlterm:uim - Enable uim support
 x11-terms/mrxvt:menubar - Enable mrxvt menubar
 x11-terms/mrxvt:utempter - Records user logins. Useful on multi-user systems.
 x11-terms/rxvt-unicode:iso14755 - Enable ISO-14755 support
+x11-terms/rxvt-unicode:afterimage - Enable support for libafterimage
 x11-terms/rxvt:linuxkeys - Define LINUX_KEYS (changes Home/End key)
 x11-terms/rxvt:xgetdefault - Enable resources via X instead of rxvt small version
 x11-terms/xterm:paste64 - Enable support for bracketed paste mode

@@ -1,10 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1578 2008/06/21 01:33:38 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1588 2008/06/22 02:56:35 serkan Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  22 Jun 2008; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Fix note on dev-java/sun-jmx mask and limit dev-java/jcs mask.
+
+  22 Jun 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  Update mplayer mask
+
+  21 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Distfile for libquicktime-1.0.2_p20080621 has propagated, unmasking.
+
+  21 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmasking media-video/mpeg4ip-1.5.0.1-r5, which is patched for new ffmpeg
+  header support.
+
+  21 Jun 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  masking libquicktime-1.0.2_p20080621 pending distfile propagation
+
+  21 Jun 2008; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Add note on dev-java/sun-jmx stabilization bug.
+
+  21 Jun 2008; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Move dev-java/sun-jmx mask to top of package.mask file. Limit it to
+  1.2.1-r2. Mask all of its reverse dependency tree.
+
+  21 Jun 2008; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Remove stepmania from ffmpeg mask.
+
+  21 Jun 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Added USE flags for terminus-font.
+
+  21 Jun 2008; Serkan Kaba <serkan@gentoo.org>
+  default/linux/package.use.mask, package.mask:
+  Mask dev-java/sun-jmx since the sources are no longer available. See bug
+  #226381.
 
   21 Jun 2008; Alin Năstac <mrness@gentoo.org> package.mask:
   P.mask net-libs/wvstreams-4.4.1 (#211327).

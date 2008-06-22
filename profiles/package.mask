@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8750 2008/06/21 03:42:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8760 2008/06/22 02:56:35 serkan Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,24 @@
 
 #--- END OF EXAMPLES ---
 
+# Steve Dibb <beandog@gentoo.org> (21 Jun 2008)
+# Needs testing; Added custom-cpuopts flag for more fine-grained
+# control.  Aside from that, everything is normal.
+>=media-video/mplayer-1.0_rc2_p27120
+
+# Serkan Kaba <serkan@gentoo.org> (21 Jun 2008)
+# Masked since dev-java/sun-jmx sources
+# are no longer available. See bug #226381.
+# Can be removed after dev-java/sun-jmx-1.2.1-r2
+# is stabilized for amd64 ppc x86.
+=dev-java/sun-jmx-1.2.1-r2
+dev-java/jgroups
+dev-util/jconfig
+=dev-java/jcs-1.2.7.9*
+dev-java/hibernate
+dev-java/oscache
+dev-java/swarmcache
+
 # Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
 # Non-working version (#211327)
 =net-libs/wvstreams-4.4.1*
@@ -40,8 +58,6 @@
 # bugs. The following packages are masked now because they are incompatible,
 # and have not yet been fixed. (~arch versions only, because stable versions
 # will build against current stable ffmpeg)
-# games herd, bug 218089:
-games-arcade/stepmania
 # media-tv herd, bug 218094:
 media-plugins/vdr-graphtft
 # sound herd, bug 218099:
@@ -49,7 +65,9 @@ media-sound/potamus
 # voip herd, bug 218102:
 media-libs/mediastreamer
 # no herd, bug 218105:
->=media-video/mpeg4ip-1.5.0.1-r3
+# mpeg4ip-1.5.0.1-r5 has new patches
+=media-video/mpeg4ip-1.5.0.1-r3
+=media-video/mpeg4ip-1.5.0.1-r4
 net-www/gnash
 
 
@@ -249,10 +267,6 @@ net-analyzer/sonar
 # Rémi Cardona <remi@gentoo.org> (27 Mai 2008)
 # mildly broken, see bug #156583
 =app-text/gtranslator-1.1.7
-
-# Steve Dibb <beandog@gentoo.org> (25 May 2008)
-# Needs testing
->=media-video/mplayer-1.0_rc2_p26753-r2
 
 # Ingmar Vanhassel <ingmar@gentoo.org (25 May 2008)
 # Needs Qt-4.4.0, which is package.mask'ed.
