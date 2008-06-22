@@ -1,6 +1,12 @@
 # ChangeLog for app-doc/linkers-and-loaders
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/ChangeLog,v 1.4 2008/02/04 18:31:59 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/ChangeLog,v 1.5 2008/06/21 15:53:45 vapier Exp $
+
+*linkers-and-loaders-1 (21 Jun 2008)
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  -linkers-and-loaders-0.ebuild, +linkers-and-loaders-1.ebuild:
+  Fix fetching #228709 by KostyaSha and install pdf/extraneous html files.
 
   04 Feb 2008; Fabian Groffen <grobian@gentoo.org>
   linkers-and-loaders-0.ebuild:
