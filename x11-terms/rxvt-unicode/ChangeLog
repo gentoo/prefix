@@ -1,6 +1,18 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.110 2008/05/05 20:19:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.112 2008/06/21 18:24:00 killerfox Exp $
+
+  21 Jun 2008; René Nussbaumer <killerfox@gentoo.org>
+  -rxvt-unicode-8.3.ebuild, -rxvt-unicode-8.4.ebuild, 
+  -rxvt-unicode-8.8.ebuild, -rxvt-unicode-8.9.ebuild, 
+  -rxvt-unicode-9.02.ebuild:
+  Cleaning up
+
+*rxvt-unicode-9.05 (21 Jun 2008)
+
+  21 Jun 2008; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-9.05.ebuild:
+  Version bump; Make libafterimage an optional dependency
 
   05 May 2008; Markus Meier <maekke@gentoo.org> rxvt-unicode-9.02-r1.ebuild:
   amd64 stable, security bug #219760
