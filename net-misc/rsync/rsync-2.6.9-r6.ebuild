@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r6.ebuild,v 1.8 2008/04/12 22:34:51 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r6.ebuild,v 1.9 2008/06/21 04:51:47 vapier Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,7 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ $(gcc-version) == "2.95" ]] && append-ldflags -lpthread
+	[[ $(gcc-version) == "2.95" ]] && append-ldflags -pthread
 	use static && append-ldflags -static
 
 	econf \

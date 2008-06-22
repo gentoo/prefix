@@ -1,6 +1,21 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.160 2008/04/12 22:34:51 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.165 2008/06/21 20:26:22 corsair Exp $
+
+  21 Jun 2008; Markus Rothe <corsair@gentoo.org> rsync-3.0.2.ebuild:
+  Stable on ppc64; bug #228673
+
+  21 Jun 2008; Raúl Porcel <armin76@gentoo.org> rsync-3.0.2.ebuild:
+  alpha/ia64/sparc stable wrt #228673
+
+  21 Jun 2008; Thomas Anderson <gentoofan23@gentoo.org> rsync-3.0.2.ebuild:
+  amd64 stable, bug #228673
+
+  21 Jun 2008; Christian Faulhammer <opfer@gentoo.org> rsync-3.0.2.ebuild:
+  stable x86, bug 228673
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org> rsync-2.6.9-r6.ebuild:
+  Append -pthread rather than -lpthread #226911 by Diego Pettenò.
 
   12 Apr 2008; Dawid Węgliński <cla@gentoo.org> rsync-2.6.9-r6.ebuild:
   Stable on x86 (bug #216887)
