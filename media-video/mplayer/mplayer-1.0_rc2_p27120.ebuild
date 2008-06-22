@@ -1,16 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26914.ebuild,v 1.1 2008/05/28 20:57:35 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27120.ebuild,v 1.1 2008/06/21 18:51:47 beandog Exp $
 
 EAPI="prefix 1"
 
 inherit eutils flag-o-matic multilib
 
-MPLAYER_REVISION=26914
+# Ugly hack, feel free to fix
+MPLAYER_REVISION=27120
 
 IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
-bindist cddb cdio cdparanoia cpudetection custom-cflags -custom-cpuopts debug
-dga doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum +mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png -pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2 ssse3 svga teletext tga +theora +truetype v4l v4l2 vidix win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
+bindist cddb cdio cdparanoia -cpudetection -custom-cflags -custom-cpuopts debug
+dga doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi -gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum +mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png -pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2 ssse3 svga teletext tga +theora +truetype v4l v4l2 vidix win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -138,16 +139,36 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 pkg_setup() {
 
 	if [[ -n ${LINGUAS} ]]; then
-		elog "For MPlayer's language support, the configuration will"
-		elog "use your LINGUAS variable from /etc/make.conf.  If you have more"
-		elog "than one language enabled, then the first one in the list will"
-		elog "be used to output the messages, if a translation is available."
-		elog "man pages will be created for all languages where translations"
-		elog "are also available."
+		elog ""
+		elog "MPlayer's build system uses the LINGUAS variable for both"
+		elog "output messages and which man pages to build.  The first"
+		elog "language in the LINGUAS variable will be used to display"
+		elog "output messages.  See bug #228799."
+	fi
+
+	if use gtk; then
+		ewarn ""
+		ewarn "You've enabled the 'gtk' use flag which will build"
+		ewarn "GMPlayer, which is no longer actively developed upstream"
+		ewarn "and is not supported by Gentoo.  There are alternatives"
+		ewarn "for a GUI frontend: smplayer, gnome-mplayer and kmplayer."
+	fi
+
+	if use cpudetection; then
+		ewarn ""
+		ewarn "You've enabled the cpudetection flag.  This feature is"
+		ewarn "included mainly for people who want to use the same"
+		ewarn "binary on another system with a different CPU architecture."
+		ewarn "MPlayer will already detect your CPU settings by default at"
+		ewarn "buildtime; this flag is used for runtime detection."
+		ewarn "You won't need this turned on if you are only building"
+		ewarn "mplayer for this system.  Also, if your compile fails, try"
+		ewarn "disabling this use flag."
 	fi
 
 	if use x86 || use amd64; then
 		if use custom-cpuopts; then
+			ewarn ""
 			ewarn "You are using the custom-cpuopts flag which will"
 			ewarn "specifically allow you to enable / disable certain"
 			ewarn "CPU optimizations."
@@ -179,9 +200,6 @@ src_unpack() {
 	use svga && unpack "svgalib_helper-${SVGV}-mplayer.tar.bz2"
 
 	cd "${S}"
-
-	# Fix sparc compilation, bug 215006
-	epatch "${FILESDIR}/libswscale-sparc.patch"
 
 	# Set version #
 	sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
@@ -346,8 +364,7 @@ src_compile() {
 	use libcaca || myconf="${myconf} --disable-caca"
 	use opengl || myconf="${myconf} --disable-gl"
 	use video_cards_vesa || myconf="${myconf} --disable-vesa"
-	use vidix || myconf="${myconf} --disable-vidix-internal \
-		--disable-vidix-external \
+	use vidix || myconf="${myconf} --disable-vidix \
 		--disable-vidix-pcidb"
 	use zoran || myconf="${myconf} --disable-zr"
 
