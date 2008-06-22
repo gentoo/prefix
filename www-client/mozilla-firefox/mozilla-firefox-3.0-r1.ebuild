@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0-r1.ebuild,v 1.2 2008/06/20 14:41:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0-r1.ebuild,v 1.3 2008/06/21 19:34:53 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -18,11 +18,12 @@ HOMEPAGE="http://www.mozilla.com/firefox"
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="java mozdevelop bindist restrict-javascript +xulrunner"
+IUSE="java mozdevelop bindist restrict-javascript iceweasel +xulrunner"
 
 SRC_URI="mirror://gentoo/${P}.tar.bz2
 	http://dev.gentoo.org/~armin76/${P}.tar.bz2
 	mirror://gentoo/${PATCH}.tar.bz2
+	iceweasel? ( mirror://gentoo/iceweasel-icons-2.0.0.11.tar.bz2 )
 	!xulrunner? ( mirror://gentoo/xulrunner-1.9${MY_PV}.tar.bz2 )"
 
 # These are in
@@ -104,7 +105,7 @@ pkg_setup(){
 		die "Pango needs X"
 	fi
 
-	if ! use bindist; then
+	if ! use bindist && ! use iceweasel; then
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
 		elog "a legal problem with Mozilla Foundation"
@@ -116,6 +117,12 @@ pkg_setup(){
 src_unpack() {
 	! use xulrunner && unpack xulrunner-1.9${MY_PV}.tar.bz2
 	unpack ${P}.tar.bz2 ${PATCH}.tar.bz2
+
+	if use iceweasel; then
+		unpack iceweasel-icons-2.0.0.11.tar.bz2
+
+		cp -r iceweaselicons/browser mozilla/
+	fi
 
 	linguas
 	for X in ${linguas}; do
@@ -133,6 +140,11 @@ src_unpack() {
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
+
+	if use iceweasel; then
+		sed -i -e "s|Minefield|Iceweasel|" browser/locales/en-US/chrome/branding/brand.* \
+			browser/branding/nightly/configure.sh
+	fi
 
 	eautoreconf
 
@@ -177,7 +189,7 @@ src_compile() {
 		mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-1.9
 	fi
 
-	if ! use bindist; then
+	if ! use bindist && ! use iceweasel; then
 		mozconfig_annotate '' --enable-official-branding
 	fi
 
@@ -252,8 +264,12 @@ src_install() {
 	fi
 
 	# Install icon and .desktop for menu entry
-	if ! use bindist; then
-		 newicon "${S}"/other-licenses/branding/firefox/content/icon48.png firefox-icon.png
+	if use iceweasel; then
+		newicon "${S}"/browser/base/branding/icon48.png iceweasel-icon.png
+		newmenu "${FILESDIR}"/icon/iceweasel.desktop \
+			mozilla-firefox-2.0.desktop
+	elif ! use bindist; then
+		newicon "${S}"/other-licenses/branding/firefox/content/icon48.png firefox-icon.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
 			mozilla-firefox-3.0.desktop
 	else
@@ -289,9 +305,8 @@ pkg_postinst() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 
 	ewarn "All the packages built against ${PN} won't compile,"
-	ewarn "since they should be built against net-libs/xulrunner,"
-	ewarn "therefore you should check if your package builds against"
-	ewarn "xulrunner and if it doesn't, file a bug, thanks."
+	ewarn "if after installing firefox 3.0 you get some blockers,"
+	ewarn "please add 'xulrunner' to your USE-flags."
 
 	# Update mimedb for the new .desktop file
 	fdo-mime_desktop_database_update
