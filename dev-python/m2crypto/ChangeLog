@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/m2crypto
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.32 2008/05/12 07:44:11 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.33 2008/06/21 15:04:19 nixnut Exp $
+
+  21 Jun 2008; nixnut <nixnut@gentoo.org> m2crypto-0.16.ebuild:
+  Stable on ppc wrt bug 228535
 
   12 May 2008; Ali Polatel <hawking@gentoo.org> m2crypto-0.16.ebuild,
   -m2crypto-0.18.ebuild:
