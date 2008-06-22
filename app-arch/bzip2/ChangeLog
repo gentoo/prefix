@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.67 2008/03/21 05:14:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.68 2008/06/21 06:05:23 vapier Exp $
+
+*bzip2-1.0.5-r1 (21 Jun 2008)
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org> +bzip2-1.0.5-r1.ebuild:
+  Only move "important" bzip2 binaries to / #226175 by Alexander Skwar.
 
   21 Mar 2008; Mike Frysinger <vapier@gentoo.org>
   -files/bzip2-1.0.3-shared-largefile-support.patch,
