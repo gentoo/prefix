@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.20.3.ebuild,v 1.5 2008/06/20 10:35:22 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.20.3.ebuild,v 1.6 2008/06/21 20:09:06 corsair Exp $
 
 EAPI="prefix"
 
