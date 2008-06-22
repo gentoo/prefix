@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.40 2008/05/15 17:28:59 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.41 2008/06/21 15:12:48 swegener Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -50,14 +50,14 @@ qt4_min_version_list() {
 		4|4.0|4.0.0) VERSIONS="=${QTPKG}4*";;
 		4.1|4.1.0|4.2|4.2.0|4.3|4.3.0|4.4|4.4.0)
 			for x in ${QT4MAJORVERSIONS}; do
-				if $(version_is_at_least "${MINVER}" "${x}"); then
+				if version_is_at_least "${MINVER}" "${x}"; then
 					VERSIONS="${VERSIONS} =${QTPKG}${x}*"
 				fi
 			done
 			;;
 		4*)
 			for x in ${QT4VERSIONS}; do
-				if $(version_is_at_least "${MINVER}" "${x}"); then
+				if version_is_at_least "${MINVER}" "${x}"; then
 					VERSIONS="${VERSIONS} =${QTPKG}${x}"
 				fi
 			done

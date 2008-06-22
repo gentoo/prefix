@@ -1,12 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.37 2008/05/19 00:42:13 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.38 2008/06/21 06:12:45 pva Exp $
 
-# Author: foser <foser@gentoo.org>
-
-# Font Eclass
+# @ECLASS: font.eclass
+# @MAINTAINER:
+# fonts@gentoo.org
 #
-# Eclass to make font installation uniform
+# Author: foser <foser@gentoo.org>
+# @BLURB: Eclass to make font installation uniform
 
 inherit eutils
 
@@ -14,17 +15,35 @@ inherit eutils
 # Variable declarations
 #
 
-FONT_SUFFIX=""	# Space delimited list of font suffixes to install
+# @ECLASS-VARIABLE: FONT_SUFFIX
+# @DESCRIPTION:
+# Space delimited list of font suffixes to install
+FONT_SUFFIX=""
 
-FONT_S=${S} # Dir containing the fonts
+# @ECLASS-VARIABLE: FONT_S
+# @DESCRIPTION:
+# Dir containing the fonts
+FONT_S=${S} 
 
-FONT_PN=${PN} # Last part of $FONTDIR
+# @ECLASS-VARIABLE: FONT_PN
+# @DESCRIPTION:
+# Last part of $FONTDIR
+FONT_PN=${PN} 
 
-FONTDIR=/usr/share/fonts/${FONT_PN} # This is where the fonts are installed
+# @ECLASS-VARIABLE: FONTDIR
+# @DESCRIPTION:
+# This is where the fonts are installed
+FONTDIR=/usr/share/fonts/${FONT_PN} 
 
-FONT_CONF=( "" )  # Array, which element(s) is(are) path(s) of fontconfig-2.4 file(s) to install
+# @ECLASS-VARIABLE: FONT_CONF
+# @DESCRIPTION:
+# Array, which element(s) is(are) path(s) of fontconfig-2.4 file(s) to install
+FONT_CONF=( "" )  
 
-DOCS="" # Docs to install
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION:
+# Docs to install
+DOCS="" 
 
 IUSE="X"
 
@@ -35,6 +54,9 @@ DEPEND="X? ( x11-apps/mkfontdir )
 # Public functions
 #
 
+# @FUNCTION: font_xfont_config
+# @DESCRIPTION:
+# Creates the Xfont files.
 font_xfont_config() {
 	# create Xfont files
 	if use X ; then
@@ -50,6 +72,9 @@ font_xfont_config() {
 	fi
 }
 
+# @FUNCTION: font_xft_config
+# @DESCRIPTION:
+# Creates the fontconfig cache if necessary.
 font_xft_config() {
 	if ! has_version '>=media-libs/fontconfig-2.4'; then
 		# create fontconfig cache
@@ -60,6 +85,9 @@ font_xft_config() {
 	fi
 }
 
+# @FUNCTION: font_fontconfig
+# @DESCRIPTION:
+# Installs the fontconfig config files of FONT_CONF.
 font_fontconfig() {
 	local conffile
 	if [[ -n ${FONT_CONF[@]} ]]; then
@@ -76,6 +104,9 @@ font_fontconfig() {
 # Public inheritable functions
 #
 
+# @FUNCTION: font_src_install
+# @DESCRIPTION:
+# The font src_install function, which is exported.
 font_src_install() {
 	local suffix commondoc
 
@@ -102,12 +133,18 @@ font_src_install() {
 	done
 }
 
+# @FUNCTION: font_pkg_setup
+# @DESCRIPTION:
+# The font pkg_setup function, which is exported.
 font_pkg_setup() {
 	# make sure we get no collisions
 	# setup is not the nicest place, but preinst doesn't cut it
 	[[ -e "${EPREFIX}${FONTDIR}/fonts.cache-1" ]] && rm -f "${EPREFIX}${FONTDIR}/fonts.cache-1"
 }
 
+# @FUNCTION: font_pkg_postinst
+# @DESCRIPTION:
+# The font pkg_postinst function, which is exported.
 font_pkg_postinst() {
 	# unreadable font files = fontconfig segfaults
 	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
@@ -122,6 +159,9 @@ font_pkg_postinst() {
 	fi
 }
 
+# @FUNCTION: font_pkg_postrm
+# @DESCRIPTION:
+# The font pkg_postrm function, which is exported.
 font_pkg_postrm() {
 	# unreadable font files = fontconfig segfaults
 	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \

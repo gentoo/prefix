@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.2 2008/05/11 10:29:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.3 2008/06/21 19:32:18 armin76 Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -189,6 +189,9 @@ mozconfig_init() {
 	if is-flag '-mcpu=ultrasparc*' || is-flag '-mtune=ultrasparc*'; then
 		mozconfig_annotate "building on ultrasparc" --enable-js-ultrasparc
 	fi
+
+	# jemalloc won't build with older glibc
+	use elibc_glibc && ! has_version ">=sys-libs/glibc-2.4" && mozconfig_annotate "we have old glibc" --disable-jemalloc
 }
 
 # Simulate the silly csh makemake script
