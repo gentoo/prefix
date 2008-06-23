@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE="utils"
 
 DEPEND=">=dev-libs/nspr-${NSPR_VER}
@@ -39,6 +39,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.11-config.patch
 	epatch "${FILESDIR}"/${PN}-3.12-config-1.patch
 	epatch "${FILESDIR}"/${PN}-mips64.patch
+
+	epatch "${FILESDIR}"/${P}-solaris-gcc.patch  # breaks non-gnu tools
 }
 
 src_compile() {
