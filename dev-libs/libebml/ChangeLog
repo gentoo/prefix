@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libebml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.88 2008/06/21 20:30:11 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.89 2008/06/22 15:10:25 maekke Exp $
+
+  22 Jun 2008; Markus Meier <maekke@gentoo.org> libebml-0.7.8-r1.ebuild:
+  amd64/x86 stable, bug #228695
 
   21 Jun 2008; Markus Rothe <corsair@gentoo.org> libebml-0.7.8-r1.ebuild:
   Stable on ppc64; bug #228695
