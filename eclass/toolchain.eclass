@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.356 2008/06/09 02:33:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.357 2008/06/22 13:57:42 bluebird Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1373,6 +1373,14 @@ gcc_do_configure() {
 	fi
 	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} --disable-libunwind-exceptions"
 
+	# create a sparc*linux*-{gcc,g++} that can handle -m32 and -m64 (biarch)
+	if [[ ${CTARGET} == sparc*linux* ]] \
+		&& is_multilib \
+		&& [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]]
+	then
+		confgcc="${confgcc} --enable-targets=all"
+	fi
+
 	tc_version_is_at_least 4.3 && set -- "$@" \
 		--with-bugurl=http://bugs.gentoo.org/ \
 		--with-pkgversion="${BRANDING_GCC_PKGVERSION}"
@@ -2414,7 +2422,7 @@ fix_libtool_libdir_paths() {
 is_multilib() {
 	[[ ${GCCMAJOR} < 3 ]] && return 1
 	case ${CTARGET} in
-		mips64*|powerpc64*|s390x*|sparc64*|x86_64*)
+		mips64*|powerpc64*|s390x*|sparc*|x86_64*)
 			has_multilib_profile || use multilib ;;
 		*-*-solaris*) use multilib ;;
 		*-apple-darwin*) use multilib ;;
