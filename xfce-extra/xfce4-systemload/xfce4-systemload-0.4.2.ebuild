@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.16 2008/04/25 15:52:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.17 2008/06/23 00:04:34 drac Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ xfce44
 DESCRIPTION="System load monitor panel plugin"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
-DEPEND="xfce-extra/xfce4-dev-tools
+DEPEND="dev-util/xfce4-dev-tools
 	dev-util/intltool"
 
 src_unpack() {
