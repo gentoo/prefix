@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.653 2008/06/21 04:23:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.655 2008/06/22 11:03:02 vapier Exp $
+
+  22 Jun 2008; Mike Frysinger <vapier@gentoo.org> gcc-3.2.2.ebuild:
+  Move patches out of $FILESDIR and into patch tarball.
+
+  22 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/3.2.3/gcc-3.2.3-poisoned-malloc.patch, gcc-3.2.3-r4.ebuild:
+  Fix for building with newer gcc versions #225743 by Emil Wojak.
 
   21 Jun 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.0.ebuild,
   gcc-4.3.1.ebuild:
