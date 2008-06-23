@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-netload
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-netload/ChangeLog,v 1.52 2008/01/06 13:14:10 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-netload/ChangeLog,v 1.53 2008/06/23 00:03:36 drac Exp $
+
+  23 Jun 2008; Samuli Suominen <drac@gentoo.org> xfce4-netload-0.4.0.ebuild:
+  Fix xfce4-dev-tools dep.
 
   06 Jan 2008; Samuli Suominen <drac@gentoo.org> xfce4-netload-0.4.0.ebuild:
   Missing intltool dep wrt #204445, thanks to bonsaikitten.
