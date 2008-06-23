@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8760 2008/06/22 02:56:35 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8765 2008/06/23 01:55:00 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
+# Please read http://my.opera.com/desktopteam/blog before using these snapshots
+=www-client/opera-9.51*
 
 # Steve Dibb <beandog@gentoo.org> (21 Jun 2008)
 # Needs testing; Added custom-cpuopts flag for more fine-grained
@@ -58,8 +62,6 @@ dev-java/swarmcache
 # bugs. The following packages are masked now because they are incompatible,
 # and have not yet been fixed. (~arch versions only, because stable versions
 # will build against current stable ffmpeg)
-# media-tv herd, bug 218094:
-media-plugins/vdr-graphtft
 # sound herd, bug 218099:
 media-sound/potamus
 # voip herd, bug 218102:
@@ -68,8 +70,6 @@ media-libs/mediastreamer
 # mpeg4ip-1.5.0.1-r5 has new patches
 =media-video/mpeg4ip-1.5.0.1-r3
 =media-video/mpeg4ip-1.5.0.1-r4
-net-www/gnash
-
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Jun 2008)
 # Masked for removal in ~30 days by the treecleaners
@@ -141,12 +141,6 @@ mail-mta/xmail
 >=sys-libs/libchipcard-4.0.0
 >=sys-libs/gwenhywfar-3.0.0
 >=app-office/qbankmanager-0.9.48
-
-# Tobias Heinlein <keytoaster@gentoo.org> (10 Jun 2008)
-# Masked for removal on 20 Jun 2008.
-# Pulls in kdelibs of which all current versions are providing
-# the same functionality, thus already blocking ksync.
-kde-base/ksync
 
 # Donnie Berkholz <dberkholz@gentoo.org> (10 Jun 2008)
 # xorg-server-1.5 prerelease

@@ -1,10 +1,60 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1588 2008/06/22 02:56:35 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1609 2008/06/23 02:12:24 drac Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  23 Jun 2008; Samuli Suominen <drac@gentoo.org> use.local.desc:
+  Two new local USE flags, xfce and xfce. :-)
+
+  23 Jun 2008; Samuli Suominen <drac@gentoo.org> updates/3Q-2008:
+  Move notification-daemon-xfce to x11-misc next to original.
+
+  23 Jun 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Adjust www-client/opera snapshots mask to cover only 9.51.
+
+  23 Jun 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Add ia32 USE flag description for www-client/opera.
+
+  23 Jun 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Add qt3-static USE flag description for www-client/opera (bug #222975).
+
+  23 Jun 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask >www-client/opera-9.50 (snapshots).
+
+  22 Jun 2008; Thomas Anderson <gentoofan23> use.local.desc:
+  Describe USE=demos for media-libs/opencv; Remove unneeded and conceptually
+  broken USE=swig.
+
+  22 Jun 2008; Ben de Groot <yngwin@gentoo.org> base/package.use.mask,
+  default-bsd/package.use.mask, default-linux/package.use.mask,
+  default/linux/package.use.mask, hardened/package.use.mask, package.mask:
+  Unmasking gnash, but use.masking ffmpeg support in gnash
+
+  22 Jun 2008; Samuli Suominen <drac@gentoo.org> +updates/3Q-2008:
+  Move xfce4-icon-theme to x11-themes. Move ristretto to media-gfx.
+  Move terminal to x11-terms. Move xfburn to app-cdr. Move mousepad
+  to app-editors. Move xfwm4-themes to x11-themes. Move xfprint to
+  net-print. Move orage to app-office.
+
+  22 Jun 2008; Samuli Suominen <drac@gentoo.org> thirdpartymirrors:
+  New mirror:// for Xfce4 desktop environment.
+
+  22 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org> package.mask:
+  Removing mask on kde-base/ksync since it got removed.
+
+  22 Jun 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmask media-plugins/vdr-graphtft wrt bug 214740.
+
+  22 Jun 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Fixed other left typos in USE flags descriptions for terminus font, thank
+  Daniel Pielmeier for report.
+
+  22 Jun 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Fixed typo in USE flag for terminus font: qoute -> quote, bug #228813,
+  thank Franz Metz for report.
 
   22 Jun 2008; Serkan Kaba <serkan@gentoo.org> package.mask:
   Fix note on dev-java/sun-jmx mask and limit dev-java/jcs mask.

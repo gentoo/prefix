@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3597 2008/06/21 18:17:30 killerfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3603 2008/06/23 02:12:24 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -63,6 +63,7 @@ app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make w
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
 app-cdr/mybashburn:normalize - Add support for normalizing audio file volume levels
 app-cdr/serpentine:muine - Enable support for the GNOME music player Muine
+app-cdr/xfburn:xfce - Adds integration with Xfce4 desktop environment
 app-crypt/ccid:nousb - Disable USB support via pcsc-lite
 app-crypt/ccid:twinserial - Enable twinserial reader
 app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
@@ -978,11 +979,11 @@ media-fonts/dejavu:fontforge - Enables fontforge build
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
 media-fonts/terminus-font:a-like-o - Changes view of letter 'a' - a looks like o (see homepage)
 media-fonts/terminus-font:bolddiag - Boldified diagonal parts of '4', 'k', 'x' and some other chars
-media-fonts/terminus-font:ru-dv - Changes view of russian letters 'de' and 've' (see homepage)
-media-fonts/terminus-font:ru-i - Changes view of russian letter 'i' - not like latin u, but like "mirrored" N (see homepage)
-media-fonts/terminus-font:ru-g - Changes view of russian letter 'ge' (see homepage)
-media-fonts/terminus-font:ru-k - Changes view of russian letter 'k' (see homepage)
-media-fonts/terminus-font:qoute - Changes view of quotes: symetric ` and ' instead of asymetric one (see homepage)
+media-fonts/terminus-font:ru-dv - Changes view of Russian letters 'de' and 've' (see homepage)
+media-fonts/terminus-font:ru-i - Changes view of Russian letter 'i' - not like Latin u, but like "mirrored" N (see homepage)
+media-fonts/terminus-font:ru-g - Changes view of Russian letter 'ge' (see homepage)
+media-fonts/terminus-font:ru-k - Changes view of Russian letter 'k' (see homepage)
+media-fonts/terminus-font:quote - Changes view of quotes: symmetric ` and ' instead of asymmetric one (see homepage)
 media-fonts/terminus-font:width - Wider versions of some font elements
 media-gfx/asymptote:boehm-gc - Enables using the Boehm-Demers-Weiser conservative garbage collector
 media-gfx/autotrace:flash - Adds support for creating SWF files using Ming
@@ -1037,7 +1038,7 @@ media-libs/libvorbis:aotuv - Allow users to enable aoTuV encoder enhancements
 media-libs/mediastreamer:gsm - Include support for the gsm audio codec
 media-libs/mediastreamer:video - Enable video support (display/capture)
 media-libs/netpbm:rle - Build converters for the RLE format (utah raster toolkit)
-media-libs/opencv:swig - Use swig to generate binding
+media-libs/opencv:demos - Install applications that demo OpenCV library functions
 media-libs/openjpeg:tools - Installs tools (j2k_to_image and image_to_j2k)
 media-libs/panda3d:fmod - Enables support for using mod files for audio support
 media-libs/panda3d:nspr - Enables support for the Netscape Portable Runtime, used in network interface functionality (ie. multiplayer online game networking).
@@ -2231,7 +2232,9 @@ www-client/mozilla-firefox:mozdevelop - Enable features for web developers (e.g.
 www-client/mozilla-firefox:moznopango - Disable pango during runtime
 www-client/mozilla-firefox:restrict-javascript - Pull in noscript extension to disable javascript globally, putting user fully in control of the sites he/she visits
 www-client/mozilla-firefox:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
+www-client/opera:ia32 - Installs 32-bit binaries instead of 64-bit binaries
 www-client/opera:qt-static - Installs binaries statically linked to Qt
+www-client/opera:qt3-static - Installs binaries statically linked to Qt 3
 www-client/seamonkey:mozdevelop - Enable features for web developers (e.g. Venkman)
 www-client/seamonkey:moznocompose - Disable building of mozilla's HTML editor component
 www-client/seamonkey:moznoirc - Disable building of mozilla's IRC client
@@ -2291,6 +2294,7 @@ x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/fbdesk:imlib2 - Add support for imlib2 (pixmap themes)
+x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
