@@ -1,6 +1,11 @@
 # ChangeLog for xfce-base/xfce4
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.120 2008/03/20 21:56:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.124 2008/06/22 23:23:32 drac Exp $
+
+  22 Jun 2008; Samuli Suominen <drac@gentoo.org> xfce4-4.4.2.ebuild:
+  Killed xfce44.eclass usage for meta ebuild. Move xfce4-icon-theme
+  and xfwm4-themes to x11-themes. Move terminal to x11-terms. Move
+  xfprint to net-print. Move orage to app-office.
 
   20 Mar 2008; Samuli Suominen <drac@gentoo.org> xfce4-4.4.2.ebuild:
   Relax Thunar dep so 0.8.0 is also allowed.
