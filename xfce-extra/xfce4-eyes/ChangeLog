@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-eyes
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.19 2008/04/25 15:41:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.20 2008/06/23 00:02:00 drac Exp $
+
+  22 Jun 2008; Samuli Suominen <drac@gentoo.org> xfce4-eyes-4.4.0.ebuild:
+  Fix xfce4-dev-tools dep.
 
   25 Apr 2008; Samuli Suominen <drac@gentoo.org> xfce4-eyes-4.4.0.ebuild:
   Run full eautoreconf for bug 219263.

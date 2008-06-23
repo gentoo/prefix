@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-eyes/xfce4-eyes-4.4.0.ebuild,v 1.20 2008/04/25 15:41:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/xfce4-eyes-4.4.0.ebuild,v 1.21 2008/06/23 00:01:59 drac Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ IUSE="debug"
 
 DEPEND="dev-util/pkgconfig
 	dev-util/intltool
-	xfce-extra/xfce4-dev-tools"
+	dev-util/xfce4-dev-tools"
 
 src_unpack() {
 	unpack ${A}
