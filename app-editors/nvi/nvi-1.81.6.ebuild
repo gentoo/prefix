@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/nvi-1.81.6.ebuild,v 1.7 2008/06/21 08:05:01 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/nvi-1.81.6.ebuild,v 1.8 2008/06/22 09:56:23 bluebird Exp $
 
 EAPI="prefix"
 
