@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.31 2008/06/21 20:18:00 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.32 2008/06/22 21:01:21 opfer Exp $
+
+  22 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  capistrano-1.4.2.ebuild:
+  stable x86, bug 228453
 
   21 Jun 2008; Markus Rothe <corsair@gentoo.org> capistrano-1.4.2.ebuild:
   Stable on ppc64; bug #228453
