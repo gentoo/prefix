@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Ben de Groot <yngwin@gentoo.org> (22 Jun 2008)
+# does not work with ffmpeg new headers yet
+net-www/gnash ffmpeg
+
 # Serkan Kaba <serkan@gentoo.org> (21 Jun 2008)
 # Masked since dev-java/sun-jmx sources are no longer available
 # See bug #226381.
