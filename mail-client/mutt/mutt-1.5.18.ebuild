@@ -95,7 +95,6 @@ src_unpack() {
 		epatch "${DISTDIR}"/${SIDEBAR_PATCH_N}
 	fi
 
-#	epatch "${FILESDIR}"/${PN}-1.5.16-parallel-make.patch
 	AT_M4DIR="m4" eautoreconf
 
 	# this should be done only when we're not root
