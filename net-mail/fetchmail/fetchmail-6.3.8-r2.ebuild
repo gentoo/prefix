@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.8-r2.ebuild,v 1.7 2008/06/16 18:34:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.8-r2.ebuild,v 1.8 2008/06/22 11:32:32 maekke Exp $
 
 EAPI="prefix"
 
