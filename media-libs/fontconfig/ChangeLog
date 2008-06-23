@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.117 2008/06/04 14:06:05 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.118 2008/06/22 16:51:45 pva Exp $
+
+  22 Jun 2008; Peter Volkov <pva@gentoo.org>
+  +files/fontconfig-2.6.0-parallel.patch, fontconfig-2.6.0-r1.ebuild:
+  Fixed parallel build failure, bug #225079, thank Iain for report.
 
 *fontconfig-2.6.0-r1 (04 Jun 2008)
 
