@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/crossdev
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.58 2008/05/16 17:43:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.59 2008/06/23 01:46:04 vapier Exp $
+
+*crossdev-0.9.18-r9 (23 Jun 2008)
+
+  23 Jun 2008; Mike Frysinger <vapier@gentoo.org> files/crossdev,
+  +crossdev-0.9.18-r9.ebuild:
+  Build with --with-headers by default as gcc-4.3 relies on them a lot more
+  #227065.
 
 *crossdev-0.9.18-r8 (16 May 2008)
 

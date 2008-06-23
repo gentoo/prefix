@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.103 2008/05/16 17:43:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.104 2008/06/23 01:46:04 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -333,7 +333,7 @@ LCAT="sys-libs"   ; LPKG=""              ; LVER="" ; LUSE=""
 DEFAULT_VER="[latest]"
 GUSE_DISABLE="-boundschecking -d -fortran -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -openmp"
 GUSE_DISABLE_STAGE_2=${GUSE_DISABLE/-fortran}
-WITH_HEADERS="COW"   WITH_DEF_HEADERS="no"
+WITH_HEADERS="COW"   WITH_DEF_HEADERS="yes" #227065 gcc-4.3+ is a pita w/out headers
 EX_FAST="no"
 EX_GCC="no"
 EX_GDB="no"
