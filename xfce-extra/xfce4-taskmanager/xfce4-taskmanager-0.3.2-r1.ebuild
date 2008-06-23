@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.3.2-r1.ebuild,v 1.11 2008/05/04 11:07:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.3.2-r1.ebuild,v 1.12 2008/06/23 00:03:11 drac Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://goodies.xfce.org/releases/${PN}/${P}${COMPRESS}"
 RDEPEND=">=xfce-base/libxfcegui4-${XFCE_MASTER_VERSION}
 	>=xfce-base/libxfce4util-${XFCE_MASTER_VERSION}"
 DEPEND="${RDEPEND}
-	xfce-extra/xfce4-dev-tools"
+	dev-util/xfce4-dev-tools"
 
 src_unpack() {
 	unpack ${A}
