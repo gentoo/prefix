@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.326 2008/05/10 12:06:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.327 2008/06/23 02:08:38 vapier Exp $
+
+*binutils-2.18-r2 (23 Jun 2008)
+
+  23 Jun 2008; Mike Frysinger <vapier@gentoo.org> +binutils-2.18-r2.ebuild:
+  Drop gnu hash patch for mips #211680 and backport freebsd fixups #223249.
 
 *binutils-2.18.50.0.7 (10 May 2008)
 
