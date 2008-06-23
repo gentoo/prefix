@@ -30,3 +30,14 @@ diff -ur src.orig/py/findclass src/py/findclass
      dir = [os.path.basename(i) for i in dir]
      
      pkg.extend(classpath)
+--- setup.py.orig	2008-06-21 14:38:45.000000000 +0200
++++ setup.py	2008-06-23 12:37:19.000000000 +0200
+@@ -26,7 +26,7 @@
+         "src/py/build-xml-rewrite",
+         "src/py/jarjarclean"
+     ],
+-    data_files = [ ( '/usr/share/man/man1', ['src/man/findclass.1'] ) ]
++    data_files = [ ( '@GENTOO_PORTAGE_EPREFIX@/usr/share/man/man1', ['src/man/findclass.1'] ) ]
+ )
+ 
+ #set expandtab tabstop=4 shiftwidth=4 softtabstop=4 nowrap 

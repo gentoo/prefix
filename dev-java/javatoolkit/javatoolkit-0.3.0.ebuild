@@ -20,7 +20,7 @@ src_unpack() {
 	unpack "${A}"
 	cd "${S}"
 	epatch "${FILESDIR}/0.3.0-prefix.patch"
-	eprefixify src/py/buildparser src/py/findclass
+	eprefixify src/py/buildparser src/py/findclass setup.py
 }
 
 src_install() {
