@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.60 2008/05/20 13:52:31 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.61 2008/06/22 11:13:01 bicatali Exp $
+
+*numpy-1.1.0 (22 Jun 2008)
+
+  22 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/numpy-1.1.0-f2py.patch, numpy-1.0.4-r2.ebuild, +numpy-1.1.0.ebuild:
+  Version bump and added more configuration for better multiple lapack
+  implementations
 
   20 May 2008; Sébastien Fabbro <bicatali@gentoo.org>
   +files/numpy-1.0.4-cpuinfo.patch, -files/numpy-1.0.4-nocona-cpuinfo.patch,
