@@ -85,7 +85,7 @@ src_compile() {
 	# Danny van Dyk <kugelfang@gentoo.org> 2005/02/14
 	if use tcl ; then
 		TCLVER="$(echo 'puts [info tclversion]' | $(type -P tclsh))"
-		myconf="${myconf} --with-tclpkg=/usr/$(get_libdir)/tcl${TCLVER}/"
+		myconf="${myconf} --with-tclpkg=${EPREFIX}/usr/$(get_libdir)/tcl${TCLVER}/"
 	else
 		myconf="${myconf} --with-tcl=no"
 	fi
@@ -124,7 +124,7 @@ src_install() {
 	fi
 	if use perl ; then
 		perlinfo
-		dodir ${SITE_ARCH}
+		dodir ${SITE_ARCH#${EPREFIX}}
 	fi
 
 	# and no, emake still does not work for install
