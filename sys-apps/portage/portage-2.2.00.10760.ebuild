@@ -69,38 +69,6 @@ S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 pkg_setup() {
 	MINOR_UPGRADE=$(has_version '>=sys-apps/portage-2.2_alpha' && echo true)
-
-	[[ -n ${PREFIX_PORTAGE_DONT_CHECK_MY_REPO} ]] && return
-	[[ $(type -P svn) == "" ]] && return
-
-	# This function is EVIL by definition because it dies, however, given that
-	# infra really wants to expel http access we have no choice.
-	# http://thread.gmane.org/gmane.linux.gentoo.devel.announce/98
-	SYNC=$(cd "${PORTDIR}" && svn info | grep "^URL: " | cut -c6-)
-	if [[ ${SYNC} == "http://overlays.gentoo.org/svn/proj/alt/trunk/prefix-overlay" ]] ; then
-		ebeep
-		eerror "You are currently using a Subversion Portage tree that uses"
-		eerror "the HTTP protocol.  This protocol is scheduled for removal."
-		eerror "If you need HTTP because of a firewall, please file a bug."
-		eerror "See:"
-		eerror "  http://thread.gmane.org/gmane.linux.gentoo.devel.announce/98"
-		echo
-		eerror "You need to switch your SVN checkout from HTTP to the SVN"
-		eerror "protocol.  To do this, cd to"
-		eerror "  ${EPREFIX}/usr/portage"
-		eerror "and execute the following command"
-		eerror "  svn switch --relocate \\"
-		eerror "    http://overlays.gentoo.org/svn/proj/alt/trunk/prefix-overlay \\"
-		eerror "    svn://overlays.gentoo.org/proj/alt/trunk/prefix-overlay"
-		echo
-		eerror "Developers can switch to https instead."
-		echo
-		eerror "Upgrading Portage is aborted now, as it is very important"
-		eerror "that you switch now.  Try emerging again after your switched"
-		eerror "your SVN checkout."
-		ebeep
-		die "please switch your SVN checkout"
-	fi
 }
 
 src_unpack() {
