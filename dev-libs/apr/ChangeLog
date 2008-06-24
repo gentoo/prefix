@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.103 2008/06/11 19:12:54 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.105 2008/06/23 18:24:27 hollow Exp $
+
+  23 Jun 2008; Benedikt Böhm <hollow@gentoo.org> apr-1.3.2.ebuild:
+  remove unused ipv6 USE flag
+
+*apr-1.3.2 (23 Jun 2008)
+
+  23 Jun 2008; Benedikt Böhm <hollow@gentoo.org> +apr-1.3.2.ebuild:
+  version bump wrt #228953
 
 *apr-1.3.0 (11 Jun 2008)
 
