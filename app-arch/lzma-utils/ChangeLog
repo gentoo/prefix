@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.41 2008/06/22 01:18:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.42 2008/06/23 05:21:44 jer Exp $
+
+  23 Jun 2008; Jeroen Roovers <jer@gentoo.org> lzma-utils-4.32.6.ebuild:
+  Stable for HPPA (bug #228671).
 
   22 Jun 2008; Mike Frysinger <vapier@gentoo.org>
   +files/lzma-utils-4.32.6-semicolon.patch, lzma-utils-4.32.6.ebuild:
