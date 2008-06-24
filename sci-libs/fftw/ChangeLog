@@ -1,6 +1,15 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.65 2008/04/14 13:56:14 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.66 2008/06/23 14:31:13 bicatali Exp $
+
+  23 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/fftw-2.1.5-no-test.patch, fftw-2.1.5-r4.ebuild, fftw-3.1.2.ebuild:
+  mips is now dev
+
+  23 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/fftw-2.1.5-no-test.patch, fftw-2.1.5-r4.ebuild:
+  Added a patch to avoid building tests if not requested (bug #226325).
+  (fftw-3.1.2 needs to build the test to build the fftw-wisdom binary.)
 
   14 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org> fftw-2.1.5-r3.ebuild:
   Fixed a link for rfftw, thanks Justin for noticing
