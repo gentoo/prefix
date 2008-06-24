@@ -583,7 +583,7 @@ if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]] ; then
 	exit 2
 fi
 
-if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" ]] ; then
+if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" || ${EPACKAGE} == "updates" || ${EPACKAGE} == "desc" ]] ; then
 	einfo "Processing ${EPACKAGE} directory"
 	excode=0
 	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
