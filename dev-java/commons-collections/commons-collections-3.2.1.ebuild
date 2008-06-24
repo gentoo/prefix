@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2.1.ebuild,v 1.1 2008/06/21 17:36:41 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2.1.ebuild,v 1.2 2008/06/23 09:43:33 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ inherit java-pkg-2 java-ant-2 eutils
 
 DESCRIPTION="Jakarta-Commons Collections Component"
 HOMEPAGE="http://jakarta.apache.org/commons/collections/"
-SRC_URI="mirror://apache/jakarta/${PN/-//}/source/${P}-src.tar.gz"
+SRC_URI="mirror://apache/${PN/-//}/source/${P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
