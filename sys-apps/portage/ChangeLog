@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.10770 (24 Jun 2008)
+
+  24 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.10625.ebuild, +portage-2.2.00.10770.ebuild:
+  Add snapshot of latest sources to reproduce some backtraces with
+
   24 Jun 2008; Fabian Groffen <grobian@gentoo.org>
   portage-2.2.00.10760.ebuild:
   Drop SVN repo check, what we force doesn't work (see many bugs on svn:
