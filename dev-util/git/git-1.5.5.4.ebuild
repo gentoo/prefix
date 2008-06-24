@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.5.4.ebuild,v 1.1 2008/06/11 03:45:33 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.5.4.ebuild,v 1.2 2008/06/24 03:24:55 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,7 @@ pkg_setup() {
 	if ! use perl ; then
 		use cgi && ewarn "gitweb needs USE=perl, ignoring USE=cgi"
 		use cvs && ewarn "CVS integration needs USE=perl, ignoring USE=cvs"
-		use subversion && "git-svn needs USE=perl, it won't work"
+		use subversion && ewarn "git-svn needs USE=perl, it won't work"
 	fi
 	if use webdav && ! use curl ; then
 		ewarn "USE=webdav needs USE=curl. Ignoring"
