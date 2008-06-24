@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/cook
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.20 2008/01/26 19:15:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.21 2008/06/24 04:00:02 darkside Exp $
+
+*cook-2.31 (24 Jun 2008)
+
+  24 Jun 2008; Jeremy Olexa <darkside@gentoo.org>
+  -files/cook-2.24-bugfix.patch, -cook-2.20.ebuild, -cook-2.24.ebuild,
+  cook-2.26.ebuild, +cook-2.31.ebuild:
+  Remove old versions. Version bump for bug #214538 (drop existing kws to
+  ~ARCH). Also, add RDEPEND= to fix bug #221595
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> cook-2.24.ebuild,
   cook-2.26.ebuild:
