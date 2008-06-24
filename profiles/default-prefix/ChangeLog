@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2008; Fabian Groffen <grobian@gentoo.org>
+  +windows/interix/3.5/package.mask:
+  Mask lzma-utils-4.32.6 on Interix 3.5 as inttypes is missing there, and
+  lzma-utils configure gets anal about that.
+
   21 Jun 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask media-video/ffmpeg-0.4.9_p20080326 as it dies on Solaris and looks crappy
 
