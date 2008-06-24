@@ -47,8 +47,10 @@ src_unpack() {
 		-e "s:1\.0\.4:${PV}:" \
 		bzip2.1 bzip2.txt Makefile-libbz2_so manual.{html,ps,xml} || die
 
-	if [[ ${CHOST} = *-hpux* ]]; then
+	if [[ ${CHOST} == *-hpux* ]] ; then
 		sed -i -e 's,-soname,+h,' Makefile-libbz2_so || die "cannot replace -soname with +h"
+	elif [[ ${CHOST} == *-interix* ]] ; then
+		sed -i -e 's,-soname,-h,' Makefile-libbz2_so || die "cannot replace -soname with -h"
 	fi
 }
 
