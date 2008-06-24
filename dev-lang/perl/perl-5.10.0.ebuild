@@ -114,6 +114,9 @@ src_unpack() {
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
+	# CVE-2008-2827
+	epatch "${FILESDIR}"/${P}-CVE-2008-2827.patch
+
 	epatch "${FILESDIR}"/${P}-aix.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
