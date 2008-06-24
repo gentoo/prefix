@@ -50,7 +50,7 @@ DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/odcctools )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	!kernel_Darwin? ( !kernel_AIX? (
-		amd64? ( >=sys-libs/glibc-2.7-r2 )
+		!prefix? ( amd64? ( >=sys-libs/glibc-2.7-r2 ) )
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
