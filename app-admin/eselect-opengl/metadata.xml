@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>x11-drivers</herd>
+<maintainer>
+  <email>eradicator@gentoo.org</email>
+  <name>Jeremy Huddleston</name>
+</maintainer>
+<longdescription>Utility to switch opengl implementations between various providers.</longdescription>
+</pkgmetadata>
