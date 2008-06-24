@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.12 2008/05/07 14:54:34 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.13 2008/06/23 12:58:05 chainsaw Exp $
 
 # @ECLASS: nvidia-driver.eclass
 # @MAINTAINER: <chainsaw@gentoo.org>
@@ -16,7 +16,7 @@ inherit versionator
 DEPEND="sys-apps/pciutils"
 
 # the data below is derived from
-# http://us.download.nvidia.com/XFree86/Linux-x86_64/100.14.11/README/appendix-a.html
+# http://us.download.nvidia.com/XFree86/Linux-x86_64/177.13/README/appendix-a.html
 
 drv_96xx="0110 0111 0112 0113 0170 0171 0172 0173 0174 0175 0176 0177 0178 \
 0179 017a 017c 017d 0181 0182 0183 0185 0188 018a 018b 018c 01a0 01f0 0200 \
@@ -25,8 +25,13 @@ drv_96xx="0110 0111 0112 0113 0170 0171 0172 0173 0174 0175 0176 0177 0178 \
 
 drv_71xx="0020 0028 0029 002c 002d 00a0 0100 0101 0103 0150 0151 0152 0153"
 
+drv_173x="00FA 00FB 00FC 00FD 00FE 0301 0302 0308 0309 0311 0312 0314 031A \
+031B 031C 0320 0321 0322 0323 0324 0325 0326 0327 0328 032A 032B 032C 032D \
+0330 0331 0332 0333 0334 0338 033F 0341 0342 0343 0344 0347 0348 034C 034E"
+
 mask_96xx=">=x11-drivers/nvidia-drivers-97.0.0"
 mask_71xx=">=x11-drivers/nvidia-drivers-72.0.0"
+mask_173x=">=x11-drivers/nvidia-drivers-177.0.0"
 
 # @FUNCTION: nvidia-driver-get-card
 # @DESCRIPTION:
@@ -59,6 +64,12 @@ nvidia-driver-get-mask() {
 			fi
 		done
 
+		for drv in $drv_173x; do
+			if [ "x$card" = "x$drv" ]; then
+				echo "$mask_173x";
+				return 0;
+			fi
+		done
 	done
 
 	echo "";
