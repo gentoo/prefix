@@ -1,0 +1,205 @@
+# ChangeLog for x11-libs/libdrm
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.55 2008/06/10 07:38:28 dberkholz Exp $
+
+  10 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>; libdrm-2.3.0.ebuild:
+  Drop to ~mips to shut up repoman.
+
+*libdrm-2.3.1_pre20080528 (10 Jun 2008)
+
+  10 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libdrm-2.3.1_pre20080528.ebuild, -libdrm-9999.ebuild:
+  Add ebuild pulling a specific git revision instead of live git head.
+
+*libdrm-9999 (10 Jun 2008)
+
+  10 Jun 2008; Donnie Berkholz <dberkholz@gentoo.org>; +libdrm-9999.ebuild:
+  Add live git version, for mesa 7.1.
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>; ChangeLog:
+  Clean up.
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>; -libdrm-2.0.2.ebuild:
+  Clean up.
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on sparc wrt #175465
+
+  02 Jul 2007; Raúl Porcel <armin76@gentoo.org> libdrm-2.3.0.ebuild:
+  alpha stable wrt #175465
+
+  24 Jun 2007; Joshua Kinard <kumba@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on mips, per #175465.
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable for HPPA (bug #175465).
+
+  12 May 2007; nixnut <nixnut@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on ppc wrt bug 175465
+
+  04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libdrm-2.3.0.ebuild:
+  Marked stable on amd64 for bug #175465
+
+  29 Apr 2007; Andrej Kacian <ticho@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on x86, bug #175465.
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> libdrm-2.3.0.ebuild:
+  Stable on ppc64; bug #175465
+
+  21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libdrm-2.0.1.ebuild:
+  Clean out old version.
+
+  06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libdrm-2.0.2.ebuild:
+  Stable on Alpha.
+
+*libdrm-2.3.0 (10 Nov 2006)
+
+  10 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libdrm-2.2.0.ebuild, +libdrm-2.3.0.ebuild:
+  Version bump for 7.2RC2 with support for upcoming X servers.  Adds drmOpenOnce
+  and drmCloseOnce and support for the server to use the system libdrm, instead
+  of the (now) removed internal one.  These changes are only important for GIT
+  head or >=1.2.99.0 servers.
+
+*libdrm-2.2.0 (02 Nov 2006)
+
+  02 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libdrm-2.2.0.ebuild:
+  Version bump with a large amount of changes.  Notables: Mach64 work and
+  support for the new memory manager.
+
+  14 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libdrm-2.0.2.ebuild:
+  Stable on ia64.
+
+  13 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  libdrm-2.0.2.ebuild:
+  AMD64/x86 stable for bug #144549 (X7.1).
+
+  12 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> libdrm-2.0.2.ebuild:
+  Stable on hppa
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> libdrm-2.0.2.ebuild:
+  Marked stable on mips.
+
+  24 Aug 2006; Markus Rothe <corsair@gentoo.org> libdrm-2.0.2.ebuild:
+  Stable on ppc64
+
+  23 Aug 2006; Ferris McCormick <fmccor@gentoo.org> libdrm-2.0.2.ebuild:
+  Stable on sparc (part of general bookkeeping to sync sparc to a known state
+  now that xorg-x11-7.1 is stable on sparc).
+
+  20 Aug 2006; Donnie Berkholz <dberkholz@gentoo.org>; libdrm-2.0.2.ebuild:
+  Stable on x86/ppc.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> libdrm-2.0.1.ebuild:
+  Stable on hppa.
+
+*libdrm-2.0.2 (14 Jul 2006)
+
+  14 Jul 2006; Donnie Berkholz <dberkholz@gentoo.org>; +libdrm-2.0.2.ebuild:
+  Bump, change ewarn to elog.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> libdrm-2.0.1.ebuild:
+  Mark 2.0.1 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libdrm-2.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; +libdrm-2.0.1.ebuild:
+  Restore mistakenly removed ebuild.
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; -libdrm-2.0.ebuild,
+  -libdrm-2.0.1.ebuild:
+  Pull old versions.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> libdrm-2.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> libdrm-2.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libdrm-2.0.1.ebuild:
+  x86 stable.
+
+*libdrm-2.0.1 (01 Apr 2006)
+
+  01 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libdrm-2.0.1.ebuild:
+  Bump from upstream.  Includes some new defines required by Mesa 6.5/HEAD.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> libdrm-2.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  10 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; libdrm-2.0.ebuild:
+  (#125506) Use --library for revdep-rebuild, not --soname.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> libdrm-2.0.ebuild:
+  Mark 2.0 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> libdrm-2.0.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> libdrm-2.0.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> libdrm-2.0.ebuild:
+  Marked ~alpha
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -libdrm-1.0.1.ebuild,
+  -libdrm-1.0.3.ebuild, -libdrm-1.0.4.ebuild, -libdrm-1.0.5.ebuild:
+  Pull old versions.
+
+  05 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> libdrm-2.0.ebuild:
+  Doh, now libdrm stays...
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> libdrm-2.0.ebuild:
+  Keep the old libdrm.so.1 around so things don't break horribly on upgrade.
+
+*libdrm-2.0 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> +libdrm-2.0.ebuild:
+  Version bump.
+
+*libdrm-1.0.5 (31 Oct 2005)
+
+  31 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +libdrm-1.0.5.ebuild:
+  Bump with via fixes.
+
+*libdrm-1.0.4 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +libdrm-1.0.4.ebuild:
+  Bump to remove libX11 dependency.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> libdrm-1.0.3.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> libdrm-1.0.1.ebuild,
+  libdrm-1.0.3.ebuild:
+  Marked ~ppc
+
+*libdrm-1.0.3 (20 Aug 2005)
+
+  20 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +libdrm-1.0.3.ebuild:
+  Bump.
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libdrm-1.0.1.ebuild:
+  Marked ~amd64
+
+  09 Aug 2005; Ferris McCormick <fmccor@gentoo.org> libdrm-1.0.1.ebuild:
+  Add ~sparc keyword (X modular testing).
+
+*libdrm-1.0.1 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +libdrm-1.0.1.ebuild:
+  Initial commit for modular X.
+
