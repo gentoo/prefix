@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2008; Jeremy Olexa <jolexa@gentoo.org> linux/amd64/make.defaults:
+  Add ABI=amd64 to make.defaults. Some ebuilds need this
+
   24 Jun 2008; Fabian Groffen <grobian@gentoo.org>
   +windows/interix/3.5/package.mask:
   Mask lzma-utils-4.32.6 on Interix 3.5 as inttypes is missing there, and
