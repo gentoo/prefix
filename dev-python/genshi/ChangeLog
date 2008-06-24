@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/genshi
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.10 2008/04/22 13:42:56 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.11 2008/06/23 22:33:10 pythonhead Exp $
+
+*genshi-0.5 (23 Jun 2008)
+
+  23 Jun 2008; Rob Cakebread <pythonhead@gentoo.org> genshi-0.4.4.ebuild,
+  +genshi-0.5.ebuild:
+  Version bump, added RDEPEND back because pkg_resources is imported. Closes
+  #225889
 
   22 Apr 2008; Luca Longinotti <chtekk@gentoo.org> genshi-0.4.4.ebuild:
   Empty RDEPEND.
