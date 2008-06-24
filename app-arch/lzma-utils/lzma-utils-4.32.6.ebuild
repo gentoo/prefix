@@ -34,10 +34,15 @@ src_unpack() {
 		find -type f -print0 | xargs -0 touch -r configure
 		epunt_cxx
 	fi
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 pkg_setup() {
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_utimes=no
+		append-flags "-D_ALL_SOURCE"
+	fi
 }
 
 src_install() {
