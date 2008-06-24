@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3603 2008/06/23 02:12:24 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3604 2008/06/23 14:50:27 flameeyes Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1618,7 +1618,11 @@ net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
 net-irc/quassel:server - Build the server part of Quassel.
 net-irc/rbot:aspell - Use aspell rather than ispell for the spell plugin.
+net-irc/rbot:cal - Enable the cal plugin which uses /usr/bin/cal
 net-irc/rbot:dict - Enable the dict (RFC 2229) client plugin which deps on dev-ruby/ruby-dict.
+net-irc/rbot:figlet - Enable the figlet plugin which deps on app-misc/figlet.
+net-irc/rbot:fortune - Enable the fortune plugin which deps on games-misc/fortune-mod
+net-irc/rbot:host - Enable the host plugin which deps on net-dns/bind-tools
 net-irc/rbot:shorturl - Enable the shortenurl plugin which deps on dev-ruby/shorturl.
 net-irc/rbot:snapshot - Set the Ruby gem version to a value suitable for a snapshot ebuild
 net-irc/rbot:timezone - Enable the timezone plugin.

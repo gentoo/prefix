@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8765 2008/06/23 01:55:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8767 2008/06/24 01:19:15 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Michael Sterrett <mr_bones_@gentoo.org> (23 Jun 2008)
+# Now a part of gnome-games
+games-board/glchess
+
 # Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
 # Please read http://my.opera.com/desktopteam/blog before using these snapshots
 =www-client/opera-9.51*
@@ -45,7 +49,7 @@
 # is stabilized for amd64 ppc x86.
 =dev-java/sun-jmx-1.2.1-r2
 dev-java/jgroups
-dev-util/jconfig
+=dev-util/jconfig-2.8-r2
 =dev-java/jcs-1.2.7.9*
 dev-java/hibernate
 dev-java/oscache
