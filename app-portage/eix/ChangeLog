@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.226 2008/06/04 08:35:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.227 2008/06/24 18:06:30 genstef Exp $
+
+*eix-0.13.0 (24 Jun 2008)
+
+  24 Jun 2008; Stefan Schweizer <genstef@gentoo.org> +eix-0.13.0.ebuild:
+  version bump
 
   04 Jun 2008; Alexis Ballier <aballier@gentoo.org> eix-0.12.5.ebuild:
   keyword ~sparc-fbsd
