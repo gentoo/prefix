@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.49 2008/06/20 18:21:39 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.50 2008/06/24 13:40:50 hawking Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -118,7 +118,10 @@ distutils_pkg_postrm() {
 # This is a generic optimization, you should override it if your package
 # installs things in another directory. This function is exported
 distutils_pkg_postinst() {
-	PYTHON_MODNAME=${PYTHON_MODNAME:-${PN}}
+	if [[ -z "${PYTHON_MODNAME}" &&\
+		-d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]]; then
+		PYTHON_MODNAME=${PN}
+	fi
 
 	if has_version ">=dev-lang/python-2.3"; then
 		python_version

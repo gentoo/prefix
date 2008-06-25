@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.62 2008/06/02 05:15:27 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.63 2008/06/24 16:43:38 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -185,7 +185,7 @@ vdr_patchmakefile() {
 	#   Set VDRINCDIR=/usr/include
 	#   Change $(VDRDIR)/include to $(VDRINCDIR)
 
-	ebegin "  Setting Pathes"
+	ebegin "  Setting paths"
 	sed -i Makefile \
 		-e "s:^VDRDIR.*$:VDRDIR = ${VDR_INCLUDE_DIR}:" \
 		-e "/^VDRDIR/a VDRINCDIR = ${VDR_INCLUDE_DIR%/vdr}" \
