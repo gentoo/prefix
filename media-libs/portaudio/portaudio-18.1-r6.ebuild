@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.9 2007/10/15 14:36:45 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.10 2008/06/24 20:55:31 drac Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.portaudio.com"
 SRC_URI="http://www.portaudio.com/archives/${MY_P}.zip"
 
 LICENSE="GPL-2"
-SLOT="18"
+SLOT="0"
 KEYWORDS="~ppc-macos"
 IUSE=""
 

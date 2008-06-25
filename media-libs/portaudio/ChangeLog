@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/portaudio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.57 2008/06/23 16:03:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.58 2008/06/24 20:55:31 drac Exp $
+
+  24 Jun 2008; Samuli Suominen <drac@gentoo.org> -portaudio-18.1-r5.ebuild,
+  portaudio-18.1-r6.ebuild, portaudio-19_pre20071207.ebuild:
+  amd64 stable for 18.1-r6, thanks to CCIEChad from #-amd64-dev for testing.
+  slotmove back to 0 since it turns out v19 ain't sanely slottable.
 
   23 Jun 2008; nixnut <nixnut@gentoo.org> portaudio-19_pre20071207.ebuild:
   Added ~ppc wrt bug 223059
