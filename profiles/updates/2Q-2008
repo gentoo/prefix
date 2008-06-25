@@ -34,3 +34,4 @@ move media-fonts/fireflysung media-fonts/opendesktop-fonts
 move app-portage/portage-manpages app-portage/eclass-manpages
 move gnome-extra/gnome2-user-docs gnome-extra/gnome-user-docs
 move gnome-base/control-center gnome-base/gnome-control-center
+move media-video/cinelerra-cvs media-video/cinelerra
