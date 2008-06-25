@@ -1,0 +1,75 @@
+--- python-updater
++++ python-updater
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # vim: set et sw=4 sts=4 tw=80:
+ # Copyright 2007-2008 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+@@ -34,7 +34,7 @@
+ VERBOSE=0
+ PKGS_TO_REMERGE=""
+ PKGS_COUNT_REMERGE=0
+-PORTAGE_PYTHON="/usr/bin/python"
++PORTAGE_PYTHON="@GENTOO_PORTAGE_EPREFIX@/usr/bin/python"
+ 
+ SUPPORTED_PMS="portage pkgcore paludis"
+ PMS_COMMAND=( "emerge" "pmerge" "paludis" )
+@@ -49,10 +49,10 @@
+ # load the gentoo-style info macros, but hack to get around
+ # it thinking this is an rc script
+ EBUILD="1"
+-source /etc/init.d/functions.sh
++source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
+ 
+ # portage variables
+-PKG_DBDIR=/var/db/pkg
++PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@"/var/db/pkg
+ 
+ # usage()
+ # display usage
+@@ -113,7 +113,7 @@
+ get_old_pyver() {
+     for old in 2.5 2.4 2.3 2.2 2.1; do
+         if [[ "${old}" != "${NEW_PY_VER}" ]]; then
+-            if [[ -e /usr/bin/python${old} ]]; then
++            if [[ -e "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python${old} ]]; then
+                 echo -n "${old}"
+                 return 0
+             fi
+@@ -139,7 +139,7 @@
+         newpy=2.5
+     fi
+ 
+-    pybin=/usr/bin/python
++    pybin="@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python
+     for py in ${pybin} ${pybin}${oldpy} ${pybin}${newpy}; do
+         if ${py} -c "import portage" > /dev/null 2>&1; then
+             echo -n "${py}"
+@@ -153,7 +153,7 @@
+ # get_portage_portdir()
+ # Check if portage knows about PORTDIR and return it
+ get_portage_portdir() {
+-    local portdir="$(/usr/bin/portageq portdir)"
++    local portdir="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq portdir)"
+ 
+     if [[ -z "${portdir}" ]]; then
+         eerror "Unable to proceed. Can not find PORTDIR. Make sure the command:"
+@@ -280,7 +280,7 @@
+         CHECK_SONAME=0
+     else
+         veinfo 1 'check "soname" enabled.'
+-        OLD_SONAME="$(readlink -n /usr/lib/libpython${OLD_PY_VER}.so)"
++        OLD_SONAME="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${OLD_PY_VER}.so)"
+         if [[ -z "${OLD_SONAME}" ]]; then
+             ewarn "Couldn't find old libpython soname"
+             ewarn "Disabling soname check."
+@@ -354,7 +354,7 @@
+         # /usr/lib/python$old
+         # /usr/lib32/python$old
+         # /usr/lib64/python$old
+-        if grep -qe "/usr/\(include\|lib\(32\|64\)\?\)/python${OLD_PY_VER}" ${content}; then
++        if grep -qe "@GENTOO_PORTAGE_EPREFIX@/usr/\(include\|lib\(32\|64\)\?\)/python${OLD_PY_VER}" ${content}; then
+             PKGS_TO_REMERGE="${PKGS_TO_REMERGE} ${CATPKGVER}"
+             eindent
+             einfo "Adding to list: ${CATPKGVER}"
