@@ -1,6 +1,14 @@
 # ChangeLog for net-proxy/dante
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.41 2008/02/03 15:13:46 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.42 2008/06/24 20:59:04 mrness Exp $
+
+*dante-1.1.19-r2 (24 Jun 2008)
+
+  24 Jun 2008; Alin Năstac <mrness@gentoo.org>
+  +files/dante-1.1.19-libpam.patch, dante-1.1.19-r1.ebuild,
+  +dante-1.1.19-r2.ebuild:
+  Add flex and bison dependency atoms (#221401). Link libpam only with sockd
+  (#218745).
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> dante-1.1.19-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/dante-1.1.19-r1.ebuild,v 1.6 2008/06/24 20:59:04 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/dante-1.1.19-r2.ebuild,v 1.1 2008/06/24 20:59:04 mrness Exp $
 
 EAPI="prefix"
 
-inherit fixheadtails eutils
+inherit eutils autotools
 
 DESCRIPTION="A free socks4,5 and msproxy implementation"
 HOMEPAGE="http://www.inet.no/dante/"
@@ -30,12 +30,14 @@ src_unpack() {
 
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-socksify.patch"
+	epatch "${FILESDIR}/${P}-libpam.patch"
 
-	ht_fix_file configure
 	sed -i \
 		-e 's:/etc/socks\.conf:'"${EPREFIX}"'/etc/socks/socks.conf:' \
 		-e 's:/etc/sockd\.conf:'"${EPREFIX}"'/etc/socks/sockd.conf:' \
 		doc/{faq.ps,faq.tex,sockd.8,sockd.conf.5,socks.conf.5}
+
+	eautoreconf
 }
 
 src_compile() {
@@ -49,11 +51,11 @@ src_compile() {
 	# the comments in the source say this is only useful for 2.0 kernels ...
 	# well it may fix 2.0 but it breaks with 2.6 :)
 	sed -i 's:if HAVE_LINUX_ECCENTRICITIES:if 0:' include/common.h
-	emake || die "compile problem"
+	emake || die "emake failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install has failed"
+	emake DESTDIR="${D}" install || die "emake install has failed"
 
 	# bor: comment libdl.so out it seems to work just fine without it
 	sed -i -e 's:libdl\.so::' "${ED}/usr/bin/socksify" || die 'sed failed'
