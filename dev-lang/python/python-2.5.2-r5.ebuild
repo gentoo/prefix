@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r2.ebuild,v 1.3 2008/05/29 21:29:02 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r5.ebuild,v 1.1 2008/06/24 13:54:02 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -22,7 +22,7 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r2.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}-r5.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
@@ -38,25 +38,18 @@ DEPEND=">=sys-libs/zlib-1.1.3
 		tk? ( >=dev-lang/tk-8.0 )
 		ncurses? ( >=sys-libs/ncurses-5.2
 					readline? ( >=sys-libs/readline-4.1 ) )
-		berkdb? ( >=sys-libs/db-3.1 )
+		berkdb? ( || ( sys-libs/db:4.5 sys-libs/db:4.4 sys-libs/db:4.3
+					sys-libs/db:4.2 ) )
 		gdbm? ( sys-libs/gdbm )
 		ssl? ( dev-libs/openssl )
 		doc? ( dev-python/python-docs:2.5 )
 		dev-libs/expat
 	)"
 
-# NOTE: The dev-python/python-fchksum RDEPEND is needed so that this python
-#       provides the functionality expected from previous pythons.
-
-# NOTE: python-fchksum is only a RDEPEND and not a DEPEND since we don't need
-#       it to compile python. We just need to ensure that when we install
-#       python, we definitely have fchksum support. - liquidx
-
 # NOTE: changed RDEPEND to PDEPEND to resolve bug 88777. - kloeri
 # NOTE: added blocker to enforce correct merge order for bug 88777. - zmedico
 
-RDEPEND="${DEPEND} build? ( !dev-python/python-fchksum )"
-PDEPEND="${DEPEND} !build? ( dev-python/python-fchksum ) app-admin/python-updater"
+PDEPEND="${DEPEND} app-admin/python-updater"
 PROVIDE="virtual/python"
 
 src_unpack() {
@@ -86,7 +79,7 @@ src_unpack() {
 	[ "${ARCH}" = "hppa" ] && sed -e 's/utimes //' -i "${S}"/configure
 
 	if ! use wininst; then
-		# remove microsoft windows executables
+		# remove microsoft windows executables
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
@@ -141,27 +134,20 @@ src_configure() {
 		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _sqlite3"
 		export PYTHON_DISABLE_SSL=1
 	else
-		# dbm module can link to berkdb or gdbm -- defaults to gdbm when
-		# both are enabled, see #204343
-		use berkdb || use gdbm \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm"
-		use gdbm \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} gdbm"
-		use berkdb \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} bsddb"
-		use readline \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} readline"
-		use tk \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _tkinter"
-		use ncurses \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _curses _curses_panel"
-		use sqlite \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _sqlite3"
-		use ssl \
-			|| export PYTHON_DISABLE_SSL=1
-		export PYTHON_DISABLE_MODULES
-		echo $PYTHON_DISABLE_MODULES
+		# dbm module can link to berkdb or gdbm
+		# defaults to gdbm when both are enabled, #204343
+		local disable
+		use berkdb   || use gdbm || disable="${disable} dbm"
+		use berkdb   || disable="${disable} bsddb"
+		use gdbm     || disable="${disable} gdbm"
+		use ncurses  || disable="${disable} _curses _curses_panel"
+		use readline || disable="${disable} readline"
+		use sqlite   || disable="${disable} sqlite3"
+		use ssl      || export PYTHON_DISABLE_SSL=1
+		use tk       || disable="${disable} _tkinter"
+		export PYTHON_DISABLE_MODULES="${disable}"
 	fi
+	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 }
 
 src_compile() {
@@ -177,6 +163,11 @@ src_compile() {
 	if is-flag -O3; then
 	   is-flag -fstack-protector-all && replace-flags -O3 -O2
 	   use hardened && replace-flags -O3 -O2
+	fi
+
+	# See #228905
+	if [[ $(gcc-major-version) -ge 4 ]]; then
+		append-flags -fwrapv
 	fi
 
 	export OPT="${CFLAGS}"
@@ -358,6 +349,10 @@ src_test() {
 	#skip all tests that fail during emerge but pass without emerge:
 	#(See bug# 67970)
 	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 webbrowser xml_etree"
+
+	# test_pow fails on alpha.
+	# http://bugs.python.org/issue756093
+	[[ ${ARCH} == "alpha" ]] && skip_tests="${skip_tests} pow"
 
 	for test in ${skip_tests} ; do
 		mv "${S}"/Lib/test/test_${test}.py "${T}"
