@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jun 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
+  Revert adding ABI to make.defaults, breaks $(get_libdir)!
+
   24 Jun 2008; Jeremy Olexa <jolexa@gentoo.org> linux/amd64/make.defaults:
   Add ABI=amd64 to make.defaults. Some ebuilds need this
 
