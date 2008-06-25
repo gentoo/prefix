@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/tcpdump
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.127 2008/03/30 21:12:32 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.128 2008/06/24 18:11:46 armin76 Exp $
+
+  24 Jun 2008; Raúl Porcel <armin76@gentoo.org> tcpdump-3.9.8-r1.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *tcpdump-3.9.8-r1 (30 Mar 2008)
 
