@@ -1,10 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1610 2008/06/23 14:50:27 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1614 2008/06/24 20:55:23 drac Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  24 Jun 2008; Samuli Suominen <drac@gentoo.org> updates/3Q-2008:
+  slotmove media-libs/portaudio from SLOT 18 to SLOT 0 since it turns out
+  v19 ain't sanely slottable.
+
+  24 Jun 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Unmask Portaudio v19 and deps wrt #222841. Mask cultivation since it's
+  unported wrt #222927.
+
+  24 Jun 2008; Ali Polatel <hawking@gentoo.org> package.mask:
+  Masked python-2.3 (second try)
+
+  24 Jun 2008; Hanno Boeck <hanno@gentoo.org> updates/2Q-2008:
+  Move cinelerra-cvs to cinelerra.
 
   23 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
   Add a few more local USE flags for rbot.

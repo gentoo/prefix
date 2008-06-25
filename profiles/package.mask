@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8767 2008/06/24 01:19:15 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8769 2008/06/24 20:35:29 drac Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Samuli Suominen <drac@gentoo.org> (24 Jun 2008)
+# Unported to Portaudio v19
+=media-sound/denemo-0.7.7
+games-simulation/cultivation
+
+# Ali Polatel <hawking@gentoo.org> (24 Jun 2008)
+# Old versions not maintained by upstream anymore.
+=dev-lang/python-2.3*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (23 Jun 2008)
 # Now a part of gnome-games
@@ -1301,13 +1310,6 @@ games-rpg/openrpg
 >=net-analyzer/nessus-core-2.3.1
 >=net-analyzer/nessus-plugins-2.3.1
 >=net-analyzer/nessus-2.3.1
-
-# Alexis Ballier <aballier@gentoo.org> (30 Mar 2007)
-# Portaudio v19 : api changes
->=media-libs/portaudio-19_pre061121
->=media-sound/jack-audio-connection-kit-0.109.2-r1
->=media-sound/mixxx-1.6.0_beta2
->=media-sound/timidity++-2.13.2-r7
 
 # Piotr Jaroszyński <peper@gentoo.org> (28 Mar 2006)
 # Unusable for now.
