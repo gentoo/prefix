@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.5 2008/06/13 19:34:39 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.7 2008/06/24 21:59:20 opfer Exp $
 
 EAPI="prefix 1"
 
 inherit eutils versionator
 
-IUSE="gtk doc static debug threads"
+IUSE="gtk doc static debug threads +ocamlopt"
 
 DESCRIPTION="Two-way cross-platform file synchronizer"
 HOMEPAGE="http://www.cis.upenn.edu/~bcpierce/unison/"
@@ -27,6 +27,15 @@ PDEPEND="gtk? ( media-fonts/font-schumacher-misc )"
 SRC_URI="http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}.tar.gz
 doc? ( http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.pdf
 	http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.html )"
+
+pkg_setup() {
+	if use ocamlopt && ! built_with_use --missing true dev-lang/ocaml ocamlopt; then
+		eerror "In order to build ${PN} with native code support from ocaml"
+		eerror "You first need to have a native code ocaml compiler."
+		eerror "You need to install dev-lang/ocaml with ocamlopt useflag on."
+		die "Please install ocaml with ocamlopt useflag"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -55,6 +64,8 @@ src_compile() {
 		myconf="$myconf UISTYLE=text"
 	fi
 
+	use ocamlopt || myconf="$myconf NATIVE=false"
+
 	# Discard cflags as it will try to pass them to ocamlc...
 	emake -j1 $myconf CFLAGS="" || die "error making unsion"
 }
@@ -74,6 +85,7 @@ src_install () {
 		dohtml "${DISTDIR}/${P}-manual.html" || die
 		dodoc "${DISTDIR}/${P}-manual.pdf" || die
 	fi
+	use ocamlopt || export STRIP_MASK="*/bin/*"
 }
 
 pkg_postinst() {
