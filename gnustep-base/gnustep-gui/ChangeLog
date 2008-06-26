@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.66 2008/06/16 09:50:41 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.67 2008/06/25 08:47:56 voyageur Exp $
+
+*gnustep-gui-0.14.0-r1 (25 Jun 2008)
+
+  25 Jun 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-gui-0.14.0-r1.ebuild:
+  Re-enable portaudio support (except on x86-fbsd), now that portaudio-19 is
+  unmasked
 
 *gnustep-gui-0.14.0 (16 Jun 2008)
 
