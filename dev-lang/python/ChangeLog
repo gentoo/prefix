@@ -1,6 +1,6 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.325 2008/06/24 13:54:02 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.326 2008/06/25 17:26:17 hawking Exp $
 
 *python-2.5.2-r5 (24 Jun 2008)
 
@@ -11,7 +11,7 @@
   -python-2.5.2-r2.ebuild, -python-2.5.2-r3.ebuild, -python-2.5.2-r4.ebuild,
   +python-2.5.2-r5.ebuild:
   Revbump. Append -fwrapv to CFLAGS if we're using gcc-4, #228905. Updated
-  patchset to fix memory issues with unicode objects, #228905. Drop old.
+  patchset to fix memory issues with unicode objects, #222481. Drop old.
 
   20 Jun 2008; Ali Polatel <hawking@gentoo.org> python-2.5.2-r4.ebuild:
   Fix bsddb dependency, bug 223133. Cosmetics
