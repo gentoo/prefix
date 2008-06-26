@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.284 2008/05/25 12:38:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.285 2008/06/25 22:03:46 maekke Exp $
+
+*imagemagick-6.4.2.0 (25 Jun 2008)
+
+  25 Jun 2008; Markus Meier <maekke@gentoo.org> +imagemagick-6.4.2.0.ebuild:
+  bump to 6.4.2.0: add openmp USE-flag (bug #223817)
 
 *imagemagick-6.4.1.3 (25 May 2008)
 
