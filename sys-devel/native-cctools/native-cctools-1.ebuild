@@ -33,7 +33,7 @@ src_install() {
 		*-solaris*|*-aix*)
 			nativepath=/usr/ccs/bin
 		;;
-		*-apple-darwin*|*-netbsd*)
+		*-apple-darwin*|*-netbsd*|*-openbsd*)
 			nativepath=/usr/bin
 		;;
 		*-interix*)
