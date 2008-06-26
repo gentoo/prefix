@@ -62,6 +62,8 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-${PV}-gentoo.patch"
 	epatch "${FILESDIR}/${PN}-${PV}-sh.patch"
 
+	epatch "${FILESDIR}"/${P}-darwin.patch
+
 	# Prepare package for future tests
 	if use test ; then
 		# Fix sandbox violation; note that we're stripping redundant slashes
