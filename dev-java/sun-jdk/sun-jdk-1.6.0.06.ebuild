@@ -21,8 +21,10 @@ HOMEPAGE="http://java.sun.com/javase/6/"
 URL_BASE="http://download.java.net/dlj/binaries"
 SRC_URI="x86? ( ${URL_BASE}/${X86_AT} )
 		amd64? ( ${URL_BASE}/${AMD64_AT} )
-		x86-solaris? ( ${URL_BASE}/${SOL_X86_AT} ${URL_BASE}/${SOL_AMD64_AT} )
-		sparc-solaris? ( ${URL_BASE}/${SOL_SPARC_AT} ${URL_BASE}/${SOL_SPARCv9_AT} )"
+		x86-solaris? ( ${URL_BASE}/${SOL_X86_AT} )
+		x64-solaris? ( ${URL_BASE}/${SOL_X86_AT} ${URL_BASE}/${SOL_AMD64_AT} )
+		sparc-solaris? ( ${URL_BASE}/${SOL_SPARC_AT} )
+		sparc64-solaris? ( ${URL_BASE}/${SOL_SPARC_AT} ${URL_BASE}/${SOL_SPARCv9_AT} )"
 SLOT="1.6"
 LICENSE="dlj-1.1"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"

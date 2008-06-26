@@ -21,9 +21,11 @@ DESCRIPTION="Sun's J2SE Development Kit, version 1.5"
 HOMEPAGE="http://java.sun.com/j2se/1.5.0/"
 SRC_URI="x86? ( http://download.java.net/dlj/binaries/${X86_AT} )
 		amd64? ( http://download.java.net/dlj/binaries/${AMD64_AT} )
-		x86-solaris? ( http://download.java.net/dlj/binaries/${SOL_X86_AT}
+		x86-solaris? ( http://download.java.net/dlj/binaries/${SOL_X86_AT} )
+		x64? ( http://download.java.net/dlj/binaries/${SOL_X86_AT}
 			http://download.java.net/dlj/binaries/${SOL_AMD64_AT} )
-		sparc-solaris? ( http://download.java.net/dlj/binaries/${SOL_SPARC_AT}
+		sparc-solaris? ( http://download.java.net/dlj/binaries/${SOL_SPARC_AT} )
+		sparc64-solaris? ( http://download.java.net/dlj/binaries/${SOL_SPARC_AT}
 			http://download.java.net/dlj/binaries/${SOL_SPARCv9_AT} )"
 SLOT="1.5"
 LICENSE="dlj-1.1"
