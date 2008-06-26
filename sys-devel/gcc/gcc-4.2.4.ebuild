@@ -51,11 +51,12 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	kernel_Darwin? ( ${CATEGORY}/odcctools )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	!kernel_Darwin? ( !kernel_AIX? (
+	kernel_Interix? ( || ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 )
+	!kernel_Darwin? ( !kernel_AIX? ( !kernel_Interix? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
-	) )"
+	) ) )"
 PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.6 ) )"
