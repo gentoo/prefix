@@ -191,7 +191,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	local def="20080612"
+	local def="20080626"
 	case ${CHOST} in
 		powerpc-ibm-aix*)            PV="${def}" ;;
 		i*86-apple-darwin8)          PV="${def}" ;;
@@ -277,7 +277,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV="2.2.00.10347"
+	PV="2.2.00.10788"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
