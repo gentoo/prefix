@@ -1,6 +1,9 @@
 # ChangeLog for net-zope/zopeinterface
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.24 2008/05/27 21:34:41 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.25 2008/06/25 16:12:42 hawking Exp $
+
+  25 Jun 2008; Ali Polatel <hawking@gentoo.org> -zopeinterface-3.0.0.ebuild:
+  Dropped old version that depends on python-2.3
 
   27 May 2008; Tupone Alfredo <tupone@gentoo.org>
   zopeinterface-3.0.0.ebuild:
