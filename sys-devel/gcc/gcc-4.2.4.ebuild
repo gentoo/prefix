@@ -51,7 +51,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	kernel_Darwin? ( ${CATEGORY}/odcctools )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	kernel_Interix? ( || ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 )
+	kernel_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
 	!kernel_Darwin? ( !kernel_AIX? ( !kernel_Interix? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
