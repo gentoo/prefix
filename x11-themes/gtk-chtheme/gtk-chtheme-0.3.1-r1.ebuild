@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/gtk-chtheme-0.3.1-r1.ebuild,v 1.2 2008/05/25 06:26:36 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/gtk-chtheme-0.3.1-r1.ebuild,v 1.3 2008/06/25 23:02:31 opfer Exp $
 
 EAPI="prefix"
 
