@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/unison
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.54 2008/06/24 21:59:20 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.56 2008/06/26 00:05:41 gentoofan23 Exp $
+
+  26 Jun 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  unison-2.27.57-r1.ebuild:
+  stable amd64, bug 229187
+
+  25 Jun 2008; nixnut <nixnut@gentoo.org> unison-2.27.57-r1.ebuild:
+  Stable on ppc wrt bug 229187
 
   24 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
   unison-2.27.57-r1.ebuild:
