@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.63 2008/06/24 16:43:38 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.64 2008/06/25 21:35:27 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -340,9 +340,19 @@ vdr-plugin_install_source_tree() {
 }
 
 vdr-plugin_print_enable_command() {
+	local p_name c=0 l=""
+	for p_name in ${vdr_plugin_list}; do
+		c=$(( c+1 ))
+		l="$l ${p_name#vdr-}"
+	done
+
 	elog
-	elog "To activate this vdr-plugin execute the following command:"
-	elog "\teselect vdr-plugin enable ${PN#vdr-}"
+	case $c in
+	1)	elog "Installed plugin${l}" ;;
+	*)	elog "Installed $c plugins:${l}" ;;
+	esac
+	elog "To activate a plugin execute this command:"
+	elog "\teselect vdr-plugin enable <plugin_name> ..."
 	elog
 }
 
@@ -475,15 +485,16 @@ vdr-plugin_src_install() {
 	doins libvdr-*.so.*
 
 	# create list of all created plugin libs
-	local p_list="" p_name
+	vdr_plugin_list=""
+	local p_name
 	for p in libvdr-*.so.*; do
 		p_name="${p%.so*}"
 		p_name="${p_name#lib}"
-		p_list="${p_list} ${p_name}"
+		vdr_plugin_list="${vdr_plugin_list} ${p_name}"
 	done
 
-	create_header_checksum_file ${p_list}
-	create_plugindb_file ${p_list}
+	create_header_checksum_file ${vdr_plugin_list}
+	create_plugindb_file ${vdr_plugin_list}
 
 	if vdr_has_gettext && [[ -d ${TMP_LOCALE_DIR} ]]; then
 		einfo "Installing locales"
