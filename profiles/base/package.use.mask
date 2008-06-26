@@ -1,8 +1,12 @@
 # This file requires >=portage-2.1.1
 
+# Peter Alfredsen <loki_val@gentoo.org> (25 Jun 2008)
+# Php module fails to build due to newer autotools.
+>=media-libs/ming-0.4.0_beta5 php
+
 # Ben de Groot <yngwin@gentoo.org> (22 Jun 2008)
 # does not work with ffmpeg new headers yet
-net-www/gnash ffmpeg
+<net-www/gnash-0.8.3 ffmpeg
 
 # Serkan Kaba <serkan@gentoo.org> (21 Jun 2008)
 # Masked since dev-java/sun-jmx sources are no longer available
