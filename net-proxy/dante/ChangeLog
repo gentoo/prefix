@@ -1,6 +1,10 @@
 # ChangeLog for net-proxy/dante
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.42 2008/06/24 20:59:04 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.43 2008/06/25 20:42:56 mrness Exp $
+
+  25 Jun 2008; Alin Năstac <mrness@gentoo.org>
+  files/dante-1.1.19-libpam.patch:
+  Remove AC_AIX from configure.ac (#229337).
 
 *dante-1.1.19-r2 (24 Jun 2008)
 
