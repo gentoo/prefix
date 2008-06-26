@@ -1,10 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r1.ebuild,v 1.2 2008/06/22 16:51:45 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r1.ebuild,v 1.3 2008/06/25 21:03:18 loki_val Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool
+WANT_AUTOMAKE=1.9
+
+inherit eutils autotools libtool
 
 DESCRIPTION="A library for configuring and customizing font access"
 HOMEPAGE="http://fontconfig.org/"

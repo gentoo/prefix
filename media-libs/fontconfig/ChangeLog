@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.118 2008/06/22 16:51:45 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.119 2008/06/25 21:03:18 loki_val Exp $
+
+  25 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
+  fontconfig-2.6.0-r1.ebuild:
+  Fixed parallel build build failure fix. Set WANT_AUTOMAKE and inherit
+  autotools.
 
   22 Jun 2008; Peter Volkov <pva@gentoo.org>
   +files/fontconfig-2.6.0-parallel.patch, fontconfig-2.6.0-r1.ebuild:
