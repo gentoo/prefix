@@ -1,6 +1,16 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.130 2008/06/23 17:47:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.133 2008/06/25 17:28:37 corsair Exp $
+
+  25 Jun 2008; Markus Rothe <corsair@gentoo.org>
+  shared-mime-info-0.30.ebuild:
+  Stable on ppc64; bug #228991
+
+  25 Jun 2008; Rémi Cardona <remi@gentoo.org> shared-mime-info-0.40.ebuild:
+  fix typo
+
+  25 Jun 2008; Rémi Cardona <remi@gentoo.org> shared-mime-info-0.40.ebuild:
+  add elog message to update the generated databases
 
   23 Jun 2008; Raúl Porcel <armin76@gentoo.org>
   shared-mime-info-0.30.ebuild:
