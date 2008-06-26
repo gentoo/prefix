@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/nose
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.10 2008/01/31 16:38:56 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.11 2008/06/25 10:26:21 hawking Exp $
+
+*nose-0.10.3 (25 Jun 2008)
+
+  25 Jun 2008; Ali Polatel <hawking@gentoo.org> +nose-0.10.3.ebuild:
+  Version bump.
 
 *nose-0.10.1 (31 Jan 2008)
 
