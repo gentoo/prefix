@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3604 2008/06/23 14:50:27 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3606 2008/06/26 02:03:41 beandog Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1001,6 +1001,7 @@ media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
+media-gfx/imagemagick:openmp - Build support for the OpenMP (support parallel computing)
 media-gfx/imagemagick:q32 - Set quantum depth to 32
 media-gfx/imagemagick:q8 - Set quantum depth to 8
 media-gfx/inkscape:dia - Pull in app-office/dia for dia import extension
@@ -1306,6 +1307,8 @@ media-video/mplayer:vidix - Support for vidix video output
 media-video/mplayer:xanim - Enables support for xanim based codecs
 media-video/mplayer:xvmc - Enables X-Video Motion Compensation support
 media-video/mplayer:zoran - Enables ZR360[56]7/ZR36060 video output
+media-video/ogmrip:mp4 - Support for MP4 container format
+media-video/ogmrip:ogm - Support for OGM container format
 media-video/ogmrip:srt - Support for SRT subtitle format
 media-video/oxine:polling - Enables support to automatically check the drive for a new disc
 media-video/totem:galago - Enable the galago plugin

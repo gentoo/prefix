@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8769 2008/06/24 20:35:29 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8771 2008/06/26 01:53:25 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Michael Sterrett <mr_bones_@gentoo.org> (25 Jun 2008)
+# Upstream seems inactive and the game is unplayable on modern systems.
+# Masked for removal on July 27
+games-arcade/sdlpong
+
+# Jeremy Olexa <darkside@gentoo.org> (25 Jun 2008)
+# Masked for removal in 30 days by treecleaners. bug #130950
+=dev-util/gambas-1.9.23
 
 # Samuli Suominen <drac@gentoo.org> (24 Jun 2008)
 # Unported to Portaudio v19
@@ -1534,10 +1543,6 @@ net-libs/libpcap-ringbuffer
 =mail-mta/nullmailer-1.00-r2
 =mail-mta/nullmailer-1.02-r2
 =mail-mta/nullmailer-1.03-r1
-
-# Marius Mauch <genone@gentoo.org> (17 Jan 2006)
-# Development version
->=dev-util/gambas-1.9
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
 # This is the Gentoo Linux Installer.  This is currently masked because it will

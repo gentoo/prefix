@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1614 2008/06/24 20:55:23 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1617 2008/06/26 02:03:41 beandog Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  26 Jun 2008; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add mp4, ogm local use flags for media-video/ogmrip
+
+  25 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask =dev-util/gambas-1.9.23 for removal in 30 days. bug #130950
+
+  25 Jun 2008; Markus Meier <maekke@gentoo.org> use.local.desc:
+  add openmp USE-flag for media-gfx/imagemagick
 
   24 Jun 2008; Samuli Suominen <drac@gentoo.org> updates/3Q-2008:
   slotmove media-libs/portaudio from SLOT 18 to SLOT 0 since it turns out
