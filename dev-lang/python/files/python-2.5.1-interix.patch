@@ -404,16 +404,3 @@ diff -ruN Python-2.5.1.orig/configure.in Python-2.5.1/configure.in
  	# -u libsys_s pulls in all symbols in libsys
  	Darwin/*) 
  		# -u _PyMac_Error is needed to pull in the mac toolbox glue,
-diff -ruN Python-2.5.1.orig/setup.py Python-2.5.1/setup.py
---- Python-2.5.1.orig/setup.py	Fri Jan 18 09:33:54 2008
-+++ Python-2.5.1/setup.py	Thu Jan 17 17:42:41 2008
-@@ -438,7 +438,8 @@
- 
-         # cStringIO and cPickle
-         exts.append( Extension('cStringIO', ['cStringIO.c']) )
--        exts.append( Extension('cPickle', ['cPickle.c']) )
-+        if not platform.startswith('interix'):
-+            exts.append( Extension('cPickle', ['cPickle.c']) )
- 
-         # Memory-mapped files (also works on Win32).
-         if platform not in ['atheos', 'mac']:
