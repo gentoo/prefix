@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.6 2008/06/13 04:29:22 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.7 2008/06/25 21:50:12 zlin Exp $
 
 EAPI="prefix"
 
@@ -219,15 +219,18 @@ pkg_preinst() {
 	if [[ -e ${EROOT}/etc/bash/bash_logout ]] ; then
 		rm -f "${ED}"/etc/bash/bash_logout
 	fi
+
+	if [[ -L ${EROOT}/bin/sh ]]; then
+		# rewrite the symlink to ensure that its mtime changes. having /bin/sh
+		# missing even temporarily causes a fatal error with paludis.
+		local target=$(readlink "${EROOT}"/bin/sh)
+		ln -sf "${target}" "${EROOT}"/bin/sh
+	fi
 }
 
 pkg_postinst() {
 	# If /bin/sh does not exist, provide it
 	if [[ ! -e ${EROOT}/bin/sh ]]; then
 		ln -sf bash "${EROOT}"/bin/sh
-	elif [[ -L ${EROOT}/bin/sh ]]; then
-		# rewrite the symlink to ensure that its mtime changes
-		local target=$(readlink "${EROOT}"/bin/sh)
-		ln -sf "${target}" "${EROOT}"/bin/sh
 	fi
 }

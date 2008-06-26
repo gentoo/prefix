@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.180 2008/06/13 04:29:22 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.181 2008/06/25 21:50:12 zlin Exp $
+
+  25 Jun 2008; Bo Ørsted Andresen <zlin@gentoo.org> bash-3.2_p39.ebuild:
+  Move recreation of /bin/sh to pkg_preinst since reinstalling _p39 when it is
+  recorded into contents results in a fatal error with paludis.
 
   13 Jun 2008; Zac Medico <zmedico@gentoo.org> bash-3.2_p39.ebuild:
   Bug #222721 - Replace the !<sys-apps/portage-2.1.4_rc1 blocker
