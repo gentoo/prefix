@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.3-r1.ebuild,v 1.9 2008/04/30 07:02:27 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.3-r3.ebuild,v 1.1 2008/06/26 09:13:01 nelchael Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-no-scroll-with-buffer.patch"
+	epatch "${FILESDIR}/${P}-display-security.patch"
+	epatch "${FILESDIR}/${P}-stop-polling-when-obscured.patch"
 
 }
 
