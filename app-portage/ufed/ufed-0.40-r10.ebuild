@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ufed-0.40-r9.ebuild,v 1.1 2008/05/10 16:27:40 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ufed-0.40-r10.ebuild,v 1.1 2008/06/26 21:04:15 truedfx Exp $
 
 EAPI="prefix"
 

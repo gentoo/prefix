@@ -1,5 +1,14 @@
 --- ufed-0.40/ufed.pl
 +++ ufed-0.40/ufed.pl
+@@ -23,7 +23,7 @@
+ 
+ delete @use_descriptions{qw(bootstrap build)};
+ 
+-$Portage::all_flags{'-*'} = 1 if defined $Portage::make_conf_flags{'*'} && !$Portage::make_conf_flags{'*'};
++$Portage::make_conf_flags{'-*'} = 1 if defined $Portage::make_conf_flags{'*'} && !$Portage::make_conf_flags{'*'};
+ 
+ for(keys %Portage::all_flags) {
+ 	@{$use_descriptions{$_}} = "(Unknown)"
 @@ -39,21 +39,13 @@
  flags_dialog;
  
@@ -39,10 +48,12 @@
  			print $fh exists $Portage::make_defaults_flags{$flag} ? $Portage::make_defaults_flags{$flag} ? '(+' :'(-' :'( ' ;
  			print $fh exists  $Portage::use_defaults_flags{$flag} ?  $Portage::use_defaults_flags{$flag} ?  '+' : '-' : ' ' ;
  			print $fh exists     $Portage::make_conf_flags{$flag} ?     $Portage::make_conf_flags{$flag} ?  '+)': '-)': ' )';
-@@ -100,7 +93,7 @@
+@@ -99,8 +92,8 @@
+ 	if(POSIX::WIFEXITED($?)) {
  		my $rc = POSIX::WEXITSTATUS($?);
  		if($rc==0) {
- 			my @flags = do { local $/; split /\n/, <$fh> };
+-			my @flags = do { local $/; split /\n/, <$fh> };
++			my @flags = grep { $_ ne '--*' } do { local $/; split /\n/, <$fh> };
 -			save_flags finalise sort @flags;
 +			save_flags finalise @flags;
  		} elsif($rc==1)
