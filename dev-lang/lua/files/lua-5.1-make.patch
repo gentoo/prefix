@@ -18,7 +18,7 @@
 +	test/lua.static test/hello.lua
 +
 +gentoo_install:
-+	mkdir -p $(INSTALL_BIN) $(INSTALL_INC) $(INSTALL_LIB) $(INSTALL_MAN)
++	mkdir -p $(INSTALL_BIN) $(INSTALL_INC) $(INSTALL_LIB)
 +	cd src; $(LIBTOOL) --mode=install $(INSTALL_EXEC) lua luac $(INSTALL_BIN)
 +	cd src; $(INSTALL_DATA) $(TO_INC) $(INSTALL_INC)
 +	cd src; $(LIBTOOL) --mode=install $(INSTALL_DATA) liblua.la $(INSTALL_LIB)

@@ -1,0 +1,25 @@
+diff -rdu lua-5.1.3.orig/src/ldebug.c lua-5.1.3/src/ldebug.c
+--- lua-5.1.3.orig/src/ldebug.c        2008-02-12 16:17:59.000000000 +0000
++++ lua-5.1.3/src/ldebug.c     2008-02-12 16:26:32.000000000 +0000
+@@ -346,9 +346,18 @@
+           int dest = pc+1+b;
+           check(0 <= dest && dest < pt->sizecode);
+           if (dest > 0) {
+-            /* cannot jump to a setlist count */
+-            Instruction d = pt->code[dest-1];
+-            check(!(GET_OPCODE(d) == OP_SETLIST && GETARG_C(d) == 0));
++            int j;
++            /* check that it does not jump to a setlist count; this
++               is tricky, because the count from a previous setlist may
++               have the same value of an invalid setlist; so, we must
++               go all the way back to the first of them (if any) */
++            for (j = 0; j < dest; j++) {
++              Instruction d = pt->code[dest-1-j];
++              if (!(GET_OPCODE(d) == OP_SETLIST && GETARG_C(d) == 0)) break;
++            }
++            /* if 'j' is even, previous value is not a setlist (even if
++               it looks like one) */
++            check((j&1) == 0);
+           }
+         }
+         break;

@@ -1,6 +1,100 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.87 2008/02/13 22:15:05 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.107 2008/05/27 22:11:43 mabi Exp $
+
+*lua-5.1.3-r3 (27 May 2008)
+
+  27 May 2008; Matti Bickel <mabi@gentoo.org> -lua-5.1.2-r2.ebuild,
+  -lua-5.1.3.ebuild, +lua-5.1.3-r3.ebuild:
+  clean old versions, add EAPI 1 ebuild with default for deprecated USE
+
+  18 May 2008; Markus Meier <maekke@gentoo.org> lua-5.1.3-r1.ebuild:
+  amd64/x86 stable, bug #210517
+
+  18 May 2008; Raúl Porcel <armin76@gentoo.org> lua-5.1.3-r2.ebuild:
+  ia64 stable wrt #210517
+
+  18 May 2008; Markus Rothe <corsair@gentoo.org> lua-5.1.3-r1.ebuild:
+  Stable on ppc64; bug #210517
+
+  17 May 2008; Tobias Klausmann <klausman@gentoo.org> lua-5.1.3-r2.ebuild:
+  Stable on alpha, bug #210517
+
+  16 May 2008; Ferris McCormick <fmccor@gentoo.org> lua-5.1.3-r1.ebuild:
+  Sparc stable, Bug #210517, nothing unexpected.
+
+  16 May 2008; Jeroen Roovers <jer@gentoo.org> lua-5.1.3-r1.ebuild:
+  Stable for HPPA (bug #210517).
+
+  16 May 2008; Matti Bickel <mabi@gentoo.org>
+  -files/5.1.3/05_validator.upstream.patch,
+  -files/5.1.3/06_c_stack.upstream.patch,
+  +files/5.1.3/06_all_c_stack.upstream.patch,
+  +files/5.1.3/07_all_validator2.upstream.patch,
+  +files/lua-5.1.3-test.patch, +files/5.1.3/05_all_validator.upstream.patch,
+  -files/5.1.3/07_validator2.upstream.patch,
+  +files/5.1.3/08_all_code_injection.upstream.patch,
+  -files/5.1.3/08_code_injection.upstream.patch, lua-5.1.3-r1.ebuild,
+  lua-5.1.3-r2.ebuild:
+  patch fixing test by oliver huber (bug #210904), fix patch naming, so the
+  new patches finally apply
+
+*lua-5.1.3-r2 (15 May 2008)
+
+  15 May 2008; Matti Bickel <mabi@gentoo.org>
+  +files/5.1.3/05_validator.upstream.patch,
+  +files/5.1.3/06_c_stack.upstream.patch,
+  +files/5.1.3/07_validator2.upstream.patch,
+  +files/5.1.3/08_code_injection.upstream.patch, +lua-5.1.3-r2.ebuild:
+  bump including some serious crash fixes. see http://www.lua.org/bugs.html
+
+  21 Feb 2008; Jeroen Roovers <jer@gentoo.org> lua-5.1.2-r2.ebuild:
+  Stable for HPPA (bug #210517).
+
+  19 Feb 2008; Matti Bickel <mabi@gentoo.org> lua-5.1.2-r2.ebuild:
+  ppc stable
+
+  19 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> lua-5.1.2-r2.ebuild:
+  amd64 stable wrt bug #210517
+
+  19 Feb 2008; Raúl Porcel <armin76@gentoo.org> lua-5.1.2-r2.ebuild:
+  alpha/ia64/sparc stable wrt #210517
+
+  18 Feb 2008; Matti Bickel <mabi@gentoo.org> lua-5.1.3-r1.ebuild:
+  rip out reintroduced ppc-macos conditional code (thanks fabian for reminding
+  me)
+
+  18 Feb 2008; Christian Faulhammer <opfer@gentoo.org> lua-5.1.2-r2.ebuild:
+  stable x86, bug 210517
+
+  18 Feb 2008; Brent Baude <ranger@gentoo.org> lua-5.1.2-r2.ebuild:
+  stable ppc64, bug 210517
+
+  17 Feb 2008; Matti Bickel <mabi@gentoo.org>
+  files/5.1.3/03_all_lua_checkstack.upstream.patch, lua-5.1.3-r1.ebuild:
+  fixed whitespace error in patch, inconsistent patch naming
+
+  17 Feb 2008; Matti Bickel <mabi@gentoo.org> files/lua-5.1-make.patch:
+  fix bug #204308
+
+  17 Feb 2008; Matti Bickel <mabi@gentoo.org>
+  -files/lua-5.0.2-LDFLAGS_and_as-needed.patch, -files/lua-5.0.2-pic.patch,
+  -files/lua-5.0.3-asneeded.patch, -files/lua-5.0.3-destdir.patch,
+  -files/lua-5.0.3-dylib.patch, -files/lua-5.0.3-ldflags.patch,
+  -files/lua-5.0.3-shared.patch, -files/lua-ppc-macos-Makefile.patch,
+  -lua-5.0.2.ebuild, -lua-5.0.3.ebuild:
+  remove old 5.0 version
+
+*lua-5.1.3-r1 (17 Feb 2008)
+
+  17 Feb 2008; Matti Bickel <mabi@gentoo.org>
+  +files/5.1.3/01_all_LUAI_MAXCSTACK.upstream.patch,
+  +files/5.1.3/03_all_lua_checkstack.upstream.patch,
+  +files/lua-5.1.3-deprecated.patch,
+  +files/5.1.3/02_all_coroutine.resume.upstream.patch,
+  +files/5.1.3/04_all_unpack.upstream.patch, +lua-5.1.3-r1.ebuild:
+  fixed bug #210461 (thanks for spotting this), added upstream patches, added
+  patch to remove deprecated code (thanks to polarina on bug #209883)
 
   13 Feb 2008; Fabian Groffen <grobian@gentoo.org> lua-5.1.3.ebuild:
   Stop adding back ppc-macos, it's gone -- accept it

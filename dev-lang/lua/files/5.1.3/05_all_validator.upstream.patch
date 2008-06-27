@@ -1,0 +1,44 @@
+diff -rdu lua-5.1.3.orig/src/ldebug.c lua-5.1.3/src/ldebug.c
+--- lua-5.1.3.orig/src/ldebug.c        2008-02-12 16:17:59.000000000 +0000
++++ lua-5.1.3/src/ldebug.c     2008-02-12 16:26:32.000000000 +0000
+@@ -275,12 +275,12 @@
+ 
+ static int precheck (const Proto *pt) {
+   check(pt->maxstacksize <= MAXSTACK);
+-  lua_assert(pt->numparams+(pt->is_vararg & VARARG_HASARG) <= pt->maxstacksize);
+-  lua_assert(!(pt->is_vararg & VARARG_NEEDSARG) ||
++  check(pt->numparams+(pt->is_vararg & VARARG_HASARG) <= pt->maxstacksize);
++  check(!(pt->is_vararg & VARARG_NEEDSARG) ||
+               (pt->is_vararg & VARARG_HASARG));
+   check(pt->sizeupvalues <= pt->nups);
+   check(pt->sizelineinfo == pt->sizecode || pt->sizelineinfo == 0);
+-  check(GET_OPCODE(pt->code[pt->sizecode-1]) == OP_RETURN);
++  check(pt->sizecode > 0 && GET_OPCODE(pt->code[pt->sizecode-1]) == OP_RETURN);
+   return 1;
+ }
+ 
+@@ -363,7 +363,11 @@
+     }
+     switch (op) {
+       case OP_LOADBOOL: {
+-        check(c == 0 || pc+2 < pt->sizecode);  /* check its jump */
++        if (c == 1) {  /* does it jump? */
++          check(pc+2 < pt->sizecode);  /* check its jump */
++          check(GET_OPCODE(pt->code[pc+1]) != OP_SETLIST ||
++                GETARG_C(pt->code[pc+1]) != 0);
++        }
+         break;
+       }
+       case OP_LOADNIL: {
+@@ -428,7 +432,10 @@
+       }
+       case OP_SETLIST: {
+         if (b > 0) checkreg(pt, a + b);
+-        if (c == 0) pc++;
++        if (c == 0) {
++          pc++;
++          check(pc < pt->sizecode - 1);
++        }
+         break;
+       }
+       case OP_CLOSURE: {
