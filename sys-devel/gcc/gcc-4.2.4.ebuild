@@ -90,6 +90,8 @@ src_unpack() {
 # I guess needed, but doesn't fully apply -- grobian
 #	epatch "${FILESDIR}"/${PN}-4.2.3-aix-largefiles.patch
 
+	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
