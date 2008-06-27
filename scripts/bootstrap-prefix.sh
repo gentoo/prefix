@@ -186,8 +186,6 @@ bootstrap_setup() {
 		ln -s "${profile}" "${ROOT}"/etc/make.profile
 		einfo "Your profile is set to ${profile}."
 	fi
-	
-	[[ -e ${ROOT}/etc/make.conf ]] && return
 }
 
 bootstrap_tree() {
