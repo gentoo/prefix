@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.32.ebuild,v 1.1 2008/05/27 15:35:19 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.32.ebuild,v 1.2 2008/06/26 09:05:31 remi Exp $
 
 EAPI="prefix"
 
@@ -16,9 +16,9 @@ IUSE="bootstrap build debug doc examples ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
 XSTS_NAME_1="xmlschema2002-01-16"
-XSTS_NAME_2="xmlschema2006-11-06"
+XSTS_NAME_2="xmlschema2004-01-14"
 XSTS_TARBALL_1="xsts-2002-01-16.tar.gz"
-XSTS_TARBALL_2="xsts-2006-11-06.tar.gz"
+XSTS_TARBALL_2="xsts-2004-01-14.tar.gz"
 
 SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 	test? (
