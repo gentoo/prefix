@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r1.ebuild,v 1.3 2008/06/25 21:03:18 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.1 2008/06/26 21:38:55 cardoe Exp $
 
 EAPI="prefix"
 
@@ -15,11 +15,17 @@ SRC_URI="http://fontconfig.org/release/${P}.tar.gz"
 LICENSE="fontconfig"
 SLOT="1.0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc xml"
+IUSE="doc"
+
+# Purposefully dropped the xml USE flag and libxml2 support. Having this is
+# silly since expat is the preferred way to go per upstream and libxml2 support
+# simply exists as a fallback when expat isn't around. expat support is the main
+# way to go and every other distro uses it. By using the xml USE flag to enable
+# libxml2 support, this confuses users and results in most people getting the
+# non-standard behavior of libxml2 usage since most profiles have USE=xml
 
 RDEPEND=">=media-libs/freetype-2.1.4
-	!xml? ( >=dev-libs/expat-1.95.3 )
-	xml? ( >=dev-libs/libxml2-2.6 )"
+	>=dev-libs/expat-1.95.3"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( app-text/docbook-sgml-utils )"
@@ -60,7 +66,6 @@ src_compile() {
 		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
 		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
-		$(use_enable xml libxml2) \
 		|| die
 
 	emake || die

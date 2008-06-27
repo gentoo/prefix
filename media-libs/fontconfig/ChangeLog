@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.119 2008/06/25 21:03:18 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.120 2008/06/26 21:38:55 cardoe Exp $
+
+*fontconfig-2.6.0-r2 (26 Jun 2008)
+
+  26 Jun 2008; Doug Goldstein <cardoe@gentoo.org>
+  -fontconfig-2.6.0-r1.ebuild, +fontconfig-2.6.0-r2.ebuild:
+  Purposefully dropped the xml USE flag and libxml2 support. Having this is
+  silly since expat is the preferred way to go per upstream and libxml2
+  support simply exists as a fallback when expat isn't around. expat support
+  is the main way to go and every other distro uses it. By using the xml USE
+  flag to enable libxml2 support, this confuses users and results in most
+  people getting the non-standard behavior of libxml2 usage since most
+  profiles have USE=xml
 
   25 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
   fontconfig-2.6.0-r1.ebuild:
