@@ -1,5 +1,9 @@
 # $Header: $
 
+# Fabian Groffen <grobian@gentoo.org> (27 Jun 2008)
+# fails to compile, missing wait.h header
+=dev-libs/xmlrpc-c-1.06.27
+
 # Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
 # These are versions taken from Xcode Tools 3.1 Beta, and iPhone SDK Beta 7
 =sys-devel/gcc-apple-4.0.1_p5484

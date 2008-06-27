@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jun 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  Mask dev-libs/xmlrpc-c-1.06.27 on darwin
+
   25 Jun 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
   Revert adding ABI to make.defaults, breaks $(get_libdir)!
 
