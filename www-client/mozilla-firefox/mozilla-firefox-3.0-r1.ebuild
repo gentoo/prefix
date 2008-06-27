@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0-r1.ebuild,v 1.3 2008/06/21 19:34:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0-r1.ebuild,v 1.4 2008/06/26 10:00:53 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -278,6 +278,7 @@ src_install() {
 		newicon "${S}"/browser/base/branding/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			mozilla-firefox-3.0.desktop
+		sed -i -e "s/Bon Echo/Minefield/" "${ED}"/usr/share/applications/mozilla-firefox-3.0.desktop
 	fi
 
 	if use xulrunner; then
