@@ -1,9 +1,14 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cron.eclass,v 1.11 2007/10/27 21:21:11 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cron.eclass,v 1.12 2008/06/26 10:51:41 bangert Exp $
 
-# Original Author: Aaron Walker <ka0ttic@gentoo.org>
+# @ECLASS: cron
+# @MAINTAINER:
+# cron-bugs@gentoo.org
 #
+# Original Author: Aaron Walker <ka0ttic@gentoo.org>
+# @BLURB: Some functions for cron
+# @DESCRIPTION:
 # Purpose: The main motivation for this eclass was to simplify
 # the jungle known as src_install() in cron ebuilds. Using these
 # functions also ensures that permissions are *always* reset,
@@ -28,8 +33,9 @@ RDEPEND="!virtual/cron
 
 PROVIDE="virtual/cron"
 
-# docrondir [ dir ] [ perms ]
-#
+# @FUNCTION: docrondir
+# @USAGE: [ dir ] [ perms ]
+# @DESCRIPTION:
 # Creates crontab directory
 #
 #	Both arguments are optional.  Everything after 'dir' is considered
@@ -63,8 +69,9 @@ docrondir() {
 	diropts -m0755
 }
 
-# docron [ exe ] [ perms ]
-#
+# @FUNCTION: docron
+# @USAGE: [ exe ] [ perms ]
+# @DESCRIPTION:
 # Install cron executable
 #
 #    Both arguments are optional.
@@ -96,8 +103,9 @@ docron() {
 	exeopts -m0755
 }
 
-# docrontab [ exe ] [ perms ]
-#
+# @FUNCTION: docrontab
+# @USAGE: [ exe ] [ perms ]
+# @DESCRIPTION:
 # Install crontab executable
 #
 #   Uses same semantics as docron.
@@ -132,6 +140,10 @@ docrontab() {
 	fi
 }
 
+# @FUNCTION: cron_pkg_postinst
+# @DESCRIPTION:
+# Outputs a message about system crontabs
+# daemons that have a true system crontab set CRON_SYSTEM_CRONTAB="yes"
 cron_pkg_postinst() {
 	echo
 	#  daemons that have a true system crontab set CRON_SYSTEM_CRONTAB="yes"
