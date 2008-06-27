@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3606 2008/06/26 02:03:41 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3607 2008/06/26 23:26:41 darkside Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -661,6 +661,8 @@ dev-util/ctags:ada - Enable Ada support
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/eric:idl - Enable omniorb support
+dev-util/gambas:corba - Enable CORBA 2 ORB (net-misc/omniORB)
+dev-util/gambas:smtp - Enable smtp support.
 dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
 dev-util/git:cgi - Install gitweb too
 dev-util/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
