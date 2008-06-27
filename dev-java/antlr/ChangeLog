@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/antlr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.64 2008/04/05 09:56:54 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.65 2008/06/26 21:04:58 serkan Exp $
+
+  26 Jun 2008; Serkan Kaba <serkan@gentoo.org> antlr-2.7.7.ebuild:
+  Fix antlr2 website. Thanks calculus <calculuspenguin@yahoo.com> for
+  reporting.
 
   05 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> antlr-2.7.7.ebuild:
   Call base_src_unpack explicitly in src_unpack. Fixes bug #207361.

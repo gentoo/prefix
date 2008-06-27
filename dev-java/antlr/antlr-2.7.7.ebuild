@@ -1,14 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.12 2008/04/05 09:56:54 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.13 2008/06/26 21:04:58 serkan Exp $
 
 EAPI="prefix 1"
 
 inherit base java-pkg-2 mono distutils multilib
 
 DESCRIPTION="A parser generator for C++, C#, Java, and Python"
-HOMEPAGE="http://www.antlr.org/"
-SRC_URI="http://www.antlr.org/download/${P}.tar.gz"
+HOMEPAGE="http://www.antlr2.org/"
+SRC_URI="http://www.antlr2.org/download/${P}.tar.gz"
 
 LICENSE="ANTLR"
 SLOT="0"
