@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.44 2008/05/25 17:26:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.45 2008/06/26 16:16:57 nixnut Exp $
+
+  26 Jun 2008; nixnut <nixnut@gentoo.org> eselect-emacs-1.5.ebuild:
+  Stable on ppc wrt bug 229605
 
 *eselect-emacs-1.5 (25 May 2008)
 
