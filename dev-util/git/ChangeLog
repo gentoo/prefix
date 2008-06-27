@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.278 2008/06/24 03:24:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.279 2008/06/26 21:42:43 robbat2 Exp $
+
+*git-1.5.6.1 (26 Jun 2008)
+
+  26 Jun 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/20080626-git-1.5.6.1-noperl.patch, +git-1.5.6.1.ebuild:
+  Version bump.
 
   24 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.5.5.4.ebuild:
   Fix bug thanks to compnerd.
