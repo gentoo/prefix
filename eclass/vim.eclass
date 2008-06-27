@@ -55,7 +55,10 @@ DEPEND="${DEPEND} nls? ( virtual/libintl )"
 RDEPEND="${RDEPEND} nls? ( virtual/libintl )"
 
 if [[ "${MY_PN}" == "vim-core" ]] ; then
-	IUSE="${IUSE} livecd aqua"
+	IUSE="${IUSE} livecd"
+	if ! version_is_at_least "7.1.319" ; then
+		IUSE="${IUSE} aqua"
+	fi
 else
 	IUSE="${IUSE} cscope gpm perl python ruby"
 	DEPEND="${DEPEND}
@@ -107,7 +110,10 @@ if [[ $(get_major_version ) -ge 7 ]] ; then
 	#		mzscheme? ( dev-scheme/mzscheme )"
 	#fi
 	if [[ "${MY_PN}" == "gvim" ]] ; then
-		IUSE="${IUSE} netbeans aqua nextaw"
+		IUSE="${IUSE} netbeans nextaw"
+		if ! version_is_at_least "7.1.319" ; then
+			IUSE="${IUSE} aqua"
+		fi
 		# Vim implements netbeans external editor protocol when netbeans is
 		# enabled and doesn't necessarily need dev-util/netbeans.
 		# bug 184065
@@ -424,7 +430,7 @@ vim_src_compile() {
 			myconf="${myconf} --enable-gui=no --enable-carbon-check=no --enable-macvim-check=no --disable-darwin `use_with vim-with-x x`"
 
 		elif [[ "${MY_PN}" == "gvim" ]] ; then
-			if use aqua ; then
+			if ! version_is_at_least "7.1.319" && use aqua ; then
 				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=yes"
 				myconf="${myconf} --with-vim-name=Vim"
 			elif use carbon ; then
@@ -437,11 +443,12 @@ vim_src_compile() {
 			fi
 
 			echo ; echo
-			if [[ $(get_major_version ) -ge 7 ]] && use aqua ; then
+			if ! version_is_at_least "7.1.319" && use aqua ; then
 				einfo "Building gvim with the Cocoa GUI"
 				myconf="${myconf} --enable-gui=macvim"
 			elif use carbon ; then
-				myconf="${myconf} --enable-gui=carbon"
+				einfo "Building gvim with the Carbon GUI"
+				myconf="${myconf} --enable-gui=carbon --prefix=${EPREFIX}/Applications/Gentoo"
 			elif use gtk ; then
 				if version_is_at_least "6.3.086" ; then
 					myconf="${myconf} --enable-gtk2-check"
@@ -512,7 +519,7 @@ vim_src_compile() {
 	fi
 
 	# macvim needs to be configured and compiled from within the src dir
-	if [[ ${MY_PN} == gvim ]] && use aqua ; then
+	if [[ ${MY_PN} == gvim ]] && ! version_is_at_least "7.1.319" && use aqua ; then
 		cd src
 	fi
 
@@ -523,7 +530,7 @@ vim_src_compile() {
 	econf ${myconf} || die "vim configure failed"
 
 	# The following allows emake to be used
-	if [[ ${MY_PN} != gvim ]] || ! use aqua; then
+	if [[ ${MY_PN} != gvim ]] || version_is_at_least "7.1.319" || use !aqua ; then
 		make -j1 -C src auto/osdef.h objects || die "make failed"
 	fi
 
@@ -611,7 +618,22 @@ vim_src_install() {
 		rm ${ED}/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
 
 	elif [[ "${MY_PN}" == "gvim" ]] ; then
-		dobin src/gvim
+		if use carbon ; then
+			dodir /Applications/Gentoo
+			cp -pPR src/Vim.app "${ED}"/Applications/Gentoo/
+			# fix up dead link
+			pushd "${ED}"/Applications/Gentoo/Vim.app/Contents/Resources > /dev/null
+			rm -Rf vim
+			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION/.} vim || die
+			popd > /dev/null
+			# wrapper for starting the app
+			dodir /usr/bin
+			echo "#!/usr/bin/env bash" > "${ED}"/usr/bin/gvim
+			echo "open "${EPREFIX}"/Applications/Gentoo/Vim.app \$@" >> "${ED}"/usr/bin/gvim
+			chmod 755 "${ED}"/usr/bin/gvim
+		else
+			dobin src/gvim
+		fi
 		dosym gvim /usr/bin/gvimdiff
 		dosym gvim /usr/bin/evim
 		dosym gvim /usr/bin/eview
