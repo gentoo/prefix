@@ -1935,7 +1935,6 @@ eant() {
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
 	debug-print "Calling ant (GENTOO_VM: ${GENTOO_VM}): ${antflags} ${@}"
-	echo "Calling ant (GENTOO_VM: ${GENTOO_VM}): ${antflags} ${@}"
 	ant ${antflags} "${@}" || die "eant failed"
 }
 
