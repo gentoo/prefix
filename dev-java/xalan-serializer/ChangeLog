@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/xalan-serializer
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.5 2007/11/25 14:42:50 opfer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.6 2008/06/27 08:05:15 ali_bush Exp $
+
+*xalan-serializer-2.7.1 (27 Jun 2008)
+
+  27 Jun 2008; Alistair Bush <ali_bush@gentoo.org>
+  +xalan-serializer-2.7.1.ebuild:
+  Version Bump #229029.
 
   25 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
   xalan-serializer-2.7.0.ebuild:
