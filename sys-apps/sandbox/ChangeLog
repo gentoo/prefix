@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/sandbox
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.88 2007/11/04 18:18:49 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.89 2008/06/27 16:44:42 robbat2 Exp $
+
+*sandbox-1.2.18.1-r3 (27 Jun 2008)
+
+  27 Jun 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/sandbox-1.2.18.1-rtld-validation.patch,
+  +sandbox-1.2.18.1-r3.ebuild:
+  Fix for bug #206678. Variations of it have been running on infra boxes for
+  two months now, we seem to have traced it down to RTLD_NEXT not always
+  having a usable value under hardened on new libc.
 
 *sandbox-1.2.20_alpha2-r1 (04 Nov 2007)
 
