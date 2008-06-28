@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20061015-r1.ebuild,v 1.2 2008/05/12 00:04:15 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20061015-r1.ebuild,v 1.3 2008/06/27 10:23:37 ulm Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ DEPEND="app-shells/tcsh
 	dev-lang/perl
 	media-libs/libpng
 	mpi? ( virtual/mpi )
-	X? ( virtual/motif )"
+	X? ( x11-libs/openmotif )"
 
 DEPEND="${RDEPEND}
 	sys-devel/pmake"
