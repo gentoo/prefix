@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.50 2008/06/24 13:40:50 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.51 2008/06/28 00:05:40 chtekk Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -93,8 +93,8 @@ distutils_src_install() {
 # @DESCRIPTION:
 # Generic pyc/pyo cleanup script. This function is exported.
 distutils_pkg_postrm() {
-	if [[ -z "${PYTHON_MODNAME}" &&\
-		-d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]]; then
+	if [ -z "${PYTHON_MODNAME}" ] && \
+	   [ -d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]; then
 		PYTHON_MODNAME=${PN}
 	fi
 
@@ -118,8 +118,8 @@ distutils_pkg_postrm() {
 # This is a generic optimization, you should override it if your package
 # installs things in another directory. This function is exported
 distutils_pkg_postinst() {
-	if [[ -z "${PYTHON_MODNAME}" &&\
-		-d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]]; then
+	if [ -z "${PYTHON_MODNAME}" ] && \
+	   [ -d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]; then
 		PYTHON_MODNAME=${PN}
 	fi
 
