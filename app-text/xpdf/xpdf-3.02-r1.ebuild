@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.3 2007/12/11 09:33:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.4 2008/06/27 10:04:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ IUSE="nodrm linguas_ar linguas_zh_CN linguas_zh_TW linguas_ru linguas_el
 linguas_he linguas_ja linguas_ko linguas_la linguas_th linguas_tr"
 
 RDEPEND=">=app-text/poppler-0.6.1
-	virtual/motif
+	x11-libs/openmotif
 	x11-libs/libX11
 	x11-libs/libXpm"
 DEPEND="${RDEPEND}
