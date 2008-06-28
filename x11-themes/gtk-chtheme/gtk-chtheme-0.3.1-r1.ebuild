@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/gtk-chtheme-0.3.1-r1.ebuild,v 1.3 2008/06/25 23:02:31 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/gtk-chtheme-0.3.1-r1.ebuild,v 1.6 2008/06/27 17:05:56 gentoofan23 Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit eutils toolchain-funcs
 
 DESCRIPTION="GTK-2.0 Theme Switcher"
 HOMEPAGE="http://plasmasturm.org/programs/gtk-chtheme/"
@@ -21,9 +21,11 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
 
 	# QA: stop Makefile from stripping the binaries
 	sed -i -e "s:strip:true:" "${S}"/Makefile || die "sed failed."
+	epatch "${FILESDIR}"/${P}-implicit.patch
 }
 
 src_compile() {
