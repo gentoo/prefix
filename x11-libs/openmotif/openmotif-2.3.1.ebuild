@@ -65,7 +65,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-2.3.0-freebsd-libiconv.patch"
-	epatch "${FILESDIR}"/${PN}-2.3.0-List.c-compile.patch
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
