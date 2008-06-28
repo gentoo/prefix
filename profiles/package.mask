@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8771 2008/06/26 01:53:25 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8772 2008/06/27 19:59:21 dertobi123 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -385,17 +385,6 @@ dev-lisp/stumpwm-cvs
 # Masked for removal in 30 days due to licensing issues.
 # See bug #218288 for more information
 media-fonts/sharefonts
-
-# Tobias Scherbaum <dertobi123@gentoo.org> (27 Apr 2008)
-# Nagios-3 with changed install paths, masked for testing.
-=net-analyzer/nagios-plugins-1.4.11-r102
-=net-analyzer/nagios-plugins-1.4.12-r100
->=net-analyzer/nagios-nsca-2.7.2-r100
->=net-analyzer/nagios-3.0.1
->=net-analyzer/nagios-core-3.0.1
->=net-analyzer/nagios-nrpe-2.12-r101
->=net-analyzer/nagios-imagepack-1.0-r100
-=net-analyzer/ndoutils-1.4_beta7-r1
 
 # Ulrich Mueller <ulm@gentoo.org> (27 Apr 2008)
 # CVS snapshot, bug 219449.
