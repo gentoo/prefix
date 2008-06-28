@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.49 2008/05/12 20:35:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.50 2008/06/27 10:00:14 ulm Exp $
+
+  27 Jun 2008; Ulrich Mueller <ulm@gentoo.org> xdvik-22.84.10.ebuild:
+  Change dependency from virtual/motif to x11-libs/openmotif, bug 224749.
 
   12 May 2008; nixnut <nixnut@gentoo.org> xdvik-22.84.10.ebuild:
   Stable on ppc wrt bug 220651
