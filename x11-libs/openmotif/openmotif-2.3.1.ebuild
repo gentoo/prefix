@@ -75,6 +75,7 @@ src_unpack() {
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
 
+	export AT_M4DIR=.
 	eautoconf
 	eautomake
 }
