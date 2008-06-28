@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/m2crypto
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.33 2008/06/21 15:04:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.34 2008/06/27 11:04:46 hawking Exp $
+
+  27 Jun 2008; Ali Polatel <hawking@gentoo.org>
+  +files/m2crypto-0.18.2-resume_session.patch, m2crypto-0.18.2.ebuild:
+  Fixed resume_session test.
 
   21 Jun 2008; nixnut <nixnut@gentoo.org> m2crypto-0.16.ebuild:
   Stable on ppc wrt bug 228535
