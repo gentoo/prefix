@@ -14,7 +14,7 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
 IUSE="build static acl xattr"
 
 RDEPEND="!dev-libs/libarchive
