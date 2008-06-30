@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.8 2008/03/06 13:45:06 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p230.ebuild,v 1.3 2008/06/29 20:55:01 graaff Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.bz2
 	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="berkdb cjk debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
@@ -56,8 +56,7 @@ src_unpack() {
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-
-	epatch "${FILESDIR}/${PN}-1.8.6_p111-r13657.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6-revert-r15856.patch"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
