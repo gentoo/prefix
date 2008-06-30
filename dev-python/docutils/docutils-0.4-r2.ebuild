@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r2.ebuild,v 1.12 2008/02/04 15:28:03 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r2.ebuild,v 1.13 2008/06/29 10:36:49 tove Exp $
 
 EAPI="prefix"
 
@@ -96,7 +96,7 @@ src_install() {
 		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/readers
 		newins ${GLEP_SRC}/glepread.py glep.py || die "newins reader failed"
 		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/transforms
-		newins ${GLEP_SRC}/glepstrans.py gleps.py || "newins transform failed"
+		newins ${GLEP_SRC}/glepstrans.py gleps.py || die "newins transform failed"
 		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/writers
 		doins -r ${GLEP_SRC}/glep_html || die "doins writer failed"
 	fi

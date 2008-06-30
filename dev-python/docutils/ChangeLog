@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.79 2008/02/04 15:28:03 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.80 2008/06/29 10:36:49 tove Exp $
+
+  29 Jun 2008; Torsten Veller <tove@gentoo.org> docutils-0.3.7.ebuild,
+  docutils-0.4-r2.ebuild, docutils-0.4-r3.ebuild:
+  Add missing die: || "..." -> || die "..."
 
   04 Feb 2008; Ali Polatel <hawking@gentoo.org>
   -files/docutils-0.3.5-extramodules.patch, -docutils-0.3.5.ebuild,
