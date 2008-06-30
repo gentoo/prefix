@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/phylip
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.31 2008/03/17 01:56:13 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.32 2008/06/29 08:24:01 tove Exp $
+
+  29 Jun 2008; Torsten Veller <tove@gentoo.org> phylip-3.65-r1.ebuild,
+  phylip-3.66.ebuild, phylip-3.67.ebuild:
+  Add missing die: || "..." -> || die "..."
 
   17 Mar 2008; Kenneth Prugh <ken69267@gentoo.org> phylip-3.67.ebuild:
   amd64 stable, bug #207095

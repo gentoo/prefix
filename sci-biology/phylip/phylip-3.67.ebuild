@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/phylip-3.67.ebuild,v 1.5 2008/03/17 01:56:13 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/phylip-3.67.ebuild,v 1.6 2008/06/29 08:24:01 tove Exp $
 
 EAPI="prefix"
 
@@ -36,13 +36,13 @@ src_compile() {
 src_install() {
 	cd "${WORKDIR}/${P}"
 
-	dobin exe/* || "Failed to install programs."
+	dobin exe/* || die "Failed to install programs."
 
 	dodoc "${FILESDIR}"/README.Gentoo || die "Failed to install Gentoo notes."
 
-	dohtml phylip.html || "Failed to install HTML documentation index."
+	dohtml phylip.html || die "Failed to install HTML documentation index."
 	insinto /usr/share/doc/${PF}/html/doc
-	doins doc/* || "Failed to install HTML documentation."
+	doins doc/* || die "Failed to install HTML documentation."
 
 	insinto /usr/share/${PN}/fonts
 	doins fonts/* || die "Fonts installation failed."
