@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.55 2008/02/11 20:00:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.56 2008/06/29 04:06:58 darkside Exp $
+
+*libwmf-0.2.8.4-r1 (29 Jun 2008)
+
+  29 Jun 2008; Jeremy Olexa <darkside@gentoo.org> +libwmf-0.2.8.4-r1.ebuild:
+  Add code to to update /etc/gtk-2.0/gdk-pixbuf.loaders, copied from librsvg
+  ebuild. Bug #221919, thanks to Maciej Grela <thermal@o2.pl> for reporting
 
   11 Feb 2008; Raúl Porcel <armin76@gentoo.org> libwmf-0.2.8.4.ebuild:
   Remove jpeg USE-flag since it's not supposed to build without it, bug #146680
