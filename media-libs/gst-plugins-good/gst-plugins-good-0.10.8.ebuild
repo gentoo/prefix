@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.7.ebuild,v 1.2 2008/06/29 15:36:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.8.ebuild,v 1.2 2008/06/29 15:36:01 drac Exp $
 
 EAPI="prefix"
 
@@ -15,33 +15,30 @@ LICENSE="LGPL-2.1"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND=">=media-libs/gst-plugins-base-0.10.17
-	 >=media-libs/gstreamer-0.10.17
-	 >=dev-libs/liboil-0.3.6"
+RDEPEND=">=media-libs/gst-plugins-base-0.10.18
+	 >=media-libs/gstreamer-0.10.18
+	 >=dev-libs/liboil-0.3.8"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11.5
-	>=dev-util/pkgconfig-0.9
+	dev-util/pkgconfig
 	!<media-libs/gst-plugins-bad-0.10.6"
 
 # overrides the eclass
 src_unpack() {
 	unpack ${A}
+	# Required for FreeBSD sane .so versioning
+	elibtoolize
 }
 
 src_compile() {
-	elibtoolize
-
 	# gst doesnt handle optimisations well
 	strip-flags
 	replace-flags "-O3" "-O2"
 	filter-flags "-fprefetch-loop-arrays" # see bug 22249
-	if use alpha || use amd64 || use ia64 || use hppa; then
-		append-flags -fPIC
-	fi
 
 	gst-plugins-good_src_configure
 
-	emake || die
+	emake || die "emake failed."
 }
 
 # override eclass
@@ -54,10 +51,10 @@ DOCS="AUTHORS README RELEASE"
 pkg_postinst () {
 	gnome2_pkg_postinst
 
-	echo ""
+	echo
 	elog "The Gstreamer plugins setup has changed quite a bit on Gentoo,"
 	elog "applications now should provide the basic plugins needed."
-	elog ""
+	echo
 	elog "The new seperate plugins are all named 'gst-plugins-<plugin>'."
 	elog "To get a listing of currently available plugins execute 'emerge -s gst-plugins-'."
 	elog "In most cases it shouldn't be needed though to emerge extra plugins."
