@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.1.ebuild,v 1.4 2008/04/12 13:48:12 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.3-r1.ebuild,v 1.1 2008/06/29 22:34:34 eva Exp $
 
 EAPI="prefix"
 
@@ -8,11 +8,10 @@ inherit virtualx eutils gnome2
 
 DESCRIPTION="A file manager for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/projects/nautilus/"
-SRC_URI="${SRC_URI} http://dev.gentoo.org/~leio/distfiles/${PN}-2.22.0-gentoo-patchset.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="beagle gnome tracker"
 
 RDEPEND=">=x11-libs/startup-notification-0.8
@@ -50,8 +49,10 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 
-	# Disable compilation with esound
-	epatch "${WORKDIR}/patches/13-no-esound.patch"
+	# bug #229719, #229723, #216391
+	epatch "${FILESDIR}/${P}-open-folder.patch"
+	epatch "${FILESDIR}/${P}-prevent-recursive-mvcp.patch"
+	epatch "${FILESDIR}/${P}-preserve-metadata.patch"
 }
 
 src_test() {
