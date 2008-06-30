@@ -24,6 +24,13 @@ RDEPEND=">=media-libs/freetype-2.1.8
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep

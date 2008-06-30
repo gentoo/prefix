@@ -1,0 +1,12 @@
+diff -ru poppler-0.8.3.orig/test/perf-test.cc poppler-0.8.3/test/perf-test.cc
+--- poppler-0.8.3.orig/test/perf-test.cc	2008-06-30 09:17:38 +0200
++++ poppler-0.8.3/test/perf-test.cc	2008-06-30 09:18:22 +0200
+@@ -298,6 +298,8 @@
+ {
+ #ifdef WIN32
+     Sleep((DWORD)milliseconds);
++#elif defined(__INTERIX)
++	usleep(milliseconds * 1000);
+ #else
+     struct timespec tv;
+     int             secs, nanosecs;
