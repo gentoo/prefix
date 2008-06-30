@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0-r1.ebuild,v 1.2 2008/05/05 00:56:23 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0-r1.ebuild,v 1.3 2008/06/29 22:54:25 eva Exp $
 
 EAPI="prefix"
 
@@ -36,4 +36,8 @@ src_unpack() {
 
 	eautoreconf # need new libtool for interix
 	#elibtoolize ${ELTCONF}
+}
+
+src_compile() {
+	gnome2_src_compile --localstatedir="${EPREFIX}"/var
 }
