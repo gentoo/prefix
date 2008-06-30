@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.hungry.com/pub/hungry/chrpath/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE=""
 
 src_install() {
