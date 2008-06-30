@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4-r1.ebuild,v 1.9 2008/01/10 09:26:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4-r1.ebuild,v 1.10 2008/06/29 10:46:16 tove Exp $
 
 EAPI="prefix"
 
@@ -121,7 +121,7 @@ src_install() {
 	doins "${FILESDIR}"/prompt_gentoo_setup || die
 
 	# install miscellaneous scripts; bug #54520
-	sed -i -e "s:/usr/local:${EPREFIX}/usr:g" {Util,Misc}/* || "sed failed"
+	sed -i -e "s:/usr/local:${EPREFIX}/usr:g" {Util,Misc}/* || die "sed failed"
 	insinto /usr/share/zsh/${PV%_*}/Util
 	doins Util/* || die "doins Util scripts failed"
 	insinto /usr/share/zsh/${PV%_*}/Misc
