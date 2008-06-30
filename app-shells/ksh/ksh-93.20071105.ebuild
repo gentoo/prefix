@@ -18,7 +18,7 @@ SRC_URI="nls? ( mirror://gentoo/ast-ksh-locale.${LOCALE_RELEASE}.tgz )
 
 LICENSE="CPL-1.0"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~sparc64-solaris"
 IUSE="nls"
 
 DEPEND="!app-shells/pdksh"
