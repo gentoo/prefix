@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.121 2008/06/21 21:13:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.122 2008/06/29 15:39:55 betelgeuse Exp $
+
+  29 Jun 2008; Petteri Räty <betelgeuse@gentoo.org>
+  xulrunner-1.8.1.14.ebuild, xulrunner-1.9-r2.ebuild:
+  Call java-pkg-opt-2_pkg_setup in pkg_setup to fix bug #228715.
 
   21 Jun 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.14.ebuild:
   Add check for pango and cairo to be built with X, bug #228801

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.8.1.14.ebuild,v 1.7 2008/06/21 21:13:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.8.1.14.ebuild,v 1.8 2008/06/29 15:39:55 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -50,6 +50,7 @@ pkg_setup(){
 		eerror "Please add 'X' to your USE flags, and re-emerge pango."
 		die "Pango needs X"
 	fi
+	java-pkg-opt-2_pkg_setup
 }
 
 src_unpack() {
