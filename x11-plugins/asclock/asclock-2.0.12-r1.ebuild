@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/asclock-2.0.12-r1.ebuild,v 1.5 2006/12/08 00:01:45 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/asclock-2.0.12-r1.ebuild,v 1.6 2008/06/29 13:47:54 drac Exp $
 
 EAPI="prefix"
 
@@ -58,7 +58,7 @@ src_install() {
 	insinto ${themesdir}
 	doins -r themes/*
 	dodoc README README.THEMES TODO
-	cd "${ED}/${themesdir}"
+	cd "${ED}"/${themesdir}
 	rm -f Freeamp/Makefile{,.*}
 	ln -s classic default_theme
 }
