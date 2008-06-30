@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.86 2008/06/17 00:19:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.87 2008/06/29 11:02:14 klausman Exp $
+
+  29 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
+  darcs-1.1.0_pre1.ebuild:
+  Keyworded on alpha, bug #227677
 
   17 Jun 2008; Jeroen Roovers <jer@gentoo.org> darcs-1.0.9.ebuild,
   darcs-1.1.0_pre1.ebuild:
