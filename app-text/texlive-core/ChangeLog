@@ -1,6 +1,22 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.60 2008/05/13 21:23:32 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.64 2008/06/29 19:01:38 opfer Exp $
+
+  29 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  texlive-core-2007-r13.ebuild:
+  stable x86, bug 229993
+
+  29 Jun 2008; Markus Rothe <corsair@gentoo.org>
+  texlive-core-2007-r13.ebuild:
+  Stable on ppc64; bug #229993
+
+  29 Jun 2008; Ferris McCormick <fmccor@gentoo.org>
+  texlive-core-2007-r13.ebuild:
+  Sparc stable, Bug #229993, good over a month now.
+
+  29 Jun 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r12.ebuild, texlive-core-2007-r13.ebuild:
+  block dev-tex/dvi2tty, they collide
 
 *texlive-core-2007-r13 (13 May 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r13.ebuild,v 1.1 2008/05/13 21:23:32 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r13.ebuild,v 1.5 2008/06/29 19:01:38 opfer Exp $
 
 EAPI="prefix"
 
@@ -58,6 +58,7 @@ RDEPEND="${MODULAR_X_DEPEND}
 	!app-text/xetex
 	!dev-tex/xmltex
 	!dev-tex/vntex
+	!dev-tex/dvi2tty
 	sys-libs/zlib
 	>=media-libs/libpng-1.2.1
 	=media-libs/freetype-2*
