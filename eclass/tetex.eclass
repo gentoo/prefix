@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.56 2008/05/12 15:24:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.57 2008/06/28 20:02:39 grobian Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -148,13 +148,6 @@ tetex_src_compile() {
 		$(use_with X x) \
 		${xdvik} \
 		${TETEX_ECONF} || die
-
-	# dubious, but I'll let it in for now (grobian)
-	if useq X && useq ppc-macos ; then
-		for f in $(find ${S} -name config.status) ; do
-			sed -i -e "s:-ldl::g" $f
-		done
-	fi
 
 	emake -j1 CC="$(tc-getCC)" CXX="$(tc-getCXX)" texmf=${EPREFIX}${TEXMF_PATH:-/usr/share/texmf} || die "make teTeX failed"
 }

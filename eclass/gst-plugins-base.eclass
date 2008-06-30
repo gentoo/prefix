@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.8 2007/11/17 12:17:50 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.9 2008/06/29 14:49:31 drac Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -31,7 +31,7 @@ MY_P=${MY_PN}-${PV}
 # update: no configure option tests, remove when 0.10.15 is only version in
 # tree. -drac
 my_gst_plugins_base="x xvideo xshm gst_v4l gst_v4l2 alsa cdparanoia gnome_vfs
-libvisual ogg oggtest theora vorbis vorbistest tests examples freetypetest pango"
+gio libvisual ogg oggtest theora vorbis vorbistest tests examples freetypetest pango"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-base/${MY_P}.tar.bz2"

@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.16 2008/03/20 23:21:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.17 2008/06/28 19:57:40 grobian Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -84,9 +84,6 @@ newpamsecurity() {
 getpam_mod_dir() {
 	if has_version sys-libs/pam || has_version sys-libs/openpam; then
 		PAM_MOD_DIR=/$(get_libdir)/security
-	elif use ppc-macos; then
-		# OSX looks there for pam modules
-		PAM_MOD_DIR=/usr/lib/pam
 	else
 		# Unable to find PAM implementation... defaulting
 		PAM_MOD_DIR=/$(get_libdir)/security
