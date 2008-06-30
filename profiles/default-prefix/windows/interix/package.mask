@@ -1,15 +1,20 @@
 # $Header: $
 
-# <mduft@gentoo.org> (05 May 2008)
+# Markus Duft <mduft@gentoo.org> (30 Jun 2008)
+# fails building documentation with it's own utilities
+# if there is no existing texi2dvi installed (#230141)
+=sys-apps/texinfo-4.12
+
+# Markus Duft <mduft@gentoo.org> (05 May 2008)
 # Does not build with the slang interface, and
 # somebody removed the use flag for ncurses (bug #220365)
 >=app-misc/mc-4.6.2_pre1
 
-# <mduft@gentoo.org> (05 May 2008)
+# Markus Duft <mduft@gentoo.org> (05 May 2008)
 # Does not build on interix (lots of unresolved
 # symbols which should be local...).
 =app-antivirus/clamav-0.93
 
-# <haubi@gentoo.org> (18 Mar 2008)
+# Michael Haubenwallner <haubi@gentoo.org> (18 Mar 2008)
 # Interix patches not working yet (mduft)
 >=sys-devel/gcc-4.3.0
