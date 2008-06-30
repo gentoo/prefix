@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/linkers-and-loaders-1.ebuild,v 1.1 2008/06/21 15:53:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/linkers-and-loaders-1.ebuild,v 1.2 2008/06/28 15:26:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,8 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
 RESTRICT="mirror"
 
-DEPEND=""
+RDEPEND=""
+DEPEND="app-arch/lzma-utils"
 
 S=${WORKDIR}
 
