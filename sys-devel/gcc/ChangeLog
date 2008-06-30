@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.655 2008/06/22 11:03:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.656 2008/06/29 16:51:31 bluebird Exp $
+
+  29 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> gcc-4.3.1.ebuild:
+  Added ~sparc keyword
 
   22 Jun 2008; Mike Frysinger <vapier@gentoo.org> gcc-3.2.2.ebuild:
   Move patches out of $FILESDIR and into patch tarball.
