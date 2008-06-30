@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.187 2008/06/20 10:11:02 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.189 2008/06/29 17:50:00 dirtyepic Exp $
+
+*freetype-2.3.7 (29 Jun 2008)
+
+  29 Jun 2008; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.3.7.ebuild:
+  Version bump. Mostly fixes for regressions in 2.3.6.
+
+  29 Jun 2008; Torsten Veller <tove@gentoo.org>
+  freetype-1.4_pre20080316.ebuild:
+  Add missing die: || "..." -> || die "..."
 
 *freetype-2.3.6-r1 (20 Jun 2008)
 
