@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/aegis
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/aegis/ChangeLog,v 1.23 2008/01/27 10:15:36 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/aegis/ChangeLog,v 1.24 2008/06/30 01:43:53 darkside Exp $
+
+*aegis-4.24 (30 Jun 2008)
+
+  30 Jun 2008; Jeremy Olexa <darkside@gentoo.org> -aegis-4.9.ebuild,
+  -aegis-4.11.ebuild, -aegis-4.16.ebuild, aegis-4.19.ebuild,
+  +aegis-4.24.ebuild:
+  Version bump, bug #119377. Also fix bug #221421 wrt runtime-deps in 4.19.
+  AND, remove old versions
 
   27 Jan 2008; Fabian Groffen <grobian@gentoo.org> aegis-4.9.ebuild,
   aegis-4.19.ebuild:
