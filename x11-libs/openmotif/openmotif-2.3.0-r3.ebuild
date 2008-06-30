@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r3.ebuild,v 1.9 2008/06/27 11:17:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0-r3.ebuild,v 1.10 2008/06/29 12:39:13 ulm Exp $
 
 EAPI="prefix"
 
@@ -33,8 +33,6 @@ RDEPEND="!x11-libs/motif-config
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	x11-misc/xbitmaps"
-
-PROVIDE="virtual/motif"
 
 pkg_setup() {
 	# clean up orphaned cruft left over by motif-config

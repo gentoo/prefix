@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.ebuild,v 1.1 2008/06/27 11:17:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.ebuild,v 1.2 2008/06/28 08:46:27 ulm Exp $
 
 EAPI="prefix"
 
@@ -64,7 +64,12 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# fix linking problem on FreeBSD, bug 219040
 	epatch "${FILESDIR}/${PN}-2.3.0-freebsd-libiconv.patch"
+
+	# add missing conditional for USE=-xft, bug 229779
+	epatch "${FILESDIR}/${P}-XmRenderT-no-xft.patch"
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
