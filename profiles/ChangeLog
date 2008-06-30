@@ -1,10 +1,46 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1620 2008/06/27 19:59:21 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1631 2008/06/29 20:32:30 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  29 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask sys-fs/trustees for removal in 30 days. bug #105919
+
+  29 Jun 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Mask gst-plugins-opengl for removal since it's disappeared from upstream
+  gstreamer packages.
+
+  29 Jun 2008; Alexis Ballier <aballier@gentoo.org> use.local.desc:
+  remoteosd useflag for vlc
+
+  29 Jun 2008; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Add use-flag shutdown_rewrite for media-video/vdr.
+
+  29 Jun 2008; Ulrich Mueller <ulm@gentoo.org> base/virtuals,
+  embedded/virtuals:
+  Remove virtual/motif from profiles, bug 224749.
+
+  29 June 2008; Thomas Anderson <gentoofan23@gentoo.org> use.local.desc:
+  Remove 'pipe' USE flag for net-im/jabberd2, see bug #229935 for
+  background information.
+
+  29 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask <app-pda/synce-rra-0.9.1-r1 for removal in 30 days. bug #224911
+
+  29 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-benchmarks/acovea-4.0.0 for removal in 30 days, bug #226517
+
+  29 Jun 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-util/gambas:1, bug #157670
+
+  28 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  bincimap-1.3.* has been removed, #208668
+
+  28 Jun 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added xerces-c beta to p.mask
 
   27 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
   Unmask nagios-3

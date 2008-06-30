@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8772 2008/06/27 19:59:21 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8780 2008/06/29 20:32:30 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,37 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
+# Masked for removal in 30 days. Only works with kernels <2.6.24. See HOMEPAGE
+# for details or bug #105919. Going forward this needs to be compiled into the
+# kernel.
+sys-fs/trustees
+
+# Samuli Suominen <drac@gentoo.org> (29 Jun 2008)
+# Masked for removal since it seems to have disappeared
+# from upstream -bad, -good, -ugly or -base packages.
+media-plugins/gst-plugins-opengl
+
+# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
+# Removal in ~30 days. Only keep the latest version in the tree. 
+# Fixes bug #224911. Please comment on bug if you need an older version.
+<app-pda/synce-rra-0.9.1-r1
+
+# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
+# Doesn't compile, removal in ~30 days. Later version in tree works.
+# See bug #226517.
+=app-benchmarks/acovea-4.0.0
+
+# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
+# Upstram doesn't support old version and we have the latest version in the 
+# tree now. Remove in ~30 days. If you have a good reason to why we should keep
+# the old versions please comment on bug #157670.
+<=dev-util/gambas-1.0.17
+
+# Tiziano Müller <dev-zero@gentoo.org> (28 Jun 2008)
+# Masked for testing
+=dev-libs/xerces-c-3.0*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (25 Jun 2008)
 # Upstream seems inactive and the game is unplayable on modern systems.
@@ -1578,11 +1609,6 @@ dev-db/pgcluster
 # <dragonheart@gentoo.org> (04 Dec 2004)
 # Bug #70529 indicates problems with configuration file reading
 ~dev-libs/log4c-1.0.12
-
-# <nakano@gentoo.org> (28 Nov 2004)
-# bincima-1.3* are beta versions for testing purposes,
-# probably very unstable.
-=net-mail/bincimap-1.3*
 
 # <mkennedy@gentoo.org> (08 Aug 2004)
 # won't build for now

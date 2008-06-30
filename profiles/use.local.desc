@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3608 2008/06/27 18:00:44 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3611 2008/06/29 14:12:58 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1366,6 +1366,7 @@ media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
 media-video/vdr:settime - set system time per script instead of via syscal
 media-video/vdr:setup - Enable support for the plugin vdr-setup
 media-video/vdr:setup-plugin - Enable support for the plugin vdr-setup
+media-video/vdr:shutdown_rewrite - use rewritten shutdown code from vdr-1.5
 media-video/vdr:sortrecords - allows to change sort order of recordings
 media-video/vdr:sourcecaps - Adds the ability to define capabilities of dvb-cards (e.g. card1 can receive Sat @28.2E)
 media-video/vdr:submenu - Enable support for the plugin vdr-submenu.
@@ -1391,6 +1392,7 @@ media-video/vlc:id3tag - Enables id3tag metadata reader plugin.
 media-video/vlc:live - Enables LIVE.com support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
 media-video/vlc:pvr - Enables PVR cards access module.
+media-video/vlc:remoteosd - Enables RemoteOSD plugin (VNC client as video filter).
 media-video/vlc:rtsp - Enables real audio and RTSP modules.
 media-video/vlc:sdl-image - Enables sdl image video decoder (depends on sdl)
 media-video/vlc:shout - Enables libshout output.
@@ -1581,7 +1583,6 @@ net-im/gajim:xhtml - Enable XHTML support
 net-im/gnugadu:tlen - Enable Tlen.pl protocol support
 net-im/gossip:galago - Enable desktop presence with galago
 net-im/jabberd2:memdebug - Enable nad and pool debug
-net-im/jabberd2:pipe - Enable pipe auth
 net-im/kadu:amarok - Enables amarok support in kadu
 net-im/kadu:config_wizard - Enables configuration wizard module
 net-im/kadu:extraicons - Enables extra icon sets
