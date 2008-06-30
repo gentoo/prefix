@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4-r1.ebuild,v 1.3 2007/12/01 17:20:47 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.3 2008/06/29 21:06:53 graaff Exp $
 
 EAPI="prefix"
 
@@ -8,70 +8,74 @@ inherit ruby
 
 DESCRIPTION="Centralized Ruby extension management system"
 HOMEPAGE="http://rubyforge.org/projects/rubygems/"
-LICENSE="Ruby"
+LICENSE="|| ( Ruby GPL-2 )"
 
 # Needs to be installed first
 RESTRICT="test"
 
 # The URL depends implicitly on the version, unfortunately. Even if you
 # change the filename on the end, it still downloads the same file.
-SRC_URI="http://rubyforge.org/frs/download.php/20989/${P}.tgz"
+SRC_URI="mirror://rubyforge/${PN}/${P}.tgz"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 SLOT="0"
-IUSE="doc server examples"
+IUSE="doc server"
+DEPEND=">=dev-lang/ruby-1.8"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
 
-PATCHES="${FILESDIR}/${PN}-0.9.1-no_post_install.patch
-	${FILESDIR}/no-system-rubygems.patch"
 USE_RUBY="ruby18"
 
 src_unpack() {
-	ruby_src_unpack
-	use doc || epatch "${FILESDIR}/${PN}-0.9.1-no_rdoc_install.patch"
-
-	# Delete mis-packaged . files
+	unpack ${A}
 	cd "${S}"
-	find -name '.*' -type f -print0|xargs -0 rm
+
+	epatch "${FILESDIR}/${P}-setup.patch"
 }
 
 src_compile() {
-	${RUBY} setup.rb config --libruby="/usr/$(get_libdir)/ruby" || die "setup.rb config failed"
-	${RUBY} setup.rb setup || die "setup.rb setup failed"
-}
-
-src_test() {
-	# Currently RESTRICTed because rubygems needs to be installed
-	# When I work out how to get around that I'll remove the RETRICT
-
-	#for i in test/{test,functional}*.rb; do
-	#	ruby -I pkgs/sources/lib/ -I lib ${i} # || die "$i failed"
-	#done
-	ruby setup.rb test || die "test failed"
+	# Allowing ruby_src_compile would be bad with the new setup.rb
+	:
 }
 
 src_install() {
 	# RUBYOPT=-rauto_gem without rubygems installed will cause ruby to fail, bug #158455
 	export RUBYOPT="${GENTOO_RUBYOPT}"
 
-	# Fix GEM_HOME to install sources.gem
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
-	export GEM_HOME="${ED}usr/$(get_libdir)/ruby/gems/${ver}"
 
-	${RUBY} setup.rb install --prefix=${D} || die "setup.rb install failed"
-	erubydoc
-	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
-	keepdir /usr/$(get_libdir)/ruby/gems/$ver/doc
-	doenvd "${FILESDIR}/10rubygems"
+	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting sandbox,
+	# bug #202109
+	export GEM_HOME="${ED}/usr/$(get_libdir)/ruby/gems/${ver}"
+	keepdir /usr/$(get_libdir)/ruby/gems/$ver/{doc,gems,cache,specifications}
+
+	myconf=""
+	if ! use doc; then
+		myconf="${myconf} --no-ri"
+		myconf="${myconf} --no-rdoc"
+	fi
+
+	${RUBY} setup.rb $myconf --prefix="${D}" || die "setup.rb install failed"
+
+	dosym gem18 /usr/bin/gem || die "dosym gem failed"
+
+	dodoc README || die "dodoc README failed"
+
+	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
+	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
 
 	if use server; then
-		newinitd "${FILESDIR}/init.d-gem_server" gem_server
-		newconfd "${FILESDIR}/conf.d-gem_server" gem_server
+		newinitd "${FILESDIR}/init.d-gem_server2" gem_server || die "newinitd failed"
+		newconfd "${FILESDIR}/conf.d-gem_server" gem_server || die "newconfd failed"
 	fi
 }
 
 pkg_postinst()
 {
+	SOURCE_CACHE="${EPREFIX}/usr/$(get_libdir)/ruby/gems/$ver/source_cache"
+	if [[ -e "${SOURCE_CACHE}" ]]; then
+		rm "${SOURCE_CACHE}"
+	fi
+
 	ewarn "If you have previously switched to using ruby18_with_gems using ruby-config, this"
 	ewarn "package has removed that file and makes it unnecessary anymore."
 	ewarn "Please use ruby-config to revert back to ruby18."

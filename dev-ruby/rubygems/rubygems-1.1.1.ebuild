@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.1.ebuild,v 1.1 2008/04/11 06:55:49 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.1.1.ebuild,v 1.5 2008/06/29 21:18:48 bluebird Exp $
 
 EAPI="prefix"
 
@@ -30,11 +30,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-setup.patch"
-
-	# Delete mis-packaged . files
-	cd "${S}"
-	find -name '.*' -type f -print0|xargs -0 rm
-
 }
 
 src_compile() {
@@ -69,7 +64,7 @@ src_install() {
 	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
 
 	if use server; then
-		newinitd "${FILESDIR}/init.d-gem_server" gem_server || die "newinitd failed"
+		newinitd "${FILESDIR}/init.d-gem_server2" gem_server || die "newinitd failed"
 		newconfd "${FILESDIR}/conf.d-gem_server" gem_server || die "newconfd failed"
 	fi
 }

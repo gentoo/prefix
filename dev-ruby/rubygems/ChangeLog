@@ -1,6 +1,34 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.90 2008/04/11 07:00:30 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.96 2008/06/29 21:18:48 bluebird Exp $
+
+  29 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> rubygems-1.1.1.ebuild:
+  Stable on sparc, bug #229875
+
+  29 Jun 2008; Hans de Graaff <graaff@gentoo.org> +files/init.d-gem_server2,
+  rubygems-1.1.1.ebuild, rubygems-1.2.0.ebuild:
+  The syntax to start the gem server has changed slightly, as reflected in the
+  updated init.d file, fixing a problem reported in #229875.
+
+  29 Jun 2008; Hans de Graaff <graaff@gentoo.org> rubygems-0.9.4-r2.ebuild,
+  rubygems-1.1.1.ebuild, rubygems-1.2.0.ebuild:
+  The distribution no longer contains dot files, so remove the (broken) find.
+  Thanks to Henning Schild in #229897 for finding this.
+
+  28 Jun 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  rubygems-1.1.1.ebuild:
+  stable amd64, bug 229875
+
+  28 Jun 2008; Hans de Graaff <graaff@gentoo.org> -rubygems-0.9.4.ebuild,
+  -rubygems-0.9.4-r1.ebuild:
+  Remove old versions
+
+*rubygems-1.2.0 (28 Jun 2008)
+
+  28 Jun 2008; Hans de Graaff <graaff@gentoo.org>
+  +files/rubygems-1.2.0-setup.patch, +rubygems-1.2.0.ebuild:
+  Version bump. Thanks to Greg Fitzgerald for providing an updated patch in
+  #229327.
 
   11 Apr 2008; Richard Brown <rbrown@gentoo.org> rubygems-1.1.0.ebuild:
   Revert erroneous commit to rubygems-1.1.0.ebuild
