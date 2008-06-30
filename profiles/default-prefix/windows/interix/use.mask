@@ -21,7 +21,8 @@ divx4linux
 djbfft
 dri
 dvdr
-emacs # missing implementation for unexec()
+# missing implementation for unexec()
+emacs
 emul-linux-x86
 fbcon
 fdftk
@@ -44,7 +45,8 @@ lm_sensors
 matrox
 netboot
 old-linux
-on-the-fly-crypt  # requires device-mapper
+# requires device-mapper
+on-the-fly-crypt
 opengl
 oss
 pcmcia
@@ -55,7 +57,8 @@ scanner
 smartcard
 svga
 uclibc
-unicode #  totally b0rked on interix
+#  totally b0rked on interix
+unicode
 usb
 voodoo3
 pvm
@@ -70,10 +73,12 @@ flac
 jack
 joystick
 ladspa
-openmp # not working yet on interix
+# not working yet on interix
+openmp
 portaudio
 pulseaudio
 qt3
 qt4
-tiff # libtiff only static, so avoid this!
+# libtiff only static, so avoid this!
+tiff
 timidity
