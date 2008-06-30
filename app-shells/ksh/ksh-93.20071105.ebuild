@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs autotools
 
 RELEASE="2007-11-05"
 LOCALE_RELEASE="2007-11-05"
@@ -41,6 +41,9 @@ src_unpack() {
 
 	# `package read` will unpack any tarballs put in place.
 	${S}/bin/package read || die
+
+  epatch "${FILESDIR}"/${PN}-prefix.patch
+  eprefixify src/cmd/ksh93/data/msg.c
 }
 
 src_compile() {
