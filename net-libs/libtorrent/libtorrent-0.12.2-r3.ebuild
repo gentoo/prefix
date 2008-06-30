@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.2-r2.ebuild,v 1.1 2008/06/05 06:41:55 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.2-r3.ebuild,v 1.1 2008/06/28 11:34:22 loki_val Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-dht_bounds_fix.patch
 	epatch "${FILESDIR}"/${P}-fix_cull.patch
 	epatch "${FILESDIR}"/${P}-fix_dht_target.patch
+	epatch "${FILESDIR}"/${P}-fix_have_timer.patch
+	epatch "${FILESDIR}"/${P}-fix_pex_leak.patch
+	epatch "${FILESDIR}"/${P}-fix_write_datagram.patch
 	epatch "${FILESDIR}"/${P}-lt-ver.patch
 	epatch "${FILESDIR}"/${P}-tracker_timer_fix.patch
+
 	elibtoolize #Don't remove
 	eautoreconf
 }
@@ -42,6 +46,7 @@ src_compile() {
 	econf \
 		$(use_enable debug) \
 		$(use_enable ipv6) \
+		--enable-aligned \
 		--enable-static \
 		--enable-shared \
 		--disable-dependency-tracking \
