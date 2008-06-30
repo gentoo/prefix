@@ -10,7 +10,7 @@ inherit vim-plugin
 DESCRIPTION="vim plugin: easy commenting of code for many filetypes."
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1218"
 LICENSE="public-domain"
-KEYWORDS="~x86-linux ~x86-macos"
+KEYWORDS="~x86-linux ~x86-macos ~sparc64-solaris"
 IUSE=""
 
 VIM_PLUGIN_HELPFILES="NERD_commenter"
