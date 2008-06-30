@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/commons-lang
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.51 2008/03/05 19:50:19 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.52 2008/06/29 21:55:58 betelgeuse Exp $
+
+*commons-lang-2.4 (29 Jun 2008)
+
+  29 Jun 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +commons-lang-2.4.ebuild:
+  Version bump. Fixes bug #228749.
 
   05 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
   commons-lang-2.0-r2.ebuild:
