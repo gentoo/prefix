@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/pbzip2
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.42 2007/11/27 14:28:12 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.43 2008/06/28 08:54:08 wolf31o2 Exp $
+
+*pbzip2-1.0.2-r1 (28 Jun 2008)
+
+  28 Jun 2008; Chris Gianelloni <wolf31o2@gentoo.org> pbzip2-1.0.1.ebuild,
+  +pbzip2-1.0.2-r1.ebuild:
+  Revision bump to add a pbunzip2 link. Thanks to Santiago M. Mola
+  <coldwind@gentoo.org> for pointing it out. Closing bug #220271.
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org> pbzip2-1.0.2.ebuild:
   alpha/ia64/sparc stable wrt #198599
