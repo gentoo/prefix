@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.10.ebuild,v 1.4 2008/05/29 16:14:52 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.12.ebuild,v 1.1 2008/06/29 19:07:05 drac Exp $
 
 EAPI="prefix"
 
@@ -32,9 +32,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.10.9-lazy.patch
 
-	# disable pyc compiling
-	mv py-compile py-compile.orig
-	ln -s $(type -P true) py-compile
+	rm -f py-compile || die "rm failed."
+	ln -s $(type -P true) py-compile || die "ln failed."
 
 	AT_M4DIR="common/m4" eautoreconf
 }
@@ -51,6 +50,7 @@ src_install() {
 
 pkg_postinst() {
 	python_version
+	python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/pygst.py
 	python_mod_optimize	/usr/$(get_libdir)/python${PYVER}/site-packages/gst-0.10
 }
 
