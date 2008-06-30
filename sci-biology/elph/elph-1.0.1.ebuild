@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/elph/elph-1.0.1.ebuild,v 1.2 2008/02/07 14:48:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/elph/elph-1.0.1.ebuild,v 1.3 2008/06/29 08:25:29 tove Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ src_compile() {
 }
 
 src_install() {
-	dobin elph || "Failed to install program."
+	dobin elph || die "Failed to install program."
 	cd "${WORKDIR}"/ELPH
 	dodoc VERSION || die "Documentation installation failed."
 	newdoc Readme.ELPH README || die "Readme installation failed."
