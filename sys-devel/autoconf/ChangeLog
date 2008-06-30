@@ -1,6 +1,16 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.119 2008/06/23 16:04:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.120 2008/06/29 23:12:05 vapier Exp $
+
+*autoconf-2.62-r1 (29 Jun 2008)
+
+  29 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/autoconf-2.62-at-keywords.patch,
+  +files/autoconf-2.62-fix-multiline-string.patch,
+  +files/autoconf-2.62-revert-AC_C_BIGENDIAN.patch,
+  +autoconf-2.62-r1.ebuild:
+  Add workarounds for nasty bugs #217976 (multiline problems) and #228825
+  (big endian misdetection on ppc).
 
   23 Jun 2008; Jeroen Roovers <jer@gentoo.org> autoconf-2.61-r2.ebuild:
   Stable for HPPA (bug #227603).
