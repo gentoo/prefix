@@ -17,7 +17,7 @@ SRC_URI="http://www.cython.org/${MY_P}.zip"
 
 LICENSE="PSF-2.4"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="doc examples"
 
 DEPEND="app-arch/unzip"
