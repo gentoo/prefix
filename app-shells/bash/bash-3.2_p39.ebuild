@@ -150,6 +150,7 @@ src_compile() {
 		export ac_cv_header_inttypes_h=no
 		export gt_cv_header_inttypes_h=no
 		export jm_ac_cv_header_inttypes_h=no
+		append-flags -D_ALL_SOURCE
 	fi
 
 	econf \
