@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/pyopenssl/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x64-solaris"
 IUSE="doc"
 
 RDEPEND="dev-lang/python
