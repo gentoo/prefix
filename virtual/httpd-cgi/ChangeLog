@@ -1,0 +1,18 @@
+# ChangeLog for virtual/httpd-cgi
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/virtual/httpd-cgi/ChangeLog,v 1.4 2008/01/06 18:42:16 wltjr Exp $
+
+  06 Jan 2008; William L. Thomson Jr. <wltjr@gentoo.org> httpd-cgi-0.ebuild:
+  Dropped www-servers/jetty since it is getting masked.
+
+  20 Oct 2007; <wrobel@gentoo.org> Manifest:
+  Update digest to finalize import.
+
+  20 Oct 2007; <wrobel@gentoo.org> +metadata.xml, +httpd-cgi-0.ebuild:
+  Update digest to finalize import.
+
+*httpd-cgi-0 (20 Oct 2007)
+
+  20 Oct 2007; <wrobel@gentoo.org> +metadata.xml, +httpd-cgi-0.ebuild:
+  Finally adding virtual/httpd-cgi to close #11007.
+
