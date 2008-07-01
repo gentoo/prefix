@@ -140,6 +140,15 @@ bootstrap_setup() {
 		i386-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/x86"
 			;;
+		x86_64-pc-solaris2.11)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/x64"
+			;;
+		sparc-sun-solaris2.11)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/sparc"
+			;;
+		sparcv9-sun-solaris2.11)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/sparc64"
+			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			;;
