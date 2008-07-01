@@ -1,0 +1,34 @@
+http://lists.gnu.org/archive/html/bug-texinfo/2008-07/msg00000.html
+
+diff -ru texinfo-4.12.orig/doc/Makefile.am texinfo-4.12/doc/Makefile.am
+--- texinfo-4.12.orig/doc/Makefile.am	2008-03-25 16:31:36.000000000 +0100
++++ texinfo-4.12/doc/Makefile.am	2008-07-01 13:18:19.000000000 +0200
+@@ -115,10 +115,10 @@
+ 	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to DVI" $(util_srcdir)/texi2dvi >$@
+ 
+ $(srcdir)/texi2pdf.1: $(common_texi2dvi_deps)
+-	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/texi2pdf >$@
++	$(unset_envvars); PATH=$(util_srcdir):${PATH} $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/texi2pdf >$@
+ 
+ $(srcdir)/pdftexi2dvi.1:  $(common_texi2dvi_deps)
+-	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/pdftexi2dvi >$@
++	$(unset_envvars); PATH=$(util_srcdir):${PATH} $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/pdftexi2dvi >$@
+ 
+ # Do not create info files for distribution.
+ dist-info:
+diff -ru texinfo-4.12.orig/doc/Makefile.in texinfo-4.12/doc/Makefile.in
+--- texinfo-4.12.orig/doc/Makefile.in	2008-04-18 09:34:57.000000000 +0200
++++ texinfo-4.12/doc/Makefile.in	2008-07-01 13:18:47.000000000 +0200
+@@ -1101,10 +1101,10 @@
+ 	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to DVI" $(util_srcdir)/texi2dvi >$@
+ 
+ $(srcdir)/texi2pdf.1: $(common_texi2dvi_deps)
+-	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/texi2pdf >$@
++	$(unset_envvars); PATH=$(util_srcdir):${PATH} $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/texi2pdf >$@
+ 
+ $(srcdir)/pdftexi2dvi.1:  $(common_texi2dvi_deps)
+-	$(unset_envvars); $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/pdftexi2dvi >$@
++	$(unset_envvars); PATH=$(util_srcdir):${PATH} $(HELP2MAN) --name="convert Texinfo documents to PDF" $(util_srcdir)/pdftexi2dvi >$@
+ 
+ # Do not create info files for distribution.
+ dist-info:
