@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/~veillard/gamin/"
 SRC_URI="http://www.gnome.org/~veillard/gamin/sources/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug kernel_linux"
 
 RDEPEND=">=dev-libs/glib-2
