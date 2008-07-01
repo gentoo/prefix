@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2008; Fabian Groffen <grobian@gentoo.org>
+  windows/interix/package.mask:
+  Unmask texinfo-4.12, haubi fixed it (bug #230141)
+
   30 Jun 2008; Fabian Groffen <grobian@gentoo.org> windows/interix/use.mask:
   Do NOT put comments after entries in use.* Portage doesn't do what you would
   expect

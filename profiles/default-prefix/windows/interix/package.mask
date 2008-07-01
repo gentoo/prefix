@@ -1,10 +1,5 @@
 # $Header: $
 
-# Markus Duft <mduft@gentoo.org> (30 Jun 2008)
-# fails building documentation with it's own utilities
-# if there is no existing texi2dvi installed (#230141)
-=sys-apps/texinfo-4.12
-
 # Markus Duft <mduft@gentoo.org> (05 May 2008)
 # Does not build with the slang interface, and
 # somebody removed the use flag for ncurses (bug #220365)
