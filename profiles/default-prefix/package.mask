@@ -85,7 +85,7 @@ app-text/tetex
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
 # circular dependencies while running aclocal (bug #218122)
-=sys-devel/autoconf-2.62
+~sys-devel/autoconf-2.62
 
 # Fabian Groffen <grobian@gentoo.org> (03 Apr 2008)
 # Had undefined references all over the place on Solaris, don't like it
