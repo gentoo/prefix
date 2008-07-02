@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8780 2008/06/29 20:32:30 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8790 2008/07/01 23:19:01 omp Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Doug Goldstein <cardoe@gentoo.org> (30 Jun 2008)
+# Mask while I discuss doing this with Mike
+=sys-apps/man-pages-3.01-r1
+
+# Carsten Lohrke <carlo@gentoo.org> (30 Jun 2008)
+# Masking as it's pretty broken for a long while now.
+# Will investigate in a few days.
+dev-db/rekall
+
+# Christian Faulhammer <opfer@gentoo.org> (30 Jun 2008)
+# Masked for removal for license issues, see bug 230157
+mail-client/claws-mail-pdf-viewer
 
 # Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
 # Masked for removal in 30 days. Only works with kernels <2.6.24. See HOMEPAGE
@@ -200,7 +213,7 @@ mail-mta/xmail
 =x11-base/xorg-server-1.4.99*
 =media-libs/mesa-7.1*
 x11-proto/dri2proto
-=x11-libs/libdrm-2.3.1_pre*
+=x11-libs/libdrm-2.3.1*
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
 # Live ebuilds too volatile for normal use.
@@ -324,12 +337,6 @@ net-analyzer/sonar
 # Masked for removal in 30 days
 dev-cpp/libwrapiter
 
-# Tony Vroon <chainsaw@gentoo.org> (20 May 2008)
-# This package is unmaintained and is unstable for
-# Audacious 1.5.0; bug #222883.
-# Removal planned for June 30, 2008.
-media-plugins/audacious-crossfade
-
 # Vlastimil Babka <caster@gentoo.org> (20 May 2008)
 # Masked for testing
 =app-arch/rpm-5*
@@ -356,9 +363,7 @@ dev-util/lincvs
 =app-text/sword-modules-20041209
 
 # Rémi Cardona <remi@gentoo.org> (16 Apr 2008)
-# Masked for removal in 30 days, uses old libraries
-# glademm's upstream is dead
-dev-util/glademm
+# Masked until somebody picks it up
 dev-cpp/bakery
 
 # Jim Ramsay <lack@gentoo.org> (15 May 2008)
@@ -412,11 +417,6 @@ games-server/greenhouse
 # 0.9.2 release in our overlay
 dev-lisp/stumpwm-cvs
 
-# Ryan Hill <dirtyepic@gentoo.org> (29 Apr 2008)
-# Masked for removal in 30 days due to licensing issues.
-# See bug #218288 for more information
-media-fonts/sharefonts
-
 # Ulrich Mueller <ulm@gentoo.org> (27 Apr 2008)
 # CVS snapshot, bug 219449.
 ~app-emacs/navi2ch-1.7.5_p20080325
@@ -438,18 +438,6 @@ media-fonts/sharefonts
 # Linkage 0.1.5 needs unreleased C++ bindings for DBUS.
 # Mask it until I figure out the best way to handle 0.1.5.
 net-p2p/linkage
-
-# David Shakaryan <omp@gentoo.org> (24 Apr 2008)
-# Masked for removal in 30 days. (bug #197277)
-# Extremely old compilation of themes not utilising new features.
-# Openbox is intended to move to a new theme format in the future.
-x11-themes/openbox-themes
-
-# David Shakaryan <omp@gentoo.org> (22 Apr 2008)
-# Masked for removal in 30 days. (bug #208878)
-# Dropping conky-syntax in favour of upstream syntax script.
-# Please enable the vim-syntax flag for conky instead.
-app-vim/conky-syntax
 
 # Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
 # mask beta version
@@ -573,12 +561,6 @@ net-p2p/limewire
 # Donnie Berkholz <dberkholz@gentoo.org> (17 Mar 2008)
 # Most apps that use lm_sensors aren't compatible with the new version
 >=sys-apps/lm_sensors-3
-
-# Ryan Hill <dirtyepic@gentoo.org> (16 Mar 2008)
-# Mask for removal on 16 Apr 2008
-# upstream unresponsive, replaced by dev-util/ftjam
-# Bug #173703
-dev-util/jam
 
 # Wolfram Schlich <wschlich@gentoo.org> (13 Mar 2008)
 # mondo-rescue previously was a candidate for complete
