@@ -1,6 +1,11 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.141 2008/05/29 01:08:20 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.142 2008/07/01 21:33:05 eva Exp $
+
+  01 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org> evince-2.20.1.ebuild,
+  evince-2.20.2.ebuild, evince-2.22.0.ebuild, evince-2.22.1.1.ebuild,
+  evince-2.22.2.ebuild:
+  add docbook-xml-dtd-4.1.2 to DEPEND, fix bug #229077.
 
 *evince-2.22.2 (29 May 2008)
 
