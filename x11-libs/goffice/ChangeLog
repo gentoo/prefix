@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/goffice
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.44 2008/06/29 16:56:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.48 2008/06/30 21:04:51 ranger Exp $
+
+  30 Jun 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking goffice-0.6.4 ppc64 for bug 230071
+
+  30 Jun 2008; nixnut <nixnut@gentoo.org> goffice-0.6.4.ebuild:
+  Stable on ppc wrt bug 230031
+
+  30 Jun 2008; Raúl Porcel <armin76@gentoo.org> goffice-0.6.4.ebuild:
+  alpha/ia64/sparc stable wrt #230071
+
+  30 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> goffice-0.6.4.ebuild:
+  amd64 stable, bug #230071
 
   29 Jun 2008; Markus Rothe <corsair@gentoo.org> goffice-0.6.4.ebuild:
   Stable on ppc64; bug #230031

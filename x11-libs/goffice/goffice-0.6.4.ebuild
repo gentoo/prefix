@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.4.ebuild,v 1.3 2008/06/29 16:56:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.4.ebuild,v 1.6 2008/06/30 20:03:36 nixnut Exp $
 
 EAPI="prefix"
 
