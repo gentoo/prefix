@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.1.ebuild,v 1.6 2008/06/21 20:08:14 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.1.ebuild,v 1.8 2008/06/30 16:25:26 jer Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc examples"
 
-RDEPEND=">=dev-libs/libsigc++-2.0.11
+RDEPEND=">=dev-libs/libsigc++-2.2
 		 >=dev-libs/glib-2.16"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig

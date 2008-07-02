@@ -1,6 +1,13 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.111 2008/06/21 20:08:14 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.113 2008/06/30 16:25:26 jer Exp $
+
+  30 Jun 2008; Jeroen Roovers <jer@gentoo.org> glibmm-2.16.1.ebuild:
+  Stable for HPPA (bug #227679).
+
+  30 Jun 2008; Rémi Cardona <remi@gentoo.org> glibmm-2.16.0.ebuild,
+  glibmm-2.16.1.ebuild:
+  bump the libsigc++ dep to 2.2 or newer (see bug #228309)
 
   21 Jun 2008; Markus Rothe <corsair@gentoo.org> glibmm-2.16.1.ebuild:
   Stable on ppc64; bug #227679
