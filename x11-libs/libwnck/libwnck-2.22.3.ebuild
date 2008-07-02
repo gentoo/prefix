@@ -1,17 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.22.0.ebuild,v 1.1 2008/03/21 12:38:10 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.22.3.ebuild,v 1.1 2008/07/01 21:49:19 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 DESCRIPTION="A window navigation construction kit"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="doc"
 
 RDEPEND=">=x11-libs/gtk+-2.11.3
@@ -30,6 +30,5 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
-
-	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch "${FILESDIR}/${PV}/"
+	eautoreconf # need new libtool for interix
 }
