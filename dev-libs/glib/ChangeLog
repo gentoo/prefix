@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.321 2008/06/21 20:07:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.324 2008/07/01 05:27:54 corsair Exp $
+
+  01 Jul 2008; Markus Rothe <corsair@gentoo.org> glib-2.16.3-r1.ebuild:
+  Stable on ppc64; bug #230039
+
+*glib-2.16.3-r1 (01 Jul 2008)
+
+  01 Jul 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/glib-2.16.3-pcre-buffer-overflow.patch, +glib-2.16.3-r1.ebuild:
+  Fix for a heap-based buffer overflow possibility in the included modified
+  copy of PCRE, bug 230039, related to CVE-2008-2371
+
+  30 Jun 2008; Jeroen Roovers <jer@gentoo.org> glib-2.16.3.ebuild:
+  Stable for HPPA (bug #227679).
 
   21 Jun 2008; Markus Rothe <corsair@gentoo.org> glib-2.16.3.ebuild:
   Stable on ppc64; bug #227679

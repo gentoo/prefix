@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3.ebuild,v 1.9 2008/06/30 16:18:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3-r1.ebuild,v 1.2 2008/07/01 05:27:54 corsair Exp $
 
 EAPI="prefix"
 
@@ -52,6 +52,9 @@ src_unpack() {
 
 	sed -e "s/MATCH_LIMIT_RECURSION=10000000/MATCH_LIMIT_RECURSION=8192/g" \
 		-i "${S}/glib/pcre/Makefile.in" "${S}/glib/pcre/Makefile.am"
+
+	# Bug 230039, heap based buffer overflow in included copy of pcre (CVE-2008-2371)
+	epatch "${FILESDIR}/${P}-pcre-buffer-overflow.patch"
 
 	# GNOME bug #538836, fix gio test failure on various arches
 	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
