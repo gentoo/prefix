@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/javassist-3.4.ebuild,v 1.7 2008/03/31 02:06:49 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/javassist-3.4.ebuild,v 1.8 2008/06/30 19:55:37 ken69267 Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ HOMEPAGE="http://www.csg.is.titech.ac.jp/~chiba/javassist/"
 LICENSE="MPL-1.1"
 SLOT="3"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+IUSE=""
 
 RDEPEND=">=virtual/jre-1.4"
 DEPEND=">=virtual/jdk-1.4
