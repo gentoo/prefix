@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.20.3.ebuild,v 1.8 2008/04/20 01:35:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.20.3.ebuild,v 1.9 2008/07/01 20:58:30 eva Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
 	>=app-text/gnome-doc-utils-0.3.2
+	~app-text/docbook-xml-dtd-4.1.2
 	doc? ( >=dev-util/gtk-doc-1.4 )"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README"

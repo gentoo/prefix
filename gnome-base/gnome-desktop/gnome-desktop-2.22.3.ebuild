@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.22.1.ebuild,v 1.1 2008/04/09 21:53:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.22.3.ebuild,v 1.1 2008/07/01 20:58:30 eva Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.9
 		>=app-text/gnome-doc-utils-0.3.2
 		doc? ( >=dev-util/gtk-doc-1.4 )
+		~app-text/docbook-xml-dtd-4.1.2
 		x11-proto/xproto"
 # Includes X11/Xatom.h in libgnome-desktop/gnome-bg.c which comes from xproto
 
