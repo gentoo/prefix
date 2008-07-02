@@ -10,3 +10,15 @@
  fi
  
  AC_FIND_XFT
+--- openmotif-2.3.0-orig/lib/Xm/ResEncod.c	2006-11-21 20:50:31.000000000 +0100
++++ openmotif-2.3.0/lib/Xm/ResEncod.c	2008-07-01 20:29:19.000000000 +0200
+@@ -50,7 +50,9 @@
+ #endif
+ #include <string.h>
+ #include <ctype.h>
++#ifdef UTF8_SUPPORTED
+ #include <iconv.h>
++#endif
+ #include <errno.h>
+ #include <Xm/XmosP.h>
+ #include "MessagesI.h"
