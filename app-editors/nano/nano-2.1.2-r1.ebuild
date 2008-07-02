@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.2-r1.ebuild,v 1.2 2008/06/29 16:53:30 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.2-r1.ebuild,v 1.7 2008/07/01 14:44:08 armin76 Exp $
 
 EAPI="prefix"
 
