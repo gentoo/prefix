@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.96 2008/06/29 21:18:48 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.99 2008/07/01 16:44:21 armin76 Exp $
+
+  01 Jul 2008; Raúl Porcel <armin76@gentoo.org> rubygems-1.1.1.ebuild:
+  alpha/ia64/x86 stable wrt #229875
+
+  30 Jun 2008; Brent Baude <ranger@gentoo.org> rubygems-1.1.1.ebuild:
+  stable ppc64, bug 229875
+
+  30 Jun 2008; nixnut <nixnut@gentoo.org> rubygems-1.1.1.ebuild:
+  Stable on ppc wrt bug 229875
 
   29 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> rubygems-1.1.1.ebuild:
   Stable on sparc, bug #229875
