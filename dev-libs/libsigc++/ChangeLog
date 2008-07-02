@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.121 2008/06/25 19:48:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.122 2008/06/30 16:23:13 jer Exp $
+
+  30 Jun 2008; Jeroen Roovers <jer@gentoo.org> libsigc++-2.2.2.ebuild:
+  Stable for HPPA (bug #228917).
 
   25 Jun 2008; nixnut <nixnut@gentoo.org> libsigc++-2.2.2.ebuild:
   Stable on ppc wrt bug 228917
