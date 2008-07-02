@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/sitecopy
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.49 2008/06/14 13:21:10 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.50 2008/06/30 20:40:11 armin76 Exp $
+
+  30 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/0.16.3-neon-28.patch, -sitecopy-0.16.3.ebuild,
+  -sitecopy-0.16.3_p15.ebuild, sitecopy-0.16.3_p17.ebuild:
+  sparc/x86 stable, remove old
 
   14 Jun 2008; nixnut <nixnut@gentoo.org> sitecopy-0.16.3_p17.ebuild:
   Stable on ppc wrt bug 220615
