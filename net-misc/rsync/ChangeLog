@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.166 2008/06/24 03:48:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.168 2008/07/01 14:35:26 vapier Exp $
+
+*rsync-3.0.3 (01 Jul 2008)
+
+  01 Jul 2008; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.3.ebuild:
+  Version bump.
+
+  01 Jul 2008; Jeroen Roovers <jer@gentoo.org> rsync-3.0.2.ebuild:
+  Stable for HPPA (bug #228673).
 
   24 Jun 2008; Mike Frysinger <vapier@gentoo.org> rsync-3.0.2.ebuild:
   Add USE=iconv #229125 by Fabian Groffen.
