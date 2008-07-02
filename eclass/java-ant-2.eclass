@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.35 2008/06/20 10:32:15 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.36 2008/07/01 19:02:21 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -240,12 +240,22 @@ java-ant_bsfix_files() {
 
 		# for javadoc target and all in one pass, we need the new rewriter.
 		local rewriter3="${EPREFIX}/usr/share/javatoolkit/xml-rewrite-3.py"
-
 		if [[ ! -f ${rewriter3} ]]; then
 			rewriter3="${EPREFIX}/usr/$(get_libdir)/javatoolkit/bin/xml-rewrite-3.py"
 		fi
 
-		if [[ ! -f ${rewriter3} ]]; then
+		local rewriter4="${EPREFIX}/usr/$(get_libdir)/javatoolkit/bin/build-xml-rewrite"
+
+		if [[ -x ${rewriter4} && ${JAVA_ANT_ENCODING} ]]; then
+			[[ ${JAVA_ANT_REWRITE_CLASSPATH} ]] && local gcp="-g"
+			[[ ${JAVA_ANT_ENCODING} ]] && local enc="-e ${JAVA_ANT_ENCODING}"
+			eval echo "cElementTree rewriter" ${output}
+			debug-print "${rewriter4} extra args: ${gcp} ${enc}"
+			${rewriter4} ${gcp} ${enc} \
+				-c "${JAVA_PKG_BSFIX_SOURCE_TAGS}" source ${want_source} \
+				-c "${JAVA_PKG_BSFIX_TARGET_TAGS}" target ${want_target} \
+				"${@}" || die "build-xml-rewrite failed"
+		elif [[ ! -f ${rewriter3} ]]; then
 			debug-print "Using second generation rewriter"
 			eval echo "Rewriting source attributes" ${output}
 			eval xml-rewrite-2.py ${files} \
@@ -392,9 +402,8 @@ java-ant_rewrite-classpath() {
 # ------------------------------------------------------------------------------
 java-ant_ignore-system-classes() {
 	debug-print-function ${FUNCNAME} $*
-	local file="${1}"
-	[[ -z "${1}" ]] && file=build.xml
-	echo "Changing ignoresystemclasses to true for available tasks"
+	local file=${1:-build.xml}
+	echo "Changing ignoresystemclasses to true for available tasks in ${file}"
 	java-ant_xml-rewrite -f "${file}" --change \
 		-e available -a ignoresystemclasses -v "true"
 }

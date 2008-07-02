@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.40 2008/05/18 06:15:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.41 2008/07/01 22:10:06 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -319,7 +319,7 @@ elisp-site-regen() {
 
 	einfon "Regenerating ${ESITELISP}/site-gentoo.el ..."
 
-	# remove auxiliary file
+	# remove any auxiliary file (from previous run)
 	rm -f "${EROOT}${SITELISP}"/00site-gentoo.el
 
 	# set nullglob option, there may be a directory without matching files
@@ -397,26 +397,26 @@ for greater flexibility, users can load individual package-specific
 initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
 EOF
 		echo
-
-		if [ "${obsolete}" ]; then
-			while read line; do ewarn "${line}"; done <<-EOF
-			Site-initialisation files of Emacs packages are now installed in
-			/usr/share/emacs/site-lisp/site-gentoo.d/. We strongly recommend
-			that you use /usr/sbin/emacs-updater to rebuild the installed
-			Emacs packages.
-			EOF
-			echo
-		fi
 	fi
 
-	# Kludge for backwards compatibility: During pkg_postrm, old versions
-	# of this eclass (saved in the VDB) won't find packages' site-init files
-	# in the new location. So we copy them to an auxiliary file that is
-	# visible to old eclass versions.
-	for sf in "${sflist[@]}"; do
-		[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
-			&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
-	done
+	if [ "${obsolete}" ]; then
+		while read line; do ewarn "${line}"; done <<-EOF
+		Site-initialisation files of Emacs packages are now installed in
+		/usr/share/emacs/site-lisp/site-gentoo.d/. We strongly recommend
+		that you use /usr/sbin/emacs-updater to rebuild the installed
+		Emacs packages.
+		EOF
+		echo
+
+		# Kludge for backwards compatibility: During pkg_postrm, old versions
+		# of this eclass (saved in the VDB) won't find packages' site-init
+		# files in the new location. So we copy them to an auxiliary file
+		# that is visible to old eclass versions.
+		for sf in "${sflist[@]}"; do
+			[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
+				&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
+		done
+	fi
 
 	# cleanup
 	rm -f "${tmpdir}"/site-{gentoo,start}.el
