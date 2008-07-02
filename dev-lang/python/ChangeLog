@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.326 2008/06/25 17:26:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.327 2008/06/30 15:10:27 hawking Exp $
+
+  30 Jun 2008; Ali Polatel <hawking@gentoo.org> files/pydoc.conf,
+  files/pydoc.init:
+  Fixed files/pydoc* headers
 
 *python-2.5.2-r5 (24 Jun 2008)
 
