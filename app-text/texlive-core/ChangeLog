@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.64 2008/06/29 19:01:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.66 2008/07/01 16:47:46 armin76 Exp $
+
+  01 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  texlive-core-2007-r13.ebuild:
+  alpha/ia64 stable wrt #229993
+
+  01 Jul 2008; Jeroen Roovers <jer@gentoo.org> texlive-core-2007-r13.ebuild:
+  Stable for HPPA (bug #229993).
 
   29 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
   texlive-core-2007-r13.ebuild:
