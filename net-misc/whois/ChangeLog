@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-misc/whois/ChangeLog,v 1.108 2008/05/05 13:41:58 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.109 2008/06/30 20:48:42 armin76 Exp $
+
+  30 Jun 2008; Raúl Porcel <armin76@gentoo.org> whois-4.7.26.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   05 May 2008; Rémi Cardona <remi@gentoo.org>
   +files/whois-4.7.26-fix-as-needed.patch, whois-4.7.26.ebuild:
