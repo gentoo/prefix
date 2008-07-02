@@ -1,3 +1,4 @@
+
 # Elias Pipping <pipping@gentoo.org> (21 Nov 2007)
 # generating documentation fails for hugs98 because of too many errors
 dev-lang/hugs98 doc
