@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gvfs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.12 2008/06/01 10:59:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.13 2008/06/30 22:07:24 eva Exp $
+
+*gvfs-0.2.5 (30 Jun 2008)
+
+  30 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org> +gvfs-0.2.5.ebuild:
+  bump to 0.2.5,
+   * Fix unremovable files in trash (#523139).
+   * Fix recursive copy of directories (#522933).
 
   01 Jun 2008; nixnut <nixnut@gentoo.org> gvfs-0.2.3.ebuild:
   Added ~ppc wrt bug 218794
