@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.24.ebuild,v 1.4 2008/05/12 16:14:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.24.ebuild,v 1.5 2008/06/30 18:38:11 armin76 Exp $
 
 EAPI="prefix"
 
