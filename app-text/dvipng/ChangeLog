@@ -1,6 +1,18 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.31 2008/05/31 08:39:47 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.35 2008/07/01 16:46:33 armin76 Exp $
+
+  01 Jul 2008; Raúl Porcel <armin76@gentoo.org> dvipng-1.11.ebuild:
+  alpha/ia64 stable wrt #230133
+
+  30 Jun 2008; nixnut <nixnut@gentoo.org> dvipng-1.11.ebuild:
+  Stable on ppc wrt bug 230133
+
+  30 Jun 2008; Ferris McCormick <fmccor@gentoo.org> dvipng-1.11.ebuild:
+  Sparc stable -- Bug #230133 --- works as expected.
+
+  30 Jun 2008; Christian Faulhammer <opfer@gentoo.org> dvipng-1.11.ebuild:
+  stable x86, bug 230133
 
   31 May 2008; Alexis Ballier <aballier@gentoo.org> dvipng-1.11.ebuild:
   Set VARTEXFONTS to something sane here, even if that does not cause
