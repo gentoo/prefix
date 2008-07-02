@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.33 2008/06/18 16:37:15 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.34 2008/07/01 18:01:07 graaff Exp $
+
+*hoe-1.7.0 (01 Jul 2008)
+
+  01 Jul 2008; Hans de Graaff <graaff@gentoo.org> +hoe-1.7.0.ebuild:
+  Version bump with 3 minor enhancements:
+    * Use rdoc 2.x gem if available. Eric likes his backslashes.
+    * Added extra_dev_deps for new rubygems developer dependencies.
+    * Finally got a sane test that does something. Hey... it's a start.
 
 *hoe-1.6.0 (18 Jun 2008)
 
