@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.1.ebuild,v 1.1 2008/06/19 14:37:34 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.1.ebuild,v 1.2 2008/06/30 13:08:50 voyageur Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,12 @@ pkg_setup() {
 		eerror "Please recompile sys-libs/gcc with USE=libffi, or disable the gcc-libffi USE flag"
 		die "libffi support not available"
 	fi
+}
+
+src_unpack() {
+	gnustep-base_src_unpack
+
+	epatch "${FILESDIR}"/${P}-libffi_fix.patch
 }
 
 src_compile() {
