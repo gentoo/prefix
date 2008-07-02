@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.158 2008/06/19 09:26:25 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.159 2008/07/01 12:38:39 dragonheart Exp $
+
+*gnutls-2.4.1 (01 Jul 2008)
+
+  01 Jul 2008; Daniel Black <dragonheart@gentoo.org>
+  -files/gnutls-2.3.15-qa_gnutls_session_is_psk.patch,
+  -gnutls-2.3.11.ebuild, -gnutls-2.4.0.ebuild, +gnutls-2.4.1.ebuild:
+  version bump and older version cleanout as per security bug #230263 thanks rbu
 
 *gnutls-2.4.0 (19 Jun 2008)
 
