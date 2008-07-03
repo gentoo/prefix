@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3613 2008/06/30 16:49:40 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3616 2008/07/03 03:05:20 darkside Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -13,6 +13,7 @@ app-accessibility/freetts:mbrola - Adds support for mbrola voices
 app-accessibility/gnome-speech:freetts - Adds support for the freetts speech driver
 app-accessibility/gnopernicus:brltty - Adds support for braille displays using brltty
 app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine.
+app-admin/bcfg2:server - Adds server support for bcfg2.
 app-admin/conky:audacious - enable monitoring of audio tracks that are playing (media-sound/audacious)
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing (media-sound/bmpx)
 app-admin/conky:mpd - enable monitoring mpd controlled music  (media-sound/mpd)
@@ -272,6 +273,7 @@ app-office/gnucash:quotes - Enable Online Stock Quote retrieval.
 app-office/grisbi:print - Enable printing support
 app-office/imposter:iksemel - Enable external iksemel parsing support.
 app-office/kmymoney2:hbci - Adds HBCI online banking support
+app-office/kmymoney2:qtdesigner - Installs KMyMoney specific widget library for Qt-designer
 app-office/lyx:docbook - Adds support for docbook export.
 app-office/lyx:dot - Adds support for DOT import (Graphviz package).
 app-office/lyx:html - Adds support for HTML import.
@@ -1942,6 +1944,7 @@ sci-libs/blas-goto:int64 - Build the 64 bits integer library
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs lapack)
 sci-libs/fftw:float - Links default library to single precision instead of double (symlinks only)
+sci-libs/fftw:openmp - Build support for the OpenMP (support parallel computing)
 sci-libs/gdal:fits - Enables support for NASA's cfitsio library
 sci-libs/gdal:geos - Adds support for geometry engine
 sci-libs/gdal:gml - Enables support for xerces-c API

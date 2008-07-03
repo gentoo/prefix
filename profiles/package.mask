@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8790 2008/07/01 23:19:01 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8791 2008/07/03 04:23:36 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
+# Masked for removal in ~30 days by treecleaners. bug #124383
+# Doesn't compile, dead upstream, no maintainer.
+app-i18n/kon2
 
 # Doug Goldstein <cardoe@gentoo.org> (30 Jun 2008)
 # Mask while I discuss doing this with Mike
