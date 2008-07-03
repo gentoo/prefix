@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.47 2008/06/29 15:31:47 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.48 2008/07/02 13:51:07 drac Exp $
+
+*gst-plugins-good-0.10.8-r1 (02 Jul 2008)
+
+  02 Jul 2008; Samuli Suominen <drac@gentoo.org>
+  +gst-plugins-good-0.10.8-r1.ebuild:
+  Pass --with-default-audiosink=autoaudiosink and
+  --with-default-visualizer=goom wrt upstream bug #532295, this fixes Gentoo
+  bug #230419.
 
 *gst-plugins-good-0.10.8 (29 Jun 2008)
 
