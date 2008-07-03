@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.29 2008/05/29 17:51:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.30 2008/07/02 16:51:29 bicatali Exp $
+
+  02 Jul 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/geos-2.2.3-gcc43.patch, geos-2.2.3.ebuild:
+  Added gcc-4.3 patch for geos-2.2.3 (bug #227707)
 
   29 May 2008; Ali Polatel <hawking@gentoo.org> geos-2.2.1.ebuild,
   geos-2.2.3.ebuild:
