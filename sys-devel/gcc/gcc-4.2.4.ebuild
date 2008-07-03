@@ -18,7 +18,7 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
@@ -87,8 +87,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
 	# http://gcc.gnu.org/PR20366
-# I guess needed, but doesn't fully apply -- grobian
-#	epatch "${FILESDIR}"/${PN}-4.2.3-aix-largefiles.patch
+	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
 
