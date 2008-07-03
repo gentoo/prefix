@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.191 2008/06/26 16:34:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.192 2008/07/02 17:36:27 betelgeuse Exp $
+
+*java-config-2.1.6-r1 (02 Jul 2008)
+
+  02 Jul 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/java-config-2.1.6-portage-import.patch,
+  +java-config-2.1.6-r1.ebuild:
+  Silence warnings given by portage-2.2.
 
   26 Jun 2008; nixnut <nixnut@gentoo.org> java-config-2.1.6.ebuild:
   Stable on ppc wrt bug 228827
