@@ -1,6 +1,16 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.66 2008/06/23 14:31:13 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.67 2008/07/02 09:20:22 bicatali Exp $
+
+*fftw-3.1.2-r1 (02 Jul 2008)
+*fftw-2.1.5-r5 (02 Jul 2008)
+
+  02 Jul 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/fftw-2.1.5-configure.in.patch, +files/fftw-3.1.2-as-needed.patch,
+  files/fftw-3.1.2-configure.ac.patch, +files/fftw-3.1.2-openmp.patch,
+  +fftw-2.1.5-r5.ebuild, +fftw-3.1.2-r1.ebuild:
+  Added openmp support for both fftw-2 and fftw-3. Added as-needed fixes for
+  fftw-3, needed for threads support. Added a doc use flag for fftw-3.
 
   23 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org>
   +files/fftw-2.1.5-no-test.patch, fftw-2.1.5-r4.ebuild, fftw-3.1.2.ebuild:
