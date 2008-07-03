@@ -22,8 +22,8 @@ RDEPEND="${DEPEND}
 PYTHON_MODNAME="java_config_2"
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
+	distutils_src_unpack
+	epatch "${FILESDIR}/java-config-2.1.6-portage-import.patch"
 	epatch "${FILESDIR}"/${PN}-2.1.6-prefix.patch
 
 	eprefixify \
@@ -32,14 +32,6 @@ src_unpack() {
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
-
-	# fix for newer portages
-	find . -name "*.py" -print0 | xargs -0 sed -i -e 's/portage_dep/portage.dep/g'
-}
-
-src_unpack() {
-	distutils_src_unpack
-	epatch "${FILESDIR}/java-config-2.1.6-portage-import.patch"
 }
 
 src_install() {
