@@ -21,7 +21,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux 
 IUSE="acl nls selinux static xattr vanilla"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
-	acl? ( sys-apps/acl )
+	acl? ( kernel_linux? ( sys-apps/acl ) )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
 	!<sys-apps/util-linux-2.13
