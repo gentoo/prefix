@@ -28,8 +28,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
+	epatch "${FILESDIR}"/${PN}-0.10.19-interix.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-0.10.19-interix5.patch
 
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
