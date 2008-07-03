@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.122 2008/06/29 15:39:55 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.123 2008/07/02 21:02:09 armin76 Exp $
+
+*xulrunner-1.8.1.15 (02 Jul 2008)
+
+  02 Jul 2008; Raúl Porcel <armin76@gentoo.org> +xulrunner-1.8.1.15.ebuild:
+  Version bump
 
   29 Jun 2008; Petteri Räty <betelgeuse@gentoo.org>
   xulrunner-1.8.1.14.ebuild, xulrunner-1.9-r2.ebuild:
