@@ -1,0 +1,53 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper-dtd/scrollkeeper-dtd-1.0.ebuild,v 1.1 2008/07/01 21:27:15 eva Exp $
+
+EAPI="prefix"
+
+DTD_FILE="scrollkeeper-omf.dtd"
+
+DESCRIPTION="DTD from the Scrollkeeper package"
+HOMEPAGE="http://scrollkeeper.sourceforge.net/"
+SRC_URI="http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/${DTD_FILE}"
+
+LICENSE="FDL-1.1"
+SLOT="1.0"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE=""
+
+RDEPEND=">=dev-libs/libxml2-2.4.19"
+DEPEND="${RDEPEND}"
+
+src_unpack() { :; }
+
+src_compile() { :; }
+
+src_install() {
+	insinto "/usr/share/xml/scrollkeeper/dtds"
+	doins "${DISTDIR}/${DTD_FILE}"
+}
+
+pkg_postinst() {
+	einfo "Installing catalog..."
+
+	# Install regular DOCTYPE catalog entry
+	"${EROOT}"/usr/bin/xmlcatalog --noout --add "public" \
+		"-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" \
+		"`echo "${EROOT}/usr/share/xml/scrollkeeper/dtds/${DTD_FILE}" | sed -e "s://:/:g"`" \
+		"${EROOT}"/etc/xml/catalog
+
+	# Install catalog entry for calls like: xmllint --dtdvalid URL ...
+	"${EROOT}"/usr/bin/xmlcatalog --noout --add "system" \
+		"${SRC_URI}" \
+		"`echo "${EROOT}/usr/share/xml/scrollkeeper/dtds/${DTD_FILE}" | sed -e "s://:/:g"`" \
+		"${EROOT}"/etc/xml/catalog
+}
+
+pkg_postrm() {
+	# Remove all sk-dtd from the cache
+	einfo "Cleaning catalog..."
+
+	"${EROOT}"/usr/bin/xmlcatalog --noout --del \
+		"`echo "${EROOT}/usr/share/xml/scrollkeeper/dtds/${DTD_FILE}" | sed -e "s://:/:g"`" \
+		"${EROOT}"/etc/xml/catalog
+}
