@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.08.ebuild,v 1.1 2008/05/12 12:50:59 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.08.ebuild,v 1.2 2008/07/02 18:22:56 the_paya Exp $
 
 EAPI="prefix"
 
