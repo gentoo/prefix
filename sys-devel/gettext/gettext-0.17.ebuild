@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.11 2008/01/14 04:44:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.12 2008/07/02 20:39:13 the_paya Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ DEPEND="virtual/libiconv
 	dev-libs/libxml2
 	sys-libs/ncurses
 	dev-libs/expat
-	acl? ( sys-apps/acl )"
+	acl? ( kernel_linux? ( sys-apps/acl ) )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
 
 src_unpack() {

@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.163 2008/01/14 04:44:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.164 2008/07/02 20:39:13 the_paya Exp $
+
+  02 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  gettext-0.17.ebuild:
+  Fix acl dependency, fixes bug #204746.
 
   14 Jan 2008; Mike Frysinger <vapier@gentoo.org> gettext-0.17.ebuild:
   Flip back to internal libcroco to avoid glib/gettext circular deps #204851
