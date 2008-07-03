@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.121 2008/05/31 12:13:47 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.122 2008/07/02 21:32:43 eva Exp $
+
+*gnome-keyring-2.22.3 (02 Jul 2008)
+
+  02 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-keyring-2.22.3.ebuild:
+  bump to 2.22.3,
+   * Better initization of (non-crypto) random number generator.
+   * Build fixes [margali, John Ralls]
 
 *gnome-keyring-2.22.2 (31 May 2008)
 
