@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/cherrypy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.28 2008/04/29 02:03:25 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.29 2008/07/02 05:32:22 pythonhead Exp $
+
+*cherrypy-2.3.0 (02 Jul 2008)
+
+  02 Jul 2008; Rob Cakebread <pythonhead@gentoo.org> +cherrypy-2.3.0.ebuild:
+  Version bump. Dropped amd64, ia64 and ppc because of new dependency on
+  webtest and its deps webob and wsgiref
 
 *cherrypy-3.0.3 (29 Apr 2008)
 
