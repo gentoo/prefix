@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.113 2008/06/30 16:25:26 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.114 2008/07/02 21:56:45 eva Exp $
+
+*glibmm-2.16.3 (02 Jul 2008)
+
+  02 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org> +glibmm-2.16.3.ebuild:
+  bump to 2.16.3. Various bug fixes.
 
   30 Jun 2008; Jeroen Roovers <jer@gentoo.org> glibmm-2.16.1.ebuild:
   Stable for HPPA (bug #227679).
