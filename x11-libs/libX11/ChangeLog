@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.99 2008/06/05 21:09:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.100 2008/07/02 14:47:17 solar Exp $
+
+  02 Jul 2008; <solar@gentoo.org> libX11-1.1.4.ebuild:
+  - cross compile love
 
   05 Jun 2008; Tobias Klausmann <klausman@gentoo.org> libX11-1.1.4.ebuild:
   Stable on alpha, bug #223879

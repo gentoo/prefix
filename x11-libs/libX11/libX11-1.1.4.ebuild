@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.4.ebuild,v 1.7 2008/06/05 21:09:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.4.ebuild,v 1.10 2008/07/03 01:58:04 mr_bones_ Exp $
 
 EAPI="prefix"
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular toolchain-funcs flag-o-matic
 
 DESCRIPTION="X.Org X11 library"
 
@@ -37,7 +37,10 @@ src_unpack() {
 	eautoreconf # need new libtool for interix
 }
 
-src_compile() {
+x-modular_src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-	x-modular_src_compile
+	x-modular_src_configure
+	# [Cross-Compile Love] Disable {C,LD}FLAGS and redefine CC= for 'makekeys'
+	( filter-flags -m* ; cd src/util && make CC=$(tc-getBUILD_CC) CFLAGS="${CFLAGS}" LDFLAGS="" clean all)
+	x-modular_src_make
 }
