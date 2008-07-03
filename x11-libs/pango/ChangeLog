@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.220 2008/06/30 16:15:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.221 2008/07/02 21:47:31 eva Exp $
+
+*pango-1.20.5 (02 Jul 2008)
+
+  02 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org> +pango-1.20.5.ebuild:
+  bump to 1.20.5. fix a crasher bug with Linux-Libertine font.
 
   30 Jun 2008; Jeroen Roovers <jer@gentoo.org> pango-1.20.3.ebuild:
   Stable for HPPA (bug #227679).
