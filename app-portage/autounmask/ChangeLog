@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/autounmask
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/ChangeLog,v 1.27 2007/11/27 14:30:18 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/ChangeLog,v 1.28 2008/07/02 18:28:54 the_paya Exp $
+
+  02 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  autounmask-0.21.ebuild:
+  Add ~x86-fbsd wrt bug #214440
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org> autounmask-0.21.ebuild:
   ia64 stable wrt #200264
