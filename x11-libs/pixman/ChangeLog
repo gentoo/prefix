@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.13 2008/06/30 14:01:12 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.14 2008/07/02 20:51:49 cardoe Exp $
+
+  02 Jul 2008; Doug Goldstein <cardoe@gentoo.org> pixman-0.11.6.ebuild:
+  add altivec, mmx and sse2 USE flags. disable gtk always for tests since
+  GTK won't be installed when you install pixman
 
 *pixman-0.11.6 (30 Jun 2008)
 
