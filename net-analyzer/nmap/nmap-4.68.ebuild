@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.1 2008/07/01 19:26:54 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.2 2008/07/02 20:45:50 spock Exp $
 
 EAPI="prefix"
 
@@ -23,6 +23,12 @@ DEPEND="dev-libs/libpcre
 				>=dev-python/pysqlite-2 )
 		 )
 	ssl? ( dev-libs/openssl )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-nolua.patch"
+}
 
 pkg_setup() {
 	if use gtk && has_version ">=dev-lang/python-2.5" &&
