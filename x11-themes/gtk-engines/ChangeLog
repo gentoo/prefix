@@ -1,6 +1,12 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.121 2008/05/31 10:36:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.122 2008/07/02 21:13:55 eva Exp $
+
+*gtk-engines-2.14.3 (02 Jul 2008)
+
+  02 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtk-engines-2.14.3.ebuild:
+  bump to 2.14.3. Bug fixes and translation updates.
 
 *gtk-engines-2.14.2 (31 May 2008)
 
