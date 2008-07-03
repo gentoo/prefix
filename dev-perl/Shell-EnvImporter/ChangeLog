@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Shell-EnvImporter
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Shell-EnvImporter/ChangeLog,v 1.16 2007/07/23 06:00:29 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Shell-EnvImporter/ChangeLog,v 1.17 2008/07/02 18:11:39 the_paya Exp $
+
+  02 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  Shell-EnvImporter-1.04.ebuild:
+  Keyworded ~x86-fbsd.
 
   23 Jul 2007; Joshua Kinard <kumba@gentoo.org>
   Shell-EnvImporter-1.04.ebuild:
