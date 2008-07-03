@@ -61,6 +61,4 @@ src_install() {
 	mv "${ED}"/usr/$(get_libdir)/lib{charset,iconv}*$(get_libname)* "${ED}/$(get_libdir)" || die #210239
 	gen_usr_ldscript libiconv$(get_libname)
 	gen_usr_ldscript libcharset$(get_libname)
-
-	keep_aix_runtime_objects /usr/lib/libiconv.a "/usr/lib/libiconv.a(shr4.o)"
 }
