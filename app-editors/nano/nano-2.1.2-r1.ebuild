@@ -32,6 +32,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-history-justify.patch
+	# https://savannah.gnu.org/patch/index.php?6559
+	epatch "${FILESDIR}"/${P}-protoh.patch
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi

@@ -1,0 +1,18 @@
+https://savannah.gnu.org/patch/index.php?6559
+
+--- src/global.c.orig	2008-07-03 15:03:41 +0200
++++ src/global.c	2008-07-03 15:14:34 +0200
+@@ -22,11 +22,12 @@
+  *                                                                        *
+  **************************************************************************/
+ 
++#include "proto.h"
++
+ #include <ctype.h>
+ #include <string.h>
+ #include <strings.h>
+ #include "assert.h"
+-#include "proto.h"
+ 
+ /* Global variables. */
+ #ifndef NANO_TINY
