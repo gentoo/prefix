@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/unison
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.57 2008/06/30 20:38:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.58 2008/07/03 09:54:33 aballier Exp $
+
+  03 Jul 2008; Alexis Ballier <aballier@gentoo.org> -unison-2.13.16.ebuild:
+  remove unslotted version
 
   30 Jun 2008; Raúl Porcel <armin76@gentoo.org> unison-2.27.57-r1.ebuild:
   sparc stable wrt #229187
