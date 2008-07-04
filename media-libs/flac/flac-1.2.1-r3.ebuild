@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.3 2008/06/16 11:15:01 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.4 2008/07/03 21:47:46 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -20,8 +20,6 @@ DEPEND="${RDEPEND}
 	x86? ( dev-lang/nasm )
 	!elibc_uclibc? ( sys-devel/gettext )
 	dev-util/pkgconfig"
-
-RESTRICT="test"
 
 PATCHES=( "${FILESDIR}/${P}-asneeded.patch"
 	"${FILESDIR}/${P}-cflags.patch"
@@ -49,6 +47,14 @@ src_compile() {
 		--disable-xmms-plugin
 
 	emake || die "emake failed."
+}
+
+src_test() {
+	if [ $UID != 0 ] ; then
+		emake check || die "tests failed"
+	else
+		ewarn "Tests will fail if ran as root, skipping."
+	fi
 }
 
 src_install() {
