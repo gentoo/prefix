@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="as-is"
 SLOT="1.6"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE=""
 
 # Keeps this and java-virtuals/jaf in sync
