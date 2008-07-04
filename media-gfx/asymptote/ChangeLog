@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.15 2008/05/28 19:17:23 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.16 2008/07/04 04:20:30 grozin Exp $
+
+*asymptote-1.43 (04 Jul 2008)
+
+  04 Jul 2008; Andrey Grozin <grozin@gentoo.org>
+  +files/asymptote-1.43-configure-ac.patch,
+  +files/asymptote-1.43-xdg-utils.patch, metadata.xml,
+  -asymptote-1.33-r1.ebuild, -asymptote-1.36.ebuild, +asymptote-1.43.ebuild:
+  Version bump. New USE flags. Dependence on virtual/tetex removed. Various
+  ebuild improvements. Cleaning up old versions.
 
   28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Dominik Stadler (centic) from metadata.xml (as per #40994).

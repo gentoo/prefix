@@ -1,0 +1,19 @@
+diff -U2 --recursive asymptote-1.43.orig/settings.cc asymptote-1.43/settings.cc
+--- asymptote-1.43.orig/settings.cc	2008-06-12 14:41:38.000000000 +0700
++++ asymptote-1.43/settings.cc	2008-06-22 17:26:21.000000000 +0700
+@@ -75,12 +75,12 @@
+ const char *HOME="HOME";
+ const char pathSeparator=':';
+-string defaultPSViewer="gv";
++string defaultPSViewer="xdg-open";
+ #ifdef __APPLE__
+ string defaultPDFViewer="open";
+ #else  
+-string defaultPDFViewer="acroread";
++string defaultPDFViewer="xdg-open";
+ #endif  
+ string defaultGhostscript="gs";
+-string defaultDisplay="display";
++string defaultDisplay="xdg-open";
+ string defaultPython;
+ const string docdir=ASYMPTOTE_DOCDIR;
