@@ -1,6 +1,10 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.145 2008/04/27 17:54:40 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.146 2008/07/04 02:22:01 nerdboy Exp $
+
+  03 Jul 2008; Steve Arnold <nerdboy@gentoo.org> doxygen-1.5.4.ebuild,
+  doxygen-1.5.5.ebuild:
+  updated latest stable/testing with latex USE flag per bug #230155
 
   27 Apr 2008; Steve Arnold <nerdboy@gentoo.org> doxygen-1.4.7.ebuild,
   doxygen-1.5.1.ebuild, doxygen-1.5.2.ebuild, doxygen-1.5.3.ebuild,

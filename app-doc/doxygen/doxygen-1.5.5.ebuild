@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.5.ebuild,v 1.3 2008/04/27 17:54:40 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.5.ebuild,v 1.4 2008/07/04 02:22:01 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -13,10 +13,10 @@ SRC_URI="ftp://ftp.stack.nl/pub/users/dimitri/${P}.src.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="debug doc nodot qt3 tetex"
+IUSE="debug doc nodot qt3 latex elibc_FreeBSD"
 
 RDEPEND="qt3? ( $(qt_min_version 3.3) )
-	tetex? ( virtual/tetex )
+	latex? ( virtual/latex-base )
 	dev-lang/python
 	virtual/libiconv
 	media-libs/libpng
@@ -110,7 +110,7 @@ src_compile() {
 		sed -i -e "s/HAVE_DOT               = YES/HAVE_DOT    = NO/" \
 		    {Doxyfile,doc/Doxyfile} || ewarn "disabling dot failed"
 	    fi
-	    if use tetex; then
+	    if use latex; then
 		addwrite /var/cache/fonts
 		addwrite /var/cache/fontconfig
 		addwrite /usr/share/texmf/fonts/pk
@@ -144,7 +144,7 @@ src_install() {
 	# pdf and html manuals
 	if use doc; then
 	    insinto /usr/share/doc/"${PF}"
-	    if use tetex; then
+	    if use latex; then
 		doins latex/doxygen_manual.pdf
 	    fi
 	    dohtml -r html/*
@@ -155,7 +155,7 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 
 	elog
-	elog "The USE flags qt3, doc, and tetex will enable doxywizard, or"
+	elog "The USE flags qt3, doc, and latex will enable doxywizard, or"
 	elog "the html and pdf documentation, respectively.  For examples"
 	elog "and other goodies, see the source tarball.  For some example"
 	elog "output, run doxygen on the doxygen source using the Doxyfile"
