@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8791 2008/07/03 04:23:36 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8797 2008/07/03 22:28:45 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
+# Masked for removal in ~30 days by treecleaners. bug #59548
+# dev-util/tla leaks file descriptors. app-emacs/xtla is not usable and depends
+# on tla. Use >=app-editors/emacs-cvs-23 or app-emacs/dvc (from the Emacs 
+# overlay) as a replacement.
+dev-util/tla
+app-emacs/xtla
 
 # Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
 # Masked for removal in ~30 days by treecleaners. bug #124383
@@ -102,7 +110,7 @@ games-board/glchess
 
 # Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
 # Please read http://my.opera.com/desktopteam/blog before using these snapshots
-=www-client/opera-9.51*
+=www-client/opera-9.51_pre*
 
 # Steve Dibb <beandog@gentoo.org> (21 Jun 2008)
 # Needs testing; Added custom-cpuopts flag for more fine-grained
@@ -258,6 +266,9 @@ www-apps/gitweb
 # Masked for testing wrt #163724
 dev-libs/libffi
 x11-libs/gtk-server
+virtual/libffi
+>=dev-libs/g-wrap-1.9.11
+>=dev-scheme/guile-gnome-platform-2.16.0
 
 # Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
 # Can't download distfile. Newer versions in tree. bug #193625
@@ -370,10 +381,6 @@ dev-util/lincvs
 # Rémi Cardona <remi@gentoo.org> (16 Apr 2008)
 # Masked until somebody picks it up
 dev-cpp/bakery
-
-# Jim Ramsay <lack@gentoo.org> (15 May 2008)
-# New beta version of netscape-flash released, masked for testing.
-=net-www/netscape-flash-10_beta*
 
 # Diego Pettenò <flameeyes@gentoo.org> (11 May 2008)
 # Release candidate version, masked for testing.
@@ -1225,12 +1232,6 @@ media-libs/freeimage
 # problems starting drscheme (segfault)
 =dev-scheme/drscheme-370.6_p20070725
 
-# Jim Ramsay <lack@gentoo.org> (19 Jul 2007)
-# netscape-flash-9.0.48.0-r1 addresses Gentoo bug #185141 by using the versioned
-# RPM distributed by Adobe instead of their unversioned tar.gz.
-# However, we must still mask the original ebuild, and any previous versions.
-<=net-www/netscape-flash-9.0.48.0
-
 # Raúl Porcel <armin76@gentoo.org> (18 Jul 2007)
 # Mask rc
 =net-p2p/qbittorrent-1.0.0_rc*
@@ -1275,10 +1276,6 @@ kde-misc/kdbus
 # Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
 # Masked because 1.2.1 because it is broken
 =net-wireless/ipw3945-1.2.1
-
-# Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
-# development version
-=media-sound/lilypond-2.11*
 
 # Ryan Hill <dirtyepic@gentoo.org> (13 May 2007)
 #   Mask for testing.

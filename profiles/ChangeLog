@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1642 2008/07/03 04:23:36 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1648 2008/07/03 22:28:45 jer Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  03 Jul 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Unmask final www-client/opera-9.51 (bug #230633).
+
+  03 Jul 2008; Alexis Ballier <aballier@gentoo.org> use.local.desc:
+  readd vlc libgcrypt useflag
+
+  03 Jul 2008; Marijn Schouten <hkBst@gentoo.org> package.mask:
+  add masks depending on new libffi
+
+  03 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Update comment on tla mask
+
+  03 Jul 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  Removing netscape-flash-10 from mask - It seems reasonably stable now with
+  the new version. Also removing reference to old flash versions that
+  haven't been in the tree for over 30 days
+
+  03 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-util/tla & app-emacs/xtla for removal in 30 days.
 
   03 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask app-i18n/kon2 for removal in ~30 days
