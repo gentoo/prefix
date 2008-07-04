@@ -1,6 +1,32 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.79 2008/05/21 15:59:59 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.80 2008/07/03 17:14:16 hkbst Exp $
+
+*clisp-2.46 (03 Jul 2008)
+
+  03 Jul 2008; Marijn Schouten <hkBst@gentoo.org> +clisp-2.46.ebuild:
+  bump:
+	User visible changes
+	--------------------
+	* CLISP built natively on 64-bit platforms (i.e., with 64-bit pointers)
+	now has :WORD-SIZE=64 in *FEATURES*.
+	See <http://clisp.cons.org/impnotes/features.html> for details.
+	* Module syscalls now offers OS:ERRNO and OS:STRERROR (for the sake of
+	FFI modules).
+	See <http://clisp.cons.org/impnotes/syscalls.html#errno> for details.
+	* Modules MIT-CLX and NEW-CLX export a new macro XLIB:WITH-OPEN-DISPLAY.
+	* Module netica has been upgraded to the Netica C API version 3.25 (from 2.15).
+	See <http://clisp.cons.org/impnotes/netica.html> for details.
+	* Module libsvm has been upgraded to the upstream version 2.86.
+	See <http://clisp.cons.org/impnotes/libsvm.html> for details.
+	* Bug fixes:
+	+ Work around the absence of tgamma() on solaris. [ 1966375 ]
+	+ Avoid a rare segfault on SIGHUP. [ 1956715 ]
+	+ Improve module portability to systems with non-GNU make. [ 1970141 ]
+	+ Fix GRAY:STREAM-READ-SEQUENCE and GRAY:STREAM-WRITE-SEQUENCE. [ 1975798 ]
+	+ Fix the remaining bugs in special bindings in evaluated code on
+	TYPECODES (64-bit) platforms.
+	+ Fix SOCKET:SOCKET-CONNECT with timeout to a dead port. [ 2007052 ]
 
   21 May 2008; Tiziano Müller <dev-zero@gentoo.org> clisp-2.43-r1.ebuild,
   clisp-2.44.1.ebuild, clisp-2.44.1-r1.ebuild:
