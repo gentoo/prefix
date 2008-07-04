@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.99 2008/07/01 16:44:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.100 2008/07/04 00:09:39 jer Exp $
+
+  04 Jul 2008; Jeroen Roovers <jer@gentoo.org> rubygems-1.1.1.ebuild:
+  Stable for HPPA (bug #229875).
 
   01 Jul 2008; Raúl Porcel <armin76@gentoo.org> rubygems-1.1.1.ebuild:
   alpha/ia64/x86 stable wrt #229875
