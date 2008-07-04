@@ -88,8 +88,8 @@ src_compile() {
 		$(use_enable imlib imlib2) \
 		$(use_enable slit ) \
 		$(use_enable toolbar ) \
-		--sysconfdir=/etc/X11/${PN} \
-		--with-style=/usr/share/fluxbox/styles/Emerge \
+		--sysconfdir="${EPREFIX}"/etc/X11/${PN} \
+		--with-style="${EPREFIX}"/usr/share/fluxbox/styles/Emerge \
 		${myconf} || die "configure failed"
 
 	emake || die "make failed"
