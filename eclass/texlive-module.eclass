@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.8 2008/02/14 09:02:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.11 2008/07/03 22:36:12 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -24,25 +24,35 @@
 # The list of packages that will be installed. This variable will be expanded to
 # SRC_URI:
 #
-# foo -> texlive-module-foo-${PV}.zip
+# For TeX Live 2007: foo -> texlive-module-foo-${PV}.zip
+# For TeX Live 2008: foo -> texlive-module-foo-${PV}.tar.lzma
 
 inherit texlive-common
 
 HOMEPAGE="http://www.tug.org/texlive/"
 
-for i in ${TEXLIVE_MODULE_CONTENTS}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
-done
-
 COMMON_DEPEND=">=app-text/texlive-core-${PV}
 	${TEXLIVE_MODULES_DEPS}"
 
+# TeX Live 2007 was providing .zip files of CTAN packages. For 2008 they are now
+# .tar.lzma
+if [ -z "${PV##2007*}" ] ; then
+for i in ${TEXLIVE_MODULE_CONTENTS}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
+done
 DEPEND="${COMMON_DEPEND}
 	app-arch/unzip"
+else
+for i in ${TEXLIVE_MODULE_CONTENTS}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+done
+DEPEND="${COMMON_DEPEND}
+	app-arch/lzma-utils"
+fi
 
 RDEPEND="${COMMON_DEPEND}"
 
-IUSE="doc"
+[ -z "${PN##*documentation*}" ] || IUSE="doc"
 
 S="${WORKDIR}"
 
@@ -69,15 +79,24 @@ texlive-module_src_compile() {
 	done
 
 	# Generate config files
+	# TeX Live 2007 was providing lists. For 2008 they are now tlpobj.
+	if [ -z "${PV##2007*}" ] ; then
 	for i in "${S}"/texmf/lists/*;
 	do
-		grep '^!' "${i}" | tr ' ' '=' |sort|uniq >> "${T}/jobs"
+		grep '^!' "${i}" | sed -e 's/^!//' | tr ' ' '@' |sort|uniq >> "${T}/jobs"
 	done
-
-	for j in $(<"${T}/jobs");
+	else
+	for i in "${S}"/tlpkg/tlpobj/*;
 	do
-		command=$(echo ${j} | sed 's/.\(.*\)=.*/\1/')
-		parameter=$(echo ${j} | sed 's/.*=\(.*\)/\1/')
+		grep '^execute ' "${i}" | sed -e 's/^execute //' | tr ' ' '@' |sort|uniq >> "${T}/jobs"
+	done
+	fi
+
+	for i in $(<"${T}/jobs");
+	do
+		j="$(echo $i | tr '@' ' ')"
+		command=${j%% *}
+		parameter=${j#* }
 		case "${command}" in
 			addMap)
 				echo "Map ${parameter}" >> "${S}/${PN}.cfg";;
@@ -87,6 +106,14 @@ texlive-module_src_compile() {
 				echo "p	+${parameter}" >> "${S}/${PN}-config.ps";;
 			addDvipdfmMap)
 				echo "f	${parameter}" >> "${S}/${PN}-config";;
+			AddHyphen)
+				ewarn "Sorry, $command not implemented yet.";;
+			BuildFormat)
+				elog "Format $parameter already built.";;
+			BuildLanguageDat)
+				elog "Language file $parameter already generated.";;
+			*)
+				die "No rule to proccess ${command}. Please file a bug."
 		esac
 	done
 }
@@ -102,7 +129,7 @@ texlive-module_src_install() {
 	done
 
 	insinto /usr/share
-	if use doc; then
+	if [ -z "${PN##*documentation*}" ] || use doc; then
 		[ -d texmf-doc ] && doins -r texmf-doc
 	else
 		[ -d texmf/doc ] && rm -rf texmf/doc
@@ -111,6 +138,7 @@ texlive-module_src_install() {
 
 	[ -d texmf ] && doins -r texmf
 	[ -d texmf-dist ] && doins -r texmf-dist
+	[ -d tlpkg ] && doins -r tlpkg
 
 	insinto /var/lib/texmf
 	[ -d texmf-var ] && doins -r texmf-var/*

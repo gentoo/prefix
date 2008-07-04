@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.18 2008/03/11 18:01:01 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.19 2008/07/03 06:24:06 dberkholz Exp $
 #
 # Author: Danny van Dyk <kugelfang@gentoo.org>
 #
@@ -36,6 +36,7 @@ fortran_conf() {
 #   * g77 - GCC Fortran 77
 #   * f2c - Fortran 2 C Translator
 #   * ifc - Intel Fortran Compiler
+#   * f95 - Sun Studio Fortran Compiler
 #
 # Checks if at least one of <profiles> is installed.
 # Checks also if F77 (the fortran compiler to use) is available
@@ -76,6 +77,17 @@ need_fortran() {
 						;;
 				esac
 				;;
+			f95)
+				case ${ARCH} in
+					x86|amd64)
+						if [ -x "$(type -P f95 2> /dev/null)" ]; then
+							AVAILABLE="${AVAILABLE} f95"
+						fi
+						;;
+					*)
+						;;
+				esac
+				;;
 		esac
 	done
 	AVAILABLE="${AVAILABLE/^[[:space:]]}"
@@ -103,6 +115,16 @@ need_fortran() {
 						*)
 							;;
 					esac
+					;;
+				f95)
+					case ${ARCH} in
+						x86|amd64)
+							eerror "[${i}] emerge dev-lang/sunstudio"
+							;;
+						*)
+							;;
+					esac
+					;;
 			esac
 			i=$((i + 1))
 		done

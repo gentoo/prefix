@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.77 2008/06/01 08:56:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.78 2008/07/03 05:26:47 dberkholz Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -76,14 +76,10 @@ tc-getRANLIB() { tc-getPROG RANLIB ranlib "$@"; }
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the Fortran 77 compiler
 tc-getF77() { tc-getPROG F77 f77 "$@"; }
-# @FUNCTION: tc-getF90
+# @FUNCTION: tc-getFC
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the Fortran 90 compiler
-tc-getF90() { tc-getPROG F90 gfortran "$@"; }
-# @FUNCTION: tc-getFORTRAN
-# @USAGE: [toolchain prefix]
-# @RETURN: name of the Fortran compiler
-tc-getFORTRAN() { tc-getPROG FORTRAN gfortran "$@"; }
+tc-getFC() { tc-getPROG FC gfortran "$@"; }
 # @FUNCTION: tc-getGCJ
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the java compiler

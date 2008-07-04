@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.64 2008/06/25 21:35:27 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.65 2008/07/03 11:18:13 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -73,11 +73,12 @@ DESCRIPTION="vdr Plugin: ${VDRPLUGIN} (based on vdr-plugin.eclass)"
 S="${WORKDIR}/${VDRPLUGIN}-${PV}"
 
 # depend on headers for DVB-driver
-DEPEND=">=media-tv/gentoo-vdr-scripts-0.3.8
-	|| ( >=media-tv/gentoo-vdr-scripts-0.4.2 >=media-tv/vdrplugin-rebuild-0.2 )
-	>=app-admin/eselect-vdr-0.0.2
-	media-tv/linuxtv-dvb-headers"
+COMMON_DEPEND=">=media-tv/gentoo-vdr-scripts-0.4.2"
 
+DEPEND="${COMMON_DEPEND}
+	media-tv/linuxtv-dvb-headers"
+RDEPEND="${COMMON_DEPEND}
+	>=app-admin/eselect-vdr-0.0.2"
 
 # New method of storing plugindb
 #   Called from src_install
@@ -443,8 +444,10 @@ vdr-plugin_src_compile() {
 			fi
 			cd "${S}"
 
+			BUILD_TARGETS=${BUILD_TARGETS:-${VDRPLUGIN_MAKE_TARGET:-all}}
+
 			emake ${BUILD_PARAMS} \
-				${VDRPLUGIN_MAKE_TARGET:-all} \
+				${BUILD_TARGETS} \
 				LOCALEDIR="${TMP_LOCALE_DIR}" \
 				LIBDIR="${S}" \
 				TMPDIR="${T}" \
