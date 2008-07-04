@@ -1,3 +1,15 @@
+diff -Naurp nmap-4.68-orig/configure.ac nmap-4.68/configure.ac
+--- nmap-4.68-orig/configure.ac	2008-07-02 22:37:00.000000000 +0200
++++ nmap-4.68/configure.ac	2008-07-03 08:23:54.000000000 +0200
+@@ -524,7 +524,7 @@ AC_HELP_STRING([--without-liblua], [Comp
+ 
+ # They don't want lua
+ if test "$no_lua" = "yes"; then
+-  CXXFLAGS="-DNOLUA $CXXFLAGS"
++  CPPFLAGS="-DNOLUA $CPPFLAGS"
+   LIBLUA_LIBS=""
+   LUA_DEPENDS=""
+   LUA_BUILD=""
 diff -Naurp nmap-4.68-orig/nmap.cc nmap-4.68/nmap.cc
 --- nmap-4.68-orig/nmap.cc	2008-07-02 22:37:00.000000000 +0200
 +++ nmap-4.68/nmap.cc	2008-07-02 22:37:20.000000000 +0200

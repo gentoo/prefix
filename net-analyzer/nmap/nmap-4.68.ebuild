@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.2 2008/07/02 20:45:50 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.3 2008/07/03 06:43:41 spock Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A utility for network exploration or security auditing"
 HOMEPAGE="http://nmap.org/"
@@ -28,6 +28,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-nolua.patch"
+	AT_NO_RECURSIVE=1 eautoreconf
 }
 
 pkg_setup() {

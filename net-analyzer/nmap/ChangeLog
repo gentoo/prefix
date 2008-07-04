@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.175 2008/07/02 20:45:50 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.176 2008/07/03 06:43:41 spock Exp $
+
+  03 Jul 2008; Michał Januszewski <spock@gentoo.org>
+  files/nmap-4.68-nolua.patch, nmap-4.68.ebuild:
+  Really fix bug #230443.
 
   02 Jul 2008; Michał Januszewski <spock@gentoo.org>
   +files/nmap-4.68-nolua.patch, nmap-4.68.ebuild:
