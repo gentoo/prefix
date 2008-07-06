@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/randrproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/randrproto/ChangeLog,v 1.45 2007/10/09 09:40:40 dberkholz Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/randrproto/ChangeLog,v 1.46 2008/07/05 06:24:31 dberkholz Exp $
+
+*randrproto-1.2.2 (05 Jul 2008)
+
+  05 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +randrproto-1.2.2.ebuild:
+  Bump for X.Org 7.4.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -randrproto-1.1.2.ebuild, -randrproto-1.2.0.ebuild:
