@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.357 2008/06/22 13:57:42 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.358 2008/07/06 02:41:54 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1215,7 +1215,9 @@ gcc-compiler-configure() {
 	is_gcj && GCC_LANG="${GCC_LANG},java"
 	if is_objc || is_objcxx ; then
 		GCC_LANG="${GCC_LANG},objc"
-		use objc-gc && confgcc="${confgcc} --enable-objc-gc"
+		if tc_version_is_at_least "4.0" ; then
+			use objc-gc && confgcc="${confgcc} --enable-objc-gc"
+		fi
 		is_objcxx && GCC_LANG="${GCC_LANG},obj-c++"
 	fi
 	is_treelang && GCC_LANG="${GCC_LANG},treelang"
