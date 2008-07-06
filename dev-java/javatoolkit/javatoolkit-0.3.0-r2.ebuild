@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/javatoolkit-0.3.0.ebuild,v 1.1 2008/06/21 14:20:33 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/javatoolkit-0.3.0-r2.ebuild,v 1.1 2008/07/05 13:53:47 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -13,6 +13,9 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
+
+RDEPEND="dev-python/pyxml
+		|| ( >=dev-lang/python-2.5 dev-python/celementtree )"
 
 PYTHON_MODNAME="javatoolkit"
 
