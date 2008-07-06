@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5.ebuild,v 1.1 2008/05/07 21:32:00 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5.ebuild,v 1.2 2008/07/04 19:21:08 hkbst Exp $
 
 EAPI="prefix"
 
@@ -70,7 +70,7 @@ src_compile() {
 src_install() {
 	einstall || die "install failed"
 
-	dodoc AUTHORS ChangeLog GUILE-VERSION HACKING NEWS README SNAPSHOTS THANKS
+	dodoc AUTHORS ChangeLog GUILE-VERSION HACKING NEWS README THANKS
 
 	# texmacs needs this, closing bug #23493
 	dodir /etc/env.d

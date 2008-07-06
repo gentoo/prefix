@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.59 2008/05/07 21:32:00 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.60 2008/07/04 19:21:08 hkbst Exp $
+
+  04 Jul 2008; Marijn Schouten <hkBst@gentoo.org> guile-1.8.5.ebuild:
+  fix bug 230754
 
 *guile-1.8.5 (07 May 2008)
 
