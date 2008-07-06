@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r4.ebuild,v 1.8 2008/05/11 19:54:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.20.2.ebuild,v 1.1 2008/07/04 21:34:32 maekke Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,8 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 
 LICENSE="CPL-1.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="doc examples gnome gtk jpeg nls perl png python ruby tcl tk"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE="cairo cgraph doc examples gnome gtk java jpeg nls perl png python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -30,9 +30,13 @@ RDEPEND="
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.10
 	virtual/libiconv
+	cairo?  (
+		x11-libs/libXaw
+		>=x11-libs/pango-1.12
+		>=x11-libs/cairo-1.1.10
+	)
 	ruby?	( dev-lang/ruby )
 	tcl?	( >=dev-lang/tcl-8.3 )
-	tk?		( >=dev-lang/tk-8.3 )
 	gtk?	(
 		>=x11-libs/gtk+-2
 		x11-libs/libXaw
@@ -44,6 +48,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.20
 	sys-devel/flex
+	java?	( dev-lang/swig )
 	nls?	( >=sys-devel/gettext-0.14.5 )
 	perl?	( dev-lang/swig )
 	python?	( dev-lang/swig )
@@ -110,7 +115,7 @@ pkg_setup() {
 	fi
 
 	# bug 202781
-	if use gtk && ! built_with_use x11-libs/cairo svg ; then
+	if use cairo && ! built_with_use x11-libs/cairo svg ; then
 		eerror "x11-libs/cairo has to be built with svg support"
 		die "emerge x11-libs/cairo with USE=\"svg\""
 	fi
@@ -119,13 +124,6 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-bindings.patch
-	epatch "${FILESDIR}"/${P}-gcc43-missing-includes.patch
-	epatch "${FILESDIR}"/${P}-python-buildfix.patch
-	epatch "${FILESDIR}"/${P}-pango-optional.patch
-	epatch "${FILESDIR}"/${P}-tcltk.patch
-	epatch "${FILESDIR}"/${P}-python-345.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/\.so/.dylib/g' tclpkg/gv/Makefile.am
@@ -144,13 +142,23 @@ src_unpack() {
 
 	# Update this file from our local libtool which is much newer than the
 	# bundled one. This allows MAKEOPTS=-j2 to work on FreeBSD.
-	cp "${EPREFIX}"/usr/share/libtool/install-sh config
+	if has_version ">=sys-devel/libtool-2" ; then
+		cp "${EPREFIX}"/usr/share/libtool/config/install-sh config || die
+	else
+		cp "${EPREFIX}"/usr/share/libtool/install-sh config || die
+	fi
 
 	# no nls, no gettext, no iconv macro, so disable it
 	use nls || { sed -i -e '/^AM_ICONV/d' configure.ac || die; }
 
 	# Nuke the dead symlinks for the bindings
 	sed -i -e '/$(pkgluadir)/d' tclpkg/gv/Makefile.am || die
+
+	# replace the whitespace with tabs
+	sed -i -e 's:  :\t:g' doc/info/Makefile.am || die
+
+	# fix for interix.
+	epatch "${FILESDIR}"/${PN}-2.18-interix.patch
 
 	eautoreconf
 }
@@ -160,37 +168,48 @@ src_compile() {
 
 	# Core functionality:
 	# All of X, cairo-output, gtk need the pango+cairo functionality
+	if use gtk ; then
+		myconf="${myconf} --with-x"
+	elif use cairo ; then
+		myconf="${myconf} --with-x"
+	else
+		myconf="${myconf} --without-x"
+	fi
 	myconf="${myconf}
+		$(use_with cgraph)
 		$(use_with gtk)
-		$(use_with gtk x)
-		$(use_with gtk pangocairo)
+		$(use_with cairo pangocairo)
 		--without-ming
 		--with-digcola
 		--with-ipsepcola
 		--with-fontconfig
-		--with-freetype
+		--with-freetype2
 		--with-libgd
-		--without-gdk-pixbuf
-		--disable-python23
-		--disable-python24
-		--disable-python25"
+		--without-gdk-pixbuf"
+
+	# new/experimental features, to be tested, disable for now
+	myconf="${myconf}
+		--without-sfdp
+		--without-smyrna
+		--without-digcola
+		--without-ipsepcola"
 
 	use gtk && myconf="${myconf} $(use_with gnome gnomeui)"
 
 	# Bindings:
 	myconf="${myconf}
 		--disable-guile
-		--disable-java
+		$(use_enable java)
 		--disable-io
 		--disable-lua
 		--disable-ocaml
 		$(use_enable perl)
 		--disable-php
 		$(use_enable python)
+		--disable-r
 		$(use_enable ruby)
 		--disable-sharp
-		$(use_enable tcl)
-		$(use_enable tk)"
+		$(use_enable tcl)"
 
 	econf \
 		--enable-ltdl \
