@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXxf86vm
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.32 2007/02/04 18:26:58 joshuabaergen Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.33 2008/07/05 06:28:48 dberkholz Exp $
+
+*libXxf86vm-1.0.2 (05 Jul 2008)
+
+  05 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXxf86vm-1.0.2.ebuild:
+  Bump for X.Org 7.4.
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   libXxf86vm-1.0.1.ebuild:
