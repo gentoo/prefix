@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.26 2008/05/26 12:17:19 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.27 2008/07/04 14:34:27 flameeyes Exp $
+
+*libarchive-2.5.5 (04 Jul 2008)
+
+  04 Jul 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -files/libarchive-2.5.4b-glibc.patch, -libarchive-2.5.4_beta.ebuild,
+  +libarchive-2.5.5.ebuild:
+  Version bump, remove old beta.
 
 *libarchive-2.5.4_beta (26 May 2008)
 
