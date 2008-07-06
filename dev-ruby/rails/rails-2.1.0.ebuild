@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.1.0.ebuild,v 1.1 2008/06/17 05:44:06 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.1.0.ebuild,v 1.2 2008/07/04 07:00:57 graaff Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="fastcgi"
 DEPEND=">=dev-lang/ruby-1.8.5
 	>=app-admin/eselect-rails-0.12
-	>=dev-ruby/rake-0.7.2
+	>=dev-ruby/rake-0.8.1
 	~dev-ruby/activerecord-2.1.0
 	~dev-ruby/activeresource-2.1.0
 	~dev-ruby/activesupport-2.1.0
