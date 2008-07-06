@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/docbook-dsssl-stylesheets-1.79.ebuild,v 1.19 2008/01/19 14:49:45 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/docbook-dsssl-stylesheets-1.79.ebuild,v 1.20 2008/07/04 08:49:24 eva Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,8 @@ sgml-catalog_cat_include "/etc/sgml/sgml-docbook.cat" \
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	cp ${FILESDIR}/${PN}-1.77.Makefile Makefile
+	cd "${S}"
+	cp "${FILESDIR}/${PN}-1.77.Makefile" Makefile
 	epatch "${FILESDIR}"/${PN}-prefix.patch
 	eprefixify bin/collateindex.pl
 }
@@ -51,11 +51,10 @@ src_install() {
 		ewarn "/usr/share/sgml/docbook/dsssl-stylesheets-${PV}"
 		ewarn "as directory already exists there.  Will assume you know"
 		ewarn "what you're doing."
-		return 0
+	else
+		dosym /usr/share/sgml/docbook/dsssl-stylesheets-${PV} \
+			/usr/share/sgml/stylesheets/dsssl/docbook
 	fi
-
-	dosym /usr/share/sgml/docbook/dsssl-stylesheets-${PV} \
-		/usr/share/sgml/stylesheets/dsssl/docbook
 
 	dodoc BUGS ChangeLog README RELEASE-NOTES.txt WhatsNew
 }

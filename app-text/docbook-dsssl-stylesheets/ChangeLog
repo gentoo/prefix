@@ -1,6 +1,11 @@
 # ChangeLog for app-text/docbook-dsssl-stylesheets
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.39 2008/01/19 14:49:45 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.40 2008/07/04 08:49:24 eva Exp $
+
+  04 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  docbook-dsssl-stylesheets-1.77-r2.ebuild,
+  docbook-dsssl-stylesheets-1.79.ebuild:
+  fix src_install logic, bug #224231. Fix repoman warnings.
 
   19 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   docbook-dsssl-stylesheets-1.79.ebuild:
