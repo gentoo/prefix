@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/xtrans
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.52 2008/05/09 07:55:12 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.53 2008/07/05 06:29:25 dberkholz Exp $
+
+*xtrans-1.2.1 (05 Jul 2008)
+
+  05 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>; +xtrans-1.2.1.ebuild:
+  Bump for X.Org 7.4.
 
 *xtrans-1.2 (09 May 2008)
 
