@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/axel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.39 2008/07/04 02:39:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.40 2008/07/04 21:34:42 opfer Exp $
+
+  04 Jul 2008; Christian Faulhammer <opfer@gentoo.org> axel-1.1.ebuild:
+  stable x86, bug 214731
 
   04 Jul 2008; Jeroen Roovers <jer@gentoo.org> axel-1.1.ebuild:
   Stable for HPPA (maybe bug #214731).
