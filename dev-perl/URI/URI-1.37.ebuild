@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/URI-1.36.ebuild,v 1.1 2008/04/29 14:53:44 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/URI-1.37.ebuild,v 1.1 2008/07/04 08:39:11 tove Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,6 @@ IUSE=""
 DEPEND="virtual/perl-MIME-Base64
 	dev-lang/perl"
 
-SRC_TEST=do
+SRC_TEST=no # see ChangeLog
 
 mydoc="rfc2396.txt"
