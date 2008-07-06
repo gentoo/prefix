@@ -1,6 +1,22 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.123 2008/07/02 21:02:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.128 2008/07/05 16:03:09 ranger Exp $
+
+  05 Jul 2008; Brent Baude <ranger@gentoo.org> xulrunner-1.8.1.15.ebuild:
+  Marking xulrunner-1.8.1.15 ppc64 and ppc for bug 230567
+
+  04 Jul 2008; Markus Meier <maekke@gentoo.org> xulrunner-1.8.1.15.ebuild:
+  amd64 stable, bug #230567
+
+  04 Jul 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.8.1.15.ebuild:
+  alpha/ia64/sparc stable wrt security #230567
+
+  04 Jul 2008; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.15.ebuild:
+  Stable for HPPA (bug #230567).
+
+  04 Jul 2008; Christian Faulhammer <opfer@gentoo.org>
+  xulrunner-1.8.1.15.ebuild:
+  stable x86, security bug 230567
 
 *xulrunner-1.8.1.15 (02 Jul 2008)
 
