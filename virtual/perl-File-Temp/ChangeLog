@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-File-Temp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/ChangeLog,v 1.25 2008/04/29 03:09:52 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/ChangeLog,v 1.26 2008/07/04 10:21:20 tove Exp $
+
+  04 Jul 2008; Torsten Veller <tove@gentoo.org> perl-File-Temp-0.18.ebuild,
+  perl-File-Temp-0.20.ebuild:
+  Add missing ~x86-fbsd keyword
 
 *perl-File-Temp-0.20 (29 Apr 2008)
 
