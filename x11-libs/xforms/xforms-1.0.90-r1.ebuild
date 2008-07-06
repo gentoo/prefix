@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.13 2008/02/24 17:38:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.14 2008/07/05 10:20:07 loki_val Exp $
 
 EAPI="prefix"
 
@@ -29,8 +29,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-as-needed.patch
 	epatch "${FILESDIR}"/${P}-Makefile.am.patch
-
-	eautoreconf
+	rm ${S}/config/libtool.m4 ${S}/acinclude.m4
+	AT_M4DIR=config eautoreconf
 }
 
 src_compile () {
