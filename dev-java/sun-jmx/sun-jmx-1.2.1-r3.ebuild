@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/sun-jmx-1.2.1-r3.ebuild,v 1.4 2008/06/24 06:27:01 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/sun-jmx-1.2.1-r3.ebuild,v 1.5 2008/07/04 07:13:56 nelchael Exp $
 
 EAPI="prefix"
 
