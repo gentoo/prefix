@@ -1,6 +1,11 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.98 2008/03/11 19:57:00 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.99 2008/07/05 16:13:38 spock Exp $
+
+*elinks-0.11.4 (05 Jul 2008)
+
+  05 Jul 2008; Michał Januszewski <spock@gentoo.org> +elinks-0.11.4.ebuild:
+  Version bump (bug #230081).
 
 *elinks-0.11.4_rc1 (11 Mar 2008)
 
