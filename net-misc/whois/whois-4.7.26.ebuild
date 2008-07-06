@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.26.ebuild,v 1.3 2008/06/30 20:48:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.26.ebuild,v 1.4 2008/07/05 17:43:20 coldwind Exp $
 
 EAPI="prefix"
 
