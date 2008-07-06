@@ -1,6 +1,11 @@
 # ChangeLog for app-text/unrtf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/ChangeLog,v 1.32 2008/06/21 19:51:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/ChangeLog,v 1.33 2008/07/05 09:33:46 robbat2 Exp $
+
+*unrtf-0.20.5 (05 Jul 2008)
+
+  05 Jul 2008; Robin H. Johnson <robbat2@gentoo.org> +unrtf-0.20.5.ebuild:
+  Bug #228741, version bump, thanks to david5002@milwpc.com.
 
   16 Jun 2008; Brent Baude <ranger@gentoo.org> unrtf-0.20.1.ebuild:
   Marking unrtf-0.20.1 ~ppc64 for bug 225877
