@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libafterimage
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.16 2008/04/08 09:20:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.17 2008/07/04 10:02:07 bicatali Exp $
+
+*libafterimage-1.18 (04 Jul 2008)
+
+  04 Jul 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +libafterimage-1.18.ebuild:
+  Version bump
 
   08 Apr 2008; Raúl Porcel <armin76@gentoo.org> libafterimage-1.15.ebuild:
   ia64/sparc stable wrt #215898
