@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/nvi
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/ChangeLog,v 1.63 2008/06/22 09:56:23 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nvi/ChangeLog,v 1.64 2008/07/05 04:24:06 ricmm Exp $
+
+  05 Jul 2008; <ricmm@gentoo.org> nvi-1.81.5-r3.ebuild,
+  nvi-1.81.5-r6.ebuild:
+  Drop to ~mips due to unstable deps
 
   22 Jun 2008; Friedrich Oslage <bluebird@gentoo.org> nvi-1.81.6.ebuild:
   Stable on sparc, bug #226685
