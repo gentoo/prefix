@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.0.1-r2.ebuild,v 1.5 2008/07/05 13:39:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.0.1-r3.ebuild,v 1.1 2008/07/04 06:59:52 nelchael Exp $
 
 EAPI="prefix"
 
@@ -13,20 +13,17 @@ SRC_URI="http://www.selenic.com/mercurial/release/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bugzilla cvs darcs emacs git gpg subversion test zsh-completion"
+IUSE="bugzilla emacs gpg test zsh-completion"
 
 CDEPEND=">=dev-lang/python-2.3"
 RDEPEND="${CDEPEND}
 	bugzilla? ( dev-python/mysql-python )
-	cvs? ( dev-util/cvs )
-	darcs? ( || ( dev-python/celementtree dev-python/elementtree ) )
-	git? ( dev-util/git )
 	gpg? ( app-crypt/gnupg )
-	subversion? ( dev-util/subversion )
 	zsh-completion? ( app-shells/zsh )"
 DEPEND="${CDEPEND}
 	emacs? ( virtual/emacs )
-	test? ( app-arch/unzip )"
+	test? ( app-arch/unzip
+		dev-python/pygments )"
 
 PYTHON_MODNAME="${PN} hgext"
 SITEFILE="70${PN}-gentoo.el"
@@ -85,10 +82,31 @@ EOF
 	fi
 }
 
+src_test() {
+	cd "${S}/tests/"
+	rm -f *svn*		# Subversion tests fail with 1.5
+	rm -f test-convert-baz*		# GNU Arch baz
+	rm -f test-convert-cvs*		# CVS
+	rm -f test-convert-darcs*	# Darcs
+	rm -f test-convert-git*		# git
+	rm -f test-convert-mtn*		# monotone
+	rm -f test-convert-tla*		# GNU Arch tla
+	einfo "Running Mercurial tests ..."
+	python run-tests.py || die "test failed"
+}
+
 pkg_postinst() {
 	distutils_pkg_postinst
 	use emacs && elisp-site-regen
 	bash-completion_pkg_postinst
+
+	elog "If you want to convert repositories from other tools using convert"
+	elog "extension please install correct tool:"
+	elog "  dev-util/cvs"
+	elog "  dev-util/darcs"
+	elog "  dev-util/git"
+	elog "  dev-util/monotone"
+	elog "  dev-util/subversion"
 }
 
 pkg_postrm() {
