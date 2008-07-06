@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.40 2008/05/29 16:26:20 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.41 2008/07/04 23:04:08 eva Exp $
+
+  04 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/pygobject-2.14.2-libffi.patch, pygobject-2.14.2.ebuild:
+  fix libffi condition, fix bug #230751
 
   29 May 2008; Ali Polatel <hawking@gentoo.org> pygobject-2.12.3.ebuild:
   Use get_libdir.

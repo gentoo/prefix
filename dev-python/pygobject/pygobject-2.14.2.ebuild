@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.2.ebuild,v 1.2 2008/05/29 14:23:41 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.2.ebuild,v 1.3 2008/07/04 23:04:08 eva Exp $
 
 EAPI="prefix"
 
@@ -31,17 +31,21 @@ pkg_setup() {
 		eerror "libffi support not found in sys-devel/gcc." && die
 	fi
 
-	G2CONF="${G2CONF} $(use_enable doc docs) $(use_with libffi ffi)"
+	G2CONF="${G2CONF} $(use_enable doc docs) $(use_with libffi)"
 }
 
 src_unpack() {
 	gnome2_src_unpack
 
+	# fix libffi condition, fix bug #230751
+	epatch "${FILESDIR}/${P}-libffi.patch"
+
 	# fix bug #147285 - Robin H. Johnson <robbat2@gentoo.org>
 	# this is caused by upstream's automake-1.8 lacking some Gentoo-specific
 	# patches (for tmpfs amongst other things). Upstreams hit by this should
 	# move to newer automake versions ideally.
-	AT_M4DIR="m4" eautomake
+	#AT_M4DIR="m4" eautomake
+	AT_M4DIR="m4" eautoreconf
 
 	# disable pyc compiling
 	mv py-compile py-compile.orig
