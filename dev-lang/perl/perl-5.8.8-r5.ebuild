@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r5.ebuild,v 1.8 2008/05/16 19:21:15 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r5.ebuild,v 1.9 2008/07/05 23:01:32 wormo Exp $
 
 EAPI="prefix"
 
@@ -273,7 +273,7 @@ src_configure() {
 	then
 		myconf -Dd_dosuid
 		ewarn "You have enabled Perl's suid compile. Please"
-		ewarn "read http://perldoc.com/perl5.8.2/INSTALL.html#suidperl"
+		ewarn "read http://search.cpan.org/~nwclark/perl-5.8.8/INSTALL#suidperl"
 		epause 3
 	fi
 
