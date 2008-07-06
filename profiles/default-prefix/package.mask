@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (06 Jul 2008)
+# Needs to have bug #230981 sorted out
+~x11-libs/libSM-1.1.0
+
 # Jeremy Olexa <darkside@gentoo.org> (01 Jul 2008)
 # Masked until someone proves it works for them. Merges fine but I cannot 
 # figure it out. I spent too much time on it to not import it to the prefix

@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jul 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  mask x11-libs/libSM-1.1.0, see bug #230981
+
   01 Jul 2008; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.11/sparc, sunos/solaris/5.11/sparc/make.defaults,
   +sunos/solaris/5.11/sparc64, sunos/solaris/5.11/sparc64/make.defaults,
