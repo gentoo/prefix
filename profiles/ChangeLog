@@ -1,10 +1,21 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1648 2008/07/03 22:28:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1651 2008/07/05 13:14:32 armin76 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  05 Jul 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  no-nptl on x86 was punted
+
+  05 Jul 2008; Samuli Suominen <drac@gentoo.org> package.mask:
+  Remove masks for linkage (removed from tree, new version needs unreleased
+  C++ bindings for DBUS) and removed version of guile-gnome-platform which
+  appearently didn't work (gwave).
+
+  04 Jul 2008; Markus Meier <maekke@gentoo.org> use.local.desc:
+  add cgraph USE-flag for media-gfx/graphviz
 
   03 Jul 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
   Unmask final www-client/opera-9.51 (bug #230633).

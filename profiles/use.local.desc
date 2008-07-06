@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3618 2008/07/03 19:04:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3619 2008/07/04 21:29:00 maekke Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -998,6 +998,7 @@ media-gfx/comix:rar - Pulls app-arch/unrar for rar file support
 media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
 media-gfx/exiv2:xmp - Adds support for Adobe XMP
 media-gfx/gimp:smp - Enable support for multiprocessors
+media-gfx/graphviz:cgraph - Enables cgraph (PostScript plotting library in C) library
 media-gfx/graphviz:pango - Enables the rendering of the graphs using pango & cairo (with antialiasing support)
 media-gfx/gthumb:iptc - Add support for IPTC metadata
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
