@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.67 2008/07/02 09:20:22 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.68 2008/07/04 09:43:37 bicatali Exp $
+
+  04 Jul 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/fftw-2.1.5-no-test.patch:
+  Avoid compiling mpi and threaded tests when not asked (close bug #230705)
 
 *fftw-3.1.2-r1 (02 Jul 2008)
 *fftw-2.1.5-r5 (02 Jul 2008)
