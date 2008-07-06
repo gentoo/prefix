@@ -1,5 +1,10 @@
 # This file requires >=portage-2.1.1
 
+# Thomas Anderson <gentoofan23@gentoo.org> (04 Jul 2008)
+# Mask ia32 USE flag on all architectures but amd64
+# as we're the only people who can make use of it.
+www-client/opera ia32
+
 # Peter Alfredsen <loki_val@gentoo.org> (25 Jun 2008)
 # Php module fails to build due to newer autotools.
 >=media-libs/ming-0.4.0_beta5 php
