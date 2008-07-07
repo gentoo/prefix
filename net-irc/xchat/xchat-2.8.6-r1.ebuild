@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6.ebuild,v 1.1 2008/06/13 09:56:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.1 2008/07/06 17:50:05 armin76 Exp $
 
 EAPI="prefix"
 
@@ -44,8 +44,7 @@ src_unpack() {
 			"${S}"/configure{,.in} || die
 	fi
 
-	# interix zut
-	epatch "${FILESDIR}"/${PN}-2.8.4-functions.patch
+	epatch "${FILESDIR}"/${PN}-2.8.4-interix.patch
 	eautoreconf # need new libtool for interix
 }
 
@@ -104,4 +103,6 @@ pkg_postinst() {
 		elog "XChat now includes it's own systray icon, you may want to remove net-irc/xchat-systray."
 		elog
 	fi
+
+	epatch "${FILESDIR}"/xc286-smallfixes.diff
 }

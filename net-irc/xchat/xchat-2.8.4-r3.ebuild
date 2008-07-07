@@ -48,8 +48,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/xc284-improvescrollback.diff
 	epatch "${FILESDIR}"/xc284-fix-scrollbfdleak.diff
 	epatch "${FILESDIR}"/xchat-fix-uk_UA-locale.diff
-	epatch "${FILESDIR}"/${P}-functions.patch
 
+	epatch "${FILESDIR}"/${P}-interix.patch
 	eautoreconf # need new libtool for interix
 }
 
