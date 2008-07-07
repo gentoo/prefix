@@ -2,7 +2,7 @@
 +++ wtf	2007-10-12 21:45:34 +0200
 @@ -1,4 +1,4 @@
 -#!/bin/sh
-+#!/usr/bin/env bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
  #
  #	$NetBSD: wtf,v 1.13 2005/07/01 14:21:49 peter Exp $
  #
