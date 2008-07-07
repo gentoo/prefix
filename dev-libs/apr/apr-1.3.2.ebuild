@@ -67,6 +67,18 @@ src_compile() {
 	# on interix, we need _ALL_SOURCE defined
 	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
+	if [[ ${CHOST} == *-solaris2.10 ]]; then
+		case $(<$([[ ${CHOST} != ${CBUILD} ]] && echo "${EPREFIX}/usr/${CHOST}")/usr/include/atomic.h) in
+		*atomic_cas_ptr*) ;;
+		*)
+			elog "You do not have Solaris Patch ID "$(
+				[[ ${CHOST} == sparc* ]] && echo 118884 || echo 11885
+			)" (Problem 4954703) installed on your host ($(hostname)),"
+			elog "using generic atomic operations instead."
+			myconf="${myconf} --disable-nonportable-atomics"
+			;;
+		esac
+	fi
 	econf --enable-layout=gentoo \
 		--enable-threads \
 		--enable-nonportable-atomics \
