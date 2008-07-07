@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/cabal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.38 2008/05/03 08:28:12 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.39 2008/07/06 20:22:34 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> cabal-1.2.3.0.ebuild:
+  amd64/x86 stable, bug #230919
 
   03 May 2008; Lennart Kolmodin <kolmodin@gentoo.org> cabal-1.1.6.2.ebuild,
   cabal-1.2.3.0.ebuild:
