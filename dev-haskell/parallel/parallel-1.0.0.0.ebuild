@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parallel/parallel-1.0.0.0.ebuild,v 1.1 2007/12/20 03:06:57 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parallel/parallel-1.0.0.0.ebuild,v 1.2 2008/07/06 20:41:31 maekke Exp $
 
 EAPI="prefix"
 
