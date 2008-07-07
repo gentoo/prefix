@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r8.ebuild,v 1.12 2008/02/25 18:29:11 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r8.ebuild,v 1.13 2008/07/06 22:28:16 solar Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,11 @@ src_unpack() {
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	epatch "${FILESDIR}"/${P}-freebsd.patch
+
+	# hrmm. this is supposed to update it.
+	# true, the bug is here:
+	rm libtool-wrap
+	ln -s libtool libtool-wrap
 	elibtoolize
 }
 
