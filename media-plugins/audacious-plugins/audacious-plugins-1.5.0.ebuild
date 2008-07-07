@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.0.ebuild,v 1.2 2008/05/24 00:45:35 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.0.ebuild,v 1.3 2008/07/06 22:22:55 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ RDEPEND="app-arch/unzip
 		media-sound/jack-audio-connection-kit )
 	lirc? ( app-misc/lirc )
 	mp3? ( media-libs/libmad )
-	mtp? ( >=media-libs/libmtp-0.2.5-r1 )
+	mtp? ( =media-libs/libmtp-0.2* )
 	musepack? ( media-libs/libmpcdec media-libs/taglib )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
 	sdl? (	>=media-libs/libsdl-1.2.5 )
