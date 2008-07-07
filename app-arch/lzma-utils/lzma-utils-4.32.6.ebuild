@@ -7,7 +7,7 @@ EAPI="prefix"
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic libtool
 
 MY_P="lzma-${PV/_}"
 DESCRIPTION="LZMA interface made easy"
@@ -36,6 +36,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${P}-interix.patch
+	elibtoolize # for ia64-hpux
 }
 
 pkg_setup() {
