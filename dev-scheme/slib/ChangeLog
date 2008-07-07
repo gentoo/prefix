@@ -1,6 +1,27 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.41 2008/02/20 22:25:52 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.46 2008/07/06 11:03:59 hkbst Exp $
+
+  06 Jul 2008; Marijn Schouten <hkBst@gentoo.org> slib-3.1.5-r1.ebuild,
+  slib-3.2.1.ebuild:
+  remove some code I was using to debug
+
+  04 Jul 2008; Marijn Schouten <hkBst@gentoo.org> -files/Makefile.patch:
+  remove patch and get new upstream tarball to fix Manifest
+
+  04 Jul 2008; Marijn Schouten <hkBst@gentoo.org> -slib-3.1.1-r1.ebuild,
+  -slib-3.1.4-r2.ebuild, -slib-3.1.4-r3.ebuild, -slib-3.1.4-r4.ebuild,
+  -slib-3.1.5.ebuild:
+  cleanup old stuff
+
+  04 Jul 2008; Marijn Schouten <hkBst@gentoo.org> slib-3.1.5-r1.ebuild:
+  also work around bug 217735 for stable
+
+*slib-3.2.1 (04 Jul 2008)
+
+  04 Jul 2008; Marijn Schouten <hkBst@gentoo.org> slib-3.1.5-r1.ebuild,
+  +slib-3.2.1.ebuild:
+  bump
 
   19 Feb 2008; Christoph Mende <angelos@gentoo.org> slib-3.1.5-r1.ebuild:
   Stable on amd64, bug #210467

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.6 2008/02/19 19:56:05 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5-r1.ebuild,v 1.9 2008/07/06 11:03:59 hkbst Exp $
 
 EAPI="prefix"
 
@@ -34,14 +34,13 @@ src_unpack() {
 
 #	cp Makefile Makefile.old
 
-	sed "s_prefix = /usr/local/_prefix = ${ED}/usr/_" -i Makefile
+	sed "s:prefix = /usr/local/:prefix = ${ED}/usr/:" -i Makefile
+
 	sed 's:libdir = $(exec_prefix)lib/:libdir = $(exec_prefix)share/:' -i Makefile
 	sed 's_mandir = $(prefix)man/_mandir = $(prefix)/share/man/_' -i Makefile
 	sed 's_infodir = $(prefix)info/_infodir = $(prefix)share/info/_' -i Makefile
 
 	sed 's:echo SCHEME_LIBRARY_PATH=$(libslibdir)  >> $(bindir)slib:echo SCHEME_LIBRARY_PATH='"${EPREFIX}"'/usr/share/slib/ >> $(bindir)slib:' -i Makefile
-
-#	sed 's_mkdir_mkdir -p_g' -i Makefile
 
 #	diff -u Makefile.old Makefile
 
