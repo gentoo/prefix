@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.1.0.0.ebuild,v 1.1 2007/12/20 02:37:18 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.1.0.0.ebuild,v 1.2 2008/07/06 20:58:28 maekke Exp $
 
 EAPI="prefix"
 
