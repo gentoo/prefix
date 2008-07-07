@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.149 2008/01/26 19:53:25 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.153 2008/07/06 20:21:01 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> ghc-6.8.2.ebuild:
+  amd64/x86 stable, bug #230919
+
+  28 Apr 2008; Raúl Porcel <armin76@gentoo.org> ghc-6.8.2.ebuild:
+  Upload again the binaries for alpha, and add ~ia64 wrt #206643
+
+  01 Mar 2008; Raúl Porcel <armin76@gentoo.org> ghc-6.6.1.ebuild,
+  ghc-6.8.2.ebuild:
+  Add ~alpha
+
+  29 Jan 2008; Jeroen Roovers <jer@gentoo.org> ghc-6.8.2.ebuild:
+  Marked ~hppa (bug #206643).
 
   26 Jan 2008; Duncan Coutts <dcoutts@gentoo.org> ghc-6.8.2.ebuild:
   Drop ~alpha ~hppa ~ia64 ~ppc ~ppc64 keywords as per bug #206643.
