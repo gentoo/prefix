@@ -72,7 +72,7 @@ src_compile() {
 		*atomic_cas_ptr*) ;;
 		*)
 			elog "You do not have Solaris Patch ID "$(
-				[[ ${CHOST} == sparc* ]] && echo 118884 || echo 11885
+				[[ ${CHOST} == sparc* ]] && echo 118884 || echo 118885
 			)" (Problem 4954703) installed on your host ($(hostname)),"
 			elog "using generic atomic operations instead."
 			myconf="${myconf} --disable-nonportable-atomics"
