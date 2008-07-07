@@ -1,6 +1,9 @@
 # ChangeLog for app-text/wdiff
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.27 2008/05/12 14:47:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.28 2008/07/06 18:10:29 ricmm Exp $
+
+  06 Jul 2008; <ricmm@gentoo.org> wdiff-0.5-r2.ebuild:
+  Drop to ~mips due to unstable deps
 
   12 May 2008; Jeroen Roovers <jer@gentoo.org> wdiff-0.5-r2.ebuild:
   Marked ~hppa (bug #221791).
