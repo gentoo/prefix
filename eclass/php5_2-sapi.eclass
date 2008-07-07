@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.22 2008/05/25 09:27:48 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.23 2008/07/07 01:51:08 jer Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -696,15 +696,15 @@ php5_2-sapi_src_install() {
 # @DESCRIPTION:
 # Provides important information to users after install is finished.
 php5_2-sapi_pkg_postinst() {
-        ewarn "If you have additional third party PHP extensions (such as"
-        ewarn "dev-php5/phpdbg) you may need to recompile them now."
-        ewarn
+	ewarn "If you have additional third party PHP extensions (such as"
+	ewarn "dev-php5/phpdbg) you may need to recompile them now."
+	ewarn
 
-        if use sharedext ; then
-                ewarn "Make sure to use etc-update or dispatch-conf so that extension-specific"
-                ewarn "ini files get merged properly"
-                ewarn
-        fi
+	if use sharedext ; then
+		ewarn "Make sure to use etc-update or dispatch-conf so that extension-specific"
+		ewarn "ini files get merged properly"
+		ewarn
+	fi
 
 	if has kolab ${IUSE} && use kolab ; then
 		ewarn "Please note that kolab support is still experimental!"
@@ -717,8 +717,8 @@ php5_2-sapi_pkg_postinst() {
 		ewarn
 	fi
 
-        ewarn "USE=\"pic\" slows down PHP but has to be enabled on setups where TEXTRELs"
-        ewarn "are disabled (e.g. when using PaX in the kernel). On hardened profiles this"
-        ewarn "USE flag is enabled automatically"
-        ewarn
+		ewarn "USE=\"pic\" slows down PHP but has to be enabled on setups where TEXTRELs"
+		ewarn "are disabled (e.g. when using PaX in the kernel). On hardened profiles this"
+		ewarn "USE flag is enabled automatically"
+		ewarn
 }
