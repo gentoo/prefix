@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.195 2008/07/02 13:17:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.197 2008/07/07 02:41:24 ranger Exp $
+
+  07 Jul 2008; Brent Baude <ranger@gentoo.org>
+  freetype-1.4_pre20080316-r1.ebuild:
+  Marking freetype-1.4_pre20080316-r1 ppc64 and ppc for bug 225851
+
+*freetype-1.4_pre20080316-r1 (06 Jul 2008)
+
+  06 Jul 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/freetype-1.4_pre20080316-CVE-2008-1808.patch,
+  +freetype-1.4_pre20080316-r1.ebuild:
+  Revbump for CVE-2008-{1806,1807,1808}, bug #225851.
 
   02 Jul 2008; Brent Baude <ranger@gentoo.org> freetype-2.3.7.ebuild:
   stable ppc, bug 230037
