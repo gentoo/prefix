@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8798 2008/07/05 08:31:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8804 2008/07/06 19:23:58 armin76 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,21 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Raúl Porcel <armin76@gentoo.org> (6 Jul 2008)
+# 0.13.1 is not supported by anything in the tree, yet
+=net-libs/rb_libtorrent-0.13.1
+
+# Jeremy Olexa <darkside@gentoo.org> (6 Jul 2008)
+# Upstream has stopped working on this project in favor of built in
+# functionality in gimp. Not needed anymore. Masked for removal in ~60 days by
+# treecleaners. bug #211320
+media-gfx/gimp-freetype
+
+# Jeremy Olexa <darkside@gentoo.org> (6 Jul 2008)
+# Masked for removal in ~60 days by treecleaners. bug #202300. This package has
+# a file collision with dev-perl/TimeDate and no one steps up to maintain it.
+app-admin/systemconfigurator
 
 # Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
 # Masked for removal in ~30 days by treecleaners. bug #59548
@@ -192,7 +207,7 @@ dev-cpp/libwefts
 # subject to multiple GLSAs.  Masked for removal in 30 days.
 =app-emulation/vmware-workstation-4.5.3.19414-r7
 
-# Jeremy Olexa <darkside@gentoo.org> (14 Jul 2008)
+# Jeremy Olexa <darkside@gentoo.org> (14 Jun 2008)
 # Doesn't compile. Removed by treecleaners in ~30 days. bug #199168
 # Later version in tree works.
 =net-analyzer/nepenthes-0.2.0
@@ -299,11 +314,6 @@ www-client/arora
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
 
-# Jeremy Olexa <darkside@gentoo.org> (02 Jun 2008)
-# Doesn't compile, dead project. Masked via maintainer request, bug #222595
-# Use net-misc/ethercard-diag instead. Removed by treecleaners in ~30 days.
-sys-apps/nictools
-
 # Peter Alfredsen <loki_val@gentoo.org> (02 Jun 2008)
 # Masking to force downgrade. Remove August 2008.
 =app-i18n/unicode-data-5.2.0
@@ -335,11 +345,6 @@ net-dns/resolvconf-gentoo
 # Will test new beta (26) and unmask if working.
 >=media-gfx/povray-3.7.0_beta
 
-# Jeremy Olexa <darkside@gentoo.org> (28 May 2008)
-# Dead upstream, broken package. Removal request via netmon team. bug #223479
-# Masked for removal in 30 days by the treecleaners.
-net-analyzer/sonar
-
 # Rémi Cardona <remi@gentoo.org> (27 Mai 2008)
 # mildly broken, see bug #156583
 =app-text/gtranslator-1.1.7
@@ -347,11 +352,6 @@ net-analyzer/sonar
 # Ingmar Vanhassel <ingmar@gentoo.org (25 May 2008)
 # Needs Qt-4.4.0, which is package.mask'ed.
 >=dev-python/PyQt4-4.4.2
-
-# Mark Loeser <halcy0n@gentoo.org> (21 May 2008)
-# Dead upstream and not used by anything
-# Masked for removal in 30 days
-dev-cpp/libwrapiter
 
 # Vlastimil Babka <caster@gentoo.org> (20 May 2008)
 # Masked for testing
