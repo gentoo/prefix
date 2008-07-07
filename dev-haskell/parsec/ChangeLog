@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/parsec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/ChangeLog,v 1.4 2008/06/29 11:00:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/ChangeLog,v 1.5 2008/07/06 20:42:30 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> ChangeLog:
+  amd64/x86 stable, bug #230919
 
   28 Jun 2008; Tobias Klausmann <klausman@gentoo.org> parsec-2.1.0.0.ebuild:
   Keyworded on alpha, bug #227677
