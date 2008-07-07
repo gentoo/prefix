@@ -193,3 +193,4 @@ dev-java/kaffe
 # though they compile fine
 net-analyzer/mtr
 net-analyzer/tcpdump
+app-admin/bcfg2
