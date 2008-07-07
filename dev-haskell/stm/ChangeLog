@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/stm
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/stm/ChangeLog,v 1.1 2007/12/20 03:05:34 dcoutts Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/stm/ChangeLog,v 1.2 2008/07/06 20:47:42 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> stm-2.1.1.0.ebuild:
+  amd64/x86 stable, bug #230919
 
 *stm-2.1.1.0 (20 Dec 2007)
 
