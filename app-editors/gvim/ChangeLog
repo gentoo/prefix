@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.270 2008/06/20 12:20:36 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.274 2008/07/07 02:54:50 ranger Exp $
+
+  07 Jul 2008; Brent Baude <ranger@gentoo.org> gvim-7.1.319.ebuild:
+  Marking gvim-7.1.319 ppc64 and ppc for bug 227453
+
+  06 Jul 2008; Ferris McCormick <fmccor@gentoo.org> gvim-7.1.319.ebuild:
+  Sparc stable, critical bug #227453, fine for a couple weeks now.
+
+  06 Jul 2008; Jeroen Roovers <jer@gentoo.org> gvim-7.1.319.ebuild:
+  Stable for HPPA (bug #227453).
+
+  06 Jul 2008; Dawid Węgliński <cla@gentoo.org> gvim-7.1.319.ebuild:
+  Stable on x86/amd64 (bug #227453)
 
 *gvim-7.1.319 (20 Jun 2008)
 
