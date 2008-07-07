@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/mtl
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.27 2007/12/16 20:15:23 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.28 2008/07/06 20:39:45 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> mtl-1.1.0.0.ebuild:
+  amd64/x86 stable, bug #230919
 
   16 Dec 2007; Samuli Suominen <drac@gentoo.org> mtl-1.0.1.ebuild:
   amd64 stable wrt #201984
