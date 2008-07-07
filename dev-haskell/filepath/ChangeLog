@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/filepath
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.14 2008/03/01 11:29:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.15 2008/07/06 20:53:10 maekke Exp $
+
+  06 Jul 2008; Markus Meier <maekke@gentoo.org> filepath-1.1.0.0.ebuild:
+  amd64/x86 stable, bug #230919
 
   01 Mar 2008; Raúl Porcel <armin76@gentoo.org> filepath-1.1.0.0.ebuild:
   Add ~alpha
