@@ -31,7 +31,7 @@ zproduct_src_install() {
 	[ -z "${1}" ] && zproduct_src_install all
 
 	# set defaults
-	into ${ZP_DIR}
+	into ${ZP_DIR#${EPREFIX}}
 	dodir ${ZP_DIR#${EPREFIX}}/${PF}
 
 	while [ -n "$1" ] ; do
