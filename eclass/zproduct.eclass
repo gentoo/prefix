@@ -32,7 +32,7 @@ zproduct_src_install() {
 
 	# set defaults
 	into ${ZP_DIR}
-	dodir ${ZP_DIR}/${PF}
+	dodir ${ZP_DIR#${EPREFIX}}/${PF}
 
 	while [ -n "$1" ] ; do
 		case ${1} in
