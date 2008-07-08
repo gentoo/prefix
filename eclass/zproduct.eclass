@@ -40,7 +40,7 @@ zproduct_src_install() {
 				## Create .zfolders.lst from $ZPROD_LIST.
 				debug-print-section do_zpfolders
 				for N in ${ZPROD_LIST} ; do
-					echo ${N} >> ${ED}/${DOT_ZFOLDER_FPATH}
+					echo ${N} >> ${D}/${DOT_ZFOLDER_FPATH}
 				done
 				;;
 			do_docs)
@@ -55,7 +55,7 @@ zproduct_src_install() {
 				debug-print-section do_install
 				# Copy everything that's left to ${ED}${ZP_DIR}
 				# modified to not copy ownership (QA)
-				cp --recursive --no-dereference --preserve=timestamps,mode,links ${S}/* ${ED}/${ZP_DIR}/${PF}
+				cp --recursive --no-dereference --preserve=timestamps,mode,links ${S}/* ${D}/${ZP_DIR}/${PF}
 				;;
 			all)
 				debug-print-section all
