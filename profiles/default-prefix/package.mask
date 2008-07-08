@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (08 Jul 2008)
+# Broken dep graph, bug #231194
+=virtual/postgresql-base-8.3
+
 # Fabian Groffen <grobian@gentoo.org> (06 Jul 2008)
 # Needs to have bug #230981 sorted out
 ~x11-libs/libSM-1.1.0
