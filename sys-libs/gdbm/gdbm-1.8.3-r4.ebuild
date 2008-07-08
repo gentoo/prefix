@@ -21,8 +21,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-fix-install-ownership.patch #24178
-	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
-	epatch "${FILESDIR}"/${P}-build.patch #209730
+# compat patch yields in loads of trouble, e.g. bug #165263 and #223865
+#	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
+	epatch "${FILESDIR}"/${P}-build-prefix.patch #209730
 	elibtoolize
 	append-lfs-flags
 }
