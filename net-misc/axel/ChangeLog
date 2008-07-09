@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/axel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.41 2008/07/06 19:40:11 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.42 2008/07/07 06:06:46 wormo Exp $
+
+  07 Jul 2008; Stephanie Lockwood-Childs <wormo@gentoo.org> axel-1.1.ebuild:
+  stable on ppc (bug #214731)
 
   06 Jul 2008; Friedrich Oslage <bluebird@gentoo.org> axel-1.1.ebuild:
   Stable on sparc, bug #214731
