@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.156 2008/05/12 13:43:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.157 2008/07/08 13:15:29 lack Exp $
+
+  08 Jul 2008; Jim Ramsay <lack@gentoo.org> gkrellm-2.3.1.ebuild:
+  Marking amd64 stable, bug #231166
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> gkrellm-2.3.1.ebuild:
   Stable on ppc64
