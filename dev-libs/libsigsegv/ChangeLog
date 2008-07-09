@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigsegv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.31 2008/04/15 05:45:38 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.32 2008/07/07 13:14:19 armin76 Exp $
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> libsigsegv-2.4.ebuild:
+  Add ~alpha/~ia64 wrt #229217
 
   15 Apr 2008; Markus Rothe <corsair@gentoo.org> libsigsegv-2.4.ebuild:
   Stable on ppc64; bug #217700
