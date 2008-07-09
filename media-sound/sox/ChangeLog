@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/sox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.87 2008/04/13 20:47:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.88 2008/07/07 14:32:22 solar Exp $
+
+  07 Jul 2008; <solar@gentoo.org> +files/sox-14.0.1-cross.patch,
+  sox-14.0.1.ebuild:
+  - cross compile love
 
   13 Apr 2008; Alexis Ballier <aballier@gentoo.org>
   +files/sox-14.0.1-ffmpegheaders.patch, sox-14.0.1.ebuild:

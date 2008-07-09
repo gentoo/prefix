@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.9 2008/04/13 20:47:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.10 2008/07/07 14:32:22 solar Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-ffmpegheaders.patch"
+	epatch "${FILESDIR}/${P}-cross.patch"
+
 	AT_M4DIR="m4" eautoreconf
 }
 
