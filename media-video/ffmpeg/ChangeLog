@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.219 2008/04/20 07:28:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.220 2008/07/07 20:39:09 loki_val Exp $
+
+  07 Jul 2008; Peter Alfredsen <loki_val@gentoo.org>
+  ffmpeg-0.4.9_p20080326.ebuild:
+  Fix build failure when disabling MMX, which would fail to disable MMX2
+  code on processors supporting it, resulting in #ifdef spaghetti build
+  failure. Bug 229981.
 
   20 Apr 2008; Mike Frysinger <vapier@gentoo.org>
   +files/ffmpeg-arm-pld.patch, ffmpeg-0.4.9_p20070616.ebuild,

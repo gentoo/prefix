@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080326.ebuild,v 1.2 2008/04/07 22:14:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080326.ebuild,v 1.3 2008/07/07 20:39:09 loki_val Exp $
 
 EAPI="prefix"
 
@@ -73,7 +73,7 @@ src_compile() {
 	#disable mmx accelerated code if not requested, or if PIC is required
 	# as the provided asm decidedly is not PIC.
 	if ( gcc-specs-pie || ! use mmx ) ; then
-		myconf="${myconf} --disable-mmx"
+		myconf="${myconf} --disable-mmx --disable-mmx2"
 	fi
 
 	# enabled by default
