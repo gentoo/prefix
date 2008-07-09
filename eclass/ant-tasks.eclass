@@ -3,7 +3,7 @@
 # Copyright 2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Vlastimil Babka <caster@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.4 2007/02/02 22:59:53 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.5 2008/07/07 16:48:45 betelgeuse Exp $
 
 # we set ant-core dep ourselves, restricted
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
@@ -102,6 +102,9 @@ DEPEND=">=virtual/jdk-${ANT_TASK_JDKVER}
 	${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
+
+# Would run the full ant test suite for every ant task
+RESTRICT="test"
 
 # ------------------------------------------------------------------------------
 # @eclass-src_unpack

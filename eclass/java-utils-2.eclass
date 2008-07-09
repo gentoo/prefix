@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.108 2008/06/18 10:27:22 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.109 2008/07/07 16:48:45 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1918,7 +1918,7 @@ eant() {
 
 	if [[ ${EBUILD_PHASE} = "test" ]]; then
 		antflags="${antflags} -DJunit.present=true"
-		[[ ${gcp} && ${ANT_TASKS} = *ant-junit* ]] && gcp="${gcp} junit"
+		[[ ${ANT_TASKS} = *ant-junit* ]] && gcp="${gcp} junit"
 		getjarsarg="--with-dependencies"
 	fi
 

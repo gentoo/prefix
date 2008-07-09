@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.20 2008/03/03 17:20:41 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.22 2008/07/07 16:54:56 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin

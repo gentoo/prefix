@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.36 2008/07/01 19:02:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.38 2008/07/07 16:54:56 betelgeuse Exp $
 
 inherit java-utils-2
 

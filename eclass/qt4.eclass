@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.41 2008/06/21 15:12:48 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.42 2008/07/08 16:02:03 gentoofan23 Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -95,29 +95,50 @@ qt4_pkg_setup() {
 		# The use flags are different in 4.4 and above, and it's a split package, so this is used to catch
 		# the various use flag combos specified in the ebuilds to make sure we don't error out.
 
-			if [[ ${x} == zlib || ${x} == png ]]; then
-				# Qt 4.4+ is built with zlib and png by default, so the use flags aren't needed
-				continue;
-			elif [[ ${x} == opengl || ${x} == dbus || ${x} == qt3support ]]; then
-				# Make sure the qt-${x} package has been already installed
 
+		case ${x} in 
+			zlib|png|gif)
+				# Qt 4.4+ is built with zlib, png, and gif by default, so the use flags aren't needed
+				;;
+			opengl|dbus|qt3support)
+				# Make sure the qt-${x} package has been already installed
 				if ! has_version x11-libs/qt-${x}; then
 					eerror "You must first install the x11-libs/qt-${x} package."
 					die "Install x11-libs/qt-${x}"
 				fi
-			elif [[ ${x} == ssl ]]; then
+				;;
+			ssl)
 				if ! has_version x11-libs/qt-core || ! built_with_use x11-libs/qt-core ssl; then
 					eerror "You must first install the x11-libs/qt-core package with the ssl flag enabled."
 					die "Install x11-libs/qt-core with USE=\"ssl\""
 				fi
-			elif [[ ${x} == sqlite3 ]]; then
+				;;
+			sqlite3)
 				if ! has_version x11-libs/qt-sql || ! built_with_use x11-libs/qt-sql sqlite; then
 					eerror "You must first install the x11-libs/qt-sql package with the sqlite flag enabled."
 					die "Install x11-libs/qt-sql with USE=\"sqlite\""
 				fi
+				;;
+			guiaccessibility)
+				if ! has_version x11-libs/qt-gui || ! built_with_use x11-libs/qt-gui accessibility; then
+					eerror "You must first install the x11-libs/qt-gui package with the accessibility flag enabled."
+					die "Install x11-libs/qt-gui with USE=\"accessibility\""
+				fi
+				;;
+
+			qt3accessibility)
+				if ! has_version x11-libs/qt-qt3support || ! built_with_use x11-libs/qt-qt3support accessibility; then
+					eerror "You must first install the x11-libs/qt-qt3support package with the accessibility flag enabled."
+					die "Install x11-libs/qt-qt3support with USE=\"accessibility\""
+				fi
+				;;
+		esac
+		else
+			${x} == guiaccessibility && x=${x#gui}
+			${x} == qt3accessibility && x=${x#qt3}
+			if ! built_with_use =x11-libs/qt-4* ${x}; then
+				requiredflags="${requiredflags} ${x}"
 			fi
-		elif ! built_with_use =x11-libs/qt-4* ${x}; then
-			requiredflags="${requiredflags} ${x}"
 		fi
 	done
 

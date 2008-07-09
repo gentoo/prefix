@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.7 2007/05/07 09:24:16 kevquinn Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.9 2008/07/07 16:54:56 betelgeuse Exp $
 
 # Author:
 #	Kevin F. Quinn <kevquinn@gentoo.org>
