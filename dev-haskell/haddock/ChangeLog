@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.53 2008/01/26 20:11:10 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.54 2008/07/08 20:57:37 kolmodin Exp $
+
+  08 Jul 2008; Lennart Kolmodin <kolmodin@gentoo.org> haddock-0.8.ebuild:
+  Change autoconf into eautoconf, and minor repoman fixes.
 
 *haddock-0.9 (26 Jan 2008)
 
