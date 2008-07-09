@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.8.4.ebuild,v 1.1 2008/06/29 11:07:58 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.8.4-r1.ebuild,v 1.1 2008/07/07 14:44:40 dang Exp $
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic
+inherit libtool eutils flag-o-matic
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
@@ -29,6 +29,13 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.8.3-interix.patch
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${PN}-0.8.3-page-init.patch
 }
 
 src_compile() {
