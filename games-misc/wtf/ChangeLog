@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/wtf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.19 2007/12/11 16:52:21 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.20 2008/07/08 18:39:39 darkside Exp $
+
+  08 Jul 2008; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  Add myself as a maintainer per convo with Mr_Bones_ in irc.
 
   11 Dec 2007; nixnut <nixnut@gentoo.org> wtf-20071004.ebuild:
   Stable on ppc wrt bug 198911
