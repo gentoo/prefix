@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2.ebuild,v 1.2 2008/07/01 21:33:05 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.1 2008/07/07 15:15:36 dang Exp $
 
 EAPI="prefix"
 
@@ -72,4 +72,7 @@ src_unpack() {
 
 	# Fix .desktop file so menu item shows up
 	epatch "${FILESDIR}"/${PN}-0.7.1-display-menu.patch
+
+	# Fix t1lib font rendering.  Bug #158172
+	epatch "${FILESDIR}"/${P}-t1lib-fonts.patch
 }
