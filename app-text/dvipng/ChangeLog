@@ -1,6 +1,10 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.36 2008/07/02 16:16:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.37 2008/07/07 17:01:25 ulm Exp $
+
+  07 Jul 2008; Ulrich Mueller <ulm@gentoo.org> dvipng-1.9.ebuild,
+  dvipng-1.11.ebuild:
+  Depend on virtual/texi2dvi, bug 230133 comment 5.
 
   02 Jul 2008; Jeroen Roovers <jer@gentoo.org> dvipng-1.11.ebuild:
   Stable for HPPA (bug #230133).

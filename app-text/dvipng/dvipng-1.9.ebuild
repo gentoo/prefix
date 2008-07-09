@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.9.ebuild,v 1.13 2008/04/08 15:04:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.9.ebuild,v 1.14 2008/07/07 17:01:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RDEPEND="media-libs/gd
 	sys-libs/zlib
 	truetype? ( >=media-libs/freetype-2.1.5 )"
 DEPEND="${RDEPEND}
-	sys-apps/texinfo"
+	virtual/texi2dvi"
 
 pkg_setup() {
 	if ! built_with_use media-libs/gd jpeg png; then
