@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/arj
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.32 2008/05/09 12:22:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.33 2008/07/07 17:52:59 armin76 Exp $
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> arj-3.10.22-r2.ebuild:
+  sparc/x86 stable wrt #231082
 
 *arj-3.10.22-r2 (09 May 2008)
 
