@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/soappy
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.24 2008/07/05 14:36:23 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.25 2008/07/08 12:05:59 coldwind Exp $
+
+  08 Jul 2008; Santiago M. Mola <coldwind@gentoo.org>
+  -files/soappy-0.11.6-python-2.5-compat.patch, -soappy-0.11.3.ebuild,
+  -soappy-0.11.6-r1.ebuild:
+  Removed old versions.
 
   05 Jul 2008; Santiago M. Mola <coldwind@gentoo.org> soappy-0.12.0.ebuild:
   amd64 stable wrt bug #228535
