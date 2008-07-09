@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.274 2008/07/07 02:54:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.275 2008/07/07 12:16:30 armin76 Exp $
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> gvim-7.1.319.ebuild:
+  alpha/ia64 stable wrt security #227453
 
   07 Jul 2008; Brent Baude <ranger@gentoo.org> gvim-7.1.319.ebuild:
   Marking gvim-7.1.319 ppc64 and ppc for bug 227453
