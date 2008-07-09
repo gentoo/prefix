@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.3 2008/07/03 06:43:41 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.4 2008/07/07 21:20:15 spock Exp $
 
 EAPI="prefix"
 
@@ -64,7 +64,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" -j1 nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
+	LC_ALL=C emake DESTDIR="${D}" -j1 nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
 	dodoc CHANGELOG HACKING docs/README docs/*.txt || die
 
 	use gtk && doicon "${FILESDIR}/nmap-logo-64.png"
