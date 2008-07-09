@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8804 2008/07/06 19:23:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8810 2008/07/08 22:11:42 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,20 @@
 
 #--- END OF EXAMPLES ---
 
+# Sébastien Fabbro <bicatali@gentoo.org> (8 Jul 2008)
+# mask for more testing (especially with pch, oracle and afs flags)
+# Please report bugs/patches in bug #230654
+=sci-physics/root-5.20.00
+
+# Markus Ullmann <jokey@gentoo.org> (7 Jul 2008)
+# mask for security bug #190667
+net-irc/bitchx
+
+# Alfredo Tupone <tupone@gentoo.org> (7 Jul 2008)
+# 0.6.2 is not used by anything in the tree
+# Masked for removal in 30 days
+=media-libs/varconf-0.6.2
+
 # Raúl Porcel <armin76@gentoo.org> (6 Jul 2008)
 # 0.13.1 is not supported by anything in the tree, yet
 =net-libs/rb_libtorrent-0.13.1
@@ -45,7 +59,7 @@ media-gfx/gimp-freetype
 app-admin/systemconfigurator
 
 # Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
-# Masked for removal in ~30 days by treecleaners. bug #59548
+# Masked for removal in ~60 days by treecleaners. bug #59548
 # dev-util/tla leaks file descriptors. app-emacs/xtla is not usable and depends
 # on tla. Use >=app-editors/emacs-cvs-23 or app-emacs/dvc (from the Emacs 
 # overlay) as a replacement.
@@ -249,16 +263,6 @@ x11-proto/dri2proto
 =sys-fs/btrfs-9999
 =sys-fs/btrfs-progs-9999
 
-# Alfredo Tupone <tupone@gentoo.org> (08 Jun 2008)
-# Masked for removal in 30 days.
-# Depend on dev-lang/python 2.3 (bug #222037) that is
-# going to be dropped
-<net-zope/zope-2.9
-<net-zope/plone-2.5
-net-zope/calendarx
-net-zope/plonelanguagetool
-<net-zope/plonepopoll-2.6
-
 # Tiziano Müller <dev-zero@gentoo.org> (07 Jun 2008)
 # Various bugs and dead upstream
 #   herdstat: 164254, 184035, 222887
@@ -325,10 +329,6 @@ www-client/arora
 # Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
 # Masked for keywording and testing
 =media-fonts/dejavu-2.25-r1
-
-# Markus Dittrich <markusle@gentoo.org> (01 Jun 2008)
-# New version; masked for a bit more testing.
-=sci-visualization/hippodraw-1.21.3
 
 # Jurek Bartuszek <jurek@gentoo.org> (01 Jun 2008)
 # Not used by anything anymore

@@ -1,10 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1659 2008/07/06 19:40:09 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1666 2008/07/08 22:11:42 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  08 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  adjust removal date of dev-util/tla to match what the policy is, my mistake
+
+  08 Jul 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask,
+  use.local.desc:
+  Added clarens and geant4 local use flags for sci-physics/root, and masked
+  sci-physics/root-5.20.00 for a testing period
+
+  08 Jul 2008; Tupone Alfredo <tupone@gentoo.org> package.mask:
+  Old version of zope depending on python-2.3 left the tree
+
+  08 Jul 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Removed sci-visualization/hippodraw-1.21.3 from package.mask.
+
+  07 Jul 2008; Markus Ullmann <jokey@gentoo.org> package.mask:
+  mask net-irc/bitchx for bug #190667
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Mark ia64/sparc profiles as stable, and mark x86/no-nptl as dev
+
+  07 Jul 2008; Tupone Alfredo <tupone@gentoo.org> package.mask:
+  Mask for removal of unused media-libs/varconf-0.6.2
 
   06 Jul 2008; Mike Auty <ikelos@gentoo.org> use.local.desc:
   Add open-vm-tools entry for icu to use.local.desc

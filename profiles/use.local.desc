@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3620 2008/07/06 19:40:09 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3622 2008/07/09 00:20:32 dang Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -145,6 +145,8 @@ app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-qtlibs:immqt-bc - Enable binary compatible version of immodule for Qt
 app-emulation/fuse:libdsk - Enable support for the floppy disk emulation library
 app-emulation/hercules:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default package CFLAGS (not supported)
+app-emulation/kvm:bios - Rebuild the BIOS for kvm (not needed to run kvm)
+app-emulation/kvm:havekernel - Don't require a kernel build tree (if distributing a binary kernel)
 app-emulation/libvirt:iscsi - Add support for iSCSI (Internet SCSI) remote storage
 app-emulation/libvirt:lvm - Add support for the Logical Volume Manager
 app-emulation/libvirt:openvz - Add support for OpenVZ-based virtual machines
@@ -2010,6 +2012,8 @@ sci-physics/geant:raytracerx - Enable raytracing for physics events
 sci-physics/geant:vrml - Enable output of geant4 in vrml formats
 sci-physics/root:cern - Enable hbook i/o functionality to root (needs cernlib)
 sci-physics/root:cint7 - Build the experimental C/C++ interpretor version 7
+sci-physics/root:clarens - Adds support for Clarens Grid Web services and PROOF Analysis Center
+sci-physics/root:geant4 - Adds navigator for the GEANT4 simulation toolkit
 sci-physics/root:math - Build extra math and numerical libraries for root (needs gsl)
 sci-physics/root:xrootd - Adds xrootd support, a low latency file server
 sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfitsio
