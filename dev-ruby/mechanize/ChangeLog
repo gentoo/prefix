@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/mechanize
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.10 2008/05/23 07:45:12 agorf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.12 2008/07/08 01:54:38 the_paya Exp $
+
+  08 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  mechanize-0.7.6.ebuild:
+  Added ~x86-fbsd keyword.
+
+  07 Jul 2008; Friedrich Oslage <bluebird@gentoo.org>
+  mechanize-0.7.6.ebuild:
+  Add ~sparc keyword, bug #230517
 
 *mechanize-0.7.6 (23 May 2008)
 
