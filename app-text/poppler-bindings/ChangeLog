@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.95 2008/06/29 11:08:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.96 2008/07/07 15:58:18 dang Exp $
+
+  07 Jul 2008; Daniel Gryniewicz <dang@gentoo.org>
+  -poppler-bindings-0.8.3.ebuild:
+  Remvoe 0.8.3, as that poppler version is gone
 
 *poppler-bindings-0.8.4 (29 Jun 2008)
 
