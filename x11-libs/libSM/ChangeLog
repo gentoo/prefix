@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.53 2008/07/05 06:25:57 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.54 2008/07/08 03:53:33 dberkholz Exp $
+
+  08 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>; libSM-1.1.0.ebuild:
+  (#230981) Add sys-fs/e2fsprogs to RDEPEND for libuuid.
 
 *libSM-1.1.0 (05 Jul 2008)
 
