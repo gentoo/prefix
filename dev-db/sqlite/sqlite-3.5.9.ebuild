@@ -55,6 +55,8 @@ src_compile() {
 		$(use_enable threadsafe) \
 		$(use_enable threadsafe cross-thread-connections) \
 		$(use_enable tcl) \
+		$(use_enable tcl amalgamation) \
+		--with-readline-inc="${EPREFIX}"/usr/include/readline \
 		|| die
 	emake all || die "emake all failed"
 }
