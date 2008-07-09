@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.80 2008/07/03 17:14:16 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.81 2008/07/07 13:47:33 armin76 Exp $
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> clisp-2.46.ebuild:
+  Tweak ebuild to make it compile on alpha/ia64, add ~alpha/~ia64, bug
+  #230035
 
 *clisp-2.46 (03 Jul 2008)
 

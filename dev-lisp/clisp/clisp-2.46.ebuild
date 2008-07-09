@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.46.ebuild,v 1.1 2008/07/03 17:14:16 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.46.ebuild,v 1.2 2008/07/07 13:47:33 armin76 Exp $
 
 EAPI="prefix"
 
@@ -55,11 +55,24 @@ BUILDDIR="builddir"
 #  * matlab, netica: not in portage
 #  * oracle: can't install oracle-instantclient
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# More than -O1 breaks alpha/ia64
+	use alpha || use ia64 && sed -i -e 's/-O2//g' src/makemake.in
+}
+
 src_compile() {
 	# built-in features
 	local myconf="--with-ffcall --with-dynamic-modules"
 	use readline || myconf="${myconf} --with-noreadline"
 
+	# We need this to build on alpha/ia64
+	if use alpha || use ia64; then
+		replace-flags -O? -O1
+		append-flags '-D NO_MULTIMAP_SHM -D NO_MULTIMAP_FILE -D NO_SINGLEMAP -D NO_TRIVIALMAP'
+	fi
 	# default modules
 	enable_modules wildcard rawsock i18n
 	# optional modules
