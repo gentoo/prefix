@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/when
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.25 2008/05/10 09:00:45 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.26 2008/07/07 16:07:25 armin76 Exp $
+
+*when-1.1.13 (07 Jul 2008)
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> +when-1.1.13.ebuild:
+  Version bump
 
   10 May 2008; nixnut <nixnut@gentoo.org> when-1.1.11.ebuild:
   Stable on ppc wrt bug 220929

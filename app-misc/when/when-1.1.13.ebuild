@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.7.ebuild,v 1.3 2008/03/27 19:22:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.13.ebuild,v 1.1 2008/07/07 16:07:25 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}/when_dist
@@ -29,7 +29,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake ${PN}.html || die "emake failed"
+	return
 }
 
 src_test() {
@@ -43,5 +43,4 @@ src_install() {
 	dobin ${PN} || die "dobin failed"
 	doman ${PN}.1 || die "doman failed"
 	dodoc README
-	dohtml ${PN}.html || die "dohtml failed"
 }
