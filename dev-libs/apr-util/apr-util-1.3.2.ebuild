@@ -30,6 +30,12 @@ RDEPEND="dev-libs/expat
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-no-dso.patch
+}
+
 src_compile() {
 	local myconf=""
 
