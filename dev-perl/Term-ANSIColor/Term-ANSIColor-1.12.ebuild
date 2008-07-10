@@ -15,7 +15,7 @@ HOMEPAGE="http://search.cpan.org/~rra/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="test"
 SRC_TEST="do"
 
