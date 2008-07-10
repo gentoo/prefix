@@ -20,7 +20,7 @@ DEPEND="${RDEPEND}
 
 IUSE="lapack"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 LICENSE="BSD"
 
 # whatever LDFLAGS set will break linking
