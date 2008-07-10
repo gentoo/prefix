@@ -69,17 +69,16 @@ src_unpack() {
 	touch man/*.1
 	# There's no reason for this crap to use the private version
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
+	
+	#revert http://git.savannah.gnu.org/gitweb/?p=coreutils.git;a=commit;h=eba365275bdbb35df80fedcc08598ef21ace4061 
+	# because it thinks that selinux is installed on RHEL-4 hosts.
+	sed -i '/DENABLE_MATCHPATHCON/d' src/Makefile.am
 
 	use vanilla || AT_M4DIR="m4" eautoreconf
 
 	# For platforms which don't have /usr/bin/perl (like FreeBSD) make sure we
 	# don't regenerate wheel.h after above patches
 	touch src/wheel.h
-	
-	#revert http://git.savannah.gnu.org/gitweb/?p=coreutils.git;a=commit;h=eba365275bdbb35df80fedcc08598ef21ace4061 
-	# because it thinks that selinux is installed on RHEL-4 hosts.
-	sed -i '/DENABLE_MATCHPATHCON/d' src/Makefile.am
-
 }
 
 src_compile() {
