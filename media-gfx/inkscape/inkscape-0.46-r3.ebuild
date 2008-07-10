@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="dia doc gnome inkjar jabber lcms mmx perl postscript spell wmf"
 RESTRICT="test"
 
@@ -94,6 +94,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-poppler-0.8.3.patch
+
+	epatch "${FILESDIR}"/${P}-solaris.patch
 }
 
 DOCS="AUTHORS ChangeLog NEWS README"
