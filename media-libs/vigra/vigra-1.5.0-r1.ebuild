@@ -12,7 +12,7 @@ SRC_URI="http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/${P/-}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc fftw jpeg png tiff zlib"
 
 RDEPEND="png? ( media-libs/libpng )
