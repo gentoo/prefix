@@ -1,6 +1,18 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-office/openoffice/ChangeLog,v 1.403 2008/06/12 00:24:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.406 2008/07/07 04:47:20 maekke Exp $
+
+  07 Jul 2008; Markus Meier <maekke@gentoo.org> openoffice-2.4.1.ebuild:
+  amd64 stable, bug #225723
+
+  20 Jun 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-2.4.1.ebuild:
+  Check for python built with threads USE flag, closes bug #227287
+
+  20 Jun 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-2.4.1.ebuild:
+  ooo-build patchset bump to 2.4.1.6, should also fix the randr-related
+  crash on exit, see bug #225853
 
   12 Jun 2008; Brent Baude <ranger@gentoo.org> openoffice-2.4.1.ebuild:
   Marking openoffice-2.4.1 ppc for bug 225723
