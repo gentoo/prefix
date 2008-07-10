@@ -21,6 +21,21 @@
  my ($p,$x,$r);
  my @l			= ();
  my $packageToUnmask	= '';
+@@ -79,10 +79,10 @@
+ }
+ 
+ # - Check if user is root >
+-if ($< > 0) {
+-	print $red.' * '.$reset."To use autounmask you must have root access. Aborting.\n\n";
+-	exit(0);
+-}
++#if ($< > 0) {
++#	print $red.' * '.$reset."To use autounmask you must have root access. Aborting.\n\n";
++#	exit(0);
++#}
+ 
+ # - get available repos >
+ @repos=();
 @@ -127,13 +128,13 @@
  
  # - Figure out if $keywordsFile is a directory >
