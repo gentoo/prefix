@@ -27,6 +27,6 @@ PDEPEND=">=dev-perl/ExtUtils-CBuilder-0.15
 DEPEND="dev-lang/perl
 	dev-perl/yaml
 	test? ( dev-perl/version )
-	>=dev-perl/Archive-Tar-1.09"
+	|| ( >=dev-lang/perl-5.10 >=dev-perl/Archive-Tar-1.09 )"
 
 SRC_TEST="do"
