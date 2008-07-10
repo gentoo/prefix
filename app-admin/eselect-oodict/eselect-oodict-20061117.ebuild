@@ -11,7 +11,7 @@ SRC_URI="mirror://gentoo/oodict.eselect-${PVR}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=app-admin/eselect-1.0.2"
