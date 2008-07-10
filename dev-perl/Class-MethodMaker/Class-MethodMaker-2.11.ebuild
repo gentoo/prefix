@@ -20,4 +20,4 @@ PREFER_BUILDPL="no"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	>=dev-perl/module-build-0.28"
+	|| ( >=dev-lang/perl-5.10 >=dev-perl/module-build-0.28 )"
