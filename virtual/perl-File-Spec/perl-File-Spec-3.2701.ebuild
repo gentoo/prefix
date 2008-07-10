@@ -14,4 +14,4 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
 IUSE=""
 DEPEND=""
-RDEPEND="~perl-core/File-Spec-${PV}"
+RDEPEND="|| ( ~perl-core/File-Spec-${PV} >=dev-lang/perl-5.10 )"
