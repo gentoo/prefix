@@ -1,0 +1,349 @@
+--- gcc-config-1.4.0	2008-07-11 17:03:06.666049000 +0200
++++ gcc-config-1.4.0p1	2008-07-11 17:27:21.275940000 +0200
+@@ -167,14 +167,15 @@
+ 	fi
+ 
+ 	if ! is_cross_compiler ; then
+-		# Order our profiles to have the default first ...
+-		# We do this so that we can have them ordered with default
+-		# first in /etc/ld.so.conf, as the logical is that all
+-		# compilers for default CHOST will be used to compile stuff,
+-		# and thus we want all their lib paths in /etc/ld.so.conf ...
++		# Order our profiles by version number, to have the most recent last.
++		# We do this to always find the most recent available version of
++		# one soname at runtime. Consider soname libstdc++.so.6 fex:
++		# Run with libstdc++.so.6.0.8 (from gcc-4.1.1) even if we link
++		# against libstdc++.so.6.0.5 (with gcc-3.4.6).
++		# But still have soname libstdc++.so.5 (.0.7) being around
++		# from gcc-3.3.6 if installed.
+ 		get_real_chost
+ 		GCC_PROFILES=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-*)
+-		GCC_PROFILES="${GCC_ENV_D}/${CC_COMP} ${GCC_PROFILES}"
+ 
+ 		# Extract all LDPATH's for our CHOST
+ 		MY_LDPATH=""
+@@ -328,60 +329,11 @@
+ 	#
+ 	# The funky move magic is required for proper updating of in-use files.
+ 	if ! is_cross_compiler ; then
+-		[[ ${REAL_CHOST} == *-darwin* ]] \
+-			&& libname="dylib" \
+-			|| libname="so"
+ 
+ 		# Need to cut out extra paths in multilib case and pray the first path
+ 		# is the "root" multilib path ... maybe some day change this to use
+ 		# `gcc -print-file-name` ...
+ 		LDPATH=${LDPATH%%:*}
+-		for multilib in $("${ROOT}/${GCC_PATH}"/gcc -print-multi-lib); do
+-			multiarg=${multilib#*;}
+-			multiarg=${multiarg/@/-}
+-			multilibdir=${multilib%;*}
+-			# in Prefix we don't do multilib, and this below results in
+-			# getting a subdir for your 64-bits targets which breaks
+-			# things badly...  Need to solve it when we go mainstream...
+-			#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
+-			libdir="lib"
+-			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
+-				for gcclib in gcc_s unwind ; do
+-					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.${libname} 2>/dev/null) ]]; then
+-						# the soname should *always* point to the latest
+-						# GCC, thus first copy over all libs from the
+-						# latest GCC, and then let the .so version point
+-						# to the currently selected GCC
+-						last_gcc=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-* | head -n1)
+-						last_gcc_ldpath=$(source "${last_gcc}"; echo ${LDPATH})
+-						last_gcc_ldpath=${last_gcc_ldpath%%:*}
+-						cp -pP "${ROOT}/${last_gcc_ldpath}/${multilibdir}"/lib${gcclib}.*${libname}* "${EROOT}/${libdir}"/.gcc.config.new/
+-						rm "${EROOT}/${libdir}"/.gcc.config.new/lib${gcclib}.${libname}
+-						# this is the target, make it a real object
+-						cp -pL "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.${libname} "${EROOT}/${libdir}"/.gcc.config.new/
+-
+-						# fix install_name on Darwin
+-						if [[ ${REAL_CHOST} == *-darwin* && ${libdir} == "lib/." ]] ; then
+-							pushd "${EROOT}/${libdir}"/.gcc.config.new/ > /dev/null
+-							for lib in * ; do
+-								soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+-								install_name_tool \
+-									-id "${EPREFIX}"/lib/${soname##*/} \
+-									${lib} &> /dev/null
+-							done
+-							popd > /dev/null
+-						fi
+-						# no need to sanity remove this as the `mv` should take
+-						# care of it.  we also need this step to be completly atomic
+-						# for systems that have even `mv` linked against libgcc_s.so.
+-						# http://bugs.gentoo.org/150257
+-						#rm -f "${EROOT}/${libdir}"/lib${gcclib}.so*
+-						mv -f "${EROOT}/${libdir}"/.gcc.config.new/* "${EROOT}/${libdir}"/
+-					fi
+-				done
+-				rmdir "${EROOT}/${libdir}"/.gcc.config.new
+-			fi
+-		done
+ 
+ 		# We can copy the other libs to /usr/lib without funky copying,
+ 		# don't use symlinks as on Darwin we need to fix the
+@@ -394,32 +346,242 @@
+ 		# make sure we do the current one as last, such that the
+ 		# pointers for the unversioned libs point to the currently
+ 		# selected version.
+-		GCC_PROFILES=$(LC_ALL="C" ls -r ${GCC_ENV_D}/${REAL_CHOST}-*)
+-		GCC_PROFILES="${GCC_PROFILES} ${GCC_ENV_D}/${CC_COMP}"
+-		dstlib=${EROOT}/usr/${REAL_CHOST}/lib/gcc
+-		# When upgrading, we need to clean up libs
+-		mkdir -p "${dstlib}"
+-		find -L "${dstlib}" -name "*.${libname}*" -exec rm {} \;
++		GCC_PROFILES=$(LC_ALL="C" ls ${GCC_ENV_D}/${REAL_CHOST}-*)
++
++		dstlibgcc=${EROOT}/usr/${REAL_CHOST}/lib/gcc
++		dstlib=${EROOT}/lib
++
++		# Prepare empty directories first
++		temporary=.gcc.config.new
++		rm -rf   "${dstlib}"/${temporary} "${dstlibgcc}"/${temporary} || return 1
++		mkdir -p "${dstlib}"/${temporary} "${dstlibgcc}"/${temporary} || return 1
++
++		dumpargs() {
++			return 0
++			local x
++			echo "$1 \\"; shift
++			for x in "$@"; do
++				echo "  '$x' \\"
++			done
++			echo
++		}
++
++		case ${REAL_CHOST} in
++		*-aix*)
++			LIBSUFFIX="a"
++			AIXLIBS=
++
++			do_single_runtime() {
++				dumpargs do_single_runtime "$@"
++				local sourcedir=$1; shift
++				local libname=$1; shift
++				local targetdir=$1; shift
++				local finaldir=$1; shift
++
++				aixdll \
++					--merge-runtime \
++					--finish=false \
++					--target="${targetdir}"/lib${libname}.${LIBSUFFIX} \
++					"${sourcedir}"/lib${libname}.${LIBSUFFIX} \
++				|| return 1
++				[[ ${AIXLIBS} == *":${targetdir}/lib${libname}.${LIBSUFFIX}:"* ]] \
++				|| AIXLIBS="${AIXLIBS}:${targetdir}/lib${libname}.${LIBSUFFIX}:"
++			}
++
++			finish_runtime_dir() {
++				dumpargs finish_runtime_dir "$@"
++				local sourcedir=$1; shift
++				local targetdir=$1; shift
++				local cleanup=$1; shift
++
++				local f save_IFS
++				save_IFS=$IFS; IFS=:
++				for f in ${AIXLIBS}; do
++					IFS=$save_IFS
++					[[ -n ${f} ]] || continue
++					aixdll \
++						--finish-merge \
++						--keepdir=false \
++						"${f}" \
++					|| return 1
++				done
++				IFS=$save_IFS
++				unset AIXLIBS
++
++				finish_runtime_dir_elf \
++					"${sourcedir}" \
++					"${targetdir}" \
++					${cleanup} \
++				|| return 1
++			}
++			;;
++		*-darwin*)
++			LIBSUFFIX="dylib"
++
++			do_single_runtime() {
++				local sourcedir=$1; shift
++				local libname=$1; shift
++				local targetdir=$1; shift
++				local finaldir=$1; shift
++			
++				do_single_runtime_elf \
++					"${sourcedir}" \
++					${libname} \
++					"${targetdir}" \
++					"${finaldir}" \
++				|| return 1
++
++				# fix install_name on Darwin
++				local lib
++				for lib in "${targetdir}"/lib*; do
++					soname=$(otool -LX "${lib}" | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
++					install_name_tool \
++						-id "${finaldir}"/${soname##*/} \
++						"${lib}" \
++						&> /dev/null
++				done
++			}
++
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++		*)
++			LIBSUFFIX="so"
++			do_single_runtime() {
++				do_single_runtime_elf "$@"
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++		esac
++
++		do_single_runtime_elf() {
++			dumpargs do_single_runtime_elf "$@"
++			local sourcedir=$1; shift
++			local libname=$1; shift
++			local targetdir=$1; shift
++			local finaldir=$1; shift
++
++			cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
++			# we do not need the unversioned lib, as linking
++			# is done against the used gcc's private copy.
++			rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
++		}
++
++		finish_runtime_dir_elf() {
++			dumpargs finish_runtime_dir_elf "$@"
++			local sourcedir=$1; shift
++			local targetdir=$1; shift
++			local cleanup=$1; shift
++
++			if [[ ${cleanup} == clean ]]; then
++				if [[ ${targetdir} == *${EPREFIX}/lib ]]; then
++					echo "WARNING: not cleaning ${targetdir}" >&2
++				else
++					for f in "${targetdir}"/*; do
++						[[ ${f} == ${sourcedir} ]] && continue
++						[[ -e "${sourcedir}/${f##*/}" ]] && continue
++						rm -f "${f}"
++					done
++				fi
++			fi
++
++			for f in "${sourcedir}"/*; do
++				[[ -e "${f}" ]] || continue
++				mv -f "${f}" "${targetdir}"/${f##*/} || return 1
++			done
++			rmdir "${sourcedir}"
++		}
++
++		local targetdirs= targetdir=
++
+ 		for x in ${GCC_PROFILES} ; do
+-			if [[ -f ${x} ]] ; then
+-				LDPATH=$(source "${x}"; echo ${LDPATH})
+-				LDPATH=${LDPATH%%:*}
+-				pushd "${ROOT}/${LDPATH}" > /dev/null
+-				[[ -n $(ls lib*${libname}* 2>/dev/null) ]] && \
+-				for lib in lib*${libname}* ; do
+-					[[ ${lib} == libgcc* || ${lib} == unwind* ]] && continue
+-					cp -pPf ${lib} "${dstlib}"/${lib}
+-					# fix install_name on Darwin
+-					if [[ ${REAL_CHOST} == *-darwin* ]] ; then
+-						soname=$(otool -LX ${lib} | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+-						install_name_tool \
+-							-id "${EPREFIX}"/usr/${REAL_CHOST}/lib/gcc/${soname##*/} \
+-							"${dstlib}"/${lib} &> /dev/null
++
++			unset GCC_PATH LDPATH
++			eval $(
++				source "${x}"
++				echo "GCC_PATH='${GCC_PATH}'"
++				echo "LDPATH='${LDPATH}'"
++			)
++
++			for multilib in $(
++				echo ".;" # ensure we always operate on base libdir first
++				"${ROOT}/${GCC_PATH}"/gcc -print-multi-lib
++			); do
++				multiarg=${multilib#*;}
++				multiarg=${multiarg//@/ -}
++				multilibdir=${multilib%;*}
++				# in Prefix we don't do multilib, and this below results in
++				# getting a subdir for your 64-bits targets which breaks
++				# things badly...  Need to solve it when we go mainstream...
++				#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
++				libdir="lib/${multilibdir}"
++
++				pushd "${ROOT%/}${LDPATH}/${multilibdir}" || return 1
++				for lib in lib*.${LIBSUFFIX}; do
++					[[ ${lib} != *.la    ]] || continue # skip libtool files.
++					[[ ${lib} != *[0-9]* ]] || continue # we need the unversioned libname.
++					gcclib=${lib#lib}
++					gcclib=${gcclib%.${LIBSUFFIX}}
++					if [[ ${gcclib} == gcc_s* || ${gcclib} == unwind* ]]; then
++
++						targetdir="${EPREFIX}/${libdir}"
++
++						# finish lib/lib* at first, as the others may depend on it, and newer
++						# libs normally are compatible to older ones with same soname.
++						[[ ${targetdirs} == *":${targetdir},:"* ]] ||
++							targetdirs=":${targetdir},:${targetdirs}"
++
++						do_single_runtime \
++							"${ROOT%/}${LDPATH}/${multilibdir}" \
++							${gcclib} \
++							"${ROOT%/}${targetdir}"/${temporary} \
++							"${targetdir}" \
++						|| return 1
++
++						continue
+ 					fi
++
++					targetdir="${EPREFIX}/usr/${REAL_CHOST}/lib/gcc/${multilibdir}"
++
++					# finish usr/<chost>/lib/gcc/lib* after lib/lib*
++					[[ ${targetdirs} == *":${targetdir},clean:"* ]] ||
++						targetdirs="${targetdirs}:${targetdir},clean:"
++
++					do_single_runtime \
++						"${ROOT%/}${LDPATH}/${multilibdir}" \
++						${gcclib} \
++						"${ROOT%/}${targetdir}"/${temporary} \
++						"${targetdir}" \
++					|| return 1
++
+ 				done
+ 				popd > /dev/null
+-			fi
++
++				break # we do not do multilib in prefix any more (or yet?)
++			done # multilib
++		done # GCC_PROFILES
++
++		save_IFS=$IFS
++		IFS=:
++		for targetdir in ${targetdirs}; do
++			IFS=$save_IFS
++			[[ -n ${targetdir} ]] || continue
++
++			# eventually cleanup old files (not from $EPREFIX/lib)
++			clean=${targetdir##*,}
++
++			targetdir=${targetdir%,*}
++
++			finish_runtime_dir \
++				"${ROOT%/}${targetdir}"/${temporary} \
++				"${ROOT%/}${targetdir}" \
++				${clean} \
++			|| return 1
+ 		done
++		IFS=$save_IFS
+ 
+ 		unset dstlib
+ 		unset multilib
