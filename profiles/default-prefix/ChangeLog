@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Jul 2008; Michael Haubenwallner <haubi@gentoo.org> package.mask:
+  masked sys-devel/gcc-config-1.4.0-r04.4 for testing
+
   08 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask =virtual/postgresql-base-8.3 until bug #231194 is fixed
 
