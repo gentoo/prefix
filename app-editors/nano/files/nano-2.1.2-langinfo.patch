@@ -1,4 +1,5 @@
 http://bugs.gentoo.org/show_bug.cgi?id=230191
+https://savannah.gnu.org/patch/index.php?6565
 
 --- src/nano.c
 +++ src/nano.c
