@@ -34,6 +34,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-history-justify.patch
 	# https://savannah.gnu.org/patch/index.php?6559
 	epatch "${FILESDIR}"/${P}-protoh.patch
+	# for systems that lack langinfo.h
+	epatch "${FILESDIR}"/${P}-langinfo.patch
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
