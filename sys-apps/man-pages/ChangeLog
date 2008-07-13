@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/man-pages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.111 2008/06/30 20:46:01 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.112 2008/07/10 19:16:29 cardoe Exp $
+
+*man-pages-3.03 (10 Jul 2008)
+
+  10 Jul 2008; Doug Goldstein <cardoe@gentoo.org> -man-pages-3.01-r1.ebuild,
+  +man-pages-3.03.ebuild:
+  new man-pages release. bumped gentoo tarball to remove Makefile after
+  convo with Mike
 
 *man-pages-3.01-r1 (30 Jun 2008)
 

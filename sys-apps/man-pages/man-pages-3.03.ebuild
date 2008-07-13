@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.01-r1.ebuild,v 1.1 2008/06/30 20:46:01 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.03.ebuild,v 1.1 2008/07/10 19:16:29 cardoe Exp $
 
 EAPI="prefix"
 
-GENTOO_PATCH=1
+GENTOO_PATCH=2
 
 DESCRIPTION="A somewhat comprehensive collection of Linux man pages"
 HOMEPAGE="http://www.win.tue.nl/~aeb/linux/man/"
@@ -43,8 +43,9 @@ src_install() {
 	dodoc man-pages-*.Announce README Changes*
 
 	# Override with Gentoo specific or additional Gentoo pages
-	cd ../man-pages-gentoo/
-	emake install DESTDIR="${D}" || die
+	insinto /usr/share/man
+	doins -r "${S}"/../man-pages-gentoo/* || die
+	dodoc "${S}"/../man-pages-gentoo/README.Gentoo
 }
 
 pkg_postinst() {
