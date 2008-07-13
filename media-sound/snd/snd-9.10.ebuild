@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/snd/snd-9.7.ebuild,v 1.1 2008/03/07 17:46:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/snd/snd-9.10.ebuild,v 1.1 2008/07/12 08:41:32 aballier Exp $
 
 EAPI="prefix"
 
-inherit multilib eutils
+inherit multilib eutils versionator
 
 DESCRIPTION="Snd is a sound editor"
 HOMEPAGE="http://ccrma.stanford.edu/software/snd/"
@@ -32,6 +32,8 @@ RDEPEND="media-libs/audiofile
 	opengl? ( virtual/opengl )
 	ruby? ( virtual/ruby )
 	xpm? ( x11-libs/libXpm )"
+
+#S=${WORKDIR}/${PN}-$(get_version_component_range 1)
 
 pkg_setup() {
 	if ! use gtk && ! use motif; then
