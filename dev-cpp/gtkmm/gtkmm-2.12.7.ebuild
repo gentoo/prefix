@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.12.7.ebuild,v 1.1 2008/04/11 17:00:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.12.7.ebuild,v 1.2 2008/07/10 15:16:28 remi Exp $
 
 EAPI="prefix"
 
 inherit gnome2
 
 DESCRIPTION="C++ interface for GTK+2"
-HOMEPAGE="http://gtkmm.sourceforge.net/"
+HOMEPAGE="http://www.gtkmm.org"
 
 LICENSE="LGPL-2.1"
 SLOT="2.4"

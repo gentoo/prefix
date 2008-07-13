@@ -1,6 +1,20 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.142 2008/04/11 17:00:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.145 2008/07/11 09:09:04 remi Exp $
+
+  11 Jul 2008; Rémi Cardona <remi@gentoo.org> -gtkmm-2.10.10.ebuild,
+  -gtkmm-2.12.3.ebuild, -gtkmm-2.12.4.ebuild, -gtkmm-2.12.5.ebuild:
+  clean up
+
+  11 Jul 2008; Rémi Cardona <remi@gentoo.org>
+  +files/gtkmm-1.2.9-gcc4.3.patch, gtkmm-1.2.9-r2.ebuild:
+  patch for gcc 4.3 build error, fixes bug #218403
+
+  10 Jul 2008; Rémi Cardona <remi@gentoo.org> gtkmm-1.2.9-r2.ebuild,
+  gtkmm-2.2.12.ebuild, gtkmm-2.10.10.ebuild, gtkmm-2.12.1.ebuild,
+  gtkmm-2.12.3.ebuild, gtkmm-2.12.4.ebuild, gtkmm-2.12.5.ebuild,
+  gtkmm-2.12.7.ebuild:
+  update HOMEPAGE
 
 *gtkmm-2.12.7 (11 Apr 2008)
 
