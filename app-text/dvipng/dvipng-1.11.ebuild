@@ -1,18 +1,19 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.11.ebuild,v 1.8 2008/07/07 17:01:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.11.ebuild,v 1.12 2008/07/10 08:17:49 opfer Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
-IUSE="truetype"
 DESCRIPTION="A program to translate a DVI (DeVice Independent) files into PNG (Portable Network Graphics) bitmaps"
 HOMEPAGE="http://dvipng.sourceforge.net/"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+
 LICENSE="LGPL-3"
 SLOT="0"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+IUSE="truetype test"
 
 RDEPEND="media-libs/gd
 	media-libs/libpng
@@ -20,7 +21,10 @@ RDEPEND="media-libs/gd
 	sys-libs/zlib
 	truetype? ( >=media-libs/freetype-2.1.5 )"
 DEPEND="${RDEPEND}
-	virtual/texi2dvi"
+	virtual/texi2dvi
+	test? ( ||
+		( dev-texlive/texlive-fontsrecommended app-text/tetex app-text/ptex )
+	)"
 
 pkg_setup() {
 	if ! built_with_use media-libs/gd jpeg png; then
