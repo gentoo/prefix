@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.42 2008/07/08 16:02:03 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.43 2008/07/11 21:09:39 gentoofan23 Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -134,8 +134,8 @@ qt4_pkg_setup() {
 				;;
 		esac
 		else
-			${x} == guiaccessibility && x=${x#gui}
-			${x} == qt3accessibility && x=${x#qt3}
+			[[ ${x} == guiaccessibility ]] && x=${x#gui}
+			[[ ${x} == qt3accessibility ]] && x=${x#qt3}
 			if ! built_with_use =x11-libs/qt-4* ${x}; then
 				requiredflags="${requiredflags} ${x}"
 			fi

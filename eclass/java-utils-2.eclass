@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.109 2008/07/07 16:48:45 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.110 2008/07/09 21:16:40 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1745,11 +1745,14 @@ java-pkg_ant-tasks-depend() {
 		local DEP=""
 		for i in ${WANT_ANT_TASKS}
 		do
-			if [[ ${i} != ant-* ]]; then
+			if [[ ${i} = ant-* ]]; then
+				DEP="${DEP}dev-java/${i} "
+			elif [[ ${i} = */*:* ]]; then
+				DEP="${DEP}${i} "
+			else
 				echo "Invalid atom in WANT_ANT_TASKS: ${i}"
 				return 1
 			fi
-			DEP="${DEP}dev-java/${i} "
 		done
 		echo ${DEP}
 		return 0
@@ -1890,8 +1893,19 @@ eant() {
 		fi
 	done
 
+	# parse WANT_ANT_TASKS for atoms
+	local want_ant_tasks
+	for i in ${WANT_ANT_TASKS}; do
+		if [[ ${i} = */*:* ]]; then
+			i=${i#*/}
+			i=${i%:0}
+			want_ant_tasks+="${i/:/-} "
+		else
+			want_ant_tasks+="${i} "
+		fi
+	done
 	# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
-	ANT_TASKS="${ANT_TASKS:-${WANT_ANT_TASKS}}"
+	ANT_TASKS="${ANT_TASKS:-${want_ant_tasks% }}"
 
 	# override ANT_TASKS with JAVA_PKG_FORCE_ANT_TASKS if it's set
 	ANT_TASKS="${JAVA_PKG_FORCE_ANT_TASKS:-${ANT_TASKS}}"

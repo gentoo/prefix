@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.213 2008/06/01 23:28:59 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.214 2008/07/09 19:52:20 bluebird Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -664,6 +664,24 @@ postinst_sources() {
 		ewarn "This means that it is likely to be vulnerable to recent security issues."
 		ewarn "For specific information on why this kernel is unsupported, please read:"
 		ewarn "http://www.gentoo.org/proj/en/security/kernel.xml"
+	fi
+
+	# warn sparc users that they need to do cross-compiling with >= 2.6.25(bug #214765)
+	KV_MAJOR=$(get_version_component_range 1 ${OKV})
+	KV_MINOR=$(get_version_component_range 2 ${OKV})
+	KV_PATCH=$(get_version_component_range 3 ${OKV})
+	if [[ "$(tc-arch)" = "sparc" ]] \
+		&& [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]]
+	then
+		echo
+		elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
+		elog "you now need to do"
+		elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
+		elog "instead of just"
+		elog "  make"
+		elog "to compile the kernel. For more information please browse to"
+		elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
+		echo
 	fi
 }
 
