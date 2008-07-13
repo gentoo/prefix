@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r1.ebuild,v 1.1 2008/03/19 21:47:32 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r1.ebuild,v 1.2 2008/07/11 08:15:06 mueli Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,6 @@ P_DIR=$(get_version_component_range 1-2)
 DESCRIPTION="MIT Kerberos V"
 HOMEPAGE="http://web.mit.edu/kerberos/www/"
 SRC_URI="http://web.mit.edu/kerberos/dist/krb5/${P_DIR}/${MY_P}-signed.tar
-	http://dev.gentoo.org/~jokey/${P}-patches-${PATCHV}.tar.bz2
 	mirror://gentoo/${P}-patches-${PATCHV}.tar.bz2"
 
 LICENSE="as-is"
@@ -36,11 +35,19 @@ src_unpack() {
 	unpack ./${MY_P}.tar.gz
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"
+
 	epatch "${FILESDIR}"/${P}-no-bindnow.patch
-	ebegin "Reconfiguring configure scripts (be patient)"
-	cd "${S}"/appl/telnet
-	eautoconf --force -I "${S}"
-	eend $?
+
+	einfo "Regenerating configure scripts (be patient)"
+	local subdir
+	for subdir in $(find . -name configure.in \
+		| xargs grep -l 'AC_CONFIG_SUBDIRS' \
+		| sed 's@/configure\.in$@@'); do
+		ebegin "Regenerating configure script in ${subdir}"
+		cd "${S}"/${subdir}
+		eautoconf --force -I "${S}"
+		eend $?
+	done
 }
 
 src_compile() {
@@ -97,8 +104,8 @@ src_install() {
 	newinitd "${FILESDIR}"/mit-krb5kdc.initd mit-krb5kdc
 
 	insinto /etc
-	newins ${ED}/usr/share/doc/${PF}/examples/krb5.conf krb5.conf.example
-	newins ${ED}/usr/share/doc/${PF}/examples/kdc.conf kdc.conf.example
+	newins "${ED}/usr/share/doc/${PF}/examples/krb5.conf krb5.conf.example"
+	newins "${ED}/usr/share/doc/${PF}/examples/kdc.conf kdc.conf.example"
 }
 
 pkg_postinst() {

@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.178 2008/06/03 13:56:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.179 2008/07/11 08:15:06 mueli Exp $
+
+  11 Jul 2008; Michael Hammer <mueli@gentoo.org> mit-krb5-1.6.3-r1.ebuild:
+  workaround for autoconf bug - see bug #181404. No revision bump necessary
+  because it only effects build system. Thx to truedfx.
 
   03 Jun 2008; Doug Goldstein <cardoe@gentoo.org> mit-krb5-1.5.3.ebuild,
   mit-krb5-1.5.3-r1.ebuild:
