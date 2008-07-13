@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/Attic/gmp-4.2.2-r1.ebuild,v 1.2 2008/07/12 20:30:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2-r1.ebuild,v 1.2 2008/07/12 20:30:13 loki_val Exp $
 
 EAPI="prefix"
 
