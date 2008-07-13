@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8810 2008/07/08 22:11:42 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8816 2008/07/12 19:31:35 vanquirius Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,26 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Marcelo Goes <vanquirius@gentoo.org> (12 Jul 2008)
+# rlog-1.4 breaks encfs, see bug 228951
+>=dev-libs/rlog-1.4
+
+# Bryan Stine <battousai@gentoo.org> (11 Jul 2008)
+# Wanna keep this masked until I get a comment on modprobe.d
+=x11-base/x11-drm-20080710
+
+# MATSUU Takuto <matsuu@gentoo.org> (10 Jul 2008)
+# mask for security bug #231283
+dev-cpp/poslib
+net-dns/posadis
+net-dns/mfedit
+net-dns/dnsquery
+
+# Alexis Ballier <aballier@gentoo.org> (9 Jul 2008)
+# Latest slv2 release has API changes
+# media-sound/traverso fails to build against it
+>=media-libs/slv2-0.6.0
 
 # Sébastien Fabbro <bicatali@gentoo.org> (8 Jul 2008)
 # mask for more testing (especially with pch, oracle and afs flags)
@@ -70,10 +90,6 @@ app-emacs/xtla
 # Masked for removal in ~30 days by treecleaners. bug #124383
 # Doesn't compile, dead upstream, no maintainer.
 app-i18n/kon2
-
-# Doug Goldstein <cardoe@gentoo.org> (30 Jun 2008)
-# Mask while I discuss doing this with Mike
-=sys-apps/man-pages-3.01-r1
 
 # Carsten Lohrke <carlo@gentoo.org> (30 Jun 2008)
 # Masking as it's pretty broken for a long while now.
@@ -139,7 +155,7 @@ games-board/glchess
 
 # Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
 # Please read http://my.opera.com/desktopteam/blog before using these snapshots
-=www-client/opera-9.51_pre*
+=www-client/opera-9.52_pre*
 
 # Steve Dibb <beandog@gentoo.org> (21 Jun 2008)
 # Needs testing; Added custom-cpuopts flag for more fine-grained
