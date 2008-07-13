@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/python-docs
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.97 2007/05/16 21:12:44 dertobi123 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.98 2008/07/09 18:57:09 corsair Exp $
+
+  09 Jul 2008; Markus Rothe <corsair@gentoo.org> python-docs-2.5.1.ebuild:
+  Stable on ppc64; bug #178800
 
   16 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   python-docs-2.4.4.ebuild:
