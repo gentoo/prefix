@@ -40,6 +40,7 @@ DEPEND="jce? ( =dev-java/sun-jce-bin-1.6.0* )"
 RDEPEND="doc? ( =dev-java/java-sdk-docs-1.6.0* )
 	!prefix? ( x86? ( =virtual/libstdc++-3.3 ) )
 	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
+	kernel_Solaris? ( app-arch/unzip )
 	alsa? ( media-libs/alsa-lib )
 	X? (
 			x11-libs/libXext
@@ -56,10 +57,20 @@ JAVA_PROVIDE="jdbc-stdext jdbc-rowset"
 S="${WORKDIR}/jdk$(replace_version_separator 3 _)"
 
 src_unpack() {
-	if [[ ${CHOST} == *-solaris* ]] ; then
+	if [[ ${CHOST} == i?86-*-solaris* ]] ; then
 		for i in ${A}; do
 			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
-			sh "${DISTDIR}"/${i} --accept-license --unpack || die "Failed to unpack"
+			# don't die on unzip, it always "fails"
+			unzip "${DISTDIR}"/${i}
+		done
+		for f in $(find "${S}" -name "*.pack") ; do
+			"${S}"/bin/unpack200 ${f} ${f%.pack}.jar
+			rm ${f}
+		done
+	elif [[ ${CHOST} == sparc*-solaris* ]] ; then
+		for i in ${A}; do
+			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
+			sh ${DISTDIR}/${i} --accept-license --unpack || die "Failed to unpack"
 		done
 	else 
 		sh ${DISTDIR}/${A} --accept-license --unpack || die "Failed to unpack"
