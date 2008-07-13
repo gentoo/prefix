@@ -7,7 +7,8 @@
 		<name>James Rowe</name>
 	</maintainer>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>jer@gentoo.org</email>
+		<name>Jeroen Roovers</name>
 	</maintainer>
 	<longdescription lang="en">
 		Surfraw provides a fast unix command line interface to a variety of
