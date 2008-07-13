@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.3.ebuild,v 1.2 2008/07/10 15:10:50 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.16.4.ebuild,v 1.2 2008/07/10 15:10:50 remi Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,12 @@ DOCS="AUTHORS ChangeLog NEWS README"
 src_unpack() {
 	gnome2_src_unpack
 
+	# don't waste time building tests
+	# no USE=test because there is no "check" target
+	sed -i 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' Makefile.in || die "sed failed"
+
 	if ! use examples; then
-		# don't waste time building the examples
+		# don't waste time building examples
 		sed -i 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' Makefile.in || die "sed failed"
 	fi
 }
