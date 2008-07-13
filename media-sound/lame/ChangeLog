@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/lame
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.93 2007/10/09 10:01:14 corsair Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.94 2008/07/11 21:52:39 aballier Exp $
+
+*lame-3.98 (11 Jul 2008)
+
+  11 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/lame-3.98-gtk-path.patch, +files/lame-3.98-shared-frontend.patch,
+  +lame-3.98.ebuild:
+  Version bump, thanks to Christian Schwinn <schwinni@quadrant1.net> for
+  reporting and Sebastian <sebastian_ml@gmx.net> for the ebuild and patches.
+  Bug #230860
 
   09 Oct 2007; Markus Rothe <corsair@gentoo.org> lame-3.97-r1.ebuild:
   Stable on ppc64; bug #189361
