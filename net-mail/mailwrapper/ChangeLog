@@ -1,6 +1,9 @@
 # ChangeLog for net-mail/mailwrapper
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailwrapper/ChangeLog,v 1.37 2008/02/03 14:55:34 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailwrapper/ChangeLog,v 1.38 2008/07/09 06:41:02 tove Exp $
+
+  09 Jul 2008; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove g2boojum from metadata (#208353)
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> mailwrapper-0.2.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
