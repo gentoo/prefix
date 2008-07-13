@@ -2,6 +2,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.11041 (13 Jul 2008)
+
+  13 Jul 2008; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.00.11041.ebuild:
+  After a number of seriously broken snapshots, finally one that works at
+  least on Darwin (and Linux hopefully). To repeat, this snapshot should
+  finally be useful for Interix. This snapshots contains parallel merge
+  feature, use --jobs to use it!
+
 *portage-2.2.00.10884 (01 Jul 2008)
 
   01 Jul 2008; Fabian Groffen <grobian@gentoo.org>
