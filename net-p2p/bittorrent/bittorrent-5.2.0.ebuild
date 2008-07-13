@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.0.ebuild,v 1.1 2008/03/01 19:57:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.0.ebuild,v 1.2 2008/07/10 14:09:55 armin76 Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,10 @@ pkg_setup() {
 			die "You must build wxGTK and wxpython with unicode support"
 		fi
 	fi
+
+	if ! built_with_use dev-lang/python threads; then
+                die "${PN} needs dev-lang/python with USE=\"threads\""
+        fi
 }
 
 src_unpack() {
