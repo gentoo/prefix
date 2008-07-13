@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.109 2008/05/22 21:28:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.110 2008/07/09 07:47:22 remi Exp $
+
+  09 Jul 2008; Rémi Cardona <remi@gentoo.org> libxklavier-3.6.ebuild:
+  glib 2.16 is required although configure says 2.6 is enough, next version
+  will have the correct dep (see bug #231100)
 
 *libxklavier-3.6 (22 May 2008)
 
