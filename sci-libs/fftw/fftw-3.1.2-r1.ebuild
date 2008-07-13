@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.1.2-r1.ebuild,v 1.2 2008/07/02 13:20:12 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.1.2-r1.ebuild,v 1.3 2008/07/10 14:36:38 bicatali Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,17 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="altivec doc fortran openmp sse sse2 threads"
 
 pkg_setup() {
+	if use openmp &&
+		[[ $(tc-getCC)$ == *gcc* ]] &&
+		[[ $(gcc-major-version)$(gcc-minor-version) -lt 42 ]] ||
+		! built_with_use sys-devel/gcc openmp
+	then
+		ewarn "You are using gcc and OpenMP is only available with gcc >= 4.2 "
+		ewarn "If you want to build fftw with OpenMP, abort now,"
+		ewarn "and switch CC to an OpenMP capable compiler"
+		ewarn "Otherwise the configure script will select POSIX threads."
+		epause 5
+	fi
 	FORTRAN="gfortran ifc g77"
 	use fortran && fortran_pkg_setup
 }
@@ -41,10 +52,24 @@ src_compile() {
 	# filter -Os according to docs
 	replace-flags -Os -O2
 
-	local myconfcommon="--enable-shared
-		$(use_with openmp)
+	local myconfcommon="
+		--enable-shared
 		$(use_enable threads)
 		$(use_enable fortran)"
+
+	if use openmp; then
+		myconfcommon="${myconfcommon}
+			--enable-threads
+			--with-openmp"
+	elif use threads; then
+		myconfcommon="${myconfcommon}
+			--enable-threads
+			--without-openmp"
+	else
+		myconfcommon="${myconfcommon}
+			--disable-threads
+			--without-openmp"
+	fi
 	local myconfsingle=""
 	local myconfdouble=""
 	local myconflongdouble=""

@@ -1,5 +1,5 @@
---- configure.ac.orig	2008-06-30 23:10:27.431674828 +0100
-+++ configure.ac	2008-06-30 23:50:59.266804845 +0100
+--- configure.ac.orig	2008-07-10 11:29:58.506230457 +0100
++++ configure.ac	2008-07-10 11:49:45.171417438 +0100
 @@ -135,7 +135,7 @@
  AC_PROG_CC
  AX_COMPILER_VENDOR
@@ -18,7 +18,7 @@
  
  dnl Checks for header files.
  AC_HEADER_STDC
-@@ -362,7 +364,7 @@
+@@ -362,10 +364,10 @@
  THREADLIBS=""
  if test "$enable_threads" = "yes"; then
  	if test "$with_openmp"x != nox; then
@@ -26,4 +26,8 @@
 +		AX_OPENMP([THREADLIBS="$OPENMP_LIBS"
  		  AC_DEFINE(USING_OPENMP_THREADS, 1, [Define if we have and are using OpenMP multithreading directives])
                    CFLAGS="$CFLAGS $OPENMP_CFLAGS"],
- 		  [AC_MSG_ERROR([don't know how to enable OpenMP])])
+-		  [AC_MSG_ERROR([don't know how to enable OpenMP])])
++		  [AC_MSG_WARN([don't know how to enable OpenMP, reverting to POSIX threads])])
+ 	fi
+ 
+ 	# POSIX threads, the default choice:

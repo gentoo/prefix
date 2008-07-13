@@ -1,9 +1,10 @@
---- m4/ax_openmp.m4.orig	2008-07-01 00:14:48.814076874 +0100
-+++ m4/ax_openmp.m4	2008-06-30 23:42:30.534809664 +0100
-@@ -59,6 +59,9 @@
+--- m4/ax_openmp.m4.orig	2008-07-10 11:33:17.361562576 +0100
++++ m4/ax_openmp.m4	2008-07-10 12:05:14.280159723 +0100
+@@ -59,6 +59,10 @@
  else
    if test "x$ax_cv_[]_AC_LANG_ABBREV[]_openmp" != "xnone"; then
      OPENMP_[]_AC_LANG_PREFIX[]FLAGS=$ax_cv_[]_AC_LANG_ABBREV[]_openmp
++    OPENMP_LIBS=" "
 +    if test "x$ax_cv_[]_AC_LANG_ABBREV[]_openmp" = "x-fopenmp"; then
 +        OPENMP_LIBS="-lgomp"
 +    fi
