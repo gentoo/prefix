@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/iftop
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/iftop/ChangeLog,v 1.38 2007/07/15 20:03:38 pva Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/iftop/ChangeLog,v 1.39 2008/07/10 20:40:58 ranger Exp $
+
+  10 Jul 2008; Brent Baude <ranger@gentoo.org> iftop-0.17.ebuild:
+  Marking iftop-0.17 ~ppc64 for bug 231448
 
   15 Jul 2007; <pva@gentoo.org> -iftop-0.16.ebuild, -iftop-0.16-r1.ebuild:
   Cleaned old ebuilds...
