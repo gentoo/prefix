@@ -1,0 +1,11 @@
+diff -Naurp gmp-4.2.2-orig/gmp-h.in gmp-4.2.2/gmp-h.in
+--- gmp-4.2.2-orig/gmp-h.in	2007-09-03 10:05:40.000000000 -0600
++++ gmp-4.2.2/gmp-h.in	2008-07-07 16:32:50.000000000 -0600
+@@ -517,6 +517,7 @@ typedef __mpq_struct *mpq_ptr;
+ #if defined (__cplusplus)
+ extern "C" {
+ #ifdef _GMP_H_HAVE_FILE
++#include <cstdio>
+ using std::FILE;
+ #endif
+ #endif

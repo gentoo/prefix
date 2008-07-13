@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2-r1.ebuild,v 1.1 2008/05/02 04:23:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/Attic/gmp-4.2.2-r1.ebuild,v 1.2 2008/07/12 20:30:13 loki_val Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,7 @@ src_unpack () {
 
 	epatch "${FILESDIR}"/${PN}-4.2.2-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
+	epatch "${FILESDIR}"/${PN}-4.2.2-cstdio-stdfile.patch
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
