@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/elementtree
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.34 2008/05/10 16:03:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.35 2008/07/11 02:49:23 jer Exp $
+
+  11 Jul 2008; Jeroen Roovers <jer@gentoo.org> elementtree-1.2.6-r2.ebuild:
+  Stable for HPPA (maybe bug #231233). Fixed quoting.
 
   10 May 2008; Jeroen Roovers <jer@gentoo.org> elementtree-1.2.6-r2.ebuild:
   Marked ~hppa too.
