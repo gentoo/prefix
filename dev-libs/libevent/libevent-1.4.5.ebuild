@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.1_beta1.ebuild,v 1.2 2008/02/01 07:08:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.5.ebuild,v 1.1 2008/07/10 19:21:37 cardoe Exp $
 
 EAPI="prefix"
 
 inherit libtool
 
-MY_P=${P/_beta1/-beta}
+MY_P="${P}-stable"
 
 DESCRIPTION="A library to execute a function when a specific event occurs on a file descriptor"
 HOMEPAGE="http://monkey.org/~provos/libevent/"
