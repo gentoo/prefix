@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/xchat
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.266 2008/07/06 17:50:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.267 2008/07/11 17:55:34 armin76 Exp $
+
+  11 Jul 2008; Raúl Porcel <armin76@gentoo.org> xchat-2.8.6-r1.ebuild:
+  Add xft USE-flag, bug #231433
 
 *xchat-2.8.6-r1 (06 Jul 2008)
 

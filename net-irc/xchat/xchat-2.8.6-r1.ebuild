@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.1 2008/07/06 17:50:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.2 2008/07/11 17:55:34 armin76 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.xchat.org/"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="perl dbus tcl python ssl mmx ipv6 libnotify nls spell xchatnogtk xchatdccserver"
+IUSE="perl dbus tcl python ssl mmx ipv6 libnotify nls spell xchatnogtk xchatdccserver xft"
 
 RDEPEND=">=dev-libs/glib-2.6.0
 	!xchatnogtk? ( >=x11-libs/gtk+-2.10.0 )
@@ -76,6 +76,7 @@ src_compile() {
 		$(use_enable ipv6) \
 		$(use_enable nls) \
 		$(use_enable dbus) \
+		$(use_enable xft) \
 		$(use_enable spell spell static) \
 		$(use_enable !xchatnogtk gtkfe) \
 		|| die "econf failed"
