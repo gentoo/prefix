@@ -1,6 +1,12 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.25 2008/06/10 14:40:41 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.27 2008/07/10 14:49:05 remi Exp $
+
+  10 Jul 2008; Rémi Cardona <remi@gentoo.org> cairomm-1.6.0.ebuild:
+  fix whitespace
+
+  10 Jul 2008; Rémi Cardona <remi@gentoo.org> cairomm-1.6.0.ebuild:
+  don't build examples and tests (see ebuild for reasons why)
 
 *cairomm-1.6.0 (10 Jun 2008)
 
