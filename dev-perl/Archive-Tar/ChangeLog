@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Archive-Tar
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.91 2008/06/13 16:07:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.92 2008/07/11 05:28:17 jer Exp $
+
+  11 Jul 2008; Jeroen Roovers <jer@gentoo.org> Archive-Tar-1.38.ebuild:
+  Stable for HPPA too.
 
   13 Jun 2008; Raúl Porcel <armin76@gentoo.org> Archive-Tar-1.38.ebuild:
   alpha/ia64/sparc/x86 stable

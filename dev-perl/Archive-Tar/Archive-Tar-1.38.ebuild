@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/Archive-Tar-1.38.ebuild,v 1.3 2008/06/13 16:07:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/Archive-Tar-1.38.ebuild,v 1.4 2008/07/11 05:28:17 jer Exp $
 
 EAPI="prefix"
 
