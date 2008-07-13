@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-cdb/python-cdb-0.32-r1.ebuild,v 1.4 2008/01/17 18:40:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-cdb/python-cdb-0.32-r1.ebuild,v 1.5 2008/07/10 08:05:42 opfer Exp $
 
 EAPI="prefix"
 
