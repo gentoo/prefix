@@ -1,6 +1,13 @@
 # ChangeLog for dev-texlive/texlive-fontsextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.15 2008/05/12 19:24:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.16 2008/07/12 09:55:36 aballier Exp $
+
+*texlive-fontsextra-2007-r1 (12 Jul 2008)
+
+  12 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  +texlive-fontsextra-2007-r1.ebuild:
+  remove oesch, it has a no modify license and is broken. See bug #229791
+  and http://tug.org/pipermail/tex-live/2008-July/016407.html
 
   12 May 2008; nixnut <nixnut@gentoo.org> texlive-fontsextra-2007.ebuild:
   Stable on ppc wrt bug 220651
