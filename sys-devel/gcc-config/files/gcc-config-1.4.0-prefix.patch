@@ -280,7 +280,7 @@
 +				#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 +				libdir="lib/${multilibdir}"
 +
-+				pushd "${ROOT%/}${LDPATH}/${multilibdir}" || return 1
++				pushd "${ROOT%/}${LDPATH}/${multilibdir}" > /dev/null || return 1
 +				for lib in lib*.${LIBSUFFIX}; do
 +					[[ ${lib} != *.la    ]] || continue # skip libtool files.
 +					[[ ${lib} != *[0-9]* ]] || continue # we need the unversioned libname.
