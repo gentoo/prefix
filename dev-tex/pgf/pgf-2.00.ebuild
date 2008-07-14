@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-2.00.ebuild,v 1.2 2008/05/30 12:07:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-2.00.ebuild,v 1.3 2008/07/14 04:28:00 jer Exp $
 
 EAPI="prefix"
 

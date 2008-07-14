@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/pgf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.43 2008/05/30 12:07:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.44 2008/07/14 04:28:00 jer Exp $
+
+  14 Jul 2008; Jeroen Roovers <jer@gentoo.org> pgf-2.00.ebuild:
+  Stable for HPPA (bug #231521).
 
   30 May 2008; Alexis Ballier <aballier@gentoo.org> pgf-2.00.ebuild:
   Fix doc installation by Sascha Lucas <sascha.lucas@rus.uni-stuttgart.de>,
