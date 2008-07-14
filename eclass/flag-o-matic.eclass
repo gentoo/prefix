@@ -126,7 +126,7 @@ filter-flags() {
 # Remove flags that enable Large File Support.
 filter-lfs-flags() {
 	[[ -n $@ ]] && die "filter-lfs-flags takes no arguments"
-	filter-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+	filter-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_LARGE_FILES -D_LARGE_FILE_API
 }
 
 # @FUNCTION: append-cppflags
@@ -155,7 +155,10 @@ append-fflags() {
 # Add flags that enable Large File Support.
 append-lfs-flags() {
 	[[ -n $@ ]] && die "append-lfs-flags takes no arguments"
-	append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+	case ${CHOST} in
+	*-aix*) append-cppflags -D_LARGE_FILES -D_LARGE_FILE_API ;;
+	*) append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE ;;
+	esac
 }
 
 # @FUNCTION: append-flags
