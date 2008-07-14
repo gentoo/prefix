@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.95 2008/07/12 20:30:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.96 2008/07/13 09:37:43 loki_val Exp $
+
+*gmp-4.2.2-r2 (13 Jul 2008)
+
+  13 Jul 2008; Peter Alfredsen <loki_val@gentoo.org> -gmp-4.2.2-r1.ebuild,
+  +gmp-4.2.2-r2.ebuild:
+  D'oh, a version bump is needed here, since it's the installed header
+  that's causing problems.
 
   12 Jul 2008; Peter Alfredsen <loki_val@gentoo.org>
   +files/gmp-4.2.2-cstdio-stdfile.patch, gmp-4.2.2-r1.ebuild:
