@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.ebuild,v 1.1 2008/07/11 21:52:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.ebuild,v 1.2 2008/07/13 12:17:08 aballier Exp $
 
 EAPI="prefix"
 
@@ -38,6 +38,10 @@ src_unpack() {
 
 	# Patch gtk stuff, otherwise eautoreconf dies
 	epatch "${FILESDIR}"/${PN}-3.98-gtk-path.patch
+
+	# Fix build of mp3rtp, bug #231541
+	# Dont prevent stdint.h from being included when it's in fact needed
+	epatch "${FILESDIR}"/${PN}-3.98-stdint.patch
 
 	AT_M4DIR="${S}" eautoreconf
 	epunt_cxx # embedded bug #74498
