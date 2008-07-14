@@ -135,10 +135,6 @@ src_compile() {
 			# -lintl isn't added for some reason
 			use nls && append-ldflags -lintl
 		;;
-		*-aix*)
-			# avoid recording immediate path to sharedlibs into executables
-			append-ldflags -Wl,-bnoipath
-		;;
 	esac
 
 	append-flags $("${EPREFIX}"/usr/bin/apr-1-config --cppflags)
