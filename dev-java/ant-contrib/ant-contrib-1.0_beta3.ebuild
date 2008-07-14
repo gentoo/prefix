@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta3.ebuild,v 1.1 2008/07/07 21:52:02 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta3.ebuild,v 1.2 2008/07/13 17:59:29 betelgeuse Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
@@ -23,7 +23,9 @@ RDEPEND=">=virtual/jre-1.4
 	dev-java/xerces:2
 	dev-java/ant-ivy:0
 	>=dev-java/ant-core-1.7.0"
+# javatoolkit for cElementTree
 DEPEND=">=virtual/jdk-1.4
+	>=dev-java/javatoolkit-0.3.0-r2
 	${RDEPEND}"
 
 S=${WORKDIR}/${PN}
