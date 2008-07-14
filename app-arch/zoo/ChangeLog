@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/zoo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.43 2008/07/10 14:03:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.44 2008/07/13 06:33:53 josejx Exp $
+
+  13 Jul 2008; Joseph Jezak <josejx@gentoo.org> zoo-2.10-r4.ebuild:
+  Marked ppc stable for bug #231077.
 
   10 Jul 2008; Brent Baude <ranger@gentoo.org> zoo-2.10-r4.ebuild:
   stable ppc64, bug 231077
