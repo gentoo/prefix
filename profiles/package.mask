@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8816 2008/07/12 19:31:35 vanquirius Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8817 2008/07/13 18:57:47 pchrist Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -1459,10 +1459,6 @@ net-dns/bind-dns-keygen
 # Tuấn Văn <langthang@gentoo.org> (15 Jul 2006)
 # Initial import. Masked for testing
 mail-filter/sid-milter
-
-# Matthew Kennedy <mkennedy@gentoo.org>
-# libecl.so linking problem
-=dev-lisp/ecls-0.9i
 
 # Martin Schlemmer <azarah@gentoo.org> (07 Jul 2006)
 # Testing release to get some feedback.  New features include:
