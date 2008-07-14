@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.109 2008/07/04 07:00:57 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.110 2008/07/13 08:58:43 graaff Exp $
+
+  13 Jul 2008; Hans de Graaff <graaff@gentoo.org>
+  -files/1.1.6-deprecate-old-lighttpd.patch, -rails-1.1.6.ebuild,
+  -rails-1.1.6-r2.ebuild:
+  Belated removal for GLSA 200711-17
 
   04 Jul 2008; Hans de Graaff <graaff@gentoo.org> rails-2.1.0.ebuild:
   Rails now depends on rake 0.8.1 or better.
