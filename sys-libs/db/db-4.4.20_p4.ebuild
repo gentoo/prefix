@@ -87,7 +87,7 @@ src_compile() {
 
 	# Add linker versions to the symbols. Easier to do, and safer than header file
 	# mumbo jumbo.
-	if use userland_GNU; then
+	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
 		append-ldflags -Wl,--default-symver
 	fi
 
