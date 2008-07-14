@@ -26,7 +26,10 @@ src_unpack() {
 	sed -i '1i#include <stdlib.h>' src/argmatch.c || die
 
 	# Needed under FreeBSD, too
-	epatch "${FILESDIR}"/${P}-ppc-macos.diff
+	# Needed under Interix too
+	# now replaced by the -new.patch ...
+	# epatch "${FILESDIR}"/${P}-ppc-macos.diff
+	epatch "${FILESDIR}"/${P}-ppc-macos-new.diff
 	cp lib/error.c lib/xstrdup.c src/ || die "file copy failed"
 
 	# really need the new libtool... (they try quite hard to keep
