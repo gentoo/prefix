@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.58 2008/07/10 14:04:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.59 2008/07/13 07:38:54 josejx Exp $
+
+  13 Jul 2008; Joseph Jezak <josejx@gentoo.org> cdrkit-1.1.8.ebuild:
+  Marked ppc stable for bug #230956.
 
   10 Jul 2008; Brent Baude <ranger@gentoo.org> cdrkit-1.1.8.ebuild:
   stable ppc64, bug 230956

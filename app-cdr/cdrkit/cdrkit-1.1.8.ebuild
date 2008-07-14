@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.8.ebuild,v 1.5 2008/07/10 14:04:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.8.ebuild,v 1.6 2008/07/13 07:38:54 josejx Exp $
 
 EAPI="prefix"
 
