@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/mako/mako-0.1.10.ebuild,v 1.3 2008/05/02 05:06:39 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/mako/mako-0.1.10-r1.ebuild,v 1.1 2008/07/14 03:27:16 antarus Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc test"
 
-DEPEND=""
+DEPEND="dev-python/setuptools"
 RDEPEND=""
 S="${WORKDIR}/${MY_P}"
 
