@@ -1,0 +1,11 @@
+--- configure.in.orig	2007-03-20 16:49:24.000000000 +0100
++++ configure.in	2007-03-20 17:03:15.000000000 +0100
+@@ -539,7 +539,7 @@
+ AC_MSG_CHECKING(LINKCC)
+ if test -z "$LINKCC"
+ then
+-        if test -z "$CXX"; then
++        if true || test -z "$CXX"; then
+               LINKCC="\$(PURIFY) \$(CC)"
+         else
+               echo 'extern "C" void foo();int main(){foo();}' > conftest_a.cc
