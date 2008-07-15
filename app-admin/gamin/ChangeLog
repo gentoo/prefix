@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.88 2008/06/25 12:10:55 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.89 2008/07/14 05:15:34 jer Exp $
+
+  14 Jul 2008; Jeroen Roovers <jer@gentoo.org> gamin-0.1.9-r1.ebuild:
+  Stable for HPPA (bug #228087).
 
   25 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> gamin-0.1.9-r1.ebuild:
   amd64 stable wrt bug #228087.
