@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libebml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.90 2008/06/23 18:56:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.91 2008/07/14 20:34:25 jer Exp $
+
+  14 Jul 2008; Jeroen Roovers <jer@gentoo.org> libebml-0.7.8-r1.ebuild:
+  Stable for HPPA (bug #228695).
 
   23 Jun 2008; Raúl Porcel <armin76@gentoo.org> libebml-0.7.8-r1.ebuild:
   alpha/ia64/sparc stable wrt #228695
