@@ -10,7 +10,7 @@ DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://sourceforge/${PN}/${P/-c}.tgz"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="+curl threads"
 LICENSE="BSD"
 SLOT="0"
