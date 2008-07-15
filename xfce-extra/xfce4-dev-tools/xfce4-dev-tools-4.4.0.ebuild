@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-dev-tools/Attic/xfce4-dev-tools-4.4.0.ebuild,v 1.14 2008/06/23 12:37:44 drac dead $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-dev-tools/xfce4-dev-tools-4.4.0.ebuild,v 1.14 2008/06/23 12:37:44 drac dead $
 
 EAPI="prefix"
 
