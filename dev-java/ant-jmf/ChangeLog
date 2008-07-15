@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/ant-jmf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jmf/ChangeLog,v 1.9 2007/05/12 18:14:20 wltjr Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jmf/ChangeLog,v 1.10 2008/07/14 21:58:13 caster Exp $
+
+*ant-jmf-1.7.1 (14 Jul 2008)
+
+  14 Jul 2008; Vlastimil Babka <caster@gentoo.org> +ant-jmf-1.7.1.ebuild:
+  Version bump, bug #231776.
 
   12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   ant-jmf-1.7.0.ebuild:
