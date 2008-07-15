@@ -8,7 +8,7 @@
 # Markus Duft <mduft@gentoo.org> (05 May 2008)
 # Does not build on interix (lots of unresolved
 # symbols which should be local...).
-=app-antivirus/clamav-0.93
+=app-antivirus/clamav-0.93*
 
 # Michael Haubenwallner <haubi@gentoo.org> (18 Mar 2008)
 # Interix patches not working yet (mduft)
