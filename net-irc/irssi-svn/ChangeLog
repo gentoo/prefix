@@ -1,6 +1,10 @@
 # ChangeLog for net-irc/irssi-svn
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi-svn/ChangeLog,v 1.19 2007/01/07 16:43:36 swegener Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi-svn/ChangeLog,v 1.20 2008/07/14 08:15:56 the_paya Exp $
+
+  14 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  irssi-svn-0.3.ebuild:
+  Keyworded ~x86-fbsd wrt bug #230949.
 
   07 Jan 2007; Sven Wegener <swegener@gentoo.org> irssi-svn-0.3.ebuild:
   Drop the extern inline workaround, irssi doesn't use them anymore.
