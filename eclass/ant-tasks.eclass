@@ -3,7 +3,7 @@
 # Copyright 2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Vlastimil Babka <caster@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.5 2008/07/07 16:48:45 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.6 2008/07/14 21:38:14 caster Exp $
 
 # we set ant-core dep ourselves, restricted
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
@@ -68,18 +68,21 @@ ANT_TASK_DEPNAME=${ANT_TASK_DEPNAME-${ANT_TASK_NAME}}
 ANT_TASK_PV="${PV}"
 
 # special care for beta/RC releases
-if [[ ${PV} == *beta* ]]; then
-	MY_PV=${PV/_beta/Beta}
-	SRC_URI_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+if [[ ${PV} == *beta2* ]]; then
+	MY_PV=${PV/_beta2/beta}
+	UPSTREAM_PREFIX="http://people.apache.org/dist/ant/v1.7.1beta2/src"
+	GENTOO_PREFIX="http://dev.gentoo.org/~caster/distfiles"
 	ANT_TASK_PV=$(get_version_component_range 1-3)
 elif [[ ${PV} == *_rc* ]]; then
 	MY_PV=${PV/_rc/RC}
-	SRC_URI_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+	UPSTREAM_PREFIX="http://dev.gentoo.org/~caster/distfiles"
+	GENTOO_PREFIX="http://dev.gentoo.org/~caster/distfiles"
 	ANT_TASK_PV=$(get_version_component_range 1-3)
 else
 	# default for final releases
 	MY_PV=${PV}
-	SRC_URI_PREFIX="mirror://apache/ant/source"
+	UPSTREAM_PREFIX="mirror://apache/ant/source"
+	GENTOO_PREFIX="mirror://gentoo"
 fi
 
 # source/workdir name
@@ -90,8 +93,8 @@ MY_P="apache-ant-${MY_PV}"
 # -----------------------------------------------------------------------------
 DESCRIPTION="Apache Ant's optional tasks depending on ${ANT_TASK_DEPNAME}"
 HOMEPAGE="http://ant.apache.org/"
-SRC_URI="${SRC_URI_PREFIX}/${MY_P}-src.tar.bz2
-	mirror://gentoo/ant-${PV}-gentoo.tar.bz2"
+SRC_URI="${UPSTREAM_PREFIX}/${MY_P}-src.tar.bz2
+	${GENTOO_PREFIX}/ant-${PV}-gentoo.tar.bz2"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE=""
@@ -101,10 +104,10 @@ RDEPEND=">=virtual/jre-${ANT_TASK_JREVER}
 DEPEND=">=virtual/jdk-${ANT_TASK_JDKVER}
 	${RDEPEND}"
 
-S="${WORKDIR}/${MY_P}"
-
 # Would run the full ant test suite for every ant task
 RESTRICT="test"
+
+S="${WORKDIR}/${MY_P}"
 
 # ------------------------------------------------------------------------------
 # @eclass-src_unpack
@@ -134,7 +137,9 @@ ant-tasks_src_unpack() {
 				java-pkg_jar-from --build-only ant-core ant.jar;;
 			jar-dep)
 				# get jar from the dependency package
-				java-pkg_jar-from ${ANT_TASK_DEPNAME};;
+				if [[ -n "${ANT_TASK_DEPNAME}" ]]; then
+					java-pkg_jar-from ${ANT_TASK_DEPNAME}
+				fi;;
 			all)
 				ant-tasks_src_unpack base jar-dep;;
 		esac
@@ -162,4 +167,10 @@ ant-tasks_src_compile() {
 ant-tasks_src_install() {
 	java-pkg_dojar build/lib/${PN}.jar
 	java-pkg_register-ant-task --version "${ANT_TASK_PV}"
+
+	# create the compatibility symlink
+	if version_is_at_least 1.7.1_beta2; then
+		dodir /usr/share/ant/lib
+		dosym /usr/share/${PN}/lib/${PN}.jar /usr/share/ant/lib/${PN}.jar
+	fi
 }

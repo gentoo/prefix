@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.11 2008/07/03 22:36:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.12 2008/07/14 16:42:48 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -34,6 +34,8 @@ HOMEPAGE="http://www.tug.org/texlive/"
 COMMON_DEPEND=">=app-text/texlive-core-${PV}
 	${TEXLIVE_MODULES_DEPS}"
 
+IUSE=""
+
 # TeX Live 2007 was providing .zip files of CTAN packages. For 2008 they are now
 # .tar.lzma
 if [ -z "${PV##2007*}" ] ; then
@@ -48,11 +50,12 @@ for i in ${TEXLIVE_MODULE_CONTENTS}; do
 done
 DEPEND="${COMMON_DEPEND}
 	app-arch/lzma-utils"
+IUSE="${IUSE} source"
 fi
 
 RDEPEND="${COMMON_DEPEND}"
 
-[ -z "${PN##*documentation*}" ] || IUSE="doc"
+[ -z "${PN##*documentation*}" ] || IUSE="${IUSE} doc"
 
 S="${WORKDIR}"
 
@@ -138,7 +141,7 @@ texlive-module_src_install() {
 
 	[ -d texmf ] && doins -r texmf
 	[ -d texmf-dist ] && doins -r texmf-dist
-	[ -d tlpkg ] && doins -r tlpkg
+	[ -n "${PV##2007*}" ] && [ -d tlpkg ] && use source && doins -r tlpkg
 
 	insinto /var/lib/texmf
 	[ -d texmf-var ] && doins -r texmf-var/*
