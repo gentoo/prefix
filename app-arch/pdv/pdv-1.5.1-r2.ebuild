@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF=2.5
 WANT_AUTOMAKE=1.4
 
-inherit eutils autotools
+inherit eutils autotools flag-o-matic
 
 DESCRIPTION="build a self-extracting and self-installing binary package"
 HOMEPAGE="http://pdv.sourceforge.net/"
@@ -43,6 +43,12 @@ src_unpack() {
 }
 
 src_compile() {
+	if [[ ${CHOST} == *-interix* ]]; then
+		# seems like a bug in openmotiv build on interix, but i can't find it.
+		# if this is missing i get unresolved libiconv_* symbols for libXm.so
+		use X && append-ldflags -liconv
+	fi
+
 	local myconf=""
 	use X || myconf="--without-x" # configure script is broken, cant use use_with
 	econf ${myconf} || die
