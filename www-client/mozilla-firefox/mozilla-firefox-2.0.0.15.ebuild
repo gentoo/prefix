@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.14.ebuild,v 1.12 2008/05/15 18:40:29 armin76 Exp $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.15.ebuild,v 1.6 2008/07/05 15:16:42 ranger Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ NOSHORTLANGS="en-GB es-AR pt-BR zh-TW"
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="java mozdevelop bindist xforms restrict-javascript filepicker iceweasel"
@@ -33,14 +33,14 @@ SRC_URI="${MOZ_URI}/source/firefox-${PV}-source.tar.bz2
 for X in ${LANGS} ; do
 	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
 		SRC_URI="${SRC_URI}
-		linguas_${X/-/_}? ( http://dev.gentooexperimental.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+		linguas_${X/-/_}? ( http://dev.gentoo.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
 	fi
 	IUSE="${IUSE} linguas_${X/-/_}"
 	# english is handled internally
 	if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
 		if [ "${X}" != "en-US" ]; then
 			SRC_URI="${SRC_URI}
-				linguas_${X%%-*}? ( http://dev.gentooexperimental.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+				linguas_${X%%-*}? ( http://dev.gentoo.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
 		fi
 		IUSE="${IUSE} linguas_${X%%-*}"
 	fi
@@ -255,7 +255,7 @@ src_install() {
 	fi
 
 	# Create /usr/bin/firefox
-	install_mozilla_launcher_stub firefox ${MOZILLA_FIVE_HOME}
+	install_mozilla_launcher_stub firefox "${MOZILLA_FIVE_HOME}"
 
 	# Install icon and .desktop for menu entry
 	if use iceweasel; then
