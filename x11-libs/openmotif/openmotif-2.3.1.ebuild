@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/${PV%.*}/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc examples jpeg png unicode xft"
 
 # make people unmerge motif-config and all previous slots
@@ -85,6 +85,11 @@ src_unpack() {
 }
 
 src_compile() {
+	if [[ ${CHOST} == *-interix* ]]; then
+		append-flags -D_ALL_SOURCE
+		append-ldflags -liconv
+	fi
+
 	# get around some LANG problems in make (#15119)
 	unset LANG
 
