@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2007-r1.ebuild,v 1.2 2008/07/14 04:29:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2007-r1.ebuild,v 1.4 2008/07/14 12:15:34 fmccor Exp $
 
 EAPI="prefix"
 
@@ -14,3 +14,4 @@ DESCRIPTION="TeXLive Extra fonts"
 LICENSE="GPL-2 LPPL-1.3c"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE=""
