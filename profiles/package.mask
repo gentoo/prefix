@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8821 2008/07/14 21:35:04 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8822 2008/07/15 05:38:03 caster Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,30 +28,6 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
-
-# Vlastimil Babka <caster@gentoo.org> (20 May 2008)
-# Temp mask until all commited and distfile propagated.
-=dev-java/ant-antlr-1.7.1
-=dev-java/ant-apache-bcel-1.7.1
-=dev-java/ant-apache-bsf-1.7.1
-=dev-java/ant-apache-log4j-1.7.1
-=dev-java/ant-apache-oro-1.7.1
-=dev-java/ant-apache-regexp-1.7.1
-=dev-java/ant-apache-resolver-1.7.1
-=dev-java/ant-commons-logging-1.7.1
-=dev-java/ant-commons-net-1.7.1
-=dev-java/ant-jai-1.7.1
-=dev-java/ant-javamail-1.7.1
-=dev-java/ant-jdepend-1.7.1
-=dev-java/ant-jmf-1.7.1
-=dev-java/ant-jsch-1.7.1
-=dev-java/ant-junit-1.7.1
-=dev-java/ant-junit4-1.7.1
-=dev-java/ant-nodeps-1.7.1
-=dev-java/ant-swing-1.7.1
-=dev-java/ant-trax-1.7.1
-=dev-java/ant-core-1.7.1
-=dev-java/ant-1.7.1
 
 # Christian Hoffmann <hoffie@gentoo.org> (14 Jul 2008)
 # Masked as its header changes break compatibility (at least w/ php and most

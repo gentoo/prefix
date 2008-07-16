@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3627 2008/07/14 22:10:58 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3629 2008/07/15 20:13:40 betelgeuse Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -155,10 +155,12 @@ app-emulation/hercules:custom-cflags - Use CFLAGS from /etc/make.conf rather tha
 app-emulation/kvm:bios - Rebuild the BIOS for kvm (not needed to run kvm)
 app-emulation/kvm:havekernel - Don't require a kernel build tree (if distributing a binary kernel)
 app-emulation/libvirt:iscsi - Add support for iSCSI (Internet SCSI) remote storage
+app-emulation/libvirt:kvm - Add support for KVM-based virtual machines
 app-emulation/libvirt:lvm - Add support for the Logical Volume Manager
 app-emulation/libvirt:openvz - Add support for OpenVZ-based virtual machines
 app-emulation/libvirt:parted - Add support for the parted partition editor
-app-emulation/libvirt:qemu - Add support for QEMU/KVM-based virtual machines
+app-emulation/libvirt:qemu - Add support for QEMU-based virtual machines
+app-emulation/libvirt:server - Enables support for libvirtd
 app-emulation/libvirt:xen - Add support for Xen-based virtual machines
 app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
 app-emulation/mol:pci - Experimental PCI proxy support
@@ -453,6 +455,7 @@ dev-java/commons-logging:log4j - Add optional support for log4j
 dev-java/commons-logging:servletapi - Add optional support for servletapi
 dev-java/commons-modeler:commons-digester - Add support for the commons-digester based Mbeans Descriptor source
 dev-java/diablo-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
+dev-java/emma:launcher - Install /usr/bin/emma. Collides with sci-biology/emboss.
 dev-java/fop:hyphenation - Precompile hyphenation patterns from the dev-java/offo-hyphenation package and install them as fop-hyph.jar
 dev-java/fop:jai - Enable jai support
 dev-java/fop:jimi - Enable jimi support

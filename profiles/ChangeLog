@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1681 2008/07/14 22:10:58 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1683 2008/07/15 20:13:40 betelgeuse Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  15 Jul 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add launcher local use flag for dev-java/emma.
+
+  15 Jul 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Unmask ant 1.7.1.
 
   14 Jul 2008; Vlastimil Babka <caster@gentoo.org> use.local.desc:
   Copy local USE flags from ant-tasks to ant for 1.7.1.
