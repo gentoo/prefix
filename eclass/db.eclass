@@ -31,7 +31,19 @@ db_fix_so () {
 	for ext in so a dylib; do
 		for name in libdb libdb_cxx libdb_tcl libdb_java; do
 			target=`find . -maxdepth 1 -type f -name "${name}-*.${ext}" |sort -n |tail -n 1`
-			[ -n "${target}" ] && ln -sf ${target//.\//} ${name}.${ext}
+			[ -n "${target}" ] || continue;
+			case ${CHOST} in 
+			*-aix*)
+				aixdll --merge-runtime \
+					--keepdir=false \
+					--target="${name}.${ext}" \
+					--current="${target}" \
+					`find . -maxdepth 1 -type f -name "${name}-*.${ext}"`
+				;;
+			*)
+				ln -sf ${target//.\//} ${name}.${ext}
+				;;
+			esac;
 		done;
 	done;
 
