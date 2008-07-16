@@ -3,12 +3,12 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>jnrowe@ukfsn.org</email>
-		<name>James Rowe</name>
-	</maintainer>
-	<maintainer>
 		<email>jer@gentoo.org</email>
 		<name>Jeroen Roovers</name>
+	</maintainer>
+	<maintainer>
+		<email>jnrowe@ukfsn.org</email>
+		<name>James Rowe</name>
 	</maintainer>
 	<longdescription lang="en">
 		Surfraw provides a fast unix command line interface to a variety of
