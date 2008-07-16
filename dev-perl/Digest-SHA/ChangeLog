@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Digest-SHA
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Digest-SHA/ChangeLog,v 1.31 2008/06/17 20:52:20 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Digest-SHA/ChangeLog,v 1.32 2008/07/15 18:12:28 armin76 Exp $
+
+  15 Jul 2008; Raúl Porcel <armin76@gentoo.org> Digest-SHA-5.46.ebuild:
+  ia64/sparc/x86 stable
 
   17 Jun 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   Digest-SHA-5.46.ebuild:
