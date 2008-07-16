@@ -32,11 +32,6 @@
 
 #--- END OF EXAMPLES ---
 
-# Michael Haubenwallner <haubi@gentoo.org> (11 Jul 2008)
-# Rewritten switch_profile() to better fit with AIX,
-# masked for general testing.
-=sys-devel/gcc-config-1.4.0-r04.4
-
 # Jeremy Olexa <darkside@gentoo.org> (08 Jul 2008)
 # Broken dep graph, bug #231194
 =virtual/postgresql-base-8.3
