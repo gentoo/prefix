@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.153 2008/07/06 20:21:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.154 2008/07/15 05:44:22 jer Exp $
+
+  15 Jul 2008; Jeroen Roovers <jer@gentoo.org> ghc-6.8.2.ebuild:
+  Stable for HPPA (bug #230919).
 
   06 Jul 2008; Markus Meier <maekke@gentoo.org> ghc-6.8.2.ebuild:
   amd64/x86 stable, bug #230919
