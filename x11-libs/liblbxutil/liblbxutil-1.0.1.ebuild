@@ -16,5 +16,3 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 RDEPEND=""
 DEPEND="${RDEPEND}
 	x11-proto/xextproto"
-
-append-ldflags -lXdmcp
