@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/File-chdir-0.1002.ebuild,v 1.2 2008/04/29 14:29:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/File-chdir-0.1002.ebuild,v 1.3 2008/07/15 19:22:36 armin76 Exp $
 
 EAPI="prefix"
 
