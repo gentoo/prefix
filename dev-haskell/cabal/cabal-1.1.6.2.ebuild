@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.1.6.2.ebuild,v 1.11 2008/05/03 08:28:12 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.1.6.2.ebuild,v 1.12 2008/07/15 05:43:51 jer Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ DEPEND=">=dev-lang/ghc-6.2"
 CABAL_CORE_LIB_GHC_PV="6.6.1"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	if ! $(ghc-cabal); then
 		sed -i 's/Build-Depends: base/Build-Depends: base, unix/' \
 			"${S}/Cabal.cabal"
