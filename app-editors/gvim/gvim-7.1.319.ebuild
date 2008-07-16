@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit vim autotools
+inherit vim autotools flag-o-matic
 
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches-r1.tar.bz2"
@@ -50,10 +50,20 @@ src_unpack() {
 	vim_src_unpack || die "vim_src_unpack failed"
 
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+		epatch "${FILESDIR}"/${P}-interix-cflags.patch
+	fi
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigaction=no
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_sigaction=no
+		# WARNING: keep this one in even after cleaning out all the
+		# _ALL_SOURCE definitions for interix, since this is for cppflags
+		# which isn't set by default. vim needs this due to stupid type
+		# checks in configure
+		append-cppflags -D_ALL_SOURCE
+	fi
 	vim_src_compile || die "vim_src_compile failed"
 }
