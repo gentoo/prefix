@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/medusa
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.21 2008/05/10 09:44:43 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.22 2008/07/15 19:56:50 jer Exp $
+
+  15 Jul 2008; Jeroen Roovers <jer@gentoo.org> medusa-0.5.4.ebuild:
+  Marked ~hppa too.
 
   10 May 2008; <welp@gentoo.org> medusa-0.5.4.ebuild:
   Mark ~x86-fbsd for dev-util/bzr
