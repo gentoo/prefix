@@ -25,9 +25,8 @@ S=${WORKDIR}
 
 src_unpack() {
 	cp "${FILESDIR}"/wrapper-${W_VER}.c "${S}"/wrapper.c || die
-	cp "${FILESDIR}"/${PN}-${PV}  "${S}/"${PN}-${PV} || die
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify "${S}"/wrapper.c "${S}"/${PN}-${PV}
+	cp "${FILESDIR}"/${P}  "${S}/"${P} || die
+	eprefixify "${S}"/wrapper.c "${S}"/${P}
 }
 
 src_compile() {
