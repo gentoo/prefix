@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta3.ebuild,v 1.2 2008/07/13 17:59:29 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-contrib/ant-contrib-1.0_beta3.ebuild,v 1.3 2008/07/15 16:00:06 ken69267 Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
