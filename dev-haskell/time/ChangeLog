@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/time
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.14 2008/07/06 20:48:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.15 2008/07/15 16:31:11 jer Exp $
+
+  15 Jul 2008; Jeroen Roovers <jer@gentoo.org> time-1.0.ebuild,
+  time-1.1.1.ebuild, time-1.1.2.0.ebuild:
+  Marked ~hppa too.
 
   06 Jul 2008; Markus Meier <maekke@gentoo.org> time-1.1.2.0.ebuild:
   amd64/x86 stable, bug #230919
