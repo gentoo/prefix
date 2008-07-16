@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.339 2008/06/29 20:55:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.340 2008/07/15 18:07:15 graaff Exp $
+
+  15 Jul 2008; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p230.ebuild:
+  Drop cjk support since the most recent oniguruma patches no longer apply to
+  this version, #230111.
 
   29 Jun 2008; Hans de Graaff <graaff@gentoo.org>
   +files/ruby-1.8.6-revert-r15856.patch, +ruby-1.8.6_p230.ebuild:
