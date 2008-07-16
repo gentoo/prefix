@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/ant/ant-0.5.3.ebuild,v 1.12 2006/10/05 14:35:40 gustavoz Exp $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-vim/ant_menu/ant_menu-0.5.5.ebuild,v 1.1 2008/04/06 14:53:47 hawking Exp $
 
 EAPI="prefix"
 
