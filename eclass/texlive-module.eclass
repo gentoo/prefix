@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.12 2008/07/14 16:42:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.13 2008/07/15 10:33:40 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -27,6 +27,18 @@
 # For TeX Live 2007: foo -> texlive-module-foo-${PV}.zip
 # For TeX Live 2008: foo -> texlive-module-foo-${PV}.tar.lzma
 
+# @ECLASS-VARIABLE: TEXLIVE_MODULE_DOC_CONTENTS
+# @DESCRIPTION:
+# The list of packages that will be installed if the doc useflag is enabled.
+# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
+# valid for TeX Live 2008
+
+# @ECLASS-VARIABLE: TEXLIVE_MODULE_SRC_CONTENTS
+# @DESCRIPTION:
+# The list of packages that will be installed if the source useflag is enabled.
+# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
+# valid for TeX Live 2008
+
 inherit texlive-common
 
 HOMEPAGE="http://www.tug.org/texlive/"
@@ -51,6 +63,22 @@ done
 DEPEND="${COMMON_DEPEND}
 	app-arch/lzma-utils"
 IUSE="${IUSE} source"
+
+# Forge doc SRC_URI
+[ -n "${PN##*documentation*}" ] && [ -n "${TEXLIVE_MODULE_DOC_CONTENTS}" ] && SRC_URI="${SRC_URI} doc? ("
+for i in ${TEXLIVE_MODULE_DOC_CONTENTS}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+done
+[ -n "${PN##*documentation*}" ] && [ -n "${TEXLIVE_MODULE_DOC_CONTENTS}" ] && SRC_URI="${SRC_URI} )"
+
+# Forge source SRC_URI
+if [ -n "${TEXLIVE_MODULE_SRC_CONTENTS}" ] ; then
+	SRC_URI="${SRC_URI} source? ("
+	for i in ${TEXLIVE_MODULE_SRC_CONTENTS}; do
+		SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+	done
+	SRC_URI="${SRC_URI} )"
+fi
 fi
 
 RDEPEND="${COMMON_DEPEND}"
