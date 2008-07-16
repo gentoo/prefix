@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/hunit-1.1.1.ebuild,v 1.8 2007/12/16 20:32:53 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/hunit-1.1.1.ebuild,v 1.9 2008/07/15 05:49:37 jer Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ DEPEND=">=dev-lang/ghc-6.6"
 S="${WORKDIR}/ghc-${GHC_PV}/libraries/${MY_PN}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cabal-mksetup
 }
 
