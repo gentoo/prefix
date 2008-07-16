@@ -31,12 +31,22 @@ RDEPEND="${RDEPEND}
 src_unpack() {
 	vim_src_unpack || die "vim_src_unpack failed"
 
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
+		epatch "${FILESDIR}"/${P}-interix-cflags.patch
+	fi
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigaction=no
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_func_sigaction=no
+		# WARNING: keep this one in even after cleaning out all the
+		# _ALL_SOURCE definitions for interix, since this is for cppflags
+		# which isn't set by default. vim needs this due to stupid type
+		# checks in configure
+		append-cppflags -D_ALL_SOURCE
+	fi
 	vim_src_compile || die "vim_src_compile failed"
 }
 
