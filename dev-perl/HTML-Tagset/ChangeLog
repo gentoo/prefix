@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/HTML-Tagset
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tagset/ChangeLog,v 1.35 2008/06/07 11:57:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tagset/ChangeLog,v 1.36 2008/07/15 20:27:44 armin76 Exp $
+
+  15 Jul 2008; Raúl Porcel <armin76@gentoo.org> HTML-Tagset-3.20.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   07 Jun 2008; Alexis Ballier <aballier@gentoo.org> HTML-Tagset-3.20.ebuild:
   keyword ~sparc-fbsd
