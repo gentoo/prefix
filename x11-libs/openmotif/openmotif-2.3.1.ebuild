@@ -86,7 +86,6 @@ src_unpack() {
 
 src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
-		append-flags -D_ALL_SOURCE
 		append-ldflags -liconv
 	fi
 
