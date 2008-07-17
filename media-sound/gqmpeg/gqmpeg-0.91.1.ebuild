@@ -23,8 +23,6 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf $(use_enable nls)
 	emake || die "emake failed."
 }
