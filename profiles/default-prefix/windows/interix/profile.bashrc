@@ -1,3 +1,8 @@
+# One basically always wants -D_ALL_SOURCE, it's some stupid restriction
+# to hide useful stuff
+[[ ${CFLAGS} != *"-D_ALL_SOURCE"* ]] && CFLAGS="-D_ALL_SOURCE ${CFLAGS}"
+[[ ${CXXFLAGS} != *"-D_ALL_SOURCE"* ]] && CXXFLAGS="-D_ALL_SOURCE ${CXXFLAGS}"
+
 # On interix, binary files (executables, shared libraries) in use
 # cannot be replaced during merge.
 # But it is possible to rename them and remove lateron when they are
