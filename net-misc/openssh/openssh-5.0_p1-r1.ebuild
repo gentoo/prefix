@@ -112,8 +112,6 @@ src_compile() {
 		myconf="${myconf} $(use_with pam)"
 	fi
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	econf \
 		--with-ldflags="${LDFLAGS}" \
 		--disable-strip \
