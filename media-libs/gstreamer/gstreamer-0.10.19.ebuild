@@ -42,7 +42,6 @@ src_unpack() {
 
 src_compile() {
 	if [[ ${CHOST} == *-interix* ]] ; then
-		append-flags -D_ALL_SOURCE
 		export ac_cv_lib_dl_dladdr=no
 		export ac_cv_func_poll=no
 	fi

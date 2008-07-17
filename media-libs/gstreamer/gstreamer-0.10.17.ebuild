@@ -41,7 +41,6 @@ src_unpack() {
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
 		export ac_cv_lib_dl_dladdr=no
 	}
 
