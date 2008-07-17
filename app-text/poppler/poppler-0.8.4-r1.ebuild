@@ -39,7 +39,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
 
 	econf \

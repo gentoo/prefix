@@ -25,8 +25,6 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		--disable-poppler-qt4 \
 		--disable-poppler-glib \
