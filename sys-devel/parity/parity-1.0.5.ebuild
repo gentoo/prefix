@@ -4,8 +4,6 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic
-
 DESCRIPTION="An Interix to native Win32 Cross-Compiler Tool (requires Visual Studio)."
 HOMEPAGE="http://www.sourceforge.net/projects/parity/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
