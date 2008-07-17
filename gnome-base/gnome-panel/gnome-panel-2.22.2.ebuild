@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils gnome2 flag-o-matic
+inherit autotools eutils gnome2
 
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
