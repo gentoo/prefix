@@ -64,9 +64,6 @@ src_compile() {
 	# See bugs 24215 and 133573
 	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> "${S}"/config.cache
 
-	# on interix, we need _ALL_SOURCE defined
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	if [[ ${CHOST} == *-solaris2.10 ]]; then
 		case $(<$([[ ${CHOST} != ${CBUILD} ]] && echo "${EPREFIX}/usr/${CHOST}")/usr/include/atomic.h) in
 		*atomic_cas_ptr*) ;;

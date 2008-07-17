@@ -64,9 +64,6 @@ src_compile() {
 	# See bugs 24215 and 133573
 	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> "${S}"/config.cache
 
-	# on interix, we need _ALL_SOURCE defined
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	econf --enable-layout=gentoo \
 		--enable-threads \
 		--enable-nonportable-atomics \
