@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils
 
 DESCRIPTION="Lightweight text-mode editor"
 HOMEPAGE="http://fte.sourceforge.net"
