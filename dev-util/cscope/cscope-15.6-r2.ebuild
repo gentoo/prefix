@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit elisp-common eutils flag-o-matic
+inherit elisp-common eutils
 
 DESCRIPTION="Interactively examine a C program"
 HOMEPAGE="http://cscope.sourceforge.net/"
