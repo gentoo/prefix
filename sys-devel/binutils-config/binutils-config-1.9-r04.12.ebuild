@@ -30,8 +30,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	econf --with-macosx-version-min=${MACOSX_DEPLOYMENT_TARGET}
 	emake || die "emake failed."
 }
