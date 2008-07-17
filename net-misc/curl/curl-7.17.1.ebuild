@@ -6,7 +6,7 @@ EAPI="prefix"
 
 # NOTE: If you bump this ebuild, make sure you bump dev-python/pycurl!
 
-inherit libtool eutils flag-o-matic
+inherit libtool eutils
 
 #MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
