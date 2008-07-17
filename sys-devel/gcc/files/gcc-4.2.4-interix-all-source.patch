@@ -1,0 +1,11 @@
+diff -ru gcc-4.2.4.orig/gcc/config/i386/i386-interix.h gcc-4.2.4/gcc/config/i386/i386-interix.h
+--- gcc-4.2.4.orig/gcc/config/i386/i386-interix.h	2008-07-16 09:44:45 +0200
++++ gcc-4.2.4/gcc/config/i386/i386-interix.h	2008-07-16 09:55:50 +0200
+@@ -61,6 +61,7 @@
+     {									\
+ 	builtin_define ("__INTERIX");					\
+ 	builtin_define ("__OPENNT");					\
++	builtin_define ("_ALL_SOURCE");					\
+ 	builtin_define ("_M_IX86=600");					\
+ 	builtin_define ("_X86_=1");					\
+ 	builtin_define ("__stdcall=__attribute__((__stdcall__))");	\

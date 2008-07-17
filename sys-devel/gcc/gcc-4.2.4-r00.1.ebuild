@@ -86,6 +86,8 @@ src_unpack() {
 	# gcc sources are polluted with old stuff for interix 3.5 not needed here
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
+	epatch "${FILESDIR}"/${P}-interix-all-source.patch
+
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
