@@ -31,8 +31,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		--disable-dependency-tracking \
 		$(use_enable debug asserts) \
