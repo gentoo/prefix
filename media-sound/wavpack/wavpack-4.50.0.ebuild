@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool eutils flag-o-matic autotools
+inherit libtool eutils autotools
 
 DESCRIPTION="WavPack audio compression tools"
 HOMEPAGE="http://www.wavpack.com"
