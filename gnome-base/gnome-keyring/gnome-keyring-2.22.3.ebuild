@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils pam flag-o-matic
+inherit gnome2 eutils pam
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
