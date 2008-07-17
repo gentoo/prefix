@@ -4,8 +4,6 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic
-
 DESCRIPTION="High-performance C development framework. Can be used stand-alone or as a supplement to GLib."
 HOMEPAGE="http://www.atheme.org/projects/mowgli.shtml"
 SRC_URI="http://distfiles.atheme.org/${P}.tgz"
