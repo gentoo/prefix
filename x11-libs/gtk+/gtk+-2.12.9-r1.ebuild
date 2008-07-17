@@ -126,8 +126,6 @@ src_compile() {
 	# Passing --disable-debug is not recommended for production use
 	use debug && myconf="${myconf} --enable-debug=yes"
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
