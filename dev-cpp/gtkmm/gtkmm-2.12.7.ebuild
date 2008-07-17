@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.12.7.ebuild,v 1.2 2008/07/10 15:16:28 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.12.7.ebuild,v 1.3 2008/07/16 08:46:50 remi Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtkmm.org"
 LICENSE="LGPL-2.1"
 SLOT="2.4"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="accessibility doc examples"
+IUSE="accessibility doc examples test"
 
 RDEPEND=">=dev-cpp/glibmm-2.14.1
 	>=x11-libs/gtk+-2.12
@@ -31,4 +31,13 @@ pkg_setup() {
 		$(use_enable doc docs)
 		$(use_enable examples)
 		$(use_enable examples demos)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	if ! use test; then
+		# don't waste time building tests
+		sed -i 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' Makefile.in || die "sed failed"
+	fi
 }
