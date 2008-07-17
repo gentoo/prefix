@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit vim autotools flag-o-matic
+inherit vim autotools
 
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches-r1.tar.bz2"
