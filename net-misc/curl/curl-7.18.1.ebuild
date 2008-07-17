@@ -54,7 +54,6 @@ src_unpack() {
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
 		export ac_cv_func_poll=no
 		export skipcheck_poll=yes
 	}
