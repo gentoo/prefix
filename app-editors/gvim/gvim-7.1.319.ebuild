@@ -59,7 +59,6 @@ src_unpack() {
 src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_sigaction=no
-		append-cppflags -D_ALL_SOURCE
 	fi
 	vim_src_compile || die "vim_src_compile failed"
 }
