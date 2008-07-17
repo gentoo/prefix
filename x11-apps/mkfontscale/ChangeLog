@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/mkfontscale
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/ChangeLog,v 1.41 2008/06/06 21:29:18 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/ChangeLog,v 1.42 2008/07/17 00:04:14 dberkholz Exp $
+
+  17 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  mkfontscale-1.0.3.ebuild, mkfontscale-1.0.4.ebuild,
+  mkfontscale-1.0.5.ebuild:
+  (#231705) Remove unnecessary dep on libX11; dep on xproto instead.
 
 *mkfontscale-1.0.5 (06 Jun 2008)
 
