@@ -68,7 +68,6 @@ src_compile() {
 	fi
 
 	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
 		myconf="${myconf} --disable-wtmp"
 		myconf="${myconf} --disable-lastlog"
 
