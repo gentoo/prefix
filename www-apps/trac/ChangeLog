@@ -1,6 +1,18 @@
 # ChangeLog for www-apps/trac
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-apps/trac/ChangeLog,v 1.66 2008/04/28 17:40:34 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.68 2008/07/16 21:23:33 pva Exp $
+
+  16 Jul 2008; Peter Volkov <pva@gentoo.org> trac-0.11.ebuild:
+  Dropping ppc ppc64 sparc keywords as dev-python/genshi is not keyworded
+  too.
+
+*trac-0.11 (16 Jul 2008)
+
+  16 Jul 2008; Peter Volkov <pva@gentoo.org> -files/0.9.6-postinst-en.txt,
+  files/tracd.initd, -trac-0.9.6.ebuild, -trac-0.10.3.1.ebuild,
+  -trac-0.11_beta2.ebuild, +trac-0.11.ebuild:
+  Version bump, bug #225891, thanks all who participated. Bug #215127 is
+  fixed, thank Damien Gombault for report. Removed old.
 
 *trac-0.11_beta2 (28 Apr 2008)
 
