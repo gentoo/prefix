@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.43 2008/07/11 21:09:39 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.44 2008/07/17 00:03:33 zlin Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -17,7 +17,12 @@ inherit eutils multilib toolchain-funcs versionator
 
 QTPKG="x11-libs/qt-"
 QT4MAJORVERSIONS="4.4 4.3 4.2 4.1 4.0"
-QT4VERSIONS="4.4.0 4.4.0_beta1 4.4.0_rc1 4.3.4-r1 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
+QT4VERSIONS="4.4.0 4.4.0_beta1 4.4.0_rc1
+	     4.3.4-r1 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1
+	     4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1
+	     4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0
+	     4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0
+	     4.0.1 4.0.0"
 
 # @FUNCTION: qt4_min_version
 # @USAGE: [minimum version]
@@ -68,6 +73,57 @@ qt4_min_version_list() {
 	echo "${VERSIONS}"
 }
 
+qt4_monolithic_to_split_flag() {
+	case ${1} in
+		zlib)
+			# Qt 4.4+ is always built with zlib enabled, so this flag isn't needed
+			;;
+		gif|jpeg|png)
+			# qt-gui always installs with these enabled
+			checkpkgs+=" x11-libs/qt-gui"
+			;;
+		dbus|opengl)
+			# Make sure the qt-${1} package has been installed already
+			checkpkgs+=" x11-libs/qt-${1}"
+			;;
+		qt3support)
+			checkpkgs+=" x11-libs/qt-${1}"
+			checkflags+=" x11-libs/qt-core:${1} x11-libs/qt-gui:${1} x11-libs/qt-sql:${1}"
+			;;
+		ssl)
+			# qt-core controls this flag
+			checkflags+=" x11-libs/qt-core:${1}"
+			;;
+		cups|mng|nas|nis|tiff|xinerama|input_devices_wacom)
+			# qt-gui controls these flags
+			checkflags+=" x11-libs/qt-gui:${1}"
+			;;
+		firebird|mysql|odbc|postgres|sqlite3)
+			# qt-sql controls these flags. sqlite2 is no longer supported so it uses sqlite instead of sqlite3.
+			checkflags+=" x11-libs/qt-sql:${1%3}"
+			;;
+		accessibility)
+			eerror "(QA message): Use guiaccessibility and/or qt3accessibility to specify which of qt-gui and qt-qt3support are relevant for this package."
+			# deal with this gracefully by checking the flag for what is available
+			for y in gui qt3support; do
+				has_version x11-libs/qt-${y} && checkflags+=" x11-libs/qt-${y}:${1}"
+			done
+			;;
+		guiaccessibility)
+			checkflags+=" x11-libs/qt-gui:accessibility"
+			;;
+		qt3accessibility)
+			checkflags+=" x11-libs/qt-qt3support:accessibility"
+			;;
+		debug|doc|examples|glib|pch|sqlite|*)
+			# packages probably shouldn't be checking these flags so we don't handle them currently
+			eerror "qt4.eclass currently doesn't handle the use flag ${1} in QT4_BUILT_WITH_USE_CHECK for qt-4.4. This is either an"
+			eerror "eclass bug or an ebuild bug. Please report it at http://bugs.gentoo.org/"
+			((fatalerrors+=1))
+			;;
+	esac
+}
+
 # @FUNCTION: qt4_pkg_setup
 # @MAINTAINER:
 # Caleb Tennis <caleb@gentoo.org>
@@ -85,57 +141,20 @@ qt4_min_version_list() {
 # flags to watch for for Qt4.4:
 # zlib png | opengl dbus qt3support | sqlite3 ssl
 qt4_pkg_setup() {
+	local x y checkpkgs checkflags fatalerrors=0 requiredflags=""
 
-	QT4_BEST_VERSION="$(best_version =x11-libs/qt-4*)"
-	QT4_MINOR_VERSION="$(get_version_component_range 2 ${QT4_BEST_VERSION/*qt-/})"
+	# lots of has_version calls can be very expensive
+	if [[ -n ${QT4_BUILT_WITH_USE_CHECK}${QT4_OPTIONAL_BUILT_WITH_USE_CHECK} ]]; then
+		has_version x11-libs/qt-core && local QT44=true
+	fi
 
-	local requiredflags=""
 	for x in ${QT4_BUILT_WITH_USE_CHECK}; do
-		if [[ "${QT4_MINOR_VERSION}" -ge 4 ]]; then
-		# The use flags are different in 4.4 and above, and it's a split package, so this is used to catch
-		# the various use flag combos specified in the ebuilds to make sure we don't error out.
-
-
-		case ${x} in 
-			zlib|png|gif)
-				# Qt 4.4+ is built with zlib, png, and gif by default, so the use flags aren't needed
-				;;
-			opengl|dbus|qt3support)
-				# Make sure the qt-${x} package has been already installed
-				if ! has_version x11-libs/qt-${x}; then
-					eerror "You must first install the x11-libs/qt-${x} package."
-					die "Install x11-libs/qt-${x}"
-				fi
-				;;
-			ssl)
-				if ! has_version x11-libs/qt-core || ! built_with_use x11-libs/qt-core ssl; then
-					eerror "You must first install the x11-libs/qt-core package with the ssl flag enabled."
-					die "Install x11-libs/qt-core with USE=\"ssl\""
-				fi
-				;;
-			sqlite3)
-				if ! has_version x11-libs/qt-sql || ! built_with_use x11-libs/qt-sql sqlite; then
-					eerror "You must first install the x11-libs/qt-sql package with the sqlite flag enabled."
-					die "Install x11-libs/qt-sql with USE=\"sqlite\""
-				fi
-				;;
-			guiaccessibility)
-				if ! has_version x11-libs/qt-gui || ! built_with_use x11-libs/qt-gui accessibility; then
-					eerror "You must first install the x11-libs/qt-gui package with the accessibility flag enabled."
-					die "Install x11-libs/qt-gui with USE=\"accessibility\""
-				fi
-				;;
-
-			qt3accessibility)
-				if ! has_version x11-libs/qt-qt3support || ! built_with_use x11-libs/qt-qt3support accessibility; then
-					eerror "You must first install the x11-libs/qt-qt3support package with the accessibility flag enabled."
-					die "Install x11-libs/qt-qt3support with USE=\"accessibility\""
-				fi
-				;;
-		esac
+		if [[ -n ${QT44} ]]; then
+			# The use flags are different in 4.4 and above, and it's split packages, so this is used to catch
+			# the various use flag combos specified in the ebuilds to make sure we don't error out for no reason.
+			qt4_monolithic_to_split_flag ${x}
 		else
-			[[ ${x} == guiaccessibility ]] && x=${x#gui}
-			[[ ${x} == qt3accessibility ]] && x=${x#qt3}
+			[[ ${x} == *accessibility ]] && x=${x#gui} && x=${x#qt3}
 			if ! built_with_use =x11-libs/qt-4* ${x}; then
 				requiredflags="${requiredflags} ${x}"
 			fi
@@ -144,20 +163,50 @@ qt4_pkg_setup() {
 
 	local optionalflags=""
 	for x in ${QT4_OPTIONAL_BUILT_WITH_USE_CHECK}; do
-		if use ${x} && ! built_with_use =x11-libs/qt-4* ${x}; then
-			optionalflags="${optionalflags} ${x}"
+		if use ${x}; then
+			if [[ -n ${QT44} ]]; then
+				# The use flags are different in 4.4 and above, and it's split packages, so this is used to catch
+				# the various use flag combos specified in the ebuilds to make sure we don't error out for no reason.
+				qt4_monolithic_to_split_flag ${x}
+			elif ! built_with_use =x11-libs/qt-4* ${x}; then
+				optionalflags="${optionalflags} ${x}"
+			fi
+		fi
+	done
+
+	# The use flags are different in 4.4 and above, and it's split packages, so this is used to catch
+	# the various use flag combos specified in the ebuilds to make sure we don't error out for no reason.
+	for y in ${checkpkgs}; do
+		if ! has_version ${y}; then
+			eerror "You must first install the ${y} package. It should be added to the dependencies for this package (${CATEGORY}/${PN}). See bug #217161."
+			((fatalerrors+=1))
+		fi
+	done
+	for y in ${checkflags}; do
+		if ! has_version ${y%:*}; then
+			eerror "You must first install the ${y%:*} package with the ${y##*:} flag enabled."
+			eerror "It should be added to the dependencies for this package (${CATEGORY}/${PN}). See bug #217161."
+			((fatalerrors+=1))
+		else
+			if ! built_with_use ${y%:*} ${y##*:}; then
+				eerror "You must first install the ${y%:*} package with the ${y##*:} flag enabled."
+				((fatalerrors+=1))
+			fi
 		fi
 	done
 
 	local diemessage=""
-	if [[ ${requiredflags} != "" ]]; then
+	if [[ ${fatalerrors} -ne 0 ]]; then
+		diemessage="${fatalerrors} fatal errors were detected. Please read the above error messages and act accordingly."
+	fi
+	if [[ -n ${requiredflags} ]]; then
 		eerror
 		eerror "(1) In order to compile ${CATEGORY}/${PN} first you need to build"
 		eerror "=x11-libs/qt-4* with USE=\"${requiredflags}\" flag(s)"
 		eerror
 		diemessage="(1) recompile qt4 with \"${requiredflags}\" USE flag(s) ; "
 	fi
-	if [[ ${optionalflags} != "" ]]; then
+	if [[ -n ${optionalflags} ]]; then
 		eerror
 		eerror "(2) You are trying to compile ${CATEGORY}/${PN} package with"
 		eerror "USE=\"${optionalflags}\""
@@ -171,7 +220,7 @@ qt4_pkg_setup() {
 		diemessage="${diemessage}(2) recompile qt4 with \"${optionalflags}\" USE flag(s) or disable them for ${PN} package\n"
 	fi
 
-	[[ ${diemessage} != "" ]] && die "can't emerge ${CATEGORY}/${PN}: ${diemessage}"
+	[[ -n ${diemessage} ]] && die "can't install ${CATEGORY}/${PN}: ${diemessage}"
 }
 
 # @FUNCTION: eqmake4

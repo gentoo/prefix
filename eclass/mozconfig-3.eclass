@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.3 2008/06/17 11:51:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.4 2008/07/16 11:39:22 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -64,7 +64,9 @@ mozconfig_config() {
 
 	# Currently --enable-elf-dynstr-gc only works for x86 and ppc,
 	# thanks to Jason Wever <weeve@gentoo.org> for the fix.
-	if use x86 || use ppc && [[ ${enable_optimize} != -O0 ]]; then
+	# -- This breaks now on ppc, no idea why
+#	if use x86 || use ppc && [[ ${enable_optimize} != -O0 ]]; then
+	if use x86 && [[ ${enable_optimize} != -O0 ]]; then
 		mozconfig_annotate "${ARCH} optimized build" --enable-elf-dynstr-gc
 	fi
 #	fi
