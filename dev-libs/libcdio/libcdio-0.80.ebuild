@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.5 2008/06/21 10:28:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.6 2008/07/16 08:37:01 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -27,6 +27,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-minimal.patch
 	epatch "${FILESDIR}"/${P}-fix-pkgconfig.patch
+	epatch "${FILESDIR}"/${P}-fbsd.patch
 
 	sed -i -e 's:noinst_PROGRAMS:EXTRA_PROGRAMS:' test/Makefile.am \
 		|| die "unable to remove testdefault build"
