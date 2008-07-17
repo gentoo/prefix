@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2 autotools flag-o-matic
+inherit eutils gnome2 autotools
 
 DESCRIPTION="Gnome terminal widget"
 HOMEPAGE="http://www.gnome.org/"
