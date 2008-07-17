@@ -83,8 +83,6 @@ pkg_setup() {
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
 		export ac_cv_header_stropts_h=no
-
-		append-flags -D_ALL_SOURCE
 	fi
 }
 
