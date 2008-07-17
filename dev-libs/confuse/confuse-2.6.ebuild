@@ -29,8 +29,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		--enable-shared \
 		$(use_enable nls) || die
