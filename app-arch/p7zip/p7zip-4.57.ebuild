@@ -23,9 +23,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# need to do this here, since the sed below hardcodes the flags
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	sed -i \
 		-e "/^CXX=/s:g++:$(tc-getCXX):" \
 		-e "/^CC=/s:gcc:$(tc-getCC):" \
