@@ -61,7 +61,7 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
 	tc-export CC
 	local local_config_use=""
