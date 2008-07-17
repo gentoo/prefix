@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils
 
 DESCRIPTION="A PAR-2.0 file verification and repair tool"
 HOMEPAGE="http://parchive.sourceforge.net/"
