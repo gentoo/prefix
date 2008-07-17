@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib flag-o-matic
+inherit eutils multilib
 
 DESCRIPTION="A ncurses based music player with plugin support for many formats"
 HOMEPAGE="http://cmus.sourceforge.net/"
