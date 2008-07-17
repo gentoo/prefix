@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic eutils
+inherit libtool eutils
 
 # Create a major/minor combo for our SLOT and executables suffix
 PVP=(${PV//[-\._]/ })
