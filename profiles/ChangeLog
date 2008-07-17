@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1683 2008/07/15 20:13:40 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1687 2008/07/17 03:20:37 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  17 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-emulation/basiliskII-jit-1.0.0-r1 for removal. bug #232039
+
+  17 Jul 2008; Jeremy Olexa <darkside@gentoo.org> use.local.desc:
+  Add fbdev & jit to use.desc.local for app-emulation/basiliskII-jit
+
+  16 Jul 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  removed mask from trac as beta is removed from the tree and stable was
+  added
+
+  16 Jul 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  Unmask media-video/mplayer-1.0_rc2_p27120 (was masked for testing)
 
   15 Jul 2008; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
   Add launcher local use flag for dev-java/emma.
