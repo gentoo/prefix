@@ -41,8 +41,6 @@ src_compile() {
 	strip-flags
 	replace-flags "-O3" "-O2"
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	gst-plugins-base_src_configure \
 		$(use_enable nls) \
 		$(use_enable debug valgrind) \
