@@ -27,8 +27,6 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/ht-${MY_PV}
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf --disable-release --enable-maintainer-mode $(use_enable X x11-textmode)
 	emake || die "emake failed."
 }
