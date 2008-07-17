@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils autotools base flag-o-matic
+inherit eutils autotools base
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"

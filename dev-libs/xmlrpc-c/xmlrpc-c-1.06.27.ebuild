@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils flag-o-matic
+inherit eutils
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://sourceforge/${PN}/${P/-c}.tgz"
