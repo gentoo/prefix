@@ -7,7 +7,7 @@ EAPI="prefix"
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
 
-inherit eutils flag-o-matic
+inherit eutils
 
 MY_P="lzma-${PV/_}"
 DESCRIPTION="LZMA interface made easy"
