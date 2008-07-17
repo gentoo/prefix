@@ -4,8 +4,6 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic
-
 DESCRIPTION="front end to various audio players, including mpg123"
 HOMEPAGE="http://gqmpeg.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
