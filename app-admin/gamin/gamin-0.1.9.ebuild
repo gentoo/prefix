@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils libtool flag-o-matic
+inherit autotools eutils libtool
 
 DESCRIPTION="Library providing the FAM File Alteration Monitor API"
 HOMEPAGE="http://www.gnome.org/~veillard/gamin/"
