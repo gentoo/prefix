@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.5.0.16.ebuild,v 1.2 2008/07/12 21:34:03 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.5.0.16.ebuild,v 1.3 2008/07/16 11:14:07 opfer Exp $
 
 EAPI="prefix"
 
