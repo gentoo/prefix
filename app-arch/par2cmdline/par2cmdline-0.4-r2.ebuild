@@ -28,8 +28,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf || die "econf failed"
 	emake || die "emake failed"
 }
