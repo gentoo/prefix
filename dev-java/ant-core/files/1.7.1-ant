@@ -1,4 +1,4 @@
-#! /bin/bash
+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -48,9 +48,9 @@ if $no_config ; then
   usejikes=$use_jikes_default
 else
   # load system-wide ant configuration (ONLY if ANT_HOME has NOT been set)
-  if [ -z "$ANT_HOME" -o "$ANT_HOME" = "/usr/share/ant" ]; then
-      if [ -f "/etc/ant.conf" ] ; then
-          . /etc/ant.conf
+  if [ -z "$ANT_HOME" -o "$ANT_HOME" = "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant" ]; then
+      if [ -f "@GENTOO_PORTAGE_EPREFIX@/etc/ant.conf" ] ; then
+          . @GENTOO_PORTAGE_EPREFIX@/etc/ant.conf
       fi
   fi
 
@@ -84,7 +84,7 @@ if [ -z $JAVA_HOME ] ; then
   exit 1
 fi
 
-ANT_HOME=/usr/share/ant-core
+ANT_HOME="@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant-core
 
 # set ANT_LIB location
 ANT_LIB="${ANT_HOME}/lib"
@@ -119,11 +119,11 @@ ANT_TASKS="${ANT_TASKS:-all}"
 if [[ "${ANT_TASKS}" == "all" ]]; then
 	ANT_TASKS=""
 	# but only if it exists
-	if [[ -d /usr/share/ant/tasks ]]; then
-		ANT_TASKS="${ANT_TASKS} "/usr/share/ant/tasks/*
+	if [[ -d "@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant/tasks ]]; then
+		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks/*
 	fi
-	if [[ -d /usr/share/ant/tasks-1.7.1 ]]; then
-		ANT_TASKS="${ANT_TASKS} "/usr/share/ant/tasks-1.7.1/*
+	if [[ -d "@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant/tasks-1.7.1 ]]; then
+		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks-1.7.0/*
 	fi
 # if set to "none", make ANT_TASKS empty list
 elif [[ "${ANT_TASKS}" == "none" ]]; then
@@ -151,7 +151,7 @@ TOOLS_JAR="$(java-config --tools)"
 
 if [[ -n "${TOOLS_JAR}" ]] ; then
   LOCALCLASSPATH="$LOCALCLASSPATH:${TOOLS_JAR}"
-else
+elif [[ $(java-config -f) != apple-jdk-bin* ]] ; then
   echo "Warning: Unable to determine tools.jar location."
   echo "  If build fails because sun.* classes could not be found,"
   echo "  Make sure you are using a JDK, not JRE as your user/system VM."
