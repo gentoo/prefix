@@ -22,8 +22,6 @@ DEPEND="dev-util/pkgconfig
 PATCHES=( "${FILESDIR}/${P}-gcc43-tests.patch" )
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	# prefix: do not "invent" lib64 (--disable-libsuffix)
 	econf $(use_enable debug) --disable-libsuffix || die "econf failed."
 	emake || die "emake failed."

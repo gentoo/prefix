@@ -28,8 +28,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	# prefix: do not "invent" lib64 (--disable-libsuffix)
 	econf $(use_enable debug) --disable-libsuffix || die
 	emake || die
