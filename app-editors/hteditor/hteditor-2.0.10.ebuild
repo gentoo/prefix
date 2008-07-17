@@ -4,8 +4,6 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic
-
 MY_PV=${PV/_/}
 
 DESCRIPTION="editor for executable files"
