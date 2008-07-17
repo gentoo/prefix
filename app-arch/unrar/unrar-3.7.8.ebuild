@@ -21,8 +21,6 @@ DEPEND="!app-arch/unrar-gpl"
 S=${WORKDIR}/unrar
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	emake \
 		-f makefile.unix \
 		CXXFLAGS="${CXXFLAGS}" \
