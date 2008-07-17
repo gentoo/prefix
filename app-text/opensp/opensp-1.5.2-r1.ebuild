@@ -50,8 +50,6 @@ src_compile() {
 	# on hppa. Using -O1 works fine. So I force it here.
 	use hppa && replace-flags -O2 -O1
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	local myconf="--enable-http \
 		--enable-default-catalog=${EPREFIX}/etc/sgml/catalog   \
 		--enable-default-search-path=${EPREFIX}/usr/share/sgml \
