@@ -37,8 +37,6 @@ DEPEND="${RDEPEND}
 PDEPEND=">=media-plugins/audacious-plugins-1.5.1"
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	# D-Bus is a mandatory dependency, remote control,
 	# session management and some plugins depend on this.
 	# Building without D-Bus is *unsupported* and a USE-flag
