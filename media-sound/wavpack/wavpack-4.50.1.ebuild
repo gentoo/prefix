@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.50.0.ebuild,v 1.1 2008/06/29 13:30:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.50.1.ebuild,v 1.1 2008/07/16 08:08:38 aballier Exp $
 
 EAPI="prefix"
 
