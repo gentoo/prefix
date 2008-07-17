@@ -16,7 +16,7 @@
 # limitations under the License.
 
 #   Edited for Gentoo Linux
-#   $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/files/1.7.1-ant,v 1.1 2008/07/14 21:41:46 caster Exp $
+#   $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/files/1.7.1-ant,v 1.2 2008/07/16 14:41:51 caster Exp $
 
 # Extract launch and ant arguments, (see details below).
 ant_exec_args=
@@ -122,8 +122,8 @@ if [[ "${ANT_TASKS}" == "all" ]]; then
 	if [[ -d /usr/share/ant/tasks ]]; then
 		ANT_TASKS="${ANT_TASKS} "/usr/share/ant/tasks/*
 	fi
-	if [[ -d /usr/share/ant/tasks-1.7.0 ]]; then
-		ANT_TASKS="${ANT_TASKS} "/usr/share/ant/tasks-1.7.0/*
+	if [[ -d /usr/share/ant/tasks-1.7.1 ]]; then
+		ANT_TASKS="${ANT_TASKS} "/usr/share/ant/tasks-1.7.1/*
 	fi
 # if set to "none", make ANT_TASKS empty list
 elif [[ "${ANT_TASKS}" == "none" ]]; then

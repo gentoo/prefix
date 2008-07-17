@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ant-core-1.7.1.ebuild,v 1.2 2008/07/14 22:16:49 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ant-core-1.7.1-r1.ebuild,v 1.2 2008/07/16 21:25:23 caster Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,9 @@ src_unpack() {
 
 	# use our split-ant build.xml
 	mv -f "${WORKDIR}/build.xml" . || die
+
+	# bug #196080
+	java-ant_bsfix_one build.xml
 }
 
 src_compile() {
