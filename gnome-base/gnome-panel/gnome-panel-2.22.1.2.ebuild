@@ -65,12 +65,6 @@ src_unpack() {
 	eautoreconf # need new libtool for interix
 }
 
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
-	gnome2_src_compile
-}
-
 pkg_postinst() {
 	local entries="${EPREFIX}/etc/gconf/schemas/panel-default-setup.entries"
 	local gconftool="${EROOT}usr/bin/gconftool-2"
