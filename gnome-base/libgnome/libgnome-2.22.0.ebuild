@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2 flag-o-matic
+inherit gnome2
 
 DESCRIPTION="Essential Gnome Libraries"
 HOMEPAGE="http://www.gnome.org/"
