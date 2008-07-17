@@ -5,7 +5,7 @@
 EAPI="prefix"
 
 WANT_AUTOMAKE=1.8
-inherit eutils gnome2 autotools flag-o-matic
+inherit eutils gnome2 autotools
 
 DESCRIPTION="Gnome Virtual Filesystem"
 HOMEPAGE="http://www.gnome.org/"
