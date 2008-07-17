@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.14.ebuild,v 1.5 2008/05/28 14:58:23 armin76 Exp $
 
 EAPI="prefix"
-inherit eutils flag-o-matic
+inherit eutils
 MY_P=${P/tex/TeX}-src
 DESCRIPTION="Wysiwyg text processor with high-quality maths"
 
