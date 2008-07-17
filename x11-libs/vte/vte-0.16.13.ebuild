@@ -62,7 +62,6 @@ src_compile() {
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_header_stropts_h=no
-		append-flags -D_ALL_SOURCE -D_REENTRANT
 	fi
 
 	[[ ${CHOST} == *-interix3* ]] && myconf="${myconf} --disable-gnome-pty-helper"
