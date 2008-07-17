@@ -63,8 +63,6 @@ src_compile() {
 
 	unset BC_ENV_ARGS
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		--with-x-app-defaults="${EPREFIX}"/usr/share/X11/app-defaults \
 		--with-hackdir="${EPREFIX}"/usr/$(get_libdir)/misc/xscreensaver \
