@@ -1,5 +1,5 @@
---- bashrc	2008-06-17 14:58:37.038100000 -0500
-+++ bashrc.prefix	2008-06-17 15:55:37.934213000 -0500
+--- bashrc
++++ bashrc
 @@ -1,4 +1,4 @@
 -# /etc/bash/bashrc
 +# @GENTOO_PORTAGE_EPREFIX@/etc/bash/bashrc
@@ -28,13 +28,13 @@
 -	fi
 -
 -	if [[ ${EUID} == 0 ]] ; then
-+    if [[ -f ~/.dir_colors ]] ; then
-+	    eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b ~/.dir_colors);
-+    fi
-+       	elif [[ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS ]] ; then
-+    		eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
++	if [[ -f ~/.dir_colors ]] ; then
++		eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b ~/.dir_colors);
++	elif [[ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS ]] ; then
++		eval $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/dircolors -b "@GENTOO_PORTAGE_EPREFIX@"/etc/DIR_COLORS)
++	fi
 +		   
-+    if [[ ${EUID} == 0 ]] ; then
++	if [[ ${EUID} == 0 ]] ; then
  		PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
  	else
  		PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
