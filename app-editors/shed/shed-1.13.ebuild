@@ -26,9 +26,6 @@ src_unpack() {
 }
 
 src_compile() {
-
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf || die
 	emake AM_CFLAGS="${CFLAGS}" || die
 
