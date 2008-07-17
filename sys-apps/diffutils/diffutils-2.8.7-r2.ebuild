@@ -52,10 +52,6 @@ src_compile() {
 	use static && append-ldflags -static
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		# on interix _ALL_SOURCE is required for a correct definition
-		# of stack_t (and maybe others...)
-		append-flags -D_ALL_SOURCE
-
 		# on interix wchar support is broken...
 		export ac_cv_header_wchar_h=no
 		export ac_cv_header_wctype_h=no
