@@ -28,8 +28,6 @@ src_compile() {
 	test-flags-CC -flax-vector-conversions && \
 		append-flags -flax-vector-conversions
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf $(use_enable mmx)
 	emake || die "emake failed."
 }
