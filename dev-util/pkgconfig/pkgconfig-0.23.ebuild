@@ -32,7 +32,6 @@ src_compile() {
 	use elibc_FreeBSD && myconf="${myconf} --enable-indirect-deps"
 
 	if [[ ${CHOST} == *-interix* ]]; then 
-		append-flags "-D_ALL_SOURCE"
 		export ac_cv_func_poll=no
 	fi
 
