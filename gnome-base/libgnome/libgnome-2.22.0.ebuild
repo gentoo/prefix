@@ -35,8 +35,3 @@ pkg_setup() {
 	G2CONF="${G2CONF} --disable-schemas-install $(use_enable esd)"
 }
 
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-	gnome2_src_compile
-}
-
