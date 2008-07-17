@@ -64,7 +64,6 @@ src_compile() {
 	unset PYTHONPATH
 
 	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
 		# this -Wl,-E option for the interix ld makes some checks
 		# false positives, so set those here.
 		export ac_cv_func_strtoull=no
