@@ -49,8 +49,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf $(use_with imlib imlib2 ) \
 		--enable-optimize="${CXXFLAGS}" \
 		|| die "econf failed"
