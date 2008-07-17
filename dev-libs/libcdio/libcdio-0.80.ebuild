@@ -36,8 +36,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		$(use_enable cddb) \
 		$(use_with !minimal cd-drive) \
