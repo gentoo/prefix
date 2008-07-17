@@ -67,8 +67,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	local debuglevel=1 myconf="CONFIG_SUN=n"
 
 	use debug && debuglevel=2
