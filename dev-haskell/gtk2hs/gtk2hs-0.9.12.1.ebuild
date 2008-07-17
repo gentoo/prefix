@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.7 2008/05/04 13:56:19 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.8 2008/07/16 11:47:06 armin76 Exp $
 
 EAPI="prefix"
 
@@ -25,9 +25,10 @@ RDEPEND=">=dev-lang/ghc-6.4
 				>=gnome-base/gconf-2 )
 		svg?   ( >=gnome-base/librsvg-2.16 )
 		opengl? ( x11-libs/gtkglext )
-		seamonkey? ( =www-client/seamonkey-1* )
-		firefox? ( =www-client/mozilla-firefox-2* )
-		xulrunner? ( =net-libs/xulrunner-1.8* )"
+		xulrunner? ( =net-libs/xulrunner-1.8* )
+		!xulrunner? ( firefox? ( =www-client/mozilla-firefox-2* ) )
+		!xulrunner? ( !firefox? ( seamonkey? ( =www-client/seamonkey-1* ) ) )"
+
 DEPEND="${RDEPEND}
 		doc? ( >=dev-haskell/haddock-0.8 )
 		dev-util/pkgconfig"

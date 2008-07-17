@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.46 2008/05/28 19:20:32 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.47 2008/07/16 11:47:06 armin76 Exp $
+
+  16 Jul 2008; Raúl Porcel <armin76@gentoo.org> gtk2hs-0.9.11.ebuild,
+  gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
+  Fix mozilla deps again, bug #230670
 
   28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Duncan Coutts (dcoutts) from metadata.xml (as per #85695).
