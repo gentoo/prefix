@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/libuninameslist
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.23 2008/06/07 14:00:11 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.26 2008/07/16 16:10:26 armin76 Exp $
+
+  16 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  libuninameslist-20080409.ebuild:
+  alpha/ia64/x86 stable wrt #231943
+
+  16 Jul 2008; nixnut <nixnut@gentoo.org> libuninameslist-20080409.ebuild:
+  Stable on ppc wrt bug 231943
+
+  16 Jul 2008; Ferris McCormick <fmccor@gentoo.org>
+  libuninameslist-20080409.ebuild:
+  Sparc stable, Bug #231943 which see.
 
   07 Jun 2008; nixnut <nixnut@gentoo.org> libuninameslist-20060907.ebuild:
   Stable on ppc wrt bug 224599
