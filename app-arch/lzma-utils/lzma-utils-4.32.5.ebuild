@@ -47,10 +47,6 @@ src_unpack() {
 	touch config.h.in # avoid the need for autoheader
 }
 
-pkg_setup() {
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-}
-
 src_install() {
 	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS ChangeLog NEWS README THANKS

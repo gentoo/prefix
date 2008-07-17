@@ -42,7 +42,6 @@ src_unpack() {
 pkg_setup() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_utimes=no
-		append-flags "-D_ALL_SOURCE"
 	fi
 }
 
