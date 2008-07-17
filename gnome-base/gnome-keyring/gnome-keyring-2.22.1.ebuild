@@ -47,9 +47,3 @@ src_unpack() {
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
-	gnome2_src_compile
-}
-
