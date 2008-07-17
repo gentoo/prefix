@@ -30,8 +30,6 @@ src_compile() {
 	use static && append-ldflags -static
 	eautoreconf || die
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	econf || die
 	emake || die
 }
