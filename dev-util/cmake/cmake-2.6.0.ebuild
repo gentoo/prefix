@@ -56,8 +56,6 @@ src_compile() {
 		append-flags "-fno-stack-protector"
 	fi
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	tc-export CC CXX LD
 
 	./bootstrap \
