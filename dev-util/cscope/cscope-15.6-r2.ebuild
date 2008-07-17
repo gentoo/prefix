@@ -37,8 +37,6 @@ src_unpack() {
 src_compile() {
 	STRIP="no"
 
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	econf --with-ncurses="${EPREFIX}"/usr || die "econf failed"
 	make clean || die "make clean failed"
 	emake || die "emake failed"
