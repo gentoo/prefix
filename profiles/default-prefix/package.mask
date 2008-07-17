@@ -36,10 +36,6 @@
 # This is a bump for Interix only
 =sys-devel/gcc-4.2.4-r00.1
 
-# Jeremy Olexa <darkside@gentoo.org> (08 Jul 2008)
-# Broken dep graph, bug #231194
-=virtual/postgresql-base-8.3
-
 # Fabian Groffen <grobian@gentoo.org> (06 Jul 2008)
 # Needs to have bug #230981 sorted out
 ~x11-libs/libSM-1.1.0

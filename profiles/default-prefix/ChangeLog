@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Drop mask for virtual/postgresql-base-8.3 now that I imported the proper dep
+  (dev-db/postgresql-base-8.3)
+
   17 Jul 2008; Fabian Groffen <grobian@gentoo.org>
   windows/interix/package.mask, -windows/interix/package.unmask:
   Try to unmask correctly this time
