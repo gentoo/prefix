@@ -43,7 +43,6 @@ src_compile() {
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_poll=no
-		append-flags -D_ALL_SOURCE -D_REENTRANT
 	fi
 
 	if [[ ${CHOST} == *-interix5* ]]; then
