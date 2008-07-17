@@ -48,7 +48,3 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.19.1-enable-druid.patch
 }
 
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-	gnome2_src_compile
-}
