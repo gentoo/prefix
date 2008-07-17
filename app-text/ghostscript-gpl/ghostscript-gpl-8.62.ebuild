@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools elisp-common eutils versionator flag-o-matic
+inherit autotools elisp-common eutils versionator
 
 DESCRIPTION="GPL Ghostscript - the most current Ghostscript, AFPL, relicensed"
 HOMEPAGE="http://ghostscript.com/"
