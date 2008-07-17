@@ -77,8 +77,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf \
 		$(use_enable nls) \
 		$(use_enable xinerama) \
