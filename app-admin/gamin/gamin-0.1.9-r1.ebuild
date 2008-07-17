@@ -49,8 +49,6 @@ src_compile() {
 	# fixes bug 225403
 	use elibc_glibc && append-flags "-D_GNU_SOURCE"
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf --disable-debug \
 		$(use_enable kernel_linux inotify) \
 		$(use_enable debug debug-api) \

@@ -40,10 +40,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && {
-		append-flags -D_ALL_SOURCE
-	}
-
 	econf --disable-debug \
 		$(use_enable kernel_linux inotify) \
 		$(use_enable debug debug-api) \
