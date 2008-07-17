@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs flag-o-matic
+inherit toolchain-funcs
 
 MY_PN=${PN}src
 DESCRIPTION="Uncompress rar files"
