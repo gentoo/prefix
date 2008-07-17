@@ -41,8 +41,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	#Bug 214137: We need to filter this.
 	unset SRCDIR
 
