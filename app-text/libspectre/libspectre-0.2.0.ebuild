@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic
+inherit autotools eutils
 
 DESCRIPTION="Library to render Postscript documents."
 HOMEPAGE="http://libspectre.freedesktop.org/wiki/"
