@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool eutils base flag-o-matic
+inherit libtool eutils base
 
 DESCRIPTION="A library for reading and editing audio meta data"
 HOMEPAGE="http://developer.kde.org/~wheeler/taglib.html"
