@@ -93,7 +93,6 @@ src_compile() {
 	fi
 
 	[[ ${CHOST} == *-interix* ]] && {
-		append-flags "-D_ALL_SOURCE"
 		export ac_cv_func_mmap_fixed_mapped=yes
 		export ac_cv_func_poll=no
 	}
