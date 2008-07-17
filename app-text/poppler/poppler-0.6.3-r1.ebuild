@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool eutils flag-o-matic
+inherit libtool eutils
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
