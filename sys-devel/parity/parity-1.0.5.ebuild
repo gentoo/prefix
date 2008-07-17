@@ -29,13 +29,6 @@ pkg_setup() {
 }
 
 src_compile() {
-	# only for interix, since _maybe_ one could use it from wine with
-	# little modifications to the source.
-	# Also parity can build itself (which has some advantages too), and
-	# if things develop as i want, that would be a different host than
-	# (most likely i586-pc-winnt).
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	# parity's configure script has tons of magic to detect propper
 	# visual studio installations, which would be much too much here.
 

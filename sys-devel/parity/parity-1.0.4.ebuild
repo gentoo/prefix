@@ -16,10 +16,6 @@ KEYWORDS="~x86-interix"
 IUSE=""
 
 src_compile() {
-	# only for interix, since _maybe_ one could use it from wine with
-	# little modifications to the source.
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
 	# parity's configure script has tons of magic to detect propper
 	# visual studio installations, which would be much too much here.
 
