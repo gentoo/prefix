@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.6 2008/05/22 13:36:03 lack Exp $
 
 EAPI="prefix 1"
-inherit eutils flag-o-matic
+inherit eutils
 
 IUSE="nls xinerama truetype kde gnome imlib +slit +toolbar vim-syntax"
 
