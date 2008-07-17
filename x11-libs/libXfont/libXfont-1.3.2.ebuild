@@ -39,7 +39,6 @@ src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
-		append-flags -D_ALL_SOURCE
 	fi
 
 	x-modular_src_compile

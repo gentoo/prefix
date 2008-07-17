@@ -34,11 +34,6 @@ src_unpack() {
 	eautoreconf # need new libtool for interix
 }
 
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-	x-modular_src_compile
-}
-
 pkg_setup() {
 	# No such function yet
 	# x-modular_pkg_setup
