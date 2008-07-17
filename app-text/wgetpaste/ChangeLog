@@ -1,6 +1,10 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.74 2008/04/28 01:23:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.75 2008/07/16 13:33:26 aballier Exp $
+
+  16 Jul 2008; Alexis Ballier <aballier@gentoo.org> wgetpaste-2.10.ebuild:
+  keyword ~x86-fbsd, thanks to Davide Italiano <dav_it@gentoo.org>, bug
+  #231116.
 
   28 Apr 2008; Jeroen Roovers <jer@gentoo.org> wgetpaste-2.10.ebuild:
   Stable for HPPA (bug #211894).
