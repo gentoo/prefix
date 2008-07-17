@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2 flag-o-matic
+inherit eutils gnome2
 
 DESCRIPTION="User Interface routines for Gnome"
 HOMEPAGE="http://www.gnome.org/"
