@@ -57,7 +57,7 @@ src_compile() {
 	export QTLIB="${QTDIR}/$(get_libdir)"
 	echo $QTLIB
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
 	econf --enable-opi \
 		$(use_enable cairo cairo-output) \
