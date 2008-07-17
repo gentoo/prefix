@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit eutils
 
 IUSE=""
 
