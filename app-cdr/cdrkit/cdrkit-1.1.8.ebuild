@@ -35,8 +35,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	cmake \
 		-DCMAKE_C_COMPILER=$(type -P $(tc-getCC)) \
 		-DCMAKE_C_FLAGS="${CFLAGS}" \
