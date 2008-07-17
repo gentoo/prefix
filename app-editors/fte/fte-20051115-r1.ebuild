@@ -81,16 +81,14 @@ src_unpack() {
 }
 
 src_compile() {
-	local optimize=
 	local os="-DLINUX" # by now the default in makefile
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		optimize="-D_ALL_SOURCE"
 		os=
 	fi
 
 	DEFFLAGS="PREFIX='${EPREFIX}'/usr CONFIGDIR='${EPREFIX}'/usr/share/fte \
-		DEFAULT_FTE_CONFIG=../config/main.fte OPTIMIZE=${optimize} UOS=${os}"
+		DEFAULT_FTE_CONFIG=../config/main.fte UOS=${os}"
 
 	set_targets
 	emake $DEFFLAGS TARGETS="$TARGETS" all || die
