@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools flag-o-matic
+inherit autotools
 
 DESCRIPTION="a configuration file parser library"
 HOMEPAGE="http://www.nongnu.org/confuse/"
