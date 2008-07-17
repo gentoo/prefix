@@ -32,7 +32,7 @@ src_compile() {
 
 	# i wonder how this works on other platforms if CFLAGS from makefile are
 	# overridden, see bug #218082 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -DIS_SYSV -DHAS_RENAME -DHAS_DIRENT
+	[[ ${CHOST} == *-interix* ]] && append-flags -DIS_SYSV -DHAS_RENAME -DHAS_DIRENT
 	[[ ${CHOST} == *-interix* ]] || mmv_CFLAGS=" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 
 	emake CC="$(tc-getCC)" CFLAGS="${mmv_CFLAGS} ${CFLAGS}" LDFLAGS="${LDFLAGS}" || die
