@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils libtool multilib autotools flag-o-matic
+inherit eutils libtool multilib autotools
 
 DESCRIPTION="A library to encapsulate CD-ROM reading and control"
 HOMEPAGE="http://www.gnu.org/software/libcdio/"
