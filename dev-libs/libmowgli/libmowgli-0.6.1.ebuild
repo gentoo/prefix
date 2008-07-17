@@ -16,8 +16,6 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	econf $(use_enable examples) \
 		|| die "econf failed"
 	emake || die "emake failed"
