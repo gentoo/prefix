@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs multilib flag-o-matic
+inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="Port of 7-Zip archiver for Unix"
 HOMEPAGE="http://p7zip.sourceforge.net/"
