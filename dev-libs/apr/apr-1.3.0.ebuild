@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools flag-o-matic
+inherit autotools
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
