@@ -45,7 +45,6 @@ src_compile() {
 	filter-flags "-fstack-protector"
 	replace-flags "-Os" "-O2" # work around gcc-4.1.1-r[01] bugs
 	[[ ${CHOST} == *-darwin* ]] && append-flags -D_DARWIN_C_SOURCE
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
 
 	econf --libdir="${EPREFIX}"/etc \
 		--with-x \
