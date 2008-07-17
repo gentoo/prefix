@@ -57,7 +57,7 @@ src_compile() {
 	# <obz@gentoo.org>
 	replace-flags -march=pentium4 -march=pentium3
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE -D_REENTRANT
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
 	local I18N
 	if use nls; then
