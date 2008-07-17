@@ -55,7 +55,7 @@ src_unpack() {
 src_compile() {
 	local use_xcb
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT -D_ALL_SOURCE
+	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 	# http://bugs.freedesktop.org/show_bug.cgi?id=15463
 	[[ ${CHOST} == *-solaris* ]] && append-flags -D_POSIX_PTHREAD_SEMANTICS
 
