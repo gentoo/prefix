@@ -1,0 +1,175 @@
+# ChangeLog for dev-db/postgresql-base
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.8 2008/06/14 10:42:50 dev-zero Exp $
+
+*postgresql-base-7.4.21-r1 (14 Jun 2008)
+
+  14 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -postgresql-base-7.4.21.ebuild, +postgresql-base-7.4.21-r1.ebuild,
+  postgresql-base-8.0.17.ebuild, postgresql-base-8.1.13.ebuild,
+  postgresql-base-8.2.9.ebuild, postgresql-base-8.3.3.ebuild:
+  Fixed 7.4.21 to install libpgport.a, don't install html-documentation
+  since provided by postgresql-doc (bug #225629).
+
+*postgresql-base-8.3.3 (13 Jun 2008)
+*postgresql-base-8.2.9 (13 Jun 2008)
+*postgresql-base-8.1.13 (13 Jun 2008)
+*postgresql-base-8.0.17 (13 Jun 2008)
+*postgresql-base-7.4.21 (13 Jun 2008)
+
+  13 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql-7.4.21-autoconf.patch,
+  +files/postgresql-8.0.15-common.patch, files/postgresql-8.0-common.patch,
+  +postgresql-base-7.4.21.ebuild, postgresql-base-8.0.15.ebuild,
+  +postgresql-base-8.0.17.ebuild, +postgresql-base-8.1.13.ebuild,
+  +postgresql-base-8.2.9.ebuild, +postgresql-base-8.3.3.ebuild:
+  Version bump (bug #226361)
+
+  04 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.3.1.ebuild:
+  Re-added ~sparc-fbsd keyword since ossp-uuid got keyworded
+
+  04 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.19.ebuild,
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  Added sys-devel/flex as a dependency (bug #221375 thanks to Flameeyes)
+
+  04 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.19.ebuild,
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  Fixed bug #223189 (thanks to Jose Quinteiro)
+
+  19 May 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.3.1.ebuild:
+  Keyworded for all archs having postgresql keyworded and have ossp-uuid
+  keyworded
+
+  19 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  Removed libedit USE-flag since I experienced memory leaks when having psql
+  linked against libedit.
+
+*postgresql-base-8.3.1 (15 Apr 2008)
+*postgresql-base-8.2.7 (15 Apr 2008)
+*postgresql-base-8.1.11 (15 Apr 2008)
+*postgresql-base-8.0.15 (15 Apr 2008)
+*postgresql-base-7.4.19 (15 Apr 2008)
+*postgresql-base-7.3.21 (15 Apr 2008)
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql-7.3.21-autoconf.patch, +files/postgresql-7.3-base.patch,
+  +files/postgresql-7.4.19-autoconf.patch, +files/postgresql-7.4-base.patch,
+  +files/postgresql-7.4-common.patch, +files/postgresql-7.4-hppa.patch,
+  +files/postgresql-8.0-base.patch, +files/postgresql-8.0-common.patch,
+  +files/postgresql-8.1-base.patch, +files/postgresql-8.1-common.patch,
+  +files/postgresql-8.2-base.patch, +files/postgresql-8.2-common.patch,
+  +files/postgresql-8.3-base.patch, +files/postgresql-8.3-common.patch,
+  +files/postgresql-8.x-relax_ssl_perms.patch, +metadata.xml,
+  +postgresql-base-7.3.21.ebuild, +postgresql-base-7.4.19.ebuild,
+  +postgresql-base-8.0.15.ebuild, +postgresql-base-8.1.11.ebuild,
+  +postgresql-base-8.2.7.ebuild, +postgresql-base-8.3.1.ebuild:
+  Moved into the tree. Thanks to Michael Krelin (polyonymous).
+
+  10 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.19.ebuild,
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  slot-files should be kept in /etc/eselect/postgresql/slots as from now.
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild,
+  +files/postgresql-8.x-relax_ssl_perms.patch:
+  Added patch to relax strict permission check on ssl key files (bug #210938).
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql-7.3-base.patch, files/postgresql-7.4-base.patch,
+  files/postgresql-8.0-base.patch, files/postgresql-8.1-base.patch,
+  files/postgresql-8.2-base.patch, files/postgresql-8.3-base.patch:
+  Standard location for unix domain socket changed to /var/run/postgresql
+
+  30 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  Added --with-thread-safety-force when building with threading-support to
+  skip the thread-safety-tests which randomly segfaults within the sandbox
+  (guessing that the case that someone has a strange system which reports
+  pthread-availability but in reality it isn't available is much less common
+  than that someone hits the mentioned bug). Added the option to use libedit
+  instead of readline for postgresql >=8.2.
+
+  27 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-8.3.1.ebuild:
+  Added $(use_with kerberos gssapi)
+
+  19 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.19.ebuild,
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.7.ebuild, postgresql-base-8.3.1.ebuild:
+  Changed deps again to allow libpq-99.99.99
+
+  19 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -postgresql-base-8.2.6.ebuild, +postgresql-base-8.2.7.ebuild,
+  -postgresql-base-8.3.0.ebuild, +postgresql-base-8.3.1.ebuild:
+  Version bump.
+
+  15 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, files/postgresql-7.3-base.patch,
+  postgresql-base-7.4.19.ebuild, files/postgresql-7.4-base.patch,
+  -files/postgresql-7.4-libs.patch, postgresql-base-8.0.15.ebuild,
+  postgresql-base-8.1.11.ebuild, postgresql-base-8.3.0.ebuild:
+  Fixed the names of the env.d-files. Fixed postgresql-7.4-base by really
+  using the -base.patch now instead of -libs.patch which made the tests for
+  postgresql-7.4-server fail.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.3.21.ebuild, files/postgresql-7.3-base.patch,
+  postgresql-base-7.4.19.ebuild, files/postgresql-7.4-base.patch:
+  Removed initlocation manpage and pg_id.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql-7.3-base.patch:
+  Fixed the patch.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org> +metadata.xml:
+  Added metadata.xml
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +postgresql-base-7.3.21.ebuild, +files/postgresql-7.3.21-autoconf.patch,
+  +files/postgresql-7.3-base.patch, postgresql-base-7.4.19.ebuild,
+  postgresql-base-8.0.15.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.2.6.ebuild, postgresql-base-8.3.0.ebuild:
+  Added 7.3.21. Changed descriptions.
+
+  07 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.4.19.ebuild, postgresql-base-8.0.15.ebuild,
+  postgresql-base-8.1.11.ebuild, postgresql-base-8.2.6.ebuild,
+  postgresql-base-8.3.0.ebuild:
+  Added blockers for various packages. Removed docs installation again (will
+  be done in dev-db/postgresql-docs).
+
+  05 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-base-7.4.19.ebuild, postgresql-base-8.0.15.ebuild,
+  postgresql-base-8.1.11.ebuild, postgresql-base-8.2.6.ebuild,
+  postgresql-base-8.3.0.ebuild:
+  Added blockers for all kinds of postgresql-ebuilds (in-tree and overlay).
+
+  02 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql-7.4.19-autoconf.patch, +files/postgresql-7.4-base.patch,
+  +files/postgresql-7.4-common.patch, +files/postgresql-7.4-hppa.patch,
+  +files/postgresql-7.4-libs.patch, +files/postgresql-8.0-base.patch,
+  +files/postgresql-8.0-common.patch, +files/postgresql-8.1-base.patch,
+  +files/postgresql-8.1-common.patch, files/postgresql-8.2-base.patch,
+  +files/postgresql-8.3-base.patch, +files/postgresql-8.3-common.patch,
+  +postgresql-base-7.4.19.ebuild, +postgresql-base-8.0.15.ebuild,
+  +postgresql-base-8.1.11.ebuild, postgresql-base-8.2.6.ebuild,
+  +postgresql-base-8.3.0.ebuild:
+  Added patches and ebuilds for 7.4, 8.0, 8.1 and 8.2. Still untested though.
+
+  24 Jan 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql-8.2-base.patch, +files/postgresql-8.2-common.patch,
+  +postgresql-base-8.2.6.ebuild:
+  Initial commit.
+
