@@ -32,8 +32,6 @@ src_compile() {
 	# openssl-0.9.8 now builds with -pthread on the BSD's
 	use elibc_FreeBSD && use ssl && append-ldflags -pthread
 
-	[[ ${CHOST} == *-interix* ]] && append-flags -D_ALL_SOURCE
-
 	use static && append-ldflags -static
 	econf \
 		$(use_with ssl) $(use_enable ssl opie) $(use_enable ssl digest) \
