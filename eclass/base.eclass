@@ -1,16 +1,27 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.33 2008/02/16 20:12:58 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.34 2008/07/17 09:49:14 pva Exp $
+
+# @ECLASS: base.eclass
+# @MAINTAINER:
+# ???
 #
-# Author Dan Armak <danarmak@gentoo.org> (nowadays retired)
-#
-# The base eclass defines some default functions and variables. Nearly everything
-# else inherits from here.
+# Original author Dan Armak <danarmak@gentoo.org>
+# @BLURB: The base eclass defines some default functions and variables.
+# @DESCRIPTION:
+# The base eclass defines some default functions and variables. Nearly
+# everything else inherits from here.
+
 
 inherit eutils
 
 DESCRIPTION="Based on the $ECLASS eclass"
 
+# @FUNCTION: base_src_unpack
+# @USAGE: [ unpack ] [ patch ] [ autopatch ] [ all ]
+# @DESCRIPTION:
+# The base src_unpack function, which is exported. If no argument is given,
+# "all" is assumed.
 base_src_unpack() {
 
 	debug-print-function $FUNCNAME $*
@@ -57,6 +68,11 @@ base_src_unpack() {
 
 }
 
+# @FUNCTION: base_src_compile
+# @USAGE: [ configure ] [ make ] [ all ]
+# @DESCRIPTION:
+# The base src_compile function, which is exported. If no argument is given,
+# "all" is asasumed.
 base_src_compile() {
 
 	debug-print-function $FUNCNAME $*
@@ -86,6 +102,11 @@ base_src_compile() {
 
 }
 
+# @FUNCTION: base_src_install
+# @USAGE: [ make ] [ all ]
+# @DESCRIPTION:
+# The base src_install function, which is exported. If no argument is given,
+# "all" is assumed.
 base_src_install() {
 
 	debug-print-function $FUNCNAME $*

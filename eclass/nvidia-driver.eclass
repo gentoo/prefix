@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.13 2008/06/23 12:58:05 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.14 2008/07/17 12:20:49 chainsaw Exp $
 
 # @ECLASS: nvidia-driver.eclass
 # @MAINTAINER: <chainsaw@gentoo.org>
@@ -25,9 +25,9 @@ drv_96xx="0110 0111 0112 0113 0170 0171 0172 0173 0174 0175 0176 0177 0178 \
 
 drv_71xx="0020 0028 0029 002c 002d 00a0 0100 0101 0103 0150 0151 0152 0153"
 
-drv_173x="00FA 00FB 00FC 00FD 00FE 0301 0302 0308 0309 0311 0312 0314 031A \
-031B 031C 0320 0321 0322 0323 0324 0325 0326 0327 0328 032A 032B 032C 032D \
-0330 0331 0332 0333 0334 0338 033F 0341 0342 0343 0344 0347 0348 034C 034E"
+drv_173x="00fa 00fb 00fc 00fd 00fe 0301 0302 0308 0309 0311 0312 0314 031a \
+031b 031c 0320 0321 0322 0323 0324 0325 0326 0327 0328 032a 032b 032c 032d \
+0330 0331 0332 0333 0334 0338 033f 0341 0342 0343 0344 0347 0348 034c 034e"
 
 mask_96xx=">=x11-drivers/nvidia-drivers-97.0.0"
 mask_71xx=">=x11-drivers/nvidia-drivers-72.0.0"
