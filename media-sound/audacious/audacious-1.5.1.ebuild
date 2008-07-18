@@ -36,6 +36,13 @@ DEPEND="${RDEPEND}
 
 PDEPEND=">=media-plugins/audacious-plugins-1.5.1"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
 	# D-Bus is a mandatory dependency, remote control,
 	# session management and some plugins depend on this.
