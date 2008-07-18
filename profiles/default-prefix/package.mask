@@ -32,6 +32,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Markus Duft <mduft@gentoo.org> (18 Jul 2008)
+# Misses required patches for prefix it seems. Old patch
+# does not apply to new version.
+=games-misc/wtf-20080715
+
 # Fabian Groffen <grobian@gentoo.org> (17 Jul 2008)
 # This is a bump for Interix only
 =sys-devel/gcc-4.2.4-r00.1
