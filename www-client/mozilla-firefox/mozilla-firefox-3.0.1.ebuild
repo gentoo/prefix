@@ -15,7 +15,7 @@ MY_PV=${PV/3/}
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="java mozdevelop bindist restrict-javascript iceweasel +xulrunner"
