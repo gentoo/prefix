@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.84 2008/07/17 05:02:59 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.85 2008/07/17 13:05:54 darkside Exp $
+
+  17 Jul 2008; Jeremy Olexa <darkside@gentoo.org> Manifest:
+  Restore Manifest to proper file.
 
   17 Jul 2008; Jeremy Olexa <darkside@gentoo.org>
   gnu-classpath-0.97.2.ebuild:
