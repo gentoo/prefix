@@ -32,11 +32,6 @@
 
 #--- END OF EXAMPLES ---
 
-# Markus Duft <mduft@gentoo.org> (18 Jul 2008)
-# Misses required patches for prefix it seems. Old patch
-# does not apply to new version.
-=games-misc/wtf-20080715
-
 # Fabian Groffen <grobian@gentoo.org> (17 Jul 2008)
 # This is a bump for Interix only
 =sys-devel/gcc-4.2.4-r00.1
@@ -110,12 +105,6 @@ app-text/tetex
 # bootstrapping.
 ~sys-devel/gcc-4.3.0
 ~sys-devel/gcc-4.3.1
-
-# Fabian Groffen <grobian@gentoo.org> (30 Mar 2008)
-# has autotool problems of linking in funcs.o containing replacement
-# functions (vasprintf), masking globally because I don't like this
-# broken
->=sys-apps/file-4.24
 
 # Fabian Groffen <grobian@gentoo.org> (04 Mar 2008)
 # segfaults during compilation on Darwin

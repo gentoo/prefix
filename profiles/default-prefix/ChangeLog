@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove mask for file-4.24 & wtf-20080715. file-4.24 was removed and added
+  patch for wtf-20080715
+
   18 Jul 2008; Markus Duft <mduft@gentoo.org> package.mask,
   windows/interix/package.mask:
   added mask for new wtf-20080715
