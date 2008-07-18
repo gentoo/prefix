@@ -1,6 +1,15 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.220 2008/07/07 20:39:09 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.221 2008/07/17 07:53:57 aballier Exp $
+
+*ffmpeg-0.4.9_p20070616-r20 (17 Jul 2008)
+*ffmpeg-0.4.9_p20070616-r3 (17 Jul 2008)
+
+  17 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/CVE-2008-3162.patch, +ffmpeg-0.4.9_p20070616-r3.ebuild,
+  +ffmpeg-0.4.9_p20070616-r20.ebuild:
+  Add patches for security bug #231831. -r3 is -r0 with the patch, stable
+  candidate without swscaler. -r20 is -r2 with the patch, with swscaler.
 
   07 Jul 2008; Peter Alfredsen <loki_val@gentoo.org>
   ffmpeg-0.4.9_p20080326.ebuild:
