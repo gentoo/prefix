@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.266.ebuild,v 1.7 2008/04/07 22:42:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.266.ebuild,v 1.8 2008/07/17 18:40:54 hawking Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 PREFIX_VER="4"
 
-SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
+SRC_URI="mirror://gentoo/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
