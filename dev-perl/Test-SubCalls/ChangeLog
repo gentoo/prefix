@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-SubCalls
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/ChangeLog,v 1.12 2008/04/29 06:17:17 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/ChangeLog,v 1.13 2008/07/17 20:55:55 armin76 Exp $
+
+  17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Test-SubCalls-1.07.ebuild:
+  sparc/x86 stable
 
 *Test-SubCalls-1.07 (29 Apr 2008)
 
