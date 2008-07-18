@@ -20,7 +20,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.41.0-interix.patch
-	epatch "${FILESDIR}"/${PN}-4.50.1-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.50.0-interix.patch
 	eautoreconf # need new libtool for interix
 
 	elibtoolize
