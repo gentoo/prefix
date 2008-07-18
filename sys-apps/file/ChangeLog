@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.160 2008/03/29 15:23:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.161 2008/07/17 20:06:49 cardoe Exp $
+
+*file-4.25 (17 Jul 2008)
+
+  17 Jul 2008; Doug Goldstein <cardoe@gentoo.org> +file-4.25.ebuild:
+  version bump. fix ogg and gzip detection. bugs #219215 & #215499
 
   29 Mar 2008; Brent Baude <ranger@gentoo.org> file-4.23.ebuild:
   stable ppc64, bug 215058
