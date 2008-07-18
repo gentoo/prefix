@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/PPI
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/ChangeLog,v 1.19 2008/06/19 04:52:29 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/ChangeLog,v 1.20 2008/07/17 20:13:24 armin76 Exp $
+
+  17 Jul 2008; Raúl Porcel <armin76@gentoo.org> PPI-1.201.ebuild:
+  sparc/x86 stable
 
   19 Jun 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
   PPI-1.201.ebuild:
