@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-WWW-Mechanize
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/ChangeLog,v 1.22 2008/04/28 23:33:13 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/ChangeLog,v 1.23 2008/07/17 21:06:30 armin76 Exp $
+
+  17 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  Test-WWW-Mechanize-1.20.ebuild:
+  ia64/sparc/x86 stable
 
 *Test-WWW-Mechanize-1.20 (24 Apr 2008)
 
