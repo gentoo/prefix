@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Task-Weaken
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.11 2008/04/28 23:57:53 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.12 2008/07/17 20:23:45 armin76 Exp $
+
+  17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Task-Weaken-1.02.ebuild:
+  sparc/x86 stable
 
 *Task-Weaken-1.02 (28 Apr 2008)
 
