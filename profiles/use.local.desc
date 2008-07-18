@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3631 2008/07/17 03:13:24 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3634 2008/07/17 21:48:24 cardoe Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -20,7 +20,6 @@ app-accessibility/freetts:mbrola - Adds support for mbrola voices
 app-accessibility/gnome-speech:freetts - Adds support for the freetts speech driver
 app-accessibility/gnopernicus:brltty - Adds support for braille displays using brltty
 app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine.
-app-admin/bcfg2:server - Adds server support for bcfg2.
 app-admin/conky:audacious - enable monitoring of audio tracks that are playing (media-sound/audacious)
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing (media-sound/bmpx)
 app-admin/conky:mpd - enable monitoring mpd controlled music  (media-sound/mpd)
@@ -31,8 +30,6 @@ app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
 app-admin/gnome-system-tools:nfs - Adds support for NFS shares
 app-admin/lcap:lids - If you have the Linux Intrusion Detection System
 app-admin/prelude-manager:tcpwrapper - Add support for tcp_wrappers
-app-admin/rsyslog:dbi - Add support for logging into various databases through libdbi
-app-admin/rsyslog:relp - Add support for the Reliable Event Logging Protocol
 app-admin/sdsc-syslog:beep - Use beep libraries (net-libs/roadrunner)
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/syslog-ng:spoof-source - Enable support for spoofed source addresses
@@ -43,8 +40,6 @@ app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable plugin for integrating into nautilus
 app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
-app-arch/squeeze:pathbar - Include pathbar feature
-app-arch/squeeze:toolbar - Include toolbar feature
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
 app-backup/bacula:bacula-clientonly - Disable DB support, and just build a client
 app-backup/bacula:bacula-console - Build (GUI) console program(s)
@@ -2038,11 +2033,12 @@ sci-physics/root:clarens - Adds support for Clarens Grid Web services and PROOF 
 sci-physics/root:geant4 - Adds navigator for the GEANT4 simulation toolkit
 sci-physics/root:math - Build extra math and numerical libraries for root (needs gsl)
 sci-physics/root:xrootd - Adds xrootd support, a low latency file server
-sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfitsio
-sci-visualization/hippodraw:numarray - Add numarray python array support
-sci-visualization/hippodraw:numpy - Add numpy support
-sci-visualization/hippodraw:root - Add root i/o, and minuit support
-sci-visualization/labplot:R - Enable R support
+sci-visualization/hippodraw:fits - Adds FITS format support via cfitsio/pyfits
+sci-visualization/hippodraw:numarray - Adds numarray python array support
+sci-visualization/hippodraw:numpy - Adds numpy python array support
+sci-visualization/hippodraw:root - Adds ROOT i/o support
+sci-visualization/hippodraw:wcs - Adds World Coordinate System support
+sci-visualization/labplot:R - Adds statistical R support
 sci-visualization/labplot:cdf - Adds cdf data exchange format support
 sci-visualization/labplot:kexi - Import and export data from/to MySQL, PostgreSQL etc. via Kexi (app-office/kexi).
 sci-visualization/labplot:qhull - Adds media-libs/qhull (geometric extensions) support
