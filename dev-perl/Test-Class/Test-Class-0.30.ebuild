@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.30.ebuild,v 1.1 2008/04/29 06:15:35 yuval Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.30.ebuild,v 1.2 2008/07/17 20:32:20 armin76 Exp $
 
 EAPI="prefix"
 
