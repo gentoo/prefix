@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/httrack/httrack-3.42.2.ebuild,v 1.3 2008/07/16 14:16:27 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/httrack/httrack-3.42.2.ebuild,v 1.4 2008/07/17 19:30:22 ken69267 Exp $
 
 EAPI="prefix"
 
