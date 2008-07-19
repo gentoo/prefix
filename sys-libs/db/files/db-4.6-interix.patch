@@ -1,0 +1,12 @@
+--- dist/aclocal/rpc.m4
++++ dist/aclocal/rpc.m4
+@@ -72,6 +72,8 @@
+ 	ADDITIONAL_PROGS="berkeley_db_svc $ADDITIONAL_PROGS"
+ 
+ 	# Solaris and HPUX need the nsl library to build RPC.
++	# Interix needs rpclib.
+ 	AC_CHECK_FUNC(svc_run,,
+-	    AC_HAVE_LIBRARY(nsl, LIBSO_LIBS="$LIBSO_LIBS -lnsl"))
++	    AC_HAVE_LIBRARY(nsl, LIBSO_LIBS="$LIBSO_LIBS -lnsl")
++	    AC_HAVE_LIBRARY(rpclib, LIBSO_LIBS="$LIBSO_LIBS -lrpclib"))
+ ])

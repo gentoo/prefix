@@ -28,7 +28,7 @@ done
 
 LICENSE="OracleDB"
 SLOT="4.6"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
@@ -47,6 +47,8 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
+
+	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
 
 	cd dist || die "Cannot cd to 'dist'"
 
