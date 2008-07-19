@@ -5,7 +5,7 @@
  		struct utimbuf  utbuf;
  
 -		(void)memset(utbuf, 0, sizeof(utbuf));
-+		(void)memset((void *)utbuf, 0, sizeof(utbuf));
++		(void)memset(&utbuf, 0, sizeof(utbuf));
  		utbuf.actime = sb->st_atime;
  		utbuf.modtime = sb->st_mtime;
  		(void) utime(name, &utbuf); /* don't care if loses */
