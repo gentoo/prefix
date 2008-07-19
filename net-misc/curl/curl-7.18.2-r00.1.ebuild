@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.18.1.ebuild,v 1.3 2008/04/04 14:13:08 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.18.2.ebuild,v 1.2 2008/06/07 11:25:30 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -47,21 +47,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/curl-7.17.0-strip-ldflags.patch
-	# below: bug #216096
-	sed -i -e 's:gssapi/gssapi.h:gssapi/gssapi_generic.h:g' configure.ac
-	eautoreconf
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && {
+	if [[ ${CHOST} == *-interix* ]] ; then
 		export ac_cv_func_poll=no
 		export skipcheck_poll=yes
-	}
+	fi
 
 	myconf="$(use_enable ldap)
 		$(use_enable ldap ldaps)
 		$(use_with idn libidn)
-		$(use_with kerberos gssapi /usr)
+		$(use_with kerberos gssapi "${EPREFIX}"/usr)
 		$(use_with libssh2)
 		$(use_enable ipv6)
 		--enable-http
@@ -87,13 +84,13 @@ src_compile() {
 
 	if use gnutls; then
 		myconf="${myconf} --without-ssl --with-gnutls --without-nss"
-		myconf="${myconf} --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt"
+		myconf="${myconf} --with-ca-bundle=${EPREFIX}/etc/ssl/certs/ca-certificates.crt"
 	elif use nss; then
 		myconf="${myconf} --without-ssl --without-gnutls --with-nss"
-		myconf="${myconf} --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt"
+		myconf="${myconf} --with-ca-bundle=${EPREFIX}/etc/ssl/certs/ca-certificates.crt"
 	elif use ssl; then
 		myconf="${myconf} --without-gnutls --without-nss --with-ssl"
-		myconf="${myconf} --without-ca-bundle --with-ca-path=/etc/ssl/certs"
+		myconf="${myconf} --without-ca-bundle --with-ca-path=${EPREFIX}/etc/ssl/certs"
 	else
 		myconf="${myconf} --without-gnutls --without-nss --without-ssl"
 	fi
