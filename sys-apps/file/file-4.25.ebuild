@@ -25,11 +25,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 
-# don't apply, needs to be fixed or removed, see bug #215413
-	# on interix there is no strtoull implementation, so patch one in.
-#	epatch "${FILESDIR}"/${PN}-4.23-strtoull.patch
-	# interix 3.5 need stddef for intptr_t
-#	epatch "${FILESDIR}"/${PN}-4.23-intptr_t.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	elibtoolize
 	epunt_cxx
