@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.2 2008/07/17 15:53:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.3 2008/07/18 17:51:09 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -222,10 +222,6 @@ src_compile() {
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
 		"${S}"/config/autoconf.mk \
 		"${S}"/toolkit/content/buildconfig.html
-
-	# This removes extraneous CFLAGS from the Makefiles to reduce RAM
-	# requirements while compiling
-	edit_makefiles
 
 	# Should the build use multiprocessing? Not enabled by default, as it tends to break
 	[ "${WANT_MP}" = "true" ] && jobs=${MAKEOPTS} || jobs="-j1"
