@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libvorbis
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.104 2008/07/17 18:31:36 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.105 2008/07/18 13:10:56 yngwin Exp $
+
+  18 Jul 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml:
+  Add GLEP 56 USE flag description for aotuv.
 
 *libvorbis-1.2.1_rc1-r1 (17 Jul 2008)
 
