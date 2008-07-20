@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.110 2008/07/09 21:16:40 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.111 2008/07/19 09:24:47 tove Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -447,7 +447,7 @@ java-pkg_doso() {
 			if [[ ! -L "${lib}" ]] ; then
 				INSDESTTREE="${JAVA_PKG_LIBDEST}" \
 					INSOPTIONS="${LIBOPTIONS}" \
-					doins "${lib}" || "failed to install ${lib}"
+					doins "${lib}" || die "failed to install ${lib}"
 				java-pkg_append_ JAVA_PKG_LIBRARY "${JAVA_PKG_LIBDEST}"
 				debug-print "Installing ${lib} to ${JAVA_PKG_LIBDEST}"
 			# otherwise make a symlink to the symlink's origin

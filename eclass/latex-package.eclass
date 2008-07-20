@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.33 2008/02/17 19:03:07 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.34 2008/07/19 09:22:54 tove Exp $
 
 # @ECLASS: latex-package.eclass
 # @MAINTAINER:
@@ -114,7 +114,7 @@ latex-package_src_doinstall() {
 				for i in `find . -maxdepth 1 -type f -name "*.${1}"`
 				do
 					insinto /usr/share/doc/${P}
-					doins $i || "doins $i failed"
+					doins $i || die "doins $i failed"
 					#dodoc -u $i
 				done
 				;;

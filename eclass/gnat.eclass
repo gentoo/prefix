@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.35 2008/04/12 07:42:47 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.36 2008/07/19 09:20:06 tove Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -438,6 +438,6 @@ gnat_src_install() {
 			fi
 		done
 	else
-		die || "please make sure you have at least one gnat compiler installed!"
+		die "please make sure you have at least one gnat compiler installed!"
 	fi
 }

@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.28 2008/07/07 16:54:56 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.29 2008/07/18 22:53:20 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -49,7 +49,7 @@ if [[ ${CATEGORY} = dev-java && ${PN} = commons-* ]]; then
 	SRC_URI="mirror://apache/${PN/-///}/source/${P}-src.tar.gz"
 fi
 
-EXPORT_FUNCTIONS pkg_setup src_compile
+EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst
 
 # ------------------------------------------------------------------------------
 # @eclass-pkg_setup
@@ -90,6 +90,23 @@ java-pkg-2_src_compile() {
 			eant ${antflags} -f "${EANT_BUILD_XML}" ${EANT_EXTRA_ARGS} "${@}"
 	else
 		echo "${FUNCNAME}: ${EANT_BUILD_XML} not found so nothing to do."
+	fi
+}
+
+
+java-pkg-2_pkg_preinst() {
+	if is-java-strict; then
+		if has_version dev-java/java-dep-check; then
+			local output=$(GENTOO_VM= java-dep-check --image "${ED}" "${JAVA_PKG_ENV}")
+			if [[ ${output} ]]; then
+				ewarn "Possibly unneeded dependencies found in package.env:"
+				for dep in ${output}; do
+					ewarn "\t${dep}"
+				done
+			fi
+		else
+			eerror "Install dev-java/java-dep-check for dependency checking"
+		fi
 	fi
 }
 

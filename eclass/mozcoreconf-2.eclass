@@ -1,11 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.5 2008/06/26 18:08:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.7 2008/07/19 16:56:19 armin76 Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
 
 inherit multilib flag-o-matic
+
+IUSE="${IUSE} custom-optimization"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
@@ -75,19 +77,25 @@ mozconfig_init() {
 	#
 	####################################
 
-	# Set optimization level based on CFLAGS
-	if is-flag -O0; then
-		mozconfig_annotate "from CFLAGS" --enable-optimize=-O0
-	elif [[ ${ARCH} == hppa ]]; then
-		mozconfig_annotate "more than -O0 causes segfaults on hppa" --enable-optimize=-O0
-	elif [[ ${ARCH} == ppc ]] && has_version '>=sys-libs/glibc-2.8'; then
-		mozconfig_annotate "more than -O1 segfaults on ppc with glibc-2.8" --enable-optimize=-O1
-	elif is-flag -O1; then
-		mozconfig_annotate "from CFLAGS" --enable-optimize=-O1
-	elif is-flag -Os; then
-		mozconfig_annotate "from CFLAGS" --enable-optimize=-Os
+	# Set optimization level
+	if use custom-optimization; then
+		# Set optimization level based on CFLAGS
+		if is-flag -O0; then
+			mozconfig_annotate "from CFLAGS" --enable-optimize=-O0
+		elif [[ ${ARCH} == hppa ]]; then
+			mozconfig_annotate "more than -O0 causes segfaults on hppa" --enable-optimize=-O0
+		elif [[ ${ARCH} == ppc ]] && has_version '>=sys-libs/glibc-2.8'; then
+			mozconfig_annotate "more than -O1 segfaults on ppc with glibc-2.8" --enable-optimize=-O1
+		elif is-flag -O1; then
+			mozconfig_annotate "from CFLAGS" --enable-optimize=-O1
+		elif is-flag -Os; then
+			mozconfig_annotate "from CFLAGS" --enable-optimize=-Os
+		else
+			mozconfig_annotate "Gentoo's default optimization" --enable-optimize=-O2
+		fi
 	else
-		mozconfig_annotate "mozilla fallback" --enable-optimize=-O2
+		# Enable Mozilla's default
+		mozconfig_annotate "mozilla default" --enable-optimize
 	fi
 
 	# Now strip optimization from CFLAGS so it doesn't end up in the
