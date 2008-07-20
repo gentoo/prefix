@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.17 2008/07/08 10:35:25 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.18 2008/07/19 17:04:31 darkside Exp $
+
+  19 Jul 2008; Jeremy Olexa <darkside@gentoo.org> Manifest:
+  Fix Manifest for =asymptote-1.41, distfile size should not be 0.
 
   08 Jul 2008; Andrey Grozin <grozin@gentoo.org> asymptote-1.43.ebuild:
   Adding dependence on dev-python/imaging, bug #209922
