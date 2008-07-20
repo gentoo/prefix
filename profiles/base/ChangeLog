@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.44 2008/07/04 20:57:30 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.45 2008/07/18 21:55:48 serkan Exp $
+
+  18 Jul 2008; Serkan Kaba <serkan@gentoo.org> package.use.mask:
+  Remove dev-java/log4j:jmx mask.
 
   04 Jul 2008; Thomas Anderson <gentoofan23@gentoo.org> package.use.mask:
   Mask ia32 USE flag for opera on all architectures but amd64 as we're
