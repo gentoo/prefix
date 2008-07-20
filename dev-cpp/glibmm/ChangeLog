@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.116 2008/07/10 15:12:31 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.117 2008/07/18 09:14:12 aballier Exp $
+
+  18 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  -files/glibmm-2.14.0-date.patch, glibmm-2.14.2.ebuild:
+  remove broken patch from 2.14.2, drop x86-fbsd keyword, we should go with
+  2.16.4, bug #199546.
 
   10 Jul 2008; Rémi Cardona <remi@gentoo.org> glibmm-2.8.4.ebuild,
   glibmm-2.14.2.ebuild, glibmm-2.16.0.ebuild, glibmm-2.16.1.ebuild,
