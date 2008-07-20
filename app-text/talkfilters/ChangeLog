@@ -1,6 +1,10 @@
 # ChangeLog for app-text/talkfilters
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.26 2007/11/09 21:15:13 grobian Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.27 2008/07/18 07:26:32 aballier Exp $
+
+  18 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  talkfilters-2.3.7.ebuild:
+  keyword ~x86-fbsd
 
   09 Nov 2007; Fabian Groffen <grobian@gentoo.org>
   talkfilters-2.3.4-r1.ebuild, talkfilters-2.3.7.ebuild:
