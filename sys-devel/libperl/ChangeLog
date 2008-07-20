@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.135 2008/05/16 19:20:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.136 2008/07/18 11:55:58 the_paya Exp $
+
+  18 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  files/libperl-5.8.8-fbsdhints.patch:
+  Updated fbsdhints patch, bug 225323.
 
   16 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   libperl-5.8.8-r2.ebuild:
