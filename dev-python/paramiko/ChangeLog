@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/paramiko
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.31 2008/02/15 16:58:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.32 2008/07/19 12:46:10 hawking Exp $
+
+*paramiko-1.7.4 (19 Jul 2008)
+
+  19 Jul 2008; Ali Polatel <hawking@gentoo.org> +paramiko-1.7.4.ebuild:
+  Version bump.
 
   15 Feb 2008; Jeroen Roovers <jer@gentoo.org> paramiko-1.7.2.ebuild:
   Stable for HPPA too.
