@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8827 2008/07/17 20:12:46 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8829 2008/07/19 22:40:08 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Diego Pettenò <flameeyes@gentoo.org> (20 Jul 2008)
+# Masked pending removal on August 20th, last release in 2004.
+# Use sys-auth/pam_ssh as a replacement.
+sys-auth/pam_ssh_agent
 
 # Jeremy Olexa <darkside@gentoo.org> (17 Jul 2008)
 # Old, broken version with odd SRC_URI. Use
@@ -165,19 +170,6 @@ games-board/glchess
 # Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
 # Please read http://my.opera.com/desktopteam/blog before using these snapshots
 =www-client/opera-9.52_pre*
-
-# Serkan Kaba <serkan@gentoo.org> (21 Jun 2008)
-# Masked since dev-java/sun-jmx sources
-# are no longer available. See bug #226381.
-# Can be removed after dev-java/sun-jmx-1.2.1-r2
-# is stabilized for amd64 ppc x86.
-=dev-java/sun-jmx-1.2.1-r2
-dev-java/jgroups
-=dev-util/jconfig-2.8-r2
-=dev-java/jcs-1.2.7.9*
-dev-java/hibernate
-dev-java/oscache
-dev-java/swarmcache
 
 # Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
 # Non-working version (#211327)

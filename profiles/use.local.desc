@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3634 2008/07/17 21:48:24 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3636 2008/07/18 20:23:24 serkan Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -322,6 +322,9 @@ app-shells/tcsh:catalogs - Adds support for NLS catalogs
 app-text/crm114:mew - Add support for using the mewdecode mime decoder.
 app-text/crm114:mimencode - Adds support for using the mimencode mime
 app-text/crm114:normalizemime - Add support for using the normalizemime
+app-text/enchant:aspell - Adds support for aspell spell checker
+app-text/enchant:hunspell - Adds support for hunspell spell checker
+app-text/enchant:zemberek - Adds support for Zemberek Turkish spell checker server
 app-text/evince:dvi - Enable the built-in DVI viewer for Evince
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer for Evince
 app-text/hyperestraier:mecab - Enable mecab support for Estraier
@@ -1700,6 +1703,7 @@ net-libs/webkit-gtk:pango - Use pango as fontbackend instead of freetype
 net-libs/webkit-gtk:soup - Use SOUP as backend instead of curl
 net-libs/webkit-gtk:svg-experimental - enable additional experimental svg extensions
 net-libs/webkit-gtk:xslt - enable support for XSLT
+net-libs/xulrunner:custom-optimization - Fine-tune custom compiler optimizations
 net-mail/cyrus-imapd:autocreate - Enable not supported (by upstream) patch from University of Athens for automatic creation of user mailboxes
 net-mail/cyrus-imapd:autosieve - Enable not supported (by upstream) patch from University of Athens for "on demand" creation of any folder requested by a sieve filter
 net-mail/cyrus-imapd:drac - Enable dynamic relay support in the cyrus imap server
@@ -2268,6 +2272,7 @@ www-client/elinks:finger - Enable support for the finger protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
 www-client/kazehakase:hyperestraier - enable hyperestraier support for full-text search in history.
 www-client/mozilla-firefox-bin:restrict-javascript - Pull in noscript extension to disable javascript globally, putting user fully in control of the sites he/she visits
+www-client/mozilla-firefox:custom-optimization - Fine-tune custom compiler optimizations
 www-client/mozilla-firefox:filepicker - Enable old gtkfilepicker from 1.0.x firefox
 www-client/mozilla-firefox:iceweasel - Enable iceweasel branding
 www-client/mozilla-firefox:mozdevelop - Enable features for web developers (e.g. Venkman)
