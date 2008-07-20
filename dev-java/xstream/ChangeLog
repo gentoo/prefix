@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/xstream
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.16 2008/04/27 20:03:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.17 2008/07/18 20:25:53 betelgeuse Exp $
+
+*xstream-1.2-r2 (18 Jul 2008)
+
+  18 Jul 2008; Petteri Räty <betelgeuse@gentoo.org> +xstream-1.2-r2.ebuild:
+  jmock-1.0 and commons-lang-2.1 are only needed by src_test which is now
+  enabled
 
   27 Apr 2008; Markus Meier <maekke@gentoo.org> xstream-1.2-r1.ebuild:
   amd64 stable, bug #211286
