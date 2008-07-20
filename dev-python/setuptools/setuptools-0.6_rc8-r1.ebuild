@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc8-r1.ebuild,v 1.5 2008/07/18 02:04:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc8-r1.ebuild,v 1.7 2008/07/18 17:48:31 coldwind Exp $
 
 EAPI="prefix"
 
