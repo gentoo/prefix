@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/Test-Warn
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Warn/ChangeLog,v 1.15 2007/11/10 14:51:23 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Warn/ChangeLog,v 1.17 2008/07/18 14:38:47 tove Exp $
+
+  18 Jul 2008; Torsten Veller <tove@gentoo.org> -Test-Warn-0.08.ebuild,
+  -Test-Warn-0.09.ebuild:
+  Cleaning
+
+*Test-Warn-0.11 (18 Jul 2008)
+
+  18 Jul 2008; Torsten Veller <tove@gentoo.org> +Test-Warn-0.11.ebuild:
+  Version bump
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> Test-Warn-0.10.ebuild:
   amd64 stable
