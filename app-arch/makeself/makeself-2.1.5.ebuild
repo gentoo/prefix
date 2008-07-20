@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-arch/makeself/makeself-2.1.5.ebuild,v 1.2 2008/05/22 02:02:56 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/makeself/makeself-2.1.5.ebuild,v 1.4 2008/07/19 14:22:02 jer Exp $
 
 EAPI="prefix"
 
