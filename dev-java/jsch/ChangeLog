@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/jsch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.66 2008/04/05 20:42:30 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.67 2008/07/18 21:59:10 betelgeuse Exp $
+
+*jsch-0.1.37-r1 (18 Jul 2008)
+
+  18 Jul 2008; Petteri Räty <betelgeuse@gentoo.org> +jsch-0.1.37-r1.ebuild:
+  zlib support wasn't being built so the jzlib dependency was useless. Now
+  it's controlled via the zlib use flag.
 
   05 Apr 2008; Vlastimil Babka <caster@gentoo.org> -jsch-0.1.34.ebuild:
   Version dump.
