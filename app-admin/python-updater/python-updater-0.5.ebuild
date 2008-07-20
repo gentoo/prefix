@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.5.ebuild,v 1.6 2008/07/13 18:50:51 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.5.ebuild,v 1.7 2008/07/18 13:23:17 tester Exp $
 
 EAPI="prefix"
 
