@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2-r1.ebuild,v 1.1 2008/06/28 08:54:08 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2-r1.ebuild,v 1.2 2008/07/18 16:40:12 wolf31o2 Exp $
 
 EAPI="prefix"
 
 inherit multilib
 
-DESCRIPTION="A parallel version of BZIP2"
+DESCRIPTION="parallel bzip2 (de)compressor using libbz2"
 HOMEPAGE="http://compression.ca/pbzip2/"
 SRC_URI="http://compression.ca/${PN}/${P}.tar.gz"
 
@@ -16,6 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="static"
 
 DEPEND="app-arch/bzip2"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
