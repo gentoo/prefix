@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Tree-DAG_Node
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Tree-DAG_Node/ChangeLog,v 1.11 2007/07/13 21:36:40 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Tree-DAG_Node/ChangeLog,v 1.12 2008/07/18 15:25:23 tove Exp $
+
+*Tree-DAG_Node-1.06 (18 Jul 2008)
+
+  18 Jul 2008; Torsten Veller <tove@gentoo.org> +Tree-DAG_Node-1.06.ebuild:
+  Version bump
 
   13 Jul 2007; Raúl Porcel <armin76@gentoo.org> Tree-DAG_Node-1.05.ebuild:
   x86 stable
