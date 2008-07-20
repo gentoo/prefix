@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.272 2008/07/06 02:10:58 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.273 2008/07/18 12:03:28 the_paya Exp $
+
+  18 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
+  files/perl-5.8.8-fbsdhints.patch:
+  Updated fbsdhints patch, bug 225323.
 
   05 Jul 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
   perl-5.8.8-r2.ebuild, perl-5.8.8-r3.ebuild, perl-5.8.8-r4.ebuild,
