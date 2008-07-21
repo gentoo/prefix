@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit eutils autotools x-modular
+inherit eutils x-modular
 
 DESCRIPTION="X.Org Xaw library"
 
