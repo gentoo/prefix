@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular autotools
+inherit x-modular
 
 DESCRIPTION="X.Org Xi library"
 
@@ -18,11 +18,6 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}
 	x11-proto/xproto
 	>=x11-proto/inputproto-1.4"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
 
 pkg_postinst() {
 	x-modular_pkg_postinst
