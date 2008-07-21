@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.10.ebuild,v 1.2 2008/06/11 18:06:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.10.ebuild,v 1.3 2008/07/20 10:19:10 loki_val Exp $
 
 EAPI="prefix 1"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -194,6 +194,9 @@ build_contrib_module() {
 
 src_compile() {
 	local myconf
+
+	#Fix for glibc-2.8 and ucred. Bug 228457.
+	append-flags -D_GNU_SOURCE
 
 	use debug && myconf="${myconf} $(use_enable debug)"
 
