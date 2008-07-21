@@ -162,7 +162,7 @@ DEPEND="${DEPEND}
 if [[ "${PN/util-macros}" = "${PN}" ]]; then
 	DEPEND="${DEPEND}
 		>=x11-misc/util-macros-0.99.2
-		|| ( >=sys-devel/binutils-2.16.1-r3 sys-devel/odcctools )"
+		|| ( >=sys-devel/binutils-2.16.1-r3 sys-devel/odcctools sys-devel/native-cctools )"
 fi
 
 RDEPEND="${RDEPEND}
@@ -281,12 +281,23 @@ x-modular_reconf_source() {
 		if [ -f "./configure.ac" ]
 		then
 			eautoreconf
+			return $?
 		fi
 	fi
 
-	# Joshua Baergen - October 23, 2005
-	# Fix shared lib issues on MIPS, FBSD, etc etc
-	elibtoolize
+	case ${CHOST} in
+	*-interix* | *-aix*)
+		# Need recent libtool for interix, aix.
+		# For performance reasons, do it where really required only.
+		# <haubi@gentoo.org> - July 21, 2008
+		eautoreconf
+		;;
+	*)
+		# Joshua Baergen - October 23, 2005
+		# Fix shared lib issues on MIPS, FBSD, etc etc
+		elibtoolize
+		;;
+	esac
 }
 
 # @FUNCTION: x-modular_src_unpack
