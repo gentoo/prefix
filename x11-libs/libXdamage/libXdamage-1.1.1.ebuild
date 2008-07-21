@@ -19,11 +19,6 @@ RDEPEND="x11-libs/libX11
 	x11-proto/xproto"
 DEPEND="${RDEPEND}"
 
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
-
 pkg_postinst() {
 	x-modular_pkg_postinst
 
