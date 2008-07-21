@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular autotools
+inherit x-modular
 
 DESCRIPTION="X.Org X11 library"
 
@@ -33,11 +33,6 @@ PATCHES="${FILESDIR}/libX11-1.1.3-xcb-locking.patch"
 
 # xorg really doesn't like xlocale disabled.
 # $(use_enable nls xlocale)
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no

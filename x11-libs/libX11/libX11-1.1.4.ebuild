@@ -32,11 +32,6 @@ CONFIGURE_OPTIONS="$(use_enable ipv6)
 # xorg really doesn't like xlocale disabled.
 # $(use_enable nls xlocale)
 
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
-
 x-modular_src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 	x-modular_src_configure
