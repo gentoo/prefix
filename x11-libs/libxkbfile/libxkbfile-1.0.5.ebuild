@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular autotools
+inherit x-modular
 
 DESCRIPTION="X.Org xkbfile library"
 
@@ -16,8 +16,3 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 RDEPEND="x11-libs/libX11
 	x11-proto/kbproto"
 DEPEND="${RDEPEND}"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
