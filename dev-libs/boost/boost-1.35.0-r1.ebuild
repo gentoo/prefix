@@ -101,7 +101,9 @@ generate_userconfig() {
 		compiler=darwin
 		compilerVersion=$(gcc-version)
 		compilerExecutable=$(tc-getCXX)
-		append-ldflags -ldl
+		# we need to add the prefix, and in two cases this exceeds, so prepare
+		# for the largest possible space allocation
+		append-ldflags -Wl,-headerpad_max_install_names
 	else
 		compiler=gcc
 		compilerVersion=$(gcc-version)
@@ -234,28 +236,30 @@ src_install () {
 	# DESTROOT, dynamic libraries on Darwin end messed up, referencing the
 	# DESTROOT instread of the actual EPREFIX.  There is no way out of here
 	# but to do it the dirty way of manually setting the right install_names.
-	# For AIX we might have to do the same trick, if we ever end up here on AIX
-	case ${CHOST} in
-		*-darwin*)
-			for d in ${ED}usr/lib/*.dylib ; do
-				if [[ -f ${d} ]] ; then
-					# fix the "self reference"
-					install_name_tool -id "/${d#${D}}" "${d}"
-					# fix references to other libs
-					refs=$(otool -L "${d}" | \
-						sed -e '1d' -e 's/^\t//' | \
-						grep bin.v2 | \
-						cut -f1 -d' ')
-					for r in ${refs} ; do
-						install_name_tool -change \
-							"${r}" \
-							"${EPREFIX}/usr/lib/$(basename "${r}")" \
-							"${d}"
-					done
-				fi
-			done
-		;;
-	esac
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		einfo "Working around completely broken build-system(tm)"
+		for d in "${ED}"usr/lib/*.dylib ; do
+			if [[ -f ${d} ]] ; then
+				# fix the "soname"
+				ebegin "  correcting install_name of ${d#${ED}}"
+				install_name_tool -id "/${d#${D}}" "${d}"
+				eend $?
+				# fix references to other libs
+				refs=$(otool -XL "${d}" | \
+					sed -e '1d' -e 's/^\t//' | \
+					grep "^libboost_" | \
+					cut -f1 -d' ')
+				for r in ${refs} ; do
+					ebegin "    correcting reference to ${r}"
+					install_name_tool -change \
+						"${r}" \
+						"${EPREFIX}/usr/lib/${r}" \
+						"${d}"
+					eend $?
+				done
+			fi
+		done
+	fi
 }
 
 src_test() {
