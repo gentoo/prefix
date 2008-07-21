@@ -18,9 +18,3 @@ RDEPEND="x11-libs/libX11
 	x11-proto/videoproto
 	x11-proto/xproto"
 DEPEND="${RDEPEND}"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
-
