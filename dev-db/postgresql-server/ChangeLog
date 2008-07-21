@@ -1,0 +1,214 @@
+# ChangeLog for dev-db/postgresql-server
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.8 2008/06/14 11:49:54 dev-zero Exp $
+
+*postgresql-server-8.3.3 (14 Jun 2008)
+*postgresql-server-8.2.9 (14 Jun 2008)
+*postgresql-server-8.1.13 (14 Jun 2008)
+*postgresql-server-8.0.17 (14 Jun 2008)
+*postgresql-server-7.4.21 (14 Jun 2008)
+
+  14 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql-7.4.21-autoconf.patch,
+  +files/postgresql-8.0.15-common.patch, files/postgresql-8.0-common.patch,
+  +files/postgresql-8.3.1-server.patch, files/postgresql-8.3-server.patch,
+  +postgresql-server-7.4.21.ebuild, postgresql-server-8.0.15.ebuild,
+  +postgresql-server-8.0.17.ebuild, +postgresql-server-8.1.13.ebuild,
+  postgresql-server-8.2.7.ebuild, +postgresql-server-8.2.9.ebuild,
+  postgresql-server-8.3.1.ebuild, +postgresql-server-8.3.3.ebuild:
+  Changed home-path for the postgresql from /var/lib to /var/lib/postgresql
+  (bug #177085). Fixed elog for the location of postgresql.conf (bug
+  #194701). Change to not install the html-docs since they're provided by
+  postgresql-docs (bug #225629).
+
+  04 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.7.ebuild, postgresql-server-8.3.1.ebuild:
+  Added sys-devel/flex as a dependency (bug #221375 thanks to Flameeyes)
+
+  04 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.7.ebuild, postgresql-server-8.3.1.ebuild:
+  Fixed bug #223189 (thanks to Jose Quinteiro)
+
+  20 May 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql-8.3-server.patch:
+  Updated patch to directly define -lossp-uuid in contrib/uuid/Makefile
+  since Makefile.global installed by postgresql-base defines it as empty
+  (bug #219232)
+
+  19 May 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-8.3.1.ebuild:
+  Keyworded for all archs having postgresql keyworded and have ossp-uuid
+  keyworded
+
+  13 May 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql.init-7.3, files/postgresql.init-7.4,
+  files/postgresql.init-8.0, files/postgresql.init-8.1,
+  files/postgresql.init-8.2, files/postgresql.init-8.3:
+  Added workaround to init.d-files to correctly detect an already running
+  server...
+
+  19 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql.init-7.3, files/postgresql.init-7.4,
+  files/postgresql.init-8.0, files/postgresql.init-8.1,
+  files/postgresql.init-8.2, files/postgresql.init-8.3,
+  files/postgresql-8.3-server.patch:
+  Updated patch for 8.3 (accidentally disabled tsearch2, thanks to Elvis
+  Pranskevichus). Corrected a bug in init.d scripts.
+
+*postgresql-server-8.3.1 (15 Apr 2008)
+*postgresql-server-8.2.7 (15 Apr 2008)
+*postgresql-server-8.1.11 (15 Apr 2008)
+*postgresql-server-8.0.15 (15 Apr 2008)
+*postgresql-server-7.4.19 (15 Apr 2008)
+*postgresql-server-7.3.21 (15 Apr 2008)
+
+  15 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/postgresql.conf-7.3, +files/postgresql.init-7.3,
+  +files/postgresql-7.3.21-autoconf.patch,
+  +files/postgresql-7.3-cubeparse.patch,
+  +files/postgresql-7.3-regress.patch, +files/postgresql-7.3-server.patch,
+  +files/postgresql.conf-7.4, +files/postgresql.init-7.4,
+  +files/postgresql-7.4.19-autoconf.patch,
+  +files/postgresql-7.4-regress.patch, +files/postgresql-7.4-server.patch,
+  +files/postgresql-7.4-vacuum-delay.patch, +files/postgresql.conf-8.0,
+  +files/postgresql.init-8.0, +files/postgresql-8.0-common.patch,
+  +files/postgresql-8.0-server.patch, +files/postgresql.conf-8.1,
+  +files/postgresql.init-8.1, +files/postgresql-8.1-common.patch,
+  +files/postgresql-8.1-server.patch, +files/postgresql.conf-8.2,
+  +files/postgresql.init-8.2, +files/postgresql-8.2-common.patch,
+  +files/postgresql-8.2-server.patch, +files/postgresql.conf-8.3,
+  +files/postgresql.init-8.3, +files/postgresql-8.3-common.patch,
+  +files/postgresql-8.3-server.patch, +metadata.xml,
+  +postgresql-server-7.3.21.ebuild, +postgresql-server-7.4.19.ebuild,
+  +postgresql-server-8.0.15.ebuild, +postgresql-server-8.1.11.ebuild,
+  +postgresql-server-8.2.7.ebuild, +postgresql-server-8.3.1.ebuild:
+  Moved into the tree. Thanks to Michael Krelin (polyonymous).
+
+  10 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.7.ebuild, postgresql-server-8.3.1.ebuild:
+  slot-files should be kept in /etc/eselect/postgresql/slots as from now.
+  Added workaround for paludis for /var/run/postgresql/.keep collision.
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-8.3.1.ebuild:
+  Re-added keywords ~alpha ~hppa ~ia64 ~ppc64 ~sparc (since ossp-uuid has been
+  keyworded).
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.7.ebuild, postgresql-server-8.3.1.ebuild:
+  Removed pkg_setup check whether there's an older database cluster installed
+  because it's pointless now that we have slotting available. Added some more
+  einfo/ewarns to inform the user how to change the database cluster location.
+
+  07 Apr 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql.conf-7.3, postgresql-server-7.3.21.ebuild,
+  files/postgresql-7.3-server.patch, files/postgresql.conf-7.4,
+  postgresql-server-7.4.19.ebuild, files/postgresql-7.4-server.patch,
+  files/postgresql.conf-8.0, postgresql-server-8.0.15.ebuild,
+  files/postgresql-8.0-server.patch, files/postgresql.conf-8.1,
+  postgresql-server-8.1.11.ebuild, files/postgresql-8.1-server.patch,
+  files/postgresql.conf-8.2, postgresql-server-8.2.7.ebuild,
+  files/postgresql-8.2-server.patch, files/postgresql.conf-8.3,
+  postgresql-server-8.3.1.ebuild, files/postgresql-8.3-server.patch:
+  Removed old digest files. Refactored pkg_config: It now asks the user to
+  continue and the tests are much saner. Changed the default sockets directory
+  from /tmp to /var/run/postgresql and added warning for it.
+
+  30 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql.init-7.3, files/postgresql.conf-7.3,
+  files/postgresql.init-7.4, files/postgresql.conf-7.4,
+  files/postgresql.init-8.0, files/postgresql.conf-8.0,
+  files/postgresql.init-8.1, files/postgresql.conf-8.1,
+  files/postgresql.init-8.2, files/postgresql.conf-8.2,
+  files/postgresql.init-8.3, files/postgresql.conf-8.3:
+  Changed init.d/conf.d scripts to wait until the server started up/shut down
+  completely. WAIT_FOR_{DISCONNET,CLEANUP,QUIT} should now work independently
+  of the baselayout-version.
+
+  29 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-8.3.1.ebuild, files/postgresql-8.3-server.patch:
+  Added uuid USE-flag, dependency and modified patch. Had to drop all keywords
+  besides ~amd64 and ~x86.
+
+  27 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-8.3.1.ebuild:
+  Will now use system's zoneinfo. Added $(use_with xml libxslt).
+
+  19 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -postgresql-server-8.2.6.ebuild, +postgresql-server-8.2.7.ebuild,
+  -postgresql-server-8.3.0.ebuild, +postgresql-server-8.3.1.ebuild:
+  Version bump.
+
+  15 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  files/postgresql-7.4-server.patch, postgresql-server-8.0.15.ebuild,
+  postgresql-server-8.1.11.ebuild, postgresql-server-8.2.6.ebuild,
+  postgresql-server-8.3.0.ebuild:
+  Fixed the patch for 7.4 (accidentally removed pgtcl-support even if
+  specified. Removed the 'test' USE flag. Removed stalled gnuconfig
+  inheritance. Added -lpq to the LIBS list for 7.4 since it doesn't build
+  otherwise.
+
+  11 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-8.0.15.ebuild, files/postgresql-8.3-server.patch:
+  Removed oid2name since installed by postgresql-base.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild:
+  Disabled horology test since it's too unreliable.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild:
+  Removed unused sed.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, files/postgresql-7.3-regress.patch,
+  postgresql-server-7.4.19.ebuild, files/postgresql-7.4-regress.patch,
+  postgresql-server-8.0.15.ebuild, files/postgresql-8.0-server.patch,
+  postgresql-server-8.1.11.ebuild, files/postgresql-8.1-server.patch,
+  postgresql-server-8.2.6.ebuild, files/postgresql-8.2-server.patch,
+  postgresql-server-8.3.0.ebuild, files/postgresql-8.3-server.patch:
+  A lot of /usr/lib -> /usr/ fixes. Removed chown and 'su -' lines from the
+  patches since it makes tests fail when using paludis and a sane workaround
+  is not possible atm.
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild:
+  Changed some more dependencies on postgresql-libs to postgresql-base
+
+  10 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.6.ebuild, postgresql-server-8.3.0.ebuild,
+  +metadata.xml:
+  Changed dependency in 7.3 for new postgresql-base package. Added metadata.xml.
+
+  07 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.19.ebuild,
+  postgresql-server-8.0.15.ebuild, postgresql-server-8.1.11.ebuild,
+  postgresql-server-8.2.6.ebuild, -postgresql-server-8.3_rc1.ebuild,
+  +postgresql-server-8.3.0.ebuild:
+  Version bump to final 8.3.0. Changed dependencies to match postgresql-base
+  (will likely break people's update scripts since we now block libpq.
+  Transition will be: 1.put virtual/postgresql-{server,base} in the tree and
+  let them depend on ||(dev-db/libpq dev-db/postgresql-libs) (respective
+  dev-db/postgresql and postgresql-server), 2. change all ebuilds in the tree
+  to depend on virtual/..., 3. people only have to unmerge libpq and
+  postgresql and merge dev-db/postgresql-{base,server} with _no_
+  revdep-rebuild run needed.
+
+  20 Mar 2007; Tiziano Müller <dev-zero@gentoo.org>
+  postgresql-server-7.3.18.ebuild, postgresql-server-7.4.16.ebuild,
+  postgresql-server-8.0.12.ebuild, postgresql-server-8.1.8.ebuild,
+  postgresql-server-8.2.3.ebuild:
+  Added postgresql-docs dependency via doc-USE-flag in PDEPEND.
+
