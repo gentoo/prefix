@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.333 2008/07/07 21:34:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.334 2008/07/20 05:59:25 dirtyepic Exp $
+
+  20 Jul 2008; Ryan Hill <dirtyepic@gentoo.org> binutils-2.18-r3.ebuild:
+  Bump patchset for bug #194949.
 
   07 Jul 2008; Markus Meier <maekke@gentoo.org> binutils-2.18-r3.ebuild:
   amd64 stable, bug #230593
