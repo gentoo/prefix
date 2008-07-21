@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular flag-o-matic autotools
+inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xpm library"
 
@@ -18,11 +18,6 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libXext"
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
 
 src_compile() {
 	# the gettext configure check and code in sxpm are incorrect; they assume
