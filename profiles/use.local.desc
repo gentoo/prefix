@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3636 2008/07/18 20:23:24 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3637 2008/07/20 10:26:10 dertobi123 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1535,6 +1535,7 @@ net-dns/avahi:mdnsresponder-compat - Enable compat libraries for mDNSResponder
 net-dns/bind:bind-mysql - enables mysql support for bind (non-dlz)
 net-dns/bind:dlz - enables dynamic loaded zones, 3rd party extension
 net-dns/bind:resolvconf - enable support for net-dns/resolvconf
+net-dns/bind:sdb-ldap - Enables ldap-sdb backend
 net-dns/bind:urandom - Use /dev/urandom instead of /dev/random
 net-dns/djbdns:aliaschain - enables a fix for the truncation of alias chains
 net-dns/djbdns:cnamefix - changes the CNAME behavior of dnscache
