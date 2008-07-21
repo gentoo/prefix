@@ -36,8 +36,8 @@ pkg_setup() {
 }
 
 src_unpack() {
+	PATCHES=(
+		"${FILESDIR}"/${P}-darwin.patch
+	)
 	x-modular_src_unpack
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin.patch
-	eautoreconf
 }
