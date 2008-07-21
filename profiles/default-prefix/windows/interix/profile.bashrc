@@ -62,14 +62,22 @@ interix_find_removed_slot() {
 
 interix_prepare_file() {
 	local failed=0
-	my_mv=mv
+	if [[ ${PN} == libiconv ]]; then
+		# when moving around libiconv, the prefix' coreutils will
+		# be damaged, so we really need to use the systems ones.
+		/bin/cp -p "${1}" "${1}.new" || failed=1
+		/bin/mv "${1}" "${2}" || failed=1
+		/bin/mv "${1}.new" "${1}" || failed=1
+	else
+		my_mv=mv
 
-	[[ "${1}" == */mv ]] && my_mv="${1}.new"
-	[[ -f "${1}.new" ]] && rm -f "${1}.new"
+		[[ "${1}" == */mv ]] && my_mv="${1}.new"
+		[[ -f "${1}.new" ]] && rm -f "${1}.new"
 
-	cp -p "${1}" "${1}.new" || failed=1
-	${my_mv} "${1}" "${2}" || failed=1
-	${my_mv} "${1}.new" "${1}" || failed=1
+		cp -p "${1}" "${1}.new" || failed=1
+		${my_mv} "${1}" "${2}" || failed=1
+		${my_mv} "${1}.new" "${1}" || failed=1
+	fi
 
 	echo $failed
 }
@@ -91,7 +99,7 @@ post_pkg_preinst() {
 			|| echo "${rmstem}" >> "${removedlist}"
 
 		local n=$(interix_find_removed_slot ${ROOT}${rmstem})
-		ebegin "backing up text file ${ROOT}${f} (${n})"
+		ebegin "preparing ${ROOT}${f} for merge (${n})"
 		eend $(interix_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
 	done
 }
