@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.1_p1.ebuild,v 1.10 2007/08/25 14:33:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.1_p1.ebuild,v 1.11 2008/07/20 09:40:55 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -22,15 +22,15 @@ IUSE="idn ipv6"
 DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv ) )"
 
 src_unpack() {
-	unpack "${A}" || die
+	unpack ${A} || die
 	cd "${S}" || die
 
 	use idn && {
 		# BIND 9.4.0 doesn't have this patch
 		# epatch ${S}/contrib/idn/idnkit-1.0-src/patch/bind9/bind-${PV}-patch
 
-		cd ${S}/contrib/idn/idnkit-1.0-src
-		epatch ${FILESDIR}/${PN}-configure.patch
+		cd "${S}"/contrib/idn/idnkit-1.0-src
+		epatch "${FILESDIR}"/${PN}-configure.patch
 		cd -
 	}
 
@@ -50,20 +50,20 @@ src_compile() {
 
 	econf ${myconf} || die "Configure failed"
 
-	cd ${S}/lib
+	cd "${S}"/lib
 	emake -j1 || die "make failed in /lib"
 
-	cd ${S}/bin/dig
+	cd "${S}"/bin/dig
 	emake -j1 || die "make failed in /bin/dig"
 
-	cd ${S}/lib/lwres/
+	cd "${S}"/lib/lwres/
 	emake -j1 || die "make failed in /lib/lwres"
 
-	cd ${S}/bin/nsupdate/
+	cd "${S}"/bin/nsupdate/
 	emake -j1 || die "make failed in /bin/nsupdate"
 
 	use idn && {
-		cd ${S}/contrib/idn/idnkit-1.0-src
+		cd "${S}"/contrib/idn/idnkit-1.0-src
 		local myconf=
 		has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
 		econf ${myconf} || die "idn econf failed"
@@ -74,11 +74,11 @@ src_compile() {
 src_install() {
 	dodoc README CHANGES FAQ
 
-	cd ${S}/bin/dig
+	cd "${S}"/bin/dig
 	dobin dig host nslookup || die
 	doman dig.1 host.1 nslookup.1 || die
 
-	cd ${S}/bin/nsupdate
+	cd "${S}"/bin/nsupdate
 	dobin nsupdate || die
 	doman nsupdate.8 || die
 	dohtml nsupdate.html || die
