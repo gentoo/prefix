@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular flag-o-matic autotools
+inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xfont library"
 
@@ -28,11 +28,6 @@ CONFIGURE_OPTIONS="$(use_enable ipv6)
 PATCHES="
 	${FILESDIR}/0001-Fix-for-CVE-2008-0006-PCF-Font-parser-buffer-overf.patch
 	"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
 
 pkg_setup() {
 	# No such function yet
