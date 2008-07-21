@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.45 2008/07/18 21:55:48 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.46 2008/07/20 05:57:36 serkan Exp $
+
+  20 Jul 2008; Serkan Kaba <serkan@gentoo.org> package.use.mask:
+  Add app-text/enchant:zemberek mask. Java is not supported in most of the
+  arches enchant is keyworded.
 
   18 Jul 2008; Serkan Kaba <serkan@gentoo.org> package.use.mask:
   Remove dev-java/log4j:jmx mask.
