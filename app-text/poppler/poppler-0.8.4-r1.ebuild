@@ -29,12 +29,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.8.3-interix.patch
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
 	epatch "${FILESDIR}"/${PN}-0.8.3-page-init.patch
 }
 
