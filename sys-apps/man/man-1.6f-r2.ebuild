@@ -72,6 +72,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/man-1.6f-echo.patch
 	eprefixify "${S}"/src/man.c
 
+	# don't use built-in versions of bcopy and bzero if _ALL_SOURCE is deinfed
+	# on interix, since they have conflicting definitions with system headers.
+	epatch "${FILESDIR}"/${P}-interix-all_source.patch
+
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	if use prefix ; then
