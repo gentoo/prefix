@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular flag-o-matic autotools
+inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xt library"
 
@@ -27,11 +27,6 @@ pkg_setup() {
 	filter-flags -Wl,-Bdirect
 	filter-ldflags -Bdirect
 	filter-ldflags -Wl,-Bdirect
-}
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
 }
 
 src_compile() {
