@@ -123,7 +123,7 @@ if [[ "${ANT_TASKS}" == "all" ]]; then
 		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks/*
 	fi
 	if [[ -d "@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant/tasks-1.7.1 ]]; then
-		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks-1.7.0/*
+		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks-1.7.1/*
 	fi
 # if set to "none", make ANT_TASKS empty list
 elif [[ "${ANT_TASKS}" == "none" ]]; then
