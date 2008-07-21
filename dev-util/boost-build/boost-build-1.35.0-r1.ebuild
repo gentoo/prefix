@@ -28,6 +28,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PV}-fix_broken_icu_build.patch"
 
+	epatch "${FILESDIR}"/${PV}-darwin-sanitise.patch
+
 	# Remove stripping option
 	cd "${S}/jam/src"
 	sed -i \
