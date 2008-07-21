@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular autotools
+inherit x-modular
 
 DESCRIPTION="X.Org fontenc library"
 
@@ -18,8 +18,3 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
 CONFIGURE_OPTIONS="--with-encodingsdir=/usr/share/fonts/encodings"
-
-src_unpack() {
-	x-modular_src_unpack
-	eautoreconf # need new libtool for interix
-}
