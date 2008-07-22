@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.126 2008/07/12 06:36:21 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.128 2008/07/21 12:33:36 aballier Exp $
+
+  21 Jul 2008; Alexis Ballier <aballier@gentoo.org> erlang-12.2.3.ebuild:
+  keyword ~x86-fbsd
+
+  21 Jul 2008; Christian Faulhammer <opfer@gentoo.org>
+  +files/erlang-12.2.3-gethostbyname.patch, erlang-12.2.3.ebuild:
+  fix building on Gentoo/FreeBSD
 
   12 Jul 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.3.ebuild:
   stable x86, bug 231553

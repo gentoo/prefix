@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3.ebuild,v 1.6 2008/07/12 06:36:21 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3.ebuild,v 1.8 2008/07/21 12:33:36 aballier Exp $
 
 EAPI="prefix"
 
@@ -51,6 +51,10 @@ src_unpack() {
 
 	# fixes bug 226063, reported and accepted upstream for R12B-4
 	epatch "${FILESDIR}"/${P}-glibc28.patch
+
+	# Fix build on Gentoo/FreeBSD, upstream once accepted it but restored previous behaviour
+	# because of failures on vanilla BSD
+	epatch "${FILESDIR}"/${P}-gethostbyname.patch
 
 	# make sure we only link ssl dynamically
 	# will not be integrated by upstream for various reasons
