@@ -7,7 +7,7 @@
 +	SunOS)
 +		SONAME_SUFFIX=".so"
 +		function all_missing_libs_f () {
-+			echo $(ldd "$1" 2>/dev/null | sort -u | sed -n 's/	\(.*\) =>	 (file not found)/\1/p')
++			echo $(ldd "$1" 2>/dev/null | sed -n 's/	\([^()]*\)\( (.*) \| \)=>	 (\(file\|version\) not found)/\1/p' | sort -u)
 +		}
 +		function ldd_f () {
 +			ldd "$1"
