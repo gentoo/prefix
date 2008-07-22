@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/cmus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.18 2008/04/28 22:54:17 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.19 2008/07/21 06:27:28 opfer Exp $
+
+  21 Jul 2008; Christian Faulhammer <opfer@gentoo.org> metadata.xml:
+  sound will maintain this
 
   28 Apr 2008; Christian Faulhammer <opfer@gentoo.org>
   +files/cmus-2.2.0-new-ffmpeg.patch, cmus-2.2.0.ebuild:
