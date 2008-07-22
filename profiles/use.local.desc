@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3637 2008/07/20 10:26:10 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3638 2008/07/21 18:46:15 ikelos Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -78,6 +78,9 @@ app-crypt/heimdal:otp - Enable support for one-time passwords (OTP) in some heim
 app-crypt/heimdal:pkinit - Enable pkinit support to get the initial ticket
 app-crypt/johntheripper:custom-cflags - Enables custom cflags (not supported)
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
+app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
+app-crypt/ophcrack-tables:xpfast - Installs the fast free XP ophcrack tables
+app-crypt/ophcrack-tables:xpsmall - Installs the small free XP ophcrack tables
 app-crypt/seahorse:applet - Enable panel applet
 app-crypt/seahorse:epiphany - Enable epiphany extension
 app-crypt/seahorse:gedit - Enable the gedit plugin

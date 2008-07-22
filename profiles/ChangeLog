@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1699 2008/07/21 01:17:00 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1702 2008/07/21 18:46:15 ikelos Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  21 Jul 2008; Mike Auty <ikelos@gentoo.org> use.local.desc:
+  Add various use flags for the new ophcrack-tables ebuild.
+
+  21 Jul 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Added new upstream releases of sci-libs/*-atlas to package.mask 
+  since they require a bit more testing.
+
+  21 Jul 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Last rites for gnustep-apps/helpviewer and gnustep-apps/mylibrary
 
   21 Jul 2008; Hanno Boeck <hanno@gentoo.org> desc/linguas.desc:
   Add de_FR locale, tesseract has a language pack for it.
