@@ -11,7 +11,7 @@ inherit x-modular toolchain-funcs flag-o-matic
 
 DESCRIPTION="X.Org X11 library"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ipv6 xcb"
 RDEPEND=">=x11-libs/xtrans-1.0.1
 	x11-libs/libXau
@@ -31,6 +31,13 @@ CONFIGURE_OPTIONS="$(use_enable ipv6)
 	$(use_with xcb)"
 # xorg really doesn't like xlocale disabled.
 # $(use_enable nls xlocale)
+
+src_unpack() {
+	PATCHES=(
+		"${FILESDIR}"/${P}-aix-pthread.patch
+	)
+	x-modular_src_unpack
+}
 
 x-modular_src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
