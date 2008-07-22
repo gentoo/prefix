@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2008
 
-CVSURL=":pserver:anonymous@anoncvs.gentoo.org:/var/cvsroot"
-
 if [[ -z ${1} ]] ; then
 	cat <<-EOF
 usage: ecopy <category>/<package>
@@ -14,10 +12,7 @@ EOF
 	exit 0
 fi
 
-if ! type -P cvs > /dev/null ; then
-	echo "You need cvs for ecopy to work" > /dev/stderr
-	exit -1
-fi
+RSURL=http://prefix.gentooexperimental.org/rsync-gentoo-x86/
 
 if [[ *${1:0:1}* == "=" ]] ; then
 	ebuildgrep=${1#*\/}
@@ -29,9 +24,9 @@ fi
 mkdir -p $catpkg
 cd $catpkg
 
-cvs -z0 -d $CVSURL co -p gentoo-x86/$catpkg/ChangeLog > ChangeLog
-cvs -z0 -d $CVSURL co -p gentoo-x86/$catpkg/metadata.xml > metadata.xml
-cvs -z0 -d $CVSURL co -p gentoo-x86/$catpkg/Manifest > Manifest
+wget --no-glob "${RSURL}/$catpkg/ChangeLog"
+wget --no-glob "${RSURL}/$catpkg/metadata.xml"
+wget --no-glob "${RSURL}/$catpkg/Manifest"
 
 if [[ ${1:0:1} == "=" ]] ; then
 	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
@@ -52,12 +47,12 @@ P=${PF%-r[1-9]*}
 PN=${P%-*}
 PV=${P/${PN}-}
 
-cvs -z0 -d $CVSURL co -p gentoo-x86/$catpkg/$ebuild > $ebuild
+wget --no-glob "${RSURL}/$catpkg/$ebuild"
 
 source $ebuild
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
 	mkdir -p files
-	cvs -z0 -d $CVSURL co -p gentoo-x86/$catpkg/files/$i > $files/$i
+	wget --no-glob -P files "${RSURL}/$catpkg/files/$i"
 done
 eapify $ebuild
 ecleankw $ebuild
