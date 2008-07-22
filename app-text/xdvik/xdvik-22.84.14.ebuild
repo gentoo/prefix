@@ -78,12 +78,12 @@ src_compile() {
 		--enable-gf \
 		--with-system-t1lib \
 		--with-system-kpathsea \
-		--with-kpathsea-include=/usr/include/kpathsea \
+		--with-kpathsea-include="${EPREFIX}"/usr/include/kpathsea \
 		--with-xdvi-x-toolkit="${toolkit}" \
 		${myconf} || die "econf failed"
 
 	cd texk/xdvik
-	emake kpathsea_dir="/usr/include/kpathsea" texmf="${TEXMF_PATH}" || die
+	emake kpathsea_dir="${EPREFIX}/usr/include/kpathsea" texmf="${TEXMF_PATH}" || die
 	use emacs && elisp-compile xdvi-search.el
 }
 
