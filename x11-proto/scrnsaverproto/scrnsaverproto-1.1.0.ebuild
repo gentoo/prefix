@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org ScrnSaver protocol headers"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
