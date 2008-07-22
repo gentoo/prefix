@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.8.ebuild,v 1.3 2008/03/12 10:32:33 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.10.ebuild,v 1.1 2008/07/21 06:20:36 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	dobashcompletion "${FILESDIR}/${PN}-2.8.bash-completion"
+	dobashcompletion "${FILESDIR}/${PN}-2.10.bash-completion"
 
 	# That's not how we want it
 	rm -fr "${ED}/usr/share/doc"

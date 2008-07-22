@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/source-highlight
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.32 2008/04/26 20:31:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/ChangeLog,v 1.33 2008/07/21 06:20:36 dev-zero Exp $
+
+*source-highlight-2.10 (21 Jul 2008)
+
+  21 Jul 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -files/source-highlight-2.5-exuberant-ctags.diff,
+  -files/source-highlight-2.5.bash-completion,
+  +files/source-highlight-2.10.bash-completion,
+  -source-highlight-2.5.ebuild, -source-highlight-2.8.ebuild,
+  +source-highlight-2.10.ebuild:
+  Version bump (bug #232397, updated bash-completion file). Dropped old
+  versions.
 
   26 Apr 2008; Markus Meier <maekke@gentoo.org> source-highlight-2.9.ebuild:
   x86 stable, bug #217413
