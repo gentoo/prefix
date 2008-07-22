@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.1.ebuild,v 1.6 2008/06/04 13:09:55 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.0.ebuild,v 1.1 2008/07/21 13:42:28 markusle Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs fortran multilib
 
-PATCH_V="3.7.39"
+PATCH_V="3.9.0"
 
 DESCRIPTION="Automatically Tuned Linear Algebra Software BLAS implementation"
 HOMEPAGE="http://math-atlas.sourceforge.net/"
@@ -45,7 +45,7 @@ pkg_setup() {
 	ewarn "performance of the resulting libraries will be degraded"
 	ewarn "considerably."
 	echo
-	ewarn "For users of <=gcc-4.1.1 only:"
+	ewarn "For users of <=gcc-4.1 only:"
 	ewarn "If you experience failing SANITY tests during"
 	ewarn "atlas' compile please try passing -mfpmath=387; this"
 	ewarn "option might also result in much better performance"
@@ -62,7 +62,7 @@ src_unpack() {
 	epatch "${DISTDIR}"/${MY_PN}-${PATCH_V}-shared-libs.patch.bz2
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
 	epatch "${FILESDIR}"/${MY_PN}-${PATCH_V}-decl-fix.patch
-	epatch "${FILESDIR}"/${P}-gemm-fix.patch
+	epatch "${FILESDIR}"/${MY_PN}-${PV}-upstream-fixes.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
@@ -81,13 +81,22 @@ src_unpack() {
 		archselect="-b 32"
 	fi
 
+	# unfortunately, atlas-3.9.0 chokes when passed
+	# x86_64-pc-linux-gnu-gcc and friends instead of
+	# plain gcc. Hence, we'll have to workaround this
+	# until it is fixed by upstream
+	local c_compiler=$(tc-getCC)
+	if [[ "${c_compiler}" == *gcc* ]]; then
+		c_compiler="gcc"
+	fi
+
 	../configure \
-		--cc="$(tc-getCC)" \
+		--cc="${c_compiler}" \
 		--cflags="${CFLAGS}" \
 		--prefix="${ED}/${DESTTREE}" \
 		--libdir="${ED}/${DESTTREE}"/$(get_libdir)/atlas \
 		--incdir="${ED}/${DESTTREE}"/include \
-		-C ac "$(tc-getCC)" -F ac "${CFLAGS}" \
+		-C ac "${c_compiler}" -F ac "${CFLAGS}" \
 		-C if ${FORTRANC} -F if "${FFLAGS:-'-O2'}" \
 		-Ss pmake "\$(MAKE) ${MAKEOPTS}" \
 		-Si cputhrchk 0 ${archselect} \

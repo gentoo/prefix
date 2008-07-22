@@ -1,6 +1,16 @@
 # ChangeLog for sci-libs/blas-atlas
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.80 2008/06/07 16:42:26 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.81 2008/07/21 13:42:28 markusle Exp $
+
+*blas-atlas-3.9.0 (20 Jul 2008)
+
+  20 Jul 2008; Markus Dittrich <markusle@gentoo.org>
+  -files/blas-atlas-3.8.1-gemm-fix.patch,
+  -files/blas-atlas-3.8.1-gemm-perf-fix.patch,
+  +files/atlas-3.9.0-decl-fix.patch,
+  +files/atlas-3.9.0-upstream-fixes.patch, -blas-atlas-3.8.1.ebuild,
+  -blas-atlas-3.8.1-r1.ebuild, +blas-atlas-3.9.0.ebuild:
+  Version bump and removed old ebuilds.
 
 *blas-atlas-3.8.2 (07 Jun 2008)
 
