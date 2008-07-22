@@ -1,6 +1,17 @@
 # ChangeLog for dev-java/eclipse-ecj
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.41 2008/04/07 01:21:16 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.43 2008/07/21 22:07:25 betelgeuse Exp $
+
+*eclipse-ecj-3.3.0-r3 (21 Jul 2008)
+*eclipse-ecj-3.2.2-r1 (21 Jul 2008)
+
+  21 Jul 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +eclipse-ecj-3.2.2-r1.ebuild, +eclipse-ecj-3.3.0-r3.ebuild:
+  Add app-admin/eselect-ecj support.
+
+  21 Jul 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -eclipse-ecj-3.2.ebuild, -eclipse-ecj-3.3.0-r1.ebuild:
+  Remove old ebuilds.
 
   07 Apr 2008; Kenneth Prugh <ken69267@gentoo.org> eclipse-ecj-3.2.2.ebuild:
   amd64 stable, bug #212643
