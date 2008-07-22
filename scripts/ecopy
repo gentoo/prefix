@@ -14,6 +14,7 @@ fi
 
 RSURL=http://prefix.gentooexperimental.org/rsync-gentoo-x86/
 
+# Check to see if the first char is an "="
 if [[ *${1:0:1}* == "=" ]] ; then
 	ebuildgrep=${1#*\/}
 	#catpkg=${1%-*}
@@ -24,16 +25,20 @@ fi
 mkdir -p $catpkg
 cd $catpkg
 
-wget --no-glob "${RSURL}/$catpkg/ChangeLog"
-wget --no-glob "${RSURL}/$catpkg/metadata.xml"
-wget --no-glob "${RSURL}/$catpkg/Manifest"
+# Copy these so the Prefix tree matches the gentoo-x86 tree.
+wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
+wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
+wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
 
+# Get the ebuild name from the ChangLog
+# FIXME: Improve logic, some false results are generated.
 if [[ ${1:0:1} == "=" ]] ; then
 	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
 else
 	ebuild=$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
 fi
 
+# Error checking.
 if [[ -z "$ebuild" ]] ; then
 	echo "please specify a correct specific version"
 	[[ ${1:0:1} == "=" ]] \
@@ -42,20 +47,37 @@ if [[ -z "$ebuild" ]] ; then
 	exit -1
 fi
 
+# needed for sourcing ebuild and understanding ebuild specific vars.
 PF=${ebuild/.ebuild}
 P=${PF%-r[1-9]*}
 PN=${P%-*}
 PV=${P/${PN}-}
 
-wget --no-glob "${RSURL}/$catpkg/$ebuild"
+# Get the ebuild
+wget -nv --no-glob "${RSURL}/$catpkg/$ebuild"
 
-source $ebuild
+source $ebuild 2> /dev/null #get rid of "inherit: command not found" message.
+
+# Get the patches. Assumed that every patch has FILESDIR in the line. Good
+# assumption.
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
 	mkdir -p files
 	wget --no-glob -P files "${RSURL}/$catpkg/files/$i"
 done
-eapify $ebuild
-ecleankw $ebuild
+
+# Set explicit PATHs for scripts in the prefix tree so they don't need to be
+# copied to your PATH. IOW, you always want eapify & ecleankw to be ran.
+$EPREFIX/usr/portage/scripts/eapify $ebuild
+$EPREFIX/usr/portage/scripts/ecleankw $ebuild
 source "${EPREFIX:-$(portageq envvar EPREFIX)}"/etc/make.profile/make.defaults
-ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
-ebuild $ebuild digest
+
+# Force the user's keyword on the ebuild. Less work for the user.
+if ! type -P ekeyword > /dev/null ; then
+    echo
+    echo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually" > /dev/stderr
+    echo
+else
+    ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
+fi
+
+ebuild $ebuild digest #re-digest for changes made to the ebuild above
