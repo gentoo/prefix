@@ -13,6 +13,7 @@ EOF
 fi
 
 RSURL=http://prefix.gentooexperimental.org/rsync-gentoo-x86/
+EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
 # Check to see if the first char is an "="
 if [[ *${1:0:1}* == "=" ]] ; then
@@ -67,9 +68,9 @@ done
 
 # Set explicit PATHs for scripts in the prefix tree so they don't need to be
 # copied to your PATH. IOW, you always want eapify & ecleankw to be ran.
-$EPREFIX/usr/portage/scripts/eapify $ebuild
-$EPREFIX/usr/portage/scripts/ecleankw $ebuild
-source "${EPREFIX:-$(portageq envvar EPREFIX)}"/etc/make.profile/make.defaults
+"${EPREFIX}"/usr/portage/scripts/eapify $ebuild
+"${EPREFIX}"/usr/portage/scripts/ecleankw $ebuild
+source "${EPREFIX}"/etc/make.profile/make.defaults
 
 # Force the user's keyword on the ebuild. Less work for the user.
 if ! type -P ekeyword > /dev/null ; then
