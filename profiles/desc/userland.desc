@@ -7,5 +7,4 @@
 # Keep it sorted.
 
 BSD - USERLAND setting for systems using BSDish userland (FreeBSD OpenBSD NetBSD DragonFly)
-GNU - USERLAND setting for systems that use the GNU userland tools
-tools
+GNU - USERLAND setting for systems that use the GNU userland tools tools
