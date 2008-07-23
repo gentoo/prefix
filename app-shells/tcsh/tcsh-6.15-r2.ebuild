@@ -37,6 +37,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-6.14-makefile.patch # bug #151951
 	epatch "${FILESDIR}"/${MY_P}-normalize-command-fix.patch # bug #183754
 	epatch "${FILESDIR}"/${PN}-6.14-use-ncurses.patch
+	epatch "${FILESDIR}"/${MY_P}-interix.patch
 	eautoreconf
 
 	if use catalogs ; then
