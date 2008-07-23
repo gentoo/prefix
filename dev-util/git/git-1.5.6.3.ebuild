@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion vim-syntax"
 
 DEPEND="
@@ -62,7 +62,7 @@ pkg_setup() {
 # This is needed because for some obscure reasons future calls to make don't
 # pick up these exports if we export them in src_unpack()
 exportmakeopts() {
-	local myopts
+	local myopts="lib=$(get_libdir)"
 
 	if use mozsha1 ; then
 		myopts="${myopts} MOZILLA_SHA1=YesPlease"
@@ -80,7 +80,7 @@ exportmakeopts() {
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 	[[ ${CHOST} == *-solaris* ]] &&
 		myopts="${myopts} INSTALL=install TAR=tar"
-	use elibc_glibc || myopts="${myopts} NEEDS_LIBICONV=YesPlease ICONVDIR=${EPREFIX}/usr/$(get_libdir)"
+	use elibc_glibc || myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
@@ -123,7 +123,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr || \
+	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc || \
 		die "make failed"
 
 	if use emacs ; then
@@ -131,14 +131,15 @@ src_compile() {
 	fi
 	if use perl && use cgi ; then
 		emake ${MY_MAKEOPTS} \
-		DESTDIR="${ED}" \
-		prefix=/usr \
+		DESTDIR="${D}" \
+		prefix="${EPREFIX}"/usr \
+		sysconfdir="${EPREFIX}"/etc \
 		gitweb/gitweb.cgi || die "make gitweb/gitweb.cgi failed"
 	fi
 }
 
 src_install() {
-	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr install || die "make install failed"
+	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc install || die "make install failed"
 
 	doman man?/*
 
@@ -266,7 +267,7 @@ src_test() {
 	cd "${S}"
 	# Now run the tests
 	einfo "Start test run"
-	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
+	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc test || die "tests failed"
 }
 
 showpkgdeps() {
