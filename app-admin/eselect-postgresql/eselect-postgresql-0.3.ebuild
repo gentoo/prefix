@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Utility to change the default postgresql installation"
 HOMEPAGE="http://www.gentoo.org/"
@@ -16,6 +16,13 @@ IUSE=""
 
 RDEPEND="app-admin/eselect
 	!dev-db/libpq"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-prefix.patch"
+	eprefixify postgresql.eselect
+}
 
 src_install() {
 	keepdir /etc/eselect/postgresql
