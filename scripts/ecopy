@@ -62,7 +62,7 @@ source $ebuild 2> /dev/null #get rid of "inherit: command not found" message.
 # assumption.
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
 	mkdir -p files
-	wget --no-glob -P files "${RSURL}/$catpkg/files/$i"
+	wget -nv --no-glob -P files "${RSURL}/$catpkg/files/$i"
 done
 
 # Set explicit PATHs for scripts in the prefix tree so they don't need to be
