@@ -1,6 +1,10 @@
 # $Header: $
 
 # Markus Duft <mduft@gentoo.org> (24 Jul 2008)
+# Works on interix, and is required by gimp
+-=sys-devel/gettext-0.17
+
+# Markus Duft <mduft@gentoo.org> (24 Jul 2008)
 # This is the only version thats building and working on interix,
 # so we really want it, even if it still needs testing.
 -~dev-utils/cmake-2.6.0
