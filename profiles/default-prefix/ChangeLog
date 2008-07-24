@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jul 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  unmasked cmake 2.6.0 on interix
+
   21 Jul 2008; Markus Duft <mduft@gentoo.org> package.mask,
   windows/interix/profile.bashrc:
   reviewed interix profile.bashrc to solve issues with merging libiconv
