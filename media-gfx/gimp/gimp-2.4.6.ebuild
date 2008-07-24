@@ -92,18 +92,6 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# interix has a problem linking gimp, although everything is there.
-	# this is solved by first extracting all the private static libs and
-	# linking the objects, which works perfectly. nobody else wants this :)
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
-
-	eautomake
-}
-
-src_unpack() {
 	gnome2_src_unpack
 	epatch "${FILESDIR}/gimp-web-browser.patch"
 
@@ -111,7 +99,12 @@ src_unpack() {
 	# remove this with >= 2.5
 	use svg && epatch "${FILESDIR}/gimp-svg.diff"
 
-	eautoreconf
+	# interix has a problem linking gimp, although everything is there.
+	# this is solved by first extracting all the private static libs and
+	# linking the objects, which works perfectly. nobody else wants this :)
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
+
+	eautomake
 }
 
 src_compile() {
