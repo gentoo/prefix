@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-DEPEND=""
+DEPEND="x86-interix? ( >=sys-devel/gettext-0.16 )"
 RDEPEND=""
 
 src_compile() {
