@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit eutils x-modular
+inherit eutils x-modular autotools
 
 DESCRIPTION="X.Org Xaw library"
 
@@ -40,4 +40,6 @@ src_unpack() {
 		"${FILESDIR}"/${PN}-1.0.3-darwin.patch
 	)
 	x-modular_src_unpack
+	eautoreconf # eautoreconf gets ran by the eclass only if SNAPSHOT="yes", so
+				# we need it for prefix.
 }
