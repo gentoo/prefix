@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.23.ebuild,v 1.1 2008/04/02 11:26:55 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.23.ebuild,v 1.5 2008/07/24 15:59:36 jer Exp $
 
 EAPI="prefix"
 
