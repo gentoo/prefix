@@ -47,6 +47,7 @@ post_src_install() {
 	einfo "Preparing AIX libraries for merge..."
 	pushd "${D}" >/dev/null || die "Cannot cd to ${D}"
 	for liba in $(aixdll_find_unprepared .); do
+		/bin/file "${liba}" | /bin/grep ': archive' >/dev/null || return 0
 		liba=${liba#./}
 		einfo "preparing ${liba}"
 		aixdll_prepare_for_merge "${D}${liba}"
