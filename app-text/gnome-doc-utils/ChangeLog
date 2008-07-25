@@ -1,6 +1,26 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.108 2008/07/05 05:01:13 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.113 2008/07/24 15:47:35 armin76 Exp $
+
+  24 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  alpha/ia64/x86 stable wrt #232370
+
+  22 Jul 2008; Jeroen Roovers <jer@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  Stable for HPPA (bug #232370).
+
+  22 Jul 2008; Markus Rothe <corsair@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  Stable on ppc64; bug #232370
+
+  22 Jul 2008; Daniel Gryniewicz <dang@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  Marked stable on amd64 for bug #232370
+
+  22 Jul 2008; Ferris McCormick <fmccor@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild:
+  Sparc stable, Bug #232370 (related to python-2.5).
 
   05 Jul 2008; <ricmm@gentoo.org> gnome-doc-utils-0.10.3.ebuild:
   Drop to ~mips due to unstable deps
