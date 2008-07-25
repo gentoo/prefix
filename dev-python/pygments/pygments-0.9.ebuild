@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-0.9.ebuild,v 1.8 2008/07/22 04:31:35 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-0.9.ebuild,v 1.9 2008/07/23 17:36:04 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -53,4 +53,3 @@ src_install() {
 src_test() {
 	"${python}" tests/run.py || die "tests failed"
 }
-
