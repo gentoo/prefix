@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.4 2008/04/18 22:08:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.5 2008/07/22 08:42:41 aballier Exp $
 
 EAPI="prefix"
-
-WANT_AUTOMAKE="1.8"
 
 inherit eutils autotools
 
@@ -20,6 +18,7 @@ IUSE="3dnow nls sse"
 RDEPEND="media-libs/ladspa-sdk
 	>=sci-libs/fftw-3"
 DEPEND="${RDEPEND}
+	sys-devel/gettext
 	dev-util/pkgconfig"
 
 src_unpack() {
@@ -29,10 +28,14 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-pic.patch"
 	epatch "${FILESDIR}/${P}-plugindir.patch"
 	epatch "${FILESDIR}/${P}-riceitdown.patch"
+	epatch "${FILESDIR}/${P}-gettext.patch"
 
-	# This is needed to run autoreconf with newer autotools
-	sed -i -e 's:@MKINSTALLDIRS@:$(top_srcdir)/mkinstalldirs:' \
-		po/Makefile.in.in || die "mkinstalldirs sed failed"
+	# This is to update gettext macros, otherwise they are incompatible with
+	# recent libtools, bug #231767
+	autopoint -f || die
+
+	# it doesn't get updated otherwise
+	rm -f missing
 
 	eautoreconf
 	elibtoolize
