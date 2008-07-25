@@ -25,7 +25,7 @@ src_unpack() {
 
 src_compile() {
 	# i'm really out of ideas here...
-	[[ ${CHOST} == *-interix* ]] && append-ldflags -lintl
+	[[ ${CHOST} == *-interix* ]] && { use nls && append-ldflags -lintl; }
 
 	econf $(use_enable nls) $(use_enable ncurses) || die
 	emake || die
