@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r1.ebuild,v 1.2 2008/07/11 08:15:06 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r1.ebuild,v 1.3 2008/07/22 14:36:28 mueli Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ RDEPEND="!virtual/krb5
 	sys-libs/ss
 	tcl? ( dev-lang/tcl )"
 DEPEND="${RDEPEND}
-	doc? ( virtual/tetex )"
+	doc? ( virtual/latex-base )"
 
 S=${WORKDIR}/${MY_P}/src
 
@@ -109,5 +109,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "See /usr/share/doc/${PF}/html/krb5-admin/index.html for documentation."
+	elog "See /usr/share/doc/${PF}/html/krb5-admin.html for documentation."
 }
