@@ -159,6 +159,7 @@ src_unpack() {
 
 	# fix for interix.
 	epatch "${FILESDIR}"/${PN}-2.18-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf
 }
