@@ -5,4 +5,8 @@
 <maintainer>
 <email>maintainer-needed@gentoo.org</email>
 </maintainer>
+<use>
+<flag name='file'>add magic file support</flag>
+<flag name='neon'>include support for neon</flag>
+</use>
 </pkgmetadata>
