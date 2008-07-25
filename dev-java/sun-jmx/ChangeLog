@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/sun-jmx
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/ChangeLog,v 1.17 2008/07/21 18:42:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/ChangeLog,v 1.18 2008/07/22 19:31:30 corsair Exp $
+
+  22 Jul 2008; Markus Rothe <corsair@gentoo.org> sun-jmx-1.2.1-r3.ebuild:
+  Stable on ppc64; bug #232267
 
   21 Jul 2008; nixnut <nixnut@gentoo.org> sun-jmx-1.2.1-r3.ebuild:
   Stable on ppc wrt bug 232267
