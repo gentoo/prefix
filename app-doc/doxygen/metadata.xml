@@ -12,4 +12,7 @@
     IDL (Corba and Microsoft flavors) and to some extent PHP, C#, and D,
     as well as other languages (using additional helper tools).
 </longdescription>
+<use>
+	<flag name='nodot'>removes graphviz dependency, along with dot graphs</flag>
+</use>
 </pkgmetadata>
