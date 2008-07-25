@@ -1,10 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1702 2008/07/21 18:46:15 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1713 2008/07/24 16:48:49 mrness Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  24 Jul 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-proxy/privoxy-3.0.8 (#229049).
+
+  24 Jul 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Added new octave-3 core ebuild to package.mask for a bit more testing.
+
+  23 Jul 2008; Doug Goldstein <cardoe@gentoo.org> use.local.desc:
+  remove non-existant USE flag
+
+  23 Jul 2008; Fabian Groffen <grobian@gentoo.org> desc/userland.desc:
+  Remove Darwin userland
+
+  23 Jul 2008; Markus Dittrich <markusle@gentoo.org> use.local.desc:
+  Added sparse USE flag for upcoming sci-mathematics/octave-3.
+
+  23 Jul 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Extended masking of sci-libs/*-atlas to all of version 3.9.* .
+
+  22 Jul 2008; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add ssh USE flag for pambase.
+
+  22 Jul 2008; Markus Rothe <corsair@gentoo.org>
+  arch/powerpc/ppc64/package.use.mask:
+  unmask zemberek use flag for app-text/enchant in ppc64 profiles
+
+  22 Jul 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Unmask mail-mta/esmtp, masked versions no longer exists
+
+  22 Jul 2008; <chainsaw@gentoo.org> use.local.desc:
+  Add local USE-flag scrobbler for media-plugins/audacious-plugins.
+
+  22 Jul 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  xemacs-packages-sumo has been removed
 
   21 Jul 2008; Mike Auty <ikelos@gentoo.org> use.local.desc:
   Add various use flags for the new ophcrack-tables ebuild.
