@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lang/python"
@@ -42,6 +42,7 @@ src_install() {
 		x86-freebsd)  a=x86-fbsd;; # as long as we don't push patch upstream
 		sparc64-solaris) a=sparc-solaris;; # as long as it isn't upstream
 		x64-solaris)  a=x86-solaris;; # as long as it isn't upstream
+		ppc*-aix)     a=${a%-aix};; # as long as ppc*-linux defaults to ibm-jdk-bin
 		*-linux)      a=${a%-linux};;
 	esac
 
