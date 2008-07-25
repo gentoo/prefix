@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.310 2008/05/17 14:26:20 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.311 2008/07/23 15:03:20 flameeyes Exp $
+
+*openssh-5.0_p1-r2 (23 Jul 2008)
+
+  23 Jul 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +openssh-5.0_p1-r2.ebuild:
+  Add new revision that use pambase now that it's fully keyworded. Closes
+  bug #225141 by Davide Pesavento.
 
   17 May 2008; nixnut <nixnut@gentoo.org> openssh-4.7_p1-r20.ebuild:
   Added ~ppc wrt bug 210777
