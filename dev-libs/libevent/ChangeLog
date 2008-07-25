@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libevent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.82 2008/07/17 19:47:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.83 2008/07/24 10:37:10 coldwind Exp $
+
+  24 Jul 2008; Santiago M. Mola <coldwind@gentoo.org> libevent-1.4.4.ebuild:
+  amd64 stable wrt bug #231447
 
   17 Jul 2008; Markus Rothe <corsair@gentoo.org> libevent-1.4.4.ebuild:
   Stable on ppc64; bug #231447
