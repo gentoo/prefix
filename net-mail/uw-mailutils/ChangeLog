@@ -1,6 +1,14 @@
 # ChangeLog for net-mail/uw-mailutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.14 2007/08/02 17:34:12 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.15 2008/07/24 20:34:31 hoffie Exp $
+
+*uw-mailutils-2007b (24 Jul 2008)
+
+  24 Jul 2008; Christian Hoffmann <hoffie@gentoo.org>
+  +uw-mailutils-2007b.ebuild:
+  version bump (bug 153281), thanks to Target <target@targ.dyndns.org> for
+  ebuild submission and testing; also fixing quoting and license; thanks to
+  dertobi123 for approval for this commit
 
   02 Aug 2007; Roy Marples <uberlord@gentoo.org> uw-mailutils-2004g.ebuild:
   Fix compile on FreeBSD and add ~x86-fbsd keyword, #104760.
