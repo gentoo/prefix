@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.148 2008/05/24 00:34:54 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.149 2008/07/22 14:16:02 chainsaw Exp $
+
+*audacious-1.5.1-r1 (22 Jul 2008)
+
+  22 Jul 2008; <chainsaw@gentoo.org> +files/1.5.1-commandline-options.patch,
+  +audacious-1.5.1-r1.ebuild:
+  Revision bump. Upstream patch from Matti Hamalainen <ccr@tnsp.org> closes
+  bug #228365.
 
 *audacious-1.5.1 (24 May 2008)
 
