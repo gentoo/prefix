@@ -1,6 +1,13 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.93 2008/07/06 22:22:55 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.94 2008/07/22 14:16:03 chainsaw Exp $
+
+*audacious-plugins-1.5.1-r1 (22 Jul 2008)
+
+  22 Jul 2008; <chainsaw@gentoo.org> +files/1.5.1-missing-include.patch,
+  +audacious-plugins-1.5.1-r1.ebuild:
+  Revision bump. Add USE-flag for scrobbler plugin, closes bug #214588.
+  Patch from Ivan Iraci <ivanhoe@vfemail.net> closes bug #232418.
 
   06 Jul 2008; <chainsaw@gentoo.org> audacious-plugins-1.4.4.ebuild,
   audacious-plugins-1.4.5.ebuild, audacious-plugins-1.5.0.ebuild,
