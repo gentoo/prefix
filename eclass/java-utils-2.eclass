@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.111 2008/07/19 09:24:47 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.112 2008/07/22 21:27:23 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1944,7 +1944,10 @@ eant() {
 
 	if [[ ${cp} ]]; then
 		# It seems ant does not like single quotes around ${cp}
-		antflags="${antflags} -Dgentoo.classpath=\"${cp#:}\""
+		cp=${cp#:}
+		[[ ${EANT_GENTOO_CLASSPATH_EXTRA} ]] && \
+			cp="${cp}:${EANT_GENTOO_CLASSPATH_EXTRA}"
+		antflags="${antflags} -Dgentoo.classpath=\"${cp}\""
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
