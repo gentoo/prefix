@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.8.ebuild,v 1.1 2008/06/29 15:43:34 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.8-r1.ebuild,v 1.1 2008/07/24 05:04:42 tester Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,9 @@ src_unpack() {
 }
 
 src_compile() {
-	gst-plugins-good_src_configure ${@}
+	gst-plugins-good_src_configure \
+		--with-default-audiosink=autoaudiosink \
+		--with-default-visualizer=goom
 
 	gst-plugins10_find_plugin_dir
 	emake || die "compile failure"
