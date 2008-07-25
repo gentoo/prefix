@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.0.ebuild,v 1.1 2008/07/21 13:42:28 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.1.ebuild,v 1.1 2008/07/23 14:43:51 markusle Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,6 @@ src_unpack() {
 	epatch "${DISTDIR}"/${MY_PN}-${PATCH_V}-shared-libs.patch.bz2
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
 	epatch "${FILESDIR}"/${MY_PN}-${PATCH_V}-decl-fix.patch
-	epatch "${FILESDIR}"/${MY_PN}-${PV}-upstream-fixes.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
