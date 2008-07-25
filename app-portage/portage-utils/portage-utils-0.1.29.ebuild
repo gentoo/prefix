@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs eutils flag-o-matic
 
 DESCRIPTION="small and fast portage helper tools written in C"
 HOMEPAGE="http://www.gentoo.org/"
@@ -12,10 +12,10 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND=""
+DEPEND="ppc-aix? ( dev-libs/gnulib )"
 
 src_unpack() {
 	unpack ${A}
@@ -24,11 +24,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${P}-aix.patch
 	eprefixify main.c qlop.c
 }
 
 src_compile() {
 	tc-export CC
+	if [[ ${CHOST} == *-aix* ]]; then
+		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib -lgnu
+	fi
 	emake || die
 }
 
