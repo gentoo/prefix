@@ -1,6 +1,9 @@
 # ChangeLog for www-apps/trac
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.70 2008/07/18 08:49:48 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.71 2008/07/25 19:17:48 bluebird Exp $
+
+  25 Jul 2008; Friedrich Oslage <bluebird@gentoo.org> trac-0.11.ebuild:
+  Add ~sparc keyword, bug #232008
 
 *trac-0.10.5 (18 Jul 2008)
 
