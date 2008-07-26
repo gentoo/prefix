@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-2.4.1.ebuild,v 1.6 2008/07/07 04:47:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-2.4.1.ebuild,v 1.7 2008/07/25 19:39:24 suka Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 
 
 IUSE="binfilter cups dbus debug eds firefox gnome gstreamer gtk kde ldap mono odk opengl pam seamonkey xulrunner"
 
-MY_PV="2.4.1.6"
+MY_PV="2.4.1.8"
 PATCHLEVEL="OOH680"
 SRC="OOo_${PV}_src"
 MST="OOH680_m17"
@@ -227,7 +227,7 @@ src_unpack() {
 	unpack ooo-build-${MY_PV}.tar.gz
 
 	# Prefix patch
-	epatch "${FILESDIR}/ooo-build-${MY_PV}-prefix.patch"
+	epatch "${FILESDIR}/ooo-build-2.4.1.6-prefix.patch"
 
 	# Hackish workaround for overlong path problem, see bug #130837
 	mv "${S_OLD}" "${S}" || die
