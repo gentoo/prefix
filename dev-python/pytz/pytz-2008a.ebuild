@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/pytz/pytz-2008a.ebuild,v 1.1 2008/04/03 21:53:33 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/pytz-2008a.ebuild,v 1.2 2008/07/25 19:08:47 bluebird Exp $
 
 EAPI="prefix"
 
