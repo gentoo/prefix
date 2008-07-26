@@ -86,6 +86,9 @@ src_unpack() {
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
 
+	# remove non-prefix paths
+	epatch "${FILESDIR}"/${P}-prefix-sanitise.patch
+
 	AT_M4DIR=.  eautoreconf
 #	eautomake
 }
