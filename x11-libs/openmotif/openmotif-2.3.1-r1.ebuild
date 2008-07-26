@@ -91,8 +91,10 @@ src_unpack() {
 }
 
 src_compile() {
-	if [[ ${CHOST} == *-interix* ]]; then
-		append-ldflags -liconv
+	if use elibc_glibc; then
+		# configure script is messed up in libiconv detection (thinks it isn't
+		# necessary)
+		use unicode && append-ldflags -liconv
 	fi
 
 	# get around some LANG problems in make (#15119)
