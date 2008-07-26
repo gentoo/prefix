@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/kaffe/kaffe-1.1.7-r6.ebuild,v 1.1 2007/08/12 09:18:41 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/kaffe/kaffe-1.1.7-r6.ebuild,v 1.3 2008/07/25 21:58:35 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -57,7 +57,7 @@ QA_EXECSTACK_x86="opt/${P}/jre/lib/i386/libkaffevm-1.1.7.so"
 
 pkg_setup() {
 	if ! use gmp; then
-		ewarn "You have don't have the gmp use flag set."
+		ewarn "You don't have the gmp use flag set."
 		ewarn "Using gmp is the default upstream setting."
 	fi
 
@@ -136,11 +136,11 @@ src_install() {
 	dosym /usr/bin/fastjar /opt/${P}/bin
 
 	# Remove some files that collide with classpath
-	rm ${ED}/usr/share/info/vmintegration.info \
-		${ED}/usr/share/info/hacking.info
+	rm "${ED}/usr/share/info/vmintegration.info" \
+		"${ED}/usr/share/info/hacking.info"
 
 	# Add symlink to glibj.zip, for bug #148607
-	cd ${ED}/opt/${P}/jre/lib
+	cd "${ED}/opt/${P}/jre/lib"
 	ln -s glibj.zip rt.jar
 }
 
