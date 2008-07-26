@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.6 2008/05/22 13:36:03 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.7 2008/07/25 20:22:45 lack Exp $
 
 EAPI="prefix 1"
 inherit eutils
 
-IUSE="nls xinerama truetype kde gnome imlib +slit +toolbar vim-syntax"
+IUSE="nls xinerama truetype kde gnome +imlib +slit +toolbar vim-syntax"
 
 DESCRIPTION="Fluxbox is an X11 window manager featuring tabs and an iconbar"
 

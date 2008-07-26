@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.251 2008/05/22 13:36:02 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.252 2008/07/25 20:22:45 lack Exp $
+
+  25 Jul 2008; Jim Ramsay <lack@gentoo.org> fluxbox-1.0.0-r2.ebuild:
+  Enabling imlib USE flag by default.
 
   22 May 2008; Jim Ramsay <lack@gentoo.org> -fluxbox-1.0.0-r1.ebuild,
   fluxbox-1.0.0-r2.ebuild:
