@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.5.1.ebuild,v 1.2 2008/07/26 22:24:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.22.5.1-r1.ebuild,v 1.1 2008/07/26 22:24:45 eva Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/projects/nautilus/"
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
-IUSE="beagle gnome"
+IUSE="beagle gnome tracker"
 
 RDEPEND=">=x11-libs/startup-notification-0.8
 		 >=gnome-base/libbonobo-2.1
@@ -31,6 +31,7 @@ RDEPEND=">=x11-libs/startup-notification-0.8
 			dev-libs/libbeagle
 			=app-misc/beagle-0.2*
 			) )
+		 tracker? ( >=app-misc/tracker-0.6.4 )
 		 >=gnome-base/libgnome-2.14
 		 >=gnome-base/libgnomeui-2.6"
 DEPEND="${RDEPEND}
@@ -42,7 +43,7 @@ PDEPEND="gnome? ( >=x11-themes/gnome-icon-theme-1.1.91 )"
 DOCS="AUTHORS ChangeLog* HACKING MAINTAINERS NEWS README THANKS TODO"
 
 pkg_setup() {
-	G2CONF="--disable-update-mimedb $(use_enable beagle) --disable-tracker"
+	G2CONF="--disable-update-mimedb $(use_enable beagle) $(use_enable tracker)"
 }
 
 src_unpack() {
