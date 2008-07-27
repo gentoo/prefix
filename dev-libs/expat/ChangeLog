@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.70 2008/03/10 01:39:03 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.71 2008/07/26 20:17:56 ford_prefect Exp $
+
+*expat-2.0.1-r1 (26 Jul 2008)
+
+  26 Jul 2008; Arun Raghavan <ford_prefect@gentoo.org>
+  +files/expat-2.0.1-check_stopped_parser.patch, +expat-2.0.1-r1.ebuild:
+  Add patch from upstream svn to prevent a crash in Python expat bindings
+  (bug #197043)
 
   10 Mar 2008; <ricmm@gentoo.org> expat-1.95.8.ebuild:
   Drop to ~mips due to unstable deps
