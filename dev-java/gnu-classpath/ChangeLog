@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.85 2008/07/17 13:05:54 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.86 2008/07/27 01:03:32 carlo Exp $
+
+  27 Jul 2008; Carsten Lohrke <carlo@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild:
+  Fix broken split Qt 4.4 dependencies, cf. bug 217161 comment 11.
 
   17 Jul 2008; Jeremy Olexa <darkside@gentoo.org> Manifest:
   Restore Manifest to proper file.
