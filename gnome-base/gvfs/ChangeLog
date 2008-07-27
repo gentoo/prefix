@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gvfs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.13 2008/06/30 22:07:24 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.14 2008/07/26 22:35:03 eva Exp $
+
+  26 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org> -gvfs-0.2.1.ebuild,
+  -gvfs-0.2.2.ebuild, gvfs-0.2.3.ebuild, -gvfs-0.2.4.ebuild,
+  gvfs-0.2.5.ebuild, +gvfs-0.2.5.ebuild:
+  remove old revisions, drop bluetooth use flag on version to stabilize but
+  keep the feature in r1.
 
 *gvfs-0.2.5 (30 Jun 2008)
 

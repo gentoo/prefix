@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.4.ebuild,v 1.1 2008/05/27 22:54:52 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r1.ebuild,v 1.1 2008/07/26 22:35:03 eva Exp $
 
 EAPI="prefix"
 
-inherit autotools gnome2 eutils
+inherit gnome2 eutils
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
