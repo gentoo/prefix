@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.171 2008/04/06 09:22:13 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.172 2008/07/26 14:20:50 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -24,18 +24,18 @@
 inherit eutils vim-doc flag-o-matic versionator fdo-mime
 
 # Support -cvs ebuilds, even though they're not in the official tree.
-MY_PN="${PN%-cvs}"
+MY_PN=${PN%-cvs}
 
 # This isn't a conditional inherit from portage's perspective, since $MY_PN is
 # constant at cache creation time. It's therefore legal and doesn't break
 # anything. I even checked with carpaski first :) (08 Sep 2004 ciaranm)
-if [[ "${MY_PN}" != "vim-core" ]] && ! version_is_at_least "6.3.086" ; then
-	IUSE="debug"
+if [[ ${MY_PN} != "vim-core" ]] && ! version_is_at_least 6.3.086 ; then
+	IUSE=debug
 else
-	IUSE=""
+	IUSE=
 fi
 
-if [[ "${PN##*-}" == "cvs" ]] ; then
+if [[ ${PN##*-} == "cvs" ]] ; then
 	inherit cvs
 fi
 
@@ -45,7 +45,7 @@ fi
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install src_test pkg_postinst pkg_postrm
 
-if version_is_at_least "6.4_beta" ; then
+if version_is_at_least 6.4_beta ; then
 	IUSE="${IUSE} nls acl"
 else
 	IUSE="${IUSE} selinux nls acl"
@@ -54,7 +54,7 @@ fi
 DEPEND="${DEPEND} nls? ( virtual/libintl )"
 RDEPEND="${RDEPEND} nls? ( virtual/libintl )"
 
-if [[ "${MY_PN}" == "vim-core" ]] ; then
+if [[ ${MY_PN} == "vim-core" ]] ; then
 	IUSE="${IUSE} livecd"
 	if ! version_is_at_least "7.1.319" ; then
 		IUSE="${IUSE} aqua"
@@ -76,18 +76,18 @@ else
 		acl?     ( kernel_linux? ( sys-apps/acl ) )
 		ruby?    ( virtual/ruby )"
 
-	if ! version_is_at_least "6.4_beta" ; then
+	if ! version_is_at_least 6.4_beta ; then
 		DEPEND="${DEPEND} selinux? ( sys-libs/libselinux )"
 		RDEPEND="${RDEPEND} selinux? ( sys-libs/libselinux )"
 	fi
 
-	if [[ "${MY_PN}" == "vim" ]] ; then
+	if [[ ${MY_PN} == vim ]] ; then
 		IUSE="${IUSE} vim-with-x minimal"
 		# see bug #111979 for modular X deps
 		DEPEND="${DEPEND} vim-with-x? ( x11-libs/libXt x11-libs/libX11
 			x11-libs/libSM x11-proto/xproto )"
 		RDEPEND="${RDEPEND} vim-with-x? ( x11-libs/libXt )"
-	elif [[ "${MY_PN}" == "gvim" ]] ; then
+	elif [[ ${MY_PN} == gvim ]] ; then
 		if version_is_at_least "6.3.086" ; then
 			IUSE="${IUSE} gnome gtk motif"
 		else
@@ -102,14 +102,14 @@ fi
 # ebuilds don't handle it).
 if [[ $(get_major_version ) -ge 7 ]] ; then
 	# mzscheme support is currently broken. bug #91970
-	#if [[ "${MY_PN}" != "vim-core" ]] ; then
+	#if [[ ${MY_PN} != "vim-core" ]] ; then
 	#	IUSE="${IUSE} mzscheme"
 	#	DEPEND="${DEPEND}
 	#		mzscheme? ( dev-scheme/mzscheme )"
 	#	RDEPEND="${RDEPEND}
 	#		mzscheme? ( dev-scheme/mzscheme )"
 	#fi
-	if [[ "${MY_PN}" == "gvim" ]] ; then
+	if [[ ${MY_PN} == gvim ]] ; then
 		IUSE="${IUSE} netbeans nextaw"
 		if ! version_is_at_least "7.1.319" ; then
 			IUSE="${IUSE} aqua"
@@ -120,12 +120,12 @@ if [[ $(get_major_version ) -ge 7 ]] ; then
 		# DEPEND="${DEPEND}   netbeans? ( dev-util/netbeans )"
 		# RDEPEND="${RDEPEND} netbeans? ( dev-util/netbeans )"
 	fi
-	if [[ "${MY_PN}" == "vim" ]] ; then
+	if [[ ${MY_PN} == vim ]] ; then
 		IUSE="${IUSE} vim-pager"
 	fi
 
 	# app-vim blocks
-	if [[ "${MY_PN}" != "vim-core" ]] ; then
+	if [[ ${MY_PN} != "vim-core" ]] ; then
 		# align: bug 79982
 		RDEPEND="${RDEPEND}
 			!<app-vim/align-30-r1
@@ -159,7 +159,7 @@ RDEPEND="${RDEPEND}
 
 apply_vim_patches() {
 	local p
-	cd ${S} || die "cd ${S} failed"
+	cd "${S}" || die "cd ${S} failed"
 
 	# Scan the patches, applying them only to files that either
 	# already exist or that will be created by the patch
@@ -168,8 +168,8 @@ apply_vim_patches() {
 	# --spb, 2004/12/18
 	einfo "Filtering vim patches ..."
 	p=${WORKDIR}/${VIM_ORG_PATCHES%.tar*}.patch
-	ls ${WORKDIR}/vimpatches | sort | \
-	while read f; do gzip -dc ${WORKDIR}/vimpatches/${f}; done | gawk '
+	ls "${WORKDIR}"/vimpatches | sort | \
+	while read f; do gzip -dc "${WORKDIR}"/vimpatches/${f}; done | gawk '
 		/^Subject: [Pp]atch/ {
 			if (patchnum) {printf "\n" >"/dev/stderr"}
 			patchnum = $3
@@ -229,7 +229,7 @@ vim_pkg_setup() {
 vim_src_unpack() {
 	unpack ${A}
 
-	if [[ "${PN##*-}" == "cvs" ]] ; then
+	if [[ ${PN##*-} == cvs ]] ; then
 		ECVS_SERVER="vim.cvs.sourceforge.net:/cvsroot/vim"
 		ECVS_PASS=""
 		if [[ $(get_major_version ) -ge 7 ]] ; then
@@ -246,25 +246,25 @@ vim_src_unpack() {
 
 		# Unpack the runtime snapshot if available (only for vim-core)
 		if [[ -n "$VIM_RUNTIME_SNAP" ]] ; then
-			cd ${S} || die
+			cd "${S}" || die
 			ebegin "Unpacking vim runtime snapshot"
 			rm -rf runtime
 			# Changed this from bzip2 |tar to tar -j since the former broke for
 			# some reason on freebsd.
 			#  --spb, 2004/12/18
-			tar xjf ${DISTDIR}/${VIM_RUNTIME_SNAP}
+			tar xjf "${DISTDIR}"/${VIM_RUNTIME_SNAP}
 			assert  # this will check both parts of the pipeline; eend would not
 			eend 0
 		fi
 	fi
 
 	# Another set of patches borrowed from src rpm to fix syntax errors etc.
-	cd ${S} || die "cd ${S} failed"
+	cd "${S}" || die "cd ${S} failed"
 	EPATCH_SUFFIX="gz" EPATCH_FORCE="yes" \
-		epatch ${WORKDIR}/gentoo/patches-all/
+		epatch "${WORKDIR}"/gentoo/patches-all/
 
 	# macvim patchset needs to be applied here (because it alters src/feature.h)
-	if [[ -f "${WORKDIR}"/vim-misc-prefix/macvim-patchset ]] ; then
+	if [[ -f ${WORKDIR}/vim-misc-prefix/macvim-patchset ]] ; then
 		epatch "${WORKDIR}"/vim-misc-prefix/macvim-patchset
 		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
 			cp "${WORKDIR}"/vim-misc-prefix/runtime/${aqua_file}  \
@@ -279,46 +279,46 @@ vim_src_unpack() {
 	# ask, you don't want to know.
 	if [[ -n "${VIM_NETRW_SNAP}" ]] ; then
 		ebegin "Unpacking updated netrw snapshot"
-		tar xjf ${DISTDIR}/${VIM_NETRW_SNAP} -C runtime/
+		tar xjf "${DISTDIR}"/${VIM_NETRW_SNAP} -C runtime/
 		eend $?
 	fi
 
 	# Fixup a script to use awk instead of nawk
-	sed -i '1s|.*|#!'"${EPREFIX}"'/usr/bin/awk -f|' ${S}/runtime/tools/mve.awk \
+	sed -i '1s|.*|#!'"${EPREFIX}"'/usr/bin/awk -f|' "${S}"/runtime/tools/mve.awk \
 		|| die "mve.awk sed failed"
 
 	# Patch to build with ruby-1.8.0_pre5 and following
-	sed -i 's/defout/stdout/g' ${S}/src/if_ruby.c
+	sed -i 's/defout/stdout/g' "${S}"/src/if_ruby.c
 
 	# Read vimrc and gvimrc from /etc/vim
-	echo '#define SYS_VIMRC_FILE "'${EPREFIX}'/etc/vim/vimrc"' >> ${S}/src/feature.h
-	echo '#define SYS_GVIMRC_FILE "'${EPREFIX}'/etc/vim/gvimrc"' >> ${S}/src/feature.h
+	echo '#define SYS_VIMRC_FILE "'${EPREFIX}'/etc/vim/vimrc"' >> "${S}"/src/feature.h
+	echo '#define SYS_GVIMRC_FILE "'${EPREFIX}'/etc/vim/gvimrc"' >> "${S}"/src/feature.h
 
 	# Use exuberant ctags which installs as /usr/bin/exuberant-ctags.
 	# Hopefully this pattern won't break for a while at least.
 	# This fixes bug 29398 (27 Sep 2003 agriffis)
 	sed -i 's/\<ctags\("\| [-*.]\)/exuberant-&/g' \
-		${S}/runtime/doc/syntax.txt \
-		${S}/runtime/doc/tagsrch.txt \
-		${S}/runtime/doc/usr_29.txt \
-		${S}/runtime/menu.vim \
-		${S}/src/configure.in || die 'sed failed'
+		"${S}"/runtime/doc/syntax.txt \
+		"${S}"/runtime/doc/tagsrch.txt \
+		"${S}"/runtime/doc/usr_29.txt \
+		"${S}"/runtime/menu.vim \
+		"${S}"/src/configure.in || die 'sed failed'
 
 	# Don't be fooled by /usr/include/libc.h.  When found, vim thinks
 	# this is NeXT, but it's actually just a file in dev-libs/9libs
 	# This fixes bug 43885 (20 Mar 2004 agriffis)
-	sed -i 's/ libc\.h / /' ${S}/src/configure.in || die 'sed failed'
+	sed -i 's/ libc\.h / /' "${S}"/src/configure.in || die 'sed failed'
 
 	# gcc on sparc32 has this, uhm, interesting problem with detecting EOF
 	# correctly. To avoid some really entertaining error messages about stuff
 	# which isn't even in the source file being invalid, we'll do some trickery
 	# to make the error never occur. bug 66162 (02 October 2004 ciaranm)
-	find ${S} -name '*.c' | while read c ; do echo >> "$c" ; done
+	find "${S}" -name '*.c' | while read c ; do echo >> "$c" ; done
 
 	# if we're vim-7 and USE vim-pager, make the manpager.sh script
-	if [[ "${MY_PN}" == "vim" ]] && [[ $(get_major_version ) -ge 7 ]] \
+	if [[ ${MY_PN} == vim ]] && [[ $(get_major_version ) -ge 7 ]] \
 			&& use vim-pager ; then
-		cat <<END > ${S}/runtime/macros/manpager.sh
+		cat <<END > "${S}"/runtime/macros/manpager.sh
 #!${EPREFIX}/bin/sh
 sed -e 's/\x1B\[[[:digit:]]\+m//g' | \\
 tr '\\267' '.' | col -b | \\
@@ -331,10 +331,10 @@ END
 	fi
 
 	# Try to avoid sandbox problems. Bug #114475.
-	if [[ $(get_major_version ) -ge 7 ]] && [[ -d "${S}/src/po" ]] ; then
+	if [[ $(get_major_version ) -ge 7 ]] && [[ -d "${S}"/src/po ]] ; then
 		sed -i -e \
 			'/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
-			"${S}/src/po/Makefile"
+			"${S}"/src/po/Makefile
 	fi
 
 	# It's perfectly fine to optimise on Darwin, as we have a fixed compiler,
@@ -381,8 +381,8 @@ vim_src_compile() {
 		[[ -e ${file} ]] && addwrite $file
 	done
 
-	if [[ "${MY_PN}" == "vim-core" ]] ||
-			( [[ "${MY_PN}" == "vim" ]] && use minimal ); then
+	if [[ ${MY_PN} == "vim-core" ]] ||
+			( [[ ${MY_PN} == vim ]] && use minimal ); then
 		myconf="--with-features=tiny \
 			--enable-gui=no \
 			--enable-carbon-check=no \
@@ -395,7 +395,7 @@ vim_src_compile() {
 			--disable-gpm"
 
 	else
-		if ! version_is_at_least "6.3.086" ; then
+		if ! version_is_at_least 6.3.086 ; then
 			use debug && append-flags "-DDEBUG"
 		fi
 
@@ -412,7 +412,7 @@ vim_src_compile() {
 		if [[ $(get_major_version ) -ge 7 ]] ; then
 			# mzscheme support is currently broken. bug #91970
 			#myconf="${myconf} `use_enable mzscheme mzschemeinterp`"
-			if [[ "${MY_PN}" == "gvim" ]] ; then
+			if [[ ${MY_PN} == gvim ]] ; then
 				myconf="${myconf} `use_enable netbeans`"
 			fi
 		fi
@@ -424,12 +424,12 @@ vim_src_compile() {
 				die "couldn't disable cscope"
 		fi
 
-		if [[ "${MY_PN}" == "vim" ]] ; then
+		if [[ ${MY_PN} == vim ]] ; then
 			# don't test USE=X here ... see bug #19115
 			# but need to provide a way to link against X ... see bug #20093
 			myconf="${myconf} --enable-gui=no --enable-carbon-check=no --enable-macvim-check=no --disable-darwin `use_with vim-with-x x`"
 
-		elif [[ "${MY_PN}" == "gvim" ]] ; then
+		elif [[ ${MY_PN} == gvim ]] ; then
 			if ! version_is_at_least "7.1.319" && use aqua ; then
 				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=yes"
 				myconf="${myconf} --with-vim-name=Vim"
@@ -450,7 +450,7 @@ vim_src_compile() {
 				einfo "Building gvim with the Carbon GUI"
 				myconf="${myconf} --enable-gui=carbon --prefix=${EPREFIX}/Applications/Gentoo"
 			elif use gtk ; then
-				if version_is_at_least "6.3.086" ; then
+				if version_is_at_least 6.3.086 ; then
 					myconf="${myconf} --enable-gtk2-check"
 					if use gnome ; then
 						einfo "Building gvim with the Gnome 2 GUI"
@@ -496,7 +496,7 @@ vim_src_compile() {
 		fi
 	fi
 
-	if [[ "${MY_PN}" == "vim" ]] && use minimal ; then
+	if [[ ${MY_PN} == vim ]] && use minimal ; then
 		myconf="${myconf} --disable-nls --disable-multibyte --disable-acl"
 	else
 		myconf="${myconf} `use_enable nls` `use_enable acl`"
@@ -506,7 +506,7 @@ vim_src_compile() {
 	# for the reasons behind the USE flag change.
 	myconf="${myconf} --with-tlib=curses"
 
-	if version_is_at_least "6.4_beta" ; then
+	if version_is_at_least 6.4_beta ; then
 		myconf="${myconf} --disable-selinux"
 	else
 		use selinux \
@@ -514,7 +514,7 @@ vim_src_compile() {
 	fi
 
 	# Let Portage do the stripping. Some people like that.
-	if version_is_at_least "7.0_beta" ; then
+	if version_is_at_least 7.0_beta ; then
 		export ac_cv_prog_STRIP="$(type -P true ) faking strip"
 	fi
 
@@ -534,7 +534,7 @@ vim_src_compile() {
 		make -j1 -C src auto/osdef.h objects || die "make failed"
 	fi
 
-	if [[ "${MY_PN}" == "vim-core" ]] ; then
+	if [[ ${MY_PN} == "vim-core" ]] ; then
 		emake tools || die "emake tools failed"
 		rm -f src/vim
 	else
@@ -550,7 +550,7 @@ vim_src_compile() {
 }
 
 vim_src_install() {
-	if [[ "${MY_PN}" == "vim-core" ]] ; then
+	if [[ ${MY_PN} == "vim-core" ]] ; then
 		dodir /usr/{bin,share/{man/man1,vim}}
 		cd src || die "cd src failed"
 		if [[ $(get_major_version ) -ge 7 ]] ; then
@@ -577,7 +577,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR="$D" \
+				DESTDIR="${D}" \
 				BINDIR="${EPREFIX}"/usr/bin \
 				MANDIR="${EPREFIX}"/usr/share/man \
 				DATADIR="${EPREFIX}"/usr/share \
@@ -589,7 +589,7 @@ vim_src_install() {
 		# default vimrc is installed by vim-core since it applies to
 		# both vim and gvim
 		insinto /etc/vim/
-		newins ${FILESDIR}/vimrc${VIMRC_FILE_SUFFIX} vimrc
+		newins "${FILESDIR}"/vimrc${VIMRC_FILE_SUFFIX} vimrc
 		eprefixify "${ED}"/etc/vim/vimrc
 
 		if use livecd ; then
@@ -601,7 +601,7 @@ vim_src_install() {
 			shopt -s extglob
 			rm -fr ${vimfiles}/{compiler,doc,ftplugin,indent}
 			rm -fr ${vimfiles}/{macros,print,tools,tutor}
-			rm ${ED}/usr/bin/vimtutor
+			rm "${ED}"/usr/bin/vimtutor
 
 			local keep_colors="default"
 			ignore=$(rm -fr ${vimfiles}/colors/!(${keep_colors}).vim )
@@ -615,9 +615,9 @@ vim_src_install() {
 		# These files might have slight security issues, so we won't
 		# install them. See bug #77841. We don't mind if these don't
 		# exist.
-		rm ${ED}/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
+		rm "${ED}"/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
 
-	elif [[ "${MY_PN}" == "gvim" ]] ; then
+	elif [[ ${MY_PN} == gvim ]] ; then
 		if use carbon ; then
 			dodir /Applications/Gentoo
 			cp -pPR src/Vim.app "${ED}"/Applications/Gentoo/
@@ -638,7 +638,7 @@ vim_src_install() {
 		dosym gvim /usr/bin/evim
 		dosym gvim /usr/bin/eview
 		# bug #74349 says we should install these
-		if version_is_at_least "6.3-r4" ; then
+		if version_is_at_least 6.3-r4 ; then
 			dosym gvim /usr/bin/gview
 			dosym gvim /usr/bin/rgvim
 			dosym gvim /usr/bin/rgview
@@ -651,29 +651,29 @@ vim_src_install() {
 	fi
 
 	insinto /etc/vim
-		newins ${FILESDIR}/gvimrc${GVIMRC_FILE_SUFFIX} gvimrc
+		newins "${FILESDIR}"/gvimrc${GVIMRC_FILE_SUFFIX} gvimrc
 		eprefixify "${ED}"/etc/vim/gvimrc
 
 		# as of 6.3-r1, we install a desktop entry. bug #44633, and bug #68622
 		# for the nicer updated version.
 		insinto /usr/share/applications
-		newins ${FILESDIR}/gvim.desktop${GVIM_DESKTOP_SUFFIX} gvim.desktop
+		newins "${FILESDIR}"/gvim.desktop${GVIM_DESKTOP_SUFFIX} gvim.desktop
 		insinto /usr/share/pixmaps
-		doins ${FILESDIR}/gvim.xpm
+		doins "${FILESDIR}"/gvim.xpm
 
 	else
 		dobin src/vim
-		ln -s vim ${ED}/usr/bin/vimdiff && \
-		ln -s vim ${ED}/usr/bin/rvim && \
-		ln -s vim ${ED}/usr/bin/ex && \
-		ln -s vim ${ED}/usr/bin/view && \
-		ln -s vim ${ED}/usr/bin/rview \
+		ln -s vim "${ED}"/usr/bin/vimdiff && \
+		ln -s vim "${ED}"/usr/bin/rvim && \
+		ln -s vim "${ED}"/usr/bin/ex && \
+		ln -s vim "${ED}"/usr/bin/view && \
+		ln -s vim "${ED}"/usr/bin/rview \
 			|| die "/usr/bin symlinks failed"
 		if [[ $(get_major_version ) -ge 7 ]] && use vim-pager ; then
 			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION//./}/macros/less.sh \
-					${ED}/usr/bin/vimpager
+					"${ED}"/usr/bin/vimpager
 			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION//./}/macros/manpager.sh \
-					${ED}/usr/bin/vimmanpager
+					"${ED}"/usr/bin/vimmanpager
 			insinto /usr/share/vim/vim${VIM_VERSION//./}/macros
 			doins runtime/macros/manpager.sh
 			fperms a+x /usr/share/vim/vim${VIM_VERSION//./}/macros/manpager.sh
@@ -682,10 +682,10 @@ vim_src_install() {
 
 	# bash completion script, bug #79018.
 	if version_is_at_least 6.3.1 ; then
-		if [[ "${MY_PN}" == "vim-core" ]] ; then
-			dobashcompletion ${FILESDIR}/xxd-completion xxd
+		if [[ ${MY_PN} == "vim-core" ]] ; then
+			dobashcompletion "${FILESDIR}"/xxd-completion xxd
 		else
-			dobashcompletion ${FILESDIR}/${MY_PN}-completion ${MY_PN}
+			dobashcompletion "${FILESDIR}"/${MY_PN}-completion ${MY_PN}
 		fi
 	fi
 
@@ -714,21 +714,21 @@ update_vim_symlinks() {
 	fi
 
 	# Make or remove convenience symlink, vim -> gvim
-	if [[ -f ${EROOT}/usr/bin/gvim ]]; then
-		ln -s gvim ${EROOT}/usr/bin/vim 2>/dev/null
-	elif [[ -L ${EROOT}/usr/bin/vim && ! -f ${EROOT}/usr/bin/vim ]]; then
-		rm ${EROOT}/usr/bin/vim
+	if [[ -f "${EROOT}"/usr/bin/gvim ]]; then
+		ln -s gvim "${EROOT}"/usr/bin/vim 2>/dev/null
+	elif [[ -L "${EROOT}"/usr/bin/vim && ! -f "${EROOT}"/usr/bin/vim ]]; then
+		rm "${EROOT}"/usr/bin/vim
 	fi
 
 	# Make or remove convenience symlinks to vim
-	if [[ -f ${EROOT}/usr/bin/vim ]]; then
+	if [[ -f "${EROOT}"/usr/bin/vim ]]; then
 		for f in ${syms}; do
-			ln -s vim ${EROOT}/usr/bin/${f} 2>/dev/null
+			ln -s vim "${EROOT}"/usr/bin/${f} 2>/dev/null
 		done
 	else
 		for f in ${syms}; do
-			if [[ -L ${EROOT}/usr/bin/${f} && ! -f ${EROOT}/usr/bin/${f} ]]; then
-				rm -f ${EROOT}/usr/bin/${f}
+			if [[ -L "${EROOT}"/usr/bin/${f} && ! -f "${EROOT}"/usr/bin/${f} ]]; then
+				rm -f "${EROOT}"/usr/bin/${f}
 			fi
 		done
 	fi
@@ -743,12 +743,12 @@ vim_pkg_postinst() {
 	update_vim_helptags
 
 	# Update fdo mime stuff, bug #78394
-	if [[ "${MY_PN}" == "gvim" ]] ; then
+	if [[ ${MY_PN} == gvim ]] ; then
 		fdo-mime_mime_database_update
 	fi
 
 	if [[ $(get_major_version ) -lt 7 ]] ; then
-		if [[ "${MY_PN}" == "gvim" ]] ; then
+		if [[ ${MY_PN} == gvim ]] ; then
 			echo
 			elog "To enable UTF-8 viewing, set guifont and guifontwide: "
 			elog ":set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1"
@@ -759,12 +759,12 @@ vim_pkg_postinst() {
 			elog
 			elog "Then, set read encoding to UTF-8:"
 			elog ":set encoding=utf-8"
-		elif [[ "${MY_PN}" == "vim" ]] ; then
+		elif [[ ${MY_PN} == vim ]] ; then
 			echo
 			elog "gvim has now a seperate ebuild, 'emerge gvim' will install gvim"
 		fi
 	else
-		if [[ "${MY_PN}" == "vim" ]] ; then
+		if [[ ${MY_PN} == vim ]] ; then
 			echo
 			elog "To install a GUI version of vim, use the app-editors/gvim"
 			elog "package."
@@ -780,7 +780,7 @@ vim_pkg_postinst() {
 		ewarn "default."
 	fi
 
-	if [[ "${MY_PN}" != "vim-core" ]] ; then
+	if [[ ${MY_PN} != "vim-core" ]] ; then
 		echo
 		elog "To see what's new in this release, use :help version${VIM_VERSION/.*/}.txt"
 	fi
@@ -820,14 +820,14 @@ vim_pkg_postrm() {
 	update_vim_symlinks
 
 	# Update fdo mime stuff, bug #78394
-	if [[ "${MY_PN}" == "gvim" ]] ; then
+	if [[ ${MY_PN} == gvim ]] ; then
 		fdo-mime_mime_database_update
 	fi
 }
 
 vim_src_test() {
 
-	if [[ "${MY_PN}" == "vim-core" ]] ; then
+	if [[ ${MY_PN} == "vim-core" ]] ; then
 		einfo "No testing needs to be done for vim-core"
 		return
 	fi
@@ -845,10 +845,10 @@ vim_src_test() {
 	# Don't let vim talk to X
 	unset DISPLAY
 
-	if [[ "${MY_PN}" == "gvim" ]] ; then
+	if [[ ${MY_PN} == gvim ]] ; then
 		# Make gvim not try to connect to X. See :help gui-x11-start
 		# in vim for how this evil trickery works.
-		ln -s ${S}/src/gvim ${S}/src/testvim
+		ln -s "${S}"/src/gvim "${S}"/src/testvim
 		testprog="../testvim"
 	else
 		testprog="../vim"
@@ -856,7 +856,7 @@ vim_src_test() {
 
 	# We've got to call make test from within testdir, since the Makefiles
 	# don't pass through our VIMPROG argument
-	cd ${S}/src/testdir
+	cd "${S}"/src/testdir
 
 	# Test 49 won't work inside a portage environment
 	einfo "Test 49 isn't sandbox-friendly, so it will be skipped."
