@@ -2,10 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
-*portage-2.2.00.11212 (27 Jul 2008)
+*portage-2.2.00.11215 (27 Jul 2008)
 
   27 Jul 2008; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.2.00.11125.ebuild, +portage-2.2.00.11212.ebuild:
+  -portage-2.2.00.11125.ebuild, +portage-2.2.00.11215.ebuild:
   New snapshot, with repoman that commits the Manifest file in one go if
   possible.
 
@@ -1119,3 +1119,4 @@
   files. Added QA check for files installed outside the prefix, which also
   dies if it finds files.  Bumping to -r5 to force everyone using the
   new QA checks for better feedback on problem packages in the tree.
+bla
