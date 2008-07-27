@@ -10,7 +10,7 @@ SRC_URI="http://wizard.ae.krakow.pl/~jb/xls2txt/xls2txt-0.11.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
