@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.12.ebuild,v 1.1 2008/06/29 19:07:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.12.ebuild,v 1.2 2008/07/26 18:57:55 tester Exp $
 
 EAPI="prefix"
 
