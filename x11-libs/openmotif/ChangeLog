@@ -1,6 +1,6 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.192 2008/07/25 22:33:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.193 2008/07/26 12:58:21 ulm Exp $
 
 *openmotif-2.3.1-r1 (25 Jul 2008)
 
@@ -9,7 +9,7 @@
   +files/openmotif-2.3.1-multilist-stipple.patch,
   +openmotif-2.3.1-r1.ebuild:
   Display stippled multilist items correctly, fixes bug 215984 again.
-  Fix crash with sci-visualization/grace, bug 232742; patch by S. Umar at
+  Fix crash with sci-visualization/grace, bug 232742; patch by Sammy Umar at
   upstream bug 1381.
 
   01 Jul 2008; Ulrich Mueller <ulm@gentoo.org>
