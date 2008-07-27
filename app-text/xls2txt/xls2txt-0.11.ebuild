@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-DESCRIPTION="prints Excel spreadsheet (XLS, XLW) as a plain text"
+DESCRIPTION="Prints Excel spreadsheet (XLS, XLW) as a plain text"
 HOMEPAGE="http://wizard.ae.krakow.pl/~jb/xls2txt/"
 SRC_URI="http://wizard.ae.krakow.pl/~jb/xls2txt/xls2txt-0.11.tar.gz"
 
