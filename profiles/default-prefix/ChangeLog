@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2008; Fabian Groffen <grobian@gentoo.org> +aix/package.mask:
+  Mask sys-apps/file-4.25 on AIX for as long as we haven't done the gnulib
+  thing, yet.
+
   25 Jul 2008; Michael Haubenwallner <haubi@gentoo.org> aix/profile.bashrc:
   avoid preparing non-archive lib.a for merge.
 
