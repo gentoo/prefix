@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.18 2008/07/21 14:44:21 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.19 2008/07/26 16:36:50 jer Exp $
+
+  26 Jul 2008; Jeroen Roovers <jer@gentoo.org> pixman-0.10.0.ebuild:
+  Stable for HPPA (bug #224929).
 
   21 Jul 2008; Doug Goldstein <cardoe@gentoo.org> pixman-0.11.8.ebuild:
   Add pkg_setup() checks for SSE & SSE2 use flags as well as SSE2 and GCC
