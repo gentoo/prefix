@@ -1119,4 +1119,3 @@
   files. Added QA check for files installed outside the prefix, which also
   dies if it finds files.  Bumping to -r5 to force everyone using the
   new QA checks for better feedback on problem packages in the tree.
-bla
