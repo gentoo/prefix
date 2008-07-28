@@ -1,0 +1,106 @@
+# ChangeLog for dev-util/buildbot
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.26 2008/06/01 12:04:29 nixnut Exp $
+
+  01 Jun 2008; nixnut <nixnut@gentoo.org> buildbot-0.7.7-r1.ebuild:
+  Stable on ppc wrt bug 223437
+
+  28 May 2008; Markus Meier <maekke@gentoo.org> buildbot-0.7.7-r1.ebuild:
+  amd64/x86 stable, bug #223437
+
+  28 May 2008; Raúl Porcel <armin76@gentoo.org> buildbot-0.7.7-r1.ebuild:
+  ia64/sparc stable wrt #223437
+
+  27 May 2008; Jeroen Roovers <jer@gentoo.org> buildbot-0.7.7-r1.ebuild:
+  Stable for HPPA (bug #223437).
+
+  27 May 2008; Markus Rothe <corsair@gentoo.org> buildbot-0.7.7-r1.ebuild:
+  Stable on ppc64; bug #223437
+
+*buildbot-0.7.7-r1 (27 May 2008)
+
+  27 May 2008; Ali Polatel <hawking@gentoo.org> +files/buildbot.initd-r1,
+  +buildbot-0.7.7-r1.ebuild:
+  Revision bump. Fixed initscript #223853.
+
+  27 May 2008; Markus Rothe <corsair@gentoo.org> buildbot-0.7.6.ebuild:
+  Stable on ppc64; bug #223437
+
+*buildbot-0.7.7 (05 Apr 2008)
+
+  05 Apr 2008; Ali Polatel <hawking@gentoo.org> metadata.xml,
+  buildbot-0.7.5.ebuild, buildbot-0.7.6.ebuild, +buildbot-0.7.7.ebuild:
+  Version bump. Shortened description. Added myself to metadata.
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Marien Zwart (marienz, #107204) from metadata.xml.
+
+  10 Mar 2008; Markus Ullmann <jokey@gentoo.org> buildbot-0.7.6.ebuild:
+  Fix epydoc dep
+
+*buildbot-0.7.6 (27 Feb 2008)
+
+  27 Feb 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -files/buildbot-0.7.4-svn-1.4.patch, -buildbot-0.7.4.ebuild,
+  +buildbot-0.7.6.ebuild:
+  Version bump (bug #211540) with some little fixes.
+
+  17 Sep 2007; Markus Ullmann <jokey@gentoo.org> buildbot-0.7.4.ebuild,
+  buildbot-0.7.5.ebuild:
+  New HOMEPAGE
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  buildbot-0.7.5.ebuild:
+  stable amd64, bug 169888
+
+  06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  buildbot-0.7.5.ebuild:
+  ppc stable, bug #169888
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> buildbot-0.7.5.ebuild:
+  Stable on ppc64; bug #169888
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> buildbot-0.7.5.ebuild:
+  Stable for HPPA (bug #169888).
+
+  14 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  buildbot-0.7.5.ebuild:
+  stable x86, bug 169888
+
+  13 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> buildbot-0.7.5.ebuild:
+  Stable on sparc wrt #169888
+
+  08 Mar 2007; Marien Zwart <marienz@gentoo.org>
+  +files/buildbot-0.7.5-root-skip-tests.patch, buildbot-0.7.5.ebuild:
+  Fix tests without FEATURES=userpriv. No bump since it only affects the tests.
+
+  05 Mar 2007; Marius Mauch <genone@gentoo.org> buildbot-0.7.4.ebuild,
+  buildbot-0.7.5.ebuild:
+  Replacing einfo with elog
+
+*buildbot-0.7.5 (08 Feb 2007)
+
+  08 Feb 2007; Marien Zwart <marienz@gentoo.org> +buildbot-0.7.5.ebuild:
+  Version bump, also fixing bug #153835 (thanks to jhmartin for reporting).
+
+  02 Nov 2006; Marien Zwart <marienz@gentoo.org> files/buildbot.initd:
+  Do not say "buildslave" in the buildmaster startup script. Spotted by
+  jhmartin@toger.us (bug #153835).
+
+  31 Oct 2006; Marien Zwart <marienz@gentoo.org> buildbot-0.7.4.ebuild:
+  Add test USE flag and ~amd64 keyword.
+
+  30 Oct 2006; Marien Zwart <marienz@gentoo.org> buildbot-0.7.4.ebuild:
+  Use the workdir copy of buildbot for epydoc and trial, not the installed
+  one. Fixes bug #153440, thanks to David Stutzman <gentoo@dstutz.com> for
+  reporting.
+
+*buildbot-0.7.4 (25 Sep 2006)
+
+  25 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  +files/buildbot-0.7.4-svn-1.4.patch, +files/buildbot.initd,
+  +files/buildmaster.confd, +files/buildslave.confd, +metadata.xml,
+  +buildbot-0.7.4.ebuild:
+  -m New package, ebuild based on one by Michael Schmid <meheschmid@gmx.ch>.
+  Closes bug #133004.
+
