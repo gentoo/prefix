@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11248 (28 Jul 2008)
+
+  28 Jul 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11243.ebuild, +portage-2.2.00.11248.ebuild:
+  Replace snapshot with one that has a working depclean on the Mac, and
+  hopefully preserves http proxy settings on all platforms.
+
 *portage-2.2.00.11243 (28 Jul 2008)
 
   28 Jul 2008; Fabian Groffen <grobian@gentoo.org>
