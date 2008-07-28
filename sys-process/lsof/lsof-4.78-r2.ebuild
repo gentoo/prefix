@@ -15,7 +15,7 @@ SRC_URI="ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/${MY_P}.tar.bz2
 
 LICENSE="lsof"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="static selinux"
 
 DEPEND="selinux? ( sys-libs/libselinux )"
@@ -48,7 +48,10 @@ src_compile() {
 
 	local target="linux"
 	use kernel_FreeBSD && target=freebsd
-	[[ ${CHOST} == *-solaris* ]] && target=solaris
+	case ${CHOST} in
+	*-solaris*) target=solaris ;;
+	*-aix*) target=aixgcc; export LSOF_AR='ar -X32_64 -v -q' ;;
+	esac
 	./Configure ${target} || die "configure failed"
 
 	# Make sure we use proper toolchain
