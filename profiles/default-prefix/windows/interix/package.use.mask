@@ -1,2 +1,3 @@
 dev-scheme/guile threads
 x11-wm/fluxbox nls
+net-libs/libsoup ssl
