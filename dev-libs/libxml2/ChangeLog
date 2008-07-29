@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.213 2008/06/26 09:05:31 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.214 2008/07/27 18:10:06 tester Exp $
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org> libxml2-2.6.32.ebuild:
+  Stable on amd64, bug #229709
 
   26 Jun 2008; Rémi Cardona <remi@gentoo.org> libxml2-2.6.32.ebuild:
   download the correct testsuite tarball, see bug #229421
