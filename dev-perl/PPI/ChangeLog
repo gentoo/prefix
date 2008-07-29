@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/PPI
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/ChangeLog,v 1.20 2008/07/17 20:13:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/ChangeLog,v 1.21 2008/07/28 07:05:46 tove Exp $
+
+*PPI-1.203 (28 Jul 2008)
+
+  28 Jul 2008; Torsten Veller <tove@gentoo.org> +PPI-1.203.ebuild:
+  Version bump. Changes in R/DEPEND. Add test useflag.
 
   17 Jul 2008; Raúl Porcel <armin76@gentoo.org> PPI-1.201.ebuild:
   sparc/x86 stable
