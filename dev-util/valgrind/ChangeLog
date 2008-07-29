@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.88 2008/06/06 18:20:39 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.89 2008/07/27 17:55:23 tester Exp $
+
+  27 Jul 2008; Olivier Crête <tester@gentoo.org> valgrind-3.3.0.ebuild,
+  valgrind-3.3.0-r1.ebuild, valgrind-3.3.1.ebuild:
+  Add --without-mpicc because auto-deps are bad and some MPI implementation
+  provide static libraries which are not PIC, bug #202684
 
 *valgrind-3.3.1 (06 Jun 2008)
 
