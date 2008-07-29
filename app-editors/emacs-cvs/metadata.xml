@@ -19,4 +19,12 @@
      more. Many of these extensions are distributed with GNU Emacs; others are
      available separately.
 </longdescription>
+<use>
+  <flag name='gzip-el'>Compress bundled Emacs Lisp source</flag>
+  <flag name='hesiod'>Enable support for hesiod</flag>
+  <flag name='sound'>Enable sound</flag>
+  <flag name='toolkit-scroll-bars'>Use the selected toolkit's scrollbars in
+    preference to Emacs' own scrollbars</flag>
+  <flag name='xft'>Build Emacs with support for the XFT font renderer</flag>
+</use>
 </pkgmetadata>
