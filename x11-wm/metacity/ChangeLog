@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.212 2008/07/23 22:36:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.213 2008/07/27 18:27:11 tester Exp $
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org> metacity-2.22.0.ebuild:
+  Stable on amd64, bug #229709
 
   23 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
   metacity-2.20.1.ebuild, metacity-2.20.2.ebuild, metacity-2.22.0.ebuild:
