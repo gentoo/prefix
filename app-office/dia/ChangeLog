@@ -1,6 +1,10 @@
 # ChangeLog for app-office/dia
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.106 2008/05/29 15:46:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.107 2008/07/28 23:18:55 eva Exp $
+
+  28 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/dia-0.96.1-64bit-fixes.patch, dia-0.96.1-r1.ebuild:
+  add 64 bit compilation fix patch, bug #191673.
 
   29 May 2008; Ali Polatel <hawking@gentoo.org> dia-0.96.1-r1.ebuild:
   python_mod_optimize is ROOT aware.

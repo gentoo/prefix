@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.7 2008/05/29 15:46:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.8 2008/07/28 23:18:55 eva Exp $
 
 EAPI="prefix"
 
@@ -75,6 +75,9 @@ src_unpack() {
 
 	# Skip man generation
 	use doc || sed -i -e '/if HAVE_DB2MAN/,/man_MANS/d' doc/*/Makefile.am
+
+	# Fix compilation QA, bug #191673
+	epatch "${FILESDIR}/${PN}-0.96.1-64bit-fixes.patch"
 
 	# Fix tests
 	echo "dia.desktop.in" >> po/POTFILES.skip
