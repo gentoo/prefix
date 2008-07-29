@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.397 2008/05/14 20:42:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.398 2008/07/27 16:09:23 betelgeuse Exp $
 
 # Keep them sorted
 
@@ -168,7 +168,6 @@ java5 - Use Java 1.5 to build package || ( reduced deps, 1.5 features, source/ta
 java6 - Use Java 1.6 to build package || ( reduced deps, 1.6 features, source/target 1.6 )
 javascript - Enables javascript support
 jbig - enables jbig-kit support for tiff, Hylafax, ImageMagick, etc
-jikes - Compile Java source code with jikes (faster)
 jingle - Enables voice calls for jabber
 joystick - Add support for joysticks in all packages
 jpeg - Adds JPEG image support

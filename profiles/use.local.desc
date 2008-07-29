@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3648 2008/07/25 16:47:03 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3657 2008/07/28 21:02:15 pchrist Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -12,7 +12,45 @@
 ###########
 
 # This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
-# your descriptions to your package's metadata.xml as well
+# your descriptions to your package's metadata.xml as well as here
+
+# The following categories are ONLY being generated from metadata.xml:
+# app-accessibility
+# app-admin
+# app-arch
+# app-backup
+# app-benchmarks
+# app-cdr
+# app-crypt
+# app-dicts
+# app-doc
+# app-editors
+# app-emacs
+# app-emulation
+# dev-games
+# dev-lisp
+# dev-scheme
+# games-action
+# games-arcade
+# games-board
+# games-emulation
+# games-engines
+# games-fps
+# games-kids
+# games-misc
+# games-mud
+# games-puzzle
+# games-roguelike
+# games-rpg
+# games-server
+# games-simulation
+# games-sports
+# games-strategy
+# games-util
+# gnome-base
+# gnome-extra
+# sys-cluster
+# End of metadata categories
 
 app-accessibility/festival:mbrola - Adds support for mbrola voices
 app-accessibility/freetts:jsapi - build Java Speech API (JSAPI) support
@@ -576,7 +614,6 @@ dev-libs/libproccpuinfo:sender - Build a utility for sending the author your /pr
 dev-libs/libsqlora8:orathreads - specifies use of Oracle threads
 dev-libs/libtomcrypt:libtommath - Use the portable math library
 dev-libs/libtomcrypt:tomsfastmath - Use the optimized math library
-dev-libs/libwbxml:nokia6600 - Add support for Nokia 6600 mobile phone
 dev-libs/log4cxx:smtp - offer SMTP support via libsmtp
 dev-libs/nss:utils - Install utilities included with the library
 dev-libs/opencryptoki:tpmtok - offer support for TPM token
@@ -603,9 +640,6 @@ dev-lisp/clisp:pari - Build CLISP with support for the PARI Computer Algebra Sys
 dev-lisp/clisp:svm - Build CLISP with support for the Support Vector Machine module
 dev-lisp/cmucl:nosource - don't include source code for CMUCL in installation
 dev-lisp/ecls:c++ - Build ECL with a C++ compiler
-dev-lisp/gcl-cvs:custreloc - build a GCL which uses custom GCL code for linking
-dev-lisp/gcl-cvs:dlopen - build a GCL which uses dlopen for linking
-dev-lisp/gcl-cvs:gprof - build a GCL with profiling support
 dev-lisp/gcl:ansi - build a GCL with ANSI support (else build a traditional CLtL1 image)
 dev-lisp/gcl:custreloc - build a GCL which uses custom GCL code for linking
 dev-lisp/gcl:dlopen - build a GCL which uses dlopen for linking

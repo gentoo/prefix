@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8840 2008/07/26 20:21:40 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8843 2008/07/29 01:50:25 beandog Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (28 Jul 2008)
+# These are masked for removal.  Please leave this mask in place, even after the
+# packages have been removed, until at least December 2008.  These packages have
+# been replaced by the Gentoo Release Engineering repository, available via
+# http://sources.gentoo.org/viewcvs.py/releng/
+dev-util/livecd-kconfigs
+dev-util/livecd-specs
 
 # Tiziano Müller <dev-zero@gentoo.org> (26 Jul 2008)
 # Needs testing, no release yet
@@ -330,10 +338,7 @@ virtual/libffi
 www-client/arora
 
 # Peter Alfredsen <loki_val@gentoo.org> (04 Jun 2008)
-# >=xmlrpc-c-1.14.0 is experimental but has the advantage of being current.
-# o Adds 64 bit integers (whoo!)
 # o Fails its own tests in horrendous ways (buuh!)
-=dev-libs/xmlrpc-c-1.14*
 =dev-libs/xmlrpc-c-1.15*
 
 # Raúl Porcel <armin76@gentoo.org> (03 Jun 2008)
@@ -344,10 +349,6 @@ www-client/arora
 # Peter Alfredsen <loki_val@gentoo.org> (02 Jun 2008)
 # Masking to force downgrade. Remove August 2008.
 =app-i18n/unicode-data-5.2.0
-
-# Steve Dibb <beandog@gentoo.org> (01 Jun 2008)
-# Ugly ebuild, needs testing
->=media-video/realplayer-11.0.0.4028
 
 # Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
 # Masked for keywording and testing
@@ -638,7 +639,7 @@ sys-apps/mindi-busybox
 =x11-apps/xdm-1.1.6-r1
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (3 Mar 2008)
-# Masking due to security bug #194607 and isecurity bug #204067
+# Masking due to security bug #194607 and security bug #204067
 games-fps/doom3
 games-fps/doom3-chextrek
 games-fps/doom3-data
