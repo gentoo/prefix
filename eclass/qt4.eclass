@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.45 2008/07/26 23:47:03 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.46 2008/07/28 22:10:16 carlo Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -27,14 +27,10 @@ QT4VERSIONS="4.4.0 4.4.0_beta1 4.4.0_rc1
 # @FUNCTION: qt4_min_version
 # @USAGE: [minimum version]
 # @DESCRIPTION:
-# This function should be called in package DEPENDs whenever it depends on qt4.
-# Simple example - in your depend, do something like this:
-# DEPEND="$(qt4_min_version 4.2)"
-# if the package can be build with qt-4.2 or higher.
-#
-# For builds that use an EAPI with support for SLOT dependencies, this will
-# return a SLOT dependency, rather than a list of versions.
+# This function is deprecated. Use slot dependencies instead.
 qt4_min_version() {
+	ewarn "qt4_min_version() is deprecated. Use slot dependencies instead."
+	epause
 	case ${EAPI:-0} in
 		# EAPIs without SLOT dependencies
 		0)	echo "|| ("

@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.34 2008/07/26 23:13:30 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.35 2008/07/28 22:10:16 carlo Exp $
 
 # @ECLASS: qt3.eclass
 # @MAINTAINER:
@@ -10,7 +10,7 @@
 # This eclass contains various functions that may be useful
 # when dealing with packages using Qt3 libraries.
 
-inherit toolchain-funcs versionator
+inherit toolchain-funcs versionator eutils
 
 QTPKG="x11-libs/qt-"
 QT3MAJORVERSIONS="3.3 3.2 3.1 3.0"
@@ -26,11 +26,10 @@ addpredict "${QTDIR}/etc/settings"
 # @FUNCTION: qt_min_version
 # @USAGE: [minimum version]
 # @DESCRIPTION:
-# This function is simple.  In your depend, do something like this:
-# DEPEND="$(qt_min_version 3.1)"
-# and it handles the rest for you. Currently, the eclass assumes
-# that a minimum version of Qt3 is not satisfied by Qt4.
+# This function is deprecated. Use slot dependencies instead.
 qt_min_version() {
+	ewarn "qt_min_version() is deprecated. Use slot dependencies instead."
+	epause
 	local list=$(qt_min_version_list "$@")
 	if [[ ${list%% *} == "${list}" ]]; then
 		echo "${list}"

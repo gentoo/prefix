@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.168 2008/05/17 15:19:56 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.169 2008/07/27 19:04:29 carlo Exp $
 
 # @ECLASS: kde-functions.eclass
 # @MAINTAINER:
@@ -773,16 +773,8 @@ need-qt() {
 	fi
 
 	case ${QTVER} in
-		3*)
-			case ${EAPI:-0} in
-				# Add EAPIs without SLOT dependencies.
-				0)	DEPEND="${DEPEND} $(qt_min_version ${QTVER})"
-					RDEPEND="${x_DEPEND} $(qt_min_version ${QTVER})"
-					;;
-				*)	DEPEND="${DEPEND} >=x11-libs/qt-${QTVER}:3"
-					RDEPEND="${RDEPEND} >=x11-libs/qt-${QTVER}:3"
-					;;
-			esac
+		3*)	DEPEND="${DEPEND} =x11-libs/qt-3*"
+			RDEPEND="${RDEPEND} =x11-libs/qt-3*"
 			;;
 		*)	echo "!!! error: $FUNCNAME() called with invalid parameter: \"$QTVER\", please report bug" && exit 1;;
 	esac
