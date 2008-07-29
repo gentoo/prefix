@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62.ebuild,v 1.7 2008/07/13 18:57:28 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r1.ebuild,v 1.1 2008/07/27 08:04:08 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -86,6 +86,9 @@ src_install() {
 	# users to the ssmtp group to enable them to use ssmtp.
 	fowners root:ssmtp /etc/ssmtp/ssmtp.conf
 	fperms 640 /etc/ssmtp/ssmtp.conf
+
+	fowners root:ssmtp /usr/sbin/ssmtp
+	fperms 750 /usr/sbin/ssmtp
 
 	dosym /usr/sbin/ssmtp /usr/lib/sendmail
 	dosym /usr/sbin/ssmtp /usr/bin/sendmail
