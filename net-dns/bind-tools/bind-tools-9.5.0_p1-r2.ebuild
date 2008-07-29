@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.0_p1-r1.ebuild,v 1.1 2008/07/23 19:01:11 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.0_p1-r2.ebuild,v 1.1 2008/07/27 08:54:15 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,9 @@ src_compile() {
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
 	myconf="${myconf} --with-openssl=no"
+
+	# bug #227333
+	append-flags -D_GNU_SOURCE
 
 	econf ${myconf} || die "Configure failed"
 
