@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.68 2008/01/27 23:49:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.69 2008/07/28 19:27:57 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
 *wanderlust-2.15.5_pre20071215 (27 Jan 2008)
 
@@ -389,7 +392,7 @@
 *wl-2.8.1 (31 Oct 2002)
 
   31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
-  wl-2.8.1.ebuild, files/70wl-gentoo.el, 
+  wl-2.8.1.ebuild, files/70wl-gentoo.el,
   files/digest-wl-2.8.1 :
 
   Initial import.
