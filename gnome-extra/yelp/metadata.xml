@@ -2,4 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>gnome</herd>
+<use>
+	<flag name='beagle'>Enables support for the Beagle
+		(<pkg>app-misc/beagle</pkg>) desktop search tool</flag>
+	<flag name='lzma'>Enables support for LZMA compressed info and man
+		pages</flag>
+</use>
 </pkgmetadata>
