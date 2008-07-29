@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.168 2008/06/30 21:42:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.169 2008/07/27 18:24:01 tester Exp $
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org>
+  gnome-terminal-2.22.3.ebuild:
+  Stable on amd64, bug #229709
 
 *gnome-terminal-2.22.3 (30 Jun 2008)
 

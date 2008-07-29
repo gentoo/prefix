@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.22.3.ebuild,v 1.1 2008/06/30 21:42:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.22.3.ebuild,v 1.2 2008/07/27 18:24:01 tester Exp $
 
 EAPI="prefix"
 
