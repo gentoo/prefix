@@ -1,6 +1,24 @@
 # ChangeLog for app-text/uudeview
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.25 2008/01/17 20:21:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.26 2008/07/28 00:35:37 rbu Exp $
+
+*uudeview-0.5.20-r1 (28 Jul 2008)
+
+  28 Jul 2008; Robert Buchholz <rbu@gentoo.org>
+  -files/uudeview-0.5.18-optimize_size.patch,
+  +files/uudeview-0.5.20-CVE-2004-2265.patch,
+  +files/uudeview-0.5.20-CVE-2008-2266.patch,
+  +files/uudeview-0.5.20-bugfixes.patch, +files/uudeview-0.5.20-man.patch,
+  +files/uudeview-0.5.20-rename.patch, +uudeview-0.5.20-r1.ebuild:
+  Non-maintainer bump
+  Pull in source patches from Debian
+  * Fix temporary file issue (CVE-2004-2265, CVE-2008-2266, bug #222275)
+  * Update uudeview man page, include uuwish man page
+  * Several bug fixes
+  
+  Other changes:
+  * Remove dead 'debug' use flag
+  * Remove old patch
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> uudeview-0.5.20.ebuild:
   Dropped ppc-macos keyword, see you in prefix
