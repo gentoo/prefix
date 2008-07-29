@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.14.07.ebuild,v 1.3 2008/07/27 20:55:25 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.15.03.ebuild,v 1.1 2008/07/27 20:52:18 loki_val Exp $
 
 EAPI="prefix 1"
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="+curl +cxx"
+IUSE="+curl"
 LICENSE="BSD"
 SLOT="0"
 
@@ -25,11 +25,10 @@ pkg_setup() {
 	fi
 }
 
-#Tests are faily.
-
+#FAIL
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${P}-abyss-disable.patch" )
+PATCHES=( "${FILESDIR}/${PN}-1.14.07-abyss-disable.patch" )
 
 src_unpack() {
 	base_src_unpack
@@ -40,7 +39,7 @@ src_unpack() {
 	sed -i \
 		-e "/CFLAGS_COMMON/s:-g -O3$:${CFLAGS}:" \
 		-e "/CXXFLAGS_COMMON/s:-g$:${CXXFLAGS}:" \
-		"${S}"/Makefile.common
+		"${S}"/common.mk || die "404. File not found while sedding"
 	eautoreconf
 }
 
@@ -57,8 +56,9 @@ src_compile() {
 		--disable-abyss-server \
 		--enable-cgi-server \
 		--disable-abyss-threads \
+		--enable-cplusplus \
 		$(use_enable curl curl-client) \
-		$(use_enable cxx cplusplus ) || die "econf failed"
+		|| die "econf failed"
 	emake -j1 || die "emake failed"
 }
 
@@ -69,14 +69,12 @@ src_test() {
 	make || die "Make of general tests failed"
 	einfo "Running general tests"
 	./test || die "General tests failed"
-	ewarn "The tests are made of fail. Skipping."
-	return 0
-	#C++ tests. They fail.
-	#cd "${S}"/src/cpp/test
-	#einfo "Building C++ tests"
-	#make || die "Make of C++ tests failed"
-	#einfo "Running C++ tests"
-	#./test || die "C++ tests failed"
+
+	cd "${S}"/src/cpp/test
+	einfo "Building C++ tests"
+	make || die "Make of C++ tests failed"
+	einfo "Running C++ tests"
+	./test || die "C++ tests failed"
 }
 
 src_install() {
