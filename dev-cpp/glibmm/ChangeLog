@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.117 2008/07/18 09:14:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.118 2008/07/27 19:03:43 tester Exp $
+
+  27 Jul 2008; Olivier Crête <tester@gentoo.org> glibmm-2.16.4.ebuild:
+  Stable on amd64, bug #229709
 
   18 Jul 2008; Alexis Ballier <aballier@gentoo.org>
   -files/glibmm-2.14.0-date.patch, glibmm-2.14.2.ebuild:
