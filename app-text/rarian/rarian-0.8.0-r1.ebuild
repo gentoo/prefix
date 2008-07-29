@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0-r1.ebuild,v 1.3 2008/06/29 22:54:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0-r1.ebuild,v 1.4 2008/07/27 18:13:56 tester Exp $
 
 EAPI="prefix"
 

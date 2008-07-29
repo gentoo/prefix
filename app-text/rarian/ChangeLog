@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.23 2008/06/29 22:54:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.24 2008/07/27 18:13:56 tester Exp $
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org> rarian-0.8.0-r1.ebuild:
+  Stable on amd64, bug #229709
 
   29 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org>
   rarian-0.8.0-r1.ebuild:
