@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.260 2008/06/04 12:26:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.261 2008/07/28 18:25:06 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   04 Jun 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r17.ebuild,
   emacs-22.1-r4.ebuild, emacs-22.2-r2.ebuild:
