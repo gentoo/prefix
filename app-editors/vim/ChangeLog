@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.312 2008/07/17 18:40:54 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.313 2008/07/28 20:14:30 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   17 Jul 2008; Ali Polatel <hawking@gentoo.org> vim-7.1.042.ebuild,
   vim-7.1.123.ebuild, vim-7.1.164.ebuild, vim-7.1.213.ebuild,
