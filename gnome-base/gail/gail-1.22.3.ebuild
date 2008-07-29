@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1.22.3.ebuild,v 1.2 2008/07/04 02:59:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1.22.3.ebuild,v 1.3 2008/07/27 18:13:26 tester Exp $
 
 EAPI="prefix"
 
