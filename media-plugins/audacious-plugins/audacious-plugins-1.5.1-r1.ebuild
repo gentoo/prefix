@@ -64,16 +64,11 @@ mp3_warning() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# Bug 232418; patch by Ivan Iraci <ivanhoe@vfemail.net>
+	epatch "${FILESDIR}/${PV}-missing-include.patch"
 
 	epatch "${FILESDIR}"/${PN}-1.5.0-interix.patch
 	AT_M4DIR="m4" eautoreconf
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	# Bug 232418; patch by Ivan Iraci <ivanhoe@vfemail.net>
-	epatch "${FILESDIR}/${PV}-missing-include.patch"
 }
 
 src_compile() {
