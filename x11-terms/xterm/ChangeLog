@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.237 2008/06/19 17:16:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.238 2008/07/28 19:20:48 dberkholz Exp $
+
+*xterm-236 (28 Jul 2008)
+
+  28 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>; +xterm-236.ebuild:
+  Bump.
 
   19 Jun 2008; nixnut <nixnut@gentoo.org> xterm-235.ebuild:
   Stable on ppc wrt bug 227525
