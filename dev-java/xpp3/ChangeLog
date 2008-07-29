@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xpp3
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/ChangeLog,v 1.19 2008/07/22 21:11:30 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/ChangeLog,v 1.20 2008/07/27 08:05:00 nixnut Exp $
+
+  27 Jul 2008; nixnut <nixnut@gentoo.org> xpp3-1.1.4c-r1.ebuild:
+  Stable on ppc wrt bug 232688
 
   22 Jul 2008; Petteri Räty <betelgeuse@gentoo.org> xpp3-1.1.4c-r1.ebuild:
   don't quote A
