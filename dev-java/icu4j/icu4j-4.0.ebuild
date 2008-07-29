@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.8.1.ebuild,v 1.4 2008/07/23 14:39:20 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-4.0.ebuild,v 1.1 2008/07/28 19:18:27 elvanor Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ EAPI="prefix"
 # These *.res data files are needed to built the final jar
 # They do not need to be installed however as they will already be present in icu4j.jar
 
-JAVA_PKG_IUSE="source"
+JAVA_PKG_IUSE="doc test source"
 
 inherit java-pkg-2 java-ant-2 java-osgi
 
@@ -22,18 +22,21 @@ SRC_URI="http://download.icu-project.org/files/${PN}/${PV}/${PN}-${MY_PV}-src.ja
 
 HOMEPAGE="http://www.icu-project.org/"
 LICENSE="icu"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 
 RDEPEND=">=virtual/jre-1.4"
 
 # build.xml does file version detection that fails for 1.7
 # http://bugs.gentoo.org/show_bug.cgi?id=213555
-DEPEND="test? ( || ( =virtual/jdk-1.5* =virtual/jdk-1.4* ) )
-	!test? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* =virtual/jdk-1.4* ) )
+DEPEND="test? ( >=virtual/jdk-1.6 )
+	!test? ( >=virtual/jdk-1.4 )
 	app-arch/unzip"
 
-IUSE="doc test"
+RESTRICT="ia64? ( test )
+	x86-fbsd? ( test )"
+JAVA_PKG_WANT_SOURCE="1.4"
+JAVA_PKG_WANT_TARGET="1.4"
 
 S="${WORKDIR}"
 
@@ -64,13 +67,8 @@ src_install() {
 	use source && java-pkg_dosrc src/*
 }
 
-# Following tests will fail in Sun JDK 6 (at least):
-# toUnicode: http://bugs.icu-project.org/trac/ticket/5663
-# TimeZoneTransitionAdd: http://bugs.icu-project.org/trac/ticket/5887
-# These are bugs in the tests themselves, not in the library
+# Tests only work with JDK-1.6, severe out of memory problems appear with 1.5
 
 src_test() {
-	# Tests currently fail, disabled for now. Need to investigate
-	#eant check
-	einfo "Tests currently disabled."
+	eant check
 }

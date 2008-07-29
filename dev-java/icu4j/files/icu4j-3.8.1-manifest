@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %bundleName
 Bundle-Vendor: %vendorName
 Bundle-SymbolicName: com.ibm.icu; singleton:=true
-Bundle-Version: 3.8.1
+Bundle-Version: 3.8.1.1
 Bundle-Localization: plugin
 Export-Package: com.ibm.icu.lang;version="3.8.1",
  com.ibm.icu.math;version="3.8.1",
