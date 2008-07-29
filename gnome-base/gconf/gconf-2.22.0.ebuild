@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.4 2008/06/07 11:22:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.22.0.ebuild,v 1.5 2008/07/27 18:16:02 tester Exp $
 
 EAPI="prefix"
 
