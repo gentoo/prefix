@@ -7,4 +7,7 @@
   for use with GNU Emacs and XEmacs. It can hook into Emacs-based mail- and
   news-readers and automatically collect information on messages therein.
 </longdescription>
+<use>
+  <flag name='tex'>Install plain TeX support files</flag>
+</use>
 </pkgmetadata>
