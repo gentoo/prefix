@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.199 2008/07/01 14:44:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.200 2008/07/28 19:41:15 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   01 Jul 2008; Raúl Porcel <armin76@gentoo.org> nano-2.1.2-r1.ebuild:
   alpha/ia64/x86 stable wrt #230001
@@ -642,7 +645,7 @@
   Version bump #14521.
 
 *nano-1.0.9-r2 (01 Dec 2002)
- 
+
   18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
   Added mips to keywords
 
@@ -651,7 +654,7 @@
   PROVIDE virtual/editor
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
+
   01 Dec 2002; Mike Frysinger <vapier@gentoo.org> :
   Added a symlink for /usr/bin/nano to /bin/nano #10916
 
@@ -674,7 +677,7 @@
   bumped version
 
 *nano-1.0.8-r1 (12 Mar 2002)
-	
+
   23 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
   Removed bootcd USE flag
 
@@ -683,7 +686,7 @@
 
   11 Apr 2002; Seemant Kulleen <seemant@gentoo.org> nano-1.0.8-r1.ebuild :
 
-  I did not bump the revision number of this, but I added a flag to 
+  I did not bump the revision number of this, but I added a flag to
   disable text wrapping as root, for when nano is built for the bootcd
   or build environments.  This means that the nano -w instruction in
   our Gentoo Installation docs will need to be adjusted to just say

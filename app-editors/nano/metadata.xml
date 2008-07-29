@@ -22,4 +22,7 @@ nano aims to solve these problems by emulating the functionality of
 Pico as closely as possible while addressing the problems above and
 perhaps providing other extra functionality.
 </longdescription>
+<use>
+  <flag name='justify'>Toggle the justify option</flag>
+</use>
 </pkgmetadata>
