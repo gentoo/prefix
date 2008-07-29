@@ -9,5 +9,11 @@ installs several modules that are automatically used by applications
 using the APIs of libgio. There is also fuse support that allows
 applications not using gio to access the gvfs filesystems.
 </longdescription>
+<use>
+	<flag name='cdda'>Enables Compact Disc Digital Audio (standard audio CDs)
+		support</flag>
+	<flag name='fuse'>Enables fuse mount points in $HOME/.gvfs for legacy
+		application access</flag>
+</use>
 </pkgmetadata>
 
