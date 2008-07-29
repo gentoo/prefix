@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/jasspa-microemacs
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.32 2007/12/06 23:38:51 ulm Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.33 2008/07/28 18:32:23 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   06 Dec 2007; Ulrich Mueller <ulm@gentoo.org>
   +files/jasspa-microemacs.desktop, jasspa-microemacs-20060909-r1.ebuild:
