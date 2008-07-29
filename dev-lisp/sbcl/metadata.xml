@@ -19,4 +19,9 @@ platforms using an NPTL enabled GLIBC.
 
 SBCL 0.8.17 and later support Unicode.
 </longdescription>
+<use>
+<flag name='cobalt'>mips only: use mipsel binary instead of mips big endian
+binary to bootstrap</flag>
+<flag name='ldb'>Include support for the SBCL low level debugger</flag>
+</use>
 </pkgmetadata>
