@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.3.ebuild,v 1.10 2008/03/23 13:08:32 swegener Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.3.ebuild,v 1.11 2008/07/27 19:18:05 carlo Exp $
 
 #WANT_AUTOCONF="2.5"
 #WANT_AUTOMAKE="1.9"
+
+EAPI="prefix 1"
 
 inherit qt3 multilib eutils autotools
 
@@ -21,7 +21,7 @@ IUSE="gtk ncurses qt3 caps"
 # we need gettext because we run autoconf
 DEPEND="gtk? ( =x11-libs/gtk+-2* )
 	ncurses? ( sys-libs/ncurses )
-	qt3? ( $(qt_min_version 3.3) )
+	qt3? ( x11-libs/qt:3 )
 	!gtk? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) )
 	caps? ( sys-libs/libcap )
 	sys-devel/gettext"
