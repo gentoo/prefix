@@ -13,4 +13,10 @@
 		better KDE and GNOME integration, an integrated keygrabber and countless
 		additonal features.
 		]]></longdescription>
+	<use>
+		<flag name='disableslit'>Disables the fluxbox slit (or dock)</flag>
+		<flag name='disabletoolbar'>Disables the fluxbox toolbar</flag>
+		<flag name='slit'>Enables the fluxbox slit (or dock)</flag>
+		<flag name='toolbar'>Enables the fluxbox toolbar</flag>
+	</use>
 </pkgmetadata>
