@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.14 2008/07/04 02:22:01 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.15 2008/07/29 08:43:12 carlo Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit eutils flag-o-matic toolchain-funcs qt3 fdo-mime
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug doc nodot qt3 latex elibc_FreeBSD"
 
-RDEPEND="qt3? ( $(qt_min_version 3.3) )
+RDEPEND="qt3? ( x11-libs/qt:3 )
 	latex? ( virtual/latex-base )
 	dev-lang/python
 	virtual/libiconv
