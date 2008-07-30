@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.03.ebuild,v 1.1 2008/07/10 19:16:29 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.03.ebuild,v 1.2 2008/07/29 12:57:33 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ GENTOO_PATCH=2
 
 DESCRIPTION="A somewhat comprehensive collection of Linux man pages"
 HOMEPAGE="http://www.win.tue.nl/~aeb/linux/man/"
-SRC_URI="mirror://kernel/linux/docs/manpages/${P}.tar.bz2
+SRC_URI="mirror://kernel/linux/docs/manpages/Archive/${P}.tar.bz2
 	mirror://gentoo/man-pages-gentoo-${GENTOO_PATCH}.tar.bz2
 	http://dev.gentoo.org/~cardoe/files/man-pages-gentoo-${GENTOO_PATCH}.tar.bz2"
 

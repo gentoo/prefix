@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.80.ebuild,v 1.2 2008/06/17 11:51:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.80.ebuild,v 1.3 2008/07/29 12:57:33 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="A somewhat comprehensive collection of Linux man pages"
 HOMEPAGE="http://www.win.tue.nl/~aeb/linux/man/"
-SRC_URI="mirror://kernel/linux/docs/manpages/${P}.tar.bz2"
+SRC_URI="mirror://kernel/linux/docs/manpages/Archive/${P}.tar.bz2"
 
 LICENSE="freedist"
 SLOT="0"
