@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.4 2008/07/16 11:39:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.5 2008/07/29 20:50:24 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -15,7 +15,6 @@ RDEPEND="x11-libs/libXrender
 	dev-libs/expat
 	app-arch/zip
 	app-arch/unzip
-	>=www-client/mozilla-launcher-1.58
 	>=x11-libs/gtk+-2.8.6
 	>=dev-libs/glib-2.8.2
 	>=x11-libs/pango-1.10.1

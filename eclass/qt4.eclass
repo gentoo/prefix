@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.46 2008/07/28 22:10:16 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.47 2008/07/29 08:32:48 carlo Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -29,12 +29,12 @@ QT4VERSIONS="4.4.0 4.4.0_beta1 4.4.0_rc1
 # @DESCRIPTION:
 # This function is deprecated. Use slot dependencies instead.
 qt4_min_version() {
+	local deps="$@"
 	ewarn "qt4_min_version() is deprecated. Use slot dependencies instead."
-	epause
 	case ${EAPI:-0} in
 		# EAPIs without SLOT dependencies
 		0)	echo "|| ("
-			qt4_min_version_list "$@"
+			qt4_min_version_list "${deps}"
 			echo ")"
 			;;
 		# EAPIS with SLOT dependencies.
