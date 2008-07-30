@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9-r2.ebuild,v 1.5 2008/06/29 15:39:55 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9-r2.ebuild,v 1.6 2008/07/29 18:33:31 armin76 Exp $
 
 EAPI="prefix"
 
@@ -170,13 +170,11 @@ src_install() {
 	X_DATE=`date +%Y%m%d`
 
 	# Add Gentoo package version to preferences - copied from debian rules
-	echo // Gentoo package version \
-		> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 	echo "pref(\"general.useragent.product\",\"Gecko\");" \
 		>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 	echo "pref(\"general.useragent.productSub\",\"${X_DATE}\");" \
 		>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
-	echo "pref(\"general.useragent.productComment\",\"Gentoo\");" \
+	echo "pref(\"general.useragent.vendor\",\"Gentoo\");" \
 		>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 
 	if use java ; then
