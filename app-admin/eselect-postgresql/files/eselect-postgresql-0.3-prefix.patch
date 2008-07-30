@@ -1,5 +1,5 @@
---- postgresql.eselect.orig	2008-07-23 12:52:36.773195000 -0500
-+++ postgresql.eselect	2008-07-23 12:55:15.738208000 -0500
+--- postgresql.eselect
++++ postgresql.eselect
 @@ -18,7 +18,7 @@
  
  	do_list() {
@@ -52,7 +52,7 @@
 +		local alibdir='"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/'
  		[[ ${#@} -ne 1 ]] && die -q "Only one parameter is expected"
 -		local slotdir="/etc/eselect/postgresql/slots/${1}"
-+		local slotdir=""@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/slots/${1}"
++		local slotdir="@GENTOO_PORTAGE_EPREFIX@/etc/eselect/postgresql/slots/${1}"
  		[[ -d "${slotdir}" ]] || die -q "No such version installed"
  		do_reset
  		unset postgres_symlinks
@@ -178,3 +178,15 @@
  			echo "Resetting uninstalled selection"
  			do_reset-service
  		fi
+--- binwrapper
++++ binwrapper
+@@ -1,6 +1,6 @@
+-#!/bin/bash
+-[[ -d /etc/eselect/postgresql/active ]] || { echo "Use eselect to set postgresql version"; exit 1; }
+-for src in /etc/eselect/postgresql/active/* ; do
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
++[[ -d "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active ]] || { echo "Use eselect to set postgresql version"; exit 1; }
++for src in "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active/* ; do
+ 	[[ -f "${src}" ]] && source $src
+ done
+ bn="$(basename "$0")"
