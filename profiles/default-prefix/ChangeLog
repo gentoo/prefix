@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask net-analyzer/arping because it requires root to run
+
   31 Jul 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   changed mask for file from >=4.25 to >=4.24, since 4.24 doesnt work too
 
