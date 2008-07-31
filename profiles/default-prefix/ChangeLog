@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  changed mask for file from >=4.25 to >=4.24, since 4.24 doesnt work too
+
   31 Jul 2008; Markus Duft <mduft@gentoo.org>
   windows/interix/package.use.mask:
   mask X use flag on pdv on interix

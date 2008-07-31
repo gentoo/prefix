@@ -11,7 +11,7 @@
 
 # Fabian Groffen <grobian@gentoo.org> (20 Jul 2008)
 # Needs getopt_long, in other words needs our gnulib thing solution
->=sys-apps/file-4.25
+>=sys-apps/file-4.24
 
 # Fabian Groffen <grobian@gentoo.org> (17 Jul 2008)
 # This is a bump for Interix only
