@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2008; Markus Duft <mduft@gentoo.org>
+  windows/interix/package.use.mask:
+  mask X use flag on pdv on interix
+
   29 Jul 2008; Markus Duft <mduft@gentoo.org> package.mask,
   windows/interix/package.mask, windows/interix/package.use.mask:
   masked ssl useflag for libsoup to prevent dependency on gnutls (not building
