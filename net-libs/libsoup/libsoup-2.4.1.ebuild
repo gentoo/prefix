@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="An HTTP library implementation in C"
 HOMEPAGE="http://www.gnome.org/"
@@ -25,4 +25,13 @@ DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable ssl)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# should not do any harm on other platforms, but who knows!
+	# WARNING: libsoup may misbehave on interix3 regarding timeouts
+	# on sockets :)
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 }
