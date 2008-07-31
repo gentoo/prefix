@@ -15,7 +15,13 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="ppc-aix? ( dev-libs/gnulib )"
+DEPEND="
+	ppc-aix? ( dev-libs/gnulib )
+	sparc-solaris? ( dev-libs/gnulib )
+	sparc64-solaris? ( dev-libs/gnulib )
+	x86-solaris? ( dev-libs/gnulib )
+	x64-solaris? ( dev-libs/gnulib )
+"
 
 src_unpack() {
 	unpack ${A}
@@ -30,7 +36,7 @@ src_unpack() {
 
 src_compile() {
 	tc-export CC
-	if [[ ${CHOST} == *-aix* ]]; then
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib -lgnu
 	fi
