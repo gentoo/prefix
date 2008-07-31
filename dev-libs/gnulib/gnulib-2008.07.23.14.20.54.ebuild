@@ -27,7 +27,7 @@ SRC_URI="http://dev.gentoo.org/~haubi/distfiles/${PN}-${GNULIB_COMMIT_GITID}.tar
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix"
+KEYWORDS="~ppc-aix ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
