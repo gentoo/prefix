@@ -21,6 +21,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.41.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.50.0-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 	eautoreconf # need new libtool for interix
 
 	elibtoolize
