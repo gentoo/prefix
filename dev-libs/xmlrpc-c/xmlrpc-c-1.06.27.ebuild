@@ -38,6 +38,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.05-pic.patch
 	epatch "${FILESDIR}"/${PN}-1.06.09-interix.patch
 
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix-3.5.patch
 #	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-1.06.09-darwin.patch
 
 	# Respect the user's CFLAGS/CXXFLAGS.
