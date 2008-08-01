@@ -20,14 +20,18 @@ IUSE=""
 DEPEND="x11-libs/libX11
 	dev-lang/perl"
 
-myconf="-I/usr/include/ -l/usr/$(get_libdir)"
+myconf="-I${EPREFIX}/usr/include/ -l${EPREFIX}/usr/$(get_libdir)"
 
 mydoc="ToDo VERSIONS"
 
-export X11ROOT=/usr
+export X11="${EPREFIX}"/usr
 
 src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch ${FILESDIR}/xorg.patch
+
+	# this should help on all other platforms too, to find the
+	# correct X11 version from EPREFIX.
+	epatch "${FILESDIR}"/${P}-interix-x11.patch
 }
