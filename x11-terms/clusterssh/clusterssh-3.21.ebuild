@@ -25,6 +25,11 @@ src_unpack() {
 	unpack "${A}"
 	epatch "${FILESDIR}"/${PN}-3.21-disable-warning.patch
 	epatch "${FILESDIR}"/${PN}-3.21-xrm-remove-class.patch
+
+	# WARNING: this patch removes help from the main window!!
+	# if help is needed, don't apply this (won't build on interix).
+	# help is nothing else than "man cssh" in a GUI window.
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
