@@ -1,0 +1,15 @@
+--- Makefile.orig	2008-08-01 10:21:32.231786000 +0200
++++ Makefile	2008-08-01 10:24:42.326251000 +0200
+@@ -76,10 +76,10 @@
+ 	$(Q)$(compile.c) $(WFLAGS)
+ 
+ $(ELF_TARGETS): $(ELF_OBJS) $(COMMON_OBJS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) $(COMMON_OBJS) paxelf.o -o $@ $@.o $(LIBS) $(LIBS-$@)
++	$(CC) $(CFLAGS) $(LDFLAGS) $(COMMON_OBJS) paxelf.o -o $@ $@.o $(LIBS-$@) $(LIBS)
+ 
+ $(MACH_TARGETS): $(MACH_OBJS) $(COMMON_OBJS)
+-	$(CC) $(CFLAGS) $(LDFLAGS) $(COMMON_OBJS) paxmacho.o -o $@ $@.o $(LIBS) $(LIBS-$@)
++	$(CC) $(CFLAGS) $(LDFLAGS) $(COMMON_OBJS) paxmacho.o -o $@ $@.o $(LIBS-$@) $(LIBS)
+ 
+ %.so: %.c
+ 	$(CC) -shared -fPIC -o $@ $<

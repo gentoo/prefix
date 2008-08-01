@@ -19,10 +19,27 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc6
 IUSE="caps"
 #RESTRICT="mirror"
 
-DEPEND="caps? ( sys-libs/libcap )"
+DEPEND="caps? ( sys-libs/libcap )
+	sparc-solaris? ( dev-libs/gnulib )
+	sparc64-solaris? ( dev-libs/gnulib )
+	x86-solaris? ( dev-libs/gnulib )
+	x64-solaris? ( dev-libs/gnulib )
+"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-liborder.patch
+}
 
 src_compile() {
-	emake CC="$(tc-getCC)" USE_CAP=$(use caps && echo yes) || die
+	local libs
+	if [[ ${CHOST} == *-solaris* ]]; then
+		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
+		libs="-lgnu"
+	fi
+	emake CC="$(tc-getCC)" LIBS="${libs}" USE_CAP=$(use caps && echo yes) || die
 }
 
 src_install() {
