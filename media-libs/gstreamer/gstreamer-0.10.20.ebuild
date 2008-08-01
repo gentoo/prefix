@@ -36,6 +36,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.10.17-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.10.19-interix.patch
 
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
 }
