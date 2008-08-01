@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.18.ebuild,v 1.1 2008/07/27 21:55:03 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.1 2008/07/30 16:19:06 pchrist Exp $
 
 EAPI="prefix"
 
@@ -106,9 +106,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.0.6-solaris.patch
-	epatch "${FILESDIR}"/${PN}-version-asm.patch #216871
 #	epatch "${FILESDIR}/disable-tests-gentoo-${PV}.patch"
-	use source && sed 's%"$(build_root)%$(module).lisp "$(build_root)%' -i contrib/vanilla-module.mk
+	use source && sed 's%"$(BUILD_ROOT)%$(MODULE).lisp "$(BUILD_ROOT)%' -i contrib/vanilla-module.mk
 
 	sed "s,/lib,/$(get_libdir),g" -i "${S}/install.sh"
 	sed  "s,/usr/local/lib,${EPREFIX}/usr/$(get_libdir),g" -i "${S}/src/runtime/runtime.c" # #define SBCL_HOME ...
@@ -195,15 +194,13 @@ EOF
 	echo "SBCL_SOURCE_ROOT=${EPREFIX}/usr/$(get_libdir)/${PN}/src" >> "${ENVD}"
 	doenvd "${ENVD}"
 
-#	impl-save-timestamp-hack sbcl
+	impl-save-timestamp-hack sbcl
 }
 
 pkg_postinst() {
-	sleep 1
-	find "${EPREFIX}"/usr/$(get_libdir)/sbcl/ -type f -name '*.fasl' -exec touch -m {} ';'
-#	standard-impl-postinst sbcl
+	standard-impl-postinst sbcl
 }
 
-# pkg_postrm() {
-# 	standard-impl-postrm sbcl /usr/bin/sbcl
-# }
+pkg_postrm() {
+	standard-impl-postrm sbcl /usr/bin/sbcl
+}
