@@ -190,7 +190,7 @@ pkg_preinst() {
 				install_name=$(otool -DX "${filename}")
 				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
 			done < "${cpv}"
-			[[ -n ${didwork} ]] \
+			[[ -z ${didwork} ]] \
 				&& didwork=yes \
 				|| didwork=already
 		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
@@ -200,7 +200,7 @@ pkg_preinst() {
 				newline=$(scanelf -BF "%a;%F;%S;$needed;%r" $filename)
 				echo "${newline:3}" >> "${cpv}".ELF.2
 			done < "${cpv}"
-			[[ -n ${didwork} ]] \
+			[[ -z ${didwork} ]] \
 				&& didwork=yes \
 				|| didwork=already
 		fi
