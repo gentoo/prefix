@@ -66,6 +66,8 @@ src_unpack() {
 		epatch "${FILESDIR}"/elinks-0.10.1-utf_8_io-default.patch
 	fi
 
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
 	sed -i -e 's/-Werror//' configure*
 	eautoreconf
 }
