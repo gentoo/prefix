@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 MY_PN=${PN}src
 DESCRIPTION="Uncompress rar files"
@@ -19,6 +19,13 @@ IUSE=""
 DEPEND="!app-arch/unrar-gpl"
 
 S=${WORKDIR}/unrar
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
+}
 
 src_compile() {
 	emake \
