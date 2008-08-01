@@ -32,6 +32,7 @@ src_unpack() {
 	# this might break others, since it removed -lrt from the
 	# link line.
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-1.1.7-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
 src_compile() {
