@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/cairomm-1.6.0.ebuild,v 1.4 2008/07/27 19:02:11 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/cairomm-1.6.0.ebuild,v 1.5 2008/07/30 22:08:23 ranger Exp $
 
 EAPI="prefix"
 
