@@ -1,6 +1,9 @@
 # ChangeLog for app-text/uudeview
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.26 2008/07/28 00:35:37 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.27 2008/07/30 10:28:13 armin76 Exp $
+
+  30 Jul 2008; Raúl Porcel <armin76@gentoo.org> uudeview-0.5.20-r1.ebuild:
+  sparc/x86 stable wrt #222275
 
 *uudeview-0.5.20-r1 (28 Jul 2008)
 
