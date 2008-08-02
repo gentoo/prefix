@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.40 2008/07/26 18:57:55 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.43 2008/07/31 18:38:20 armin76 Exp $
+
+  31 Jul 2008; Raúl Porcel <armin76@gentoo.org> gst-python-0.10.12.ebuild:
+  ia64/sparc stable wrt #232054
+
+  01 Aug 2008; Brent Baude <ranger@gentoo.org> gst-python-0.10.12.ebuild:
+  Marking gst-python-0.10.12 ppc64 stable for bug 232054
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> gst-python-0.10.12.ebuild:
+  Marking gst-python-0.10.12 ppc stable for bug 232054
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> gst-python-0.10.12.ebuild:
   Stable on amd64, bug #232054
