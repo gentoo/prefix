@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.118 2008/07/29 16:53:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.119 2008/07/30 07:17:20 cla Exp $
+
+  30 Jul 2008; Dawid Węgliński <cla@gentoo.org>
+  libtorrent-0.12.2-r3.ebuild:
+  Stable on amd64 (bug #233122)
 
   29 Jul 2008; Raúl Porcel <armin76@gentoo.org>
   libtorrent-0.12.2-r3.ebuild:
