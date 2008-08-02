@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/libbonoboui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/ChangeLog,v 1.159 2008/07/27 18:20:48 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/ChangeLog,v 1.161 2008/07/31 21:43:30 eva Exp $
+
+  31 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  libbonoboui-2.22.0.ebuild:
+  artificially raise libbonobo requirement to avoid bugs similar to bug
+  #229611.
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> libbonoboui-2.22.0.ebuild:
+  Marking libbonoboui-2.22.0 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> libbonoboui-2.22.0.ebuild:
   Stable on amd64, bug #229709
