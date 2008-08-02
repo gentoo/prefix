@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.3 2008/07/18 17:51:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.5 2008/07/30 17:58:51 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -23,7 +23,7 @@ IUSE="java mozdevelop bindist restrict-javascript iceweasel +xulrunner"
 SRC_URI="mirror://gentoo/${P}.tar.bz2
 	http://dev.gentoo.org/~armin76/${P}.tar.bz2
 	mirror://gentoo/${PATCH}.tar.bz2
-	iceweasel? ( mirror://gentoo/iceweasel-icons-2.0.0.11.tar.bz2 )
+	iceweasel? ( mirror://gentoo/iceweasel-icons-3.0.tar.bz2 )
 	!xulrunner? ( mirror://gentoo/xulrunner-1.9${MY_PV}.tar.bz2 )"
 
 # These are in
@@ -119,7 +119,7 @@ src_unpack() {
 	unpack ${P}.tar.bz2 ${PATCH}.tar.bz2
 
 	if use iceweasel; then
-		unpack iceweasel-icons-2.0.0.11.tar.bz2
+		unpack iceweasel-icons-3.0.tar.bz2
 
 		cp -r iceweaselicons/browser mozilla/
 	fi
@@ -278,14 +278,6 @@ src_install() {
 	fi
 
 	if use xulrunner; then
-		PKG_CONFIG=`which pkg-config`
-		X_DATE=`date +%Y%m%d`
-		XULRUNNER_VERSION=`${PKG_CONFIG} --modversion libxul`
-
-		#set the application.ini
-		sed -i -e "s|BuildID=.*$|BuildID=${X_DATE}GentooMozillaFirefox|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
-		sed -i -e "s|MinVersion=.*$|MinVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
-		sed -i -e "s|MaxVersion=.*$|MaxVersion=${XULRUNNER_VERSION}|" "${ED}"${MOZILLA_FIVE_HOME}/application.ini
 		# Create /usr/bin/firefox
 		cat <<EOF >"${ED}"/usr/bin/firefox
 #!${EPREFIX}/bin/sh
@@ -296,6 +288,10 @@ EOF
 	else
 		# Create /usr/bin/firefox
 		make_wrapper firefox "${MOZILLA_FIVE_HOME}/firefox"
+
+		# Add vendor
+		echo "pref(\"general.useragent.vendor\",\"Gentoo\");" \
+			>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 	fi
 
 }

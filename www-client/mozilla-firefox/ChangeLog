@@ -1,6 +1,14 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.432 2008/07/19 10:02:59 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.434 2008/07/30 17:58:51 armin76 Exp $
+
+  30 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.1.ebuild:
+  Bump iceweasel icons tarball
+
+  30 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.1.ebuild:
+  Remove useless stuff and add vendor
 
   19 Jul 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   mozilla-firefox-2.0.0.16.ebuild:
