@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.184 2008/07/27 18:14:59 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.185 2008/07/30 21:41:05 ranger Exp $
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> pygtk-2.12.1-r2.ebuild:
+  Marking pygtk-2.12.1-r2 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> pygtk-2.12.1-r2.ebuild:
   Stable on amd64, bug #229709
