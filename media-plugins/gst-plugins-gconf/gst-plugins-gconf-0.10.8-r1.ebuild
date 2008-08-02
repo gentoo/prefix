@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.8-r1.ebuild,v 1.2 2008/07/26 20:32:53 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.8-r1.ebuild,v 1.5 2008/07/31 18:45:27 armin76 Exp $
 
 EAPI="prefix"
 
