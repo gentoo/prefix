@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.123 2008/07/27 18:29:26 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.124 2008/07/30 21:49:28 ranger Exp $
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> gtk-engines-2.14.3.ebuild:
+  Marking gtk-engines-2.14.3 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> gtk-engines-2.14.3.ebuild:
   Stable on amd64, bug #229709
