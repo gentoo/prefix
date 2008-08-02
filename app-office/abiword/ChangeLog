@@ -1,6 +1,12 @@
 # ChangeLog for app-office/abiword
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-office/abiword/ChangeLog,v 1.195 2008/06/17 01:32:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.196 2008/07/30 21:36:45 eva Exp $
+
+*abiword-2.6.4 (30 Jul 2008)
+
+  30 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org> -abiword-2.6.0.ebuild,
+  -abiword-2.6.2.ebuild, abiword-2.6.3.ebuild, +abiword-2.6.4.ebuild:
+  bump to 2.6.4. Cleanup old revisions and fix bug #228019.
 
   17 Jun 2008; Jeroen Roovers <jer@gentoo.org> abiword-2.6.3.ebuild:
   Stable for HPPA (bug #225395).
