@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.80 2007/09/15 06:55:42 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.81 2008/07/31 20:01:43 drac Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -402,7 +402,7 @@ elibtoolize() {
 
 		[[ -f ${x}/libtool ]] && rm -f "${x}/libtool"
 
-		touch "${x}/.elibtoolized"
+		>> "${x}/.elibtoolized"
 	done
 
 	cd "${start_dir}"

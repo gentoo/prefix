@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.8 2008/07/26 16:05:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.9 2008/07/30 10:44:19 armin76 Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -183,7 +183,8 @@ mozconfig_init() {
 		--enable-system-cairo \
 		--disable-strip \
 		--disable-strip-libs \
-		--disable-install-strip
+		--disable-install-strip \
+		--with-distribution-id=org.gentoo
 
 		# This doesn't work yet
 		#--with-system-png \
