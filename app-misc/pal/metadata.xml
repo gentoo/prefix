@@ -3,11 +3,16 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-	<email>tove@gentoo.org</email>
+  <email>tove@gentoo.org</email>
 </maintainer>
 <longdescription>
-	pal is a command-line calendar program for Unix/Linux systems that can keep
-	track of events. It has similarities with the Unix cal command, the more
-	complex GNU gcal program and the calendar program distributed with the BSDs.
+  pal is a command-line calendar program for Unix/Linux systems that can keep
+  track of events. It has similarities with the Unix cal command, the more
+  complex GNU gcal program and the calendar program distributed with the BSDs.
 </longdescription>
+<use>
+  <flag name='ical'>Add support for converting ical format to pal
+    (<pkg>dev-libs/libical</pkg>)
+</flag>
+</use>
 </pkgmetadata>
