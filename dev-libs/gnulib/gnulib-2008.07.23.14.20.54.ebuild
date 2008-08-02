@@ -22,6 +22,7 @@ HOMEPAGE="http://www.gnu.org/software/gnulib"
 # To see what the last commit message for the current version was, use
 # http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=commit;h=${GNULIB_COMMIT_GITID}
 #
+RESTRICT=mirror
 GNULIB_COMMIT_GITID=5490f5a9848076555e5cdac9b6613b9d107a6ac2
 SRC_URI="http://dev.gentoo.org/~haubi/distfiles/${PN}-${GNULIB_COMMIT_GITID}.tar.gz"
 
