@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.105 2008/07/27 18:10:38 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.106 2008/07/30 21:38:13 ranger Exp $
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> intltool-0.37.1.ebuild:
+  Marking intltool-0.37.1 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> intltool-0.37.1.ebuild:
   Stable on amd64, bug #229709
