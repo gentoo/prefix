@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.388 2008/07/27 18:12:23 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.390 2008/07/31 22:54:34 eva Exp $
+
+  31 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  gtk+-1.2.10-r12.ebuild, -gtk+-2.12.1-r2.ebuild, -gtk+-2.12.5-r1.ebuild,
+  -gtk+-2.12.9.ebuild, -gtk+-2.12.10.ebuild:
+  drop gtk+-1 to ~mips for repoman check.
+  clean up old revisions.
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> gtk+-2.12.10-r1.ebuild:
+  Marking gtk+-2.12.10-r1 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> gtk+-2.12.10-r1.ebuild:
   Stable on amd64, bug #229709
