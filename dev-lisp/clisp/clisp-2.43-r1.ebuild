@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43-r1.ebuild,v 1.5 2008/05/21 15:59:59 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43-r1.ebuild,v 1.6 2008/07/30 13:51:14 pchrist Exp $
 
 EAPI="prefix"
 
@@ -54,7 +54,7 @@ src_compile() {
 	use readline || myconf="${myconf} --with-noreadline"
 
 	# default modules
-	enable_modules wildcard rawsock i18n
+	enable_modules wildcard rawsock
 	# optional modules
 	use elibc_glibc && enable_modules bindings/glibc
 	if use X; then
