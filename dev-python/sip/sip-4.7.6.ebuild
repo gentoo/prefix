@@ -6,7 +6,7 @@ EAPI="prefix"
 
 NEED_PYTHON=2.3
 
-inherit python toolchain-funcs versionator multilib
+inherit python toolchain-funcs versionator multilib eutils
 
 MY_P=${P/_}
 
@@ -16,13 +16,19 @@ SRC_URI="http://www.riverbankcomputing.com/static/Downloads/sip$(get_major_versi
 
 LICENSE="sip"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="debug"
 
 S=${WORKDIR}/${MY_P}
 
 DEPEND=""
 RDEPEND=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin-noframework.patch
+}
 
 src_compile(){
 	python_version
@@ -31,6 +37,7 @@ src_compile(){
 	use debug && myconf="${myconf} -u"
 
 	"${python}" configure.py \
+		-p linux-g++ \
 		-b "${EPREFIX}/usr/bin" \
 		-d "${EPREFIX}/usr/$(get_libdir)/python${PYVER}/site-packages" \
 		-e "${EPREFIX}/usr/include/python${PYVER}" \
