@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.22.2.1.ebuild,v 1.3 2008/07/27 18:49:25 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.22.2.1.ebuild,v 1.5 2008/07/31 21:59:43 eva Exp $
 
 EAPI="prefix 1"
 
@@ -95,4 +95,7 @@ src_unpack() {
 
 	# Show more apps for favorite app selection, bug #215313
 	epatch "${FILESDIR}/${P}-extra-programs.patch"
+
+	# Make esc not bindable with caps lock, bug #230153
+	epatch "${FILESDIR}/${P}-caps-esc-bindable.patch"
 }
