@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.8-r1.ebuild,v 1.2 2008/07/26 20:26:08 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.8-r1.ebuild,v 1.5 2008/07/31 18:40:39 armin76 Exp $
 
 EAPI="prefix"
 
