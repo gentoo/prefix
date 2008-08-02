@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.10 2008/07/27 18:26:41 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.12 2008/07/31 21:40:39 eva Exp $
+
+  31 Jul 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -libgweather-2.22.0.ebuild, -libgweather-2.22.1.1.ebuild,
+  -libgweather-2.22.2.ebuild:
+  remove old revisions.
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> libgweather-2.22.3.ebuild:
+  Marking libgweather-2.22.3 ppc stable for bug 229709
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> libgweather-2.22.3.ebuild:
   Stable on amd64, bug #229709
