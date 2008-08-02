@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.182 2008/07/25 06:17:12 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.183 2008/07/31 08:42:24 mueli Exp $
+
+  31 Jul 2008; Michael Hammer <mueli@gentoo.org> metadata.xml:
+  fixed manifest.xml due to GLEP 56
 
   25 Jul 2008; Michael Hammer <mueli@gentoo.org> +mit-krb5-1.5.3-r1.ebuild:
   commited mit-krb5-1.5.3-r1 back into tree
