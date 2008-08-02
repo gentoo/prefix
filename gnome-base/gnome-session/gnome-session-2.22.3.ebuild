@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3.ebuild,v 1.2 2008/07/27 18:44:05 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3.ebuild,v 1.3 2008/07/30 21:58:23 ranger Exp $
 
 EAPI="prefix"
 
