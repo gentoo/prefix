@@ -3,6 +3,9 @@
 <pkgmetadata>
 <herd>desktop-misc</herd>
 <maintainer>
-<email>drac@gentoo.org</email>
+  <email>drac@gentoo.org</email>
 </maintainer>
+<use>
+  <flag name='7zip'>Add support for 7zip archives</flag>
+</use>
 </pkgmetadata>
