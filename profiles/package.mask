@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8845 2008/07/29 21:46:38 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8849 2008/07/31 20:46:20 chutzpah Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Patrick McLean <chutzpah@gentoo.org> (31 Jul 2008)
+# buggy, causes browser crashes on certain sites (www.nvidia.com), also see
+# bug #233484
+=net-www/nspluginwrapper-1.1.0
+
+# Doug Goldstein <cardoe@gentoo.org> (30 Jul 2008)
+# mask development version
+>=media-libs/swfdec-0.7.0
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (28 Jul 2008)
 # These are masked for removal.  Please leave this mask in place, even after the
@@ -336,10 +345,6 @@ www-client/arora
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
 
-# Peter Alfredsen <loki_val@gentoo.org> (02 Jun 2008)
-# Masking to force downgrade. Remove August 2008.
-=app-i18n/unicode-data-5.2.0
-
 # Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
 # Masked for keywording and testing
 =media-fonts/dejavu-2.25-r1
@@ -509,7 +514,6 @@ media-sound/lastfmproxy
 =net-mail/checkpassword-0.90-r3
 =net-mail/cmd5checkpw-0.30-r1
 =net-mail/dot-forward-0.71-r3
-=net-mail/vpopmail-5.4.25
 =sys-apps/ucspi-ssl-0.70-r1
 =sys-apps/ucspi-tcp-0.88-r17
 =sys-process/daemontools-0.76-r6
