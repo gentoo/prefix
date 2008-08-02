@@ -1,6 +1,11 @@
 # ChangeLog for net-news/snownews
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.21 2008/02/18 16:49:38 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.22 2008/07/31 09:13:27 cedk Exp $
+
+*snownews-1.5.10 (31 Jul 2008)
+
+  31 Jul 2008; Cédric Krier <cedk@gentoo.org> +snownews-1.5.10.ebuild:
+  Version bump
 
   18 Feb 2008; Cédric Krier <cedk@gentoo.org>
   -files/snownews-1.5.9-install.patch, snownews-1.5.9.ebuild:
