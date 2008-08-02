@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.5/x86/use.mask:
+  do not enable sse2 and ssse3 on OSX since gcc-apple-4.0.1 (our default
+  compiler) can't cope with them
+
   31 Jul 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   unmask subversion-1.5, works without problems on *-linux. We don't use svn
   for @system set anymore, so..it is less harmful to unmask as it once was.
