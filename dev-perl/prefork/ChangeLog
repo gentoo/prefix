@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/prefork
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/prefork/ChangeLog,v 1.23 2007/07/13 17:22:18 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/prefork/ChangeLog,v 1.25 2008/08/02 11:05:10 tove Exp $
+
+  02 Aug 2008; Torsten Veller <tove@gentoo.org> -prefork-1.00.ebuild:
+  Cleanup
+
+*prefork-1.02 (02 Aug 2008)
+
+  02 Aug 2008; Torsten Veller <tove@gentoo.org> +prefork-1.02.ebuild:
+  Version bump
 
   13 Jul 2007; Raúl Porcel <armin76@gentoo.org> prefork-1.01.ebuild:
   alpha stable
