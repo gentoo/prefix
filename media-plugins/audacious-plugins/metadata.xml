@@ -6,4 +6,16 @@
   <email>chainsaw@gentoo.org</email>
   <name>Tony Vroon</name>
 </maintainer>
+<use>
+	<flag name='adplug'>Build with AdPlug (Adlib sound card emulation)
+		support</flag>
+	<flag name='chardet'>Try to handle non-UTF8 chinese/japanese/korean ID3
+		tags</flag>
+	<flag name='mtp'>Build with Media Transfer Protocol music upload
+		support</flag>
+	<flag name='scrobbler'>Build with scrobbler/LastFM submission support</flag>
+	<flag name='sid'>Build with SID (Commodore 64 Audio) support</flag>
+	<flag name='tta'>Build with TTA (True-Audio Loseless) support</flag>
+	<flag name='wma'>Build with WMA (Windows Media Audio) support</flag>
+</use>
 </pkgmetadata>
