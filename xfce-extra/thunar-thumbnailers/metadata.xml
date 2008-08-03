@@ -2,4 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>xfce</herd>
+<use>
+	<flag name='grace'>Enable support for <pkg>sci-visualization/grace</pkg>
+		thumbnails</flag>
+</use>
 </pkgmetadata>

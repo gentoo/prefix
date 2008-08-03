@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/thunar-thumbnailers
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/ChangeLog,v 1.49 2008/05/12 18:38:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/ChangeLog,v 1.50 2008/08/01 20:10:14 cardoe Exp $
+
+  01 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   12 May 2008; Markus Rothe <corsair@gentoo.org>
   thunar-thumbnailers-0.3.2.ebuild:
