@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.206 2008/07/26 20:26:53 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.209 2008/07/31 18:39:46 armin76 Exp $
+
+  31 Jul 2008; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.20.ebuild:
+  ia64/sparc stable wrt #232054
+
+  01 Aug 2008; Brent Baude <ranger@gentoo.org> gstreamer-0.10.20.ebuild:
+  Marking gstreamer-0.10.20 ppc64 stable for bug 232054
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> gstreamer-0.10.20.ebuild:
+  Marking gstreamer-0.10.20 ppc for bug 232054
 
   26 Jul 2008; Olivier Crête <tester@gentoo.org> gstreamer-0.10.20.ebuild:
   Stable on amd64, bug #232054
