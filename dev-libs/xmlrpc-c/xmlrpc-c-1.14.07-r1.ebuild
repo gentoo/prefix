@@ -34,7 +34,7 @@ PATCHES=( "${FILESDIR}/${P}-abyss-disable.patch" )
 src_unpack() {
 	base_src_unpack
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.06.09-interix.patch
+#	epatch "${FILESDIR}"/${PN}-1.06.09-interix.patch
 
 	# Respect the user's CFLAGS/CXXFLAGS.
 	sed -i \
