@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.122 2008/07/30 07:16:52 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.125 2008/08/03 04:31:47 dragonheart Exp $
+
+  03 Aug 2008; Daniel Black <dragonheart@gentoo.org> -curl-7.15.5-r1.ebuild,
+  -curl-7.18.1.ebuild:
+  small purge since it caused problems for people
+
+  02 Aug 2008; Markus Rothe <corsair@gentoo.org> curl-7.18.2.ebuild:
+  Stable on ppc64; bug #233122
+
+  01 Aug 2008; nixnut <nixnut@gentoo.org> curl-7.18.2.ebuild:
+  Stable on ppc wrt bug 233122
 
   30 Jul 2008; Dawid Węgliński <cla@gentoo.org> curl-7.18.2.ebuild:
   Stable on amd64 (bug #233122)
