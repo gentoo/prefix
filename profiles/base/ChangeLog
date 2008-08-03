@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.47 2008/07/30 18:12:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.48 2008/08/02 20:43:15 betelgeuse Exp $
+
+  02 Aug 2008; Petteri Räty <betelgeuse@gentoo.org> make.defaults:
+  Add mmap_emul introduced in 1.0.17 to ALSA_PCM_PLUGINS.
 
   30 Jul 2008; Markus Ullmann <jokey@gentoo.org> package.use.mask:
   Mask soap for net-libs/webkit-gtk
