@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1734 2008/07/31 00:14:03 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1737 2008/08/02 20:43:59 betelgeuse Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  02 Aug 2008; Petteri Räty <betelgeuse@gentoo.org>
+  desc/alsa_pcm_plugins.desc:
+  Add description for mmap_emul.
+
+  01 Aug 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Add mozilla-firefox-bin-3.1_alpha1 to p.mask
+
+  01 Aug 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Remove keepassx mask, fixed in the ebuild.
 
   31 Jul 2008; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
   Added webkit local USE flag for www-client/kazehakase

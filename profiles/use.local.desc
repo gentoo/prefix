@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3669 2008/07/31 20:14:43 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3673 2008/08/02 12:53:16 pchrist Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted.
@@ -27,6 +27,7 @@
 # app-laptop
 # app-misc
 # app-mobilephone
+# app-text
 # dev-games
 # dev-lisp
 # dev-ml
@@ -50,9 +51,12 @@
 # games-util
 # gnome-base
 # gnome-extra
+# media-plugins
 # rox-base
 # rox-extra
 # sys-cluster
+# sys-devel
+# xfce-extra
 # End of metadata categories
 
 app-accessibility/festival:mbrola - Adds support for mbrola voices
@@ -1130,8 +1134,6 @@ media-plugins/audacious-plugins:mtp - Build with Media Transfer Protocol music u
 media-plugins/audacious-plugins:scrobbler - Build with scrobbler/LastFM submission support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
 media-plugins/audacious-plugins:tta - Build with TTA (True-Audio lossless) support
-media-plugins/audacious-plugins-ugly:cube - Build with CUBE input plugin (supports formats such as ADX)
-media-plugins/audacious-plugins-ugly:iris - Build with Iris 3D visual plugin
 media-plugins/audacious-plugins:wma - Build with WMA (Windows Media Audio) support
 media-plugins/gimp-greycstoration:smp - Enable multicore/multiprocessor support
 media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compression library

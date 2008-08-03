@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8849 2008/07/31 20:46:20 chutzpah Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8853 2008/08/03 02:05:41 chutzpah Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,18 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Diego Pettenò <flameeyes@gentoo.org> (2 Aug 2008)
+# Deprecated upstream in favour of Linux-PAM's own SHA512 support.
+# If you want to enable SHA512 passwords, enable the sha512 USE flag
+# for sys-auth/pambase instead.
+# Note that it requires glibc 2.7 or later.
+# Scheduled for removal on September 2nd
+sys-auth/pam_sha512
+
+# Raúl Porcel <armin76@gentoo.org> (1 Aug 2008)
+# This is just for preview
+>=www-client/mozilla-firefox-bin-3.1_alpha1
 
 # Patrick McLean <chutzpah@gentoo.org> (31 Jul 2008)
 # buggy, causes browser crashes on certain sites (www.nvidia.com), also see
@@ -1044,12 +1056,6 @@ dev-lang/entity
 # Broken, bug 202880
 >=dev-scheme/gambit-4.1.1
 
-# Christian Faulhammer <opfer@gentoo.org> (updated 04 Mar 2008)
-# Timo Gurr <tgurr@gentoo.org> (17 Mar 2008) [updated to add 0.3.1]
-# Needs masked qt-4.4
-=app-admin/keepassx-0.3.0a-r20
-=app-admin/keepassx-0.3.1-r20
-
 # Ingmar Vanhassel <ingmar@gentoo.org> (10 Mar 2008)
 # Masked for testing, various dependencies still need to be updated...
 =x11-libs/qt-4.4*
@@ -1133,14 +1139,6 @@ dev-lang/ghc-bin
 # Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
 # beta NVIDIA drivers, not supported. bug #196679
 ~x11-drivers/nvidia-drivers-100.14.23
-
-# Diego Pettenò <flameeyes@gentoo.org> (26 Oct 2007)
-# Still-experimental support for dynamic service dependencies
-# needs baselayout-2, wait masked here till that's available.
-# Note: the init script might change without warning while
-# the ebuild is masked.
-# When 0.9.11 is released this has to be removed.
->=media-sound/pulseaudio-0.9.10-r50
 
 # Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
 # masked for security reasons, bug 189172, removal scheduled for August
