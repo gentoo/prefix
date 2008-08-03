@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/ufed
 # Copyright 2003-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.63 2008/06/26 21:04:15 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.65 2008/08/02 21:42:40 corsair Exp $
+
+  02 Aug 2008; Markus Rothe <corsair@gentoo.org> ufed-0.40-r10.ebuild:
+  Stable on ppc64; bug #233644
+
+  01 Aug 2008; Ferris McCormick <fmccor@gentoo.org> ufed-0.40-r10.ebuild:
+  Sparc stable --- Bug #233644 --- All looks good.
 
 *ufed-0.40-r10 (26 Jun 2008)
 
