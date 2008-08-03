@@ -1,6 +1,18 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.112 2008/07/30 07:17:48 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.115 2008/08/02 21:36:22 corsair Exp $
+
+  02 Aug 2008; Markus Rothe <corsair@gentoo.org> rtorrent-0.8.2-r3.ebuild:
+  Stable on ppc64; bug #233122
+
+  01 Aug 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/rtorrent-0.8.2-gcc34.patch, rtorrent-0.8.2-r3.ebuild:
+  Add patch for gcc-3.4, bug #224031. Thanks goes to Herbie Hopkins
+  <herbie@hopkins.net>. Upstream http://libtorrent.rakshasa.no/ticket/1271 .
+  Verified with Josef Drexler via IRC that this is the correct solution.
+
+  01 Aug 2008; nixnut <nixnut@gentoo.org> rtorrent-0.8.2-r3.ebuild:
+  Stable on ppc wrt bug 233122
 
   30 Jul 2008; Dawid Węgliński <cla@gentoo.org> rtorrent-0.8.2-r3.ebuild:
   Stable on amd64 (bug #233122)
