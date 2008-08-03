@@ -1,6 +1,15 @@
 # ChangeLog for www-apps/moinmoin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.47 2008/04/28 18:11:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.49 2008/08/01 18:15:38 armin76 Exp $
+
+  01 Aug 2008; Raúl Porcel <armin76@gentoo.org> moinmoin-1.7.1.ebuild:
+  sparc/x86 stable wrt #233560
+
+*moinmoin-1.7.1 (01 Aug 2008)
+
+  01 Aug 2008; wrobel@gentoo.org +files/reconfig-3, -moinmoin-1.6.1.ebuild,
+  +moinmoin-1.7.1.ebuild:
+  Added moinmoin-1.7.1 wrt sec issue #233560.
 
   28 Apr 2008; Raúl Porcel <armin76@gentoo.org> moinmoin-1.6.3.ebuild:
   sparc stable wrt security #218752
