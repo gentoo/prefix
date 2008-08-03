@@ -1,16 +1,16 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.1_p1.ebuild,v 1.12 2008/08/02 12:22:05 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.0_p2.ebuild,v 1.1 2008/08/02 07:16:53 dertobi123 Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 MY_PN=${PN//-tools}
-MY_PV=${PV/_p/-P}
-MY_P=${MY_PN}-${MY_PV}
-S=${WORKDIR}/${MY_P}
-DESCRIPTION="bind tools: dig, nslookup, and host"
+MY_PV=${PV/_p2/-P2}
+MY_P="${MY_PN}-${MY_PV}"
+S="${WORKDIR}/${MY_P}"
+DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
 HOMEPAGE="http://www.isc.org/products/BIND/bind9.html"
 SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
 
@@ -19,7 +19,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="idn ipv6"
 
-DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv ) )"
+DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv )
+			net-dns/idnkit )"
 
 src_unpack() {
 	unpack ${A} || die
@@ -34,6 +35,8 @@ src_unpack() {
 		cd -
 	}
 
+	epatch "${FILESDIR}"/${PN}-9.5.0_p1-lwconfig.patch
+
 	# bug #151839
 	sed -e \
 		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
@@ -43,10 +46,16 @@ src_unpack() {
 src_compile() {
 	local myconf=
 	use ipv6 && myconf="${myconf} --enable-ipv6" || myconf="${myconf} --enable-ipv6=no"
+	use idn  && myconf="${myconf} --with-idn"
+
+	has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
 	
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
 	myconf="${myconf} --with-openssl=no"
+
+	# bug #227333
+	append-flags -D_GNU_SOURCE
 
 	econf ${myconf} || die "Configure failed"
 
@@ -62,13 +71,8 @@ src_compile() {
 	cd "${S}"/bin/nsupdate/
 	emake -j1 || die "make failed in /bin/nsupdate"
 
-	use idn && {
-		cd "${S}"/contrib/idn/idnkit-1.0-src
-		local myconf=
-		has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
-		econf ${myconf} || die "idn econf failed"
-		emake -j1 || die "idn emake failed"
-	}
+	cd "${S}"/bin/dnssec/
+	emake -j1 || die "make failed in /bin/dnssec"
 }
 
 src_install() {
@@ -82,4 +86,9 @@ src_install() {
 	dobin nsupdate || die
 	doman nsupdate.8 || die
 	dohtml nsupdate.html || die
+
+	cd "${S}"/bin/dnssec
+	dobin dnssec-keygen || die
+	doman dnssec-keygen.8 || die
+	dohtml dnssec-keygen.html || die
 }

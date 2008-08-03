@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.0_p1-r2.ebuild,v 1.1 2008/07/27 08:54:15 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.2_p2.ebuild,v 1.5 2008/08/02 20:05:09 armin76 Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 MY_PN=${PN//-tools}
-MY_PV=${PV/_p1/-P1}
+MY_PV=${PV/_p2/-P2}
 MY_P="${MY_PN}-${MY_PV}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
@@ -35,8 +35,6 @@ src_unpack() {
 		cd -
 	}
 
-	epatch "${FILESDIR}"/${P}-lwconfig.patch
-
 	# bug #151839
 	sed -e \
 		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
@@ -53,9 +51,6 @@ src_compile() {
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
 	myconf="${myconf} --with-openssl=no"
-
-	# bug #227333
-	append-flags -D_GNU_SOURCE
 
 	econf ${myconf} || die "Configure failed"
 
