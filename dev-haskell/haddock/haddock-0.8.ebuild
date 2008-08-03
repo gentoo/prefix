@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-0.8.ebuild,v 1.13 2008/07/08 20:57:37 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-0.8.ebuild,v 1.14 2008/08/02 16:11:32 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -27,10 +27,6 @@ DEPEND=">=dev-lang/ghc-6.4
 RDEPEND=""
 
 S="${WORKDIR}/${MY_PF}"
-
-src_unpack() {
-	unpack ${A}
-}
 
 src_unpack () {
 	unpack ${A}
