@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-0.10.3.ebuild,v 1.1 2008/06/25 10:26:21 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-0.10.3.ebuild,v 1.3 2008/08/01 17:59:41 armin76 Exp $
 
 EAPI="prefix"
 

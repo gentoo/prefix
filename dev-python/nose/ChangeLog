@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/nose
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.11 2008/06/25 10:26:21 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.13 2008/08/01 17:59:41 armin76 Exp $
+
+  01 Aug 2008; Raúl Porcel <armin76@gentoo.org> nose-0.9.3-r1.ebuild,
+  nose-0.10.3.ebuild:
+  Add ~ia64 wrt #233554
+
+  01 Aug 2008; Ferris McCormick <fmccor@gentoo.org> nose-0.9.3-r1.ebuild,
+  nose-0.10.3.ebuild:
+  Added ~sparc, partly Bug #233554, which see. Both keyworded versions pass
+  all tests.
 
 *nose-0.10.3 (25 Jun 2008)
 
