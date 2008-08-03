@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/xpp3-1.1.4c-r1.ebuild,v 1.3 2008/07/27 08:05:00 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/xpp3-1.1.4c-r1.ebuild,v 1.4 2008/08/02 21:27:04 corsair Exp $
 
 EAPI="prefix"
 
