@@ -1,6 +1,10 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.119 2008/07/30 22:09:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.120 2008/08/02 23:38:11 leio Exp $
+
+  02 Aug 2008; Mart Raudsepp <leio@gentoo.org> -glibmm-2.16.0.ebuild,
+  -glibmm-2.16.3.ebuild:
+  Remove old
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> glibmm-2.16.4.ebuild:
   Marking glibmm-2.16.4 ppc stable for bug 229709
