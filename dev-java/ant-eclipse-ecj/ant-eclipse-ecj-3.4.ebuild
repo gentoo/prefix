@@ -1,22 +1,21 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.3.0-r1.ebuild,v 1.6 2008/03/22 00:54:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.4.ebuild,v 1.1 2008/08/01 09:52:56 elvanor Exp $
 
 EAPI="prefix"
 
 inherit java-pkg-2
 
-MY_PN="ecj"
-DMF="R-${PV}-200706251500"
+DMF="R-${PV}-200806172000"
 S="${WORKDIR}"
 
 DESCRIPTION="Ant Compiler Adapter for Eclipse Java Compiler"
 HOMEPAGE="http://www.eclipse.org/"
-SRC_URI="http://download.eclipse.org/eclipse/downloads/drops/${DMF/.0}/${MY_PN}src.zip"
+SRC_URI="http://download.eclipse.org/eclipse/downloads/drops/${DMF/.0}/ecjsrc-${PV}.zip"
 
 LICENSE="EPL-1.0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
-SLOT="3.3"
+SLOT="3.4"
 IUSE=""
 
 RDEPEND=">=virtual/jre-1.4
@@ -40,7 +39,7 @@ src_unpack() {
 src_compile() {
 	cd src
 	ejavac -classpath "$(java-pkg_getjars ant-core,eclipse-ecj-${SLOT})" \
-		`find org/ -name '*.java'` || die "ejavac failed!"
+		$(find org/ -name '*.java') || die "ejavac failed!"
 	find org/ -name '*.class' -o -name '*.properties' | \
 			xargs jar cf "${S}/${PN}.jar" || die "jar failed!"
 }
