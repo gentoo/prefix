@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc7-r2.ebuild,v 1.1 2008/04/18 06:22:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc9.ebuild,v 1.1 2008/08/01 09:03:43 cedk Exp $
 
 EAPI="prefix"
 
@@ -34,12 +34,6 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-tap.patch"
-}
-
 src_compile() {
 	local myconf=""
 
@@ -65,7 +59,7 @@ src_compile() {
 	if ! use minimal ; then
 		cd plugin
 		for i in $( ls 2>/dev/null ); do
-			[[ ${i} == "README" || ${i} == "examples" ]] && continue
+			[[ ${i} == "README" || ${i} == "examples" || ${i} == "defer" ]] && continue
 			[[ ${i} == "auth-pam" ]] && ! use pam && continue
 			einfo "Building ${i} plugin"
 			cd "${i}"

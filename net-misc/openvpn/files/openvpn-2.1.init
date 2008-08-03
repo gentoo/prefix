@@ -80,10 +80,11 @@ start() {
 	grep -q "^[ \t]*remote[ \t].*" "${VPNCONF}" ; then
 		reenter="yes"
 		args="${args} --nobind --up-delay --up-restart"
+		args="${args} --script-security 2"
 		args="${args} --up /etc/openvpn/up.sh"
 		args="${args} --down-pre --down /etc/openvpn/down.sh"
 
-		# Warn about setting scripts as we override them 
+		# Warn about setting scripts as we override them
 		if grep -Eq "^[ \t]*(up|down)[ \t].*" "${VPNCONF}" ; then
 			ewarn "WARNING: You have defined your own up/down scripts"
 			ewarn "As you're running as a client, we now force Gentoo specific"

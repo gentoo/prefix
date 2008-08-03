@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.135 2008/05/14 17:02:24 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.137 2008/08/02 18:14:52 cedk Exp $
+
+  02 Aug 2008; Cédric Krier <cedk@gentoo.org> files/openvpn-2.1.init:
+  Add --script-security 2 for bug #233657
+
+*openvpn-2.1_rc9 (01 Aug 2008)
+
+  01 Aug 2008; Cédric Krier <cedk@gentoo.org>
+  -files/openvpn-2.1_rc7-tap.patch, -openvpn-2.1_rc7-r2.ebuild,
+  +openvpn-2.1_rc9.ebuild:
+  Version bump
 
 *openvpn-2.0.9 (14 May 2008)
 
