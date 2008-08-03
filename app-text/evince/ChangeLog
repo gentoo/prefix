@@ -1,6 +1,9 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.146 2008/07/30 21:56:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.147 2008/08/02 07:06:37 ulm Exp $
+
+  02 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> evince-2.22.2-r1.ebuild:
   Marking evince-2.22.2-r1 ppc stable for bug 229709
