@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.42 2008/07/28 21:56:40 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.43 2008/08/01 22:22:21 pythonhead Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -80,19 +80,19 @@ python_version() {
 	__python_version_extract $PYVER_ALL
 }
 
-# @FUNCTION: get_python_libdir
-# @DESCRIPTION: 
+# @FUNCTION: python_get_libdir
+# @DESCRIPTION:
 # Run without arguments, returns the python library dir
-get_python_libdir() {
+python_get_libdir() {
 	python_version
 	echo "/usr/$(get_libdir)/python${PYVER}"
 }
 
-# @FUNCTION: get_python_sitedir
-# @DESCRIPTION: 
+# @FUNCTION: python_get_sitedir
+# @DESCRIPTION:
 # Run without arguments, returns the python site-packages dir
-get_python_sitedir() {
-	echo "$(get_python_libdir)/site-packages"
+python_get_sitedir() {
+	echo "$(python_get_libdir)/site-packages"
 }
 
 # @FUNCTION: python_makesym

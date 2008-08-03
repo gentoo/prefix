@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.358 2008/07/06 02:41:54 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.359 2008/08/03 01:43:30 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -354,6 +354,11 @@ get_gcc_src_uri() {
 	# support for the D language
 	[[ -n ${D_VER} ]] && \
 		GCC_SRC_URI="${GCC_SRC_URI} d? ( mirror://sourceforge/dgcc/gdc-${D_VER}-src.tar.bz2 )"
+
+	# >= gcc-4.3 no longer bundles ecj.jar
+	tc_version_is_at_least "4.3" && \
+		GCC_SRC_URI="${GCC_SRC_URI}
+		gcj? ( ftp://sourceware.org/pub/java/ecj-${GCC_BRANCH_VER}.jar )"
 
 	echo "${GCC_SRC_URI}"
 }
@@ -1093,6 +1098,12 @@ gcc_src_unpack() {
 	# Misdesign in libstdc++ (Redhat)
 	if [[ ${GCCMAJOR} -ge 3 ]] && [[ -e ${S}/libstdc++-v3/config/cpu/i486/atomicity.h ]] ; then
 		cp -pPR "${S}"/libstdc++-v3/config/cpu/i{4,3}86/atomicity.h
+	fi
+
+	# >= gcc-4.3 doesn't bundle ecj.jar anymore, so copy it
+	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]] &&
+		use gcj ; then
+		cp -pPR "${DISTDIR}/ecj-${GCC_BRANCH_VER}.jar" "${S}/ecj.jar" || die
 	fi
 
 	# disable --as-needed from being compiled into gcc specs
