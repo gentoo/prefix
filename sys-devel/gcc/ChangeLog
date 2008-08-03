@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.657 2008/07/06 03:42:52 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.659 2008/08/03 01:42:59 halcy0n Exp $
+
+  03 Aug 2008; Mark Loeser <halcy0n@gentoo.org> Manifest:
+  Fix bug #220779; thanks to Andrew John Hughes <gnu_andrew AT member DOT
+  fsf DOT org> and James Le Cuirot <chewi AT aura-online DOT co DOT uk>
+
+  02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
+  Update metadata.xml to include USE flag descriptions. Entries taken from
+  profiles/use.local.desc. GLEP 56
 
 *gcc-4.3.1-r1 (06 Jul 2008)
 
