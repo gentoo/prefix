@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xpdf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.168 2008/06/27 10:04:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.169 2008/08/02 07:32:15 ulm Exp $
+
+  02 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   27 Jun 2008; Ulrich Mueller <ulm@gentoo.org> xpdf-3.01-r8.ebuild,
   xpdf-3.02-r1.ebuild:
