@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/XML-LibXSLT-1.66.ebuild,v 1.2 2008/07/18 18:49:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/XML-LibXSLT-1.66.ebuild,v 1.3 2008/08/02 13:20:42 tove Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,6 @@ IUSE=""
 
 SRC_TEST="do"
 
-DEPEND=">=dev-libs/libxslt-1.1.2
-	>=dev-perl/XML-LibXML-1.60
+DEPEND=">=dev-libs/libxslt-1.1.8
+	>=dev-perl/XML-LibXML-1.66
 	dev-lang/perl"
