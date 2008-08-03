@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.143 2008/06/21 06:45:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.144 2008/08/02 11:53:35 pchrist Exp $
+
+  02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
+  Update metadata.xml to include USE flag descriptions. Entries taken from
+  profiles/use.local.desc. GLEP 56
 
 *gdb-6.8-r1 (21 Jun 2008)
 
