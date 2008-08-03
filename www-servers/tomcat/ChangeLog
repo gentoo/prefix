@@ -1,6 +1,14 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.184 2008/05/13 02:06:49 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.185 2008/08/02 01:28:30 wltjr Exp $
+
+*tomcat-6.0.18 (02 Aug 2008)
+
+  02 Aug 2008; William L. Thomson Jr. <wltjr@gentoo.org>
+  +tomcat-6.0.18.ebuild:
+  Bumped to latest release, addresses recent security issue. Compiles and
+  installs, should be good, but little time. Comitted from Houston Aiport,
+  committer on way to LWE 08
 
   13 May 2008; William L. Thomson Jr. <wltjr@gentoo.org>
   -files/5.5/main_tomcat_catalina_jasper_build_xml.patch,
