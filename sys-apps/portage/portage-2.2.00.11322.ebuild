@@ -190,7 +190,9 @@ pkg_preinst() {
 				install_name=$(otool -DX "${filename}")
 				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
 			done < "${cpv}"
-			didwork=yes
+			[[ -z ${didwork} ]] \
+				&& didwork=yes \
+				|| didwork=already
 		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
 			while read line; do
 				filename=${line% *}
@@ -198,9 +200,11 @@ pkg_preinst() {
 				newline=$(scanelf -BF "%a;%F;%S;$needed;%r" $filename)
 				echo "${newline:3}" >> "${cpv}".ELF.2
 			done < "${cpv}"
-			didwork=yes
+			[[ -z ${didwork} ]] \
+				&& didwork=yes \
+				|| didwork=already
 		fi
-		[[ -n ${didwork} ]] && \
+		[[ ${didwork} == yes ]] && \
 			einfo "converting NEEDED files to new syntax, please wait"
 	done
 	popd > /dev/null
