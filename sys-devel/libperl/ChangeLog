@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.136 2008/07/18 11:55:58 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.137 2008/08/02 12:51:38 pchrist Exp $
+
+  02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
+  Update metadata.xml to include USE flag descriptions. Entries taken from
+  profiles/use.local.desc. GLEP 56
 
   18 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
   files/libperl-5.8.8-fbsdhints.patch:
