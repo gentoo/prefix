@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>gnome, gstreamer</herd>
+<herd>gnome</herd>
+<herd>gstreamer</herd>
 <maintainer>
 <email>dang@gentoo.org</email>
 <name>Daniel Gryniewicz</name>
@@ -12,5 +13,9 @@ intended to be used as a runtime-depend for apps that need various gstreamer
 plugins.  This will allow USE flags to be changed without re-compiling apps,
 since gstreamer plugins are all run-time dependencies.
 </longdescription>
+<use>
+	<flag name='mythtv'>Support for retrieval from <pkg>media-tv/mythtv</pkg>
+		backend</flag>
+</use>
 </pkgmetadata>
 
