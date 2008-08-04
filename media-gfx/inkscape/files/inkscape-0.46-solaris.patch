@@ -40,12 +40,13 @@
  #else
  # define is_nan(_a) (std::isnan(_a))
  #endif
-@@ -49,6 +51,8 @@
+@@ -49,6 +51,9 @@
  # define is_finite(_a) (__isfinite(_a))	/* MacOSX/Darwin definition < 10.4 */
  #elif defined(isfinite)
  # define is_finite(_a) (isfinite(_a))
 +#elif defined(__sun__) && defined(__GNUC__)
-+# define is_finite(_a) (__builtin_isfinite(_a))
++#include  <ieeefp.h>
++#define is_finite(_a) (finite(_a) && !is_nan(_a))
  #else
  # define is_finite(_a) (std::isfinite(_a))
  #endif
