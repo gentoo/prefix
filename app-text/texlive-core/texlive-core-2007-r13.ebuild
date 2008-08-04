@@ -84,6 +84,10 @@ src_unpack() {
 	# Mac OS X has some ObjC compilation, make it use our CFLAGS or it fails
 	epatch "${FILESDIR}"/${PV}/${P}-objcflags.patch
 
+	# If $EPREFIX contains symlinks, kpsewhich will return a resolved path,
+	# which results in out of prefix errors for packages which use it
+	epatch "${FILESDIR}"/${PV}/${P}-respect_path.patch
+
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"
 
