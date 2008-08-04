@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.261 2008/08/02 21:02:23 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.262 2008/08/03 17:12:33 chutzpah Exp $
+
+*alsa-lib-1.0.17-r1 (03 Aug 2008)
+
+  03 Aug 2008; Patrick McLean <chutzpah@gentoo.org>
+  +files/alsa-lib-1.0.17-pcm-rewind-forward.patch,
+  +files/alsa-lib-1.0.17-pcm-rewind-forward-return.patch,
+  +files/alsa-lib-1.0.17-sframe-type.patch, +alsa-lib-1.0.17-r1.ebuild:
+  Add three patches from upstream ALSA git for pulseaudio (bug #233789).
+  Betelgeuse confirmed this bump with Chainsaw.
 
 *alsa-lib-1.0.17 (02 Aug 2008)
 
