@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3673 2008/08/02 12:53:16 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3680 2008/08/03 15:37:41 ulm Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted.
@@ -27,7 +27,12 @@
 # app-laptop
 # app-misc
 # app-mobilephone
+# app-office
+# app-pda
+# app-portage
+# app-shells
 # app-text
+# app-vim
 # dev-games
 # dev-lisp
 # dev-ml
@@ -342,7 +347,6 @@ app-office/lyx:rtf - Adds support for RTF import/export packages.
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
 app-office/openoffice:odk - Build the Office Development Kit
-app-office/openoffice:webdav - Enable webdav support
 app-office/rabbit:gnome-print - Gnome-Print support
 app-office/rabbit:gs - Ghostscript support
 app-office/rabbit:tgif - tgif support
@@ -1504,6 +1508,7 @@ net-analyzer/nagios-plugins:nagios-ntp - installs deps for ntp monitoring
 net-analyzer/nagios-plugins:nagios-ping - installs deps for fancy ping monitoring
 net-analyzer/nagios-plugins:nagios-ssh - installs deps for monitoring ssh
 net-analyzer/nagios-plugins:ups - installs deps for monitoring Network-UPS (sys-power/nut)
+net-analyzer/nagvis:automap - Enable automated map generation using media-gfx/graphviz
 net-analyzer/net-snmp:diskio - Enable the use of diskio mibs
 net-analyzer/net-snmp:elf - Enable the use of elf utils to check uptime on some sytems
 net-analyzer/net-snmp:extensible - build deprecated extensible mib module (extend is successor)
