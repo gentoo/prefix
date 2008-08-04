@@ -1,6 +1,9 @@
 # ChangeLog for app-office/texmacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.62 2008/05/28 14:58:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.63 2008/08/03 12:43:23 ulm Exp $
+
+  03 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   28 May 2008; Raúl Porcel <armin76@gentoo.org> texmacs-1.0.6.14.ebuild:
   alpha/sparc stable wrt #223601
