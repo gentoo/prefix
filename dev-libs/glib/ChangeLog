@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.327 2008/07/20 06:54:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.328 2008/08/03 22:36:31 eva Exp $
+
+  03 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/glib-2.8.3-macos.patch, glib-1.2.10-r5.ebuild, -glib-2.8.6.ebuild,
+  -glib-2.10.3.ebuild, -glib-2.10.3-r1.ebuild, -glib-2.12.12.ebuild,
+  -glib-2.12.13.ebuild, glib-2.14.3.ebuild, -glib-2.16.1.ebuild,
+  -glib-2.16.2.ebuild, -glib-2.16.3.ebuild, -glib-2.16.4.ebuild:
+  clean up old revisions, drop to ~mips to shut up repoman's warnings.
 
 *glib-2.16.5 (20 Jul 2008)
 
