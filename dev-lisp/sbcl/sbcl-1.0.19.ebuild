@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.1 2008/07/30 16:19:06 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.2 2008/08/03 14:41:12 pchrist Exp $
 
 EAPI="prefix"
 
@@ -49,6 +49,11 @@ DEPEND="doc? ( sys-apps/texinfo media-gfx/graphviz )"
 PDEPEND="dev-lisp/gentoo-init"
 
 PROVIDE="virtual/commonlisp"
+
+#Disable warnings about executable stacks, as this won't be fixed soon, by
+#upstream
+QA_EXECSTACK="usr/bin/sbcl usr/lib/sbcl/src/runtime/sbcl \
+usr/lib/sbcl/src/runtime/*.o"
 
 pkg_setup() {
 	if has_version sys-devel/gcc && built_with_use sys-devel/gcc hardened && gcc-config -c | grep -qv vanilla; then
