@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/cowsay-3.03-r1.ebuild,v 1.4 2008/08/02 21:46:11 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/cowsay-3.03-r1.ebuild,v 1.6 2008/08/03 23:58:39 ken69267 Exp $
 
 EAPI="prefix"
 
