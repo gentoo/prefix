@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.22.2.ebuild,v 1.1 2008/05/31 10:56:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.22.3-r1.ebuild,v 1.1 2008/08/03 17:57:39 eva Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ DEPEND="${RDEPEND}
 	>=app-text/gnome-doc-utils-0.3.2
 	>=app-text/scrollkeeper-0.3.11"
 
-DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
+DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
@@ -46,6 +46,9 @@ src_unpack() {
 	# Upstream bug: http://bugzilla.gnome.org/show_bug.cgi?id=523737
 	sed -i -e '/DISABLE_DEPRECATED/d' \
 		"${S}/src/Makefile.am" "${S}/src/Makefile.in"
+
+	# Fix extra refs on tabs, bug #219964
+	epatch "${FILESDIR}/${P}-tab-close-fix.patch"
 
 	# patch gnome terminal to report as GNOME rather than xterm
 	# This needs to resolve a few bugs (#120294,)

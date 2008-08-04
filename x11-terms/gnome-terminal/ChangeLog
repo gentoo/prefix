@@ -1,6 +1,15 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.170 2008/07/30 21:46:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.171 2008/08/03 17:57:39 eva Exp $
+
+*gnome-terminal-2.22.3-r1 (03 Aug 2008)
+
+  03 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-terminal-2.22.3-tab-close-fix.patch,
+  -gnome-terminal-2.22.0.ebuild, -gnome-terminal-2.22.1.ebuild,
+  -gnome-terminal-2.22.2.ebuild, +gnome-terminal-2.22.3-r1.ebuild:
+  bump to r1. Fix extra refs to tabs shell, bug #219964. Clean up old
+  revisions.
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> gnome-terminal-2.22.3.ebuild:
   Marking gnome-terminal-2.22.3 ppc stable for bug 229709
