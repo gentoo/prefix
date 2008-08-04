@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.3.ebuild,v 1.1 2008/06/04 08:46:03 loki_val Exp $
-  
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.5.ebuild,v 1.1 2008/08/03 19:48:49 loki_val Exp $
+
 EAPI="prefix 1"
 
 inherit autotools eutils multilib flag-o-matic
@@ -18,7 +18,7 @@ HOMEPAGE="http://poppler.freedesktop.org/"
 # upload to d.g.o/space/distfiles-local
 
 SRC_URI="http://poppler.freedesktop.org/${MY_P}.tar.gz
-		test? ( mirror://gentoo/poppler-test-${PV}.tar.gz )"
+	test? ( mirror://gentoo/poppler-test-${PV}.tar.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -35,7 +35,7 @@ RDEPEND="~app-text/poppler-${PV}
 	qt4? ( || ( ( x11-libs/qt-core:4
 			x11-libs/qt-gui:4
 			x11-libs/qt-test:4 )
-		>=x11-libs/qt-4.3:4 ) )"
+		=x11-libs/qt-4.3*:4 ) )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
@@ -59,8 +59,7 @@ src_compile() {
 
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
-	econf --enable-opi \
-		$(use_enable cairo cairo-output) \
+	econf	$(use_enable cairo cairo-output) \
 		$(use_enable gtk poppler-glib) \
 		$(use_enable qt3 poppler-qt) \
 		$(use_enable qt4 poppler-qt4) \

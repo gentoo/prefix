@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.4.ebuild,v 1.1 2008/06/29 11:08:40 loki_val Exp $
-  
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.4.ebuild,v 1.2 2008/08/03 19:48:49 loki_val Exp $
+
 EAPI="prefix 1"
 
 inherit autotools eutils multilib flag-o-matic
@@ -59,8 +59,7 @@ src_compile() {
 
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
-	econf --enable-opi \
-		$(use_enable cairo cairo-output) \
+	econf	$(use_enable cairo cairo-output) \
 		$(use_enable gtk poppler-glib) \
 		$(use_enable qt3 poppler-qt) \
 		$(use_enable qt4 poppler-qt4) \
