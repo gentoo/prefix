@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.36 2008/07/29 08:32:48 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.37 2008/08/03 20:47:27 carlo Exp $
 
 # @ECLASS: qt3.eclass
 # @MAINTAINER:
@@ -29,7 +29,7 @@ addpredict "${QTDIR}/etc/settings"
 # This function is deprecated. Use slot dependencies instead.
 qt_min_version() {
 	local list=$(qt_min_version_list "$@")
-	ewarn "qt_min_version() is deprecated. Use slot dependencies instead."
+	ewarn "${CATEGORY}/${PF}: qt_min_version() is deprecated. Use slot dependencies instead."
 	if [[ ${list%% *} == "${list}" ]]; then
 		echo "${list}"
 	else
