@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.68 2008/04/22 18:57:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.69 2008/08/04 01:58:30 tester Exp $
+
+  04 Aug 2008; Olivier Crête <tester@gentoo.org> gmime-2.2.17.ebuild:
+  Stable on amd64 for bug #214301
 
   22 Apr 2008; Raúl Porcel <armin76@gentoo.org> gmime-2.2.17.ebuild:
   Add ~ia64
