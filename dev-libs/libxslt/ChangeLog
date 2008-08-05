@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.187 2008/07/31 20:47:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.188 2008/08/04 22:38:49 eva Exp $
+
+  04 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -libxslt-1.1.23.ebuild, -libxslt-1.1.24.ebuild:
+  clean up old revisions.
 
 *libxslt-1.1.24-r1 (31 Jul 2008)
 
