@@ -1,6 +1,9 @@
 # ChangeLog for www-apps/trac
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.74 2008/08/03 21:06:26 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.75 2008/08/04 16:31:51 keytoaster Exp $
+
+  04 Aug 2008; Tobias Heinlein <keytoaster@gentoo.org> trac-0.10.5.ebuild:
+  amd64 stable wrt security bug #233175
 
   03 Aug 2008; Markus Ullmann <jokey@gentoo.org> trac-0.10.5.ebuild:
   Stable on x86 wrt security bug #233175
