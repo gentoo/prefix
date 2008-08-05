@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.13.2.ebuild,v 1.1 2008/02/19 02:56:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.13.2.ebuild,v 1.2 2008/08/04 17:53:28 loki_val Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ S="${WORKDIR}/${MY_P}"
 src_unpack() {
 	unpack ${A} || die
 	# Fix permissions
-	chmod -R u+rw ${S}
+	chmod -R u+rw "${S}"
 	EPATCH_OPTS="-p1 -d ${S}" epatch "${FILESDIR}"/${PN}-0.9.11-gcc41.patch
 }
 
