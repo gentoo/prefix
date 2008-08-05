@@ -84,7 +84,7 @@ src_compile() {
 	# that not to get confused when it finds something outside the prefix too
 	if use !elibc_glibc ; then
 		myconf="${myconf} --with-libiconv=gnu"
-		# add the libdir for libtoo, otherwise it'll make love with system
+		# add the libdir for libtool, otherwise it'll make love with system
 		# installed libiconv
 		append-ldflags "-L${EPREFIX}/usr/$(get_libdir)"
 	fi
