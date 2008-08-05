@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/cowsay
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.23 2008/08/03 23:58:39 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.24 2008/08/04 15:10:54 jer Exp $
+
+  04 Aug 2008; Jeroen Roovers <jer@gentoo.org> cowsay-3.03-r1.ebuild:
+  Stable for HPPA (bug #233671).
 
   03 Aug 2008; Kenneth Prugh <ken69267@gentoo.org> cowsay-3.03-r1.ebuild:
   amd64 stable, bug #233671
