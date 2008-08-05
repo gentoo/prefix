@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.234 2008/05/07 19:06:28 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.235 2008/08/04 21:59:51 drac Exp $
+
+*xscreensaver-5.06 (04 Aug 2008)
+
+  04 Aug 2008; Samuli Suominen <drac@gentoo.org>
+  +files/5.06/01_all_default_settings.patch,
+  +files/5.06/02_all_xinerama_function.patch, +xscreensaver-5.06.ebuild:
+  Version bump. Upstream applied most of our patchset. Fix building with
+  --without-xinerama-ext by renaming misnamed ifdef.
 
 *xscreensaver-5.05-r1 (07 May 2008)
 
