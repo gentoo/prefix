@@ -3,4 +3,5 @@
 <pkgmetadata>
 	<herd>netmon</herd>
 	<longdescription>A pcap based tool for network protocol monitoring and data acquisition.</longdescription>
+	<use><flag name='chroot'>Enable chrooting when dropping privileges</flag></use>
 </pkgmetadata>
