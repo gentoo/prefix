@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xpp3
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/ChangeLog,v 1.21 2008/08/02 21:27:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xpp3/ChangeLog,v 1.22 2008/08/04 22:53:41 ken69267 Exp $
+
+  04 Aug 2008; Kenneth Prugh <ken69267@gentoo.org> xpp3-1.1.4c-r1.ebuild:
+  amd64 stable, bug #232688
 
   02 Aug 2008; Markus Rothe <corsair@gentoo.org> xpp3-1.1.4c-r1.ebuild:
   Stable on ppc64; bug #232688
