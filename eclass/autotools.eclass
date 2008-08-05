@@ -111,7 +111,7 @@ eautoreconf() {
 
 	# Call it here to prevent failures due to elibtoolize called _before_
 	# eautoreconf.
-	elibtoolize
+	elibtoolize --force
 
 	return 0
 }

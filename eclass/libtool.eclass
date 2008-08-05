@@ -120,6 +120,7 @@ elibtoolize() {
 	local do_reversedeps="no"
 	local do_only_patches="no"
 	local do_uclibc="yes"
+	local do_force="no"
 	local deptoremove=
 	local my_dirlist=
 	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp"
@@ -162,6 +163,9 @@ elibtoolize() {
 				;;
 			"--no-uclibc")
 				do_uclibc="no"
+				;;
+			"--force")
+				do_force="yes"
 				;;
 			*)
 				eerror "Invalid elibtoolize option: ${x}"
@@ -210,7 +214,7 @@ elibtoolize() {
 		export ELT_APPLIED_PATCHES=
 		export ELT_LTMAIN_SH="${x}/ltmain.sh"
 
-		[[ -f ${x}/.elibtoolized ]] && continue
+		[[ ${do_force} == no && -f ${x}/.elibtoolized ]] && continue
 
 		cd ${x}
 		einfo "Running elibtoolize in: $(echo "/${tmp}" | sed -e 's|//|/|g; s|^/||')"
