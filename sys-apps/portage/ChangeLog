@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  06 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11334.ebuild:
+  Remove 2.2.00.11334, it seems to make ncurses fail to compile, and I don't
+  like this repoman IUSE stuff either
+
 *portage-2.2.00.11334 (05 Aug 2008)
 
   05 Aug 2008; Fabian Groffen <grobian@gentoo.org>
