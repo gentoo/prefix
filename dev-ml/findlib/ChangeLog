@@ -1,6 +1,11 @@
 # ChangeLog for dev-ml/findlib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.38 2008/06/07 16:31:47 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.39 2008/08/05 09:25:15 aballier Exp $
+
+*findlib-1.2.2 (05 Aug 2008)
+
+  05 Aug 2008; Alexis Ballier <aballier@gentoo.org> +findlib-1.2.2.ebuild:
+  version bump
 
   07 Jun 2008; Alexis Ballier <aballier@gentoo.org> findlib-1.2.1.ebuild:
   Update homepage and SRC_URI
