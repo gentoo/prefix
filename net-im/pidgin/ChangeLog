@@ -1,6 +1,9 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.61 2008/07/05 11:55:03 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.62 2008/08/05 17:49:31 gentoofan23 Exp $
+
+  05 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> metadata.xml:
+  Add USE flag description to metadata as per GLEP 56.
 
   05 Jul 2008; Tobias Scherbaum <dertobi123@gentoo.org> pidgin-2.4.3.ebuild:
   ppc stable, bug #230045
