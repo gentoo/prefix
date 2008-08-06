@@ -48,7 +48,7 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz
 	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
 	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
 	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
-	x86-macos? ( http://dev.gentooexperimental.org/~pipping/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
+	x86-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
 
 LICENSE="BSD"
 SLOT="0"
