@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.55 2008/03/26 11:39:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.56 2008/08/05 21:03:47 cardoe Exp $
+
+  05 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   26 Mar 2008; Jeroen Roovers <jer@gentoo.org> thunar-0.9.0-r2.ebuild:
   Stable for HPPA (bug #214130).
