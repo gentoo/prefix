@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.8 2008/06/14 11:49:54 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.9 2008/08/05 16:48:34 ulm Exp $
+
+  05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
 *postgresql-server-8.3.3 (14 Jun 2008)
 *postgresql-server-8.2.9 (14 Jun 2008)
