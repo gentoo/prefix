@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  06 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.use.mask, darwin/package.mask:
+  Mask dso USE-flag for subversion, it's unfixable broken and renders
+  subversion unusable.
+
   04 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   Mask subversion-1.5.0 on Darwin now the mask has been removed from global
 

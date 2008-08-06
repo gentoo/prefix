@@ -1,9 +1,5 @@
 # $Id$
 
-# Fabian Groffen <grobian@gentoo.org> (04 Aug 2008)
-# fails to see any modules at runtime, rendering it useless
-~dev-util/subversion-1.5.0
-
 # Fabian Groffen <grobian@gentoo.org> (27 Jun 2008)
 # fails to compile, missing wait.h header
 =dev-libs/xmlrpc-c-1.06.27
