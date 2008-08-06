@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/raptor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.58 2008/05/12 09:39:42 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.59 2008/08/05 14:56:27 aballier Exp $
+
+*raptor-1.4.18 (05 Aug 2008)
+
+  05 Aug 2008; Alexis Ballier <aballier@gentoo.org> +raptor-1.4.18.ebuild:
+  version bump
 
   12 May 2008; Alexis Ballier <aballier@gentoo.org> raptor-1.4.16.ebuild,
   raptor-1.4.17.ebuild:
