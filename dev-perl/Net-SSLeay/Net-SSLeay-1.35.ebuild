@@ -24,6 +24,7 @@ DEPEND="${RDEPEND}"
 #SRC_TEST=do
 
 export OPTIMIZE="$CFLAGS"
+export OPENSSL_PREFIX=${EPREFIX}/usr
 
 myconf="${myconf} ${EPREFIX}/usr"
 
