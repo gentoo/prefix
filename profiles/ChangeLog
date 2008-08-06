@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1742 2008/08/03 21:31:59 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1753 2008/08/05 18:12:28 gentoofan23 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  05 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> use.local.desc:
+  Added net-im as converted category, GLEP 56
+
+  05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Remove local USE flags for dead dev-db/monetdb package.
+
+  05 Aug 2008; Ben de Groot <yngwin@gentoo.org> use.local.desc:
+  Adding firefox3 useflag for gtk-engines-qtcurve to use.local.desc
+
+  05 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  removed old versions of app-pda/synce-rra from the tree, bug #224911
+
+  05 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  app-benchmarks/acovea-4.0.0 was removed from the tree. bug #226517
+
+  04 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org> desc/cameras.desc:
+  add new cameras iuse for topfield cameras.
+
+  04 Aug 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Add net-analyzer category as fixed for GLEP 56.
+
+  04 Aug 2008; Hans de Graaff <graaff@gentoo.org> use.local.desc:
+  app-xemacs category packages don't have local USE flags, add it to the list of
+  converted categories.
 
   03 Aug 2008; Rémi Cardona <remi@gentoo.org> package.mask:
   adding xf86-video-i810-2.4.0 to p.mask

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3684 2008/08/04 21:02:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3699 2008/08/05 22:52:09 ulm Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted.
@@ -34,7 +34,11 @@
 # app-text
 # app-vim
 # app-xemacs
+# dev-cpp
+# dev-db
+# dev-embedded
 # dev-games
+# dev-haskell
 # dev-lisp
 # dev-ml
 # dev-scheme
@@ -60,10 +64,17 @@
 # gnome-extra
 # media-plugins
 # net-analyzer
+# net-im
 # rox-base
 # rox-extra
+# sys-boot
 # sys-cluster
 # sys-devel
+# x11-apps
+# x11-base
+# x11-drivers
+# x11-plugins
+# xfce-base
 # xfce-extra
 # End of metadata categories
 
@@ -201,10 +212,6 @@ app-editors/xemacs:dnd - Enables support for the x11-libs/dnddrag-n-drop library
 app-editors/xemacs:eolconv - Support detection and translation of newline conventions
 app-editors/xemacs:hesiod - Support Hesiod to get the POP server host
 app-editors/xemacs:pop - Support POP for mail retrieval
-app-editors/xemacs:purify - Support memory debugging using Purify
-app-editors/xemacs:quantify - Support performance debugging using Quantify
-app-editors/xemacs:tooltalk - Support the ToolTalk IPC protocol
-app-editors/xemacs:xft - Compile with support for Xft client-side font rendering and anti-aliasing
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-editors/xmlcopyeditor:guidexml - Install GuideXML templates to work with Gentoo official docs
 app-emacs/auctex:preview-latex - Use bundled preview-latex
@@ -445,7 +452,6 @@ app-vim/vcscommand:svk - Enable support for dev-util/svk
 dev-cpp/sptk:aspell - Enable Aspell support
 dev-cpp/sptk:excel - Enable Excel support
 dev-db/libpq:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
-dev-db/monetdb:boehmgc - enables Boehm Garbage Collector for XQuery
 dev-db/mysql:big-tables - Make tables contain up to 1.844E+19 rows
 dev-db/mysql:cluster - Add support for NDB clustering.
 dev-db/mysql-community:big-tables - Make tables contain up to 1.844E+19 rows
@@ -891,7 +897,7 @@ games-strategy/x2:bonusscripts - Add bonus scripts
 games-strategy/x2:dynamic - Use dynamic binaries instead of static
 games-strategy/x2:langpacks - Install additional language packs
 games-strategy/x2:modkit - Install the modkit
-gnome-base/gdm:gmx - Enables Distributed Multihead X (DMX) support
+gnome-base/gdm:dmx - Enables Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enables support for secure remote connections
 gnome-base/gnome-mount:nautilus - Enables the Nautilus plugin
 gnome-base/gnome-volume-manager:automount - Enable support for automounting devices that are handled by gnome-base/nautilussince 2.22. This should be off on most Gnome systems.
@@ -1303,8 +1309,6 @@ media-tv/mythtv:hdhomerun - Enable support for HDHomeRun boxes
 media-tv/mythtv:ivtv - Enables ivtv support
 media-tv/mythtv:lcd - Enable LCD display support using lcdproc
 media-tv/mythtv:opengl - Use OpenGL for vsync
-media-tv/mythtv:opengl-video - Use OpenGL for video rendering. Not recommended.
-media-tv/mythtv:opengl-xvmc - Use a combined OpenGL & XvMC video renderer on NVIDIA hardware only. Not recommended.
 media-tv/mythtv:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-tv/tvbrowser:themes - Install extra theme packs
 media-tv/xawtv:xext - Enable use of XFree extensions (DGA,VidMode,DPMS)
@@ -1769,11 +1773,9 @@ net-libs/opal:novideo - Disable video codecs
 net-libs/openh323:noaudio - Disable audio codecs
 net-libs/openh323:novideo - Disable video codecs
 net-libs/webkit-gtk:coverage - enable code coverage support
-net-libs/webkit-gtk:dom-storage - enable HTML5 client-side session and persistent storage support
 net-libs/webkit-gtk:hildon - Use Hildon UI extensions
 net-libs/webkit-gtk:pango - Use pango as fontbackend instead of freetype
 net-libs/webkit-gtk:soup - Use SOUP as backend instead of curl
-net-libs/webkit-gtk:svg-experimental - enable additional experimental svg extensions
 net-libs/webkit-gtk:xslt - enable support for XSLT
 net-libs/xulrunner:custom-optimization - Fine-tune custom compiler optimizations
 net-mail/cyrus-imapd:autocreate - Enable not supported (by upstream) patch from University of Athens for automatic creation of user mailboxes
@@ -2451,6 +2453,7 @@ x11-themes/gentoo-artwork:grub - Install extra grub themes
 x11-themes/gentoo-artwork:icons - Install icons
 x11-themes/gentoo-artwork:lilo - Install extra lilo themes
 x11-themes/gentoo-artwork:pixmaps - Install pixmaps
+x11-themes/gtk-engines-qtcurve:firefox3 - Install GUI theme tweaks for version 3 of www-client/mozilla-firefox
 x11-themes/redhat-artwork:audacious - Install Audacious theme
 x11-themes/redhat-artwork:cursors - Install Bluecurve cursors
 x11-themes/redhat-artwork:gdm - Install Bluecurve GDM theme
