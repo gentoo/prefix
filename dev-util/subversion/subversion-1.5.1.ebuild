@@ -14,7 +14,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="apache2 berkdb debug doc +dso emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
@@ -99,12 +99,12 @@ src_compile() {
 		append-cppflags -DSVN_DEBUG -DAP_DEBUG
 	fi
 
-#	case ${CHOST} in
-#		*-darwin7)
-#			# KeyChain support on OSX Panther is broken, due to some library
-#			# includes which don't exist
-#			myconf="${myconf} --disable-keychain"
-#		;;
+	case ${CHOST} in
+		*-darwin7)
+			# KeyChain support on OSX Panther is broken, due to some library
+			# includes which don't exist
+			myconf="${myconf} --disable-keychain"
+		;;
 #		*-solaris*)
 #			# -lintl isn't added for some reason
 #			use nls && append-ldflags -lintl
@@ -113,7 +113,7 @@ src_compile() {
 #			# avoid recording immediate path to sharedlibs into executables
 #			append-ldflags -Wl,-bnoipath
 #		;;
-#	esac
+	esac
 
 	append-flags -fno-strict-aliasing
 
