@@ -1,6 +1,9 @@
 # ChangeLog for www-apps/moinmoin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.51 2008/08/04 16:42:10 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.52 2008/08/05 07:57:29 wrobel Exp $
+
+  05 Aug 2008; wrobel@gentoo.org -moinmoin-1.6.3.ebuild:
+  Removed vulnerable moinmoin-1.6.3.
 
   04 Aug 2008; Tobias Heinlein <keytoaster@gentoo.org>
   moinmoin-1.7.1.ebuild:
