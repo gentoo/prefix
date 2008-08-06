@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xdpyinfo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.36 2008/06/06 21:31:07 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.37 2008/08/05 21:16:33 cardoe Exp $
+
+  05 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
 *xdpyinfo-1.0.3 (06 Jun 2008)
 
