@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.147 2008/05/19 19:19:30 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.148 2008/08/05 16:19:03 ulm Exp $
+
+  05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   19 May 2008; Tiziano Müller <dev-zero@gentoo.org> libpq-7.3.21.ebuild,
   libpq-7.4.19.ebuild, libpq-8.0.15.ebuild, libpq-8.1.11.ebuild,
