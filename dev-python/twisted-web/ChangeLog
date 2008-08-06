@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/twisted-web
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.32 2008/05/25 20:29:21 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.33 2008/08/05 12:28:49 fmccor Exp $
+
+  05 Aug 2008; Ferris McCormick <fmccor@gentoo.org>
+  twisted-web-8.1.0.ebuild:
+  Sparc stable, part of Bug #231675.
 
 *twisted-web-8.1.0 (25 May 2008)
 
