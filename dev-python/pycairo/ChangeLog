@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.58 2008/07/21 17:22:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.59 2008/08/06 19:44:05 neurogeek Exp $
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   21 Jul 2008; nixnut <nixnut@gentoo.org> pycairo-1.4.12.ebuild:
   Stable on ppc wrt bug 232327
