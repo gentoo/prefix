@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r1.ebuild,v 1.1 2008/07/17 18:31:36 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r1.ebuild,v 1.2 2008/08/06 17:33:42 yngwin Exp $
 
 EAPI="prefix 1"
 inherit autotools flag-o-matic eutils toolchain-funcs
@@ -8,7 +8,7 @@ inherit autotools flag-o-matic eutils toolchain-funcs
 MY_P=${P/_/}
 DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
 HOMEPAGE="http://xiph.org/vorbis"
-SRC_URI="http://downloads.xiph.org/releases/vorbis/${MY_P}.tar.bz2
+SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2
 	aotuv? ( mirror://gentoo/aotuv-b5.5-1.2.1rc1.diff.bz2 )"
 
 LICENSE="BSD"
