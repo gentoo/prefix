@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyyaml
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.3 2007/10/16 01:11:09 sbriesen Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.4 2008/08/06 19:22:02 neurogeek Exp $
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   16 Oct 2007; Stefan Briesenick <sbriesen@gentoo.org> pyyaml-3.05.ebuild:
   added NEED_PYTHON
