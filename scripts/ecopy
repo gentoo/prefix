@@ -12,65 +12,84 @@ EOF
 	exit 0
 fi
 
-RSURL=http://prefix.gentooexperimental.org/rsync-gentoo-x86/
+RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86/"
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
 # Check to see if the first char is an "="
-if [[ *${1:0:1}* == "=" ]] ; then
-	ebuildgrep=${1#*\/}
-	#catpkg=${1%-*}
-	catpkg=${1#=}
-else
-	catpkg=$1
-fi
-mkdir -p $catpkg
-cd $catpkg
-
-# Copy these so the Prefix tree matches the gentoo-x86 tree.
-wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
-wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
-wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
-
-# Get the ebuild name from the ChangLog
-# FIXME: Improve logic, some false results are generated.
 if [[ ${1:0:1} == "=" ]] ; then
-	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://" -e "s/,//")
+	ebuildgrep="${1#*\/}"
+	catpkg="${1#=}"       # Strip the leading "="
+    catpkg="${catpkg%-*}" # Strip the trailing verion numbers
 else
-	ebuild=$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://" -e "s/,//")
+	catpkg="$1"
+fi
+
+if [[ ${1:0:1} == "=" ]] ; then
+# Grab the index from the current $RSURL and parse it for the list of ebuilds.
+# Grab the specified version that the user entered.
+	ebuild="$(
+        wget -q "${RSURL}/${catpkg}" -O -   | \
+        egrep "href=\"[^\"]+\.ebuild\"" -o  | \
+        sed -e 's/^href="//' -e 's/"$//'    | \
+        grep $ebuildgrep
+    )"
+else
+# Grab the latest version from $RSURL.
+    ebuild="$(
+        wget -q "${RSURL}/${catpkg}" -O -   | \
+        egrep "href=\"[^\"]+\.ebuild\"" -o  | \
+        sed -e 's/^href="//' -e 's/"$//'    | \
+        tail -n 1
+    )"
 fi
 
 # Error checking.
-if [[ -z "$ebuild" ]] ; then
+if [[ -z "${ebuild}" ]] ; then
 	echo "please specify a correct specific version"
 	[[ ${1:0:1} == "=" ]] \
-		&& echo "$1 doesn't match an existing ebuild" \
+		&& echo "$1 doesn't match an existing ebuild in the tree" \
 		|| echo "example: =$1-0.2.3"
 	exit -1
 fi
 
+# Copy these so the Prefix tree matches the gentoo-x86 tree. But don't if the
+# $catpkg dir already exists. It is assumed that they are already there.
+if [[ ! -d ${catpkg} ]]; then 
+    mkdir -p "${catpkg}" && cd "$catpkg"
+    wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
+    wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
+    wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
+else
+    echo
+    echo -e "\tIt appears that $catpkg already exists. I will continue but"
+    echo -e "\tyou should verify my actions"
+    echo
+    cd "$catpkg"
+fi
+
 # needed for sourcing ebuild and understanding ebuild specific vars.
-PF=${ebuild/.ebuild}
-P=${PF%-r[1-9]*}
-PN=${P%-*}
-PV=${P/${PN}-}
+PF="${ebuild/.ebuild}"
+P="${PF%-r[1-9]*}"
+PN="${P%-*}"
+PV="${P/${PN}-}"
 
 # Get the ebuild
-wget -nv --no-glob "${RSURL}/$catpkg/$ebuild"
+wget -nv --no-glob "${RSURL}/${catpkg}/${ebuild}"
 
-source $ebuild 2> /dev/null #get rid of "inherit: command not found" message.
+source ${ebuild} 2> /dev/null #get rid of "inherit: command not found" message.
 
 # Get the patches. Assumed that every patch has FILESDIR in the line. Good
 # assumption.
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
-	mkdir -p files
-	wget -nv --no-glob -P files "${RSURL}/$catpkg/files/$i"
+	mkdir -p "files"
+	wget -nv --no-glob -P "files" "${RSURL}/$catpkg/files/$i"
 done
 
 # Set explicit PATHs for scripts in the prefix tree so they don't need to be
 # copied to your PATH. IOW, you always want eapify & ecleankw to be ran.
-"${EPREFIX}"/usr/portage/scripts/eapify $ebuild
-"${EPREFIX}"/usr/portage/scripts/ecleankw $ebuild
-source "${EPREFIX}"/etc/make.profile/make.defaults
+"${EPREFIX}/usr/portage/scripts/eapify" ${ebuild}
+"${EPREFIX}/usr/portage/scripts/ecleankw" ${ebuild}
+source "${EPREFIX}/etc/make.profile/make.defaults"
 
 # Force the user's keyword on the ebuild. Less work for the user.
 if ! type -P ekeyword > /dev/null ; then
@@ -81,4 +100,4 @@ else
     ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
 fi
 
-ebuild $ebuild digest #re-digest for changes made to the ebuild above
+ebuild ${ebuild} digest #re-digest for changes made to the ebuild above
