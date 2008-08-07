@@ -1,17 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.15.02.ebuild,v 1.1 2008/07/20 20:18:18 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.15.02.ebuild,v 1.2 2008/08/06 20:04:42 loki_val Exp $
 
 EAPI="prefix 1"
 
-inherit eutils autotools base
+inherit eutils multilib base
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="+curl"
+IUSE="+curl +cxx"
 LICENSE="BSD"
 SLOT="0"
 
@@ -40,7 +40,9 @@ src_unpack() {
 		-e "/CFLAGS_COMMON/s:-g -O3$:${CFLAGS}:" \
 		-e "/CXXFLAGS_COMMON/s:-g$:${CXXFLAGS}:" \
 		"${S}"/common.mk || die "404. File not found while sedding"
-	eautoreconf
+	sed -i \
+		-e "/^LIBINST_DIR = / s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
+		config.mk.in
 }
 
 src_compile() {
@@ -56,7 +58,7 @@ src_compile() {
 		--disable-abyss-server \
 		--enable-cgi-server \
 		--disable-abyss-threads \
-		--enable-cplusplus \
+		$(use_enable cxx cplusplus) \
 		$(use_enable curl curl-client) \
 		|| die "econf failed"
 	emake -j1 || die "emake failed"

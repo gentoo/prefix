@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.14.07-r1.ebuild,v 1.1 2008/07/31 17:38:35 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.14.07-r1.ebuild,v 1.2 2008/08/06 20:04:42 loki_val Exp $
 
 EAPI="prefix 1"
 
-inherit eutils autotools base
+inherit eutils multilib base
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
@@ -41,7 +41,9 @@ src_unpack() {
 		-e "/CFLAGS_COMMON/s:-g -O3$:${CFLAGS}:" \
 		-e "/CXXFLAGS_COMMON/s:-g$:${CXXFLAGS}:" \
 		"${S}"/Makefile.common
-	eautoreconf
+	sed -i \
+		-e "/^LIBINST_DIR = / s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
+		Makefile.config.in
 }
 
 src_compile() {
