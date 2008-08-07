@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.282 2008/07/28 17:39:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.284 2008/08/07 00:16:26 gentoofan23 Exp $
+
+  07 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> git-1.5.6.4.ebuild:
+  stable amd64, bug #234075
+
+  06 Aug 2008; Ferris McCormick <fmccor@gentoo.org> git-1.5.6.4.ebuild:
+  Sparc stable, security bug #234075 (good for about a week anyway).
 
 *git-1.5.6.4 (28 Jul 2008)
 
