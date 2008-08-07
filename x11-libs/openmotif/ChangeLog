@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.194 2008/08/04 06:42:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.195 2008/08/06 16:43:09 ulm Exp $
+
+  06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   04 Aug 2008; Ulrich Mueller <ulm@gentoo.org> -openmotif-2.3.1.ebuild:
   Remove intermediate version.
