@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/camping
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/camping/ChangeLog,v 1.11 2008/01/18 07:05:12 agorf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/camping/ChangeLog,v 1.12 2008/08/06 16:30:17 graaff Exp $
+
+  06 Aug 2008; Hans de Graaff <graaff@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
 *camping-1.5-r1 (18 Jan 2008)
 
