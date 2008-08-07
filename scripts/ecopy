@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2008
 
+if ! type -P qatom > /dev/null ; then
+	echo "This script requires qatom, please emerge app-portage/portage-utils"
+	exit -1
+fi
+
 if [[ -z ${1} ]] ; then
 	cat <<-EOF
 usage: ecopy <category>/<package>
@@ -15,6 +20,25 @@ fi
 RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86"
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
+is_greater_atom() {
+	if [[ $(qatom -c $1 $2 | awk '{print $2}') == "<" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+return_greatest() {
+    max="${catpkg#*\/}-0"
+    for i in $@; do
+        if is_greater_atom $max $i; then
+			max="${i}"
+		fi
+	done
+	echo $max
+}
+
+
 # Check to see if the first char is an "="
 if [[ ${1:0:1} == "=" ]] ; then
 	ebuildgrep="${1#*\/}"
@@ -27,19 +51,18 @@ fi
 if [[ ${1:0:1} == "=" ]] ; then
 	# Grab the index from the current $RSURL and parse it for the list
 	# of ebuilds.  Grab the specified version that the user entered.
-	ebuild="$(
-		wget -q "${RSURL}/${catpkg}" -O -   | \
-		egrep "href=\"[^\"]+\.ebuild\"" -o  | \
-		sed -e 's/^href="//' -e 's/"$//'    | \
+	ebuild="$(wget -q "${RSURL}/${catpkg}" -O -	| \
+		egrep "href=\"[^\"]+\.ebuild\"" -o		| \
+		sed -e 's/^href="//' -e 's/"$//'		| \
 		grep $ebuildgrep
 	)"
 else
 	# Grab the latest version from $RSURL.
-	ebuild="$(
-		wget -q "${RSURL}/${catpkg}" -O -   | \
-		egrep "href=\"[^\"]+\.ebuild\"" -o  | \
-		sed -e 's/^href="//' -e 's/"$//'    | \
-		tail -n 1
+	ebuild="$( return_greatest "$(				\
+			wget -q "${RSURL}/${catpkg}" -O -   | \
+			egrep "href=\"[^\"]+\.ebuild\"" -o  | \
+			sed -e 's/^href="//' -e 's/"$//'
+		)"
 	)"
 fi
 
