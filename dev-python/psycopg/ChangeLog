@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/psycopg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.64 2008/05/26 12:51:17 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.66 2008/08/06 19:57:29 neurogeek Exp $
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml,
+  psycopg-2.0.2.ebuild:
+  add GLEP 56 USE flag desc from use.local.desc. Fixed ebuild minorsyn
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> psycopg-1.1.21.ebuild,
+  -psycopg-2.0.5.1.ebuild:
+  Removed old version. Fixed 1.1.21 to use $(python_get_dir) (See bug
+  #232575). Thanks to Necoro <gentoo@necoro.eu>
 
   26 May 2008; Krzysiek Pawlik <nelchael@gentoo.org> psycopg-1.1.21.ebuild:
   Fix repoman warnings.
