@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.91 2008/08/05 12:22:02 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.92 2008/08/06 18:40:39 neurogeek Exp $
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   05 Aug 2008; Ferris McCormick <fmccor@gentoo.org> twisted-8.1.0.ebuild:
   Sparc stable, part of Bug #231675.

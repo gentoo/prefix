@@ -2,6 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>python</herd>
+	<use>
+		<flag name='serial'>include serial port support</flag>
+	</use>
 	<longdescription>
 		Twisted is an asynchronous networking framework written in Python,
 		supporting TCP, UDP, multicast, SSL/TLS, serial communication and
