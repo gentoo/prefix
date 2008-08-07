@@ -183,11 +183,10 @@ src_compile() {
 
 	if ! use vanilla; then
 		# rr.compressed patch
-#		myconf="${myconf} --enable-compressed"
+		myconf="${myconf} --enable-compressed"
 
 		# nntp patch
-#		myconf="${myconf} $(use_enable nntp)"
-:
+		myconf="${myconf} $(use_enable nntp)"
 	fi
 
 	econf ${myconf} || die "configure failed"
