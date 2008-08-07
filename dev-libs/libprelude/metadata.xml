@@ -3,4 +3,7 @@
 <pkgmetadata>
 <herd>netmon</herd>
 <longdescription>Prelude-IDS Framework Library</longdescription>
+<use>
+  <flag name='swig'>Enable rebuild of swig bindings</flag>
+</use>
 </pkgmetadata>
