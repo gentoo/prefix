@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/hmmer
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.22 2008/02/07 14:39:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.23 2008/08/06 14:58:18 ulm Exp $
+
+  06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   07 Feb 2008; Fabian Groffen <grobian@gentoo.org> hmmer-2.3.2-r1.ebuild,
   hmmer-2.3.2-r2.ebuild:
