@@ -34,9 +34,9 @@ wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
 # Get the ebuild name from the ChangLog
 # FIXME: Improve logic, some false results are generated.
 if [[ ${1:0:1} == "=" ]] ; then
-	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
+	ebuild=$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://" -e "s/,//")
 else
-	ebuild=$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")
+	ebuild=$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://" -e "s/,//")
 fi
 
 # Error checking.
