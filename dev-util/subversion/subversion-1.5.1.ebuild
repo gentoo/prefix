@@ -14,7 +14,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="apache2 berkdb debug doc +dso emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
@@ -105,14 +105,14 @@ src_compile() {
 			# includes which don't exist
 			myconf="${myconf} --disable-keychain"
 		;;
-#		*-solaris*)
-#			# -lintl isn't added for some reason
-#			use nls && append-ldflags -lintl
-#		;;
-#		*-aix*)
-#			# avoid recording immediate path to sharedlibs into executables
-#			append-ldflags -Wl,-bnoipath
-#		;;
+		*-solaris*)
+			# -lintl isn't added for some reason
+			use nls && append-ldflags -lintl
+		;;
+		*-aix*)
+			# avoid recording immediate path to sharedlibs into executables
+			append-ldflags -Wl,-bnoipath
+		;;
 	esac
 
 	append-flags -fno-strict-aliasing
