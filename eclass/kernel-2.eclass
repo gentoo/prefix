@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.214 2008/07/09 19:52:20 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.215 2008/08/07 02:05:49 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -392,9 +392,14 @@ universal_unpack() {
 	find . -iname "*~" -exec rm {} \; 2> /dev/null
 
 	# fix a problem on ppc where TOUT writes to /usr/src/linux breaking sandbox
-	sed -i \
-		-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
-		"${S}"/arch/ppc/Makefile
+	# only do this for kernel < 2.6.27 since this file does not exist in later
+	# kernels
+	if [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} < 2.6.27 ]]
+	then
+		sed -i \
+			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
+			"${S}"/arch/ppc/Makefile
+	fi
 }
 
 unpack_set_extraversion() {
