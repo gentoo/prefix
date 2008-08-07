@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.21 2008/05/12 09:52:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.22 2008/08/06 16:44:13 graaff Exp $
+
+  06 Aug 2008; Hans de Graaff <graaff@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> sqlite3-ruby-1.2.1.ebuild:
   Stable on ppc64; bug #221309
