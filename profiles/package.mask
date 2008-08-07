@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8864 2008/08/05 18:04:29 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8868 2008/08/07 02:11:19 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,13 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Alexis Ballier <aballier@gentoo.org> (6 Aug 2008)
+# Masked for removal.
+# Does not build (bug #206138), unmaintained upstream for years, not very useful
+# nowadays. Use dev-lang/ocaml instead.
+# Will be removed 7 Sep 2008
+dev-lang/caml-light
 
 # George Shapovalov <george@gentoo.org> (5 Aug 2008)
 # problems with shared libs (#231534)
@@ -86,10 +93,6 @@ dev-db/ctdb
 # This version stops responding after awhile (#229049).
 =net-proxy/privoxy-3.0.8
 
-# Markus Dittrich <markusle@gentoo.org> (24 Jul 2008)
-# New octave-3 core package. Needs a bit more testing.
-=sci-mathematics/octave-3*
-
 # Bernard Cafarelli <voyageur@gentoo.org> (21 Jul 2008)
 # Masked for removal in 30 days 
 # Do not compile anymore with current GNUstep, dead upstream
@@ -109,8 +112,8 @@ sys-auth/pam_ssh_agent
 =app-emulation/basiliskII-jit-1.0.0-r1
 
 # Jeroen Roovers <jer@gentoo.org> (14 Jul 2008)
-# Masked for testing 
-=net-im/psi-0.12*
+# Masked until it is officially released
+=net-im/psi-0.12
 
 # Marcelo Goes <vanquirius@gentoo.org> (12 Jul 2008)
 # rlog-1.4 breaks encfs, see bug 228951
