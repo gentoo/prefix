@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.3 2008/06/29 21:06:53 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.4 2008/08/06 16:40:12 graaff Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,7 @@ src_compile() {
 src_install() {
 	# RUBYOPT=-rauto_gem without rubygems installed will cause ruby to fail, bug #158455
 	export RUBYOPT="${GENTOO_RUBYOPT}"
+	ewarn "RUBYOPT=${RUBYOPT}"
 
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
