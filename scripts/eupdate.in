@@ -718,8 +718,8 @@ for mte in $mt ; do
 		&& last_mte=$mte
 done
 if [[ $last_mte != "" ]] ; then
-	# we have to apply an update from $last_pte to $last_mte
 	if [[ $last_pte != "" ]] ; then
+		# we have to apply an update from $last_pte to $last_mte
 		cross_diff $last_mte $last_pte
 		ret=$?
 		if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
@@ -737,6 +737,10 @@ if [[ $last_mte != "" ]] ; then
 		if [[ -f ${MTREEDIR}/${EPACKAGE}/ChangeLog ]] ; then
 			ewarn "copying ChangeLog"
 			cp "${MTREEDIR}/${EPACKAGE}"/ChangeLog .
+		fi
+		if [[ -f ${MTREEDIR}/${EPACKAGE}/Manifest ]] ; then
+			ewarn "copying Manifest"
+			cp "${MTREEDIR}/${EPACKAGE}"/Manifest .
 		fi
 		ewarn "copying $last_mte"
 		cp "${MTREEDIR}/${EPACKAGE}"/$last_mte .
