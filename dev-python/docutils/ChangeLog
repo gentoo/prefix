@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.81 2008/07/18 11:01:14 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.82 2008/08/06 20:22:16 neurogeek Exp $
+
+  06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   18 Jul 2008; Alexis Ballier <aballier@gentoo.org> docutils-0.4-r3.ebuild:
   keyword ~sparc-fbsd
