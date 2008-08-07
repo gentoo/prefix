@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/python-docs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.104 2008/07/18 13:35:25 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.105 2008/08/07 00:23:39 jer Exp $
+
+*python-docs-2.5.2 (07 Aug 2008)
+
+  07 Aug 2008; Jeroen Roovers <jer@gentoo.org> +python-docs-2.5.2.ebuild:
+  Version bump thanks to Michael Glockenstein (bug #234072).
 
   18 Jul 2008; Olivier Crête <tester@gentoo.org> python-docs-2.5.1.ebuild:
   Stable on amd64, bug #178800
