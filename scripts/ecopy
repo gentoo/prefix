@@ -12,35 +12,35 @@ EOF
 	exit 0
 fi
 
-RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86/"
+RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86"
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
 # Check to see if the first char is an "="
 if [[ ${1:0:1} == "=" ]] ; then
 	ebuildgrep="${1#*\/}"
 	catpkg="${1#=}"       # Strip the leading "="
-    catpkg="${catpkg%-*}" # Strip the trailing verion numbers
+	catpkg="${catpkg%-*}" # Strip the trailing verion numbers
 else
 	catpkg="$1"
 fi
 
 if [[ ${1:0:1} == "=" ]] ; then
-# Grab the index from the current $RSURL and parse it for the list of ebuilds.
-# Grab the specified version that the user entered.
+	# Grab the index from the current $RSURL and parse it for the list
+	# of ebuilds.  Grab the specified version that the user entered.
 	ebuild="$(
-        wget -q "${RSURL}/${catpkg}" -O -   | \
-        egrep "href=\"[^\"]+\.ebuild\"" -o  | \
-        sed -e 's/^href="//' -e 's/"$//'    | \
-        grep $ebuildgrep
-    )"
+		wget -q "${RSURL}/${catpkg}" -O -   | \
+		egrep "href=\"[^\"]+\.ebuild\"" -o  | \
+		sed -e 's/^href="//' -e 's/"$//'    | \
+		grep $ebuildgrep
+	)"
 else
-# Grab the latest version from $RSURL.
-    ebuild="$(
-        wget -q "${RSURL}/${catpkg}" -O -   | \
-        egrep "href=\"[^\"]+\.ebuild\"" -o  | \
-        sed -e 's/^href="//' -e 's/"$//'    | \
-        tail -n 1
-    )"
+	# Grab the latest version from $RSURL.
+	ebuild="$(
+		wget -q "${RSURL}/${catpkg}" -O -   | \
+		egrep "href=\"[^\"]+\.ebuild\"" -o  | \
+		sed -e 's/^href="//' -e 's/"$//'    | \
+		tail -n 1
+	)"
 fi
 
 # Error checking.
@@ -55,16 +55,16 @@ fi
 # Copy these so the Prefix tree matches the gentoo-x86 tree. But don't if the
 # $catpkg dir already exists. It is assumed that they are already there.
 if [[ ! -d ${catpkg} ]]; then 
-    mkdir -p "${catpkg}" && cd "$catpkg"
-    wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
-    wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
-    wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
+	mkdir -p "${catpkg}" && cd "$catpkg"
+	wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
+	wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
+	wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
 else
-    echo
-    echo -e "\tIt appears that $catpkg already exists. I will continue but"
-    echo -e "\tyou should verify my actions"
-    echo
-    cd "$catpkg"
+	echo
+	echo -e "\tIt appears that $catpkg already exists. I will continue but"
+	echo -e "\tyou should verify my actions"
+	echo
+	cd "$catpkg"
 fi
 
 # needed for sourcing ebuild and understanding ebuild specific vars.
@@ -93,11 +93,11 @@ source "${EPREFIX}/etc/make.profile/make.defaults"
 
 # Force the user's keyword on the ebuild. Less work for the user.
 if ! type -P ekeyword > /dev/null ; then
-    echo
-    echo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually" > /dev/stderr
-    echo
+	echo
+	echo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually" > /dev/stderr
+	echo
 else
-    ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
+	ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
 fi
 
 ebuild ${ebuild} digest #re-digest for changes made to the ebuild above
