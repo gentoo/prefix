@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  08 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask,
+  darwin/package.use.mask:
+  Mask mmx useflag for net-irc/xchat on OSX
+
   06 Aug 2008; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.use.mask, darwin/package.mask:
   Mask dso USE-flag for subversion, it's unfixable broken and renders
