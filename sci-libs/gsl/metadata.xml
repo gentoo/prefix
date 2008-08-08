@@ -15,4 +15,8 @@ numbers, least-squares fitting, fast Fourier transforms (FFT),
 differential equations, quadrature, Monte Carlo integration, special
 functions, physical constants, and much more. 
 </longdescription>
+<use>
+  <flag name='cblas'>Build gsl with external cblas by default
+    (<pkg>virtual/cblas</pkg>)</flag>
+</use>
 </pkgmetadata>

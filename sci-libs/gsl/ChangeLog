@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.43 2008/03/31 09:51:36 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.44 2008/08/07 07:04:30 ulm Exp $
+
+  07 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
 
 *gsl-1.11 (31 Mar 2008)
 
