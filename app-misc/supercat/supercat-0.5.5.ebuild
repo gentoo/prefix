@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/supercat/supercat-0.5.5.ebuild,v 1.4 2008/04/04 12:55:35 coldwind Exp $
 
-inherit eutils
-
 EAPI="prefix"
 
 DESCRIPTION="A text file colorizer using powerful regular expressions"
