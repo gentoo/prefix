@@ -42,6 +42,9 @@ src_unpack() {
 	cd "${S}"
 	unpack ${P2}.tar.gz
 
+	[[ ${CHOST} == *-interix* ]] && \
+		sed -e '/extern int getopt/d' freetype1-contrib/ttf2pfb/t1asm.c
+
 	cd "${S}"
 	# remove unneeded include for BSD (#104016)
 	epatch "${FILESDIR}"/${P}-malloc.patch
