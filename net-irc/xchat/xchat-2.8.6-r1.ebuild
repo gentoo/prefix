@@ -44,6 +44,8 @@ src_unpack() {
 			"${S}"/configure{,.in} || die
 	fi
 
+	epatch "${FILESDIR}"/xc286-smallfixes.diff
+
 	epatch "${FILESDIR}"/${PN}-2.8.4-interix.patch
 	eautoreconf # need new libtool for interix
 }
@@ -103,6 +105,4 @@ pkg_postinst() {
 		elog "XChat now includes it's own systray icon, you may want to remove net-irc/xchat-systray."
 		elog
 	fi
-
-	epatch "${FILESDIR}"/xc286-smallfixes.diff
 }
