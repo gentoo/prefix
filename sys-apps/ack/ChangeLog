@@ -1,0 +1,9 @@
+# ChangeLog for sys-apps/ack
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.1 2008/08/04 20:01:07 rajiv Exp $
+
+*ack-1.86 (01 Aug 2008)
+
+  01 Aug 2008; Rajiv Aaron Manglani <rajiv@gentoo.org>:
+  new package, ack. from http://petdance.com/ack/ and bug #220645.
+  ebuild submitted by René 'Necoro' Neumann <gentoo@necoro.eu>.
