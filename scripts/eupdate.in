@@ -54,14 +54,16 @@
 # can do it.)  For your convenience it is intended that you rename this
 # file to something without the .in and change the paths below.
 
-# Main Tree Directory, an rsynced portage tree is fine
-[[ -z $MTREEDIR ]] && MTREEDIR='/usr/portage'
+# Main Tree Directory, an rsynced portage tree is fine, http url also
+# allowed, but slower
+[[ -z $MTREEDIR ]] && MTREEDIR='http://prefix.gentooexperimental.org/rsync-gentoo-x86'
 # Prefix offset
-[[ -z $EPREFIX ]] && EPREFIX='/my/prefix'
+[[ -z $EPREFIX ]] && EPREFIX=$(portageq envvar EPREFIX)
 # Prefix Tree Directory
 [[ -z $PTREEDIR ]] && PTREEDIR="`cd ${EPREFIX}/usr/portage && pwd -P`"
-# How to reach the CVS server for retrieving revision diffs
-[[ -z $CVSROOT ]] && CVSROOT=':ext:developer@cvs.gentoo.org:/var/cvsroot/'
+# How to reach the CVS server for retrieving revision diffs, devs can
+# use their ssh access for most uptodate tree
+[[ -z $CVSROOT ]] && CVSROOT=':pserver:anonymous@anoncvs.gentoo.org:/var/cvsroot'
 # Don't touch this.  You really don't want to.
 CVSMODULE='gentoo-x86'
 # Voodoo to figure out what package you're currently messing with
@@ -316,7 +318,7 @@ get_ebuildversion() {
 		return
 	fi
 
-	# strip extention
+	# strip extension
 	t=${1%.ebuild}
 	# abort if this is not an ebuild
 	if [[ $t == $1 ]] ; then
@@ -337,8 +339,9 @@ get_ebuildversion() {
 cross_diff() {
 	mver=$(get_ebuildversion $1)
 	pver=$(get_ebuildversion $2)
-	mte=`basename "${MTREEDIR}/${EPACKAGE}"/$1`
-	pte=`echo $2`
+	# $1 is just somewhere, $2 must be local, mte becomes local $1
+	mte=${1##*/}
+	pte=$2
 	# get real main tree corresponding version
 	if [[ ${pte/-r0/-r} == $pte ]] ; then
 		mypte=$pte
@@ -350,8 +353,8 @@ cross_diff() {
 		mypte=${mypte/-r.ebuild/.ebuild}
 		mypte=${mypte/-r0.ebuild/.ebuild}
 	fi
-	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
-	ptecv=$(get_cvsversion $pte)
+	mtecv=$(get_cvsversion $1)
+	ptecv=$(get_cvsversion $2)
 	ewarn "new version in main tree: ${mver} [${pver}] ... cross diff from $ptecv to $mtecv"
 	# checkout both original versions and make the diffs,
 	# ignoring keywords
@@ -553,7 +556,7 @@ if [[ ${#*} > 0 ]] ; then
 		if [[ ${1/->/} != ${1} ]] ; then
 			# if a a.1.ebuild->a.2.ebuild is given, we force a
 			# cross-diff from a.1 to a.2
-			cross_diff ${1#*->} ${1%->*}
+			cross_diff ${MTREEDIR}/${EPACKAGE}/${1#*->} ${1%->*}
 		elif [[ ${1#=} != ${1} ]] ; then
 			# try to fetch files for this ebuild
 			fetch_files ${1#=}
@@ -698,7 +701,7 @@ for pte in $pt ; do
 		fi
 	done
 	if [[ $last_rev != "" ]] ; then
-		cross_diff $last_rev $pte
+		cross_diff ${MTREEDIR}/${EPACKAGE}/$last_rev $pte
 		ret=$?
 		if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
 			excode=-1
@@ -720,7 +723,7 @@ done
 if [[ $last_mte != "" ]] ; then
 	if [[ $last_pte != "" ]] ; then
 		# we have to apply an update from $last_pte to $last_mte
-		cross_diff $last_mte $last_pte
+		cross_diff ${MTREEDIR}/${EPACKAGE}/$last_mte $last_pte
 		ret=$?
 		if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
 			excode=-1
