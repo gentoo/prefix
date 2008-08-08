@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2008
-# $Id: $
+# $Id$
 
 # This probably will blow up if not ran in a Prefix environment, sorry.
 
