@@ -11,4 +11,10 @@
   that FFTW's performance is typically superior to that of other
   publicly available FFT software.
 </longdescription>
+<use>
+  <flag name='float'>Link default library to single precision instead of
+    double (symlinks only)</flag>
+  <flag name='openmp'>Build support for the OpenMP (support parallel
+    computing)</flag>
+</use>
 </pkgmetadata>
