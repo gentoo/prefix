@@ -1,0 +1,13 @@
+--- /src/xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.orig.cpp	Mon Jun  4 18:17:26 2007
++++ /src/xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.cpp	Mon Jun  4 18:25:22 2007
+@@ -429,8 +427,10 @@
+ 
+ void reinitIconvGNUMutex()
+ {
++#if !defined(APP_NO_THREADS)
+     delete gIconvMutex;
+     gIconvMutex = 0;
++#endif
+ }
+ 
+ IconvGNUTransService::IconvGNUTransService()
