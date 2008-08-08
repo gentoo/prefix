@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.92 2008/08/06 18:40:39 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.93 2008/08/08 03:03:20 jer Exp $
+
+  08 Aug 2008; Jeroen Roovers <jer@gentoo.org> twisted-8.1.0.ebuild:
+  Stable for HPPA (bug #231675).
 
   06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
