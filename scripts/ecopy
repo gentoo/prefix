@@ -1,25 +1,33 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2008
+# $Id: $
 
-if ! type -P qatom > /dev/null ; then
-	echo "This script requires qatom, please emerge app-portage/portage-utils"
-	exit -1
-fi
-
-if [[ -z ${1} ]] ; then
-	cat <<-EOF
-usage: ecopy <category>/<package>
-  - make sure the scripts directory from the overlay is in your path
-  - make sure you call ecopy from the root of the overlay
-  - you can also specify a specific version, using the '=' prefix
-    and appending a version
-EOF
-	exit 0
-fi
+# This probably will blow up if not ran in a Prefix environment, sorry.
 
 RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86"
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
+source "${EPREFIX}/etc/init.d/functions.sh"
+
+if ! type -P qatom > /dev/null ; then
+	ewarn "This script suggests to use qatom, please emerge"
+	ewarn "app-portage/portage-utils to use this improved logic."
+	QATOM="false"
+fi
+
+if [[ -z ${1} ]] ; then
+	einfo
+	einfo "usage: ecopy <category>/<package>"
+	einfo "- make sure the scripts directory from the overlay is in your path"
+	einfo "- make sure you call ecopy from the root of the overlay"
+	einfo "- you can also specify a specific version, using the '=' prefix"
+	einfo "and appending a version"
+	einfo
+	exit 0
+fi
+
+# Uses qatom to determine if the second atom is greater than the first, and
+# returns true if so.
 is_greater_atom() {
 	if [[ $(qatom -c $1 $2 | awk '{print $2}') == "<" ]]; then
 		return 0
@@ -28,6 +36,8 @@ is_greater_atom() {
 	fi
 }
 
+# Takes input of a list of ebuild strings and uses is_greater_atom() to return
+# the greatest in the list.
 return_greatest() {
     max="${catpkg#*\/}-0"
     for i in $@; do
@@ -38,9 +48,24 @@ return_greatest() {
 	echo $max
 }
 
+# Either use qatom or fall back to a non-qatom approach which may generate false
+# positive.
+return_greatest_wrapper() {
+	if [[ "${QATOM}" == "false" ]]; then
+		echo "$( wget -q "${RSURL}/${catpkg}" -O - | \
+		egrep "href=\"[^\"]+\.ebuild\"" -o | \
+		sed -e 's/^href="//' -e 's/"$//' | \
+		tail -n 1 )"
+	else
+		echo "$( return_greatest "$( \
+		wget -q "${RSURL}/${catpkg}" -O - | \
+		egrep "href=\"[^\"]+\.ebuild\"" -o | \
+		sed -e 's/^href="//' -e 's/"$//' )" )"
+	fi
+}
 
-# Check to see if the first char is an "="
-if [[ ${1:0:1} == "=" ]] ; then
+# Mangle user input
+if [[ ${1:0:1} == "=" ]] ; then # Check to see if the first char is an "="
 	ebuildgrep="${1#*\/}"
 	catpkg="${1#=}"       # Strip the leading "="
 	catpkg="${catpkg%-*}" # Strip the trailing verion numbers
@@ -51,27 +76,23 @@ fi
 if [[ ${1:0:1} == "=" ]] ; then
 	# Grab the index from the current $RSURL and parse it for the list
 	# of ebuilds.  Grab the specified version that the user entered.
-	ebuild="$(wget -q "${RSURL}/${catpkg}" -O -	| \
-		egrep "href=\"[^\"]+\.ebuild\"" -o		| \
-		sed -e 's/^href="//' -e 's/"$//'		| \
+	ebuild="$(wget -q "${RSURL}/${catpkg}" -O - | \
+		egrep "href=\"[^\"]+\.ebuild\"" -o | \
+		sed -e 's/^href="//' -e 's/"$//' | \
 		grep $ebuildgrep
 	)"
 else
-	# Grab the latest version from $RSURL.
-	ebuild="$( return_greatest "$(				\
-			wget -q "${RSURL}/${catpkg}" -O -   | \
-			egrep "href=\"[^\"]+\.ebuild\"" -o  | \
-			sed -e 's/^href="//' -e 's/"$//'
-		)"
-	)"
+	# Use the wrapper function to just grab the latest version.
+	ebuild="$( return_greatest_wrapper )"
 fi
 
+# TODO: fix error checking. patches welcome.
 # Error checking.
-if [[ -z "${ebuild}" ]] ; then
-	echo "please specify a correct specific version"
+if [[ -z ${ebuild} ]] ; then
+	ewarn "please specify a correct specific version"
 	[[ ${1:0:1} == "=" ]] \
-		&& echo "$1 doesn't match an existing ebuild in the tree" \
-		|| echo "example: =$1-0.2.3"
+		&& ewarn "$1 doesn't match an existing ebuild in the tree" \
+		|| ewarn "example: =$1-0.2.3"
 	exit -1
 fi
 
@@ -83,10 +104,10 @@ if [[ ! -d ${catpkg} ]]; then
 	wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
 	wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
 else
-	echo
-	echo -e "\tIt appears that $catpkg already exists. I will continue but"
-	echo -e "\tyou should verify my actions"
-	echo
+	einfo
+	einfo "It appears that $catpkg already exists. I will continue but"
+	einfo "you should verify my actions"
+	einfo
 	cd "$catpkg"
 fi
 
@@ -116,9 +137,8 @@ source "${EPREFIX}/etc/make.profile/make.defaults"
 
 # Force the user's keyword on the ebuild. Less work for the user.
 if ! type -P ekeyword > /dev/null ; then
-	echo
-	echo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually" > /dev/stderr
-	echo
+	einfo
+	einfo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually"
 else
 	ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
 fi
