@@ -97,9 +97,9 @@ src_install() {
 	# and getafm (conflicts with psutils)
 	cd "${S}"/freetype1-contrib
 	into /usr
-	dobin ttf2bdf/ttf2bdf ttf2pfb/.libs/ttf2pfb \
-		ttf2pk/.libs/ttf2pk ttf2pk/.libs/ttf2tfm \
-		ttfbanner/.libs/ttfbanner \
+	dobin ttf2bdf/ttf2bdf ttf2pfb/ttf2pfb \
+		ttf2pk/ttf2pk ttf2pk/ttf2tfm \
+		ttfbanner/ttfbanner \
 		|| die
 	if use kpathsea ; then
 		insinto /usr/share/texmf/ttf2pk
