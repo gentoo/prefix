@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.106 2008/08/06 06:33:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.107 2008/08/07 12:11:33 gentoofan23 Exp $
+
+  07 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> apr-1.3.2.ebuild:
+  stable amd64, bug 232671
 
   06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
