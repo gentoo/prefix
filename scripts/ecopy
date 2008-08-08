@@ -66,9 +66,9 @@ return_greatest_wrapper() {
 
 # Mangle user input
 if [[ ${1:0:1} == "=" ]] ; then # Check to see if the first char is an "="
-	ebuildgrep="${1#*\/}"
+	ebuildgrep="${1#*\/}.ebuild"
 	catpkg="${1#=}"       # Strip the leading "="
-	catpkg="${catpkg%-*}" # Strip the trailing verion numbers
+	catpkg="${catpkg%-[0-9]*}" # Strip the trailing verion numbers
 else
 	catpkg="$1"
 fi
@@ -88,6 +88,7 @@ fi
 
 # TODO: fix error checking. patches welcome.
 # Error checking.
+echo $ebuild
 if [[ -z ${ebuild} ]] ; then
 	ewarn "please specify a correct specific version"
 	[[ ${1:0:1} == "=" ]] \
