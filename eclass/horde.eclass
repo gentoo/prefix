@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.35 2007/08/17 10:14:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.36 2008/08/07 18:53:18 wrobel Exp $
 #
 # Help manage the horde project http://www.horde.org/
 #
@@ -67,7 +67,9 @@ LICENSE="LGPL-2"
 
 # INSTALL_DIR is used by webapp.eclass when USE=-vhosts
 INSTALL_DIR="/horde"
-[[ ${HORDE_PN} != "horde" ]] && INSTALL_DIR="${INSTALL_DIR}/${HORDE_PN}"
+[[ ${HORDE_PN} != "horde" && ${HORDE_PN} != "horde-groupware" && ${HORDE_PN} != "horde-webmail" ]] && INSTALL_DIR="${INSTALL_DIR}/${HORDE_PN}"
+
+HORDE_APPLICATIONS="${HORDE_APPLICATIONS} ."
 
 horde_pkg_setup() {
 	webapp_pkg_setup
@@ -101,7 +103,11 @@ horde_src_unpack() {
 	cd "${S}"
 
 	[[ -n ${EHORDE_PATCHES} ]] && epatch ${EHORDE_PATCHES}
-	[[ -f test.php ]] && chmod 000 test.php
+
+	for APP in ${HORDE_APPLICATIONS}
+	do
+		[[ -f ${APP}/test.php ]] && chmod 000 ${APP}/test.php
+	done
 }
 
 horde_src_install() {
@@ -120,8 +126,21 @@ horde_src_install() {
 	mv "${T}"/CREDITS docs/
 
 	dodir ${destdir}
-	cp -r . ${ED}/${destdir}/ || die "install files"
-	webapp_serverowned ${MY_HTDOCSDIR}
+	cp -r . "${ED}"/${destdir}/ || die "install files"
+
+	for APP in ${HORDE_APPLICATIONS}
+	do
+		for DISTFILE in ${APP}/config/*.dist
+		do
+			if [[ -f ${DISTFILE/.dist/} ]] ; then
+				webapp_configfile "${MY_HTDOCSDIR}"/${DISTFILE/.dist/}
+			fi
+		done
+		if [[ -f ${APP}/config/conf.php ]] ; then
+			webapp_serverowned "${MY_HTDOCSDIR}"/${APP}/config/conf.php
+			webapp_configfile "${MY_HTDOCSDIR}"/${APP}/config/conf.php
+		fi
+	done
 
 	webapp_src_install
 }
@@ -133,7 +152,7 @@ horde_pkg_postinst() {
 	einfo "Before this package will work, you have to setup"
 	einfo "the configuration files.  Please review the"
 	einfo "config/ subdirectory of ${HORDE_PN} in the webroot."
-	if [[ ${HORDE_PN} != "horde" ]] ; then
+	if [[ ${HORDE_PN} != "horde" && ${HORDE_PN} != "horde-groupware" && ${HORDE_PN} != "horde-webmail" ]] ; then
 		ewarn
 		ewarn "Make sure ${HORDE_PN} is accounted for in horde's root"
 		ewarn "    config/registry.php"
