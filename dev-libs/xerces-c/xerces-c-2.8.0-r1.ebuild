@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-2.8.0-r1.ebuild,v 1.1 2008/07/26 19:08:28 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-2.8.0-r1.ebuild,v 1.2 2008/08/09 08:45:43 dev-zero Exp $
 
 EAPI="prefix 1"
 
