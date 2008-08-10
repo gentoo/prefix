@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.3 2008/08/08 03:03:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.5 2008/08/08 19:11:04 armin76 Exp $
 
 EAPI="prefix"
 
