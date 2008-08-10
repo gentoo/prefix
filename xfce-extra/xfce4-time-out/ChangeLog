@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/xfce4-time-out
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-time-out/ChangeLog,v 1.23 2007/10/15 16:29:27 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-time-out/ChangeLog,v 1.24 2008/08/08 17:51:25 aballier Exp $
+
+  08 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  xfce4-time-out-0.1.1.ebuild:
+  keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
+  #233722
 
   15 Oct 2007; Samuli Suominen <drac@gentoo.org>
   xfce4-time-out-0.1.1.ebuild:

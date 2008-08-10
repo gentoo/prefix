@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-time-out/xfce4-time-out-0.1.1.ebuild,v 1.8 2007/10/15 16:29:27 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-time-out/xfce4-time-out-0.1.1.ebuild,v 1.9 2008/08/08 17:51:25 aballier Exp $
 
 EAPI="prefix"
 
