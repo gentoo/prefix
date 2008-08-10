@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libmowgli
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.39 2008/07/19 13:54:03 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.40 2008/08/08 20:09:03 lu_zero Exp $
+
+  08 Aug 2008; Luca Barbato <lu_zero@gentoo.org> libmowgli-0.6.1.ebuild,
+  libmowgli-0.7.0.ebuild:
+  update upstream homepage
 
 *libmowgli-0.7.0 (19 Jul 2008)
 
