@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1758 2008/08/07 02:11:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1763 2008/08/09 21:57:52 hoffie Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  09 Aug 2008; Christian Hoffmann <hoffie@gentoo.org> package.mask,
+  use.local.desc:
+  Removing all php-4 related masks and local USE flag descriptions
+
+  09 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-util/elfsh for removal in 60 days by treecleaners, bug #232141
+
+  08 Aug 2008; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Re-Added oav USE-flag for Samba
+
+  08 Aug 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Unmask net-im/psi-0.12 now that it is officially released.
 
   07 Aug 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
   Reinstate net-im/psi-0.12 mask until officially released (bug #233396

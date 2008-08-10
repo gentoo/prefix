@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8868 2008/08/07 02:11:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8871 2008/08/09 21:57:52 hoffie Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,13 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (9 Aug 2008)
+# Masked for removal in 60 days. No distfile on the mirrors for the latest
+# version, open bugs (bug #177222, #193629, #202548). Please comment on the 
+# removal bug #232141 if you want this one to stay. No maintainer and no easy 
+# way to get releases from upstream.
+dev-util/elfsh
 
 # Alexis Ballier <aballier@gentoo.org> (6 Aug 2008)
 # Masked for removal.
@@ -110,10 +117,6 @@ sys-auth/pam_ssh_agent
 # Old, broken version with odd SRC_URI. Use
 # app-emulation/basiliskII-jit-1.0_pre20060501 instead. Comment on bug #232039
 =app-emulation/basiliskII-jit-1.0.0-r1
-
-# Jeroen Roovers <jer@gentoo.org> (14 Jul 2008)
-# Masked until it is officially released
-=net-im/psi-0.12
 
 # Marcelo Goes <vanquirius@gentoo.org> (12 Jul 2008)
 # rlog-1.4 breaks encfs, see bug 228951
@@ -1142,46 +1145,6 @@ dev-lang/ghc-bin
 # Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
 # beta NVIDIA drivers, not supported. bug #196679
 ~x11-drivers/nvidia-drivers-100.14.23
-
-# Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
-# masked for security reasons, bug 189172, removal scheduled for August
-# 2008 where upstream officially drops support completely
-=dev-lang/php-4*
-dev-php4/creole
-dev-php4/pecl-yaz
-dev-php4/pecl-crack
-dev-php4/jargon
-dev-php4/pecl-mailparse
-dev-php4/jpgraph
-dev-php4/pecl-radius
-dev-php4/pecl-json
-dev-php4/pecl-fileinfo
-dev-php4/syck-php-bindings
-dev-php4/eaccelerator
-dev-php4/pecl-memcache
-dev-php4/phpdbg
-dev-php4/ZendOptimizer
-dev-php4/php-java-bridge
-dev-php4/pecl-translit
-dev-php4/pecl-apc
-dev-php4/ffmpeg-php
-dev-php4/adodb-ext
-dev-php4/pecl-tidy
-dev-php4/pecl-imagick
-dev-php4/xdebug
-dev-php4/pecl-id3
-dev-php4/suhosin
-dev-php4/pecl-ps
-dev-php4/xcache
-dev-php4/pecl-zip
-dev-php4/phpunit
-dev-php4/pecl-pdflib
-dev-php4/pecl-sqlite
-dev-php4/pecl-http
-# only >=1.0 seems to be php-5 compatible
-<net-nds/phpldapadmin-1.0
-# incompatible with php-5 as well, bug 194894
-<=www-apps/knowledgetree-3.4.3
 
 # Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
 # Development release

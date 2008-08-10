@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3723 2008/08/08 04:46:11 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3727 2008/08/09 21:57:52 hoffie Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "sort -t: -k1,1 -k2 | sort -s -t/ -k1,1")
@@ -73,6 +73,7 @@
 # media-video
 # net-analyzer
 # net-im
+# net-misc
 # rox-base
 # rox-extra
 # sci-astronomy
@@ -85,6 +86,7 @@
 # sci-misc
 # sci-physics
 # sci-visualization
+# sys-block
 # sys-boot
 # sys-cluster
 # sys-devel
@@ -723,9 +725,6 @@ dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perlsupport
 dev-perl/PDL:badval - Enable badval support
 dev-perl/RPC-XML:modperl - Enable www-apache/mod_perlsupport
 dev-php/PEAR-PHP_Shell:auto-completion - Enable tab-completion
-dev-php4/eaccelerator:contentcache - Enable content caching
-dev-php4/eaccelerator:disassembler - Enable the eA disassembler
-dev-php4/eaccelerator:inode - Use inode-based caching
 dev-php5/eaccelerator:contentcache - Enable content caching
 dev-php5/eaccelerator:disassembler - Enable the eA disassembler
 dev-php5/eaccelerator:inode - Use inode-based caching
@@ -1667,6 +1666,7 @@ net-fs/nfs-utils:nonfsv4 - Disable support for NFSv4
 net-fs/samba:ads - Enable Active Directory support
 net-fs/samba:async - Enables asynchronous input/output
 net-fs/samba:automount - Enables automount support
+net-fs/samba:oav - Enables support for the OpenAntiVirus plugins
 net-fs/samba:quotas - Enables support for user quotas
 net-fs/samba:swat - Enables support for swat configuration gui
 net-fs/samba:winbind - Enables support for the winbind auth daemon
@@ -2358,9 +2358,6 @@ www-apps/gallery:netpbm - Add NetPBM support
 www-apps/gallery:unzip - Add unzip support for the archive upload module
 www-apps/gallery:zip - Add zip support for the zip download module
 www-apps/horde-passwd:clearpasswd - Enables cleartext password storage in the vpopmail files
-www-apps/knowledgetree:office - Allow to search in MSOffice documents
-www-apps/knowledgetree:opendoc - Allow to search in opendoc documents
-www-apps/knowledgetree:ps - Allow to search in postscript documents
 www-apps/lxr:freetext - Adds support for freetext search using swish-e
 www-apps/mantisbt:bundled-adodb - use adodb bundled with web-application instead of system wide
 www-apps/mediawiki:math - Adds math rendering support
