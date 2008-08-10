@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/syck/syck-0.55-r4.ebuild,v 1.10 2007/12/16 13:16:31 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/syck/syck-0.55-r4.ebuild,v 1.11 2008/08/09 21:35:20 hoffie Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 DEPEND="python? ( dev-lang/python !dev-python/pysyck )"
 RDEPEND="${DEPEND}"
-PDEPEND="php? ( || ( dev-php5/pecl-syck
-		    ~dev-php4/syck-php-bindings-${PV} )
+PDEPEND="php? ( dev-php5/pecl-syck
 		    !=dev-libs/syck-0.55-r1 )"
 
 src_unpack() {
