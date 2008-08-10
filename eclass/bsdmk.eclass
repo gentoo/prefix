@@ -1,10 +1,13 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.8 2007/07/23 05:19:00 vapier Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.9 2008/08/08 21:16:24 aballier Exp $
+
+# @ECLASS: bsdmk.eclass
+# @MAINTAINER:
 # Otavio R. Piske "AngusYoung" <angusyoung@gentoo.org>
 # Diego Pettenò <flameeyes@gentoo.org>
 # Benigno B. Junior <bbj@gentoo.org>
+# @BLURB: Some functions for BSDmake
 
 inherit toolchain-funcs portability flag-o-matic
 
@@ -16,19 +19,23 @@ DEPEND="virtual/pmake"
 
 ESED="${EPREFIX}/usr/bin/sed"
 
-#### append-opt <options>
+# @ECLASS-VARIABLE: mymakeopts
+# @DESCRIPTION:
+# Options for bsd-make
+
+# @FUNCTION: append-opt
+# @USAGE: < options >
+# @DESCRIPTION:
 # append options to enable or disable features
-#
-###########################################################################
 append-opt() {
 	mymakeopts="${mymakeopts} $@"
 }
 
-#### mkmake <options>
+# @FUNCTION: mkmake
+# @USAGE: [ options ]
+# @DESCRIPTION:
 # calls bsd-make command with the given options, passing ${mymakeopts} to
 # enable ports to useflags bridge.
-#
-###########################################################################
 mkmake() {
 	[[ -z ${BMAKE} ]] && BMAKE="$(get_bmake)"
 
@@ -37,6 +44,11 @@ mkmake() {
 	${BMAKE} ${MAKEOPTS} ${EXTRA_EMAKE} ${mymakeopts} NO_WERROR= STRIP= "$@"
 }
 
+# @FUNCTION: mkinstall
+# @USAGE: [ options ]
+# @DESCRIPTION:
+# Calls "bsd-make install" with the given options, passing ${mamakeopts} to
+# enable ports to useflags bridge
 mkinstall() {
 	[[ -z ${BMAKE} ]] && BMAKE="$(get_bmake)"
 
@@ -45,21 +57,27 @@ mkinstall() {
 	${BMAKE} ${mymakeopts} NO_WERROR= STRIP= MANSUBDIR= DESTDIR="${D}" "$@" install
 }
 
-#### dummy_mk <dirnames>
+# @FUNCTION: dummy_mk
+# @USAGE: < dirnames >
+# @DESCRIPTION:
 # removes the specified subdirectories and creates a dummy makefile in them
 # useful to remove the need for "minimal" patches
-#
-############################################################################
 dummy_mk() {
 	for dir in $@; do
 		echo ".include <bsd.lib.mk>" > ${dir}/Makefile
 	done
 }
 
+# @FUNCTION: bsdmk_src_compile
+# @DESCRIPTION:
+# The bsdmk src_compile function, which is exported
 bsdmk_src_compile() {
 	mkmake || die "make failed"
 }
 
+# @FUNCTION: bsdmk_src_install
+# @DESCRIPTION:
+# The bsdmk src_install function, which is exported
 bsdmk_src_install() {
 	mkinstall || die "install failed"
 }

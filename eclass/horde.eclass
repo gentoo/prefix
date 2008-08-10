@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.36 2008/08/07 18:53:18 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.37 2008/08/08 13:21:56 wrobel Exp $
 #
 # Help manage the horde project http://www.horde.org/
 #
@@ -141,6 +141,9 @@ horde_src_install() {
 			webapp_configfile "${MY_HTDOCSDIR}"/${APP}/config/conf.php
 		fi
 	done
+
+	[[ -n ${HORDE_RECONFIG} ]] && webapp_hook_script ${HORDE_RECONFIG}
+	[[ -n ${HORDE_POSTINST} ]] && webapp_postinst_txt en ${HORDE_POSTINST}
 
 	webapp_src_install
 }
