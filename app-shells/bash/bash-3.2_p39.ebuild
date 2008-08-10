@@ -36,7 +36,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger examples nls plugins vanilla"
 
-DEPEND=">=sys-libs/ncurses-5.2-r2"
+DEPEND=">=sys-libs/ncurses-5.2-r2
+	sys-devel/bison"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.5
 	!<sys-apps/paludis-0.26.0_alpha5"
