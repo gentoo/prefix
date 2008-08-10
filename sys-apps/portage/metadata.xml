@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer><email>grobian@gentoo.org</email></maintainer>
+	<herd>no-herd</herd>
+	<maintainer><email>grobian@gentoo.org</email></maintainer>
+
+	<use>
+		<!-- this is to shut up repoman -->
+		<flag name="build">
+			for installing during a gentoo-x86 bootstrap, don't use this
+		</flag>
+		<flag name="doc">
+			build documentation
+		</flag>
+		<flag name="epydoc">
+			build epydoc documentation
+		</flag>
+		<flag name="selinux">
+			probably some SElinux crap
+		</flag>
+	</use>
 </pkgmetadata>
