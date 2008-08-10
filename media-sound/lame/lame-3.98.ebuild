@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.ebuild,v 1.5 2008/07/16 21:03:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.ebuild,v 1.6 2008/08/08 08:29:25 aballier Exp $
 
 EAPI="prefix"
 
@@ -16,12 +16,13 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="debug mp3rtp sndfile"
+IUSE="debug mmx mp3rtp sndfile"
 
 RDEPEND=">=sys-libs/ncurses-5.2
 	sndfile? ( >=media-libs/libsndfile-1.0.2 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	mmx? ( dev-lang/nasm )"
 
 src_unpack() {
 	unpack ${A}
@@ -49,6 +50,10 @@ src_unpack() {
 	# Let it use proper %if statements for marking stacks as non executable
 	epatch "${FILESDIR}"/${PN}-3.98-execstacks.patch
 
+	# It needs $(ECHO) to be defined but it seems libtool 2.2 doesn't define it
+	# anymore
+	epatch "${FILESDIR}/${P}-echo.patch"
+
 	# It fails parallel make otherwise when enabling nasm...
 	mkdir "${S}/libmp3lame/i386/.libs" || die
 
@@ -67,6 +72,7 @@ src_compile() {
 		--enable-shared \
 		$(use_enable debug debug norm) \
 		--disable-mp3x \
+		$(use_enable mmx nasm) \
 		$(use_enable mp3rtp) \
 		${myconf} || die "econf failed"
 
