@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/lcdf-typetools-2.69.ebuild,v 1.1 2008/05/30 11:02:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/lcdf-typetools-2.69.ebuild,v 1.4 2008/08/09 14:16:48 coldwind Exp $
 
 EAPI="prefix"
 
