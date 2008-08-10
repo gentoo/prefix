@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>java</herd>
+  <herd>java</herd>
+  <use>
+    <flag name="dssi">Enable the DSSI midi synthesizer provider</flag>
+    <flag name="gconf">Enable the GConf based util.peers backend</flag>
+  </use>
 </pkgmetadata>
