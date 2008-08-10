@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-eyes
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.20 2008/06/23 00:02:00 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.21 2008/08/08 17:44:50 aballier Exp $
+
+  08 Aug 2008; Alexis Ballier <aballier@gentoo.org> xfce4-eyes-4.4.0.ebuild:
+  keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
+  #233724
 
   22 Jun 2008; Samuli Suominen <drac@gentoo.org> xfce4-eyes-4.4.0.ebuild:
   Fix xfce4-dev-tools dep.
