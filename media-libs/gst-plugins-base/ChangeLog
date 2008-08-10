@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.84 2008/07/31 18:40:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.86 2008/08/08 17:43:18 maekke Exp $
+
+  08 Aug 2008; Markus Meier <maekke@gentoo.org>
+  gst-plugins-base-0.10.20.ebuild:
+  x86 stable, bug #232054
+
+  08 Aug 2008; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-base-0.10.20.ebuild:
+  alpha stable
 
   31 Jul 2008; Raúl Porcel <armin76@gentoo.org>
   gst-plugins-base-0.10.20.ebuild:
