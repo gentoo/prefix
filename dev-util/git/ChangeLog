@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.286 2008/08/07 21:42:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.288 2008/08/08 20:09:57 dertobi123 Exp $
+
+  08 Aug 2008; Tobias Scherbaum <dertobi123@gentoo.org> git-1.5.6.4.ebuild:
+  ppc stable, bug #234075
+
+  08 Aug 2008; Raúl Porcel <armin76@gentoo.org> git-1.5.6.4.ebuild:
+  alpha/ia64 stable wrt #234075
 
   07 Aug 2008; Markus Meier <maekke@gentoo.org> git-1.5.6.4.ebuild:
   x86 stable, bug #234075
