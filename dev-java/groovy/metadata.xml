@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-
 <pkgmetadata>
-<herd>java</herd>
-
-<longdescription>
+  <herd>java</herd>
+  <longdescription>
 Groovy is a new agile dynamic language for the JVM combining lots of great
 features from languages like Python, Ruby and Smalltalk and making them
 available to the Java developers using a Java-like syntax.
@@ -18,4 +16,7 @@ bytecode to be used by any Java project or it can be used dynamically as an
 alternative language such as for scripting Java objects, templating or writing
 unit test cases.
 </longdescription>
+  <use>
+    <flag name="bsf">Enable support for Apache Bean Scripting Framework</flag>
+  </use>
 </pkgmetadata>
