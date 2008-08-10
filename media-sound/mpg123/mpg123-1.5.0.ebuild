@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.4.1.ebuild,v 1.2 2008/05/17 08:47:13 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.5.0.ebuild,v 1.1 2008/08/08 08:00:04 aballier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="3dnow 3dnowext alsa altivec arts esd jack mmx nas oss portaudio pulseaudio sdl sse"
+IUSE="3dnow 3dnowext alsa altivec arts esd ipv6 jack mmx nas network oss portaudio pulseaudio sdl sse"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
 	esd? ( media-sound/esound )
@@ -61,7 +61,9 @@ src_compile() {
 
 	econf --disable-dependency-tracking \
 		--with-optimization=0 ${mycpu} \
-		--with-audio="${myaudio}"
+		--with-audio="${myaudio}" \
+		$(use_enable network) \
+		$(use_enable ipv6)
 
 	emake || die "emake failed."
 }
