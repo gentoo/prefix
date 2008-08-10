@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>java</herd>
-	<maintainer>
-		<email>nichoj@gentoo.org</email>
-		<name>Joshua Nichols</name>
-	</maintainer>
+  <herd>java</herd>
+  <maintainer>
+    <email>nichoj@gentoo.org</email>
+    <name>Joshua Nichols</name>
+  </maintainer>
+  <use>
+    <flag name="bsf">Enable support for Apache Bean Scripting Framework</flag>
+  </use>
 </pkgmetadata>
