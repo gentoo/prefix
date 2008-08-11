@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p230.ebuild,v 1.5 2008/07/25 19:13:43 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p286.ebuild,v 1.1 2008/08/10 14:10:34 graaff Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,6 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.bz2"
-	#cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
 KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
@@ -45,18 +44,9 @@ PROVIDE="virtual/ruby"
 src_unpack() {
 	unpack ${A}
 
-#	if use cjk ; then
-#		einfo "Applying ${ONIGURUMA}"
-#		pushd "${WORKDIR}/oniguruma"
-#		econf --with-rubydir="${S}" || die "oniguruma econf failed"
-#		emake $MY_SUFFIX || die "oniguruma emake failed"
-#		popd
-#	fi
-
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.8.6-revert-r15856.patch"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
