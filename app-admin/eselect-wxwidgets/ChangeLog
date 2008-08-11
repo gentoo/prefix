@@ -1,0 +1,149 @@
+# ChangeLog for app-admin/eselect-wxwidgets
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.33 2008/07/16 12:46:08 aballier Exp $
+
+  16 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  eselect-wxwidgets-0.8.ebuild:
+  keyword ~x86-fbsd, thanks to Henning Schild <henning@wh9.tu-dresden.de>,
+  bug #231618
+
+  29 Jun 2008; Ryan Hill <dirtyepic@gentoo.org>
+  -eselect-wxwidgets-0.7-r1.ebuild:
+  Remove old.
+
+  09 Jun 2008; Brent Baude <ranger@gentoo.org> eselect-wxwidgets-0.8.ebuild:
+  stable ppc64, bug 225261
+
+  09 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  eselect-wxwidgets-0.8.ebuild:
+  alpha/ia64/x86 stable wrt #225261
+
+  08 Jun 2008; Kenneth Prugh <ken69267@gentoo.org>
+  eselect-wxwidgets-0.8.ebuild:
+  amd64 stable, bug #225261
+
+  08 Jun 2008; nixnut <nixnut@gentoo.org> eselect-wxwidgets-0.8.ebuild:
+  Stable on ppc wrt bug 225261
+
+  08 Jun 2008; Friedrich Oslage <bluebird@gentoo.org>
+  eselect-wxwidgets-0.8.ebuild:
+  stable on sparc, bug #225261
+
+  08 Jun 2008; Jeroen Roovers <jer@gentoo.org> eselect-wxwidgets-0.8.ebuild:
+  Stable for HPPA (bug #225261).
+
+  29 Jun 2008; Ryan Hill <dirtyepic@gentoo.org>
+  -eselect-wxwidgets-0.7-r1.ebuild:
+  Remove old.
+
+  17 Mar 2008; Peter Volkov <pva@gentoo.org>
+  eselect-wxwidgets-0.7-r1.ebuild:
+  amd64 stable, bug #207648.
+
+  18 Feb 2008; Ryan Hill <dirtyepic@gentoo.org>
+  eselect-wxwidgets-0.8.ebuild:
+  Add ~mips.
+
+  08 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> files/wxwidgets.eselect-0.8:
+  Fix tyop.
+
+*eselect-wxwidgets-0.8 (08 Feb 2008)
+
+  08 Feb 2008; Ryan Hill <dirtyepic@gentoo.org>
+  +files/wxwidgets.eselect-0.8, +eselect-wxwidgets-0.8.ebuild:
+  Create symlinks for wx* bakefile prefix files based on currently selected
+  SLOT. Bug #209150 by Vaclav.
+
+  29 Jan 2008; nixnut <nixnut@gentoo.org> eselect-wxwidgets-0.7-r1.ebuild:
+  Stable on ppc wrt bug 207648
+
+  28 Jan 2008; Jeroen Roovers <jer@gentoo.org>
+  eselect-wxwidgets-0.7-r1.ebuild:
+  Stable for HPPA (bug #207648).
+
+  28 Jan 2008; Raúl Porcel <armin76@gentoo.org> metadata.xml:
+  Replace wxwindows with wxwidgets in metadata
+
+  27 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  eselect-wxwidgets-0.7-r1.ebuild:
+  alpha/ia64/sparc stable wrt #207648
+
+  27 Jan 2008; Brent Baude <ranger@gentoo.org>
+  eselect-wxwidgets-0.7-r1.ebuild:
+  Marking eselect-wxwidgets-0.7-r1 ppc64 for bug 207648
+
+  27 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  eselect-wxwidgets-0.7-r1.ebuild:
+  stable x86, bug 207648
+
+  23 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> files/wxrc-0.7:
+  Minor typo in error message.
+
+*eselect-wxwidgets-0.7-r1 (23 Dec 2007)
+
+  23 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> files/wx-config-0.7,
+  files/wxrc-0.7, -eselect-wxwidgets-0.7.ebuild,
+  +eselect-wxwidgets-0.7-r1.ebuild:
+  Fix wxrc wrapper to work when called from eclass and push out various small
+  local changes i forgot to commit.
+
+  22 Dec 2007; nixnut <nixnut@gentoo.org> eselect-wxwidgets-0.7.ebuild:
+  Added ~ppc wrt bug 199594
+
+*eselect-wxwidgets-0.7 (20 Dec 2007)
+
+  20 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> -files/wx-config-0.6,
+  -files/wxrc-0.6, -files/wxwidgets.eselect-0.6, +files/wx-config-0.7,
+  +files/wxrc-0.7, +files/wxwidgets.eselect-0.7, +files/wxwin.m4,
+  -eselect-wxwidgets-0.6.ebuild, +eselect-wxwidgets-0.7.ebuild:
+  Version bump. Move wxwin.m4 handling from wxGTK to here. Die if wrapper
+  called from portage (currently disabled for testing).
+
+*eselect-wxwidgets-0.6 (13 Dec 2007)
+
+  13 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> -files/wx-config-0.5,
+  -files/wxrc-0.5, -files/wxwidgets.eselect-0.5, +files/wx-config-0.6,
+  +files/wxrc-0.6, +files/wxwidgets.eselect-0.6,
+  -eselect-wxwidgets-0.5.ebuild, +eselect-wxwidgets-0.6.ebuild:
+  Version bump to push out changes.
+
+  13 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> files/wxrc-0.5,
+  files/wxwidgets.eselect-0.5:
+  Make the wxrc wrapper better at error handling and work properly with
+  wxwidgets.eclass.
+
+  12 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> files/wxrc-0.5,
+  files/wxwidgets.eselect-0.5:
+  Handle case where ${WXCONFFILE} doesn't exist.  Undo thinko in wxrc wrapper.
+
+  12 Dec 2007; Ryan Hill <dirtyepic@gentoo.org>
+  eselect-wxwidgets-0.5.ebuild:
+  Added postinst message explaining how to set a profile since we now default
+  to 'none'
+
+  12 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> files/wx-config-0.5,
+  files/wxrc-0.5, files/wxwidgets.eselect-0.5:
+  Output touchups.  Handle none profile better.
+
+  10 Dec 2007; Jeroen Roovers <jer@gentoo.org> eselect-wxwidgets-0.5.ebuild:
+  Marked ~hppa (bug #199594).
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  eselect-wxwidgets-0.5.ebuild:
+  Added ~ppc64; bug #199594
+
+  20 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  eselect-wxwidgets-0.5.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #199594
+
+  18 Nov 2007; Ryan Hill <dirtyepic@gentoo.org>
+  eselect-wxwidgets-0.5.ebuild:
+  Add blocker on wxGTK versions less than 2.6.4.0-r2 due to file collisions.
+
+*eselect-wxwidgets-0.5 (18 Nov 2007)
+
+  18 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> +files/wx-config-0.5,
+  +files/wxrc-0.5, +files/wxwidgets.eselect-0.5, +metadata.xml,
+  +eselect-wxwidgets-0.5.ebuild:
+  Initial revision.
+
