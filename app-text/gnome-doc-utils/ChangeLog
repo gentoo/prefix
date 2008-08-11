@@ -1,6 +1,9 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.115 2008/07/30 21:43:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.116 2008/08/10 10:05:35 maekke Exp $
+
+  10 Aug 2008; Markus Meier <maekke@gentoo.org> ChangeLog:
+  x86 stable, bug #229709
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking gnome-doc-utils-0.12.2-r1 ppc stable for bug 229709
