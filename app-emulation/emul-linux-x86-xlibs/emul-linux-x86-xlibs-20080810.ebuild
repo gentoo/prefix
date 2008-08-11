@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20071128.ebuild,v 1.2 2008/05/31 19:53:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20080810.ebuild,v 1.1 2008/08/10 21:03:09 kingtaco Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,11 @@ IUSE="opengl"
 DEPEND="opengl? ( app-admin/eselect-opengl )"
 RDEPEND=">=app-emulation/emul-linux-x86-baselibs-20071114
 	x11-libs/libX11"
+
+src_unpack() {
+	emul-linux-x86_src_unpack
+	rm -f "${S}/usr/lib32/libGL.so"
+}
 
 pkg_postinst() {
 	#update GL symlinks
