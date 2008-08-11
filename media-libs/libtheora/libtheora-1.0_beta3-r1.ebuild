@@ -44,8 +44,12 @@ src_compile() {
 	# it and causes sandbox violations.
 	export ac_cv_prog_HAVE_PDFLATEX="false"
 
+	local myconf=""
+	if use x86-macos && use encode; then
+		myconf="--disable-asm"
+	fi
 	econf --disable-dependency-tracking --disable-examples \
-		--disable-sdltest $(use_enable encode)
+		--disable-sdltest $(use_enable encode) ${myconf}
 
 	emake || die "emake failed."
 }
