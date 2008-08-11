@@ -1,0 +1,12 @@
+diff -Naur wxPython-src-2.8.6.1-orig/utils/wxrc/Makefile.in wxPython-src-2.8.6.1/utils/wxrc/Makefile.in
+--- wxPython-src-2.8.6.1-orig/utils/wxrc/Makefile.in	2007-12-03 12:59:33.000000000 -0600
++++ wxPython-src-2.8.6.1/utils/wxrc/Makefile.in	2007-12-03 13:02:01.000000000 -0600
+@@ -108,7 +108,7 @@
+ 	rm -f config.cache config.log config.status bk-deps bk-make-pch shared-ld-sh Makefile
+ 
+ @COND_USE_XRC_1@wxrc$(EXEEXT): $(WXRC_OBJECTS)
+-@COND_USE_XRC_1@	$(CXX) -o $@ $(WXRC_OBJECTS) $(LDFLAGS)   -L$(LIBDIRNAME)   $(LIBS) $(__WXLIB_XML_p) $(EXTRALIBS_XML) $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE)
++@COND_USE_XRC_1@	$(CXX) -o $@ $(WXRC_OBJECTS) -L$(LIBDIRNAME)   $(LIBS) $(__WXLIB_XML_p) $(EXTRALIBS_XML) $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(LDFLAGS) $(EXTRALIBS_FOR_BASE)
+ @COND_USE_XRC_1@	
+ @COND_USE_XRC_1@	$(__wxrc___mac_setfilecmd)
+ 
