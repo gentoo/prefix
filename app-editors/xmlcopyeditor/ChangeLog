@@ -1,0 +1,48 @@
+# ChangeLog for app-editors/xmlcopyeditor
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.7 2008/07/28 19:56:04 ulm Exp $
+
+  28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
+
+*xmlcopyeditor-1.2.0 (16 Jul 2008)
+
+  16 Jul 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -xmlcopyeditor-1.1.0.6.ebuild, +xmlcopyeditor-1.2.0.ebuild:
+  Version bump. Introduces background validation. Don't need gcc-4.3 patch
+  anymore. Remove old ebuild
+
+  04 Jul 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  +files/gcc-4.3-header-dependency.patch, xmlcopyeditor-1.1.0.6.ebuild,
+  xmlcopyeditor-1.1.0.7.ebuild:
+  Make the application to compile with gcc-4.3 series thanks to patch by Ian
+  Abbott <ian@abbott.org> in #230731
+
+*xmlcopyeditor-1.1.0.7 (03 Jul 2008)
+
+  03 Jul 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -xmlcopyeditor-1.1.0.5.ebuild, +xmlcopyeditor-1.1.0.7.ebuild:
+  Version bump. Russian localisation, fixes a number of bugs and updates the
+  editor component. Remove old ebuild
+
+*xmlcopyeditor-1.1.0.6 (23 Jan 2008)
+
+  23 Jan 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -xmlcopyeditor-1.1.0.4.ebuild, +xmlcopyeditor-1.1.0.6.ebuild:
+  Version bump. Full Aspell support and XML Schema-based element inspection.
+  Remove old ebuild.
+
+*xmlcopyeditor-1.1.0.5 (07 Jan 2008)
+
+  07 Jan 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  +xmlcopyeditor-1.1.0.5.ebuild:
+  New UPSTREAM version. This version Introduces XML Schema-based
+  autocompletion and validation-as-you-type
+
+*xmlcopyeditor-1.1.0.4 (03 Jan 2008)
+
+  03 Jan 2008; Jose Luis Rivero <yoswink@gentoo.org> +metadata.xml,
+  +xmlcopyeditor-1.1.0.4.ebuild:
+  Initial import. Thanks to Xavier Neys <neysx@gentoo.org> who made the
+  guidexml templates and the first ebuild #167372
+
