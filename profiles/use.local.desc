@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3727 2008/08/09 21:57:52 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3728 2008/08/11 04:44:53 mr_bones_ Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "sort -t: -k1,1 -k2 | sort -s -t/ -k1,1")
@@ -2007,7 +2007,6 @@ net-wireless/wpa_supplicant:ps3 - Add support for ps3 hypervisor driven gelic wi
 net-www/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library
 net-www/mplayerplug-in:divx - Divx Playback Support
 net-www/mplayerplug-in:gmedia - Google Media Playback Support
-net-www/mplayerplug-in:mplayer-bin - Use binary mplayer for 32 bit codecs on amd64
 net-www/mplayerplug-in:realmedia - Real Media Playback Support
 net-www/mplayerplug-in:wmp - Windows Media Playback Support
 net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins
