@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.41 2008/07/01 22:10:06 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.42 2008/08/10 16:54:22 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -380,22 +380,22 @@ elisp-site-regen() {
 		einfo "Regenerated ${SITELISP}/site-gentoo.el."
 
 		echo
-		while read line; do einfo "${line}"; done <<EOF
-All site initialisation for Gentoo-installed packages is added to
-${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
-managed by Gentoo.  You are responsible for all maintenance of
-site-start.el if there is such a file.
+		while read line; do einfo "${line:- }"; done <<-EOF
+		All site initialisation for Gentoo-installed packages is added to
+		${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
+		managed by Gentoo.  You are responsible for all maintenance of
+		site-start.el if there is such a file.
 
-In order for this site initialisation to be loaded for all users
-automatically, you can add a line like this:
+		In order for this site initialisation to be loaded for all users
+		automatically, you can add a line like this:
 
-	(require 'site-gentoo)
+		(require 'site-gentoo)
 
-to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
-can be added by individual users to their initialisation files, or,
-for greater flexibility, users can load individual package-specific
-initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
-EOF
+		to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
+		can be added by individual users to their initialisation files, or,
+		for greater flexibility, users can load individual package-specific
+		initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
+		EOF
 		echo
 	fi
 
