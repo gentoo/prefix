@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.45 2008/08/06 19:36:47 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.46 2008/08/10 09:50:34 maekke Exp $
+
+  10 Aug 2008; Markus Meier <maekke@gentoo.org> pygobject-2.14.2.ebuild:
+  x86 stable, bug #229709
 
   06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
