@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.0.ebuild,v 1.10 2008/07/30 21:55:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.0.ebuild,v 1.11 2008/08/10 09:59:18 maekke Exp $
 
 EAPI="prefix"
 
