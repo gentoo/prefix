@@ -24,7 +24,7 @@ LICENSE="GPL-2 LGPL-2"
 [[ ${CTARGET} != ${CHOST} ]] \
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="multitarget nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
@@ -40,6 +40,9 @@ src_unpack() {
 	use vanilla || EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	epatch "${FILESDIR}"/${PN}-6.7.1-solaris.patch
 	epatch "${FILESDIR}"/${P}-solaris64.patch
+	# avoid using internal readline symbols, they are not exported on aix.
+	# patch is platform independent, but might reduce performance.
+	[[ ${CHOST} == *-aix* ]] && epatch "${FILESDIR}"/${P}-tui-rlapi.patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
