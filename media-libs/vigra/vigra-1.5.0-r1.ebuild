@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/vigra/vigra-1.5.0-r1.ebuild,v 1.4 2008/04/28 18:04:46 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.5.0-r1.ebuild,v 1.5 2008/08/11 18:45:37 bluebird Exp $
 
 EAPI="prefix"
 
