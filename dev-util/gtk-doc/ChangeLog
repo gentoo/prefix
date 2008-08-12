@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.98 2008/06/15 22:21:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.99 2008/08/11 16:31:50 armin76 Exp $
+
+  11 Aug 2008; Raúl Porcel <armin76@gentoo.org> gtk-doc-1.10-r2.ebuild:
+  ia64 stable
 
   15 Jun 2008; Gilles Dartiguelongue <eva@gentoo.org> gtk-doc-1.8-r2.ebuild,
   gtk-doc-1.10-r1.ebuild, gtk-doc-1.10-r2.ebuild:
