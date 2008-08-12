@@ -4,3 +4,7 @@
 #   cat /sys/devices/system/cpu/cpu?/cpufreq/scaling_available_governors
 #
 GOVERNOR="ondemand"
+
+# This Governor is used when cpufrequtils is stopped
+RESTORED_GOVERNOR=performance
+

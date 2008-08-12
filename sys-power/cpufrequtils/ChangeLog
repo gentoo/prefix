@@ -1,6 +1,13 @@
 # ChangeLog for sys-power/cpufrequtils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.38 2007/10/06 09:08:28 tgall Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.39 2008/08/11 17:46:53 armin76 Exp $
+
+*cpufrequtils-002-r4 (11 Aug 2008)
+
+  11 Aug 2008; Raúl Porcel <armin76@gentoo.org> files/cpufrequtils-conf.d,
+  files/cpufrequtils-init.d, -cpufrequtils-002-r3.ebuild,
+  +cpufrequtils-002-r4.ebuild:
+  Fix init and confd scripts, bug #200018
 
   06 Oct 2007; Tom Gall <tgall@gentoo.com> pufrequtils-002-r3.ebuild:
   added ~ppc64

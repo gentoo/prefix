@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/files/cpufrequtils-init.d,v 1.2 2007/05/17 09:07:35 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/files/cpufrequtils-init.d,v 1.3 2008/08/11 17:46:54 armin76 Exp $
 
 checkconfig() {
 	if [ -z "${GOVERNOR}" ]; then
@@ -9,7 +9,8 @@ checkconfig() {
 		return 1
 	fi
 	if [ -z "${RESTORED_GOVERNOR}" ]; then
-		RESTORED_GOVERNOR=performance
+		eerror "Set the RESTORED_GOVERNOR value in /etc/conf.d/cpufrequtils"
+		return 1
 	fi
 }
 
@@ -38,5 +39,5 @@ start() {
 
 stop() {
 	checkconfig || return 1
-	affect_change "Disabling" "${GOVERNOR}"
+	affect_change "Enabling" "${RESTORED_GOVERNOR}"
 }
