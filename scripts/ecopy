@@ -77,10 +77,7 @@ if [[ ${1:0:1} == "=" ]] ; then
 	# Grab the index from the current $RSURL and parse it for the list
 	# of ebuilds.  Grab the specified version that the user entered.
 	ebuild="$(wget -q "${RSURL}/${catpkg}" -O - | \
-		egrep "href=\"[^\"]+\.ebuild\"" -o | \
-		sed -e 's/^href="//' -e 's/"$//' | \
-		grep $ebuildgrep
-	)"
+		grep $ebuildgrep -o )"
 else
 	# Use the wrapper function to just grab the latest version.
 	ebuild="$( return_greatest_wrapper )"
