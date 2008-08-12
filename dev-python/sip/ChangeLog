@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/sip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.120 2008/07/19 13:01:36 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.121 2008/08/11 19:08:06 yngwin Exp $
+
+  11 Aug 2008; Ben de Groot <yngwin@gentoo.org> sip-4.2.1.ebuild,
+  sip-4.2.1-r1.ebuild:
+  Specifying qt dep as being qt-3
 
   19 Jul 2008; Ali Polatel <hawking@gentoo.org> sip-4.7.6.ebuild:
   Don't dodoc THANKS which doesn't exist, #230753
