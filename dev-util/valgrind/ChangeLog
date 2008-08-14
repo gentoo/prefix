@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.89 2008/07/27 17:55:23 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.90 2008/08/13 20:29:40 griffon26 Exp $
+
+  13 Aug 2008; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.3.1-local-labels.patch, valgrind-3.3.1.ebuild:
+  Use local labels in inline asm to prevent duplicate definition of symbols
+  when optimisation is turned on (bug #234644 reported by Olivier Huber
+  <oli.huber@gmail.com>).
 
   27 Jul 2008; Olivier Crête <tester@gentoo.org> valgrind-3.3.0.ebuild,
   valgrind-3.3.0-r1.ebuild, valgrind-3.3.1.ebuild:
