@@ -1,10 +1,10 @@
 # Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.2.1.ebuild,v 1.6 2008/08/10 12:15:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.2.1.ebuild,v 1.8 2008/08/14 00:35:50 leio Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils gnome2
+inherit eutils gnome2
 
 DESCRIPTION="Gnome Settings Daemon"
 HOMEPAGE="http://www.gnome.org"
