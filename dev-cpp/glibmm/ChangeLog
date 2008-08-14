@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.121 2008/08/10 10:13:28 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.122 2008/08/12 19:30:54 armin76 Exp $
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org> glibmm-2.16.4.ebuild:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Markus Meier <maekke@gentoo.org> glibmm-2.16.4.ebuild:
   x86 stable, bug #229709
