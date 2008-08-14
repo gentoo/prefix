@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.544 2008/07/26 21:03:04 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.545 2008/08/11 12:54:56 yngwin Exp $
+
+*qt-4.4.1 (11 Aug 2008)
+
+  11 Aug 2008; Ben de Groot <yngwin@gentoo.org> +qt-4.4.1.ebuild:
+  Version bump
 
 *qt-4.3.5 (26 Jul 2008)
 
