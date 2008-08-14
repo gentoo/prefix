@@ -454,7 +454,7 @@ src_compile() {
 		--enable-menu \
 		--enable-network \
 		$(use_enable aqua macosx) \
-		$(use_enable aqua macosx-finder-support) \
+		$(use_enable aqua macosx-finder) \
 		$(use_enable aqua macosx-bundle) \
 		$(use_enable aqua libdvdcss-internal) \
 		${myconf}"
