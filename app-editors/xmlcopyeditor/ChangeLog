@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/xmlcopyeditor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.7 2008/07/28 19:56:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.8 2008/08/12 23:46:27 yoswink Exp $
+
+*xmlcopyeditor-1.2.0.1 (12 Aug 2008)
+
+  12 Aug 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -xmlcopyeditor-1.2.0.ebuild, +xmlcopyeditor-1.2.0.1.ebuild:
+  Version bump to fix compilation issues explained in #234242 thanks to Roy
+  Bamford <neddyseagoon@gentoo.org>. Remove old 1.2.0
 
   28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
