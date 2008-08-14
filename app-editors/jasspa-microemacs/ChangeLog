@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/jasspa-microemacs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.33 2008/07/28 18:32:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.34 2008/08/13 19:20:04 ulm Exp $
+
+  13 Aug 2008; Ulrich Mueller <ulm@gentoo.org>
+  files/jasspa-microemacs.desktop:
+  Change category in desktop entry to "development", for consistency with
+  other text editors.
 
   28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.

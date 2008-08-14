@@ -1,4 +1,5 @@
 [Desktop Entry]
+Type=Application
 Name=Jasspa MicroEmacs
 GenericName=Text Editor
 Comment=Advanced Text Editor
@@ -6,5 +7,4 @@ TryExec=me
 Exec=me %F
 Terminal=false
 Icon=/usr/share/jasspa/icons/32x32/me.png
-Type=Application
-Categories=Utility;TextEditor;
+Categories=Development;TextEditor;
