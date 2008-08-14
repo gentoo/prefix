@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc-am
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.13 2008/07/30 21:38:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.14 2008/08/14 00:15:19 leio Exp $
+
+  14 Aug 2008; Mart Raudsepp <leio@gentoo.org> -gtk-doc-am-1.10.ebuild:
+  Remove old
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> gtk-doc-am-1.10-r1.ebuild:
   Marking gtk-doc-am-1.10-r1 ppc stable for bug 229709
