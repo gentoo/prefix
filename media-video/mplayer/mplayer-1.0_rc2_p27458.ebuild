@@ -1,17 +1,21 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27120.ebuild,v 1.1 2008/06/21 18:51:47 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27458.ebuild,v 1.1 2008/08/13 14:22:58 beandog Exp $
 
 EAPI="prefix 1"
 
 inherit eutils flag-o-matic multilib
 
 # Ugly hack, feel free to fix
-MPLAYER_REVISION=27120
+MPLAYER_REVISION=27458
 
 IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
 bindist cddb cdio cdparanoia -cpudetection -custom-cflags -custom-cpuopts debug
-dga doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi -gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum +mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png -pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2 ssse3 svga teletext tga +theora +truetype v4l v4l2 vidix win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
+dga doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi
+-gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo
++mad -md5sum +mmx mmxext mp2 +mp3 musepack nas nemesi +vorbis opengl
+openal oss -png -pnm pulseaudio -pvr quicktime radio -rar real rtc -samba sdl
+speex srt sse sse2 ssse3 svga teletext tga +theora +truetype unicode v4l v4l2 vidix win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -62,7 +66,7 @@ RDEPEND="sys-libs/ncurses
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
 		mp3? ( media-sound/lame )
-		x264? ( media-libs/x264 )
+		x264? ( >=media-libs/x264-0.0.20080406 )
 		)
 	esd? ( media-sound/esound )
 	enca? ( app-i18n/enca )
@@ -118,6 +122,7 @@ DEPEND="${RDEPEND}
 		>=app-text/docbook-xml-simple-dtd-1.50.0
 		dev-libs/libxslt )
 	dga? ( x11-proto/xf86dgaproto )
+	dxr3? ( media-video/em8300-libraries )
 	xinerama? ( x11-proto/xineramaproto )
 	xv? ( x11-proto/videoproto
 		  x11-proto/xf86vidmodeproto )
@@ -166,23 +171,21 @@ pkg_setup() {
 		ewarn "disabling this use flag."
 	fi
 
-	if use x86 || use amd64; then
-		if use custom-cpuopts; then
-			ewarn ""
-			ewarn "You are using the custom-cpuopts flag which will"
-			ewarn "specifically allow you to enable / disable certain"
-			ewarn "CPU optimizations."
-			ewarn ""
-			ewarn "Most desktop users won't need this functionality, but it"
-			ewarn "is included for corner cases like cross-compiling and"
-			ewarn "certain profiles.  If unsure, disable this flag and MPlayer"
-			ewarn "will automatically detect and use your available CPU"
-			ewarn "optimizations."
-			ewarn ""
-			ewarn "Using this flag means your build is unsupported, so"
-			ewarn "please make sure your CPU optimization use flags (3dnow"
-			ewarn "3dnowext mmx mmxext sse sse2 ssse3) are properly set."
-		fi
+	if use custom-cpuopts; then
+		ewarn ""
+		ewarn "You are using the custom-cpuopts flag which will"
+		ewarn "specifically allow you to enable / disable certain"
+		ewarn "CPU optimizations."
+		ewarn ""
+		ewarn "Most desktop users won't need this functionality, but it"
+		ewarn "is included for corner cases like cross-compiling and"
+		ewarn "certain profiles.  If unsure, disable this flag and MPlayer"
+		ewarn "will automatically detect and use your available CPU"
+		ewarn "optimizations."
+		ewarn ""
+		ewarn "Using this flag means your build is unsupported, so"
+		ewarn "please make sure your CPU optimization use flags (3dnow"
+		ewarn "3dnowext mmx mmxext sse sse2 ssse3) are properly set."
 	fi
 }
 
@@ -230,7 +233,7 @@ src_compile() {
 		--disable-faad-external"
 
 	# broken upstream, won't work with recent kernels
-	myconf="${myconf} --disable-ivtv --disable-pvr"
+	myconf="${myconf} --disable-ivtv"
 
 	# MPlayer reads in the LINGUAS variable from make.conf, and sets
 	# the languages accordingly.  Some will have to be altered to match
@@ -300,8 +303,9 @@ src_compile() {
 	use samba || myconf="${myconf} --disable-smb"
 
 	# DVB / Video4Linux / Radio support
-	if { use dvb || use v4l || use v4l2 || use radio; }; then
+	if { use dvb || use v4l || use v4l2 || use pvr || use radio; }; then
 		use dvb || myconf="${myconf} --disable-dvb --disable-dvbhead"
+		use pvr || myconf="${myconf} --disable-pvr"
 		use v4l	|| myconf="${myconf} --disable-tv-v4l1"
 		use v4l2 || myconf="${myconf} --disable-tv-v4l2"
 		use teletext || myconf="${myconf} --disable-tv-teletext"
@@ -314,7 +318,7 @@ src_compile() {
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
 			--disable-dvb --disable-dvbhead --disable-tv-teletext \
-			--disable-v4l2"
+			--disable-v4l2 --disable-pvr"
 	fi
 
 	#########
@@ -333,18 +337,16 @@ src_compile() {
 	use mp3 || myconf="${myconf} --disable-mp3lib"
 	use vorbis || myconf="${myconf} --disable-libvorbis"
 	use xanim && myconf="${myconf} --xanimcodecsdir=${EPREFIX}/usr/lib/xanim/mods"
-	if use x86 || use amd64; then
-		# Real codec support, only available on x86, amd64
-		if use real && use x86; then
-			myconf="${myconf} --realcodecsdir=${EPREFIX}/opt/RealPlayer/codecs"
-		elif use real && use amd64; then
-			myconf="${myconf} --realcodecsdir=${EPREFIX}/usr/$(get_libdir)/codecs"
-		else
-			myconf="${myconf} --disable-real"
-		fi
-		if ! use bindist && ! use real; then
-			myconf="${myconf} $(use_enable win32codecs win32dll)"
-		fi
+	# Real codec support, only available on x86, amd64
+	if use real && use x86; then
+		myconf="${myconf} --realcodecsdir=${EPREFIX}/opt/RealPlayer/codecs"
+	elif use real && use amd64; then
+		myconf="${myconf} --realcodecsdir=${EPREFIX}/usr/$(get_libdir)/codecs"
+	else
+		myconf="${myconf} --disable-real"
+	fi
+	if ! use bindist && ! use real; then
+		myconf="${myconf} $(use_enable win32codecs win32dll)"
 	fi
 	# bug 213836
 	if ! use x86 || ! use win32codecs; then
@@ -410,10 +412,8 @@ src_compile() {
 	# Advanced Options #
 	#################
 	# Platform specific flags, hardcoded on amd64 (see below)
-	if use x86 || use amd64 || use ppc; then
-		if use cpudetection || use bindist; then
-			myconf="${myconf} --enable-runtime-cpudetection"
-		fi
+	if use cpudetection || use bindist; then
+		myconf="${myconf} --enable-runtime-cpudetection"
 	fi
 
 	# Turning off CPU optimizations usually will break the build.

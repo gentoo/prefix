@@ -24,6 +24,7 @@
     <flag name="mp2">Enables support for twolame, an MP2 audio library</flag>
     <flag name="nemesi">Enable Nemesi Streaming Media support</flag>
     <flag name="pnm">Add PNM video output option, to create PPM/PGM/PGMYUV images</flag>
+    <flag name="pvr">Enable Video4Linux2 MPEG PVR</flag>
     <flag name="radio">Enable V4L2 radio interface and support</flag>
     <flag name="rar">Enable Unique RAR File Library</flag>
     <flag name="real">Adds real video support</flag>
