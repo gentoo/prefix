@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.107 2008/08/10 09:40:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.108 2008/08/12 13:26:57 armin76 Exp $
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org> intltool-0.37.1.ebuild:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Markus Meier <maekke@gentoo.org> intltool-0.37.1.ebuild:
   x86 stable, bug #229709
