@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.1.ebuild,v 1.1 2008/05/11 14:29:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.1.ebuild,v 1.2 2008/08/13 16:57:20 armin76 Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.6.1-lang.patch
 	epatch "${FILESDIR}"/${PN}-4.7.0-prtime.patch
 	epatch "${FILESDIR}"/${PN}-4.7.1-solaris.patch
+
+	# Respect LDFLAGS
+	sed -i -e 's/\$(MKSHLIB) \$(OBJS)/\$(MKSHLIB) \$(LDFLAGS) \$(OBJS)/g' \
+		mozilla/nsprpub/config/rules.mk
 }
 
 src_compile() {
