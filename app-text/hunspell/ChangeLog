@@ -1,6 +1,9 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.44 2008/07/26 10:59:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.45 2008/08/13 11:48:36 armin76 Exp $
+
+  13 Aug 2008; Raúl Porcel <armin76@gentoo.org> hunspell-1.2.6.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #233583
 
   26 Jul 2008; Raúl Porcel <armin76@gentoo.org> hunspell-1.1.9.ebuild:
   alpha/ia64 stable
