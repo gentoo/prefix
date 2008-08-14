@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-control-center
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.9 2008/08/10 19:28:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.10 2008/08/12 14:11:54 armin76 Exp $
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org>
+  gnome-control-center-2.22.2.1.ebuild:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Raúl Porcel <armin76@gentoo.org>
   gnome-control-center-2.22.2.1.ebuild:
