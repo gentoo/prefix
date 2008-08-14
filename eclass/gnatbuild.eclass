@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.40 2008/07/06 13:00:53 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.41 2008/08/12 09:26:19 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -457,8 +457,9 @@ gnatbuild_src_compile() {
 					--disable-werror \
 					--disable-libunwind-exceptions"
 
-				# ACT's gnat-gpl does not line libada for whatever reason..
-				if ${PN} == ${PN_GnatGpl}; then
+				# ACT's gnat-gpl does not like libada for whatever reason..
+				if [[ ${PN} == ${PN_GnatGpl} ]]; then
+					einfo "ACT's gnat-gpl does not like libada, disabling"
 					confgcc="${confgcc} --disable-libada"
 				else
 					confgcc="${confgcc} --enable-libada"
