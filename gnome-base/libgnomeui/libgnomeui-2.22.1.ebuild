@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/libgnomeui-2.22.1.ebuild,v 1.5 2008/08/10 11:34:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/libgnomeui-2.22.1.ebuild,v 1.6 2008/08/12 13:36:19 armin76 Exp $
 
 EAPI="prefix"
 
