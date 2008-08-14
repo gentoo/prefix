@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.7.ebuild,v 1.6 2008/07/20 10:19:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.7.ebuild,v 1.7 2008/08/13 17:24:27 robbat2 Exp $
 
 EAPI="prefix 1"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator
@@ -199,6 +199,7 @@ src_compile() {
 			ewarn "Note: if you disable berkdb, you can only use remote-backends!"
 			ewarn
 			ebeep 5
+			myconf="${myconf} --disable-bdb --disable-hdb"
 		fi
 		for backend in dnssrv ldap meta monitor null passwd relay shell; do
 			myconf="${myconf} --enable-${backend}=mod"
