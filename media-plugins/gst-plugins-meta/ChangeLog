@@ -1,6 +1,9 @@
 # ChangeLog for media-plugins/gst-plugins-meta
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/ChangeLog,v 1.21 2008/08/10 09:52:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/ChangeLog,v 1.22 2008/08/12 13:53:33 armin76 Exp $
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org> ChangeLog:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Markus Meier <maekke@gentoo.org> ChangeLog:
   x86 stable, bug #229709
