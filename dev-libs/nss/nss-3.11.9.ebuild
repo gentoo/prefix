@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.8 2008/04/11 17:15:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.9 2008/08/13 19:26:47 armin76 Exp $
 
 EAPI="prefix"
 
@@ -22,17 +22,21 @@ DEPEND=">=dev-libs/nspr-${NSPR_VER}"
 src_unpack() {
 	unpack ${A}
 
+	cd "${S}"/mozilla/security/coreconf
 	# hack nspr paths
 	echo 'INCLUDES += -I'"${EPREFIX}"'/usr/include/nspr -I$(DIST)/include/dbm' \
-		>> "${S}"/mozilla/security/coreconf/headers.mk || die "failed to append include"
+		>> headers.mk || die "failed to append include"
 
 	# cope with nspr being in /usr/$(get_libdir)/nspr
 	sed -e 's:$(DIST)/lib:'"${EPREFIX}"'/usr/'"$(get_libdir)"/nspr':' \
-		-i "${S}"/mozilla/security/coreconf/location.mk
+		-i location.mk
 
 	# modify install path
 	sed -e 's:SOURCE_PREFIX = $(CORE_DEPTH)/\.\./dist:SOURCE_PREFIX = $(CORE_DEPTH)/dist:' \
-		-i "${S}"/mozilla/security/coreconf/source.mk
+		-i source.mk
+
+        # Respect LDFLAGS
+	sed -i -e 's/\$(MKSHLIB) -o/\$(MKSHLIB) \$(LDFLAGS) -o/g' rules.mk
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.11-config.patch
