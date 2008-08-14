@@ -235,6 +235,9 @@ src_compile() {
 			echo "GhcNotThreaded=YES" >> mk/build.mk
 		fi
 
+		# http://www.opensubscriber.com/message/glasgow-haskell-users@haskell.org/8628193.html
+		[[ ${CHOST} == *-darwin* ]] && echo "EXTRA_AR_ARGS=-s" >> mk/build.mk
+
 		# Get ghc from the unpacked binary .tbz2
 		# except when bootstrapping we just pick ghc up off the path
 		if ! use ghcbootstrap; then
