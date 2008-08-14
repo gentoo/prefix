@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3728 2008/08/11 04:44:53 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3744 2008/08/14 04:46:12 mr_bones_ Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "sort -t: -k1,1 -k2 | sort -s -t/ -k1,1")
@@ -103,6 +103,8 @@
 app-accessibility/festival:mbrola - Adds support for mbrola voices
 app-accessibility/freetts:jsapi - build Java Speech API (JSAPI)
 app-accessibility/freetts:mbrola - Adds support for mbrola voices
+app-accessibility/gnome-speech:espeak - Adds support for the espeak speech driver (default)
+app-accessibility/gnome-speech:festival - Adds support for the festival speech driver
 app-accessibility/gnome-speech:freetts - Adds support for the freetts speech driver
 app-accessibility/gnopernicus:brltty - Adds support for braille displays using brltty
 app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine
@@ -124,6 +126,8 @@ app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/syslog-ng:spoof-source - Enable support for spoofed source addresses
 app-admin/testdisk:ntfs - Include the ability to read NTFS filesystems
 app-admin/testdisk:reiserfs - include reiserfs reading ability
+app-admin/ulogd:ip-as-string - Logs IP addresses as stings
+app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
 app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable file-roller to integrate with gnome-base/nautilusby providing entries in its context menu.
@@ -232,7 +236,6 @@ app-editors/vim:vim-with-x - Link console vim against X11 libraries to enable ti
 app-editors/xemacs:athena - Chooses the MIT Athena widget set
 app-editors/xemacs:dnd - Enables support for the x11-libs/dnddrag-n-drop library
 app-editors/xemacs:eolconv - Support detection and translation of newline conventions
-app-editors/xemacs:hesiod - Support Hesiod to get the POP server host
 app-editors/xemacs:pop - Support POP for mail retrieval
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-editors/xmlcopyeditor:guidexml - Install GuideXML templates to work with Gentoo official docs
@@ -254,8 +257,8 @@ app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-soundfor audio output
 app-emulation/fuse:libdsk - Enable support for the floppy disk emulation library app-emulation/libdsk
 app-emulation/hercules:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default package CFLAGS (not supported)
-app-emulation/kvm:bios - Compile BIOS from source (not necessary to run app-emulation/kvm
 app-emulation/kvm:havekernel - Don't require a kernel build tree (useful if using a binary distrbuted kernel aka binary packages)
+app-emulation/kvm:vde - Enable VDE-based networking
 app-emulation/libvirt:iscsi - Add support for iSCSI (Internet SCSI) remote storage
 app-emulation/libvirt:kvm - Add support for app-emulation/kvmbased virtual machines
 app-emulation/libvirt:lvm - Add support for the Logical Volume Manager sys-apps/lvm2
@@ -276,6 +279,7 @@ app-emulation/uae:scsi - Enable the uaescsi.device
 app-emulation/uae:sdl-sound - Use media-sound/sdl-soundfor audio output
 app-emulation/uae:ui - Build the user interface (could be gtk or ncurses based, depending on sdl, dga, svga and aalib USE flags)
 app-emulation/vice:resid - Enable support for ReSID media-libs/resid
+app-emulation/vice:xrandr - Enable support for the X xrandr extension
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
 app-emulation/virtualbox:headless - Build without any graphic frontend
 app-emulation/virtualbox:sdk - Enable building of SDK
@@ -619,11 +623,8 @@ dev-lang/php:filter - Add filter extension support
 dev-lang/php:force-cgi-redirect - Switch on common security setting for CGI SAPI
 dev-lang/php:hash - Enable the hash extension
 dev-lang/php:java-external - Use the external java extension rather than the bundled one
-dev-lang/php:java-internal - Use the bundled java extension in PHP4
 dev-lang/php:json - Enable JSON support
 dev-lang/php:ldap-sasl - Add SASL support for the PHP LDAP extension
-dev-lang/php:ming - Adds support for creating SWF files using Ming
-dev-lang/php:overload - Enable the overload extension
 dev-lang/php:pdo - Enable the bundled PDO extensions
 dev-lang/php:reflection - Enable the reflection extension (Reflection API)
 dev-lang/php:suhosin - Add Suhosin support (patch and extension from http://www.suhosin.org/)
@@ -734,7 +735,6 @@ dev-php5/php-gtk:html - Enable GtkHTML2 support
 dev-php5/php-gtk:libsexy - Enable libsexy support
 dev-php5/php-gtk:mozembed - Enable GtkMozembed support
 dev-php5/php-gtk:scintilla - Enable Scintilla support
-dev-php5/php-gtk:sourceview - Enable GtkSourceView support
 dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
@@ -1134,7 +1134,6 @@ media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
-media-gfx/imagemagick:openmp - Build support for the OpenMP (support parallel computing)
 media-gfx/imagemagick:q32 - Set quantum depth to 32
 media-gfx/imagemagick:q8 - Set quantum depth to 8
 media-gfx/inkscape:dia - Pull in app-office/dia for dia import extension
@@ -1161,6 +1160,7 @@ media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
 media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
+media-libs/libass:enca - Enables support for charset discovery and conversion.
 media-libs/libdc1394:juju - Use the new juju firewire stack in the Linux kernel
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libifp:module - Build kernel module for non-root usage
@@ -1252,6 +1252,7 @@ media-sound/decibel-audio-player:cdaudio - Adds support for CD audio playback an
 media-sound/dir2ogg:wma - Add support for wma files through mplayer
 media-sound/exaile:equalizer - Enable equalizer support
 media-sound/exaile:libsexy - Enable libsexy support
+media-sound/fapg:xspf - Enable support for saving XSPF playlists.
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/herrie:http - Enable http streaming
@@ -1275,8 +1276,8 @@ media-sound/mpd:icecast - Enable support for Icecast2
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
+media-sound/mpg123:network - Enable network support (http streams / webradio)
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
-media-sound/museseq:fluidsynth - compile with support for fluidsynth
 media-sound/ncmpc:clock-screen - Enable clock screen
 media-sound/ncmpc:key-screen - Enable key editor screen
 media-sound/ncmpc:mouse - Enable curses getmouse support
@@ -1423,6 +1424,7 @@ media-video/mplayer:mmxext - Enables mmx2 support
 media-video/mplayer:mp2 - Enables support for twolame, an MP2 audio library
 media-video/mplayer:nemesi - Enable Nemesi Streaming Media support
 media-video/mplayer:pnm - Add PNM video output option, to create PPM/PGM/PGMYUV images
+media-video/mplayer:pvr - Support Video4Linux2 MPEG PVR
 media-video/mplayer:radio - Enable V4L2 radio interface and support
 media-video/mplayer:rar - Enable Unique RAR File Library
 media-video/mplayer:real - Adds real video support
@@ -1712,6 +1714,7 @@ net-im/gajim:trayicon - Enable support for trayicon
 net-im/gajim:xhtml - Enable XHTML support
 net-im/gnugadu:tlen - Enable Tlen.pl protocol support
 net-im/gossip:debug - Enable debug path in gossip. net-libs/loudmouthneeds to be compiled with USE="debug" to allow Gossip to actually build the debug code path.
+net-im/gossip:galago - Enable desktop presence with galago
 net-im/gossip:gnome-keyring - Allows Gossip to use gnome-keyring to store passwords.
 net-im/gossip:libnotify - Allows Gossip to show visual notifications concerning various activities via libnotify.
 net-im/jabberd2:memdebug - Enable nad and pool debug. Requires USE="debug" to be set.
@@ -2132,7 +2135,6 @@ sci-physics/geant:openinventor - Add support for media-libs/openinventorSGI tool
 sci-physics/geant:raytracerx - Enable raytracing for physics events
 sci-physics/geant:vrml - Enable output of geant4 in vrml formats
 sci-physics/root:cern - Build the HBOOK input/ouput functionality. HBOOK is a histogram library. On ROOT versions previous to 5.20.00, it will depend on sci-physics/cernlib. On versions above, it only need a FORTRAN compiler.
-sci-physics/root:cint7 - Build the experimental C++ INTerpreter version 7. Use with caution to test this newer interpreter. If not sure, stick with version 6 included by default.
 sci-physics/root:clarens - Buld the Clarens and PEAC plug-ins, to use in a GRID enabled analysis. The Clarens Grid-Enabled Web Services Framework is an open source portal for ubiquitous access to data and computational resources provided by computing grids. PEAC is an interactive distributed analysis framework that uses Clarens as a glue protocol to advertise and communicate amongst SAM, Global Manager (GM), Local Manager (LM), DCache, and PROOF services. It doesn't need Clarens to build, however if you want to use it, you will require to build Clarens and PEAC on your own, it is not yet in the Gentoo Portage tree. See http://clarens.sourceforge.net/ for Clarens and http://physics.ucsd.edu/~schsu/project/peac.html for PEAC.
 sci-physics/root:geant4 - Build the sci-physics/geant(GEANT4) navigator.
 sci-physics/root:math - Build all math libraries plugins. It includes the sci-libs/gslbindings in MathMore, the GenVector physical vectors package, the Minuit2 minimization library (same as standalone sci-libs/minuit), the RooFit toolkit for distribution modeling, and the Universal Non-Uniform RANdom number generators (UNURAN) library.
@@ -2193,6 +2195,7 @@ sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-auth/pambase:consolekit - Enable ConsoleKit support in local login sessions.
 sys-auth/pambase:mktemp - Enable pam_mktemp support in system authentication.
 sys-auth/pambase:passwdqc - Enable pam_passwdqc support in system authentication.
+sys-auth/pambase:sha512 - Switch Linux-PAM's pam_unix module to use sha512 for passwords.
 sys-auth/pambase:ssh - Enable pam_ssh support in system authentication.
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support.
 sys-auth/pam_pkcs11:pcsc-lite - build with pcsc-lite instead of openct

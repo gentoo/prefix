@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.398 2008/07/27 16:09:23 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.399 2008/08/13 06:12:54 mr_bones_ Exp $
 
 # Keep them sorted
 
@@ -102,7 +102,6 @@ fastcgi - Add support for the FastCGI interface
 fbcon - Adds framebuffer support for the console, via the kernel
 ffmpeg - Enable ffmpeg-based audio/video codec support
 fftw - Use FFTW library for computing Fourier transforms
-filepro - Adds support for filePro databases
 firebird - Adds support for the Firebird relational database
 firefox - Build against Firefox instead of Seamonkey/Mozilla
 flac - Adds support for FLAC: Free Lossless Audio Codec
@@ -145,7 +144,6 @@ hardened - activate default security enhancements for toolchain (gcc, glibc, bin
 hddtemp - Enable monitoring of hdd temperature (app-admin/hddtemp)
 hdf5 - Adds support for the Hierarchical Data Format v5
 htmlhandbook - Enable HTML handbooks generation for KDE4.
-hyperwave-api - Adds support for Hyperwave document storage system
 ibm - Add support for IBM ppc64 specific systems
 iconv - Enable support for the iconv character set conversion library
 icq - Enable ICQ IM protocol support
@@ -154,7 +152,6 @@ ieee1394 - Enable FireWire/iLink IEEE1394 support (dv, camera, ...)
 imagemagick - Enables support for Imagemagick (image converter)
 imap - Adds support for IMAP (Internet Mail Application Protocol)
 imlib - Adds support for imlib, an image loading and rendering library
-informix - Adds support for Informix database
 inifile - Adds dbm support for .ini files
 innodb - Adds innodb support for mySQL (transaction support)
 interbase - Adds support for Interbase database
@@ -204,7 +201,6 @@ mailwrapper - Adds mailwrapper support to allow multiple MTAs to be installed
 matroska - Adds support for the matroska container format (extensions .mkv, .mka and .mks)
 matrox - Adds Matrox MGA support to mplayer
 mbox - Adds support for mbox (/var/spool/mail) style mail spools
-mcal - Adds support for MCAL calendar system
 mcve - Support for the MCVE credit card payment system
 memlimit - Adds memory usage limiting in supporting programs
 mhash - Adds support for the mhash library
@@ -216,7 +212,6 @@ minimal - Install a very minimal build (disables, for example, plugins, fonts, m
 mmap - Adds mmap (memory map) support
 mmx - Adds support for optimizations for Pentium MMX and Athlon class processors
 mng - Adds support for libmng (MNG images)
-mnogosearch - Adds support for the mnoGoSearch search engine
 modplug - Adds libmodplug support
 mono - Build Mono bindings to support dotnet type stuff
 motif - Adds support for the Motif toolkit
@@ -260,7 +255,6 @@ openal - Adds support for the Open Audio Library
 openexr - Support for the OpenEXR graphics file format
 opengl - Adds support for OpenGL (3D graphics)
 oracle - Enable Oracle Database support
-oracle7 - Adds support for the Oracle 7 Database
 osc - Enables support for Open Sound Control
 oscar - Enable Oscar (AIM/ICQ) IM protocol support
 oss - Adds support for OSS (Open Sound System)
@@ -272,7 +266,6 @@ pcre - Adds support for Perl Compatible Regular Expressions
 pda - Adds support for portable devices
 pdf - Adds general support for PDF (Portable Document Format), this replaces the pdflib and cpdflib flags
 perl - Adds support/bindings for the Perl language
-pfpro - Adds support for Verisign Payflow Pro
 php - Include support for the PHP language
 pic - Build Position Independent Code.  Do not utilize this flag unless you know what you're doing
 plotutils - Adds plotutils support to gnuplot (library for 2-D vector graphics)

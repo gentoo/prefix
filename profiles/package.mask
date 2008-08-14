@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8874 2008/08/12 03:30:33 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8880 2008/08/13 21:45:23 robbat2 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,24 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Robin H. Johnson <robbat2@gentoo.org> (13 Aug 2008)
+# Masked for testing
+=sys-libs/db-4.7*
+
+# Robin H. Johnson <robbat2@gentoo.org> (13 Aug 2008)
+# Masked for testing
+=app-backup/amanda-2.6*
+
+# Michael Sterrett <mr_bones_@gentoo.org> (13 Aug 2008)
+# Actually needs lua-5.0 (bug #229941)
+# Masked for removal.  Should use the source version anyhow:
+# http://bugs.gentoo.org/show_bug.cgi?id=160573
+games-arcade/mtp-target-bin
+
+# Doug Goldstein <cardoe@gentoo.org> (12 Aug 2008)
+# development versions of cairo
+>=x11-libs/cairo-1.7.0
 
 # Jesus Rivero <neurogeek@gentoo.org> (11 Aug 2008)
 # Masked for removal in 30 days. These packages are
@@ -61,11 +79,6 @@ dev-util/elfsh
 # nowadays. Use dev-lang/ocaml instead.
 # Will be removed 7 Sep 2008
 dev-lang/caml-light
-
-# George Shapovalov <george@gentoo.org> (5 Aug 2008)
-# problems with shared libs (#231534)
-=dev-lang/gnat-gpl-4.1.3.2008
-=dev-ada/asis-gpl-4.1.3.2008
 
 # Michael Sterrett <mr_bones_@gentoo.org> (04 Aug 2008)
 # Security masked: bug #233929
@@ -381,6 +394,7 @@ virtual/libffi
 # Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
 # Masked for keywording and testing
 =media-fonts/dejavu-2.25-r1
+=media-fonts/dejavu-2.26
 
 # Jurek Bartuszek <jurek@gentoo.org> (01 Jun 2008)
 # Not used by anything anymore
