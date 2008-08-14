@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.30 2008/08/10 10:01:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.31 2008/08/13 11:08:11 armin76 Exp $
+
+  13 Aug 2008; Raúl Porcel <armin76@gentoo.org> cairomm-1.6.0.ebuild:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Markus Meier <maekke@gentoo.org> cairomm-1.6.0.ebuild:
   x86 stable, bug #229709
