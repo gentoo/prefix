@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.225 2008/08/10 09:44:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.227 2008/08/14 00:48:17 leio Exp $
+
+  14 Aug 2008; Mart Raudsepp <leio@gentoo.org> -pango-1.18.3.ebuild,
+  -pango-1.20.0.ebuild, -pango-1.20.2.ebuild:
+  Remove old
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org> pango-1.20.5.ebuild:
+  alpha/ia64/sparc stable wrt #229709
 
   10 Aug 2008; Markus Meier <maekke@gentoo.org> pango-1.20.5.ebuild:
   x86 stable, bug #229709
