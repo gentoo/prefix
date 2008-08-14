@@ -1,6 +1,19 @@
 # ChangeLog for www-servers/mongrel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.23 2008/01/22 10:16:27 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.26 2008/08/12 06:00:36 graaff Exp $
+
+  12 Aug 2008; Hans de Graaff <graaff@gentoo.org> mongrel-1.1.3.ebuild,
+  mongrel-1.1.5.ebuild:
+  mongrel can also be licensed GPL-2, fixing #233748.
+
+*mongrel-1.1.5 (12 Aug 2008)
+
+  12 Aug 2008; Hans de Graaff <graaff@gentoo.org> +mongrel-1.1.5.ebuild:
+  Version bump with minor bugfixes
+
+  12 Aug 2008; Hans de Graaff <graaff@gentoo.org> -mongrel-1.0.ebuild,
+  -mongrel-1.0.1.ebuild, -mongrel-1.1.2.ebuild:
+  Remove old versions
 
   22 Jan 2008; Peter Weller <welp@gentoo.org> mongrel-1.1.3.ebuild:
   Stable on amd64; bug 204321
