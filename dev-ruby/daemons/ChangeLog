@@ -1,6 +1,17 @@
 # ChangeLog for dev-ruby/daemons
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.29 2007/11/10 08:14:10 graaff Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.31 2008/08/13 23:22:57 mr_bones_ Exp $
+
+  13 Aug 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +daemons-0.4.2.ebuild:
+  resurrect daemons-0.4.2.ebuild which is still being used
+
+*daemons-1.0.10 (13 Aug 2008)
+
+  13 Aug 2008; Hans de Graaff <graaff@gentoo.org> -daemons-0.4.2.ebuild,
+  -daemons-0.4.3.ebuild, -daemons-0.4.4.ebuild, -daemons-1.0.4.ebuild,
+  +daemons-1.0.10.ebuild:
+  Version bump. Remove old versions.
 
 *daemons-1.0.9 (10 Nov 2007)
 
