@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/liblo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.15 2008/04/18 22:10:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.16 2008/08/13 07:13:17 aballier Exp $
+
+*liblo-0.25 (13 Aug 2008)
+
+  13 Aug 2008; Alexis Ballier <aballier@gentoo.org> +liblo-0.25.ebuild:
+  version bump
 
   18 Apr 2008; Markus Meier <maekke@gentoo.org> -liblo-0.23.ebuild,
   liblo-0.24.ebuild:
