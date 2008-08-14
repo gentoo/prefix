@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.4 2008/08/10 19:17:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.6 2008/08/12 22:34:20 leio Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2 autotools
+inherit eutils gnome2
 
 DESCRIPTION="Simple document viewer for GNOME"
 HOMEPAGE="http://www.gnome.org/projects/evince/"
