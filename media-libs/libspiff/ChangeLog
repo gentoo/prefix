@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libspiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.23 2008/06/20 10:36:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.25 2008/08/13 08:49:28 aballier Exp $
+
+  13 Aug 2008; Alexis Ballier <aballier@gentoo.org> -libspiff-0.8.0.ebuild:
+  remove old
+
+*libspiff-0.8.4 (13 Aug 2008)
+
+  13 Aug 2008; Alexis Ballier <aballier@gentoo.org> +libspiff-0.8.4.ebuild:
+  version bump
 
   20 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
   libspiff-0.8.3.ebuild:
