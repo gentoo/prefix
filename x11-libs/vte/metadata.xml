@@ -2,6 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>gnome</herd>
-<use><flag name="nowheelscroll">Disables the translation of the mouse wheel
-		into 3 up or down key strokes</flag></use>
 </pkgmetadata>
