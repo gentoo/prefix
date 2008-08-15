@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.63.ebuild,v 1.1 2008/08/08 19:24:50 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.63.ebuild,v 1.2 2008/08/14 20:59:36 tgurr Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="cjk? ( ftp://ftp.gyve.org/pub/gs-cjk/adobe-cmaps-200406.tar.gz
 		ftp://ftp.gyve.org/pub/gs-cjk/acro5-cmaps-2001.tar.gz )
 	!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
 	mirror://sourceforge/ghostscript/${MY_P}.tar.bz2
-	mirror://gentoo/${P}-patchset-1.tar.bz2"
+	mirror://gentoo/${P}-patchset-2.tar.bz2"
 
 LICENSE="GPL-2 CPL-1.0"
 SLOT="0"
@@ -80,7 +80,7 @@ src_unpack() {
 	epatch "${WORKDIR}/patches/${PN}-8.62-pksmraw.patch"
 
 	# Gentoo patches
-	# reported upstream at bug #689999
+	# Upstream bug #689999, already fixed in ghostscript trunk.
 	epatch "${WORKDIR}/patches/${PN}-8.63-cairo-automagic.patch"
 
 	if use bindist && use djvu ; then
