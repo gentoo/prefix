@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.185 2008/08/02 01:28:30 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.186 2008/08/14 16:47:12 nixnut Exp $
+
+  14 Aug 2008; nixnut <nixnut@gentoo.org> tomcat-6.0.18.ebuild:
+  Stable on ppc wrt bug 234684
 
 *tomcat-6.0.18 (02 Aug 2008)
 
