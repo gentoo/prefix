@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-6.0.18.ebuild,v 1.1 2008/08/02 01:19:55 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-6.0.18.ebuild,v 1.2 2008/08/14 16:46:11 nixnut Exp $
 
 EAPI="prefix"
 
