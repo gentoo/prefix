@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3744 2008/08/14 04:46:12 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3745 2008/08/15 03:13:55 nixphoeni Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "sort -t: -k1,1 -k2 | sort -s -t/ -k1,1")
@@ -342,6 +342,8 @@ app-misc/digitemp:ds9097u - Build support for the ds9097u sensor
 app-misc/fdupes:md5sum-external - Use external md5sum program instead of bundled md5sum routines
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/geneweb:ocamlopt - Enable ocamlopt support ( dev-lang/ocamlnative code compiler)
+app-misc/gourmet:rtf - Add support for RTF
+app-misc/gourmet:print - Enable printing support
 app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
 app-misc/gramps:reports - All external software that is needed for graphical reports will be installed
 app-misc/graphlcd-base:g15 - Add support for app-misc/g15daemondriver (e.g. Logitech G15 Keybord)

@@ -1,10 +1,21 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1770 2008/08/13 21:02:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1773 2008/08/14 21:31:20 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  14 Aug 2008; Ben de Groot <yngwin@gentoo.org>
+  default-bsd/package.use.mask, default/linux/package.use.mask,
+  hardened/package.use.mask:
+  p.use.mask ffmpeg useflag on <net-www/gnash-0.8.3 only, in all profiles
+
+  14 Aug 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Fix the www-client/opera mask to include RCs.
+
+  14 Aug 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  no-nptl profile in x86 has been removed
 
   13 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
   Testing time for new amanda.

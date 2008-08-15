@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8880 2008/08/13 21:45:23 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8882 2008/08/14 16:44:03 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -36,12 +36,6 @@
 # Robin H. Johnson <robbat2@gentoo.org> (13 Aug 2008)
 # Masked for testing
 =app-backup/amanda-2.6*
-
-# Michael Sterrett <mr_bones_@gentoo.org> (13 Aug 2008)
-# Actually needs lua-5.0 (bug #229941)
-# Masked for removal.  Should use the source version anyhow:
-# http://bugs.gentoo.org/show_bug.cgi?id=160573
-games-arcade/mtp-target-bin
 
 # Doug Goldstein <cardoe@gentoo.org> (12 Aug 2008)
 # development versions of cairo
@@ -247,7 +241,7 @@ games-board/glchess
 
 # Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
 # Please read http://my.opera.com/desktopteam/blog before using these snapshots
-=www-client/opera-9.52_pre*
+=www-client/opera-9.52*
 
 # Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
 # Non-working version (#211327)
