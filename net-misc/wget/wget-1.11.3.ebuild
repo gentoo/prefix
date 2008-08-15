@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11.3.ebuild,v 1.1 2008/06/18 16:38:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11.3.ebuild,v 1.2 2008/08/14 15:37:22 armin76 Exp $
 
 EAPI="prefix"
 
