@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.37.0.ebuild,v 1.12 2007/06/26 04:23:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.43.00.ebuild,v 1.1 2008/08/16 01:40:39 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,15 +9,15 @@ inherit flag-o-matic toolchain-funcs eutils multilib
 MAN_VER=10.33
 DESCRIPTION="A set of utilities for converting to/from the netpbm (and related) formats"
 HOMEPAGE="http://netpbm.sourceforge.net/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2
+SRC_URI="mirror://gentoo/${P}.tar.lzma
 	mirror://gentoo/${PN}-${MAN_VER}-manpages.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
 
-DEPEND="jpeg? ( >=media-libs/jpeg-6b )
+RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
 	jpeg2k? ( media-libs/jasper )
 	tiff? ( >=media-libs/tiff-3.5.5 )
 	png? ( >=media-libs/libpng-1.2.1 )
@@ -26,6 +26,32 @@ DEPEND="jpeg? ( >=media-libs/jpeg-6b )
 	svga? ( media-libs/svgalib )
 	jbig? ( media-libs/jbigkit )
 	rle? ( media-libs/urt )"
+DEPEND="${RDEPEND}
+	app-arch/lzma-utils"
+
+maint_pkg_create() {
+	local base="/usr/local/src"
+	local srcdir="${base}/netpbm/release_number"
+	if [[ -d ${srcdir} ]] ; then
+		cd "${T}" || die
+
+		ebegin "Exporting ${srcdir}/${PV} to netpbm-${PV}"
+		svn export -q ${srcdir}/${PV} netpbm-${PV}
+		eend $? || return 1
+
+		ebegin "Creating netpbm-${PV}.tar.lzma"
+		tar cf - netpbm-${PV} | lzma > netpbm-${PV}.tar.lzma
+		eend $?
+
+		einfo "Tarball now ready at: ${T}/netpbm-${PV}.tar.lzma"
+	else
+		einfo "You need to run:"
+		einfo " cd ${base}"
+		einfo " svn co https://netpbm.svn.sourceforge.net/svnroot/netpbm"
+		die "need svn checkout dir"
+	fi
+}
+pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} && ! -e ${DISTDIR}/${P}.tar.lzma ]] && maint_pkg_create ; }
 
 netpbm_libtype() {
 	case ${CHOST} in
@@ -59,6 +85,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 
+	epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
+	epatch "${FILESDIR}"/netpbm-prefix.patch
+	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
+	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
+
 	rm -f configure
 	cp Makefile.config.in Makefile.config
 	cat >> Makefile.config <<-EOF
@@ -91,31 +122,35 @@ src_unpack() {
 	URTLIB = $(netpbm_config rle)
 	URTHDR_DIR =
 	EOF
+
+	[[ ${CHOST} == *-interix3* ]] && echo "INTTYPES_H = <stdint.h>" >> Makefile.config
 }
 
 src_compile() {
 	replace-flags -mcpu=ultrasparc "-mcpu=v8 -mtune=ultrasparc"
 	replace-flags -mcpu=v9 "-mcpu=v8 -mtune=v9"
 	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
+	# Solaris doesn't have vasprintf, libiberty does have it, for gethostbyname
+	# we need -lnsl, for connect -lsocket
+	[[ ${CHOST} == *-solaris* ]] && extlibs="-liberty -lnsl -lsocket"
 
-	emake LIBS="-lz" -j1 || die
+	emake LIBS="-lz ${extlibs}" -j1 || die
 }
 
 src_install() {
 	mkdir -p "${ED}"
-	make package pkgdir="${ED}"/usr || die "make package failed"
+	emake -j1 package pkgdir="${ED}"/usr || die "make package failed"
 
 	[[ $(get_libdir) != "lib" ]] && mv "${ED}"/usr/lib "${ED}"/usr/$(get_libdir)
 
 	# Remove cruft that we don't need, and move around stuff we want
-	rm "${ED}"/usr/include/shhopt.h
-	rm -f "${ED}"/usr/bin/{doc.url,manweb}
-	rm -rf "${ED}"/usr/man/web
-	rm -rf "${ED}"/usr/link
-	rm -f "${ED}"/usr/{README,VERSION,config_template,pkginfo}
+	rm -f "${ED}"/usr/bin/{doc.url,manweb} || die
+	rm -r "${ED}"/usr/man/web || die
+	rm -r "${ED}"/usr/link || die
+	rm -f "${ED}"/usr/{README,VERSION,config_template,pkginfo} || die
 	dodir /usr/share
-	mv "${ED}"/usr/man "${ED}"/usr/share/
-	mv "${ED}"/usr/misc "${ED}"/usr/share/netpbm
+	mv "${ED}"/usr/man "${ED}"/usr/share/ || die
+	mv "${ED}"/usr/misc "${ED}"/usr/share/netpbm || die
 
 	dodoc README
 	cd doc
