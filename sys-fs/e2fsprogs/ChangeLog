@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.155 2008/06/18 09:33:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.156 2008/08/16 04:43:40 vapier Exp $
+
+*e2fsprogs-1.41.0 (16 Aug 2008)
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  files/e2fsprogs-1.40-fbsd.patch, +files/e2fsprogs-1.41.0-makefile.patch,
+  +e2fsprogs-1.41.0.ebuild:
+  Version bump.
 
 *e2fsprogs-1.40.11 (18 Jun 2008)
 
