@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.90 2008/08/13 20:29:40 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.91 2008/08/15 20:04:17 maekke Exp $
+
+  15 Aug 2008; Markus Meier <maekke@gentoo.org> valgrind-3.3.1.ebuild:
+  amd64/x86 stable, bug #234526
 
   13 Aug 2008; Maurice van der Pot <griffon26@gentoo.org>
   +files/valgrind-3.3.1-local-labels.patch, valgrind-3.3.1.ebuild:
