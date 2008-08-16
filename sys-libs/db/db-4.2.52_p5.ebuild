@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4.ebuild,v 1.5 2008/08/16 03:32:00 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.2.52_p5.ebuild,v 1.1 2008/08/16 04:37:24 robbat2 Exp $
 
 EAPI="prefix"
 
-inherit eutils db flag-o-matic java-pkg-opt-2
+inherit eutils db java-pkg-opt-2
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -26,14 +26,13 @@ for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="OracleDB"
-SLOT="4.4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="tcl java doc nocxx bootstrap elibc_Darwin"
+LICENSE="DB"
+SLOT="4.2"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	java? ( >=virtual/jdk-1.4 )
-	!elibc_Darwin? ( >=sys-devel/binutils-2.16.1 )"
+	java? ( >=virtual/jdk-1.4 )"
 RDEPEND="tcl? ( dev-lang/tcl )
 	java? ( >=virtual/jre-1.4 )"
 
@@ -45,10 +44,12 @@ src_unpack() {
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
+	epatch "${FILESDIR}"/"${PN}"-4.0.14-fix-dep-link.patch
+	epatch "${FILESDIR}"/"${PN}"-4.2.52_p2-TXN.patch
 
 	# use the includes from the prefix
-	epatch "${FILESDIR}"/"${PN}"-4.3-jni-check-prefix-first.patch
-	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
+	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
+	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-listen-to-java-options.patch
 
 	sed -i \
 		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
@@ -79,37 +80,30 @@ src_compile() {
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
 	# the entire testsuite needs the TCL functionality
-	if use tcl && has test $FEATURES ; then
+	if use tcl && has test $FEATURES; then
 		myconf="${myconf} --enable-test"
 	else
 		myconf="${myconf} --disable-test"
 	fi
 
-	# Add linker versions to the symbols. Easier to do, and safer than header file
-	# mumbo jumbo.
-	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
-		append-ldflags -Wl,--default-symver
-	fi
-
 	cd "${S}" && ECONF_SOURCE="${S}"/../dist econf \
-		--prefix=${EPREFIX}/usr \
-		--mandir=${EPREFIX}/usr/share/man \
-		--infodir=${EPREFIX}/usr/share/info \
-		--datadir=${EPREFIX}/usr/share \
-		--sysconfdir=${EPREFIX}/etc \
-		--localstatedir=${EPREFIX}/var/lib \
-		--libdir=${EPREFIX}/usr/"$(get_libdir)" \
+		--prefix="${EPREFIX}"/usr \
+		--mandir="${EPREFIX}"/usr/share/man \
+		--infodir="${EPREFIX}"/usr/share/info \
+		--datadir="${EPREFIX}"/usr/share \
+		--sysconfdir="${EPREFIX}"/etc \
+		--localstatedir="${EPREFIX}"/var/lib \
+		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
-		--without-uniquename \
+		--with-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
-		${myconf} "{javaconf}" || die "configure failed"
+		${myconf} "${javaconf}" || die "configure failed"
 
 	emake -j1 || die "make failed"
 }
 
 src_install() {
-
 	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip" || die
 
 	db_src_install_usrbinslot

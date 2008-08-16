@@ -1,6 +1,37 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.243 2008/05/21 18:31:01 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.249 2008/08/16 04:37:24 robbat2 Exp $
+
+*db-4.2.52_p5 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-4.2.52_p5.ebuild:
+  Fix gnuconfig usage in 4.2 per bug #160192, update for Oracle download
+  location, and include one further patch from upstream to fix minor race
+  bug.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> db-3.2.9_p2.ebuild:
+  Chop out other old stuff that is not needed since gnuconfig is gone.
+
+*db-3.2.9_p2 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-3.2.9_p2.ebuild:
+  Add db-3.2.9_p2, should be identical in result to 3.2.9-r11, but has a
+  cleaned up build process and does not use gnuconfig per bug #160192.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> -db-1.85-r1.ebuild,
+  db-1.85-r3.ebuild:
+  Remove old 1.85 ebuild, plus clean up 1.85 for downloading from Oracle.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> db-4.4.20_p4.ebuild,
+  db-4.5.20_p2.ebuild:
+  Start ebuild cleanup so we can get rid of gnuconfig in old slots.
+
+*db-4.7.25 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-4.7.25.ebuild:
+  Adding package.masked db-4.7.25 per bug #228063. You can run the testsuite
+  if you like, but db has never had a good history of testsuite passes, the
+  testsuite also takes 12 hours on a quad-core 2.4Ghz machine.
 
 *db-4.6.21_p1 (21 May 2008)
 

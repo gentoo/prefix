@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4.ebuild,v 1.5 2008/08/16 03:32:00 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25.ebuild,v 1.1 2008/08/16 03:14:27 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -27,15 +27,18 @@ for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 done
 
 LICENSE="OracleDB"
-SLOT="4.4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="tcl java doc nocxx bootstrap elibc_Darwin"
+SLOT="4.7"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	java? ( >=virtual/jdk-1.4 )
-	!elibc_Darwin? ( >=sys-devel/binutils-2.16.1 )"
+	java? ( >=virtual/jdk-1.5 )
+	|| ( sys-devel/odcctools
+		 sys-devel/native-cctools
+		 >=sys-devel/binutils-2.16.1
+	)"
 RDEPEND="tcl? ( dev-lang/tcl )
-	java? ( >=virtual/jre-1.4 )"
+	java? ( >=virtual/jre-1.5 )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
@@ -44,10 +47,31 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
-	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
+
+	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
+
+	cd dist || die "Cannot cd to 'dist'"
+
+	# need to upgrade local copy of libtool.m4
+	# for correct shared libs on aix (#213277).
+	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	|| die "cannot update libtool.ac from libtool.m4"
+
+	# need to upgrade ltmain.sh for AIX,
+	# but aclocal.m4 is created in ./s_config,
+	# and elibtoolize does not work when there is no aclocal.m4, so:
+	if type -P glibtoolize > /dev/null ; then
+		glibtoolize --force --copy || die "glibtoolize failed."
+	else
+		libtoolize --force --copy || die "libtoolize failed."
+	fi
+	# now let shipped script do the autoconf stuff, it really knows best.
+	sh ./s_config || die "Cannot execute ./s_config"
+
+	epatch "${FILESDIR}"/"${PN}"-4.6-libtool.patch
 
 	# use the includes from the prefix
-	epatch "${FILESDIR}"/"${PN}"-4.3-jni-check-prefix-first.patch
+	epatch "${FILESDIR}"/"${PN}"-4.6-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
 
 	sed -i \
@@ -56,6 +80,12 @@ src_unpack() {
 }
 
 src_compile() {
+	# compilation with -O0 fails on amd64, see bug #171231
+	if use amd64; then
+		replace-flags -O0 -O2
+		is-flag -O[s123] || append-flags -O2
+	fi
+
 	local myconf=""
 
 	use amd64 && myconf="${myconf} --with-mutex=x86/gcc-assembly"
@@ -88,29 +118,32 @@ src_compile() {
 	# Add linker versions to the symbols. Easier to do, and safer than header file
 	# mumbo jumbo.
 	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
+		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
 
-	cd "${S}" && ECONF_SOURCE="${S}"/../dist econf \
-		--prefix=${EPREFIX}/usr \
-		--mandir=${EPREFIX}/usr/share/man \
-		--infodir=${EPREFIX}/usr/share/info \
-		--datadir=${EPREFIX}/usr/share \
-		--sysconfdir=${EPREFIX}/etc \
-		--localstatedir=${EPREFIX}/var/lib \
-		--libdir=${EPREFIX}/usr/"$(get_libdir)" \
+	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
+		--prefix="${EPREFIX}"/usr \
+		--mandir="${EPREFIX}"/usr/share/man \
+		--infodir="${EPREFIX}"/usr/share/info \
+		--datadir="${EPREFIX}"/usr/share \
+		--sysconfdir="${EPREFIX}"/etc \
+		--localstatedir="${EPREFIX}"/var/lib \
+		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
 		--without-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
-		${myconf} "{javaconf}" || die "configure failed"
+		${myconf} "${javaconf}" || die "configure failed"
+
+	sed -e "s,\(^STRIP *=\).*,\1\"true\"," Makefile > Makefile.cpy \
+	    && mv Makefile.cpy Makefile
 
 	emake -j1 || die "make failed"
 }
 
 src_install() {
-
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip" || die
+	einstall libdir="${ED}/usr/$(get_libdir)" STRIP="true" || die
 
 	db_src_install_usrbinslot
 
