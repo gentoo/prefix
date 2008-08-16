@@ -3,8 +3,7 @@
 <pkgmetadata>
 <herd>vim</herd>
 <use>
-  <flag name='aqua'>Include support for the Aqua GUI</flag>
-  <flag name='carbon'>Include support for the Carbon GUI</flag>
+  <flag name='aqua'>Include support for the Aqua / Carbon GUI</flag>
   <flag name='netbeans'>Include netbeans externaleditor integration
     support</flag>
   <flag name='nextaw'>Include support for the neXtaw GUI</flag>
