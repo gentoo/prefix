@@ -1,10 +1,28 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1773 2008/08/14 21:31:20 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1779 2008/08/15 23:34:37 matsuu Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  15 Aug 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Package mask =x11-wm/awesome-3_rc*.
+
+  15 Aug 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Package mask ~app-editors/emacs-cvs-22.2.9999.
+
+  15 Aug 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-dialup/{bewan-adsl,eagle-usb}.
+
+  15 Aug 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Remove alpha/no-nptl from profiles.desc
+
+  15 Aug 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added dev-libs/xqilla-9999 to p.mask
+
+  15 Aug 2008; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Update net-dialup/ppp local USE flags description.
 
   14 Aug 2008; Ben de Groot <yngwin@gentoo.org>
   default-bsd/package.use.mask, default/linux/package.use.mask,
