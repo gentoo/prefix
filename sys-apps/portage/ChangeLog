@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11421 (16 Aug 2008)
+
+  16 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11391.ebuild, +portage-2.2.00.11421.ebuild:
+  New snapshot, with repoman that only warns about IUSE.invalid
+
 *portage-2.2.00.11409 (14 Aug 2008)
 
   14 Aug 2008; Fabian Groffen <grobian@gentoo.org>
