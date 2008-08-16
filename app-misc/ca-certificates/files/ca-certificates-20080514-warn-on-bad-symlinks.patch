@@ -1,0 +1,20 @@
+https://bugs.gentoo.org/show_bug.cgi?id=234816
+
+Do not redirect error output from c_rehash in update-ca-certificates, as
+some errors, especially broken symlinks, can cause trouble for some
+applications like current openldap.
+
+2008-08-15 Martin von Gagern <Martin.vGagern@gmx.net>
+
+diff -ur work.orig/usr/sbin/update-ca-certificates work/usr/sbin/update-ca-certificates
+--- work.orig/usr/sbin/update-ca-certificates	2008-08-15 15:20:33.000000000 +0200
++++ work/usr/sbin/update-ca-certificates	2008-08-15 15:20:56.000000000 +0200
+@@ -83,7 +83,7 @@
+   # only run if set of files has changed
+ 
+   if [ "$verbose" = 0 ]; then
+-    c_rehash . > /dev/null 2>&1
++    c_rehash . > /dev/null
+   else
+     c_rehash .
+   fi
