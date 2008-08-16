@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.297 2008/08/14 17:01:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.300 2008/08/15 18:38:59 maekke Exp $
+
+  15 Aug 2008; Markus Meier <maekke@gentoo.org> vim-core-7.2.ebuild:
+  x86 stable, bug #232890
+
+  15 Aug 2008; Jeroen Roovers <jer@gentoo.org> vim-core-7.2.ebuild:
+  Stable for HPPA (bug #232890).
 
   14 Aug 2008; Brent Baude <ranger@gentoo.org> vim-core-7.2.ebuild:
   Marking vim-core-7.2 ppc64 and ppc for bug 232890
