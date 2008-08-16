@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.3.ebuild,v 1.7 2008/07/29 08:43:12 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.6.ebuild,v 1.1 2008/08/16 00:30:14 nerdboy Exp $
 
 EAPI="prefix 1"
 
@@ -12,13 +12,17 @@ SRC_URI="ftp://ftp.stack.nl/pub/users/dimitri/${P}.src.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="debug doc nodot qt3 tetex elibc_FreeBSD"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE="debug doc nodot qt3 latex elibc_FreeBSD"
 
 RDEPEND="qt3? ( x11-libs/qt:3 )
-	tetex? ( virtual/tetex )
+	latex? ( virtual/latex-base )
+	dev-lang/python
+	virtual/libiconv
+	media-libs/libpng
 	virtual/ghostscript
-	!nodot? ( >=media-gfx/graphviz-2.6 )"
+	!nodot? ( >=media-gfx/graphviz-2.6
+		media-libs/freetype )"
 DEPEND=">=sys-apps/sed-4
 	${RDEPEND}"
 
@@ -37,19 +41,18 @@ src_unpack() {
 
 	# Ensure we link to -liconv
 	if use elibc_FreeBSD; then
-		for pro in */*.pro.in */*/*.pro.in; do
-			echo "unix:LIBS += -liconv" >> "${pro}"
-		done
+	    for pro in */*.pro.in */*/*.pro.in; do
+		echo "unix:LIBS += -liconv" >> "${pro}"
+	    done
 	fi
 
 	# Consolidate patches, apply FreeBSD configure patch, codepage patch,
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
 	epatch "${FILESDIR}/${PN}-1.5-legacy-patches.diff"
 
-	# prefix search tools patch, plus OSX and Solaris fixes
-	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
-	epatch "${FILESDIR}"/${PN}-1.5.3-solaris.patch
-	epatch "${FILESDIR}"/${PN}-1.5.3-darwin9.patch
+	# prefix search tools patch, plus OSX fixes
+	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch
+	epatch "${FILESDIR}"/${PN}-1.5.5-libiconv.patch
 
 	# remove internal libpng - see bug #210237
 	epatch "${FILESDIR}/${PN}-1.5-system-libpng.patch"
@@ -74,16 +77,17 @@ src_compile() {
 	export ECFLAGS="${CFLAGS}" ECXXFLAGS="${CXXFLAGS}" ELDFLAGS="${LDFLAGS}"
 	# set ./configure options (prefix, Qt based wizard, docdir)
 
+	local my_conf=""
 	if use debug; then
-	    local my_conf="--prefix ${ED}usr --debug"
+	    my_conf="--prefix ${ED}usr --debug"
 	else
-	    local my_conf="--prefix ${ED}usr"
+	    my_conf="--prefix ${ED}usr"
 	fi
 
 	if use qt3; then
 	    einfo "using QTDIR: '$QTDIR'."
-	    export LD_LIBRARY_PATH=${QTDIR}/$(get_libdir):${LD_LIBRARY_PATH}
-	    export LIBRARY_PATH=${QTDIR}/$(get_libdir):${LIBRARY_PATH}
+	    export LIBRARY_PATH="${QTDIR}/$(get_libdir):${LIBRARY_PATH}"
+	    export LD_LIBRARY_PATH="${QTDIR}/$(get_libdir):${LD_LIBRARY_PATH}"
 	    einfo "using QT LIBRARY_PATH: '$LIBRARY_PATH'."
 	    einfo "using QT LD_LIBRARY_PATH: '$LD_LIBRARY_PATH'."
 	    ./configure ${my_conf} $(use_with qt3 doxywizard) \
@@ -105,8 +109,9 @@ src_compile() {
 		sed -i -e "s/HAVE_DOT               = YES/HAVE_DOT    = NO/" \
 		    {Doxyfile,doc/Doxyfile} || ewarn "disabling dot failed"
 	    fi
-	    if use tetex; then
+	    if use latex; then
 		addwrite /var/cache/fonts
+		addwrite /var/cache/fontconfig
 		addwrite /usr/share/texmf/fonts/pk
 		addwrite /usr/share/texmf/ls-R
 		make pdf || ewarn '"make pdf docs" failed.'
@@ -137,8 +142,8 @@ src_install() {
 
 	# pdf and html manuals
 	if use doc; then
-	    insinto /usr/share/doc/${PF}
-	    if use tetex; then
+	    insinto /usr/share/doc/"${PF}"
+	    if use latex; then
 		doins latex/doxygen_manual.pdf
 	    fi
 	    dohtml -r html/*
@@ -149,7 +154,7 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 
 	elog
-	elog "The USE flags qt3, doc, and tetex will enable doxywizard, or"
+	elog "The USE flags qt3, doc, and latex will enable doxywizard, or"
 	elog "the html and pdf documentation, respectively.  For examples"
 	elog "and other goodies, see the source tarball.  For some example"
 	elog "output, run doxygen on the doxygen source using the Doxyfile"
@@ -157,7 +162,8 @@ pkg_postinst() {
 	elog
 	elog "Enabling the nodot USE flag will remove the GraphViz dependency,"
 	elog "along with Doxygen's ability to generate diagrams in the docs."
-	elog "See the Doxygen homepage for additional language support tools."
+	elog "See the Doxygen homepage for additional helper tools to parse"
+	elog "more languages."
 	elog
 }
 

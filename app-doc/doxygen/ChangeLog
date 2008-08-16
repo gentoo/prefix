@@ -1,6 +1,20 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.148 2008/07/29 08:43:12 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.149 2008/08/16 00:30:14 nerdboy Exp $
+
+*doxygen-1.5.6 (16 Aug 2008)
+
+  16 Aug 2008; Steve Arnold <nerdboy@gentoo.org>
+  -files/1.4.6/01_all_cp1251.patch, -files/1.4.6/02_all_freebsd.patch,
+  -files/1.4.6/03_all_segfault.patch,
+  -files/1.4.6/05_all_system-libpng.patch, -files/1.4.6/06_all_qtools.patch,
+  -doxygen-1.4.2.ebuild, -doxygen-1.4.3-r1.ebuild, -doxygen-1.4.5.ebuild,
+  -doxygen-1.4.6.ebuild, -doxygen-1.5.1.ebuild, -doxygen-1.5.3.ebuild,
+  +doxygen-1.5.6.ebuild:
+  Added latest release (see bug #223275) and cleaned up stale versions. I
+  tried to keep enough of the older ones around not to leave anyone out in
+  the cold; if you really need one of the above old versions in portage,
+  please file a bug with your requirements.
 
   29 Jul 2008; Carsten Lohrke <carlo@gentoo.org> doxygen-1.4.2.ebuild,
   doxygen-1.4.3-r1.ebuild, doxygen-1.4.4.ebuild, doxygen-1.4.5.ebuild,
