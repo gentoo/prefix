@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.19 2008/06/10 18:00:30 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.20 2008/08/16 03:04:23 robbat2 Exp $
+
+*ca-certificates-20080514-r2 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/ca-certificates-20080514-warn-on-bad-symlinks.patch,
+  +ca-certificates-20080514-r2.ebuild:
+  Patch per bug #234816, give a warning for every broken symlink - as their
+  existence can cause various SSL validation routines to fail.
 
   10 Jun 2008; Robin H. Johnson <robbat2@gentoo.org>
   ca-certificates-20080514-r1.ebuild:
