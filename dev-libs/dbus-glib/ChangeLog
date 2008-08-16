@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.36 2008/04/22 02:54:54 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.37 2008/08/15 13:47:27 cardoe Exp $
+
+*dbus-glib-0.76 (15 Aug 2008)
+
+  15 Aug 2008; Doug Goldstein <cardoe@gentoo.org> -dbus-glib-0.72.ebuild,
+  +dbus-glib-0.76.ebuild:
+  remove old version. add new version.
+  http://lists.freedesktop.org/archives/dbus/2008-June/009898.html
 
 *dbus-glib-0.74-r1 (22 Apr 2008)
 
