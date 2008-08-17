@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.173 2008/05/26 01:34:38 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.174 2008/08/17 03:24:18 mr_bones_ Exp $
+
+  17 Aug 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  distcc-2.18.3-r10.ebuild, distcc-2.18.3-r11.ebuild,
+  distcc-2.18.3-r12.ebuild, distcc-2.18.3-r13.ebuild:
+  remove reference to app-admin/eselect-compiler which is long gone
 
 *distcc-2.18.3-r13 (26 May 2008)
 

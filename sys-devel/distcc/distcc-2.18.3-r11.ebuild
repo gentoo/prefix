@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r11.ebuild,v 1.1 2008/01/04 03:53:14 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r11.ebuild,v 1.2 2008/08/17 03:24:18 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ IUSE="avahi gnome gtk selinux ipv6"
 
 COMMON_DEP="dev-libs/popt
 	avahi? ( >=net-dns/avahi-0.6.5 )"
-DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )
+DEPEND=">=sys-devel/gcc-config-1.3.1
 	userland_GNU? ( sys-apps/shadow )
 	dev-util/pkgconfig
 	dev-util/unifdef

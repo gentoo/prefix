@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.8 2007/04/28 17:56:39 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.9 2008/08/17 03:24:18 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="gnome gtk selinux ipv6"
 
-DEPEND="|| ( >=sys-devel/gcc-config-1.3.1 app-admin/eselect-compiler )
+DEPEND=">=sys-devel/gcc-config-1.3.1
 	userland_GNU? ( sys-apps/shadow )
 	gnome? ( dev-util/pkgconfig )
 	gtk? ( dev-util/pkgconfig )"
