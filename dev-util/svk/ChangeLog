@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/svk
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/ChangeLog,v 1.30 2007/02/22 02:27:36 peper Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/ChangeLog,v 1.31 2008/08/16 17:21:39 tove Exp $
+
+  16 Aug 2008; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove kang from metadata.xml (#51508)
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
