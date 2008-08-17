@@ -1,6 +1,82 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.249 2008/08/16 04:37:24 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.262 2008/08/16 23:27:22 robbat2 Exp $
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/db-3.2.9-gcc43.patch, db-3.2.9_p2.ebuild:
+  Bug #218469, fix compilation with GCC4.3.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> db-4.3.29_p1-r1.ebuild,
+  db-4.4.20_p4-r1.ebuild, db-4.5.20_p2-r1.ebuild, db-4.6.21_p3-r1.ebuild,
+  db-4.7.25_p1-r1.ebuild:
+  Add o_direct support per bug #208967, not used by default.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Bug #234081, cleanup entity in metadata.
+
+*db-4.2.52_p5-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.2.52_p5-r1.ebuild:
+  Fix 4.2 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.3.29_p1-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.3.29_p1-r1.ebuild:
+  Fix 4.3 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.4.20_p4-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.4.20_p4-r1.ebuild:
+  Fix 4.4 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.5.20_p2-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.5.20_p2-r1.ebuild:
+  Fix 4.5 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.6.21_p3-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.6.21_p3-r1.ebuild:
+  Fix 4.6 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.7.25_p1-r1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +db-4.7.25_p1-r1.ebuild:
+  Fix 4.7 slot for SONAME bug #182972, java support bug #217661 and also
+  properly do what the jarlocation patches were supported to do.
+
+*db-4.7.25_p1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-4.7.25_p1.ebuild:
+  Version bump.
+
+*db-4.6.21_p3 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-4.6.21_p3.ebuild:
+  Version bump and cleanup.
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> db-3.2.9_p2.ebuild,
+  db-4.2.52_p5.ebuild, db-4.3.29_p1.ebuild, db-4.4.20_p4.ebuild,
+  db-4.5.20_p2.ebuild, db-4.6.21_p1.ebuild, db-4.7.25.ebuild:
+  Use the Oracle load-balancer rather than a single mirror.
+
+*db-4.3.29_p1 (16 Aug 2008)
+
+  16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +db-4.3.29_p1.ebuild:
+  Fix gnuconfig usage in 4.3 per bug #160192, update for Oracle download
+  location, and include one further patch from upstream to fix minor race
+  bug (same as 4.2 changes).
 
 *db-4.2.52_p5 (16 Aug 2008)
 

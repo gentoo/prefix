@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29-r2.ebuild,v 1.19 2008/02/29 18:43:03 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.2 2008/08/16 22:46:49 robbat2 Exp $
 
 EAPI="prefix"
 
-inherit eutils gnuconfig db flag-o-matic java-pkg-opt-2
+inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -19,16 +19,15 @@ else
 fi
 
 S="${WORKDIR}/${MY_P}/build_unix"
-DESCRIPTION="Berkeley DB"
-HOMEPAGE="http://www.sleepycat.com/"
-SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
-#SRC_URI="ftp://ftp.sleepycat.com/releases/${MY_P}.tar.gz"
+DESCRIPTION="Oracle Berkeley DB"
+HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
+SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
-	export SRC_URI="${SRC_URI} http://www.sleepycat.com/update/${MY_PV}/patch.${MY_PV}.${i}"
+	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="DB"
-SLOT="4.3"
+LICENSE="OracleDB"
+SLOT="4.4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx bootstrap elibc_Darwin"
 
@@ -45,19 +44,45 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
+	# This patch and sed statement only matter when USE=bootstrap is in effect
+	# because the build system is regenerated otherwise.
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
-
-	epatch "${FILESDIR}"/"${PN}"-4.3.27-fix-dep-link.patch
-
-	# use the includes from the prefix
-	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
-	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-listen-to-java-options.patch
-
-	gnuconfig_update "${S}"/../dist
-
 	sed -i \
 		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
 		"${S}"/../dist/configure
+
+	# use the includes from the prefix
+	epatch "${FILESDIR}"/"${PN}"-4.3-jni-check-prefix-first.patch
+	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
+
+	# Include the SLOT for Java JAR files
+	# This supersedes the unused jarlocation patches.
+	sed -r -i \
+		-e '/jarfile=.*\.jar$/s,(.jar$),-$(LIBVERSION)\1,g' \
+		"${S}"/../dist/Makefile.in
+
+	# During bootstrap, libtool etc might not yet be available
+	if use !bootstrap; then
+		# START of 4.5+earlier specific
+		# Upstream sucks, they normally concat these
+		cd "${S}"/../dist/aclocal
+		for i in *; do ln -s $i ${i%.ac}.m4 ; done ;
+		cd "${S}"/../dist/aclocal_java
+		for i in *; do ln -s $i ${i%.ac}.m4 ; done ;
+		# END of 4.5+earlier specific
+		cd "${S}"/../dist
+		rm -f aclocal/libtool.{m4,ac} aclocal.m4
+		AT_M4DIR="aclocal aclocal_java" eautoreconf
+		# Upstream sucks - they do autoconf and THEN replace the version variables.
+		. ./RELEASE
+		sed -i \
+			-e "s/__EDIT_DB_VERSION_MAJOR__/$DB_VERSION_MAJOR/g" \
+			-e "s/__EDIT_DB_VERSION_MINOR__/$DB_VERSION_MINOR/g" \
+			-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
+			-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
+			-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
+			-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
+	fi
 }
 
 src_compile() {
@@ -90,13 +115,13 @@ src_compile() {
 		myconf="${myconf} --disable-test"
 	fi
 
-	# Add linker versions to the symbols. Easier to do, and safer than header
-	# file mumbo jumbo.
-	if use userland_GNU; then
+	# Add linker versions to the symbols. Easier to do, and safer than header file
+	# mumbo jumbo.
+	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
 		append-ldflags -Wl,--default-symver
 	fi
 
-	../dist/configure \
+	cd "${S}" && ECONF_SOURCE="${S}"/../dist econf \
 		--prefix=${EPREFIX}/usr \
 		--mandir=${EPREFIX}/usr/share/man \
 		--infodir=${EPREFIX}/usr/share/info \
@@ -105,16 +130,18 @@ src_compile() {
 		--localstatedir=${EPREFIX}/var/lib \
 		--libdir=${EPREFIX}/usr/"$(get_libdir)" \
 		--enable-compat185 \
+		--enable-o_direct \
 		--without-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
-		${myconf}  "${javaconf}" || die "configure failed"
+		${myconf} "{javaconf}" || die "configure failed"
 
 	emake -j1 || die "make failed"
 }
 
 src_install() {
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip"  || die
+
+	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip" || die
 
 	db_src_install_usrbinslot
 
@@ -125,7 +152,7 @@ src_install() {
 	db_src_install_usrlibcleanup
 
 	dodir /usr/sbin
-	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db43_svc
+	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
 
 	if use java; then
 		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.so

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25.ebuild,v 1.1 2008/08/16 03:14:27 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.6.21_p3-r1.ebuild,v 1.2 2008/08/16 22:46:49 robbat2 Exp $
 
 EAPI="prefix"
 
-inherit eutils db flag-o-matic java-pkg-opt-2
+inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -21,24 +21,24 @@ fi
 S="${WORKDIR}/${MY_P}/build_unix"
 DESCRIPTION="Oracle Berkeley DB"
 HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
-SRC_URI="http://download-west.oracle.com/berkeley-db/${MY_P}.tar.gz"
+SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
 LICENSE="OracleDB"
-SLOT="4.7"
+SLOT="4.6"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	java? ( >=virtual/jdk-1.5 )
+	java? ( >=virtual/jdk-1.4 )
 	|| ( sys-devel/odcctools
 		 sys-devel/native-cctools
 		 >=sys-devel/binutils-2.16.1
 	)"
 RDEPEND="tcl? ( dev-lang/tcl )
-	java? ( >=virtual/jre-1.5 )"
+	java? ( >=virtual/jre-1.4 )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
@@ -66,17 +66,41 @@ src_unpack() {
 		libtoolize --force --copy || die "libtoolize failed."
 	fi
 	# now let shipped script do the autoconf stuff, it really knows best.
-	sh ./s_config || die "Cannot execute ./s_config"
+	#see below
+	#sh ./s_config || die "Cannot execute ./s_config"
 
-	epatch "${FILESDIR}"/"${PN}"-4.6-libtool.patch
-
-	# use the includes from the prefix
-	epatch "${FILESDIR}"/"${PN}"-4.6-jni-check-prefix-first.patch
-	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
-
+	# This patch and sed statement only matter when USE=bootstrap is in effect
+	# because the build system is regenerated otherwise.
+	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
 	sed -i \
 		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
 		"${S}"/../dist/configure
+
+	# use the includes from the prefix
+	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
+	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
+
+	# Include the SLOT for Java JAR files
+	# This supersedes the unused jarlocation patches.
+	sed -r -i \
+		-e '/jarfile=.*\.jar$/s,(.jar$),-$(LIBVERSION)\1,g' \
+		"${S}"/../dist/Makefile.in
+
+	# During bootstrap, libtool etc might not yet be available
+	if use !bootstrap; then
+		cd "${S}"/../dist
+		rm -f aclocal/libtool.m4
+		AT_M4DIR="aclocal aclocal_java" eautoreconf
+		# Upstream sucks - they do autoconf and THEN replace the version variables.
+		. ./RELEASE
+		sed -i \
+			-e "s/__EDIT_DB_VERSION_MAJOR__/$DB_VERSION_MAJOR/g" \
+			-e "s/__EDIT_DB_VERSION_MINOR__/$DB_VERSION_MINOR/g" \
+			-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
+			-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
+			-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
+			-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
+	fi
 }
 
 src_compile() {
@@ -131,19 +155,21 @@ src_compile() {
 		--localstatedir="${EPREFIX}"/var/lib \
 		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
+		--enable-o_direct \
 		--without-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
 		${myconf} "${javaconf}" || die "configure failed"
 
-	sed -e "s,\(^STRIP *=\).*,\1\"true\"," Makefile > Makefile.cpy \
+	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
 	    && mv Makefile.cpy Makefile
 
 	emake -j1 || die "make failed"
 }
 
 src_install() {
-	einstall libdir="${ED}/usr/$(get_libdir)" STRIP="true" || die
+
+	einstall libdir="${ED}/usr/$(get_libdir)" strip="none" || die
 
 	db_src_install_usrbinslot
 

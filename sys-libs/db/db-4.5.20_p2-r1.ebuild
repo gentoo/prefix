@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2.ebuild,v 1.24 2008/08/16 03:32:00 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2-r1.ebuild,v 1.2 2008/08/16 22:46:49 robbat2 Exp $
 
 EAPI="prefix"
 
-inherit eutils db flag-o-matic java-pkg-opt-2 autotools
+inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -21,7 +21,7 @@ fi
 S="${WORKDIR}/${MY_P}/build_unix"
 DESCRIPTION="Oracle Berkeley DB"
 HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
-SRC_URI="http://download-west.oracle.com/berkeley-db/${MY_P}.tar.gz"
+SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
@@ -60,17 +60,48 @@ src_unpack() {
 	# and elibtoolize does not work when there is no aclocal.m4, so:
 	libtoolize --force --copy || die "libtoolize failed."
 	# now let shipped script do the autoconf stuff, it really knows best.
-	sh ./s_config || die "Cannot execute ./s_config"
+	#see below
+	#sh ./s_config || die "Cannot execute ./s_config"
 
+	# This patch and sed statement only matter when USE=bootstrap is in effect
+	# because the build system is regenerated otherwise.
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
+	sed -i \
+		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
+		"${S}"/../dist/configure
 
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/"${PN}"-4.3-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
 
-	sed -i \
-		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
-		"${S}"/../dist/configure
+	# Include the SLOT for Java JAR files
+	# This supersedes the unused jarlocation patches.
+	sed -r -i \
+		-e '/jarfile=.*\.jar$/s,(.jar$),-$(LIBVERSION)\1,g' \
+		"${S}"/../dist/Makefile.in
+
+	# During bootstrap, libtool etc might not yet be available
+	if use !bootstrap; then
+		# START of 4.5+earlier specific
+		# Upstream sucks, they normally concat these
+		cd "${S}"/../dist/aclocal
+		for i in *; do ln -s $i ${i%.ac}.m4 ; done ;
+		cd "${S}"/../dist/aclocal_java
+		for i in *; do ln -s $i ${i%.ac}.m4 ; done ;
+		# END of 4.5+earlier specific
+		cd "${S}"/../dist
+		rm -f aclocal/libtool.{m4,ac} aclocal.m4
+		AT_M4DIR="aclocal aclocal_java" eautoreconf
+		# Upstream sucks - they do autoconf and THEN replace the version variables.
+		. ./RELEASE
+		sed -i \
+			-e "s/__EDIT_DB_VERSION_MAJOR__/$DB_VERSION_MAJOR/g" \
+			-e "s/__EDIT_DB_VERSION_MINOR__/$DB_VERSION_MINOR/g" \
+			-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
+			-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
+			-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
+			-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
+	fi
 }
 
 src_compile() {
@@ -125,6 +156,7 @@ src_compile() {
 		--localstatedir="${EPREFIX}"/var/lib \
 		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
+		--enable-o_direct \
 		--without-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
