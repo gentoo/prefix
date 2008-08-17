@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.1.ebuild,v 1.1 2008/08/11 12:59:34 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.1.ebuild,v 1.2 2008/08/16 15:06:01 yngwin Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
@@ -19,6 +19,7 @@ RDEPEND="sys-libs/zlib
 	!<=x11-libs/qt-4.4.0_alpha:${SLOT}"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
+PDEPEND="qt3support? ( ~x11-libs/qt-gui-${PV} )"
 
 QT4_TARGET_DIRECTORIES="
 src/tools/moc/
