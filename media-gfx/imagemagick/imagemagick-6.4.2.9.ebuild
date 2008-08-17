@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.2.0.ebuild,v 1.4 2008/08/16 12:25:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.2.9.ebuild,v 1.3 2008/08/16 16:56:48 maekke Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib perl-app
+inherit eutils multilib perl-app toolchain-funcs
 
 MY_PN=ImageMagick
 MY_P=${MY_PN}-${PV%.*}
@@ -17,8 +17,8 @@ SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
 LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bzip2 djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k lcms nocxx
-	openexr perl png q8 q32 svg tiff truetype X wmf xml zlib"
+IUSE="bzip2 djvu doc fontconfig fpx graphviz gs hdri jpeg jpeg2k lcms nocxx
+	openexr openmp perl png q8 q32 svg tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
 	djvu? ( app-text/djvu )
@@ -26,7 +26,6 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	fpx? ( media-libs/libfpx )
 	graphviz? ( >=media-gfx/graphviz-2.6 )
 	gs? ( virtual/ghostscript )
-	jbig? ( media-libs/jbigkit )
 	jpeg? ( >=media-libs/jpeg-6b )
 	jpeg2k? ( media-libs/jasper )
 	lcms? ( >=media-libs/lcms-1.06 )
@@ -66,6 +65,11 @@ pkg_setup() {
 		elog "the svg USE-flag requires the X USE-flag set."
 		elog "disabling svg support for now."
 	fi
+
+	if use openmp && ! built_with_use sys-devel/gcc openmp; then
+		eerror "sys-devel/gcc needs to be built with openmp support."
+		die "emerge sys-devel/gcc with USE=\"openmp\""
+	fi
 }
 
 src_unpack() {
@@ -94,6 +98,19 @@ src_compile() {
 		myconf="${myconf} --without-rsvg"
 	fi
 
+	#openmp support only works with >=sys-devel/gcc-4.3
+	# see bug #223825
+	if use openmp ; then
+		if [[ $(gcc-version) != "4.3" ]] ; then
+			ewarn "you need sys-devel/gcc-4.3 to be able to use openmp, disabling."
+			myconf="${myconf} --disable-openmp"
+		else
+			myconf="${myconf} --enable-openmp"
+		fi
+	else
+		myconf="${myconf} --disable-openmp"
+	fi
+
 	econf \
 		${myconf} \
 		--without-included-ltdl \
@@ -101,7 +118,6 @@ src_compile() {
 		--with-ltdl-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-threads \
 		--with-modules \
-		--disable-openmp \
 		$(use_with perl) \
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
 		$(use_enable hdri) \
@@ -114,7 +130,6 @@ src_compile() {
 		$(use_with gs dps) \
 		$(use_with gs gslib) \
 		$(use_with graphviz gvc) \
-		$(use_with jbig) \
 		$(use_with jpeg jpeg) \
 		$(use_with jpeg2k jp2) \
 		$(use_with lcms) \
@@ -129,7 +144,7 @@ src_compile() {
 		$(use_with openexr) \
 		|| die "econf failed"
 	# parallel-building broken in this version, bug #232638
-	emake -j1 || die "compile problem"
+	emake || die "compile problem"
 }
 
 src_install() {

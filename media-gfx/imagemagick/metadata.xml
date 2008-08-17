@@ -2,4 +2,25 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>graphics</herd>
+	<use>
+		<flag name='fpx'>
+			enable <pkg>media-libs/libfpx</pkg> support
+		</flag>
+		<flag name='gs'>
+			enable ghostscript support
+		</flag>
+		<flag name='hdri'>
+			enable High Dynamic Range Images formats
+		</flag>
+		<flag name='openmp'>
+			build support for the OpenMP (support parallel computing), requires
+			<pkg>sys-devel/gcc-4.3</pkg> built with USE="openmp"
+		</flag>
+		<flag name='q32'>
+			set quantum depth to 32
+		</flag>
+		<flag name='q8'>
+			set quantum depth to 8
+		</flag>
+	</use>
 </pkgmetadata>
