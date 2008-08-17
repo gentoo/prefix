@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.156 2008/08/16 04:43:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.158 2008/08/16 15:32:12 vapier Exp $
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.0.ebuild:
+  Drop USE=static since it just confuses people #232115 #178718.
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.0.ebuild:
+  Punt the doc dir since the info files are installed by e2fsprogs-libs
+  #234885 by Lars Strojny.
 
 *e2fsprogs-1.41.0 (16 Aug 2008)
 

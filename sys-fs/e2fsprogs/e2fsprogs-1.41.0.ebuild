@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.0.ebuild,v 1.1 2008/08/16 04:43:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.0.ebuild,v 1.3 2008/08/16 15:32:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 LICENSE="GPL-2 BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="nls static elibc_FreeBSD"
+IUSE="nls elibc_FreeBSD"
 
 RDEPEND="~sys-libs/${PN}-libs-${PV}
 	nls? ( virtual/libintl )"
@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.41.0-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
+	rm -rf doc
 	sed -i -r \
 		-e 's:@LIBINTL@:@LTLIBINTL@:' \
 		-e '/^LIB(BLKID|COM_ERR|SS|UUID)/s:[$][(]LIB[)]/lib([^@]*)@LIB_EXT@:-l\1:' \
@@ -51,7 +52,6 @@ src_compile() {
 		--sbindir="${EPREFIX}"/sbin \
 		--enable-elf-shlibs \
 		--with-ldopts="${LDFLAGS}" \
-		$(use_enable !static dynamic-e2fsck) \
 		$(use_enable !elibc_uclibc tls) \
 		--without-included-gettext \
 		$(use_enable nls) \
