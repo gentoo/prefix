@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/sqlalchemy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.22 2008/05/31 16:00:11 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.23 2008/08/16 12:21:16 dev-zero Exp $
+
+*sqlalchemy-0.5.0_beta3 (16 Aug 2008)
+*sqlalchemy-0.4.7_p1 (16 Aug 2008)
+
+  16 Aug 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -sqlalchemy-0.4.4.ebuild, -sqlalchemy-0.4.5.ebuild,
+  +sqlalchemy-0.4.7_p1.ebuild, +sqlalchemy-0.5.0_beta3.ebuild:
+  Version bump (bug #233982). Dropped old versions.
 
 *sqlalchemy-0.4.6 (31 May 2008)
 
