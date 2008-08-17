@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8888 2008/08/15 23:46:56 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8893 2008/08/16 20:34:37 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,21 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
+# mask live ebuild (no bundled sqlalchemy anymore)
+=media-video/griffith-9999
+
+# Markus Meier <maekke@gentoo.org> (16 Aug 2008)
+# mask hugin-0.7.0_rc2 and deps for testing
+media-libs/libpano13
+media-gfx/autopano-sift-C
+>=media-gfx/enblend-3.0_p20080807
+>=media-gfx/hugin-0.7.0_rc2
+
+# Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
+# Masked for testing
+>=dev-python/sqlalchemy-0.5.0_beta3
 
 # MATSUU Takuto <matsuu@gentoo.org> (15 Aug 2008)
 # Release candidate version, masked for testing.

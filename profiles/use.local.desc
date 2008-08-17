@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3752 2008/08/16 04:45:46 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3765 2008/08/17 04:53:22 mr_bones_ Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "sort -t: -k1,1 -k2 | sort -s -t/ -k1,1")
@@ -528,7 +528,6 @@ dev-db/mysql-community:minimal - Install client programs only, no server
 dev-db/mysql-community:pbxt - Add experimental support for pbxt storage engine
 dev-db/mysql-gui-tools:administrator - Build and install MySQL Administrator
 dev-db/mysql-gui-tools:query-browser - Build and install MySQL Query Browser
-dev-db/mysql-gui-tools:workbench - Build and install MySQL Workbench
 dev-db/pgcluster:pg-intdatetime - Enable --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage
 dev-db/postgis:geos - Add the sci-libs/geos library for exact topological tests
 dev-db/postgis:proj - Add the sci-libs/proj library for reprojection features
@@ -760,9 +759,19 @@ dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perl support
 dev-perl/PDL:badval - Enable badval support
 dev-perl/RPC-XML:modperl - Enable www-apache/mod_perl support
 dev-php/PEAR-PHP_Shell:auto-completion - Enable tab-completion
+dev-php5/eaccelerator:contentcache - Enable content caching
+dev-php5/eaccelerator:disassembler - Enable the eA disassembler
+dev-php5/eaccelerator:inode - Use inode-based caching
+dev-php5/php-gtk:extra - Enable GtkExtra support
+dev-php5/php-gtk:glade - Enable libglade support
+dev-php5/php-gtk:html - Enable GtkHTML2 support
+dev-php5/php-gtk:libsexy - Enable libsexy support
+dev-php5/php-gtk:mozembed - Enable GtkMozembed support
+dev-php5/php-gtk:scintilla - Enable Scintilla support
 dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
+dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
@@ -816,6 +825,7 @@ dev-util/anjuta:valgrind - Build valgrind plugin for anjuta
 dev-util/astyle:libs - builds and installs both shared and static library interfaces
 dev-util/buildbot:irc - Add support for status delivery through an ircbot.
 dev-util/buildbot:mail - Add support for watching a maildir for commits.
+dev-util/buildbot:manhole - Add support for manhole (debug over ssh).
 dev-util/buildbot:web - Add a web interface ("waterfall" page).
 dev-util/bzr:sftp - Enable sftp support
 dev-util/catalyst:ccache - Enables ccache support
@@ -859,6 +869,9 @@ dev-util/subversion:webdav-serf - Enable WebDAV support using net-libs/serf
 dev-util/svk:pager - Enable perl pager selection support
 dev-util/svk:patch - Enable patch creation, import support
 dev-util/svk:svn-mirror - Enable SVN-Mirror support
+games-action/abuse:demo - Use the demo data instead of the full game
+games-action/abuse:levels - Install user-created levels (fRaBs)
+games-action/abuse:sounds - Install optional sound data
 games-action/d1x-rebirth:awe32 - Enable AWE32 support
 games-action/d1x-rebirth:demo - Use the demo data instead of the full game
 games-action/d1x-rebirth:mixer - Enable mixer support
@@ -1159,6 +1172,7 @@ media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
+media-gfx/imagemagick:openmp - Build support for the OpenMP (support parallel computing)
 media-gfx/imagemagick:q32 - Set quantum depth to 32
 media-gfx/imagemagick:q8 - Set quantum depth to 8
 media-gfx/inkscape:dia - Pull in app-office/dia for dia import extension
@@ -1214,6 +1228,7 @@ media-libs/win32codecs:real - Installs the real video codecs
 media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
 media-libs/xine-lib:real - Adds real video support
 media-libs/xine-lib:vidix - Support for vidix video output
+media-libs/xine-lib:vis - Adds support for SIMD optimizations for UltraSPARC processors.
 media-libs/xine-lib:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-plugins/audacious-plugins:adplug - Build with AdPlug (Adlib sound card emulation) support
 media-plugins/audacious-plugins:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
@@ -1487,6 +1502,62 @@ media-video/transcode:mjpeg - Enables mjpegtools support
 media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
+media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
+media-video/vdr:analogtv - Add support for the analogtv plugin
+media-video/vdr:atsc - Support for NorthAmerican Broadcast ( rudimentary )
+media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
+media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
+media-video/vdr:cmdctrl - allows switching remote control on/off
+media-video/vdr:cmdsubmenu - Allows the creation of submenus in the commands menu
+media-video/vdr:cutterlimit - Limit IO bandwith used for cutting
+media-video/vdr:cutterqueue - Adds a queue of recordings to be cutted
+media-video/vdr:cuttime - Adjust starttime of cutted recording by length of cut out parts
+media-video/vdr:ddepgentry - remove duplicate EPG entries
+media-video/vdr:deltimeshiftrec - Auto delete timeshift recordings
+media-video/vdr:dolbyinrec - add a dedicated switch to control recording of dolby digital
+media-video/vdr:dolby-record-switch - Allows to control separately to record / to replay dolby digital
+media-video/vdr:dvbplayer - Use some special mpeg-repacker features. Most usable for old recordings or software output devices.
+media-video/vdr:dvbsetup - Setup for AC3 transfer, disable primary tuner
+media-video/vdr:dvdarchive - DMH DVD - Archiv ( used by vdr-burn-0.1.0_* )
+media-video/vdr:dvdchapjump - Jump on capitels on DMH DVD - Archiv
+media-video/vdr:dvlfriendlyfnames - filter file names on recording
+media-video/vdr:dvlrecscriptaddon - enhancement for record-script
+media-video/vdr:dvlvidprefer - controls video-dir choice on recording
+media-video/vdr:dxr3-audio-denoise - Mutes audio noise occurring with dxr3-cards using analog audio-out when e.g. cutting
+media-video/vdr:dxr3 - Enable tweaks to improve vdr behaviour on dxr3-cards
+media-video/vdr:em84xx - Add support for em84xx plugin
+media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.7
+media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
+media-video/vdr:iptv - Enables support for vdr-iptv
+media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
+media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
+media-video/vdr:lircsettings - Allows to change lirc settings delay, freq and timeout values in OSD
+media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
+media-video/vdr:lnbshare - Enables support for two or more dvb cards sharing the same cable to the lnb
+media-video/vdr:lnbsharing - Enables support for two or more dvb cards sharing the cable to the lnb
+media-video/vdr:mainmenuhooks - Allows to replace main menu entries by some special plugins (like epgsearch, extrecmenu, ...)
+media-video/vdr:menuorg - Enables support for the menuorg-plugin
+media-video/vdr:noepg - Adds code to selectively disable epg-reception for specific channels
+media-video/vdr:osdmaxitems - Support for text2skin
+media-video/vdr:pinplugin - Support for pin plugin
+media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
+media-video/vdr:settime - set system time per script instead of via syscal
+media-video/vdr:setup - Enable support for the plugin vdr-setup
+media-video/vdr:setup-plugin - Enable support for the plugin vdr-setup
+media-video/vdr:shutdown_rewrite - use rewritten shutdown code from vdr-1.5
+media-video/vdr:sortrecords - allows to change sort order of recordings
+media-video/vdr:sourcecaps - Adds the ability to define capabilities of dvb-cards (e.g. card1 can receive Sat @28.2E)
+media-video/vdr:submenu - Enable support for the plugin vdr-submenu.
+media-video/vdr:subtitles - Enable support for the subtitles-plugin
+media-video/vdr:switchtimer - support for timer that do not record but only switch to a channel
+media-video/vdr:syncearly - start live display as soon as possible, not waiting for sync of audio and video
+media-video/vdr:timercmd - Adds submenu for user defined commands in timer menu
+media-video/vdr:timerinfo - Show with chars +/- if space on HD will suffice for a timer
+media-video/vdr:ttxtsubs - support for ttxtsubs plugin
+media-video/vdr:validinput - Signal if it is possible to go left/right in lists with chars < >
+media-video/vdr:volctrl - allows volume control using left/right keys
+media-video/vdr:wareagleicon - Replace original icon set in menu
+media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
 media-video/vlc:atmo - Enables support for AtmoLight (homebrew Ambient Lighting Technology)
 media-video/vlc:cdda - Enables libcdda cd audio playback support.
 media-video/vlc:cdio - Enables CD input and control library support.
@@ -1823,6 +1894,9 @@ net-misc/asterisk:h323 - Build the H.323 channel driver bundled with Asterisk
 net-misc/asterisk:lowmem - Build Asterisk for environments with low amounts of memory (embedded devices)
 net-misc/asterisk:nosamples - Don't install sample sound and configuration files
 net-misc/asterisk:osp - Enable support for the Open Settlement Protocol
+net-misc/asterisk:pri - Enables pri support (>=asterisk-1.0.1)
+net-misc/asterisk:ukcid - Enable UK callerid support
+net-misc/asterisk:zaptel - Enables zaptel support (>=asterisk-1.0.1)
 net-misc/asterisk-addons:h323 - Build the chan_ooh323c H.323 channel driver
 net-misc/asterisk-chan_capi:fax - Build chan_capi with fax support
 net-misc/curl:ares - Enabled c-ares dns support
@@ -2089,6 +2163,8 @@ sci-libs/mkl:serial - Install the serial (as non-threaded) libraries as well, do
 sci-libs/plplot:itcl - Support for dev-tcltk/itcl bindings
 sci-libs/plplot:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 sci-libs/plplot:octave - Support for sci-mathematics/octave bindings 
+sci-libs/scipy:sandbox - Installs experimental scipy sandbox modules (pull some dependencies)
+sci-libs/scipy:umfpack - Add support for sparse solving via UMFPACK
 sci-libs/vtk:patented - Build patented classes
 sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using dev-ml/lablgtk
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation)
@@ -2332,7 +2408,6 @@ sys-power/cpufreqd:nvidia - Enable nvidia overclocking (media-video/nvclock) plu
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
 sys-power/pm-utils:ntp - install support for net-misc/ntp
 sys-power/suspend:fbsplash - Add support for framebuffer splash
-sys-process/daemontools:withsamplescripts - Installs sample supervise scripts
 sys-process/procps:n32 - Enable n32 ABI support on mips
 www-apache/anyterm:opera - Enable workaround for bug in Opera web browser
 www-apache/mod_ftpd:dbi - Enables libdbi support
@@ -2447,6 +2522,7 @@ x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
+x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
 x11-misc/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
 x11-misc/zim:trayicon - Enable support for trayicon
 x11-plugins/bfm:gkrellm - Enable building of app-admin/gkrellm module

@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1779 2008/08/15 23:34:37 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1783 2008/08/16 15:13:33 rbu Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  16 Aug 2008; Robert Buchholz <rbu@gentoo.org> use.local.desc:
+  Add tls local use flag for dev-python/kaa-base
+
+  16 Aug 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added live ebuild for media-video/griffith to p.mask.
+
+  16 Aug 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  mask hugin-0.7.0_rc2 and deps for testing
+
+  16 Aug 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added beta version of sqlalchemy to p.mask
 
   15 Aug 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
   Package mask =x11-wm/awesome-3_rc*.
