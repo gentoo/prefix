@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/libpano12-2.8.4.ebuild,v 1.5 2008/01/16 18:09:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/libpano12-2.8.4.ebuild,v 1.6 2008/08/16 11:02:21 maekke Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="java"
-DEPEND="media-libs/libpng
+DEPEND="!media-libs/libpano13
+		media-libs/libpng
 		media-libs/tiff
 		media-libs/jpeg
 		sys-libs/zlib
