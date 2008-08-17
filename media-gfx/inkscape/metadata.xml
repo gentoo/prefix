@@ -2,4 +2,15 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>graphics</herd>
+	<use>
+		<flag name='dia'>
+			pull in <pkg>app-office/dia</pkg> for dia import extension
+		</flag>
+		<flag name='inkjar'>
+			enables support for OpenOffice.org SVG jar files
+		</flag>
+		<flag name='postscript'>
+			pull in dependencies needed for the postscript import extension
+		</flag>
+	</use>
 </pkgmetadata>

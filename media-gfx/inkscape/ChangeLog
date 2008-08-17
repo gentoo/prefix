@@ -1,6 +1,18 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.101 2008/06/04 23:50:29 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.102 2008/08/16 12:55:29 maekke Exp $
+
+*inkscape-0.46-r5 (16 Aug 2008)
+*inkscape-0.46-r4 (16 Aug 2008)
+
+  16 Aug 2008; Markus Meier <maekke@gentoo.org>
+  +files/inkscape-0.46-bug-174720-0.patch,
+  +files/inkscape-0.46-bug-174720-1.patch,
+  +files/inkscape-0.46-bug-214171.patch, metadata.xml,
+  -inkscape-0.46-r3.ebuild, +inkscape-0.46-r4.ebuild,
+  +inkscape-0.46-r5.ebuild:
+  add patches for improved gnuplot svg handling, bug #234753; describe local
+  USE-flags in metadata.xml
 
 *inkscape-0.46-r3 (04 Jun 2008)
 
