@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.100 2008/08/14 15:37:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.101 2008/08/16 15:39:06 vapier Exp $
+
+*wget-1.11.4 (16 Aug 2008)
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org> +wget-1.11.4.ebuild:
+  Version bump #231312 by cilly.
 
   14 Aug 2008; Raúl Porcel <armin76@gentoo.org> wget-1.11.3.ebuild:
   alpha/ia64/sparc/x86 stable
