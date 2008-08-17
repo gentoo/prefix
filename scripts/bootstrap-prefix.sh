@@ -198,40 +198,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	local def="20080710"
-	case ${CHOST} in
-		powerpc-ibm-aix*)            PV="${def}" ;;
-		i*86-apple-darwin8)          PV="${def}" ;;
-		i*86-apple-darwin9)          PV="${def}" ;;
-		powerpc-apple-darwin7)       PV="${def}" ;;
-		powerpc-apple-darwin8)       PV="${def}" ;;
-		powerpc-apple-darwin9)       PV="${def}" ;;
-		powerpc64-apple-darwin8)     PV="${def}" ;;
-		x86_64-apple-darwin9)        PV="${def}" ;;
-		i386-pc-freebsd*)            PV="${def}" ;;
-		hppa*-hp-hpux11*)            PV="${def}" ;;
-		ia64-hp-hpux11*)             PV="${def}" ;;
-		i586-pc-interix*)            PV="${def}" ;;
-		i586-pc-winnt*)              PV="${def}" ;;
-		mips-sgi-irix*)              PV="${def}" ;;
-		i*86-pc-linux-gnu)           PV="${def}" ;;
-		ia64-pc-linux-gnu)           PV="${def}" ;;
-		x86_64-pc-linux-gnu)         PV="${def}" ;;
-		i*86-pc-netbsdelf*)          PV="${def}" ;; 
-		powerpc-unknown-openbsd*)    PV="${def}" ;;
-		i*86-pc-openbsd*)            PV="${def}" ;;
-		x86_64-pc-openbsd*)          PV="${def}" ;;
-		i386-pc-solaris2.10)         PV="${def}" ;;
-		i386-pc-solaris2.11)         PV="${def}" ;;
-		sparc-sun-solaris2.9)        PV="${def}" ;;
-		sparc-sun-solaris2.10)       PV="${def}" ;;
-		sparcv9-sun-solaris2.10)     PV="${def}" ;;
-		x86_64-pc-solaris2.10)       PV="${def}" ;;
-		*)
-			einfo "warning: no specific tree snapshot known for your system"
-			PV="${def}"
-		;;
-	esac
+	local PV="20080710"
 	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
