@@ -1,6 +1,18 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.20 2008/08/16 03:04:23 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.23 2008/08/16 19:27:22 tester Exp $
+
+  16 Aug 2008; Olivier Crête <tester@gentoo.org>
+  ca-certificates-20080514-r2.ebuild:
+  Stable on amd64, bug #233576
+
+  16 Aug 2008; Raúl Porcel <armin76@gentoo.org>
+  ca-certificates-20080514-r2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #233576
+
+  16 Aug 2008; nixnut <nixnut@gentoo.org>
+  ca-certificates-20080514-r1.ebuild:
+  Stable on ppc wrt bug 233576
 
 *ca-certificates-20080514-r2 (16 Aug 2008)
 
