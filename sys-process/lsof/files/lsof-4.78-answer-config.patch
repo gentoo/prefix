@@ -75,15 +75,6 @@
        if test "X$ANS" = "Xy" -o "X$ANS" = "XY"
        then
          CDC=1
-@@ -860,7 +860,7 @@
-     do
-       echo ""
-       echo $EO "Do you want to $HXR HASXOPT_ROOT (y|n) [n]? $EC"
--      read ANS EXCESS
-+      ANS=y
-       if test "X$ANS" = "Xy" -o "X$ANS" = "XY"
-       then
-         HXRA=1
 @@ -928,7 +928,7 @@
        else
          echo $EO "Enable HASKERNIDCK (y|n) [n]? $EC"

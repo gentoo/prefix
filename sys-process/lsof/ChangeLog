@@ -1,6 +1,20 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.43 2008/05/14 15:05:26 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.47 2008/08/16 17:09:50 nixnut Exp $
+
+  16 Aug 2008; nixnut <nixnut@gentoo.org> lsof-4.78-r2.ebuild:
+  Stable on ppc wrt bug 234929
+
+  16 Aug 2008; Raúl Porcel <armin76@gentoo.org> lsof-4.78-r2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #234929
+
+  16 Aug 2008; Jeroen Roovers <jer@gentoo.org> lsof-4.78-r2.ebuild:
+  Stable for HPPA (bug #234929).
+
+*lsof-4.80 (16 Aug 2008)
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org> +lsof-4.80.ebuild:
+  Version bump #233673 by Lars (Polynomial-C).
 
 *lsof-4.78-r2 (14 May 2008)
 

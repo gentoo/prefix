@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.78-r2.ebuild,v 1.4 2008/08/16 17:09:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.80.ebuild,v 1.1 2008/08/16 15:36:47 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,9 +31,8 @@ src_unpack() {
 	cd "${S}"
 	ht_fix_file Configure Customize
 	touch .neverInv
-	epatch "${FILESDIR}"/${P}-answer-config.patch
-	epatch "${FILESDIR}"/${P}-freebsd.patch
-	epatch "${FILESDIR}"/${P}-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
+	epatch "${FILESDIR}"/${PN}-4.78-config-solaris.patch
 	#Fix automagic dependency on libselinux. Bug 188272.
 	if ! use selinux; then
 		sed -i \
