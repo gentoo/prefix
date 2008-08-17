@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.1.ebuild,v 1.6 2008/05/12 13:48:13 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.4.ebuild,v 1.1 2008/08/16 14:45:34 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ DEPEND=">=sys-libs/ncurses-5.2
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.1.0-disable-speller.patch #221219
+	epatch "${FILESDIR}"/${P}-open-mode.patch #232079
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
@@ -70,6 +70,14 @@ src_install() {
 
 	dodir /usr/bin
 	dosym /bin/nano /usr/bin/nano
+
+	insinto /usr/share/nano
+	local f
+	for f in "${FILESDIR}"/*.nanorc ; do
+		[[ -e ${ED}/usr/share/nano/${f##*/} ]] && continue
+		doins "${f}" || die
+		echo "# include \"/usr/share/nano/${f##*/}\"" >> "${ED}"/etc/nanorc
+	done
 }
 
 pkg_postinst() {
