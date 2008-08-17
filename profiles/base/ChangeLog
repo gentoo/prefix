@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.48 2008/08/02 20:43:15 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.49 2008/08/16 15:16:34 rbu Exp $
+
+  16 Aug 2008; Robert Buchholz <rbu@gentoo.org> package.use.mask:
+  use-masking tls for kaa-base
 
   02 Aug 2008; Petteri Räty <betelgeuse@gentoo.org> make.defaults:
   Add mmap_emul introduced in 1.0.17 to ALSA_PCM_PLUGINS.

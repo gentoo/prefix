@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Robert Buchholz <rbu@gentoo.org> (16 Aug 2008)
+# TLS needs dev-libs/cryptlib, which is x86 only
+dev-python/kaa-base tls
+
 # Markus Ullmann <jokey@gentoo.org> (30 Jul 2008)
 # this needs a dep from the gnome overlay
 net-libs/webkit-gtk soup
