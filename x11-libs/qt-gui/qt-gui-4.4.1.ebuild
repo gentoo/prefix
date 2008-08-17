@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.1.ebuild,v 1.2 2008/08/13 22:56:49 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.1.ebuild,v 1.3 2008/08/16 15:07:45 yngwin Exp $
 
 EAPI="prefix 1"
 inherit eutils qt4-build
@@ -39,6 +39,7 @@ DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
 	x11-proto/xextproto
 	x11-proto/inputproto"
+PDEPEND="qt3support? ( ~x11-libs/qt-qt3support-${PV} )"
 
 QT4_TARGET_DIRECTORIES="
 src/gui
