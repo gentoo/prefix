@@ -52,7 +52,7 @@ src_unpack() {
 
 	# prefix search tools patch, plus OSX fixes
 	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch
-	epatch "${FILESDIR}"/${PN}-1.5.5-libiconv.patch
+	epatch "${FILESDIR}"/${P}-prefix-libiconv.patch
 
 	# remove internal libpng - see bug #210237
 	epatch "${FILESDIR}/${PN}-1.5-system-libpng.patch"
