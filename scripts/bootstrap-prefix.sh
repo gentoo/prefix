@@ -203,14 +203,31 @@ bootstrap_tree() {
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
-	if [ ! -e "${ROOT}"/usr/portage/.unpacked ]; then
+	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
 		cd "${ROOT}"/usr
-		efetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
+		efetch "${DISTFILES_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc "${DISTDIR}"/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles distfiles
 		rm -Rf portage
 		mv rsync1* portage
+		mv distfiles portage/
+		touch portage/.unpacked
+	fi
+}
+
+bootstrap_latest_tree() {
+	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
+	do
+		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
+	done
+	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
+		cd "${ROOT}"/usr
+		efetch "${SNAPSHOT_URL}/portage-latest.tar.bz2"
+		# beware: fetch creates DISTDIR!!!
+		mv "${DISTDIR}" distfiles
+		rm -Rf portage
+		bzip2 -dc distfiles/portage-latest.tar.bz2 | $TAR -xf - || exit 1
 		mv distfiles portage/
 		touch portage/.unpacked
 	fi
@@ -250,7 +267,7 @@ bootstrap_portage() {
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
-	efetch ${PORTAGE_URL}/${A}
+	efetch ${DISTFILES_URL}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
@@ -819,7 +836,8 @@ CXXFLAGS="${CFLAGS:--O2 -pipe}"
 PORTDIR=${ROOT}/usr/portage
 DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
-PORTAGE_URL="http://dev.gentoo.org/~grobian/distfiles"
+DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
+SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
 GNU_URL="ftp://ftp.gnu.org/gnu"
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 GENTOO_URL="http://gentoo.osuosl.org"
