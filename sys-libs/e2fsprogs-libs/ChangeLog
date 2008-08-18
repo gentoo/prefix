@@ -1,0 +1,15 @@
+# ChangeLog for sys-libs/e2fsprogs-libs
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.2 2008/08/16 04:59:44 vapier Exp $
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/e2fsprogs-libs-1.41.0-null-blkid.patch,
+  e2fsprogs-libs-1.41.0.ebuild:
+  Add fix from upstream for NULL blkids.
+
+*e2fsprogs-libs-1.41.0 (16 Aug 2008)
+
+  16 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/e2fsprogs-libs-1.41.0-makefile.patch, +metadata.xml,
+  +e2fsprogs-libs-1.41.0.ebuild:
+  Version bump (merge ss/com_err).
