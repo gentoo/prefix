@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8893 2008/08/16 20:34:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8894 2008/08/17 19:32:49 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Michael Sterrett <mr_bones_@gentoo.org> (17 Aug 2008)
+# Security masked: bug #222119
+games-fps/tremulous
+games-fps/tremulous-bin
 
 # Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
 # mask live ebuild (no bundled sqlalchemy anymore)
