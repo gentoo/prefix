@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.301 2008/04/05 22:38:26 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.302 2008/08/17 22:21:52 opfer Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1681,7 +1681,7 @@ preserve_old_lib_notify() {
 # The default is to abort (call die).  The -a and -o flags control
 # the requirements of the USE flags.  They correspond to "and" and "or"
 # logic.  So the -a flag means all listed USE flags must be enabled
-# while the -o flag means at least one of the listed fIUSE flags must be
+# while the -o flag means at least one of the listed IUSE flags must be
 # enabled.  The --hidden option is really for internal use only as it
 # means the USE flag we're checking is hidden expanded, so it won't be found
 # in IUSE like normal USE flags.
