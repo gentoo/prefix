@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.4.ebuild,v 1.1 2008/08/16 14:45:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.4.ebuild,v 1.2 2008/08/18 03:43:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ DEPEND=">=sys-libs/ncurses-5.2
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-debug.patch #234959
 	epatch "${FILESDIR}"/${P}-open-mode.patch #232079
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
