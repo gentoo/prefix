@@ -3,7 +3,7 @@
 <pkgmetadata>
 <herd>fonts</herd>
 <use>
-	<flag name='fontforge'>USE fontforge to build fonts from source</flag>
+	<flag name='fontforge'>Use <pkg>media-gfx/fontforge</pkg> to build fonts from source</flag>
 </use>
 <longdescription>
 	The DejaVu fonts are a font family based on the Vera Fonts release 1.10. Its
