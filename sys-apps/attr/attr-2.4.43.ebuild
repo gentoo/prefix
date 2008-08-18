@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.41.ebuild,v 1.2 2008/08/17 15:39:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.1 2008/08/17 14:37:53 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,10 +25,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.4.39-gettext.patch
-	epatch "${FILESDIR}"/${PN}-2.4.39-linguas.patch #205948
+	epatch "${FILESDIR}"/${PN}-2.4.43-linguas.patch #205948
 	epatch "${FILESDIR}"/${PN}-2.4.24-only-symlink-when-needed.patch
-	epatch "${FILESDIR}"/${P}-no-static-paths.patch
-	epatch "${FILESDIR}"/${P}-features_h.patch
+	epatch "${FILESDIR}"/${PN}-2.4.41-no-static-paths.patch
+	epatch "${FILESDIR}"/${PN}-2.4.41-features_h.patch
 	sed -i \
 		-e "/^PKG_DOC_DIR/s:@pkg_name@:${PF}:" \
 		-e '/HAVE_ZIPPED_MANPAGES/s:=.*:=false:' \

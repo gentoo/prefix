@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/attr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/ChangeLog,v 1.101 2008/02/23 03:57:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/ChangeLog,v 1.103 2008/08/17 15:39:25 maekke Exp $
+
+  17 Aug 2008; Markus Meier <maekke@gentoo.org> attr-2.4.41.ebuild:
+  amd64/x86 stable, bug #235014
+
+*attr-2.4.43 (17 Aug 2008)
+
+  17 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/attr-2.4.43-linguas.patch, +attr-2.4.43.ebuild:
+  Version bump #231274 by Conrad Kostecki.
 
 *attr-2.4.41 (23 Feb 2008)
 
