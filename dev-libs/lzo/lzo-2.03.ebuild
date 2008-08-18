@@ -17,7 +17,12 @@ DEPEND=""
 RDEPEND=""
 
 src_compile() {
-	econf --enable-shared || die
+	local myconf=""
+	if use x86-macos; then
+		myconf="--disable-asm"
+	fi
+
+	econf --enable-shared ${myconf} || die
 	emake || die
 }
 
