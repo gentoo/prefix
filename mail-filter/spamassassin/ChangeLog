@@ -1,6 +1,13 @@
 # ChangeLog for mail-filter/spamassassin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.158 2008/05/14 21:25:56 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.159 2008/08/17 16:20:11 dertobi123 Exp $
+
+*spamassassin-3.2.5 (17 Aug 2008)
+
+  17 Aug 2008; Tobias Scherbaum <dertobi123@gentoo.org> metadata.xml,
+  +spamassassin-3.2.5.ebuild:
+  Version bump #228557, fix quoting and add GLEP 56 USE flag desc from
+  use.local.desc
 
   14 May 2008; Stefan Briesenick <sbriesen@gentoo.org>
   files/3.0.0-spamd.init:
