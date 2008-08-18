@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.17.ebuild,v 1.6 2008/08/17 21:02:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.22.ebuild,v 1.1 2008/08/17 21:02:40 eva Exp $
 
 EAPI="prefix"
 
 inherit gnome2 eutils mono libtool
 
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
-SRC_URI="http://spruce.sourceforge.net/gmime/sources/v${PV%.*}/${P}.tar.gz"
+SRC_URI="http://spruce.sourceforge.net/${PN}/sources/v${PV%.*}/${P}.tar.gz"
 HOMEPAGE="http://spruce.sourceforge.net/gmime/"
 
 SLOT="0"
@@ -51,7 +51,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable mono) $(use_enable doc gtk-doc) || die "configure failed"
+	econf $(use_enable mono) $(use_enable doc gtk-doc)
 	MONO_PATH="${S}" emake -j1 || die "make failed"
 }
 

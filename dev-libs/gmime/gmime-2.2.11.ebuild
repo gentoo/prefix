@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.11.ebuild,v 1.4 2008/03/02 09:35:35 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.11.ebuild,v 1.5 2008/08/17 21:02:40 eva Exp $
 
 EAPI="prefix"
 
@@ -16,13 +16,14 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc mono"
 
 RDEPEND=">=dev-libs/glib-2
-	doc? ( >=dev-util/gtk-doc-1.0 )
 	mono? ( dev-lang/mono
 			>=dev-dotnet/gtk-sharp-2.4.0 )
 	sys-libs/zlib"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig
-		doc? ( app-text/docbook-sgml-utils )"
+		doc? (
+			>=dev-util/gtk-doc-1.0
+			app-text/docbook-sgml-utils )"
 
 DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
 

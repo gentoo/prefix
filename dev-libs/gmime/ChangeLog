@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.71 2008/08/12 14:10:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.72 2008/08/17 21:02:40 eva Exp $
+
+  17 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.1.19.ebuild,
+  gmime-2.2.3.ebuild, gmime-2.2.11.ebuild, gmime-2.2.17.ebuild:
+  gtk-doc is not RDEPEND, fix bug 221711.
+
+*gmime-2.2.22 (17 Aug 2008)
+
+  17 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org> +gmime-2.2.22.ebuild:
+  bump to 2.2.22, fix bug #217226 and bug #221711.
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> gmime-2.2.17.ebuild:
   alpha/ia64/sparc stable wrt #229709
