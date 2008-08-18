@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/packages,v 1.42 2008/03/30 16:52:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/packages,v 1.43 2008/08/17 20:12:31 zmedico Exp $
 
 # Gentoo Base Profile
 
@@ -62,7 +62,7 @@
 *sys-devel/m4
 *sys-devel/make
 *sys-devel/patch
-*sys-fs/e2fsprogs
+#*sys-fs/e2fsprogs
 *sys-libs/ncurses
 *sys-libs/readline
 *sys-libs/zlib

@@ -1,6 +1,13 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.49 2008/08/16 15:16:34 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.50 2008/08/17 20:12:31 zmedico Exp $
+
+  17 Aug 2008; Zac Medico <zmedico@gentoo.org> packages:
+  Remove sys-fs/e2fsprogs from the system set in order to allow
+  automatic blocker resolution for bug #234907. This change shouldn't
+  hurt since the sys-fs/e2fsprogs package is pulled in as a dependency
+  of sys-apps/util-linux, which is a member of the system set for
+  relevant profiles.
 
   16 Aug 2008; Robert Buchholz <rbu@gentoo.org> package.use.mask:
   use-masking tls for kaa-base
