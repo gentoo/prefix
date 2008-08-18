@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27458.ebuild,v 1.1 2008/08/13 14:22:58 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27458.ebuild,v 1.4 2008/08/17 17:12:57 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -11,10 +11,10 @@ MPLAYER_REVISION=27458
 
 IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
 bindist cddb cdio cdparanoia -cpudetection -custom-cflags -custom-cpuopts debug
-dga doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi
+dga dirac doc dts dvb directfb +dvd dv dxr2 dxr3 enca encode esd -fbcon ftp -gif ggi
 -gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo
 +mad -md5sum +mmx mmxext mp2 +mp3 musepack nas nemesi +vorbis opengl
-openal oss -png -pnm pulseaudio -pvr quicktime radio -rar real rtc -samba sdl
+openal oss -png -pnm pulseaudio -pvr quicktime radio -rar real rtc -samba schroedinger sdl
 speex srt sse sse2 ssse3 svga teletext tga +theora +truetype unicode v4l v4l2 vidix win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
@@ -57,6 +57,7 @@ RDEPEND="sys-libs/ncurses
 	bidi? ( dev-libs/fribidi )
 	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( media-sound/cdparanoia )
+	dirac? ( >=media-video/dirac-0.10.0 )
 	directfb? ( dev-libs/DirectFB )
 	dga? ( x11-libs/libXxf86dga  )
 	dts? ( media-libs/libdca )
@@ -91,6 +92,7 @@ RDEPEND="sys-libs/ncurses
 	pnm? ( media-libs/netpbm )
 	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
+	schroedinger? ( media-libs/schroedinger )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
 	srt? ( >=media-libs/freetype-2.1
@@ -327,6 +329,9 @@ src_compile() {
 	for x in gif jpeg live mad musepack pnm speex tga theora xanim; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
+	for x in dirac schroedinger ; do
+		use ${x} || myconf="${myconf} --disable-lib${x}-lavc"
+	done
 	use amrnb || myconf="${myconf} --disable-libamr_nb"
 	use amrwb || myconf="${myconf} --disable-libamr_wb"
 	use dts || myconf="${myconf} --disable-libdca"
@@ -473,6 +478,7 @@ src_install() {
 		 CONFDIR="${ED}/etc/mplayer" \
 		 DATADIR="${ED}/usr/share/mplayer" \
 		 MANDIR="${ED}/usr/share/man" \
+		 INSTALLSTRIP="" \
 		 install || die "Failed to install MPlayer!"
 
 	dodoc AUTHORS Changelog README etc/codecs.conf
@@ -527,7 +533,7 @@ EOT
 
 	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
 
-	dobin "${ED}/usr/share/doc/${PF}/TOOLS/midentify"
+	dobin "${S}/TOOLS/midentify.sh" || die
 
 	insinto /usr/share/mplayer
 	doins "${S}/etc/input.conf"

@@ -1,6 +1,20 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.583 2008/08/13 14:27:01 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.586 2008/08/17 17:12:57 aballier Exp $
+
+  17 Aug 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml,
+  mplayer-1.0_rc2_p27458.ebuild:
+  Add dirac and schroedinger useflags that were automagic, thanks to Hanno
+  Boeck <hanno@gentoo.org> for reporting in bug #234775.
+
+  17 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  mplayer-1.0_rc2_p27458.ebuild:
+  dont prestrip binaries
+
+  17 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  mplayer-1.0_rc2_p27458.ebuild:
+  fix midentify install (was renamed to .sh) and add a die so that it'll be
+  spotted easily later
 
 *mplayer-1.0_rc2_p27120-r1 (13 Aug 2008)
 
