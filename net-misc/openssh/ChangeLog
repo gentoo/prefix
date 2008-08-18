@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.311 2008/07/23 15:03:20 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.312 2008/08/17 17:57:35 vapier Exp $
+
+*openssh-5.1_p1 (17 Aug 2008)
+
+  17 Aug 2008; Mike Frysinger <vapier@gentoo.org> +openssh-5.1_p1.ebuild:
+  Version bump #232891 by Krzysztof Oledzki.
 
 *openssh-5.0_p1-r2 (23 Jul 2008)
 
