@@ -7,4 +7,7 @@
   <name>Gunnar Wrobel</name>
   <description>Primary maintainer</description>
 </maintainer>
+<use>
+  <flag name='git'>Support <pkg>dev-util/git</pkg> based overlays</flag>
+</use>
 </pkgmetadata>

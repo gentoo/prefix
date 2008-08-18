@@ -1,6 +1,20 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.57 2008/03/20 16:17:29 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.60 2008/08/03 14:45:37 ulm Exp $
+
+  03 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
+
+*layman-1.2.0-r1 (03 Jun 2008)
+
+  03 Jun 2008; wrobel@gentoo.org -layman-1.2.0.ebuild,
+  +layman-1.2.0-r1.ebuild:
+  Fix #224659.
+
+*layman-1.2.0 (02 Jun 2008)
+
+  02 Jun 2008; wrobel@gentoo.org +layman-1.2.0.ebuild:
+  Added layman-1.2.0.
 
   20 Mar 2008; Markus Ullmann <jokey@gentoo.org> layman-1.1.1-r1.ebuild:
   Works on arm
