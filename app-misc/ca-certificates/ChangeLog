@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.23 2008/08/16 19:27:22 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.24 2008/08/18 05:03:34 jer Exp $
+
+  18 Aug 2008; Jeroen Roovers <jer@gentoo.org>
+  ca-certificates-20080514-r2.ebuild:
+  Stable for HPPA (bug #233576).
 
   16 Aug 2008; Olivier Crête <tester@gentoo.org>
   ca-certificates-20080514-r2.ebuild:
