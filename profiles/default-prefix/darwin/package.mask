@@ -12,9 +12,9 @@
 =sys-devel/gdb-apple-961
 =sys-devel/odcctools-20080621
 
-# Fabian Groffen <grobian@gentoo.org> (24 Mar 2008)
-# Doesn't link, needs figuring out how we're going to do the GUI anyway
-=app-editors/gvim-7.1.285
+# Fabian Groffen <grobian@gentoo.org> (04 Mar 2008)
+# segfaults during compilation on Darwin
+=dev-util/cmake-2.4.8
 
 # Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
 # experimenting on this -- not yet working

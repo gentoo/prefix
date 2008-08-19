@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask,
+  +sunos/solaris/package.mask:
+  Move ffmpeg and cmake into sunos/solaris and darwin subdirs resp. since they
+  are known to cause trouble there and by no means critical applications.
+
   19 Aug 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Remove masks for superseeded/removed packages
 
