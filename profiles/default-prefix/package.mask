@@ -37,7 +37,7 @@
 =sys-devel/gcc-4.2.4-r00.1
 
 # Fabian Groffen <grobian@gentoo.org> (06 Jul 2008)
-# Needs to have bug #230981 sorted out
+# Needs to have bug #230981 sorted out (e2fsprogs dependency)
 ~x11-libs/libSM-1.1.0
 
 # Jeremy Olexa <darkside@gentoo.org> (01 Jul 2008)
@@ -96,10 +96,6 @@ app-text/tetex
 # Fabian Groffen <grobian@gentoo.org> (13 Feb 2008)
 # This is an unmask to compensate the mask in the main profiles
 ->=sys-apps/portage-2.2_alpha
-
-# Elias Pipping <pipping@gentoo.org> (10 Feb 2008)
-# Experimental version
-app-text/openrcs
 
 # Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
 # Screws up things, see bug #204998
