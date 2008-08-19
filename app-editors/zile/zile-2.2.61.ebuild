@@ -19,4 +19,6 @@ DEPEND="sys-libs/ncurses
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS NEWS README THANKS || die "dodoc failed"
+
+	rm ${ED}/usr/lib/charset.alias
 }
