@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/slocate
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.82 2008/02/06 18:03:24 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.83 2008/08/19 01:11:18 vapier Exp $
+
+*slocate-3.1-r2 (19 Aug 2008)
+
+  19 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/slocate-3.1-CVE-2007-0227.patch, +files/slocate-3.1-NUL.patch,
+  +files/slocate-3.1-cron2.patch, files/updatedb.conf,
+  +slocate-3.1-r2.ebuild:
+  Add patch from Debian for CVE 2007-0227. Run updatedb through ionice
+  #231203 by Daniel Pielmeier. Add support by marty rosenberg for -0 (NUL
+  delimited output) #216838.
 
   06 Feb 2008; nixnut <nixnut@gentoo.org> slocate-3.1-r1.ebuild:
   stable on ppc wrt bug #180360

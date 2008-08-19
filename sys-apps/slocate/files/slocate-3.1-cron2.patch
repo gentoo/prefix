@@ -1,0 +1,25 @@
+--- debian/cron.daily
++++ debian/cron.daily
+@@ -1,12 +1,18 @@
+ #! /bin/sh
+ 
+-if [ -x /usr/bin/slocate ]
++if [ -x /usr/bin/updatedb ]
+ then
+ 	if [ -f /etc/updatedb.conf ]
+ 	then
+-		/usr/bin/updatedb
++		. /etc/updatedb.conf
++		args=""
+ 	else
+-		/usr/bin/updatedb -f proc
++		args="-f proc"
+ 	fi
+-	chown root.slocate /var/lib/slocate/slocate.db
++
++	# run on active process in case ionice isnt installed, or
++	# system is really old and ionice doesnt work ...
++	ionice -c ${IONICE_CLASS:-2} -n ${IONICE_PRIORITY:-7} -p $$ 2>/dev/null
++
++	nice -n ${NICE:-10} /usr/bin/updatedb ${args}
+ fi
