@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.48 2008/08/17 16:55:27 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.49 2008/08/18 18:55:05 ranger Exp $
+
+  18 Aug 2008; Brent Baude <ranger@gentoo.org> lsof-4.78-r2.ebuild:
+  stable ppc64, bug 234929
 
   17 Aug 2008; Santiago M. Mola <coldwind@gentoo.org> lsof-4.78-r2.ebuild:
   amd64 stable wrt bug #234929
