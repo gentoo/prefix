@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.24 2008/08/18 05:03:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.25 2008/08/18 19:04:16 ranger Exp $
+
+  18 Aug 2008; Brent Baude <ranger@gentoo.org>
+  ca-certificates-20080514-r2.ebuild:
+  stable ppc64, bug 233576
 
   18 Aug 2008; Jeroen Roovers <jer@gentoo.org>
   ca-certificates-20080514-r2.ebuild:
