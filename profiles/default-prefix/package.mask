@@ -109,11 +109,6 @@ app-text/tetex
 # rlogin seems not to work, consider using ssh anyway
 net-misc/netkit-rsh
 
-# Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
-# Has linkage problems:
-# gnulib-lib/.libs/libgettextlib.so: undefined reference to `acl_trivial'
-=sys-devel/gettext-0.17
-
 # Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
 # Still a WIP -- not yet ready for use
 www-servers/apache
