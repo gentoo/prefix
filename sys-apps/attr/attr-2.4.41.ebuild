@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.41.ebuild,v 1.2 2008/08/17 15:39:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.41.ebuild,v 1.4 2008/08/18 19:10:08 ranger Exp $
 
 EAPI="prefix"
 
