@@ -1,6 +1,17 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.46 2008/08/15 15:59:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.48 2008/08/18 14:08:51 pva Exp $
+
+  18 Aug 2008; Peter Volkov <pva@gentoo.org> hunspell-1.2.6.ebuild:
+  amd64 stable, bug #233583.
+
+*hunspell-1.2.7 (18 Aug 2008)
+
+  18 Aug 2008; Peter Volkov <pva@gentoo.org>
+  -files/hunspell-1.2.2-libtool-2.22.patch, -hunspell-1.2.2.ebuild,
+  -hunspell-1.2.4-r1.ebuild, -hunspell-1.2.5.ebuild, +hunspell-1.2.7.ebuild:
+  Version bump, bug #234912, thank Tiziano Müller for report. Removed
+  unused.
 
   15 Aug 2008; nixnut <nixnut@gentoo.org> hunspell-1.2.6.ebuild:
   Stable on ppc wrt bug 233583
