@@ -134,17 +134,6 @@ app-text/openrcs
 # rlogin seems not to work, consider using ssh anyway
 net-misc/netkit-rsh
 
-# Fabian Groffen <grobian@gentoo.org> (24 Dec 2007)
-# Mask this release of odcctools, as it is currently only for playing
-# with 64-bits prefixes, so no need to bother regular users with an
-# upgrade.
-=sys-devel/odcctools-20071228
-
-# Fabian Groffen <grobian@gentoo.org> (17 Dec 2007)
-# Doesn't compile on OSX (cyclic dependency) and FreeBSD (undefined
-# references), linking issues.
-~media-gfx/graphviz-2.16.1
-
 # Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
 # Has linkage problems:
 # gnulib-lib/.libs/libgettextlib.so: undefined reference to `acl_trivial'
