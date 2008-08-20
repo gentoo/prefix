@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.14.ebuild,v 1.5 2008/05/28 14:58:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.15.ebuild,v 1.1 2008/08/19 05:43:37 grozin Exp $
 
 EAPI="prefix"
 inherit eutils
@@ -44,8 +44,8 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PF}.patch
+	epatch "${FILESDIR}"/${PN}-1.0.6.14-interix.patch
 }
 
 src_compile() {
