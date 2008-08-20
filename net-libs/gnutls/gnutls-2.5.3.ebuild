@@ -48,7 +48,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.3.11+gcc-4.3.patch
 
-	epatch "${FILESDIR}"/${PN}-2.2.2-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 
 	elibtoolize # for sane .so versioning on FreeBSD
 }
