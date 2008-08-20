@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  20 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  clean up p.mask. 
+  -moinmoin probably works - I just don't use it, leave unmasked until someone 
+  complains. 
+  -lighttpd works fine - I didn't understand it when I imported it.
+  -There is no portage-2.2 mask in the main profiles anymore.
+
   19 Aug 2008; Fabian Groffen <grobian@gentoo.org> package.mask,
   windows/interix/package.mask:
   unmask sys-devel/gettext-0.17, mduft never just unmask for your private
