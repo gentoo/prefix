@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.337 2008/07/31 14:18:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.338 2008/08/19 09:11:59 hawking Exp $
+
+  19 Aug 2008; Ali Polatel <hawking@gentoo.org> -files/python-config-2.2,
+  -files/python-config-2.3, -files/python-2.3.6-disable-failing-tests.patch,
+  metadata.xml, -python-2.3.5-r2.ebuild, -python-2.3.5-r3.ebuild,
+  -python-2.3.6.ebuild, -python-2.3.6-r3.ebuild, -python-2.3.6-r6.ebuild,
+  -python-2.4.4-r13.ebuild, -python-2.5.2-r5.ebuild:
+  Drop python-2.3, drop old 2.4, 2.5 ebuilds. Add local use flag
+  descriptions to metadata.xml.
 
   31 Jul 2008; Raúl Porcel <armin76@gentoo.org> python-2.5.2-r6.ebuild:
   sparc stable
