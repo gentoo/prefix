@@ -139,6 +139,8 @@ src_unpack() {
 	# This is an old version of libtool
 	rm -rf libltdl
 	sed -i -e '/libltdl/d' configure.ac || die
+	# this breaks, and it seems we don't need this "workaround"
+	sed -i -e 's/\$DARWIN9/forgetit/' configure.ac || die
 
 	# Update this file from our local libtool which is much newer than the
 	# bundled one. This allows MAKEOPTS=-j2 to work on FreeBSD.
