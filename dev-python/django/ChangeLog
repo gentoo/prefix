@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/django
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.23 2008/06/07 12:51:16 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.24 2008/08/19 09:25:27 hawking Exp $
+
+  19 Aug 2008; Ali Polatel <hawking@gentoo.org> django-0.96.2.ebuild:
+  Use cp -pPR instead of cp -a, #235057, thanks to Michael A. Smith.
 
 *django-9999 (07 Jun 2008)
 

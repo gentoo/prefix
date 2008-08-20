@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.2.ebuild,v 1.1 2008/05/26 18:15:28 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.2.ebuild,v 1.2 2008/08/19 09:25:27 hawking Exp $
 
 EAPI="prefix"
 
@@ -43,10 +43,10 @@ src_unpack() {
 
 	# Those directories are missing from 0.96.2, so we copy them over from
 	# Django-${EXTRAS_VERSION}:
-	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/examples" "${S}/" || die
-	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/extras" "${S}/" || die
-	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/tests" "${S}/" || die
-	cp -a "${WORKDIR}/Django-${EXTRAS_VERSION}/django/contrib/formtools/templates" \
+	cp -pPR "${WORKDIR}/Django-${EXTRAS_VERSION}/examples" "${S}/" || die
+	cp -pPR "${WORKDIR}/Django-${EXTRAS_VERSION}/extras" "${S}/" || die
+	cp -pPR "${WORKDIR}/Django-${EXTRAS_VERSION}/tests" "${S}/" || die
+	cp -pPR "${WORKDIR}/Django-${EXTRAS_VERSION}/django/contrib/formtools/templates" \
 		"${S}/django/contrib/formtools/" || die
 
 }
