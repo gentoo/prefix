@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1783 2008/08/16 15:13:33 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1786 2008/08/20 04:19:01 vapier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  20 Aug 2008; Mike Frysinger <vapier@gentoo.org> info_vars:
+  Add FFLAGS as we move to supporting it better with fortran.
+
+  19 Aug 2008; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Remove net-dialup/ppp:wins-ack USE flag (#234583).
+
+  19 Aug 2008; Ali Polatel <hawking@gentoo.org> package.mask:
+  Removed python-2.3
 
   16 Aug 2008; Robert Buchholz <rbu@gentoo.org> use.local.desc:
   Add tls local use flag for dev-python/kaa-base

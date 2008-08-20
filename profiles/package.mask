@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8896 2008/08/18 20:08:30 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8897 2008/08/19 09:16:56 hawking Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -285,10 +285,6 @@ sys-fs/trustees
 # Unported to Portaudio v19
 =media-sound/denemo-0.7.7
 games-simulation/cultivation
-
-# Ali Polatel <hawking@gentoo.org> (24 Jun 2008)
-# Old versions not maintained by upstream anymore.
-=dev-lang/python-2.3*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (23 Jun 2008)
 # Now a part of gnome-games
