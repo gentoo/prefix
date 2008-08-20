@@ -43,6 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PV}-commandline-options.patch"
 
 	epatch "${FILESDIR}"/${P}-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
 src_compile() {
