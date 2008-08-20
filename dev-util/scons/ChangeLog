@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.58 2008/07/19 12:31:48 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.60 2008/08/20 04:30:17 neurogeek Exp $
+
+*scons-1.0.0 (19 Aug 2008)
+
+  19 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> scons-0.97.ebuild,
+  -scons-0.98.3.ebuild, -scons-0.98.4.ebuild, -scons-0.98.5.ebuild,
+  +scons-1.0.0.ebuild:
+  Version bump. Removed old versions. Fixed 0.97 ebuild and this closes bug
+  #107013
 
 *scons-0.98.5 (19 Jul 2008)
 

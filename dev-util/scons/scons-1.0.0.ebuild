@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.97.ebuild,v 1.11 2008/08/20 04:26:40 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.0.0.ebuild,v 1.1 2008/08/20 04:26:40 neurogeek Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 HOMEPAGE="http://www.scons.org/"
 
 SLOT="0"
-LICENSE="as-is"
+LICENSE="MIT"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
@@ -41,5 +41,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup "${EPREFIX}"/usr/$(get_libdir)/${P}
+	python_mod_cleanup /usr/$(get_libdir)/${P}
 }
