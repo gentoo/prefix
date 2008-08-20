@@ -35,6 +35,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-4.32.6-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 	elibtoolize # for ia64-hpux
 }
 
