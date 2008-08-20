@@ -68,6 +68,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PV}-missing-include.patch"
 
 	epatch "${FILESDIR}"/${PN}-1.5.0-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 	AT_M4DIR="m4" eautoreconf
 }
 
