@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/rpm2targz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.68 2008/06/04 07:32:07 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.69 2008/08/19 23:03:36 vapier Exp $
+
+*rpm2targz-9.0.0.1g (19 Aug 2008)
+
+  19 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +rpm2targz-9.0.0.1g.ebuild:
+  Version bump.
 
   04 Jun 2008; Markus Rothe <corsair@gentoo.org> rpm2targz-9.0-r7.ebuild:
   Stable on ppc64; bug #224221
