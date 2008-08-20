@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.360 2008/08/11 22:40:31 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.361 2008/08/20 03:15:38 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1508,8 +1508,13 @@ gcc_do_make() {
 
 	if ! is_crosscompile && ! use nocxx && use doc ; then
 		if type -p doxygen > /dev/null ; then
-			cd "${CTARGET}"/libstdc++-v3
-			emake doxygen-man || ewarn "failed to make docs"
+			if tc_version_is_at_least 4.3 ; then
+				cd "${CTARGET}"/libstdc++-v3/doc
+				emake doc-man-doxygen || ewarn "failed to make docs"
+			elif tc_version_is_at_least 3.0 ; then
+				cd "${CTARGET}"/libstdc++-v3
+				emake doxygen-man || ewarn "failed to make docs"
+			fi
 		else
 			ewarn "Skipping libstdc++ manpage generation since you don't have doxygen installed"
 		fi

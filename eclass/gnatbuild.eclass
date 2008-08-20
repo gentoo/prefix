@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.41 2008/08/12 09:26:19 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.42 2008/08/19 11:39:56 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -66,7 +66,10 @@ GCCBRANCH=$(get_version_component_range 1-2 "${GCCVER}")
 GCCRELEASE=$(get_version_component_range 1-3 "${GCCVER}")
 
 # SLOT logic, make it represent gcc backend, as this is what matters most
-SLOT="${GCCBRANCH}"
+# There are some special cases, so we allow it to be defined in the ebuild
+# ATTN!! If you set SLOT in the ebuild, don't forget to make sure that
+# BOOT_SLOT is also set properly!
+[[ -z ${SLOT} ]] && SLOT="${GCCBRANCH}"
 
 # possible future crosscompilation support
 export CTARGET=${CTARGET:-${CHOST}}
@@ -77,8 +80,9 @@ is_crosscompile() {
 
 # Bootstrap CTARGET and SLOT logic. For now BOOT_TARGET=CHOST is "guaranteed" by
 # profiles, so mostly watch out for the right SLOT used in the bootstrap.
+# As above, with SLOT, it may need to be defined in the ebuild
 BOOT_TARGET=${CTARGET}
-BOOT_SLOT=${SLOT}
+[[ -z ${BOOT_SLOT} ]] && BOOT_SLOT=${SLOT}
 
 # set our install locations
 PREFIX=${GNATBUILD_PREFIX:-${EPREFIX}/usr} # not sure we need this hook, but may be..
