@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11445 (20 Aug 2008)
+
+  20 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.10815.ebuild, +portage-2.2.00.11445.ebuild:
+  New snapshot, should fix an issue when updating odcctools
+
 *portage-2.2.00.11421 (16 Aug 2008)
 
   16 Aug 2008; Fabian Groffen <grobian@gentoo.org>

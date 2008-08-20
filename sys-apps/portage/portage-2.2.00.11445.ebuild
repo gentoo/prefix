@@ -180,8 +180,8 @@ pkg_preinst() {
 		sed -i -e '/^@/d' "${EPREFIX}"/var/lib/portage/world
 	fi
 
-	einfo "converting NEEDED files to new syntax, please wait"
-	cd "${EROOT}/var/db/pkg"
+	pushd "${EROOT}/var/db/pkg" > /dev/null
+	local didwork=
 	for cpv in */*/NEEDED ; do
 		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.2 ]] ; then
 			while read line; do
@@ -190,6 +190,9 @@ pkg_preinst() {
 				install_name=$(otool -DX "${filename}")
 				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
 			done < "${cpv}"
+			[[ -z ${didwork} ]] \
+				&& didwork=yes \
+				|| didwork=already
 		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
 			while read line; do
 				filename=${line% *}
@@ -197,8 +200,14 @@ pkg_preinst() {
 				newline=$(scanelf -BF "%a;%F;%S;$needed;%r" $filename)
 				echo "${newline:3}" >> "${cpv}".ELF.2
 			done < "${cpv}"
+			[[ -z ${didwork} ]] \
+				&& didwork=yes \
+				|| didwork=already
 		fi
+		[[ ${didwork} == yes ]] && \
+			einfo "converting NEEDED files to new syntax, please wait"
 	done
+	popd > /dev/null
 }
 
 pkg_postinst() {
