@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20080715.ebuild,v 1.1 2008/07/15 03:27:42 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20080715-r1.ebuild,v 1.1 2008/08/19 16:47:23 darkside Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ RDEPEND="${DEPEND}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-additions.patch"
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify wtf
 }

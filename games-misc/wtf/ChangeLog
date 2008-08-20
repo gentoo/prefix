@@ -1,6 +1,14 @@
 # ChangeLog for games-misc/wtf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.21 2008/07/15 03:27:42 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.22 2008/08/19 16:47:23 darkside Exp $
+
+*wtf-20080715-r1 (19 Aug 2008)
+
+  19 Aug 2008; Jeremy Olexa <darkside@gentoo.org>
+  +files/wtf-20080715-additions.patch, -wtf-20080715.ebuild,
+  +wtf-20080715-r1.ebuild:
+  revision bump games-misc/wtf to include user submitted entries and old
+  updates. Sent upstream for inclusion into the source
 
 *wtf-20080715 (15 Jul 2008)
 
