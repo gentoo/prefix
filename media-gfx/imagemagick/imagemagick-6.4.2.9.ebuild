@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.2.9.ebuild,v 1.3 2008/08/16 16:56:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.2.9.ebuild,v 1.4 2008/08/19 22:30:46 maekke Exp $
 
 EAPI="prefix"
 
@@ -65,11 +65,6 @@ pkg_setup() {
 		elog "the svg USE-flag requires the X USE-flag set."
 		elog "disabling svg support for now."
 	fi
-
-	if use openmp && ! built_with_use sys-devel/gcc openmp; then
-		eerror "sys-devel/gcc needs to be built with openmp support."
-		die "emerge sys-devel/gcc with USE=\"openmp\""
-	fi
 }
 
 src_unpack() {
@@ -100,7 +95,7 @@ src_compile() {
 
 	#openmp support only works with >=sys-devel/gcc-4.3
 	# see bug #223825
-	if use openmp ; then
+	if use openmp && built_with_use --missing false sys-devel/gcc openmp; then
 		if [[ $(gcc-version) != "4.3" ]] ; then
 			ewarn "you need sys-devel/gcc-4.3 to be able to use openmp, disabling."
 			myconf="${myconf} --disable-openmp"
@@ -108,6 +103,7 @@ src_compile() {
 			myconf="${myconf} --enable-openmp"
 		fi
 	else
+		elog "disabling openmp support"
 		myconf="${myconf} --disable-openmp"
 	fi
 

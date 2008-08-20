@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.297 2008/08/16 16:56:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.298 2008/08/19 22:30:46 maekke Exp $
+
+  19 Aug 2008; Markus Meier <maekke@gentoo.org> imagemagick-6.4.2.9.ebuild:
+  do not die if sys-devel/gcc has no openmp USE-flag, just disable it. bug
+  #235156
 
   16 Aug 2008; Markus Meier <maekke@gentoo.org> imagemagick-6.4.2.9.ebuild:
   not restricting -j1 for testing
