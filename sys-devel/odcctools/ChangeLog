@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/odcctools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
+# $Id$
+
+*odcctools-20080820 (20 Aug 2008)
+
+  20 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  -odcctools-20070629.ebuild, -odcctools-20070629-r1.ebuild,
+  -odcctools-20071104.ebuild, -odcctools-20071228.ebuild,
+  -odcctools-20080621.ebuild, +odcctools-20080820.ebuild:
+  Add Xcode Tools 3.1 version of odcctools, remove old
 
 *odcctools-20080621 (21 Jun 2008)
 

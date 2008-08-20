@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="prefix"
 
 inherit eutils
 
-DESCRIPTION="Darwin assembler as(1) and static linker ld(1)"
+DESCRIPTION="Darwin assembler as(1) and static linker ld(1), Xcode Tools 3.1"
 HOMEPAGE="http://trac.macosforge.org/projects/odcctools"
 SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
 
@@ -50,11 +50,12 @@ src_unpack() {
 		# this patch should still allow for compilation on Darwin, but I don't
 		# want of run the risk of breaking something, so I make sure it stays
 		# vanilla on Darwin
-		epatch "${FILESDIR}"/${P}-solaris.patch
+#		epatch "${FILESDIR}"/${P}-solaris.patch
 
 		# ld64 depends on Darwin kernel headers, so its unlikely this can/will
 		# compile
-		sed -i -e '/^COMPONENTS=/s/ld64//' configure
+#		sed -i -e '/^COMPONENTS=/s/ld64//' configure
+:
 	fi
 }
 
@@ -83,6 +84,9 @@ src_install() {
 
 	# nuke the include files, in the end they result in conflicts
 	rm -Rf "${ED}/${INCPATH}" || die
+
+	mv "${ED}"${BINPATH}/ld64 "${ED}"${BINPATH}/ld
+	dosym ld ${BINPATH}/ld64
 
 	# Now we collect everything into the proper SLOT-ed dirs
 	# When something is built to cross-compile, it installs into
