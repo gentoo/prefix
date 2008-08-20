@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007b.ebuild,v 1.1 2008/07/24 20:34:31 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007b.ebuild,v 1.2 2008/08/19 14:44:50 hoffie Exp $
 
 EAPI="prefix"
 
@@ -19,8 +19,9 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="virtual/libc
-	!<net-mail/uw-imap-${PV}
 	!<mail-client/pine-4.64-r1"
+RDEPEND="${DEPEND}
+	!<net-mail/uw-imap-${PV}"
 
 src_unpack() {
 	unpack ${A}

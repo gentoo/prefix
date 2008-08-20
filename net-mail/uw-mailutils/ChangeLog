@@ -1,6 +1,11 @@
 # ChangeLog for net-mail/uw-mailutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.15 2008/07/24 20:34:31 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.16 2008/08/19 14:44:50 hoffie Exp $
+
+  19 Aug 2008; Christian Hoffmann <hoffie@gentoo.org>
+  uw-mailutils-2007b.ebuild:
+  moving blocker against old uw-imap versions to RDEPEND as uw-imap should
+  not affect building of this package at all (bug 231258 #c17)
 
 *uw-mailutils-2007b (24 Jul 2008)
 
