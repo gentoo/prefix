@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.335 2008/08/02 11:34:17 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.337 2008/08/20 04:00:38 vapier Exp $
+
+  20 Aug 2008; Mike Frysinger <vapier@gentoo.org> binutils-2.18-r3.ebuild:
+  Disable gnu hash for mips #233233.
+
+*binutils-2.18.50.0.8 (20 Aug 2008)
+
+  20 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.18.50.0.8.ebuild:
+  Version bump #231687.
 
   02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
   Update metadata.xml to include USE flag descriptions. Entries taken from
