@@ -50,7 +50,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
-		epatch "${FILESDIR}"/${P}-interix-cflags.patch
+		epatch "${FILESDIR}"/${PN}-7.1.319-interix-cflags.patch
 	fi
 }
 
