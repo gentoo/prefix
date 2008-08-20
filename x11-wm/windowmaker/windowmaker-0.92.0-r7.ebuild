@@ -74,6 +74,10 @@ src_unpack() {
 	epatch "${psd}"/WindowMaker-0.91.0-sga-swpanel-customization.patch
 	epatch "${psd}"/WindowMaker-0.92.0-alt-newpo.patch
 
+	# Interix 3.5: could be usefull for others with -nls, but to
+	# not break others, i apply conditionally ...
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PV}/${P}-interix3.patch
+
 	# Add UK localisation
 	cp "${psd}"/WindowMaker-uk.po po/uk.po
 	cp "${psd}"/WPrefs-uk.po WPrefs.app/po/uk.po

@@ -1,0 +1,66 @@
+diff -ru -x '*.Po' -x '*.Plo' WindowMaker-0.92.0.orig/WINGs/connection.c WindowMaker-0.92.0/WINGs/connection.c
+--- WindowMaker-0.92.0.orig/WINGs/connection.c	2008-08-18 10:17:56 +0200
++++ WindowMaker-0.92.0/WINGs/connection.c	2008-08-18 10:25:11 +0200
+@@ -201,7 +201,7 @@
+ 
+         if (cPtr->state == WCInProgress) {
+             Bool failed;
+-            socklen_t len = sizeof(result);
++            int len = sizeof(result);
+ 
+             WCErrorCode = 0;
+             if (getsockopt(cPtr->sock, SOL_SOCKET, SO_ERROR,
+@@ -462,7 +462,7 @@
+ {
+     WMConnection *cPtr;
+     struct sockaddr_in *socketaddr;
+-    socklen_t size;
++    int size;
+     int sock, on;
+ 
+     WCErrorCode = 0;
+@@ -678,7 +678,7 @@
+ WMAcceptConnection(WMConnection *listener)
+ {
+     struct sockaddr_in clientname;
+-    socklen_t size;
++    int size;
+     int newSock;
+     WMConnection *newConnection;
+ 
+diff -ru -x '*.Po' -x '*.Plo' WindowMaker-0.92.0.orig/src/misc.c WindowMaker-0.92.0/src/misc.c
+--- WindowMaker-0.92.0.orig/src/misc.c	2008-08-18 10:17:45 +0200
++++ WindowMaker-0.92.0/src/misc.c	2008-08-18 10:46:09 +0200
+@@ -645,13 +645,13 @@
+ 
+     if(advanced)
+         rv = wAdvancedInputDialog(scr,
+-		title ? gettext(title):_("Program Arguments"),
+-		prompt ? gettext(prompt):_("Enter command arguments:"),
++		title ? _(title):_("Program Arguments"),
++		prompt ? _(prompt):_("Enter command arguments:"),
+ 		name, &ret);
+     else
+         rv = wInputDialog(scr,
+-		title ? gettext(title):_("Program Arguments"),
+-		prompt ? gettext(prompt):_("Enter command arguments:"),
++		title ? _(title):_("Program Arguments"),
++		prompt ? _(prompt):_("Enter command arguments:"),
+ 		&ret);
+ 
+     if(title) wfree(title);
+diff -ru -x '*.Po' -x '*.Plo' WindowMaker-0.92.0.orig/src/rootmenu.c WindowMaker-0.92.0/src/rootmenu.c
+--- WindowMaker-0.92.0.orig/src/rootmenu.c	2008-08-18 10:17:46 +0200
++++ WindowMaker-0.92.0/src/rootmenu.c	2008-08-18 10:47:31 +0200
+@@ -363,8 +363,11 @@
+     if(!strncmp(NOTRANSLATE_PREFIX, title, strlen(NOTRANSLATE_PREFIX)))
+ 	return title + strlen(NOTRANSLATE_PREFIX);
+     if(wPreferences.translate_menu)
++	#if defined(HAVE_LIBINTL_H) && defined(I18N)
+ 	return dgettext("menu-messages", title);
++	#else
+     return title;
++	#endif
+ }
+ 
+ /********************************************************************/
