@@ -1,14 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.30.ebuild,v 1.1 2008/08/16 01:07:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.31_rc01.ebuild,v 1.1 2008/08/19 08:15:01 pva Exp $
 
 EAPI="prefix"
 
-inherit autotools libtool multilib eutils
+inherit libtool multilib eutils
 
+MY_PV=${PV/_}
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
-SRC_URI="mirror://sourceforge/libpng/${P}.tar.lzma"
+SRC_URI="mirror://sourceforge/libpng/${PN}-${MY_PV}.tar.lzma"
 
 LICENSE="as-is"
 SLOT="1.2"
@@ -18,6 +19,8 @@ IUSE=""
 RDEPEND="sys-libs/zlib"
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils"
+
+S=${WORKDIR}/${PN}-${MY_PV}
 
 src_unpack() {
 	unpack ${A}

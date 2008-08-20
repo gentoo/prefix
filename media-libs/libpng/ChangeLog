@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.192 2008/08/16 01:07:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.193 2008/08/19 08:15:01 pva Exp $
+
+*libpng-1.2.31_rc01 (19 Aug 2008)
+
+  19 Aug 2008; Peter Volkov <pva@gentoo.org> -libpng-1.2.30.ebuild,
+  +libpng-1.2.31_rc01.ebuild:
+  Version bump to fix invalid chunk type problem, bug #234916. Removed
+  affected version.
 
 *libpng-1.2.30 (16 Aug 2008)
 
