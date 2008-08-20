@@ -26,6 +26,9 @@ DEPEND="${RDEPEND}
 # overrides the eclass
 src_unpack() {
 	unpack ${A}
+
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
 	# Required for FreeBSD sane .so versioning
 	elibtoolize
 }

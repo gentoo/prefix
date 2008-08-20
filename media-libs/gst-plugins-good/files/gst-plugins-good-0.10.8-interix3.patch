@@ -1,0 +1,61 @@
+diff -ru -x '*.Po' -x '*.Plo' gst-plugins-good-0.10.8.orig/gst/goom/filters.c gst-plugins-good-0.10.8/gst/goom/filters.c
+--- gst-plugins-good-0.10.8.orig/gst/goom/filters.c	2008-07-30 14:32:44 +0200
++++ gst-plugins-good-0.10.8/gst/goom/filters.c	2008-07-30 16:04:18 +0200
+@@ -14,11 +14,20 @@
+ 
+ /* #define _DEBUG_PIXEL */
+ 
++#include "config.h"
++
+ #include <string.h>
+ #include <stdlib.h>
+ #include <math.h>
+ #include <stdio.h>
++
++#ifdef HAVE_INTTYPES_H
+ #include <inttypes.h>
++#endif
++
++#ifdef HAVE_STDINT_H
++#include <stdint.h>
++#endif
+ 
+ #include "goom_filters.h"
+ #include "goom_graphic.h"
+diff -ru -x '*.Po' -x '*.Plo' gst-plugins-good-0.10.8.orig/gst/goom/goom_core.c gst-plugins-good-0.10.8/gst/goom/goom_core.c
+--- gst-plugins-good-0.10.8.orig/gst/goom/goom_core.c	2008-07-30 14:32:45 +0200
++++ gst-plugins-good-0.10.8/gst/goom/goom_core.c	2008-07-30 16:05:16 +0200
+@@ -7,12 +7,21 @@
+  * (c)2000-2003, by iOS-software.
+  */
+ 
++#include "config.h"
++
+ #include <math.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <strings.h>
++
++#ifdef HAVE_INTTYPES_H
+ #include <inttypes.h>
++#endif
++
++#ifdef HAVE_STDINT_H
++#include <stdint.h>
++#endif
+ 
+ #include "goom.h"
+ #include "goom_tools.h"
+diff -ru -x '*.Po' -x '*.Plo' gst-plugins-good-0.10.8.orig/gst/udp/gstudpsrc.c gst-plugins-good-0.10.8/gst/udp/gstudpsrc.c
+--- gst-plugins-good-0.10.8.orig/gst/udp/gstudpsrc.c	2008-07-30 14:32:56 +0200
++++ gst-plugins-good-0.10.8/gst/udp/gstudpsrc.c	2008-07-30 17:04:01 +0200
+@@ -130,7 +130,7 @@
+ #endif
+ 
+ #include <gst/netbuffer/gstnetbuffer.h>
+-#ifdef G_OS_WIN32
++#if defined(G_OS_WIN32) || defined(__INTERIX)
+ typedef int socklen_t;
+ #endif
+ 
