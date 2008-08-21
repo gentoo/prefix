@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/man-pages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.116 2008/08/20 02:00:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.118 2008/08/20 19:14:29 maekke Exp $
+
+  20 Aug 2008; Markus Meier <maekke@gentoo.org> man-pages-3.05.ebuild:
+  amd64/x86 stable, bug #235246
+
+  20 Aug 2008; Doug Goldstein <cardoe@gentoo.org> -man-pages-3.00.ebuild,
+  -man-pages-3.01.ebuild, -man-pages-3.03.ebuild, -man-pages-3.04.ebuild:
+  clean up versions
 
 *man-pages-3.07 (20 Aug 2008)
 
