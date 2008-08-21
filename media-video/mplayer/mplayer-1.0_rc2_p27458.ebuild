@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27458.ebuild,v 1.4 2008/08/17 17:12:57 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27458.ebuild,v 1.5 2008/08/20 14:54:08 beandog Exp $
 
 EAPI="prefix 1"
 
@@ -533,7 +533,7 @@ EOT
 
 	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
 
-	dobin "${S}/TOOLS/midentify.sh" || die
+	newbin "${S}/TOOLS/midentify.sh" midentify
 
 	insinto /usr/share/mplayer
 	doins "${S}/etc/input.conf"
