@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2-r2.ebuild,v 1.2 2008/08/20 19:22:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.3.ebuild,v 1.1 2008/08/20 14:14:16 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit flag-o-matic eutils libtool
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
-	doc? ( http://gmplib.org/${PN}-man-${PV}.pdf )"
+	doc? ( http://www.nada.kth.se/~tege/${PN}-man-${PV}.pdf )"
 
 LICENSE="LGPL-3"
 SLOT="0"
@@ -28,9 +28,9 @@ src_unpack () {
 	# The assembler on interix fex does not understand #ifdef.
 	[[ ${CHOST} == *-linux* ]] && epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 
-	epatch "${FILESDIR}"/${PN}-4.2.2-ABI-multilib.patch
+	epatch "${FILESDIR}"/${PN}-4.2.3-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
-	epatch "${FILESDIR}"/${PN}-4.2.2-cstdio-stdfile.patch
+	epatch "${FILESDIR}"/${PN}-4.2.2-cstdio-stdfile.patch #228915
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
