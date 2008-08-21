@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ inherit eutils toolchain flag-o-matic autotools
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
 LIBSTDCXX_APPLE_VERSION=16
-DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode Tools 3.1 Beta"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode Tools 3.1"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_42-${APPLE_VERS}.tar.gz
 		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-${LIBSTDCXX_APPLE_VERSION}.tar.gz"

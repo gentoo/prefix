@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ inherit eutils toolchain
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
-DESCRIPTION="Apple branch of the GNU Compiler Collection, iPhone SDK Beta 7"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode Tools 3.1"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 LICENSE="APSL-2 GPL-2"

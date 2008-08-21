@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
+# $Id$
+
+*gcc-apple-4.2.1_p5564 (21 Aug 2008)
+
+  21 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5484.ebuild, -gcc-apple-4.2.1_p5553.ebuild,
+  +gcc-apple-4.2.1_p5564.ebuild:
+  Version bump to Xcode Tools 3.1
 
 *gcc-apple-4.0.1_p5484 (20 Jun 2008)
 
