@@ -1,3 +1,6 @@
+* http://bugs.gentoo.org/show_bug.cgi?id=209595
+* http://bugs.gentoo.org/show_bug.cgi?id=235384
+
 --- examples/rlfe/rlfe.c
 +++ examples/rlfe/rlfe.c
 @@ -67,6 +67,11 @@
@@ -12,4 +15,12 @@
  #include <sys/stat.h>
  #include <unistd.h>
  #include <sys/ioctl.h>
-
+@@ -776,7 +776,7 @@
+ 	  vi = 1;
+ 	  break;
+ 	}
+-      shellopts = index (shellopts + 1, ':');
++      shellopts = (char *)index (shellopts + 1, ':');
+     }
+ 
+   if (!vi)
