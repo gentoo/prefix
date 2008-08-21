@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="Utilities to manipulate and convert cue and toc files"
 HOMEPAGE="http://developer.berlios.de/projects/cuetools/"
@@ -15,11 +15,17 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
+DEPEND="dev-libs/gnulib"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	# What in earth is bzip2 archive doing in tree?
 	use ppc && epatch "${FILESDIR}"/ppc.patch.bz2
+
+	append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
+	append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
+	export LIBS="${LIBS} -lgnu"
 }
 
 src_install() {
