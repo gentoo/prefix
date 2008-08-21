@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  21 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  Xcode Tools 3.1 is out of Beta now, unleash the compilers
+
   20 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   unmask cmake-2.4.8 on Darwin, as it compiles for me
 
