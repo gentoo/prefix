@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8897 2008/08/19 09:16:56 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8900 2008/08/20 20:59:48 ricmm Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
+# Beta driver, unsupported by nVidia
+~x11-drivers/nvidia-drivers-177.67
+
+# Dawid Węgliński <cla@gentoo.org> (20 Aug 2008)
+# API changes on www.wklej.org; lower versions will not work anymore
+<app-text/wklej-0.1.1
 
 # Doug Goldstein <cardoe@gentoo.org> (18 Aug 2008)
 # masking libpng 1.2.30 until someone can look into
@@ -289,10 +297,6 @@ games-simulation/cultivation
 # Michael Sterrett <mr_bones_@gentoo.org> (23 Jun 2008)
 # Now a part of gnome-games
 games-board/glchess
-
-# Jeroen Roovers <jer@gentoo.org> (23 Jun 2008)
-# Please read http://my.opera.com/desktopteam/blog before using these snapshots
-=www-client/opera-9.52*
 
 # Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
 # Non-working version (#211327)
