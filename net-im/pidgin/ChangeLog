@@ -1,6 +1,16 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.62 2008/08/05 17:49:31 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.64 2008/08/20 15:56:18 tester Exp $
+
+  20 Aug 2008; Olivier Crête <tester@gentoo.org> pidgin-2.5.0.ebuild:
+  Restore deleted description..
+
+*pidgin-2.5.0 (20 Aug 2008)
+
+  20 Aug 2008; Olivier Crête <tester@gentoo.org>
+  -files/pidgin-2.4.2-jabber_crash_fix.patch, -pidgin-2.3.1.ebuild,
+  -pidgin-2.4.2.ebuild, +pidgin-2.5.0.ebuild:
+  Version bump, remove old
 
   05 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> metadata.xml:
   Add USE flag description to metadata as per GLEP 56.
