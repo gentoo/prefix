@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-DEPEND="dev-libs/gnulib"
+DEPEND="x86-interix? ( dev-libs/gnulib )"
 
 src_unpack() {
 	unpack ${A}
@@ -23,9 +23,11 @@ src_unpack() {
 	# What in earth is bzip2 archive doing in tree?
 	use ppc && epatch "${FILESDIR}"/ppc.patch.bz2
 
-	append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
-	append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
-	export LIBS="${LIBS} -lgnu"
+	if [[ ${CHOST} == *-interix[35]* ]]; then
+		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
+		export LIBS="${LIBS} -lgnu"
+	fi
 }
 
 src_install() {
