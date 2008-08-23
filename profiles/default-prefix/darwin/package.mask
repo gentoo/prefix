@@ -4,6 +4,11 @@
 # fails to compile, missing wait.h header
 =dev-libs/xmlrpc-c-1.06.27
 
+# Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
+# This versions is taken from iPhone SDK Beta 7, and doesn't build on
+# OSX 10.4, due to POSIX spawnattr (spawn.h)
+=sys-devel/gdb-apple-961
+
 # Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
 # experimenting on this -- not yet working
 sci-libs/blas-atlas
