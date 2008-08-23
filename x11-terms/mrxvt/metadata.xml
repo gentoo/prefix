@@ -5,4 +5,9 @@
 	<maintainer>
 		<email>nelchael@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='menubar'>Enable mrxvt menubar</flag>
+		<flag name='utempter'>REcords user logins. Useful on multi-user
+			systems</flag>
+	</use>
 </pkgmetadata>
