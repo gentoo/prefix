@@ -1,6 +1,17 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.410 2008/08/11 18:53:18 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.411 2008/08/22 13:26:01 suka Exp $
+
+  22 Aug 2008; Andreas Proschofsky <suka@gentoo.org>
+  +files/gentoo-3.0.0_beta2.diff:
+  Add masked beta ebuild for OpenOffice 3.0. Builds but still got some
+  issues. This also introduces some other changes to the ebuild:
+
+  *) parallel building is now enabled by default as this is being tested by
+  upstream *) Dictionary-support doesn't need eselect oodict anymore *) java
+  1.4 is no longer support
+
+  and a bunch of smaller ebuild changes
 
   11 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
   openoffice-2.4.1.ebuild:
