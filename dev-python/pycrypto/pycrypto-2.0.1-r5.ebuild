@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r5.ebuild,v 1.16 2007/02/28 22:06:52 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r5.ebuild,v 1.17 2008/08/21 06:20:27 ricmm Exp $
 
 EAPI="prefix"
 
