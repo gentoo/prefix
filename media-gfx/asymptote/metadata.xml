@@ -15,4 +15,9 @@
 		A major advantage of Asymptote over other graphics packages is that it
 		is a programming language, as opposed to just a graphics program.
 	</longdescription>
+	<use>
+		<flag name='boehm-gc'>
+			Enables using the Boehm-Demers-Weiser conservative garbage collector
+		</flag>
+	</use>
 </pkgmetadata>
