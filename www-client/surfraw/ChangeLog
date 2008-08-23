@@ -1,6 +1,18 @@
 # ChangeLog for www-client/surfraw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.18 2008/07/11 04:55:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.23 2008/08/22 21:32:56 maekke Exp $
+
+  22 Aug 2008; Markus Meier <maekke@gentoo.org> surfraw-2.2.2.ebuild:
+  amd64/x86 stable, bug #235479
+
+  22 Aug 2008; Friedrich Oslage <bluebird@gentoo.org> surfraw-2.2.2.ebuild:
+  Stable on sparc, bug #235479
+
+  22 Aug 2008; nixnut <nixnut@gentoo.org> surfraw-2.2.2.ebuild:
+  Stable on ppc wrt bug 235479
+
+  22 Aug 2008; Jeroen Roovers <jer@gentoo.org> surfraw-2.2.2.ebuild:
+  Stable for HPPA (bug #235479).
 
   11 Jul 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Take up maintainership.
