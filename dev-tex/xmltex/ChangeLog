@@ -1,6 +1,18 @@
 # ChangeLog for dev-tex/xmltex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.15 2008/05/31 18:14:55 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.17 2008/08/22 19:12:04 aballier Exp $
+
+*xmltex-1.9-r2 (22 Aug 2008)
+
+  22 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/format.xmltex.cnf, +xmltex-1.9-r2.ebuild:
+  Cleanup of the ebuild: require at least tetex 3, install formats to
+  var/lib/texmf, install files to texmf-site, install a fmtutil.d file,
+  block tl-htmlxml-2007 since they collide now.
+
+  22 Aug 2008; Alexis Ballier <aballier@gentoo.org> -xmltex-0.14-r1.ebuild,
+  -xmltex-1.9.ebuild:
+  remove old
 
   31 May 2008; <solar@gentoo.org> xmltex-1.9-r1.ebuild:
   - stable on amd64
