@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gthumb
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.87 2008/08/04 22:18:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.88 2008/08/22 22:07:29 maekke Exp $
+
+  22 Aug 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
 *gthumb-2.10.9 (04 Aug 2008)
 
