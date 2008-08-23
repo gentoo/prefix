@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8900 2008/08/20 20:59:48 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8906 2008/08/22 18:19:28 mpagano Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,18 @@
 
 #--- END OF EXAMPLES ---
 
+# Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
+# Beta release, still got some issues
+>=app-office/openoffice-3.0.0_beta2
+
+# Ricardo Mendoza <ricmm@gentoo.org> (21 Aug 2008)
+# Beta driver, masking corresponding nvidia-settings
+~media-video/nvidia-settings-177.67
+
+# Michael Sterrett <mr_bones_@gentoo.org> (21 Aug 2008)
+# doesn't work with guichan-0.8
+games-arcade/diameter
+
 # Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-177.67
@@ -36,11 +48,6 @@
 # Dawid Węgliński <cla@gentoo.org> (20 Aug 2008)
 # API changes on www.wklej.org; lower versions will not work anymore
 <app-text/wklej-0.1.1
-
-# Doug Goldstein <cardoe@gentoo.org> (18 Aug 2008)
-# masking libpng 1.2.30 until someone can look into
-# bug #234916
-=media-libs/libpng-1.2.30
 
 # Marijn Schouten <hkBst@gentoo.org> (18 Aug 2008)
 # masked for removal, bug 229915
@@ -384,6 +391,7 @@ mail-mta/xmail
 =media-libs/mesa-7.1*
 x11-proto/dri2proto
 =x11-libs/libdrm-2.3.1*
+x11-drivers/xf86-input-synaptics
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
 # Live ebuilds too volatile for normal use.
@@ -532,10 +540,6 @@ dev-lisp/stumpwm-cvs
 # CVS snapshot, bug 219449.
 ~app-emacs/navi2ch-1.7.5_p20080325
 
-# Michael Sterrett <mr_bones_@gentoo.org> (27 Apr 2008)
-# masked until tmw works with the newer version.
->=dev-games/guichan-0.8
-
 # Mike Auty <ikelos@gentoo.org> (26 Apr 2008)
 # Masking all app-emulation/vmware-workstation-tools packages
 # in favour of app-emulation/open-vm-tools
@@ -577,10 +581,6 @@ dev-lang/mlton-bin
 # Ben de Groot <yngwin@gentoo.org> (12 Apr 2008)
 # Ebuild needs more work
 media-sound/lastfmproxy
-
-# Mike Pagano <mpagano@gentoo.org> (11 Apr 2008)
-# Needs masked qt-4.4 (bug #217175)
-=sys-kernel/kccmp-0.2-r1
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing

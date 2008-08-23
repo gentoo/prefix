@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1788 2008/08/20 19:01:47 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1792 2008/08/22 17:05:28 chainsaw Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  22 Aug 2008; <chainsaw@gentoo.org> package.mask:
+  Mask new x11-drivers/xf86-input-synaptics as it is for the new X.Org
+
+  22 Aug 2008; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Mask beta ebuild for OpenOffice.org 3.0
+
+  22 Aug 2008; Mart Raudsepp <leio@gentoo.org> +arch/sh/package.mask,
+  +default-linux/sh/package.mask:
+  Mask GNOME-2.22 on sh in preparation of removing the global one
+
+  21 Aug 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Remove mask on libpng-1.2.39 as bug #234916 was fixed.
 
   20 Aug 2008; Dawid Węgliński <cla@gentoo.org> package.mask:
   Masking <app-text/wklej-0.1.1 because of API changes on www.wklej.org
