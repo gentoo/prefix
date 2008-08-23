@@ -5,4 +5,9 @@
 	<maintainer>
 		<email>killerfox@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='afterimage'>Enable support for
+			<pkg>media-libs/libafterimage</pkg></flag>
+		<flag name='iso14755'>Enable ISO-14755 support</flag>
+	</use>
 </pkgmetadata>
