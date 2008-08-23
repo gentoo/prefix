@@ -234,10 +234,10 @@
 @@ -0,0 +1,9 @@
 +#!/bin/sh
 +
-+for t in {c,s,d,z}blat1; do
++for t in cblat1 sblat1 dblat1 zblat1; do
 +    ./x${t}
 +done
 +
-+for t in {c,s,d,z}blat{2,3}; do
++for t in cblat2 sblat2 dblat2 zblat2 cblat3 sblat3 dblat3 zblat3;  do
 +    ./x${t} < ../${t}.in
 +done

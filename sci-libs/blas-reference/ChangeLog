@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/blas-reference
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.43 2008/04/21 14:52:16 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.44 2008/08/22 17:31:50 bicatali Exp $
+
+  22 Aug 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/blas-reference-20070226-autotool.patch:
+  Removed bashisms in tests, closing bug #233953
 
   21 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
   blas-reference-20070226.ebuild:
