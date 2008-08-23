@@ -5,4 +5,9 @@
 <maintainer>
 	<email>hanno@gentoo.org</email>
 </maintainer>
+<use>
+	<flag name='smp'>
+		Enable support for multiprocessors
+	</flag>
+</use>
 </pkgmetadata>
