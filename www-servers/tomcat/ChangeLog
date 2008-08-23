@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.187 2008/08/15 20:01:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.188 2008/08/22 22:40:20 cardoe Exp $
+
+  22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   15 Aug 2008; Markus Meier <maekke@gentoo.org> tomcat-6.0.18.ebuild:
   amd64/x86 stable, bug #234684

@@ -16,4 +16,8 @@
 	Sun under the Java Community Process.
 	</longdescription>
 
+	<use>
+		<flag name='admin'>Enable Tomcat admin webapp</flag>
+	</use>
+
 </pkgmetadata>
