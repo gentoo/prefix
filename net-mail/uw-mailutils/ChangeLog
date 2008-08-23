@@ -1,6 +1,13 @@
 # ChangeLog for net-mail/uw-mailutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.17 2008/08/20 19:29:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.19 2008/08/22 19:13:44 jer Exp $
+
+  22 Aug 2008; Jeroen Roovers <jer@gentoo.org> uw-mailutils-2007b.ebuild:
+  Stable for HPPA (bug #231258).
+
+  21 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  uw-mailutils-2007b.ebuild:
+  Stable on sparc, bug #231258
 
   20 Aug 2008; Markus Meier <maekke@gentoo.org> uw-mailutils-2007b.ebuild:
   amd64/x86 stable, bug #231258
