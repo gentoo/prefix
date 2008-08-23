@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.184 2008/08/19 12:58:05 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.185 2008/08/22 06:45:44 mueli Exp $
+
+  22 Aug 2008; Michael Hammer <mueli@gentoo.org> mit-krb5-1.6.3-r2.ebuild:
+  fixed bug #235409
 
 *mit-krb5-1.6.3-r2 (19 Aug 2008)
 
