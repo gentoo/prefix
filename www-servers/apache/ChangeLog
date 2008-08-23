@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.82 2008/06/16 16:12:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.83 2008/08/22 22:21:41 cardoe Exp $
+
+  22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   16 Jun 2008; Brent Baude <ranger@gentoo.org> apache-2.2.9.ebuild:
   Marking apache-2.2.9 ppc64 for bug 227111
