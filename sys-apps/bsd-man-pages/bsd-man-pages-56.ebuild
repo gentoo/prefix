@@ -16,6 +16,7 @@ KEYWORDS="~x86-freebsd ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND="virtual/man"
+PDEPEND="sys-apps/man-pages-posix"
 
 S=${WORKDIR}/bsdmanpages-${PV}
 
