@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libmpd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.31 2008/04/10 10:25:31 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.32 2008/08/21 19:50:42 angelos Exp $
+
+*libmpd-0.15.0-r1 (21 Aug 2008)
+
+  21 Aug 2008; Christoph Mende <angelos@gentoo.org>
+  +files/libmpd-0.15.0-remove-new-parameter.patch, +libmpd-0.15.0-r1.ebuild:
+  Fix for bug 233582
 
   10 Apr 2008; Samuli Suominen <drac@gentoo.org> libmpd-0.15.0.ebuild:
   pkgconfig and glib is needed wrt #216895
