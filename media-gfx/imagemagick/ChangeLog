@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.298 2008/08/19 22:30:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.300 2008/08/21 15:23:20 grobian Exp $
+
+  21 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  imagemagick-6.4.2.9.ebuild:
+  Don't run eautoreconf as it a) wipes out doc dir fix, b) won't work for
+  non-gcc-4.3 people and c) causes bugs like comment #7 in bug #235131
+
+  20 Aug 2008; Markus Meier <maekke@gentoo.org>
+  +files/imagemagick-6.4.2.9-jbig.patch, imagemagick-6.4.2.9.ebuild:
+  readd jbig USE-flag, by Fabian Groffen <grobian@gentoo.org> in bug #235131
 
   19 Aug 2008; Markus Meier <maekke@gentoo.org> imagemagick-6.4.2.9.ebuild:
   do not die if sys-devel/gcc has no openmp USE-flag, just disable it. bug
