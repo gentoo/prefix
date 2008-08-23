@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cvs2svn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.17 2008/06/09 10:02:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.18 2008/08/21 13:31:09 cardoe Exp $
+
+*cvs2svn-2.1.1 (21 Aug 2008)
+
+  21 Aug 2008; Doug Goldstein <cardoe@gentoo.org> +cvs2svn-2.1.1.ebuild:
+  version bump. bug #219415
 
   09 Jun 2008; Mike Frysinger <vapier@gentoo.org> cvs2svn-2.1.0.ebuild:
   Remove duplicate src_test, update old doins line, and do not mention ROOT
