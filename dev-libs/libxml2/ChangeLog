@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.217 2008/08/12 13:26:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.218 2008/08/22 16:07:50 leio Exp $
+
+*libxml2-2.6.32-r1 (22 Aug 2008)
+
+  22 Aug 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/libxml2-2.6.32-CVE-2008-3281.patch, +libxml2-2.6.32-r1.ebuild:
+  Security (denial of service) fix - possible recursive evaluation of
+  entities in xmlStringLenDecodeEntities() allowing possible memory and CPU
+  exhaustion (CVE-2008-3281)
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> libxml2-2.6.32.ebuild:
   alpha/ia64/sparc stable wrt #229709
