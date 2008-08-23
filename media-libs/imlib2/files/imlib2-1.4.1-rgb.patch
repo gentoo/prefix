@@ -1,0 +1,17 @@
+Index: imlib2/src/modules/loaders/loader_xpm.c
+===================================================================
+RCS file: /cvs/e/e17/libs/imlib2/src/modules/loaders/loader_xpm.c,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -p -r1.9 -r1.10
+--- imlib2/src/modules/loaders/loader_xpm.c	27 May 2008 14:35:17 -0000	1.9
++++ imlib2/src/modules/loaders/loader_xpm.c	13 Jun 2008 22:39:27 -0000	1.10
+@@ -52,6 +52,8 @@ xpm_parse_color(char *color, int *r, int
+    /* look in rgb txt database */
+    if (!rgb_txt)
+ #ifndef __EMX__
++     rgb_txt = fopen("/usr/share/X11/rgb.txt", "r");
++   if (!rgb_txt)
+      rgb_txt = fopen("/usr/X11R6/lib/X11/rgb.txt", "r");
+    if (!rgb_txt)
+      rgb_txt = fopen("/usr/openwin/lib/X11/rgb.txt", "r");
