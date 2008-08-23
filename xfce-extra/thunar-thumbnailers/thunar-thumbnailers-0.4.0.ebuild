@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/thunar-thumbnailers-0.3.2.ebuild,v 1.5 2008/08/22 20:59:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/thunar-thumbnailers-0.4.0.ebuild,v 1.1 2008/08/21 19:26:55 angelos Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,6 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 pkg_setup() {
-	DOCS="AUTHORS ChangeLog README"
 	XFCE_CONFIG+=" $(use_enable latex tex) $(use_enable raw) $(use_enable grace)
 		$(use_enable ffmpeg) --disable-update-mime-database"
 }
@@ -35,3 +34,5 @@ pkg_postinst() {
 	xfce44_pkg_postinst
 	elog "Existing users need to run /usr/libexec/thunar-vfs-update-thumbnailers-cache-1."
 }
+
+DOCS="AUTHORS ChangeLog NEWS README"
