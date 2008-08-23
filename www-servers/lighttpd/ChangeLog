@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.183 2008/04/03 19:01:04 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.184 2008/08/22 22:25:40 cardoe Exp $
+
+  22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
   03 Apr 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   lighttpd-1.4.19-r2.ebuild:
