@@ -2,4 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>graphics</herd>
+<use>
+	<flag name='metric'>
+		Default to A4 paper size
+	</flag>
+</use>
 </pkgmetadata>
