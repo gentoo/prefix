@@ -1,6 +1,15 @@
 # ChangeLog for xfce-extra/xfce4-dict
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.12 2008/05/04 11:11:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.15 2008/08/22 21:05:25 maekke Exp $
+
+  22 Aug 2008; Markus Meier <maekke@gentoo.org> xfce4-dict-0.3.0.ebuild:
+  x86 stable, bug #235407
+
+  22 Aug 2008; nixnut <nixnut@gentoo.org> xfce4-dict-0.3.0.ebuild:
+  Stable on ppc wrt bug 235407
+
+  22 Aug 2008; Christoph Mende <angelos@gentoo.org> xfce4-dict-0.3.0.ebuild:
+  Stable on amd64 and arm as approved by drac, bug #235407
 
   04 May 2008; Samuli Suominen <drac@gentoo.org> xfce4-dict-0.3.0.ebuild:
   Fix 'make check' wrt #219860, thanks to Michal Kiedrowicz.
