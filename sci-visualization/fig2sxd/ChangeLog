@@ -1,6 +1,12 @@
 # ChangeLog for sci-visualization/fig2sxd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.5 2008/04/19 09:39:43 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.6 2008/08/21 15:07:24 markusle Exp $
+
+*fig2sxd-0.18 (21 Aug 2008)
+
+  21 Aug 2008; Markus Dittrich <markusle@gentoo.org> -fig2sxd-0.13.ebuild,
+  +fig2sxd-0.18.ebuild:
+  Version bump and removed old ebuild.
 
 *fig2sxd-0.17 (19 Apr 2008)
 
