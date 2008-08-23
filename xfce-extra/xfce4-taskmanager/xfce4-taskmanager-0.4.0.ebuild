@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.4.0.ebuild,v 1.1 2008/06/17 22:01:53 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.4.0.ebuild,v 1.4 2008/08/22 21:22:43 maekke Exp $
 
 EAPI="prefix"
 
