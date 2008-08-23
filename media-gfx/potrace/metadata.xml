@@ -5,4 +5,9 @@
 	<maintainer>
 		<email>fonts@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='metric'>
+			default to a4 paper size and metric measurement
+		</flag>
+	</use>
 </pkgmetadata>
