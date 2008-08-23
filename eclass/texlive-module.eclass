@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.13 2008/07/15 10:33:40 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.16 2008/08/22 11:32:30 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -8,7 +8,7 @@
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
 # @BLURB: Provide generic install functions so that modular texlive's texmf ebuild will only have to inherit this eclass
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # Purpose: Provide generic install functions so that modular texlive's texmf ebuilds will
 # only have to inherit this eclass.
 # Ebuilds have to provide TEXLIVE_MODULE_CONTENTS variable that contains the list
@@ -87,6 +87,47 @@ RDEPEND="${COMMON_DEPEND}"
 
 S="${WORKDIR}"
 
+
+# @FUNCTION: texlive-module_make_language_def_lines
+# @DESCRIPTION:
+# Only valid for TeXLive 2008.
+# Creates a language.${PN}.def entry to put in /etc/texmf/language.def.d
+# It parses the AddHyphen directive of tlpobj files to create it.
+
+texlive-module_make_language_def_lines() {
+	local lefthyphenmin righthyphenmin synonyms name file
+	eval $@
+	einfo "Generating language.def entry for $@"
+	[ -z "$lefthyphenmin" ] && lefthyphenmin="2"
+	[ -z "$righthyphenmin" ] && righthyphenmin="3"
+	echo "\\addlanguage{$name}{$file}{}{$lefthyphenmin}{$righthyphenmin}" >> "${S}/language.${PN}.def"
+	if [ -n "$synonyms" ] ; then
+		for i in $(echo $synonyms | tr ',' ' ') ; do
+			einfo "Generating language.def synonym $i for $@"
+			echo "\\addlanguage{$i}{$file}{}{$lefthyphenmin}{$righthyphenmin}" >> "${S}/language.${PN}.def"
+		done
+	fi
+}
+
+# @FUNCTION: texlive-module_make_language_dat_lines
+# @DESCRIPTION:
+# Only valid for TeXLive 2008.
+# Creates a language.${PN}.dat entry to put in /etc/texmf/language.dat.d
+# It parses the AddHyphen directive of tlpobj files to create it.
+
+texlive-module_make_language_dat_lines() {
+	local lefthyphenmin righthyphenmin synonyms name file
+	eval $@
+	einfo "Generating language.dat entry for $@"
+	echo "$name $file" >> "${S}/language.${PN}.dat"
+	if [ -n "$synonyms" ] ; then
+		for i in $(echo $synonyms | tr ',' ' ') ; do
+			einfo "Generating language.dat synonym $i for $@"
+			echo "=$i" >> "${S}/language.${PN}.dat"
+		done
+	fi
+}
+
 # @FUNCTION: texlive-module_src_compile
 # @DESCRIPTION:
 # exported function:
@@ -138,11 +179,12 @@ texlive-module_src_compile() {
 			addDvipdfmMap)
 				echo "f	${parameter}" >> "${S}/${PN}-config";;
 			AddHyphen)
-				ewarn "Sorry, $command not implemented yet.";;
+				texlive-module_make_language_def_lines "$parameter"
+				texlive-module_make_language_dat_lines "$parameter";;
 			BuildFormat)
-				elog "Format $parameter already built.";;
+				einfo "Format $parameter already built.";;
 			BuildLanguageDat)
-				elog "Language file $parameter already generated.";;
+				einfo "Language file $parameter already generated.";;
 			*)
 				die "No rule to proccess ${command}. Please file a bug."
 		esac
@@ -180,6 +222,16 @@ texlive-module_src_install() {
 	[ -f "${S}/${PN}-config.ps" ] && doins "${S}/${PN}-config.ps"
 	insinto /etc/texmf/dvipdfm/config
 	[ -f "${S}/${PN}-config" ] && doins "${S}/${PN}-config"
+
+	if [ -f "${S}/language.${PN}.def" ] ; then
+		insinto /etc/texmf/language.def.d
+		doins "${S}/language.${PN}.def"
+	fi
+
+	if [ -f "${S}/language.${PN}.dat" ] ; then
+		insinto /etc/texmf/language.dat.d
+		doins "${S}/language.${PN}.dat"
+	fi
 
 	texlive-common_handle_config_files
 }
