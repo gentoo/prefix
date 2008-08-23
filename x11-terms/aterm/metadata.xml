@@ -5,4 +5,10 @@
 	<maintainer>
 		<email>maintainer-needed@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='background'>Enable background image support via
+			<pkg>media-libs/libafterimage</pkg></flag>
+		<flag name='xgetdefault'>Enable resources via X instead of aterm small
+			version</flag>
+	</use>
 </pkgmetadata>
