@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>no-herd</herd>
-	<maintainer>
-		<email>nelchael@gentoo.org</email>
-		<name>Krzysiek Pawlik</name>
-	</maintainer>
+  <herd>no-herd</herd>
+  <maintainer>
+    <email>nelchael@gentoo.org</email>
+    <name>Krzysiek Pawlik</name>
+  </maintainer>
+  <use>
+    <flag name="bugzilla">Support bugzilla integration.</flag>
+    <flag name="darcs">Support conversion of Darcs repositories to Mercurial.</flag>
+    <flag name="git">Support conversion of Git repositories to Mercurial.</flag>
+    <flag name="gpg">Support signing with GnuPG.</flag>
+    <flag name="zsh-completion">Install zsh command completion for hg.</flag>
+  </use>
 </pkgmetadata>
