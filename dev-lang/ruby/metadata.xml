@@ -2,4 +2,5 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>ruby</herd>
+<use><flag name='rubytests'>Install ruby tests that can only be run after ruby is installed</flag></use>
 </pkgmetadata>
