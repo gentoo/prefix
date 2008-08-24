@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>dev-tools</herd>
-<maintainer>
-  <email>nerdboy@gentoo.org</email>
-  <description>Primary maintainer</description>
-</maintainer>
-
-<longdescription>
+  <herd>dev-tools</herd>
+  <maintainer>
+    <email>nerdboy@gentoo.org</email>
+    <description>Primary maintainer</description>
+  </maintainer>
+  <longdescription>
   From the web page:
 
   Artistic Style is a reindenter and reformatter of C++, C and Java source
@@ -35,4 +34,7 @@
   files. These can be used from a command line, or it can be incorporated as 
   classes in another C++ program.  
 </longdescription>
+  <use>
+    <flag name="libs">builds and installs both shared and static library interfaces</flag>
+  </use>
 </pkgmetadata>
