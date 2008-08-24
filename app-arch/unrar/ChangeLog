@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.120 2008/08/18 19:02:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.121 2008/08/23 04:48:43 jer Exp $
+
+  23 Aug 2008; Jeroen Roovers <jer@gentoo.org> unrar-3.8.2.ebuild:
+  Stable for HPPA (bug #234115).
 
   18 Aug 2008; Brent Baude <ranger@gentoo.org> unrar-3.8.2.ebuild:
   stable ppc64, bug 234115
