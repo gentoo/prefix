@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/icu4j
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.24 2008/07/28 19:18:27 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.25 2008/08/23 17:16:13 maekke Exp $
+
+  23 Aug 2008; Markus Meier <maekke@gentoo.org> icu4j-3.8.1-r1.ebuild:
+  amd64/x86 stable, bug #235509
 
 *icu4j-4.0 (28 Jul 2008)
 *icu4j-3.8.1-r1 (28 Jul 2008)

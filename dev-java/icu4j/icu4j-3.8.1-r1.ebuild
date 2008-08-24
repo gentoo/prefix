@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.8.1-r1.ebuild,v 1.1 2008/07/28 19:18:27 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.8.1-r1.ebuild,v 1.2 2008/08/23 17:16:13 maekke Exp $
 
 EAPI="prefix"
 
