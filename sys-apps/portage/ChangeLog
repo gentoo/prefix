@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11465 (24 Aug 2008)
+
+  24 Aug 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11445.ebuild, +portage-2.2.00.11465.ebuild:
+  Replace latest snapshot with one that avoids more keyerrors in the odcctools
+  case :/
+
 *portage-2.2.00.11445 (20 Aug 2008)
 
   20 Aug 2008; Fabian Groffen <grobian@gentoo.org>
