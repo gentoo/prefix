@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/sam2p
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.28 2008/06/04 18:58:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.29 2008/08/23 17:29:14 maekke Exp $
+
+  23 Aug 2008; Markus Meier <maekke@gentoo.org> sam2p-0.45-r1.ebuild:
+  x86 stable, bug #232306
 
   04 Jun 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
   put under tex herd, we use it for texlive
