@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8906 2008/08/22 18:19:28 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8908 2008/08/23 15:02:42 leio Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mart Raudsepp <leio@gentoo.org> (23 Aug 2008)
+# Breaks gnome-base/gdm greeter and therefore graphical
+# login via gdm, bug 235529
+=dev-libs/libxml2-2.6.32-r1
+
+# Peter Volkov <pva@gentoo.org> (23 Aug 2008)
+# Masking release candidate
+=dev-util/bzr-1.6_rc5
 
 # Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
 # Beta release, still got some issues

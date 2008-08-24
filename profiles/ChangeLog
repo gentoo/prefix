@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1792 2008/08/22 17:05:28 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1795 2008/08/23 15:02:42 leio Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  23 Aug 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Mask libxml2-2.6.32-r1, breaks graphical gdm login, bug 235529
+
+  23 Aug 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking release candidate dev-util/bzr-1.6_rc5
+
+  23 Aug 2008; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Add dev-lang to GLEP 56 adjusted categories.
 
   22 Aug 2008; <chainsaw@gentoo.org> package.mask:
   Mask new x11-drivers/xf86-input-synaptics as it is for the new X.Org
