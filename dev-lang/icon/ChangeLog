@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/icon
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.32 2008/08/08 17:20:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.33 2008/08/23 05:23:51 jer Exp $
+
+  23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Add GLEP 56 USE flag descriptions.
 
   08 Aug 2008; nixnut <nixnut@gentoo.org> icon-9.4.3-r2.ebuild:
   Stable on ppc wrt bug 234162
