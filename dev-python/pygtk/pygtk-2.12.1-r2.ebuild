@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1-r2.ebuild,v 1.5 2008/08/12 13:30:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1-r2.ebuild,v 1.6 2008/08/23 10:38:58 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome.org python flag-o-matic eutils virtualx
+inherit autotools gnome.org python flag-o-matic eutils virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
@@ -38,6 +38,8 @@ src_unpack() {
 	# fix for bug #194343
 	epatch "${FILESDIR}/${PN}-2.12.1-fix-codegen-location.patch"
 
+	AT_M4DIR="m4" eautomake
+
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
 	ln -s $(type -P true) "${S}"/py-compile
@@ -45,14 +47,14 @@ src_unpack() {
 
 src_compile() {
 	use hppa && append-flags -ffunction-sections
-	econf $(use_enable doc docs) --enable-thread || die
+	econf $(use_enable doc docs) --enable-thread
 	# possible problems with parallel builds (#45776)
 	#emake -j1 || die
-	emake || die
+	emake || die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
 	if use examples; then
