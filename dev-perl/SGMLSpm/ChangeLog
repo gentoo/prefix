@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/SGMLSpm
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/SGMLSpm/ChangeLog,v 1.32 2007/07/12 08:45:04 uberlord Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/SGMLSpm/ChangeLog,v 1.33 2008/08/23 15:55:05 tove Exp $
+
+*SGMLSpm-1.03-r6 (23 Aug 2008)
+
+  23 Aug 2008; Torsten Veller <tove@gentoo.org> +files/Makefile.PL,
+  +files/sgmlspl.patch, +SGMLSpm-1.03-r6.ebuild:
+  Simplify the ebuild: Use Makefile.PL from debian. Fixes #209608.
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> SGMLSpm-1.03-r5.ebuild:
   Keyworded ~sparc-fbsd
