@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.3.ebuild,v 1.13 2008/05/29 17:10:11 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.8.ebuild,v 1.1 2008/08/23 12:03:10 eva Exp $
 
 EAPI="prefix"
 
@@ -11,36 +11,47 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="bzip2 doc gnome python"
 
-RDEPEND=">=dev-libs/libxml2-2.4.16
-	>=dev-libs/glib-2.6
-	sys-libs/zlib
-	gnome? ( media-gfx/imagemagick
-		>=gnome-base/gconf-2
+RDEPEND="
+	>=dev-libs/glib-2.8
+	>=dev-libs/libxml2-2.4.16
+	gnome? ( >=gnome-base/gconf-2
 		>=gnome-base/libbonobo-2
 		>=gnome-base/gnome-vfs-2.2 )
+	sys-libs/zlib
 	bzip2? ( app-arch/bzip2 )
 	python? ( dev-lang/python
-		>=dev-python/pygtk-2.8 )"
-# This package (currently) needs >=pygobject-2.8 and pygtk-codegen-2.0 for python
-# support, which is provided by either pygtk-2.8* or any pygobject version (they were
-# separated for pygobject version 2.10 and up). As for codegen we already need
-# pygtk, then depending on just >=pygtk-2.8 is sufficient, as 2.8 provides pygobject
-# and 2.10 will pull in the pygobject separate package.
+		>=dev-python/pygobject-2.10
+		>=dev-python/pygtk-2.10 )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	>=dev-util/intltool-0.29
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-G2CONF="${G2CONF} \
-	$(use_with bzip2 bz2) \
-	$(use_with gnome) \
-	$(use_with python)"
+PDEPEND="gnome? ( media-gfx/imagemagick )"
 
 DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README TODO"
+
+# FIXME: requires gio-standalone, what is it ?
+pkg_setup() {
+	G2CONF="${G2CONF}
+		--without-gvfs
+		$(use_with bzip2 bz2)
+		$(use_with gnome)
+		$(use_with gnome bonobo)
+		$(use_with python)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# disable pyc compiling
+	mv py-compile py-compile.orig
+	ln -s $(type -P true) py-compile
+}
 
 pkg_preinst() {
 	gnome2_pkg_preinst
@@ -65,5 +76,7 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-	use python && python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
+	if use python; then
+		python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
+	fi
 }
