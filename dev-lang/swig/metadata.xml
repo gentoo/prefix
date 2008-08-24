@@ -9,4 +9,12 @@
 	<longdescription lang="en">
 SWIG is a software development tool that connects programs written in C and C++ with a variety of high-level programming languages. SWIG is used with different	types of languages including common scripting languages such as Perl, Python, Tcl/Tk and Ruby. The list of supported languages also includes non-scripting languages such as C#, Common Lisp (Allegro CL), Java, Modula-3 and OCAML. Also several interpreted and compiled Scheme implementations (Chicken, Guile, MzScheme) are supported.
 	</longdescription>
+	<use>
+		<flag name='chicken'>Enable chicken Scheme support</flag>
+		<flag name='clisp'>Enable CLisp support</flag>
+		<flag name='mzscheme'>Enable PLT mzscheme support</flag>
+		<flag name='octave'>Enable Octave support</flag>
+		<flag name='pike'>Enable Pike scripting support</flag>
+		<flag name='R'>Enable R support</flag>
+	</use>
 </pkgmetadata>
