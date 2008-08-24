@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/undms
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/undms/ChangeLog,v 1.5 2007/12/25 12:06:45 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/undms/ChangeLog,v 1.6 2008/08/23 18:18:41 maekke Exp $
+
+  23 Aug 2008; Markus Meier <maekke@gentoo.org> undms-1.3.ebuild:
+  add ~amd64, bug #225993
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing dholm from metadata.xml as per #24623. Assigning to maintainer-needed.
