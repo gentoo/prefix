@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/gforth
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.24 2008/03/17 15:56:08 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.25 2008/08/23 05:21:14 jer Exp $
+
+  23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Add GLEP 56 USE flag descriptions.
 
   17 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   gforth-0.6.2-r1.ebuild:
