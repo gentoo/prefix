@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/scala
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.7 2008/02/09 16:13:45 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.8 2008/08/23 05:42:31 jer Exp $
+
+  23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Add GLEP 56 USE flag descriptions.
 
 *scala-2.6.1-r1 (09 Feb 2008)
 
