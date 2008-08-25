@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/xfce4-taskmanager
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/ChangeLog,v 1.32 2008/08/22 21:22:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/ChangeLog,v 1.34 2008/08/24 13:58:09 corsair Exp $
+
+  24 Aug 2008; Markus Rothe <corsair@gentoo.org>
+  xfce4-taskmanager-0.4.0.ebuild:
+  Stable on ppc64; bug #235407
+
+  24 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  xfce4-taskmanager-0.4.0.ebuild:
+  Stable on sparc, bug #235407
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org>
   xfce4-taskmanager-0.4.0.ebuild:
