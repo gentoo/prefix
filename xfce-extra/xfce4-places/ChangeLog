@@ -1,6 +1,13 @@
 # ChangeLog for xfce-extra/xfce4-places
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-places/ChangeLog,v 1.38 2008/08/22 21:15:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-places/ChangeLog,v 1.40 2008/08/24 13:56:53 corsair Exp $
+
+  24 Aug 2008; Markus Rothe <corsair@gentoo.org> xfce4-places-1.1.0.ebuild:
+  Stable on ppc64; bug #235407
+
+  24 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  xfce4-places-1.1.0.ebuild:
+  Stable on sparc, bug #235407
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org> xfce4-places-1.1.0.ebuild:
   x86 stable, bug #235407
