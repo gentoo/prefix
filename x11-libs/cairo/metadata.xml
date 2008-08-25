@@ -12,5 +12,7 @@
 <use>
 	<flag name='glitz'>Build with glitz support, which replaces some software
 		render operations with Mesa OpenGL operations</flag>
+	<flag name='opengl'>When used along with USE=glitz, enables glitz-glx usage.
+		Requires hardware OpenGL support</flag>
 </use>
 </pkgmetadata>
