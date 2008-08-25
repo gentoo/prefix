@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-genmon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.22 2008/08/22 21:08:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.23 2008/08/24 12:34:30 bluebird Exp $
+
+  24 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  xfce4-genmon-3.2.ebuild:
+  Stable on sparc, bug #235407
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org> xfce4-genmon-3.2.ebuild:
   x86 stable, bug #235407
