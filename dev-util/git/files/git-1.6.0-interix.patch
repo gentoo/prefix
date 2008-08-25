@@ -1,0 +1,124 @@
+diff -ru git-1.6.0.orig/builtin-upload-archive.c git-1.6.0/builtin-upload-archive.c
+--- git-1.6.0.orig/builtin-upload-archive.c	2008-08-25 11:41:20 +0200
++++ git-1.6.0/builtin-upload-archive.c	2008-08-25 11:42:22 +0200
+@@ -130,8 +130,9 @@
+ 	packet_flush(1);
+ 
+ 	while (1) {
+-		struct pollfd pfd[2];
+ 		int status;
++#ifndef __INTERIX
++		struct pollfd pfd[2];
+ 
+ 		pfd[0].fd = fd1[0];
+ 		pfd[0].events = POLLIN;
+@@ -154,6 +155,7 @@
+ 		/* Always finish to read data when available */
+ 		if ((pfd[0].revents | pfd[1].revents) & POLLIN)
+ 			continue;
++#endif
+ 
+ 		if (waitpid(writer, &status, 0) < 0)
+ 			error_clnt("%s", lostchild);
+diff -ru git-1.6.0.orig/compat/inet_ntop.c git-1.6.0/compat/inet_ntop.c
+--- git-1.6.0.orig/compat/inet_ntop.c	2008-08-25 11:41:20 +0200
++++ git-1.6.0/compat/inet_ntop.c	2008-08-25 11:42:22 +0200
+@@ -169,6 +169,7 @@
+ }
+ #endif
+ 
++#ifndef __INTERIX
+ /* char *
+  * inet_ntop(af, src, dst, size)
+  *	convert a network format address to presentation format.
+@@ -197,3 +198,4 @@
+ 	}
+ 	/* NOTREACHED */
+ }
++#endif
+diff -ru git-1.6.0.orig/daemon.c git-1.6.0/daemon.c
+--- git-1.6.0.orig/daemon.c	2008-08-25 11:41:21 +0200
++++ git-1.6.0/daemon.c	2008-08-25 11:42:22 +0200
+@@ -933,6 +933,7 @@
+ 
+ static int service_loop(int socknum, int *socklist)
+ {
++#ifndef __INTERIX
+ 	struct pollfd *pfd;
+ 	int i;
+ 
+@@ -985,6 +986,10 @@
+ 			}
+ 		}
+ 	}
++#else
++	error("server requires porting to interix! not available yet");
++	return 1;
++#endif
+ }
+ 
+ /* if any standard file descriptor is missing open it to /dev/null */
+@@ -1028,6 +1033,7 @@
+ 
+ static int serve(char *listen_addr, int listen_port, struct passwd *pass, gid_t gid)
+ {
++#ifndef __INTERIX
+ 	int socknum, *socklist;
+ 
+ 	socknum = socksetup(listen_addr, listen_port, &socklist);
+@@ -1041,6 +1047,9 @@
+ 		die("cannot drop privileges");
+ 
+ 	return service_loop(socknum, socklist);
++#else
++	die("server not supported on interix yet!");
++#endif
+ }
+ 
+ int main(int argc, char **argv)
+diff -ru git-1.6.0.orig/git-compat-util.h git-1.6.0/git-compat-util.h
+--- git-1.6.0.orig/git-compat-util.h	2008-08-25 11:41:23 +0200
++++ git-1.6.0/git-compat-util.h	2008-08-25 11:43:10 +0200
+@@ -69,7 +69,9 @@
+ #include <utime.h>
+ #ifndef __MINGW32__
+ #include <sys/wait.h>
++#ifndef __INTERIX
+ #include <sys/poll.h>
++#endif
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #ifndef NO_SYS_SELECT_H
+@@ -80,7 +82,11 @@
+ #include <arpa/inet.h>
+ #include <netdb.h>
+ #include <pwd.h>
++#ifndef __INTERIX
+ #include <inttypes.h>
++#else
++#include <stdint.h>
++#endif
+ #if defined(__CYGWIN__)
+ #undef _XOPEN_SOURCE
+ #include <grp.h>
+diff -ru git-1.6.0.orig/upload-pack.c git-1.6.0/upload-pack.c
+--- git-1.6.0.orig/upload-pack.c	2008-08-25 11:41:31 +0200
++++ git-1.6.0/upload-pack.c	2008-08-25 11:42:22 +0200
+@@ -142,6 +142,7 @@
+ 
+ static void create_pack_file(void)
+ {
++#ifndef __INTERIX
+ 	struct async rev_list;
+ 	struct child_process pack_objects;
+ 	int create_full_pack = (nr_our_refs == want_obj.nr && !have_obj.nr);
+@@ -292,6 +293,9 @@
+  fail:
+ 	send_client_data(3, abort_msg, sizeof(abort_msg));
+ 	die("git-upload-pack: %s", abort_msg);
++#else
++	die("git-upload-pack: not implemented on interix!");
++#endif
+ }
+ 
+ static int got_sha1(char *hex, unsigned char *sha1)
