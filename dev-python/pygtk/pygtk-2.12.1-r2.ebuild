@@ -11,7 +11,7 @@ HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc examples"
 
 RDEPEND=">=dev-libs/glib-2.8.0
@@ -61,6 +61,20 @@ src_install() {
 		rm examples/Makefile*
 		insinto /usr/share/doc/${PF}
 		doins -r examples
+	fi
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		python_version
+		for f in \
+				atk \
+				gtkunixprint \
+				pango \
+				pangocairo \
+				gtk/_gtk \
+				gtk/glade \
+		; do
+			mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/${f}.{so,bundle} || die "failed to rename $f"
+		done
 	fi
 }
 
