@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.3.1.ebuild,v 1.5 2008/08/16 16:29:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.3.1.ebuild,v 1.6 2008/08/24 11:41:59 corsair Exp $
 
 EAPI="prefix"
 
