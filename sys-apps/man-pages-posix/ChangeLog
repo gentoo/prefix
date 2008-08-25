@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/man-pages-posix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages-posix/ChangeLog,v 1.5 2008/08/22 18:19:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages-posix/ChangeLog,v 1.7 2008/08/24 17:41:39 klausman Exp $
+
+  24 Aug 2008; Tobias Klausmann <klausman@gentoo.org>
+  man-pages-posix-2003a.ebuild:
+  Stable on alpha, bug #235246
+
+  24 Aug 2008; Markus Rothe <corsair@gentoo.org>
+  man-pages-posix-2003a.ebuild:
+  Stable on ppc64; bug #235246
 
   22 Aug 2008; nixnut <nixnut@gentoo.org> man-pages-posix-2003a.ebuild:
   Stable on ppc wrt bug 235246
