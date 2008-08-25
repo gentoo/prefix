@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.0.ebuild,v 1.9 2007/12/31 01:17:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/Attic/ncftp-3.2.2.ebuild,v 1.1 2008/08/24 17:17:30 jer Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
-IPV6_P="ncftp-320-v6-20061109b"
+IPV6_P="ncftp-322-v6-20080821"
 DESCRIPTION="An extremely configurable ftp client"
 HOMEPAGE="http://www.ncftp.com/"
 SRC_URI="ftp://ftp.ncftp.com/ncftp/${P}-src.tar.bz2
@@ -24,7 +24,9 @@ src_unpack() {
 	cd "${S}"
 	use ipv6 && epatch "${DISTDIR}"/${IPV6_P}.diff.gz
 	epatch "${FILESDIR}"/${P}-build.patch
+	tc-export CC
 	sed -i \
+		-e s/CC=gcc/"CC ?= ${CC}"/ \
 		-e 's:@SFLAG@::' \
 		-e 's:@STRIP@:true:' \
 		Makefile.in */Makefile.in || die

@@ -1,0 +1,19 @@
+The first change makes sure $D/ESTDIR isn't created.
+
+The original build system assumes that in DESTDIR, a mandir (say,
+/usr/share/man) already exists. Using -p may not be compatible, but then again
+this is a Gentoo specific patch. -JeR
+
+--- Makefile.in.orig	2008-08-25 04:10:21.000000000 +0200
++++ Makefile.in	2008-08-25 04:11:51.000000000 +0200
+@@ -43,8 +43,8 @@
+ 	@( cd ./ncftp ; $(MAKE) "CC=$(CC)" "CFLAGS=$(CFLAGS)" )
+ 	@( cd ./sh_util ; $(MAKE) "CC=$(CC)" "CFLAGS=$(CFLAGS)" )
+ 	@( cd ./vis ; $(MAKE) "CC=$(CC)" "CFLAGS=$(CFLAGS)" )
+-	-@test -z "$(DESTDIR)" || mkdir -p "$DESTDIR" 2>/dev/null
+-	-mkdir "$(DESTDIR)$(prefix)" "$(DESTDIR)$(BINDIR)" "$(DESTDIR)$(SYSCONFDIR)" "$(DESTDIR)$(mandir)" "$(DESTDIR)$(mandir)/man1" 2>/dev/null
++	-@test -z "$(DESTDIR)" || mkdir -p "$(DESTDIR)" 2>/dev/null
++	-mkdir -p "$(DESTDIR)$(prefix)" "$(DESTDIR)$(BINDIR)" "$(DESTDIR)$(SYSCONFDIR)" "$(DESTDIR)$(mandir)/man1" 2>/dev/null
+ 	-@echo '..... Installing the programs .....'
+ 	$(INSTALL_PROGRAM) bin/ncftp@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftp@EXEEXT@"
+ 	$(INSTALL_PROGRAM) bin/ncftpget@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftpget@EXEEXT@"
