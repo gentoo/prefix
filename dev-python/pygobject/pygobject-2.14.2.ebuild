@@ -11,7 +11,7 @@ HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc examples libffi"
 
 # glib higher dep than in configure.in comes from a runtime version check and ensures that
@@ -69,6 +69,11 @@ src_install() {
 		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py-2.0
 	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth \
 		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth-2.0
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# our python expects a bundle
+		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/gobject/_gobject.{so,bundle}
+	fi
 }
 
 pkg_postinst() {
