@@ -87,4 +87,10 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die "Installation failed"
 	dodoc AUTHORS ChangeLog NEWS README
+
+	# just for 1.6.x (already fixed upstream). Gentoo bug #235660
+	if use aqua; then
+		insinto /usr/lib/pkgconfig
+		doins ${S}/src/cairo-quartz-font.pc || die "install failed"
+	fi
 }
