@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/xfce4-diskperf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-diskperf/ChangeLog,v 1.31 2008/08/22 21:07:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-diskperf/ChangeLog,v 1.33 2008/08/24 13:54:49 corsair Exp $
+
+  24 Aug 2008; Markus Rothe <corsair@gentoo.org>
+  xfce4-diskperf-2.2.0.ebuild:
+  Stable on ppc64; bug #235407
+
+  24 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  xfce4-diskperf-2.2.0.ebuild:
+  Stable on sparc, bug #235407
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org> xfce4-diskperf-2.2.0.ebuild:
   x86 stable, bug #235407
