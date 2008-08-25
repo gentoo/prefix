@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/icon
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.33 2008/08/23 05:23:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.34 2008/08/24 09:40:34 maekke Exp $
+
+*icon-9.4.3-r3 (24 Aug 2008)
+
+  24 Aug 2008; Markus Meier <maekke@gentoo.org> +icon-9.4.3-r3.ebuild:
+  fix multilib-strict (bug #209558) and prestripped files (bug #209560)
 
   23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Add GLEP 56 USE flag descriptions.
