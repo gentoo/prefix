@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/imlib2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.76 2008/08/21 18:30:10 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.77 2008/08/24 16:22:33 klausman Exp $
+
+  24 Aug 2008; Tobias Klausmann <klausman@gentoo.org> imlib2-1.4.1.ebuild:
+  Stable on alpha, bug #234927
 
   21 Aug 2008; Friedrich Oslage <bluebird@gentoo.org> imlib2-1.4.1.ebuild:
   Stable on sparc, bug #234927

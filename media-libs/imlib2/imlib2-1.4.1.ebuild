@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.1.ebuild,v 1.6 2008/08/21 18:30:10 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.1.ebuild,v 1.7 2008/08/24 16:22:33 klausman Exp $
 
 EAPI="prefix"
 
