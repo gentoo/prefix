@@ -110,6 +110,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/20080626-git-1.5.6.1-noperl.patch
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	sed -i \
 		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
 		-e "s:^\(LDFLAGS =\).*$:\1 ${LDFLAGS}:" \
