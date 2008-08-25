@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8908 2008/08/23 15:02:42 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8910 2008/08/24 17:30:21 matsuu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -84,7 +84,7 @@ media-gfx/autopano-sift-C
 
 # MATSUU Takuto <matsuu@gentoo.org> (15 Aug 2008)
 # Release candidate version, masked for testing.
-=x11-wm/awesome-3.0_rc*
+>=x11-wm/awesome-3
 
 # Ulrich Mueller <ulm@gentoo.org> (15 Aug 2008)
 # Mask live CVS for Emacs 22 base branch, so that users will get
@@ -381,11 +381,6 @@ dev-cpp/libwefts
 =dev-java/mx4j-core-3.0.2
 =dev-java/mx4j-tools-3.0.2
 =dev-java/mx4j-3.0.2
-
-# Torsten Veller <tove@gentoo.org> (11 Jun 2008)
-# Masked for removal in 30 days
-# Bugs: 99776 128014 131249 197816
-mail-mta/xmail
 
 # Hanno Böck <hanno@gentoo.org> (11 Jun 2008)
 # Masking till gnucash and other apps are ported
