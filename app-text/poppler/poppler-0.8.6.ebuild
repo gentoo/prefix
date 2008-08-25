@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.3.ebuild,v 1.7 2008/04/17 11:25:20 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.8.6.ebuild,v 1.1 2008/08/24 13:59:22 loki_val Exp $
 
 EAPI="prefix"
 
-inherit libtool
+inherit libtool eutils flag-o-matic
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://poppler.freedesktop.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="cjk jpeg zlib"
 
 RDEPEND=">=media-libs/freetype-2.1.8
@@ -24,7 +24,16 @@ RDEPEND=">=media-libs/freetype-2.1.8
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${PN}-0.8.3-interix.patch
+}
+
 src_compile() {
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
+
 	econf \
 		--disable-poppler-qt4 \
 		--disable-poppler-glib \
