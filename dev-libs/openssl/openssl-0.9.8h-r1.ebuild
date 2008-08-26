@@ -86,6 +86,13 @@ src_unpack() {
 	# 64bit warning message.
 	[[ ${CHOST} == *-hpux* ]] && sed -i -e 's,stty,true,g' -e 's,read waste,true,g' config
 
+	# Upstream insists that the GNU assembler fails, so insist on calling the
+	# vendor assembler. However, I find otherwise. At least on Solaris-9
+	# --darkside (26 Aug 2008)
+	if [[ ${CHOST} == sparc-sun-solaris2.9 ]]; then
+		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
+	fi
+
 	./config --test-sanity || die "I AM NOT SANE"
 }
 
