@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*parity-1.1.0 (26 Aug 2008)
+
+  26 Aug 2008; Markus Duft <mduft@gentoo.org> -parity-1.0.4.ebuild,
+  +parity-1.1.0.ebuild:
+  added 1.1.0, removed 1.0.4
+
   13 May 2008; <mduft@gentoo.org> parity-1.0.5.ebuild:
   keyworded ~x86-winnt
 
