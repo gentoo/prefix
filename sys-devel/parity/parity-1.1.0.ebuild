@@ -36,5 +36,12 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	# create i586-pc-winnt*-g[++|cc|..] links..
+	for x in c++ g++ gcc; do
+		dosym /usr/bin/parity.gnu.gcc /usr/bin/i586-pc-winnt$(uname -r)-${x}
+	done
+
+	dosym /usr/bin/parity.gnu.ld /usr/bin/i586-pc-winnt$(uname -r)-ld
 }
 
