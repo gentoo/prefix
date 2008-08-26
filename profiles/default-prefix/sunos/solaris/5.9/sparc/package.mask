@@ -1,0 +1,4 @@
+# Jeremy Olexa <darkside@gentoo.org> (26 Aug 2008)
+# Requires that pthread.h defines pthread_atfork() but it doesn't on Solaris 9
+# SPARC.
+dev-libs/nss

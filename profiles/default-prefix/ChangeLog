@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  26 Aug 2008; Jeremy Olexa <darkside@gentoo.org>
+  +sunos/solaris/5.9/sparc/package.mask:
+  Mask dev-libs/nss on solaris-9 sparc because it needs pthread_atfork() in
+  pthread.h but solaris-9 doesn't have it.
+
   21 Aug 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   Xcode Tools 3.1 is out of Beta now, unleash the compilers
 
