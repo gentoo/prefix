@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  27 Aug 2008; Markus Duft <mduft@gentoo.org> windows/winnt/use.mask:
+  added ncurses to use.mask for native windows
+
   26 Aug 2008; Jeremy Olexa <darkside@gentoo.org>
   sunos/solaris/5.9/sparc/package.mask:
   p.mask >=file-4.25 on solaris-9 sparc

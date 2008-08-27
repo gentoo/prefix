@@ -43,6 +43,7 @@ ipod
 ipv6
 lm_sensors
 matrox
+ncurses
 netboot
 old-linux
 on-the-fly-crypt  # requires device-mapper
