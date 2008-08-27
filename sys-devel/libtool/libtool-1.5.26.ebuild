@@ -63,6 +63,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/1.5.20/libtool-1.5.20-override-LD_LIBRARY_PATH.patch
 	epatch "${FILESDIR}"/1.5.26/libtool-1.5.26-aixrtl.patch
 
+	# conditional to keep others libtool's clean. the patch should
+	# not do any harm, but hey, some people like to stay as vanilla
+	# as possible :)
+	[[ ${CHOST} == *-interix* || ${CHOST} == *-winnt* ]] && \
+		epatch "${FILESDIR}"/${PV}/${P}-parity.patch
+
 	ebegin "Generating ltmain.sh"
 	gen_ltmain_sh || die "Failed to generate ltmain.sh!"
 	eend 0
