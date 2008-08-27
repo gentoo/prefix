@@ -2,6 +2,14 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Aug 2008; Markus Duft <mduft@gentoo.org>
+  +files/parity-1.1.0-entry-points.patch, parity-1.1.0.ebuild:
+  added patch for wrong entry points (upstream in svn already)
+
+  26 Aug 2008; Markus Duft <mduft@gentoo.org> parity-1.1.0.ebuild,
+  parity-1.1.0.ebuild, parity-1.1.0.ebuild:
+  add .exe extension support for symlinks
+
   26 Aug 2008; Markus Duft <mduft@gentoo.org> parity-1.1.0.ebuild,
   parity-1.1.0.ebuild:
   added creation of symlinks for winnt profile to find compiler out of the box

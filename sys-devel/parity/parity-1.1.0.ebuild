@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="An Interix to native Win32 Cross-Compiler Tool (requires Visual Studio)."
 HOMEPAGE="http://www.sourceforge.net/projects/parity/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
@@ -26,6 +28,14 @@ pkg_setup() {
 	fi
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# upstream in svn for 1.1.1
+	epatch "${FILESDIR}"/${P}-entry-points.patch
+}
+
 src_compile() {
 	# parity's configure script has tons of magic to detect propper
 	# visual studio installations, which would be much too much here.
@@ -38,10 +48,14 @@ src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
 	# create i586-pc-winnt*-g[++|cc|..] links..
+	local exeext=
+
+	[[ -f ${ED}/usr/bin/parity.gnu.gcc.exe ]] && exeext=.exe
+
 	for x in c++ g++ gcc; do
-		dosym /usr/bin/parity.gnu.gcc /usr/bin/i586-pc-winnt$(uname -r)-${x}
+		dosym /usr/bin/parity.gnu.gcc$exeext /usr/bin/i586-pc-winnt$(uname -r)-${x}
 	done
 
-	dosym /usr/bin/parity.gnu.ld /usr/bin/i586-pc-winnt$(uname -r)-ld
+	dosym /usr/bin/parity.gnu.ld$exeext /usr/bin/i586-pc-winnt$(uname -r)-ld
 }
 
