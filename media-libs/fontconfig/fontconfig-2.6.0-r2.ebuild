@@ -29,7 +29,11 @@ RDEPEND=">=media-libs/freetype-2.1.4
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( app-text/docbook-sgml-utils )"
-PDEPEND="app-admin/eselect-fontconfig"
+PDEPEND="app-admin/eselect-fontconfig
+	media-fonts/corefonts"
+# *some* fonts are needed by nearly every gui application. corefonts satisfies
+# this. In Gentoo Prefix, there is no fonts automatically pulled in by X, etc.
+# So we must install them here. (bug #235553)
 
 src_unpack() {
 	unpack ${A}
