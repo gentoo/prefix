@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.119 2008/08/24 14:50:52 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.120 2008/08/25 17:01:43 maekke Exp $
+
+  25 Aug 2008; Markus Meier <maekke@gentoo.org> swig-1.3.36.ebuild:
+  amd64/x86 stable, bug #229915
 
   24 Aug 2008; Marijn Schouten <hkBst@gentoo.org> +files/fix-for-PLT4.patch,
   swig-1.3.36.ebuild:
