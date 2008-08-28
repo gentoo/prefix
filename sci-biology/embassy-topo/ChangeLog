@@ -1,6 +1,16 @@
 # ChangeLog for sci-biology/embassy-topo
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-topo/ChangeLog,v 1.23 2007/07/18 01:56:22 ribosome Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-topo/ChangeLog,v 1.25 2008/08/27 21:55:59 ribosome Exp $
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org>
+  -embassy-topo-1.0.0-r4.ebuild:
+  Pruning version that will never be stabilised.
+
+*embassy-topo-1.0.0-r5 (27 Aug 2008)
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-topo-1.0.0-r5.ebuild:
+  New upstream version/package for EMBASSY 6.0.1.
 
 *embassy-topo-1.0.0-r4 (18 Jul 2007)
 
