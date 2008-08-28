@@ -1,6 +1,11 @@
 # ChangeLog for sci-biology/rebase
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/ChangeLog,v 1.86 2007/08/20 17:25:03 ribosome Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/ChangeLog,v 1.87 2008/08/27 14:58:50 ribosome Exp $
+
+*rebase-808 (27 Aug 2008)
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org> +rebase-808.ebuild:
+  New upstream version.
 
 *rebase-708 (20 Aug 2007)
 
