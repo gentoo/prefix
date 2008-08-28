@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.2-r1.ebuild,v 1.12 2008/05/18 11:40:06 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.2-r1.ebuild,v 1.13 2008/08/27 20:04:42 markusle Exp $
 
 EAPI="prefix"
 
@@ -77,7 +77,7 @@ src_compile() {
 
 	if use emacs; then
 		cd "${S}/emacs"
-		elisp-comp *.el || die "elisp-comp failed"
+		elisp-compile *.el || die "elisp-compile failed"
 	fi
 }
 
