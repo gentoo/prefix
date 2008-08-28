@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/netselect
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/ChangeLog,v 1.36 2007/11/09 21:03:13 grobian Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/ChangeLog,v 1.37 2008/08/27 10:03:56 armin76 Exp $
+
+  27 Aug 2008; Raúl Porcel <armin76@gentoo.org> netselect-0.3-r1.ebuild,
+  netselect-0.3-r2.ebuild:
+  Remove bindnow-flags
 
   09 Nov 2007; Fabian Groffen <grobian@gentoo.org> netselect-0.3-r1.ebuild,
   netselect-0.3-r2.ebuild:

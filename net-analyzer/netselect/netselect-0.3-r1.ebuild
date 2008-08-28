@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/netselect-0.3-r1.ebuild,v 1.19 2007/11/09 21:03:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/netselect-0.3-r1.ebuild,v 1.20 2008/08/27 10:03:56 armin76 Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,6 @@ src_unpack() {
 }
 
 src_compile() {
-	append-ldflags $(bindnow-flags)
-
 	sed -i \
 		-e "s:PREFIX =.*:PREFIX = ${ED}usr:" \
 		-e "s:CFLAGS =.*:CFLAGS = -Wall -I. -g ${CFLAGS}:" \
