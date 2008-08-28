@@ -52,10 +52,11 @@ src_install() {
 
 	[[ -f ${ED}/usr/bin/parity.gnu.gcc.exe ]] && exeext=.exe
 
-	for x in c++ g++ gcc; do
-		dosym /usr/bin/parity.gnu.gcc$exeext /usr/bin/i586-pc-winnt$(uname -r)-${x}
-	done
+	dobin "${FILESDIR}"/parity-prefix-wrapper.sh
+	sed -i -e "s,@EXEEXT@,$exeext,g" "${ED}"/usr/bin/parity-prefix-wrapper.sh
 
-	dosym /usr/bin/parity.gnu.ld$exeext /usr/bin/i586-pc-winnt$(uname -r)-ld
+	for x in c++ g++ gcc ld; do
+		dosym /usr/bin/parity-prefix-wrapper.sh /usr/bin/i586-pc-winnt$(uname -r)-${x}
+	done
 }
 
