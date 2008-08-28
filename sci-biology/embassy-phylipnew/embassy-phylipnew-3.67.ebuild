@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-phylipnew/embassy-phylipnew-3.6b.ebuild,v 1.7 2008/08/27 17:47:36 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-phylipnew/embassy-phylipnew-3.67.ebuild,v 1.1 2008/08/27 19:38:07 ribosome Exp $
 
 EAPI="prefix"
 
-EBOV="4.0.0"
+EBOV="6.0.1"
 
 inherit embassy
 
