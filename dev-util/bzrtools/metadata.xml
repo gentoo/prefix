@@ -6,4 +6,8 @@
 		<email>hawking@gentoo.org</email>
 		<name>Ali Polatel</name>
 	</maintainer>
+	<maintainer>
+		<email>pva@gentoo.org</email>
+		<name>Peter Volkov</name>
+	</maintainer>
 </pkgmetadata>
