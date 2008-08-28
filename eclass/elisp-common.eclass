@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.42 2008/08/10 16:54:22 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.44 2008/08/27 11:21:32 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -33,20 +33,20 @@
 # src_compile() usage:
 #
 # An elisp file is compiled by the elisp-compile() function defined here and
-# simply takes the source files as arguments.
+# simply takes the source files as arguments.  The case of interdependent
+# elisp files is also supported, since the current directory is added to the
+# load-path which makes sure that all files are loadable.
 #
 #   	elisp-compile *.el || die "elisp-compile failed"
 #
-# In the case of interdependent elisp files, you can use the elisp-comp()
-# function which makes sure all files are loadable.
-#
-#   	elisp-comp *.el || die "elisp-comp failed"
+# Formerly, function elisp-comp() was used for compilation of interdependent
+# elisp files.  This usage is considered as obsolete.
 #
 # Function elisp-make-autoload-file() can be used to generate a file with
 # autoload definitions for the lisp functions.  It takes the output file name
 # (default: "${PN}-autoloads.el") and a list of directories (default: working
 # directory) as its arguments.  Use of this function requires that the elisp
-# source files contain magic ";;;###autoload" comments. See the Emacs Lisp
+# source files contain magic ";;;###autoload" comments.  See the Emacs Lisp
 # Reference Manual (node "Autoload") for a detailed explanation.
 #
 # .SS
@@ -142,24 +142,44 @@ ESITEETC=${EPREFIX}${SITEETC}
 # Name of package's site-init file.
 SITEFILE=50${PN}-gentoo.el
 
+# @ECLASS-VARIABLE: EMACS
+# @DESCRIPTION:
+# Path of Emacs executable.
 EMACS=${EPREFIX}/usr/bin/emacs
-# The following works for Emacs versions 18-23, don't change it.
+
+# @ECLASS-VARIABLE: EMACSFLAGS
+# @DESCRIPTION:
+# Flags for executing Emacs in batch mode.
+# These work for Emacs versions 18-23, so don't change them.
 EMACSFLAGS="-batch -q --no-site-file"
+
+# @ECLASS-VARIABLE: BYTECOMPFLAGS
+# @DESCRIPTION:
+# Emacs flags used for byte-compilation in elisp-compile().
+BYTECOMPFLAGS="-L ."
 
 # @FUNCTION: elisp-compile
 # @USAGE: <list of elisp files>
 # @DESCRIPTION:
 # Byte-compile Emacs Lisp files.
+#
+# This function uses GNU Emacs to byte-compile all ".el" specified by its
+# arguments.  The resulting byte-code (".elc") files are placed in the same
+# directory as their corresponding source file.
+#
+# The current directory is added to the load-path.  This will ensure that
+# interdependent Emacs Lisp files are visible between themselves, in case
+# they require or load one another.
 
 elisp-compile() {
 	ebegin "Compiling GNU Emacs Elisp files"
-	${EMACS} ${EMACSFLAGS} -f batch-byte-compile "$@"
+	${EMACS} ${EMACSFLAGS} ${BYTECOMPFLAGS} -f batch-byte-compile "$@"
 	eend $? "batch-byte-compile failed"
 }
 
-# @FUNCTION: elisp-comp
-# @USAGE: <list of elisp files>
-# @DESCRIPTION:
+# #FUNCTION: elisp-comp
+# #USAGE: <list of elisp files>
+# #DESCRIPTION:
 # Byte-compile interdependent Emacs Lisp files.
 #
 # This function byte-compiles all ".el" files which are part of its

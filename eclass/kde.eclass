@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.216 2008/05/22 23:12:27 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.217 2008/08/27 15:29:26 carlo Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -21,13 +21,28 @@ DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
 IUSE="debug xinerama elibc_FreeBSD"
 
+
+if [[ ${CATEGORY} == "kde-base" ]]; then
+	if [[ ${PV##*.} -lt 10 ]] ; then
+		# Keep old ebuilds as is
+	        IUSE="${IUSE} kdeenablefinal"
+	else
+		# Don't use --enable-final anymore. Does only cause problems for users and
+		# as an unwelcome extra invalid bug reports, without any reasonable benefit.
+
+		# Get the aRts dependencies right - finally.
+		case "${PN}" in
+			blinken|juk|kalarm|kanagram|kbounce|kcontrol|konq-plugins|kscd|kscreensaver|kttsd|kwifimanager) ARTS_REQUIRED="" ;;
+			artsplugin-*|kaboodle|kasteroids|kdemultimedia-arts|kolf|krec|ksayit|noatun*) ARTS_REQUIRED="yes" ;;
+			*) ARTS_REQUIRED="never" ;;
+		esac
+	fi
+fi
+
 if [[ ${ARTS_REQUIRED} != "yes" && ${ARTS_REQUIRED} != "never" && ${PN} != "arts" ]]; then
 	IUSE="${IUSE} arts"
 fi
 
-if [[ ${CATEGORY} == "kde-base" ]]; then
-	IUSE="${IUSE} kdeenablefinal"
-fi
 
 # @ECLASS-VARIABLE: KDE_S
 # @DESCRIPTION:

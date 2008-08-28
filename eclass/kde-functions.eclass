@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.169 2008/07/27 19:04:29 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.170 2008/08/27 15:29:26 carlo Exp $
 
 # @ECLASS: kde-functions.eclass
 # @MAINTAINER:
@@ -926,4 +926,5 @@ postprocess_desktop_entries() {
 if [[ "${CATEGORY}" == "kde-base" ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	export KDEBASE="true"
+	export KDEREVISION
 fi

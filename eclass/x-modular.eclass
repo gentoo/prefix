@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.101 2008/06/13 16:40:21 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.102 2008/08/25 17:10:36 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -406,7 +406,8 @@ x-modular_src_install() {
 	# Install everything to ${XDIR}
 	make \
 		DESTDIR="${D}" \
-		install
+		install \
+		|| die
 # Shouldn't be necessary in XDIR=/usr
 # einstall forces datadir, so we need to re-force it
 #		datadir=${XDIR}/share \
