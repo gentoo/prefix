@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-memenew/embassy-memenew-0.1.0.ebuild,v 1.7 2008/08/27 20:44:17 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-memenew/embassy-memenew-0.1.0-r1.ebuild,v 1.2 2008/08/27 20:44:17 ribosome Exp $
 
 EAPI="prefix"
 
-EBOV="4.0.0"
+EBOV="6.0.1"
 
 inherit embassy
 
