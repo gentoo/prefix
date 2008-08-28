@@ -1,6 +1,11 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.76 2008/03/22 16:34:04 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.77 2008/08/25 21:34:58 pva Exp $
+
+*djvu-3.5.21 (25 Aug 2008)
+
+  25 Aug 2008; Peter Volkov <pva@gentoo.org> +djvu-3.5.21.ebuild:
+  Version bump.
 
   22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> djvu-3.5.20-r1.ebuild:
   amd64 stable wrt bug #208144
