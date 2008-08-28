@@ -12,7 +12,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="bindist gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
@@ -50,12 +50,15 @@ src_unpack() {
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
 
+	# again, this windows patch should not do any harm to others, but
+	# header files are copied instead of linked now, so leave it conditional.
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
-	eprefixify gentoo.config
+	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp gentoo.config failed"
 	chmod a+rx gentoo.config
 
 	# Don't build manpages if we don't want them
@@ -73,6 +76,7 @@ src_unpack() {
 	[[ $(tc-arch) == *-macos   ]] ||
 	[[ $(tc-arch) == *-aix     ]] ||
 	[[ $(tc-arch) == *-interix ]] ||
+	[[ $(tc-arch) == *-winnt*  ]] ||
 		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
