@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-mount
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mount/ChangeLog,v 1.49 2008/08/24 13:55:27 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mount/ChangeLog,v 1.50 2008/08/27 15:51:27 armin76 Exp $
+
+  27 Aug 2008; Raúl Porcel <armin76@gentoo.org> xfce4-mount-0.5.5.ebuild:
+  alpha/ia64 stable wrt #235407
 
   24 Aug 2008; Markus Rothe <corsair@gentoo.org> xfce4-mount-0.5.5.ebuild:
   Stable on ppc64; bug #235407
