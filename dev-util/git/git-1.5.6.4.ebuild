@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.6.4.ebuild,v 1.7 2008/08/08 20:09:57 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.6.4.ebuild,v 1.8 2008/08/28 02:48:27 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -289,7 +289,6 @@ pkg_postinst() {
 	fi
 	elog "These additional scripts need some dependencies:"
 	echo
-	showpkgdeps git-archimport "dev-util/tla"
 	showpkgdeps git-quiltimport "dev-util/quilt"
 	showpkgdeps git-instaweb \
 		"|| ( www-servers/lighttpd www-servers/apache )"
