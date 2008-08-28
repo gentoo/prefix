@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/ss
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.70 2008/06/18 09:17:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.71 2008/08/26 18:45:44 gentoofan23 Exp $
+
+  26 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> ss-1.40.4.ebuild,
+  ss-1.40.6.ebuild, ss-1.40.8.ebuild, ss-1.40.9.ebuild, ss-1.40.10.ebuild,
+  ss-1.40.11.ebuild:
+  Make blockers on e2fsprogs-libs mutual. Fixes bug #234907
 
 *ss-1.40.11 (18 Jun 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.11.ebuild,v 1.1 2008/06/18 09:17:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.11.ebuild,v 1.2 2008/08/26 18:45:44 gentoofan23 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="nls"
 
-RDEPEND="~sys-libs/com_err-${PV}"
+RDEPEND="~sys-libs/com_err-${PV}
+	!sys-libs/e2fsprogs-libs"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 

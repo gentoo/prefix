@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.4.ebuild,v 1.7 2008/03/16 08:37:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.4.ebuild,v 1.8 2008/08/26 18:45:44 gentoofan23 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls"
 
-RDEPEND="~sys-libs/com_err-${PV}"
+RDEPEND="~sys-libs/com_err-${PV}
+	!sys-libs/e2fsprogs-libs"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
