@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.212 2008/08/20 15:34:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.213 2008/08/26 21:09:44 ulm Exp $
+
+*emacs-cvs-22.2.91 (26 Aug 2008)
+
+  26 Aug 2008; Ulrich Mueller <ulm@gentoo.org> +emacs-cvs-22.2.91.ebuild:
+  New pretest version.
 
   20 Aug 2008; Ulrich Mueller <ulm@gentoo.org>
   -files/emacs-cvs-freebsd-sparc.patch,
