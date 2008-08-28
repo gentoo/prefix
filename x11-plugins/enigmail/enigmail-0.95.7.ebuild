@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.6-r3.ebuild,v 1.5 2008/05/05 14:11:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7.ebuild,v 1.1 2008/08/25 19:28:13 armin76 Exp $
 
 EAPI="prefix"
 
@@ -8,18 +8,18 @@ WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils nsplugins mozcoreconf mozextension makeedit multilib autotools
 
-LANGS="de el es-ES nb-NO pt-BR zh-CN"
-NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sl-SI sv-SE tr-TR zh-TW"
+LANGS="ar de el es-ES nb-NO pt-BR zh-CN"
+NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sk-SK sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
-TBVER="2.0.0.14"
+TBVER="2.0.0.16"
 TBPATCH="2.0.0.14-patches-0.1"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
 HOMEPAGE="http://enigmail.mozdev.org"
 SRC_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/${TBVER}/source/thunderbird-${TBVER}-source.tar.bz2
 	mirror://gentoo/mozilla-thunderbird-${TBPATCH}.tar.bz2
-	http://www.mozilla-enigmail.org/downloads/src/enigmail-${EMVER}.tar.gz"
+	http://www.mozilla-enigmail.org/download/source/enigmail-${EMVER}.tar.gz"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
