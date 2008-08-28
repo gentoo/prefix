@@ -1,6 +1,10 @@
 # ChangeLog for app-text/libwpd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.57 2008/04/15 13:22:06 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.58 2008/08/25 09:51:16 remi Exp $
+
+  25 Aug 2008; Rémi Cardona <remi@gentoo.org> libwpd-0.8.9.ebuild,
+  libwpd-0.8.10.ebuild, libwpd-0.8.14.ebuild:
+  doxygen is a build-time dep (fixes bug #221643)
 
 *libwpd-0.8.14 (15 Apr 2008)
 
