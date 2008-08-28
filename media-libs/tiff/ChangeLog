@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.105 2008/03/04 22:41:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.107 2008/08/26 15:00:44 armin76 Exp $
+
+  26 Aug 2008; Raúl Porcel <armin76@gentoo.org> tiff-3.8.2-r4.ebuild:
+  ia64/sparc stable wrt #234080
+
+*tiff-3.8.2-r4 (26 Aug 2008)
+
+  26 Aug 2008; Robert Buchholz <rbu@gentoo.org>
+  +files/tiff-3.8.2-CVE-2008-2327.patch, +tiff-3.8.2-r4.ebuild:
+  Fix buffer underflow in LZW encoding (CVE-2008-2327), straight to stable for
+  alpha amd64 hppa ppc64 x86 (seccurity bug #234080)
+  (Non-maintainer commit)
 
   04 Mar 2008; Markus Meier <maekke@gentoo.org> tiff-3.8.2-r2.ebuild,
   tiff-3.8.2-r3.ebuild:
