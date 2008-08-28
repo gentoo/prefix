@@ -1,10 +1,58 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1797 2008/08/24 17:30:20 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1810 2008/08/27 20:56:40 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  27 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  nepenthes-0.2.0 was removed from the tree, bug #199168
+
+  27 Aug 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Extend existing dev-util/cmake p.mask for cmake-2.6.1.
+
+  27 Aug 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask sys-fs/udev-126 until the ebuild is fine.
+
+  27 Aug 2008; Markus Ullmann <jokey@gentoo.org>
+  arch/amd64/no-multilib/package.mask,
+  default-linux/amd64/2006.0/no-multilib/package.mask,
+  default-linux/amd64/2006.1/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask,
+  features/64bit-native/package.mask, hardened/linux/x86/package.mask,
+  hardened/x86/package.mask:
+  Rename virtualbox maskings according to package move
+
+  27 Aug 2008; Markus Ullmann <jokey@gentoo.org> updates/3Q-2008:
+  Move virtualbox to -ose
+
+  26 Aug 2008; Mart Raudsepp <leio@gentoo.org>
+  arch/powerpc/ppc64/package.mask, +default-linux/ppc/ppc64/package.mask:
+  Mask GNOME-2.22 on ppc64, due to sys-apps/hal problems, in preparation of
+  removing the global mask
+
+  26 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove basiliskII-jit from p.mask, version was removed from portage. bug
+  #232039
+
+  26 Aug 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Process last rites on gnustep-apps/mylibrary and gnustep-apps/helpviewer
+
+  26 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Process last rite of sys-auth/pam_ssh_agent for Flameeyes.
+
+  25 Aug 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Removed mask on dev-util/bzr pre-release.
+
+  25 Aug 2008; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  masking www-apps/phpcollab per security bug 235052
+
+  25 Aug 2008; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  masking www-apps/xrms per security bug 235005
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask www-client/opera-9.60 snapshots.
 
   24 Aug 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
   Changed =x11-wm/awesome-3_rc* to >=x11-wm/awesome-3.

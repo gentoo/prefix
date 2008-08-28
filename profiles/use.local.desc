@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3809 2008/08/24 22:47:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3814 2008/08/27 13:27:38 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -202,14 +202,14 @@ app-emulation/uae:sdl-sound - Use media-sound/sdl-sound for audio output
 app-emulation/uae:ui - Build the user interface (could be gtk or ncurses based, depending on sdl, dga, svga and aalib USE flags)
 app-emulation/vice:resid - Enable support for ReSID media-libs/resid
 app-emulation/vice:xrandr - Enable support for the X xrandr extension
-app-emulation/virtualbox:additions - Install Guest System Tools ISO
-app-emulation/virtualbox:headless - Build without any graphic frontend
-app-emulation/virtualbox:sdk - Enable building of SDK
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:chm - Install help files and add chm reader dependency
 app-emulation/virtualbox-bin:headless - Install without any graphic frontend
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
+app-emulation/virtualbox-ose:additions - Install Guest System Tools ISO
+app-emulation/virtualbox-ose:headless - Build without any graphic frontend
+app-emulation/virtualbox-ose:sdk - Enable building of SDK
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
@@ -1581,6 +1581,7 @@ net-analyzer/snort:sguil - Enable sguil (The Analyst Console for Network Securit
 net-analyzer/snort:snortsam - patches net-analyzer/snort for use with net-analyzer/snortsam
 net-analyzer/snort:timestats - Enable TimeStats functionality
 net-analyzer/symon:perl - Enables a generic perl symux client
+net-analyzer/symon:symon - Build symon daemon
 net-analyzer/symon:symux - Enables the multiplexer which stores incoming symon streams on disk in RRD files
 net-analyzer/tcpdump:chroot - Enable chrooting when dropping privileges
 net-analyzer/tcpreplay:pcapnav - Enable if you want the jump to byte offset feature via net-libs/libpcapnav
@@ -2390,6 +2391,8 @@ www-client/elinks:finger - Enable support for the finger protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
 www-client/kazehakase:hyperestraier - enable hyperestraier support for full-text search in history
 www-client/kazehakase:webkit - Use net-libs/webkit for rendering rather than net-libs/xulrunner
+www-client/midori:gvfs - Use GNOME VFS for communication
+www-client/midori:sourceview - Allow page source viewing
 www-client/mozilla-firefox:custom-optimization - Fine-tune custom compiler optimizations
 www-client/mozilla-firefox:filepicker - Enable old gtkfilepicker from 1.0.x firefox
 www-client/mozilla-firefox:iceweasel - Enable iceweasel branding
@@ -2526,6 +2529,7 @@ x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
 x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime
 x11-wm/vtwm:rplay - Enable rplay support, needed for sound.
 x11-wm/windowmaker:modelock - Enable XKB language status lock support. README says: "If you don't know what it is you probably don't need it."
+x11-wm/windowmaker:vdesktop - Enable dynamic virtual desktop (conflicts with software that works on the edges of the screen)
 xfce-base/thunar:trash-plugin - Build Trash plug-in for panel
 xfce-base/xfce4-extras:battery - Meta pulls in xfce-extra/xfce4-battery depend
 xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce-extra/xfce4-cpu-freq depend
