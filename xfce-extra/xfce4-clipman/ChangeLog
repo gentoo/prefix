@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-clipman
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-clipman/ChangeLog,v 1.42 2008/08/24 12:48:06 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-clipman/ChangeLog,v 1.43 2008/08/27 15:22:30 armin76 Exp $
+
+  27 Aug 2008; Raúl Porcel <armin76@gentoo.org> xfce4-clipman-0.8.1.ebuild:
+  alpha/ia64 stable wrt #235407
 
   24 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
   xfce4-clipman-0.8.1.ebuild:
