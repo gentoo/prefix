@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.134 2008/08/24 11:22:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.135 2008/08/25 08:16:26 opfer Exp $
+
+  25 Aug 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/erlang-12.2.2-as-needed.patch, -erlang-12.2.2.ebuild,
+  -erlang-12.2.3.ebuild:
+  clean up
 
   24 Aug 2008; Markus Rothe <corsair@gentoo.org> erlang-12.2.3-r1.ebuild:
   Stable on ppc64; bug #231553
