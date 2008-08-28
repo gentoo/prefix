@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-5.0.0.ebuild,v 1.2 2008/01/25 23:51:41 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-6.0.1.ebuild,v 1.1 2008/08/26 18:51:27 ribosome Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,7 @@ S="${WORKDIR}/EMBOSS-${PV}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-as-needed.patch
+	epatch "${FILESDIR}"/${PN}-5.0.0-as-needed.patch
 
 	local link_string="-lX11";
 	if use png; then

@@ -1,6 +1,18 @@
 # ChangeLog for sci-biology/emboss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.46 2008/01/25 23:51:41 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.49 2008/08/27 21:59:28 ribosome Exp $
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org> -emboss-5.0.0.ebuild:
+  Pruning version that will never be stabilised.
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org> emboss-4.0.0.ebuild:
+  Depend on ClustalW 1.83 since version 2.x will soon be added to Portage
+  and is incompatible with EMBOSS wrapper programs.
+
+*emboss-6.0.1 (26 Aug 2008)
+
+  26 Aug 2008; Olivier Fisette <ribosome@gentoo.org> +emboss-6.0.1.ebuild:
+  New upstream version.
 
   25 Jan 2008; Markus Dittrich <markusle@gentoo.org>
   +files/emboss-5.0.0-as-needed.patch, emboss-4.0.0.ebuild,

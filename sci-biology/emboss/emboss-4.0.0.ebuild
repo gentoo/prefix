@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.10 2008/01/25 23:51:41 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.11 2008/08/27 21:28:36 ribosome Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ DEPEND="X? ( x11-libs/libXt )
 	)
 	!minimal? (
 		sci-biology/primer3
-		sci-biology/clustalw
+		~sci-biology/clustalw-1.83
 	)
 	!<dev-util/pscan-20000721-r1"
 
