@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-notes
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.53 2008/08/24 13:56:18 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.54 2008/08/27 15:52:09 armin76 Exp $
+
+  27 Aug 2008; Raúl Porcel <armin76@gentoo.org> xfce4-notes-1.6.2.ebuild:
+  alpha/ia64 stable wrt #235407
 
   24 Aug 2008; Markus Rothe <corsair@gentoo.org> xfce4-notes-1.6.2.ebuild:
   Stable on ppc64; bug #235407
