@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.87 2008/06/29 11:02:14 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.89 2008/08/26 14:45:54 armin76 Exp $
+
+  26 Aug 2008; Raúl Porcel <armin76@gentoo.org> darcs-2.0.2.ebuild:
+  Add ~ia64 wrt #227677
+
+*darcs-2.0.2 (25 Aug 2008)
+
+  25 Aug 2008; Lennart Kolmodin <kolmodin@gentoo.org> +darcs-2.0.2.ebuild:
+  Bump to 2.0.2, first ebuild in the 2.x series.
 
   29 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
   darcs-1.1.0_pre1.ebuild:
