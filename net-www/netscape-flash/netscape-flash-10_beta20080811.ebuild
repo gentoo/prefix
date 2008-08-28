@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_beta20080811.ebuild,v 1.1 2008/08/23 00:25:28 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_beta20080811.ebuild,v 1.2 2008/08/25 19:12:16 lack Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,8 @@ BETA=${BETA#beta}
 BV=${BETA:4:2}${BETA:6:2}${BETA:2:2}
 
 DESCRIPTION="Adobe Flash Player"
-SRC_URI="http://download.macromedia.com/pub/labs/flashplayer${MV}/flashplayer${MV}_install_linux_${BV}.tar.gz"
+SRC_URI="http://download.macromedia.com/pub/labs/flashplayer${MV}/flashplayer${MV}_install_linux_${BV}.tar.gz
+mirror://gentoo/flash-libcompat-0.1.tar.bz2"
 HOMEPAGE="http://www.adobe.com/"
 IUSE=""
 SLOT="0"
@@ -30,8 +31,8 @@ S="${WORKDIR}/install_flash_player_${MV}_linux"
 DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 			app-emulation/emul-linux-x86-gtklibs
 			app-emulation/emul-linux-x86-soundlibs
-			 app-emulation/emul-linux-x86-xlibs
-			 net-libs/xulrunner-bin )
+			app-emulation/emul-linux-x86-xlibs
+			|| ( net-libs/xulrunner-bin www-client/mozilla-firefox-bin ) )
 	x86? ( x11-libs/libXext
 		x11-libs/libX11
 		x11-libs/libXt
@@ -41,8 +42,11 @@ DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 		dev-libs/nss
 		net-misc/curl
 		>=sys-libs/glibc-2.4 )
-	app-text/acroread
 	media-fonts/corefonts"
+
+# Our new flash-libcompat suffers from the same EXESTACK problem as libcrypto
+# from app-text/acroread, so tell QA to ignore it:
+QA_EXECSTACK="opt/flash-libcompat/libcrypto.so.0.9.7"
 
 pkg_setup() {
 	# This is a binary x86 package => ABI=x86
@@ -56,16 +60,20 @@ src_install() {
 	doexe libflashplayer.so
 	inst_plugin /opt/netscape/plugins/libflashplayer.so
 
-	# This version especially is ugly in that it hard-requires libcurl.so.3.  On
-	# x86 systems, we could just symlink to libcurl.so.4, but by using acroread
-	# to provide the needed libs we have a single solution that works for both
-	# amd64 and x86, which I like marginally better.
-	echo 'LDPATH="/opt/Adobe/Reader8/Reader/intellinux/lib"' > 99flash-10-libhack
-	doenvd 99flash-10-libhack
+	# This version especially is ugly in that it hard-requires libcurl.so.3,
+	# libcrypto.so.0.9.7 and libssl.so.0.9.7, so we just provide our own 32-bit
+	# binary version of these libs.
+	exeinto /opt/flash-libcompat
+	pushd "${WORKDIR}/flash-libcompat-0.1/"
+	doexe *
+	popd
+	echo 'LDPATH="/opt/flash-libcompat"' > 99flash-libcompat
+	doenvd 99flash-libcompat
 
 	# Apparently the next release will dynamically check for libcurl.so.4 and
-	# libcurl.so.3, so this will be much less ugly (especially if we can get
-	# libcurl into one of the emul-linux-x86 packages).
+	# libcurl.so.3 (and maybe the SSLs too, I hope) , so this will be slightly
+	# less ugly (especially if we can get libcurl into one of the emul-linux-x86
+	# packages)
 }
 
 pkg_postinst() {

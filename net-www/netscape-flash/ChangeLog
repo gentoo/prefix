@@ -1,6 +1,11 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.70 2008/08/23 00:25:28 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.71 2008/08/25 19:12:16 lack Exp $
+
+  25 Aug 2008; Jim Ramsay <lack@gentoo.org>
+  netscape-flash-10_beta20080811.ebuild:
+  Use a custom 'flash-libcompat' tarball which contains the libraries
+  previously used from app-text/acroread, to remove that dependency.
 
 *netscape-flash-10_beta20080811 (22 Aug 2008)
 
