@@ -1,6 +1,9 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.85 2008/07/10 19:39:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.86 2008/08/25 10:32:27 aballier Exp $
+
+  25 Aug 2008; Alexis Ballier <aballier@gentoo.org> libidn-1.9.ebuild:
+  keyword ~sparc-fbsd
 
 *libidn-1.9 (10 Jul 2008)
 
