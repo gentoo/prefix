@@ -41,3 +41,11 @@ diff -ru parity-1.1.0.orig/parity.tasks/LoaderGenerator.cpp parity-1.1.0/parity.
  							break;
  						default:
  							throw utils::Exception("subsystem default entry point not implemented!");
+@@ -711,6 +711,7 @@
+ 				}
+ 
+ 				ctx.setEntryPoint("ParityLoaderGeneratedEntry");
++				ctx.setSharedEntryPoint("ParityLoaderGeneratedEntry");
+ 			}
+ 
+ 			//
