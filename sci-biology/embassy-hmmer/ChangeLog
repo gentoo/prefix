@@ -1,6 +1,20 @@
 # ChangeLog for sci-biology/embassy-hmmer
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-hmmer/ChangeLog,v 1.23 2007/07/18 01:40:24 ribosome Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-hmmer/ChangeLog,v 1.26 2008/08/27 21:43:02 ribosome Exp $
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org>
+  -embassy-hmmer-2.3.2-r1.ebuild:
+  Pruning version that will never be stabilised.
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org>
+  embassy-hmmer-2.3.2-r1.ebuild, embassy-hmmer-2.3.2-r2.ebuild:
+  Fixed description. Added dependency on HMMER.
+
+*embassy-hmmer-2.3.2-r2 (27 Aug 2008)
+
+  27 Aug 2008; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-hmmer-2.3.2-r2.ebuild:
+  New upstream version/package for EMBASSY 6.0.1.
 
 *embassy-hmmer-2.3.2-r1 (18 Jul 2007)
 
