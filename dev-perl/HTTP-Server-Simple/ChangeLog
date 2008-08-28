@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/HTTP-Server-Simple
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/ChangeLog,v 1.28 2007/07/11 15:54:46 mcummings Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/ChangeLog,v 1.29 2008/08/26 08:04:43 tove Exp $
+
+*HTTP-Server-Simple-0.34 (26 Aug 2008)
+
+  26 Aug 2008; Torsten Veller <tove@gentoo.org> +files/0.34-debian.patch,
+  +HTTP-Server-Simple-0.34.ebuild:
+  Version bump (#235674). Added debian patch for CPAN#28122
 
   11 Jul 2007; Michael Cummings <mcummings@gentoo.org>
   HTTP-Server-Simple-0.27.ebuild:
