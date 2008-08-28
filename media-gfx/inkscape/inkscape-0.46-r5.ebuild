@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.1 2008/08/16 12:55:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.2 2008/08/27 16:44:32 maekke Exp $
 
 EAPI="prefix"
 
@@ -36,11 +36,7 @@ COMMON_DEPEND="
 	virtual/xft
 	>=x11-libs/gtk+-2.10.7
 	>=x11-libs/pango-1.4.0
-	gnome? (
-		>=gnome-base/gnome-vfs-2.0
-		gnome-base/libgnomeprint
-		gnome-base/libgnomeprintui
-	)
+	gnome? ( >=gnome-base/gnome-vfs-2.0 )
 	lcms? ( >=media-libs/lcms-1.14 )
 	perl? (
 		dev-perl/XML-Parser
@@ -83,7 +79,6 @@ pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable mmx)"
 	G2CONF="${G2CONF} $(use_with inkjar)"
 	G2CONF="${G2CONF} $(use_with gnome gnome-vfs)"
-	G2CONF="${G2CONF} $(use_with gnome gnome-print)"
 	G2CONF="${G2CONF} $(use_enable lcms)"
 	G2CONF="${G2CONF} $(use_with perl)"
 }
