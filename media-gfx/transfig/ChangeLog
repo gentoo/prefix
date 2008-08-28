@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/transfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.43 2008/05/11 12:04:31 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.44 2008/08/27 09:45:01 pva Exp $
+
+*transfig-3.2.5-r2 (27 Aug 2008)
+
+  27 Aug 2008; Peter Volkov <pva@gentoo.org>
+  +files/transfig-3.2.5-SetFigFont-params.patch,
+  +files/transfig-3.2.5-arrows-and-QA.patch,
+  +files/transfig-3.2.5-displaywho.patch,
+  +files/transfig-3.2.5-fig2ps2tex_bashisms.patch,
+  +files/transfig-3.2.5-imagemap.patch, +files/transfig-3.2.5-locale.patch,
+  +files/transfig-ru_RU.CP1251.ps, +files/transfig-ru_RU.KOI8-R.ps,
+  +files/transfig-uk_UA.KOI8-U.ps, +transfig-3.2.5-r2.ebuild:
+  Fix export of arrows into PNG, bug #235348, thank renean AT gmx.de for
+  report. Backported misc debian patches, see patches itself for
+  descriptions.
 
 *transfig-3.2.5-r1 (11 May 2008)
 
