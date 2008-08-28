@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/Attic/ncftp-3.2.2.ebuild,v 1.1 2008/08/24 17:17:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.2-r1.ebuild,v 1.1 2008/08/25 17:44:00 jer Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ src_unpack() {
 	cd "${S}"
 	use ipv6 && epatch "${DISTDIR}"/${IPV6_P}.diff.gz
 	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-no_lfs64_source.patch # bug #235632
 	tc-export CC
 	sed -i \
 		-e s/CC=gcc/"CC ?= ${CC}"/ \

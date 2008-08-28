@@ -1,6 +1,27 @@
 # ChangeLog for net-ftp/ncftp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.72 2008/08/25 02:17:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.76 2008/08/25 19:36:52 jer Exp $
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org>
+  files/ncftp-3.2.2-no_lfs64_source.patch:
+  Add description.
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org> -ncftp-3.2.2.ebuild:
+  Remove old.
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org>
+  +files/ncftp-3.2.2-no_lfs64_source.patch, +ncftp-3.2.2-r1.ebuild:
+  Possibly fix bug #235632. Bump to get the older build fixes in for
+  everyone.
+
+*ncftp-3.2.2-r1 (25 Aug 2008)
+
+  25 Aug 2008;  <>  ncftp-3.2.2-r1.ebuild
+  # INSERT ENTRY HERE
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org>
+  files/ncftp-3.2.2-build.patch:
+  Patch the ncftpspooler hard link too.
 
   25 Aug 2008; Jeroen Roovers <jer@gentoo.org>
   files/ncftp-3.2.2-build.patch:
