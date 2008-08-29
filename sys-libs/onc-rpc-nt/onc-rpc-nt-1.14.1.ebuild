@@ -14,4 +14,11 @@ KEYWORDS="-* ~x86-winnt"
 
 src_install() {
 	emake DESTDIR="${D}" install
+
+	local exeext=
+	[[ -f "${ED}"/usr/bin/rpcgen.exe ]] && exeext=".exe"
+
+	for x in rpcgen rpcinfo portmap; do
+		dosym /usr/bin/$x$exeext /usr/bin/${CHOST}-$x
+	done
 }
