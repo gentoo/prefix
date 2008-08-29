@@ -487,7 +487,7 @@ diff -ru libtool-1.5.26.orig/libtool.m4 libtool-1.5.26/libtool.m4
 +  # parity knows how to handle dllimport declspecs when there is no
 +  # shared library in play.
 +  #
-+  lt_cv_sys_global_symbol_to_cdecl="awk '{ print \"extern __declspec\(dllimport\) int \" \$][3 \";\" }'"
++  lt_cv_sys_global_symbol_to_cdecl="awk '{ print \"extern __declspec(dllimport) int \" \$][3 \";\" }'"
 +
 +  #
 +  # WARNING: since parity may use the Microsoft compiler as backend
