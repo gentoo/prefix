@@ -56,7 +56,7 @@ src_install() {
 	sed -i -e "s,@EXEEXT@,$exeext,g" "${ED}"/usr/bin/parity-prefix-wrapper.sh
 
 	for x in c++ g++ gcc ld; do
-		dosym /usr/bin/parity-prefix-wrapper.sh /usr/bin/${CHOST}-${x}
+		dosym /usr/bin/parity-prefix-wrapper.sh /usr/bin/i586-pc-winnt$(uname -r)-${x}
 	done
 }
 
