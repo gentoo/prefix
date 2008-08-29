@@ -186,6 +186,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo x86-netbsd;;
 		i?86-pc-interix*)
 					echo x86-interix;;
+		i?86-pc-winnt*)
+					echo x86-winnt;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
@@ -462,7 +464,7 @@ gen_usr_ldscript() {
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
-		*-interix*)
+		*-interix*|*-winnt*)
 			# on interix, the linker scripts would work fine in _most_
 			# situations. if a library links to such a linker script the
 			# absolute path to the correct library is inserted into the binary,
