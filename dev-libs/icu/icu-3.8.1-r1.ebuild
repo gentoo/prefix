@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils versionator
+inherit eutils versionator autotools
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/ http://ibm.com/software/globalization/icu/"
@@ -23,7 +23,7 @@ SRC_URI="${BASEURI}/${SRCPKG}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples"
 
 DEPEND="doc? ( app-arch/unzip )"
@@ -61,6 +61,13 @@ src_unpack() {
 	done
 
 	epatch "${FILESDIR}"/${P}-darwin.patch
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${P}-winnt-basic.patch
+		epatch "${FILESDIR}"/${P}-winnt.patch
+	fi
+
+	eautoreconf # for winnt
 }
 
 src_compile() {

@@ -1,0 +1,230 @@
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/common/Makefile.in icu/source/common/Makefile.in
+--- icu.orig/source/common/Makefile.in	2008-08-29 09:23:02 +0200
++++ icu/source/common/Makefile.in	2008-08-29 09:48:46 +0200
+@@ -132,6 +132,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ ifneq ($(IMPORT_LIB_EXT),)
+ 	$(INSTALL-L) $(FINAL_IMPORT_LIB) $(DESTDIR)$(libdir)
+ ifneq ($(IMPORT_LIB),$(FINAL_IMPORT_LIB))
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/common/unicode/umachine.h icu/source/common/unicode/umachine.h
+--- icu.orig/source/common/unicode/umachine.h	2008-08-29 10:10:19 +0200
++++ icu/source/common/unicode/umachine.h	2008-08-29 08:34:43 +0200
+@@ -44,6 +44,12 @@
+ #if defined(U_PALMOS)
+ #   include "unicode/ppalmos.h"
+ #elif defined(WIN32) || defined(_WIN32) || defined(WIN64) || defined(_WIN64)
++#	if defined(__PARITY__)
++#		define U_MAKE "gmake"
++		/* can do dllimport _always_ with parity. parity will
++		 * change it to the correct sort of symbol request. */
++#		define PARITY_IMPORT __declspec(dllimport)
++#	endif
+ #   include "unicode/pwin32.h"
+ #else
+ #   include "unicode/platform.h"
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/common/unicode/utypes.h icu/source/common/unicode/utypes.h
+--- icu.orig/source/common/unicode/utypes.h	2008-08-29 10:10:19 +0200
++++ icu/source/common/unicode/utypes.h	2008-08-29 08:34:43 +0200
+@@ -451,6 +451,12 @@
+ #define U_TOOLUTIL_API U_IMPORT
+ #endif
+ 
++#ifdef __PARITY__
++/* always use the PARITY_IMPORT setting... */
++#undef U_DATA_API
++#define U_DATA_API PARITY_IMPORT
++#endif
++
+ /**
+  * \def U_STANDARD_CPP_NAMESPACE
+  * Control of C++ Namespace
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/extra/uconv/uconv.cpp icu/source/extra/uconv/uconv.cpp
+--- icu.orig/source/extra/uconv/uconv.cpp	2008-08-29 10:10:19 +0200
++++ icu/source/extra/uconv/uconv.cpp	2008-08-29 08:34:43 +0200
+@@ -46,6 +46,7 @@
+ #if defined(U_WINDOWS)
+ #define USE_FILENO_BINARY_MODE 1
+ /* Windows likes to rename Unix-like functions */
++#ifndef __PARITY__
+ #ifndef fileno
+ #define fileno _fileno
+ #endif
+@@ -55,6 +56,7 @@
+ #ifndef O_BINARY
+ #define O_BINARY _O_BINARY
+ #endif
++#endif /* __PARITY__ */
+ #endif
+ #endif
+ 
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/i18n/Makefile.in icu/source/i18n/Makefile.in
+--- icu.orig/source/i18n/Makefile.in	2008-08-29 09:23:55 +0200
++++ icu/source/i18n/Makefile.in	2008-08-29 10:03:14 +0200
+@@ -122,6 +122,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ ifneq ($(IMPORT_LIB_EXT),)
+ 	$(INSTALL-L) $(FINAL_IMPORT_LIB) $(DESTDIR)$(libdir)
+ ifneq ($(IMPORT_LIB),$(FINAL_IMPORT_LIB))
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/io/Makefile.in icu/source/io/Makefile.in
+--- icu.orig/source/io/Makefile.in	2008-08-29 09:24:03 +0200
++++ icu/source/io/Makefile.in	2008-08-29 10:04:19 +0200
+@@ -107,6 +107,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ ifneq ($(IMPORT_LIB_EXT),)
+ 	$(INSTALL-L) $(FINAL_IMPORT_LIB) $(DESTDIR)$(libdir)
+ ifneq ($(IMPORT_LIB),$(FINAL_IMPORT_LIB))
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/layout/Makefile.in icu/source/layout/Makefile.in
+--- icu.orig/source/layout/Makefile.in	2008-08-29 09:24:07 +0200
++++ icu/source/layout/Makefile.in	2008-08-29 10:05:37 +0200
+@@ -177,6 +177,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ ifneq ($(IMPORT_LIB_EXT),)
+ 	$(INSTALL-L) $(FINAL_IMPORT_LIB) $(DESTDIR)$(libdir)
+ ifneq ($(IMPORT_LIB),$(FINAL_IMPORT_LIB))
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/layoutex/Makefile.in icu/source/layoutex/Makefile.in
+--- icu.orig/source/layoutex/Makefile.in	2008-08-29 09:24:09 +0200
++++ icu/source/layoutex/Makefile.in	2008-08-29 10:06:15 +0200
+@@ -108,6 +108,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ ifneq ($(IMPORT_LIB_EXT),)
+ 	$(INSTALL-L) $(FINAL_IMPORT_LIB) $(DESTDIR)$(libdir)
+ ifneq ($(IMPORT_LIB),$(FINAL_IMPORT_LIB))
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/tools/genccode/genccode.c icu/source/tools/genccode/genccode.c
+--- icu.orig/source/tools/genccode/genccode.c	2008-08-29 10:10:19 +0200
++++ icu/source/tools/genccode/genccode.c	2008-08-29 08:34:43 +0200
+@@ -878,8 +878,12 @@
+      */
+     entry[0]='_';
+ 
++#ifndef __PARITY__
+     newSuffix=".obj";
+ #else
++	newSuffix=".o";
++#endif
++#else
+ #   error "Unknown platform for CAN_GENERATE_OBJECTS."
+ #endif
+ 
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/tools/pkgdata/dllmode.c icu/source/tools/pkgdata/dllmode.c
+--- icu.orig/source/tools/pkgdata/dllmode.c	2008-08-29 09:25:05 +0200
++++ icu/source/tools/pkgdata/dllmode.c	2008-08-29 10:00:28 +0200
+@@ -266,6 +266,9 @@
+         T_FileStream_writeLine(makefile, "\tcd $(INSTALLTO) && $(RM) $(MIDDLE_SO_TARGET) && ln -s $(FINAL_SO_TARGET) $(MIDDLE_SO_TARGET)\n");
+         T_FileStream_writeLine(makefile, "endif\n");
+         T_FileStream_writeLine(makefile, "endif\n");
++		T_FileStream_writeLine(makefile, "\tif test -f $(TARGETDIR)/$(FINAL_SO_TARGET).dll; then \\\n");
++		T_FileStream_writeLine(makefile, "\t\t$(INSTALL-L) $(TARGETDIR)/$(FINAL_SO_TARGET).dll $(INSTALLTO)/$(FINAL_SO_TARGET).dll; \\\n");
++		T_FileStream_writeLine(makefile, "\tfi");
+ 
+ #ifdef OS390
+         T_FileStream_writeLine(makefile, "ifneq ($(IMPORT_LIB_EXT),)\n");
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/tools/pkgdata/pkgdata.c icu/source/tools/pkgdata/pkgdata.c
+--- icu.orig/source/tools/pkgdata/pkgdata.c	2008-08-29 10:10:19 +0200
++++ icu/source/tools/pkgdata/pkgdata.c	2008-08-29 08:34:43 +0200
+@@ -37,7 +37,7 @@
+ #include "uoptions.h"
+ #include "putilimp.h"
+ 
+-#if U_HAVE_POPEN
++#if U_HAVE_POPEN || defined (__PARITY__)
+ # include <unistd.h>
+ #endif
+ #include <stdio.h>
+@@ -476,6 +476,26 @@
+         o->makeArgs && *o->makeArgs ? "'"          : "",
+         o->makeArgs && *o->makeArgs ? o->makeArgs  : "",
+         o->makeArgs && *o->makeArgs ? "'"          : "");
++#elif defined(__PARITY__)
++	{
++		const char * p = NULL;
++		if(access("C:\\Windows\\posix.exe", X_OK) == 0)
++			p = "C:\\Windows\\posix.exe";
++		else
++			p = "C:\\Windows\\system32\\posix.exe";
++
++		/* need to call through posix subsystem to reach make */
++		sprintf(cmd, "%s /u /c %s %s%s -f %s %s %s %s %s",
++			p,
++			make,
++			o->install ? "INSTALLTO=" : "",
++			o->install ? o->install    : "",
++			o->makeFile,
++			o->clean   ? "clean"      : "",
++			o->rebuild ? "rebuild"    : "",
++			o->install ? "install"    : "",
++			o->makeArgs);
++	}
+ #else
+     sprintf(cmd, "%s %s%s -f %s %s %s %s %s",
+         make,
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/tools/pkgdata/pkgtypes.h icu/source/tools/pkgdata/pkgtypes.h
+--- icu.orig/source/tools/pkgdata/pkgtypes.h	2008-08-29 10:10:19 +0200
++++ icu/source/tools/pkgdata/pkgtypes.h	2008-08-29 08:34:43 +0200
+@@ -140,13 +140,23 @@
+ /* set up common defines for library naming */
+ 
+ #ifdef U_WINDOWS
+-# ifndef UDATA_SO_SUFFIX
+-#  define UDATA_SO_SUFFIX ".dll"
++# ifndef __PARITY__
++#  ifndef UDATA_SO_SUFFIX
++#   define UDATA_SO_SUFFIX ".dll"
++#  endif
++#  define LIB_PREFIX ""
++#  define LIB_STATIC_PREFIX ""
++#  define OBJ_SUFFIX ".obj"
++#  define UDATA_LIB_SUFFIX ".lib"
++# else
++#  ifndef UDATA_SO_SUFFIX
++#   define UDATA_SO_SUFFIX ".so"
++#  endif
++#  define LIB_PREFIX "lib"
++#  define LIB_STATIC_PREFIX "lib"
++#  define OBJ_SUFFIX ".o"
++#  define UDATA_LIB_SUFFIX ".a"
+ # endif
+-# define LIB_PREFIX ""
+-# define LIB_STATIC_PREFIX ""
+-# define OBJ_SUFFIX ".obj"
+-# define UDATA_LIB_SUFFIX ".lib"
+ 
+ #elif defined(U_CYGWIN)
+ # define LIB_PREFIX "cyg"
+diff -ru -x icu-config -x config.log -x icudefs.mk -x Makefile icu.orig/source/tools/toolutil/Makefile.in icu/source/tools/toolutil/Makefile.in
+--- icu.orig/source/tools/toolutil/Makefile.in	2008-08-29 09:25:05 +0200
++++ icu/source/tools/toolutil/Makefile.in	2008-08-29 10:08:06 +0200
+@@ -91,6 +91,9 @@
+ 	cd $(DESTDIR)$(libdir) && $(RM) $(notdir $(MIDDLE_SO_TARGET)) && ln -s $(notdir $(FINAL_SO_TARGET)) $(notdir $(MIDDLE_SO_TARGET))
+ endif
+ endif
++	if test -f $(FINAL_SO_TARGET).dll; then \
++		$(INSTALL-L) $(FINAL_SO_TARGET).dll $(DESTDIR)$(libdir); \
++	fi
+ endif
+ 
+ dist-local:
