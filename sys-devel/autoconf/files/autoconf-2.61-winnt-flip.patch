@@ -1,0 +1,26 @@
+diff -ru autoconf-2.61.orig/lib/autoconf/general.m4 autoconf-2.61/lib/autoconf/general.m4
+--- autoconf-2.61.orig/lib/autoconf/general.m4	2008-08-28 11:03:28 +0200
++++ autoconf-2.61/lib/autoconf/general.m4	2008-08-28 11:17:07 +0200
+@@ -2699,9 +2699,20 @@
+ # _AC_COMPUTE_INT_RUN(EXPRESSION, VARIABLE, PROLOGUE, [IF-FAILS])
+ # ---------------------------------------------------------------
+ # Store the evaluation of the integer EXPRESSION in VARIABLE.
++AC_DEFUN_ONCE([_AC_INTERIX_FLIP],
++[AC_REQUIRE([AC_CANONICAL_TARGET])dnl
++AC_CACHE_CHECK([windows line ending conversion], [ac_cv_flip], [
++case "${ac_cv_target}" in
++*-interix*|*-winnt*) ac_cv_flip="flip -u";;
++*) ac_cv_flip="cat" ;;
++esac
++])
++])
++
+ m4_define([_AC_COMPUTE_INT_RUN],
+-[_AC_RUN_IFELSE([AC_LANG_INT_SAVE([$3], [$1])],
+-		[$2=`cat conftest.val`], [$4])])
++[AC_REQUIRE([_AC_INTERIX_FLIP])dnl
++_AC_RUN_IFELSE([AC_LANG_INT_SAVE([$3], [$1])],
++		[$2=`cat conftest.val | ${ac_cv_flip}`], [$4])])
+ 
+ 
+ # AC_COMPUTE_INT(VARIABLE, EXPRESSION, PROLOGUE, [IF-FAILS])

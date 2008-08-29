@@ -29,6 +29,12 @@ src_unpack() {
 
 	# usr/bin/libtool is provided by odcctools
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
+
+	# only apply conditionally, since it is simply not required everywhere
+	# else.
+	if [[ ${CHOST} == *-interix* || ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${P}-winnt-flip.patch
+	fi
 }
 
 src_compile() {
