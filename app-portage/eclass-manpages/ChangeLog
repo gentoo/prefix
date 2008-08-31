@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/eclass-manpages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.14 2008/06/02 05:57:55 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.15 2008/08/30 03:59:33 vapier Exp $
+
+  30 Aug 2008; Mike Frysinger <vapier@gentoo.org>
+  eclass-manpages-20080531.ebuild:
+  Stabilize.
 
   02 Jun 2008; Zac Medico <zmedico@gentoo.org>
   eclass-manpages-20070615.ebuild, eclass-manpages-20080531.ebuild:
