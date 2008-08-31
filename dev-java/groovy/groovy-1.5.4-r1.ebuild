@@ -28,7 +28,7 @@ HOMEPAGE="http://groovy.codehaus.org/"
 SRC_URI="http://dist.groovy.codehaus.org/distributions/${PN}-src-${PV}.zip"
 LICENSE="codehaus-groovy"
 SLOT="1"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="test"
 
 CDEPEND="
