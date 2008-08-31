@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.69 2008/07/12 11:35:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.70 2008/08/28 15:44:35 aballier Exp $
+
+  28 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r13.ebuild:
+  block dvibook, they collide, thanks to Ulrich Müller, bug #235703
 
   12 Jul 2008; Alexis Ballier <aballier@gentoo.org>
   -texlive-core-2007-r12.ebuild:
