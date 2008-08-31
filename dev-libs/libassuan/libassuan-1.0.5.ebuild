@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils autotools
 
 DESCRIPTION="Standalone IPC library used by gpg, gpgme and newpg"
 HOMEPAGE="http://www.gnupg.org/related_software/libassuan.en.html"
@@ -23,6 +23,9 @@ src_unpack()
 {
 	unpack ${A}
 	epatch "${FILESDIR}"/libassuan-1.0.5-qa.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/libassuan-1.0.5-solaris.patch
+	eautoreconf
 }
 
 src_compile() {
