@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.1.ebuild,v 1.2 2008/06/17 11:58:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.4.ebuild,v 1.1 2008/08/30 12:27:39 dragonheart Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
@@ -30,14 +28,6 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	dev-lang/perl"
 
-#src_unpack() {
-#	unpack ${A}
-#	cd "${S}"
-#
-#	epatch "${FILESDIR}"/${PV}-segfault.patch
-#	epatch "${FILESDIR}"/${PV}-specialchars.patch
-#}
-
 src_compile() {
 	local myconf="$(use_enable nls) --enable-packager-mode"
 
@@ -62,6 +52,8 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
+
+	rm -f "${ED}"/usr/lib/charset.alias
 
 	dodoc BUGS ChangeLog FAQ FEATURES MIRRORS \
 			NEWS README* THANKS TODO
