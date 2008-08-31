@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.191 2008/08/24 21:01:45 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.192 2008/08/28 13:43:41 cardoe Exp $
+
+*cairo-1.7.4 (28 Aug 2008)
+
+  28 Aug 2008; Doug Goldstein <cardoe@gentoo.org> +cairo-1.7.4.ebuild:
+  Add development snapshot that's masked
 
   24 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   re-add opengl USE flag that was deleted
