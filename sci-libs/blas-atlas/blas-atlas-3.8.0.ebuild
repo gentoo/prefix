@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.0.ebuild,v 1.10 2008/04/21 15:59:34 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.0.ebuild,v 1.11 2008/08/28 09:48:46 armin76 Exp $
 
 EAPI="prefix"
 
@@ -84,6 +84,9 @@ src_unpack() {
 	else
 		archselect="-b 32"
 	fi
+
+	# Remove -m64 on alpha, since the compiler doesn't support it
+	use alpha && sed -i -e 's/-m64//g' "${S}"/CONFIG/src/probe_comp.c
 
 	../configure \
 		--cc="$(tc-getCC)" \

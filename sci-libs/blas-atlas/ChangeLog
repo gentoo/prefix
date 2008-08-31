@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/blas-atlas
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.85 2008/08/16 10:50:16 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.86 2008/08/28 09:48:46 armin76 Exp $
+
+  28 Aug 2008; Raúl Porcel <armin76@gentoo.org> blas-atlas-3.8.0.ebuild,
+  blas-atlas-3.9.3.ebuild:
+  Add fix to compile on alpha, alpha stable wrt #200336
 
 *blas-atlas-3.9.3 (15 Aug 2008)
 
