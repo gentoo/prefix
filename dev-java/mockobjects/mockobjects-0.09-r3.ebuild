@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/mockobjects-0.09-r3.ebuild,v 1.1 2007/12/02 13:37:30 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/mockobjects-0.09-r3.ebuild,v 1.3 2008/08/30 14:36:57 ranger Exp $
 
 EAPI="prefix"
 
