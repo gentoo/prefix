@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.70 2008/08/07 06:24:49 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.71 2008/08/28 13:49:20 bicatali Exp $
+
+  28 Aug 2008; Sébastien Fabbro <bicatali@gentoo.org> fftw-2.1.5-r5.ebuild,
+  fftw-3.1.2-r1.ebuild:
+  Fixed openmp tests for gcc < 4.2
 
   07 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.

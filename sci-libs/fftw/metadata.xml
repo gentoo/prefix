@@ -13,8 +13,8 @@
 </longdescription>
 <use>
   <flag name='float'>Link default library to single precision instead of
-    double (symlinks only)</flag>
-  <flag name='openmp'>Build support for the OpenMP (support parallel
-    computing)</flag>
+    double (symlinks only and fftw-2.1)</flag>
+  <flag name='openmp'>Build support for the OpenMP parallel
+    computing library. Needs OpenMP capable compiler (e.g. gcc >= 4.2)</flag>
 </use>
 </pkgmetadata>
