@@ -1,6 +1,10 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.77 2008/08/25 21:34:58 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.78 2008/08/28 11:26:14 pva Exp $
+
+  28 Aug 2008; Peter Volkov <pva@gentoo.org> djvu-3.5.21.ebuild:
+  Enable parallel build and install, bug #236001, thank Diego Pettenò for
+  report.
 
 *djvu-3.5.21 (25 Aug 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.1 2008/08/25 21:34:58 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.2 2008/08/28 11:26:14 pva Exp $
 
 EAPI="prefix 1"
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
@@ -81,11 +81,11 @@ src_compile() {
 		sed -e 's:nsdejavu::' -i "${S}"/gui/Makefile || die
 	fi
 
-	emake -j1 || die "emake failed"
+	emake || die "emake failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" plugindir=/usr/$(get_libdir)/${PLUGINS_DIR} install
+	emake DESTDIR="${D}" plugindir=/usr/$(get_libdir)/${PLUGINS_DIR} install
 
 	dodoc README TODO NEWS
 
