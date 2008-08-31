@@ -39,8 +39,6 @@ src_unpack() {
 
 	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' \
 		"${S}/configure.in" "${S}/configure"
-
-	epatch "${FILESDIR}"/${PN}-2.14.12-interix.patch
 }
 
 src_compile() {
