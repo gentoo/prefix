@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.56 2008/02/13 10:53:55 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.57 2008/08/30 06:16:44 dragonheart Exp $
+
+*libassuan-1.0.5 (30 Aug 2008)
+
+  30 Aug 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/libassuan-1.0.5-qa.patch, libassuan-1.0.2-r1.ebuild,
+  libassuan-1.0.4.ebuild, +libassuan-1.0.5.ebuild:
+  version bump - bug #231611 thanks Arfrever Frehtes Taifersar Arahesis
 
   13 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> -libassuan-0.6.10.ebuild:
   Cleanup

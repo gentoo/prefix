@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.4.ebuild,v 1.7 2008/02/08 20:45:55 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.4.ebuild,v 1.8 2008/08/30 06:16:44 dragonheart Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 DESCRIPTION="Standalone IPC library used by gpg, gpgme and newpg"
-HOMEPAGE="http://www.gnupg.org/related_software/libassuan"
+HOMEPAGE="http://www.gnupg.org/related_software/libassuan.en.html"
 SRC_URI="mirror://gnupg/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"

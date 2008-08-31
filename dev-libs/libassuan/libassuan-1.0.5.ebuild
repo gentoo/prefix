@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.2-r1.ebuild,v 1.11 2008/08/30 06:16:44 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.5.ebuild,v 1.1 2008/08/30 06:16:44 dragonheart Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit flag-o-matic eutils
 
 DESCRIPTION="Standalone IPC library used by gpg, gpgme and newpg"
 HOMEPAGE="http://www.gnupg.org/related_software/libassuan.en.html"
@@ -18,6 +18,12 @@ IUSE=""
 DEPEND=">=dev-libs/pth-1.3.7
 	>=dev-libs/libgpg-error-1.4"
 RDEPEND="${DEPEND}"
+
+src_unpack()
+{
+	unpack ${A}
+	epatch "${FILESDIR}"/libassuan-1.0.5-qa.patch
+}
 
 src_compile() {
 	# https://bugs.g10code.com/gnupg/issue817
