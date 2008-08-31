@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.315 2008/07/31 14:44:19 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.317 2008/08/30 15:23:45 jmbsvicetto Exp $
+
+  30 Aug 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  subversion-1.5.1.ebuild:
+  Improved sed used on previous commit.
+
+  30 Aug 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  subversion-1.5.1.ebuild:
+  Added a small fix to subversion-1.5.1 as requested by Arfrever Frehtes
+  Taifersar Arahesis <Arfrever.FTA@GMail.Com> to support Neon 0.28.3. This
+  has been commited on
+  https://svn.collab.net/viewvc/svn?view=rev&revision=32596 and will be part
+  of subversion-1.5.2.
 
 *subversion-1.5.1 (31 Jul 2008)
 

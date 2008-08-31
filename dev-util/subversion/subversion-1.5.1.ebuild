@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.1.ebuild,v 1.1 2008/07/31 14:44:19 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.1.ebuild,v 1.3 2008/08/30 15:23:45 jmbsvicetto Exp $
 
 EAPI="prefix 1"
 WANT_AUTOMAKE="none"
@@ -73,6 +73,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/1.5.0/disable-unneeded-linking.patch
 	epatch "${WORKDIR}"/${P}-ra_serf-improvements.patch
+
+	sed -i -e '/NEON_\(ALLOWED_LIST\|RECOMMENDED_VER\)/s/0\.28\.2/& 0.28.3/g' configure.ac
 
 	sed -i \
 		-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
