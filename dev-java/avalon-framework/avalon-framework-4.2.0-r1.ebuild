@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/avalon/avalon-framework/source/${P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="4.2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 COMMON_DEP="=dev-java/avalon-logkit-2*
