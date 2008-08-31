@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.4.ebuild,v 1.8 2008/04/20 01:35:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.4.ebuild,v 1.9 2008/08/28 09:30:47 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -38,5 +38,7 @@ DOCS="AUTHORS BUGS ChangeLog* NEWS README"
 USE_DESTDIR="1"
 
 pkg_setup() {
-	G2CONF="$(use_with cups)"
+	# Disable papi support until papi is in portage; avoids automagic
+	# dependencies on an untracked library.
+	G2CONF="$(use_with cups) --without-papi"
 }

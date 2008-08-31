@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/libgnomeprint
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/ChangeLog,v 1.154 2008/05/14 22:09:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/ChangeLog,v 1.155 2008/08/28 09:30:47 flameeyes Exp $
+
+  28 Aug 2008; Diego Pettenò <flameeyes@gentoo.org>
+  libgnomeprint-2.18.4.ebuild:
+  Explicitly disable papi backend or it will automagically use it.
 
   14 May 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -libgnomeprint-2.18.0.ebuild, -libgnomeprint-2.18.3.ebuild:
