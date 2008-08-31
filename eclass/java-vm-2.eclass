@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.22 2008/07/07 16:54:56 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.23 2008/08/29 19:10:19 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -244,15 +244,20 @@ java_get_plugin_dir_() {
 }
 
 install_mozilla_plugin() {
-	local plugin=${1}
+	local plugin="${1}"
+	local variant="${2}"
 
-	if [ ! -f "${ED}/${plugin}" ] ; then
+	if [[ ! -f "${ED}/${plugin}" ]]; then
 		die "Cannot find mozilla plugin at ${ED}/${plugin}"
 	fi
 
-	local plugin_dir="${EPREFIX}"/usr/share/java-config-2/nsplugin
-	dodir ${plugin_dir}
-	dosym ${plugin} ${plugin_dir}/${VMHANDLE}-javaplugin.so
+	if [[ -n "${variant}" ]]; then
+		variant="-${variant}"
+	fi
+
+	local plugin_dir="/usr/share/java-config-2/nsplugin"
+	dodir "${plugin_dir}"
+	dosym "${plugin}" "${plugin_dir}/${VMHANDLE}${variant}-javaplugin.so"
 }
 
 java_mozilla_clean_() {

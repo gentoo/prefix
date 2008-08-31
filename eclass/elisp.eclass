@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.32 2008/06/23 21:38:42 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.33 2008/08/28 09:55:01 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -37,23 +37,23 @@
 
 inherit elisp-common versionator
 
-VERSION=${NEED_EMACS:-21}
-DEPEND=">=virtual/emacs-${VERSION}"
-RDEPEND=">=virtual/emacs-${VERSION}"
+DEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
+RDEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
 IUSE=""
 
 elisp_pkg_setup() {
-	local emacs_version="$(elisp-emacs-version)"
-	if ! version_is_at_least "${VERSION}" "${emacs_version}"; then
-		eerror "This package needs at least Emacs ${VERSION}."
+	local need_emacs=${NEED_EMACS:-21}
+	local have_emacs=$(elisp-emacs-version)
+	if ! version_is_at_least "${need_emacs}" "${have_emacs}"; then
+		eerror "This package needs at least Emacs ${need_emacs}."
 		eerror "Use \"eselect emacs\" to select the active version."
-		die "Emacs version ${emacs_version} is too low."
+		die "Emacs version ${have_emacs} is too low."
 	fi
-	einfo "Currently selected GNU Emacs version: ${emacs_version}"
+	einfo "Currently selected GNU Emacs version: ${have_emacs}"
 }
 
 elisp_src_unpack() {
-	unpack ${A}
+	[ -n "${A}" ] && unpack ${A}
 	if [ -f ${P}.el ]; then
 		mv ${P}.el ${PN}.el || die "mv ${P}.el ${PN}.el failed"
 	fi

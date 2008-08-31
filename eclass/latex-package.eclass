@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.34 2008/07/19 09:22:54 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.37 2008/08/30 13:49:28 aballier Exp $
 
 # @ECLASS: latex-package.eclass
 # @MAINTAINER:
@@ -55,7 +55,8 @@
 
 inherit base
 
-DEPEND="virtual/latex-base
+RDEPEND="virtual/latex-base"
+DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r5"
 HOMEPAGE="http://www.tug.org/"
 SRC_URI="ftp://tug.ctan.org/macros/latex/"
@@ -113,8 +114,9 @@ latex-package_src_doinstall() {
 			"dvi" | "ps" | "pdf")
 				for i in `find . -maxdepth 1 -type f -name "*.${1}"`
 				do
-					insinto /usr/share/doc/${P}
+					insinto /usr/share/doc/${PF}
 					doins $i || die "doins $i failed"
+					dosym /usr/share/doc/${PF}/$(basename ${i}) ${TEXMF}/doc/latex/${PN}/${i}
 					#dodoc -u $i
 				done
 				;;

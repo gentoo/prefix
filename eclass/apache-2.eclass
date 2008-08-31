@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.11 2008/03/23 13:03:53 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.12 2008/08/29 13:22:21 hollow Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
@@ -373,6 +373,12 @@ apache-2_pkg_setup() {
 	elog "Please note that you need SysV IPC support in your kernel."
 	elog "Make sure CONFIG_SYSVIPC=y is set."
 	elog
+
+	if use userland_BSD; then
+		elog "On BSD systems you need to add the following line to /boot/loader.conf:"
+		elog "  accf_http_load=\"YES\""
+		elog
+	fi
 }
 
 # @FUNCTION: apache-2_src_unpack
@@ -427,7 +433,6 @@ apache-2_src_compile() {
 		--sysconfdir=/etc/apache2 \
 		--localstatedir=/var \
 		--with-mpm=${MY_MPM} \
-		--with-perl=/usr/bin/perl \
 		--with-apr=/usr \
 		--with-apr-util=/usr \
 		--with-pcre=/usr \

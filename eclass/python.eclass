@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.43 2008/08/01 22:22:21 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.44 2008/08/29 19:28:08 hawking Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -73,6 +73,7 @@ __python_version_extract() {
 }
 
 python_version() {
+	[[ -n "${PYVER}" ]] && return 0
 	local tmpstr
 	python=${python:-${EPREFIX}/usr/bin/python}
 	tmpstr="$(${python} -V 2>&1 )"
