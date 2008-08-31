@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.282 2008/08/15 18:47:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.283 2008/08/30 07:56:48 hawking Exp $
+
+  30 Aug 2008; Ali Polatel <hawking@gentoo.org> -gvim-6.4.ebuild,
+  -gvim-7.1.042.ebuild, -gvim-7.1.164.ebuild, -gvim-7.1.213.ebuild,
+  -gvim-7.1.266.ebuild, -gvim-7.1.285.ebuild, -gvim-7.1.319.ebuild:
+  Drop old.
 
   15 Aug 2008; Markus Meier <maekke@gentoo.org> gvim-7.2.ebuild:
   amd64 stable, bug #232890
