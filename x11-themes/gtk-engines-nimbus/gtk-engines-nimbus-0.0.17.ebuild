@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/gtk-engines-nimbus-0.0.16.ebuild,v 1.1 2008/06/06 07:23:07 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/gtk-engines-nimbus-0.0.17.ebuild,v 1.1 2008/08/29 10:15:17 flameeyes Exp $
 
 EAPI="prefix"
 
