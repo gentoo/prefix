@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.107 2008/06/14 16:33:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.110 2008/08/29 22:37:21 maekke Exp $
+
+  29 Aug 2008; Markus Meier <maekke@gentoo.org> neon-0.28.3.ebuild:
+  mark unstable for amd64/x86, bug #236128 comment #3
+
+  29 Aug 2008; Markus Meier <maekke@gentoo.org> neon-0.28.3.ebuild:
+  amd64/x86 stable, bug #236128
+
+*neon-0.28.3 (29 Aug 2008)
+
+  29 Aug 2008; Benedikt Böhm <hollow@gentoo.org> +neon-0.28.3.ebuild:
+  version bump wrt security #234826
 
   14 Jun 2008; nixnut <nixnut@gentoo.org> neon-0.28.2.ebuild:
   Added ~ppc wrt bug 212056
