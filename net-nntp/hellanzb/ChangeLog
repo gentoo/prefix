@@ -1,6 +1,14 @@
 # ChangeLog for net-nntp/hellanzb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.8 2008/06/18 14:05:56 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.9 2008/08/30 20:16:02 aballier Exp $
+
+*hellanzb-0.13-r7 (30 Aug 2008)
+
+  30 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/hellanzb-0.13-gettinggroup.patch, +hellanzb-0.13-r7.ebuild:
+  Different patch for bug #224945: use thereceived group from the server
+  instead of the group asked, so that it does not fail if there are spaces
+  in the group name or if the group changes.
 
 *hellanzb-0.13-r6 (18 Jun 2008)
 
