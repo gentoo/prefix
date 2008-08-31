@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.346 2008/08/23 05:41:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.347 2008/08/29 06:25:34 graaff Exp $
+
+*ruby-1.8.6_p287-r1 (29 Aug 2008)
+
+  29 Aug 2008; Hans de Graaff <graaff@gentoo.org>
+  +files/ruby-1.8.6_p287-entity_expansion_limit.diff,
+  +ruby-1.8.6_p287-r1.ebuild:
+  Fix REXML security issues, bug #236060.
 
   23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Add GLEP 56 USE flag descriptions.
