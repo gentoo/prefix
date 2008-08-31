@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.62 2008/08/22 10:58:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.63 2008/08/28 19:08:10 ulm Exp $
+
+  28 Aug 2008; Ulrich Mueller <ulm@gentoo.org> guile-1.8.5-r1.ebuild:
+  Fix byte-compilation of Emacs lisp files, bug 236046.
 
 *guile-1.8.5-r1 (22 Aug 2008)
 

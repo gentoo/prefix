@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5-r1.ebuild,v 1.1 2008/08/22 10:58:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5-r1.ebuild,v 1.2 2008/08/28 19:08:10 ulm Exp $
 
 EAPI="prefix"
 
@@ -70,10 +70,11 @@ src_compile() {
 
 	emake || die "make failed"
 
-	# above we disable the build system's Emacs support;
-	# do it manually for USE=emacs
+	# Above we have disabled the build system's Emacs support;
+	# for USE=emacs we compile (and install) the files manually
 	if use emacs; then
-		elisp-compile emacs/*.el || die "elisp-compile failed"
+		cd emacs
+		elisp-compile *.el || die "elisp-compile failed"
 	fi
 }
 
