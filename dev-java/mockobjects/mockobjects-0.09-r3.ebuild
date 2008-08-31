@@ -13,7 +13,7 @@ SRC_URI="http://dev.gentoo.org/~karltk/java/distfiles/mockobjects-java-${PV}-gen
 
 LICENSE="Apache-1.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 CDEPEND="=dev-java/junit-3.8*"
