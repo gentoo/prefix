@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.107 2008/08/26 15:00:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.108 2008/08/30 11:31:16 dertobi123 Exp $
+
+  30 Aug 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  tiff-3.8.2-r4.ebuild:
+  ppc stable, bug #234080
 
   26 Aug 2008; Raúl Porcel <armin76@gentoo.org> tiff-3.8.2-r4.ebuild:
   ia64/sparc stable wrt #234080
