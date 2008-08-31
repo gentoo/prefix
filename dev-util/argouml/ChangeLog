@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/argouml
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.22 2008/08/22 21:26:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.23 2008/08/30 14:33:07 ranger Exp $
+
+  30 Aug 2008; Brent Baude <ranger@gentoo.org> argouml-0.24.ebuild:
+  stable ppc, bug 235280
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org> argouml-0.24.ebuild:
   amd64/x86 stable, bug #235280
