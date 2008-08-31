@@ -18,7 +18,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 # doesn't work with java.awt.headless
 RESTRICT="test"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="hyphenation jai jimi"
 
 COMMON_DEPEND="
