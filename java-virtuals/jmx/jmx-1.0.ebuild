@@ -12,7 +12,7 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
@@ -27,3 +27,4 @@ RDEPEND="|| (
 JAVA_VIRTUAL_PROVIDES="sun-jmx"
 JAVA_VIRTUAL_VM="sun-jdk-1.6 ibm-jdk-bin-1.6 sun-jdk-1.5 ibm-jdk-bin-1.5"
 JAVA_VIRTUAL_VM+=" jrockit-jdk-bin-1.5 diablo-jdk-1.5"
+JAVA_VIRTUAL_VM+=" apple-jdk-bin-1.5"
