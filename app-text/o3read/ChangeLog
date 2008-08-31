@@ -1,6 +1,9 @@
 # ChangeLog for app-text/o3read
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.12 2008/08/09 16:25:32 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.13 2008/08/30 14:52:19 ranger Exp $
+
+  30 Aug 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking o3read-0.0.4 ~ppc for bug 233424
 
   09 Aug 2008; Santiago M. Mola <coldwind@gentoo.org> o3read-0.0.4.ebuild:
   amd64 stable wrt bug #233424, thanks to Jonas Pedersen.
