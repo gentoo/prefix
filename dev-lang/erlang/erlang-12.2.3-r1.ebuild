@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3-r1.ebuild,v 1.5 2008/08/24 11:22:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.3-r1.ebuild,v 1.6 2008/08/29 10:08:15 opfer Exp $
 
 EAPI="prefix"
 
@@ -103,7 +103,6 @@ src_install() {
 
 	dosym "${ERL_LIBDIR}/bin/erl" /usr/bin/erl
 	dosym "${ERL_LIBDIR}/bin/erlc" /usr/bin/erlc
-	dosym "${ERL_LIBDIR}/bin/ear" /usr/bin/ear
 	dosym "${ERL_LIBDIR}/bin/escript" /usr/bin/escript
 	dosym \
 		"${ERL_LIBDIR}/lib/erl_interface-${ERL_INTERFACE_VER}/bin/erl_call" \
