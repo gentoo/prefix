@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.72 2008/08/06 18:19:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.73 2008/08/30 20:16:40 maekke Exp $
+
+  30 Aug 2008; Markus Meier <maekke@gentoo.org> gnustep-base-1.16.3.ebuild:
+  amd64/x86 stable, bug #235922
 
   06 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
