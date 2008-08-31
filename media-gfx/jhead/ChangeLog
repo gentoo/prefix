@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/jhead
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.80 2008/07/17 19:07:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.81 2008/08/30 14:46:10 maekke Exp $
+
+*jhead-2.82-r1 (30 Aug 2008)
+
+  30 Aug 2008; Markus Meier <maekke@gentoo.org> +jhead-2.82-r1.ebuild:
+  respect LDFLAGS, bug #235662
 
   17 Jul 2008; Markus Rothe <corsair@gentoo.org> jhead-2.82.ebuild:
   Stable on ppc64; bug #231629
