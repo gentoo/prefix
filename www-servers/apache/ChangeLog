@@ -1,6 +1,21 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.83 2008/08/22 22:21:41 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.87 2008/08/30 16:52:06 armin76 Exp $
+
+  30 Aug 2008; Raúl Porcel <armin76@gentoo.org> apache-2.2.9-r1.ebuild:
+  alpha/ia64 stable wrt #234088
+
+  30 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  apache-2.2.9-r1.ebuild:
+  Stable on sparc, security bug #234088
+
+  30 Aug 2008; Markus Meier <maekke@gentoo.org> apache-2.2.9-r1.ebuild:
+  amd64/x86 stable, bug #234088
+
+*apache-2.2.9-r1 (29 Aug 2008)
+
+  29 Aug 2008; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.9-r1.ebuild:
+  fix #230690, #232083, #234088, #235152
 
   22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
