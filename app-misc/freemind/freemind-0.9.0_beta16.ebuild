@@ -16,7 +16,7 @@ HOMEPAGE="http://freemind.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${PN}-src-${MY_PV}_icon_butterfly.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 COMMON_DEP="dev-java/jgoodies-forms
 	dev-java/jibx
@@ -30,6 +30,7 @@ COMMON_DEP="dev-java/jgoodies-forms
 DEPEND=">=virtual/jdk-1.4
 	dev-java/xsd2jibx
 	app-arch/unzip
+	kernel_Darwin? ( dev-java/jarbundler )
 	${COMMON_DEP}"
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
@@ -41,6 +42,8 @@ src_unpack() {
 	cd "${S}"
 
 	# kill the jarbundler taskdef
+	[[ ${CHOST} == *-darwin* ]] && \
+	sed -i -e 's:"${src}/lib/${jarbundler.jar}":"${jarblibs}":' build.xml || \
 	epatch "${FILESDIR}/${PN}-0.9.0_beta15-build.xml.patch"
 
 	local xml
@@ -54,8 +57,12 @@ src_unpack() {
 
 src_compile() {
 	local jibxlibs="$(java-pkg_getjars --build-only --with-dependencies xsd2jibx)"
+	local jarblibs=""
+	[[ ${CHOST} == *-darwin* ]] && \
+		jarblibs="$(java-pkg_getjars --build-only --with-dependencies jarbundler)"
 	local gcp="$(java-pkg_getjars jgoodies-forms,jibx,commons-lang-2.1,javahelp,groovy-1,batik-1.6,fop,simplyhtml,hoteqn):lib/bindings.jar"
 	ANT_TASKS="${WANT_ANT_TASKS} jibx xsd2jibx" eant -Djibxlibs="${jibxlibs}" \
+		-Djarblibs="${jarblibs}" \
 		-Dgentoo.classpath="${gcp}" dist browser $(use_doc doc)
 }
 
