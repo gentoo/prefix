@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3814 2008/08/27 13:27:38 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3817 2008/08/30 20:07:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -193,6 +193,7 @@ app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
 app-emulation/mol:pci - Experimental PCI proxy support
 app-emulation/mol:sheep - Support for the sheep net driver
 app-emulation/open-vm-tools:icu - Enable unicode support using dev-libs/icu
+app-emulation/open-vm-tools:unity - Enable host unity support
 app-emulation/pearpc:jit - Use the JITC-x86 CPU
 app-emulation/point2play:emerald - For people who are in the Transgaming Emerald Club
 app-emulation/qemu-softmmu:kqemu - Enables the kernel acceleration module on a x86 cpu
@@ -582,6 +583,7 @@ dev-libs/boost:icu - Add unicode support to boost.regex using dev-libs/icu
 dev-libs/boost:pyste - Add support for the pyste frontend
 dev-libs/boost:threadsonly - Only build multithreaded libs
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
+dev-libs/crypto++:sse3 - Enable optimisations using the sse3 assmbly code
 dev-libs/cyberjack:noudev - Disable installation of udev rules
 dev-libs/cyberjack:pcsc-lite - Enable installation of sys-apps/pcsc-lite driver
 dev-libs/cyrus-sasl:authdaemond - Enable Courier-IMAP authdaemond's unix socket support (net-mail/courier-imap, mail-mta/courier) 
@@ -2084,8 +2086,8 @@ sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (ne
 sci-libs/blas-goto:int64 - Build the 64 bits integer library
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis (sci-libs/metis, sci-libs/parmetis)
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs virtual/lapack)
-sci-libs/fftw:float - Link default library to single precision instead of double (symlinks only)
-sci-libs/fftw:openmp - Build support for the OpenMP (support parallel computing)
+sci-libs/fftw:float - Link default library to single precision instead of double (symlinks only and fftw-2.1)
+sci-libs/fftw:openmp - Build support for the OpenMP parallel computing library. Needs OpenMP capable compiler (e.g. gcc >= 4.2)
 sci-libs/gdal:fits - Enable support for NASA's sci-libs/cfitsio library
 sci-libs/gdal:geos - Add support for geometry engine (sci-libs/geos 
 sci-libs/gdal:gml - Enable support for dev-libs/xerces-c API

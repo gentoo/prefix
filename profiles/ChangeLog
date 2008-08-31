@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1810 2008/08/27 20:56:40 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1816 2008/08/30 14:11:18 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  30 Aug 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  adjust g-brief mask now that it installs to texmf-site
+
+  30 Aug 2008; <tupone@gentoo.org> package.mask:
+  media-libs/varconf-0.6.2 removed from tree
+
+  30 Aug 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Fix gst-plugins-good mask, #236124
+
+  30 Aug 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add gst-plugins-good to p.mask, see bug #236124
+
+  29 Aug 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Masked scigraphica and libscigraphica for removal in 30 days
+
+  28 Aug 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking app-arch/rpm2targz-9.0.0.1g as it breaks too many packages, bug
+  #235290
 
   27 Aug 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   nepenthes-0.2.0 was removed from the tree, bug #199168
