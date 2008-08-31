@@ -25,7 +25,7 @@ HOMEPAGE="http://${PN}.sourceforge.net"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 COMMON_DEP="dev-java/javahelp
