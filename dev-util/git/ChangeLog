@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.293 2008/08/28 02:48:27 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.294 2008/08/30 03:32:07 robbat2 Exp $
+
+*git-1.6.0.1 (30 Aug 2008)
+
+  30 Aug 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.0.1.ebuild:
+  Version bump, only bugfixes.
 
   25 Aug 2008; Ulrich Mueller <ulm@gentoo.org> -files/71git-gentoo.el,
   files/72git-gentoo.el:
