@@ -14,7 +14,7 @@ SRC_URI="http://dist.codehaus.org/${PN}/distributions/${P/_rc/.RC}.zip"
 HOMEPAGE="http://aspectwerkz.codehaus.org"
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 RDEPEND=">=virtual/jre-1.3
 	dev-java/asm:1.5
 	dev-java/concurrent-util:0
