@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/xmlgraphics/commons/source/${P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="jpeg"
 
 # fails connect to X even tho it sets java.awt.headless
@@ -27,6 +27,7 @@ DEPEND="|| ( =virtual/jdk-1.6* =virtual/jdk-1.5* =virtual/jdk-1.4* )
 				>=dev-java/blackdown-jdk-1.4
 				>=dev-java/ibm-jdk-bin-1.4
 				>=dev-java/jrockit-jdk-bin-1.4
+				>=dev-java/apple-jdk-bin-1.4
 			)
 		)
 		test? (
