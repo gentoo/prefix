@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.314 2008/08/23 22:14:16 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.315 2008/08/29 08:25:09 vapier Exp $
+
+  29 Aug 2008; Mike Frysinger <vapier@gentoo.org> openssh-5.1_p1.ebuild,
+  openssh-5.1_p1-r1.ebuild:
+  Tweak --with-ldap catch #235594 by BedOS_Gui.
 
 *openssh-5.1_p1-r1 (23 Aug 2008)
 
