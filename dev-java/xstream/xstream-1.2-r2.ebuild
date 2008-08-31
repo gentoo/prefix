@@ -13,7 +13,7 @@ SRC_URI="http://dist.codehaus.org/xstream/distributions/${P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 COMMON_DEPS="
