@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.267 2008/08/23 01:39:29 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.268 2008/08/29 08:53:53 armin76 Exp $
+
+  29 Aug 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-thunderbird-2.0.0.16.ebuild:
+  Add new patchset for bug #224561
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
