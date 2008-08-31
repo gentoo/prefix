@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.319 2008/08/15 18:42:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.320 2008/08/30 07:55:24 hawking Exp $
+
+  30 Aug 2008; Ali Polatel <hawking@gentoo.org> -vim-6.4.ebuild,
+  -vim-7.1.042.ebuild, -vim-7.1.164.ebuild, -vim-7.1.213.ebuild,
+  -vim-7.1.266.ebuild, -vim-7.1.285.ebuild, -vim-7.1.319.ebuild:
+  Drop old.
 
   15 Aug 2008; Markus Meier <maekke@gentoo.org> vim-7.2.ebuild:
   amd64 stable, bug #232890
