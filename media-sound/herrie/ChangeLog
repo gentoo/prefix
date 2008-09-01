@@ -1,6 +1,14 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.29 2008/06/19 11:50:12 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.30 2008/08/31 17:20:26 rbu Exp $
+
+*herrie-2.1 (31 Aug 2008)
+
+  31 Aug 2008; Robert Buchholz <rbu@gentoo.org> -herrie-1.8.3.ebuild,
+  +herrie-2.1.ebuild:
+  Version bump, bug #234152 by Tim Harder. Notable upstream changes:
+   * Added: -p switch to start playback on startup - Phillip Warner
+   * Added: 'F' button to jump to files in the file browser
 
   19 Jun 2008; Christian Faulhammer <opfer@gentoo.org> herrie-2.0.2.ebuild:
   stable x86, bug 227107
