@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1816 2008/08/30 14:11:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1817 2008/08/31 11:26:00 mrness Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  31 Aug 2008; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Update net-dialup/freeradius:udpfromto description (#235688).
 
   30 Aug 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
   adjust g-brief mask now that it installs to texmf-site

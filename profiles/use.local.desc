@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3817 2008/08/30 20:07:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3822 2008/09/01 00:47:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -213,12 +213,19 @@ app-emulation/virtualbox-ose:headless - Build without any graphic frontend
 app-emulation/virtualbox-ose:sdk - Enable building of SDK
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
+app-emulation/xen:acm - Enable the ACM/sHype XSM module from IBM
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
+app-emulation/xen:flask - Enable the Flask XSM module from NSA
 app-emulation/xen:pae - Enable support for PAE kernels (usually x86-32 with >4GB memory)
+app-emulation/xen:xsm - Enable the Xen Security Modules (XSM)
+app-emulation/xen-tools:acm - Enable the ACM/sHype XSM module from IBM
+app-emulation/xen-tools:api - Build the C libxenapi bindings
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
+app-emulation/xen-tools:flask - Enable the Flask XSM module from NSA
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
 app-emulation/xen-tools:screen - Enable support for running domain U console in an app-misc/screen session
+app-emulation/xen-tools:xsm - Enable the Xen Security Modules (XSM)
 app-forensics/samhain:login-watch - Compile in the module to watch for login/logout events
 app-forensics/samhain:mounts-check - Compile in the module to check for correct mount options
 app-forensics/samhain:netclient - Compile a client, rather than a standalone version 
@@ -1602,7 +1609,7 @@ net-dialup/freeradius:edirectory - Enables Novell eDirectory integration
 net-dialup/freeradius:frascend - Enables Ascend binary mode
 net-dialup/freeradius:frnothreads - Disables thread support
 net-dialup/freeradius:frxp - Enables experimental modules
-net-dialup/freeradius:udpfromto - Compile in UDPFROMTPO support
+net-dialup/freeradius:udpfromto - Compile in UDPFROMTO support (enables freeradius to specify source address correctly in multi-homed setups)
 net-dialup/isdn4k-utils:activefilter - Enable activefilter support for ipppd
 net-dialup/isdn4k-utils:eurofile - Support for EUROFILE Transfer Procotol
 net-dialup/isdn4k-utils:ipppd - Build the (ISDN) PPP daemon for synchronous PPP for ISDN connections
@@ -2154,7 +2161,6 @@ sci-physics/root:geant4 -  Build the sci-physics/geant (GEANT4) navigator.
 sci-physics/root:math -  Build all math libraries plugins. It includes the sci-libs/gsl bindings in MathMore, the GenVector physical vectors package, the Minuit2 minimization library (same as standalone sci-libs/minuit), the RooFit toolkit for distribution modeling, and the Universal Non-Uniform RANdom number generators (UNURAN) library. 
 sci-physics/root:xrootd -  Build the xrootd low latency file server. For more on the eXtended Request Daemon (xrd) and associated software, please see http://xrootd.slac.stanford.edu. 
 sci-visualization/hippodraw:fits -  Enable HippoDraw's built-in support for reading FITS files, by using the CFITSIO library. FITS binary and ASCII tables are supported as well as images. When combine with numpy flag, it can also use the pyfits package. 
-sci-visualization/hippodraw:numarray -  Enable support for the obsolete numerical python array package numarray. Should not be used, since it's being deprecated. See bug #, and switch to numpy. 
 sci-visualization/hippodraw:numpy -  Enable support for the numerical array manipulation and computational capabilities of numpy in python. HippoDraw can return a numerical array to Python from any of the type of objects that are supported. One can also import data to a HippoDraw from a numpy array. 
 sci-visualization/hippodraw:root -  Adds support for ROOT input/ouput system, storing a table of data as TBranch objects each with a single TLeaf. Files of this type can be imported by HippoDraw as a RootNTuple. Also if root flag is selected, it can use root::minuit for minimization instead of standalone minuit library. 
 sci-visualization/hippodraw:wcs -  Adds 10 built-in transforms to HippoDraw via the World Coordinate System library for FITS files. 
