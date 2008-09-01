@@ -28,7 +28,7 @@ done
 
 LICENSE="OracleDB"
 SLOT="4.6"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
@@ -38,7 +38,8 @@ DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 		 >=sys-devel/binutils-2.16.1
 	)"
 RDEPEND="tcl? ( dev-lang/tcl )
-	java? ( >=virtual/jre-1.4 )"
+	java? ( >=virtual/jre-1.4 )
+	x86-winnt? ( sys-libs/onc-rpc-nt )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
@@ -54,7 +55,7 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
-	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	cp -f "${BPREFIX:-${EPREFIX}}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
 	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
@@ -80,6 +81,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
 
+	cd "${WORKDIR}"/"${MY_P}"
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-4.6-winnt.patch
+	
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
 	sed -r -i \
@@ -144,6 +148,14 @@ src_compile() {
 	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
 		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
+	fi
+	
+	if [[ ${CHOST} == *-winnt* ]]; then
+		# this one should really sound --enable-windows, but
+		# seems the db devs only support mingw ... doesn't enable
+		# anything too specific to mingw.
+		myconf="${myconf} --enable-mingw"
+		myconf="${myconf} --with-mutex=win32"
 	fi
 
 	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \

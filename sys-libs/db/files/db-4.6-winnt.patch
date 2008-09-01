@@ -1,0 +1,71 @@
+diff -ru db-4.6.21.orig/dbinc/win_db.h db-4.6.21/dbinc/win_db.h
+--- db-4.6.21.orig/dbinc/win_db.h	2008-09-01 10:16:01 +0200
++++ db-4.6.21/dbinc/win_db.h	2008-09-01 10:17:23 +0200
+@@ -61,20 +61,28 @@
+ #include <wspiapi.h>
+ #endif
+ 
++/* need this for parity to be able to build RPC support (with ONC RPC for NT).
++ */
++#ifdef __PARITY__
++# include <rpc/rpc.h>
++#endif
++
+ /*
+  * Microsoft's C runtime library has fsync, getcwd, getpid, snprintf and
+  * vsnprintf, but under different names.
+  */
+ #define	fsync			_commit
+ 
+-#ifndef DB_WINCE
+-#define	getcwd(buf, size)	_getcwd(buf, size)
++#ifndef __PARITY__
++# ifndef DB_WINCE
++#  define	getcwd(buf, size)	_getcwd(buf, size)
++# endif
++# define	getpid			GetCurrentProcessId
++# define	snprintf		_snprintf
++# define	strcasecmp		_stricmp
++# define	strncasecmp		_strnicmp
++# define	vsnprintf		_vsnprintf
+ #endif
+-#define	getpid			GetCurrentProcessId
+-#define	snprintf		_snprintf
+-#define	strcasecmp		_stricmp
+-#define	strncasecmp		_strnicmp
+-#define	vsnprintf		_vsnprintf
+ 
+ #define	h_errno			WSAGetLastError()
+ 
+diff -ru db-4.6.21.orig/dist/aclocal/rpc.m4 db-4.6.21/dist/aclocal/rpc.m4
+--- db-4.6.21.orig/dist/aclocal/rpc.m4	2008-09-01 10:16:01 +0200
++++ db-4.6.21/dist/aclocal/rpc.m4	2008-09-01 09:59:28 +0200
+@@ -11,14 +11,15 @@
+ 
+ 	# Prefer the -C option to rpcgen which generates ANSI C-conformant
+ 	# code.
+-	RPCGEN="rpcgen -C"
++	TRPCGEN="${RPCGEN}"
++	RPCGEN="${TRPCGEN} -C"
+ 	AC_MSG_CHECKING(["$RPCGEN" build of db_server.h])
+ 	$RPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
+ 	if test $? -ne 0; then
+ 		AC_MSG_RESULT([no])
+ 
+ 		# Try rpcgen without the -C option.
+-		RPCGEN="rpcgen"
++		RPCGEN="${TRPCGEN}"
+ 		AC_MSG_CHECKING(["$RPCGEN" build of db_server.h])
+ 		$RPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
+ 		if test $? -ne 0; then
+diff -ru db-4.6.21.orig/dist/configure.ac db-4.6.21/dist/configure.ac
+--- db-4.6.21.orig/dist/configure.ac	2008-09-01 10:16:01 +0200
++++ db-4.6.21/dist/configure.ac	2008-09-01 09:59:28 +0200
+@@ -182,6 +182,7 @@
+ 	AH_TEMPLATE(HAVE_QNX, [Define to 1 if building on QNX.]);;
+ solaris*)
+ 	CPPFLAGS="$CPPFLAGS -D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS ";;
++winnt*) LIBSO_LIBS="$LIBSO_LIBS -lrpc" ;;
+ esac
+ 
+ # If the user wants a debugging environment, change any compiler optimization

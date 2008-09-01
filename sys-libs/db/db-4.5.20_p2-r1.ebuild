@@ -28,7 +28,7 @@ done
 
 LICENSE="OracleDB"
 SLOT="4.5"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
@@ -38,7 +38,8 @@ DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 		 >=sys-devel/binutils-2.16.1
 	)"
 RDEPEND="tcl? ( dev-lang/tcl )
-	java? ( >=virtual/jre-1.4 )"
+	java? ( >=virtual/jre-1.4 )
+	x86-winnt? ( sys-libs/onc-rpc-nt )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
@@ -52,7 +53,9 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4 (named libtool.ac)
 	# for correct shared libs on aix (#213277).
-	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.ac \
+	#
+	# the BPREFIX is required to allow for cross-platform cross-prefix builds.
+	cp -f "${BPREFIX:-${EPREFIX}}"/usr/share/aclocal/libtool.m4 aclocal/libtool.ac \
 	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
@@ -77,6 +80,13 @@ src_unpack() {
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/"${PN}"-4.3-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
+	
+	# rpcgen check is broken on machines where there is a
+	# ${CHOST}-rpcgen...
+	epatch "${FILESDIR}"/${PN}-4.5-rpcgen.patch
+
+	# winnt patches (depends on rpcgen patch too!)
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-4.5-winnt.patch
 
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
@@ -149,6 +159,14 @@ src_compile() {
 	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
 		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
+	fi
+	
+	if [[ ${CHOST} == *-winnt* ]]; then
+		# this one should really sound --enable-windows, but
+		# seems the db devs only support mingw ... doesn't enable
+		# anything too specific to mingw.
+		myconf="${myconf} --enable-mingw"
+		myconf="${myconf} --with-mutex=win32"
 	fi
 
 	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \

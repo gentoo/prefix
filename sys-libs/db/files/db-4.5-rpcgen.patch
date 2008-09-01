@@ -1,0 +1,39 @@
+diff -ru db-4.5.20.orig/dist/aclocal/rpc.ac db-4.5.20/dist/aclocal/rpc.ac
+--- db-4.5.20.orig/dist/aclocal/rpc.ac	2008-08-29 10:56:58 +0200
++++ db-4.5.20/dist/aclocal/rpc.ac	2008-08-29 11:03:19 +0200
+@@ -11,20 +11,20 @@
+ 
+ 	# Prefer the -C option to rpcgen which generates ANSI C-conformant
+ 	# code.
+-	RPCGEN="rpcgen -C"
+-	AC_MSG_CHECKING(["$RPCGEN" build of db_server.h])
+-	$RPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
++	TRPCGEN="${RPCGEN} -C"
++	AC_MSG_CHECKING(["$TRPCGEN" build of db_server.h])
++	$TRPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
+ 	if test $? -ne 0; then
+ 		AC_MSG_RESULT([no])
+ 
+ 		# Try rpcgen without the -C option.
+-		RPCGEN="rpcgen"
+-		AC_MSG_CHECKING(["$RPCGEN" build of db_server.h])
+-		$RPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
++		TRPCGEN="${RPCGEN}"
++		AC_MSG_CHECKING(["$TRPCGEN" build of db_server.h])
++		$TRPCGEN -h $XDR_FILE > db_server.h 2>/dev/null
+ 		if test $? -ne 0; then
+ 			AC_MSG_RESULT([no])
+ 			AC_MSG_ERROR(
+-			    [Unable to build RPC support: $RPCGEN failed.])
++			    [Unable to build RPC support: $TRPCGEN failed.])
+ 		fi
+ 	fi
+ 
+@@ -45,6 +45,7 @@
+ 	fi
+ 
+ 	AC_MSG_RESULT([yes])
++	RPCGEN=${TRPCGEN}
+ 
+ 	$RPCGEN -l $XDR_FILE |
+ 	sed -e 's/^#include.*db_server.h.*/#include "db_server.h"/' \
