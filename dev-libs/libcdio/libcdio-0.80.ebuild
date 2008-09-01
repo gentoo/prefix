@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.6 2008/07/16 08:37:01 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.7 2008/08/31 13:33:34 flameeyes Exp $
 
 EAPI="prefix 1"
 
@@ -31,6 +31,14 @@ src_unpack() {
 
 	sed -i -e 's:noinst_PROGRAMS:EXTRA_PROGRAMS:' test/Makefile.am \
 		|| die "unable to remove testdefault build"
+
+	# Fix building against libiconv
+	sed -i -e 's:@LIBICONV@:$(LTLIBICONV):' lib/driver/Makefile.am \
+		|| die "unable to fix libiconv link - part 1"
+
+	find . -name Makefile.am -print0 | xargs -0 \
+		sed -i -e 's:$(LIBICONV):$(LTLIBICONV):' \
+		|| die "unable to fix libiconv link - part 2"
 
 	eautomake
 	elibtoolize
