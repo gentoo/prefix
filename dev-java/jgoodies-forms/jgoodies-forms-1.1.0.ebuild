@@ -6,7 +6,7 @@ EAPI="prefix"
 
 JAVA_PKG_IUSE="doc examples source"
 
-inherit java-pkg-2 java-ant-2 eutils
+inherit java-pkg-2 java-ant-2 java-utils-2 eutils
 
 MY_PN="forms"
 MY_PV=${PV//./_}
@@ -17,7 +17,7 @@ SRC_URI="http://www.jgoodies.com/download/libraries/${MY_PN}/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.4
@@ -39,6 +39,8 @@ src_compile() {
 	# feel free to fix if you want jikes back
 	java-pkg_filter-compiler jikes
 	# not setting the bootcp breaks ecj, javac apparently ignores nonsense
+	[[ $(java-pkg_get-vm-vendor) == apple ]] && \
+	eant jar || \
 	eant -Dbuild.boot.classpath="$(java-config -g BOOTCLASSPATH)" jar
 }
 
