@@ -17,5 +17,6 @@ comp_add="-I${EPREFIX}/include -I${EPREFIX}/usr/include"
 
 # options added at end of command line intentionally, to keep up
 # correct search orders for user given paths, and allow overriding
-# single files from other directories.
-exec $compiler "$@" $comp_add $link_add
+# single files from other directories. Cannot be done with link
+# relevant dirs, since library lookup is done in the correct order.
+exec $compiler $link_add "$@" $comp_add
