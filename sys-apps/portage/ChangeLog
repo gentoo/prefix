@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11484 (01 Sep 2008)
+
+  01 Sep 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11409.ebuild, +portage-2.2.00.11484.ebuild:
+  New snapshot, just to make sure I have the latest fixes
+
 *portage-2.2.00.11477 (27 Aug 2008)
 
   27 Aug 2008; Fabian Groffen <grobian@gentoo.org>
