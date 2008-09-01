@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.1-darwin.patch
+	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
 
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch

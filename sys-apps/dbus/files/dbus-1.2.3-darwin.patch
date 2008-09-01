@@ -1,0 +1,28 @@
+* to get environ, one needs to call _NSGetEnviron() on Darwin.
+
+--- dbus/dbus-sysdeps.c
++++ dbus/dbus-sysdeps.c
+@@ -22,6 +22,11 @@
+  *
+  */
+ 
++/* For OSX's _NSGetEnviron() */
++#ifdef __APPLE_CC__
++#include <crt_externs.h>
++#endif
++
+ #include "dbus-internals.h"
+ #include "dbus-sysdeps.h"
+ #include "dbus-threads.h"
+@@ -191,7 +196,11 @@
+   if (clearenv () != 0)
+      rc = FALSE;
+ #else
++#ifdef __APPLE_CC__
++  char **environ = *_NSGetEnviron();
++#else
+   extern char **environ;
++#endif
+ 
+   if (environ != NULL)
+     environ[0] = NULL;
