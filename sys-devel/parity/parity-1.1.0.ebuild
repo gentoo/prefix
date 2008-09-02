@@ -35,6 +35,7 @@ src_unpack() {
 	# upstream in svn for 1.1.1
 	epatch "${FILESDIR}"/${P}-entry-points.patch
 	epatch "${FILESDIR}"/${P}-anyfile.patch
+	epatch "${FILESDIR}"/${P}-runtime-includes.patch
 }
 
 src_compile() {
