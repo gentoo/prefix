@@ -15,7 +15,8 @@ IUSE=""
 
 RDEPEND="x11-libs/vte
 	>=dev-libs/glib-2.8.4
-	dev-libs/confuse"
+	dev-libs/confuse
+	gnome-base/libglade"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
