@@ -1,6 +1,13 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.149 2008/08/16 00:30:14 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.151 2008/09/02 23:39:15 opfer Exp $
+
+  02 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  -doxygen-1.4.4.ebuild, -doxygen-1.5.2.ebuild:
+  clean up
+
+  02 Sep 2008; Christian Faulhammer <opfer@gentoo.org> doxygen-1.4.7.ebuild:
+  rename USE=tetex to USE=latex for bug 196745
 
 *doxygen-1.5.6 (16 Aug 2008)
 
