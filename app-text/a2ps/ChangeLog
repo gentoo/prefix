@@ -1,6 +1,14 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.83 2008/06/02 21:59:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.85 2008/09/02 23:44:22 opfer Exp $
+
+  02 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  -a2ps-4.13c-r2.ebuild, a2ps-4.13c-r5.ebuild, a2ps-4.13c-r6.ebuild:
+  really exchange it and clean up
+
+  02 Sep 2008; Christian Faulhammer <opfer@gentoo.org> a2ps-4.13c-r5.ebuild,
+  a2ps-4.13c-r6.ebuild:
+  rename USE=tetex to USE=latex for bug 196745
 
   02 Jun 2008; Ulrich Mueller <ulm@gentoo.org> a2ps-4.13c-r6.ebuild:
   Fix compile issues, bug 216588.

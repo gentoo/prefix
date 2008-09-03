@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r6.ebuild,v 1.10 2008/06/02 21:59:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r6.ebuild,v 1.12 2008/09/02 23:44:22 opfer Exp $
 
 EAPI="prefix"
 
@@ -18,21 +18,21 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="cjk emacs nls tetex vanilla userland_BSD userland_GNU"
+IUSE="cjk emacs nls latex vanilla userland_BSD userland_GNU"
 
 DEPEND=">=dev-util/gperf-2.7.2
 	|| ( >=dev-util/yacc-1.9.1 sys-devel/bison )
 	virtual/ghostscript
 	>=app-text/psutils-1.17
 	emacs? ( virtual/emacs )
-	tetex? ( virtual/tetex )
+	latex? ( virtual/latex-base )
 	nls? ( sys-devel/gettext )"
 RDEPEND="virtual/ghostscript
 	userland_GNU? ( || ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp ) )
 	userland_BSD? ( sys-freebsd/freebsd-ubin )
 	>=app-text/psutils-1.17
 	emacs? ( virtual/emacs )
-	tetex? ( virtual/tetex )
+	latex? ( virtual/latex-base )
 	nls? ( virtual/libintl )"
 
 SITEFILE=50${PN}-gentoo.el
