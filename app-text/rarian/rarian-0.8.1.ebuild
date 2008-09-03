@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0.ebuild,v 1.2 2008/05/05 00:56:23 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.1.ebuild,v 1.1 2008/09/01 21:11:03 eva Exp $
 
 EAPI="prefix"
 
@@ -28,10 +28,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Only GNU getopt supports long options
-	# Scrollkeeper didn't support them, so we'll punt them for now
-	epatch "${FILESDIR}/${PN}-0.6.0-posix-getopt.patch"
-
 	eautoreconf # need new libtool for interix
 	#elibtoolize ${ELTCONF}
+}
+
+src_compile() {
+	gnome2_src_compile --localstatedir="${EPREFIX}"/var
 }

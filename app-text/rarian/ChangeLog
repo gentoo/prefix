@@ -1,6 +1,11 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.28 2008/08/13 21:39:00 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.29 2008/09/01 21:11:03 eva Exp $
+
+*rarian-0.8.1 (01 Sep 2008)
+
+  01 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> +rarian-0.8.1.ebuild:
+  bump to 0.8.1, fix various crashing bugs.
 
   13 Aug 2008; Mart Raudsepp <leio@gentoo.org> -rarian-0.8.0.ebuild:
   Remove old
