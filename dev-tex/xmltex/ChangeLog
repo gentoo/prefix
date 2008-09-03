@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/xmltex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.17 2008/08/22 19:12:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.18 2008/09/02 12:11:55 aballier Exp $
+
+  02 Sep 2008; Alexis Ballier <aballier@gentoo.org> xmltex-1.9-r2.ebuild:
+  keyword ~x86-fbsd
 
 *xmltex-1.9-r2 (22 Aug 2008)
 

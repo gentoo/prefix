@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r2.ebuild,v 1.1 2008/08/22 19:12:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r2.ebuild,v 1.2 2008/09/02 12:11:55 aballier Exp $
 
 EAPI="prefix"
 
