@@ -1,6 +1,11 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.436 2008/08/23 05:10:47 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.437 2008/09/01 12:00:11 redhatter Exp $
+
+  01 Sep 2008; Stuart Longland <redhatter@gentoo.org>
+  mozilla-firefox-3.0.1.ebuild:
+  Added some patches that should theoretically get Firefox 3.0 working on
+  mips. Further testing needed.
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
