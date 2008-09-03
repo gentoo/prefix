@@ -1,6 +1,10 @@
 # ChangeLog for app-text/docbook-sgml-utils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-utils/ChangeLog,v 1.53 2007/07/12 09:22:18 uberlord Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-utils/ChangeLog,v 1.54 2008/09/02 22:58:04 opfer Exp $
+
+  02 Sep 2008; Christian Faulhammer <opfer@gentoo.org> metadata.xml,
+  docbook-sgml-utils-0.6.14.ebuild:
+  rename USE=tetex to USE=jadetex for bug 196745
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org>
   docbook-sgml-utils-0.6.14.ebuild:

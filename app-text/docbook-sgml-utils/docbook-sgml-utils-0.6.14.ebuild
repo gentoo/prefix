@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-utils/docbook-sgml-utils-0.6.14.ebuild,v 1.29 2007/07/12 09:22:18 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-utils/docbook-sgml-utils-0.6.14.ebuild,v 1.30 2008/09/02 22:58:04 opfer Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="ftp://sources.redhat.com/pub/docbook-tools/new-trials/SOURCES/${MY_P}.t
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="tetex"
+IUSE="jadetex"
 
 DEPEND=">=dev-lang/perl-5
 	app-text/docbook-dsssl-stylesheets
@@ -30,7 +30,7 @@ DEPEND=">=dev-lang/perl-5
 	~app-text/docbook-sgml-dtd-3.1
 	~app-text/docbook-sgml-dtd-4.0
 	~app-text/docbook-sgml-dtd-4.1
-	tetex? ( app-text/jadetex )
+	jadetex? ( app-text/jadetex )
 	userland_GNU? ( sys-apps/which )
 	|| (
 		www-client/lynx
@@ -42,7 +42,7 @@ DEPEND=">=dev-lang/perl-5
 # transition to simple-dtd 1.0, <obz@gentoo.org>
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${MY_P}-elinks.patch
@@ -56,7 +56,7 @@ src_install() {
 		htmldir="${EPREFIX}/usr/share/doc/${PF}/html" \
 		install || die "Installation failed"
 
-	if ! use tetex ; then
+	if ! use jadetex ; then
 		for i in dvi pdf ps ; do
 			rm "${ED}"/usr/bin/docbook2$i
 			rm "${ED}"/usr/share/sgml/docbook/utils-${PV}/backends/$i
