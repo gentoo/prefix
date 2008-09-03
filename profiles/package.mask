@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8931 2008/08/31 06:54:56 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8940 2008/09/02 15:25:24 zzam Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,16 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (02 Sep 2008)
+# Removed at maintainer's request in 30 days by the treecleaners.
+# Please don't waste cds trying to use this program, bug 227143
+app-cdr/mp3burn
+
+# Alexis Ballier <aballier@gentoo.org> (01 Sep 2008)
+# Java programs do not build, bug #236369
+# Mask it until we are sure how to fix it.
+=dev-tex/tex4ht-20080829_p0203
+
 ## Daniel Black <dragonheart@gentoo.org> (31 Aug 2008)
 ## Masked for removal.
 # old stuff suffering bit rot. old libs that nothing depends
@@ -36,7 +46,6 @@
 app-crypt/cryptplug
 dev-tcltk/tclgpgme
 ~app-crypt/gpgme-0.3.14
-
 
 # Michael Sterrett <mr_bones_@gentoo.org> (31 Aug 2008)
 # Masked for removal.
@@ -48,9 +57,9 @@ media-sound/gogo
 # major file collisions, see bug #236124
 =media-libs/gst-plugins-good-0.10.9
 
-# Séastien Fabbro <bicatali@gentoo.org> (28 AUg 2008)
+# Séastien Fabbro <bicatali@gentoo.org> (28 Aug 2008)
 # Masked for removal in 30 days.  Doesn't compile,
-# upstream dead, gtk-1, numarray and bugs (bug #987654).
+# upstream dead, gtk-1, numarray and bugs (bug #236100).
 >sci-libs/libscigraphica-2.1
 >sci-visualization/scigraphica-2.1
 
@@ -62,11 +71,6 @@ media-sound/gogo
 # Peter Volkov <pva@gentoo.org> (28 Aug 2008)
 # Breaks too many packages, bug #235290
 =app-arch/rpm2targz-9.0.0.1g
-
-# Matthias Schwarzott <zzam@gentoo.org> (27 Aug 2008)
-# Mask newest udev with changed build system
-# to make it correct before unmask (multilib and other stuff)
-=sys-fs/udev-126
 
 # Carsten Lohrje <carlo@gentoo.org> (27 Aug 2008)
 # Mask KDE 3.5.10 for day or two as minor issues will show up unevitably
@@ -452,10 +456,6 @@ media-gfx/autopano-sift-C
 # Masked for testing
 >=dev-python/sqlalchemy-0.5.0_beta3
 
-# MATSUU Takuto <matsuu@gentoo.org> (15 Aug 2008)
-# Release candidate version, masked for testing.
->=x11-wm/awesome-3
-
 # Ulrich Mueller <ulm@gentoo.org> (15 Aug 2008)
 # Mask live CVS for Emacs 22 base branch, so that users will get
 # the official pretest snapshot instead.
@@ -622,21 +622,10 @@ app-admin/systemconfigurator
 dev-util/tla
 app-emacs/xtla
 
-# Jeremy Olexa <darkside@gentoo.org> (3 Jul 2008)
-# Masked for removal in ~30 days by treecleaners. bug #124383
-# Doesn't compile, dead upstream, no maintainer.
-app-i18n/kon2
-
 # Carsten Lohrke <carlo@gentoo.org> (30 Jun 2008)
 # Masking as it's pretty broken for a long while now.
 # Will investigate in a few days.
 dev-db/rekall
-
-# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
-# Masked for removal in 30 days. Only works with kernels <2.6.24. See HOMEPAGE
-# for details or bug #105919. Going forward this needs to be compiled into the
-# kernel.
-sys-fs/trustees
 
 # Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
 # Upstram doesn't support old version and we have the latest version in the 
@@ -681,11 +670,6 @@ media-libs/mediastreamer
 =media-video/mpeg4ip-1.5.0.1-r3
 =media-video/mpeg4ip-1.5.0.1-r4
 
-# Jeremy Olexa <darkside@gentoo.org> (20 Jun 2008)
-# Masked for removal in ~30 days by the treecleaners
-# Dead project and predecessor to dev-util/bzr, use that instead. bug #219236
-dev-util/bazaar
-
 # Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-177.13
@@ -706,11 +690,6 @@ app-doc/linuxfromscratch-text
 # Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
 # Masked for security bug #226079.
 <=www-client/opera-9.27
-
-# Jeremy Olexa <darkside@gentoo.org> (17 Jun 2008)
-# Masked for removal in ~30 days by treecleaners at maintainer's request.
-# Dead upstream, doesn't compile. bug #227481
-dev-cpp/libwefts
 
 # Mike Auty <ikelos@gentoo.org> (15 Jun 2008)
 # (#224637) No longer supported upstream and
@@ -770,16 +749,6 @@ x11-libs/gtk-server
 virtual/libffi
 >=dev-libs/g-wrap-1.9.11
 >=dev-scheme/guile-gnome-platform-2.16.0
-
-# Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
-# Can't download distfile. Newer versions in tree. bug #193625
-# Removed in 60 days by treecleaners
-=dev-lisp/cl-flexi-streams-0.6.3
-
-# Jeremy Olexa <darkside@gentoo.org> (04 Jun 2008)
-# Can't download distfile. Newer versions in tree. bug #193624
-# Removed in 60 days by treecleaners
-=dev-lisp/cl-drakma-0.4.0
 
 # Alexis Ballier <aballier@gentoo.org> (04 Jun 2008)
 # Beta versions, need testing
@@ -849,12 +818,6 @@ dev-cpp/bakery
 # LessTif is unsupported since it has open issues with several packages.
 # See bug 193505 and bug 204249. You are on your own here.
 x11-libs/lesstif
-
-# Marcus D. Hanwell <cryos@gentoo.org> (08 May 2008)
-# Timo Gurr <tgurr@gentoo.org> (27 Aug 2008) [updated to add 2.6.1]
-# Masking new version until it has received a little more testing
-~dev-util/cmake-2.6.0
-~dev-util/cmake-2.6.1
 
 # Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
 # Beta driver, unsupported by nVidia
@@ -1599,10 +1562,6 @@ dev-lang/ghc-bin
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
 
-# Tristan Heaven <nyhm@gentoo.org> (11 Aug 2007)
-# Masked until bug #178110 can be resolved properly.
-media-libs/freeimage
-
 # Sven Wegener <swegener@gentoo.org> (07 Aug 2007)
 # CVS snapshot, needs some more testing
 ~app-misc/screen-4.0.3_p20070403
@@ -1746,12 +1705,6 @@ dev-tex/vntex
 # Masked because it causes breakages with guile-1.8 and gnucash-2.
 # See Marijn's comment below
 ~dev-libs/g-wrap-1.9.7
-
-# Leonardo Boshell <leonardop@gentoo.org> (26 Jan 2007)
-# GNOME-DB 3.0 betas. For testing purposes only.
->=gnome-extra/libgda-1.3
->=gnome-extra/libgnomedb-1.3
-dev-db/mergeant
 
 # Michael Sterrett <mr_bones_@gentoo.org> (28 Jan 2007)
 # masked pending new beta due to bug #164186

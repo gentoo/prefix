@@ -1,10 +1,48 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1817 2008/08/31 11:26:00 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1827 2008/09/02 15:25:24 zzam Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If doubt put a record here!
+
+  02 Sep 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Remove masking of udev-126.
+
+  02 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-cdr/mp3burn for removal in 30 days, bug #227143
+
+  02 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove app-i18n/kon2, sys-fs/trustees, dev-util/bazaar, dev-cpp/libwefts,
+  dev-lisp/cl-flexi-streams-0.6.3 & dev-lisp/cl-drakma-0.4.0 package.mask
+  entries because they were removed from the tree.
+
+  02 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Fixed bug number for scigraphica removals
+
+  02 Sep 2008; Tristan Heaven <nyhm@gentoo.org>
+  arch/amd64/no-multilib/package.mask,
+  default-linux/amd64/2006.0/no-multilib/package.mask,
+  default-linux/amd64/2006.1/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask,
+  features/64bit-native/package.mask:
+  Mask games-server/etqw-ded on no-multilib
+
+  02 Sep 2008; Tristan Heaven <nyhm@gentoo.org> package.mask:
+  Unmask media-libs/freeimage
+
+  02 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Removed x11-wm/awesome-3 from package.mask.
+
+  01 Sep 2008; Marcus D. Hanwell <cryos@gentoo.org> package.mask:
+  Removed dev-util/cmake-2.6 from package.mask.
+
+  01 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask latest tex4ht for bug #236369
+
+  01 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  remove libgda/libgnomedb 3.0 mask, deps have been corrected and it still
+  compiles with recent glibc/gcc.
 
   31 Aug 2008; Alin Năstac <mrness@gentoo.org> use.local.desc:
   Update net-dialup/freeradius:udpfromto description (#235688).

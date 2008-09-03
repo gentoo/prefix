@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3822 2008/09/01 00:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3828 2008/09/03 03:33:02 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -225,7 +225,6 @@ app-emulation/xen-tools:flask - Enable the Flask XSM module from NSA
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
 app-emulation/xen-tools:screen - Enable support for running domain U console in an app-misc/screen session
-app-emulation/xen-tools:xsm - Enable the Xen Security Modules (XSM)
 app-forensics/samhain:login-watch - Compile in the module to watch for login/logout events
 app-forensics/samhain:mounts-check - Compile in the module to check for correct mount options
 app-forensics/samhain:netclient - Compile a client, rather than a standalone version 
@@ -370,6 +369,7 @@ app-shells/tcsh:catalogs - Add support for NLS catalogs
 app-text/crm114:mew - Add support for using the mewdecode mime decoder (app-emacs/mew)
 app-text/crm114:mimencode - Add support for using the mimencode mime (net-mail/metamail)
 app-text/crm114:normalizemime - Add support for using the normalizemime (mail-filter/normalizemime)
+app-text/docbook-sgml-utils:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/enchant:aspell - Adds support for app-text/aspell spell checker
 app-text/enchant:hunspell - Adds support for app-text/hunspell spell checker
 app-text/enchant:zemberek - Adds support for app-text/zemberek-server spell checker server
@@ -380,6 +380,7 @@ app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search libra
 app-text/namazu:kakasi - Enable kakasi support (dev-perl/Text-Kakasi)
 app-text/noweb:icon - Enable dev-lang/icon language support
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
+app-text/sgmltools-lite:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/sword:icu - Enable dev-libs/icu support for sword
 app-text/sword:lucene - Enable lucene support for faster searching (dev-cpp/clucene)
 app-text/sword-modules:intl - Enable different languages
@@ -686,6 +687,10 @@ dev-python/pyzor:pyzord - enable support for pyzord
 dev-python/rdflib:redland - enable support for Redland triplestore
 dev-python/rdflib:zodb - enable support for Zope Object Database triplestore
 dev-python/soya:ode - include support for Open Dynamics Engine
+dev-python/sympy:imaging - Add support for dev-python/imaging
+dev-python/sympy:ipython - Add support for dev-python/ipython
+dev-python/sympy:mathml - Add support for mathml
+dev-python/sympy:texmacs - Add support for app-office/texmacs
 dev-python/twisted:serial - include serial port support
 dev-python/visual:numarray - enable support for numarray
 dev-python/visual:numeric - enable support for numeric
@@ -855,6 +860,8 @@ games-strategy/uqm:voice - download and install voice files (large)
 games-strategy/wesnoth:editor - Enable compilation of map editor
 games-strategy/wesnoth:lite - Lite install
 games-strategy/wesnoth:server - Enable compilation of server
+games-strategy/wesnoth:smallgui - enable GUI reductions for resolutions down to 800x480 (eeePC, Nokia 8x0)
+games-strategy/wesnoth:tinygui - enable GUI reductions for resolutions down to 320x240 (PDAs)
 games-strategy/wesnoth:tools - Enable compilation of translation tools
 games-strategy/x2:bonusscripts - Add bonus scripts
 games-strategy/x2:dynamic - Use dynamic binaries instead of static
@@ -902,6 +909,7 @@ kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot 
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdeedu:kig-scripting - Support Python scripting in kig
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
+kde-base/kdegraphics:kpathsea - Enable integration with kpathsea search library (TeX related)
 kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
@@ -911,6 +919,7 @@ kde-base/kdemultimedia:akode - Support for the aKode audio-decoding frame-work
 kde-base/kdenetwork:sametime - Support for the Sametime protocol for instant messaging
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
+kde-base/kdvi:kpathsea - Enable integration with kpathsea search library (TeX related)
 kde-base/kget:plasma - Build optional plasma widgets
 kde-base/kig:kig-scripting - Support Python scripting
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
