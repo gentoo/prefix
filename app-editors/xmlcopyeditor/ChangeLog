@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/xmlcopyeditor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.8 2008/08/12 23:46:27 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.9 2008/09/02 11:26:24 yoswink Exp $
+
+*xmlcopyeditor-1.2.0.2 (02 Sep 2008)
+
+  02 Sep 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -files/gcc-4.3-header-dependency.patch, -xmlcopyeditor-1.1.0.7.ebuild,
+  +xmlcopyeditor-1.2.0.2.ebuild:
+  Version bump. Much faster background validation for DTDs and more readable
+  parser error messages. It also fixes a number of minor bugs. Ebuild now
+  introduces the dependency over wxGTK with X support. Remove old ebuild.
 
 *xmlcopyeditor-1.2.0.1 (12 Aug 2008)
 
