@@ -65,7 +65,7 @@ for i in "" "-community" ; do
 done
 
 RDEPEND="${DEPEND}
-		!minimal? ( dev-db/mysql-init-scripts )
+		!prefix? ( !minimal? ( dev-db/mysql-init-scripts ) )
 		selinux? ( sec-policy/selinux-mysql )"
 
 # compile-time-only
