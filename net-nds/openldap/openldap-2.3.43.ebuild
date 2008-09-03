@@ -15,7 +15,7 @@ SRC_URI="mirror://openldap/openldap-release/${P}.tgz"
 
 LICENSE="OPENLDAP"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris ~x86-winnt"
 IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl samba sasl slp smbkrb5passwd ssl tcpd selinux"
 
 # note that the 'samba' USE flag pulling in OpenSSL is NOT an error.  OpenLDAP
@@ -23,7 +23,11 @@ IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl samba sas
 # mine at work)!
 # Robin H. Johnson <robbat2@gentoo.org> March 8, 2004
 
-RDEPEND="sys-libs/ncurses
+# note: the ncurses dependency is really optional, but cannot be controlled by
+# configure, it seems. so i disable the dependency only on winnt, where there
+# is no ncurses, instead of making a USE flags for it..
+
+RDEPEND="!x86-winnt? ( sys-libs/ncurses )
 	tcpd? ( sys-apps/tcp-wrappers )
 	ssl? ( dev-libs/openssl )
 	sasl? ( dev-libs/cyrus-sasl )
@@ -230,16 +234,63 @@ src_unpack() {
 		cd "${S}"/contrib
 		epatch "${FILESDIR}"/${PN}-2.3.24-contrib-smbk5pwd.patch
 	fi
+
+	# the following is conditional, since its everything but clean.
+	# still this is the only solution that i could come up with after
+	# a few hours of troubles with eautoreconf and friends...
+	if [[ ${CHOST} == *-winnt* ]]; then
+		unset EPATCH_OPTS
+		cd "${S}"
+
+		epatch "${FILESDIR}"/${P}-winnt.patch
+
+		for x in "${S}" "${S}/contrib/ldapc++"; do
+			cd $x
+			libtoolize --force --copy
+
+			# don't use eaclocal, since this tries to include "build"
+			# which doesn't work.
+			aclocal
+			eautoconf
+			elibtoolize --force
+		done
+	fi
 }
 
 src_compile() {
 	local myconf
 
 	#Fix for glibc-2.8 and ucred. Bug 228457.
-	append-flags -D_GNU_SOURCE
+	if [[ ${CHOST} != *-winnt* ]]; then
+		append-flags -D_GNU_SOURCE
+	else
+		# big hack: parity automaticall tries to lookup and
+		# export symbols as required. but when building openldap,
+		# some test programs are linked against liblutil.a, which
+		# contains unresolvable symbols, which are contained in
+		# libraries, which aren't build (and aren't buildable ATM).
+		# to make this work with parity, we need to tell it, to not
+		# try to automatically DTRT when building executables.
+		# in this special case this doesn't do any harm.
+		local conf="${T}"/parity-no-exe-export.cfg
+		echo "ExportFromExe=off" > "${conf}"
+		export PARITY_CONFIG="${conf}"
+	fi
+
+	# shared modules don't work with parity build, since that
+	# would require exporting from executables, which we have to
+	# explicitly disable above to make building the basics possible.
+	local enable_module
+	if [[ ${CHOST} == *-winnt* ]]; then
+		enable_module="yes"
+		enable_module_nowin="no"
+	else
+		enable_module="mod"
+		enable_module_nowin="mod"
+	fi
 
 	# HDB is only available with BerkDB
-	myconf_berkdb='--enable-bdb --enable-ldbm-api=berkeley --enable-hdb=mod'
+	myconf_berkdb="--enable-bdb --enable-ldbm-api=berkeley --enable-hdb=${enable_module_nowin}"
 	myconf_gdbm='--disable-bdb --enable-ldbm-api=gdbm --disable-hdb'
 
 	use debug && myconf="${myconf} --enable-debug" # there is no disable-debug
@@ -265,22 +316,26 @@ src_compile() {
 			append-cppflags -I$(db_includedir 4.5 4.4 4.3 4.2 )
 		fi
 		# extra backend stuff
-		myconf="${myconf} --enable-passwd=mod --enable-phonetic=mod"
-		myconf="${myconf} --enable-dnssrv=mod --enable-ldap"
-		myconf="${myconf} --enable-meta=mod --enable-monitor=mod"
-		myconf="${myconf} --enable-null=mod --enable-shell=mod"
-		myconf="${myconf} --enable-relay=mod"
-		myconf="${myconf} $(use_enable perl perl mod)"
-		myconf="${myconf} $(use_enable odbc sql mod)"
+		myconf="${myconf} --enable-passwd=${enable_module_nowin} --enable-phonetic=${enable_module}"
+		myconf="${myconf} --enable-dnssrv=${enable_module_nowin} --enable-ldap"
+		myconf="${myconf} --enable-meta=${enable_module} --enable-monitor=${enable_module}"
+		myconf="${myconf} --enable-null=${enable_module} --enable-shell=${enable_module_nowin}"
+		myconf="${myconf} --enable-relay=${enable_module}"
+		myconf="${myconf} $(use_enable perl perl ${enable_module})"
+		myconf="${myconf} $(use_enable odbc sql ${enable_module})"
 		# slapd options
 		myconf="${myconf} $(use_enable crypt) $(use_enable slp)"
 		myconf="${myconf} --enable-rewrite --enable-rlookups"
-		myconf="${myconf} --enable-aci --enable-modules"
-		myconf="${myconf} --enable-cleartext --enable-slapi"
+		myconf="${myconf} --enable-aci --enable-${enable_module}"
+
+		[[ ${CHOST} != *-winnt* ]] && \
+			myconf="${myconf} --enable-slapi"
+
+		myconf="${myconf} --enable-cleartext"
 		myconf="${myconf} $(use_enable samba lmpasswd)"
 		# slapd overlay options
 		myconf="${myconf} --enable-dyngroup --enable-proxycache"
-		use overlays && myconf="${myconf} --enable-overlays=mod"
+		use overlays && myconf="${myconf} --enable-overlays=${enable_module}"
 		myconf="${myconf} --enable-syncprov"
 	else
 		myconf="${myconf} --disable-slapd --disable-slurpd"
@@ -291,8 +346,10 @@ src_compile() {
 	fi
 
 	# basic functionality stuff
-	myconf="${myconf} --enable-syslog --enable-dynamic"
-	myconf="${myconf} --enable-local --enable-proctitle"
+	myconf="${myconf} --enable-dynamic --enable-proctitle"
+
+	[[ ${CHOST} != *-winnt* ]] && \
+		myconf="${myconf} --enable-local --enable-syslog"
 
 	myconf="${myconf} $(use_enable ipv6)"
 	myconf="${myconf} $(use_with sasl cyrus-sasl) $(use_enable sasl spasswd)"
@@ -303,6 +360,7 @@ src_compile() {
 	fi
 
 	STRIP=/bin/true \
+	tc-export CC CXX
 	econf \
 		--enable-static \
 		--enable-shared \
@@ -312,14 +370,14 @@ src_compile() {
 	emake depend || die "make depend failed"
 	emake || die "make failed"
 
-	# openldap/contrib
-	tc-export CC
-	if ! use minimal ; then
+	# openldap/contrib (not supported on winnt)
+	if ! use minimal && [[ ${CHOST} != *-winnt* ]] ; then
 		# dsaschema
 			einfo "Building contributed dsaschema"
 			cd "${S}"/contrib/slapd-modules/dsaschema
 			${CC} -shared -I../../../include ${CFLAGS} -fPIC \
-			-Wall -o libdsaschema-plugin.so dsaschema.c || \
+			-Wall -o libdsaschema-plugin.so dsaschema.c \
+			-L"${S}"/libraries/libldap/.libs -lldap || \
 			die "failed to compile dsaschema module"
 		# kerberos passwd
 		if use kerberos ; then
@@ -408,16 +466,19 @@ src_install() {
 		configfile="${ED}"etc/openldap/slapd.conf
 
 		# populate with built backends
-		ebegin "populate config with built backends"
-		for x in "${ED}"usr/$(get_libdir)/openldap/openldap/back_*.so; do
-			elog "Adding $(basename ${x})"
-			sed -e "/###INSERTDYNAMICMODULESHERE###$/a# moduleload\t$(basename ${x})" -i "${configfile}"
-		done
-		sed -e "s:###INSERTDYNAMICMODULESHERE###$:# modulepath\t${EPREFIX}/usr/$(get_libdir)/openldap/openldap:" -i "${configfile}"
-		use prefix || fowners root:ldap /etc/openldap/slapd.conf
-		fperms 0640 /etc/openldap/slapd.conf
-		cp "${configfile}" "${configfile}".default
-		eend
+		# nothing to be done here on winnt
+		if [[ ${CHOST} != *-winnt* ]]; then
+			ebegin "populate config with built backends"
+			for x in "${ED}"usr/$(get_libdir)/openldap/openldap/back_*.so; do
+				elog "Adding $(basename ${x})"
+				sed -e "/###INSERTDYNAMICMODULESHERE###$/a# moduleload\t$(basename ${x})" -i "${configfile}"
+			done
+			sed -e "s:###INSERTDYNAMICMODULESHERE###$:# modulepath\t${EPREFIX}/usr/$(get_libdir)/openldap/openldap:" -i "${configfile}"
+			use prefix || fowners root:ldap /etc/openldap/slapd.conf
+			fperms 0640 /etc/openldap/slapd.conf
+			cp "${configfile}" "${configfile}".default
+			eend
+		fi
 
 		# install our own init scripts
 		newinitd "${FILESDIR}"/slapd-initd slapd
@@ -492,7 +553,10 @@ pkg_postinst() {
 		# binary packages containing your SSL key, which is both a security risk
 		# and a misconfiguration if multiple machines use the same key and cert.
 		# Additionally, it overwrites
-		if use ssl; then
+		# for some strange reason this doesn't work on winnt. it works when
+		# called directly from the command line. i don't have time to look this
+		# up right now, so i'll leave it as is for now.
+		if use ssl && [[ ${CHOST} != *-winnt* ]]; then
 			install_cert /etc/openldap/ssl/ldap
 			use prefix || chown ldap:ldap "${EROOT}"etc/openldap/ssl/ldap.*
 			ewarn "Self-signed SSL certificates are treated harshly by OpenLDAP 2.[12]"
