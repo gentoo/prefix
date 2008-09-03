@@ -1,6 +1,9 @@
 # ChangeLog for app-text/tree
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.57 2008/08/31 15:58:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.58 2008/09/02 05:06:11 jer Exp $
+
+  02 Sep 2008; Jeroen Roovers <jer@gentoo.org> tree-1.5.2.ebuild:
+  Stable for HPPA (bug #236243).
 
   31 Aug 2008; Raúl Porcel <armin76@gentoo.org> tree-1.5.2.ebuild:
   alpha/ia64/sparc stable wrt #236243
