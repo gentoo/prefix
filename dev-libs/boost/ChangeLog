@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.139 2008/08/06 06:38:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.140 2008/09/01 18:37:20 dev-zero Exp $
+
+*boost-1.35.0-r2 (01 Sep 2008)
+
+  01 Sep 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +boost-1.35.0-r2.ebuild:
+  Added patch to fix compilation errors for other packages on arm, hppa and
+  sparc (bug #230529).
 
   06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
