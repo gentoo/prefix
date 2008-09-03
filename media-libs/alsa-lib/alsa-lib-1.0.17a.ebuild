@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17.ebuild,v 1.1 2008/08/02 21:02:23 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.1 2008/09/01 17:48:15 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ IUSE="doc debug alisp midi python"
 
 RDEPEND="python? ( dev-lang/python )"
 DEPEND="${RDEPEND}
-	>=media-sound/alsa-headers-${PV}
+	>=media-sound/alsa-headers-1.0.17
 	doc? ( >=app-doc/doxygen-1.2.6 )"
 
 IUSE_PCM_PLUGIN="copy linear route mulaw alaw adpcm rate plug multi shm file
