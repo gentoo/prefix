@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/jadetex-3.13-r2.ebuild,v 1.12 2008/04/16 13:56:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/jadetex-3.13-r2.ebuild,v 1.13 2008/09/02 17:56:55 aballier Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE=""
 RESTRICT="test"
 
 DEPEND=">=app-text/openjade-1.3.1
-	|| ( dev-texlive/texlive-fontsrecommended virtual/tetex )"
+	|| ( dev-texlive/texlive-fontsrecommended app-text/tetex app-text/ptex )"
 
 has_tetex_3() {
 	if has_version '>=app-text/tetex-2.96' || has_version '>=app-text/ptex-3.1.4.20041026' || has_version '>=app-text/texlive-2005' || has_version '>=app-text/texlive-core-2007'; then

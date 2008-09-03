@@ -1,6 +1,10 @@
 # ChangeLog for app-text/jadetex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.44 2008/04/16 13:56:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.45 2008/09/02 17:56:55 aballier Exp $
+
+  02 Sep 2008; Alexis Ballier <aballier@gentoo.org> jadetex-3.13-r1.ebuild,
+  jadetex-3.13-r2.ebuild:
+  Dont depend on virtual/tetex
 
   16 Apr 2008; Peter Volkov <pva@gentoo.org> jadetex-3.13-r2.ebuild:
   amd64 stable, bug #212062, thank Víctor Enríquez for testing.
