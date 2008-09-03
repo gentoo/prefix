@@ -1,0 +1,13 @@
+--- emacs-22.2-orig/lisp/progmodes/python.el	2008-01-21 01:25:09.000000000 +0100
++++ emacs-22.2/lisp/progmodes/python.el	2008-09-02 22:58:11.000000000 +0200
+@@ -1355,7 +1355,9 @@
+   ;; invoked.  Would support multiple processes better.
+   (when (or new (not (comint-check-proc python-buffer)))
+     (with-current-buffer
+-        (let* ((cmdlist (append (python-args-to-list cmd) '("-i")))
++	(let* ((cmdlist
++		(append (python-args-to-list cmd)
++			'("-i" "-c" "import sys; sys.path.remove('')")))
+                (path (getenv "PYTHONPATH"))
+                (process-environment	; to import emacs.py
+                 (cons (concat "PYTHONPATH=" data-directory

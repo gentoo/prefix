@@ -1,6 +1,23 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.261 2008/07/28 18:25:06 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.264 2008/09/03 03:09:26 tester Exp $
+
+  03 Sep 2008; Olivier Crête <tester@gentoo.org> emacs-22.2-r3.ebuild:
+  Stable on amd64 for bug #236498
+
+*emacs-22.2.92 (02 Sep 2008)
+
+  02 Sep 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.3-freebsd-sparc.patch, +emacs-22.2.92.ebuild:
+  Presumably final pretest version for Emacs 22.3. Committing it in
+  app-editors/emacs (instead of emacs-cvs), in order to give it as much
+  final testing as possible.
+
+*emacs-22.2-r3 (02 Sep 2008)
+
+  02 Sep 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.2-python-nopwd.patch, +emacs-22.2-r3.ebuild:
+  Fix search path for interactive python, security bug 236498.
 
   28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
