@@ -334,13 +334,12 @@ configure_common() {
 }
 
 configure_40_41_50() {
-	# TODO: !!!! readd --without-readline
-	#myconf="${myconf} --without-readline"
 	myconf="${myconf} --with-zlib-dir=${EPREFIX}/usr"
 	myconf="${myconf} $(use_with perl bench)"
 	myconf="${myconf} --enable-assembler"
 	myconf="${myconf} --with-extra-tools"
 	myconf="${myconf} --with-innodb"
+	myconf="${myconf} --without-readline"
 	mysql_version_is_at_least "5.0" || myconf="${myconf} $(use_with raid)"
 
 	# --with-vio is not needed anymore, it's on by default and
@@ -878,11 +877,14 @@ mysql_pkg_config() {
 		fi
 	fi
 
+	use prefix \
+		&& options="${options} --user=${PORTAGE_USER:-portage}" \
+		|| options="${options} --user=mysql"
+
 	local socket="${EROOT}/var/run/mysqld/mysqld${RANDOM}.sock"
 	local pidfile="${EROOT}/var/run/mysqld/mysqld${RANDOM}.pid"
 	local mysqld="${EROOT}/usr/sbin/mysqld \
 		${options} \
-		--user=mysql \
 		--skip-grant-tables \
 		--basedir=${EROOT}/usr \
 		--datadir=${EROOT}/${MY_DATADIR} \
