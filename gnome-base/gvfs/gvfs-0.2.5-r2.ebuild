@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r2.ebuild,v 1.1 2008/08/20 13:03:40 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r2.ebuild,v 1.2 2008/09/01 12:22:51 remi Exp $
 
 EAPI="prefix"
 
@@ -45,8 +45,7 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 pkg_setup() {
 	G2CONF="${G2CONF}
 			--enable-http
-			--with-bash-completion-dir=${EROOT}usr/share/bash-completion
-			$(use_enable bash-completion)
+			--disable-bash-completion
 			$(use_enable avahi)
 			$(use_enable bluetooth obexftp)
 			$(use_enable cdda)
@@ -86,6 +85,10 @@ src_unpack() {
 src_install() {
 	gnome2_src_install
 	use bash-completion && \
-		mv "${ED}/usr/share/bash-completion/gvfs-bash-completion.sh" \
-		"${ED}/usr/share/bash-completion/gvfs"
+		dobashcompletion programs/gvfs-bash-completion.sh ${PN}
+}
+
+pkg_postinst() {
+	gnome2_pkg_postinst
+	use bash-completion && bash-completion_pkg_postinst
 }
