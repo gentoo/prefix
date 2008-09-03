@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.2.ebuild,v 1.2 2008/05/24 00:41:21 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.2.ebuild,v 1.3 2008/09/02 23:45:33 aballier Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,8 @@ src_unpack() {
 
 	sed -i -e "s:dvips:#dvips:" "${S}"/doc/Makefile.in
 	sed -i -e "s:\./\(t1lib\.config\):/etc/t1lib/\1:" "${S}"/xglyph/xglyph.c
+	# Needed for sane .so versionning on fbsd. Please don't drop.
+	elibtoolize
 }
 
 src_compile() {

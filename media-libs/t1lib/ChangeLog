@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.70 2008/05/24 00:41:21 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.71 2008/09/02 23:45:33 aballier Exp $
+
+  02 Sep 2008; Alexis Ballier <aballier@gentoo.org> t1lib-5.1.2.ebuild:
+  run elibtoolize to fix so versionning on fbsd and also the build.
 
   24 May 2008; Ryan Hill <dirtyepic@gentoo.org> t1lib-5.1.1.ebuild,
   t1lib-5.1.2.ebuild:
