@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.16 2008/08/22 11:32:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.18 2008/09/02 10:00:06 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -38,6 +38,12 @@
 # The list of packages that will be installed if the source useflag is enabled.
 # Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
 # valid for TeX Live 2008
+
+# @ECLASS-VARIABLE: TEXLIVE_MODULE_BINSCRIPTS
+# @DESCRIPTION:
+# A space separated list of files that are in fact scripts installed in the
+# texmf tree and that we want to be available directly. They will be installed in
+# /usr/bin.
 
 inherit texlive-common
 
@@ -232,6 +238,7 @@ texlive-module_src_install() {
 		insinto /etc/texmf/language.dat.d
 		doins "${S}/language.${PN}.dat"
 	fi
+	[ -n "${TEXLIVE_MODULE_BINSCRIPTS}" ] && dobin_texmf_scripts ${TEXLIVE_MODULE_BINSCRIPTS}
 
 	texlive-common_handle_config_files
 }

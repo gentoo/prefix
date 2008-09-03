@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.44 2008/08/29 19:28:08 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.45 2008/09/01 14:11:54 hawking Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -63,7 +63,7 @@ python_disable_pyc
 # Run without arguments and it will export the version of python
 # currently in use as $PYVER; sets PYVER/PYVER_MAJOR/PYVER_MINOR
 __python_version_extract() {
-	verstr=$1
+	local verstr=$1
 	export PYVER_MAJOR=${verstr:0:1}
 	export PYVER_MINOR=${verstr:2:1}
 	if [ "${verstr:3}x" = ".x" ]; then
