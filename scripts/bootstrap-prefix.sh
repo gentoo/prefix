@@ -206,6 +206,7 @@ bootstrap_tree() {
 	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
 		cd "${ROOT}"/usr
 		efetch "${DISTFILES_URL}/prefix-overlay-${PV}.tar.bz2"
+		einfo "Unpacking, this may take awhile"
 		bzip2 -dc "${DISTDIR}"/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles distfiles
