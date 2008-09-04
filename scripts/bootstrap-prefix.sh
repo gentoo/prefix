@@ -122,6 +122,9 @@ bootstrap_setup() {
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
 			;;
+		powerpc-unknown-linux-gnu)
+			profile="${PORTDIR}/profiles/default-prefix/linux/ppc"
+			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
 			;;
@@ -645,13 +648,21 @@ unset TMP TMPDIR TEMP
 
 # Try to guess the CHOST if not set.  We currently only support guessing
 # on a very sloppy base.
-if [ -z "${CHOST}" ];
-then
-	if [ x$(type -t uname) == "xfile" ];
-	then
+if [[ -z ${CHOST} ]]; then
+	if [[ x$(type -t uname) == "xfile" ]]; then
 		case `uname -s` in
 			Linux)
-				CHOST="`uname -m`-pc-linux-gnu"
+				case `uname -m` in
+					ppc*)
+						CHOST="`uname -m | sed -e 's/^ppc/powerpc/'`-unknown-linux-gnu"
+						;;
+					powerpc*)
+						CHOST="`uname -m`-unknown-linux-gnu"
+						;;
+					*)
+						CHOST="`uname -m`-pc-linux-gnu"
+						;;
+				esac
 				;;
 			Darwin)
 				CHOST="`uname -p`-apple-darwin`uname -r | cut -d'.' -f 1`"
@@ -767,7 +778,7 @@ fi
 # allows for user set CHOST still to result in the appropriate variables
 # being set.
 case ${CHOST} in
-	*-pc-linux-gnu)
+	*-*-linux-gnu)
 		MAKE=make
 	;;
 	*-apple-darwin*)
