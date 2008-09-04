@@ -1,0 +1,3 @@
+ARCH=ppc
+CHOST="powerpc-unknown-linux-gnu"
+ACCEPT_KEYWORDS="~ppc-linux"
