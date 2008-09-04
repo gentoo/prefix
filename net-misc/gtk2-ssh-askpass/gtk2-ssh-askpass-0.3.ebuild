@@ -19,6 +19,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	cp ${FILESDIR}/99ssh_askpass "${T}"
+	sed -i -e "s:/usr:@GENTOO_PORTAGE_EPREFIX@/usr:" "${T}"/99ssh_askpass
 	eprefixify ${T}/99ssh_askpass
 }
 
