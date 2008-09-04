@@ -1,0 +1,1 @@
+SSH_ASKPASS=@GENTOO_PORTAGE_EPREFIX@/usr/bin/gtk2-ssh-askpass
