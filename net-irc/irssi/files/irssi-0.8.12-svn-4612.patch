@@ -1,0 +1,30 @@
+r4612 | Geert | 2007-10-11 16:02:27 +0000 (Thu, 11 Oct 2007) | 2 lines
+
+Fix broken URI.
+
+Index: trunk/src/fe-text/irssi.c
+===================================================================
+--- trunk/src/fe-text/irssi.c	(revision 4611)
++++ trunk/src/fe-text/irssi.c	(revision 4612)
+@@ -86,7 +86,7 @@
+ 	"Looks like this is the first time you've run irssi.\n"
+ 	"This is just a reminder that you really should go read\n"
+ 	"startup-HOWTO if you haven't already. You can find it\n"
+-	"and more irssi beginner info at http://irssi.org/help/\n"
++	"and more irssi beginner info at http://www.irssi.org\n"
+ 	"\n"
+ 	"For the truly impatient people who don't like any automatic\n"
+ 	"window creation or closing, just type: /MANUAL-WINDOWS";
+Index: trunk/irssi.conf
+===================================================================
+--- trunk/irssi.conf	(revision 4611)
++++ trunk/irssi.conf	(revision 4612)
+@@ -124,7 +124,7 @@
+     prompt = "{prompt $[.15]itemname}";
+     prompt_empty = "{prompt $winname}";
+     topic = " $topic";
+-    topic_empty = " Irssi v$J - http://irssi.org/help/";
++    topic_empty = " Irssi v$J - http://www.irssi.org";
+ 
+     # all of these treated specially, they're only displayed when needed
+     lag = "{sb Lag: $0-}";
