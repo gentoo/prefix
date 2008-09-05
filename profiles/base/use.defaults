@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/use.defaults,v 1.31 2007/07/22 11:06:06 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/use.defaults,v 1.32 2008/09/03 07:43:36 ulm Exp $
 
 aalib				media-libs/aalib
 acl					sys-apps/acl
@@ -109,7 +109,6 @@ svga				media-libs/svgalib
 tcl				dev-lang/tcl
 tk				dev-lang/tk
 tcpd				sys-apps/tcp-wrappers
-tetex				app-text/tetex
 tiff				media-libs/tiff
 truetype			media-libs/freetype
 usb					dev-libs/libusb
