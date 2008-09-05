@@ -1,6 +1,27 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.254 2008/09/02 19:37:58 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.258 2008/09/04 18:06:14 lack Exp $
+
+*fluxbox-1.1.0.1 (04 Sep 2008)
+
+  04 Sep 2008; Jim Ramsay <lack@gentoo.org>
+  +files/1.1.0.1/gentoo_style_location.patch,
+  -files/1.1.0/gentoo_style_location.patch, -files/1.1.0/windowmenu,
+  -fluxbox-1.1.0-r1.ebuild, +fluxbox-1.1.0.1.ebuild:
+  New version - 1.1.0.1 is released (Fixes some issues with the 1.1.0
+  release)
+
+  03 Sep 2008; Jim Ramsay <lack@gentoo.org> fluxbox-1.1.0-r1.ebuild:
+  Added ewarn message about potential problem from last 1.1.0-r1 install
+
+*fluxbox-1.1.0-r1 (03 Sep 2008)
+
+  03 Sep 2008; Jim Ramsay <lack@gentoo.org> +files/1.1.0/windowmenu,
+  -fluxbox-1.1.0.ebuild, +fluxbox-1.1.0-r1.ebuild:
+  New fix for bug #236532 - Uses missing windowmenu file from upstream
+
+  03 Sep 2008; Peter Alfredsen <loki_val@gentoo.org> fluxbox-1.1.0.ebuild:
+  Fix bug 236523, upstream changed default menu location.
 
 *fluxbox-1.1.0 (02 Sep 2008)
 
