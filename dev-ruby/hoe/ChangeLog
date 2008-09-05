@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.36 2008/07/08 01:46:31 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.37 2008/09/03 18:41:34 graaff Exp $
+
+  03 Sep 2008; Hans de Graaff <graaff@gentoo.org> hoe-1.7.0.ebuild:
+  Depend on rubygems 1.2.0 since the generated tasks depend on it. Thanks to
+  Cyril Mougel for providing the information in #236444.
 
   08 Jul 2008; Javier Villavicencio <the_paya@gentoo.org> hoe-1.7.0.ebuild:
   Add ~x86-fbsd.
