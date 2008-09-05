@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.136 2008/08/29 10:08:15 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.137 2008/09/03 15:13:23 opfer Exp $
+
+*erlang-12.2.4 (03 Sep 2008)
+
+  03 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  +erlang-12.2.4.ebuild:
+  version bump for bug 236573
 
   29 Aug 2008; Christian Faulhammer <opfer@gentoo.org>
   erlang-12.2.3-r1.ebuild:
