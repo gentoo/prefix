@@ -1,6 +1,10 @@
 # ChangeLog for app-text/adiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/ChangeLog,v 1.5 2008/01/19 14:44:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/ChangeLog,v 1.6 2008/09/03 23:03:46 nyhm Exp $
+
+  03 Sep 2008; Tristan Heaven <nyhm@gentoo.org> -adiff-1.2.ebuild,
+  adiff-1.4.ebuild:
+  Block app-arch/atool, bug #227037
 
 *adiff-1.4 (19 Jan 2008)
 
