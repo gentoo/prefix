@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.51 2008/07/04 02:33:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.52 2008/09/04 10:29:33 ulm Exp $
+
+*eselect-emacs-1.5-r1 (04 Sep 2008)
+
+  04 Sep 2008; Ulrich Mueller <ulm@gentoo.org> +eselect-emacs-1.5-r1.ebuild:
+  Don't install the emacs-updater script since it's in its own package now.
 
   04 Jul 2008; Jeroen Roovers <jer@gentoo.org> eselect-emacs-1.5.ebuild:
   Stable for HPPA (bug #229605).
