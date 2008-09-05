@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/epydoc-2.1-r2.ebuild,v 1.17 2008/01/20 23:04:50 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/epydoc-2.1-r2.ebuild,v 1.18 2008/09/04 06:29:24 opfer Exp $
 
 EAPI="prefix"
 
@@ -13,9 +13,10 @@ SRC_URI="mirror://sourceforge/epydoc/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="doc pdf"
+IUSE="doc latex"
 
-RDEPEND="pdf? ( virtual/tetex )"
+RDEPEND="latex? ( virtual/latex-base
+		|| ( dev-texlive/texlive-latexextra app-text/tetex app-text/ptex ) )"
 
 src_install() {
 	distutils_src_install
