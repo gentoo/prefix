@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.89 2008/09/01 06:48:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.90 2008/09/03 21:31:38 jer Exp $
+
+  03 Sep 2008; Jeroen Roovers <jer@gentoo.org> apache-2.2.9-r1.ebuild:
+  Stable for HPPA (bug #234088).
 
   01 Sep 2008; Markus Rothe <corsair@gentoo.org> apache-2.2.9-r1.ebuild:
   Stable on ppc64; bug #234088
