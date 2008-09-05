@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.41.ebuild,v 1.1 2008/02/10 20:41:34 centic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.41.ebuild,v 1.2 2008/09/04 07:52:46 opfer Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ RDEPEND=">=sys-libs/readline-4.3-r5
 	dev-libs/libsigsegv
 	x11-misc/xdg-utils
 	boehm-gc? ( >=dev-libs/boehm-gc-7.0 )
-	virtual/tetex
+	virtual/latex-base
 	fftw? ( >=sci-libs/fftw-3.0.1 )
 	emacs? ( virtual/emacs )
 	gsl? ( sci-libs/gsl )
