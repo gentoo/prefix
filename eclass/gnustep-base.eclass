@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.6 2008/01/04 12:27:10 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.7 2008/09/04 08:04:47 opfer Exp $
 
 inherit eutils flag-o-matic
 
@@ -16,7 +16,7 @@ IUSE="debug doc"
 
 # packages needed to build any base gnustep package
 GNUSTEP_CORE_DEPEND="virtual/libc
-	doc? ( virtual/tetex =dev-tex/latex2html-2002* >=app-text/texi2html-1.64 )"
+	doc? ( virtual/texi2dvi =dev-tex/latex2html-2002* >=app-text/texi2html-1.64 )"
 
 # Where to install GNUstep
 GNUSTEP_PREFIX="${EPREFIX}/usr/GNUstep"
@@ -187,14 +187,14 @@ gnustep_append_default() {
 }
 
 gnustep_set_default() {
-	if [[ -z $1 || -z $2 || -z $3 ]]; then 
-		echo "warning: invalid script invocation" 
-		return 
-	fi 
-	dom=$1 
-	key=$2 
-	val=$3 
-	echo " * setting ${dom} ${key}" 
+	if [[ -z $1 || -z $2 || -z $3 ]]; then
+		echo "warning: invalid script invocation"
+		return
+	fi
+	dom=$1
+	key=$2
+	val=$3
+	echo " * setting ${dom} ${key}"
 	defaults write ${dom} ${key} ${val}
 }
 
