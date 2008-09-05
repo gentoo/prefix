@@ -1,6 +1,10 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.150 2008/08/12 22:34:20 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.151 2008/09/04 06:07:14 opfer Exp $
+
+  04 Sep 2008; Christian Faulhammer <opfer@gentoo.org> evince-2.20.1.ebuild,
+  evince-2.20.2.ebuild:
+  change dependency from virtual/tetex to virtual/tex-base
 
   12 Aug 2008; Mart Raudsepp <leio@gentoo.org> evince-2.20.1.ebuild,
   -evince-2.22.0.ebuild, -evince-2.22.1.1.ebuild, evince-2.22.2-r1.ebuild:
