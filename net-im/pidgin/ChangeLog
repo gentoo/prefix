@@ -1,6 +1,11 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.64 2008/08/20 15:56:18 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.65 2008/09/04 17:57:35 tester Exp $
+
+*pidgin-2.5.1 (04 Sep 2008)
+
+  04 Sep 2008; Olivier Crête <tester@gentoo.org> +pidgin-2.5.1.ebuild:
+  Version bump, bug #236722
 
   20 Aug 2008; Olivier Crête <tester@gentoo.org> pidgin-2.5.0.ebuild:
   Restore deleted description..
