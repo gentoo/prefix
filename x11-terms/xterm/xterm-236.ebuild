@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
@@ -44,7 +44,8 @@ src_unpack() {
 src_compile() {
 	filter-flags "-fstack-protector"
 	replace-flags "-Os" "-O2" # work around gcc-4.1.1-r[01] bugs
-	[[ ${CHOST} == *-darwin* ]] && append-flags -D_DARWIN_C_SOURCE
+	# laymans fix, can't find another way, fd_mask & POSIX_C_SOURCE issue
+	[[ ${CHOST} == *-darwin8* ]] && export ac_cv_header_X11_Xpoll_h=no
 
 	econf --libdir="${EPREFIX}"/etc \
 		--with-x \
