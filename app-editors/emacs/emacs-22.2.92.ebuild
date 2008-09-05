@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2.92.ebuild,v 1.1 2008/09/02 23:22:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2.92.ebuild,v 1.2 2008/09/03 18:31:23 ulm Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tif
 RESTRICT="strip"
 
 RDEPEND="!<app-editors/emacs-cvs-22.1
+	!~app-editors/emacs-cvs-${PV}
 	sys-libs/ncurses
 	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile
