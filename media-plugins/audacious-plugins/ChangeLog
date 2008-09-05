@@ -1,6 +1,14 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.95 2008/08/01 16:56:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.96 2008/09/03 12:28:03 loki_val Exp $
+
+*audacious-plugins-1.5.1-r2 (03 Sep 2008)
+
+  03 Sep 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/1.5.1-libmtp-0.3.0-API.patch, +audacious-plugins-1.5.1-r2.ebuild:
+  Add libmtp-0.3.0 API support, patch from upstream bugzilla rebased. Fix
+  configure being invoked with wrong options (flac->flacng,
+  cdaudio-ng->cdaudio).
 
   01 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
