@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.6 2008/08/13 08:43:53 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.7 2008/09/04 01:59:13 pythonhead Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ S=${WORKDIR}/${MY_P}
 DOCS="CREDITS NEWS README"
 
 src_unpack() {
+	python_version
 	unpack ${A}
 	cd "${S}"
 
@@ -37,6 +38,12 @@ src_unpack() {
 
 	# Pass valid arguments to "head" in the zsh completion function.
 	epatch "${FILESDIR}/${PN}-2.1.0-zsh-head.patch"
+
+	# Skip test that only works with Python >=2.5 (won't byte-compile)
+	if [ "${PYVER_MINOR}" -lt 5 ]; then
+		echo "'''skip'''" > "${S}"/twisted/test/generator_failure_tests.py || die
+	fi
+
 }
 
 src_install() {
