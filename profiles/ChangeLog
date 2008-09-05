@@ -1,10 +1,51 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1827 2008/09/02 15:25:24 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1840 2008/09/04 12:48:10 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
-# here. If doubt put a record here!
+# here. If in doubt put a record here!
+
+  04 Sep 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmasking sys-apps/hwsetup and app-misc/livecd-tools and
+  x11-misc/mkxf86config
+
+  04 Sep 2008; <chainsaw@gentoo.org> package.mask:
+  Mask net-misc/dhcp-4.0.0 for required DHCP server testing.
+
+  04 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +default-linux/ppc/dev/ppc64/package.mask, hardened/ppc64/package.mask:
+  Mask GNOME-2.22 on remaining ppc64 profiles, due to sys-apps/hal problems,
+  in preparation of removing the global mask
+
+  04 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask latest dev-tex/mh for bug #236559
+
+  04 Sep 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Removed libherdstat/herdstat from p.mask since dropped.
+
+  03 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Atoms must not have a "." before a trailing "*".
+
+  03 Sep 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-editors/emacs-cvs-22.2.92.
+
+  03 Sep 2008; Michael Marineau <marineam@gentoo.org> package.mask:
+  Mask xen-sources 2.6.20/21 to nudge people towards 2.6.18 which is the only
+  version being actively maintained upstream currently.
+
+  03 Sep 2008; Ulrich Mueller <ulm@gentoo.org> base/use.defaults,
+  default-bsd/fbsd/6.2/sparc/use.mask:
+  Remove tetex USE flag also from use.defaults and use.mask in profiles.
+
+  03 Sep 2008; Christian Faulhammer <opfer@gentoo.org> use.desc:
+  remove tetex USE flag
+
+  03 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove tex4ht mask now that the bogous version is gone
+
+  03 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask dev-tex/{eurosym,extsizes} for removal
 
   02 Sep 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
   Remove masking of udev-126.

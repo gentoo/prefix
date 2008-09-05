@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3828 2008/09/03 03:33:02 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3831 2008/09/03 22:07:47 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -456,6 +456,7 @@ dev-games/crystalspace:cg - NVIDIA toolkit plugin
 dev-games/crystalspace:ode - include support for Open Dynamics Engine
 dev-games/guichan:allegro - Build the Allegro frontend
 dev-games/ode:double-precision - more precise calculations at the expense of speed
+dev-games/ode:gyroscopic - enable gyroscopic term (may cause instability)
 dev-games/ode:nogyroscopic - disable gyroscopic term maybe improving stability
 dev-games/ode:noopcode - disable OPCODE (trimesh support)
 dev-games/ogre:cegui - build the CEGUI samples
@@ -661,6 +662,9 @@ dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perl support
 dev-perl/PDL:badval - Enable badval support
 dev-perl/RPC-XML:modperl - Enable www-apache/mod_perl support
 dev-php/PEAR-PHP_Shell:auto-completion - Enable tab-completion
+dev-php5/ZendFramework:doc - Installs the documentation
+dev-php5/ZendFramework:examples - Installs the examples
+dev-php5/ZendFramework:minimal - Installs the minimal version without Dojo toolkit, tests and demos
 dev-php5/eaccelerator:contentcache - Enable content caching
 dev-php5/eaccelerator:disassembler - Enable the eA disassembler
 dev-php5/eaccelerator:inode - Use inode-based caching
@@ -1772,6 +1776,12 @@ net-irc/charybdis:smallnet - Enables support for smaller IRC networks
 net-irc/ezbounce:boost - Compile against dev-libs/boost libraries
 net-irc/inspircd:openssl - Build dev-libs/openssl module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
+net-irc/kvirc:dcc_voice - Support voice over DCC chats
+net-irc/kvirc:gsm - enable support for media-sound/gsm
+net-irc/kvirc:ipc - add support for IPC between kvirc processes
+net-irc/kvirc:qt-dbus - enable use of Qt's DBUS interface for IPC
+net-irc/kvirc:qt-phonon - use phonon instead of command-based sound
+net-irc/kvirc:transparency - compile in fake-transparency
 net-irc/ngircd:ident - Enables support for net-libs/libident
 net-irc/quassel:X -  Build the Qt 4 GUI client for quassel. If this USE flag is disabled, the GUI is not built, and cannot be used. You might want to disable this on the server, but you need it enabled on the client. 
 net-irc/quassel:server -  Build the server binary. If this USE flag is disabled, the 'core' server binary for quassel is not built, and cannot be used. You need this enabled on the server, but you might want to disable it on the client. 

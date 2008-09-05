@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.399 2008/08/13 06:12:54 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.400 2008/09/03 07:24:18 opfer Exp $
 
 # Keep them sorted
 
@@ -339,7 +339,6 @@ taglib - Enable tagging support with taglib
 tcl - Adds support the Tcl language
 tcpd - Adds support for TCP wrappers
 test - Workaround to pull in packages needed to run with FEATURES=test. Portage-2.1.2 handles this internally, so don't set it in make.conf/package.use anymore
-tetex - Adds support for teTeX (typesetting package)
 theora - Adds support for the Theora Video Compression Codec
 threads - Adds threads support for various packages. Usually pthreads
 tidy - Adds support for HTML Tidy
