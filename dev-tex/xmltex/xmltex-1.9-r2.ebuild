@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r2.ebuild,v 1.2 2008/09/02 12:11:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r2.ebuild,v 1.3 2008/09/04 21:12:25 aballier Exp $
 
 EAPI="prefix"
 
@@ -19,11 +19,8 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 TEXMF=/usr/share/texmf-site
 
-DEPEND="|| (
-	>=app-text/texlive-core-2007
-	>=app-text/tetex-2.96
-	>=app-text/ptex-3.1.4.20041026
-	)"
+DEPEND="virtual/tex-base"
+
 RDEPEND="${DEPEND}
 	!=dev-texlive/texlive-htmlxml-2007*"
 
