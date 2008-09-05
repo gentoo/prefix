@@ -1,6 +1,13 @@
 # ChangeLog for media-fonts/aquafont
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.23 2008/01/15 17:14:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.24 2008/09/04 17:08:33 matsuu Exp $
+
+*aquafont-2.7-r3 (04 Sep 2008)
+
+  04 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> aquafont-2.7-r2.ebuild,
+  +aquafont-2.7-r3.ebuild, -aquafont-2.8.ebuild:
+  Changed HOMEPAGE and SRC_URI. removed 2.8 cause it is not found on
+  upstream. bug 236622
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> aquafont-2.7-r2.ebuild,
   aquafont-2.8.ebuild:
