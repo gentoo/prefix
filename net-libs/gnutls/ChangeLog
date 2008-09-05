@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.162 2008/08/19 14:05:15 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.163 2008/09/04 14:32:58 dragonheart Exp $
+
+  04 Sep 2008; Daniel Black <dragonheart@gentoo.org> gnutls-2.5.4.ebuild:
+  change dependancy as per bug #236642 suggested by Arfreve. Bug thanks to
+  Seemant.
 
 *gnutls-2.5.4 (19 Aug 2008)
 
