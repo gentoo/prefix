@@ -1,6 +1,14 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.86 2008/08/25 10:32:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.87 2008/09/03 13:29:17 ulm Exp $
+
+*libidn-1.9-r1 (03 Sep 2008)
+
+  03 Sep 2008; Ulrich Mueller <ulm@gentoo.org> +files/50libidn-gentoo.el,
+  -libidn-1.9.ebuild, +libidn-1.9-r1.ebuild:
+  Byte-compile elisp files; add a site-init file; bug 187332. Setup config
+  options with use_enable. Don't inherit autotools.eclass since it is unused.
+  Remove intermediate version.
 
   25 Aug 2008; Alexis Ballier <aballier@gentoo.org> libidn-1.9.ebuild:
   keyword ~sparc-fbsd
