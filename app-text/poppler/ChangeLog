@@ -1,6 +1,12 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.167 2008/08/24 13:59:22 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.168 2008/09/03 20:20:22 loki_val Exp $
+
+*poppler-0.8.7 (03 Sep 2008)
+
+  03 Sep 2008; Peter Alfredsen <loki_val@gentoo.org> -poppler-0.8.6.ebuild,
+  +poppler-0.8.7.ebuild:
+  Bump, fixes two regressions introduced in 0.8.6
 
 *poppler-0.8.6 (24 Aug 2008)
 
