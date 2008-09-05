@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.96 2008/07/20 22:50:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.97 2008/09/04 06:07:05 vapier Exp $
+
+  04 Sep 2008; Mike Frysinger <vapier@gentoo.org> p7zip-4.58.ebuild:
+  Use newbin instead of ugly mv && dobin.
 
 *p7zip-4.58 (20 Jul 2008)
 

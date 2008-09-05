@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.58.ebuild,v 1.1 2008/07/20 22:50:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.58.ebuild,v 1.2 2008/09/04 06:07:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -61,9 +61,7 @@ src_install() {
 	dobin "${FILESDIR}/p7zip" || die
 
 	# gzip introduced in 4.42, so beware :)
-	# mv needed just as rename, because dobin installs using old name
-	mv contrib/gzip-like_CLI_wrapper_for_7z/p7zip contrib/gzip-like_CLI_wrapper_for_7z/7zg || die
-	dobin contrib/gzip-like_CLI_wrapper_for_7z/7zg || die
+	newbin contrib/gzip-like_CLI_wrapper_for_7z/p7zip 7zg || die
 
 	exeinto /usr/$(get_libdir)/${PN}
 	doexe bin/7z bin/7za bin/7zr bin/7zCon.sfx || die "doexe bins"
