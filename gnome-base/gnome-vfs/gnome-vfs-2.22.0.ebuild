@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="acl avahi doc fam gnutls hal ipv6 kerberos samba ssl"
 
 RDEPEND=">=gnome-base/gconf-2
@@ -84,6 +84,10 @@ pkg_setup() {
 		export ac_cv_header_poll_h=no
 		export ac_cv_header_stropts_h=no
 	fi
+
+	# this is a crude hack, but the configure script is so messed up on
+	# res_init, that this is the easiest way out
+	[[ ${CHOST} == *-darwin* ]] && export LIBS="${LIBS} -lresolv"
 }
 
 src_unpack() {
