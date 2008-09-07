@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/latexsuite
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/ChangeLog,v 1.29 2008/09/03 15:47:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/ChangeLog,v 1.30 2008/09/06 13:48:47 nixnut Exp $
+
+  06 Sep 2008; nixnut <nixnut@gentoo.org> latexsuite-1.5.20060325.ebuild:
+  Stable on ppc wrt bug 236537
 
   03 Sep 2008; Raúl Porcel <armin76@gentoo.org>
   latexsuite-1.5.20060325.ebuild:
