@@ -1,6 +1,19 @@
 # ChangeLog for sci-libs/blas-atlas
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.86 2008/08/28 09:48:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.87 2008/09/05 20:49:03 bicatali Exp $
+
+  05 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/3.7.11-allow-any-gcc-version.patch,
+  -files/blas-atlas-3.9.1-Core2Duo-detect.patch,
+  -files/3.6.0-ppc-configure.patch, -files/3.7.11-ppc-configure.patch,
+  -files/blas-atlas-3.9.1-timing.patch, -files/c-ATLAS,
+  -files/c-threaded-ATLAS, -files/eselect.blas, -files/eselect.cblas,
+  -files/f77-ATLAS, -files/f77-threaded-ATLAS,
+  -files/gnuc_default_fix.patch, -files/unbuffered.patch,
+  -blas-atlas-3.6.0-r1.ebuild, -blas-atlas-3.6.0-r2.ebuild,
+  -blas-atlas-3.7.11.ebuild, -blas-atlas-3.7.11-r1.ebuild,
+  -blas-atlas-3.9.2.ebuild:
+  Removed old versions
 
   28 Aug 2008; Raúl Porcel <armin76@gentoo.org> blas-atlas-3.8.0.ebuild,
   blas-atlas-3.9.3.ebuild:
