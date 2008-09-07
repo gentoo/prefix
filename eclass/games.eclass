@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.125 2008/04/26 15:50:35 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.126 2008/09/05 17:02:43 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -45,19 +45,6 @@ egamesconf() {
 		--localstatedir="${GAMES_STATEDIR}" \
 		"$@" \
 		|| die "egamesconf failed"
-}
-
-egamesinstall() {
-	ewarn "Don't use egamesinstall, use emake DESTDIR=\"\${D}\" install instead"
-	epause 30
-	make \
-		prefix="${D}${GAMES_PREFIX}" \
-		mandir="${ED}/usr/share/man" \
-		infodir="${ED}/usr/share/info" \
-		datadir="${D}${GAMES_DATADIR}" \
-		sysconfdir="${D}${GAMES_SYSCONFDIR}" \
-		localstatedir="${D}${GAMES_STATEDIR}" \
-		"$@" install || die "egamesinstall failed"
 }
 
 gameswrapper() {
