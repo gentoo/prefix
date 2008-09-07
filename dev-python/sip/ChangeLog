@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/sip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.121 2008/08/11 19:08:06 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.122 2008/09/06 14:16:53 yngwin Exp $
+
+*sip-4.7.7 (06 Sep 2008)
+
+  06 Sep 2008; Ben de Groot <yngwin@gentoo.org> +sip-4.7.7.ebuild:
+  Version bump. Fixes bug 234557.
 
   11 Aug 2008; Ben de Groot <yngwin@gentoo.org> sip-4.2.1.ebuild,
   sip-4.2.1-r1.ebuild:

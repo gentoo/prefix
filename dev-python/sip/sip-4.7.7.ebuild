@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.7.6.ebuild,v 1.4 2008/09/06 23:43:35 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.7.7.ebuild,v 1.2 2008/09/06 23:43:35 pythonhead Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin-noframework.patch
+	epatch "${FILESDIR}"/${PN}-4.7.6-darwin-noframework.patch
 }
 
 src_compile(){
