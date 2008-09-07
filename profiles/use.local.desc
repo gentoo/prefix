@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3831 2008/09/03 22:07:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3837 2008/09/06 20:07:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -13,6 +13,7 @@
 # use.local.desc is now generated automatically, and manual editing of it is
 # disallowed.
 
+app-accessibility/brltty:icu - Adds unicode support using dev-libs/icu
 app-accessibility/festival:mbrola - Adds support for mbrola voices
 app-accessibility/freetts:jsapi - build Java Speech API (JSAPI)
 app-accessibility/freetts:mbrola - Adds support for mbrola voices
@@ -204,7 +205,6 @@ app-emulation/uae:ui - Build the user interface (could be gtk or ncurses based, 
 app-emulation/vice:resid - Enable support for ReSID media-libs/resid
 app-emulation/vice:xrandr - Enable support for the X xrandr extension
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
-app-emulation/virtualbox-bin:chm - Install help files and add chm reader dependency
 app-emulation/virtualbox-bin:headless - Install without any graphic frontend
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
@@ -213,6 +213,7 @@ app-emulation/virtualbox-ose:headless - Build without any graphic frontend
 app-emulation/virtualbox-ose:sdk - Enable building of SDK
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
+app-emulation/wine:samba - Add support for NTLM auth. see http://wiki.winehq.org/NtlmAuthSetupGuide and http://wiki.winehq.org/NtlmSigningAndSealing
 app-emulation/xen:acm - Enable the ACM/sHype XSM module from IBM
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen:flask - Enable the Flask XSM module from NSA
@@ -811,6 +812,8 @@ games-emulation/snes9x:netplay - Enable playing ROMs over the network (not recom
 games-emulation/xmame:net - Add network support
 games-emulation/xmess:net - Add network support
 games-emulation/zsnes:custom-cflags - Enables custom cflags (not supported)
+games-engines/frobtads:tads2compiler - Build TADS2 compiler
+games-engines/frobtads:tads3compiler - Build TADS3 compiler
 games-engines/scummvm:fluidsynth - compile with support for fluidsynth
 games-fps/darkplaces:cdsound - Enables using CD audio in the engine
 games-fps/darkplaces:demo - Uses the demo data from quake1 (quake1-demodata)
@@ -1069,6 +1072,7 @@ mail-mta/qmail-ldap:gencertdaily - Generate SSL certificates daily instead of ho
 mail-mta/qmail-ldap:highvolume - Prepare qmail for high volume servers
 mail-mta/qmail-ldap:rfc2307 - Add support for RFC2307 compliant uid/gid attributes
 mail-mta/qmail-ldap:rfc822 - Add support for RFC822 compliant mail attributes
+mail-mta/ssmtp:maxsysuid - Allow to define a MinUserId
 mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 media-fonts/dejavu:fontforge - Use media-gfx/fontforge to build fonts from source
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
@@ -1827,7 +1831,6 @@ net-libs/opal:novideo - Disable video codecs
 net-libs/openh323:noaudio - Disable audio codecs
 net-libs/openh323:novideo - Disable video codecs
 net-libs/webkit-gtk:coverage - enable code coverage support
-net-libs/webkit-gtk:hildon - Use Hildon UI extensions
 net-libs/webkit-gtk:pango - Use pango as fontbackend instead of freetype
 net-libs/webkit-gtk:soup - Use SOUP as backend instead of curl
 net-libs/webkit-gtk:xslt - enable support for XSLT

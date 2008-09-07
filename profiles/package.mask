@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8952 2008/09/04 12:48:10 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8960 2008/09/07 04:00:47 jmbsvicetto Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,24 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Sébastien Fabbro <bicatali@gentoo.org> (05 Sep 2008)
+# Masked for removal in 30 days. Now obsoleted and replaced
+# with eselect and pkg-config in all blas/lapack implementations
+sci-libs/blas-config
+sci-libs/lapack-config
+
+# Carsten Lohrke <carloqgentoo.org> (05 Sep 2008)
+# Masked for removal. It's broken and abamdoned.
+app-portage/kuroo
+
+# Alexis Ballier <aballier@gentoo.org> (05 Sep 2008)
+# Masked for removal in 30 days.
+# Masked since early 2007. Included in tetex-3, ptex and texlive-langvietnamese.
+# If someone wanted to keep the ebuild around for single package updates, he had
+# plenty of time to do it. Now it is old and unmaintained and therefore will be
+# removed on 06 Oct 2008.
+dev-tex/vntex
 
 # Tony Vroon <chainsaw@gentoo.org> (04 Sep 2008)
 # First v4 branch ebuild for DHCP. Further testing is required, especially of
@@ -261,7 +279,6 @@
 =kde-base/phonon-4.0*
 =kde-base/plasma-4.0*
 =kde-base/poxml-4.0*
-~kde-base/qimageblitz-0.0.4
 =kde-base/secpolicy-4.0*
 =kde-base/solid-4.0*
 =kde-base/soliduiserver-4.0*
@@ -299,12 +316,6 @@ kde-misc/kio_perldoc
 # Timo Gurr <tgurr@gentoo.org> (22 Feb 2008)
 # Mask KDE4 versions of ktorrent as long as KDE4 is masked.
 =net-p2p/ktorrent-3.0*
-
-# Ulrich Mueller <ulm@gentoo.org> (03 Sep 2008)
-# Mask live CVS for Emacs 22 base branch, so that users will get
-# the official pretest snapshot in app-editors/emacs instead.
-~app-editors/emacs-cvs-22.2.92
-~app-editors/emacs-cvs-22.2.9999
 
 # Michael Marineau <marineam@gentoo.org> (03 Sep 2008)
 # Unmaintained and out of date security wise,
@@ -705,10 +716,6 @@ www-apps/xrms
 # Beta driver, masking corresponding nvidia-settings
 ~media-video/nvidia-settings-177.67
 
-# Michael Sterrett <mr_bones_@gentoo.org> (21 Aug 2008)
-# doesn't work with guichan-0.8
-games-arcade/diameter
-
 # Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-177.67
@@ -989,14 +996,6 @@ app-doc/linuxfromscratch-text
 >=sys-libs/libchipcard-4.0.0
 >=sys-libs/gwenhywfar-3.0.0
 >=app-office/qbankmanager-0.9.48
-
-# Donnie Berkholz <dberkholz@gentoo.org> (10 Jun 2008)
-# xorg-server-1.5 prerelease
-=x11-base/xorg-server-1.4.99*
-=media-libs/mesa-7.1*
-x11-proto/dri2proto
-=x11-libs/libdrm-2.3.1*
-x11-drivers/xf86-input-synaptics
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
 # Live ebuilds too volatile for normal use.

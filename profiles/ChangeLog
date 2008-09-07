@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1840 2008/09/04 12:48:10 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1846 2008/09/07 04:00:47 jmbsvicetto Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  07 Sep 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Removed kde-base/qimageblitz-0.0.4 from the kde-4 mask as it's required
+  for kde-4.1.
+
+  07 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +arch/powerpc/ppc32/package.mask, +default-linux/ppc/ppc32/package.mask,
+  hardened/ppc/package.mask, +uclibc/ppc/package.mask:
+  Mask GNOME-2.22 temporarily on ppc until keyword visibility problems are
+  sorted out
+
+  06 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask xorg-server 1.5, mesa 7.1, and friends.
+
+  06 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  base/package.use.mask:
+  Mask USE=nptl only on mesa 7.0* and xorg-server 1.4* -- exclude newer
+  versions.
+
+  05 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> ChangeLog:
+  Masked sci-libs/{blas,lapack}-config, now obsoleted
+
+  05 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask vntex for remvoal
 
   04 Sep 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
   Unmasking sys-apps/hwsetup and app-misc/livecd-tools and
