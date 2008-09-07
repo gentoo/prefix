@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.3.ebuild,v 1.5 2008/09/04 20:30:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.3.ebuild,v 1.7 2008/09/06 13:56:32 yoswink Exp $
 
 EAPI="prefix"
 
