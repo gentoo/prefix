@@ -58,8 +58,8 @@ media-sound/pulseaudio policykit
 # Donnie Berkholz <dberkholz@gentoo.org> (12 Nov 2007)
 # freedesktop.org bug #7459 committed fix breaks 3D apps
 # but "fix" is only relevant on USE=nptl
->=media-libs/mesa-7.0 nptl
->=x11-base/xorg-server-1.4 nptl
+=media-libs/mesa-7.0* nptl
+=x11-base/xorg-server-1.4* nptl
 
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
