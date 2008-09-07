@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.185 2008/08/22 06:45:44 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.186 2008/09/05 07:32:11 opfer Exp $
+
+  05 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  mit-krb5-1.5.3-r1.ebuild, mit-krb5-1.6.3.ebuild:
+  change dependency from virtual/tetex to virtual/latex-base for all ebuilds
 
   22 Aug 2008; Michael Hammer <mueli@gentoo.org> mit-krb5-1.6.3-r2.ebuild:
   fixed bug #235409
