@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.ebuild,v 1.2 2008/08/13 19:26:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.ebuild,v 1.3 2008/09/05 10:48:08 aballier Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.11-config.patch
 	epatch "${FILESDIR}"/${PN}-3.12-config-1.patch
 	epatch "${FILESDIR}"/${PN}-mips64.patch
+	epatch "${FILESDIR}"/${PN}-fbsd7.patch
 
 	epatch "${FILESDIR}"/${P}-solaris-gcc.patch  # breaks non-gnu tools
 }

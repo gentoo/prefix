@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.126 2008/08/13 19:26:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.127 2008/09/05 10:48:08 aballier Exp $
+
+  05 Sep 2008; Alexis Ballier <aballier@gentoo.org> +files/nss-fbsd7.patch,
+  nss-3.12.ebuild:
+  backport a patch to fix build on freebsd 7
 
   13 Aug 2008; Raúl Porcel <armin76@gentoo.org> nss-3.11.9.ebuild,
   nss-3.12.ebuild:
