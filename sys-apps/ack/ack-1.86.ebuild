@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.86.ebuild,v 1.2 2008/08/04 22:58:44 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.86.ebuild,v 1.4 2008/09/06 15:25:30 armin76 Exp $
 
 EAPI="prefix"
 
