@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/re2c
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.51 2008/09/03 13:16:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.52 2008/09/06 13:34:58 nixnut Exp $
+
+  06 Sep 2008; nixnut <nixnut@gentoo.org> re2c-0.13.5.ebuild:
+  Stable on ppc wrt bug 236487
 
   03 Sep 2008; Raúl Porcel <armin76@gentoo.org> re2c-0.13.5.ebuild:
   alpha/ia64/x86 stable wrt #236487
