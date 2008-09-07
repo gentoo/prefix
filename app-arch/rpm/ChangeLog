@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.94 2008/09/04 20:37:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.95 2008/09/06 12:58:34 bluebird Exp $
+
+  06 Sep 2008; Friedrich Oslage <bluebird@gentoo.org> rpm-4.4.6-r6.ebuild:
+  Stable on sparc, bug #236158
 
   04 Sep 2008; Brent Baude <ranger@gentoo.org> rpm-4.4.6-r6.ebuild:
   Marking rpm-4.4.6-r6 ppc for bug 236158
