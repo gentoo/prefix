@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.6.2-r1.ebuild,v 1.5 2008/03/17 15:56:08 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.6.2-r1.ebuild,v 1.6 2008/09/06 06:50:36 ulm Exp $
 
 EAPI="prefix"
 
@@ -57,7 +57,7 @@ src_compile() {
 		|| die "econf failed"
 	make || die
 	if use emacs; then
-		elisp-comp *.el || die
+		elisp-compile *.el || die
 	fi
 }
 
@@ -73,8 +73,8 @@ src_install() {
 	dodoc AUTHORS BUGS ChangeLog NEWS* README* ToDo doc/glossaries.doc doc/*.ps
 
 	if use emacs; then
-		elisp-install ${PN} *.el *.elc
-		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+		elisp-install ${PN} *.el *.elc || die
+		elisp-site-file-install "${FILESDIR}"/${SITEFILE} || die
 	fi
 }
 
