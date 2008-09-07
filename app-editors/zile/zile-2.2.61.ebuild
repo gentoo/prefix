@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.61.ebuild,v 1.2 2008/09/03 11:15:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.61.ebuild,v 1.3 2008/09/06 13:43:40 nixnut Exp $
 
 EAPI="prefix"
 
