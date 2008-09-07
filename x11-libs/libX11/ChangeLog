@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.100 2008/07/02 14:47:17 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.101 2008/09/06 06:56:34 dberkholz Exp $
+
+*libX11-1.1.5 (06 Sep 2008)
+
+  06 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>; +libX11-1.1.5.ebuild:
+  Version bump.
 
   02 Jul 2008; <solar@gentoo.org> libX11-1.1.4.ebuild:
   - cross compile love
