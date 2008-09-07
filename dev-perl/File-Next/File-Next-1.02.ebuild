@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Next/File-Next-1.02.ebuild,v 1.1 2008/05/15 23:29:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Next/File-Next-1.02.ebuild,v 1.3 2008/09/06 15:23:56 armin76 Exp $
 
 EAPI="prefix"
 
