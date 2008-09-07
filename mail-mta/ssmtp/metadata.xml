@@ -4,5 +4,6 @@
 <herd>net-mail</herd>
 <use>
 	<flag name='md5sum'>Enables MD5 summing for ssmtp</flag>
+	<flag name='maxsysuid'>Allow to define a MinUserId</flag>
 </use>
 </pkgmetadata>

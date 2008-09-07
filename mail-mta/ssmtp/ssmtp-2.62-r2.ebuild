@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r1.ebuild,v 1.2 2008/09/06 17:11:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r2.ebuild,v 1.2 2008/09/06 16:52:57 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://debian/pool/main/s/ssmtp/${P/-/_}.orig.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="ssl ipv6 md5sum"
+IUSE="ssl ipv6 md5sum maxsysuid"
 
 DEPEND="ssl? ( dev-libs/openssl )"
 RDEPEND="${DEPEND}
@@ -30,6 +30,12 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# Allow to specify the last used system user id, bug #231866
+	if use maxsysuid; then
+		epatch "${FILESDIR}"/${P}-maxsysuid.patch
+		epatch "${FILESDIR}"/${P}-maxsysuid-conf.patch
+	fi
 
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
