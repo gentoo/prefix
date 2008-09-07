@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.10 2008/02/11 22:58:32 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.ebuild,v 1.5 2008/09/06 15:24:09 jer Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic fixheadtails
+inherit autotools eutils flag-o-matic fixheadtails multilib
 
 DESCRIPTION="Clam Anti-Virus Scanner"
 HOMEPAGE="http://www.clamav.net/"
@@ -12,14 +12,15 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE="bzip2 crypt mailwrapper milter nls selinux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+IUSE="bzip2 crypt iconv mailwrapper milter nls selinux test"
 
-DEPEND="virtual/libc
-	bzip2? ( app-arch/bzip2 )
+DEPEND="bzip2? ( app-arch/bzip2 )
 	crypt? ( >=dev-libs/gmp-4.1.2 )
 	milter? ( || ( mail-filter/libmilter mail-mta/sendmail ) )
+	iconv? ( virtual/libiconv )
 	nls? ( sys-devel/gettext )
+	test? ( dev-libs/check )
 	dev-libs/gmp
 	>=sys-libs/zlib-1.2.1-r3
 	>=sys-apps/sed-4"
@@ -30,11 +31,9 @@ PROVIDE="virtual/antivirus"
 
 pkg_setup() {
 	if use milter; then
-		if [ ! -e "${EROOT}"/usr/lib/libmilter.a ] ; then
+		if [ ! -e "${EPREFIX}"/usr/$(get_libdir)/libmilter.a ] ; then
 			ewarn "In order to enable milter support, clamav needs sendmail with enabled milter"
-			ewarn "USE flag. Either recompile sendmail with milter USE flag enabled, or disable"
-			ewarn "this flag for clamav as well to disable milter support."
-			die "need milter-enabled sendmail"
+			ewarn "USE flag, or mail-filter/libmilter package."
 		fi
 	fi
 	enewgroup clamav
@@ -44,9 +43,18 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
-	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
-	eautoreconf
+	epatch "${FILESDIR}"/${PN}-0.92.1-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
+	eprefixify "${S}"/configure.in
+
+	epatch "${FILESDIR}"/${P}-buildfix.patch
+	epatch "${FILESDIR}"/${P}-nls.patch
+
+	# If nls flag is disabled, gettext may not be available, but eautoreconf
+	# needs this file (bug #218892).
+	use nls || cp "${FILESDIR}"/lib-ld.m4 m4/
+
+	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
@@ -65,10 +73,18 @@ src_compile() {
 			myconf="${myconf} --with-sendmail=${EPREFIX}/usr/sbin/sendmail.sendmail"
 	}
 
+	[[ ${CHOST} == *-interix* ]] && {
+		export ac_cv_func_poll=no
+		export ac_cv_header_inttypes_h=no
+		export ac_cv_func_mmap_fixed_mapped=yes
+		myconf="${myconf} --disable-gethostbyname_r"
+	}
+
 	ht_fix_file configure
 	econf ${myconf} \
 		$(use_enable bzip2) \
 		$(use_enable nls) \
+		$(use_with iconv) \
 		--disable-experimental \
 		--disable-clamav \
 		--with-dbdir="${EPREFIX}"/var/lib/clamav || die
@@ -96,6 +112,7 @@ src_install() {
 		-e "s:.*\(User\) .*:\1 clamav:" \
 		-e "s:^\#\(LogFile\) .*:\1 ${EPREFIX}/var/log/clamav/clamd.log:" \
 		-e "s:^\#\(LogTime\).*:\1 yes:" \
+		-e "s:^\#\(AllowSupplementaryGroups\).*:\1 yes:" \
 		"${ED}"/etc/clamd.conf
 
 	# Do the same for /etc/freshclam.conf
@@ -105,10 +122,13 @@ src_install() {
 		-e "s:^\#\(UpdateLogFile\) .*:\1 ${EPREFIX}/var/log/clamav/freshclam.log:" \
 		-e "s:^\#\(NotifyClamd\).*:\1 ${EPREFIX}/etc/clamd.conf:" \
 		-e "s:^\#\(ScriptedUpdates\).*:\1 yes:" \
+		-e "s:^\#\(AllowSupplementaryGroups\).*:\1 yes:" \
 		"${ED}"/etc/freshclam.conf
 
 	if use milter ; then
-		echo "START_MILTER=no" \
+		echo "
+START_MILTER=no
+MILTER_NICELEVEL=19" \
 			>> "${ED}"/etc/conf.d/clamd
 		echo "MILTER_SOCKET=\"${EPREFIX}/var/run/clamav/clmilter.sock\"" \
 			>>"${ED}"/etc/conf.d/clamd
@@ -120,7 +140,7 @@ src_install() {
 	dodir /etc/logrotate.d
 	insopts -m0644
 	insinto /etc/logrotate.d
-	newins "${FILESDIR}"/${PN}.logrotate ${PN}
+	newins ${FILESDIR}/${PN}.logrotate ${PN}
 }
 
 pkg_postinst() {
@@ -130,14 +150,9 @@ pkg_postinst() {
 		elog "read ${EROOT}/usr/share/doc/${PF}/clamav-milter.README.gentoo.gz"
 		echo
 	fi
-	ewarn "Warning: clamd and/or freshclam have not been restarted."
-	ewarn "You should restart them to start using new version: /etc/init.d/clamd restart"
-	echo
-	ewarn "The soname for libclamav has changed after clamav-0.90."
-	ewarn "If you have upgraded from that or earlier version, it is recommended to run:"
-	ewarn
-	ewarn "revdep-rebuild --library libclamav.so.1"
-	ewarn
-	ewarn "This will fix linking errors caused by this change."
+	ewarn "The soname for libclamav has changed in clamav-0.94."
+	ewarn "If you have upgraded from that or earlier version, it is"
+	ewarn "recommended to run revdep-rebuild, in order to fix anything"
+	ewarn "that links against libclamav.so library."
 	echo
 }
