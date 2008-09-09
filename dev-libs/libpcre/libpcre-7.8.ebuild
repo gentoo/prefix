@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.6-r1.ebuild,v 1.1 2008/02/13 08:12:01 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.8.ebuild,v 1.1 2008/09/07 13:28:55 loki_val Exp $
 
 EAPI="prefix 1"
 
@@ -25,13 +25,18 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# on Darwin: error: only weak aliases are supported in this configuration
-	[[ ${CHOST} != *-darwin* ]] && \
-		epatch "${FILESDIR}"/${P}-ABI_correction.patch
 	elibtoolize
 }
 
 src_compile() {
+	# IRIX needs some help...
+	if [[ ${CHOST} == mips-sgi-irix* ]]; then
+		export ac_cv_func_strtoll=no            # C99 only
+		export lt_cv_prog_compiler_c_o=yes
+		export lt_cv_prog_compiler_c_o_CXX=yes
+		export ac_cv_type_long_long=no          # missing strtoll
+		export ac_cv_type_unsigned_long_long=no # missing strtoll
+	fi
 	# Enable building of static libs too - grep and others
 	# depend on them being built: bug 164099
 	econf --with-match-limit-recursion=8192 \
