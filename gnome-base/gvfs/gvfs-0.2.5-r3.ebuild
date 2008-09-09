@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r2.ebuild,v 1.3 2008/09/07 22:46:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r3.ebuild,v 1.1 2008/09/08 08:55:12 remi Exp $
 
 EAPI="prefix"
 
@@ -78,6 +78,9 @@ src_compile() {
 
 src_unpack() {
 	gnome2_src_unpack
+
+	# fixes bug #236862 (backport from 0.99*)
+	epatch "${FILESDIR}/${PN}-0.2.5-dbus-crash.patch"
 
 	epatch "${FILESDIR}/${PN}-0.2.5-bash-completion.patch"
 	eautoreconf

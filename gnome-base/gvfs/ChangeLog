@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/gvfs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.23 2008/09/01 12:22:51 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.25 2008/09/08 08:55:12 remi Exp $
+
+*gvfs-0.2.5-r3 (08 Sep 2008)
+
+  08 Sep 2008; Rémi Cardona <remi@gentoo.org>
+  +files/gvfs-0.2.5-dbus-crash.patch, +gvfs-0.2.5-r3.ebuild:
+  add patch to fix dbus crash when fuse is enabled (see bug #236862)
+
+  07 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> -gvfs-0.2.3.ebuild,
+  gvfs-0.2.5.ebuild, gvfs-0.2.5-r1.ebuild, gvfs-0.2.5-r2.ebuild:
+  disable libarchive support, fix bug #234366.
 
   01 Sep 2008; Rémi Cardona <remi@gentoo.org> gvfs-0.2.5-r2.ebuild:
   better bash completion code (same as in the gnome overlay)
