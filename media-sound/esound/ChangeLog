@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.117 2008/07/21 17:07:00 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.118 2008/09/07 18:48:48 eva Exp $
+
+*esound-0.2.40 (07 Sep 2008)
+
+  07 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> +esound-0.2.40.ebuild:
+  bump to 0.2.40,
+    * Fixed poll() logic issues for *BSD (Jeffrey Stedfast)
+    * Fixed bug #543239 by including errno.h (Jeffrey Stedfast)
 
   21 Jul 2008; Rémi Cardona <remi@gentoo.org>
   +files/esound-0.2.39-fix-errno.patch, esound-0.2.39.ebuild:
