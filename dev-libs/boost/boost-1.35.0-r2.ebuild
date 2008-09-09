@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
 
 MY_P=${PN}_$(replace_all_version_separators _)
 PATCHSET_VERSION="${PV}-3"
@@ -23,7 +23,7 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
 	mpi? ( || ( sys-cluster/openmpi sys-cluster/mpich2 ) )
 	sys-libs/zlib
-	virtual/python"
+	!x86-winnt? ( virtual/python )"
 DEPEND="${RDEPEND}
 	>=dev-util/boost-build-${PV}-r1"
 
@@ -54,6 +54,11 @@ src_unpack() {
 	unpack ${A}
 
 	cd "${S}"
+
+	# WARNING: this one changes the threading API default to win32,
+	# so keep this conditional. i found no other clean solution
+	# right now, so ...
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 
 	EPATCH_SOURCE="${WORKDIR}/patches"
 	EPATCH_SUFFIX="patch"
@@ -89,7 +94,10 @@ generate_options() {
 		OPTIONS="${OPTIONS} --without-mpi"
 	fi
 
-	OPTIONS="${OPTIONS} --user-config=${S}/user-config.jam --boost-build=${EPREFIX}/usr/share/boost-build"
+	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} --without-python -sNO_BZIP2=1"
+
+	local mybuild=$(type -p bjam)
+	OPTIONS="${OPTIONS} --user-config=${S}/user-config.jam --boost-build=${mybuild%/bin/bjam}/share/boost-build"
 }
 
 generate_userconfig() {
@@ -104,6 +112,11 @@ generate_userconfig() {
 		# we need to add the prefix, and in two cases this exceeds, so prepare
 		# for the largest possible space allocation
 		append-ldflags -Wl,-headerpad_max_install_names
+	elif [[ ${CHOST} == *-winnt* ]]; then
+		compiler=parity
+		compilerVersion=$($(tc-getCXX) -v | sed '1q' \
+			| sed -e 's,\([a-z]*\) \([0-9]\.[0-9]\.[0-9][^ \t]*\) .*,\2,')
+		compilerExecutable=$(tc-getCXX)
 	else
 		compiler=gcc
 		compilerVersion=$(gcc-version)
@@ -137,9 +150,17 @@ src_compile() {
 
 	export BOOST_ROOT=${S}
 
+	local mythreading="single,multi"
+	local myruntime="shared,static"
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		mythreading="multi"
+		myruntime="shared"
+	fi
+
 	bjam ${NUMJOBS} -q \
 		${OPTIONS} \
-		threading=single,multi link=shared,static runtime-link=shared,static \
+		threading=${mythreading} link=shared,static runtime-link=${myruntime} \
 		--prefix="${ED}/usr" \
 		--layout=system \
 		|| die "building boost failed"
@@ -172,9 +193,17 @@ src_install () {
 
 	export BOOST_ROOT=${S}
 
+	local mythreading="single,multi"
+	local myruntime="shared,static"
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		mythreading="multi"
+		myruntime="shared"
+	fi
+
 	bjam -q \
 		${OPTIONS} \
-		threading=single,multi link=shared,static runtime-link=shared,static \
+		threading=${mythreading} link=shared,static runtime-link=${myruntime} \
 		--prefix="${ED}/usr" \
 		--includedir="${ED}/usr/include" \
 		--libdir="${ED}/usr/$(get_libdir)" \

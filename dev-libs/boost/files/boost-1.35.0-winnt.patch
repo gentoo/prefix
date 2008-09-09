@@ -1,0 +1,88 @@
+diff -x bin.v2 -ru boost_1_35_0.orig/libs/thread/build/Jamfile.v2 boost_1_35_0/libs/thread/build/Jamfile.v2
+--- boost_1_35_0.orig/libs/thread/build/Jamfile.v2	2008-09-08 12:06:26 +0200
++++ boost_1_35_0/libs/thread/build/Jamfile.v2	2008-09-08 14:49:03 +0200
+@@ -48,9 +48,13 @@
+ 
+ local rule default_threadapi ( )
+ {
+-    local api = pthread ;
+-    if [ os.name ] = "NT" { api = win32 ; }
+-    return $(api) ;
++    #local api = pthread ;
++    #if [ os.name ] = "NT" { api = win32 ; }
++    #return $(api) ;
++	
++	# ARGH... i can't find a way to find out if i'm on win32 (parity),
++	# so _please_ apply this patch conditionally in boost.ebuild.
++	return win32 ;
+ }
+ 
+ feature.feature threadapi : pthread win32 : propagated ;
+diff -ru boost_1_35_0.orig/boost/config/auto_link.hpp boost_1_35_0/boost/config/auto_link.hpp
+--- boost_1_35_0.orig/boost/config/auto_link.hpp	2008-09-09 08:16:44 +0200
++++ boost_1_35_0/boost/config/auto_link.hpp	2008-09-09 08:23:56 +0200
+@@ -84,10 +84,11 @@
+ //
+ // Only include what follows for known and supported compilers:
+ //
+-#if defined(BOOST_MSVC) \
++#if (defined(BOOST_MSVC) \
+     || defined(__BORLANDC__) \
+     || (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) \
+-    || (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))
++    || (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))) \
++	&& !defined(__PARITY__)
+ 
+ #ifndef BOOST_VERSION_HPP
+ #  include <boost/version.hpp>
+diff -ru boost_1_35_0.orig/boost/iostreams/detail/config/auto_link.hpp boost_1_35_0/boost/iostreams/detail/config/auto_link.hpp
+--- boost_1_35_0.orig/boost/iostreams/detail/config/auto_link.hpp	2008-09-09 08:16:53 +0200
++++ boost_1_35_0/boost/iostreams/detail/config/auto_link.hpp	2008-09-09 08:24:33 +0200
+@@ -16,10 +16,11 @@
+ #endif              
+ 
+ #if defined(BOOST_EXTERNAL_LIB_NAME)
+-# if defined(BOOST_MSVC) \
++# if (defined(BOOST_MSVC) \
+      || defined(__BORLANDC__) \
+      || (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) \
+-     || (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200)) \
++     || (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))) \
++	 && !defined(__PARITY__) \
+      /**/
+ #  pragma comment(lib, BOOST_EXTERNAL_LIB_NAME)
+ # endif
+diff -ru boost_1_35_0.orig/boost/iostreams/detail/config/bzip2.hpp boost_1_35_0/boost/iostreams/detail/config/bzip2.hpp
+--- boost_1_35_0.orig/boost/iostreams/detail/config/bzip2.hpp	2008-09-09 08:16:53 +0200
++++ boost_1_35_0/boost/iostreams/detail/config/bzip2.hpp	2008-09-09 08:25:40 +0200
+@@ -16,10 +16,11 @@
+ #endif              
+ 
+ #if defined(BOOST_BZIP2_BINARY)
+-# if defined(BOOST_MSVC) || \
++# if (defined(BOOST_MSVC) || \
+      defined(__BORLANDC__) || \
+      (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) || \
+-     (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200)) \
++     (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))) \
++	 && !defined(__PARITY__) \
+      /**/
+ 
+ // Specify the name of the .lib file.
+diff -ru boost_1_35_0.orig/boost/iostreams/detail/config/zlib.hpp boost_1_35_0/boost/iostreams/detail/config/zlib.hpp
+--- boost_1_35_0.orig/boost/iostreams/detail/config/zlib.hpp	2008-09-09 08:16:53 +0200
++++ boost_1_35_0/boost/iostreams/detail/config/zlib.hpp	2008-09-09 08:25:17 +0200
+@@ -18,10 +18,11 @@
+ #include <boost/config.hpp> // BOOST_STRINGIZE.
+ 
+ #if defined(BOOST_ZLIB_BINARY)
+-# if defined(BOOST_MSVC) || \
++# if (defined(BOOST_MSVC) || \
+      defined(__BORLANDC__) || \
+      (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) || \
+-     (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200)) \
++     (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))) \
++	 && !defined(__PARITY__) \
+      /**/
+ 
+ // Specify the name of the .lib file.
