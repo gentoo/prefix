@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.5.ebuild,v 1.1 2008/07/20 06:54:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.5.ebuild,v 1.4 2008/09/08 19:35:01 maekke Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug doc fam hardened selinux xattr"
+IUSE="debug fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
 		 virtual/libiconv
@@ -21,11 +21,6 @@ RDEPEND="virtual/libc
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.16
 		>=sys-devel/gettext-0.11
-		doc?	(
-					>=dev-libs/libxslt-1.0
-					>=dev-util/gtk-doc-1.8
-					~app-text/docbook-xml-dtd-4.1.2
-				)
 		dev-util/gtk-doc-am"
 
 src_unpack() {
@@ -97,8 +92,6 @@ src_compile() {
 	# always build static libs, see #153807
 	econf ${myconf}                 \
 		  $(use_enable xattr)       \
-		  $(use_enable doc man)     \
-		  $(use_enable doc gtk-doc) \
 		  $(use_enable fam)         \
 		  $(use_enable selinux)     \
 		  --enable-static           \
