@@ -25,7 +25,10 @@ src_unpack() {
 	# fix segmentation fault in python tests (bug #197043)
 	epatch "${FILESDIR}/${P}-check_stopped_parser.patch"
 
-	cp "${BPREFIX:-${EPREFIX}}"/usr/share/aclocal/libtool.m4 conftools/libtool.m4
+	local mylibtoolize=libtoolize
+	[[ ${CHOST} == *-darwin* ]] && mylibtoolize=glibtoolize
+	local mylt=$(type -P ${mylibtoolize})
+	cp "${mylt%/bin/${mylibtoolize}}"/share/aclocal/libtool.m4 conftools/libtool.m4
 	AT_M4DIR="conftools" eautoreconf
 }
 
