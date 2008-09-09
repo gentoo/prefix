@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/javatoolkit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.35 2008/09/06 11:03:23 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.36 2008/09/07 14:02:54 fmccor Exp $
+
+  07 Sep 2008; Ferris McCormick <fmccor@gentoo.org>
+  javatoolkit-0.3.0-r2.ebuild:
+  Sparc stable, Bug #236940.
 
   06 Sep 2008; Vlastimil Babka <caster@gentoo.org>
   javatoolkit-0.2.0-r1.ebuild:
