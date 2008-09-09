@@ -1,6 +1,11 @@
 # ChangeLog for app-text/libspectre
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/ChangeLog,v 1.12 2008/08/12 13:51:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/ChangeLog,v 1.13 2008/09/08 20:40:54 tgurr Exp $
+
+*libspectre-0.2.1 (08 Sep 2008)
+
+  08 Sep 2008; Timo Gurr <tgurr@gentoo.org> +libspectre-0.2.1.ebuild:
+  Version bump, fixing bug #236278.
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> libspectre-0.2.0.ebuild:
   alpha/ia64/sparc stable wrt #229709
