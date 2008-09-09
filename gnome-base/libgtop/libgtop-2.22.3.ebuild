@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.22.3.ebuild,v 1.1 2008/07/02 20:55:13 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.22.3.ebuild,v 1.3 2008/09/08 19:46:24 maekke Exp $
 
 EAPI="prefix"
 
