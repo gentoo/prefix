@@ -33,7 +33,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable java) \
 		$(use_enable mono csharp mono) \
-		--with-lispdir="${SITELISP}/${PN}" \
+		--with-lispdir="${ESITELISP}/${PN}" \
 		|| die
 
 	emake || die
