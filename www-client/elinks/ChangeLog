@@ -1,6 +1,13 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.100 2008/08/23 05:01:02 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.101 2008/09/08 22:53:25 spock Exp $
+
+  08 Sep 2008; Michał Januszewski <spock@gentoo.org>
+  -files/elinks-0.11.0-gcc4-inline.patch, -files/elinks-0.11.0-make.patch,
+  -files/elinks-0.11.0-ruby.patch, -files/elinks-0.11.1-time.patch,
+  -elinks-0.11.2.ebuild, -elinks-0.11.2-r1.ebuild,
+  -elinks-0.11.4_rc0.ebuild, -elinks-0.11.4_rc1.ebuild:
+  Remove old ebuilds.
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
