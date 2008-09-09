@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.235 2008/08/04 21:59:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.236 2008/09/09 02:42:50 robbat2 Exp $
+
+*xscreensaver-5.07 (09 Sep 2008)
+
+  09 Sep 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/5.07/01_all_default_settings.patch, +xscreensaver-5.07.ebuild:
+  Version bump per bugs 235067 and 235307 to fix Xinerama issues with only
+  blanking a subset of heads.
 
 *xscreensaver-5.06 (04 Aug 2008)
 
