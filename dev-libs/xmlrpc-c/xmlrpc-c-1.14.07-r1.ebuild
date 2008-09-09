@@ -10,7 +10,7 @@ DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="+curl +cxx"
 LICENSE="BSD"
 SLOT="0"
@@ -34,11 +34,10 @@ PATCHES=( "${FILESDIR}/${P}-abyss-disable.patch" )
 src_unpack() {
 	base_src_unpack
 	cd "${S}"
-#	epatch "${FILESDIR}"/${PN}-1.06.09-interix.patch
 
 	# Respect the user's CFLAGS/CXXFLAGS.
 	sed -i \
-		-e "/CFLAGS_COMMON/s:-g -O3$:${CFLAGS}:" \
+		-e "/CLAGS_COMMON/s:-g -O3$:-std=gnu99 ${CFLAGS}:" \
 		-e "/CXXFLAGS_COMMON/s:-g$:${CXXFLAGS}:" \
 		"${S}"/Makefile.common
 	sed -i \
@@ -52,7 +51,7 @@ src_compile() {
 
 	# Respect the user's LDFLAGS.
 	export LADD=${LDFLAGS}
-	export CFLAGS_PERSONAL=${CFLAGS}
+	export CFLAGS_PERSONAL="-std=gnu99 ${CFLAGS}"
 	econf	--disable-wininet-client \
 		--enable-libxml2-backend \
 		--disable-libwww-client \
