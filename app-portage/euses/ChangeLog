@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/euses
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.35 2008/03/17 13:02:09 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.36 2008/09/08 16:55:44 jer Exp $
+
+*euses-2.5.5 (08 Sep 2008)
+
+  08 Sep 2008; Jeroen Roovers <jer@gentoo.org> +euses-2.5.5.ebuild:
+  Version bump. Also fixes LDFLAGS adherance thanks to Davide Pesavento (bug
+  #237070).
 
   17 Mar 2008; Ferris McCormick <fmccor@gentoo.org> euses-2.5.4.ebuild:
   Add ~sparc keyword at user's request (Dustin Surawicz) --- Bug #213677 ---
