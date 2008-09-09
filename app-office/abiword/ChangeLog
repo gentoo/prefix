@@ -1,6 +1,19 @@
 # ChangeLog for app-office/abiword
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.196 2008/07/30 21:36:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.200 2008/09/08 20:53:22 ranger Exp $
+
+  08 Sep 2008; Brent Baude <ranger@gentoo.org> abiword-2.6.4.ebuild:
+  Taking back the ppc stabilization to for 2.6.4.  Seeing segfaults. Will 
+  check into it ASAP.
+
+  08 Sep 2008; Brent Baude <ranger@gentoo.org> abiword-2.6.4.ebuild:
+  Marking abiword-2.6.4 ppc for bug 236985
+
+  08 Sep 2008; Markus Meier <maekke@gentoo.org> abiword-2.6.4.ebuild:
+  amd64/x86 stable, bug #236985
+
+  07 Sep 2008; Ferris McCormick <fmccor@gentoo.org> abiword-2.6.4.ebuild:
+  Sparc stable, Bug #236985.
 
 *abiword-2.6.4 (30 Jul 2008)
 
