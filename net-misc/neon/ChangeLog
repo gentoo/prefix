@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.114 2008/09/06 13:56:32 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.117 2008/09/08 19:48:40 gmsoft Exp $
+
+  08 Sep 2008; Guy Martin <gmsoft@gentoo.org> neon-0.28.3.ebuild:
+  Stable on hppa.
+
+  07 Sep 2008; Raúl Porcel <armin76@gentoo.org> neon-0.28.3.ebuild:
+  ia64 stable wrt #236128
+
+  07 Sep 2008; Markus Meier <maekke@gentoo.org> neon-0.28.3.ebuild:
+  amd64/x86 stable, bug #236128
 
   06 Sep 2008; Jose Luis Rivero <yoswink@gentoo.org> neon-0.28.3.ebuild:
   Stable on alpha wrt #236128
