@@ -1,6 +1,12 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.71 2008/08/25 19:12:16 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.72 2008/09/09 03:43:10 lack Exp $
+
+  09 Sep 2008; Jim Ramsay <lack@gentoo.org> +files/mms.cfg,
+  netscape-flash-10_beta20080811.ebuild:
+  Added magic 'mms.cfg' file for system-wide security configuration. Also,
+  this file allows 'Windowless' mode to be disabled, which makes things much
+  more stable pre-firefox-3.02
 
   25 Aug 2008; Jim Ramsay <lack@gentoo.org>
   netscape-flash-10_beta20080811.ebuild:

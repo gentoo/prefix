@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_beta20080811.ebuild,v 1.2 2008/08/25 19:12:16 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_beta20080811.ebuild,v 1.3 2008/09/09 03:43:10 lack Exp $
 
 EAPI="prefix"
 
@@ -74,6 +74,10 @@ src_install() {
 	# libcurl.so.3 (and maybe the SSLs too, I hope) , so this will be slightly
 	# less ugly (especially if we can get libcurl into one of the emul-linux-x86
 	# packages)
+
+	# The magic config file!
+	insinto "/etc/adobe"
+	doins "${FILESDIR}/mms.cfg"
 }
 
 pkg_postinst() {
@@ -81,4 +85,8 @@ pkg_postinst() {
 	ewarn "issues.  Please consider only running flash applets you know to"
 	ewarn "be safe.  The firefox 'flashblock' extension may help:"
 	ewarn "  https://addons.mozilla.org/en-US/firefox/addon/433"
+	echo
+	ewarn "Furthermore, <www-client/mozilla-firefox-3.0.2 is known to crash"
+	ewarn "with the new 'Windowless' (transparent) mode.  To disable this and"
+	ewarn "avoid the crashes, set 'WindowlessDisable = 1' in /etc/adobe/mms.cfg"
 }
