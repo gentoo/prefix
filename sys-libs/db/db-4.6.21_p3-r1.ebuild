@@ -55,7 +55,10 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
-	cp -f "${BPREFIX:-${EPREFIX}}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	local mylibtoolize=libtoolize
+	[[ ${CHOST} == *-darwin* ]] && mylibtoolize=glibtoolize
+	local mylt=$(type -P ${mylibtoolize})
+	cp -f "${mylt%/bin/${mylibtoolize}}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
 	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
