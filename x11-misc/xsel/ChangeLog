@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/xsel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.10 2008/05/31 23:17:49 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.11 2008/09/08 13:02:38 fmccor Exp $
+
+  08 Sep 2008; Ferris McCormick <fmccor@gentoo.org> xsel-1.1.0.ebuild:
+  Add ~sparc, Bug #224413. Sparc has never been keyworded so we are not going
+  stable.
 
   31 May 2008; Santiago M. Mola <coldwind@gentoo.org> xsel-1.1.0.ebuild:
   amd64 stable
