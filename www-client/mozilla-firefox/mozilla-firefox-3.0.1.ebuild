@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.7 2008/09/03 08:47:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.1.ebuild,v 1.8 2008/09/08 17:01:42 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -265,7 +265,7 @@ src_install() {
 	if use iceweasel; then
 		newicon "${S}"/browser/base/branding/icon48.png iceweasel-icon.png
 		newmenu "${FILESDIR}"/icon/iceweasel.desktop \
-			mozilla-firefox-2.0.desktop
+			mozilla-firefox-3.0.desktop
 	elif ! use bindist; then
 		newicon "${S}"/other-licenses/branding/firefox/content/icon48.png firefox-icon.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
