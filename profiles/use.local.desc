@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3837 2008/09/06 20:07:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3842 2008/09/08 23:47:53 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1087,6 +1087,9 @@ media-fonts/terminus-font:width - Wider versions of some font elements
 media-gfx/asymptote:boehm-gc -  Enables using the Boehm-Demers-Weiser conservative garbage collector 
 media-gfx/autotrace:flash -  Adds support for creating SWF files using Ming 
 media-gfx/blender:blender-game -  Adds game engine support to blender 
+media-gfx/blender:bullet -  Enable Bullet (Physics Engine) 
+media-gfx/blender:openmp -  build support for the OpenMP (support parallel computing), requires >=sys-devel/gcc-4.2 built with USE="openmp" 
+media-gfx/blender:player -  Enable blender player 
 media-gfx/blender:verse -  Adds verse clustering features to blender 
 media-gfx/comix:rar -  Pulls app-arch/unrar for rar file support 
 media-gfx/digikam:nfs -  Create sqlite db within ~/.kde, instead in the albums base directory. 
@@ -2177,6 +2180,9 @@ sci-physics/geant:global - Produce a huge global library instead of small ones
 sci-physics/geant:openinventor - Add support for media-libs/openinventor SGI toolkit
 sci-physics/geant:raytracerx - Enable raytracing for physics events
 sci-physics/geant:vrml - Enable output of geant4 in vrml formats
+sci-physics/hepmc:cm - Build with cm instead of default mm for length units
+sci-physics/hepmc:gev - Build with GeV instead of default MeV for momentum units
+sci-physics/pythia:hepmc - Adds support for High Energy Physics Monte Carlo Generators sci-physics/hepmc
 sci-physics/root:cern -  Build the HBOOK input/ouput functionality. HBOOK is a histogram library. On ROOT versions previous to 5.20.00, it will depend on sci-physics/cernlib. On versions above, it only need a FORTRAN compiler. 
 sci-physics/root:clarens -  Buld the Clarens and PEAC plug-ins, to use in a GRID enabled analysis. The Clarens Grid-Enabled Web Services Framework is an open source portal for ubiquitous access to data and computational resources provided by computing grids. PEAC is an interactive distributed analysis framework that uses Clarens as a glue protocol to advertise and communicate amongst SAM, Global Manager (GM), Local Manager (LM), DCache, and PROOF services. It doesn't need Clarens to build, however if you want to use it, you will require to build Clarens and PEAC on your own, it is not yet in the Gentoo Portage tree. See http://clarens.sourceforge.net/ for Clarens and http://physics.ucsd.edu/~schsu/project/peac.html for PEAC. 
 sci-physics/root:geant4 -  Build the sci-physics/geant (GEANT4) navigator. 
@@ -2470,7 +2476,7 @@ x11-base/kdrive:speedo - Enables Speedo font support
 x11-base/kdrive:type1 - Enables Type1 font support
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
-x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED
+x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
 x11-drivers/linuxwacom:module - Build kernel module
 x11-drivers/nvidia-drivers:custom-cflags - Build with CFLAGS from /etc/make.conf (unsupported)
 x11-libs/cairo:glitz - Build with glitz support, which replaces some software render operations with Mesa OpenGL operations

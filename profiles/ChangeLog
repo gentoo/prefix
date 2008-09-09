@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1846 2008/09/07 04:00:47 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1848 2008/09/08 06:26:21 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  08 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove caml-light mask, its gone
+
+  07 Sep 2008; Mart Raudsepp <leio@gentoo.org> arch/alpha/package.mask,
+  arch/amd64/package.mask, -arch/ia64/package.mask, arch/sparc/package.mask,
+  arch/x86/package.mask, -base/package.mask,
+  default-linux/alpha/2007.0/package.mask, default-linux/amd64/package.mask,
+  -default-linux/ia64/package.mask, default-linux/sparc/package.mask,
+  default-linux/x86/package.mask, -embedded/package.mask:
+  Remove the global GNOME-2.22 mask in base profiles and the therefore
+  unnecessary per-arch unmasks of GNOME-2.22
 
   07 Sep 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   package.mask:
