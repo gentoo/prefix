@@ -80,4 +80,10 @@ src_install() {
 		gen_usr_ldscript libz$(get_libname)
 		;;
 	esac
+
+	# on winnt, additionally install the .dll files.
+	if [[ ${CHOST} == *-winnt* ]]; then
+		into /
+		dolib libz$(get_libname ${PV}).dll
+	fi
 }
