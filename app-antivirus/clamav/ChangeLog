@@ -1,6 +1,18 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.303 2008/09/06 15:24:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.307 2008/09/08 16:57:36 ranger Exp $
+
+  08 Sep 2008; Brent Baude <ranger@gentoo.org> clamav-0.94.ebuild:
+  Marking clamav-0.94 ppc64 and ppc for bug 236665
+
+  08 Sep 2008; Raúl Porcel <armin76@gentoo.org> clamav-0.94.ebuild:
+  ia64 stable wrt #236665
+
+  07 Sep 2008; Friedrich Oslage <bluebird@gentoo.org> clamav-0.94.ebuild:
+  Stable on sparc, security bug #236665
+
+  07 Sep 2008; Markus Meier <maekke@gentoo.org> clamav-0.94.ebuild:
+  x86 stable, bug #236665
 
   06 Sep 2008; Jeroen Roovers <jer@gentoo.org> clamav-0.94.ebuild:
   Stable for HPPA (bug #236665).
