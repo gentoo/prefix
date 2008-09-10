@@ -1,6 +1,23 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.39 2008/08/02 07:51:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.43 2008/09/09 18:31:52 aballier Exp $
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild:
+  Make freetype:1 optional, it's needed to convert ttf files to pk ones, but
+  should not be mandatory
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml,
+  texlive-2008.ebuild:
+  make detex and dvi2tty optional
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  Fixup xindy useflag description: it's in app-text not dev-tex...
+
+*texlive-2008 (09 Sep 2008)
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml,
+  +texlive-2008.ebuild:
+  bump to 2008
 
   02 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
