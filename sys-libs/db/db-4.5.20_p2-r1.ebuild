@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2-r1.ebuild,v 1.2 2008/08/16 22:46:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2-r1.ebuild,v 1.3 2008/09/09 05:38:29 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -106,6 +106,12 @@ src_unpack() {
 		# END of 4.5+earlier specific
 		cd "${S}"/../dist
 		rm -f aclocal/libtool.{m4,ac} aclocal.m4
+		sed -i \
+			-e '/AC_PROG_LIBTOOL$/aLT_OUTPUT' \
+			configure.ac
+		sed -i \
+			-e '/^AC_PATH_TOOL/s/ sh, none/ bash, none/' \
+			aclocal/programs.m4
 		AT_M4DIR="aclocal aclocal_java" eautoreconf
 		# Upstream sucks - they do autoconf and THEN replace the version variables.
 		. ./RELEASE
@@ -192,7 +198,7 @@ src_compile() {
 	# http://lists.freebsd.org/pipermail/freebsd-bugs/2005-August/014086.html
 	sed -i -e "s/^extern  \(void db_rpc_serverprog_\)/static \1/" db_server.h || die "failed to fix FreeBSD brokeness"
 
-	emake -j1 || die "make failed"
+	emake || die "make failed"
 }
 
 src_install() {

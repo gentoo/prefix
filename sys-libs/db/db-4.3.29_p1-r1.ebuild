@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.3 2008/08/16 22:46:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.4 2008/09/09 05:38:29 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -74,6 +74,12 @@ src_unpack() {
 		# END of 4.5+earlier specific
 		cd "${S}"/../dist
 		rm -f aclocal/libtool.{m4,ac} aclocal.m4
+		sed -i \
+			-e '/AC_PROG_LIBTOOL$/aLT_OUTPUT' \
+			configure.ac
+		sed -i \
+			-e '/^AC_PATH_TOOL/s/ sh, missing_sh/ bash, missing_sh/' \
+			aclocal/programs.m4
 		AT_M4DIR="aclocal aclocal_java" eautoreconf
 		# Upstream sucks - they do autoconf and THEN replace the version variables.
 		. ./RELEASE
@@ -138,7 +144,7 @@ src_compile() {
 		--host="${CHOST}" \
 		${myconf}  "${javaconf}" || die "configure failed"
 
-	emake -j1 || die "make failed"
+	emake || die "make failed"
 }
 
 src_install() {

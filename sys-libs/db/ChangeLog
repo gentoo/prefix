@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.262 2008/08/16 23:27:22 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.263 2008/09/09 05:38:29 robbat2 Exp $
+
+  09 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> db-4.2.52_p5-r1.ebuild,
+  db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild, db-4.6.21_p3-r1.ebuild,
+  db-4.7.25_p1-r1.ebuild:
+  Fix bug #235025 for libtool-2.2 and non-bash boxes.
 
   16 Aug 2008; Robin H. Johnson <robbat2@gentoo.org>
   +files/db-3.2.9-gcc43.patch, db-3.2.9_p2.ebuild:
