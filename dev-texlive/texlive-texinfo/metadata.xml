@@ -6,5 +6,7 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+Programs and macros for the GNU Texinfo documentation system.
+</longdescription>
 </pkgmetadata>
-
