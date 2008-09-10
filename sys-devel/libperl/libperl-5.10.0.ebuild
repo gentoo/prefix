@@ -270,7 +270,10 @@ src_compile() {
 	[[ ${CHOST} != *-irix* ]] && myconf "-Dcccdlflags=\"-fPIC\""
 
 	# We need to use " and not ', as the written config.sh use ' ...
-	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
+	# Prefix: the host system needs not to follow Gentoo multilib stuff, and in
+	# Prefix itself we don't do multilib either, so make sure perl can find
+	# something compatible.
+	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /lib /usr/lib /lib64 /usr/lib64 /lib32 /usr/lib32"
 
 	[[ -n "${LDFLAGS}" ]] && myconf -Dldflags="${LDFLAGS}"
 
