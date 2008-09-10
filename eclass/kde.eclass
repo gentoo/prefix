@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.217 2008/08/27 15:29:26 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.218 2008/09/09 18:27:37 cryos Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -368,6 +368,9 @@ EOF
 				if [[ $(get_libdir) != "lib" ]] ; then
 					myconf="${myconf} --enable-libsuffix=$(get_libdir | sed s/lib//)"
 				fi
+
+				# The configure checks for kconfig_compiler do not respect PATH
+				export KCONFIG_COMPILER="${KDEDIR}/bin/kconfig_compiler"
 
 				# Sometimes it doesn't get the include and library paths right,
 				# so hints them.
