@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericextra/texlive-genericextra-2007.ebuild,v 1.15 2008/05/12 19:27:58 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericextra/texlive-genericextra-2007.ebuild,v 1.16 2008/09/09 18:14:35 aballier Exp $
 
 EAPI="prefix"
 
@@ -13,4 +13,5 @@ DESCRIPTION="TeXLive Miscellaneous extra generic macros"
 
 LICENSE="GPL-2 LPPL-1.3c"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE=""
