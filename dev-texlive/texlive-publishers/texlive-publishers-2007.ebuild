@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2007.ebuild,v 1.15 2008/05/12 20:07:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2007.ebuild,v 1.16 2008/09/09 18:39:30 aballier Exp $
 
 EAPI="prefix"
 
@@ -14,3 +14,4 @@ DESCRIPTION="TeXLive Support for publishers"
 LICENSE="GPL-2 LPPL-1.3c"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+IUSE=""
