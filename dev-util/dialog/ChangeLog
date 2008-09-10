@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.113 2008/08/18 21:03:52 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.114 2008/09/09 16:37:02 truedfx Exp $
+
+*dialog-1.1.20080819 (09 Sep 2008)
+
+  09 Sep 2008; Harald van Dĳk <truedfx@gentoo.org>
+  +dialog-1.1.20080819.ebuild:
+  Version bump (#237149)
 
 *dialog-1.1.20080727 (18 Aug 2008)
 
