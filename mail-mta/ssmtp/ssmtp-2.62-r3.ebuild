@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r2.ebuild,v 1.2 2008/09/06 16:52:57 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r3.ebuild,v 1.1 2008/09/09 19:30:25 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,9 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-maxsysuid.patch
 		epatch "${FILESDIR}"/${P}-maxsysuid-conf.patch
 	fi
+
+	# CVE-2008-3962
+	epatch "${FILESDIR}/CVE-2008-3962.patch"
 
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
