@@ -86,7 +86,9 @@ src_install () {
 	emake DESTDIR="${D}" install || die "emake failed"
 
 	cd "${S}"
-	doenvd "${FILESDIR}/50xerces-c"
+	cp "${FILESDIR}/50xerces-c" .
+	sed -i -e '/XERCESC_NLS_HOME/s:=":="'"${EPREFIX}"':' 50xerces-c
+	doenvd 50xerces-c
 
 	if use doc; then
 		insinto /usr/share/doc/${PF}

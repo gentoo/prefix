@@ -130,7 +130,9 @@ src_install () {
 	fi
 
 	cd "${S}"
-	doenvd "${FILESDIR}/50xerces-c"
+	cp "${FILESDIR}/50xerces-c" .
+	sed -i -e '/XERCESC_NLS_HOME/s:=":="'"${EPREFIX}"':' 50xerces-c
+	doenvd 50xerces-c
 
 	# Upstream forgot this
 	if use icu ; then
