@@ -1,6 +1,16 @@
 # ChangeLog for dev-texlive/texlive-documentation-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-documentation-base/ChangeLog,v 1.15 2008/05/12 18:53:28 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-documentation-base/ChangeLog,v 1.17 2008/09/09 18:00:49 aballier Exp $
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-documentation-base-2007.ebuild:
+  Add empty IUSE to please repoman
+
+*texlive-documentation-base-2008 (09 Sep 2008)
+
+  09 Sep 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml,
+  +texlive-documentation-base-2008.ebuild:
+  Bump to 2008
 
   12 May 2008; nixnut <nixnut@gentoo.org>
   texlive-documentation-base-2007.ebuild:
