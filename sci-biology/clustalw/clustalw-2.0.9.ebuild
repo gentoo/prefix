@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/clustalw-2.0.9.ebuild,v 1.1 2008/08/28 21:15:24 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/clustalw-2.0.9.ebuild,v 1.2 2008/09/09 13:29:27 markusle Exp $
 
 EAPI="prefix"
 

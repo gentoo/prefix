@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/clustalw
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.13 2008/08/28 21:15:24 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.14 2008/09/09 13:29:27 markusle Exp $
+
+  09 Sep 2008; Markus Dittrich <markusle@gentoo.org> clustalw-2.0.9.ebuild:
+  Keyworded amd64 since it works just fine.
 
 *clustalw-2.0.9 (28 Aug 2008)
 
