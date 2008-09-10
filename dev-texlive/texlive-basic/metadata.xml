@@ -6,5 +6,9 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+These files are regarded as basic for any TeX system, covering
+plain TeX macros, Computer Modern fonts, and configuration for
+common drivers; no LaTeX.
+</longdescription>
 </pkgmetadata>
-
