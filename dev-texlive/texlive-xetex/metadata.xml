@@ -6,5 +6,8 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+Packages for XeTeX, the Unicode/OpenType-enabled TeX by Jonathan Kew,
+http://scripts.sil.org/xetex.
+</longdescription>
 </pkgmetadata>
-
