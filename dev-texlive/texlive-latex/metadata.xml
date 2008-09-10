@@ -6,5 +6,8 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+These packages are either mandated by the core LaTeX team, or
+otherwise highly recommended.
+</longdescription>
 </pkgmetadata>
-
