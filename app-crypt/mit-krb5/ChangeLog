@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.186 2008/09/05 07:32:11 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.187 2008/09/09 07:02:30 mueli Exp $
+
+*mit-krb5-1.6.3-r3 (09 Sep 2008)
+
+  09 Sep 2008; Michael Hammer <mueli@gentoo.org> mit-krb5-1.6.3-r2.ebuild,
+  +mit-krb5-1.6.3-r3.ebuild:
+  removed LDFLAGS from krb5-config -> bug #184668
 
   05 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   mit-krb5-1.5.3-r1.ebuild, mit-krb5-1.6.3.ebuild:
