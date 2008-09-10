@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3842 2008/09/08 23:47:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3845 2008/09/10 00:17:07 matsuu Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -235,6 +235,12 @@ app-forensics/samhain:userfiles - Compile in the module to check for files in us
 app-forensics/sleuthkit:dbtool - Add patch for dbtool interface from PyFlag
 app-i18n/anthy:ucs4 - Enable ucs4 support
 app-i18n/atokx2:ext-iiimf - Link with the system IIIMF, rather than the bundled version
+app-i18n/ibus-table:additional - Enable to generate additional Engine
+app-i18n/ibus-table:cangjie5 - Enable to generate CangJie5 Engine
+app-i18n/ibus-table:erbi-qs - Enable to generate ErBi-QS Engine
+app-i18n/ibus-table:extra-phrases - Add extra phrases into builded Engine
+app-i18n/ibus-table:wubi - Enable to generate WuBi86 and WuBi98 Engine
+app-i18n/ibus-table:zhengma - Enable to generate ZhengMa Engine
 app-i18n/im-ja:anthy - Support for Anthy input method
 app-i18n/im-ja:skk - Support for SKK input method
 app-i18n/kimera:anthy - Support for Anthy input method
@@ -387,6 +393,8 @@ app-text/sword:lucene - Enable lucene support for faster searching (dev-cpp/cluc
 app-text/sword-modules:intl - Enable different languages
 app-text/texlive:context - Add support for the ConTeXt format (dev-texlive/texlive-context)
 app-text/texlive:cyrillic - Add support for Cyrillic (dev-texlive/texlive-langcyrillic)
+app-text/texlive:detex - Add support for dev-tex/detex, a filter program that removes the LaTeX (or TeX) control sequences
+app-text/texlive:dvi2tty - Add support for dev-tex/dvi2tty to preview dvi-files on text-only devices
 app-text/texlive:extra - Add support for extra TeXLive packages
 app-text/texlive:games - Add typesetting support for games (chess, etc.) (dev-texlive/texlive-games)
 app-text/texlive:graphics - Add support for several graphics packages (pgf, tikz,...)
@@ -399,6 +407,7 @@ app-text/texlive:publishers - Add support for publishers (dev-texlive/texlive-pu
 app-text/texlive:science - Add typesetting support for natural and computer sciences (dev-texlive/texlive-science)
 app-text/texlive:tex4ht - Add support for dev-tex/tex4ht (for converting (La)TeX to (X)HTML, XML and OO.org)
 app-text/texlive:xetex - Add support for XeTeX macros (dev-texlive/texlive-xetex)
+app-text/texlive:xindy - Add support for app-text/xindy, a flexible indexing system
 app-text/webgen:builder - Enable programmatic HTML/XML generation
 app-text/webgen:exif - Enable EXIF information in image galleries
 app-text/webgen:highlight - Enable syntax highlighting for certain plugins

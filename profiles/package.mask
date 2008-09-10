@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8962 2008/09/08 06:26:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8965 2008/09/09 16:58:03 aballier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,92 @@
 
 #--- END OF EXAMPLES ---
 
+# Alexis Ballier <aballier@gentoo.org> (09 Sep 2008)
+# The big TeX Live 2008 mask. Needs some testing and keywording love.
+>=dev-texlive/texlive-basic-2008
+>=dev-texlive/texlive-bibtexextra-2008
+>=dev-texlive/texlive-context-2008
+>=dev-texlive/texlive-documentation-base-2008
+>=dev-texlive/texlive-documentation-bulgarian-2008
+>=dev-texlive/texlive-documentation-chinese-2008
+>=dev-texlive/texlive-documentation-czechslovak-2008
+>=dev-texlive/texlive-documentation-dutch-2008
+>=dev-texlive/texlive-documentation-english-2008
+>=dev-texlive/texlive-documentation-finnish-2008
+>=dev-texlive/texlive-documentation-french-2008
+>=dev-texlive/texlive-documentation-german-2008
+>=dev-texlive/texlive-documentation-greek-2008
+>=dev-texlive/texlive-documentation-italian-2008
+>=dev-texlive/texlive-documentation-japanese-2008
+>=dev-texlive/texlive-documentation-korean-2008
+>=dev-texlive/texlive-documentation-mongolian-2008
+>=dev-texlive/texlive-documentation-polish-2008
+>=dev-texlive/texlive-documentation-portuguese-2008
+>=dev-texlive/texlive-documentation-russian-2008
+>=dev-texlive/texlive-documentation-slovenian-2008
+>=dev-texlive/texlive-documentation-spanish-2008
+>=dev-texlive/texlive-documentation-thai-2008
+>=dev-texlive/texlive-documentation-turkish-2008
+>=dev-texlive/texlive-documentation-ukrainian-2008
+>=dev-texlive/texlive-documentation-vietnamese-2008
+>=dev-texlive/texlive-fontsextra-2008
+>=dev-texlive/texlive-fontsrecommended-2008
+>=dev-texlive/texlive-formatsextra-2008
+>=dev-texlive/texlive-games-2008
+>=dev-texlive/texlive-genericextra-2008
+>=dev-texlive/texlive-genericrecommended-2008
+>=dev-texlive/texlive-htmlxml-2008
+>=dev-texlive/texlive-humanities-2008
+>=dev-texlive/texlive-langafrican-2008
+>=dev-texlive/texlive-langarab-2008
+>=dev-texlive/texlive-langarmenian-2008
+>=dev-texlive/texlive-langcjk-2008
+>=dev-texlive/texlive-langcroatian-2008
+>=dev-texlive/texlive-langcyrillic-2008
+>=dev-texlive/texlive-langczechslovak-2008
+>=dev-texlive/texlive-langdanish-2008
+>=dev-texlive/texlive-langdutch-2008
+>=dev-texlive/texlive-langfinnish-2008
+>=dev-texlive/texlive-langfrench-2008
+>=dev-texlive/texlive-langgerman-2008
+>=dev-texlive/texlive-langgreek-2008
+>=dev-texlive/texlive-langhebrew-2008
+>=dev-texlive/texlive-langhungarian-2008
+>=dev-texlive/texlive-langindic-2008
+>=dev-texlive/texlive-langitalian-2008
+>=dev-texlive/texlive-langlatin-2008
+>=dev-texlive/texlive-langmongolian-2008
+>=dev-texlive/texlive-langnorwegian-2008
+>=dev-texlive/texlive-langother-2008
+>=dev-texlive/texlive-langpolish-2008
+>=dev-texlive/texlive-langportuguese-2008
+>=dev-texlive/texlive-langspanish-2008
+>=dev-texlive/texlive-langswedish-2008
+>=dev-texlive/texlive-langtibetan-2008
+>=dev-texlive/texlive-langukenglish-2008
+>=dev-texlive/texlive-langvietnamese-2008
+>=dev-texlive/texlive-latex-2008
+>=dev-texlive/texlive-latex3-2008
+>=dev-texlive/texlive-latexextra-2008
+>=dev-texlive/texlive-latexrecommended-2008
+>=dev-texlive/texlive-mathextra-2008
+>=dev-texlive/texlive-metapost-2008
+>=dev-texlive/texlive-music-2008
+>=dev-texlive/texlive-omega-2008
+>=dev-texlive/texlive-pictures-2008
+>=dev-texlive/texlive-plainextra-2008
+>=dev-texlive/texlive-pstricks-2008
+>=dev-texlive/texlive-psutils-2008
+>=dev-texlive/texlive-publishers-2008
+>=dev-texlive/texlive-science-2008
+>=dev-texlive/texlive-texinfo-2008
+>=dev-texlive/texlive-xetex-2008
+>=app-text/texlive-core-2008
+>=app-text/texlive-2008
+>=dev-tex/mh-20080903
+app-admin/eselect-pdftex
+app-admin/eselect-mpost
+
 # Sébastien Fabbro <bicatali@gentoo.org> (05 Sep 2008)
 # Masked for removal in 30 days. Now obsoleted and replaced
 # with eselect and pkg-config in all blas/lapack implementations
@@ -54,13 +140,6 @@ dev-tex/vntex
 # to send me patches or help me fix it. If that doesn't sound like you, this
 # software is not yet ready for you. Thanks.
 ~net-misc/dhcp-4.0.0
-
-# Alexis Ballier <aballier@gentoo.org> (04 Sep 2008)
-# It appears to need more recent TeX packages than what we currently provide.
-# Bug #236559
-# It works fine with TeX Live 2008; so it will need its deps to be adjusted when
-# it will hit the tree. Mask it meanwhile.
->=dev-tex/mh-20080903
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (03 Sep 2008)
 # Restrict the following mask only to 4.0.* packages. KDE-4.1 won't enter
