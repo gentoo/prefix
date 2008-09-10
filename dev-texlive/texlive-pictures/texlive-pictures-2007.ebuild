@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/texlive-pictures-2007.ebuild,v 1.15 2008/05/12 19:43:42 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/texlive-pictures-2007.ebuild,v 1.16 2008/09/09 18:37:14 aballier Exp $
 
 EAPI="prefix"
 
@@ -14,3 +14,4 @@ DESCRIPTION="TeXLive Packages for drawings graphics"
 LICENSE="GPL-2 LPPL-1.3c"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris"
+IUSE=""
