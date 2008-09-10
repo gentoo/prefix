@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.27.ebuild,v 1.2 2008/09/09 08:43:56 s4t4n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.31.ebuild,v 1.1 2008/09/09 08:43:56 s4t4n Exp $
 
 EAPI="prefix"
 
