@@ -6,5 +6,8 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+A collection of TeX `formats', ie large-scale macro packages
+designed to be dumped into .fmt file
+</longdescription>
 </pkgmetadata>
-
