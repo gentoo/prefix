@@ -72,7 +72,8 @@ src_unpack() {
 	mkdir "${BLD_DIR}" || die "failed to generate build directory"
 	cd "${BLD_DIR}"
 	cp "${FILESDIR}"/war . && chmod a+x war || die "failed to install war"
-	sed -i -e '1c\#! '"${EPREFIX}"'/bin/bash' war
+	sed -i -e '1c\#! '"${EPREFIX}"'/bin/bash' \
+		-e '/^\$ARCHIVER \$@$/i\shift' war
 
 	local archselect=
 	if use amd64 || use ppc64; then
