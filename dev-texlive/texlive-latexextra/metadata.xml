@@ -6,5 +6,7 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+A large collection of add-on packages for LaTeX.
+</longdescription>
 </pkgmetadata>
-
