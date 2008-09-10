@@ -6,5 +6,7 @@
 		<email>aballier@gentoo.org</email>
 		<name>Alexis Ballier</name>
 	</maintainer>
+<longdescription lang="en">
+Additional BibTeX styles and bibliography databases.
+</longdescription>
 </pkgmetadata>
-
