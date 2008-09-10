@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9.ebuild,v 1.9 2008/05/06 14:42:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9-r1.ebuild,v 1.2 2008/09/09 19:12:23 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -13,9 +13,9 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="bzip2 doc ldap nls openct pcsc-lite smartcard selinux"
+IUSE="bzip2 doc ldap nls openct pcsc-lite static selinux smartcard"
 
-COMMON_DEPEND="
+COMMON_DEPEND_LIBS="
 	virtual/libc
 	>=dev-libs/pth-1.3.7
 	>=dev-libs/libgcrypt-1.2.2
@@ -25,18 +25,21 @@ COMMON_DEPEND="
 	bzip2? ( app-arch/bzip2 )
 	pcsc-lite? ( >=sys-apps/pcsc-lite-1.3.0 )
 	openct? ( >=dev-libs/openct-0.5.0 )
-	ldap? ( net-nds/openldap )
-	app-crypt/pinentry"
+	ldap? ( net-nds/openldap )"
+COMMON_DEPEND_BINS="app-crypt/pinentry"
 
-DEPEND="${COMMON_DEPEND}
+# existence of bins are checked during configure
+DEPEND="${COMMON_DEPEND_LIBS}
+	${COMMON_DEPEND_BINS}
 	>=dev-libs/libassuan-1.0.4
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
 
-RDEPEND="${COMMON_DEPEND}
+RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
+	${COMMON_DEPEND_BINS}
+	virtual/mta
 	!app-crypt/gpg-agent
 	!<=app-crypt/gnupg-2.0.1
-	virtual/mta
 	selinux? ( sec-policy/selinux-gnupg )
 	nls? ( virtual/libintl )"
 
@@ -47,6 +50,11 @@ src_unpack() {
 }
 
 src_compile() {
+	# 'USE=static' support was requested:
+	# gnupg1: bug #29299
+	# gnupg2: bug #159623
+	use static && append-ldflags -static
+
 	# symcryptrun does some non-portable stuff, which breaks on Solaris,
 	# disable for now, can't easily come up with a patch
 	[[ ${CHOST} != *-solaris* ]] \
@@ -62,6 +70,7 @@ src_compile() {
 		$(use_enable smartcard scdaemon) \
 		$(use_enable nls) \
 		$(use_enable ldap) \
+		$(use_enable static) \
 		--disable-capabilities \
 		CC_FOR_BUILD=$(tc-getBUILD_CC) \
 		${myconf} \
