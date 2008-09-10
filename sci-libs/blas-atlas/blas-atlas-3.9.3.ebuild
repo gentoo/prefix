@@ -63,13 +63,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
 	epatch "${FILESDIR}"/${MY_PN}-${PATCH_V}-decl-fix.patch
 
-	[[ ${CHOST} == *-darwin* ]] && \
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
+		epatch "${FILESDIR}"/${P}-darwin-make-top.patch
+	fi
 
 	BLD_DIR="${S}"/gentoo-build
 	mkdir "${BLD_DIR}" || die "failed to generate build directory"
 	cd "${BLD_DIR}"
 	cp "${FILESDIR}"/war . && chmod a+x war || die "failed to install war"
+	sed -i -e '1c\#! '"${EPREFIX}"'/bin/bash' war
 
 	local archselect=
 	if use amd64 || use ppc64; then
