@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r1.ebuild,v 1.10 2008/06/06 03:28:03 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r1.ebuild,v 1.11 2008/09/10 15:06:07 darkside Exp $
 
 EAPI="prefix"
 
@@ -36,8 +36,6 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-
-	append-ldflags $(bindnow-flags)
 
 	use cjk && myconf="$myconf
 		--enable-kanji
