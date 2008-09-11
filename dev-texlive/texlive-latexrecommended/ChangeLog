@@ -1,6 +1,14 @@
 # ChangeLog for dev-texlive/texlive-latexrecommended
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.18 2008/09/09 18:34:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.19 2008/09/10 06:46:00 aballier Exp $
+
+*texlive-latexrecommended-2008-r1 (10 Sep 2008)
+
+  10 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-latexrecommended-2008.ebuild,
+  +texlive-latexrecommended-2008-r1.ebuild:
+  Upstream moved ifxetex to latexrecommended, so do we; this fixes some
+  problems with the hyperref package as reported by gim.
 
   09 Sep 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-latexrecommended-2007.ebuild:
