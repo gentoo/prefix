@@ -1,12 +1,17 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cannadic.eclass,v 1.14 2006/10/21 00:07:58 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cannadic.eclass,v 1.15 2008/09/10 08:15:48 pva Exp $
+
+# @ECLASS: cannadic.eclass
+# @MAINTAINER:
+# ???
 #
-# Author: Mamoru KOMACHI <usata@gentoo.org>
-#
+# Original author: Mamoru KOMACHI <usata@gentoo.org>
+# @BLURB: Function for Canna compatible dictionaries
+# @DESCRIPTION:
 # The cannadic eclass is used for installation and setup of Canna
 # compatible dictionaries within the Portage system.
-#
+
 
 EXPORT_FUNCTIONS src_install pkg_setup pkg_postinst pkg_postrm
 
@@ -30,8 +35,9 @@ DOCS="README*"
 cannadir="${ROOT}/var/lib/canna/dic/canna"
 dicsdir="${ROOT}/var/lib/canna/dic/dics.d"
 
-#
-# pkg_setup() : sets up cannadic dir
+# @FUNCTION: cannadic_pkg_setup
+# @DESCRIPTION: 
+# Sets up cannadic dir
 cannadic_pkg_setup() {
 
 	keepdir $cannadir
@@ -39,9 +45,9 @@ cannadic_pkg_setup() {
 	fperms 0775 $cannadir
 }
 
-#
-# cannadic-install() : installs dictionaries to cannadir
-#
+# @FUNCTION: cannadic-install
+# @DESCRIPTION:
+# Installs dictionaries to cannadir
 cannadic-install() {
 
 	insinto $cannadir
@@ -49,19 +55,19 @@ cannadic-install() {
 	doins "$@"
 }
 
-#
-# dicsdir-install() : installs dics.dir from ${FILESDIR}
-#
+# @FUNCTION: dicsdir-install
+# @DESCRIPTION:
+# Installs dics.dir from ${DICSDIRFILE}
 dicsdir-install() {
 
 	insinto ${dicsdir}
 	doins ${DICSDIRFILE}
 }
 
-#
-# src_install() : installs all dictionaries under ${WORKDIR}
-#                 plus dics.dir and docs
-#
+# @FUNCTION: cannadic_src_install
+# @DESCRIPTION:
+# Installs all dictionaries under ${WORKDIR}
+# plus dics.dir and docs
 cannadic_src_install() {
 
 	for f in *.c[btl]d *.t ; do
@@ -73,14 +79,14 @@ cannadic_src_install() {
 	dodoc ${DOCS}
 }
 
+# @FUNCTION: update-cannadic-dir
+# @DESCRIPTION:
+# Updates dics.dir for Canna Server, script for this part taken from Debian GNU/Linux
 #
-# update-cannadic-dir() : updates dics.dir for Canna Server,
-#                         script for this part taken from Debian GNU/Linux
-#
-# compiles dics.dir files for Canna Server
-# Copyright 2001 ISHIKAWA Mutsumi
-# Licensed under the GNU General Public License, version 2.  See the file
-# /usr/portage/license/GPL-2 or <http://www.gnu.org/copyleft/gpl.txt>.
+#  compiles dics.dir files for Canna Server
+#  Copyright 2001 ISHIKAWA Mutsumi
+#  Licensed under the GNU General Public License, version 2.  See the file
+#  /usr/portage/license/GPL-2 or <http://www.gnu.org/copyleft/gpl.txt>.
 update-cannadic-dir() {
 
 	einfo
@@ -106,9 +112,9 @@ update-cannadic-dir() {
 	einfo
 }
 
-#
-# pkg_postinst() : updates dics.dir and print out notice after install
-#
+# @FUNCTION: cannadic_pkg_postinst
+# @DESCRIPTION:
+# Updates dics.dir and print out notice after install
 cannadic_pkg_postinst() {
 	update-cannadic-dir
 	einfo
@@ -128,9 +134,9 @@ cannadic_pkg_postinst() {
 	einfo
 }
 
-#
-# pkg_postrm() : updates dics.dir and print out notice after uninstall
-#
+# @FUNCTION: cannadic_pkg_postrm
+# @DESCRIPTION:
+# Updates dics.dir and print out notice after uninstall
 cannadic_pkg_postrm() {
 	update-cannadic-dir
 	einfo

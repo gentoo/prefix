@@ -1,48 +1,55 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.14 2007/05/15 15:20:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.15 2008/09/10 08:10:31 pva Exp $
 
-# Author :     Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
-# Short Desc:  Creates symlink to the latest version of multiple slotted
-#              packages.
+# @ECLASS: alternatives.eclass
+# @MAINTAINER:
 #
-# Long Desc:
+# Original author :     Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
+# @BLURB:  Creates symlink to the latest version of multiple slotted packages.
+# @DESCRIPTION:
+# When a package is SLOT'ed, very often we need to have a symlink to the
+# latest version. However, depending on the order the user has merged them,
+# more often than not, the symlink maybe clobbered by the older versions.
 #
-#  When a package is SLOT'ed, very often we need to have a symlink to the
-#  latest version. However, depending on the order the user has merged them,
-#  more often than not, the symlink maybe clobbered by the older versions.
+# This eclass provides a convenience function that needs to be given a
+# list of alternatives (descending order of recent-ness) and the symlink.
+# It will choose the latest version it can find installed and create
+# the desired symlink.
 #
-#  This eclass provides a convenience function that needs to be given a
-#  list of alternatives (descending order of recent-ness) and the symlink.
-#  It will choose the latest version it can find installed and create
-#  the desired symlink.
+# There are two ways to use this eclass. First is by declaring two variables
+# $SOURCE and $ALTERNATIVES where $SOURCE is the symlink to be created and
+# $ALTERNATIVES is a list of alternatives. Second way is the use the function
+# alternatives_makesym() like the example below.
+# @EXAMPLE:
+# pkg_postinst() {
+#     alternatives_makesym "/usr/bin/python" "/usr/bin/python2.3" "/usr/bin/python2.2"
+# }
 #
-#  There are two ways to use this eclass. First is by declaring two variables
-#  $SOURCE and $ALTERNATIVES where $SOURCE is the symlink to be created and
-#  $ALTERNATIVES is a list of alternatives. Second way is the use the function
-#  alternatives_makesym() like the example below.
+# The above example will create a symlink at /usr/bin/python to either
+# /usr/bin/python2.3 or /usr/bin/python2.2. It will choose python2.3 over
+# python2.2 if both exist.
 #
-# Example:
+# Alternatively, you can use this function:
 #
-#  pkg_postinst() {
-#      alternatives_makesym "/usr/bin/python" "/usr/bin/python2.3" "/usr/bin/python2.2"
-#  }
+# pkg_postinst() {
+#    alternatives_auto_makesym "/usr/bin/python" "/usr/bin/python[0-9].[0-9]"
+# }
 #
-#  The above example will create a symlink at /usr/bin/python to either
-#  /usr/bin/python2.3 or /usr/bin/python2.2. It will choose python2.3 over
-#  python2.2 if both exist.
-#
-#  Alternatively, you can use this function:
-#
-#  pkg_postinst() {
-#     alternatives_auto_makesym "/usr/bin/python" "/usr/bin/python[0-9].[0-9]"
-#  }
-#
-#  This will use bash pathname expansion to fill a list of alternatives it can
-#  link to. It is probably more robust against version upgrades. You should
-#  consider using this unless you are want to do something special.
-#
+# This will use bash pathname expansion to fill a list of alternatives it can
+# link to. It is probably more robust against version upgrades. You should
+# consider using this unless you are want to do something special.
 
+# @ECLASS-VARIABLE: SOURCE
+# @DESCRIPTION:
+# The symlink to be created
+
+# @ECLASS-VARIABLE: ALTERNATIVES
+# @DESCRIPTION:
+# The list of alternatives
+
+# @FUNCTION: alternatives_auto_makesym
+# @DESCRIPTION:
 # automatic deduction based on a symlink and a regex mask
 alternatives_auto_makesym() {
 	local SYMLINK REGEX ALT myregex
@@ -112,12 +119,18 @@ alternatives_makesym() {
 	fi
 }
 
+# @FUNCTION: alernatives-pkg_postinst
+# @DESCRIPTION:
+# The alternatives pkg_postinst, this function will be exported
 alternatives_pkg_postinst() {
 	if [ -n "${ALTERNATIVES}" -a -n "${SOURCE}" ]; then
 		alternatives_makesym ${SOURCE} ${ALTERNATIVES}
 	fi
 }
 
+# @FUNCTION: alternatives_pkg_postrm
+# @DESCRIPTION:
+# The alternatives pkg_postrm, this function will be exported
 alternatives_pkg_postrm() {
 	if [ -n "${ALTERNATIVES}" -a -n "${SOURCE}" ]; then
 		alternatives_makesym ${SOURCE} ${ALTERNATIVES}
