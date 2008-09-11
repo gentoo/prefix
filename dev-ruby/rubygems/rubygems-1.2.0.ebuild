@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.4 2008/08/06 16:40:12 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.5 2008/09/10 05:43:16 graaff Exp $
 
 EAPI="prefix"
 
@@ -44,9 +44,11 @@ src_install() {
 
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
-	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting sandbox,
-	# bug #202109
+	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting
+	# sandbox, bug #202109. Since 1.2.0 we also need to set GEM_PATH
+	# for this reason, bug #230163.
 	export GEM_HOME="${ED}/usr/$(get_libdir)/ruby/gems/${ver}"
+	export GEM_PATH="${GEM_HOME}/"
 	keepdir /usr/$(get_libdir)/ruby/gems/$ver/{doc,gems,cache,specifications}
 
 	myconf=""

@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.101 2008/08/06 16:40:12 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.102 2008/09/10 05:43:16 graaff Exp $
+
+  10 Sep 2008; Hans de Graaff <graaff@gentoo.org> rubygems-1.2.0.ebuild:
+  Fixed sandbox problems with first install of rubygems. Thanks to Alex Legler
+  for digging in and finding the root cause of the problem in #230163.
 
   06 Aug 2008; Hans de Graaff <graaff@gentoo.org> metadata.xml,
   rubygems-1.2.0.ebuild:
