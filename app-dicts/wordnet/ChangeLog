@@ -1,6 +1,16 @@
 # ChangeLog for app-dicts/wordnet
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/ChangeLog,v 1.14 2007/10/22 16:42:18 cla Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/ChangeLog,v 1.15 2008/09/10 06:57:39 pva Exp $
+
+*wordnet-3.0-r1 (10 Sep 2008)
+
+  10 Sep 2008; Peter Volkov <pva@gentoo.org>
+  -files/Wordnet-2.1-compile-fix-new.patch,
+  -files/Wordnet-2.1-dict-location.patch,
+  +files/wordnet-3.0-CVE-2008-3908.patch, -files/Makefiles.diff,
+  -wordnet-2.0.ebuild, -wordnet-2.1.ebuild, +wordnet-3.0-r1.ebuild:
+  Appling fix for security issue, bug #211491, thank Jukka Ruohonen for
+  report and Robert Buchholz for pointing to patch. Remove old.
 
   22 Oct 2007; Dawid Węgliński <cla@gentoo.org> wordnet-3.0.ebuild:
   Stable on x86 (bug #73107)
