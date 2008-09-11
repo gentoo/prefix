@@ -15,7 +15,7 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.
 
 LICENSE="CMake"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="emacs qt4 vim-syntax"
 
 DEPEND=">=net-misc/curl-7.16.4
@@ -28,7 +28,10 @@ DEPEND=">=net-misc/curl-7.16.4
 		>=x11-libs/qt-4.3:4 ) )
 	vim-syntax? ( || (
 		app-editors/vim
-		app-editors/gvim ) )"
+		app-editors/gvim ) )
+	kernel_Darwin? (
+		>=sys-devel/odcctools-20080820
+		>=sys-devel/gcc-apple-4.2.1 )"
 RDEPEND="${DEPEND}"
 
 SITEFILE="50${PN}-gentoo.el"
