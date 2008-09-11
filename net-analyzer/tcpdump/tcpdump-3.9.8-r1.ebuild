@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-3.9.8-r1.ebuild,v 1.3 2008/06/25 17:44:44 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-3.9.8-r1.ebuild,v 1.4 2008/09/10 10:47:13 pva Exp $
 
 EAPI="prefix"
 
@@ -70,8 +70,8 @@ src_compile() {
 }
 
 pkg_preinst() {
-	enewgroup tcpdump || die "Failed to add group tcpdump"
-	enewuser tcpdump -1 -1 -1 tcpdump || die "Failed to add user tcpdump"
+	enewgroup tcpdump
+	enewuser tcpdump -1 -1 -1 tcpdump
 }
 
 src_install() {
