@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jarjar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/ChangeLog,v 1.25 2008/01/16 20:17:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/ChangeLog,v 1.26 2008/09/10 18:17:52 ranger Exp $
+
+  10 Sep 2008; Brent Baude <ranger@gentoo.org> jarjar-0.9.ebuild:
+  Marking jarjar-0.9 ppc64 stable for dep to bug 235747
 
   16 Jan 2008; Raúl Porcel <armin76@gentoo.org> jarjar-0.9.ebuild:
   Add ~ia64 wrt #129773
