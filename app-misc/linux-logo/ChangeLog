@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/linux-logo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.59 2008/03/27 22:58:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.60 2008/09/10 21:05:34 spock Exp $
+
+  10 Sep 2008; Michał Januszewski <spock@gentoo.org>
+  -files/linux-logo-4.07-gentoo-logo.patch, -linux-logo-4.12.ebuild,
+  -linux-logo-4.15.ebuild, -linux-logo-4.16.ebuild, -linux-logo-5.01.ebuild:
+  Remove old ebuilds.
 
   27 Mar 2008; Jeroen Roovers <jer@gentoo.org> linux-logo-5.03.ebuild:
   Stable for HPPA (bug #214912).
