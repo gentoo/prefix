@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.52 2008/08/31 11:15:43 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.53 2008/09/10 14:19:05 voyageur Exp $
+
+  10 Sep 2008; Bernard Cafarelli <voyageur@gentoo.org> virtuals:
+  Remove entry for old-style gnustep-back virtual
 
   31 Aug 2008; Alin Năstac <mrness@gentoo.org> package.use:
   Add udpfromto flag for net-dialup/freeradius (#235688).
