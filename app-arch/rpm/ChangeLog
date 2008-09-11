@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.97 2008/09/08 07:06:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.98 2008/09/10 08:15:42 jer Exp $
+
+  10 Sep 2008; Jeroen Roovers <jer@gentoo.org> rpm-4.4.6-r6.ebuild:
+  Stable for HPPA (bug #236158).
 
   07 Sep 2008; Raúl Porcel <armin76@gentoo.org> rpm-4.4.6-r6.ebuild:
   alpha/ia64 stable wrt #236158
