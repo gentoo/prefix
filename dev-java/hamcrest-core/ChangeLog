@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/hamcrest-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/hamcrest-core/ChangeLog,v 1.7 2008/08/30 14:34:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/hamcrest-core/ChangeLog,v 1.8 2008/09/10 18:19:44 ranger Exp $
+
+  10 Sep 2008; Brent Baude <ranger@gentoo.org> hamcrest-core-1.1.ebuild:
+  stable ppc64, bug 235747
 
   30 Aug 2008; Brent Baude <ranger@gentoo.org> hamcrest-core-1.1.ebuild:
   stable ppc, bug 235747
