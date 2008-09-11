@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2.ebuild,v 1.10 2007/11/19 01:24:47 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2.ebuild,v 1.11 2008/09/10 06:42:38 pva Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 DESCRIPTION="Extracts files from Microsoft .cab files"
-HOMEPAGE="http://www.kyz.uklinux.net/cabextract.php"
+HOMEPAGE="http://www.cabextract.org.uk/"
 SRC_URI="http://www.kyz.uklinux.net/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
