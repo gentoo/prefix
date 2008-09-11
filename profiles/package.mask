@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8965 2008/09/09 16:58:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8967 2008/09/10 22:51:11 hanno Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Gunnar Wrobel <wrobel@gentoo.org> (10 Sep 2008)
+# Masked for security, bug 235060, upstream dead,
+# will be removed in 30 days
+www-apps/bugport
 
 # Alexis Ballier <aballier@gentoo.org> (09 Sep 2008)
 # The big TeX Live 2008 mask. Needs some testing and keywording love.
@@ -1061,13 +1066,6 @@ app-doc/linuxfromscratch-text
 =dev-java/mx4j-core-3.0.2
 =dev-java/mx4j-tools-3.0.2
 =dev-java/mx4j-3.0.2
-
-# Hanno Böck <hanno@gentoo.org> (11 Jun 2008)
-# Masking till gnucash and other apps are ported
->=net-libs/aqbanking-3.0.0
->=sys-libs/libchipcard-4.0.0
->=sys-libs/gwenhywfar-3.0.0
->=app-office/qbankmanager-0.9.48
 
 # Joe Peterson <lavajoe@gentoo.org> (09 Jun 2008)
 # Live ebuilds too volatile for normal use.

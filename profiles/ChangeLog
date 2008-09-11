@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1852 2008/09/10 00:17:07 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1853 2008/09/10 07:10:49 wrobel Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  10 Sep 2008; Gunnar Wrobel <wrobel@gentoo.org> package.mask:
+  Masked www-apps/bugport.
 
   10 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
   Added additional, cangjie5, erbi-qs, extra-phrases, wubi and zhengma local
