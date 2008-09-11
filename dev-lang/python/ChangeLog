@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.338 2008/08/19 09:11:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.339 2008/09/10 19:58:13 ranger Exp $
+
+  10 Sep 2008; Brent Baude <ranger@gentoo.org> python-2.5.2-r7.ebuild:
+  stable ppc, bug 236723
 
   19 Aug 2008; Ali Polatel <hawking@gentoo.org> -files/python-config-2.2,
   -files/python-config-2.3, -files/python-2.3.6-disable-failing-tests.patch,
