@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/unix2dos-2.2-r1.ebuild,v 1.8 2007/12/11 09:32:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/unix2dos-2.2-r1.ebuild,v 1.9 2008/09/11 03:11:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,10 +23,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-segfault.patch
 	epatch "${FILESDIR}"/${P}-manpage.patch
 	epatch "${FILESDIR}"/${P}-workaround-rename-EXDEV.patch
+	epatch "${FILESDIR}"/${P}-headers.patch
 }
 
 src_compile() {
-	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -o unix2dos unix2dos.c || die
+	emake CC="$(tc-getCC)" unix2dos || die
 }
 
 src_install() {

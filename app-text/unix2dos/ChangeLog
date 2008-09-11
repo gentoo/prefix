@@ -1,6 +1,11 @@
 # ChangeLog for app-text/unix2dos
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/ChangeLog,v 1.25 2007/11/06 17:53:58 corsair Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/ChangeLog,v 1.26 2008/09/11 03:11:05 vapier Exp $
+
+  11 Sep 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/unix2dos-2.2-headers.patch, unix2dos-2.2-r1.ebuild:
+  Fix missing prototype warnings and use emake to build rather than running
+  CC ourself.
 
   06 Nov 2007; Markus Rothe <corsair@gentoo.org> unix2dos-2.2-r1.ebuild:
   Stable on ppc64; bug #197747
