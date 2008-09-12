@@ -1,5 +1,5 @@
---- ooo-build-2.4.1.6/bin/package-ooo.orig
-+++ ooo-build-2.4.1.6/bin/package-ooo
+--- ooo-build-2.4.1.8/bin/package-ooo.orig
++++ ooo-build-2.4.1.8/bin/package-ooo
 @@ -92,12 +92,12 @@
  fi
  
