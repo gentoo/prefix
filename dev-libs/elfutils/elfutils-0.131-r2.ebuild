@@ -19,7 +19,7 @@ IUSE=""
 # This pkg does not actually seem to compile currently in a uClibc
 # environment (xrealloc errs), but we need to ensure that glibc never
 # gets pulled in as a dep since this package does not respect virtual/libc
-DEPEND="elibc_glibc? ( >=sys-libs/glibc-2.3.2 )
+DEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.3.2 ) )
 	sys-devel/gettext
 	sys-devel/autoconf
 	>=sys-devel/binutils-2.15.90.0.1
