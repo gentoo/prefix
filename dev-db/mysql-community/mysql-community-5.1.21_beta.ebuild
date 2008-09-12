@@ -11,12 +11,13 @@ PBXT_VERSION="0.9.8-beta"
 inherit mysql eutils
 
 # REMEMBER: also update eclass/mysql*.eclass before committing!
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 
 src_unpack() {
 	mysql_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-darwin-bool.patch
+	epatch "${FILESDIR}"/${PN}-5.1.22-min_max.patch
 }
 
 src_test() {
