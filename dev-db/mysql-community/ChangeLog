@@ -1,0 +1,118 @@
+# ChangeLog for dev-db/mysql-community
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.18 2008/08/05 16:33:39 ulm Exp $
+
+  05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
+
+*mysql-community-5.0.51a (10 Mar 2008)
+
+  10 Mar 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.0.51a.ebuild:
+  Plain version bump, based on the main 5.0.56 ebuild. More patches in a later
+  revision.
+
+*mysql-community-5.1.21_beta (02 Oct 2007)
+
+  02 Oct 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.1.21_beta.ebuild:
+  Bug #181686, version bump.
+
+*mysql-community-5.0.45 (15 Jul 2007)
+
+  15 Jul 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.0.45.ebuild:
+  Version bump of mysql-community, per security bug #185333, bump request
+  #178265. Also cleans up the src_test per bug #161885. If you want to use
+  src_test now, you MUST have FEATURES=userpriv. See the main
+  dev-db/mysql/ChangeLog for more details.
+
+  14 Jul 2007; Robin H. Johnson <robbat2@gentoo.org>
+  mysql-community-5.0.27-r1.ebuild:
+  Clean up 5.0.27-r1 to match enterprise 5.0.26-r2 build process.
+
+  06 Mar 2007; Luca Longinotti <chtekk@gentoo.org>
+  -mysql-community-5.1.15_alpha-r90.ebuild,
+  -mysql-community-5.1.15_alpha20061231-r61.ebuild,
+  mysql-community-5.1.15_beta.ebuild:
+  Cleanup old alpha versions. Fix bug #169618.
+
+*mysql-community-5.1.15_beta (04 Mar 2007)
+
+  04 Mar 2007; Francesco Riosa <vivo@gentoo.org>
+  +mysql-community-5.1.15_beta.ebuild:
+  version bump
+
+  12 Jan 2007; Luca Longinotti <chtekk@gentoo.org> -files/logrotate.mysql,
+  mysql-community-5.0.27-r1.ebuild, mysql-community-5.1.14_beta-r1.ebuild,
+  mysql-community-5.1.15_alpha-r90.ebuild,
+  mysql-community-5.1.15_alpha20061231-r61.ebuild:
+  Start cleanup.
+
+*mysql-community-5.1.15_alpha20061231-r61 (05 Jan 2007)
+*mysql-community-5.1.14_beta-r1 (05 Jan 2007)
+*mysql-community-5.0.27-r1 (05 Jan 2007)
+
+  05 Jan 2007; Francesco Riosa <vivo@gentoo.org> -files/mysql.conf.d,
+  -files/mysql.rc6, -files/mysqlmanager.conf.d, -files/mysqlmanager.rc6,
+  -mysql-community-5.0.27.ebuild, +mysql-community-5.0.27-r1.ebuild,
+  -mysql-community-5.1.14_beta.ebuild,
+  +mysql-community-5.1.14_beta-r1.ebuild,
+  -mysql-community-5.1.15_alpha20061231-r60.ebuild,
+  +mysql-community-5.1.15_alpha20061231-r61.ebuild:
+  force revision bump, needed to fix/discover bugs introuduced during last
+  working days.
+
+  05 Jan 2007; Francesco Riosa <vivo@gentoo.org>
+  mysql-community-5.0.27.ebuild, mysql-community-5.1.14_beta.ebuild,
+  mysql-community-5.1.15_alpha-r90.ebuild,
+  mysql-community-5.1.15_alpha20061231-r60.ebuild:
+  bug #156301 => mysql_config has now stripped cflags (version 4.0.x and 4.1.21
+  still unpatched)
+  bug #160059 => WANT_AUTOCONF and WANT_AUTOMAKE are set to "latest"
+
+*mysql-community-5.1.15_alpha20061231-r60 (03 Jan 2007)
+*mysql-community-5.1.15_alpha-r90 (03 Jan 2007)
+
+  03 Jan 2007; Francesco Riosa <vivo@gentoo.org>
+  -mysql-community-4.1.22.ebuild, mysql-community-5.0.27.ebuild,
+  -mysql-community-5.1.13_alpha20061018.ebuild,
+  mysql-community-5.1.14_beta.ebuild,
+  +mysql-community-5.1.15_alpha-r90.ebuild,
+  +mysql-community-5.1.15_alpha20061231-r60.ebuild:
+  Added "pbxt" USE flag, better using testsuite
+
+*mysql-community-4.1.22 (10 Dec 2006)
+
+  10 Dec 2006; Francesco Riosa <vivo@gentoo.org>
+  +mysql-community-4.1.22.ebuild:
+  version bump for 4.1
+
+*mysql-community-5.1.14_beta (10 Dec 2006)
+
+  10 Dec 2006; Francesco Riosa <vivo@gentoo.org>
+  +mysql-community-5.1.14_beta.ebuild:
+  version bump
+
+  09 Dec 2006; Francesco Riosa <vivo@gentoo.org>
+  mysql-community-5.0.27.ebuild,
+  mysql-community-5.1.13_alpha20061018.ebuild:
+  split SRC_URIs outside the eclass
+
+  24 Nov 2006; Luca Longinotti <chtekk@gentoo.org>
+  mysql-community-5.1.13_alpha20061018.ebuild:
+  Readd sparc-fbsd keyword.
+
+  23 Nov 2006; Luca Longinotti <chtekk@gentoo.org> +files/logrotate.mysql,
+  +files/mysql.rc6, mysql-community-5.1.13_alpha20061018.ebuild:
+  Add missing files, add tests warn msg for 5.1.
+
+*mysql-community-5.1.13_alpha20061018 (23 Nov 2006)
+*mysql-community-5.0.27 (23 Nov 2006)
+
+  23 Nov 2006; Francesco Riosa <vivo@gentoo.org> +files/my.cnf-4.1,
+  +files/mysql.conf.d, +files/mysqlmanager.conf.d, +files/mysqlmanager.rc6,
+  +metadata.xml, +mysql-community-5.0.27.ebuild,
+  +mysql-community-5.1.13_alpha20061018.ebuild:
+  Starting with mysql-5.0.27 MySQL is splitted in enterprise and community
+
