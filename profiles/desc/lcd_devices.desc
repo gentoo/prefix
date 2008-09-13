@@ -1,6 +1,6 @@
 # Copyright 2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lcd_devices.desc,v 1.6 2007/06/02 21:34:20 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lcd_devices.desc,v 1.7 2008/09/12 16:59:50 rbu Exp $
 
 # This file contains descriptions of LCD_DEVICES USE_EXPAND flags.
 
@@ -21,7 +21,8 @@ graphlcd - Meta-driver to support drivers via app-misc/graphlcd-base
 hd44780 - Add support for Hitachi HD44780 and compatible displays
 hd44780i2c - Enable hd44780 via i2c instead of parallel port driver
 icpa106 - Add support for ICP A106 alarm/LCD boards for 19" racks
-imon - Add support for Soundgraph/Ahanix/Silverstone/Uneed/Accent iMON IR/VFD modules
+imon - Add support for Soundgraph/Ahanix/Silverstone/Uneed/Accent iMON IR/VFD modules (Antec Fusion)
+imonlcd - Add support for Soundgraph iMON LCD modules (Antec Fusion)
 iowarrior - Add support for IO-Warrior displays
 lb216 - Add support for RTN's LB216 display
 lcd2usb - Add support for the open lcd2usb connector to hd44780 displays
