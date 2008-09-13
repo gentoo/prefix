@@ -1,6 +1,19 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.189 2008/08/24 10:59:25 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.192 2008/09/12 21:41:10 betelgeuse Exp $
+
+  12 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> tomcat-5.5.27.ebuild:
+  Use jdk-with-com-sun:0 for java5 use flag and jdk-with-com-sun:1.4 without
+  it.
+
+  12 Sep 2008; Miroslav Šulc <fordfrog@gentoo.org> tomcat-5.5.27.ebuild:
+  Fixed compilation so JDK with com.sun.* packages is used as tomcat needs
+  it
+
+*tomcat-5.5.27 (11 Sep 2008)
+
+  11 Sep 2008; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-5.5.27.ebuild:
+  Version bump
 
   24 Aug 2008; Markus Rothe <corsair@gentoo.org> tomcat-6.0.18.ebuild:
   Stable on ppc64; bug #234684
