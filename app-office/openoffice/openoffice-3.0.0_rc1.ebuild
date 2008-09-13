@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_beta2.ebuild,v 1.1 2008/08/22 13:26:01 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc1.ebuild,v 1.1 2008/09/11 12:37:30 suka Exp $
 
 EAPI="prefix"
 
@@ -9,12 +9,12 @@ WANT_AUTOMAKE="1.9"
 
 inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib
 
-IUSE="binfilter cups dbus debug eds firefox gnome gstreamer gtk kde ldap mono odk opengl pam seamonkey xulrunner"
+IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam seamonkey"
 
-MY_PV="3.0.0.1"
+MY_PV="3.0.0.3.1"
 PATCHLEVEL="OOO300"
 SRC="OOo_${PV}_src"
-MST="ooo300-m3"
+MST="ooo300-m5"
 DEVPATH="http://download.go-oo.org/${PATCHLEVEL}/${MST}"
 S="${WORKDIR}/ooo"
 S_OLD="${WORKDIR}/ooo-build-${MY_PV}"
@@ -44,7 +44,7 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	http://download.go-oo.org/SRC680/extras-2.tar.bz2
 	http://download.go-oo.org/SRC680/biblio.tar.bz2
 	http://download.go-oo.org/SRC680/lp_solve_5.5.0.12_source.tar.gz
-	http://download.go-oo.org/DEV300/scsolver.2008-08-20.tar.bz2
+	http://download.go-oo.org/DEV300/scsolver.2008-09-08.tar.bz2
 	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
 	http://download.go-oo.org/SRC680/libwpg-0.1.3.tar.gz"
 
@@ -90,14 +90,12 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	mono? ( >=dev-lang/mono-1.2.3.1 )
 	opengl? ( virtual/opengl
 		virtual/glu )
-	xulrunner? ( >=net-libs/xulrunner-1.8
+	!seamonkey? ( nsplugin? ( >=net-libs/xulrunner-1.8
+		>=dev-libs/nspr-4.6.6
+		>=dev-libs/nss-3.11-r1 ) )
+	seamonkey? ( =www-client/seamonkey-1*
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
-	!xulrunner? ( firefox? ( >=dev-libs/nspr-4.6.6
-		>=dev-libs/nss-3.11-r1 ) )
-	!xulrunner? ( !firefox? ( seamonkey? ( =www-client/seamonkey-1*
-		>=dev-libs/nspr-4.6.6
-		>=dev-libs/nss-3.11-r1 ) ) )
 	>=net-misc/neon-0.24.7
 	>=dev-libs/openssl-0.9.8g
 	>=x11-libs/startup-notification-0.5
@@ -121,8 +119,9 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	linguas_zh_TW? ( >=media-fonts/arphicfonts-0.1-r2 )"
 
 RDEPEND="java? ( >=virtual/jre-1.5 )
-	!xulrunner? ( firefox? ( || ( =www-client/mozilla-firefox-2*
-		=www-client/mozilla-firefox-bin-2* ) ) )
+	nsplugin? ( || ( >=www-client/mozilla-firefox-2
+		>=www-client/mozilla-firefox-bin-2
+		=www-client/seamonkey-1* ) )
 	${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
@@ -143,7 +142,6 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/bison
 	dev-libs/libxslt
 	>=dev-libs/libxml2-2.0
-	!xulrunner? ( firefox? ( =www-client/mozilla-firefox-2* ) )
 	>=dev-util/gperf-3
 	>=net-misc/curl-7.12
 	sys-libs/zlib
@@ -153,7 +151,7 @@ DEPEND="${COMMON_DEPEND}
 	!dev-util/dmake
 	>=dev-lang/python-2.3.4
 	java? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* )
-		dev-java/ant-core )
+		>=dev-java/ant-core-1.7 )
 	ldap? ( net-nds/openldap )"
 
 PROVIDE="virtual/ooo"
@@ -213,13 +211,13 @@ pkg_setup() {
 		fi
 	fi
 
-	if use xulrunner; then
+	if use !seamonkey && use nsplugin; then
 		if pkg-config --exists xulrunner-xpcom; then
 			XULR="xulrunner"
 		elif pkg-config --exists libxul; then
 			XULR="libxul"
 		else
-			die "USE flag [xulrunner] set but not found!"
+			die "USE flag [nsplugin] set but no installed xulrunner found!"
 		fi
 	fi
 
@@ -272,12 +270,11 @@ src_unpack() {
 		echo "--with-rhino-jar=$(java-pkg_getjar rhino-1.5 js.jar)" >> ${CONFFILE}
 	fi
 
-	if use firefox || use seamonkey || use xulrunner ; then
+	if use nsplugin || use seamonkey ; then
 		echo "--enable-mozilla" >> ${CONFFILE}
 		local browser
+		use nsplugin && browser="${XULR}"
 		use seamonkey && browser="seamonkey"
-		use firefox && browser="firefox"
-		use xulrunner && browser="${XULR}"
 
 		echo "--with-system-mozilla=${browser}" >> ${CONFFILE}
 	else
@@ -300,9 +297,6 @@ src_unpack() {
 	echo "`use_with ldap openldap`" >> ${CONFFILE}
 
 	echo "`use_enable debug crashdump`" >> ${CONFFILE}
-
-	# Original branding results in black splash screens for some, so forcing ours
-#	echo "--with-intro-bitmaps=\\\"${S}/src/openintro_gentoo.bmp\\\"" >> ${CONFFILE}
 
 	eautoreconf
 
@@ -384,8 +378,6 @@ pkg_postinst() {
 
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
-
-#	eselect oodict update --libdir $(get_libdir)
 
 # does this make sense for Prefix?
 	[[ -x ${EPREFIX}/sbin/chpax ]] && [[ -e ${EPREFIX}/usr/$(get_libdir)/openoffice/basis3.0/program/soffice.bin ]] && chpax -zm ${EPREFIX}/usr/$(get_libdir)/openoffice/basis3.0/program/soffice.bin

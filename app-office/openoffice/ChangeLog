@@ -1,6 +1,14 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.411 2008/08/22 13:26:01 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.412 2008/09/11 12:37:30 suka Exp $
+
+*openoffice-3.0.0_rc1 (11 Sep 2008)
+
+  11 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.0_beta2.diff, +files/gentoo-3.0.0_rc1.diff,
+  -openoffice-3.0.0_beta2.ebuild, +openoffice-3.0.0_rc1.ebuild:
+  Release Candidate 1 for OOo 3.0. Also use nsplugin instead of
+  firefox|xulrunner use-flags.
 
   22 Aug 2008; Andreas Proschofsky <suka@gentoo.org>
   +files/gentoo-3.0.0_beta2.diff:
