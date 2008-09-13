@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.80 2008/07/13 09:02:18 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.81 2008/09/12 05:53:55 graaff Exp $
+
+*actionmailer-2.0.4 (12 Sep 2008)
+
+  12 Sep 2008; Hans de Graaff <graaff@gentoo.org>
+  +actionmailer-2.0.4.ebuild:
+  Version bump for Rails 2.0.4, bug #237385
 
   13 Jul 2008; Hans de Graaff <graaff@gentoo.org>
   -actionmailer-1.2.5.ebuild:
