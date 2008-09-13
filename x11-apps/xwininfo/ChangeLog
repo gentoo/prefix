@@ -1,6 +1,12 @@
 # ChangeLog for x11-apps/xwininfo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xwininfo/ChangeLog,v 1.26 2008/02/05 11:40:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xwininfo/ChangeLog,v 1.27 2008/09/11 17:56:27 dberkholz Exp $
+
+*xwininfo-1.0.4 (11 Sep 2008)
+
+  11 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xwininfo-1.0.4.ebuild:
+  Version bump.
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> xwininfo-1.0.3.ebuild:
   Stable on ppc64
