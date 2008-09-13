@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/wordnet-3.0.ebuild,v 1.2 2007/10/22 16:42:18 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/wordnet-3.0.ebuild,v 1.3 2008/09/12 19:36:30 pva Exp $
 
 EAPI="prefix"
 
@@ -52,14 +52,11 @@ src_compile() {
 	WNHOME="/usr/share/wordnet" \
 	econf \
 		--with-tcl="${EPREFIX}"/usr/$(get_libdir) \
-		--with-tk="${EPREFIX}"/usr/$(get_libdir) \
-		|| die "econf failed"
+		--with-tk="${EPREFIX}"/usr/$(get_libdir)
 	emake || die "emake Failed"
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die "install failed"
-
-	# We don't install COPYING because it's identical to LICENSE
-	dodoc AUTHORS ChangeLog INSTALL LICENSE README || die "dodoc failed"
+	dodoc AUTHORS ChangeLog INSTALL README || die "dodoc failed"
 }
