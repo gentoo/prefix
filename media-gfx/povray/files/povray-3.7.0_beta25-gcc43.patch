@@ -1,0 +1,44 @@
+Povray-3.7.0-beta25b: Fix a few GCC-4.3 related compilation problems:
+add a few missing includes
+
+--- povray-3.7.0.beta.25b/source/base/fileinputoutput.h~	2008-04-07 11:35:15.305580552 +0200
++++ povray-3.7.0.beta.25b/source/base/fileinputoutput.h	2008-04-07 11:35:15.305580552 +0200
+@@ -97,6 +97,7 @@
+ #include "base/path.h"
+ 
+ #include <string>
++#include <cstring>
+ 
+ namespace pov_base
+ {
+--- povray-3.7.0.beta.25b/source/base/fileinputoutput.cpp~	2008-04-07 11:34:54.618082366 +0200
++++ povray-3.7.0.beta.25b/source/base/fileinputoutput.cpp	2008-04-07 11:34:54.618082366 +0200
+@@ -92,6 +92,7 @@
+ 
+ #include <cstdlib>
+ #include <cstdarg>
++#include <cstring>
+ 
+ #include "base/configbase.h"
+ 
+--- povray-3.7.0.beta.25b/source/base/textstreambuffer.cpp~	2008-04-07 11:35:37.272306361 +0200
++++ povray-3.7.0.beta.25b/source/base/textstreambuffer.cpp	2008-04-07 11:35:37.272306361 +0200
+@@ -91,6 +91,7 @@
+  *********************************************************************************/
+ 
+ #include <algorithm>
++#include <cstring>
+ 
+ #include "configbase.h"
+ 
+--- povray-3.7.0.beta.25b/source/base/animation/moov.cpp~	2008-04-07 13:56:09.833886560 +0200
++++ povray-3.7.0.beta.25b/source/base/animation/moov.cpp	2008-04-07 13:56:09.833886560 +0200
+@@ -90,6 +90,8 @@
+  *
+  *********************************************************************************/
+ 
++#include <limits.h>
++
+ #include "base/configbase.h"
+ #include "base/pov_err.h"
+ #include "base/types.h"

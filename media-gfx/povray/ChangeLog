@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/povray
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.75 2008/05/29 01:40:07 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.76 2008/09/12 05:17:50 lavajoe Exp $
+
+  12 Sep 2008; Joe Peterson <lavajoe@gentoo.org>
+  +files/povray-3.7.0_beta25-gcc43.patch, povray-3.7.0_beta25-r1.ebuild:
+  Fix 3.7.0 beta 25 to work with gcc-4.3 (bug #216684)
 
   29 May 2008; Joe Peterson <lavajoe@gentoo.org> povray-3.6.1-r3.ebuild:
   Use eautoreconf with AT_NO_RECURSIVE set
