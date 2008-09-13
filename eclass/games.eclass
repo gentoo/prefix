@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.126 2008/09/05 17:02:43 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.127 2008/09/11 16:57:14 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -33,7 +33,7 @@ export GAMES_USER_DED=${GAMES_USER_DED:-games}
 export GAMES_GROUP=${GAMES_GROUP:-games}
 
 games_get_libdir() {
-	echo ${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
+	echo ${GAMES_PREFIX}/$(get_libdir)
 }
 
 egamesconf() {
@@ -96,25 +96,16 @@ prepgamesdirs() {
 }
 
 gamesenv() {
-	# As much as I hate doing this, we need to be a bit more flexibility with
-	# our library directories.
-	local hasit=0 GAMES_LIBDIRS="" GAMES_LIBDIR=$(games_get_libdir)
-	if has_multilib_profile ; then
-		for libdir in $(get_all_libdirs) ; do
-			if [[ ${GAMES_LIBDIR} != ${GAMES_PREFIX}/${libdir} ]] ; then
-				GAMES_LIBDIRS="${GAMES_LIBDIRS}:${GAMES_PREFIX}/${libdir}"
-			else
-				hasit=1
-			fi
-		done
-	fi
-	[[ ${hasit} == "1" ]] \
-		&& GAMES_LIBDIRS=${GAMES_LIBDIRS:1} \
-		|| GAMES_LIBDIRS="${GAMES_LIBDIR}:${GAMES_LIBDIRS}"
+	local d libdirs
+
+	for d in $(get_all_libdirs) ; do
+		libdirs="${libdirs}:${GAMES_PREFIX}/${d}"
+	done
+
 	# Wish we could use doevnd here, but we dont want the env
 	# file to be tracked in the CONTENTS of every game
 	cat <<-EOF > "${EROOT}"/etc/env.d/${GAMES_ENVD}
-	LDPATH="${GAMES_LIBDIRS}"
+	LDPATH="${libdirs:1}"
 	PATH="${GAMES_BINDIR}"
 	EOF
 }
