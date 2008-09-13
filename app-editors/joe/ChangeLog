@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/joe
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.60 2008/07/28 19:33:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.61 2008/09/11 23:20:52 opfer Exp $
+
+  11 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/joe-3.0-overflow.patch, -files/joe-3.1-overflow.patch,
+  -joe-3.0-r2.ebuild, -joe-3.1-r1.ebuild, -joe-3.2.ebuild, -joe-3.4.ebuild:
+  clean up
 
   28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
