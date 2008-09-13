@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.187 2008/09/09 07:02:30 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.188 2008/09/11 12:21:01 mueli Exp $
+
+*mit-krb5-1.6.3-r4 (11 Sep 2008)
+
+  11 Sep 2008; Michael Hammer <mueli@gentoo.org> +mit-krb5-1.6.3-r4.ebuild:
+  changed sed statement for $(LDFLAGS) problem in krb5-config - bug #237273
+  and removed the || statement in RDEPEND - bug #235409
 
 *mit-krb5-1.6.3-r3 (09 Sep 2008)
 
