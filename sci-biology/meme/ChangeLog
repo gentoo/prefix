@@ -1,6 +1,11 @@
 # ChangeLog for sci-biology/meme
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.7 2008/06/14 12:34:50 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.8 2008/09/12 14:06:53 markusle Exp $
+
+*meme-3.5.7 (12 Sep 2008)
+
+  12 Sep 2008; Markus Dittrich <markusle@gentoo.org> +meme-3.5.7.ebuild:
+  Version bump.
 
   14 Jun 2008; Markus Dittrich <markusle@gentoo.org> -meme-3.5.4.ebuild:
   Removed old ebuild with bad autotools usage (fixes bug #226609).
