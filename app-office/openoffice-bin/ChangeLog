@@ -1,6 +1,15 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.193 2008/07/17 21:41:58 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.194 2008/09/11 12:52:46 suka Exp $
+
+*openoffice-bin-3.0.0_rc1 (11 Sep 2008)
+
+  11 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-2.4.1.ebuild, +openoffice-bin-3.0.0_rc1.ebuild:
+  First release candidate for OOo 3. This now includes seperate binaries for
+  amd64. Also packaging was made even more complicated and messy by
+  upstream, so there might still be some missing things (like
+  myspell-integration).
 
   17 Jul 2008; Andreas Proschofsky <suka@gentoo.org>
   -openoffice-bin-2.4.0.ebuild:

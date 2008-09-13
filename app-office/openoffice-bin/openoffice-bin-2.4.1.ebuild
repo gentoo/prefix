@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-2.4.1.ebuild,v 1.3 2008/07/07 04:45:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-2.4.1.ebuild,v 1.4 2008/09/11 12:52:46 suka Exp $
 
 EAPI="prefix"
 
@@ -39,9 +39,7 @@ RDEPEND="!app-office/openoffice
 	app-arch/unzip
 	>=media-libs/freetype-2.1.10-r2
 	>=app-admin/eselect-oodict-20060706
-	java? ( !amd64? ( >=virtual/jre-1.4 )
-		amd64? ( app-emulation/emul-linux-x86-java ) )
-	amd64? ( >=app-emulation/emul-linux-x86-xlibs-1.0 )
+	java? ( >=virtual/jre-1.5 )
 	linguas_ja? ( >=media-fonts/kochi-substitute-20030809-r3 )
 	linguas_zh_CN? ( >=media-fonts/arphicfonts-0.1-r2 )
 	linguas_zh_TW? ( >=media-fonts/arphicfonts-0.1-r2 )"
