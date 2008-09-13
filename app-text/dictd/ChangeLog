@@ -1,6 +1,26 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.40 2008/04/14 11:10:59 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.41 2008/09/12 19:20:55 pva Exp $
+
+*dictd-1.10.11-r1 (12 Sep 2008)
+
+  12 Sep 2008; Peter Volkov <pva@gentoo.org> -files/1.9.7/dict.conf,
+  -files/1.9.7/dictd, -files/1.9.7/dictd.conf, -files/1.9.7/dictd.confd,
+  -files/1.9.7/site.info, +files/dictd-1.10.11-colorit-nopp-fix.patch,
+  +files/1.10.11/dict.conf, +files/dictd-1.10.11-dictd.8-man.patch,
+  +files/1.10.11/dictd.conf, +files/dictd-1.10.11-dictd.c-alen-init.patch,
+  +files/1.10.11/dictd.confd,
+  +files/dictd-1.10.11-dictdplugin_popen-g++-4.3compile.patch,
+  +files/1.10.11/dictd.initd, +files/dictd-1.10.11-dictl-konwert.patch,
+  +files/1.10.11/site.info, +files/dictd-1.10.11-dictl-translit.patch,
+  +files/1.10.11/colorit.conf, dictd-1.9.11-r1.ebuild, dictd-1.9.14.ebuild,
+  -dictd-1.10.0.ebuild, -dictd-1.10.9.ebuild, +dictd-1.10.11-r1.ebuild:
+  Fixed inability to stop dictd, bug #236451, thank David B. Ferguson for
+  report and fix. Cleaned up ebuild. Install again colorit and provide
+  config file (back to bug #107376). Create initd user and make initrc
+  script to work with permissions on its own (back to bug #90657). Took some
+  patches from debian most important of which backports upstream fix for
+  first connection denied problem. Removed old.
 
 *dictd-1.10.11 (14 Apr 2008)
 
