@@ -1,5 +1,6 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright Gentoo Foundation 2006-2008
+# $Id$
 
 # Fabian Groffen <grobian@gentoo.org> -- 2007-03-10
 # Enters the prefix environment by starting a login shell from the
@@ -15,7 +16,7 @@ if [[ ${SHELL#${EPREFIX}} != ${SHELL} ]] ; then
 fi
 
 # not all systems have the same location for shells, however what it
-# boils down to, is that we need to know what the shell is, end then we
+# boils down to, is that we need to know what the shell is, and then we
 # can find it in the bin dir of our prefix
 SHELL=${SHELL##*/}
 # set the prefix shell in the environment
@@ -26,6 +27,10 @@ if [[ ! -x $SHELL ]] ; then
 	echo "because you didn't emerge the shell ${SHELL##*/}" > /dev/stderr
 	exit -1
 fi
+
+# unset variables that are known to cause trouble
+unset PKG_CONFIG_PATH  # bug #234156
+
 # give a small notice
 echo "Entering Gentoo Prefix ${EPREFIX}"
 # start the login shell
