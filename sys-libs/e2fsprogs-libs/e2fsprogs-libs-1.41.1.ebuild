@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
 RDEPEND="!sys-libs/com_err
@@ -26,6 +26,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.41.0-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.1-subs.patch
+	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
 }
 
 src_compile() {
@@ -33,8 +34,20 @@ src_compile() {
 	export CC=$(tc-getCC)
 	export STRIP=${EPREFIX}/bin/true
 
+	# We want to use the "bsd" libraries while building on Darwin, but while
+	# building on other Gentoo/*BSD we prefer elf-naming scheme.
+	local libtype
+	case ${CHOST} in
+		*-darwin*) libtype=bsd;;
+		*)         libtype=elf;;
+	esac
+
+	# avoid a problem during parallel make, it bails because it creates the pic
+	# directory too late
+	mkdir ./lib/blkid/pic ./lib/et/pic ./lib/ss/pic ./lib/uuid/pic 
+
 	econf \
-		--enable-elf-shlibs \
+		--enable-${libtype}-shlibs \
 		$(use_enable !elibc_uclibc tls) \
 		$(use_enable nls) \
 		|| die
@@ -52,7 +65,7 @@ src_install() {
 	local lib slib
 	for lib in "${ED}"/usr/$(get_libdir)/*.a ; do
 		slib=${lib##*/}
-		mv "${lib%.a}"$(get_libname)* "${ED}"/$(get_libdir)/ || die "moving lib ${slib}"
+		mv "${lib%.a}"*$(get_libname)* "${ED}"/$(get_libdir)/ || die "moving lib ${slib}"
 		gen_usr_ldscript ${slib%.a}$(get_libname)
 	done
 }
