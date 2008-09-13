@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3847 2008/09/10 17:48:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3850 2008/09/13 02:38:32 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1317,6 +1317,7 @@ media-sound/squeezecenter:bonjour - Enable support for bonjour
 media-sound/transkode:amarok - Build Amarok script
 media-sound/traverso:lv2 - Add support for Ladspa V2
 media-sound/vorbis-tools:ogg123 - Build ogg123 player, needs libao and curl
+media-sound/xwax:alsa - Enable ALSA support.
 media-tv/freevo:ivtv - Enables ivtv support
 media-tv/freevo:mixer - Enable support for adjusting volume via media-sound/aumix
 media-tv/freevo:tv - Enable support for the tv guide plugin
@@ -2297,6 +2298,7 @@ sys-cluster/mpich2:pvfs2 - Add pvfs2 support
 sys-cluster/mpich2:romio - Enable romio, a high-performance portable MPI-IO implementation
 sys-cluster/ocfs:aio - Add aio support
 sys-cluster/openmpi:heterogeneous - Enable features required for heterogeneous platform support
+sys-cluster/openmpi:mpi-threads - Enable MPI_THREAD_MULTIPLE
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/openmpi:romio - Build the ROMIO MPI-IO component
 sys-cluster/openmpi:smp - Enable smp locks in atomic ops. Recommended for SMP/multi-threaded environments.
@@ -2399,6 +2401,8 @@ sys-power/cpufreqd:nforce2 - Enable support for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (media-video/nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
 sys-power/pm-utils:ntp - install support for net-misc/ntp
+sys-power/powerman:genders -  Add support for selecting power control targets using genders (-g option) 
+sys-power/powerman:httppower -  Add support for HTTP based power controllers 
 sys-power/suspend:fbsplash - Add support for framebuffer splash
 sys-process/procps:n32 - Enable n32 ABI support on mips
 www-apache/anyterm:opera - Enable workaround for bug in Opera web browser

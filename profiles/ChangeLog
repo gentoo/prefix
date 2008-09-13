@@ -1,10 +1,52 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1853 2008/09/10 07:10:49 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1865 2008/09/13 03:15:20 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  13 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-editors/ted for removal in 60 days, bug #154997
+
+  13 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-admin/powertweak for removal in 60 days, bug #231837
+
+  13 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask x11-base/xdirectfb for removal in 60 days. bug #210689
+
+  13 Sep 2008; Bryan D. Stine <battousai@gentoo.org> package.mask:
+  Unmask x11-drm 20080710, since a modules.d solution has been committed.
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-emulation/sheepshaver for removal in 60 days, bug #211702
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-libs/aterm, dev-libs/sdf2-bundle, dev-lang/stratego for removal
+  in 60 days. bug #159048
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask net-misc/xf4vnc for removal in 60 days, bug #166875
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask x11-terms/root-tail for removal in 60 days, bug #127193
+
+  12 Sep 2008; Robert Buchholz <rbu@gentoo.org> desc/lcd_devices.desc:
+  Add imonlcd expanded useflag for lcdproc
+
+  12 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  hardened/linux/powerpc/package.mask, hardened/ppc/package.mask,
+  selinux/package.mask:
+  Add pulseaudio to package.mask files where openrc is masked because
+  pulseaudio depends on openrc.
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Clean up p.mask after carrying out tree cleaning for dev-util/tla
+  app-emacs/xtla app-admin/systemconfigurator and media-gfx/gimp-freetype.
+  bugs 211320, 202300, 59548
+
+  10 Sep 2008; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Mask upcoming release candidate for openoffice-bin-3.0
 
   10 Sep 2008; Gunnar Wrobel <wrobel@gentoo.org> package.mask:
   Masked www-apps/bugport.
