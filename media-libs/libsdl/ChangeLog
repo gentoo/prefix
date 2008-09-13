@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.143 2008/08/31 13:10:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.144 2008/09/11 09:33:58 armin76 Exp $
+
+  11 Sep 2008; Raúl Porcel <armin76@gentoo.org> libsdl-1.2.13.ebuild:
+  alpha/ia64/sparc stable wrt #236249
 
   31 Aug 2008; Markus Meier <maekke@gentoo.org> libsdl-1.2.13.ebuild:
   amd64/x86 stable, bug #236249
