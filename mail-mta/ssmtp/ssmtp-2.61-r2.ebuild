@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.61-r2.ebuild,v 1.11 2006/12/04 19:25:36 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.61-r2.ebuild,v 1.12 2008/09/12 15:22:30 jer Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ PROVIDE="virtual/mta"
 S=${WORKDIR}/ssmtp-2.61
 
 src_unpack() {
-	unpack "${A}" ; cd "${S}"
+	unpack ${A} ; cd "${S}"
 
 	epatch "${FILESDIR}"/ssmtp-2.61-bug127592.patch
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
@@ -74,7 +74,7 @@ src_install() {
 	if use mailwrapper
 	then
 		insinto /etc/mail
-		doins ${FILESDIR}/mailer.conf
+		doins "${FILESDIR}"/mailer.conf
 	fi
 
 	# Set up config file

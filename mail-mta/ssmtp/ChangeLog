@@ -1,6 +1,13 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.60 2008/09/09 19:30:25 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.62 2008/09/12 21:40:33 maekke Exp $
+
+  12 Sep 2008; Markus Meier <maekke@gentoo.org> ssmtp-2.62-r3.ebuild:
+  amd64/x86 stable, bug #234391
+
+  12 Sep 2008; Jeroen Roovers <jer@gentoo.org> ssmtp-2.61-r2.ebuild,
+  ssmtp-2.62-r3.ebuild:
+  Fix quoting issues in 2.61-r2. 2.62-r3 stable for HPPA (bug #234391).
 
 *ssmtp-2.62-r3 (09 Sep 2008)
 
