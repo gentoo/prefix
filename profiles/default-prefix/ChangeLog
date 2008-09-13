@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Sep 2008; Fabian Groffen <grobian@gentoo.org> +irix/package.use.mask:
+  USE-mask dso for subversion, bug #234253
+
   11 Sep 2008; Markus Duft <mduft@gentoo.org>
   windows/winnt/6.0/package.provided:
   corrected wrong libc provide for winnt-6
