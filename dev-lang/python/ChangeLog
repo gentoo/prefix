@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.339 2008/09/10 19:58:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.343 2008/09/12 13:34:49 armin76 Exp $
+
+  12 Sep 2008; Raúl Porcel <armin76@gentoo.org> python-2.5.2-r7.ebuild:
+  alpha/ia64 stable wrt #236723
+
+  12 Sep 2008; Ferris McCormick <fmccor@gentoo.org> python-2.5.2-r7.ebuild:
+  Sparc stable --- Bug #236723 --- tests all good.
+
+  11 Sep 2008; Markus Meier <maekke@gentoo.org> python-2.5.2-r7.ebuild:
+  amd64/x86 stable, bug #236723
+
+  11 Sep 2008; Jeroen Roovers <jer@gentoo.org> python-2.5.2-r7.ebuild:
+  Stable for HPPA (bug #236723).
 
   10 Sep 2008; Brent Baude <ranger@gentoo.org> python-2.5.2-r7.ebuild:
   stable ppc, bug 236723
