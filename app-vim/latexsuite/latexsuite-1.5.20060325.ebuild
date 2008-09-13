@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/latexsuite-1.5.20060325.ebuild,v 1.8 2008/09/06 13:48:47 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/latexsuite-1.5.20060325.ebuild,v 1.9 2008/09/12 22:23:44 maekke Exp $
 
 EAPI="prefix"
 
