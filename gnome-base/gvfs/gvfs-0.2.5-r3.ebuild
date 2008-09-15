@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r3.ebuild,v 1.1 2008/09/08 08:55:12 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-0.2.5-r3.ebuild,v 1.2 2008/09/13 14:29:29 remi Exp $
 
 EAPI="prefix"
 
@@ -54,7 +54,7 @@ pkg_setup() {
 			$(use_enable gnome gconf)
 			$(use_enable gphoto2)
 			$(use_enable hal)
-			$(use_enable gnome-keyring keyring)
+			$(use_enable gnome-keyring KEYRING)
 			$(use_enable samba)"
 
 	if use cdda && built_with_use dev-libs/libcdio minimal; then
