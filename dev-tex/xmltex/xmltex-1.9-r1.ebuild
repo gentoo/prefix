@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r1.ebuild,v 1.7 2008/09/04 21:12:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r1.ebuild,v 1.8 2008/09/14 18:05:38 aballier Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ LICENSE="LPPL-1.2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-DEPEND="virtual/tex-base"
+DEPEND="virtual/latex-base"
 
 S=${WORKDIR}/${PN}/base
 
