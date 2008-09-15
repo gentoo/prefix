@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/libbonobo
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.162 2008/08/12 13:31:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.163 2008/09/13 13:36:27 remi Exp $
+
+*libbonobo-2.22.0-r1 (13 Sep 2008)
+
+  13 Sep 2008; Rémi Cardona <remi@gentoo.org>
+  +files/libbonobo-2.22.0-quit-with-dbus-session.patch,
+  +libbonobo-2.22.0-r1.ebuild:
+  attach bonobo to dbus session bus (fixes bug #236864), move flex to DEPEND
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> libbonobo-2.22.0.ebuild:
   alpha/ia64/sparc stable wrt #229709

@@ -1,0 +1,52 @@
+diff -up libbonobo-2.22.0/activation-server/activation-server-main.c.get-on-d-bus libbonobo-2.22.0/activation-server/activation-server-main.c
+--- libbonobo-2.22.0/activation-server/activation-server-main.c.get-on-d-bus	2008-04-29 14:18:57.000000000 -0400
++++ libbonobo-2.22.0/activation-server/activation-server-main.c	2008-04-29 14:19:00.000000000 -0400
+@@ -54,6 +54,8 @@
+ 
+ #include <glib/gstdio.h>
+ 
++#include <dbus/dbus-glib-lowlevel.h>
++
+ static gboolean        server_threaded = FALSE;
+ static glong           server_guard_depth = 0;
+ static GStaticRecMutex server_guard = G_STATIC_REC_MUTEX_INIT;
+@@ -398,6 +400,8 @@ main (int argc, char *argv[])
+ 	const gchar                  *debug_output_env;
+ #endif
+ 	GError                       *error = NULL;
++        DBusConnection               *connection;
++        DBusError                     bus_error;
+ 
+ #ifdef HAVE_SETSID
+         /*
+@@ -535,6 +539,18 @@ main (int argc, char *argv[])
+ 
+ 	od_finished_internal_registration (); 
+ 
++        dbus_error_init (&bus_error);
++        connection = dbus_bus_get (DBUS_BUS_SESSION, &bus_error);
++
++        if (dbus_error_is_set (&bus_error)) {
++                g_warning ("could not associate with desktop session: %s",
++                           bus_error.message);
++                connection = NULL;
++        } else {
++                dbus_connection_setup_with_g_main (connection,
++                                                   g_main_loop_get_context (main_loop));
++        }
++
+         if (getenv ("BONOBO_ACTIVATION_DEBUG") == NULL)
+                 chdir ("/");
+ 
+diff -up libbonobo-2.22.0/configure.in.get-on-d-bus libbonobo-2.22.0/configure.in
+--- libbonobo-2.22.0/configure.in.get-on-d-bus	2008-04-29 14:18:47.000000000 -0400
++++ libbonobo-2.22.0/configure.in	2008-04-29 14:19:06.000000000 -0400
+@@ -121,6 +121,8 @@ PKG_CHECK_MODULES(SERVER, \
+ 	gmodule-2.0 >= 2.0.1 \
+ 	ORBit-2.0 >= 2.4.0 \
+ 	ORBit-CosNaming-2.0 >= 2.4.0 \
++	dbus-1 >= 1.0.0 \
++	dbus-glib-1 >= 0.74 \
+ 	libxml-2.0 >= 2.4.20)
+ AC_SUBST(SERVER_LIBS)
+ AC_SUBST(SERVER_CFLAGS)
