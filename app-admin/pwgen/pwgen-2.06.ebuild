@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.06.ebuild,v 1.6 2008/02/05 09:55:43 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.06.ebuild,v 1.7 2008/09/13 17:35:31 solar Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Password Generator"
 HOMEPAGE="http://sourceforge.net/projects/pwgen/"
@@ -24,6 +24,7 @@ src_unpack() {
 }
 
 src_compile() {
+	tc-export CC
 	econf --sysconfdir="${EPREFIX}"/etc/pwgen || die "econf failed"
 	make || die
 }

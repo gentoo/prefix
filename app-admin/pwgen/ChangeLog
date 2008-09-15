@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/pwgen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.49 2008/02/05 09:55:43 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.50 2008/09/13 17:35:31 solar Exp $
+
+  13 Sep 2008; <solar@gentoo.org> pwgen-2.06.ebuild:
+  - make cross compile aware and keyword for ~arm
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> pwgen-2.06.ebuild:
   Stable on ppc64
