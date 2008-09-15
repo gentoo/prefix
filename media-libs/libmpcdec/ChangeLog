@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmpcdec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.34 2008/09/11 18:53:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.35 2008/09/13 11:15:07 nixnut Exp $
+
+  13 Sep 2008; nixnut <nixnut@gentoo.org> libmpcdec-1.2.6-r2.ebuild:
+  Stable on ppc wrt bug 237030
 
   11 Sep 2008; Markus Meier <maekke@gentoo.org> libmpcdec-1.2.6-r2.ebuild:
   amd64/x86 stable, bug #237030
