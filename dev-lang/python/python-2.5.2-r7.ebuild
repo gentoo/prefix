@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r7.ebuild,v 1.6 2008/09/12 13:34:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r7.ebuild,v 1.7 2008/09/14 14:01:28 swegener Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -142,7 +142,7 @@ src_configure() {
 		use gdbm     || disable="${disable} gdbm"
 		use ncurses  || disable="${disable} _curses _curses_panel"
 		use readline || disable="${disable} readline"
-		use sqlite   || disable="${disable} sqlite3"
+		use sqlite   || disable="${disable} _sqlite3"
 		use ssl      || export PYTHON_DISABLE_SSL=1
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
