@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xsel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.12 2008/09/10 10:14:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.13 2008/09/13 07:41:06 nixnut Exp $
+
+  13 Sep 2008; nixnut <nixnut@gentoo.org> xsel-1.1.0.ebuild:
+  Stable on ppc wrt bug 224413
 
   10 Sep 2008; Raúl Porcel <armin76@gentoo.org> xsel-1.1.0.ebuild:
   ia64/x86 stable wrt #224413
