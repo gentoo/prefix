@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.218 2008/09/06 04:44:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.219 2008/09/14 15:48:54 ulm Exp $
+
+  14 Sep 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
+  Be less verbose, bug 237546.
 
   06 Sep 2008; Ulrich Mueller <ulm@gentoo.org>
   -files/emacs-cvs-Xaw3d-headers.patch, -emacs-cvs-22.2.9999.ebuild:
