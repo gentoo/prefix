@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.ebuild,v 1.9 2008/09/08 16:57:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.ebuild,v 1.10 2008/09/13 22:48:04 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="bzip2 crypt iconv mailwrapper milter nls selinux test"
 
-DEPEND="bzip2? ( app-arch/bzip2 )
+COMMON_DEPEND="bzip2? ( app-arch/bzip2 )
 	crypt? ( >=dev-libs/gmp-4.1.2 )
 	milter? ( || ( mail-filter/libmilter mail-mta/sendmail ) )
 	iconv? ( virtual/libiconv )
@@ -24,9 +24,14 @@ DEPEND="bzip2? ( app-arch/bzip2 )
 	dev-libs/gmp
 	>=sys-libs/zlib-1.2.1-r3
 	>=sys-apps/sed-4"
-RDEPEND="${DEPEND}
+
+DEPEND="${COMMON_DEPEND}
+	dev-util/pkgconfig"
+
+RDEPEND="${COMMON_DEPEND}
 	selinux? ( sec-policy/selinux-clamav )
 	sys-apps/grep"
+
 PROVIDE="virtual/antivirus"
 
 pkg_setup() {

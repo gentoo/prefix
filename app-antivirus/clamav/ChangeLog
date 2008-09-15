@@ -1,6 +1,9 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.307 2008/09/08 16:57:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.308 2008/09/13 22:48:04 dertobi123 Exp $
+
+  13 Sep 2008; Tobias Scherbaum <dertobi123@gentoo.org> clamav-0.94.ebuild:
+  Add missing buildtime dep on dev-util/pkgconfig, #237552
 
   08 Sep 2008; Brent Baude <ranger@gentoo.org> clamav-0.94.ebuild:
   Marking clamav-0.94 ppc64 and ppc for bug 236665
