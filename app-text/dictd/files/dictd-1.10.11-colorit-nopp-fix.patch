@@ -1,0 +1,14 @@
+Made 'colorit -pp -' work
+
+Index: dictd/colorit.in
+===================================================================
+--- dictd.orig/colorit.in	2008-01-23 23:38:35.000000000 +0100
++++ dictd/colorit.in	2008-01-23 23:39:25.000000000 +0100
+@@ -167,6 +167,7 @@
+ 
+     function process_config (){
+ 	if (pp == ""){
++	    pipe = "cat < \"" config_file "\""
+ 	    while (0 < (ret = (pipe | getline))){
+ 		process_config_line()
+ 	    }
