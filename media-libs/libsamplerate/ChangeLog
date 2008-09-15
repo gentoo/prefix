@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsamplerate
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.54 2008/09/11 19:01:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.55 2008/09/13 11:08:15 nixnut Exp $
+
+  13 Sep 2008; nixnut <nixnut@gentoo.org> libsamplerate-0.1.4.ebuild:
+  Stable on ppc wrt bug 237037
 
   11 Sep 2008; Markus Meier <maekke@gentoo.org> libsamplerate-0.1.4.ebuild:
   amd64/x86 stable, bug #237037

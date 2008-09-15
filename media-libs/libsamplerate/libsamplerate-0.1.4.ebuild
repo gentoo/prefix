@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.4.ebuild,v 1.2 2008/09/11 19:01:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.4.ebuild,v 1.3 2008/09/13 11:08:15 nixnut Exp $
 
 EAPI="prefix"
 
