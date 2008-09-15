@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.suse.com/pub/projects/${PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 RDEPEND="virtual/libc"
@@ -34,6 +34,9 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-gentoo-multilib.patch"
 
 	use amd64 && append-flags -fPIC -DPIC
+
+# still yields in compilation errors, I'm done with this piece of crap
+#	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	eautoreconf
 
