@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.2.ebuild,v 1.10 2007/12/11 08:52:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.2.ebuild,v 1.11 2008/09/13 18:23:55 solar Exp $
 
 EAPI="prefix"
 
@@ -20,10 +20,12 @@ src_unpack() {
 	cd "${S}"
 	sed \
 		-e 's:options= :options= $(CFLAGS) -DNOFUNCDEF -DUTIME_H $(LDFLAGS) :' \
-		-e "s:CC=cc:CC=$(tc-getCC):" \
 		Makefile.def > Makefile
 }
-
+src_compile() {
+	tc-export CC
+	emake || die "compiled failed"
+}
 src_install() {
 	dobin compress || die
 	dosym compress /usr/bin/uncompress

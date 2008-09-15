@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/ncompress
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.39 2007/11/19 01:19:59 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.40 2008/09/13 18:23:55 solar Exp $
+
+  13 Sep 2008; <solar@gentoo.org> ncompress-4.2.4.2.ebuild:
+  - fix broken cross compile support
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> ncompress-4.2.4.2.ebuild:
   Stable on mips, per #198597.
