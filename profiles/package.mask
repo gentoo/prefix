@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8977 2008/09/13 03:15:20 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8982 2008/09/14 22:23:33 carlo Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,11 +28,6 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
-
-# Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
-# Masked for removal in 60 days. Multiple issues, broke for some people. Needs
-# maintainer. automagic deps. See bug #154997
-app-editors/ted
 
 # Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
 # Masked for removal in 60 days. Dead upstream, old, no maintainer, based on 2.5
@@ -164,8 +159,8 @@ app-admin/eselect-mpost
 sci-libs/blas-config
 sci-libs/lapack-config
 
-# Carsten Lohrke <carloqgentoo.org> (05 Sep 2008)
-# Masked for removal. It's broken and abamdoned.
+# Carsten Lohrke <carlo@gentoo.org> (05 Sep 2008)
+# Masked for removal. It's broken and abandoned.
 app-portage/kuroo
 
 # Alexis Ballier <aballier@gentoo.org> (05 Sep 2008)
@@ -490,321 +485,6 @@ media-sound/gogo
 # Breaks too many packages, bug #235290
 =app-arch/rpm2targz-9.0.0.1g
 
-# Carsten Lohrje <carlo@gentoo.org> (27 Aug 2008)
-# Mask KDE 3.5.10 for day or two as minor issues will show up unevitably
-~kde-base/akregator-3.5.10
-~kde-base/amor-3.5.10
-~kde-base/ark-3.5.10
-~kde-base/arts-3.5.10
-~kde-base/artsplugin-akode-3.5.10
-~kde-base/artsplugin-audiofile-3.5.10
-~kde-base/artsplugin-xine-3.5.10
-~kde-base/atlantik-3.5.10
-~kde-base/atlantikdesigner-3.5.10
-~kde-base/blinken-3.5.10
-~kde-base/certmanager-3.5.10
-~kde-base/cervisia-3.5.10
-~kde-base/dcopc-3.5.10
-~kde-base/dcopjava-3.5.10
-~kde-base/dcopperl-3.5.10
-~kde-base/dcoppython-3.5.10
-~kde-base/dcoprss-3.5.10
-~kde-base/drkonqi-3.5.10
-~kde-base/eyesapplet-3.5.10
-~kde-base/fifteenapplet-3.5.10
-~kde-base/juk-3.5.10
-~kde-base/kaboodle-3.5.10
-~kde-base/kaddressbook-3.5.10
-~kde-base/kaddressbook-plugins-3.5.10
-~kde-base/kalarm-3.5.10
-~kde-base/kalyptus-3.5.10
-~kde-base/kalzium-3.5.10
-~kde-base/kamera-3.5.10
-~kde-base/kanagram-3.5.10
-~kde-base/kandy-3.5.10
-~kde-base/kappfinder-3.5.10
-~kde-base/kapptemplate-3.5.10
-~kde-base/karm-3.5.10
-~kde-base/kasteroids-3.5.10
-~kde-base/kate-3.5.10
-~kde-base/kate-plugins-3.5.10
-~kde-base/katomic-3.5.10
-~kde-base/kaudiocreator-3.5.10
-~kde-base/kbabel-3.5.10
-~kde-base/kbackgammon-3.5.10
-~kde-base/kbattleship-3.5.10
-~kde-base/kblackbox-3.5.10
-~kde-base/kbounce-3.5.10
-~kde-base/kbruch-3.5.10
-~kde-base/kbstateapplet-3.5.10
-~kde-base/kbugbuster-3.5.10
-~kde-base/kcachegrind-3.5.10
-~kde-base/kcalc-3.5.10
-~kde-base/kcharselect-3.5.10
-~kde-base/kcheckpass-3.5.10
-~kde-base/kcminit-3.5.10
-~kde-base/kcoloredit-3.5.10
-~kde-base/kcontrol-3.5.10
-~kde-base/kcron-3.5.10
-~kde-base/kdat-3.5.10
-~kde-base/kdcop-3.5.10
-~kde-base/kde-3.5.10
-~kde-base/kdeaccessibility-3.5.10
-~kde-base/kdeaccessibility-iconthemes-3.5.10
-~kde-base/kdeaccessibility-meta-3.5.10
-~kde-base/kdeaddons-3.5.10
-~kde-base/kdeaddons-docs-konq-plugins-3.5.10
-~kde-base/kdeaddons-kfile-plugins-3.5.10
-~kde-base/kdeaddons-meta-3.5.10
-~kde-base/kdeadmin-3.5.10
-~kde-base/kdeadmin-kfile-plugins-3.5.10
-~kde-base/kdeadmin-meta-3.5.10
-~kde-base/kdeartwork-3.5.10
-~kde-base/kdeartwork-emoticons-3.5.10
-~kde-base/kdeartwork-icewm-themes-3.5.10
-~kde-base/kdeartwork-iconthemes-3.5.10
-~kde-base/kdeartwork-kscreensaver-3.5.10
-~kde-base/kdeartwork-kwin-styles-3.5.10
-~kde-base/kdeartwork-kworldclock-3.5.10
-~kde-base/kdeartwork-meta-3.5.10
-~kde-base/kdeartwork-sounds-3.5.10
-~kde-base/kdeartwork-styles-3.5.10
-~kde-base/kdeartwork-wallpapers-3.5.10
-~kde-base/kdebase-3.5.10
-~kde-base/kdebase-data-3.5.10
-~kde-base/kdebase-kioslaves-3.5.10
-~kde-base/kdebase-meta-3.5.10
-~kde-base/kdebase-startkde-3.5.10
-~kde-base/kdebindings-meta-3.5.10
-~kde-base/kdebugdialog-3.5.10
-~kde-base/kdeedu-3.5.10
-~kde-base/kdeedu-applnk-3.5.10
-~kde-base/kdeedu-meta-3.5.10
-~kde-base/kdegames-3.5.10
-~kde-base/kdegames-meta-3.5.10
-~kde-base/kdegraphics-3.5.10
-~kde-base/kdegraphics-kfile-plugins-3.5.10
-~kde-base/kdegraphics-meta-3.5.10
-~kde-base/kde-i18n-3.5.10
-~kde-base/kdejava-3.5.10
-~kde-base/kdelibs-3.5.10
-~kde-base/kdelirc-3.5.10
-~kde-base/kde-meta-3.5.10
-~kde-base/kdemultimedia-3.5.10
-~kde-base/kdemultimedia-arts-3.5.10
-~kde-base/kdemultimedia-kappfinder-data-3.5.10
-~kde-base/kdemultimedia-kfile-plugins-3.5.10
-~kde-base/kdemultimedia-kioslaves-3.5.10
-~kde-base/kdemultimedia-meta-3.5.10
-~kde-base/kdenetwork-3.5.10
-~kde-base/kdenetwork-filesharing-3.5.10
-~kde-base/kdenetwork-kfile-plugins-3.5.10
-~kde-base/kdenetwork-meta-3.5.10
-~kde-base/kdepasswd-3.5.10
-~kde-base/kdepim-3.5.10
-~kde-base/kdepim-kioslaves-3.5.10
-~kde-base/kdepim-kresources-3.5.10
-~kde-base/kdepim-meta-3.5.10
-~kde-base/kdepim-wizards-3.5.10
-~kde-base/kdeprint-3.5.10
-~kde-base/kdesdk-3.5.10
-~kde-base/kdesdk-kfile-plugins-3.5.10
-~kde-base/kdesdk-kioslaves-3.5.10
-~kde-base/kdesdk-meta-3.5.10
-~kde-base/kdesdk-misc-3.5.10
-~kde-base/kdesdk-scripts-3.5.10
-~kde-base/kdesktop-3.5.10
-~kde-base/kdesu-3.5.10
-~kde-base/kdetoys-3.5.10
-~kde-base/kdetoys-meta-3.5.10
-~kde-base/kdeutils-3.5.10
-~kde-base/kdeutils-meta-3.5.10
-~kde-base/kdewebdev-3.5.10
-~kde-base/kdewebdev-meta-3.5.10
-~kde-base/kdf-3.5.10
-~kde-base/kdialog-3.5.10
-~kde-base/kdict-3.5.10
-~kde-base/kdm-3.5.10
-~kde-base/kdnssd-3.5.10
-~kde-base/kdvi-3.5.10
-~kde-base/kedit-3.5.10
-~kde-base/keduca-3.5.10
-~kde-base/kenolaba-3.5.10
-~kde-base/kfax-3.5.10
-~kde-base/kfilereplace-3.5.10
-~kde-base/kfind-3.5.10
-~kde-base/kfloppy-3.5.10
-~kde-base/kfouleggs-3.5.10
-~kde-base/kgamma-3.5.10
-~kde-base/kgeography-3.5.10
-~kde-base/kget-3.5.10
-~kde-base/kghostview-3.5.10
-~kde-base/kgoldrunner-3.5.10
-~kde-base/kgpg-3.5.10
-~kde-base/khangman-3.5.10
-~kde-base/khelpcenter-3.5.10
-~kde-base/khexedit-3.5.10
-~kde-base/khotkeys-3.5.10
-~kde-base/kicker-3.5.10
-~kde-base/kicker-applets-3.5.10
-~kde-base/kiconedit-3.5.10
-~kde-base/kig-3.5.10
-~kde-base/kimagemapeditor-3.5.10
-~kde-base/kitchensync-3.5.10
-~kde-base/kiten-3.5.10
-~kde-base/kjots-3.5.10
-~kde-base/kjsembed-3.5.10
-~kde-base/kjumpingcube-3.5.10
-~kde-base/klaptopdaemon-3.5.10
-~kde-base/klatin-3.5.10
-~kde-base/klettres-3.5.10
-~kde-base/klickety-3.5.10
-~kde-base/klines-3.5.10
-~kde-base/klinkstatus-3.5.10
-~kde-base/klipper-3.5.10
-~kde-base/kmag-3.5.10
-~kde-base/kmahjongg-3.5.10
-~kde-base/kmail-3.5.10
-~kde-base/kmailcvt-3.5.10
-~kde-base/kmenuedit-3.5.10
-~kde-base/kmid-3.5.10
-~kde-base/kmilo-3.5.10
-~kde-base/kmines-3.5.10
-~kde-base/kmix-3.5.10
-~kde-base/kmoon-3.5.10
-~kde-base/kmousetool-3.5.10
-~kde-base/kmouth-3.5.10
-~kde-base/kmplot-3.5.10
-~kde-base/kmrml-3.5.10
-~kde-base/kmtrace-3.5.10
-~kde-base/knetattach-3.5.10
-~kde-base/knetwalk-3.5.10
-~kde-base/knetworkconf-3.5.10
-~kde-base/knewsticker-3.5.10
-~kde-base/knewsticker-scripts-3.5.10
-~kde-base/knode-3.5.10
-~kde-base/knotes-3.5.10
-~kde-base/kode-3.5.10
-~kde-base/kodo-3.5.10
-~kde-base/kolf-3.5.10
-~kde-base/kolourpaint-3.5.10
-~kde-base/kommander-3.5.10
-~kde-base/kompare-3.5.10
-~kde-base/konq-plugins-3.5.10
-~kde-base/konqueror-3.5.10
-~kde-base/konqueror-akregator-3.5.10
-~kde-base/konquest-3.5.10
-~kde-base/konsole-3.5.10
-~kde-base/konsolekalendar-3.5.10
-~kde-base/kontact-3.5.10
-~kde-base/kontact-specialdates-3.5.10
-~kde-base/kooka-3.5.10
-~kde-base/kopete-3.5.10
-~kde-base/korganizer-3.5.10
-~kde-base/korn-3.5.10
-~kde-base/korundum-3.5.10
-~kde-base/kpackage-3.5.10
-~kde-base/kpager-3.5.10
-~kde-base/kpat-3.5.10
-~kde-base/kpdf-3.5.10
-~kde-base/kpercentage-3.5.10
-~kde-base/kpersonalizer-3.5.10
-~kde-base/kpf-3.5.10
-~kde-base/kpilot-3.5.10
-~kde-base/kpoker-3.5.10
-~kde-base/kpovmodeler-3.5.10
-~kde-base/kppp-3.5.10
-~kde-base/krdc-3.5.10
-~kde-base/kreadconfig-3.5.10
-~kde-base/krec-3.5.10
-~kde-base/kregexpeditor-3.5.10
-~kde-base/kreversi-3.5.10
-~kde-base/krfb-3.5.10
-~kde-base/kruler-3.5.10
-~kde-base/ksame-3.5.10
-~kde-base/ksayit-3.5.10
-~kde-base/kscd-3.5.10
-~kde-base/kscreensaver-3.5.10
-~kde-base/kshisen-3.5.10
-~kde-base/ksig-3.5.10
-~kde-base/ksim-3.5.10
-~kde-base/ksirc-3.5.10
-~kde-base/ksirtet-3.5.10
-~kde-base/ksmiletris-3.5.10
-~kde-base/ksmserver-3.5.10
-~kde-base/ksnake-3.5.10
-~kde-base/ksnapshot-3.5.10
-~kde-base/ksokoban-3.5.10
-~kde-base/kspaceduel-3.5.10
-~kde-base/ksplashml-3.5.10
-~kde-base/kspy-3.5.10
-~kde-base/kstars-3.5.10
-~kde-base/kstart-3.5.10
-~kde-base/ksvg-3.5.10
-~kde-base/ksysguard-3.5.10
-~kde-base/ksystraycmd-3.5.10
-~kde-base/ksysv-3.5.10
-~kde-base/ktalkd-3.5.10
-~kde-base/kteatime-3.5.10
-~kde-base/ktimer-3.5.10
-~kde-base/ktip-3.5.10
-~kde-base/ktnef-3.5.10
-~kde-base/ktouch-3.5.10
-~kde-base/ktron-3.5.10
-~kde-base/kttsd-3.5.10
-~kde-base/ktuberling-3.5.10
-~kde-base/kturtle-3.5.10
-~kde-base/ktux-3.5.10
-~kde-base/kuickshow-3.5.10
-~kde-base/kuiviewer-3.5.10
-~kde-base/kuser-3.5.10
-~kde-base/kverbos-3.5.10
-~kde-base/kview-3.5.10
-~kde-base/kviewshell-3.5.10
-~kde-base/kvoctrain-3.5.10
-~kde-base/kwalletmanager-3.5.10
-~kde-base/kweather-3.5.10
-~kde-base/kwifimanager-3.5.10
-~kde-base/kwin-3.5.10
-~kde-base/kwin4-3.5.10
-~kde-base/kwordquiz-3.5.10
-~kde-base/kworldclock-3.5.10
-~kde-base/kxkb-3.5.10
-~kde-base/kxsldbg-3.5.10
-~kde-base/libkcal-3.5.10
-~kde-base/libkcddb-3.5.10
-~kde-base/libkdeedu-3.5.10
-~kde-base/libkdegames-3.5.10
-~kde-base/libkdenetwork-3.5.10
-~kde-base/libkdepim-3.5.10
-~kde-base/libkholidays-3.5.10
-~kde-base/libkmime-3.5.10
-~kde-base/libkonq-3.5.10
-~kde-base/libkpgp-3.5.10
-~kde-base/libkpimexchange-3.5.10
-~kde-base/libkpimidentities-3.5.10
-~kde-base/libkscan-3.5.10
-~kde-base/libksieve-3.5.10
-~kde-base/librss-3.5.10
-~kde-base/lilo-config-3.5.10
-~kde-base/lisa-3.5.10
-~kde-base/lskat-3.5.10
-~kde-base/mimelib-3.5.10
-~kde-base/networkstatus-3.5.10
-~kde-base/noatun-3.5.10
-~kde-base/noatun-plugins-3.5.10
-~kde-base/nsplugins-3.5.10
-~kde-base/pykde-3.5.10
-~kde-base/qtjava-3.5.10
-~kde-base/qtruby-3.5.10
-~kde-base/quanta-3.5.10
-~kde-base/renamedlg-audio-3.5.10
-~kde-base/renamedlg-images-3.5.10
-~kde-base/secpolicy-3.5.10
-~kde-base/smoke-3.5.10
-~kde-base/superkaramba-3.5.10
-~kde-base/umbrello-3.5.10
-
 # Ricardo Mendoza <ricmm@gentoo.org> (27 Aug 2008)
 # Beta driver, masking corresponding nvidia-settings
 ~x11-drivers/nvidia-drivers-177.68
@@ -1007,19 +687,9 @@ net-irc/bitchx
 # Will investigate in a few days.
 dev-db/rekall
 
-# Jeremy Olexa <darkside@gentoo.org> (29 Jun 2008)
-# Upstram doesn't support old version and we have the latest version in the
-# tree now. Remove in ~30 days. If you have a good reason to why we should keep
-# the old versions please comment on bug #157670.
-<=dev-util/gambas-1.0.17
-
 # Tiziano Müller <dev-zero@gentoo.org> (28 Jun 2008)
 # Masked for testing
 =dev-libs/xerces-c-3.0*
-
-# Jeremy Olexa <darkside@gentoo.org> (25 Jun 2008)
-# Masked for removal in 30 days by treecleaners. bug #130950
-=dev-util/gambas-1.9.23
 
 # Samuli Suominen <drac@gentoo.org> (24 Jun 2008)
 # Unported to Portaudio v19
