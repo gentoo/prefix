@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.14 2008/04/27 08:57:39 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.15 2008/09/14 02:04:27 solar Exp $
 
 EAPI="prefix"
 
@@ -72,6 +72,12 @@ src_unpack() {
 	#  - not using bindnow-flags() because cons.saver is only built on GNU/Linux
 	sed -i -e "s:^\(cons_saver_LDADD = .*\):\1 -Wl,-z,now:" \
 		src/Makefile.in
+
+	# docs try to run the files it just built while trying convert .1 to .hlp files.
+	# this will never work for cross compiles, so we simply don't make docs.
+	if tc-is-cross-compiler; then
+		sed -i -e s/'lib doc syntax'/'lib syntax'/ Makefile.in
+	fi
 
 	# Correctly generate charset.alias.
 	# Fixes bugs  71275, 105960 and 169678

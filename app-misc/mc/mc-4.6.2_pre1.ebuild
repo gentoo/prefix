@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.4 2008/05/05 17:12:22 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.6 2008/09/14 04:24:16 mr_bones_ Exp $
 
 EAPI="prefix 1"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_P=${P/_/-}
 
@@ -49,6 +49,12 @@ src_unpack() {
 	# Prevent lazy bindings in cons.saver binary for bug #135009
 	sed -i -e "s:^\(cons_saver_LDADD = .*\):\1 -Wl,-z,now:" \
 		src/Makefile.in || die "sed failed."
+
+	# docs try to run the files it just built while trying convert .1 to .hlp files.
+	# this will never work for cross compiles, so we simply don't make docs.
+	if tc-is-cross-compiler; then
+		sed -i -e s/'lib doc syntax'/'lib syntax'/ Makefile.in
+	fi
 }
 
 src_compile() {
