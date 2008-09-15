@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.272 2008/09/06 22:11:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.273 2008/09/14 15:47:42 ulm Exp $
+
+  14 Sep 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.3.ebuild:
+  Be less verbose, bug 237546.
 
   06 Sep 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-22.2-r2.ebuild:
   Remove vulnerable revision wrt bug 236498.

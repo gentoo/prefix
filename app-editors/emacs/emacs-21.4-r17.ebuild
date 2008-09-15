@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.9 2008/06/04 12:26:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.10 2008/09/14 15:47:42 ulm Exp $
 
 EAPI="prefix"
 
@@ -122,7 +122,7 @@ src_install() {
 	mv "${ED}"/usr/bin/emacs{-emacs,}-${SLOT} || die "mv emacs failed"
 	rm "${ED}"/usr/bin/emacs-${PV}-emacs-${SLOT}
 
-	einfo "Fixing info documentation..."
+	# move info documentation to the correct place
 	mkdir "${T}/emacs-${SLOT}"
 	mv "${ED}/usr/share/info/dir" "${T}"
 	for i in "${ED}"/usr/share/info/*
@@ -132,7 +132,7 @@ src_install() {
 	mv "${T}/emacs-${SLOT}" "${ED}/usr/share/info"
 	mv "${T}/dir" "${ED}/usr/share/info/emacs-${SLOT}"
 
-	einfo "Fixing manpages..."
+	# move man pages to the correct place
 	for m in "${ED}"/usr/share/man/man1/* ; do
 		mv "${m}" "${m%.1}-emacs-${SLOT}.1" || die "mv ${m} failed"
 	done
@@ -140,7 +140,7 @@ src_install() {
 	# avoid collision between slots
 	rm "${ED}"/usr/share/emacs/site-lisp/subdirs.el
 
-	einfo "Fixing permissions..."
+	# fix permissions
 	find "${ED}" -perm 664 |xargs chmod -f 644 2>/dev/null
 	find "${ED}" -type d |xargs chmod -f 755 2>/dev/null
 

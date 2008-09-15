@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3.ebuild,v 1.2 2008/09/05 18:59:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3.ebuild,v 1.3 2008/09/14 15:47:42 ulm Exp $
 
 EAPI="prefix"
 
@@ -172,13 +172,11 @@ src_install () {
 		|| die "moving Emacs executable failed"
 
 	# move info documentation to the correct place
-	einfo "Fixing info documentation ..."
 	for i in "${ED}"/usr/share/info/emacs-${SLOT}/*; do
 		mv "${i}" "${i}.info" || die "mv info failed"
 	done
 
 	# move man pages to the correct place
-	einfo "Fixing manpages ..."
 	for m in "${ED}"/usr/share/man/man1/* ; do
 		mv "${m}" "${m%.1}-emacs-${SLOT}.1" || die "mv man failed"
 	done
