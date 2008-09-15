@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.suse.com/pub/projects/${PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 
 RDEPEND="virtual/libc"
@@ -36,6 +36,15 @@ src_unpack() {
 	use amd64 && append-flags -fPIC -DPIC
 
 	eautoreconf
+
+	# prefixify some tools :/
+	epatch "${FILESDIR}"/${PN}-0.7.14_p20070809-prefix.patch
+	cd "${T}"/
+	cp "${FILESDIR}"/icecream-config .
+	cp "${FILESDIR}"/icecream-create-env .
+	epatch "${FILESDIR}"/icecream-config-prefix.patch
+	epatch "${FILESDIR}"/icecream-create-env-prefix.patch
+	eprefixify icecream-config icecream-create-env
 }
 
 src_compile() {
@@ -50,7 +59,7 @@ src_compile() {
 			outputfile="${outputfile/.docbook/}"
 
 			meinproc \
-			--stylesheet /usr/kde/3.5/share/apps/ksgmltools2/customization/kde-man.xsl \
+			--stylesheet "${EPREFIX}"/usr/kde/3.5/share/apps/ksgmltools2/customization/kde-man.xsl \
 			"${docfile}" && \
 			mv manpage.troff "${outputfile}" || \
 			die "compiling manpages failed"
@@ -61,9 +70,9 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 
-	dosbin "${FILESDIR}"/icecream-config || die "install failed"
+	dosbin "${T}"/icecream-config || die "install failed"
 
-	dosbin "${FILESDIR}"/icecream-create-env || die "install failed"
+	dosbin "${T}"/icecream-create-env || die "install failed"
 
 	newconfd suse/sysconfig.icecream icecream || die "install failed"
 	doinitd "${FILESDIR}"/icecream || die "install failed"
@@ -90,10 +99,10 @@ pkg_postinst() {
 		ebeep 2
 	fi
 
-	if [[ "${EROOT}" = "/" ]] ; then
+	if [[ "${ROOT}" = "/" ]] ; then
 		einfo "Scanning for compiler front-ends..."
-		/usr/sbin/icecream-config --install-links
-		/usr/sbin/icecream-config --install-links "${CHOST}"
+		"${EROOT}"/usr/sbin/icecream-config --install-links
+		"${EROOT}"/usr/sbin/icecream-config --install-links "${CHOST}"
 	else
 		ewarn "Install is incomplete; you must run the following command:"
 		ewarn " # icecream-config --install-links \"${CHOST}\""
