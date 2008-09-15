@@ -1,19 +1,20 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.1.5.ebuild,v 1.9 2008/07/11 04:49:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.2.3.ebuild,v 1.1 2008/09/14 19:56:38 jer Exp $
 
 EAPI="prefix"
 
 inherit bash-completion eutils
 
 DESCRIPTION="A fast unix command line interface to WWW"
-HOMEPAGE="http://alioth.debian.org/projects/surfraw/"
-SRC_URI="mirror://debian/pool/main/s/surfraw/${PN}_${PV}.tar.gz"
+HOMEPAGE="http://surfraw.alioth.debian.org/"
+SRC_URI="http://${PN}.alioth.debian.org/dist/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="public-domain"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
@@ -26,13 +27,15 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		--with-elvidir='$(datadir)'/surfraw || die "./configure failed"
+		--with-elvidir='$(datadir)'/surfraw \
+		--disable-opensearch \
+		|| die "./configure failed"
 	emake || die "make failed"
 }
 
 src_install() {
 	make DESTDIR="${D}" install || die "make install failed"
-	dodoc debian/changelog AUTHORS HACKING NEWS README TODO
+	dodoc debian/changelog AUTHORS ChangeLog HACKING NEWS README TODO
 
 	dobashcompletion surfraw-bash-completion
 }
