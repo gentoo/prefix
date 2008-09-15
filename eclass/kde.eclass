@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.218 2008/09/09 18:27:37 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.219 2008/09/13 21:30:21 carlo Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -19,7 +19,7 @@ inherit base eutils kde-functions flag-o-matic libtool autotools
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
-IUSE="debug xinerama elibc_FreeBSD"
+IUSE="debug elibc_FreeBSD"
 
 
 if [[ ${CATEGORY} == "kde-base" ]]; then
@@ -43,7 +43,6 @@ if [[ ${ARTS_REQUIRED} != "yes" && ${ARTS_REQUIRED} != "never" && ${PN} != "arts
 	IUSE="${IUSE} arts"
 fi
 
-
 # @ECLASS-VARIABLE: KDE_S
 # @DESCRIPTION:
 # Like the 'normal' ${S} this variable takes the path to the temporary build
@@ -63,12 +62,18 @@ fi
 
 DEPEND="sys-devel/make
 	dev-util/pkgconfig
-	dev-lang/perl
-	x11-libs/libXt
-	x11-proto/xf86vidmodeproto
-	xinerama? ( x11-proto/xineramaproto )"
+	dev-lang/perl"
 
-RDEPEND="xinerama? ( x11-libs/libXinerama )"
+if [[ ${CATEGORY} != "kde-base" ]] || [[ ${CATEGORY} == "kde-base" &&  ${PV##*.} -lt 10 ]] ; then
+	DEPEND="${DEPEND}
+		x11-libs/libXt
+		x11-proto/xf86vidmodeproto
+		xinerama? ( x11-proto/xineramaproto )"
+	RDEPEND="xinerama? ( x11-libs/libXinerama )"
+	IUSE="${IUSE} xinerama"
+else
+	RDEPEND=""
+fi
 
 if [[ ${ARTS_REQUIRED} == "yes" ]]; then
 	DEPEND="${DEPEND} kde-base/arts"
@@ -262,7 +267,11 @@ kde_src_compile() {
 		case $1 in
 			myconf)
 				debug-print-section myconf
-				myconf="$myconf --with-x --enable-mitshm $(use_with xinerama) --with-qt-dir=${QTDIR} --enable-mt --with-qt-libraries=${QTDIR}/$(get_libdir)"
+				if [[ ${CATEGORY} != "kde-base" ]] || [[ ${CATEGORY} == "kde-base" &&  ${PV##*.} -lt 10 ]] ; then
+					myconf+=" --with-x --enable-mitshm $(use_with xinerama) --with-qt-dir=${QTDIR} --enable-mt --with-qt-libraries=${QTDIR}/$(get_libdir)"
+				else
+					myconf+=" --with-qt-dir=${QTDIR} --enable-mt --with-qt-libraries=${QTDIR}/$(get_libdir)"
+				fi
 				# calculate dependencies separately from compiling, enables ccache to work on kde compiles
 				myconf="$myconf --disable-dependency-tracking"
 				if use debug ; then

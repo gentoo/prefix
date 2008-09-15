@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.124 2008/07/03 05:30:54 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.125 2008/09/14 19:43:41 dirtyepic Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -184,7 +184,7 @@ replace-flags() {
 		&& die "replace-flags takes 2 arguments, not $#"
 
 	local f fset
-	declare -a new_CFLAGS new_CXXFLAGS
+	declare -a new_CFLAGS new_CXXFLAGS new_FFLAGS new_FCFLAGS
 
 	for fset in CFLAGS CXXFLAGS FFLAGS FCFLAGS; do
 		# Looping over the flags instead of using a global

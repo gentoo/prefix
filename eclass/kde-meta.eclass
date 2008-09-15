@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.85 2008/02/21 10:33:11 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.86 2008/09/13 21:30:21 carlo Exp $
 
 # @ECLASS: kde-meta.eclass
 # @MAINTAINER:
@@ -348,9 +348,9 @@ kde-meta_src_unpack() {
 		# Don't add a param here without looking at its implementation.
 		kde_src_unpack
 
-		# kdebase: Remove the installation of the "startkde" script.
+		# kdebase: Remove the installation of the "startkde" and "kde3" scripts.
 		if [[ "$KMNAME" == "kdebase" ]]; then
-			sed -i -e s:"bin_SCRIPTS = startkde"::g "${S}"/Makefile.am.in
+			sed -i -e s:"bin_SCRIPTS = startkde.*"::g "${S}"/Makefile.am.in
 		fi
 
 		# for ebuilds with extended src_unpack

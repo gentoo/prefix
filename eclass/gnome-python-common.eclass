@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.1 2008/08/24 07:10:34 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.2 2008/09/14 16:24:17 ford_prefect Exp $
 
 # Original Author: Arun Raghavan <ford_prefect@gentoo.org> (based on the
 #		   gnome-python-desktop eclass by Jim Ramsay <lack@gentoo.org>)
@@ -56,8 +56,7 @@ gnome-python-common_pkg_setup() {
 }
 
 gnome-python-common_src_unpack() {
-	unpack ${A}
-	cd "${S}"
+	gnome2_src_unpack
 
 	# disable pyc compiling
 	if [[ -f py-compile ]]; then
