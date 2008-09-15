@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.109.2-r1.ebuild,v 1.1 2008/05/20 09:14:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.109.2-r1.ebuild,v 1.3 2008/09/14 18:29:14 bluebird Exp $
 
 EAPI="prefix"
 
@@ -49,6 +49,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-transport.patch"
 	epatch "${FILESDIR}/${PN}-0.103.0-riceitdown.patch"
 	epatch "${FILESDIR}/${PN}-0.103.0-ppc64fix.patch"
+	epatch "${FILESDIR}/${PN}-sparc-cpuinfo.patch"
 
 	eautoreconf
 }
