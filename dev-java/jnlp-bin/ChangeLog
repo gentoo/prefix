@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jnlp-bin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jnlp-bin/ChangeLog,v 1.13 2008/06/07 10:53:43 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jnlp-bin/ChangeLog,v 1.14 2008/09/13 22:30:28 caster Exp $
+
+  13 Sep 2008; Vlastimil Babka <caster@gentoo.org> -jnlp-bin-1.2.ebuild:
+  Remove obsolete gen-1 ebuilds.
 
   07 Jun 2008; Serkan Kaba <serkan@gentoo.org> jnlp-bin-1.2.ebuild,
   jnlp-bin-1.2-r1.ebuild:
