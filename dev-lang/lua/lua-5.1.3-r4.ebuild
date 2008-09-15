@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.3-r4.ebuild,v 1.3 2008/08/14 07:38:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.3-r4.ebuild,v 1.4 2008/09/13 20:24:39 solar Exp $
 
 EAPI="prefix 1"
 
-inherit eutils portability versionator
+inherit eutils portability versionator toolchain-funcs
 
 DESCRIPTION="A powerful light-weight programming language designed for extending applications"
 HOMEPAGE="http://www.lua.org/"
@@ -64,6 +64,7 @@ src_unpack() {
 }
 
 src_compile() {
+	tc-export CC
 	myflags=
 	# what to link to liblua
 	liblibs="-lm"
@@ -81,8 +82,8 @@ src_compile() {
 	fi
 
 	cd src
-	emake CFLAGS="${mycflags} ${CFLAGS}" \
-			RPATH="${EPREFIX}/usr/$(get_libdir)/" \
+	emake CC="${CC}" CFLAGS="${mycflags} ${CFLAGS}" \
+			RPATH="${EROOT}/usr/$(get_libdir)/" \
 			LUA_LIBS="${mylibs}" \
 			LIB_LIBS="${liblibs}" \
 			V=${PV} \

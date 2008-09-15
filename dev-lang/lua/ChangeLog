@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.116 2008/08/23 04:38:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.117 2008/09/13 20:24:39 solar Exp $
+
+  13 Sep 2008; <solar@gentoo.org> lua-5.1.3-r4.ebuild:
+  - make lua partially cross compile aware. More work might be needed
 
   23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml,
   lua-5.1.3-r3.ebuild:
