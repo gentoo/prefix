@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/module-build
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/ChangeLog,v 1.73 2008/03/28 09:30:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/ChangeLog,v 1.74 2008/09/15 10:14:56 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -module-build-0.28.ebuild,
+  -module-build-0.28.05.ebuild, -module-build-0.28.06.ebuild,
+  -module-build-0.28.07.ebuild, module-build-0.28.08.ebuild:
+  Cleanup. Remove dev-perl/version from DEPEND as it is not needed anymore.
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> module-build-0.28.08.ebuild:
   Stable for HPPA too.
