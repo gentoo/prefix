@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/XML-LibXML-1.66-r1.ebuild,v 1.1 2008/08/23 12:41:09 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/XML-LibXML-1.66-r1.ebuild,v 1.4 2008/09/15 19:34:54 ranger Exp $
 
 EAPI="prefix"
 
