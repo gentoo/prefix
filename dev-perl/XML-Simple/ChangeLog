@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/XML-Simple
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Simple/ChangeLog,v 1.66 2008/03/19 03:22:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Simple/ChangeLog,v 1.67 2008/09/15 19:36:52 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -XML-Simple-2.14.ebuild,
+  -XML-Simple-2.15.ebuild, -XML-Simple-2.16.ebuild:
+  Cleanup
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> XML-Simple-2.18.ebuild:
   Stable for HPPA too.
