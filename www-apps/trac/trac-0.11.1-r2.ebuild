@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.1-r1.ebuild,v 1.1 2008/09/10 07:50:30 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.1-r2.ebuild,v 1.1 2008/09/15 11:55:40 wrobel Exp $
 
 EAPI="prefix"
 
@@ -130,6 +130,7 @@ src_install() {
 	# Use this as the egg-cache for tracd
 	dodir /var/lib/trac/egg-cache
 	keepdir /var/lib/trac/egg-cache
+	fowners tracd:tracd /var/lib/trac/egg-cache
 
 	# documentation
 	cp -r contrib "${ED}"/usr/share/doc/${P}/
