@@ -1,6 +1,72 @@
 # ChangeLog for app-portage/gentoolkit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.124 2007/10/22 21:11:37 fuzzyray Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.134 2008/09/04 03:35:21 fuzzyray Exp $
+
+*gentoolkit-0.2.4.1 (04 Sep 2008)
+
+  04 Sep 2008; Paul Varner <fuzzyray@gentoo.org> +gentoolkit-0.2.4.1.ebuild:
+  gentoolkit-0.2.4.1 version bump. This fixes bugs #236483 and #236492. Bug
+  #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+
+*gentoolkit-0.2.4 (28 Aug 2008)
+
+  28 Aug 2008; Paul Varner <fuzzyray@gentoo.org> -gentoolkit-0.2.3.1.ebuild,
+  -gentoolkit-0.2.4_pre7.ebuild, -gentoolkit-0.2.4_rc2.ebuild,
+  -gentoolkit-0.2.4_rc3.ebuild, -gentoolkit-0.2.4_rc4.ebuild,
+  -gentoolkit-0.2.4_rc5.ebuild, -gentoolkit-0.2.4_rc6.ebuild,
+  +gentoolkit-0.2.4.ebuild:
+  Added gentoolkit-0.2.4 for stablization per Bug #203414. Remove previous
+  versions that are not needed.
+
+*gentoolkit-0.2.4_rc6 (27 Aug 2008)
+
+  27 Aug 2008; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_rc6.ebuild:
+  gentoolkit-0.2.4_rc6 version bump. This fixes bugs #203414, #232019,
+  #232270, #232599, #232797, #232803, #232938, #234358, and #234584. Bug
+  #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+
+*gentoolkit-0.2.4_rc5 (10 Jul 2008)
+
+  10 Jul 2008; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_rc5.ebuild:
+  gentoolkit-0.2.4_rc5 version bump. This fixes bugs #203414, #217070,
+  #219612, #220761, and #223255. Bug #170220 tracks all fixes made for the
+  gentoolkit-0.2.4 release.
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org> gentoolkit-0.2.3-r1.ebuild,
+  gentoolkit-0.2.3.1.ebuild, gentoolkit-0.2.4_pre7.ebuild,
+  gentoolkit-0.2.4_pre8.ebuild, gentoolkit-0.2.4_rc2.ebuild,
+  gentoolkit-0.2.4_rc3.ebuild, gentoolkit-0.2.4_rc4.ebuild:
+  python_mod_{cleanup,optimize} are ROOT aware.
+
+  25 Apr 2008; <ricmm@gentoo.org> gentoolkit-0.2.3-r1.ebuild:
+  Drop to ~mips due to unstable deps
+
+*gentoolkit-0.2.4_rc4 (24 Apr 2008)
+
+  24 Apr 2008; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_rc4.ebuild:
+  gentoolkit-0.2.4_rc4 version bump. This fixes bugs #211706, #211716,
+  #212573, #213294, #213328, #213659, #214370, and #216865. Bug #170220
+  tracks all fixes made for the gentoolkit-0.2.4 release.
+
+*gentoolkit-0.2.4_rc3 (26 Feb 2008)
+
+  26 Feb 2008; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_rc3.ebuild:
+  gentoolkit-0.2.4_rc3 version bump. This fixes bug #210940.
+  Bug #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+
+*gentoolkit-0.2.4_rc2 (20 Feb 2008)
+
+  20 Feb 2008; Paul Varner <fuzzyray@gentoo.org> gentoolkit-0.2.3-r1.ebuild,
+  -gentoolkit-0.2.4_pre6.ebuild, gentoolkit-0.2.4_pre7.ebuild,
+  -gentoolkit-0.2.4_rc1.ebuild, +gentoolkit-0.2.4_rc2.ebuild:
+  gentoolkit-0.2.4_rc2 version bump. This fixes bugs #106278, #119806,
+  #134440, #162493, #189257, #193979, #194234, #194993, #196460, #205132, and
+  #205227. Bug #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+  Removed older ebuilds. Fixed date and quoting problems in all ebuilds.
 
 *gentoolkit-0.2.4_pre8 (22 Oct 2007)
 *gentoolkit-0.2.3.1 (22 Oct 2007)
