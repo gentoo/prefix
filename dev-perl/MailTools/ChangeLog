@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/MailTools
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/MailTools/ChangeLog,v 1.60 2008/03/19 01:42:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/MailTools/ChangeLog,v 1.61 2008/09/15 19:08:21 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -MailTools-1.67.ebuild,
+  -MailTools-1.74.ebuild, -MailTools-1.76.ebuild:
+  Cleanup
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> MailTools-1.77.ebuild:
   Stable for HPPA too.
