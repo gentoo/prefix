@@ -19,6 +19,8 @@ HOMEPAGE="http://java.sun.com/javase/6/"
 # then the C:\java\jdk1.6.0_07 dir was added to a bz2 and thats it...
 SRC_URI="http://dev.gentoo.org/~mduft/java/jdk$(replace_version_separator 3 _)-windows-i586.tar.bz2"
 LICENSE="dlj-1.1"
+
+# WARNING: windows JDK not slotted for now, since we cannot use java-config
 SLOT="0"
 KEYWORDS="-* ~x86-winnt"
 RESTRICT="strip"
