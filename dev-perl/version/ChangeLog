@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/version
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.58 2008/07/22 07:16:09 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.59 2008/09/15 10:35:41 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -version-0.53.ebuild,
+  -version-0.67.01.ebuild, -version-0.68.ebuild, -version-0.69.ebuild,
+  -version-0.70.ebuild, -version-0.71.ebuild, -version-0.72.03.ebuild:
+  Cleanup
 
 *version-0.76 (22 Jul 2008)
 
