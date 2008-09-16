@@ -1,6 +1,14 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.194 2008/09/11 12:52:46 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.196 2008/09/15 18:49:18 suka Exp $
+
+  15 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0_rc1.ebuild:
+  Fix qstart-icon snafu
+
+  15 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0_rc1.ebuild:
+  Try to fix installation issues on amd64
 
 *openoffice-bin-3.0.0_rc1 (11 Sep 2008)
 

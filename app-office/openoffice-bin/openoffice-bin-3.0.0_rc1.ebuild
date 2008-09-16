@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc1.ebuild,v 1.2 2008/09/11 16:50:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc1.ebuild,v 1.4 2008/09/15 18:49:18 suka Exp $
 
 EAPI="prefix"
 
@@ -12,9 +12,18 @@ BUILDID="9350"
 MY_PV="${PV/_/}"
 MY_PV2="${MY_PV}_20080904"
 MY_PV3="${PV/_rc1/}-${BUILDID}"
-PACKED="OOO300_m5_native_packed-3"
-PACKED2="OOO300_m5_native_packed-2"
 BASIS="ooobasis3.0"
+
+if [ "${ARCH}" = "amd64" ] ; then
+	OOARCH="x86_64"
+	PACKED="OOO300_m5_native_packed-2"
+	PACKED2="OOO300_m5_native_packed-2"
+else
+	OOARCH="i586"
+	PACKED="OOO300_m5_native_packed-3"
+	PACKED2="OOO300_m5_native_packed-2"
+fi
+
 S="${WORKDIR}/${PACKED}_en-US.${BUILDID}/RPMS"
 DESCRIPTION="OpenOffice productivity suite"
 
@@ -70,23 +79,21 @@ src_unpack() {
 	eprefixify "${T}"/{50-openoffice-bin,wrapper.in}
 
 	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts ooolinguistic pyuno testtool writer xsltfilter ; do
-		rpm_unpack "${S}/${BASIS}-${i}-${MY_PV3}.i586.rpm"
+		rpm_unpack "${S}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
 	done
-
-	rpm_unpack "${S}/desktop-integration/openoffice.org-freedesktop-menus-2.4-9268.noarch.rpm"
 
 	for j in base calc draw impress math writer; do
-		rpm_unpack "${S}/openoffice.org3-${j}-${MY_PV3}.i586.rpm"
+		rpm_unpack "${S}/openoffice.org3-${j}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
-	rpm_unpack "${S}/openoffice.org3-${MY_PV3}.i586.rpm"
-	rpm_unpack "${S}/openoffice.org-ure-1.4.0-${BUILDID}.i586.rpm"
+	rpm_unpack "${S}/openoffice.org3-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "${S}/openoffice.org-ure-1.4.0-${BUILDID}.${OOARCH}.rpm"
 
 	rpm_unpack "${S}/desktop-integration/openoffice.org3.0-freedesktop-menus-3.0-${BUILDID}.noarch.rpm"
 
-	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.i586.rpm"
-	use kde && rpm_unpack "${S}/${BASIS}-kde-integration-${MY_PV3}.i586.rpm"
-	use java && rpm_unpack "${S}/${BASIS}-javafilter-${MY_PV3}.i586.rpm"
+	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
+	use kde && rpm_unpack "${S}/${BASIS}-kde-integration-${MY_PV3}.${OOARCH}.rpm"
+	use java && rpm_unpack "${S}/${BASIS}-javafilter-${MY_PV3}.${OOARCH}.rpm"
 
 	strip-linguas ${LANGS}
 
@@ -102,10 +109,10 @@ src_unpack() {
 		else
 			LANGDIR="${WORKDIR}/${PACKED2}_${i}.${BUILDID}/RPMS/"
 		fi
-		rpm_unpack ${LANGDIR}/${BASIS}-${i}-${MY_PV3}.i586.rpm
-		rpm_unpack ${LANGDIR}/openoffice.org3-${i}-${MY_PV3}.i586.rpm
+		rpm_unpack ${LANGDIR}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm
+		rpm_unpack ${LANGDIR}/openoffice.org3-${i}-${MY_PV3}.${OOARCH}.rpm
 		for j in base binfilter calc draw help impress math res writer; do
-			rpm_unpack ${LANGDIR}/${BASIS}-${i}-${j}-${MY_PV3}.i586.rpm
+			rpm_unpack ${LANGDIR}/${BASIS}-${i}-${j}-${MY_PV3}.${OOARCH}.rpm
 		done
 	done
 
@@ -114,7 +121,7 @@ src_unpack() {
 src_install () {
 
 	#Multilib install dir magic for AMD64
-	has_multilib_profile && ABI=x86
+	has_multilib_profile && ABI=${ARCH}
 	INSTDIR="/usr/$(get_libdir)/openoffice"
 
 	einfo "Installing OpenOffice.org into build root..."
@@ -131,7 +138,9 @@ src_install () {
 		sed -i -e s/openofficeorg3-${desk}/ooo-${desk}/g openoffice.org-${desk}.desktop || die
 		domenu openoffice.org-${desk}.desktop
 		insinto /usr/share/pixmaps
-		newins "${WORKDIR}/usr/share/icons/gnome/48x48/apps/openofficeorg3-${desk}.png" ooo-${desk}.png
+		if [ "${desk}" != "qstart" ] ; then
+			newins "${WORKDIR}/usr/share/icons/gnome/48x48/apps/openofficeorg3-${desk}.png" ooo-${desk}.png
+		fi
 	done
 
 	insinto /usr/share/mime/packages
