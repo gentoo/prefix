@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-Manifest
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Manifest/ChangeLog,v 1.41 2008/07/17 20:54:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Manifest/ChangeLog,v 1.42 2008/09/15 19:29:57 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -Test-Manifest-1.11.ebuild,
+  -Test-Manifest-1.14.ebuild, -Test-Manifest-1.17.ebuild:
+  Cleanup
 
   17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Test-Manifest-1.22.ebuild:
   alpha/ia64/sparc/x86 stable
