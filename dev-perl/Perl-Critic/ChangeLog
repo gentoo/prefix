@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Perl-Critic
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.43 2008/07/28 07:35:32 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.44 2008/09/15 19:17:45 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -Perl-Critic-1.03.ebuild,
+  -Perl-Critic-1.05.ebuild, -Perl-Critic-1.05.1.ebuild,
+  -Perl-Critic-1.05.3.ebuild, -Perl-Critic-1.06.ebuild:
+  Cleanup
 
   28 Jul 2008; Torsten Veller <tove@gentoo.org> Perl-Critic-1.082.ebuild:
   Perl-Critic-1.082 depends on dev-perl/PPI-1.201 (#219164)
