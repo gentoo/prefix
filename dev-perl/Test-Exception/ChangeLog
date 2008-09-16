@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-Exception
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Exception/ChangeLog,v 1.50 2008/07/17 20:35:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Exception/ChangeLog,v 1.51 2008/09/15 19:28:46 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -Test-Exception-0.21.ebuild,
+  -Test-Exception-0.22.ebuild, -Test-Exception-0.24.ebuild:
+  Cleanup
 
   17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Test-Exception-0.27.ebuild:
   alpha/ia64/sparc/x86 stable
