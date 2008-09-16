@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="as-is"
 SLOT="1.6"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 # Keeps this and java-virtuals/jaf in sync
@@ -19,5 +19,6 @@ RDEPEND="|| (
 		=dev-java/apple-jdk-bin-1.6.0*
 		=dev-java/sun-jdk-1.6.0*
 		=dev-java/ibm-jdk-bin-1.6.0*
+		=dev-java/winjdk-bin-1.6.0*
 	)"
 DEPEND=""
