@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmpcdec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.35 2008/09/13 11:15:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/ChangeLog,v 1.36 2008/09/15 09:40:48 armin76 Exp $
+
+  15 Sep 2008; Raúl Porcel <armin76@gentoo.org> libmpcdec-1.2.6-r2.ebuild:
+  alpha/ia64/sparc stable wrt #237030
 
   13 Sep 2008; nixnut <nixnut@gentoo.org> libmpcdec-1.2.6-r2.ebuild:
   Stable on ppc wrt bug 237030
