@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1869 2008/09/14 21:58:34 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1873 2008/09/15 22:18:56 gregkh Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Sep 2008; Greg Kroah-Hartman <gregkh@gentoo.org> use.local.desc:
+  remove media-video/undvd: entry, oops...
+
+  15 Sep 2008; Greg Kroah-Hartman <gregkh@gentoo.org> use.local.desc:
+  add media-video/undvd:mp4 use.local
+
+  15 Sep 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Package mask ~app-emacs/vm-8.0.11.581, bug 237730.
 
   14 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   remove dev-util/gambas:1 from the tree and update p.mask, bug #157670

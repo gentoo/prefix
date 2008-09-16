@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8982 2008/09/14 22:23:33 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8984 2008/09/15 14:36:14 ulm Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ulrich Mueller <ulm@gentoo.org> (15 Sep 2008)
+# Broken MIME (RFC 1522) encoding of headers, bug 237730.
+~app-emacs/vm-8.0.11.581
 
 # Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
 # Masked for removal in 60 days. Dead upstream, old, no maintainer, based on 2.5

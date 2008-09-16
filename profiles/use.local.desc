@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3852 2008/09/14 20:08:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3859 2008/09/16 00:27:53 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -852,6 +852,7 @@ games-fps/warsow:irc - Enable IRC support
 games-fps/worldofpadman:maps - Install extra maps (PadPack)
 games-kids/gcompris:gnet - will let GCompris fetch content from a web server
 games-mud/mmucl:mccp - adds support for the Mud Client Compression Protocol
+games-rpg/drascula:audio - Install optional audio files
 games-rpg/eternal-lands-data:music - Install optional music files (extra 30 meg)
 games-rpg/eternal-lands-data:sound - Install optional sound files (extra 40 meg)
 games-rpg/galaxymage:psyco - psyco python accelerator
@@ -1477,6 +1478,8 @@ media-video/transcode:mjpeg - Enables mjpegtools support
 media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
+media-video/undvd:mp4 - Support for MP4 container format
+media-video/undvd:ogm - Support for OGM container format
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
 media-video/vdr:analogtv - Add support for the analogtv plugin
 media-video/vdr:atsc - Support for NorthAmerican Broadcast ( rudimentary )
@@ -1918,6 +1921,7 @@ net-misc/mediatomb:taglib -  Use media-libs/taglib for reading files' metadata r
 net-misc/neon:pkcs11 - Add support PKCS11 support
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
+net-misc/nxcl:nxclient - Use nxssh from net-misc/nxclient instead of standard ssh
 net-misc/nxserver-freenx:nxclient - Add support for the commercial nxclient
 net-misc/oidentd:masquerade - Enable support for masqueraded/NAT connections
 net-misc/openssh:X509 - Adds support for X.509 certificate authentication
