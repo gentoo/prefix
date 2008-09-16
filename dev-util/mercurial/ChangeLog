@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.77 2008/07/07 07:12:12 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.78 2008/09/15 20:13:58 jer Exp $
+
+  15 Sep 2008; Jeroen Roovers <jer@gentoo.org> mercurial-1.0.1-r3.ebuild:
+  Marked ~hppa too.
 
   07 Jul 2008; Krzysiek Pawlik <nelchael@gentoo.org>
   -files/mercurial-0.9.5-hide-passwords.diff, -mercurial-0.9.5-r1.ebuild,
