@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/YAML-Syck
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/YAML-Syck/ChangeLog,v 1.12 2008/08/24 08:30:18 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/YAML-Syck/ChangeLog,v 1.13 2008/09/15 11:45:47 tove Exp $
+
+  15 Sep 2008; Torsten Veller <tove@gentoo.org> -YAML-Syck-0.71.ebuild,
+  -YAML-Syck-0.72.ebuild, -YAML-Syck-0.84.ebuild, -YAML-Syck-0.85.ebuild,
+  -YAML-Syck-0.91.ebuild, -YAML-Syck-0.96.ebuild, -YAML-Syck-1.04.ebuild:
+  Cleanup
 
 *YAML-Syck-1.05 (24 Aug 2008)
 
