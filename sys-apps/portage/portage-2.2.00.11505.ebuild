@@ -16,7 +16,7 @@ SLOT="0"
 # USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
 IUSE_ELIBC="elibc_glibc elibc_uclibc elibc_FreeBSD"
 IUSE_KERNEL="kernel_linux"
-IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_KERNEL}"
+IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_KERNEL} cross-prefix"
 DEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
@@ -78,6 +78,8 @@ src_unpack() {
 		cd "${S}"
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
+
+	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.11514-cross-prefix.patch
 }
 
 src_compile() {
