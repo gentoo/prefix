@@ -98,6 +98,7 @@ eautoreconf() {
 	einfo "Running eautoreconf in '$(pwd)' ..."
 	[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
 	eaclocal
+	[[ ${CHOST} == *-darwin* ]] && LIBTOOLIZE="glibtoolize"
 	if ${LIBTOOLIZE:-libtoolize} -n --install >& /dev/null ; then
 		_elibtoolize --copy --force --install
 	else
