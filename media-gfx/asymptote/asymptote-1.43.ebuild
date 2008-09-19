@@ -185,7 +185,7 @@ src_install() {
 	# LaTeX style
 	if use latex; then
 		cd doc
-		insinto "${ASY_TEXMFDIR}"/tex/latex
+		insinto "${ASY_TEXMFDIR#${EPREFIX}}"/tex/latex
 		doins ${PN}.sty asycolors.sty
 		if use examples; then
 			insinto /usr/share/${PN}/examples
