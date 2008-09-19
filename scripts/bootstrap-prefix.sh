@@ -200,41 +200,31 @@ bootstrap_setup() {
 	fi
 }
 
-bootstrap_tree() {
-	local PV="20080710"
+do_tree() {
 	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
 	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
 		cd "${ROOT}"/usr
-		efetch "${DISTFILES_URL}/prefix-overlay-${PV}.tar.bz2"
-		einfo "Unpacking, this may take awhile"
-		bzip2 -dc "${DISTDIR}"/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
+		efetch "$1/$2"
 		# beware: fetch creates DISTDIR!!!
-		mv portage/distfiles distfiles
+		mv "${DISTDIR}" distfiles
 		rm -Rf portage
-		mv rsync1* portage
+		einfo "Unpacking, this may take awhile"
+		bzip2 -dc distfiles/$2 | $TAR -xf - || exit 1
 		mv distfiles portage/
 		touch portage/.unpacked
 	fi
 }
 
+bootstrap_tree() {
+	local PV="20080917"
+	do_tree "${DISTFILES_URL}" prefix-overlay-${PV}.tar.bz2
+}
+
 bootstrap_latest_tree() {
-	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
-	do
-		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
-	done
-	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
-		cd "${ROOT}"/usr
-		efetch "${SNAPSHOT_URL}/portage-latest.tar.bz2"
-		# beware: fetch creates DISTDIR!!!
-		mv "${DISTDIR}" distfiles
-		rm -Rf portage
-		bzip2 -dc distfiles/portage-latest.tar.bz2 | $TAR -xf - || exit 1
-		mv distfiles portage/
-		touch portage/.unpacked
-	fi
+	do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 }
 
 bootstrap_startscript() {
