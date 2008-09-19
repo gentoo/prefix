@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 Sep 2008; Markus Duft <mduft@gentoo.org> windows/winnt/profile.bashrc:
+  added functionality to create symlinks to .exe files on winnt. renamed some
+  functions
+
   17 Sep 2008; Markus Duft <mduft@gentoo.org> +windows/winnt/packages:
   remove packages from system set that are not available on native windows.
 

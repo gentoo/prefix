@@ -1,4 +1,4 @@
-# On interix, binary files (executables, shared libraries) in use
+# On windows, binary files (executables, shared libraries) in use
 # cannot be replaced during merge.
 # But it is possible to rename them and remove lateron when they are
 # not used any more by any running program.
@@ -6,7 +6,7 @@
 # This is a workaround for portage bug#199868,
 # and should be dropped once portage does sth. like this itself.
 
-interix_cleanup_removed_files() {
+windows_cleanup_removed_files() {
 	local removedlist=$1
 	rm -f "${removedlist}".new
 
@@ -40,7 +40,7 @@ interix_cleanup_removed_files() {
 	rm "${removedlist}".old
 }
 
-interix_find_removed_slot() {
+windows_find_removed_slot() {
 	local f=$1
 	local n=0
 	while [[ ${n} -lt 100 && -f "${f}${n}" ]]; do
@@ -55,7 +55,7 @@ interix_find_removed_slot() {
 	echo $n
 }
 
-interix_prepare_file() {
+windows_prepare_file() {
 	local failed=0
 	my_mv=mv
 
@@ -71,7 +71,7 @@ interix_prepare_file() {
 
 post_pkg_preinst() {
 	local removedlist="${EROOT}var/lib/portage/files2bremoved"
-	interix_cleanup_removed_files $removedlist
+	windows_cleanup_removed_files $removedlist
 	
 	# now go for current package
 	cd "${D}"
@@ -85,9 +85,23 @@ post_pkg_preinst() {
 		grep "^${rmstem}$" "${removedlist}" >/dev/null \
 			|| echo "${rmstem}" >> "${removedlist}"
 
-		local n=$(interix_find_removed_slot ${ROOT}${rmstem})
+		local n=$(windows_find_removed_slot ${ROOT}${rmstem})
 		ebegin "backing up text file ${ROOT}${f} (${n})"
-		eend $(interix_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
+		eend $(windows_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
+	done
+
+	cd "${ED}"
+	find . -name '*.exe' | while read f; do
+		if file "${f}" | grep "GUI" > /dev/null 2>&1; then
+			if test ! -f "${f%.exe}"; then
+				einfo "Windows GUI Executable $f will have no symlink."
+			fi
+		else
+			if test ! -f "${f%.exe}"; then
+				ebegin "creating ${f%.exe} -> ${f} for console accessibility."
+				eend $(ln -sf "$(basename "${f}")" "${f%.exe}" && echo 0 || echo 1)
+			fi
+		fi
 	done
 }
 
@@ -115,14 +129,14 @@ post_pkg_prerm() {
 			grep "^${rmstem}$" "${removedlist}" > /dev/null \
 				|| echo "${rmstem}" >> "${removedlist}"
 
-			local n=$(interix_find_removed_slot ${ROOT}${rmstem})
+			local n=$(windows_find_removed_slot ${ROOT}${rmstem})
 			ebegin "preparing ${ROOT}${f} for unmerge ($n)"
-			eend $(interix_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
+			eend $(windows_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
 		fi
 	done
 }
 
 pre_pkg_postrm() {
 	local removedlist="${EROOT}var/lib/portage/files2bremoved"
-	interix_cleanup_removed_files $removedlist
+	windows_cleanup_removed_files $removedlist
 }
