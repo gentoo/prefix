@@ -286,8 +286,8 @@ x-modular_reconf_source() {
 	fi
 
 	case ${CHOST} in
-	*-interix* | *-aix*)
-		# Need recent libtool for interix, aix.
+	*-interix* | *-aix* | *-winnt*)
+		# Need recent libtool for interix, aix, winnt.
 		# For performance reasons do it where really required only.
 		# <haubi@gentoo.org> - July 21, 2008
 		eautoreconf
