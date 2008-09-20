@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.13 2008/08/16 15:07:45 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.15 2008/09/19 12:00:04 yngwin Exp $
+
+  19 Sep 2008; Ben de Groot <yngwin@gentoo.org>
+  +files/qt-gui-designer-4.4.1.patch, qt-gui-4.4.1.ebuild:
+  Add fix for bug 235392
+
+*qt-gui-4.4.2 (19 Sep 2008)
+
+  19 Sep 2008; Ben de Groot <yngwin@gentoo.org> +qt-gui-4.4.2.ebuild:
+  Version bump
 
   16 Aug 2008; Ben de Groot <yngwin@gentoo.org> qt-gui-4.4.1.ebuild:
   Add pdepend on qt-qt3support
