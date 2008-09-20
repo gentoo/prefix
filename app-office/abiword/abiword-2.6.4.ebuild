@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.4.ebuild,v 1.8 2008/09/10 09:30:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.4.ebuild,v 1.9 2008/09/18 00:26:44 ranger Exp $
 
 EAPI="prefix 1"
 
