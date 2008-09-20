@@ -1,9 +1,14 @@
 # ChangeLog for x11-terms/clusterssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/ChangeLog,v 1.22 2008/06/06 06:03:18 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/ChangeLog,v 1.23 2008/09/17 11:40:19 tantive Exp $
 
   06 Jun 2008; Markus Rothe <corsair@gentoo.org> clusterssh-3.21.ebuild:
   Added ~ppc64; bug #225057
+
+*clusterssh-3.22 (17 Sep 2008)
+
+  17 Sep 2008; Michael Imhof <tantive@gentoo.org> +clusterssh-3.22.ebuild:
+  Version bumped. Closes #237449.
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   -clusterssh-2.16.ebuild, -clusterssh-2.17.ebuild, -clusterssh-2.20.ebuild,
