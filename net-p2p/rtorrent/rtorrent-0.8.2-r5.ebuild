@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.2-r5.ebuild,v 1.1 2008/08/26 21:04:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.2-r5.ebuild,v 1.2 2008/09/16 07:12:36 loki_val Exp $
 
 EAPI="prefix"
 
@@ -53,18 +53,16 @@ src_compile() {
 	emake || die "emake failed"
 }
 
-pkg_postinst() {
-	elog "rtorrent now supports a configuration file."
-	elog "A sample configuration file for rtorrent can be found"
-	elog "in ${EROOT}usr/share/doc/${PF}/rtorrent.rc.gz."
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS README TODO doc/rtorrent.rc
 }
 
 pkg_postinst() {
+	elog "rtorrent now supports a configuration file."
+	elog "A sample configuration file for rtorrent can be found"
+	elog "in ${EROOT}usr/share/doc/${PF}/rtorrent.rc.gz."
+	elog ""
 	ewarn "If you're upgrading from rtorrent <0.8.0, you will have to delete your"
 	ewarn "session directory or run the fixSession080-c.py script from this address:"
 	ewarn "http://rssdler.googlecode.com/files/fixSession080-c.py"

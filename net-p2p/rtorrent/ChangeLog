@@ -1,6 +1,13 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.118 2008/08/26 21:04:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.119 2008/09/16 07:12:36 loki_val Exp $
+
+*rtorrent-0.8.3 (16 Sep 2008)
+
+  16 Sep 2008; Peter Alfredsen <loki_val@gentoo.org>
+  rtorrent-0.8.2-r3.ebuild, -rtorrent-0.8.2-r4.ebuild,
+  rtorrent-0.8.2-r5.ebuild, +rtorrent-0.8.3.ebuild:
+  rtorrent-0.8.3/libtorrent-0.12.3 bump
 
 *rtorrent-0.8.2-r5 (26 Aug 2008)
 

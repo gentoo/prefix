@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.2-r4.ebuild,v 1.1 2008/08/07 22:00:07 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.3.ebuild,v 1.1 2008/09/16 07:12:36 loki_val Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools toolchain-funcs flag-o-matic
+inherit base eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="BitTorrent Client using libtorrent"
 HOMEPAGE="http://libtorrent.rakshasa.no/"
@@ -21,18 +21,7 @@ DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
 	sys-libs/ncurses
 	xmlrpc? ( dev-libs/xmlrpc-c )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.8.0+gcc-4.3.patch
-	epatch "${FILESDIR}"/${P}-fix_start_stop_filter.patch
-	epatch "${FILESDIR}"/${P}-fix_conn_type_seed.patch
-	epatch "${FILESDIR}"/${P}-fix_load_cache.patch
-	epatch "${FILESDIR}"/${P}-fix_utf8_filenames.patch
-	epatch "${FILESDIR}"/${P}-fix-configure-execinfo.patch
-	epatch "${FILESDIR}"/${P}-gcc34.patch
-	eautoreconf
-}
+PATCHES=( "${FILESDIR}/${PN}-0.8.2-gcc34.patch" )
 
 src_compile() {
 	replace-flags -Os -O2
@@ -42,8 +31,7 @@ src_compile() {
 		filter-flags -fomit-frame-pointer -fforce-addr
 	fi
 
-	econf \
-		$(use_enable debug) \
+	econf	$(use_enable debug) \
 		$(use_enable ipv6) \
 		$(use_with xmlrpc xmlrpc-c) \
 		--disable-dependency-tracking \
@@ -52,18 +40,16 @@ src_compile() {
 	emake || die "emake failed"
 }
 
-pkg_postinst() {
-	elog "rtorrent now supports a configuration file."
-	elog "A sample configuration file for rtorrent can be found"
-	elog "in ${EROOT}usr/share/doc/${PF}/rtorrent.rc.gz."
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS README TODO doc/rtorrent.rc
 }
 
 pkg_postinst() {
+	elog "rtorrent now supports a configuration file."
+	elog "A sample configuration file for rtorrent can be found"
+	elog "in ${EROOT}usr/share/doc/${PF}/rtorrent.rc.gz."
+	elog ""
 	ewarn "If you're upgrading from rtorrent <0.8.0, you will have to delete your"
 	ewarn "session directory or run the fixSession080-c.py script from this address:"
 	ewarn "http://rssdler.googlecode.com/files/fixSession080-c.py"
