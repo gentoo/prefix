@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.66 2008/09/13 08:56:40 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.67 2008/09/16 15:00:02 jer Exp $
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> activesupport-2.1.1.ebuild:
+  Marked ~hppa too.
 
 *activesupport-2.1.1 (13 Sep 2008)
 
