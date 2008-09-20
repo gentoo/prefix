@@ -1,7 +1,8 @@
 http://www.opensource.apple.com/darwinsource/Current/OpenSSH-95.1.4/patches/DVG-4122722+5277818_new_EA.patch
 
 The patch was modified not to patch configure and config.h.in, and
-rediffed.
+rediffed.  Additionally, for Tiger (10.4) compatability, copyfile func
+is only checked for when copyfile.h is present.
 
 diff -ur openssh-5.1p1.orig/configure.ac openssh-5.1p1/configure.ac
 --- openssh-5.1p1.orig/configure.ac	2008-09-20 20:22:30 +0200
@@ -10,8 +11,8 @@ diff -ur openssh-5.1p1.orig/configure.ac openssh-5.1p1/configure.ac
  	AC_SUBST(TEST_SSH_IPV6, yes)
  fi
  
-+AC_CHECK_FUNCS(copyfile)
-+AC_CHECK_HEADERS(copyfile.h)
++AC_CHECK_HEADERS(copyfile.h,
++[AC_CHECK_FUNCS(copyfile)])
 +
  AC_EXEEXT
  AC_CONFIG_FILES([Makefile buildpkg.sh opensshd.init openssh.xml \
