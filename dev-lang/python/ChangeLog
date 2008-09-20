@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.344 2008/09/14 14:01:28 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.346 2008/09/19 16:44:09 hawking Exp $
+
+*python-2.5.2-r8 (19 Sep 2008)
+*python-2.4.4-r15 (19 Sep 2008)
+
+  19 Sep 2008; Ali Polatel <hawking@gentoo.org> +python-2.4.4-r15.ebuild,
+  +python-2.5.2-r8.ebuild:
+  Revbumps. Updated patchset to fix bug 238124. Install examples under
+  /usr/share/doc/$PF/examples.
+
+  17 Sep 2008; Brent Baude <ranger@gentoo.org> python-2.5.2-r7.ebuild:
+  stable ppc64, bug 236723
 
   14 Sep 2008; Sven Wegener <swegener@gentoo.org> python-2.5.2-r6.ebuild,
   python-2.5.2-r7.ebuild:

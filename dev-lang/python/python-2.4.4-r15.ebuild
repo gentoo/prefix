@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r7.ebuild,v 1.8 2008/09/17 14:26:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r15.ebuild,v 1.1 2008/09/19 16:44:09 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -9,7 +9,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils autotools flag-o-matic python multilib versionator toolchain-funcs alternatives libtool
+inherit autotools eutils flag-o-matic python multilib versionator toolchain-funcs alternatives
 
 # we need this so that we don't depends on python.eclass
 PYVER_MAJOR=$(get_major_version)
@@ -18,42 +18,49 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
-
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r7.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}-r12.tar.bz2"
 
 LICENSE="PSF-2.2"
-SLOT="2.5"
+SLOT="2.4"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc +threads examples elibc_uclibc wininst"
+IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 doc +cxx +threads examples elibc_uclibc wininst"
 
-# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
-#       do not conflict with the ones in python proper. - liquidx
-
+# Can't be compiled against db-4.5 Bug #179377
 DEPEND=">=sys-libs/zlib-1.1.3
+	!dev-python/cjkcodecs
 	!build? (
-		sqlite? ( >=dev-db/sqlite-3 )
 		tk? ( >=dev-lang/tk-8.0 )
-		ncurses? ( >=sys-libs/ncurses-5.2
-					readline? ( >=sys-libs/readline-4.1 ) )
-		berkdb? ( || ( sys-libs/db:4.5 sys-libs/db:4.4 sys-libs/db:4.3
-					sys-libs/db:4.2 ) )
+		ncurses? ( >=sys-libs/ncurses-5.2 readline? ( >=sys-libs/readline-4.1 ) )
+		berkdb? ( || ( sys-libs/db:4.4  sys-libs/db:4.3 ) )
 		gdbm? ( sys-libs/gdbm )
 		ssl? ( dev-libs/openssl )
-		doc? ( dev-python/python-docs:2.5 )
+		doc? ( dev-python/python-docs:2.4 )
 		dev-libs/expat
 	)"
 
 # NOTE: changed RDEPEND to PDEPEND to resolve bug 88777. - kloeri
 # NOTE: added blocker to enforce correct merge order for bug 88777. - zmedico
 
+RDEPEND="${DEPEND} build? ( !dev-python/pycrypto )"
 PDEPEND="${DEPEND} app-admin/python-updater"
+
 PROVIDE="virtual/python"
 
 src_unpack() {
 	unpack ${A}
+
+	# prefix adjustments of python-updater
+	cp "${FILESDIR}"/python-updater-r1 "${T}"/python-updater-r1
+	cd "${T}"
+	epatch "${FILESDIR}"/python-updater-r1-prefix.patch
+	eprefixify python-updater-r1
+
+	cd "${WORKDIR}/${PV}"
+	epatch "${FILESDIR}"/${PN}-2.4.4-readline.delta.patch
+
 	cd "${S}"
 
 	if tc-is-cross-compiler ; then
@@ -74,56 +81,32 @@ src_unpack() {
 		Modules/getpath.c \
 		setup.py || die
 
-	# fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
+	# fix os.utime() on hppa. utimes it not supported but unfortunately
+	# reported as working - gmsoft (22 May 04)
 	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
 	[ "${ARCH}" = "hppa" ] && sed -e 's/utimes //' -i "${S}"/configure
 
-	if ! use wininst; then
-		# remove microsoft windows executables
-		rm Lib/distutils/command/wininst-*.exe
-	fi
-
 	# python has some gcc-apple specific CFLAGS built in... rip them out
-	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
-	# python defaults to using .so files, however they are bundles
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	# python doesn't build a libpython2.5.dylib by itself...
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-libpython2.5.patch
+	epatch "${FILESDIR}"/${P}-darwin-fsf-gcc.patch
+	# python defaults to using .so files... so stupid
+	epatch "${FILESDIR}"/${P}-darwin-bundle.patch
+	# python doesn't build a libpython2.4.dylib by itself...
+	epatch "${FILESDIR}"/${P}-darwin-libpython2.4.patch
 	# and to build this lib, we need -fno-common, which python doesn't use, and
 	# to have _NSGetEnviron being used, which by default it isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
-	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
-
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
-
-	# set RUNSHARED for 'regen' in Lib/plat-*
-	epatch "${FILESDIR}"/${PN}-2.5.1-platdir-runshared.patch
-
-	# on hpux, use gcc to link if used to compile
-	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
-
 	# do not use 'which' to find binaries, but go through the PATH.
-	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
-	# better use mutexes on aix5 instead of semaphores.
-#	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
-	# build shared library on aix
-	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
-	# at least IRIX starts spitting out ugly errors, but we want to use prefix
-	# grep anyway
-	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
-	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
-	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
+	epatch "${FILESDIR}"/${P}-ld_so_aix-which.patch
 
-	# patch to make python behave nice with interix. There is one part
-	# maybe affecting other x86-platforms, thus conditional.
-	[[ ${CHOST} == *-interix* ]] && {
-		epatch "${FILESDIR}"/${PN}-2.5.1-interix.patch
-		# this one could be applied unconditionally, but to keep it
-		# clean, i do it together with the conditional one.
-		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
-	}
+	# enforce LINKCC to use gcc to prevent python from being linked to libstdc++.so
+	epatch "${FILESDIR}"/${P}-linkcc.patch
+
+	if ! use wininst; then
+		# remove microsoft windows executables
+		rm Lib/distutils/command/wininst-*.exe
+	fi
 
 	eautoreconf
 }
@@ -131,28 +114,31 @@ src_unpack() {
 src_configure() {
 	# disable extraneous modules with extra dependencies
 	if use build; then
-		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _sqlite3"
+		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
 		export PYTHON_DISABLE_SSL=1
 	else
-		# dbm module can link to berkdb or gdbm
-		# defaults to gdbm when both are enabled, #204343
-		local disable
-		use berkdb   || use gdbm || disable="${disable} dbm"
-		use berkdb   || disable="${disable} bsddb"
-		use gdbm     || disable="${disable} gdbm"
-		use ncurses  || disable="${disable} _curses _curses_panel"
-		use readline || disable="${disable} readline"
-		use sqlite   || disable="${disable} _sqlite3"
-		use ssl      || export PYTHON_DISABLE_SSL=1
-		use tk       || disable="${disable} _tkinter"
-		export PYTHON_DISABLE_MODULES="${disable}"
+		# dbm module can link to berkdb or gdbm -- defaults to gdbm when
+		# both are enabled, see #204343
+		use berkdb || use gdbm \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm"
+		use gdbm \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} gdbm"
+		use berkdb \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} bsddb"
+		use readline \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} readline"
+		use tk \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _tkinter"
+		use ncurses \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _curses _curses_panel"
+		use ssl \
+			|| export PYTHON_DISABLE_SSL=1
+		export PYTHON_DISABLE_MODULES
+		echo $PYTHON_DISABLE_MODULES
 	fi
-	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-
 	filter-flags -malign-double
 
 	# Seems to no longer be necessary
@@ -161,18 +147,17 @@ src_compile() {
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=50309
 	if is-flag -O3; then
-	   is-flag -fstack-protector-all && replace-flags -O3 -O2
-	   use hardened && replace-flags -O3 -O2
-	fi
-
-	# See #228905
-	if [[ $(gcc-major-version) -ge 4 ]]; then
-		append-flags -fwrapv
+		is-flag -fstack-protector-all && replace-flags -O3 -O2
+		use hardened && replace-flags -O3 -O2
 	fi
 
 	export OPT="${CFLAGS}"
 
 	local myconf
+	#if we are creating a new build image, we remove the dependency on g++
+	if use build && ! use bootstrap || ! use cxx ; then
+		myconf="--with-cxx=no"
+	fi
 
 	# super-secret switch. don't use this unless you know what you're
 	# doing. enabling UCS2 support will break your existing python
@@ -189,7 +174,7 @@ src_compile() {
 
 	if tc-is-cross-compiler ; then
 		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
-		./configure || die "cross-configure failed"
+			./configure --with-cxx=no || die "cross-configure failed"
 		emake python Parser/pgen || die "cross-make failed"
 		mv python hostpython
 		mv Parser/pgen Parser/hostpgen
@@ -202,15 +187,6 @@ src_compile() {
 
 	# export CXX so it ends up in /usr/lib/python2.x/config/Makefile
 	tc-export CXX
-
-	# set LDFLAGS so we link modules with -lpython2.5 correctly.
-	# Needed on FreeBSD unless python2.5 is already installed.
-	# Please query BSD team before removing this!
-	append-ldflags "-L."
-
-	# python defaults to use 'cc_r' on aix
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
-
 	econf \
 		--with-fpectl \
 		--enable-shared \
@@ -218,11 +194,14 @@ src_compile() {
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
+		--disable-framework \
+		--disable-toolbox-glue \
+		--with-gcc \
 		${myconf} || die
 	emake || die "Parallel make failed"
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# create libpython on Darwin
-		emake libpython2.5.dylib || die
+		emake libpython2.4.dylib || die
 	fi
 }
 
@@ -231,20 +210,14 @@ src_install() {
 	src_configure
 	make DESTDIR="${D}" altinstall maninstall || die
 
-	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
+	# install our own custom python-config
+	exeinto /usr/bin
+	newexe "${FILESDIR}"/python-config-${PYVER}-r1 python-config-${PYVER}
 
-	# Fix slotted collisions
-	mv "${ED}"/usr/bin/pydoc "${ED}"/usr/bin/pydoc${PYVER}
-	mv "${ED}"/usr/bin/idle "${ED}"/usr/bin/idle${PYVER}
-	mv "${ED}"/usr/share/man/man1/python.1 \
-		"${ED}"/usr/share/man/man1/python${PYVER}.1
-	rm -f "${ED}"/usr/bin/smtpd.py
-
-	# While we're working on the config stuff... Let's fix the OPT var
-	# so that it doesn't have any opts listed in it. Prevents the problem
-	# with compiling things with conflicting opts later.
-	dosed -e 's:^OPT=.*:OPT=-DNDEBUG:' \
-			/usr/$(get_libdir)/python${PYVER}/config/Makefile
+	# Use correct libdir in python-config
+	dosed "s:/usr/lib/:${EPREFIX}/usr/$(get_libdir)/:" /usr/bin/python-config-${PYVER}
+	# Use correct shebang
+	dosed "1s|^#!/usr/bin/python$|#!${EPREFIX}/usr/bin/python|" /usr/bin/python-config-${PYVER}
 
 	if use build ; then
 		rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
@@ -253,6 +226,13 @@ src_install() {
 		use berkdb || rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/bsddb
 		use tk || rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/lib-tk
 	fi
+
+	# Fix slotted collisions
+	mv "${ED}"/usr/bin/pydoc "${ED}"/usr/bin/pydoc${PYVER}
+	mv "${ED}"/usr/bin/idle "${ED}"/usr/bin/idle${PYVER}
+	mv "${ED}"/usr/share/man/man1/python.1 \
+		"${ED}"/usr/share/man/man1/python${PYVER}.1
+	rm -f "${ED}"/usr/bin/smtpd.py
 
 	prep_ml_includes usr/include/python${PYVER}
 
@@ -264,9 +244,15 @@ src_install() {
 	insinto /usr/$(get_libdir)/python${PYVER}/config
 	doins "${S}"/Makefile.pre.in
 
+	# While we're working on the config stuff... Let's fix the OPT var
+	# so that it doesn't have any opts listed in it. Prevents the problem
+	# with compiling things with conflicting opts later.
+	dosed -e 's:^OPT=.*:OPT=-DNDEBUG:' \
+			/usr/$(get_libdir)/python${PYVER}/config/Makefile
+
 	if use examples ; then
-		mkdir -p "${ED}"/usr/share/doc/${P}/examples
-		cp -r "${S}"/Tools "${ED}"/usr/share/doc/${P}/examples
+		insinto /usr/share/doc/${PF}/examples
+		doins -r "${S}"/Tools || die "doins failed"
 	fi
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
@@ -280,7 +266,6 @@ pkg_postrm() {
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-
 	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
 								"python[0-9].[0-9].1${mansuffix}"
 
@@ -291,7 +276,7 @@ pkg_postrm() {
 
 pkg_postinst() {
 	local myroot
-	myroot=$(echo $EROOT | sed 's:/$::')
+	myroot=$(echo $ROOT | sed 's:/$::')
 	local mansuffix=$(ecompress --suffix)
 
 	python_makesym
@@ -299,7 +284,6 @@ pkg_postinst() {
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-
 	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
 								"python[0-9].[0-9].1${mansuffix}"
 
@@ -322,8 +306,8 @@ pkg_postinst() {
 
 	echo
 	ewarn
-	ewarn "If you have just upgraded from an older version of python you will"
-	ewarn "need to run:"
+	ewarn "If you have just upgraded from an older version of python you"
+	ewarn "will need to run:"
 	ewarn
 	ewarn "${EPREFIX}/usr/sbin/python-updater"
 	ewarn
@@ -348,7 +332,7 @@ src_test() {
 
 	#skip all tests that fail during emerge but pass without emerge:
 	#(See bug# 67970)
-	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 webbrowser xml_etree"
+	local skip_tests="cookielib distutils global hotshot mimetools minidom mmap posix sax strptime subprocess syntax tcl time urllib urllib2"
 
 	# test_pow fails on alpha.
 	# http://bugs.python.org/issue756093
