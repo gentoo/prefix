@@ -1,6 +1,12 @@
 # ChangeLog for app-vim/vim-spell-de
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-de/ChangeLog,v 1.10 2007/10/26 16:51:43 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-de/ChangeLog,v 1.11 2008/09/17 16:42:12 hawking Exp $
+
+*vim-spell-de-20080213 (17 Sep 2008)
+
+  17 Sep 2008; Ali Polatel <hawking@gentoo.org>
+  +vim-spell-de-20080213.ebuild:
+  Version bump. Thanks to Daniel Pielmeier, bug 237764.
 
   26 Oct 2007; nixnut <nixnut@gentoo.org> vim-spell-de-20051008.ebuild:
   Stable on ppc wrt bug 180064
