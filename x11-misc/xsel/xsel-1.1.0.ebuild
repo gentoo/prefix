@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/xsel-1.1.0.ebuild,v 1.5 2008/09/13 07:41:06 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/xsel-1.1.0.ebuild,v 1.6 2008/09/17 14:53:19 ranger Exp $
 
 EAPI="prefix"
 

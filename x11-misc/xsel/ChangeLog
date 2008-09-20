@@ -1,6 +1,12 @@
 # ChangeLog for x11-misc/xsel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.13 2008/09/13 07:41:06 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.15 2008/09/17 15:43:07 coldwind Exp $
+
+  17 Sep 2008; Santiago M. Mola <coldwind@gentoo.org> -xsel-0.9.6.ebuild:
+  Remove old version.
+
+  17 Sep 2008; Brent Baude <ranger@gentoo.org> xsel-1.1.0.ebuild:
+  keyworded ~arch for ppc64, bug 224413
 
   13 Sep 2008; nixnut <nixnut@gentoo.org> xsel-1.1.0.ebuild:
   Stable on ppc wrt bug 224413
