@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/re2c
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.53 2008/09/12 22:21:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.55 2008/09/18 00:32:29 ranger Exp $
+
+  18 Sep 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  stable ppc64, bug 236487
+
+  18 Sep 2008; Brent Baude <ranger@gentoo.org> re2c-0.13.5.ebuild:
+  stable ppc64, bug 236487
 
   12 Sep 2008; Markus Meier <maekke@gentoo.org> re2c-0.13.5.ebuild:
   amd64 stable, bug #236487
