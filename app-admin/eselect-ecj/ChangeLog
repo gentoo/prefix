@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-ecj
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ecj/ChangeLog,v 1.1 2008/07/21 22:07:24 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ecj/ChangeLog,v 1.2 2008/09/17 21:04:09 maekke Exp $
+
+  17 Sep 2008; Markus Meier <maekke@gentoo.org> eselect-ecj-0.3.ebuild:
+  amd64/x86 stable, bug #237689
 
 *eselect-ecj-0.3 (21 Jul 2008)
 
