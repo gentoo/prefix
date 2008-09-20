@@ -1,6 +1,15 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.72 2008/09/09 03:43:10 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.73 2008/09/17 16:14:34 lack Exp $
+
+*netscape-flash-10_rc20080915 (17 Sep 2008)
+
+  17 Sep 2008; Jim Ramsay <lack@gentoo.org> files/mms.cfg,
+  -netscape-flash-10_beta20080702.ebuild,
+  -netscape-flash-10_beta20080811.ebuild,
+  +netscape-flash-10_rc20080915.ebuild:
+  Next RC is released, and I reorganized the dependencies a bit: x86 no
+  longer needs 'flash-libcompat', and amd64 no longer needs xulrunner-bin
 
   09 Sep 2008; Jim Ramsay <lack@gentoo.org> +files/mms.cfg,
   netscape-flash-10_beta20080811.ebuild:
