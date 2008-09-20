@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/gcal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.22 2008/02/03 15:25:43 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.23 2008/09/17 10:12:51 pva Exp $
+
+  17 Sep 2008; Peter Volkov <pva@gentoo.org> gcal-3.01-r2.ebuild:
+  Fixed glibc-2.8 build issue, bug #227121, thank Evil Compile Person for
+  report.
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> gcal-3.01-r2.ebuild:
   Dropped ppc-macos keyword, see you in prefix

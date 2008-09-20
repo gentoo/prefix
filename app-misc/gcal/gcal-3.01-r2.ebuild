@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/gcal-3.01-r2.ebuild,v 1.12 2008/02/03 17:40:45 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/gcal-3.01-r2.ebuild,v 1.13 2008/09/17 10:12:51 pva Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="The GNU Calendar - a replacement for cal"
 HOMEPAGE="http://www.gnu.org/software/gcal/gcal.html"
@@ -19,30 +19,36 @@ DEPEND="nls? ( sys-devel/gettext )"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-mandir.diff
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-mandir.diff
+	find -name Makefile.in -print0 | \
+		xargs -0 -n1 sed -i "s:\(^CC = \).*:\1$(tc-getCC):"
 }
 
 src_compile() {
 	# i'm really out of ideas here...
-	[[ ${CHOST} == *-interix* ]] && { use nls && append-ldflags -lintl; }
+	if [[ ${CHOST} == *-interix* ]]; then
+		use nls && append-ldflags -lintl
+	fi
 
-	econf $(use_enable nls) $(use_enable ncurses) || die
+	append-flags -D_GNU_SOURCE
+	econf $(use_enable nls) $(use_enable ncurses)
 	emake || die
 }
 
 src_install() {
 	einstall || die
-	rm -f ${ED}/usr/share/locale/locale.alias
+	rm -f "${ED}"/usr/share/locale/locale.alias
 
-	dodoc ABOUT-NLS ATTENTION BUGS DISCLAIM HISTORY \
-		INSTALL LIMITATIONS MANIFEST NEWS README SYMBOLS THANKS TODO
+	dodoc ATTENTION BUGS DISCLAIM HISTORY LIMITATIONS MANIFEST NEWS README \
+				SYMBOLS THANKS TODO
 
 	# Need to fix up paths for scripts in misc directory
 	# that are automatically created by the makefile
-	for miscfile in ${ED}/usr/share/gcal/misc/*/*
+	for miscfile in "${ED}"/usr/share/gcal/misc/*/*
 	do
-		dosed "s:${D%/}::g" ${miscfile/${ED}}
+		dosed "s:${D%/}::g" "${miscfile/${ED}}"
 	done
 
 	# Rebuild the symlinks that makefile created into the image /usr/bin
