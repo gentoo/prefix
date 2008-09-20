@@ -97,9 +97,8 @@ src_unpack() {
 	# Patch in Leopard's X forwarding magic
 	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-4.7_p1-darwin9-display.patch
 
-# Interix stuff
-#	epatch "${FILESDIR}"/${PN}-4.7_p1-interix.patch
-#	epatch "${FILESDIR}"/${P}-root-uid.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-root-uid.patch
 
 	eautoreconf
 }
