@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.71 2008/09/09 15:13:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.72 2008/09/18 08:16:59 aballier Exp $
+
+  18 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008.ebuild:
+  Use EAPI 1 and slot deps for freetype.
 
 *texlive-core-2008 (09 Sep 2008)
 

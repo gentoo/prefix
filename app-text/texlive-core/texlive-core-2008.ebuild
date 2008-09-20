@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008.ebuild,v 1.1 2008/09/09 15:13:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008.ebuild,v 1.2 2008/09/18 08:16:59 aballier Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common
 
@@ -55,7 +55,7 @@ RDEPEND="${MODULAR_X_DEPEND}
 	!app-text/xdvipdfmx
 	sys-libs/zlib
 	>=media-libs/libpng-1.2.1
-	=media-libs/freetype-2*
+	media-libs/freetype:2
 	media-libs/fontconfig"
 
 DEPEND="${RDEPEND}
