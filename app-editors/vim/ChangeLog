@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.320 2008/08/30 07:55:24 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.321 2008/09/19 18:50:37 hawking Exp $
+
+*vim-7.2.021 (19 Sep 2008)
+
+  19 Sep 2008; Ali Polatel <hawking@gentoo.org> +vim-7.2.021.ebuild:
+  Version bump. Fixes #238120.
 
   30 Aug 2008; Ali Polatel <hawking@gentoo.org> -vim-6.4.ebuild,
   -vim-7.1.042.ebuild, -vim-7.1.164.ebuild, -vim-7.1.213.ebuild,
