@@ -33,6 +33,12 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
+# Need to figure out why/what this parsing fails, see bug #236263, but
+# succeeds fine on sparc-solaris.  Doesn't compile on Darwin (duplicate
+# symbol), makes me too worried about it, hence global mask.
+=sys-apps/file-4.26
+
 # Fabian Groffen <grobian@gentoo.org> (24 Aug 2008)
 # We don't have gdm, so we better have the security fix (even though
 # it's suspicious)
