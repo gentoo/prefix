@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  20 Sep 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  All problems with 5.1 should have been fixed now, so unmask openssh-5.1
+
   20 Sep 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.mask,
   package.mask:
   Mask file-4.26 due to multiple offending behaviours
