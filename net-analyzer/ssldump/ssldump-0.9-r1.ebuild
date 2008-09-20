@@ -25,14 +25,15 @@ src_unpack() {
 	unpack ${A} ; cd ${S}
 
 	epatch "${FILESDIR}/${P}"-libpcap-header.patch
-	epatch "${FILESDIR}/${P}"-configure-dylib.patch
 	epatch "${FILESDIR}/${P}"-openssl-0.9.8.compile-fix.patch
 	epatch "${FILESDIR}/${P}"-DLT_LINUX_SLL.patch
 	eautoreconf # fixes compiler detection
 }
 
 src_compile() {
-	econf $(use_with ssl crypto)
+	econf $(use_with ssl crypto) \
+		--with-pcap-inc="${EPREFIX}"/usr/include \
+		--with-pcap-lib="${EPREFIX}"/usr/$(get_libdir)
 	emake || die
 }
 
