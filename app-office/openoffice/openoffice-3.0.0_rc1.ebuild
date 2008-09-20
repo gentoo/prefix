@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc1.ebuild,v 1.2 2008/09/13 15:00:44 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc1.ebuild,v 1.3 2008/09/19 08:57:01 suka Exp $
 
 EAPI="prefix"
 
@@ -90,12 +90,6 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	mono? ( >=dev-lang/mono-1.2.3.1 )
 	opengl? ( virtual/opengl
 		virtual/glu )
-	!seamonkey? ( nsplugin? ( >=net-libs/xulrunner-1.8
-		>=dev-libs/nspr-4.6.6
-		>=dev-libs/nss-3.11-r1 ) )
-	seamonkey? ( =www-client/seamonkey-1*
-		>=dev-libs/nspr-4.6.6
-		>=dev-libs/nss-3.11-r1 )
 	>=net-misc/neon-0.24.7
 	>=dev-libs/openssl-0.9.8g
 	>=x11-libs/startup-notification-0.5
@@ -119,9 +113,6 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	linguas_zh_TW? ( >=media-fonts/arphicfonts-0.1-r2 )"
 
 RDEPEND="java? ( >=virtual/jre-1.5 )
-	nsplugin? ( || ( >=www-client/mozilla-firefox-2
-		>=www-client/mozilla-firefox-bin-2
-		=www-client/seamonkey-1* ) )
 	${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
@@ -150,6 +141,12 @@ DEPEND="${COMMON_DEPEND}
 	pam? ( sys-libs/pam )
 	!dev-util/dmake
 	>=dev-lang/python-2.3.4
+	!seamonkey? ( nsplugin? ( >=net-libs/xulrunner-1.8
+		>=dev-libs/nspr-4.6.6
+		>=dev-libs/nss-3.11-r1 ) )
+	seamonkey? ( =www-client/seamonkey-1*
+		>=dev-libs/nspr-4.6.6
+		>=dev-libs/nss-3.11-r1 )
 	java? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* )
 		>=dev-java/ant-core-1.7 )
 	ldap? ( net-nds/openldap )"
