@@ -1,6 +1,24 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.192 2008/09/12 21:41:10 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.196 2008/09/17 21:43:27 maekke Exp $
+
+  17 Sep 2008; Markus Meier <maekke@gentoo.org> tomcat-5.5.27-r1.ebuild:
+  amd64/x86 stable, bug #225477
+
+  17 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  tomcat-5.5.27-r1.ebuild:
+  Detect if tomcat-servlet-api is built with java5 support but for tomcat
+  java5 is off.
+
+  17 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  tomcat-5.5.27-r1.ebuild:
+  Add reference to upstream bug for JSSE13Factory.
+
+*tomcat-5.5.27-r1 (17 Sep 2008)
+
+  17 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/5.5/5.5.27-dynamic-JSSE13Factory.patch, +tomcat-5.5.27-r1.ebuild:
+  Remove the need for com.sun.* classes at compile time.
 
   12 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> tomcat-5.5.27.ebuild:
   Use jdk-with-com-sun:0 for java5 use flag and jdk-with-com-sun:1.4 without
