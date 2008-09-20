@@ -1,10 +1,41 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1873 2008/09/15 22:18:56 gregkh Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1882 2008/09/18 15:36:15 matsuu Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  unmask =x11-libs/xcb-util-0.3*
+
+  18 Sep 2008; Jeremy Olexa <darkside@gentoo.org> profiles.desc:
+  Comment out the 2006* amd64 profiles, they are deprecated and we don't need
+  to QA check them
+
+  18 Sep 2008; Tupone Alfredo <tupone@gentoo.org> updates/3Q-2008:
+  package move games-arcade/sdljump -> games-arcade/gnujump
+
+  18 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Unmask amanda 2.6.0.
+
+  18 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Masking =x11-libs/xcb-util-0.3* - development version.
+
+  18 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  p.mask app-i18n/uim-svn for removal in 60 days
+
+  17 Sep 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  alpha/2008.0/no-nptl has been removed
+
+  17 Sep 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking net-analyzer/wireshark-1.1* - development version.
+
+  17 Sep 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  removed mask from rpm2targz-9.0.0.1g as it's not in the tree anymore.
+
+  16 Sep 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Removed mask for rrdtool-1.3.0 as this branch should go in ~arch now.
 
   15 Sep 2008; Greg Kroah-Hartman <gregkh@gentoo.org> use.local.desc:
   remove media-video/undvd: entry, oops...

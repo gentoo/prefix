@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8984 2008/09/15 14:36:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8993 2008/09/18 15:36:15 matsuu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,18 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# MATSUU Takuto <matsuu@gentoo.org> (18 Sep 2008)
+# Masked for removal in 60 days.
+app-i18n/uim-svn
+
+# Doug Goldstein <cardoe@gentoo.org> (17 Sep 2008)
+# under development
+gnome-extra/gnome-lirc-properties
+
+# Peter Volkov <pva@gentoo.org> (17 Sep 2008)
+# Development version, but yet nice :)
+=net-analyzer/wireshark-1.1*
 
 # Ulrich Mueller <ulm@gentoo.org> (15 Sep 2008)
 # Broken MIME (RFC 1522) encoding of headers, bug 237730.
@@ -485,10 +497,6 @@ media-sound/gogo
 ~x11-drivers/nvidia-drivers-177.70
 ~media-video/nvidia-settings-177.70
 
-# Peter Volkov <pva@gentoo.org> (28 Aug 2008)
-# Breaks too many packages, bug #235290
-=app-arch/rpm2targz-9.0.0.1g
-
 # Ricardo Mendoza <ricmm@gentoo.org> (27 Aug 2008)
 # Beta driver, masking corresponding nvidia-settings
 ~x11-drivers/nvidia-drivers-177.68
@@ -526,10 +534,6 @@ www-apps/xrms
 # Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-177.67
-
-# Dawid Węgliński <cla@gentoo.org> (20 Aug 2008)
-# API changes on www.wklej.org; lower versions will not work anymore
-<app-text/wklej-0.1.1
 
 # Marijn Schouten <hkBst@gentoo.org> (18 Aug 2008)
 # masked for removal, bug 229915
@@ -575,10 +579,6 @@ media-gfx/gimp-freetype
 # Robin H. Johnson <robbat2@gentoo.org> (13 Aug 2008)
 # Masked for testing
 =sys-libs/db-4.7*
-
-# Robin H. Johnson <robbat2@gentoo.org> (13 Aug 2008)
-# Masked for testing
-=app-backup/amanda-2.6*
 
 # Doug Goldstein <cardoe@gentoo.org> (12 Aug 2008)
 # development versions of cairo
@@ -736,10 +736,6 @@ media-libs/mediastreamer
 app-doc/linuxfromscratch-html
 app-doc/linuxfromscratch-pdf
 app-doc/linuxfromscratch-text
-
-# Hanno Böck <hanno@gentoo.org (18 Jun 2008)
-# Masked for now, see #226021.
-=net-analyzer/rrdtool-1.3.0
 
 # Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
 # Masked for security bug #226079.
