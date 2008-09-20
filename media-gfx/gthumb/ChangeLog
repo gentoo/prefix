@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gthumb
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.91 2008/09/08 20:48:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.92 2008/09/17 14:40:57 ranger Exp $
+
+  17 Sep 2008; Brent Baude <ranger@gentoo.org> gthumb-2.10.9.ebuild:
+  stable ppc64, bug 236961
 
   08 Sep 2008; Brent Baude <ranger@gentoo.org> gthumb-2.10.9.ebuild:
   stable ppc, bug 236961
