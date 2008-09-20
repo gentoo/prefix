@@ -48,8 +48,10 @@ src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog* NEWS README THANKS TODO doc/PLATFORMS
 
+	local p=
+	[[ ${CHOST} == *-darwin* ]] && p=g
 	local x
-	for x in libtool libtoolize ; do
+	for x in ${p}libtool ${p}libtoolize ; do
 		help2man ${x} > ${x}.1
 		doman ${x}.1 || die
 	done
