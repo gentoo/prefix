@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.170 2008/08/16 17:36:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.171 2008/09/17 09:41:38 vapier Exp $
+
+*rsync-3.0.4 (17 Sep 2008)
+
+  17 Sep 2008; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.4.ebuild:
+  Version bump #237169 by Conrad Kostecki.
 
   16 Aug 2008; nixnut <nixnut@gentoo.org> rsync-3.0.2.ebuild:
   Stable on ppc wrt bug 228673
