@@ -1,6 +1,33 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.263 2008/09/09 05:38:29 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.270 2008/09/17 13:06:51 darkside Exp $
+
+  17 Sep 2008; Jeremy Olexa <darkside@gentoo.org> db-3.2.9_p2.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild:
+  amd64 stable. Thanks to Chad A. Simmons (amd64 AT) for testing, bug #237127
+
+  17 Sep 2008; Raúl Porcel <armin76@gentoo.org> db-3.2.9_p2.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild:
+  ia64/sparc/x86 stable wrt #237127
+
+  16 Sep 2008; Tobias Klausmann <klausman@gentoo.org>
+  db-4.5.20_p2-r1.ebuild:
+  Stable on alpha, bug #237127
+
+  16 Sep 2008; Tobias Klausmann <klausman@gentoo.org>
+  db-4.3.29_p1-r1.ebuild:
+  Stable on alpha, bug #237127
+
+  16 Sep 2008; Tobias Klausmann <klausman@gentoo.org>
+  db-4.2.52_p5-r1.ebuild:
+  Stable on alpha, bug #237127
+
+  16 Sep 2008; Tobias Klausmann <klausman@gentoo.org> db-3.2.9_p2.ebuild:
+  Stable on alpha, bug #237127
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> db-3.2.9_p2.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild:
+  Stable for HPPA (bug #237127).
 
   09 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> db-4.2.52_p5-r1.ebuild,
   db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild, db-4.6.21_p3-r1.ebuild,
