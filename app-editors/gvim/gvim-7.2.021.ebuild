@@ -1,14 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.1.319.ebuild,v 1.6 2008/07/07 12:16:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.021.ebuild,v 1.1 2008/09/19 18:53:19 hawking Exp $
 
 EAPI="prefix"
 
 inherit vim autotools
 
-VIM_VERSION="7.1"
-VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches-r1.tar.bz2"
-VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
+VIM_VERSION="7.2"
+VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 GVIMRC_FILE_SUFFIX="-r1"
 GVIM_DESKTOP_SUFFIX="-r1"
 PREFIX_VER="5"
@@ -17,7 +16,6 @@ SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
-	mirror://gentoo/${VIM_ORG_PATCHES}
 	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
@@ -52,7 +50,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
-		epatch "${FILESDIR}"/${P}-interix-cflags.patch
+		epatch "${FILESDIR}"/${PN}-7.1.319-interix-cflags.patch
 	fi
 }
 
