@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/sharutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.53 2007/07/02 13:38:54 dragonheart Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.54 2008/09/17 09:49:35 vapier Exp $
+
+*sharutils-4.7 (17 Sep 2008)
+
+  17 Sep 2008; Mike Frysinger <vapier@gentoo.org> +sharutils-4.7.ebuild:
+  Version bump #237151 by Conrad Kostecki.
 
   02 Jul 2007; Daniel Black <dragonheart@gentoo.org>
   -files/sharutils-4.2.1-buffer-check.patch,
