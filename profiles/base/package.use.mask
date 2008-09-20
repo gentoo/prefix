@@ -92,3 +92,9 @@ dev-java/ibm-jre-bin alsa
 # Sven Wegener <swegener@gentoo.org> (17 Feb 2008)
 # Needed depenencies have been removed from the tree
 dev-db/mysql-gui-tools workbench
+
+# Alexis Ballier <aballier@getnoo.org> (17 Sep 2008)
+# Requires a x86-compatible architecture in order to run the binary plugins
+# through wine. So far it segfaults on amd64. Unmask on confirmed to work
+# profiles.
+media-sound/lmms vst
