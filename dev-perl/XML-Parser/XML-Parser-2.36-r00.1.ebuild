@@ -22,6 +22,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i \
-		-e "s:^\$expat_libpath.*:\$expat_libpath = '/usr/$(get_libdir)';:" \
+		-e "s:^\$expat_libpath.*:\$expat_libpath = '${EPREFIX}/usr/$(get_libdir)';:" \
 		Makefile.PL || die "sed failed"
 }
