@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.120 2008/08/25 17:01:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.121 2008/09/18 02:02:31 ranger Exp $
+
+  18 Sep 2008; Brent Baude <ranger@gentoo.org> swig-1.3.34.ebuild,
+  swig-1.3.36.ebuild:
+  Marking swig-1.3.36 ppc stable for dep to 229915
+
+  18 Sep 2008; Brent Baude <ranger@gentoo.org> swig-1.3.34.ebuild:
+  Marking swig-1.3.34 ppc64 stable for 217408
 
   25 Aug 2008; Markus Meier <maekke@gentoo.org> swig-1.3.36.ebuild:
   amd64/x86 stable, bug #229915
