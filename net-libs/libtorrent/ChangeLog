@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.123 2008/08/26 21:17:15 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.124 2008/09/16 07:11:42 loki_val Exp $
+
+*libtorrent-0.12.3 (16 Sep 2008)
+
+  16 Sep 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/libtorrent-0.12.3-fix-epoll-crash.patch, +libtorrent-0.12.3.ebuild:
+  rtorrent-0.8.3/libtorrent-0.12.3 bump
 
 *libtorrent-0.12.2-r4 (26 Aug 2008)
 
