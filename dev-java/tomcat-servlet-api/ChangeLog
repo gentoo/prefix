@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/tomcat-servlet-api
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.55 2008/09/11 17:07:41 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.56 2008/09/17 21:39:28 maekke Exp $
+
+  17 Sep 2008; Markus Meier <maekke@gentoo.org>
+  tomcat-servlet-api-5.5.27.ebuild:
+  amd64/x86 stable, bug #225477
 
 *tomcat-servlet-api-5.5.27 (11 Sep 2008)
 
