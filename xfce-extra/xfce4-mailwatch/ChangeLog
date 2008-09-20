@@ -1,6 +1,12 @@
 # ChangeLog for xfce-extra/xfce4-mailwatch
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-mailwatch/ChangeLog,v 1.17 2007/05/18 11:51:39 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/ChangeLog,v 1.18 2008/09/16 13:03:10 angelos Exp $
+
+*xfce4-mailwatch-1.1.0 (16 Sep 2008)
+
+  16 Sep 2008; Christoph Mende <angelos@gentoo.org>
+  +xfce4-mailwatch-1.1.0.ebuild:
+  Version bump
 
   18 May 2007; Raúl Porcel <armin76@gentoo.org>
   xfce4-mailwatch-1.0.1.ebuild:
