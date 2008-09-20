@@ -1,6 +1,10 @@
 # ChangeLog for app-text/dos2unix
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.37 2007/09/29 08:02:28 pva Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.38 2008/09/16 12:04:34 pva Exp $
+
+  16 Sep 2008; Peter Volkov <pva@gentoo.org> dos2unix-3.1-r2.ebuild:
+  Use toolchain-funcs to set correct compiler, fix compilation warnings, bug
+  #237456, thank Toralf Förster for report.
 
   29 Sep 2007; <pva@gentoo.org> -dos2unix-3.1-r1.ebuild:
   Remove old.

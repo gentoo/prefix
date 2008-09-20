@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/dos2unix-3.1-r2.ebuild,v 1.11 2007/09/28 06:49:50 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/dos2unix-3.1-r2.ebuild,v 1.12 2008/09/16 12:04:34 pva Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Dos2unix converts DOS or MAC text files to UNIX format"
 HOMEPAGE="none"
@@ -28,7 +28,14 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-manpage-update.patch
 	epatch "${FILESDIR}"/${P}-safeconv.patch
 	epatch "${FILESDIR}"/${P}-workaround-rename-EXDEV.patch
-	make -s clean || die
+	sed -i -e 's:\(^#endif \).*:\1:' \
+			-e 's:\(^#else \).*:\1:' dos2unix.c dos2unix.h
+	rm -f dos2unix mac2unix mac2unix.1 *~ *.orig core
+}
+
+src_compile() {
+	tc-export CC
+	emake || die
 }
 
 src_install() {
