@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.8.ebuild,v 1.12 2008/09/16 13:36:43 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.8-r2.ebuild,v 1.1 2008/09/16 13:36:43 pva Exp $
 
 EAPI="prefix"
 
@@ -27,11 +27,14 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.3-whitespace.diff
 	epatch "${FILESDIR}"/${PN}-0.8.1-fPIC.patch
 	epatch "${FILESDIR}"/${PN}-cross-linux.patch
+	epatch "${FILESDIR}"/${P}-largefile.patch
+	epatch "${FILESDIR}"/${P}-arptype-65534.patch
+	epatch "${FILESDIR}"/${P}-pcap_compile.patch
 	eautoreconf
 }
 
 src_compile() {
-	econf $(use_enable ipv6) || die "bad configure"
+	econf $(use_enable ipv6)
 	emake || die "compile problem"
 
 	# no provision for this in the Makefile, so...
