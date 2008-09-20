@@ -1,25 +1,25 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.1.042.ebuild,v 1.8 2007/08/25 11:52:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.021.ebuild,v 1.1 2008/09/19 18:52:16 hawking Exp $
 
 EAPI="prefix"
 
-inherit vim
+inherit vim autotools
 
-VIM_VERSION="7.1"
+VIM_VERSION="7.2"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
-VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 VIMRC_FILE_SUFFIX="-r3"
+PREFIX_VER="5"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
-	mirror://gentoo/${VIM_ORG_PATCHES}"
+	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="vim and gvim shared files"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 DEPEND="${DEPEND}"
 PDEPEND="!livecd? ( app-vim/gentoo-syntax )"
