@@ -99,6 +99,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-root-uid.patch
+	epatch "${FILESDIR}"/${P}-apple-copyfile.patch
+	epatch "${FILESDIR}"/${P}-apple-getpwuid.patch
 
 	eautoreconf
 }
