@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.15 2008/08/11 12:52:10 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.16 2008/09/18 22:07:50 yngwin Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -33,7 +33,7 @@ S=${WORKDIR}/${MY_P}
 SRC_URI="ftp://ftp.trolltech.com/qt/source/${MY_P}.tar.bz2"
 
 case "${PV}" in
-	4.4.1|4.4.0|4.4.0_rc*)
+	4.4.2|4.4.1|4.4.0|4.4.0_rc*)
 		SRC_URI="${SRC_URI} mirror://gentoo/${MY_P}-headers.tar.bz2"
 		;;
 	*)
@@ -81,7 +81,7 @@ qt4_unpack() {
 	tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
 
 	case "${PV}" in
-		4.4.1|4.4.0|4.4.0_rc*)
+		4.4.2|4.4.1|4.4.0|4.4.0_rc*)
 			echo tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
 			tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
 			;;

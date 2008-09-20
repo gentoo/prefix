@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.219 2008/09/13 21:30:21 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.220 2008/09/19 01:16:04 cryos Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -32,7 +32,7 @@ if [[ ${CATEGORY} == "kde-base" ]]; then
 
 		# Get the aRts dependencies right - finally.
 		case "${PN}" in
-			blinken|juk|kalarm|kanagram|kbounce|kcontrol|konq-plugins|kscd|kscreensaver|kttsd|kwifimanager) ARTS_REQUIRED="" ;;
+			blinken|juk|kalarm|kanagram|kbounce|kcontrol|konq-plugins|kscd|kscreensaver|kttsd|kwifimanager|kdelibs) ARTS_REQUIRED="" ;;
 			artsplugin-*|kaboodle|kasteroids|kdemultimedia-arts|kolf|krec|ksayit|noatun*) ARTS_REQUIRED="yes" ;;
 			*) ARTS_REQUIRED="never" ;;
 		esac

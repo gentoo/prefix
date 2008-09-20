@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.2 2008/09/14 16:24:17 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.3 2008/09/16 12:51:03 jer Exp $
 
 # Original Author: Arun Raghavan <ford_prefect@gentoo.org> (based on the
 #		   gnome-python-desktop eclass by Jim Ramsay <lack@gentoo.org>)
 #
-# Purpose: Provides common functionality requried for building the gnome-python*
+# Purpose: Provides common functionality required for building the gnome-python*
 # 		   bindings
 #
 # Important environment variables:

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.45 2008/09/01 10:45:26 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.46 2008/09/19 08:12:48 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -181,6 +181,7 @@ elisp-compile() {
 # #USAGE: <list of elisp files>
 # #DESCRIPTION:
 # Byte-compile interdependent Emacs Lisp files.
+# THIS FUNCTION IS DEPRECATED.
 #
 # This function byte-compiles all ".el" files which are part of its
 # arguments, using GNU Emacs, and puts the resulting ".elc" files into the
@@ -195,6 +196,11 @@ elisp-comp() {
 	# Copyright 1995 Free Software Foundation, Inc.
 	# François Pinard <pinard@iro.umontreal.ca>, 1995.
 	# Originally taken from GNU autotools.
+
+	ewarn "Function elisp-comp is deprecated and may be removed in future."
+	ewarn "Please use function elisp-compile instead, or report a bug about"
+	ewarn "${CATEGORY}/${PF} at <http://bugs.gentoo.org/>."
+	echo
 
 	[ $# -gt 0 ] || return 1
 
@@ -393,7 +399,7 @@ elisp-site-regen() {
 		[ -f "${tmpdir}"/site-start.el ] \
 			&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ] \
 			&& mv "${tmpdir}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
-		echo; einfo
+		echo
 		for sf in "${sflist[@]##*/}"; do
 			einfo "  Adding ${sf} ..."
 		done
@@ -420,13 +426,13 @@ elisp-site-regen() {
 	fi
 
 	if [ "${obsolete}" ]; then
+		echo
 		while read line; do ewarn "${line}"; done <<-EOF
 		Site-initialisation files of Emacs packages are now installed in
 		/usr/share/emacs/site-lisp/site-gentoo.d/. We strongly recommend
-		that you use /usr/sbin/emacs-updater to rebuild the installed
+		that you use app-admin/emacs-updater to rebuild the installed
 		Emacs packages.
 		EOF
-		echo
 
 		# Kludge for backwards compatibility: During pkg_postrm, old versions
 		# of this eclass (saved in the VDB) won't find packages' site-init
