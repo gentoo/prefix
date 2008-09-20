@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3.ebuild,v 1.1 2008/08/04 19:08:10 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3.ebuild,v 1.7 2008/09/19 19:51:05 armin76 Exp $
 
 EAPI=prefix
 
@@ -39,4 +39,10 @@ pkg_postinst() {
 	ewarn "Since >=eix-0.12.0, eix uses by default OVERLAY_CACHE_METHOD=\"parse|ebuild*\""
 	ewarn "This is rather reliable, but ebuilds may be executed by user \"portage\". Set"
 	ewarn "OVERLAY_CACHE_METHOD=parse in /etc/eixrc if you do not trust the ebuilds."
+	if test -d /var/log && ! test -x /var/log || test -e /var/log/eix-sync.log
+	then
+		einfo
+		einfo "eix-sync no longer supports redirection to /var/log/eix-sync.log"
+		einfo "You can remove that file."
+	fi
 }
