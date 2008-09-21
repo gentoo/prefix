@@ -27,7 +27,7 @@ SRC_URI="x86? ( ${URL_BASE}/${X86_AT} )
 		sparc64-solaris? ( ${URL_BASE}/${SOL_SPARC_AT} ${URL_BASE}/${SOL_SPARCv9_AT} )"
 SLOT="1.6"
 LICENSE="dlj-1.1"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 RESTRICT="strip"
 IUSE="X alsa doc examples jce nsplugin odbc"
 
@@ -56,7 +56,7 @@ JAVA_PROVIDE="jdbc-stdext jdbc-rowset"
 S="${WORKDIR}/jdk$(replace_version_separator 3 _)"
 
 src_unpack() {
-	if [[ ${CHOST} == i?86-*-solaris* ]] ; then
+	if [[ ${CHOST} == *86*-*-solaris* ]] ; then
 		for i in ${A}; do
 			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
 			# don't die on unzip, it always "fails"
