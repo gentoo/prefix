@@ -365,6 +365,8 @@ x-modular_src_configure() {
 	x-modular_font_configure
 	x-modular_debug_setup
 
+	[[ ${CHOST} == *-winnt* ]] && append-flags -DWIN32 -D__STDC__
+
 # @VARIABLE: CONFIGURE_OPTIONS
 # @DESCRIPTION:
 # Any options to pass to configure
