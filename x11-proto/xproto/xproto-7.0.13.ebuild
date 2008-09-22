@@ -11,12 +11,15 @@ inherit x-modular
 
 DESCRIPTION="X.Org xproto protocol headers"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
 src_unpack() {
 	x-modular_unpack_source
+
+	epatch "${FILESDIR}"/${P}-winnt.patch
+
 	x-modular_reconf_source
 }
