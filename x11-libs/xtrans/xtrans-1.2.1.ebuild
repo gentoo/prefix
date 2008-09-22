@@ -15,3 +15,9 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~s
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	PATCHES="${FILESDIR}"/${P}-winnt.patch
+
+	x-modular_src_unpack
+}
