@@ -11,7 +11,7 @@ SRC_URI="http://www.thregr.org/~wavexx/software/wmnd/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
