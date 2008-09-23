@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.78 2008/06/09 05:26:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.83 2008/09/22 04:14:22 jer Exp $
+
+  22 Sep 2008; Jeroen Roovers <jer@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  Stable for HPPA (bug #238207).
+
+  21 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  ia64/sparc/x86 stable wrt #238207
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  stable ppc64, bug 238207
+
+  21 Sep 2008; nixnut <nixnut@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  Stable on ppc wrt bug 238207
+
+  20 Sep 2008; Steve Dibb <beandog@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  amd64 stable, bug 238207
 
   09 Jun 2008; Mike Frysinger <vapier@gentoo.org>
   +files/1.60_p20071202044231/0013-Pull-in-stdlib.h-for-NULL-definition-to-f
