@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/emacs-desktop
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/ChangeLog,v 1.26 2008/05/12 18:35:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/ChangeLog,v 1.27 2008/09/20 21:11:19 ulm Exp $
+
+  20 Sep 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-desktop-0.2-r1.ebuild:
+  Remove old.
 
   12 May 2008; Markus Meier <maekke@gentoo.org> emacs-desktop-0.3.ebuild:
   amd64 stable, bug #220607
