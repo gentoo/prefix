@@ -1,6 +1,21 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.69 2008/08/06 18:17:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.74 2008/09/22 04:02:26 jer Exp $
+
+  22 Sep 2008; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.5-r1.ebuild:
+  Stable for HPPA (bug #238211).
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  stable ppc, bug 238211
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> bzip2-1.0.5-r1.ebuild:
+  stable ppc64, bug 238211
+
+  21 Sep 2008; nixnut <nixnut@gentoo.org> bzip2-1.0.5-r1.ebuild:
+  Stable on ppc wrt bug 238211
+
+  20 Sep 2008; Santiago M. Mola <coldwind@gentoo.org> bzip2-1.0.5-r1.ebuild:
+  amd64 stable
 
   06 Aug 2008; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.5-r1.ebuild:
   alpha/ia64/sparc/x86 stable
