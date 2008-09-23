@@ -124,6 +124,8 @@ eautoreconf() {
 # without e prefix.
 # They also force installing the support files for safety.
 # Respects AT_M4DIR for additional directories to search for macro's.
+# Always adds ${EPREFIX}/usr/share/aclocal to accommodate situations where
+# aclocal comes from another EPREFIX (for example cross-EPREFIX builds).
 eaclocal() {
 	local aclocal_opts
 
@@ -150,7 +152,7 @@ eaclocal() {
 	fi
 
 	[[ ! -f aclocal.m4 || -n $(grep -e 'generated.*by aclocal' aclocal.m4) ]] && \
-		autotools_run_tool aclocal "$@" ${aclocal_opts}
+		autotools_run_tool aclocal "$@" ${aclocal_opts} -I "${EPREFIX}/usr/share/aclocal"
 }
 
 # @FUNCTION: _elibtoolize
