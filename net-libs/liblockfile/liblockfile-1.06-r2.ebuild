@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.12 2007/12/28 23:28:07 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.13 2008/09/21 06:33:57 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib flag-o-matic autotools
+inherit eutils multilib autotools
 
 DESCRIPTION="Implements functions designed to lock the standard mailboxes"
 HOMEPAGE="http://www.debian.org/"
@@ -32,10 +32,6 @@ src_unpack() {
 	sed -i -e 's/eaccess/egidaccess/g' *.c
 
 	eautoreconf
-
-	# Do not use lazy bindings on setXid files
-	sed -i -e 's~-o dotlockfile~'$(bindnow-flags)' &~g' Makefile.in
-
 }
 
 src_compile() {
