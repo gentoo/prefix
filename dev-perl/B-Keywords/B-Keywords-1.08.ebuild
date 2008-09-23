@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/B-Keywords/B-Keywords-1.08.ebuild,v 1.2 2008/09/05 17:11:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/B-Keywords/B-Keywords-1.08.ebuild,v 1.3 2008/09/20 12:29:29 coldwind Exp $
 
 EAPI="prefix"
 
