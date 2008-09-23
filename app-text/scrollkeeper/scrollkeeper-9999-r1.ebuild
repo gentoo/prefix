@@ -9,7 +9,7 @@ HOMEPAGE="http://gnome.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE=""
 
 DEPEND="=app-text/scrollkeeper-dtd-1.0"
