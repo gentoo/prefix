@@ -67,8 +67,8 @@ esac
 LICENSE="BSD"
 SLOT="0"
 case ${EKEY_STATE:-${ECVS_STATE}} in
-	release) KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-interix";;
-	snap)    KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-interix";;
+	release) KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-interix ~x86-solaris ~x64-solaris";;
+	snap)    KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-interix ~x86-solaris ~x64-solaris";;
 	live)    KEYWORDS="";;
 esac
 IUSE="nls doc"
