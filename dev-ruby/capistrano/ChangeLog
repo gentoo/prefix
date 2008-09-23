@@ -1,6 +1,18 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.34 2008/09/15 11:28:19 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.37 2008/09/21 16:04:28 ranger Exp $
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> capistrano-2.5.0.ebuild:
+  keyworded ~arch for ppc, bug 238171
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> capistrano-2.5.0.ebuild:
+  keyworded ~arch for ppc64, bug 238171
+
+*capistrano-2.5.0 (20 Sep 2008)
+
+  20 Sep 2008; Hans de Graaff <graaff@gentoo.org> +capistrano-2.5.0.ebuild:
+  Version bump with new dependencies. Dropped ia64, ppc, ppc64 keywords
+  because of this. This fixes #228371.
 
   15 Sep 2008; Hans de Graaff <graaff@gentoo.org> -capistrano-1.4.1.ebuild,
   -capistrano-1.4.1-r1.ebuild, -capistrano-2.1.0.ebuild:
