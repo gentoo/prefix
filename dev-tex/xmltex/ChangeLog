@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/xmltex
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.21 2008/09/14 18:05:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.22 2008/09/21 13:07:31 ranger Exp $
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> xmltex-1.9-r2.ebuild:
+  Marking xmltex-1.9-r2 ~ppc64 for bug 237202
 
   14 Sep 2008; Alexis Ballier <aballier@gentoo.org> xmltex-1.9-r1.ebuild:
   use latex-base in the old ebuild too...
