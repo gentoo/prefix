@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/xfce4-systemload
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/ChangeLog,v 1.48 2008/06/23 00:04:34 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/ChangeLog,v 1.49 2008/09/21 18:52:58 angelos Exp $
+
+  21 Sep 2008; Christoph Mende <angelos@gentoo.org>
+  +files/xfce4-systemload-0.4.2-libtool.patch,
+  xfce4-systemload-0.4.2.ebuild:
+  Add AC_PROG_LIBTOOL to configure.in, bug 230717
 
   23 Jun 2008; Samuli Suominen <drac@gentoo.org>
   xfce4-systemload-0.4.2.ebuild:

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.17 2008/06/23 00:04:34 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.19 2008/09/21 19:00:19 angelos Exp $
 
 EAPI="prefix"
 
-inherit autotools xfce44
+inherit autotools eutils xfce44
 
 xfce44
 
@@ -17,6 +17,8 @@ DEPEND="dev-util/xfce4-dev-tools
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-libtool.patch
 	sed -i -e "/^AC_INIT/s/systemload_version()/systemload_version/" configure.in
 	intltoolize --force --copy --automake || die "intltoolize failed."
 	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
