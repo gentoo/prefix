@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.58 2008/09/17 18:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.59 2008/09/21 10:40:05 vapier Exp $
+
+  21 Sep 2008; Mike Frysinger <vapier@gentoo.org> x11vnc-0.9.3.ebuild,
+  x11vnc-0.9.4.ebuild:
+  Add some ppc64 love.
 
 *x11vnc-0.9.4 (17 Sep 2008)
 
