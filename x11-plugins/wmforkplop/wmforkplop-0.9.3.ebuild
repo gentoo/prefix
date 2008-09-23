@@ -10,7 +10,7 @@ SRC_URI="http://hules.free.fr/wmforkplop/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 IUSE=""
 
 DEPEND="gnome-base/libgtop
