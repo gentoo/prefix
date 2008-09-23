@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/fhist
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/ChangeLog,v 1.17 2008/09/18 20:14:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/ChangeLog,v 1.18 2008/09/20 10:08:38 armin76 Exp $
+
+  20 Sep 2008; Raúl Porcel <armin76@gentoo.org> fhist-1.16.ebuild:
+  sparc stable wrt #237826
 
   18 Sep 2008; Markus Meier <maekke@gentoo.org> fhist-1.16.ebuild:
   x86 stable, bug #237826
