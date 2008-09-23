@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.324 2008/09/10 09:24:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.325 2008/09/21 11:08:29 yngwin Exp $
+
+*subversion-1.5.2 (21 Sep 2008)
+
+  21 Sep 2008; Ben de Groot <yngwin@gentoo.org> +subversion-1.5.2.ebuild:
+  Version bump, using patch from bug 236223.
 
   10 Sep 2008; Jeroen Roovers <jer@gentoo.org> subversion-1.5.1.ebuild:
   Stable for HPPA (bug #236131).
