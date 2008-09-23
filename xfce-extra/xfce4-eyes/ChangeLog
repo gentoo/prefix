@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-eyes
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.21 2008/08/08 17:44:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/ChangeLog,v 1.22 2008/09/21 19:04:04 angelos Exp $
+
+  21 Sep 2008; Christoph Mende <angelos@gentoo.org>
+  +files/xfce4-eyes-4.4.0-libtool.patch, xfce4-eyes-4.4.0.ebuild:
+  Add AC_PROG_LIBTOOL to configure.in
 
   08 Aug 2008; Alexis Ballier <aballier@gentoo.org> xfce4-eyes-4.4.0.ebuild:
   keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
