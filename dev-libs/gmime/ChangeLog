@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.72 2008/08/17 21:02:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.73 2008/09/20 22:10:38 eva Exp $
+
+*gmime-2.2.23 (20 Sep 2008)
+
+  20 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> metadata.xml,
+  +gmime-2.2.23.ebuild:
+  bump to 2.2.23. Bug fixes and drop -j1 per bug #236016.
 
   17 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.1.19.ebuild,
   gmime-2.2.3.ebuild, gmime-2.2.11.ebuild, gmime-2.2.17.ebuild:
