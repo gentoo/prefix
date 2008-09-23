@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-back-xlib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/ChangeLog,v 1.44 2008/09/17 20:48:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/ChangeLog,v 1.45 2008/09/21 15:34:17 nixnut Exp $
+
+  21 Sep 2008; nixnut <nixnut@gentoo.org> gnustep-back-xlib-0.14.0.ebuild:
+  Stable on ppc wrt bug 235922
 
   17 Sep 2008; Markus Meier <maekke@gentoo.org>
   gnustep-back-xlib-0.14.0.ebuild:
