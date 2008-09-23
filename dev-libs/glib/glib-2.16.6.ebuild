@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.3.ebuild,v 1.9 2008/06/30 16:18:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.6.ebuild,v 1.1 2008/09/22 00:28:18 leio Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
@@ -50,9 +50,6 @@ src_unpack() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 
-	sed -e "s/MATCH_LIMIT_RECURSION=10000000/MATCH_LIMIT_RECURSION=8192/g" \
-		-i "${S}/glib/pcre/Makefile.in" "${S}/glib/pcre/Makefile.am"
-
 	# GNOME bug #538836, fix gio test failure on various arches
 	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
 		"${S}/gio/pltcheck.sh"
@@ -64,7 +61,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 
 	# properly keep symbols inside; bug #221075
-	epatch "${FILESDIR}"/${P}-macos-inline.patch
+	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
@@ -87,7 +84,7 @@ src_compile() {
 	# that not to get confused when it finds something outside the prefix too
 	if use !elibc_glibc ; then
 		myconf="${myconf} --with-libiconv=gnu"
-		# add the libdir for libtoo, otherwise it'll make love with system
+		# add the libdir for libtool, otherwise it'll make love with system
 		# installed libiconv
 		append-ldflags "-L${EPREFIX}/usr/$(get_libdir)"
 	fi

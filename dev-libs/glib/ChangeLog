@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.332 2008/09/09 11:44:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.333 2008/09/22 00:28:18 leio Exp $
+
+*glib-2.16.6 (22 Sep 2008)
+
+  22 Sep 2008; Mart Raudsepp <leio@gentoo.org> +glib-2.16.6.ebuild:
+  Version bump for bug fixes in the 2.16 series
 
   09 Sep 2008; Raúl Porcel <armin76@gentoo.org> glib-2.16.5.ebuild:
   alpha/ia64/sparc stable wrt #236971
