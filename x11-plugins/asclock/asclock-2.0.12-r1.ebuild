@@ -12,7 +12,7 @@ SRC_URI="http://www.tigr.net/afterstep/download/asclock/${P}.tar.gz"
 HOMEPAGE="http://www.tigr.net/afterstep/list.pl"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 
 DEPEND="x11-libs/libXpm"
 RDEPEND="${DEPEND}
@@ -28,15 +28,16 @@ src_unpack() {
 
 src_compile() {
 	local x
+	[[ ${CHOST} == *-linux-gnu ]] && CFLAGS="${CFLAGS} \
+			    -D_POSIX_C_SOURCE=199309L \
+			    -D_POSIX_SOURCE \
+			    -D_XOPEN_SOURCE"
 	for x in asclock parser symbols config
 	do
 		$(tc-getCC) \
 			    ${CFLAGS} \
 			    -I/usr/include \
 			    -Dlinux -D__i386__ \
-			    -D_POSIX_C_SOURCE=199309L \
-			    -D_POSIX_SOURCE \
-			    -D_XOPEN_SOURCE \
 			    -D_BSD_SOURCE \
 			    -D_SVID_SOURCE \
 			    -DFUNCPROTO=15 \
