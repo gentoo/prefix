@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.138 2008/06/10 04:34:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.139 2008/09/21 08:27:37 vapier Exp $
+
+*libtool-2.2.6a (21 Sep 2008)
+
+  21 Sep 2008; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.6a.ebuild:
+  Version bump #237168 by Conrad Kostecki.
 
   10 Jun 2008; Mike Frysinger <vapier@gentoo.org> libtool-2.2.4.ebuild:
   Do not run libtoolize when rebuilding other autotools #225559.
