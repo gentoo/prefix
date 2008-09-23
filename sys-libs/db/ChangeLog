@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.270 2008/09/17 13:06:51 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.271 2008/09/20 14:52:39 ranger Exp $
+
+  20 Sep 2008; Brent Baude <ranger@gentoo.org> db-3.2.9_p2.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild:
+  Mass stablization for ppc and ppc64 for bug 237127
 
   17 Sep 2008; Jeremy Olexa <darkside@gentoo.org> db-3.2.9_p2.ebuild,
   db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.5.20_p2-r1.ebuild:
