@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.22 2008/06/23 00:05:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.23 2008/09/21 19:07:33 angelos Exp $
+
+  21 Sep 2008; Christoph Mende <angelos@gentoo.org>
+  +files/xfce4-xkb-0.4.3-libtool.patch, xfce4-xkb-0.4.3-r1.ebuild:
+  Add AC_PROG_LIBTOOL to configure.in
 
   23 Jun 2008; Samuli Suominen <drac@gentoo.org> xfce4-xkb-0.4.3-r1.ebuild:
   Fix xfce4-dev-tools dep.

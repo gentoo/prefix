@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.4.3-r1.ebuild,v 1.16 2008/06/23 00:05:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.4.3-r1.ebuild,v 1.17 2008/09/21 19:07:33 angelos Exp $
 
 EAPI="prefix"
 
-inherit autotools xfce44
+inherit autotools eutils xfce44
 
 xfce44
 
@@ -19,6 +19,8 @@ DEPEND="dev-util/pkgconfig
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-libtool.patch
 	sed -i -e "/^AC_INIT/s/xkb_version()/xkb_version/" configure.in
 	intltoolize --force --copy --automake || die "intltoolize failed."
 	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf

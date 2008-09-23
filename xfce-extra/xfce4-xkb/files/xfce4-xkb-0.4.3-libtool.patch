@@ -1,0 +1,10 @@
+--- xfce4-xkb-plugin-0.4.3/configure.in.orig	2008-09-21 21:00:26.000000000 +0200
++++ xfce4-xkb-plugin-0.4.3/configure.in	2008-09-21 21:00:36.000000000 +0200
+@@ -38,6 +38,7 @@
+ AC_PROG_CC()
+ AC_PROG_LD()
+ AC_PROG_INSTALL()
++AC_PROG_LIBTOOL()
+ AC_PROG_INTLTOOL()
+ 
+ dnl *******************************
