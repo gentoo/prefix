@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  23 Sep 2008; Jeremy Olexa <darkside@gentoo.org>
+  darwin/macos/10.5/x86/package.use.mask:
+  patch from pipping. clean up package.use.mask for darwin 10.5 x86
+
   23 Sep 2008; Markus Duft <mduft@gentoo.org> windows/winnt/profile.bashrc:
   add PKG_CONFIG_PATH for cross eprefix merges on winnt
 
