@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.38 2008/08/02 20:43:15 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.39 2008/09/20 19:11:53 zmedico Exp $
 #
 # System-wide defaults for the Portage system
 # See portage(5) manpage
@@ -18,6 +18,10 @@ USE_EXPAND_HIDDEN="USERLAND KERNEL ELIBC CROSSCOMPILE_OPTS"
 
 CONFIG_PROTECT="/etc"
 CONFIG_PROTECT_MASK="/etc/env.d /etc/gconf"
+
+# Variables that are set exclusively by the profile
+# and not by user configuration files.
+PROFILE_ONLY_VARIABLES="ARCH ELIBC KERNEL USERLAND"
 
 # 'Sane' defaults
 ELIBC="glibc"

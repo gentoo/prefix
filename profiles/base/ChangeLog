@@ -1,6 +1,12 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.54 2008/09/17 07:37:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.55 2008/09/20 19:11:53 zmedico Exp $
+
+  20 Sep 2008; Zac Medico <zmedico@gentoo.org> make.defaults:
+  Define PROFILE_ONLY_VARIABLES to include ARCH, ELIBC, KERNEL, and USERLAND.
+  This is intended for use by package managers, to indicate which variables
+  are set exclusively by the profile and not by user configuration files. This
+  variable is currently supported in at least sys-apps/portage-2.1.4.4.
 
   17 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.use.mask:
   Mask media-sound/lmms:vst useflag; x86 only
