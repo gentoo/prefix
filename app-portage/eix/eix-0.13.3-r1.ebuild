@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3.ebuild,v 1.7 2008/09/19 19:51:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3-r1.ebuild,v 1.5 2008/09/21 23:10:22 fmccor Exp $
 
 EAPI=prefix
+
+inherit base
 
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://eix.sourceforge.net"
@@ -17,6 +19,8 @@ RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
 	app-arch/bzip2"
 DEPEND="${RDEPEND}
 	doc? ( dev-python/docutils )"
+
+PATCHES=( "${FILESDIR}/${P}-numeric-compare.patch" )
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
