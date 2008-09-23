@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/uriparser
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.18 2008/08/13 18:13:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.19 2008/09/21 16:38:32 rbu Exp $
+
+*uriparser-0.7.2 (21 Sep 2008)
+
+  21 Sep 2008; Robert Buchholz <rbu@gentoo.org> +uriparser-0.7.2.ebuild:
+  Version bump
 
   13 Aug 2008; Brent Baude <ranger@gentoo.org> uriparser-0.7.1.ebuild:
   Marking uriparser-0.7.1 ~ppc64 for bug 234600
