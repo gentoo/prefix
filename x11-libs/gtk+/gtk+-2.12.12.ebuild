@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.9.ebuild,v 1.1 2008/03/17 21:24:53 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.12.ebuild,v 1.1 2008/09/22 03:07:23 leio Exp $
 
 EAPI="prefix"
 
@@ -13,8 +13,8 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="aqua cups debug doc jpeg tiff vim-syntax xinerama"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="cups debug doc jpeg tiff vim-syntax xinerama aqua"
 
 RDEPEND="X? (
 		x11-libs/libXrender
@@ -33,7 +33,7 @@ RDEPEND="X? (
 	>=x11-libs/pango-1.17.3
 	>=dev-libs/atk-1.10.1
 	>=x11-libs/cairo-1.2.0
-	!aqua? ( media-libs/fontconfig )
+	media-libs/fontconfig
 	x11-misc/shared-mime-info
 	>=media-libs/libpng-1.2.1
 	cups? ( net-print/cups )
@@ -50,8 +50,9 @@ DEPEND="${RDEPEND}
 		x11-proto/damageproto
 	)
 	xinerama? ( x11-proto/xineramaproto )
+	>=dev-util/gtk-doc-am-1.8
 	doc? (
-			>=dev-util/gtk-doc-1.6
+			>=dev-util/gtk-doc-1.8
 			~app-text/docbook-xml-dtd-4.1.2
 		 )"
 PDEPEND="vim-syntax? ( app-vim/gtk-syntax )"
@@ -94,18 +95,24 @@ src_unpack() {
 	# Firefox print review crash fix, bug #195644
 	epatch "${FILESDIR}/${PN}-2.12.1-firefox-print-preview.patch"
 
+	# Compile without libintl.h (uclibc)
+	epatch "${FILESDIR}/${PN}-2.12.10-no-libintl.patch"
+
+	# Work without C++
+	epatch "${FILESDIR}/${PN}-2.12.10-fix-nocxx.patch"
+
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
 	strip-flags
 
 	use ppc64 && append-flags -mminimal-toc
 
+	# Fix libtool usage for configure stage, bug #213789
+	epatch "${FILESDIR}/${PN}-2.12.9-libtool-2.patch"
+
 	# remember, eautoreconf applies elibtoolize.
 	# if you remove this, you should manually run elibtoolize
-	cp aclocal.m4 old_macros.m4
-	AT_M4DIR="." eautoreconf
-
-	epunt_cxx
+	eautoreconf
 }
 
 src_compile() {
@@ -114,7 +121,7 @@ src_compile() {
 		$(use_with jpeg libjpeg) \
 		$(use_with tiff libtiff) \
 		$(use_enable xinerama) \
-		$(use_enable cups) \
+		$(use_enable cups cups auto) \
 		--with-libpng"
 	if use aqua; then
 		myconf="${myconf} --with-gdktarget=quartz"
