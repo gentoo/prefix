@@ -10,10 +10,12 @@
      chmod 755 $1
 --- patches/dev300/apply 
 +++ patches/dev300/apply 
-@@ -1375,12 +1375,8 @@
+@@ -1375,12 +1375,10 @@
  system-db-check.diff, i#65979, hmth
  # User ~/.ooo3 as user dir
  scp2-user-config-ooo3.diff, pmladek
++#fix build without java
++lucene-no-java.diff
 -# unused java code
 -disable-parser-jaxp.diff
  # default inc/lib

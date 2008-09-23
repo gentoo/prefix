@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc1.ebuild,v 1.3 2008/09/19 08:57:01 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc1.ebuild,v 1.4 2008/09/20 17:49:02 suka Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ WANT_AUTOMAKE="1.9"
 
 inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib
 
-IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam seamonkey"
+IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam"
 
 MY_PV="3.0.0.3.1"
 PATCHLEVEL="OOO300"
@@ -141,10 +141,7 @@ DEPEND="${COMMON_DEPEND}
 	pam? ( sys-libs/pam )
 	!dev-util/dmake
 	>=dev-lang/python-2.3.4
-	!seamonkey? ( nsplugin? ( >=net-libs/xulrunner-1.8
-		>=dev-libs/nspr-4.6.6
-		>=dev-libs/nss-3.11-r1 ) )
-	seamonkey? ( =www-client/seamonkey-1*
+	nsplugin? ( || ( =net-libs/xulrunner-1.8 =net-libs/xulrunner-1.9 =www-client/seamonkey-1* )
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
 	java? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* )
@@ -164,6 +161,9 @@ pkg_setup() {
 	ewarn " hardware ressources: 4-6 GB free diskspace and 256 MB RAM are "
 	ewarn " the minimum requirements. If you have less, use openoffice-bin "
 	ewarn " instead. "
+	ewarn
+	ewarn " Also if you experience a build break, please make sure to retry "
+	ewarn " with MAKEOPTS="-j1" before filing a bug. "
 	ewarn
 
 	# Check if we have enough RAM and free diskspace to build this beast
@@ -185,7 +185,7 @@ pkg_setup() {
 
 	if use !java; then
 		ewarn " You are building with java-support disabled, this results in some "
-		ewarn " of the OpenOffice.org functionality (i.e. help) being disabled. "
+		ewarn " of the OpenOffice.org functionality being disabled. "
 		ewarn " If something you need does not work for you, rebuild with "
 		ewarn " java in your USE-flags. "
 		ewarn
@@ -208,13 +208,15 @@ pkg_setup() {
 		fi
 	fi
 
-	if use !seamonkey && use nsplugin; then
-		if pkg-config --exists xulrunner-xpcom; then
-			XULR="xulrunner"
-		elif pkg-config --exists libxul; then
-			XULR="libxul"
+	if use nsplugin; then
+		if pkg-config --exists libxul; then
+			BRWS="libxul"
+		elif pkg-config --exists xulrunner-xpcom; then
+			BRWS="xulrunner"
+		elif pkg-config --exists seamonkey-xpcom; then
+			BRWS="seamonkey"
 		else
-			die "USE flag [nsplugin] set but no installed xulrunner found!"
+			die "USE flag [nsplugin] set but no installed xulrunner or seamonkey found!"
 		fi
 	fi
 
@@ -246,6 +248,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
+	cp -f "${FILESDIR}/lucene-no-java.diff" "${S}/patches/dev300/"
 
 	#Use flag checks
 	if use java ; then
@@ -267,19 +270,15 @@ src_unpack() {
 		echo "--with-rhino-jar=$(java-pkg_getjar rhino-1.5 js.jar)" >> ${CONFFILE}
 	fi
 
-	if use nsplugin || use seamonkey ; then
+	if use nsplugin ; then
 		echo "--enable-mozilla" >> ${CONFFILE}
-		local browser
-		use nsplugin && browser="${XULR}"
-		use seamonkey && browser="seamonkey"
-
-		echo "--with-system-mozilla=${browser}" >> ${CONFFILE}
+		echo "--with-system-mozilla=${BRWS}" >> ${CONFFILE}
 	else
 		echo "--disable-mozilla" >> ${CONFFILE}
 		echo "--without-system-mozilla" >> ${CONFFILE}
 	fi
 
-	echo "`use_enable binfilter`" >> ${CONFFILE}
+	echo "--disable-binfilter" >> ${CONFFILE}
 	echo "`use_enable cups`" >> ${CONFFILE}
 	echo "`use_enable dbus`" >> ${CONFFILE}
 	echo "`use_enable eds evolution2`" >> ${CONFFILE}
@@ -301,7 +300,7 @@ src_unpack() {
 
 src_compile() {
 
-	# Use multiprocessing by default now, it tested upstream
+	# Use multiprocessing by default now, it gets tested by upstream
 	export JOBS=`echo "${MAKEOPTS}" | sed -e "s/.*-j\([0-9]\+\).*/\1/"`
 
 	# Compile problems with these ...
@@ -382,17 +381,15 @@ pkg_postinst() {
 	# Add available & useful jars to openoffice classpath
 	use java && ${EPREFIX}/usr/$(get_libdir)/openoffice/basis3.0/program/java-set-classpath $(java-config --classpath=jdbc-mysql 2>/dev/null) >/dev/null
 
-	elog " To start OpenOffice.org, run:"
-	elog
-	elog " $ ooffice"
-	elog
-	elog " Also, for individual components, you can use any of:"
-	elog
-	elog " oobase, oocalc, oodraw, oofromtemplate, ooimpress, oomath,"
-	elog " ooweb or oowriter"
-	elog
-	elog " Spell checking is now provided through our own myspell-ebuilds, "
+	elog " Spell checking is provided through our own myspell-ebuilds, "
 	elog " if you want to use it, please install the correct myspell package "
 	elog " according to your language needs. "
+	elog
 
+	ewarn " Please note that this release of OpenOffice.org uses a "
+	ewarn " new user install dir. As a result you will have to redo "
+	ewarn " your settings. Alternatively you might copy the old one "
+	ewarn " over from ~/.ooo-2.0 to ~/.ooo3, but be warned that this "
+	ewarn " might break stuff. "
+	ewarn
 }

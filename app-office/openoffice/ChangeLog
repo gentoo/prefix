@@ -1,6 +1,14 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.414 2008/09/19 08:57:01 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.415 2008/09/20 17:49:02 suka Exp $
+
+  20 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  files/gentoo-3.0.0_rc1.diff, +files/lucene-no-java.diff,
+  openoffice-3.0.0_rc1.ebuild:
+  Further simplify browser plugin stuff, drop seamonkey use-flag as a
+  consequence. Disable binfilter stuff for now, no source package available
+  atm and add some more info messages. Also try to fix the build without
+  java.
 
   19 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.0.0_rc1.ebuild:
