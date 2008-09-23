@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.74 2008/03/17 16:06:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.75 2008/09/21 10:08:47 vapier Exp $
+
+*zip-3.0 (21 Sep 2008)
+
+  21 Sep 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/zip-3.0-build.patch, +files/zip-3.0-exec-stack.patch,
+  +files/zip-3.0-pic.patch, +zip-3.0.ebuild:
+  Version bump #237141 by Conrad Kostecki.
 
   17 Mar 2008; Jeroen Roovers <jer@gentoo.org> zip-2.32-r1.ebuild:
   Stable for HPPA (bug #213585).
