@@ -5,6 +5,10 @@
 #
 # This is a workaround for portage bug#199868,
 # and should be dropped once portage does sth. like this itself.
+#
+
+# Need to explicitly set PKG_CONFIG_PATH for cross EPREFIX.
+export PKG_CONFIG_PATH="${EPREFIX}/lib/pkgconfig:${EPREFIX}/usr/lib/pkgconfig"
 
 windows_cleanup_removed_files() {
 	local removedlist=$1
