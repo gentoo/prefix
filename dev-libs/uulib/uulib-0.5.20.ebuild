@@ -1,12 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uulib/uulib-0.5.20.ebuild,v 1.19 2008/01/25 21:11:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uulib/uulib-0.5.20.ebuild,v 1.20 2008/09/21 02:23:57 solar Exp $
 
 EAPI="prefix"
 
+inherit toolchain-funcs
+
 MY_P=uudeview-${PV}
 
-DESCRIPTION="library that supports Base64 (MIME), uuencode, xxencode and binhex coding"
+DESCRIPTION="Library that supports Base64 (MIME), uuencode, xxencode and binhex coding"
 HOMEPAGE="http://www.fpx.de/fp/Software/UUDeview/"
 SRC_URI="http://www.fpx.de/fp/Software/UUDeview/download/${MY_P}.tar.gz"
 
@@ -18,6 +20,12 @@ IUSE=""
 DEPEND=""
 
 S=${WORKDIR}/${MY_P}/${PN}
+
+src_compile() {
+	tc-export CC
+	econf || die
+	emake || die
+}
 
 src_install() {
 	dolib.a libuu.a
