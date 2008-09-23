@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.53 2008/05/28 13:28:40 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.58 2008/09/21 13:25:45 ranger Exp $
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> autoconf-wrapper-5.ebuild:
+  stable ppc64, bug 238206
+
+  21 Sep 2008; nixnut <nixnut@gentoo.org> autoconf-wrapper-5.ebuild:
+  Stable on ppc wrt bug 238206
+
+  20 Sep 2008; Steve Dibb <beandog@gentoo.org> autoconf-wrapper-5.ebuild:
+  amd64 stable, bug 238206
+
+  20 Sep 2008; Raúl Porcel <armin76@gentoo.org> autoconf-wrapper-5.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #238206
+
+*autoconf-wrapper-6 (20 Sep 2008)
+
+  20 Sep 2008; Mike Frysinger <vapier@gentoo.org> +files/ac-wrapper-6.sh,
+  +autoconf-wrapper-6.ebuild:
+  Add support for autoconf-2.63.
 
   28 May 2008; Guy Martin <gmsoft@gentoo.org> autoconf-wrapper-5.ebuild:
   Stable on hppa.
