@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.22.0.ebuild,v 1.6 2008/08/12 13:31:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.22.0.ebuild,v 1.7 2008/09/20 19:49:45 eva Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ DEPEND="${RDEPEND}
 	  x11-apps/xrdb
 	>=dev-util/pkgconfig-0.9
 	>=dev-util/intltool-0.35
+	>=dev-util/gtk-doc-am-1.10
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
