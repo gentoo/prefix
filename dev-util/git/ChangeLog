@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.296 2008/09/16 22:21:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.297 2008/09/21 20:02:27 robbat2 Exp $
+
+*git-1.6.0.2 (21 Sep 2008)
+
+  21 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.0.2.ebuild:
+  Version bump.
 
   16 Sep 2008; Jeroen Roovers <jer@gentoo.org> git-1.5.6.4.ebuild:
   Stable for HPPA (bug #234075).
