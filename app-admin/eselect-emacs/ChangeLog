@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.55 2008/09/19 01:09:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.56 2008/09/20 09:43:31 armin76 Exp $
+
+  20 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  eselect-emacs-1.5-r1.ebuild:
+  alpha/ia64 stable wrt #238021
 
   19 Sep 2008; Brent Baude <ranger@gentoo.org> eselect-emacs-1.5-r1.ebuild:
   Marking eselect-emacs-1.5-r1 ppc64 and ppc for bug 238021
