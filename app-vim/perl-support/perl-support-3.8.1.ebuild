@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/perl-support/perl-support-3.6.2.ebuild,v 1.1 2007/07/19 13:54:01 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/perl-support/perl-support-3.8.1.ebuild,v 1.1 2008/09/20 14:55:04 hawking Exp $
 
 EAPI="prefix"
 
