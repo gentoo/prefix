@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r3.ebuild,v 1.6 2008/09/17 14:45:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r3.ebuild,v 1.7 2008/09/21 08:43:56 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -104,4 +104,11 @@ src_install() {
 	dosym /usr/sbin/ssmtp /usr/sbin/sendmail
 	dosym /usr/sbin/ssmtp /usr/bin/mailq
 	dosym /usr/sbin/ssmtp /usr/bin/newaliases
+}
+
+pkg_postinst() {
+	elog "Starting with =mail-mta/ssmtp-2.62 all users who should be able"
+	elog "to send mails using ssmtp must be added to the ssmtp group."
+	elog
+	elog "See bug #187841 for reference."
 }
