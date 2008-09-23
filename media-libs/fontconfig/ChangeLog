@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.120 2008/06/26 21:38:55 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.121 2008/09/21 02:45:31 solar Exp $
+
+  21 Sep 2008; <solar@gentoo.org> fontconfig-2.6.0-r2.ebuild:
+  - make cross compile aware
 
 *fontconfig-2.6.0-r2 (26 Jun 2008)
 
