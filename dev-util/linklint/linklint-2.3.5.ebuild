@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/linklint/linklint-2.3.5.ebuild,v 1.4 2006/11/05 19:37:54 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/linklint/linklint-2.3.5.ebuild,v 1.5 2008/09/20 14:40:38 coldwind Exp $
 
 EAPI="prefix"
 
-DESCRIPTION="Linklint is a Perl program that checks links on web sites."
+DESCRIPTION="a Perl program that checks links on web sites."
 HOMEPAGE="http://www.linklint.org/"
 SRC_URI="http://www.linklint.org/download/${P}.tar.gz"
 

@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/linklint
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/linklint/ChangeLog,v 1.9 2007/03/19 02:39:25 kloeri Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/linklint/ChangeLog,v 1.10 2008/09/20 14:40:38 coldwind Exp $
+
+  20 Sep 2008; Santiago M. Mola <coldwind@gentoo.org>
+  -linklint-2.3.4.ebuild, linklint-2.3.5.ebuild:
+  amd64 stable, remove old. Make DESCRIPTION shorter.
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove ka0ttic from metadata.xml due to retirement.
