@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.302 2008/08/17 22:21:52 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.307 2008/09/20 19:03:31 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -185,6 +185,10 @@ epatch() {
 	fi
 
 	case ${EPATCH_SUFFIX##*\.} in
+		lzma)
+			PIPE_CMD="lzma -dc"
+			PATCH_SUFFIX="lzma"
+			;;
 		bz2)
 			PIPE_CMD="bzip2 -dc"
 			PATCH_SUFFIX="bz2"
@@ -244,6 +248,33 @@ epatch() {
 			echo "***** ${patchname} *****" > ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 			echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 
+			# Decompress the patch if need be
+			if [[ ${PATCH_SUFFIX} != "patch" ]] ; then
+				echo -n "PIPE_COMMAND:	" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+				echo "${PIPE_CMD} ${x} > ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+
+				if ! (${PIPE_CMD} ${x} > ${PATCH_TARGET}) >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/} 2>&1 ; then
+					echo
+					eerror "Could not extract patch!"
+					#die "Could not extract patch!"
+					count=5
+					break
+				fi
+			else
+				PATCH_TARGET="${x}"
+			fi
+
+			# Check for absolute paths in patches.  If sandbox is disabled,
+			# people could (accidently) patch files in the root filesystem.
+			# Or trigger other unpleasantries #237667.  So disallow -p0 on
+			# such patches.
+			local abs_paths=$(egrep -n '^[-+]{3} /' "${PATCH_TARGET}" | awk '$2 != "/dev/null" { print }')
+			if [[ -n ${abs_paths} ]] ; then
+				count=1
+				echo "NOTE: skipping -p0 due to absolute paths in patch:" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+				echo "${abs_paths}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+			fi
+
 			# Allow for prefix to differ ... im lazy, so shoot me :/
 			while [ "${count}" -lt 5 ]
 			do
@@ -251,31 +282,11 @@ epatch() {
 				_epatch_draw_line "***** ${patchname} *****" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 				echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 
-				if [ "${PATCH_SUFFIX}" != "patch" ]
-				then
-					echo -n "PIPE_COMMAND:	" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-					echo "${PIPE_CMD} ${x} > ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				else
-					PATCH_TARGET="${x}"
-				fi
-
 				echo -n "PATCH COMMAND:	 " >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 				echo "patch -p${count} ${popts} < ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 
 				echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 				_epatch_draw_line "***** ${patchname} *****" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-				if [ "${PATCH_SUFFIX}" != "patch" ]
-				then
-					if ! (${PIPE_CMD} ${x} > ${PATCH_TARGET}) >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/} 2>&1
-					then
-						echo
-						eerror "Could not extract patch!"
-						#die "Could not extract patch!"
-						count=5
-						break
-					fi
-				fi
 
 				if (cat ${PATCH_TARGET} | patch -p${count} ${popts} --dry-run -f ; _epatch_assert) >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/} 2>&1
 				then
