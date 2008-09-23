@@ -94,7 +94,7 @@ qt4-build_src_unpack() {
 	if use aqua; then
 		sed -e '/^CONFIG/s:app_bundle::' \
 			-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
-		-i mkspecs/macx-g++/qmake.conf || die "sed failed"
+		-i "${S}"/mkspecs/macx-g++/qmake.conf || die "sed failed"
 	fi
 
 	if [[ ${PN} != qt-core ]]; then
