@@ -1,22 +1,22 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.49.ebuild,v 1.9 2008/09/20 21:45:41 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.7.1.ebuild,v 1.1 2008/09/21 03:06:11 keri Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
-PATCHSET_VER="3"
+PATCHSET_VER="0"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
-SRC_URI="http://gollem.science.uva.nl/cgi-bin/nph-download/SWI-Prolog/pl-${PV}.tar.gz
+SRC_URI="http://gollem.science.uva.nl/cgi-bin/nph-download/SWI-Prolog/BETA/pl-${PV}.tar.gz
 	mirror://gentoo/${P}-gentoo-patchset-${PATCHSET_VER}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static latex threads zlib X"
+IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
 DEPEND="!media-libs/ploticus
 	sys-libs/ncurses
@@ -27,7 +27,7 @@ DEPEND="!media-libs/ploticus
 	gmp? ( dev-libs/gmp )
 	ssl? ( dev-libs/openssl )
 	java? ( >=virtual/jdk-1.4
-		=dev-java/junit-3.8* )
+		test? ( =dev-java/junit-3.8* ) )
 	X? (
 		media-libs/jpeg
 		x11-libs/libX11
@@ -56,11 +56,9 @@ src_compile() {
 	use hardened && append-flags -fno-unit-at-a-time
 	use debug && append-flags -DO_DEBUG
 
-	local threadconf
-	if use java && ! use minimal || use threads ; then
-		threadconf="--enable-mt"
-	else
-		threadconf="--disable-mt"
+	local jpltestconf
+	if use java && use test ; then
+		jpltestconf="--with-junit=$(java-config --classpath junit)"
 	fi
 
 	# ARCH is used in the configure script to figure out host and target
@@ -70,7 +68,6 @@ src_compile() {
 	cd "${S}"/src
 	econf \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		${threadconf} \
 		$(use_enable gmp) \
 		$(use_enable readline) \
 		$(use_enable !static shared) \
@@ -84,7 +81,6 @@ src_compile() {
 		cd "${S}/packages"
 		econf \
 			--libdir="${EPREFIX}"/usr/$(get_libdir) \
-			${threadconf} \
 			$(use_enable !static shared) \
 			--without-C-sicstus \
 			--with-chr \
@@ -96,7 +92,6 @@ src_compile() {
 			--with-http \
 			--without-jasmine \
 			$(use_with java jpl) \
-			$(use_with latex ltx2htm) \
 			--with-nlp \
 			$(use_with odbc) \
 			--with-pldoc \

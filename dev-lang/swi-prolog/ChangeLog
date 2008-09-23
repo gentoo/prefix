@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.147 2008/08/09 06:44:19 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.150 2008/09/21 03:06:11 keri Exp $
+
+*swi-prolog-5.7.1 (21 Sep 2008)
+
+  21 Sep 2008; <keri@gentoo.org> +swi-prolog-5.7.1.ebuild:
+  Add -5.7 development version
+
+*swi-prolog-5.6.60 (20 Sep 2008)
+
+  20 Sep 2008; <keri@gentoo.org> +swi-prolog-5.6.60.ebuild:
+  Version bump.
+
+  20 Sep 2008; <keri@gentoo.org> swi-prolog-5.6.49.ebuild,
+  swi-prolog-5.6.50.ebuild, swi-prolog-5.6.51.ebuild,
+  swi-prolog-5.6.52.ebuild, swi-prolog-5.6.54.ebuild,
+  swi-prolog-5.6.55.ebuild, swi-prolog-5.6.57.ebuild,
+  swi-prolog-5.6.58.ebuild, swi-prolog-5.6.59.ebuild:
+  Block media-libs/ploticus. Bug #234849
 
   09 Aug 2008; <keri@gentoo.org> swi-prolog-5.6.57.ebuild,
   swi-prolog-5.6.59.ebuild:

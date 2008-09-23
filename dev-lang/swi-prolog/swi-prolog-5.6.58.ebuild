@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.58.ebuild,v 1.1 2008/07/26 22:02:28 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.58.ebuild,v 1.2 2008/09/20 21:45:41 keri Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static latex test threads zlib X"
 
-DEPEND="!dev-lang/swi-prolog-lite
+DEPEND="!media-libs/ploticus
 	sys-libs/ncurses
 	zlib? ( sys-libs/zlib )
 	odbc? ( dev-db/unixODBC )
