@@ -1,6 +1,12 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.196 2008/09/15 18:49:18 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.197 2008/09/20 17:37:18 suka Exp $
+
+  20 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0_rc1.ebuild:
+  Some fixes / cleanups, most importantly: Integration of systemwide
+  myspell-dictionaries does not work anymore, add a note and remove
+  corresponding dep.
 
   15 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
   openoffice-bin-3.0.0_rc1.ebuild:
