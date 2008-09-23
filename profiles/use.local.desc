@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3878 2008/09/18 04:27:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3884 2008/09/22 13:27:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -28,6 +28,7 @@ app-admin/conky:audacious - enable monitoring of audio tracks that are playing m
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing media-sound/bmpx
 app-admin/conky:mpd - enable monitoring mpd controlled music media-sound/mpd
 app-admin/conky:nano-syntax - enable syntax highlighting for app-editors/nano
+app-admin/conky:nvidia - enable reading of nvidia card temperature sensors via media-video/nvidia-settings
 app-admin/conky:smapi - enable support for smapi
 app-admin/diradm:automount - Support for automount data in LDAP
 app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
@@ -1936,8 +1937,11 @@ net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
 net-misc/openssh:hpn - Enable high performance ssh
 net-misc/openssh:ldap - Add support for storing SSH public keys in LDAP
-net-misc/openswan:extra-algorithms - Include additional algorithms such as Blowfish, Twofish and Serpent
-net-misc/openswan:weak-algorithms - Include weak algorithms such as DH1 and 1DES
+net-misc/openswan:curl - Include curl support (used for fetching CRLs)
+net-misc/openswan:extra-algorithms - Include additional strong algorithms (Blowfish, Twofish, Serpent and SHA2)
+net-misc/openswan:ldap - Include LDAP support (used for fetching CRLs)
+net-misc/openswan:nocrypto-algorithms - Include algorithms that don't even encrypt (1DES)
+net-misc/openswan:weak-algorithms - Include weak algorithms (DH1)
 net-misc/openvpn:iproute2 - Enabled iproute2 support instead of net-tools
 net-misc/openvpn:passwordsave - Enables openvpn to save passwords
 net-misc/openvpn:pkcs11 - Enable PKCS#11 smartcard support
@@ -2528,7 +2532,6 @@ x11-libs/wxGTK:gnome -  Use gnome-base/libgnomeprintui for printing tasks.
 x11-libs/wxGTK:gstreamer -  Enable the wxMediaCtrl class for playing audio and video through gstreamer. 
 x11-libs/wxGTK:sdl -  Use Simple Directmedia Layer (media-libs/libsdl) for audio. 
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
-x11-misc/fbdesk:imlib2 - Add support for imlib2 (pixmap themes)
 x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc

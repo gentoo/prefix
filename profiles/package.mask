@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8993 2008/09/18 15:36:15 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9000 2008/09/23 04:42:20 lavajoe Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,39 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Joe Peterson <lavajoe@gentoo.org> (22 Sep 2008)
+# Masked for removal in 30 days (see bug #238442)
+# Replaced by package: media-sound/squeezecenter
+media-sound/slimserver
+
+# Mart Raudsepp <leio@gentoo.org> (22 Sep 2008)
+# New version in which the only change compared to previous
+# version breaks build on GNOME-2.22 systems
+=dev-python/gnome-python-base-2.22.2
+=dev-python/libgnomecanvas-python-2.22.2
+
+# Alin Năstac <mrness@gentoo.org> (21 Sep 2008)
+# Breaks L2TP connections (see bug 237132)
+=net-misc/openswan-2.6*
+
+# Alexis Ballier <aballier@gentoo.org> (21 Sep 2008)
+# New release, breaks api and kdenlive fails to build against them.
+# Unmask when it is fine.
+>=media-libs/mlt-0.3.0
+>=media-libs/mlt++-0.3.0
+
+# Keri Harris <keri@gentoo.org> (21 Sep 2008)
+# Development version
+=dev-lang/swi-prolog-5.7*
+
+# Andreas Proschofsky <suka@gentoo.org> (20 Sep 2008)
+# Masked for removal in 30 days. Both packages are broken
+# and are unmaintained for ages. If you want a proper
+# quickstarter for OpenOffice.org use the one which is 
+# provided with the source-based build of OOo.
+app-office/ooqstart-gnome
+app-office/oooqs
 
 # MATSUU Takuto <matsuu@gentoo.org> (18 Sep 2008)
 # Masked for removal in 60 days.
@@ -72,11 +105,6 @@ dev-lang/stratego
 # Masked for removal in 60 days. dead upstream, broken on current systems. No
 # maintainer, See bug #166875
 net-misc/xf4vnc
-
-# Jeremy Olexa <darkside@gentoo.org> (12 Sep 2008)
-# Masked for removal in 60 days. dead upstream, missed modular X transition.
-# See bug #127193
-x11-terms/root-tail
 
 # Gunnar Wrobel <wrobel@gentoo.org> (10 Sep 2008)
 # Masked for security, bug 235060, upstream dead,

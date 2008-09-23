@@ -1,10 +1,53 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1882 2008/09/18 15:36:15 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1890 2008/09/23 04:42:20 lavajoe Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  23 Sep 2008; Joe Peterson <lavajoe@gentoo.org> package.mask:
+  Masked media-sound/slimserver (replaced by media-sound/squeezecenter)
+
+  23 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Lift p.mask on x11-terms/root-tail. Multiple users have said that it works
+  and I got it working as well. See bug #127193
+
+  22 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Mask gnome-python-2.22.2 components that got accidentally committed before
+  fact of a broken release was noticed
+
+  21 Sep 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask openswan-2.6* (#237132).
+
+  21 Sep 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask new versions of mlt/++
+
+  21 Sep 2008; <keri@gentoo.org> package.mask:
+  mask dev-lang/swi-prolog-5.7* - development version
+
+  20 Sep 2008; Zac Medico <zmedico@gentoo.org> +arch/alpha/parent,
+  +arch/alpha/use.force, arch/alpha/use.mask, arch/amd64/parent,
+  +arch/amd64/use.force, arch/amd64/use.mask, +arch/arm/parent,
+  +arch/arm/use.force, arch/arm/use.mask, +arch/base/use.mask,
+  +arch/hppa/parent, +arch/hppa/use.force, arch/hppa/use.mask,
+  +arch/ia64/parent, +arch/ia64/use.force, arch/ia64/use.mask,
+  +arch/m68k/parent, +arch/m68k/use.force, arch/m68k/use.mask,
+  +arch/mips/parent, +arch/mips/use.force, arch/mips/use.mask,
+  +arch/powerpc/parent, +arch/powerpc/ppc32/use.force,
+  +arch/powerpc/ppc32/use.mask, +arch/powerpc/ppc64/32ul/use.force,
+  arch/powerpc/ppc64/32ul/use.mask, +arch/powerpc/ppc64/use.force,
+  arch/powerpc/ppc64/use.mask, +arch/s390/parent, +arch/s390/use.force,
+  arch/s390/use.mask, +arch/sh/parent, +arch/sh/use.force, arch/sh/use.mask,
+  arch/sparc/parent, +arch/sparc/use.force, arch/sparc/use.mask,
+  +arch/x86/parent, +arch/x86/use.force, arch/x86/use.mask:
+  Mask and force USE flags that correspond to ARCH values. All arch profiles
+  now inherit from arch/base, which masks the USE flags that correspond to
+  all possible ARCH values. Each of the individual arch profiles unmasks and
+  forces the USE flag which corresponds to its ARCH value.
+
+  20 Sep 2008; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  mask app-office/ooqstart-gnome and app-office/oooqs for upcoming removal
 
   18 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
   unmask =x11-libs/xcb-util-0.3*
