@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.1_p1.ebuild,v 1.6 2008/09/22 04:29:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.1 2008/09/20 18:29:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,19 +12,21 @@ MY_P=${PN}-${MY_PV}
 PLEVEL=${PV/*p}
 DESCRIPTION="library for multiple-precision floating-point computations with exact rounding"
 HOMEPAGE="http://www.mpfr.org/"
-SRC_URI="http://www.mpfr.org/mpfr-current/${MY_P}.tar.bz2"
+SRC_URI="http://www.mpfr.org/mpfr-current/${MY_P}.tar.lzma"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND=">=dev-libs/gmp-4.1.4-r2"
+RDEPEND=">=dev-libs/gmp-4.1.4-r2"
+DEPEND="${RDEPEND}
+	app-arch/lzma-utils"
 
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
-	unpack "${MY_P}.tar.bz2"
+	unpack ${A}
 	cd "${S}"
 	[[ ${PLEVEL} == ${PV} ]] && return 0
 	for ((i=1; i<=PLEVEL; ++i)) ; do

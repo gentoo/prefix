@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.76 2008/08/20 14:24:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.82 2008/09/22 04:29:28 jer Exp $
+
+  22 Sep 2008; Jeroen Roovers <jer@gentoo.org> mpfr-2.3.1_p1.ebuild:
+  Stable for HPPA (bug #238208).
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> mpfr-2.3.1_p1.ebuild:
+  stable ppc64, bug 238208
+
+  21 Sep 2008; nixnut <nixnut@gentoo.org> mpfr-2.3.1_p1.ebuild:
+  Stable on ppc wrt bug 238208
+
+  21 Sep 2008; Raúl Porcel <armin76@gentoo.org> mpfr-2.3.1_p1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #238208
+
+  20 Sep 2008; Steve Dibb <beandog@gentoo.org> mpfr-2.3.1_p1.ebuild:
+  amd64 stable, bug 238208
+
+*mpfr-2.3.2 (20 Sep 2008)
+
+  20 Sep 2008; Mike Frysinger <vapier@gentoo.org> +mpfr-2.3.2.ebuild:
+  Version bump.
 
 *mpfr-2.3.1_p1 (20 Aug 2008)
 
