@@ -1,6 +1,11 @@
 # ChangeLog for app-vim/matrix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/matrix/ChangeLog,v 1.13 2008/03/24 17:10:34 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/matrix/ChangeLog,v 1.14 2008/09/21 12:22:24 hawking Exp $
+
+*matrix-1.10 (21 Sep 2008)
+
+  21 Sep 2008; Ali Polatel <hawking@gentoo.org> +matrix-1.10.ebuild:
+  Version bump.
 
   24 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> matrix-1.09.ebuild:
   amd64 stable
