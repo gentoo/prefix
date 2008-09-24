@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.219 2008/09/14 15:48:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.220 2008/09/23 21:02:31 opfer Exp $
+
+  23 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-23.0.9999.ebuild:
+  remove note about to be installed fonts
 
   14 Sep 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
   Be less verbose, bug 237546.

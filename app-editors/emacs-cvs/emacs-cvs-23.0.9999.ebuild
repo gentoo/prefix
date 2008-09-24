@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.9 2008/09/14 15:48:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.10 2008/09/23 21:02:31 opfer Exp $
 
 EAPI="prefix"
 
@@ -287,14 +287,6 @@ pkg_postinst() {
 	elisp-site-regen
 	emacs-infodir-rebuild
 	eselect emacs update ifunset
-
-	if use X; then
-		elog "You need to install some fonts for Emacs. Under monolithic"
-		elog "XFree86/Xorg you typically had such fonts installed by default."
-		elog "With modular Xorg, you will have to perform this step yourself."
-		elog "Installing media-fonts/font-adobe-{75,100}dpi on the X server's"
-		elog "machine would satisfy basic Emacs requirements under X11."
-	fi
 
 	echo
 	elog "You can set the version to be started by /usr/bin/emacs through"
