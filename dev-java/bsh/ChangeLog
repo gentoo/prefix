@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/bsh
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.51 2008/02/15 04:00:22 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.52 2008/09/22 20:27:08 serkan Exp $
+
+  22 Sep 2008; Serkan Kaba <serkan@gentoo.org> files/bsh2.0b4-build.patch,
+  bsh-2.0_beta4-r3.ebuild:
+  Updated patch to fix bug #238402 reported by André Terpstra
+  <andre@terpstra.nu>. Fixed quoting of variables. Added necessary calls to
+  die.
 
   15 Feb 2008; Petteri Räty <betelgeuse@gentoo.org>
   bsh-2.0_beta4-r3.ebuild:

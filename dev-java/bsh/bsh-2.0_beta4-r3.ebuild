@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/bsh-2.0_beta4-r3.ebuild,v 1.6 2008/02/15 04:00:22 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/bsh-2.0_beta4-r3.ebuild,v 1.7 2008/09/22 20:27:08 serkan Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
@@ -30,14 +30,14 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/BeanShell-${MY_PV}
 
 src_unpack() {
-	jar xf ${DISTDIR}/${MY_DIST} || die "failed to unpack"
-	cd "${S}"
+	jar xf "${DISTDIR}"/${MY_DIST} || die "failed to unpack"
+	cd "${S}" || die
 
 	epatch "${FILESDIR}/bsh${MY_PV}-build.patch"
 
 	use readline && epatch "${FILESDIR}/bsh2-readline.patch"
 
-	cd lib
+	cd lib || die
 	rm -v *.jar || die
 	java-pkg_jar-from servletapi-2.4
 	use readline && java-pkg_jar-from libreadline-java
@@ -61,7 +61,7 @@ src_install() {
 	use doc && java-pkg_dojavadoc javadoc
 	use source && java-pkg_dosrc src/bsh
 
-	newicon ${DISTDIR}/beanshell-icon.png beanshell.png
+	newicon "${DISTDIR}"/beanshell-icon.png beanshell.png
 
 	make_desktop_entry bsh-console "BeanShell Prompt" beanshell
 }
