@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3884 2008/09/22 13:27:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3888 2008/09/24 01:08:22 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1962,6 +1962,7 @@ net-misc/streamtuner:shout - Enable shoutcast plug-in.
 net-misc/streamtuner:xiph - Enable xiph.org plug-in.
 net-misc/strongswan:cisco - Enable support of Cisco VPN client
 net-misc/strongswan:nat - Enable NAT traversal with IPsec transport mode
+net-misc/termpkg:uucp -  Adds support for uucp style device locking 
 net-misc/tightvnc:server - Build vncserver. Allows us to only build server on one machine if set, build only viewer otherwise.
 net-misc/tor:logrotate - Enable logrotate file installation
 net-misc/vnc:server - Build VNC server
@@ -2215,6 +2216,9 @@ sci-physics/root:cern -  Build the HBOOK input/ouput functionality. HBOOK is a h
 sci-physics/root:clarens -  Buld the Clarens and PEAC plug-ins, to use in a GRID enabled analysis. The Clarens Grid-Enabled Web Services Framework is an open source portal for ubiquitous access to data and computational resources provided by computing grids. PEAC is an interactive distributed analysis framework that uses Clarens as a glue protocol to advertise and communicate amongst SAM, Global Manager (GM), Local Manager (LM), DCache, and PROOF services. It doesn't need Clarens to build, however if you want to use it, you will require to build Clarens and PEAC on your own, it is not yet in the Gentoo Portage tree. See http://clarens.sourceforge.net/ for Clarens and http://physics.ucsd.edu/~schsu/project/peac.html for PEAC. 
 sci-physics/root:geant4 -  Build the sci-physics/geant (GEANT4) navigator. 
 sci-physics/root:math -  Build all math libraries plugins. It includes the sci-libs/gsl bindings in MathMore, the GenVector physical vectors package, the Minuit2 minimization library (same as standalone sci-libs/minuit), the RooFit toolkit for distribution modeling, and the Universal Non-Uniform RANdom number generators (UNURAN) library. 
+sci-physics/root:pythia6 -  Builds the interface to Pythia-6 (sci-physics/pythia) high energy physics generation events library. 
+sci-physics/root:pythia8 -  Builds the interface to Pythia-8 (sci-physics/pythia) high energy physics generation events library. 
+sci-physics/root:reflex -  Builds the reflection database for the C++ interpretor. 
 sci-physics/root:xrootd -  Build the xrootd low latency file server. For more on the eXtended Request Daemon (xrd) and associated software, please see http://xrootd.slac.stanford.edu. 
 sci-visualization/hippodraw:fits -  Enable HippoDraw's built-in support for reading FITS files, by using the CFITSIO library. FITS binary and ASCII tables are supported as well as images. When combine with numpy flag, it can also use the pyfits package. 
 sci-visualization/hippodraw:numpy -  Enable support for the numerical array manipulation and computational capabilities of numpy in python. HippoDraw can return a numerical array to Python from any of the type of objects that are supported. One can also import data to a HippoDraw from a numpy array. 
@@ -2557,7 +2561,7 @@ x11-terms/mrxvt:menubar - Enable mrxvt menubar
 x11-terms/mrxvt:utempter - REcords user logins. Useful on multi-user systems
 x11-terms/rxvt:linuxkeys - Define LINUX_KEYS (changes Home/End key)
 x11-terms/rxvt:xgetdefault - Enable resources via X instead of rxvt small version
-x11-terms/rxvt-unicode:afterimage - Enable support for media-libs/libafterimage
+x11-terms/rxvt-unicode:afterimage - Enable support for media-libs/libafterimage 
 x11-terms/rxvt-unicode:iso14755 - Enable ISO-14755 support
 x11-terms/xterm:paste64 - Enable support for bracketed paste mode
 x11-terms/xterm:toolbar - Enable the xterm toolbar to be built
