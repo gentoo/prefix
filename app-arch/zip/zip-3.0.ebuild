@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.1 2008/09/21 10:08:47 vapier Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit toolchain-funcs eutils flag-o-matic
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/infozip/${MY_P}.zip"
 LICENSE="Info-ZIP"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 crypt unicode"
+IUSE="bzip2 +crypt unicode"
 
 DEPEND="bzip2? ( app-arch/bzip2 )"
 
