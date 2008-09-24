@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.148 2008/06/16 19:44:37 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.149 2008/09/22 18:56:34 armin76 Exp $
+
+  22 Sep 2008; Raúl Porcel <armin76@gentoo.org> ocaml-3.10.2.ebuild:
+  Re-add ~arm wrt #178256
 
   16 Jun 2008; Alexis Ballier <aballier@gentoo.org> ocaml-3.08.4.ebuild,
   ocaml-3.10.2.ebuild:
