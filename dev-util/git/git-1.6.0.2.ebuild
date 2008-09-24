@@ -109,7 +109,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/20080626-git-1.5.6.1-noperl.patch
-	epatch "${FILESDIR}"/${PN}-1.6.0-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
 
 	sed -i \
 		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
