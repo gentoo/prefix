@@ -1,6 +1,17 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.113 2008/08/21 22:33:19 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.115 2008/09/24 00:54:46 yngwin Exp $
+
+  24 Sep 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml,
+  rxvt-unicode-9.05-r1.ebuild:
+  Fix bug 238526 by putting patches behind !vanilla
+
+*rxvt-unicode-9.05-r1 (23 Sep 2008)
+
+  23 Sep 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml,
+  +rxvt-unicode-9.05-r1.ebuild:
+  Adding 256color and widechar useflags to apply upstream patches. Fixes bug
+  224787.
 
   21 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
