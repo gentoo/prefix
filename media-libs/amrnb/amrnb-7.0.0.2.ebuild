@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.2.ebuild,v 1.1 2008/06/29 18:03:11 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.2.ebuild,v 1.2 2008/09/23 22:51:17 loki_val Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,9 @@ RESTRICT="mirror"
 
 RDEPEND=""
 DEPEND="app-arch/unzip"
+
+#Bug 232636
+LC_ALL=C
 
 src_unpack() {
 	unpack ${P}.tar.bz2
