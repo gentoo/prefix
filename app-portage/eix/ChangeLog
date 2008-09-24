@@ -1,6 +1,15 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.243 2008/09/21 23:10:22 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.246 2008/09/22 19:48:11 armin76 Exp $
+
+  22 Sep 2008; Raúl Porcel <armin76@gentoo.org> eix-0.13.3-r1.ebuild:
+  alpha/ia64/x86 stable wrt #238282
+
+  22 Sep 2008; nixnut <nixnut@gentoo.org> eix-0.13.3-r1.ebuild:
+  Stable on ppc wrt bug 238282
+
+  22 Sep 2008; Richard Freeman <rich0@gentoo.org> eix-0.13.3-r1.ebuild:
+  amd64 stable - 238282
 
   21 Sep 2008; Ferris McCormick <fmccor@gentoo.org> eix-0.13.3-r1.ebuild:
   Sparc stable (again) --- Bug #238282, #238216 --- patch does apply now.
