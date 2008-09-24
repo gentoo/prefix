@@ -350,6 +350,17 @@ index d9fe0c5..cf3865b 100644
  	permanently_set_uid(privsep_pw);
  #endif
  }
+@@ -1257,8 +1259,10 @@
+ 	av = saved_argv;
+ #endif
+ 
++#ifndef __INTERIX
+ 	if (geteuid() == ROOT_UID && setgroups(0, NULL) == -1)
+ 		debug("setgroups(): %.200s", strerror(errno));
++#endif
+ 
+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
+ 	sanitise_stdfd();
 @@ -1577,6 +1579,10 @@ main(int ac, char **av)
  		if (check_ntsec(_PATH_PRIVSEP_CHROOT_DIR) &&
  		    (st.st_uid != getuid () ||
