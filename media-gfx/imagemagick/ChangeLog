@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.301 2008/08/29 23:15:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.302 2008/09/22 16:58:13 maekke Exp $
+
+  22 Sep 2008; Markus Meier <maekke@gentoo.org>
+  +files/imagemagick-6.4.3.5-svg-dep.patch, imagemagick-6.4.3.5.ebuild:
+  fix bug #236643
 
 *imagemagick-6.4.3.5 (29 Aug 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.3.5.ebuild,v 1.1 2008/08/29 23:15:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.3.5.ebuild,v 1.2 2008/09/22 16:58:13 maekke Exp $
 
 EAPI="prefix"
 
@@ -75,6 +75,10 @@ src_unpack() {
 	sed -i -e \
 		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="${EPREFIX}/usr/share/doc/${PF}":g' \
 		"${S}"/configure || die
+
+	cd "${S}"
+	# for bug #236643
+	epatch "${FILESDIR}"/${P}-svg-dep.patch
 }
 
 src_compile() {
