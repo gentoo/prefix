@@ -5,7 +5,7 @@
 		<email>lack@gentoo.org</email>
 		<name>Jim Ramsay</name>
 	</maintainer>
-	<herd>commonbox</herd>
+	<herd>desktop-wm</herd>
 	<longdescription><![CDATA[
 		Fluxbox is yet another windowmanager for X. Originally based upon the
 		Blackbox 0.61.1 code, Fluxbox has been extended to include a new tabbed
