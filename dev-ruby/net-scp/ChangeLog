@@ -1,0 +1,19 @@
+# ChangeLog for dev-ruby/net-scp
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-scp/ChangeLog,v 1.4 2008/09/22 20:01:36 armin76 Exp $
+
+  22 Sep 2008; Raúl Porcel <armin76@gentoo.org> net-scp-1.0.1.ebuild:
+  Add ~ia64 wrt #238171
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> net-scp-1.0.1.ebuild:
+  keyworded ~arch for ppc, bug 238171
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> net-scp-1.0.1.ebuild:
+  keyworded ~arch for ppc64, bug 238171
+
+*net-scp-1.0.1 (20 Sep 2008)
+
+  20 Sep 2008; Hans de Graaff <graaff@gentoo.org> +metadata.xml,
+  +net-scp-1.0.1.ebuild:
+  Initial import for capistrano 2.5.0.
+
