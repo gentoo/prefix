@@ -1,6 +1,66 @@
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/modules/im/ximcp/imLcLkup.c libX11-1.1.5/modules/im/ximcp/imLcLkup.c
---- libX11-1.1.5.orig/modules/im/ximcp/imLcLkup.c	2008-09-22 17:27:24 +0200
-+++ libX11-1.1.5/modules/im/ximcp/imLcLkup.c	2008-09-22 13:21:28 +0200
+diff -ru libX11-1.1.5.orig/include/X11/Xlib.h libX11-1.1.5/include/X11/Xlib.h
+--- libX11-1.1.5.orig/include/X11/Xlib.h	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/include/X11/Xlib.h	2008-09-24 08:38:45 +0200
+@@ -1392,7 +1392,11 @@
+ #define _Xdebug (*_Xdebug_p)
+ #endif
+ 
+-extern int _Xdebug;
++#ifdef __PARITY__
++# define X11_IMPORT __declspec(dllimport)
++#endif
++
++extern X11_IMPORT int _Xdebug;
+ 
+ extern XFontStruct *XLoadQueryFont(
+     Display*		/* display */,
+diff -ru libX11-1.1.5.orig/include/X11/Xlibint.h libX11-1.1.5/include/X11/Xlibint.h
+--- libX11-1.1.5.orig/include/X11/Xlibint.h	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/include/X11/Xlibint.h	2008-09-24 10:31:18 +0200
+@@ -274,21 +274,27 @@
+ #define _Xglobal_lock (*_Xglobal_lock_p)
+ #endif
+ 
++#ifdef __PARITY__
++# define X11_IMPORT __declspec(dllimport)
++#else
++# define X11_IMPORT
++#endif
++
+ /* in XlibInt.c */
+-extern void (*_XCreateMutex_fn)(
++extern X11_IMPORT void (*_XCreateMutex_fn)(
+     LockInfoPtr /* lock */
+ );
+-extern void (*_XFreeMutex_fn)(
++extern X11_IMPORT void (*_XFreeMutex_fn)(
+     LockInfoPtr /* lock */
+ );
+-extern void (*_XLockMutex_fn)(
++extern X11_IMPORT void (*_XLockMutex_fn)(
+     LockInfoPtr	/* lock */
+ #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
+     , char * /* file */
+     , int /* line */
+ #endif
+ );
+-extern void (*_XUnlockMutex_fn)(
++extern X11_IMPORT void (*_XUnlockMutex_fn)(
+     LockInfoPtr	/* lock */
+ #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
+     , char * /* file */
+@@ -296,7 +302,7 @@
+ #endif
+ );
+ 
+-extern LockInfoPtr _Xglobal_lock;
++extern X11_IMPORT LockInfoPtr _Xglobal_lock;
+ 
+ #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
+ #define LockDisplay(d)	     if ((d)->lock_fns) (*(d)->lock_fns->lock_display)((d),__FILE__,__LINE__)
+diff -ru libX11-1.1.5.orig/modules/im/ximcp/imLcLkup.c libX11-1.1.5/modules/im/ximcp/imLcLkup.c
+--- libX11-1.1.5.orig/modules/im/ximcp/imLcLkup.c	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/modules/im/ximcp/imLcLkup.c	2008-09-24 08:38:45 +0200
 @@ -45,6 +45,10 @@
  #include "XlcPubI.h"
  #include "Ximint.h"
@@ -24,9 +84,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/modules/im/ximcp/imLcLkup.c libX
  	    ret = _Xlcwctomb(ic->core.im->core.lcd, mb, BRL_UC_ROW | pattern);
  	    if(ret > bytes) {
  		if(status) *status = XBufferOverflow;
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/modules/im/ximcp/imTrans.c libX11-1.1.5/modules/im/ximcp/imTrans.c
---- libX11-1.1.5.orig/modules/im/ximcp/imTrans.c	2008-09-22 17:27:24 +0200
-+++ libX11-1.1.5/modules/im/ximcp/imTrans.c	2008-09-22 13:21:28 +0200
+diff -ru libX11-1.1.5.orig/modules/im/ximcp/imTrans.c libX11-1.1.5/modules/im/ximcp/imTrans.c
+--- libX11-1.1.5.orig/modules/im/ximcp/imTrans.c	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/modules/im/ximcp/imTrans.c	2008-09-24 08:38:45 +0200
 @@ -33,6 +33,11 @@
  #ifdef HAVE_CONFIG_H
  #include <config.h>
@@ -50,9 +110,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/modules/im/ximcp/imTrans.c libX1
  
  #ifndef XIM_CONNECTION_RETRIES
  #define XIM_CONNECTION_RETRIES 5
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/Makefile.am libX11-1.1.5/src/Makefile.am
---- libX11-1.1.5.orig/src/Makefile.am	2008-09-22 17:27:24 +0200
-+++ libX11-1.1.5/src/Makefile.am	2008-09-22 13:21:28 +0200
+diff -ru libX11-1.1.5.orig/src/Makefile.am libX11-1.1.5/src/Makefile.am
+--- libX11-1.1.5.orig/src/Makefile.am	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/src/Makefile.am	2008-09-24 08:38:45 +0200
 @@ -422,7 +422,7 @@
  KEYSYMDEF=@KEYSYMDEF@
  
@@ -62,9 +122,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/Makefile.am libX11-1.1.5/src
  	mv ks_tables_h $@
  
  $(top_builddir)/src/util/makekeys$(EXEEXT): force
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/RdBitF.c libX11-1.1.5/src/RdBitF.c
---- libX11-1.1.5.orig/src/RdBitF.c	2008-09-04 23:35:13 +0200
-+++ libX11-1.1.5/src/RdBitF.c	2008-09-22 15:59:44 +0200
+diff -ru libX11-1.1.5.orig/src/RdBitF.c libX11-1.1.5/src/RdBitF.c
+--- libX11-1.1.5.orig/src/RdBitF.c	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/src/RdBitF.c	2008-09-24 08:38:45 +0200
 @@ -56,6 +56,7 @@
  #define MAX_SIZE 255
  
@@ -110,9 +170,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/RdBitF.c libX11-1.1.5/src/Rd
  
      while (!done) {
  	ch = getc(fstream);
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/UIThrStubs.c libX11-1.1.5/src/UIThrStubs.c
---- libX11-1.1.5.orig/src/UIThrStubs.c	2008-09-04 23:35:13 +0200
-+++ libX11-1.1.5/src/UIThrStubs.c	2008-09-22 16:40:32 +0200
+diff -ru libX11-1.1.5.orig/src/UIThrStubs.c libX11-1.1.5/src/UIThrStubs.c
+--- libX11-1.1.5.orig/src/UIThrStubs.c	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/src/UIThrStubs.c	2008-09-24 08:38:45 +0200
 @@ -85,6 +85,9 @@
      /*
       * Don't know what to do here. Is there something do be done at all?
@@ -123,9 +183,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/UIThrStubs.c libX11-1.1.5/sr
  #else /* !WIN32 */
  #ifdef USE_TIS_SUPPORT
  #include <tis.h>
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/XlibInt.c libX11-1.1.5/src/XlibInt.c
---- libX11-1.1.5.orig/src/XlibInt.c	2008-09-04 23:35:13 +0200
-+++ libX11-1.1.5/src/XlibInt.c	2008-09-22 17:09:43 +0200
+diff -ru libX11-1.1.5.orig/src/XlibInt.c libX11-1.1.5/src/XlibInt.c
+--- libX11-1.1.5.orig/src/XlibInt.c	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/src/XlibInt.c	2008-09-24 08:38:45 +0200
 @@ -42,6 +42,9 @@
  #include <config.h>
  #endif
@@ -156,9 +216,9 @@ diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/XlibInt.c libX11-1.1.5/src/X
  /* these pointers get initialized by XInitThreads */
  LockInfoPtr _Xglobal_lock = NULL;
  void (*_XCreateMutex_fn)(LockInfoPtr) = NULL;
-diff -ru -x '*.Po' -x '*.Plo' libX11-1.1.5.orig/src/util/Makefile.am libX11-1.1.5/src/util/Makefile.am
---- libX11-1.1.5.orig/src/util/Makefile.am	2008-09-22 17:27:24 +0200
-+++ libX11-1.1.5/src/util/Makefile.am	2008-09-22 13:21:28 +0200
+diff -ru libX11-1.1.5.orig/src/util/Makefile.am libX11-1.1.5/src/util/Makefile.am
+--- libX11-1.1.5.orig/src/util/Makefile.am	2008-09-24 10:28:26 +0200
++++ libX11-1.1.5/src/util/Makefile.am	2008-09-24 08:38:45 +0200
 @@ -1,6 +1,6 @@
  # $XdotOrg: lib/X11/src/util/Makefile.am,v 1.4 2006-02-19 02:14:12 jamey Exp $
  
