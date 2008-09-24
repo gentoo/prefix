@@ -1,6 +1,10 @@
 # ChangeLog for media-plugins/gst-plugins-gconf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/ChangeLog,v 1.36 2008/07/31 18:45:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/ChangeLog,v 1.37 2008/09/23 21:47:44 jer Exp $
+
+  23 Sep 2008; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-gconf-0.10.8-r1.ebuild:
+  Stable for HPPA (bug #232054).
 
   31 Jul 2008; Raúl Porcel <armin76@gentoo.org>
   gst-plugins-gconf-0.10.8-r1.ebuild:
