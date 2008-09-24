@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r15.ebuild,v 1.4 2008/06/01 11:49:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r15.ebuild,v 1.5 2008/09/23 20:21:48 opfer Exp $
 
 EAPI="prefix"
 
@@ -179,13 +179,6 @@ pkg_postinst() {
 	if ! use sendmail && ! has_version "virtual/mta"; then
 		elog "You disabled sendmail support for Emacs. If you later install"
 		elog "a MTA then you will need to recompile Emacs. See Bug #11104."
-	fi
-	if use X; then
-		elog "You need to install some fonts for Emacs. Under monolithic"
-		elog "XFree86/Xorg you typically had such fonts installed by default."
-		elog "With modular Xorg, you will have to perform this step yourself."
-		elog "Installing media-fonts/font-adobe-{75,100}dpi on the X server's"
-		elog "machine would satisfy basic Emacs requirements under X11."
 	fi
 }
 

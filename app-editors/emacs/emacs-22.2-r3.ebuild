@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r3.ebuild,v 1.7 2008/09/20 18:38:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r3.ebuild,v 1.8 2008/09/23 20:21:48 opfer Exp $
 
 EAPI="prefix"
 
@@ -259,14 +259,6 @@ pkg_postinst() {
 		eselect emacs set emacs-${SLOT}
 	else
 		eselect emacs update ifunset
-	fi
-
-	if use X; then
-		elog "You need to install some fonts for Emacs. Under monolithic"
-		elog "XFree86/Xorg you typically had such fonts installed by default."
-		elog "With modular Xorg, you will have to perform this step yourself."
-		elog "Installing media-fonts/font-adobe-{75,100}dpi on the X server's"
-		elog "machine would satisfy basic Emacs requirements under X11."
 	fi
 
 	echo
