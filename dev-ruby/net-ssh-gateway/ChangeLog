@@ -1,0 +1,20 @@
+# ChangeLog for dev-ruby/net-ssh-gateway
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh-gateway/ChangeLog,v 1.4 2008/09/22 20:00:58 armin76 Exp $
+
+  22 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  net-ssh-gateway-1.0.0.ebuild:
+  Add ~ia64 wrt #238171
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> net-ssh-gateway-1.0.0.ebuild:
+  keyworded ~arch for ppc, bug 238171
+
+  21 Sep 2008; Brent Baude <ranger@gentoo.org> net-ssh-gateway-1.0.0.ebuild:
+  keyworded ~arch for ppc64, bug 238171
+
+*net-ssh-gateway-1.0.0 (20 Sep 2008)
+
+  20 Sep 2008; Hans de Graaff <graaff@gentoo.org> +metadata.xml,
+  +net-ssh-gateway-1.0.0.ebuild:
+  Initial import for Capistrano 2.5.0.
+
