@@ -1,6 +1,22 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.415 2008/09/20 17:49:02 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.418 2008/09/23 21:41:07 suka Exp $
+
+  23 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.0.0_rc2.ebuild:
+  Use splash screen without Sun logo
+
+*openoffice-3.0.0_rc2 (23 Sep 2008)
+
+  23 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.0_rc1.diff, +files/gentoo-3.0.0_rc2.diff,
+  -files/lucene-no-java.diff, -openoffice-3.0.0_rc1.ebuild,
+  +openoffice-3.0.0_rc2.ebuild:
+  Bump to RC2 of OpenOffice.org 3.0
+
+  22 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.0.0_rc1.ebuild:
+  Fix xulrunner deps, see bug #238280
 
   20 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
   files/gentoo-3.0.0_rc1.diff, +files/lucene-no-java.diff,
