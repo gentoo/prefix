@@ -12,7 +12,7 @@ SRC_URI="ftp://alpha.gnu.org/pub/gnu/libidn/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="java doc emacs mono nls"
 
 COMMON_DEPEND="emacs? ( virtual/emacs )
