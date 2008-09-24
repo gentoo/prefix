@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.10.ebuild,v 1.9 2007/12/11 23:59:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.1 2008/09/24 04:24:32 vapier Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs multilib
+inherit toolchain-funcs multilib autotools
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
@@ -13,12 +13,30 @@ SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 
 LICENSE="CRACKLIB"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="nls python"
 
 DEPEND="python? ( dev-lang/python )"
 
 S=${WORKDIR}/${MY_P}
+
+pkg_setup() {
+	# workaround #195017
+	if has unmerge-orphans ${FEATURES} && has_version "<${CATEGORY}/${PN}-2.8.10" ; then
+		eerror "Upgrade path is broken with FEATURES=unmerge-orphans"
+		eerror "Please run: FEATURES=-unmerge-orphans emerge cracklib"
+		die "Please run: FEATURES=-unmerge-orphans emerge cracklib"
+	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
+
+	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+}
 
 src_compile() {
 	econf \
@@ -35,8 +53,8 @@ src_install() {
 
 	# move shared libs to /
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)/ || die "could not move shared"
-	gen_usr_ldscript libcrack.so
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "could not move shared"
+	gen_usr_ldscript libcrack$(get_libname)
 
 	insinto /usr/share/dict
 	doins dicts/cracklib-small || die "word dict"
