@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/Attic/openoffice-bin-3.0.0_rc1.ebuild,v 1.6 2008/09/20 19:59:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc2.ebuild,v 1.1 2008/09/22 10:32:47 suka Exp $
 
 EAPI="prefix"
 
@@ -8,20 +8,21 @@ inherit eutils fdo-mime rpm multilib
 
 IUSE="gnome java kde"
 
-BUILDID="9350"
+BUILDID="9354"
 MY_PV="${PV/_/}"
-MY_PV2="${MY_PV}_20080904"
-MY_PV3="${PV/_rc1/}-${BUILDID}"
+MY_PV2="${MY_PV}_20080920"
+MY_PV3="${PV/_rc2/}-${BUILDID}"
 BASIS="ooobasis3.0"
+MST="OOO300_m7"
 
 if [ "${ARCH}" = "amd64" ] ; then
 	OOARCH="x86_64"
-	PACKED="OOO300_m5_native_packed-2"
-	PACKED2="OOO300_m5_native_packed-2"
+	PACKED="${MST}_native_packed-1"
+	PACKED2="${MST}_native_packed-1"
 else
 	OOARCH="i586"
-	PACKED="OOO300_m5_native_packed-3"
-	PACKED2="OOO300_m5_native_packed-2"
+	PACKED="${MST}_native_packed-1"
+	PACKED2="${MST}_native_packed-1"
 fi
 
 S="${WORKDIR}/${PACKED}_en-US.${BUILDID}/RPMS"

@@ -1,6 +1,16 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.197 2008/09/20 17:37:18 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.199 2008/09/22 10:32:47 suka Exp $
+
+*openoffice-bin-3.0.0_rc2 (22 Sep 2008)
+
+  22 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-bin-3.0.0_rc1.ebuild, +openoffice-bin-3.0.0_rc2.ebuild:
+  Bump to RC2 of openoffice-bin-3.0
+
+  22 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
+  files/50-openoffice-bin:
+  Fixup revdep-rebuild prevention for amd64, see bug #238243
 
   20 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
   openoffice-bin-3.0.0_rc1.ebuild:
