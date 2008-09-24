@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0.ebuild,v 1.4 2007/02/27 13:02:00 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r2.ebuild,v 1.1 2008/09/22 06:10:04 keri Exp $
 
 EAPI="prefix"
 
@@ -13,8 +13,8 @@ S=${WORKDIR}/${P}/src
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="doc examples"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+IUSE="debug doc examples"
 
 DEPEND=""
 
@@ -23,15 +23,19 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CFLAGS_MACHINE.patch
 	epatch "${FILESDIR}"/${P}-TXT_FILES.patch
+	epatch "${FILESDIR}"/${P}-linedit.patch
 	epatch "${FILESDIR}"/${P}-test.patch
 }
 
 src_compile() {
 	CFLAGS_MACHINE="`get-flag -march` `get-flag -mcpu` `get-flag -mtune`"
 
+	use debug && append-flags -DDEBUG
+
 	econf \
 		CFLAGS_MACHINE="${CFLAGS_MACHINE}" \
 		--with-c-flags="${CFLAGS}" \
+		--disable-regs \
 		--with-install-dir="${ED}"/usr \
 		--with-doc-dir="${ED}"/usr/share/doc/${PF} \
 		--with-html-dir="${ED}"/usr/share/doc/${PF}/html \
