@@ -1,6 +1,11 @@
 # ChangeLog for app-text/xmlto
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.45 2008/04/26 21:44:43 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.46 2008/09/22 14:20:37 flameeyes Exp $
+
+*xmlto-0.0.21 (22 Sep 2008)
+
+  22 Sep 2008; Diego Pettenò <flameeyes@gentoo.org> +xmlto-0.0.21.ebuild:
+  Version bump.
 
   26 Apr 2008; <ricmm@gentoo.org> xmlto-0.0.18.ebuild:
   Drop to ~mips due to unstable deps
