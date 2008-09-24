@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.111 2008/09/19 22:51:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.114 2008/09/22 21:08:23 maekke Exp $
+
+  22 Sep 2008; Markus Meier <maekke@gentoo.org> -tiff-3.8.2-r2.ebuild:
+  old
+
+  22 Sep 2008; Markus Meier <maekke@gentoo.org> tiff-3.8.2-r2.ebuild:
+  fix bug #238248 for all versions
+
+  22 Sep 2008; Mike Frysinger <vapier@gentoo.org> tiff-3.8.2-r4.ebuild:
+  Strip absolute path in patch so it can be applied with -p0 #238248.
 
   19 Sep 2008; Markus Meier <maekke@gentoo.org> tiff-3.8.2-r2.ebuild:
   drop to ~mips (unstable deps)

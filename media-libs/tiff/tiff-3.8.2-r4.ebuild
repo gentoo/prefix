@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r4.ebuild,v 1.3 2008/08/30 11:31:16 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r4.ebuild,v 1.5 2008/09/22 15:35:35 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,6 +23,7 @@ DEPEND="jpeg? ( >=media-libs/jpeg-6b )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	sed -i -e 's:/home/sarnold::' "${WORKDIR}"/${P}-tiff2pdf.patch #238248
 	epatch "${WORKDIR}"/${P}-tiff2pdf.patch
 	epatch "${FILESDIR}"/${P}-tiffsplit.patch
 	if use jbig; then
