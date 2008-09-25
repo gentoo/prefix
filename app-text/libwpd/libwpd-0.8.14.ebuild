@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/libwpd-0.8.14.ebuild,v 1.8 2008/09/21 17:54:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/libwpd-0.8.14.ebuild,v 1.9 2008/09/24 14:37:57 jer Exp $
 
 EAPI="prefix"
 
