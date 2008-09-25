@@ -9,7 +9,7 @@ HOMEPAGE="http://confix.sourceforge.net"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~x86-linux"
+KEYWORDS="~ppc-aix ~x86-interix ~x86-linux ~x86-solaris"
 IUSE=""
 
 src_install() {
