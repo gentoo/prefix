@@ -197,7 +197,15 @@ Index: pym/portage/dbapi/vartree.py
  		@param mysettings: Typically portage.config
  		@type mysettings: An instance of portage.config
  		@param treetype: one of ['porttree','bintree','vartree']
-@@ -2119,7 +2119,7 @@
+@@ -2106,6 +2106,7 @@
+ 		@type vartree: vartree
+ 		"""
+ 		
++		myroot = EROOTobject.ify(myroot, EPREFIX)
+ 		self.cat = cat
+ 		self.pkg = pkg
+ 		self.mycpv = self.cat + "/" + self.pkg
+@@ -2119,7 +2120,7 @@
  		self._blockers = blockers
  		self._scheduler = scheduler
  
@@ -206,7 +214,7 @@ Index: pym/portage/dbapi/vartree.py
  		self.dbcatdir = self.dbroot+"/"+cat
  		self.dbpkgdir = self.dbcatdir+"/"+pkg
  		self.dbtmpdir = self.dbcatdir+"/-MERGING-"+pkg
-@@ -2212,7 +2212,7 @@
+@@ -2212,7 +2213,7 @@
  		normalize_needed = self._normalize_needed
  		contents_split_counts = self._contents_split_counts
  		myroot = self.myroot
@@ -215,7 +223,7 @@ Index: pym/portage/dbapi/vartree.py
  			myroot = None
  		pos = 0
  		errors = []
-@@ -2259,7 +2259,7 @@
+@@ -2259,7 +2260,7 @@
  					if not mydat[1].startswith(os.path.sep):
  						mydat[1] = os.path.sep + mydat[1]
  				if myroot:
@@ -224,7 +232,7 @@ Index: pym/portage/dbapi/vartree.py
  				if mydat[0] == "obj":
  					#format: type, mtime, md5sum
  					pkgfiles[mydat[1]] = [mydat[0], mydat[3], mydat[2]]
-@@ -2601,11 +2601,10 @@
+@@ -2601,11 +2602,10 @@
  					self.vartree.root, self.settings,
  					vartree=self.vartree, treetype="vartree"))
  
@@ -239,7 +247,7 @@ Index: pym/portage/dbapi/vartree.py
  		cfgfiledict = grabdict(conf_mem_file)
  		stale_confmem = []
  
-@@ -2626,7 +2625,7 @@
+@@ -2626,7 +2626,7 @@
  				errno.EEXIST, errno.ENOTEMPTY,
  				errno.EBUSY, errno.ENOENT,
  				errno.ENOTDIR, errno.EISDIR)
@@ -248,7 +256,7 @@ Index: pym/portage/dbapi/vartree.py
  
  			def unlink(file_name, lstatobj):
  				if bsd_chflags:
-@@ -2675,7 +2674,7 @@
+@@ -2675,7 +2675,7 @@
  				if lstatobj is None:
  						show_unmerge("---", "!found", file_type, obj)
  						continue
@@ -257,7 +265,7 @@ Index: pym/portage/dbapi/vartree.py
  					relative_path = obj[dest_root_len:]
  					is_owned = False
  					for dblnk in others_in_slot:
-@@ -2845,7 +2844,7 @@
+@@ -2845,7 +2845,7 @@
  		"""
  
  		destfile = normalize_path(
@@ -266,7 +274,7 @@ Index: pym/portage/dbapi/vartree.py
  
  		pkgfiles = self.getcontents()
  		if pkgfiles and destfile in pkgfiles:
-@@ -2914,7 +2913,7 @@
+@@ -2914,7 +2914,7 @@
  		liblist = linkmap.listLibraryObjects()
  
  		# get list of libraries from old package instance
@@ -275,7 +283,7 @@ Index: pym/portage/dbapi/vartree.py
  		old_contents = set(p[root_len:] \
  			for p in self._installed_instance.getcontents())
  		old_libs = old_contents.intersection(liblist)
-@@ -3003,7 +3002,7 @@
+@@ -3003,7 +3003,7 @@
  				continue
  			showMessage("injecting %s into %s\n" % (x, srcroot),
  				noiselevel=-1)
@@ -284,7 +292,7 @@ Index: pym/portage/dbapi/vartree.py
  				showMessage("%s does not exist so can't be preserved\n" % x,
  					noiselevel=-1)
  				continue
-@@ -3023,7 +3022,7 @@
+@@ -3023,7 +3023,7 @@
  					candidates.add(linktarget)
  					candidates_stack.append(linktarget)
  			else:
@@ -293,7 +301,7 @@ Index: pym/portage/dbapi/vartree.py
  					os.path.join(srcroot, x.lstrip(os.sep)))
  			preserve_paths.append(x)
  			
-@@ -3042,8 +3041,6 @@
+@@ -3042,8 +3042,6 @@
  			scheduler = self._scheduler
  			stopmerge = False
  			collisions = []
@@ -302,7 +310,7 @@ Index: pym/portage/dbapi/vartree.py
  			showMessage("%s checking %d files for package collisions\n" % \
  				(green("*"), len(mycontents)))
  			for i, f in enumerate(mycontents):
-@@ -3055,7 +3052,7 @@
+@@ -3055,7 +3053,7 @@
  					scheduler.scheduleYield()
  
  				dest_path = normalize_path(
@@ -311,7 +319,7 @@ Index: pym/portage/dbapi/vartree.py
  				try:
  					dest_lstat = os.lstat(dest_path)
  				except EnvironmentError, e:
-@@ -3068,7 +3065,7 @@
+@@ -3068,7 +3066,7 @@
  						# expects to have a directory.
  						dest_lstat = None
  						parent_path = dest_path
@@ -320,7 +328,7 @@ Index: pym/portage/dbapi/vartree.py
  							parent_path = os.path.dirname(parent_path)
  							try:
  								dest_lstat = os.lstat(parent_path)
-@@ -3082,7 +3079,7 @@
+@@ -3082,7 +3080,7 @@
  								"unable to find non-directory " + \
  								"parent for '%s'" % dest_path)
  						dest_path = parent_path
@@ -329,7 +337,7 @@ Index: pym/portage/dbapi/vartree.py
  						if f in collisions:
  							continue
  					else:
-@@ -3090,7 +3087,7 @@
+@@ -3090,7 +3088,7 @@
  				if f[0] != "/":
  					f="/"+f
  				isowned = False
@@ -338,7 +346,7 @@ Index: pym/portage/dbapi/vartree.py
  				for ver in [self] + mypkglist:
  					if (ver.isowner(f, destroot) or ver.isprotected(full_path)):
  						isowned = True
-@@ -3195,8 +3192,8 @@
+@@ -3195,8 +3193,8 @@
  		
  		@param srcroot: Typically this is ${D}
  		@type srcroot: String (Path)
@@ -349,7 +357,7 @@ Index: pym/portage/dbapi/vartree.py
  		@param inforoot: root of the vardb entry ?
  		@type inforoot: String (Path)
  		@param myebuild: path to the ebuild that we are processing
-@@ -3218,7 +3215,6 @@
+@@ -3218,7 +3216,6 @@
  		scheduler = self._scheduler
  
  		srcroot = normalize_path(srcroot).rstrip(os.path.sep) + os.path.sep
@@ -357,7 +365,7 @@ Index: pym/portage/dbapi/vartree.py
  
  		if not os.path.isdir(srcroot):
  			showMessage("!!! Directory Not Found: D='%s'\n" % srcroot,
-@@ -3418,7 +3414,7 @@
+@@ -3418,7 +3415,7 @@
  
  			for f in collisions:
  				msg.append("\t%s" % \
@@ -366,7 +374,7 @@ Index: pym/portage/dbapi/vartree.py
  
  			eerror(msg)
  
-@@ -3439,7 +3435,7 @@
+@@ -3439,7 +3436,7 @@
  				msg = []
  				msg.append("%s" % cpv)
  				for f in sorted(owned_files):
@@ -375,7 +383,7 @@ Index: pym/portage/dbapi/vartree.py
  						f.lstrip(os.path.sep)))
  				msg.append("")
  				eerror(msg)
-@@ -3513,7 +3509,7 @@
+@@ -3513,7 +3510,7 @@
  		self.updateprotect()
  
  		#if we have a file containing previously-merged config file md5sums, grab it.
@@ -384,7 +392,7 @@ Index: pym/portage/dbapi/vartree.py
  		cfgfiledict = grabdict(conf_mem_file)
  		if "NOCONFMEM" in self.settings:
  			cfgfiledict["IGNORE"]=1
-@@ -3541,7 +3537,7 @@
+@@ -3541,7 +3538,7 @@
  
  		# we do a first merge; this will recurse through all files in our srcroot but also build up a
  		# "second hand" of symlinks to merge later
@@ -393,7 +401,7 @@ Index: pym/portage/dbapi/vartree.py
  			return 1
  
  		# now, it's time for dealing our second hand; we'll loop until we can't merge anymore.	The rest are
-@@ -3594,7 +3590,7 @@
+@@ -3594,7 +3591,7 @@
  		# version now since we want to use the temporary
  		# PORTAGE_BIN_PATH that will be removed when we return.
  		reinstall_self = False
@@ -402,7 +410,7 @@ Index: pym/portage/dbapi/vartree.py
  			"sys-apps" == self.cat and \
  			"portage" == pkgsplit(self.pkg)[0]:
  			reinstall_self = True
-@@ -3630,7 +3626,7 @@
+@@ -3630,7 +3627,7 @@
  		# since they now belong to this package.
  		self._clear_contents_cache()
  		contents = self.getcontents()
@@ -411,7 +419,7 @@ Index: pym/portage/dbapi/vartree.py
  		for blocker in blockers:
  			self.vartree.dbapi.removeFromContents(blocker, iter(contents),
  				relative_paths=False)
-@@ -3671,7 +3667,7 @@
+@@ -3671,7 +3668,7 @@
  
  		#update environment settings, library paths. DO NOT change symlinks.
  		env_update(makelinks=(not downgrade),
@@ -420,7 +428,7 @@ Index: pym/portage/dbapi/vartree.py
  			contents=contents, env=self.settings.environ(),
  			writemsg_level=self._display_merge)
  
-@@ -3685,8 +3681,8 @@
+@@ -3685,8 +3682,8 @@
  		
  		@param srcroot: Where are we copying files from (usually ${D})
  		@type srcroot: String (Path)
@@ -431,7 +439,7 @@ Index: pym/portage/dbapi/vartree.py
  		@param outfile: File to log operations to
  		@type outfile: File Object
  		@param secondhand: A set of items to merge in pass two (usually
-@@ -3710,7 +3706,6 @@
+@@ -3710,7 +3707,6 @@
  
  		from os.path import sep, join
  		srcroot = normalize_path(srcroot).rstrip(sep) + sep
@@ -439,7 +447,7 @@ Index: pym/portage/dbapi/vartree.py
  		
  		# this is supposed to merge a list of files.  There will be 2 forms of argument passing.
  		if isinstance(stufftomerge, basestring):
-@@ -3728,7 +3723,7 @@
+@@ -3728,7 +3724,7 @@
  				scheduler.scheduleYield()
  
  			mysrc = join(srcroot, offset, x)
@@ -448,7 +456,7 @@ Index: pym/portage/dbapi/vartree.py
  			# myrealdest is mydest without the $ROOT prefix (makes a difference if ROOT!="/")
  			myrealdest = join(sep, offset, x)
  			# stat file once, test using S_* macros many times (faster that way)
-@@ -3780,7 +3775,7 @@
+@@ -3780,7 +3776,7 @@
  						myto = myto[len(self.settings["D"]):]
  				# myrealto contains the path of the real file to which this symlink points.
  				# we can simply test for existence of this file to see if the target has been merged yet
@@ -457,7 +465,7 @@ Index: pym/portage/dbapi/vartree.py
  				if mydmode!=None:
  					#destination exists
  					if not stat.S_ISLNK(mydmode):
-@@ -3967,7 +3962,7 @@
+@@ -3967,7 +3963,7 @@
  		"""
  		if self.vartree.dbapi._categories is not None:
  			self.vartree.dbapi._categories = None
@@ -466,7 +474,7 @@ Index: pym/portage/dbapi/vartree.py
  			"sys-apps" == self.cat and \
  			"portage" == pkgsplit(self.pkg)[0]:
  			settings = self.settings
-@@ -4095,7 +4090,7 @@
+@@ -4095,7 +4091,7 @@
  def tar_contents(contents, root, tar, protect=None, onProgress=None):
  	from portage.util import normalize_path
  	import tarfile
@@ -1235,28 +1243,6 @@ Index: pym/portage/update.py
  	modified = False
  	for update_cmd in update_iter:
  		for pos, atom in enumerate(worldlist):
-Index: pym/portage/glsa.py
-===================================================================
---- pym/portage/glsa.py	(revision 11514)
-+++ pym/portage/glsa.py	(working copy)
-@@ -28,7 +28,7 @@
- 	@rtype:		list
- 	@return:	list of glsa IDs
- 	"""
--	return grabfile(os.path.join(os.sep, settings["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"))
-+	return grabfile(os.path.join(settings.root(), CACHE_PATH, "glsa"))
- 
- 
- # TODO: use the textwrap module instead
-@@ -577,7 +577,7 @@
- 		@returns:	None
- 		"""
- 		if not self.isApplied():
--			checkfile = open(os.path.join(os.sep, self.config["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"), "a+")
-+			checkfile = open(os.path.join(self.root(), CACHE_PATH, "glsa"), "a+")
- 			checkfile.write(self.nr+"\n")
- 			checkfile.close()
- 		return None
 Index: pym/portage/const.py
 ===================================================================
 --- pym/portage/const.py	(revision 11514)
@@ -1269,12 +1255,17 @@ Index: pym/portage/const.py
  # pick up EPREFIX from the environment if set
  if "EPREFIX" in os.environ:
  	EPREFIX = os.path.normpath(os.environ["EPREFIX"])
-@@ -19,8 +20,35 @@
+@@ -19,8 +20,44 @@
  # START OF CONSTANTS -- START OF CONSTANTS -- START OF CONSTANTS -- START OF
  # ===========================================================================
  
 -EPREFIX_LSTRIP          = EPREFIX.lstrip(os.path.sep)
 +class EROOTobject:
++	def ify(root, eprefix):
++		if isinstance(root, EROOTobject):
++			return root
++		return EROOTobject(root, eprefix)
++	ify = staticmethod(ify)
 +	def __init__(self, root, eprefix):
 +		self.root_ = os.path.normpath(root).rstrip(os.path.sep) + os.path.sep
 +		self.eprefix_ = os.path.normpath(eprefix).rstrip(os.path.sep)
@@ -1297,8 +1288,12 @@ Index: pym/portage/const.py
 +		return str(self)
 +		#return 'ROOT='+self.root_+', EPREFIX='+self.eprefix_
 +	def __hash__(self):
++		if (self.eprefix_ == EPREFIX):
++			# compatibility hack for external utils using ["/"] as hash-key
++			return hash(self.root_)
 +		return hash(self.eroot_)
 +	def __cmp__(self, other):
++		other = EROOTobject.ify(other, EPREFIX)
 +		return cmp(self.eroot_, other.eroot_)
  
 +BROOT = EROOTobject("/", BPREFIX)
@@ -1306,7 +1301,7 @@ Index: pym/portage/const.py
  # We have a most confusing situation here, which is most of all pretty
  # weak for protecting us from making mistakes.
  # First there is a config_root (PORTAGE_CONFIGROOT) which can be a path
-@@ -34,12 +62,14 @@
+@@ -34,12 +71,14 @@
  # constants (like VDB_PATH) DO have EPREFIX.
  # Unfortunately this file is ordered quite horrible in this respect.
  
@@ -1324,7 +1319,7 @@ Index: pym/portage/const.py
  MODULES_FILE_PATH       = USER_CONFIG_PATH+"/modules"
  CUSTOM_PROFILE_PATH     = USER_CONFIG_PATH+"/profile"
  GLOBAL_CONFIG_PATH      = DATADIR+"/portage/config"
-@@ -49,20 +79,20 @@
+@@ -49,20 +88,20 @@
  PORTAGE_BIN_PATH        = PORTAGE_BASE_PATH+"/bin"
  PORTAGE_PYM_PATH        = PORTAGE_BASE_PATH+"/pym"
  PORTAGE_PACKAGE_ATOM    = "sys-apps/portage"
@@ -1350,6 +1345,28 @@ Index: pym/portage/const.py
  MAKE_DEFAULTS_FILE      = PROFILE_PATH + "/make.defaults"
  DEPRECATED_PROFILE_FILE = PROFILE_PATH+"/deprecated"
  USER_VIRTUALS_FILE      = USER_CONFIG_PATH+"/virtuals"
+Index: pym/portage/glsa.py
+===================================================================
+--- pym/portage/glsa.py	(revision 11514)
++++ pym/portage/glsa.py	(working copy)
+@@ -28,7 +28,7 @@
+ 	@rtype:		list
+ 	@return:	list of glsa IDs
+ 	"""
+-	return grabfile(os.path.join(os.sep, settings["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"))
++	return grabfile(os.path.join(settings.root(), CACHE_PATH, "glsa"))
+ 
+ 
+ # TODO: use the textwrap module instead
+@@ -577,7 +577,7 @@
+ 		@returns:	None
+ 		"""
+ 		if not self.isApplied():
+-			checkfile = open(os.path.join(os.sep, self.config["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"), "a+")
++			checkfile = open(os.path.join(self.root(), CACHE_PATH, "glsa"), "a+")
+ 			checkfile.write(self.nr+"\n")
+ 			checkfile.close()
+ 		return None
 Index: pym/portage/sets/__init__.py
 ===================================================================
 --- pym/portage/sets/__init__.py	(revision 11514)
