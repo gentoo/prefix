@@ -32,6 +32,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (25 Sep 2008)
+# These are broken. Avoid the hassle and just use 0.12.4 until a new version
+# comes out. bug #235011
+=app-portage/eix-0.13.3
+=app-portage/eix-0.13.4
 
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but

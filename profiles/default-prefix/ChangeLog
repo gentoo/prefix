@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  25 Sep 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask eix-0.13.{3,4} until bug #235011 is resolved
+
   23 Sep 2008; Jeremy Olexa <darkside@gentoo.org>
   darwin/macos/10.5/x86/package.use.mask:
   patch from pipping. clean up package.use.mask for darwin 10.5 x86
