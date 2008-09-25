@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.246 2008/09/22 19:48:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.247 2008/09/24 07:02:45 genstef Exp $
+
+  24 Sep 2008; Stefan Schweizer <genstef@gentoo.org> -eix-0.12.4.ebuild:
+  remove old buggy version
 
   22 Sep 2008; Raúl Porcel <armin76@gentoo.org> eix-0.13.3-r1.ebuild:
   alpha/ia64/x86 stable wrt #238282
