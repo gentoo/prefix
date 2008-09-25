@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.14.ebuild,v 1.5 2008/09/21 13:45:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.14.ebuild,v 1.6 2008/09/24 18:49:07 armin76 Exp $
 
 EAPI="prefix"
 

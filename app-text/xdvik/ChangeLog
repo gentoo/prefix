@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.57 2008/09/21 13:45:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.58 2008/09/24 18:49:07 armin76 Exp $
+
+  24 Sep 2008; Raúl Porcel <armin76@gentoo.org> xdvik-22.84.14.ebuild:
+  alpha/ia64 stable wrt #238111
 
   21 Sep 2008; Brent Baude <ranger@gentoo.org> xdvik-22.84.14.ebuild:
   stable ppc64, bug 238111
