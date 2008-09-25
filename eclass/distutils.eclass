@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.51 2008/06/28 00:05:40 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.52 2008/09/24 16:45:08 hawking Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -74,9 +74,9 @@ distutils_src_install() {
 	[ -n "${pylibdir}" ] && dodir "${pylibdir}"
 
 	if has_version ">=dev-lang/python-2.3"; then
-		${python} setup.py install --root=$D --no-compile "$@" || die
+		${python} setup.py install --root="${D}" --no-compile "$@" || die
 	else
-		${python} setup.py install --root=$D "$@" || die
+		${python} setup.py install --root="${D}" "$@" || die
 	fi
 
 	DDOCS="CHANGELOG KNOWN_BUGS MAINTAINERS PKG-INFO CONTRIBUTORS TODO NEWS"
