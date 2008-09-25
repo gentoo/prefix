@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.32-r1.ebuild,v 1.1 2008/08/22 16:07:50 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.1.ebuild,v 1.1 2008/09/25 01:21:46 leio Exp $
 
 EAPI="prefix"
 
@@ -46,9 +46,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.6.29-catalog_path.patch
 
 	eprefixify catalog.c runtest.c xmllint.c
-
-	# Fix infinite recursion, bug #234099
-	epatch "${FILESDIR}/${P}-CVE-2008-3281.patch"
 
 	epunt_cxx
 }

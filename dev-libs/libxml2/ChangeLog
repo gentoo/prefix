@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.218 2008/08/22 16:07:50 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.219 2008/09/25 01:21:46 leio Exp $
+
+*libxml2-2.7.1 (25 Sep 2008)
+
+  25 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/libxml2-2.6.32-CVE-2008-3281.patch, -libxml2-2.6.32-r1.ebuild,
+  +libxml2-2.7.1.ebuild:
+  Version bump. Includes ABI compatible fix for CVE-2008-3281, security fix
+  for CVE-2008-3529 - xmlParseAttValueComplex() heap-based buffer overflow,
+  and various bug fixes and new API. Addresses bugs 234099, 235529, 237413
+  and 237806
 
 *libxml2-2.6.32-r1 (22 Aug 2008)
 
