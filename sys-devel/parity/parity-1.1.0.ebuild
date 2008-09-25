@@ -36,6 +36,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-entry-points.patch
 	epatch "${FILESDIR}"/${P}-anyfile.patch
 	epatch "${FILESDIR}"/${P}-runtime-includes.patch
+	epatch "${FILESDIR}"/${P}-percent-defines.patch
+	epatch "${FILESDIR}"/${P}-loader-wrong-define.patch
+	epatch "${FILESDIR}"/${P}-missing-include.patch
 }
 
 src_compile() {
