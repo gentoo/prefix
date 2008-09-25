@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3888 2008/09/24 01:08:22 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3893 2008/09/24 22:08:27 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -35,6 +35,7 @@ app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
 app-admin/gnome-system-tools:nfs - Adds support for NFS shares
 app-admin/lcap:lids - If you have the Linux Intrusion Detection System
 app-admin/prelude-manager:tcpwrapper - Add support for tcp_wrappers
+app-admin/puppet:rrdtool - Eanble rrdtool support
 app-admin/rsyslog:dbi - Add support for logging into various databases through dev-db/libdbi
 app-admin/rsyslog:relp - Add support for the Reliable Event Logging Protocol using dev-libs/librelp
 app-admin/sdsc-syslog:beep - USe beep libraries net-libs/roadrunner
@@ -1072,6 +1073,7 @@ mail-mta/exim:dovecot-sasl - Adds support for Dovecot's authentication
 mail-mta/exim:exiscan - Patch providing support for content scanning backward-compatibility
 mail-mta/exim:exiscan-acl - Patch providing support for content scanning
 mail-mta/exim:lmtp - Adds support for lmtp
+mail-mta/exim:logrotate - Adds support for the 'logrotate' log rotation program
 mail-mta/exim:mbx - Adds support for UW's mbx format
 mail-mta/exim:spf - Adds support for Sender Policy Framework
 mail-mta/exim:srs - Adds support for Sender Rewriting Scheme
@@ -2236,7 +2238,7 @@ sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and
 sys-apps/einit:relaxng - Make validator for Relax NG available
 sys-apps/hal:acpi - Enables HAL to attempt to read from /proc/acpi/event, if unavailable, HAL will read events from sys-power/acpid. If you need multiple acpi readers, ensure acpid is in your default runlevel (rc-update add acpid default) along with HAL. This will also enable HAL to read Toshiba and IBM acpi events which do not get sent via /proc/acpi/event
 sys-apps/hal:crypt - Allows HAL to mount volumes that are encrypted using LUKS. sys-fs/cryptsetup-luks which has recently been renamed to sys-fs/cryptsetup allows you to create such encrypted volumes. HAL will be able to handle volumes that are removable or fixed.
-sys-apps/hal:dell - Builds an installs the Dell addon, which reads data from the Dell SM BIOS via sys-libs/libsmbios. It will read your service tag information and your hardware backlight data as well as allow you to modify the backlight settings on a Dell laptop.
+sys-apps/hal:dell - Builds and installs the Dell addon, which reads data from the Dell SM BIOS via sys-libs/libsmbios. It will read your service tag information and your hardware backlight data as well as allow you to modify the backlight settings on a Dell laptop.
 sys-apps/hal:disk-partition - Allows HAL to use libparted from sys-apps/parted to read raw partition data from your disks and process that data. Future versions of HAL (possibly 0.5.11 and higher) will allow you to create, modify, delete and format partitions from a GUI interface agnostic of your desktop environment.
 sys-apps/hal:dmi - Adds support for DMI (Desktop Management Interface)
 sys-apps/hal:doc - Generates documentation that describes HAL's fdi format.
@@ -2601,6 +2603,7 @@ x11-wm/vtwm:rplay - Enable rplay support, needed for sound.
 x11-wm/windowmaker:modelock - Enable XKB language status lock support. README says: "If you don't know what it is you probably don't need it."
 x11-wm/windowmaker:vdesktop - Enable dynamic virtual desktop (conflicts with software that works on the edges of the screen)
 xfce-base/thunar:trash-plugin - Build Trash plug-in for panel
+xfce-base/xfce-utils:lock - Enable screen locking
 xfce-base/xfce4-extras:battery - Meta pulls in xfce-extra/xfce4-battery depend
 xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce-extra/xfce4-cpu-freq depend
 xfce-base/xfdesktop:file-icons - Build support for application launchers using xfce-base/thunar and libexo

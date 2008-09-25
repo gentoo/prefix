@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9005 2008/09/24 00:40:06 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9006 2008/09/24 19:22:39 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -833,11 +833,6 @@ virtual/libffi
 # P.mask snapshots
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
-
-# Peter Alfredsen <loki_val@gentoo.org> (01 Jun 2008)
-# Masked for keywording and testing
-=media-fonts/dejavu-2.25-r1
-=media-fonts/dejavu-2.26
 
 # Jurek Bartuszek <jurek@gentoo.org> (01 Jun 2008)
 # Not used by anything anymore
