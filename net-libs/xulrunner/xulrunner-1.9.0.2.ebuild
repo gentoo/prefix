@@ -64,7 +64,6 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
-	epatch "${FILESDIR}"/${PN}-1.9-jemalloc-syntax.patch
 	epatch "${FILESDIR}"/${PN}-1.9-no_sunstudio.patch # breaks sunstudio
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
