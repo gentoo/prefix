@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libical
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.41 2008/09/09 08:43:56 s4t4n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.42 2008/09/24 08:59:56 s4t4n Exp $
+
+*libical-0.33 (24 Sep 2008)
+
+  24 Sep 2008; Michele Noberasco <s4t4n@gentoo.org> +libical-0.33.ebuild:
+  Version bump wrt #238357.
 
 *libical-0.31 (09 Sep 2008)
 
