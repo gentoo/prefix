@@ -1,6 +1,13 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.439 2008/09/09 15:51:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.440 2008/09/24 17:08:35 armin76 Exp $
+
+*mozilla-firefox-3.0.2 (24 Sep 2008)
+*mozilla-firefox-2.0.0.17 (24 Sep 2008)
+
+  24 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-firefox-2.0.0.17.ebuild, +mozilla-firefox-3.0.2.ebuild:
+  Version bump
 
   09 Sep 2008; Raúl Porcel <armin76@gentoo.org>
   mozilla-firefox-3.0.1.ebuild:
