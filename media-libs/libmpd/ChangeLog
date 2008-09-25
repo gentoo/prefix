@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libmpd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.32 2008/08/21 19:50:42 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.33 2008/09/24 18:06:56 angelos Exp $
+
+*libmpd-0.16.0 (24 Sep 2008)
+
+  24 Sep 2008; Christoph Mende <angelos@gentoo.org> libmpd-0.15.0-r1.ebuild,
+  +libmpd-0.16.0.ebuild:
+  Version bump and added missing inherit eutils
 
 *libmpd-0.15.0-r1 (21 Aug 2008)
 
