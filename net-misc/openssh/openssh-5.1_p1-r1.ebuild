@@ -97,7 +97,8 @@ src_unpack() {
 	# Patch in Leopard's X forwarding magic
 	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-4.7_p1-darwin9-display.patch
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+# bug #238631
+#	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-root-uid.patch
 	epatch "${FILESDIR}"/${P}-apple-copyfile.patch
 	epatch "${FILESDIR}"/${P}-apple-getpwuid.patch
