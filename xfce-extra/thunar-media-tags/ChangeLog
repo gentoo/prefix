@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/thunar-media-tags
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/thunar-media-tags/ChangeLog,v 1.19 2007/06/14 11:14:58 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-media-tags/ChangeLog,v 1.20 2008/09/24 10:08:22 aballier Exp $
+
+  24 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  thunar-media-tags-0.1.2.ebuild:
+  keyword ~x86-fbsd thanks to Matt "gfunkmonk" Rinsch <gfunkmonk@gmail.com>,
+  bug #236834
 
   14 Jun 2007; Raúl Porcel <armin76@gentoo.org>
   thunar-media-tags-0.1.2.ebuild:
