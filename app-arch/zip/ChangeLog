@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.75 2008/09/21 10:08:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.76 2008/09/25 00:29:08 vapier Exp $
+
+  25 Sep 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/zip-3.0-no-crypt.patch, zip-3.0.ebuild:
+  Fix building with USE=-crypt #238398 by Nils Larsson.
 
 *zip-3.0 (21 Sep 2008)
 

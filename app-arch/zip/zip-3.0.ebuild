@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.1 2008/09/21 10:08:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.2 2008/09/25 00:29:08 vapier Exp $
 
-EAPI="prefix 1"
+EAPI="prefix"
 
 inherit toolchain-funcs eutils flag-o-matic
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/infozip/${MY_P}.zip"
 LICENSE="Info-ZIP"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 +crypt unicode"
+IUSE="bzip2 crypt unicode"
 
 DEPEND="bzip2? ( app-arch/bzip2 )"
 
@@ -23,6 +23,7 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-3.0-no-crypt.patch #238398
 	epatch "${FILESDIR}"/${PN}-3.0-pic.patch
 	epatch "${FILESDIR}"/${PN}-3.0-exec-stack.patch
 	epatch "${FILESDIR}"/${PN}-3.0-build.patch
