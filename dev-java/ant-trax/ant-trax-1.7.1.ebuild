@@ -12,7 +12,7 @@ ANT_TASK_DEPNAME=""
 inherit ant-tasks
 
 DESCRIPTION="Apache Ant .jar with optional tasks depending on XML transformer (xalan)"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DEPEND=""
 RDEPEND="dev-java/xalan:0"
