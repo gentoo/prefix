@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit ant-tasks
 
 DESCRIPTION="Apache Ant's optional tasks requiring no external deps"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	ant-tasks_src_unpack base
