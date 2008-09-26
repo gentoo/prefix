@@ -1,5 +1,11 @@
 # $Header: $
 
+# Jeremy Olexa <darkside@gentoo.org> (26 Sep 2008)
+# These do not compile based on pipping's testing.
+dev-lang/hugs98
+dev-scheme/scm
+=dev-libs/libsigsegv-2.4
+
 # Elias Pipping <elias@pipping.org> (20 Sep 2008)
 # emacs 21.x does not support darwin9, 22.1 fails to compile.
 app-editors/emacs:21
