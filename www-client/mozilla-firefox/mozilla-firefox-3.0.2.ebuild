@@ -142,8 +142,6 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
-	epatch "${FILESDIR}"/${PN}-3.0-jemalloc-solaris.patch
-	
 	if use iceweasel; then
 		sed -i -e "s|Minefield|Iceweasel|" browser/locales/en-US/chrome/branding/brand.* \
 			browser/branding/nightly/configure.sh
