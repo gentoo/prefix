@@ -6,7 +6,7 @@ EAPI="prefix 1"
 
 inherit ant-tasks
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 # xalan is a runtime dependency of the XalanExecutor task
 # which was for some reason moved to ant-junit by upstream
