@@ -66,8 +66,9 @@ src_install() {
 	doman doc/*.?
 
 	cat > "${T}/80mercurial" <<-EOF
-HG=/usr/bin/hg
+HG="@GENTOO_PORTAGE_EPREFIX@/usr/bin/hg"
 EOF
+	eprefixify "${T}/80mercurial"
 	doenvd "${T}/80mercurial"
 
 	if use emacs; then
