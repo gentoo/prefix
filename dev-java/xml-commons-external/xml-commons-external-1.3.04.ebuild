@@ -17,7 +17,7 @@ SRC_URI="mirror://gentoo/distfiles/${P}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="1.3"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc source"
 
 DEPEND=">=virtual/jdk-1.3"
