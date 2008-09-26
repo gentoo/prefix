@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/xca/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS=""
 IUSE="doc"
 
 RDEPEND=">=dev-libs/openssl-0.9.8
