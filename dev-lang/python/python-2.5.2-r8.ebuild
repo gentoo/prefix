@@ -64,6 +64,9 @@ src_unpack() {
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
+	# stupidos hardcoding GNU specifics
+	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
+		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
