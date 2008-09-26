@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/xca/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/openssl-0.9.8
@@ -30,6 +30,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-build.patch"
 	epatch "${FILESDIR}/${P}-openssl.patch"
+	epatch "${FILESDIR}/${P}-darwin.patch"
 }
 
 src_compile() {
@@ -39,7 +40,7 @@ src_compile() {
 	QTDIR="${EPREFIX}"/usr \
 		STRIP="true" \
 		LINUXDOC="${LINUXDOC}" \
-		CC="$(tc-getCC)" \
+		CC="$(tc-getCXX)" \
 		LD="$(tc-getLD)" \
 		LDFLAGS="$(raw-ldflags)" \
 		prefix="${EPREFIX}"/usr \
