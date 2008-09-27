@@ -8,4 +8,15 @@
  $OOINSTBASE/program/soffice $2 "\$@"
  EOT
      chmod 755 $1
+--- patches/dev300/apply 
++++ patches/dev300/apply 
+@@ -1437,6 +1437,8 @@
+ #vcl_font-NO_LIST.diff
+ # linux-headers-2.6.22 issue?!
+ linux-headers.diff
++#fix build without java
++stax-saxon-no-java.diff
+ 
+ [ DebianBaseOnly ]
+ SectionOwner => rengelha
 
