@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cook
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.21 2008/06/24 04:00:02 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.22 2008/09/25 14:12:11 hawking Exp $
+
+  25 Sep 2008; Ali Polatel <hawking@gentoo.org> metadata.xml:
+  Add myself to metadata.xml
 
 *cook-2.31 (24 Jun 2008)
 

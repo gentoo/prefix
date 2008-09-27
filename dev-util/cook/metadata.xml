@@ -3,7 +3,8 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>hawking@gentoo.org</email>
+		<name>Ali Polatel</name>
 	</maintainer>
 	<longdescription lang="en">
 		Cook is a tool for constructing files. It is given a set of files to
