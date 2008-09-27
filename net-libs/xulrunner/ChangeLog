@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.142 2008/09/25 17:04:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.143 2008/09/26 15:04:33 jer Exp $
+
+  26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xulrunner-1.8.1.17.ebuild:
+  Stable for HPPA (bug #238535).
 
   25 Sep 2008; Brent Baude <ranger@gentoo.org> xulrunner-1.8.1.17.ebuild:
   Marking xulrunner-1.8.1.17 ppc64 and ppc for bug 238535
