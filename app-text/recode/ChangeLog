@@ -1,6 +1,14 @@
 # ChangeLog for app-text/recode
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.48 2008/04/20 08:32:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.49 2008/09/25 11:18:05 loki_val Exp $
+
+*recode-3.6_p15 (25 Sep 2008)
+
+  25 Sep 2008; Peter Alfredsen <loki_val@gentoo.org> +recode-3.6_p15.ebuild:
+  Fix bug #226083. The fix for bug #209036 actually required a revbump
+  because the header file is installed and may thus affect the compilation
+  of other programs. This provides that and imports newest patches from
+  Debian.
 
   20 Apr 2008; Mike Frysinger <vapier@gentoo.org>
   +files/recode-3.6-gcc43.patch, recode-3.6-r2.ebuild:
