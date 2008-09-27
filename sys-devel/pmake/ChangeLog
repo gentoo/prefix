@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/pmake
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.33 2008/02/29 03:23:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.35 2008/09/25 08:46:15 aballier Exp $
+
+*pmake-1.111.1-r1 (25 Sep 2008)
+
+  25 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/pmake-1.111.1-ldflags.patch, +pmake-1.111.1-r1.ebuild:
+  Dont ignore ldflags, install mk to /usr/share/mk/PN and remove the bmake
+  blocker as that allows to install both of them.
 
   29 Feb 2008; Brent Baude <ranger@gentoo.org> pmake-1.111.1.ebuild:
   keyworded ~arch for ppc64, bug 211799
