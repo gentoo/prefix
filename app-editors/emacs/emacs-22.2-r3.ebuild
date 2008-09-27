@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r3.ebuild,v 1.8 2008/09/23 20:21:48 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.2-r3.ebuild,v 1.10 2008/09/26 06:12:01 armin76 Exp $
 
 EAPI="prefix"
 
@@ -64,6 +64,8 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-fast-lock.patch"
 	# fix search path for interactive python (bug 236498)
 	epatch "${FILESDIR}/${P}-python-nopwd.patch"
+	# SuperH support (bug 238210)
+	epatch "${FILESDIR}/${P}-sh.patch"
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \

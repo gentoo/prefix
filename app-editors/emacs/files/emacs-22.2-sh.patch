@@ -1,0 +1,14 @@
+--- emacs-22.2-orig/configure.in	2008-09-26 07:20:44.000000000 +0200
++++ emacs-22.2/configure.in	2008-09-26 07:20:59.000000000 +0200
+@@ -1192,6 +1192,11 @@
+     machine=mips opsys=gnu-linux
+   ;;
+ 
++  ## SuperH (little endian) Linux-based GNU system
++  sh[34]-*-linux-gnu* )
++    machine=sh3el opsys=gnu-linux
++  ;;
++
+   ## UXP/DS
+   sparc-fujitsu-sysv4* )
+     machine=sparc opsys=uxpds

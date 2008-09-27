@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3.ebuild,v 1.4 2008/09/23 20:21:48 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3.ebuild,v 1.5 2008/09/26 05:35:09 ulm Exp $
 
 EAPI="prefix"
 
@@ -56,6 +56,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}/emacs-22.1-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/emacs-22.3-freebsd-sparc.patch"
+	# SuperH support (bug 238210)
+	epatch "${FILESDIR}/emacs-22.2-sh.patch"
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
