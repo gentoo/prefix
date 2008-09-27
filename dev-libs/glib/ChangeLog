@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.333 2008/09/22 00:28:18 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.335 2008/09/25 13:28:27 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> glib-2.16.5.ebuild:
+  Stable for HPPA (bug #236971).
+
+*glib-2.18.1 (25 Sep 2008)
+
+  25 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/glib-2.18.1-gdesktopappinfo-memleak-fix.patch,
+  +files/glib-2.18.1-workaround-gio-test-failure-without-userpriv.patch,
+  +glib-2.18.1.ebuild:
+  Major version bump. Supports latest version of shared-mime spec, emblems
+  on icons, subparsers in GMarkup, and more
 
 *glib-2.16.6 (22 Sep 2008)
 

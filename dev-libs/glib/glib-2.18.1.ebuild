@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.5.ebuild,v 1.6 2008/09/25 13:28:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.1.ebuild,v 1.1 2008/09/25 09:40:06 leio Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug fam hardened selinux xattr"
+IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
 		 virtual/libiconv
@@ -21,6 +21,11 @@ RDEPEND="virtual/libc
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.16
 		>=sys-devel/gettext-0.11
+		doc?	(
+					>=dev-libs/libxslt-1.0
+					>=dev-util/gtk-doc-1.8
+					~app-text/docbook-xml-dtd-4.1.2
+				)
 		dev-util/gtk-doc-am"
 
 src_unpack() {
@@ -45,9 +50,12 @@ src_unpack() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 
-	# GNOME bug #538836, fix gio test failure on various arches
-	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
-		"${S}/gio/pltcheck.sh"
+	# Plug a small memory leak, will be included in 2.18.2
+	epatch "${FILESDIR}/${P}-gdesktopappinfo-memleak-fix.patch"
+
+	# Don't fail gio tests when ran without userpriv, upstream bug 552912
+	# This is only a temporary workaround, remove as soon as possible
+	epatch "${FILESDIR}/${P}-workaround-gio-test-failure-without-userpriv.patch"
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
@@ -92,6 +100,8 @@ src_compile() {
 	# always build static libs, see #153807
 	econf ${myconf}                 \
 		  $(use_enable xattr)       \
+		  $(use_enable doc man)     \
+		  $(use_enable doc gtk-doc) \
 		  $(use_enable fam)         \
 		  $(use_enable selinux)     \
 		  --enable-static           \
