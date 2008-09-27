@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11572 (27 Sep 2008)
+
+  27 Sep 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11477.ebuild, -portage-2.2.00.11484.ebuild,
+  +portage-2.2.00.11572.ebuild:
+  New snapshot, doing a quantum jump into the current: EAPI=2
+
 *portage-2.2.00.11567 (27 Sep 2008)
 
   27 Sep 2008; Fabian Groffen <grobian@gentoo.org>
