@@ -56,7 +56,7 @@ JAVA_PROVIDE="jdbc-stdext jdbc-rowset"
 S="${WORKDIR}/jdk$(replace_version_separator 3 _)"
 
 src_unpack() {
-	if [[ ${CHOST} == *86*-*-solaris* ]] ; then
+	if [[ ${CHOST} == *-solaris* ]] ; then
 		for i in ${A}; do
 			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
 			# don't die on unzip, it always "fails"
@@ -65,11 +65,6 @@ src_unpack() {
 		for f in $(find "${S}" -name "*.pack") ; do
 			"${S}"/bin/unpack200 ${f} ${f%.pack}.jar
 			rm ${f}
-		done
-	elif [[ ${CHOST} == sparc*-solaris* ]] ; then
-		for i in ${A}; do
-			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
-			sh ${DISTDIR}/${i} --accept-license --unpack || die "Failed to unpack"
 		done
 	else 
 		sh ${DISTDIR}/${A} --accept-license --unpack || die "Failed to unpack"
