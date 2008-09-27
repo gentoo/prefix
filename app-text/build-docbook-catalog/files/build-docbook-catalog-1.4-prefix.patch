@@ -1,5 +1,5 @@
---- build-docbook-catalog-1.4.orig	2008-09-24 20:38:22.773302921 +0200
-+++ build-docbook-catalog-1.4	2008-09-24 20:41:24.103020611 +0200
+--- build-docbook-catalog-1.4
++++ build-docbook-catalog-1.4
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!/usr/bin/env bash
@@ -37,3 +37,12 @@
  		if [[ ! -r ${CATALOG} ]] ; then
  			echo "Failed creating ${CATALOG}, aborting" >&2
  			exit 1
+@@ -258,7 +258,7 @@
+ 	clean_catalog "${DOCBOOKDIR}/${type}-stylesheets(-[0-9\.]+)?" $CATALOG
+ 	clean_catalog "${DOCBOOKDIR}/${type}-stylesheets(-[0-9\.]+)?" $ROOTCATALOG
+ 
+-	xsldir=/usr/share/sgml/docbook/${type}-stylesheets
++	xsldir="@GENTOO_PORTAGE_EPREFIX@"/usr/share/sgml/docbook/${type}-stylesheets
+ 
+ 	if [[ ! -d ${xsldir} ]]; then
+ 		echo "DocBook XSL stylesheets (${type}) not found" >&2
