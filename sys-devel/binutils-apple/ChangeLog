@@ -1,0 +1,14 @@
+# ChangeLog for sys-devel/binutils-apple
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*binutils-apple-20080922 (27 Sep 2008)
+
+  27 Sep 2008; Fabian Groffen <grobian@gentoo.org> +.,
+  +files/20080922-nmedit.patch, +files/20080922-no-oss-dir.patch, +files,
+  +files/20080922-no-efi-man.patch, +files/20080922-ranlib.patch,
+  +files/20080922-testsuite.patch, +metadata.xml,
+  +binutils-apple-20080922.ebuild:
+  Initial import of binutils-apple, Apple's linker tools, based on the work by
+  Elias Pipping in bug #238601.  Not ready for public consumption.
+
