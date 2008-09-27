@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gcalctool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.162 2008/08/12 13:46:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.163 2008/09/25 14:53:12 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gcalctool-5.22.3.ebuild:
+  Stable for HPPA (bug #236971).
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> gcalctool-5.22.3.ebuild:
   alpha/ia64/sparc stable wrt #229709
