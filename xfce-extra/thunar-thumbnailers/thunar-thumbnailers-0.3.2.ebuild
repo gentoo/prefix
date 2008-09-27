@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/thunar-thumbnailers-0.3.2.ebuild,v 1.7 2008/08/27 15:21:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/thunar-thumbnailers-0.3.2.ebuild,v 1.8 2008/09/26 13:40:58 jer Exp $
 
 EAPI="prefix"
 
