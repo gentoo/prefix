@@ -1,6 +1,16 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.268 2008/08/29 08:53:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.270 2008/09/26 23:17:36 ranger Exp $
+
+  26 Sep 2008; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-2.0.0.17.ebuild:
+  Marking mozilla-thunderbird-2.0.0.17 ppc64 and ppc for bug 238535
+
+*mozilla-thunderbird-2.0.0.17 (26 Sep 2008)
+
+  26 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-thunderbird-2.0.0.17.ebuild:
+  Version bump
 
   29 Aug 2008; Raúl Porcel <armin76@gentoo.org>
   mozilla-thunderbird-2.0.0.16.ebuild:
