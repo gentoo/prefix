@@ -3,7 +3,8 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-  <email>maintainer-needed@gentoo.org</email>
+    <email>hawking@gentoo.org</email>
+    <name>Ali Polatel</name>
 </maintainer>
 <longdescription>
 LibTomMath is a free open source portable number theoretic multiple-precision 
