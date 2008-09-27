@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.47 2008/08/12 13:28:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.48 2008/09/25 14:01:58 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> pygobject-2.14.2.ebuild:
+  Stable for HPPA (bug #236971).
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> pygobject-2.14.2.ebuild:
   alpha/ia64/sparc stable wrt #229709
