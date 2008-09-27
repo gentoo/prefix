@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gnome-themes
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.192 2008/08/12 22:21:24 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.193 2008/09/25 15:00:53 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gnome-themes-2.22.2.ebuild:
+  Stable for HPPA (bug #236971).
 
   12 Aug 2008; Mart Raudsepp <leio@gentoo.org> gnome-themes-2.20.1.ebuild,
   -gnome-themes-2.22.0.ebuild:
