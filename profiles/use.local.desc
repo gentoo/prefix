@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3893 2008/09/24 22:08:27 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3900 2008/09/27 03:47:58 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -26,6 +26,7 @@ app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine
 app-admin/bcfg2:server - Installs scripts to be used on the server-side of this app
 app-admin/conky:audacious - enable monitoring of audio tracks that are playing media-sound/bmpx
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing media-sound/bmpx
+app-admin/conky:moc - enable monitoring of music played by media-sound/moc
 app-admin/conky:mpd - enable monitoring mpd controlled music media-sound/mpd
 app-admin/conky:nano-syntax - enable syntax highlighting for app-editors/nano
 app-admin/conky:nvidia - enable reading of nvidia card temperature sensors via media-video/nvidia-settings
@@ -284,7 +285,10 @@ app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/geneweb:ocamlopt - Enable ocamlopt support (dev-lang/ocaml native code compiler)
 app-misc/gourmet:print - Enable printing support using gnome-print.
 app-misc/gourmet:rtf - Enable RTF support.
-app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
+app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers (pre-2.10 only)
+app-misc/gpsdrive:gdal - Include gdal and ogr support for format conversions.
+app-misc/gpsdrive:mapnik - Include mapnik support for custom map creation.
+app-misc/gpsdrive:scripts - Include some of the additional helper scripts.
 app-misc/gramps:reports - All external software that is needed for graphical reports will be installed
 app-misc/graphlcd-base:g15 - Add support for app-misc/g15daemon driver (e.g. Logitech G15 Keybord)
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music (media-libs/libmpd)
@@ -2172,8 +2176,8 @@ sci-libs/mkl:serial - Installs the serial (as non-threaded) libraries
 sci-libs/plplot:itcl - Support for dev-tcltk/itcl bindings
 sci-libs/plplot:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 sci-libs/plplot:octave - Support for sci-mathematics/octave bindings 
-sci-libs/scipy:sandbox - Installs experimental scipy sandbox modules (pull some dependencies)
-sci-libs/scipy:umfpack - Add support for sparse solving via UMFPACK
+sci-libs/scipy:sandbox - Adds experimental scipy sandbox modules
+sci-libs/scipy:umfpack - Adds support for sparse solving with sci-libs/umfpack
 sci-libs/vtk:patented - Build patented classes
 sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using dev-ml/lablgtk
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation)
