@@ -1,6 +1,11 @@
 # ChangeLog for net-proxy/tinyproxy
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.11 2008/08/23 02:57:55 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.12 2008/09/25 21:01:49 mrness Exp $
+
+*tinyproxy-1.6.4 (25 Sep 2008)
+
+  25 Sep 2008; Alin Năstac <mrness@gentoo.org> +tinyproxy-1.6.4.ebuild:
+  Version bump and update HOMEPAGE (#238149).
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
