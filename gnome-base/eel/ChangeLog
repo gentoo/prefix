@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/eel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.202 2008/08/13 23:59:28 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.203 2008/09/25 14:25:15 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> eel-2.22.2.ebuild:
+  Stable for HPPA (bug #236971).
 
   13 Aug 2008; Mart Raudsepp <leio@gentoo.org> -eel-2.22.1.ebuild:
   Remove old
