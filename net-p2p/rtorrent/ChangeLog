@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.120 2008/09/25 20:51:22 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.121 2008/09/26 16:16:49 jer Exp $
+
+  26 Sep 2008; Jeroen Roovers <jer@gentoo.org> rtorrent-0.8.2-r5.ebuild:
+  Stable for HPPA (bug #238611).
 
   25 Sep 2008; Kenneth Prugh <ken69267@gentoo.org> rtorrent-0.8.2-r5.ebuild:
   amd64 stable, bug #238611
