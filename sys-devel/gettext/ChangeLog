@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.165 2008/08/02 12:04:24 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.166 2008/09/26 22:31:33 loki_val Exp $
+
+  26 Sep 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/gettext-0.17-open-args.patch, gettext-0.17.ebuild:
+  Fix bug #232081, gcc-4.3 compat. Thanks to Magnus Granberg <zorry@ume.nu>.
 
   02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
   Update metadata.xml to include USE flag descriptions. Entries taken from
