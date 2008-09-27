@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.19 2008/07/26 16:36:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.20 2008/09/26 05:34:31 compnerd Exp $
+
+*pixman-0.12.0 (26 Sep 2008)
+
+  26 Sep 2008; Saleem Abdulrasool <compnerd@gentoo.org>
+  +files/pixman-0.12.0-sse.patch, +pixman-0.12.0.ebuild:
+  Version bump from upstream
 
   26 Jul 2008; Jeroen Roovers <jer@gentoo.org> pixman-0.10.0.ebuild:
   Stable for HPPA (bug #224929).
