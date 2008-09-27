@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.9 2008/08/13 19:26:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9.ebuild,v 1.11 2008/09/26 06:24:41 armin76 Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,7 @@ src_unpack() {
 	sed -e 's:SOURCE_PREFIX = $(CORE_DEPTH)/\.\./dist:SOURCE_PREFIX = $(CORE_DEPTH)/dist:' \
 		-i source.mk
 
-        # Respect LDFLAGS
+	# Respect LDFLAGS
 	sed -i -e 's/\$(MKSHLIB) -o/\$(MKSHLIB) \$(LDFLAGS) -o/g' rules.mk
 
 	cd "${S}"
