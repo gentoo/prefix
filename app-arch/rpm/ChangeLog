@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.98 2008/09/10 08:15:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.99 2008/09/25 09:54:44 aballier Exp $
+
+  25 Sep 2008; Alexis Ballier <aballier@gentoo.org> rpm-5.0.3.ebuild:
+  keyword ~x86-fbsd
 
   10 Sep 2008; Jeroen Roovers <jer@gentoo.org> rpm-4.4.6-r6.ebuild:
   Stable for HPPA (bug #236158).
