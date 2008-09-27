@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.227 2008/08/14 00:48:17 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.228 2008/09/25 14:00:29 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> pango-1.20.5.ebuild:
+  Stable for HPPA (bug #236971).
 
   14 Aug 2008; Mart Raudsepp <leio@gentoo.org> -pango-1.18.3.ebuild,
   -pango-1.20.0.ebuild, -pango-1.20.2.ebuild:
