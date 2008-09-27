@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.80 2008/07/31 20:45:41 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.81 2008/09/26 16:21:54 jmbsvicetto Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -76,12 +76,12 @@ AT_GNUCONF_UPDATE="no"
 # This function mimes the behavior of autoreconf, but uses the different
 # eauto* functions to run the tools. It doesn't accept parameters, but
 # the directory with include files can be specified with AT_M4DIR variable.
-# 
+#
 # Should do a full autoreconf - normally what most people will be interested in.
 # Also should handle additional directories specified by AC_CONFIG_SUBDIRS.
 eautoreconf() {
 	local pwd=$(pwd) x auxdir g=
-	
+
 	if [[ -z ${AT_NO_RECURSIVE} ]]; then
 		# Take care of subdirs
 		for x in $(autotools_get_subdirs); do
@@ -239,7 +239,7 @@ eautomake() {
 
 # Internal function to run an autotools' tool
 autotools_run_tool() {
-	if [[ ${EBUILD_PHASE} != "unpack" ]]; then
+	if [[ ${EBUILD_PHASE} != "unpack" && ${EBUILD_PHASE} != "prepare" ]]; then
 		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
 	fi
 
