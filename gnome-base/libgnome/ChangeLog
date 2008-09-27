@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnome
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.161 2008/08/12 13:35:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.162 2008/09/25 14:20:26 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> libgnome-2.22.0.ebuild:
+  Stable for HPPA (bug #236971).
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> libgnome-2.22.0.ebuild:
   alpha/ia64/sparc stable wrt #229709
