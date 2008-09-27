@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.22.0.ebuild,v 1.7 2008/09/20 19:49:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.22.0.ebuild,v 1.8 2008/09/25 14:10:27 jer Exp $
 
 EAPI="prefix"
 
