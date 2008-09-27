@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11567 (27 Sep 2008)
+
+  27 Sep 2008; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.00.11567.ebuild:
+  New snapshot, making use of scanmacho on Darwin
+
   17 Sep 2008; Markus Duft <mduft@gentoo.org>
   +files/portage-2.2.00.11514-cross-prefix.patch,
   portage-2.2.00.11505.ebuild, portage-2.2.00.11505.ebuild:
