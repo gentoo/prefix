@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-2.2.3-r1.ebuild,v 1.5 2008/03/30 16:59:25 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-2.2.3-r1.ebuild,v 1.6 2008/09/25 20:20:13 serkan Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ RESTRICT="test"
 src_unpack() {
 	unpack ${A}
 
-	cd "${S}"
+	cd "${S}" || die
 	# disables test coverage stuff
 	epatch "${FILESDIR}/${P}-build.xml.patch"
 	# see bug #153971 and http://forge.objectweb.org/tracker/index.php?func=detail&aid=306349&group_id=23&atid=100023

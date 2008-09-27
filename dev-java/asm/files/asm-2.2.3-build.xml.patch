@@ -1,5 +1,6 @@
---- build.xml	2006-09-14 22:30:35.000000000 +0200
-+++ /home/fordfrog/tmp/asm/asm-2.2.3/build.xml	2006-09-14 22:26:19.000000000 +0200
+diff -Nur asm-2.2.3/build.xml asm-2.2.3_patched/build.xml
+--- asm-2.2.3/build.xml	2006-07-05 18:32:20.000000000 +0300
++++ asm-2.2.3_patched/build.xml	2008-09-25 23:12:06.000000000 +0300
 @@ -96,17 +96,6 @@
        <pathelement location="${out.build}"/>
      </path>
