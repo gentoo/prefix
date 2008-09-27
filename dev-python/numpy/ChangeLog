@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.63 2008/09/25 09:54:21 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.64 2008/09/26 20:05:51 bicatali Exp $
+
+*numpy-1.2.0 (26 Sep 2008)
+
+  26 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> +numpy-1.2.0.ebuild:
+  Version bump. New test framework dependent on dev-python/nose. Re-added
+  gentoo names for ATLAS libraries. Dropped alpha hppa mips ppc ppc64
+  x86-fbsd until nose is keyworded.
 
   25 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> -numpy-1.1.0.ebuild,
   numpy-1.1.1.ebuild:
