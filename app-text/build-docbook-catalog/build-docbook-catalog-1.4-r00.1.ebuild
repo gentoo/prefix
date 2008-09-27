@@ -34,6 +34,6 @@ pkg_postinst() {
 	# prefix quirk :(
 	einfo "A bug in the build-docbook-catalog script caused docbook files from"
 	einfo "the Prefix not being recognised.  Please wait while we regenerate"
-	ewarn "your ${EPREFIX}/etc/xml/catalog"
+	einfo "your ${EPREFIX}/etc/xml/catalog"
 	build-docbook-catalog
 }
