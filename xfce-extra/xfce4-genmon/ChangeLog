@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-genmon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.24 2008/08/27 15:50:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.25 2008/09/26 13:34:51 jer Exp $
+
+  26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xfce4-genmon-3.2.ebuild:
+  Stable for HPPA (bug #235407).
 
   27 Aug 2008; Raúl Porcel <armin76@gentoo.org> xfce4-genmon-3.2.ebuild:
   alpha/ia64 stable wrt #235407
