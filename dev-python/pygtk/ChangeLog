@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.188 2008/08/23 10:38:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.189 2008/09/25 14:05:50 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> pygtk-2.12.1-r2.ebuild:
+  Stable for HPPA (bug #236971).
 
   23 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org>
   pygtk-2.12.1-r2.ebuild:
