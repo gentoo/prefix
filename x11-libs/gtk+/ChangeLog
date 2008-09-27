@@ -1,6 +1,20 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.396 2008/09/22 03:07:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.398 2008/09/25 13:59:48 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gtk+-2.12.11.ebuild:
+  Stable for HPPA (bug #236971).
+
+*gtk+-2.14.3 (25 Sep 2008)
+
+  25 Sep 2008; Mart Raudsepp <leio@gentoo.org> +gtk+-2.14.3.ebuild:
+  Major version bump. Uses GIO (and indirectly gvfs for remote file support)
+  directly for filechooser, with improved auto-completion; printer dialog
+  can show status information; includes gail accessibility library with
+  other a11y improvements; better keyboard compose sequences; jpeg2000
+  support for gdk-pixbuf with USE=jpeg2k; uses Xrandr for more and better
+  monitor information; new API that helps removing use of libgnome(ui) by
+  applications; and much much more
 
 *gtk+-2.12.12 (22 Sep 2008)
 
