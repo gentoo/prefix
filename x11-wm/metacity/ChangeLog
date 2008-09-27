@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.216 2008/08/12 13:41:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.217 2008/09/25 14:35:51 jer Exp $
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> metacity-2.22.0.ebuild:
+  Stable for HPPA (bug #236971).
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> metacity-2.22.0.ebuild:
   alpha/ia64/sparc stable wrt #229709
