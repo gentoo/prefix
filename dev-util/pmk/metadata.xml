@@ -3,7 +3,8 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>hawking@gentoo.org</email>
+		<name>Ali Polatel</name>
 	</maintainer>
 	<longdescription>
 		The meaning of pmk is "Pre Make Kit", a dependency configuring tool. It

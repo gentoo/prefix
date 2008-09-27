@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/pmk
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pmk/ChangeLog,v 1.11 2007/12/25 13:02:36 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pmk/ChangeLog,v 1.12 2008/09/25 14:29:10 hawking Exp $
+
+*pmk-0.10.4 (25 Sep 2008)
+
+  25 Sep 2008; Ali Polatel <hawking@gentoo.org> metadata.xml,
+  -pmk-0.8.ebuild, -pmk-0.8.1.ebuild, -pmk-0.8.1-r1.ebuild,
+  -pmk-0.10.0.ebuild, -pmk-0.10.1.ebuild, +pmk-0.10.4.ebuild:
+  Version bump. Drop old. Keyword ~amd64. Add myself to metadata.xml.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing dholm from metadata.xml as per #24623. Assigning to maintainer-needed.
