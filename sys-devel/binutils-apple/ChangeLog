@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  28 Sep 2008; Fabian Groffen <grobian@gentoo.org> +files/20080922-as.patch,
+  binutils-apple-20080922.ebuild:
+  Two patches by Elias pipping: 1) fix version string of ld64 2) no longer
+  build hppa, sparc, etc. assemblers.
+
 *binutils-apple-20080922 (27 Sep 2008)
 
   27 Sep 2008; Fabian Groffen <grobian@gentoo.org> +.,

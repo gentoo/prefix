@@ -57,12 +57,12 @@ echo_and_run() {
 
 unpack_ld64() {
 	cd "${S}"/${LD64}/src
-	local VER_STR="\"@(#)PROGRAM:ld  PROJECT:${LD64}\\\n\""
+	local VER_STR="\"@(#)PROGRAM:ld  PROJECT:${LD64}\\n\""
 	sed -i \
 		-e '/^#define LTO_SUPPORT 1/s:1:0:' \
 		ObjectDump.cpp
 	echo '#undef LTO_SUPPORT' > configure.h
-	echo "char const *ldVersionString = ${VER_STR};" > version.cpp
+	echo "char ldVersionString[] = ${VER_STR};" > version.cpp
 
 	# clean up test suite
 	cd "${S}"/${LD64}/unit-tests/test-cases
@@ -96,6 +96,7 @@ src_unpack() {
 	unpack_ld64
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${PV}-as.patch
 	epatch "${FILESDIR}"/${PV}-ranlib.patch
 	epatch "${FILESDIR}"/${PV}-nmedit.patch
 	epatch "${FILESDIR}"/${PV}-no-efi-man.patch
@@ -126,6 +127,7 @@ compile_cctools() {
 	emake \
 		LTO= \
 		EFITOOLS= \
+		BUILD_OBSOLETE_ARCH= \
 		COMMON_SUBDIRS='libstuff gprof misc libmacho libdyld mkshlib otool man cbtlibs' \
 		CC="$(tc-getCC)" \
 		MACOSX_DEPLOYMENT_TARGET=10.4 \
@@ -166,6 +168,7 @@ install_cctools() {
 		macos_LOCINCDIR=\"${EPREFIX}\"/${INCPATH}
 	cd "${S}"/${CCTOOLS}/as
 	emake install \
+		BUILD_OBSOLETE_ARCH= \
 		DSTROOT=\"${D}\" \
 		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
 		LIBDIR=\"${EPREFIX}\"/${BINPATH}/../libexec/gcc/darwin/ \
