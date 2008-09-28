@@ -42,8 +42,9 @@ src_unpack() {
 
 	# really need the new libtool... (they try quite hard to keep
 	# theirs ...)
-	rm -f m4/libtool.m4 acinclude.m4
-	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+# but eautoreconf doesn't work, so eilacy (AM_PROG_MKDIR_P)
+#	rm -f m4/libtool.m4 acinclude.m4
+#	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
 src_compile() {
