@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.145 2008/09/16 22:45:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.146 2008/09/27 17:02:41 armin76 Exp $
+
+  27 Sep 2008; Raúl Porcel <armin76@gentoo.org> libsdl-1.2.13.ebuild:
+  arm/sh stable wrt #236249
 
   16 Sep 2008; Jeroen Roovers <jer@gentoo.org> libsdl-1.2.13.ebuild:
   Stable for HPPA (bug #236249).
