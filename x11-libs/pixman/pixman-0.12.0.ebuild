@@ -15,6 +15,8 @@ IUSE="altivec mmx sse sse2"
 
 CONFIGURE_OPTIONS="$(use_enable altivec vmx) $(use_enable mmx) \
 $(use_enable sse2) --disable-gtk"
+# (Open)Solaris /bin/sh is broken (at least on ~x64-solaris)
+export CONFIG_SHELL="${EPREFIX}"/bin/bash
 
 pkg_setup() {
 	if use sse2 && ! use sse; then
