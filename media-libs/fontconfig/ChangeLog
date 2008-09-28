@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.121 2008/09/21 02:45:31 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.122 2008/09/27 22:42:37 fmccor Exp $
+
+  27 Sep 2008; Ferris McCormick <fmccor@gentoo.org>
+  fontconfig-2.6.0-r2.ebuild:
+  Sparc stable --- Bug #238908 --- it can cache fonts and list them.
 
   21 Sep 2008; <solar@gentoo.org> fontconfig-2.6.0-r2.ebuild:
   - make cross compile aware
