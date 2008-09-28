@@ -3,6 +3,10 @@
 # $Id$
 
   28 Sep 2008; Fabian Groffen <grobian@gentoo.org>
+  +files/20080922-no-headers.patch, binutils-apple-20080922.ebuild:
+  Add patch from pipping to remove obsolete headers, manpages and includes
+
+  28 Sep 2008; Fabian Groffen <grobian@gentoo.org>
   +files/20080922-libtool-ranlib.patch, binutils-apple-20080922.ebuild:
   Add patch to make libtool better detect whether it's called as ranlib
 

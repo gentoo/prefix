@@ -101,6 +101,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}-libtool-ranlib.patch
 	epatch "${FILESDIR}"/${PV}-nmedit.patch
 	epatch "${FILESDIR}"/${PV}-no-efi-man.patch
+	epatch "${FILESDIR}"/${PV}-no-headers.patch
 	epatch "${FILESDIR}"/${PV}-no-oss-dir.patch
 	epatch "${FILESDIR}"/${PV}-testsuite.patch
 }
@@ -129,7 +130,7 @@ compile_cctools() {
 		LTO= \
 		EFITOOLS= \
 		BUILD_OBSOLETE_ARCH= \
-		COMMON_SUBDIRS='libstuff gprof misc libmacho libdyld mkshlib otool man cbtlibs' \
+		COMMON_SUBDIRS='libstuff ar misc otool' \
 		CC="$(tc-getCC)" \
 		MACOSX_DEPLOYMENT_TARGET=10.4 \
 		RC_CFLAGS="${CFLAGS}"
@@ -153,28 +154,42 @@ install_ld64() {
 
 install_cctools() {
 	cd "${S}"/${CCTOOLS}
-	emake install \
+	emake install_all_but_headers \
 		EFITOOLS= \
-		COMMON_SUBDIRS='libstuff gprof misc libmacho libdyld mkshlib otool man cbtlibs' \
+		COMMON_SUBDIRS='ar misc otool' \
 		DSTROOT=\"${D}\" \
 		BINDIR=\"${EPREFIX}\"/${BINPATH} \
 		LOCBINDIR=\"${EPREFIX}\"/${BINPATH} \
 		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
-		macos_LIBDIR=\"${EPREFIX}\"/${LIBPATH} \
 		LOCLIBDIR=\"${EPREFIX}\"/${LIBPATH} \
-		SYSTEMDIR=\"${EPREFIX}\"/${LIBPATH} \
-		MANDIR=\"${EPREFIX}\"/${DATAPATH}/man/ \
-		LOCMANDIR=\"${EPREFIX}\"/${DATAPATH}/man/ \
-		macos_INCDIR=\"${EPREFIX}\"/${INCPATH} \
-		macos_LOCINCDIR=\"${EPREFIX}\"/${INCPATH}
+		MANDIR=\"${EPREFIX}\"/${DATAPATH}/man/
 	cd "${S}"/${CCTOOLS}/as
+	# TODO What's the proper way to handle the LIBDIR here?
 	emake install \
 		BUILD_OBSOLETE_ARCH= \
 		DSTROOT=\"${D}\" \
 		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
 		LIBDIR=\"${EPREFIX}\"/${BINPATH}/../libexec/gcc/darwin/ \
 		LOCLIBDIR=\"${EPREFIX}\"/${LIBPATH}
-	# TODO What's the proper way to handle the LIBDIR here?
+	cd "${ED}"/${BINPATH}
+
+	insinto ${DATAPATH}/man/man1
+	local skips manpage
+	# ar brings an up-to-date manpage in its dir
+	skips=( ar )
+	for bin in *; do
+		for skip in ${skips[@]}; do
+			if [[ ${bin} == ${skip} ]]; then
+				continue 2;
+			fi
+		done
+		manpage=${S}/${CCTOOLS}/man/${bin}.1
+		if [[ -f "${manpage}" ]]; then
+			doins "${manpage}"
+		fi
+	done
+	insinto ${DATAPATH}/man/man5
+	doins "${S}"/${CCTOOLS}/man/*.5
 }
 
 test_ld64() {
