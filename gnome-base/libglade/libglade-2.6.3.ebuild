@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.3.ebuild,v 1.1 2008/08/19 08:28:51 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.3.ebuild,v 1.2 2008/09/27 14:08:02 leio Exp $
 
 EAPI="prefix"
 
@@ -37,6 +37,9 @@ src_compile() {
 	# patch to stop make install installing the xml catalog
 	# because we do it ourselves in postinst()
 	epatch "${FILESDIR}"/Makefile.in.am-2.4.2-xmlcatalog.patch
+
+	# patch to not throw a warning with gtk+-2.14 during tests, as it triggers abort
+	epatch "${FILESDIR}/${P}-fix_tests-page_size.patch"
 
 	gnome2_src_compile
 }
