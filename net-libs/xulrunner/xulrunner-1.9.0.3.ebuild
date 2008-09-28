@@ -1,18 +1,18 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.1.ebuild,v 1.5 2008/09/09 14:59:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.3.ebuild,v 1.2 2008/09/27 14:33:30 caster Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools
-PATCH="${P}-patches-0.1"
+PATCH="${PN}-1.9.0.1-patches-0.1"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
 SRC_URI="mirror://gentoo/${P}.tar.bz2
-	http://dev.gentoo.org/~armin76/${P}.tar.bz2
+	http://dev.gentoo.org/~armin76/dist/${P}.tar.bz2
 	mirror://gentoo/${PATCH}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
@@ -64,7 +64,6 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"/patch
 
-	epatch "${FILESDIR}"/${PN}-1.9-jemalloc-syntax.patch
 	epatch "${FILESDIR}"/${PN}-1.9-no_sunstudio.patch # breaks sunstudio
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
