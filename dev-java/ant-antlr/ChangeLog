@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-antlr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.11 2008/07/14 21:49:45 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.12 2008/09/27 11:55:34 betelgeuse Exp $
+
+  27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> ant-antlr-1.7.1.ebuild:
+  Add use deps for dev-java/antlr java use flag.
 
 *ant-antlr-1.7.1 (14 Jul 2008)
 
