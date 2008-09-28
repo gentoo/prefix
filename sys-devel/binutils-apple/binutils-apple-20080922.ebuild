@@ -98,6 +98,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PV}-as.patch
 	epatch "${FILESDIR}"/${PV}-ranlib.patch
+	epatch "${FILESDIR}"/${PV}-libtool-ranlib.patch
 	epatch "${FILESDIR}"/${PV}-nmedit.patch
 	epatch "${FILESDIR}"/${PV}-no-efi-man.patch
 	epatch "${FILESDIR}"/${PV}-no-oss-dir.patch
