@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/fop
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.59 2008/03/22 20:02:28 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.60 2008/09/27 11:27:19 betelgeuse Exp $
+
+  27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> fop-0.94-r1.ebuild:
+  Migrate to EAPI 2 for USE dependencies.
 
   22 Mar 2008; William L. Thomson Jr. <wltjr@gentoo.org> fop-0.94-r1.ebuild:
   Reversing jre/jdk deps, vm determination breaks on EAPI=1 slots :(

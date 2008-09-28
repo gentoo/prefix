@@ -1,14 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/fop-0.94-r1.ebuild,v 1.4 2008/03/22 20:02:28 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/fop-0.94-r1.ebuild,v 1.5 2008/09/27 11:27:19 betelgeuse Exp $
 
 # TODO: if 'doc' use flag is used then should build also extra docs ('docs' ant target), currently it cannot
 #       be built as it needs forrest which we do not have
 # TODO: package and use optional dependency jeuclid
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 JAVA_PKG_IUSE="doc examples source"
 WANT_ANT_TASKS="ant-trax"
+
 inherit eutils java-pkg-2 java-ant-2
 
 DESCRIPTION="Formatting Objects Processor is a print formatter driven by XSL"
@@ -27,7 +28,7 @@ COMMON_DEPEND="
 	dev-java/commons-io
 	dev-java/commons-logging
 	java-virtuals/servlet-api:2.2
-	dev-java/xmlgraphics-commons:1
+	dev-java/xmlgraphics-commons:1[jpeg]
 	dev-java/xalan
 	jai? ( dev-java/sun-jai-bin )
 	jimi? ( dev-java/sun-jimi )"
@@ -43,16 +44,6 @@ DEPEND=">=virtual/jdk-1.4
 #		=dev-java/junit-3.8*
 #		dev-java/xmlunit
 #	)"
-
-pkg_setup() {
-	if ! built_with_use dev-java/xmlgraphics-commons jpeg; then
-		msg="${CATEGORY}/${P} needs dev-java/xmlgraphics-commons built with"
-		msg="${msg} the jpeg use flag"
-		eerror ${msg}
-		die "Recompile dev-java/xmlgraphics-commons with the jpeg use flag"
-	fi
-	java-pkg-2_pkg_setup
-}
 
 src_unpack() {
 	unpack ${A}
