@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.0.ebuild,v 1.1 2008/05/08 15:53:11 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2.ebuild,v 1.1 2008/09/27 16:15:44 cryos Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
-inherit elisp-common toolchain-funcs eutils versionator qt3 flag-o-matic
+inherit elisp-common toolchain-funcs eutils versionator flag-o-matic
 
 MY_PV="${PV/rc/RC-}"
 MY_P="${PN}-$(replace_version_separator 3 - ${MY_PV})"
@@ -15,21 +15,29 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.
 
 LICENSE="CMake"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="emacs vim-syntax"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE="emacs qt4 vim-syntax"
 
 DEPEND=">=net-misc/curl-7.16.4
 	>=dev-libs/expat-2.0.1
 	>=dev-libs/libxml2-2.6.28
 	>=dev-libs/xmlrpc-c-1.06.09
 	emacs? ( virtual/emacs )
+	qt4? ( || ( ( x11-libs/qt-core:4
+			x11-libs/qt-gui:4 )
+		>=x11-libs/qt-4.3:4 ) )
 	vim-syntax? ( || (
 		app-editors/vim
-		app-editors/gvim ) )"
+		app-editors/gvim ) )
+	kernel_Darwin? (
+		>=sys-devel/odcctools-20080820
+		>=sys-devel/gcc-apple-4.2.1 )"
 RDEPEND="${DEPEND}"
 
 SITEFILE="50${PN}-gentoo.el"
 VIMFILE="${PN}.vim"
+
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	if ! built_with_use -o dev-libs/xmlrpc-c curl libwww; then
@@ -48,7 +56,9 @@ src_unpack() {
 
 	# Link against the shared Python library rather than the static one
 	epatch "${FILESDIR}/${PN}-FindPythonLibs.patch"
-	epatch "${FILESDIR}"/${P}-interix.patch
+
+	epatch "${FILESDIR}"/${PN}-2.6.1-no_host_paths.patch
+	epatch "${FILESDIR}"/${PN}-2.6.0-interix.patch
 }
 
 src_compile() {
@@ -58,12 +68,31 @@ src_compile() {
 
 	tc-export CC CXX LD
 
+	local qt_arg
+	if use qt4; then
+		qt_arg="--qt-gui"
+	else
+		qt_arg="--no-qt-gui"
+	fi
+
+	local par_arg
+	echo $MAKEOPTS | egrep -o '(\-j|\-\-jobs)(=?|[[:space:]]*)[[:digit:]]+' > /dev/null
+	if [ $? -eq 0 ]; then
+		par_arg=$(echo $MAKEOPTS | egrep -o '(\-j|\-\-jobs)(=?|[[:space:]]*)[[:digit:]]+' | egrep -o '[[:digit:]]+')
+		par_arg="--parallel=${par_arg}"
+	else
+		par_arg="--parallel=1"
+	fi
+
 	./bootstrap \
 		--system-libs \
 		--prefix="${EPREFIX}"/usr \
 		--docdir=/share/doc/${PF} \
 		--datadir=/share/${PN} \
-		--mandir=/share/man || die "./bootstrap failed"
+		--mandir=/share/man \
+		"$qt_arg" \
+		"$par_arg" || die "./bootstrap failed"
+
 	emake || die "emake failed."
 	if use emacs; then
 		elisp-compile Docs/cmake-mode.el || die "elisp compile failed"
