@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/bsf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/ChangeLog,v 1.51 2008/03/09 18:26:59 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/ChangeLog,v 1.52 2008/09/27 11:48:06 betelgeuse Exp $
+
+  27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> bsf-2.4.0-r1.ebuild:
+  Add note to keep IUSE in sync with ant-apache-bsf.
 
   09 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> bsf-2.4.0-r1.ebuild:
   Prepare the ebuild for the upcoming generic src_test.
