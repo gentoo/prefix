@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gob
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.67 2008/04/07 17:07:29 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gob/ChangeLog,v 1.68 2008/09/27 16:36:38 armin76 Exp $
+
+  27 Sep 2008; Raúl Porcel <armin76@gentoo.org> gob-2.0.15.ebuild:
+  arm/sh stable wrt #215541
 
   07 Apr 2008; Samuli Suominen <drac@gentoo.org> -gob-2.0.9.ebuild,
   -gob-2.0.11.ebuild, -gob-2.0.12.ebuild, gob-2.0.15.ebuild:
