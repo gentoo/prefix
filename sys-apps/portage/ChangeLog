@@ -2,11 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
-*portage-2.2.00.11578 (28 Sep 2008)
+*portage-2.2.00.11579 (28 Sep 2008)
 
   28 Sep 2008; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.2.00.11572.ebuild, +portage-2.2.00.11578.ebuild:
-  Replace 2.2.00.11572 with 2.2.00.11578 which has a rmdir fix for Solaris users
+  -portage-2.2.00.11572.ebuild, +portage-2.2.00.11579.ebuild:
+  Replace 2.2.00.11572 with 2.2.00.11579 which has a rmdir fix for Solaris users
 
 *portage-2.2.00.11572 (27 Sep 2008)
 
