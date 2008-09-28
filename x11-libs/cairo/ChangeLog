@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.197 2008/09/26 08:39:20 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.198 2008/09/27 07:47:47 robbat2 Exp $
+
+*cairo-1.8.0 (27 Sep 2008)
+
+  27 Sep 2008; Saleem Abdulrasool <compnerd@gentoo.org> +cairo-1.8.0.ebuild:
+  Version bump. Missing entry added by Robin H. Johnson <robbat2@gentoo.org>.
 
   26 Sep 2008; Peter Alfredsen <loki_val@gentoo.org> cairo-1.7.4.ebuild:
   Fix bug #238722, depend on pixman ge 0.11.2
