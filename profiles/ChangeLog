@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1899 2008/09/27 00:30:23 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1903 2008/09/28 04:08:36 leio Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Remove libxml2-2.6.32-r1 mask - removed from tree
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Remove gnome-python-2.22.2 mask as 2.22.3 is in the tree instead by now
+
+  27 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  fix mask, it was meant to be xchat-gnome not xchat
+
+  27 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  create initial entry for GNOME 2.24 mask
 
   27 Sep 2008; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
   Fixup mask

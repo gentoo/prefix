@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9013 2008/09/27 00:30:23 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9018 2008/09/28 04:08:36 leio Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Gilles Dartiguelongue <eva@gentoo.org> (27 Sep 2008)
+# GNOME 2.24 mask being (and related)
+>=net-irc/xchat-gnome-0.24.0
+# GNOME 2.24 mask end
+
 # Saleem Abdulrasool <compnerd@gentoo.org> (26 Sep 2008)
 # temporarily mask to prevent things from breaking
 >=app-text/poppler-0.9.2
@@ -41,11 +46,13 @@
 
 # Mart Raudsepp <leio@gentoo.org> (25 Sep 2008)
 # Temporarily masked for build testing library users first
-# and to get gtk+ and gail to ~arch at the same time for
-# a clean migration on upgrade
+# and to get gtk+, gail and libgnomeui to ~arch at the same
+# time for a clean migration on upgrade
 >=dev-libs/glib-2.18
 >=x11-libs/gtk+-2.14
 >=gnome-base/gail-1000
+>=dev-util/intltool-0.40
+>=gnome-base/libgnomeui-2.24
 
 # Robin H. Johnson <robbat2@gentoo.org> (25 Sep 2008)
 # Mainly intended for BSD world. Has multiple interface support.
@@ -84,12 +91,6 @@ media-sound/slimserver
 # Masked for removal in 30 days (see bug #238442)
 # Replaced by package: media-sound/squeezecenter
 media-sound/slimserver
-
-# Mart Raudsepp <leio@gentoo.org> (22 Sep 2008)
-# New version in which the only change compared to previous
-# version breaks build on GNOME-2.22 systems
-=dev-python/gnome-python-base-2.22.2
-=dev-python/libgnomecanvas-python-2.22.2
 
 # Alin Năstac <mrness@gentoo.org> (21 Sep 2008)
 # Breaks L2TP connections (see bug 237132)
@@ -583,11 +584,6 @@ www-apps/xrms
 # www-client/opera snapshots are masked. Please read
 # http://my.opera.com/desktopteam/blog/
 =www-client/opera-9.60*
-
-# Mart Raudsepp <leio@gentoo.org> (23 Aug 2008)
-# Breaks gnome-base/gdm greeter and therefore graphical
-# login via gdm, bug 235529
-=dev-libs/libxml2-2.6.32-r1
 
 # Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
 # Beta release, still got some issues
