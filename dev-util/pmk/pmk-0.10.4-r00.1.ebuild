@@ -33,7 +33,9 @@ EOF
 
 src_compile() {
 	tc-export CC CPP AS
-	./pmkcfg.sh -p "${EPREFIX}"/usr || die "Config failed"
+	export SYSCONFDIR="${EPREFIX}"/etc
+	export PREFIX="${EPREFIX}"/usr
+	./pmkcfg.sh autodetected || die "Config failed"
 	emake || die "Build failed"
 }
 
