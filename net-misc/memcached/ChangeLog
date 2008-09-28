@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/memcached
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.72 2008/08/01 15:56:46 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.73 2008/09/27 16:35:44 armin76 Exp $
+
+  27 Sep 2008; Raúl Porcel <armin76@gentoo.org> memcached-1.2.5.ebuild:
+  arm stable wrt #223371
 
 *memcached-1.2.6 (01 Aug 2008)
 
