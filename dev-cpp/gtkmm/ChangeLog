@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.150 2008/08/12 19:32:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.151 2008/09/28 14:00:23 leio Exp $
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gtkmm-2.12.7-gtk2_14-compatibility.patch, gtkmm-2.12.1.ebuild,
+  gtkmm-2.12.7.ebuild:
+  Fix compatibility with gtk+-2.14, bug 238698
 
   12 Aug 2008; Raúl Porcel <armin76@gentoo.org> gtkmm-2.12.7.ebuild:
   alpha/ia64/sparc stable wrt #229709
