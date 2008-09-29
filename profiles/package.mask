@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9018 2008/09/28 04:08:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9021 2008/09/28 23:03:28 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Peter Volkov <pva@gentoo.org> (29 Sep 2008)
+# broken, bug #236411
+=www-apps/mediawiki-1.13.0
+
 # Gilles Dartiguelongue <eva@gentoo.org> (27 Sep 2008)
 # GNOME 2.24 mask being (and related)
 >=net-irc/xchat-gnome-0.24.0
@@ -43,16 +47,6 @@
 # Christian Parpart <trapni@gentoo.org> (25 Sep 2008)
 # for testing/experienced users only
 >=sys-fs/zfs-fuse-9999
-
-# Mart Raudsepp <leio@gentoo.org> (25 Sep 2008)
-# Temporarily masked for build testing library users first
-# and to get gtk+, gail and libgnomeui to ~arch at the same
-# time for a clean migration on upgrade
->=dev-libs/glib-2.18
->=x11-libs/gtk+-2.14
->=gnome-base/gail-1000
->=dev-util/intltool-0.40
->=gnome-base/libgnomeui-2.24
 
 # Robin H. Johnson <robbat2@gentoo.org> (25 Sep 2008)
 # Mainly intended for BSD world. Has multiple interface support.
@@ -1105,6 +1099,7 @@ sys-apps/mindi-busybox
 # Masked for Bug 173467
 =dev-lang/tcl-8.5*
 =dev-lang/tk-8.5*
+>=net-im/coccinella-0.96.10
 
 # Tiziano Müller <dev-zero@gentoo.org> (8 Mar 2008)
 # Mask pre-version

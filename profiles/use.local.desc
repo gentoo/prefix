@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3901 2008/09/27 08:07:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3905 2008/09/28 23:27:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1092,6 +1092,8 @@ mail-mta/qmail-ldap:gencertdaily - Generate SSL certificates daily instead of ho
 mail-mta/qmail-ldap:highvolume - Prepare qmail for high volume servers
 mail-mta/qmail-ldap:rfc2307 - Add support for RFC2307 compliant uid/gid attributes
 mail-mta/qmail-ldap:rfc822 - Add support for RFC822 compliant mail attributes
+mail-mta/qpsmtpd:async - Add deps + support for asynchronous mail reception/processing
+mail-mta/qpsmtpd:postfix - create user with permissions for proper postfix interaction
 mail-mta/ssmtp:maxsysuid - Allow to define a MinUserId
 mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 media-fonts/dejavu:fontforge - Use media-gfx/fontforge to build fonts from source
@@ -1261,6 +1263,8 @@ media-sound/exaile:equalizer - Enable equalizer support
 media-sound/exaile:libsexy - Enable libsexy support
 media-sound/fapg:xspf - Enable support for saving XSPF playlists.
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
+media-sound/gimmix:cover - Enable cover art fetching
+media-sound/gimmix:lyrics - Enable lyric fetching
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/herrie:http - Enable http streaming
 media-sound/herrie:xspf - Enable support for reading and saving XSPF playlists
@@ -1427,7 +1431,6 @@ media-video/gpac:amr - Adaptive Multi-Rate Audio support (commonly used in telep
 media-video/griffith:csv - Enable proper support for csv import (respectively auto-detection encoding of csv files)
 media-video/kino:gpac - Enable GPAC support when exporting to 3GPP format
 media-video/kmplayer:npp - Compile the npp backend that plays xembed style browser plugins.
-media-video/linux-uvc:isight - Apply patch to work _only_ with the Apple iSight
 media-video/lives:libvisual - Enable libvisual support
 media-video/mjpegtools:yv12 - Enables support for the YV12 pixel format
 media-video/mmsv2:dxr3 - Enable support for RealMagic Hollywood+/Creative DXR3 cards
@@ -1474,7 +1477,6 @@ media-video/mplayer:zoran - Enables ZR360[56]7/ZR36060 video output
 media-video/ogmrip:mp4 - Support for MP4 container format
 media-video/ogmrip:ogm - Support for OGM container format
 media-video/ogmrip:srt - Support for SRT subtitle format
-media-video/oxine:polling - Enables support to automatically check the drive for a new disc
 media-video/totem:bluetooth - Enable support for user-presence detection via the user's bluetooth handset using net-wireless/bluez-libs
 media-video/totem:galago - Enable the galago plugin
 media-video/totem:lirc - Enable support for controlling Totem with a remote control using app-misc/lirc

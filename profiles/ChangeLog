@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1903 2008/09/28 04:08:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1905 2008/09/28 20:08:59 pva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 Sep 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked =www-apps/mediawiki-1.13.0, broken, bug #236411
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org> arch/arm/package.use.mask,
+  arch/sh/package.use.mask, default-linux/arm/package.use.mask,
+  default-linux/sh/package.use.mask:
+  Remove "x11-libs/gtk+ vim-syntax" package.use.mask entries as vim-syntax
+  got stabilized on arm/sh
 
   28 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
   Remove libxml2-2.6.32-r1 mask - removed from tree
