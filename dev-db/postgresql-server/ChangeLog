@@ -1,6 +1,19 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.11 2008/09/25 08:07:52 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.13 2008/09/28 22:54:52 caleb Exp $
+
+  28 Sep 2008; Caleb Tennis <caleb@gentoo.org>
+  -postgresql-server-8.2.7.ebuild, -postgresql-server-8.3.1.ebuild,
+  -postgresql-server-8.3.3.ebuild:
+  Remove older versions
+
+  28 Sep 2008; Caleb Tennis <caleb@gentoo.org> files/postgresql.conf-8.3,
+  files/postgresql.init-8.3:
+  Change conf and init files for 8.3 for a little nicer startup/shutdown
+  with options.
+
+  This is per 228639 and thanks to a patch from Jeff Frost
+  (jeff@frostconsultingllc.com)
 
   25 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Caleb's last commit broke the Manifest for 7.4.19, fix it up.
