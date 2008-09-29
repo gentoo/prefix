@@ -11,13 +11,18 @@ inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xpm library"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXt
 	x11-libs/libXext"
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
+
+src_unpack() {
+	PATCHES="${FILESDIR}"/${P}-winnt.patch
+	x-modular_src_unpack
+}
 
 src_compile() {
 	# the gettext configure check and code in sxpm are incorrect; they assume
