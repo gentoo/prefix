@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/eyeD3
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/eyeD3/ChangeLog,v 1.31 2008/05/13 20:04:06 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/eyeD3/ChangeLog,v 1.32 2008/09/28 06:50:24 loki_val Exp $
+
+*eyeD3-0.6.16 (28 Sep 2008)
+
+  28 Sep 2008; Peter Alfredsen <loki_val@gentoo.org> +eyeD3-0.6.16.ebuild:
+  Bump, bug 236319.
 
 *eyeD3-0.6.15 (13 May 2008)
 
