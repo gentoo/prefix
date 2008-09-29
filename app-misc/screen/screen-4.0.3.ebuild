@@ -150,7 +150,11 @@ pkg_postinst() {
 	if use multiuser || use prefix
 	then
 		use prefix || chown root:0 "${EROOT}"/var/run/screen
-		chmod 0755 "${EROOT}"/var/run/screen
+		if use prefix; then
+			chmod 0777 "${EROOT}"/var/run/screen
+		else
+			chmod 0755 "${EROOT}"/var/run/screen
+		fi
 	else
 		chown root:utmp "${EROOT}"/var/run/screen
 		chmod 0775 "${EROOT}"/var/run/screen
