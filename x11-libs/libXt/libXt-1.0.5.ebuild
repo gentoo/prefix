@@ -11,7 +11,7 @@ inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xt library"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libSM
@@ -27,6 +27,12 @@ pkg_setup() {
 	filter-flags -Wl,-Bdirect
 	filter-ldflags -Bdirect
 	filter-ldflags -Wl,-Bdirect
+}
+
+src_unpack() {
+	PATCHES="${FILESDIR}"/${P}-winnt.patch
+
+	x-modular_src_unpack
 }
 
 src_compile() {
