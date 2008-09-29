@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.0.ebuild,v 1.1 2008/09/26 20:05:51 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.0.ebuild,v 1.2 2008/09/28 21:31:59 bicatali Exp $
 
 EAPI="prefix"
 
@@ -81,18 +81,30 @@ src_unpack() {
 		append-ldflags "$(pkg-config --libs-only-other cblas lapack)"
 		sed -i -e '/NO_ATLAS_INFO/,+1d' numpy/core/setup.py || die
 		cat >> site.cfg <<-EOF
+			[atlas]
+			include_dirs = $(pkg-config --cflags-only-I \
+				cblas lapack | sed -e 's/^-I//' -e 's/ -I/:/g')
+			library_dirs = $(pkg-config --libs-only-L \
+				cblas lapack | sed -e \
+				's/^-L//' -e 's/ -L/:/g' -e 's/ //g'):"${EPREFIX}"/usr/$(get_libdir)
+			atlas_libs = $(pkg-config --libs-only-l \
+				cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+			lapack_libs = $(pkg-config --libs-only-l \
+				lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 			[blas_opt]
-			include_dirs = $(pkg-config --cflags-only-I cblas \
-				| sed -e 's/^-I//' -e 's/ -I/:/g')
-			library_dirs = $(pkg-config --libs-only-L cblas \
-				| sed -e 's/^-L//' -e 's/ -L/:/g')
-			libraries = $(pkg-config --libs-only-l cblas \
-				| sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+			include_dirs = $(pkg-config --cflags-only-I \
+				cblas | sed -e 's/^-I//' -e 's/ -I/:/g')
+			library_dirs = $(pkg-config --libs-only-L \
+				cblas | sed -e 's/^-L//' -e 's/ -L/:/g' \
+				-e 's/ //g'):"${EPREFIX}"/usr/$(get_libdir)
+			libraries = $(pkg-config --libs-only-l \
+				cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 			[lapack_opt]
-			library_dirs = $(pkg-config --libs-only-L lapack \
-				| sed -e 's/^-L//' -e 's/ -L/:/g')
-			libraries = $(pkg-config --libs-only-l lapack \
-				| sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+			library_dirs = $(pkg-config --libs-only-L \
+				lapack | sed -e 's/^-L//' -e 's/ -L/:/g' \
+				-e 's/ //g'):"${EPREFIX}"/usr/$(get_libdir)
+			libraries = $(pkg-config --libs-only-l \
+				lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 		EOF
 	else
 		export {ATLAS,PTATLAS,BLAS,LAPACK,MKL}=None

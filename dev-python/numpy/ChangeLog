@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.64 2008/09/26 20:05:51 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.65 2008/09/28 21:31:59 bicatali Exp $
+
+  28 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> numpy-1.2.0.ebuild:
+  Fixed again blas/lapack configuration to be compatible with the available
+  gentoo implementations
 
 *numpy-1.2.0 (26 Sep 2008)
 
