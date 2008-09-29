@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.1 2008/09/27 00:48:41 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.2 2008/09/29 05:03:35 compnerd Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ RDEPEND="media-libs/fontconfig
 		>=x11-libs/pixman-0.12.0
 		x11-libs/pango
 		>=x11-libs/gtk+-2.0
-		>=app-text/poppler-0.9.2
+		>=app-text/poppler-bindings-0.9.2
 		X?	(
 				>=x11-libs/libXrender-0.6
 				x11-libs/libXext
@@ -51,9 +51,9 @@ DEPEND="${RDEPEND}
 				)"
 
 pkg_setup() {
-	if ! built_with_use app-text/poppler gtk ; then
-		eerror 'poppler with gtk is required for the pdf backend'
-		die 'poppler built without gtk support'
+	if ! built_with_use app-text/poppler-bindings gtk ; then
+		eerror 'poppler-bindings with gtk is required for the pdf backend'
+		die 'poppler-bindings built without gtk support'
 	fi
 }
 
