@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/vigra
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.17 2008/09/11 20:41:49 loki_val Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.18 2008/09/28 20:10:05 vapier Exp $
+
+  28 Sep 2008; Mike Frysinger <vapier@gentoo.org> vigra-1.6.0.ebuild:
+  Add ~ppc64 love.
 
 *vigra-1.6.0 (11 Sep 2008)
 
