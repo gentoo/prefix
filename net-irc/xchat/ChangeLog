@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/xchat
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.272 2008/08/19 00:24:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.273 2008/09/28 06:29:46 leio Exp $
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org> xchat-2.8.6-r1.ebuild:
+  Fix compile against gtk+-2.14 by being forwards compatible, bug 234458
 
   19 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml,
   xchat-2.8.6-r1.ebuild:

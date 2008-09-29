@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.7 2008/08/19 00:24:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.8 2008/09/28 06:29:46 leio Exp $
 
 EAPI="prefix"
 
@@ -45,6 +45,9 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/xc286-smallfixes.diff
+
+	# don't disable deprecated gtk+ symbols, it's not forwards compatible, bug 234458
+	sed -i -e '/define GTK_DISABLE_DEPRECATED/d' src/fe-gtk/*.c
 
 	epatch "${FILESDIR}"/${PN}-2.8.4-interix.patch
 	eautoreconf # need new libtool for interix
