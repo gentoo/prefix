@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.109 2008/09/25 13:38:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.110 2008/09/28 04:53:13 leio Exp $
+
+*intltool-0.40.4 (28 Sep 2008)
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org> +intltool-0.40.4.ebuild:
+  New major version; most notably doesn't distribute intltool with tarballs
+  anymore
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> intltool-0.37.1.ebuild:
   Stable for HPPA (bug #236971).
