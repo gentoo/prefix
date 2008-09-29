@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.122 2008/09/27 22:42:37 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.123 2008/09/28 14:27:15 maekke Exp $
+
+  28 Sep 2008; Markus Meier <maekke@gentoo.org> fontconfig-2.6.0-r2.ebuild:
+  amd64/x86 stable, bug #238908
 
   27 Sep 2008; Ferris McCormick <fmccor@gentoo.org>
   fontconfig-2.6.0-r2.ebuild:
