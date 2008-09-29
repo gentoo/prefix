@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/tcpdump
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.131 2008/09/10 10:47:13 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.132 2008/09/28 13:26:02 cedk Exp $
+
+  28 Sep 2008; Cédric Krier <cedk@gentoo.org> tcpdump-3.9.8-r1.ebuild:
+  Call enewuser/enewgroup in both pkg_setup and pkg_preinst for bug #231917
 
   10 Sep 2008; Peter Volkov <pva@gentoo.org> tcpdump-3.9.5-r3.ebuild,
   tcpdump-3.9.6-r1.ebuild, tcpdump-3.9.7-r1.ebuild, tcpdump-3.9.8.ebuild,

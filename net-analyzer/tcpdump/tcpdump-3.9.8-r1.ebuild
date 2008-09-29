@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-3.9.8-r1.ebuild,v 1.4 2008/09/10 10:47:13 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-3.9.8-r1.ebuild,v 1.5 2008/09/28 13:26:02 cedk Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,13 @@ IUSE="chroot ssl ipv6 samba"
 DEPEND="net-libs/libpcap
 	ssl? ( >=dev-libs/openssl-0.9.6m )"
 
+group_user_check() {
+	einfo "Checking for tcpdump group ..."
+	enewgroup tcpdump
+	einfo "Checking for tcpdump user ..."
+	enewuser tcpdump -1 -1 -1 tcpdump
+}
+
 pkg_setup() {
 	if use samba ; then
 		ewarn
@@ -35,6 +42,7 @@ pkg_setup() {
 		ebeep 5
 		epause 5
 	fi
+	group_user_check
 }
 
 src_compile() {
@@ -70,8 +78,7 @@ src_compile() {
 }
 
 pkg_preinst() {
-	enewgroup tcpdump
-	enewuser tcpdump -1 -1 -1 tcpdump
+	group_user_check
 }
 
 src_install() {
