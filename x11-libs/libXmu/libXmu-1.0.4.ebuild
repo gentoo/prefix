@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xmu library"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/libXt
@@ -21,3 +21,9 @@ RDEPEND="x11-libs/libXt
 DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="$(use_enable ipv6)"
+
+src_unpack() {
+	PATCHES="${FILESDIR}"/${P}-winnt.patch
+
+	x-modular_src_unpack
+}
