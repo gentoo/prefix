@@ -1,6 +1,17 @@
 # ChangeLog for gnome-base/libgnomeui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.162 2008/09/25 14:24:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.163 2008/09/28 05:19:26 leio Exp $
+
+*libgnomeui-2.24.0 (28 Sep 2008)
+
+  28 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/libgnomeui-2.22.01-fix-thumbnailing-over-gvfs-mounts.patch,
+  -libgnomeui-2.22.01.ebuild, +libgnomeui-2.24.0.ebuild:
+  Major version bump. Removes GtkFileChooser backends because gtk+-2.14
+  provides VFS supports on its own now and does not support filesystem
+  backends anymore that aren't provided by GIO and gnome-base/gvfs
+  infrastructure. Make sure to have gnome-base/gvfs if you want remote
+  filesystem support in the standard GTK+ file dialog.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> ChangeLog:
   Stable for HPPA (bug #236971).
