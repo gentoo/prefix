@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.12 2008/09/25 08:12:14 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.14 2008/09/28 22:56:13 caleb Exp $
+
+  28 Sep 2008; Caleb Tennis <caleb@gentoo.org>
+  -postgresql-base-8.2.7.ebuild, -postgresql-base-8.3.1.ebuild,
+  -postgresql-base-8.3.3.ebuild:
+  remove old versions
+
+  28 Sep 2008; Caleb Tennis <caleb@gentoo.org> postgresql-base-8.3.4.ebuild:
+  Remove --without-libedit from configure per 232155
 
   25 Sep 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Caleb's last commit broke the Manifest for 7.4.19, fix it up.
