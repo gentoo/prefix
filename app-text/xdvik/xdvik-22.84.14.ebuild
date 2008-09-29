@@ -40,19 +40,19 @@ src_unpack() {
 		cat >>"${S}/texk/xdvik/vfontmap.sample"<<-EOF
 
 		# TrueType fonts
-		min     /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		nmin    /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		goth    /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		tmin    /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		tgoth   /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		ngoth   /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		jis     /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		jisg    /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		dm      /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		dg      /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		mgoth   /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
-		fmin    /usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
-		fgoth   /usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		min     ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		nmin    ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		goth    ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		tmin    ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		tgoth   ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		ngoth   ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		jis     ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		jisg    ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		dm      ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		dg      ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		mgoth   ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
+		fmin    ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-mincho-subst.ttf
+		fgoth   ${EPREFIX}/usr/share/fonts/kochi-substitute/kochi-gothic-subst.ttf
 		EOF
 	fi
 }
@@ -60,7 +60,7 @@ src_unpack() {
 src_compile() {
 	tc-export CC AR RANLIB
 
-	local TEXMF_PATH=$(kpsewhich --expand-var='$TEXMFMAIN')
+	local TEXMF_PATH=$(${EPREFIX}/usr/bin/kpsewhich --expand-var='$TEXMFMAIN')
 	local myconf toolkit
 
 	if use motif ; then
