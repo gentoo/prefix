@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.115 2008/09/27 14:08:02 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.116 2008/09/28 14:44:47 maekke Exp $
+
+  28 Sep 2008; Markus Meier <maekke@gentoo.org> libglade-2.6.3.ebuild:
+  amd64/x86 stable, bug #238872
 
   27 Sep 2008; Mart Raudsepp <leio@gentoo.org>
   +files/libglade-2.6.3-fix_tests-page_size.patch, libglade-2.6.3.ebuild:
