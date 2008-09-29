@@ -16,5 +16,5 @@ DESCRIPTION="TeXLive Typesetting for natural and computer sciences"
 
 LICENSE="GPL-2 as-is freedist GPL-1 LGPL-2 LPPL-1.3 "
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE=""
