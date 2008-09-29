@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xxf86vm library"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext"
