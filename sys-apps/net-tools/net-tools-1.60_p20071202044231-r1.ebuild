@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20071202044231-r1.ebuild,v 1.7 2008/09/22 04:14:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20071202044231-r1.ebuild,v 1.9 2008/09/29 00:20:20 vapier Exp $
 
 EAPI="prefix"
 
@@ -56,4 +56,8 @@ src_compile() {
 src_install() {
 	emake BASEDIR="${ED}" install || die "make install failed"
 	dodoc README README.ipv6 TODO
+}
+
+pkg_postinst() {
+	einfo "etherwake and such have been split into net-misc/ethercard-diag"
 }
