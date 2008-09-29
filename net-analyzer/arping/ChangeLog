@@ -1,6 +1,11 @@
 # ChangeLog for net-analyzer/arping
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/arping/ChangeLog,v 1.37 2008/07/07 21:41:30 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/arping/ChangeLog,v 1.38 2008/09/28 13:05:18 cedk Exp $
+
+*arping-2.08 (28 Sep 2008)
+
+  28 Sep 2008; Cédric Krier <cedk@gentoo.org> +arping-2.08.ebuild:
+  Version bump
 
   07 Jul 2008; Markus Ullmann <jokey@gentoo.org> arping-2.06.ebuild:
   Stable on arm for bug #229841
