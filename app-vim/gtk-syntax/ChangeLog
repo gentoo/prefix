@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/gtk-syntax
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/ChangeLog,v 1.27 2008/09/27 16:12:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/ChangeLog,v 1.28 2008/09/28 15:19:44 armin76 Exp $
+
+  28 Sep 2008; Raúl Porcel <armin76@gentoo.org> gtk-syntax-20070925.ebuild:
+  arm/sh stable wrt #197349
 
   27 Sep 2008; Raúl Porcel <armin76@gentoo.org> gtk-syntax-20070925.ebuild:
   Add ~arm/~sh wrt #197349

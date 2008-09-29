@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/gtk-syntax-20070925.ebuild,v 1.2 2008/09/27 16:12:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gtk-syntax/gtk-syntax-20070925.ebuild,v 1.3 2008/09/28 15:19:44 armin76 Exp $
 
 EAPI="prefix"
 
