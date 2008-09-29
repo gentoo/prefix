@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libebml
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.92 2008/09/27 16:45:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/ChangeLog,v 1.93 2008/09/28 06:58:46 aballier Exp $
+
+  28 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  -libebml-0.7.7-r1.ebuild:
+  remove old
 
   27 Sep 2008; Raúl Porcel <armin76@gentoo.org> libebml-0.7.8-r1.ebuild:
   arm stable wrt #228695
