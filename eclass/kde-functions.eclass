@@ -718,11 +718,11 @@ set-kdedir() {
 		export PREFIX="$KDEPREFIX"
 	else
 		if [[ -z "$KDEBASE" ]]; then
-			export PREFIX="/usr"
+			export PREFIX="${EPREFIX}/usr"
 		else
 			case $KDEMAJORVER.$KDEMINORVER in
-				3.5) export PREFIX="/usr/kde/3.5";;
-				5.0) export PREFIX="/usr/kde/svn";;
+				3.5) export PREFIX="${EPREFIX}/usr/kde/3.5";;
+				5.0) export PREFIX="${EPREFIX}/usr/kde/svn";;
 				*) die "failed to set PREFIX";;
 			esac
 		fi
@@ -734,8 +734,8 @@ set-kdedir() {
 	else
 		if [[ -z "$KDEBASE" ]]; then
 			# find the latest kdelibs installed
-			for x in /usr/kde/{svn,3.5} "${PREFIX}" \
-				"${KDE3LIBSDIR}" "${KDELIBSDIR}" "${KDE3DIR}" "${KDEDIR}" /usr/kde/*; do
+			for x in ${EPREFIX}/usr/kde/{svn,3.5} "${PREFIX}" \
+				"${KDE3LIBSDIR}" "${KDELIBSDIR}" "${KDE3DIR}" "${KDEDIR}" ${EPREFIX}/usr/kde/*; do
 				if [[ -f "${x}/include/kwin.h" ]]; then
 					debug-print found
 					export KDEDIR="$x"
@@ -745,8 +745,8 @@ set-kdedir() {
 		else
 			# kde-base ebuilds must always use the exact version of kdelibs they came with
 			case $KDEMAJORVER.$KDEMINORVER in
-				3.5) export KDEDIR="/usr/kde/3.5";;
-				5.0) export KDEDIR="/usr/kde/svn";;
+				3.5) export KDEDIR="${EPREFIX}/usr/kde/3.5";;
+				5.0) export KDEDIR="${EPREFIX}/usr/kde/svn";;
 				*) die "failed to set KDEDIR";;
 			esac
 		fi
@@ -883,12 +883,13 @@ buildsycoca() {
 	[[ $EBUILD_PHASE != postinst ]] && [[ $EBUILD_PHASE != postrm ]] && \
 		die "buildsycoca() has to be calles in pkg_postinst() and pkg_postrm()."
 
-	if [[ -x ${KDEDIR}/bin/kbuildsycoca ]] && [[ -z ${ROOT} || ${ROOT} == "/" ]] ; then
+	if [[ -x ${KDEDIR}/bin/kbuildsycoca ]] &&
+			[[ -z ${ROOT} || ${ROOT} == "/" || ${ROOT} == "${EPREFIX}" ]] ; then
 		# First of all, make sure that the /usr/share/services directory exists
 		# and it has the right permissions
-		mkdir -p /usr/share/services
-		chown root:0 /usr/share/services
-		chmod 0755 /usr/share/services
+		mkdir -p ${EPREFIX}/usr/share/services
+		chown root:0 ${EPREFIX}/usr/share/services
+		chmod 0755 ${EPREFIX}/usr/share/services
 
 		ebegin "Running kbuildsycoca to build global database"
 		# Filter all KDEDIRs not belonging to the current SLOT from XDG_DATA_DIRS
