@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha50.ebuild,v 1.3 2008/09/28 00:28:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha50-r1.ebuild,v 1.1 2008/09/28 13:47:01 loki_val Exp $
 
 EAPI="prefix"
 
@@ -27,20 +27,29 @@ S="${WORKDIR}/${PN}-2.01.01"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	sed -i -e "/INSDIR/ s/lib/$(get_libdir)/" \
-		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
-		|| die "404 on multilib-sed"
+
+	#Adjust paths
 
 	sed -i -e 's:opt/schily:usr:' \
 		$(grep -l --include='*.1' --include='*.8' -r 'opt/schily' .) \
 		$(grep -l --include='*.c' --include='*.h' -r 'opt/schily' .) \
 		|| die "404 on opt-schily sed"
 
+	sed -i -e "s:\(^INSDIR=\t\tshare/doc/\):\1${PF}/:" \
+		$(grep -l -r 'INSDIR.\+doc' .) \
+		|| die "404 on doc sed"
+
+	sed -i -e "s:\(^INSDIR=\t\t\)lib:\1$(get_libdir):" \
+		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
+		|| die "404 on multilib-sed"
+
+	#Remove profiled make files
 	rm -f $(find . -name '*_p.mk')
 
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
 	epatch "${FILESDIR}"/${PN}-2.01.01_alpha50-asneeded.patch
 
+	#Schily make setup
 	cd "${S}"/DEFAULTS
 	local MYARCH="linux"
 	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
@@ -71,15 +80,25 @@ src_compile() {
 			ewarn "cdrtools with unicode in USE. unicode flag will be ignored."
 		fi
 	fi
-	#Parallel make bug
-	emake -j1 CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" || die
+
+	#Watch out for an elusive parallel make bug, that may yet occur.
+
+	emake CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" || die
 }
 
 src_install() {
-	emake INS_BASE="${D}/usr/" install
+	emake MANDIR="share/man" INS_BASE="${D}/usr/" install
+
 	#These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib
 	dosym ../scg /usr/include/schily/scg
+
+	dodoc ABOUT Changelog README README.linux-shm START READMEs/README.linux || die "dodoc cdrtools"
+
+	cd "${S}"/cdda2wav
+	docinto cdda2wav
+	dodoc FAQ Frontends HOWTOUSE TODO || die "dodoc cdda2wav"
+
 }
 
 pkg_postinst() {
