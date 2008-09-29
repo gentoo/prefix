@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="Controls host and/or user access to a running X server."
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/libX11
@@ -19,3 +19,8 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="$(use_enable ipv6)"
+
+src_unpack() {
+	PATCHES="${FILESDIR}"/${P}-winnt.patch
+	x-modular_src_unpack
+}
