@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.196 2008/09/25 23:49:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.197 2008/09/28 14:33:35 maekke Exp $
+
+  28 Sep 2008; Markus Meier <maekke@gentoo.org> netpbm-10.43.00.ebuild:
+  amd64/x86 stable, bug #238699
 
   25 Sep 2008; Brent Baude <ranger@gentoo.org> netpbm-10.43.00.ebuild:
   stable ppc64, bug 238699
