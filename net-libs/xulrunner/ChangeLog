@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.145 2008/09/27 14:33:30 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.146 2008/09/28 13:14:58 maekke Exp $
+
+  28 Sep 2008; Markus Meier <maekke@gentoo.org> xulrunner-1.8.1.17.ebuild:
+  amd64 stable, bug #238535
 
   27 Sep 2008; Vlastimil Babka <caster@gentoo.org> xulrunner-1.9.0.3.ebuild:
   Correct the path in SRC_URI, fixes bug #238850.
