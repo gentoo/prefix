@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gtk.patch
+	epatch "${FILESDIR}"/${P}-solaris-mem-no-swap.patch
 }
 
 src_compile() {
