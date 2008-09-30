@@ -147,7 +147,7 @@ src_install() {
 	done
 
 	cat <<-EOF > "${T}/44qt4"
-	LDPATH=${libdirs:1}
+	LDPATH="${EPREFIX}/${libdirs:1}"
 	EOF
 	doenvd "${T}/44qt4"
 
