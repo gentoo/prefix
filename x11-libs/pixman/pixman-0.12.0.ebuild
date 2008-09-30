@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.12.0.ebuild,v 1.1 2008/09/26 05:34:31 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.12.0.ebuild,v 1.2 2008/09/29 17:56:18 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -25,10 +25,12 @@ pkg_setup() {
 		die "SSE2 selected without SSE"
 	fi
 
-	if use sse2 && ! $(version_is_at_least "4.2" "$(gcc-version)"); then
-		eerror "SSE2 instructions require GCC 4.2 or higher. Either use"
-		eerror "GCC 4.2 or higher or USE='-sse2'"
-		die "SSE2 instructions require GCC 4.2 or higher"
+	if use x86; then
+		if use sse2 && ! $(version_is_at_least "4.2" "$(gcc-version)"); then
+			eerror "SSE2 instructions require GCC 4.2 or higher. Either use"
+			eerror "GCC 4.2 or higher or USE='-sse2'"
+			die "SSE2 instructions require GCC 4.2 or higher"
+		fi
 	fi
 }
 

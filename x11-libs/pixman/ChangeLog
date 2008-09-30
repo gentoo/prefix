@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.20 2008/09/26 05:34:31 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.21 2008/09/29 17:56:18 dberkholz Exp $
+
+  29 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>; pixman-0.12.0.ebuild:
+  (#238716) sse2 + gcc 4.2 check is only required for x86.
 
 *pixman-0.12.0 (26 Sep 2008)
 
