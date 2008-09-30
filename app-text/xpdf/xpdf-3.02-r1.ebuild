@@ -23,7 +23,7 @@ SRC_URI="http://gentooexperimental.org/~genstef/dist/${P}-poppler-20071121.tar.b
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE="nodrm linguas_ar linguas_zh_CN linguas_zh_TW linguas_ru linguas_el
 linguas_he linguas_ja linguas_ko linguas_la linguas_th linguas_tr"
 
