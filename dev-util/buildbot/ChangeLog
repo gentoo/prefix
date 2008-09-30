@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.28 2008/09/24 17:30:31 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.29 2008/09/29 18:42:25 jer Exp $
+
+  29 Sep 2008; Jeroen Roovers <jer@gentoo.org> buildbot-0.7.9.ebuild:
+  Marked ~hppa (bug #234894).
 
 *buildbot-0.7.9 (24 Sep 2008)
 
