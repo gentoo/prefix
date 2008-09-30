@@ -13,3 +13,4 @@ slotmove media-libs/portaudio 18 0
 move app-emulation/virtualbox app-emulation/virtualbox-ose
 move app-emulation/virtualbox-additions app-emulation/virtualbox-ose-additions
 move games-arcade/sdljump games-arcade/gnujump
+move media-fonts/liberation-fonts-ttf media-fonts/liberation-fonts
