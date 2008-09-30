@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/shntool/shntool-3.0.8.ebuild,v 1.1 2008/08/29 07:14:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/shntool/shntool-3.0.8.ebuild,v 1.2 2008/09/29 18:12:06 bluebird Exp $
 
 EAPI="prefix"
 
