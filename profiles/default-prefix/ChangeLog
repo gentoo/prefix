@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Sep 2008; Jeremy Olexa <darkside@gentoo.org>
+  darwin/macos/10.5/package.mask:
+  p.mask <=dev-util/astyle-1.22 on darwin macos 10.5
+
   30 Sep 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Extended eix mask to eix-0.13.5 (bug #239109)
 
