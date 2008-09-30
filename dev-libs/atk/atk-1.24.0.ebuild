@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.12.4.ebuild,v 1.10 2007/06/24 21:24:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.24.0.ebuild,v 1.1 2008/09/29 07:43:49 leio Exp $
 
 EAPI="prefix"
 
@@ -11,12 +11,12 @@ HOMEPAGE="http://developer.gnome.org/projects/gap/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.5.7"
-
 DEPEND="${RDEPEND}
+	sys-devel/gettext
 	>=dev-util/pkgconfig-0.9
 	doc? ( >=dev-util/gtk-doc-1 )"
 
