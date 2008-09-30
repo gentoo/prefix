@@ -37,6 +37,7 @@
 # comes out. bug #235011
 =app-portage/eix-0.13.3
 =app-portage/eix-0.13.4
+=app-portage/eix-0.13.5
 
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but
