@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/HTML-Parser
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.94 2008/09/15 18:54:06 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.97 2008/09/29 07:54:50 tove Exp $
+
+  29 Sep 2008; Torsten Veller <tove@gentoo.org> HTML-Parser-3.56.ebuild:
+  mips -> ~mips
+
+  29 Sep 2008; Torsten Veller <tove@gentoo.org> HTML-Parser-3.56.ebuild:
+  ... run tests at the right time...
+
+  29 Sep 2008; Torsten Veller <tove@gentoo.org> HTML-Parser-3.56.ebuild:
+  Don't run perl-module_src_test in src_compile (#238857). Remove unicode
+  useflags as it is no longer a compile time option.
 
   15 Sep 2008; Torsten Veller <tove@gentoo.org> -HTML-Parser-3.48.ebuild,
   -HTML-Parser-3.54.ebuild, -HTML-Parser-3.55.ebuild:
