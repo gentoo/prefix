@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.13.5.ebuild,v 1.6 2008/09/18 00:31:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.13.5.ebuild,v 1.7 2008/09/29 20:03:51 jer Exp $
 
 EAPI="prefix"
 

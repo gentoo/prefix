@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/re2c
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.55 2008/09/18 00:32:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/ChangeLog,v 1.56 2008/09/29 20:03:51 jer Exp $
+
+  29 Sep 2008; Jeroen Roovers <jer@gentoo.org> re2c-0.13.5.ebuild:
+  Stable for HPPA (bug #236487).
 
   18 Sep 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
   stable ppc64, bug 236487
