@@ -1,6 +1,12 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.121 2008/08/17 06:20:48 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.122 2008/09/29 10:23:31 pva Exp $
+
+*dejavu-2.27 (29 Sep 2008)
+
+  29 Sep 2008; Peter Volkov <pva@gentoo.org> -dejavu-2.23.ebuild,
+  -dejavu-2.24.ebuild, -dejavu-2.25-r1.ebuild, +dejavu-2.27.ebuild:
+  Version bump. Remove unused.
 
   17 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
