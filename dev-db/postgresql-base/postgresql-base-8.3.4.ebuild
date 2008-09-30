@@ -129,8 +129,8 @@ postgres_symlinks=(
 __EOF__
 
 	cat >"${T}/50postgresql-94-${SLOT}" <<-__EOF__
-		LDPATH=/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)
-		MANPATH=/usr/share/postgresql-${SLOT}/man
+		LDPATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)"
+		MANPATH="${EPREFIX}/usr/share/postgresql-${SLOT}/man"
 	__EOF__
 	doenvd "${T}/50postgresql-94-${SLOT}"
 
