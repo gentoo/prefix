@@ -10,6 +10,12 @@ inherit toolchain-binutils
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
+src_unpack() {
+	tc-binutils_unpack
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-reloc.patch
+}
+
 src_compile() {
 	if has noinfo "${FEATURES}" \
 	|| ! type -p makeinfo >/dev/null

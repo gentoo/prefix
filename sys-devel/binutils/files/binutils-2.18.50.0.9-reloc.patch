@@ -1,0 +1,20 @@
+http://sourceware.org/cgi-bin/cvsweb.cgi/src/gas/write.c.diff?cvsroot=src&r1=1.118&r2=1.119
+
+===================================================================
+RCS file: /cvs/src/src/gas/write.c,v
+retrieving revision 1.118
+retrieving revision 1.119
+diff -u -r1.118 -r1.119
+--- src/gas/write.c	2008/08/20 13:43:32	1.118
++++ src/gas/write.c	2008/09/15 13:53:17	1.119
+@@ -1090,8 +1090,8 @@
+       && (sym = *reloc->sym_ptr_ptr) != NULL
+       && (sym->flags & BSF_KEEP) == 0
+       && ((sym->flags & BSF_SECTION_SYM) == 0
+-	  || !EMIT_SECTION_SYMBOLS
+-	  || !bfd_is_abs_section (sym->section)))
++	  || (EMIT_SECTION_SYMBOLS
++	      && !bfd_is_abs_section (sym->section))))
+     as_bad_where (file, line, _("redefined symbol cannot be used on reloc"));
+ 
+   s = bfd_install_relocation (stdoutput, reloc,
