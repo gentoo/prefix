@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/Attic/gtk+-2.14.3.ebuild,v 1.3 2008/09/28 10:40:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.14.3-r1.ebuild,v 1.1 2008/09/29 07:40:36 leio Exp $
 
 EAPI="prefix"
 
@@ -88,6 +88,13 @@ src_unpack() {
 
 	# Workaround adobe flash infinite loop. Patch from http://bugzilla.gnome.org/show_bug.cgi?id=463773#c11
 	epatch "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
+
+	# Various fixes from upstream gtk-2-14 branch, will be part of 2.14.4
+	epatch "${FILESDIR}/${P}-fix-filesystem-double-free.patch"
+	epatch "${FILESDIR}/${P}-fix-lpr_write-double-free.patch"
+	epatch "${FILESDIR}/${P}-fix-password-dialog-on-mount.patch"
+	epatch "${FILESDIR}/${P}-notebook-tab-draw-correctness.patch"
+	epatch "${FILESDIR}/${P}-dont-unset-filechooser-filter-after-first-use.patch"
 
 	# Don't break inclusion of gtkclist.h, upstream bug 536767
 	epatch "${FILESDIR}/${P}-limit-gtksignal-includes.patch"

@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.399 2008/09/28 10:36:40 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.400 2008/09/29 07:40:36 leio Exp $
+
+*gtk+-2.14.3-r1 (29 Sep 2008)
+
+  29 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gtk+-2.14.3-dont-unset-filechooser-filter-after-first-use.patch,
+  +files/gtk+-2.14.3-fix-filesystem-double-free.patch,
+  +files/gtk+-2.14.3-fix-lpr_write-double-free.patch,
+  +files/gtk+-2.14.3-fix-password-dialog-on-mount.patch,
+  +files/gtk+-2.14.3-notebook-tab-draw-correctness.patch,
+  -gtk+-2.14.3.ebuild, +gtk+-2.14.3-r1.ebuild:
+  Add a few fixes from upstream unreleased code
 
   28 Sep 2008; Mart Raudsepp <leio@gentoo.org>
   +files/gtk+-2.14.3-limit-gtksignal-includes.patch, gtk+-2.14.3.ebuild:
