@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9021 2008/09/28 23:03:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9026 2008/09/29 21:10:53 kolmodin Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,9 +29,15 @@
 
 #--- END OF EXAMPLES ---
 
-# Peter Volkov <pva@gentoo.org> (29 Sep 2008)
-# broken, bug #236411
-=www-apps/mediawiki-1.13.0
+# Lennart Kolmodin <kolmodin@gentoo.org> (29 Sep 2008)
+# Masked for testing.
+>=dev-util/darcs-2.1
+
+# Petteri Räty <betelgeuse@gentoo.org> (29 Sep 2008)
+# Live ebuilds are more appropriate to overlays.
+# See https://bugs.gentoo.org/show_bug.cgi?id=227629
+# for more details.
+dev-lisp/abcl-cvs
 
 # Gilles Dartiguelongue <eva@gentoo.org> (27 Sep 2008)
 # GNOME 2.24 mask being (and related)

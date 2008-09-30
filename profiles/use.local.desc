@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3905 2008/09/28 23:27:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3906 2008/09/29 21:47:57 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2458,7 +2458,6 @@ www-apps/gallery:unzip - Add app-arch/unzip support for the archive upload modul
 www-apps/gallery:zip - Add app-arch/zip for the zip download module
 www-apps/horde-passwd:clearpasswd - Enables cleartext password storage in the vpopmail files
 www-apps/lxr:freetext - Adds support for freetext search using swish-e
-www-apps/mantisbt:bundled-adodb - Use adodb bundled with web-application instead of system wide
 www-apps/mediawiki:math - Ads math rendering support
 www-apps/mediawiki:restrict - Initial setup will only allow sysop user to create new accounts, read and edit any pages
 www-apps/rt:lighttpd - Add www-servers/lighttpd support
