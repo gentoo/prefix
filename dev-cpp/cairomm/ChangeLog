@@ -1,6 +1,10 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.31 2008/08/13 11:08:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.32 2008/09/30 01:42:25 dang Exp $
+
+  30 Sep 2008; Daniel Gryniewicz <dang@gentoo.org> cairomm-1.2.4.ebuild,
+  cairomm-1.4.4.ebuild, cairomm-1.5.0.ebuild, cairomm-1.6.0.ebuild:
+  Fix license and homepage. Bug #237256
 
   13 Aug 2008; Raúl Porcel <armin76@gentoo.org> cairomm-1.6.0.ebuild:
   alpha/ia64/sparc stable wrt #229709
