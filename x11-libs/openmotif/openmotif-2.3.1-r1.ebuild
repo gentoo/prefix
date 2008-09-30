@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/${PV%.*}/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc examples jpeg png unicode xft"
 
 # make people unmerge motif-config and all previous slots
@@ -88,6 +88,8 @@ src_unpack() {
 
 	# remove non-prefix paths
 	epatch "${FILESDIR}"/${P}-prefix-sanitise.patch
+	# Solaris 11 fix
+	[[ ${CHOST} == *-solaris2.11 ]] && epatch "${FILESDIR}"/${P}-solaris-2.11.patch
 
 	AT_M4DIR=.  eautoreconf
 #	eautomake
@@ -111,6 +113,10 @@ src_compile() {
 
 	# feel free to fix properly if you care
 	append-flags -fno-strict-aliasing
+
+	# For Solaris Xos_r.h :(
+	[[ ${CHOST} == *-solaris2.11 ]] && \
+		append-flags -DNEED_XOS_R_H=1
 
 	econf --with-x \
 		$(use_enable unicode utf8) \
