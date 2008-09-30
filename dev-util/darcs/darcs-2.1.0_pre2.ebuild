@@ -1,16 +1,16 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.0.9.ebuild,v 1.14 2008/09/29 21:56:33 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0_pre2.ebuild,v 1.1 2008/09/29 21:11:45 kolmodin Exp $
 
 EAPI="prefix"
 
 inherit base autotools eutils
 
 DESCRIPTION="David's Advanced Revision Control System is yet another replacement for CVS"
-HOMEPAGE="http://abridgegame.org/darcs"
+HOMEPAGE="http://darcs.net"
 MY_P0="${P/_rc/rc}"
 MY_P="${MY_P0/_pre/pre}"
-SRC_URI="http://abridgegame.org/darcs/${MY_P}.tar.gz"
+SRC_URI="http://darcs.net/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,9 +22,25 @@ DEPEND=">=net-misc/curl-7.10.2
 	=dev-haskell/quickcheck-1*
 	dev-haskell/mtl
 	dev-haskell/html
+	dev-haskell/http
+	dev-haskell/parsec
+	dev-haskell/regex-compat
 	sys-apps/diffutils
+	dev-haskell/network
+	dev-haskell/filepath
+	sys-libs/zlib
 	doc?  ( virtual/latex-base
 		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
+
+# add these deps? configure will check for and use these if they are available,
+# but with older ghc's it'll just work as it won't have the split base
+#	array
+#	directory
+#	old-locale
+#   old-time
+#   process
+
+# bytestring will also be used if it's there. XXX: really?
 
 RDEPEND=">=net-misc/curl-7.10.2
 	virtual/mta
@@ -44,31 +60,23 @@ pkg_setup() {
 src_unpack() {
 	base_src_unpack
 
-	# For GHC 6.8* compatibility, make sure
-	#  * the new openFd/fdToHandle API is found
-	#  * to use the containers package, if it exists
-	# Works with all GHC versions
-	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.1.0pre1-ghc68.patch"
-
-	epatch "${FILESDIR}/${P}-bashcomp.patch"
-
-	# If we're going to use the CFLAGS with GHC's -optc flag then we'd better
-	# use it with -opta too or it'll break with some CFLAGS, eg -mcpu on sparc
-	sed -i 's:\($(addprefix -optc,$(CFLAGS) $(CPPFLAGS))\):\1 $(addprefix -opta,$(CFLAGS)):' \
-		"${S}/autoconf.mk.in"
+	cd "${S}/tools"
+	epatch "${FILESDIR}/${PN}-1.0.9-bashcomp.patch"
 
 	# On ia64 we need to tone down the level of inlining so we don't break some
 	# of the low level ghc/gcc interaction gubbins.
 	use ia64 && sed -i 's/-funfolding-use-threshold20//' "${S}/GNUmakefile"
 
+	cd "${S}"
 	# Since we've patched the build system:
 	eautoreconf
 }
 
 src_compile() {
-
+	# use --enable-bytestring?
 	econf $(use_with doc docs) \
+		  --disable-haskeline \
+		  --disable-haskell-zlib \
 		|| die "configure failed"
 	emake all || die "make failed"
 }
@@ -88,8 +96,8 @@ src_install() {
 		&& rmdir "${ED}/etc" \
 		|| die "fixing location of darcs bash completion failed"
 	if use doc; then
-		dodoc "${S}/manual/darcs.ps" || die "installing darcs.ps failed"
-		dohtml -r "${S}/manual/"* || die "installing darcs manual failed"
+		dodoc "${S}/doc/manual/darcs.ps" || die "installing darcs.ps failed"
+		dohtml -r "${S}/doc/manual/"* || die "installing darcs manual failed"
 	fi
 }
 
