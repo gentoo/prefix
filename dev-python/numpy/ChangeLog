@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.65 2008/09/28 21:31:59 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.66 2008/09/29 23:55:45 jer Exp $
+
+  29 Sep 2008; Jeroen Roovers <jer@gentoo.org> numpy-1.2.0.ebuild:
+  Marked ~hppa (bug #233554).
 
   28 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> numpy-1.2.0.ebuild:
   Fixed again blas/lapack configuration to be compatible with the available
