@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.83 2008/09/22 04:14:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.84 2008/09/30 11:33:15 armin76 Exp $
+
+  30 Sep 2008; Raúl Porcel <armin76@gentoo.org>
+  net-tools-1.60_p20071202044231-r1.ebuild:
+  alpha stable wrt #238207
 
   22 Sep 2008; Jeroen Roovers <jer@gentoo.org>
   net-tools-1.60_p20071202044231-r1.ebuild:
