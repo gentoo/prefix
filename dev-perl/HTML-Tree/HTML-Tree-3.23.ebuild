@@ -1,14 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tree/HTML-Tree-3.23.ebuild,v 1.13 2008/06/07 12:01:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tree/HTML-Tree-3.23.ebuild,v 1.15 2008/09/30 13:59:05 tove Exp $
 
 EAPI="prefix"
 
+MODULE_AUTHOR=PETEK
 inherit perl-module
 
 DESCRIPTION="A library to manage HTML-Tree in PERL"
-HOMEPAGE="http://search.cpan.org/dist/"
-SRC_URI="mirror://cpan/authors/id/P/PE/PETEK/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
@@ -20,5 +19,3 @@ DEPEND=">=dev-perl/HTML-Tagset-3.03
 	dev-lang/perl"
 
 SRC_TEST="do"
-
-mydoc="MANIFEST README"
