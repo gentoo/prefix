@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/potrace
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/ChangeLog,v 1.22 2008/09/30 01:48:46 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/ChangeLog,v 1.23 2008/09/30 11:35:29 armin76 Exp $
+
+  30 Sep 2008; Raúl Porcel <armin76@gentoo.org> potrace-1.8.ebuild:
+  alpha/ia64/x86 stable wrt #239031
 
   30 Sep 2008; Jeremy Olexa <darkside@gentoo.org> potrace-1.8.ebuild:
   amd64 stable, bug #239031. thanks to Chad A. Simmons (amd64 AT) for testing
