@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.158 2008/09/25 14:14:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.159 2008/09/30 06:43:23 leio Exp $
+
+*libsoup-2.24.0.1 (30 Sep 2008)
+
+  30 Sep 2008; Mart Raudsepp <leio@gentoo.org> -libsoup-2.2.94.ebuild,
+  -libsoup-2.2.104.ebuild, -libsoup-2.4.0.ebuild, +libsoup-2.24.0.1.ebuild:
+  Major new version. Bug fixes and cookies support addition
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> libsoup-2.4.1.ebuild:
   Stable for HPPA (bug #236971).
