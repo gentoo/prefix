@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.813.ebuild,v 1.1 2008/07/04 08:52:23 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.816.ebuild,v 1.1 2008/09/30 05:54:13 tove Exp $
 
 EAPI="prefix"
 
@@ -8,10 +8,11 @@ MODULE_AUTHOR=GAAS
 inherit perl-module
 
 DESCRIPTION="A collection of Perl Modules for the WWW"
-IUSE="ssl"
-SLOT="0"
+
 LICENSE="|| ( Artistic GPL-2 )"
+SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+IUSE="ssl"
 
 DEPEND="virtual/perl-libnet
 	>=dev-perl/HTML-Parser-3.34
@@ -22,10 +23,6 @@ DEPEND="virtual/perl-libnet
 	>=dev-perl/Compress-Zlib-1.10
 	ssl? ( dev-perl/Crypt-SSLeay )
 	dev-lang/perl"
-
-src_compile() {
-	echo "y" | perl-module_src_compile
-}
 
 src_install() {
 	perl-module_src_install
