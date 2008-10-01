@@ -20,6 +20,8 @@ IUSE=""
 DEPEND="sys-devel/binutils-config"
 RDEPEND="${DEPEND}"
 
+RESTRICT="mirror"
+
 LIBPATH=/usr/$(get_libdir)/binutils/${CHOST}/${PV}
 INCPATH=${LIBPATH}/include
 DATAPATH=/usr/share/binutils-data/${CHOST}/${PV}

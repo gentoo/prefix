@@ -19,6 +19,8 @@ IUSE=""
 DEPEND="sys-devel/binutils-config"
 RDEPEND="${DEPEND}"
 
+RESTRICT="mirror"
+
 # Magic from toolchain-binutils.eclass
 export CTARGET=${CTARGET:-${CHOST}}
 if [[ ${CTARGET} == ${CHOST} ]] ; then
