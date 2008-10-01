@@ -1,6 +1,27 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.184 2008/08/22 22:25:40 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.188 2008/09/30 20:01:15 jer Exp $
+
+  30 Sep 2008; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.20.ebuild:
+  Stable for HPPA (bug #238180).
+
+  30 Sep 2008; Ferris McCormick <fmccor@gentoo.org> lighttpd-1.4.20.ebuild:
+  Sparc stable --- Security Bug #238180 --- all tests good.
+
+  30 Sep 2008; Christian Hoffmann <hoffie@gentoo.org>
+  lighttpd-1.4.20.ebuild:
+  stable on amd64 wrt security bug 238180
+
+*lighttpd-1.4.20 (30 Sep 2008)
+
+  30 Sep 2008; Christian Hoffmann <hoffie@gentoo.org>
+  +files/1.4.20/03_all_lighttpd-1.4.11-errorlog-pipe.diff,
+  -lighttpd-1.4.16.ebuild, -lighttpd-1.4.18.ebuild,
+  -lighttpd-1.4.18-r1.ebuild, -lighttpd-1.4.18-r2.ebuild,
+  -lighttpd-1.4.18-r3.ebuild, -lighttpd-1.4.19.ebuild,
+  +lighttpd-1.4.20.ebuild:
+  version bump to 1.4.20, including fixes for the security issues outlined
+  in bug 238180; removing old
 
   22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
