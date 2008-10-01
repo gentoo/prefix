@@ -40,7 +40,7 @@ DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 		media-libs/fontconfig
 		dev-libs/nss
 		net-misc/curl
-		>=sys-libs/glibc-2.4 )
+		!prefix? ( >=sys-libs/glibc-2.4 ) )
 	media-fonts/corefonts"
 
 # Our new flash-libcompat suffers from the same EXESTACK problem as libcrypto
