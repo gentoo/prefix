@@ -1,10 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/confuse-2.6-r1.ebuild,v 1.2 2008/05/17 03:07:07 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/confuse-2.6-r3.ebuild,v 1.1 2008/09/30 23:35:50 matsuu Exp $
 
 EAPI="prefix"
 
 inherit autotools
+
+inherit eutils
 
 DESCRIPTION="a configuration file parser library"
 HOMEPAGE="http://www.nongnu.org/confuse/"
@@ -24,6 +26,10 @@ RDEPEND="nls? ( virtual/libintl )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# bug #236347
+	epatch "${FILESDIR}"/${P}-O0.patch
+	# bug 239020
+	epatch "${FILESDIR}"/${P}-solaris.patch
 	# drop -Werror, bug #208095
 	sed -i -e 's/-Werror//' */Makefile.* || die
 
