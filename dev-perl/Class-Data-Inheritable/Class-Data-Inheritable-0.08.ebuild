@@ -1,14 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.08.ebuild,v 1.2 2008/06/13 16:41:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.08.ebuild,v 1.3 2008/09/30 11:05:26 tove Exp $
 
 EAPI="prefix"
 
+MODULE_AUTHOR=TMTM
 inherit perl-module
 
 DESCRIPTION="Exception::Class module for perl"
-SRC_URI="mirror://cpan/authors/id/T/TM/TMTM/${P}.tar.gz"
-HOMEPAGE="http://search.cpan.org/~tmtm/${P}"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
