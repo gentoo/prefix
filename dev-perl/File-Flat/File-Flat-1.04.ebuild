@@ -1,14 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Flat/File-Flat-1.04.ebuild,v 1.2 2008/07/15 19:34:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Flat/File-Flat-1.04.ebuild,v 1.3 2008/09/30 12:53:06 tove Exp $
 
 EAPI="prefix"
 
+MODULE_AUTHOR=ADAMK
 inherit perl-module
 
 DESCRIPTION="Implements a flat filesystem"
-SRC_URI="mirror://cpan/authors/id/A/AD/ADAMK/${P}.tar.gz"
-HOMEPAGE="http://search.cpan.org/~adamk/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
