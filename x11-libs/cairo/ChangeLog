@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.198 2008/09/27 07:47:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.199 2008/09/30 18:49:43 cardoe Exp $
+
+  30 Sep 2008; Doug Goldstein <cardoe@gentoo.org> -cairo-1.7.4.ebuild,
+  cairo-1.8.0.ebuild:
+  remove test release and fix depends in new release. allow xcb backend to
+  be built without X
 
 *cairo-1.8.0 (27 Sep 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.2 2008/09/29 05:03:35 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.3 2008/09/30 18:49:43 cardoe Exp $
 
 EAPI="prefix"
 
@@ -22,40 +22,41 @@ RDEPEND="media-libs/fontconfig
 		>=media-libs/freetype-2.1.9
 		sys-libs/zlib
 		media-libs/libpng
-		virtual/ghostscript
 		>=x11-libs/pixman-0.12.0
-		x11-libs/pango
-		>=x11-libs/gtk+-2.0
-		>=app-text/poppler-bindings-0.9.2
-		X?	(
-				>=x11-libs/libXrender-0.6
-				x11-libs/libXext
-				x11-libs/libX11
-				virtual/xft
-				xcb? ( >=x11-libs/libxcb-0.92
-						x11-libs/xcb-util )
-			)
 		directfb? ( >=dev-libs/DirectFB-0.9.24 )
 		glitz? ( >=media-libs/glitz-0.5.1 )
 		svg? (  dev-libs/libxml2
 				>=x11-libs/gtk+-2.0
-				>=gnome-base/librsvg-2.15.0 )"
+				>=gnome-base/librsvg-2.15.0 )
+		X? ( 	>=x11-libs/libXrender-0.6
+				x11-libs/libXext
+				x11-libs/libX11
+				virtual/xft )
+		xcb? (	>=x11-libs/libxcb-0.92
+				x11-libs/xcb-util )"
+#		test? (
+#		pdf test
+#		x11-libs/pango
+#		>=x11-libs/gtk+-2.0
+#		>=app-text/poppler-bindings-0.9.2
+#		ps test
+#		virtual/ghostscript
+#		svg test
+#		>=x11-libs/gtk+-2.0
 
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.19
-		X? ( x11-proto/renderproto
-			xcb? ( x11-proto/xcb-proto ) )
-		doc?	(
-					>=dev-util/gtk-doc-1.6
-					 ~app-text/docbook-xml-dtd-4.2
-				)"
+		doc? (	>=dev-util/gtk-doc-1.6
+			  	~app-text/docbook-xml-dtd-4.2 )
+		X? (	x11-proto/renderproto )
+		xcb? (	x11-proto/xcb-proto )"
 
-pkg_setup() {
-	if ! built_with_use app-text/poppler-bindings gtk ; then
-		eerror 'poppler-bindings with gtk is required for the pdf backend'
-		die 'poppler-bindings built without gtk support'
-	fi
-}
+#pkg_setup() {
+#	if ! built_with_use app-text/poppler-bindings gtk ; then
+#		eerror 'poppler-bindings with gtk is required for the pdf backend'
+#		die 'poppler-bindings built without gtk support'
+#	fi
+#}
 
 src_unpack() {
 	unpack ${A}
@@ -66,8 +67,6 @@ src_unpack() {
 }
 
 src_compile() {
-	local use_xcb
-
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 	# http://bugs.freedesktop.org/show_bug.cgi?id=15463
 	[[ ${CHOST} == *-solaris* ]] && append-flags -D_POSIX_PTHREAD_SEMANTICS
@@ -79,11 +78,8 @@ src_compile() {
 		export glitz_LIBS=-lglitz-glx
 	fi
 
-	use_xcb="--disable-xcb"
-	use X && use xcb && use_xcb="--enable-xcb"
-
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
-		$(use_enable directfb) ${use_xcb} \
+		$(use_enable directfb) $(use_enable xcb) \
 		$(use_enable svg) $(use_enable glitz) $(use_enable X xlib-xrender) \
 		$(use_enable debug test-surfaces) --enable-pdf  --enable-png \
 		--enable-freetype --enable-ps \
