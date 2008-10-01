@@ -1,6 +1,13 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.209 2008/09/28 13:47:01 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.210 2008/09/30 23:03:13 loki_val Exp $
+
+*cdrtools-2.01.01_alpha50-r2 (30 Sep 2008)
+
+  30 Sep 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -cdrtools-2.01.01_alpha50-r1.ebuild, +cdrtools-2.01.01_alpha50-r2.ebuild:
+  A last bug, discovered by daniel pielmeyer (again :-)). Fix to make
+  cdrtools install its configuration files in /etc, not /usr/etc.
 
 *cdrtools-2.01.01_alpha50-r1 (28 Sep 2008)
 
