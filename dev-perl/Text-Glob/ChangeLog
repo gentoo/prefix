@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Text-Glob
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/ChangeLog,v 1.32 2008/03/28 09:44:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/ChangeLog,v 1.33 2008/09/30 15:16:51 tove Exp $
+
+  30 Sep 2008; Torsten Veller <tove@gentoo.org> -Text-Glob-0.06.ebuild,
+  -Text-Glob-0.07.ebuild, Text-Glob-0.08.ebuild:
+  Cleanup
 
   28 Mar 2008; Jeroen Roovers <jer@gentoo.org> Text-Glob-0.08.ebuild:
   Stable for HPPA too.
