@@ -43,6 +43,7 @@ S="${WORKDIR}"
 RESTRICT="test"
 
 src_unpack() {
+	unpack ${A}
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-build.patch"
