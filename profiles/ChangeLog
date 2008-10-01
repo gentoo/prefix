@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1909 2008/09/29 17:44:07 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1912 2008/09/30 22:13:51 leio Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Unmask swfdec-0.8 - firefox 3.0.{0,1} didn't like it, but 3.0.3 does
+
+  30 Sep 2008; Mike Auty <ikelos@gentoo.org> package.mask:
+  Remove masks for packages that have been taken out of the tree.
+
+  30 Sep 2008; Mart Raudsepp <leio@gentoo.org> arch/arm/package.mask,
+  arch/powerpc/ppc32/package.mask, arch/powerpc/ppc64/package.mask,
+  arch/sh/package.mask, default-bsd/fbsd/package.mask,
+  default-linux/arm/package.mask, default-linux/ppc/dev/ppc64/package.mask,
+  default-linux/ppc/ppc32/package.mask,
+  default-linux/ppc/ppc64/package.mask, default-linux/sh/package.mask,
+  hardened/ppc/package.mask, hardened/ppc64/package.mask,
+  hardened/x86/package.mask, uclibc/ppc/package.mask:
+  Unmask gnome-base/gail in all remaining profiles, bug 239026
 
   29 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
   package.mask abcl-cvs. See bug #227629 for more details.

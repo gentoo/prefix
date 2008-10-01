@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9026 2008/09/29 21:10:53 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9031 2008/09/30 22:13:51 leio Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -46,9 +46,10 @@ dev-lisp/abcl-cvs
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (26 Sep 2008)
 # temporarily mask to prevent things from breaking
+>=x11-libs/cairo-1.8.0
+>=x11-libs/pango-1.22.0
 >=app-text/poppler-0.9.2
 >=app-text/poppler-bindings-0.9.2
->=x11-libs/cairo-1.8.0
 
 # Christian Parpart <trapni@gentoo.org> (25 Sep 2008)
 # for testing/experienced users only
@@ -643,10 +644,6 @@ media-gfx/gimp-freetype
 # Masked for testing
 =sys-libs/db-4.7*
 
-# Doug Goldstein <cardoe@gentoo.org> (12 Aug 2008)
-# development versions of cairo
->=x11-libs/cairo-1.7.0
-
 # Jesus Rivero <neurogeek@gentoo.org> (11 Aug 2008)
 # Masked for removal in 30 days. These packages are
 # unmaintained/deprecated and break stable tree.
@@ -702,12 +699,6 @@ sys-auth/pam_sha512
 # buggy, causes browser crashes on certain sites (www.nvidia.com), also see
 # bug #233484
 =net-www/nspluginwrapper-1.1.0
-
-# Doug Goldstein <cardoe@gentoo.org> (30 Jul 2008)
-# mask development version
->=media-libs/swfdec-0.7.0
->=net-www/swfdec-mozilla-0.7.0
->=gnome-extra/swfdec-gnome-2.23
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (28 Jul 2008)
 # These are masked for removal.  Please leave this mask in place, even after the
@@ -803,11 +794,6 @@ app-doc/linuxfromscratch-text
 # Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
 # Masked for security bug #226079.
 <=www-client/opera-9.27
-
-# Mike Auty <ikelos@gentoo.org> (15 Jun 2008)
-# (#224637) No longer supported upstream and
-# subject to multiple GLSAs.  Masked for removal in 30 days.
-=app-emulation/vmware-workstation-4.5.3.19414-r7
 
 # Krzysiek Pawlik <nelchael@gentoo.org> (12 Jun 2008)
 # Testing new version.
@@ -935,14 +921,6 @@ dev-lisp/stumpwm-cvs
 # Ulrich Mueller <ulm@gentoo.org> (27 Apr 2008)
 # CVS snapshot, bug 219449.
 ~app-emacs/navi2ch-1.7.5_p20080325
-
-# Mike Auty <ikelos@gentoo.org> (26 Apr 2008)
-# Masking all app-emulation/vmware-workstation-tools packages
-# in favour of app-emulation/open-vm-tools
-=app-emulation/vmware-workstation-tools-4.5.3-r1
-=app-emulation/vmware-workstation-tools-5.5.1-r2
-=app-emulation/vmware-workstation-tools-5.5.2
-=app-emulation/vmware-workstation-tools-5.5.3
 
 # Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
 # mask beta version
