@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.247 2008/09/24 07:02:45 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.248 2008/10/01 00:05:14 loki_val Exp $
+
+*eix-0.14.0 (01 Oct 2008)
+
+  01 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> +eix-0.14.0.ebuild:
+  Bump, fixing bug 239199. This version fixes bug 238942, weirdness w/
+  portage sqlite backends.
 
   24 Sep 2008; Stefan Schweizer <genstef@gentoo.org> -eix-0.12.4.ebuild:
   remove old buggy version
