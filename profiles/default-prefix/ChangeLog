@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  02 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask ksh-93.20080725
+
   02 Oct 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   remove eix from p.mask because we got a working version now, bug #235011
 

@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (02 Oct 2008)
+# Doesn't compile on Solaris, Darwin patch doesn't apply.
+=app-shells/ksh-93.20080725
+
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but
 # succeeds fine on sparc-solaris.  Doesn't compile on Darwin (duplicate
