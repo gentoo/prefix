@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  02 Oct 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove eix from p.mask because we got a working version now, bug #235011
+
   30 Sep 2008; Jeremy Olexa <darkside@gentoo.org>
   darwin/macos/10.5/package.mask:
   p.mask <=dev-util/astyle-1.22 on darwin macos 10.5
