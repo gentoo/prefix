@@ -227,7 +227,7 @@ setup_modules() {
 	fi
 
 	if use ssl ; then
-		MY_CONF="${MY_CONF} --with-ssl=/usr --enable-ssl=${mod_type}"
+		MY_CONF="${MY_CONF} --with-ssl="${EPREFIX}/usr" --enable-ssl=${mod_type}"
 		MY_MODS="${MY_MODS} ssl"
 	else
 		MY_CONF="${MY_CONF} --without-ssl --disable-ssl"
@@ -334,16 +334,16 @@ generate_load_module() {
 # to convert this file to the new APACHE2_MODULES USE_EXPAND variable and remove
 # it afterwards.
 check_upgrade() {
-	if [[ -e "${ROOT}"etc/apache2/apache2-builtin-mods ]]; then
+	if [[ -e "${EROOT}"etc/apache2/apache2-builtin-mods ]]; then
 		eerror "The previous configuration file for built-in modules"
-		eerror "(${ROOT}etc/apache2/apache2-builtin-mods) exists on your"
+		eerror "(${EROOT}etc/apache2/apache2-builtin-mods) exists on your"
 		eerror "system."
 		eerror
 		eerror "Please read http://www.gentoo.org/doc/en/apache-upgrading.xml"
 		eerror "for detailed information how to convert this file to the new"
 		eerror "APACHE2_MODULES USE_EXPAND variable."
 		eerror
-		die "upgrade not possible with existing ${ROOT}etc/apache2/apache2-builtin-mods"
+		die "upgrade not possible with existing ${EROOT}etc/apache2/apache2-builtin-mods"
 	fi
 }
 
@@ -427,16 +427,16 @@ apache-2_src_compile() {
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
 	econf \
-		--includedir=/usr/include/apache2 \
-		--libexecdir=/usr/$(get_libdir)/apache2/modules \
-		--datadir=/var/www/localhost \
-		--sysconfdir=/etc/apache2 \
-		--localstatedir=/var \
+		--includedir="${EPREFIX}/usr/include/apache2" \
+		--libexecdir="${EPREFIX}/usr/$(get_libdir)/apache2/modules" \
+		--datadir="${EPREFIX}/var/www/localhost" \
+		--sysconfdir="${EPREFIX}/etc/apache2" \
+		--localstatedir="${EPREFIX}/var" \
 		--with-mpm=${MY_MPM} \
-		--with-apr=/usr \
-		--with-apr-util=/usr \
-		--with-pcre=/usr \
-		--with-z=/usr \
+		--with-apr="${EPREFIX}/usr" \
+		--with-apr-util="${EPREFIX}/usr" \
+		--with-pcre"${EPREFIX}/usr" \
+		--with-z="${EPREFIX}/usr" \
 		--with-port=80 \
 		--with-program-name=apache2 \
 		--enable-layout=Gentoo \
@@ -494,10 +494,10 @@ apache-2_src_install() {
 
 	# drop in a convenient link to the manual
 	if use doc ; then
-		sed -i -e "s:VERSION:${PVR}:" "${D}/etc/apache2/modules.d/00_apache_manual.conf"
+		sed -i -e "s:VERSION:${PVR}:" "${ED}/etc/apache2/modules.d/00_apache_manual.conf"
 	else
-		rm -f "${D}/etc/apache2/modules.d/00_apache_manual.conf"
-		rm -Rf "${D}/usr/share/doc/${PF}/manual"
+		rm -f "${ED}/etc/apache2/modules.d/00_apache_manual.conf"
+		rm -Rf "${ED}/usr/share/doc/${PF}/manual"
 	fi
 
 	# the default webroot gets stored in /usr/share/${PF}/webroot
@@ -534,26 +534,26 @@ apache-2_src_install() {
 apache-2_pkg_postinst() {
 	einfo
 
-	if use ssl && [[ ! -e "${ROOT}/etc/apache2/ssl/server.crt" ]] ; then
+	if use ssl && [[ ! -e "${EROOT}/etc/apache2/ssl/server.crt" ]] ; then
 		cd "${ROOT}"/etc/apache2/ssl
-		einfo "Generating self-signed test certificate in ${ROOT}etc/apache2/ssl ..."
+		einfo "Generating self-signed test certificate in ${EROOT}etc/apache2/ssl ..."
 		yes "" 2>/dev/null | \
-			"${ROOT}"/usr/sbin/gentestcrt.sh >/dev/null 2>&1 || \
+			"${EROOT}"/usr/sbin/gentestcrt.sh >/dev/null 2>&1 || \
 			die "gentestcrt.sh failed"
 		einfo
 	fi
 
-	if [[ -e "${ROOT}/var/www/localhost" ]] ; then
+	if [[ -e "${EROOT}/var/www/localhost" ]] ; then
 		elog "The default webroot has not been installed into"
-		elog "${ROOT}var/www/localhost because the directory already exists"
+		elog "${EROOT}var/www/localhost because the directory already exists"
 		elog "and we do not want to overwrite any files you have put there."
 		elog
 		elog "If you would like to install the latest webroot, please run"
 		elog "emerge --config =${PF}"
 		elog
 	else
-		einfo "Installing default webroot to ${ROOT}var/www/localhost"
-		mkdir -p "${ROOT}"/var/www/localhost
+		einfo "Installing default webroot to ${EROOT}var/www/localhost"
+		mkdir -p "${EROOT}"/var/www/localhost
 		cp -R "${EROOT}"/usr/share/${PF}/webroot/* "${EROOT}"/var/www/localhost/
 		einfo
 	fi
