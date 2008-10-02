@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.125 2008/09/30 16:45:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.127 2008/10/01 15:42:34 loki_val Exp $
+
+  01 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  ChangeLog, fontconfig-2.6.0-r2.ebuild:
+  Fix emerge failure reported in bug 238908. We need to depend on the right
+  DTD when building sgml docs and docbook-sgml-utils must be built with
+  jadetex so we can have docbook2pdf. Incidentally, we get a false QA
+  failure where the build system runs ../missing --run, which looks like
+  maintainer-mode rebuild to portage. That one will have to be fixed in
+  portage. Also rub away minor typo that caused warning about running dohtml
+  on a dir.
+
+  01 Oct 2008; Brent Baude <ranger@gentoo.org> fontconfig-2.6.0-r2.ebuild:
+  stable ppc64, bug 238908
 
   30 Sep 2008; Jeroen Roovers <jer@gentoo.org> fontconfig-2.6.0-r2.ebuild:
   Stable for HPPA (bug #238908).

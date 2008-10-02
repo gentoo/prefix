@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.6 2008/09/30 16:45:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.8 2008/10/01 15:39:01 loki_val Exp $
 
 EAPI="prefix"
 
@@ -28,12 +28,21 @@ RDEPEND=">=media-libs/freetype-2.1.4
 	>=dev-libs/expat-1.95.3"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( app-text/docbook-sgml-utils )"
+	doc? (	app-text/docbook-sgml-utils
+		=app-text/docbook-sgml-dtd-3.1*	)"
 PDEPEND="app-admin/eselect-fontconfig
 	media-fonts/corefonts"
 # *some* fonts are needed by nearly every gui application. corefonts satisfies
 # this. In Gentoo Prefix, there is no fonts automatically pulled in by X, etc.
 # So we must install them here. (bug #235553)
+
+pkg_setup() {
+	#To get docbook2pdf
+	if use doc && ! built_with_use app-text/docbook-sgml-utils jadetex
+	then
+		die "For this package to be built with the doc use flag, app-text/docbook-sgml-utils must be built with the jadetex use flag"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -97,7 +106,7 @@ src_install() {
 
 	if use doc; then
 		doman doc/Fc*.3
-		dohtml doc/fontconfig-devel.html doc
+		dohtml doc/fontconfig-devel.html
 		dodoc doc/fontconfig-devel.{txt,pdf}
 	fi
 
