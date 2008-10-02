@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.32 2008/09/26 20:47:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.34 2008/10/02 01:10:38 jmbsvicetto Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -35,6 +35,7 @@ en_ZA - English locale for South Africa
 eo - Esperanto locale
 es - Spanish locale
 es_AR - Spanish locale for Argentina
+es_CR - Spanish locale for Costa Rica
 es_ES - Spanish locale for Spain
 es_LA - Spanish locale for Latin America
 et - Estonian locale
@@ -70,6 +71,7 @@ kn - Kannada locale
 ko - Korean locale
 ku - Kurdish (latin) locale
 la - Latin2 locale
+lb - Luxembourgish locale
 lo - Lao locale
 lt - Lithuanian locale
 lv - Latvian locale
