@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/ksh
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.35 2008/02/06 17:50:45 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.36 2008/10/02 02:59:30 darkside Exp $
+
+*ksh-93.20080725 (02 Oct 2008)
+
+  02 Oct 2008; Jeremy Olexa <darkside@gentoo.org> -ksh-93.20040229.ebuild,
+  +ksh-93.20080725.ebuild:
+  (non-maintainer commit) version bump app-shells/ksh for bug 230097, simple
+  rename. remove old
 
   06 Feb 2008; nixnut <nixnut@gentoo.org> ksh-93.20071105.ebuild:
   stable on ppc wrt bug #140705
