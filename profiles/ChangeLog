@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1912 2008/09/30 22:13:51 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1917 2008/10/02 04:28:35 wrobel Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Oct 2008; Gunnar Wrobel <wrobel@gentoo.org> package.mask:
+  Masking www-apps/dotproject for security reasons (bug #236518)
+  
+  02 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> use.desc:
+  Added description for the kdeprefix use flag.
+
+  02 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  desc/linguas.desc:
+  Added lb locale.
+
+  01 Oct 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking x11-misc/obpager to be removed (bug 226007)
+
+  01 Oct 2008; Ben de Groot <yngwin@gentoo.org> desc/linguas.desc:
+  Add es_CR locale
 
   30 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
   Unmask swfdec-0.8 - firefox 3.0.{0,1} didn't like it, but 3.0.3 does
@@ -646,7 +662,7 @@
   removed soon, but the masks should stay for a while, to let users know
   where to get the data.
 
-  28 Jul 2008; Guy Marting <gmsoft@gentoo.org> profiles.desc: 
+  28 Jul 2008; Guy Marting <gmsoft@gentoo.org> profiles.desc:
   Got rid of hppa/2006.1 profile.
 
   28 Jul 2008; Michele Noberasco <s4t4n@gentoo.org> use.local.desc:
@@ -699,7 +715,7 @@
   Add various use flags for the new ophcrack-tables ebuild.
 
   21 Jul 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
-  Added new upstream releases of sci-libs/*-atlas to package.mask 
+  Added new upstream releases of sci-libs/*-atlas to package.mask
   since they require a bit more testing.
 
   21 Jul 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
@@ -1863,7 +1879,7 @@
   hardened/linux/x86/2008.0/make.defaults:
   Fixing the "new style" hardened profile, to *not* enable either USE=ipv6,
   USE=nls or USE=unicode by default.
- 
+
   21 Apr 2008; Markus Ullmann <jokey@gentoo.org> package.mask:
   Mask gloox beta version
 
@@ -4670,7 +4686,7 @@
   Unmask mesa 6.5.3.
 
   01 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
-  sci-mathematics/freemat:arpack - Add sparse eigen value support via 
+  sci-mathematics/freemat:arpack - Add sparse eigen value support via
   arpack
   sci-mathematics/freemat:ffcall - Enables uses of ffcall
   sci-mathematics/freemat:umfpack - Add sparse solving via umfpack

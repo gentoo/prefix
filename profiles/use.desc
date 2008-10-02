@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.400 2008/09/03 07:24:18 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.401 2008/10/02 01:13:09 jmbsvicetto Exp $
 
 # Keep them sorted
 
@@ -172,6 +172,7 @@ jpeg2k - Support for JPEG 2000, a wavelet-based image compression format
 kde - Adds support for kde-base/kde (K Desktop Enviroment)
 kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yielding compilation speedups at the cost of heavy mem usage and potentially causing problems. We strongly discourage setting this
 kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
+kdeprefix - Makes a KDE prefixed install into /usr/kde/${SLOT} if enabled or into /usr (FHS compatible) otherwise
 kerberos - Adds kerberos support
 kolab - Adds support for the Kolab groupware server
 krb4 - Adds optional kerberos 4 compatibility support

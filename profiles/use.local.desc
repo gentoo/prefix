@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3906 2008/09/29 21:47:57 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3910 2008/10/02 04:47:50 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -309,10 +309,11 @@ app-misc/roadnav:scripting - Enable scripting support
 app-misc/screen:multiuser - Enable multiuser support (by setting correct permissions)
 app-misc/screen:nethack - Express error messages in nethack style
 app-misc/sphinx:stemmer - Enable language stemming support
-app-misc/strigi:clucene - Enable dev-cpp/clucene backend support (recommended)
-app-misc/strigi:exiv2 - Enable support for exif/iptc metadata (media-gfx/exiv2) (recommended)
-app-misc/strigi:hyperestraier - Enable app-text/hyperestraier backend support (experimental)
-app-misc/strigi:inotify - Enable support for inotify (experimental)
+app-misc/strigi:clucene - Enable dev-cpp/clucene backend support.
+app-misc/strigi:exiv2 -  Enable support for exif/iptc metadata (media-gfx/exiv2) (recommended) 
+app-misc/strigi:hyperestraier - Enable app-text/hyperestraier backend support.
+app-misc/strigi:inotify - Enable support for inotify.
+app-misc/strigi:log - Enables advanced logging through dev-libs/log4cxx.
 app-misc/tablix:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
 app-misc/tomboy:galago - Add support for the galago desktop presence framework (dev-dotnet/galago-sharp)
 app-misc/towitoko:moneyplex - Makes libtowitoko work for the moneyplex home banking software
@@ -2534,6 +2535,7 @@ x11-libs/qt:glib - Enable dev-libs/glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-assistant:webkit -  Enable x11-libs/qt-webkit support, for more sophisticated online help display using webkit's HTML renderer. 
 x11-libs/qt-core:glib - Enable dev-libs/glib eventloop support
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
 x11-libs/qt-gui:glib -  Enable dev-libs/glib eventloop support 
