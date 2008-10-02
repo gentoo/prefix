@@ -1,6 +1,13 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.210 2008/09/30 23:03:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.211 2008/10/01 12:51:27 loki_val Exp $
+
+*cdrtools-2.01.01_alpha50-r3 (01 Oct 2008)
+
+  01 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -cdrtools-2.01.01_alpha50-r2.ebuild, +cdrtools-2.01.01_alpha50-r3.ebuild:
+  If not built with -j1, "sometimes" cdda2wav will not be built, make will
+  complete anyway. Nasty bug.
 
 *cdrtools-2.01.01_alpha50-r2 (30 Sep 2008)
 

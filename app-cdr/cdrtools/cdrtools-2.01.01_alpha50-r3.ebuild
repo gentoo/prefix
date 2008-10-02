@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/Attic/cdrtools-2.01.01_alpha50-r2.ebuild,v 1.1 2008/09/30 23:03:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha50-r3.ebuild,v 1.1 2008/10/01 12:51:27 loki_val Exp $
 
 EAPI="prefix"
 
@@ -85,13 +85,12 @@ src_compile() {
 		fi
 	fi
 
-	#Watch out for an elusive parallel make bug, that may yet occur.
-
-	emake CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" || die
+	#If not built with -j1, "sometimes" cdda2wav will not be built. Nasty bug.
+	emake -j1 CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" || die
 }
 
 src_install() {
-	emake MANDIR="share/man" INS_BASE="${D}/usr/" install
+	make MANDIR="share/man" INS_BASE="${D}/usr/" install
 
 	#These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib
