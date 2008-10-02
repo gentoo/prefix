@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.118 2008/09/28 10:00:26 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.119 2008/10/01 15:31:38 mabi Exp $
+
+  01 Oct 2008; Matti Bickel <mabi@gentoo.org>
+  +files/lua-5.1.4-deprecated.patch, +files/lua-5.1.4-test.patch:
+  add missing patch files, closes bug #239134, thanks to Rajat Vig for the report
 
 *lua-5.1.4 (28 Sep 2008)
 
