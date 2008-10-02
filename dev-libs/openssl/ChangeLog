@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.268 2008/06/21 05:36:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.269 2008/10/02 04:35:40 vapier Exp $
+
+*openssl-0.9.8i (02 Oct 2008)
+
+  02 Oct 2008; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8i.ebuild:
+  Version bump #239030 by Lars (Polynomial-C).
 
 *openssl-0.9.8h-r1 (21 Jun 2008)
 
