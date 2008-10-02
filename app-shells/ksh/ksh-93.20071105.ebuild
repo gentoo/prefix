@@ -43,7 +43,7 @@ src_unpack() {
 	${S}/bin/package read || die
 
 	epatch "${FILESDIR}/${PN}-darwin-jobs.patch"
-	epatch "${FILESDIR}/${PN}-prefix.patch"
+	epatch "${FILESDIR}/${P}-prefix.patch"
 	eprefixify src/cmd/ksh93/data/msg.c
 }
 
