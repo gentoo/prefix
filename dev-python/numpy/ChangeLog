@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.66 2008/09/29 23:55:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.67 2008/10/01 09:15:31 armin76 Exp $
+
+  01 Oct 2008; Raúl Porcel <armin76@gentoo.org> numpy-1.2.0.ebuild:
+  Add ~alpha wrt #233554
 
   29 Sep 2008; Jeroen Roovers <jer@gentoo.org> numpy-1.2.0.ebuild:
   Marked ~hppa (bug #233554).

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.0.ebuild,v 1.3 2008/09/29 23:55:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.0.ebuild,v 1.4 2008/10/01 09:15:31 armin76 Exp $
 
 EAPI="prefix"
 
