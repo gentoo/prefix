@@ -1,13 +1,15 @@
 diff -ru libX11-1.1.5.orig/include/X11/Xlib.h libX11-1.1.5/include/X11/Xlib.h
 --- libX11-1.1.5.orig/include/X11/Xlib.h	2008-09-24 10:28:26 +0200
 +++ libX11-1.1.5/include/X11/Xlib.h	2008-09-24 08:38:45 +0200
-@@ -1392,7 +1392,11 @@
+@@ -1392,7 +1392,13 @@
  #define _Xdebug (*_Xdebug_p)
  #endif
  
 -extern int _Xdebug;
 +#ifdef __PARITY__
 +# define X11_IMPORT __declspec(dllimport)
++#else
++# define X11_IMPORT
 +#endif
 +
 +extern X11_IMPORT int _Xdebug;
