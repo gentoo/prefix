@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3-r1.ebuild,v 1.8 2008/09/22 19:48:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.13.3-r1.ebuild,v 1.9 2008/10/01 14:44:58 ranger Exp $
 
 EAPI=prefix
 
