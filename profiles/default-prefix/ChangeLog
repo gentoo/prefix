@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask,
+  sunos/package.mask:
+  Move ksh mask to solaris profile, since Darwin issue should be fixed now
+
   02 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask ksh-93.20080725
 
