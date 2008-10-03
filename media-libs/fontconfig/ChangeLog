@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.127 2008/10/01 15:42:34 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.129 2008/10/02 16:51:05 ranger Exp $
+
+  02 Oct 2008; Brent Baude <ranger@gentoo.org> fontconfig-2.6.0-r2.ebuild:
+  stable ppc, bug 238908
+
+  02 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  fontconfig-2.6.0-r2.ebuild:
+  Because opfer was so thoughtful as to change the name of a useflag on
+  stable package, people who had built docbook-sgml-utils before September
+  2nd would have built it with tetex to get docbook2pdf. This changes the
+  built_with_use logic to take that into consideration.
 
   01 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
   ChangeLog, fontconfig-2.6.0-r2.ebuild:
