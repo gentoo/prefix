@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.141 2008/10/01 15:02:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.142 2008/10/02 16:52:21 ranger Exp $
+
+  02 Oct 2008; Brent Baude <ranger@gentoo.org> man-1.6f-r2.ebuild:
+  stable ppc, bug 239117
 
   01 Oct 2008; Brent Baude <ranger@gentoo.org> man-1.6f-r2.ebuild:
   stable ppc64, bug 239117
