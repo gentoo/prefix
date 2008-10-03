@@ -1,6 +1,10 @@
 # ChangeLog for app-text/recode
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.49 2008/09/25 11:18:05 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.50 2008/10/02 08:58:17 flameeyes Exp $
+
+  02 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> recode-3.6_p15.ebuild:
+  Fix building on sub-second precision filesystems (tmpfs, xfs, jfs). Closes
+  bug #238710.
 
 *recode-3.6_p15 (25 Sep 2008)
 

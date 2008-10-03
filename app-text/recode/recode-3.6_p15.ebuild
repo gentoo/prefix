@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p15.ebuild,v 1.1 2008/09/25 11:18:05 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p15.ebuild,v 1.2 2008/10/02 08:58:17 flameeyes Exp $
 
 EAPI="prefix"
-
-WANT_AUTOMAKE="1.4"
 
 inherit autotools eutils libtool toolchain-funcs
 
@@ -40,11 +38,11 @@ src_unpack() {
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix-getopt.patch
 	cp lib/error.c lib/xstrdup.c lib/getopt.c lib/getopt1.c src/ || die "file copy failed"
 
-	# really need the new libtool... (they try quite hard to keep
-	# theirs ...)
-# but eautoreconf doesn't work, so eilacy (AM_PROG_MKDIR_P)
-#	rm -f m4/libtool.m4 acinclude.m4
-#	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+	# Remove old libtool macros
+	rm "${S}"/acinclude.m4
+
+	eautoreconf
+	elibtoolize
 }
 
 src_compile() {
