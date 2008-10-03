@@ -2,4 +2,4 @@
 # Fabian Groffen <grobian@gentoo.org> (04 May 2008)
 # enabling acl gets you a broken `install`, dying on setting the
 # properties (Invalid argument)
-sys-devel/coreutils acl
+sys-apps/coreutils acl
