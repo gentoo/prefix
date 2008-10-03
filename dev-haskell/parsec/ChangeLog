@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/parsec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/ChangeLog,v 1.7 2008/08/25 11:49:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/ChangeLog,v 1.8 2008/10/02 22:39:09 fmccor Exp $
+
+  02 Oct 2008; Ferris McCormick <fmccor@gentoo.org> parsec-2.1.0.0.ebuild:
+  Sparc stable, needed for Bug #239368 (been around a long time now).
 
   25 Aug 2008; Raúl Porcel <armin76@gentoo.org> parsec-2.1.0.0.ebuild:
   Add ~ia64
