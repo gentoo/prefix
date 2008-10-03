@@ -1,0 +1,20 @@
+--- dvdread/nav_read.c
++++ dvdread/nav_read.c
+@@ -19,6 +19,7 @@
+ 
+ #include "config.h"
+ 
++#include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+ #if defined(HAVE_INTTYPES_H)
+--- tremor/misc.h
++++ tremor/misc.h
+@@ -29,6 +29,7 @@
+ /* 64 bit multiply */
+ 
+ #include <sys/types.h>
++#include <stdlib.h>
+ #include "config.h"
+ 
+ #ifndef WORDS_BIGENDIAN

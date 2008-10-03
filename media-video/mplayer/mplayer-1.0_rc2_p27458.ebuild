@@ -227,6 +227,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26450-prefix.patch
+	epatch "${FILESDIR}"/${P}-include-stdlib.patch
 }
 
 src_compile() {
