@@ -1,6 +1,12 @@
 # ChangeLog for dev-texlive/texlive-latexrecommended
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.19 2008/09/10 06:46:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.20 2008/10/02 18:02:56 aballier Exp $
+
+  02 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-latexrecommended-2007.ebuild,
+  texlive-latexrecommended-2008-r1.ebuild:
+  block dev-tex/listings, we already provide it, bug #239185 by Nuno Lopes
+  <nunoplopes@sapo.pt>
 
 *texlive-latexrecommended-2008-r1 (10 Sep 2008)
 

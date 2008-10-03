@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2008-r1.ebuild,v 1.1 2008/09/10 06:46:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2008-r1.ebuild,v 1.2 2008/10/02 18:02:56 aballier Exp $
 
 EAPI="prefix"
 
@@ -9,6 +9,7 @@ TEXLIVE_MODULES_DEPS="dev-texlive/texlive-latex
 !dev-tex/xkeyval
 !dev-tex/floatflt
 !dev-tex/memoir
+!dev-tex/listings
 !=dev-texlive/texlive-latexextra-2007*
 !=app-text/texlive-core-2007*
 !=dev-texlive/texlive-xetex-2008
