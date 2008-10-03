@@ -114,8 +114,12 @@ generate_userconfig() {
 		append-ldflags -Wl,-headerpad_max_install_names
 	elif [[ ${CHOST} == *-winnt* ]]; then
 		compiler=parity
-		compilerVersion=$($(tc-getCXX) -v | sed '1q' \
-			| sed -e 's,\([a-z]*\) \([0-9]\.[0-9]\.[0-9][^ \t]*\) .*,\2,')
+		if [[ $($(tc-getCXX) -v) == *trunk* ]]; then
+			compilerVersion=trunk
+		else
+			compilerVersion=$($(tc-getCXX) -v | sed '1q' \
+				| sed -e 's,\([a-z]*\) \([0-9]\.[0-9]\.[0-9][^ \t]*\) .*,\2,')
+		fi
 		compilerExecutable=$(tc-getCXX)
 	else
 		compiler=gcc
