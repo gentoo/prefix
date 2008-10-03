@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3910 2008/10/02 04:47:50 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3926 2008/10/02 23:47:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -263,6 +263,9 @@ app-laptop/pbbuttonsd:ibam - Enable support for Intelligent Battery Monitoring
 app-laptop/pbbuttonsd:macbook - Enable support for the Macbook and Macbook Pro
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - Enable support for thinkpad models 760 and 765
+app-misc/anki:graph -  Enable support for making graphs 
+app-misc/anki:kakasi -  Enable app-i18n/kakasi support for furigana generation 
+app-misc/anki:sound -  Enable support for adding sound to cards 
 app-misc/beagle:chm - Enables support for indexing of the MS CHM (Compressed HTML) file format using app-doc/chmlib.
 app-misc/beagle:debug - Enables debug XML dumps of all messages passed between the daemons and the UIs. WARNING, this option will fill up your Beagle Log directory very quickly.
 app-misc/beagle:doc - Builds programmer documentation for Beagle using app-doc/monodoc.
@@ -642,7 +645,9 @@ dev-libs/opensc:openct - Build using dev-libs/openct compatibility
 dev-libs/opensc:pcsc-lite - Build with sys-apps/pcsc-lite
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/qsa:ide - Enable the qsa ide
-dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support (recommended)
+dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support.
+dev-libs/soprano:redland - Enables support for the dev-libs/redland backend.
+dev-libs/soprano:sesame2 - Enables support for the virtual/jre-1.6.0 (sesame2) backend.
 dev-libs/xerces-c:iconv - Use iconv (virtual/libiconv) as message loader and transcoder (in general it would be possible to use iconv only as message loader and something else like icu or the native method as transcoder and vice-versa, but this is a less common case and hard to handle)
 dev-libs/xerces-c:icu - Use ICU (dev-libs/icu) as message loader and transcoder. ICU supports over 180 different encodings and/or locale specific message support
 dev-libs/xerces-c:libwww - Use the net-libs/libwww library for fetching URLs, instead of the builtin method
@@ -921,15 +926,24 @@ gnustep-base/gnustep-back-cairo:glitz - Build with media-libs/glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Use dev-libs/libffi from sys-devel/gcc instead of dev-libs/ffcall. Requires sys-devel/gcc built with USE=libffi
+kde-base/akonadi:nepomuk - Enable desktop-wide tagging support
+kde-base/akonadi:plasma - Build optional kde-base/plasma widgets
+kde-base/akregator:kontact - Enable support for the KDE personal information manager
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
 kde-base/ark:zip - Enable zip support through LibZip
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard
-kde-base/dolphin:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
+kde-base/dolphin:semantic-desktop -  Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible 
+kde-base/gwenview:kipi - Support for the KDE Image Plugin Interface.
+kde-base/gwenview:semantic-desktop -  Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible 
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work
 kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk
-kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via Gnokii
+kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via app-mobilephone/gnokii
+kde-base/kaddressbook:kontact - Enable support for the KDE personal information manager
+kde-base/kalgebra:plasma - Build optional plasma widgets that require kde-base/libplasma.
 kde-base/kalzium:cviewer - Enable Kalzium compound viewer
+kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-base/kalzium:solver - Enable the equation solver
+kde-base/kate:plasma - Build optional kde-base/plasma widgets
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
 kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
@@ -938,7 +952,7 @@ kde-base/kdeedu:kig-scripting - Support Python scripting in kig
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
 kde-base/kdegraphics:kpathsea - Enable integration with kpathsea search library (TeX related)
 kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
-kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray
+kde-base/kdegraphics-meta:povray - Install kde-base/kpovmodeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
 kde-base/kdelibs:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kdelibs:utempter - Records user logins. Useful on multi-user systems
@@ -946,43 +960,60 @@ kde-base/kdemultimedia:akode - Support for the aKode audio-decoding frame-work
 kde-base/kdenetwork:sametime - Support for the Sametime protocol for instant messaging
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
+kde-base/kdeutils-meta:floppy - Install kfloppy to format and create DOS or ext2fs filesystems in a floppy.
 kde-base/kdvi:kpathsea - Enable integration with kpathsea search library (TeX related)
-kde-base/kget:plasma - Build optional plasma widgets
+kde-base/kget:plasma - Build optional kde-base/plasma widgets
 kde-base/kig:kig-scripting - Support Python scripting
+kde-base/kjots:kontact - Enable support for the KDE personal information manager
+kde-base/kmail:kontact - Enable support for the KDE personal information manager
+kde-base/kmail:nepomuk - Enable desktop-wide tagging support
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
-kde-base/kopete:addbookmarks - Builds Add Bookmarks plugin
-kde-base/kopete:alias - Builds Alias plugin
-kde-base/kopete:autoreplace - Builds Auto-Replace plugin
+kde-base/knode:kontact - Enable support for the KDE personal information manager
+kde-base/knotes:kontact - Enable support for the KDE personal information manager
+kde-base/kopete:addbookmarks - Enable the addbookmarks plugin
+kde-base/kopete:alias - Enable the alias plugin
+kde-base/kopete:autoreplace - Enable the autoreplace plugin
 kde-base/kopete:connectionstatus - Builds Connection Status plugin
-kde-base/kopete:contactnotes - Builds Contact Notes plugin
-kde-base/kopete:gadu - Builds GaduGadu protocol handler
-kde-base/kopete:groupwise - Builds Novell GroupWise protocol handler
-kde-base/kopete:highlight - Builds Highlight plugin
-kde-base/kopete:history - Builds history plugin
+kde-base/kopete:contactnotes - Enable the contactnotes plugin
+kde-base/kopete:decibel - Enable the Telepathy protocol plugin
+kde-base/kopete:gadu - Enable the gadu protocol plugin
+kde-base/kopete:groupwise - Enable the groupwise protocol plugin
+kde-base/kopete:highlight - Enable the highlight plugin
+kde-base/kopete:history - Enable the history plugin
 kde-base/kopete:irc - Builds IRC protocol handler
+kde-base/kopete:jabber - Enable the Jabber protocol plugin
+kde-base/kopete:messenger - Enable the Windows LIVE!-Messenger protocol plugin
 kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
-kde-base/kopete:nowlistening - Builds Now Listening... plugin
+kde-base/kopete:nowlistening - Enable the nowlistening plugin
+kde-base/kopete:otr - Encryption for IMs, using libotr
+kde-base/kopete:pipes - Enable support for the pipes plugin
 kde-base/kopete:privacy - plugin to selectively filter messages
+kde-base/kopete:qca - Enable the Qt Cryptographic Architecture
 kde-base/kopete:qq - enable support for the chinese network protocol
 kde-base/kopete:sametime - Enables support for the Sametime protocol for instant messaging
-kde-base/kopete:sms - Builds SMS protocol handler
-kde-base/kopete:statistics - Builds statistics plugin
+kde-base/kopete:sms - Enable the sms protocol plugin
+kde-base/kopete:statistics - Enable the statistics plugin
+kde-base/kopete:telepathy - Enable support for the realtime communication framework telepathy
 kde-base/kopete:testbed - Enable the testbed protocol plugin
-kde-base/kopete:texteffect - Builds Text Effect plugin
-kde-base/kopete:translator - Builds Translator plugin
+kde-base/kopete:texteffect - Enable the texteffect plugin
+kde-base/kopete:translator - Enable the translator plugin
 kde-base/kopete:urlpicpreview - plugin to allow users to send photos through URLs
-kde-base/kopete:webpresence - Builds Web Presence plugin
-kde-base/kopete:winpopup - Builds WinPopUp protocol handler
-kde-base/krdc:vnc - Enable vnc support
+kde-base/kopete:webpresence - Enable the webpresence plugin
+kde-base/kopete:winpopup - Enable support for the winpopup plugin
+kde-base/kopete:xslt - Enable xslt support
+kde-base/korganizer:kontact - Enable support for the KDE personal information manager
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
 kde-base/kstars:nova - Enable support for libnova.
 kde-base/kstars:sbig - Enable support for SBIG.
+kde-base/ktimetracker:kontact - Enable support for the KDE personal information manager
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kttsd:ktts - Enable KDE Text To Speech modules
+kde-base/kttsd:phonon - Enable support for the KDE multimedia API
 kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
-kde-base/systemsettings:usb - Configure USB and logitech mice
+kde-base/parley:plasma - Build optional kde-base/plasma widgets
+kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
 kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN net-misc/openvpn client
@@ -1365,6 +1396,7 @@ media-tv/mythtv:lirc - Adds LIRC support directly to MythTV allowing for built i
 media-tv/mythtv:mmx - Builds ffmpeg's codec libraries with mmx support.
 media-tv/mythtv:opengl - Builds MythTV with support for using OpenGL as the output painter rather then Qt3 built in painter.
 media-tv/mythtv:perl - Builds the perl bindings for MythTV. Allows you to write scripts in Perl to control your MythTV setup or communicate with it.
+media-tv/mythtv:tiff - Add support for tiff loading and rendering which is only used by media-plugins/mythgallery
 media-tv/mythtv:video_cards_i810 - When combined with the xvmc USE flag, enables Intel specific XvMC extension usage.
 media-tv/mythtv:video_cards_nvidia - When combined with the xvmc USE flag, enables NVIDIA specific XvMC extension usage.
 media-tv/mythtv:video_cards_via - When combined with the xvmc USE flag, enables VIA specific XvMC extension usage.
@@ -2182,6 +2214,8 @@ sci-libs/plplot:jadetex - Add support for app-text/jadetex (for processing tex f
 sci-libs/plplot:octave - Support for sci-mathematics/octave bindings 
 sci-libs/scipy:sandbox - Adds experimental scipy sandbox modules
 sci-libs/scipy:umfpack - Adds support for sparse solving with sci-libs/umfpack
+sci-libs/vtk:boost - Add support for boost
+sci-libs/vtk:cg - Use nvidia's cg shaders
 sci-libs/vtk:patented - Build patented classes
 sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using dev-ml/lablgtk
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation)
