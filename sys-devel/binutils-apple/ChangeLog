@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  +files/20080922-as-dir.patch, +files/Makefile,
+  binutils-apple-20080922.ebuild:
+  Add latest patches by Elias Pipping to get as behave nicely.
+
   28 Sep 2008; Fabian Groffen <grobian@gentoo.org>
   +files/20080922-no-headers.patch, binutils-apple-20080922.ebuild:
   Add patch from pipping to remove obsolete headers, manpages and includes

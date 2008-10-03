@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs
 
 RESTRICT="test" # the test suite will test what's installed.
 
@@ -18,7 +18,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${LD64}.tar.gz
 
 LICENSE="APSL-2"
 KEYWORDS="~ppc-macos ~x86-macos"
-IUSE=""
+IUSE="test"
 SLOT="0"
 
 DEPEND="sys-devel/binutils-config
@@ -50,13 +50,10 @@ fi
 
 S=${WORKDIR}
 
-echo_and_run() {
-	echo "$@"
-	"$@"
-}
-
 unpack_ld64() {
 	cd "${S}"/${LD64}/src
+	cp "${FILESDIR}"/Makefile .
+
 	local VER_STR="\"@(#)PROGRAM:ld  PROJECT:${LD64}\\n\""
 	sed -i \
 		-e '/^#define LTO_SUPPORT 1/s:1:0:' \
@@ -97,6 +94,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PV}-as.patch
+	epatch "${FILESDIR}"/${PV}-as-dir.patch
 	epatch "${FILESDIR}"/${PV}-ranlib.patch
 	epatch "${FILESDIR}"/${PV}-libtool-ranlib.patch
 	epatch "${FILESDIR}"/${PV}-nmedit.patch
@@ -108,40 +106,34 @@ src_unpack() {
 
 compile_ld64() {
 	cd "${S}"/${LD64}/src
-	echo_and_run "$(tc-getCC)" -c ${CFLAGS} debugline.c
 	# 'struct linkedit_data_command' is defined in mach-o/loader.h on leopard,
 	# but not on tiger.
-	echo_and_run "$(tc-getCXX)" -o ld64 \
-		${CXXFLAGS} -isystem "${S}"/${CCTOOLS}/include/ \
-		${LDFLAGS} Options.cpp ld.cpp version.cpp debugline.o
-	echo_and_run "$(tc-getCXX)" -o rebase \
-		${CXXFLAGS} -isystem "${S}"/${CCTOOLS}/include/ \
-		${LDFLAGS} rebase.cpp
+	[[ ${CHOST} == *-apple-darwin8 ]] && \
+		append-flags -isystem "${S}"/${CCTOOLS}/include/
+	emake
+	use test && emake build_test
 }
 
 compile_cctools() {
 	cd "${S}"/${CCTOOLS}
-	# specify MACOSX_DEPLOYMENT_TARGET=10.4 as per
-	#   https://bugzilla.mozilla.org/show_bug.cgi?id=442545
-	# thereby avoiding error like
-	#   'struct __darwin_i386_thread_state' has no member named 'eip'
-	#   'struct __darwin_i386_thread_state' has no member named 'esp'
 	emake \
 		LTO= \
 		EFITOOLS= \
-		BUILD_OBSOLETE_ARCH= \
 		COMMON_SUBDIRS='libstuff ar misc otool' \
-		CC="$(tc-getCC)" \
-		MACOSX_DEPLOYMENT_TARGET=10.4 \
 		RC_CFLAGS="${CFLAGS}"
 	cd "${S}"/${CCTOOLS}/as
-	emake -k # the errors can be ignored
-	emake
+	# the errors can be ignored
+	emake -k \
+		BUILD_OBSOLETE_ARCH= \
+		RC_CFLAGS="-DASLIBEXECDIR=\"\\\"${EPREFIX}${LIBPATH}/\\\"\" ${CFLAGS}"
+	emake \
+		BUILD_OBSOLETE_ARCH= \
+		RC_CFLAGS="-DASLIBEXECDIR=\"\\\"${EPREFIX}${LIBPATH}/\\\"\" ${CFLAGS}"
 }
 
 src_compile() {
-	compile_ld64
 	compile_cctools
+	compile_ld64
 }
 
 install_ld64() {
@@ -164,18 +156,16 @@ install_cctools() {
 		LOCLIBDIR=\"${EPREFIX}\"/${LIBPATH} \
 		MANDIR=\"${EPREFIX}\"/${DATAPATH}/man/
 	cd "${S}"/${CCTOOLS}/as
-	# TODO What's the proper way to handle the LIBDIR here?
 	emake install \
 		BUILD_OBSOLETE_ARCH= \
 		DSTROOT=\"${D}\" \
 		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
-		LIBDIR=\"${EPREFIX}\"/${BINPATH}/../libexec/gcc/darwin/ \
-		LOCLIBDIR=\"${EPREFIX}\"/${LIBPATH}
-	cd "${ED}"/${BINPATH}
+		LIBDIR=\"${EPREFIX}\"/${LIBPATH}
 
+	cd "${ED}"/${BINPATH}
 	insinto ${DATAPATH}/man/man1
 	local skips manpage
-	# ar brings an up-to-date manpage in its dir
+	# ar brings an up-to-date manpage with it
 	skips=( ar )
 	for bin in *; do
 		for skip in ${skips[@]}; do
@@ -192,16 +182,7 @@ install_cctools() {
 	doins "${S}"/${CCTOOLS}/man/*.5
 }
 
-test_ld64() {
-	cd "${S}"/${LD64}/src
-	# 'struct linkedit_data_command' is defined in mach-o/loader.h on leopard,
-	# but not on tiger.
-	echo_and_run "$(tc-getCXX)" -o machocheck \
-		${CXXFLAGS} -isystem "${S}"/${CCTOOLS}/include/ -Wno-deprecated \
-		${LDFLAGS} machochecker.cpp
-	echo_and_run "$(tc-getCXX)" -o ObjectDump \
-		${CXXFLAGS} -isystem "${S}"/${CCTOOLS}/include/ \
-		${LDFLAGS} ObjectDump.cpp debugline.o
+src_test() {
 	cd "${S}"/${LD64}/unit-tests/test-cases
 	perl ../bin/make-recursive.pl \
 		ARCH=`arch` \
@@ -209,10 +190,6 @@ test_ld64() {
 		CC="$(tc-getCC)" \
 		CXX="$(tc-getCXX)" \
 		| perl ../bin/result-filter.pl
-}
-
-src_test() {
-	test_ld64
 }
 
 src_install() {
