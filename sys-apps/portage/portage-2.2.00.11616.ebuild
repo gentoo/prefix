@@ -30,6 +30,7 @@ RDEPEND=">=dev-lang/python-2.4
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.13 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.13 )
+	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18_pre0002 )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
@@ -185,12 +186,9 @@ pkg_preinst() {
 	pushd "${EROOT}/var/db/pkg" > /dev/null
 	local didwork=
 	for cpv in */*/NEEDED ; do
-		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.2 ]] ; then
+		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.3 ]] ; then
 			while read line; do
-				filename=${line% *}
-				needed=${line#* }
-				install_name=$(otool -DX "${filename}")
-				echo "${filename};${install_name};${needed}" >> "${cpv}".MACHO.2
+				scanmacho -BF "%a;%F;%S;%n" ${line% *} >> "${cpv}".MACHO.3
 			done < "${cpv}"
 			[[ -z ${didwork} ]] \
 				&& didwork=yes \
