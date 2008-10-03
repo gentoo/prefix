@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/cabal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.40 2008/07/15 05:43:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.41 2008/10/02 22:35:29 fmccor Exp $
+
+  02 Oct 2008; Ferris McCormick <fmccor@gentoo.org> cabal-1.2.3.0.ebuild:
+  Sparc stable, related to Bug #239368.
 
   15 Jul 2008; Jeroen Roovers <jer@gentoo.org> cabal-1.1.6.1.ebuild,
   cabal-1.1.6.2.ebuild, cabal-1.2.3.0.ebuild:
