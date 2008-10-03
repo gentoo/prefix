@@ -1,6 +1,9 @@
 # ChangeLog for dev-ml/findlib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.46 2008/09/30 17:44:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.47 2008/10/02 18:21:40 aballier Exp $
+
+  02 Oct 2008; Alexis Ballier <aballier@gentoo.org> -findlib-1.2.1.ebuild:
+  remove old
 
   30 Sep 2008; Jeroen Roovers <jer@gentoo.org> findlib-1.2.2.ebuild:
   Stable for HPPA (bug #238646).
