@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.72 2008/09/18 08:16:59 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.73 2008/10/02 18:58:30 aballier Exp $
+
+  02 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008.ebuild:
+  Add tk useflag and don't install texdoctk if its off, bug #234604
 
   18 Sep 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2008.ebuild:

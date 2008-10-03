@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008.ebuild,v 1.2 2008/09/18 08:16:59 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008.ebuild,v 1.3 2008/10/02 18:58:30 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -33,7 +33,7 @@ SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.lzma
 	mirror://gentoo/${PN}-2008-texmf.d-${TEXMFD_VERSION}.tar.lzma"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="X doc source"
+IUSE="X doc source tk"
 
 MODULAR_X_DEPEND="X? (
 				x11-libs/libXmu
@@ -45,7 +45,7 @@ MODULAR_X_DEPEND="X? (
 				x11-libs/libXfont
 	)"
 
-RDEPEND="${MODULAR_X_DEPEND}
+COMMON_DEPEND="${MODULAR_X_DEPEND}
 	!app-text/ptex
 	!app-text/tetex
 	!<app-text/texlive-2007
@@ -58,10 +58,13 @@ RDEPEND="${MODULAR_X_DEPEND}
 	media-libs/freetype:2
 	media-libs/fontconfig"
 
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	sys-apps/ed
 	sys-devel/flex
 	app-arch/lzma-utils"
+
+RDEPEND="${COMMON_DEPEND}
+	tk? ( dev-perl/perl-tk )"
 
 # texdoc needs luatex.
 PDEPEND="dev-tex/luatex"
@@ -264,6 +267,11 @@ src_install() {
 
 	# Keep it as that's where the formats will go
 	keepdir /var/lib/texmf
+
+	# Remove texdoctk if we don't want it
+	if ! use tk ; then
+		rm -f "${ED}/usr/bin/texdoctk" "${ED}/usr/share/texmf/scripts/tetex/texdoctk.pl" "${ED}/usr/share/man/man1/texdoctk.1" || die "failed to remove texdoc tk!"
+	fi
 
 	# Rename mpost to leave room for mplib
 	mv "${ED}/usr/bin/mpost" "${ED}/usr/bin/mpost-${P}"
