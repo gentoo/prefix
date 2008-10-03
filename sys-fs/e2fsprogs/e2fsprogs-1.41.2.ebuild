@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.4.ebuild,v 1.8 2008/03/17 19:07:52 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.2.ebuild,v 1.1 2008/10/02 18:16:09 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -13,10 +13,9 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 LICENSE="GPL-2 BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="nls static elibc_FreeBSD"
+IUSE="nls elibc_FreeBSD"
 
-RDEPEND="~sys-libs/com_err-${PV}
-	~sys-libs/ss-${PV}
+RDEPEND="~sys-libs/${PN}-libs-${PV}
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
@@ -25,43 +24,25 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.40.4-prototypes.patch
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
-	chmod u+w po/*.po # Userpriv fix #27348
-	# Clean up makefile to suck less
-	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
+	epatch "${FILESDIR}"/${PN}-1.41.2-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
-	epatch "${FILESDIR}"/${P}-more-sysconfdir.patch
-
-	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
-	sed -i \
-		-e 's:CONFIG_JBD_DEBUG:__CONFIG_JBD_DEBUG__E2FS:g' \
-		$(grep -rl CONFIG_JBD_DEBUG *) \
-		|| die "sed jbd debug failed"
-
-	# fake out files we forked into sep packages
-	sed -i \
-		-e '/^LIB_SUBDIRS/s:lib/et::' \
-		-e '/^LIB_SUBDIRS/s:lib/ss::' \
+	# blargh ... trick e2fsprogs into using e2fsprogs-libs
+	rm -rf doc
+	sed -i -r \
+		-e 's:@LIBINTL@:@LTLIBINTL@:' \
+		-e '/^LIB(BLKID|COM_ERR|SS|UUID)/s:[$][(]LIB[)]/lib([^@]*)@LIB_EXT@:-l\1:' \
+		-e '/^DEPLIB(BLKID|COM_ERR|SS|UUID)/s:=.*:=:' \
+		MCONFIG.in || die "muck libs" #122368
+	sed -i -r \
+		-e '/^LIB_SUBDIRS/s:lib/(blkid|et|ss|uuid)::g' \
 		Makefile.in || die "remove subdirs"
-
-	ln -s "${EROOT}"/usr/$(get_libdir)/libcom_err.a lib/libcom_err.a
-	ln -s "${EROOT}"/$(get_libdir)/libcom_err.so lib/libcom_err.so
-	ln -s /usr/bin/mk_cmds lib/ss/mk_cmds
-	ln -s "${EROOT}"/usr/include/ss/ss_err.h lib/ss/
-	ln -s "${EROOT}"/$(get_libdir)/libss.so lib/libss.so
-
-	# sanity check for Bug 105304
-	if [[ -z ${USERLAND} ]] ; then
-		eerror "You just hit Bug 105304, please post your 'emerge info' here:"
-		eerror "http://bugs.gentoo.org/105304"
-		die "Aborting to prevent screwing your system"
-	fi
+	touch lib/ss/ss_err.h
 }
 
 src_compile() {
 	# Keep the package from doing silly things
+	addwrite /var/cache/fonts
 	export LDCONFIG=:
 	export CC=$(tc-getCC)
 	export STRIP=:
@@ -71,9 +52,8 @@ src_compile() {
 		--sbindir="${EPREFIX}"/sbin \
 		--enable-elf-shlibs \
 		--with-ldopts="${LDFLAGS}" \
-		$(use_enable !static dynamic-e2fsck) \
-		--without-included-gettext \
 		$(use_enable !elibc_uclibc tls) \
+		--without-included-gettext \
 		$(use_enable nls) \
 		$(use_enable userland_GNU fsck) \
 		|| die
@@ -83,8 +63,7 @@ src_compile() {
 		eerror "attachment to http://bugs.gentoo.org/show_bug.cgi?id=81096"
 		die "Preventing included intl cruft from building"
 	fi
-	# Parallel make sometimes fails
-	emake -j1 COMPILE_ET=compile_et || die
+	emake COMPILE_ET=compile_et MK_CMDS=mk_cmds || die
 
 	# Build the FreeBSD helper
 	if use elibc_FreeBSD ; then
@@ -95,18 +74,17 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install-libs || die
 	dodoc README RELEASE-NOTES
 
 	# Move shared libraries to /lib/, install static libraries to /usr/lib/,
 	# and install linker scripts to /usr/lib/.
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)/
-	dolib.a lib/*.a || die "dolib.a"
-	rm -f "${ED}"/usr/$(get_libdir)/libcom_err.a #125146
-	local x
-	cd "${ED}"/$(get_libdir)
-	for x in *.so ; do
-		gen_usr_ldscript ${x} || die "gen ldscript ${x}"
+	local lib slib
+	for lib in "${ED}"/usr/$(get_libdir)/*.a ; do
+		slib=${lib##*/}
+		mv "${lib%.a}"$(get_libname)* "${ED}"/$(get_libdir)/ || die "moving lib ${slib}"
+		gen_usr_ldscript ${slib%.a}$(get_libname)
 	done
 
 	# move 'useless' stuff to /usr/
