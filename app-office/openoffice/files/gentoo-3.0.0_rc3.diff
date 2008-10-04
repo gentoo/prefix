@@ -1,0 +1,46 @@
+--- bin/package-ooo 
++++ bin/package-ooo 
+@@ -33,6 +33,7 @@
+ {
+     cat <<EOT >$1
+ #!/bin/sh
++unset PYTHONPATH
+ $OOINSTBASE/program/soffice $2 "\$@"
+ EOT
+     chmod 755 $1
+--- distro-configs/Gentoo.conf.in 
++++ distro-configs/Gentoo.conf.in 
+@@ -1,10 +1,7 @@
+ --disable-fontooo
+ --disable-qadevooo
+---enable-libsn
+ --enable-neon
+---enable-ogltrans
+---enable-xsltproc
+---with-dynamic-xinerama
++--enable-xrender-link
+ --with-external-dict-dir=/usr/share/myspell
+ --with-external-hyph-dir=/usr/share/myspell
+ --with-external-thes-dir=/usr/share/myspell
+@@ -19,9 +16,7 @@
+ --with-system-neon
+ --with-system-openssl
+ --with-system-vigra
+---with-system-xmlsec
+ --with-system-xrender-headers
+---without-nas
+ --without-myspell-dicts
+ --without-stlport
+ --with-vendor=\"Gentoo Foundation\"
+--- patches/dev300/apply 
++++ patches/dev300/apply 
+@@ -1425,7 +1425,7 @@
+ SectionOwner => aprosky
+ 
+ # system lucene classpath
+-gentoo-system-lucene.diff
++#gentoo-system-lucene.diff
+ # Allow build to proceed with PaX enabled
+ gentoo-pax-fix.diff, aprosky
+ # support server-only versions of 64bit JDKs
+

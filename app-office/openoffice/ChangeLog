@@ -1,6 +1,15 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.419 2008/09/26 11:27:03 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.420 2008/10/03 11:57:28 suka Exp $
+
+*openoffice-3.0.0_rc3 (03 Oct 2008)
+
+  03 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.0_rc2.diff, +files/gentoo-3.0.0_rc3.diff,
+  -files/stax-saxon-no-java.diff, -openoffice-3.0.0_rc2.ebuild,
+  +openoffice-3.0.0_rc3.ebuild:
+  Bump to OOo 3.0 RC3, lots of bugfixes, now migrates user-settings from OOo
+  2.x
 
   26 Sep 2008; Andreas Proschofsky <suka@gentoo.org>
   files/gentoo-3.0.0_rc2.diff, +files/stax-saxon-no-java.diff,

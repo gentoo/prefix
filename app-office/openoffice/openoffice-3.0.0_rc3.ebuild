@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc2.ebuild,v 1.3 2008/09/26 11:27:03 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0_rc3.ebuild,v 1.1 2008/10/03 11:57:28 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -10,10 +10,10 @@ inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam"
 
-MY_PV="3.0.0.3.2"
+MY_PV="3.0.0.3.3"
 PATCHLEVEL="OOO300"
 SRC="OOo_${PV}_src"
-MST="ooo300-m7"
+MST="ooo300-m8"
 DEVPATH="http://download.go-oo.org/${PATCHLEVEL}/${MST}"
 S="${WORKDIR}/ooo"
 S_OLD="${WORKDIR}/ooo-build-${MY_PV}"
@@ -43,7 +43,7 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	http://download.go-oo.org/SRC680/extras-3.tar.bz2
 	http://download.go-oo.org/SRC680/biblio.tar.bz2
 	http://download.go-oo.org/SRC680/lp_solve_5.5.0.12_source.tar.gz
-	http://download.go-oo.org/DEV300/scsolver.2008-09-08.tar.bz2
+	http://download.go-oo.org/DEV300/scsolver.2008-09-30.tar.bz2
 	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
 	http://download.go-oo.org/SRC680/libwpg-0.1.3.tar.gz"
 
@@ -104,7 +104,6 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	>=dev-libs/icu-3.8
 	>=sys-libs/db-4.3
 	>=app-text/libwpd-0.8.8
-	>=media-libs/libsvg-0.1.4
 	>=media-libs/vigra-1.4
 	>=app-text/poppler-0.8.0
 	linguas_ja? ( >=media-fonts/kochi-substitute-20030809-r3 )
@@ -248,8 +247,6 @@ src_unpack() {
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
 
-	cp -f "${FILESDIR}/stax-saxon-no-java.diff" ${S}/patches/dev300/ || die
-
 	#Use flag checks
 	if use java ; then
 		echo "--with-ant-home=${ANT_HOME}" >> ${CONFFILE}
@@ -284,15 +281,14 @@ src_unpack() {
 	echo "`use_enable eds evolution2`" >> ${CONFFILE}
 	echo "`use_enable gnome gnome-vfs`" >> ${CONFFILE}
 	echo "`use_enable gnome lockdown`" >> ${CONFFILE}
-	echo "`use_enable gnome atkbridge`" >> ${CONFFILE}
 	echo "`use_enable gstreamer`" >> ${CONFFILE}
 	echo "`use_enable gtk systray`" >> ${CONFFILE}
 	echo "`use_enable ldap`" >> ${CONFFILE}
 	echo "`use_enable opengl`" >> ${CONFFILE}
 	echo "`use_enable pam`" >> ${CONFFILE}
 	echo "`use_with ldap openldap`" >> ${CONFFILE}
-
 	echo "`use_enable debug crashdump`" >> ${CONFFILE}
+	echo "`use_enable debug strip-solver`" >> ${CONFFILE}
 
 	# Use splash screen without Sun logo
 	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.bmp\\\"" >> ${CONFFILE}
@@ -390,10 +386,4 @@ pkg_postinst() {
 	elog " according to your language needs. "
 	elog
 
-	ewarn " Please note that this release of OpenOffice.org uses a "
-	ewarn " new user install dir. As a result you will have to redo "
-	ewarn " your settings. Alternatively you might copy the old one "
-	ewarn " over from ~/.ooo-2.0 to ~/.ooo3, but be warned that this "
-	ewarn " might break stuff. "
-	ewarn
 }
