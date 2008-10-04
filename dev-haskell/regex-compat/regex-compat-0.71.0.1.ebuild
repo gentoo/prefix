@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/regex-compat-0.71.0.1.ebuild,v 1.3 2008/07/06 20:45:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/regex-compat-0.71.0.1.ebuild,v 1.4 2008/10/04 00:42:50 fmccor Exp $
 
 EAPI="prefix"
 
