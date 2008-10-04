@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.24 2008/09/29 06:17:28 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.25 2008/10/03 06:15:26 graaff Exp $
+
+*rspec-1.1.7 (03 Oct 2008)
+
+  03 Oct 2008; Hans de Graaff <graaff@gentoo.org> +rspec-1.1.7.ebuild:
+  Version bump with minor bugfixes
 
   29 Sep 2008; Hans de Graaff <graaff@gentoo.org> rspec-1.1.5.ebuild:
   RSpec now depends on hoe
