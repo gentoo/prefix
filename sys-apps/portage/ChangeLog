@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11620 (04 Oct 2008)
+
+  04 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11616.ebuild, +portage-2.2.00.11620.ebuild:
+  Replace snapshot with a new one which turns changelog.ebuildadded into a
+  warning instead of error.
+
 *portage-2.2.00.11616 (03 Oct 2008)
 
   03 Oct 2008; Fabian Groffen <grobian@gentoo.org>
