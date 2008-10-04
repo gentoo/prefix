@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.6 2008/05/15 19:49:32 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.7 2008/10/02 06:49:02 jmbsvicetto Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -17,7 +17,14 @@
 
 inherit multilib kde4-functions kde4-base
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
+case "${EAPI}" in
+	2)
+		EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_test src_install pkg_postinst pkg_postrm
+		;;
+	*)
+		EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
+		;;
+esac
 
 if [[ -z ${KMNAME} ]]; then
 	die "kde4-meta.eclass inherited but KMNAME not defined - broken ebuild"
@@ -49,17 +56,17 @@ case ${KMNAME} in
 		RDEPEND="${RDEPEND} >=kde-base/qimageblitz-0.0.4"
 	;;
 	kdepim)
-		DEPEND="${DEPEND} dev-libs/boost"
+		DEPEND="${DEPEND} dev-libs/boost app-office/akonadi-server"
 		RDEPEND="${RDEPEND} dev-libs/boost"
 		if [[ ${PN} != kode ]]; then
 			DEPEND="${DEPEND} >=kde-base/kode-${PV}:${SLOT}"
 			RDEPEND="${RDEPEND} >=kde-base/kode-${PV}:${SLOT}"
 		fi
 		case ${PN} in
-			akregator|kaddressbook|kmail|kmobiletools|knode|knotes|korganizer|ktimetracker)
+			akregator|kaddressbook|kjots|kmail|kmobiletools|knode|knotes|korganizer|ktimetracker)
 				IUSE="+kontact"
-				DEPEND="${DEPEND} kontact? ( >=kde-base/kontact-${PV}:${SLOT} )"
-				RDEPEND="${RDEPEND} kontact? ( >=kde-base/kontact-${PV}:${SLOT} )"
+				DEPEND="${DEPEND} kontact? ( >=kde-base/kontactinterfaces-${PV}:${SLOT} )"
+				RDEPEND="${RDEPEND} kontact? ( >=kde-base/kontactinterfaces-${PV}:${SLOT} )"
 			;;
 		esac
 	;;
@@ -234,7 +241,7 @@ kde4-meta_create_extractlists() {
 			kleopatra/ConfigureChecks.cmake"
 		if has kontact ${IUSE//+} && use kontact; then
 			KMEXTRA="${KMEXTRA} kontact/plugins/${PLUGINNAME:-${PN}}"
-			KMEXTRACTONLY="${KMEXTRACTONLY} kontact/interfaces/"
+			KMEXTRACTONLY="${KMEXTRACTONLY} kontactinterfaces/"
 		fi
 		;;
 		koffice)
@@ -248,14 +255,18 @@ kde4-meta_create_extractlists() {
 	esac
 	# Don't install cmake modules for split ebuilds to avoid collisions.
 	case ${KMNAME} in
-		kdebase-workspace|kdebase-runtime|kdepim|kdegames|kdegraphics)
-			if [[ ${PN} != "libkdegames" ]]; then
-				KMCOMPILEONLY="${KMCOMPILEONLY}
-					cmake/modules/"
-			else
-				KMEXTRA="${KMEXTRA}
-					cmake/modules/"
-			fi
+		kdebase-runtime|kdebase-workspace|kdeedu|kdegames|kdegraphics|kdepim)
+			case ${PN} in
+				libkdegames|libkdeedu|marble)
+					KMEXTRA="${KMEXTRA}
+						cmake/modules/"
+					;;
+
+				*)
+					KMCOMPILEONLY="${KMCOMPILEONLY}
+						cmake/modules/"
+					;;
+			esac
 		;;
 	esac
 
@@ -303,7 +314,7 @@ __list_needed_subdirectories() {
 
 
 	case ${PV} in
-		scm|9999.4) : ;;
+		scm|9999*) : ;;
 		*) topdir="${KMNAME}-${PV}/" ;;
 	esac
 
@@ -352,7 +363,13 @@ load_library_dependencies() {
 kde4-meta_src_compile() {
 	debug-print-function  ${FUNCNAME} "$@"
 
-	kde4-meta_src_configure
+	case "${EAPI}" in
+		2 | 2_pre3 | 2_pre2 | 2_pre1)
+		;;
+		*)
+			kde4-base_meta_configure
+		;;
+	esac
 	kde4-meta_src_make
 }
 
@@ -467,7 +484,7 @@ kde4-meta_change_cmakelists() {
 		;;
 		kdepim)
 		case ${PN} in
-			kaddressbook|kmailcvt|kontact|korganizer)
+			kaddressbook|kalarm|kmailcvt|kontact|korganizer|korn)
 			sed -i -n -e '/qt4_generate_dbus_interface(.*org\.kde\.kmail\.\(kmail\|mailcomposer\)\.xml/p' \
 				-e '/add_custom_target(kmail_xml /,/)/p' "${S}"/kmail/CMakeLists.txt || die "uncommenting xml failed"
 			_change_cmakelists_parent_dirs kmail

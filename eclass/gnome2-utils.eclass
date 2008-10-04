@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.10 2008/03/22 17:30:11 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.11 2008/09/27 09:16:32 leio Exp $
 
 #
 # gnome2-utils.eclass
@@ -179,7 +179,9 @@ gnome2_omf_fix() {
 	fi
 
 	# testing fixing of all makefiles found
-	for filename in $(find ./ -name "Makefile.in" -o -name "Makefile.am") ; do
+	# The sort is important to ensure .am is listed before the respective .in for
+	# maintainer mode regeneration not kicking in due to .am being newer than .in
+	for filename in $(find ./ -name "Makefile.in" -o -name "Makefile.am" |sort) ; do
 		omf_makefiles="${omf_makefiles} ${filename}"
 	done
 

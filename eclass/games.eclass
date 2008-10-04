@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.127 2008/09/11 16:57:14 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.128 2008/09/28 23:40:23 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -10,7 +10,10 @@
 
 inherit multilib eutils
 
-EXPORT_FUNCTIONS pkg_preinst pkg_postinst src_compile pkg_setup
+case ${EAPI:-0} in
+	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
+	2) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
+esac
 
 [[ -z ${GAME} ]] && GAME=${PN%%-*}
 
@@ -136,8 +139,14 @@ games_pkg_setup() {
 		&& usermod -s /bin/bash "${GAMES_USER_DED}"
 }
 
-games_src_compile() {
+games_src_configure() {
 	[[ -x ./configure ]] && { egamesconf || die "egamesconf failed"; }
+}
+
+games_src_compile() {
+	case ${EAPI:-0} in
+		0|1) games_src_configure ;;
+	esac
 	[ -e [Mm]akefile ] && { emake || die "emake failed"; }
 }
 

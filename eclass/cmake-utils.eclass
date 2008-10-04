@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.8 2008/04/23 11:55:51 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.10 2008/09/28 18:52:16 jmbsvicetto Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -21,7 +21,15 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 
 DEPEND=">=dev-util/cmake-2.4.6"
 
-EXPORT_FUNCTIONS src_compile src_test src_install
+case ${EAPI} in
+	2)
+		EXPORT_FUNCTIONS src_configure src_compile src_test src_install
+		;;
+	*)
+		EXPORT_FUNCTIONS src_compile src_test src_install
+		;;
+esac
+
 
 # Internal function use by cmake-utils_use_with and cmake-utils_use_enable
 _use_me_now() {
@@ -70,11 +78,11 @@ cmake-utils_use_want() { _use_me_now WANT "$@" ; }
 # and -DHAVE_FOO=OFF if it is disabled.
 cmake-utils_has() { _use_me_now HAVE "$@" ; }
 
-# @FUNCTION: cmake-utils_src_compile
+# @FUNCTION: cmake-utils_src_configure
 # @DESCRIPTION:
-# General function for compiling with cmake. Default behaviour is to start an
-# out-of-source build. All arguments are passed to cmake-utils_src_make.
-cmake-utils_src_compile() {
+# General function for configuring with cmake. Default behaviour is to start an
+# out-of-source build.
+cmake-utils_src_configure() {
 	debug-print-function $FUNCNAME $*
 
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
@@ -82,6 +90,21 @@ cmake-utils_src_compile() {
 	else
 		cmake-utils_src_configureout
 	fi
+}
+
+# @FUNCTION: cmake-utils_src_compile
+# @DESCRIPTION:
+# General function for compiling with cmake. Default behaviour is to check for
+# eapi and based on it configure or only compile
+cmake-utils_src_compile() {
+	case ${EAPI} in
+		2)
+		;;
+	*)
+		cmake-utils_src_configure
+		;;
+	esac
+
 	cmake-utils_src_make "$@"
 }
 

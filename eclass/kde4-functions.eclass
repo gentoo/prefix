@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.7 2008/05/17 14:09:03 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.8 2008/10/02 06:49:02 jmbsvicetto Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -29,6 +29,17 @@ if [[ "${KMNAME}" == "koffice" || "${PN}" == "koffice" ]]; then
 	KDEBASE="koffice"
 fi
 
+# @ECLASS-VARIABLE: KDE_SLOTS
+# @DESCRIPTION:
+# The slots used by all KDE versions after 4.0 - this doesn't include kde-3.5 and the
+# live-ebuilds that use the following var.
+KDE_SLOTS=( "kde-4" "4.1" )
+
+# @ECLASS-VARIABLE: KDE_LIVE_SLOTS
+# @DESCRIPTION:
+# The slots used by all KDE live versions.
+KDE_LIVE_SLOTS=( "kde-svn" )
+
 # @ECLASS-VARIABLE: KDE_DERIVATION_MAP
 # @DESCRIPTION:
 # Map of the monolithic->split ebuild derivation.
@@ -37,6 +48,20 @@ fi
 #
 # Also see get-parent-package(), get-child-packages(), is-parent-package()
 KDE_DERIVATION_MAP='
+app-office/koffice app-office/karbon
+app-office/koffice app-office/kchart
+app-office/koffice app-office/kexi
+app-office/koffice app-office/kformula
+app-office/koffice app-office/kivio
+app-office/koffice app-office/koffice-data
+app-office/koffice app-office/koffice-libs
+app-office/koffice app-office/koshell
+app-office/koffice app-office/kplato
+app-office/koffice app-office/kpresenter
+app-office/koffice app-office/krita
+app-office/koffice app-office/kspread
+app-office/koffice app-office/kugar
+app-office/koffice app-office/kword
 kde-base/kdeaccessibility kde-base/kdeaccessibility-colorschemes
 kde-base/kdeaccessibility kde-base/kdeaccessibility-iconthemes
 kde-base/kdeaccessibility kde-base/kmag
@@ -46,6 +71,8 @@ kde-base/kdeaccessibility kde-base/kttsd
 kde-base/kdeadmin kde-base/kcron
 kde-base/kdeadmin kde-base/kdat
 kde-base/kdeadmin kde-base/knetworkconf
+kde-base/kdeadmin kde-base/kpackage
+kde-base/kdeadmin kde-base/ksystemlog
 kde-base/kdeadmin kde-base/ksysv
 kde-base/kdeadmin kde-base/kuser
 kde-base/kdeadmin kde-base/lilo-config
@@ -60,82 +87,88 @@ kde-base/kdeartwork kde-base/kdeartwork-sounds
 kde-base/kdeartwork kde-base/kdeartwork-styles
 kde-base/kdeartwork kde-base/kdeartwork-wallpapers
 kde-base/kdebase kde-base/dolphin
-kde-base/kdebase kde-base/kappfinder
-kde-base/kdebase kde-base/kdepasswd
-kde-base/kdebase kde-base/kdialog
-kde-base/kdebase kde-base/keditbookmarks
-kde-base/kdebase kde-base/kfind
-kde-base/kdebase kde-base/kinfocenter
-kde-base/kdebase kde-base/konqueror
-kde-base/kdebase kde-base/konsole
-kde-base/kdebase kde-base/kwrite
-kde-base/kdebase kde-base/libkonq
-kde-base/kdebase kde-base/nsplugins
 kde-base/kdebase kde-base/drkonqi
+kde-base/kdebase kde-base/kappfinder
+kde-base/kdebase kde-base/kcheckpass
+kde-base/kdebase kde-base/kcminit
 kde-base/kdebase kde-base/kcmshell
 kde-base/kdebase kde-base/kcontrol
+kde-base/kdebase kde-base/kde-menu
+kde-base/kdebase kde-base/kde-menu-icons
+kde-base/kdebase kde-base/kde-wallpapers
+kde-base/kdebase kde-base/kdebase-cursors
 kde-base/kdebase kde-base/kdebase-data
 kde-base/kdebase kde-base/kdebase-kioslaves
+kde-base/kdebase kde-base/kdebase-startkde
 kde-base/kdebase kde-base/kdebugdialog
-kde-base/kdebase kde-base/kde-menu
+kde-base/kdebase kde-base/kdepasswd
 kde-base/kdebase kde-base/kdesu
+kde-base/kdebase kde-base/kdialog
+kde-base/kdebase kde-base/kdm
+kde-base/kdebase kde-base/keditbookmarks
 kde-base/kdebase kde-base/kfile
+kde-base/kdebase kde-base/kfind
 kde-base/kdebase kde-base/khelpcenter
+kde-base/kdebase kde-base/khotkeys
 kde-base/kdebase kde-base/kiconfinder
+kde-base/kdebase kde-base/kinfocenter
 kde-base/kdebase kde-base/kioclient
+kde-base/kdebase kde-base/klipper
+kde-base/kdebase kde-base/kmenuedit
 kde-base/kdebase kde-base/kmimetypefinder
 kde-base/kdebase kde-base/knetattach
 kde-base/kdebase kde-base/knewstuff
 kde-base/kdebase kde-base/knotify
+kde-base/kdebase kde-base/konqueror
+kde-base/kdebase kde-base/konsole
 kde-base/kdebase kde-base/kpasswdserver
 kde-base/kdebase kde-base/kquitapp
 kde-base/kdebase kde-base/kreadconfig
-kde-base/kdebase kde-base/kstart
-kde-base/kdebase kde-base/kstyles
-kde-base/kdebase kde-base/ktimezoned
-kde-base/kdebase kde-base/ktraderclient
-kde-base/kdebase kde-base/kuiserver
-kde-base/kdebase kde-base/kurifilter-plugins
-kde-base/kdebase kde-base/nepomuk
-kde-base/kdebase kde-base/phonon
-kde-base/kdebase kde-base/solid-hardware
-kde-base/kdebase kde-base/soliduiserver
-kde-base/kdebase kde-base/kcheckpass
-kde-base/kdebase kde-base/kcminit
-kde-base/kdebase kde-base/kdebase-startkde
-kde-base/kdebase kde-base/kstartupconfig
-kde-base/kdebase kde-base/kde-menu-icons
-kde-base/kdebase kde-base/kde-wallpapers
-kde-base/kdebase kde-base/kdm
-kde-base/kdebase kde-base/khotkeys
-kde-base/kdebase kde-base/klipper
-kde-base/kdebase kde-base/kmenuedit
 kde-base/kdebase kde-base/krunner
 kde-base/kdebase kde-base/kscreensaver
 kde-base/kdebase kde-base/ksmserver
 kde-base/kdebase kde-base/ksplash
+kde-base/kdebase kde-base/kstart
+kde-base/kdebase kde-base/kstartupconfig
+kde-base/kdebase kde-base/kstyles
 kde-base/kdebase kde-base/ksysguard
 kde-base/kdebase kde-base/ksystraycmd
+kde-base/kdebase kde-base/ktimezoned
 kde-base/kdebase kde-base/ktip
+kde-base/kdebase kde-base/ktraderclient
+kde-base/kdebase kde-base/kuiserver
+kde-base/kdebase kde-base/kurifilter-plugins
 kde-base/kdebase kde-base/kwin
+kde-base/kdebase kde-base/kwrite
+kde-base/kdebase kde-base/libkonq
 kde-base/kdebase kde-base/libkworkspace
 kde-base/kdebase kde-base/libplasma
 kde-base/kdebase kde-base/libtaskmanager
+kde-base/kdebase kde-base/nepomuk
+kde-base/kdebase kde-base/nsplugins
+kde-base/kdebase kde-base/phonon
+kde-base/kdebase kde-base/phonon-xine
 kde-base/kdebase kde-base/plasma
+kde-base/kdebase kde-base/plasma-apps
+kde-base/kdebase kde-base/plasma-workspace
+kde-base/kdebase kde-base/renamedlg-plugins
 kde-base/kdebase kde-base/solid
+kde-base/kdebase kde-base/solid-hardware
+kde-base/kdebase kde-base/soliduiserver
 kde-base/kdebase kde-base/systemsettings
 kde-base/kdebindings kde-base/kalyptus
 kde-base/kdebindings kde-base/kdejava
 kde-base/kdebindings kde-base/kimono
 kde-base/kdebindings kde-base/kjsembed
 kde-base/kdebindings kde-base/korundum
+kde-base/kdebindings kde-base/krossjava
 kde-base/kdebindings kde-base/krosspython
 kde-base/kdebindings kde-base/krossruby
 kde-base/kdebindings kde-base/pykde4
-kde-base/kdebindings kde-base/qyoto
 kde-base/kdebindings kde-base/qtjava
 kde-base/kdebindings kde-base/qtruby
 kde-base/kdebindings kde-base/qtsharp
+kde-base/kdebindings kde-base/qyoto
 kde-base/kdebindings kde-base/smoke
 kde-base/kdebindings kde-base/xparts
 kde-base/kdeedu kde-base/blinken
@@ -162,7 +195,9 @@ kde-base/kdegames kde-base/bovo
 kde-base/kdegames kde-base/katomic
 kde-base/kdegames kde-base/kbattleship
 kde-base/kdegames kde-base/kblackbox
+kde-base/kdegames kde-base/kblocks
 kde-base/kdegames kde-base/kbounce
+kde-base/kdegames kde-base/kbreakout
 kde-base/kdegames kde-base/kdiamond
 kde-base/kdegames kde-base/kfourinline
 kde-base/kdegames kde-base/kgoldrunner
@@ -179,6 +214,7 @@ kde-base/kdegames kde-base/kpat
 kde-base/kdegames kde-base/kreversi
 kde-base/kdegames kde-base/ksame
 kde-base/kdegames kde-base/kshisen
+kde-base/kdegames kde-base/ksirk
 kde-base/kdegames kde-base/kspaceduel
 kde-base/kdegames kde-base/ksquares
 kde-base/kdegames kde-base/ksudoku
@@ -190,17 +226,24 @@ kde-base/kdegames kde-base/lskat
 kde-base/kdegraphics kde-base/gwenview
 kde-base/kdegraphics kde-base/kamera
 kde-base/kdegraphics kde-base/kcolorchooser
+kde-base/kdegraphics kde-base/kdegraphics-strigi-analyzer
 kde-base/kdegraphics kde-base/kgamma
 kde-base/kdegraphics kde-base/kghostview
 kde-base/kdegraphics kde-base/kolourpaint
 kde-base/kdegraphics kde-base/kruler
+kde-base/kdegraphics kde-base/ksaneplugin
 kde-base/kdegraphics kde-base/ksnapshot
+kde-base/kdegraphics kde-base/libkdcraw
+kde-base/kdegraphics kde-base/libkexiv2
+kde-base/kdegraphics kde-base/libkipi
+kde-base/kdegraphics kde-base/libksane
 kde-base/kdegraphics kde-base/libkscan
 kde-base/kdegraphics kde-base/okular
 kde-base/kdegraphics kde-base/svgpart
 kde-base/kdemultimedia kde-base/dragonplayer
 kde-base/kdemultimedia kde-base/juk
 kde-base/kdemultimedia kde-base/kdemultimedia-kioslaves
+kde-base/kdemultimedia kde-base/kdemultimedia-strigi-analyzer
 kde-base/kdemultimedia kde-base/kmix
 kde-base/kdemultimedia kde-base/kscd
 kde-base/kdemultimedia kde-base/libkcddb
@@ -221,11 +264,14 @@ kde-base/kdepim kde-base/kabcclient
 kde-base/kdepim kde-base/kaddressbook
 kde-base/kdepim kde-base/kalarm
 kde-base/kdepim kde-base/kdemaildir
+kde-base/kdepim kde-base/kdepim-icons
 kde-base/kdepim kde-base/kdepim-kioslaves
 kde-base/kdepim kde-base/kdepim-kresources
+kde-base/kdepim kde-base/kdepim-strigi-analyzer
 kde-base/kdepim kde-base/kdepim-wizards
 kde-base/kdepim kde-base/kfeed
 kde-base/kdepim kde-base/kitchensync
+kde-base/kdepim kde-base/kjots
 kde-base/kdepim kde-base/kleopatra
 kde-base/kdepim kde-base/kmail
 kde-base/kdepim kde-base/kmailcvt
@@ -236,6 +282,7 @@ kde-base/kdepim kde-base/kode
 kde-base/kdepim kde-base/konsolekalendar
 kde-base/kdepim kde-base/kontact
 kde-base/kdepim kde-base/kontact-specialdates
+kde-base/kdepim kde-base/kontactinterfaces
 kde-base/kdepim kde-base/korganizer
 kde-base/kdepim kde-base/korn
 kde-base/kdepim kde-base/kpilot
@@ -250,22 +297,24 @@ kde-base/kdepim kde-base/mailtransport
 kde-base/kdepim kde-base/mimelib
 kde-base/kdepim kde-base/networkstatus
 kde-base/kdesdk kde-base/cervisia
-kde-base/kdesdk kde-base/kdeaccounts-plugin
 kde-base/kdesdk kde-base/kapptemplate
 kde-base/kdesdk kde-base/kate
 kde-base/kdesdk kde-base/kbabel
 kde-base/kdesdk kde-base/kbugbuster
 kde-base/kdesdk kde-base/kcachegrind
+kde-base/kdesdk kde-base/kdeaccounts-plugin
 kde-base/kdesdk kde-base/kdesdk-kioslaves
 kde-base/kdesdk kde-base/kdesdk-misc
 kde-base/kdesdk kde-base/kdesdk-scripts
+kde-base/kdesdk kde-base/kdesdk-strigi-analyzer
 kde-base/kdesdk kde-base/kmtrace
 kde-base/kdesdk kde-base/kompare
 kde-base/kdesdk kde-base/kspy
 kde-base/kdesdk kde-base/kstartperf
-kde-base/kdesdk kde-base/strigi-analyzer
 kde-base/kdesdk kde-base/kuiviewer
+kde-base/kdesdk kde-base/lokalize
 kde-base/kdesdk kde-base/poxml
+kde-base/kdesdk kde-base/strigi-analyzer
 kde-base/kdesdk kde-base/umbrello
 kde-base/kdetoys kde-base/amor
 kde-base/kdetoys kde-base/kteatime
@@ -279,12 +328,11 @@ kde-base/kdeutils kde-base/kdessh
 kde-base/kdeutils kde-base/kdf
 kde-base/kdeutils kde-base/kfloppy
 kde-base/kdeutils kde-base/kgpg
-kde-base/kdeutils kde-base/kjots
 kde-base/kdeutils kde-base/kmilo
 kde-base/kdeutils kde-base/kregexpeditor
-kde-base/kdeutils kde-base/kdessh
 kde-base/kdeutils kde-base/ktimer
 kde-base/kdeutils kde-base/kwallet
+kde-base/kdeutils kde-base/okteta
 kde-base/kdeutils kde-base/superkaramba
 kde-base/kdeutils kde-base/sweeper
 kde-base/kdewebdev kde-base/kfilereplace
@@ -292,20 +340,6 @@ kde-base/kdewebdev kde-base/kimagemapeditor
 kde-base/kdewebdev kde-base/klinkstatus
 kde-base/kdewebdev kde-base/kxsldbg
 kde-base/kdewebdev kde-base/quanta
-app-office/koffice app-office/karbon
-app-office/koffice app-office/kchart
-app-office/koffice app-office/kexi
-app-office/koffice app-office/kformula
-app-office/koffice app-office/kivio
-app-office/koffice app-office/koffice-data
-app-office/koffice app-office/koffice-libs
-app-office/koffice app-office/koshell
-app-office/koffice app-office/kplato
-app-office/koffice app-office/kpresenter
-app-office/koffice app-office/krita
-app-office/koffice app-office/kspread
-app-office/koffice app-office/kugar
-app-office/koffice app-office/kword
 '
 
 # @FUNCTION: get-parent-package
@@ -357,41 +391,19 @@ buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ -x ${KDEDIR}/bin/kbuildsycoca4 && -z "${ROOT%%/}" ]]; then
-		# First of all, make sure that the /usr/share/services directory exists
-		# and it has the right permissions
-		mkdir -p "${EPREFIX}"/usr/share/services
-		chown root:0 "${EPREFIX}"/usr/share/services
-		chmod 0755 "${EPREFIX}"/usr/share/services
+		# Make sure tha cache file exists, or kbuildsycoca4 will fail
+		touch "${KDEDIR}/share/kde4/services/ksycoca4"
 
-		# kbuildsycoca4 needs a running dbus session to work correctly.
-		# We have to start a new dbus session, because the DBUS_SESSION_BUS_ADDRESS in the environment
-		# could from from the user's environment (through su [without '-']), causing kbuildsycoca4 to hang.
-
-		echo "Starting dbus session for kbuildsycoca4"
-		local _i
-		for _i in $(dbus-launch); do
-			# We export both the ADDRESS _and_ the PID. We need the latter only to kill our session.
-			debug-print "Exporting: ${_i}"
-			export "${_i}";
-		done
-		debug-print "kbuildsycoca4 is using ${DBUS_SESSION_BUS_ADDRESS}"
+		# We have to unset DISPLAY and DBUS_SESSION_BUS_ADDRESS, the ones
+		# in the user's environment (through su [without '-']) may cause
+		# kbuildsycoca4 to hang.
 
 		ebegin "Running kbuildsycoca4 to build global database"
 		# This is needed because we support multiple kde versions installed together.
-		XDG_DATA_DIRS="/usr/share:${KDEDIRS//:/\/share:}/share:/usr/local/share" \
-		${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
+		XDG_DATA_DIRS="${EPREFIX}/usr/share:${KDEDIRS//:/\/share:}/share:${EPREFIX}/usr/local/share" \
+			DISPLAY="" DBUS_SESSION_BUS_ADDRESS="" \
+			${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
-
-		echo "Killing dbus session for kbuildsycoca4"
-		debug-print "ADDRESS ${DBUS_SESSION_BUS_ADDRESS}"
-		debug-print "PID: ${DBUS_SESSION_BUS_PID}"
-		kill ${DBUS_SESSION_BUS_PID}
-		eend $?
-		unset DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID
-
-		# For some reason this directory gets created with noone other than root
-		# being able to read it. Hence we chmod it.
-		chmod -R 0755 "${EROOT}"/usr/share/kde4
 	fi
 }
 
@@ -426,12 +438,21 @@ done
 # but this default can be overridden by defining KDE_LINGUAS_DIR.
 enable_selected_linguas() {
 	local lingua
-	comment_all_add_subdirectory "${KDE_LINGUAS_DIR:-${S}/po}"
+
 	for lingua in ${KDE_LINGUAS}; do
-		if use linguas_${lingua}; then
+		if [ -e "${S}"/po/"${lingua}".po ]; then
+			mv "${S}"/po/"${lingua}".po "${S}"/po/"${lingua}".po.old
+		fi
+	done
+	comment_all_add_subdirectory "${KDE_LINGUAS_DIR:-${S}/po}"
+	for lingua in ${LINGUAS}; do
+		if [ -d "${S}"/po/"${lingua}" ]; then
 			sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 				-e "/ADD_SUBDIRECTORY([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 				-i "${KDE_LINGUAS_DIR:-${S}/po}"/CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
+		fi
+		if [ -e "${S}"/po/"${lingua}".po.old ]; then
+			mv "${S}"/po/"${lingua}".po.old "${S}"/po/"${lingua}".po
 		fi
 	done
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.7 2008/09/04 08:04:47 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.8 2008/10/03 14:59:42 voyageur Exp $
 
 inherit eutils flag-o-matic
 
@@ -57,11 +57,19 @@ gnustep-base_src_unpack() {
 	fi
 }
 
-gnustep-base_src_compile() {
+gnustep-base_src_configure() {
 	egnustep_env
 	if [[ -x ./configure ]] ; then
 		econf || die "configure failed"
 	fi
+}
+
+gnustep-base_src_compile() {
+	egnustep_env
+	case ${EAPI:-0} in
+		0|1) gnustep-base_src_configure ;;
+	esac
+
 	egnustep_make
 }
 
@@ -212,4 +220,7 @@ EOF
 	doexe "${T}"/${cfile}
 }
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst
+case ${EAPI:-0} in
+	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst ;;
+	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst ;;
+esac

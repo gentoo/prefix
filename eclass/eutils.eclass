@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.307 2008/09/20 19:03:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.308 2008/09/28 04:37:29 mr_bones_ Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -79,7 +79,7 @@ EPATCH_SUFFIX="patch.bz2"
 # Set --no-backup-if-mismatch so we don't leave '.orig' files behind.
 # Set -E to automatically remove empty files.
 EPATCH_OPTS="-g0 -E --no-backup-if-mismatch"
-# List of patches not to apply.	 Not this is only file names,
+# List of patches not to apply.	 Note this is only file names,
 # and not the full path ..
 EPATCH_EXCLUDE=""
 # Change the printed message for a single patch.

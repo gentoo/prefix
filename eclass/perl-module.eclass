@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.111 2008/02/06 02:39:04 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.112 2008/09/30 08:28:44 robbat2 Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 # Maintained by the Perl herd <perl@gentoo.org>
@@ -87,10 +87,16 @@ EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm src_com
 # 2007.10.17 robbat2
 # Added the 'MODULE_AUTHOR' variable. Set it before inheriting the eclass
 # and it will set your HOMEPAGE and SRC_URI correctly for a CPAN package.
+#
+# 2008.09.30 robbat2
+# MODULE_A enables variations other than .tar.gz easily. Also Use MY_P if set
+# for MODULE_A and MY_PN in HOMEPAGE, as suggested by tove. 
 
+[ -z "${SRC_URI}" -a -z "${MODULE_A}" ] && MODULE_A="${MY_P:-${P}}.tar.gz"
 [ -z "${SRC_URI}" -a -n "${MODULE_AUTHOR}" ] && \
-	SRC_URI="mirror://cpan/authors/id/${MODULE_AUTHOR:0:1}/${MODULE_AUTHOR:0:2}/${MODULE_AUTHOR}/${MODULE_SECTION}/${P}.tar.gz"
-[ -z "${HOMEPAGE}" ] && HOMEPAGE="http://search.cpan.org/search?query=${PN}&mode=dist"
+	SRC_URI="mirror://cpan/authors/id/${MODULE_AUTHOR:0:1}/${MODULE_AUTHOR:0:2}/${MODULE_AUTHOR}/${MODULE_SECTION}/${MODULE_A}"
+[ -z "${HOMEPAGE}" ] && \
+	HOMEPAGE="http://search.cpan.org/search?query=${MY_PN:-${PN}}&mode=dist"
 
 SRC_PREP="no"
 SRC_TEST="skip"

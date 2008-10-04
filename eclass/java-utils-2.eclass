@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.112 2008/07/22 21:27:23 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.114 2008/10/01 15:43:55 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1803,6 +1803,24 @@ ejunit() {
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
+# @eclass-src_prepare
+#
+# src_prepare Searches for bundled jars
+# ------------------------------------------------------------------------------
+
+java-utils-2_src_prepare() {
+	# Remember that eant will call this unless called via Portage
+	if [[ ! -e "${T}/java-utils-2_src_prepare-run" ]] && is-java-strict; then
+		echo "Searching for bundled jars:"
+		java-pkg_find-normal-jars || echo "None found."
+		echo "Searching for bundled classes (no output if none found):"
+		find "${WORKDIR}" -name "*.class"
+		echo "Search done."
+	fi
+	touch "${T}/java-utils-2_src_prepare-run"
+}
+
+# ------------------------------------------------------------------------------
 # @section-begin build
 # @section-summary Build functions
 #
@@ -1826,27 +1844,8 @@ eant() {
 	debug-print-function ${FUNCNAME} $*
 
 	if [[ ${EBUILD_PHASE} = compile ]]; then
-		# Used to be done in hooks in java-ant-2.eclass but moved here so that we can
-		# finally get rid of the hooks without breaking stuff
-
-		[[ "${JAVA_ANT_IGNORE_SYSTEM_CLASSES}" && "${JAVA_PKG_BSFIX}" ]] \
-			&& java-ant_ignore-system-classes "${S}/build.xml"
-
-		if hasq java-ant-2 ${INHERITED}; then
-			java-ant_bsfix
-		fi
-
-		# eant can be called multiple times
-		JAVA_PKG_BSFIX="off"
-
-		if [[ -z ${JAVA_PKG_NO_BUNDLED_SEARCH} ]] && is-java-strict; then
-			echo "Searching for bundled jars:"
-			java-pkg_find-normal-jars || echo "None found."
-			echo "Searching for bundled classes (no output if none found):"
-			find "${WORKDIR}" -name "*.class"
-			echo "Search done."
-			JAVA_PKG_NO_BUNDLED_SEARCH=true # eant can be called many times
-		fi
+		java-ant-2_src_configure
+		java-utils-2_src_prepare
 	fi
 
 	if ! hasq java-ant-2 ${INHERITED}; then
@@ -2731,6 +2730,8 @@ is-java-strict() {
 	[[ -n ${JAVA_PKG_STRICT} ]]
 	return $?
 }
+
+EXPORT_FUNCTIONS src_prepare
 
 # ------------------------------------------------------------------------------
 # @eclass-end

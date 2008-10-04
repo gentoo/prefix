@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.361 2008/08/20 03:15:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.362 2008/09/29 01:48:17 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -2482,7 +2482,7 @@ is_gcj() {
 }
 
 is_libffi() {
-	has libffi ${USE} || return 1
+	has libffi ${IUSE} || return 1
 	use libffi
 }
 
