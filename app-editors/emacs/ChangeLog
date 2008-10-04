@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.277 2008/09/26 06:12:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.278 2008/10/03 18:15:38 ulm Exp $
+
+  30 Sep 2008; Ulrich Mueller <ulm@gentoo.org> files/emacs-22.2-sh.patch:
+  Also support big-endian SuperH, bug 238210.
 
   26 Sep 2008; Raúl Porcel <armin76@gentoo.org> emacs-22.2-r3.ebuild:
   sh stable
