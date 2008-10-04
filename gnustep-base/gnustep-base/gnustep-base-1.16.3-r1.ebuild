@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.3.ebuild,v 1.4 2008/10/03 17:21:15 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.3-r1.ebuild,v 1.1 2008/10/03 15:36:25 voyageur Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit gnustep-base
 
@@ -19,7 +19,7 @@ IUSE="gcc-libffi gnutls"
 DEPEND="${GNUSTEP_CORE_DEPEND}
 	>=gnustep-base/gnustep-make-2.0
 	!gcc-libffi? ( dev-libs/ffcall )
-	gcc-libffi? ( >=sys-devel/gcc-3.3.5 )
+	gcc-libffi? ( >=sys-devel/gcc-3.3.5[libffi] )
 	gnutls? ( net-libs/gnutls )
 	>=dev-libs/libxml2-2.6
 	>=dev-libs/libxslt-1.1
@@ -28,24 +28,13 @@ DEPEND="${GNUSTEP_CORE_DEPEND}
 	>=sys-libs/zlib-1.2"
 RDEPEND="${DEPEND}"
 
-pkg_setup() {
-	gnustep-base_pkg_setup
-
-	if use gcc-libffi && ! built_with_use sys-devel/gcc libffi; then
-		eerror "You have enabled the gcc-libffi USE flag, however gcc was not compiled with USE=libffi"
-		eerror "Please recompile sys-libs/gcc with USE=libffi, or disable the gcc-libffi USE flag"
-		die "libffi support not available"
-	fi
-}
-
-src_compile() {
+src_configure() {
 	egnustep_env
 
 	local myconf
 	if use gcc-libffi;
 	then
 		myconf="--enable-libffi --disable-ffcall"
-		myconf="${myconf} --with-ffi-library=$(gcc-config -L) --with-ffi-include=$(gcc-config -L | sed 's/:.*//')/include/libffi"
 	else
 		myconf="--disable-libffi --enable-ffcall"
 	fi
@@ -56,8 +45,6 @@ src_compile() {
 	myconf="$myconf --with-default-config=${EPREFIX}/etc/GNUstep/GNUstep.conf"
 
 	econf $myconf || die "configure failed"
-
-	egnustep_make
 }
 
 src_install() {
