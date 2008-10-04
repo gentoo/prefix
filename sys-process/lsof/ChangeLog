@@ -1,6 +1,13 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.49 2008/08/18 18:55:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.50 2008/10/03 16:50:45 flameeyes Exp $
+
+*lsof-4.80-r1 (03 Oct 2008)
+
+  03 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> +lsof-4.80-r1.ebuild:
+  Add a new revision that doesn't install the static library. Since we don't
+  install any header file it's pointless to have it. Also, it's just an
+  internal help library, of no use once lsof is installed.
 
   18 Aug 2008; Brent Baude <ranger@gentoo.org> lsof-4.78-r2.ebuild:
   stable ppc64, bug 234929
