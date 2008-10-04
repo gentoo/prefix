@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/parallel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parallel/ChangeLog,v 1.3 2008/07/15 16:22:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parallel/ChangeLog,v 1.4 2008/10/04 00:34:58 fmccor Exp $
+
+  04 Oct 2008; Ferris McCormick <fmccor@gentoo.org> parallel-1.0.0.0.ebuild:
+  Sparc stable --- Bug #230919 and Bug #239368.
 
   15 Jul 2008; Jeroen Roovers <jer@gentoo.org> parallel-1.0.0.0.ebuild:
   Marked ~hppa too.
