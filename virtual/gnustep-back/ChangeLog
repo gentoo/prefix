@@ -1,6 +1,10 @@
 # ChangeLog for virtual/gnustep-back
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.22 2008/09/21 15:36:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.23 2008/10/03 17:35:05 bluebird Exp $
+
+  03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
+  gnustep-back-0.14.0.ebuild:
+  Stable on sparc, bug #235922
 
   21 Sep 2008; nixnut <nixnut@gentoo.org> gnustep-back-0.14.0.ebuild:
   Stable on ppc wrt bug 235922
