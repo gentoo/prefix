@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.30 2008/08/25 11:51:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.31 2008/10/04 00:01:51 fmccor Exp $
+
+  04 Oct 2008; Ferris McCormick <fmccor@gentoo.org> network-2.1.0.0.ebuild:
+  Sparc stable --- Bug #230919 and Bug #239368.
 
   25 Aug 2008; Raúl Porcel <armin76@gentoo.org> network-2.1.0.0.ebuild:
   Add ~ia64
