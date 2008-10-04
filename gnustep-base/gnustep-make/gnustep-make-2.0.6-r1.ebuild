@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.6.ebuild,v 1.4 2008/10/03 17:14:01 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.6-r1.ebuild,v 1.1 2008/10/03 15:57:23 voyageur Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit gnustep-base eutils
 
@@ -11,38 +11,31 @@ DESCRIPTION="GNUstep Makefile Package"
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/${P}.tar.gz"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
+	sys-devel/gcc[objc]
 	>=sys-devel/make-3.75"
 RDEPEND="${DEPEND}"
 
-pkg_setup() {
-	gnustep-base_pkg_setup
-
-	if ! built_with_use sys-devel/gcc objc; then
-		ewarn "gcc must be compiled with Objective-C support! See the objc USE flag."
-		die "ObjC support not available"
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.0.1-destdir.patch
 	cp "${FILESDIR}"/gnustep-2.{csh,sh} "${T}"/
 	eprefixify "${T}"/gnustep-2.{csh,sh}
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	myconf="--prefix=${GNUSTEP_PREFIX} --with-layout=gnustep"
 	myconf="$myconf --with-config-file=${EPREFIX}/etc/GNUstep/GNUstep.conf"
 	myconf="$myconf --enable-native-objc-exceptions"
 	econf $myconf || die "configure failed"
+}
 
-	emake
+src_compile() {
+	emake || die "compilation failed"
 	# Prepare doc here (needed when no gnustep-make is already installed)
 	if use doc ; then
 		# If a gnustep-1 environment is set

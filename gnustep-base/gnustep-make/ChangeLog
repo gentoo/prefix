@@ -1,6 +1,16 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.76 2008/09/21 15:15:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.78 2008/10/03 17:14:01 bluebird Exp $
+
+  03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
+  gnustep-make-2.0.6.ebuild:
+  Stable on sparc, bug #235922
+
+*gnustep-make-2.0.6-r1 (03 Oct 2008)
+
+  03 Oct 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-make-2.0.6-r1.ebuild:
+  Use EAPI=2 and USE dependencies, add empty IUSE
 
   21 Sep 2008; nixnut <nixnut@gentoo.org> gnustep-make-2.0.6.ebuild:
   Stable on ppc wrt bug 235922
