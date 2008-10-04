@@ -21,7 +21,7 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 
 DEPEND=">=dev-util/cmake-2.4.6"
 
-case ${EAPI} in
+case ${EAPI/prefix /} in
 	2)
 		EXPORT_FUNCTIONS src_configure src_compile src_test src_install
 		;;
@@ -97,7 +97,7 @@ cmake-utils_src_configure() {
 # General function for compiling with cmake. Default behaviour is to check for
 # eapi and based on it configure or only compile
 cmake-utils_src_compile() {
-	case ${EAPI} in
+	case ${EAPI/prefix /} in
 		2)
 		;;
 	*)

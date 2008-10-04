@@ -16,7 +16,7 @@
 
 inherit base cmake-utils eutils kde4-functions multilib
 
-case "${EAPI}" in
+case "${EAPI/prefix /}" in
 	2)
 		EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_test src_install pkg_postinst pkg_postrm
 		;;
@@ -30,7 +30,7 @@ kde4-base_set_qt_dependencies() {
 	local qt qtcore qtgui qt3support qtdepend qtopengldepend
 
 	# use dependencies
-	case "${EAPI}" in
+	case "${EAPI/prefix /}" in
 		2 | 2_pre3 | 2_pre2 | 2_pre1)
 
 		qt="["
@@ -106,7 +106,7 @@ DEPEND="${DEPEND} ${COMMONDEPEND} ${CMAKEDEPEND}
 RDEPEND="${RDEPEND} ${COMMONDEPEND}"
 
 # Add the kdeprefix use flag
-case "${EAPI}" in
+case "${EAPI/prefix /}" in
 	2 | 2_pre3 | 2_pre2 | 2_pre1)
 		IUSE="${IUSE} kdeprefix"
 		;;
@@ -276,7 +276,7 @@ if [[ ${NEED_KDE} != none ]]; then
 	fi
 
 	# Block install of other SLOTS unless kdeprefix
-	case "${EAPI}" in
+	case "${EAPI/prefix /}" in
 		2 | 2_pre3 | 2_pre2 | 2_pre1)
 			for KDE_SLOT in ${KDE_SLOTS[@]}; do
 				# block non kdeprefix ${PN} on other slots
@@ -292,7 +292,7 @@ if [[ ${NEED_KDE} != none ]]; then
 
 	# We only need to add the dependencies if ${PN} is not "kdelibs" or "kdepimlibs"
 	if [[ ${PN} != "kdelibs" ]]; then
-		case "${EAPI}" in
+		case "${EAPI/prefix /}" in
 			2 | 2_pre3 | 2_pre2 | 2_pre1)
 				DEPEND="${DEPEND} ${_operator}kde-base/kdelibs${_pv}[kdeprefix=]"
 				RDEPEND="${RDEPEND}	${_operator}kde-base/kdelibs${_pv}[kdeprefix=]"
@@ -303,7 +303,7 @@ if [[ ${NEED_KDE} != none ]]; then
 				;;
 		esac
 		if [[ ${PN} != "kdepimlibs" ]]; then
-			case "${EAPI}" in
+			case "${EAPI/prefix /}" in
 				2 | 2_pre3 | 2_pre2 | 2_pre1)
 					DEPEND="${DEPEND} ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix=]"
 					RDEPEND="${RDEPEND} ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix=]"
@@ -371,7 +371,7 @@ kde4-base_pkg_setup() {
 	if [[ ${NEED_KDE} != none ]]; then
 
 		# Set PREFIX
-		case "${EAPI}" in
+		case "${EAPI/prefix /}" in
 			2 | 2_pre3 | 2_pre2 | 2_pre1)
 				if use kdeprefix; then
 					KDEDIR="/usr/kde/${_kdedir}"
@@ -397,7 +397,7 @@ kde4-base_pkg_setup() {
 
 	unset _kdedir
 
-	case "${EAPI}" in
+	case "${EAPI/prefix /}" in
 		2 | 2_pre3 | 2_pre2 | 2_pre1)
 		[[ -n ${QT4_BUILT_WITH_USE_CHECK} || -n ${KDE4_BUILT_WITH_USE_CHECK[@]} ]] && \
 			die "built_with_use illegal in this EAPI!"
@@ -529,7 +529,7 @@ kde4-base_src_unpack() {
 # General function for compiling KDE4 applications.
 kde4-base_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
-	case "${EAPI}" in
+	case "${EAPI/prefix /}" in
 		2)
 			;;
 		*)

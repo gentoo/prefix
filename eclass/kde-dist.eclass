@@ -57,7 +57,8 @@ SLOT="${KDEMAJORVER}.${KDEMINORVER}"
 
 # add blockers on split packages derived from this one
 for x in $(get-child-packages ${CATEGORY}/${PN}); do
-	case ${EAPI:-0} in
+	eapi=${EAPI/prefix /}
+	case ${eapi:-0} in
 		# Add EAPIs without SLOT dependencies.
 		0)  DEPEND="${DEPEND} !=${x}-${KDEMAJORVER}.${KDEMINORVER}*"
 			RDEPEND="${RDEPEND} !=${x}-${KDEMAJORVER}.${KDEMINORVER}*"

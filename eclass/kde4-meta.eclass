@@ -17,7 +17,7 @@
 
 inherit multilib kde4-functions kde4-base
 
-case "${EAPI}" in
+case "${EAPI/prefix /}" in
 	2)
 		EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_test src_install pkg_postinst pkg_postrm
 		;;
@@ -363,7 +363,7 @@ load_library_dependencies() {
 kde4-meta_src_compile() {
 	debug-print-function  ${FUNCNAME} "$@"
 
-	case "${EAPI}" in
+	case "${EAPI/prefix /}" in
 		2 | 2_pre3 | 2_pre2 | 2_pre1)
 		;;
 		*)
