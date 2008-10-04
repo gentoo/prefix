@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9036 2008/10/02 21:04:22 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9038 2008/10/03 19:10:53 remi Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Rémi Cardona <remi@gentoo.org> (03 Oct 2008)
+# Masked due to wrong deps, Gilles/eva will fix those when he can
+# see bug #239412 for more info
+=net-nntp/pan-0.133
 
 # Gunnar Wrobel <wrobel@gentoo.org> 023 Oct 2008)
 # Masked due to security issues.
@@ -346,7 +351,7 @@ dev-lisp/abcl-cvs
 # The e1000e driver in the  2.6.27 release
 # candidate kernel could break network cards
 # Unmask when it is fixed. (see bug #238489)
->=sys-kernel/git-sources-2.6.27_rc
+<sys-kernel/git-sources-2.6.27_rc8-r5
 >=sys-kernel/vanilla-sources-2.6.27_rc
 
 # Joe Peterson <lavajoe@gentoo.org> (23 Sep 2008)
