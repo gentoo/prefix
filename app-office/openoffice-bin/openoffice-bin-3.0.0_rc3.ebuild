@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc2.ebuild,v 1.1 2008/09/22 10:32:47 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc3.ebuild,v 1.1 2008/10/03 14:01:01 suka Exp $
 
 EAPI="prefix"
 
@@ -8,12 +8,13 @@ inherit eutils fdo-mime rpm multilib
 
 IUSE="gnome java kde"
 
-BUILDID="9354"
+BUILDID="9357"
+BUILDID2="9354"
 MY_PV="${PV/_/}"
-MY_PV2="${MY_PV}_20080920"
-MY_PV3="${PV/_rc2/}-${BUILDID}"
+MY_PV2="${MY_PV}_20080927"
+MY_PV3="${PV/_rc3/}-${BUILDID}"
 BASIS="ooobasis3.0"
-MST="OOO300_m7"
+MST="OOO300_m8"
 
 if [ "${ARCH}" = "amd64" ] ; then
 	OOARCH="x86_64"
@@ -89,7 +90,7 @@ src_unpack() {
 	rpm_unpack "${S}/openoffice.org3-${MY_PV3}.${OOARCH}.rpm"
 	rpm_unpack "${S}/openoffice.org-ure-1.4.0-${BUILDID}.${OOARCH}.rpm"
 
-	rpm_unpack "${S}/desktop-integration/openoffice.org3.0-freedesktop-menus-3.0-${BUILDID}.noarch.rpm"
+	rpm_unpack "${S}/desktop-integration/openoffice.org3.0-freedesktop-menus-3.0-${BUILDID2}.noarch.rpm"
 
 	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
 	use kde && rpm_unpack "${S}/${BASIS}-kde-integration-${MY_PV3}.${OOARCH}.rpm"
