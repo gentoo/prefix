@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libical
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.43 2008/10/01 15:11:33 s4t4n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.44 2008/10/03 09:07:01 s4t4n Exp $
+
+*libical-0.27-r1 (03 Oct 2008)
+
+  03 Oct 2008; Michele Noberasco <s4t4n@gentoo.org> +libical-0.27-r1.ebuild:
+  Added new revisions (without modifying current ARCHness since the change
+  is really trivial) for all versions affected by bug #66377.
+  -libical-0.27.ebuild, -libical-0.33.ebuild:
+  Wiped out all ebuild revisions affected by bug #66377.
+  -libical-0.31.ebuild:
+  Wiped out all unstable ebuilds other than latest one.
 
 *libical-0.33-r1 (01 Oct 2008)
 
