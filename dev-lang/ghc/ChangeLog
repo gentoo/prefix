@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.157 2008/10/02 22:48:17 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.158 2008/10/04 10:15:33 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> ghc-6.8.2.ebuild:
+  alpha/ia64 stable
 
   02 Oct 2008; Ferris McCormick <fmccor@gentoo.org> ghc-6.8.2.ebuild:
   Sparc stable, originally part of Bug #230919, and now suggested by Bug #239368.
