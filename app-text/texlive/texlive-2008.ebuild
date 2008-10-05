@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.3 2008/09/09 18:31:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.4 2008/10/04 09:14:34 aballier Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 DESCRIPTION="A complete TeX distribution"
 HOMEPAGE="http://tug.org/texlive/"
@@ -34,8 +34,8 @@ RDEPEND="${DEPEND}
 	>=${TEXLIVE_CAT}/texlive-texinfo-${PV}
 	app-text/t1utils
 	dev-util/dialog
-	>=app-text/lcdf-typetools-2.69
-	truetype? ( =media-libs/freetype-1* )
+	>=app-text/lcdf-typetools-2.69[kpathsea]
+	truetype? ( media-libs/freetype:1[kpathsea] )
 	detex? ( dev-tex/detex )
 	app-text/ps2eps
 	>=app-text/dvipdfm-0.13.2d

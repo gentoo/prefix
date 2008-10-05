@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.43 2008/09/09 18:31:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.44 2008/10/04 09:14:34 aballier Exp $
+
+  04 Oct 2008; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild:
+  Switch to EAPI-2 and add use deps to reflect more what we want for
+  lcdf-typetools and freetype:1
 
   09 Sep 2008; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild:
   Make freetype:1 optional, it's needed to convert ttf files to pk ones, but
