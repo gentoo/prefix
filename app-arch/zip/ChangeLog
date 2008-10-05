@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.76 2008/09/25 00:29:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.77 2008/10/04 13:09:52 flameeyes Exp $
+
+  04 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> zip-3.0.ebuild:
+  Add missing app-arch/unzip dependency to extract .zip sources.
 
   25 Sep 2008; Mike Frysinger <vapier@gentoo.org>
   +files/zip-3.0-no-crypt.patch, zip-3.0.ebuild:

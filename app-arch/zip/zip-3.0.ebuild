@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.2 2008/09/25 00:29:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.3 2008/10/04 13:09:52 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,9 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 crypt unicode"
 
-DEPEND="bzip2? ( app-arch/bzip2 )"
+RDEPEND="bzip2? ( app-arch/bzip2 )"
+DEPEND="${RDEPEND}
+	app-arch/unzip"
 
 S=${WORKDIR}/${MY_P}
 
