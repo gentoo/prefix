@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/mtl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.30 2008/10/03 23:59:09 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.31 2008/10/04 17:47:54 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> mtl-1.1.0.0.ebuild:
+  alpha/ia64 stable
 
   03 Oct 2008; Ferris McCormick <fmccor@gentoo.org> mtl-1.1.0.0.ebuild:
   Sparc stable --- Bug #230919 and Bug #239368.

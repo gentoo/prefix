@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/mtl-1.1.0.0.ebuild,v 1.4 2008/10/03 23:59:09 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/mtl-1.1.0.0.ebuild,v 1.5 2008/10/04 17:47:54 armin76 Exp $
 
 EAPI="prefix"
 
