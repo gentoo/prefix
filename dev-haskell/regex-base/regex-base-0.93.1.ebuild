@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/regex-base-0.93.1.ebuild,v 1.2 2008/07/15 06:03:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/regex-base-0.93.1.ebuild,v 1.3 2008/10/04 17:58:49 armin76 Exp $
 
 EAPI="prefix"
 
