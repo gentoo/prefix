@@ -1,6 +1,40 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.115 2008/09/24 00:54:46 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.124 2008/10/04 18:05:49 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> rxvt-unicode-9.05.ebuild:
+  alpha/ia64/sparc stable wrt #232610
+
+  04 Oct 2008; Brent Baude <ranger@gentoo.org> rxvt-unicode-9.05.ebuild:
+  stable ppc64, bug 232610
+
+  04 Oct 2008; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-9.05.ebuild:
+  Stable for HPPA (bug #232610).
+
+  04 Oct 2008; Markus Meier <maekke@gentoo.org> rxvt-unicode-9.05.ebuild:
+  x86 stable, bug #232610
+
+  04 Oct 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  rxvt-unicode-9.05.ebuild:
+  amd64 stable, bug 232610
+
+  04 Oct 2008; René Nussbaumer <killerfox@gentoo.org>
+  rxvt-unicode-9.05.ebuild:
+  Stable on ppc. See bug #232610.
+
+  04 Oct 2008; René Nussbaumer <killerfox@gentoo.org> metadata.xml:
+  Modify metadata.xml to reflect USE flag changes
+
+  04 Oct 2008; René Nussbaumer <killerfox@gentoo.org>
+  -rxvt-unicode-9.05-r1.ebuild:
+  Remove borked 256 color version. This actually reverts the changes of yngwin.
+
+*rxvt-unicode-9.05-r2 (04 Oct 2008)
+
+  04 Oct 2008; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-9.05-r2.ebuild:
+  Modify ebuild structure to apply new 256 color and widechar patches
+  independant and with a warning. Generate the new terminfo as well.
 
   24 Sep 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml,
   rxvt-unicode-9.05-r1.ebuild:
