@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.2.3.0.ebuild,v 1.6 2008/10/02 22:35:29 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.2.3.0.ebuild,v 1.7 2008/10/04 10:11:02 armin76 Exp $
 
 EAPI="prefix"
 
