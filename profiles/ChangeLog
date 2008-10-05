@@ -1,10 +1,46 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1921 2008/10/03 19:10:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1929 2008/10/05 02:56:48 jmbsvicetto Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  05 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Fixed the KDE-4.1.2 p. mask entry for kdebase-startkde.
+
+  05 Oct 2008; Ali Polatel <hawking@gentoo.org> package.mask:
+  Mask dev-lang/python-2.6 until bug 230205 is fixed.
+
+  04 Oct 2008; Robert Buchholz <rbu@gentoo.org> package.mask:
+  Purge removed packages and ebuilds from p.mask
+
+  04 Oct 2008; Mart Raudsepp <leio@gentoo.org> arch/arm/package.mask,
+  arch/powerpc/ppc32/package.mask, arch/powerpc/ppc64/package.mask,
+  arch/sh/package.mask, default-bsd/fbsd/package.mask,
+  default-linux/arm/package.mask, default-linux/ppc/dev/ppc64/package.mask,
+  default-linux/ppc/ppc32/package.mask,
+  default-linux/ppc/ppc64/package.mask, default-linux/sh/package.mask,
+  hardened/ppc/package.mask, hardened/ppc64/package.mask,
+  uclibc/ppc/package.mask:
+  Unmask libbonobo-2.22 and newer where it is masked, as it should work fine
+  on a GNOME-2.20 system as well
+
+  04 Oct 2008; Robert Buchholz <rbu@gentoo.org> package.mask:
+  Remove wpa_supplicant 0.6 mask, issues reported earlier are probably fixed
+  by now (bug #235282).
+
+  04 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Updated the yakuake version in the 4.1.2 mask.
+
+  04 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  fix remi's mask, I wasn't clear enough on the phone that it was gmime
+  needing masking.
+
+  04 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove extsizes/eurosym mask, they're gone
 
   03 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
   masking net-nntp/pan-0.133, see bug #239412

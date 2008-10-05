@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9038 2008/10/03 19:10:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9046 2008/10/05 02:56:48 jmbsvicetto Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,10 +29,19 @@
 
 #--- END OF EXAMPLES ---
 
-# Rémi Cardona <remi@gentoo.org> (03 Oct 2008)
-# Masked due to wrong deps, Gilles/eva will fix those when he can
+# Ali Polatel <hawking@gentoo.org> (05 Oct 2008)
+# Masked until packages that don't work with it are fixed.
+# see bug #230205 for more info
+>=dev-lang/python-2.6
+
+# Gilles Dartiguelongue <eva@gentoo.org> (04 Oct 2008)
+# Masked until dependencies are fixed to deal with slots
 # see bug #239412 for more info
-=net-nntp/pan-0.133
+=dev-libs/gmime-2.4.1
+
+# Christian Parpart <trapni@gentoo.org> (04 Oct 2008)
+# for testing/experienced users only
+>=games-rpg/mangos-9999
 
 # Gunnar Wrobel <wrobel@gentoo.org> 023 Oct 2008)
 # Masked due to security issues.
@@ -41,7 +50,8 @@ www-apps/dotproject
 
 # Tobias Heinlein <keytoaster@gentoo.org> (02 Oct 2008)
 # KDE 4.1.2 ebuilds from the kde overlay are going to enter the tree.
-# Masked to avoid problems on sync.
+# Masked to avoid problems on sync. Currently fixing some kde3 / kde4
+# mixing issues before unmasking.
 =app-misc/strigi-0.5.11
 =app-office/akonadi-server-1.0.0
 =dev-libs/soprano-2.1
@@ -103,7 +113,7 @@ www-apps/dotproject
 =kde-base/kdebase-data-4.1.2
 =kde-base/kdebase-kioslaves-4.1.2
 =kde-base/kdebase-meta-4.1.2
-=kde-base/kdebase-startkde-4.1.2
+~kde-base/kdebase-startkde-4.1.2
 =kde-base/kdebugdialog-4.1.2
 =kde-base/kdeedu-meta-4.1.2
 =kde-base/kdegames-meta-4.1.2
@@ -297,7 +307,7 @@ www-apps/dotproject
 =kde-misc/lancelot-menu-1.0.3
 =kde-misc/plasmoids-0.2
 =kde-misc/powerdevil-1.2.0
-=kde-misc/yakuake-2.9.3
+=kde-misc/yakuake-2.9.4
 =media-gfx/digikam-0.10.0_beta2-r1
 =media-sound/amarok-1.90
 =media-sound/phonon-4.2.0
@@ -814,13 +824,6 @@ kde-misc/kio_perldoc
 =sys-kernel/xen-sources-2.6.20*
 =sys-kernel/xen-sources-2.6.21*
 
-# Alexis Ballier <aballier@gentoo.org> (03 Sep 2008)
-# Masked for removal on 04 Oct 2008
-# Provided by tetex-3, ptex and texlive-fontsrecommended or
-# texlive-latexrecommended, which makes them uninstallable anyway.
-dev-tex/extsizes
-dev-tex/eurosym
-
 # Jeremy Olexa <darkside@gentoo.org> (02 Sep 2008)
 # Removed at maintainer's request in 30 days by the treecleaners.
 # Please don't waste cds trying to use this program, bug 227143
@@ -889,7 +892,6 @@ www-apps/xrms
 # Michael Sterrett <mr_bones_@gentoo.org> (17 Aug 2008)
 # Security masked: bug #222119
 games-fps/tremulous
-games-fps/tremulous-bin
 
 # Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
 # mask live ebuild (no bundled sqlalchemy anymore)
@@ -918,7 +920,6 @@ net-dialup/bewan-adsl
 # Masked for removal in ~60 days by treecleaners.
 net-dialup/eagle-usb
 
-media-gfx/gimp-freetype
 # Tiziano Müller <dev-zero@gentoo.org> (15 Aug 2008)
 # Masked for testing (works with >=dev-libs/xerces-c-3.0.0_beta2)
 =dev-libs/xqilla-9999
@@ -977,11 +978,6 @@ sys-auth/pam_sha512
 # Raúl Porcel <armin76@gentoo.org> (1 Aug 2008)
 # This is just for preview
 >=www-client/mozilla-firefox-bin-3.1_alpha1
-
-# Patrick McLean <chutzpah@gentoo.org> (31 Jul 2008)
-# buggy, causes browser crashes on certain sites (www.nvidia.com), also see
-# bug #233484
-=net-www/nspluginwrapper-1.1.0
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (28 Jul 2008)
 # These are masked for removal.  Please leave this mask in place, even after the
@@ -1190,16 +1186,6 @@ games-server/greenhouse
 =dev-haskell/regex-compat-0.90
 =dev-haskell/regex-base-0.91
 =dev-haskell/regex-posix-0.92
-
-# Hans de Graaff <graaff@gentoo.org> (4 May 2008)
-# Mask broken and insecure xemacs version added by jmglov
-=app-editors/xemacs-21.5.28
-
-# Marijn Schouten <hkBst@gentoo.org> (1 May 2008)
-# to be removed: live, broken, obsolete
-# bugs 196982, 204935
-# 0.9.2 release in our overlay
-dev-lisp/stumpwm-cvs
 
 # Ulrich Mueller <ulm@gentoo.org> (27 Apr 2008)
 # CVS snapshot, bug 219449.
@@ -1601,22 +1587,6 @@ sys-kernel/hppa-sources
 >=gnome-base/gnome-mount-0.7
 >=gnome-extra/policykit-gnome-0.6
 
-# Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
-# There is a serious regression (bug #199450) due to
-# an incomplete fix for the non-remote vulnerability
-# CVE-2007-4572
-=net-fs/samba-3.0.27
-
-# Doug Goldstein <cardoe@gentoo.org> (16 Nov 2007)
-# new heimdal version that's not too tested
-# anyone looking to take over maintaining heimdal
-# from seemant would make both of us happy
-=app-crypt/heimdal-1.0.1
-
-# Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
-# Brokeness in these
-=mail-mta/nullmailer-1.03*
-
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
 # You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
@@ -1697,10 +1667,6 @@ net-wireless/iwlwifi
 # dbus. Removal in 30 days unless someone else takes this
 # package and fixes the problems.
 kde-misc/kdbus
-
-# Roy Marples <uberlord@gentoo.org> (29 Jun 2007)
-# Masked due to several connectivity issues.
->=net-wireless/wpa_supplicant-0.6.0
 
 # Jurek Bartuszek <jurek@gentoo.org> (23 Jun 2007)
 # Beta versions, testing required
@@ -2007,18 +1973,11 @@ dev-lisp/cl-blog
 net-mail/mailer-config
 =net-mail/mailwrapper-0.2.1-r1
 =mail-mta/nbsmtp-1.00-r3
-=mail-mta/ssmtp-2.61-r30
-=mail-mta/ssmtp-2.61-r31
-=mail-mta/postfix-2.2.10-r1
 
 # Masatomo Nakano <nakano@gentoo.org> (27 Feb 2005)
 # Tihs package is conflict with postgresql at the moment
 # and waiting on implementing virtual/postgresql.
 dev-db/pgcluster
-
-# <dragonheart@gentoo.org> (04 Dec 2004)
-# Bug #70529 indicates problems with configuration file reading
-~dev-libs/log4c-1.0.12
 
 # <mkennedy@gentoo.org> (08 Aug 2004)
 # won't build for now
