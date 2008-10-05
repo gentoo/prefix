@@ -89,6 +89,9 @@ src_unpack() {
 	# which results in out of prefix errors for packages which use it
 	epatch "${FILESDIR}"/${PV}/${P}-respect_path.patch
 
+	# fixup some paths in config files
+	epatch "${FILESDIR}"/${PV}/${P}-prefix-config-paths.patch
+
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"
 

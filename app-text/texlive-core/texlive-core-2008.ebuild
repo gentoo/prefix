@@ -89,6 +89,9 @@ src_unpack() {
 	# which results in out of prefix errors for packages which use it
 	epatch "${FILESDIR}"/2007/${PN}-2007-respect_path.patch
 
+	# fixup some paths in config files
+	epatch "${FILESDIR}"/${PV}/${P}-prefix-config-paths.patch
+
 	elibtoolize
 
 	cd libs/teckit
