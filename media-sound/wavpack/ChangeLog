@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/wavpack
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.43 2008/09/30 11:12:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.44 2008/10/04 14:42:07 ranger Exp $
+
+  04 Oct 2008; Brent Baude <ranger@gentoo.org> wavpack-4.50.1.ebuild:
+  stable ppc64, bug 238336
 
   30 Sep 2008; Raúl Porcel <armin76@gentoo.org> wavpack-4.50.1.ebuild:
   alpha/arm/ia64/x86 stable wrt #238336
