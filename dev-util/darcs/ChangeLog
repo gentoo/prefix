@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.94 2008/10/02 22:40:19 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.96 2008/10/04 18:07:38 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> darcs-2.0.2.ebuild:
+  alpha/ia64 stable wrt #239368
+
+*darcs-2.1.0_pre3 (04 Oct 2008)
+
+  04 Oct 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  +darcs-2.1.0_pre3.ebuild:
+  Add the latest pre release of darcs 2.1.0, the third.
 
   02 Oct 2008; Ferris McCormick <fmccor@gentoo.org> darcs-2.0.2.ebuild:
   Sparc stable --- Bug #239368 --- All tests pass and it installs as expected.

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.0.2.ebuild,v 1.5 2008/10/04 18:07:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0_pre3.ebuild,v 1.1 2008/10/04 16:55:50 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -22,11 +22,25 @@ DEPEND=">=net-misc/curl-7.10.2
 	=dev-haskell/quickcheck-1*
 	dev-haskell/mtl
 	dev-haskell/html
+	dev-haskell/http
 	dev-haskell/parsec
 	dev-haskell/regex-compat
 	sys-apps/diffutils
+	dev-haskell/network
+	dev-haskell/filepath
+	sys-libs/zlib
 	doc?  ( virtual/latex-base
 		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
+
+# add these deps? configure will check for and use these if they are available,
+# but with older ghc's it'll just work as it won't have the split base
+#	array
+#	directory
+#	old-locale
+#   old-time
+#   process
+
+# bytestring will also be used if it's there. XXX: really?
 
 RDEPEND=">=net-misc/curl-7.10.2
 	virtual/mta
@@ -61,6 +75,8 @@ src_unpack() {
 src_compile() {
 	# use --enable-bytestring?
 	econf $(use_with doc docs) \
+		  --disable-haskeline \
+		  --disable-haskell-zlib \
 		|| die "configure failed"
 	emake all || die "make failed"
 }
