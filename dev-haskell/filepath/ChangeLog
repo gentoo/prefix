@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/filepath
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.16 2008/07/15 16:33:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.17 2008/10/04 19:52:29 fmccor Exp $
+
+  04 Oct 2008; Ferris McCormick <fmccor@gentoo.org> filepath-1.1.0.0.ebuild:
+  Sparc stable, part of Bug #239368.
 
   15 Jul 2008; Jeroen Roovers <jer@gentoo.org> filepath-1.1.0.0.ebuild:
   Marked ~hppa too.
