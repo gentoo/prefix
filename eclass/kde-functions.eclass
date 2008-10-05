@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.170 2008/08/27 15:29:26 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.171 2008/10/04 15:28:58 jmbsvicetto Exp $
 
 # @ECLASS: kde-functions.eclass
 # @MAINTAINER:
@@ -718,7 +718,10 @@ set-kdedir() {
 		export PREFIX="$KDEPREFIX"
 	else
 		if [[ -z "$KDEBASE" ]]; then
-			export PREFIX="${EPREFIX}/usr"
+			case $PN in
+				libkipi|libkdcraw|libkexiv2) export PREFIX="${EPREFIX}/usr/kde/3.5";;
+				*) export PREFIX="${EPREFIX}/usr";;
+			esac
 		else
 			case $KDEMAJORVER.$KDEMINORVER in
 				3.5) export PREFIX="${EPREFIX}/usr/kde/3.5";;

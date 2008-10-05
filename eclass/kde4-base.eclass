@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.13 2008/10/02 06:49:02 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.14 2008/10/04 14:51:02 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -101,6 +101,7 @@ esac
 # Set the common dependencies
 DEPEND="${DEPEND} ${COMMONDEPEND} ${CMAKEDEPEND}
 	dev-util/pkgconfig
+	kde-base/automoc
 	x11-libs/libXt
 	x11-proto/xf86vidmodeproto"
 RDEPEND="${RDEPEND} ${COMMONDEPEND}"
