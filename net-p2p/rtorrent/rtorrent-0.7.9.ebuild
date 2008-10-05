@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.8 2008/02/06 20:57:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.9 2008/10/04 23:44:24 loki_val Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ RDEPEND=">=net-libs/libtorrent-0.11.${PV##*.}
 	>=net-misc/curl-7.15
 	sys-libs/ncurses
 	xmlrpc? ( dev-libs/xmlrpc-c )"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+        dev-util/pkgconfig"
 
 src_compile() {
 	replace-flags -Os -O2
