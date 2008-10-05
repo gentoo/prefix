@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.660 2008/08/19 18:20:33 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.661 2008/10/04 21:13:28 halcy0n Exp $
+
+*gcc-4.3.2 (04 Oct 2008)
+
+  04 Oct 2008; Mark Loeser <halcy0n@gentoo.org> +gcc-4.3.2.ebuild:
+  Version bump; bug #236199
 
   19 Aug 2008; Jose Luis Rivero <yoswink@gentoo.org> gcc-4.3.1-r1.ebuild:
   Added ~alpha keyword
