@@ -1,6 +1,20 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.79 2008/09/19 02:01:48 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.83 2008/10/04 20:00:18 fmccor Exp $
+
+  04 Oct 2008; Ferris McCormick <fmccor@gentoo.org> mercurial-1.0.2.ebuild:
+  Sparc stable, security Bug #239055 (tests good, one skipped).
+
+  04 Oct 2008; Brent Baude <ranger@gentoo.org> mercurial-1.0.2.ebuild:
+  Marking mercurial-1.0.2 ppc64 and ppc for bug 239055
+
+  04 Oct 2008; Robert Buchholz <rbu@gentoo.org> mercurial-1.0.2.ebuild:
+  Make tests run with Python 2.5 and FEATURES=userpriv, a patch by Lourdes
+  Jones (bug #231280).
+
+  04 Oct 2008; Tobias Heinlein <keytoaster@gentoo.org>
+  mercurial-1.0.2.ebuild:
+  amd64 stable wrt security bug 239055
 
 *mercurial-1.0.2 (19 Sep 2008)
 
