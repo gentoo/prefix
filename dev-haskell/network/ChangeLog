@@ -1,6 +1,12 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.31 2008/10/04 00:01:51 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.32 2008/10/04 18:36:01 kolmodin Exp $
+
+*network-2.2.0.0 (04 Oct 2008)
+
+  04 Oct 2008; Lennart Kolmodin <kolmodin@gentoo.org>
+  +network-2.2.0.0.ebuild:
+  Add network-2.2.0.0 to solve bug #227515.
 
   04 Oct 2008; Ferris McCormick <fmccor@gentoo.org> network-2.1.0.0.ebuild:
   Sparc stable --- Bug #230919 and Bug #239368.
