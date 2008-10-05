@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/html
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.31 2008/10/03 23:51:51 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.32 2008/10/04 17:54:26 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> html-1.0.1.1.ebuild:
+  alpha/ia64 stable
 
   03 Oct 2008; Ferris McCormick <fmccor@gentoo.org> html-1.0.1.1.ebuild:
   Sparc stable, Bug #239465.
