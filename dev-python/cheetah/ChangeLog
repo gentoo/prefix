@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/cheetah
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.38 2007/11/26 19:48:05 pythonhead Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.39 2008/10/04 17:28:50 neurogeek Exp $
+
+*cheetah-0.9.18-r1 (04 Oct 2008)
+
+  04 Oct 2008; Jesus Rivero <neurogeek@gentoo.org>
+  +files/Cheetah-0.9.18__future__imports.patch, +cheetah-0.9.18-r1.ebuild:
+  Revision bump. Fixes bug #237214. Thanks to Martin Zibricky
+  <matysek03@seznam.cz> for the patch
 
 *cheetah-2.0.1 (26 Nov 2007)
 
