@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.346 2008/09/19 16:44:09 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.347 2008/10/05 00:55:31 hawking Exp $
+
+*python-2.6 (05 Oct 2008)
+
+  05 Oct 2008; Ali Polatel <hawking@gentoo.org>
+  +files/python-2.6-test-cross.patch, -python-2.5.2-r6.ebuild,
+  +python-2.6.ebuild:
+  Version bump. Drop old.
 
 *python-2.5.2-r8 (19 Sep 2008)
 *python-2.4.4-r15 (19 Sep 2008)
