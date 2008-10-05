@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.23 2008/09/21 19:07:33 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.24 2008/10/04 11:08:08 angelos Exp $
+
+*xfce4-xkb-0.5.1 (04 Oct 2008)
+
+  04 Oct 2008; Christoph Mende <angelos@gentoo.org> +xfce4-xkb-0.5.1.ebuild:
+  Version bump
 
   21 Sep 2008; Christoph Mende <angelos@gentoo.org>
   +files/xfce4-xkb-0.4.3-libtool.patch, xfce4-xkb-0.4.3-r1.ebuild:
