@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.55 2008/08/02 16:11:32 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.56 2008/10/04 10:12:48 armin76 Exp $
+
+  04 Oct 2008; Raúl Porcel <armin76@gentoo.org> haddock-0.8.ebuild:
+  alpha/ia64 stable
 
   02 Aug 2008; Lennart Kolmodin <kolmodin@gentoo.org> haddock-0.8.ebuild:
   inherit autotools. Spotted by dleverton.
