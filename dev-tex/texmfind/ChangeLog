@@ -1,0 +1,26 @@
+# ChangeLog for dev-tex/texmfind
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/ChangeLog,v 1.6 2008/07/06 03:14:58 wormo Exp $
+
+  05 Jul 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  texmfind-0.1.ebuild:
+  mark ~ppc
+
+  10 May 2008; Santiago M. Mola <coldwind@gentoo.org> texmfind-0.1.ebuild:
+  amd64 stable
+
+  03 May 2008; Christian Faulhammer <opfer@gentoo.org> texmfind-0.1.ebuild:
+  stable x86
+
+  17 Mar 2008; Ferris McCormick <fmccor@gentoo.org> texmfind-0.1.ebuild:
+  Add sparc keyword, examples work.  Thanks to GMN for the tip and to aballier.
+
+  01 Mar 2008; Christian Faulhammer <opfer@gentoo.org> texmfind-0.1.ebuild:
+  keyword ~x86
+
+*texmfind-0.1 (01 Mar 2008)
+
+  01 Mar 2008; Alexis Ballier <aballier@gentoo.org> +metadata.xml,
+  +texmfind-0.1.ebuild:
+  Initial import, thanks a lot Alexandre
+
