@@ -28,7 +28,7 @@ SRC_URI="ftp://ftp.x.org/contrib/widgets/Xaw3d/R6.3/${P}.tar.gz
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 # There _might_ be something else, but I doubt it.
@@ -66,7 +66,12 @@ src_compile() {
 	xmkmf || die
 	make includes || die
 	make depend || die
-	emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
+	local extld=
+	[[ ${CHOST} == *-solaris* ]] && extld="-shared"
+	emake CDEBUGFLAGS="${CFLAGS}" \
+		SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
+		LD="$(tc-getCC)" \
+		CC="$(tc-getCC)" || die
 }
 
 src_install() {
