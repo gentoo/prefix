@@ -30,7 +30,10 @@ src_install() {
 	# allow for future hosts with different paths
 	nativepath=""
 	case ${CHOST} in
-		*-solaris*|*-aix*)
+		*-solaris*)
+			nativepath=/usr/sfw/bin
+		;;
+		*-aix*)
 			nativepath=/usr/ccs/bin
 		;;
 		*-apple-darwin*|*-netbsd*|*-openbsd*)
@@ -53,7 +56,10 @@ src_install() {
 	# copy from the host os
 	cd "${ED}${BINPATH}"
 	for b in ${what} ; do
-		if [[ -x ${nativepath}/${b} ]] ; then
+		if [[ -x ${nativepath}/g${b} ]] ; then
+			einfo "linking ${nativepath}/g${b}"
+			ln -s "${nativepath}/g${b}" "${b}"
+		elif [[ -x ${nativepath}/${b} ]] ; then
 			einfo "linking ${nativepath}/${b}"
 			ln -s "${nativepath}/${b}" "${b}"
 		else
