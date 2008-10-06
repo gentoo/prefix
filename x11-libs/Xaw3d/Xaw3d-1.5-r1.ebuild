@@ -70,6 +70,7 @@ src_compile() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		extld="-shared"
 		sed -i -e '/PICFLAGS/s/-pic/-fPIC/' Makefile || die "-fPIC"
+		sed -i -e '/LIBDIR/s:/amd64$::' -e '/LIBDIR/s:/sparcv9$::' Makefile || die "arch dir"
 	fi
 	emake CDEBUGFLAGS="${CFLAGS}" \
 		SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
@@ -79,6 +80,14 @@ src_compile() {
 
 src_install() {
 	make INSTALLFLAGS="-c" DESTDIR="${D}" install || die
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# stupid so symlinks are missing :(
+		pushd "${ED}"/usr/$(get_libdir) > /dev/null
+		lib=$(echo libXaw3d.so.*)
+		ln -s ${lib} ${lib%.*}
+		ln -s ${lib} ${lib%.*.*}
+		popd > /dev/null
+	fi
 
 	dodoc README.XAW3D
 }
