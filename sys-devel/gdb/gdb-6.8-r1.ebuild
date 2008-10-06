@@ -85,6 +85,7 @@ src_install() {
 
 	# Remove shared info pages
 	rm -f "${ED}"/usr/share/info/{annotate,bfd,configure,standards}.info*
+	rm -f "${ED}"/usr/share/locale/*/LC_MESSAGES/{annotate,bfd,configure,standards,opcodes}.mo
 }
 
 pkg_postinst() {
