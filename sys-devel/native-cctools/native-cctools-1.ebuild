@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="GPL-2" # actually, we don't know, the wrapper is
 SLOT="0"
 
-KEYWORDS="~ppc-aix ~x86-interix ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 IUSE=""
 
