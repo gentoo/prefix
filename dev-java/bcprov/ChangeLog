@@ -1,0 +1,121 @@
+# ChangeLog for dev-java/bcprov
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bcprov/ChangeLog,v 1.31 2008/03/11 21:34:35 betelgeuse Exp $
+
+  11 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -bcprov-1.36-r1.ebuild,
+  -bcprov-1.37.ebuild:
+  Delete old versions.
+
+  15 Feb 2008; William L. Thomson Jr. <wltjr@gentoo.org> bcprov-1.38.ebuild:
+  amd64 stable, bug #207590.
+
+  31 Jan 2008; Christian Faulhammer <opfer@gentoo.org> bcprov-1.38.ebuild:
+  stable x86, bug 207590
+
+  29 Jan 2008; nixnut <nixnut@gentoo.org> bcprov-1.38.ebuild:
+  Stable on ppc wrt bug 207590
+
+  27 Jan 2008; Brent Baude <ranger@gentoo.org> bcprov-1.38.ebuild:
+  Marking bcprov-1.38 ppc64 for bug 207590
+
+*bcprov-1.38 (29 Nov 2007)
+
+  29 Nov 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  +bcprov-1.38.ebuild:
+  Bumped to latest release
+
+  15 Oct 2007; Markus Rothe <corsair@gentoo.org> bcprov-1.37.ebuild:
+  Stable on ppc64
+
+  13 Oct 2007; nixnut <nixnut@gentoo.org> bcprov-1.37.ebuild:
+  Stable on ppc wrt bug 194836
+
+  13 Oct 2007; Christian Faulhammer <opfer@gentoo.org> bcprov-1.37.ebuild:
+  stable x86, bug 194836
+
+  12 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org> -files/build.xml,
+  -bcprov-1.31-r1.ebuild, -bcprov-1.31-r2.ebuild, -bcprov-1.36.ebuild,
+  bcprov-1.37.ebuild:
+  amd64 stable, bug #194836. Removed older versions in same slot
+
+  05 Oct 2007; Tom Gall <tgall@gentoo.org> bcprov-1.36-r1.ebuild:
+  stable on ppc64
+
+*bcprov-1.37 (09 Sep 2007)
+
+  09 Sep 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  +bcprov-1.37.ebuild:
+  Bumped to latest release.
+
+  17 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> bcprov-1.36-r1.ebuild:
+  Depend on >=sys-apps/findutils-4.3 when the userland is GNU to fix bug #182276.
+
+  16 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> bcprov-1.36-r1.ebuild:
+  Add || die for the find in src_unpack.
+
+  14 Jun 2007; Christoph Mende <angelos@gentoo.org> bcprov-1.36-r1.ebuild:
+  Stable on amd64 wrt bug 181086
+
+  09 Jun 2007; nixnut <nixnut@gentoo.org> bcprov-1.36-r1.ebuild:
+  Stable on ppc wrt bug 181086
+
+  09 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> bcprov-1.36-r1.ebuild:
+  Add -encoding to ejavac arguments to silence the warnings about encoding.
+
+  07 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  bcprov-1.36-r1.ebuild:
+  stable x86, bug 181086
+
+  05 May 2007; Vlastimil Babka <caster@gentoo.org> bcprov-1.36-r1.ebuild:
+  Change find -wholename to -path to work on fbsd.
+
+*bcprov-1.36-r1 (21 Apr 2007)
+
+  21 Apr 2007; Vlastimil Babka <caster@gentoo.org> +bcprov-1.36-r1.ebuild:
+  Revbump to remove needless junit dependency by deleting testcases before
+  compiling.
+
+*bcprov-1.36 (25 Mar 2007)
+
+  25 Mar 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  +bcprov-1.36.ebuild:
+  Bumped to latest version, re-worked ebuild from past versions. No more
+  external build.xml since package does not ship one. Still to do, junit/test
+  stuff, optional dep/compile test run
+
+  07 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> bcprov-1.31-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*bcprov-1.31-r2 (20 Oct 2006)
+
+  20 Oct 2006; Joshua Nichols <nichoj@gentoo.org> +bcprov-1.31-r2.ebuild:
+  Revision bump which removes junit dependency.
+
+  17 Oct 2006; Joshua Jackson <tsunam@gentoo.org> bcprov-1.31-r1.ebuild:
+  Stable x86; bug #146305
+
+  15 Oct 2006; Joshua Nichols <nichoj@gentoo.org> bcprov-1.31-r1.ebuild:
+  Stable on ppc, bug #146305.
+
+  15 Oct 2006; Thomas Cort <tcort@gentoo.org> bcprov-1.31-r1.ebuild:
+  Stable on amd64 wrt Bug #146305.
+
+  14 Sep 2006; Joshua Nichols <nichoj@gentoo.org> bcprov-1.31-r1.ebuild:
+  Added ~ppc64
+
+  06 Aug 2006; Joshua Nichols <nichoj@gentoo.org> bcprov-1.31-r1.ebuild:
+  Removed deprecated ant_src_unpack
+
+  05 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  bcprov-1.31-r1.ebuild:
+  Added ~ppc, bug #141528
+
+  31 Jul 2006; Joshua Nichols <nichoj@gentoo.org> bcprov-1.31-r1.ebuild:
+  Keyworded ~amd64 for bug #141528
+
+*bcprov-1.31-r1 (23 Jul 2006)
+
+  23 Jul 2006; Joshua Nichols <jnichols@gentoo.org> +files/build.xml,
+  +metadata.xml, +bcprov-1.31-r1.ebuild:
+  Initial commit, pulled from java-experimental-overlay.
+
