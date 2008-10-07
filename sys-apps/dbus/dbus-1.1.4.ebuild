@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.7 2008/02/12 13:01:15 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.8 2008/10/06 00:55:51 steev Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib autotools flag-o-matic
+inherit eutils multilib flag-o-matic
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -105,8 +105,8 @@ src_install() {
 }
 
 pkg_preinst() {
-	enewgroup messagebus || die "Problem adding messagebus group"
-	enewuser messagebus -1 "-1" -1 messagebus || die "Problem adding messagebus user"
+	enewgroup messagebus
+	enewuser messagebus -1 "-1" -1 messagebus
 }
 
 pkg_postinst() {

@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.219 2008/08/12 20:54:18 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.224 2008/10/07 02:55:19 jer Exp $
+
+  07 Oct 2008; Jeroen Roovers <jer@gentoo.org> dbus-1.2.3-r1.ebuild:
+  Stable for HPPA (bug #240308).
+
+  06 Oct 2008; Markus Meier <maekke@gentoo.org> dbus-1.2.3-r1.ebuild:
+  amd64/x86 stable, bug #240308
+
+  06 Oct 2008; Markus Rothe <corsair@gentoo.org> dbus-1.2.3-r1.ebuild:
+  Stable on ppc64; bug #240308
+
+*dbus-1.2.3-r1 (06 Oct 2008)
+
+  06 Oct 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/dbus-1.2.3-panic-from-dbus_signature_validate.patch,
+  +dbus-1.2.3-r1.ebuild:
+  Fix potential DoS issue. fdo bug #17803. Gentoo bug #240308
+
+  06 Oct 2008; <steev@gentoo.org> dbus-1.0.2-r2.ebuild, dbus-1.1.4.ebuild,
+  dbus-1.1.20.ebuild, dbus-1.2.1.ebuild, dbus-1.2.3.ebuild:
+  Remove the autotools calls, and the enewuser/enewgroup || die calls.
 
 *dbus-1.2.3 (12 Aug 2008)
 
