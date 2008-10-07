@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.41 2008/10/01 15:43:55 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.42 2008/10/05 16:53:38 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -128,7 +128,7 @@ JAVA_ANT_CLASSPATH_TAGS="javac xjavac"
 # default: off
 # ------------------------------------------------------------------------------
 
-EXPORT_FUNCTIONS src_configure
+[[ "${EAPI/prefix /}" = "2" ]] && EXPORT_FUNCTIONS src_configure
 
 # ------------------------------------------------------------------------------
 # @eclass-src_configure

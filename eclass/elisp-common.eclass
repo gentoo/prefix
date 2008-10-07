@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.47 2008/09/24 09:47:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.48 2008/10/05 13:56:08 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -133,6 +133,8 @@
 SITELISP=/usr/share/emacs/site-lisp
 ESITELISP=${EPREFIX}${SITELISP}
 
+# @ECLASS-VARIABLE: SITEETC
+# @DESCRIPTION:
 # Directory where packages install miscellaneous (not Lisp) files.
 SITEETC=/usr/share/emacs/etc
 ESITEETC=${EPREFIX}${SITEETC}
@@ -307,11 +309,12 @@ elisp-site-file-install() {
 
 # @FUNCTION: elisp-site-regen
 # @DESCRIPTION:
-# Regenerate site-gentoo.el file.  The old location for site initialisation
-# files of packages was /usr/share/emacs/site-lisp/.  In December 2007 this
-# has been changed to /usr/share/emacs/site-lisp/site-gentoo.d/.  Remerge of
-# packages with Emacs support is enough, the old location is still supported
-# when generating the start-up file.
+# Regenerate the site-gentoo.el file, based on packages' site initialisation
+# files in the /usr/share/emacs/site-lisp/site-gentoo.d/ directory.
+#
+# Note: Before December 2007, site initialisation files were installed in
+# /usr/share/emacs/site-lisp/.  For backwards compatibility, this location is
+# still supported when generating site-gentoo.el.
 
 elisp-site-regen() {
 	local i sf line firstrun obsolete

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.220 2008/09/19 01:16:04 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.221 2008/10/06 12:49:43 jmbsvicetto Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -232,8 +232,8 @@ kde_src_unpack() {
 # @FUNCTION: kde_src_compile
 # @USAGE: [ myconf ] [ configure ] [ make ] [ all ]
 # @DESCRIPTION:
-# This function compiles the sources. It takes care of "cannot write to .kde or
-# .qt"-problem due to sandbox and some other sandbox issues.
+# This function compiles the sources. It takes care of "cannot write to .kde
+# or .qt"-problem due to sandbox and some other sandbox issues.
 #
 # If no argument is given, all is assumed.
 kde_src_compile() {

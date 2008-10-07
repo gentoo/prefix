@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.8 2008/10/02 06:49:02 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.9 2008/10/07 01:41:36 jmbsvicetto Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -338,6 +338,7 @@ kde-base/kdeutils kde-base/sweeper
 kde-base/kdewebdev kde-base/kfilereplace
 kde-base/kdewebdev kde-base/kimagemapeditor
 kde-base/kdewebdev kde-base/klinkstatus
+kde-base/kdewebdev kde-base/kommander
 kde-base/kdewebdev kde-base/kxsldbg
 kde-base/kdewebdev kde-base/quanta
 '
