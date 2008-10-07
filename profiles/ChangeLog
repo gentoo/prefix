@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1929 2008/10/05 02:56:48 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1934 2008/10/06 19:54:34 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove vntex masks, its gone
+
+  06 Oct 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  remove media-gfx/hugin-0.7.0* mask
+
+  06 Oct 2008; Olivier Crête <tester@gentoo.org> package.mask:
+  Mask net-im/tmsnc, per bug #240045
+
+  06 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Unmask TeX Live 2008
+
+  05 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask latest libspiff as it breaks api
 
   05 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   package.mask:

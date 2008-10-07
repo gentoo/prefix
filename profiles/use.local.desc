@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3934 2008/10/04 19:47:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3938 2008/10/06 07:27:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1077,6 +1077,9 @@ mail-filter/dovecot-antispam:dspam - Build mail-filter/dspam backend
 mail-filter/dovecot-antispam:mailtrain - Build mailtrain backend
 mail-filter/dovecot-antispam:signature-log - Build signature-log backend
 mail-filter/dspam:daemon -  Enable support for DSPAM to run in --daemon mode 
+mail-filter/dspam:debug -  Enable debugging support (don't enable this unless something needs testing!) 
+mail-filter/dspam:debug-bnr -  Activates debugging output for Bayesian Noise Reduction 
+mail-filter/dspam:debug-verbose -  Cause DSPAM produce verbose debug output and write them into LOGDIR/dspam.debug file. Never enable this for production builds! 
 mail-filter/dspam:large-domain -  Builds for large domain rather than for domain scale 
 mail-filter/dspam:user-homedirs -  uild with user homedir support 
 mail-filter/dspam:virtual-users -  Build with virtual-users support 
@@ -1136,7 +1139,10 @@ media-fonts/dejavu:fontforge - Use media-gfx/fontforge to build fonts from sourc
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
 media-fonts/terminus-font:a-like-o - Changes view of letter 'a' - a looks like o (see homepage)
 media-fonts/terminus-font:bolddiag - Boldified diagonal parts of '4', 'k', 'x' and some other chars
+media-fonts/terminus-font:pcf - Intall Portable Compiled Font (PCF) (required for X11)
+media-fonts/terminus-font:psf - Install PC Screen Font (PSF) with unicode data (for linux console)
 media-fonts/terminus-font:quote - Changes view of quotes: symmetric ` and ' instead of asymmetric one (see homepage)
+media-fonts/terminus-font:raw - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux)
 media-fonts/terminus-font:ru-dv - Changes view of Russian letters 'de' and 've' (see homepage)
 media-fonts/terminus-font:ru-g - Changes view of Russian letter 'ge' (see homepage)
 media-fonts/terminus-font:ru-i - Changes view of Russian letter 'i' - not like Latin u, but like "mirrored" N (see homepage)
@@ -1189,6 +1195,10 @@ media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
 media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
 media-libs/libass:enca - Enables support for charset discovery and conversion.
+media-libs/libcanberra:alsa - Enables ALSA sound driver.
+media-libs/libcanberra:gstreamer - Enables gstreamer sound driver. Not useful when alsa or pulseaudio is available.
+media-libs/libcanberra:gtk - Enables building of gtk+ helper library, gtk+ runtime sound effects and the canberra-gtk-play utility. To enable the gtk+ sound effects add canberra-gtk-module to the colon separated list of modules in the GTK_MODULES environment variable.
+media-libs/libcanberra:pulseaudio - Enables PulseAudio sound driver that should be able to support positional event sounds. This is the preferred choice for best sound events experience and picked by default if compiled in and possible to use at runtime.
 media-libs/libdc1394:juju - Use the new juju firewire stack in the Linux kernel
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libifp:module - Build kernel module for non-root usage
@@ -2162,6 +2172,7 @@ sci-chemistry/ghemical:mopac7 - Apply compilation fix for sci-chemistry/mopac7 s
 sci-chemistry/ghemical:openbabel - Use sci-chemistry/openbabel for file conversions
 sci-chemistry/ghemical:toolbar - Build the shortcuts toolbar
 sci-chemistry/gromacs:double-precision - More precise calculations at the expense of speed
+sci-chemistry/gromacs:single-precision - Single precision version of gromacs
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd 
 sci-chemistry/pymol:apbs - Build the apbs plugin tool.
 sci-chemistry/pymol:shaders - Build with Shaders support - good for high-end 3D video cards.
