@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.1.ebuild,v 1.1 2008/09/08 20:40:54 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.1.ebuild,v 1.2 2008/10/05 20:06:58 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,8 @@ SLOT="0"
 IUSE="debug doc test"
 
 RDEPEND=">=app-text/ghostscript-gpl-8.61-r1"
-DEPEND="doc? ( app-doc/doxygen )
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )
 	test? ( x11-libs/cairo
 		dev-util/pkgconfig )"
 

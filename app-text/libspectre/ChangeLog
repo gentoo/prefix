@@ -1,6 +1,10 @@
 # ChangeLog for app-text/libspectre
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/ChangeLog,v 1.14 2008/09/25 15:10:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/ChangeLog,v 1.15 2008/10/05 20:06:58 flameeyes Exp $
+
+  05 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  libspectre-0.2.1.ebuild:
+  Fix build-time dependencies.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> libspectre-0.2.0.ebuild:
   Stable for HPPA (bug #236971).
