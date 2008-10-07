@@ -1,16 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.5.ebuild,v 1.5 2008/10/06 23:55:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.6-r1.ebuild,v 1.2 2008/10/05 20:17:57 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils
 if [[ ${PV} == "9999" ]] ; then
-	ECVS_SERVER="savannah.gnu.org:/cvsroot/nano"
-	ECVS_MODULE="nano"
-	ECVS_AUTH="pserver"
-	ECVS_USER="anonymous"
-	inherit cvs
+	ESVN_REPO_URI="svn://svn.savannah.gnu.org/nano/trunk/nano"
+	inherit subversion
 else
 	MY_P=${PN}-${PV/_}
 	SRC_URI="http://www.nano-editor.org/dist/v${PV:0:3}/${MY_P}.tar.gz"
@@ -29,8 +26,13 @@ DEPEND=">=sys-libs/ncurses-5.2
 	!ncurses? ( slang? ( sys-libs/slang ) )"
 
 src_unpack() {
-	unpack ${A}
+	if [[ ${PV} == "9999" ]] ; then
+		subversion_src_unpack
+	else
+		unpack ${A}
+	fi
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-cut-paste-segv.patch
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi

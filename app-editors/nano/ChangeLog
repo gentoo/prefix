@@ -1,6 +1,41 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.205 2008/09/07 06:07:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.215 2008/10/06 23:55:02 ranger Exp $
+
+  06 Oct 2008; Brent Baude <ranger@gentoo.org> nano-2.1.5.ebuild:
+  stable ppc, bug 240034
+
+  06 Oct 2008; Brent Baude <ranger@gentoo.org> nano-2.1.5.ebuild:
+  stable ppc64, bug 240034
+
+  06 Oct 2008; Brent Baude <ranger@gentoo.org> nano-2.0.9.ebuild:
+  stable ppc64, bug 240032
+
+  06 Oct 2008; Brent Baude <ranger@gentoo.org> nano-2.0.9.ebuild:
+  stable ppc, bug 240032
+
+  06 Oct 2008; Markus Meier <maekke@gentoo.org> nano-2.1.5.ebuild:
+  amd64/x86 stable, bug #240034
+
+  06 Oct 2008; Markus Meier <maekke@gentoo.org> nano-2.0.9.ebuild:
+  amd64/x86 stable, bug #240032
+
+  06 Oct 2008; Jeroen Roovers <jer@gentoo.org> nano-2.0.9.ebuild:
+  Stable for HPPA (bug #240032).
+
+  06 Oct 2008; Jeroen Roovers <jer@gentoo.org> nano-2.1.5.ebuild:
+  Stable for HPPA (bug #240034).
+
+*nano-2.1.6-r1 (05 Oct 2008)
+
+  05 Oct 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/nano-2.1.6-cut-paste-segv.patch, +nano-2.1.6-r1.ebuild:
+  Add fix from upstream for segv when cutting & pasting between files.
+
+*nano-2.1.6 (05 Oct 2008)
+
+  05 Oct 2008; Mike Frysinger <vapier@gentoo.org> +nano-2.1.6.ebuild:
+  Version bump.
 
 *nano-2.0.9 (07 Sep 2008)
 
