@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 src_compile() {
-	MYXOBJS=""
+	local MYXOBJS=""
 	[[ ${CHOST} == *-darwin* ]] && MYXOBJS="strverscmp.o"
 	
 	emake \
