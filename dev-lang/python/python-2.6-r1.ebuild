@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.ebuild,v 1.1 2008/10/05 00:55:31 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6-r1.ebuild,v 1.1 2008/10/06 12:15:23 hawking Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -87,11 +87,11 @@ src_unpack() {
 	fi
 
 	# python has some gcc-apple specific CFLAGS built in... rip them out
-	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
+#	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# python doesn't build a libpython2.5.dylib by itself...
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-libpython2.5.patch
+	epatch "${FILESDIR}"/${PN}-2.6-darwin-libpython2.6.patch
 	# and to build this lib, we need -fno-common, which python doesn't use, and
 	# to have _NSGetEnviron being used, which by default it isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
@@ -105,14 +105,14 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-platdir-runshared.patch
 
 	# on hpux, use gcc to link if used to compile
-	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
+#	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
 	# better use mutexes on aix5 instead of semaphores.
 #	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
 	# build shared library on aix
-	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
+#	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
 	# at least IRIX starts spitting out ugly errors, but we want to use prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
@@ -179,10 +179,6 @@ src_compile() {
 		&& myconf="${myconf} --enable-unicode=ucs2" \
 		|| myconf="${myconf} --enable-unicode=ucs4"
 
-	use threads \
-		&& myconf="${myconf} --with-threads" \
-		|| myconf="${myconf} --without-threads"
-
 	src_configure
 
 	if tc-is-cross-compiler ; then
@@ -212,22 +208,23 @@ src_compile() {
 	econf \
 		--with-fpectl \
 		--enable-shared \
-		`use_enable ipv6` \
+		$(use_enable ipv6) \
+		$(use_with threads) \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
-		${myconf} || die
+		${myconf}
 	emake || die "Parallel make failed"
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# create libpython on Darwin
-		emake libpython2.5.dylib || die
+		emake libpython2.6.dylib || die
 	fi
 }
 
 src_install() {
 	dodir /usr
 	src_configure
-	make DESTDIR="${D}" altinstall maninstall || die
+	emake DESTDIR="${D}" altinstall maninstall || die
 
 	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
 
@@ -264,8 +261,8 @@ src_install() {
 	doins "${S}"/Makefile.pre.in
 
 	if use examples ; then
-		mkdir -p "${ED}"/usr/share/doc/${P}/examples
-		cp -r "${S}"/Tools "${ED}"/usr/share/doc/${P}/examples
+		insinto /usr/share/doc/${PF}/examples
+		doins -r "${S}"/Tools || die "doins failed"
 	fi
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
@@ -274,10 +271,7 @@ src_install() {
 
 pkg_postrm() {
 	eselect python update --ignore 3.0
-
-	python_mod_cleanup /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" == "lib" ]] || \
-		python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }
 
 pkg_postinst() {
@@ -287,12 +281,8 @@ pkg_postinst() {
 	eselect python update --ignore 3.0
 	python_version
 
-	python_mod_optimize
 	python_mod_optimize -x "(site-packages|test)" \
-						/usr/lib/python${PYVER}
-	[[ "$(get_libdir)" == "lib" ]] || \
-		python_mod_optimize -x "(site-packages|test)" \
-							/usr/$(get_libdir)/python${PYVER}
+						/usr/$(get_libdir)/python${PYVER}
 }
 
 src_test() {
