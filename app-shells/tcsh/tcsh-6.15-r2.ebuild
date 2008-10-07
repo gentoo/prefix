@@ -47,6 +47,10 @@ src_unpack() {
 		eend $?
 	fi
 
+	# unify ECHO behaviour
+	echo "#undef ECHO_STYLE" >> config_f.h
+	echo "#define ECHO_STYLE      BOTH_ECHO" >> config_f.h
+
 	eprefixify "${WORKDIR}"/tcsh-config/*
 }
 
