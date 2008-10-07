@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/swh-plugins
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/ChangeLog,v 1.37 2008/07/22 08:42:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/ChangeLog,v 1.38 2008/10/05 11:31:01 aballier Exp $
+
+  05 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  swh-plugins-0.4.15.ebuild:
+  Add cvs to DEPEND because of stupid autopoint needing it. Bug #233422. If
+  anyone has a better solution, please shout.
 
   22 Jul 2008; Alexis Ballier <aballier@gentoo.org>
   +files/swh-plugins-0.4.15-gettext.patch, swh-plugins-0.4.15.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.5 2008/07/22 08:42:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.6 2008/10/05 11:31:01 aballier Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,7 @@ RDEPEND="media-libs/ladspa-sdk
 	>=sci-libs/fftw-3"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
+	dev-util/cvs
 	dev-util/pkgconfig"
 
 src_unpack() {
