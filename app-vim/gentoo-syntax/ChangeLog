@@ -1,6 +1,16 @@
 # ChangeLog for app-vim/gentoo-syntax
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.87 2008/08/03 15:33:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.88 2008/10/06 12:49:02 hawking Exp $
+
+*gentoo-syntax-20081006 (06 Oct 2008)
+
+  06 Oct 2008; Ali Polatel <hawking@gentoo.org>
+  -files/gentoo-syntax-20051221-metadata.patch,
+  -files/gentoo-syntax-20080717-metadata-order.patch,
+  -gentoo-syntax-20051221-r1.ebuild, -gentoo-syntax-20061106.ebuild,
+  -gentoo-syntax-20070212.ebuild, -gentoo-syntax-20080717-r1.ebuild,
+  +gentoo-syntax-20081006.ebuild:
+  Version bump. Fixes 239287. Drop old.
 
   03 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
