@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.0.2.ebuild,v 1.5 2008/10/04 20:00:18 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.0.2.ebuild,v 1.6 2008/10/05 10:10:16 armin76 Exp $
 
 EAPI="prefix"
 
