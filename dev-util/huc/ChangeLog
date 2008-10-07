@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/huc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/huc/ChangeLog,v 1.11 2007/05/15 09:10:31 bangert Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/huc/ChangeLog,v 1.12 2008/10/06 12:47:47 flameeyes Exp $
+
+  06 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> huc-0.1.ebuild:
+  Ignore the makefile and build manually, respects LDFLAGS and does not
+  strip the file. Remove COPYING file. Die if the dobin fails.
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
