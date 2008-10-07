@@ -16,10 +16,14 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 src_compile() {
+	MYXOBJS=""
+	[[ ${CHOST} == *-darwin* ]] && MYXOBJS="strverscmp.o"
+	
 	emake \
 		CC="$(tc-getCC)" \
 		CFLAGS="${CFLAGS} -DLINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" \
 		LDFLAGS="${LDFLAGS}" \
+		XOBJS="${MYXOBJS}" \
 		|| die "emake failed"
 }
 
