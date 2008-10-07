@@ -70,7 +70,6 @@ src_compile() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		extld="-shared"
 		sed -i -e '/PICFLAGS/s/-pic/-fPIC/' Makefile || die "-fPIC"
-		sed -i -e '/LIBDIR/s:/amd64$::' -e '/LIBDIR/s:/sparcv9$::' Makefile || die "arch dir"
 	fi
 	emake CDEBUGFLAGS="${CFLAGS}" \
 		SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
