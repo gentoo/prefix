@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/freemind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.41 2008/04/28 21:06:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.42 2008/10/05 13:35:01 betelgeuse Exp $
+
+  05 Oct 2008; Petteri Räty <betelgeuse@gentoo.org>
+  freemind-0.8.0-r3.ebuild:
+  Builds with jdk-1.6 so fix DEPEND. Fixes bug #239502.
 
   28 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
   -freemind-0.9.0_beta9.ebuild, -freemind-0.9.0_beta15.ebuild:
