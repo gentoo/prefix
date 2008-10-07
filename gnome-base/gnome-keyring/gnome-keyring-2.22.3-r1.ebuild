@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.1.ebuild,v 1.1 2008/04/07 20:34:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.3-r1.ebuild,v 1.1 2008/10/05 22:28:00 eva Exp $
 
 EAPI="prefix"
 
@@ -37,13 +37,16 @@ pkg_setup() {
 		$(use_enable test tests)
 		$(use_enable pam)
 		$(use_with pam pam-dir $(getpam_mod_dir))
-		--with-root-certs=/usr/share/ca-certificates/"
+		--with-root-certs=${EPREFIX}/usr/share/ca-certificates/"
 }
 
 src_unpack() {
 	gnome2_src_unpack
 
-	epatch "${FILESDIR}"/${P}-interix.patch
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+	# Backport from trunk for fixing upstream bug #511285, bug #238098
+	epatch "${FILESDIR}/${P}-warnings.patch"
+
+	epatch "${FILESDIR}"/${PN}-2.22.1-interix.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.22.1-interix3.patch
 }
 
