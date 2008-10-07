@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.6.ebuild,v 1.2 2008/06/21 18:53:45 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.6.ebuild,v 1.4 2008/10/07 02:54:22 jer Exp $
 
 EAPI="prefix"
 
