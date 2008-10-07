@@ -1,6 +1,9 @@
 # ChangeLog for app-text/clara
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.14 2007/07/22 10:10:27 omp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.15 2008/10/05 22:30:44 spock Exp $
+
+  05 Oct 2008; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
+  Respect user's CFLAGS (bug #240128).
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org> clara-20031214.ebuild:
   Remove virtual/x11 from dependencies.

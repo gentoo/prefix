@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.16 2007/07/22 10:10:27 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.17 2008/10/05 22:30:44 spock Exp $
 
 EAPI="prefix"
 
@@ -14,6 +14,12 @@ KEYWORDS="~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="x11-libs/libX11"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	sed -i -e "s/CFLAGS = \(.*\)/CFLAGS = ${CFLAGS} \1/" Makefile
+}
 
 src_compile() {
 	emake || die
