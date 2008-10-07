@@ -1,22 +1,26 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.ebuild,v 1.3 2008/07/01 19:30:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.1.ebuild,v 1.1 2008/10/05 15:18:15 ulm Exp $
 
 EAPI="prefix"
 
 WANT_AUTOMAKE=1.9
 
-inherit eutils flag-o-matic multilib autotools
+inherit autotools eutils flag-o-matic multilib versionator
 
+MY_PV=$(get_version_component_range 1-3)
+MY_P=${PN}-${MY_PV}
+SRC_P=${PN}-$(replace_version_separator 3 "-")
 DOC_P=${PN}-2.3.0
+
 DESCRIPTION="Open Motif"
 HOMEPAGE="http://www.motifzone.org/"
-SRC_URI="ftp://ftp.ics.com/openmotif/${PV%.*}/${PV}/${P}.tar.gz
+SRC_URI="ftp://ftp.ics.com/openmotif/${MY_PV%.*}/${MY_PV}/${SRC_P}.tar.gz
 	doc? ( http://www.motifzone.net/files/documents/${DOC_P}-manual.pdf.tgz )"
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc examples jpeg png unicode xft"
 
 # make people unmerge motif-config and all previous slots
@@ -34,6 +38,8 @@ RDEPEND="!x11-libs/motif-config
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	x11-misc/xbitmaps"
+
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	# clean up orphaned cruft left over by motif-config
@@ -65,28 +71,29 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# fix linking problem on FreeBSD, bug 219040
-	epatch "${FILESDIR}/${PN}-2.3.0-freebsd-libiconv.patch"
-
-	# add missing conditional for USE=-xft, bug 229779
-	epatch "${FILESDIR}/${P}-XmRenderT-no-xft.patch"
+	# display stippled multilist items correctly, bug 215984
+	epatch "${FILESDIR}/${MY_P}-multilist-stipple.patch"
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
 
-	# fix libtool-2.2 breakage, bug 220599
-	sed -i -e 's/LT_HAVE/FINDXFT_HAVE/g' ac_find_xft.m4
-
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
+
+	# remove non-prefix paths
+	epatch "${FILESDIR}"/${PN}-2.3.1-prefix-sanitise.patch
+	# Solaris 11 fix
+	[[ ${CHOST} == *-solaris2.11 ]] && epatch "${FILESDIR}"/${PN}-2.3.1-solaris-2.11.patch
 
 	AT_M4DIR=.  eautoreconf
 #	eautomake
 }
 
 src_compile() {
-	if [[ ${CHOST} == *-interix* ]]; then
-		append-ldflags -liconv
+	if use !elibc_glibc; then
+		# configure script is messed up in libiconv detection (thinks it isn't
+		# necessary)
+		use unicode && append-ldflags -liconv
 	fi
 
 	# get around some LANG problems in make (#15119)
@@ -100,6 +107,10 @@ src_compile() {
 
 	# feel free to fix properly if you care
 	append-flags -fno-strict-aliasing
+
+	# For Solaris Xos_r.h :(
+	[[ ${CHOST} == *-solaris2.11 ]] && \
+		append-flags -DNEED_XOS_R_H=1
 
 	econf --with-x \
 		$(use_enable unicode utf8) \
@@ -129,7 +140,7 @@ src_install() {
 	fi
 	rm -rf "${ED}"/usr/share/Xm
 
-	dodoc README RELEASE RELNOTES BUGREPORT TODO
+	dodoc BUGREPORT ChangeLog README RELEASE RELNOTES TODO
 	use doc && cp "${WORKDIR}"/*.pdf "${ED}"/usr/share/doc/${PF}
 }
 
