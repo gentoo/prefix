@@ -1,0 +1,14 @@
+--- texmfind
++++ texmfind
+@@ -171,8 +171,10 @@
+ 
+ [[ $# == 0 ]] && badargs "n"
+ 
++[[ `type -t getopt-long` == file ]] && GETOPT=getopt-long
++
+ getopt_tmp=\
+-$(getopt -o +EPGihbln \
++$(${GETOPT-getopt} -o +EPGihbln \
+          --long extended-regexp \
+          --long perl-regexp \
+          --long basic-regexp \

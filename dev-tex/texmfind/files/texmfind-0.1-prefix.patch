@@ -1,0 +1,17 @@
+--- texmfind
++++ texmfind
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # vim: set foldmethod=marker tw=0 commentstring=\ #%s :
+ 
+ ########################################################################
+@@ -29,7 +29,7 @@
+ # Globals : #{{{
+ 
+ readonly    script_own_name="${0##*/}" # Script basename.
+-readonly    path="/usr/share/texmf-site/texmfind"
++readonly    path="@GENTOO_PORTAGE_EPREFIX@/usr/share/texmf-site/texmfind"
+ readonly    data_file="${path}/texmf_files"
+ readonly    repo="http://download.gna.org/texmfind"
+ readonly    tbw="\E[1;37m" tul="\E[0;4m" tnl="\E[0m" # bold-white, underlined, normal.

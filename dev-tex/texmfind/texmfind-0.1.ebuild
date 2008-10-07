@@ -4,20 +4,26 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Finds which ebuild provide a texmf file matching a grep regexp."
 HOMEPAGE="http://home.gna.org/texmfind"
 SRC_URI="http://download.gna.org/texmfind/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
+
+DEPEND="kernel_Darwin? ( app-misc/getopt )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${WORKDIR}"
-	echo huh
-	sed -i s:/bin/bash:@GENTOO_PORTAGE_EPREFIX@/bin/bash: texmfind
+
+	epatch "${FILESDIR}"/${P}-getopt.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify texmfind
 }
 
