@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/redcloth
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.18 2008/03/24 15:41:45 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.19 2008/10/06 16:31:40 graaff Exp $
+
+*redcloth-4.0.4 (06 Oct 2008)
+
+  06 Oct 2008; Hans de Graaff <graaff@gentoo.org> +redcloth-4.0.4.ebuild:
+  Major rewrite. Dropped keywords to give arches a chance to test, see #240301.
 
   24 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> redcloth-3.0.4.ebuild:
   amd64 stable
