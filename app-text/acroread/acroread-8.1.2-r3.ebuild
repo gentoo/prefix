@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2-r3.ebuild,v 1.3 2008/08/03 21:08:49 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2-r3.ebuild,v 1.4 2008/10/05 20:32:15 armin76 Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 RESTRICT="strip mirror"
 
+# mozilla-firefox-bin won't work because it doesn't have gtkembedmoz.so
 RDEPEND="media-libs/fontconfig
 	cups? ( net-print/cups )
 	x86? ( >=x11-libs/gtk+-2.0
