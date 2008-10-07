@@ -11,7 +11,7 @@ xfce44
 xfce44_core_package
 
 DESCRIPTION="Extensions, widgets and framework library with session management support"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="debug doc hal libnotify python"
 
 RDEPEND=">=dev-lang/perl-5.6
