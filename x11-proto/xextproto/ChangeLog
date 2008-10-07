@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xextproto
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.27 2008/06/06 21:23:49 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.28 2008/10/05 17:50:06 remi Exp $
+
+  05 Oct 2008; Rémi Cardona <remi@gentoo.org> xextproto-7.0.2.ebuild,
+  xextproto-7.0.3.ebuild:
+  add missing dep on inputproto (fixes bug #227583 and dupes)
 
 *xextproto-7.0.3 (06 Jun 2008)
 
