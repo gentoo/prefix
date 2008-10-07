@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.188 2008/09/11 12:21:01 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.189 2008/10/05 13:12:02 flameeyes Exp $
+
+  05 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  mit-krb5-1.6.3-r4.ebuild:
+  Fix obvious typo in quoting for newins.
 
 *mit-krb5-1.6.3-r4 (11 Sep 2008)
 
