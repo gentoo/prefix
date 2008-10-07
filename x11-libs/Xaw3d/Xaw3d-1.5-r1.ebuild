@@ -85,6 +85,8 @@ src_install() {
 		lib=$(echo libXaw3d.so.*)
 		ln -s ${lib} ${lib%.*}
 		ln -s ${lib} ${lib%.*.*}
+		# stupid misnamed static archive
+		mv libXaw3d.sa* libXaw3d.a
 		popd > /dev/null
 	fi
 
