@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.229 2008/09/30 20:49:07 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.230 2008/10/06 07:00:36 leio Exp $
+
+  06 Oct 2008; Mart Raudsepp <leio@gentoo.org> pango-1.22.0.ebuild:
+  Correct the glib dependency, bug 239494; remove useless epunt_cxx
 
 *pango-1.22.0 (30 Sep 2008)
 
