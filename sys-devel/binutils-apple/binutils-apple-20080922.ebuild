@@ -102,6 +102,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}-no-headers.patch
 	epatch "${FILESDIR}"/${PV}-no-oss-dir.patch
 	epatch "${FILESDIR}"/${PV}-testsuite.patch
+
+	# -pg is used and the two are incompatible
+	filter-flags -fomit-frame-pointer
 }
 
 compile_ld64() {
