@@ -32,6 +32,9 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (07 Oct 2008)
+# Zero testing, simply ecopy'd and committed. Probably needs work
+dev-tex/luatex
 
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but
