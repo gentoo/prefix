@@ -1,22 +1,22 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.26-r2.ebuild,v 1.1 2008/06/22 11:33:59 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.1 2008/10/06 07:22:36 pva Exp $
 
 EAPI="prefix 1"
 
 inherit eutils font
 
 DESCRIPTION="A clean fixed font for the console and X11"
-HOMEPAGE="http://www.is-vn.bg/hamster/jimmy-en.html"
+HOMEPAGE="http://www.is-vn.bg/hamster/"
 SRC_URI="http://www.is-vn.bg/hamster/${P}.tar.gz
 		ru-dv? ( http://www.is-vn.bg/hamster/${P}-dv1.diff.gz )
 		ru-g? ( http://www.is-vn.bg/hamster/${P}-ge1.diff.gz )
 		quote? ( http://www.is-vn.bg/hamster/${P}-gq2.diff.gz )
 		width? ( http://www.is-vn.bg/hamster/${P}-cm2.diff.gz )
 		bolddiag? ( http://www.is-vn.bg/hamster/${P}-kx3.diff.gz
-				a-like-o? ( http://www.is-vn.bg/hamster/terminus-font-4.26-kx3-ao2.diff.gz )
-				ru-i? ( http://www.is-vn.bg/hamster/terminus-font-4.26-kx3-ij1.diff.gz )
-				ru-k? ( http://www.is-vn.bg/hamster/terminus-font-4.26-kx3-ka2.diff.gz ) )
+				a-like-o? ( http://www.is-vn.bg/hamster/${P}-kx3-ao2.diff.gz )
+				ru-i? ( http://www.is-vn.bg/hamster/${P}-kx3-ij1.diff.gz )
+				ru-k? ( http://www.is-vn.bg/hamster/${P}-kx3-ka2.diff.gz ) )
 		!bolddiag? ( a-like-o? ( http://www.is-vn.bg/hamster/${P}-ao2.diff.gz )
 				ru-i? ( http://www.is-vn.bg/hamster/${P}-ij1.diff.gz )
 				ru-k? ( http://www.is-vn.bg/hamster/${P}-ka2.diff.gz ) )
@@ -24,14 +24,25 @@ SRC_URI="http://www.is-vn.bg/hamster/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="a-like-o ru-dv +ru-g quote ru-i ru-k width bolddiag"
+IUSE="a-like-o ru-dv +ru-g quote ru-i ru-k width bolddiag +psf raw +pcf"
 
-DEPEND="sys-apps/gawk
-		x11-apps/bdftopcf"
+DEPEND="dev-lang/perl
+		sys-apps/gawk
+		app-arch/gzip
+		pcf? ( x11-apps/bdftopcf )"
 RDEPEND=""
 
 FONTDIR=/usr/share/fonts/terminus
 DOCS="README README-BG"
+
+pkg_setup() {
+	# Note: that pcf fonts can be loaded by freetype even if X is not installed.
+	# That's why configuration +pcf and -X is supported, bug #155783.
+	if use X && ! use pcf ; then
+		eerror "Fonts which works with Xserver are intalled only if pcf is enabled."
+		die "Either disable X use flag or enabled pcf."
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -67,11 +78,21 @@ src_compile() {
 		--unidir="${EPREFIX}"/usr/share/consoletrans \
 		--x11dir="${EPREFIX}"/${FONTDIR}
 
-	emake psf txt pcf || die
+	if use psf; then emake psf txt || die; fi
+	if use raw; then emake raw || die; fi
+	if use pcf; then emake pcf || die; fi
 }
 
 src_install() {
-	make DESTDIR="${D}" install-psf install-acm install-ref install-pcf || die
+	if use psf; then
+		emake DESTDIR="${D}" install-psf install-uni install-acm install-ref || die
+	fi
+	if use raw; then
+		emake DESTDIR="${D}" install.raw || die
+	fi
+	if use pcf; then
+		emake DESTDIR="${D}" install-pcf || die
+	fi
 
 	font_src_install
 }

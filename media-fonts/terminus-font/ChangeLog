@@ -1,6 +1,16 @@
 # ChangeLog for media-fonts/terminus-font
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.60 2008/08/17 06:31:34 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.61 2008/10/06 07:22:36 pva Exp $
+
+*terminus-font-4.28 (06 Oct 2008)
+
+  06 Oct 2008; Peter Volkov <pva@gentoo.org> metadata.xml,
+  -terminus-font-4.26-r2.ebuild, +terminus-font-4.28.ebuild:
+  Version bump, bug #238415 reported by Arfrever Frehtes Taifersar Arahesis.
+  Fixes missing glyph problem, bug #233363, reported by Alexey Charkov.
+  Added +pcf, +psf and raw USE flags so now you can select what font formats
+  you are interested in, fixes bug #228793 reported by Nikita Ofitserov.
+  Removed broken ebuild.
 
   17 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
