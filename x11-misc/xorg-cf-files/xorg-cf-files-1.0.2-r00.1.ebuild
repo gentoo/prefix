@@ -23,4 +23,5 @@ src_install() {
 	sed -i -e "s|LibDir Concat(ProjectRoot,/lib/X11)|LibDir Concat(ProjectRoot,/$(get_libdir)/X11)|" ${ED}/usr/$(get_libdir)/X11/config/X11.tmpl || die "failed libdir sed"
 	sed -i -e "s|\(EtcX11Directory \)\(/etc/X11$\)|\1${EPREFIX}\2|" ${ED}/usr/$(get_libdir)/X11/config/X11.tmpl || die "failed etcx11dir sed"
 	sed -i -e "/#  define Solaris64bitSubdir/d" ${ED}/usr/$(get_libdir)/X11/config/sun.cf
+	sed -i -e 's/-DNOSTDHDRS//g' ${ED}/usr/$(get_libdir)/X11/config/sun.cf
 }
