@@ -10,7 +10,7 @@ XFCE_VERSION=4.4.2
 xfce44
 
 DESCRIPTION="Setting plugins"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="debug"
 
 RDEPEND="x11-libs/libX11
