@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.74.0.ebuild,v 1.1 2008/09/22 14:12:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.74.0.ebuild,v 1.2 2008/10/05 10:11:50 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -14,6 +14,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux 
 IUSE=""
 
 DEPEND="dev-libs/libxml2
+	dev-libs/libxslt
 	>=app-text/build-docbook-catalog-1.1"
 
 S=${WORKDIR}/docbook-xsl-${PV}
