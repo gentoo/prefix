@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.24.0.ebuild,v 1.1 2008/10/06 00:34:50 leio Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils autotools
+inherit gnome2
 
 DESCRIPTION="A library that provides top functionality to applications"
 HOMEPAGE="http://www.gnome.org/"
@@ -20,13 +20,6 @@ DEPEND="${RDEPEND}
 		>=dev-util/intltool-0.35"
 
 DOCS="AUTHORS ChangeLog NEWS README"
-
-src_unpack() {
-	gnome2_src_unpack
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.23.90-solaris.patch
-	eautomake
-}
 
 pkg_config() {
 	G2CONF="${G2CONF} $(use_enable debug)"
