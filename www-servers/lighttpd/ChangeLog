@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.191 2008/10/01 17:39:57 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.192 2008/10/06 20:09:17 hoffie Exp $
+
+  06 Oct 2008; Christian Hoffmann <hoffie@gentoo.org> metadata.xml:
+  adding myself to metadata (should've done that earlier probably; got
+  permission to take over by welp some weeks ago)
 
   01 Oct 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   lighttpd-1.4.20.ebuild:
