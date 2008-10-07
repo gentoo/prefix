@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/PadWalker
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.12 2007/04/14 13:59:26 mcummings Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.13 2008/10/05 14:35:55 tove Exp $
+
+*PadWalker-1.7 (05 Oct 2008)
+
+  05 Oct 2008; Torsten Veller <tove@gentoo.org> +PadWalker-1.7.ebuild:
+  Version bump
 
   14 Apr 2007; Michael Cummings <mcummings@gentoo.org> PadWalker-1.5.ebuild:
   Marking sparc stable
