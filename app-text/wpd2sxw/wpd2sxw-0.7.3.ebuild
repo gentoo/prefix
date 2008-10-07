@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2sxw/wpd2sxw-0.7.3.ebuild,v 1.1 2008/04/15 13:30:51 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2sxw/wpd2sxw-0.7.3.ebuild,v 1.2 2008/10/05 13:09:12 gentoofan23 Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ RDEPEND="gnome-extra/libgsf
 	>=app-text/libwpd-0.8.14
 	dev-lang/perl"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 src_install() {
 	make DESTDIR="${D}" install || die "install failed"
