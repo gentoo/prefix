@@ -1,6 +1,15 @@
 # ChangeLog for x11-themes/gtk-engines-nimbus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.11 2008/09/30 18:26:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.13 2008/10/06 11:31:48 gentoofan23 Exp $
+
+  06 Oct 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  gtk-engines-nimbus-0.0.17.ebuild:
+  stable amd64, bug #239861 --- Tested by Victor
+
+  05 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  gtk-engines-nimbus-0.0.12.ebuild, gtk-engines-nimbus-0.0.17.ebuild,
+  gtk-engines-nimbus-0.1.0.ebuild:
+  Add pkgconfig dependency, thanks Patrick in bug #239649.
 
 *gtk-engines-nimbus-0.1.0 (30 Sep 2008)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/gtk-engines-nimbus-0.1.0.ebuild,v 1.1 2008/09/30 18:26:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/gtk-engines-nimbus-0.1.0.ebuild,v 1.2 2008/10/05 10:07:43 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ IUSE=""
 
 RDEPEND=">=x11-libs/gtk+-2.6"
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	>=x11-misc/icon-naming-utils-0.8.1
 	dev-util/intltool"
 
