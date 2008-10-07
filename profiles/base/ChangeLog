@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.56 2008/09/30 08:38:16 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.57 2008/10/05 14:50:51 truedfx Exp $
+
+  05 Oct 2008; Harald van Dĳk <truedfx@gentoo.org> package.use.mask:
+  Mask tcl flag on nvi-1.81.6-r*, not only 1.81.6
 
   30 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
   Unmask soap for net-libs/webkit-gtk, as the necessary version is in
