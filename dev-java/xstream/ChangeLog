@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/xstream
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.17 2008/07/18 20:25:53 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/ChangeLog,v 1.18 2008/10/05 16:53:11 serkan Exp $
+
+*xstream-1.2-r3 (05 Oct 2008)
+
+  05 Oct 2008; Serkan Kaba <serkan@gentoo.org> +xstream-1.2-r3.ebuild:
+  Migrate to stax-api virtual.
 
 *xstream-1.2-r2 (18 Jul 2008)
 
