@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/django
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.26 2008/10/06 18:42:46 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.27 2008/10/07 16:00:06 pythonhead Exp $
+
+  07 Oct 2008; Rob Cakebread <pythonhead@gentoo.org>
+  +files/django-1.0-fields.py.patch:
+  Added patch file
 
   06 Oct 2008; Rob Cakebread <pythonhead@gentoo.org> django-1.0.ebuild,
   django-9999.ebuild:
