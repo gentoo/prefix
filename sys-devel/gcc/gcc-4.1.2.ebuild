@@ -48,7 +48,7 @@ DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	kernel_Darwin? ( ${CATEGORY}/odcctools )
+	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	!kernel_Darwin? ( !kernel_AIX? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
