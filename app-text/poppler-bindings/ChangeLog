@@ -1,6 +1,21 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.104 2008/10/05 17:01:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.107 2008/10/08 00:14:45 loki_val Exp $
+
+  08 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  poppler-bindings-0.8.7.ebuild:
+  Revert!Revert!
+
+  07 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-bindings-0.8.5.ebuild, poppler-bindings-0.8.7.ebuild:
+  Stop using a patch to fix the problem of linking to the original poppler
+  library, just use sed. This way we also don't have to use the kludgy
+  workaround of linking to the libpoppler.la file which was a consequence of
+  the patch not having been updated. This way, we're also not a bug sieve
+  for people who have somehow unlinked their lib from their lib64.
+
+  07 Oct 2008; nixnut <nixnut@gentoo.org> poppler-bindings-0.8.7.ebuild:
+  Stable on ppc wrt bug 239414
 
   05 Oct 2008; Jeroen Roovers <jer@gentoo.org>
   poppler-bindings-0.8.7.ebuild:
