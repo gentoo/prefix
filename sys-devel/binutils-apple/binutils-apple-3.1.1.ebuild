@@ -11,7 +11,7 @@ RESTRICT="test" # the test suite will test what's installed.
 LD64=ld64-85.2.2
 CCTOOLS=cctools-698
 
-DESCRIPTION="Darwin assembler as(1) and static linker ld(1), Xcode Tools 3.1"
+DESCRIPTION="Darwin assembler as(1) and static linker ld(1), Xcode Tools 3.1.1"
 HOMEPAGE="http://www.opensource.apple.com/darwinsource/"
 SRC_URI="http://www.gentoo.org/~grobian/distfiles/${LD64}.tar.gz
 	http://www.gentoo.org/~grobian/distfiles/${CCTOOLS}.tar.gz"
@@ -93,15 +93,15 @@ src_unpack() {
 	unpack_ld64
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PV}-as.patch
-	epatch "${FILESDIR}"/${PV}-as-dir.patch
-	epatch "${FILESDIR}"/${PV}-ranlib.patch
-	epatch "${FILESDIR}"/${PV}-libtool-ranlib.patch
-	epatch "${FILESDIR}"/${PV}-nmedit.patch
-	epatch "${FILESDIR}"/${PV}-no-efi-man.patch
-	epatch "${FILESDIR}"/${PV}-no-headers.patch
-	epatch "${FILESDIR}"/${PV}-no-oss-dir.patch
-	epatch "${FILESDIR}"/${PV}-testsuite.patch
+	epatch "${FILESDIR}"/${P}-as.patch
+	epatch "${FILESDIR}"/${P}-as-dir.patch
+	epatch "${FILESDIR}"/${P}-ranlib.patch
+	epatch "${FILESDIR}"/${P}-libtool-ranlib.patch
+	epatch "${FILESDIR}"/${P}-nmedit.patch
+	epatch "${FILESDIR}"/${P}-no-efi-man.patch
+	epatch "${FILESDIR}"/${P}-no-headers.patch
+	epatch "${FILESDIR}"/${P}-no-oss-dir.patch
+	epatch "${FILESDIR}"/${P}-testsuite.patch
 
 	# -pg is used and the two are incompatible
 	filter-flags -fomit-frame-pointer
