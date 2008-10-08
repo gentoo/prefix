@@ -1,6 +1,18 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.261 2008/10/07 02:54:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.264 2008/10/07 22:50:15 hanno Exp $
+
+*gimp-2.6.0 (07 Oct 2008)
+
+  07 Oct 2008; Hanno Boeck <hanno@gentoo.org>
+  +files/gimp-2.6-file-uri.patch, +gimp-2.6.0.ebuild:
+  Version bump, cleanup, many minor changes.
+
+  07 Oct 2008; Friedrich Oslage <bluebird@gentoo.org> gimp-2.4.6.ebuild:
+  Stable on sparc, bug #239923
+
+  07 Oct 2008; nixnut <nixnut@gentoo.org> gimp-2.4.6.ebuild:
+  Stable on ppc wrt bug 239923
 
   07 Oct 2008; Jeroen Roovers <jer@gentoo.org> gimp-2.4.6.ebuild:
   Stable for HPPA (bug #239923).

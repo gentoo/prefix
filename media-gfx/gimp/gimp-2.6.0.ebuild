@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.6.ebuild,v 1.6 2008/10/07 22:33:00 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.0.ebuild,v 1.1 2008/10/07 22:50:15 hanno Exp $
 
 EAPI="prefix"
 
-inherit gnome2 fdo-mime flag-o-matic multilib python eutils autotools
+inherit gnome2 fdo-mime flag-o-matic multilib python eutils
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
@@ -14,10 +14,9 @@ LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 
-IUSE="alsa aalib altivec curl dbus debug doc exif gtkhtml gnome hal lcms mmx mng pdf png python smp sse svg tiff wmf"
-# jpeg temporarily removed, disabling jpeg requires upstream fix which will come in 2.5
+IUSE="alsa aalib altivec curl dbus debug doc exif gtkhtml gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
 
-RDEPEND=">=dev-libs/glib-2.12.3
+RDEPEND=">=dev-libs/glib-2.18.1
 	>=x11-libs/gtk+-2.10.13
 	>=x11-libs/pango-1.12.2
 	>=media-libs/freetype-2.1.7
@@ -28,16 +27,17 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	dev-libs/libxslt
 	x11-misc/xdg-utils
 	x11-themes/hicolor-icon-theme
+	media-libs/gegl
 	aalib? ( media-libs/aalib )
 	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	hal? ( sys-apps/hal )
-	gnome? ( >=gnome-base/gnome-vfs-2.10.0
+	gnome? ( gnome-base/gvfs
 		>=gnome-base/libgnomeui-2.10.0
 		>=gnome-base/gnome-keyring-0.4.5 )
 	gtkhtml? ( =gnome-extra/gtkhtml-2* )
-	>=media-libs/jpeg-6b-r2
+	jpeg? ( >=media-libs/jpeg-6b-r2 )
 	exif? ( >=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
@@ -50,11 +50,17 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	wmf? ( >=media-libs/libwmf-0.2.8 )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.12.0
-	>=dev-util/intltool-0.31
+	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
+
+src_unpack() {
+	gnome2_src_unpack
+	cd "${S}"
+	epatch "${FILESDIR}/gimp-2.6-file-uri.patch" || die "epatch failed"
+}
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
@@ -74,9 +80,10 @@ pkg_setup() {
 		$(use_with curl libcurl) \
 		$(use_with dbus) \
 		$(use_with hal) \
-		$(use_with gnome gnomevfs) \
+		$(use_with gnome gvfs) \
+		--without-gnomevfs \
 		$(use_with gtkhtml gtkhtml2) \
-		--with-libjpeg \
+		$(use_with jpeg libjpeg) \
 		$(use_with exif libexif) \
 		$(use_with lcms) \
 		$(use_enable mmx) \
@@ -93,41 +100,14 @@ pkg_setup() {
 
 src_unpack() {
 	gnome2_src_unpack
-	epatch "${FILESDIR}/gimp-web-browser.patch"
-
-	# Workaround for MIME-type, this is fixed in gimp trunk, so we can
-	# remove this with >= 2.5
-	use svg && epatch "${FILESDIR}/gimp-svg.diff"
-
 	# interix has a problem linking gimp, although everything is there.
 	# this is solved by first extracting all the private static libs and
 	# linking the objects, which works perfectly. nobody else wants this :)
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
-
-	eautomake
-}
-
-src_compile() {
-	# workaround portage variable leakage
-	local AA=
-
-	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
-	# gimp uses floating point math, needs accuracy (#98685)
-	filter-flags "-fno-inline" "-ffast-math"
-	# gimp assumes char is signed (fixes preview corruption)
-	if use ppc || use ppc64; then
-		append-flags "-fsigned-char"
-	fi
-
-	gnome2_src_compile
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-
-	elog
-	elog "If you want Postscript file support, emerge ghostscript."
-	elog
 
 	python_mod_optimize /usr/$(get_libdir)/gimp/2.0/python \
 		/usr/$(get_libdir)/gimp/2.0/plug-ins
