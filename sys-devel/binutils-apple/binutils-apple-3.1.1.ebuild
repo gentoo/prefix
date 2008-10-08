@@ -187,8 +187,9 @@ install_cctools() {
 
 src_test() {
 	cd "${S}"/${LD64}/unit-tests/test-cases
+	# need host arch, since GNU arch doesn't do what Apple's does
 	perl ../bin/make-recursive.pl \
-		ARCH=`arch` \
+		ARCH="$(/usr/bin/arch)" \
 		RELEASEDIR="${S}"/${LD64}/src \
 		CC="$(tc-getCC)" \
 		CXX="$(tc-getCXX)" \
