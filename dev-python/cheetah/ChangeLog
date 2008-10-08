@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/cheetah
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.40 2008/10/06 04:49:39 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.41 2008/10/07 12:50:56 nixnut Exp $
+
+  07 Oct 2008; nixnut <nixnut@gentoo.org> cheetah-2.0.1.ebuild:
+  Stable on ppc wrt bug 239581
 
   06 Oct 2008; Jesus Rivero <neurogeek@gentoo.org> cheetah-0.9.18-r1.ebuild:
   Fixed Python dependency
