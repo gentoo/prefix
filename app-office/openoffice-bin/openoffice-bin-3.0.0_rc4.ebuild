@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc3.ebuild,v 1.1 2008/10/03 14:01:01 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0_rc4.ebuild,v 1.1 2008/10/07 14:31:19 suka Exp $
 
 EAPI="prefix"
 
@@ -8,13 +8,13 @@ inherit eutils fdo-mime rpm multilib
 
 IUSE="gnome java kde"
 
-BUILDID="9357"
+BUILDID="9358"
 BUILDID2="9354"
 MY_PV="${PV/_/}"
-MY_PV2="${MY_PV}_20080927"
-MY_PV3="${PV/_rc3/}-${BUILDID}"
+MY_PV2="${MY_PV}_20080930"
+MY_PV3="${PV/_rc4/}-${BUILDID}"
 BASIS="ooobasis3.0"
-MST="OOO300_m8"
+MST="OOO300_m9"
 
 if [ "${ARCH}" = "amd64" ] ; then
 	OOARCH="x86_64"
