@@ -30,7 +30,7 @@ DEPEND=">=net-misc/curl-7.16.4
 		app-editors/vim
 		app-editors/gvim ) )
 	kernel_Darwin? (
-		>=sys-devel/odcctools-20080820
+		sys-devel/binutils-apple
 		>=sys-devel/gcc-apple-4.2.1 )"
 RDEPEND="${DEPEND}"
 
