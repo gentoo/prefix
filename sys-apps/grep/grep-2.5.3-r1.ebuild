@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.3.ebuild,v 1.2 2008/09/19 21:28:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.3-r1.ebuild,v 1.2 2008/10/07 09:39:19 loki_val Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ src_unpack() {
 	EPATCH_SUFFIX="patch" \
 	EPATCH_MULTI_MSG="Applying Debian patchset (${DEB_VER}) ..." \
 	epatch ${P}~dfsg/debian/patches/
-
+	epatch "${FILESDIR}"/${P}-yesno-test-fix.patch
 	use static && append-ldflags -static
 }
 
@@ -41,6 +41,7 @@ src_compile() {
 		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		$(use_enable pcre perl-regexp) \
+		--without-included-regex \
 		|| die "econf failed"
 
 	use static || sed -i 's:-lpcre:-Wl,-Bstatic -lpcre -Wl,-Bdynamic:g' src/Makefile
