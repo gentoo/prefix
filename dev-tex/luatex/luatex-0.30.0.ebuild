@@ -89,7 +89,7 @@ src_configure() {
 src_compile() {
 	cd "${WORKDIR}/${PN}-beta-${PV}/build/texk/web2c"
 	emake \
-		LIBMPLIBDEP="/usr/$(get_libdir)/libmplib/mplib.la" \
+		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.la" \
 		LDZZIPLIB="$(pkg-config --libs zziplib)" ZZIPLIBINC="$(pkg-config --cflags zziplib)" \
 		LIBXPDFDEP="" LDLIBXPDF="$(pkg-config --libs poppler)" \
 		LIBXPDFINCLUDE="$(pkg-config --cflags poppler)"	LIBXPDFCPPFLAGS="$(pkg-config --cflags poppler)" \
@@ -101,7 +101,7 @@ src_compile() {
 src_install() {
 	cd "${WORKDIR}/${PN}-beta-${PV}/build/texk/web2c"
 	emake bindir="${ED}/usr/bin" \
-		LIBMPLIBDEP="/usr/$(get_libdir)/libmplib/mplib.la" \
+		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.la" \
 		LDZZIPLIB="$(pkg-config --libs zziplib)" ZZIPLIBINC="$(pkg-config --cflags zziplib)" \
 		LIBXPDFDEP="" LDLIBXPDF="$(pkg-config --libs poppler)" \
 		LIBXPDFINCLUDE="$(pkg-config --cflags poppler)"	LIBXPDFCPPFLAGS="$(pkg-config --cflags poppler)" \
@@ -123,9 +123,9 @@ pkg_postinst() {
 		elog "Please consider installing a recent TeX distribution"
 		elog "like TeX Live 2008 to get the full power of ${PN}"
 	fi
-	if [ "$ROOT" = "/" ] && [ -x /usr/bin/fmtutil-sys ] ; then
+	if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/bin/fmtutil-sys ] ; then
 		einfo "Rebuilding formats"
-		/usr/bin/fmtutil-sys --all &> /dev/null
+		"${EPREFIX}"/usr/bin/fmtutil-sys --all &> /dev/null
 	else
 		ewarn "Cannot run fmtutil-sys for some reason."
 		ewarn "Your formats might be inconsistent with your installed ${PN} version"
