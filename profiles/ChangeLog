@@ -1,10 +1,17 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1934 2008/10/06 19:54:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1936 2008/10/07 23:19:24 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  07 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Poppler-0.9: extend mask to cover all testing versions but warning that
+  this will be unmasked *soon*. We know what breaks. Go fix it.
+
+  07 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask new x264 snapshot
 
   06 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
   remove vntex masks, its gone
