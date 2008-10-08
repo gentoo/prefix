@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/jasper
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.41 2008/10/04 18:36:24 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.43 2008/10/07 08:36:02 phosphan Exp $
+
+  07 Oct 2008; Patrick Kursawe <phosphan@gentoo.org>
+  jasper-1.900.1-r1.ebuild, jasper-1.900.1-r2.ebuild:
+  Updated license.
+
+  07 Oct 2008; Patrick Kursawe <phosphan@gentoo.org> -jasper-1.701.0.ebuild,
+  -jasper-1.900.1.ebuild:
+  Removing obsolete versions.
 
 *jasper-1.900.1-r2 (04 Oct 2008)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r1.ebuild,v 1.10 2007/07/13 09:53:59 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r1.ebuild,v 1.11 2008/10/07 08:36:02 phosphan Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="software-based implementation of the codec specified in the JPEG-20
 HOMEPAGE="http://www.ece.uvic.ca/~mdadams/jasper/"
 SRC_URI="http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-${PV}.zip"
 
-LICENSE="JasPer"
+LICENSE="JasPer2.0"
 SLOT="0"
 KEYWORDS="~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="opengl jpeg"
@@ -21,7 +21,7 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-overflow-fix.patch
 
