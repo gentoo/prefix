@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.1.ebuild,v 1.10 2008/05/29 15:54:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.0.ebuild,v 1.1 2008/10/07 11:29:57 leio Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE=""
 
 RDEPEND=">=dev-libs/libxml2-2.6.12
@@ -28,8 +28,11 @@ DOCS="AUTHORS ChangeLog NEWS README"
 src_unpack() {
 	gnome2_src_unpack
 
-	# Fix LINGUAS
-	intltoolize --force || die "intltoolize failed"
+	# Make xml2po FHS compliant, bug #190798
+	epatch "${FILESDIR}/${P}-fhs.patch"
+
+	# If there is a need to reintroduce eautomake or eautoreconf, make sure
+	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
 }
 
 pkg_setup() {
@@ -42,11 +45,12 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	python_mod_optimize /usr/share/xml2po
+	python_version
+	python_mod_optimize /usr/lib/python${PYVER}/site-packages/xml2po
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/share/xml2po
+	python_mod_cleanup /usr/lib/python*/site-packages/xml2po
 	gnome2_pkg_postrm
 }

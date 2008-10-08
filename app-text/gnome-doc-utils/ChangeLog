@@ -1,6 +1,14 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.118 2008/08/12 23:22:24 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.119 2008/10/07 11:29:57 leio Exp $
+
+*gnome-doc-utils-0.14.0 (07 Oct 2008)
+
+  07 Oct 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-doc-utils-0.14.0-fhs.patch, +gnome-doc-utils-0.14.0.ebuild:
+  New version - correctly handles content and tooltips for links to anchor
+  elements; does not reprocess book titles when title and bookinfo/title
+  exist. FHS patch reworked to not require eautoreconf
 
   12 Aug 2008; Mart Raudsepp <leio@gentoo.org>
   -gnome-doc-utils-0.10.3.ebuild, gnome-doc-utils-0.12.0.ebuild,
