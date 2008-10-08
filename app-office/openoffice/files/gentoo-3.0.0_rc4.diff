@@ -1,0 +1,22 @@
+--- bin/package-ooo 
++++ bin/package-ooo 
+@@ -33,6 +33,7 @@
+ {
+     cat <<EOT >$1
+ #!/bin/sh
++unset PYTHONPATH
+ $OOINSTBASE/program/soffice $2 "\$@"
+ EOT
+     chmod 755 $1
+--- patches/dev300/apply 
++++ patches/dev300/apply 
+@@ -1425,7 +1425,7 @@
+ SectionOwner => aprosky
+ 
+ # system lucene classpath
+-gentoo-system-lucene.diff
++#gentoo-system-lucene.diff
+ # Allow build to proceed with PaX enabled
+ gentoo-pax-fix.diff, aprosky
+ # support server-only versions of 64bit JDKs
+
