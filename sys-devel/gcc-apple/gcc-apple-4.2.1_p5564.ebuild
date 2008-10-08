@@ -34,7 +34,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	>=${CATEGORY}/odcctools-20071104
+	${CATEGORY}/binutils-apple
 	>=dev-libs/mpfr-2.2.0_p10"
 
 S=${WORKDIR}/gcc_42-${APPLE_VERS}
