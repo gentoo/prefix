@@ -27,7 +27,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-GETMNTENT.patch
 
-	# usr/bin/libtool is provided by odcctools
+	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
 
 	# only apply conditionally, since it is simply not required everywhere

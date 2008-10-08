@@ -26,7 +26,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# usr/bin/libtool is provided by odcctools
+	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-2.61-darwin.patch
 }
 

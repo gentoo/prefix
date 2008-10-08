@@ -29,7 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-at-keywords.patch
 	epatch "${FILESDIR}"/${P}-fix-multiline-string.patch #217976
 
-	# usr/bin/libtool is provided by odcctools
+	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-2.61-darwin.patch
 }
 
