@@ -33,7 +33,7 @@ IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
-	|| ( sys-devel/odcctools
+	|| ( sys-devel/binutils-apple
 		 sys-devel/native-cctools
 		 >=sys-devel/binutils-2.16.1
 	)"
