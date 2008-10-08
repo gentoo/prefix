@@ -1,6 +1,12 @@
 # ChangeLog for app-text/lv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.25 2008/03/21 11:29:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.26 2008/10/07 16:14:06 matsuu Exp $
+
+*lv-4.51-r1 (07 Oct 2008)
+
+  07 Oct 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/lv-4.51-gentoo.patch, +lv-4.51-r1.ebuild:
+  Removed strip and clean up, bug #239874.
 
   21 Mar 2008; Christian Faulhammer <opfer@gentoo.org> lv-4.51.ebuild:
   PROVIDE for virtual/pager not needed anymore, there is a new-style virtual
