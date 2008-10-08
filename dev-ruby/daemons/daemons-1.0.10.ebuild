@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/daemons-1.0.10.ebuild,v 1.1 2008/08/13 05:48:53 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/daemons-1.0.10.ebuild,v 1.3 2008/10/07 21:10:43 bluebird Exp $
 
 EAPI="prefix"
 
