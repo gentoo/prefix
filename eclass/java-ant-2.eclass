@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.42 2008/10/05 16:53:38 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.43 2008/10/07 14:41:13 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -51,7 +51,13 @@ if [[ $? != 0 ]]; then
 	eerror "${ANT_TASKS_DEPEND}"
 	die "java-pkg_ant-tasks-depend() failed"
 fi
-JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} ${ANT_TASKS_DEPEND}"
+
+# We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
+# and ant dependencies constructed above.
+JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND}
+       ${ANT_TASKS_DEPEND}
+       ${JAVA_PKG_PORTAGE_DEP}
+       >=dev-java/javatoolkit-0.3.0-r2"
 
 # this eclass must be inherited after java-pkg-2 or java-pkg-opt-2
 # if it's java-pkg-opt-2, ant dependencies are pulled based on USE flag
@@ -61,9 +67,7 @@ elif ! hasq java-pkg-2 ${INHERITED}; then
 	eerror "java-ant-2 eclass can only be inherited AFTER java-pkg-2 or java-pkg-opt-2"
 fi
 
-# We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
-# and ant dependencies constructed above
-DEPEND=">=dev-java/javatoolkit-0.3.0-r2 ${JAVA_PKG_PORTAGE_DEP} ${JAVA_ANT_E_DEPEND}"
+DEPEND="${JAVA_ANT_E_DEPEND}"
 
 # ------------------------------------------------------------------------------
 # @global JAVA_PKG_BSFIX
