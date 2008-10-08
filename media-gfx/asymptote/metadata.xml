@@ -19,5 +19,8 @@
 		<flag name='boehm-gc'>
 			Enables using the Boehm-Demers-Weiser conservative garbage collector
 		</flag>
+		<flag name='sigsegv'>
+			Enables using <pkg>dev-libs/libsigsegv</pkg>
+		</flag>
 	</use>
 </pkgmetadata>

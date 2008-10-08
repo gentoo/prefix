@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.20 2008/09/04 07:52:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.21 2008/10/07 06:14:53 grozin Exp $
+
+*asymptote-1.43-r1 (07 Oct 2008)
+
+  07 Oct 2008; Andrey Grozin <grozin@gentoo.org>
+  +files/asymptote-1.43-r1-configure-ac.patch, +asymptote-1.43-r1.ebuild:
+  Dependencies corrected, less documentation is produced with USE=-doc.
+  Closing bugs #238108, #238121, #239063.
 
   04 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   asymptote-1.29.ebuild, asymptote-1.41.ebuild:
