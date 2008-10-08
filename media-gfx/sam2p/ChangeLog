@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/sam2p
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.31 2008/08/29 21:52:14 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.32 2008/10/07 06:02:21 zmedico Exp $
+
+  07 Oct 2008; Zac Medico <zmedico@gentoo.org> sam2p-0.45-r1.ebuild:
+  Bug #239671 - Fix the distcc workaround so it also works when ccache is
+  enabled.
 
   29 Aug 2008; Alexis Ballier <aballier@gentoo.org> sam2p-0.45-r1.ebuild:
   Nicer way to deal with distcc problems, taken from Zac's fix for bug
