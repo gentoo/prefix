@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-RESTRICT="test" # the test suite will test what's installed.
+RESTRICT="test mirror" # the test suite will test what's installed.
 
 LD64=ld64-85.2.2
 CCTOOLS=cctools-698
@@ -188,11 +188,10 @@ install_cctools() {
 src_test() {
 	cd "${S}"/${LD64}/unit-tests/test-cases
 	# need host arch, since GNU arch doesn't do what Apple's does
+	tc-export CC CXX
 	perl ../bin/make-recursive.pl \
 		ARCH="$(/usr/bin/arch)" \
 		RELEASEDIR="${S}"/${LD64}/src \
-		CC="$(tc-getCC)" \
-		CXX="$(tc-getCXX)" \
 		| perl ../bin/result-filter.pl
 }
 
