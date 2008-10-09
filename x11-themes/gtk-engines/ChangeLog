@@ -1,6 +1,14 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.128 2008/09/25 14:41:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.129 2008/10/08 12:41:57 leio Exp $
+
+*gtk-engines-2.16.0 (08 Oct 2008)
+
+  08 Oct 2008; Mart Raudsepp <leio@gentoo.org> +gtk-engines-2.16.0.ebuild:
+  New version. Lua engine is now enabled in our packages in case something
+  needs it. Smooth engine has been removed due to lack of maintainer.
+  Various improvements to the engines; clearlooks classic variant should
+  look closer to the old pre-cairo classic version.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gtk-engines-2.14.3.ebuild:
   Stable for HPPA (bug #236971).
