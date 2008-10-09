@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1936 2008/10/07 23:19:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1937 2008/10/08 12:29:46 jer Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  08 Oct 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask only www-client/opera-9.60_pre* now that the final is out.
 
   07 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Poppler-0.9: extend mask to cover all testing versions but warning that

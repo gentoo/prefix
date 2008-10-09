@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9055 2008/10/07 23:19:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9057 2008/10/08 16:08:49 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -768,12 +768,6 @@ app-crypt/cryptplug
 dev-tcltk/tclgpgme
 ~app-crypt/gpgme-0.3.14
 
-# Michael Sterrett <mr_bones_@gentoo.org> (31 Aug 2008)
-# Masked for removal.
-# Upstream seems dead and it doesn't build with nasm-2
-# https://bugs.gentoo.org/show_bug.cgi?id=210873
-media-sound/gogo
-
 # Rémi Cardona <remi@gentoo.org> (30 Aug 2008)
 # major file collisions, see bug #236124
 =media-libs/gst-plugins-good-0.10.9
@@ -801,7 +795,7 @@ www-apps/xrms
 # Jeroen Roovers <jer@gentoo.org> (26 Aug 2008)
 # www-client/opera snapshots are masked. Please read
 # http://my.opera.com/desktopteam/blog/
-=www-client/opera-9.60*
+=www-client/opera-9.60_pre*
 
 # Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
 # Beta release, still got some issues
