@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.0.ebuild,v 1.1 2008/10/07 22:50:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.0.ebuild,v 1.2 2008/10/08 09:17:26 hanno Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit gnome2 fdo-mime flag-o-matic multilib python eutils
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
-SRC_URI="mirror://gimp/v2.4/${P}.tar.bz2"
+SRC_URI="mirror://gimp/v2.6/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
