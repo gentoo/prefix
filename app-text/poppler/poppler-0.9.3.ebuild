@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.9.2.ebuild,v 1.1 2008/09/26 17:52:13 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.9.3.ebuild,v 1.1 2008/10/08 14:10:34 loki_val Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit libtool eutils flag-o-matic
 
@@ -13,13 +13,14 @@ SRC_URI="http://poppler.freedesktop.org/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc cjk jpeg zlib"
+IUSE="doc"
 
 RDEPEND=">=media-libs/freetype-2.1.8
 	>=media-libs/fontconfig-2
-	cjk? ( app-text/poppler-data )
-	jpeg? ( >=media-libs/jpeg-6b )
-	zlib? ( sys-libs/zlib )
+	app-text/poppler-data
+	>=media-libs/jpeg-6b
+	media-libs/openjpeg
+	sys-libs/zlib
 	dev-libs/libxml2
 	!app-text/pdftohtml"
 DEPEND="${RDEPEND}
@@ -33,24 +34,25 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.8.3-interix.patch
 }
 
-src_compile() {
+src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
 
-	econf \
-		--disable-poppler-qt4 \
-		--disable-poppler-glib \
-		--disable-poppler-qt \
-		--disable-gtk-test \
-		--disable-cairo-output \
-		--enable-xpdf-headers \
-		$(use_enable doc gtk-doc) \
-		$(use_enable jpeg libjpeg) \
-		$(use_enable zlib) \
+	econf 	--disable-static		\
+		--disable-poppler-qt4		\
+		--disable-poppler-glib		\
+		--disable-poppler-qt		\
+		--disable-gtk-test		\
+		--disable-cairo-output		\
+		--enable-xpdf-headers		\
+		--enable-libjpeg		\
+		--enable-libopenjpeg		\
+		--enable-zlib			\
+		$(use_enable doc gtk-doc)	\
 		|| die "configuration failed"
-	emake || die "compilation failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc README AUTHORS ChangeLog NEWS README-XPDF TODO
+	rm -f $(find "${ED}" -name '*.la')
 }

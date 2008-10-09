@@ -1,6 +1,19 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.174 2008/10/07 12:04:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.176 2008/10/08 19:27:45 armin76 Exp $
+
+  08 Oct 2008; Raúl Porcel <armin76@gentoo.org> poppler-0.8.7.ebuild:
+  alpha/ia64 stable wrt #239414
+
+*poppler-0.9.3 (08 Oct 2008)
+
+  08 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> -poppler-0.8.5.ebuild,
+  -poppler-0.9.2.ebuild, +poppler-0.9.3.ebuild:
+  Bump. Dropping jpeg and zlib useflags because they only control whether to
+  use the internal implementation or the shared lib. Dropping cjk useflag
+  because all it does is pull in a data-package. Go EAPI-2. Drop la files
+  and static archives, not used. Dropping keywords for arm hppa ia64 m68k
+  mips s390 sh sparc-fbsd cause they don't have openjpeg keyworded.
 
   07 Oct 2008; nixnut <nixnut@gentoo.org> poppler-0.8.7.ebuild:
   Stable on ppc wrt bug 239414
