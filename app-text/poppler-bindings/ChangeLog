@@ -1,6 +1,23 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.107 2008/10/08 00:14:45 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.109 2008/10/08 19:29:10 armin76 Exp $
+
+  08 Oct 2008; Raúl Porcel <armin76@gentoo.org>
+  poppler-bindings-0.8.7.ebuild:
+  alpha/ia64 stable wrt #239414
+
+*poppler-bindings-0.9.3 (08 Oct 2008)
+
+  08 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-bindings-0.9.2.ebuild, +poppler-bindings-0.9.3.ebuild:
+  Bump. Go EAPI-2. Drop la files and static archives, not used. Dropping
+  keywords for arm hppa ia64 m68k mips s390 sh sparc-fbsd cause they don't
+  have openjpeg keyworded and poppler needs that. Implement alternative
+  solution to stop building libpoppler.so using sed. Drop the stupid patch
+  and use sed, so we don't have to keep the patch up-to-date. When cairo is
+  enabled, gtk is now implicitly enabled also, since the cairo flag enables
+  a feature of the gtk flag. Die if no use flags have been selected, or we
+  wind up with empty package.
 
   08 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
   poppler-bindings-0.8.7.ebuild:
