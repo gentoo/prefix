@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3940 2008/10/07 20:47:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3942 2008/10/10 03:47:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -426,6 +426,7 @@ app-text/webgen:highlight - Enable syntax highlighting for certain plugins
 app-text/webgen:markdown - Markdown support
 app-text/webgen:textile - Textile support
 app-text/webgen:thumbnail - Thumbnail creation support using rmagick
+app-text/wklej:vim - Install vim plugin allowing to paste from vim by :Wklej
 app-text/xpdf:nodrm - Disable the drm feature decoder
 app-vim/gentoo-syntax:ignore-glep31 - Remove GLEP 31 (UTF-8 file encodings) settings 
 app-vim/vcscommand:git - Enable support for dev-util/git
@@ -1276,8 +1277,10 @@ media-sound/alsa-driver:midi - Build the sequencer (midi) modules
 media-sound/alsa-tools:midi - Build the sequencer (midi) utilities
 media-sound/alsa-utils:midi - Build the sequencer (midi) utilities
 media-sound/amarok:amazon - Enable support for downloading covers from amazon.com
+media-sound/amarok:cdaudio - Enable cdaudio functionality
 media-sound/amarok:daap -  Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing. 
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
+media-sound/amarok:mp3tunes - Enable mp3tunes integration
 media-sound/amarok:mp4 -  Build the TagLib plugin for writing tags in Mp4 container files (m4a). Please note that by enabling this USE flag, the resulting package will not be redistributable, as it links to media-libs/libmp4v2, distributed under a GPL-incompatible license. 
 media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access through libmtp
 media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb

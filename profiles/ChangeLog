@@ -1,10 +1,14 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1937 2008/10/08 12:29:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1938 2008/10/10 01:00:39 mpagano Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  10 Oct 2008; Mike Pagano <mpagano@gentoo.org> package.mask:
+  All versions of kernel that could damage e1000e hardware removed from tree.
+  Remove mask for 2.6.27 release candidate kernels.
 
   08 Oct 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
   Mask only www-client/opera-9.60_pre* now that the final is out.
