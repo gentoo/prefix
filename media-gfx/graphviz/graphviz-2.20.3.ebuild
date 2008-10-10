@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.18.ebuild,v 1.11 2008/07/05 11:49:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.20.3.ebuild,v 1.1 2008/10/09 20:22:24 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="doc examples gnome gtk java jpeg nls perl png python ruby tcl"
+IUSE="cairo cgraph doc examples gnome gtk java jpeg nls perl png python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -30,6 +30,11 @@ RDEPEND="
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.10
 	virtual/libiconv
+	cairo?  (
+		x11-libs/libXaw
+		>=x11-libs/pango-1.12
+		>=x11-libs/cairo-1.1.10
+	)
 	ruby?	( dev-lang/ruby )
 	tcl?	( >=dev-lang/tcl-8.3 )
 	gtk?	(
@@ -110,7 +115,7 @@ pkg_setup() {
 	fi
 
 	# bug 202781
-	if use gtk && ! built_with_use x11-libs/cairo svg ; then
+	if use cairo && ! built_with_use x11-libs/cairo svg ; then
 		eerror "x11-libs/cairo has to be built with svg support"
 		die "emerge x11-libs/cairo with USE=\"svg\""
 	fi
@@ -134,6 +139,8 @@ src_unpack() {
 	# This is an old version of libtool
 	rm -rf libltdl
 	sed -i -e '/libltdl/d' configure.ac || die
+	# this breaks, and it seems we don't need this "workaround"
+	sed -i -e 's/\$DARWIN9/forgetit/' configure.ac || die
 
 	# Update this file from our local libtool which is much newer than the
 	# bundled one. This allows MAKEOPTS=-j2 to work on FreeBSD.
@@ -153,7 +160,8 @@ src_unpack() {
 	sed -i -e 's:  :\t:g' doc/info/Makefile.am || die
 
 	# fix for interix.
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.18-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.20.2-interix.patch
 
 	eautoreconf
 }
@@ -163,10 +171,17 @@ src_compile() {
 
 	# Core functionality:
 	# All of X, cairo-output, gtk need the pango+cairo functionality
+	if use gtk ; then
+		myconf="${myconf} --with-x"
+	elif use cairo ; then
+		myconf="${myconf} --with-x"
+	else
+		myconf="${myconf} --without-x"
+	fi
 	myconf="${myconf}
+		$(use_with cgraph)
 		$(use_with gtk)
-		$(use_with gtk x)
-		$(use_with gtk pangocairo)
+		$(use_with cairo pangocairo)
 		--without-ming
 		--with-digcola
 		--with-ipsepcola
@@ -174,6 +189,13 @@ src_compile() {
 		--with-freetype2
 		--with-libgd
 		--without-gdk-pixbuf"
+
+	# new/experimental features, to be tested, disable for now
+	myconf="${myconf}
+		--without-sfdp
+		--without-smyrna
+		--without-digcola
+		--without-ipsepcola"
 
 	use gtk && myconf="${myconf} $(use_with gnome gnomeui)"
 
