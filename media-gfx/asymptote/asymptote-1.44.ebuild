@@ -1,9 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.43.ebuild,v 1.3 2008/07/08 10:35:25 grozin Exp $
-
-EAPI="prefix"
-
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.44.ebuild,v 1.1 2008/10/09 06:25:51 grozin Exp $
+EAPI="prefix 2"
 inherit eutils autotools elisp-common latex-package multilib python
 
 DESCRIPTION="A vector graphics language that provides a framework for technical drawing"
@@ -12,42 +10,26 @@ SRC_URI="mirror://sourceforge/asymptote/${P}.src.tgz"
 LICENSE="GPL-2"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="boehm-gc doc emacs examples fftw gsl latex python vim-syntax X"
+IUSE="+boehm-gc doc emacs examples fftw gsl +imagemagick latex python sigsegv vim-syntax X"
 
 RDEPEND=">=sys-libs/readline-4.3-r5
 	>=sys-libs/ncurses-5.4-r5
-	dev-libs/libsigsegv
-	x11-misc/xdg-utils
-	boehm-gc? ( >=dev-libs/boehm-gc-7.0 )
+	imagemagick? ( media-gfx/imagemagick[png] )
+	sigsegv? ( dev-libs/libsigsegv )
+	boehm-gc? ( >=dev-libs/boehm-gc-7.0[-nocxx] )
 	fftw? ( >=sci-libs/fftw-3.0.1 )
 	gsl? ( sci-libs/gsl )
-	X? ( dev-lang/python dev-python/imaging )
+	X? ( x11-misc/xdg-utils dev-lang/python dev-python/imaging[tk] )
 	python? ( dev-lang/python )
 	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs )
 	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )"
 DEPEND="${RDEPEND}
-	doc? ( dev-lang/perl virtual/texi2dvi )"
+	doc? ( dev-lang/perl virtual/texi2dvi virtual/latex-base media-gfx/imagemagick[png] )"
 
 pkg_setup() {
-	# checking if Boehm garbage collector was compiled with c++ support
-	if use boehm-gc; then
-		if ! built_with_use dev-libs/boehm-gc nocxx; then
-			einfo "dev-libs/boehm-gc has been compiled with nocxx use flag disabled"
-		else
-			echo
-			eerror "You have to rebuild dev-libs/boehm-gc enabling c++ support"
-			die
-		fi
-	fi
-
-	if use X && ! built_with_use dev-python/imaging tk; then
-		eerror "Please re-emerge dev-python/imaging with the USE flag 'tk'"
-		die "Missing USE flag 'tk' for dev-python/imaging"
-	fi
-
 	if use latex; then
 		# Calculating ASY_TEXMFDIR
 		local TEXMFPATH="$(kpsewhich -var-value=TEXMFSITE)"
@@ -86,11 +68,8 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# Fixing fftw and gsl enabling
+src_prepare() {
+	# Fixing fftwl, gsl, sigsegv enabling
 	epatch "${FILESDIR}/${P}-configure-ac.patch"
 	einfo "Patching configure.ac"
 	sed -e "s:Datadir/doc/asymptote:Datadir/doc/${PF}:" \
@@ -103,35 +82,34 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# for the CPPFLAGS see
 	# http://sourceforge.net/forum/forum.php?thread_id=1683277&forum_id=409349
-	local myconf="--disable-gc-debug CPPFLAGS=-DHAVE_SYS_TYPES_H"
-
-	if use boehm-gc; then
-		myconf="${myconf} --enable-gc=system"
-	else
-		myconf="${myconf} --disable-gc"
-	fi
-
-	econf ${myconf} \
+	econf CPPFLAGS=-DHAVE_SYS_TYPES_H \
+		--disable-gc-debug \
+		$(use_enable boehm-gc gc system) \
 		$(use_with fftw) \
 		$(use_with gsl) \
-		|| die "econf failed"
+		$(use_with sigsegv)
+}
 
+src_compile() {
 	emake || die "emake failed"
 
 	cd doc
 	emake asy.1 || die "emake asy.1 failed"
-	emake ${PN}.info || die "emake ${PN}.info failed"
 	if use doc; then
+		# info
+		einfo "Making info"
+		emake ${PN}.info || die "emake ${PN}.info failed"
+		# html
 		einfo "Making html docs"
 		emake ${PN}/index.html
 		einfo "Making FAQ"
 		cd FAQ
 		emake
 		cd ..
-		# pdf files
+		# pdf
 		einfo "Making pdf docs"
 		export VARTEXFONTS="${T}"/fonts
 		emake asymptote.pdf
@@ -156,10 +134,7 @@ src_install() {
 
 	# documentation
 	dodoc BUGS ChangeLog README ReleaseNotes TODO
-	cd doc
-	doman asy.1
-	doinfo ${PN}.info*
-	cd ..
+	doman doc/asy.1
 
 	# X GUI
 	if use X; then
@@ -218,6 +193,7 @@ src_install() {
 	# extra documentation
 	if use doc; then
 		cd doc
+		doinfo ${PN}.info*
 		dohtml ${PN}/*
 		cd FAQ
 		dodoc asy-faq.ascii
