@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.1 2008/08/29 18:24:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.2 2008/10/09 19:45:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-python.patch
+	epatch "${FILESDIR}"/${P}-configure-sed.patch #240556
 	epatch "${FILESDIR}"/${P}-SDL-test.patch
 	sed -i '/^Libs:/s:@LDFLAGS@::' configure || die #235511
 	sed -i '/^zzip-postinstall:/s:^:disabled-:' Makefile.in || die

@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.47 2008/08/29 18:24:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.48 2008/10/09 19:45:29 vapier Exp $
+
+  09 Oct 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/zziplib-0.13.49-configure-sed.patch, zziplib-0.13.49-r1.ebuild:
+  Fix by Elias Pipping for missing call to sed in configure #240556.
 
 *zziplib-0.13.49-r1 (29 Aug 2008)
 
