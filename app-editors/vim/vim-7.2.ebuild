@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit vim autotools
+inherit vim 
 
 VIM_VERSION="7.2"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
