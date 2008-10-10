@@ -47,6 +47,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/curl-7.17.0-strip-ldflags.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify curl-config.in || die "eprefixify failed"
 }
 
 src_compile() {
