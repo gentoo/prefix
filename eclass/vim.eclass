@@ -14,7 +14,7 @@
 # official vim*-cvs ebuilds in the tree.
 
 # gvim's GUI preference order is as follows:
-# aqua                          COCOA
+# aqua                          CARBON (not tested, 7+)
 # -aqua gtk gnome               GNOME2 (6.3-r1+, earlier uses GTK2)
 # -aqua gtk -gnome              GTK2
 # -aqua -gtk  motif             MOTIF
@@ -56,9 +56,6 @@ RDEPEND="${RDEPEND} nls? ( virtual/libintl )"
 
 if [[ ${MY_PN} == "vim-core" ]] ; then
 	IUSE="${IUSE} livecd"
-	if ! version_is_at_least "7.1.319" ; then
-		IUSE="${IUSE} aqua"
-	fi
 else
 	IUSE="${IUSE} cscope gpm perl python ruby"
 	DEPEND="${DEPEND}
@@ -110,10 +107,7 @@ if [[ $(get_major_version ) -ge 7 ]] ; then
 	#		mzscheme? ( dev-scheme/mzscheme )"
 	#fi
 	if [[ ${MY_PN} == gvim ]] ; then
-		IUSE="${IUSE} netbeans nextaw"
-		if ! version_is_at_least "7.1.319" ; then
-			IUSE="${IUSE} aqua"
-		fi
+		IUSE="${IUSE} netbeans aqua nextaw"
 		# Vim implements netbeans external editor protocol when netbeans is
 		# enabled and doesn't necessarily need dev-util/netbeans.
 		# bug 184065
@@ -263,18 +257,6 @@ vim_src_unpack() {
 	EPATCH_SUFFIX="gz" EPATCH_FORCE="yes" \
 		epatch "${WORKDIR}"/gentoo/patches-all/
 
-	# macvim patchset needs to be applied here (because it alters src/feature.h)
-	if [[ -f ${WORKDIR}/vim-misc-prefix/macvim-patchset ]] ; then
-		epatch "${WORKDIR}"/vim-misc-prefix/macvim-patchset
-		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
-			cp "${WORKDIR}"/vim-misc-prefix/runtime/${aqua_file}  \
-			"${S}"/runtime/${aqua_file}
-		done
-	fi
-	# make sure we install our man-pages as vim, not as Vim
-	[[ ${MY_PN} != gvim ]] && \
-		sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
-
 	# Unpack an updated netrw snapshot if necessary. This is nasty. Don't
 	# ask, you don't want to know.
 	if [[ -n "${VIM_NETRW_SNAP}" ]] ; then
@@ -320,8 +302,7 @@ vim_src_unpack() {
 			&& use vim-pager ; then
 		cat <<END > "${S}"/runtime/macros/manpager.sh
 #!${EPREFIX}/bin/sh
-sed -e 's/\x1B\[[[:digit:]]\+m//g' | \\
-tr '\\267' '.' | col -b | \\
+sed -e 's/\x1B\[[[:digit:]]\+m//g' | tr '\\267' '.' | col -b | \\
 		vim \\
 			-c 'let no_plugin_maps = 1' \\
 			-c 'set nolist nomod ft=man' \\
@@ -387,9 +368,6 @@ vim_src_compile() {
 			( [[ ${MY_PN} == vim ]] && use minimal ); then
 		myconf="--with-features=tiny \
 			--enable-gui=no \
-			--enable-carbon-check=no \
-			--enable-macvim-check=no \
-			--disable-darwin \
 			--without-x \
 			--disable-perlinterp \
 			--disable-pythoninterp \
@@ -429,28 +407,15 @@ vim_src_compile() {
 		if [[ ${MY_PN} == vim ]] ; then
 			# don't test USE=X here ... see bug #19115
 			# but need to provide a way to link against X ... see bug #20093
-			myconf="${myconf} --enable-gui=no --enable-carbon-check=no --enable-macvim-check=no --disable-darwin `use_with vim-with-x x`"
+			myconf="${myconf} --enable-gui=no `use_with vim-with-x x`"
 
 		elif [[ ${MY_PN} == gvim ]] ; then
-			if ! version_is_at_least "7.1.319" && use aqua ; then
-				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=yes"
-				myconf="${myconf} --with-vim-name=Vim"
-			elif use carbon ; then
-				myconf="${myconf} --enable-carbon-check=yes --enable-macvim-check=no"
-				myconf="${myconf} --with-vim-name=Vim"
-			else
-				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=no --disable-darwin"
-				myconf="${myconf} --with-x"
-				myconf="${myconf} --with-vim-name=gvim"
-			fi
+			myconf="${myconf} --with-vim-name=gvim --with-x"
 
 			echo ; echo
-			if ! version_is_at_least "7.1.319" && use aqua ; then
-				einfo "Building gvim with the Cocoa GUI"
-				myconf="${myconf} --enable-gui=macvim"
-			elif use carbon ; then
+			if [[ $(get_major_version ) -ge 7 ]] && use aqua ; then
 				einfo "Building gvim with the Carbon GUI"
-				myconf="${myconf} --enable-gui=carbon --prefix=${EPREFIX}/Applications/Gentoo"
+				myconf="${myconf} --enable-gui=carbon"
 			elif use gtk ; then
 				if version_is_at_least 6.3.086 ; then
 					myconf="${myconf} --enable-gtk2-check"
@@ -520,11 +485,6 @@ vim_src_compile() {
 		export ac_cv_prog_STRIP="$(type -P true ) faking strip"
 	fi
 
-	# macvim needs to be configured and compiled from within the src dir
-	if [[ ${MY_PN} == gvim ]] && ! version_is_at_least "7.1.319" && use aqua ; then
-		cd src
-	fi
-
 	# We have much more cooler tools in our prefix than /usr/local
 	use prefix && myconf="${myconf} --without-local-dir"
 
@@ -532,9 +492,7 @@ vim_src_compile() {
 	econf ${myconf} || die "vim configure failed"
 
 	# The following allows emake to be used
-	if [[ ${MY_PN} != gvim ]] || version_is_at_least "7.1.319" || use !aqua ; then
-		make -j1 -C src auto/osdef.h objects || die "make failed"
-	fi
+	make -j1 -C src auto/osdef.h objects || die "make failed"
 
 	if [[ ${MY_PN} == "vim-core" ]] ; then
 		emake tools || die "emake tools failed"
@@ -565,7 +523,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR="$D" \
+				DESTDIR=${D} \
 				BINDIR="${EPREFIX}"/usr/bin \
 				MANDIR="${EPREFIX}"/usr/share/man \
 				DATADIR="${EPREFIX}"/usr/share \
@@ -620,22 +578,7 @@ vim_src_install() {
 		rm "${ED}"/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
 
 	elif [[ ${MY_PN} == gvim ]] ; then
-		if use carbon ; then
-			dodir /Applications/Gentoo
-			cp -pPR src/Vim.app "${ED}"/Applications/Gentoo/
-			# fix up dead link
-			pushd "${ED}"/Applications/Gentoo/Vim.app/Contents/Resources > /dev/null
-			rm -Rf vim
-			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION/.} vim || die
-			popd > /dev/null
-			# wrapper for starting the app
-			dodir /usr/bin
-			echo "#!/usr/bin/env bash" > "${ED}"/usr/bin/gvim
-			echo "open "${EPREFIX}"/Applications/Gentoo/Vim.app \$@" >> "${ED}"/usr/bin/gvim
-			chmod 755 "${ED}"/usr/bin/gvim
-		else
-			dobin src/gvim
-		fi
+		dobin src/gvim
 		dosym gvim /usr/bin/gvimdiff
 		dosym gvim /usr/bin/evim
 		dosym gvim /usr/bin/eview
