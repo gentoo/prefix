@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils autotools
+inherit eutils
 
 DESCRIPTION="GNU macro processor"
 HOMEPAGE="http://www.gnu.org/software/m4/m4.html"
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples nls"
 
 # remember: cannot dep on autoconf since it needs us
@@ -24,11 +24,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.4.8-darwin7.patch
-	epatch "${FILESDIR}"/${P}-winnt.patch
-
-	# this is ok on winnt, since there has to be a complete
-	# host prefix containing all the autotools required.
-	[[ ${CHOST} == *-winnt* ]] && eautoreconf
 }
 
 src_compile() {
