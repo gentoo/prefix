@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs flag-o-matic autotools
+inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A yacc-compatible parser generator"
 HOMEPAGE="http://www.gnu.org/software/bison/bison.html"
@@ -12,21 +12,12 @@ SRC_URI="mirror://gnu/bison/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
 
 RDEPEND="sys-devel/m4"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-winnt.patch
-
-	[[ ${CHOST} == *-winnt* ]] && eautoreconf
-}
 
 src_compile() {
 	use static && append-ldflags -static
