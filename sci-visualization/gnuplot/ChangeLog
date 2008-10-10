@@ -1,6 +1,11 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.81 2008/10/08 12:55:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.82 2008/10/09 15:11:32 ulm Exp $
+
+*gnuplot-4.2.4-r1 (09 Oct 2008)
+
+  09 Oct 2008; Ulrich Mueller <ulm@gentoo.org> +gnuplot-4.2.4-r1.ebuild:
+  Depend on wxGTK 2.8, thanks bicatali and leio.
 
 *gnuplot-4.2.4 (08 Oct 2008)
 
