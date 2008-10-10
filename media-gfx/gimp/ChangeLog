@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.266 2008/10/08 20:37:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.267 2008/10/09 21:27:04 hanno Exp $
+
+  09 Oct 2008; Hanno Boeck <hanno@gentoo.org>
+  +files/gimp-2.6.0-file-psd-needs-jpeg.patch, gimp-2.6.0.ebuild:
+  Fix build with USE=-jpeg.
 
   08 Oct 2008; Raúl Porcel <armin76@gentoo.org> gimp-2.4.6.ebuild:
   alpha/ia64 stable wrt #239223

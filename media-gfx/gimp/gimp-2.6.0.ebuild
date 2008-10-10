@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.0.ebuild,v 1.2 2008/10/08 09:17:26 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.0.ebuild,v 1.3 2008/10/09 21:27:04 hanno Exp $
 
 EAPI="prefix"
 
@@ -60,6 +60,7 @@ src_unpack() {
 	gnome2_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}/gimp-2.6-file-uri.patch" || die "epatch failed"
+	epatch "${FILESDIR}/${P}-file-psd-needs-jpeg.patch" || die "epatch failed"
 }
 
 pkg_setup() {
