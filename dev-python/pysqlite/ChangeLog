@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pysqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.87 2008/03/19 14:47:45 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.88 2008/10/09 20:23:41 maekke Exp $
+
+  09 Oct 2008; Markus Meier <maekke@gentoo.org> pysqlite-2.4.1.ebuild:
+  amd64/x86 stable, bug #240385
 
   19 Mar 2008; Christian Hoffmann <hoffie@gentoo.org> pysqlite-0.5.1.ebuild,
   pysqlite-1.0.1.ebuild, pysqlite-2.3.5.ebuild, pysqlite-2.4.1.ebuild:
