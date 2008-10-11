@@ -5,7 +5,7 @@
   11 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5465-r1.ebuild, gcc-apple-4.0.1_p5484.ebuild,
   gcc-apple-4.2.1_p5564.ebuild:
-  Align with toolchain.eclass
+  Align with toolchain.eclass, do create versioned links, e.g. gcc-4.2.1
 
   08 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-3.5.0_p3506-r1.ebuild, gcc-apple-4.0.1_p5363-r1.ebuild,

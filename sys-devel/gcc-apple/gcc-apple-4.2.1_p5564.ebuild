@@ -42,11 +42,13 @@ S=${WORKDIR}/gcc_42-${APPLE_VERS}
 # TPREFIX is the prefix of the CTARGET installation
 export TPREFIX=${TPREFIX:-${EPREFIX}}
 
+LIBPATH=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}
 if is_crosscompile ; then
 	BINPATH=${EPREFIX}/usr/${CHOST}/${CTARGET}/gcc-bin/${GCC_VERS}
 else
 	BINPATH=${EPREFIX}/usr/${CTARGET}/gcc-bin/${GCC_VERS}
 fi
+STDCXX_INCDIR=${LIBPATH}/include/g++-v${GCC_VERS/\.*/}
 
 src_unpack() {
 	unpack ${A}
@@ -82,12 +84,12 @@ src_compile() {
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
 		--bindir=${BINPATH} \
-		--includedir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include \
+		--includedir=${LIBPATH}/include \
 		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
-		--libdir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS} \
-		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
+		--libdir=${LIBPATH} \
+		--with-gxx-include-dir=${STDCXX_INCDIR} \
 		--host=${CHOST}"
 
 	if is_crosscompile ; then
@@ -175,8 +177,15 @@ src_install() {
 	emake -j1 DESTDIR="${D}" install || die
 	cd "${WORKDIR}"/build
 
-	use build && rm -rf "${ED}"/usr/{man,share}
-	find "${ED}" -name libiberty.a -exec rm -f {} \;
+	# Punt some tools which are really only useful while building gcc
+	find "${ED}" -name install-tools -type d -exec rm -rf "{}" \;
+
+	# Basic sanity check
+	if ! is_crosscompile ; then
+		local EXEEXT
+		eval $(grep ^EXEEXT= "${WORKDIR}"/build/gcc/config.log)
+		[[ -r ${ED}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
+	fi
 
 	# create gcc-config entry
 	dodir /etc/env.d/gcc
@@ -190,12 +199,61 @@ src_install() {
 	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
 	# we don't do multilib
-	LDPATH="${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}"
+	LDPATH="${LIBPATH}"
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man\"" >> ${gcc_envd_file}
 	echo "INFOPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"g++-v${GCC_VERS/\.*/}\"" >> ${gcc_envd_file}
 	is_crosscompile && echo "CTARGET=${CTARGET}" >> ${gcc_envd_file}
+
+	# Move <cxxabi.h> to compiler-specific directories
+	[[ -f ${D}${STDCXX_INCDIR}/cxxabi.h ]] && \
+		mv -f "${D}"${STDCXX_INCDIR}/cxxabi.h "${D}"${LIBPATH}/include/
+
+	# These should be symlinks
+	dodir /usr/bin
+	cd "${ED}"${BINPATH}
+	for x in cpp gcc g++ c++ g77 gcj gcjh gfortran ; do
+		# For some reason, g77 gets made instead of ${CTARGET}-g77...
+		# this should take care of that
+		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}
+
+		if [[ -f ${CTARGET}-${x} ]] && ! is_crosscompile ; then
+			ln -sf ${CTARGET}-${x} ${x}
+
+			# Create version-ed symlinks
+			dosym ${BINPATH}/${CTARGET}-${x} \
+				/usr/bin/${CTARGET}-${x}-${GCC_VERS}
+			dosym ${BINPATH}/${CTARGET}-${x} \
+				/usr/bin/${x}-${GCC_VERS}
+		fi
+
+		if [[ -f ${CTARGET}-${x}-${GCC_VERS} ]] ; then
+			rm -f ${CTARGET}-${x}-${GCC_VERS}
+			ln -sf ${CTARGET}-${x} ${CTARGET}-${x}-${GCC_VERS}
+		fi
+	done
+
+	# I do not know if this will break gcj stuff, so I'll only do it for
+	#	objc for now; basically "ffi.h" is the correct file to include,
+	#	but it gets installed in .../GCCVER/include and yet it does
+	#	"#include <ffitarget.h>" which (correctly, as it's an "extra" file)
+	#	is installed in .../GCCVER/include/libffi; the following fixes
+	#	ffi.'s include of ffitarget.h - Armando Di Cianno <fafhrd@gentoo.org>
+	if [[ -d ${D}${LIBPATH}/include/libffi ]] ; then
+		mv -i "${D}"${LIBPATH}/include/libffi/* "${D}"${LIBPATH}/include || die
+		rm -r "${D}"${LIBPATH}/include/libffi || die
+	fi
+
+	# Now do the fun stripping stuff
+	env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${BINPATH}"
+	env RESTRICT="" CHOST=${CTARGET} prepstrip "${D}${LIBPATH}"
+	# gcc used to install helper binaries in lib/ but then moved to libexec/
+	[[ -d ${ED}/usr/libexec/gcc ]] && \
+		env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}/usr/libexec/gcc/${CTARGET}/${GCC_VERS}"
+
+	# prune empty dirs left behind
+	find "${ED}" -type d | xargs rmdir >& /dev/null
 }
 
 pkg_postinst() {
