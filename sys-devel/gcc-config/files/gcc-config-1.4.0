@@ -329,7 +329,6 @@ switch_profile() {
 	#
 	# The funky move magic is required for proper updating of in-use files.
 	if ! is_cross_compiler ; then
-
 		# Need to cut out extra paths in multilib case and pray the first path
 		# is the "root" multilib path ... maybe some day change this to use
 		# `gcc -print-file-name` ...
