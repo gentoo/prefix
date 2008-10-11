@@ -184,18 +184,14 @@ src_install() {
 
 	gcc_envd_file="${ED}${gcc_envd_base}"
 
-	echo "PATH=\"${EPREFIX}/usr/${CHOST}/gcc-bin/${GCC_VERS}\"" > ${gcc_envd_file}
-	echo "ROOTPATH=\"${EPREFIX}/usr/${CHOST}/gcc-bin/${GCC_VERS}\"" >> ${gcc_envd_file}
+	# phase PATH/ROOTPATH out ...
+	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
+	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
+	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
+	# we don't do multilib
 	LDPATH="${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}"
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
-
-	# Since we're not multilib, we're either one of both
-	[[ ${CTARGET} == powerpc64-* || ${CTARGET} == x86_64-* ]] \
-		&& BITS="64" \
-		|| BITS="32"
-	echo "GCCBITS=\"${BITS}\"" >> ${gcc_envd_file}
-
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man\"" >> ${gcc_envd_file}
 	echo "INFOPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"g++-v${GCC_VERS/\.*/}\"" >> ${gcc_envd_file}
