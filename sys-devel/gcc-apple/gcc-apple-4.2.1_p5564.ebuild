@@ -177,9 +177,6 @@ src_install() {
 	emake -j1 DESTDIR="${D}" install || die
 	cd "${WORKDIR}"/build
 
-	# Punt some tools which are really only useful while building gcc
-	find "${ED}" -name install-tools -type d -exec rm -rf "{}" \;
-
 	# Basic sanity check
 	if ! is_crosscompile ; then
 		local EXEEXT
