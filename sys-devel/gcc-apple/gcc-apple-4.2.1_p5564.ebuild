@@ -181,7 +181,7 @@ src_install() {
 	if ! is_crosscompile ; then
 		local EXEEXT
 		eval $(grep ^EXEEXT= "${WORKDIR}"/build/gcc/config.log)
-		[[ -r ${ED}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
+		[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
 	fi
 
 	# create gcc-config entry
@@ -191,9 +191,9 @@ src_install() {
 	gcc_envd_file="${ED}${gcc_envd_base}"
 
 	# phase PATH/ROOTPATH out ...
-	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
-	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
-	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
+	echo "PATH=\"${BINPATH}\"" > ${gcc_envd_file}
+	echo "ROOTPATH=\"${BINPATH}\"" >> ${gcc_envd_file}
+	echo "GCC_PATH=\"${BINPATH}\"" >> ${gcc_envd_file}
 
 	# we don't do multilib
 	LDPATH="${LIBPATH}"
@@ -209,7 +209,7 @@ src_install() {
 
 	# These should be symlinks
 	dodir /usr/bin
-	cd "${ED}"${BINPATH}
+	cd "${D}"${BINPATH}
 	for x in cpp gcc g++ c++ g77 gcj gcjh gfortran ; do
 		# For some reason, g77 gets made instead of ${CTARGET}-g77...
 		# this should take care of that
@@ -219,9 +219,9 @@ src_install() {
 			ln -sf ${CTARGET}-${x} ${x}
 
 			# Create version-ed symlinks
-			dosym ${BINPATH}/${CTARGET}-${x} \
+			dosym ${BINPATH#${EPREFIX}}/${CTARGET}-${x} \
 				/usr/bin/${CTARGET}-${x}-${GCC_VERS}
-			dosym ${BINPATH}/${CTARGET}-${x} \
+			dosym ${BINPATH#${EPREFIX}}/${CTARGET}-${x} \
 				/usr/bin/${x}-${GCC_VERS}
 		fi
 

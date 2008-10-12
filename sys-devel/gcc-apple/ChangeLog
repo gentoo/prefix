@@ -5,6 +5,11 @@
   12 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5465-r1.ebuild, gcc-apple-4.0.1_p5484.ebuild,
   gcc-apple-4.0.1_p5488.ebuild, gcc-apple-4.2.1_p5564.ebuild:
+  Fix double prefix errors, bad me
+
+  12 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5465-r1.ebuild, gcc-apple-4.0.1_p5484.ebuild,
+  gcc-apple-4.0.1_p5488.ebuild, gcc-apple-4.2.1_p5564.ebuild:
   Don't remove install-tools, it causes hickups
 
 *gcc-apple-4.0.1_p5488 (12 Oct 2008)
