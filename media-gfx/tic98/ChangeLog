@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/tic98
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.8 2008/03/31 19:45:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.9 2008/10/11 16:16:01 maekke Exp $
+
+*tic98-1.01-r3 (11 Oct 2008)
+
+  11 Oct 2008; Markus Meier <maekke@gentoo.org> +tic98-1.01-r3.ebuild:
+  respect CFLAGS and LDFLAGS, bug #240804
 
 *tic98-1.01-r2 (31 Mar 2008)
 
