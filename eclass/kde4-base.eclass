@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.14 2008/10/04 14:51:02 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.15 2008/10/11 03:05:37 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -388,13 +388,10 @@ kde4-base_pkg_setup() {
 				;;
 		esac
 	fi
-	
-	if [[ -n ${KDEBASE} ]]; then
-		PREFIX=${KDEDIR}
-	else
-		# if PREFIX is not defined we set it to the default value of /usr
-		PREFIX="${PREFIX:-/usr}"
-	fi
+
+	# Set the prefix based on KDEDIR
+	# Make it a consequence of kdeprefix
+	PREFIX=${KDEDIR}
 
 	unset _kdedir
 

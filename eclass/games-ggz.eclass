@@ -1,29 +1,32 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.3 2008/03/26 14:35:11 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.4 2008/10/11 01:36:47 nyhm Exp $
 
 # For GGZ Gaming Zone packages
 
-EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
+eapi=${EAPI/prefix /}
+case ${eapi:-0} in
+	0|1) EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm ;;
+	2) EXPORT_FUNCTIONS src_configure src_compile src_install pkg_postinst pkg_postrm ;;
+esac
 
 HOMEPAGE="http://www.ggzgamingzone.org/"
 SRC_URI="mirror://ggz/${PV}/${P}.tar.gz"
 
 GGZ_MODDIR="/usr/share/ggz/modules"
 
-# Output the configure option to disable "General Debugging"
-games-ggz_debug() {
-	if has debug ${IUSE} && ! use debug ; then
-		echo --disable-debug
-	fi
-}
-
-games-ggz_src_compile() {
+games-ggz_src_configure() {
 	econf \
 		--disable-dependency-tracking \
 		--enable-noregistry="${GGZ_MODDIR}" \
-		$(games-ggz_debug) \
+		$(has debug ${IUSE} && ! use debug && echo --disable-debug) \
 		"$@" || die
+}
+
+games-ggz_src_compile() {
+	case ${EAPI:-0} in
+		0|1) games-ggz_src_configure "$@" ;;
+	esac
 	emake || die "emake failed"
 }
 
@@ -62,7 +65,6 @@ games-ggz_update_modules() {
 
 # Register new modules
 games-ggz_pkg_postinst() {
-	has games ${INHERITED} && games_pkg_postinst
 	games-ggz_update_modules
 }
 

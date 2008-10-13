@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.29 2008/07/18 22:53:20 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.30 2008/10/11 21:07:13 caster Exp $
 
 inherit java-utils-2
 
@@ -50,6 +50,7 @@ if [[ ${CATEGORY} = dev-java && ${PN} = commons-* ]]; then
 fi
 
 EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst
+[[ "${EAPI/prefix /}" == "2" ]] && EXPORT_FUNCTIONS src_prepare
 
 # ------------------------------------------------------------------------------
 # @eclass-pkg_setup
@@ -59,6 +60,15 @@ EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst
 java-pkg-2_pkg_setup() {
 	java-pkg_init
 	java-pkg_ensure-test
+}
+
+# ------------------------------------------------------------------------------
+# @eclass-src_prepare
+#
+# wrapper for java-utils-2_src_prepare
+# ------------------------------------------------------------------------------
+java-pkg-2_src_prepare() {
+	java-utils-2_src_prepare
 }
 
 # ------------------------------------------------------------------------------

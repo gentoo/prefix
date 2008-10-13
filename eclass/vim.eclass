@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.172 2008/07/26 14:20:50 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.173 2008/10/10 13:44:16 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -302,7 +302,7 @@ vim_src_unpack() {
 			&& use vim-pager ; then
 		cat <<END > "${S}"/runtime/macros/manpager.sh
 #!${EPREFIX}/bin/sh
-sed -e 's/\x1B\[[[:digit:]]\+m//g' | tr '\\267' '.' | col -b | \\
+sed -e 's/\x1B\[[[:digit:]]\+m//g' | col -b | \\
 		vim \\
 			-c 'let no_plugin_maps = 1' \\
 			-c 'set nolist nomod ft=man' \\

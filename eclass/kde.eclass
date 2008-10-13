@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.221 2008/10/06 12:49:43 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.222 2008/10/11 21:31:19 cryos Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -378,6 +378,8 @@ EOF
 					myconf="${myconf} --enable-libsuffix=$(get_libdir | sed s/lib//)"
 				fi
 
+				export PATH="${KDEDIR}/bin:${PATH}"
+
 				# The configure checks for kconfig_compiler do not respect PATH
 				export KCONFIG_COMPILER="${KDEDIR}/bin/kconfig_compiler"
 
@@ -407,7 +409,6 @@ EOF
 				fi
 				;;
 			make)
-				export PATH="${KDEDIR}/bin:${PATH}"
 				debug-print-section make
 				emake || die "died running emake, $FUNCNAME:make"
 				;;
@@ -437,6 +438,9 @@ kde_src_install() {
 
 	[[ -z ${KDE_S} ]] && KDE_S="${S}"
 	cd "${KDE_S}"
+
+	# Ensure that KDE binaries take precedence
+	export PATH="${KDEDIR}/bin:${PATH}"
 
 	while [[ "$1" ]]; do
 

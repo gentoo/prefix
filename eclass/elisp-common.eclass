@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.48 2008/10/05 13:56:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.49 2008/10/12 19:48:21 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -176,7 +176,7 @@ BYTECOMPFLAGS="-L ."
 elisp-compile() {
 	ebegin "Compiling GNU Emacs Elisp files"
 	${EMACS} ${EMACSFLAGS} ${BYTECOMPFLAGS} -f batch-byte-compile "$@"
-	eend $? "batch-byte-compile failed"
+	eend $? "elisp-compile: batch-byte-compile failed"
 }
 
 # #FUNCTION: elisp-comp
@@ -221,8 +221,7 @@ elisp-comp() {
 	popd
 	rm -fr ${tempdir}
 
-	eend ${ret} "batch-byte-compile failed"
-	return ${ret}
+	eend ${ret} "elisp-comp: batch-byte-compile failed"
 }
 
 # @FUNCTION: elisp-emacs-version
@@ -268,7 +267,7 @@ elisp-make-autoload-file() {
 		--eval "(setq generated-autoload-file (expand-file-name \"${f}\"))" \
 		-f batch-update-autoloads "${@-.}"
 
-	eend $? "batch-update-autoloads failed"
+	eend $? "elisp-make-autoload-file: batch-update-autoloads failed"
 }
 
 # @FUNCTION: elisp-install
@@ -284,7 +283,7 @@ elisp-install() {
 		insinto "${SITELISP}/${subdir}"
 		doins "$@"
 	)
-	eend $? "doins failed"
+	eend $? "elisp-install: doins failed"
 }
 
 # @FUNCTION: elisp-site-file-install
@@ -304,7 +303,7 @@ elisp-site-file-install() {
 	)
 	ret=$?
 	rm -f "${sf}"
-	eend ${ret} "doins failed"
+	eend ${ret} "elisp-site-file-install: doins failed"
 }
 
 # @FUNCTION: elisp-site-regen
@@ -323,7 +322,7 @@ elisp-site-regen() {
 	local tmpdir=${T:-$(mktemp -d)}
 
 	if [ ! -d "${EROOT}${SITELISP}" ]; then
-		eerror "Directory ${SITELISP} does not exist"
+		eerror "elisp-site-regen: Directory ${SITELISP} does not exist"
 		return 1
 	fi
 

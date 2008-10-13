@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.7 2007/01/15 20:27:06 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.8 2008/10/12 12:31:36 mabi Exp $
 
 # fox eclass
 #
@@ -29,7 +29,7 @@
 #
 # Some concepts borrowed from gst-plugins and gtk-sharp-component eclasses
 
-inherit eutils libtool
+inherit eutils libtool versionator
 
 
 FOX_PV="${FOX_PV:-${PV}}"
@@ -110,11 +110,19 @@ fox_src_unpack() {
 
 	# use the installed headers and library for apps
 	for d in ${FOX_APPS} ; do
-		sed -i \
-			-e "s:-I\$(top_srcdir)/include -I\$(top_builddir)/include:-I\$(includedir)/fox${FOXVER_SUFFIX}:" \
-			-e 's:../src/libFOX:-lFOX:' \
-			-e 's:\.la::' \
-			${d}/Makefile.am || die "sed ${d}/Makefile.am error"
+		if version_is_at_least "1.6.34" ${PV} ; then
+			sed -i \
+				-e "s:-I\$(top_srcdir)/include -I\$(top_builddir)/include:-I\$(includedir)/fox${FOXVER_SUFFIX}:" \
+				-e 's:$(top_builddir)/src/libFOX:-lFOX:' \
+				-e 's:\.la::' \
+				${d}/Makefile.am || die "sed ${d}/Makefile.am error"
+		else
+			sed -i \
+				-e "s:-I\$(top_srcdir)/include -I\$(top_builddir)/include:-I\$(includedir)/fox${FOXVER_SUFFIX}:" \
+				-e 's:../src/libFOX:-lFOX:' \
+				-e 's:\.la::' \
+				${d}/Makefile.am || die "sed ${d}/Makefile.am error"
+		fi
 	done
 
 	# Upstream often has trouble with version number transitions
