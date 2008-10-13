@@ -12,7 +12,7 @@ SRC_URI="http://www.openjpeg.org/openjpeg_v${PV//./_}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="tools"
 DEPEND="tools? ( >=media-libs/tiff-3.8.2 )"
 
@@ -33,9 +33,9 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" INSTALL_LIBDIR="${EPREFIX}/usr/$(get_libdir)" install || die "install failed"
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" INSTALL_LIBDIR="${EPREFIX}/usr/$(get_libdir)" install || die "install failed"
 	if use tools; then
-		emake -C codec DESTDIR="${D}" INSTALL_BINDIR="${EPREFIX}/usr/bin" install || die "install failed"
+		emake -C codec DESTDIR="${D}" PREFIX="${EPREFIX}/usr" INSTALL_BINDIR="${EPREFIX}/usr/bin" install || die "install failed"
 	fi
 	dodoc ChangeLog
 }
