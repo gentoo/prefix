@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcache/libmemcache-1.4.0_rc2-r1.ebuild,v 1.1 2007/11/28 18:51:45 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcache/libmemcache-1.4.0_rc2-r1.ebuild,v 1.2 2008/10/10 08:53:01 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -27,17 +27,21 @@ src_unpack() {
 	cd "${S}"
 	rm -rf test/unit
 	sed -i -e '/DIR/s,unit,,g' test/Makefile.am
-	sed -i -e 's,test/unit/Makefile,,g' configure.ac
+	sed -i \
+		-e 's,test/unit/Makefile,,g' \
+		-e '/^CFLAGS=.*Wall.*pipe/s,-Wall,${CFLAGS} -Wall,g' \
+		-e '/^OPTIMIZE=/d' \
+		-e '/^PROFILE=/d' \
+		configure.ac
 	eautoreconf
 }
 
 src_compile() {
-	econf
-	emake
-	emake docs
+	econf || die "econf failed"
+	emake || die "emake failed"
 }
 
 src_install() {
-	emake install DESTDIR="${D}"
+	emake install DESTDIR="${D}" || die "emake install failed"
 	dodoc ChangeLog
 }

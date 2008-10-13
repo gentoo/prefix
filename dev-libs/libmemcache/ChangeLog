@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libmemcache
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcache/ChangeLog,v 1.24 2007/12/28 19:15:19 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcache/ChangeLog,v 1.25 2008/10/10 08:53:01 robbat2 Exp $
+
+  10 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  libmemcache-1.4.0_rc2-r1.ebuild:
+  Bug #240222, use user CFLAGS.
 
   28 Dec 2007; Samuli Suominen <drac@gentoo.org>
   libmemcache-1.2.4-r2.ebuild:
