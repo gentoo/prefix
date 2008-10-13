@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Archive-Zip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/ChangeLog,v 1.59 2008/08/24 07:44:16 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/ChangeLog,v 1.60 2008/10/11 07:57:14 tove Exp $
+
+*Archive-Zip-1.25 (11 Oct 2008)
+
+  11 Oct 2008; Torsten Veller <tove@gentoo.org> +Archive-Zip-1.25.ebuild:
+  Version bump
 
 *Archive-Zip-1.24 (24 Aug 2008)
 
