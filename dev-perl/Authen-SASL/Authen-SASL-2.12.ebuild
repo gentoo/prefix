@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~gbarr/"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x64-solaris"
 IUSE="kerberos"
 SRC_TEST="do"
 
