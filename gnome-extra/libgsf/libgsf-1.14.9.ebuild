@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.9.ebuild,v 1.1 2008/10/02 20:35:34 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.9.ebuild,v 1.2 2008/10/12 10:34:25 eva Exp $
 
 EAPI="prefix"
 
@@ -51,6 +51,8 @@ src_unpack() {
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
+
+	intltoolize --force || die "intltoolize failed"
 }
 
 pkg_preinst() {
