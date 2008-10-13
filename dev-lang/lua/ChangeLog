@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.119 2008/10/01 15:31:38 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.120 2008/10/10 08:26:34 mabi Exp $
+
+*lua-5.1.4-r1 (09 Oct 2008)
+
+  09 Oct 2008; Matti Bickel <mabi@gentoo.org> +lua-5.1.4-r1.ebuild:
+  add cxx use flag for compilation with g++ (fixes bug #234622)
 
   01 Oct 2008; Matti Bickel <mabi@gentoo.org>
   +files/lua-5.1.4-deprecated.patch, +files/lua-5.1.4-test.patch:
