@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.0.ebuild,v 1.1 2008/10/07 11:29:57 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.0.ebuild,v 1.2 2008/10/12 10:31:56 eva Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,8 @@ src_unpack() {
 
 	# Make xml2po FHS compliant, bug #190798
 	epatch "${FILESDIR}/${P}-fhs.patch"
+
+	intltoolize --force || die "intltoolize failed"
 
 	# If there is a need to reintroduce eautomake or eautoreconf, make sure
 	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
