@@ -1,0 +1,67 @@
+# ChangeLog for media-libs/openjpeg
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/ChangeLog,v 1.15 2008/10/02 16:45:37 ranger Exp $
+
+  02 Oct 2008; Brent Baude <ranger@gentoo.org> openjpeg-1.3.ebuild:
+  stable ppc, bug 237418
+
+  01 Oct 2008; Brent Baude <ranger@gentoo.org> openjpeg-1.3.ebuild:
+  stable ppc64, bug 237418
+
+  28 Sep 2008; Raúl Porcel <armin76@gentoo.org> openjpeg-1.3.ebuild:
+  alpha/sparc/x86 stable wrt #237418
+
+  20 Sep 2008; Steve Dibb <beandog@gentoo.org> openjpeg-1.3.ebuild:
+  amd64 stable, bug 237418
+
+  15 Sep 2008; Brent Baude <ranger@gentoo.org> openjpeg-1.2.ebuild:
+  Marking openjpeg-1.2 ppc for bug 237032
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org> openjpeg-1.2.ebuild:
+  Stable on ppc64
+
+  01 Mar 2008; Timothy Redaelli <drizzt@gentoo.org>
+  +files/openjpeg-1.3-codec-Makefile,
+  -files/openjpeg-1.3-codec-Makefile.patch, openjpeg-1.3.ebuild:
+  Fix wrt bug #211999.
+  Thanks to Jakub Moc for reporting.
+
+*openjpeg-1.3 (01 Mar 2008)
+
+  01 Mar 2008; Timothy Redaelli <drizzt@gentoo.org>
+  +files/openjpeg-1.3-codec-Makefile.patch, +openjpeg-1.3.ebuild:
+  Version bump and install image_to_j2k and j2k_to_image tools
+  Thanks to Alexander Grahn wrt bug #211704
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org> openjpeg-1.2.ebuild:
+  alpha/sparc stable
+
+  30 Jan 2008; Raúl Porcel <armin76@gentoo.org> openjpeg-1.2.ebuild:
+  Add ~sparc wrt #206759
+
+  24 Sep 2007; Raúl Porcel <armin76@gentoo.org> openjpeg-1.2.ebuild:
+  Add ~alpha wrt #189692
+
+  09 Sep 2007; Joseph Jezak <josejx@gentoo.org> openjpeg-1.1.1.ebuild,
+  openjpeg-1.2.ebuild:
+  Added ~ppc/~ppc64 for bug #189692.
+
+  23 Aug 2007; Roy Marples <uberlord@gentoo.org>
+  files/openjpeg-1.2-Makefile.patch, openjpeg-1.2.ebuild:
+  Redo the Makefile patch so it doesn't specify install user/group and it
+  doesn't strip by default. Keyworded ~x86-fbsd, #189692.
+
+*openjpeg-1.2 (30 Jun 2007)
+
+  30 Jun 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/openjpeg-1.2-Makefile.patch, +openjpeg-1.2.ebuild:
+  Version bump.
+  Thanks to Matsuu Takuto for reporting wrt bug #183698.
+
+*openjpeg-1.1.1 (06 Mar 2007)
+
+  06 Mar 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/openjpeg-1.1.1-Makefile.patch, +metadata.xml,
+  +openjpeg-1.1.1.ebuild:
+  New ebuild, thanks to Guido wrt bug #127026
+
