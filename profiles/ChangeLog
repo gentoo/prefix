@@ -1,10 +1,46 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1938 2008/10/10 01:00:39 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1947 2008/10/12 21:51:24 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Remove mask of poppler-0.9.x testing versions. 0.10.0 is in tree.
+
+  12 Oct 2008; Matthias Schwarzott <zzam@gentoo.org> desc/lirc_devices.desc:
+  Add lirc_devices settings irlink, commandir, ite8709 and samsung.
+
+  12 Oct 2008; Thilo Bangert <bangert@gentoo.org> package.mask:
+  mask qmai-vmailmgr for removal
+
+  11 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  package.mask:
+  remove dev-libs/gmime mask since deps are now slot aware, bug #239412.
+
+  11 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  info_pkgs:
+  Added cmake to info_pkgs to get the cmake version on emerge --info output.
+
+  11 Oct 2008; Ben de Groot <yngwin@gentoo.org>
+  default-linux/package.use.mask, default/linux/package.use.mask,
+  hardened/package.use.mask:
+  Unmasking kde useflag for qtcurve-qt4 again, as we are solving the stable
+  problem with a rev-bump instead.
+
+  11 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add old intel drivers to p.mask
+
+  10 Oct 2008; Ben de Groot <yngwin@gentoo.org>
+  default-bsd/package.use.mask, default-linux/package.use.mask,
+  default/linux/package.use.mask, hardened/package.use.mask:
+  Removing use.mask of x11-themes/qtcurve-qt4 kde, as kde-4.1.2 is now
+  unmasked.
+
+  10 Oct 2008; Marcus D. Hanwell <cryos@gentoo.org> package.mask:
+  Unmasked KDE 4.1.2 and associated dependencies/extras at long last. Sorry
+  about the delay!
 
   10 Oct 2008; Mike Pagano <mpagano@gentoo.org> package.mask:
   All versions of kernel that could damage e1000e hardware removed from tree.
