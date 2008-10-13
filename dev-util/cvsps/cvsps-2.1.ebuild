@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 MY_P="${P/_/}"
 DESCRIPTION="Generates patchset information from a CVS repository"
@@ -13,7 +13,7 @@ SRC_URI="http://www.cobite.com/cvsps/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE=""
 
 DEPEND="sys-libs/zlib"
@@ -24,6 +24,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lsocket
 }
 
 src_install() {
