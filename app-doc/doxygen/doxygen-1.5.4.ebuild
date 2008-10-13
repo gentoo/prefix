@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.15 2008/07/29 08:43:12 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.16 2008/10/12 01:49:49 nerdboy Exp $
 
 EAPI="prefix 1"
 
@@ -16,7 +16,13 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solari
 IUSE="debug doc nodot qt3 latex elibc_FreeBSD"
 
 RDEPEND="qt3? ( x11-libs/qt:3 )
-	latex? ( virtual/latex-base )
+	latex? ( || (
+		( app-text/texlive-core
+		dev-texlive/texlive-latexrecommended
+		dev-texlive/texlive-genericrecommended
+		dev-texlive/texlive-fontsrecommended )
+		( app-text/tetex ) )
+		)
 	dev-lang/python
 	virtual/libiconv
 	virtual/ghostscript

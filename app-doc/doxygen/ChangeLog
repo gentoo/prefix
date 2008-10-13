@@ -1,6 +1,14 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.151 2008/09/02 23:39:15 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.152 2008/10/12 01:49:49 nerdboy Exp $
+
+  11 Oct 2008; Steve Arnold <nerdboy@gentoo.org> doxygen-1.5.6.ebuild,
+  doxygen-1.5.5.ebuild, doxygen-1.5.4.ebuild, doxygen-1.4.7.ebuild:
+  Updated latex depends for bugs 237960 and 241350 since the virtual does
+  not seem to be working very well for people.  Added several deps for
+  texlive; thanks to mephinet <mephinet@gmx.net> and <gengor@gentoo.org>
+  for helping to track down some of the needed depends (this latex/tetex 
+  thing is painful).
 
   02 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   -doxygen-1.4.4.ebuild, -doxygen-1.5.2.ebuild:
