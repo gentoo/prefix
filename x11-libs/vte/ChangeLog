@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.209 2008/09/25 14:14:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.210 2008/10/10 14:08:21 eva Exp $
+
+*vte-0.17.4 (10 Oct 2008)
+
+  10 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.17.4.ebuild:
+  New version for GNOME 2.24. Mostly bug fixes.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> vte-0.16.14.ebuild:
   Stable for HPPA (bug #236971).
