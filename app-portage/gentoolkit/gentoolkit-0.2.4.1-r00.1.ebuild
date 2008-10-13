@@ -26,6 +26,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-revdep-prefix.patch
+	epatch "${FILESDIR}"/${P}-eclean-prefix.patch
 	# revdep-rebuild got a rewrite, none of our patches still works :(
 
 	ebegin "Adjusting to prefix (sloppyly)"
