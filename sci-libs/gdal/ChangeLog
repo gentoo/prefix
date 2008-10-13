@@ -1,6 +1,14 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.45 2008/08/07 06:34:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.47 2008/10/12 14:21:06 nixnut Exp $
+
+  12 Oct 2008; nixnut <nixnut@gentoo.org> gdal-1.5.2.ebuild:
+  Stable on ppc wrt bug 241500
+
+  12 Oct 2008; Steve Arnold <nerdboy@gentoo.org> gdal-1.3.1.ebuild,
+  gdal-1.3.2.ebuild, gdal-1.4.2.ebuild, gdal-1.5.0-r1.ebuild:
+  Added die to sed invocations (although what this hs to do with perl I'm 
+  not quite sure...
 
   07 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
