@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-calculators/wcalc/wcalc-2.3.1.ebuild,v 1.1 2008/03/14 13:21:44 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-calculators/wcalc/wcalc-2.3.1.ebuild,v 1.2 2008/10/11 10:50:27 markusle Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 MYP="Wcalc-${PV}"
 DESCRIPTION="A flexible command-line scientific calculator"
@@ -21,6 +21,13 @@ DEPEND="readline? ( sys-libs/readline )
 	dev-libs/gmp"
 
 S="${WORKDIR}"/${MYP}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-parallel-build.patch
+	eautoreconf
+}
 
 src_compile() {
 	econf $(use_with readline) || die "econf failed."
