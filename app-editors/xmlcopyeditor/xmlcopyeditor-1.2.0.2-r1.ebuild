@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.2.ebuild,v 1.1 2008/09/02 11:26:24 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.2-r1.ebuild,v 1.1 2008/10/10 15:49:48 yoswink Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,9 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="guidexml"
 
-DEPEND="dev-libs/xerces-c \
+DEPEND="dev-libs/libxml2  \
+		dev-libs/libxslt  \
+		dev-libs/xerces-c \
 		dev-libs/boost    \
 		dev-libs/libpcre  \
 		app-text/aspell   \

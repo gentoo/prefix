@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/xmlcopyeditor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.9 2008/09/02 11:26:24 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.10 2008/10/10 15:49:48 yoswink Exp $
+
+*xmlcopyeditor-1.2.0.2-r1 (10 Oct 2008)
+
+  10 Oct 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  -xmlcopyeditor-1.2.0.2.ebuild, +xmlcopyeditor-1.2.0.2-r1.ebuild:
+  Add missing dependencies as per bug #239629
 
 *xmlcopyeditor-1.2.0.2 (02 Sep 2008)
 
