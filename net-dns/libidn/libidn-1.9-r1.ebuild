@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.9-r1.ebuild,v 1.1 2008/09/03 13:29:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.9-r1.ebuild,v 1.2 2008/10/12 12:19:29 ulm Exp $
 
 EAPI="prefix"
 
@@ -50,7 +50,7 @@ src_install() {
 	if use emacs; then
 		# *.el are installed by the build system
 		elisp-install ${PN} src/*.elc || die
-		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
+		elisp-site-file-install "${FILESDIR}/50${PN}-gentoo.el" || die
 	else
 		rm -rf "${ED}/usr/share/emacs"
 	fi

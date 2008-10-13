@@ -1,6 +1,9 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.87 2008/09/03 13:29:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.88 2008/10/12 12:19:29 ulm Exp $
+
+  12 Oct 2008; Ulrich Mueller <ulm@gentoo.org> libidn-1.9-r1.ebuild:
+  Specify name of Emacs site-init file explicitely.
 
 *libidn-1.9-r1 (03 Sep 2008)
 
