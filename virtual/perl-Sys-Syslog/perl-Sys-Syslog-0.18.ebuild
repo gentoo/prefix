@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/perl-Sys-Syslog-0.18.ebuild,v 1.11 2008/06/07 09:58:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/perl-Sys-Syslog-0.18.ebuild,v 1.12 2008/10/11 08:26:32 tove Exp $
 
 EAPI="prefix"
 

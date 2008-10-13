@@ -1,6 +1,16 @@
 # ChangeLog for virtual/perl-Sys-Syslog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.23 2008/08/24 08:02:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.25 2008/10/11 08:26:32 tove Exp $
+
+  11 Oct 2008; Torsten Veller <tove@gentoo.org> perl-Sys-Syslog-0.18.ebuild,
+  perl-Sys-Syslog-0.26.ebuild:
+  Add missing KEYWORDS: arm, s390, sh
+
+*perl-Sys-Syslog-0.27 (11 Oct 2008)
+
+  11 Oct 2008; Torsten Veller <tove@gentoo.org>
+  +perl-Sys-Syslog-0.27.ebuild:
+  Version bump
 
 *perl-Sys-Syslog-0.26 (24 Aug 2008)
 
