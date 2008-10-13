@@ -21,7 +21,7 @@ DEPEND="${RDEPEND}
 
 IUSE="lapack test"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 LICENSE="BSD"
 
 # whatever LDFLAGS set will break linking
@@ -138,7 +138,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	if  ! built_with_use sys-devel/gcc fortran &&
+	if ( has_version sys-devel/gcc && ! built_with_use sys-devel/gcc fortran ||
+		! has_version sys-devel/gcc ) &&
 		! has_version dev-lang/ifc
 	then
 		ewarn "To use numpy's f2py you need a fortran compiler."
