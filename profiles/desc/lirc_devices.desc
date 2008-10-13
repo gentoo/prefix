@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.9 2008/06/06 19:56:59 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.10 2008/10/12 19:47:47 zzam Exp $
 
 # This file contains descriptions of LIRC_DEVICES USE_EXPAND flags.
 
@@ -32,6 +32,7 @@ com1 - LIRC_DEVICES setting to add support for serial receiver device (defaults 
 com2 - LIRC_DEVICES setting to add support for serial receiver device (defaults on using port #2)
 com3 - LIRC_DEVICES setting to add support for serial receiver device (defaults on using port #3)
 com4 - LIRC_DEVICES setting to add support for serial receiver device (defaults on using port #4)
+commandir - LIRC_DEVICES setting to add support for commandir receiver device
 cph06x - LIRC_DEVICES setting to add support for cph06x receiver device
 creative_infracd - LIRC_DEVICES setting to add support for creative_infracd receiver device
 creative - LIRC_DEVICES setting to add support for creative receiver device
@@ -56,9 +57,11 @@ imon_rsc - LIRC_DEVICES setting to add support for imon_rsc receiver device
 inputlirc - LIRC_DEVICES setting to grab events from /dev/input/event* with inputlircd
 irdeo - LIRC_DEVICES setting to add support for irdeo receiver device
 irdeo_remote - LIRC_DEVICES setting to add support for irdeo_remote receiver device
+irlink - LIRC_DEVICES setting to add support for irlink receiver device
 irman - LIRC_DEVICES setting to add support for irman receiver device
 irreal - LIRC_DEVICES setting to add support for irreal receiver device
 it87 - LIRC_DEVICES setting to add support for it87 receiver device
+ite8709 - LIRC_DEVICES setting to add support for ite8709 receiver device
 knc_one - LIRC_DEVICES setting to add support for knc_one receiver device
 kworld - LIRC_DEVICES setting to add support for kworld receiver device
 leadtek_0007 - LIRC_DEVICES setting to add support for leadtek_0007 receiver device
@@ -91,6 +94,7 @@ remotemaster - LIRC_DEVICES setting to add support for remotemaster receiver dev
 remote_wonder_plus - LIRC_DEVICES setting to add support for Remote Wonder Plus (atiusb-based) receiver device
 sa1100 - LIRC_DEVICES setting to add support for sa1100 receiver device
 sasem - LIRC_DEVICES setting to add support for sasem receiver device
+samsung - LIRC_DEVICES setting to add support for samsung receiver device
 sb0540 - LIRC_DEVICES setting to add support for sb0540 receiver device
 serial - LIRC_DEVICES setting to add support for serial receiver device
 serial_igor_cesko - LIRC_DEVICES setting to add support for serial receiver device (with Igor Cesko design)
