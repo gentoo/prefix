@@ -1,6 +1,11 @@
 # ChangeLog for app-vim/alternate
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/alternate/ChangeLog,v 1.40 2008/09/20 08:05:29 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/alternate/ChangeLog,v 1.41 2008/10/10 14:01:51 hawking Exp $
+
+  10 Oct 2008; Ali Polatel <hawking@gentoo.org>
+  +files/alternate-2.18-hh-cc-alternation.patch, alternate-2.18.ebuild:
+  Add fixed patch for 2.18, bug 238436, thanks to Andrew Savchenko
+  <Bircoph@list.ru>.
 
 *alternate-2.18 (20 Sep 2008)
 
