@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.45 2008/07/18 17:48:31 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.46 2008/10/10 18:54:01 pythonhead Exp $
+
+*setuptools-0.6_rc9 (10 Oct 2008)
+
+  10 Oct 2008; Rob Cakebread <pythonhead@gentoo.org>
+  +setuptools-0.6_rc9.ebuild:
+  Version bump.
 
   18 Jul 2008; Santiago M. Mola <coldwind@gentoo.org>
   setuptools-0.6_rc8-r1.ebuild:
