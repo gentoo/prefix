@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.48 2008/10/09 19:45:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.49 2008/10/12 01:20:28 mr_bones_ Exp $
+
+  12 Oct 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  zziplib-0.13.49-r1.ebuild:
+  fix test with -j > 1 (bug #241186)
 
   09 Oct 2008; Mike Frysinger <vapier@gentoo.org>
   +files/zziplib-0.13.49-configure-sed.patch, zziplib-0.13.49-r1.ebuild:

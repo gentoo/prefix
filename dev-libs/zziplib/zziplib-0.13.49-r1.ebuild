@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.2 2008/10/09 19:45:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.3 2008/10/12 01:20:28 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,8 @@ src_compile() {
 
 src_test() {
 	# need this because `make test` will always return true
-	emake check || die "make check failed"
+	# tests fail with -j > 1 (bug #241186)
+	emake -j1 check || die "make check failed"
 }
 
 src_install() {
