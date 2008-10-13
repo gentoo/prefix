@@ -1,6 +1,13 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.152 2008/09/25 15:16:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.154 2008/10/11 12:14:51 eva Exp $
+
+*evince-2.24.0 (11 Oct 2008)
+
+  11 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> metadata.xml,
+  evince-2.22.2-r1.ebuild, +evince-2.24.0.ebuild:
+  New version for GNOME 2.24. Use multimedia keys, better session integration
+  and usual lot of bug fixes. Fix repoman warnings.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> evince-2.22.2-r1.ebuild:
   Stable for HPPA (bug #236971).
