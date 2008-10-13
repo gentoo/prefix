@@ -1,0 +1,30 @@
+# ChangeLog for media-libs/gegl
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.7 2008/10/13 10:35:44 hanno Exp $
+
+  13 Oct 2008; Hanno Boeck <hanno@gentoo.org>
+  +files/gegl-20-configure-ac.patch, gegl-0.0.20.ebuild:
+  Some fixes for configure call.
+
+  09 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Fix ffmpeg, raise gtk+-dep, run eautoreconf, thanks to Francisco Javier.
+
+  09 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Add mmx and sse use flags, raise gtk+ dep.
+
+  08 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Make lua conditional to doc useflag.
+
+  08 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Raise some dependencies, requires recent versions of glib and ffmpeg.
+
+  07 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Add ~amd64.
+
+*gegl-0.0.20 (07 Oct 2008)
+
+  07 Oct 2008; Hanno Boeck <hanno@gentoo.org>
+  +files/gegl-0.0.18-newffmpeg.diff, +files/gegl-18-configure-ac.patch,
+  +metadata.xml, +gegl-0.0.20.ebuild:
+  Add gegl library.
+
