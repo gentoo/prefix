@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gvfs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.27 2008/09/25 14:18:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.28 2008/10/12 21:55:50 eva Exp $
+
+*gvfs-1.0.1 (12 Oct 2008)
+
+  12 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> +gvfs-1.0.1.ebuild:
+  New version for GNOME 2.24. Now counts in power of 10. Various fixes to
+  backends, gphoto2 and hal are out of process, better cross backend
+  copy/move logic (uses system move if possible). Fix opening of dm-crypt
+  volumes.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gvfs-0.2.5.ebuild:
   Stable for HPPA (bug #236971).
