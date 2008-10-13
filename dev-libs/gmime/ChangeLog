@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.75 2008/10/04 16:26:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.76 2008/10/11 23:54:43 eva Exp $
+
+*gmime-2.4.2 (11 Oct 2008)
+
+  11 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> +gmime-2.4.2.ebuild:
+  Bump to 2.4.2. Finally fix parallel installation issues.
 
   04 Oct 2008; Jeroen Roovers <jer@gentoo.org> gmime-2.2.17.ebuild:
   Stable for HPPA (bug 229709).
