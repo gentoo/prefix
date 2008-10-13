@@ -1,6 +1,12 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.176 2008/10/08 19:27:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.177 2008/10/12 21:47:25 loki_val Exp $
+
+*poppler-0.10.0 (12 Oct 2008)
+
+  12 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> -poppler-0.9.3.ebuild,
+  +poppler-0.10.0.ebuild:
+  Bump. Watch for API breakage. ABI is broke for sure, remember rebuild.
 
   08 Oct 2008; Raúl Porcel <armin76@gentoo.org> poppler-0.8.7.ebuild:
   alpha/ia64 stable wrt #239414
