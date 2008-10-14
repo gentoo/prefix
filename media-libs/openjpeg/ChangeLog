@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openjpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/ChangeLog,v 1.15 2008/10/02 16:45:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/ChangeLog,v 1.16 2008/10/13 16:37:10 jer Exp $
+
+  13 Oct 2008; Jeroen Roovers <jer@gentoo.org> openjpeg-1.3.ebuild:
+  Marked ~hppa (bug #240520).
 
   02 Oct 2008; Brent Baude <ranger@gentoo.org> openjpeg-1.3.ebuild:
   stable ppc, bug 237418
