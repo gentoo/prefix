@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/diffball
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/ChangeLog,v 1.31 2008/01/27 10:25:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/ChangeLog,v 1.32 2008/10/13 21:05:46 zmedico Exp $
+
+  13 Oct 2008; Zac Medico <zmedico@gentoo.org> diffball-0.6.5.ebuild,
+  diffball-0.7.1.ebuild, diffball-1.0.ebuild:
+  Bug #218657 - Update SRC_URI to use mirror://berlios/.
 
   27 Jan 2008; Fabian Groffen <grobian@gentoo.org> diffball-0.6.5.ebuild,
   diffball-0.7.1.ebuild, diffball-1.0.ebuild:

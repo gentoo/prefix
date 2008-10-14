@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/diffball-1.0.ebuild,v 1.8 2008/01/27 10:25:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/diffball-1.0.ebuild,v 1.9 2008/10/13 21:05:46 zmedico Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ IUSE="debug"
 
 DESCRIPTION="Delta compression suite for using/generating binary patches"
 HOMEPAGE="http://developer.berlios.de/projects/diffball/"
-SRC_URI="http://download.berlios.de/diffball/${P}.tar.bz2"
+SRC_URI="mirror://berlios/diffball/${P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"
