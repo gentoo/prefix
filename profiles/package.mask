@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9067 2008/10/12 21:51:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9071 2008/10/14 02:48:43 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Michael Sterrett <mr_bones_@gentoo.org> (13 Oct 2008)
+# Maintainer mask of known broken version.
+>=app-admin/syslog-ng-2.1
 
 # Thilo Bangert <bangert@gentoo.org> (12 Oct 2008)
 # Masked for removal in 30 days (see bug #240371)
@@ -466,11 +470,6 @@ kde-misc/kio_perldoc
 =sys-kernel/xen-sources-2.6.20*
 =sys-kernel/xen-sources-2.6.21*
 
-# Jeremy Olexa <darkside@gentoo.org> (02 Sep 2008)
-# Removed at maintainer's request in 30 days by the treecleaners.
-# Please don't waste cds trying to use this program, bug 227143
-app-cdr/mp3burn
-
 ## Daniel Black <dragonheart@gentoo.org> (31 Aug 2008)
 ## Masked for removal.
 # old stuff suffering bit rot. old libs that nothing depends
@@ -506,7 +505,6 @@ www-apps/phpcollab
 # Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
 # Beta release, still got some issues
 >=app-office/openoffice-3.0.0_beta2
->=app-office/openoffice-bin-3.0.0_rc1
 
 # Ricardo Mendoza <ricmm@gentoo.org> (21 Aug 2008)
 # Beta driver, masking corresponding nvidia-settings
@@ -570,13 +568,6 @@ dev-python/twibber
 # Mike Doty <kingtaco@gentoo.org> (11 Aug 2008)
 # Masked due to build failure, bug 234448
 =app-emulation/emul-linux-x86-gtklibs-20080810
-
-# Jeremy Olexa <darkside@gentoo.org> (9 Aug 2008)
-# Masked for removal in 60 days. No distfile on the mirrors for the latest
-# version, open bugs (bug #177222, #193629, #202548). Please comment on the
-# removal bug #232141 if you want this one to stay. No maintainer and no easy
-# way to get releases from upstream.
-dev-util/elfsh
 
 # Michael Sterrett <mr_bones_@gentoo.org> (04 Aug 2008)
 # Security masked: bug #233929
