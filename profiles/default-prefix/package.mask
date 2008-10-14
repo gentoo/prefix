@@ -33,17 +33,9 @@
 #--- END OF EXAMPLES ---
 
 
-# Fabian Groffen <grobian@gentoo.org> (13 Oct 2008)
-# Mask until I get that damn luatex fixed
-~app-text/texlive-core-2008
-
 # Fabian Groffen <grobian@gentoo.org> (09 Oct 2008)
 # Totally b0rked, needs fixing, see bug #240584
 ~sys-apps/grep-2.5.3
-
-# Jeremy Olexa <darkside@gentoo.org> (07 Oct 2008)
-# Zero testing, simply ecopy'd and committed. Probably needs work
-dev-tex/luatex
 
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but

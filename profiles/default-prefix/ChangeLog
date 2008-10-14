@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  unmask texlive-core and luatex, because their maskings cause more damage
+  than that they prevent
+
   13 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask app-text/texlive-core-2008 for as long as luatex remains to be a severe
   pain.
