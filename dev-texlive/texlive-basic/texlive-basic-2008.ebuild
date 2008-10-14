@@ -17,5 +17,5 @@ DESCRIPTION="TeXLive Essential programs and files"
 
 LICENSE="GPL-2 as-is GPL-1 LPPL-1.3 TeX "
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
