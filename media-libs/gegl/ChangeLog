@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.7 2008/10/13 10:35:44 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.8 2008/10/13 21:07:45 hanno Exp $
+
+  13 Oct 2008; Hanno Boeck <hanno@gentoo.org> gegl-0.0.20.ebuild:
+  Depend on imagemagick with doc useflag.
 
   13 Oct 2008; Hanno Boeck <hanno@gentoo.org>
   +files/gegl-20-configure-ac.patch, gegl-0.0.20.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.7 2008/10/13 10:35:44 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.8 2008/10/13 21:07:45 hanno Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,8 @@ DEPEND=">=media-libs/babl-0.0.20
 		dev-lang/ruby
 		>=dev-lang/lua-5.1.0
 		app-text/enscript
-		media-gfx/graphviz )
+		media-gfx/graphviz
+		media-gfx/imagemagick )
 	ffmpeg? ( >=media-video/ffmpeg-0.4.9_p20080326 )
 	jpeg? ( media-libs/jpeg )
 	openexr? ( media-libs/openexr )
@@ -37,7 +38,7 @@ DEPEND=">=media-libs/babl-0.0.20
 	svg? ( >=gnome-base/librsvg-2.14.0 )"
 
 pkg_setup() {
-	if ! built_with_use 'media-gfx/imagemagick' 'png'; then
+	if use doc && ! built_with_use 'media-gfx/imagemagick' 'png'; then
 		eerror "You must build imagemagick with png support"
 		die "media-gfx/imagemagick built without png"
 	fi
