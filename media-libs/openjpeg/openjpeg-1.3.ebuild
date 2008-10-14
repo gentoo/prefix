@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib flag-o-matic
 
 DESCRIPTION="An open-source JPEG 2000 codec written in C"
 HOMEPAGE="http://www.openjpeg.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://www.openjpeg.org/openjpeg_v${PV//./_}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="tools"
 DEPEND="tools? ( >=media-libs/tiff-3.8.2 )"
 
@@ -23,17 +23,21 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.2-Makefile.patch
 	cp "${FILESDIR}"/${P}-codec-Makefile "${S}"/codec/Makefile
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" AR="$(tc-getAR)" COMPILERFLAGS="${CFLAGS} -std=c99 -fPIC" || die "emake failed"
+	# AltiVec on OSX/PPC screws up the build :(
+	[[ ${CHOST} == powerpc*-apple-darwin* ]] && filter-flags -m*
+
+	emake CC="$(tc-getCC)" AR="$(tc-getAR)" PREFIX="${EPREFIX}/usr" TARGOS=$(uname) COMPILERFLAGS="${CFLAGS} -std=c99 -fPIC" || die "emake failed"
 	if use tools; then
 		emake -C codec CC="$(tc-getCC)" || die "emake failed"
 	fi
 }
 
 src_install() {
-	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" INSTALL_LIBDIR="${EPREFIX}/usr/$(get_libdir)" install || die "install failed"
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" TARGOS=$(uname) INSTALL_LIBDIR="${EPREFIX}/usr/$(get_libdir)" install || die "install failed"
 	if use tools; then
 		emake -C codec DESTDIR="${D}" PREFIX="${EPREFIX}/usr" INSTALL_BINDIR="${EPREFIX}/usr/bin" install || die "install failed"
 	fi
