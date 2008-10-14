@@ -9,5 +9,8 @@
 	<flag name='smp'>
 		Enable support for multiprocessors
 	</flag>
+	<flag name='webkit'>
+		Enable the webkit rendering engine
+	</flag>
 </use>
 </pkgmetadata>
