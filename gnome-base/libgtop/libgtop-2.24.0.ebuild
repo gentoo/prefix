@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="A library that provides top functionality to applications"
 HOMEPAGE="http://www.gnome.org/"
@@ -20,6 +20,12 @@ DEPEND="${RDEPEND}
 		>=dev-util/intltool-0.35"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+
+src_unpack() {
+	gnome2_src_unpack
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-2.23.90-solaris.patch
+}
 
 pkg_config() {
 	G2CONF="${G2CONF} $(use_enable debug)"
