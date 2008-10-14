@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/wtf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.23 2008/09/12 00:05:42 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.24 2008/10/14 03:38:04 darkside Exp $
+
+  14 Oct 2008; Jeremy Olexa <darkside@gentoo.org> wtf-20080912.ebuild:
+  amd64 stable, bug #241870
 
 *wtf-20080912 (12 Sep 2008)
 
