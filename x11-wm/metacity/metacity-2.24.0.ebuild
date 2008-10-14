@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="GNOME default window manager"
 HOMEPAGE="http://blogs.gnome.org/metacity/"
@@ -43,4 +43,10 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable xinerama)"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-2.23.21-remove-xopen-source-posix.patch
 }
