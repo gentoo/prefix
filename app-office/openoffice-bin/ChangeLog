@@ -1,6 +1,12 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.201 2008/10/07 14:31:19 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.202 2008/10/13 08:18:55 suka Exp $
+
+*openoffice-bin-3.0.0 (13 Oct 2008)
+
+  13 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-bin-3.0.0_rc4.ebuild, +openoffice-bin-3.0.0.ebuild:
+  OpenOffice.org 3.0.0, final release.
 
 *openoffice-bin-3.0.0_rc4 (07 Oct 2008)
 
