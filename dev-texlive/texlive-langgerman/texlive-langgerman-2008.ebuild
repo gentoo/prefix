@@ -15,5 +15,5 @@ DESCRIPTION="TeXLive German"
 
 LICENSE="GPL-2 as-is freedist LPPL-1.3 "
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x64-solaris"
 IUSE=""
