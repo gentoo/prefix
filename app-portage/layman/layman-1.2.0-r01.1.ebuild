@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.0-r1.ebuild,v 1.2 2008/08/30 18:42:43 jokey Exp $
 
-
 EAPI="prefix"
 
 NEED_PYTHON=2.5
