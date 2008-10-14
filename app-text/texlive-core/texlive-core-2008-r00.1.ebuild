@@ -75,9 +75,9 @@ src_unpack() {
 	cd "${S}"
 	mv "${WORKDIR}"/texmf* "${S}" || die "failed to move texmf files"
 
-	cp "${FILESDIR}"/texmf-update "${T}" || die
-	cd "${T}"; epatch "${FILESDIR}"/texmf-update-prefix.patch; cd "${S}"
-	eprefixify "${T}"/texmf-update
+	cp "${FILESDIR}"/texmf-update2008 "${T}" || die
+	cd "${T}"; epatch "${FILESDIR}"/texmf-update2008-prefix.patch; cd "${S}"
+	eprefixify "${T}"/texmf-update2008
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
@@ -178,7 +178,7 @@ src_install() {
 	dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
 	einstall bindir="${ED}/usr/bin" texmf="${ED}${TEXMF_PATH:-/usr/share/texmf}" run_texlinks="true" run_mktexlsr="true" || die "einstall failed"
 
-	dosbin "${T}/texmf-update"
+	newsbin "${T}/texmf-update2008" texmf-update
 
 	# When X is disabled mf-nowin doesn't exist but some scripts expect it to
 	# exist. Instead, it is called mf, so we symlink it to please everything.
