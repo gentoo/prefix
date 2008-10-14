@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Mask =x11-libs/vte-0.17.4 on Solaris due to -fPIC issues.
+
   14 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   unmask texlive-core and luatex, because their maskings cause more damage
   than that they prevent
