@@ -15,7 +15,7 @@ SRC_URI="http://foundry.supelec.fr/frs/download.php/680/${PN}-beta-${PV}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="doc"
 
 RDEPEND="dev-tex/mplib[lua]
@@ -31,6 +31,13 @@ S="${WORKDIR}/${PN}-beta-${PV}/src"
 src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	elibtoolize
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# very stupid workaround for a totally wicked buildsystem
+		# we need -lresolv for hstrerror
+		cd "${S}"
+		sed -i -e '/^socketlibs = /s/^.*$/& -lresolv/' \
+			texk/web2c/Makefile.in || die
+	fi
 }
 
 src_configure() {
