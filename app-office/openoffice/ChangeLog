@@ -1,6 +1,27 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.422 2008/10/13 12:41:11 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.423 2008/10/14 16:13:39 suka Exp $
+
+  14 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.0_rc4.diff, files/gentoo-3.0.0.diff,
+  -openoffice-3.0.0_rc4.ebuild, openoffice-3.0.0.ebuild:
+  Further cleanups to deps and config-flags
+
+  14 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.0_rc4.diff, files/gentoo-3.0.0.diff,
+  -openoffice-3.0.0_rc4.ebuild, openoffice-3.0.0.ebuild:
+  Bunch of smaller fixes and improvements:
+
+  *) Build PDF import, Presentation Console and Presentation Minimizer
+  extensions, inform about the need to install them manually
+
+  *) Add "templates" use-flag, installs Sun templates for OOo (if you build
+  for english or german)
+
+  *) Warn about build problems when having KDE 4.1.x with kdeprefix
+  installed, see bug #238539
+
+  *) Remove some no longer needed dependencies, clean up others
 
 *openoffice-3.0.0 (13 Oct 2008)
 

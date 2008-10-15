@@ -8,8 +8,49 @@
  $OOINSTBASE/program/soffice $2 "\$@"
  EOT
      chmod 755 $1
+--- distro-configs/CommonLinux.conf.in 
++++ distro-configs/CommonLinux.conf.in 
+@@ -2,8 +2,6 @@
+ --with-openldap
+ --with-build-version=\"Build @OOO_BUILDVERSION@\"
+ --without-fonts
+---with-system-freetype
+---with-system-gcc
+ --with-system-jpeg
+ --with-system-libxml
+ --with-system-mozilla
+@@ -14,7 +12,6 @@
+ --with-system-poppler
+ --with-unix-wrapper=ooffice@OOO_BINSUFFIX@
+ --enable-evolution2
+---enable-atkbridge
+ --with-alloc=system
+ --with-vba-package-format=builtin
+ @CAIRO_CONFIGURE_FLAG@
+--- distro-configs/Gentoo.conf.in 
++++ distro-configs/Gentoo.conf.in 
+@@ -16,7 +16,7 @@
+ --with-system-neon
+ --with-system-openssl
+ --with-system-vigra
+---with-system-xrender-headers
++--with-system-xrender
+ --without-myspell-dicts
+ --without-stlport
+ --with-vendor=\"Gentoo Foundation\"
 --- patches/dev300/apply 
 +++ patches/dev300/apply 
+@@ -98,8 +98,8 @@
+ # openmamba
+ openmamba: LinuxCommon, GlobalDesktopFiles
+ #Gentoo
+-GentooBase : LinuxCommon, GentooOnly, NotDebian, Lockdown, CairoFonts, BerkeleyDB43, Gcc43
+-GentooUnstable: GentooBase, GentooExperimental, IntegrateExtensions
++GentooBase : LinuxCommon, GentooOnly, NotDebian, Lockdown, CairoFonts, BerkeleyDB43, Gcc43, IntegrateExtensions
++GentooUnstable: GentooBase, GentooExperimental
+ Gentoo : GentooBase
+ Gentoo64: GentooBase
+ # rPath Linux
 @@ -1425,7 +1425,9 @@
  SectionOwner => aprosky
  

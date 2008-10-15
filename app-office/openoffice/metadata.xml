@@ -11,5 +11,6 @@ version</longdescription>
   <flag name='binfilter'>Enable support for legacy StarOffice 5.x and earlier
     file formats</flag>
   <flag name='odk'>Build the Office Development Kit</flag>
+  <flag name='templates'>Enable installation of Sun templates</flag>
 </use>
 </pkgmetadata>

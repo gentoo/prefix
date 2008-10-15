@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.1 2008/10/13 12:41:11 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.2 2008/10/14 16:13:39 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -8,7 +8,7 @@ EAPI="prefix 1"
 
 inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib
 
-IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam"
+IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
 MY_PV="3.0.0.3.4"
 PATCHLEVEL="OOO300"
@@ -78,14 +78,9 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	eds? ( >=gnome-extra/evolution-data-server-1.2 )
 	gstreamer? ( >=media-libs/gstreamer-0.10
 			>=media-libs/gst-plugins-base-0.10 )
-	kde? ( =kde-base/kdelibs-3* )
+	kde? ( kde-base/kdelibs:3.5 )
 	java? ( >=dev-java/bsh-2.0_beta4
-		>=dev-java/xalan-2.7
-		>=dev-java/xalan-serializer-2.7
-		>=dev-java/xerces-2.7
-		=dev-java/xml-commons-external-1.3*
-		>=dev-db/hsqldb-1.8.0.9
-		=dev-java/rhino-1.5* )
+		>=dev-db/hsqldb-1.8.0.9 )
 	mono? ( >=dev-lang/mono-1.2.3.1 )
 	opengl? ( virtual/opengl
 		virtual/glu )
@@ -206,6 +201,14 @@ pkg_setup() {
 		fi
 	fi
 
+	if use kde; then
+		ewarn " Please note that this version of OpenOffice.org will NOT build "
+		ewarn " if you have KDE 4.1.x installed without kdeprefix. "
+		ewarn " Until this is resolved, either disable the kde-use-flag or "
+		ewarn " rebuild KDE with USE='kdeprefix'. "
+		ewarn
+	fi
+
 	if use nsplugin; then
 		if pkg-config --exists libxul; then
 			BRWS="libxul"
@@ -255,17 +258,8 @@ src_unpack() {
 		echo "--with-java-target-version=$(java-pkg_get-target)" >> ${CONFFILE}
 		echo "--with-system-beanshell" >> ${CONFFILE}
 		echo "--with-system-hsqldb" >> ${CONFFILE}
-		echo "--with-system-rhino" >> ${CONFFILE}
-		echo "--with-system-xalan" >> ${CONFFILE}
-		echo "--with-system-xerces" >> ${CONFFILE}
-		echo "--with-system-xml-apis" >> ${CONFFILE}
 		echo "--with-beanshell-jar=$(java-pkg_getjar bsh bsh.jar)" >> ${CONFFILE}
 		echo "--with-hsqldb-jar=$(java-pkg_getjar hsqldb hsqldb.jar)" >> ${CONFFILE}
-		echo "--with-rhino-jar=$(java-pkg_getjar rhino-1.5 js.jar)" >> ${CONFFILE}
-		echo "--with-serializer-jar=$(java-pkg_getjar xalan-serializer serializer.jar)" >> ${CONFFILE}
-		echo "--with-xalan-jar=$(java-pkg_getjar xalan xalan.jar)" >> ${CONFFILE}
-		echo "--with-xerces-jar=$(java-pkg_getjar xerces-2 xercesImpl.jar)" >> ${CONFFILE}
-		echo "--with-xml-apis-jar=$(java-pkg_getjar xml-commons-external-1.3 xml-apis.jar)" >> ${CONFFILE}
 	fi
 
 	if use nsplugin ; then
@@ -288,8 +282,15 @@ src_unpack() {
 	echo "`use_enable opengl`" >> ${CONFFILE}
 	echo "`use_enable pam`" >> ${CONFFILE}
 	echo "`use_with ldap openldap`" >> ${CONFFILE}
+	echo "`use_with templates sun-templates`" >> ${CONFFILE}
 	echo "`use_enable debug crashdump`" >> ${CONFFILE}
 	echo "`use_enable debug strip-solver`" >> ${CONFFILE}
+
+	# Extension stuff
+	echo "--with-extension-integration" >> ${CONFFILE}
+	echo "--enable-minimizer" >> ${CONFFILE}
+	echo "--enable-pdfimport" >> ${CONFFILE}
+	echo "--enable-presenter-console" >> ${CONFFILE}
 
 	# Use splash screen without Sun logo
 	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.bmp\\\"" >> ${CONFFILE}
@@ -329,7 +330,6 @@ src_compile() {
 		--prefix="${EPREFIX}"/usr \
 		--with-distro="Gentoo" \
 		--with-arch="${ARCH}" \
-		--host="${CHOST}" \
 		--with-srcdir="${DISTDIR}" \
 		--with-lang="${LINGUAS_OOO}" \
 		--with-num-cpus="${JOBS}" \
@@ -344,6 +344,7 @@ src_compile() {
 		`use_with java` \
 		--disable-access \
 		--disable-post-install-scripts \
+		--enable-extensions \
 		--with-system-libwpd \
 		--mandir="${EPREFIX}"/usr/share/man \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
@@ -385,6 +386,16 @@ pkg_postinst() {
 	elog " Spell checking is provided through our own myspell-ebuilds, "
 	elog " if you want to use it, please install the correct myspell package "
 	elog " according to your language needs. "
+	elog
+
+	elog " Some aditional functionality can be installed via Extension Manager: "
+	elog " *) PDF Import "
+	elog " *) Presentation Console "
+	elog " *) Presentation Minimizer "
+	elog
+	elog " Please use the packages provided in "
+	elog " /usr/$(get_libdir)/openoffice/share/extension/install/ "
+	elog " instead of those from the SUN extension site. "
 	elog
 
 }
