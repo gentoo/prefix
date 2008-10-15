@@ -1,13 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20080326.ebuild,v 1.5 2008/10/14 16:12:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.5 2008/10/14 11:37:22 aballier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
+FFMPEG_SVN_REV="15615"
+
 DESCRIPTION="Complete solution to record, convert and stream audio and video.
-Includes libavcodec. svn revision 11878"
+Includes libavcodec. svn revision ${FFMPEG_SVN_REV}"
 HOMEPAGE="http://ffmpeg.org/"
 MY_P=${P/_/-}
 SRC_URI="mirror://gentoo/${MY_P}.tar.bz2"
@@ -17,54 +19,44 @@ S=${WORKDIR}/ffmpeg
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="aac altivec amr debug doc ieee1394 a52 encode imlib ipv6 mmx vorbis
-	  test theora threads truetype x264 xvid network zlib sdl X mp3
-	  hardcoded-tables bindist"
+IUSE="aac altivec amr debug dirac doc ieee1394 encode gsm ipv6 mmx mmxext vorbis
+	  test theora threads x264 xvid network zlib sdl X mp3 schroedinger
+	  hardcoded-tables bindist v4l v4l2 ssse3 vhook"
 
-RDEPEND="imlib? ( >=media-libs/imlib2-1.4.0 )
-	truetype? ( >=media-libs/freetype-2 )
+RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	sdl? ( >=media-libs/libsdl-1.2.10 )
 	encode? (
 		aac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
-		vorbis? ( media-libs/libvorbis )
-		theora? ( media-libs/libtheora )
-		x264? ( media-libs/x264 )
+		vorbis? ( media-libs/libvorbis media-libs/libogg )
+		theora? ( media-libs/libtheora media-libs/libogg )
+		x264? ( >=media-libs/x264-0.0.20081006 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	aac? ( media-libs/faad2 )
-	a52? ( >=media-libs/a52dec-0.7.4-r4 )
 	zlib? ( sys-libs/zlib )
-	ieee1394? ( =media-libs/libdc1394-1*
+	ieee1394? ( media-libs/libdc1394
 				sys-libs/libraw1394 )
+	dirac? ( media-video/dirac )
+	gsm? ( >=media-sound/gsm-1.0.12-r1 )
+	schroedinger? ( media-libs/schroedinger )
 	X? ( x11-libs/libX11 x11-libs/libXext )
 	amr? ( media-libs/amrnb media-libs/amrwb )"
 
 DEPEND="${RDEPEND}
+	mmx? ( dev-lang/yasm )
 	doc? ( app-text/texi2html )
-	test? ( net-misc/wget )"
+	test? ( net-misc/wget )
+	v4l? ( sys-kernel/linux-headers )
+	v4l2? ( sys-kernel/linux-headers )"
 
 src_unpack() {
 	unpack ${A}
-
 	cd "${S}"
-
-	#Append -DBROKEN_RELOCATIONS to build for bug 179872.
-	#Pretty please fix me if you can.
-	append-flags "-DBROKEN_RELOCATIONS"
-
-	# .pc files contain wrong libdir path
-	epatch "${FILESDIR}/${PN}-libdir-2007.patch"
-	sed -i -e "s:GENTOOLIBDIR:$(get_libdir):" configure
-
-	# To make sure the ffserver test will work
-	sed -i -e "s:-e debug=off::" tests/server-regression.sh
-
 	epatch "${FILESDIR}/${PN}-shared-gcc4.1.patch"
-	# disable non pic safe asm, bug #172877, bug #172845 and dupes
-	# epatch "${FILESDIR}/${PN}-0.4.9_p20070330-asmpic.patch"
 
-	# HPPA (parisc) needs PIC (bug #241124):
-	epatch "${FILESDIR}"/${P}-hppa.patch
+	# Set version #
+	# Any better idea? We can't do much more as we use an exported svn snapshot.
+	sed -i s/UNKNOWN/SVN-r${FFMPEG_SVN_REV}/ "${S}/version.sh"
 }
 
 src_compile() {
@@ -73,14 +65,7 @@ src_compile() {
 	replace-flags -O1 -O2
 	local myconf="${EXTRA_ECONF}"
 
-	#disable mmx accelerated code if not requested, or if PIC is required
-	# as the provided asm decidedly is not PIC.
-	if ( gcc-specs-pie || ! use mmx ) ; then
-		myconf="${myconf} --disable-mmx --disable-mmx2"
-	fi
-
 	# enabled by default
-	use altivec || myconf="${myconf} --disable-altivec"
 	use debug || myconf="${myconf} --disable-debug"
 	use zlib || myconf="${myconf} --disable-zlib"
 	use sdl || myconf="${myconf} --disable-ffplay"
@@ -105,26 +90,73 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-encoders"
 	fi
-	use a52 && myconf="${myconf} --enable-liba52"
+
+	# libavdevice options
 	use ieee1394 && myconf="${myconf} --enable-libdc1394"
-	use threads && myconf="${myconf} --enable-pthreads"
+	for i in v4l v4l2 ; do
+		use $i || myconf="${myconf} --disable-demuxer=$i"
+	done
 	use X && myconf="${myconf} --enable-x11grab"
+
+	# Threads; we only support pthread for now but ffmpeg supports more
+	use threads && myconf="${myconf} --enable-pthreads"
+
+	# Decoders
 	use aac && myconf="${myconf} --enable-libfaad"
+	use dirac && myconf="${myconf} --enable-libdirac"
+	use schroedinger && myconf="${myconf} --enable-libschroedinger"
+	if use gsm; then
+		myconf="${myconf} --enable-libgsm"
+		# Crappy detection or our installation is weird, pick one (FIXME)
+		append-flags -I/usr/include/gsm
+	fi
 	if use bindist
 	then
-		use amr && einfo "libamr is nonfree and cannot be distributed"
+		use amr && ewarn "libamr is nonfree and cannot be distributed; disabling amr support."
 	else
 		use amr && myconf="${myconf} --enable-libamr-nb \
 									 --enable-libamr-wb \
 									 --enable-nonfree"
 	fi
 
+	# CPU features
+	for i in mmx ssse3 altivec ; do
+		use $i ||  myconf="${myconf} --disable-$i"
+	done
+	use mmxext || myconf="${myconf} --disable-mmx2"
+	# disable mmx accelerated code if PIC is required
+	# as the provided asm decidedly is not PIC.
+	if gcc-specs-pie ; then
+		myconf="${myconf} --disable-mmx --disable-mmx2"
+	fi
+
+	# Try to get cpu type based on CFLAGS.
+	# Bug #172723
+	# We need to do this so that features of that CPU will be better used
+	# If they contain an unknown CPU it will not hurt since ffmpeg's configure
+	# will just ignore it.
+	local mymarch=$(get-flag march)
+	local mymcpu=$(get-flag mcpu)
+	local mymtune=$(get-flag mtune)
+	for i in $mymarch $mymcpu $mymtune ; do
+		myconf="${myconf} --cpu=$i"
+		break
+	done
+
+
+	# video hooking support. replaced by libavfilter, probably needs to be
+	# dropped at some point.
+	use vhook || myconf="${myconf} --disable-vhook"
+
+	# Mandatory configuration
 	myconf="${myconf} --enable-gpl --enable-postproc \
 			--enable-avfilter --enable-avfilter-lavf \
 			--enable-swscale --disable-stripping"
 
+	# cross compile support (FIXME?)
 	tc-is-cross-compiler && myconf="${myconf} --cross-compile --arch=$(tc-arch-kernel)"
 
+	# Misc stuff
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
 
 	# Specific workarounds for too-few-registers arch...
@@ -149,7 +181,7 @@ src_compile() {
 		--shlibdir="${EPREFIX}"/usr/$(get_libdir) \
 		--mandir="${EPREFIX}"/usr/share/man \
 		--enable-static --enable-shared \
-		"--cc=$(tc-getCC)" \
+		--cc="$(tc-getCC)" \
 		${myconf} || die "configure failed"
 
 	emake -j1 depend || die "depend failed"
@@ -157,7 +189,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 LDCONFIG=true DESTDIR="${D}" install || die "Install Failed"
+	emake -j1 DESTDIR="${D}" install || die "Install Failed"
 
 	use doc && emake -j1 documentation
 	dodoc Changelog README INSTALL
@@ -166,9 +198,8 @@ src_install() {
 
 # Never die for now...
 src_test() {
-	cd "${S}/tests"
-	for t in "codectest libavtest test-server" ; do
-		make ${t} || ewarn "Some tests in ${t} failed"
+	for t in codectest libavtest servertest seektest ; do
+		emake ${t} || ewarn "Some tests in ${t} failed"
 	done
 }
 

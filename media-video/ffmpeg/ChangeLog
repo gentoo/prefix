@@ -1,6 +1,40 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.226 2008/10/11 17:17:39 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.232 2008/10/14 16:12:07 jer Exp $
+
+  14 Oct 2008; Jeroen Roovers <jer@gentoo.org>
+  +files/ffmpeg-0.4.9_p20080326-hppa.patch, ffmpeg-0.4.9_p20080326.ebuild:
+  Build PIC on HPPA (bug #241124).
+
+  14 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Give the configure the --cpu option based on CFLAGS; if it is unknown it
+  will not hurt because the configure script will warn and ignore it. This
+  helps getting better support for given cpu, like using CMOV on i686 and
+  later. Bug #172723.
+
+  14 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Set the ffmpeg version to the exported revision number, bug #233667,
+  borrowed from mplayer ebuild
+
+  14 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Broaden libdc1394 dep as it works with v2 too, by Fabio Correa
+  <facorread@gmail.com>, bug #237687
+
+  14 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20070616.ebuild, ffmpeg-0.4.9_p20070616-r1.ebuild,
+  ffmpeg-0.4.9_p20070616-r2.ebuild, ffmpeg-0.4.9_p20070616-r3.ebuild,
+  ffmpeg-0.4.9_p20070616-r20.ebuild, ffmpeg-0.4.9_p20080206.ebuild,
+  ffmpeg-0.4.9_p20080326.ebuild, ffmpeg-0.4.9_p20081014.ebuild:
+  Bump imlib2 dep for bug #196525
+
+*ffmpeg-0.4.9_p20081014 (14 Oct 2008)
+
+  14 Oct 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml,
+  +ffmpeg-0.4.9_p20081014.ebuild:
+  Add a new snapshot, masked because it breaks a lot of consumers.
 
   11 Oct 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   ffmpeg-0.4.9_p20070616-r3.ebuild:
