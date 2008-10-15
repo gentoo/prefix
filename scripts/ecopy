@@ -4,7 +4,7 @@
 
 # This probably will blow up if not ran in a Prefix environment, sorry.
 
-RSURL="http://prefix.gentooexperimental.org/rsync-gentoo-x86"
+RSURL="http://tinderbox.dev.gentoo.org/portage/"
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
 source "${EPREFIX}/etc/init.d/functions.sh"
@@ -47,6 +47,7 @@ return_greatest() {
 	done
 	echo $max
 }
+echo "$max"
 
 # Either use qatom or fall back to a non-qatom approach which may generate false
 # positive.
