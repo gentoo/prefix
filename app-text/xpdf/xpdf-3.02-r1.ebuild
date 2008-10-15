@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.4 2008/06/27 10:04:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.5 2008/10/14 21:12:27 loki_val Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,10 @@ S=${WORKDIR}/${P}-poppler
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	use nodrm && epatch "${FILESDIR}"/${P}-poppler-nodrm.patch
+	use nodrm && \
+		epatch "${FILESDIR}"/${P}-poppler-nodrm.patch
+	has_version '>=app-text/poppler-0.10.0' && \
+		epatch "${FILESDIR}"/poppler-0.10.0.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
