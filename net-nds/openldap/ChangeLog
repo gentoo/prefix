@@ -1,6 +1,26 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.333 2008/09/03 18:09:42 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.337 2008/10/14 10:29:44 robbat2 Exp $
+
+  14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org> files/slapd-initd:
+  Bug #229289, --quiet is no longer needed.
+
+  14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.3.43-r1.ebuild, openldap-2.4.11-r1.ebuild:
+  Bug #186391 - use krb5-config --cflags instead of hardcoding
+  -I/usr/include/heimdal. Untested due to lack of kerberos systems.
+
+*openldap-2.4.11-r1 (14 Oct 2008)
+
+  14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/openldap-2.4.11-libldap_r.patch, +openldap-2.4.11-r1.ebuild:
+  Bug #189817, fix linking of libldap_r with as-needed.
+
+*openldap-2.3.43-r1 (14 Oct 2008)
+
+  14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/openldap-2.3.37-libldap_r.patch, +openldap-2.3.43-r1.ebuild:
+  Bug #189817, fix linking of libldap_r with as-needed.
 
 *openldap-2.4.11 (03 Sep 2008)
 
