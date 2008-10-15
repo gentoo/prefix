@@ -1,6 +1,13 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.149 2008/10/09 05:41:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.150 2008/10/14 09:50:56 robbat2 Exp $
+
+*timezone-data-2008g-r1 (14 Oct 2008)
+
+  14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/timezone-data-2008f-makefile-libs-not-flags.patch,
+  +timezone-data-2008g-r1.ebuild:
+  Fix bug #226929 with linking fun.
 
 *timezone-data-2008g (09 Oct 2008)
 
