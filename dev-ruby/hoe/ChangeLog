@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.37 2008/09/03 18:41:34 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.38 2008/10/14 07:02:20 graaff Exp $
+
+*hoe-1.8.0 (14 Oct 2008)
+
+  14 Oct 2008; Hans de Graaff <graaff@gentoo.org> +hoe-1.8.0.ebuild:
+  Version bump with 5 minor enhancements.
 
   03 Sep 2008; Hans de Graaff <graaff@gentoo.org> hoe-1.7.0.ebuild:
   Depend on rubygems 1.2.0 since the generated tasks depend on it. Thanks to
