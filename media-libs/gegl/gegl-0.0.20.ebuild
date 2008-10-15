@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.8 2008/10/13 21:07:45 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.9 2008/10/14 12:47:21 loki_val Exp $
 
 EAPI="prefix"
 
@@ -47,6 +47,16 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	#HACK!GACK!HACK!
+	#Interface name changed, we change with it.
+	if has_version '>=media-video/ffmpeg-0.4.9_p20081014'
+	then
+		sed -i \
+			-e 's:p->enc->error_resilience:p->enc->error_recognition:' \
+			operations/external/ff-load.c || die "404"
+	fi
+
 	epatch "${FILESDIR}/gegl-20-configure-ac.patch" || die
 	epatch "${FILESDIR}/gegl-0.0.18-newffmpeg.diff" || die
 
