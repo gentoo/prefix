@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.4 2008/10/06 13:43:33 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.5 2008/10/14 14:00:25 leio Exp $
 
 EAPI="prefix"
 
@@ -19,37 +19,36 @@ IUSE="debug directfb doc glitz opengl svg X xcb aqua"
 RESTRICT="test"
 
 RDEPEND="media-libs/fontconfig
-		>=media-libs/freetype-2.1.9
-		sys-libs/zlib
-		media-libs/libpng
-		>=x11-libs/pixman-0.12.0
-		directfb? ( >=dev-libs/DirectFB-0.9.24 )
-		glitz? ( >=media-libs/glitz-0.5.1 )
-		svg? (  dev-libs/libxml2
-				>=x11-libs/gtk+-2.0
-				>=gnome-base/librsvg-2.15.0 )
-		X? ( 	>=x11-libs/libXrender-0.6
-				x11-libs/libXext
-				x11-libs/libX11
-				virtual/xft )
-		xcb? (	>=x11-libs/libxcb-0.92
-				x11-libs/xcb-util )"
-#		test? (
-#		pdf test
-#		x11-libs/pango
-#		>=x11-libs/gtk+-2.0
-#		>=app-text/poppler-bindings-0.9.2
-#		ps test
-#		virtual/ghostscript
-#		svg test
-#		>=x11-libs/gtk+-2.0
+	>=media-libs/freetype-2.1.9
+	sys-libs/zlib
+	media-libs/libpng
+	>=x11-libs/pixman-0.12.0
+	directfb? ( >=dev-libs/DirectFB-0.9.24 )
+	glitz? ( >=media-libs/glitz-0.5.1 )
+	svg? ( dev-libs/libxml2 )
+	X? ( 	>=x11-libs/libXrender-0.6
+		x11-libs/libXext
+		x11-libs/libX11
+		virtual/xft )
+	xcb? (	>=x11-libs/libxcb-0.92
+		x11-libs/xcb-util )"
+#	test? (
+#	pdf test
+#	x11-libs/pango
+#	>=x11-libs/gtk+-2.0
+#	>=app-text/poppler-bindings-0.9.2
+#	ps test
+#	virtual/ghostscript
+#	svg test
+#	>=x11-libs/gtk+-2.0
+#	>=gnome-base/librsvg-2.15.0
 
 DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.19
-		doc? (	>=dev-util/gtk-doc-1.6
-			  	~app-text/docbook-xml-dtd-4.2 )
-		X? (	x11-proto/renderproto )
-		xcb? (	x11-proto/xcb-proto )"
+	>=dev-util/pkgconfig-0.19
+	doc? (	>=dev-util/gtk-doc-1.6
+		~app-text/docbook-xml-dtd-4.2 )
+	X? ( x11-proto/renderproto )
+	xcb? ( x11-proto/xcb-proto )"
 
 #pkg_setup() {
 #	if ! built_with_use app-text/poppler-bindings gtk ; then
