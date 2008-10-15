@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.7 2008/09/02 09:56:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.8 2008/10/14 06:42:44 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -68,20 +68,20 @@ texlive-common_do_symlinks() {
 	while [ $# != 0 ]; do
 		case $1 in
 			cont-??|metafun|mptopdf)
-				elog "Symlink $1 skipped (special case)"
+				einfo "Symlink $1 skipped (special case)"
 				;;
 			mf)
-				elog "Symlink $1 -> $2 skipped (texlive-core takes care of it)"
+				einfo "Symlink $1 -> $2 skipped (texlive-core takes care of it)"
 				;;
 			*)
 				if [ $1 = $2 ];
 				then
-					elog "Symlink $1 -> $2 skipped"
+					einfo "Symlink $1 -> $2 skipped"
 				elif [ -e "${ED}/usr/bin/$1" ];
 				then
-					elog "Symlink $1 skipped (file exists)"
+					einfo "Symlink $1 skipped (file exists)"
 				else
-					elog "Making symlink from $1 to $2"
+					einfo "Making symlink from $1 to $2"
 					dosym $2 /usr/bin/$1
 				fi
 				;;
