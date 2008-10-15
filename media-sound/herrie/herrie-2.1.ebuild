@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.1.ebuild,v 1.1 2008/08/31 17:20:26 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.1.ebuild,v 1.2 2008/10/14 16:13:17 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,8 @@ DEPEND="sys-libs/ncurses
 	!ao? ( !alsa? ( !pulseaudio? ( !oss? ( !coreaudio? ( media-libs/alsa-lib ) ) ) ) )
 	"
 RDEPEND="${DEPEND}"
-DEPEND="nls? ( sys-devel/gettext )
+DEPEND="${DEPEND}
+	nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
 pkg_setup() {

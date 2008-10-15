@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.30 2008/08/31 17:20:26 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.31 2008/10/14 16:13:17 flameeyes Exp $
+
+  14 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> herrie-2.1.ebuild:
+  Fix build dependencies.
 
 *herrie-2.1 (31 Aug 2008)
 
