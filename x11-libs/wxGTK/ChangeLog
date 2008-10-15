@@ -1,6 +1,24 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.195 2008/07/30 04:53:23 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.199 2008/10/15 01:48:56 ranger Exp $
+
+  15 Oct 2008; Brent Baude <ranger@gentoo.org> wxGTK-2.6.4.0-r4.ebuild,
+  wxGTK-2.8.8.1.ebuild:
+  Marking  wxGTK-2.6.4.0-r4 ppc for bug 242088
+
+  15 Oct 2008; Brent Baude <ranger@gentoo.org> wxGTK-2.8.8.1.ebuild:
+  Marking wxGTK-2.8.8.1 ppc for bug 242088
+
+  14 Oct 2008; Ferris McCormick <fmccor@gentoo.org> wxGTK-2.6.4.0-r4.ebuild:
+  Sparc stable --- the rest of Bug #242088 on sparc.
+
+  14 Oct 2008; Ferris McCormick <fmccor@gentoo.org> wxGTK-2.8.7.1-r2.ebuild:
+  Sparc stable --- Bug #242088 --- it's been around forever.
+
+*wxGTK-2.8.9.1 (14 Oct 2008)
+
+  14 Oct 2008; Ryan Hill <dirtyepic@gentoo.org> +wxGTK-2.8.9.1.ebuild:
+  Version bump. EAPI 2.
 
   30 Jul 2008; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Add USE flag descriptions to metadata.xml.
