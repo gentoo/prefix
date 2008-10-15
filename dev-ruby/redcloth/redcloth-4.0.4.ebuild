@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/redcloth-4.0.4.ebuild,v 1.2 2008/10/08 09:35:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/redcloth-4.0.4.ebuild,v 1.4 2008/10/14 20:40:55 ranger Exp $
 
 EAPI="prefix"
 
