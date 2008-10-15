@@ -47,7 +47,6 @@ return_greatest() {
 	done
 	echo $max
 }
-echo "$max"
 
 # Either use qatom or fall back to a non-qatom approach which may generate false
 # positive.
