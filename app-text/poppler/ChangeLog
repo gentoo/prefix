@@ -1,6 +1,9 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.177 2008/10/12 21:47:25 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.178 2008/10/14 06:36:59 jer Exp $
+
+  14 Oct 2008; Jeroen Roovers <jer@gentoo.org> poppler-0.10.0.ebuild:
+  Marked ~hppa (bug #240520).
 
 *poppler-0.10.0 (12 Oct 2008)
 
