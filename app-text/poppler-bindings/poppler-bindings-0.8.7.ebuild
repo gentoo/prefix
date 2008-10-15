@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.7.ebuild,v 1.9 2008/10/08 19:29:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.7.ebuild,v 1.10 2008/10/14 21:25:24 loki_val Exp $
 
 EAPI="prefix 1"
 
@@ -40,6 +40,10 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup(){
+	use test && ewarn "Tests will fail if your locale is unset."
+}
 
 src_unpack(){
 	unpack ${A}

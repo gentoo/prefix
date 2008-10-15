@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.0-r1.ebuild,v 1.1 2008/10/13 19:49:33 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.0-r1.ebuild,v 1.3 2008/10/14 21:25:24 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -57,7 +57,7 @@ pkg_setup() {
 		eerror "gtk, qt3, qt4, cairo"
 		die "Please select a toolkit"
 	fi
-
+	use test && ewarn "Tests will fail if your locale is unset."
 }
 
 src_prepare() {
