@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/wtf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.24 2008/10/14 03:38:04 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.26 2008/10/14 08:53:06 armin76 Exp $
+
+  14 Oct 2008; Raúl Porcel <armin76@gentoo.org> wtf-20080912.ebuild:
+  alpha/arm/ia64/sh/sparc/x86 stable wrt #241870
 
   14 Oct 2008; Jeremy Olexa <darkside@gentoo.org> wtf-20080912.ebuild:
   amd64 stable, bug #241870
