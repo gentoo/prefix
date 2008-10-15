@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3951 2008/10/13 23:47:45 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3957 2008/10/15 00:48:10 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -361,6 +361,7 @@ app-office/lyx:rtf - Add support for RTF import/export packages
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
 app-office/openoffice:odk - Build the Office Development Kit
+app-office/openoffice:templates - Enable installation of Sun templates
 app-office/rabbit:gnome-print - Gnome-Print support (gnome-base/libgnomeprint)
 app-office/rabbit:gs - Ghostscript support (virtual/ghostscript)
 app-office/rabbit:tgif - tgif support (media-gfx/tgif)
@@ -1482,8 +1483,14 @@ media-video/dvd-slideshow:themes - Install theme pack
 media-video/dvdrip:fping - Enables fping support for cluster rendering
 media-video/dvdrip:subtitles - Enables support for subtitle ripping
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
+media-video/ffmpeg:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
+media-video/ffmpeg:gsm - Enables support for the gsm lossy speech compression codec via libgsm.
 media-video/ffmpeg:hardcoded-tables - Use pre-calculated tables rather than calculating them on the fly.
+media-video/ffmpeg:mmxext - Enables mmx2 support
 media-video/ffmpeg:network - Enables network streaming support
+media-video/ffmpeg:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
+media-video/ffmpeg:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
+media-video/ffmpeg:vhook - Enables video hooking support.
 media-video/gpac:amr - Adaptive Multi-Rate Audio support (commonly used in telephony)
 media-video/griffith:csv - Enable proper support for csv import (respectively auto-detection encoding of csv files)
 media-video/kino:gpac - Enable GPAC support when exporting to 3GPP format
@@ -1989,6 +1996,7 @@ net-misc/htbinit:esfq - Add support for Enhanced Stochastic Fairness queueing di
 net-misc/hylafax:faxonly - Don't depend on mgetty-fax
 net-misc/hylafax:html - Adds HTML documentation
 net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
+net-misc/iaxmodem:logrotate -  Install support files for app-admin/logrotate 
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/iputils:SECURITY_HAZARD - Allow non-root users to flood (ping -f). This is generally a very bad idea.
 net-misc/kvpnc:cisco - Adds support for Cisco client
@@ -2089,6 +2097,7 @@ net-p2p/ktorrent:bwscheduler - Enable the bwscheduler plugin
 net-p2p/ktorrent:infowidget - Enable the infowidget plugin
 net-p2p/ktorrent:ipfilter - Enable the ipfilter plugin
 net-p2p/ktorrent:logviewer - Enable the logviewer plugin
+net-p2p/ktorrent:mediaplayer - Enable the mediaplayer plugin
 net-p2p/ktorrent:scanfolder - Enable the scanfolder plugin
 net-p2p/ktorrent:search - Enable the search plugin
 net-p2p/ktorrent:stats - Enable the statistics plugin
