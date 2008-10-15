@@ -6,7 +6,7 @@
 
   15 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   -portage-2.2.00.11620.ebuild, +portage-2.2.00.11694.ebuild:
-  Bump, hopefully fix repomannot to commit twice most of the time, bug #229033
+  Bump, hopefully fix repoman not to commit twice most of the time, bug #229033
 
 *portage-2.2.00.11675 (11 Oct 2008)
 
