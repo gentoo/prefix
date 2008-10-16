@@ -1,6 +1,10 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.591 2008/10/07 14:43:15 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.592 2008/10/15 12:50:47 aballier Exp $
+
+  15 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  mplayer-1.0_rc2_p27725-r1.ebuild:
+  keyword ~x86-fbsd
 
 *mplayer-1.0_rc2_p27725-r1 (07 Oct 2008)
 
