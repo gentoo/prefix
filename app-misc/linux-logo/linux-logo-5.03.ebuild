@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-misc/linux-logo/linux-logo-5.03.ebuild,v 1.5 2008/03/27 22:58:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.03.ebuild,v 1.6 2008/10/15 17:39:04 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -37,8 +37,7 @@ src_unpack() {
 
 src_compile() {
 	./configure --prefix="${ED}"/usr || die
-	sed -i -e "s/CFLAGS=.*/CFLAGS=${CFLAGS}/" {,libsysinfo-*/}Makefile.default
-	emake || die
+	emake CFLAGS="${CFLAGS}" || die
 }
 
 src_install() {
