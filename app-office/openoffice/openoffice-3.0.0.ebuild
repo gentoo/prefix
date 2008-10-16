@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.2 2008/10/14 16:13:39 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.3 2008/10/15 23:16:58 bluebird Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
