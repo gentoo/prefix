@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/plotutils
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.41 2008/04/05 12:47:47 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.42 2008/10/15 13:13:23 aballier Exp $
+
+  15 Oct 2008; Alexis Ballier <aballier@gentoo.org> plotutils-2.5.ebuild:
+  keyword ~x86-fbsd
 
 *plotutils-2.5 (05 Apr 2008)
 
