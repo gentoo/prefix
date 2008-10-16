@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.237 2008/07/27 19:39:23 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.238 2008/10/16 03:06:15 robbat2 Exp $
+
+*coreutils-6.12-r2 (16 Oct 2008)
+*coreutils-6.10-r3 (16 Oct 2008)
+
+  16 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/coreutils-6.10-selinux-opt.patch, +coreutils-6.10-r3.ebuild,
+  +coreutils-6.12-r2.ebuild:
+  Fix automagical linking against libselinux per bug #230073.
 
 *coreutils-6.12-r1 (27 Jul 2008)
 
