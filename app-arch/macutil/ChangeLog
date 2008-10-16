@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/macutil
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/ChangeLog,v 1.16 2008/08/23 18:15:44 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/ChangeLog,v 1.17 2008/10/15 22:13:57 flameeyes Exp $
+
+  15 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  macutil-2.0_beta3.ebuild:
+  Respect CFLAGS and LDFLAGS at make. Also respect CC. Closes bug #239926.
 
   23 Aug 2008; Markus Meier <maekke@gentoo.org> macutil-2.0_beta3.ebuild:
   add ~amd64, bug #225985
