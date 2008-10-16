@@ -1,10 +1,20 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.302 2008/09/22 16:58:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.305 2008/10/15 19:42:20 fmccor Exp $
 
-  22 Sep 2008; Markus Meier <maekke@gentoo.org>
-  +files/imagemagick-6.4.3.5-svg-dep.patch, imagemagick-6.4.3.5.ebuild:
-  fix bug #236643
+  15 Oct 2008; Ferris McCormick <fmccor@gentoo.org>
+  imagemagick-6.4.4.6.ebuild, imagemagick-6.4.4.6-r1.ebuild:
+  Add back ~sparc, Bug #242236.
+
+*imagemagick-6.4.4.6-r1 (15 Oct 2008)
+*imagemagick-6.4.4.6 (15 Oct 2008)
+
+  15 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml,
+  +imagemagick-6.4.4.6.ebuild, +imagemagick-6.4.4.6-r1.ebuild:
+  bump to 6.4.4.6 (bug #237174), add raw USE-flag (which pulls in
+  media-gfx/ufraw, that's why some keywords are dropped) for bug #236140 and
+  corefonts USE-flag for bug #239765. add support for the test-suite, but
+  only run it if the same ${PV} is installed
 
 *imagemagick-6.4.3.5 (29 Aug 2008)
 

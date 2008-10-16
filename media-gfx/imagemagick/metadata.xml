@@ -3,6 +3,10 @@
 <pkgmetadata>
 	<herd>graphics</herd>
 	<use>
+		<flag name='corefonts'>
+			pull in <pkg>media-fonts/corefonts</pkg>, which is required for some
+			commands
+		</flag>
 		<flag name='fpx'>
 			enable <pkg>media-libs/libfpx</pkg> support
 		</flag>
