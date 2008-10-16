@@ -1,6 +1,12 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.73 2008/09/17 16:14:34 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.74 2008/10/15 17:26:48 lack Exp $
+
+*netscape-flash-10.0.12.36 (15 Oct 2008)
+
+  15 Oct 2008; Jim Ramsay <lack@gentoo.org>
+  -netscape-flash-10_rc20080915.ebuild, +netscape-flash-10.0.12.36.ebuild:
+  Adobe Flash 10.0.12.36 is released (Bug #242210)
 
 *netscape-flash-10_rc20080915 (17 Sep 2008)
 

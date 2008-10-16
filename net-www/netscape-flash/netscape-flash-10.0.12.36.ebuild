@@ -1,32 +1,23 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10_rc20080915.ebuild,v 1.1 2008/09/17 16:14:34 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.12.36.ebuild,v 1.1 2008/10/15 17:26:48 lack Exp $
 
 EAPI="prefix"
 
-inherit nsplugins versionator
-
-MV=$(get_major_version)
-
-# Excellent, Adobe uses that unsortable though surprisingly popular date
-# convention "MMDDYY", so build that out of a proper "YYYYMMDD" beta version
-# component:
-BETA=$(get_version_component_range 2)
-BETA=${BETA#rc}
-BV=${BETA:4:2}${BETA:6:2}${BETA:2:2}
+inherit nsplugins rpm
 
 DESCRIPTION="Adobe Flash Player"
-SRC_URI="http://download.macromedia.com/pub/labs/flashplayer${MV}/flashplayer${MV}_install_linux_${BV}.tar.gz
+SRC_URI="http://fpdownload.macromedia.com/get/flashplayer/current/flash-plugin-${PV}-release.i386.rpm
 amd64? ( mirror://gentoo/flash-libcompat-0.2.tar.bz2 )"
 HOMEPAGE="http://www.adobe.com/"
 IUSE=""
 SLOT="0"
 
 KEYWORDS="~amd64-linux ~x86-linux"
-LICENSE="AdobeFlash-9.0.31.0"
+LICENSE="AdobeFlash-10"
 RESTRICT="strip mirror"
 
-S="${WORKDIR}/install_flash_player_${MV}_linux"
+S="${WORKDIR}"
 
 DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 			app-emulation/emul-linux-x86-gtklibs
@@ -45,7 +36,7 @@ DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 
 # Our new flash-libcompat suffers from the same EXESTACK problem as libcrypto
 # from app-text/acroread, so tell QA to ignore it.
-# Apparently the flash library itseld also suffers from this issue
+# Apparently the flash library itself also suffers from this issue
 QA_EXECSTACK="opt/flash-libcompat/libcrypto.so.0.9.7
 	opt/netscape/plugins/libflashplayer.so"
 
@@ -57,9 +48,15 @@ pkg_setup() {
 }
 
 src_install() {
+	pushd "${S}/usr/lib/flash-plugin"
 	exeinto /opt/netscape/plugins
 	doexe libflashplayer.so
 	inst_plugin /opt/netscape/plugins/libflashplayer.so
+	popd
+
+	pushd "${S}/usr/share/doc/flash-plugin-${PV}/"
+	dodoc readme.txt
+	popd
 
 	# libcurl and libnss are not currently available in any emul-linux-x86
 	# packages, so for amd64 we provide these snarfed out of other binary
