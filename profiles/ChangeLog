@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1955 2008/10/14 13:56:29 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1958 2008/10/15 21:07:19 jmbsvicetto Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Added a mask to krusader-2.0.0_beta1 (beta version).
+
+  15 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask ocaml 3.11.0 beta
+
+  15 Oct 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Dropped mask for xerces-c since it's not beta anymore. Happy breaking\!
+
+  15 Oct 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Dropped mask for xerces-c since it's not beta anymore. Happy breaking!
 
   14 Oct 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Adding gst-plugins-ffmpeg-0.10.5 to ffmpeg mask.

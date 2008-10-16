@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3957 2008/10/15 00:48:10 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3960 2008/10/16 01:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -707,6 +707,7 @@ dev-python/PyQt4:qt3support - enable the Qt3Support libraries for Qt4
 dev-python/cgkit:3ds - Enable support for importing 3D Studio models
 dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
+dev-python/ipython:smp - Enables support for multiprocessors
 dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
@@ -1173,6 +1174,7 @@ media-gfx/gthumb:iptc -  Add support for IPTC metadata
 media-gfx/gwenview:kipi -  Support for the KDE Image Plugin Interface. 
 media-gfx/hugin:enblend - add support for nice image blending with media-gfx/enblend
 media-gfx/hugin:sift - automatically align images with media-gfx/autopano-sift or media-gfx/autopano-sift-C
+media-gfx/imagemagick:corefonts -  pull in media-fonts/corefonts, which is required for some commands 
 media-gfx/imagemagick:fpx -  enable media-libs/libfpx support 
 media-gfx/imagemagick:gs -  enable ghostscript support 
 media-gfx/imagemagick:hdri -  enable High Dynamic Range Images formats 
@@ -1911,6 +1913,7 @@ net-irc/xchat:xchatdccserver - Enables support for the /dccserver command via a 
 net-irc/xchat:xchatnogtk - Disables building the GTK front end to XChat
 net-irc/xchat:xft - Build xchat with support for the XFT font renderer
 net-irc/xchat-gnome:libsexy - Enable x11-libs/libsexy support
+net-irc/xchat-gnome:sound - Enable sound event support with media-libs/libcanberra
 net-irc/xchat-xsys:audacious - Enables media-sound/audacious integration
 net-irc/znc:nomodules - Don't build modules
 net-libs/aqbanking:chipcard -  Enable support for DDV/RSA-chipcards 
