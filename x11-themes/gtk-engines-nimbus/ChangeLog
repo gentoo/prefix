@@ -1,6 +1,16 @@
 # ChangeLog for x11-themes/gtk-engines-nimbus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.13 2008/10/06 11:31:48 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.15 2008/10/15 22:15:45 flameeyes Exp $
+
+  15 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  gtk-engines-nimbus-0.1.0.ebuild, gtk-engines-nimbus-0.1.1.ebuild:
+  Don't inherit autotools (and thus depend on them) for 0.1 series.
+
+*gtk-engines-nimbus-0.1.1 (15 Oct 2008)
+
+  15 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +gtk-engines-nimbus-0.1.1.ebuild:
+  Version bump.
 
   06 Oct 2008; Thomas Anderson <gentoofan23@gentoo.org>
   gtk-engines-nimbus-0.0.17.ebuild:
