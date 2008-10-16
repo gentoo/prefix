@@ -1,0 +1,16 @@
+Index: ocaml-3.11.0+beta1/configure
+===================================================================
+--- ocaml-3.11.0+beta1.orig/configure
++++ ocaml-3.11.0+beta1/configure
+@@ -1494,6 +1494,11 @@ fi
+ 
+ # Final twiddling of compiler options to work around known bugs
+ 
++bytecccompopts="$CFLAGS $bytecccompopts"
++bytecclinkopts="$LDFLAGS $bytecclinkopts"
++natdynlinkopts="$LDFLAGS $natdynlinkopts"
++nativecclinkopts="$LDFLAGS $nativecclinkopts"
++nativecccompopts="$CFLAGS $nativecccompopts"
+ nativeccprofopts="$nativecccompopts"
+ case "$buggycc" in
+   gcc.2.96)
