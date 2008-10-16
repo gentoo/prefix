@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/psycopg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.66 2008/08/06 19:57:29 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.67 2008/10/15 21:17:57 caleb Exp $
+
+*psycopg-2.0.8 (15 Oct 2008)
+
+  15 Oct 2008; Caleb Tennis <caleb@gentoo.org>
+  +files/psycopg-2.0.8-fbsd.patch, +psycopg-2.0.8.ebuild:
+  version bump per 237849
 
   06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml,
   psycopg-2.0.2.ebuild:

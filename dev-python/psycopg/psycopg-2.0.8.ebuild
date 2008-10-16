@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/psycopg-2.0.5.1.ebuild,v 1.3 2008/05/19 19:47:13 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/psycopg-2.0.8.ebuild,v 1.1 2008/10/15 21:17:57 caleb Exp $
 
 EAPI="prefix"
 
@@ -16,23 +16,32 @@ HOMEPAGE="http://initd.org/projects/psycopg2"
 SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 LICENSE="GPL-2"
-IUSE="debug doc examples"
+IUSE="debug doc examples mxdatetime"
 
-DEPEND=">=virtual/postgresql-base-7.4"
+DEPEND="virtual/postgresql-base
+	mxdatetime? ( dev-python/egenix-mx-base )"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
+
+PYTHON_MODNAME=${PN}2
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	use debug && epatch "${FILESDIR}/${P}-debug.patch"
+	if use debug; then
+		sed -i 's/^\(define=\)/\1PSYCOPG_DEBUG,/' setup.cfg || die "sed failed"
+	fi
+
+	if use mxdatetime; then
+		sed -i 's/\(use_pydatetime=\)1/\10/' setup.cfg || die "sed failed"
+	fi
 
 	# Fixes compilation issue in fbsd.
 	epatch "${FILESDIR}/${P}-fbsd.patch"
 	# ... and also fix it on Solaris (the same way)
-	epatch "${FILESDIR}"/${P}-use-configure-or-die.patch
+	epatch "${FILESDIR}"/${PN}-2.0.6-use-configure-or-die.patch
 }
 
 src_install() {
