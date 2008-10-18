@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.12.36.ebuild,v 1.1 2008/10/15 17:26:48 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.12.36-r1.ebuild,v 1.1 2008/10/17 20:03:57 lack Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ RESTRICT="strip mirror"
 
 S="${WORKDIR}"
 
-DEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
+RDEPEND="amd64? ( app-emulation/emul-linux-x86-baselibs
 			app-emulation/emul-linux-x86-gtklibs
 			app-emulation/emul-linux-x86-soundlibs
 			app-emulation/emul-linux-x86-xlibs )
@@ -79,10 +79,16 @@ src_install() {
 pkg_postinst() {
 	ewarn "Flash player is closed-source, with a long history of security"
 	ewarn "issues.  Please consider only running flash applets you know to"
-	ewarn "be safe.  The firefox 'flashblock' extension may help:"
-	ewarn "  https://addons.mozilla.org/en-US/firefox/addon/433"
-	echo
-	ewarn "Furthermore, <www-client/mozilla-firefox-3.0.2 is known to crash"
-	ewarn "with the new 'Windowless' (transparent) mode.  To disable this and"
-	ewarn "avoid the crashes, set 'WindowlessDisable = 1' in /etc/adobe/mms.cfg"
+	ewarn "be safe."
+
+	if has_version 'www-client/mozilla-firefox'; then
+		elog "The firefox 'flashblock' extension may help:"
+		elog "  https://addons.mozilla.org/en-US/firefox/addon/433"
+	fi
+
+	if has_version 'kde-base/konqueror'; then
+		elog "Konqueror users:  You may need to follow the instructions here:"
+		elog "  http://dev.gentoo.org/~lack/konqueror-flash.xml"
+		elog "For flash to work with your browser."
+	fi
 }

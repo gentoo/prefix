@@ -1,6 +1,17 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.74 2008/10/15 17:26:48 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.76 2008/10/17 20:03:57 lack Exp $
+
+*netscape-flash-10.0.12.36-r1 (17 Oct 2008)
+
+  17 Oct 2008; Jim Ramsay <lack@gentoo.org> files/mms.cfg,
+  -netscape-flash-10.0.12.36.ebuild, +netscape-flash-10.0.12.36-r1.ebuild:
+  Defaulting AutoUpdateDisable=1 in the config file, and updated elog output
+  to help firefox and konqueror users.
+
+  17 Oct 2008; Jim Ramsay <lack@gentoo.org> -netscape-flash-7.0.68.ebuild:
+  Removing legacy version 7, which is known to have major vulnerabilities
+  (Bug 239543)
 
 *netscape-flash-10.0.12.36 (15 Oct 2008)
 
