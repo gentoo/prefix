@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11700 (18 Oct 2008)
+
+  18 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11635.ebuild, +portage-2.2.00.11700.ebuild:
+  New snapshot with a repoman that shouldn't be happy with zero-length
+  distfiles any more
+
 *portage-2.2.00.11694 (15 Oct 2008)
 
   15 Oct 2008; Fabian Groffen <grobian@gentoo.org>
