@@ -1,6 +1,40 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.74 2008/10/06 19:56:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.81 2008/10/18 08:52:45 aballier Exp $
+
+*texlive-core-2008-r2 (18 Oct 2008)
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2008-r1.ebuild, +texlive-core-2008-r2.ebuild:
+  push changes
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r1.ebuild:
+  Include .doc and .src tarballs too, my mistake... bug #242358
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r1.ebuild:
+  Set LC_ALL to C in order to avoid problems with locales that don't have
+  the same alphabetical order as ascii. Bug #242430
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r1.ebuild:
+  Bump patchset to include parallel make fix for bug #242142
+
+  17 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r1.ebuild:
+  Install doc into kpathsea not kpathesa (typo) thanks ulm for noticing this
+
+*texlive-core-2008-r1 (16 Oct 2008)
+
+  16 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2008.ebuild, +texlive-core-2008-r1.ebuild:
+  push changes
+
+  16 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008.ebuild:
+  Disable largefile support for now as it appears to break with weird errors
+  such as bug #242074
 
   06 Oct 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r13.ebuild, texlive-core-2008.ebuild:
