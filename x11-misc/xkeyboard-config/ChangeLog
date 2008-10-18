@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.51 2008/10/14 17:09:59 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.52 2008/10/16 21:40:56 dberkholz Exp $
+
+  16 Oct 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  xkeyboard-config-1.4.ebuild:
+  Move x11-apps/xkbcomp to DEPEND from RDEPEND. This helps prepare for
+  possible use of XKB files on the console in addition to within X by
+  removing runtime X-related dependencies. The console-setup package in
+  other distros contains tools for handling this called ckb (ckbcomp, etc.).
+  I'd like to look into using this in Gentoo instead of sys-apps/kbd.
 
 *xkeyboard-config-1.4 (14 Oct 2008)
 
