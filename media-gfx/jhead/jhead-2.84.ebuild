@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.82-r1.ebuild,v 1.2 2008/10/16 20:32:38 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.84.ebuild,v 1.1 2008/10/17 16:34:55 maekke Exp $
 
 EAPI="prefix"
 
@@ -14,14 +14,6 @@ LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
-
-src_unpack() {
-	unpack ${A}
-	sed -i \
-		-e "s:-O3 -Wall:${CFLAGS}:" \
-		-e "s:\${CC} -o jhead \$(objs) -lm:\${CC} -o jhead \$(objs) -lm ${LDFLAGS}:" \
-		"${S}"/makefile || die
-}
 
 src_compile() {
 	tc-export CC
