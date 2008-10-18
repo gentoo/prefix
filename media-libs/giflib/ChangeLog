@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/giflib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/ChangeLog,v 1.54 2008/09/07 15:00:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/ChangeLog,v 1.55 2008/10/16 20:45:24 maekke Exp $
+
+  16 Oct 2008; Markus Meier <maekke@gentoo.org> giflib-4.1.6-r1.ebuild:
+  amd64/x86 stable, bug #242396
 
 *giflib-4.1.6-r1 (07 Sep 2008)
 
