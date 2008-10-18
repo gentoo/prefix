@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/bsh
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.52 2008/09/22 20:27:08 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.53 2008/10/17 19:07:19 maekke Exp $
+
+  17 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
+  bsf USE-flag is global now
 
   22 Sep 2008; Serkan Kaba <serkan@gentoo.org> files/bsh2.0b4-build.patch,
   bsh-2.0_beta4-r3.ebuild:
