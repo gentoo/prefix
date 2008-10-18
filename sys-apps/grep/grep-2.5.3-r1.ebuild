@@ -34,6 +34,8 @@ src_unpack() {
 	epatch ${P}~dfsg/debian/patches/
 	epatch "${FILESDIR}"/${P}-yesno-test-fix.patch
 	use static && append-ldflags -static
+
+	epatch "${FILESDIR}"/${P}-nls.patch
 }
 
 src_compile() {
@@ -41,7 +43,8 @@ src_compile() {
 		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		$(use_enable pcre perl-regexp) \
-		--without-included-regex \
+		$(use_with kernel_Darwin included-regex) \
+		${myconf} \
 		|| die "econf failed"
 
 	use static || sed -i 's:-lpcre:-Wl,-Bstatic -lpcre -Wl,-Bdynamic:g' src/Makefile
