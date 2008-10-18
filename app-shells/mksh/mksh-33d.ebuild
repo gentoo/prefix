@@ -4,13 +4,15 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="MirBSD KSH Shell"
 HOMEPAGE="http://mirbsd.de/mksh"
 SRC_URI="http://www.mirbsd.org/MirOS/dist/mir/mksh/${PN}-R${PV}.cpio.gz
 	http://www.mirbsd.org/cvs.cgi/~checkout~/contrib/code/Snippets/arc4random.c?rev=1.3"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 DEPEND="app-arch/cpio"
 RDEPEND=""
@@ -19,6 +21,10 @@ S="${WORKDIR}/${PN}"
 src_unpack() {
 	gzip -dc "${DISTDIR}/${PN}-R${PV}.cpio.gz" | cpio -mid
 	cp "${DISTDIR}/arc4random.c?rev=1.3" "${S}/arc4random.c" || die
+
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify sh.h
 }
 
 src_compile() {
