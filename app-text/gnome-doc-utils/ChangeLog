@@ -1,6 +1,13 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.120 2008/10/12 10:31:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.121 2008/10/17 12:53:08 leio Exp $
+
+  17 Oct 2008; Mart Raudsepp <leio@gentoo.org>
+  gnome-doc-utils-0.14.0.ebuild:
+  Remove the LINGUAS respecting fix - it causes maintainer mode rebuild and
+  possible build failures without eautoreconf. If you want to not have extra
+  languages, use localepurge until a gnome-doc-utils release that uses a
+  newer intltool in the tarball; fixes bug 242346
 
   12 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-doc-utils-0.14.0.ebuild:
