@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.28 2008/07/24 15:56:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.29 2008/10/17 11:06:18 yoswink Exp $
+
+  17 Oct 2008; Jose Luis Rivero <yoswink@gentoo.org>
+  libarchive-2.5.5.ebuild:
+  Keyworded ~alpha due to bug #241664
 
   24 Jul 2008; Raúl Porcel <armin76@gentoo.org> libarchive-2.4.17.ebuild:
   x86 stable
