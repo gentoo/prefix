@@ -1,0 +1,10 @@
+# ChangeLog for java-virtuals/stax-api
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/stax-api/ChangeLog,v 1.1 2008/10/05 16:19:12 serkan Exp $
+
+*stax-api-1 (05 Oct 2008)
+
+  05 Oct 2008; Serkan Kaba <serkan@gentoo.org> +metadata.xml,
+  +stax-api-1.ebuild:
+  Add java-virtuals/stax-api. Fixes bug #224677.
+
