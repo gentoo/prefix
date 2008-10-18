@@ -40,17 +40,6 @@
  --with-vendor=\"Gentoo Foundation\"
 --- patches/dev300/apply 
 +++ patches/dev300/apply 
-@@ -98,8 +98,8 @@
- # openmamba
- openmamba: LinuxCommon, GlobalDesktopFiles
- #Gentoo
--GentooBase : LinuxCommon, GentooOnly, NotDebian, Lockdown, CairoFonts, BerkeleyDB43, Gcc43
--GentooUnstable: GentooBase, GentooExperimental, IntegrateExtensions
-+GentooBase : LinuxCommon, GentooOnly, NotDebian, Lockdown, CairoFonts, BerkeleyDB43, Gcc43, IntegrateExtensions
-+GentooUnstable: GentooBase, GentooExperimental
- Gentoo : GentooBase
- Gentoo64: GentooBase
- # rPath Linux
 @@ -1425,7 +1425,9 @@
  SectionOwner => aprosky
  

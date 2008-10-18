@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.3 2008/10/15 23:16:58 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.6 2008/10/17 13:54:37 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -8,9 +8,9 @@ EAPI="prefix 1"
 
 inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib
 
-IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
+IUSE="cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV="3.0.0.3.4"
+MY_PV="3.0.0.3.5"
 PATCHLEVEL="OOO300"
 SRC="OOo_${PV}_src"
 MST="ooo300-m9"
@@ -43,7 +43,7 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	http://download.go-oo.org/SRC680/extras-3.tar.bz2
 	http://download.go-oo.org/SRC680/biblio.tar.bz2
 	http://download.go-oo.org/SRC680/lp_solve_5.5.0.12_source.tar.gz
-	http://download.go-oo.org/DEV300/scsolver.2008-09-30.tar.bz2
+	http://download.go-oo.org/DEV300/scsolver.2008-10-07.tar.bz2
 	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
 	http://download.go-oo.org/SRC680/libwpg-0.1.3.tar.gz"
 
@@ -203,10 +203,20 @@ pkg_setup() {
 
 	if use kde; then
 		ewarn " Please note that this version of OpenOffice.org will NOT build "
-		ewarn " if you have KDE 4.1.x installed without kdeprefix. "
+		ewarn " if you have kde-base/kdelibs or kde-base/kdepimlibs 4.1.x installed "
+		ewarn " without kdeprefix"
+		ewarn
 		ewarn " Until this is resolved, either disable the kde-use-flag or "
 		ewarn " rebuild KDE with USE='kdeprefix'. "
 		ewarn
+
+		if has_version kde-base/kdelibs:4.1; then
+			built_with_use kde-base/kdelibs:4.1 kdeprefix || die "rebuild kde-4.1 with USE='kdeprefix'"
+		fi
+
+		if has_version kde-base/kdepimlibs:4.1; then
+			built_with_use kde-base/kdepimlibs:4.1 kdeprefix || die "rebuild kde-4.1 with USE='kdeprefix'"
+		fi
 	fi
 
 	if use nsplugin; then
@@ -280,7 +290,6 @@ src_unpack() {
 	echo "`use_enable gtk systray`" >> ${CONFFILE}
 	echo "`use_enable ldap`" >> ${CONFFILE}
 	echo "`use_enable opengl`" >> ${CONFFILE}
-	echo "`use_enable pam`" >> ${CONFFILE}
 	echo "`use_with ldap openldap`" >> ${CONFFILE}
 	echo "`use_with templates sun-templates`" >> ${CONFFILE}
 	echo "`use_enable debug crashdump`" >> ${CONFFILE}
@@ -341,6 +350,7 @@ src_compile() {
 		`use_enable kde` \
 		`use_enable !debug strip` \
 		`use_enable odk` \
+		`use_enable pam` \
 		`use_with java` \
 		--disable-access \
 		--disable-post-install-scripts \
