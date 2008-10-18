@@ -42,6 +42,8 @@ src_prepare() {
 	sed -i \
 		-e 's|$(prefix)/msg|$(DESTDIR)/$(prefix)/share/xerces-c/msg|' \
 		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die "sed failed"
+	
+	epatch "${FILESDIR}"/${P}-gcc4.2-darwin.patch
 }
 
 src_compile() {
