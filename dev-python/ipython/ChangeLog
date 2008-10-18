@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/ipython
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.53 2008/10/16 01:19:26 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.54 2008/10/17 18:51:33 maekke Exp $
+
+  17 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
+  smp USE-flag is global now
 
 *ipython-0.9.1 (16 Oct 2008)
 

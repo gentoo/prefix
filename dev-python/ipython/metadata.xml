@@ -2,9 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>python</herd>
-<use>
-	<flag name='smp'>Enables support for multiprocessors</flag>
-</use>
 <longdescription>
 IPython provides a replacement for the interactive Python interpreter with
 extra functionality.
