@@ -31,7 +31,7 @@ src_unpack() {
 src_compile() {
 	econf $(use_enable lua)
 	# parallel make fails from time to time... needs to be fixed
-	emake KPSESRCDIR=/usr/include/kpathsea KPSELIB=-lkpathsea -j1 || die "failed to build mplib"
+	emake KPSESRCDIR="${EPREFIX}"/usr/include/kpathsea KPSELIB=-lkpathsea -j1 || die "failed to build mplib"
 }
 
 src_install() {
