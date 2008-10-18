@@ -10,7 +10,6 @@
     <flag name="hipe">HIgh Performance Erlang extension</flag>
     <flag name="kpoll">Enable kernel polling support</flag>
     <flag name="sctp">Support for Stream Control Transmission Protocol</flag>
-    <flag name="smp">Enable support for multiprocessors</flag>
   </use>
 <longdescription>
 Erlang is a programming language designed at the Ericsson 
