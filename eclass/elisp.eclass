@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.34 2008/09/19 08:12:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.35 2008/10/16 09:28:58 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -23,6 +23,13 @@
 # If the package's source is a single (in whatever way) compressed elisp
 # file with the file name ${P}.el, then this eclass will move ${P}.el to
 # ${PN}.el in src_unpack().
+
+# @ECLASS-VARIABLE: SITEFILE
+# @DESCRIPTION:
+# Name of package's site-init file.  The filename must match the shell
+# pattern "[1-8][0-9]*-gentoo.el"; numbers below 10 and above 89 are
+# reserved for internal use.  "50${PN}-gentoo.el" is a reasonable choice
+# in most cases.
 
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
@@ -59,13 +66,14 @@ elisp_src_unpack() {
 }
 
 elisp_src_compile() {
-	elisp-compile *.el || die "elisp-compile failed"
+	elisp-compile *.el || die
 }
 
 elisp_src_install() {
-	elisp-install ${PN} *.el *.elc || die "elisp-install failed"
-	elisp-site-file-install "${FILESDIR}/${SITEFILE}" \
-		|| die "elisp-site-file-install failed"
+	elisp-install ${PN} *.el *.elc || die
+	if [ -n "${SITEFILE}" ]; then
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
+	fi
 	if [ -n "${DOCS}" ]; then
 		dodoc ${DOCS} || die "dodoc failed"
 	fi

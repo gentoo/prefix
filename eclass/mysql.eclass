@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.96 2008/05/29 19:35:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.97 2008/10/16 18:48:42 betelgeuse Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -594,6 +594,13 @@ mysql_src_unpack() {
 		[[ -w "bdb/dist/ltmain.sh" ]] && cp -f "ltmain.sh" "bdb/dist/ltmain.sh"
 		cp -f "${EPREFIX}/usr/share/aclocal/libtool.m4" "bdb/dist/aclocal/libtool.ac" \
 		|| die "Could not copy libtool.m4 to bdb/dist/"
+		#These files exist only with libtool-2*, and need to be included.
+		if [ -f ${EPREFIX}'/usr/share/aclocal/ltsugar.m4' ]; then
+			cat "${EPREFIX}/usr/share/aclocal/ltsugar.m4" >>  "bdb/dist/aclocal/libtool.ac"
+			cat "${EPREFIX}/usr/share/aclocal/ltversion.m4" >>  "bdb/dist/aclocal/libtool.ac"
+			cat "${EPREFIX}/usr/share/aclocal/lt~obsolete.m4" >>  "bdb/dist/aclocal/libtool.ac"
+			cat "${EPREFIX}/usr/share/aclocal/ltoptions.m4" >>  "bdb/dist/aclocal/libtool.ac"
+		fi
 		pushd "bdb/dist" &>/dev/null
 		sh s_all \
 		|| die "Failed bdb reconfigure"

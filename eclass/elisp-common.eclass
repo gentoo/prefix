@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.49 2008/10/12 19:48:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.50 2008/10/16 09:28:58 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -37,7 +37,7 @@
 # elisp files is also supported, since the current directory is added to the
 # load-path which makes sure that all files are loadable.
 #
-#   	elisp-compile *.el || die "elisp-compile failed"
+#   	elisp-compile *.el || die
 #
 # Formerly, function elisp-comp() was used for compilation of interdependent
 # elisp files.  This usage is considered as obsolete.
@@ -59,7 +59,7 @@
 # something else, but remember to tell elisp-site-file-install() (see below)
 # the change, as it defaults to ${PN}.
 #
-#   	elisp-install ${PN} *.el *.elc || die "elisp-install failed"
+#   	elisp-install ${PN} *.el *.elc || die
 #
 # To let the Emacs support be activated by Emacs on startup, you need
 # to provide a site file (shipped in ${FILESDIR}) which contains the startup
@@ -86,12 +86,14 @@
 # keybindings as they might interfere with the user's settings.  Give a hint
 # in pkg_postinst(), which should be enough.
 #
-# The naming scheme for this site file is "[0-9][0-9]*-gentoo.el", where the
-# two digits at the beginning define the loading order.  So if you depend on
-# another Emacs package, your site file's number must be higher!
+# The naming scheme for this site-init file matches the shell pattern
+# "[1-8][0-9]*-gentoo.el", where the two digits at the beginning define the
+# loading order (numbers below 10 or above 89 are reserved for internal use).
+# So if you depend on another Emacs package, your site file's number must be
+# higher!
 #
 # Best practice is to define a SITEFILE variable in the global scope of your
-# ebuild (right after DEPEND e.g.):
+# ebuild (e.g., right after DEPEND):
 #
 #   	SITEFILE=50${PN}-gentoo.el
 #
@@ -380,7 +382,8 @@ elisp-site-regen() {
 
 	;;; Code:
 	EOF
-	cat "${sflist[@]}" </dev/null >>"${tmpdir}"/site-gentoo.el
+	# Use sed instead of cat here, since files may miss a trailing newline.
+	sed '$q' "${sflist[@]}" </dev/null >>"${tmpdir}"/site-gentoo.el
 	cat <<-EOF >>"${tmpdir}"/site-gentoo.el
 
 	(provide 'site-gentoo)
