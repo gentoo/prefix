@@ -1,10 +1,45 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1958 2008/10/15 21:07:19 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1970 2008/10/17 18:23:18 maekke Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  17 Oct 2008; Markus Meier <maekke@gentoo.org> use.desc:
+  move bsf, kontact, openmp, plasma and smp to global use.desc
+
+  17 Oct 2008; Ben de Groot <yngwin@gentoo.org> thirdpartymirrors:
+  Add ftp.easysw.com mirrors
+
+  16 Oct 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Remove murmur mask.
+
+  16 Oct 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  remove Claws mask as all plugins are in the tree
+
+  16 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove mlt mask
+
+  16 Oct 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  fix Claws mask once again
+
+  16 Oct 2008; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Unmask OpenOffice.org 3.0
+
+  16 Oct 2008; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  correct Claws mask
+
+  16 Oct 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  remove unneeded blender mask
+
+  16 Oct 2008; <fauli@gentoo.org> package.mask:
+  mask Claws Mail 3.6.1 and all corresponding plugins so users won't freak
+  out about broken dependency chains
+
+  16 Oct 2008; Markus Meier <maekke@gentoo.org> package.mask:
+  add media-gfx/blender-2.48-r2 to the media-video/ffmpeg-0.4.9_p20081014
+  mask
 
   15 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   package.mask:

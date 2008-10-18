@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3960 2008/10/16 01:27:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3966 2008/10/17 19:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -266,8 +266,8 @@ app-laptop/pbbuttonsd:ibam - Enable support for Intelligent Battery Monitoring
 app-laptop/pbbuttonsd:macbook - Enable support for the Macbook and Macbook Pro
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - Enable support for thinkpad models 760 and 765
+app-misc/anki:furigana -  Enable support for furigana generation 
 app-misc/anki:graph -  Enable support for making graphs 
-app-misc/anki:kakasi -  Enable app-i18n/kakasi support for furigana generation 
 app-misc/anki:sound -  Enable support for adding sound to cards 
 app-misc/beagle:chm - Enables support for indexing of the MS CHM (Compressed HTML) file format using app-doc/chmlib.
 app-misc/beagle:debug - Enables debug XML dumps of all messages passed between the daemons and the UIs. WARNING, this option will fill up your Beagle Log directory very quickly.
@@ -494,7 +494,6 @@ dev-games/ogre:double-precision - more precise calculations at the expense of sp
 dev-haskell/gtk2hs:glade - Enable gnome-base/libglade bindings compilation
 dev-java/ant:antlr - Enable ANTLR Ant tasks
 dev-java/ant:bcel - Enable bcel (bytecode manipulation) Ant tasks
-dev-java/ant:bsf - Enable BSF (Bean Scripting Framework) Ant tasks
 dev-java/ant:commonslogging - Enable commons-logging Ant tasks
 dev-java/ant:commonsnet - Enable commons-net Ant tasks
 dev-java/ant:jai - Enable JAI (Java Imaging) Ant task
@@ -508,7 +507,6 @@ dev-java/ant:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant:resolver - Enable Apache Resolver Ant tasks
 dev-java/ant-tasks:antlr - Enable ANTLR Ant tasks
 dev-java/ant-tasks:bcel - Enable bcel (bytecode manipulation) Ant tasks
-dev-java/ant-tasks:bsf - Enable BSF (Bean Scripting Framework) Ant tasks
 dev-java/ant-tasks:commonslogging - Enable commons-logging Ant tasks
 dev-java/ant-tasks:commonsnet - Enable commons-net Ant tasks
 dev-java/ant-tasks:jai - Enable JAI (Java Imaging) Ant task
@@ -523,7 +521,6 @@ dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/antlr:script - Install a script to run antlr
 dev-java/avalon-logkit:javamail - Enable support for javamail
 dev-java/avalon-logkit:jms - Enable support for JMS (Java Message Service)
-dev-java/bsh:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/commons-collections:test-framework - Install the test framework
 dev-java/commons-logging:avalon-framework - Add optional support for avalon-framework
 dev-java/commons-logging:avalon-logkit - Add optional support for avalon-logkit
@@ -538,7 +535,6 @@ dev-java/fop:jimi - Enable jimi support
 dev-java/gjdoc:xmldoclet - Also build support for the xml doclet that generates output in xml instead of the traditional html javadoc.
 dev-java/gnu-classpath:dssi - Enable the DSSI midi synthesizer provider
 dev-java/gnu-classpath:gconf - Enable the GConf based util.peers backend
-dev-java/groovy:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/ibm-jdk-bin:javacomm - Enable Java Communications API support
 dev-java/itext:rtf - Build and provide libraries for rich text format
 dev-java/itext:rups - Build and provide GUI for Reading/Updating PDF Syntax
@@ -549,7 +545,6 @@ dev-java/jdbc-mysql:c3p0 - Enable c3p0 support
 dev-java/jdbc-mysql:log4j - Enable log4 support
 dev-java/jdbc-oracle-bin:dms - Enable support for the Oracle Dynamic Monitoring Service
 dev-java/jdbc-oracle-bin:ons - Enable support for the Oracle Notification Services (ONS) deamon
-dev-java/jruby:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/jython:servletapi - Add optional support for servlet-api
 dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
@@ -560,7 +555,6 @@ dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Po
 dev-lang/erlang:hipe - HIgh Performance Erlang extension
 dev-lang/erlang:kpoll - Enable kernel polling support
 dev-lang/erlang:sctp - Support for Stream Control Transmission Protocol
-dev-lang/erlang:smp - Enable support for multiprocessors
 dev-lang/gdl:hdf - Adds support for the Hierarchical Data Format
 dev-lang/gdl:proj - Adds proj library support (geographic projections)
 dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly large performance gains
@@ -707,7 +701,6 @@ dev-python/PyQt4:qt3support - enable the Qt3Support libraries for Qt4
 dev-python/cgkit:3ds - Enable support for importing 3D Studio models
 dev-python/dap:server - Enable OpenDAP server support
 dev-python/docutils:glep - Install support for GLEPs
-dev-python/ipython:smp - Enables support for multiprocessors
 dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
@@ -939,8 +932,6 @@ gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Use dev-libs/libffi from sys-devel/gcc instead of dev-libs/ffcall. Requires sys-devel/gcc built with USE=libffi
 kde-base/akonadi:nepomuk - Enable desktop-wide tagging support
-kde-base/akonadi:plasma - Build optional kde-base/plasma widgets
-kde-base/akregator:kontact - Enable support for the KDE personal information manager
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
 kde-base/ark:zip - Enable zip support through LibZip
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard
@@ -950,12 +941,9 @@ kde-base/gwenview:semantic-desktop -  Semantic desktop allows for storage of dig
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work
 kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via app-mobilephone/gnokii
-kde-base/kaddressbook:kontact - Enable support for the KDE personal information manager
-kde-base/kalgebra:plasma - Build optional plasma widgets that require kde-base/libplasma.
 kde-base/kalzium:cviewer - Enable Kalzium compound viewer
 kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-base/kalzium:solver - Enable the equation solver
-kde-base/kate:plasma - Build optional kde-base/plasma widgets
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
 kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
@@ -974,14 +962,9 @@ kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
 kde-base/kdeutils-meta:floppy - Install kfloppy to format and create DOS or ext2fs filesystems in a floppy.
 kde-base/kdvi:kpathsea - Enable integration with kpathsea search library (TeX related)
-kde-base/kget:plasma - Build optional kde-base/plasma widgets
 kde-base/kig:kig-scripting - Support Python scripting
-kde-base/kjots:kontact - Enable support for the KDE personal information manager
-kde-base/kmail:kontact - Enable support for the KDE personal information manager
 kde-base/kmail:nepomuk - Enable desktop-wide tagging support
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
-kde-base/knode:kontact - Enable support for the KDE personal information manager
-kde-base/knotes:kontact - Enable support for the KDE personal information manager
 kde-base/kopete:addbookmarks - Enable the addbookmarks plugin
 kde-base/kopete:alias - Enable the alias plugin
 kde-base/kopete:autoreplace - Enable the autoreplace plugin
@@ -1013,25 +996,21 @@ kde-base/kopete:urlpicpreview - plugin to allow users to send photos through URL
 kde-base/kopete:webpresence - Enable the webpresence plugin
 kde-base/kopete:winpopup - Enable support for the winpopup plugin
 kde-base/kopete:xslt - Enable xslt support
-kde-base/korganizer:kontact - Enable support for the KDE personal information manager
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
 kde-base/kstars:nova - Enable support for libnova.
 kde-base/kstars:sbig - Enable support for SBIG.
-kde-base/ktimetracker:kontact - Enable support for the KDE personal information manager
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kttsd:ktts - Enable KDE Text To Speech modules
 kde-base/kttsd:phonon - Enable support for the KDE multimedia API
 kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
-kde-base/parley:plasma - Build optional kde-base/plasma widgets
 kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
 kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN net-misc/openvpn client
 kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks
-kde-misc/rsibreak:plasma - Build optional kde-base/plasma widgets
 mail-client/balsa:crypt - Adds support for GnuPG encryption
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Adds support for app-office/rubrica addressbook
@@ -1160,13 +1139,11 @@ media-gfx/asymptote:boehm-gc -  Enables using the Boehm-Demers-Weiser conservati
 media-gfx/asymptote:sigsegv -  Enables using dev-libs/libsigsegv 
 media-gfx/autotrace:flash -  Adds support for creating SWF files using Ming 
 media-gfx/blender:blender-game -  Adds game engine support to blender 
-media-gfx/blender:openmp -  build support for the OpenMP (support parallel computing), requires >=sys-devel/gcc-4.2 built with USE="openmp" 
 media-gfx/blender:player -  Enable blender player 
 media-gfx/blender:verse -  Adds verse clustering features to blender 
 media-gfx/comix:rar -  Pulls app-arch/unrar for rar file support 
 media-gfx/digikam:nfs -  Create sqlite db within ~/.kde, instead in the albums base directory. 
 media-gfx/exiv2:xmp -  Adds support for Adobe XMP 
-media-gfx/gimp:smp -  Enable support for multiprocessors 
 media-gfx/gimp:webkit -  Enable the webkit rendering engine 
 media-gfx/graphviz:cgraph -  Enables cgraph (PostScript plotting library in C) library 
 media-gfx/graphviz:pango -  Enables the rendering of the graphs using pango & cairo (with antialiasing support) 
@@ -1178,7 +1155,6 @@ media-gfx/imagemagick:corefonts -  pull in media-fonts/corefonts, which is requi
 media-gfx/imagemagick:fpx -  enable media-libs/libfpx support 
 media-gfx/imagemagick:gs -  enable ghostscript support 
 media-gfx/imagemagick:hdri -  enable High Dynamic Range Images formats 
-media-gfx/imagemagick:openmp -  build support for the OpenMP (support parallel computing), requires sys-devel/gcc-4.3 built with USE="openmp" 
 media-gfx/imagemagick:q32 -  set quantum depth to 32 
 media-gfx/imagemagick:q8 -  set quantum depth to 8 
 media-gfx/inkscape:dia -  pull in app-office/dia for dia import extension 
@@ -1262,7 +1238,6 @@ media-plugins/audacious-plugins:scrobbler - Build with scrobbler/LastFM submissi
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
 media-plugins/audacious-plugins:tta - Build with TTA (True-Audio Loseless) support
 media-plugins/audacious-plugins:wma - Build with WMA (Windows Media Audio) support
-media-plugins/gimp-greycstoration:smp - Enable multicore/multiprocessor support
 media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compression library
 media-plugins/gst-plugins-meta:mythtv - Support for retrieval from media-tv/mythtv backend
 media-plugins/mythdvd:transcode - Enable DVD ripping and transcoding
@@ -1350,6 +1325,7 @@ media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
 media-sound/mpg123:network - Enable network support (http streams / webradio)
+media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
 media-sound/ncmpc:clock-screen - Enable clock screen
 media-sound/ncmpc:key-screen - Enable key editor screen
@@ -2095,7 +2071,6 @@ net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
 net-p2p/gift:openft - pull in OpenFT plugin
-net-p2p/kmldonkey:plasma - Build optional plasma widgets.
 net-p2p/ktorrent:bwscheduler - Enable the bwscheduler plugin
 net-p2p/ktorrent:infowidget - Enable the infowidget plugin
 net-p2p/ktorrent:ipfilter - Enable the ipfilter plugin
@@ -2188,7 +2163,6 @@ sci-biology/hmmer:pvm - Add support for parallel virtual machine (sys-cluster/pv
 sci-biology/vienna-rna:no-readseq - Do not include the modified version of Don Gilbert's readseq program
 sci-biology/vienna-rna:no-utils - Do not include sequence format conversion and representation utilities
 sci-chemistry/caver:pymol - Install the PyMol plugin (sci-chemistry/pymol) 
-sci-chemistry/cns:openmp - Build support for the OpenMP (support parallel computing)
 sci-chemistry/coot:new-interface - Build with the experimental GTK+-2 interface instead of GTK+-1
 sci-chemistry/eden:double-precision - More precise calculations at the expense of speed
 sci-chemistry/ghemical:gamess - Add GAMESS interface for QM/MM (sci-chemistry/gamess)
@@ -2201,7 +2175,6 @@ sci-chemistry/jmol:client-only - Install the viewer only, no applet files for ht
 sci-chemistry/pymol:apbs - Build the apbs plugin tool.
 sci-chemistry/pymol:shaders - Build with Shaders support - good for high-end 3D video cards.
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
-sci-chemistry/xds-bin:smp - Enable support for multiprocessors
 sci-electronics/gerbv:unit-mm - Set default unit for coordinates in status bar to mm 
 sci-electronics/pcb:xrender - Add support for xrender (x11-libs/libXrender)
 sci-geosciences/gmt:gmtfull - Full resolution bathymetry database
@@ -2225,12 +2198,10 @@ sci-geosciences/mapserver:proj - Enable sci-libs/proj library support (geographi
 sci-libs/acml:gfortran - Fetch and install acml compiled with GNU gfortran
 sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler (dev-lang/ifc)
 sci-libs/acml:int64 - Install the 64 bits integer library
-sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs dev-lang/ifc or gfortran (sys-devel/gcc) >= 4.2)
 sci-libs/blas-goto:int64 - Build the 64 bits integer library
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis (sci-libs/metis, sci-libs/parmetis)
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs virtual/lapack)
 sci-libs/fftw:float - Link default library to single precision instead of double (symlinks only and fftw-2.1)
-sci-libs/fftw:openmp - Build support for the OpenMP parallel computing library. Needs OpenMP capable compiler (e.g. gcc >= 4.2)
 sci-libs/gdal:fits - Enable support for NASA's sci-libs/cfitsio library
 sci-libs/gdal:geos - Add support for geometry engine (sci-libs/geos 
 sci-libs/gdal:gml - Enable support for dev-libs/xerces-c API
@@ -2245,7 +2216,6 @@ sci-libs/libghemical:mopac7 - Use sci-chemistry/mopac7 for semi-empirical calcul
 sci-libs/libghemical:mpqc - Use sci-chemistry/mpqc for quantum-mechanical calculations
 sci-libs/libsvm:tools - Install support tools
 sci-libs/metis:int64 - Build the 64 bits integer library (metis >=5 only)
-sci-libs/metis:openmp - Build support for the OpenMP, needs openmp capable compiler
 sci-libs/mkl:fortran95 - Installs the BLAS/LAPACK FORTRAN95 static libraries
 sci-libs/mkl:int64 - Installs the 64 bits integer libraries
 sci-libs/mkl:serial - Installs the serial (as non-threaded) libraries
@@ -2390,7 +2360,6 @@ sys-boot/grub:custom-cflags - Enable custom CFLAGS (not supported)
 sys-boot/lilo:device-mapper - Enable support for sys-fs/device-mapper
 sys-boot/lilo:pxeserial - Avoid character echo on PXE serial console
 sys-cluster/charm:cmkopt - Enable CMK optimisation
-sys-cluster/charm:smp - Enable direct SMP support using shared memory
 sys-cluster/charm:tcp - Use TCP (instead of UPD) for socket communication
 sys-cluster/heartbeat:ldirectord - Adds support for ldiretord, use enabled because it has a lot of deps
 sys-cluster/heartbeat:management - Adds support for management GUI.
@@ -2407,7 +2376,6 @@ sys-cluster/openmpi:heterogeneous - Enable features required for heterogeneous p
 sys-cluster/openmpi:mpi-threads - Enable MPI_THREAD_MULTIPLE
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/openmpi:romio - Build the ROMIO MPI-IO component
-sys-cluster/openmpi:smp - Enable smp locks in atomic ops. Recommended for SMP/multi-threaded environments.
 sys-cluster/pvfs2:apidocs - Build API documentation directly from the code using doxygen
 sys-cluster/pvfs2:server - Enable compilation of server code
 sys-cluster/torque:cpusets - Enable pbs_mom to utilize linux cpusets if available.
@@ -2436,10 +2404,8 @@ sys-devel/gcc:nossp - Disable SSP support (NOT FOR GENERAL USE)
 sys-devel/gcc:objc - Build support for the Objective C code language
 sys-devel/gcc:objc++ - Build support for the Objective C++ language
 sys-devel/gcc:objc-gc - Build support for the Objective C code language Garbage Collector
-sys-devel/gcc:openmp - Build support for the OpenMP (support parallel computing)
 sys-devel/gcc-nios2:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/gdb:multitarget - Support all known targets in one gdb binary
-sys-devel/gettext:openmp - Build support for OpenMP (support parallel computing)
 sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (eg. 3.3.4 instead of just 3.3)
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
 sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)

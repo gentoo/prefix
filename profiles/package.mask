@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9077 2008/10/15 21:07:19 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9086 2008/10/16 22:47:38 tgurr Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -153,12 +153,6 @@ media-sound/slimserver
 # Alin Năstac <mrness@gentoo.org> (21 Sep 2008)
 # Breaks L2TP connections (see bug 237132)
 =net-misc/openswan-2.6*
-
-# Alexis Ballier <aballier@gentoo.org> (21 Sep 2008)
-# New release, breaks api and kdenlive fails to build against them.
-# Unmask when it is fine.
->=media-libs/mlt-0.3.0
->=media-libs/mlt++-0.3.0
 
 # Keri Harris <keri@gentoo.org> (21 Sep 2008)
 # Development version
@@ -520,10 +514,6 @@ www-apps/phpcollab
 # www-client/opera snapshots are masked. Please read
 # http://my.opera.com/desktopteam/blog/
 =www-client/opera-9.60_pre*
-
-# Andreas Proschofsky <suka@gentoo.org> (22 Aug 2008)
-# Beta release, still got some issues
->=app-office/openoffice-3.0.0_beta2
 
 # Ricardo Mendoza <ricmm@gentoo.org> (21 Aug 2008)
 # Beta driver, masking corresponding nvidia-settings
@@ -1138,7 +1128,6 @@ dev-lang/entity
 # Timothy Redaelli <drizzt@gentoo.org> (23 Dec 2007)
 # Masked for testing
 >media-sound/mumble-1.0.0
->media-sound/murmur-1.0.0
 
 # Ulrich Mueller <ulm@gentoo.org> (21 Dec 2007)
 # Christian Faulhammer <opfer@gentoo.org>

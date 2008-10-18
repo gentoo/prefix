@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.401 2008/10/02 01:13:09 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.403 2008/10/17 18:22:53 maekke Exp $
 
 # Keep them sorted
 
@@ -39,6 +39,7 @@ bluetooth - Enables Bluetooth Support
 bootstrap - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during original system bootstrapping [make stage2]
 boundschecking - Adds the bounds checking patch by Haj Ten Brugge, this will DISABLE the hardened PIE+SSP patches
 branding - Enable Gentoo specific branding
+bsf - Enable support for Apache Bean Scripting Framework (dev-java/bsf)
 build - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used for creating build images and the first half of bootstrapping [make stage1]
 bzip2 - Use the bzlib compression library
 cairo - Enable support for the cairo graphics library
@@ -169,6 +170,7 @@ jingle - Enables voice calls for jabber
 joystick - Add support for joysticks in all packages
 jpeg - Adds JPEG image support
 jpeg2k - Support for JPEG 2000, a wavelet-based image compression format
+kontact - Enable support for the KDE personal information manager (kde-base/kdepim*)
 kde - Adds support for kde-base/kde (K Desktop Enviroment)
 kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yielding compilation speedups at the cost of heavy mem usage and potentially causing problems. We strongly discourage setting this
 kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
@@ -255,6 +257,7 @@ old-linux - Add support for linux-2.4 and older
 openal - Adds support for the Open Audio Library
 openexr - Support for the OpenEXR graphics file format
 opengl - Adds support for OpenGL (3D graphics)
+openmp - Build support for the OpenMP (support parallel computing), requires >=sys-devel/gcc-4.2 built with USE="openmp"
 oracle - Enable Oracle Database support
 osc - Enables support for Open Sound Control
 oscar - Enable Oscar (AIM/ICQ) IM protocol support
@@ -269,6 +272,7 @@ pdf - Adds general support for PDF (Portable Document Format), this replaces the
 perl - Adds support/bindings for the Perl language
 php - Include support for the PHP language
 pic - Build Position Independent Code.  Do not utilize this flag unless you know what you're doing
+plasma - Build optional plasma widgets that require kde-base/libplasma
 plotutils - Adds plotutils support to gnuplot (library for 2-D vector graphics)
 png - Adds support for libpng (PNG images)
 portaudio - Adds support for the crossplatform portaudio audio API
@@ -308,6 +312,7 @@ skey - Enable S/Key (Single use password) authentication support
 slang - Adds support for the slang text display library (it's like ncurses, but different)
 slp - Adds Service Locator Protocol support
 smartcard - Enables smartcard support
+smp - Enable support for multiprocessors or multicore systems
 sndfile - Adds support for libsndfile
 snmp - Adds support for the Simple Network Management Protocol if available
 soap - Adds support for SOAP (Simple Object Access Protocol)
