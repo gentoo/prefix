@@ -6,7 +6,4 @@
     <email>nichoj@gentoo.org</email>
     <name>Joshua Nichols</name>
   </maintainer>
-  <use>
-    <flag name="bsf">Enable support for Apache Bean Scripting Framework</flag>
-  </use>
 </pkgmetadata>
