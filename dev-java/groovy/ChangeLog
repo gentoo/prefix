@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/groovy
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.28 2008/07/04 20:00:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.29 2008/10/17 19:08:22 maekke Exp $
+
+  17 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
+  bsf USE-flag is global now
 
 *groovy-1.5.4-r1 (04 Jul 2008)
 

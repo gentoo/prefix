@@ -16,7 +16,4 @@ bytecode to be used by any Java project or it can be used dynamically as an
 alternative language such as for scripting Java objects, templating or writing
 unit test cases.
 </longdescription>
-  <use>
-    <flag name="bsf">Enable support for Apache Bean Scripting Framework</flag>
-  </use>
 </pkgmetadata>
