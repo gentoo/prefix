@@ -23,7 +23,5 @@ instead of just 3.3)</flag>
 <flag name='objc++'>Build support for the Objective C++ language</flag>
 <flag name='objc-gc'>Build support for the Objective C code language Garbage
 Collector</flag>
-<flag name='openmp'>Build support for the OpenMP (support parallel
-computing)</flag>
 </use>
 </pkgmetadata>
