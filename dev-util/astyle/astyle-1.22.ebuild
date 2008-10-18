@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.22.ebuild,v 1.3 2008/05/30 18:53:54 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.22.ebuild,v 1.7 2008/10/18 03:04:22 mabi Exp $
 
 EAPI="prefix"
 
-inherit eutils java-pkg-opt-2 multilib
+inherit eutils java-pkg-opt-2 toolchain-funcs multilib
 
 DESCRIPTION="Artistic Style is a reindenter and reformatter of C++, C and Java source code"
 HOMEPAGE="http://astyle.sourceforge.net/"
@@ -16,29 +16,36 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 IUSE="debug java libs"
 
-RDEPEND="java? ( >=virtual/jre-1.5 )"
+RDEPEND="java? ( >=virtual/jre-1.6 )"
 
-DEPEND="java? ( >=virtual/jre-1.5 )"
+DEPEND="java? ( >=virtual/jre-1.6 )"
 
 S=${WORKDIR}/${PN}
 
 pkg_setup() {
-	use java && java-pkg-2_pkg_setup
+	if use java ; then
+	    java-pkg-opt-2_pkg_setup
 
-	if use x86; then
-	    jvmarch=i386
-	else
-	    jvmarch=${ARCH}
+		local arch=${CHOST%%-*}
+	    if [[ ${arch} == i?86 ]] ; then
+		jvmarch=i386
+	    else
+		jvmarch=${arch}
+	    fi
 	fi
 }
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-strip.patch
 	# Add basic soname to make QA happy...
 	[[ ${CHOST} != *-darwin* ]] && sed -i -e "s:-shared:-shared -Wl,-soname,\$@ :g" buildgcc/Makefile
-	use java && setup-jvm-opts
+	# Fix JAVA_HOME
+	sed -i -e \
+	    "s:/usr/lib/jvm/java-6-sun-1.6.0.00:$(java-config --jdk-home):g" \
+	    buildgcc/Makefile || die "sed failed"
+	# respect CFLAGS, remove strip and other hard-coded crap
+	epatch "${FILESDIR}"/${P}-Makefile.patch
 }
 
 src_compile() {
@@ -47,7 +54,7 @@ src_compile() {
 	local build_targets="all"
 	use java && build_targets="${build_targets} javaall"
 
-	emake ${build_targets} || die "build failed"
+	emake CXX="$(tc-getCXX)" ${build_targets} || die "build failed"
 }
 
 src_install() {
@@ -56,7 +63,6 @@ src_install() {
 	    newlib.a bin/libastyled.a libastyle.a  \
 		|| die "install debug static lib failed"
 	    if use libs ; then
-		# shared lib got a soname patch
 		newlib.so bin/libastyled$(get_libame) libastyle$(get_libname) \
 		    || die "install debug shared lib failed"
 		if use java ; then
@@ -80,27 +86,4 @@ src_install() {
 	    dolib.a bin/libastyle.a || die "install static lib failed"
 	fi
 	dohtml doc/*.html
-}
-
-setup-jvm-opts() {
-	# Figure out correct boot classpath
-	# stolen from eclipse-sdk ebuild
-	local bp="$(java-config --jdk-home)/jre/lib"
-	local bootclasspath=$(java-config --runtime)
-	if java-config --java-version | grep -q IBM ; then
-		# IBM JDK
-		JAVA_LIB_DIR="$(java-config --jdk-home)/jre/bin"
-	else
-		# Sun derived JDKs (Blackdown, Sun)
-		JAVA_LIB_DIR="$(java-config --jdk-home)/jre/lib/${jvmarch}"
-	fi
-
-	einfo "Using bootclasspath ${bootclasspath}"
-	einfo "Using JVM library path ${JAVA_LIB_DIR}"
-
-	if [[ ! -f ${JAVA_LIB_DIR}/libawt$(get_libname) ]] ; then
-		die "Could not find libawt.so native library"
-	fi
-
-	export AWT_LIB_PATH=${JAVA_LIB_DIR}
 }
