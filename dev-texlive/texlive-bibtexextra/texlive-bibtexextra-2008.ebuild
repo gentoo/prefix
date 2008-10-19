@@ -16,5 +16,5 @@ DESCRIPTION="TeXLive Extra BibTeX styles"
 
 LICENSE="GPL-2 as-is freedist GPL-1 LPPL-1.3 "
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
