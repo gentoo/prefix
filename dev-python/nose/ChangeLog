@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/nose
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.19 2008/10/11 17:05:27 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.20 2008/10/18 12:55:25 aballier Exp $
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org> nose-0.10.4.ebuild:
+  keyword ~x86-fbsd, bug #233554
 
 *nose-0.10.4 (11 Oct 2008)
 
