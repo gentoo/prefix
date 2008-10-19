@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.6 2008/10/17 13:54:37 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.8 2008/10/18 20:31:10 maekke Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -38,6 +38,11 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	${DEVPATH}-testing.tar.bz2
 	${DEVPATH}-ure.tar.bz2
 	${DEVPATH}-writer.tar.bz2
+	templates? ( http://extensions.services.openoffice.org/files/273/0/Sun_ODF_Template_Pack_en-US.oxt
+		http://extensions.services.openoffice.org/files/295/1/Sun_ODF_Template_Pack_de.oxt
+		http://extensions.services.openoffice.org/files/299/0/Sun_ODF_Template_Pack_it.oxt
+		http://extensions.services.openoffice.org/files/297/0/Sun_ODF_Template_Pack_fr.oxt
+		http://extensions.services.openoffice.org/files/301/1/Sun_ODF_Template_Pack_es.oxt )
 	http://download.go-oo.org/${PATCHLEVEL}/ooo-build-${MY_PV}.tar.gz
 	odk? ( java? ( http://tools.openoffice.org/unowinreg_prebuild/680/unowinreg.dll ) )
 	http://download.go-oo.org/SRC680/extras-3.tar.bz2

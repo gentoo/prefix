@@ -1,6 +1,13 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.427 2008/10/17 13:54:37 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.429 2008/10/18 20:31:10 maekke Exp $
+
+  18 Oct 2008; Markus Meier <maekke@gentoo.org> openoffice-3.0.0.ebuild:
+  amd64/x86 stable, bug #235824
+
+  18 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.0.0.ebuild:
+  Fix download of templates packages, see bug #242494
 
   17 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.0.0.ebuild:
