@@ -1,0 +1,52 @@
+# ChangeLog for media-libs/ilmbase
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ChangeLog,v 1.14 2008/01/31 18:47:51 nixnut Exp $
+
+  31 Jan 2008; nixnut <nixnut@gentoo.org> ilmbase-1.0.1.ebuild:
+  Stable on ppc wrt bug 207663
+
+  30 Jan 2008; Raúl Porcel <armin76@gentoo.org> ilmbase-1.0.1.ebuild:
+  alpha/ia64/sparc stable wrt #207663
+
+  30 Jan 2008; Christian Faulhammer <opfer@gentoo.org> ilmbase-1.0.1.ebuild:
+  stable x86, bug 207663
+
+  29 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> ilmbase-1.0.1.ebuild:
+  Marked stable on amd64 as per bug 207663.
+
+  28 Jan 2008; Jeroen Roovers <jer@gentoo.org> ilmbase-1.0.1.ebuild:
+  Stable for HPPA (bug #207663).
+
+  27 Jan 2008; Brent Baude <ranger@gentoo.org> ilmbase-1.0.1.ebuild:
+  Marking ilmbase-1.0.1 ppc64 for bug 207663
+
+*ilmbase-1.0.1 (27 Oct 2007)
+
+  27 Oct 2007; Alexis Ballier <aballier@gentoo.org> +ilmbase-1.0.1.ebuild:
+  version bump, bug #197219
+
+  24 Oct 2007; Roy Marples <uberlord@gentoo.org> ilmbase-1.0.0.ebuild:
+  Keyworded ~x86-fbsd, #142921
+
+  09 Oct 2007; Raúl Porcel <armin76@gentoo.org> ilmbase-1.0.0.ebuild:
+  Add ~sparc wrt #189798
+
+  09 Oct 2007; Markus Rothe <corsair@gentoo.org> ilmbase-1.0.0.ebuild:
+  Added ~ppc64; bug #189798
+
+  23 Sep 2007; Raúl Porcel <armin76@gentoo.org> ilmbase-1.0.0.ebuild:
+  Add ~alpha/~ia64 wrt #189798
+
+  23 Sep 2007; nixnut <nixnut@gentoo.org> ilmbase-1.0.0.ebuild:
+  Added ~ppc wrt bug 189798
+
+  14 Sep 2007; Jeroen Roovers <jer@gentoo.org> ilmbase-1.0.0.ebuild:
+  Marked ~hppa (bug #189798).
+
+*ilmbase-1.0.0 (13 Sep 2007)
+
+  13 Sep 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ilmbase-1.0.0-asneeded.patch, +metadata.xml, +ilmbase-1.0.0.ebuild:
+  Initial import, split of media-libs/openexr, thanks to : Arfrever Frehtes
+  Taifersar Arahesis <Arfrever.FTA@GMail.Com> for the ebuilds, bug #189798
+
