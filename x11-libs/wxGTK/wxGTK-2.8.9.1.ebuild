@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.1.ebuild,v 1.1 2008/10/14 05:54:01 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.1.ebuild,v 1.2 2008/10/18 18:23:02 dirtyepic Exp $
 
-EAPI="prefix 2"
+EAPI="prefix"
 
 inherit eutils versionator flag-o-matic
 
@@ -54,14 +54,17 @@ LICENSE="wxWinLL-3
 
 S="${WORKDIR}/wxPython-src-${PV}"
 
-src_prepare() {
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
 	epatch "${FILESDIR}"/${PN}-2.6.3-unicode-odbc.patch
 	epatch "${FILESDIR}"/${PN}-2.8.8-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.6-wxrc_link_fix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch			# Bug #174874
 }
 
-src_configure() {
+src_compile() {
 	local myconf
 
 	append-flags -fno-strict-aliasing
@@ -105,11 +108,6 @@ src_configure() {
 	cd "${S}"/wxgtk_build
 
 	ECONF_SOURCE="${S}" econf ${myconf} || die "configure failed."
-}
-
-src_compile() {
-	cd "${S}"/wxgtk_build
-
 	emake || die "make failed."
 
 	if [[ -d contrib/src ]]; then

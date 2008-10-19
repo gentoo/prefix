@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.202 2008/10/16 20:11:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.204 2008/10/18 18:23:02 dirtyepic Exp $
+
+*wxGTK-2.8.9.1-r1 (18 Oct 2008)
+
+  18 Oct 2008; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.8.9.1.ebuild,
+  +wxGTK-2.8.9.1-r1.ebuild:
+  Revert to EAPI 0 for stable candidate. Add new -r1 using EAPI 2.
+
+  18 Oct 2008; Raúl Porcel <armin76@gentoo.org> wxGTK-2.6.4.0-r4.ebuild,
+  wxGTK-2.8.8.1.ebuild:
+  alpha/ia64/sparc stable wrt #242088
 
   16 Oct 2008; Markus Meier <maekke@gentoo.org> wxGTK-2.6.4.0-r4.ebuild,
   wxGTK-2.8.8.1.ebuild:
