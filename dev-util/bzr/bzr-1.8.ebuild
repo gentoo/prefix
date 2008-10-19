@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.8_rc1.ebuild,v 1.1 2008/10/07 14:34:21 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.8.ebuild,v 1.1 2008/10/18 12:38:20 pva Exp $
 
 EAPI="prefix"
 
