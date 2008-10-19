@@ -141,7 +141,7 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 pkg_setup() {
 
@@ -230,6 +230,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26450-prefix.patch
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure || die
 }
 
 src_compile() {
