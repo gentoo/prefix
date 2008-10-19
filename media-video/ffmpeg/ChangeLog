@@ -1,6 +1,14 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.232 2008/10/14 16:12:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.234 2008/10/18 22:35:19 loki_val Exp $
+
+  18 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  ffmpeg-0.4.9_p20080326.ebuild:
+  Fixup 20080326 dependency on x264 to be <0.0.20081006.
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Drop arm/ia64/ppc ~arch keywords per bug #241908 to allow unmasking
 
   14 Oct 2008; Jeroen Roovers <jer@gentoo.org>
   +files/ffmpeg-0.4.9_p20080326-hppa.patch, ffmpeg-0.4.9_p20080326.ebuild:
