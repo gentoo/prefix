@@ -1,6 +1,12 @@
 # ChangeLog for app-text/asciidoc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.39 2008/06/16 15:50:06 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.40 2008/10/18 14:11:49 pva Exp $
+
+*asciidoc-8.2.7 (18 Oct 2008)
+
+  18 Oct 2008; Peter Volkov <pva@gentoo.org> +asciidoc-8.2.7.ebuild:
+  Version bump, thank Alex Efros for report, bug #240355, also should fix
+  bug #193966.
 
 *asciidoc-8.2.6 (16 Jun 2008)
 
