@@ -10,10 +10,16 @@ SRC_URI="ftp://ftp.gtk.org/pub/${PN}/0.0/${P}.tar.bz2"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="sse mmx"
 
 DEPEND="virtual/libc"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" docs/tools/xml_insert.sh || die
+}
 
 src_compile() {
 	econf $(use_enable mmx) \
