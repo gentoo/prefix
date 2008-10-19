@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Drop grep mask, now we fixed the issues reported in bug #240584
+
   14 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
   Mask =x11-libs/vte-0.17.4 on Solaris due to -fPIC issues.
