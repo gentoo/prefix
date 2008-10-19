@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.7.0.ebuild,v 1.1 2008/09/15 14:02:43 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.7.0.ebuild,v 1.2 2008/10/18 13:40:35 pva Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,17 @@ S=${WORKDIR}/${PN}
 PYTHON_MODNAME=bzrlib
 
 src_test() {
+	python_version
 	einfo "Running testsuite..."
-	"${S}"/test.py || die "Testsuite failed."
+	# put a linked copy of the bzr core into the build directory to properly
+	# test the "built" version of bzrtools
+	find "$(python_get_libdir)/site-packages/bzrlib/" \
+		-mindepth 1 -maxdepth 1 \
+		\( \( -type d -and -not -name "plugins" \) -or -name "*.py" \) \
+		-exec ln -s '{}' "${S}/build/lib/bzrlib/" \;
+	touch "${S}/build/lib/bzrlib/plugins/__init__.py"
+	"${S}/test.py" "${S}/build/lib" || die "Testsuite failed."
+	# remove the "shadow" copy so it doesn't get installed
+	rm "${S}/build/lib/bzrlib/plugins/__init__.py"
+	find "${S}/build/lib/bzrlib/" -mindepth 1 -maxdepth 1 -type l -exec rm '{}' \;
 }
