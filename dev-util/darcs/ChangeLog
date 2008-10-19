@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.97 2008/10/08 20:42:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.98 2008/10/18 18:05:50 nixnut Exp $
+
+  18 Oct 2008; nixnut <nixnut@gentoo.org> darcs-2.0.2.ebuild:
+  Stable on ppc wrt bug 239368
 
   08 Oct 2008; Markus Meier <maekke@gentoo.org> darcs-2.0.2.ebuild:
   amd64/x86 stable, bug #239368
