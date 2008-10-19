@@ -112,9 +112,9 @@ src_unpack() {
 
 	elibtoolize
 
-	cd libs/teckit
+	cd "${S}"/libs/teckit
 	AT_M4DIR="." eautoreconf
-	cd texk/xdvipdfmx
+	cd "${S}"/texk/xdvipdfmx
 	AT_M4DIR="." eautoreconf
 }
 
