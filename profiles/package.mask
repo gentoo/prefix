@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9086 2008/10/16 22:47:38 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9088 2008/10/18 16:17:13 matsuu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# MATSUU Takuto <matsuu@gentoo.org> (18 Oct 2008)
+# Masked for testing.
+>=sys-devel/distcc-3
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (15 Oct 2008)
 # Beta release
@@ -59,19 +63,6 @@ net-mail/qmail-vmailmgr
 # Masked for removal in 30 days (see bug #240734)
 # Included in gnu-classpath. No reverse dependencies.
 dev-java/gnu-jaxp
-
-# Alexis Ballier <aballier@gentoo.org> (07 Oct 2008)
-# Big api changes; If you report a bug, please also give a patch from upstream
-# to backport or that will waste everyone's time.
-# These will stay masked until any consumer of the library has been fixed.
-# Peter Alfredsen <loki_val@gentoo.org> (14 Oct 2008)
-# Adding gst-plugins-ffmpeg-0.10.5 to mask, since it needs this version.
-# Unmask when ffmpeg gets unmasked, please.
->=media-libs/x264-0.0.20081006
->=media-video/x264-encoder-0.0.20081006
->=media-video/ffmpeg-0.4.9_p20081014
-=media-plugins/gst-plugins-ffmpeg-0.10.5*
-
 
 # Olivier Crete <tester@gentoo.org> (06 Oct 2008)
 # Masked for removal, upstream dead (bug #240045)

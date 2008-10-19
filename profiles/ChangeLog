@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1970 2008/10/17 18:23:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1973 2008/10/18 21:10:46 leio Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Oct 2008; Mart Raudsepp <leio@gentoo.org>
+  -arch/powerpc/ppc32/package.mask, -default-linux/ppc/ppc32/package.mask,
+  hardened/ppc/package.mask, -uclibc/ppc/package.mask:
+  Unmask GNOME-2.22 on ppc32, also closes bug 236312
+
+  18 Oct 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Package mask >=sys-devel/distcc-3 for testing.
+
+  18 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask latest ffmpeg/x264/gst-plugins-ffmpeg. Let revdep-rebuild be your
+  friend
 
   17 Oct 2008; Markus Meier <maekke@gentoo.org> use.desc:
   move bsf, kontact, openmp, plasma and smp to global use.desc
