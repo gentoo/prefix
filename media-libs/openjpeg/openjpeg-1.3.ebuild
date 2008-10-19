@@ -12,7 +12,7 @@ SRC_URI="http://www.openjpeg.org/openjpeg_v${PV//./_}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="tools"
 DEPEND="tools? ( >=media-libs/tiff-3.8.2 )"
 
