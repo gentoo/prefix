@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/cabal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.42 2008/10/04 10:11:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.43 2008/10/18 18:01:34 nixnut Exp $
+
+  18 Oct 2008; nixnut <nixnut@gentoo.org> cabal-1.2.3.0.ebuild:
+  Stable on ppc wrt bug 239368
 
   04 Oct 2008; Raúl Porcel <armin76@gentoo.org> cabal-1.2.3.0.ebuild:
   alpha/ia64 stable
