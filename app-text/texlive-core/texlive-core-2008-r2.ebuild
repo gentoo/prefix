@@ -107,10 +107,14 @@ src_unpack() {
 
 	# fixup some paths in config files
 	epatch "${FILESDIR}"/${PV}/${P}-prefix-config-paths.patch
+	# don't use deprecated interfaces from MacFreetype
+	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
 
 	elibtoolize
 
 	cd libs/teckit
+	AT_M4DIR="." eautoreconf
+	cd texk/xdvipdfmx
 	AT_M4DIR="." eautoreconf
 }
 
@@ -127,7 +131,8 @@ src_compile() {
 		--bindir="${EPREFIX}"/usr/bin \
 		--datadir="${S}" \
 		--with-system-freetype2 \
-		--with-freetype2-include="${EPREFIX}"/usr/include \
+		--with-freetype2-include="${EPREFIX}"/usr/include/freetype2 \
+		--with-freetype2-libdir="${EPREFIX}"/usr/lib \
 		--with-system-zlib \
 		--with-system-pnglib \
 		--without-texinfo \
