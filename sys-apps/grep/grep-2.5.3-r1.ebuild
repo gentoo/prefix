@@ -43,7 +43,7 @@ src_compile() {
 		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		$(use_enable pcre perl-regexp) \
-		$(use_with kernel_Darwin included-regex) \
+		$(use_with !elibc_glibc included-regex) \
 		${myconf} \
 		|| die "econf failed"
 
