@@ -14,7 +14,7 @@ HOMEPAGE="http://developers.videolan.org/libdvdplay/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 
 DEPEND=">=media-libs/libdvdread-0.9.3"
 
