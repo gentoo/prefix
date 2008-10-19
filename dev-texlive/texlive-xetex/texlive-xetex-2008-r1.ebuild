@@ -16,5 +16,5 @@ DESCRIPTION="TeXLive XeTeX packages"
 
 LICENSE="GPL-2 Apache-2.0 as-is GPL-1 LPPL-1.3 OFL public-domain "
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
