@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.362 2008/09/29 01:48:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.363 2008/10/20 01:04:38 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1183,6 +1183,10 @@ gcc-compiler-configure() {
 		else
 			export gcc_cv_libc_provides_ssp=yes
 			confgcc="${confgcc} --disable-libssp"
+		fi
+
+		if tc_version_is_at_least "4.2" ; then
+			confgcc="${confgcc} $(use_enable openmp libgomp)"
 		fi
 
 		# enable the cld workaround until we move things to stable.
