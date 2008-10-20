@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0_pre2.ebuild,v 1.2 2008/10/02 19:51:36 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0.ebuild,v 1.1 2008/10/19 14:51:08 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -31,16 +31,6 @@ DEPEND=">=net-misc/curl-7.10.2
 	sys-libs/zlib
 	doc?  ( virtual/latex-base
 		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
-
-# add these deps? configure will check for and use these if they are available,
-# but with older ghc's it'll just work as it won't have the split base
-#	array
-#	directory
-#	old-locale
-#   old-time
-#   process
-
-# bytestring will also be used if it's there. XXX: really?
 
 RDEPEND=">=net-misc/curl-7.10.2
 	virtual/mta
