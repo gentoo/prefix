@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<herd>hp-cluster</herd>
 	<maintainer>
-		<email>betelgeuse@gentoo.org</email>
+		<email>matsuu@gentoo.org</email>
 	</maintainer>
 	<longdescription lang="en">
 		Distcc is a program to distribute compilation of C code across several
