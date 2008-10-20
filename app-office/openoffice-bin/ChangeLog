@@ -1,6 +1,19 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.203 2008/10/17 20:30:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.206 2008/10/19 18:25:14 suka Exp $
+
+  19 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0.ebuild:
+  Install dictionaries for english, french and spanish, tell the users where
+  to find them, see bug #242312
+
+  19 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0.ebuild:
+  Add pt_BR to the list of supported languages, closes bug #242686
+
+  19 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0.ebuild:
+  Fix printeradmin symlink, bug #242690
 
   17 Oct 2008; Markus Meier <maekke@gentoo.org> openoffice-bin-3.0.0.ebuild:
   amd64/x86 stable, bug #235824

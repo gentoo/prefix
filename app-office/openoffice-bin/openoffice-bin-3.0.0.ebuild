@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.2 2008/10/17 20:30:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.5 2008/10/19 18:25:14 suka Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ DESCRIPTION="OpenOffice productivity suite"
 SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )
 	amd64? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxX86-64_install_en-US.tar.gz )"
 
-LANGS="af ar as_IN be_BY bg br bs ca cs da de dz el en en_GB en_ZA es et fi fr ga gu he hi_IN hr hu it ja ka km ko lt mk ml_IN mr_IN nb ne nl nn nr ns or_IN pa_IN pl pt rw sh sk sl sr ss st sv sw_TZ ta te_IN tg th ti_ER tr ts uk ur_IN ve vi xh zh_CN zh_TW zu"
+LANGS="af ar as_IN be_BY bg br bs ca cs da de dz el en en_GB en_ZA es et fi fr ga gu he hi_IN hr hu it ja ka km ko lt mk ml_IN mr_IN nb ne nl nn nr ns or_IN pa_IN pl pt pt_BR rw sh sk sl sr ss st sv sw_TZ ta te_IN tg th ti_ER tr ts uk ur_IN ve vi xh zh_CN zh_TW zu"
 
 for X in ${LANGS} ; do
 	[[ ${X} != "en" ]] && SRC_URI="${SRC_URI} linguas_${X}? (
@@ -117,6 +117,11 @@ src_unpack() {
 		done
 	done
 
+	# Unpack provided dictionaries, unless there is a better solution...
+	rpm_unpack "${S}/openoffice.org3-dict-en-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "${S}/openoffice.org3-dict-es-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "${S}/openoffice.org3-dict-fr-${MY_PV3}.${OOARCH}.rpm"
+
 }
 
 src_install () {
@@ -151,7 +156,7 @@ src_install () {
 		dosym ${INSTDIR}/program/s${app} /usr/bin/oo${app}
 	done
 
-	dosym ${INSTDIR}/program/spadmin.bin /usr/bin/ooffice-printeradmin
+	dosym ${INSTDIR}/program/spadmin /usr/bin/ooffice-printeradmin
 	dosym ${INSTDIR}/program/soffice /usr/bin/soffice
 
 	rm -f ${INSTDIR}/basis-link || die
@@ -179,6 +184,10 @@ pkg_postinst() {
 	elog " dictionaries. Please install them manually through the Extensions "
 	elog " Manager (Tools > Extensions Manager) or use the source based "
 	elog " package instead. "
+	elog
+	elog " Dictionaries for english, french and spanish are provided in "
+	elog " /usr/$(get_libdir)/openoffice/share/extension/install "
+	elog " Other dictionaries can be found at Suns extension site. "
 	elog
 
 	ewarn " Please note that this release of OpenOffice.org uses a "
