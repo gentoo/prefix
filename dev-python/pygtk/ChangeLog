@@ -1,6 +1,16 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.189 2008/09/25 14:05:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.191 2008/10/19 15:33:11 eva Exp $
+
+  19 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/pygtk-2.13.0-fix-codegen-location.patch:
+  adding forgotten patch.
+
+*pygtk-2.13.0 (19 Oct 2008)
+
+  19 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> +pygtk-2.13.0.ebuild:
+  New version for GNOME 2.24. Wrap more APIs, support GTK-2.14 and bug
+  fixes.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> pygtk-2.12.1-r2.ebuild:
   Stable for HPPA (bug #236971).
