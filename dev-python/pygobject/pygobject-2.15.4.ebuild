@@ -1,59 +1,72 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.18 2008/05/29 16:26:20 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.15.4.ebuild,v 1.1 2008/10/19 11:41:44 eva Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=1.8
-inherit gnome2 python eutils autotools
+inherit autotools gnome2 python virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="doc"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="doc examples libffi"
 
-RDEPEND=">=dev-lang/python-2.3.5
-	>=dev-libs/glib-2.8
-	!<dev-python/pygtk-2.9"
+RDEPEND=">=dev-lang/python-2.4.4-r5
+	>=dev-libs/glib-2.16
+	!<dev-python/pygtk-2.13"
 DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
 	>=dev-util/pkgconfig-0.12.0"
 
-DOCS="AUTHORS ChangeLog INSTALL NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
-	G2CONF="$(use_enable doc docs)"
+	if use libffi && ! built_with_use sys-devel/gcc libffi; then
+		eerror "libffi support not found in sys-devel/gcc." && die
+	fi
+
+	G2CONF="${G2CONF} $(use_enable doc docs) $(use_with libffi)"
 }
 
 src_unpack() {
 	gnome2_src_unpack
 
-	# fix bug #147285 - Robin H. Johnson <robbat2@gentoo.org>
-	# this is caused by upstream's automake-1.8 lacking some Gentoo-specific
-	# patches (for tmpfs amongst other things). Upstreams hit by this should
-	# move to newer automake versions ideally.
-	eautomake
+	# Fix FHS compliance, see upstream bug #535524
+	epatch "${FILESDIR}/${P}-fix-codegen-location.patch"
+
+	eautoreconf
 
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
 }
 
+src_test() {
+	unset DBUS_SESSION_BUS_ADDRESS
+	Xemake check || die "tests failed"
+}
+
 src_install() {
 	gnome2_src_install
 
-	insinto /usr/share/doc/${P}
-	doins -r examples
+	if use examples; then
+		insinto /usr/share/doc/${P}
+		doins -r examples
+	fi
 
 	python_version
 	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py \
 		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py-2.0
 	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth \
 		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth-2.0
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# our python expects a bundle
+		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/gobject/_gobject.{so,bundle}
+	fi
 }
 
 pkg_postinst() {
