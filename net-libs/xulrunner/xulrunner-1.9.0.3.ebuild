@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 	http://dev.gentoo.org/~armin76/dist/${P}.tar.bz2
 	mirror://gentoo/${PATCH}.tar.bz2"
 
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE=""
@@ -65,6 +65,7 @@ src_unpack() {
 	epatch "${WORKDIR}"/patch
 
 	epatch "${FILESDIR}"/${PN}-1.9-no_sunstudio.patch # breaks sunstudio
+	epatch "${FILESDIR}"/${PN}-1.9-solaris64.patch
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
