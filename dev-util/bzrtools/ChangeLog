@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.37 2008/10/18 15:12:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.38 2008/10/19 14:47:43 maekke Exp $
+
+  19 Oct 2008; Markus Meier <maekke@gentoo.org> bzrtools-1.6.0.ebuild:
+  amd64/x86 stable, bug #241740
 
   18 Oct 2008; nixnut <nixnut@gentoo.org> bzrtools-1.6.0.ebuild:
   Stable on ppc wrt bug 241740
