@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.6-r1.ebuild,v 1.2 2008/10/05 20:17:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.6-r2.ebuild,v 1.1 2008/10/19 06:56:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ src_unpack() {
 	fi
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-cut-paste-segv.patch
+	epatch "${FILESDIR}"/${P}-cut-last.patch #240330
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
