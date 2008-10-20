@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1973 2008/10/18 21:10:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1976 2008/10/19 23:05:59 leio Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Oct 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Mask bug-buddy-2.24 for now, has some problems
+
+  19 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add =x11-drivers/xf86-video-i810-2.4.98* to p.mask
+
+  19 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add =x11-libs/libdrm-2.4.0* to p.mask
 
   18 Oct 2008; Mart Raudsepp <leio@gentoo.org>
   -arch/powerpc/ppc32/package.mask, -default-linux/ppc/ppc32/package.mask,
