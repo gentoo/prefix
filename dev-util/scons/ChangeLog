@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.60 2008/08/20 04:30:17 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.61 2008/10/19 14:39:31 maekke Exp $
+
+  19 Oct 2008; Markus Meier <maekke@gentoo.org> scons-1.0.0.ebuild:
+  amd64/x86 stable, bug #242766
 
 *scons-1.0.0 (19 Aug 2008)
 
