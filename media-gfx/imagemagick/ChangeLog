@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.307 2008/10/17 18:39:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.308 2008/10/19 10:13:15 armin76 Exp $
+
+  19 Oct 2008; Raúl Porcel <armin76@gentoo.org> imagemagick-6.4.4.6.ebuild,
+  imagemagick-6.4.4.6-r1.ebuild:
+  Re-add ~alpha/~ia64 wrt #242236
 
   17 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
   openmp USE-flag is global now
