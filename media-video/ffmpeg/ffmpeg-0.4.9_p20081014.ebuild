@@ -54,6 +54,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-shared-gcc4.1.patch"
 
+	epatch "${FILESDIR}"/${P}-solaris.patch
+
 	# Set version #
 	# Any better idea? We can't do much more as we use an exported svn snapshot.
 	sed -i s/UNKNOWN/SVN-r${FFMPEG_SVN_REV}/ "${S}/version.sh"
