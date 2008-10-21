@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
 
 DESCRIPTION="Sophisticated and powerful Object-Relational DBMS."
 HOMEPAGE="http://www.postgresql.org/"
@@ -58,6 +58,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-${PV}-gentoo.patch"
 	epatch "${FILESDIR}/${PN}-${PV}-sh.patch"
+
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	# Prepare package for future tests
 	if use test ; then

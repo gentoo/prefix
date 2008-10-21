@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
 
 MY_PV="${PV/_rc/RC}"
 DESCRIPTION="Sophisticated and powerful Object-Relational DBMS."
