@@ -3,8 +3,3 @@
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
 # fails to compile on amd64 because it doesn't use -fPIC everywhere
 =x11-libs/vte-0.17.4
-
-# Fabian Groffen <grobian@gentoo.org> (21 Jun 2008)
-# dies during compilation on Solaris, I don't trust it
-=media-video/ffmpeg-0.4.9_p20080326
-

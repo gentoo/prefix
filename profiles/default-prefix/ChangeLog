@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  21 Oct 2008; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Drop ffmpeg mask on Solaris, as the version has been superseeded by a fixed
+  version
+
   19 Oct 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Drop grep mask, now we fixed the issues reported in bug #240584
 
