@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 DESCRIPTION="PostgreSQL libraries."
 HOMEPAGE="http://www.postgresql.org/"
