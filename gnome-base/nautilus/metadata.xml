@@ -7,5 +7,6 @@
 		(<pkg>app-misc/beagle</pkg>) desktop search tool</flag>
 	<flag name='tracker'>Enables support for searching using the Tracker
 		(<pkg>app-misc/tracker</pkg>) search tool</flag>
+	<flag name='xmp'>Adds support for XMP metadata</flag>
 </use>
 </pkgmetadata>
