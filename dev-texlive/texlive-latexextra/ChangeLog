@@ -1,6 +1,12 @@
 # ChangeLog for dev-texlive/texlive-latexextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.21 2008/09/09 18:33:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.22 2008/10/21 06:37:06 aballier Exp $
+
+  21 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-latexextra-2008.ebuild:
+  Block dev-tex/ppower4, its included here and they collide, thanks to
+  Helmut Jarausch <jarausch@igpm.rwth-aachen.de> for reporting in bug
+  #242854
 
   09 Sep 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-latexextra-2007.ebuild:

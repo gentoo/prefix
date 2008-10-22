@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2008.ebuild,v 1.1 2008/09/09 16:47:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2008.ebuild,v 1.2 2008/10/21 06:37:06 aballier Exp $
 
 EAPI="prefix"
 
@@ -11,6 +11,7 @@ dev-texlive/texlive-fontsrecommended
 !dev-tex/ha-prosper
 !dev-tex/texpower
 !dev-tex/cdcover
+!dev-tex/ppower4
 !=dev-texlive/texlive-latexrecommended-2007*
 !=dev-texlive/texlive-latex3-2007*
 !=dev-texlive/texlive-humanities-2007*
