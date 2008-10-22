@@ -1,10 +1,24 @@
 # ChangeLog for dev-java/commons-collections
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.48 2008/06/23 09:43:33 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.51 2008/10/21 22:35:39 ken69267 Exp $
+
+  21 Oct 2008; Kenneth Prugh <ken69267@gentoo.org>
+  commons-collections-3.2.1.ebuild:
+  amd64 stable, bug #242966
+
+  21 Oct 2008; Miroslav Šulc <fordfrog@gentoo.org>
+  commons-collections-3.2.1.ebuild:
+  Fixed installation of commons-collections-testframework jar
 
   23 Jun 2008; Alistair Bush <ali_bush@gentoo.org>
   commons-collections-3.2-r1.ebuild, commons-collections-3.2.1.ebuild:
   Update urls as upstream forwards have been removed.
+
+*commons-collections-3.2.1 (21 Jun 2008)
+
+  21 Jun 2008; Miroslav Šulc <fordfrog@gentoo.org>
+  +commons-collections-3.2.1.ebuild:
+  version bump
 
   13 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
   -commons-collections-3.2.ebuild:
