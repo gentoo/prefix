@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.230 2008/10/06 07:00:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.231 2008/10/21 00:25:35 leio Exp $
+
+*pango-1.22.1 (21 Oct 2008)
+
+  21 Oct 2008; Mart Raudsepp <leio@gentoo.org> -pango-1.22.0.ebuild,
+  +pango-1.22.1.ebuild:
+  New bug fix release. A crasher case fix, bogus OpenType anchor tables
+  loading fix, OpenType CursiveChain positioning fix, a memory leak fix, and
+  a few other bug fixes.
 
   06 Oct 2008; Mart Raudsepp <leio@gentoo.org> pango-1.22.0.ebuild:
   Correct the glib dependency, bug 239494; remove useless epunt_cxx
