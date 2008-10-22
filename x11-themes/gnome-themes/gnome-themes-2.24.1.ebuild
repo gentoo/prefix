@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.24.0.ebuild,v 1.1 2008/10/11 10:50:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.24.1.ebuild,v 1.1 2008/10/20 22:09:14 leio Exp $
 
 EAPI="prefix"
 
