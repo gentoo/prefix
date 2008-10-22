@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.100 2008/10/19 14:59:24 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.101 2008/10/20 17:39:18 kolmodin Exp $
+
+*darcs-2.1.0-r1 (20 Oct 2008)
+
+  20 Oct 2008; Lennart Kolmodin <kolmodin@gentoo.org> -darcs-2.1.0.ebuild,
+  +darcs-2.1.0-r1.ebuild:
+  Make sure the manual is built when the doc flag is set, the configure
+  argument had changed. Patch by Joachim Fasting <joachim.fasting@gmail.com>.
+  
+  Also remove the dep on dev-haskell/http, as it is optional and yet not
+  keyworded on all arches darcs supports.
 
   19 Oct 2008; Lennart Kolmodin <kolmodin@gentoo.org>
   -darcs-2.1.0_pre2.ebuild, -darcs-2.1.0_pre3.ebuild:

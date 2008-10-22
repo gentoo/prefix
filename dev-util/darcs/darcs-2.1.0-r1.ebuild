@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0.ebuild,v 1.1 2008/10/19 14:51:08 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0-r1.ebuild,v 1.1 2008/10/20 17:39:18 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,6 @@ DEPEND=">=net-misc/curl-7.10.2
 	=dev-haskell/quickcheck-1*
 	dev-haskell/mtl
 	dev-haskell/html
-	dev-haskell/http
 	dev-haskell/parsec
 	dev-haskell/regex-compat
 	sys-apps/diffutils
@@ -64,7 +63,7 @@ src_unpack() {
 
 src_compile() {
 	# use --enable-bytestring?
-	econf $(use_with doc docs) \
+	econf $(use_with doc manual) \
 		  --disable-haskeline \
 		  --disable-haskell-zlib \
 		|| die "configure failed"
