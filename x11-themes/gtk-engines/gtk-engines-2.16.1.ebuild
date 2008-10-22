@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.16.0.ebuild,v 1.1 2008/10/08 12:41:57 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.16.1.ebuild,v 1.2 2008/10/22 00:12:18 leio Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="accessibility static"
+IUSE="accessibility"
 
 RDEPEND=">=x11-libs/gtk+-2.12"
 DEPEND="${RDEPEND}
@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
-	G2CONF="$(use_enable static) --enable-animation --enable-lua"
+	G2CONF="--enable-animation --enable-lua"
 	use accessibility || G2CONF="${G2CONF} --disable-hc"
 }
 
