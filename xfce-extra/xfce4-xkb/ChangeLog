@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.24 2008/10/04 11:08:08 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.25 2008/10/21 17:19:25 darkside Exp $
+
+  21 Oct 2008; Jeremy Olexa <darkside@gentoo.org> xfce4-xkb-0.5.1.ebuild:
+  Add x11-libs/libwnck to RDEPEND of xfce-extra/xfce4-xkb, bug #241844
 
 *xfce4-xkb-0.5.1 (04 Oct 2008)
 
