@@ -1,6 +1,22 @@
 # ChangeLog for dev-perl/Archive-Tar
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.94 2008/09/20 12:15:31 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.98 2008/10/21 17:14:08 corsair Exp $
+
+  21 Oct 2008; Markus Rothe <corsair@gentoo.org> Archive-Tar-1.40.ebuild:
+  Stable on ppc64; bug #192989
+
+  21 Oct 2008; Tobias Heinlein <keytoaster@gentoo.org>
+  Archive-Tar-1.40.ebuild:
+  Keyworded and stable for amd64, security bug #192989
+
+  20 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
+  Archive-Tar-1.40.ebuild:
+  Keyworded and stable for sparc, security bug #192989
+
+*Archive-Tar-1.40 (20 Oct 2008)
+
+  20 Oct 2008; Torsten Veller <tove@gentoo.org> +Archive-Tar-1.40.ebuild:
+  Version bump. Fixes #192989
 
   20 Sep 2008; Santiago M. Mola <coldwind@gentoo.org>
   Archive-Tar-1.38.ebuild:
