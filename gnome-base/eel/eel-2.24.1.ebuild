@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.22.0.ebuild,v 1.2 2008/03/23 23:26:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.1 2008/10/20 19:44:07 eva Exp $
 
 EAPI="prefix"
 
@@ -11,35 +11,29 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux"
-IUSE=""
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+IUSE="test"
+
+# FIXME: needs a running at-spi-registryd (setup a virtual session ?)
+RESTRICT="test"
 
 RDEPEND=">=dev-libs/glib-2.15
-		 >=x11-libs/gtk+-2.10
-		 >=gnome-base/gail-0.16
+		 >=x11-libs/gtk+-2.13
 		 >=gnome-base/gconf-2.0
 		 >=dev-libs/libxml2-2.4.7
 		 >=gnome-base/libglade-2.0
-		 >=gnome-base/gnome-desktop-2.21.3
+		 >=gnome-base/gnome-desktop-2.23.3
 		 >=x11-libs/startup-notification-0.8
 
-		 >=gnome-base/libgnome-2.0
+		 >=gnome-base/libgnome-2.23.0
 		 >=gnome-base/libgnomeui-2.8"
 DEPEND="${RDEPEND}
 		  sys-devel/gettext
 		>=dev-util/intltool-0.35
-		>=dev-util/pkgconfig-0.19"
+		>=dev-util/pkgconfig-0.19
+		test? ( gnome-extra/libgail-gnome )"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README THANKS TODO"
-
-src_unpack() {
-	gnome2_src_unpack
-
-	# Fix deprecated API disabling in used libraries - this is not future-proof, bug 212801
-	sed -i -e '/DISABLE_DEPRECATED/d' \
-		"${S}/eel/Makefile.am" "${S}/eel/Makefile.in" \
-		"${S}/test/Makefile.am" "${S}/test/Makefile.in"
-}
 
 src_test() {
 	if hasq userpriv $FEATURES; then
