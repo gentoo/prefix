@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.5 2008/10/19 18:25:14 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.6 2008/10/21 06:31:16 suka Exp $
 
 EAPI="prefix"
 
@@ -166,7 +166,7 @@ src_install () {
 	sed -i -e "s/.openoffice.org\/3/.ooo3/g" "${ED}${INSTDIR}/program/bootstraprc" || die
 
 	# Non-java weirdness see bug #99366
-	use !java && rm -f "${ED}${INSTDIR}/program/javaldx"
+	use !java && rm -f "${ED}${INSTDIR}/ure/bin/javaldx"
 
 	# prevent revdep-rebuild from attempting to rebuild all the time
 	insinto /etc/revdep-rebuild && doins "${T}/50-openoffice-bin"
