@@ -1,0 +1,118 @@
+# ChangeLog for media-libs/libopenraw
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.32 2008/09/28 15:15:30 armin76 Exp $
+
+  28 Sep 2008; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.5.ebuild:
+  arm stable wrt #217148
+
+  17 Apr 2008; Jeroen Roovers <jer@gentoo.org> libopenraw-0.0.5.ebuild:
+  Stable for HPPA (bug #217148).
+
+  14 Apr 2008; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.5.ebuild:
+  alpha/ia64/sparc stable wrt #217148
+
+  12 Apr 2008; Dawid Węgliński <cla@gentoo.org> libopenraw-0.0.5.ebuild:
+  Stable on x86 (bug #217148)
+
+  12 Apr 2008; nixnut <nixnut@gentoo.org> libopenraw-0.0.5.ebuild:
+  Stable on ppc wrt bug 217148
+
+  10 Apr 2008; Markus Rothe <corsair@gentoo.org> libopenraw-0.0.5.ebuild:
+  Stable on ppc64; bug #217148
+
+  10 Apr 2008; Samuli Suominen <drac@gentoo.org> metadata.xml:
+  Reassign to freedesktop herd.
+
+  10 Apr 2008; Samuli Suominen <drac@gentoo.org> libopenraw-0.0.5.ebuild:
+  amd64 stable
+
+  23 Mar 2008; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.4.ebuild:
+  ia64/sparc stable wrt #214222
+
+  22 Mar 2008; Christian Faulhammer <opfer@gentoo.org>
+  libopenraw-0.0.4.ebuild:
+  stable x86, bug 214222
+
+  22 Mar 2008; Brent Baude <ranger@gentoo.org> libopenraw-0.0.4.ebuild:
+  stable ppc64, bug 214222
+
+  22 Mar 2008; Tobias Klausmann <klausman@gentoo.org>
+  libopenraw-0.0.4.ebuild:
+  Stable on alpha, bug #214222
+
+  22 Mar 2008; Jeroen Roovers <jer@gentoo.org> libopenraw-0.0.4.ebuild:
+  Stable for HPPA (bug #214222).
+
+  22 Mar 2008; nixnut <nixnut@gentoo.org> libopenraw-0.0.4.ebuild:
+  Stable on ppc wrt bug 214222
+
+  22 Mar 2008; Samuli Suominen <drac@gentoo.org> libopenraw-0.0.4.ebuild:
+  amd64 stable wrt #214222
+
+*libopenraw-0.0.5 (20 Mar 2008)
+
+  20 Mar 2008; Samuli Suominen <drac@gentoo.org> +libopenraw-0.0.5.ebuild:
+  Version bump with test suite resctricted, because of f.d.o bug 13659.
+
+*libopenraw-0.0.4 (20 Jan 2008)
+
+  20 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  -files/libopenraw-0.0.3-disable-ljpegtest.patch,
+  +files/libopenraw-0.0.4-disable-ljpegtest.patch, -libopenraw-0.0.3.ebuild,
+  +libopenraw-0.0.4.ebuild:
+  Version bump, should also close #205759 -- problem was missing ifdef in
+  demo/Makefile.am.
+
+  14 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  +files/libopenraw-0.0.3-disable-ljpegtest.patch, libopenraw-0.0.3.ebuild:
+  Disable ljpegtest, broken with boost-1.34.1 adding a comments to ebuild,
+  linking to upstream bugs. Thanks to aballier at gentoo.org for reporting.
+
+*libopenraw-0.0.3 (11 Dec 2007)
+
+  11 Dec 2007; Samuli Suominen <drac@gentoo.org> +libopenraw-0.0.3.ebuild:
+  Version bump.
+
+  20 Oct 2007; Markus Rothe <corsair@gentoo.org> libopenraw-0.0.2.ebuild:
+  Stable on ppc64; bug #195250
+
+  10 Oct 2007; Lars Weiler <pylon@gentoo.org> libopenraw-0.0.2.ebuild:
+  stable ppc, bug #195250
+
+  10 Oct 2007; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.2.ebuild:
+  alpha/ia64/sparc stable wrt #195250
+
+  09 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  libopenraw-0.0.2.ebuild:
+  stable x86, bug 195250
+
+  09 Oct 2007; Jeroen Roovers <jer@gentoo.org> libopenraw-0.0.2.ebuild:
+  Stable for HPPA (bug #195250).
+
+  09 Oct 2007; Christoph Mende <angelos@gentoo.org> libopenraw-0.0.2.ebuild:
+  Stable on amd64 wrt bug #195250
+
+  16 Sep 2007; Joseph Jezak <josejx@gentoo.org> libopenraw-0.0.2.ebuild:
+  Marked ~ppc/~ppc64 for bug #189043.
+
+  24 Aug 2007; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.2.ebuild:
+  Add ~alpha/~ia64 wrt #189043
+
+  23 Aug 2007; Jeroen Roovers <jer@gentoo.org> libopenraw-0.0.2.ebuild:
+  Marked ~hppa (bug #189043).
+
+  18 Aug 2007; Samuli Suominen <drac@gentoo.org> libopenraw-0.0.2.ebuild:
+  Keyworded ~arm wrt #189043
+
+  16 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  libopenraw-0.0.2.ebuild:
+  Keyworded ~sparc wrt #189043
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> libopenraw-0.0.2.ebuild:
+  Added ~amd64
+
+*libopenraw-0.0.2 (09 Aug 2007)
+
+  09 Aug 2007; Samuli Suominen <drac@gentoo.org> +libopenraw-0.0.2.ebuild:
+  Initial commit for bug 188245.
+
