@@ -1,6 +1,14 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.180 2008/10/18 22:43:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.181 2008/10/21 01:40:58 leio Exp $
+
+*gnome-terminal-2.24.1 (21 Oct 2008)
+
+  21 Oct 2008; Mart Raudsepp <leio@gentoo.org>
+  -gnome-terminal-2.24.0.ebuild, +gnome-terminal-2.24.1.ebuild:
+  Version bump for bug fixes, also brings back "switch to tab x" keybinding
+  configurability that was lost in 2.24.0, but only via gconf-editor for
+  now. Bug fixes.
 
   18 Oct 2008; Brent Baude <ranger@gentoo.org>
   gnome-terminal-2.22.3-r1.ebuild:
