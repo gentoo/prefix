@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.43-r1.ebuild,v 1.1 2008/10/07 06:14:53 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.46.ebuild,v 1.1 2008/10/20 10:50:15 grozin Exp $
 EAPI="prefix 2"
 inherit eutils autotools elisp-common latex-package multilib python
 
@@ -70,7 +70,7 @@ pkg_setup() {
 
 src_prepare() {
 	# Fixing fftwl, gsl, sigsegv enabling
-	epatch "${FILESDIR}/${PF}-configure-ac.patch"
+	epatch "${FILESDIR}/${P}-configure-ac.patch"
 	einfo "Patching configure.ac"
 	sed -e "s:Datadir/doc/asymptote:Datadir/doc/${PF}:" \
 		-i configure.ac \

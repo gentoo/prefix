@@ -1,7 +1,7 @@
-diff -U2 --recursive asymptote-1.43.orig/settings.cc asymptote-1.43/settings.cc
---- asymptote-1.43.orig/settings.cc	2008-06-12 14:41:38.000000000 +0700
-+++ asymptote-1.43/settings.cc	2008-06-22 17:26:21.000000000 +0700
-@@ -75,12 +75,12 @@
+diff -U2 -r asymptote-1.46.orig/settings.cc asymptote-1.46/settings.cc
+--- asymptote-1.46.orig/settings.cc	2008-10-19 01:38:49.000000000 +0700
++++ asymptote-1.46/settings.cc	2008-10-21 01:07:49.000000000 +0700
+@@ -81,12 +81,12 @@
  const char *HOME="HOME";
  const char pathSeparator=':';
 -string defaultPSViewer="gv";
