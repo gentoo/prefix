@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1976 2008/10/19 23:05:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1983 2008/10/22 00:36:19 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 Oct 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking www-client/dillo-2.0 because it depends on hard-masked
+  x11-libs/fltk:2
+
+  21 Oct 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking pre-release snapshot for fltk-2.0 for testing, bug 242774
+
+  21 Oct 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/VCP-autrijus, dev-perl/PodToHTML,
+  dev-perl/FileHandle-Deluxe, dev-perl/FileHandle-Rollback,
+  dev-perl/Audio-Tools
+
+  20 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  update package.mask for GNOME 2.24. (include nautilus)
+
+  20 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  update GNOME 2.24 mask.
+
+  20 Oct 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  genflags is going away.
+
+  20 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  adding gnome-desktop to gnome 2.24 mask until we move more gnome 2.24
+  packages in tree.
 
   19 Oct 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
   Mask bug-buddy-2.24 for now, has some problems

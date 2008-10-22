@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9092 2008/10/19 23:05:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9101 2008/10/22 01:16:44 dang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,38 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ben de Groot <yngwin@gentoo.org> (22 Oct 2008)
+# Depends on hard-masked x11-libs/fltk:2
+~www-client/dillo-2.0
+
+# Ben de Groot <yngwin@gentoo.org> (21 Oct 2008)
+# Pre-release snapshot of new major version
+# Masked for testing, see bug 242774
+=x11-libs/fltk-2.0_pre*
+
+# Torsten Veller <tove@gentoo.org> (21 Oct 2008)
+# Masked for removal in 30 days
+# Old and unneeded or deprecated packages
+dev-perl/VCP-autrijus
+dev-perl/PodToHTML
+dev-perl/FileHandle-Deluxe
+dev-perl/FileHandle-Rollback
+dev-perl/Audio-Tools
+
+# Robin H. Johnson <robbat2@gentoo.org> (20 Oct 2008)
+# Masked for removal in 30 days (see bugs #120220, #137998, #170782)
+# genflags should never have been born.  Output needs to be specific per GCC
+# version, and that's a big change.
+app-portage/genflags
+
+# Gilles Dartiguelongue <eva@gentoo.org> (20 Oct 2008)
+# GNOME 2.24 mask being (and related)
+>=net-irc/xchat-gnome-0.24.0
+>=gnome-base/gnome-desktop-2.24.0
+>=gnome-base/eel-2.24.0
+>=gnome-base/nautilus-2.24.0
+# GNOME 2.24 mask end
 
 # Mart Raudsepp <leio@gentoo.org> (20 Oct 2008)
 # Does not work well compared to 2.22, at least not without
@@ -111,11 +143,6 @@ x11-misc/obpager
 # See https://bugs.gentoo.org/show_bug.cgi?id=227629
 # for more details.
 dev-lisp/abcl-cvs
-
-# Gilles Dartiguelongue <eva@gentoo.org> (27 Sep 2008)
-# GNOME 2.24 mask being (and related)
->=net-irc/xchat-gnome-0.24.0
-# GNOME 2.24 mask end
 
 # Christian Parpart <trapni@gentoo.org> (25 Sep 2008)
 # for testing/experienced users only

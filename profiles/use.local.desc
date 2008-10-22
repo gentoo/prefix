@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3972 2008/10/19 19:07:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3975 2008/10/21 14:08:40 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -913,6 +913,7 @@ gnome-base/gvfs:cdda - Enables Compact Disc Digital Audio (standard audio CDs) s
 gnome-base/gvfs:fuse - Enables fuse mount points in $HOME/.gvfs for legacy application access
 gnome-base/nautilus:beagle - Enables support for searching using the Beagle (app-misc/beagle) desktop search tool
 gnome-base/nautilus:tracker - Enables support for searching using the Tracker (app-misc/tracker) search tool
+gnome-base/nautilus:xmp - Adds support for XMP metadata
 gnome-extra/avant-window-navigator:xfce - Enables support for the XFCE 4 desktop environment
 gnome-extra/gnome-do-plugins:amarok - Enables the Amarok (media-sound/amarok) plugin
 gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
@@ -2229,9 +2230,12 @@ sci-libs/metis:int64 - Build the 64 bits integer library (metis >=5 only)
 sci-libs/mkl:fortran95 - Installs the BLAS/LAPACK FORTRAN95 static libraries
 sci-libs/mkl:int64 - Installs the 64 bits integer libraries
 sci-libs/mkl:serial - Installs the serial (as non-threaded) libraries
-sci-libs/plplot:itcl - Support for dev-tcltk/itcl bindings
-sci-libs/plplot:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
-sci-libs/plplot:octave - Support for sci-mathematics/octave bindings 
+sci-libs/plplot:ada - Add bindings for the ADA programming language
+sci-libs/plplot:fortran95 - Add bindings for FORTRAN 95 programming language
+sci-libs/plplot:itcl - Add bindings for dev-tcltk/itcl
+sci-libs/plplot:jadetex - Add device for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
+sci-libs/plplot:octave - Add bindings for sci-mathematics/octave
+sci-libs/plplot:qhull - Add bindings for media-libs/qhull bindings
 sci-libs/scipy:sandbox - Adds experimental scipy sandbox modules
 sci-libs/scipy:umfpack - Adds support for sparse solving with sci-libs/umfpack
 sci-libs/vtk:boost - Add support for boost
@@ -2576,6 +2580,7 @@ x11-drivers/nvidia-drivers:custom-cflags - Build with CFLAGS from /etc/make.conf
 x11-libs/cairo:glitz - Build with glitz support, which replaces some software render operations with Mesa OpenGL operations
 x11-libs/cairo:opengl - When used along with USE=glitz, enables glitz-glx usage. Requires hardware OpenGL support
 x11-libs/fltk:noxft - Disables xft; use for non-english characters
+x11-libs/fltk:xft - Build with support for XFT font renderer (x11-libs/libXft)
 x11-libs/gtkmathview:t1lib - Enable media-libs/t1lib support
 x11-libs/libmatchbox:pango - Enable x11-libs/pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management
