@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.196 2008/09/17 21:43:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.197 2008/10/22 00:06:59 fordfrog Exp $
+
+*tomcat-6.0.18-r1 (21 Oct 2008)
+
+  21 Oct 2008; Miroslav Šulc <fordfrog@gentoo.org>
+  +tomcat-6.0.18-r1.ebuild:
+  Fixed bug #242826 (invalid tomcat version reported), patch by Yoann
+  Pannier <gentoo-bugs.d@umsar.org>.
 
   17 Sep 2008; Markus Meier <maekke@gentoo.org> tomcat-5.5.27-r1.ebuild:
   amd64/x86 stable, bug #225477
