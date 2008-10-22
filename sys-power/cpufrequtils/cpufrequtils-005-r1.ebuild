@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/cpufrequtils-002-r3.ebuild,v 1.3 2007/10/06 09:08:28 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/cpufrequtils-005-r1.ebuild,v 1.1 2008/10/21 21:20:59 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,35 +20,34 @@ DEPEND="sys-fs/sysfsutils"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-parallel-make.patch
+	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-nls.patch #205576
 }
 
+ft() { use $1 && echo true || echo false ; }
+
 src_compile() {
-	local debug=false nls=false
-
-	use debug && debug=true
-	use nls && nls=true
-
-	emake V=true DEBUG=${debug} NLS=${nls} \
+	emake \
+		OPTIMIZATION= V=true \
+		DEBUG=$(ft debug) \
+		NLS=$(ft nls) \
 		CC=$(tc-getCC) LD=$(tc-getCC) AR=$(tc-getAR) STRIP=echo RANLIB=$(tc-getRANLIB) \
 		LIBTOOL="${EPREFIX}"/usr/bin/libtool INSTALL="${EPREFIX}"/usr/bin/install \
 		|| die "emake failed"
 }
 
 src_install() {
-	local nls=false
-
-	use nls && nls=true
-
-	make DESTDIR="${D}" NLS=${nls} mandir="${EPREFIX}"/usr/share/man libdir="${EPREFIX}"/usr/$(get_libdir) \
-		INSTALL="${EPREFIX}"/usr/bin/install \
-		bindir="${EPREFIX}"/usr/bin \
+	emake \
+		DESTDIR="${D}" \
+		NLS=$(ft nls) \
+		mandir="${EPREFIX}"/usr/share/man \
+		libdir="${EPREFIX}"/usr/$(get_libdir) \
 		includedir="${EPREFIX}"/usr/include \
 		localedir="${EPREFIX}"/usr/share/locale \
 		install || die "make install failed"
 
-	newconfd "${FILESDIR}"/${PN}-conf.d ${PN}
-	newinitd "${FILESDIR}"/${PN}-init.d ${PN}
+	newconfd "${FILESDIR}"/${PN}-conf.d-005 ${PN}
+	newinitd "${FILESDIR}"/${PN}-init.d-005 ${PN}
 
 	dodoc AUTHORS README
 }

@@ -1,6 +1,23 @@
 # ChangeLog for sys-power/cpufrequtils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.39 2008/08/11 17:46:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.41 2008/10/21 21:20:59 vapier Exp $
+
+*cpufrequtils-005-r1 (21 Oct 2008)
+
+  21 Oct 2008; Mike Frysinger <vapier@gentoo.org>
+  files/cpufrequtils-init.d-005, +files/cpufrequtils-005-build.patch,
+  +files/cpufrequtils-005-nls.patch, +cpufrequtils-005-r1.ebuild:
+  Fix building against uClibc #205576 by Jos van der Ende. Fix init.d
+  scripts to work properly #243008 by konsti / Rene Meier. Make sure we
+  respect LDFLAGS.
+
+*cpufrequtils-005 (20 Oct 2008)
+
+  20 Oct 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/cpufrequtils-conf.d-005, +files/cpufrequtils-init.d-005,
+  +cpufrequtils-005.ebuild:
+  Version bump #228701 by Dennis Schridde and a more flexible init.d script
+  by me #182049 by Jakub Zawadzki.
 
 *cpufrequtils-002-r4 (11 Aug 2008)
 
