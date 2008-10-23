@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.129 2008/10/04 12:57:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.130 2008/10/22 15:43:20 loki_val Exp $
+
+*libtorrent-0.12.3-r1 (22 Oct 2008)
+
+  22 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/libtorrent-0.12.3-fix-poll_fd.patch, +libtorrent-0.12.3-r1.ebuild:
+  Fix _ZN7torrent9PollEPoll7performEv crash with fix from upstream ticket
+  1497 by Josef Drexler.
 
   04 Oct 2008; Brent Baude <ranger@gentoo.org> libtorrent-0.12.2-r4.ebuild:
   Marking libtorrent-0.12.2-r4 ppc64 for bug 238611
