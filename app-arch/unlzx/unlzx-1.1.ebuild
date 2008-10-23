@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/unlzx-1.1.ebuild,v 1.25 2008/01/26 18:43:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/unlzx-1.1.ebuild,v 1.26 2008/10/23 02:44:51 flameeyes Exp $
 
 EAPI="prefix"
+
+inherit toolchain-funcs
 
 DESCRIPTION="Unarchiver for Amiga LZX archives"
 SRC_URI="ftp://us.aminet.net/pub/aminet/misc/unix/${PN}.c.gz ftp://us.aminet.net/pub/aminet/misc/unix/${PN}.c.gz.readme"
@@ -20,7 +22,7 @@ src_unpack() {
 }
 
 src_compile() {
-	gcc ${CFLAGS} -o unlzx unlzx.c || die
+	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -o unlzx unlzx.c || die
 }
 
 src_install() {
