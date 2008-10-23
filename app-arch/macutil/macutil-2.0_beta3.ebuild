@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/macutil-2.0_beta3.ebuild,v 1.16 2008/10/15 22:13:57 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/macutil-2.0_beta3.ebuild,v 1.17 2008/10/23 02:40:27 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,10 @@ src_unpack() {
 		-e '/^CFLAGS =/s:= -O:+=:' \
 		-e '/(OBJ/s:CFLAGS:LDFLAGS:' \
 		*/makefile || die "sed makefile [2] failed"
+
+	sed -i \
+		-e '/-o makecrc/s:cc -O:$(CC) $(LDFLAGS):' \
+		crc/makefile || die "sed makefile [3] failed"
 }
 
 src_compile() {
