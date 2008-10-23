@@ -15,3 +15,4 @@ move app-emulation/virtualbox-additions app-emulation/virtualbox-ose-additions
 move games-arcade/sdljump games-arcade/gnujump
 move media-fonts/liberation-fonts-ttf media-fonts/liberation-fonts
 move media-tv/pvr-firmware media-tv/ivtv-firmware
+move x11-drivers/xf86-video-i810 x11-drivers/xf86-video-intel
