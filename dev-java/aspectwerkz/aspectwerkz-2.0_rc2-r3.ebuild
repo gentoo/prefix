@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/aspectwerkz/aspectwerkz-2.0_rc2-r3.ebuild,v 1.1 2008/07/30 22:25:07 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/aspectwerkz/aspectwerkz-2.0_rc2-r3.ebuild,v 1.2 2008/10/23 02:41:28 ken69267 Exp $
 
 EAPI="prefix 1"
 # no rewriting required since we patch build.xml to contain target/source
