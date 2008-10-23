@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.56 2008/03/29 16:57:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.57 2008/10/23 02:46:26 flameeyes Exp $
+
+  23 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> unzip-5.52-r2.ebuild:
+  Also AS needs to e replaced.
 
   29 Mar 2008; Jeroen Roovers <jer@gentoo.org> unzip-5.52-r2.ebuild:
   Stable for HPPA (bug #213761).

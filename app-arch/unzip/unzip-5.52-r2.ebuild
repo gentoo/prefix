@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-5.52-r2.ebuild,v 1.7 2008/04/13 22:56:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-5.52-r2.ebuild,v 1.8 2008/10/23 02:46:26 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ src_unpack() {
 		-e 's:-O :$(CFLAGS) $(CPPFLAGS) :' \
 		-e "s:CC=gcc :CC=$(tc-getCC) :" \
 		-e "s:LD=gcc :LD=$(tc-getCC) :" \
+		-e "s:AS=gcc :AS=$(tc-getCC) :" \
 		-e 's:LF2 = -s:LF2 = :' \
 		-e 's:LF = :LF = $(LDFLAGS) :' \
 		-e 's:SL = :SL = $(LDFLAGS) :' \
@@ -41,9 +42,9 @@ src_compile() {
 		i?86*-linux*) TARGET=linux_asm ;;
 		*-linux*)     TARGET=linux_noasm ;;
 		i?86*-freebsd* | i?86*-dragonfly* | i?86*-openbsd* | i?86*-netbsd*)
-		              TARGET=freebsd ;; # mislabelled bsd with x86 asm
+					  TARGET=freebsd ;; # mislabelled bsd with x86 asm
 		*-freebsd* | *-dragonfly* | *-openbsd* | *-netbsd*)
-		              TARGET=bsd ;;
+					  TARGET=bsd ;;
 		*-darwin*)    TARGET=macosx ;;
 		*-solaris*)   TARGET=solaris ;;
 		mips-sgi-irix*) TARGET=sgi ;;
