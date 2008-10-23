@@ -28,7 +28,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.11-prefix.patch
-	epatch "${FILESDIR}"/${P}-utilpath.patch #230141
 }
 
 src_compile() {
