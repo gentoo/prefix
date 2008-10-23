@@ -1,0 +1,88 @@
+# ChangeLog for x11-libs/libxcb
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.22 2008/07/30 22:38:05 dberkholz Exp $
+
+*libxcb-1.1.90.1 (30 Jul 2008)
+
+  30 Jul 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libxcb-1.1.90.1.ebuild:
+  Bump. Adds support for XInput and SELinux extensions, the
+  language-dependent parts of a Python parser, and other bugfixes.
+
+  07 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>; libxcb-1.1.ebuild:
+  Add a post-installation notice about the new sloppy locking.
+
+  07 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>; libxcb-1.1.ebuild:
+  Add USE=doc flag to skip the API docs.
+
+*libxcb-1.1 (07 Nov 2007)
+
+  07 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>; +libxcb-1.1.ebuild:
+  Bump. Adds that variable everyone's been clamoring for to stop apps from
+  dying: set LIBXCB_ALLOW_SLOPPY_LOCK to avoid aborting. Also has a number of
+  important bugfixes.
+
+  07 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>; libxcb-1.0.ebuild:
+  Update dep to pull in xcb-proto of the same version.
+
+  24 Jun 2007; Joshua Kinard <kumba@gentoo.org> libxcb-1.0.ebuild:
+  Stable on mips, per #175465.
+
+  21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libxcb-0.9.93.ebuild:
+  Drop release candidate.
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> libxcb-1.0.ebuild:
+  Stable on alpha wrt security bug #172752
+
+  17 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>; libxcb-0.9.93.ebuild,
+  libxcb-1.0.ebuild:
+  (#174639) Update HOMEPAGE.
+
+  13 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org> libxcb-1.0.ebuild:
+  ppc stable, bug #172752
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> libxcb-1.0.ebuild:
+  Stable for HPPA (bug #172752).
+
+  11 Apr 2007; Raúl Porcel <armin76@gentoo.org> libxcb-1.0.ebuild:
+  ia64 stable wrt security bug 172752
+
+  11 Apr 2007; Peter Weller <welp@gentoo.org> libxcb-1.0.ebuild:
+  Stable on amd64
+
+  11 Apr 2007; Markus Rothe <corsair@gentoo.org> libxcb-1.0.ebuild:
+  Stable on ppc64; bug #172752
+
+  22 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> libxcb-1.0.ebuild:
+  Stable on sparc
+
+  21 Mar 2007; Christian Faulhammer <opfer@gentoo.org> libxcb-1.0.ebuild:
+  stable x86, security bug 170208
+
+  24 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> libxcb-1.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>; libxcb-1.0.ebuild:
+  Dep on dev-libs/libpthread-stubs.
+
+*libxcb-1.0 (24 Nov 2006)
+
+  24 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>; +libxcb-1.0.ebuild:
+  Bump.
+
+  03 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> libxcb-0.9.93.ebuild:
+  Remove ~x86-fbsd keyword as this release does not work correctly.
+
+*libxcb-0.9.93 (03 Nov 2006)
+
+  03 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libxcb-0.9.92.ebuild, +libxcb-0.9.93.ebuild:
+  Bump for XCB1.0RC3.
+
+*libxcb-0.9.92 (09 Oct 2006)
+
+  09 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; +metadata.xml,
+  +libxcb-0.9.92.ebuild:
+  Add X C-language Bindings library.
+
