@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Compress-Raw-Zlib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Raw-Zlib/ChangeLog,v 1.48 2008/10/21 17:04:33 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Raw-Zlib/ChangeLog,v 1.49 2008/10/22 19:27:48 gmsoft Exp $
+
+  22 Oct 2008; Guy Martin <gmsoft@gentoo.org>
+  Compress-Raw-Zlib-2.015.ebuild:
+  hppa stable, #192989
 
   21 Oct 2008; Markus Rothe <corsair@gentoo.org>
   Compress-Raw-Zlib-2.015.ebuild:
