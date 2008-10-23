@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.12 2008/10/19 10:35:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.13 2008/10/22 21:04:53 eva Exp $
 
 #
 # gnome2-utils.eclass
@@ -89,7 +89,7 @@ gnome2_gconf_uninstall() {
 	fi
 
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
-	export GCONF_CONFIG_SOURCE=$("${GCONFTOOL_BIN}" --get-default-source | sed "s;:/;:${ROOT};")
+	export GCONF_CONFIG_SOURCE="$("${GCONFTOOL_BIN}" --get-default-source | sed "s;:/;:${ROOT};")"
 
 	einfo "Uninstalling GNOME 2 GConf schemas"
 
