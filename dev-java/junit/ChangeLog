@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/junit
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.44 2008/05/23 19:33:41 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.45 2008/10/22 14:39:48 fordfrog Exp $
+
+*junit-4.5 (22 Oct 2008)
+
+  22 Oct 2008; Miroslav Šulc <fordfrog@gentoo.org> +junit-4.5.ebuild:
+  Version bump
 
   23 May 2008; Kenneth Prugh <ken69267@gentoo.org> junit-3.8.2-r1.ebuild:
   amd64 stable, bug #217448
