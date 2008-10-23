@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/byacc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/byacc/ChangeLog,v 1.16 2008/10/04 18:57:31 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/byacc/ChangeLog,v 1.18 2008/10/22 19:36:12 fmccor Exp $
+
+  22 Oct 2008; Ferris McCormick <fmccor@gentoo.org> byacc-1.9-r2.ebuild:
+  Fix quoting problems to make repoman be quiet.
+
+  22 Oct 2008; Ferris McCormick <fmccor@gentoo.org> byacc-1.9-r2.ebuild:
+  Sparc stable, part of Security Bug #232005.
 
 *byacc-1.9-r2 (04 Oct 2008)
 
