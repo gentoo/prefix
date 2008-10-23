@@ -47,7 +47,7 @@ src_install() {
 	# Create cache directory for revdep-rebuild
 	dodir /var/cache/revdep-rebuild
 	keepdir /var/cache/revdep-rebuild
-	fowners root:root /var/cache/revdep-rebuild
+	use prefix || fowners root:root /var/cache/revdep-rebuild
 	fperms 0700 /var/cache/revdep-rebuild
 }
 
