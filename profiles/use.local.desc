@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3975 2008/10/21 14:08:40 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3978 2008/10/23 04:07:46 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -565,6 +565,8 @@ dev-lang/idb:icc - Use dev-lang/icc to install idb (default)
 dev-lang/idb:ifc - Use dev-lang/ifc to install idb
 dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
+dev-lang/luarocks:curl - Uses net-misc/curl for fetching lua packages instead of net-misc/wget.
+dev-lang/luarocks:openssl - Uses dev-libs/openssl for verifying lua packages instead of md5sum.
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
 dev-lang/mono:moonlight - add moonlight support
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
@@ -880,6 +882,8 @@ games-rpg/nwn-cep:sou - Adds support for the Shadows of Undrentide expension pac
 games-rpg/nwn-data:hou - Install the Hordes of the Underdark expansion pack
 games-rpg/nwn-data:nowin - For those people who cant grab the 1.2 gigs of data files from a windows partition
 games-rpg/nwn-data:sou - Installs the Shadows of Undrentide expension pack
+games-simulation/openttd:scenarios - Install additional contributed scenarios
+games-simulation/openttd:timidity - Add sound support (timidity)
 games-simulation/singularity:music - Install music files
 games-sports/xmoto:editor - Depend on inkscape, scripts to convert svg to level (svg2lvl)
 games-strategy/dark-oberon:fmod - Add sound support (fmod)
@@ -1331,6 +1335,7 @@ media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
 media-sound/mpg123:network - Enable network support (http streams / webradio)
+media-sound/mumble:speech - Enables text-to-speech support in Mumble.
 media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
 media-sound/ncmpc:clock-screen - Enable clock screen

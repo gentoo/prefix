@@ -1,10 +1,49 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1983 2008/10/22 00:36:19 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1989 2008/10/22 23:26:55 tgurr Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 Oct 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Remove mumble mask.
+
+  22 Oct 2008; Rémi Cardona <remi@gentoo.org> updates/3Q-2008:
+  pkgmove from xf86-video-i810 to xf86-video-intel
+
+  22 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove xf86-video-intel from p.mask
+
+  22 Oct 2008; Rémi Cardona <remi@gentoo.org> arch/alpha/use.mask,
+  arch/amd64/make.defaults, arch/arm/use.mask, arch/hppa/use.mask,
+  arch/mips/use.mask, arch/powerpc/use.mask, arch/sparc/use.mask,
+  arch/x86/make.defaults, default-bsd/fbsd/6.2/x86/make.defaults,
+  default-linux/alpha/use.mask, default-linux/amd64/make.defaults,
+  default-linux/arm/use.mask, default-linux/hppa/use.mask,
+  default-linux/ia64/make.defaults, default-linux/mips/use.mask,
+  default-linux/ppc/dev/ppc32/use.mask,
+  default-linux/ppc/dev/ppc64/2007.0/32bit-userland/use.mask,
+  default-linux/ppc/dev/ppc64/2007.0/64bit-userland/use.mask,
+  default-linux/ppc/dev/ppc64/2007.0/multilib/use.mask,
+  default-linux/ppc/dev/ppc64/2007.1/32bit-userland/use.mask,
+  default-linux/ppc/dev/ppc64/2007.1/64bit-userland/use.mask,
+  default-linux/ppc/ppc32/use.mask,
+  default-linux/ppc/ppc64/2007.0/32bit-userland/use.mask,
+  default-linux/ppc/ppc64/2007.0/64bit-userland/use.mask,
+  default-linux/sparc/use.mask, default-linux/x86/make.defaults,
+  desc/video_cards.desc, hardened/amd64/make.defaults,
+  hardened/ia64/make.defaults, hardened/linux/powerpc/ppc64/use.mask,
+  hardened/linux/x86/make.defaults, hardened/ppc/use.mask,
+  hardened/ppc64/use.mask, hardened/x86/2.6/make.defaults:
+  add "intel" wherever "i810" is used
+
+  22 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  getting ready for the xf86-video-i810 -> intel pkgmove
+
+  22 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  libdrm should be safe now, and xf86-video-i810-2.4.0 is no longer in
+  portage
 
   22 Oct 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
   Masking www-client/dillo-2.0 because it depends on hard-masked
