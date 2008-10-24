@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/commons-cli
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/ChangeLog,v 1.36 2008/05/23 19:57:10 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/ChangeLog,v 1.37 2008/10/23 18:35:58 maekke Exp $
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org> commons-cli-1.1.ebuild:
+  amd64/x86 stable, bug #242960
 
   23 May 2008; Petteri Räty <betelgeuse@gentoo.org> commons-cli-1.1.ebuild:
   Add junit blocker for bug 215659.
