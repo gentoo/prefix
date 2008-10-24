@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/javassist-3.7.ebuild,v 1.2 2008/06/30 19:55:37 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/javassist-3.7.ebuild,v 1.3 2008/10/23 20:00:29 maekke Exp $
 
 EAPI="prefix"
 

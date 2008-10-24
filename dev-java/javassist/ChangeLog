@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/javassist
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/ChangeLog,v 1.21 2008/06/30 19:55:37 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/ChangeLog,v 1.22 2008/10/23 20:00:29 maekke Exp $
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org> javassist-3.7.ebuild:
+  amd64/x86 stable, bug #243128
 
   30 Jun 2008; Kenneth Prugh <ken69267@gentoo.org> javassist-3.4.ebuild,
   javassist-3.7.ebuild:
