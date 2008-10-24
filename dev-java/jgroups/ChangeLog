@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/jgroups
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/ChangeLog,v 1.22 2008/04/28 01:38:36 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/ChangeLog,v 1.24 2008/10/23 21:52:06 maekke Exp $
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org> jgroups-2.4.1_p1-r2.ebuild:
+  add empty IUSE to make repoman happy
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org> jgroups-2.4.1_p1-r2.ebuild:
+  amd64/x86 stable, bug #243138
 
 *jgroups-2.4.1_p1-r2 (28 Apr 2008)
 
