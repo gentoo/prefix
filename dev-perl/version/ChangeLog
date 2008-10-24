@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/version
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.61 2008/10/20 12:57:45 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.62 2008/10/23 11:10:19 armin76 Exp $
+
+  23 Oct 2008; Raúl Porcel <armin76@gentoo.org> version-0.76.ebuild:
+  alpha/ia64/x86 stable wrt #242820
 
   20 Oct 2008; Ferris McCormick <fmccor@gentoo.org> version-0.76.ebuild:
   Sparc stable, Bug #242820.

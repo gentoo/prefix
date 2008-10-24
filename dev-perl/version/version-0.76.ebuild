@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/version-0.76.ebuild,v 1.3 2008/10/20 12:57:45 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/version-0.76.ebuild,v 1.4 2008/10/23 11:10:19 armin76 Exp $
 
 EAPI="prefix"
 
