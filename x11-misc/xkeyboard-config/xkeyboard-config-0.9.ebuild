@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-0.9.ebuild,v 1.8 2007/12/11 10:59:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-0.9.ebuild,v 1.9 2008/10/23 09:39:36 remi Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ SLOT="0"
 RDEPEND="x11-apps/xkbcomp
 	!x11-misc/xkbdata"
 DEPEND="${RDEPEND}
+	>=dev-util/intltool-0.30
 	dev-perl/XML-Parser"
 
 pkg_setup() {

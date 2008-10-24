@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.4.ebuild,v 1.2 2008/10/16 21:40:56 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.4.ebuild,v 1.3 2008/10/23 09:39:36 remi Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,10 @@ SRC_URI="http://xlibs.freedesktop.org/xkbdesc/${P}.tar.bz2"
 LICENSE="MIT"
 SLOT="0"
 
+IUSE=""
 RDEPEND="!x11-misc/xkbdata"
 DEPEND="${RDEPEND}
+	>=dev-util/intltool-0.30
 	dev-perl/XML-Parser
 	x11-apps/xkbcomp"
 
