@@ -31,6 +31,8 @@ src_unpack() {
 	EPATCH_FORCE="yes" \
 	EPATCH_SUFFIX="patch" \
 	EPATCH_MULTI_MSG="Applying Debian patchset (${DEB_VER}) ..." \
+	# fix for older patch
+	sed -i -e '/^#/d' "${P}~dfsg"/debian/patches/64-egf-speedup.patch || die
 	epatch ${P}~dfsg/debian/patches/
 	epatch "${FILESDIR}"/${P}-yesno-test-fix.patch
 	use static && append-ldflags -static
