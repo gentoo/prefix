@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/jaf-1.1.ebuild,v 1.1 2008/04/28 01:45:35 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/jaf-1.1.ebuild,v 1.2 2008/10/23 19:02:43 maekke Exp $
 
 EAPI="prefix 1"
 
