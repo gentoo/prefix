@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.4.ebuild,v 1.1 2008/06/29 21:55:58 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/commons-lang-2.4.ebuild,v 1.2 2008/10/23 18:42:28 maekke Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source test"
