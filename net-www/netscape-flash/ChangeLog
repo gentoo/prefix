@@ -1,6 +1,10 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.77 2008/10/18 16:21:11 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.78 2008/10/23 18:25:19 maekke Exp $
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org>
+  netscape-flash-10.0.12.36-r1.ebuild:
+  x86 stable, bug #239543
 
   18 Oct 2008; Dawid Węgliński <cla@gentoo.org>
   netscape-flash-10.0.12.36-r1.ebuild:
