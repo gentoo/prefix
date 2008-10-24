@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/dom4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.46 2008/03/26 16:33:47 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.47 2008/10/23 18:46:32 maekke Exp $
+
+  23 Oct 2008; Markus Meier <maekke@gentoo.org> dom4j-1.6.1-r3.ebuild:
+  amd64/x86 stable, bug #242970
 
   26 Mar 2008; Markus Rothe <corsair@gentoo.org> dom4j-1.6.1-r3.ebuild:
   Added ~ppc64; bug #212999
