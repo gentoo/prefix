@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/euses
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.41 2008/10/18 14:43:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.42 2008/10/24 22:03:45 jer Exp $
+
+  24 Oct 2008; Jeroen Roovers <jer@gentoo.org> -euses-2.5.4.ebuild:
+  Remove old.
 
   18 Oct 2008; Raúl Porcel <armin76@gentoo.org> euses-2.5.5.ebuild:
   alpha stable wrt #242484
