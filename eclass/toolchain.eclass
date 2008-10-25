@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.363 2008/10/20 01:04:38 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.364 2008/10/24 07:30:35 kumba Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -170,6 +170,7 @@ else
 			tc_version_is_at_least "4.0" && IUSE="${IUSE} objc-gc mudflap"
 			tc_version_is_at_least "4.1" && IUSE="${IUSE} objc++"
 			tc_version_is_at_least "4.2" && IUSE="${IUSE} openmp"
+			tc_version_is_at_least "4.3" && IUSE="${IUSE} fixed-point"
 		fi
 	fi
 
@@ -1307,6 +1308,12 @@ gcc_do_configure() {
 
 	# ppc altivec support
 	confgcc="${confgcc} $(use_enable altivec)"
+
+	# gcc has fixed-point arithmetic support in 4.3 for mips targets that can
+	# significantly increase compile time by several hours.  This will allow
+	# users to control this feature in the event they need the support.
+	tc_version_is_at_least "4.3" && confgcc="${confgcc} $(use_enable fixed-point)"
+
 
 	[[ $(tc-is-softfloat) == "yes" ]] && confgcc="${confgcc} --with-float=soft"
 
