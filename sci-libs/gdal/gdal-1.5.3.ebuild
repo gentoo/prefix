@@ -70,8 +70,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# make sure we use a "sane" libtool, the distributed one has been messed
+	# with badly, so it's useless on at least Darwin
+	rm m4/lt* m4/libtool.m4
+
 	eaclocal
-	eautoconf
+	eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
