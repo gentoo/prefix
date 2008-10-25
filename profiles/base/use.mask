@@ -26,6 +26,7 @@ ppcsha1
 # mips arch specific USE flags
 n32
 n64
+fixed-point
 
 # ppc64 arch specific USE flags
 ibm
