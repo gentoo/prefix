@@ -1,8 +1,11 @@
 # ChangeLog for app-editors/xmlcopyeditor
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.10 2008/10/10 15:49:48 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.11 2008/10/24 21:13:39 pvdabeel Exp $
 
 *xmlcopyeditor-1.2.0.2-r1 (10 Oct 2008)
+
+  24 Oct 2008; Pieter Van den Abeele <pvdabeel@gentoo.org> xmlcopyeditor-1.2.0.2-r1.ebuild:
+  Keyworded ~ppc. Closes bug #229311
 
   10 Oct 2008; Jose Luis Rivero <yoswink@gentoo.org>
   -xmlcopyeditor-1.2.0.2.ebuild, +xmlcopyeditor-1.2.0.2-r1.ebuild:
