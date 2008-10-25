@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/cscope
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.101 2008/09/20 21:00:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.102 2008/10/24 19:20:43 ulm Exp $
+
+*cscope-15.6-r3 (24 Oct 2008)
+
+  24 Oct 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/cscope-15.6-sigwinch.patch, +cscope-15.6-r3.ebuild:
+  Fix crash on window resizes, bug 243754. Thanks to Michael Hordijk
+  <hoffbrinkle@hotmail.com>.
 
   20 Sep 2008; Ulrich Mueller <ulm@gentoo.org> -files/50xcscope-gentoo.el,
   -cscope-15.6-r1.ebuild:
