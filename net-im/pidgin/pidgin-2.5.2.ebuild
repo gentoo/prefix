@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.0.ebuild,v 1.2 2008/08/20 15:56:18 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.2.ebuild,v 1.1 2008/10/24 16:22:18 tester Exp $
 
 EAPI="prefix"
 
