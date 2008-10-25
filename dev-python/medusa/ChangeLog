@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/medusa
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.22 2008/07/15 19:56:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/ChangeLog,v 1.23 2008/10/24 11:20:35 armin76 Exp $
+
+  24 Oct 2008; Raúl Porcel <armin76@gentoo.org> medusa-0.5.4.ebuild:
+  sparc stable wrt #241740
 
   15 Jul 2008; Jeroen Roovers <jer@gentoo.org> medusa-0.5.4.ebuild:
   Marked ~hppa too.
