@@ -1,6 +1,13 @@
 # ChangeLog for net-analyzer/fping
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/fping/ChangeLog,v 1.17 2007/09/06 16:40:27 jokey Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/fping/ChangeLog,v 1.18 2008/10/24 15:11:09 pva Exp $
+
+*fping-2.4_beta2-r2 (24 Oct 2008)
+
+  24 Oct 2008; Peter Volkov <pva@gentoo.org> +fping-2.4_beta2-r2.ebuild:
+  Added suid bin on fping binary, required by many monitoring tools
+  (nagious, zabbix), bug #241930, thank Rolf Wathne and Dawid Węgliński
+  for report.
 
   06 Sep 2007; Markus Ullmann <jokey@gentoo.org> -fping-2.4_beta2.ebuild:
   Cleanup
