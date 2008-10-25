@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.113 2008/10/20 19:35:46 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.114 2008/10/24 12:23:04 graaff Exp $
+
+*rails-2.1.2 (24 Oct 2008)
+
+  24 Oct 2008; Hans de Graaff <graaff@gentoo.org> +rails-2.1.2.ebuild:
+  Version bump. Fixes security issue #242914 (header-injection) and #237285.
+  Also features minor fixes.
 
 *rails-2.0.5 (20 Oct 2008)
 
