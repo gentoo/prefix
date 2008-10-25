@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/junit-4.5.ebuild,v 1.1 2008/10/22 14:39:48 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/junit-4.5.ebuild,v 1.2 2008/10/24 15:08:48 fordfrog Exp $
 
 EAPI="prefix"
 
@@ -66,14 +66,11 @@ src_install() {
 	java-pkg_newjar ${PN}${PV}/${PN}-dep-${PV}.jar
 	dodoc README.html doc/ReleaseNotes${PV}.txt || die
 
+	use examples && java-pkg_doexamples org/junit/samples
+	use source && java-pkg_dosrc src/main/java/org src/main/java/junit
+
 	if use doc; then
 		dohtml -r doc/*
 		java-pkg_dojavadoc ${PN}${PV}/javadoc
 	fi
-
-	if use examples; then
-		java-pkg_doexamples org/junit/samples
-	fi
-
-	use source && java-pkg_dosrc src/org src/junit
 }
