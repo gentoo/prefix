@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.445 2008/09/28 13:10:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.446 2008/10/24 08:51:52 armin76 Exp $
+
+  24 Oct 2008; Raúl Porcel <armin76@gentoo.org>
+  files/gentoo-default-prefs.js:
+  Remove gentoo homepage, since it gives some issues
 
   28 Sep 2008; Markus Meier <maekke@gentoo.org>
   mozilla-firefox-2.0.0.17.ebuild:
