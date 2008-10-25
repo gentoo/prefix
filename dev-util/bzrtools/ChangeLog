@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.38 2008/10/19 14:47:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.39 2008/10/24 11:22:22 armin76 Exp $
+
+  24 Oct 2008; Raúl Porcel <armin76@gentoo.org> bzrtools-1.6.0.ebuild,
+  bzrtools-1.8.0.ebuild:
+  sparc stable and add ~ia64 wrt #241740
 
   19 Oct 2008; Markus Meier <maekke@gentoo.org> bzrtools-1.6.0.ebuild:
   amd64/x86 stable, bug #241740
