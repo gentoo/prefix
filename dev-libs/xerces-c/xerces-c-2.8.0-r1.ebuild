@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-2.8.0-r1.ebuild,v 1.3 2008/10/12 14:19:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-2.8.0-r1.ebuild,v 1.4 2008/10/25 17:48:58 halcy0n Exp $
 
 EAPI="prefix 1"
 
@@ -11,7 +11,7 @@ MY_P=${MY_PN}_$(replace_all_version_separators _)
 
 DESCRIPTION="A validating XML parser written in a portable subset of C++."
 HOMEPAGE="http://xerces.apache.org/xerces-c/"
-SRC_URI="mirror://apache/xerces/c/sources/${MY_P}.tar.gz"
+SRC_URI="mirror://apache/xerces/c/2/sources/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"

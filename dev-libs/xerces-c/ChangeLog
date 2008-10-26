@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/xerces-c
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.67 2008/10/18 09:30:53 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.68 2008/10/25 17:48:58 halcy0n Exp $
+
+*xerces-c-3.0.0-r1 (25 Oct 2008)
+
+  25 Oct 2008; Mark Loeser <halcy0n@gentoo.org> xerces-c-2.7.0-r1.ebuild,
+  xerces-c-2.8.0-r1.ebuild, +xerces-c-3.0.0-r1.ebuild:
+  Fix the SRC_URI for 2.7.0 so it points to our mirrors, add an EAPI=0
+  version of 3.0.0, and fix the tests; bug #240496, bug #242478, bug #242264
 
   18 Oct 2008; Maurice van der Pot <griffon26@gentoo.org>
   xerces-c-3.0.0.ebuild:
