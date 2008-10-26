@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9107 2008/10/24 04:54:37 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9110 2008/10/26 05:46:23 neurogeek Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jesus Rivero <neurogeek@gentoo.org> (26 Oct 2008)
+# Masked for removal in 30 days. This package is
+# unmaintained/deprecated.
+# See bug #239978 for reference.
+dev-python/pyframer
 
 # Rémi Cardona <remi@gentoo.org> (24 Oct 2008)
 # version with _massive_ EXA patches from git master
@@ -589,7 +595,7 @@ dev-python/twibber
 
 # Michael Sterrett <mr_bones_@gentoo.org> (04 Aug 2008)
 # Security masked: bug #233929
-games-simulation/openttd
+<games-simulation/openttd-0.6.3
 
 # Samuli Suominen <drac@gentoo.org> (3 Aug 2008)
 # Unmaintained. Masked for removal wrt #233394.
@@ -1224,10 +1230,6 @@ dev-lang/ghc-bin
 # the Asterisk is coming! the Asterisk is coming!
 >=net-misc/zaptel-1.4.0
 >=net-misc/asterisk-1.4.0
-
-# Peter Volkov <pva@gentoo.org> (28 Sep 2007)
-# masked for testing
->=app-text/kchmviewer-4.0_beta1
 
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release
