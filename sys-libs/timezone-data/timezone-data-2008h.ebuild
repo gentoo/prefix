@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008g-r1.ebuild,v 1.2 2008/10/26 00:23:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008h.ebuild,v 1.1 2008/10/25 23:34:22 vapier Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,7 @@ S=${WORKDIR}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${PN}-2005n-makefile.patch
-	epatch "${FILESDIR}"/${PN}-2008f-makefile-libs-not-flags.patch
+	epatch "${FILESDIR}"/${PN}-2008h-makefile.patch
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
 }
 
