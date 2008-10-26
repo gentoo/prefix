@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/extract-xiso
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/ChangeLog,v 1.15 2008/01/25 19:56:46 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/ChangeLog,v 1.16 2008/10/25 20:55:24 vapier Exp $
+
+  25 Oct 2008; Mike Frysinger <vapier@gentoo.org> extract-xiso-2.5.ebuild:
+  Redo building so we respect user settings #243530.
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> extract-xiso-2.5.ebuild:
   Dropped ppc-macos keyword, see you in prefix

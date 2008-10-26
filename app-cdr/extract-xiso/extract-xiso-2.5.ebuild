@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/extract-xiso-2.5.ebuild,v 1.3 2008/06/15 11:39:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/extract-xiso-2.5.ebuild,v 1.4 2008/10/25 20:55:24 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit toolchain-funcs
 
 MY_PV=${PV/_beta/b}
 
@@ -21,18 +21,24 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
-	sed -i -e "s:-O2:${CFLAGS}:g" "${S}"/Makefile || die "sed failed."
 	cd "${S}"
+	sed -i \
+		-e 's:__LINUX__:__linux__:' \
+		*.[ch] */*.[ch] || die
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 	# older interix versions need some help...
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
 }
 
+doit() { echo "$@"; "$@"; }
+
 src_compile() {
-	emake || die "emake failed."
+	doit $(tc-getCC) ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} \
+		extract-xiso.c libftp-*/*.c -o extract-xiso || die
 }
 
 src_install() {
-	dobin extract-xiso || die "dobin failed."
+	dobin extract-xiso || die
+	dodoc README.TXT
 }
