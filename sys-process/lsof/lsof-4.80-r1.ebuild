@@ -33,6 +33,13 @@ src_unpack() {
 	touch .neverInv
 	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
 	epatch "${FILESDIR}"/${PN}-4.78-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
+	if [[ ${CHOST} == *-solaris2.11 ]] ; then
+		mkdir -p ext/sys
+		# missing system header :(
+		cp "${FILESDIR}"/solaris11-extdirent.h ext/sys/extdirent.h
+		( cd lib && ln -s ../ext )
+	fi
 	#Fix automagic dependency on libselinux. Bug 188272.
 	if ! use selinux; then
 		sed -i \

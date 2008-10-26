@@ -1,0 +1,63 @@
+--- Configure
++++ Configure
+@@ -4491,6 +4491,12 @@
+ 	  fi	# }
+ 	fi	# }
+       fi	# }
++
++      if test $LSOF_VERS -ge 110000	# {
++      then
++	    # for our own sys/extdirent.h (missing header on OpenSolaris)
++	    LSOF_CFGF="$LSOF_CFGF -Iext"
++      fi	# }
+       ;;
+     *)
+       echo "Unsupported Solaris version: $LSOF_VERS"
+--- dialects/sun/dproc.c
++++ dialects/sun/dproc.c
+@@ -41,6 +41,12 @@
+ #include "kernelbase.h"
+ #endif	/* solaris<20500 */
+ 
++#if solaris>=110000
++#define _KERNEL
++#include <sys/sid.h>
++#undef _KERNEL
++#endif
++
+ #if	defined(HAS_CRED_IMPL_H)
+ #include <sys/cred_impl.h>
+ #endif	/* defined(HAS_CRED_IMPL_H) */
+--- dialects/sun/dlsof.h
++++ dialects/sun/dlsof.h
+@@ -155,6 +155,10 @@
+ #define	_KERNEL
+ # endif	/* solaris>=20600 */
+ 
++# if    solaris>=110000
++#include <sys/vfs_opreg.h>
++# endif /* solaris>=110000 */
++
+ #include <sys/fs/namenode.h>
+ 
+ # if	solaris>=20600
+--- dialects/sun/dnode.c
++++ dialects/sun/dnode.c
+@@ -2062,6 +2062,9 @@
+ #endif	/* defined(HASPROCFS) */
+ 
+ 	case N_PCFS:
++#if solaris>=110000
++		break; /* I don't know, pcfs_entps doesn't exist any more */
++#else
+ 	    if (kvs && kv.vfs_data
+ 	    && !kread((KA_T)kv.vfs_data, (char *)&pcfs, sizeof(pcfs))) {
+ 
+@@ -2084,6 +2087,7 @@
+ 		Lf->inp_ty = 1;
+ 	    }
+ 	    break;
++#endif
+ 
+ 	case N_REGLR:
+ 	    if (nns) {
