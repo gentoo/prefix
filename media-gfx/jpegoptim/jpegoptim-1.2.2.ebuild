@@ -1,8 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegoptim/jpegoptim-1.2.2.ebuild,v 1.10 2007/11/07 14:31:09 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegoptim/jpegoptim-1.2.2.ebuild,v 1.11 2008/10/25 12:46:23 maekke Exp $
 
 EAPI="prefix"
+
+inherit toolchain-funcs
 
 DESCRIPTION="JPEG file optimiser"
 HOMEPAGE="http://www.kokkonen.net/tjko/projects.html"
@@ -16,13 +18,8 @@ IUSE=""
 DEPEND="media-libs/jpeg"
 
 src_compile() {
-	./configure \
-		--host=${CHOST} \
-		--prefix="${EPREFIX}"/usr \
-		--infodir="${EPREFIX}"/usr/share/info \
-		--mandir="${EPREFIX}"/usr/share/man || die "./configure failed"
-
-	emake || die
+	econf || die "./configure failed"
+	emake CC="$(tc-getCC)" || die
 }
 
 src_install() {

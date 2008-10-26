@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/jpegoptim
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegoptim/ChangeLog,v 1.9 2007/11/07 14:31:09 hanno Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegoptim/ChangeLog,v 1.10 2008/10/25 12:46:23 maekke Exp $
+
+  25 Oct 2008; Markus Meier <maekke@gentoo.org> jpegoptim-1.2.2.ebuild:
+  respect CC variable, bug #244158; use econf instead of ./configure
 
   07 Nov 2007; Hanno Boeck <hanno@gentoo.org> jpegoptim-1.2.2.ebuild:
   URL is dead, change to current URL.
