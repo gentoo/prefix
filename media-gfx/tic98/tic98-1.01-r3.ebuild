@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.1 2008/10/11 16:16:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.2 2008/10/25 12:54:02 maekke Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,8 @@ src_unpack() {
 	# respect CFLAGS and LDFLAGS
 	sed -i -e "s:CFLAGS= -O -Wall -Wno-unused:CFLAGS=${CFLAGS}:" \
 		-e "s:LIBS=   -lm #-L/home/singlis/linux/lib -lccmalloc -ldl:LIBS= -lm ${LDFLAGS}:" \
+		-e "s:CC=	gcc -pipe :CC=$(tc-getCC):" \
+		-e "s:CPP=	gcc -pipe:CPP=$(tc-getCPP):" \
 		Makefile || die
 }
 
