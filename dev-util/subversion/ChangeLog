@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.332 2008/10/18 15:12:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.333 2008/10/25 12:48:45 hollow Exp $
+
+*subversion-1.5.4 (25 Oct 2008)
+
+  25 Oct 2008; Benedikt Böhm <hollow@gentoo.org>
+  -files/1.5.0/http-library.patch, -subversion-1.5.0.ebuild,
+  +subversion-1.5.4.ebuild:
+  version bump wrt #241398, fixes emacs support wrt #237528
 
   18 Oct 2008; Raúl Porcel <armin76@gentoo.org> subversion-1.5.2.ebuild:
   ia64 stable wrt #241584

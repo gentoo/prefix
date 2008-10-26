@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.0.ebuild,v 1.1 2008/06/21 12:07:43 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.4.ebuild,v 1.1 2008/10/25 12:48:45 hollow Exp $
 
 EAPI="prefix 1"
 WANT_AUTOMAKE="none"
@@ -9,13 +9,11 @@ inherit autotools bash-completion confutils depend.apache elisp-common eutils fl
 
 DESCRIPTION="Advanced version control system"
 HOMEPAGE="http://subversion.tigris.org/"
-SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2
-	mirror://gentoo/${P}-merge-improvements.patch.bz2"
+SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
-#KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="apache2 berkdb debug doc +dso emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
@@ -72,9 +70,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/1.5.0/http-library.patch
 	epatch "${FILESDIR}"/1.5.0/disable-unneeded-linking.patch
-	epatch "${WORKDIR}"/${P}-merge-improvements.patch
 
 	sed -i \
 		-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
@@ -101,21 +97,21 @@ src_compile() {
 		append-cppflags -DSVN_DEBUG -DAP_DEBUG
 	fi
 
-#	case ${CHOST} in
-#		*-darwin7)
-#			# KeyChain support on OSX Panther is broken, due to some library
-#			# includes which don't exist
-#			myconf="${myconf} --disable-keychain"
-#		;;
-#		*-solaris*)
-#			# -lintl isn't added for some reason
-#			use nls && append-ldflags -lintl
-#		;;
-#		*-aix*)
-#			# avoid recording immediate path to sharedlibs into executables
-#			append-ldflags -Wl,-bnoipath
-#		;;
-#	esac
+	case ${CHOST} in
+		*-darwin7)
+			# KeyChain support on OSX Panther is broken, due to some library
+			# includes which don't exist
+			myconf="${myconf} --disable-keychain"
+		;;
+		*-solaris*)
+			# -lintl isn't added for some reason
+			use nls && append-ldflags -lintl
+		;;
+		*-aix*)
+			# avoid recording immediate path to sharedlibs into executables
+			append-ldflags -Wl,-bnoipath
+		;;
+	esac
 
 	append-flags -fno-strict-aliasing
 
@@ -135,9 +131,6 @@ src_compile() {
 		--without-jikes \
 		--without-junit \
 		--disable-mod-activation
-
-	# Respect the user LDFLAGS when building Subversion SWIG bindings.
-	export SWIG_LDFLAGS="${LDFLAGS}"
 
 	emake local-all || die "Building of core Subversion failed"
 
@@ -159,10 +152,9 @@ src_compile() {
 	fi
 
 	if use emacs; then
-		elisp-compile contrib/client-side/emacs/dsvn.el || die "Compilation of Emacs module failed"
-		elisp-compile contrib/client-side/emacs/psvn.el || die "Compilation of Emacs module failed"
-		elisp-compile doc/svn-doc.el || die "Compilation of Emacs module failed"
-		elisp-compile doc/tools/svnbook.el || die "Compilation of Emacs module failed"
+		elisp-compile contrib/client-side/emacs/{dsvn,psvn,vc-svn}.el \
+			doc/svn-doc.el doc/tools/svnbook.el \
+			|| die "Compilation of Emacs modules failed"
 	fi
 
 	if use extras; then
@@ -274,11 +266,14 @@ EOF
 
 	# Install Emacs Lisps.
 	if use emacs; then
-		elisp-install ${PN} contrib/client-side/emacs/dsvn.el*
-		elisp-install ${PN} contrib/client-side/emacs/psvn.el*
-		elisp-install ${PN} doc/svn-doc.el*
-		elisp-install ${PN} doc/tools/svnbook.el*
-		elisp-site-file-install "${FILESDIR}"/1.5.0/70svn-gentoo.el
+		elisp-install ${PN} contrib/client-side/emacs/{dsvn,psvn}.{el,elc} \
+			doc/svn-doc.{el,elc} doc/tools/svnbook.{el,elc} \
+			|| die "Installation of Emacs modules failed"
+		elisp-install ${PN}/compat contrib/client-side/emacs/vc-svn.{el,elc} \
+			|| die "Installation of Emacs modules failed"
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
+		elisp-site-file-install "${FILESDIR}"/1.5.0/70svn-gentoo.el \
+			|| die "Installation of Emacs site-init file failed"
 	fi
 	rm -fr contrib/client-side/emacs
 
