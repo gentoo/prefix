@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.28 2008/07/08 01:42:16 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.29 2008/10/25 13:47:34 graaff Exp $
+
+*rubyforge-1.0.1 (25 Oct 2008)
+
+  25 Oct 2008; Hans de Graaff <graaff@gentoo.org> +rubyforge-1.0.1.ebuild:
+  Version bump. Fixes broken upload of release notes to rubyforge.
 
   08 Jul 2008; Javier Villavicencio <the_paya@gentoo.org>
   rubyforge-1.0.0.ebuild:
