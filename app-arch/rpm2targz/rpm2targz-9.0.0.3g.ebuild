@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.3g.ebuild,v 1.1 2008/09/17 11:25:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.3g.ebuild,v 1.2 2008/10/25 23:27:35 vapier Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs
 
 DESCRIPTION="Convert a .rpm file to a .tar.gz archive"
 HOMEPAGE="http://www.slackware.com/config/packages.php"
@@ -25,6 +25,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
+}
+
+src_compile() {
+	emake CC="$(tc-getCC)" || die
 }
 
 src_install() {
