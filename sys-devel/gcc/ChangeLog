@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.662 2008/10/17 18:47:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.664 2008/10/25 22:18:44 halcy0n Exp $
+
+  25 Oct 2008; Mark Loeser <halcy0n@gentoo.org> gcc-4.3.2.ebuild:
+  Add patches from gcc-4.4 for R10K support; bugs #223230 and 223231
+
+  25 Oct 2008; Joshua Kinard <kumba@gentoo.org> metadata.xml:
+  Add fixed-point local USE flag to gcc to control fixed-point support for
+  mips targets.
 
   17 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
   openmp USE-flag is global now
