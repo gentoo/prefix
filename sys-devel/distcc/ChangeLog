@@ -1,6 +1,16 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.176 2008/10/19 14:45:22 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.177 2008/10/25 06:39:17 matsuu Exp $
+
+*distcc-3.0-r2 (25 Oct 2008)
+
+  25 Oct 2008; MATSUU Takuto <matsuu@gentoo.org> files/3.0/distcc-config,
+  +files/3.0/xinetd, files/3.0/init, -distcc-3.0-r1.ebuild,
+  +distcc-3.0-r2.ebuild:
+  Added xinetd USE flag. Removed '--install' function from gcc-config and
+  Added doenvd to src_install.
+  Added --daemon to /etc/init.d/distcc, bug #216950.
+  Clean up ebuild.
 
 *distcc-3.0-r1 (19 Oct 2008)
 
