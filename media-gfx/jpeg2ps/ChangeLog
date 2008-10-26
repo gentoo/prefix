@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/jpeg2ps
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpeg2ps/ChangeLog,v 1.25 2008/08/22 22:14:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpeg2ps/ChangeLog,v 1.26 2008/10/25 12:40:03 maekke Exp $
+
+  25 Oct 2008; Markus Meier <maekke@gentoo.org> jpeg2ps-1.9-r1.ebuild:
+  respect CC variable, bug #244154
 
   22 Aug 2008; Markus Meier <maekke@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
