@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.62 2008/10/21 18:32:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.63 2008/10/25 16:08:52 nixnut Exp $
+
+  25 Oct 2008; nixnut <nixnut@gentoo.org> scons-1.0.0.ebuild:
+  Stable on ppc wrt bug 242766
 
   21 Oct 2008; Raúl Porcel <armin76@gentoo.org> scons-1.0.0.ebuild:
   alpha/ia64/sparc stable wrt #242766
