@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.1 2008/08/20 20:29:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.2 2008/10/26 03:48:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,7 @@ src_install() {
 
 pkg_postinst() {
 	local badcerts=0
-	for c in `find -L "${EROOT}"/etc/ssl/certs/ -type l`; do
+	for c in $(find -L "${EROOT}"etc/ssl/certs/ -type l) ; do
 		ewarn "Broken symlink for a certificate at $c"
 		badcerts=1
 	done
