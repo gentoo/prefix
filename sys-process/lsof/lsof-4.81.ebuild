@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.78-r2.ebuild,v 1.7 2008/10/26 03:33:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81.ebuild,v 1.1 2008/10/26 03:34:13 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,9 +31,15 @@ src_unpack() {
 	cd "${S}"
 	ht_fix_file Configure Customize
 	touch .neverInv
-	epatch "${FILESDIR}"/${P}-answer-config.patch
-	epatch "${FILESDIR}"/${P}-freebsd.patch
-	epatch "${FILESDIR}"/${P}-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
+	epatch "${FILESDIR}"/${PN}-4.78-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
+	if [[ ${CHOST} == *-solaris2.11 ]] ; then
+		mkdir -p ext/sys
+		# missing system header :(
+		cp "${FILESDIR}"/solaris11-extdirent.h ext/sys/extdirent.h
+		( cd lib && ln -s ../ext )
+	fi
 	#Fix automagic dependency on libselinux. Bug 188272.
 	if ! use selinux; then
 		sed -i \
@@ -66,7 +72,6 @@ src_compile() {
 
 src_install() {
 	dobin lsof || die "dosbin"
-	dolib lib/liblsof.a || die "dolib"
 
 	insinto /usr/share/lsof/scripts
 	doins scripts/*
