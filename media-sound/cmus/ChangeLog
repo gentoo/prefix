@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/cmus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.20 2008/07/22 07:34:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.21 2008/10/25 22:18:35 pvdabeel Exp $
+
+  25 Oct 2008; Pieter Van den Abeele <pvdabeel@gentoo.org> cmus-2.2.0.ebuild:
+  Keyworded ~ppc. Closes bug #235775
 
   22 Jul 2008; Alexis Ballier <aballier@gentoo.org> cmus-2.2.0.ebuild:
   keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
