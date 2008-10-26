@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.7.3.ebuild,v 1.9 2007/02/17 15:12:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.8.5.ebuild,v 1.1 2008/10/26 02:26:04 vapier Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 MY_PN=${PN}src
 DESCRIPTION="Uncompress rar files"
@@ -13,12 +13,19 @@ SRC_URI="http://www.rarlab.com/rar/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="unRAR"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="!app-arch/unrar-gpl"
 
 S=${WORKDIR}/unrar
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.8.2-interix.patch
+}
 
 src_compile() {
 	emake \
