@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.10-r2.ebuild,v 1.1 2008/03/29 17:44:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.12.ebuild,v 1.1 2008/10/25 20:20:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,8 +8,7 @@ inherit eutils
 
 DESCRIPTION="GNU macro processor"
 HOMEPAGE="http://www.gnu.org/software/m4/m4.html"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
-	ftp://ftp.seindal.dk/gnu/${P}.tar.bz2"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -17,16 +16,9 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux 
 IUSE="examples nls"
 
 # remember: cannot dep on autoconf since it needs us
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="nls? ( sys-devel/gettext )
+	app-arch/lzma-utils"
 RDEPEND=""
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.4.8-darwin7.patch
-	epatch "${FILESDIR}"/${P}-seek.patch
-	epatch "${FILESDIR}"/${P}-gnulib-vasnprintf.patch #213833
-}
 
 src_compile() {
 	local myconf=""
