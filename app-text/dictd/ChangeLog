@@ -1,6 +1,10 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.42 2008/09/14 08:59:44 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.43 2008/10/25 22:10:35 pva Exp $
+
+  25 Oct 2008; Peter Volkov <pva@gentoo.org> dictd-1.10.11-r2.ebuild:
+  Fix tests: give dictd group write permission to tests directory, thank
+  Ferris McCormick for report in bug #244246
 
 *dictd-1.10.11-r2 (14 Sep 2008)
 

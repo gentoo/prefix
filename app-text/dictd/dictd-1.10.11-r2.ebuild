@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.11-r2.ebuild,v 1.1 2008/09/14 08:59:44 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.11-r2.ebuild,v 1.2 2008/10/25 22:10:35 pva Exp $
 
 EAPI="prefix"
 
@@ -33,15 +33,25 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/dictd-1.10.11-colorit-nopp-fix.patch
-	epatch "${FILESDIR}"/dictd-1.10.11-dictdplugin_popen-g++-4.3compile.patch
-	epatch "${FILESDIR}"/dictd-1.10.11-dictd.8-man.patch
-	epatch "${FILESDIR}"/dictd-1.10.11-dictl-konwert.patch
-	epatch "${FILESDIR}"/dictd-1.10.11-dictd.c-alen-init.patch
-	epatch "${FILESDIR}"/dictd-1.10.11-dictl-translit.patch
+	epatch "${FILESDIR}/dictd-1.10.11-colorit-nopp-fix.patch"
+	epatch "${FILESDIR}/dictd-1.10.11-dictdplugin_popen-g++-4.3compile.patch"
+	epatch "${FILESDIR}/dictd-1.10.11-dictd.8-man.patch"
+	epatch "${FILESDIR}/dictd-1.10.11-dictl-konwert.patch"
+	epatch "${FILESDIR}/dictd-1.10.11-dictd.c-alen-init.patch"
+	epatch "${FILESDIR}/dictd-1.10.11-dictl-translit.patch"
 	
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's:libtool:glibtool:g' libmaa/Makefile.in Makefile.in
+}
+
+src_test() {
+	if ! hasq userpriv "${FEATURES}"; then
+		# If dictd is run as root user (-userpriv) it drops its privileges to
+		# dictd user and group. Give dictd group write access to test directory.
+		chown :dictd "${WORKDIR}" "${S}/test"
+		chmod 770 "${WORKDIR}" "${S}/test"
+	fi
+	emake test || die
 }
 
 src_compile() {
@@ -68,12 +78,12 @@ src_install() {
 	# conf files.
 	insinto /etc/dict
 	for f in dict.conf dictd.conf site.info colorit.conf; do
-		doins "${FILESDIR}"/1.10.11/${f} || die "failed to install ${f}"
+		doins "${FILESDIR}/1.10.11/${f}" || die "failed to install ${f}"
 	done
 
 	# startups for dictd
-	newinitd "${FILESDIR}"/1.10.11/dictd.initd dictd || die "failed to install dictd.initd"
-	newconfd "${FILESDIR}"/1.10.11/dictd.confd dictd || die "failed to install dictd.confd"
+	newinitd "${FILESDIR}/1.10.11/dictd.initd" dictd || die "failed to install dictd.initd"
+	newconfd "${FILESDIR}/1.10.11/dictd.confd" dictd || die "failed to install dictd.confd"
 }
 
 pkg_postinst() {
