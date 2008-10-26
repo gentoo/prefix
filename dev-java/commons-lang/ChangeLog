@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/commons-lang
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.53 2008/10/23 18:42:28 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.54 2008/10/25 17:29:04 nixnut Exp $
+
+  25 Oct 2008; nixnut <nixnut@gentoo.org> commons-lang-2.4.ebuild:
+  Stable on ppc wrt bug 242968
 
   23 Oct 2008; Markus Meier <maekke@gentoo.org> commons-lang-2.4.ebuild:
   amd64/x86 stable, bug #242968
