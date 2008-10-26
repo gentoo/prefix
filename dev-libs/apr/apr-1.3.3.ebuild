@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.3.ebuild,v 1.2 2008/08/29 12:35:31 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.3.ebuild,v 1.3 2008/10/25 13:16:09 hollow Exp $
 
 EAPI="prefix 1"
 
@@ -112,7 +112,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "We are now using the system's libtool rather then bundling"
+	ewarn "We are now using the system's libtool rather than bundling"
 	ewarn "our own. You will need to rebuild Apache and possibly other"
 	ewarn "software if you get a message similiar to the following:"
 	ewarn
