@@ -1,6 +1,9 @@
 # ChangeLog for app-text/talkfilters
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.28 2008/09/17 10:49:24 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.29 2008/10/25 14:28:55 nixnut Exp $
+
+  25 Oct 2008; nixnut <nixnut@gentoo.org> talkfilters-2.3.8.ebuild:
+  Stable on ppc wrt bug 244254
 
 *talkfilters-2.3.8 (17 Sep 2008)
 
