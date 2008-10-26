@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.3 2008/09/16 12:51:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.5 2008/10/25 13:27:18 remi Exp $
 
 # Original Author: Arun Raghavan <ford_prefect@gentoo.org> (based on the
 #		   gnome-python-desktop eclass by Jim Ramsay <lack@gentoo.org>)
@@ -43,7 +43,12 @@ fi
 
 S="${WORKDIR}/${G_PY_PN}-${PV}"
 
-RDEPEND="~dev-python/${G_PY_PN}-base-${PV}"
+# add blockers, we can probably remove them later on
+if [[ ${G_PY_PN} == "gnome-python-extras" ]]; then
+	RDEPEND="!<=dev-python/gnome-python-extras-2.19.1-r2"
+fi
+
+RDEPEND="${RDEPEND} ~dev-python/${G_PY_PN}-base-${PV}"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 

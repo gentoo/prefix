@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.12 2008/08/29 13:22:21 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.13 2008/10/25 14:46:00 hollow Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
@@ -478,8 +478,13 @@ apache-2_src_install() {
 	newconfd "${GENTOO_PATCHDIR}"/init/apache2.confd apache2
 	newinitd "${GENTOO_PATCHDIR}"/init/apache2.initd apache2
 
-	# link apache2ctl to the init script
-	dosym /etc/init.d/apache2 /usr/sbin/apache2ctl
+	# install apache2ctl wrapper for our init script if available
+	if test -e "${GENTOO_PATCHDIR}"/scripts/apache2ctl; then
+		exeinto /usr/sbin
+		doexe "${GENTOO_PATCHDIR}"/scripts/apache2ctl
+	else
+		dosym /etc/init.d/apache2 /usr/sbin/apache2ctl
+	fi
 
 	# provide legacy symlink for apxs, bug 177697
 	dosym /usr/sbin/apxs /usr/sbin/apxs2
