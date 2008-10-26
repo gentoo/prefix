@@ -32,7 +32,7 @@ src_unpack() {
 	ht_fix_file Configure Customize
 	touch .neverInv
 	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
-	epatch "${FILESDIR}"/${PN}-4.78-config-solaris.patch
+	epatch "${FILESDIR}"/${P}-config-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
 	if [[ ${CHOST} == *-solaris2.11 ]] ; then
 		mkdir -p ext/sys
