@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/version
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.62 2008/10/23 11:10:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.63 2008/10/25 15:48:15 nixnut Exp $
+
+  25 Oct 2008; nixnut <nixnut@gentoo.org> version-0.76.ebuild:
+  Stable on ppc wrt bug 242820
 
   23 Oct 2008; Raúl Porcel <armin76@gentoo.org> version-0.76.ebuild:
   alpha/ia64/x86 stable wrt #242820
