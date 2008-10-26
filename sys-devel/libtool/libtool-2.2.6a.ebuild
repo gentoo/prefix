@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.1 2008/09/21 08:27:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.2 2008/10/26 00:21:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ IUSE="vanilla"
 
 RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
-	>=sys-devel/automake-1.10"
+	>=sys-devel/automake-1.10.1"
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	sys-apps/help2man"
