@@ -162,7 +162,7 @@ DEPEND="${DEPEND}
 if [[ "${PN/util-macros}" = "${PN}" ]]; then
 	DEPEND="${DEPEND}
 		>=x11-misc/util-macros-0.99.2
-		|| ( >=sys-devel/binutils-2.16.1-r3 sys-devel/odcctools sys-devel/native-cctools )"
+		|| ( >=sys-devel/binutils-2.16.1-r3 sys-devel/binutils-apple sys-devel/native-cctools )"
 fi
 
 RDEPEND="${RDEPEND}
