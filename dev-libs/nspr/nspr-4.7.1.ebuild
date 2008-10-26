@@ -38,8 +38,8 @@ src_compile() {
 	echo > "${T}"/test.c
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
-	    *64-bit*) myconf="${myconf} --enable-64bit";;
-	    *32-bit*) ;;
+	    *64-bit*|ppc64|x86_64) myconf="${myconf} --enable-64bit";;
+	    *32-bit*|ppc|i386) ;;
 	    *) die "FAIL";;
 	esac
 
