@@ -1,0 +1,20 @@
+--- src/preload.conf.in.orig	2008-10-27 10:23:14.000000000 -0500
++++ src/preload.conf.in	2008-10-27 10:24:25.000000000 -0500
+@@ -132,7 +132,7 @@
+ # preload doesn't special-handle device files internally.
+ #
+ # default: (empty list, accept all)
+-mapprefix = /usr;/lib;/lib64;/lib32;/opt;/var/cache;!/
++mapprefix = @GENTOO_PORTAGE_EPREFIX@/usr;@GENTOO_PORTAGE_EPREFIX@/lib;@GENTOO_PORTAGE_EPREFIX@/lib64;@GENTOO_PORTAGE_EPREFIX@/lib32;@GENTOO_PORTAGE_EPREFIX@/opt;@GENTOO_PORTAGE_EPREFIX@/var/cache;!/
+ 
+ # exeprefix:
+ #
+@@ -141,7 +141,7 @@
+ # files instead of maps.
+ #
+ # default: (empty list, accept all)
+-exeprefix = !/usr/sbin;!/usr/local/sbin;/usr;/opt;!/
++exeprefix = !@GENTOO_PORTAGE_EPREFIX@/usr/sbin;!@GENTOO_PORTAGE_EPREFIX@/usr/local/sbin;@GENTOO_PORTAGE_EPREFIX@/usr;@GENTOO_PORTAGE_EPREFIX@/opt;!@GENTOO_PORTAGE_EPREFIX@/
+ 
+ # maxprocs
+ #
