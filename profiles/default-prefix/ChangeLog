@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  27 Oct 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  add sys-apps/preload to p.mask because it requires root privs
+
   21 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
   Drop ffmpeg mask on Solaris, as the version has been superseeded by a fixed
