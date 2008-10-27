@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit gnome2
+inherit eutils gnome2
 
 DESCRIPTION="Image viewer and browser for Gnome"
 HOMEPAGE="http://gthumb.sourceforge.net"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="gphoto2 iptc raw tiff test"
 
 # Unknown item missing from deps, gtkunique.
@@ -41,6 +41,12 @@ DEPEND="${RDEPEND}
 	test? ( ~app-text/docbook-xml-dtd-4.1.2 )"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+
+src_unpack() {
+	gnome2_src_unpack
+	# solaris glibc has no mkdtemp so here we need a patch
+	epatch "${FILESDIR}/${P}-solaris.patch"
+}
 
 pkg_setup() {
 	G2CONF="${G2CONF}
