@@ -79,3 +79,10 @@ src_install() {
 	doman lsof.8
 	dodoc 00*
 }
+
+pkg_postinst() {
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		einfo "Note: to use lsof on Solaris you need read permissions on"
+		einfo "/dev/kmem, i.e. you need to be root, or to be in the group sys"
+	fi
+}
