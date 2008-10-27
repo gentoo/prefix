@@ -5,7 +5,7 @@ diff -ru libopenraw-0.0.5.orig/lib/ljpegdecompressor.cpp libopenraw-0.0.5/lib/lj
  #include <boost/scoped_array.hpp>
  #include <boost/format.hpp>
  
-+#include <strings.h>
++#include <cstring>
  #include <libopenraw++/rawdata.h>
  #include "io/memstream.h"
  #include "debug.h"
