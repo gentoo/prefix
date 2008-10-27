@@ -3,6 +3,9 @@
 # $Id$
 
   27 Oct 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  add >=gcc-4.3.2 to p.mask
+
+  27 Oct 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   add sys-apps/preload to p.mask because it requires root privs
 
   21 Oct 2008; Fabian Groffen <grobian@gentoo.org>

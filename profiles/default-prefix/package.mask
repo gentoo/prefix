@@ -87,6 +87,8 @@ app-text/tetex
 # bootstrapping.
 ~sys-devel/gcc-4.3.0
 ~sys-devel/gcc-4.3.1
+# Avoid pain for Prefix users, power users can unmask
+>=sys-devel/gcc-4.3.2
 
 # Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
 # Screws up things, see bug #204998
