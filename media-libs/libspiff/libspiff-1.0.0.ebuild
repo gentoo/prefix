@@ -1,9 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/libspiff-1.0.0.ebuild,v 1.1 2008/10/05 22:07:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/libspiff-1.0.0.ebuild,v 1.2 2008/10/28 02:07:53 mr_bones_ Exp $
 
 EAPI="prefix"
-
 
 inherit eutils
 
