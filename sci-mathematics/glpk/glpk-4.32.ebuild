@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.28.ebuild,v 1.5 2008/05/06 19:31:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.32.ebuild,v 1.1 2008/10/27 15:36:25 bicatali Exp $
 
 EAPI="prefix"
+
+inherit flag-o-matic
 
 DESCRIPTION="GNU Linear Programming Kit"
 LICENSE="GPL-3"
@@ -10,19 +12,31 @@ HOMEPAGE="http://www.gnu.org/software/glpk/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 SLOT="0"
-IUSE="doc gmp iodbc mysql"
+IUSE="doc examples gmp odbc mysql"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-DEPEND="iodbc? ( dev-db/libiodbc )
+RDEPEND="odbc? ( || ( dev-db/libiodbc dev-db/unixODBC ) )
 	gmp? ( dev-libs/gmp )
 	mysql? ( virtual/mysql )"
 
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
+
 src_compile() {
+	local myconf="--disable-dl"
+	if use mysql || use odbc; then
+		myconf="--enable-dl"
+	fi
+
+	[[ -z $(type -P odbc-config) ]] && \
+		append-cppflags $(pkg-config --cflags libiodbc)
+
 	econf \
-		$(use_enable gmp) \
-		$(use_enable iodbc) \
+		--with-zlib \
+		$(use_with gmp) \
+		$(use_enable odbc) \
 		$(use_enable mysql) \
-		|| die "econf failed"
+		${myconf} || die "econf failed"
 	emake || die "emake failed"
 }
 
@@ -34,8 +48,10 @@ src_install() {
 		die "failed to install docs"
 
 	insinto /usr/share/doc/${PF}
-	# 388Kb
-	doins -r examples || die "failed to install examples"
+	if use examples; then
+		emake distclean
+		doins -r examples || die "failed to install examples"
+	fi
 	if use doc; then
 		cd "${S}"/doc
 		doins memo/gomory.djvu || die "failed to instal memo"
