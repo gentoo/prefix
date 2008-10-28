@@ -13,7 +13,7 @@ IUSE=""
 
 # when unmasking for an arch
 # double check none of the deps are still masked !
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 
 #  Note to developers:
 #  This is a wrapper for the 'light' Gnome2 desktop,
