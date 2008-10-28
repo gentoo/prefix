@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27725-r1.ebuild,v 1.5 2008/10/21 17:22:12 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p27725-r1.ebuild,v 1.6 2008/10/28 02:09:26 mr_bones_ Exp $
 
 EAPI="prefix 1"
 
@@ -277,7 +277,6 @@ src_compile() {
 		use a52 || myconf="${myconf} --disable-liba52 \
 			--disable-liba52-internal"
 	fi
-
 
 	# SRT (subtitles) requires freetype support
 	# freetype support requires iconv
