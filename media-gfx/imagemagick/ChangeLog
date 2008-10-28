@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.308 2008/10/19 10:13:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.310 2008/10/27 23:07:40 ranger Exp $
+
+  27 Oct 2008; Brent Baude <ranger@gentoo.org> imagemagick-6.4.4.6.ebuild,
+  imagemagick-6.4.4.6-r1.ebuild:
+  Keywording for ~ppc64
+
+  27 Oct 2008; Jeroen Roovers <jer@gentoo.org> imagemagick-6.4.4.6.ebuild,
+  imagemagick-6.4.4.6-r1.ebuild:
+  Marked ~hppa (bug #242236).
 
   19 Oct 2008; Raúl Porcel <armin76@gentoo.org> imagemagick-6.4.4.6.ebuild,
   imagemagick-6.4.4.6-r1.ebuild:
