@@ -1,21 +1,21 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.0.ebuild,v 1.4 2008/10/06 08:06:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.2.ebuild,v 1.2 2008/10/27 17:55:43 aballier Exp $
 
 EAPI="prefix 2"
 
 inherit libtool multilib eutils toolchain-funcs
 
-PATCHLEVEL="3"
+PATCHLEVEL="5"
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"
-SRC_URI="http://foundry.supelec.fr/frs/download.php/680/${PN}-beta-${PV}.tar.bz2
+SRC_URI="http://foundry.supelec.fr/frs/download.php/686/${PN}-beta-${PV}.tar.bz2
 	mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
 RDEPEND="dev-tex/mplib[lua]
@@ -41,6 +41,10 @@ src_prepare() {
 }
 
 src_configure() {
+	# Too many regexps use A-Z a-z constructs, what causes problems with locales
+	# that don't have the same alphabetical order than ascii. Bug #244619
+	# So we set LC_ALL to C in order to avoid problems.
+	export LC_ALL=C
 	tc-export CC CXX AR RANLIB
 	export NATIVE='.'
 	mkdir -p "${WORKDIR}/${PN}-beta-${PV}/build"
@@ -96,19 +100,20 @@ src_configure() {
 src_compile() {
 	cd "${WORKDIR}/${PN}-beta-${PV}/build/texk/web2c"
 	emake \
-		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.la" \
+		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.a" \
 		LDZZIPLIB="$(pkg-config --libs zziplib)" ZZIPLIBINC="$(pkg-config --cflags zziplib)" \
 		LIBXPDFDEP="" LDLIBXPDF="$(pkg-config --libs poppler)" \
 		LIBXPDFINCLUDE="$(pkg-config --cflags poppler)"	LIBXPDFCPPFLAGS="$(pkg-config --cflags poppler)" \
 		LIBPNGINCLUDES="$(pkg-config --cflags libpng)" \
 		ZLIBSRCDIR="." \
+		ARFLAGS="rcs" \
 		luatex || die "failed to build luatex"
 }
 
 src_install() {
 	cd "${WORKDIR}/${PN}-beta-${PV}/build/texk/web2c"
 	emake bindir="${ED}/usr/bin" \
-		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.la" \
+		LIBMPLIBDEP="${EPREFIX}/usr/$(get_libdir)/libmplib/mplib.a" \
 		LDZZIPLIB="$(pkg-config --libs zziplib)" ZZIPLIBINC="$(pkg-config --cflags zziplib)" \
 		LIBXPDFDEP="" LDLIBXPDF="$(pkg-config --libs poppler)" \
 		LIBXPDFINCLUDE="$(pkg-config --cflags poppler)"	LIBXPDFCPPFLAGS="$(pkg-config --cflags poppler)" \
