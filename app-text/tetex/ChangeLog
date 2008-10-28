@@ -1,6 +1,9 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.172 2008/09/02 18:04:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.173 2008/10/26 14:40:52 aballier Exp $
+
+  26 Oct 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  Assign teTeX to maintainer-needed, after a long overdue...
 
   02 Sep 2008; Alexis Ballier <aballier@gentoo.org> -tetex-2.0.2-r5.ebuild,
   -tetex-2.0.2-r8.ebuild:
