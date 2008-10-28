@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/crossdev
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.59 2008/06/23 01:46:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.60 2008/10/27 05:57:43 vapier Exp $
+
+*crossdev-0.9.18-r10 (27 Oct 2008)
+
+  27 Oct 2008; Mike Frysinger <vapier@gentoo.org> files/crossdev,
+  +crossdev-0.9.18-r10.ebuild:
+  Push out misc minor fixes and make sure we emerge gcc stage2 with --newuse
+  #235551.
 
 *crossdev-0.9.18-r9 (23 Jun 2008)
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.104 2008/06/23 01:46:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.108 2008/10/27 05:57:43 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -38,6 +38,7 @@ Options:
     ${GOOD}-S, --stable${NORMAL}          Use latest stable versions as default
     ${GOOD}-C, --clean${NORMAL} target    Uninstall specified target
     ${GOOD}-P, --portage${NORMAL} opts    Options to pass to emerge (see emerge(1))
+    ${GOOD}--with[out]-headers${NORMAL}   Build C library headers before C compiler?
 Stage Options:
     ${GOOD}-s0, --stage0${NORMAL}         Build just binutils
     ${GOOD}-s1, --stage1${NORMAL}         Also build a C compiler (no libc/C++)
@@ -49,7 +50,6 @@ Extra Fun (must be run after above stages):
     ${GOOD}--ex-gcc${NORMAL}              Build extra gcc targets (gcj/ada/etc...)
     ${GOOD}--ex-gdb${NORMAL}              Build a cross gdb
     ${GOOD}--ex-insight${NORMAL}          Build a cross insight
-
 ${BRACKET}Target (-t)${NORMAL} takes a tuple ${BRACKET}ARCH-VENDOR-OS-LIBC${NORMAL}; see 'crossdev -t help'
 EOF
 	[[ -n $* ]] && echo && eerror "Error: $*"
@@ -114,7 +114,7 @@ parse_target() {
 		case ${CTARGET} in
 			i?86|x86_64)
 				CTARGET="${CTARGET}-pc-linux-gnu";;
-			s390*)       
+			s390*)
 				CTARGET="${CTARGET}-ibm-linux-gnu";;
 			alpha*|arm*|cris*|hppa*|ia64*|m68*|mips*|powerpc*|sparc*|sh*)
 				CTARGET="${CTARGET}-unknown-linux-gnu";;
@@ -257,7 +257,7 @@ uninstall() {
 		rm -f "${EPREFIX}"/usr/bin/${CTARGET}-${b} "${EPREFIX}"/usr/${CTARGET}/bin/${b}
 	done
 	rm -f "${EPREFIX}"/usr/${CTARGET}/{sys-include,usr}
-	rm -f "${EPREFIX}"/usr/bin/${CTARGET}-{gcc,{c,g}++,cpp}
+	rm -f "${EPREFIX}"/usr/bin/${CTARGET}-{gcc,{c,g}++,cpp,gfortran,gcov}
 	rmdir "${EPREFIX}"/usr/${CTARGET}/{include/asm,include} &> /dev/null
 	for d in "${EPREFIX}"/usr/${CTARGET} "${EPREFIX}"/usr/lib/gcc{,-lib}/${CTARGET} ; do
 		if [[ ! -d ${d} ]] ; then
@@ -634,6 +634,7 @@ USE="${LUSE} ${USE}" CROSSCOMPILE_OPTS="" \
 
 is_s4 || exit 0
 set_eopts_on_pkg_status ${GPKG} crosscompile_opts_bootstrap
+EOPTS="${EOPTS_UP} --newuse"
 USE="${GUSE} ${USE} ${GUSE_DISABLE_STAGE_2}" \
 	doemerge ${GPKG} ${GPKG}-stage2
 
