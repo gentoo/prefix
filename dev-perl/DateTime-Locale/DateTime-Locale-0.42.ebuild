@@ -14,7 +14,7 @@ SRC_URI="mirror://cpan/authors/id/D/DR/DROLSKY/${MY_P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 ) unicode"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 SRC_TEST="do"
 
