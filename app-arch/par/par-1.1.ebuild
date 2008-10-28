@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/par/par-1.1.ebuild,v 1.25 2008/01/26 18:54:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/par/par-1.1.ebuild,v 1.26 2008/10/26 12:45:51 swegener Exp $
 
 EAPI="prefix"
+
+inherit toolchain-funcs
 
 DESCRIPTION="Parchive archive fixing tool"
 HOMEPAGE="http://parchive.sourceforge.net/"
@@ -20,7 +22,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}"/par-cmdline
 
 src_compile() {
-	emake CFLAGS="${CFLAGS}" || die "emake failed"
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" || die "emake failed"
 }
 
 src_install() {

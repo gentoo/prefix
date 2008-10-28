@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/par
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/par/ChangeLog,v 1.17 2008/01/26 18:54:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/par/ChangeLog,v 1.18 2008/10/26 12:45:51 swegener Exp $
+
+  26 Oct 2008; Sven Wegener <swegener@gentoo.org> par-1.1.ebuild:
+  Fix direct use of cc, bug #243504.
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> par-1.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
