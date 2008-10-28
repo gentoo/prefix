@@ -90,6 +90,9 @@ src_unpack() {
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
+	# Solaris needs c99 with jpeg2k, bug #244797
+	use jpeg2k && append-flags -std=c99
+
 	rm -f configure
 	cp Makefile.config.in Makefile.config
 	cat >> Makefile.config <<-EOF
