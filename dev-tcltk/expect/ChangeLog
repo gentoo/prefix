@@ -1,6 +1,16 @@
 # ChangeLog for dev-tcltk/expect
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.46 2008/03/10 00:21:05 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.48 2008/10/27 05:07:08 mescalinum Exp $
+
+  27 Oct 2008; Federico Ferri <mescalinum@gentoo.org> +files/expect.m4:
+  forgot a file in $FILESDIR
+
+*expect-5.44.1 (26 Oct 2008)
+
+  26 Oct 2008; Federico Ferri <mescalinum@gentoo.org>
+  +files/expect-5.44.1-destdir.patch, -expect-5.43.0.ebuild,
+  +expect-5.44.1.ebuild:
+  version bump 5.44.1
 
   09 Mar 2008; <ricmm@gentoo.org> expect-5.42.1-r1.ebuild:
   Drop to ~mips to match dependencies

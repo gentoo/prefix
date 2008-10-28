@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.43.0.ebuild,v 1.7 2007/04/07 14:45:30 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.44.1.ebuild,v 1.1 2008/10/26 12:38:08 mescalinum Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="2.1"
+WANT_AUTOCONF="2.5"
 inherit autotools eutils
 
 DESCRIPTION="tool for automating interactive applications"
@@ -22,16 +22,11 @@ DEPEND=">=dev-lang/tcl-8.2
 	X? ( >=dev-lang/tk-8.2 )"
 RDEPEND="${DEPEND}"
 
-NON_MICRO_V=${P%.[0-9]}
-S=${WORKDIR}/${NON_MICRO_V}
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-5.42.1-multilib.patch
-
-	# fix the rpath being set to /var/tmp/portage/...
-	epatch "${FILESDIR}"/${PN}-5.39.0-libdir.patch
 
 	# fix install_name on darwin
 	[[ ${CHOST} == *-darwin* ]] && \
@@ -44,6 +39,16 @@ src_unpack() {
 		-e '/^install:/s/install-libraries //' \
 		-e 's/^SCRIPTS_MANPAGES = /_&/' \
 		Makefile.in
+
+	#they forgot to include expect.m4 (now it's in expect cvs)
+	cp "${FILESDIR}/expect.m4" .
+	#configure broken for testsuite
+	sed -i -e 's/^AC_CONFIG_SUBDIRS(testsuite)$//' configure.in
+	#fixes "TCL_REG_BOSONLY undeclared" error due to a change in tcl8.5
+	sed -i -e 's/^#include "tcl.h"/#include "tclInt.h"/' exp_inter.c
+	#slacky destdir support in Makefile
+	epatch "${FILESDIR}/${P}-destdir.patch"
+
 	eautoconf
 }
 
@@ -84,7 +89,7 @@ src_test() {
 
 src_install() {
 	dodir /usr/$(get_libdir)
-	make install INSTALL_ROOT="${D}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 
 	dodoc ChangeLog FAQ HISTORY NEWS README
 
