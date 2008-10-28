@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1994 2008/10/25 23:48:43 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1999 2008/10/27 22:53:53 lack Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  27 Oct 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  Masking <net-www/netscape-flash-10.0.12.36 for security (bug #239543)
+
+  27 Oct 2008; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  net-www/xxv-1.2.1359 x11-themes/xxv-skins-1.3.59 masked for testing
+
+  27 Oct 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  remove distcc mask
+
+  27 Oct 2008; Federico Ferri <mescalinum@gentoo.org> package.mask:
+  masked >=newt-0.52.10, bug #212676, until unmask of tcl-8.5*
+
+  27 Oct 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove the final traces of xf86-video-i810
 
   25 Oct 2008; Tomas Chvatal (scarabeus) <scarabeus@gentoo.org>
   package.mask:
