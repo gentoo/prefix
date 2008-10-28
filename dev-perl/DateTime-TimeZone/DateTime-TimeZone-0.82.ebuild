@@ -11,7 +11,7 @@ DESCRIPTION="Time zone object base class and factory"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 SRC_TEST="do"
 
