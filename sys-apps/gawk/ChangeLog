@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.119 2008/10/26 00:31:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.123 2008/10/27 19:56:56 ranger Exp $
+
+  27 Oct 2008; Brent Baude <ranger@gentoo.org> gawk-3.1.6.ebuild:
+  stable ppc64, bug 244384
+
+  26 Oct 2008; Markus Meier <maekke@gentoo.org> gawk-3.1.6.ebuild:
+  amd64 stable, bug #244384
+
+  26 Oct 2008; nixnut <nixnut@gentoo.org> gawk-3.1.6.ebuild:
+  Stable on ppc wrt bug 244384
+
+  26 Oct 2008; Torsten Veller <tove@gentoo.org> gawk-3.1.6.ebuild:
+  Stable on x86 (#244384)
 
   26 Oct 2008; Jeroen Roovers <jer@gentoo.org> gawk-3.1.6.ebuild:
   Stable for HPPA (bug #244384).
