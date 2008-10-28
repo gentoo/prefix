@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.68 2008/10/24 11:21:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.69 2008/10/26 21:35:26 hawking Exp $
+
+  26 Oct 2008; Ali Polatel <hawking@gentoo.org> bzr-1.5.ebuild,
+  bzr-1.6.1.ebuild, bzr-1.7.1.ebuild, bzr-1.8.ebuild:
+  Use python_{en,dis}able_pyc.
 
   24 Oct 2008; Raúl Porcel <armin76@gentoo.org> bzr-1.6.1.ebuild:
   sparc stable wrt #241740
