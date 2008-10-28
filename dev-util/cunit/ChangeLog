@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cunit
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.22 2008/10/21 17:36:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.23 2008/10/27 07:25:02 pva Exp $
+
+  27 Oct 2008; Peter Volkov <pva@gentoo.org> cunit-2.1.ebuild:
+  ~mips keyworded, bug #242546
 
   21 Oct 2008; Raúl Porcel <armin76@gentoo.org> cunit-2.1.ebuild:
   Add ~alpha/~ia64 wrt #242546
