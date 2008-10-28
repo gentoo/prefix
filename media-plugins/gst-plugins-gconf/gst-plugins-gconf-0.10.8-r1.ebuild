@@ -8,7 +8,7 @@ GCONF_DEBUG=no
 
 inherit gnome2 gst-plugins-good gst-plugins10
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 DEPEND=">=gnome-base/gconf-2
