@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-1.0.ebuild,v 1.7 2008/09/03 19:55:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-1.0.ebuild,v 1.8 2008/10/27 05:56:56 vapier Exp $
 
 EAPI="prefix"
 
