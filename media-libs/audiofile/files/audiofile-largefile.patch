@@ -1,5 +1,16 @@
---- libaudiofile/audiofile.h	2006/10/05 22:05:50	1.1
-+++ libaudiofile/audiofile.h	2006/10/05 22:06:00
+http://bugs.gentoo.org/118600
+http://bugs.gentoo.org/237600
+
+--- libaudiofile/audiofile.h
++++ libaudiofile/audiofile.h
+@@ -29,6 +29,7 @@
+ 
+ #include <sys/types.h>
+ #include <aupvlist.h>
++#include <stdint.h>
+ 
+ #define LIBAUDIOFILE_MAJOR_VERSION 0
+ #define LIBAUDIOFILE_MINOR_VERSION 2
 @@ -45,8 +45,8 @@ typedef struct _AFfilesetup *AFfilesetup
  typedef struct _AFfilehandle *AFfilehandle;
  typedef void (*AFerrfunc)(long, const char *);

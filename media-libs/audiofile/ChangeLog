@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/audiofile
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.61 2008/06/16 12:12:55 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.62 2008/10/27 05:05:13 vapier Exp $
+
+  27 Oct 2008; Mike Frysinger <vapier@gentoo.org>
+  files/audiofile-largefile.patch:
+  Fix by Nathan Brink to pull in stdint.h for uint64_t types #237600.
 
 *audiofile-0.2.6-r4 (16 Jun 2008)
 
