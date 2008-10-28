@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/easyedit
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.15 2008/01/26 15:48:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.16 2008/10/26 16:10:13 hattya Exp $
+
+  26 Oct 2008; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.6.ebuild:
+  fixes bug #239867 and bug #243558.
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> easyedit-1.4.6.ebuild:
   Dropped ppc-macos keyword, see you in prefix
