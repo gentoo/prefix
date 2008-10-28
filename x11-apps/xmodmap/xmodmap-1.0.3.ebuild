@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="utility for modifying keymaps and pointer button mappings in X"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11"
 DEPEND="${RDEPEND}"
