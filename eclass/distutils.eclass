@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.52 2008/09/24 16:45:08 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.53 2008/10/27 00:19:46 hawking Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -62,6 +62,9 @@ distutils_src_compile() {
 # It also installs the "standard docs" (CHANGELOG, Change*, KNOWN_BUGS, MAINTAINERS,
 # PKG-INFO, CONTRIBUTORS, TODO, NEWS, MANIFEST*, README*, and AUTHORS)
 distutils_src_install() {
+
+	# Mark the package to be rebuilt after a python upgrade.
+	python_need_rebuild
 
 	# need this for python-2.5 + setuptools in cases where
 	# a package uses distutils but does not install anything

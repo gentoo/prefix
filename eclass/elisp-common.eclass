@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.50 2008/10/16 09:28:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.51 2008/10/27 21:34:34 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -140,11 +140,6 @@ ESITELISP=${EPREFIX}${SITELISP}
 # Directory where packages install miscellaneous (not Lisp) files.
 SITEETC=/usr/share/emacs/etc
 ESITEETC=${EPREFIX}${SITEETC}
-
-# @ECLASS-VARIABLE: SITEFILE
-# @DESCRIPTION:
-# Name of package's site-init file.
-SITEFILE=50${PN}-gentoo.el
 
 # @ECLASS-VARIABLE: EMACS
 # @DESCRIPTION:

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.82 2008/09/30 05:27:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.84 2008/10/27 05:22:13 vapier Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -495,8 +495,8 @@ strip_modulenames() {
 linux-mod_src_compile() {
 	debug-print-function ${FUNCNAME} $*
 
-	local modulename libdir srcdir objdir i n myARCH="${ARCH}" myABI="${ABI}"
-	ARCH="$(tc-arch-kernel)"
+	local modulename libdir srcdir objdir i n myABI="${ABI}"
+	set_arch_to_kernel
 	ABI="${KERNEL_ABI}"
 
 	BUILD_TARGETS=${BUILD_TARGETS:-clean module}
@@ -522,25 +522,25 @@ linux-mod_src_compile() {
 				econf ${ECONF_PARAMS} || \
 				die "Unable to run econf ${ECONF_PARAMS}"
 			fi
-		
+
 			# This looks messy, but it is needed to handle multiple variables
 			# being passed in the BUILD_* stuff where the variables also have
 			# spaces that must be preserved. If don't do this, then the stuff
 			# inside the variables gets used as targets for Make, which then
 			# fails.
 			eval "emake HOSTCC=\"$(tc-getBUILD_CC)\" \
-						CC=\"$(get-KERNEL_CC)\" \
+						CROSS_COMPILE=${CHOST}- \
 						LDFLAGS=\"$(get_abi_LDFLAGS)\" \
 						${BUILD_FIXES} \
 						${BUILD_PARAMS} \
 						${BUILD_TARGETS} " \
-				|| die "Unable to emake HOSTCC="$(tc-getBUILD_CC)" CC="$(get-KERNEL_CC)" LDFLAGS="$(get_abi_LDFLAGS)" ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}"
+				|| die "Unable to emake HOSTCC="$(tc-getBUILD_CC)" CROSS_COMPILE=${CHOST}- LDFLAGS="$(get_abi_LDFLAGS)" ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}"
 			touch ${srcdir}/.built
 			cd ${OLDPWD}
 		fi
 	done
 
-	ARCH="${myARCH}"
+	set_arch_to_portage
 	ABI="${myABI}"
 }
 

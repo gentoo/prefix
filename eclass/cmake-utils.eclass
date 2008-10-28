@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.10 2008/09/28 18:52:16 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.13 2008/10/27 14:38:38 vapier Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -85,6 +85,10 @@ cmake-utils_has() { _use_me_now HAVE "$@" ; }
 cmake-utils_src_configure() {
 	debug-print-function $FUNCNAME $*
 
+	if ! has debug ${IUSE//+} || ! use debug ; then
+		append-cppflags -DNDEBUG
+	fi
+
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
 		cmake-utils_src_configurein
 	else
@@ -141,11 +145,8 @@ cmake-utils_src_configureout() {
 # Internal use only. Common configuration options for all types of builds.
 _common_configure_code() {
 	local tmp_libdir=$(get_libdir)
-	if has debug ${IUSE//+} && use debug; then
-		echo -DCMAKE_BUILD_TYPE=Debug
-	else
-		echo -DCMAKE_BUILD_TYPE=Release
-	fi
+	# CMAKE_BUILD_TYPE only modifies compiler flags, so set to None
+	echo -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-None}
 	echo -DCMAKE_C_COMPILER=$(type -P $(tc-getCC))
 	echo -DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX))
 	echo -DCMAKE_INSTALL_PREFIX=${PREFIX:-/usr}

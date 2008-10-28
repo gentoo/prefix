@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.364 2008/10/24 07:30:35 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.365 2008/10/27 05:06:41 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1371,7 +1371,9 @@ gcc_do_configure() {
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
 			confgcc="${confgcc} --disable-bootstrap --disable-libgomp"
 		fi
-	elif [[ ${CHOST} != mingw* ]] && [[ ${CHOST} != *-mingw* ]] ; then
+	elif [[ ${CHOST} == mingw* ]] || [[ ${CHOST} == *-mingw* ]] ; then
+		confgcc="${confgcc} --enable-shared --enable-threads=win32"
+	else
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
 
 		if use prefix ; then
