@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.6.0.1.ebuild,v 1.1 2008/10/19 17:42:40 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.6.0.1.ebuild,v 1.2 2008/10/27 22:46:29 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,6 @@ MY_P="${MY_PN}-${PV}"
 FP_PN=filepath
 FP_PV=1.1.0.0
 FP_P=${FP_PN}-${FP_PV}
-
 
 DESCRIPTION="A framework for packaging Haskell software"
 HOMEPAGE="http://www.haskell.org/cabal/"
