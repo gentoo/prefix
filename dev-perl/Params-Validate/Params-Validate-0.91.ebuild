@@ -11,7 +11,7 @@ DESCRIPTION="A module to provide a flexible system for validation method/functio
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lang/perl"
