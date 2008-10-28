@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.57 2008/10/05 14:50:51 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.58 2008/10/27 07:17:20 vapier Exp $
+
+  27 Oct 2008; Mike Frysinger <vapier@gentoo.org> use.mask:
+  Mask lilo by default since it is x86/am64 only.
 
   05 Oct 2008; Harald van Dĳk <truedfx@gentoo.org> package.use.mask:
   Mask tcl flag on nvi-1.81.6-r*, not only 1.81.6

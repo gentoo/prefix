@@ -8,6 +8,7 @@ multilib
 kqemu
 3dnow
 3dnowext
+lilo
 mmx
 mmxext
 sse
