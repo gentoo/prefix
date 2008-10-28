@@ -1,6 +1,19 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.25 2008/09/01 08:31:56 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.29 2008/10/27 20:36:42 maekke Exp $
+
+  27 Oct 2008; Markus Meier <maekke@gentoo.org> feynmf-1.08-r3.ebuild:
+  amd64/x86 stable, bug #244594
+
+  27 Oct 2008; Jeroen Roovers <jer@gentoo.org> feynmf-1.08-r3.ebuild:
+  Stable for HPPA (bug #244594).
+
+  27 Oct 2008; Ferris McCormick <fmccor@gentoo.org> feynmf-1.08-r3.ebuild:
+  Sparc stable, Bug #244594.
+
+  27 Oct 2008; Ulrich Mueller <ulm@gentoo.org> feynmf-1.08-r2.ebuild,
+  feynmf-1.08-r3.ebuild:
+  Replace the virtual/tetex dependency.
 
 *feynmf-1.08-r3 (01 Sep 2008)
 

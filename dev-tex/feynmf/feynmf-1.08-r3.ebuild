@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/feynmf-1.08-r3.ebuild,v 1.1 2008/09/01 08:31:56 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/feynmf-1.08-r3.ebuild,v 1.5 2008/10/27 20:36:42 maekke Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
-DEPEND="|| ( dev-texlive/texlive-metapost virtual/tetex )"
+DEPEND="|| ( dev-texlive/texlive-metapost app-text/tetex app-text/ptex )"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
