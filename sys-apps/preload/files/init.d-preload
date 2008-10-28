@@ -1,29 +1,29 @@
 #!/sbin/runscript
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/files/init.d-preload,v 1.4 2008/10/24 01:38:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/files/init.d-preload,v 1.5 2008/10/28 02:02:14 darkside Exp $
 
 depend() {
 	after localmount xdm
 }
 
-# Note: pid changes so we can't use a PIDFILE type thing.
 start() {
 	ebegin "Starting preload"
-	start-stop-daemon --start --quiet --exec /usr/sbin/preload -- \
+	start-stop-daemon --start --quiet --background \
+	--make-pidfile --pidfile ${PIDFILE} --exec /usr/sbin/preload -- \
 	-l ${PRELOAD_LOGFILE:-/var/log/preload.log} -V ${PRELOAD_VERBOSITY:-4} \
-	-n ${PRELOAD_NICE:-15} -s ${PRELOAD_STATEFILE:-""}
+	-n ${PRELOAD_NICE:-15} -s ${PRELOAD_STATEFILE:-""} -f
 
-	IONICE=$(type -p ionice)
-	if [[ -x "${IONICE}" && -n "${IONICE_OPTS}" ]]; then
-		einfo "ionice'ing preload"
-		${IONICE} "${IONICE_OPTS}" -p $(pidof preload)
+	IONICE="$(command -v ionice)"
+	if [ -x "${IONICE}" -a -n "${IONICE_OPTS}" ]; then
+		einfo "ionicing preload"
+		"${IONICE}" "${IONICE_OPTS}" -p $(<${PIDFILE})
 	fi
 	eend $?
 }
 
 stop() {
-	ebegin "Stopping preload"
-	start-stop-daemon --stop --quiet --exec /usr/sbin/preload
+	ebegin "Stopping preload (may take awhile)"
+	start-stop-daemon --stop --retry 120 --quiet --pidfile ${PIDFILE}
 	eend $?
 }

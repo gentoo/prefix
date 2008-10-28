@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/preload
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.6 2008/10/24 01:38:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.7 2008/10/28 02:02:14 darkside Exp $
+
+*preload-0.6.3-r5 (28 Oct 2008)
+
+  28 Oct 2008; Jeremy Olexa <darkside@gentoo.org> files/conf.d-preload,
+  files/init.d-preload, -preload-0.6.3-r4.ebuild, +preload-0.6.3-r5.ebuild:
+  sys-apps/preload - final init script fixing to capture the pid properly as
+  reported in bug #243832 (thanks for the help Kai). Version bump so people
+  get a working (so I think) init script. Removing bashisms, as reported in
+  bug #244491 is also fixed with this commit (thanks to Davide Pesavento).
+  Hey, 2 bugs in one!
 
 *preload-0.6.3-r4 (24 Oct 2008)
 

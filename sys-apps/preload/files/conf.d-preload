@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/files/conf.d-preload,v 1.5 2008/10/24 01:38:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/files/conf.d-preload,v 1.6 2008/10/28 02:02:14 darkside Exp $
 # preload configuration file
 
-# verbosity.  0-9, Default is 4.
+PIDFILE="/var/run/preload.pid"
+
+# verbosity. 0-10, Default is 4.
 #PRELOAD_VERBOSITY="4"
 
 # set this for niceness. Default is 15. Valid ranges are from -20 to 19. See
