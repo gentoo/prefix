@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.43.ebuild,v 1.9 2007/07/04 03:45:13 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.46.ebuild,v 1.1 2008/10/26 13:43:25 aballier Exp $
 
 EAPI="prefix"
 
@@ -9,14 +9,14 @@ inherit eutils
 DESCRIPTION="An OCR (Optical Character Recognition) reader"
 HOMEPAGE="http://jocr.sourceforge.net"
 SRC_URI="mirror://sourceforge/jocr/${P}.tar.gz"
-LICENSE="GPL-2"
 
-IUSE="gtk doc tk"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+IUSE="doc tk"
 
 DEPEND=">=media-libs/netpbm-9.12
-	doc? ( >=media-gfx/transfig-3.2 )
+	doc? ( >=media-gfx/transfig-3.2 virtual/ghostscript )
 	gtk? ( =x11-libs/gtk+-1*
 	       media-gfx/imagemagick )
 	tk? ( dev-lang/tk )"
@@ -24,32 +24,24 @@ DEPEND=">=media-libs/netpbm-9.12
 DOCS="AUTHORS BUGS CREDITS HISTORY RE* TODO"
 
 src_unpack() {
-
 	unpack ${A}
-
-	epatch "${FILESDIR}"/${P}-makefile.patch
-	epatch "${FILESDIR}"/${P}-time_t.patch
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-makefile.patch"
 }
 
 src_compile() {
-
 	local mymakes="src man"
 
-	use gtk && mymakes="${mymakes} frontend"
 	use doc && mymakes="${mymakes} doc examples"
 
 	econf || die "econf failed"
 	make ${mymakes} || die "make ${mymakes} failed"
-
 }
 
 src_install() {
-
 	make DESTDIR="${D}" prefix="${EPREFIX}/usr"  exec_prefix="${EPREFIX}/usr" install || die "make install failed"
 	# remove the tk frontend if tk is not selected
 	use tk || rm "${ED}"/usr/bin/gocr.tcl
-	# install the gtk frontend
-	use gtk && dobin "${S}"/frontend/gnome/src/gtk-ocr
 	# and install the documentation and examples
 	if use doc ; then
 		DOCS="${DOCS} doc/gocr.html doc/examples.txt doc/unicode.txt"
@@ -58,5 +50,4 @@ src_install() {
 	fi
 	# and then install all the docs
 	dodoc ${DOCS}
-
 }
