@@ -2,9 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>base-system</herd>
-  <maintainer>
+  <maintainer restrict="LPK">
     <email>robbat2@gentoo.org</email>
-    <description>LPK issues. Only assign if it's a direct LPK issue, I'm on base-system for everything else.</description>
   </maintainer>
   <longdescription>
 OpenSSH is a FREE version of the SSH protocol suite of network connectivity tools that 
