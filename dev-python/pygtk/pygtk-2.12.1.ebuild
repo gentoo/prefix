@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.4 2008/04/24 19:27:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.5 2008/10/27 10:26:06 hawking Exp $
 
 EAPI="prefix"
 
@@ -45,6 +45,7 @@ src_compile() {
 }
 
 src_install() {
+	python_need_rebuild
 	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
