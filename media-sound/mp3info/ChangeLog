@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/mp3info
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.24 2007/07/25 15:50:32 josejx Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.25 2008/10/27 15:02:21 jer Exp $
+
+  27 Oct 2008; Jeroen Roovers <jer@gentoo.org> mp3info-0.8.5a.ebuild:
+  Marked ~hppa thanks to Dakon. Fixed quoting issues.
 
   25 Jul 2007; Joseph Jezak <josejx@gentoo.org> mp3info-0.8.5a.ebuild:
   Marked ppc/ppc64 stable for bug #186566.
