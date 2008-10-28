@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/files/3.0/distcc-config,v 1.2 2008/10/25 06:39:17 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/files/3.0/distcc-config,v 1.3 2008/10/27 21:29:44 matsuu Exp $
 
-import os, re, signal, sys, commands, pwd
+import os, re, signal, sys
 from string import rstrip
+from subprocess import Popen
 
 options=[
 	'--get-hosts',
@@ -49,7 +50,7 @@ def writeenv(var,value):
 			distcc_env[i] = var+'="'+value+'"\n'
 		distcc_env_new.write(distcc_env[i])
 	#print 'Set',var,'to:',value
-	os.system('/usr/sbin/env-update')
+	Popen('/usr/sbin/env-update', shell=True)
 	print 'If you want to use these new settings in an existing shell,'
 	print 'you need to "source /etc/profile" to get the changes.'
 
@@ -82,7 +83,7 @@ if '--get-hosts' in tmpcmdline:
 	if HOSTS_ENV:
 		print HOSTS_ENV
 	elif os.path.isfile(HOSTS_HOME) and os.path.getsize(HOSTS_HOME) != 0:
-		print HOSTS_HOME
+		print rstrip(open(HOSTS_HOME, 'r').read())
 	elif os.path.exists('/etc/distcc/hosts'):
 		print rstrip(open('/etc/distcc/hosts', 'r').read())
 	else:
@@ -116,7 +117,7 @@ elif '--set-env' in tmpcmdline:
 	else:
 		print '!!! Error: Awaiting two parameters.'
 else:
-	print 'Usage: /usr/bin/distcc-config --set-hosts DISTCC_HOSTS | --get-hosts'
-	print '       /usr/bin/distcc-config --set-verbose { 0 | 1 }  | --get-verbose'
-	print '       /usr/bin/distcc-config --set-log FILE           | --get-log'
-	print '       /usr/bin/distcc-config --set-env VARIABLE VALUE | --get-env [VARIABLE]'
+	print 'Usage: %s --set-hosts DISTCC_HOSTS | --get-hosts' % sys.argv[0]
+	print '       %s --set-verbose { 0 | 1 }  | --get-verbose' % sys.argv[0]
+	print '       %s --set-log FILE           | --get-log' % sys.argv[0]
+	print '       %s --set-env VARIABLE VALUE | --get-env [VARIABLE]' % sys.argv[0]

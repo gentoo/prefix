@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.9 2008/08/17 03:24:18 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.10 2008/10/27 21:37:06 matsuu Exp $
 
 EAPI="prefix"
 
@@ -41,13 +41,13 @@ RDEPEND="
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# -Wl,--as-needed to close bug #128605
-	epatch ${FILESDIR}/distcc-as-needed.patch
+	epatch "${FILESDIR}/distcc-as-needed.patch"
 
 	# See bug #75420 for more multilib stuff
-	epatch ${FILESDIR}/distcc-gentoo-multilib-r1.patch
+	epatch "${FILESDIR}/distcc-gentoo-multilib-r1.patch"
 	einfo "Please report to bug #75420 success or failure of this patch."
 
 	# prefix awareness
@@ -105,7 +105,7 @@ src_install() {
 	if use gnome || use gtk; then
 	  einfo "Renaming /usr/bin/distccmon-gnome to /usr/bin/distccmon-gui"
 	  einfo "This is to have a little sensability in naming schemes between distccmon programs"
-	  mv ${ED}/usr/bin/distccmon-gnome ${ED}/usr/bin/distccmon-gui
+	  mv "${ED}/usr/bin/distccmon-gnome" "${ED}/usr/bin/distccmon-gui"
 	  dosym /usr/bin/distccmon-gui /usr/bin/distccmon-gnome
 	fi
 
@@ -145,7 +145,7 @@ pkg_postinst() {
 		ewarn "after booting or chrooting into ${EROOT}"
 	fi
 	einfo "Setting permissions on ${EROOT}var/run/distccd"
-	chown -R distcc:daemon ${EROOT}var/run/distccd
+	chown -R distcc:daemon "${EROOT}var/run/distccd"
 	echo ""
 
 	einfo "Tips on using distcc with Gentoo can be found at"
