@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2.1.ebuild,v 1.5 2008/10/25 17:27:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2.1.ebuild,v 1.6 2008/10/27 23:17:42 ranger Exp $
 
 EAPI="prefix"
 

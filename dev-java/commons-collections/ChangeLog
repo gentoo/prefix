@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/commons-collections
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.52 2008/10/25 17:27:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.53 2008/10/27 23:17:42 ranger Exp $
+
+  27 Oct 2008; Brent Baude <ranger@gentoo.org>
+  commons-collections-3.2.1.ebuild:
+  stable ppc64, bug 242966
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> commons-collections-3.2.1.ebuild:
   Stable on ppc wrt bug 242966
