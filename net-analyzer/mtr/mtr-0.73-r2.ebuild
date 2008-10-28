@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73-r2.ebuild,v 1.6 2008/05/26 18:25:55 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73-r2.ebuild,v 1.7 2008/10/26 20:20:47 kumba Exp $
 
 EAPI="prefix"
 
