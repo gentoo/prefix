@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/tcllib-1.10.ebuild,v 1.1 2007/12/24 04:02:22 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/tcllib-1.11.ebuild,v 1.1 2008/10/26 11:35:16 mescalinum Exp $
 
 EAPI="prefix"
 

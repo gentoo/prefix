@@ -1,6 +1,12 @@
 # ChangeLog for dev-tcltk/tcllib
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.23 2007/12/24 04:02:22 matsuu Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.24 2008/10/26 11:35:16 mescalinum Exp $
+
+*tcllib-1.11 (26 Oct 2008)
+
+  26 Oct 2008; Federico Ferri <mescalinum@gentoo.org> -tcllib-1.10.ebuild,
+  +tcllib-1.11.ebuild:
+  version bump
 
 *tcllib-1.10 (24 Dec 2007)
 
