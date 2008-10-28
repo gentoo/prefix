@@ -1,6 +1,17 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.81 2008/10/18 08:52:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.83 2008/10/26 13:30:05 aballier Exp $
+
+*texlive-core-2008-r3 (26 Oct 2008)
+
+  26 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2008-r2.ebuild, +texlive-core-2008-r3.ebuild:
+  push changes
+
+  26 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r2.ebuild:
+  Include more dvipdfmx files to get the proper configuration file, bug
+  #244284
 
 *texlive-core-2008-r2 (18 Oct 2008)
 
