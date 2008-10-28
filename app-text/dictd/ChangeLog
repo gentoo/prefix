@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.43 2008/10/25 22:10:35 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.44 2008/10/26 14:16:01 fmccor Exp $
+
+  26 Oct 2008; Ferris McCormick <fmccor@gentoo.org> dictd-1.10.11-r2.ebuild:
+  Sparc stable, Bug #244246, everything looks good.
 
   25 Oct 2008; Peter Volkov <pva@gentoo.org> dictd-1.10.11-r2.ebuild:
   Fix tests: give dictd group write permission to tests directory, thank
