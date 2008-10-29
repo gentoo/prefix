@@ -34,7 +34,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-sigwinch.patch"
 
 	epatch "${FILESDIR}"/${P}-darwin.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-r3-interix.patch
 }
 
 src_compile() {

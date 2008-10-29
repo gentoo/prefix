@@ -1,0 +1,30 @@
+diff -ru cscope-15.6.orig/src/main.c cscope-15.6/src/main.c
+--- cscope-15.6.orig/src/main.c	2008-10-29 16:58:23 +0100
++++ cscope-15.6/src/main.c	2008-10-29 16:59:16 +0100
+@@ -121,7 +121,7 @@
+ void	fixkeypad();
+ #endif
+ 
+-#if defined(KEY_RESIZE) && !defined(__DJGPP__)
++#if defined(KEY_RESIZE) && !defined(__DJGPP__) && !defined(__INTERIX)
+ void 
+ sigwinch_handler(int sig, siginfo_t *info, void *unused)
+ {
+@@ -144,7 +144,7 @@
+     unsigned int i;
+     pid_t pid;
+     struct stat	stat_buf;
+-#if defined(KEY_RESIZE) && !defined(__DJGPP__)
++#if defined(KEY_RESIZE) && !defined(__DJGPP__) && !defined(__INTERIX)
+     struct sigaction winch_action;
+ #endif
+     mode_t orig_umask;
+@@ -398,7 +398,7 @@
+ 	signal(SIGINT, SIG_IGN);	/* ignore interrupts */
+ 	signal(SIGPIPE, SIG_IGN);/* | command can cause pipe signal */
+ 
+-#if defined(KEY_RESIZE) && !defined(__DJGPP__)
++#if defined(KEY_RESIZE) && !defined(__DJGPP__) && !defined(__INTERIX)
+ 	winch_action.sa_sigaction = sigwinch_handler;
+ 	sigemptyset(&winch_action.sa_mask);
+ 	winch_action.sa_flags = SA_SIGINFO;
