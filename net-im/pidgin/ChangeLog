@@ -1,6 +1,10 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.71 2008/10/24 16:22:18 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.72 2008/10/28 13:03:06 flameeyes Exp $
+
+  28 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/pidgin-2.5.2-asneeded.patch, pidgin-2.5.2.ebuild:
+  Add patch for building with --as-needed (upstream bug #7391).
 
 *pidgin-2.5.2 (24 Oct 2008)
 

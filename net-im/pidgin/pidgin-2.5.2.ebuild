@@ -1,10 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.2.ebuild,v 1.1 2008/10/24 16:22:18 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.2.ebuild,v 1.2 2008/10/28 13:03:06 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2
+WANT_AUTOMAKE="1.9"
+
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -104,6 +106,14 @@ pkg_setup() {
 		die "Configure failed"
 	fi
 
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-asneeded.patch
+	eautomake
 }
 
 src_compile() {
