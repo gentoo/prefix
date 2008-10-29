@@ -1,10 +1,21 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1999 2008/10/27 22:53:53 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2002 2008/10/28 21:47:25 zzam Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 Oct 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask sys-fs/udev-130-r2 for its new init-script to be used with not-yet
+  commited openrc-versions.
+
+  28 Oct 2008; Markus Dittrich <markusle@gentoo.org> package.mask:
+  Masked new upstream revision of paraview since there's still an interface
+  glitch with Qt-4.4.2 that needs to be taken care of.
+
+  28 Oct 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  Unmask sword-modules, old removed, new virtual in place
 
   27 Oct 2008; Jim Ramsay <lack@gentoo.org> package.mask:
   Masking <net-www/netscape-flash-10.0.12.36 for security (bug #239543)

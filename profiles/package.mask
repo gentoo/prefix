@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9118 2008/10/27 22:53:53 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9121 2008/10/28 21:47:25 zzam Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,17 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Matthias Schwarzott <zzam@gentoo.org> (28 Oct 2008)
+# Masked until design of new udev init-script for >openrc-0.3.0
+# is finished, Bug #240984.
+=sys-fs/udev-130-r2
+
+# Markus Dittrich <markusle@gentoo.org> (28 Oct 2008)
+# New upstream version is currently masked due to an interface
+# glitch with Qt-4.4.2 that needs to be looked at (bug #243362)
+# Qt-4.3 users should probably be fine.
+=sci-visualization/paraview-3.4.0
 
 # Jim Ramsay <lack@gentoo.org> (27 Oct 2008)
 # Masked for security flaws (Bug #239543), but some users still need it in the
@@ -817,10 +828,6 @@ dev-db/pgst
 # version scheme change from YYYYMMDD to 3.0.YYYYMMDD.
 >net-print/foomatic-db-ppds-20000000
 >net-print/foomatic-db-20000000
-
-# Steve Dibb <beandog@gentoo.org> (16 May 2008)
-# Masked for removal, will be replaced with a virtual
-=app-text/sword-modules-20041209
 
 # Rémi Cardona <remi@gentoo.org> (16 Apr 2008)
 # Masked until somebody picks it up
