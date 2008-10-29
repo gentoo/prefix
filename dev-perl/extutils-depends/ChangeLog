@@ -1,0 +1,142 @@
+# ChangeLog for dev-perl/extutils-depends
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-depends/ChangeLog,v 1.33 2008/09/13 14:42:55 jer Exp $
+
+  13 Sep 2008; Jeroen Roovers <jer@gentoo.org>
+  extutils-depends-0.300.ebuild:
+  Stable for HPPA too.
+
+*extutils-depends-0.301 (09 Sep 2008)
+
+  09 Sep 2008; Torsten Veller <tove@gentoo.org>
+  +extutils-depends-0.301.ebuild:
+  Version bump
+
+  25 May 2008; Markus Meier <maekke@gentoo.org>
+  extutils-depends-0.300.ebuild:
+  amd64 stable, bug #204386
+
+  22 May 2008; Raúl Porcel <armin76@gentoo.org>
+  extutils-depends-0.300.ebuild:
+  alpha/ia64 stable wrt #204386
+
+  21 May 2008; Christian Faulhammer <opfer@gentoo.org>
+  extutils-depends-0.300.ebuild:
+  stable x86, bug 204386
+
+  21 May 2008; nixnut <nixnut@gentoo.org> extutils-depends-0.300.ebuild:
+  Stable on ppc wrt bug 204386
+
+  21 May 2008; Ferris McCormick <fmccor@gentoo.org>
+  extutils-depends-0.300.ebuild:
+  Sparc stable, required for Bug #204386.
+
+*extutils-depends-0.300 (07 Apr 2008)
+
+  07 Apr 2008; Torsten Veller <tove@gentoo.org>
+  +extutils-depends-0.300.ebuild:
+  Version bump. Adjust HOMEPAGE and LICENSE.
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -extutils-depends-0.102.ebuild, -extutils-depends-0.202.ebuild,
+  -extutils-depends-0.204.ebuild, extutils-depends-0.205.ebuild:
+  Cleaning up ebuilds
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-depends-0.102.ebuild, extutils-depends-0.202.ebuild,
+  extutils-depends-0.204.ebuild, extutils-depends-0.205.ebuild:
+  Adding perl dep; fixed header; fixed DEPEND
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  Mark 0.205 stable on ia64
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  add ~ia64
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  stable on amd64
+
+  19 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  Stable on ppc.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  Stable on ppc64
+
+  27 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  Stable on alpha.
+
+  11 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  Stable on sparc
+
+  10 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  extutils-depends-0.205.ebuild:
+  unmasking for x86 as a dep
+
+  07 Mar 2005; Markus Rothe <corsair@gentoo.org>
+  extutils-depends-0.204.ebuild:
+  Stable on ppc64
+
+*extutils-depends-0.205 (07 Mar 2005)
+
+  07 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  +extutils-depends-0.205.ebuild:
+  version bump for gtk2-perl
+
+  15 Jan 2005; Markus Rothe <corsair@gentoo.org>
+  extutils-depends-0.204.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*extutils-depends-0.204 (22 Sep 2004)
+
+  22 Sep 2004; Michael Cummings <mcummings@gentoo.org>
+  +extutils-depends-0.204.ebuild:
+  New version on cpan. Minor bug fixes.
+
+  30 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  extutils-depends-0.202.ebuild:
+  Stable on alpha.
+
+  15 Apr 2004; Michael McCabe <randy@gentoo.org>
+  extutils-depends-0.202.ebuild:
+  adding s390 keywords
+
+  06 Apr 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  extutils-depends-0.202.ebuild:
+  Stable on hppa and sparc
+
+*extutils-depends-0.202 (29 Mar 2004)
+
+  29 Mar 2004; Michael Cummings <mcummings@gentoo.org>
+  extutils-depends-0.202.ebuild:
+  New version, dep for gnome2-perl modules
+
+  24 Dec 2003; Michael Cummings,,, <mcummings@gentoo.org>
+  extutils-depends-0.102.ebuild:
+  Bumping to stable - no bugs in 4 months
+
+  24 Dec 2003; Michael Cummings,,, <mcummings@gentoo.org>
+  extutils-depends-0.101.ebuild:
+  Version no longer in CPAN
+
+*extutils-depends-0.102 (18 Aug 2003)
+
+  18 Aug 2003; Michael Cummings <mcummings@gentoo.org>
+  extutils-depends-0.102.ebuild:
+  CPAN Version bump; minor bug fix
+
+*extutils-depends-0.101 (20 Jul 2003)
+
+  20 Jul 2003; Michael Cummings <mcummings@gentoo.org>
+  extutils-depends-0.101.ebuild:
+  dep for new gtk2-perl, submitted by Rigo Ketelings <rigo@home.nl> in bug 24036
+
