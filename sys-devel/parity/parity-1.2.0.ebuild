@@ -26,15 +26,21 @@ pkg_setup() {
 	fi
 }
 
-src_compile() {
-	# parity's configure script has tons of magic to detect propper
-	# visual studio installations, which would be much too much here.
-
-	econf || die "econf failed"
-	emake || die "emake failed"
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	# create i586-pc-winnt*-g[++|cc|..] links..
+	local exeext=
+
+	# the following is the case when building for x86-winnt. this
+	# means that the parent prefix conatins a parity instance already.
+	[[ -f ${ED}/usr/bin/parity.gnu.gcc.exe ]] && exeext=.exe
+
+	dobin "${FILESDIR}"/parity-prefix-wrapper.sh
+	sed -i -e "s,@EXEEXT@,$exeext,g" "${ED}"/usr/bin/parity-prefix-wrapper.sh
+
+	for x in c++ g++ gcc ld; do
+		dosym /usr/bin/parity-prefix-wrapper.sh /usr/bin/i586-pc-winnt$(uname -r)-${x}
+	done
 }
 
