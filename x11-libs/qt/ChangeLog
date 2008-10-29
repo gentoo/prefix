@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.548 2008/09/19 00:07:53 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.549 2008/10/28 23:50:09 yngwin Exp $
+
+  28 Oct 2008; Ben de Groot <yngwin@gentoo.org>
+  +files/qt-3.3.8-fix-compiler-detection.patch,
+  +files/qt-3.3.8b-cjk-fix.patch, qt-3.3.8-r4.ebuild, qt-3.3.8b.ebuild:
+  Add patches/fixes for bugs 172219, 229567 and 244732
 
 *qt-4.4.2 (18 Sep 2008)
 
