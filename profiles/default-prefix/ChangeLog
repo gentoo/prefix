@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Oct 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  masked new texinfo 4.13 on interix, since it doesnt work, and probably never
+  will
+
   28 Oct 2008; Jeremy Olexa <darkside@gentoo.org> +linux/package.mask:
   add >=net-misc/openssh-5.0 to p.mask on linux due to linking issues, bug
   #244776

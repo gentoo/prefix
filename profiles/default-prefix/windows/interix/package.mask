@@ -1,5 +1,10 @@
 # $Id$
 
+# Markus Duft <mduft@gentoo.org> (29 Oct 2008)
+# this version doesn't work on interix, since unconditional
+# usage of "mbsinit" and "mbrtowc" which don't exist.
+=sys-apps/texinfo-4.13
+
 # Fabian Groffen <grobian@gentoo.org> (21 Sep 2008)
 # Fails to link with
 # sshd.o(.text+0x203a):sshd.c: undefined reference to `_setgroups'
