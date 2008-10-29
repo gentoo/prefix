@@ -1,0 +1,17 @@
+# ChangeLog for dev-python/libgnome-python
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/libgnome-python/ChangeLog,v 1.2 2008/09/26 10:02:48 leio Exp $
+
+*libgnome-python-2.22.3 (26 Sep 2008)
+
+  26 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +libgnome-python-2.22.3.ebuild:
+  Version bump
+
+*libgnome-python-2.22.1 (24 Aug 2008)
+
+  24 Aug 2008; Arun Raghavan <ford_prefect@gentoo.org> +metadata.xml,
+  +libgnome-python-2.22.1.ebuild:
+  Initial import of gnome-python split ebuilds. This package installs
+  bindings for essential GNOME libraries.
+
