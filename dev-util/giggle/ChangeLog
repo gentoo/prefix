@@ -1,0 +1,34 @@
+# ChangeLog for dev-util/giggle
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.7 2008/01/27 07:59:19 compnerd Exp $
+
+*giggle-0.4 (27 Jan 2008)
+
+  27 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> +giggle-0.4.ebuild:
+  Version bump from upstream
+
+  12 Oct 2007; Rémi Cardona <remi@gentoo.org> giggle-0.2.ebuild,
+  giggle-0.3.ebuild:
+  update gtksourceview deps (see bug #195366)
+
+  16 May 2007; Joseph Jezak <josejx@gentoo.org> giggle-0.2.ebuild,
+  giggle-0.3.ebuild:
+  Marked ~ppc for bug #178677.
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+*giggle-0.3 (13 May 2007)
+
+  13 May 2007; Saleem Abdulrasool <compnerd@gentoo.org> +giggle-0.3.ebuild:
+  Version bump from upstream
+
+  13 May 2007; Saleem Abdulrasool <compnerd@gentoo.org> giggle-0.2.ebuild:
+  Fix the really broken dependencies
+
+*giggle-0.2 (11 May 2007)
+
+  11 May 2007; Saleem Abdulrasool <compnerd@gentoo.org> +metadata.xml,
+  +giggle-0.2.ebuild:
+  Initial import of giggle
+
