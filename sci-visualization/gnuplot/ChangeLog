@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.82 2008/10/09 15:11:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.83 2008/10/28 07:34:17 ulm Exp $
+
+  28 Oct 2008; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.4.ebuild,
+  gnuplot-4.2.4-r1.ebuild:
+  Do not build the tutorial with USE=-doc, bug 244693.
 
 *gnuplot-4.2.4-r1 (09 Oct 2008)
 

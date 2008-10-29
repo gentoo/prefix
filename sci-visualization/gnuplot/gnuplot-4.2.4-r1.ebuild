@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4-r1.ebuild,v 1.1 2008/10/09 15:11:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4-r1.ebuild,v 1.2 2008/10/28 07:34:17 ulm Exp $
 
 EAPI="prefix"
 
@@ -99,6 +99,7 @@ src_compile() {
 	myconf="${myconf} $(use_enable wxwindows wxwidgets)"
 	myconf="${myconf} $(use_with plotutils plot "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/$(get_libdir))"
+	myconf="${myconf} $(use_with doc tutorial)"
 
 	use ggi \
 		&& myconf="${myconf} --with-ggi=${EPREFIX}/usr/$(get_libdir)

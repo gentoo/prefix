@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4.ebuild,v 1.1 2008/10/08 12:55:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4.ebuild,v 1.2 2008/10/28 07:34:17 ulm Exp $
 
 EAPI="prefix"
 
@@ -102,6 +102,7 @@ src_compile() {
 	myconf="${myconf} $(use_enable wxwindows wxwidgets)"
 	myconf="${myconf} $(use_with plotutils plot "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/$(get_libdir))"
+	myconf="${myconf} $(use_with doc tutorial)"
 
 	use ggi \
 		&& myconf="${myconf} --with-ggi=${EPREFIX}/usr/$(get_libdir)
@@ -154,7 +155,8 @@ src_install () {
 	if use xemacs; then
 		cd lisp
 		einfo "Configuring gnuplot-mode for XEmacs..."
-		EMACS="xemacs" econf --with-lispdir="${EPREFIX}/usr/lib/xemacs/site-packages/${PN}" || die
+		EMACS="xemacs" \
+			econf --with-lispdir="${EPREFIX}/usr/lib/xemacs/site-packages/${PN}" || die
 		emake DESTDIR="${D}" install || die
 		cd ..
 	fi
