@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.7.7.ebuild,v 1.2 2008/09/06 23:43:35 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.7.7.ebuild,v 1.3 2008/10/28 11:56:18 hawking Exp $
 
 EAPI="prefix"
 
@@ -52,6 +52,7 @@ src_compile(){
 }
 
 src_install() {
+	python_need_rebuild
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog NEWS README TODO doc/sipref.txt
 	dohtml doc/*

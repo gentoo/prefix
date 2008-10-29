@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/sip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.123 2008/10/07 19:55:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.124 2008/10/28 11:56:18 hawking Exp $
+
+  28 Oct 2008; Ali Polatel <hawking@gentoo.org> sip-4.2.1.ebuild,
+  sip-4.2.1-r1.ebuild, sip-4.6.ebuild, sip-4.7.1.ebuild, sip-4.7.3.ebuild,
+  sip-4.7.5.ebuild, sip-4.7.6.ebuild, sip-4.7.7.ebuild:
+  Use python_need_rebuild.
 
   07 Oct 2008; Jeroen Roovers <jer@gentoo.org> sip-4.7.3.ebuild:
   Stable for HPPA too.
