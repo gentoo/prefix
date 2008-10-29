@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008g.ebuild,v 1.1 2008/10/09 05:41:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2008i.ebuild,v 1.1 2008/10/28 09:36:16 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs flag-o-matic
 
-code_ver=${PV}
+code_ver=${PV%i}h
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
@@ -26,22 +26,32 @@ S=${WORKDIR}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${PN}-2005n-makefile.patch
+	epatch "${FILESDIR}"/${PN}-2008h-makefile.patch
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
 }
 
 src_compile() {
+	local LDLIBS
 	tc-export CC
 	use elibc_FreeBSD && append-flags -DSTD_INSPIRED #138251
 	if use nls ; then
-		use elibc_glibc || append-ldflags -lintl #154181
+		use elibc_glibc || LDLIBS="${LDLIBS} -lintl" #154181
 		export NLS=1
 	else
 		export NLS=0
 	fi
-	emake || die "emake failed"
+	# Makefile uses LBLIBS for the libs (which defaults to LDFLAGS)
+	# But it also uses LFLAGS where it expects the real LDFLAGS
+	emake \
+		LDLIBS="${LDLIBS}" \
+		|| die "emake failed"
 	if tc-is-cross-compiler ; then
-		emake -C "${S}"-native CC=$(tc-getBUILD_CC) CFLAGS="${BUILD_CFLAGS}" zic || die
+		emake -C "${S}"-native \
+			CC=$(tc-getBUILD_CC) \
+			CFLAGS="${BUILD_CFLAGS}" \
+			LDFLAGS="${BUILD_LDFLAGS}" \
+			LDLIBS="${LDLIBS}" \
+			zic || die
 	fi
 }
 
