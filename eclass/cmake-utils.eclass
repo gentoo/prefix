@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.13 2008/10/27 14:38:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.14 2008/10/28 17:39:28 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -15,7 +15,7 @@
 
 # Original author: Zephyrus (zephyrus@mirach.it)
 
-inherit toolchain-funcs multilib
+inherit toolchain-funcs multilib flag-o-matic
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 

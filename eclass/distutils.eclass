@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.53 2008/10/27 00:19:46 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.54 2008/10/28 21:29:28 hawking Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -96,17 +96,23 @@ distutils_src_install() {
 # @DESCRIPTION:
 # Generic pyc/pyo cleanup script. This function is exported.
 distutils_pkg_postrm() {
-	if [ -z "${PYTHON_MODNAME}" ] && \
-	   [ -d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]; then
-		PYTHON_MODNAME=${PN}
+	local moddir pylibdir pymod
+	if [[ -z "${PYTHON_MODNAME}" ]]; then
+		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+			if [[ -d "${pylibdir}"/site-packages/${PN} ]]; then
+				PYTHON_MODNAME=${PN}
+			fi
+		done
 	fi
 
 	if has_version ">=dev-lang/python-2.3"; then
 		ebegin "Performing Python Module Cleanup .."
-		if [ -n "${PYTHON_MODNAME}" ]; then
+		if [[ -n "${PYTHON_MODNAME}" ]]; then
 			for pymod in ${PYTHON_MODNAME}; do
-				for moddir in "`ls -d --color=none -1 ${EROOT}/usr/$(get_libdir)/python*/site-packages/${pymod} 2> /dev/null`"; do
-					python_mod_cleanup ${moddir}
+				for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+					if [[ -d "${pylibdir}"/site-packages/${pymod} ]]; then
+						python_mod_cleanup "${pylibdir#${EROOT}}"/site-packages/${pymod}
+					fi
 				done
 			done
 		else
@@ -121,9 +127,13 @@ distutils_pkg_postrm() {
 # This is a generic optimization, you should override it if your package
 # installs things in another directory. This function is exported
 distutils_pkg_postinst() {
-	if [ -z "${PYTHON_MODNAME}" ] && \
-	   [ -d ${EROOT}/usr/$(get_libdir)/python*/site-packages/${PN} ]; then
-		PYTHON_MODNAME=${PN}
+	local pylibdir pymod
+	if [[ -z "${PYTHON_MODNAME}" ]]; then
+		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+			if [[ -d "${pylibdir}"/site-packages/${PN} ]]; then
+				PYTHON_MODNAME=${PN}
+			fi
+		done
 	fi
 
 	if has_version ">=dev-lang/python-2.3"; then
