@@ -1,0 +1,24 @@
+# ChangeLog for dev-python/gnome-python-base
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python-base/ChangeLog,v 1.4 2008/09/26 09:58:46 leio Exp $
+
+*gnome-python-base-2.22.3 (22 Sep 2008)
+
+  22 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  -gnome-python-base-2.22.2.ebuild, +gnome-python-base-2.22.3.ebuild:
+  New version with temporary build regression fixed
+
+*gnome-python-base-2.22.2 (22 Sep 2008)
+
+  22 Sep 2008; Mart Raudsepp <leio@gentoo.org>
+  +gnome-python-base-2.22.2.ebuild:
+  Version bump for forwards compatibility with upcoming major
+  pygobject/pygtk versions (pygtk-codegen-2.0 move to pygobject-codegen-2.0)
+
+*gnome-python-base-2.22.1 (24 Aug 2008)
+
+  24 Aug 2008; Arun Raghavan <ford_prefect@gentoo.org> +metadata.xml,
+  +gnome-python-base-2.22.1.ebuild:
+  Initial import of gnome-python split ebuilds. This package installs a
+  common pkgconfig file.
+
