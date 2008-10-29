@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.32.ebuild,v 1.1 2008/10/27 15:36:25 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.32.ebuild,v 1.2 2008/10/28 08:54:09 bicatali Exp $
 
 EAPI="prefix"
 
@@ -54,7 +54,7 @@ src_install() {
 	fi
 	if use doc; then
 		cd "${S}"/doc
-		doins memo/gomory.djvu || die "failed to instal memo"
+		doins notes/gomory.djvu || die "failed to instal memo"
 		dodoc *.ps *.txt || die "failed to install manual files"
 	fi
 }
