@@ -151,8 +151,14 @@ eaclocal() {
 		done
 	fi
 
+	# in some cases (cross-eprefix build), EPREFIX may not be included
+	# by aclocal by default, since it only knows about BPREFIX.
+	local eprefix_include=
+	[[ -d ${EPREFIX}/usr/share/aclocal ]] &&
+		eprefix_include="-I ${EPREFIX}/usr/share/aclocal"
+
 	[[ ! -f aclocal.m4 || -n $(grep -e 'generated.*by aclocal' aclocal.m4) ]] && \
-		autotools_run_tool aclocal "$@" ${aclocal_opts} -I "${EPREFIX}/usr/share/aclocal"
+		autotools_run_tool aclocal "$@" ${aclocal_opts} ${eprefix_include}
 }
 
 # @FUNCTION: _elibtoolize
