@@ -1,6 +1,6 @@
 # Copyright 2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/alsa_cards.desc,v 1.6 2008/04/14 02:20:26 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/alsa_cards.desc,v 1.7 2008/10/29 02:26:15 beandog Exp $
 
 # This file contains descriptions of ALSA_CARDS USE_EXPAND flags.
 
@@ -146,6 +146,7 @@ sun-cs4231 - Sun CS4231
 sun-dbri - Sun DBRI
 trident - Trident 4D-Wave DX/NX; SiS 7018
 usb-audio - USB Audio/MIDI driver
+usb-us122l - Tascam US-122L USB driver
 usb-usx2y - Tascam US-122, US-224 and US-428 USB driver
 via82xx-modem - VIA 82C686A/B, 8233 based Modems
 via82xx - VIA 82C686A/B, 8233/8235 AC97 Controller
