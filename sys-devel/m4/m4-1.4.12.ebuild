@@ -20,6 +20,13 @@ DEPEND="nls? ( sys-devel/gettext )
 	app-arch/lzma-utils"
 RDEPEND=""
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_compile() {
 	local myconf=""
 	[[ ${USERLAND} != "GNU" ]] && myconf="--program-prefix=g"
