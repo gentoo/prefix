@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r3.ebuild,v 1.2 2008/10/16 17:29:33 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r3.ebuild,v 1.3 2008/10/28 16:11:11 cardoe Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="krb4 doc"
 
 RDEPEND="!virtual/krb5
-	|| ( ( sys-libs/com_err sys-libs/ss ) ( >sys-libs/e2fsprogs-libs-1.40.11 ) )"
+	|| ( ( >sys-libs/e2fsprogs-libs-1.40.11 ) ( sys-libs/com_err sys-libs/ss ) )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
