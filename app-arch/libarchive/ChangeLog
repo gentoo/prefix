@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.30 2008/10/27 19:54:38 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.32 2008/10/28 20:22:49 ranger Exp $
+
+  28 Oct 2008; Brent Baude <ranger@gentoo.org> libarchive-2.5.5.ebuild:
+  Marking libarchive-2.5.5.ebuild ~ppc64 to support gnome stablizations
+
+  28 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -libarchive-2.4.12.ebuild, -libarchive-2.4.17.ebuild:
+  Remove old versions.
 
   27 Oct 2008; Markus Meier <maekke@gentoo.org> libarchive-2.5.5.ebuild:
   amd64/x86 stable, bug #238663
