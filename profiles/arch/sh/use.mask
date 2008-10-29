@@ -1,0 +1,68 @@
+# Unmask the flag which corresponds to ARCH.
+-sh
+
+# Mart Raudsepp <leio@gentoo.org>
+# net-misc/networkmanager not keyworded
+networkmanager
+
+
+hardened
+
+# dmidecode bios decoder
+dmi
+
+# Paul de Vrieze <pauldv@gentoo.org>
+# There is no java in this profile (if there is it must be available). Without
+# this repoman will fail on apps like sys-libs/db
+java
+java-internal
+java-external
+
+# dont make sense on this arch
+3dfx
+
+# broken upstream, see libavcodec/sh4/idct_sh4.c:#error
+ffmpeg
+
+# havent tested yet
+qt3
+dell
+qt4
+arts
+kde
+diet
+lirc
+afs
+mono
+lm_sensors
+qdbm
+fftw
+netjack
+mzscheme
+beagle
+eds
+pike
+nvtv
+xine
+ocaml
+
+# 2006/03/07 - Donnie Berkholz <dberkholz@gentoo.org>
+# Modular X: mask for architectures lacking direct rendering      
+dri
+
+# Only works on x86/amd64/ia64
+video_cards_vesa
+video_cards_sis
+
+# nspr isnt ported to SuperH which means no seamonkey/firefox/etc...
+nsplugin
+firefox
+nss
+
+# USE=audit masked prior to testing on alpha, arm, hppa, ppc64, s390, sh.
+# Bug #184563, 18 Sep 2007 
+# Robin H. Johnson <robbat2@gentoo.org>
+audit
+
+# net-libs/libssh2 currently missing keywords (dragonheart 20080402)
+libssh2

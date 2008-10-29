@@ -1,0 +1,21 @@
+# ChangeLog for Gentoo/MIPS profile directory
+# Copyright 2007-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/ChangeLog,v 1.8 2008/05/03 22:20:47 dirtyepic Exp $
+
+  03 May 2008; Ryan Hill <dirtyepic@gentoo.org> use.mask:
+  Mask various gnome-related USE flags.
+
+  03 May 2008; Ryan Hill <dirtyepic@gentoo.org> use.mask:
+  Mask xulrunner USE flag.
+
+  02 May 2008; <ricmm@gentoo.org> use.mask:
+  Unmask libssh2 USE flag
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
+

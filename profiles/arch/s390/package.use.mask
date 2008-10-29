@@ -1,0 +1,21 @@
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/package.use.mask,v 1.3 2008/06/19 19:18:54 mr_bones_ Exp $
+
+# Steve Dibb <beandog@gentoo.org> (03 Mar 2007)
+# media-sound/twolame not tested
+media-video/mplayer mp2
+
+media-gfx/graphviz pango
+
+# Doug Goldstein <cardoe@gentoo.org> (10 Sep 2007)
+# bug #172097
+# The app in question is sys-auth/consolekit
+x11-apps/xinit hal
+
+# Masking this so repoman shuts up about paludis
+sys-apps/paludis ruby python
+
+# missing keyword for sys-cluster/openmpi sys-cluster/mpich2
+dev-libs/boost mpi
+
+# missing keyword for dev-libs/oniguruma
+sys-libs/slang cjk

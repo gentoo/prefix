@@ -1,0 +1,24 @@
+# ChangeLog for Gentoo/ARM profile directory
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.7 2008/08/22 07:44:26 leio Exp $
+
+  22 Aug 2008; Mart Raudsepp <leio@gentoo.org> +package.mask:
+  Mask GNOME-2.22 here in preparation of removing the global one
+
+  11 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org> use.mask:
+  Sync use.mask with default-linux.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  USE mask dvb and mythtv on gst-plugins-meta - dependencies not keyworded
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> use.mask:
+  Mask networkmanager USE flag - no version of it keyworded
+

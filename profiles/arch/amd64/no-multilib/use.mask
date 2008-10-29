@@ -1,0 +1,21 @@
+# USE flags masked because providing packages have ABI=x86
+
+# 2007/08/29 Christoph Mende <angelos@gentoo.org>
+# app-accessibility/mbrola is x86 only
+mbrola
+
+# 2006/03/22 Danny van Dyk <kugelfang@gentoo.org>
+# media-sound/realplayer is x86 only.
+real
+
+# 2006/05/04 Chris Gianelloni <wolf31o2@gentoo.org>
+# games-fps/quake3-teamarena is 32-bit
+teamarena
+
+# 2007/05/16 Joseph Jezak <josejx@gentoo.org>
+# mplayer-bin is 32 bit only
+mplayer-bin
+
+# 2007/08/24 Michael Marineau <marineam@gentoo.org>
+# Xen HVM support requires building 32-bit binaries.
+hvm

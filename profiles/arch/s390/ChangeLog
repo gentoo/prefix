@@ -1,0 +1,7 @@
+# ChangeLog for Gentoo/s390 profile directory
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.2 2008/04/11 15:05:45 wolf31o2 Exp $
+
+  11 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org> use.mask:
+  Sync use.mask with default-linux.
+

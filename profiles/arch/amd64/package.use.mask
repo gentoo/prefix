@@ -1,0 +1,147 @@
+# !!! WARNING !!!
+# MAKE SURE YOU KEEP default-linux/amd64/package.use.mask AND
+# default-linux/amd64/(dev)?/2007.0/package.use.mask IN SYNC
+# SEE BUG #168249 FOR DETAILS
+
+
+# Serkan Kaba <serkan@gentoo.org> (20 Jul 2008)
+app-text/enchant -zemberek
+
+# assembler-section
+
+# Oct 23th 2006; blubb@gentoo.org
+# the asm is 64bit save, but it doesn't compile anyway
+games-emulation/visualboyadvance mmx
+
+# Oct 23th 2006; blubb@gentoo.org
+# upstream forces sse2 for amd64; mmx flag does nothing
+app-crypt/johntheripper mmx
+
+# Oct 23th 2006; blubb@gentoo.org
+# x86 asm only:
+games-emulation/xmame mmx
+games-emulation/xmess mmx
+media-gfx/inkscape mmx
+media-libs/allegro mmx sse
+media-libs/gdk-pixbuf mmx
+media-libs/libfame mmx
+media-libs/libmovtar mmx
+media-libs/sdl-gfx mmx
+media-libs/smpeg mmx
+media-video/mjpegtools mmx
+media-video/mpeg4ip mmx
+net-irc/xchat mmx
+net-irc/xchat-gnome mmx
+net-misc/asterisk mmx
+x11-terms/eterm mmx
+media-tv/xawtv mmx
+media-sound/mpg123 mmx 3dnow 3dnowext sse
+
+# Oct 24th 2006; blubb@gentoo.org
+# bug 152646
+x11-themes/polymer mmx sse2
+
+# Feb 10th 2007; blubb@gentoo.org
+# bug 166240
+media-libs/imlib2 mmx
+
+# Oct 24th 2006; blubb@gentoo.org
+# working asm; drop this list once the flags are unmasked globally (2007.0)
+>=dev-libs/DirectFB-0.9.25.1 -mmx -sse
+>=dev-libs/DirectFB-extra-0.9.25 -mmx
+games-engines/exult -mmx -3dnow
+media-gfx/gimp -mmx -sse
+media-gfx/optipng -mmx
+media-libs/libmpeg -mmx
+media-libs/flac -sse -3dnow
+media-libs/libggi -mmx
+media-libs/libquicktime -mmx
+media-libs/speex -sse
+media-sound/audacious -mmx
+media-sound/fluidsynth -sse
+media-tv/mythtv -mmx
+media-video/ogle -mmx
+media-video/transcode -3dnow -mmx -sse -sse2
+>=sci-libs/fftw-3.1.2 -sse -sse2
+x11-libs/evas -mmx -sse
+x11-libs/libast -mmx
+x11-misc/rss-glx -sse -3dnow
+x11-misc/eterm -sse2
+x11-wm/afterstep -mmx
+media-video/ffmpeg -mmx
+media-video/mplayer -3dnow -3dnowext -mmx -mmxext -sse -sse2
+media-tv/xdtv -mmx
+media-plugins/vdr-softdevice -mmx -mmxext
+dev-libs/openssl -sse2
+media-libs/libsoundtouch -sse
+
+# Jan 14th 2007; blubb@gentoo.org
+# bug 136853: We'd need aspell in emul-libs to make this flag useful
+www-client/opera spell
+
+# Feb 17th 2007; drizzt@gentoo.org
+# amd64 does not have an emul libao package
+games-emulation/zsnes ao
+
+# Mar 17th 2007; Petteri Räty <betelgeuse@gentoo.org>
+# (Proxying for Diego Pettenò <flameeyes@gmail.com>)
+# ASIHPI driver is supported on 64-bit systems for newer versions
+<media-sound/alsa-driver-1.0.14_rc3 alsa_cards_asihpi
+
+
+# Apr 25th 2007: Alexis Ballier <aballier@gentoo.org>
+# Mask mmx for media-libs/mlt
+# assembler is not 64bits compliant (yet)
+media-libs/mlt mmx
+
+# Apr 26 2007: Steve Dibb <beandog@gentoo.org>
+# Remove real use mask for xine-lib
+media-libs/xine-lib -real
+
+# 8 May 2007: Alistair Bush <ali_bush@gentoo.org>
+# Mask doc flag for fop as nearly impossible to
+# run javadoc target.  see #177585
+>=dev-java/fop-0.93 doc
+
+# 26 July 2007: Alexis Ballier <aballier@gentoo.org>
+# Mask x86-32 asm only flags
+# bug #178033
+media-video/cinelerra-cvs mmx 3dnow
+
+# 31 Dec 2007: Peter Weller <welp@gentoo.org>
+# Mask dbus, hal, nas and scanner USE flags;
+# Bug 203680
+# 28 Oct 2008: Diego Pettenò <flameeyes@gentoo.org>
+# Mask GnuTLS (not available as 32-bit library)
+app-emulation/wine dbus hal nas scanner gnutls
+
+# missing the necessary linux-headers dep
+>=net-fs/netatalk-2.0.3-r3 xfs
+
+# 23 Jan 2008: Peter Weller <welp@gentoo.org>
+# Mask X USE flag for app-editors/jove;
+# Bug 202690
+app-editors/jove X
+
+# 28 Jan 2008: Wulf Krueger <philantrop@gentoo.org>
+# Mask bluetooth for the KDE 3.5.8 stabilisation.
+app-pda/pilot-link bluetooth
+
+# 10 Jul 2008: Thomas Anderson <gentoofan23@gentoo.org>
+# Unmask ia32 flag for amd64 arches.
+www-client/opera -ia32
+
+# 8 Aug 2008: Alexis Ballier <aballier@gentoo.org>
+# x86 asm only, it won't be built on amd64 if mmx useflag is enabled but that
+# saves people from needlessly installing nasm
+# Refs bug #93279
+media-sound/lame mmx
+
+# Robert Buchholz <rbu@gentoo.org> (16 Aug 2008)
+# masked in base, unmask for x86/amd64
+dev-python/kaa-base -tls
+
+# Doug Goldstein <cardoe@gentoo.org> (9 Sep 2008)
+# mask vdr USE flag for media-tv/zapping since it depends on media-libs/rte
+# which is only available on x86
+media-tv/zapping vdr

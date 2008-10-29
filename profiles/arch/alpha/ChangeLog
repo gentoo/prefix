@@ -1,0 +1,54 @@
+# ChangeLog for Gentoo/Alpha profile directory
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.17 2008/08/31 15:14:57 armin76 Exp $
+
+  31 Aug 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask openct, no hardware to test
+
+  31 Aug 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Unmask gnome-2.22
+
+  10 Aug 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Unmask hddtemp USE-flag
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Reuse.mask hddtemp as its not stable yet, to remove in 30 days
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Unmask hddtemp USE-flag
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  Make dev-lisp/clisp deps minimal
+
+  23 Jun 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask mtp, no hardware to test
+
+  25 May 2008; Tobias Klausmann <klausman@gentoo.org> package.mask:
+  libggi compiles on alpha these days
+
+  23 May 2008; Tobias Klausmann <klausman@gentoo.org> package.mask:
+  The glint driver is broken completely currently
+
+  20 May 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  Package.use.mask lm_sensors on xfce4-extras, needs to be keyworded
+
+  13 May 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Unmask lm_sensors, bug #221891
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
+
+  03 Apr 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask, use.mask:
+  Move dvb and mythtv to global use.mask
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  Mask dvb on gst-plugins-meta as well
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  Mask USE=mythtv on gst-plugins-meta as media-tv/mythtv not keyworded
+

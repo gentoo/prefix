@@ -1,0 +1,7 @@
+# Copyright 1999-2005 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/m68k/packages,v 1.1 2008/04/01 17:39:57 wolf31o2 Exp $
+
+*sys-fs/atari-fdisk
+->=sys-devel/binutils-2.18-r1
+->=sys-libs/glibc-2.4-r4

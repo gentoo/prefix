@@ -1,0 +1,4 @@
+# Brent Baude <ranger@gentoo.org> (September 17 2008)
+# Masking clisp use from swig
+dev-lang/swig clisp 
+

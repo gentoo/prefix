@@ -1,0 +1,80 @@
+# ChangeLog for Gentoo/AMD64 profile directory
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.23 2008/10/28 22:31:28 flameeyes Exp $
+
+  28 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> package.use.mask:
+  Add gnutls to wine's masked USE flags.
+
+  27 Oct 2008; Mike Frysinger <vapier@gentoo.org> use.mask:
+  Unmask lilo.
+
+  30 Sep 2008; Diego Pettenò <flameeyes@gentoo.org>
+  no-multilib/package.mask:
+  Mask sunstudioexpress on non-multilib profiles.
+
+  17 Sep 2008; Santiago M. Mola <coldwind@gentoo.org> package.use.force:
+  x86emu is the only backend available for amd64 (bug #224987)
+
+  12 Sep 2008; Jeremy Olexa <darkside@gentoo.org> no-multilib/package.mask:
+  add games-strategy/smac to no-multilib mask
+
+  24 Aug 2008; Marijn Schouten <hkBst@gentoo.org> use.mask:
+  don't use mask mzscheme anymore, dev-libs/mzscheme has been integrated
+  into dev-scheme/drscheme and builds fine on amd64
+
+  23 Aug 2008; Markus Meier <maekke@gentoo.org> no-multilib/package.mask:
+  mask app-emulation/ies4linux for bug #218667
+
+  16 Aug 2008; Robert Buchholz <rbu@gentoo.org>
+  no-multilib/package.use.mask:
+  use mask snes for freevo on no-multilib profiles
+
+  16 Aug 2008; Robert Buchholz <rbu@gentoo.org> package.use.mask:
+  Unmask tls for kaa-base
+
+  10 Aug 2008; Markus Ullmann <jokey@gentoo.org> no-multilib/package.mask:
+  Mask app-emulation/virtualbox-guest-additions on no-multilib profile
+
+  08 Aug 2008; Alexis Ballier <aballier@gentoo.org> package.use.mask:
+  mask mmx for lame, refs bug #93279
+
+  24 Jul 2008; Santiago M. Mola <coldwind@gentoo.org>
+  no-multilib/package.mask:
+  Remove media-sound/peercast from no-multilib p.masks, bug #232800.
+
+  20 Jul 2008; Serkan Kaba <serkan@gentoo.org> package.use.mask:
+  Add app-text/enchant:zemberek unmask.
+
+  10 Jul 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  package.use.mask, no-multilib/package.use.mask:
+  Unmask ia32 USE flag for www-client/opera for amd64 multilib
+  profiles.
+
+  06 Jun 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  pkgmove to gnome-base/gnome-control-center
+
+  30 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  no-multilib/package.use.mask:
+  Added masked ifc flag for no-multilib on sci-libs/acml
+
+  21 Apr 2008; Santiago M. Mola <coldwind@gentoo.org> package.mask:
+  Add ->=net-im/telepathy-mission-control-4.65 to Gnome 2.22 mask.
+
+  11 Apr 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  no-multilib/package.mask:
+  Sync no-multilib/package.mask from default-linux.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
+
+  04 Apr 2008; Torsten Veller <tove@gentoo.org> no-multilib/package.mask:
+  Removed mask for mail-client/ciphire-mail (#213349)
+
+  03 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Unmask GNOME-2.22 on amd64
+

@@ -1,0 +1,39 @@
+# ChangeLog for Gentoo/hppa profile
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.11 2008/09/26 13:15:24 jer Exp $
+
+  26 Sep 2008; Jeroen Roovers <jer@gentoo.org> use.mask:
+  Mask unsupported video cards.
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  dxr2/3 cards have not been tested on HPPA hardware and custom-cpuopts does
+  not apply to HPPA (bug #234629)
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Masking app-text/texlive:xindy because app-text/xindy needs dev-lisp/clisp
+  and clisp does not build (bug #229217).
+
+  10 Sep 2008; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  app-misc/tracker isn't keyworded and doesn't work.
+
+  09 Sep 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove useless GNOME masking.
+
+  03 Sep 2008; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Copy the global GNOME-2.22 mask here, in preparation of removal of the
+  global one. Unmasking for HPPA waiting on keyword bug 218794
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; use.mask:
+  changing around video_cards_via masking by unmasking only for available
+  arches instead of masking on unavailable.
+
+  09 Apr 2008; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Mask sys-cluster/mpich2 for sci-libs/hdf5.
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  USE mask dvb and mythtv on gst-plugins-meta - dependencies not keyworded
+

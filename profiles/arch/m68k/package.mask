@@ -1,0 +1,7 @@
+# Copyright 1999-2008 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License, v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/m68k/package.mask,v 1.1 2008/05/07 07:16:09 wolf31o2 Exp $
+
+# We currently have the required glibc masked
+sys-apps/openrc
+>=sys-apps/baselayout-2.0

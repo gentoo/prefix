@@ -1,0 +1,18 @@
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/package.use.mask,v 1.6 2008/07/28 19:12:31 elvanor Exp $
+
+# Jean-Noel Rivasseau <elvanor@gentoo.org> (28 Jul 2008)
+# icu4j tests need jdk-1.6
+dev-java/icu4j test
+
+# Raúl Porcel <armin76@gentoo.org> (07 Jul 2008)
+# Make clisp deps minimal
+dev-lisp/clisp hyperspec pari svm
+
+# Steve Dibb <beandog@gentoo.org> (01 Nov 2007)
+# needs media-libs/ladspa-sdk keyworded
+media-video/mplayer ladspa
+
+# Samuli Suominen <drac@gentoo.org> (17 Nov 2007)
+# Needs valgrind
+media-libs/gstreamer debug
+media-libs/gst-plugins-base debug

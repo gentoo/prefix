@@ -1,0 +1,35 @@
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.5 2008/09/28 15:38:44 leio Exp $
+
+# Jim Ramsay <lack@gentoo.org> (7 Sep 2007)
+# app-admin/gkrellm may pull in hddtemp, which is not yet available here
+app-admin/gkrellm hddtemp
+
+# Gilles Dartiguelongue <eva@gentoo.org> (19 Oct 2007)
+# gdm depends on zenity which is not keyworded
+>=gnome-base/gdm-2.20 remote
+
+# Gilles Dartiguelongue <eva@gentoo.org> (23 Oct 2007)
+# gdm depends on zenity which is not keyworded
+>=media-video/totem-2.20 galago
+
+# Samuli Suominen <drac@gentoo.org> (17 Nov 2007)
+# Needs valgrind
+media-libs/gstreamer debug
+media-libs/gst-plugins-base debug
+
+# Richard Brown <rbrown@gentoo.org> (23 Dec 2007)
+# app-xemacs/ruby-modes is not keyworded on this arch
+dev-lang/ruby xemacs
+
+# Masking this so repoman shuts up about paludis
+sys-apps/paludis ruby python
+
+# Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
+# media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux} not keyworded
+media-plugins/gst-plugins-meta dvb mythtv
+
+# missing keyword for sys-cluster/openmpi sys-cluster/mpich2
+dev-libs/boost mpi
+
+# missing keywords
+media-sound/sox amrnb amrwb ladspa

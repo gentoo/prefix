@@ -1,0 +1,53 @@
+# ChangeLog for Gentoo/ia64 profile
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.19 2008/10/03 09:01:16 armin76 Exp $
+
+  03 Oct 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Mask some video cards which we can't test
+
+  31 Aug 2008; Raúl Porcel <armin76@gentoo.org> virtuals:
+  Make gentoo-sources the default for ia64
+
+  10 Aug 2008; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Unmask gnome-2.22
+
+  10 Aug 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Unmask hddtemp USE-flag
+
+  28 Jul 2008; Jean-Noël Rivasseau <elvanor@gentoo.org> package.use.mask:
+  Removed test for icu4j as it requires jdk-1.6
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Reuse.mask hddtemp as its not stable yet, to remove in 30 days
+
+  07 Jul 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  Unmask hddtemp USE-flag, make dev-lisp/clisp deps minimal
+
+  11 Jun 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask scanner, no hardware to test
+
+  17 May 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask gphoto2, no hardware to test
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Make VIDEO_CARDS defaults a reasonable set instead of every imaginable
+  card.
+
+  10 Apr 2008; Donnie Berkholz <dberkholz@gentoo.org>; make.defaults:
+  Via hardware isn't available on ia64 as far as I know.
+
+  09 Apr 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask laptop, not available on ia64
+
+  08 Apr 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask pkcs11 wrt #215981
+
+  03 Apr 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask, use.mask:
+  Move dvb and mythtv to global use.mask
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  Mask dvb on gst-plugins-meta as well
+
+  02 Apr 2008; Mart Raudsepp <leio@gentoo.org> package.use.mask:
+  Mask USE=mythtv on gst-plugins-meta as media-tv/mythtv not keyworded
+
