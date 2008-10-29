@@ -71,6 +71,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/1.5.0/disable-unneeded-linking.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	sed -i \
 		-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
