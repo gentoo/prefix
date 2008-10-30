@@ -51,7 +51,7 @@ src_unpack() {
 
 	# again, this windows patch should not do any harm to others, but
 	# header files are copied instead of linked now, so leave it conditional.
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8n-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8h-winnt.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
