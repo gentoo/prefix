@@ -10,7 +10,7 @@ SRC_URI="http://www.arrakis.es/~rggi3/${PN}/${P}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-lang/python-2.4"
