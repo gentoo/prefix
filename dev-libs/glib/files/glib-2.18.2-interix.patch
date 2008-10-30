@@ -1,0 +1,12 @@
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gio/glocalfileinfo.c glib-2.18.2/gio/glocalfileinfo.c
+--- glib-2.18.2.orig/gio/glocalfileinfo.c	2008-10-30 09:56:45 +0100
++++ glib-2.18.2/gio/glocalfileinfo.c	2008-10-30 09:58:04 +0100
+@@ -2165,7 +2165,7 @@
+ #ifdef HAVE_UTIMES
+   GFileAttributeValue *mtime, *mtime_usec, *atime, *atime_usec;
+ #endif
+-#if defined (HAVE_CHOWN) && defined (HAVE_UTIMES)
++#if defined (HAVE_CHOWN) || defined (HAVE_UTIMES)
+   GFileAttributeStatus status;
+ #endif
+   gboolean res;

@@ -63,6 +63,10 @@ src_unpack() {
 	# properly keep symbols inside; bug #221075
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 
+	# fix a wrong preprocessor directive (which is not noticed
+	# on systems that have both "chown" and "utimes"
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
 	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
