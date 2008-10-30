@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/linux-logo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.61 2008/10/15 17:39:04 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.62 2008/10/29 17:27:35 spock Exp $
+
+  29 Oct 2008; Michał Januszewski <spock@gentoo.org>
+  linux-logo-5.03.ebuild:
+  Fix bug #243654 (respect the CC variable).
 
   15 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> linux-logo-5.03.ebuild:
   Don't use a sed command, override CFLAGS at make.
