@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.78 2008/10/27 20:34:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.79 2008/10/29 06:54:20 jer Exp $
+
+  29 Oct 2008; Jeroen Roovers <jer@gentoo.org>
+  libtheora-1.0_beta3-r1.ebuild:
+  Stable for HPPA (bug #244582).
 
   27 Oct 2008; Markus Meier <maekke@gentoo.org>
   libtheora-1.0_beta3-r1.ebuild:
