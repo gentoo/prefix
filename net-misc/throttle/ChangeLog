@@ -1,0 +1,10 @@
+# ChangeLog for net-misc/throttle
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/throttle/ChangeLog,v 1.1 2008/10/29 13:34:02 grobian Exp $
+
+*throttle-1.2 (29 Oct 2008)
+
+  29 Oct 2008; Fabian Groffen <grobian@gentoo.org> +metadata.xml,
+  +throttle-1.2.ebuild:
+  Initial import, ebuild by Mike Kazantsev, bug #236360
+
