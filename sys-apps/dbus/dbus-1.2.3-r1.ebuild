@@ -28,20 +28,15 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
+	# Fix potential DoS issue. fdo bug #17803. Gentoo bug #240308
+	epatch "${FILESDIR}"/${PN}-1.2.3-panic-from-dbus_signature_validate.patch
 
+	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix3.patch
 
 	eautoreconf
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	# Fix potential DoS issue. fdo bug #17803. Gentoo bug #240308
-	epatch "${FILESDIR}"/${PN}-1.2.3-panic-from-dbus_signature_validate.patch
 }
 
 src_compile() {
