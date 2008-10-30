@@ -27,6 +27,10 @@ src_unpack() {
 
 	# breaks build on other interix systems.
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+
+	# this disables make abortion on write errors, which
+	# seem to be reported wrongly sporadically on interix.
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
