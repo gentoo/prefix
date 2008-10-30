@@ -243,7 +243,7 @@ src_unpack() {
 		unset EPATCH_OPTS
 		cd "${S}"
 
-		epatch "${FILESDIR}"/${P}-winnt.patch
+		epatch "${FILESDIR}"/${P}-r1-winnt.patch
 
 		for x in "${S}" "${S}/contrib/ldapc++"; do
 			cd $x
