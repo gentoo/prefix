@@ -8,6 +8,7 @@ for d in \
 		profiles/releases \
 		profiles/default \
 		profiles/updates \
+		profiles/features \
 		eclass \
 		licenses \
 		*-*/* virtual/* \
