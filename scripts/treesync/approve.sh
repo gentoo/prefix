@@ -43,7 +43,7 @@ while [[ -z $do_update ]]; do
 		e|edit)
 			unset do_update
 			$SHELL
-			svn status
+			svn status --no-ignore
 		;;
 		*)
 			echo "response $do_update not understood"
