@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/WWW-Mechanize-1.50.ebuild,v 1.2 2008/10/27 13:30:10 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/WWW-Mechanize-1.50.ebuild,v 1.3 2008/10/29 22:12:40 gentoofan23 Exp $
 
 EAPI="prefix"
 

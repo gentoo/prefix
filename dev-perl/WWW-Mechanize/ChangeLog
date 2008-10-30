@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/WWW-Mechanize
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.49 2008/10/27 13:30:10 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.51 2008/10/29 22:12:40 gentoofan23 Exp $
+
+  29 Oct 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  WWW-Mechanize-1.50.ebuild:
+  keyworded ~arch for amd64, bug 244620
+
+  29 Oct 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  WWW-Mechanize-1.34.ebuild:
+  stable amd64, bug 244620
 
   27 Oct 2008; Ferris McCormick <fmccor@gentoo.org>
   WWW-Mechanize-1.50.ebuild:
