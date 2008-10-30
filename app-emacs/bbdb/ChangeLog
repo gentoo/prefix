@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.36 2008/10/27 21:23:37 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.37 2008/10/29 22:26:00 maekke Exp $
+
+  29 Oct 2008; Markus Meier <maekke@gentoo.org> bbdb-2.35-r1.ebuild:
+  amd64/x86 stable, bug #244687
 
   27 Oct 2008; Ferris McCormick <fmccor@gentoo.org> bbdb-2.35-r1.ebuild:
   Sparc stable, Bug #244687.
