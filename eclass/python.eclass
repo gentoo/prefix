@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.53 2008/10/27 12:23:50 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.54 2008/10/30 05:21:46 zmedico Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -142,7 +142,7 @@ python_tkinter_exists() {
 #             echo "gtk support enabled"
 #         fi
 python_mod_exists() {
-	[[ "$1" ]] && die "${FUNCNAME} requires an argument!"
+	[[ "$1" ]] || die "${FUNCNAME} requires an argument!"
 	python -c "import $1" >/dev/null 2>&1
 }
 
@@ -296,16 +296,16 @@ python_mod_cleanup() {
 
 	for path in "${SEARCH_PATH[@]}"; do
 		einfo "Cleaning orphaned Python bytecode from ${path} .."
-		while read -rd ''; do
+		find "${path}" -name '*.py[co]' -print0 | while read -rd ''; do
 			src_py="${REPLY%[co]}"
 			[[ -f "${src_py}" ]] && continue
 			einfo "Purging ${src_py}[co]"
 			rm -f "${src_py}"[co]
-		done < <(find "${path}" -name '*.py[co]' -print0)
+		done
 
 		# attempt to remove directories that maybe empty
-		while read -r dir; do
+		find "${path}" -type d | sort -r | while read -r dir; do
 			rmdir "${dir}" 2>/dev/null
-		done < <(find "${path}" -type d | sort -r)
+		done
 	done
 }
