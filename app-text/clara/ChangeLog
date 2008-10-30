@@ -1,6 +1,9 @@
 # ChangeLog for app-text/clara
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.17 2008/10/09 15:31:07 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.18 2008/10/29 17:36:10 spock Exp $
+
+  29 Oct 2008; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
+  Fix bug #243724 (respect the CC variable).
 
   09 Oct 2008; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
   Respect both user's CFLAGS and LDFLAGS.
