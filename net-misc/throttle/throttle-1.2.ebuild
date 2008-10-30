@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/throttle/throttle-1.2.ebuild,v 1.1 2008/10/29 13:34:02 grobian Exp $
 
+
 EAPI="prefix"
 
 DESCRIPTION="Bandwidth limiting pipe"
