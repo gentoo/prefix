@@ -1,0 +1,31 @@
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/gcc2/package.mask,v 1.1 2008/04/01 17:41:08 wolf31o2 Exp $
+
+>=sys-kernel/linux-headers-2.5
+
+>=sys-devel/gcc-2.95.4
+>=sys-libs/glibc-2.2.6
+
+sys-fs/ntfsprogs
+media-video/cinelerra
+dev-util/gnustep-back
+dev-util/gnustep-base
+dev-util/gnustep-gui
+dev-util/gnustep-guile
+dev-util/gnustep-make
+dev-libs/elfutils
+sys-devel/prelink
+>=sys-apps/findutils-4.2
+
+# does not build with gcc-2.x
+>=media-video/transcode-0.6.12
+>=app-arch/rar-3.2.0
+>=dev-util/ddd-3.3.6
+
+# Needs gcc-3
+>app-arch/rpm-4.1
+>games-emulation/fceultra-0.90
+
+# Needs >=readline-4.2
+>=media-sound/cdcd-0.6.4
