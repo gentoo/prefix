@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libopenraw
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.32 2008/09/28 15:15:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.33 2008/10/29 08:53:04 remi Exp $
+
+  29 Oct 2008; Rémi Cardona <remi@gentoo.org>
+  +files/libopenraw-0.0.5-ljpegdcompressor.patch, libopenraw-0.0.5.ebuild:
+  include <cstrings> for bcopy (fixes bug #243200)
 
   28 Sep 2008; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.5.ebuild:
   arm stable wrt #217148
