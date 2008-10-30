@@ -39,6 +39,7 @@ src_unpack() {
 		"${S}/configure.in" "${S}/configure"
 	
 	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
