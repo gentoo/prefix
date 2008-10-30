@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ferite/ferite-1.0.2.ebuild,v 1.10 2008/01/29 12:10:51 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ferite/ferite-1.0.2.ebuild,v 1.11 2008/10/29 11:23:14 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,8 @@ src_unpack() {
 
 src_compile() {
 	econf --libdir="${EPREFIX}"/usr/$(get_libdir)|| die
-	emake || die
+	# Parallel make issues, see bug #244871
+	emake -j1 || die
 }
 
 src_install() {
