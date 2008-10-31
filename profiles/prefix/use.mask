@@ -1,0 +1,29 @@
+# multilib is never going to work as expected in Prefix
+multilib
+
+# Mask all elibc/kernel combinations, unmasked in the appropriate
+# profiles
+elibc_glibc
+elibc_AIX
+elibc_Darwin
+elibc_FreeBSD
+elibc_HPUX
+elibc_IRIX
+elibc_Interix
+elibc_NetBSD
+elibc_OpenBSD
+elibc_SunOS
+
+kernel_linux
+kernel_AIX
+kernel_Darwin
+kernel_FreeBSD
+kernel_HPUX
+kernel_IRIX
+kernel_Interix
+kernel_NetBSD
+kernel_OpenBSD
+kernel_SunOS
+
+# re-add userland GNU
+-userland_GNU

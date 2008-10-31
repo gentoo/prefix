@@ -1,0 +1,13 @@
+# ChangeLog for <CATEGORY>/<PACKAGE_NAME>
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  31 Oct 2008; Jeremy Olexa <darkside@gentoo.org> +., +linux, +linux/amd64,
+  +linux/amd64/make.defaults, +linux/amd64/parent, +linux/make.defaults,
+  +linux/package.mask, +linux/package.provided, +linux/packages,
+  +linux/parent, +linux/use.force, +linux/virtuals, +linux/x86,
+  +linux/x86/make.defaults, +linux/x86/parent, +make.defaults,
+  +package.mask, +package.use.mask, +packages, +use.force, +use.mask,
+  +virtuals:
+  initial commit of a *new* profile system for prefix, details forthcoming
+  after testing
