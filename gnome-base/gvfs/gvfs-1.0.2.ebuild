@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit bash-completion gnome2 eutils
+inherit bash-completion gnome2 eutils flag-o-matic
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="archive avahi bluetooth cdda doc fuse gnome gphoto2 hal gnome-keyring samba"
 
 RDEPEND=">=dev-libs/glib-2.17.6
@@ -44,6 +44,9 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
 pkg_setup() {
+	# CFLAGS needed for Solaris. Took it from here:
+	# https://svn.sourceforge.net/svnroot/pkgbuild/spec-files-extra/trunk/SFEgnome-gvfs.spec
+	[[ ${CHOST} == *-solaris* ]] && append-flags "-D_XPG4_2 -D__EXTENSIONS__"
 	G2CONF="${G2CONF}
 			--enable-http
 			--disable-bash-completion
@@ -69,6 +72,10 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 	epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
+	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i -e 's:mkdtemp:mktemp:g' daemon/gvfsbackendburn.c
+	fi
 }
 
 src_compile() {
