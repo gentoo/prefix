@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic toolchain-funcs
+inherit flag-o-matic toolchain-funcs eutils
 
 DESCRIPTION="Tail with multiple windows."
 HOMEPAGE="http://www.vanheusden.com/multitail/index.html"
@@ -12,10 +12,17 @@ SRC_URI="http://www.vanheusden.com/multitail/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="sys-libs/ncurses"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
 
 src_compile() {
 	tc-export CC
