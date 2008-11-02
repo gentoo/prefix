@@ -1,6 +1,9 @@
 # ChangeLog for games-board/xmahjongg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-board/xmahjongg/ChangeLog,v 1.11 2008/01/14 19:26:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-board/xmahjongg/ChangeLog,v 1.12 2008/10/30 08:55:56 mr_bones_ Exp $
+
+  30 Oct 2008; Michael Sterrett <mr_bones_@gentoo.org> xmahjongg-3.7.ebuild:
+  add a desktop entry for bug #244420
 
   14 Jan 2008; Fabian Groffen <grobian@gentoo.org> xmahjongg-3.7.ebuild:
   Dropped ppc-macos keyword, see you in prefix

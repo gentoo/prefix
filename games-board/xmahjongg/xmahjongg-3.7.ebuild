@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-board/xmahjongg/xmahjongg-3.7.ebuild,v 1.5 2008/01/14 19:26:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-board/xmahjongg/xmahjongg-3.7.ebuild,v 1.6 2008/10/30 08:55:56 mr_bones_ Exp $
 
 EAPI="prefix"
 
-inherit games
+inherit eutils games
 
 DESCRIPTION="friendly GUI version of xmahjongg"
 HOMEPAGE="http://www.lcdf.org/xmahjongg/"
@@ -23,6 +23,8 @@ DEPEND="${RDEPEND}
 	x11-libs/libXt"
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
+	newicon share/tiles/small.gif ${PN}.gif
+	make_desktop_entry xmahjongg "Xmahjongg" /usr/share/pixmaps/${PN}.gif
 	prepgamesdirs
 }
