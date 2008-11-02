@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.115 2008/09/10 14:19:05 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.116 2008/10/31 20:57:05 ulm Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -53,7 +53,6 @@ virtual/skkserv				app-i18n/skkserv
 virtual/squeak-image		dev-lang/squeak-basicimage
 virtual/ssh					net-misc/openssh
 virtual/sylpheed			mail-client/sylpheed
-virtual/tetex				app-text/tetex
 virtual/tftp				net-ftp/tftp-hpa
 virtual/utempter			sys-libs/libutempter
 virtual/w3m					www-client/w3m
