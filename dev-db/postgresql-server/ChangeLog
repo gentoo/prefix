@@ -1,6 +1,10 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.13 2008/09/28 22:54:52 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.14 2008/11/01 07:26:33 robbat2 Exp $
+
+  01 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
+  Fix Manifest corruption that was added by caleb on Sept 25, due to a
+  zero-byte postgresql-7.4.19.tar.bz2 on his system.
 
   28 Sep 2008; Caleb Tennis <caleb@gentoo.org>
   -postgresql-server-8.2.7.ebuild, -postgresql-server-8.3.1.ebuild,
