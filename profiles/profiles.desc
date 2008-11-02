@@ -18,10 +18,15 @@ ppc-macos	default-prefix/darwin/macos/10.5/ppc		dev
 x86-macos	default-prefix/darwin/macos/10.5/x86		dev
 
 # Solaris Profiles
+sparc-solaris	default-prefix/sunos/solaris/5.9/sparc	dev
 sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
 sparc64-solaris default-prefix/sunos/solaris/5.10/sparc64 dev
 x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
 x64-solaris		default-prefix/sunos/solaris/5.10/x64	dev
+sparc-solaris	default-prefix/sunos/solaris/5.11/sparc	dev
+sparc64-solaris default-prefix/sunos/solaris/5.11/sparc64 dev
+x86-solaris		default-prefix/sunos/solaris/5.11/x86	dev
+x64-solaris		default-prefix/sunos/solaris/5.11/x64	dev
 
 # AIX Profiles
 ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
@@ -44,7 +49,6 @@ x86-winnt   default-prefix/windows/winnt/6.0/x86        dev
 hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa1.1	dev
 hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa2.0/32	dev
 hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa2.0/64	dev
-
 ia64-hpux	default-prefix/hpux/B.11.23/ia64			dev
 
 # FreeBSD Profiles
@@ -58,3 +62,6 @@ x64-openbsd	default-prefix/bsd/openbsd/4.2/x64			dev
 
 # NetBSD Profiles
 x86-netbsd	default-prefix/bsd/netbsd/4.0/x86			dev
+
+# FreeMiNT
+m86k-mint	default-prefix/mint/m86k					dev
