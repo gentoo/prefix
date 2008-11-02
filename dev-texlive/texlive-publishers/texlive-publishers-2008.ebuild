@@ -1,11 +1,9 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2008.ebuild,v 1.1 2008/09/09 16:53:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2008.ebuild,v 1.2 2008/10/31 14:47:49 aballier Exp $
 
 EAPI="prefix"
 
-TEXLIVE_MODULES_DEPS="dev-texlive/texlive-latex
-"
 TEXLIVE_MODULE_CONTENTS="ANUfinalexam IEEEconf IEEEtran aastex acmconf acmtrans active-conf afthesis aguplus aiaa ametsoc apa asaetr ascelike chem-journal classicthesis confproc ebsthesis economic elsevier euproposal gaceta gatech-thesis har2nat icsv ieeepes ijmart imac imtekda jhep jpsj kluwer lps mentis muthesis nature nddiss nih nostarch nrc philosophersimprint pracjourn procIAGssymp ptptex revtex siggraph spie stellenbosch sugconf thesis-titlepage-fhac thuthesis toptesi tugboat tugboat-plain uaclasses ucthesis uiucthesis umthesis umich-thesis uwthesis vancouver vxu york-thesis collection-publishers
 "
 TEXLIVE_MODULE_DOC_CONTENTS="ANUfinalexam.doc IEEEconf.doc IEEEtran.doc aastex.doc acmconf.doc acmtrans.doc active-conf.doc afthesis.doc aguplus.doc aiaa.doc ametsoc.doc apa.doc asaetr.doc ascelike.doc classicthesis.doc confproc.doc ebsthesis.doc economic.doc elsevier.doc euproposal.doc gaceta.doc gatech-thesis.doc har2nat.doc icsv.doc ieeepes.doc ijmart.doc imac.doc imtekda.doc jpsj.doc kluwer.doc lps.doc mentis.doc muthesis.doc nature.doc nddiss.doc nih.doc nostarch.doc nrc.doc philosophersimprint.doc pracjourn.doc procIAGssymp.doc ptptex.doc revtex.doc siggraph.doc spie.doc stellenbosch.doc sugconf.doc thesis-titlepage-fhac.doc thuthesis.doc toptesi.doc tugboat.doc tugboat-plain.doc uaclasses.doc ucthesis.doc uiucthesis.doc umthesis.doc umich-thesis.doc uwthesis.doc vancouver.doc vxu.doc york-thesis.doc "
@@ -17,3 +15,6 @@ LICENSE="GPL-2 as-is freedist GPL-1 LPPL-1.3 public-domain "
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
+DEPEND=">=dev-texlive/texlive-latex-2008
+"
+RDEPEND="${DEPEND}"
