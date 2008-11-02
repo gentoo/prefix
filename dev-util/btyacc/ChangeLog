@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/btyacc
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/btyacc/ChangeLog,v 1.8 2007/05/15 09:10:31 bangert Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/btyacc/ChangeLog,v 1.9 2008/10/31 06:19:16 wormo Exp $
+
+  31 Oct 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +files/btyacc-3.0-includes.patch, btyacc-3.0.ebuild:
+  include missing header since gcc-4.3 is pickier about such things, 
+  patch courtesy of Elias Pipping (bug #240950)
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
