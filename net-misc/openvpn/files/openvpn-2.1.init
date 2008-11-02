@@ -107,11 +107,12 @@ start() {
 	fi
 
 	# Ensure that our scripts get the PEER_DNS variable
-	export PEER_DNS
+	[ -n "${PEER_DNS}" ] && args="${args} --setenv PEER_DNS ${PEER_DNS}"
 
 	[ "${reenter}" = "yes" ] && mark_service_inactive "${SVCNAME}"
 	start-stop-daemon --start --exec /usr/sbin/openvpn --pidfile "${VPNPID}" \
-		-- --config "${VPNCONF}" --writepid "${VPNPID}" --daemon ${args}
+		-- --config "${VPNCONF}" --writepid "${VPNPID}" --daemon \
+		--setenv SVCNAME "${SVCNAME}" ${args}
 	eend $? "Check your logs to see why startup failed"
 }
 

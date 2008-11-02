@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc9.ebuild,v 1.2 2008/09/28 12:48:09 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc13.ebuild,v 1.1 2008/11/01 15:57:26 cedk Exp $
 
 EAPI="prefix"
 
@@ -32,12 +32,6 @@ pkg_setup() {
 			die "iproute2 support not available"
 		fi
 	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-tests.patch"
 }
 
 src_compile() {
