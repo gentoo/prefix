@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1-r1.ebuild,v 1.4 2008/10/29 06:46:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1-r1.ebuild,v 1.5 2008/10/30 10:26:42 armin76 Exp $
 
 EAPI="prefix"
 
