@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/zisofs-tools
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/ChangeLog,v 1.31 2008/02/03 15:32:23 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/ChangeLog,v 1.32 2008/10/31 21:17:58 dsd Exp $
+
+*zisofs-tools-1.0.8 (31 Oct 2008)
+
+  31 Oct 2008; Daniel Drake <dsd@gentoo.org> +zisofs-tools-1.0.8.ebuild:
+  Version bump, thanks to Arfrever Frehtes Taifersar Arahesis in bug #190737
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org>
   zisofs-tools-1.0.6.ebuild:
