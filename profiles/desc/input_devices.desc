@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation.
+# Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/input_devices.desc,v 1.2 2006/04/24 06:50:19 spyderous Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/input_devices.desc,v 1.3 2008/11/01 21:52:53 solar Exp $
 
 # This file contains descriptions of INPUT_DEVICES USE_EXPAND flags.
 
@@ -32,6 +32,7 @@ spaceorb - INPUT_DEVICES setting to build driver for spaceorb input devices
 summa - INPUT_DEVICES setting to build driver for summa input devices
 synaptics - INPUT_DEVICES setting to build driver for synaptics input devices
 tek4957 - INPUT_DEVICES setting to build driver for tek4957 input devices
+tslib - INPUT_DEVICES setting to build driver for tslib input devices
 ur98 - INPUT_DEVICES setting to build driver for ur98 input devices
 vmmouse - INPUT_DEVICES setting to build driver for vmmouse input devices
 void - INPUT_DEVICES setting to build driver for void input devices
