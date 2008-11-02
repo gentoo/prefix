@@ -1,6 +1,12 @@
 # ChangeLog for xfce-base/libxfcegui4
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.113 2008/05/04 19:05:18 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.114 2008/10/30 22:01:32 angelos Exp $
+
+*libxfcegui4-4.4.3 (30 Oct 2008)
+
+  30 Oct 2008; Christoph Mende <angelos@gentoo.org>
+  +libxfcegui4-4.4.3.ebuild:
+  Xfce-4.4.3 bump
 
   04 May 2008; Samuli Suominen <drac@gentoo.org> libxfcegui4-4.4.2.ebuild:
   Remove -Werror from configure.
