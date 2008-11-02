@@ -1,6 +1,9 @@
 # ChangeLog for app-text/lv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.26 2008/10/07 16:14:06 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.27 2008/11/01 17:12:03 nixnut Exp $
+
+  01 Nov 2008; nixnut <nixnut@gentoo.org> lv-4.51-r1.ebuild:
+  Stable on ppc wrt bug 243734
 
 *lv-4.51-r1 (07 Oct 2008)
 
