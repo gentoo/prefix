@@ -1,10 +1,41 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2002 2008/10/28 21:47:25 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2010 2008/11/01 21:57:52 solar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  01 Nov 2008; <solar@gentoo.org> ChangeLog:
+  - add tslib to input_devices.desc for future xorg options input_devices.desc
+
+  01 Nov 2008; Zac Medico <zmedico@gentoo.org> arch/amd64/package.use.mask,
+  default-linux/amd64/package.use.mask, hardened/amd64/package.use.mask:
+  Bug #244947 - Unmask media-libs/win32codecs[real] to satisfy
+  media-libs/realcodecs dependency.
+
+  01 Nov 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Adding new dual-lifed modules for perl-5.10
+
+  31 Oct 2008; Ulrich Mueller <ulm@gentoo.org> base/virtuals,
+  embedded/virtuals:
+  Remove virtual/tetex, bug 222501.
+
+  31 Oct 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove www-client/opera-9.60 snapshot mask.
+
+  31 Oct 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/tagged for removal
+
+  31 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Updated thunderbird mask entry as the mips team no longer does stable
+  keywords.
+
+  31 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Removed the compiz-fusion-0.7.8 mask now that it has been in the tree for
+  a few days.
 
   28 Oct 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
   Mask sys-fs/udev-130-r2 for its new init-script to be used with not-yet

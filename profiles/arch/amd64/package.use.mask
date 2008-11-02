@@ -145,3 +145,8 @@ dev-python/kaa-base -tls
 # mask vdr USE flag for media-tv/zapping since it depends on media-libs/rte
 # which is only available on x86
 media-tv/zapping vdr
+
+# Zac Medico <zmedico@gentoo.org> (1 Nov 2008)
+# Bug #244947 - Unmask media-libs/win32codecs[real]
+# to satisfy media-libs/realcodecs dependency.
+media-libs/win32codecs -real
