@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r1.ebuild,v 1.3 2008/10/25 16:58:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r1.ebuild,v 1.4 2008/11/01 14:57:32 serkan Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc javamail jms jmx source"
@@ -51,7 +51,8 @@ src_compile() {
 		EANT_EXTRA_ARGS+=" -Djavamail-present=true"
 	fi
 	if use jmx; then
-		EANT_GENTOO_CLASSPATH+=",sun-jmx"
+		use javamail && EANT_GENTOO_CLASSPATH+=","
+		EANT_GENTOO_CLASSPATH+="sun-jmx"
 		EANT_EXTRA_ARGS+=" -Djmx-present=true"
 	fi
 	if use jms; then
