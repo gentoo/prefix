@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.44 2008/10/04 09:14:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.45 2008/10/31 21:04:13 ulm Exp $
+
+  31 Oct 2008; Ulrich Mueller <ulm@gentoo.org> texlive-2007-r3.ebuild:
+  Remove virtual/tetex, bug 222501.
 
   04 Oct 2008; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild:
   Switch to EAPI-2 and add use deps to reflect more what we want for

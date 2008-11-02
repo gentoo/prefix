@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.14 2008/05/12 20:36:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.15 2008/10/31 21:04:13 ulm Exp $
 
 EAPI="prefix"
 
@@ -20,9 +20,6 @@ LANGS="af ar bg bn bo cs cy da de el en en_GB eo es et fi fr he hi hr hsb hu hy 
 for X in ${LANGS}; do
 	IUSE="${IUSE} linguas_${X}"
 done
-
-# Not an ideal name
-PROVIDE="virtual/tetex"
 
 TEXLIVE_CAT="dev-texlive"
 
