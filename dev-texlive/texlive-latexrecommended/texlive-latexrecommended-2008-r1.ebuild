@@ -1,18 +1,9 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2008-r1.ebuild,v 1.3 2008/10/04 08:54:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2008-r1.ebuild,v 1.5 2008/10/31 14:43:22 aballier Exp $
 
 EAPI="prefix"
 
-TEXLIVE_MODULES_DEPS="dev-texlive/texlive-latex
-!dev-tex/xkeyval
-!dev-tex/floatflt
-!dev-tex/memoir
-!dev-tex/listings
-!=dev-texlive/texlive-latexextra-2007*
-!=app-text/texlive-core-2007*
-!=dev-texlive/texlive-xetex-2008
-"
 TEXLIVE_MODULE_CONTENTS="anysize  booktabs caption cite citeref cmap crop ctable ec eso-pic euler extsizes fancybox fancyref fancyvrb float fp ifxetex index jknapltx koma-script listings mdwtools memoir microtype ms ntgclass oberdiek pdfpages powerdot psfrag rcs rotating seminar setspace subfig thumbpdf  xkeyval collection-latexrecommended
 "
 TEXLIVE_MODULE_DOC_CONTENTS="anysize.doc booktabs.doc caption.doc cite.doc cmap.doc crop.doc ctable.doc ec.doc eso-pic.doc euler.doc extsizes.doc fancybox.doc fancyref.doc fancyvrb.doc float.doc fp.doc ifxetex.doc index.doc jknapltx.doc koma-script.doc listings.doc mdwtools.doc memoir.doc microtype.doc ms.doc ntgclass.doc oberdiek.doc pdfpages.doc powerdot.doc psfrag.doc rcs.doc rotating.doc seminar.doc subfig.doc thumbpdf.doc xkeyval.doc "
@@ -24,4 +15,13 @@ LICENSE="GPL-2 Artistic-2 as-is freedist GPL-1 LPPL-1.3 public-domain "
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
+DEPEND=">=dev-texlive/texlive-latex-2008
+!dev-tex/xkeyval
+!dev-tex/memoir
+!dev-tex/listings
+!=dev-texlive/texlive-latexextra-2007*
+!=app-text/texlive-core-2007*
+!=dev-texlive/texlive-xetex-2008
+"
+RDEPEND="${DEPEND}"
 TEXLIVE_MODULE_BINSCRIPTS="texmf-dist/scripts/oberdiek/pdfatfi.pl texmf-dist/scripts/thumbpdf/thumbpdf.pl"
