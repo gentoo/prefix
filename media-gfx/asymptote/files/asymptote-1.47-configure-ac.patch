@@ -1,6 +1,6 @@
-diff -U2 -r asymptote-1.44.orig/configure.ac asymptote-1.44/configure.ac
---- asymptote-1.44.orig/configure.ac	2008-10-06 17:23:34.000000000 +0700
-+++ asymptote-1.44/configure.ac	2008-10-09 20:48:59.000000000 +0700
+diff -r -U2 asymptote-1.47.orig/configure.ac asymptote-1.47/configure.ac
+--- asymptote-1.47.orig/configure.ac	2008-10-23 14:06:31.000000000 +0700
++++ asymptote-1.47/configure.ac	2008-11-02 03:57:58.000000000 +0600
 @@ -77,8 +77,14 @@
  fi
  
@@ -35,23 +35,24 @@ diff -U2 -r asymptote-1.44.orig/configure.ac asymptote-1.44/configure.ac
 +           [with_sigsegv=$withval],
 +           [with_sigsegv="no"])
 +if test "$with_sigsegv" = "yes"; then
-+AC_CHECK_HEADER(sigsegv.h,
++AC_CHECK_HEADER([sigsegv.h],
 +   AC_CHECK_LIB([sigsegv], [stackoverflow_install_handler]),
 +   AC_MSG_NOTICE([*** Header file sigsegv.h not found ***]))
 +fi
  
  AC_CHECK_LIB([readline], [rl_completion_matches],,
-@@ -200,4 +215,9 @@
+@@ -200,9 +215,15 @@
     AC_MSG_WARN([*** Broken rpc headers; XDR support disabled ***]))
  
+-AC_CHECK_HEADER(gsl/gsl_sf.h,
 +AC_ARG_WITH(gsl,
 +           [  --with-gsl              use gsl libraries],
 +           [with_gsl=$withval],
 +           [with_gsl="no"])
 +if test "$with_gsl" = "yes"; then
- AC_CHECK_HEADER(gsl/gsl_sf.h,
++AC_CHECK_HEADER([gsl/gsl_sf.h],
     AC_CHECK_LIB([gsl], gsl_sf_Si, [AC_DEFINE(HAVE_LIBGSL, 1,
-@@ -205,4 +225,5 @@
+    [Define to 1 if you have the 'gsl' library (-lgsl). ]) LIBS=$LIBS"-lgsl -lgslcblas "],
             AC_MSG_NOTICE([*** Could not find libgsl: will compile without optional special functions. ***]),[-lgslcblas]),
       AC_MSG_NOTICE([*** Header file gsl_sf.h not found: will compile without optional special functions. ***]))
 +fi

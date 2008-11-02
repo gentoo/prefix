@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.46.ebuild,v 1.1 2008/10/20 10:50:15 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.46.ebuild,v 1.2 2008/11/01 18:42:49 grozin Exp $
 EAPI="prefix 2"
 inherit eutils autotools elisp-common latex-package multilib python
 
@@ -138,6 +138,9 @@ src_install() {
 
 	# X GUI
 	if use X; then
+		exeinto /usr/share/${PN}/GUI
+		doexe GUI/xasy.py
+		rm GUI/xasy.py
 		insinto /usr/share/${PN}/GUI
 		doins GUI/*.py
 		dosym /usr/share/${PN}/GUI/xasy.py /usr/bin/xasy
