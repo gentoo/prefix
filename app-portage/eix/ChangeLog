@@ -1,6 +1,15 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.250 2008/10/11 15:06:39 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.252 2008/10/31 15:54:45 darkside Exp $
+
+  31 Oct 2008; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  I will be proxy commiting eix now.
+
+*eix-0.14.2 (30 Oct 2008)
+
+  30 Oct 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +eix-0.14.2.ebuild:
+  version bump on behalf of Martin Väth  (bug #243398)
 
 *eix-0.14.1 (11 Oct 2008)
 
