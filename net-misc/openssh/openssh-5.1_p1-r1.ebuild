@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r1.ebuild,v 1.6 2008/10/27 20:00:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r1.ebuild,v 1.9 2008/11/01 10:36:37 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -134,7 +134,7 @@ src_compile() {
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
 		--with-ssl-engine \
-		$(use ldap && $(use_with ldap)) \
+		$(use ldap && [ -n "${LDAP_PATCH}" ] && use_with ldap) \
 		$(use_with libedit) \
 		$(use_with kerberos kerberos5 /usr) \
 		$(use_with tcpd tcp-wrappers) \
