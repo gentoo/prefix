@@ -1,6 +1,11 @@
 # ChangeLog for app-text/ghostscript-esp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.60 2008/03/30 23:46:06 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.61 2008/10/31 20:20:33 opfer Exp $
+
+  31 Oct 2008; Christian Faulhammer <opfer@gentoo.org>
+  ghostscript-esp-8.15.3.ebuild, ghostscript-esp-8.15.4.ebuild,
+  ghostscript-esp-8.15.4-r1.ebuild:
+  don't inherit elisp-common, bug 184167
 
   30 Mar 2008; <ricmm@gentoo.org> ghostscript-esp-7.07.1-r8.ebuild:
   Drop to ~mips due to unstable deps

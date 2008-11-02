@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4-r1.ebuild,v 1.2 2008/03/01 20:20:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4-r1.ebuild,v 1.3 2008/10/31 20:20:33 opfer Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit autotools elisp-common eutils versionator
+inherit autotools eutils versionator
 
 DESCRIPTION="ESP Ghostscript -- an enhanced version of GPL Ghostscript with better printer support"
 HOMEPAGE="http://www.cups.org/espgs"
