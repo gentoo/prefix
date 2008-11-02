@@ -1,4 +1,4 @@
-Upstream revision 2134 with useless whitespace change hunks removed:
+Upstream revisions 2134 and 2135 with useless whitespace change hunks removed:
 
 2008-10-23  Chris Wilson
 
@@ -11,8 +11,15 @@ it on the terminal. This ensures that after a screen redraw, we
 compare the contents of the selected region with the current
 selection, instead of stale data.
 
---- trunk/src/vte.c	2008/10/23 09:15:37	2133
-+++ trunk/src/vte.c	2008/10/23 09:43:21	2134
+2008-10-31  Chris Wilson
+
+* src/vte.c (vte_terminal_deselect_all):
+Preserve the copy of the selection until it is replace by a new
+selection, so that we can perform asynchronous copies from the
+clipboard.
+
+--- trunk/src/vte.c	2008/10/23 08:39:44	2130
++++ trunk/src/vte.c	2008/10/31 12:59:29	2135
 @@ -1018,10 +1018,16 @@
  {
  	if (terminal->pvt->has_selection) {
@@ -23,8 +30,8 @@ selection, instead of stale data.
  				"Deselecting all text.\n");
 +
 +		terminal->pvt->has_selection = FALSE;
-+		g_free (terminal->pvt->selection);
-+		terminal->pvt->selection = NULL;
++		/* Don't free the current selection, as we need to keep
++		 * hold of it for async copying from the clipboard. */
 +
  		vte_terminal_emit_selection_changed(terminal);
 +

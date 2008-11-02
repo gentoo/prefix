@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.211 2008/10/28 11:57:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.212 2008/11/01 17:41:23 leio Exp $
+
+*vte-0.17.4-r2 (01 Nov 2008)
+
+  01 Nov 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/vte-0.17.4-fix-highlighting-on-activity.patch,
+  -files/vte-0.17.4-fix-selecting-on-activity.patch, -vte-0.17.4-r1.ebuild,
+  +vte-0.17.4-r2.ebuild:
+  Include a fix for the previous patch, fixing selection clipboard retention
+  from alternate screen (less, vim, etc)
 
 *vte-0.17.4-r1 (28 Oct 2008)
 

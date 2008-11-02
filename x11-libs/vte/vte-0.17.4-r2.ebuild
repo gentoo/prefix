@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.17.4-r1.ebuild,v 1.1 2008/10/28 11:57:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.17.4-r2.ebuild,v 1.1 2008/11/01 17:41:23 leio Exp $
 
 EAPI="prefix"
 
@@ -63,7 +63,7 @@ src_compile() {
 
 src_unpack() {
 	gnome2_src_unpack
-	epatch "${FILESDIR}/${P}-fix-selecting-on-activity.patch"
+	epatch "${FILESDIR}/${P}-fix-highlighting-on-activity.patch"
 
 	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
 	epatch "${FILESDIR}"/${PN}-0.16.13-interix.patch
