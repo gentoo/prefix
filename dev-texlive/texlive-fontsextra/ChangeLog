@@ -1,6 +1,16 @@
 # ChangeLog for dev-texlive/texlive-fontsextra
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.24 2008/09/09 16:26:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.26 2008/10/31 15:10:26 aballier Exp $
+
+  31 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-fontsextra-2007.ebuild:
+  remove unused version
+
+  31 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-fontsextra-2008.ebuild:
+  Use stricter deps for texlive 2008 to require the 2008 version of a
+  package, get rid of TEXLIVE_MODULES_DEPS and use standard DEPEND/RDEPEND
+  fields
 
 *texlive-fontsextra-2008 (09 Sep 2008)
 
