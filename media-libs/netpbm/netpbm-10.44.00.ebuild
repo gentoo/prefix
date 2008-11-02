@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.41.0.ebuild,v 1.3 2008/02/16 20:56:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.44.00.ebuild,v 1.1 2008/11/01 07:19:22 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.lzma
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
@@ -51,7 +51,7 @@ maint_pkg_create() {
 		die "need svn checkout dir"
 	fi
 }
-#pkg_setup() { [[ -e ${DISTDIR}/${P}.tar.lzma ]] || maint_pkg_create ; }
+pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} && ! -e ${DISTDIR}/${P}.tar.lzma ]] && maint_pkg_create ; }
 
 netpbm_libtype() {
 	case ${CHOST} in
@@ -85,10 +85,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 
+	epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
+
+	# Solaris needs c99 with jpeg2k, bug #244797
+	use jpeg2k && append-flags -std=c99
 
 	rm -f configure
 	cp Makefile.config.in Makefile.config
