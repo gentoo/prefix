@@ -1,13 +1,9 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-htmlxml/texlive-htmlxml-2008.ebuild,v 1.1 2008/09/09 16:29:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-htmlxml/texlive-htmlxml-2008.ebuild,v 1.2 2008/10/31 14:27:12 aballier Exp $
 
 EAPI="prefix"
 
-TEXLIVE_MODULES_DEPS="dev-texlive/texlive-basic
-dev-texlive/texlive-fontsrecommended
-dev-texlive/texlive-latex
-"
 TEXLIVE_MODULE_CONTENTS="  xmlplay    collection-htmlxml
 "
 TEXLIVE_MODULE_DOC_CONTENTS="xmlplay.doc "
@@ -19,3 +15,8 @@ LICENSE="GPL-2 public-domain "
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
+DEPEND=">=dev-texlive/texlive-basic-2008
+>=dev-texlive/texlive-fontsrecommended-2008
+>=dev-texlive/texlive-latex-2008
+"
+RDEPEND="${DEPEND}"
