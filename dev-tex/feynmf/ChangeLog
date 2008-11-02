@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.29 2008/10/27 20:36:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.31 2008/11/01 17:33:02 nixnut Exp $
+
+  01 Nov 2008; nixnut <nixnut@gentoo.org> feynmf-1.08-r3.ebuild:
+  Stable on ppc wrt bug 244594
+
+  30 Oct 2008; Raúl Porcel <armin76@gentoo.org> feynmf-1.08-r3.ebuild:
+  alpha/ia64 stable #244594
 
   27 Oct 2008; Markus Meier <maekke@gentoo.org> feynmf-1.08-r3.ebuild:
   amd64/x86 stable, bug #244594
