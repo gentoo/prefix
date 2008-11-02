@@ -1,6 +1,23 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.102 2008/09/10 05:43:16 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.107 2008/11/01 18:05:21 nixnut Exp $
+
+  01 Nov 2008; nixnut <nixnut@gentoo.org> rubygems-1.2.0.ebuild:
+  Stable on ppc wrt bug 244952
+
+  31 Oct 2008; Jeroen Roovers <jer@gentoo.org> rubygems-1.2.0.ebuild:
+  Stable for HPPA (bug #244952).
+
+  31 Oct 2008; Ferris McCormick <fmccor@gentoo.org> rubygems-1.2.0.ebuild:
+  Sparc stable, Bug #244952, has been good for 4 months now.
+
+  31 Oct 2008; Hans de Graaff <graaff@gentoo.org>
+  -rubygems-0.8.11-r6.ebuild, -rubygems-1.0.1.ebuild,
+  -rubygems-1.1.0.ebuild:
+  Remove old versions
+
+  31 Oct 2008; Hans de Graaff <graaff@gentoo.org> rubygems-1.2.0.ebuild:
+  Install ChangeLog and TODO
 
   10 Sep 2008; Hans de Graaff <graaff@gentoo.org> rubygems-1.2.0.ebuild:
   Fixed sandbox problems with first install of rubygems. Thanks to Alex Legler

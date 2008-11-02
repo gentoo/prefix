@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.5 2008/09/10 05:43:16 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.9 2008/11/01 18:05:21 nixnut Exp $
 
 EAPI="prefix"
 
@@ -61,7 +61,7 @@ src_install() {
 
 	dosym gem18 /usr/bin/gem || die "dosym gem failed"
 
-	dodoc README || die "dodoc README failed"
+	dodoc README ChangeLog TODO || die "dodoc README failed"
 
 	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
 	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
