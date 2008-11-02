@@ -1,83 +1,129 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.84 2008/10/27 05:22:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.92 2008/11/02 03:02:53 gengor Exp $
 
-# Description: This eclass is used to interface with linux-info in such a way
-#              to provide the functionality required and initial functions
-#			   required to install external modules against a kernel source
-#			   tree.
-#
 # Author(s): John Mylchreest <johnm@gentoo.org>,
 #            Stefan Schweizer <genstef@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
 #
 # Please direct your bugs to the current eclass maintainer :)
 
+# @ECLASS: linux-mod.eclass
+# @MAINTAINER:
+# kernel-misc@gentoo.org
+# @BLURB: It provides the functionality required to install external modules against a kernel source tree.
+# @DESCRIPTION:
+# This eclass is used to interface with linux-info.eclass in such a way
+# to provide the functionality and initial functions
+# required to install external modules against a kernel source
+# tree.
+
 # A Couple of env vars are available to effect usage of this eclass
 # These are as follows:
-#
-# Env Var		Option		Default		Description
-# KERNEL_DIR		<string>	/usr/src/linux	The directory containing kernel
-#							the target kernel sources.
-# ECONF_PARAMS		<string>			The parameters to pass to econf.
-#							If this is not set, then econf
-#							isn't run.
-# BUILD_PARAMS		<string>			The parameters to pass to emake.
-# BUILD_TARGETS		<string>	clean modules	The build targets to pass to
-#							make.
-# MODULE_NAMES		<string>			This is the modules which are
-#							to be built automatically using
-#							the default pkg_compile/install.
-#							They are explained properly
-#							below. It will only make
-#							BUILD_TARGETS once in any
-#							directory.
 
-# MODULE_NAMES - Detailed Overview
+# @ECLASS-VARIABLE: KERNEL_DIR
+# @DESCRIPTION:
+# A string containing the directory of the target kernel sources. The default value is
+# "/usr/src/linux"
+
+# @ECLASS-VARIABLE: ECONF_PARAMS
+# @DESCRIPTION:
+# It's a string containing the parameters to pass to econf.
+# If this is not set, then econf isn't run.
+
+# @ECLASS-VARIABLE: BUILD_PARAMS
+# @DESCRIPTION:
+# It's a string with the parameters to pass to emake.
+
+# @ECLASS-VARIABLE: BUILD_TARGETS
+# @DESCRIPTION:
+# It's a string with the build targets to pass to make. The default value is "clean modules"
+
+# @ECLASS-VARIABLE: MODULE_NAMES
+# @DESCRIPTION:
+# It's a string containing the modules to be built automatically using the default
+# src_compile/src_install. It will only make ${BUILD_TARGETS} once in any directory.
 #
 # The structure of each MODULE_NAMES entry is as follows:
-# modulename(libdir:srcdir:objdir)
-# for example:
-# MODULE_NAMES="module_pci(pci:${S}/pci:${S}) module_usb(usb:${S}/usb:${S})"
+#
+#   modulename(libdir:srcdir:objdir)
+#
+# where:
+#
+#   modulename = name of the module file excluding the .ko
+#   libdir     = place in system modules directory where module is installed (by default it's misc)
+#   srcdir     = place for ebuild to cd to before running make (by default it's ${S})
+#   objdir     = place the .ko and objects are located after make runs (by default it's set to srcdir)
+#
+# To get an idea of how these variables are used, here's a few lines
+# of code from around line 540 in this eclass:
+#		
+#	einfo "Installing ${modulename} module"
+#	cd ${objdir} || die "${objdir} does not exist"
+#	insinto /lib/modules/${KV_FULL}/${libdir}
+#	doins ${modulename}.${KV_OBJ} || die "doins ${modulename}.${KV_OBJ} failed"
+#
+# For example:
+#   MODULE_NAMES="module_pci(pci:${S}/pci:${S}) module_usb(usb:${S}/usb:${S})"
 #
 # what this would do is
-#  cd ${S}/pci
-#  make ${BUILD_PARAMS} ${BUILD_TARGETS}
-#  cd ${S}
-#  insinto /lib/modules/${KV_FULL}/pci
-#  doins module_pci.${KV_OBJ}
 #
-#  cd ${S}/usb
-#  make ${BUILD_PARAMS} ${BUILD_TARGETS}
-#  cd ${S}
-#  insinto /lib/modules/${KV_FULL}/usb
-#  doins module_usb.${KV_OBJ}
+#   cd "${S}"/pci
+#   make ${BUILD_PARAMS} ${BUILD_TARGETS}
+#   cd "${S}"
+#   insinto /lib/modules/${KV_FULL}/pci
+#   doins module_pci.${KV_OBJ}
 #
-# if the srcdir isnt specified, it assumes ${S}
-# if the libdir isnt specified, it assumes misc.
-# if the objdir isnt specified, it assumes srcdir
+#   cd "${S}"/usb
+#   make ${BUILD_PARAMS} ${BUILD_TARGETS}
+#   cd "${S}"
+#   insinto /lib/modules/${KV_FULL}/usb
+#   doins module_usb.${KV_OBJ}
 
 # There is also support for automated modprobe.d/modules.d(2.4) file generation.
 # This can be explicitly enabled by setting any of the following variables.
+
+# @ECLASS-VARIABLE: MODULESD_<modulename>_ENABLED
+# @DESCRIPTION:
+# This is used to disable the modprobe.d/modules.d file generation otherwise the file will be
+# always generated (unless no MODULESD_<modulename>_* variable is provided). Set to "no" to disable
+# the generation of the file and the installation of the documentation.
+
+# @ECLASS-VARIABLE: MODULESD_<modulename>_EXAMPLES
+# @DESCRIPTION:
+# This is a bash array containing a list of examples which should
+# be used. If you want us to try and take a guess set this to "guess".
 #
+# For each array_component it's added an options line in the modprobe.d/modules.d file
 #
-# MODULESD_${modulename}_ENABLED		This enables the modules.d file
-#						generation even if we dont
-#						specify any additional info.
-# MODULESD_${modulename}_EXAMPLES		This is a bash array containing
-#						a list of examples which should
-#						be used. If you want us to try and
-#						take a guess. Set this to "guess"
-# MODULESD_${modulename}_ALIASES		This is a bash array containing
-#						a list of associated aliases.
-# MODULESD_${modulename}_ADDITIONS		This is a bash array containing
-#						A list of additional things to
-#						add to the bottom of the file.
-#						This can be absolutely anything.
-#						Each entry is a new line.
-# MODULES_${modulename}_DOCS			This is a string list which contains
-#						the full path to any associated
-#						documents for $modulename
+#   options array_component
+#
+# where array_component is "<modulename> options" (see modprobe.conf(5))
+
+# @ECLASS-VARIABLE: MODULESD_<modulename>_ALIASES
+# @DESCRIPTION:
+# This is a bash array containing a list of associated aliases.
+#
+# For each array_component it's added an alias line in the modprobe.d/modules.d file
+#
+#   alias array_component
+#
+# where array_component is "wildcard <modulename>" (see modprobe.conf(5))
+
+# @ECLASS-VARIABLE: MODULESD_<modulename>_ADDITIONS
+# @DESCRIPTION:
+# This is a bash array containing a list of additional things to
+# add to the bottom of the file. This can be absolutely anything.
+# Each entry is a new line.
+
+# @ECLASS-VARIABLE: MODULESD_<modulename>_DOCS
+# @DESCRIPTION:
+# This is a string list which contains the full path to any associated
+# documents for <modulename>. These files are installed in the live tree.
+
+# @ECLASS-VARIABLE: KV_OBJ
+# @DESCRIPTION:
+# It's a read-only variable. It contains the extension of the kernel modules.
 
 # The order of these is important as both of linux-info and eutils contain
 # set_arch_to_kernel and set_arch_to_portage functions and the ones in eutils
@@ -136,6 +182,10 @@ check_vermagic() {
 	fi
 }
 
+# @FUNCTION: use_m
+# @RETURN: true or false
+# @DESCRIPTION:
+# It checks if the kernel version is greater than 2.6.5.
 use_m() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -148,6 +198,10 @@ use_m() {
 		return 0 || return 1
 }
 
+# @FUNCTION: convert_to_m
+# @USAGE: /path/to/the/file
+# @DESCRIPTION:
+# It converts a file (e.g. a makefile) to use M= instead of SUBDIRS=
 convert_to_m() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -161,6 +215,11 @@ convert_to_m() {
 	fi
 }
 
+# internal function
+#
+# FUNCTION: update_depmod
+# DESCRIPTION:
+# It updates the modules.dep file for the current kernel.
 update_depmod() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -181,6 +240,11 @@ update_depmod() {
 	fi
 }
 
+# internal function
+#
+# FUNCTION: update_modules
+# DESCRIPTION:
+# It calls the update-modules utility.
 update_modules() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -197,6 +261,11 @@ update_modules() {
 	fi
 }
 
+# internal function
+#
+# FUNCTION: move_old_moduledb
+# DESCRIPTION:
+# It updates the location of the database used by the module-rebuild utility.
 move_old_moduledb() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -212,6 +281,11 @@ move_old_moduledb() {
 	fi
 }
 
+# internal function
+#
+# FUNCTION: update_moduledb
+# DESCRIPTION:
+# It adds the package to the /var/lib/module-rebuild/moduledb database used by the module-rebuild utility.
 update_moduledb() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -229,6 +303,12 @@ update_moduledb() {
 	fi
 }
 
+# internal function
+#
+# FUNCTION: remove_moduledb
+# DESCRIPTION:
+# It removes the package from the /var/lib/module-rebuild/moduledb database used by
+# the module-rebuild utility.
 remove_moduledb() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -241,6 +321,9 @@ remove_moduledb() {
 	fi
 }
 
+# @FUNCTION: set_kvobj
+# @DESCRIPTION:
+# It sets the KV_OBJ variable.
 set_kvobj() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -275,11 +358,20 @@ get-KERNEL_CC() {
 	echo "${kernel_cc}"
 }
 
+# internal function
+#
+# FUNCTION:
+# USAGE: /path/to/the/modulename_without_extension
+# RETURN: A file in /etc/modules.d/ (kernel < 2.6) or /etc/modprobe.d/ (kernel >= 2.6)
+# DESCRIPTION:
+# This function will generate and install the neccessary modprobe.d/modules.d file from the
+# information contained in the modules exported parms.
+# (see the variables MODULESD_<modulename>_ENABLED, MODULESD_<modulename>_EXAMPLES,
+# MODULESD_<modulename>_ALIASES, MODULESD_<modulename>_ADDITION and MODULESD_<modulename>_DOCS).
+#
+# At the end the documentation specified with MODULESD_<modulename>_DOCS is installed.
 generate_modulesd() {
 	debug-print-function ${FUNCNAME} $*
-
-	# This function will generate the neccessary modules.d file from the
-	# information contained in the modules exported parms
 
 	local 	currm_path currm currm_t t myIFS myVAR
 	local 	module_docs module_enabled module_aliases \
@@ -423,6 +515,13 @@ generate_modulesd() {
 	return 0
 }
 
+# internal function
+#
+# FUNCTION: find_module_params
+# USAGE: A string "NAME(LIBDIR:SRCDIR:OBJDIR)"
+# RETURN: The string "modulename:NAME libdir:LIBDIR srcdir:SRCDIR objdir:OBJDIR"
+# DESCRIPTION:
+# Analyze the specification NAME(LIBDIR:SRCDIR:OBJDIR) of one module as described in MODULE_NAMES.
 find_module_params() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -468,6 +567,11 @@ find_module_params() {
 # default ebuild functions
 # --------------------------------
 
+# @FUNCTION: linux-mod_pkg_setup
+# @DESCRIPTION:
+# It checks the CONFIG_CHECK options (see linux-info.eclass(5)), verifies that the kernel is
+# configured, verifies that the sources are prepared, verifies that the modules support is builtin
+# in the kernel and sets the object extension KV_OBJ.
 linux-mod_pkg_setup() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -492,6 +596,14 @@ strip_modulenames() {
 	done
 }
 
+# @FUNCTION: linux-mod_src_compile
+# @DESCRIPTION:
+# It compiles all the modules specified in MODULE_NAMES. For each module the econf command is
+# executed only if ECONF_PARAMS is defined, the name of the target is specified by BUILD_TARGETS
+# while the options are in BUILD_PARAMS (all the modules share these variables). The compilation
+# happens inside ${srcdir}.
+#
+# Look at the description of these variables for more details.
 linux-mod_src_compile() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -535,8 +647,8 @@ linux-mod_src_compile() {
 						${BUILD_PARAMS} \
 						${BUILD_TARGETS} " \
 				|| die "Unable to emake HOSTCC="$(tc-getBUILD_CC)" CROSS_COMPILE=${CHOST}- LDFLAGS="$(get_abi_LDFLAGS)" ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}"
-			touch ${srcdir}/.built
 			cd ${OLDPWD}
+			touch ${srcdir}/.built
 		fi
 	done
 
@@ -544,6 +656,17 @@ linux-mod_src_compile() {
 	ABI="${myABI}"
 }
 
+# @FUNCTION: linux-mod_src_install
+# @DESCRIPTION:
+# It install the modules specified in MODULES_NAME. The modules should be inside the ${objdir}
+# directory and they are installed inside /lib/modules/${KV_FULL}/${libdir}.
+#
+# The modprobe.d/modules.d configuration file is automatically generated if the
+# MODULESD_<modulename>_* variables are defined. The only way to stop this process is by
+# setting MODULESD_<modulename>_ENABLED=no. At the end the documentation specified via
+# MODULESD_<modulename>_DOCS is also installed.
+#
+# Look at the description of these variables for more details.
 linux-mod_src_install() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -571,6 +694,9 @@ linux-mod_src_install() {
 	done
 }
 
+# @FUNCTION: linux-mod_pkg_preinst
+# @DESCRIPTION:
+# It checks what to do after having merged the package.
 linux-mod_pkg_preinst() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -579,6 +705,11 @@ linux-mod_pkg_preinst() {
 	[ -d "${ED}lib/modules" ] && UPDATE_MODULEDB=true || UPDATE_MODULEDB=false
 }
 
+# @FUNCTION: linux-mod_pkg_postinst
+# @DESCRIPTION:
+# It executes /sbin/depmod and adds the package to the /var/lib/module-rebuild/moduledb
+# database (if ${ED}/lib/modules is created) and it runs /sbin/update-modules
+# (if ${ED}/etc/modules.d is created).
 linux-mod_pkg_postinst() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -587,6 +718,10 @@ linux-mod_pkg_postinst() {
 	${UPDATE_MODULEDB} && update_moduledb;
 }
 
+# @FUNCTION: linux-mod_pkg_postrm
+# @DESCRIPTION:
+# It removes the package from the /var/lib/module-rebuild/moduledb database but it doens't
+# call /sbin/depmod and /sbin/update-modules because the modules are still installed.
 linux-mod_pkg_postrm() {
 	debug-print-function ${FUNCNAME} $*
 	remove_moduledb;

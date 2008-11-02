@@ -1,53 +1,93 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.55 2008/03/21 11:11:27 dsd Exp $
-#
-# Description: This eclass is used as a central eclass for accessing kernel
-#			   related information for sources already installed.
-#			   It is vital for linux-mod to function correctly, and is split
-#			   out so that any ebuild behaviour "templates" are abstracted out
-#			   using additional eclasses.
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.56 2008/10/31 22:01:32 dsd Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
 #
 # Please direct your bugs to the current eclass maintainer :)
 
+# @ECLASS: linux-info.eclass
+# @MAINTAINER:
+# kernel-misc@gentoo.org
+# @BLURB: eclass used for accessing kernel related information
+# @DESCRIPTION:
+# This eclass is used as a central eclass for accessing kernel
+# related information for sources already installed.
+# It is vital for linux-mod.eclass to function correctly, and is split
+# out so that any ebuild behaviour "templates" are abstracted out
+# using additional eclasses.
+
 # A Couple of env vars are available to effect usage of this eclass
 # These are as follows:
+
+# @ECLASS-VARIABLE: KERNEL_DIR
+# @DESCRIPTION:
+# A string containing the directory of the target kernel sources. The default value is
+# "/usr/src/linux"
+
+# @ECLASS-VARIABLE: CONFIG_CHECK
+# @DESCRIPTION:
+# A string containing a list of .config options to check for before
+# proceeding with the install.
 #
-# Env Var	Option		Description
-# KERNEL_DIR	<string>	The directory containing kernel the target kernel
-#				sources.
-# CONFIG_CHECK	<string>	a list of .config options to check for before
-#				proceeding with the install. ie: CONFIG_CHECK="MTRR"
-#				You can also check that an option doesn't exist by
-#				prepending it with an exclamation mark (!).
-#				ie: CONFIG_CHECK="!MTRR"
-#				To simply warn about a missing option, prepend a '~'.
-# ERROR_CFG		<string>	The error message to display when the above check
-#				fails. <CFG> should reference the appropriate option
-#				as above. ie: ERROR_MTRR="MTRR exists in the .config
-#				but shouldn't!!"
-# KBUILD_OUTPUT	<string>	This is passed on commandline, or can be set from
-#				the kernel makefile. This contains the directory
-#				which is to be used as the kernel object directory.
+#   e.g.: CONFIG_CHECK="MTRR"
+#
+# You can also check that an option doesn't exist by
+# prepending it with an exclamation mark (!).
+#
+#   e.g.: CONFIG_CHECK="!MTRR"
+#
+# To simply warn about a missing option, prepend a '~'.
+
+# @ECLASS-VARIABLE: ERROR_<CFG>
+# @DESCRIPTION:
+# A string containing the error message to display when the check against CONFIG_CHECK
+# fails. <CFG> should reference the appropriate option used in CONFIG_CHECK.
+#
+#   e.g.: ERROR_MTRR="MTRR exists in the .config but shouldn't!!"
+
+# @ECLASS-VARIABLE: KBUILD_OUTPUT
+# @DESCRIPTION:
+# A string passed on commandline, or set from the kernel makefile. It contains the directory
+# which is to be used as the kernel object directory.
 
 # There are also a couple of variables which are set by this, and shouldn't be
 # set by hand. These are as follows:
-#
-# Env Var		Option		Description
-# KV_FULL		<string>	The full kernel version. ie: 2.6.9-gentoo-johnm-r1
-# KV_MAJOR		<integer>	The kernel major version. ie: 2
-# KV_MINOR		<integer>	The kernel minor version. ie: 6
-# KV_PATCH		<integer>	The kernel patch version. ie: 9
-# KV_EXTRA		<string>	The kernel EXTRAVERSION. ie: -gentoo
-# KV_LOCAL		<string>	The kernel LOCALVERSION concatenation. ie: -johnm
-# KV_DIR		<string>	The kernel source directory, will be null if
-#					KERNEL_DIR is invalid.
-# KV_OUT_DIR		<string>	The kernel object directory. will be KV_DIR unless
-#					koutput is used. This should be used for referencing
-#					.config.
+
+# @ECLASS-VARIABLE: KV_FULL
+# @DESCRIPTION:
+# A read-only variable. It's a string containing the full kernel version. ie: 2.6.9-gentoo-johnm-r1
+
+# @ECLASS-VARIABLE: KV_MAJOR
+# @DESCRIPTION:
+# A read-only variable. It's an integer containing the kernel major version. ie: 2
+
+# @ECLASS-VARIABLE: KV_MINOR
+# @DESCRIPTION:
+# A read-only variable. It's an integer containing the kernel minor version. ie: 6
+
+# @ECLASS-VARIABLE: KV_PATCH
+# @DESCRIPTION:
+# A read-only variable. It's an integer containing the kernel patch version. ie: 9
+
+# @ECLASS-VARIABLE: KV_EXTRA
+# @DESCRIPTION:
+# A read-only variable. It's a string containing the kernel EXTRAVERSION. ie: -gentoo
+
+# @ECLASS-VARIABLE: KV_LOCAL
+# @DESCRIPTION:
+# A read-only variable. It's a string containing the kernel LOCALVERSION concatenation. ie: -johnm
+
+# @ECLASS-VARIABLE: KV_DIR
+# @DESCRIPTION:
+# A read-only variable. It's a string containing the kernel source directory, will be null if
+# KERNEL_DIR is invalid.
+
+# @ECLASS-VARIABLE: KV_OUT_DIR
+# @DESCRIPTION:
+# A read-only variable. It's a string containing the kernel object directory, will be KV_DIR unless
+# KBUILD_OUTPUT is used. This should be used for referencing .config.
 
 # And to ensure all the weirdness with crosscompile
 inherit toolchain-funcs versionator
@@ -101,9 +141,11 @@ qeerror() { qout eerror "${@}" ; }
 # File Functions
 # ---------------------------------------
 
-# getfilevar accepts 2 vars as follows:
-# getfilevar <VARIABLE> <CONFIGFILE>
-
+# @FUNCTION: getfilevar
+# @USAGE: variable configfile
+# @RETURN: the value of the variable
+# @DESCRIPTION:
+# It detects the value of the variable defined in the file configfile
 getfilevar() {
 local	ERROR workingdir basefname basedname myARCH="${ARCH}"
 	ERROR=0
@@ -132,10 +174,18 @@ local	ERROR workingdir basefname basedname myARCH="${ARCH}"
 }
 
 
+# @FUNCTION: linux_config_exists
+# @RETURN: true or false
+# @DESCRIPTION:
+# It returns true if .config exists otherwise false
 linux_config_exists() {
 	[ -s "${KV_OUT_DIR}/.config" ]
 }
 
+# @FUNCTION: require_configured_kernel
+# @DESCRIPTION:
+# This function verifies that the current kernel is configured (it checks against the existence of .config)
+# otherwise it dies.
 require_configured_kernel() {
 	if ! linux_config_exists; then
 		qeerror "Could not find a usable .config in the kernel source directory."
@@ -146,6 +196,11 @@ require_configured_kernel() {
 	fi
 }
 
+# @FUNCTION: linux_chkconfig_present
+# @USAGE: option
+# @RETURN: true or false
+# @DESCRIPTION:
+# It checks that CONFIG_<option>=y or CONFIG_<option>=n is present in the current kernel .config
 linux_chkconfig_present() {
 local	RESULT
 	require_configured_kernel
@@ -153,6 +208,11 @@ local	RESULT
 	[ "${RESULT}" = "m" -o "${RESULT}" = "y" ] && return 0 || return 1
 }
 
+# @FUNCTION: linux_chkconfig_module
+# @USAGE: option
+# @RETURN: true or false
+# @DESCRIPTION:
+# It checks that CONFIG_<option>=m is present in the current kernel .config
 linux_chkconfig_module() {
 local	RESULT
 	require_configured_kernel
@@ -160,6 +220,11 @@ local	RESULT
 	[ "${RESULT}" = "m" ] && return 0 || return 1
 }
 
+# @FUNCTION: linux_chkconfig_builtin
+# @USAGE: option
+# @RETURN: true or false
+# @DESCRIPTION:
+# It checks that CONFIG_<option>=y is present in the current kernel .config
 linux_chkconfig_builtin() {
 local	RESULT
 	require_configured_kernel
@@ -167,6 +232,11 @@ local	RESULT
 	[ "${RESULT}" = "y" ] && return 0 || return 1
 }
 
+# @FUNCTION: linux_chkconfig_string
+# @USAGE: option
+# @RETURN: CONFIG_<option>
+# @DESCRIPTION:
+# It prints the CONFIG_<option> value of the current kernel .config (it requires a configured kernel).
 linux_chkconfig_string() {
 	require_configured_kernel
 	getfilevar "CONFIG_${1}" "${KV_OUT_DIR}/.config"
@@ -175,15 +245,22 @@ linux_chkconfig_string() {
 # Versioning Functions
 # ---------------------------------------
 
-# kernel_is returns true when the version is the same as the passed version
+# @FUNCTION: kernel_is
+# @USAGE: [-lt -gt -le -ge -eq] major_number [minor_number patch_number]
+# @RETURN: true or false
+# @DESCRIPTION:
+# It returns true when the current kernel version satisfies the comparison against the passed version.
+# -eq is the default comparison.
 #
+# @CODE
 # For Example where KV = 2.6.9
-# kernel_is 2 4 	returns false
-# kernel_is 2		returns true
-# kernel_is 2 6		returns true
-# kernel_is 2 6 8	returns false
-# kernel_is 2 6 9	returns true
-#
+# kernel_is 2 4   returns false
+# kernel_is 2     returns true
+# kernel_is 2 6   returns true
+# kernel_is 2 6 8 returns false
+# kernel_is 2 6 9 returns true
+# @CODE
+
 # got the jist yet?
 
 kernel_is() {
@@ -234,6 +311,16 @@ get_localversion() {
 	echo ${x}
 }
 
+# @FUNCTION: get_version
+# @DESCRIPTION:
+# It gets the version of the kernel inside KERNEL_DIR and populates the KV_FULL variable
+# (if KV_FULL is already set it does nothing).
+#
+# The kernel version variables (KV_MAJOR, KV_MINOR, KV_PATCH, KV_EXTRA and KV_LOCAL) are also set.
+#
+# The KV_DIR is set using the KERNEL_DIR env var, the KV_DIR_OUT is set using a valid
+# KBUILD_OUTPUT (in a decreasing priority list, we look for the env var, makefile var or the
+# symlink /lib/modules/${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}/build).
 get_version() {
 	local kbuild_output
 
@@ -338,6 +425,10 @@ get_version() {
 	return 0
 }
 
+# @FUNCTION: get_running_version
+# @DESCRIPTION:
+# It gets the version of the current running kernel and the result is the same as get_version() if the
+# function can find the sources.
 get_running_version() {
 	KV_FULL=$(uname -r)
 
@@ -366,6 +457,9 @@ get_running_version() {
 # ebuild check functions
 # ---------------------------------------
 
+# @FUNCTION: check_kernel_built
+# @DESCRIPTION:
+# This function verifies that the current kernel sources have been already prepared otherwise it dies.
 check_kernel_built() {
 	# if we haven't determined the version yet, we need to
 	require_configured_kernel
@@ -386,6 +480,9 @@ check_kernel_built() {
 	fi
 }
 
+# @FUNCTION: check_modules_supported
+# @DESCRIPTION:
+# This function verifies that the current kernel support modules (it checks CONFIG_MODULES=y) otherwise it dies.
 check_modules_supported() {
 	# if we haven't determined the version yet, we need too.
 	require_configured_kernel
@@ -400,6 +497,10 @@ check_modules_supported() {
 	fi
 }
 
+# @FUNCTION: check_extra_config
+# @DESCRIPTION:
+# It checks the kernel config options specified by CONFIG_CHECK. It dies only when a required config option (i.e.
+# the prefix ~ is not used) doesn't satisfy the directive.
 check_extra_config() {
 	local	config negate die error reworkmodulenames
 	local	soft_errors_count=0 hard_errors_count=0 config_required=0
@@ -590,7 +691,10 @@ check_zlibinflate() {
 ################################
 # Default pkg_setup
 # Also used when inheriting linux-mod to force a get_version call
-
+# @FUNCTION: linux-info_pkg_setup
+# @DESCRIPTION:
+# Force a get_version() call when inherited from linux-mod.eclass and then check if the kernel is configured
+# to support the options specified in CONFIG_CHECK (if not null)
 linux-info_pkg_setup() {
 	get_version || die "Unable to calculate Linux Kernel version"
 

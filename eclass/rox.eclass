@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.29 2008/06/04 13:12:23 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.30 2008/10/31 13:02:31 lack Exp $
 
 # ROX eclass Version 3
 
@@ -200,10 +200,11 @@ rox_install_desktop() {
 			local APPDIRICON=${APPNAME}/.DirIcon
 			local APPICON
 			case "$(file -b ${APPDIRICON})" in
-				"PNG image data"*)
+				"PNG image"*)
 					APPICON=${WRAPPERNAME}.png
 					;;
-				"XML 1.0 document text"*)
+				"XML 1.0 document text"* | \
+				"SVG Scalable Vector Graphics image"*)
 					APPICON=${WRAPPERNAME}.svg
 					;;
 				"X pixmap image text"*)

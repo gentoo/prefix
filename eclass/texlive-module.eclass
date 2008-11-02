@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.18 2008/09/02 10:00:06 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.19 2008/10/31 15:16:28 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -49,8 +49,7 @@ inherit texlive-common
 
 HOMEPAGE="http://www.tug.org/texlive/"
 
-COMMON_DEPEND=">=app-text/texlive-core-${PV}
-	${TEXLIVE_MODULES_DEPS}"
+COMMON_DEPEND=">=app-text/texlive-core-${PV}"
 
 IUSE=""
 
@@ -60,6 +59,8 @@ if [ -z "${PV##2007*}" ] ; then
 for i in ${TEXLIVE_MODULE_CONTENTS}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
 done
+COMMON_DEPEND="${COMMON_DEPEND}
+	${TEXLIVE_MODULES_DEPS}"
 DEPEND="${COMMON_DEPEND}
 	app-arch/unzip"
 else
