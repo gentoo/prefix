@@ -3,7 +3,6 @@ multilib
 
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
-elibc_glibc
 elibc_AIX
 elibc_Darwin
 elibc_FreeBSD
@@ -13,8 +12,9 @@ elibc_Interix
 elibc_NetBSD
 elibc_OpenBSD
 elibc_SunOS
+elibc_glibc
+elibc_mintlib
 
-kernel_linux
 kernel_AIX
 kernel_Darwin
 kernel_FreeBSD
@@ -24,6 +24,8 @@ kernel_Interix
 kernel_NetBSD
 kernel_OpenBSD
 kernel_SunOS
+kernel_freemint
+kernel_linux
 
 # re-add userland GNU
 -userland_GNU
