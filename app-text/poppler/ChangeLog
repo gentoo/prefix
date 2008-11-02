@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.179 2008/10/25 18:41:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.180 2008/11/01 21:38:15 loki_val Exp $
+
+  01 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-0.6.1-r1.ebuild:
+  Cleanup of GLSA-affected ebuild.
 
   25 Oct 2008; Raúl Porcel <armin76@gentoo.org> poppler-0.10.0.ebuild:
   Add ~ia64 wrt #240520
