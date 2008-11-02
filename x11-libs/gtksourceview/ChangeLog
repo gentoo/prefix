@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.145 2008/10/18 22:45:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.146 2008/11/01 18:02:13 leio Exp $
+
+*gtksourceview-2.4.1 (01 Nov 2008)
+
+  01 Nov 2008; Mart Raudsepp <leio@gentoo.org> -gtksourceview-2.4.0.ebuild,
+  +gtksourceview-2.4.1.ebuild:
+  Version bump. Fixes crash when inserting images in the buffer, adds
+  graphviz syntax highlighting and improves the octave one, translation
+  updates
 
   18 Oct 2008; Brent Baude <ranger@gentoo.org> gtksourceview-2.2.2.ebuild:
   Marking gtksourceview-2.2.2 ppc stable for bug 236971

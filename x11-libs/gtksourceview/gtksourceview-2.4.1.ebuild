@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/gtksourceview-2.4.0.ebuild,v 1.1 2008/10/07 10:59:55 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/gtksourceview-2.4.1.ebuild,v 1.1 2008/11/01 18:02:13 leio Exp $
 
 EAPI="prefix"
 
