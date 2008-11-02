@@ -1,6 +1,9 @@
 # ChangeLog for net-news/snownews
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.23 2008/10/27 03:46:32 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.24 2008/11/01 17:22:51 nixnut Exp $
+
+  01 Nov 2008; nixnut <nixnut@gentoo.org> snownews-1.5.10.ebuild:
+  Stable on ppc wrt bug 244538
 
   27 Oct 2008; Jeremy Olexa <darkside@gentoo.org> snownews-1.5.10.ebuild:
   amd64 stable, bug 244538
