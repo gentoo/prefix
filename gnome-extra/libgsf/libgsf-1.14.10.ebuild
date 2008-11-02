@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils gnome2 python multilib
+inherit eutils gnome2 python multilib autotools
 
 DESCRIPTION="The GNOME Structured File Library"
 HOMEPAGE="http://www.gnome.org/"
@@ -51,6 +51,9 @@ src_unpack() {
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
+
+	epatch "${FILESDIR}"/${P}-solaris.patch
+	eautoreconf
 }
 
 pkg_preinst() {
