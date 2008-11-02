@@ -1,6 +1,11 @@
 # ChangeLog for xfce-base/xfwm4
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.119 2008/09/21 22:14:06 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.120 2008/10/30 22:05:39 angelos Exp $
+
+*xfwm4-4.4.3 (30 Oct 2008)
+
+  30 Oct 2008; Christoph Mende <angelos@gentoo.org> +xfwm4-4.4.3.ebuild:
+  Xfce-4.4.3 bump
 
 *xfwm4-4.4.2-r1 (21 Sep 2008)
 
