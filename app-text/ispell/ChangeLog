@@ -1,6 +1,11 @@
 # ChangeLog for app-text/ispell
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.35 2008/01/19 14:58:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.36 2008/11/01 08:14:41 pva Exp $
+
+*ispell-3.3.02-r1 (01 Nov 2008)
+
+  01 Nov 2008; Peter Volkov <pva@gentoo.org> +ispell-3.3.02-r1.ebuild:
+  Resepect CC, CFLAGS and LDFLAGS, bug #209709 reported by Diego Pettenò.
 
   19 Jan 2008; Fabian Groffen <grobian@gentoo.org> ispell-3.2.06-r6.ebuild:
   Dropped ppc-macos keyword, see you in prefix
