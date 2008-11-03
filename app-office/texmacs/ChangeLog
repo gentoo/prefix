@@ -1,6 +1,15 @@
 # ChangeLog for app-office/texmacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.66 2008/09/03 21:26:23 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.67 2008/11/02 07:14:43 grozin Exp $
+
+*texmacs-1.0.7 (02 Nov 2008)
+
+  02 Nov 2008; Andrey Grozin <grozin@gentoo.org>
+  -files/texmacs-1.0.6-gcc-4.1.patch,
+  -files/texmacs-1.0.6-maxima-5.9.3.patch,
+  +files/texmacs-1.0.7-autotroll.patch, +files/texmacs-1.0.7-strip.patch,
+  +texmacs-1.0.7.ebuild:
+  Version bump, a new experimental Qt port added with USE=qt4
 
   03 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   -texmacs-1.0.6-r1.ebuild:
