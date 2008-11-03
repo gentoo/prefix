@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.95 2008/06/14 18:18:51 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.97 2008/11/02 12:55:22 jmbsvicetto Exp $
+
+  02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Reassigned package to maintainer-needed.
+
+  02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing eradicator as a maintainer since he was retired.
 
   14 Jun 2008; Zac Medico <zmedico@gentoo.org> libexif-0.6.16.ebuild,
   libexif-0.6.16-r1.ebuild:
