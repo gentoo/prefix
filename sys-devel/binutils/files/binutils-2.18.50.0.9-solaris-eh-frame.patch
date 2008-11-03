@@ -1,0 +1,183 @@
+From binutils-return-56479-listarch-binutils=sources dot redhat dot com at sourceware dot org Thu Sep 25 17:25:25 2008
+Return-Path: <binutils-return-56479-listarch-binutils=sources dot redhat dot com at sourceware dot org>
+Delivered-To: listarch-binutils at sources dot redhat dot com
+Received: (qmail 10710 invoked by alias); 25 Sep 2008 17:25:25 -0000
+Received: (qmail 10674 invoked by uid 22791); 25 Sep 2008 17:25:24 -0000
+X-Spam-Check-By: sourceware.org
+Received: from mel.act-europe.fr (HELO mel.act-europe.fr) (212.99.106.210)     by sourceware.org (qpsmtpd/0.31) with ESMTP; Thu, 25 Sep 2008 17:24:27 +0000
+Received: from localhost (localhost [127.0.0.1]) 	by filtered-smtp.eu.adacore.com (Postfix) with ESMTP id 0FCD4290020; 	Thu, 25 Sep 2008 19:24:24 +0200 (CEST)
+Received: from mel.act-europe.fr ([127.0.0.1]) 	by localhost (smtp.eu.adacore.com [127.0.0.1]) (amavisd-new, port 10024) 	with ESMTP id z8OGQ06LgFhb; Thu, 25 Sep 2008 19:24:21 +0200 (CEST)
+Received: from [192.168.1.3] (88-122-74-61.rev.libertysurf.net [88.122.74.61]) 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits)) 	(No client certificate requested) 	by mel.act-europe.fr (Postfix) with ESMTP id 33DFA290011 	for <binutils@sourceware.org>; Thu, 25 Sep 2008 19:24:21 +0200 (CEST)
+From: Eric Botcazou <ebotcazou at adacore dot com>
+To: binutils at sourceware dot org
+Subject: [PATCH] Fix EH frame problem on Solaris
+Date: Thu, 25 Sep 2008 19:25:16 +0200
+User-Agent: KMail/1.9.6 (enterprise 20070904.708012)
+MIME-Version: 1.0
+Content-Type: Multipart/Mixed;   boundary="Boundary-00=_8l82Iz/Ftp2txSB"
+Message-Id: <200809251925.16322.ebotcazou@adacore.com>
+Mailing-List: contact binutils-help at sourceware dot org; run by ezmlm
+Precedence: bulk
+List-Id: <binutils.sourceware.org>
+List-Subscribe: <mailto:binutils-subscribe at sourceware dot org>
+List-Archive: <http://sourceware.org/ml/binutils/>
+List-Post: <mailto:binutils at sourceware dot org>
+List-Help: <mailto:binutils-help at sourceware dot org>, <http://sourceware dot org/ml/#faqs>
+Sender: binutils-owner at sourceware dot org
+Delivered-To: mailing list binutils at sourceware dot org
+
+
+--Boundary-00=_8l82Iz/Ftp2txSB
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Hi,
+
+EH is broken with GCC mainline on Solaris (both SPARC and x86) if you use the 
+combination GCC + GAS + Sun ld: FDEs from libgcc_eh.a are not found in the 
+final executable by the unwinder; therefore it immediately aborts.
+
+The problem is that the Sun linker doesn't merge read-only and read-write 
+sections into a single read-write section.  This was working fine when GCC 
+was emitting the EH frame itself because GCC features a configure check, 
+namely HAVE_LD_RO_RW_SECTION_MIXING, that forces the section to be writable
+if it fails.  Now GAS is emitting the EH frame, sometimes read-only and 
+sometimes read-write depending on the relocations, and this breaks.
+
+Fixed by defining DWARF2_EH_FRAME_READ_ONLY to 0 on Solaris, tested both on 
+SPARC and x86.  OK for mainline and 2.19 branch?
+
+
+2008-09-25  Eric Botcazou  <ebotcazou@adacore.com>
+
+gas/
+	* Makefile.am (TARG_ENV_HFILES): Add config/te-solaris.h.
+	* Makefile.in (TARG_ENV_HFILES): Likewise.
+	* configure.tgt (Solaris targets): Set em=solaris.
+	* config/te-solaris.h: New file.
+
+
+-- 
+Eric Botcazou
+
+--Boundary-00=_8l82Iz/Ftp2txSB
+Content-Type: text/x-diff;
+  charset="us-ascii";
+  name="p.diff"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="p.diff"
+
+? config/te-solaris.h
+Index: Makefile.am
+===================================================================
+RCS file: /cvs/src/src/gas/Makefile.am,v
+retrieving revision 1.159.2.1
+diff -u -r1.159.2.1 Makefile.am
+--- Makefile.am	9 Sep 2008 08:02:18 -0000	1.159.2.1
++++ Makefile.am	25 Sep 2008 14:48:03 -0000
+@@ -406,6 +406,7 @@
+ 	config/te-pe.h \
+ 	config/te-psos.h \
+ 	config/te-riscix.h \
++	config/te-solaris.h \
+ 	config/te-sparcaout.h \
+ 	config/te-sun3.h \
+ 	config/te-svr4.h \
+Index: Makefile.in
+===================================================================
+RCS file: /cvs/src/src/gas/Makefile.in,v
+retrieving revision 1.177.2.1
+diff -u -r1.177.2.1 Makefile.in
+--- Makefile.in	9 Sep 2008 08:02:18 -0000	1.177.2.1
++++ Makefile.in	25 Sep 2008 14:48:03 -0000
+@@ -653,6 +653,7 @@
+ 	config/te-pe.h \
+ 	config/te-psos.h \
+ 	config/te-riscix.h \
++	config/te-solaris.h \
+ 	config/te-sparcaout.h \
+ 	config/te-sun3.h \
+ 	config/te-svr4.h \
+Index: configure.tgt
+===================================================================
+RCS file: /cvs/src/src/gas/configure.tgt,v
+retrieving revision 1.41
+diff -u -r1.41 configure.tgt
+--- configure.tgt	7 Jul 2008 16:43:06 -0000	1.41
++++ configure.tgt	25 Sep 2008 14:48:03 -0000
+@@ -198,7 +198,7 @@
+   i386-*-linux-*)			fmt=elf em=linux ;;
+   i386-*-lynxos*)			fmt=elf em=lynx ;;
+   i386-*-sysv[45]*)			fmt=elf ;;
+-  i386-*-solaris*)			fmt=elf ;;
++  i386-*-solaris*)			fmt=elf em=solaris ;;
+   i386-*-freebsdaout*)			fmt=aout em=386bsd ;;
+   i386-*-freebsd[12].*)			fmt=aout em=386bsd ;;
+   i386-*-freebsd[12])			fmt=aout em=386bsd ;;
+@@ -322,7 +322,7 @@
+   ppc-*-*n*bsd* | ppc-*-elf*)		fmt=elf ;;
+   ppc-*-eabi* | ppc-*-sysv4*)		fmt=elf ;;
+   ppc-*-linux-*)			fmt=elf em=linux ;;
+-  ppc-*-solaris*)			fmt=elf ;;
++  ppc-*-solaris*)			fmt=elf em=solaris ;;
+   ppc-*-rtems*)				fmt=elf ;;
+   ppc-*-macos*)				fmt=coff em=macos ;;
+   ppc-*-nto*)				fmt=elf ;;
+@@ -362,7 +362,7 @@
+   sparc-fujitsu-none)			fmt=aout ;;
+   sparc-*-elf)				fmt=elf ;;
+   sparc-*-sysv4*)			fmt=elf ;;
+-  sparc-*-solaris*)			fmt=elf ;;
++  sparc-*-solaris*)			fmt=elf em=solaris ;;
+   sparc-*-netbsdelf*)			fmt=elf em=nbsd ;;
+   sparc-*-netbsd*)
+     case ${cpu} in
+@@ -408,7 +408,8 @@
+   *-*-generic)				fmt=generic ;;
+   *-*-xray | *-*-hms)			fmt=coff ;;
+   *-*-sim)				fmt=coff ;;
+-  *-*-elf | *-*-sysv4* | *-*-solaris*)	fmt=elf ;;
++  *-*-elf | *-*-sysv4*)			fmt=elf ;;
++  *-*-solaris*)				fmt=elf em=solaris ;;
+   *-*-aros*)				fmt=elf em=linux ;;
+   *-*-vxworks* | *-*-windiss)		fmt=elf em=vxworks ;;
+   *-*-netware)				fmt=elf em=netware ;;
+--- /dev/null	2007-09-21 21:12:45.000000000 +0200
++++ config/te-solaris.h	2008-09-25 12:18:57.000000000 +0200
+@@ -0,0 +1,30 @@
++/* Copyright 2008 Free Software Foundation, Inc.
++
++   This file is part of GAS, the GNU Assembler.
++
++   GAS is free software; you can redistribute it and/or modify
++   it under the terms of the GNU General Public License as
++   published by the Free Software Foundation; either version 3,
++   or (at your option) any later version.
++
++   GAS is distributed in the hope that it will be useful, but
++   WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
++   the GNU General Public License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with GAS; see the file COPYING.  If not, write to the Free
++   Software Foundation, 51 Franklin Street - Fifth Floor, Boston, MA
++   02110-1301, USA.  */
++
++#define TE_SOLARIS
++
++#define LOCAL_LABELS_DOLLAR 1
++#define LOCAL_LABELS_FB 1
++
++/* The Sun linker doesn't merge read-only and read-write sections into
++   a single read-write section so we must force all EH frame sections
++   to be read-write.  */
++#define DWARF2_EH_FRAME_READ_ONLY 0
++
++#include "obj-format.h"
+
+--Boundary-00=_8l82Iz/Ftp2txSB--
+

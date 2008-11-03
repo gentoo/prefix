@@ -14,6 +14,8 @@ src_unpack() {
 	tc-binutils_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-reloc.patch
+	cd gas
+	epatch "${FILESDIR}"/${P}-solaris-eh-frame.patch
 }
 
 src_compile() {

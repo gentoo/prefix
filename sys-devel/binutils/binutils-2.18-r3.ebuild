@@ -8,7 +8,7 @@ PATCHVER="1.9"
 ELF2FLT_VER=""
 inherit toolchain-binutils autotools
 
-KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
@@ -22,6 +22,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}-bfd-bufsz.patch
 	# http://sourceware.org/bugzilla/show_bug.cgi?id=5449
 	epatch "${FILESDIR}"/${PV}-bfd-ia64elf.patch
+
+	epatch "${FILESDIR}"/${PV}-solarisx86_64.patch
+	cd gas
+	epatch "${FILESDIR}"/${PN}-2.18.50.0.9-solaris-eh-frame.patch
 }
 
 src_compile() {
