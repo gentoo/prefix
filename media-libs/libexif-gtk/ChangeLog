@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libexif-gtk
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif-gtk/ChangeLog,v 1.32 2007/11/17 13:17:13 nixnut Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif-gtk/ChangeLog,v 1.33 2008/11/02 06:54:40 jmbsvicetto Exp $
+
+  02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing eradicator as a maintainer since he was retired.
 
   17 Nov 2007; nixnut <nixnut@gentoo.org> libexif-gtk-0.3.5-r2.ebuild:
   Stable on ppc wrt bug 198845
