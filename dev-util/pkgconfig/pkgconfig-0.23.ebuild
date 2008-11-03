@@ -22,13 +22,6 @@ DEPEND=""
 
 S=${WORKDIR}/${MY_P}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch || die
-	eprefixify pkg.c || die
-}
-
 src_compile() {
 	local myconf
 
