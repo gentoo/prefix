@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc13.ebuild,v 1.1 2008/11/01 15:57:26 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc13.ebuild,v 1.2 2008/11/02 18:14:26 cedk Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,7 @@ src_compile() {
 		myconf="$(use_enable pkcs11)"
 	fi
 
+	epatch "${FILESDIR}/${P}-peercred.patch"
 	econf ${myconf} \
 		$(use_enable passwordsave password-save) \
 		$(use_enable ssl) \

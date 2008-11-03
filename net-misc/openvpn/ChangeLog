@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.140 2008/11/01 15:57:26 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.141 2008/11/02 18:14:26 cedk Exp $
+
+  02 Nov 2008; Cédric Krier <cedk@gentoo.org>
+  +files/openvpn-2.1_rc13-peercred.patch, openvpn-2.1_rc13.ebuild:
+  Add peercred patch for bug #245181
 
 *openvpn-2.1_rc13 (01 Nov 2008)
 
