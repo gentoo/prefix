@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.85 2008/09/02 22:32:13 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.86 2008/11/02 13:06:44 hkbst Exp $
+
+*clisp-2.47 (02 Nov 2008)
+
+  02 Nov 2008; Marijn Schouten <hkBst@gentoo.org> +clisp-2.47.ebuild:
+  bump
 
   02 Sep 2008; Christian Faulhammer <opfer@gentoo.org> clisp-2.43-r1.ebuild:
   remove dependency on virtual/tetex as requested on bug 208300
