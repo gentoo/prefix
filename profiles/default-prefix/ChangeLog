@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Nov 2008; Fabian Groffen <grobian@gentoo.org> +mint/package.provided,
+  +mint/virtuals:
+  Add missing files to define virtual/libc and virtual/os-headers
+
   03 Nov 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   extended openssh mask on all 5* versions, since they dont build/work on interix
 
