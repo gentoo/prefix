@@ -44,6 +44,12 @@ pkg_setup() {
 	fi
 
 	G2CONF="${G2CONF} $(use_with X x)"
+
+	if use X ; then
+		G2CONF="${G2CONF} \
+			--x-includes=${EPREFIX}/usr/include \
+			--x-libraries=${EPREFIX}/usr/lib"
+	fi
 }
 
 src_unpack() {
@@ -55,17 +61,6 @@ src_unpack() {
 	if multilib_enabled ; then
 		epatch "${FILESDIR}/${PN}-1.2.5-lib64.patch"
 	fi
-}
-
-src_compile() {
-	local myconf="$(use_with X x)"
-	if use X ; then
-		myconf="${myconf} \
-			--x-includes=${EPREFIX}/usr/include \
-			--x-libraries=${EPREFIX}/usr/lib"
-	fi
-	econf ${myconf} || die "econf failed"
-	emake || "emake failed"
 }
 
 src_install() {
