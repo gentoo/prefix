@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Nov 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
+  mask >=net-print/xfprint-4.4.3 because it needs cups or lprng which we both
+  don't have
+
   03 Nov 2008; Fabian Groffen <grobian@gentoo.org> +mint/package.provided,
   +mint/virtuals:
   Add missing files to define virtual/libc and virtual/os-headers
