@@ -2,4 +2,4 @@
 
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
 # fails to compile on amd64 because it doesn't use -fPIC everywhere
-=x11-libs/vte-0.17.4
+>=x11-libs/vte-0.17.4
