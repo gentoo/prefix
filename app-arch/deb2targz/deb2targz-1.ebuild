@@ -23,5 +23,7 @@ src_unpack() {
 }
 
 src_install() {
+	sed -i -e 's,#!/usr/bin/perl,#!/bin/env perl,' ${PN}
+
 	dobin ${PN}
 }
