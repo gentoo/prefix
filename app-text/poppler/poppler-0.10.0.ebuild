@@ -37,6 +37,9 @@ src_unpack() {
 src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
 
+	# libtool doesn't know prefix paths, bug #245098
+	append-ldflags -L${EPREFIX}/usr/lib
+
 	econf 	--disable-static		\
 		--disable-poppler-qt4		\
 		--disable-poppler-glib		\
