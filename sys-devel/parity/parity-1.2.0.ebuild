@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="An Interix to native Win32 Cross-Compiler Tool (requires Visual Studio)."
 HOMEPAGE="http://www.sourceforge.net/projects/parity/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
@@ -12,6 +14,13 @@ LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~x86-winnt"
 IUSE=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-winnt-version.patch
+}
 
 pkg_setup() {
 	if [ -z "${MSSDK}" ]; then

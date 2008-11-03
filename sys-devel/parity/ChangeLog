@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Nov 2008; Markus Duft <mduft@gentoo.org>
+  +files/parity-1.2.0-winnt-version.patch, parity-1.2.0.ebuild,
+  parity-1.2.0.ebuild, parity-1.2.0.ebuild:
+  added minimum winnt version define.
+
 *parity-1.2.0 (29 Oct 2008)
 
   29 Oct 2008; Markus Duft <mduft@gentoo.org> -parity-1.0.5.ebuild,
