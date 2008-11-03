@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Nov 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  extended openssh mask on all 5* versions, since they dont build/work on interix
+
   02 Nov 2008; Fabian Groffen <grobian@gentoo.org>
   +mint, +mint/m68k, +mint/m68k/make.defaults, +mint/m68k/parent,
   +mint/m68k/use.mask, +mint/make.defaults, +mint/packages,
