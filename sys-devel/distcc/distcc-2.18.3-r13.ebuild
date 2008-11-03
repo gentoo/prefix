@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r13.ebuild,v 1.2 2008/08/17 03:24:18 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r13.ebuild,v 1.3 2008/11/02 22:24:23 gengor Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ SRC_URI="http://distcc.samba.org/ftp/distcc/distcc-${PV}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="avahi gnome gtk selinux ipv6"
+IUSE="avahi gnome gtk hardened selinux ipv6"
 
 COMMON_DEP="dev-libs/popt
 	avahi? ( >=net-dns/avahi-0.6.5 )"
@@ -66,7 +66,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/distcc-freedesktop.patch"
 	epatch "${FILESDIR}/distcc-create-dir.patch"
-	epatch "${FILESDIR}"/${PN}-march-native.patch
+	epatch "${FILESDIR}/${PN}-march-native.patch"
 
 	rm -v popt/*.c || die
 	if use avahi; then
@@ -78,6 +78,9 @@ src_unpack() {
 	cp "${FILESDIR}"/distcc-config .
 	epatch "${FILESDIR}"/distcc-config-prefix.patch
 	eprefixify distcc-config
+
+	# Bugs #120001, #167844 and probably more. See patch for description.
+	use hardened && epatch "${FILESDIR}/distcc-hardened.patch"
 
 	eautoreconf
 }
