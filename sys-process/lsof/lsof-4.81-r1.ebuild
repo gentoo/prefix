@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81.ebuild,v 1.1 2008/10/26 03:34:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81-r1.ebuild,v 1.1 2008/11/02 17:39:43 kumba Exp $
 
 EAPI="prefix"
 
@@ -26,9 +26,14 @@ src_unpack() {
 	unpack ${A}
 	cd ${MY_P}
 	unpack ./${MY_P}_src.tar
+	cd "${S}"
+
+	# Patch an over-zealous rejection of open-file listing when
+	# no options are specified on the command line and security
+	# options are enabled.  Bug #244660
+	epatch "${FILESDIR}"/${P}-proc_c.patch
 
 	# now patch the scripts to automate everything
-	cd "${S}"
 	ht_fix_file Configure Customize
 	touch .neverInv
 	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
