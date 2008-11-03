@@ -1,6 +1,13 @@
 # ChangeLog for sci-misc/tinysvm
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-misc/tinysvm/ChangeLog,v 1.5 2007/12/25 17:14:41 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-misc/tinysvm/ChangeLog,v 1.6 2008/11/03 01:20:20 matsuu Exp $
+
+*tinysvm-0.09-r2 (03 Nov 2008)
+
+  03 Nov 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/tinysvm-0.09-r2-pm.patch, +tinysvm-0.09-r2.ebuild:
+  Removed append-ldflags -lstdc++, bug #226919. Fixed -fPIC issue, bug
+  #240366.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing usata from metadata.xml as per #22931.
