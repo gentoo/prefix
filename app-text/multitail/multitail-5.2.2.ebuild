@@ -21,7 +21,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	use x86-interix && epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
