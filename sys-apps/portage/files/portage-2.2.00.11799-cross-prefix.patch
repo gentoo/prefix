@@ -1,8 +1,8 @@
 Index: pym/portage/dbapi/bintree.py
 ===================================================================
---- pym/portage/dbapi/bintree.py	(revision 11514)
+--- pym/portage/dbapi/bintree.py	(revision 11799)
 +++ pym/portage/dbapi/bintree.py	(working copy)
-@@ -11,7 +11,7 @@
+@@ -13,7 +13,7 @@
  from portage.util import ensure_dirs, normalize_path, writemsg, writemsg_stdout
  from portage.versions import best, catpkgsplit, catsplit
  from portage.update import update_dbentries
@@ -11,7 +11,7 @@ Index: pym/portage/dbapi/bintree.py
  
  from portage import dep_expand, listdir, _check_distfile, _movefile
  
-@@ -630,7 +630,7 @@
+@@ -637,7 +637,7 @@
  			from portage.const import CACHE_PATH
  			from urlparse import urlparse
  			urldata = urlparse(base_url)
@@ -22,18 +22,18 @@ Index: pym/portage/dbapi/bintree.py
  			try:
 Index: pym/portage/dbapi/vartree.py
 ===================================================================
---- pym/portage/dbapi/vartree.py	(revision 11514)
+--- pym/portage/dbapi/vartree.py	(revision 11799)
 +++ pym/portage/dbapi/vartree.py	(working copy)
 @@ -8,7 +8,7 @@
  
  from portage.checksum import perform_md5
- from portage.const import CACHE_PATH, CONFIG_MEMORY_FILE, PORTAGE_BIN_PATH, \
--	PRIVATE_PATH, VDB_PATH, EPREFIX, EPREFIX_LSTRIP
-+	PRIVATE_PATH, VDB_PATH, EPREFIX, BROOT, EROOTobject, BPREFIX
+ from portage.const import CACHE_PATH, CONFIG_MEMORY_FILE, \
+-	PORTAGE_PACKAGE_ATOM, PRIVATE_PATH, VDB_PATH, EPREFIX, EPREFIX_LSTRIP
++	PORTAGE_PACKAGE_ATOM, PRIVATE_PATH, VDB_PATH, EPREFIX, BROOT, EROOTobject, BPREFIX
  from portage.data import portage_gid, portage_uid, secpass, ostype
  from portage.dbapi import dbapi
- from portage.dep import dep_getslot, use_reduce, paren_reduce, isvalidatom, \
-@@ -222,7 +222,7 @@
+ from portage.dep import use_reduce, paren_reduce, isvalidatom, \
+@@ -240,7 +240,7 @@
  		# have to call scanelf for preserved libs here as they aren't 
  		# registered in NEEDED.ELF.2 files
  		if self._dbapi.plib_registry and self._dbapi.plib_registry.getPreservedLibs():
@@ -42,16 +42,16 @@ Index: pym/portage/dbapi/vartree.py
  			for items in self._dbapi.plib_registry.getPreservedLibs().values():
  				args += [x.lstrip(".") for x in items]
  			proc = subprocess.Popen(args, stdout=subprocess.PIPE)
-@@ -679,7 +679,7 @@
- 		# have to call otool for preserved libs here as they aren't 
- 		# registered in NEEDED.MACHO.2 files
+@@ -716,7 +716,7 @@
+ 		# have to call scanmacho for preserved libs here as they aren't 
+ 		# registered in NEEDED.MACHO.3 files
  		if self._dbapi.plib_registry and self._dbapi.plib_registry.getPreservedLibs():
--			otool = EPREFIX+"/usr/bin/otool"
-+			otool = BPREFIX+"/usr/bin/otool"
+-			args = [EPREFIX+"/usr/bin/scanmacho", "-qF", "%a;%F;%S;%n"]
++			args = [BPREFIX+"/usr/bin/scanmacho", "-qF", "%a;%F;%S;%n"]
  			for items in self._dbapi.plib_registry.getPreservedLibs().values():
- 				for x in items:
- 					try:
-@@ -1070,7 +1070,7 @@
+ 				args += [x.lstrip(".") for x in items]
+ 			proc = subprocess.Popen(args, stdout=subprocess.PIPE)
+@@ -1098,7 +1098,7 @@
  		now has a categories property that is generated from the
  		available packages.
  		"""
@@ -60,8 +60,8 @@ Index: pym/portage/dbapi/vartree.py
  
  		#cache for category directory mtimes
  		self.mtdircache = {}
-@@ -1095,14 +1095,14 @@
- 			"LICENSE", "PDEPEND", "PROVIDE", "RDEPEND",
+@@ -1123,14 +1123,14 @@
+ 			"LICENSE", "PDEPEND", "PROPERTIES", "PROVIDE", "RDEPEND",
  			"repository", "RESTRICT" , "SLOT", "USE"])
  		self._aux_cache_obj = None
 -		self._aux_cache_filename = os.path.join(self.root,
@@ -80,7 +80,7 @@ Index: pym/portage/dbapi/vartree.py
  		except PermissionDenied:
  			# apparently this user isn't allowed to access PRIVATE_PATH
  			self.plib_registry = None
-@@ -1114,7 +1114,7 @@
+@@ -1142,7 +1142,7 @@
  		self._owners = self._owners_db(self)
  
  	def getpath(self, mykey, filename=None):
@@ -89,7 +89,7 @@ Index: pym/portage/dbapi/vartree.py
  		if filename != None:
  			rValue = os.path.join(rValue, filename)
  		return rValue
-@@ -1287,7 +1287,7 @@
+@@ -1272,7 +1272,7 @@
  		involve merge or unmerge of packages).
  		"""
  		returnme = []
@@ -98,20 +98,7 @@ Index: pym/portage/dbapi/vartree.py
  
  		if use_cache:
  			from portage import listdir
-@@ -1314,10 +1314,10 @@
- 				# -MERGING- should never be a cpv, nor should files.
- 				try:
- 					if catpkgsplit(subpath) is None:
--						self.invalidentry(os.path.join(self.root, subpath))
-+						self.invalidentry(os.path.join(self.root(), subpath))
- 						continue
- 				except InvalidData:
--					self.invalidentry(os.path.join(self.root, subpath))
-+					self.invalidentry(os.path.join(self.root(), subpath))
- 					continue
- 				returnme.append(subpath)
- 		return returnme
-@@ -1377,7 +1377,7 @@
+@@ -1362,7 +1362,7 @@
  			return list(self._iter_match(mydep,
  				self.cp_list(mydep.cp, use_cache=use_cache)))
  		try:
@@ -120,7 +107,7 @@ Index: pym/portage/dbapi/vartree.py
  		except (IOError, OSError):
  			curmtime=0
  
-@@ -1695,7 +1695,7 @@
+@@ -1680,7 +1680,7 @@
  		if not hasattr(pkg, "getcontents"):
  			pkg = self._dblink(pkg)
  		root = self.root
@@ -129,7 +116,7 @@ Index: pym/portage/dbapi/vartree.py
  		new_contents = pkg.getcontents().copy()
  		removed = 0
  
-@@ -1705,14 +1705,14 @@
+@@ -1690,14 +1690,14 @@
  				relative_filename = filename
  			else:
  				relative_filename = filename[root_len:]
@@ -146,7 +133,7 @@ Index: pym/portage/dbapi/vartree.py
  			f.close()
  
  	class _owners_cache(object):
-@@ -1734,7 +1734,7 @@
+@@ -1719,7 +1719,7 @@
  			self._vardb = vardb
  
  		def add(self, cpv):
@@ -155,7 +142,7 @@ Index: pym/portage/dbapi/vartree.py
  			contents = self._vardb._dblink(cpv).getcontents()
  			pkg_hash = self._hash_pkg(cpv)
  			if not contents:
-@@ -1903,18 +1903,18 @@
+@@ -1888,18 +1888,18 @@
  
  class vartree(object):
  	"this tree will scan a var/db/pkg database located at root (passed to init)"
@@ -177,7 +164,7 @@ Index: pym/portage/dbapi/vartree.py
  			if settings is None:
  				from portage import settings
  			self.settings = settings # for key_expand calls
-@@ -1950,7 +1950,7 @@
+@@ -1935,7 +1935,7 @@
  		except SystemExit, e:
  			raise
  		except Exception, e:
@@ -186,7 +173,7 @@ Index: pym/portage/dbapi/vartree.py
  			writemsg("\nParse Error reading PROVIDE and USE in '%s'\n" % mydir,
  				noiselevel=-1)
  			if mylines:
-@@ -2096,8 +2096,8 @@
+@@ -2081,8 +2081,8 @@
  		@type cat: String
  		@param pkg: Package (PV)
  		@type pkg: String
@@ -197,7 +184,7 @@ Index: pym/portage/dbapi/vartree.py
  		@param mysettings: Typically portage.config
  		@type mysettings: An instance of portage.config
  		@param treetype: one of ['porttree','bintree','vartree']
-@@ -2106,6 +2106,7 @@
+@@ -2091,6 +2091,7 @@
  		@type vartree: vartree
  		"""
  		
@@ -205,7 +192,7 @@ Index: pym/portage/dbapi/vartree.py
  		self.cat = cat
  		self.pkg = pkg
  		self.mycpv = self.cat + "/" + self.pkg
-@@ -2119,7 +2120,7 @@
+@@ -2104,7 +2105,7 @@
  		self._blockers = blockers
  		self._scheduler = scheduler
  
@@ -214,7 +201,7 @@ Index: pym/portage/dbapi/vartree.py
  		self.dbcatdir = self.dbroot+"/"+cat
  		self.dbpkgdir = self.dbcatdir+"/"+pkg
  		self.dbtmpdir = self.dbcatdir+"/-MERGING-"+pkg
-@@ -2212,7 +2213,7 @@
+@@ -2196,7 +2197,7 @@
  		normalize_needed = self._normalize_needed
  		contents_split_counts = self._contents_split_counts
  		myroot = self.myroot
@@ -223,7 +210,7 @@ Index: pym/portage/dbapi/vartree.py
  			myroot = None
  		pos = 0
  		errors = []
-@@ -2259,7 +2260,7 @@
+@@ -2243,7 +2244,7 @@
  					if not mydat[1].startswith(os.path.sep):
  						mydat[1] = os.path.sep + mydat[1]
  				if myroot:
@@ -232,7 +219,7 @@ Index: pym/portage/dbapi/vartree.py
  				if mydat[0] == "obj":
  					#format: type, mtime, md5sum
  					pkgfiles[mydat[1]] = [mydat[0], mydat[3], mydat[2]]
-@@ -2601,11 +2602,10 @@
+@@ -2556,11 +2557,10 @@
  					self.vartree.root, self.settings,
  					vartree=self.vartree, treetype="vartree"))
  
@@ -247,7 +234,7 @@ Index: pym/portage/dbapi/vartree.py
  		cfgfiledict = grabdict(conf_mem_file)
  		stale_confmem = []
  
-@@ -2626,7 +2626,7 @@
+@@ -2581,7 +2581,7 @@
  				errno.EEXIST, errno.ENOTEMPTY,
  				errno.EBUSY, errno.ENOENT,
  				errno.ENOTDIR, errno.EISDIR)
@@ -256,7 +243,7 @@ Index: pym/portage/dbapi/vartree.py
  
  			def unlink(file_name, lstatobj):
  				if bsd_chflags:
-@@ -2675,7 +2675,7 @@
+@@ -2630,7 +2630,7 @@
  				if lstatobj is None:
  						show_unmerge("---", "!found", file_type, obj)
  						continue
@@ -265,7 +252,7 @@ Index: pym/portage/dbapi/vartree.py
  					relative_path = obj[dest_root_len:]
  					is_owned = False
  					for dblnk in others_in_slot:
-@@ -2845,7 +2845,7 @@
+@@ -2800,7 +2800,7 @@
  		"""
  
  		destfile = normalize_path(
@@ -274,7 +261,7 @@ Index: pym/portage/dbapi/vartree.py
  
  		pkgfiles = self.getcontents()
  		if pkgfiles and destfile in pkgfiles:
-@@ -2914,7 +2914,7 @@
+@@ -2870,7 +2870,7 @@
  		liblist = linkmap.listLibraryObjects()
  
  		# get list of libraries from old package instance
@@ -283,25 +270,34 @@ Index: pym/portage/dbapi/vartree.py
  		old_contents = set(p[root_len:] \
  			for p in self._installed_instance.getcontents())
  		old_libs = old_contents.intersection(liblist)
-@@ -3003,7 +3003,7 @@
+@@ -2883,7 +2883,7 @@
+ 		candidates = old_libs.difference(mylibs)
+ 		candidates_inodes = set()
+ 		for x in candidates:
+-			x_destroot = os.path.join(destroot, x.lstrip(os.path.sep))
++			x_destroot = os.path.join(destroot(), x.lstrip(os.path.sep))
+ 			try:
+ 				st = os.stat(x_destroot)
+ 			except OSError:
+@@ -2891,7 +2891,7 @@
+ 			candidates_inodes.add((st.st_dev, st.st_ino))
+ 
+ 		for x in old_contents:
+-			x_destroot = os.path.join(destroot, x.lstrip(os.path.sep))
++			x_destroot = os.path.join(destroot(), x.lstrip(os.path.sep))
+ 			if not os.path.islink(x_destroot):
  				continue
- 			showMessage("injecting %s into %s\n" % (x, srcroot),
- 				noiselevel=-1)
--			if not os.path.exists(os.path.join(destroot, x.lstrip(os.sep))):
-+			if not os.path.exists(os.path.join(destroot.root(), x.lstrip(os.sep))):
- 				showMessage("%s does not exist so can't be preserved\n" % x,
- 					noiselevel=-1)
+ 			try:
+@@ -2972,7 +2972,7 @@
+ 		while candidates_stack:
+ 			x = candidates_stack.pop()
+ 			x_srcroot = os.path.join(srcroot, x.lstrip(os.path.sep))
+-			x_destroot = os.path.join(destroot, x.lstrip(os.path.sep))
++			x_destroot = os.path.join(destroot(), x.lstrip(os.path.sep))
+ 			# skip existing files so the 'new' libs aren't overwritten
+ 			if os.path.exists(os.path.join(srcroot, x.lstrip(os.sep))):
  				continue
-@@ -3023,7 +3023,7 @@
- 					candidates.add(linktarget)
- 					candidates_stack.append(linktarget)
- 			else:
--				shutil.copy2(os.path.join(destroot, x.lstrip(os.sep)),
-+				shutil.copy2(os.path.join(destroot.root(), x.lstrip(os.sep)),
- 					os.path.join(srcroot, x.lstrip(os.sep)))
- 			preserve_paths.append(x)
- 			
-@@ -3042,8 +3042,6 @@
+@@ -3166,8 +3166,6 @@
  			scheduler = self._scheduler
  			stopmerge = False
  			collisions = []
@@ -310,7 +306,7 @@ Index: pym/portage/dbapi/vartree.py
  			showMessage("%s checking %d files for package collisions\n" % \
  				(green("*"), len(mycontents)))
  			for i, f in enumerate(mycontents):
-@@ -3055,7 +3053,7 @@
+@@ -3179,7 +3177,7 @@
  					scheduler.scheduleYield()
  
  				dest_path = normalize_path(
@@ -319,7 +315,7 @@ Index: pym/portage/dbapi/vartree.py
  				try:
  					dest_lstat = os.lstat(dest_path)
  				except EnvironmentError, e:
-@@ -3068,7 +3066,7 @@
+@@ -3192,7 +3190,7 @@
  						# expects to have a directory.
  						dest_lstat = None
  						parent_path = dest_path
@@ -328,7 +324,7 @@ Index: pym/portage/dbapi/vartree.py
  							parent_path = os.path.dirname(parent_path)
  							try:
  								dest_lstat = os.lstat(parent_path)
-@@ -3082,7 +3080,7 @@
+@@ -3206,7 +3204,7 @@
  								"unable to find non-directory " + \
  								"parent for '%s'" % dest_path)
  						dest_path = parent_path
@@ -337,16 +333,16 @@ Index: pym/portage/dbapi/vartree.py
  						if f in collisions:
  							continue
  					else:
-@@ -3090,7 +3088,7 @@
- 				if f[0] != "/":
- 					f="/"+f
+@@ -3229,7 +3227,7 @@
+ 					continue
+ 
  				isowned = False
 -				full_path = os.path.join(destroot, f.lstrip(os.path.sep))
 +				full_path = os.path.join(destroot.root(), f.lstrip(os.path.sep))
- 				for ver in [self] + mypkglist:
- 					if (ver.isowner(f, destroot) or ver.isprotected(full_path)):
+ 				for ver in mypkglist:
+ 					if ver.isowner(f, destroot):
  						isowned = True
-@@ -3195,8 +3193,8 @@
+@@ -3362,8 +3360,8 @@
  		
  		@param srcroot: Typically this is ${D}
  		@type srcroot: String (Path)
@@ -357,7 +353,7 @@ Index: pym/portage/dbapi/vartree.py
  		@param inforoot: root of the vardb entry ?
  		@type inforoot: String (Path)
  		@param myebuild: path to the ebuild that we are processing
-@@ -3218,7 +3216,6 @@
+@@ -3385,7 +3383,6 @@
  		scheduler = self._scheduler
  
  		srcroot = normalize_path(srcroot).rstrip(os.path.sep) + os.path.sep
@@ -365,7 +361,7 @@ Index: pym/portage/dbapi/vartree.py
  
  		if not os.path.isdir(srcroot):
  			showMessage("!!! Directory Not Found: D='%s'\n" % srcroot,
-@@ -3418,7 +3415,7 @@
+@@ -3586,7 +3583,7 @@
  
  			for f in collisions:
  				msg.append("\t%s" % \
@@ -374,7 +370,7 @@ Index: pym/portage/dbapi/vartree.py
  
  			eerror(msg)
  
-@@ -3439,7 +3436,7 @@
+@@ -3607,7 +3604,7 @@
  				msg = []
  				msg.append("%s" % cpv)
  				for f in sorted(owned_files):
@@ -383,16 +379,16 @@ Index: pym/portage/dbapi/vartree.py
  						f.lstrip(os.path.sep)))
  				msg.append("")
  				eerror(msg)
-@@ -3513,7 +3510,7 @@
+@@ -3681,7 +3678,7 @@
  		self.updateprotect()
  
  		#if we have a file containing previously-merged config file md5sums, grab it.
 -		conf_mem_file = os.path.join(destroot, EPREFIX_LSTRIP, CONFIG_MEMORY_FILE)
 +		conf_mem_file = os.path.join(destroot(), CONFIG_MEMORY_FILE)
  		cfgfiledict = grabdict(conf_mem_file)
+ 		cfgfiledict_orig = cfgfiledict.copy()
  		if "NOCONFMEM" in self.settings:
- 			cfgfiledict["IGNORE"]=1
-@@ -3541,7 +3538,7 @@
+@@ -3710,7 +3707,7 @@
  
  		# we do a first merge; this will recurse through all files in our srcroot but also build up a
  		# "second hand" of symlinks to merge later
@@ -401,16 +397,16 @@ Index: pym/portage/dbapi/vartree.py
  			return 1
  
  		# now, it's time for dealing our second hand; we'll loop until we can't merge anymore.	The rest are
-@@ -3594,7 +3591,7 @@
+@@ -3777,7 +3774,7 @@
  		# version now since we want to use the temporary
  		# PORTAGE_BIN_PATH that will be removed when we return.
  		reinstall_self = False
 -		if self.myroot == "/" and \
 +		if self.myroot == BROOT and \
- 			"sys-apps" == self.cat and \
- 			"portage" == pkgsplit(self.pkg)[0]:
+ 			match_from_list(PORTAGE_PACKAGE_ATOM, [self.mycpv]):
  			reinstall_self = True
-@@ -3630,7 +3627,7 @@
+ 
+@@ -3812,7 +3809,7 @@
  		# since they now belong to this package.
  		self._clear_contents_cache()
  		contents = self.getcontents()
@@ -419,7 +415,7 @@ Index: pym/portage/dbapi/vartree.py
  		for blocker in blockers:
  			self.vartree.dbapi.removeFromContents(blocker, iter(contents),
  				relative_paths=False)
-@@ -3671,7 +3668,7 @@
+@@ -3871,7 +3868,7 @@
  
  		#update environment settings, library paths. DO NOT change symlinks.
  		env_update(makelinks=(not downgrade),
@@ -428,7 +424,7 @@ Index: pym/portage/dbapi/vartree.py
  			contents=contents, env=self.settings.environ(),
  			writemsg_level=self._display_merge)
  
-@@ -3685,8 +3682,8 @@
+@@ -3896,8 +3893,8 @@
  		
  		@param srcroot: Where are we copying files from (usually ${D})
  		@type srcroot: String (Path)
@@ -439,7 +435,7 @@ Index: pym/portage/dbapi/vartree.py
  		@param outfile: File to log operations to
  		@type outfile: File Object
  		@param secondhand: A set of items to merge in pass two (usually
-@@ -3710,7 +3707,6 @@
+@@ -3922,7 +3919,6 @@
  
  		from os.path import sep, join
  		srcroot = normalize_path(srcroot).rstrip(sep) + sep
@@ -447,7 +443,7 @@ Index: pym/portage/dbapi/vartree.py
  		
  		# this is supposed to merge a list of files.  There will be 2 forms of argument passing.
  		if isinstance(stufftomerge, basestring):
-@@ -3728,7 +3724,7 @@
+@@ -3940,7 +3936,7 @@
  				scheduler.scheduleYield()
  
  			mysrc = join(srcroot, offset, x)
@@ -456,7 +452,7 @@ Index: pym/portage/dbapi/vartree.py
  			# myrealdest is mydest without the $ROOT prefix (makes a difference if ROOT!="/")
  			myrealdest = join(sep, offset, x)
  			# stat file once, test using S_* macros many times (faster that way)
-@@ -3780,7 +3776,7 @@
+@@ -3982,7 +3978,7 @@
  						myto = myto[len(self.settings["D"]):]
  				# myrealto contains the path of the real file to which this symlink points.
  				# we can simply test for existence of this file to see if the target has been merged yet
@@ -465,16 +461,16 @@ Index: pym/portage/dbapi/vartree.py
  				if mydmode!=None:
  					#destination exists
  					if not stat.S_ISLNK(mydmode):
-@@ -3967,7 +3963,7 @@
+@@ -4172,7 +4168,7 @@
  		"""
  		if self.vartree.dbapi._categories is not None:
  			self.vartree.dbapi._categories = None
 -		if self.myroot == "/" and \
 +		if self.myroot == BROOT and \
- 			"sys-apps" == self.cat and \
- 			"portage" == pkgsplit(self.pkg)[0]:
+ 			match_from_list(PORTAGE_PACKAGE_ATOM, [self.mycpv]):
  			settings = self.settings
-@@ -4095,7 +4091,7 @@
+ 			base_path_orig = os.path.dirname(settings["PORTAGE_BIN_PATH"])
+@@ -4301,7 +4297,7 @@
  def tar_contents(contents, root, tar, protect=None, onProgress=None):
  	from portage.util import normalize_path
  	import tarfile
@@ -485,9 +481,9 @@ Index: pym/portage/dbapi/vartree.py
  	curval = 0
 Index: pym/portage/dbapi/porttree.py
 ===================================================================
---- pym/portage/dbapi/porttree.py	(revision 11514)
+--- pym/portage/dbapi/porttree.py	(revision 11799)
 +++ pym/portage/dbapi/porttree.py	(working copy)
-@@ -4,7 +4,7 @@
+@@ -6,7 +6,7 @@
  
  from portage.cache.cache_errors import CacheError
  from portage.cache.mappings import slot_dict_class
@@ -495,8 +491,8 @@ Index: pym/portage/dbapi/porttree.py
 +from portage.const import REPO_NAME_LOC, EROOTobject, BPREFIX
  from portage.data import portage_gid, secpass
  from portage.dbapi import dbapi
- from portage.dep import use_reduce, paren_reduce, dep_getslot, dep_getkey, \
-@@ -411,7 +411,7 @@
+ from portage.dep import use_reduce, paren_reduce, dep_getkey, match_from_list
+@@ -410,7 +410,7 @@
  			self.doebuild_settings.reset()
  			mydata = {}
  			myret = doebuild(myebuild, "depend",
@@ -505,7 +501,7 @@ Index: pym/portage/dbapi/porttree.py
  				dbkey=mydata, tree="porttree", mydbapi=self)
  			if myret != os.EX_OK:
  				self._broken_ebuilds.add(myebuild)
-@@ -839,12 +839,12 @@
+@@ -887,12 +887,12 @@
  
  
  class portagetree(object):
@@ -523,19 +519,19 @@ Index: pym/portage/dbapi/porttree.py
  		@param clone: Set this if you want a copy of Clone
 Index: pym/portage/__init__.py
 ===================================================================
---- pym/portage/__init__.py	(revision 11514)
+--- pym/portage/__init__.py	(revision 11799)
 +++ pym/portage/__init__.py	(working copy)
 @@ -19,10 +19,9 @@
  	import re
  	import shutil
  	import time
 -	try:
--		import cPickle
+-		import cPickle as pickle
 -	except ImportError:
--		import pickle as cPickle
+-		import pickle
 +	# need to use pickle here, since EROOTobject is not unpickleable by
 +	# cPickle (global and instance pickles are not supported).
-+	import pickle as cPickle
++	import pickle
  
  	import stat
  	import commands
@@ -548,7 +544,7 @@ Index: pym/portage/__init__.py
  
  	from portage.data import ostype, lchown, userland, secpass, uid, wheelgid, \
  	                         portage_uid, portage_gid, userpriv_groups
-@@ -551,13 +550,13 @@
+@@ -553,13 +552,13 @@
  	env=None, writemsg_level=portage.util.writemsg_level):
  	if target_root is None:
  		global settings
@@ -564,7 +560,7 @@ Index: pym/portage/__init__.py
  	portage.util.ensure_dirs(envd_dir, mode=0755)
  	fns = listdir(envd_dir, EmptyOnError=1)
  	fns.sort()
-@@ -632,7 +631,7 @@
+@@ -634,7 +633,7 @@
  		they won't be overwritten by this dict.update call."""
  		env.update(myconfig)
  
@@ -573,7 +569,7 @@ Index: pym/portage/__init__.py
  	try:
  		myld = open(ldsoconf_path)
  		myldlines=myld.readlines()
-@@ -655,7 +654,7 @@
+@@ -657,7 +656,7 @@
  		#ld.so.conf needs updating and ldconfig needs to be run
  		myfd = atomic_ofstream(ldsoconf_path)
  		myfd.write("# ld.so.conf autogenerated by env-update; make all changes to\n")
@@ -582,7 +578,7 @@ Index: pym/portage/__init__.py
  		for x in specials["LDPATH"]:
  			myfd.write(x+"\n")
  		myfd.close()
-@@ -664,11 +663,11 @@
+@@ -666,11 +665,11 @@
  	# Update prelink.conf if we are prelink-enabled
  	if prelink_capable:
  		newprelink = atomic_ofstream(
@@ -597,7 +593,7 @@ Index: pym/portage/__init__.py
  			newprelink.write("-l "+x+"\n");
  		for x in specials["LDPATH"]+specials["PATH"]+specials["PRELINK_PATH"]:
  			if not x:
-@@ -699,7 +698,7 @@
+@@ -701,7 +700,7 @@
  	mtime_changed = False
  	lib_dirs = set()
  	for lib_dir in portage.util.unique_array(specials["LDPATH"]+['usr/lib','usr/lib64','usr/lib32','lib','lib64','lib32']):
@@ -606,7 +602,7 @@ Index: pym/portage/__init__.py
  		try:
  			newldpathtime = long(os.stat(x).st_mtime)
  			lib_dirs.add(normalize_path(x))
-@@ -741,43 +740,43 @@
+@@ -743,43 +742,43 @@
  		if not libdir_contents_changed:
  			makelinks = False
  
@@ -661,7 +657,7 @@ Index: pym/portage/__init__.py
  	outfile.write(penvnotice)
  
  	env_keys = [ x for x in env if x != "LDPATH" ]
-@@ -791,7 +790,7 @@
+@@ -793,7 +792,7 @@
  	outfile.close()
  
  	#create /etc/csh.env for (t)csh support
@@ -670,7 +666,7 @@ Index: pym/portage/__init__.py
  	outfile.write(cenvnotice)
  	for x in env_keys:
  		outfile.write("setenv %s '%s'\n" % (x, env[x]))
-@@ -1129,6 +1128,7 @@
+@@ -1133,6 +1132,7 @@
  
  			self._accept_license = copy.deepcopy(clone._accept_license)
  			self._plicensedict = copy.deepcopy(clone._plicensedict)
@@ -678,7 +674,7 @@ Index: pym/portage/__init__.py
  		else:
  
  			def check_var_directory(varname, var):
-@@ -1138,19 +1138,22 @@
+@@ -1142,19 +1142,22 @@
  						noiselevel=-1)
  					raise portage.exception.DirectoryNotFound(var)
  
@@ -708,7 +704,7 @@ Index: pym/portage/__init__.py
  				if os.path.isdir(config_profile_path):
  					self.profile_path = config_profile_path
  				else:
-@@ -1167,7 +1170,7 @@
+@@ -1171,7 +1174,7 @@
  			self.module_priority    = ["user","default"]
  			self.modules            = {}
  			self.modules["user"] = getconfig(
@@ -717,7 +713,7 @@ Index: pym/portage/__init__.py
  			if self.modules["user"] is None:
  				self.modules["user"] = {}
  			self.modules["default"] = {
-@@ -1219,7 +1222,7 @@
+@@ -1223,7 +1226,7 @@
  					self.profiles = []
  			if local_config:
  				custom_prof = os.path.join(
@@ -726,7 +722,7 @@ Index: pym/portage/__init__.py
  				if os.path.exists(custom_prof):
  					self.user_profile_dir = custom_prof
  					self.profiles.append(custom_prof)
-@@ -1287,7 +1290,7 @@
+@@ -1291,7 +1294,7 @@
  			del rawpuseforce
  
  			make_conf = getconfig(
@@ -735,7 +731,7 @@ Index: pym/portage/__init__.py
  				tolerant=tolerant, allow_sourcing=True)
  			if make_conf is None:
  				make_conf = {}
-@@ -1295,18 +1298,13 @@
+@@ -1299,18 +1302,13 @@
  			# Allow ROOT setting to come from make.conf if it's not overridden
  			# by the constructor argument (from the calling environment).
  			if target_root is None and "ROOT" in make_conf:
@@ -758,7 +754,7 @@ Index: pym/portage/__init__.py
  			# The expand_map is used for variable substitution
  			# in getconfig() calls, and the getconfig() calls
  			# update expand_map with the value of each variable
-@@ -1324,7 +1322,7 @@
+@@ -1328,7 +1326,7 @@
  			# lead to unexpected results.
  			expand_map = {}
  
@@ -767,7 +763,7 @@ Index: pym/portage/__init__.py
  				expand=expand_map)
  			# env_d will be None if profile.env doesn't exist.
  			if env_d:
-@@ -1378,7 +1376,7 @@
+@@ -1385,7 +1383,7 @@
  			self.configdict["defaults"]=self.configlist[-1]
  
  			self.mygcfg = getconfig(
@@ -776,7 +772,7 @@ Index: pym/portage/__init__.py
  				tolerant=tolerant, allow_sourcing=True, expand=expand_map)
  			if self.mygcfg is None:
  				self.mygcfg = {}
-@@ -1421,21 +1419,22 @@
+@@ -1428,21 +1426,22 @@
  					cfg.pop(blacklisted, None)
  			del blacklisted, cfg
  
@@ -814,7 +810,7 @@ Index: pym/portage/__init__.py
  					""" Don't show this warning when running repoman and the
  					sandbox feature came from a profile that doesn't belong to
  					the user."""
-@@ -1682,7 +1681,9 @@
+@@ -1679,7 +1678,9 @@
  
  			# inject EPREFIX as it's in no single config file (I hope),
  			# but needs to be available using portageq
@@ -825,7 +821,7 @@ Index: pym/portage/__init__.py
  
  			self._init_dirs()
  
-@@ -1693,20 +1694,20 @@
+@@ -1690,20 +1691,20 @@
  		"""
  		Create a few directories that are critical to portage operation
  		"""
@@ -852,7 +848,7 @@ Index: pym/portage/__init__.py
  			if preserve_perms and os.path.isdir(mydir):
  				# Only adjust permissions on some directories if
  				# they don't exist yet. This gives freedom to the
-@@ -1783,7 +1784,7 @@
+@@ -1780,7 +1781,7 @@
  						noiselevel=-1)
  
  		abs_profile_path = os.path.join(self["PORTAGE_CONFIGROOT"],
@@ -861,7 +857,7 @@ Index: pym/portage/__init__.py
  		if not self.profile_path or (not os.path.islink(abs_profile_path) and \
  			not os.path.exists(os.path.join(abs_profile_path, "parent")) and \
  			os.path.exists(os.path.join(self["PORTDIR"], "profiles"))):
-@@ -1793,7 +1794,7 @@
+@@ -1790,7 +1791,7 @@
  			writemsg("!!! (You can safely ignore this message when syncing. It's harmless.)\n\n\n")
  
  		abs_user_virtuals = os.path.join(self["PORTAGE_CONFIGROOT"],
@@ -870,7 +866,7 @@ Index: pym/portage/__init__.py
  		if os.path.exists(abs_user_virtuals):
  			writemsg("\n!!! /etc/portage/virtuals is deprecated in favor of\n")
  			writemsg("!!! /etc/portage/profile/virtuals. Please move it to\n")
-@@ -2500,7 +2501,7 @@
+@@ -2516,7 +2517,7 @@
  
  	def reload(self):
  		"""Reload things like /etc/profile.env that can change during runtime."""
@@ -879,7 +875,7 @@ Index: pym/portage/__init__.py
  		self.configdict["env.d"].clear()
  		env_d = getconfig(env_d_filename, expand=False)
  		if env_d:
-@@ -2593,7 +2594,7 @@
+@@ -2609,7 +2610,7 @@
  		# Do the USE calculation last because it depends on USE_EXPAND.
  		if "auto" in self["USE_ORDER"].split(":"):
  			self.configdict["auto"]["USE"] = autouse(
@@ -888,7 +884,7 @@ Index: pym/portage/__init__.py
  					settings=self),
  				use_cache=use_cache, mysettings=self)
  		else:
-@@ -2693,7 +2694,7 @@
+@@ -2709,7 +2710,7 @@
  	def getvirtuals(self, myroot=None):
  		"""myroot is now ignored because, due to caching, it has always been
  		broken for all but the first call."""
@@ -897,7 +893,7 @@ Index: pym/portage/__init__.py
  		if self.virtuals:
  			return self.virtuals
  
-@@ -3445,7 +3446,7 @@
+@@ -3467,7 +3468,7 @@
  	check_config_instance(mysettings)
  
  	custommirrors = grabdict(os.path.join(mysettings["PORTAGE_CONFIGROOT"],
@@ -906,7 +902,7 @@ Index: pym/portage/__init__.py
  
  	mymirrors=[]
  
-@@ -3676,7 +3677,7 @@
+@@ -3729,7 +3730,7 @@
  					waiting_msg = ("Fetching '%s' " + \
  						"in the background. " + \
  						"To view fetch progress, run `tail -f " + \
@@ -915,16 +911,16 @@ Index: pym/portage/__init__.py
  						"terminal.") % myfile
  					msg_prefix = colorize("GOOD", " * ")
  					from textwrap import wrap
-@@ -4168,7 +4169,7 @@
+@@ -4252,7 +4253,7 @@
  							catsplit(cpv)[1] + ".ebuild")
  						# for RESTRICT=fetch, mirror, etc...
  						doebuild_environment(myebuild, "fetch",
 -							mysettings["ROOT"], fetch_settings,
 +							mysettings.root, fetch_settings,
  							debug, 1, myportdb)
- 						alluris, aalist = myportdb.getfetchlist(
- 							cpv, mytree=mytree, all=True,
-@@ -4681,9 +4682,9 @@
+ 						uri_map = myportdb.getFetchMap(cpv, mytree=mytree)
+ 						myuris = {myfile:uri_map[myfile]}
+@@ -4761,9 +4762,9 @@
  		# due to how it's coded... Don't overwrite this so we can use it.
  		mysettings["PORTAGE_DEBUG"] = "1"
  
@@ -937,7 +933,7 @@ Index: pym/portage/__init__.py
  	mysettings["STARTDIR"] = getcwd()
  
  	mysettings["PORTAGE_REPO_NAME"] = ""
-@@ -4774,13 +4775,13 @@
+@@ -4853,13 +4854,13 @@
  	mysettings["T"] = os.path.join(mysettings["PORTAGE_BUILDDIR"], "temp")
  
  	mysettings["PORTAGE_BASHRC"] = os.path.join(
@@ -953,7 +949,7 @@ Index: pym/portage/__init__.py
  		if mykv:
  			# Regular source tree
  			mysettings["KV"]=mykv
-@@ -5109,8 +5110,8 @@
+@@ -5184,8 +5185,8 @@
  	@type myebuild: String
  	@param mydo: Phase to run
  	@type mydo: String
@@ -964,7 +960,7 @@ Index: pym/portage/__init__.py
  	@param mysettings: Portage Configuration
  	@type mysettings: instance of portage.config
  	@param debug: Turns on various debug information (eg, debug for spawn)
-@@ -6029,9 +6030,9 @@
+@@ -6109,9 +6110,9 @@
  def merge(mycat, mypkg, pkgloc, infloc, myroot, mysettings, myebuild=None,
  	mytree=None, mydbapi=None, vartree=None, prev_mtimes=None, blockers=None,
  	scheduler=None):
@@ -976,16 +972,16 @@ Index: pym/portage/__init__.py
  		return errno.EACCES
  	mylink = dblink(mycat, mypkg, myroot, mysettings, treetype=mytree,
  		vartree=vartree, blockers=blockers, scheduler=scheduler)
-@@ -6084,7 +6085,7 @@
+@@ -6166,7 +6167,7 @@
  				newsplit.append(x)
  	return newsplit
  
 -def _expand_new_virtuals(mysplit, edebug, mydbapi, mysettings, myroot="/",
 +def _expand_new_virtuals(mysplit, edebug, mydbapi, mysettings, myroot=const.EROOTobject("/", BPREFIX),
- 	trees=None, **kwargs):
+ 	trees=None, use_mask=None, use_force=None, **kwargs):
  	"""Recursively expand new-style virtuals so as to collapse one or more
  	levels of indirection.  In dep_zapdeps, new-style virtuals will be assigned
-@@ -6450,7 +6451,7 @@
+@@ -6538,7 +6539,7 @@
  		return portage.dep.Atom("=" + prefix + expanded + postfix)
  
  def dep_check(depstring, mydbapi, mysettings, use="yes", mode=None, myuse=None,
@@ -994,7 +990,7 @@ Index: pym/portage/__init__.py
  	"""Takes a depend string and parses the condition."""
  	edebug = mysettings.get("PORTAGE_DEBUG", None) == "1"
  	#check_config_instance(mysettings)
-@@ -6596,8 +6597,8 @@
+@@ -6685,8 +6686,8 @@
  	mysplit=mykey.split("/")
  	if settings is None:
  		settings = globals()["settings"]
@@ -1005,7 +1001,7 @@ Index: pym/portage/__init__.py
  	if len(mysplit)==1:
  		if hasattr(mydb, "cp_list"):
  			for x in mydb.categories:
-@@ -6622,8 +6623,8 @@
+@@ -6711,8 +6712,8 @@
  	mysplit=pkgsplit(myslash[-1])
  	if settings is None:
  		settings = globals()["settings"]
@@ -1016,7 +1012,7 @@ Index: pym/portage/__init__.py
  	if len(myslash)>2:
  		# this is illegal case.
  		mysplit=[]
-@@ -6727,7 +6728,7 @@
+@@ -6819,7 +6820,7 @@
  		if os.path.isdir(profdir):
  			locations.append(profdir)
  	locations.append(os.path.join(settings["PORTAGE_CONFIGROOT"],
@@ -1025,7 +1021,7 @@ Index: pym/portage/__init__.py
  	locations.reverse()
  	pmasklists = [(x, grablines(os.path.join(x, "package.mask"), recursive=1)) for x in locations]
  
-@@ -6975,7 +6976,7 @@
+@@ -7068,7 +7069,7 @@
  			mysettings["PORTAGE_TMPDIR"], "portage", mycat, mypkg)
  		catdir = os.path.dirname(builddir)
  		# if the prefix differs, we copy it to the image after extraction
@@ -1034,7 +1030,7 @@ Index: pym/portage/__init__.py
  			pkgloc = os.path.join(builddir, "work")
  		else:
  			pkgloc = os.path.join(builddir, "image")
-@@ -7011,10 +7012,10 @@
+@@ -7104,10 +7105,10 @@
  		debug = mysettings.get("PORTAGE_DEBUG", "") == "1"
  
  		# We want to install in "our" prefix, not the binary one
@@ -1047,7 +1043,7 @@ Index: pym/portage/__init__.py
  		fp.close()
  
  		# Eventually we'd like to pass in the saved ebuild env here.
-@@ -7036,17 +7037,17 @@
+@@ -7129,17 +7130,17 @@
  
  		# the extracted package put everything in buildprefix, so we
  		# just have to move it to the right EPREFIX
@@ -1069,7 +1065,7 @@ Index: pym/portage/__init__.py
  				env=mysettings.environ())
  			if retval != os.EX_OK:
  				writemsg("!!! Adjusing to Prefix failed!\n", noiselevel=-1)
-@@ -7080,9 +7081,9 @@
+@@ -7173,9 +7174,9 @@
  				del e
  
  def deprecated_profile_check():
@@ -1081,18 +1077,28 @@ Index: pym/portage/__init__.py
  	dcontent = deprecatedfile.readlines()
  	deprecatedfile.close()
  	writemsg(red("\n!!! Your current profile is deprecated and not supported anymore.\n"),
-@@ -7154,7 +7155,7 @@
+@@ -7247,8 +7248,7 @@
  	global secpass
  	if secpass < 2 or "SANDBOX_ACTIVE" in os.environ:
  		return
+-	root = "/"
 -	mysettings = trees["/"]["vartree"].settings
 +	mysettings = trees[BROOT]["vartree"].settings
  	updpath = os.path.join(mysettings["PORTDIR"], "profiles", "updates")
  
  	try:
-@@ -7187,15 +7188,15 @@
+@@ -7281,7 +7281,7 @@
  				for msg in errors:
  					writemsg("%s\n" % msg, noiselevel=-1)
+ 
+-		world_file = os.path.join(root, EPREFIX_LSTRIP, WORLD_FILE)
++		world_file = os.path.join(portage.const.EROOTobject("/", EPREFIX), WORLD_FILE)
+ 		world_list = grabfile(world_file)
+ 		world_modified = False
+ 		for update_cmd in myupd:
+@@ -7295,15 +7295,15 @@
+ 			write_atomic(world_file,
+ 				"".join("%s\n" % (x,) for x in world_list))
  
 -		update_config_files("/",
 +		update_config_files(BROOT,
@@ -1110,7 +1116,7 @@ Index: pym/portage/__init__.py
  		if not os.access(bindb.bintree.pkgdir, os.W_OK):
  			bindb = None
  		for update_cmd in myupd:
-@@ -7320,9 +7321,9 @@
+@@ -7428,9 +7428,9 @@
  		config_incrementals=portage.const.INCREMENTALS)
  	settings.lock()
  
@@ -1123,7 +1129,7 @@ Index: pym/portage/__init__.py
  			config_incrementals=portage.const.INCREMENTALS)
  		# When ROOT != "/" we only want overrides from the calling
  		# environment to apply to the config that's associated
-@@ -7344,7 +7345,7 @@
+@@ -7452,7 +7452,7 @@
  				backupenv.pop(k, None)
  		settings.regenerate()
  		settings.lock()
@@ -1132,7 +1138,7 @@ Index: pym/portage/__init__.py
  
  	for myroot, mysettings in myroots:
  		trees[myroot] = portage.util.LazyItemsDict(trees.get(myroot, None))
-@@ -7399,8 +7400,8 @@
+@@ -7507,8 +7507,8 @@
  	def _get_target(self):
  		global mtimedb, mtimedbfile, _mtimedb_initialized
  		if not _mtimedb_initialized:
@@ -1143,7 +1149,7 @@ Index: pym/portage/__init__.py
  			mtimedb = MtimeDB(mtimedbfile)
  			_mtimedb_initialized = True
  		name = object.__getattribute__(self, '_name')
-@@ -7444,22 +7445,22 @@
+@@ -7552,22 +7552,22 @@
  	os.umask(022)
  
  	kwargs = {}
@@ -1171,7 +1177,7 @@ Index: pym/portage/__init__.py
  
  
  	# ========================================================================
-@@ -7475,8 +7476,8 @@
+@@ -7583,8 +7583,8 @@
  	thirdpartymirrors = settings.thirdpartymirrors()
  	usedefaults       = settings.use_defs
  	profiledir  = None
@@ -1184,7 +1190,7 @@ Index: pym/portage/__init__.py
  	# ========================================================================
 Index: pym/portage/util.py
 ===================================================================
---- pym/portage/util.py	(revision 11514)
+--- pym/portage/util.py	(revision 11799)
 +++ pym/portage/util.py	(working copy)
 @@ -15,7 +15,7 @@
         OperationNotPermitted, PermissionDenied, ReadOnlyFileSystem
@@ -1194,8 +1200,8 @@ Index: pym/portage/util.py
 +from portage.const import EPREFIX
  
  try:
- 	import cPickle
-@@ -1104,7 +1104,7 @@
+ 	import cPickle as pickle
+@@ -1091,7 +1091,7 @@
  		self._dirs = set()
  		for x in self.protect_list:
  			ppath = normalize_path(
@@ -1204,7 +1210,7 @@ Index: pym/portage/util.py
  			mystat = None
  			try:
  				if stat.S_ISDIR(os.stat(ppath).st_mode):
-@@ -1117,7 +1117,7 @@
+@@ -1104,7 +1104,7 @@
  		self.protectmask = []
  		for x in self.mask_list:
  			ppath = normalize_path(
@@ -1213,9 +1219,23 @@ Index: pym/portage/util.py
  			mystat = None
  			try:
  				"""Use lstat so that anything, even a broken symlink can be
+@@ -1216,11 +1216,11 @@
+ 	else:
+ 		# the following is based on the information from ld.so(8)
+ 		rval = os.environ.get("LD_LIBRARY_PATH", "").split(":")
+-		rval.extend(grabfile(os.path.join(root, "etc", "ld.so.conf")))
++		rval.extend(grabfile(os.path.join(root(), "etc", "ld.so.conf")))
+ 		rval.append("/usr/lib")
+ 		rval.append("/lib")
+ 
+-	rval = [normalize_path(os.path.join(root, x.lstrip(os.path.sep))) \
++	rval = [normalize_path(os.path.join(root(), x.lstrip(os.path.sep))) \
+ 		for x in rval if x]
+ 
+ 	return rval
 Index: pym/portage/update.py
 ===================================================================
---- pym/portage/update.py	(revision 11514)
+--- pym/portage/update.py	(revision 11799)
 +++ pym/portage/update.py	(working copy)
 @@ -143,14 +143,13 @@
  	protect - list of paths from CONFIG_PROTECT
@@ -1234,18 +1254,51 @@ Index: pym/portage/update.py
  	recursivefiles = []
  	for x in myxfiles:
  		config_file = os.path.join(abs_user_config, x)
-@@ -177,7 +176,7 @@
+@@ -177,6 +176,19 @@
  				del file_contents[x]
  			continue
  
--	worldlist = grabfile(os.path.join(config_root, WORLD_FILE))
 +	worldlist = grabfile(os.path.join(config_root(), WORLD_FILE))
- 	modified = False
++	modified = False
++	for update_cmd in update_iter:
++		for pos, atom in enumerate(worldlist):
++			new_atom = update_dbentry(update_cmd, atom)
++			if atom != new_atom:
++				worldlist[pos] = new_atom
++				modified = True
++	if modified:
++		worldlist.sort()
++		write_atomic(os.path.join(config_root(), WORLD_FILE),
++			"\n".join(worldlist)+"\n")
++
+ 	# update /etc/portage/packages.*
+ 	ignore_line_re = re.compile(r'^#|^\s*$')
  	for update_cmd in update_iter:
- 		for pos, atom in enumerate(worldlist):
+Index: pym/portage/glsa.py
+===================================================================
+--- pym/portage/glsa.py	(revision 11799)
++++ pym/portage/glsa.py	(working copy)
+@@ -28,7 +28,7 @@
+ 	@rtype:		list
+ 	@return:	list of glsa IDs
+ 	"""
+-	return grabfile(os.path.join(os.sep, settings["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"))
++	return grabfile(os.path.join(settings.root(), CACHE_PATH, "glsa"))
+ 
+ 
+ # TODO: use the textwrap module instead
+@@ -646,7 +646,7 @@
+ 		@returns:	None
+ 		"""
+ 		if not self.isApplied():
+-			checkfile = open(os.path.join(os.sep, self.config["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"), "a+")
++			checkfile = open(os.path.join(self.root(), CACHE_PATH, "glsa"), "a+")
+ 			checkfile.write(self.nr+"\n")
+ 			checkfile.close()
+ 		return None
 Index: pym/portage/const.py
 ===================================================================
---- pym/portage/const.py	(revision 11514)
+--- pym/portage/const.py	(revision 11799)
 +++ pym/portage/const.py	(working copy)
 @@ -11,6 +11,7 @@
  
@@ -1255,7 +1308,7 @@ Index: pym/portage/const.py
  # pick up EPREFIX from the environment if set
  if "EPREFIX" in os.environ:
  	EPREFIX = os.path.normpath(os.environ["EPREFIX"])
-@@ -19,8 +20,44 @@
+@@ -21,8 +22,44 @@
  # START OF CONSTANTS -- START OF CONSTANTS -- START OF CONSTANTS -- START OF
  # ===========================================================================
  
@@ -1301,7 +1354,7 @@ Index: pym/portage/const.py
  # We have a most confusing situation here, which is most of all pretty
  # weak for protecting us from making mistakes.
  # First there is a config_root (PORTAGE_CONFIGROOT) which can be a path
-@@ -34,12 +71,14 @@
+@@ -36,12 +73,14 @@
  # constants (like VDB_PATH) DO have EPREFIX.
  # Unfortunately this file is ordered quite horrible in this respect.
  
@@ -1319,7 +1372,7 @@ Index: pym/portage/const.py
  MODULES_FILE_PATH       = USER_CONFIG_PATH+"/modules"
  CUSTOM_PROFILE_PATH     = USER_CONFIG_PATH+"/profile"
  GLOBAL_CONFIG_PATH      = DATADIR+"/portage/config"
-@@ -49,20 +88,20 @@
+@@ -51,20 +90,20 @@
  PORTAGE_BIN_PATH        = PORTAGE_BASE_PATH+"/bin"
  PORTAGE_PYM_PATH        = PORTAGE_BASE_PATH+"/pym"
  PORTAGE_PACKAGE_ATOM    = "sys-apps/portage"
@@ -1345,42 +1398,20 @@ Index: pym/portage/const.py
  MAKE_DEFAULTS_FILE      = PROFILE_PATH + "/make.defaults"
  DEPRECATED_PROFILE_FILE = PROFILE_PATH+"/deprecated"
  USER_VIRTUALS_FILE      = USER_CONFIG_PATH+"/virtuals"
-Index: pym/portage/glsa.py
-===================================================================
---- pym/portage/glsa.py	(revision 11514)
-+++ pym/portage/glsa.py	(working copy)
-@@ -28,7 +28,7 @@
- 	@rtype:		list
- 	@return:	list of glsa IDs
- 	"""
--	return grabfile(os.path.join(os.sep, settings["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"))
-+	return grabfile(os.path.join(settings.root(), CACHE_PATH, "glsa"))
- 
- 
- # TODO: use the textwrap module instead
-@@ -577,7 +577,7 @@
- 		@returns:	None
- 		"""
- 		if not self.isApplied():
--			checkfile = open(os.path.join(os.sep, self.config["ROOT"], CACHE_PATH.lstrip(os.sep), "glsa"), "a+")
-+			checkfile = open(os.path.join(self.root(), CACHE_PATH, "glsa"), "a+")
- 			checkfile.write(self.nr+"\n")
- 			checkfile.close()
- 		return None
 Index: pym/portage/sets/__init__.py
 ===================================================================
---- pym/portage/sets/__init__.py	(revision 11514)
+--- pym/portage/sets/__init__.py	(revision 11799)
 +++ pym/portage/sets/__init__.py	(working copy)
-@@ -5,7 +5,7 @@
+@@ -8,7 +8,7 @@
  import os
  from ConfigParser import SafeConfigParser, NoOptionError
  from portage import load_mod
 -from portage.const import USER_CONFIG_PATH, GLOBAL_CONFIG_PATH
 +from portage.const import USER_CONFIG_PATH, GLOBAL_CONFIG_PATH, BROOT
+ from portage.exception import PackageSetNotFound
  
  SETPREFIX = "@"
- 
-@@ -116,13 +116,13 @@
+@@ -187,13 +187,13 @@
  	setconfigpaths.append(os.path.join(settings["PORTDIR"], "sets.conf"))
  	setconfigpaths += [os.path.join(x, "sets.conf") for x in settings["PORTDIR_OVERLAY"].split()]
  	setconfigpaths.append(os.path.join(settings["PORTAGE_CONFIGROOT"],
@@ -1398,12 +1429,12 @@ Index: pym/portage/sets/__init__.py
  		print x+":"
 Index: pym/portage/sets/files.py
 ===================================================================
---- pym/portage/sets/files.py	(revision 11514)
+--- pym/portage/sets/files.py	(revision 11799)
 +++ pym/portage/sets/files.py	(working copy)
 @@ -7,7 +7,7 @@
  from itertools import chain
  
- from portage.util import grabfile, write_atomic, ensure_dirs
+ from portage.util import grabfile, write_atomic, ensure_dirs, normalize_path
 -from portage.const import PRIVATE_PATH, USER_CONFIG_PATH, EPREFIX_LSTRIP
 +from portage.const import PRIVATE_PATH, USER_CONFIG_PATH
  from portage.locks import lockfile, unlockfile
@@ -1418,7 +1449,7 @@ Index: pym/portage/sets/files.py
  		name_pattern = options.get("name_pattern", "${name}")
  		if not "$name" in name_pattern and not "${name}" in name_pattern:
  			raise SetConfigError("name_pattern doesn't include ${name} placeholder")
-@@ -150,7 +150,7 @@
+@@ -156,7 +156,7 @@
  	
  	def multiBuilder(self, options, settings, trees):
  		rValue = {}
@@ -1427,7 +1458,7 @@ Index: pym/portage/sets/files.py
  		name_pattern = options.get("name_pattern", "sets/package_$suffix")
  		if not "$suffix" in name_pattern and not "${suffix}" in name_pattern:
  			raise SetConfigError("name_pattern doesn't include $suffix placeholder")
-@@ -169,11 +169,11 @@
+@@ -175,11 +175,11 @@
  		# most attributes exist twice as atoms and non-atoms are stored in 
  		# separate files
  		self._lock = None
@@ -1441,7 +1472,7 @@ Index: pym/portage/sets/files.py
  		self.loader2 = ItemFileLoader(self._filename2, self._validate2)
  		self._mtime2 = None
  		
-@@ -276,5 +276,5 @@
+@@ -282,5 +282,5 @@
  		self.unlock()
  
  	def singleBuilder(self, options, settings, trees):
@@ -1450,7 +1481,7 @@ Index: pym/portage/sets/files.py
  	singleBuilder = classmethod(singleBuilder)
 Index: pym/portage/sets/profiles.py
 ===================================================================
---- pym/portage/sets/profiles.py	(revision 11514)
+--- pym/portage/sets/profiles.py	(revision 11799)
 +++ pym/portage/sets/profiles.py	(working copy)
 @@ -8,7 +8,7 @@
  from portage.sets.base import PackageSet
@@ -1472,7 +1503,7 @@ Index: pym/portage/sets/profiles.py
  		else:
 Index: pym/portage/elog/mod_save_summary.py
 ===================================================================
---- pym/portage/elog/mod_save_summary.py	(revision 11514)
+--- pym/portage/elog/mod_save_summary.py	(revision 11799)
 +++ pym/portage/elog/mod_save_summary.py	(working copy)
 @@ -6,13 +6,13 @@
  import os, time
@@ -1492,7 +1523,7 @@ Index: pym/portage/elog/mod_save_summary.py
  	# TODO: Locking
 Index: pym/portage/elog/mod_echo.py
 ===================================================================
---- pym/portage/elog/mod_echo.py	(revision 11514)
+--- pym/portage/elog/mod_echo.py	(revision 11799)
 +++ pym/portage/elog/mod_echo.py	(working copy)
 @@ -4,7 +4,7 @@
  # $Id$
@@ -1516,7 +1547,7 @@ Index: pym/portage/elog/mod_echo.py
  			(colorize("INFORM", key), root_msg))
 Index: pym/portage/elog/mod_save.py
 ===================================================================
---- pym/portage/elog/mod_save.py	(revision 11514)
+--- pym/portage/elog/mod_save.py	(revision 11799)
 +++ pym/portage/elog/mod_save.py	(working copy)
 @@ -6,7 +6,7 @@
  import os, time
@@ -1538,7 +1569,7 @@ Index: pym/portage/elog/mod_save.py
  	elogfilename = elogdir+"/"+path+":"+time.strftime("%Y%m%d-%H%M%S", time.gmtime(time.time()))+".log"
 Index: pym/portage/elog/mod_mail_summary.py
 ===================================================================
---- pym/portage/elog/mod_mail_summary.py	(revision 11514)
+--- pym/portage/elog/mod_mail_summary.py	(revision 11799)
 +++ pym/portage/elog/mod_mail_summary.py	(working copy)
 @@ -6,6 +6,7 @@
  import portage.mail, socket, os, time
@@ -1559,7 +1590,7 @@ Index: pym/portage/elog/mod_mail_summary.py
  
 Index: pym/portage/output.py
 ===================================================================
---- pym/portage/output.py	(revision 11514)
+--- pym/portage/output.py	(revision 11799)
 +++ pym/portage/output.py	(working copy)
 @@ -11,7 +11,7 @@
  import re
@@ -1581,7 +1612,7 @@ Index: pym/portage/output.py
  		if token[0] in quotes and token[0] == token[-1]:
 Index: pym/portage/getbinpkg.py
 ===================================================================
---- pym/portage/getbinpkg.py	(revision 11514)
+--- pym/portage/getbinpkg.py	(revision 11799)
 +++ pym/portage/getbinpkg.py	(working copy)
 @@ -13,7 +13,7 @@
  import tempfile
@@ -1591,7 +1622,7 @@ Index: pym/portage/getbinpkg.py
 +from portage.const import CACHE_PATH, BROOT
  
  try:
- 	import cPickle
+ 	import cPickle as pickle
 @@ -468,12 +468,12 @@
  	cache_path = "/var/cache/edb"
  
@@ -1604,7 +1635,7 @@ Index: pym/portage/getbinpkg.py
  	try:
 -		metadatafile = open(CACHE_PATH+"/remote_metadata.pickle")
 +		metadatafile = open(os.path.join(BROOT(), CACHE_PATH, "remote_metadata.pickle"))
- 		metadata = cPickle.load(metadatafile)
+ 		metadata = pickle.load(metadatafile)
  		out.write("Loaded metadata pickle.\n")
  		out.flush()
 @@ -562,7 +562,7 @@
@@ -1613,7 +1644,7 @@ Index: pym/portage/getbinpkg.py
  			try:
 -				metadatafile = open(CACHE_PATH+"/remote_metadata.pickle", "w+")
 +				metadatafile = open(os.path.join(BROOT, CACHE_PATH, "remote_metadata.pickle"), "w+")
- 				cPickle.dump(metadata,metadatafile)
+ 				pickle.dump(metadata,metadatafile)
  				metadatafile.close()
  			except SystemExit, e:
 @@ -652,7 +652,7 @@
@@ -1622,17 +1653,17 @@ Index: pym/portage/getbinpkg.py
  			metadata[baseurl]["timestamp"] = int(time.time())
 -			metadatafile = open(CACHE_PATH+"/remote_metadata.pickle", "w+")
 +			metadatafile = open(os.path.join(BROOT, CACHE_PATH, "remote_metadata.pickle"), "w+")
- 			cPickle.dump(metadata,metadatafile)
+ 			pickle.dump(metadata,metadatafile)
  			metadatafile.close()
  		if makepickle:
 Index: pym/_emerge/__init__.py
 ===================================================================
---- pym/_emerge/__init__.py	(revision 11514)
+--- pym/_emerge/__init__.py	(revision 11799)
 +++ pym/_emerge/__init__.py	(working copy)
 @@ -63,7 +63,7 @@
  import portage.xpak, commands, errno, re, socket, time, types
  from portage.output import blue, bold, colorize, darkblue, darkgreen, darkred, green, \
- 	havecolor, nc_len, nocolor, red, teal, turquoise, white, xtermTitle, \
+ 	nc_len, red, teal, turquoise, xtermTitle, \
 -	xtermTitleReset, yellow
 +	xtermTitleReset, yellow, darkyellow, purple
  from portage.output import create_color_func
@@ -1656,7 +1687,7 @@ Index: pym/_emerge/__init__.py
  		mylogfile = open(file_path, "a")
  		portage.util.apply_secpass_permissions(file_path,
  			uid=portage.portage_uid, gid=portage.portage_gid,
-@@ -782,7 +782,7 @@
+@@ -787,7 +787,7 @@
  		self.trees = trees
  		self.settings = settings
  		self.iuse_implicit = tuple(sorted(settings._get_implicit_iuse()))
@@ -1665,7 +1696,7 @@ Index: pym/_emerge/__init__.py
  		self.setconfig = setconfig
  		self.sets = self.setconfig.getSets()
  		self.visible_pkgs = PackageVirtualDbapi(self.settings)
-@@ -1063,7 +1063,7 @@
+@@ -1068,7 +1068,7 @@
  		mykeys = list(real_vartree.dbapi._aux_cache_keys)
  		self._pkg_cache = pkg_cache
  		self.dbapi = PackageVirtualDbapi(real_vartree.settings)
@@ -1674,7 +1705,7 @@ Index: pym/_emerge/__init__.py
  		try:
  			# At least the parent needs to exist for the lock file.
  			portage.util.ensure_dirs(vdb_path)
-@@ -1159,7 +1159,7 @@
+@@ -1166,7 +1166,7 @@
  		after one or more packages may have been installed or
  		uninstalled.
  		"""
@@ -1683,7 +1714,7 @@ Index: pym/_emerge/__init__.py
  		try:
  			# At least the parent needs to exist for the lock file.
  			portage.util.ensure_dirs(vdb_path)
-@@ -1610,7 +1610,7 @@
+@@ -1643,7 +1643,7 @@
  		debug = self.settings.get("PORTAGE_DEBUG") == "1"
  
  		retval = portage.doebuild(ebuild_path, "fetch",
@@ -1691,8 +1722,8 @@ Index: pym/_emerge/__init__.py
 +			self.settings.root, self.settings, debug=debug,
  			listonly=1, fetchonly=1, fetchall=self.fetch_all,
  			mydbapi=portdb, tree="porttree")
- 		return retval
-@@ -2492,15 +2492,15 @@
+ 
+@@ -2591,15 +2591,15 @@
  
  			msg = " === (%s of %s) Compiling/Packaging (%s::%s)" % \
  				(pkg_count.curval, pkg_count.maxval, pkg.cpv, ebuild_path)
@@ -1712,7 +1743,7 @@ Index: pym/_emerge/__init__.py
  			logger.log(msg, short_msg=short_msg)
  
  		build = EbuildExecuter(background=self.background, pkg=pkg,
-@@ -2752,7 +2752,7 @@
+@@ -2853,7 +2853,7 @@
  		fd_pipes[self._metadata_fd] = slave_fd
  
  		retval = portage.doebuild(ebuild_path, "depend",
@@ -1721,7 +1752,7 @@ Index: pym/_emerge/__init__.py
  			mydbapi=self.portdb, tree="porttree",
  			fd_pipes=fd_pipes, returnpid=True)
  
-@@ -3189,7 +3189,7 @@
+@@ -3290,7 +3290,7 @@
  				gid=portage.data.portage_gid, mode=dir_mode)
  
  		# This initializes PORTAGE_LOG_FILE.
@@ -1730,7 +1761,7 @@ Index: pym/_emerge/__init__.py
  		self._writemsg_level(">>> Extracting info\n")
  
  		pkg_xpak = portage.xpak.tbz2(self._pkg_path)
-@@ -3496,13 +3496,15 @@
+@@ -3597,13 +3597,15 @@
  			colorize("MERGE_LIST_PROGRESS", str(pkg_count.maxval)),
  			colorize("GOOD", pkg.cpv))
  
@@ -1749,7 +1780,7 @@ Index: pym/_emerge/__init__.py
  
  		if pkg.type_name == "ebuild":
  
-@@ -3603,8 +3605,8 @@
+@@ -3698,8 +3700,8 @@
  
  		msg = "%s %s" % (action_desc, colorize("GOOD", pkg.cpv))
  
@@ -1760,7 +1791,7 @@ Index: pym/_emerge/__init__.py
  
  		if not self.merge.build_opts.fetchonly and \
  			not self.merge.build_opts.pretend and \
-@@ -3677,8 +3679,8 @@
+@@ -3772,8 +3774,8 @@
  	def __init__(self, myroot, vardb):
  		self._vardb = vardb
  		self._virtuals = vardb.settings.getvirtuals()
@@ -1771,7 +1802,7 @@ Index: pym/_emerge/__init__.py
  		self._cache_version = "1"
  		self._cache_data = None
  		self._modified = set()
-@@ -3867,7 +3869,7 @@
+@@ -3962,7 +3964,7 @@
  				finally:
  					portage.dep._dep_check_strict = True
  				if not success:
@@ -1780,7 +1811,7 @@ Index: pym/_emerge/__init__.py
  						portage.VDB_PATH, inst_pkg.category, inst_pkg.pf)
  					portage.writemsg("!!! %s/*DEPEND: %s\n" % \
  						(pkg_location, atoms), noiselevel=-1)
-@@ -3940,7 +3942,7 @@
+@@ -4035,7 +4037,7 @@
  	msg = []
  	if p_status == "nomerge":
  		category, pf = portage.catsplit(p_key)
@@ -1789,7 +1820,7 @@ Index: pym/_emerge/__init__.py
  		msg.append("Portage is unable to process the dependencies of the ")
  		msg.append("'%s' package. " % p_key)
  		msg.append("In order to correct this problem, the package ")
-@@ -4106,14 +4108,14 @@
+@@ -4201,14 +4203,14 @@
  	def __init__(self, settings, trees, myopts, myparams, spinner):
  		self._creation_time = time.time()
  		self.settings = settings
@@ -1806,7 +1837,7 @@ Index: pym/_emerge/__init__.py
  		self._opts_no_restart = Scheduler._opts_no_restart
  		self.pkgsettings = {}
  		# Maps slot atom to package for each Package added to the graph.
-@@ -4394,7 +4396,7 @@
+@@ -4489,7 +4491,7 @@
  				return 0
  		return 1
  
@@ -1815,7 +1846,7 @@ Index: pym/_emerge/__init__.py
  		debug = "--debug" in self.myopts
  		buildpkgonly = "--buildpkgonly" in self.myopts
  		nodeps = "--nodeps" in self.myopts
-@@ -4416,6 +4418,10 @@
+@@ -4513,6 +4515,10 @@
  			return 1
  		dep_pkg, existing_node = self._select_package(dep.root, dep.atom,
  			onlydeps=dep.onlydeps)
@@ -1826,7 +1857,7 @@ Index: pym/_emerge/__init__.py
  		if not dep_pkg:
  			if allow_unsatisfied:
  				self._unsatisfied_deps.append(dep)
-@@ -4634,17 +4640,38 @@
+@@ -4748,17 +4754,38 @@
  		if removal_action and self.myopts.get("--with-bdeps", "y") == "n":
  			edepend["DEPEND"] = ""
  
@@ -1870,26 +1901,27 @@ Index: pym/_emerge/__init__.py
  				if pkg.onlydeps:
  					# Decrease priority so that --buildpkgonly
  					# hasallzeros() works correctly.
-@@ -4671,16 +4698,32 @@
+@@ -4782,18 +4809,32 @@
  
- 						blocker = atom.startswith("!")
- 						if blocker:
-+							if pkg.root != dep_root:
-+								# handle blocker only on prefixes where the parent is
-+								# to be installed.
-+								fallback_depstring += " " + str(atom)
-+								fallback = True
-+								continue
-+
- 							atom = atom[1:]
+ 				for atom in selected_atoms:
+ 					try:
+-
+ 						atom = portage.dep.Atom(atom)
+ 
++						if atom.blocker and pkg.root != dep_root:
++							# handle blocker only on prefixes where the parent is
++							# to be installed.
++							fallback_depstring += " " + str(atom)
++							fallback = True
++							continue
 +
  						mypriority = dep_priority.copy()
- 						if not blocker and vardb.match(atom):
+ 						if not atom.blocker and vardb.match(atom):
  							mypriority.satisfied = True
  
 -						if not self._add_dep(Dependency(atom=atom,
 +						res = self._add_dep(Dependency(atom=atom,
- 							blocker=blocker, depth=depth, parent=pkg,
+ 							blocker=atom.blocker, depth=depth, parent=pkg,
  							priority=mypriority, root=dep_root),
 -							allow_unsatisfied=allow_unsatisfied):
 +							allow_unsatisfied=allow_unsatisfied,
@@ -1905,7 +1937,7 @@ Index: pym/_emerge/__init__.py
  
  					except portage.exception.InvalidAtom, e:
  						show_invalid_depstring_notice(
-@@ -4713,6 +4756,7 @@
+@@ -4823,6 +4864,7 @@
  			portage.writemsg("!!! Please notify the package maintainer " + \
  				"that atoms must be fully-qualified.\n", noiselevel=-1)
  			return 0
@@ -1913,7 +1945,7 @@ Index: pym/_emerge/__init__.py
  		return 1
  
  	def _priority(self, **kwargs):
-@@ -4877,7 +4921,7 @@
+@@ -4987,7 +5029,7 @@
  				args.append(PackageArg(arg=x, package=pkg,
  					root_config=root_config))
  			elif x.startswith(os.path.sep):
@@ -1922,7 +1954,7 @@ Index: pym/_emerge/__init__.py
  					portage.writemsg(("\n\n!!! '%s' does not start with" + \
  						" $ROOT.\n") % x, noiselevel=-1)
  					return 0, []
-@@ -4965,7 +5009,7 @@
+@@ -5075,7 +5117,7 @@
  			for x in lookup_owners:
  				if not search_for_multiple and os.path.isdir(x):
  					search_for_multiple = True
@@ -1931,7 +1963,7 @@ Index: pym/_emerge/__init__.py
  
  			owners = set()
  			for pkg, relative_path in \
-@@ -5796,8 +5840,10 @@
+@@ -5938,8 +5980,10 @@
  					#
  					#  * KEYWORDS is not empty (not installed by old portage).
  					#
@@ -1943,7 +1975,7 @@ Index: pym/_emerge/__init__.py
  						if pkg_in_graph and not visible(pkgsettings, pkg):
  							self._masked_installed.add(pkg)
  						elif pkgsettings._getMissingKeywords(
-@@ -6943,6 +6989,7 @@
+@@ -7105,6 +7149,7 @@
  		# Use this set to detect when all the "repoadd" strings are "[0]"
  		# and disable the entire repo display in this case.
  		repoadd_set = set()
@@ -1951,7 +1983,7 @@ Index: pym/_emerge/__init__.py
  
  		for mylist_index in xrange(len(mylist)):
  			x, depth, ordered = mylist[mylist_index]
-@@ -7093,6 +7140,7 @@
+@@ -7257,6 +7302,7 @@
  
  				verboseadd = ""
  				repoadd = None
@@ -1959,7 +1991,7 @@ Index: pym/_emerge/__init__.py
  
  				if True:
  					# USE flag display
-@@ -7244,6 +7292,9 @@
+@@ -7408,6 +7454,9 @@
  					if repoadd:
  						repoadd_set.add(repoadd)
  
@@ -1969,7 +2001,7 @@ Index: pym/_emerge/__init__.py
  				xs = [portage.cpv_getkey(pkg_key)] + \
  					list(portage.catpkgsplit(pkg_key)[2:])
  				if xs[2] == "r0":
-@@ -7314,7 +7365,7 @@
+@@ -7478,7 +7527,7 @@
  						else:
  							return colorize("PKG_NOMERGE", pkg_str)
  
@@ -1978,7 +2010,7 @@ Index: pym/_emerge/__init__.py
  					if myoldbest:
  						myoldbest +=" "
  					if "--columns" in self.myopts:
-@@ -7322,7 +7373,7 @@
+@@ -7486,7 +7535,7 @@
  							myprint=addl+" "+indent+pkgprint(pkg_cp)
  							myprint=myprint+darkblue(" "+xs[1]+xs[2])+" "
  							myprint=myprint+myoldbest
@@ -1987,7 +2019,7 @@ Index: pym/_emerge/__init__.py
  							verboseadd = None
  						else:
  							if not pkg_merge:
-@@ -7339,14 +7390,14 @@
+@@ -7503,14 +7552,14 @@
  							if (oldlp-nc_len(myprint)) > 0:
  								myprint=myprint+" "*(oldlp-nc_len(myprint))
  							myprint=myprint+myoldbest
@@ -2004,16 +2036,16 @@ Index: pym/_emerge/__init__.py
  				else:
  					if "--columns" in self.myopts:
  						if "--quiet" in self.myopts:
-@@ -7380,7 +7431,7 @@
- 								(pkgprint(pkg_type), addl, indent,
- 								pkgprint(pkg.cpv), myoldbest)
+@@ -7546,7 +7595,7 @@
  
+ 				if columns and pkg.operation == "uninstall":
+ 					continue
 -				p.append((myprint, verboseadd, repoadd))
 +				p.append((myprint, verboseadd, repoadd, archadd))
  
  				if "--tree" not in self.myopts and \
  					"--quiet" not in self.myopts and \
-@@ -7408,8 +7459,11 @@
+@@ -7574,8 +7623,11 @@
  				out.write("%s\n" % (x,))
  				continue
  
@@ -2026,7 +2058,7 @@ Index: pym/_emerge/__init__.py
  			if verboseadd:
  				myprint += " " + verboseadd
  
-@@ -7627,7 +7681,7 @@
+@@ -7796,7 +7848,7 @@
  				writemsg("\n\n!!! '%s' has invalid PROVIDE: %s\n" % \
  					(pkg_key, str(e)), noiselevel=-1)
  				writemsg("!!! see '%s'\n\n" % os.path.join(
@@ -2035,7 +2067,7 @@ Index: pym/_emerge/__init__.py
  				del e
  		all_added = []
  		for k in self._sets:
-@@ -8882,7 +8936,7 @@
+@@ -9053,7 +9105,7 @@
  	_bad_resume_opts = set(["--ask", "--changelog",
  		"--resume", "--skipfirst"])
  
@@ -2044,7 +2076,7 @@ Index: pym/_emerge/__init__.py
  
  	class _iface_class(SlotObject):
  		__slots__ = ("dblinkEbuildPhase", "dblinkDisplayMerge",
-@@ -8923,7 +8977,7 @@
+@@ -9108,7 +9160,7 @@
  		spinner, mergelist, favorites, digraph):
  		PollScheduler.__init__(self)
  		self.settings = settings
@@ -2053,7 +2085,7 @@ Index: pym/_emerge/__init__.py
  		self.trees = trees
  		self.myopts = myopts
  		self._spinner = spinner
-@@ -8955,7 +9009,7 @@
+@@ -9140,7 +9192,7 @@
  
  		# The root where the currently running
  		# portage instance is installed.
@@ -2062,7 +2094,7 @@ Index: pym/_emerge/__init__.py
  		self.edebug = 0
  		if settings.get("PORTAGE_DEBUG", "") == "1":
  			self.edebug = 1
-@@ -9573,8 +9627,8 @@
+@@ -9758,8 +9810,8 @@
  			printer = portage.output.EOutput()
  			for mysettings, key, logentries in self._failed_pkgs_die_msgs:
  				root_msg = ""
@@ -2073,7 +2105,7 @@ Index: pym/_emerge/__init__.py
  				print
  				printer.einfo("Error messages for package %s%s:" % \
  					(colorize("INFORM", key), root_msg))
-@@ -9845,7 +9899,7 @@
+@@ -10033,7 +10085,7 @@
  		return temp_settings
  
  	def _deallocate_config(self, settings):
@@ -2082,7 +2114,7 @@ Index: pym/_emerge/__init__.py
  
  	def _main_loop(self):
  
-@@ -9990,8 +10044,8 @@
+@@ -10183,8 +10235,8 @@
  		pkg = failed_pkg.pkg
  		msg = "%s to %s %s" % \
  			(bad("Failed"), action, colorize("INFORM", pkg.cpv))
@@ -2093,7 +2125,7 @@ Index: pym/_emerge/__init__.py
  
  		log_path = self._locate_failure_log(failed_pkg)
  		if log_path is not None:
-@@ -10338,7 +10392,7 @@
+@@ -10561,7 +10613,7 @@
  			pkg_cache[cpv] = pkg
  		return pkg
  
@@ -2102,7 +2134,7 @@ Index: pym/_emerge/__init__.py
  	try:
  		# At least the parent needs to exist for the lock file.
  		portage.util.ensure_dirs(vdb_path)
-@@ -10409,7 +10463,7 @@
+@@ -10632,7 +10684,7 @@
  	
  					sp_absx_len = len(sp_absx)
  	
@@ -2111,7 +2143,7 @@ Index: pym/_emerge/__init__.py
  					vdb_len  = len(vdb_path)
  	
  					sp_vdb     = vdb_path.split("/")
-@@ -10442,10 +10496,10 @@
+@@ -10665,10 +10717,10 @@
  		newline=""
  		if (not "--quiet" in myopts):
  			newline="\n"
@@ -2124,7 +2156,7 @@ Index: pym/_emerge/__init__.py
  
  		if (("--pretend" in myopts) or ("--ask" in myopts)) and \
  			not ("--quiet" in myopts):
-@@ -10751,7 +10805,7 @@
+@@ -10999,7 +11051,7 @@
  			emergelog(xterm_titles, "=== Unmerging... ("+y+")")
  			mysplit = y.split("/")
  			#unmerge...
@@ -2133,7 +2165,7 @@ Index: pym/_emerge/__init__.py
  				mysettings, unmerge_action not in ["clean","prune"],
  				vartree=vartree, ldpath_mtimes=ldpath_mtimes,
  				scheduler=scheduler)
-@@ -10772,7 +10826,7 @@
+@@ -11020,7 +11072,7 @@
  
  def chk_updated_info_files(root, infodirs, prev_mtimes, retval):
  
@@ -2142,7 +2174,7 @@ Index: pym/_emerge/__init__.py
  		regen_infodirs=[]
  		for z in infodirs:
  			if z=='':
-@@ -10828,7 +10882,7 @@
+@@ -11076,7 +11128,7 @@
  									raise
  								del e
  					processed_count += 1
@@ -2151,7 +2183,7 @@ Index: pym/_emerge/__init__.py
  					existsstr="already exists, for file `"
  					if myso!="":
  						if re.search(existsstr,myso):
-@@ -10883,7 +10937,7 @@
+@@ -11131,7 +11183,7 @@
  	portdb = trees["porttree"].dbapi
  	vardb = trees["vartree"].dbapi
  	NEWS_PATH = os.path.join("metadata", "news")
@@ -2160,7 +2192,7 @@ Index: pym/_emerge/__init__.py
  	newsReaderDisplay = False
  	update = "--pretend" not in myopts
  
-@@ -10968,7 +11022,7 @@
+@@ -11267,7 +11319,7 @@
  
  	_flush_elog_mod_echo()
  
@@ -2168,8 +2200,8 @@ Index: pym/_emerge/__init__.py
 +	vdb_path = os.path.join(target_root(), portage.VDB_PATH)
  	portage.util.ensure_dirs(vdb_path)
  	vdb_lock = None
- 	if os.access(vdb_path, os.W_OK):
-@@ -10977,14 +11031,14 @@
+ 	if os.access(vdb_path, os.W_OK) and not "--pretend" in myopts:
+@@ -11276,14 +11328,14 @@
  	if vdb_lock:
  		try:
  			if "noinfo" not in settings.features:
@@ -2185,8 +2217,8 @@ Index: pym/_emerge/__init__.py
 +	chk_updated_cfg_files(target_root, config_protect)
  	
  	display_news_notification(root_config, myopts)
- 	
-@@ -11006,7 +11060,7 @@
+ 	if retval in (None, os.EX_OK) or (not "--pretend" in myopts):
+@@ -11297,7 +11349,7 @@
  		#number of directories with some protect files in them
  		procount=0
  		for x in config_protect:
@@ -2195,7 +2227,7 @@ Index: pym/_emerge/__init__.py
  			if not os.access(x, os.W_OK):
  				# Avoid Permission denied errors generated
  				# later by `find`.
-@@ -11127,7 +11181,7 @@
+@@ -11423,7 +11475,7 @@
  		print "skipping sync"
  		updatecache_flg = True
  	elif syncuri[:8]=="rsync://":
@@ -2204,7 +2236,7 @@ Index: pym/_emerge/__init__.py
  			print "!!! rsync does not exist, so rsync support is disabled."
  			print "!!! Type \"emerge net-misc/rsync\" to enable rsync support."
  			sys.exit(1)
-@@ -11340,7 +11394,7 @@
+@@ -11603,7 +11655,7 @@
  			if mytimestamp != 0 and "--quiet" not in myopts:
  				print ">>> Checking server timestamp ..."
  
@@ -2213,7 +2245,7 @@ Index: pym/_emerge/__init__.py
  
  			if "--debug" in myopts:
  				print rsynccommand
-@@ -11491,7 +11545,7 @@
+@@ -11754,7 +11806,7 @@
  			print
  			sys.exit(exitcode)
  	elif syncuri[:6]=="cvs://":
@@ -2222,7 +2254,7 @@ Index: pym/_emerge/__init__.py
  			print "!!! cvs does not exist, so CVS support is disabled."
  			print "!!! Type \"emerge dev-util/cvs\" to enable CVS support."
  			sys.exit(1)
-@@ -11524,7 +11578,7 @@
+@@ -11787,7 +11839,7 @@
  				sys.exit(retval)
  		dosyncuri = syncuri
  	elif syncuri[:11]=="svn+http://" or syncuri[:6]=="svn://" or syncuri[:12]=="svn+https://":
@@ -2231,7 +2263,7 @@ Index: pym/_emerge/__init__.py
  			print "!!! svn does not exist, so SVN support is disabled."
  			print "!!! Type \"emerge dev-util/subversion\" to enable SVN support."
  			sys.exit(1)
-@@ -11581,8 +11635,8 @@
+@@ -11845,8 +11897,8 @@
  
  	# Reload the whole config from scratch.
  	settings, trees, mtimedb = load_emerge_config(trees=trees)
@@ -2242,7 +2274,7 @@ Index: pym/_emerge/__init__.py
  
  	if os.path.exists(myportdir+"/metadata/cache") and updatecache_flg:
  		action_metadata(settings, portdb, myopts)
-@@ -11591,22 +11645,22 @@
+@@ -11855,24 +11907,24 @@
  		mtimedb.commit()
  		# Reload the whole config from scratch.
  		settings, trees, mtimedb = load_emerge_config(trees=trees)
@@ -2251,10 +2283,12 @@ Index: pym/_emerge/__init__.py
 +		portdb = trees[settings.root]["porttree"].dbapi
 +		root_config = trees[settings.root]["root_config"]
  
- 	mybestpv = portdb.xmatch("bestmatch-visible", "sys-apps/portage")
+ 	mybestpv = portdb.xmatch("bestmatch-visible",
+ 		portage.const.PORTAGE_PACKAGE_ATOM)
  	mypvs = portage.best(
--		trees[settings["ROOT"]]["vartree"].dbapi.match("sys-apps/portage"))
-+		trees[settings.root]["vartree"].dbapi.match("sys-apps/portage"))
+-		trees[settings["ROOT"]]["vartree"].dbapi.match(
++		trees[settings.root]["vartree"].dbapi.match(
+ 		portage.const.PORTAGE_PACKAGE_ATOM))
  
 -	chk_updated_cfg_files(EPREFIX, settings.get("CONFIG_PROTECT","").split())
 +	chk_updated_cfg_files(BROOT, settings.get("CONFIG_PROTECT","").split())
@@ -2272,16 +2306,16 @@ Index: pym/_emerge/__init__.py
  
  	if(mybestpv != mypvs) and not "--quiet" in myopts:
  		print
-@@ -11717,7 +11771,7 @@
+@@ -11984,7 +12036,7 @@
  		sys.exit(1)
  	print
  	try:
 -		pkgs = trees[settings["ROOT"]]["vartree"].dbapi.match(myfiles[0])
 +		pkgs = trees[settings.root]["vartree"].dbapi.match(myfiles[0])
- 	except ValueError, e:
+ 	except portage.exception.AmbiguousPackageName, e:
  		# Multiple matches thrown from cpv_expand
  		pkgs = e.args[0]
-@@ -11755,23 +11809,23 @@
+@@ -12022,23 +12074,23 @@
  	else:
  		print "Configuring pkg..."
  	print
@@ -2312,7 +2346,7 @@ Index: pym/_emerge/__init__.py
  	header_width = 65
  	header_title = "System Settings"
  	if myfiles:
-@@ -11812,7 +11866,7 @@
+@@ -12079,7 +12131,7 @@
  
  	for x in myvars:
  		if portage.isvalidatom(x):
@@ -2321,7 +2355,7 @@ Index: pym/_emerge/__init__.py
  			pkg_matches = [portage.catpkgsplit(cpv)[1:] for cpv in pkg_matches]
  			pkg_matches.sort(portage.pkgcmp)
  			pkgs = []
-@@ -11827,7 +11881,7 @@
+@@ -12094,7 +12146,7 @@
  		else:
  			print "%-20s %s" % (x+":", "[NOT VALID]")
  
@@ -2330,7 +2364,7 @@ Index: pym/_emerge/__init__.py
  
  	if "--verbose" in myopts:
  		myvars=settings.keys()
-@@ -11879,8 +11933,8 @@
+@@ -12146,8 +12198,8 @@
  	# See if we can find any packages installed matching the strings
  	# passed on the command line
  	mypkgs = []
@@ -2341,7 +2375,7 @@ Index: pym/_emerge/__init__.py
  	for x in myfiles:
  		mypkgs.extend(vardb.match(x))
  
-@@ -11946,9 +12000,9 @@
+@@ -12213,9 +12265,9 @@
  			if not ebuildpath or not os.path.exists(ebuildpath):
  				out.ewarn("No ebuild found for '%s'" % pkg)
  				continue
@@ -2353,7 +2387,7 @@ Index: pym/_emerge/__init__.py
  				tree="vartree")
  
  def action_search(root_config, myopts, myfiles, spinner):
-@@ -12001,7 +12055,7 @@
+@@ -12268,7 +12320,7 @@
  			portage.writemsg_stdout(colorize("WARN", " * ") + x)
  
  	xterm_titles = "notitles" not in settings.features
@@ -2362,7 +2396,7 @@ Index: pym/_emerge/__init__.py
  	root_config = trees[myroot]["root_config"]
  	getSetAtoms = root_config.setconfig.getSetAtoms
  	vardb = trees[myroot]["vartree"].dbapi
-@@ -12874,7 +12928,7 @@
+@@ -13142,7 +13194,7 @@
  			portage.writemsg("\n!!! %s\n" % str(e), noiselevel=-1)
  			return 1
  		except portage.exception.PackageSetNotFound, e:
@@ -2371,7 +2405,7 @@ Index: pym/_emerge/__init__.py
  			display_missing_pkg_set(root_config, e.value)
  			return 1
  		if show_spinner:
-@@ -12913,7 +12967,7 @@
+@@ -13181,7 +13233,7 @@
  					mergecount += 1
  
  			if mergecount==0:
@@ -2380,7 +2414,7 @@ Index: pym/_emerge/__init__.py
  				world_candidates = None
  				if "--noreplace" in myopts and \
  					not oneshot and favorites:
-@@ -13039,7 +13093,7 @@
+@@ -13307,7 +13359,7 @@
  						if settings.get("PORTAGE_DEBUG", "") == "1":
  							edebug = 1
  						retval = portage.doebuild(
@@ -2389,7 +2423,7 @@ Index: pym/_emerge/__init__.py
  							("--pretend" in myopts),
  							mydbapi=trees[pkgline[1]]["porttree"].dbapi,
  							tree="porttree")
-@@ -13059,17 +13113,17 @@
+@@ -13327,15 +13379,18 @@
  		if retval == os.EX_OK and not (buildpkgonly or fetchonly or pretend):
  			if "yes" == settings.get("AUTOCLEAN"):
  				portage.writemsg_stdout(">>> Auto-cleaning packages...\n")
@@ -2404,13 +2438,13 @@ Index: pym/_emerge/__init__.py
 -			trees[settings["ROOT"]]["vartree"].dbapi.plib_registry.pruneNonExisting()
 +			trees[settings.root]["vartree"].dbapi.plib_registry.pruneNonExisting()
  
- 		if merge_count and not (buildpkgonly or fetchonly or pretend):
--			root_config = trees[settings["ROOT"]]["root_config"]
++		if merge_count and not (buildpkgonly or fetchonly or pretend):
 +			root_config = trees[settings.root]["root_config"]
- 			post_emerge(root_config, myopts, mtimedb, retval)
++			post_emerge(root_config, myopts, mtimedb, retval)
  		return retval
  
-@@ -13301,6 +13355,8 @@
+ def multiple_actions(action1, action2):
+@@ -13549,6 +13604,8 @@
  		v = os.environ.get(envvar, None)
  		if v and v.strip():
  			kwargs[k] = v
@@ -2419,7 +2453,7 @@ Index: pym/_emerge/__init__.py
  	trees = portage.create_trees(trees=trees, **kwargs)
  
  	for root, root_trees in trees.iteritems():
-@@ -13308,14 +13364,14 @@
+@@ -13556,14 +13613,14 @@
  		setconfig = load_default_config(settings, root_trees)
  		root_trees["root_config"] = RootConfig(settings, root_trees, setconfig)
  
@@ -2437,7 +2471,7 @@ Index: pym/_emerge/__init__.py
  	mtimedb = portage.MtimeDB(mtimedbfile)
  	
  	return settings, trees, mtimedb
-@@ -13477,13 +13533,13 @@
+@@ -13876,13 +13933,13 @@
  	# Portage needs to ensure a sane umask for the files it creates.
  	os.umask(022)
  	settings, trees, mtimedb = load_emerge_config()
@@ -2453,7 +2487,7 @@ Index: pym/_emerge/__init__.py
  
  	xterm_titles = "notitles" not in settings.features
  
-@@ -13498,7 +13554,7 @@
+@@ -13897,7 +13954,7 @@
  		# Reload the whole config from scratch so that the portdbapi internal
  		# config is updated with new FEATURES.
  		settings, trees, mtimedb = load_emerge_config(trees=trees)
@@ -2462,16 +2496,7 @@ Index: pym/_emerge/__init__.py
  
  	for myroot in trees:
  		mysettings =  trees[myroot]["vartree"].settings
-@@ -13591,7 +13647,7 @@
- 	# only expand sets for actions taking package arguments
- 	oldargs = myfiles[:]
- 	if myaction in ("clean", "config", "depclean", "info", "prune", "unmerge", None):
--		root_config = trees[settings["ROOT"]]["root_config"]
-+		root_config = trees[settings.root]["root_config"]
- 		setconfig = root_config.setconfig
- 		# display errors that occured while loading the SetConfig instance
- 		for e in setconfig.errors:
-@@ -13730,9 +13786,9 @@
+@@ -14082,9 +14139,9 @@
  			spinner.update = spinner.update_basic
  
  	if "--version" in myopts:
@@ -2483,16 +2508,7 @@ Index: pym/_emerge/__init__.py
  		return 0
  	elif "--help" in myopts:
  		_emerge.help.help(myaction, myopts, portage.output.havecolor)
-@@ -13833,7 +13889,7 @@
- 				"not support '--pretend'.\n") % myaction)
- 			return 1
- 
--	root_config = trees[settings["ROOT"]]["root_config"]
-+	root_config = trees[settings.root]["root_config"]
- 
- 	if "sync" == myaction:
- 		action_sync(settings, trees, mtimedb, myopts, myaction)
-@@ -13855,7 +13911,7 @@
+@@ -14201,7 +14258,7 @@
  	# SEARCH action
  	elif "search"==myaction:
  		validate_ebuild_environment(trees)
@@ -2501,8 +2517,8 @@ Index: pym/_emerge/__init__.py
  			myopts, myfiles, spinner)
  	elif myaction in ("clean", "unmerge") or \
  		(myaction == "prune" and "--nodeps" in myopts):
-@@ -13885,7 +13941,7 @@
- 	elif myaction in ("depclean", "prune"):
+@@ -14231,7 +14288,7 @@
+ 	elif myaction in ("depclean", "info", "prune"):
  
  		# Ensure atoms are valid before calling unmerge().
 -		vardb = trees[settings["ROOT"]]["vartree"].dbapi
@@ -2512,7 +2528,7 @@ Index: pym/_emerge/__init__.py
  			if is_valid_package_atom(x):
 Index: bin/fix-db.py
 ===================================================================
---- bin/fix-db.py	(revision 11514)
+--- bin/fix-db.py	(revision 11799)
 +++ bin/fix-db.py	(working copy)
 @@ -20,7 +20,7 @@
  import portage.const
@@ -2551,9 +2567,9 @@ Index: bin/fix-db.py
  	if not os.path.isdir(catdir):
 Index: bin/repoman
 ===================================================================
---- bin/repoman	(revision 11514)
+--- bin/repoman	(revision 11799)
 +++ bin/repoman	(working copy)
-@@ -426,10 +426,10 @@
+@@ -430,10 +430,10 @@
  		Doesn't return (invokes sys.exit()
  	"""
  	#Retrieve and unpickle stats and fails from saved files
@@ -2566,7 +2582,7 @@ Index: bin/repoman
  	fails = pickle.load(savedf)
  	savedf.close()
  
-@@ -526,18 +526,18 @@
+@@ -530,17 +530,17 @@
  repoman_settings = portage.config(local_config=False,
  	config_incrementals=portage.const.INCREMENTALS)
  trees = portage.create_trees()
@@ -2581,16 +2597,15 @@ Index: bin/repoman
 +root_config = RootConfig(repoman_settings, trees[portage.const.BROOT], setconfig)
  # We really only need to cache the metadata that's necessary for visibility
  # filtering. Anything else can be discarded to reduce memory consumption.
- for k in ("DEPEND", "LICENCE", "PDEPEND",
- 	"PROVIDE", "RDEPEND", "RESTRICT", "repository"):
- 	portdb._aux_cache_keys.discard(k)
+ portdb._aux_cache_keys.clear()
+ portdb._aux_cache_keys.update(["EAPI", "KEYWORDS", "SLOT"])
  # dep_zapdeps looks at the vardbapi, but it shouldn't for repoman.
 -del trees["/"]["vartree"]
 +del trees[portage.const.BROOT]["vartree"]
  
  myreporoot = os.path.basename(portdir_overlay)
  myreporoot += mydir[len(portdir_overlay):]
-@@ -702,7 +702,7 @@
+@@ -705,7 +705,7 @@
  
  	except (OSError,IOError), e:
  		if e.errno != 2:
@@ -2599,7 +2614,7 @@ Index: bin/repoman
  			sys.exit(1)
  
  	if must_fetch:
-@@ -1431,7 +1431,7 @@
+@@ -1466,7 +1466,7 @@
  					xcache.update(shared_xmatch_caches)
  					arch_xmatch_caches[xmatch_cache_key] = xcache
  
@@ -2608,7 +2623,7 @@ Index: bin/repoman
  				portdb.mysettings = dep_settings
  				portdb.xcache = xcache
  				# for package.use.mask support inside dep_check
-@@ -1510,9 +1510,9 @@
+@@ -1545,9 +1545,9 @@
  	sys.exit(dofail)
  
  #Pickle and save results for instant reuse in last and lfull
@@ -2622,7 +2637,7 @@ Index: bin/repoman
  		savef.close()
 Index: bin/archive-conf
 ===================================================================
---- bin/archive-conf	(revision 11514)
+--- bin/archive-conf	(revision 11799)
 +++ bin/archive-conf	(working copy)
 @@ -64,7 +64,7 @@
          md5_match_hash[conf] = ''
@@ -2635,7 +2650,7 @@ Index: bin/archive-conf
      # and see if the current file is unmodified or not.
 Index: bin/quickpkg
 ===================================================================
---- bin/quickpkg	(revision 11514)
+--- bin/quickpkg	(revision 11799)
 +++ bin/quickpkg	(working copy)
 @@ -23,7 +23,7 @@
  	from portage.checksum import perform_md5
@@ -2648,7 +2663,7 @@ Index: bin/quickpkg
  	vardb = vartree.dbapi
 Index: bin/portageq
 ===================================================================
---- bin/portageq	(revision 11514)
+--- bin/portageq	(revision 11799)
 +++ bin/portageq	(working copy)
 @@ -56,7 +56,7 @@
  			noiselevel=-1)
@@ -2839,7 +2854,7 @@ Index: bin/portageq
  		print cpv,
 Index: bin/ebuild
 ===================================================================
---- bin/ebuild	(revision 11514)
+--- bin/ebuild	(revision 11799)
 +++ bin/ebuild	(working copy)
 @@ -119,7 +119,7 @@
  	print "!!! %s does not follow correct package syntax." % (cpv)
@@ -2852,9 +2867,9 @@ Index: bin/ebuild
  	portage_ebuild = portage.db[portage.root][mytree].dbapi.findname(cpv)
 Index: bin/regenworld
 ===================================================================
---- bin/regenworld	(revision 11514)
+--- bin/regenworld	(revision 11799)
 +++ bin/regenworld	(working copy)
-@@ -44,7 +44,7 @@
+@@ -45,7 +45,7 @@
  		__uniqlist__.append(pkgline)
  		return True
  
@@ -2863,7 +2878,7 @@ Index: bin/regenworld
  
  # show a little description if we have arguments
  if len(sys.argv) >= 2 and sys.argv[1] in ["-h", "--help"]:
-@@ -54,11 +54,11 @@
+@@ -55,11 +55,11 @@
  	print "your existing world file (%s) before using this tool." % world_file
  	sys.exit(0)
  
@@ -2879,7 +2894,7 @@ Index: bin/regenworld
  tmplist = []
 Index: bin/glsa-check
 ===================================================================
---- bin/glsa-check	(revision 11514)
+--- bin/glsa-check	(revision 11799)
 +++ bin/glsa-check	(working copy)
 @@ -126,8 +126,8 @@
  # delay this for speed increase
@@ -2894,7 +2909,7 @@ Index: bin/glsa-check
  completelist = get_glsa_list(portage.settings)
 Index: bin/ebuild.sh
 ===================================================================
---- bin/ebuild.sh	(revision 11514)
+--- bin/ebuild.sh	(revision 11799)
 +++ bin/ebuild.sh	(working copy)
 @@ -70,6 +70,17 @@
  # Unset some variables that break things.
@@ -2916,7 +2931,7 @@ Index: bin/ebuild.sh
  
 Index: bin/emaint
 ===================================================================
---- bin/emaint	(revision 11514)
+--- bin/emaint	(revision 11799)
 +++ bin/emaint	(working copy)
 @@ -31,13 +31,13 @@
  		self.okay = []
