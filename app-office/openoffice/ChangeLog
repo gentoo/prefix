@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.436 2008/10/24 19:07:13 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.437 2008/11/02 09:35:30 dertobi123 Exp $
+
+  02 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  openoffice-3.0.0.ebuild:
+  ppc stable, bug #235824
 
   24 Oct 2008; Andreas Proschofsky <suka@gentoo.org>
   files/gentoo-3.0.0.diff, +files/hunspell-one-dir-nocrash.diff,
