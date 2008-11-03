@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.44.1.ebuild,v 1.1 2008/10/26 12:38:08 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.44.1.ebuild,v 1.2 2008/11/02 10:07:08 mescalinum Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ IUSE="X doc"
 # We need dejagnu for src_test, but dejagnu needs expect
 # to compile/run, so we cant add dejagnu to DEPEND :/
 DEPEND=">=dev-lang/tcl-8.2
-	X? ( >=dev-lang/tk-8.2 )"
+	>=dev-lang/tk-8.2"
 RDEPEND="${DEPEND}"
 
 RESTRICT="test"

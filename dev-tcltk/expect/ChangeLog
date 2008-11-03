@@ -1,6 +1,14 @@
 # ChangeLog for dev-tcltk/expect
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.48 2008/10/27 05:07:08 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.50 2008/11/02 13:11:09 mescalinum Exp $
+
+  02 Nov 2008; Federico Ferri <mescalinum@gentoo.org>
+  +files/expect-5.43.0-avoid-tcl-internals-1.patch,
+  +files/expect-5.43.0-multilib.patch, +expect-5.43.0.ebuild:
+  adding v5.43.0, cause 5.44.1 was retired due to problems - bug #244827
+
+  02 Nov 2008; Federico Ferri <mescalinum@gentoo.org> expect-5.44.1.ebuild:
+  tk dep isn't conditional anymore, bug #244827
 
   27 Oct 2008; Federico Ferri <mescalinum@gentoo.org> +files/expect.m4:
   forgot a file in $FILESDIR
