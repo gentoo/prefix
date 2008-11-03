@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/transfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.46 2008/11/01 18:19:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.47 2008/11/02 14:57:00 maekke Exp $
+
+  02 Nov 2008; Markus Meier <maekke@gentoo.org> transfig-3.2.5-r2.ebuild:
+  amd64/x86 stable, bug #244957
 
   01 Nov 2008; nixnut <nixnut@gentoo.org> transfig-3.2.5-r2.ebuild:
   Stable on ppc wrt bug 244957

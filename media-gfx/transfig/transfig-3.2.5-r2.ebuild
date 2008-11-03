@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/transfig-3.2.5-r2.ebuild,v 1.3 2008/11/01 18:19:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/transfig-3.2.5-r2.ebuild,v 1.5 2008/11/02 14:57:00 maekke Exp $
 
 EAPI="prefix"
 
@@ -9,14 +9,14 @@ inherit toolchain-funcs eutils flag-o-matic
 MY_P=${PN}.${PV}
 
 DESCRIPTION="A set of tools for creating TeX documents with graphics which can be printed in a wide variety of environments"
+HOMEPAGE="http://www.xfig.org/"
 SRC_URI="http://xfig.org/software/xfig/${PV}/${MY_P}.tar.gz
 	mirror://gentoo/transfig-3.2.5-fig2mpdf.patch.bz2"
-HOMEPAGE="http://www.xfig.org"
-IUSE=""
 
-SLOT="0"
 LICENSE="BSD"
+SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE=""
 
 RDEPEND="x11-libs/libXpm
 	>=media-libs/jpeg-6
@@ -61,7 +61,12 @@ sed_Imakefile() {
 src_compile() {
 	sed_Imakefile fig2dev/Imakefile fig2dev/dev/Imakefile
 
+	# without append transfig compiles with warining
+	# incompatible implicit declaration of built-in function ‘strlen’
+	# but are we really SVR4? -- so use _GNU_SOURCE ?
+	#append-flags -DSVR4
 	xmkmf || die "xmkmf failed"
+	# XXX: should be `emake`
 	make Makefiles || die "make Makefiles failed"
 
 	if [[ ${CHOST} == *-solaris* ]] ; then
@@ -75,6 +80,7 @@ src_compile() {
 }
 
 src_install() {
+	# XXX: should be `emake`
 	make DESTDIR="${D}" \
 		${transfig_conf} install install.man || die
 
