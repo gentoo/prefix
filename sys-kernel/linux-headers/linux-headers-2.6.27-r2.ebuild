@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.27-r2.ebuild,v 1.1 2008/10/27 02:26:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.27-r2.ebuild,v 1.2 2008/11/02 09:31:51 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/${PV}
+	# workaround #244640
+	mkdir arch/sparc64
+	touch arch/sparc64/Makefile
 }
 
 src_install() {
