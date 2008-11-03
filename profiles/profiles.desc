@@ -64,4 +64,4 @@ x64-openbsd	default-prefix/bsd/openbsd/4.2/x64			dev
 x86-netbsd	default-prefix/bsd/netbsd/4.0/x86			dev
 
 # FreeMiNT
-m86k-mint	default-prefix/mint/m86k					dev
+m68k-mint	default-prefix/mint/m68k					dev
