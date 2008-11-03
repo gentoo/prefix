@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/bluecloth-1.0.0.ebuild,v 1.11 2007/06/20 19:58:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/bluecloth-1.0.0.ebuild,v 1.12 2008/11/03 00:41:01 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -20,13 +20,3 @@ USE_RUBY="ruby18"
 DEPEND=">=dev-lang/ruby-1.8"
 
 S=${WORKDIR}/${MY_P}
-
-pkg_postinst() {
-	elog "This package was installed using a 'gem'."
-	elog "If you are intending to write code which"
-	elog "requires ${PN}, you will need to"
-	elog
-	elog "require 'rubygems'"
-	elog
-	elog "before requiring '${PN}'."
-}
