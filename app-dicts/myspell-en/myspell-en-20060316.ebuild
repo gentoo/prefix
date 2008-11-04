@@ -1,6 +1,6 @@
 # Copyright 2006-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-dicts/myspell-en/myspell-en-20060316.ebuild,v 1.13 2008/01/06 15:23:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/myspell-en-20060316.ebuild,v 1.14 2008/11/03 21:28:02 pva Exp $
 
 EAPI="prefix"
 
@@ -56,3 +56,4 @@ LICENSE="LGPL-2.1 myspell-en_CA-KevinAtkinson WordNet-1.6 myspell-ispell-GeoffKu
 HOMEPAGE="http://lingucomponent.openoffice.org/"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE=""

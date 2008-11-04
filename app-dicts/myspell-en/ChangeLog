@@ -1,6 +1,12 @@
 # ChangeLog for app-dicts/myspell-en
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-dicts/myspell-en/ChangeLog,v 1.13 2008/03/12 11:02:45 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/ChangeLog,v 1.14 2008/11/03 21:28:02 pva Exp $
+
+*myspell-en-20081002 (03 Nov 2008)
+
+  03 Nov 2008; Peter Volkov <pva@gentoo.org> myspell-en-20060316.ebuild,
+  +myspell-en-20081002.ebuild:
+  Version bump.
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Kevin Quinn (kevquinn, #93689) from metadata.xml.
