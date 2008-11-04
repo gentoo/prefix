@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.16 2008/11/02 09:35:30 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.17 2008/11/03 11:42:46 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -8,7 +8,7 @@ EAPI="prefix 1"
 
 inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib toolchain-funcs
 
-IUSE="cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
+IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
 MY_PV="3.0.0.3.5"
 PATCHLEVEL="OOO300"
@@ -289,7 +289,7 @@ src_unpack() {
 		echo "--without-system-mozilla" >> ${CONFFILE}
 	fi
 
-	echo "--disable-binfilter" >> ${CONFFILE}
+	echo "`use_enable binfilter`" >> ${CONFFILE}
 	echo "`use_enable cups`" >> ${CONFFILE}
 	echo "`use_enable dbus`" >> ${CONFFILE}
 	echo "`use_enable eds evolution2`" >> ${CONFFILE}
