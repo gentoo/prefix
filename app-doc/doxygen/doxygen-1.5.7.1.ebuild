@@ -90,9 +90,9 @@ src_compile() {
 
 	local my_conf=""
 	if use debug; then
-	    my_conf="--prefix /usr --debug"
+	    my_conf="--prefix ${EPREFIX}/usr --debug"
 	else
-	    my_conf="--prefix /usr"
+	    my_conf="--prefix ${EPREFIX}/usr"
 	fi
 
 	if use qt3; then
