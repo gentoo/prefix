@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect-rails
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.16 2008/06/17 05:28:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.18 2008/11/03 22:27:48 maekke Exp $
+
+  03 Nov 2008; Markus Meier <maekke@gentoo.org> eselect-rails-0.12.ebuild:
+  amd64/x86 stable, bug #237385
+
+  03 Nov 2008; Ferris McCormick <fmccor@gentoo.org>
+  eselect-rails-0.12.ebuild:
+  Sparc stable, Security Bug #237385.
 
 *eselect-rails-0.12 (17 Jun 2008)
 
