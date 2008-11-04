@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.16 2008/02/15 01:22:32 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.17 2008/11/03 22:17:50 ribosome Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -54,17 +54,25 @@ embassy_src_unpack() {
 }
 
 embassy_src_compile() {
+	local PREFIX="${EROOT}/usr" # grobian: this feels so bad, ROOT in here
 	local EXTRA_CONF
 	! use X && EXTRA_CONF="${EXTRA_CONF} --without-x"
 	! use png && EXTRA_CONF="${EXTRA_CONF} --without-pngdriver"
-	./configure --host=${CHOST} \
-		--mandir="${EPREFIX}"/usr/share/man \
-		--infodir="${EPREFIX}"/usr/share/info \
-		--datadir="${EPREFIX}"/usr/share \
-		--sysconfdir="${EPREFIX}"/etc \
-		--localstatedir="${EPREFIX}"/var/lib \
-		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		${EXTRA_CONF} || die
+	./configure \
+			"--bindir=${PREFIX}/bin" \
+			"--sbindir=${PREFIX}/sbin" \
+			"--libexecdir=${PREFIX}/libexec" \
+			"--sysconfdir=${EROOT}/etc" \
+			"--sharedstatedir=${EROOT}/var" \
+			"--localstatedir=${EROOT}/var" \
+			"--libdir=${PREFIX}/$(get_libdir)" \
+			"--includedir=${PREFIX}/include" \
+			"--datarootdir=${PREFIX}/share" \
+			"--datadir=${PREFIX}/share" \
+			"--infodir=${PREFIX}/share/info" \
+			"--localedir=${PREFIX}/share/locale" \
+			"--mandir=${PREFIX}/share/man" \
+			${EXTRA_CONF} || die
 	emake || die "Before reporting this error as a bug, please make sure you compiled
     EMBOSS and the EMBASSY packages with the same \"USE\" flags. Failure to
     do so may prevent the compilation of some EMBASSY packages, or cause
@@ -76,6 +84,10 @@ embassy_src_compile() {
 embassy_src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
 	dodoc AUTHORS ChangeLog NEWS README
+	dodir /usr/share
+	mv "${ED}"/usr/local/share/* "${ED}"/usr/share/
+	rmdir "${ED}"/usr/local/share
+	rmdir "${ED}"/usr/local
 }
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install
