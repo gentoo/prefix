@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.7.ebuild,v 1.1 2008/11/02 07:14:43 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.7.ebuild,v 1.2 2008/11/03 16:38:59 mr_bones_ Exp $
 EAPI="prefix 1"
 inherit autotools
 MY_P=${P/tex/TeX}-src
@@ -53,7 +53,6 @@ src_unpack() {
 
 	eautoreconf
 }
-
 
 src_compile() {
 	econf $(use_with imlib imlib2) \

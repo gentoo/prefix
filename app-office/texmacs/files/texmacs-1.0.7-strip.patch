@@ -1,0 +1,11 @@
+diff -r -U2 TeXmacs-1.0.7-src.orig/Makefile.in TeXmacs-1.0.7-src/Makefile.in
+--- TeXmacs-1.0.7-src.orig/Makefile.in	2008-10-16 13:41:18.000000000 +0700
++++ TeXmacs-1.0.7-src/Makefile.in	2008-11-02 18:20:51.000000000 +0600
+@@ -129,7 +129,5 @@
+ 	$(CP) $(tmdir)/plugins/*/bin/* $(DESTDIR)$(tmbin)/bin
+ 	$(CP) $(tmdir)/plugins/*/lib/*.$(so) $(DESTDIR)$(tmbin)/lib 2>/dev/null || :
+-	$(STRIP) $(DESTDIR)$(tmbin)/bin/texmacs.bin
+ 	$(CP) $(tmdir)/lib/*.$(so) $(DESTDIR)$(tmbin)/lib 2>/dev/null || :
+-	$(STRIP) $(DESTDIR)$(tmbin)/lib/*.$(so) 2>/dev/null || :
+ 	$(CHMOD) 755 $(DESTDIR)$(tmbin)/bin/*
+ 	$(CHMOD) 755 $(DESTDIR)$(tmbin)/lib/*.$(so) 2>/dev/null || :
