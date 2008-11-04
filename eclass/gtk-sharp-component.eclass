@@ -185,7 +185,7 @@ gtk-sharp-component_src_compile() {
 
 gtk-sharp-component_src_install() {
 	cd ${GTK_SHARP_COMPONENT_BUILD_DIR}
-	LANG=C make GACUTIL_FLAGS="/root ${D}/usr/$(get_libdir) /gacdir /usr/$(get_libdir) /package gtk-sharp${GTK_SHARP_COMPONENT_SLOT_DEC}" \
+	LANG=C make GACUTIL_FLAGS="/root ${ED}/usr/$(get_libdir) /gacdir /usr/$(get_libdir) /package gtk-sharp${GTK_SHARP_COMPONENT_SLOT_DEC}" \
 		DESTDIR=${D} install || die
 }
 
