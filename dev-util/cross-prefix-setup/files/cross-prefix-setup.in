@@ -126,6 +126,21 @@ if [[ -n "$(cat "${PARENT_PREFIX}/etc/make.conf" | grep "source" | grep "layman"
 fi
 
 einfo "Done. Please check '${_target_prefix}/etc/make.conf' for correctness."
-einfo "You can start using the new prefix by sourcing '${_target_prefix}/etc/profile' in a clean shell."
+
+echo ""
+
+einfo ""
+einfo "to start merging into the new prefix, do the following:"
+einfo ""
+einfo " $ bash -l"
+einfo " $ source \"${_target_prefix}/etc/profile\""
+einfo " $ emerge ...."
+einfo " $ exit"
+einfo ""
+einfo "please note, that calling emerge inside the new prefix, will also"
+einfo "modify the parent prefix you supplied, since DEPEND atoms are merged"
+einfo "there if possible."
+einfo ""
+
 exit 0
 
