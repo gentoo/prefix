@@ -63,18 +63,25 @@ src_compile() {
 	mkdir ./X11
 	cd ./X11 ; ln -sf ../../Xaw3d . ; cd ..
 
-	xmkmf || die
+	# lib64/ is not available in prefix setups
+	if use prefix; then
+		xmkmf -DHaveLib64=NO || die
+	else
+		xmkmf || die
+	fi
 	make includes || die
 	make depend || die
 	local extld=
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		extld="-shared"
 		sed -i -e '/PICFLAGS/s/-pic/-fPIC/' Makefile || die "-fPIC"
+		emake CDEBUGFLAGS="${CFLAGS}" \
+			SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
+			LD="$(tc-getCC)" \
+			CC="$(tc-getCC)" || die
+	else
+		emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
 	fi
-	emake CDEBUGFLAGS="${CFLAGS}" \
-		SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
-		LD="$(tc-getCC)" \
-		CC="$(tc-getCC)" || die
 }
 
 src_install() {
