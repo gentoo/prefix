@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/WWW-Mechanize
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.52 2008/11/01 18:00:11 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.53 2008/11/03 12:36:00 armin76 Exp $
+
+  03 Nov 2008; Raúl Porcel <armin76@gentoo.org> WWW-Mechanize-1.50.ebuild:
+  Add ~ia64 wrt #244620
 
   01 Nov 2008; nixnut <nixnut@gentoo.org> WWW-Mechanize-1.50.ebuild:
   Added ~ppc wrt bug 244620
