@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-settings-daemon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.13 2008/09/26 08:35:21 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.14 2008/11/03 23:34:15 eva Exp $
+
+*gnome-settings-daemon-2.24.0 (04 Nov 2008)
+
+  04 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-settings-daemon-2.24.0-automagic.patch,
+  +gnome-settings-daemon-2.24.0.ebuild:
+  New version for GNOME 2.24. Update code to use xrandr 1.2 capabilities,
+  modernize sound support (pulseaudio in place of esd), ...
 
   26 Sep 2008; Mart Raudsepp <leio@gentoo.org>
   gnome-settings-daemon-2.22.2.1.ebuild:
