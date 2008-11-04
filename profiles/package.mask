@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9129 2008/11/03 02:07:43 vanquirius Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9138 2008/11/04 05:23:00 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,30 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (4 Nov 2008)
+# Does not compile, no maintainer. Broken for over a year.
+# Removed by treecleaners in 60 days, bug #245479
+app-admin/osiris
+
+# Jeremy Olexa <darkside@gentoo.org> (4 Nov 2008)
+# Masked for removal in 60 days by treecleaners. No maintainer, broken package.
+# Year old bug, dead upstream. old patchset to compiling tools. bug #245476
+dev-lang/prc-tools
+
+# Jeremy Olexa <darkside@gentoo.org> (4 Nov 2008)
+# Broken, dead project. Removed by treecleaners in 30 days at maintainer's
+# request. bug #225301
+sys-apps/usbd
+
+# Daniel Black <dragonheart@gentoo.org> (4 Nov 2008)
+# Legal problems #241650 causing distribution problems #245322 and build problems #237493
+app-crypt/truecrypt
+
+# Jeremy Olexa <darkside@gentoo.org> (3 Nov 2008)
+# Proxy commit for Cardoe, ncurses-5.7 seems broke with USE=berkdb and is
+# causing issues for users, see bug #245370
+=sys-libs/ncurses-5.7
 
 # Daniel Gryniewicz <dang@gentoo.org> (2 Nov 2008)
 # Feed counts and updates seem to be broken
@@ -107,6 +131,10 @@ perl-core/version
 sys-libs/detect
 
 # Mike Frysinger <vapier@gentoo.org> (27 Oct 2008)
+# bug #244411
+sys-libs/detect
+
+# Mike Frysinger <vapier@gentoo.org> (27 Oct 2008)
 # Does not work with latest DirectFB and ffmpeg #242036
 dev-libs/DirectFB-extra
 
@@ -154,6 +182,8 @@ app-portage/genflags
 >=gnome-base/gnome-desktop-2.24.0
 >=gnome-base/eel-2.24.0
 >=gnome-base/nautilus-2.24.0
+>=gnome-base/gnome-settings-daemon-2.24.0
+>=gnome-base/gnome-control-center-2.24.0
 # GNOME 2.24 mask end
 
 # Mart Raudsepp <leio@gentoo.org> (20 Oct 2008)
@@ -218,11 +248,6 @@ net-im/tmsnc
 # Masked due to security issues.
 # https://bugs.gentoo.org/show_bug.cgi?id=236518
 www-apps/dotproject
-
-# Ben de Groot <yngwin@gentoo.org> (01 Oct 2008)
-# Masked for brokenness. Last release 4 years ago. There are plenty
-# alternatives. Pending removal in 30 days. Bug 226007
-x11-misc/obpager
 
 # Petteri Räty <betelgeuse@gentoo.org> (29 Sep 2008)
 # Live ebuilds are more appropriate to overlays.
@@ -720,8 +745,9 @@ net-dns/dnsquery
 net-irc/bitchx
 
 # Raúl Porcel <armin76@gentoo.org> (6 Jul 2008)
-# 0.13.1 is not supported by anything in the tree, yet
-=net-libs/rb_libtorrent-0.13.1
+# >0.13 breaks a lot of stuff, only qbittorrent works fine
+>=net-libs/rb_libtorrent-0.13_p2335
+>=net-p2p/qbittorrent-1.1.0_beta1
 
 # Carsten Lohrke <carlo@gentoo.org> (30 Jun 2008)
 # Masking as it's pretty broken for a long while now.
@@ -813,20 +839,10 @@ virtual/libffi
 # o Fails its own tests in horrendous ways (buuh!)
 =dev-libs/xmlrpc-c-1.15*
 
-# Raúl Porcel <armin76@gentoo.org> (03 Jun 2008)
-# P.mask snapshots
->=net-libs/rb_libtorrent-0.13_p2335
->=net-p2p/qbittorrent-1.1.0_beta1
-
 # Jurek Bartuszek <jurek@gentoo.org> (01 Jun 2008)
 # Not used by anything anymore
 # Masked for removal in 30 days
 dev-dotnet/jscall-sharp
-
-# Raúl Porcel <armin76@gentoo.org> (29 May 2008)
-# resolvconf-gentoo is deprecated, please use
-# net-dns/openresolv, bug #219270
-net-dns/resolvconf-gentoo
 
 # Joe Peterson <lavajoe@gentoo.org> (28 May 2008)
 # Beta 25 is broken - intermittently does not work (bombs out).
@@ -1326,10 +1342,6 @@ net-misc/networkmanager-pptp
 # problems starting drscheme (segfault)
 =dev-scheme/drscheme-370.6_p20070725
 
-# Raúl Porcel <armin76@gentoo.org> (18 Jul 2007)
-# Mask rc
-=net-p2p/qbittorrent-1.0.0_rc*
-
 # Olivier Fisette <ribosome@gentoo.org> (17 Jul 2007)
 # Software no longer available (redistribution not allowed).
 sci-chemistry/nmrview
@@ -1676,10 +1688,6 @@ dev-lisp/cl-rsm-genetic-alg
 #
 # Please see http://bugs.gentoo.org/show_bug.cgi?id=44351 for more info
 #
-# You may unmask this package by placing an appropriate entry in your
-# /etc/portage/package.unmask file
-games-fps/unreal
-games-fps/unreal-tournament
 games-fps/unreal-tournament-goty
 games-fps/unreal-tournament-strikeforce
 games-fps/unreal-tournament-bonuspacks

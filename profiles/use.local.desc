@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4001 2008/11/02 16:47:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4005 2008/11/04 00:07:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -392,6 +392,8 @@ app-shells/tcsh:catalogs - Add support for NLS catalogs
 app-text/crm114:mew - Add support for using the mewdecode mime decoder (app-emacs/mew)
 app-text/crm114:mimencode - Add support for using the mimencode mime (net-mail/metamail)
 app-text/crm114:normalizemime - Add support for using the normalizemime (mail-filter/normalizemime)
+app-text/dictd:dbi - Build dbi plugin, uses dev-db/libdbi library for implementing DICT database using SQL server
+app-text/dictd:judy - Build Judy-based (dev-libs/judy) plugin implementing fast "exact" and especially "lev" strategies
 app-text/docbook-sgml-utils:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/enchant:aspell - Adds support for app-text/aspell spell checker
 app-text/enchant:hunspell - Adds support for app-text/hunspell spell checker
@@ -911,6 +913,7 @@ games-strategy/x2:langpacks - Install additional language packs
 games-strategy/x2:modkit - Install the modkit
 gnome-base/gdm:dmx - Enables Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enables support for secure remote connections
+gnome-base/gnome-control-center:sound - Enable sound event support with media-libs/libcanberra
 gnome-base/gnome-mount:nautilus - Enables the Nautilus plugin
 gnome-base/gnome-volume-manager:automount - Enable support for automounting devices that are handled by gnome-base/nautilus since 2.22. This should be off on most Gnome systems.
 gnome-base/gnome-volume-manager:consolekit - Use sys-auth/consolekit to determine policy on removable media.
@@ -934,6 +937,8 @@ gnome-extra/nautilus-sendto:thunderbird - Enables support for the Mozilla Thunde
 gnome-extra/sensors-applet:nvidia - Enables support for sensors on NVidia chips
 gnome-extra/yelp:beagle - Enables support for the Beagle (app-misc/beagle) desktop search tool
 gnome-extra/yelp:lzma - Enables support for LZMA compressed info and man pages
+gnustep-apps/cdplayer:preferences - Use gnustep-apps/preferences for preferences setting
+gnustep-apps/cdplayer:systempreferences - Use gnustep-apps/systempreferences for preferences setting
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-cairo:glitz - Build with media-libs/glitz support
@@ -2489,6 +2494,7 @@ sys-libs/glibc:nptlonly - Disables building the linuxthreads fallback in glibc e
 sys-libs/glibc:userlocales - Build only the locales specified in /etc/locales.build
 sys-libs/libraw1394:juju - Use the new juju firewire stack in the Linux kernel
 sys-libs/libuser:quotas - Enables support for user quotas
+sys-libs/ncurses:ada - Add bindings for the ADA programming language
 sys-libs/ncurses:trace - Enable test trace() support in ncurses calls
 sys-libs/pam:audit - Enable support for sys-process/audit
 sys-libs/uclibc:pregen - Use pregenerated locales
