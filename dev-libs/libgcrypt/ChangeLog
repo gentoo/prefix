@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.114 2008/08/06 09:50:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.115 2008/11/03 17:07:51 dragonheart Exp $
+
+*libgcrypt-1.4.3 (03 Nov 2008)
+
+  03 Nov 2008; Daniel Black <dragonheart@gentoo.org>
+  +libgcrypt-1.4.3.ebuild:
+  version bump thanks to  Arfrever in bug #237855
 
   06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
