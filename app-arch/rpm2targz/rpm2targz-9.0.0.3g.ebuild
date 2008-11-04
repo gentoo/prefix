@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="Convert a .rpm file to a .tar.gz archive"
 HOMEPAGE="http://www.slackware.com/config/packages.php"
@@ -25,6 +25,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
