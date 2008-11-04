@@ -1,6 +1,11 @@
 # ChangeLog for dev-texlive/texlive-pictures
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.18 2008/10/31 14:45:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.19 2008/11/03 10:06:13 aballier Exp $
+
+  03 Nov 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-pictures-2008.ebuild:
+  RDEPEND on ruby for the epspdf script, spotted by Ivan
+  <Ivan.Miljenovic@gmail.com>, part of bug #245117
 
   31 Oct 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-pictures-2008.ebuild:
