@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r1.ebuild,v 1.10 2008/11/03 08:46:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r2.ebuild,v 1.2 2008/11/03 08:53:13 vapier Exp $
 
 EAPI="prefix"
 
@@ -103,6 +103,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-apple-copyfile.patch
 	epatch "${FILESDIR}"/${P}-apple-getpwuid.patch
 
+	epatch "${FILESDIR}"/${P}-null-banner.patch #244222
+	epatch "${FILESDIR}"/${P}-escaped-banner.patch #244222
+
 	eautoreconf
 }
 
@@ -134,7 +137,7 @@ src_compile() {
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
 		--with-ssl-engine \
-		$(use ldap && [ -n "${LDAP_PATCH}" ] && use_with ldap) \
+		${LDAP_PATCH:+$(use ldap && use_with ldap)} \
 		$(use_with libedit) \
 		$(use_with kerberos kerberos5 /usr) \
 		$(use_with tcpd tcp-wrappers) \
