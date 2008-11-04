@@ -1,6 +1,10 @@
 # ChangeLog for app-text/code2html
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/ChangeLog,v 1.16 2008/01/20 16:45:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/ChangeLog,v 1.17 2008/11/04 00:26:16 jmbsvicetto Exp $
+
+  04 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing leonardop as a maintainer since he was retired.
 
   20 Jan 2008; Fabian Groffen <grobian@gentoo.org> code2html-0.9.1.ebuild,
   code2html-0.9.1-r1.ebuild:
