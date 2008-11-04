@@ -35,7 +35,7 @@ src_unpack() {
 	# now replaced by the -new.patch ...
 	# epatch "${FILESDIR}"/${MY_P}-ppc-macos.diff
 	epatch "${FILESDIR}"/${MY_P}-ppc-macos-new.diff
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix-getopt.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-3.6-interix-getopt.patch
 	cp lib/error.c lib/xstrdup.c lib/getopt.c lib/getopt1.c src/ || die "file copy failed"
 
 	# Remove old libtool macros
