@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.126 2008/08/25 20:22:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.128 2008/11/04 04:49:05 dragonheart Exp $
+
+  04 Nov 2008; Daniel Black <dragonheart@gentoo.org> curl-7.19.0.ebuild:
+  eutils needed for epatch
+
+*curl-7.19.0 (03 Nov 2008)
+
+  03 Nov 2008; Jim Ramsay <lack@gentoo.org>
+  +files/curl-7.18.2-nss-threadsafe.patch, curl-7.18.2.ebuild,
+  +curl-7.19.0.ebuild:
+  Patched 7.18.2 for the NSS threadsafe issue (Bug #230413), and added
+  7.19.0 which is unaffected by the bug.
 
   25 Aug 2008; Jeroen Roovers <jer@gentoo.org> curl-7.18.2.ebuild:
   Stable for HPPA (bug #233122).
