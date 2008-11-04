@@ -43,6 +43,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-parallel-build.patch
+	epatch "${FILESDIR}"/${P}-interix-atomic.patch
 }
 
 src_compile() {
