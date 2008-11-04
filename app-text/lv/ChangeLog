@@ -1,6 +1,9 @@
 # ChangeLog for app-text/lv
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.28 2008/11/02 12:45:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.29 2008/11/03 11:17:58 armin76 Exp $
+
+  03 Nov 2008; Raúl Porcel <armin76@gentoo.org> lv-4.51-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #243734
 
   02 Nov 2008; Markus Meier <maekke@gentoo.org> lv-4.51-r1.ebuild:
   amd64/x86 stable, bug #243734
