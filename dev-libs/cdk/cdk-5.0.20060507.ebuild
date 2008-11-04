@@ -13,7 +13,7 @@ SRC_URI="ftp://invisible-island.net/cdk/${MY_P}.tgz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 DEPEND=">=sys-libs/ncurses-5.2
