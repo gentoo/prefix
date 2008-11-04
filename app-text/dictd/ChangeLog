@@ -1,6 +1,24 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.44 2008/10/26 14:16:01 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.48 2008/11/03 22:33:56 maekke Exp $
+
+  03 Nov 2008; Markus Meier <maekke@gentoo.org> dictd-1.10.11-r3.ebuild:
+  amd64/x86 stable, bug #244246
+
+  03 Nov 2008; Ferris McCormick <fmccor@gentoo.org> dictd-1.10.11-r3.ebuild:
+  Sparc stable (again), Bug #244246, all tests good with USE='judy dbi'.
+
+  03 Nov 2008; Peter Volkov <pva@gentoo.org>
+  files/dictd-1.10.11-automatic-plugins_build-failure.patch:
+  Added URL to track patch.
+
+*dictd-1.10.11-r3 (03 Nov 2008)
+
+  03 Nov 2008; Peter Volkov <pva@gentoo.org>
+  +files/dictd-1.10.11-automatic-plugins_build-failure.patch, metadata.xml,
+  -dictd-1.10.11.ebuild, +dictd-1.10.11-r3.ebuild:
+  Fixed build problem reported by Markus Meier in bug #244246 comment 9.
+  Dropped keywords due to new dependencies.
 
   26 Oct 2008; Ferris McCormick <fmccor@gentoo.org> dictd-1.10.11-r2.ebuild:
   Sparc stable, Bug #244246, everything looks good.
