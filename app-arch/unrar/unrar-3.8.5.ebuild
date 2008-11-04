@@ -24,7 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.8.2-interix.patch
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.8.5-interix.patch
 }
 
 src_compile() {
