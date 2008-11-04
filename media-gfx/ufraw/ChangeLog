@@ -1,0 +1,147 @@
+# ChangeLog for media-gfx/ufraw
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.30 2008/10/28 05:56:29 aballier Exp $
+
+  28 Oct 2008; Alexis Ballier <aballier@gentoo.org> ufraw-0.14.1.ebuild:
+  keyword ~ppc64, working fine on a PowerMac 970
+
+  27 Oct 2008; Jeroen Roovers <jer@gentoo.org> ufraw-0.14.1.ebuild:
+  Marked ~hppa (bug #242236).
+
+  25 Oct 2008; Markus Meier <maekke@gentoo.org> -ufraw-0.13.ebuild,
+  -ufraw-0.14.ebuild:
+  old
+
+  25 Oct 2008; nixnut <nixnut@gentoo.org> ufraw-0.13-r1.ebuild:
+  Stable on ppc wrt bug 242644
+
+  19 Oct 2008; Markus Meier <maekke@gentoo.org> ufraw-0.13-r1.ebuild:
+  amd64/x86 stable, bug #242644
+
+*ufraw-0.14.1 (19 Oct 2008)
+
+  19 Oct 2008; Markus Meier <maekke@gentoo.org> metadata.xml,
+  +ufraw-0.14.1.ebuild:
+  bump to 0.14.1, reported in bug #242482
+
+  19 Oct 2008; Raúl Porcel <armin76@gentoo.org> ufraw-0.14.ebuild:
+  Add ~alpha/~ia64 wrt #242236
+
+*ufraw-0.14 (18 Oct 2008)
+
+  18 Oct 2008; Markus Meier <maekke@gentoo.org> +ufraw-0.14.ebuild:
+  bump to 0.14, reported in bug #242482
+
+  17 Oct 2008; Alexis Ballier <aballier@gentoo.org> ufraw-0.13-r1.ebuild:
+  keyword ~x86-fbsd
+
+  15 Oct 2008; Ferris McCormick <fmccor@gentoo.org> ufraw-0.13-r1.ebuild:
+  Add ~sparc for testing, part of Bug #242236.
+
+*ufraw-0.13-r1 (18 Sep 2008)
+
+  18 Sep 2008; Markus Meier <maekke@gentoo.org>
+  +files/ufraw-0.13-Canon450D.patch, +ufraw-0.13-r1.ebuild:
+  add support for canon EOS450D, by SchAmane <schamane@myeburg.net> in bug
+  #237637
+
+  17 Jan 2008; Markus Meier <maekke@gentoo.org> ufraw-0.13.ebuild:
+  add pkgconfig dep (bug #205834) and do some dep-ordering
+
+  14 Jan 2008; Christoph Mende <angelos@gentoo.org> ufraw-0.13.ebuild:
+  Stable on amd64 wrt bug #204455
+
+  05 Jan 2008; nixnut <nixnut@gentoo.org> ufraw-0.13.ebuild:
+  Stable on ppc wrt bug 204455
+
+  05 Jan 2008; Markus Meier <maekke@gentoo.org> -files/ufraw-cflags.patch,
+  -ufraw-0.9.1.ebuild, -ufraw-0.10.ebuild, -ufraw-0.11.ebuild:
+  old
+
+  05 Jan 2008; Markus Meier <maekke@gentoo.org> ufraw-0.13.ebuild:
+  x86 stable, bug #204455
+
+*ufraw-0.13 (02 Dec 2007)
+
+  02 Dec 2007; Markus Meier <maekke@gentoo.org>
+  +files/ufraw-0.13-cflags.patch, +ufraw-0.13.ebuild:
+  bump to 0.13, bug #187933
+
+  15 Jul 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Assigning to graphics, as nattfodd is being retired (#108329).
+
+*ufraw-0.11 (18 Mar 2007)
+
+  18 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> +ufraw-0.11.ebuild:
+  Bump to 0.11, thanks to David King for his help on this (bug #170489).
+
+*ufraw-0.10 (10 Nov 2006)
+
+  10 Nov 2006; Alexandre Buisse <nattfodd@gentoo.org> -ufraw-0.7.ebuild,
+  -ufraw-0.8.1-r2.ebuild, +ufraw-0.10.ebuild:
+  Bump to 0.10 (requested in #154217).
+
+*ufraw-0.9.1 (04 Oct 2006)
+
+  04 Oct 2006; Alexandre Buisse <nattfodd@gentoo.org> -ufraw-0.9.ebuild,
+  +ufraw-0.9.1.ebuild:
+  Bump to 0.9.1, as requested in bug #149061.
+
+*ufraw-0.9 (03 Aug 2006)
+
+  03 Aug 2006; Alexandre Buisse <nattfodd@gentoo.org> +ufraw-0.9.ebuild:
+  Bump to 0.9. As it relies heavily now on exiv2 to read/write exif tags, exif
+  and exiv2 USE have been merged (if you want exif support, you definitely
+  want exiv2).
+
+  30 Jul 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  -ufraw-0.5.ebuild, -ufraw-0.6.ebuild:
+  Cleaned up some old ebuilds which hadn't been stabilized. Better use the
+  newer versions.
+
+*ufraw-0.8.1-r2 (30 Jul 2006)
+
+  30 Jul 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  -ufraw-0.8.1-r1.ebuild, +ufraw-0.8.1-r2.ebuild:
+  Added exiv2 useflag to support reading exif tags through the media-gfx/exiv2
+  library. Adds support for canon .crw files. Bug #137260.
+
+*ufraw-0.8.1-r1 (15 Jun 2006)
+
+  15 Jun 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/ufraw-cflags.patch, -ufraw-0.8.1.ebuild, +ufraw-0.8.1-r1.ebuild:
+  Use $CFLAGS instead of hardcoded -O3 --ffast-math (bug #136885).
+
+*ufraw-0.8.1 (14 May 2006)
+
+  14 May 2006; Alexandre Buisse <nattfodd@gentoo.org> -ufraw-0.8.ebuild,
+  +ufraw-0.8.1.ebuild:
+  Bump to 0.8.1, fixing two crash issues. Closes bug #133243.
+
+*ufraw-0.8 (11 May 2006)
+
+  11 May 2006; Alexandre Buisse <nattfodd@gentoo.org> +ufraw-0.8.ebuild:
+  Bump to 0.8 (bugfixes and a couple of new features, including the long
+  awaited zoom!). Requested in bug #132989.
+
+*ufraw-0.7 (01 Apr 2006)
+
+  01 Apr 2006; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml,
+  +ufraw-0.7.ebuild:
+  Bump to 0.7 (closing bug #124880). I will maintain ufraw from now on, added
+  the info in metadata.xml. Also moved 0.6 out of packages.mask
+
+  01 Jan 2006; Luis Medinas <metalgod@gentoo.org> ufraw-0.6.ebuild:
+  Added ~amd64 keyword.
+
+*ufraw-0.6 (26 Nov 2005)
+
+  26 Nov 2005; Marcelo Goes <vanquirius@gentoo.org> +ufraw-0.6.ebuild:
+  0.6 version bump.
+
+*ufraw-0.5 (27 Sep 2005)
+
+  27 Sep 2005; Luca Barbato <lu_zero@gentoo.org> +metadata.xml,
+  +ufraw-0.5.ebuild:
+  First commit, solves bug #75681
+

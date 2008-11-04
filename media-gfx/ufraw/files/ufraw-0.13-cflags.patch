@@ -1,0 +1,25 @@
+--- configure.ac.orig	2007-12-02 23:24:30.000000000 +0100
++++ configure.ac	2007-12-02 23:25:10.000000000 +0100
+@@ -29,14 +29,14 @@
+ esac
+ 
+ # default CFLAGS, CXXFLAGS for GCC in case they were not set by the user.
+-if test "$GCC" = "yes"; then
+-  if test "$ac_test_CFLAGS" != "set"; then
+-    CFLAGS="-W -Wall -g -O3 -ffast-math -fomit-frame-pointer $UFRAW_MARCH"
+-  fi
+-  if test "$ac_test_CXXFLAGS" != "set"; then
+-    CXXFLAGS="-W -Wall -g -O3 -ffast-math -fomit-frame-pointer $UFRAW_MARCH"
+-  fi
+-fi
++dnl if test "$GCC" = "yes"; then
++dnl   if test "$ac_test_CFLAGS" != "set"; then
++dnl     CFLAGS="-W -Wall -g -O3 -ffast-math -fomit-frame-pointer $UFRAW_MARCH"
++dnl   fi
++dnl   if test "$ac_test_CXXFLAGS" != "set"; then
++dnl     CXXFLAGS="-W -Wall -g -O3 -ffast-math -fomit-frame-pointer $UFRAW_MARCH"
++dnl   fi
++dnl fi
+ 
+ # windows will require some special attention
+ case $host_os in
