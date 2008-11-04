@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p111-r1.ebuild,v 1.8 2008/02/17 12:19:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p111-r1.ebuild,v 1.9 2008/11/04 03:32:39 vapier Exp $
 
 EAPI="prefix"
 
