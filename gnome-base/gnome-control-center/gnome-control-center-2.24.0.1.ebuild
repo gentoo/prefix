@@ -1,34 +1,35 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.22.1.ebuild,v 1.1 2008/06/05 11:21:09 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.24.0.1.ebuild,v 1.1 2008/11/04 00:00:16 eva Exp $
 
 EAPI="prefix 1"
 
-inherit gnome2
+inherit eutils gnome2
 
 DESCRIPTION="The gnome2 Desktop configuration tool"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="alsa eds esd hal"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+IUSE="eds hal sound"
 
+# FIXME: eel is still needed for now?! ChangeLog and configure.in say different
+# things
 RDEPEND=">=virtual/xft-2.1.2
 		 >=x11-libs/gtk+-2.11.6
-		 >=dev-libs/glib-2.15.5
+		 >=dev-libs/glib-2.17.4
 		 >=gnome-base/gconf-2.0
 		 >=gnome-base/libglade-2
 		 >=gnome-base/librsvg-2.0
 		 >=gnome-base/nautilus-2.6
 		 >=media-libs/fontconfig-1
 		 >=dev-libs/dbus-glib-0.73
-		 >=gnome-base/gnome-vfs-2.2
-		 >=x11-libs/libxklavier-3.3
-		 >=x11-wm/metacity-2.21.21
+		 >=x11-libs/libxklavier-3.6
+		 >=x11-wm/metacity-2.23.1
 		 >=gnome-base/gnome-panel-2.0
 		 >=gnome-base/libgnomekbd-2.21.4.1
-		 >=gnome-base/gnome-desktop-2.21.4
+		 >=gnome-base/gnome-desktop-2.23.90
 		 >=gnome-base/gnome-menus-2.11.1
 		 gnome-base/eel
 		 gnome-base/gnome-settings-daemon
@@ -42,10 +43,11 @@ RDEPEND=">=virtual/xft-2.1.2
 		dev-libs/libxml2
 		media-libs/freetype
 
-		!arm? ( alsa? ( >=media-libs/alsa-lib-0.9.0 ) )
 		eds? ( >=gnome-extra/evolution-data-server-1.7.90 )
-		esd? ( >=media-sound/esound-0.2.28 )
 		hal? ( >=sys-apps/hal-0.5.6 )
+		sound? (
+			>=media-libs/libcanberra-0.4
+			x11-themes/sound-theme-freedesktop )
 
 		>=gnome-base/libbonobo-2
 		>=gnome-base/libgnome-2.2
@@ -70,7 +72,7 @@ DEPEND="${RDEPEND}
 		x11-proto/renderproto
 
 		sys-devel/gettext
-		>=dev-util/intltool-0.35
+		>=dev-util/intltool-0.40
 		>=dev-util/pkgconfig-0.19
 		dev-util/desktop-file-utils
 
@@ -82,12 +84,15 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
 pkg_setup() {
+	if use sound && ! built_with_use media-libs/libcanberra gtk; then
+		eerror "You need to rebuild media-libs/libcanberra with gtk support."
+		die "Rebuild media-libs/libcanberra with USE='gtk'"
+	fi
+
 	G2CONF="${G2CONF}
 		--disable-update-mimedb
-		--enable-vfs-methods
 		--enable-gstreamer=0.10
-		$(use_enable alsa)
 		$(use_enable eds aboutme)
-		$(use_enable esd)
-		$(use_enable hal)"
+		$(use_enable hal)
+		$(use_with sound libcanberra)"
 }
