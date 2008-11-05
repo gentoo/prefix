@@ -46,6 +46,10 @@ src_compile() {
 	local myconf="$(use_enable nls) $(use_enable xmp)"
 	use zlib || myconf="${myconf} --without-zlib"  # plain 'use_with' fails
 	econf ${myconf} || die "econf failed"
+	# Needed for Solaris because /bin/sh is not a bash, bug #245647
+	if [[ ${CHOST} == *-solaris* ]]; then
+		sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
+	fi
 	emake || die "emake failed"
 	if use doc; then
 		emake doc || die "emake doc failed"
