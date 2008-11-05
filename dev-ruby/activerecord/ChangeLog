@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.85 2008/11/03 22:26:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.86 2008/11/04 17:49:12 ranger Exp $
+
+  04 Nov 2008; Brent Baude <ranger@gentoo.org> activerecord-2.0.5.ebuild,
+  activerecord-2.1.2.ebuild:
+  Marking activerecord-2.0.0|2.1.2 ppc64 stable for bug 237385
 
   03 Nov 2008; Markus Meier <maekke@gentoo.org> activerecord-2.1.2.ebuild:
   amd64/x86 stable, bug #237385
