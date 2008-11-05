@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.71 2008/04/21 16:25:35 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.72 2008/11/04 08:25:30 dragonheart Exp $
+
+*libtasn1-1.5 (04 Nov 2008)
+
+  04 Nov 2008; Daniel Black <dragonheart@gentoo.org> +libtasn1-1.5.ebuild:
+  version bump thanks to Arfrever as per bug #236703
 
 *libtasn1-1.4 (21 Apr 2008)
 
