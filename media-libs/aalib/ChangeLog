@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/aalib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.38 2008/11/02 12:53:33 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.39 2008/11/04 13:04:41 aballier Exp $
+
+  04 Nov 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  make video herd the maintainer
 
   02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
