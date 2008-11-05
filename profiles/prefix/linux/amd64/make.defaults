@@ -6,6 +6,7 @@
 
 ARCH=amd64
 CHOST="x86_64-pc-linux-gnu"
-ACCEPT_KEYWORDS="~amd64-linux"
+# The base profile sets ACCEPT_KEYWORDS=amd64 and we don't have that in prefix.
+ACCEPT_KEYWORDS="-amd64 ~amd64-linux"
 
 LIBDIR_amd64="lib"

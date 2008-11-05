@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults,
+  linux/x86/make.defaults:
+  remove $ARCH from default linux ACCEPT_KEYWORDS
+
   31 Oct 2008; Jeremy Olexa <darkside@gentoo.org> +., +linux, +linux/amd64,
   +linux/amd64/make.defaults, +linux/amd64/parent, +linux/make.defaults,
   +linux/package.mask, +linux/package.provided, +linux/packages,
