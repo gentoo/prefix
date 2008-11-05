@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r5.ebuild,v 1.2 2008/06/16 19:48:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r5.ebuild,v 1.3 2008/11/04 08:06:54 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,8 @@ DESCRIPTION="fast password cracker"
 HOMEPAGE="http://www.openwall.com/john/"
 
 SRC_URI="http://www.openwall.com/john/f/${MY_P}.tar.gz
-	http://www.openwall.com/john/contrib/${MY_P}-all-9.diff.gz
-	mpi? ( http://bindshell.net/tools/johntheripper/${MY_P}-bp17-mpi8.patch.gz )"
+	ftp://ftp.openwall.com/john/contrib/historical/${MY_P}-all-9.diff.gz
+	mpi? ( mirror://gentoo/${MY_P}-bp17-mpi8.patch.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"

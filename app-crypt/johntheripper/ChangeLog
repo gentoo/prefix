@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.86 2008/07/24 21:25:27 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.87 2008/11/04 08:06:54 dragonheart Exp $
+
+*johntheripper-1.7.3.1 (04 Nov 2008)
+
+  04 Nov 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/johntheripper-1.7.3.1-mkdir-sandbox.patch,
+  +files/johntheripper-1.7.3.1-params.h.patch,
+  +files/johntheripper-1.7.3.1-stackdef.S.patch,
+  johntheripper-1.7.2-r3.ebuild, johntheripper-1.7.2-r4.ebuild,
+  johntheripper-1.7.2-r5.ebuild, +johntheripper-1.7.3.1.ebuild:
+  version bump thanks to Erwin Paternotte, Aoz, Anton Bolshakov as per bug
+  #228013. SRC_URIs fixed for other ebuilds
 
   24 Jul 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc

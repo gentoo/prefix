@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r3.ebuild,v 1.8 2008/02/04 18:47:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r3.ebuild,v 1.9 2008/11/04 08:06:54 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ S=${WORKDIR}/${MY_PBASE}
 DESCRIPTION="fast password cracker"
 HOMEPAGE="http://www.openwall.com/john/"
 SRC_URI="http://www.openwall.com/john/f/${MY_PBASE}.tar.gz
-		http://www.openwall.com/john/contrib/${MY_PNBASE}-1.7.2-all-7.diff.gz"
+		ftp://ftp.openwall.com/john/contrib/historical/${MY_PNBASE}-1.7.2-all-7.diff.gz"
 
 # banquise-to-bigpatch-17.patch.bz2"
 # based off /var/tmp/portage/johntheripper-1.6.40

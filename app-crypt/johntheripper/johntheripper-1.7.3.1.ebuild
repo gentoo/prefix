@@ -1,10 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r4.ebuild,v 1.3 2008/11/04 08:06:54 dragonheart Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.3.1.ebuild,v 1.1 2008/11/04 08:06:54 dragonheart Exp $
 
 inherit eutils flag-o-matic toolchain-funcs pax-utils
+
+JUMBO='all-3'
+MPI='mpi8-small'
 
 MY_PN="${PN/theripper/}"
 MY_P="${MY_PN/theripper/}-${PV}"
@@ -13,19 +14,19 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="fast password cracker"
 HOMEPAGE="http://www.openwall.com/john/"
 
-SRC_URI="http://www.openwall.com/john/f/${MY_P}.tar.gz
-	ftp://ftp.openwall.com/john/contrib/historical/${MY_P}-all-9.diff.gz"
-# When mpi stable:
-#	mpi? ( http://bindshell.net/tools/johntheripper/${MY_P}-bp17-mpi2.patch.gz )"
+SRC_URI="http://www.openwall.com/john/g/${MY_P}.tar.gz
+	!minimal? ( ftp://ftp.openwall.com/john/contrib/historical/${MY_P}-${JUMBO}.diff.gz )
+	mpi? ( http://bindshell.net/tools/johntheripper/${MY_P}-${MPI}.patch.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="mmx altivec sse2 custom-cflags"
+EAPI="prefix 1"
+IUSE="mmx altivec sse2 custom-cflags -minimal -mpi"
 
-RDEPEND=">=dev-libs/openssl-0.9.7"
-# When mpi stable:
-#	mpi? ( sys-cluster/openmpi )"
+# Seems a bit fussy with other MPI implementations.
+RDEPEND="!minimal? ( >=dev-libs/openssl-0.9.7 )
+	mpi? ( sys-cluster/openmpi )"
 DEPEND="${RDEPEND}"
 
 get_target() {
@@ -77,21 +78,34 @@ get_target() {
 	fi
 }
 
+#pkg_setup() {
+#	if use mpi && built_with_use sys-cluster/mpich2 threads; then
+#		die 'cannot work with sys-cluster/mpich2 USE=threads'
+#		#http://bindshell.net/tools/johntheripper/
+#	fi
+#}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-# When mpi stable:
-#	if use mpi ; then
-#		epatch "${WORKDIR}"/${MY_P}-bp17-mpi2.patch
-#	else
+	PATCHLIST=""
+	if use mpi ; then
+		epatch "${WORKDIR}"/${MY_P}-${MPI}.patch
+		# avoid the conflict on JOHN_VERSION until a better compromise is made
+		sed -i 's/_mpi"/"/' src/params.h
+	fi
+	if ! use minimal ; then
+		epatch "${WORKDIR}"/${MY_P}-${JUMBO}.diff
+		PATCHLIST=stackdef.S
+	fi
+	PATCHLIST="${PATCHLIST} params.h mkdir-sandbox"
 
 	cd "${S}/src"
-	epatch "${WORKDIR}"/${MY_P}-all-9.diff
-
-	for p in stackdef.S stackdef-2.S mkdir-sandbox; do
+	for p in ${PATCHLIST}; do
 		epatch "${FILESDIR}/${P}-${p}.patch"
 	done
+
+	sed -i "s/LDFLAGS  *=  */override LDFLAGS += /" Makefile
 }
 
 src_compile() {
@@ -101,8 +115,10 @@ src_compile() {
 	append-flags -fno-PIC -fno-PIE
 	append-ldflags -nopie
 
+	CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC)
+	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
 	emake \
-		CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC) \
+		CPP=${CPP} CC=${CC} AS=${AS} LD=${LD} \
 		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE \
 			-DJOHN_SYSTEMWIDE_HOME=\"\\\"${EPREFIX}/etc/john\\\"\"" \
 		LDFLAGS="${LDFLAGS}" \
@@ -114,10 +130,11 @@ src_compile() {
 src_test() {
 	cd "${S}/run"
 	if  [ -f ${EROOT}/etc/john/john.conf -o -f ${EROOT}/etc/john/john.ini ]; then
-# When mpi stable:
-#		if use mpi ; then
-#			mpirun -np 2 ./john --test || die 'self test failed'
-#		else
+		# This requires that MPI is actually 100% online on your system, which might not
+		# be the case, depending on which MPI implementation you are using.
+		#if use mpi ; then
+		#	mpirun -np 2 ./john --test || die 'self test failed'
+		#else
 
 		./john --test || die 'self test failed'
 	else
@@ -136,8 +153,18 @@ src_install() {
 	dosym john /usr/sbin/unique
 	dosym john /usr/sbin/unshadow
 
-	# for EGG only
-	dosym john /usr/sbin/undrop
+	# jumbo-patch additions
+	if ! use minimal ; then
+		dosym john /usr/sbin/undrop
+		# >=all-4
+		#dosbin run/calc_stat
+		#dosbin run/genmkvpwd
+		#dosbin run/mkvcalcproba
+		insinto /etc/john
+		# >=all-4
+		#doins run/genincstats.rb run/stats
+		doins run/netscreen.py run/sap_prepare.pl
+	fi
 
 	#newsbin src/bench john-bench
 
