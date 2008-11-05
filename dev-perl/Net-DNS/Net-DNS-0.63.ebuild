@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/Net-DNS-0.63.ebuild,v 1.7 2008/04/24 19:06:41 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/Net-DNS-0.63.ebuild,v 1.8 2008/11/04 10:20:27 vapier Exp $
 
 EAPI="prefix"
 
