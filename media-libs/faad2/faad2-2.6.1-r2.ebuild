@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.6.1-r2.ebuild,v 1.8 2008/10/18 15:24:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.6.1-r2.ebuild,v 1.9 2008/11/05 04:10:23 beandog Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/faac/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="drm"
+IUSE="digitalradio"
 
 RDEPEND=""
 DEPEND=""
@@ -34,7 +34,7 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		$(use_with drm)\
+		$(use_with digitalradio drm)\
 		--without-xmms \
 		|| die "econf failed"
 
