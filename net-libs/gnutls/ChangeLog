@@ -1,6 +1,16 @@
 # ChangeLog for net-libs/gnutls
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.163 2008/09/04 14:32:58 dragonheart Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.165 2008/11/04 21:33:06 vapier Exp $
+
+  04 Nov 2008; Mike Frysinger <vapier@gentoo.org> Manifest:
+  Fix gnutls-2.2.5.tar.bz2 manifest.
+
+*gnutls-2.6.0 (04 Nov 2008)
+
+  04 Nov 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-2.6.0-cxx-configure.in.patch, gnutls-2.5.4.ebuild,
+  +gnutls-2.6.0.ebuild:
+  version bump as per bug #236690 thanks to Arfrever
 
   04 Sep 2008; Daniel Black <dragonheart@gentoo.org> gnutls-2.5.4.ebuild:
   change dependancy as per bug #236642 suggested by Arfreve. Bug thanks to
