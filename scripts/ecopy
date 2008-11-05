@@ -132,9 +132,9 @@ source "${EPREFIX}/etc/make.profile/make.defaults"
 # Force the user's keyword on the ebuild. Less work for the user.
 if ! type -P ekeyword > /dev/null ; then
 	einfo
-	einfo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild)' manually"
+	einfo "ekeyword not found! Please emerge app-portage/gentoolkit-dev then run '$(eval echo ekeyword "~${ACCEPT_KEYWORDS#*\~}" $ebuild)' manually"
 else
-	ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
+	ekeyword "~${ACCEPT_KEYWORDS#*\~}" $ebuild
 fi
 
 ebuild ${ebuild} digest #re-digest for changes made to the ebuild above
