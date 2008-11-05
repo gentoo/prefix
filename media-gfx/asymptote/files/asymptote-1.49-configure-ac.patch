@@ -1,6 +1,6 @@
-diff -U2 -r asymptote-1.46.orig/configure.ac asymptote-1.46/configure.ac
---- asymptote-1.46.orig/configure.ac	2008-10-19 01:39:07.000000000 +0700
-+++ asymptote-1.46/configure.ac	2008-10-21 01:03:30.000000000 +0700
+diff -r -U2 asymptote-1.49.orig/configure.ac asymptote-1.49/configure.ac
+--- asymptote-1.49.orig/configure.ac	2008-11-03 14:18:04.000000000 +0600
++++ asymptote-1.49/configure.ac	2008-11-04 20:20:54.000000000 +0600
 @@ -77,8 +77,14 @@
  fi
  
