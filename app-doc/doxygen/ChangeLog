@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.153 2008/11/02 21:16:57 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.154 2008/11/04 09:49:03 flameeyes Exp $
+
+  04 Nov 2008; Diego Pettenò <flameeyes@gentoo.org> doxygen-1.5.7.1.ebuild:
+  Add flex dependency.
 
 *doxygen-1.5.7.1 (02 Nov 2008)
 
