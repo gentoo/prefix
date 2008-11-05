@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/parent,
+  linux/packages, linux/x86/parent, +package.provided, use.mask:
+  change order of parents for proper inheritance, remove items from the system
+  set that get pulled in by default/linux/, use.mask cups, forgot to cp
+  package.provided when I made the initial cp
+
   05 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults,
   linux/x86/make.defaults:
   remove $ARCH from default linux ACCEPT_KEYWORDS

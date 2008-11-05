@@ -1,6 +1,9 @@
 # multilib is never going to work as expected in Prefix
 multilib
 
+# cups has no business being in prefix, imo
+cups
+
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
 elibc_glibc
