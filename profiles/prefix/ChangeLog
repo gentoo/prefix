@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2008; Jeremy Olexa <darkside@gentoo.org> use.mask:
+  add gpm to use.mask
+
   05 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/parent,
   linux/packages, linux/x86/parent, +package.provided, use.mask:
   change order of parents for proper inheritance, remove items from the system

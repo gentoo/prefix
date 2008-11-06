@@ -1,9 +1,6 @@
 # multilib is never going to work as expected in Prefix
 multilib
 
-# cups has no business being in prefix, imo
-cups
-
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
 elibc_glibc
@@ -30,3 +27,7 @@ kernel_SunOS
 
 # re-add userland GNU
 -userland_GNU
+
+# USE flags inherited by the base/use.defaults file that shouldn't be in Prefix
+cups
+gpm
