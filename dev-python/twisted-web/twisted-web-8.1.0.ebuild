@@ -10,7 +10,7 @@ inherit twisted eutils versionator
 
 DESCRIPTION="Twisted web server, programmable in Python"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 DEPEND="=dev-python/twisted-$(get_version_component_range 1-2)*"
 
