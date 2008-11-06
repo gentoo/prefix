@@ -13,7 +13,7 @@ xfce44_core_package
 
 DESCRIPTION="Panel"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-panel"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 
 IUSE="debug doc startup-notification"
 
