@@ -14,7 +14,7 @@ SRC_URI="mirror://xfce/xfce-4.4.3/src/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="dbus debug doc nls startup-notification"
 
 RDEPEND=">=dev-libs/glib-2.6:2
