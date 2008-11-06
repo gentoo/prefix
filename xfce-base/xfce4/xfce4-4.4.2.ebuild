@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="as-is"
 SLOT="0"
 IUSE="alsa cups minimal oss xscreensaver"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 
 RDEPEND=">=x11-themes/gtk-engines-xfce-2.4
 	>=xfce-base/thunar-0.8
