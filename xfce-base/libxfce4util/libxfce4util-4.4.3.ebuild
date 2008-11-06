@@ -13,7 +13,7 @@ xfce44_core_package
 
 DESCRIPTION="Basic utilities library"
 HOMEPAGE="http://www.xfce.org/projects/libraries"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="debug doc"
 
 RDEPEND=">=dev-libs/glib-2.6:2"
