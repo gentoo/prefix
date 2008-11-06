@@ -13,7 +13,7 @@ xfce44
 xfce44_extra_package
 
 DESCRIPTION="GTK+ Theme Engine"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.6:2
