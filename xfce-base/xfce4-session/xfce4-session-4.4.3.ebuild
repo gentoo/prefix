@@ -13,7 +13,7 @@ xfce44_core_package
 
 DESCRIPTION="Session manager"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-session"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="dbus debug gnome"
 
 RDEPEND="x11-libs/libX11
