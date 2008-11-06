@@ -1,2 +1,7 @@
 # Not tested, masked on other Prefix arches, candidate for global masking?
 acl
+
+# Re-add linux stuff that is masked in base/
+-elibc_glibc
+-kernel_linux
+#
