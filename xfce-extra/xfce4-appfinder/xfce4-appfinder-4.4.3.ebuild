@@ -13,7 +13,7 @@ xfce44_core_package
 
 DESCRIPTION="Application finder"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-appfinder"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug nls"
 
 RDEPEND=">=dev-libs/glib-2.6:2
