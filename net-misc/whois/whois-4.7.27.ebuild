@@ -43,7 +43,7 @@ src_compile() {
 }
 
 src_install() {
-	emake BASEDIR="${D}" prefix="${EPREFIX}"/usr install || die
+	emake BASEDIR="${ED}" prefix=/usr install || die
 	insinto /etc
 	doins whois.conf
 	dodoc README
