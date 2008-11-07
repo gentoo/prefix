@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Nov 2008; Jeremy Olexa <darkside@gentoo.org> +linux/package.use.mask:
+  can't built_with_use check on something that we package.provide, mask
+  USE=pam on app-office/openoffice
+
   06 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/use.mask:
   re-add linux stuff to linux/use.mask that was missing from that file
 
