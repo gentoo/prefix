@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.13 2008/10/25 14:46:00 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.12 2008/08/29 13:22:21 hollow Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
@@ -227,7 +227,7 @@ setup_modules() {
 	fi
 
 	if use ssl ; then
-		MY_CONF="${MY_CONF} --with-ssl="${EPREFIX}/usr" --enable-ssl=${mod_type}"
+		MY_CONF="${MY_CONF} --with-ssl="${EPREFIX}"/usr --enable-ssl=${mod_type}"
 		MY_MODS="${MY_MODS} ssl"
 	else
 		MY_CONF="${MY_CONF} --without-ssl --disable-ssl"
@@ -245,22 +245,22 @@ setup_modules() {
 		elog "You can manipulate several configure options of suexec"
 		elog "through the following environment variables:"
 		elog
-		elog " SUEXEC_SAFEPATH: Default PATH for suexec (default: /usr/local/bin:/usr/bin:/bin)"
-		elog "  SUEXEC_LOGFILE: Path to the suexec logfile (default: /var/log/apache2/suexec_log)"
+		elog " SUEXEC_SAFEPATH: Default PATH for suexec (default: "${EPREFIX}"/usr/local/bin:"${EPREFIX}"/usr/bin:"${EPREFIX}"/bin)"
+		elog "  SUEXEC_LOGFILE: Path to the suexec logfile (default: "${EPREFIX}"/var/log/apache2/suexec_log)"
 		elog "   SUEXEC_CALLER: Name of the user Apache is running as (default: apache)"
-		elog "  SUEXEC_DOCROOT: Directory in which suexec will run scripts (default: /var/www)"
+		elog "  SUEXEC_DOCROOT: Directory in which suexec will run scripts (default: "${EPREFIX}"/var/www)"
 		elog "   SUEXEC_MINUID: Minimum UID, which is allowed to run scripts via suexec (default: 1000)"
 		elog "   SUEXEC_MINGID: Minimum GID, which is allowed to run scripts via suexec (default: 100)"
 		elog "  SUEXEC_USERDIR: User subdirectories (like /home/user/html) (default: public_html)"
 		elog "    SUEXEC_UMASK: Umask for the suexec process (default: 077)"
 		elog
 
-		MY_CONF="${MY_CONF} --with-suexec-safepath=${SUEXEC_SAFEPATH:-/usr/local/bin:/usr/bin:/bin}"
-		MY_CONF="${MY_CONF} --with-suexec-logfile=${SUEXEC_LOGFILE:-/var/log/apache2/suexec_log}"
-		MY_CONF="${MY_CONF} --with-suexec-bin=/usr/sbin/suexec"
+		MY_CONF="${MY_CONF} --with-suexec-safepath=${SUEXEC_SAFEPATH:-"${EPREFIX}"/usr/local/bin:"${EPREFIX}"/usr/bin:"${EPREFIX}"/bin}"
+		MY_CONF="${MY_CONF} --with-suexec-logfile=${SUEXEC_LOGFILE:-"${EPREFIX}"/var/log/apache2/suexec_log}"
+		MY_CONF="${MY_CONF} --with-suexec-bin="${EPREFIX}"/usr/sbin/suexec"
 		MY_CONF="${MY_CONF} --with-suexec-userdir=${SUEXEC_USERDIR:-public_html}"
 		MY_CONF="${MY_CONF} --with-suexec-caller=${SUEXEC_CALLER:-apache}"
-		MY_CONF="${MY_CONF} --with-suexec-docroot=${SUEXEC_DOCROOT:-/var/www}"
+		MY_CONF="${MY_CONF} --with-suexec-docroot=${SUEXEC_DOCROOT:-"${EPREFIX}"/var/www}"
 		MY_CONF="${MY_CONF} --with-suexec-uidmin=${SUEXEC_MINUID:-1000}"
 		MY_CONF="${MY_CONF} --with-suexec-gidmin=${SUEXEC_MINGID:-100}"
 		MY_CONF="${MY_CONF} --with-suexec-umask=${SUEXEC_UMASK:-077}"
@@ -389,6 +389,56 @@ apache-2_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	pushd "${GENTOO_PATCHDIR}"
+		epatch "${FILESDIR}"/${PN}-2.2.9-r1-prefix.patch
+		eprefixify \
+			conf/httpd.conf \
+			docs/ip-based-vhost.conf.example \
+			docs/name-based-vhost.conf.example \
+			docs/ssl-vhost.conf.example \
+			init/apache2.initd \
+			init/apache2.confd \
+			patches/config.layout \
+			scripts/gentestcrt.sh \
+			scripts/apache2-logrotate \
+			conf/modules.d/00_apache_manual.conf \
+			conf/modules.d/00_default_settings.conf \
+			conf/modules.d/00_error_documents.conf \
+			conf/modules.d/00_languages.conf \
+			conf/modules.d/00_mod_autoindex.conf \
+			conf/modules.d/00_mod_info.conf \
+			conf/modules.d/00_mod_log_config.conf \
+			conf/modules.d/00_mod_mime.conf \
+			conf/modules.d/00_mod_status.conf \
+			conf/modules.d/00_mod_userdir.conf \
+			conf/modules.d/00_mpm.conf \
+			conf/modules.d/10_mod_mem_cache.conf \
+			conf/modules.d/40_mod_ssl.conf \
+			conf/modules.d/45_mod_dav.conf \
+			conf/modules.d/46_mod_ldap.conf \
+			conf/vhosts.d/00_default_ssl_vhost.conf \
+			conf/vhosts.d/00_default_vhost.conf \
+			conf/vhosts.d/default_vhost.include
+	popd
+
+	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
+	# idea for everyone
+	case ${CHOST} in
+		*-linux-gnu|*-solaris*|*-freebsd*)
+			# do nothing, these use GNU binutils
+			:
+		;;
+		*-darwin*)
+			sed -i -e 's/-Wl,-z,now/-Wl,-bind_at_load/g' \
+				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
+		;;
+		*)
+			# patch it out to be like upstream
+			sed -i -e 's/-Wl,-z,now//g' \
+				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
+		;;
+	esac
+
 	# Use correct multilib libdir in gentoo patches
 	sed -i -e "s:/usr/lib:/usr/$(get_libdir):g" \
 		"${GENTOO_PATCHDIR}"/{conf/httpd.conf,init/*,patches/config.layout} \
@@ -427,16 +477,16 @@ apache-2_src_compile() {
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
 	econf \
-		--includedir="${EPREFIX}/usr/include/apache2" \
-		--libexecdir="${EPREFIX}/usr/$(get_libdir)/apache2/modules" \
-		--datadir="${EPREFIX}/var/www/localhost" \
-		--sysconfdir="${EPREFIX}/etc/apache2" \
-		--localstatedir="${EPREFIX}/var" \
+		--includedir="${EPREFIX}"/usr/include/apache2 \
+		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/apache2/modules \
+		--datadir="${EPREFIX}"/var/www/localhost \
+		--sysconfdir="${EPREFIX}"/etc/apache2 \
+		--localstatedir="${EPREFIX}"/var \
 		--with-mpm=${MY_MPM} \
-		--with-apr="${EPREFIX}/usr" \
-		--with-apr-util="${EPREFIX}/usr" \
-		--with-pcre"${EPREFIX}/usr" \
-		--with-z="${EPREFIX}/usr" \
+		--with-apr="${EPREFIX}"/usr \
+		--with-apr-util="${EPREFIX}"/usr \
+		--with-pcre="${EPREFIX}"/usr \
+		--with-z="${EPREFIX}"/usr \
 		--with-port=80 \
 		--with-program-name=apache2 \
 		--enable-layout=Gentoo \
@@ -478,13 +528,8 @@ apache-2_src_install() {
 	newconfd "${GENTOO_PATCHDIR}"/init/apache2.confd apache2
 	newinitd "${GENTOO_PATCHDIR}"/init/apache2.initd apache2
 
-	# install apache2ctl wrapper for our init script if available
-	if test -e "${GENTOO_PATCHDIR}"/scripts/apache2ctl; then
-		exeinto /usr/sbin
-		doexe "${GENTOO_PATCHDIR}"/scripts/apache2ctl
-	else
-		dosym /etc/init.d/apache2 /usr/sbin/apache2ctl
-	fi
+	# link apache2ctl to the init script
+	dosym /etc/init.d/apache2 /usr/sbin/apache2ctl
 
 	# provide legacy symlink for apxs, bug 177697
 	dosym /usr/sbin/apxs /usr/sbin/apxs2
@@ -540,7 +585,7 @@ apache-2_pkg_postinst() {
 	einfo
 
 	if use ssl && [[ ! -e "${EROOT}/etc/apache2/ssl/server.crt" ]] ; then
-		cd "${ROOT}"/etc/apache2/ssl
+		cd "${EROOT}"/etc/apache2/ssl
 		einfo "Generating self-signed test certificate in ${EROOT}etc/apache2/ssl ..."
 		yes "" 2>/dev/null | \
 			"${EROOT}"/usr/sbin/gentestcrt.sh >/dev/null 2>&1 || \
@@ -569,7 +614,7 @@ apache-2_pkg_postinst() {
 # This function installs -- and overwrites -- the default webroot to
 # /var/www/localhost
 apache-2_pkg_config() {
-	einfo "Installing default webroot to ${ROOT}var/www/localhost"
+	einfo "Installing default webroot to ${EROOT}var/www/localhost"
 	mkdir -p "${EROOT}"/var/www/localhost
 	cp -R "${EROOT}"/usr/share/${PF}/webroot/* "${EROOT}"/var/www/localhost/
 }
