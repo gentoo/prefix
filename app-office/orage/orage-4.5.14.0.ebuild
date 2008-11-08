@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2-utils autotools
+inherit gnome2-utils autotools eutils
 
 DESCRIPTION="Calendar suite for Xfce4"
 HOMEPAGE="http://www.kolumbus.fi/~w408237/orage"
@@ -33,6 +33,13 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# Patch needed for Solaris. Took from
+	# http://foo-projects.org/pipermail/xfce/2008-July/023569.html
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-paramters.c.patch"
+		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-configure.in.patch"
+	fi
+
 
 	use x86-interix && NOCONFIGURE=yes xdt-autogen # need new libtool for interix
 }
