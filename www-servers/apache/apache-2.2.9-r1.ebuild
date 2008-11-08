@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.9-r1.ebuild,v 1.8 2008/11/05 00:41:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.9-r1.ebuild,v 1.7 2008/09/03 21:31:38 jer Exp $
 
 EAPI="prefix"
 
@@ -83,7 +83,7 @@ HOMEPAGE="http://httpd.apache.org/"
 LICENSE="Apache-2.0 Apache-1.1"
 SLOT="2"
 # entirely new, based on eclass that probably needs fixin...
-KEYWORDS=""
+KEYWORDS="~sparc64-solaris ~x64-solaris"
 IUSE="sni"
 
 DEPEND="${DEPEND}
@@ -93,56 +93,6 @@ RDEPEND="${RDEPEND}
 	apache2_modules_mime? ( app-misc/mime-types )"
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	pushd "${GENTOO_PATCHDIR}"
-		epatch "${FILESDIR}"/${PN}-2.2.6-prefix.patch
-		eprefixify \
-			conf/httpd.conf \
-			scripts/gentestcrt.sh \
-			docs/ip-based-vhost.conf.example \
-			docs/name-based-vhost.conf.example \
-			docs/ssl-vhost.conf.example \
-			patches/config.layout \
-			scripts/apache2-logrotate \
-			init/apache2.initd \
-			conf/vhosts.d/00_default_ssl_vhost.conf \
-			conf/vhosts.d/00_default_vhost.conf \
-			conf/vhosts.d/default_vhost.include \
-			conf/modules.d/00_apache_manual.conf \
-			conf/modules.d/00_autoindex.conf \
-			conf/modules.d/00_error_documents.conf \
-			conf/modules.d/00_mod_log_config.conf \
-			conf/modules.d/00_mod_mime.conf \
-			conf/modules.d/00_mpm.conf \
-			conf/modules.d/40_mod_ssl.conf \
-			conf/modules.d/45_mod_dav.conf
-	popd
-
-	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
-	# idea for everyone
-	case ${CHOST} in
-		*-linux-gnu|*-solaris*|*-freebsd*)
-			# do nothing, these use GNU binutils
-			:
-		;;
-		*-darwin*)
-			sed -i -e 's/-Wl,-z,now/-Wl,-bind_at_load/g' \
-				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
-		;;
-		*)
-			# patch it out to be like upstream
-			sed -i -e 's/-Wl,-z,now//g' \
-				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
-		;;
-	esac
-
-	# Use correct multilib libdir in gentoo patches
-	sed -i -e "s:/usr/lib:/usr/$(get_libdir):g" \
-		"${GENTOO_PATCHDIR}"/{conf/httpd.conf,init/*,patches/config.layout} \
-		|| die "libdir sed failed"
-
 	if ! use sni ; then
 		EPATCH_EXCLUDE="04_all_mod_ssl_tls_sni.patch"
 	fi
