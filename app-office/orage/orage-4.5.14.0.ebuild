@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 # This package is waiting for alpha/beta/rc of Xfce 4.6, so please
 # don't mark it stable.
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="dbus debug libnotify"
 
 RDEPEND=">=dev-libs/glib-2.6
