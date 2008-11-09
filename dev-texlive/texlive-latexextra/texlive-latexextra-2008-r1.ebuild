@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2008.ebuild,v 1.3 2008/10/31 14:42:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2008-r1.ebuild,v 1.1 2008/11/06 20:00:47 aballier Exp $
 
 EAPI="prefix"
 
@@ -27,5 +27,5 @@ DEPEND=">=dev-texlive/texlive-latex-2008
 !=dev-texlive/texlive-latex3-2007*
 !=dev-texlive/texlive-humanities-2007*
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND} "
 TEXLIVE_MODULE_BINSCRIPTS="texmf-dist/scripts/perltex/perltex.pl texmf-dist/scripts/ppower4/pdfthumb.texlua texmf-dist/scripts/ppower4/ppower4.texlua texmf-dist/scripts/pst-pdf/ps4pdf texmf-dist/scripts/vpe/vpe.pl"
