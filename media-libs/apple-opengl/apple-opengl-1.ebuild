@@ -39,6 +39,10 @@ src_install() {
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/glu.h
 	ln -s "${X11_OPENGL_DIR}"/include/GL/GLwDrawA.h
 	ln -s "${X11_OPENGL_DIR}"/include/GL/osmesa.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxproto.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxtokens.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxmd.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxint.h
 	cd "${ED}"/usr/lib
 	ln -s "${APPLE_OPENGL_DIR}"/Libraries/libGLU.dylib
 	# this is dirty, and questionable if it's useful as well
