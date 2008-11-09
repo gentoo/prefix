@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.115 2008/11/03 17:07:51 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.116 2008/11/06 08:10:02 dragonheart Exp $
+
+*libgcrypt-1.4.3-r1 (06 Nov 2008)
+
+  06 Nov 2008; Daniel Black <dragonheart@gentoo.org>
+  +files/libgcrypt-1.4.0-HMAC-SHA-384-512.patch,
+  +files/libgcrypt-1.4.3-HMAC-SHA-384-512.patch, libgcrypt-1.4.0-r1.ebuild,
+  -libgcrypt-1.4.3.ebuild, +libgcrypt-1.4.3-r1.ebuild:
+  hash calculation fix as per upstream
+  http://marc.info/?l=gcrypt-devel&m=122591162816263&w=2
 
 *libgcrypt-1.4.3 (03 Nov 2008)
 

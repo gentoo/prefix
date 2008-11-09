@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0-r1.ebuild,v 1.10 2008/01/31 15:00:42 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0-r1.ebuild,v 1.11 2008/11/06 08:10:02 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,8 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# http://marc.info/?l=gcrypt-devel&m=122591162816263&w=2
+	epatch "${FILESDIR}"/${P}-HMAC-SHA-384-512.patch
 
 	if use idea; then
 		if use bindist; then
