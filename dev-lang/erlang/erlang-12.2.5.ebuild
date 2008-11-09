@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.4.ebuild,v 1.1 2008/09/03 15:13:24 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.5.ebuild,v 1.2 2008/11/06 20:53:46 opfer Exp $
 
 EAPI="prefix"
 
@@ -49,15 +49,11 @@ src_unpack() {
 
 	use odbc || sed -i 's: odbc : :' lib/Makefile
 
-	# Fix build on Gentoo/FreeBSD, upstream once accepted it but restored previous behaviour
-	# because of failures on vanilla BSD
-	epatch "${FILESDIR}"/${PN}-12.2.3-gethostbyname.patch
-
 	if use hipe; then
 		ewarn
 		ewarn "You enabled High performance Erlang. Be aware that this extension"
 		ewarn "can break the compilation in many ways, especially on hardened systems."
-		ewarn "Don't cry, don't file bugs, just disable it! If you have fix, tell us."
+		ewarn "Don't cry, don't file bugs, just disable it! If you have a fix, tell us though on Bugzilla."
 		ewarn
 	fi
 	eautoreconf
