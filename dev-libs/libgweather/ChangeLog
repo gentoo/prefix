@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.15 2008/09/25 14:34:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.16 2008/11/06 23:02:03 eva Exp $
+
+*libgweather-2.24.1 (06 Nov 2008)
+
+  06 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgweather-2.24.1.ebuild:
+  New version for GNOME 2.24. Unstable API for python bindings, use libsoup
+  instead of gnome-vfs, translation updates.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> libgweather-2.22.3.ebuild:
   Stable for HPPA (bug #236971).
