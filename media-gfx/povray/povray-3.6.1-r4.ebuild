@@ -1,21 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta25-r1.ebuild,v 1.3 2008/09/12 05:17:50 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r4.ebuild,v 1.2 2008/11/08 20:55:53 lavajoe Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools flag-o-matic versionator
+inherit flag-o-matic eutils autotools
 
-MY_PV=$(get_version_component_range 1-3)
-MY_MINOR_VER=$(get_version_component_range 4)
-if [ -n "$MY_MINOR_VER" ]; then
-	MY_MINOR_VER=${MY_MINOR_VER/beta/beta.}
-	MY_PV="${MY_PV}.${MY_MINOR_VER}b"
-fi
-
-DESCRIPTION="The Persistence of Vision Raytracer"
+DESCRIPTION="The Persistence Of Vision Ray Tracer"
+SRC_URI="ftp://ftp.povray.org/pub/povray/Official/Unix/${P}.tar.bz2"
 HOMEPAGE="http://www.povray.org/"
-SRC_URI="http://www.povray.org/beta/source/${PN}-src-${MY_PV}.tar.bz2"
 
 LICENSE="povlegal-3.6"
 SLOT="0"
@@ -27,29 +20,38 @@ DEPEND="media-libs/libpng
 	media-libs/jpeg
 	sys-libs/zlib
 	X? ( x11-libs/libXaw )
-	svga? ( media-libs/svgalib )
-	>=dev-libs/boost-1.33"
-
-S="${WORKDIR}/${PN}-${MY_PV}"
+	svga? ( media-libs/svgalib )"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-gcc43.patch
+	epatch "${FILESDIR}"/${P}-configure.patch
+	epatch "${FILESDIR}"/${P}-find-egrep.patch
 
 	# Change some destination directories that cannot be adjusted via configure
-	cp configure.ac configure.ac.orig
-	sed -i -e 's:${povsysconfdir}/$PACKAGE/$VERSION_BASE:${povsysconfdir}/'${PN}':g' configure.ac
-	sed -i -e 's:${povdatadir}/$PACKAGE-$VERSION_BASE:${povdatadir}/'${PN}':g' configure.ac
-	sed -i -e 's:${povdatadir}/doc/$PACKAGE-$VERSION_BASE:${povdatadir}/doc/'${PF}':g' configure.ac
-
 	cp Makefile.am Makefile.am.orig
 	sed -i -e "s:^povlibdir = .*:povlibdir = @datadir@/${PN}:" Makefile.am
 	sed -i -e "s:^povdocdir = .*:povdocdir = @datadir@/doc/${PF}:" Makefile.am
 	sed -i -e "s:^povconfdir = .*:povconfdir = @sysconfdir@/${PN}:" Makefile.am
 
-	eautoreconf
+	cd unix
+	cp Makefile.am Makefile.am.orig
+	sed -i -e 's:^  -DPOVLIBDIR=.*:  -DPOVLIBDIR=\\"@datadir@/'"${PN}"'\\" \\:' Makefile.am
+	sed -i -e 's:^  -DPOVCONFDIR=.*:  -DPOVCONFDIR=\\"@sysconfdir@/'"${PN}"'\\" \\:' Makefile.am
+	cd ..
+
+	# Patch code that compares system lib versions to properly detect
+	# newer versions.  Also fix reference to old png call.  (Bug #153538)
+	epatch "${FILESDIR}"/${P}-use-system-libpng.patch
+
+	# Also, to make sure no bundled static libs can be used, remove them
+	rm -r libraries/jpeg
+	rm -r libraries/png
+	rm -r libraries/tiff
+	rm -r libraries/zlib
+
+	AT_NO_RECURSIVE="yes" eautoreconf
 }
 
 src_compile() {
@@ -57,13 +59,6 @@ src_compile() {
 	if [[ $(get-flag march) == k6-2 ]]; then
 		filter-flags -fomit-frame-pointer
 	fi
-
-	# The config files are installed correctly (e.g. povray.conf),
-	# but the code compiles using incorrect [default] paths
-	# (based on /usr/local...), so povray will not find the system
-	# config files without the following fix:
-	append-flags -DPOVLIBDIR=\\\"${EROOT}usr/share/${PN}\\\"
-	append-flags -DPOVCONFDIR=\\\"${EROOT}etc/${PN}\\\"
 
 	econf \
 		COMPILED_BY="Portage (Gentoo `uname`) on `hostname -f`" \

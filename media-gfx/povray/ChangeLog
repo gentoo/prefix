@@ -1,6 +1,43 @@
 # ChangeLog for media-gfx/povray
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.76 2008/09/12 05:17:50 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.83 2008/11/08 21:46:52 lavajoe Exp $
+
+  08 Nov 2008; Joe Peterson <lavajoe@gentoo.org>
+  -povray-3.7.0_beta29.ebuild:
+  Remove old
+
+*povray-3.7.0_beta29-r1 (08 Nov 2008)
+
+  08 Nov 2008; Joe Peterson <lavajoe@gentoo.org>
+  +files/povray-3.7.0-print-extend-expiration-info.patch,
+  +povray-3.7.0_beta29-r1.ebuild:
+  Print info on how to extend the expiration date of the beta if it has
+  expired. Without this, users can get the impression that the program
+  cannot be run.
+
+  08 Nov 2008; Joe Peterson <lavajoe@gentoo.org> povray-3.6.1-r4.ebuild:
+  Remove dependency on libpng version
+
+*povray-3.6.1-r4 (08 Nov 2008)
+
+  08 Nov 2008; Joe Peterson <lavajoe@gentoo.org>
+  +files/povray-3.6.1-use-system-libpng.patch, +povray-3.6.1-r4.ebuild:
+  Fix 3.6.1 to not use any bundled static libs and to correctly detect
+  system lib versions, like libpng (bug #153538)
+
+  08 Nov 2008; nixnut <nixnut@gentoo.org> povray-3.6.1-r3.ebuild:
+  Stable on ppc wrt bug 245981
+
+*povray-3.7.0_beta29 (07 Nov 2008)
+
+  07 Nov 2008; Joe Peterson <lavajoe@gentoo.org>
+  -files/povray-3.7.0_beta25-gcc43.patch, -povray-3.7.0_beta25-r1.ebuild,
+  +povray-3.7.0_beta29.ebuild:
+  Add new 3.7.0 beta 29; remove old
+
+  07 Nov 2008; Joe Peterson <lavajoe@gentoo.org>
+  -povray-3.7.0_beta25.ebuild:
+  Remove old
 
   12 Sep 2008; Joe Peterson <lavajoe@gentoo.org>
   +files/povray-3.7.0_beta25-gcc43.patch, povray-3.7.0_beta25-r1.ebuild:
