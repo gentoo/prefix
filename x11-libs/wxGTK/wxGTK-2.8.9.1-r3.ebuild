@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.1-r1.ebuild,v 1.1 2008/10/18 18:23:02 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.1-r3.ebuild,v 1.1 2008/11/07 23:39:30 dirtyepic Exp $
 
 EAPI="prefix 2"
 
@@ -59,6 +59,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.8.8-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.6-wxrc_link_fix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch			# Bug #174874
+	epatch "${FILESDIR}"/${PN}-2.8.9-dont-touch-my-bools.patch	# Bug #245973
 }
 
 src_configure() {

@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.207 2008/10/28 22:52:59 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.208 2008/11/07 23:39:30 dirtyepic Exp $
+
+*wxGTK-2.8.9.1-r3 (07 Nov 2008)
+*wxGTK-2.8.9.1-r2 (07 Nov 2008)
+
+  07 Nov 2008; Ryan Hill <dirtyepic@gentoo.org>
+  +files/wxGTK-2.8.9-dont-touch-my-bools.patch, -wxGTK-2.8.9.1.ebuild,
+  -wxGTK-2.8.9.1-r1.ebuild, +wxGTK-2.8.9.1-r2.ebuild,
+  +wxGTK-2.8.9.1-r3.ebuild:
+  Added a patch from Martin von Gagern in bug #245973 to prevent wx/db.h
+  from undefining BOOL when USE=odbc. Patch accepted upstream. New stable
+  candidate is -r2.
 
   28 Oct 2008; Ryan Hill <dirtyepic@gentoo.org>
   files/wxGTK-2.8.8-collision.patch:
