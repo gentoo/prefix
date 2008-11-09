@@ -5,7 +5,7 @@
  GCLIBS = $(GCPPLIB) $(GCLIB)
  LFLAGS = @LDFLAGS@
 -LIBS = $(LFLAGS) @LIBS@ $(GCLIBS)
-+LIBS = $(LFLAGS) @LIBS@ $(GCLIBS) -lGL -lglu
++LIBS = $(LFLAGS) @LIBS@ $(GCLIBS) -lGL -lGLU
  
  CAMP = camperror path drawpath drawlabel picture psfile texfile util settings \
         guide flatguide knot drawfill path3 drawpath3 drawsurface
