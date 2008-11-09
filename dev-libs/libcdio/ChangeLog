@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libcdio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.102 2008/08/31 13:33:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.105 2008/11/08 17:18:47 armin76 Exp $
+
+  08 Nov 2008; Raúl Porcel <armin76@gentoo.org> libcdio-0.80.ebuild:
+  arm/ia64/sh/sparc stable wrt #245252
+
+  08 Nov 2008; nixnut <nixnut@gentoo.org> libcdio-0.80.ebuild:
+  Stable on ppc wrt bug 245252
+
+  05 Nov 2008; Markus Meier <maekke@gentoo.org> libcdio-0.80.ebuild:
+  amd64/x86 stable, bug #245252
 
   31 Aug 2008; Diego Pettenò <flameeyes@gentoo.org> libcdio-0.80.ebuild:
   Fix linking of libiconv where needed.

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.7 2008/08/31 13:33:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.10 2008/11/08 17:18:47 armin76 Exp $
 
 EAPI="prefix 1"
 
