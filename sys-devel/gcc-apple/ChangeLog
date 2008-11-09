@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  09 Nov 2008; Fabian Groffen <grobian@gentoo.org>
+  +files/gcc-apple-4.2.1-dsymutil.patch, gcc-apple-4.2.1_p5564.ebuild:
+  Add patch for 10.4/x86 peeps, thanks David Hubbard for the research
+
   12 Oct 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5465-r1.ebuild, gcc-apple-4.0.1_p5484.ebuild,
   gcc-apple-4.0.1_p5488.ebuild, gcc-apple-4.2.1_p5564.ebuild:

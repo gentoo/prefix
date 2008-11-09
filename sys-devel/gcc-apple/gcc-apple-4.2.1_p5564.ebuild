@@ -67,6 +67,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.0.1_p5465-default-altivec.patch
 
+	# dsymutil stuff breaks on 10.4/x86, revert it
+	[[ ${CHOST} == *86*-apple-darwin8 ]] && \
+		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-dsymutil.patch
+
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
 	cd "${S}"/gcc && eautoconf
 	cd "${S}"/libgomp && eautoconf
