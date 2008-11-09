@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.3.2.ebuild,v 1.4 2008/11/08 17:13:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.3.9.0.ebuild,v 1.1 2008/11/06 19:53:09 angelos Exp $
 
 EAPI="prefix"
 
