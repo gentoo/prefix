@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.3 2008/06/03 02:36:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.4 2008/11/06 23:53:23 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -66,7 +66,7 @@ src_compile() {
 
 	# Prep executable script - the one packaged with the distro is b0rked
 	if use X; then
-		echo 'java -Djava.library.path=$(java-config -i blackdown-java3d-bin) -cp $(java-config -p blackdown-java3d-bin):${EPREFIX}/usr/lib/tinker/ffe.jar ffe.Main' > tinker
+		echo 'java -Djava.library.path=$(java-config -i sun-java3d-bin) -cp $(java-config -p sun-java3d-bin):${EPREFIX}/usr/lib/tinker/ffe.jar ffe.Main' > tinker
 	fi
 
 	einfo "Compiling ..."

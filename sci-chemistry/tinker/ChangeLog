@@ -1,6 +1,10 @@
 # ChangeLog for sci-chemistry/tinker
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.9 2008/06/03 02:36:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.10 2008/11/06 23:53:23 dberkholz Exp $
+
+  06 Nov 2008; Donnie Berkholz <dberkholz@gentoo.org>; tinker-4.2-r1.ebuild:
+  (#245504) This ebuild was wrongly updated for the blackdown removal, which
+  broke it. Fix that.
 
   03 Jun 2008; Michael Sterrett <mr_bones_@gentoo.org> tinker-4.2-r1.ebuild:
   remove reference to dev-java/blackdown-java3d-bin which has been removed
