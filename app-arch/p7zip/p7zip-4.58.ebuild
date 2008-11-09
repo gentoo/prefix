@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.58.ebuild,v 1.2 2008/09/04 06:07:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.58.ebuild,v 1.5 2008/11/08 11:53:02 nixnut Exp $
 
 EAPI="prefix"
 
