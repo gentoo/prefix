@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9139 2008/11/04 21:10:59 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9151 2008/11/09 01:54:55 scarabeus Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,269 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tomas Chvatal <scarabeus@gentoo.org> (8 Nov 2008)
+# Mask kde-4.1.3for pending addition into tree.
+=kde-base/kdebase-meta-4.1.3
+=kde-base/kdeadmin-meta-4.1.3
+=kde-base/kdeaddons-meta-4.1.3
+=kde-base/kdebindings-meta-4.1.3
+=kde-base/kdegames-meta-4.1.3
+=kde-base/kdepim-meta-4.1.3
+=kde-base/kdegraphics-meta-4.1.3
+=kde-base/kdetoys-meta-4.1.3
+=kde-base/kdeutils-meta-4.1.3
+=kde-base/kdemultimedia-meta-4.1.3
+=kde-base/kdewebdev-meta-4.1.3
+=kde-base/kdeartwork-meta-4.1.3
+=kde-base/kdesdk-meta-4.1.3
+=kde-base/kde-meta-4.1.3
+=kde-base/kdeaccessibility-meta-4.1.3
+=kde-base/kdenetwork-meta-4.1.3
+=kde-base/kdeedu-meta-4.1.3
+=kde-base/kreversi-4.1.3
+=kde-base/kate-4.1.3
+=kde-base/kmimetypefinder-4.1.3
+=kde-base/ksnapshot-4.1.3
+=kde-base/krunner-4.1.3
+=kde-base/kdepim-wizards-4.1.3
+=kde-base/kcontrol-4.1.3
+=kde-base/kdebugdialog-4.1.3
+=kde-base/lokalize-4.1.3
+=kde-base/kitchensync-4.1.3
+=kde-base/ksame-4.1.3
+=kde-base/kdepim-kresources-4.1.3
+=kde-base/ksirk-4.1.3
+=kde-base/lskat-4.1.3
+=kde-base/libkleo-4.1.3
+=kde-base/kcachegrind-4.1.3
+=kde-base/kbugbuster-4.1.3
+=kde-base/krfb-4.1.3
+=kde-base/kdeplasma-addons-4.1.3
+=kde-base/kubrick-4.1.3
+=kde-base/kde-menu-icons-4.1.3
+=kde-base/ksplash-4.1.3
+=kde-base/kjumpingcube-4.1.3
+=kde-base/libksieve-4.1.3
+=kde-base/kscd-4.1.3
+=kde-base/kdemaildir-4.1.3
+=kde-base/kstartperf-4.1.3
+=kde-base/kde-wallpapers-4.1.3
+=kde-base/ktuberling-4.1.3
+=kde-base/khangman-4.1.3
+=kde-base/solid-4.1.3
+=kde-base/korganizer-4.1.3
+=kde-base/kdesdk-misc-4.1.3
+=kde-base/svgpart-4.1.3
+=kde-base/kdeaccounts-plugin-4.1.3
+=kde-base/nsplugins-4.1.3
+=kde-base/kstartupconfig-4.1.3
+=kde-base/kstars-4.1.3
+=kde-base/khelpcenter-4.1.3
+=kde-base/kcminit-4.1.3
+=kde-base/kmail-4.1.3
+=kde-base/kmahjongg-4.1.3
+=kde-base/gwenview-4.1.3
+=kde-base/bovo-4.1.3
+=kde-base/libplasma-4.1.3
+=kde-base/kmix-4.1.3
+=kde-base/kdegraphics-strigi-analyzer-4.1.3
+=kde-base/libkexiv2-4.1.3
+=kde-base/renamedlg-plugins-4.1.3
+=kde-base/libkipi-4.1.3
+=kde-base/kuser-4.1.3
+=kde-base/kxsldbg-4.1.3
+=kde-base/ark-4.1.3
+=kde-base/kontactinterfaces-4.1.3
+=kde-base/soliduiserver-4.1.3
+=kde-base/kdepasswd-4.1.3
+=kde-base/kioclient-4.1.3
+=kde-base/kdeartwork-kscreensaver-4.1.3
+=kde-base/krdc-4.1.3
+=kde-base/sweeper-4.1.3
+=kde-base/knewstuff-4.1.3
+=kde-base/kurifilter-plugins-4.1.3
+=kde-base/kmouth-4.1.3
+=kde-base/okteta-4.1.3
+=kde-base/superkaramba-4.1.3
+=kde-base/kgoldrunner-4.1.3
+=kde-base/kbounce-4.1.3
+=kde-base/parley-4.1.3
+=kde-base/kde-menu-4.1.3
+=kde-base/knetattach-4.1.3
+=kde-base/ktimetracker-4.1.3
+=kde-base/kcmshell-4.1.3
+=kde-base/libkdegames-4.1.3
+=kde-base/konqueror-4.1.3
+=kde-base/kdnssd-4.1.3
+=kde-base/libkcompactdisc-4.1.3
+=kde-base/lilo-config-4.1.3
+=kde-base/kbattleship-4.1.3
+=kde-base/kttsd-4.1.3
+=kde-base/kquitapp-4.1.3
+=kde-base/kdebase-startkde-4.1.3
+=kde-base/kppp-4.1.3
+=kde-base/kblocks-4.1.3
+=kde-base/libkholidays-4.1.3
+=kde-base/kdesdk-strigi-analyzer-4.1.3
+=kde-base/libkmahjongg-4.1.3
+=kde-base/katomic-4.1.3
+=kde-base/kiten-4.1.3
+=kde-base/kleopatra-4.1.3
+=kde-base/kget-4.1.3
+=kde-base/amor-4.1.3
+=kde-base/kbruch-4.1.3
+=kde-base/kstyles-4.1.3
+=kde-base/ksquares-4.1.3
+=kde-base/kwordquiz-4.1.3
+=kde-base/kwallet-4.1.3
+=kde-base/kaddressbook-4.1.3
+=kde-base/systemsettings-4.1.3
+=kde-base/kdepim-strigi-analyzer-4.1.3
+=kde-base/ksysguard-4.1.3
+=kde-base/kweather-4.1.3
+=kde-base/kdepimlibs-4.1.3
+=kde-base/kcharselect-4.1.3
+=kde-base/kdeartwork-wallpapers-4.1.3
+=kde-base/kblackbox-4.1.3
+=kde-base/akregator-4.1.3
+=kde-base/ksmserver-4.1.3
+=kde-base/kdeartwork-colorschemes-4.1.3
+=kde-base/kuiviewer-4.1.3
+=kde-base/knetworkconf-4.1.3
+=kde-base/knewsticker-4.1.3
+=kde-base/umbrello-4.1.3
+=kde-base/step-4.1.3
+=kde-base/kgpg-4.1.3
+=kde-base/kpercentage-4.1.3
+=kde-base/nepomuk-4.1.3
+=kde-base/kdeaccessibility-iconthemes-4.1.3
+=kde-base/kteatime-4.1.3
+=kde-base/klines-4.1.3
+=kde-base/kdelibs-4.1.3
+=kde-base/knode-4.1.3
+=kde-base/kinfocenter-4.1.3
+=kde-base/kdessh-4.1.3
+=kde-base/kfile-4.1.3
+=kde-base/ktnef-4.1.3
+=kde-base/kwin-4.1.3
+=kde-base/kig-4.1.3
+=kde-base/klinkstatus-4.1.3
+=kde-base/kolf-4.1.3
+=kde-base/kalgebra-4.1.3
+=kde-base/kode-4.1.3
+=kde-base/kpasswdserver-4.1.3
+=kde-base/kfind-4.1.3
+=kde-base/plasma-apps-4.1.3
+=kde-base/libksane-4.1.3
+=kde-base/kfourinline-4.1.3
+=kde-base/kdebase-cursors-4.1.3
+=kde-base/kdesdk-scripts-4.1.3
+=kde-base/marble-4.1.3
+=kde-base/kjots-4.1.3
+=kde-base/libtaskmanager-4.1.3
+=kde-base/kfilereplace-4.1.3
+=kde-base/kcalc-4.1.3
+=kde-base/kolourpaint-4.1.3
+=kde-base/ksudoku-4.1.3
+=kde-base/kmplot-4.1.3
+=kde-base/knotify-4.1.3
+=kde-base/kreadconfig-4.1.3
+=kde-base/kdiamond-4.1.3
+=kde-base/kbreakout-4.1.3
+=kde-base/kompare-4.1.3
+=kde-base/kdeartwork-emoticons-4.1.3
+=kde-base/kspaceduel-4.1.3
+=kde-base/kappfinder-4.1.3
+=kde-base/plasma-workspace-4.1.3
+=kde-base/kdenetwork-filesharing-4.1.3
+=kde-base/dragonplayer-4.1.3
+=kde-base/kmag-4.1.3
+=kde-base/kstart-4.1.3
+=kde-base/konsole-4.1.3
+=kde-base/kdm-4.1.3
+=kde-base/kmailcvt-4.1.3
+=kde-base/libkdepim-4.1.3
+=kde-base/kcron-4.1.3
+=kde-base/kmenuedit-4.1.3
+=kde-base/kapptemplate-4.1.3
+=kde-base/klipper-4.1.3
+=kde-base/libkdcraw-4.1.3
+=kde-base/libkonq-4.1.3
+=kde-base/kscreensaver-4.1.3
+=kde-base/okular-4.1.3
+=kde-base/knetwalk-4.1.3
+=kde-base/kollision-4.1.3
+=kde-base/kcheckpass-4.1.3
+=kde-base/keditbookmarks-4.1.3
+=kde-base/solid-hardware-4.1.3
+=kde-base/blinken-4.1.3
+=kde-base/kimagemapeditor-4.1.3
+=kde-base/ksystemlog-4.1.3
+=kde-base/kgeography-4.1.3
+=kde-base/libkworkspace-4.1.3
+=kde-base/kwrite-4.1.3
+=kde-base/kde-l10n-4.1.3
+=kde-base/kcolorchooser-4.1.3
+=kde-base/kuiserver-4.1.3
+=kde-base/libkpgp-4.1.3
+=kde-base/kdeartwork-styles-4.1.3
+=kde-base/ktimer-4.1.3
+=kde-base/kiriki-4.1.3
+=kde-base/kdeartwork-iconthemes-4.1.3
+=kde-base/kruler-4.1.3
+=kde-base/kpat-4.1.3
+=kde-base/kanagram-4.1.3
+=kde-base/kshisen-4.1.3
+=kde-base/kgamma-4.1.3
+=kde-base/ktimezoned-4.1.3
+=kde-base/drkonqi-4.1.3
+=kde-base/kiconfinder-4.1.3
+=kde-base/kfloppy-4.1.3
+=kde-base/ktouch-4.1.3
+=kde-base/kdialog-4.1.3
+=kde-base/phonon-xine-4.1.3
+=kde-base/kdebase-kioslaves-4.1.3
+=kde-base/khotkeys-4.1.3
+=kde-base/knotes-4.1.3
+=kde-base/ktraderclient-4.1.3
+=kde-base/kamera-4.1.3
+=kde-base/kmousetool-4.1.3
+=kde-base/mimelib-4.1.3
+=kde-base/konquest-4.1.3
+=kde-base/libkdeedu-4.1.3
+=kde-base/kdeartwork-kworldclock-4.1.3
+=kde-base/kdf-4.1.3
+=kde-base/libkcddb-4.1.3
+=kde-base/kalzium-4.1.3
+=kde-base/kontact-4.1.3
+=kde-base/kmines-4.1.3
+=kde-base/kdeartwork-sounds-4.1.3
+=kde-base/kdesu-4.1.3
+=kde-base/ksystraycmd-4.1.3
+=kde-base/kdepim-icons-4.1.3
+=kde-base/kdesdk-kioslaves-4.1.3
+=kde-base/ktux-4.1.3
+=kde-base/kopete-4.1.3
+=kde-base/kalarm-4.1.3
+=kde-base/cervisia-4.1.3
+=kde-base/kdebase-data-4.1.3
+=kde-base/kdeartwork-icewm-themes-4.1.3
+=kde-base/dolphin-4.1.3
+=kde-base/kdeaccessibility-colorschemes-4.1.3
+=kde-base/kommander-4.1.3
+=kde-base/kdemultimedia-kioslaves-4.1.3
+=kde-base/akonadi-4.1.3
+=kde-base/konq-plugins-4.1.3
+=kde-base/juk-4.1.3
+=kde-base/kturtle-4.1.3
+=kde-base/klettres-4.1.3
+
+# Steve Dibb <beandog@gentoo.org> (5 Nov 2008)
+# Mask realplayer, real codecs for security, upstream issues, bug 245662
+media-video/realplayer
+media-libs/amd64codecs
+media-libs/realcodecs
 
 # Jeremy Olexa <darkside@gentoo.org> (4 Nov 2008)
 # Does not compile, no maintainer. Broken for over a year.
@@ -109,12 +372,6 @@ perl-core/version
 # Qt-4.3 users should probably be fine.
 =sci-visualization/paraview-3.4.0
 
-# Jim Ramsay <lack@gentoo.org> (27 Oct 2008)
-# Masked for security flaws (Bug #239543), but some users still need it in the
-# tree until all crashing issues are resolved (inasfar as they can actually *be*
-# resolved
-<net-www/netscape-flash-10.0.12.36
-
 # Joerg Bornkessel <hd_brummy@gentoo.org> (27 Oct 2008)
 # masked for testing
 # http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
@@ -175,21 +432,6 @@ dev-perl/tagged
 # genflags should never have been born.  Output needs to be specific per GCC
 # version, and that's a big change.
 app-portage/genflags
-
-# Gilles Dartiguelongue <eva@gentoo.org> (20 Oct 2008)
-# GNOME 2.24 mask being (and related)
->=net-irc/xchat-gnome-0.24.0
->=gnome-base/gnome-desktop-2.24.0
->=gnome-base/eel-2.24.0
->=gnome-base/nautilus-2.24.0
->=gnome-base/gnome-settings-daemon-2.24.0
->=gnome-base/gnome-control-center-2.24.0
-# GNOME 2.24 mask end
-
-# Mart Raudsepp <leio@gentoo.org> (20 Oct 2008)
-# Does not work well compared to 2.22, at least not without
-# gnome-settings-daemon-2.24
->=gnome-extra/bug-buddy-2.24
 
 # Rémi Cardona <remi@gentoo.org> (19 Oct 2008)
 # pre-release, masked for testing
@@ -296,10 +538,6 @@ gnome-extra/gnome-lirc-properties
 # Development version, but yet nice :)
 =net-analyzer/wireshark-1.1*
 
-# Ulrich Mueller <ulm@gentoo.org> (15 Sep 2008)
-# Broken MIME (RFC 1522) encoding of headers, bug 237730.
-~app-emacs/vm-8.0.11.581
-
 # Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
 # Masked for removal in 60 days. Dead upstream, old, no maintainer, based on 2.5
 # kernel, doesn't build with glibc-2.8, bug # 231837, 204671, 226675
@@ -339,254 +577,6 @@ app-portage/kuroo
 # to send me patches or help me fix it. If that doesn't sound like you, this
 # software is not yet ready for you. Thanks.
 ~net-misc/dhcp-4.0.0
-
-# Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (03 Sep 2008)
-# Restrict the following mask only to 4.0.* packages. KDE-4.1 won't enter
-# the tree p. masked.
-# Ingmar Vanhassel <ingmar@gentoo.org> (16 Jan 2008)
-# Mask KDE 4.0.x for testing. This release of KDE 4 will not be unmasked.
-# This is still not intended for mainstream so DO NOT KEYWORD IT without
-# talking to the KDE herd first.
-# KDE 4 guide: http://www.gentoo.org/proj/en/desktop/kde/kde4.xml
-=kde-base/amor-4.0*
-=kde-base/ark-4.0*
-=kde-base/blinken-4.0*
-=kde-base/bovo-4.0*
-=kde-base/cervisia-4.0*
-=kde-base/dolphin-4.0*
-=kde-base/drkonqi-4.0*
-=kde-base/gwenview-4.0*
-=kde-base/juk-4.0*
-=kde-base/kalgebra-4.0*
-=kde-base/kalzium-4.0*
-=kde-base/kamera-4.0*
-=kde-base/kanagram-4.0*
-=kde-base/kappfinder-4.0*
-=kde-base/kapptemplate-4.0*
-=kde-base/kate-4.0*
-=kde-base/katomic-4.0*
-=kde-base/kbattleship-4.0*
-=kde-base/kblackbox-4.0*
-=kde-base/kbounce-4.0*
-=kde-base/kbruch-4.0*
-=kde-base/kbugbuster-4.0*
-=kde-base/kcachegrind-4.0*
-=kde-base/kcalc-4.0*
-=kde-base/kcharselect-4.0*
-=kde-base/kcheckpass-4.0*
-=kde-base/kcminit-4.0*
-=kde-base/kcmshell-4.0*
-=kde-base/kcolorchooser-4.0*
-=kde-base/kcontrol-4.0*
-=kde-base/kcron-4.0*
-=kde-base/kde-4.0*
-=kde-base/kdeaccessibility-4.0*
-=kde-base/kdeaccessibility-colorschemes-4.0*
-=kde-base/kdeaccessibility-iconthemes-4.0*
-=kde-base/kdeaccessibility-meta-4.0*
-=kde-base/kdeaccounts-plugin-4.0*
-=kde-base/kdeadmin-4.0*
-=kde-base/kdeadmin-meta-4.0*
-=kde-base/kdeartwork-4.0*
-=kde-base/kdeartwork-colorschemes-4.0*
-=kde-base/kdeartwork-emoticons-4.0*
-=kde-base/kdeartwork-icewm-themes-4.0*
-=kde-base/kdeartwork-iconthemes-4.0*
-=kde-base/kdeartwork-kscreensaver-4.0*
-=kde-base/kdeartwork-kworldclock-4.0*
-=kde-base/kdeartwork-meta-4.0*
-=kde-base/kdeartwork-sounds-4.0*
-=kde-base/kdeartwork-styles-4.0*
-=kde-base/kdeartwork-wallpapers-4.0*
-=kde-base/kdebase-4.0*
-=kde-base/kdebase-data-4.0*
-=kde-base/kdebase-kioslaves-4.0*
-=kde-base/kdebase-meta-4.0*
-=kde-base/kdebase-startkde-4.0*
-=kde-base/kdebugdialog-4.0*
-=kde-base/kdeedu-4.0*
-=kde-base/kdeedu-meta-4.0*
-=kde-base/kdegames-4.0*
-=kde-base/kdegames-meta-4.0*
-=kde-base/kdegraphics-4.0*
-=kde-base/kdegraphics-meta-4.0*
-=kde-base/kde-l10n-4.0*
-=kde-base/kdelibs-4.0*
-=kde-base/kde-menu-4.0*
-=kde-base/kde-menu-icons-4.0*
-=kde-base/kde-meta-4.0*
-=kde-base/kdemultimedia-4.0*
-=kde-base/kdemultimedia-kioslaves-4.0*
-=kde-base/kdemultimedia-meta-4.0*
-=kde-base/kdenetwork-4.0*
-=kde-base/kdenetwork-filesharing-4.0*
-=kde-base/kdenetwork-meta-4.0*
-=kde-base/kdepasswd-4.0*
-=kde-base/kdepimlibs-4.0*
-=kde-base/kdesdk-4.0*
-=kde-base/kdesdk-kioslaves-4.0*
-=kde-base/kdesdk-meta-4.0*
-=kde-base/kdesdk-misc-4.0*
-=kde-base/kdesdk-scripts-4.0*
-=kde-base/kdessh-4.0*
-=kde-base/kdesu-4.0*
-=kde-base/kdetoys-4.0*
-=kde-base/kdetoys-meta-4.0*
-=kde-base/kdeutils-4.0*
-=kde-base/kdeutils-meta-4.0*
-=kde-base/kde-wallpapers-4.0*
-=kde-base/kdewebdev-4.0*
-=kde-base/kdewebdev-meta-4.0*
-=kde-base/kdf-4.0*
-=kde-base/kdialog-4.0*
-=kde-base/kdm-4.0*
-=kde-base/kdnssd-4.0*
-=kde-base/keditbookmarks-4.0*
-=kde-base/kfile-4.0*
-=kde-base/kfilereplace-4.0*
-=kde-base/kfind-4.0*
-=kde-base/kfloppy-4.0*
-=kde-base/kfourinline-4.0*
-=kde-base/kgamma-4.0*
-=kde-base/kgeography-4.0*
-=kde-base/kget-4.0*
-=kde-base/kgoldrunner-4.0*
-=kde-base/kgpg-4.0*
-=kde-base/khangman-4.0*
-=kde-base/khelpcenter-4.0*
-=kde-base/khotkeys-4.0*
-=kde-base/kig-4.0*
-=kde-base/kimagemapeditor-4.0*
-=kde-base/kinfocenter-4.0*
-=kde-base/kioclient-4.0*
-=kde-base/kiriki-4.0*
-=kde-base/kiten-4.0*
-=kde-base/kjots-4.0*
-=kde-base/kjumpingcube-4.0*
-=kde-base/klettres-4.0*
-=kde-base/klines-4.0*
-=kde-base/klinkstatus-4.0*
-=kde-base/klipper-4.0*
-=kde-base/kmag-4.0*
-=kde-base/kmahjongg-4.0*
-=kde-base/kmenuedit-4.0*
-=kde-base/kmilo-4.0*
-=kde-base/kmimetypefinder-4.0*
-=kde-base/kmines-4.0*
-=kde-base/kmix-4.0*
-=kde-base/kmousetool-4.0*
-=kde-base/kmouth-4.0*
-=kde-base/kmplot-4.0*
-=kde-base/knetattach-4.0*
-=kde-base/knetwalk-4.0*
-=kde-base/knetworkconf-4.0*
-=kde-base/knewsticker-4.0*
-=kde-base/knewstuff-4.0*
-=kde-base/knotify-4.0*
-=kde-base/kolf-4.0*
-=kde-base/kolourpaint-4.0*
-=kde-base/kompare-4.0*
-=kde-base/konqueror-4.0*
-=kde-base/konquest-4.0*
-=kde-base/konsole-4.0*
-=kde-base/kopete-4.0*
-=kde-base/kpasswdserver-4.0*
-=kde-base/kpat-4.0*
-=kde-base/kpercentage-4.0*
-=kde-base/kppp-4.0*
-=kde-base/kquitapp-4.0*
-=kde-base/krdc-4.0*
-=kde-base/kreadconfig-4.0*
-=kde-base/kreversi-4.0*
-=kde-base/krfb-4.0*
-=kde-base/kruler-4.0*
-=kde-base/krunner-4.0*
-=kde-base/ksame-4.0*
-=kde-base/kscd-4.0*
-=kde-base/kscreensaver-4.0*
-=kde-base/kshisen-4.0*
-=kde-base/ksmserver-4.0*
-=kde-base/ksnapshot-4.0*
-=kde-base/kspaceduel-4.0*
-=kde-base/ksplash-4.0*
-=kde-base/ksquares-4.0*
-=kde-base/kstars-4.0*
-=kde-base/kstart-4.0*
-=kde-base/kstartupconfig-4.0*
-=kde-base/kstyles-4.0*
-=kde-base/ksudoku-4.0*
-=kde-base/ksysguard-4.0*
-=kde-base/ksystraycmd-4.0*
-=kde-base/kteatime-4.0*
-=kde-base/ktimer-4.0*
-=kde-base/ktimezoned-4.0*
-=kde-base/ktip-4.0*
-=kde-base/ktouch-4.0*
-=kde-base/ktraderclient-4.0*
-=kde-base/kttsd-4.0*
-=kde-base/ktuberling-4.0*
-=kde-base/kturtle-4.0*
-=kde-base/ktux-4.0*
-=kde-base/kuiserver-4.0*
-=kde-base/kuiviewer-4.0*
-=kde-base/kurifilter-plugins-4.0*
-=kde-base/kuser-4.0*
-=kde-base/kwallet-4.0*
-=kde-base/kweather-4.0*
-=kde-base/kwin-4.0*
-=kde-base/kwordquiz-4.0*
-=kde-base/kworldclock-4.0*
-=kde-base/kwrite-4.0*
-=kde-base/libkcddb-4.0*
-=kde-base/libkcompactdisc-4.0*
-=kde-base/libkdeedu-4.0*
-=kde-base/libkdegames-4.0*
-=kde-base/libkmahjongg-4.0*
-=kde-base/libkonq-4.0*
-=kde-base/libkscan-4.0*
-=kde-base/libkworkspace-4.0*
-=kde-base/libplasma-4.0*
-=kde-base/libtaskmanager-4.0*
-=kde-base/lilo-config-4.0*
-=kde-base/lskat-4.0*
-=kde-base/marble-4.0*
-=kde-base/nepomuk-4.0*
-=kde-base/nsplugins-4.0*
-=kde-base/okular-4.0*
-=kde-base/parley-4.0*
-=kde-base/phonon-4.0*
-=kde-base/plasma-4.0*
-=kde-base/poxml-4.0*
-=kde-base/secpolicy-4.0*
-=kde-base/solid-4.0*
-=kde-base/soliduiserver-4.0*
-=kde-base/strigi-analyzer-4.0*
-=kde-base/superkaramba-4.0*
-=kde-base/svgpart-4.0*
-=kde-base/sweeper-4.0*
-=kde-base/systemsettings-4.0*
-=kde-base/umbrello-4.0*
-=kde-base/dragonplayer-2*
-
-# Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (03 Sep 2008)
-# Restrict the following mask only to 4.0.* packages. KDE-4.1 won't enter
-# the tree p. masked.
-# Bo Ørsted Andresen <zlin@gentoo.org> (11 Feb 2008)
-# Mask KDE 4.0.x extragear apps for testing.
-# KDE 4 guide: http://www.gentoo.org/proj/en/desktop/kde/kde4.xml
-=kde-base/kcoloredit-4.0*
-=kde-base/kfax-4.0*
-=kde-base/kiconedit-4.0*
-=kde-base/kpovmodeler-4.0*
-=kde-misc/extragear-plasma-4*
-=kde-misc/kgrab-0.1*
-=kde-misc/kgraphviewer-2*
-=kde-misc/kio_gopher-0.1*
-kde-misc/kio_perldoc
-=kde-misc/libksane-0.1*
-=kde-misc/rsibreak-0.9*
-=kde-misc/yakuake-2.9.2
-=net-p2p/kmldonkey-2*
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (03 Sep 2008)
 # Restrict the following mask only to 4.0.* packages. KDE-4.1 won't enter
@@ -839,11 +829,6 @@ virtual/libffi
 # Not used by anything anymore
 # Masked for removal in 30 days
 dev-dotnet/jscall-sharp
-
-# Joe Peterson <lavajoe@gentoo.org> (28 May 2008)
-# Beta 25 is broken - intermittently does not work (bombs out).
-# Will test new beta (26) and unmask if working.
->=media-gfx/povray-3.7.0_beta
 
 # Rémi Cardona <remi@gentoo.org> (27 Mai 2008)
 # mildly broken, see bug #156583

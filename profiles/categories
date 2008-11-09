@@ -71,6 +71,7 @@ gnustep-libs
 java-virtuals
 kde-base
 kde-misc
+lxde-base
 mail-client
 mail-filter
 mail-mta

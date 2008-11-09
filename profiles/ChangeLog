@@ -1,10 +1,52 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2021 2008/11/04 14:56:39 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2033 2008/11/09 00:57:46 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  09 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Clean up GNOME 2.24 mask, gnome-desktop and gnome-settings-deamon
+  dependant packages are all in tree now.
+
+  07 Nov 2008; Joe Peterson <lavajoe@gentoo.org> package.mask:
+  Remove mask of media-gfx/povray betas - new beta 29 appears improved
+
+  07 Nov 2008; Ben de Groot <yngwin@gentoo.org> updates/4Q-2008:
+  Move x11-themes/lxappearance to lxde-base/lxappearance
+
+  07 Nov 2008; Ben de Groot <yngwin@gentoo.org> categories:
+  Adding lxde-base category
+
+  07 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Unmask grub r8.
+
+  06 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add gnome-panel and gnome-applets to GNOME 2.24 mask.
+
+  06 Nov 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask of app-emacs/vm-8.0.11.581 since it was removed from the tree.
+
+  06 Nov 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  Unmask flash, as new version 9 is in the tree, and presumably fixed some
+  of the previous security bugs
+
+  06 Nov 2008; Zac Medico <zmedico@gentoo.org> arch/amd64/package.use.mask,
+  arch/x86/use.mask, default-linux/amd64/package.use.mask,
+  default-linux/x86/use.mask, hardened/ia64/use.mask,
+  hardened/x86/2.6/use.mask, hardened/x86/use.mask:
+  Bug #245662 - Remove all unmaskings of the "real" USE flag.
+
+  05 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  grub-0.97-r8 time.
+
+  05 Nov 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  Mask realplayer, real codecs for security, upstream issues, bug 245662
+
+  05 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  arch/amd64/no-multilib/package.mask, features/64bit-native/package.mask:
+  Unmasked >=app-emulation/virtualbox-bin-1.6 on no-multilib
 
   04 Nov 2008; Doug Goldstein <cardoe@gentoo.org>
   targets/desktop/make.defaults:

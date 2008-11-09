@@ -94,10 +94,6 @@ games-emulation/zsnes ao
 # assembler is not 64bits compliant (yet)
 media-libs/mlt mmx
 
-# Apr 26 2007: Steve Dibb <beandog@gentoo.org>
-# Remove real use mask for xine-lib
-media-libs/xine-lib -real
-
 # 8 May 2007: Alistair Bush <ali_bush@gentoo.org>
 # Mask doc flag for fop as nearly impossible to
 # run javadoc target.  see #177585
@@ -145,8 +141,3 @@ dev-python/kaa-base -tls
 # mask vdr USE flag for media-tv/zapping since it depends on media-libs/rte
 # which is only available on x86
 media-tv/zapping vdr
-
-# Zac Medico <zmedico@gentoo.org> (1 Nov 2008)
-# Bug #244947 - Unmask media-libs/win32codecs[real]
-# to satisfy media-libs/realcodecs dependency.
-media-libs/win32codecs -real

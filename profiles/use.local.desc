@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4006 2008/11/05 04:27:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4010 2008/11/08 22:27:45 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -33,6 +33,12 @@ app-admin/conky:nvidia - enable reading of nvidia card temperature sensors via m
 app-admin/conky:smapi - enable support for smapi
 app-admin/diradm:automount - Support for automount data in LDAP
 app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
+app-admin/gkrellm:X - Build both the X11 gui (gkrellm) and the server (gkrellmd). Disabling this flag builds the server only.
+app-admin/gkrellm:gnutls - Enable SSL support for mail checking with net-libs/gnutls (overrides 'ssl' USE flag)
+app-admin/gkrellm:hddtemp - Enable monitoring harddrive temperatures via app-admin/hddtemp
+app-admin/gkrellm:lm_sensors - Enable monitoring sensors via sys-apps/lm_sensors
+app-admin/gkrellm:ntlm - Enable NTLM authentication for mail checking with net-libs/libntlm
+app-admin/gkrellm:ssl - Enable SSL support for mail checking with dev-libs/openssl
 app-admin/gnome-system-tools:nfs - Adds support for NFS shares
 app-admin/gnome-system-tools:policykit - Use sys-auth/policykit to gain privileges to change configuration files
 app-admin/lcap:lids - If you have the Linux Intrusion Detection System
@@ -924,6 +930,7 @@ gnome-base/nautilus:beagle - Enables support for searching using the Beagle (app
 gnome-base/nautilus:tracker - Enables support for searching using the Tracker (app-misc/tracker) search tool
 gnome-base/nautilus:xmp - Adds support for XMP metadata
 gnome-extra/avant-window-navigator:xfce - Enables support for the XFCE 4 desktop environment
+gnome-extra/file-browser-applet:gtkhotkey - Enable hotkey support via x11-libs/gtkhotkey
 gnome-extra/gnome-do-plugins:amarok - Enables the Amarok (media-sound/amarok) plugin
 gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-lirc-properties:policykit - Use sys-auth/policykit to gain privileges to change configuration files
@@ -1645,6 +1652,7 @@ media-video/vlc:skins - Enables support for the skins2 interface.
 media-video/vlc:stream - Enables vlc to stream video.
 media-video/vlc:twolame - Enables twolame support (MPEG Audio Layer 2 encoder).
 media-video/vlc:upnp - Enables support for Intel UPnP stack.
+media-video/vlc:vcdinfo - Enables VCD information library support.
 media-video/vlc:vcdx - Enables VCD with navigation via libvcdinfo (depends on cdio)
 media-video/vlc:vlm - New videolan (media) manager (vlm), a little manager designed to launch and manage multiple streams from within one instance of VLC.
 media-video/vlc:wxwindows - Builds a x11-libs/wxGTK based frontend. This interface is no longer maintained.
@@ -2211,7 +2219,7 @@ sci-geosciences/gpsd:italk - Enable iTalk protocol support
 sci-geosciences/gpsd:itrax - Enable iTrax hardware support
 sci-geosciences/gpsd:ntp - Enable net-misc/ntp shared memory interface for GPS time
 sci-geosciences/gpsd:tntc - Enable True North Technologies support
-sci-geosciences/grass:gdal - Enable support for sci-libs/gdal (Grass 6 only)
+sci-geosciences/grass:gdal - Enable support for sci-libs/gdal (Grass 5 only)
 sci-geosciences/grass:glw - Enable libGLw support (requires media-libs/mesa) 
 sci-geosciences/grass:gmath - Enable gmath wrapper for BLAS/Lapack (virtual/blas, virtual/lapack)
 sci-geosciences/grass:largefile - Enable LFS support for huge files

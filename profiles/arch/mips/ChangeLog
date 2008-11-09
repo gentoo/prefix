@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/MIPS profile directory
 # Copyright 2007-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/ChangeLog,v 1.8 2008/05/03 22:20:47 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/ChangeLog,v 1.9 2008/11/05 18:05:18 lack Exp $
+
+  05 Nov 2008; Jim Ramsay <lack@gentoo.org> package.use.mask:
+  app-admin/gkrellm may pull in net-libs/libntlm, which is not keyworded
 
   03 May 2008; Ryan Hill <dirtyepic@gentoo.org> use.mask:
   Mask various gnome-related USE flags.

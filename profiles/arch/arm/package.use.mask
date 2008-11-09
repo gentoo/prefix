@@ -1,8 +1,8 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.5 2008/09/28 15:38:44 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.6 2008/11/05 18:05:18 lack Exp $
 
-# Jim Ramsay <lack@gentoo.org> (7 Sep 2007)
-# app-admin/gkrellm may pull in hddtemp, which is not yet available here
-app-admin/gkrellm hddtemp
+# Jim Ramsay <lack@gentoo.org> (5 Nov 2008)
+# app-admin/gkrellm may pull in net-libs/libntlm, which is not keyworded
+app-admin/gkrellm ntlm
 
 # Gilles Dartiguelongue <eva@gentoo.org> (19 Oct 2007)
 # gdm depends on zenity which is not keyworded
