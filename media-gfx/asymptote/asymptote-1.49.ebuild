@@ -25,7 +25,9 @@ RDEPEND=">=sys-libs/readline-4.3-r5
 	python? ( dev-lang/python )
 	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs )
-	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )"
+	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )
+	virtual/opengl
+	media-libs/freeglut"
 DEPEND="${RDEPEND}
 	doc? ( dev-lang/perl virtual/texi2dvi virtual/latex-base media-gfx/imagemagick[png] )"
 
@@ -78,6 +80,8 @@ src_prepare() {
 
 	# Changing pdf, ps, image viewers to xdg-open
 	epatch "${FILESDIR}/${P}-xdg-utils.patch"
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 
 	eautoreconf
 }
