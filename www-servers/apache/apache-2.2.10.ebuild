@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.9-r1.ebuild,v 1.8 2008/11/05 00:41:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.10.ebuild,v 1.1 2008/10/25 14:42:49 hollow Exp $
 
 EAPI="prefix"
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20080829"
+GENTOO_PATCHSTAMP="20081025"
 GENTOO_DEVELOPER="hollow"
 
 # IUSE/USE_EXPAND magic
