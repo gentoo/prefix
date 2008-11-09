@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Utility to change the OpenGL interface being used"
 HOMEPAGE="http://www.gentoo.org/"
@@ -24,7 +24,7 @@ LICENSE="GPL-2"
 SLOT="0"
 # -* to give time for headers to hit mirrors...
 #KEYWORDS="-*"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 EMULTILIB_PKG="true"
 
@@ -39,6 +39,8 @@ src_unpack() {
 	mv opengl.eselect-${PV} opengl.eselect
 	mv glext.h-${GLEXT} glext.h
 	mv glxext.h-${GLXEXT} glxext.h
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 pkg_preinst() {
