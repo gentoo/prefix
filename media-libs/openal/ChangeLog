@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/openal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.87 2008/09/15 02:13:07 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.88 2008/11/05 23:37:58 yngwin Exp $
+
+*openal-1.5.304 (05 Nov 2008)
+
+  05 Nov 2008; Ben de Groot <yngwin@gentoo.org> +openal-1.5.304.ebuild:
+  Adding new implementation of openal, see bug 208407 for discussion.
+  Dropping keywords, as this version is quite different.
 
   15 Sep 2008; <solar@gentoo.org> openal-0.0.8-r2.ebuild:
   - keyword ~arm
