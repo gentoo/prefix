@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/xfce4-diskperf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-diskperf/ChangeLog,v 1.35 2008/09/26 13:36:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-diskperf/ChangeLog,v 1.36 2008/11/08 15:37:27 angelos Exp $
+
+  08 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-diskperf-2.1.0.ebuild, xfce4-diskperf-2.2.0.ebuild:
+  Removed old, removed unneeded xfce4-dev-tools depedency, removed default
+  src_unpack and added empty IUSE
 
   26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xfce4-diskperf-2.2.0.ebuild:
   Stable for HPPA (bug #235407).
