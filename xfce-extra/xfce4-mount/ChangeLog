@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-mount
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mount/ChangeLog,v 1.51 2008/09/26 13:35:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mount/ChangeLog,v 1.52 2008/11/08 15:51:23 angelos Exp $
+
+  08 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-mount-0.5.4.ebuild, xfce4-mount-0.5.5.ebuild:
+  Removed old and added empty IUSE
 
   26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xfce4-mount-0.5.5.ebuild:
   Stable for HPPA (bug #235407).
