@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.0.ebuild,v 1.1 2008/11/04 12:53:11 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.0.ebuild,v 1.3 2008/11/05 10:39:09 dragonheart Exp $
 
 inherit eutils libtool autotools
 
@@ -52,6 +52,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	rm m4/lt* m4/libtool.m4 build-aux/ltmain.sh
 	epatch "${FILESDIR}"/${P}-cxx-configure.in.patch
 	eautoreconf
 
