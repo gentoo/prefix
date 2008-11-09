@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.92 2008/11/02 03:02:53 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.93 2008/11/05 12:00:19 dsd Exp $
 
 # Author(s): John Mylchreest <johnm@gentoo.org>,
 #            Stefan Schweizer <genstef@gentoo.org>
@@ -614,6 +614,7 @@ linux-mod_src_compile() {
 	BUILD_TARGETS=${BUILD_TARGETS:-clean module}
 	strip_modulenames;
 	cd "${S}"
+	touch Module.symvers
 	for i in ${MODULE_NAMES}
 	do
 		unset libdir srcdir objdir
@@ -628,6 +629,7 @@ linux-mod_src_compile() {
 		if [ ! -f "${srcdir}/.built" ];
 		then
 			cd ${srcdir}
+			ln -s "${S}"/Module.symvers Module.symvers
 			einfo "Preparing ${modulename} module"
 			if [[ -n ${ECONF_PARAMS} ]]
 			then

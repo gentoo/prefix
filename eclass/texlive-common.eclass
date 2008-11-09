@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.8 2008/10/14 06:42:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.9 2008/11/06 19:51:30 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -111,12 +111,14 @@ etexlinks() {
 # @FUNCTION: dobin_texmf_scripts
 # @USAGE: < file1 file2 ... > 
 # @DESCRIPTION:
-# Installs a script from the texmf tree
+# Symlinks a script from the texmf tree to /usr/bin. Requires permissions to be
+# correctly set for the file that it will point to. 
 
 dobin_texmf_scripts() {
 	while [ $# -gt 0 ] ; do
 		local trg=$(basename ${1} | sed 's,\.[^/]*$,,' | tr '[:upper:]' '[:lower:]')
-		newbin ${1} $trg || die "failed to install ${1} as $trg"
+		einfo "Installing ${1} as ${trg} bin wrapper"
+		dosym ../share/${1} /usr/bin/${trg} || die "failed to install ${1} as $trg"
 		shift
 	done
 }

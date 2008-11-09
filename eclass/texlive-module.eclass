@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.19 2008/10/31 15:16:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.20 2008/11/06 19:02:41 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -208,17 +208,17 @@ texlive-module_src_install() {
 		[ -f "${i}" ] && etexlinks "${i}"
 	done
 
-	insinto /usr/share
+	dodir /usr/share
 	if [ -z "${PN##*documentation*}" ] || use doc; then
-		[ -d texmf-doc ] && doins -r texmf-doc
+		[ -d texmf-doc ] && cp -pR texmf-doc "${ED}/usr/share/"
 	else
 		[ -d texmf/doc ] && rm -rf texmf/doc
 		[ -d texmf-dist/doc ] && rm -rf texmf-dist/doc
 	fi
 
-	[ -d texmf ] && doins -r texmf
-	[ -d texmf-dist ] && doins -r texmf-dist
-	[ -n "${PV##2007*}" ] && [ -d tlpkg ] && use source && doins -r tlpkg
+	[ -d texmf ] && cp -pR texmf "${ED}/usr/share/"
+	[ -d texmf-dist ] && cp -pR texmf-dist "${ED}/usr/share/"
+	[ -n "${PV##2007*}" ] && [ -d tlpkg ] && use source && cp -pR tlpkg "${ED}/usr/share/"
 
 	insinto /var/lib/texmf
 	[ -d texmf-var ] && doins -r texmf-var/*

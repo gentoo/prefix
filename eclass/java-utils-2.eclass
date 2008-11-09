@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.117 2008/10/11 21:07:13 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.118 2008/11/09 00:12:57 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2115,6 +2115,7 @@ java-pkg_init() {
 	# Unset external ANT_ stuff
 	export ANT_TASKS=
 	export ANT_OPTS=
+	export ANT_RESPECT_JAVA_HOME=
 }
 
 # ------------------------------------------------------------------------------

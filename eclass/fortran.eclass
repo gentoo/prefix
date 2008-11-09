@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.19 2008/07/03 06:24:06 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.20 2008/11/07 00:53:30 dberkholz Exp $
 #
 # Author: Danny van Dyk <kugelfang@gentoo.org>
 #
@@ -144,6 +144,8 @@ need_fortran() {
 			else
 				if [ -n "${F2C}" ]; then
 					MY_FORTRAN="$(basename ${F2C})"
+				elif [ -n "${FC}" ]; then
+					MY_FORTRAN="$(basename ${FC})"
 				else
 					MY_FORTRAN="$(basename ${F77})"
 				fi
