@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*apple-opengl-2 (09 Nov 2008)
+
+  09 Nov 2008; Fabian Groffen <grobian@gentoo.org> -apple-opengl-1.ebuild,
+  +apple-opengl-2.ebuild:
+  Bump, heiko_ complains that we conflict with x11-proto/glproto, so depend on
+  it, and remove the conflicting files
+
   09 Nov 2008; Fabian Groffen <grobian@gentoo.org> apple-opengl-1.ebuild:
   also add GLw
 
