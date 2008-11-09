@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-fsguard
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-fsguard/ChangeLog,v 1.36 2008/03/26 11:55:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-fsguard/ChangeLog,v 1.37 2008/11/08 15:47:33 angelos Exp $
+
+  08 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-fsguard-0.4.0.ebuild, xfce4-fsguard-0.4.1.ebuild:
+  Removed old and added empty IUSE
 
   26 Mar 2008; Jeroen Roovers <jer@gentoo.org> xfce4-fsguard-0.4.1.ebuild:
   Stable for HPPA (bug #214130).
