@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.2.ebuild,v 1.9 2008/09/25 14:01:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.2.ebuild,v 1.10 2008/11/08 02:00:14 darkside Exp $
 
 EAPI="prefix"
 
@@ -13,6 +13,7 @@ LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc examples libffi"
+RESTRICT="test"
 
 # glib higher dep than in configure.in comes from a runtime version check and ensures that
 # timeout_add_seconds is available for any packages that depend on pygobject and use it
