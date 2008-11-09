@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.25.ebuild,v 1.7 2008/07/25 20:08:51 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.25.ebuild,v 1.8 2008/11/06 02:52:40 vapier Exp $
 
 EAPI="prefix"
 
