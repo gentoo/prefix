@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.4.3.ebuild,v 1.1 2008/10/30 22:01:32 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.4.3.ebuild,v 1.2 2008/11/06 13:43:55 angelos Exp $
 
 EAPI="prefix"
 
-inherit xfce44
+inherit eutils xfce44
 
 XFCE_VERSION=4.4.3
 
@@ -24,9 +24,11 @@ RDEPEND="x11-libs/libSM
 DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc )"
 
-#src_unpack() {
-#	unpack ${A}
-#	sed -i -e "s:-Werror::g" "${S}"/configure || die "sed failed"
-#}
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-64bit-warning.patch
+}
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"

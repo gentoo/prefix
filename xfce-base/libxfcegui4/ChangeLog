@@ -1,6 +1,11 @@
 # ChangeLog for xfce-base/libxfcegui4
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.114 2008/10/30 22:01:32 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.115 2008/11/06 13:43:55 angelos Exp $
+
+  06 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  +files/libxfcegui4-4.4.3-64bit-warning.patch, libxfcegui4-4.4.3.ebuild:
+  Fix a warning that would otherwise make the build fail with USE=debug, bug
+  245142
 
 *libxfcegui4-4.4.3 (30 Oct 2008)
 
