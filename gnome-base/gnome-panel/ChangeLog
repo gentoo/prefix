@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.258 2008/09/25 15:21:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.259 2008/11/06 23:44:11 eva Exp $
+
+*gnome-panel-2.24.1 (06 Nov 2008)
+
+  06 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-panel-2.24.1.ebuild:
+  New version for GNOME 2.24. Bug fixes and uses gnome-session D-Bus API for
+  logout/shutdown (might require gnome-session 2.24).
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gnome-panel-2.22.2.ebuild:
   Stable for HPPA (bug #236971).

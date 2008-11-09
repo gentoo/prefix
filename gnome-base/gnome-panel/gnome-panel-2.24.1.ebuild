@@ -1,24 +1,24 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.22.1.3.ebuild,v 1.1 2008/04/19 20:47:13 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.1.ebuild,v 1.1 2008/11/06 23:44:11 eva Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils gnome2
+inherit gnome2
 
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc eds networkmanager"
 
 RDEPEND=">=gnome-base/gnome-desktop-2.12
 	>=x11-libs/pango-1.15.4
-	>=dev-libs/glib-2.15.6
-	>=x11-libs/gtk+-2.11.3
-	>=dev-libs/libgweather-2.22.1
+	>=dev-libs/glib-2.16.0
+	>=x11-libs/gtk+-2.13.1
+	>=dev-libs/libgweather-2.24.1
 	dev-libs/libxml2
 	>=gnome-base/libglade-2.5
 	>=gnome-base/libgnome-2.13
@@ -40,7 +40,7 @@ DEPEND="${RDEPEND}
 	app-text/scrollkeeper
 	>=app-text/gnome-doc-utils-0.3.2
 	>=dev-util/pkgconfig-0.9
-	>=dev-util/intltool-0.35
+	>=dev-util/intltool-0.40
 	~app-text/docbook-xml-dtd-4.1.2
 	doc? ( >=dev-util/gtk-doc-1 )"
 
@@ -49,30 +49,21 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-scrollkeeper
-		--disable-polkit
+		--disable-schemas-install
 		--with-in-process-applets=clock,notification-area,wncklet
+		--disable-polkit
 		$(use_enable networkmanager network-manager)
 		$(use_enable eds)"
 }
 
-src_unpack() {
-	gnome2_src_unpack
-
-	# FIXME : uh yeah, this is nice
-	# We should patch in a switch here and send it upstream
-	sed -i 's:--load:-v:' "${S}/gnome-panel/Makefile.in" || die "sed failed"
-
-	eautoreconf # need new libtool for interix
-}
-
 pkg_postinst() {
-	local entries="${EPREFIX}/etc/gconf/schemas/panel-default-setup.entries"
+	local entries="${EROOT}/etc/gconf/schemas/panel-default-setup.entries"
 	local gconftool="${EROOT}usr/bin/gconftool-2"
 
 	if [ -e "$entries" ]; then
 		einfo "setting panel gconf defaults..."
 
-		GCONF_CONFIG_SOURCE=$("${gconftool}" --get-default-source)
+		GCONF_CONFIG_SOURCE="$("${gconftool}" --get-default-source | sed "s;:/;:${ROOT};")"
 
 		"${gconftool}" --direct --config-source \
 			"${GCONF_CONFIG_SOURCE}" --load="${entries}"
