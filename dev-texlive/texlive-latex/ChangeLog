@@ -1,6 +1,13 @@
 # ChangeLog for dev-texlive/texlive-latex
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/ChangeLog,v 1.18 2008/10/31 14:41:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/ChangeLog,v 1.19 2008/11/06 19:58:31 aballier Exp $
+
+*texlive-latex-2008-r1 (06 Nov 2008)
+
+  06 Nov 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-latex-2008.ebuild, +texlive-latex-2008-r1.ebuild:
+  Revbump dev-texlive packages that install a bin wrapper to a script after
+  the recent changes to the way we install them.
 
   31 Oct 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-latex-2008.ebuild:

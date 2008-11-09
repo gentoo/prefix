@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/texlive-latex-2008.ebuild,v 1.2 2008/10/31 14:41:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/texlive-latex-2008-r1.ebuild,v 1.1 2008/11/06 19:58:31 aballier Exp $
 
 EAPI="prefix"
 
@@ -18,5 +18,5 @@ IUSE=""
 DEPEND=">=dev-texlive/texlive-basic-2008
 dev-tex/luatex
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND} "
 TEXLIVE_MODULE_BINSCRIPTS="texmf/scripts/simpdftex/simpdftex"
