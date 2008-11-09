@@ -4,9 +4,6 @@
 
 EAPI="prefix"
 
-JAVA_SUPPORTS_GENERATION_1="true"
-inherit pax-utils java-vm-2 eutils
-
 DESCRIPTION="Links to Apple's OpenGL Framework"
 HOMEPAGE="http://www.apple.com/"
 LICENSE="as-is"
@@ -31,6 +28,9 @@ src_install() {
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/glext.h
 	ln -s "${X11_OPENGL_DIR}"/include/GL/glx.h
 	ln -s "${X11_OPENGL_DIR}"/include/GL/glxext.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxmd.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxproto.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxtokens.h
 	cd "${ED}"/usr/lib/opengl/${PN}/lib
 	ln -s "${APPLE_OPENGL_DIR}"/Libraries/libGL.dylib
 	# this is dirty, and questionable if it's useful as well
@@ -49,7 +49,7 @@ src_install() {
 
 pkg_postinst() {
 	# Set as default VM if none exists
-	eselect opengl set --use-old ${PN}
+	eselect opengl set ${PN}
 
 	elog "Note: you're using your OSX (pre-)installed OpenGL Framework"
 }
