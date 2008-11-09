@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.152 2008/09/30 17:23:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.153 2008/11/08 22:52:56 eva Exp $
+
+*gtkmm-2.14.1 (08 Nov 2008)
+
+  08 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> +gtkmm-2.14.1.ebuild:
+  New version for GNOME 2.24.
 
   30 Sep 2008; Jeroen Roovers <jer@gentoo.org> gtkmm-2.12.7.ebuild:
   Stable for HPPA (bug #229709).
