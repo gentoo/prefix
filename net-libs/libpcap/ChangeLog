@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.112 2008/10/28 11:11:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.113 2008/11/08 12:58:17 cedk Exp $
+
+*libpcap-1.0.0 (08 Nov 2008)
+
+  08 Nov 2008; Cédric Krier <cedk@gentoo.org>
+  +files/libpcap-1.0.0-bindir.patch, +files/libpcap-1.0.0-whitespace.patch,
+  +libpcap-1.0.0.ebuild:
+  Version bump
 
   28 Oct 2008; Raúl Porcel <armin76@gentoo.org> libpcap-0.9.8-r2.ebuild:
   alpha/ia64 stable #244234
