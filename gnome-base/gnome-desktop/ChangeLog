@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.225 2008/10/22 22:42:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.226 2008/11/08 12:59:57 eva Exp $
+
+  08 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-desktop-2.20.3.ebuild, -gnome-desktop-2.24.0.ebuild,
+  gnome-desktop-2.24.1.ebuild:
+  Add postinst message to run revdep-rebuild. Clean up old revisions.
 
 *gnome-desktop-2.24.1 (22 Oct 2008)
 

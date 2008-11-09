@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.1.ebuild,v 1.1 2008/10/22 22:42:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.1.ebuild,v 1.2 2008/11/08 12:59:57 eva Exp $
 
 EAPI="prefix"
 
@@ -35,4 +35,10 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} --with-gnome-distributor=Gentoo --disable-scrollkeeper"
+}
+
+pkg_postinst() {
+	ewarn
+	ewarn "If you are upgrading from <gnome-base/gnome-desktop-2.24, please"
+	ewarn "make sure you run revdep-rebuild at the end of the upgrade."
 }
