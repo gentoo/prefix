@@ -530,6 +530,7 @@ get_libname() {
 	case ${CHOST} in
 		*-darwin*) libname="dylib";;
 		*-aix*)    libname="a";;
+		*-mint*)   libname="a";;
 		*)         libname="so";;
 	esac
 
@@ -540,6 +541,7 @@ get_libname() {
 			case ${CHOST} in
 				*-darwin*) echo ".${ver}.${libname}";;
 				*-aix*)    echo ".${libname}";;
+				*-mint*)    echo ".${libname}";;
 				*)         echo ".${libname}.${ver}";;
 			esac
 		done
