@@ -1,7 +1,9 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/files/1.10.11/dictd.initd,v 1.2 2008/09/14 08:59:45 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/files/1.10.11/dictd.initd,v 1.3 2008/11/08 18:36:21 pva Exp $
+
+DICTD_PID="/var/run/dictd.pid"
 
 prepconfig() {
 	local TMPCONF INDEXFILES CNT DNAME DICT
@@ -61,12 +63,13 @@ depend() {
 start() {
 	prepconfig || return 1
 	ebegin "Starting dictd"
-	start-stop-daemon --start --quiet --exec /usr/sbin/dictd -- ${DICTD_OPTS}
+	start-stop-daemon --start --quiet --pidfile ${DICTD_PID} --exec \
+			/usr/sbin/dictd -- --pid-file ${DICTD_PID} ${DICTD_OPTS}
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping dictd"
-	start-stop-daemon --stop --quiet --exec /usr/sbin/dictd
+	start-stop-daemon --stop --quiet --pidfile ${DICTD_PID} --exec /usr/sbin/dictd
 	eend $?
 }

@@ -1,6 +1,14 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.48 2008/11/03 22:33:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.49 2008/11/08 18:36:21 pva Exp $
+
+  08 Nov 2008; Peter Volkov <pva@gentoo.org> -files/1.10.9/dict.conf,
+  -files/1.10.9/dictd, -files/1.10.9/dictd.conf, -files/1.10.9/dictd.confd,
+  -files/1.10.9/site.info, files/1.10.11/dictd.initd,
+  dictd-1.10.11-r3.ebuild:
+  Disabled tests on bid-endian architectures, bug #244246, updated init
+  script to make it more steady, bug #245593 thank Erik Hahn for report and
+  fix.
 
   03 Nov 2008; Markus Meier <maekke@gentoo.org> dictd-1.10.11-r3.ebuild:
   amd64/x86 stable, bug #244246
