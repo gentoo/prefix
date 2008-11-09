@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2-r2.ebuild,v 1.3 2008/10/05 20:32:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.3.ebuild,v 1.3 2008/11/08 13:36:42 maekke Exp $
 
 EAPI="prefix"
 
-inherit eutils nsplugins
+inherit eutils gnome2-utils nsplugins
 
 DESCRIPTION="Adobe's PDF reader"
 HOMEPAGE="http://www.adobe.com/products/acrobat/"
@@ -67,7 +67,6 @@ LAUNCHERS="Adobe/Reader8/bin/acroread"
 
 pkg_setup() {
 	# x86 binary package, ABI=x86
-	# Danny van Dyk <kugelfang@gentoo.org> 2005/03/25
 	has_multilib_profile && ABI="x86"
 }
 
@@ -156,14 +155,6 @@ src_unpack() {
 	rm "${S}"/Adobe/Reader8/bin/UNINSTALL
 	rm "${S}"/Adobe/Reader8/Resource/Support/vnd.*.desktop
 
-	# fix CVE-2008-0883 the sed way, see bug #212367
-	local binfile
-	for binfile in "${S}"/Adobe/Reader8/bin/* ; do
-		sed -i -e '/MkTemp()/,+17d' \
-			-e 's/MkTemp/mktemp/g' \
-			"${binfile}" || die "sed failed"
-	done
-
 	# replace some configuration sections
 	for binfile in "${S}"/Adobe/Reader8/bin/* ; do
 		sed -i -e '/Font-config/,+10d' \
@@ -173,36 +164,33 @@ src_unpack() {
 }
 
 src_install() {
-	local dir
-
 	# Install desktop files
-	domenu Adobe/Reader8/Resource/Support
-	# Install Icons - choose 48x48 since that's what the previous versions
-	# supplied.
-	doicon Adobe/Reader8/Resource/Icons/48x48
+	domenu Adobe/Reader8/Resource/Support || die "Installing desktop files failed."
 
-	dodir /opt
+	# Install commonly used icon sizes
+	for res in 16x16 22x22 32x32 48x48 64x64 128x128 ; do
+		insinto /usr/share/icons/hicolor/${res}/apps
+		doins Adobe/Reader8/Resource/Icons/${res}/* || die "Installing icons failed."
+	done
+
+	dodir /opt || die "Creating directoy failed."
 	chown -R --dereference -L root:0 Adobe
 	cp -dpR Adobe "${ED}"opt/
 
 	# The Browser_Plugin_HowTo.txt is now in a subdirectory, which
 	# is named according to the language the user is using.
 	# Ie. for German, it is in a DEU directory. See bug #118015
-	dodoc Adobe/Reader8/Browser/HowTo/*/Browser_Plugin_HowTo.txt
+	dodoc Adobe/Reader8/Browser/HowTo/*/Browser_Plugin_HowTo.txt || die "Installing docs failed."
 
 	if use nsplugin ; then
 		exeinto /opt/netscape/plugins
-		doexe Adobe/Reader8/Browser/intellinux/nppdf.so
+		doexe Adobe/Reader8/Browser/intellinux/nppdf.so || die "Installing the browser plugin failed."
 		inst_plugin /opt/netscape/plugins/nppdf.so
 	fi
 
-	if ! use ldap ; then
-		rm "${ED}"${INSTALLDIR}/Adobe/Reader8/Reader/intellinux/plug_ins/PPKLite.api
-	fi
-
-	dodir /opt/bin
+	dodir /opt/bin || die "Creating directory failed."
 	for launcher in ${LAUNCHERS} ; do
-		dosym /opt/${launcher} /opt/bin/${launcher/*bin\/}
+		dosym /opt/${launcher} /opt/bin/${launcher/*bin\/} || die "Installing launcher symlinks failed."
 	done
 
 	# We need to set a MOZILLA_COMP_PATH for seamonkey and firefox since
@@ -232,13 +220,11 @@ src_install() {
 	fi
 }
 
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
 pkg_postinst () {
-	use ldap ||
-		elog "The Adobe Reader security plugin can be enabled with USE=\"ldap\"."
-
-	use nsplugin ||
-		elog "The Adobe Reader browser plugin can be enabled with USE=\"nsplugin\"."
-
 	local ll lc
 	lc=0
 	for ll in ${LINGUA_LIST} ; do
@@ -256,4 +242,10 @@ pkg_postinst () {
 		ewarn "If you want html support and/or view the Adobe Reader help you have"
 		ewarn "to re-emerge acroread with USE=\"-minimal\"."
 	fi
+
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
