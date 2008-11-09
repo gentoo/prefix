@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.67 2008/10/01 09:15:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.68 2008/11/06 00:04:43 bicatali Exp $
+
+*numpy-1.2.1 (06 Nov 2008)
+
+  06 Nov 2008; Sébastien Fabbro <bicatali@gentoo.org> +numpy-1.2.1.ebuild:
+  Version bump
 
   01 Oct 2008; Raúl Porcel <armin76@gentoo.org> numpy-1.2.0.ebuild:
   Add ~alpha wrt #233554
