@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-genmon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.25 2008/09/26 13:34:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-genmon/ChangeLog,v 1.26 2008/11/08 15:49:35 angelos Exp $
+
+  08 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-genmon-3.1.ebuild, xfce4-genmon-3.2.ebuild:
+  Removed old and added empty IUSE
 
   26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xfce4-genmon-3.2.ebuild:
   Stable for HPPA (bug #235407).
