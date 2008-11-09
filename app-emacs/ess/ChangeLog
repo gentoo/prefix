@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/ess
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.31 2008/04/12 09:19:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.32 2008/11/09 05:20:44 ulm Exp $
+
+*ess-5.3.8 (09 Nov 2008)
+
+  09 Nov 2008; Ulrich Mueller <ulm@gentoo.org> +ess-5.3.8.ebuild:
+  Version bump, updated HOMEPAGE and SRC_URI, bug 245814. Thanks to
+  <nshephard@gmail.com>.
 
 *ess-5.3.7 (12 Apr 2008)
 
