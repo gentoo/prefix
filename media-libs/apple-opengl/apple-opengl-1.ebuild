@@ -28,8 +28,8 @@ src_install() {
 	cd "${ED}"/usr/lib/opengl/${PN}/include
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/gl.h
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/glext.h
-	ln -s "${X11_OPENGL_DIR}"/include/glx.h
-	ln -s "${X11_OPENGL_DIR}"/include/glxext.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glx.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/glxext.h
 	cd "${ED}"/usr/lib/opengl/${PN}/lib
 	ln -s "${APPLE_OPENGL_DIR}"/Libraries/libGL.dylib
 	# this is dirty, and questionable if it's useful as well
@@ -37,7 +37,8 @@ src_install() {
 
 	cd "${ED}"/usr/include/GL
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/glu.h
-	ln -s "${X11_OPENGL_DIR}"/include/GLwDrawA.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/GLwDrawA.h
+	ln -s "${X11_OPENGL_DIR}"/include/GL/osmesa.h
 	cd "${ED}"/usr/lib
 	ln -s "${APPLE_OPENGL_DIR}"/Libraries/libGLU.dylib
 	# this is dirty, and questionable if it's useful as well
