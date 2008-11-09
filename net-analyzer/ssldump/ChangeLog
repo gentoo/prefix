@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/ssldump
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.19 2008/10/25 15:34:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.20 2008/11/07 10:21:34 armin76 Exp $
+
+  07 Nov 2008; Raúl Porcel <armin76@gentoo.org> ssldump-0.9-r1.ebuild:
+  sparc stable wrt #244232
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> ssldump-0.9-r1.ebuild:
   Stable on ppc wrt bug 244232
