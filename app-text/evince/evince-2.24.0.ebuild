@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.24.0.ebuild,v 1.1 2008/10/11 11:53:23 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.24.0.ebuild,v 1.2 2008/11/06 22:42:32 darkside Exp $
 
 EAPI="prefix"
 
@@ -60,7 +60,7 @@ pkg_setup() {
 
 	if ! built_with_use app-text/poppler-bindings gtk cairo; then
 		eerror "Please re-emerge app-text/poppler-bindings with the gtk and cairo USE flag set"
-		die "poppler-bindings needs gtk flag set"
+		die "poppler-bindings needs gtk and cairo flags set"
 	fi
 }
 

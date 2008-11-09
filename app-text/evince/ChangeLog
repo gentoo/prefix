@@ -1,6 +1,9 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.154 2008/10/11 12:14:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.155 2008/11/06 22:42:32 darkside Exp $
+
+  06 Nov 2008; Jeremy Olexa <darkside@gentoo.org> evince-2.24.0.ebuild:
+  minor die message wording improvement for evince-2.24.0
 
 *evince-2.24.0 (11 Oct 2008)
 
