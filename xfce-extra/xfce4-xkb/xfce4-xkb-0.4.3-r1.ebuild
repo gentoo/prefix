@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.4.3-r1.ebuild,v 1.17 2008/09/21 19:07:33 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.4.3-r1.ebuild,v 1.18 2008/11/08 15:42:15 angelos Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ xfce44
 
 DESCRIPTION="XKB layout switching panel plugin"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-
+IUSE=""
 DEPEND="dev-util/pkgconfig
 	dev-util/intltool
 	x11-proto/kbproto
