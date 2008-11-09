@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.38 2008/09/22 20:05:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.39 2008/11/08 10:39:45 graaff Exp $
+
+*capistrano-2.5.1 (08 Nov 2008)
+
+  08 Nov 2008; Hans de Graaff <graaff@gentoo.org> +capistrano-2.5.1.ebuild:
+  Version bump with minor improvements and bug fixes
 
   22 Sep 2008; Raúl Porcel <armin76@gentoo.org> capistrano-2.5.0.ebuild:
   Re-add ~ia64 wrt #238171
