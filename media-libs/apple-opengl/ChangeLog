@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/apple-opengl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
+# $Id$
+
+  09 Nov 2008; Fabian Groffen <grobian@gentoo.org> apple-opengl-1.ebuild:
+  Include glx.h and versioned libraries from /usr/X11R6
 
   09 Nov 2008; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   initial version of opengl wrapper around the Apple Framework
