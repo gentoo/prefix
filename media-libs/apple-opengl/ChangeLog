@@ -3,6 +3,9 @@
 # $Id$
 
   09 Nov 2008; Fabian Groffen <grobian@gentoo.org> apple-opengl-1.ebuild:
+  also add GLw
+
+  09 Nov 2008; Fabian Groffen <grobian@gentoo.org> apple-opengl-1.ebuild:
   Include glx.h and versioned libraries from /usr/X11R6
 
   09 Nov 2008; Fabian Groffen <grobian@gentoo.org> ChangeLog:

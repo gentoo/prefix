@@ -37,10 +37,12 @@ src_install() {
 
 	cd "${ED}"/usr/include/GL
 	ln -s "${APPLE_OPENGL_DIR}"/Headers/glu.h
+	ln -s "${X11_OPENGL_DIR}"/include/GLwDrawA.h
 	cd "${ED}"/usr/lib
 	ln -s "${APPLE_OPENGL_DIR}"/Libraries/libGLU.dylib
 	# this is dirty, and questionable if it's useful as well
 	ln -s "${X11_OPENGL_DIR}"/lib/libGLU.1.3.dylib
+	ln -s "${X11_OPENGL_DIR}"/lib/libGLw.a
 }
 
 pkg_postinst() {
