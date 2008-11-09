@@ -1,6 +1,13 @@
 # ChangeLog for dev-texlive/texlive-pictures
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.19 2008/11/03 10:06:13 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.20 2008/11/06 20:03:31 aballier Exp $
+
+*texlive-pictures-2008-r1 (06 Nov 2008)
+
+  06 Nov 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-pictures-2008.ebuild, +texlive-pictures-2008-r1.ebuild:
+  Revbump dev-texlive packages that install a bin wrapper to a script after
+  the recent changes to the way we install them.
 
   03 Nov 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-pictures-2008.ebuild:
