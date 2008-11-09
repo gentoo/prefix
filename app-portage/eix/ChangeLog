@@ -1,6 +1,18 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.253 2008/11/03 18:35:54 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.254 2008/11/07 21:24:34 darkside Exp $
+
+*eix-0.15.0 (07 Nov 2008)
+
+  07 Nov 2008; Jeremy Olexa <darkside@gentoo.org> -eix-0.10.2.ebuild,
+  -eix-0.13.3.ebuild, -eix-0.13.5.ebuild, -eix-0.14.0.ebuild,
+  -eix-0.14.1.ebuild, +eix-0.15.0.ebuild:
+  * Version bump to 0.15.0
+  * Changelog is here:
+  https://projects.gentooexperimental.org/eix/browser/tags/release-0.15.0/Chan
+  geLog 
+  * Remove old versions. Keep a stable version for every arch and 2
+  unstable versions.
 
   03 Nov 2008; Michael Sterrett <mr_bones_@gentoo.org> eix-0.14.2.ebuild:
   inherit goes near the top

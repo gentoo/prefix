@@ -1,12 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.14.0.ebuild,v 1.1 2008/10/01 00:05:14 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.0.ebuild,v 1.1 2008/11/07 21:24:34 darkside Exp $
 
 EAPI=prefix
 
+inherit multilib
+
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://eix.sourceforge.net"
-SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/eix/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -16,12 +18,14 @@ IUSE="doc sqlite"
 RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
 	app-arch/bzip2"
 DEPEND="${RDEPEND}
+	app-arch/lzma-utils
 	doc? ( dev-python/docutils )"
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
+		--with-ebuild-sh-default="/usr/$(get_libdir)/portage/bin/ebuild.sh" \
 		--with-eprefix-default="${EPREFIX}" \
-		|| die "econf failed"
+		--with-portage-rootpath="${ROOTPATH}"
 	emake || die "emake failed"
 }
 
