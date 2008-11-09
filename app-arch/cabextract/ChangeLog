@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cabextract
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.47 2008/09/10 06:42:38 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.48 2008/11/08 11:46:24 pva Exp $
+
+  08 Nov 2008; Peter Volkov <pva@gentoo.org> cabextract-1.2.ebuild:
+  There is no stable mips tree any more, dropped stable on mips.
 
   10 Sep 2008; Peter Volkov <pva@gentoo.org>
   -files/cabextract-1.1-mempcpy.patch, -files/cabextract-configure.patch,
