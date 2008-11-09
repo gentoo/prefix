@@ -1,10 +1,17 @@
 # ChangeLog for dev-java/ant-core
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.85 2008/07/16 21:25:23 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.86 2008/11/09 00:19:14 caster Exp $
 
 # Ant-core blocks lower/older versions of ant-tasks, 
 # since it will not run when there is a version mismatch betwean the 2 packages
 # Please unemerge ant-tasks when updating ant-core.
+
+*ant-core-1.7.1-r2 (09 Nov 2008)
+
+  09 Nov 2008; Vlastimil Babka <caster@gentoo.org> +files/1.7.1-ant-r1,
+  +ant-core-1.7.1-r2.ebuild:
+  Revbump to respect JAVA_HOME setting if ANT_RESPECT_JAVA_HOME is set, bug
+  #151884.
 
   16 Jul 2008; Vlastimil Babka <caster@gentoo.org> ant-core-1.7.1-r1.ebuild:
   Rewrite build.xml for 1.4 bytecode. Fixes bug #196080.
