@@ -34,7 +34,7 @@ diff -ur eselect-1.0.11.orig/libs/multilib.bash.in eselect-1.0.11/libs/multilib.
 @@ -1,1 +1,1 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-@@ -25,13 +25,13 @@
+@@ -25,14 +25,14 @@
      local dir libdirs
      libdirs=""
      for dir in ${ES_VALID_MULTILIB_DIRS} ; do
@@ -47,9 +47,11 @@ diff -ur eselect-1.0.11.orig/libs/multilib.bash.in eselect-1.0.11/libs/multilib.
      	# Broken or non-existing ld.so.conf
 -    	libdirs=( ${ROOT}/lib* )
 +    	libdirs=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/lib* )
- 	libdirs=( ${libdirs[@]/\/lib/lib} )
+-	libdirs=( ${libdirs[@]/\/lib/lib} )
++	libdirs=( ${libdirs[@]/*\/lib/lib} )
      fi
      echo "${libdirs[@]}"
+ }
 diff -ur eselect-1.0.11.orig/libs/output.bash.in eselect-1.0.11/libs/output.bash.in
 --- eselect-1.0.11.orig/libs/output.bash.in	2007-06-22 11:27:20.925824000 +0200
 +++ eselect-1.0.11/libs/output.bash.in	2007-06-22 11:28:53.624189085 +0200
