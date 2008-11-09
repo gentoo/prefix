@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.202 2008/10/05 15:18:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.207 2008/11/08 17:59:00 ulm Exp $
+
+  08 Nov 2008; Ulrich Mueller <ulm@gentoo.org> -files/motif-config-2.3,
+  -openmotif-2.3.0-r1.ebuild:
+  Remove old.
+
+  08 Nov 2008; Raúl Porcel <armin76@gentoo.org> openmotif-2.3.1.1.ebuild:
+  alpha/arm/ia64/sparc/sh stable wrt #245635
+
+  08 Nov 2008; Markus Meier <maekke@gentoo.org> openmotif-2.3.1.1.ebuild:
+  amd64/x86 stable, bug #245635
+
+  08 Nov 2008; nixnut <nixnut@gentoo.org> openmotif-2.3.1.1.ebuild:
+  Stable on ppc wrt bug 245635
+
+  05 Nov 2008; Ferris McCormick <fmccor@gentoo.org>
+  openmotif-2.3.1.1.ebuild:
+  Sparc stable, Bug #245635, seems fine.
 
 *openmotif-2.3.1.1 (05 Oct 2008)
 
