@@ -71,6 +71,18 @@ src_unpack() {
 	[[ ${CHOST} == *86*-apple-darwin8 ]] && \
 		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-dsymutil.patch
 
+	# bootstrapping might fail with host provided gcc on 10.4/x86
+	if ! is_crosscompile && ! echo "int main(){return 0;}" | gcc -o /dev/null \
+		-mdynamic-no-pic -x c - >/dev/null 2>&1;
+	then
+		einfo "-mdynamic-no-pic doesn't work - disabling..."
+		echo "BOOT_CFLAGS=-g -O2" > config/mh-x86-darwin
+		XD=gcc/config/i386/x-darwin
+		awk 'BEGIN{x=1}{if ($0 ~ "use -mdynamic-no-pic to build x86")
+		{x=1-x} else if (x) print}' $XD > t && mv t $XD \
+			|| die "Failed to rewrite $XD"
+	fi
+
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
 	cd "${S}"/gcc && eautoconf
 	cd "${S}"/libgomp && eautoconf
