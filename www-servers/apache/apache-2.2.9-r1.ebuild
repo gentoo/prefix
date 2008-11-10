@@ -83,7 +83,7 @@ HOMEPAGE="http://httpd.apache.org/"
 LICENSE="Apache-2.0 Apache-1.1"
 SLOT="2"
 # entirely new, based on eclass that probably needs fixin...
-KEYWORDS="~sparc64-solaris ~x64-solaris"
+KEYWORDS="~amd64-linux ~sparc64-solaris ~x64-solaris"
 IUSE="sni"
 
 DEPEND="${DEPEND}
