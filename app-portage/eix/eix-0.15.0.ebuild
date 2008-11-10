@@ -4,7 +4,7 @@
 
 EAPI=prefix
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://eix.sourceforge.net"
@@ -20,6 +20,12 @@ RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	doc? ( dev-python/docutils )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-unistd_h.patch
+}
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
