@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -47,6 +47,8 @@ src_unpack() {
 
 src_compile() {
 	tc-export CC LD
+	# on solaris -lintl is needed to compile
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags "-lintl"
 	# --without-included-gettext means we always use system headers
 	# and library
 	econf --without-included-gettext $(use_enable nls) || die "econf failed"
