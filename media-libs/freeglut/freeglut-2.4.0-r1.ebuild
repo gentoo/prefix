@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/freeglut/${P}.tar.gz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ppc-macos ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND="virtual/opengl
