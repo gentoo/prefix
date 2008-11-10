@@ -1,5 +1,5 @@
 ####################################################################
-# $Id: package.mask 33205 2008-10-27 19:44:55Z darkside $
+# $Id: package.mask 34149 2008-11-10 16:06:11Z darkside $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked.  This file is for
 # Prefix profiles only!
@@ -32,6 +32,14 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (10 Nov 2008)
+# The apache-2.eclass needs to be fixed to support 2.2.10, there is a failing
+# patch for this version. 2.2.9-r1 works due to the hard work in bug 238595.
+>=www-servers/apache-2.2.10
+
+# Fabian Groffen <grobian@gentoo.org> (03 Nov 2008)
+# needs cups or lprng which we both don't have
+>=net-print/xfprint-4.4.3
 
 # Fabian Groffen <grobian@gentoo.org> (20 Sep 2008)
 # Need to figure out why/what this parsing fails, see bug #236263, but
@@ -101,10 +109,6 @@ app-text/tetex
 # Fabian Groffen <grobian@gentoo.org> (02 Jan 2008)
 # rlogin seems not to work, consider using ssh anyway
 net-misc/netkit-rsh
-
-# Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
-# Still a WIP -- not yet ready for use
-www-servers/apache
 
 # Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
 # This package isn't prefix ready, work in progress
