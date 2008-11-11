@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.11 2008/10/22 14:49:28 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.13 2008/11/10 11:02:05 armin76 Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -alpha
@@ -15,6 +15,7 @@
 bluetooth
 chipcard
 dvb
+dxr3
 gnokii
 hbci
 ipod
@@ -36,6 +37,7 @@ battery
 cpufreq
 dell
 dmi
+laptop
 
 # Stuff that doesn't work on alpha, or not tested
 avi

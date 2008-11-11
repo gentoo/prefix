@@ -69,7 +69,7 @@ x11-misc/rss-glx -sse -3dnow
 x11-misc/eterm -sse2
 x11-wm/afterstep -mmx
 media-video/ffmpeg -mmx
-media-video/mplayer -3dnow -3dnowext -mmx -mmxext -sse -sse2
+media-video/mplayer -3dnow -3dnowext -mmx -mmxext -sse -sse2 -cpudetection -custom-cpuopts -dxr3 -bindist
 media-tv/xdtv -mmx
 media-plugins/vdr-softdevice -mmx -mmxext
 dev-libs/openssl -sse2

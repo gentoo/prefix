@@ -27,6 +27,10 @@ media-plugins/gst-plugins-meta dvb mythtv
 # media-sound/wavpack is not keyworded
 media-sound/mpd wavpack
 
+# Peter Alfredsen <loki_val@gentoo.org> (20 Jun 2008)
+# cppunit is not keyworded, needed by test. Bug 228559.
+media-libs/taglib test
+
 # missing keyword for sys-cluster/openmpi sys-cluster/mpich2
 dev-libs/boost mpi
 

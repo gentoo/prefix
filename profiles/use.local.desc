@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4010 2008/11/08 22:27:45 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4013 2008/11/11 00:07:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1278,6 +1278,8 @@ media-plugins/vdr-softdevice:mmxext - enables MMXExt support
 media-plugins/vdr-text2skin:direct_blit - not buffer picture, faster, but only for modified skins
 media-plugins/vdr-weatherng:dxr3 - enables lower osd color depth for dxr3 cards
 media-plugins/vdr-xineliboutput:libextractor - Use media-libs/libextract to gather files' metadata in media-player
+media-radio/tucnak2:ftdi - Enable support for FTDI USB chips
+media-radio/tucnak2:hamlib - Enables support by the Hamlib amateur radio rig control library to get/set frequency and mode of the ham radio
 media-sound/abcde:id3 - Support ID3, ID3v2 tagging of audio files
 media-sound/abcde:normalize - Add support for normalizing audio file volume levels
 media-sound/abcde:replaygain - Support for Replay Gain metadata, for relative volume adjustment
@@ -1346,6 +1348,7 @@ media-sound/mixxx:vinylcontrol - Enable vinylcontrol feature
 media-sound/moc:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mp3blaster:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mpd:icecast - Enable support for Icecast2
+media-sound/mpd:id3 - Support for ID3 tags
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
@@ -2240,7 +2243,7 @@ sci-libs/gdal:ecwj2k - Enable support for alternate jpeg2k library sci-libs/libe
 sci-libs/gdal:fits - Enable support for NASA's sci-libs/cfitsio library
 sci-libs/gdal:geos - Add support for geometry engine (sci-libs/geos 
 sci-libs/gdal:gml - Enable support for dev-libs/xerces-c C++ API
-sci-libs/gdal:hdf - Add support for the Hierarchical Data Format (sci-libs/hdf)
+sci-libs/gdal:hdf - Add support for the Hierarchical Data Format v. 4 (sci-libs/hdf)
 sci-libs/gdal:ogdi - Enable support for the open geographic datastore interface (sci-libs/ogdi)
 sci-libs/gerris:dx - Enable support for sci-visualization/opendx
 sci-libs/gsl:cblas - Build gsl with external cblas by default (virtual/cblas)

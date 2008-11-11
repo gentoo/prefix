@@ -1,5 +1,5 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# # $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.6 2008/10/22 14:49:28 remi Exp $
+# # $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.7 2008/11/10 07:18:39 jer Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
 
 # Unmask the flag which corresponds to ARCH.
@@ -72,10 +72,6 @@ beagle
 # 2006/04/26 Saleem Abdulrasool <compnerd@gentoo.org>
 # sys-apps/dmidecode: masking with vapier's blessings
 dmi
-
-# 2006/03/13 Jeroen Roovers <jer@gentoo.org>
-# media-libs/openal: Masking until a version is available for hppa
-openal
 
 # 2006/03/07 Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures lacking direct rendering      

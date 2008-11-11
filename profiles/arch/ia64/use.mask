@@ -7,6 +7,7 @@
 3dfx
 bluetooth
 dvb
+dxr3
 gnokii
 gphoto2
 ivtv
