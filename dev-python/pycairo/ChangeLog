@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.59 2008/08/06 19:44:05 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.60 2008/11/10 11:33:19 armin76 Exp $
+
+  10 Nov 2008; Raúl Porcel <armin76@gentoo.org> pycairo-1.4.12.ebuild:
+  arm/sh stable
 
   06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
