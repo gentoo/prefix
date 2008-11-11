@@ -1,6 +1,10 @@
 # ChangeLog for sys-auth/pambase
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.56 2008/10/28 21:59:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.57 2008/11/09 12:21:27 vapier Exp $
+
+  09 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  pambase-20081028-r1.ebuild:
+  Add arm/s390/sh #232691.
 
 *pambase-20081028-r1 (28 Oct 2008)
 *pambase-20081028 (28 Oct 2008)
