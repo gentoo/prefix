@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Net-LibIDN
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-LibIDN/ChangeLog,v 1.10 2008/09/01 08:47:08 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-LibIDN/ChangeLog,v 1.11 2008/11/09 11:38:41 vapier Exp $
+
+  09 Nov 2008; Mike Frysinger <vapier@gentoo.org> Net-LibIDN-0.10.ebuild,
+  Net-LibIDN-0.11.ebuild:
+  Add arm/s390/sh #235533.
 
 *Net-LibIDN-0.11 (01 Sep 2008)
 
