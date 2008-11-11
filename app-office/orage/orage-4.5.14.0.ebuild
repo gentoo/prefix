@@ -36,7 +36,7 @@ src_unpack() {
 	# Patch needed for Solaris. Took from
 	# http://foo-projects.org/pipermail/xfce/2008-July/023569.html
 	if [[ ${CHOST} == *-solaris* ]] ; then
-		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-paramters.c.patch"
+		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-parameters.c.patch"
 		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-configure.in.patch"
 	fi
 
