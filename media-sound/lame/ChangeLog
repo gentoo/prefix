@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/lame
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.102 2008/09/23 22:46:29 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.103 2008/11/09 21:06:42 loki_val Exp $
+
+  09 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> lame-3.97-r1.ebuild:
+  Dropping stable mips.
 
 *lame-3.98.2 (23 Sep 2008)
 
