@@ -1,20 +1,28 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.5.4.ebuild,v 1.3 2008/11/04 12:53:11 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.1.ebuild,v 1.1 2008/11/10 19:55:29 dragonheart Exp $
 
-inherit libtool eutils
+inherit eutils libtool autotools
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
-SRC_URI="http://www.gnu.org/software/gnutls/releases/${P}.tar.bz2"
-#SRC_URI="mirror://gnu/gnutls/${P}.tar.bz2"
+
+MINOR_VERSION="${PV#*.}"
+MINOR_VERSION="${MINOR_VERSION%.*}"
+if [[ $((MINOR_VERSION % 2)) == 0 ]] ; then
+	#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
+	SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+else
+	SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
+fi
+unset MINOR_VERSION
 
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 EAPI="prefix 1"
-IUSE="zlib lzo doc nls guile bindist +cxx"
+IUSE="bindist +cxx doc guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
 	>=dev-libs/libgcrypt-1.4.0
@@ -44,8 +52,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-2.3.11+gcc-4.3.patch
+	rm m4/lt* m4/libtool.m4 build-aux/ltmain.sh
+	epatch "${FILESDIR}"/gnutls-2.6.0-cxx-configure.in.patch
+	eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 
@@ -62,14 +71,13 @@ src_compile() {
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		${myconf}
-	emake || die
+	emake || die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 
-	dodoc AUTHORS ChangeLog NEWS \
-		README THANKS doc/TODO
+	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO
 
 	if use doc ; then
 		dodoc doc/README.autoconf doc/tex/gnutls.ps
