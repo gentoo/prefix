@@ -1,19 +1,32 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.34 2008/07/17 09:49:14 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.35 2008/11/09 15:47:47 loki_val Exp $
 
 # @ECLASS: base.eclass
 # @MAINTAINER:
-# ???
+# Peter Alfredsen <loki_val@gentoo.org>
 #
 # Original author Dan Armak <danarmak@gentoo.org>
 # @BLURB: The base eclass defines some default functions and variables.
 # @DESCRIPTION:
 # The base eclass defines some default functions and variables. Nearly
 # everything else inherits from here.
+#
+# NOTE: You must define EAPI before inheriting from base, or the wrong functions
+# may be exported.
 
 
 inherit eutils
+
+eapi=${EAPI/prefix /}
+case "${eapi:-0}" in
+	2)
+		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
+		;;
+	*)
+		EXPORT_FUNCTIONS src_unpack src_compile src_install
+		;;
+esac
 
 DESCRIPTION="Based on the $ECLASS eclass"
 
@@ -21,11 +34,46 @@ DESCRIPTION="Based on the $ECLASS eclass"
 # @USAGE: [ unpack ] [ patch ] [ autopatch ] [ all ]
 # @DESCRIPTION:
 # The base src_unpack function, which is exported. If no argument is given,
-# "all" is assumed.
+# "all" is assumed if EAPI!=2, "unpack" if EAPI=2.
 base_src_unpack() {
 
-	debug-print-function $FUNCNAME $*
-	[ -z "$1" ] && base_src_unpack all
+	debug-print-function $FUNCNAME "$@"
+
+	if [ -z "$1" ]
+	then
+		eapi=${EAPI/prefix /}
+		case "${eapi:-0}" in
+			2)
+				base_src_util unpack
+				;;
+			*)
+				base_src_util all
+				;;
+		esac
+	else
+		base_src_util $@
+	fi
+}
+
+# @FUNCTION: base_src_prepare
+# @DESCRIPTION:
+# The base src_prepare function, which is exported when EAPI=2. Performs
+# "base_src_util autopatch".
+base_src_prepare() {
+
+	debug-print-function $FUNCNAME "$@"
+
+	base_src_util autopatch
+}
+
+# @FUNCTION: base_src_util
+# @USAGE: [ unpack ] [ patch ] [ autopatch ] [ all ]
+# @DESCRIPTION:
+# The base_src_util function is the grunt function for base src_unpack
+# and base src_prepare.
+base_src_util() {
+
+	debug-print-function $FUNCNAME "$@"
 
 	cd "${WORKDIR}"
 
@@ -59,7 +107,7 @@ base_src_unpack() {
 			;;
 		all)
 			debug-print-section all
-			base_src_unpack unpack autopatch
+			base_src_util unpack autopatch
 			;;
 		esac
 
@@ -68,15 +116,50 @@ base_src_unpack() {
 
 }
 
+# @FUNCTION: base_src_configure
+# @DESCRIPTION:
+# The base src_prepare function, which is exported when EAPI=2. Performs
+# "base_src_work configure".
+base_src_configure() {
+
+	debug-print-function $FUNCNAME "$@"
+
+	base_src_work configure
+}
+
 # @FUNCTION: base_src_compile
 # @USAGE: [ configure ] [ make ] [ all ]
 # @DESCRIPTION:
 # The base src_compile function, which is exported. If no argument is given,
-# "all" is asasumed.
+# "all" is assumed if EAPI!=2, "make" if EAPI=2.
 base_src_compile() {
 
-	debug-print-function $FUNCNAME $*
-	[ -z "$1" ] && base_src_compile all
+	debug-print-function $FUNCNAME "$@"
+
+	if [ -z "$1" ]
+	then
+		eapi=${EAPI/prefix /}
+		case "${eapi:-0}" in
+			2)
+				base_src_work make
+				;;
+			*)
+				base_src_work all
+				;;
+		esac
+	else
+		base_src_work $@
+	fi
+}
+
+# @FUNCTION: base_src_work
+# @USAGE: [ configure ] [ make ] [ all ]
+# @DESCRIPTION:
+# The base_src_work function is the grunt function for base src_configure
+# and base src_compile.
+base_src_work() {
+
+	debug-print-function $FUNCNAME "$@"
 
 	cd "${S}"
 
@@ -93,7 +176,7 @@ base_src_compile() {
 			;;
 		all)
 			debug-print-section all
-			base_src_compile configure make
+			base_src_work configure make
 			;;
 	esac
 
@@ -109,7 +192,7 @@ base_src_compile() {
 # "all" is assumed.
 base_src_install() {
 
-	debug-print-function $FUNCNAME $*
+	debug-print-function $FUNCNAME "$@"
 	[ -z "$1" ] && base_src_install all
 
 	cd "${S}"
@@ -131,5 +214,3 @@ base_src_install() {
 	done
 
 }
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install

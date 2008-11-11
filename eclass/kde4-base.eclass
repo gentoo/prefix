@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.15 2008/10/11 03:05:37 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.16 2008/11/09 22:52:59 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -501,7 +501,7 @@ kde4-base_src_unpack() {
 		# To be picked up, patches need to conform to the guidelines stated before.
 		# Monolithic ebuilds will use the split ebuild patches.
 		[[ -d "${KDE_S}" ]] || unpack ${A}
-		kde4-base_apply_patches
+		base_src_unpack $*
 	else
 		# Call base_src_unpack, which unpacks and patches
 		# step by step transparently as defined in the ebuild.
