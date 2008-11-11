@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.11.ebuild,v 1.1 2008/08/25 20:47:31 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.11.ebuild,v 1.4 2008/11/09 19:00:34 armin76 Exp $
 
 EAPI="prefix"
 
