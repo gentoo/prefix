@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.4.ebuild,v 1.1 2008/09/17 09:41:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.4.ebuild,v 1.2 2008/11/09 07:20:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,20 @@ src_unpack() {
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
 	eprefixify rsyncd.*
+
+	local check base=${PORTAGE_CONFIGROOT}/etc/portage/patches
+	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
+		EPATCH_SOURCE=${base}/${CTARGET}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
+		if [[ -d ${EPATCH_SOURCE} ]] ; then
+			EPATCH_SUFFIX="patch"
+			EPATCH_FORCE="yes" \
+			EPATCH_MULTI_MSG="Applying user patches from ${EPATCH_SOURCE} ..." \
+			epatch
+			break
+		fi
+	done
 }
 
 src_compile() {
