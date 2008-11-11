@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/xv
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.98 2008/06/16 15:21:30 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.99 2008/11/10 06:36:46 lavajoe Exp $
+
+  10 Nov 2008; Joe Peterson <lavajoe@gentoo.org> +files/xv.png,
+  xv-3.10a-r15.ebuild:
+  Add desktop entry/icon; no rev bump
 
   16 Jun 2008; Joe Peterson <lavajoe@gentoo.org>
   +files/xv-3.10a-add-ldflags-20070520.patch, xv-3.10a-r15.ebuild:
