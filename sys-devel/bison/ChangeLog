@@ -1,6 +1,18 @@
 # ChangeLog for sys-devel/bison
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.71 2007/12/27 19:29:06 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.73 2008/11/09 19:03:42 zmedico Exp $
+
+  09 Nov 2008; Zac Medico <zmedico@gentoo.org> bison-2.4.ebuild:
+  Bug #246184 - Rename the yacc.1 man page to avoid collision with
+  dev-util/yacc.
+
+  09 Nov 2008; Mike Frysinger <vapier@gentoo.org> +bison-2.4.ebuild:
+  Version bump #245990 by Arfrever Frehtes Taifersar Arahesis.
+
+*bison-2.4 (09 Nov 2008)
+
+  09 Nov 2008; Mike Frysinger <vapier@gentoo.org> +bison-2.4.ebuild:
+  Version bump.
 
   27 Dec 2007; Mike Frysinger <vapier@gentoo.org> bison-2.3.ebuild:
   Fixup dodoc #203390 by Arfrever Frehtes Taifersar Arahesis.
