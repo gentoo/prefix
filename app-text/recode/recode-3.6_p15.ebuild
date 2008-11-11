@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils libtool toolchain-funcs
+inherit autotools eutils libtool toolchain-funcs flag-o-matic
 
 MY_P=${P%_*}
 MY_PV=${PV%_*}
