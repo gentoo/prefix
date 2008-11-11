@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r4.ebuild,v 1.10 2008/11/08 16:04:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r4.ebuild,v 1.11 2008/11/09 11:32:01 vapier Exp $
 
 EAPI="prefix"
 
