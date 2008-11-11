@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/IO-Socket-SSL
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.92 2008/10/20 19:36:15 tove Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.93 2008/11/09 11:39:29 vapier Exp $
+
+  09 Nov 2008; Mike Frysinger <vapier@gentoo.org> IO-Socket-SSL-1.16.ebuild,
+  IO-Socket-SSL-1.17.ebuild:
+  Add arm/s390/sh #235533.
 
 *IO-Socket-SSL-1.17 (20 Oct 2008)
 
