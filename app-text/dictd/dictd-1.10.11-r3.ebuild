@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.11-r3.ebuild,v 1.4 2008/11/08 18:36:21 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.11-r3.ebuild,v 1.7 2008/11/09 15:35:52 klausman Exp $
 
 EAPI="prefix"
 
