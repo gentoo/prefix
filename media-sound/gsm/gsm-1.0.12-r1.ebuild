@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.12 2008/05/11 09:01:55 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.13 2008/11/10 10:51:37 armin76 Exp $
 
 EAPI="prefix"
 
