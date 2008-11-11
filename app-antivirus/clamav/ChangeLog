@@ -1,6 +1,19 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.308 2008/09/13 22:48:04 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.310 2008/11/10 21:16:54 dertobi123 Exp $
+
+  10 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  clamav-0.94.1.ebuild:
+  Restrict tests for now, re-add dropped keywords. As per discussion on irc
+  with hoffie/keytoaster.
+
+*clamav-0.94.1 (10 Nov 2008)
+
+  10 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +files/clamav-0.94.1-buildfix.patch, +clamav-0.94.1.ebuild:
+  Version bump, #245450. Move test deps into COMMON_DEPEND, require
+  >=pkgconfig-0.20. Keywords for all architectures except amd64, ppc and x86
+  dropped due to test related deps (valgrind/duma) not being keyworded.
 
   13 Sep 2008; Tobias Scherbaum <dertobi123@gentoo.org> clamav-0.94.ebuild:
   Add missing buildtime dep on dev-util/pkgconfig, #237552
