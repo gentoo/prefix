@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r3.ebuild,v 1.1 2008/06/27 16:44:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r3.ebuild,v 1.2 2008/11/09 07:26:17 truedfx Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-open-normal-fail.patch #135745
 	epatch "${FILESDIR}"/${P}-open-cloexec.patch #196720
 	epatch "${FILESDIR}"/${P}-rtld-validation.patch #206678
+	sed -i -e 's/&> libctest.log/>libctest.log 2>\&1/g' configure || die "sed failed" #236868
 }
 
 abi_fail_check() {

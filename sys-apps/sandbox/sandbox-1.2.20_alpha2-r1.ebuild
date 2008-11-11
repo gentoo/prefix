@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.20_alpha2-r1.ebuild,v 1.1 2007/11/04 18:18:49 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.20_alpha2-r1.ebuild,v 1.5 2008/11/09 11:06:46 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,63 +33,42 @@ IUSE=""
 DEPEND=""
 
 EMULTILIB_PKG="true"
+has sandbox_death_notice ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS="${EBUILD_DEATH_HOOKS} sandbox_death_notice"
 
-setup_multilib() {
-	if use amd64 && has_m32 && [[ ${CONF_MULTILIBDIR} == "lib32" ]]; then
-		export DEFAULT_ABI="amd64"
-		export MULTILIB_ABIS="x86 amd64"
-		export CFLAGS_amd64=${CFLAGS_amd64:-"-m64"}
-		export CFLAGS_x86=${CFLAGS_x86-"-m32 -L/emul/linux/x86/lib -L/emul/linux/x86/usr/lib"}
-		export CHOST_amd64="x86_64-pc-linux-gnu"
-		export CHOST_x86="i686-pc-linux-gnu"
-		export LIBDIR_amd64=${LIBDIR_amd64-${CONF_LIBDIR}}
-		export LIBDIR_x86=${LIBDIR_x86-${CONF_MULTILIBDIR}}
-	fi
+sandbox_death_notice() {
+	ewarn "If configure failed with a 'cannot run C compiled programs' error, try this:"
+	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
 src_unpack() {
 	unpack ${A}
 
 	if [[ -n ${PVER} ]] ; then
-		cd ${S}
+		cd "${S}"
 		epatch "${WORKDIR}/patch"
 	fi
 
-	cd "${S}/libsandbox"
-	epatch "${FILESDIR}/${PN}-1.2.18.1-open-cloexec.patch"
-}
+	cd "${S}"
+	sed -i -e 's/&> libctest.log/>libctest.log 2>\&1/g' configure || die "sed failed" #236868
 
-abi_fail_check() {
-	local ABI=$1
-	if [[ ${ABI} == "x86" ]] ; then
-		echo
-		eerror "Building failed for ABI=x86!.  This usually means a broken"
-		eerror "multilib setup.  Please fix that before filling a bugreport"
-		eerror "against sandbox."
-		echo
-	fi
+	cd "${S}/libsandbox"
+	epatch "${FILESDIR}"/${PN}-1.2.18.1-open-cloexec.patch
+	epatch "${FILESDIR}"/${P}-parallel.patch #190051
 }
 
 src_compile() {
 	local myconf
-	local iscross=0
-
-	setup_multilib
 
 	filter-lfs-flags #90228
 
 	has_multilib_profile && myconf="--enable-multilib"
 
-	ewarn "If configure fails with a 'cannot run C compiled programs' error, try this:"
-	ewarn "FEATURES=-sandbox emerge sandbox"
+	local OABI=${ABI}
+	for ABI in $(get_install_abis) ; do
+		mkdir "${WORKDIR}/build-${ABI}"
+		cd "${WORKDIR}/build-${ABI}"
 
-	[[ -n ${CBUILD} && ${CBUILD} != ${CHOST} ]] && iscross=1
-
-	OABI=${ABI}
-	OCHOST=${CHOST}
-	for ABI in $(get_install_abis); do
-		mkdir "${WORKDIR}/build-${ABI}-${OCHOST}"
-		cd "${WORKDIR}/build-${ABI}-${OCHOST}"
+		multilib_toolchain_setup ${ABI}
 
 		# Needed for older broken portage versions (bug #109036)
 		has_version '<sys-apps/portage-2.0.51.22' && \
@@ -101,23 +80,18 @@ src_compile() {
 
 		einfo "Configuring sandbox for ABI=${ABI}..."
 		ECONF_SOURCE="../${MY_P}/" \
-		econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf}
+		econf ${myconf} || die
 		einfo "Building sandbox for ABI=${ABI}..."
-		emake || {
-			abi_fail_check "${ABI}"
-			die "emake failed for ${ABI}"
-		}
+		emake || die
 	done
 	ABI=${OABI}
 	CHOST=${OCHOST}
 }
 
 src_install() {
-	setup_multilib
-
-	OABI=${ABI}
-	for ABI in $(get_install_abis); do
-		cd "${WORKDIR}/build-${ABI}-${CHOST}"
+	local OABI=${ABI}
+	for ABI in $(get_install_abis) ; do
+		cd "${WORKDIR}/build-${ABI}"
 		einfo "Installing sandbox for ABI=${ABI}..."
 		make DESTDIR="${D}" install || die "make install failed for ${ABI}"
 	done
