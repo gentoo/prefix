@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-cblas
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-cblas/ChangeLog,v 1.20 2007/10/22 18:59:56 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-cblas/ChangeLog,v 1.21 2008/11/09 16:44:29 armin76 Exp $
+
+  09 Nov 2008; Raúl Porcel <armin76@gentoo.org> eselect-cblas-0.1.ebuild:
+  ia64 stable
 
   22 Oct 2007; Jeroen Roovers <jer@gentoo.org> eselect-cblas-0.1.ebuild:
   Stable for HPPA (USE=lapack). Quoting fixes.
