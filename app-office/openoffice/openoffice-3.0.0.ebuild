@@ -258,7 +258,7 @@ src_unpack() {
 	unpack ooo-build-${MY_PV}.tar.gz
 
 	# Prefix patch
-	epatch "${FILESDIR}/ooo-build-2.4.1.6-prefix.patch"
+	epatch "${FILESDIR}/ooo-build-3.0.0.3.5-prefix.patch"
 
 	# Hackish workaround for overlong path problem, see bug #130837
 	mv "${S_OLD}" "${S}" || die
