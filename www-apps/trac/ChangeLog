@@ -1,6 +1,13 @@
 # ChangeLog for www-apps/trac
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.80 2008/09/15 11:55:40 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.81 2008/11/09 09:35:09 wrobel Exp $
+
+*trac-0.11.2 (09 Nov 2008)
+
+  09 Nov 2008; Gunnar Wrobel <wrobel@gentoo.org> -trac-0.11.ebuild,
+  -trac-0.11.1.ebuild, -trac-0.11.1-r2.ebuild, +trac-0.11.2.ebuild:
+  Removed the trac-0.11.* ebuilds, added trac-0.11.2 with respect to sec issue
+  #246130.
 
 *trac-0.11.1-r2 (15 Sep 2008)
 
