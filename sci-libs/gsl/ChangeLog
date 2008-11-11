@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.48 2008/11/08 18:46:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.49 2008/11/09 16:46:11 armin76 Exp $
+
+  09 Nov 2008; Raúl Porcel <armin76@gentoo.org> gsl-1.11.ebuild:
+  alpha/ia64 stable wrt #245838
 
   08 Nov 2008; Markus Meier <maekke@gentoo.org> gsl-1.11.ebuild:
   amd64/x86 stable, bug #245838
