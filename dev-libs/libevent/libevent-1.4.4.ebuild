@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.4.ebuild,v 1.7 2008/08/15 18:51:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.4.ebuild,v 1.8 2008/11/09 12:02:55 vapier Exp $
 
 EAPI="prefix"
 
