@@ -50,3 +50,14 @@
  	@ echo
  
  shareddebug:  libastyled.so
+--- buildgcc/Makefile.orig	2008-11-10 18:00:51.462464681 -0800
++++ buildgcc/Makefile	2008-11-10 18:31:21.586465413 -0800
+@@ -140,7 +140,7 @@
+ java:  libastylej.so
+ libastylej.so:  $(OBJsj)
+ 	@ mkdir -p $(bindir)
+-	$(CXX) -shared -Wl,-soname,$@  -s -o $(bindir)/$@ $^
++	$(CXX) -shared -Wl,-soname,$@  -o $(bindir)/$@ $^
+ 	@ echo
+ 
+ javadebug:  libastylejd.so
