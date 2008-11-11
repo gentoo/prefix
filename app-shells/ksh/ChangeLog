@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/ksh
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.36 2008/10/02 02:59:30 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.38 2008/11/10 23:30:03 darkside Exp $
+
+*ksh-93.20081104 (10 Nov 2008)
+
+  10 Nov 2008; Jeremy Olexa <darkside@gentoo.org> -ksh-93.20080725.ebuild,
+  +ksh-93.20081104.ebuild:
+  (non maintainer commit) version bump and remove old
+
+  10 Nov 2008; Jeremy Olexa <darkside@gentoo.org> ksh-93.20071105.ebuild:
+  amd64 stable
 
 *ksh-93.20080725 (02 Oct 2008)
 

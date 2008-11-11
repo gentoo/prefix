@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ksh-93.20080725.ebuild,v 1.1 2008/10/02 02:59:30 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ksh-93.20081104.ebuild,v 1.1 2008/11/10 23:30:03 darkside Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-RELEASE="2008-07-25"
-LOCALE_RELEASE="2008-07-25"
+RELEASE="2008-11-04"
+LOCALE_RELEASE="2007-11-05"
 INIT_RELEASE="${RELEASE}"
 
 DESCRIPTION="The Original Korn Shell, 1993 revision (ksh93)"
@@ -42,7 +42,7 @@ src_unpack() {
 	# `package read` will unpack any tarballs put in place.
 	${S}/bin/package read || die
 
-	epatch "${FILESDIR}/${P}-darwin-jobs.patch"
+	epatch "${FILESDIR}/${PN}-93.20080725-darwin-jobs.patch"
 	epatch "${FILESDIR}/${PN}-prefix.patch"
 	eprefixify src/cmd/ksh93/data/msg.c
 }
