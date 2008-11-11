@@ -89,8 +89,12 @@ dev-java/ibm-jre-bin alsa
 # Needed depenencies have been removed from the tree
 dev-db/mysql-gui-tools workbench
 
-# Alexis Ballier <aballier@getnoo.org> (17 Sep 2008)
+# Alexis Ballier <aballier@gentoo.org> (17 Sep 2008)
 # Requires a x86-compatible architecture in order to run the binary plugins
 # through wine. So far it segfaults on amd64. Unmask on confirmed to work
 # profiles.
 media-sound/lmms vst
+
+# Raúl Porcel <armin76@gentoo.org> (09 Nov 2008)
+# This needs amd64, x86 and ppc on some of them
+media-video/mplayer cpudetection custom-cpuopts bindist
