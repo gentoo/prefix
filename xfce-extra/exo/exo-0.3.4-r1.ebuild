@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.4 2008/11/08 17:09:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.6 2008/11/10 19:32:53 angelos Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,7 @@ src_unpack() {
 
 	sed -i -e 's:-Werror::g' "${S}"/configure
 	epatch "${FILESDIR}"/${P}-eject.patch
+	epatch "${FILESDIR}"/${P}-remove-libmd5.patch
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
