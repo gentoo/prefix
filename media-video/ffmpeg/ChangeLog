@@ -1,6 +1,10 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.237 2008/10/30 10:51:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.238 2008/11/10 10:54:45 armin76 Exp $
+
+  10 Nov 2008; Raúl Porcel <armin76@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Add ~ia64 wrt #241908
 
   30 Oct 2008; Raúl Porcel <armin76@gentoo.org>
   ffmpeg-0.4.9_p20070616-r3.ebuild:
