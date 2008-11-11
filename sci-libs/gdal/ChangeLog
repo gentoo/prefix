@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.49 2008/11/09 01:42:16 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.50 2008/11/10 23:30:30 nerdboy Exp $
+
+  10 Nov 2008; Steve Arnold <nerdboy@gentoo.org> metadata.xml,
+  gdal-1.5.3.ebuild:
+  Updated to new xerces-c interface, along with minor metadata update. Note
+  this version enables parallel makes, so if you experience random failures
+  try with -j1 and report if this fixes it.
 
   09 Nov 2008; Steve Arnold <nerdboy@gentoo.org>
   +files/gdal-1.5.2-xerces-64-bit.patch, gdal-1.5.2.ebuild:

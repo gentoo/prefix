@@ -17,7 +17,7 @@
   <flag name='geos'>Add support for geometry engine (<pkg>sci-libs/geos</pkg>
     </flag>
   <flag name='gml'>Enable support for <pkg>dev-libs/xerces-c</pkg> C++ API</flag>
-  <flag name='hdf'>Add support for the Hierarchical Data Format
+  <flag name='hdf'>Add support for the Hierarchical Data Format v. 4
     (<pkg>sci-libs/hdf</pkg>)</flag>
   <flag name='ogdi'>Enable support for the open geographic datastore interface
     (<pkg>sci-libs/ogdi</pkg>)</flag>

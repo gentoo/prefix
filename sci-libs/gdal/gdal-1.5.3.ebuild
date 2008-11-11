@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.3.ebuild,v 1.1 2008/10/18 19:08:36 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.3.ebuild,v 1.2 2008/11/10 23:30:30 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	ruby? ( >=dev-lang/ruby-1.8.4.20060226 )
 	fits? ( sci-libs/cfitsio )
 	ogdi? ( sci-libs/ogdi )
-	gml? ( =dev-libs/xerces-c-2.8* )
+	gml? ( >=dev-libs/xerces-c-3 )
 	hdf5? ( >=sci-libs/hdf5-1.6.4 )
 	postgres? ( virtual/postgresql-server )
 	|| (
@@ -80,7 +80,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-makefile.patch \
-	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch
+	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
+	    "${FILESDIR}"/${PN}-1.5.2-xerces-64-bit.patch
 
 	if useq netcdf && useq hdf; then
 	    einfo	"Checking if HDF4 is compiled with szip..."
@@ -140,7 +141,7 @@ src_compile() {
 
 	# parallel makes fail on the ogr stuff (C++, what can I say?)
 	# also failing with gcc4 in libcsf
-	emake -j1 || die "emake failed"
+	emake || die "emake failed"
 
 	if useq python; then
 	    sed -i -e "s#library_dirs = #library_dirs = ${EPREFIX}/usr/$(get_libdir):#g" \
