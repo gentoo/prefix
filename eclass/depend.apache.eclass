@@ -112,12 +112,12 @@ _init_apache2() {
 	# WARNING: Do not use these variables with anything that is put
 	# into the dependency cache (DEPEND/RDEPEND/etc)
 	APACHE_VERSION="2"
-	APXS="/usr/sbin/apxs2"
-	APACHE_BIN="/usr/sbin/apache2"
-	APACHE_CTL="/usr/sbin/apache2ctl"
-	APACHE_INCLUDEDIR="/usr/include/apache2"
-	APACHE_BASEDIR="/usr/$(get_libdir)/apache2"
-	APACHE_CONFDIR="/etc/apache2"
+	APXS="${EPREFIX}/usr/sbin/apxs2"
+	APACHE_BIN="${EPREFIX}/usr/sbin/apache2"
+	APACHE_CTL="${EPREFIX}/usr/sbin/apache2ctl"
+	APACHE_INCLUDEDIR="${EPREFIX}/usr/include/apache2"
+	APACHE_BASEDIR="${EPREFIX}/usr/$(get_libdir)/apache2"
+	APACHE_CONFDIR="${EPREFIX}/etc/apache2"
 	APACHE_MODULES_CONFDIR="${APACHE_CONFDIR}/modules.d"
 	APACHE_VHOSTS_CONFDIR="${APACHE_CONFDIR}/vhosts.d"
 	APACHE_MODULESDIR="${APACHE_BASEDIR}/modules"
