@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.1.0.ebuild,v 1.7 2008/11/09 17:20:35 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.1 2008/11/10 12:11:12 aballier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic
 
 DESCRIPTION="The swiss army knife of sound processing programs"
 HOMEPAGE="http://sox.sourceforge.net"
@@ -31,12 +31,6 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	amrwb? ( media-libs/amrwb )
 	png? ( media-libs/libpng )
 	wavpack? ( media-sound/wavpack )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-lavc.patch"
-}
 
 src_compile () {
 	# Fixes wav segfaults. See Bug #35745.
