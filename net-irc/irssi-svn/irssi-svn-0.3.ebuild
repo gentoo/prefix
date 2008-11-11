@@ -1,14 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi-svn/irssi-svn-0.3.ebuild,v 1.21 2008/07/14 08:15:56 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi-svn/irssi-svn-0.3.ebuild,v 1.22 2008/11/10 18:59:46 swegener Exp $
 
 EAPI="prefix"
 
-inherit subversion perl-module flag-o-matic
+inherit perl-module flag-o-matic subversion
 
 ESVN_REPO_URI="http://svn.irssi.org/repos/irssi/trunk"
 ESVN_PROJECT="irssi"
-ESVN_BOOTSTRAP="NOCONFIGURE=1 ./autogen.sh"
+ESVN_BOOTSTRAP="TZ=UTC svn log -v \"\${ESVN_REPO_URI}\" >\"\${S}\"/ChangeLog; NOCONFIGURE=1 ./autogen.sh"
 
 DESCRIPTION="A modular textUI IRC client with IPv6 support"
 HOMEPAGE="http://irssi.org/"
@@ -30,12 +30,6 @@ DEPEND="${RDEPEND}
 RDEPEND="${RDEPEND}
 	perl? ( !net-im/silc-client )
 	!net-irc/irssi"
-
-src_unpack() {
-	subversion_src_unpack
-	# We need to create the ChangeLog here
-	TZ=UTC svn log -v "${ESVN_REPO_URI}" >ChangeLog
-}
 
 src_compile() {
 	econf \
