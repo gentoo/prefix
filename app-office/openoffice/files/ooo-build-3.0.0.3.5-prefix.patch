@@ -7,7 +7,7 @@
 -mkdir -p $OODESTDIR/etc/bash_completion.d
 -$TOOLSDIR/bin/generate-bash-completion --binsuffix="$BINSUFFIX" $TOOLSDIR/bin/bash-completion.in $OODESTDIR/etc/bash_completion.d/ooffice${BINSUFFIX}.sh
 +mkdir -p $SYSCONFDIR/bash_completion.d
-+$TOOLSDIR/bin/generate-bash-completion --binsuffix="$BINSUFFIX" $TOOLSDIR/bin/bash-completion.in $SYSCONFDIR/etc/bash_completion.d/ooffice${BINSUFFIX}.sh
++$TOOLSDIR/bin/generate-bash-completion --binsuffix="$BINSUFFIX" $TOOLSDIR/bin/bash-completion.in $SYSCONFDIR/bash_completion.d/ooffice${BINSUFFIX}.sh
  
  if test "z$VENDORNAME" != "zRedHat"; then
  	mkdir -p $MANDIR/man1
