@@ -1,13 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.16_rc2.ebuild,v 1.1 2008/01/30 15:42:10 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.18.ebuild,v 1.1 2008/11/11 17:13:42 beandog Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="1.9"
-
-inherit eutils autotools libtool
+inherit eutils libtool
 
 MY_P="${P/_rc/rc}"
 S="${WORKDIR}/${MY_P}"
@@ -16,16 +13,18 @@ DESCRIPTION="Advanced Linux Sound Architecture Library"
 HOMEPAGE="http://www.alsa-project.org/"
 SRC_URI="mirror://alsaproject/lib/${MY_P}.tar.bz2"
 
-LICENSE="GPL-2 LGPL-2.1"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="doc debug alisp midi"
+IUSE="doc debug alisp midi python"
 
-RDEPEND=""
-DEPEND=">=media-sound/alsa-headers-${PV}
+RDEPEND="python? ( dev-lang/python )"
+DEPEND="${RDEPEND}
+	>=media-sound/alsa-headers-${PV}
 	doc? ( >=app-doc/doxygen-1.2.6 )"
 
-IUSE_PCM_PLUGIN="copy linear route mulaw alaw adpcm rate plug multi shm file null empty share meter hooks lfloat ladspa dmix dshare dsnoop asym iec958
+IUSE_PCM_PLUGIN="copy linear route mulaw alaw adpcm rate plug multi shm file
+null empty share meter mmap_emul hooks lfloat ladspa dmix dshare dsnoop asym iec958
 softvol extplug ioplug"
 
 for plugin in ${IUSE_PCM_PLUGIN}; do
@@ -62,8 +61,10 @@ src_compile() {
 		--disable-resmgr \
 		$(use_with debug) \
 		$(use_enable alisp) \
-		$(use_enable midi instr) \
-		$(use_enable midi seq) $(use_enable midi aload) \
+		$(use_enable python) \
+		$(use_enable midi rawmidi) \
+		$(use_enable midi seq) \
+		$(use_enable midi aload) \
 		--with-pcm-plugins="${ALSA_PCM_PLUGINS}" \
 		--disable-dependency-tracking \
 		${myconf} \
@@ -81,7 +82,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	dodoc ChangeLog TODO
+	dodoc ChangeLog TODO || die
 	use doc && dohtml -r doc/doxygen/html/*
 }
 

@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.263 2008/09/01 17:48:15 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.264 2008/11/11 17:13:42 beandog Exp $
+
+*alsa-lib-1.0.18 (11 Nov 2008)
+
+  11 Nov 2008; Steve Dibb <beandog@gentoo.org> +alsa-lib-1.0.18.ebuild:
+  Version bump, bug 239559
 
 *alsa-lib-1.0.17a (01 Sep 2008)
 
