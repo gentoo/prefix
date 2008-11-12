@@ -9,4 +9,6 @@ CHOST="x86_64-pc-linux-gnu"
 # The base profile sets ACCEPT_KEYWORDS=amd64 and we don't have that in prefix.
 ACCEPT_KEYWORDS="-amd64 ~amd64-linux"
 
+# We don't have lib64 in prefix so, remove it here.
+SYMLINK_LIB="no"
 LIBDIR_amd64="lib"
