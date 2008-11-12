@@ -5,7 +5,7 @@
 EAPI="prefix"
 
 # FIXME : catalog stuff
-inherit eutils gnome2 autotools
+inherit eutils gnome2 autotools flag-o-matic
 
 DESCRIPTION="Library to construct graphical interfaces at runtime"
 HOMEPAGE="http://www.gnome.org/"
@@ -31,6 +31,9 @@ src_unpack() {
 	gnome2_src_unpack
 
 	AT_M4DIR=m4 eautoreconf # need new libtool for interix
+	
+	# Needed for soalris, else gcc finds a syntax error in /usr/include/signal.h
+	[[ ${CHOST} == *-solaris* ]] && append-flags "-D__EXTENSIONS__"
 }
 
 src_compile() {
