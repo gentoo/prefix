@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2040 2008/11/11 03:38:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2041 2008/11/11 14:28:15 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  11 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  ffmpeg2theora-9999 punted, removing mask entry.
 
   11 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Lift p.mask for app-admin/osiris because many people wanted it to stay. bug

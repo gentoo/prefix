@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9160 2008/11/11 03:38:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9161 2008/11/11 14:28:15 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -857,11 +857,6 @@ sys-fs/redirfs
 # Raúl Porcel <armin76@gentoo.org> (18 Feb 2008)
 # Probably breaks a lot of stuff, needs testing
 =net-wireless/wireless-tools-30_pre*
-
-# Samuli Suominen <drac@gentoo.org> (12 Feb 2008)
-# If 0.20 fails with hardmasked ffmpeg snapshot,
-# try this instead.
-~media-video/ffmpeg2theora-9999
 
 # Sebastien Fabbro <bicatali@gentoo.org> (05 Feb 2008)
 # sci-libs/metis-5.* still experimental
