@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.16_rc2.ebuild,v 1.1 2008/01/30 15:41:50 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.18.ebuild,v 1.1 2008/11/11 17:11:37 beandog Exp $
 
 EAPI="prefix"
 
@@ -8,13 +8,13 @@ inherit eutils
 
 MY_PN=${PN/headers/driver}
 MY_P="${MY_PN}-${PV/_rc/rc}"
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Header files for Advanced Linux Sound Architecture kernel modules"
 HOMEPAGE="http://www.alsa-project.org/"
 SRC_URI="mirror://alsaproject/driver/${MY_P}.tar.bz2"
 
-LICENSE="GPL-2 LGPL-2.1"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
