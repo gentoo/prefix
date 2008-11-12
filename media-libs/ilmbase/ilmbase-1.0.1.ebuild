@@ -24,6 +24,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-1.0.0-asneeded.patch"
 
+	# gcc-apple-4.2.1 dies on this
+	sed -i -e "s/-Wno-long-double//g" "${S}/configure" || die
+
 	# Sane versioning on FreeBSD - please don't remove elibtoolize
 	elibtoolize
 }
