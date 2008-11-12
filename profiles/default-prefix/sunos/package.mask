@@ -3,6 +3,7 @@
 # Fabian Groffen <grobian@gentoo.org> (02 Oct 2008)
 # Doesn't compile on Solaris.
 =app-shells/ksh-93.20080725
+=app-shells/ksh-93.20081104
 
 # Fabian Groffen <grobian@gentoo.org> (13 Oct 2007)
 # Doesn't compile, conflicting declaration, see:
