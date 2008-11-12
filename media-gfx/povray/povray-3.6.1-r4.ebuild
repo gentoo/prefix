@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r4.ebuild,v 1.2 2008/11/08 20:55:53 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r4.ebuild,v 1.4 2008/11/11 15:56:17 jer Exp $
 
 EAPI="prefix"
 
