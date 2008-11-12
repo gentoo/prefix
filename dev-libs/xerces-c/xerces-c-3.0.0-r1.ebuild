@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.0.0-r1.ebuild,v 1.1 2008/10/25 17:48:58 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.0.0-r1.ebuild,v 1.4 2008/11/12 00:41:52 fmccor Exp $
 
 EAPI="prefix"
 
@@ -85,7 +85,8 @@ src_install () {
 
 	if use doc; then
 		insinto /usr/share/doc/${PF}
-		rm -rf samples/config* samples/Makefile* samples/runConfigure samples/install-sh samples/*/Makefile*
+		rm -rf samples/config* samples/Makefile* samples/runConfigure \
+		samples/install-sh samples/*/Makefile* samples/.libs
 		rm samples/*
 		doins -r samples
 		dohtml -r doc/html/*
