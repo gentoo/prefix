@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs flag-o-matic
+inherit toolchain-funcs flag-o-matic eutils
 
 DESCRIPTION="A yacc-compatible parser generator"
 HOMEPAGE="http://www.gnu.org/software/bison/bison.html"
@@ -18,6 +18,13 @@ IUSE="nls static"
 DEPEND="nls? ( sys-devel/gettext )"
 
 RDEPEND="sys-devel/m4"
+
+src_unpack() {
+	unpack $A
+	cd "$S"
+	epatch "$FILESDIR/bison-2.4.1_pre20081111.patch" #246266
+}
+
 
 src_compile() {
 	use static && append-ldflags -static

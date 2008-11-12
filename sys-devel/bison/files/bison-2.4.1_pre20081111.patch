@@ -1,0 +1,220 @@
+diff -NrU5 bison/src/getargs.c bison-2.4.1_pre20081111/src/getargs.c
+--- bison/src/getargs.c	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/getargs.c	2008-11-07 22:48:57.000000000 +0100
+@@ -68,13 +68,13 @@
+   { "c++", "c++-skel.m4", ".cc", ".hh", true },
+   { "java", "java-skel.m4", ".java", ".java", false },
+   { "", "", "", "", false }
+ };
+ 
+-static int skeleton_prio = 2;
++int skeleton_prio = default_prio;
+ const char *skeleton = NULL;
+-static int language_prio = 2;
++int language_prio = default_prio;
+ struct bison_language const *language = &valid_languages[0];
+ const char *include = NULL;
+ 
+ char *program_name;
+ 
+@@ -518,15 +518,15 @@
+       case 'I':
+ 	include = AS_FILE_NAME (optarg);
+ 	break;
+ 
+       case 'L':
+-	language_argmatch (optarg, 0, NULL);
++	language_argmatch (optarg, command_line_prio, NULL);
+ 	break;
+ 
+       case 'S':
+-	skeleton_arg (AS_FILE_NAME (optarg), 0, NULL);
++	skeleton_arg (AS_FILE_NAME (optarg), command_line_prio, NULL);
+ 	break;
+ 
+       case 'T':
+ 	FLAGS_ARGMATCH (trace, optarg);
+ 	break;
+diff -NrU5 bison/src/getargs.h bison-2.4.1_pre20081111/src/getargs.h
+--- bison/src/getargs.h	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/getargs.h	2008-11-07 22:48:57.000000000 +0100
+@@ -1,9 +1,9 @@
+ /* Parse command line arguments for bison.
+ 
+    Copyright (C) 1984, 1986, 1989, 1992, 2000, 2001, 2002, 2003, 2004,
+-   2005, 2006, 2007 Free Software Foundation, Inc.
++   2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+ 
+    This file is part of Bison, the GNU Compiler Compiler.
+ 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+@@ -22,15 +22,17 @@
+ # define GETARGS_H_
+ 
+ #include "location.h"
+ 
+ extern char *program_name;
++enum { command_line_prio, grammar_prio, default_prio };
+ 
+ /* flags set by % directives */
+ 
+ /* for -S */
+ extern char const *skeleton;
++extern int skeleton_prio;
+ 
+ /* for -I */
+ extern char const *include;
+ 
+ extern bool debug_flag;			/* for -t */
+@@ -66,10 +68,11 @@
+   char src_extension[sizeof ".java"];
+   char header_extension[sizeof ".java"];
+   bool add_tab;
+ };
+ 
++extern int language_prio;
+ extern struct bison_language const *language;
+ 
+ /*-----------.
+ | --report.  |
+ `-----------*/
+diff -NrU5 bison/src/parse-gram.c bison-2.4.1_pre20081111/src/parse-gram.c
+--- bison/src/parse-gram.c	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/parse-gram.c	2008-11-07 22:48:57.000000000 +0100
+@@ -1,7 +1,7 @@
+ 
+-/* A Bison parser, made by GNU Bison 2.3b.21-d67c5-dirty.  */
++/* A Bison parser, made by GNU Bison 2.4.4-738cd.  */
+ 
+ /* Skeleton implementation for Bison's Yacc-like parsers in C
+    
+       Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+    Free Software Foundation, Inc.
+@@ -44,11 +44,11 @@
+ 
+ /* Identify Bison output.  */
+ #define YYBISON 1
+ 
+ /* Bison version.  */
+-#define YYBISON_VERSION "2.3b.21-d67c5-dirty"
++#define YYBISON_VERSION "2.4.4-738cd"
+ 
+ /* Skeleton name.  */
+ #define YYSKELETON_NAME "yacc.c"
+ 
+ /* Pure parsers.  */
+@@ -1992,11 +1992,11 @@
+ 
+   case 18:
+ 
+ /* Line 1455 of yacc.c  */
+ #line 257 "parse-gram.y"
+-    { language_argmatch ((yyvsp[(2) - (2)].chars), 1, &(yylsp[(1) - (2)])); }
++    { language_argmatch ((yyvsp[(2) - (2)].chars), grammar_prio, &(yylsp[(1) - (2)])); }
+     break;
+ 
+   case 19:
+ 
+ /* Line 1455 of yacc.c  */
+@@ -2108,11 +2108,11 @@
+             }
+           strcpy (skeleton_build + dir_length, skeleton_user);
+           skeleton_user = uniqstr_new (skeleton_build);
+           free (skeleton_build);
+         }
+-      skeleton_arg (skeleton_user, 1, &(yylsp[(1) - (2)]));
++      skeleton_arg (skeleton_user, grammar_prio, &(yylsp[(1) - (2)]));
+     }
+     break;
+ 
+   case 31:
+ 
+diff -NrU5 bison/src/parse-gram.h bison-2.4.1_pre20081111/src/parse-gram.h
+--- bison/src/parse-gram.h	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/parse-gram.h	2008-11-07 22:48:57.000000000 +0100
+@@ -1,7 +1,7 @@
+ 
+-/* A Bison parser, made by GNU Bison 2.3b.21-d67c5-dirty.  */
++/* A Bison parser, made by GNU Bison 2.4.4-738cd.  */
+ 
+ /* Skeleton interface for Bison's Yacc-like parsers in C
+    
+       Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+    Free Software Foundation, Inc.
+diff -NrU5 bison/src/parse-gram.y bison-2.4.1_pre20081111/src/parse-gram.y
+--- bison/src/parse-gram.y	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/parse-gram.y	2008-11-07 22:48:57.000000000 +0100
+@@ -252,11 +252,11 @@
+       code_props_translate_code (&action);
+       gram_scanner_last_string_free ();
+       muscle_code_grow ("initial_action", action.code, @2);
+       code_scanner_last_string_free ();
+     }
+-| "%language" STRING		{ language_argmatch ($2, 1, &@1); }
++| "%language" STRING		{ language_argmatch ($2, grammar_prio, &@1); }
+ | "%lex-param" "{...}"		{ add_param ("lex_param", $2, @2); }
+ | "%locations"                  { locations_flag = true; }
+ | "%name-prefix" STRING         { spec_name_prefix = $2; }
+ | "%name-prefix" "=" STRING     { spec_name_prefix = $3; } /* deprecated */
+ | "%no-lines"                   { no_lines_flag = true; }
+@@ -298,11 +298,11 @@
+             }
+           strcpy (skeleton_build + dir_length, skeleton_user);
+           skeleton_user = uniqstr_new (skeleton_build);
+           free (skeleton_build);
+         }
+-      skeleton_arg (skeleton_user, 1, &@1);
++      skeleton_arg (skeleton_user, grammar_prio, &@1);
+     }
+ | "%token-table"                { token_table_flag = true; }
+ | "%verbose"                    { report_flag |= report_states; }
+ | "%yacc"                       { yacc_flag = true; }
+ | /*FIXME: Err?  What is this horror doing here? */ ";"
+diff -NrU5 bison/src/scan-code.l bison-2.4.1_pre20081111/src/scan-code.l
+--- bison/src/scan-code.l	2008-11-02 22:55:49.000000000 +0100
++++ bison-2.4.1_pre20081111/src/scan-code.l	2008-11-07 22:48:57.000000000 +0100
+@@ -1,8 +1,8 @@
+ /* Bison Action Scanner                             -*- C -*-
+ 
+-   Copyright (C) 2006, 2007 Free Software Foundation, Inc.
++   Copyright (C) 2006, 2007, 2008 Free Software Foundation, Inc.
+ 
+    This file is part of Bison, the GNU Compiler Compiler.
+ 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+@@ -168,27 +168,30 @@
+     obstack_sgrow (&obstack_for_string, "@@");
+   }
+ 
+   "{"  STRING_GROW; ++braces_level;
+   "}"  {
+-    bool outer_brace = --braces_level < 0;
++    bool outer_brace = --braces_level == 0;
+ 
+     /* As an undocumented Bison extension, append `;' before the last
+        brace in braced code, so that the user code can omit trailing
+        `;'.  But do not append `;' if emulating Yacc, since Yacc does
+-       not append one.
++       not append one.  Also, some output languages (like Java) do not
++       accept an extra semicolon, so don't append if the user specified
++       a skeleton or language.
+ 
+        FIXME: Bison should warn if a semicolon seems to be necessary
+        here, and should omit the semicolon if it seems unnecessary
+        (e.g., after ';', '{', or '}', each followed by comments or
+        white space).  Such a warning shouldn't depend on --yacc; it
+        should depend on a new --pedantic option, which would cause
+        Bison to warn if it detects an extension to POSIX.  --pedantic
+        should also diagnose other Bison extensions like %yacc.
+        Perhaps there should also be a GCC-style --pedantic-errors
+        option, so that such warnings are diagnosed as errors.  */
+-    if (outer_brace && ! yacc_flag)
++    if (outer_brace && !yacc_flag && language_prio == default_prio
++        && skeleton_prio == default_prio)
+       obstack_1grow (&obstack_for_string, ';');
+ 
+     STRING_GROW;
+   }
+ }
