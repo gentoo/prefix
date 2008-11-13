@@ -3,6 +3,10 @@
 # $Header: $
 
   13 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
+  LIBDIR_amd64 is def needed, otherwise stuff gets installed to usr//blah,
+  instead of usr/$LIBDIR_amd64/blah
+
+  13 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
   setting LIBDIR_amd64 to null 'fixes' things, not sure why
 
   12 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
