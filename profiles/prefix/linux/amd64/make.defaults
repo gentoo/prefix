@@ -12,3 +12,4 @@ ACCEPT_KEYWORDS="-amd64 ~amd64-linux"
 # We don't have lib64 in prefix so, remove it here.
 SYMLINK_LIB="no"
 LIBDIR_amd64=""
+DEFAULT_ABI="default"
