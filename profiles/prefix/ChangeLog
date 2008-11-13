@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
+  setting LIBDIR_amd64 to null 'fixes' things, not sure why
+
   12 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
   add SYMLINK_LIB=no to amd64 make.defaults
 
