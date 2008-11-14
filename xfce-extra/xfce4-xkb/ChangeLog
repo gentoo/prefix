@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.30 2008/11/10 09:36:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.31 2008/11/12 08:13:03 jer Exp $
+
+  12 Nov 2008; Jeroen Roovers <jer@gentoo.org> xfce4-xkb-0.5.1.ebuild:
+  Stable for HPPA (bug #245970).
 
 *xfce4-xkb-0.5.2 (10 Nov 2008)
 
