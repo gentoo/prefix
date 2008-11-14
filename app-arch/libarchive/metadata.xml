@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>bsd</herd>
-<longdescription lang="en">
-The bsdtar program creates and manipulates streaming archive files.
-It has a number of advantages over previous tar implementations.
-</longdescription>
+  <herd>bsd</herd>
+  <maintainer>
+    <email>flameeyes@gentoo.org</email>
+  </maintainer>
+  <longdescription lang="en">
+    The bsdtar program creates and manipulates streaming archive files.
+    It has a number of advantages over previous tar implementations.
+  </longdescription>
+  <use>
+    <flag name="static">
+      Build bsdtar and bsdcpio as static archives, removing
+      dependencies over the enabled compression libraries (lzmadec,
+      libbz2, zlib).
+    </flag>
+    <flag name="bzip2">
+      Allow accessing bzip2-compressed archives through libbz2 (which
+      comes with bzip2).
+    </flag>
+    <flag name="lzma">
+      Allow accessing lzma-compressed archives through the lzmadec
+      library.
+    </flag>
+  </use>
 </pkgmetadata>
-

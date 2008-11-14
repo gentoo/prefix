@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.32 2008/10/28 20:22:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.33 2008/11/13 01:38:48 flameeyes Exp $
+
+*libarchive-2.5.902a (13 Nov 2008)
+
+  13 Nov 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-2.5.902a-automagic.patch, metadata.xml,
+  +libarchive-2.5.902a.ebuild:
+  Add the newest pre-release for libarchive, now supporting lzma. It comes
+  with a patch that allows to disable lzma and bz2 libraries.
 
   28 Oct 2008; Brent Baude <ranger@gentoo.org> libarchive-2.5.5.ebuild:
   Marking libarchive-2.5.5.ebuild ~ppc64 to support gnome stablizations

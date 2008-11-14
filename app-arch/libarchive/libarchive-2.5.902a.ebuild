@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.17.ebuild,v 1.2 2008/07/24 15:56:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.902a.ebuild,v 1.1 2008/11/13 01:38:48 flameeyes Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
-inherit eutils libtool toolchain-funcs
+inherit eutils libtool toolchain-funcs autotools
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
@@ -13,24 +13,31 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="build static acl xattr"
+IUSE="static acl xattr kernel_linux +bzip2 +lzma"
+
+COMPRESS_LIBS_DEPEND="lzma? ( app-arch/lzma-utils )
+		bzip2? ( app-arch/bzip2 )
+		sys-libs/zlib"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
 		acl? ( sys-apps/acl )
 		xattr? ( sys-apps/attr )
 	)
-	!static? ( !build? (
-		app-arch/bzip2
-		sys-libs/zlib ) )"
+	!static? ( ${COMPRESS_LIBS_DEPEND} )"
 DEPEND="${RDEPEND}
-	|| ( app-arch/sharutils sys-freebsd/freebsd-ubin )
+	${COMPRESS_LIBS_DEPEND}
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-automagic.patch
+
+	eautoreconf
+
 	elibtoolize
 	epunt_cxx
 }
@@ -38,12 +45,14 @@ src_unpack() {
 src_compile() {
 	local myconf
 
-	if ! use static && ! use build ; then
+	if ! use static ; then
 		myconf="--enable-bsdtar=shared --enable-bsdcpio=shared"
 	fi
 
-	econf --bindir="${EPREFIX}"/bin --enable-bsdcpio \
+	econf --bindir="${EPREFIX}"/bin \
+		--enable-bsdtar --enable-bsdcpio \
 		$(use_enable acl) $(use_enable xattr) \
+		$(use_with bzip2 bz2lib) $(use_with lzma lzmadec) \
 		${myconf} \
 		--disable-dependency-tracking || die "econf failed."
 
@@ -51,7 +60,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed."
 
 	# Create tar symlink for FreeBSD
 	if [[ ${CHOST} == *-freebsd* ]]; then
