@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/xfce4-mailwatch-1.1.0.ebuild,v 1.4 2008/11/08 17:13:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/xfce4-mailwatch-1.1.0.ebuild,v 1.6 2008/11/14 01:37:28 darkside Exp $
 
 EAPI="prefix"
 
-inherit xfce44
+inherit xfce44 eutils
 
 xfce44
 xfce44_plugin
@@ -22,3 +22,12 @@ DEPEND="dev-util/intltool"
 XFCE_CONFIG="${XFCE_CONFIG} $(use_enable ssl)"
 
 xfce44_panel_plugin
+
+src_unpack()
+{
+	unpack ${A}
+	cd "${S}"
+
+	# http://bugzilla.xfce.org/show_bug.cgi?id=4608
+	epatch "${FILESDIR}/${P}-no-ssl.patch"
+}
