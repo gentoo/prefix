@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.0.ebuild,v 1.1 2008/10/19 21:36:06 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.1.ebuild,v 1.1 2008/11/12 08:18:22 remi Exp $
 
 EAPI="prefix"
 
@@ -23,8 +23,7 @@ DEPEND="${RDEPEND}"
 # FIXME, we should try to see how we can fit the --enable-udev configure flag
 
 PATCHES=(
-	"${FILESDIR}/2.4.0-intel-avoid-deadlock-in-intel_bufmgr_fake.patch"
-	"${FILESDIR}/2.4.0-intel-ioctl-is-not-defined-to-return-errno.patch"
+	"${FILESDIR}/2.4.1-intel-Restart-on-interrupt-of-bo_wait_rendering-ins.patch"
 	)
 
 pkg_preinst() {
@@ -46,4 +45,7 @@ pkg_postinst() {
 		elog "and /usr/$(get_libdir)/libdrm.so.1.0.0 ."
 		epause
 	fi
+
+	elog "If you have VIDEO_CARDS=\"intel\", then you *must* rebuild"
+	elog "media-libs/mesa and x11-drivers/xf86-video-intel."
 }

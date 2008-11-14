@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.57 2008/10/19 21:36:06 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.59 2008/11/12 10:55:45 remi Exp $
+
+  12 Nov 2008; Rémi Cardona <remi@gentoo.org>
+  -files/2.4.0-intel-avoid-deadlock-in-intel_bufmgr_fake.patch,
+  -files/2.4.0-intel-ioctl-is-not-defined-to-return-errno.patch,
+  -libdrm-2.4.0.ebuild:
+  removing 2.4.0, it's completely broken according to upstream
+
+*libdrm-2.4.1 (12 Nov 2008)
+
+  12 Nov 2008; Rémi Cardona <remi@gentoo.org>
+  +files/2.4.1-intel-Restart-on-interrupt-of-bo_wait_rendering-ins.patch,
+  +libdrm-2.4.1.ebuild:
+  bump to 2.4.1 with a patch from git master
 
 *libdrm-2.4.0 (19 Oct 2008)
 
