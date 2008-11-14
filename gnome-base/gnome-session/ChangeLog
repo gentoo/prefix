@@ -1,6 +1,18 @@
 # ChangeLog for gnome-base/gnome-session
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.222 2008/09/25 15:22:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.224 2008/11/13 19:29:51 ranger Exp $
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> gnome-session-2.22.3.ebuild:
+  Marking gnome-session-2.22.3 ppc64 stable for bug 236971
+
+*gnome-session-2.22.3-r1 (13 Nov 2008)
+
+  13 Nov 2008; <chainsaw@gentoo.org>
+  +files/gnome-session-2.22.3-gsd-spawn.patch,
+  +gnome-session-2.22.3-r1.ebuild:
+  Debian patch identified by Marcin Kurek <morgoth6@gmail.com> resolves
+  intermittent gnome-session-manager failures on login (only SMP systems
+  appear to be affected). First step towards closing bug #239293.
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gnome-session-2.22.3.ebuild:
   Stable for HPPA (bug #236971).

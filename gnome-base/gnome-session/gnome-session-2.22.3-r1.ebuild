@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3.ebuild,v 1.7 2008/11/13 19:29:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3-r1.ebuild,v 1.1 2008/11/13 17:25:54 chainsaw Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit eutils gnome2 autotools
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="http://www.gnome.org/"
@@ -43,7 +43,7 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	# TODO: convert libnotify to a configure option
-	G2CONF="${G2CONF} $(use_enable ipv6) $(use_enable tcpd tcp-wrappers)"
+	G2CONF="${G2CONF} $(use_enable ipv6) $(use_enable tcpd tcp-wrappers) --with-settings-daemon=/usr/libexec/gnome-settings-daemon"
 }
 
 src_unpack() {
@@ -54,6 +54,11 @@ src_unpack() {
 
 	# Get rid of random asserts in tons of programs due to development versions
 	epatch "${FILESDIR}/${PN}-2.19.2-no-asserts.patch"
+
+	# Spawn GSD instead of relying on D-Bus, as this falls down quite 
+	# spectacularly on SMP systems (bug #239293)
+	epatch "${FILESDIR}/${P}-gsd-spawn.patch"
+	eautoreconf
 }
 
 src_install() {
