@@ -50,3 +50,7 @@ net-news/liferea webkit
 # Markus Rothe <corsair@gentoo.org> (22 July 2008)
 # bug #232411
 app-text/enchant -zemberek
+
+# Joseph Jezak <josejx@gentoo.org> (12 November 2008)
+# Mask the JIT for pearpc, it's x86 only
+app-emulation/pearpc jit

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.6 2008/10/06 08:14:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.7 2008/11/12 20:27:16 aballier Exp $
 
 # Alexis Ballier <aballier@gentoo.org> (09 Sep 2008)
 # The big TeX Live 2008 mask. Needs some testing and keywording love.
@@ -86,6 +86,7 @@
 >=app-text/texlive-core-2008
 >=app-text/texlive-2008
 >=dev-tex/mh-20080903
+>=dev-tex/glossaries-1.16
 app-admin/eselect-pdftex
 app-admin/eselect-mpost
 

@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.30 2008/10/06 08:14:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.31 2008/11/12 20:27:16 aballier Exp $
+
+  12 Nov 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask glossaries 1.16 along with texlive 2008 because it is needed, bug
+  #246384
 
   06 Oct 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
   Move TeX Live mask to sparc profile for bug #237202 and bug #239472

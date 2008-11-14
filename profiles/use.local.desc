@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4013 2008/11/11 00:07:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4018 2008/11/14 01:08:15 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -58,6 +58,9 @@ app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
 app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable file-roller to integrate with gnome-base/nautilus by providing entries in its context menu.
+app-arch/libarchive:bzip2 -  Allow accessing bzip2-compressed archives through libbz2 (which comes with bzip2). 
+app-arch/libarchive:lzma -  Allow accessing lzma-compressed archives through the lzmadec library. 
+app-arch/libarchive:static -  Build bsdtar and bsdcpio as static archives, removing dependencies over the enabled compression libraries (lzmadec, libbz2, zlib). 
 app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
 app-arch/squeeze:pathbar - Include pathbar feature
@@ -382,6 +385,8 @@ app-pda/multisync:gnokii - Address synchronization with mobile phones via app-mo
 app-pda/multisync:irmc - Add support for Mobile Client synchronization via IrDa/IrMC/Bluetooth (eg: SonyEricsson T39/T68i)
 app-pda/multisync:kdepim - Add support for KDEPIM sync
 app-pda/multisync:nokia6600 - Add support for Nokia 6600
+app-pda/synce:serial - Enable serial port support (installs app-pda/synce-serial)
+app-pda/synce:syncengine - Installs the app-pda/synce-sync-engine
 app-pda/synce-kde:avantgo - Add support for syncing Avantgo accounts
 app-portage/conf-update:colordiff - Use colors when displaying diffs (app-misc/colordiff)
 app-portage/gatt:libpaludis - Do some dependency resolution by using a sys-apps/paludis interface
@@ -1166,6 +1171,7 @@ media-gfx/comix:rar -  Pulls app-arch/unrar for rar file support
 media-gfx/digikam:nfs -  Create sqlite db within ~/.kde, instead in the albums base directory. 
 media-gfx/eog:xmp - Adds support for XMP metadata
 media-gfx/exiv2:xmp -  Adds support for Adobe XMP 
+media-gfx/gimp:smp -  Enable support for multiprocessors 
 media-gfx/gimp:webkit -  Enable the webkit rendering engine 
 media-gfx/graphviz:cgraph -  Enables cgraph (PostScript plotting library in C) library 
 media-gfx/graphviz:pango -  Enables the rendering of the graphs using pango & cairo (with antialiasing support) 
@@ -1833,6 +1839,7 @@ net-ftp/pure-ftpd:charconv - Enables charset conversion
 net-ftp/pure-ftpd:noiplog - Disables logging of IP addresses
 net-ftp/pure-ftpd:paranoidmsg - Display paranoid messages instead of normal ones
 net-ftp/pure-ftpd:vchroot - Enable support for virtual chroot (possible security risk)
+net-ftp/twoftpd:breakrfc - Break RFC compliance to allow control symbols in filenames (required for some (e.g. cp1251) encodings, use with caution).
 net-ftp/vsftpd:logrotate - Use app-admin/logrotate for rotating logs
 net-im/bitlbee:nss - Use NSS for SSL support in MSN and Jabber.
 net-im/centerim:gadu - Enable support for the Gadu-Gadu protocol
@@ -2046,7 +2053,17 @@ net-misc/quagga:realms - Enable realms support (see http://vcalinus.gemenii.ro/q
 net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are chosen otherwise.
 net-misc/quagga:tcpmd5 - Enable TCP MD5 checksumming
 net-misc/rdesktop:pcsc-lite - Enable smartcard support with pcsc-lite driver
-net-misc/scponly:rsync - Enabling rsync compatibility with potential security risks
+net-misc/scponly:gftp - Enables gFTP compatibility
+net-misc/scponly:logging - Enables SFTP logging compatibility
+net-misc/scponly:passwd - Enables passwd compatibility
+net-misc/scponly:quota - Enables quota compatibility
+net-misc/scponly:rsync - Enables rsync compatibility with potential security risks
+net-misc/scponly:scp - Enables scp compatibility with potential security risks
+net-misc/scponly:sftp - Enables SFTP compatibility
+net-misc/scponly:subversion - Enables Subversion compatibility with potential security risks
+net-misc/scponly:unison - Enables Unison compatibility with potential security risks
+net-misc/scponly:wildcards - Enables wildcard processing with potential security risks
+net-misc/scponly:winscp - Enables WinSCP 2.0 compatibility with potential security risks
 net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites. sftp is a much more secure protocol and is preferred.
 net-misc/sitecopy:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support. This system allows users to collaborate on websites using a web based interface. See the ebuild for an FAQ page. Enables neon as well to handle webdav support.
 net-misc/ssh:openssh - Allow ssh and openssh to be installed side by side
