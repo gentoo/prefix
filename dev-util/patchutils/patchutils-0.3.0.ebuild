@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.2.31.ebuild,v 1.5 2008/11/13 03:00:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.3.0.ebuild,v 1.1 2008/11/12 23:45:00 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -14,21 +14,15 @@ SRC_URI="http://cyberelk.net/tim/data/patchutils/stable/${P}.tar.bz2"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE=""
+IUSE="test"
 
-DEPEND="virtual/libc"
-
-src_unpack() {
-	unpack "${A}"
-	cd "${S}"
-	# we don't have gendiff
-	sed -i -e '/gendiff/d' Makefile.am
-	WANT_AUTOMAKE=1.8 WANT_AUTOCONF=2.5 \
-	eautoreconf || die "eautoreconf failed"
-}
+RDEPEND=""
+# The testsuite makes use of gendiff(1) that comes from rpm, thus if
+# the user wants to run tests, it should install that too.
+DEPEND="test? ( app-arch/rpm )"
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 
-	dodoc AUTHORS BUGS ChangeLog NEWS README TODO
+	dodoc AUTHORS BUGS ChangeLog NEWS README TODO || die "dodoc failed"
 }
