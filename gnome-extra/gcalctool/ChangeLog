@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gcalctool
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.165 2008/10/19 23:21:05 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.166 2008/11/13 19:20:20 ranger Exp $
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> gcalctool-5.22.3.ebuild:
+  Marking gcalctool-5.22.3 ppc64 stable for bug 236971
 
 *gcalctool-5.24.1 (19 Oct 2008)
 
