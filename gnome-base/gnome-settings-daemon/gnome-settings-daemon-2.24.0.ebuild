@@ -1,6 +1,6 @@
 # Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.24.0.ebuild,v 1.1 2008/11/03 23:34:15 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.24.0.ebuild,v 1.2 2008/11/13 17:36:38 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.74
 	>=gnome-base/libgnome-2
 	>=gnome-base/libgnomeui-2
 	>=gnome-base/gnome-desktop-2.23.90
+	>=gnome-base/gnome-session-2.22.3-r1
 
 	libnotify? ( >=x11-libs/libnotify-0.4.3 )
 
