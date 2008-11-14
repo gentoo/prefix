@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/mysql-community
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.18 2008/08/05 16:33:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.20 2008/11/14 03:39:11 robbat2 Exp $
+
+  14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
+  Repoman bug maybe.
+
+*mysql-community-5.0.67 (14 Nov 2008)
+
+  14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> files/my.cnf-4.1,
+  +mysql-community-5.0.67.ebuild:
+  Version bump for mysql-community, also handle file-per-table for innodb
+  bug #237058.
 
   05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
