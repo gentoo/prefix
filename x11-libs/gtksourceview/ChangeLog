@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.146 2008/11/01 18:02:13 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.147 2008/11/13 19:15:49 ranger Exp $
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> gtksourceview-2.2.2.ebuild:
+  Marking gtksourceview-2.2.2 ppc64 stable for bug 236971
 
 *gtksourceview-2.4.1 (01 Nov 2008)
 
