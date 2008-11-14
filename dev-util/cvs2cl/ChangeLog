@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cvs2cl
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2cl/ChangeLog,v 1.19 2007/04/10 14:01:16 gustavoz Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2cl/ChangeLog,v 1.20 2008/11/12 19:54:50 vapier Exp $
+
+*cvs2cl-2.71 (12 Nov 2008)
+
+  12 Nov 2008; Mike Frysinger <vapier@gentoo.org> +cvs2cl-2.71.ebuild:
+  Version bump.
 
   10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> cvs2cl-2.59.ebuild:
   Stable on sparc wrt #173881
