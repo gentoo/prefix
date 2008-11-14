@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.232 2008/10/31 00:10:31 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.233 2008/11/13 18:58:35 ranger Exp $
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> pango-1.20.5.ebuild:
+  Marking pango-1.20.5 ppc64 stable for bug 236971
 
 *pango-1.22.2 (31 Oct 2008)
 
