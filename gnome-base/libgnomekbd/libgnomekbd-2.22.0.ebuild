@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.22.0.ebuild,v 1.7 2008/09/25 14:33:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.22.0.ebuild,v 1.8 2008/11/13 19:14:22 ranger Exp $
 
 EAPI="prefix"
 
