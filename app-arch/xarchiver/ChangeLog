@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/xarchiver
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.4 2008/11/07 14:02:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.5 2008/11/12 09:49:23 angelos Exp $
+
+*xarchiver-0.5.2 (12 Nov 2008)
+
+  12 Nov 2008; Christoph Mende <angelos@gentoo.org> +xarchiver-0.5.2.ebuild:
+  Version bump
 
 *xarchiver-0.5.1 (07 Nov 2008)
 
