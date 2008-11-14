@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.158 2008/09/25 14:02:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.159 2008/11/13 19:00:28 ranger Exp $
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> gail-1.22.3.ebuild:
+  Marking gail-1.22.3 ppc64 stable for bug 236971
 
   25 Sep 2008; Jeroen Roovers <jer@gentoo.org> gail-1.22.3.ebuild:
   Stable for HPPA (bug #236971).
