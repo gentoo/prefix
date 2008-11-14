@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/pangomm-2.14.0.ebuild,v 1.1 2008/11/08 22:48:32 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/pangomm-2.14.0.ebuild,v 1.2 2008/11/12 09:26:06 remi Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit gnome2
 
@@ -17,7 +17,7 @@ IUSE="doc"
 RDEPEND=">=x11-libs/pango-1.21.4
 	>=dev-cpp/glibmm-2.14.1
 	>=dev-cpp/cairomm-1.2.2
-	!<dev-cpp/gtkmm-2.13"
+	!<dev-cpp/gtkmm-2.13:2.4"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
