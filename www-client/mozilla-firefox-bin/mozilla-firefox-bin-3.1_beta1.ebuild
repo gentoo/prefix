@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.1_beta1.ebuild,v 1.1 2008/10/15 10:13:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.1_beta1.ebuild,v 1.2 2008/11/14 19:31:53 armin76 Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,8 @@ for X in ${LANGS} ; do
 done
 
 DEPEND="app-arch/unzip"
-RDEPEND="x11-libs/libXrender
+RDEPEND="dev-libs/dbus-glib
+	x11-libs/libXrender
 	x11-libs/libXt
 	x11-libs/libXmu
 	x86? (
