@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/gpodder
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gpodder/ChangeLog,v 1.19 2008/10/09 21:05:53 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gpodder/ChangeLog,v 1.20 2008/11/14 11:17:55 hanno Exp $
+
+*gpodder-0.13.1 (14 Nov 2008)
+
+  14 Nov 2008; Hanno Boeck <hanno@gentoo.org> +gpodder-0.13.1.ebuild:
+  Bump and always depend on eyeD3.
 
 *gpodder-0.13.0 (09 Oct 2008)
 
