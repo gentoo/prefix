@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4-r1.ebuild,v 1.1 2008/11/12 18:47:10 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4-r1.ebuild,v 1.3 2008/11/14 08:50:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,16 +15,17 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
-DEPEND="nls? ( sys-devel/gettext )"
-
+# need flex since we patch scan-code.l in ${P}-compat.patch
+DEPEND="nls? ( sys-devel/gettext )
+	sys-devel/flex"
 RDEPEND="sys-devel/m4"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# fix compatibility with previous bison releases
-	epatch "${FILESDIR}"/${PN}-2.4.0-compat.patch
+	epatch "${FILESDIR}"/${P}-compat.patch
+	# since we patch sources, update mtimes on docs so we dont regen
+	touch doc/bison.1 doc/bison.info doc/cross-options.texi
 }
 
 src_compile() {

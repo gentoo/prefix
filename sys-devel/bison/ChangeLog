@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/bison
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.74 2008/11/12 18:47:09 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.76 2008/11/14 08:50:29 vapier Exp $
+
+  14 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  files/bison-2.4-compat.patch, bison-2.4-r1.ebuild:
+  Dont patch parse-gram.y since we patch parse-gram.c already as pointed out
+  by Ryan Hill #246572 by Alexandre Rostovtsev.
+
+  14 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  -files/bison-2.4.0-compat.patch, +files/bison-2.4-compat.patch,
+  bison-2.4-r1.ebuild:
+  Document patch properly and make sure we dont regen doc files #246583 by
+  Alex Guensche.
 
 *bison-2.4-r1 (12 Nov 2008)
 
