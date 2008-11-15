@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r1.ebuild,v 1.1 2008/11/08 21:45:38 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r1.ebuild,v 1.2 2008/11/14 16:01:18 lavajoe Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,10 @@ src_unpack() {
 	sed -i -e "s:^povdocdir = .*:povdocdir = @datadir@/doc/${PF}:" Makefile.am
 	sed -i -e "s:^povconfdir = .*:povconfdir = @sysconfdir@/${PN}:" Makefile.am
 
+	# The "+p" option on the test command line causes a pause and
+	# prompts the user to interact, so remove it.
+	sed -i -e"s:biscuit.pov -f +d +p:biscuit.pov -f +d:" Makefile.am
+
 	eautoreconf
 }
 
@@ -78,6 +82,11 @@ src_compile() {
 		|| die
 
 	emake || die
+}
+
+src_test() {
+	# For the beta releases, we generate a license extension in case needed
+	POVRAY_BETA=`./unix/povray --betacode 2>&1` emake check || die "Test failed"
 }
 
 src_install() {
