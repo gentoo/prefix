@@ -10,10 +10,6 @@
 # http://www.sqlite.org/cvstrac/tktview?tn=2726
 =dev-db/sqlite-3.4.2
 
-# Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
-# Don't use this, it is only provided for experimentation.
-sys-devel/native-cctools
-
 # Fabian Groffen <grobian@gentoo.org> (30 Apr 2007)
 # Doesn't compile....
 =app-editors/emacs-cvs-23.0.0-r6

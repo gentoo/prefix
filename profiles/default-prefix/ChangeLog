@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  15 Nov 2008; Fabian Groffen <grobian@gentoo.org> +aix/package.unmask,
+  package.mask, sunos/package.mask:
+  Mask native-cctools globally, and only unmask on AIX where it's the only
+  thing on earth, to avoid bugs like #246814
+
   12 Nov 2008; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
   Extend mask to ksh-93.20081104
 
