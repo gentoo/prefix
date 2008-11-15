@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.99 2008/11/14 04:48:28 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.100 2008/11/14 22:07:03 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -315,12 +315,18 @@ configure_common() {
 		&& myconf="${myconf} --without-ndb-debug"
 	fi
 
-	if mysql_version_is_at_least "4.1" && ! use latin1 ; then
-			myconf="${myconf} --with-charset=utf8"
-			myconf="${myconf} --with-collation=utf8_general_ci"
-		else
-			myconf="${myconf} --with-charset=latin1"
-			myconf="${myconf} --with-collation=latin1_swedish_ci"
+	if [ -n "${MYSQL_DEFAULT_CHARSET}" -a -n "${MYSQL_DEFAULT_COLLATION}" ]; then
+		ewarn "You are using a custom charset of ${MYSQL_DEFAULT_CHARSET}"
+		ewarn "and a collation of ${MYSQL_DEFAULT_COLLATION}."
+		ewarn "You MUST file bugs without these variables set."
+		myconf="${myconf} --with-charset=${MYSQL_DEFAULT_CHARSET}"
+		myconf="${myconf} --with-collation=${MYSQL_DEFAULT_COLLATION}"
+	elif mysql_version_is_at_least "4.1" && ! use latin1 ; then
+		myconf="${myconf} --with-charset=utf8"
+		myconf="${myconf} --with-collation=utf8_general_ci"
+	else
+		myconf="${myconf} --with-charset=latin1"
+		myconf="${myconf} --with-collation=latin1_swedish_ci"
 	fi
 
 	if use embedded ; then
