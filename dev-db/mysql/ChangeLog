@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/mysql
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.463 2008/11/14 02:20:21 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.465 2008/11/14 09:42:28 robbat2 Exp $
+
+  14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> mysql-4.0.27-r1.ebuild,
+  mysql-4.1.22-r1.ebuild, mysql-4.1.23_alpha20070101-r61.ebuild,
+  mysql-5.0.26-r2.ebuild, mysql-5.0.32.ebuild, mysql-5.0.34.ebuild,
+  mysql-5.0.38.ebuild, mysql-5.0.40.ebuild, mysql-5.0.42.ebuild,
+  mysql-5.0.44.ebuild, mysql-5.0.44-r1.ebuild, mysql-5.0.44-r2.ebuild,
+  mysql-5.0.54.ebuild, mysql-5.0.56.ebuild, mysql-5.0.60.ebuild,
+  mysql-5.0.60-r1.ebuild, mysql-5.0.70.ebuild:
+  Repoman cleanups.
+
+  14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.70.ebuild:
+  archive_gis is still broken on big_endian.
 
   14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.70.ebuild:
   Test commit again, with repoman.
