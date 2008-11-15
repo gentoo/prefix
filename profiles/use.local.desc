@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4018 2008/11/14 01:08:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4019 2008/11/14 09:27:45 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2479,7 +2479,6 @@ sys-freebsd/freebsd-usbin:ipfilter - Enable ipfilter firewall support
 sys-freebsd/freebsd-usbin:ipsec - Enable IPSec support
 sys-freebsd/freebsd-usbin:isdn - Enable ISDN support
 sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support
-sys-fs/clvm:nocman - Allow users to build clvm without cman support and with gulm support
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/ecryptfs-utils:gpg - Enable app-crypt/gnupg key module
 sys-fs/ecryptfs-utils:openssl - Enable dev-libs/openssl key module
@@ -2490,7 +2489,6 @@ sys-fs/loop-aes:keyscrub - Protects the encryption key in memory but takes more 
 sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, code still works on non-padlock processors
 sys-fs/lvm2:clvm - Allow users to build clustered lvm2
 sys-fs/lvm2:cman - Cman support for clustered lvm
-sys-fs/lvm2:gulm - Gulm support for clustered lvm
 sys-fs/lvm2:lvm1 - Allow users to build lvm2 with lvm1 support
 sys-fs/lvm2:nolvm1 - Allow supports to build lvm2 without lvm1 support
 sys-fs/lvm2:nolvmstatic - Allow users to build lvm2 dynamically

@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2044 2008/11/13 22:19:11 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2045 2008/11/14 08:20:37 hanno Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Nov 2008; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Mask broken libchipcard-4.2.1.
 
   13 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> ChangeLog:
   Punt denemo package.mask, 0.8.0 is ok with new portaudio
