@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r3.ebuild,v 1.1 2008/10/26 13:30:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r3.ebuild,v 1.2 2008/11/14 09:56:14 aballier Exp $
 
 EAPI="prefix 1"
 
@@ -245,7 +245,7 @@ src_install() {
 	dodir /var/cache/fonts
 
 	dodir /etc/env.d
-	echo 'CONFIG_PROTECT_MASK="/etc/texmf/web2c"' > "${ED}/etc/env.d/98texlive"
+	echo 'CONFIG_PROTECT_MASK="/etc/texmf/web2c /etc/texmf/language.dat.d /etc/texmf/language.def.d"' > "${ED}/etc/env.d/98texlive"
 	# populate /etc/texmf
 	keepdir /etc/texmf/web2c
 
