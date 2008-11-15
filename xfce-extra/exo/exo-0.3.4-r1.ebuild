@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.8 2008/11/14 01:56:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.9 2008/11/14 15:53:48 angelos Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,9 @@ RDEPEND=">=dev-lang/perl-5.6
 	hal? ( >=sys-apps/hal-0.5.7.1 )
 	python? ( dev-python/pygtk )"
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc-am
 	dev-util/pkgconfig
+	dev-util/xfce4-dev-tools
 	doc? ( dev-util/gtk-doc )
 	dev-util/intltool"
 
@@ -43,11 +45,9 @@ src_unpack() {
 	sed -i -e 's:-Werror::g' "${S}"/configure
 	epatch "${FILESDIR}"/${P}-eject.patch
 	epatch "${FILESDIR}"/${P}-remove-libmd5.patch
+	AT_M4DIR="${EPREFIX}"/usr/share/xfce4/dev-tools/m4macros eautoreconf
 
 	epatch "${FILESDIR}"/${P}-interix.patch
-
-	# eautoreconf would be preferred here but automake fails, bug #246480
-	eautoconf
 }
 
 src_compile() {

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4.ebuild,v 1.12 2008/11/10 19:32:53 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4.ebuild,v 1.13 2008/11/14 15:53:48 angelos Exp $
 
 EAPI="prefix"
 
-inherit eutils xfce44 python multilib
+inherit eutils xfce44 python multilib autotools
 
 XFCE_VERSION=4.4.2
 xfce44
@@ -25,7 +25,9 @@ RDEPEND=">=dev-lang/perl-5.6
 	hal? ( >=sys-apps/hal-0.5.7.1 )
 	python? ( dev-python/pygtk )"
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc-am
 	dev-util/pkgconfig
+	dev-util/xfce4-dev-tools
 	doc? ( dev-util/gtk-doc )
 	dev-util/intltool"
 
@@ -40,6 +42,7 @@ src_unpack() {
 	unpack ${A}
 	sed -i -e 's:-Werror::g' "${S}"/configure
 	epatch "${FILESDIR}"/${P}-remove-libmd5.patch
+	AT_M4DIR="${EPREFIX}"/usr/share/xfce4/dev-tools/m4macros eautoreconf
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 }

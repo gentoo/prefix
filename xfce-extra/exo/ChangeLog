@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.64 2008/11/14 01:56:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.65 2008/11/14 15:53:48 angelos Exp $
+
+  14 Nov 2008; Christoph Mende <angelos@gentoo.org> exo-0.3.4.ebuild,
+  exo-0.3.4-r1.ebuild:
+  Run full eautoreconf, eautoconf alone won't work in some cases
 
   14 Nov 2008; Jeremy Olexa <darkside@gentoo.org> exo-0.3.4-r1.ebuild:
   need autotooling after patching configure.in, bug #246480
