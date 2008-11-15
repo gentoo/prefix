@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.45-r1.ebuild,v 1.9 2008/10/07 06:02:21 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.45-r1.ebuild,v 1.10 2008/11/14 09:15:30 aballier Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-nostrip.patch"
 	epatch "${FILESDIR}/${P}-cflags.patch"
 	epatch "${FILESDIR}/${P}-parallelmake.patch"
+	epatch "${FILESDIR}/${P}-distcc.patch"
 	# force an US locale, otherwise make Makedep will bail out
 	epatch "${FILESDIR}"/${P}-locales.patch
 	eautoreconf
@@ -33,8 +34,6 @@ src_unpack() {
 
 src_compile() {
 	tc-export CXX
-	# Makedep fails with distcc
-	PATH=${PATH/\/usr\/lib\/distcc\/bin:}
 	econf --enable-lzw $(use_enable gif) || die "econf failed"
 	emake || die "make failed"
 }
