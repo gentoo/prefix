@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/pangomm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/ChangeLog,v 1.2 2008/11/12 09:26:06 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/ChangeLog,v 1.3 2008/11/14 13:27:41 remi Exp $
+
+*pangomm-2.14.1 (14 Nov 2008)
+
+  14 Nov 2008; Rémi Cardona <remi@gentoo.org> +pangomm-2.14.1.ebuild:
+  bump to 2.14.1
 
   12 Nov 2008; Rémi Cardona <remi@gentoo.org> pangomm-2.14.0.ebuild:
   use eapi=1 slotted deps for the gtkmm blocker (fixes bug #246212)
