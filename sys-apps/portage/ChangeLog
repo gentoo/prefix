@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.11947 (15 Nov 2008)
+
+  15 Nov 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11700.ebuild, +portage-2.2.00.11947.ebuild:
+  New revision, 2.2_rc14+, with git support in repoman
+
   03 Nov 2008; Markus Duft <mduft@gentoo.org>
   -files/portage-2.2.00.11514-cross-prefix.patch,
   +files/portage-2.2.00.11799-cross-prefix.patch,
