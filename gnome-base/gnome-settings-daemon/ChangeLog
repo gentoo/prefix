@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/gnome-settings-daemon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.16 2008/11/13 19:26:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.17 2008/11/15 00:35:23 chainsaw Exp $
+
+  15 Nov 2008; <chainsaw@gentoo.org> gnome-settings-daemon-2.24.0.ebuild:
+  I added an explicit dependency on the fixed gnome-session ebuild. Circular
+  dependencies are bad, hmmkay? Taking it back out closes bug #246791 by
+  Steven Parker <sparker81@gmail.com>.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org>
   gnome-settings-daemon-2.22.2.1.ebuild:
