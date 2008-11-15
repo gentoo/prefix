@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.ebuild,v 1.5 2008/04/30 13:47:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.3.ebuild,v 1.1 2008/11/14 10:15:40 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,10 +12,10 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="ipv6 debug"
 
-DEPEND=""
+DEPEND=">=dev-db/sqlite-3.5"
 
 src_unpack() {
 	unpack ${A}
@@ -25,6 +25,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.6.1-config-1.patch
 	epatch "${FILESDIR}"/${PN}-4.6.1-lang.patch
 	epatch "${FILESDIR}"/${PN}-4.7.0-prtime.patch
+	epatch "${FILESDIR}"/${PN}-4.7.1-solaris.patch
+
+	# Respect LDFLAGS
+	sed -i -e 's/\$(MKSHLIB) \$(OBJS)/\$(MKSHLIB) \$(LDFLAGS) \$(OBJS)/g' \
+		mozilla/nsprpub/config/rules.mk
 }
 
 src_compile() {
@@ -33,8 +38,8 @@ src_compile() {
 	echo > "${T}"/test.c
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
-	    *64-bit*) myconf="${myconf} --enable-64bit";;
-	    *32-bit*) ;;
+	    *64-bit*|ppc64|x86_64) myconf="${myconf} --enable-64bit";;
+	    *32-bit*|ppc|i386) ;;
 	    *) die "FAIL";;
 	esac
 
@@ -42,7 +47,8 @@ src_compile() {
 		myconf="${myconf} --enable-ipv6"
 	fi
 
-	myconf="${myconf} --libdir=${EPREFIX}/usr/$(get_libdir)/nspr"
+	myconf="${myconf} --libdir=${EPREFIX}/usr/$(get_libdir)/nspr \
+		--enable-system-sqlite"
 
 	ECONF_SOURCE="../mozilla/nsprpub" CC=$(tc-getCC) CXX=$(tc-getCPP) econf \
 		$(use_enable debug) \
