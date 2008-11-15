@@ -14,7 +14,7 @@ SRC_URI="http://eyed3.nicfit.net/releases/${P}.tar.gz"
 IUSE=""
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 
 src_compile() {
 	econf
