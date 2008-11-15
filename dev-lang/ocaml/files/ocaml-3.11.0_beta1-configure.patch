@@ -11,7 +11,7 @@ Index: ocaml-3.11.0+beta1/configure
  bytecccompopts=""
  bytecclinkopts=""
  dllccompopts=""
-@@ -1500,6 +1500,12 @@ fi
+@@ -1500,7 +1500,15 @@ fi
  
  # Final twiddling of compiler options to work around known bugs
  
@@ -22,9 +22,12 @@ Index: ocaml-3.11.0+beta1/configure
 +nativecclinkopts="$LDFLAGS $nativecclinkopts"
 +nativecccompopts="$CFLAGS $nativecccompopts"
  nativeccprofopts="$nativecccompopts"
++mksharedlib="$mksharedlib $LDFLAGS"
++mkmaindll="$mkmaindll $LDFLAGS"
  case "$buggycc" in
    gcc.2.96)
-@@ -1548,7 +1554,7 @@ echo "DEBUGGER=$debugger" >> Makefile
+     bytecccompopts="$bytecccompopts -fomit-frame-pointer"
+@@ -1548,7 +1556,7 @@ echo "DEBUGGER=$debugger" >> Makefile
  echo "CC_PROFILE=$cc_profile" >> Makefile
  echo "SYSTHREAD_SUPPORT=$systhread_support" >> Makefile
  echo "PARTIALLD=$partialld" >> Makefile
