@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.285 2008/11/07 08:43:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.286 2008/11/14 09:11:43 ulm Exp $
+
+  14 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r5.ebuild:
+  Require libX11 built with USE=-xcb.
 
   07 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r5.ebuild,
   emacs-21.4-r15.ebuild, emacs-21.4-r17.ebuild, emacs-22.2-r3.ebuild,
