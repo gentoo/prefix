@@ -14,7 +14,7 @@ See http://article.gmane.org/gmane.linux.gentoo.alt/4327
 -"/* APPLE LOCAL end mainline 4.3 2006-10-31 4370146 */"\
 -    %{.c|.cc|.C|.cpp|.cp|.c++|.cxx|.CPP|.m|.mm: \
 -    %{g*:%{!gstabs*:%{!g0: dsymutil %{o*:%*}%{!o:a.out}}}}}}}}}}}}"
-+    %{!A:%{!nostdlib:%{!nostartfiles:%E}}} %{T*} %{F*} }}}}}}}}}"
++    %{!A:%{!nostdlib:%{!nostartfiles:%E}}} %{T*} %{F*} }}}}}}}}"
  /* APPLE LOCAL end mainline */
  
  #ifdef TARGET_SYSTEM_ROOT

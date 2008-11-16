@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  16 Nov 2008; Fabian Groffen <grobian@gentoo.org>
+  files/gcc-apple-4.2.1-dsymutil.patch:
+  Remove stray }, according to John Gibson on alt ML
+
   10 Nov 2008; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.2.1_p5564.ebuild:
   Add fix from David Hubbard to get around a bootstrapping problem on 10.4/x86
