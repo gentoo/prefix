@@ -30,7 +30,7 @@ while [[ -n ${1} ]]; do
 		einfo ""
 		einfo "Say you have an existing EPREFIX in /opt/gentoo, and you want another one"
 		einfo "with a different ABI in /opt/gentoo.winnt, you'd call this:"
-		einfo " $0 --prefix=/opt/gentoo-x86-64 \\"
+		einfo " $0 --prefix=/opt/gentoo-x86-64 \\\\"
 		einfo "    --profile=/opt/gentoo/usr/portage/profiles/default-prefix/windows/winnt/6.0/x86"
 
 		exit ${_print_usage}
@@ -103,8 +103,8 @@ if [ -e "${_target_prefix}/etc/profile.env" ]; then
 fi
 
 for sh in "/opt/gentoo"/etc/profile.d/*.sh ; do 
-    if [ -r "$sh" ] ; then
-        . "$sh"
+    if [ -r "\$sh" ] ; then
+        . "\$sh"
     fi 
 done
 unset sh 

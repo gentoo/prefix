@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Nov 2008; Markus Duft <mduft@gentoo.org> files/cross-prefix-setup.in:
+  fixed minor problems in cross-prefix-setup
+
   04 Nov 2008; Markus Duft <mduft@gentoo.org> files/cross-prefix-setup.in:
   improved output of setup script
 
