@@ -33,24 +33,66 @@ Index: pym/portage/dbapi/vartree.py
  from portage.data import portage_gid, portage_uid, secpass, ostype
  from portage.dbapi import dbapi
  from portage.dep import use_reduce, paren_reduce, isvalidatom, \
-@@ -279,7 +279,7 @@
+@@ -216,7 +216,7 @@
+ 				2. realpath of object if object does not exist.
+ 
+ 			"""
+-			abs_path = os.path.join(root, obj.lstrip(os.sep))
++			abs_path = os.path.join(root(), obj.lstrip(os.sep))
+ 			try:
+ 				object_stat = os.stat(abs_path)
+ 			except OSError:
+@@ -254,7 +254,7 @@
+ 		and the scanelf binary is not available.
+ 		"""
+ 		root = self._root
+-		root_len = len(root) - 1
++		root_len = len(root()) - 1
+ 		self._clear_cache()
+ 		self._defpath.update(getlibpaths(self._root))
+ 		libs = self._libs
+@@ -279,9 +279,9 @@
  		# have to call scanelf for preserved libs here as they aren't 
  		# registered in NEEDED.ELF.2 files
  		if self._dbapi.plib_registry and self._dbapi.plib_registry.getPreservedLibs():
 -			args = [EPREFIX+"/usr/bin/scanelf", "-qF", "%a;%F;%S;%r;%n"]
 +			args = [BPREFIX+"/usr/bin/scanelf", "-qF", "%a;%F;%S;%r;%n"]
  			for items in self._dbapi.plib_registry.getPreservedLibs().values():
- 				args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
+-				args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
++				args.extend(os.path.join(root(), x.lstrip("." + os.sep)) \
  					for x in items)
-@@ -823,7 +823,7 @@
+ 			try:
+ 				proc = subprocess.Popen(args, stdout=subprocess.PIPE)
+@@ -761,7 +761,7 @@
+ 				2. realpath of object if object does not exist.
+ 
+ 			"""
+-			abs_path = os.path.join(root, obj.lstrip(os.path.sep))
++			abs_path = os.path.join(root(), obj.lstrip(os.path.sep))
+ 			try:
+ 				object_stat = os.stat(abs_path)
+ 			except OSError:
+@@ -799,7 +799,7 @@
+ 		and the scanmacho binary is not available.
+ 		"""
+ 		root = self._root
+-		root_len = len(root) - 1
++		root_len = len(root()) - 1
+ 		self._clear_cache()
+ 		libs = self._libs
+ 		obj_key_cache = self._obj_key_cache
+@@ -823,9 +823,9 @@
  		# have to call scanmacho for preserved libs here as they aren't 
  		# registered in NEEDED.MACHO.3 files
  		if self._dbapi.plib_registry and self._dbapi.plib_registry.getPreservedLibs():
 -			args = [EPREFIX+"/usr/bin/scanmacho", "-qF", "%a;%F;%S;%n"]
 +			args = [BPREFIX+"/usr/bin/scanmacho", "-qF", "%a;%F;%S;%n"]
  			for items in self._dbapi.plib_registry.getPreservedLibs().values():
- 				args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
+-				args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
++				args.extend(os.path.join(root(), x.lstrip("." + os.sep)) \
  						for x in items)
+ 			try:
+ 				proc = subprocess.Popen(args, stdout=subprocess.PIPE)
 @@ -1235,7 +1235,7 @@
  		now has a categories property that is generated from the
  		available packages.
@@ -362,6 +404,15 @@ Index: pym/portage/dbapi/vartree.py
  				for ver in mypkglist:
  					if ver.isowner(f, destroot):
  						isowned = True
+@@ -3411,7 +3409,7 @@
+ 		root = self.myroot
+ 		inode_map = {}
+ 		for f in path_iter:
+-			path = os.path.join(root, f.lstrip(os.sep))
++			path = os.path.join(root(), f.lstrip(os.sep))
+ 			try:
+ 				st = os.lstat(path)
+ 			except OSError, e:
 @@ -3513,8 +3511,8 @@
  		
  		@param srcroot: Typically this is ${D}
@@ -490,6 +541,15 @@ Index: pym/portage/dbapi/vartree.py
  			match_from_list(PORTAGE_PACKAGE_ATOM, [self.mycpv]) and \
  			not self.vartree.dbapi.cpv_exists(self.mycpv):
  			settings = self.settings
+@@ -4440,7 +4436,7 @@
+ 	"""
+ 	Write contents to any file like object. The file will be left open.
+ 	"""
+-	root_len = len(root) - 1
++	root_len = len(root()) - 1
+ 	for filename in sorted(contents):
+ 		entry_data = contents[filename]
+ 		entry_type = entry_data[0]
 @@ -4460,7 +4456,7 @@
  def tar_contents(contents, root, tar, protect=None, onProgress=None):
  	from portage.util import normalize_path
@@ -499,6 +559,15 @@ Index: pym/portage/dbapi/vartree.py
  	id_strings = {}
  	maxval = len(contents)
  	curval = 0
+@@ -4481,7 +4477,7 @@
+ 			continue
+ 		contents_type = contents[path][0]
+ 		if path.startswith(root):
+-			arcname = path[len(root):]
++			arcname = path[len(root()):]
+ 		else:
+ 			raise ValueError("invalid root argument: '%s'" % root)
+ 		live_path = path
 Index: pym/portage/dbapi/porttree.py
 ===================================================================
 --- pym/portage/dbapi/porttree.py	(revision 11947)
