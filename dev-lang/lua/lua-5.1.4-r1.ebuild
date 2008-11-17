@@ -12,7 +12,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="cxx +deprecated readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
@@ -22,7 +22,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
+	case "${CHOST}" in
+	*-winnt*)	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-no-libtool.patch ;;
+	*) 			epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch ;;
+	esac
+
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
 
 	# fix libtool and ld usage on OSX
@@ -74,6 +78,8 @@ src_compile() {
 	liblibs="-lm"
 	if [[ $CHOST == *-darwin* ]]; then
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
+	elif [[ ${CHOST} == *-winnt* ]]; then
+		mycflags="${mycflags} -DLUA_USE_WINNT"
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
 		liblibs="${liblibs} $(dlopen_lib)"
