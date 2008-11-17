@@ -14,7 +14,7 @@ SRC_URI="http://www.lighttpd.net/download/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="bzip2 doc fam fastcgi gdbm ipv6 ldap lua minimal memcache mysql pcre php rrdtool ssl test webdav xattr"
 
 RDEPEND=">=sys-libs/zlib-1.1
@@ -32,7 +32,7 @@ RDEPEND=">=sys-libs/zlib-1.1
 	webdav? (
 		dev-libs/libxml2
 		>=dev-db/sqlite-3
-		sys-fs/e2fsprogs
+		!x86-interix? ( sys-fs/e2fsprogs )
 	)
 	xattr? ( kernel_linux? ( sys-apps/attr ) )"
 
@@ -101,6 +101,8 @@ src_unpack() {
 	cd "${S}"
 
 	EPATCH_SUFFIX="diff" EPATCH_OPTS="-l" epatch "${FILESDIR}"/"${PVR}" || die "Patching failed!"
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf || die
 
