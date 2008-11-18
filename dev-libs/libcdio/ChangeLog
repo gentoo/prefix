@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libcdio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.105 2008/11/08 17:18:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.106 2008/11/16 18:10:20 klausman Exp $
+
+  16 Nov 2008; Tobias Klausmann <klausman@gentoo.org> libcdio-0.80.ebuild:
+  Stable on alpha, bug #245252
 
   08 Nov 2008; Raúl Porcel <armin76@gentoo.org> libcdio-0.80.ebuild:
   arm/ia64/sh/sparc stable wrt #245252
