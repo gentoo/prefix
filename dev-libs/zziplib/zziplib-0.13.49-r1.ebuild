@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.4 2008/11/09 16:11:43 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.5 2008/11/17 22:34:49 bluebird Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-python.patch
 	epatch "${FILESDIR}"/${P}-configure-sed.patch #240556
 	epatch "${FILESDIR}"/${P}-SDL-test.patch
+	epatch "${FILESDIR}"/${P}-sparc-aligned-access.patch #239472
 	sed -i '/^Libs:/s:@LDFLAGS@::' configure || die #235511
 	sed -i '/^zzip-postinstall:/s:^:disabled-:' Makefile.in || die
 	ht_fix_file configure docs/Makefile.in uses/depcomp

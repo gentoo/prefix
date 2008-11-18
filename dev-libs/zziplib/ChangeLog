@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.50 2008/11/09 16:11:43 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.51 2008/11/17 22:34:49 bluebird Exp $
+
+  17 Nov 2008; Friedrich Oslage <bluebird@gentoo.org>
+  +files/zziplib-0.13.49-sparc-aligned-access.patch,
+  zziplib-0.13.49-r1.ebuild:
+  Fix a bus error on sparc and add ~sparc keyword, bug #239472
 
   09 Nov 2008; Peter Volkov <pva@gentoo.org> zziplib-0.13.49-r1.ebuild:
   Dependencies required to run tests fixed, bug #246164.
