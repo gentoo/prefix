@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Nov 2008; Jeremy Olexa <darkside@gentoo.org> -linux/package.mask:
+  sync profiles from default-prefix/
+
   13 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults:
   LIBDIR_amd64 is def needed, otherwise stuff gets installed to usr//blah,
   instead of usr/$LIBDIR_amd64/blah
