@@ -1,5 +1,5 @@
---- /src/subshell.c.000	2006-05-08 23:11:48.000000000 +0200
-+++ /src/subshell.c	2006-10-28 15:40:46.000000000 +0200
+--- a/src/subshell.c	2006-05-08 23:11:48.000000000 +0200
++++ b/src/subshell.c	2006-10-28 15:40:46.000000000 +0200
 @@ -745,29 +745,13 @@ subshell_name_quote (const char *s)
      memcpy (d, cmd_start, len);
      d += len;

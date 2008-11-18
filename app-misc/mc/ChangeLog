@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.143 2008/09/14 02:04:27 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.144 2008/11/17 20:20:38 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/mc-4.6.1-bash-all.patch:
+  Fix patch with absolute paths.
 
   14 Sep 2008; <solar@gentoo.org> mc-4.6.1-r4.ebuild, mc-4.6.2_pre1.ebuild:
   - work around mc cross compile problems by skipping the building of docs
