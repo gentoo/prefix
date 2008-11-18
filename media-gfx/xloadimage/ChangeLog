@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/xloadimage
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.41 2008/01/15 18:37:57 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.42 2008/11/17 21:12:46 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/xloadimage-4.1-unaligned-access.patch:
+  Fix patch with absolute paths.
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> xloadimage-4.1-r4.ebuild,
   xloadimage-4.1-r5.ebuild:

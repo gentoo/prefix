@@ -1,6 +1,6 @@
 diff -ruN ./cmuwmraster.c /tmp/xloadimage.4.1/cmuwmraster.c
---- ./cmuwmraster.c	2005-07-23 13:15:50 -0700
-+++ /tmp/xloadimage.4.1/cmuwmraster.c	2005-07-23 13:08:36 -0700
+--- a/cmuwmraster.c	2005-07-23 13:15:50 -0700
++++ b/cmuwmraster.c	2005-07-23 13:08:36 -0700
 @@ -20,7 +20,7 @@
  char *name;
  struct cmuwm_header *headerp;
@@ -11,8 +11,8 @@ diff -ruN ./cmuwmraster.c /tmp/xloadimage.4.1/cmuwmraster.c
  	   memToVal(headerp->width, sizeof(long)),
  	   memToVal(headerp->height, sizeof(long)),
 diff -ruN ./niff.c /tmp/xloadimage.4.1/niff.c
---- ./niff.c	2005-07-23 13:15:50 -0700
-+++ /tmp/xloadimage.4.1/niff.c	2005-07-23 13:07:55 -0700
+--- a/niff.c	2005-07-23 13:15:50 -0700
++++ b/niff.c	2005-07-23 13:07:55 -0700
 @@ -24,18 +24,18 @@
  	 memToVal(header->width, 4),
  	 memToVal(header->height, 4));
@@ -36,8 +36,8 @@ diff -ruN ./niff.c /tmp/xloadimage.4.1/niff.c
    default:
      printf("image with an unknown type");
 diff -ruN ./root.c /tmp/xloadimage.4.1/root.c
---- ./root.c	2005-07-23 13:15:51 -0700
-+++ /tmp/xloadimage.4.1/root.c	2005-07-23 13:05:48 -0700
+--- a/root.c	2005-07-23 13:15:51 -0700
++++ b/root.c	2005-07-23 13:05:48 -0700
 @@ -68,8 +68,8 @@
    Pixmap *pm;			
    Atom	actual_type;		/* NOTUSED */
