@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/esearch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.50 2008/04/25 21:05:08 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.51 2008/11/17 20:24:13 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/97969-ignore-missing-ebuilds.patch:
+  Fix patch with absolute paths.
 
   25 Apr 2008; <ricmm@gentoo.org> esearch-0.7.1.ebuild:
   Drop to ~mips due to unstable deps
