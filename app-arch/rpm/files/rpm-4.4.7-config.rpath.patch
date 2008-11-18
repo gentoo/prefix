@@ -1,5 +1,5 @@
---- /var/tmp/portage/app-arch/rpm-4.4.7-r2/work/rpm-4.4.7/config.rpath	1970-01-01 01:00:00.000000000 +0100
-+++ /tmp/rpm-4.4.7.dest/config.rpath	2007-01-15 21:50:24.004178000 +0100
+--- a/rpm-4.4.7/config.rpath	1970-01-01 01:00:00.000000000 +0100
++++ b/rpm-4.4.7/config.rpath	2007-01-15 21:50:24.004178000 +0100
 @@ -0,0 +1,614 @@
 +#! /bin/sh
 +# Output a system dependent set of variables, describing how to set the
