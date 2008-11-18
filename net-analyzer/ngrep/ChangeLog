@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/ngrep
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.53 2008/09/10 10:42:44 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.54 2008/11/17 11:54:06 pva Exp $
+
+*ngrep-1.45-r2 (17 Nov 2008)
+
+  17 Nov 2008; Peter Volkov <pva@gentoo.org>
+  +files/ngrep-1.45-build-fixes.patch, +files/ngrep-1.45-setlocale.patch,
+  +ngrep-1.45-r2.ebuild:
+  Fixed build issue with libpcap-1.0.0, bug #247128, thank Matthias Liebig
+  for report and fix. Changed a bit patches so everything respect CC, CFLAGS
+  and etc... Added patch from debian to make regexps respect locale.
 
   10 Sep 2008; Peter Volkov <pva@gentoo.org> ngrep-1.45-r1.ebuild:
   enewuser/enewgroup die on their own, no need to || die
