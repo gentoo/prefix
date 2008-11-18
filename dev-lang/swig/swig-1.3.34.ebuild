@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.34.ebuild,v 1.6 2008/09/18 02:02:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.34.ebuild,v 1.7 2008/11/17 00:21:12 pchrist Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ guile? ( dev-scheme/guile )
 java? ( virtual/jdk )
 lua? ( dev-lang/lua )
 mono? ( dev-lang/mono )
-mzscheme? ( dev-scheme/drscheme )
+mzscheme? ( dev-scheme/plt-scheme )
 perl? ( dev-lang/perl )
 php? ( virtual/php )
 pike? ( dev-lang/pike )
