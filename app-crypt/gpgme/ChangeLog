@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.148 2008/08/31 01:08:50 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.149 2008/11/17 19:56:16 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/gpgme3.m4.patch:
+  Fix patch to apply.
 
   31 Aug 2008; Daniel Black <dragonheart@gentoo.org> gpgme-0.3.14-r2.ebuild:
   remove m4/libtool.m4 as suggested by Rafal in bug #226461
