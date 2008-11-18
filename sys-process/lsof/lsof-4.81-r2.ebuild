@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81-r1.ebuild,v 1.1 2008/11/02 17:39:43 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81-r2.ebuild,v 1.1 2008/11/17 06:28:20 kumba Exp $
 
 EAPI="prefix"
 

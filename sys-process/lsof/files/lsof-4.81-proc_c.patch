@@ -1,20 +1,14 @@
-*** /tmp/T0fSaqTh	Sun Nov  2 07:48:14 2008
---- proc.c	Sun Nov  2 07:44:24 2008
+*** /tmp/T0wOaObl	Sun Nov  2 15:02:40 2008
+--- proc.c	Sun Nov  2 15:01:28 2008
 ***************
-*** 841,847 ****
+*** 841,848 ****
   {
   	if (Lf->sf & SELEXCLF)
   	    return;
-! 	if (((Selflags & SELNET) == SELNET) && !(Lf->sf & SELNET))
-  	    return;
+- 	if (((Selflags & SELNET) == SELNET) && !(Lf->sf & SELNET))
+- 	    return;
   	Lp->pss |= PS_SEC;
   	if (Plf)
---- 841,847 ----
-  {
-  	if (Lf->sf & SELEXCLF)
-  	    return;
-! 	if ((Selflags == SELNET) && !(Lf->sf & SELNET))
-  	    return;
-  	Lp->pss |= PS_SEC;
-  	if (Plf)
+  	    Plf->next = Lf;
+--- 841,846 ----
 
