@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.19.ebuild,v 1.2 2008/10/27 20:27:07 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.19-r1.ebuild,v 1.1 2008/11/16 08:56:57 mescalinum Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ RDEPEND="!aqua? ( x11-libs/libX11 )
 DEPEND="${RDEPEND}
 	!aqua? (
 	x11-libs/libXt
-	>=x11-proto/xproto-7.0.3
+	>=x11-proto/xproto-7.0.13
 	)"
 
 S=${WORKDIR}/${PN}${PV}

@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.112 2008/10/27 20:27:07 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.113 2008/11/16 08:56:57 mescalinum Exp $
+
+*tk-8.4.19-r1 (16 Nov 2008)
+
+  16 Nov 2008; Federico Ferri <mescalinum@gentoo.org> -tk-8.4.19.ebuild,
+  +tk-8.4.19-r1.ebuild:
+  rev bump, fixes bug #246774
 
 *tk-8.4.18-r1 (27 Oct 2008)
 
