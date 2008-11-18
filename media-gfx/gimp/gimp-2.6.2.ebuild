@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.2.ebuild,v 1.1 2008/11/14 00:54:30 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.2.ebuild,v 1.2 2008/11/16 11:08:42 hanno Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,8 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
 
 RDEPEND=">=dev-libs/glib-2.18.1
-	>=x11-libs/gtk+-2.10.13
-	>=x11-libs/pango-1.12.2
+	>=x11-libs/gtk+-2.12.5
+	>=x11-libs/pango-1.18.0
 	>=media-libs/freetype-2.1.7
 	>=media-libs/fontconfig-2.2.0
 	>=media-libs/libart_lgpl-2.3.8-r1
