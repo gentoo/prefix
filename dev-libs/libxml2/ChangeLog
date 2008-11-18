@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.235 2008/11/13 18:55:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.236 2008/11/18 01:23:38 leio Exp $
+
+*libxml2-2.7.2-r1 (18 Nov 2008)
+
+  18 Nov 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/libxml2-2.7.2-CVE-2008-422x.patch, +libxml2-2.7.2-r1.ebuild:
+  Fix for CVE-2008-4225 - possible infinite loop. Fix for CVE-2008-4226 -
+  possible integer overflow leading to memory corruption and potential
+  arbitrary code execution with huge XML files. Bug 245960
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> libxml2-2.6.32.ebuild:
   Marking libxml2-2.6.32 ppc64 stable for bug 236971
