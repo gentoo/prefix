@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.353 2008/10/26 21:40:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.354 2008/11/17 21:44:44 neurogeek Exp $
+
+*python-2.6-r5 (17 Nov 2008)
+
+  17 Nov 2008; <neurogeek@gentoo.org> -python-2.6-r4.ebuild,
+  +python-2.6-r5.ebuild:
+  Revision bump. Fixes Bug #219238. Removed older version
 
   26 Oct 2008; Ali Polatel <hawking@gentoo.org> python-2.4.4-r5.ebuild,
   python-2.4.4-r6.ebuild, python-2.4.4-r14.ebuild, python-2.4.4-r15.ebuild,
