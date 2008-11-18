@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/tic98
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.10 2008/10/25 12:54:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.13 2008/11/15 17:12:12 maekke Exp $
+
+  15 Nov 2008; Markus Meier <maekke@gentoo.org> -tic98-1.01-r2.ebuild:
+  old
+
+  15 Nov 2008; Markus Meier <maekke@gentoo.org> tic98-1.01-r3.ebuild:
+  amd64/x86 stable, bug #246376
+
+  15 Nov 2008; Markus Meier <maekke@gentoo.org> tic98-1.01-r3.ebuild:
+  restrict tests as the required files are not available
 
   25 Oct 2008; Markus Meier <maekke@gentoo.org> tic98-1.01-r3.ebuild:
   respect CC variable, bug #244170

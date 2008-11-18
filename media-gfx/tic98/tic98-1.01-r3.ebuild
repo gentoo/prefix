@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.2 2008/10/25 12:54:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.4 2008/11/15 17:10:43 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
+RESTRICT="test"
 
 S="${WORKDIR}/${PN}"
 
