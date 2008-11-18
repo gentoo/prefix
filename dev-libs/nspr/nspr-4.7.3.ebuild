@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.3.ebuild,v 1.1 2008/11/14 10:15:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.3.ebuild,v 1.2 2008/11/15 18:31:56 armin76 Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,7 @@ src_compile() {
 	case $(file "${T}"/test.o) in
 	    *64-bit*|ppc64|x86_64) myconf="${myconf} --enable-64bit";;
 	    *32-bit*|ppc|i386) ;;
-	    *) die "FAIL";;
+	    *) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
 	if use ipv6; then
