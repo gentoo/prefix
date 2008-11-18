@@ -219,7 +219,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20081110"
+	local PV="20081117"
 	do_tree "${DISTFILES_URL}" prefix-overlay-${PV}.tar.bz2
 }
 
