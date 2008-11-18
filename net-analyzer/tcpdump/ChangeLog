@@ -1,6 +1,18 @@
 # ChangeLog for net-analyzer/tcpdump
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.132 2008/09/28 13:26:02 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.133 2008/11/16 15:18:00 pva Exp $
+
+*tcpdump-4.0.0 (16 Nov 2008)
+
+  16 Nov 2008; Peter Volkov <pva@gentoo.org>
+  -files/tcpdump-3.9.5-print-802_11.c.diff,
+  -files/tcpdump-3.9.6-bgp-integer-overflow.patch,
+  +files/tcpdump-4.0.0-ipv6-build.patch,
+  +files/tcpdump-4.0.0-libsmi-autodep.patch, metadata.xml,
+  -tcpdump-3.9.5-r3.ebuild, -tcpdump-3.9.6-r1.ebuild,
+  -tcpdump-3.9.7-r1.ebuild, +tcpdump-4.0.0.ebuild:
+  Version bump, bug #245179, thank Krzysztof Olędzki for report. Removed
+  old.
 
   28 Sep 2008; Cédric Krier <cedk@gentoo.org> tcpdump-3.9.8-r1.ebuild:
   Call enewuser/enewgroup in both pkg_setup and pkg_preinst for bug #231917

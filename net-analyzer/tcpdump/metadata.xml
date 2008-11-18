@@ -3,5 +3,8 @@
 <pkgmetadata>
 	<herd>netmon</herd>
 	<longdescription>A pcap based tool for network protocol monitoring and data acquisition.</longdescription>
-	<use><flag name='chroot'>Enable chrooting when dropping privileges</flag></use>
+	<use>
+		<flag name='smi'>Build with <pkg>net-libs/libsmi</pkg> to load MIBs on the fly to decode SNMP packets</flag>
+		<flag name='chroot'>Enable chrooting when dropping privileges</flag>
+	</use>
 </pkgmetadata>
