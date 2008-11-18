@@ -1,6 +1,6 @@
 diff -Nru /tmp/wgHyQebD7F/fte-0.50.0/src/con_slang.cpp /tmp/PQJo4szkUb/fte-0.50.0/src/con_slang.cpp
---- /tmp/wgHyQebD7F/fte-0.50.0/src/con_slang.cpp	2005-12-28 16:53:24.000000000 +0100
-+++ /tmp/PQJo4szkUb/fte-0.50.0/src/con_slang.cpp	2006-06-05 06:02:37.000000000 +0200
+--- a/fte-0.50.0/src/con_slang.cpp	2005-12-28 16:53:24.000000000 +0100
++++ b/fte-0.50.0/src/con_slang.cpp	2006-06-05 06:02:37.000000000 +0200
 @@ -99,12 +99,14 @@
      '+'
  };
