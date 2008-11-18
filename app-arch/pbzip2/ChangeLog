@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/pbzip2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.49 2008/08/02 21:23:24 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.52 2008/11/17 07:43:54 jer Exp $
+
+*pbzip2-1.0.3 (17 Nov 2008)
+
+  17 Nov 2008; Jeroen Roovers <jer@gentoo.org>
+  +files/pbzip2-1.0.3-uclibc.patch, +pbzip2-1.0.3.ebuild:
+  Version bump (bug #246810 comment #4).
+
+  17 Nov 2008; Jeroen Roovers <jer@gentoo.org>
+  +files/pbzip2-1.0.2-uclibc.patch, pbzip2-1.0.2-r1.ebuild:
+  Patch for uclibc support (no getloadavg, bug #246810) thanks to René Rhéaume.
+  Let make pick up CFLAGS from environment. Use canonical CXX.
 
   02 Aug 2008; Markus Rothe <corsair@gentoo.org> pbzip2-1.0.2-r1.ebuild:
   Stable on ppc64; bug #229881
