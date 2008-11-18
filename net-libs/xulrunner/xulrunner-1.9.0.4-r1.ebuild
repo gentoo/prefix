@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.4.ebuild,v 1.1 2008/11/13 19:34:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.4-r1.ebuild,v 1.1 2008/11/15 18:25:24 armin76 Exp $
 
 EAPI="prefix"
 
@@ -114,7 +114,6 @@ src_compile() {
 	# Other ff-specific settings
 	mozconfig_annotate '' --enable-jsd
 	mozconfig_annotate '' --enable-xpctools
-	mozconfig_annotate '' --disable-libxul
 	mozconfig_annotate '' --with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME}
 
 	#disable java
