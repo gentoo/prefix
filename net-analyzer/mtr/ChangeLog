@@ -1,6 +1,14 @@
 # ChangeLog for net-analyzer/mtr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.81 2008/10/26 20:20:47 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.82 2008/11/16 14:40:13 pva Exp $
+
+*mtr-0.75 (16 Nov 2008)
+
+  16 Nov 2008; Peter Volkov <pva@gentoo.org> -files/mtr-0.69-debian.patch,
+  -mtr-0.72.ebuild, -mtr-0.73.ebuild, -mtr-0.73-r1.ebuild, +mtr-0.75.ebuild:
+  Version bump, bug #226989, thank Krzysztof Olędzki for report. Finally
+  removed all bind-now flags, #226989, thank Diego Pettenò for report.
+  Remove old.
 
   26 Oct 2008; Joshua Kinard <kumba@gentoo.org> mtr-0.73-r2.ebuild:
   Mark mtr-0.73-r2 unstable on mips.
