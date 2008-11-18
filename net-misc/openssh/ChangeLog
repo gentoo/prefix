@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.322 2008/11/03 08:47:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.323 2008/11/17 22:31:29 vapier Exp $
+
+  17 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-5.1_p1-better-ssp-check.patch, openssh-5.1_p1-r1.ebuild,
+  openssh-5.1_p1-r2.ebuild:
+  Fix ssp detection on uClibc hosts.
 
 *openssh-5.1_p1-r2 (03 Nov 2008)
 

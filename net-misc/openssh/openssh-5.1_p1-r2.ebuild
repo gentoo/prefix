@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r2.ebuild,v 1.2 2008/11/03 08:53:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r2.ebuild,v 1.3 2008/11/17 22:31:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -105,6 +105,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-null-banner.patch #244222
 	epatch "${FILESDIR}"/${P}-escaped-banner.patch #244222
+	epatch "${FILESDIR}"/${P}-better-ssp-check.patch
 
 	eautoreconf
 }
