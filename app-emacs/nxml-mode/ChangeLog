@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.33 2008/05/12 14:00:49 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.34 2008/11/17 09:57:23 ulm Exp $
+
+  17 Nov 2008; Ulrich Mueller <ulm@gentoo.org> nxml-mode-20041004-r3.ebuild:
+  Add as-is and W3C to LICENSE, following Emacs upstream.
 
   12 May 2008; Ulrich Mueller <ulm@gentoo.org> -files/80nxml-mode-gentoo.el,
   -nxml-mode-20041004.ebuild:
