@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.35 2008/10/16 09:28:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.36 2008/11/16 10:23:42 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -56,6 +56,7 @@ elisp_pkg_setup() {
 		eerror "Use \"eselect emacs\" to select the active version."
 		die "Emacs version ${have_emacs} is too low."
 	fi
+	einfo "Emacs version: ${have_emacs}"
 }
 
 elisp_src_unpack() {
