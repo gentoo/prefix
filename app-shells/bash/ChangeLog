@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.184 2008/08/24 17:35:19 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.185 2008/11/17 20:26:13 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/bash-3.0-darwin-conn.patch:
+  Fix patch with absolute paths.
 
   24 Aug 2008; Tobias Klausmann <klausman@gentoo.org> bash-3.2_p39.ebuild:
   Misread bug #235020
