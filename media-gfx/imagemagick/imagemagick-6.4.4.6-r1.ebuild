@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.4.6-r1.ebuild,v 1.6 2008/10/27 23:07:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.4.6-r1.ebuild,v 1.8 2008/11/16 16:19:30 maekke Exp $
 
 EAPI="prefix 2"
 
@@ -108,7 +108,7 @@ src_configure() {
 		myconf="${myconf} --disable-openmp"
 	fi
 
-	use truetype && myconf="${myconf} $(use_with truetype windows-font-dir /usr/share/fonts/corefonts)"
+	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir /usr/share/fonts/corefonts)"
 
 	econf \
 		${myconf} \
