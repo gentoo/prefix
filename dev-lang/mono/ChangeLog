@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.142 2008/08/23 05:31:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.144 2008/11/17 20:54:50 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/mono-1.2.5-make-check.patch:
+  Fix patch with absolute paths.
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/mono-1.2.4-make-check.patch:
+  Fix patch with absolute paths.
 
   23 Aug 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Add GLEP 56 USE flag descriptions.
