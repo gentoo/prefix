@@ -92,7 +92,7 @@ if [[ -n "${_target_source}" ]]; then
 fi
 
 ebegin "linking profile (${_target_profile#${PARENT_PREFIX}})."
-ln -fs "${_target_profile}" etc/make.profile
+ln -fs "../${_target_profile#${PARENT_PREFIX}}" etc/make.profile
 eend $?
 
 ebegin "linking portage tree from parent to new prefix."
