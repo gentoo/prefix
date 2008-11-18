@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51-r1.ebuild,v 1.4 2008/11/03 11:17:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51-r1.ebuild,v 1.5 2008/11/16 05:56:45 matsuu Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-RDEPEND="sys-libs/ncurses"
+RDEPEND="sys-libs/ncurses
+	!app-editors/levee"
 DEPEND="${RDEPEND}
 	dev-lang/perl"
 
