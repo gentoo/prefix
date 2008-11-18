@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/alternate
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/alternate/ChangeLog,v 1.41 2008/10/10 14:01:51 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/alternate/ChangeLog,v 1.42 2008/11/17 20:28:23 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/alternate-2.12-hh-cc-alternation.patch:
+  Fix patch with absolute paths.
 
   10 Oct 2008; Ali Polatel <hawking@gentoo.org>
   +files/alternate-2.18-hh-cc-alternation.patch, alternate-2.18.ebuild:
