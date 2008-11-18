@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/mscompress
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/mscompress/ChangeLog,v 1.17 2008/04/21 16:21:34 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/mscompress/ChangeLog,v 1.18 2008/11/17 19:52:26 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/mscompress-0.3-makefile.patch:
+  Fix patch to apply.
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
