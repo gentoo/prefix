@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/scm-5.5.4.ebuild,v 1.2 2008/01/18 18:10:09 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/scm-5.5.4.ebuild,v 1.3 2008/11/17 13:40:07 pchrist Exp $
 
 EAPI="prefix"
 
@@ -37,6 +37,7 @@ src_unpack() {
 	#sent upstream again
 	sed "s#mkdir#mkdir -p#" -i Makefile
 	sed "s#-p -p#-p#" -i Makefile
+	sed -i -e 's/mandir = $(prefix)man\//mandir = $(prefix)share\/man\//' Makefile
 
 #	diff -u Makefile.old Makefile
 }
