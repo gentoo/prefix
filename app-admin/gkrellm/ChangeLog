@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.161 2008/11/05 18:18:10 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.162 2008/11/17 21:27:32 lack Exp $
+
+  17 Nov 2008; Jim Ramsay <lack@gentoo.org> files/gkrellmd,
+  files/gkrellmd.conf, gkrellm-2.3.1.ebuild, gkrellm-2.3.2.ebuild:
+  Fixed gkrellmd init script and config (Bug #247068)
 
 *gkrellm-2.3.2 (05 Nov 2008)
 

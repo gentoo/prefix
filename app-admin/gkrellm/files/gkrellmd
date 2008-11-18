@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/files/gkrellmd,v 1.7 2008/02/28 15:17:04 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/files/gkrellmd,v 1.8 2008/11/17 21:27:55 lack Exp $
 
 depend() {
 	need net
@@ -11,7 +11,7 @@ depend() {
 
 start() {
 	ebegin "Starting GNU Krell Monitor daemon"
-	start-stop-daemon --start --quiet --background --pidfile /var/run/gkrellmd.pid --make-pidfile --exec /usr/bin/gkrellmd ${GKRELLM_OPTS}
+	start-stop-daemon --start --quiet --background --pidfile /var/run/gkrellmd.pid --make-pidfile --exec /usr/bin/gkrellmd ${GKRELLMD_OPTS}
 	eend $?
 }
 
