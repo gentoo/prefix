@@ -1,3 +1,0 @@
-# Jeremy Olexa <darkside@gentoo.org> (28 Sept 2008)
-# >=openssh-5.0 has linking issues on linux, bug #244776
->=net-misc/openssh-5.0
