@@ -1,10 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2045 2008/11/14 08:20:37 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2052 2008/11/17 21:03:52 dertobi123 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  17 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Remove mask on >=sys-block/open-iscsi-2.0.868_rc1, works for me plus older
+  versions are broken on somewhat current kernel versions.
+
+  17 Nov 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  The NEW 64-bit version of flash player is alpha, p.mask it until it's a
+  wee bit more tested (Bug #247200)
+
+  16 Nov 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask udev-132 for Bugs #246849, #246927 and #246938.
+
+  16 Nov 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking development version of socat.
+
+  15 Nov 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Remove dev-lisp/abcl-cvs from tree and package.mask.
+
+  15 Nov 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove .ebuild from the ati-drivers entry.
+
+  15 Nov 2008; Luca Barbato <lu_zero@gentoo.org> package.mask:
+  Mask recent ati-drivers with 1.5 support
 
   14 Nov 2008; Hanno Boeck <hanno@gentoo.org> package.mask:
   Mask broken libchipcard-4.2.1.
