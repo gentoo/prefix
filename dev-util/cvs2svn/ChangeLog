@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/cvs2svn
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.18 2008/08/21 13:31:09 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/ChangeLog,v 1.20 2008/11/16 16:49:28 klausman Exp $
+
+  16 Nov 2008; Tobias Klausmann <klausman@gentoo.org> cvs2svn-2.1.1.ebuild:
+  Stable on alpha, bug #246644
+
+  15 Nov 2008; Markus Meier <maekke@gentoo.org> cvs2svn-2.1.1.ebuild:
+  amd64/x86 stable, bug #246644
 
 *cvs2svn-2.1.1 (21 Aug 2008)
 
