@@ -1,6 +1,12 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.79 2008/11/06 15:10:06 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.80 2008/11/17 16:00:46 lack Exp $
+
+*netscape-flash-10.0.20.7_alpha (17 Nov 2008)
+
+  17 Nov 2008; Jim Ramsay <lack@gentoo.org>
+  +netscape-flash-10.0.20.7_alpha.ebuild:
+  Adding alpha release of 64-bit native flash player
 
 *netscape-flash-9.0.151.0 (06 Nov 2008)
 
