@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.4.ebuild,v 1.2 2008/11/14 09:43:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.4.ebuild,v 1.3 2008/11/15 18:27:40 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -54,7 +54,7 @@ RDEPEND="java? ( virtual/jre )
 	>=dev-libs/nspr-4.7.1
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.1.9
-	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV} )"
+	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV}-r1 )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
