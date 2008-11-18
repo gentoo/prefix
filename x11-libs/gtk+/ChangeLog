@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.404 2008/11/13 18:59:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.405 2008/11/17 23:05:56 flameeyes Exp $
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/gtk+-2.10.7-mozilla-dnd-fix.patch:
+  Fix patch with absolute paths.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> gtk+-2.12.11.ebuild:
   Marking gtk+-2.12.11 ppc64 stable for bug 236971

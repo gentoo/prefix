@@ -4,8 +4,8 @@ it as what it fixed is a corner case while mozilla case is a big problem.
 The real problem is inside mozilla code, see http://bugzilla.gnome.org/show_bug.cgi?id=394525
 but we can't fix this for binary thunderbird/firefox/seamonkey packages
 
---- /branches/gtk-2-10/gtk/gtkdnd.c	2006/11/05 08:55:47	16711
-+++ branches/gtk-2-10/gtk/gtkdnd.c	2006/11/06 17:16:37	16712
+--- a/gtk/gtkdnd.c	2006/11/05 08:55:47	16711
++++ b/gtk/gtkdnd.c	2006/11/06 17:16:37	16712
 @@ -285,6 +285,9 @@
  static gboolean gtk_drag_grab_broken_event_cb  (GtkWidget          *widget,
  						GdkEventGrabBroken *event,
