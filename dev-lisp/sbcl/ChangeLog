@@ -1,6 +1,12 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.148 2008/08/03 14:44:24 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.149 2008/11/16 16:31:39 flameeyes Exp $
+
+  16 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org> sbcl-1.0.9.ebuild,
+  sbcl-1.0.10.ebuild, sbcl-1.0.11-r1.ebuild, sbcl-1.0.12.ebuild,
+  sbcl-1.0.13.ebuild, sbcl-1.0.14.ebuild, sbcl-1.0.15.ebuild,
+  sbcl-1.0.18.ebuild, sbcl-1.0.19.ebuild:
+  Correct --as-needed filtering.
 
   03 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org>
   sbcl-1.0.18.ebuild:
