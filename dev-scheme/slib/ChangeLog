@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.46 2008/07/06 11:03:59 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.47 2008/11/17 11:28:50 pchrist Exp $
+
+  17 Nov 2008; Panagiotis Christopoulos <pchrist@gentoo.org>
+  slib-3.2.1.ebuild:
+  fix wrong installation of man files, bug 246857, reported by flameeyes,
+  solution insired by Dmitry Dzhus <dima at sphinx.net.ru> patch
 
   06 Jul 2008; Marijn Schouten <hkBst@gentoo.org> slib-3.1.5-r1.ebuild,
   slib-3.2.1.ebuild:
