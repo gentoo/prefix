@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/genshi
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.14 2008/07/25 19:12:17 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.16 2008/11/16 17:46:16 maekke Exp $
+
+  16 Nov 2008; Markus Meier <maekke@gentoo.org> genshi-0.5.1.ebuild:
+  amd64/x86 stable, bug #246130
+
+  15 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org> genshi-0.5.1.ebuild:
+  ppc stable, bug #246130
 
   25 Jul 2008; Friedrich Oslage <bluebird@gentoo.org> genshi-0.5.1.ebuild:
   Add ~sparc keyword, bug #232008
