@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-Locale/DateTime-Locale-0.35.ebuild,v 1.2 2008/06/13 17:15:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-Locale/DateTime-Locale-0.35.ebuild,v 1.3 2008/11/18 14:42:41 tove Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 
-DEPEND=">=dev-perl/module-build-0.28
+DEPEND=">=virtual/perl-Module-Build-0.28
 		${RDEPEND}"
 RDEPEND="dev-perl/Params-Validate
 	dev-lang/perl"
