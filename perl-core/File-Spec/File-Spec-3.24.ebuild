@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/File-Spec-3.24.ebuild,v 1.10 2007/06/04 02:47:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/File-Spec-3.24.ebuild,v 1.11 2008/11/18 14:18:11 tove Exp $
 
 EAPI="prefix"
 
@@ -18,9 +18,9 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 RDEPEND="dev-lang/perl
-	dev-perl/ExtUtils-CBuilder"
+	virtual/perl-ExtUtils-CBuilder"
 DEPEND="${RDEPEND}
-	dev-perl/module-build"
+	virtual/perl-Module-Build"
 
 S=${WORKDIR}/${MY_P}
 
