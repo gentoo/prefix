@@ -1,6 +1,10 @@
 # ChangeLog for dev-db/mysql-community
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.22 2008/11/14 09:43:04 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.23 2008/11/18 21:53:43 robbat2 Exp $
+
+  18 Nov 2008; Robin H. Johnson <robbat2@gentoo.org>
+  mysql-community-5.0.67.ebuild:
+  Update archive_gis test disables.
 
   14 Nov 2008; Robin H. Johnson <robbat2@gentoo.org>
   mysql-community-5.0.27-r1.ebuild, mysql-community-5.0.45.ebuild,
