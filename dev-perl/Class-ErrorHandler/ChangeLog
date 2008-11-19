@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-ErrorHandler
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-ErrorHandler/ChangeLog,v 1.18 2007/01/19 21:50:02 mcummings Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-ErrorHandler/ChangeLog,v 1.19 2008/11/18 14:35:14 tove Exp $
+
+  18 Nov 2008; Torsten Veller <tove@gentoo.org>
+  Class-ErrorHandler-0.01.ebuild:
+  New virtuals: module-build
 
   19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   Class-ErrorHandler-0.01.ebuild:

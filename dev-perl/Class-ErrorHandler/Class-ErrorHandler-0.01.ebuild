@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-ErrorHandler/Class-ErrorHandler-0.01.ebuild,v 1.18 2007/01/19 21:50:02 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-ErrorHandler/Class-ErrorHandler-0.01.ebuild,v 1.19 2008/11/18 14:35:14 tove Exp $
 
 EAPI="prefix"
 
@@ -18,4 +18,4 @@ SRC_TEST="do"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	>=dev-perl/module-build-0.28"
+	>=virtual/perl-Module-Build-0.28"
