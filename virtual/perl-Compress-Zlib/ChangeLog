@@ -1,0 +1,13 @@
+# ChangeLog for virtual/perl-Compress-Zlib
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Zlib/ChangeLog,v 1.2 2008/11/02 10:54:07 swegener Exp $
+
+*perl-Compress-Zlib-2.015 (01 Nov 2008)
+*perl-Compress-Zlib-2.008 (01 Nov 2008)
+*perl-Compress-Zlib-2.005 (01 Nov 2008)
+
+  01 Nov 2008; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +perl-Compress-Zlib-2.005.ebuild, +perl-Compress-Zlib-2.008.ebuild,
+  +perl-Compress-Zlib-2.015.ebuild:
+  Adding virtuals for dual-lifed modules that come with perl-5.10
+
