@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3.ebuild,v 1.1 2008/10/18 16:42:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3.ebuild,v 1.2 2008/11/15 09:42:00 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,6 @@ src_unpack() {
 src_compile() {
 	export LDCONFIG=${EPREFIX}/bin/true
 	export CC=$(tc-getCC)
-	export STRIP=${EPREFIX}/bin/true
 
 	# We want to use the "bsd" libraries while building on Darwin, but while
 	# building on other Gentoo/*BSD we prefer elf-naming scheme.
@@ -49,15 +48,14 @@ src_compile() {
 		$(use_enable !elibc_uclibc tls) \
 		$(use_enable nls) \
 		|| die
-	emake || die
+	emake STRIP="${EPREFIX}"/bin/true || die
 }
 
 src_install() {
 	export LDCONFIG=${EPREFIX}/bin/true
 	export CC=$(tc-getCC)
-	export STRIP=${EPREFIX}/bin/true
 
-	emake DESTDIR="${D}" install || die
+	emake STRIP="${EPREFIX}"/bin/true DESTDIR="${D}" install || die
 
 	dodir /$(get_libdir)
 	local lib slib
