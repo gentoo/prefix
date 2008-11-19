@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.008.ebuild,v 1.12 2008/03/28 09:42:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.008.ebuild,v 1.13 2008/11/18 14:52:26 tove Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE=""
 
 DEPEND="dev-lang/perl
-		dev-perl/module-build"
+		virtual/perl-Module-Build"
 RDEPEND="dev-lang/perl"
 
 SRC_TEST="do"

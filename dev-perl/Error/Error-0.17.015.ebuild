@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.015.ebuild,v 1.1 2008/08/23 17:55:47 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.015.ebuild,v 1.2 2008/11/18 14:52:26 tove Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ IUSE="test"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	dev-perl/module-build
+	virtual/perl-Module-Build
 	test? ( >=dev-perl/Test-Pod-1.14
 		>=dev-perl/Test-Pod-Coverage-1.04 )"
 
