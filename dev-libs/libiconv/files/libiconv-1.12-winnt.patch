@@ -1,0 +1,38 @@
+diff -ru -x '*.Po' -x '*.Plo' libiconv-1.12.orig/include/iconv.h.build.in libiconv-1.12/include/iconv.h.build.in
+--- libiconv-1.12.orig/include/iconv.h.build.in	2008-11-19 14:56:04 +0100
++++ libiconv-1.12/include/iconv.h.build.in	2008-11-19 14:58:46 +0100
+@@ -25,6 +25,8 @@
+ 
+ #if 0 && BUILDING_LIBICONV
+ #define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
++#elif !defined(BUILDING_LIBICONV) && defined(_WIN32)
++#define LIBICONV_DLL_EXPORTED __declspec(dllimport)
+ #else
+ #define LIBICONV_DLL_EXPORTED
+ #endif
+diff -ru -x '*.Po' -x '*.Plo' libiconv-1.12.orig/srclib/Makefile.in libiconv-1.12/srclib/Makefile.in
+--- libiconv-1.12.orig/srclib/Makefile.in	2008-11-19 14:56:09 +0100
++++ libiconv-1.12/srclib/Makefile.in	2008-11-19 14:47:25 +0100
+@@ -79,7 +79,7 @@
+ 	$(top_srcdir)/srcm4/visibility.m4 $(top_srcdir)/srcm4/wchar.m4 \
+ 	$(top_srcdir)/srcm4/wchar_t.m4 $(top_srcdir)/m4/cp.m4 \
+ 	$(top_srcdir)/m4/eilseq.m4 $(top_srcdir)/m4/endian.m4 \
+-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ln.m4 \
++	$(top_srcdir)/m4/ln.m4 \
+ 	$(top_srcdir)/configure.ac
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+diff -ru -x '*.Po' -x '*.Plo' libiconv-1.12.orig/srcm4/include_next.m4 libiconv-1.12/srcm4/include_next.m4
+--- libiconv-1.12.orig/srcm4/include_next.m4	2008-11-19 14:56:09 +0100
++++ libiconv-1.12/srcm4/include_next.m4	2008-11-19 14:47:25 +0100
+@@ -89,8 +89,8 @@
+ 	    dnl so use subshell.
+ 	    AS_VAR_SET([gl_next_header],
+ 	      ['"'`(eval "$ac_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD |
+-	       sed -n '\#/]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
+-		 s#.*"\(.*/]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
++	       sed -n '\#[/\\]]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
++		 s#.*"\(.*[/\\]]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
+ 		 s#^/[^/]#//&#
+ 		 p
+ 		 q

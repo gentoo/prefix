@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/libiconv/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 DEPEND="!sys-libs/glibc
@@ -28,9 +28,19 @@ src_unpack() {
 	# don't have to deal with it for now.
 	#epatch "${FILESDIR}"/${PN}-1.10-link.patch
 
-	# Make sure that libtool support is updated to link "the linux way" on
-	# FreeBSD.
-	elibtoolize
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${P}-winnt.patch
+
+		find "${S}" -name 'libtool.m4' | xargs rm
+
+		AT_M4DIR="${S}/srcm4 ${S}/m4" eautoreconf # required for winnt support
+		cd "${S}"/libcharset
+		AT_M4DIR="${S}/srcm4 ${S}/m4" eautoreconf # required for winnt support
+	else
+		# Make sure that libtool support is updated to link "the linux way" on
+		# FreeBSD.
+		elibtoolize
+	fi
 }
 
 src_compile() {
