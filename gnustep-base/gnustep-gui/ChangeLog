@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.71 2008/10/03 17:25:09 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.72 2008/11/17 13:39:22 voyageur Exp $
+
+  17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-gui-0.12.1.ebuild:
+  Remove old stable branch packages
 
   03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
   gnustep-gui-0.14.0.ebuild:
