@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/cvs2svn-2.1.1.ebuild,v 1.3 2008/11/16 16:49:28 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/cvs2svn-2.1.1.ebuild,v 1.4 2008/11/18 17:57:00 dertobi123 Exp $
 
 EAPI="prefix"
 
