@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/Sub-Uplevel-0.20.02.ebuild,v 1.1 2008/09/12 05:20:16 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/Sub-Uplevel-0.20.02.ebuild,v 1.2 2008/11/18 15:31:43 tove Exp $
 
 EAPI="prefix"
 
@@ -22,4 +22,4 @@ SRC_TEST="do"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	dev-perl/module-build"
+	virtual/perl-Module-Build"
