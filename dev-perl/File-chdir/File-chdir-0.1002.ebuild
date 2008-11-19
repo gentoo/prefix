@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/File-chdir-0.1002.ebuild,v 1.3 2008/07/15 19:22:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/File-chdir-0.1002.ebuild,v 1.4 2008/11/18 15:00:16 tove Exp $
 
 EAPI="prefix"
 
@@ -20,4 +20,4 @@ SRC_TEST="do"
 RDEPEND=">=virtual/perl-File-Spec-3.27
 	dev-lang/perl"
 DEPEND="${RDEPEND}
-	dev-perl/module-build"
+	virtual/perl-Module-Build"
