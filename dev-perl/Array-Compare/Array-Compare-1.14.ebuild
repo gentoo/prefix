@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Array-Compare/Array-Compare-1.14.ebuild,v 1.7 2007/08/09 14:20:46 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Array-Compare/Array-Compare-1.14.ebuild,v 1.8 2008/11/18 14:24:08 tove Exp $
 
 EAPI="prefix"
 
@@ -18,5 +18,5 @@ IUSE=""
 SRC_TEST="do"
 
 RDEPEND="dev-lang/perl"
-DEPEND=">=dev-perl/module-build-0.28
+DEPEND=">=virtual/perl-Module-Build-0.28
 	${RDEPEND}"
