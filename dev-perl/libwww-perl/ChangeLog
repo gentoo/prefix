@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/libwww-perl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.90 2008/10/20 16:16:47 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.91 2008/11/18 15:48:52 tove Exp $
+
+  18 Nov 2008; Torsten Veller <tove@gentoo.org> libwww-perl-5.805.ebuild,
+  libwww-perl-5.814.ebuild, libwww-perl-5.816.ebuild,
+  libwww-perl-5.817.ebuild, libwww-perl-5.819.ebuild:
+  New virtuals: Compress-Zlib
 
 *libwww-perl-5.819 (20 Oct 2008)
 
