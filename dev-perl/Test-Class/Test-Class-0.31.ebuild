@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.31.ebuild,v 1.1 2008/09/15 08:32:59 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.31.ebuild,v 1.2 2008/11/18 15:34:31 tove Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,6 @@ RDEPEND=">=virtual/perl-Storable-2
 	>=dev-perl/Devel-Symdump-2.03
 	dev-lang/perl"
 DEPEND="${RDEPEND}
-	dev-perl/module-build
+	virtual/perl-Module-Build
 	test? ( dev-perl/Test-Pod
 		dev-perl/Test-Pod-Coverage )"

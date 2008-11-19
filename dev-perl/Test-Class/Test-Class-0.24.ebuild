@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.24.ebuild,v 1.4 2007/11/10 14:49:11 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.24.ebuild,v 1.5 2008/11/18 15:34:31 tove Exp $
 
 EAPI="prefix"
 
@@ -17,9 +17,9 @@ IUSE=""
 SRC_TEST="do"
 
 DEPEND="${RDEPEND}
-		dev-perl/module-build"
+		virtual/perl-Module-Build"
 RDEPEND=">=virtual/perl-Storable-2
-	>=dev-perl/module-build-0.28
+	>=virtual/perl-Module-Build-0.28
 	>=virtual/perl-Test-Simple-0.62
 	dev-perl/Test-Differences
 	dev-perl/Test-Exception
