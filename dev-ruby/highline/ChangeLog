@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/highline
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.16 2008/11/09 09:14:36 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.17 2008/11/18 19:15:15 graaff Exp $
+
+*highline-1.5.0 (18 Nov 2008)
+
+  18 Nov 2008; Hans de Graaff <graaff@gentoo.org> +highline-1.5.0.ebuild:
+  Version bump:
+   * Fixed a bug that would prevent Readline from showing all completions.
+   * Added the ability to pass a block to HighLine#agree().
 
   09 Nov 2008; Hans de Graaff <graaff@gentoo.org> -highline-1.2.7.ebuild,
   -highline-1.2.9.ebuild:
