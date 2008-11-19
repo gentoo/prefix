@@ -4,14 +4,14 @@
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic eutils
+inherit libtool flag-o-matic eutils autotools
 
 DESCRIPTION="Version 2 of the library to manipulate XML files"
 HOMEPAGE="http://www.xmlsoft.org/"
 
 LICENSE="MIT"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="bootstrap build debug doc examples ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
@@ -47,8 +47,11 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
+	epatch "${FILESDIR}"/${P}-winnt.patch
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
+
+	eautoreconf # required for winnt
 
 	epunt_cxx
 }
