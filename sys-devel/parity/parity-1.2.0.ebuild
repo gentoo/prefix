@@ -20,6 +20,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-winnt-version.patch
+	epatch "${FILESDIR}"/${P}-exception-handling.patch
 }
 
 pkg_setup() {
