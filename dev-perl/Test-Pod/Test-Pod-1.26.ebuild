@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/Test-Pod-1.26.ebuild,v 1.15 2008/06/06 09:03:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/Test-Pod-1.26.ebuild,v 1.16 2008/11/18 15:38:22 tove Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-DEPEND="dev-perl/Pod-Simple
+DEPEND="virtual/perl-Pod-Simple
 	>=virtual/perl-Test-Simple-0.62
 	dev-lang/perl"
 
