@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-netload
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-netload/ChangeLog,v 1.55 2008/11/10 18:24:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-netload/ChangeLog,v 1.56 2008/11/18 16:34:29 darkside Exp $
+
+  18 Nov 2008; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-netload-0.4.0.ebuild:
+  add intltoolize call to xfce4-netload. fixes bug 242654
 
   10 Nov 2008; Christoph Mende <angelos@gentoo.org>
   xfce4-netload-0.4.0.ebuild:
