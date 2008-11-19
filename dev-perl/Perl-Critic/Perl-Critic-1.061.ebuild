@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.061.ebuild,v 1.4 2008/02/20 19:59:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.061.ebuild,v 1.5 2008/11/18 15:24:02 tove Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ IUSE=""
 
 SRC_TEST="do"
 
-RDEPEND=">=dev-perl/Module-Pluggable-3.1
+RDEPEND=">=virtual/perl-Module-Pluggable-3.1
 	>=dev-perl/Config-Tiny-2
 	dev-perl/List-MoreUtils
 	dev-perl/IO-String
@@ -30,6 +30,6 @@ RDEPEND=">=dev-perl/Module-Pluggable-3.1
 	>=dev-perl/set-scalar-1.20
 	dev-perl/B-Keywords
 	dev-lang/perl"
-DEPEND="dev-perl/module-build"
+DEPEND="virtual/perl-Module-Build"
 
 mydoc="extras/* examples/*"
