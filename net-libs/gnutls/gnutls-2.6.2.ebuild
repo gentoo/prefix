@@ -1,7 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.2.ebuild,v 1.1 2008/11/13 18:58:28 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.2.ebuild,v 1.2 2008/11/18 11:26:11 dragonheart Exp $
 
+EAPI="prefix 2"
 inherit eutils libtool autotools
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
@@ -21,7 +22,6 @@ unset MINOR_VERSION
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-EAPI="prefix 2"
 IUSE="bindist +cxx doc guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
@@ -56,7 +56,7 @@ src_unpack() {
 	elibtoolize # for sane .so versioning on FreeBSD
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
 	econf  \
@@ -66,7 +66,6 @@ src_compile() {
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		${myconf}
-	emake || die "emake failed"
 }
 
 src_install() {
