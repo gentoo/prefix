@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.64 2008/10/03 17:29:19 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.65 2008/11/17 13:41:59 voyageur Exp $
+
+  17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-back-art-0.12.1.ebuild:
+  Remove old stable branch packages
 
   03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
   gnustep-back-art-0.14.0.ebuild:
