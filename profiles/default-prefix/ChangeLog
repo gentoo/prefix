@@ -3,6 +3,9 @@
 # $Id$
 
   19 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/x86/package.mask:
+  remove mask on openoffice-bin, irid_ 'motivated' me in irc to fix this
+
+  19 Nov 2008; Jeremy Olexa <darkside@gentoo.org> linux/x86/package.mask:
   openoffice-bin has broken patches, needs love
 
   18 Nov 2008; Jeremy Olexa <darkside@gentoo.org> -linux/package.mask:
