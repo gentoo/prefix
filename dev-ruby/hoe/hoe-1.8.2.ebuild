@@ -1,10 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/hoe-1.8.2.ebuild,v 1.1 2008/10/25 13:58:16 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/hoe-1.8.2.ebuild,v 1.2 2008/11/18 19:31:59 graaff Exp $
 
 EAPI="prefix"
 
 inherit gems
+
+USE_RUBY="ruby18 ruby19"
 
 DESCRIPTION="Hoe extends rake to provide full project automation."
 HOMEPAGE="http://seattlerb.rubyforge.org/"

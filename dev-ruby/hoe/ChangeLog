@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.39 2008/10/25 13:58:16 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.40 2008/11/18 19:31:59 graaff Exp $
+
+  18 Nov 2008; Hans de Graaff <graaff@gentoo.org> hoe-1.8.2.ebuild:
+  Has been tested for Ruby 1.9 compatibility in the overlay.
 
 *hoe-1.8.2 (25 Oct 2008)
 
