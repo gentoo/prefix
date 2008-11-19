@@ -1,6 +1,9 @@
 # ChangeLog for sys-cluster/lam-mpi
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.68 2008/07/28 20:09:10 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.69 2008/11/18 14:35:25 jer Exp $
+
+  18 Nov 2008; Jeroen Roovers <jer@gentoo.org> lam-mpi-7.1.4.ebuild:
+  Stable for HPPA (bug #245439).
 
   28 Jul 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
   Update metadata.xml to include USE flag descriptions. Entries taken from

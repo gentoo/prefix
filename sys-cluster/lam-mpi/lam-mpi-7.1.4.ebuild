@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.4 2008/05/02 16:55:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4.ebuild,v 1.5 2008/11/18 14:35:25 jer Exp $
 
 EAPI="prefix"
 
