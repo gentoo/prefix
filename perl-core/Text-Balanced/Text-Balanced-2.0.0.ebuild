@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Text-Balanced/Text-Balanced-2.0.0.ebuild,v 1.15 2008/03/28 07:09:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Text-Balanced/Text-Balanced-2.0.0.ebuild,v 1.16 2008/11/18 14:19:35 tove Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="dev-lang/perl
-	dev-perl/version
-	>=dev-perl/module-build-0.28"
+RDEPEND="dev-lang/perl
+	virtual/perl-version"
+DEPEND="${RDEPEND}
+	>=virtual/perl-Module-Build-0.28"
