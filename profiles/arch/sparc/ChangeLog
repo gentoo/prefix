@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.31 2008/11/12 20:27:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.32 2008/11/18 19:23:56 fmccor Exp $
+
+  18 Nov 2008; Ferris McCormick <fmccor@gentoo.org> package.mask:
+  Unmask texlive-2008 (thanks to Friedrich Oslage for zziplib fix).
 
   12 Nov 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
   mask glossaries 1.16 along with texlive 2008 because it is needed, bug

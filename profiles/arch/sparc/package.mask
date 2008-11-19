@@ -1,94 +1,100 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.7 2008/11/12 20:27:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.8 2008/11/18 19:23:56 fmccor Exp $
 
+##
+# Ferris McCormick <fmccor@gentoo.org> (18 Nov. 2008)
+# unmask the big texlive package mask.
 # Alexis Ballier <aballier@gentoo.org> (09 Sep 2008)
 # The big TeX Live 2008 mask. Needs some testing and keywording love.
 # Updated 06 Oct 2008 for bug #237202 and bug #239472
->=dev-texlive/texlive-basic-2008
->=dev-texlive/texlive-bibtexextra-2008
->=dev-texlive/texlive-context-2008
->=dev-texlive/texlive-documentation-base-2008
->=dev-texlive/texlive-documentation-bulgarian-2008
->=dev-texlive/texlive-documentation-chinese-2008
->=dev-texlive/texlive-documentation-czechslovak-2008
->=dev-texlive/texlive-documentation-dutch-2008
->=dev-texlive/texlive-documentation-english-2008
->=dev-texlive/texlive-documentation-finnish-2008
->=dev-texlive/texlive-documentation-french-2008
->=dev-texlive/texlive-documentation-german-2008
->=dev-texlive/texlive-documentation-greek-2008
->=dev-texlive/texlive-documentation-italian-2008
->=dev-texlive/texlive-documentation-japanese-2008
->=dev-texlive/texlive-documentation-korean-2008
->=dev-texlive/texlive-documentation-mongolian-2008
->=dev-texlive/texlive-documentation-polish-2008
->=dev-texlive/texlive-documentation-portuguese-2008
->=dev-texlive/texlive-documentation-russian-2008
->=dev-texlive/texlive-documentation-slovenian-2008
->=dev-texlive/texlive-documentation-spanish-2008
->=dev-texlive/texlive-documentation-thai-2008
->=dev-texlive/texlive-documentation-turkish-2008
->=dev-texlive/texlive-documentation-ukrainian-2008
->=dev-texlive/texlive-documentation-vietnamese-2008
->=dev-texlive/texlive-fontsextra-2008
->=dev-texlive/texlive-fontsrecommended-2008
->=dev-texlive/texlive-formatsextra-2008
->=dev-texlive/texlive-games-2008
->=dev-texlive/texlive-genericextra-2008
->=dev-texlive/texlive-genericrecommended-2008
->=dev-texlive/texlive-htmlxml-2008
->=dev-texlive/texlive-humanities-2008
->=dev-texlive/texlive-langafrican-2008
->=dev-texlive/texlive-langarab-2008
->=dev-texlive/texlive-langarmenian-2008
->=dev-texlive/texlive-langcjk-2008
->=dev-texlive/texlive-langcroatian-2008
->=dev-texlive/texlive-langcyrillic-2008
->=dev-texlive/texlive-langczechslovak-2008
->=dev-texlive/texlive-langdanish-2008
->=dev-texlive/texlive-langdutch-2008
->=dev-texlive/texlive-langfinnish-2008
->=dev-texlive/texlive-langfrench-2008
->=dev-texlive/texlive-langgerman-2008
->=dev-texlive/texlive-langgreek-2008
->=dev-texlive/texlive-langhebrew-2008
->=dev-texlive/texlive-langhungarian-2008
->=dev-texlive/texlive-langindic-2008
->=dev-texlive/texlive-langitalian-2008
->=dev-texlive/texlive-langlatin-2008
->=dev-texlive/texlive-langmongolian-2008
->=dev-texlive/texlive-langnorwegian-2008
->=dev-texlive/texlive-langother-2008
->=dev-texlive/texlive-langpolish-2008
->=dev-texlive/texlive-langportuguese-2008
->=dev-texlive/texlive-langspanish-2008
->=dev-texlive/texlive-langswedish-2008
->=dev-texlive/texlive-langtibetan-2008
->=dev-texlive/texlive-langukenglish-2008
->=dev-texlive/texlive-langvietnamese-2008
->=dev-texlive/texlive-latex-2008
->=dev-texlive/texlive-latex3-2008
->=dev-texlive/texlive-latexextra-2008
->=dev-texlive/texlive-latexrecommended-2008
->=dev-texlive/texlive-mathextra-2008
->=dev-texlive/texlive-metapost-2008
->=dev-texlive/texlive-music-2008
->=dev-texlive/texlive-omega-2008
->=dev-texlive/texlive-pictures-2008
->=dev-texlive/texlive-plainextra-2008
->=dev-texlive/texlive-pstricks-2008
->=dev-texlive/texlive-psutils-2008
->=dev-texlive/texlive-publishers-2008
->=dev-texlive/texlive-science-2008
->=dev-texlive/texlive-texinfo-2008
->=dev-texlive/texlive-xetex-2008
->=app-text/texlive-core-2008
->=app-text/texlive-2008
->=dev-tex/mh-20080903
->=dev-tex/glossaries-1.16
-app-admin/eselect-pdftex
-app-admin/eselect-mpost
+##
+# Ferris McCormick <fmccor@gentoo.org> (18 Nov. 2008)
+# unmask the big texlive package mask.
+#	>=dev-texlive/texlive-basic-2008
+#	>=dev-texlive/texlive-bibtexextra-2008
+#	>=dev-texlive/texlive-context-2008
+#	>=dev-texlive/texlive-documentation-base-2008
+#	>=dev-texlive/texlive-documentation-bulgarian-2008
+#	>=dev-texlive/texlive-documentation-chinese-2008
+#	>=dev-texlive/texlive-documentation-czechslovak-2008
+#	>=dev-texlive/texlive-documentation-dutch-2008
+#	>=dev-texlive/texlive-documentation-english-2008
+#	>=dev-texlive/texlive-documentation-finnish-2008
+#	>=dev-texlive/texlive-documentation-french-2008
+#	>=dev-texlive/texlive-documentation-german-2008
+#	>=dev-texlive/texlive-documentation-greek-2008
+#	>=dev-texlive/texlive-documentation-italian-2008
+#	>=dev-texlive/texlive-documentation-japanese-2008
+#	>=dev-texlive/texlive-documentation-korean-2008
+#	>=dev-texlive/texlive-documentation-mongolian-2008
+#	>=dev-texlive/texlive-documentation-polish-2008
+#	>=dev-texlive/texlive-documentation-portuguese-2008
+#	>=dev-texlive/texlive-documentation-russian-2008
+#	>=dev-texlive/texlive-documentation-slovenian-2008
+#	>=dev-texlive/texlive-documentation-spanish-2008
+#	>=dev-texlive/texlive-documentation-thai-2008
+#	>=dev-texlive/texlive-documentation-turkish-2008
+#	>=dev-texlive/texlive-documentation-ukrainian-2008
+#	>=dev-texlive/texlive-documentation-vietnamese-2008
+#	>=dev-texlive/texlive-fontsextra-2008
+#	>=dev-texlive/texlive-fontsrecommended-2008
+#	>=dev-texlive/texlive-formatsextra-2008
+#	>=dev-texlive/texlive-games-2008
+#	>=dev-texlive/texlive-genericextra-2008
+#	>=dev-texlive/texlive-genericrecommended-2008
+#	>=dev-texlive/texlive-htmlxml-2008
+#	>=dev-texlive/texlive-humanities-2008
+#	>=dev-texlive/texlive-langafrican-2008
+#	>=dev-texlive/texlive-langarab-2008
+#	>=dev-texlive/texlive-langarmenian-2008
+#	>=dev-texlive/texlive-langcjk-2008
+#	>=dev-texlive/texlive-langcroatian-2008
+#	>=dev-texlive/texlive-langcyrillic-2008
+#	>=dev-texlive/texlive-langczechslovak-2008
+#	>=dev-texlive/texlive-langdanish-2008
+#	>=dev-texlive/texlive-langdutch-2008
+#	>=dev-texlive/texlive-langfinnish-2008
+#	>=dev-texlive/texlive-langfrench-2008
+#	>=dev-texlive/texlive-langgerman-2008
+#	>=dev-texlive/texlive-langgreek-2008
+#	>=dev-texlive/texlive-langhebrew-2008
+#	>=dev-texlive/texlive-langhungarian-2008
+#	>=dev-texlive/texlive-langindic-2008
+#	>=dev-texlive/texlive-langitalian-2008
+#	>=dev-texlive/texlive-langlatin-2008
+#	>=dev-texlive/texlive-langmongolian-2008
+#	>=dev-texlive/texlive-langnorwegian-2008
+#	>=dev-texlive/texlive-langother-2008
+#	>=dev-texlive/texlive-langpolish-2008
+#	>=dev-texlive/texlive-langportuguese-2008
+#	>=dev-texlive/texlive-langspanish-2008
+#	>=dev-texlive/texlive-langswedish-2008
+#	>=dev-texlive/texlive-langtibetan-2008
+#	>=dev-texlive/texlive-langukenglish-2008
+#	>=dev-texlive/texlive-langvietnamese-2008
+#	>=dev-texlive/texlive-latex-2008
+#	>=dev-texlive/texlive-latex3-2008
+#	>=dev-texlive/texlive-latexextra-2008
+#	>=dev-texlive/texlive-latexrecommended-2008
+#	>=dev-texlive/texlive-mathextra-2008
+#	>=dev-texlive/texlive-metapost-2008
+#	>=dev-texlive/texlive-music-2008
+#	>=dev-texlive/texlive-omega-2008
+#	>=dev-texlive/texlive-pictures-2008
+#	>=dev-texlive/texlive-plainextra-2008
+#	>=dev-texlive/texlive-pstricks-2008
+#	>=dev-texlive/texlive-psutils-2008
+#	>=dev-texlive/texlive-publishers-2008
+#	>=dev-texlive/texlive-science-2008
+#	>=dev-texlive/texlive-texinfo-2008
+#	>=dev-texlive/texlive-xetex-2008
+#	>=app-text/texlive-core-2008
+#	>=app-text/texlive-2008
+#	>=dev-tex/mh-20080903
+#	>=dev-tex/glossaries-1.16
+#	app-admin/eselect-pdftex
+#	app-admin/eselect-mpost
 
 # Jason Wever <weeve@gentoo.org>
 # gradm requires 64 bit support, which doesn't exist in this profile

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4023 2008/11/17 00:27:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4024 2008/11/19 02:43:59 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -65,6 +65,7 @@ app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
 app-arch/squeeze:pathbar - Include pathbar feature
 app-arch/squeeze:toolbar - Include toolbar feature
+app-backup/amanda:devpay - Support for using Amazon DevPay with S3
 app-backup/amanda:s3 - Support for backing up to the Amazon S3 system
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
 app-backup/bacula:bacula-clientonly - Disable DB support, and just build a client
