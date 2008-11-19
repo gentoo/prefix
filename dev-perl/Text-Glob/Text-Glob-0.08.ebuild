@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/Text-Glob-0.08.ebuild,v 1.8 2008/09/30 15:16:51 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/Text-Glob-0.08.ebuild,v 1.9 2008/11/18 15:39:23 tove Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,6 @@ IUSE=""
 
 RDPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	>=dev-perl/module-build-0.28"
+	>=virtual/perl-Module-Build-0.28"
 
 SRC_TEST="do"
