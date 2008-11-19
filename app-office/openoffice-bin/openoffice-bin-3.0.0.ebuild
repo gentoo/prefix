@@ -159,7 +159,7 @@ src_install () {
 	dosym ${INSTDIR}/program/spadmin /usr/bin/ooffice-printeradmin
 	dosym ${INSTDIR}/program/soffice /usr/bin/soffice
 
-	rm -f ${INSTDIR}/basis-link || die
+	rm -f "${ED}"/${INSTDIR}/basis-link || die
 	dosym ${INSTDIR}/basis3.0 ${INSTDIR}/basis-link
 
 	# Change user install dir
@@ -178,7 +178,7 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
 
-	[[ -x /sbin/chpax ]] && [[ -e /usr/$(get_libdir)/openoffice/program/soffice.bin ]] && chpax -zm /usr/$(get_libdir)/openoffice/program/soffice.bin
+	[[ -x "${EPREFIX}"/sbin/chpax ]] && [[ -e "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && chpax -zm "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin
 
 	elog " openoffice-bin does not provide integration with system spell "
 	elog " dictionaries. Please install them manually through the Extensions "
@@ -186,7 +186,7 @@ pkg_postinst() {
 	elog " package instead. "
 	elog
 	elog " Dictionaries for english, french and spanish are provided in "
-	elog " /usr/$(get_libdir)/openoffice/share/extension/install "
+	elog " ${EPREFIX}/usr/$(get_libdir)/openoffice/share/extension/install "
 	elog " Other dictionaries can be found at Suns extension site. "
 	elog
 
