@@ -1,6 +1,18 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.76 2008/10/03 17:21:15 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.77 2008/11/17 13:36:23 voyageur Exp $
+
+  17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -files/gnustep-base-1.16.1-libffi_fix.patch, -gnustep-base-1.14.1.ebuild,
+  -gnustep-base-1.14.3.ebuild, -gnustep-base-1.16.1.ebuild,
+  -gnustep-base-1.16.2.ebuild, +gnustep-base-1.16.4.ebuild:
+  Remove old stable branch packages
+
+*gnustep-base-1.16.4 (17 Nov 2008)
+
+  17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-base-1.16.4.ebuild:
+  Version bump. Fixes a variety of minor bugs
 
   03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
   gnustep-base-1.16.3.ebuild:
