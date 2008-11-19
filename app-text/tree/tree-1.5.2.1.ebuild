@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.2.1.ebuild,v 1.3 2008/11/18 01:45:53 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.2.1.ebuild,v 1.7 2008/11/18 17:49:32 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,9 @@ IUSE=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	sed -i 's:LINUX:__linux__:' tree.c
+	sed -i \
+		-e 's:LINUX:__linux__:' tree.c \
+		|| die "sed failed"
 }
 
 src_compile() {
