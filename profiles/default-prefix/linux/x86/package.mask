@@ -1,2 +1,7 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+# Jeremy Olexa <darkside@gentoo.org> (19 Nov 2008)
+# Needs love in prefix, broken patch and whatnot.
+>=app-office/openoffice-bin-3
