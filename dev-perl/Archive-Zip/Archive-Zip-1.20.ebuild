@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.20.ebuild,v 1.9 2008/03/28 09:52:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.20.ebuild,v 1.10 2008/11/18 14:22:37 tove Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
-DEPEND=">=dev-perl/Compress-Zlib-1.14
+DEPEND=">=virtual/perl-Compress-Zlib-1.14
 	>=dev-perl/File-Which-0.05
 	>=virtual/perl-File-Spec-0.80
 	dev-lang/perl"

@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Archive-Zip
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/ChangeLog,v 1.62 2008/11/01 13:49:05 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/ChangeLog,v 1.63 2008/11/18 14:22:37 tove Exp $
+
+  18 Nov 2008; Torsten Veller <tove@gentoo.org> Archive-Zip-1.16.ebuild,
+  Archive-Zip-1.20.ebuild, Archive-Zip-1.23.ebuild, Archive-Zip-1.26.ebuild:
+  New virtuals: Compress-Zlib
 
   01 Nov 2008; Torsten Veller <tove@gentoo.org> -Archive-Zip-1.18.ebuild,
   -Archive-Zip-1.24.ebuild, -Archive-Zip-1.25.ebuild:
