@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5.ebuild,v 1.1 2008/08/17 16:20:11 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5.ebuild,v 1.2 2008/11/18 16:13:26 tove Exp $
 
 EAPI="prefix"
 
@@ -27,9 +27,9 @@ DEPEND=">=dev-lang/perl-5.8.2-r1
 	>=dev-perl/Net-DNS-0.53
 	dev-perl/Digest-SHA1
 	dev-perl/libwww-perl
-	>=dev-perl/Archive-Tar-1.26
+	>=virtual/perl-Archive-Tar-1.26
 	app-crypt/gnupg
-	>=dev-perl/IO-Zlib-1.04
+	>=virtual/perl-IO-Zlib-1.04
 	>=dev-util/re2c-0.12.0
 	ssl? (
 		dev-perl/IO-Socket-SSL
