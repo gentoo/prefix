@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Bzip2/IO-Compress-Bzip2-2.015.ebuild,v 1.9 2008/11/04 09:59:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Bzip2/IO-Compress-Bzip2-2.015.ebuild,v 1.10 2008/11/18 15:07:32 tove Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,6 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
 DEPEND="~dev-perl/Compress-Raw-Bzip2-${PV}
-	~dev-perl/IO-Compress-Base-${PV}"
+	~virtual/perl-IO-Compress-Base-${PV}"
 
 SRC_TEST=do
