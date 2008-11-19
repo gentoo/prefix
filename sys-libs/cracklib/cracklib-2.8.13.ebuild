@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.1 2008/09/24 04:24:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.2 2008/11/16 18:30:32 vapier Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs multilib autotools
+inherit eutils toolchain-funcs multilib autotools
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
@@ -32,6 +32,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-python-linkage.patch #246747
 
 	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
 

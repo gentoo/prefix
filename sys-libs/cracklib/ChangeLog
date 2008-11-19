@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.121 2008/09/24 04:24:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.122 2008/11/16 18:30:32 vapier Exp $
+
+  16 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/cracklib-2.8.13-python-linkage.patch, cracklib-2.8.13.ebuild:
+  Link python module against python #246747 by Robert Wohlrab.
 
 *cracklib-2.8.13 (24 Sep 2008)
 
