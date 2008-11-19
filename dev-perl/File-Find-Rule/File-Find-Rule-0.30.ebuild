@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Find-Rule/File-Find-Rule-0.30.ebuild,v 1.13 2007/05/05 14:02:47 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Find-Rule/File-Find-Rule-0.30.ebuild,v 1.14 2008/11/18 14:56:26 tove Exp $
 
 EAPI="prefix"
 
@@ -17,9 +17,10 @@ IUSE=""
 
 SRC_TEST="do"
 
-DEPEND="virtual/perl-Test-Simple
+RDEPEND="virtual/perl-Test-Simple
 	virtual/perl-File-Spec
 	dev-perl/Number-Compare
 	dev-perl/Text-Glob
-	>=dev-perl/module-build-0.28
 	dev-lang/perl"
+DEPEND="${RDEPEND}
+	virtual/perl-Module-Build"
