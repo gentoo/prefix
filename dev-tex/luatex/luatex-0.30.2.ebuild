@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.2.ebuild,v 1.2 2008/10/27 17:55:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.2.ebuild,v 1.3 2008/11/18 15:30:35 fmccor Exp $
 
 EAPI="prefix 2"
 
