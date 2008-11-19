@@ -83,6 +83,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
 	epatch "${FILESDIR}"/mutt-1.5.18cvs-change-subject.patch
+	epatch "${FILESDIR}"/mutt-1.5.18cvs-imap-folders.patch
 
 	if ! use vanilla && ! use sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
