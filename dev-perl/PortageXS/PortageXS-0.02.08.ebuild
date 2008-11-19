@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.08.ebuild,v 1.3 2008/08/02 20:17:02 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.08.ebuild,v 1.4 2008/11/18 15:27:16 tove Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ IUSE="minimal"
 SRC_TEST="do"
 
 DEPEND="dev-lang/perl
-	dev-perl/Term-ANSIColor
+	virtual/perl-Term-ANSIColor
 	!minimal? ( dev-perl/IO-Socket-SSL
 				virtual/perl-Sys-Syslog )"
 
