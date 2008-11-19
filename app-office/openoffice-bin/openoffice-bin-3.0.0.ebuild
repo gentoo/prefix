@@ -76,7 +76,7 @@ src_unpack() {
 	unpack ${A}
 	#added for prefix
 	cp "${FILESDIR}"/{50-openoffice-bin,wrapper.in} "${T}"
-	epatch "${FILESDIR}"/${PN}-prefix.patch
+	sed -i 's:/usr:@GENTOO_PORTAGE_EPREFIX@/usr:g' "${T}"/{50-openoffice-bin,wrapper.in} || die
 	eprefixify "${T}"/{50-openoffice-bin,wrapper.in}
 
 	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts ooolinguistic pyuno testtool writer xsltfilter ; do
