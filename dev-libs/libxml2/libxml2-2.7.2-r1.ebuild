@@ -111,6 +111,20 @@ src_install() {
 	fi
 }
 
+pkg_preinst() {
+	#
+	# on windows, xmllint is installed by interix libxml2 in parent prefix.
+	# this is the version to use. the native winnt version does not support
+	# symlinks, which makes repoman fail if the portage tree is linked in
+	# from another location (which is my default).
+	#
+	if [[ ${CHOST} == *-winnt* ]]; then
+		cd "${ED}"
+		rm usr/bin/xmllint
+		rm usr/bin/xmlcatalog
+	fi
+}
+
 pkg_postinst() {
 	# We don't want to do the xmlcatalog during stage1, as xmlcatalog will not
 	# be in / and stage1 builds to ROOT=/tmp/stage1root. This fixes bug #208887.

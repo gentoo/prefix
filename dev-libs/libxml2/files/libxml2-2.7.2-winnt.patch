@@ -1,6 +1,6 @@
 diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/dict.c libxml2-2.7.2/dict.c
---- libxml2-2.7.2.orig/dict.c	2008-11-19 15:26:59 +0100
-+++ libxml2-2.7.2/dict.c	2008-11-19 15:33:25 +0100
+--- libxml2-2.7.2.orig/dict.c	2008-11-20 11:16:34 +0100
++++ libxml2-2.7.2/dict.c	2008-11-20 09:50:19 +0100
 @@ -25,7 +25,7 @@
  #else
  #ifdef HAVE_INTTYPES_H
@@ -11,8 +11,8 @@ diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/dict.c libxml2-2.7.2/dict.c
  #endif
  #endif
 diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/include/wsockcompat.h libxml2-2.7.2/include/wsockcompat.h
---- libxml2-2.7.2.orig/include/wsockcompat.h	2008-11-19 15:26:59 +0100
-+++ libxml2-2.7.2/include/wsockcompat.h	2008-11-19 15:31:47 +0100
+--- libxml2-2.7.2.orig/include/wsockcompat.h	2008-11-20 11:16:34 +0100
++++ libxml2-2.7.2/include/wsockcompat.h	2008-11-20 09:50:19 +0100
 @@ -26,7 +26,7 @@
  #endif
  #endif
@@ -23,8 +23,8 @@ diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/include/wsockcompat.h libxml2-2
   * (e.g. by iconv.h) and overwrites the definition of EWOULDBLOCK. */
  #include <errno.h>
 diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/nanohttp.c libxml2-2.7.2/nanohttp.c
---- libxml2-2.7.2.orig/nanohttp.c	2008-11-19 15:26:59 +0100
-+++ libxml2-2.7.2/nanohttp.c	2008-11-19 15:30:52 +0100
+--- libxml2-2.7.2.orig/nanohttp.c	2008-11-20 11:16:34 +0100
++++ libxml2-2.7.2/nanohttp.c	2008-11-20 09:50:19 +0100
 @@ -82,6 +82,9 @@
  #define XML_SOCKLEN_T unsigned int
  #endif
@@ -35,3 +35,38 @@ diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/nanohttp.c libxml2-2.7.2/nanoht
  
  #include <libxml/globals.h>
  #include <libxml/xmlerror.h>
+diff -ru -x '*.Po' -x '*.Plo' libxml2-2.7.2.orig/xmlIO.c libxml2-2.7.2/xmlIO.c
+--- libxml2-2.7.2.orig/xmlIO.c	2008-11-20 10:11:21 +0100
++++ libxml2-2.7.2/xmlIO.c	2008-11-20 10:54:34 +0100
+@@ -44,6 +44,7 @@
+ #include <winnls.h> /* for CP_UTF8 */
+ #endif
+ 
++#ifndef __PARITY__
+ /* Figure a portable way to know if a file is a directory. */
+ #ifndef HAVE_STAT
+ #  ifdef HAVE__STAT
+@@ -79,6 +80,7 @@
+ #    endif
+ #  endif
+ #endif
++#endif /* __PARITY__ */
+ 
+ #include <libxml/xmlmemory.h>
+ #include <libxml/parser.h>
+@@ -626,6 +628,7 @@
+ {
+ #ifdef HAVE_STAT
+     int retval = -1;
++#ifndef __PARITY__
+     wchar_t *wPath;
+ 
+     wPath = __xmlIOWin32UTF8ToWChar(path);
+@@ -634,6 +637,7 @@
+        retval = _wstat(wPath,info);
+        xmlFree(wPath);
+     }
++#endif
+     /* maybe path in native encoding */
+     if(retval < 0)
+        retval = stat(path,info);
