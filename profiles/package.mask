@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9178 2008/11/18 21:07:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9195 2008/11/20 05:08:34 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,57 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
+# Removed in 30 days by treecleaners at maintainer's request. bug #152940
+# Dead upstream, other alternatives.
+net-im/gnome-jabber
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
+# Removed in 60 days by treecleaners, comment on bug #247494
+# 1. lack of users interest - I see zero version bump requests for this package
+# although version currently in the tree more then year and a half old (released
+# 03.03.2007)
+# 2. lack of developers interest it's maintainer-wanted
+# 3. nothing in the tree depends on it
+dev-db/fastdb
+
+# Peter Alfredsen <loki_val@gentoo.org> (19 Nov 2008)
+# Let's see if we can make this break something.
+# Masked for now. I hope to get some gtk-sharp etc. stuff
+# Into the tree along with it. I'll probably do a simplistic
+# Conversion from split ebuilds to monolithic ebuilds.
+# dotnet won't mind, I hope. I contacted them some time ago,
+# but never got an answer, so assuming they're AWOL.
+# Diego E. Pettenò <flameeyes@gentoo.org> (19 Nov 2008)
+# gtk-sharp and glade-sharp I took care of myself, merging them in a
+# monolithic ebuild with USE flag, and having a commodity ebuild for
+# glade-sharp using EAPI=2 until we port the ebuilds using it to the
+# new format.
+>=dev-lang/mono-2
+>=dev-dotnet/libgdiplus-2
+>=dev-util/mono-debugger-2
+>=dev-util/mono-tools-2
+>=dev-util/monodoc-2
+>=dev-lang/mono-basic-2
+>=dev-dotnet/xsp-2
+>=dev-dotnet/gtk-sharp-2.12
+~dev-dotnet/glade-sharp-9999
+
+# Matthias Schwarzott <zzam@gentoo.org> (19 Nov 2008)
+# This ebuild contains intrusive changes
+# masked until all changes are tested
+~sys-fs/udev-133
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Nov 2008)
+# Stops playing at random intervals when HAL is used. Unmaintained upstream.
+# Depends on deprecated xview library. Removing with maintainers request in 30
+# days.
+media-sound/workman
+
+# MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
+# Masked for bug #196340
+=media-fonts/ja-ipafonts-0.0.20040715
 
 # Ulrich Mueller <ulm@gentoo.org> (18 Nov 2008)
 # Masked until bug 247500 is sorted out.
@@ -101,6 +152,7 @@ xfce-extra/pynetworkmanager
 
 # Steve Dibb <beandog@gentoo.org> (5 Nov 2008)
 # Mask realplayer, real codecs for security, upstream issues, bug 245662
+# http://forums.gentoo.org/viewtopic-t-713051.html
 media-video/realplayer
 media-libs/amd64codecs
 media-libs/realcodecs
@@ -131,26 +183,7 @@ app-crypt/truecrypt
 =net-news/liferea-1.4.21b
 
 # Torsten Veller <tove@gentoo.org> (1 Nov 2008)
-# Adding new dual-lifed modules for perl-5.10
-dev-perl/Archive-Tar
-dev-perl/Class-ISA
-dev-perl/Compress-Raw-Zlib
-dev-perl/Compress-Zlib
-dev-perl/Digest-SHA
-dev-perl/ExtUtils-CBuilder
-dev-perl/extutils-parsexs
-dev-perl/IO-Compress-Base
-dev-perl/IO-Compress-Zlib
-dev-perl/IO-Zlib
-dev-perl/Locale-Maketext-Simple
-dev-perl/Math-BigInt-FastCalc
-dev-perl/module-build
-dev-perl/Module-Pluggable
-dev-perl/Pod-Escapes
-dev-perl/Pod-Simple
-dev-perl/Term-ANSIColor
-dev-perl/Time-Piece
-dev-perl/version
+# Masking dual-lifed modules depending on perl-5.10
 ~virtual/perl-Compress-Raw-Zlib-2.008
 ~virtual/perl-Compress-Zlib-2.008
 ~virtual/perl-ExtUtils-CBuilder-0.21
@@ -216,12 +249,6 @@ dev-python/pyframer
 # Torsten Veller <tove@gentoo.org> (21 Oct 2008)
 # Masked for removal in 30 days
 # Old and unneeded or deprecated packages
-# Added on 21 Oct 2008:
-dev-perl/VCP-autrijus
-dev-perl/PodToHTML
-dev-perl/FileHandle-Deluxe
-dev-perl/FileHandle-Rollback
-dev-perl/Audio-Tools
 # Added on 31 Oct 2008:
 dev-perl/tagged
 
@@ -324,20 +351,6 @@ gnome-extra/gnome-lirc-properties
 # Peter Volkov <pva@gentoo.org> (17 Sep 2008)
 # Development version, but yet nice :)
 =net-analyzer/wireshark-1.1*
-
-# Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
-# Masked for removal in 60 days. Dead upstream, old, no maintainer, based on 2.5
-# kernel, doesn't build with glibc-2.8, bug # 231837, 204671, 226675
-app-admin/powertweak
-
-# Jeremy Olexa <darkside@gentoo.org> (13 Sep 2008)
-# Masked for removal is 60 days. Broke, old, unmaintained. bug # 210689
-x11-base/xdirectfb
-
-# Jeremy Olexa <darkside@gentoo.org> (12 Sep 2008)
-# Masked for removal in 60 days. Broken package, needs love due to automagic
-# deps, missing kernel module, and other issues seen in bug #211702
-app-emulation/sheepshaver
 
 # Jeremy Olexa <darkside@gentoo.org> (12 Sep 2008)
 # Masked for removal in 60 days. Broken in Gentoo for 1.5 years, no maintainer,
@@ -526,10 +539,6 @@ dev-db/rekall
 # Michael Sterrett <mr_bones_@gentoo.org> (23 Jun 2008)
 # Now a part of gnome-games
 games-board/glchess
-
-# Alin Năstac <mrness@gentoo.org> (20 Jun 2008)
-# Non-working version (#211327)
-=net-libs/wvstreams-4.4.1*
 
 # Ben de Groot <yngwin@gentoo.org> (20 Jun 2008)
 # == The great ffmpeg new headers mask (bug #214740) ==
@@ -1192,10 +1201,6 @@ net-misc/xsupplicant
 # Masked because it's affected by 7 GLSAs or so, nobody should use it
 <=dev-db/mysql-3.23.58-r1
 
-# Gustavo Felisberto <humpback@gentoo.org> (23 Feb 2007)
-# Masked for remove from tree. Contact me if you need this
-net-misc/ssh
-
 # Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
 # All of those are provided by tetex-3 which is now stabilized everywhere.
 # The current TeX setup doesn't yet allow for single package updates so
@@ -1367,22 +1372,10 @@ app-benchmarks/ltp
 # zlib interaction is badly broken. See bug #124733.
 =dev-util/cvs-1.12.13*
 
-# Marcelo Goes <vanquirius@gentoo.org> (16 Feb 2006)
-# Lacks needed functionality - someone volunteered to fix it
-# See bug 117898
-net-libs/libpcap-ringbuffer
-
 # Guillaume Destuynder <kang@gentoo.org> (16 Feb 2006)
 # Masked SVN ebuilds
 =sys-kernel/rsbac-sources-2.6.99
 =sys-apps/rsbac-admin-1.2.99
-
-# Robin H. Johnson <robbat2@gentoo.org> (11 Feb 2006)
-# Robin H. Johnson <robbat2@gentoo.org> (18 Dec 2006) [updated to add 1.03]
-# pending mailer-config
-=mail-mta/nullmailer-1.00-r2
-=mail-mta/nullmailer-1.02-r2
-=mail-mta/nullmailer-1.03-r1
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
 # This is the Gentoo Linux Installer.  This is currently masked because it will

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4024 2008/11/19 02:43:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4026 2008/11/20 05:07:56 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -481,6 +481,7 @@ dev-db/rekall:xbase - Support for the Xbase db family, covering dBase, Clipper, 
 dev-db/sqlite:nothreadsafe - Turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
+dev-dotnet/gtk-sharp:glade -  Build the C#/Mono bindings for libglade (Glade#). This flag replaces the separate dev-dotnet/glade-sharp package that was available up to version 2.10.0. If a package require Glade# make sure to use a USE-based dependency from EAPI 2. 
 dev-embedded/openocd:ft2232 - Enable support for USB chips via dev-embedded/libftd2xx
 dev-embedded/openocd:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
 dev-embedded/openocd:parport - Enable support for parport JTAG devices
@@ -2066,7 +2067,6 @@ net-misc/scponly:wildcards - Enables wildcard processing with potential security
 net-misc/scponly:winscp - Enables WinSCP 2.0 compatibility with potential security risks
 net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites. sftp is a much more secure protocol and is preferred.
 net-misc/sitecopy:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support. This system allows users to collaborate on websites using a web based interface. See the ebuild for an FAQ page. Enables neon as well to handle webdav support.
-net-misc/ssh:openssh - Allow ssh and openssh to be installed side by side
 net-misc/streamtuner:shout - Enable shoutcast plug-in.
 net-misc/streamtuner:xiph - Enable xiph.org plug-in.
 net-misc/strongswan:cisco - Enable support of Cisco VPN client

@@ -1,10 +1,55 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2055 2008/11/18 21:07:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2069 2008/11/20 05:05:28 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask net-im/gnome-jabber for removal in 30 days, bug 152940
+
+  20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  removed net-misc/ssh from the tree, pending removal for years. bug #139969
+
+  20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  clean for non-existant packages
+
+  20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  clean up p.mask - net-libs/libpcap-ringbuffer was removed from the tree, bug
+  #208702
+
+  20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Add dev-db/fastdb to p.mask for removal in 60 days.
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Adding xsp to mono-2 mask
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add monobasic to mono-2 mask
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Initial mask for mono-2 ebuilds.
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Bug 211327 fixed, removing mask.
+
+  19 Nov 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask udev-133 for intrusive changes. Unmask once they are done and tested.
+
+  19 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask media-sound/workman for removal in 30 days
+
+  19 Nov 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Masked =media-fonts/ja-ipafonts-0.0.20040715 for bug #196340.
+
+  19 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  clean up p.mask file after, app-admin/powertweak, x11-base/xdirectfb,
+  app-emulation/sheepshaver treecleaner bugs were processed
+
+  19 Nov 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Removed dev-perl/ modules after moving them to perl-core/.
+  Remove masked perl modules from 21 Oct 2008.
 
   18 Nov 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Package mask app-emacs/quilt-el.
