@@ -73,6 +73,22 @@ windows_prepare_file() {
 	echo $failed
 }
 
+post_src_install() {
+	cd "${ED}"
+	find . -name '*.exe' | while read f; do
+		if file "${f}" | grep "GUI" > /dev/null 2>&1; then
+			if test ! -f "${f%.exe}"; then
+				einfo "Windows GUI Executable $f will have no symlink."
+			fi
+		else
+			if test ! -f "${f%.exe}"; then
+				ebegin "creating ${f%.exe} -> ${f} for console accessibility."
+				eend $(ln -sf "$(basename "${f}")" "${f%.exe}" && echo 0 || echo 1)
+			fi
+		fi
+	done
+}
+
 post_pkg_preinst() {
 	local removedlist="${EROOT}var/lib/portage/files2bremoved"
 	windows_cleanup_removed_files $removedlist
@@ -92,20 +108,6 @@ post_pkg_preinst() {
 		local n=$(windows_find_removed_slot ${ROOT}${rmstem})
 		ebegin "backing up text file ${ROOT}${f} (${n})"
 		eend $(windows_prepare_file "${ROOT}${f}" "${ROOT}${rmstem}${n}")
-	done
-
-	cd "${ED}"
-	find . -name '*.exe' | while read f; do
-		if file "${f}" | grep "GUI" > /dev/null 2>&1; then
-			if test ! -f "${f%.exe}"; then
-				einfo "Windows GUI Executable $f will have no symlink."
-			fi
-		else
-			if test ! -f "${f%.exe}"; then
-				ebegin "creating ${f%.exe} -> ${f} for console accessibility."
-				eend $(ln -sf "$(basename "${f}")" "${f%.exe}" && echo 0 || echo 1)
-			fi
-		fi
 	done
 }
 
