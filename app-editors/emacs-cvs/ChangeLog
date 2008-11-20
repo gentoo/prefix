@@ -1,12 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.222 2008/11/17 09:53:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.223 2008/11/19 06:41:08 ulm Exp $
 
-  17 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
-  Add W3C to LICENSE, see etc/schema/README.
-
-  07 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
-  Add as-is and X11 to LICENSE for oldXMenu und etc/rgb.txt, respectively.
+  19 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
+  Update LICENSE: Add as-is and X11 for oldXMenu and etc/rgb.txt,
+  respectively. Add W3C, see etc/schema/README. Update to FDL-1.3, following
+  upstream relicensing of the documentation.
 
   23 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   emacs-cvs-23.0.9999.ebuild:
