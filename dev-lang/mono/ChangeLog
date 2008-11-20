@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.144 2008/11/17 20:54:50 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.145 2008/11/19 22:34:44 loki_val Exp $
+
+*mono-2.0.1 (19 Nov 2008)
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -files/mono-1.1.13-pathfix.diff, -files/mono-1.2.4-make-check.patch,
+  -files/mono-1.2.5-make-check.patch, -files/mono-1.2.5-remoting.patch,
+  +files/mono-2.0.1-fix-wsdl-troubles-with-muine.patch,
+  +files/mono-2.0-mimeicon.patch, +files/mono-2.0-ppc-threading.patch,
+  -mono-1.1.16.1.ebuild, -mono-1.2.2.1.ebuild, -mono-1.2.3.1.ebuild,
+  -mono-1.2.4.ebuild, -mono-1.2.5.ebuild, -mono-1.2.5.1.ebuild,
+  -mono-1.2.6.ebuild, -mono-1.2.6-r1.ebuild, -mono-1.2.6-r2.ebuild,
+  -mono-1.9.ebuild, +mono-2.0.1.ebuild:
+  Bump for mono-2, remove crufty slag.
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/mono-1.2.5-make-check.patch:
