@@ -15,4 +15,4 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE=""
 DEPEND=""
 
-RDEPEND="|| ( ~dev-lang/perl-5.10.0 ~perl-core/Term-ANSIColor-${PV} )"
+RDEPEND="~perl-core/Term-ANSIColor-${PV}"
