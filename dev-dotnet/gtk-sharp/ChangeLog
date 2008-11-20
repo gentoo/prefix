@@ -1,6 +1,19 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.80 2008/01/13 04:19:53 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.81 2008/11/19 23:29:44 flameeyes Exp $
+
+*gtk-sharp-2.12.6 (19 Nov 2008)
+
+  19 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/gtk-sharp-2.12.0-noautomagic.patch,
+  +files/gtk-sharp-2.12.0-parallelmake.patch,
+  +files/gtk-sharp-2.12.0-respect-choices.patch, metadata.xml,
+  +gtk-sharp-2.12.6.ebuild:
+  Add an ebuild for version 2.12.6, masked togethe with Mono 2 for now. The
+  new version features working parallel make, and an USE flag to turn on/off
+  glade-sharp, merging back the separate dev-dotnet/glade-sharp package. The
+  glade USE flag is turned on by default since most software will want it
+  together with gtk-sharp.
 
   13 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org>
   gtk-sharp-1.0.10.ebuild, gtk-sharp-2.8.2.ebuild, gtk-sharp-2.10.0.ebuild:
