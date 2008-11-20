@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r2.ebuild,v 1.7 2008/11/20 01:09:42 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r3.ebuild,v 1.1 2008/11/20 02:49:27 tcunha Exp $
 
 EAPI="prefix"
 
@@ -15,12 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-RDEPEND="virtual/libc"
-DEPEND="${RDEPEND}
-	>=sys-apps/sed-4"
-
 src_unpack() {
-	unpack  ${A}
+	unpack ${A}
 	epatch "${FILESDIR}"/${P}-r1-gentoo.diff
 	epatch "${FILESDIR}"/${P}-case-insensitive.patch
 	cd "${S}"/src/cdecl
@@ -32,21 +28,16 @@ src_unpack() {
 }
 
 src_compile() {
-	./configure \
-		--host=${CHOST} \
-		--prefix="${EPREFIX}"${DESTTREE} \
-		--infodir="${EPREFIX}"${DESTTREE}/share/info \
-		--mandir="${EPREFIX}"${DESTTREE}/share/man || die
-
-	emake CC="$(tc-getCC)" -j1 || die
+	econf
+	emake CC="$(tc-getCC)" -j1 || die "emake failed"
 }
 
 src_install () {
-	make DESTDIR="${D}" install || die
-
-	dodoc COPYRIGHT CREDITS HISTORY INSTALL NEWS README
+	emake DESTDIR="${D}" install || die "emake install failed"
+	dodoc CREDITS HISTORY NEWS README || die "dodoc failed"
 }
 
 pkg_postinst () {
-	elog "cdecl was installed as cutils-cdecl because of a naming conflict with dev-util/cdecl"
+	elog "cdecl was installed as cutils-cdecl because of a naming conflict"
+	elog "with dev-util/cdecl."
 }

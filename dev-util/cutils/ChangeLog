@@ -1,6 +1,28 @@
 # ChangeLog for dev-util/cutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.20 2007/05/15 09:10:31 bangert Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.24 2008/11/20 02:49:27 tcunha Exp $
+
+*cutils-1.6-r3 (20 Nov 2008)
+
+  20 Nov 2008; Tiago Cunha <tcunha@gentoo.org> +cutils-1.6-r3.ebuild:
+  Revision bump:
+  - Remove unneeded (R)DEPEND.
+  - Use econf instead of configure.
+  - Use emake instead of make in src_install.
+  - Use die messages to ease error identification.
+  - Don't dodoc COPYRIGHT, and INSTALL.
+
+  20 Nov 2008; Tiago Cunha <tcunha@gentoo.org>
+  -files/cutils-1.6-gentoo.diff:
+  Remove unused patch
+
+  20 Nov 2008; Tiago Cunha <tcunha@gentoo.org> cutils-1.6-r2.ebuild:
+  - Fix LICENSE.
+  - Fix hardcoded CC (closes bug 243990). Thanks flameeyes
+  - Quoting.
+
+  20 Nov 2008; Tiago Cunha <tcunha@gentoo.org> metadata.xml:
+  I'll be maintaining this now
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
