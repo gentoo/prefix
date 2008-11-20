@@ -323,7 +323,7 @@ diff -r bd0ea10f5757 -r b674b979da7e hdrline.c
 +  if (env == NULL)
 +    return NULL;
 +
-+  if (SubjectRxList == NULL)
++  if (SubjectRxList == NULL || env->subject == NULL)
 +    return env->subject;
 +
 +  src = twinbuf[switcher];
