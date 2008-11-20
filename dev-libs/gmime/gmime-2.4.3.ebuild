@@ -1,21 +1,20 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.11.ebuild,v 1.5 2008/08/17 21:02:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.3.ebuild,v 1.1 2008/11/19 22:31:43 eva Exp $
 
 EAPI="prefix"
 
 inherit gnome2 eutils mono libtool
 
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
-SRC_URI="http://spruce.sourceforge.net/gmime/sources/v${PV%.*}/${P}.tar.gz"
 HOMEPAGE="http://spruce.sourceforge.net/gmime/"
 
-SLOT="0"
+SLOT="2.4"
 LICENSE="LGPL-2.1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc mono"
 
-RDEPEND=">=dev-libs/glib-2
+RDEPEND=">=dev-libs/glib-2.12
 	mono? ( dev-lang/mono
 			>=dev-dotnet/gtk-sharp-2.4.0 )
 	sys-libs/zlib"
@@ -45,19 +44,19 @@ src_unpack() {
 	sed -i -e 's:^libdir.*:libdir=@libdir@:' \
 		   -e 's:^prefix=:exec_prefix=:' \
 		   -e 's:prefix)/lib:libdir):' \
-		mono/gmime-sharp.pc.in mono/Makefile.{am,in} || die "sed failed (2)"
+		mono/gmime-sharp-2.4.pc.in mono/Makefile.{am,in} || die "sed failed (2)"
 
 	elibtoolize
 }
 
 src_compile() {
-	econf $(use_enable mono) $(use_enable doc gtk-doc) || die "configure failed"
-	MONO_PATH="${S}" emake -j1 || die "make failed"
+	econf $(use_enable mono) $(use_enable doc gtk-doc)
+	MONO_PATH="${S}" emake || die "emake failed"
 }
 
 src_install() {
-	make GACUTIL_FLAGS="${EPREFIX}/root '${ED}/usr/$(get_libdir)' ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${PN}" \
-		DESTDIR="${ED}" install || die
+	emake GACUTIL_FLAGS="${EPREFIX}/root '${ED}/usr/$(get_libdir)' ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${PN}" \
+		DESTDIR="${ED}" install || die "installation failed"
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
@@ -67,6 +66,6 @@ src_install() {
 
 	# rename these two, so they don't conflict with app-arch/sharutils
 	# (bug #70392)	Ticho, 2004-11-10
-	mv "${ED}/usr/bin/uuencode" "${ED}/usr/bin/gmime-uuencode"
-	mv "${ED}/usr/bin/uudecode" "${ED}/usr/bin/gmime-uudecode"
+	mv "${ED}/usr/bin/uuencode" "${ED}/usr/bin/gmime-uuencode-${SLOT}"
+	mv "${ED}/usr/bin/uudecode" "${ED}/usr/bin/gmime-uudecode-${SLOT}"
 }
