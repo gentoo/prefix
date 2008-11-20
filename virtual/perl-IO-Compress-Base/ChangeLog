@@ -1,0 +1,13 @@
+# ChangeLog for virtual/perl-IO-Compress-Base
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress-Base/ChangeLog,v 1.2 2008/11/02 10:57:08 swegener Exp $
+
+*perl-IO-Compress-Base-2.015 (01 Nov 2008)
+*perl-IO-Compress-Base-2.008 (01 Nov 2008)
+*perl-IO-Compress-Base-2.005 (01 Nov 2008)
+
+  01 Nov 2008; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +perl-IO-Compress-Base-2.005.ebuild, +perl-IO-Compress-Base-2.008.ebuild,
+  +perl-IO-Compress-Base-2.015.ebuild:
+  Adding virtuals for dual-lifed modules that come with perl-5.10
+
