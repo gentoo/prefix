@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby2ruby
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ChangeLog,v 1.5 2008/10/06 15:30:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ChangeLog,v 1.6 2008/11/19 06:58:08 graaff Exp $
+
+  19 Nov 2008; Hans de Graaff <graaff@gentoo.org> -ruby2ruby-1.1.5.ebuild,
+  -ruby2ruby-1.1.7.ebuild, -ruby2ruby-1.1.8.ebuild:
+  Remove old versions
 
 *ruby2ruby-1.1.9 (06 Oct 2008)
 
