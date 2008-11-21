@@ -436,7 +436,7 @@ diff -r bd0ea10f5757 -r b674b979da7e hdrline.c
 diff -r bd0ea10f5757 -r b674b979da7e init.c
 --- a/init.c	Tue Nov 18 13:54:41 2008 -0600
 +++ b/init.c	Tue Nov 18 13:54:41 2008 -0600
-@@ -734,6 +734,88 @@
+@@ -734,6 +734,103 @@
  
    return 0;
  }
@@ -485,7 +485,22 @@ diff -r bd0ea10f5757 -r b674b979da7e init.c
 +  }
 +
 +  mutt_extract_token(buf, s, 0);
-+  remove_from_replace_list(list, buf->data);
++  if (mutt_strcmp ("*", buf->data) == 0)
++  {
++    REPLACE_LIST *cur = *list;
++    while (cur != NULL)
++    {
++      *list = cur->next;
++      if (cur->rx)
++      {
++	mutt_free_regexp(&cur->rx);
++	FREE(&cur->template);
++	FREE(&cur);
++      }
++      cur = *list;
++    }
++  } else
++    remove_from_replace_list(list, buf->data);
 +  return 0;
 +}
 +
