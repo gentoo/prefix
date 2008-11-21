@@ -40,6 +40,7 @@ src_unpack() {
 		epatch "${FILESDIR}/${PN}-4.5.14.0-solaris-configure.in.patch"
 	fi
 
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	use x86-interix && NOCONFIGURE=yes xdt-autogen # need new libtool for interix
 }
