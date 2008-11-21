@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  21 Nov 2008; Jeremy Olexa <darkside@gentoo.org> +hpux/package.mask:
+  p.mask =sys-apps/file-4.25 in ia64-hpux, wait for 4.26 to be unmasked globally
+
   20 Nov 2008; Markus Duft <mduft@gentoo.org> windows/winnt/profile.bashrc:
   re-ordered some code in windows profile to ease manipulation of symlinks
   from ebuilds before installation
