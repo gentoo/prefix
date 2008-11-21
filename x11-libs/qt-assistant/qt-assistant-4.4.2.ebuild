@@ -56,6 +56,6 @@ src_install() {
 	qt4-build_src_install
 	domenu "${FILESDIR}"/Assistant.desktop || die "domenu failed"
 
-	insinto ${QTDOCDIR}
+	insinto ${QTDOCDIR#${EPREFIX}}
 	doins -r doc/qch/ || die 'Installing qch files failed.'
 }
