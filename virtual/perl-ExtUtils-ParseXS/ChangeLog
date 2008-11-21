@@ -1,0 +1,11 @@
+# ChangeLog for virtual/perl-ExtUtils-ParseXS
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-ParseXS/ChangeLog,v 1.2 2008/11/02 10:56:22 swegener Exp $
+
+*perl-ExtUtils-ParseXS-2.19 (01 Nov 2008)
+*perl-ExtUtils-ParseXS-2.18 (01 Nov 2008)
+
+  01 Nov 2008; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +perl-ExtUtils-ParseXS-2.18.ebuild, +perl-ExtUtils-ParseXS-2.19.ebuild:
+  Adding virtuals for dual-lifed modules that come with perl-5.10
+
