@@ -1,0 +1,13 @@
+# ChangeLog for virtual/perl-Module-Build
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Module-Build/ChangeLog,v 1.2 2008/11/02 11:02:07 swegener Exp $
+
+*perl-Module-Build-0.30 (01 Nov 2008)
+*perl-Module-Build-0.28.08 (01 Nov 2008)
+*perl-Module-Build-0.28-r1 (01 Nov 2008)
+
+  01 Nov 2008; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +perl-Module-Build-0.28-r1.ebuild, +perl-Module-Build-0.28.08.ebuild,
+  +perl-Module-Build-0.30.ebuild:
+  Adding virtuals for dual-lifed modules that come with perl-5.10
+
