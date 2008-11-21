@@ -665,7 +665,7 @@ append-ldflags() {
 			ewarn "Appending a library link instruction (${flag}); libraries to link to should not be passed through LDFLAGS"
 	done
 
-	export LDFLAGS="${LDFLAGS} $*"
+	export LDFLAGS="${LDFLAGS} $(test-flags "$@")"
 	return 0
 }
 
