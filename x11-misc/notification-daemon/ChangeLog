@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/notification-daemon
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.47 2007/12/13 19:35:19 compnerd Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.48 2008/11/20 14:48:07 cardoe Exp $
+
+*notification-daemon-0.3.7-r1 (20 Nov 2008)
+
+  20 Nov 2008; Doug Goldstein <cardoe@gentoo.org>
+  +files/notification-daemon-0.3.7-line-wrapping.patch,
+  +notification-daemon-0.3.7-r1.ebuild:
+  upstream fix for handling line wrapping for lines longer then 50
+  characters but shorter then 65
 
   14 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org>
   -files/notification-daemon-0.3.6-binding-tool.patch,
