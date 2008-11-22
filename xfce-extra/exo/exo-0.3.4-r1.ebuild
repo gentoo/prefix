@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.11 2008/11/17 15:38:03 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.13 2008/11/20 16:44:51 ranger Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,12 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
 
+pkg_setup() {
+	XFCE_CONFIG="${XFCE_CONFIG}	$(use_enable python)
+		$(use_enable libnotify notifications)
+		$(use_enable hal) --enable-mcs-plugin"
+}
+
 # See bug 166568 for reference
 src_unpack() {
 	unpack ${A}
@@ -43,10 +49,6 @@ src_unpack() {
 		"${FILESDIR}"/${P}-remove-libmd5.patch
 	intltoolize --force --copy --automake || die "intltoolize failed."
 	AT_M4DIR="${EPREFIX}"/usr/share/xfce4/dev-tools/m4macros eautoreconf
-
-	XFCE_CONFIG="${XFCE_CONFIG}	$(use_enable python) \
-		$(use_enable libnotify notifications) \
-		$(use_enable hal) --enable-mcs-plugin"
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 }

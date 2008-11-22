@@ -1,6 +1,15 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.67 2008/11/17 15:38:03 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.70 2008/11/20 16:52:33 angelos Exp $
+
+  20 Nov 2008; Christoph Mende <angelos@gentoo.org> -exo-0.3.4.ebuild:
+  Removed old
+
+  20 Nov 2008; Brent Baude <ranger@gentoo.org> exo-0.3.4-r1.ebuild:
+  Marking exo-0.3.4-r1 ppc64 for bug 245970
+
+  20 Nov 2008; Christoph Mende <angelos@gentoo.org> exo-0.3.4-r1.ebuild:
+  Moved XFCE_CONFIG to pkg_setup
 
   17 Nov 2008; Jeremy Olexa <darkside@gentoo.org> exo-0.3.4-r1.ebuild:
   additional ebuild cleanup for minor mistakes. use_enable in global scope,
