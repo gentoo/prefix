@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.16 2008/11/09 22:52:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.18 2008/11/22 01:23:31 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -84,7 +84,7 @@ kde4-base_set_qt_dependencies() {
 		;;
 	esac
 
-	COMMONDEPEND="${COMMONDEPEND} ${qtdepend}"
+	COMMONDEPEND="${COMMONDEPEND} ${qtdepend} !x11-libs/qt-phonon"
 }
 kde4-base_set_qt_dependencies
 

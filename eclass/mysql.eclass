@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.100 2008/11/14 22:07:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.101 2008/11/20 20:44:33 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -648,6 +648,12 @@ mysql_src_compile() {
 
 	# glib-2.3.2_pre fix, bug #16496
 	append-flags "-DHAVE_ERRNO_AS_DEFINE=1"
+
+	# As discovered by bug #246652, doing a double-level of SSP causes NDB to
+	# fail badly during cluster startup.
+	if [[ $(gcc-major-version) -lt 4 ]]; then
+		filter-flags "-fstack-protector-all"
+	fi
 
 	CXXFLAGS="${CXXFLAGS} -fno-exceptions -fno-strict-aliasing"
 	CXXFLAGS="${CXXFLAGS} -felide-constructors -fno-rtti"
