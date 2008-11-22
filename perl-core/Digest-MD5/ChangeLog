@@ -1,6 +1,11 @@
 # ChangeLog for perl-core/Digest-MD5
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.16 2007/04/15 21:03:19 corsair Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.17 2008/11/21 08:19:14 tove Exp $
+
+*Digest-MD5-2.38 (21 Nov 2008)
+
+  21 Nov 2008; Torsten Veller <tove@gentoo.org> +Digest-MD5-2.38.ebuild:
+  Version bump
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> Digest-MD5-2.36.ebuild:
   Stable on ppc64
