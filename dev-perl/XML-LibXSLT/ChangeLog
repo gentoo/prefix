@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/XML-LibXSLT
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/ChangeLog,v 1.62 2008/08/02 13:25:29 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/ChangeLog,v 1.63 2008/11/21 09:43:13 tove Exp $
+
+*XML-LibXSLT-1.68 (21 Nov 2008)
+
+  21 Nov 2008; Torsten Veller <tove@gentoo.org> +XML-LibXSLT-1.68.ebuild:
+  Version bump
 
   02 Aug 2008; Torsten Veller <tove@gentoo.org> -XML-LibXSLT-1.53.ebuild,
   -XML-LibXSLT-1.58.ebuild, -XML-LibXSLT-1.60.ebuild,
