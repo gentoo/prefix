@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080927.ebuild,v 1.4 2008/11/19 23:15:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20080927.ebuild,v 1.5 2008/11/20 17:17:47 dertobi123 Exp $
 
 EAPI="prefix"
 
