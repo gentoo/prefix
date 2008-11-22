@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libnotify
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.41 2008/06/23 13:37:59 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.42 2008/11/20 15:49:56 cardoe Exp $
+
+*libnotify-0.4.5 (20 Nov 2008)
+
+  20 Nov 2008; Doug Goldstein <cardoe@gentoo.org> +libnotify-0.4.5.ebuild:
+  bug fix release from upstream. adds GtkStatusIcon support
 
   23 Jun 2008; Samuli Suominen <drac@gentoo.org> libnotify-0.4.4.ebuild:
   Because repoman ci is broken commit to fix notification-daemon-xfce
