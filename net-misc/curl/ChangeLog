@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.129 2008/11/08 00:19:03 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.130 2008/11/22 05:33:50 loki_val Exp $
+
+*curl-7.19.2 (22 Nov 2008)
+
+  22 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> -curl-7.19.0.ebuild,
+  -curl-7.19.1.ebuild, +curl-7.19.2.ebuild:
+  Bumb, as per 247029.
 
 *curl-7.19.1 (08 Nov 2008)
 
