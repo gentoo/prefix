@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/quilt
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.38 2008/11/17 20:08:58 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.39 2008/11/20 15:38:52 mpagano Exp $
+
+*quilt-0.47-r1 (20 Nov 2008)
+
+  20 Nov 2008; Michael Pagano <mpagano@gentoo.org> quilt-0.45-r1.ebuild,
+  +quilt-0.47-r1.ebuild:
+  Removing quilt-el from package. Emerge dev-util/quilt-el for support. See
+  bug #247500 for more info. Thanks to Ulm. Other minor quoting fixes.
 
   17 Nov 2008; Mike Pagano <mpagano@gentoo.org>
   +files/quilt-0.47-no-graphviz.patch:
