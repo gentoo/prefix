@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.32 2008/11/18 19:23:56 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.33 2008/11/21 20:18:19 fmccor Exp $
+
+  21 Nov 2008; Ferris McCormick <fmccor@gentoo.org> package.mask:
+  Clean up the texlive masks, remove the commented entries.
 
   18 Nov 2008; Ferris McCormick <fmccor@gentoo.org> package.mask:
   Unmask texlive-2008 (thanks to Friedrich Oslage for zziplib fix).

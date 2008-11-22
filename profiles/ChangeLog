@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2069 2008/11/20 05:05:28 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2070 2008/11/20 07:14:31 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  20 Nov 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Unmask app-emacs/quilt-el.
 
   20 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask net-im/gnome-jabber for removal in 30 days, bug 152940

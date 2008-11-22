@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9195 2008/11/20 05:08:34 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9196 2008/11/20 07:14:31 ulm Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -79,10 +79,6 @@ media-sound/workman
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
 =media-fonts/ja-ipafonts-0.0.20040715
-
-# Ulrich Mueller <ulm@gentoo.org> (18 Nov 2008)
-# Masked until bug 247500 is sorted out.
-app-emacs/quilt-el
 
 # Michael Sterrett <mr_bones_@gentoo.org> (18 Nov 2008)
 # ytin hasn't been updated in years.  Use games-mud/tintin instead
