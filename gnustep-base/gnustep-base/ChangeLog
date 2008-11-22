@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.77 2008/11/17 13:36:23 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.78 2008/11/20 15:31:28 voyageur Exp $
+
+*gnustep-base-1.16.5 (20 Nov 2008)
+
+  20 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-base-1.16.4.ebuild, +gnustep-base-1.16.5.ebuild:
+  Version bump, fixes a null pointer indirection introduced in 1.16.4
 
   17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
   -files/gnustep-base-1.16.1-libffi_fix.patch, -gnustep-base-1.14.1.ebuild,
