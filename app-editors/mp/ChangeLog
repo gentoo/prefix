@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/mp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.64 2008/03/26 17:04:40 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.65 2008/11/21 22:26:26 keri Exp $
+
+  21 Nov 2008; <keri@gentoo.org> mp-3.3.18b.ebuild:
+  Block against dev-util/rej. Closes #247434.
 
   26 Mar 2008; Markus Rothe <corsair@gentoo.org> mp-3.3.18b.ebuild:
   Stable on ppc64; bug #214709
