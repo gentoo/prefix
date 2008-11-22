@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.12040 (22 Nov 2008)
+
+  22 Nov 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.11736.ebuild, +portage-2.2.00.12040.ebuild:
+  New snapshot, matching 2.2_rc15+
+
 *portage-2.2.00.11947 (15 Nov 2008)
 
   15 Nov 2008; Fabian Groffen <grobian@gentoo.org>
