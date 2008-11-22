@@ -1,6 +1,5 @@
-diff -urNad libid3tag-0.15.1b/utf16.c /tmp/dpep.tKvO7a/libid3tag-0.15.1b/utf16.c
---- libid3tag-0.15.1b/utf16.c	2006-01-13 15:26:29.000000000 +0100
-+++ /tmp/dpep.tKvO7a/libid3tag-0.15.1b/utf16.c	2006-01-13 15:27:19.000000000 +0100
+--- libid3tag-0.15.1b/utf16.c
++++ libid3tag-0.15.1b/utf16.c
 @@ -282,5 +282,18 @@
  
    free(utf16);
