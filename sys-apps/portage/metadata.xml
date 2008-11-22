@@ -5,7 +5,6 @@
 	<maintainer><email>grobian@gentoo.org</email></maintainer>
 
 	<use>
-		<!-- this is to shut up repoman -->
 		<flag name="build">
 			for installing during a gentoo-x86 bootstrap, don't use this
 		</flag>
@@ -17,6 +16,9 @@
 		</flag>
 		<flag name="selinux">
 			probably some SElinux crap
+		</flag>
+		<flag name="cross-prefix">
+			mduft's cross interix/winnt patch that is not documented
 		</flag>
 	</use>
 </pkgmetadata>
