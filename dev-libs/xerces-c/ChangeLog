@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/xerces-c
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.71 2008/11/12 00:41:52 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.72 2008/11/20 16:42:33 vapier Exp $
+
+  20 Nov 2008; Mike Frysinger <vapier@gentoo.org>
+  files/xerces-c-2.8.0-IconvGNUTransService.cpp.patch:
+  Do not use absolute paths in patch #237667.
 
   12 Nov 2008; Ferris McCormick <fmccor@gentoo.org>
   xerces-c-3.0.0-r1.ebuild:
