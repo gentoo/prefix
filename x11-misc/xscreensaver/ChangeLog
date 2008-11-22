@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.242 2008/11/16 17:03:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.243 2008/11/20 20:14:18 ranger Exp $
+
+  20 Nov 2008; Brent Baude <ranger@gentoo.org> -xscreensaver-5.05.ebuild,
+  xscreensaver-5.07.ebuild:
+  Marking xscreensaver-5.07 ppc64 for bug 246717 and removing old files per drac
 
   16 Nov 2008; Jeroen Roovers <jer@gentoo.org> xscreensaver-5.07.ebuild:
   Stable for HPPA (bug #246717).
