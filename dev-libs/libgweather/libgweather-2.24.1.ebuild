@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.24.1.ebuild,v 1.1 2008/11/06 23:02:03 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.24.1.ebuild,v 1.2 2008/11/22 02:27:26 leio Exp $
 
 EAPI="prefix 1"
 
@@ -33,10 +33,4 @@ pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-all-translations-in-one-xml
 		$(use_enable python)"
-}
-
-pkg_postinst() {
-	gnome2_pkg_postinst
-
-	ewarn "Please run revdep-rebuild after upgrading this package."
 }
