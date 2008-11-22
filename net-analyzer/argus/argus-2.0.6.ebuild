@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/argus-2.0.6.ebuild,v 1.4 2008/01/16 18:57:38 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/argus-2.0.6.ebuild,v 1.5 2008/11/21 12:45:05 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,9 +36,13 @@ src_install () {
 	#do not install man/man1/tcpdump.1, file collision
 	doman man/man5/* man/man8/*
 
-	dolib lib/argus_common.a lib/argus_parse.a
+	dolib lib/argus_common.a lib/argus_parse.a || die "dolib failed"
 
-	[[ ${CHOST} == *-darwin* ]] && newsbin bin/argus_bpf argus || newsbin bin/argus_linux argus
+	if [[ ${CHOST} == *-darwin* ]]; then
+		newsbin bin/argus_bpf argus || die "newsbin failed"
+	else
+		newsbin bin/argus_linux argus || die "newsbin failed"
+	fi
 
 	insinto /etc/argus
 	doins support/Config/argus.conf

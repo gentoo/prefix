@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/argus
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.16 2008/01/16 18:57:38 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.17 2008/11/21 12:45:05 flameeyes Exp $
+
+  21 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org> argus-2.0.6.ebuild:
+  Die when dolib or newsbin fail since the make process always return
+  success.
 
   16 Jan 2008; Fabian Groffen <grobian@gentoo.org> argus-2.0.5.ebuild,
   argus-2.0.6.ebuild:
