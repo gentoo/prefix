@@ -1,6 +1,17 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.85 2008/11/15 20:04:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.87 2008/11/20 10:07:13 aballier Exp $
+
+*texlive-core-2008-r4 (20 Nov 2008)
+
+  20 Nov 2008; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2008-r3.ebuild, +texlive-core-2008-r4.ebuild:
+  push changes
+
+  20 Nov 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r3.ebuild:
+  Add updmap.d to CONFIG_PROTECT_MASK too as suggested by Dirk Heinrichs in
+  bug #246668
 
   15 Nov 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2008-r3.ebuild:
