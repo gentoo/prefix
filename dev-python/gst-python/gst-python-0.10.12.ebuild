@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.12.ebuild,v 1.7 2008/08/08 17:24:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.12.ebuild,v 1.8 2008/11/22 19:39:02 hanno Exp $
 
 EAPI="prefix"
 
@@ -17,10 +17,7 @@ SLOT="0.10"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="examples"
 
-RDEPEND=">=dev-python/pygtk-2.6.3
-	>=dev-libs/glib-2.8
-	>=x11-libs/gtk+-2.6
-	>=dev-python/pygobject-2.11.2
+RDEPEND="|| ( >=dev-python/pygobject-2.11.2 >=dev-python/pygtk-2.6.3 )
 	>=media-libs/gstreamer-0.10.12
 	>=media-libs/gst-plugins-base-0.10.12
 	dev-libs/libxml2"

@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.45 2008/08/08 17:24:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.46 2008/11/22 19:39:02 hanno Exp $
+
+  22 Nov 2008; Hanno Boeck <hanno@gentoo.org> gst-python-0.10.12.ebuild:
+  Does not require pygtk, can alternatively use pygobect.
 
   08 Aug 2008; Markus Meier <maekke@gentoo.org> gst-python-0.10.12.ebuild:
   x86 stable, bug #232054
