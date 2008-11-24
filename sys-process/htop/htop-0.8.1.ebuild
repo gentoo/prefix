@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1.ebuild,v 1.2 2008/11/10 12:59:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1.ebuild,v 1.3 2008/11/23 15:02:54 loki_val Exp $
 
 EAPI="prefix"
 
@@ -23,6 +23,12 @@ pkg_setup() {
 		elog "or uncomment the example in /etc/fstab"
 		elog
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-desktop-entry.patch"
 }
 
 src_compile() {

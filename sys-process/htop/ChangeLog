@@ -1,6 +1,10 @@
 # ChangeLog for sys-process/htop
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.61 2008/11/10 12:59:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.62 2008/11/23 15:02:54 loki_val Exp $
+
+  23 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/htop-0.8.1-desktop-entry.patch, htop-0.8.1.ebuild:
+  Add patch on request of ssuominen.
 
   10 Nov 2008; Raúl Porcel <armin76@gentoo.org> htop-0.8.1.ebuild:
   arm stable wrt #241514
