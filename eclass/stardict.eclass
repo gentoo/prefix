@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/stardict.eclass,v 1.13 2008/03/27 13:56:41 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/stardict.eclass,v 1.14 2008/11/23 17:58:53 pva Exp $
 
 # Author : Alastair Tse <liquidx@gentoo.org>
 #
@@ -12,7 +12,6 @@
 #      * TO_LANG       -  To this language
 #      * DICT_PREFIX   -  SRC_URI prefix, like "dictd_www.mova.org_"
 #	   * DICT_SUFFIX   -  SRC_URI after the prefix.
-
 
 RESTRICT="strip"
 
@@ -32,12 +31,15 @@ IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
 
-DEPEND=">=app-dicts/stardict-2.4.2"
+DEPEND=">=app-dicts/stardict-2.4.2
+		app-arch/gzip"
 
 S=${WORKDIR}/${DICT_P}
 
 stardict_src_compile() {
-	return
+	for file in *.idx; do
+		[[ -f $file ]] && gzip ${file}
+	done
 }
 
 stardict_src_install() {
