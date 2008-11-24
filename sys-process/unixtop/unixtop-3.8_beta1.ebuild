@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/unixtop/top-${PV/_/}.tar.bz2"
 
 LICENSE="unixtop"
 SLOT="0"
-KEYWORDS="~x64-solaris"
+KEYWORDS="~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="sys-libs/ncurses"
