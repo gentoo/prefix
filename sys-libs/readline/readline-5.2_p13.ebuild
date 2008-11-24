@@ -59,6 +59,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
+	epatch "${FILESDIR}"/${PN}-5.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.2-solaris-fPIC.patch
 	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch
 
