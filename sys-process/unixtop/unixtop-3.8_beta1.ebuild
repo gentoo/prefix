@@ -28,6 +28,13 @@ src_unpack() {
 	eautoreconf
 }
 
+src_compile() {
+	# don't do bi-arch cruft on hosts that support that, such as Solaris
+	export enable_dualarch=no
+	econf || die
+	emake || die
+}
+
 src_install() {
 	emake DESTDIR="${D}" install
 	dodoc README FAQ Y2K
