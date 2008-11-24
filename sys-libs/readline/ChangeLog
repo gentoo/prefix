@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.116 2008/04/08 21:43:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.117 2008/11/23 18:24:10 vapier Exp $
+
+*readline-5.2_p13 (23 Nov 2008)
+
+  23 Nov 2008; Mike Frysinger <vapier@gentoo.org> +readline-5.2_p13.ebuild:
+  Version bump #247646 by Lars (Polynomial-C).
 
   08 Apr 2008; Mike Frysinger <vapier@gentoo.org>
   +files/readline-5.2-no-ignore-shlib-errors.patch,
