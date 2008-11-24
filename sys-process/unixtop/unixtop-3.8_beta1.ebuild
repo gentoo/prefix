@@ -29,9 +29,15 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf=
+
 	# don't do bi-arch cruft on hosts that support that, such as Solaris
 	export enable_dualarch=no
-	econf || die
+
+	# configure demands an override because on OSX this is "experimental"
+	[[ ${CHOST} == *-darwin* ]] && myconf="${myconf} --with-module=macosx"
+
+	econf ${myconf} || die
 	emake || die
 }
 
