@@ -1,0 +1,41 @@
+# ChangeLog for dev-tex/latexdiff
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latexdiff/ChangeLog,v 1.9 2008/11/03 19:11:39 aballier Exp $
+
+  03 Nov 2008; Alexis Ballier <aballier@gentoo.org> -latexdiff-0.2.ebuild,
+  -latexdiff-0.3.ebuild:
+  remove old
+
+  23 Mar 2008; Alexis Ballier <aballier@gentoo.org> latexdiff-0.5.ebuild:
+  static useflag no longer used
+
+*latexdiff-0.5 (23 Mar 2008)
+
+  23 Mar 2008; Alexis Ballier <aballier@gentoo.org> +latexdiff-0.5.ebuild:
+  version bump, bug #174212
+
+  15 Jul 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Assigning to tex, as nattfodd is being retired (#108329).
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+*latexdiff-0.3 (28 Nov 2005)
+
+  28 Nov 2005; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml, +latexdiff-0.3.ebuild:
+  Bump to 0.3 (see bug 110423). Added "static" USEflag for people who don't want
+  to install dev-perl/Algorithm-Diff. Also added myself as maintainer.
+
+  28 Dec 2004; Dylan Carlson <absinthe@gentoo.org> latexdiff-0.2.ebuild:
+  Keywords ~amd64.
+
+*latexdiff-0.2 (07 Nov 2004)
+
+  07 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +latexdiff-0.2.ebuild:
+  Initial import. Ebuild submitted by Anders Bo Rasmussen <gentoo@fuzz.dk>;
+  bug #68033.
+
