@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.208 2008/11/07 23:39:30 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.209 2008/11/22 20:40:24 dirtyepic Exp $
+
+  22 Nov 2008; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.6.4.0-r1.ebuild:
+  Drop all but arm and sh until they keyword eselect-wxwidgets.
 
 *wxGTK-2.8.9.1-r3 (07 Nov 2008)
 *wxGTK-2.8.9.1-r2 (07 Nov 2008)
