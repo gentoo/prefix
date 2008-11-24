@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/verve
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/verve/ChangeLog,v 1.19 2007/07/01 09:35:27 welp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/ChangeLog,v 1.20 2008/11/23 16:46:21 angelos Exp $
+
+*verve-0.3.6 (23 Nov 2008)
+
+  23 Nov 2008; Christoph Mende <angelos@gentoo.org> +verve-0.3.6.ebuild:
+  Version bump
 
   01 Jul 2007; Peter Weller <welp@gentoo.org> verve-0.3.5.ebuild:
   Fix up dbus deps wrt bug 183696
