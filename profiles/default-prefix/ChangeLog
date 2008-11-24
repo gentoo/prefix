@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  24 Nov 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask portage again...
+
   21 Nov 2008; Jeremy Olexa <darkside@gentoo.org> +hpux/package.mask:
   p.mask =sys-apps/file-4.25 in ia64-hpux, wait for 4.26 to be unmasked globally
 

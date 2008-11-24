@@ -32,6 +32,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (24 Nov 2008)
+# unmask, zmedico masked 2.2 for the moment for testing, but we only
+# have 2.2+
+->=sys-apps/portage-2.2_pre
+
 # Jeremy Olexa <darkside@gentoo.org> (10 Nov 2008)
 # The apache-2.eclass needs to be fixed to support 2.2.10, there is a failing
 # patch for this version. 2.2.9-r1 works due to the hard work in bug 238595.
