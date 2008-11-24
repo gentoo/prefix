@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1.ebuild,v 1.1 2008/11/19 22:34:44 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1.ebuild,v 1.2 2008/11/23 16:52:37 loki_val Exp $
 
 EAPI="prefix"
 
@@ -37,29 +37,6 @@ function get-memory-total() {
 	cat /proc/meminfo | grep MemTotal | sed -r "s/[^0-9]*([[0-9]+).*/\1/"
 }
 
-src_unpack() {
-	base_src_unpack
-	cd "${S}"
-
-	# Fix the install path, install into $(libdir)
-	sed -i	-e 's:$(prefix)/lib:$(libdir):'						\
-		-e 's:$(exec_prefix)/lib:$(libdir):'					\
-		-e "s:'mono_libdir=\${exec_prefix}/lib':\"mono_libdir=\$libdir\":"	\
-		"${S}"/{scripts,mono/metadata}/Makefile.am "${S}"/configure.in		\
-	|| die "sed failed"
-
-	sed -i	-e 's:^libdir.*:libdir=@libdir@:'					\
-		-e 's:${prefix}/lib/:${libdir}/:g'					\
-		"${S}"/{scripts,}/*.pc.in						\
-	|| die "sed failed"
-
-	#For libtool-1 compat
-	rm -f lt*.m4 libtool.m4
-
-	einfo "Regenerating the build files, this will take some time..."
-	eautoreconf
-}
-
 src_compile() {
 	# mono's build system is finiky, strip the flags
 	strip-flags
@@ -75,8 +52,7 @@ src_compile() {
 	# Force the use of monolite mcs to prevent issues with classlibs (bug #118062)
 	touch "${S}"/mcs/build/deps/use-monolite
 
-	econf	${myconf} \
-		--with-moonlight \
+	econf	--without-moonlight \
 		--with-preview=yes \
 		--with-glib=system \
 		--with-gc=included \
