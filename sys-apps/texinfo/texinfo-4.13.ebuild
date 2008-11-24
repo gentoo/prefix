@@ -28,6 +28,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.11-prefix.patch
+	epatch "${FILESDIR}"/${P}-mint.patch
 }
 
 src_compile() {
