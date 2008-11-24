@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9196 2008/11/20 07:14:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9206 2008/11/24 06:04:59 zmedico Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,33 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Zac Medico <zmedico@gentoo.org> (24 Nov 2008)
+# In order to ensure that portage-2.1.6 gets sufficient testing,
+# portage-2.2 will be masked in package.mask until portage-2.1.6 has
+# been marked stable. If you would like to continue using portage-2.2
+# then you should unmask it (instead of downgrading to portage-2.1.6).
+>=sys-apps/portage-2.2_pre
+
+# Peter Alfredsen <loki_val@gentoo.org> (22 Nov 2008)
+# Packages not building with mono-2
+# Masked for removal in 60 days.
+app-misc/gnutu
+
+# Jeremy Olexa <darkside@gentoo.org> (22 Nov 2008)
+# Masked for removal in 30 days, requested by maintainers. bug #173584
+# Does not compile, old, unmaintained, depends on gtk-1.
+app-admin/gps
+
+# Torsten Veller <tove@gentoo.org> (22 Nov 2008)
+# Enforce downgrade: 3.27.01 replaces 3.2701
+=perl-core/File-Spec-3.2701
+=virtual/perl-File-Spec-3.2701
+
+# Alec Warner <antarus@gentoo.org> (22 Nov 2008)
+# nis-utils is dead, use LDAP you slackers.
+# Remove in Jan 2009
+net-nds/nis-utils
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
 # Removed in 30 days by treecleaners at maintainer's request. bug #152940
@@ -64,6 +91,10 @@ dev-db/fastdb
 >=dev-dotnet/xsp-2
 >=dev-dotnet/gtk-sharp-2.12
 ~dev-dotnet/glade-sharp-9999
+>=media-gfx/f-spot-0.5
+>=media-sound/banshee-1.4
+dev-dotnet/webkit-sharp
+>=media-sound/muine-0.8.10
 
 # Matthias Schwarzott <zzam@gentoo.org> (19 Nov 2008)
 # This ebuild contains intrusive changes
@@ -274,11 +305,6 @@ app-portage/genflags
 # Michael Sterrett <mr_bones_@gentoo.org> (13 Oct 2008)
 # Maintainer mask of known broken version.
 >=app-admin/syslog-ng-2.1
-
-# Thilo Bangert <bangert@gentoo.org> (12 Oct 2008)
-# Masked for removal in 30 days (see bug #240371)
-# useless meta ebuild - never fully developed
-net-mail/qmail-vmailmgr
 
 # Rémi Cardona <remi@gentoo.org> (11 Oct 2008)
 # Old versions, those are no longer maintained and
