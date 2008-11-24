@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.272 2008/11/16 11:08:42 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.273 2008/11/22 19:34:17 hanno Exp $
+
+*gimp-2.6.3 (22 Nov 2008)
+
+  22 Nov 2008; Hanno Boeck <hanno@gentoo.org> +gimp-2.6.3.ebuild:
+  Version bump.
 
   16 Nov 2008; Hanno Boeck <hanno@gentoo.org> gimp-2.6.2.ebuild:
   Raise deps of gtk+ and pango, bug #246852.
