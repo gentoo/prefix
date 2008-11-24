@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.1 2008/11/10 12:11:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.2 2008/11/22 21:11:36 pva Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit flag-o-matic autotools
 
 DESCRIPTION="The swiss army knife of sound processing programs"
 HOMEPAGE="http://sox.sourceforge.net"
@@ -32,6 +32,13 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	png? ( media-libs/libpng )
 	wavpack? ( media-sound/wavpack )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-distro.patch"
+	eautoreconf
+}
+
 src_compile () {
 	# Fixes wav segfaults. See Bug #35745.
 	append-flags -fsigned-char
@@ -53,6 +60,7 @@ src_compile () {
 		$(use_with amrnb amr-nb) \
 		$(use_with png) \
 		$(use_with wavpack) \
+		--with-distro="Gentoo" \
 		--enable-fast-ulaw \
 		--enable-fast-alaw \
 		|| die "configure failed"
