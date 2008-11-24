@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.162 2008/11/13 19:04:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.163 2008/11/22 12:29:22 eva Exp $
+
+  22 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -libsoup-2.2.103.ebuild, -libsoup-2.24.0.1.ebuild:
+  Clean up old revisions.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking libsoup-2.4.1 ppc64 stable for bug 236971
