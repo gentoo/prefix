@@ -1,6 +1,12 @@
 # ChangeLog for xfce-extra/xfce4-dict
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.22 2008/11/10 00:02:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.23 2008/11/23 14:23:31 angelos Exp $
+
+*xfce4-dict-0.5.1 (23 Nov 2008)
+
+  23 Nov 2008; Christoph Mende <angelos@gentoo.org>
+  +xfce4-dict-0.5.1.ebuild:
+  Version bump
 
 *xfce4-dict-0.5.0 (10 Nov 2008)
 
