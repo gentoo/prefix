@@ -1,3 +1,5 @@
+intmax_t and uintmax_t should be looked for in stdint.h on interix
+
 diff -ru bash-3.2.orig/configure.in bash-3.2/configure.in
 --- bash-3.2.orig/configure.in	Fri Jan 18 16:50:36 2008
 +++ bash-3.2/configure.in	Fri Jan 18 16:53:09 2008
