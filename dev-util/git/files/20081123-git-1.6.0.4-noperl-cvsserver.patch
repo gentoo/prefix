@@ -1,0 +1,20 @@
+# Patch for Gentoo bug #247487
+
+# git-cvsserver is not present when NO_PERL is set in Makefile which breaks
+# install target...
+
+--- git-1.6.0.4/Makefile
++++ git-1.6.0.4/Makefile
+@@ -1376,10 +1376,11 @@
+ 	$(INSTALL) -d -m 755 '$(DESTDIR_SQ)$(bindir_SQ)'
+ 	$(INSTALL) -d -m 755 '$(DESTDIR_SQ)$(gitexec_instdir_SQ)'
+ 	$(INSTALL) $(ALL_PROGRAMS) '$(DESTDIR_SQ)$(gitexec_instdir_SQ)'
+-	$(INSTALL) git$X git-upload-pack$X git-receive-pack$X git-upload-archive$X git-shell$X git-cvsserver '$(DESTDIR_SQ)$(bindir_SQ)'
++	$(INSTALL) git$X git-upload-pack$X git-receive-pack$X git-upload-archive$X git-shell$X '$(DESTDIR_SQ)$(bindir_SQ)'
+ 	$(MAKE) -C templates DESTDIR='$(DESTDIR_SQ)' install
+ ifndef NO_PERL
+ 	$(MAKE) -C perl prefix='$(prefix_SQ)' DESTDIR='$(DESTDIR_SQ)' install
++	$(INSTALL) git-cvsserver '$(DESTDIR_SQ)$(bindir_SQ)'
+ endif
+ ifndef NO_TCLTK
+ 	$(MAKE) -C gitk-git install
