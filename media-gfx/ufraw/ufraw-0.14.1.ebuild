@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.14.1.ebuild,v 1.8 2008/11/21 03:39:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.14.1.ebuild,v 1.10 2008/11/22 19:29:53 maekke Exp $
 
 EAPI="prefix"
 
@@ -38,7 +38,7 @@ src_compile() {
 	econf \
 		$(use_enable contrast) \
 		$(use_enable gnome mime) \
-		$(use_enable timezone dst)
+		$(use_enable timezone dst-correction)
 	emake || die "emake failed"
 }
 
