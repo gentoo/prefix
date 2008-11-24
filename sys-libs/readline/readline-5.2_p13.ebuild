@@ -45,7 +45,7 @@ src_unpack() {
 		epatch "${DISTDIR}"/${PN}${MY_PV/\.}-$(printf '%03d' ${i})
 	done
 	# missing patch for 'support/shlib-install' in p12 (netbsd, aix5, interix).
-	epatch "${FILESDIR}"/${P}-shlib-install.patch
+	epatch "${FILESDIR}"/${PN}-5.2_p12-shlib-install.patch
 
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-build.patch #151174
