@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.3.ebuild,v 1.1 2008/09/27 10:20:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.4-r1.ebuild,v 1.1 2008/11/23 17:14:59 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
 PATCH="${PN}-3.0.1-patches-0.3"
 
-LANGS="af ar be bn-IN ca cs da de el en-GB en-US es-AR es-ES eu fi fr fy-NL ga-IE gl gu-IN he hi-IN hu id is it ja ka kn ko ku lt mk mn mr nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE th tr uk zh-CN zh-TW"
+LANGS="af ar be bg bn-IN ca cs cy da de el en-GB en-US eo es-AR es-ES et eu fi fr fy-NL ga-IE gl gu-IN he hi-IN hu id is it ja ka kn ko ku lt lv mk mn mr nb-NO nl nn-NO oc pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE te th tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
 
 MY_PV=${PV/3/}
@@ -54,7 +54,7 @@ RDEPEND="java? ( virtual/jre )
 	>=dev-libs/nspr-4.7.1
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.1.9
-	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV} )"
+	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV}-r1 )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
@@ -303,6 +303,11 @@ pkg_postinst() {
 	ewarn "All the packages built against ${PN} won't compile,"
 	ewarn "if after installing firefox 3.0 you get some blockers,"
 	ewarn "please add 'xulrunner' to your USE-flags."
+
+	if use xulrunner; then
+		dosym /usr/$(get_libdir)/xulrunner-1.9/defaults/autoconfig \
+			${MOZILLA_FIVE_HOME}/defaults/autoconfig
+	fi
 
 	# Update mimedb for the new .desktop file
 	fdo-mime_desktop_database_update
