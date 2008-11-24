@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.9 2008/11/07 10:16:04 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.10 2008/11/22 07:42:54 pva Exp $
 
 EAPI="prefix 1"
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
@@ -16,9 +16,11 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="xml qt3 jpeg tiff debug threads nls nsplugin kde doc"
 
-DEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
+RDEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
 	tiff? ( media-libs/tiff )
 	qt3? ( x11-libs/qt:3 )"
+DEPEND="${RDEPEND}
+	qt3? ( nsplugin? ( x11-libs/libXt ) )"
 
 S=${WORKDIR}/${MY_P}
 

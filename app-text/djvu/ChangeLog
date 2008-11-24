@@ -1,6 +1,10 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.84 2008/11/07 10:16:04 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.85 2008/11/22 07:42:54 pva Exp $
+
+  22 Nov 2008; Peter Volkov <pva@gentoo.org> djvu-3.5.21.ebuild:
+  Added build time libXt dependency for nsplugin, bug #247963, thank Konrad
+  Karczewski for report.
 
   07 Nov 2008; Peter Volkov <pva@gentoo.org> djvu-3.5.21.ebuild:
   Works on mips, added ~mips keyword.
