@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils perl-module toolchain-funcs
+inherit eutils perl-module toolchain-funcs autotools
 
 MY_P="TinySVM-${PV}"
 DESCRIPTION="TinySVM is an implementation of Support Vector Machines (SVMs) for
@@ -27,6 +27,7 @@ src_unpack() {
 	ln -s . src/TinySVM
 
 	epatch ${FILESDIR}/${P}-darwin.patch
+	eautoreconf # need new libtool on Darwin
 }
 
 src_compile() {
