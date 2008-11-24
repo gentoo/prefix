@@ -1,0 +1,25 @@
+Fix for leopard linker (which we also use on Tiger in Gentoo Prefix),
+inspired by http://article.gmane.org/gmane.os.apple.fink.devel/17131
+
+--- src/runtime/ppc-assem.S
++++ src/runtime/ppc-assem.S
+@@ -21,7 +21,7 @@
+ 			.align 3 @ \
+ _##x:
+ 
+-#define GFUNCDEF(x)	.globl _/**/x @ \
++#define GFUNCDEF(x)	.globl _ ## x @ \
+ 	FUNCDEF(x)
+ #else
+ #define FUNCDEF(x)	.text ; \
+--- src/runtime/globals.h
++++ src/runtime/globals.h
+@@ -97,7 +97,7 @@
+ /**/
+ # ifdef LISP_FEATURE_PPC
+ #  ifdef LISP_FEATURE_DARWIN
+-#   define EXTERN(name,bytes) .globl _/**/name
++#   define EXTERN(name,bytes) .globl _ ## name
+ #  else
+ #   define EXTERN(name,bytes) .globl name
+ #  endif

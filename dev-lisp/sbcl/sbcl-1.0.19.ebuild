@@ -111,6 +111,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.0.6-solaris.patch
+	epatch "${FILESDIR}"/${P}-leopard.patch
 #	epatch "${FILESDIR}/disable-tests-gentoo-${PV}.patch"
 	use source && sed 's%"$(BUILD_ROOT)%$(MODULE).lisp "$(BUILD_ROOT)%' -i contrib/vanilla-module.mk
 
@@ -133,7 +134,6 @@ src_unpack() {
 src_compile() {
 	local bindir="${WORKDIR}"/sbcl-binary
 
-	[[ $(ld --version 2>&1 | head -n1) == *GNU* ]] && \
 	append-ldflags -Wl,--no-as-needed # see Bug #132992
 
 	# clear the environment to get rid of non-ASCII strings, see bug 174702
