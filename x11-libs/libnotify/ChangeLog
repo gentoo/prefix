@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libnotify
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.42 2008/11/20 15:49:56 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.43 2008/11/23 02:36:58 leio Exp $
+
+  23 Nov 2008; Mart Raudsepp <leio@gentoo.org> libnotify-0.4.5.ebuild:
+  Fix dbus-glib requirement per configure.ac
 
 *libnotify-0.4.5 (20 Nov 2008)
 
