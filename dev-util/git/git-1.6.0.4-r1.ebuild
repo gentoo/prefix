@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.0.4.ebuild,v 1.1 2008/11/18 11:05:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.0.4-r1.ebuild,v 1.5 2008/11/24 01:24:00 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -45,7 +45,7 @@ RDEPEND="${DEPEND}
 			)
 	gtk?  ( >=dev-python/pygtk-2.8 )"
 
-SITEFILE=72${PN}-gentoo.el
+SITEFILE=50${PN}-gentoo.el
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
@@ -56,6 +56,11 @@ pkg_setup() {
 	fi
 	if use webdav && ! use curl ; then
 		ewarn "USE=webdav needs USE=curl. Ignoring"
+	fi
+	if use subversion && has_version dev-util/subversion && built_with_use --missing false dev-util/subversion dso ; then
+		ewarn "Per Gentoo bugs #223747, #238586, when subversion is built"
+		ewarn "with USE=dso, there may be weird crashes in git-svn. You"
+		ewarn "have been warned."
 	fi
 }
 
@@ -105,15 +110,18 @@ src_unpack() {
 	unpack ${MY_P}.tar.bz2
 	cd "${S}"
 	unpack ${PN}-manpages-${DOC_VER}.tar.bz2
-	use doc && cd "${S}"/Documentation && unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
+	use doc && \
+		cd "${S}"/Documentation && \
+		unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
 	cd "${S}"
 
 	epatch "${FILESDIR}"/20080626-git-1.5.6.1-noperl.patch
+	epatch "${FILESDIR}"/20081123-git-1.6.0.4-noperl-cvsserver.patch
 	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
 
 	sed -i \
-		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
-		-e "s:^\(LDFLAGS =\).*$:\1 ${LDFLAGS}:" \
+		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
+		-e 's:^\(LDFLAGS =\).*$:\1 $(OPTLDFLAGS):' \
 		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
 		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
 		-e "s:\(PYTHON_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
@@ -124,8 +132,14 @@ src_unpack() {
 }
 
 src_compile() {
-	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc || \
-		die "make failed"
+	emake ${MY_MAKEOPTS} \
+		DESTDIR="${D}" \
+		OPTCFLAGS="${CFLAGS}" \
+		OPTLDFLAGS="${LDFLAGS}" \
+		prefix="${EPREFIX}"/usr \
+		htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
+		sysconfdir="${EPREFIX}"/etc \
+		|| die "make failed"
 
 	if use emacs ; then
 		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
@@ -133,7 +147,10 @@ src_compile() {
 	if use perl && use cgi ; then
 		emake ${MY_MAKEOPTS} \
 		DESTDIR="${D}" \
+		OPTCFLAGS="${CFLAGS}" \
+		OPTLDFLAGS="${LDFLAGS}" \
 		prefix="${EPREFIX}"/usr \
+		htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		sysconfdir="${EPREFIX}"/etc \
 		gitweb/gitweb.cgi || die "make gitweb/gitweb.cgi failed"
 	fi
@@ -141,6 +158,14 @@ src_compile() {
 
 src_install() {
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc install || die "make install failed"
+	emake ${MY_MAKEOPTS} \
+		DESTDIR="${D}" \
+		OPTCFLAGS="${CFLAGS}" \
+		OPTLDFLAGS="${LDFLAGS}" \
+		prefix="${EPREFIX}"/usr \
+		htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
+		install || \
+		die "make install failed"
 
 	doman man?/*
 
@@ -156,12 +181,12 @@ src_install() {
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
 	if use emacs ; then
-		elisp-install ${PN} contrib/emacs/{,vc-}git.el* || \
-			die "elisp-install failed"
-		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+		elisp-install ${PN} contrib/emacs/git.{el,elc} || die
+		elisp-install ${PN}/compat contrib/emacs/vc-git.{el,elc} || die
 		# don't add automatically to the load-path, so the sitefile
 		# can do a conditional loading
-		touch "${ED}"/"${SITELISP}"/${PN}/.nosearch
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 	fi
 
 	if use gtk ; then
@@ -292,13 +317,8 @@ showpkgdeps() {
 }
 
 pkg_postinst() {
-	if use emacs ; then
-		elisp-site-regen
-		elog "GNU Emacs has built-in Git support in versions greater 22.1."
-		elog "You can disable the emacs USE flag for dev-util/git"
-		elog "if you are using such a version."
-	fi
-	if use subversion && ! built_with_use dev-util/subversion perl ; then
+	use emacs && elisp-site-regen
+	if use subversion && has_version dev-util/subversion && ! built_with_use --missing false dev-util/subversion perl ; then
 		ewarn "You must build dev-util/subversion with USE=perl"
 		ewarn "to get the full functionality of git-svn!"
 	fi

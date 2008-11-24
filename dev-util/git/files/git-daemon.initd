@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/files/git-daemon.initd,v 1.3 2008/09/16 17:52:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/files/git-daemon.initd,v 1.4 2008/11/24 01:08:06 robbat2 Exp $
 
 depend() {
 	need net
@@ -11,12 +11,16 @@ depend() {
 start() {
 	ebegin "Starting git-daemon"
 		start-stop-daemon --start --quiet --background \
-		--exec /usr/bin/git -- daemon ${GITDAEMON_OPTS}
+		--exec /usr/bin/git/git -- daemon \
+			--pid-file=/var/run/git-daemon.pid \
+			--user=${GIT_USER} --group=${GIT_GROUP} \
+			${GITDAEMON_OPTS}
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping git-daemon"
-		start-stop-daemon --stop --quiet --name git-daemon
+		start-stop-daemon --stop --quiet \
+		--pidfile /var/run/git-daemon.pid
 	eend $?
 }
