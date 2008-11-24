@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.37 2008/11/13 19:00:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.38 2008/11/22 16:03:02 jer Exp $
+
+  22 Nov 2008; Jeroen Roovers <jer@gentoo.org> rarian-0.8.1.ebuild:
+  Stable for HPPA (bug #246048).
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> rarian-0.8.0-r1.ebuild:
   Marking rarian-0.8.0-r1 ppc64 stable for bug 236971
