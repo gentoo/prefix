@@ -1,6 +1,11 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.81 2008/11/19 23:29:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.82 2008/11/23 21:02:03 loki_val Exp $
+
+  23 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +files/gtk-sharp-2.12.0-doc-parallelmake.patch, gtk-sharp-2.12.6.ebuild:
+  Fix parallel make when monodoc is installed. Monodoc is automagic, so drop
+  doc useflag.
 
 *gtk-sharp-2.12.6 (19 Nov 2008)
 

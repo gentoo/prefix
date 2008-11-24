@@ -1,0 +1,112 @@
+Index: gtk-sharp-2.12.0/configure.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/configure.in
++++ gtk-sharp-2.12.0/configure.in
+@@ -114,7 +114,7 @@ if test "x$AL" = "xno" ; then
+ fi
+ 
+ if test "x$has_mono" = "xtrue"; then
+-GACUTIL_FLAGS='/package $(PACKAGE_VERSION) /gacdir $(DESTDIR)$(prefix)/lib'
++GACUTIL_FLAGS='/package $(PACKAGE_VERSION) /root $(DESTDIR)$(libdir)'
+ GENERATED_SOURCES=generated/*.cs
+ AC_PATH_PROG(RUNTIME, mono, no)
+ 
+Index: gtk-sharp-2.12.0/doc/Makefile.am
+===================================================================
+--- gtk-sharp-2.12.0.orig/doc/Makefile.am
++++ gtk-sharp-2.12.0/doc/Makefile.am
+@@ -20,7 +20,7 @@ UPDATE_ASSEMBLIES = $(addprefix -assembl
+ UPDATER = $(MONODOCER) -path:en -pretty $(UPDATE_ASSEMBLIES)
+ 
+ if ENABLE_MONODOC
+-SOURCESDIR=$(prefix)/lib/monodoc/sources
++SOURCESDIR=$(libdir)/monodoc/sources
+ TARGETS=gtk-sharp-docs.zip gtk-sharp-docs.tree gtk-sharp-docs.source
+ else
+ SOURCESDIR=$(datadir)
+Index: gtk-sharp-2.12.0/generator/Makefile.am
+===================================================================
+--- gtk-sharp-2.12.0.orig/generator/Makefile.am
++++ gtk-sharp-2.12.0/generator/Makefile.am
+@@ -1,4 +1,4 @@
+-assemblydir = $(prefix)/lib/gtk-sharp-2.0
++assemblydir = $(libdir)/gtk-sharp-2.0
+ assembly_DATA = gapi_codegen.exe
+ bin_SCRIPTS = gapi2-codegen
+ CLEANFILES = gapi_codegen.exe
+Index: gtk-sharp-2.12.0/parser/Makefile.am
+===================================================================
+--- gtk-sharp-2.12.0.orig/parser/Makefile.am
++++ gtk-sharp-2.12.0/parser/Makefile.am
+@@ -1,4 +1,4 @@
+-assemblydir = $(prefix)/lib/gtk-sharp-2.0
++assemblydir = $(libdir)/gtk-sharp-2.0
+ pkgconfigdir = $(libdir)/pkgconfig
+ assembly_DATA = gapi-fixup.exe gapi-parser.exe
+ pkgconfig_DATA = gapi-2.0.pc
+Index: gtk-sharp-2.12.0/glade/glade-sharp-2.0.pc.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/glade/glade-sharp-2.0.pc.in
++++ gtk-sharp-2.12.0/glade/glade-sharp-2.0.pc.in
+@@ -1,6 +1,6 @@
+-prefix=${pcfiledir}/../..
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
+ gapidir=${prefix}/share/gapi-2.0
+ 
+ 
+Index: gtk-sharp-2.12.0/glib/glib-sharp-2.0.pc.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/glib/glib-sharp-2.0.pc.in
++++ gtk-sharp-2.12.0/glib/glib-sharp-2.0.pc.in
+@@ -1,6 +1,6 @@
+-prefix=${pcfiledir}/../..
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
+ gapidir=${prefix}/share/gapi-2.0
+ 
+ 
+Index: gtk-sharp-2.12.0/gtkdotnet/gtk-dotnet-2.0.pc.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/gtkdotnet/gtk-dotnet-2.0.pc.in
++++ gtk-sharp-2.12.0/gtkdotnet/gtk-dotnet-2.0.pc.in
+@@ -1,6 +1,6 @@
+-prefix=${pcfiledir}/../..
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
+ 
+ 
+ Name: Gtk.DotNet
+Index: gtk-sharp-2.12.0/gtk/gtk-sharp-2.0.pc.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/gtk/gtk-sharp-2.0.pc.in
++++ gtk-sharp-2.12.0/gtk/gtk-sharp-2.0.pc.in
+@@ -1,6 +1,6 @@
+-prefix=${pcfiledir}/../..
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
+ gapidir=${prefix}/share/gapi-2.0
+ 
+ 
+Index: gtk-sharp-2.12.0/parser/gapi-2.0.pc.in
+===================================================================
+--- gtk-sharp-2.12.0.orig/parser/gapi-2.0.pc.in
++++ gtk-sharp-2.12.0/parser/gapi-2.0.pc.in
+@@ -1,4 +1,4 @@
+-prefix=${pcfiledir}/../..
++prefix=@prefix@
+ 
+ 
+ Name: GAPI
