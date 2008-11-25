@@ -1,0 +1,11 @@
+--- configure.ac.orig	2008-11-19 09:57:26.000000000 +0100
++++ configure.ac	2008-11-19 09:59:08.000000000 +0100
+@@ -264,6 +264,8 @@
+ fi
+ fi
+ AC_SUBST(SIMD_CFLAGS)
++# pass simd flags to preprocessor/compiler for proper intrinsics detection.
++CPPFLAGS="$CPPFLAGS $SIMD_CFLAGS"
+ 
+ dnl Checks for header files.
+ AC_HEADER_STDC

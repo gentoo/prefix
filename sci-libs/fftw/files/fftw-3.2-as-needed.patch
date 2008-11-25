@@ -1,0 +1,36 @@
+--- Makefile.am.orig	2008-11-19 10:05:22.000000000 +0100
++++ Makefile.am	2008-11-19 10:06:56.000000000 +0100
+@@ -37,6 +37,13 @@
+ if SMP
+ if COMBINED_THREADS
+ COMBINED_THREADLIBS=threads/libfftw3@PREC_SUFFIX@_threads.la
++else
++lib_LTLIBRARIES += libfftw3@PREC_SUFFIX@_threads.la
++libfftw3@PREC_SUFFIX@_threads_la_SOURCES = 
++libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
++libfftw3@PREC_SUFFIX@_threads_la_LIBADD = \
++	libfftw3@PREC_SUFFIX@.la \
++	threads/libfftw3@PREC_SUFFIX@_threads.la
+ endif
+ endif
+ 
+--- threads/Makefile.am.orig	2008-11-19 10:03:43.000000000 +0100
++++ threads/Makefile.am	2008-11-19 10:05:13.000000000 +0100
+@@ -2,11 +2,7 @@
+ -I$(top_srcdir)/rdft -I$(top_srcdir)/api
+ 
+ if SMP
+-if COMBINED_THREADS
+ noinst_LTLIBRARIES = libfftw3@PREC_SUFFIX@_threads.la
+-else
+-lib_LTLIBRARIES = libfftw3@PREC_SUFFIX@_threads.la
+-endif
+ endif
+ 
+ # pkgincludedir = $(includedir)/fftw3@PREC_SUFFIX@
+@@ -16,4 +12,5 @@
+ openmp.c threads.h dft-vrank-geq1.c ct.c rdft-vrank-geq1.c hc2hc.c	\
+ vrank-geq1-rdft2.c f77api.c f77funcs.h
+ 
++libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(THREADLIBS)
+ libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@

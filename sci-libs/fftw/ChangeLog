@@ -1,6 +1,13 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.73 2008/10/20 21:45:12 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.74 2008/11/24 11:02:05 bicatali Exp $
+
+*fftw-3.2 (21 Nov 2008)
+
+  21 Nov 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/fftw-3.2-as-needed.patch, +files/fftw-3.2-cppflags.patch,
+  +files/fftw-3.2-openmp.patch, -fftw-3.1.2-r1.ebuild, +fftw-3.2.ebuild:
+  Version bump. Thanks to Adam Piątyszek, closing bug #247561
 
 *fftw-3.1.3 (20 Oct 2008)
 

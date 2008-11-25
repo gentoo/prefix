@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.1.2-r1.ebuild,v 1.4 2008/08/28 13:49:20 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.ebuild,v 1.1 2008/11/24 11:02:05 bicatali Exp $
 
 EAPI="prefix"
 
@@ -34,9 +34,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-configure.ac.patch
 	epatch "${FILESDIR}"/${P}-openmp.patch
 	epatch "${FILESDIR}"/${P}-as-needed.patch
+	epatch "${FILESDIR}"/${P}-cppflags.patch
 
 	# fix info file
 	sed -e 's/Texinfo documentation system/Libraries/' \
@@ -59,16 +59,16 @@ src_compile() {
 
 	if use openmp; then
 		myconfcommon="${myconfcommon}
-			--enable-threads
-			--with-openmp"
+			--disable-threads
+			--enable-openmp"
 	elif use threads; then
 		myconfcommon="${myconfcommon}
 			--enable-threads
-			--without-openmp"
+			--disable-openmp"
 	else
 		myconfcommon="${myconfcommon}
 			--disable-threads
-			--without-openmp"
+			--disable-openmp"
 	fi
 	local myconfsingle=""
 	local myconfdouble=""

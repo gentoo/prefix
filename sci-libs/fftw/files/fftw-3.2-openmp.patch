@@ -1,0 +1,28 @@
+--- configure.ac.orig	2008-11-19 09:57:26.000000000 +0100
++++ configure.ac	2008-11-19 09:59:08.000000000 +0100
+@@ -435,10 +437,10 @@
+ AC_ARG_WITH(combined-threads, [AC_HELP_STRING([--with-combined-threads],[combine threads into main libfftw3])], with_combined_threads=$withval, with_combined_threads=no)
+ 
+ if test "$enable_openmp"x != nox; then
+-   AX_OPENMP([THREADLIBS=" "
++   AX_OPENMP([THREADLIBS="$OPENMP_LIBS"
+      AC_DEFINE(USING_OPENMP_THREADS, 1, [Define if we have and are using OpenMP multithreading directives])
+      CFLAGS="$CFLAGS $OPENMP_CFLAGS"],
+-     [AC_MSG_ERROR([don't know how to enable OpenMP])])
++     [AC_MSG_WARN([don't know how to enable OpenMP, reverting to POSIX threads])])
+ fi
+ 
+ dnl Check for threads library...
+--- m4/ax_openmp.m4.orig	2008-07-10 11:33:17.361562576 +0100
++++ m4/ax_openmp.m4	2008-07-10 12:05:14.280159723 +0100
+@@ -59,6 +59,10 @@
+ else
+   if test "x$ax_cv_[]_AC_LANG_ABBREV[]_openmp" != "xnone"; then
+     OPENMP_[]_AC_LANG_PREFIX[]FLAGS=$ax_cv_[]_AC_LANG_ABBREV[]_openmp
++    OPENMP_LIBS=" "
++    if test "x$ax_cv_[]_AC_LANG_ABBREV[]_openmp" = "x-fopenmp"; then
++        OPENMP_LIBS="-lgomp"
++    fi
+   fi
+   m4_default([$1], [AC_DEFINE(HAVE_OPENMP,1,[Define if OpenMP is enabled])])
+ fi
