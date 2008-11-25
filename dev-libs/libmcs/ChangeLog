@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libmcs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.41 2008/10/06 08:22:29 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.42 2008/11/24 17:22:45 chainsaw Exp $
+
+  24 Nov 2008; <chainsaw@gentoo.org> libmcs-0.7.1-r2.ebuild:
+  Mark stable on AMD64 (Audacious dependency) as it blocks GCC 4.3
+  stabilisation efforts. For bug #247287 by Yaroslav Gorbunov
+  <yagorbunov@mail.ru>.
 
   06 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> libmcs-0.7.1-r2.ebuild:
   Fix build-time dependencies.
