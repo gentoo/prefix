@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/easytag
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.121 2008/07/29 19:37:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.122 2008/11/24 18:22:53 ssuominen Exp $
+
+  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
+  Re-assign to sound herd.
 
   29 Jul 2008; Samuli Suominen <drac@gentoo.org> easytag-2.1.6.ebuild:
   Rev bump id3lib dep. to force recompilation, in order to fix bugs #233273
