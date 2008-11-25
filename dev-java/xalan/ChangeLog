@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/xalan
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.87 2008/10/25 17:18:42 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.88 2008/11/24 21:25:25 ranger Exp $
+
+  24 Nov 2008; Brent Baude <ranger@gentoo.org> xalan-2.7.1.ebuild:
+  Marking xalan-2.7.1 ppc64 for bug 242984
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> xalan-2.7.1.ebuild:
   Stable on ppc wrt bug 242984
