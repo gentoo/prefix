@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.233 2008/11/13 18:58:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.234 2008/11/24 15:27:15 leio Exp $
+
+*pango-1.22.3 (24 Nov 2008)
+
+  24 Nov 2008; Mart Raudsepp <leio@gentoo.org> -pango-1.22.1.ebuild,
+  -pango-1.22.2.ebuild, +pango-1.22.3.ebuild:
+  Version bump. Small fixes - fixed pango_matrix_concat; perf improvement in
+  thai engine
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> pango-1.20.5.ebuild:
   Marking pango-1.20.5 ppc64 stable for bug 236971
