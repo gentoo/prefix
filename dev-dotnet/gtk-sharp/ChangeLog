@@ -1,6 +1,14 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.82 2008/11/23 21:02:03 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.83 2008/11/25 00:22:05 loki_val Exp $
+
+  25 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  files/gtk-sharp-2.12.0-noautomagic.patch,
+  -files/gtk-sharp-2.12.0-respect-choices.patch, gtk-sharp-2.12.6.ebuild:
+  Go eapi-2. Most of the ebuilds pulling this are eapi-2 anyway, and this
+  way I know what the blocker means *exactly*. Drop libdir fiddling patch,
+  we go with upstream as far as possible. Perhaps mono won't have half a
+  tonne of patches dragging it down.
 
   23 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
   +files/gtk-sharp-2.12.0-doc-parallelmake.patch, gtk-sharp-2.12.6.ebuild:
