@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.227 2008/10/11 17:59:21 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.228 2008/11/25 05:15:16 aballier Exp $
+
+  25 Nov 2008; Alexis Ballier <aballier@gentoo.org> dbus-1.2.3.ebuild,
+  dbus-1.2.3-r1.ebuild:
+  keyword -x86-fbsd, doesn't work, bug #236779
 
   11 Oct 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   dbus-1.2.3-r1.ebuild:
