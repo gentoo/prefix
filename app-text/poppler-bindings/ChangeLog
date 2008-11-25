@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.117 2008/11/09 22:05:56 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.118 2008/11/24 20:54:38 ranger Exp $
+
+  24 Nov 2008; Brent Baude <ranger@gentoo.org>
+  poppler-bindings-0.8.7.ebuild:
+  Marking poppler-bindings-0.8.7 ppc64 for bug 239414
 
 *poppler-bindings-0.10.1 (09 Nov 2008)
 
