@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.51 2008/10/27 21:34:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.52 2008/11/24 14:21:04 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -293,7 +293,7 @@ elisp-site-file-install() {
 	ebegin "Installing site initialisation file for GNU Emacs"
 	cp "$1" "${sf}"
 	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
-		-e "s:@SITEETC@:${SITEETC}/${my_pn}:g" "${sf}"
+		-e "s:@SITEETC@:${SITEETC}/${my_pn}:g;\$q" "${sf}"
 	( # subshell to avoid pollution of calling environment
 		insinto "${SITELISP}/site-gentoo.d"
 		doins "${sf}"
