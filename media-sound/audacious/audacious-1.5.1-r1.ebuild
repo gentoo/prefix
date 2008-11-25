@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.1 2008/07/22 14:16:02 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.2 2008/11/24 17:28:47 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9.0
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-1.5.1-r1"
+PDEPEND=">=media-plugins/audacious-plugins-1.5.1-r3"
 
 src_unpack() {
 	unpack ${A}

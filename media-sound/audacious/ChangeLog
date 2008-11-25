@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.149 2008/07/22 14:16:02 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.150 2008/11/24 17:28:47 chainsaw Exp $
+
+  24 Nov 2008; <chainsaw@gentoo.org> audacious-1.5.1-r1.ebuild:
+  Early stable on AMD64 as it blocks GCC 4.3 stabilisation efforts. For bug
+  #247287 by Yaroslav Gorbunov <yagorbunov@mail.ru>.
 
 *audacious-1.5.1-r1 (22 Jul 2008)
 
