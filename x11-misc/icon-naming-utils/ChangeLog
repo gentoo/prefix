@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/icon-naming-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.65 2008/09/21 19:50:34 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.66 2008/11/24 16:02:01 ssuominen Exp $
+
+  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
+  Re-assign to freedesktop herd.
 
 *icon-naming-utils-0.8.7 (21 Sep 2008)
 
