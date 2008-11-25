@@ -1,6 +1,9 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.181 2008/11/09 22:05:21 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.182 2008/11/24 20:54:41 ranger Exp $
+
+  24 Nov 2008; Brent Baude <ranger@gentoo.org> poppler-0.8.7.ebuild:
+  Marking poppler-0.8.7 ppc64 for bug 239414
 
 *poppler-0.10.1 (09 Nov 2008)
 
