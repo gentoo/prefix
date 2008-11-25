@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.1-r1.ebuild,v 1.1 2008/11/16 21:00:31 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.1-r1.ebuild,v 1.2 2008/11/24 15:06:40 leio Exp $
 
 EAPI="prefix"
 
@@ -61,6 +61,8 @@ src_unpack() {
 
 	# Allow logout/shutdown without gnome-session 2.24, bug #246170
 	epatch "${FILESDIR}/${PN}-2.24.1-logout.patch.gz"
+	# Could time-consumingly forward-port translations from 2.22 instead if there are any
+	echo "gnome-panel/panel-logout.c" >> po/POTFILES.skip
 
 	eautomake
 }
