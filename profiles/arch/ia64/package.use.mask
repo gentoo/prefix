@@ -1,4 +1,8 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/package.use.mask,v 1.6 2008/07/28 19:12:31 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/package.use.mask,v 1.7 2008/11/23 13:00:50 patrick Exp $
+
+# Patrick Lauer <patrick@gentoo.org> (23 Nov 2008)
+# needs webkit keyworded
+dev-python/PyQt4 webkit
 
 # Jean-Noel Rivasseau <elvanor@gentoo.org> (28 Jul 2008)
 # icu4j tests need jdk-1.6
