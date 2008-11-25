@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-4.0.ebuild,v 1.1 2008/07/28 19:18:27 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-4.0.ebuild,v 1.2 2008/11/24 10:21:50 caster Exp $
 
 EAPI="prefix"
 
@@ -24,13 +24,14 @@ HOMEPAGE="http://www.icu-project.org/"
 LICENSE="icu"
 SLOT="4"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+IUSE=""
 
 RDEPEND=">=virtual/jre-1.4"
 
 # build.xml does file version detection that fails for 1.7
 # http://bugs.gentoo.org/show_bug.cgi?id=213555
-DEPEND="test? ( >=virtual/jdk-1.6 )
-	!test? ( >=virtual/jdk-1.4 )
+DEPEND="test? ( =virtual/jdk-1.6* )
+	!test? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* =virtual/jdk-1.4* ) )
 	app-arch/unzip"
 
 RESTRICT="ia64? ( test )
