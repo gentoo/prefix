@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Tomas Chvatal <scarabeus@gentoo.org> (24 Nov 2008)
+# mask bindist for boinc, which is only for x86 and amd64
+sci-misc/boinc bindist
+
 # Robert Buchholz <rbu@gentoo.org> (16 Aug 2008)
 # TLS needs dev-libs/cryptlib, which is x86 only
 dev-python/kaa-base tls
