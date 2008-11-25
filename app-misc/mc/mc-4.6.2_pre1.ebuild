@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.6 2008/09/14 04:24:16 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.7 2008/11/24 17:55:35 ssuominen Exp $
 
 EAPI="prefix 1"
 
@@ -11,7 +11,7 @@ MY_P=${P/_/-}
 DESCRIPTION="GNU Midnight Commander is a s-lang based file manager."
 HOMEPAGE="http://www.gnu.org/software/mc"
 SRC_URI="http://ftp.gnu.org/gnu/mc/${MY_P}.tar.gz
-	http://dev.gentoo.org/~drac/${MY_P}-patches-1.tbz2"
+	mirror://gentoo/${MY_P}-patches-1.tbz2"
 
 LICENSE="GPL-2"
 SLOT="0"

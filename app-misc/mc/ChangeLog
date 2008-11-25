@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.144 2008/11/17 20:20:38 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.145 2008/11/24 17:55:35 ssuominen Exp $
+
+  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml, mc-4.6.2_pre1.ebuild:
+  Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org. Move
+  patchset tarball from my old dev space to gentoo mirrors.
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/mc-4.6.1-bash-all.patch:
