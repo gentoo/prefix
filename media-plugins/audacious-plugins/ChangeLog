@@ -1,6 +1,18 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.96 2008/09/03 12:28:03 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.98 2008/11/24 17:28:48 chainsaw Exp $
+
+  24 Nov 2008; <chainsaw@gentoo.org> audacious-plugins-1.5.1-r3.ebuild:
+  Early stable on AMD64 as it blocks GCC 4.3 stabilisation efforts. For bug
+  #247287 by Yaroslav Gorbunov <yagorbunov@mail.ru>.
+
+*audacious-plugins-1.5.1-r3 (24 Nov 2008)
+
+  24 Nov 2008; <chainsaw@gentoo.org> +audacious-plugins-1.5.1-r3.ebuild:
+  Disable faulty rootvis plugin, closes bug #244398 by Kai
+  <gentoo@altkai.ml1.net>. Enable/disable filewriter FLAC support in sync
+  with FLAC-NG plugin, closes bug #245835 by Alexis Ballier
+  <aballier@gentoo.org>.
 
 *audacious-plugins-1.5.1-r2 (03 Sep 2008)
 
