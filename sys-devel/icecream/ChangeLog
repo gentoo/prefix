@@ -1,6 +1,16 @@
 # ChangeLog for sys-devel/icecream
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.24 2008/09/11 13:32:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.25 2008/11/24 23:34:41 bluebird Exp $
+
+*icecream-0.9.2 (24 Nov 2008)
+
+  24 Nov 2008; Friedrich Oslage <bluebird@gentoo.org>
+  -files/0.9.1-conf.d-verbosity.patch,
+  -files/0.9.1-dont-create-symlinks.patch,
+  +files/icecream-conf.d-verbosity.patch,
+  +files/icecream-dont-create-symlinks.patch, icecream-0.9.1-r2.ebuild,
+  +icecream-0.9.2.ebuild:
+  Version bump and cosmetic cleanup, bug #247589
 
   11 Sep 2008; Brent Baude <ranger@gentoo.org> icecream-0.9.1-r2.ebuild:
   stable ppc, bug 236965
