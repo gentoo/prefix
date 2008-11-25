@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1.ebuild,v 1.3 2008/11/23 15:02:54 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1.ebuild,v 1.4 2008/11/24 10:20:23 armin76 Exp $
 
 EAPI="prefix"
 
