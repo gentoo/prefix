@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/cutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.24 2008/11/20 02:49:27 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.25 2008/11/24 23:23:51 tcunha Exp $
+
+  24 Nov 2008; Tiago Cunha <tcunha@gentoo.org> +files/cutils-infopage.patch,
+  cutils-1.6-r3.ebuild:
+  - Add die to the mv, and sed calls.
+  - Remove the info page to force its regeneration from the texinfo document.
+  - Simplify patch.
+  - Use safer patterns in sed.
 
 *cutils-1.6-r3 (20 Nov 2008)
 
