@@ -1,0 +1,27 @@
+--- libavcodec/sparc/simple_idct_vis.c
++++ libavcodec/sparc/simple_idct_vis.c
+@@ -384,6 +384,7 @@
+         "st %%f14, [%12+" dest "] \n\t"\
+ 
+ 
++extern void ff_simple_idct_vis(DCTELEM *data);
+ inline void ff_simple_idct_vis(DCTELEM *data) {
+     int out1, out2, out3, out4;
+     DECLARE_ALIGNED_8(int16_t, temp[8*8]);
+--- libmpeg2/idct.c
++++ libmpeg2/idct.c
+@@ -265,13 +265,12 @@
+ 	mpeg2_idct_altivec_init ();
+     } else
+ #endif
+-#ifdef HAVE_VIS
++#ifdef ARCH_ALPHA
+     if (accel & MPEG2_ACCEL_ALPHA_MVI) {
+ 	mpeg2_idct_copy = mpeg2_idct_copy_mvi;
+ 	mpeg2_idct_add = mpeg2_idct_add_mvi;
+ 	mpeg2_idct_alpha_init ();
+     } else
+-#elif ARCH_ALPHA
+     if (accel & MPEG2_ACCEL_ALPHA) {
+ 	int i;
+ 
