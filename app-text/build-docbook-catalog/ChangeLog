@@ -1,6 +1,10 @@
 # ChangeLog for app-text/build-docbook-catalog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.23 2008/11/15 17:44:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.24 2008/11/24 21:14:49 ranger Exp $
+
+  24 Nov 2008; Brent Baude <ranger@gentoo.org>
+  build-docbook-catalog-1.4.ebuild:
+  Marking build-docbook-catalog-1.4 ppc64 for bug 246090
 
   15 Nov 2008; Raúl Porcel <armin76@gentoo.org>
   build-docbook-catalog-1.4.ebuild:
