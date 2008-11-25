@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/xalan-serializer
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.8 2008/10/25 17:17:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.9 2008/11/24 21:25:20 ranger Exp $
+
+  24 Nov 2008; Brent Baude <ranger@gentoo.org>
+  xalan-serializer-2.7.1.ebuild:
+  Marking xalan-serializer-2.7.1 ppc64 for bug 242984
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> xalan-serializer-2.7.1.ebuild:
   Stable on ppc wrt bug 242984
