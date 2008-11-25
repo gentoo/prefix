@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libmowgli
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.40 2008/08/08 20:09:03 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmowgli/ChangeLog,v 1.41 2008/11/24 17:25:56 chainsaw Exp $
+
+  24 Nov 2008; <chainsaw@gentoo.org> ChangeLog:
+  Mark stable on AMD64 (Audacious dependency) as it blocks GCC 4.3
+  stabilisation efforts. For bug #247287 by Yaroslav Gorbunov
+  <yagorbunov@mail.ru>.
 
   08 Aug 2008; Luca Barbato <lu_zero@gentoo.org> libmowgli-0.6.1.ebuild,
   libmowgli-0.7.0.ebuild:
