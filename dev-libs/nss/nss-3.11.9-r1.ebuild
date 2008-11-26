@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.7.ebuild,v 1.15 2008/04/11 17:15:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.9-r1.ebuild,v 1.1 2008/11/25 14:50:17 armin76 Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
-NSPR_VER="4.6.7"
+NSPR_VER="4.6.8"
 RTM_NAME="NSS_${PV//./_}_RTM"
 DESCRIPTION="Mozilla's Network Security Services library that implements PKI support"
 HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
@@ -22,17 +22,21 @@ DEPEND=">=dev-libs/nspr-${NSPR_VER}"
 src_unpack() {
 	unpack ${A}
 
+	cd "${S}"/mozilla/security/coreconf
 	# hack nspr paths
 	echo 'INCLUDES += -I'"${EPREFIX}"'/usr/include/nspr -I$(DIST)/include/dbm' \
-		>> "${S}"/mozilla/security/coreconf/headers.mk || die "failed to append include"
+		>> headers.mk || die "failed to append include"
 
 	# cope with nspr being in /usr/$(get_libdir)/nspr
 	sed -e 's:$(DIST)/lib:'"${EPREFIX}"'/usr/'"$(get_libdir)"/nspr':' \
-		-i "${S}"/mozilla/security/coreconf/location.mk
+		-i location.mk
 
 	# modify install path
 	sed -e 's:SOURCE_PREFIX = $(CORE_DEPTH)/\.\./dist:SOURCE_PREFIX = $(CORE_DEPTH)/dist:' \
-		-i "${S}"/mozilla/security/coreconf/source.mk
+		-i source.mk
+
+	# Respect LDFLAGS
+	sed -i -e 's/\$(MKSHLIB) -o/\$(MKSHLIB) \$(LDFLAGS) -o/g' rules.mk
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.11-config.patch
@@ -46,6 +50,7 @@ src_compile() {
 		export USE_64=1
 	fi
 	export NSDISTMODE=copy
+	export NSS_ENABLE_ECC=1
 	cd "${S}"/mozilla/security/coreconf
 	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "coreconf make failed"
 	cd "${S}"/mozilla/security/dbm

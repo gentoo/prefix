@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.128 2008/09/26 06:23:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.129 2008/11/25 14:50:17 armin76 Exp $
+
+*nss-3.12-r1 (25 Nov 2008)
+*nss-3.11.9-r1 (25 Nov 2008)
+
+  25 Nov 2008; Raúl Porcel <armin76@gentoo.org> -nss-3.11.9.ebuild,
+  +nss-3.11.9-r1.ebuild, -nss-3.12.ebuild, +nss-3.12-r1.ebuild:
+  Enable ECC support, bug #247221
 
   26 Sep 2008; Raúl Porcel <armin76@gentoo.org> nss-3.11.9.ebuild:
   arm stable

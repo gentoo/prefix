@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.ebuild,v 1.3 2008/09/05 10:48:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12-r1.ebuild,v 1.1 2008/11/25 14:50:17 armin76 Exp $
 
 EAPI="prefix"
 
@@ -61,6 +61,7 @@ src_compile() {
 
 	export NSDISTMODE=copy
 	export NSS_USE_SYSTEM_SQLITE=1
+	export NSS_ENABLE_ECC=1
 	cd "${S}"/mozilla/security/coreconf
 	emake -j1 BUILD_OPT=1 XCFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "coreconf make failed"
 	cd "${S}"/mozilla/security/dbm
