@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9208 2008/11/24 20:21:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9217 2008/11/26 00:17:25 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,6 +29,14 @@
 
 #--- END OF EXAMPLES ---
 
+# Samuli Suominen <ssuominen@gentoo.org> (25 Nov 2008)
+# Cantus was moved to new upstream, but last modification
+# in subversion is from 2007. Versions we have in tree,
+# all fail on different errors. See bugs 205681 and 247831
+# for example about latest version. Masked for removal
+# in 30 days. Please try maintained media-sound/easytag.
+media-sound/cantus
+
 # Doug Goldstein <cardoe@gentoo.org> (24 Nov 2008)
 # Fails to configure in all situations. Just plain broken
 # bug #247677
@@ -45,6 +53,8 @@
 # Packages not building with mono-2
 # Masked for removal in 60 days.
 app-misc/gnutu
+app-pda/dopi
+media-sound/monopod
 
 # Jeremy Olexa <darkside@gentoo.org> (22 Nov 2008)
 # Masked for removal in 30 days, requested by maintainers. bug #173584
@@ -100,6 +110,21 @@ dev-db/fastdb
 >=media-sound/banshee-1.4
 dev-dotnet/webkit-sharp
 >=media-sound/muine-0.8.10
+>=app-misc/tomboy-0.12.1
+>=net-news/blam-1.8.6
+=dev-dotnet/art-sharp-2.24*
+=dev-dotnet/gconf-sharp-2.24*
+=dev-dotnet/gnome-desktop-sharp-2.24*
+=dev-dotnet/gnome-panel-sharp-2.24*
+=dev-dotnet/gnome-print-sharp-2.24*
+=dev-dotnet/gnome-sharp-2.24*
+=dev-dotnet/gnomevfs-sharp-2.24*
+=dev-dotnet/gtkhtml-sharp-2.24*
+=dev-dotnet/gtksourceview-sharp-2.24*
+=dev-dotnet/nautilusburn-sharp-2.24*
+=dev-dotnet/rsvg-sharp-2.24*
+=dev-dotnet/vte-sharp-2.24*
+=dev-dotnet/wnck-sharp-2.24*
 
 # Matthias Schwarzott <zzam@gentoo.org> (19 Nov 2008)
 # This ebuild contains intrusive changes
@@ -120,11 +145,6 @@ media-sound/workman
 # ytin hasn't been updated in years.  Use games-mud/tintin instead
 # which is still being maintained.
 games-mud/ytin
-
-# Jim Ramsay <lack@gentoo.org> (17 Nov 2008)
-# The NEW 64-bit version of flash player is alpha, p.mask it until it's a wee
-# bit more tested (Bug #247200)
-=net-www/netscape-flash-10.0.20.7_alpha
 
 # Matthias Schwarzott <zzam@gentoo.org> (28 Oct 2008)
 # This breaks kernels with older sysfs layout, Bug #246938

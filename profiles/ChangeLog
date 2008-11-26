@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2084 2008/11/24 20:21:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2091 2008/11/26 00:17:25 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Gnome-sharp and gnome-desktop-sharp added to mono-2 mask
+
+  25 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Another couple of packages depending on the great mono-2 unmasking
+
+  25 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  monopod doesn't build with mono-2
+
+  25 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  dopi doesn't build with mono-2, bug 212097
+
+  25 Nov 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Remove mask on qscintilla-python
+
+  25 Nov 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  Many good reports received, unmasking native 64-bit flash plugin
+
+  25 Nov 2008; <ssuominen@gentoo.org> package.mask:
+  Mask media-sound/cantus for removal by treecleaners and sound in 30 days.
+  No working version from old, or new upstream.
 
   24 Nov 2008; <ssuominen@gentoo.org> package.mask:
   Rename my old e-mail drac at gentoo.org.
