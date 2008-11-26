@@ -1,6 +1,9 @@
 # ChangeLog for x11-plugins/wmdf
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/wmdf/ChangeLog,v 1.12 2008/10/16 02:00:13 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/wmdf/ChangeLog,v 1.13 2008/11/25 23:54:22 tcunha Exp $
+
+  25 Nov 2008; Tiago Cunha <tcunha@gentoo.org> wmdf-0.1.6-r1.ebuild:
+  stable sparc, bug 215651
 
   16 Oct 2008; Jeremy Olexa <darkside@gentoo.org> wmdf-0.1.6-r1.ebuild:
   add ~amd64 to x11-plugins/wmdf, bug #241774
