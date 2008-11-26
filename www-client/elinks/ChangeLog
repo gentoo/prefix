@@ -1,6 +1,9 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.104 2008/11/23 17:51:34 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.105 2008/11/25 11:54:38 armin76 Exp $
+
+  25 Nov 2008; Raúl Porcel <armin76@gentoo.org> elinks-0.11.4.ebuild:
+  alpha/sparc stable wrt #239482
 
   23 Nov 2008; Dawid Węgliński <cla@gentoo.org> elinks-0.11.4.ebuild:
   Stable on amd64/x86 (bug #239482)
