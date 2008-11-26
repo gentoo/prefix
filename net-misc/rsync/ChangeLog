@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.175 2008/11/24 09:36:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.176 2008/11/25 23:17:23 ranger Exp $
+
+  25 Nov 2008; Brent Baude <ranger@gentoo.org> rsync-3.0.4.ebuild:
+  stable ppc64, bug 248439
 
   24 Nov 2008; Raúl Porcel <armin76@gentoo.org> rsync-3.0.4.ebuild:
   alpha/arm/ia64/sparc stable wrt #248439
