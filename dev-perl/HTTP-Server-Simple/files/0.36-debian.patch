@@ -1,0 +1,91 @@
+--- a/t/01live.t
++++ b/t/01live.t
+@@ -34,11 +34,7 @@ for my $class (@classes) {
+ }
+ 
+ 
+-TODO: { 
+-    local $TODO = "We don't currently wait for 'server is running' responses from the client";
+-    run_server_tests('SlowServer');
+-
+-}
++run_server_tests('SlowServer');
+ 
+ 
+ 
+From: Niko Tyni <ntyni@iki.fi>
+Subject: [PATCH] Pipe version: parent waits for the child to say "OK" via a pipe.
+
+--- libhttp-server-simple-perl.orig/lib/HTTP/Server/Simple.pm
++++ libhttp-server-simple-perl/lib/HTTP/Server/Simple.pm
+@@ -6,6 +6,7 @@
+ use Socket;
+ use Carp;
+ use URI::Escape;
++use IO::Select;
+ 
+ use vars qw($VERSION $bad_request_doc);
+ $VERSION = '0.36';
+@@ -206,15 +207,36 @@
+ 
+ sub background {
+     my $self  = shift;
++
++    # set up a pipe so the child can tell the parent when it's ready
++    # to accept requests
++    my ($readfh, $writefh) = FileHandle::pipe;
++
+     my $child = fork;
+     croak "Can't fork: $!" unless defined($child);
+-    return $child if $child;
++    if ($child) { # parent
++        my $s = IO::Select->new;
++        $s->add($readfh);
++        my $now = time; my $left = 0;
++        my @ready;
++        while(not @ready and $left < 5) {
++            @ready = $s->can_read($left);
++            $left = time - $now;
++        }
++        die("child unresponsive for 5 seconds") if(not @ready);
++        my $response = <$readfh>;
++        chomp $response;
++        die("child is confused: answer '$response' != 'OK'")
++            if $response ne "OK";
++        return $child;
++    }
+ 
+     if ( $^O !~ /MSWin32/ ) {
+         require POSIX;
+         POSIX::setsid()
+             or croak "Can't start a new session: $!";
+     }
++    $self->{_parent_handle} = $writefh;
+     $self->run(@_);
+ }
+ 
+@@ -263,6 +285,7 @@
+ 	$self->after_setup_listener();
+         *{"$pkg\::run"} = $self->_default_run;
+     }
++    $self->_maybe_tell_parent();
+ 
+     local $SIG{HUP} = sub { $SERVER_SHOULD_RUN = 0; };
+ 
+@@ -400,6 +423,16 @@
+     }
+ }
+ 
++sub _maybe_tell_parent {
++    # inform the parent process that we're ready, if applicable
++    my $self = shift;
++    my $handle = $self->{_parent_handle};
++    return if !$handle;
++    print $handle "OK\n";
++    close $handle;
++    delete $self->{_parent_handle};
++}
++
+ =head2 stdio_handle [FILEHANDLE]
+ 
+ When called with an argument, sets the socket to the server to that arg.
