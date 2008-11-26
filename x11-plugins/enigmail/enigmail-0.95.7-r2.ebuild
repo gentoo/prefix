@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r2.ebuild,v 1.2 2008/11/23 16:23:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r2.ebuild,v 1.3 2008/11/25 15:02:50 armin76 Exp $
 
 EAPI="prefix"
 
@@ -76,6 +76,14 @@ linguas() {
 		fi
 		ewarn "Sorry, but ${PN} does not support the ${LANG} LINGUA"
 	done
+}
+
+pkg_setup() {
+	if has_version '>=app-crypt/gnupg-2.0.1-r2'; then
+		if ! built_with_use -o app-crypt/pinentry gtk qt3; then
+			die "You must build app-crypt/pinentry with GTK or QT3 support"
+		fi
+	fi
 }
 
 src_unpack() {
