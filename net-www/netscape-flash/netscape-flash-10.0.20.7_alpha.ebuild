@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.20.7_alpha.ebuild,v 1.2 2008/11/19 15:11:29 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.20.7_alpha.ebuild,v 1.3 2008/11/26 02:27:36 lack Exp $
 
 EAPI="prefix 1"
 
-inherit nsplugins rpm
+inherit nsplugins
 
 DESCRIPTION="Adobe Flash Player"
 SRC_URI="http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-10.0.d20.7.linux-x86_64.so.tar.gz"
