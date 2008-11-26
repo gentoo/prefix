@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.28 2007/01/18 08:22:41 latexer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.29 2008/11/25 20:44:25 loki_val Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -69,7 +69,7 @@ SRC_URI="${SOURCE_SERVER}/${MY_P}.tar.gz
 S=${WORKDIR}/${MY_P}
 
 # Make sure we're building with the same version.
-DEPEND="=dev-dotnet/gtk-sharp-${GTK_SHARP_REQUIRED_VERSION}*
+[[ "${ECLASS_DEPENDS}" = "no" ]] || DEPEND="=dev-dotnet/gtk-sharp-${GTK_SHARP_REQUIRED_VERSION}*
 	>=sys-apps/sed-4"
 
 
