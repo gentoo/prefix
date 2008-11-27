@@ -1,6 +1,9 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.142 2008/11/25 15:02:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.143 2008/11/26 15:32:06 ranger Exp $
+
+  26 Nov 2008; Brent Baude <ranger@gentoo.org> enigmail-0.95.7-r2.ebuild:
+  Marking enigmail-0.95.7-r2 ppc64 for bug 246628
 
   25 Nov 2008; Raúl Porcel <armin76@gentoo.org> enigmail-0.95.7-r2.ebuild:
   Add built_with_use check for pinentry, bug #246628
