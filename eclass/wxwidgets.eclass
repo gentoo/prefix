@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.25 2007/12/25 14:46:29 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.26 2008/11/26 06:49:34 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -8,40 +8,39 @@
 # @BLURB:			Manages build configuration for wxGTK-using packages.
 # @DESCRIPTION:
 #  The wxGTK libraries come in several different possible configurations
-#  (release/debug, ansi/unicode, etc.) some of which can be installed
+#  (release, debug, ansi, unicode, etc.) most of which can be installed
 #  side-by-side.  The purpose of this eclass is to provide ebuilds the ability
-#  to build against a specific type without interfering with the user-set
-#  system configuration.
+#  to build against a specific type of profile without interfering with the
+#  user-set system configuration.
 #
-#  Ebuilds that use wxGTK must inherit this eclass.  Otherwise the system
-#  default will be used, which would be anything the user set it to through
-#  eselect-wxwidgets.
+#  Ebuilds that use wxGTK _must_ inherit this eclass.  Otherwise the system
+#  profile will be used, meaning whatever the user happened to set it to
+#  through eselect-wxwidgets.
 #
 #  Ebuilds are also required to set the variable WX_GTK_VER, containing
-#  the wxGTK SLOT the ebuild requires.  You can either set this before the
-#  inherit line to get the default type for that SLOT, or later before calling
-#  the need-wxwidgets function.
+#  the wxGTK SLOT the ebuild requires.
 #
 #  Simple Usage:
 #
 # @CODE
-#    WX_GTK_VER="2.6"
+#    WX_GTK_VER="2.8"
 #
 #    inherit wxwidgets
 #
-#    DEPEND="=x11-libs/wxGTK-2.6*"       (or x11-libs/wxGTK:2.6 for EAPI 1)
+#    DEPEND="=x11-libs/wxGTK-2.8*"       (or x11-libs/wxGTK:2.8 for >=EAPI 1)
 #    RDEPEND="${DEPEND}"
 #    [...]
 # @CODE
 #
-#  The eclass will select the default configuration, which is "ansi" in 2.6
-#  and "unicode" in >=2.8.  These are the defaults because they're always
-#  guaranteed to exist.
+#  In this case the eclass will use the default configuration, which is the GTK
+#  libraries and either the "ansi" (in 2.6) or "unicode" (>=2.8) charsets.
 #
-#  If you need more control over which version you need to use, see the
+#  If you need more control over which profile(s) you need to use, see the
 #  need-wxwidgets function below.
 
 inherit eutils multilib
+
+EXPORT_FUNCTIONS pkg_setup
 
 # We do this globally so ebuilds can get sane defaults just by inheriting.  They
 # can be overridden with need-wxwidgets later if need be.
@@ -57,7 +56,11 @@ if [[ -z ${WX_CONFIG} ]]; then
 		for wxtoolkit in gtk2 base; do
 			for wxdebug in release debug; do
 				wxconf="${wxtoolkit}-${wxchar}-${wxdebug}-${WX_GTK_VER}"
-				[[ -f /usr/$(get_libdir)/wx/config/${wxconf} ]] || continue
+				if [[ -f /usr/$(get_libdir)/wx/config/${wxconf} ]]; then
+					[[ $wxtoolkit == "base" ]] && WXBASE_DIE=1 # see wxwidgets_pkg_setup
+				else
+					continue
+				fi
 				WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
 				# TODO: needed for the wx-config wrapper
 				WX_ECLASS_CONFIG="${WX_CONFIG}"
@@ -69,6 +72,24 @@ if [[ -z ${WX_CONFIG} ]]; then
 	fi
 fi
 
+# @FUNCTION:		wxwidgets_pkg_setup
+# @DESCRIPTION:
+#
+#  99.99% of the time, packages building against wxGTK need the GTK libraries.
+#  When using the "Simple Usage" case above (WX_GTK_VER before inherit), we have
+#  to take into account that the user may have only installed the base libraries
+#  (with USE="-X").  Since we can't die in global scope we instead check for
+#  the presence of a base profile and then die here if found.
+#
+#  If you do need to build against the wxBase libraries, you'll have to use
+#  need-wxwidgets to do so.
+#
+#  Note that with an EAPI 2 ebuild you can just DEPEND on x11-libs/wxGTK:2.8[X]
+#  and ignore all this nonsense.
+
+wxwidgets_pkg_setup() {
+	[[ -n $WXBASE_DIE ]] && check_wxuse X
+}
 
 # @FUNCTION:		need-wxwidgets
 # @USAGE:			<configuration>

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.102 2008/08/25 17:10:36 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.103 2008/11/26 23:13:24 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -195,7 +195,7 @@ x-modular_dri_check() {
 	if [[ -n "${DRIVER}" ]]; then
 		if has dri ${IUSE} && use dri; then
 			einfo "Checking for direct rendering capabilities ..."
-			if ! built_with_use x11-base/xorg-server dri; then
+			if ! built_with_use --missing true x11-base/xorg-server dri; then
 				die "You must build x11-base/xorg-server with USE=dri."
 			fi
 		fi
