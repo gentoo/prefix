@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.13 2008/11/19 06:41:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.14 2008/11/26 21:27:00 ulm Exp $
 
 EAPI="prefix"
 
@@ -265,13 +265,14 @@ emacs-infodir-rebuild() {
 	# INFOPATH, which is not guaranteed. So we rebuild it ourselves.
 
 	local infodir=/usr/share/info/${EMACS_SUFFIX} f
+	[ -d "${EROOT}"${infodir} ] || return	# may occur with FEATURES=noinfo
 	einfo "Regenerating Info directory index in ${infodir} ..."
 	rm -f "${EROOT}"${infodir}/dir{,.*}
 	for f in "${EROOT}"${infodir}/*.info*; do
-		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
+		[[ ${f##*/} != *[0-9].info* && -e ${f} ]] \
+			&& install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
-	rmdir "${EROOT}"${infodir} 2>/dev/null # remove dir if it is empty
+	rmdir "${EROOT}"${infodir} 2>/dev/null	# remove dir if it is empty
 	echo
 }
 
