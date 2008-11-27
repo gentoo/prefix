@@ -480,6 +480,10 @@ gen_usr_ldscript() {
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
+		*-mint*)
+			# do nothing
+			return
+			;;
 		*)	
 			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
