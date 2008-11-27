@@ -1,0 +1,28 @@
+--- tailor.h.old	2008-04-13 15:49:35.000000000 +0100
++++ tailor.h	2008-04-13 15:50:19.000000000 +0100
+@@ -201,25 +201,6 @@
+ #  endif
+ #endif
+ 
+-#if defined(ATARI) || defined(atarist)
+-#  ifndef STDC_HEADERS
+-#    define STDC_HEADERS
+-#    define HAVE_UNISTD_H
+-#    define HAVE_DIRENT_H
+-#  endif
+-#  define ASMV
+-#  define OS_CODE  0x05
+-#  ifdef TOSFS
+-#    define PATH_SEP2 '\\'
+-#    define PATH_SEP3 ':'
+-#    define MAX_PATH_LEN  128
+-#    define NO_MULTIPLE_DOTS
+-#    define MAX_EXT_CHARS 3
+-#    define Z_SUFFIX "z"
+-#    define casemap(c) tolow(c) /* Force file names to lower case */
+-#  endif
+-#endif
+-
+ #ifdef MACOS
+ #  define PATH_SEP ':'
+ #  define DYN_ALLOC

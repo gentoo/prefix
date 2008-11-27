@@ -30,6 +30,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 	sed -i 's:\<futimens\>:gl_futimens:' gzip.c
 
+	epatch "${FILESDIR}"/${P}-mint.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		g{unzip,zexe}.in \
