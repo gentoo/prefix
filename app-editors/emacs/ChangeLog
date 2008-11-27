@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.286 2008/11/14 09:11:43 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.287 2008/11/26 21:11:49 ulm Exp $
+
+  26 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.3.ebuild:
+  Handle the FEATURES=noinfo case in emacs-infodir-rebuild; don't create a
+  spurious Info dir file when called with no files in postrm phase.
 
   14 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r5.ebuild:
   Require libX11 built with USE=-xcb.
