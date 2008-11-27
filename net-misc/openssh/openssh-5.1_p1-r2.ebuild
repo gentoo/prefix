@@ -124,8 +124,9 @@ src_compile() {
 	fi
 
 	# for some reason the stack-protector detection code doesn't really work on
-	# solaris, so don't try it
-	[[ ${CHOST} == *-solaris* ]] && myconf="${myconf} --without-stackprotect"
+	# solaris, so don't try it, FreeMiNT neither
+	[[ ${CHOST} == *-solaris* || ${CHOST} == *-mint* ]] && \
+		myconf="${myconf} --without-stackprotect"
 
 	econf \
 		--with-ldflags="${LDFLAGS}" \
