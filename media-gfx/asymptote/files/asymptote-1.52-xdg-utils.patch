@@ -1,0 +1,19 @@
+diff -r -U2 asymptote-1.52.orig/settings.cc asymptote-1.52/settings.cc
+--- asymptote-1.52.orig/settings.cc	2008-11-25 15:09:27.000000000 +0600
++++ asymptote-1.52/settings.cc	2008-11-27 04:42:58.000000000 +0600
+@@ -81,12 +81,12 @@
+ const char *HOME="HOME";
+ const char pathSeparator=':';
+-string defaultPSViewer="gv";
++string defaultPSViewer="xdg-open";
+ #ifdef __APPLE__
+ string defaultPDFViewer="open";
+ #else  
+-string defaultPDFViewer="acroread";
++string defaultPDFViewer="xdg-open";
+ #endif  
+ string defaultGhostscript="gs";
+-string defaultDisplay="display";
++string defaultDisplay="xdg-open";
+ string defaultPython;
+ const string docdir=ASYMPTOTE_DOCDIR;
