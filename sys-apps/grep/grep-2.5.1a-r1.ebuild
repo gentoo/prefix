@@ -40,6 +40,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-fix-devices-skip.patch #113640
 	epatch "${FILESDIR}"/${P}-nls.patch
 	epatch "${FILESDIR}"/${P}-getopt-nls.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1a-mint.patch
 
 	# retarded
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c || die
