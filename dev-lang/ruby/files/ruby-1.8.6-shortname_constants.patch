@@ -1,0 +1,38 @@
+Changeset 18485 from Ruby SVN to fix bug #247790
+
+--- node.h	2008/08/11 02:52:57	18484
++++ node.h	2008/08/11 05:42:31	18485
+@@ -319,7 +319,7 @@
+ #define NEW_MODULE(n,b) NEW_NODE(NODE_MODULE,n,NEW_SCOPE(b),0)
+ #define NEW_COLON2(c,i) NEW_NODE(NODE_COLON2,c,i,0)
+ #define NEW_COLON3(i) NEW_NODE(NODE_COLON3,0,i,0)
+-#define NEW_CREF(c) (NEW_NODE(NODE_CREF,0,0,c))
++#define NEW_CREF(c,n) NEW_NODE(NODE_CREF,c,0,n)
+ #define NEW_DOT2(b,e) NEW_NODE(NODE_DOT2,b,e,0)
+ #define NEW_DOT3(b,e) NEW_NODE(NODE_DOT3,b,e,0)
+ #define NEW_ATTRSET(a) NEW_NODE(NODE_ATTRSET,a,0,0)
+--- eval.c	2008/08/11 02:52:57	18484
++++ eval.c	2008/08/11 05:42:31	18485
+@@ -1065,7 +1065,7 @@
+ 
+ NODE *ruby_cref = 0;
+ NODE *ruby_top_cref;
+-#define PUSH_CREF(c) ruby_cref = NEW_NODE(NODE_CREF,(c),0,ruby_cref)
++#define PUSH_CREF(c) ruby_cref = NEW_CREF(c,ruby_cref)
+ #define POP_CREF() ruby_cref = ruby_cref->nd_next
+ 
+ #define PUSH_SCOPE() do {		\
+--- class.c	2008/08/11 02:52:57	18484
++++ class.c	2008/08/11 05:42:31	18485
+@@ -62,7 +62,10 @@
+     NODE *fbody = body->nd_body;
+ 
+     if (fbody && nd_type(fbody) == NODE_SCOPE) {
+-	fbody = rb_copy_node_scope(fbody, ruby_cref);
++	NODE *cref = (NODE*)fbody->nd_rval;
++
++	if (cref) cref = cref->nd_next;
++	fbody = rb_copy_node_scope(fbody, NEW_CREF(data->klass, cref));
+     }
+     st_insert(data->tbl, mid, (st_data_t)NEW_METHOD(fbody, body->nd_noex));
+     return ST_CONTINUE;

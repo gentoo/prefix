@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.353 2008/09/16 18:03:47 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.355 2008/11/26 22:12:12 graaff Exp $
+
+*ruby-1.8.7_p72-r1 (26 Nov 2008)
+*ruby-1.8.6_p287-r2 (26 Nov 2008)
+
+  26 Nov 2008; Hans de Graaff <graaff@gentoo.org>
+  +files/ruby-1.8.6-shortname_constants.patch, +ruby-1.8.6_p287-r2.ebuild,
+  +ruby-1.8.7_p72-r1.ebuild:
+  Fix problem with shortname constants #247790, already fixed in upstream SVN.
+  Thanks to Alex Legler for providing the patch.
+
+  26 Nov 2008; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.6_p286.ebuild,
+  -ruby-1.8.6_p287.ebuild:
+  Remove versions that will not become stable
 
   16 Sep 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   ruby-1.8.6_p287-r1.ebuild:
