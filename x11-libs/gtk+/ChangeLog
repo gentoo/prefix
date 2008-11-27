@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.405 2008/11/17 23:05:56 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.406 2008/11/27 02:36:41 leio Exp $
+
+*gtk+-2.14.5 (27 Nov 2008)
+
+  27 Nov 2008; Mart Raudsepp <leio@gentoo.org>
+  -files/gtk+-2.12.9-filechooser-fix-icon-size.patch,
+  -files/gtk+-2.12.9-gtk-filesystem-backend-tilde-fix.patch,
+  -files/gtk+-2.12.9-print-backend-64bit.patch,
+  -files/gtk+-2.12.9-treeview-search-window-type.patch,
+  -files/gtk+-2.12.10-fix-get_frame_extents.patch,
+  -files/gtk+-2.12.10-fix-treeview_sort_indicators.patch,
+  -files/gtk+-2.14.3-dont-unset-filechooser-filter-after-first-use.patch,
+  -files/gtk+-2.14.3-fix-combining-broken-diacritics.patch,
+  -files/gtk+-2.14.3-fix-filesystem-double-free.patch,
+  -files/gtk+-2.14.3-fix-lpr_write-double-free.patch,
+  -files/gtk+-2.14.3-fix-password-dialog-on-mount.patch,
+  -files/gtk+-2.14.3-notebook-tab-draw-correctness.patch,
+  -files/gtk+-2.14.3-reorder-compose-key-table-order.patch,
+  -gtk+-2.12.9-r1.ebuild, -gtk+-2.12.9-r2.ebuild, -gtk+-2.12.10-r1.ebuild,
+  -gtk+-2.14.3-r1.ebuild, -gtk+-2.14.3-r2.ebuild, +gtk+-2.14.5.ebuild:
+  Version bump for various bug fixes. Remove old
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/gtk+-2.10.7-mozilla-dnd-fix.patch:
