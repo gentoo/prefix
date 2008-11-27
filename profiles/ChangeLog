@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2091 2008/11/26 00:17:25 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2094 2008/11/26 17:10:59 matsuu Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Nov 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  remove posadis mask
+
+  26 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Force removal of non-working gtksourceview-sharp versions.
+
+  26 Nov 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Finally unmask udev-133, it is finished now.
 
   26 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Gnome-sharp and gnome-desktop-sharp added to mono-2 mask
