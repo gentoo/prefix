@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils multilib toolchain-funcs mono libtool
+inherit flag-o-matic eutils multilib toolchain-funcs mono autotools
 
 DESCRIPTION="GNU locale utilities"
 HOMEPAGE="http://www.gnu.org/software/gettext/gettext.html"
@@ -12,12 +12,12 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="acl doc emacs nls nocxx openmp"
 
 DEPEND="virtual/libiconv
 	dev-libs/libxml2
-	sys-libs/ncurses
+	!x86-winnt? ( sys-libs/ncurses )
 	dev-libs/expat
 	acl? ( kernel_linux? ( sys-apps/acl ) )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
@@ -47,6 +47,13 @@ src_unpack() {
 		export ac_cv_search_acl_get_file=no
 		export gl_cv_func_working_acl_get_file=no
 		sed -i -e 's:use_acl=1:use_acl=0:' gettext-tools/configure
+	fi
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${P}-winnt.patch
+
+		cp -f "$(dirname "$(type -P libtoolize)")"/../share/aclocal/libtool.m4 "${S}"/m4/libtool.m4
+		eautoreconf # required for winnt
 	fi
 }
 

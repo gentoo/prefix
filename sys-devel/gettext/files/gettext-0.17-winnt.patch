@@ -1,0 +1,1264 @@
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/gnulib-m4/include_next.m4 gettext-0.17/gettext-runtime/gnulib-m4/include_next.m4
+--- gettext-0.17.orig/gettext-runtime/gnulib-m4/include_next.m4	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-runtime/gnulib-m4/include_next.m4	2008-11-27 10:04:35 +0100
+@@ -89,8 +89,8 @@
+ 	    dnl so use subshell.
+ 	    AS_VAR_SET([gl_next_header],
+ 	      ['"'`(eval "$ac_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD |
+-	       sed -n '\#/]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
+-		 s#.*"\(.*/]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
++	       sed -n '\#[\\/]]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
++		 s#.*"\(.*[\\/]]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
+ 		 s#^/[^/]#//&#
+ 		 p
+ 		 q
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/intl/printf-parse.c gettext-0.17/gettext-runtime/intl/printf-parse.c
+--- gettext-0.17.orig/gettext-runtime/intl/printf-parse.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-runtime/intl/printf-parse.c	2008-11-27 10:04:35 +0100
+@@ -46,6 +46,10 @@
+ # define DIRECTIVES char_directives
+ #endif
+ 
++#if defined(__PARITY__)
++# define intmax_t long long int
++#endif
++
+ /* Get size_t, NULL.  */
+ #include <stddef.h>
+ 
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/intl/relocatable.h gettext-0.17/gettext-runtime/intl/relocatable.h
+--- gettext-0.17.orig/gettext-runtime/intl/relocatable.h	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-runtime/intl/relocatable.h	2008-11-27 10:04:35 +0100
+@@ -33,7 +33,7 @@
+    in any case.  */
+ #if HAVE_VISIBILITY && BUILDING_DLL
+ # define RELOCATABLE_DLL_EXPORTED __attribute__((__visibility__("default")))
+-#elif defined _MSC_VER && BUILDING_DLL
++#elif defined _MSC_VER && BUILDING_DLL && !defined(__PARITY__)
+ # define RELOCATABLE_DLL_EXPORTED __declspec(dllexport)
+ #else
+ # define RELOCATABLE_DLL_EXPORTED
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/libasprintf/configure.ac gettext-0.17/gettext-runtime/libasprintf/configure.ac
+--- gettext-0.17.orig/gettext-runtime/libasprintf/configure.ac	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-runtime/libasprintf/configure.ac	2008-11-27 10:04:35 +0100
+@@ -54,7 +54,6 @@
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ AC_C_INLINE
+ AC_TYPE_SIZE_T
+-gl_AC_TYPE_LONG_LONG
+ gt_TYPE_LONGDOUBLE
+ gt_TYPE_WCHAR_T
+ gt_TYPE_WINT_T
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/libasprintf/printf-parse.c gettext-0.17/gettext-runtime/libasprintf/printf-parse.c
+--- gettext-0.17.orig/gettext-runtime/libasprintf/printf-parse.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-runtime/libasprintf/printf-parse.c	2008-11-27 10:04:35 +0100
+@@ -46,6 +46,10 @@
+ # define DIRECTIVES char_directives
+ #endif
+ 
++#if defined(__PARITY__)
++# define intmax_t long long int
++#endif
++
+ /* Get size_t, NULL.  */
+ #include <stddef.h>
+ 
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/html-styled-ostream.c gettext-0.17/gettext-tools/gnulib-lib/html-styled-ostream.c
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/html-styled-ostream.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/html-styled-ostream.c	2008-11-27 10:04:35 +0100
+@@ -51,9 +51,6 @@
+ 
+ const typeinfo_t html_styled_ostream_typeinfo = { "html_styled_ostream" };
+ 
+-static const typeinfo_t * const html_styled_ostream_superclasses[] =
+-  { html_styled_ostream_SUPERCLASSES };
+-
+ #define super styled_ostream_vtable
+ 
+ #line 51 "html-styled-ostream.oo.c"
+@@ -105,6 +102,21 @@
+   html_styled_ostream_t stream =
+     XMALLOC (struct html_styled_ostream_representation);
+ 
++  const typeinfo_t * const html_styled_ostream_superclasses[] =
++    { html_styled_ostream_SUPERCLASSES };
++
++  const struct html_styled_ostream_implementation html_styled_ostream_vtable =
++  {
++    html_styled_ostream_superclasses,
++    sizeof (html_styled_ostream_superclasses) / sizeof (html_styled_ostream_superclasses[0]),
++    sizeof (struct html_styled_ostream_representation),
++    html_styled_ostream__write_mem,
++    html_styled_ostream__flush,
++    html_styled_ostream__free,
++    html_styled_ostream__begin_use_class,
++    html_styled_ostream__end_use_class,
++  };
++
+   stream->base.base.vtable = &html_styled_ostream_vtable;
+   stream->destination = destination;
+   stream->html_destination = html_ostream_create (destination);
+@@ -168,18 +180,6 @@
+ 
+ #line 170 "html-styled-ostream.c"
+ 
+-const struct html_styled_ostream_implementation html_styled_ostream_vtable =
+-{
+-  html_styled_ostream_superclasses,
+-  sizeof (html_styled_ostream_superclasses) / sizeof (html_styled_ostream_superclasses[0]),
+-  sizeof (struct html_styled_ostream_representation),
+-  html_styled_ostream__write_mem,
+-  html_styled_ostream__flush,
+-  html_styled_ostream__free,
+-  html_styled_ostream__begin_use_class,
+-  html_styled_ostream__end_use_class,
+-};
+-
+ #if !HAVE_INLINE
+ 
+ /* Define the functions that invoke the methods.  */
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/libxml/xmlIO.c gettext-0.17/gettext-tools/gnulib-lib/libxml/xmlIO.c
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/libxml/xmlIO.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/libxml/xmlIO.c	2008-11-27 10:04:35 +0100
+@@ -36,7 +36,7 @@
+ #include <zlib.h>
+ #endif
+ 
+-#ifdef WIN32
++#if defined(WIN32) || defined(_WIN32)
+ #include <windows.h>
+ #endif
+ 
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/memset.c gettext-0.17/gettext-tools/gnulib-lib/memset.c
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/memset.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/memset.c	2008-11-27 10:04:35 +0100
+@@ -17,6 +17,8 @@
+ 
+ #include <stddef.h>
+ 
++#ifndef __PARITY__
++
+ void *
+ memset (void *str, int c, size_t len)
+ {
+@@ -26,3 +28,6 @@
+     *st++ = c;
+   return str;
+ }
++
++#endif
++
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/sys_stat.in.h gettext-0.17/gettext-tools/gnulib-lib/sys_stat.in.h
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/sys_stat.in.h	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/sys_stat.in.h	2008-11-27 10:04:35 +0100
+@@ -261,6 +261,7 @@
+ # define lstat stat
+ #endif
+ 
++#if !defined(__PARITY__)
+ /* mingw's _mkdir() function has 1 argument, but we pass 2 arguments.
+    Additionally, it declares _mkdir (and depending on compile flags, an
+    alias mkdir), only in the nonstandard io.h.  */
+@@ -275,6 +276,7 @@
+ 
+ # define mkdir rpl_mkdir
+ #endif
++#endif /* PARITY */
+ 
+ #endif /* _GL_SYS_STAT_H */
+ #endif /* _GL_SYS_STAT_H */
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/term-styled-ostream.c gettext-0.17/gettext-tools/gnulib-lib/term-styled-ostream.c
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/term-styled-ostream.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/term-styled-ostream.c	2008-11-27 10:04:35 +0100
+@@ -70,9 +70,6 @@
+ 
+ const typeinfo_t term_styled_ostream_typeinfo = { "term_styled_ostream" };
+ 
+-static const typeinfo_t * const term_styled_ostream_superclasses[] =
+-  { term_styled_ostream_SUPERCLASSES };
+-
+ #define super styled_ostream_vtable
+ 
+ #line 82 "term-styled-ostream.oo.c"
+@@ -602,6 +599,21 @@
+     XMALLOC (struct term_styled_ostream_representation);
+   CRStyleSheet *css_file_contents;
+ 
++  const typeinfo_t * const term_styled_ostream_superclasses[] =
++    { term_styled_ostream_SUPERCLASSES };
++
++  const struct term_styled_ostream_implementation term_styled_ostream_vtable =
++  {
++    term_styled_ostream_superclasses,
++    sizeof (term_styled_ostream_superclasses) / sizeof (term_styled_ostream_superclasses[0]),
++    sizeof (struct term_styled_ostream_representation),
++    term_styled_ostream__write_mem,
++    term_styled_ostream__flush,
++    term_styled_ostream__free,
++    term_styled_ostream__begin_use_class,
++    term_styled_ostream__end_use_class,
++  };
++
+   stream->base.base.vtable = &term_styled_ostream_vtable;
+   stream->destination = term_ostream_create (fd, filename);
+ 
+@@ -629,18 +641,6 @@
+ 
+ #line 631 "term-styled-ostream.c"
+ 
+-const struct term_styled_ostream_implementation term_styled_ostream_vtable =
+-{
+-  term_styled_ostream_superclasses,
+-  sizeof (term_styled_ostream_superclasses) / sizeof (term_styled_ostream_superclasses[0]),
+-  sizeof (struct term_styled_ostream_representation),
+-  term_styled_ostream__write_mem,
+-  term_styled_ostream__flush,
+-  term_styled_ostream__free,
+-  term_styled_ostream__begin_use_class,
+-  term_styled_ostream__end_use_class,
+-};
+-
+ #if !HAVE_INLINE
+ 
+ /* Define the functions that invoke the methods.  */
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-m4/include_next.m4 gettext-0.17/gettext-tools/gnulib-m4/include_next.m4
+--- gettext-0.17.orig/gettext-tools/gnulib-m4/include_next.m4	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/gnulib-m4/include_next.m4	2008-11-27 10:04:35 +0100
+@@ -89,8 +89,8 @@
+ 	    dnl so use subshell.
+ 	    AS_VAR_SET([gl_next_header],
+ 	      ['"'`(eval "$ac_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD |
+-	       sed -n '\#/]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
+-		 s#.*"\(.*/]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
++	       sed -n '\#[\\/]]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
++		 s#.*"\(.*[\\/]]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
+ 		 s#^/[^/]#//&#
+ 		 p
+ 		 q
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/libgettextpo/Makefile.am gettext-0.17/gettext-tools/libgettextpo/Makefile.am
+--- gettext-0.17.orig/gettext-tools/libgettextpo/Makefile.am	2008-11-27 10:25:51 +0100
++++ gettext-0.17/gettext-tools/libgettextpo/Makefile.am	2008-11-27 10:50:00 +0100
+@@ -145,7 +145,7 @@
+ 	          sf=`echo "$$f" | sed -e 's,\\.[^.]*$$,,'`.c; \
+ 	          test -f $$sf || sf=$(srcdir)/$$sf; \
+ 	          of=`echo "$$f" | sed -e 's,^.*/,,' -e 's,\\.[^.]*$$,,'`.$(OBJEXT); \
+-	          $(COMPILE) -c $$sf || { rm -f config.h; exit 1; }; \
++	          $(COMPILE) -c $$sf > /dev/null || { rm -f config.h; exit 1; }; \
+ 	          sh ./exported.sh $$of 1>&5; \
+ 	          rm -f $$of `echo "$$of" | sed -e 's,\\.$(OBJEXT)$$,.lo,'`; \
+ 	          ;; \
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/libgrep/dfa.c gettext-0.17/gettext-tools/libgrep/dfa.c
+--- gettext-0.17.orig/gettext-tools/libgrep/dfa.c	2008-11-27 10:25:52 +0100
++++ gettext-0.17/gettext-tools/libgrep/dfa.c	2008-11-27 10:34:29 +0100
+@@ -30,7 +30,7 @@
+ #include <string.h>
+ #include <locale.h>
+ 
+-#if defined HAVE_WCTYPE_H && defined HAVE_WCHAR_H && defined HAVE_MBRTOWC
++#if defined HAVE_WCTYPE_H && defined HAVE_WCHAR_H && defined HAVE_MBRTOWC && !defined(__PARITY__)
+ /* We can handle multibyte string.  */
+ # define MBS_SUPPORT
+ #endif
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/libgrep/m-common.h gettext-0.17/gettext-tools/libgrep/m-common.h
+--- gettext-0.17.orig/gettext-tools/libgrep/m-common.h	2008-11-27 10:25:52 +0100
++++ gettext-0.17/gettext-tools/libgrep/m-common.h	2008-11-27 10:35:00 +0100
+@@ -19,7 +19,7 @@
+ #include <limits.h>
+ #include "kwset.h"
+ 
+-#if defined HAVE_WCTYPE_H && defined HAVE_WCHAR_H && defined HAVE_MBRTOWC
++#if defined HAVE_WCTYPE_H && defined HAVE_WCHAR_H && defined HAVE_MBRTOWC && !defined(__PARITY)
+ /* We can handle multibyte string.  */
+ # define MBS_SUPPORT
+ # include <wchar.h>
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/libgrep/regex.c gettext-0.17/gettext-tools/libgrep/regex.c
+--- gettext-0.17.orig/gettext-tools/libgrep/regex.c	2008-11-27 10:25:52 +0100
++++ gettext-0.17/gettext-tools/libgrep/regex.c	2008-11-27 10:36:11 +0100
+@@ -37,6 +37,11 @@
+ 
+ # define WIDE_CHAR_SUPPORT (HAVE_WCTYPE_H && HAVE_WCHAR_H && HAVE_BTOWC)
+ 
++# ifdef __PARITY__
++#  undef WIDE_CHAR_SUPPORT
++#  define WIDE_CHAR_SUPPORT 0
++# endif
++
+ /* For platform which support the ISO C amendement 1 functionality we
+    support user defined character classes.  */
+ # if defined _LIBC || WIDE_CHAR_SUPPORT
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/format.c gettext-0.17/gettext-tools/src/format.c
+--- gettext-0.17.orig/gettext-tools/src/format.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/format.c	2008-11-27 10:04:35 +0100
+@@ -31,32 +31,37 @@
+ 
+ #define _(str) gettext (str)
+ 
+-/* Table of all format string parsers.  */
+-struct formatstring_parser *formatstring_parsers[NFORMATS] =
+-{
+-  /* format_c */		&formatstring_c,
+-  /* format_objc */		&formatstring_objc,
+-  /* format_sh */		&formatstring_sh,
+-  /* format_python */		&formatstring_python,
+-  /* format_lisp */		&formatstring_lisp,
+-  /* format_elisp */		&formatstring_elisp,
+-  /* format_librep */		&formatstring_librep,
+-  /* format_scheme */		&formatstring_scheme,
+-  /* format_smalltalk */	&formatstring_smalltalk,
+-  /* format_java */		&formatstring_java,
+-  /* format_csharp */		&formatstring_csharp,
+-  /* format_awk */		&formatstring_awk,
+-  /* format_pascal */		&formatstring_pascal,
+-  /* format_ycp */		&formatstring_ycp,
+-  /* format_tcl */		&formatstring_tcl,
+-  /* format_perl */		&formatstring_perl,
+-  /* format_perl_brace */	&formatstring_perl_brace,
+-  /* format_php */		&formatstring_php,
+-  /* format_gcc_internal */	&formatstring_gcc_internal,
+-  /* format_qt */		&formatstring_qt,
+-  /* format_kde */		&formatstring_kde,
+-  /* format_boost */		&formatstring_boost
+-};
++struct formatstring_parser ** get_formatstring_parsers() {
++  /* Table of all format string parsers.  */
++  static struct formatstring_parser * parsers[NFORMATS] = { NULL };
++
++  if(!parsers[0]) {
++      parsers[0] = /* format_c */		&formatstring_c;
++      parsers[1] = /* format_objc */		&formatstring_objc;
++      parsers[2] = /* format_sh */		&formatstring_sh;
++      parsers[3] = /* format_python */		&formatstring_python;
++      parsers[4] = /* format_lisp */		&formatstring_lisp;
++      parsers[5] = /* format_elisp */		&formatstring_elisp;
++      parsers[6] = /* format_librep */		&formatstring_librep;
++      parsers[7] = /* format_scheme */		&formatstring_scheme;
++      parsers[8] = /* format_smalltalk */	&formatstring_smalltalk;
++      parsers[9] = /* format_java */		&formatstring_java;
++      parsers[10] = /* format_csharp */		&formatstring_csharp;
++      parsers[11] = /* format_awk */		&formatstring_awk;
++      parsers[12] = /* format_pascal */		&formatstring_pascal;
++      parsers[13] = /* format_ycp */		&formatstring_ycp;
++      parsers[14] = /* format_tcl */		&formatstring_tcl;
++      parsers[15] = /* format_perl */		&formatstring_perl;
++      parsers[16] = /* format_perl_brace */	&formatstring_perl_brace;
++      parsers[17] = /* format_php */		&formatstring_php;
++      parsers[18] = /* format_gcc_internal */	&formatstring_gcc_internal;
++      parsers[19] = /* format_qt */		&formatstring_qt;
++      parsers[20] = /* format_kde */		&formatstring_kde;
++      parsers[21] = /* format_boost */		&formatstring_boost;
++  }
++
++  return parsers;
++}
+ 
+ /* Check whether both formats strings contain compatible format
+    specifications for format type i (0 <= i < NFORMATS).
+@@ -74,7 +79,6 @@
+ 			     formatstring_error_logger_t error_logger)
+ {
+   int seen_errors = 0;
+-
+   /* At runtime, we can assume the program passes arguments that fit well for
+      msgid.  We must signal an error if msgstr wants more arguments that msgid
+      accepts.
+@@ -86,7 +90,7 @@
+      2) it is generally wrong if a translation wants to ignore arguments that
+         are used by other translations.  */
+ 
+-  struct formatstring_parser *parser = formatstring_parsers[i];
++  struct formatstring_parser *parser = get_formatstring_parsers()[i];
+   char *invalid_reason = NULL;
+   void *msgid_descr =
+     parser->parse (msgid_plural != NULL ? msgid_plural : msgid, false, NULL,
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/format.h gettext-0.17/gettext-tools/src/format.h
+--- gettext-0.17.orig/gettext-tools/src/format.h	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/format.h	2008-11-27 10:04:35 +0100
+@@ -117,8 +117,8 @@
+ extern DLL_VARIABLE struct formatstring_parser formatstring_kde;
+ extern DLL_VARIABLE struct formatstring_parser formatstring_boost;
+ 
+-/* Table of all format string parsers.  */
+-extern DLL_VARIABLE struct formatstring_parser *formatstring_parsers[NFORMATS];
++extern struct formatstring_parser** get_formatstring_parsers();
++#define formatstring_parsers get_formatstring_parsers()
+ 
+ /* Returns an array of the ISO C 99 <inttypes.h> format directives and other
+    format flags or directives with a system dependent expansion contained in
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/hostname.c gettext-0.17/gettext-tools/src/hostname.c
+--- gettext-0.17.orig/gettext-tools/src/hostname.c	2008-11-27 10:25:55 +0100
++++ gettext-0.17/gettext-tools/src/hostname.c	2008-11-27 10:33:12 +0100
+@@ -45,8 +45,10 @@
+ # endif
+ #endif
+ 
++#if HAVE_SYS_PARAM_H
+ /* Get MAXHOSTNAMELEN.  */
+-#include <sys/param.h>
++# include <sys/param.h>
++#endif
+ #ifndef MAXHOSTNAMELEN
+ # define MAXHOSTNAMELEN 64
+ #endif
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgattrib.c gettext-0.17/gettext-tools/src/msgattrib.c
+--- gettext-0.17.orig/gettext-tools/src/msgattrib.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgattrib.c	2008-11-27 10:04:35 +0100
+@@ -74,47 +74,6 @@
+ };
+ static int to_change;
+ 
+-/* Long options.  */
+-static const struct option long_options[] =
+-{
+-  { "add-location", no_argument, &line_comment, 1 },
+-  { "clear-fuzzy", no_argument, NULL, CHAR_MAX + 8 },
+-  { "clear-obsolete", no_argument, NULL, CHAR_MAX + 10 },
+-  { "clear-previous", no_argument, NULL, CHAR_MAX + 18 },
+-  { "directory", required_argument, NULL, 'D' },
+-  { "escape", no_argument, NULL, 'E' },
+-  { "force-po", no_argument, &force_po, 1 },
+-  { "fuzzy", no_argument, NULL, CHAR_MAX + 11 },
+-  { "help", no_argument, NULL, 'h' },
+-  { "ignore-file", required_argument, NULL, CHAR_MAX + 15 },
+-  { "indent", no_argument, NULL, 'i' },
+-  { "no-escape", no_argument, NULL, 'e' },
+-  { "no-fuzzy", no_argument, NULL, CHAR_MAX + 3 },
+-  { "no-location", no_argument, &line_comment, 0 },
+-  { "no-obsolete", no_argument, NULL, CHAR_MAX + 5 },
+-  { "no-wrap", no_argument, NULL, CHAR_MAX + 13 },
+-  { "obsolete", no_argument, NULL, CHAR_MAX + 12 },
+-  { "only-file", required_argument, NULL, CHAR_MAX + 14 },
+-  { "only-fuzzy", no_argument, NULL, CHAR_MAX + 4 },
+-  { "only-obsolete", no_argument, NULL, CHAR_MAX + 6 },
+-  { "output-file", required_argument, NULL, 'o' },
+-  { "properties-input", no_argument, NULL, 'P' },
+-  { "properties-output", no_argument, NULL, 'p' },
+-  { "set-fuzzy", no_argument, NULL, CHAR_MAX + 7 },
+-  { "set-obsolete", no_argument, NULL, CHAR_MAX + 9 },
+-  { "sort-by-file", no_argument, NULL, 'F' },
+-  { "sort-output", no_argument, NULL, 's' },
+-  { "stringtable-input", no_argument, NULL, CHAR_MAX + 16 },
+-  { "stringtable-output", no_argument, NULL, CHAR_MAX + 17 },
+-  { "strict", no_argument, NULL, 'S' },
+-  { "translated", no_argument, NULL, CHAR_MAX + 1 },
+-  { "untranslated", no_argument, NULL, CHAR_MAX + 2 },
+-  { "version", no_argument, NULL, 'V' },
+-  { "width", required_argument, NULL, 'w', },
+-  { NULL, 0, NULL, 0 }
+-};
+-
+-
+ /* Forward declaration of local functions.  */
+ static void usage (int status)
+ #if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+@@ -144,6 +103,46 @@
+   bool sort_by_msgid = false;
+   bool sort_by_filepos = false;
+ 
++  /* Long options.  */
++  const struct option long_options[] =
++  {
++    { "add-location", no_argument, &line_comment, 1 },
++    { "clear-fuzzy", no_argument, NULL, CHAR_MAX + 8 },
++    { "clear-obsolete", no_argument, NULL, CHAR_MAX + 10 },
++    { "clear-previous", no_argument, NULL, CHAR_MAX + 18 },
++    { "directory", required_argument, NULL, 'D' },
++    { "escape", no_argument, NULL, 'E' },
++    { "force-po", no_argument, &force_po, 1 },
++    { "fuzzy", no_argument, NULL, CHAR_MAX + 11 },
++    { "help", no_argument, NULL, 'h' },
++    { "ignore-file", required_argument, NULL, CHAR_MAX + 15 },
++    { "indent", no_argument, NULL, 'i' },
++    { "no-escape", no_argument, NULL, 'e' },
++    { "no-fuzzy", no_argument, NULL, CHAR_MAX + 3 },
++    { "no-location", no_argument, &line_comment, 0 },
++    { "no-obsolete", no_argument, NULL, CHAR_MAX + 5 },
++    { "no-wrap", no_argument, NULL, CHAR_MAX + 13 },
++    { "obsolete", no_argument, NULL, CHAR_MAX + 12 },
++    { "only-file", required_argument, NULL, CHAR_MAX + 14 },
++    { "only-fuzzy", no_argument, NULL, CHAR_MAX + 4 },
++    { "only-obsolete", no_argument, NULL, CHAR_MAX + 6 },
++    { "output-file", required_argument, NULL, 'o' },
++    { "properties-input", no_argument, NULL, 'P' },
++    { "properties-output", no_argument, NULL, 'p' },
++    { "set-fuzzy", no_argument, NULL, CHAR_MAX + 7 },
++    { "set-obsolete", no_argument, NULL, CHAR_MAX + 9 },
++    { "sort-by-file", no_argument, NULL, 'F' },
++    { "sort-output", no_argument, NULL, 's' },
++    { "stringtable-input", no_argument, NULL, CHAR_MAX + 16 },
++    { "stringtable-output", no_argument, NULL, CHAR_MAX + 17 },
++    { "strict", no_argument, NULL, 'S' },
++    { "translated", no_argument, NULL, CHAR_MAX + 1 },
++    { "untranslated", no_argument, NULL, CHAR_MAX + 2 },
++    { "version", no_argument, NULL, 'V' },
++    { "width", required_argument, NULL, 'w', },
++    { NULL, 0, NULL, 0 }
++  };
++
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgcat.c gettext-0.17/gettext-tools/src/msgcat.c
+--- gettext-0.17.orig/gettext-tools/src/msgcat.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgcat.c	2008-11-27 10:04:35 +0100
+@@ -58,39 +58,6 @@
+ /* Target encoding.  */
+ static const char *to_code;
+ 
+-/* Long options.  */
+-static const struct option long_options[] =
+-{
+-  { "add-location", no_argument, &line_comment, 1 },
+-  { "color", optional_argument, NULL, CHAR_MAX + 5 },
+-  { "directory", required_argument, NULL, 'D' },
+-  { "escape", no_argument, NULL, 'E' },
+-  { "files-from", required_argument, NULL, 'f' },
+-  { "force-po", no_argument, &force_po, 1 },
+-  { "help", no_argument, NULL, 'h' },
+-  { "indent", no_argument, NULL, 'i' },
+-  { "no-escape", no_argument, NULL, 'e' },
+-  { "no-location", no_argument, &line_comment, 0 },
+-  { "no-wrap", no_argument, NULL, CHAR_MAX + 2 },
+-  { "output-file", required_argument, NULL, 'o' },
+-  { "properties-input", no_argument, NULL, 'P' },
+-  { "properties-output", no_argument, NULL, 'p' },
+-  { "sort-by-file", no_argument, NULL, 'F' },
+-  { "sort-output", no_argument, NULL, 's' },
+-  { "strict", no_argument, NULL, 'S' },
+-  { "stringtable-input", no_argument, NULL, CHAR_MAX + 3 },
+-  { "stringtable-output", no_argument, NULL, CHAR_MAX + 4 },
+-  { "style", required_argument, NULL, CHAR_MAX + 6 },
+-  { "to-code", required_argument, NULL, 't' },
+-  { "unique", no_argument, NULL, 'u' },
+-  { "use-first", no_argument, NULL, CHAR_MAX + 1 },
+-  { "version", no_argument, NULL, 'V' },
+-  { "width", required_argument, NULL, 'w', },
+-  { "more-than", required_argument, NULL, '>', },
+-  { "less-than", required_argument, NULL, '<', },
+-  { NULL, 0, NULL, 0 }
+-};
+-
+ 
+ /* Forward declaration of local functions.  */
+ static void usage (int status)
+@@ -116,6 +83,39 @@
+   bool sort_by_msgid = false;
+   bool sort_by_filepos = false;
+ 
++  /* Long options.  */
++  const struct option long_options[] =
++  {
++    { "add-location", no_argument, &line_comment, 1 },
++    { "color", optional_argument, NULL, CHAR_MAX + 5 },
++    { "directory", required_argument, NULL, 'D' },
++    { "escape", no_argument, NULL, 'E' },
++    { "files-from", required_argument, NULL, 'f' },
++    { "force-po", no_argument, &force_po, 1 },
++    { "help", no_argument, NULL, 'h' },
++    { "indent", no_argument, NULL, 'i' },
++    { "no-escape", no_argument, NULL, 'e' },
++    { "no-location", no_argument, &line_comment, 0 },
++    { "no-wrap", no_argument, NULL, CHAR_MAX + 2 },
++    { "output-file", required_argument, NULL, 'o' },
++    { "properties-input", no_argument, NULL, 'P' },
++    { "properties-output", no_argument, NULL, 'p' },
++    { "sort-by-file", no_argument, NULL, 'F' },
++    { "sort-output", no_argument, NULL, 's' },
++    { "strict", no_argument, NULL, 'S' },
++    { "stringtable-input", no_argument, NULL, CHAR_MAX + 3 },
++    { "stringtable-output", no_argument, NULL, CHAR_MAX + 4 },
++    { "style", required_argument, NULL, CHAR_MAX + 6 },
++    { "to-code", required_argument, NULL, 't' },
++    { "unique", no_argument, NULL, 'u' },
++    { "use-first", no_argument, NULL, CHAR_MAX + 1 },
++    { "version", no_argument, NULL, 'V' },
++    { "width", required_argument, NULL, 'w', },
++    { "more-than", required_argument, NULL, '>', },
++    { "less-than", required_argument, NULL, '<', },
++    { NULL, 0, NULL, 0 }
++  };
++
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgcomm.c gettext-0.17/gettext-tools/src/msgcomm.c
+--- gettext-0.17.orig/gettext-tools/src/msgcomm.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgcomm.c	2008-11-27 10:04:35 +0100
+@@ -59,8 +59,34 @@
+ /* Target encoding.  */
+ static const char *to_code;
+ 
++
++
++/* Forward declaration of local functions.  */
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ > 4) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++
++
++int
++main (int argc, char *argv[])
++{
++  int cnt;
++  int optchar;
++  bool do_help = false;
++  bool do_version = false;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_msgid = false;
++  bool sort_by_filepos = false;
++  const char *files_from = NULL;
++  string_list_ty *file_list;
++  char *output_file = NULL;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "directory", required_argument, NULL, 'D' },
+@@ -91,31 +117,6 @@
+   { NULL, 0, NULL, 0 }
+ };
+ 
+-
+-/* Forward declaration of local functions.  */
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ > 4) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-
+-
+-int
+-main (int argc, char *argv[])
+-{
+-  int cnt;
+-  int optchar;
+-  bool do_help = false;
+-  bool do_version = false;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_msgid = false;
+-  bool sort_by_filepos = false;
+-  const char *files_from = NULL;
+-  string_list_ty *file_list;
+-  char *output_file = NULL;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgconv.c gettext-0.17/gettext-tools/src/msgconv.c
+--- gettext-0.17.orig/gettext-tools/src/msgconv.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgconv.c	2008-11-27 10:04:35 +0100
+@@ -56,8 +56,32 @@
+ /* Target encoding.  */
+ static const char *to_code;
+ 
++
++
++/* Forward declaration of local functions.  */
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++
++
++int
++main (int argc, char **argv)
++{
++  int opt;
++  bool do_help;
++  bool do_version;
++  char *output_file;
++  const char *input_file;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_filepos = false;
++  bool sort_by_msgid = false;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "directory", required_argument, NULL, 'D' },
+@@ -82,29 +106,6 @@
+   { NULL, 0, NULL, 0 }
+ };
+ 
+-
+-/* Forward declaration of local functions.  */
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-
+-
+-int
+-main (int argc, char **argv)
+-{
+-  int opt;
+-  bool do_help;
+-  bool do_version;
+-  char *output_file;
+-  const char *input_file;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_filepos = false;
+-  bool sort_by_msgid = false;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgen.c gettext-0.17/gettext-tools/src/msgen.c
+--- gettext-0.17.orig/gettext-tools/src/msgen.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgen.c	2008-11-27 10:04:35 +0100
+@@ -52,8 +52,31 @@
+ /* Force output of PO file even if empty.  */
+ static int force_po;
+ 
++
++
++/* Forward declaration of local functions.  */
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++
++
++int
++main (int argc, char **argv)
++{
++  int opt;
++  bool do_help;
++  bool do_version;
++  char *output_file;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_filepos = false;
++  bool sort_by_msgid = false;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "directory", required_argument, NULL, 'D' },
+@@ -77,28 +100,6 @@
+   { NULL, 0, NULL, 0 }
+ };
+ 
+-
+-/* Forward declaration of local functions.  */
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-
+-
+-int
+-main (int argc, char **argv)
+-{
+-  int opt;
+-  bool do_help;
+-  bool do_version;
+-  char *output_file;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_filepos = false;
+-  bool sort_by_msgid = false;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgfilter.c gettext-0.17/gettext-tools/src/msgfilter.c
+--- gettext-0.17.orig/gettext-tools/src/msgfilter.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgfilter.c	2008-11-27 10:04:35 +0100
+@@ -102,8 +102,34 @@
+ /* Filter function.  */
+ static void (*filter) (const char *str, size_t len, char **resultp, size_t *lengthp);
+ 
++
++/* Forward declaration of local functions.  */
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++static void generic_filter (const char *str, size_t len, char **resultp, size_t *lengthp);
++static msgdomain_list_ty *process_msgdomain_list (msgdomain_list_ty *mdlp);
++
++
++int
++main (int argc, char **argv)
++{
++  int opt;
++  bool do_help;
++  bool do_version;
++  char *output_file;
++  const char *input_file;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_filepos = false;
++  bool sort_by_msgid = false;
++  int i;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "directory", required_argument, NULL, 'D' },
+@@ -130,31 +156,6 @@
+ };
+ 
+ 
+-/* Forward declaration of local functions.  */
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-static void generic_filter (const char *str, size_t len, char **resultp, size_t *lengthp);
+-static msgdomain_list_ty *process_msgdomain_list (msgdomain_list_ty *mdlp);
+-
+-
+-int
+-main (int argc, char **argv)
+-{
+-  int opt;
+-  bool do_help;
+-  bool do_version;
+-  char *output_file;
+-  const char *input_file;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_filepos = false;
+-  bool sort_by_msgid = false;
+-  int i;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msggrep.c gettext-0.17/gettext-tools/src/msggrep.c
+--- gettext-0.17.orig/gettext-tools/src/msggrep.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msggrep.c	2008-11-27 10:04:35 +0100
+@@ -87,8 +87,39 @@
+ };
+ static struct grep_task grep_task[5];
+ 
++
++/* Forward declaration of local functions.  */
++static void no_pass (int opt)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++static msgdomain_list_ty *process_msgdomain_list (msgdomain_list_ty *mdlp);
++
++
++int
++main (int argc, char **argv)
++{
++  int opt;
++  bool do_help;
++  bool do_version;
++  char *output_file;
++  const char *input_file;
++  int grep_pass;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_filepos = false;
++  bool sort_by_msgid = false;
++  size_t i;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "comment", no_argument, NULL, 'C' },
+@@ -126,36 +157,6 @@
+ };
+ 
+ 
+-/* Forward declaration of local functions.  */
+-static void no_pass (int opt)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-static msgdomain_list_ty *process_msgdomain_list (msgdomain_list_ty *mdlp);
+-
+-
+-int
+-main (int argc, char **argv)
+-{
+-  int opt;
+-  bool do_help;
+-  bool do_version;
+-  char *output_file;
+-  const char *input_file;
+-  int grep_pass;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_filepos = false;
+-  bool sort_by_msgid = false;
+-  size_t i;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msgmerge.c gettext-0.17/gettext-tools/src/msgmerge.c
+--- gettext-0.17.orig/gettext-tools/src/msgmerge.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/msgmerge.c	2008-11-27 10:04:35 +0100
+@@ -99,42 +99,6 @@
+ static const char *version_control_string;
+ static const char *backup_suffix_string;
+ 
+-/* Long options.  */
+-static const struct option long_options[] =
+-{
+-  { "add-location", no_argument, &line_comment, 1 },
+-  { "backup", required_argument, NULL, CHAR_MAX + 1 },
+-  { "compendium", required_argument, NULL, 'C', },
+-  { "directory", required_argument, NULL, 'D' },
+-  { "escape", no_argument, NULL, 'E' },
+-  { "force-po", no_argument, &force_po, 1 },
+-  { "help", no_argument, NULL, 'h' },
+-  { "indent", no_argument, NULL, 'i' },
+-  { "multi-domain", no_argument, NULL, 'm' },
+-  { "no-escape", no_argument, NULL, 'e' },
+-  { "no-fuzzy-matching", no_argument, NULL, 'N' },
+-  { "no-location", no_argument, &line_comment, 0 },
+-  { "no-wrap", no_argument, NULL, CHAR_MAX + 4 },
+-  { "output-file", required_argument, NULL, 'o' },
+-  { "previous", no_argument, NULL, CHAR_MAX + 7 },
+-  { "properties-input", no_argument, NULL, 'P' },
+-  { "properties-output", no_argument, NULL, 'p' },
+-  { "quiet", no_argument, NULL, 'q' },
+-  { "sort-by-file", no_argument, NULL, 'F' },
+-  { "sort-output", no_argument, NULL, 's' },
+-  { "silent", no_argument, NULL, 'q' },
+-  { "strict", no_argument, NULL, CHAR_MAX + 2 },
+-  { "stringtable-input", no_argument, NULL, CHAR_MAX + 5 },
+-  { "stringtable-output", no_argument, NULL, CHAR_MAX + 6 },
+-  { "suffix", required_argument, NULL, CHAR_MAX + 3 },
+-  { "update", no_argument, NULL, 'U' },
+-  { "verbose", no_argument, NULL, 'v' },
+-  { "version", no_argument, NULL, 'V' },
+-  { "width", required_argument, NULL, 'w', },
+-  { NULL, 0, NULL, 0 }
+-};
+-
+-
+ struct statistics
+ {
+   size_t merged;
+@@ -170,6 +134,41 @@
+   bool sort_by_filepos = false;
+   bool sort_by_msgid = false;
+ 
++  /* Long options.  */
++  const struct option long_options[] =
++  {
++    { "add-location", no_argument, &line_comment, 1 },
++    { "backup", required_argument, NULL, CHAR_MAX + 1 },
++    { "compendium", required_argument, NULL, 'C', },
++    { "directory", required_argument, NULL, 'D' },
++    { "escape", no_argument, NULL, 'E' },
++    { "force-po", no_argument, &force_po, 1 },
++    { "help", no_argument, NULL, 'h' },
++    { "indent", no_argument, NULL, 'i' },
++    { "multi-domain", no_argument, NULL, 'm' },
++    { "no-escape", no_argument, NULL, 'e' },
++    { "no-fuzzy-matching", no_argument, NULL, 'N' },
++    { "no-location", no_argument, &line_comment, 0 },
++    { "no-wrap", no_argument, NULL, CHAR_MAX + 4 },
++    { "output-file", required_argument, NULL, 'o' },
++    { "previous", no_argument, NULL, CHAR_MAX + 7 },
++    { "properties-input", no_argument, NULL, 'P' },
++    { "properties-output", no_argument, NULL, 'p' },
++    { "quiet", no_argument, NULL, 'q' },
++    { "sort-by-file", no_argument, NULL, 'F' },
++    { "sort-output", no_argument, NULL, 's' },
++    { "silent", no_argument, NULL, 'q' },
++    { "strict", no_argument, NULL, CHAR_MAX + 2 },
++    { "stringtable-input", no_argument, NULL, CHAR_MAX + 5 },
++    { "stringtable-output", no_argument, NULL, CHAR_MAX + 6 },
++    { "suffix", required_argument, NULL, CHAR_MAX + 3 },
++    { "update", no_argument, NULL, 'U' },
++    { "verbose", no_argument, NULL, 'v' },
++    { "version", no_argument, NULL, 'V' },
++    { "width", required_argument, NULL, 'w', },
++    { NULL, 0, NULL, 0 }
++  };
++
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/msguniq.c gettext-0.17/gettext-tools/src/msguniq.c
+--- gettext-0.17.orig/gettext-tools/src/msguniq.c	2008-11-27 10:25:56 +0100
++++ gettext-0.17/gettext-tools/src/msguniq.c	2008-11-27 10:36:47 +0100
+@@ -56,8 +56,32 @@
+ /* Target encoding.  */
+ static const char *to_code;
+ 
++
++/* Forward declaration of local functions.  */
++static void usage (int status)
++#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
++	__attribute__ ((noreturn))
++#endif
++;
++
++
++int
++main (int argc, char **argv)
++{
++  int optchar;
++  bool do_help;
++  bool do_version;
++  char *output_file;
++  const char *input_file;
++  string_list_ty *file_list;
++  msgdomain_list_ty *result;
++  catalog_input_format_ty input_syntax = &input_format_po;
++  catalog_output_format_ty output_syntax = &output_format_po;
++  bool sort_by_msgid = false;
++  bool sort_by_filepos = false;
++
+ /* Long options.  */
+-static const struct option long_options[] =
++const struct option long_options[] =
+ {
+   { "add-location", no_argument, &line_comment, 1 },
+   { "directory", required_argument, NULL, 'D' },
+@@ -86,29 +110,6 @@
+ };
+ 
+ 
+-/* Forward declaration of local functions.  */
+-static void usage (int status)
+-#if defined __GNUC__ && ((__GNUC__ == 2 && __GNUC_MINOR__ >= 5) || __GNUC__ > 2)
+-	__attribute__ ((noreturn))
+-#endif
+-;
+-
+-
+-int
+-main (int argc, char **argv)
+-{
+-  int optchar;
+-  bool do_help;
+-  bool do_version;
+-  char *output_file;
+-  const char *input_file;
+-  string_list_ty *file_list;
+-  msgdomain_list_ty *result;
+-  catalog_input_format_ty input_syntax = &input_format_po;
+-  catalog_output_format_ty output_syntax = &output_format_po;
+-  bool sort_by_msgid = false;
+-  bool sort_by_filepos = false;
+-
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+   error_print_progname = maybe_print_progname;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/read-mo.c gettext-0.17/gettext-tools/src/read-mo.c
+--- gettext-0.17.orig/gettext-tools/src/read-mo.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/read-mo.c	2008-11-27 10:04:35 +0100
+@@ -393,6 +393,7 @@
+ 		 that the .mo was likely produced by "msgfmt -c".  */
+ 	      for (f = format_c; ; f = format_objc)
+ 		{
++		  /* Table of all format string parsers.  */
+ 		  bool valid = true;
+ 		  struct formatstring_parser *parser = formatstring_parsers[f];
+ 		  const char *str_end;
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/src/xgettext.c gettext-0.17/gettext-tools/src/xgettext.c
+--- gettext-0.17.orig/gettext-tools/src/xgettext.c	2008-11-27 10:59:25 +0100
++++ gettext-0.17/gettext-tools/src/xgettext.c	2008-11-27 10:04:35 +0100
+@@ -132,8 +132,6 @@
+ /* Directory in which output files are created.  */
+ static char *output_dir;
+ 
+-/* The output syntax: .pot or .properties or .strings.  */
+-static catalog_output_format_ty output_syntax = &output_format_po;
+ 
+ /* If nonzero omit header with information about this run.  */
+ int xgettext_omit_header;
+@@ -186,55 +184,6 @@
+ iconv_t xgettext_current_source_iconv;
+ #endif
+ 
+-/* Long options.  */
+-static const struct option long_options[] =
+-{
+-  { "add-comments", optional_argument, NULL, 'c' },
+-  { "add-location", no_argument, &line_comment, 1 },
+-  { "boost", no_argument, NULL, CHAR_MAX + 11 },
+-  { "c++", no_argument, NULL, 'C' },
+-  { "copyright-holder", required_argument, NULL, CHAR_MAX + 1 },
+-  { "debug", no_argument, &do_debug, 1 },
+-  { "default-domain", required_argument, NULL, 'd' },
+-  { "directory", required_argument, NULL, 'D' },
+-  { "escape", no_argument, NULL, 'E' },
+-  { "exclude-file", required_argument, NULL, 'x' },
+-  { "extract-all", no_argument, NULL, 'a' },
+-  { "files-from", required_argument, NULL, 'f' },
+-  { "flag", required_argument, NULL, CHAR_MAX + 8 },
+-  { "force-po", no_argument, &force_po, 1 },
+-  { "foreign-user", no_argument, NULL, CHAR_MAX + 2 },
+-  { "from-code", required_argument, NULL, CHAR_MAX + 3 },
+-  { "help", no_argument, NULL, 'h' },
+-  { "indent", no_argument, NULL, 'i' },
+-  { "join-existing", no_argument, NULL, 'j' },
+-  { "kde", no_argument, NULL, CHAR_MAX + 10 },
+-  { "keyword", optional_argument, NULL, 'k' },
+-  { "language", required_argument, NULL, 'L' },
+-  { "msgid-bugs-address", required_argument, NULL, CHAR_MAX + 5 },
+-  { "msgstr-prefix", optional_argument, NULL, 'm' },
+-  { "msgstr-suffix", optional_argument, NULL, 'M' },
+-  { "no-escape", no_argument, NULL, 'e' },
+-  { "no-location", no_argument, &line_comment, 0 },
+-  { "no-wrap", no_argument, NULL, CHAR_MAX + 4 },
+-  { "omit-header", no_argument, &xgettext_omit_header, 1 },
+-  { "output", required_argument, NULL, 'o' },
+-  { "output-dir", required_argument, NULL, 'p' },
+-  { "package-name", required_argument, NULL, CHAR_MAX + 12 },
+-  { "package-version", required_argument, NULL, CHAR_MAX + 13 },
+-  { "properties-output", no_argument, NULL, CHAR_MAX + 6 },
+-  { "qt", no_argument, NULL, CHAR_MAX + 9 },
+-  { "sort-by-file", no_argument, NULL, 'F' },
+-  { "sort-output", no_argument, NULL, 's' },
+-  { "strict", no_argument, NULL, 'S' },
+-  { "string-limit", required_argument, NULL, 'l' },
+-  { "stringtable-output", no_argument, NULL, CHAR_MAX + 7 },
+-  { "trigraphs", no_argument, NULL, 'T' },
+-  { "version", no_argument, NULL, 'V' },
+-  { "width", required_argument, NULL, 'w', },
+-  { NULL, 0, NULL, 0 }
+-};
+-
+ 
+ /* The extractors must all be functions returning void and taking three
+    arguments designating the input stream and one message domain list argument
+@@ -268,6 +217,8 @@
+ static extractor_ty language_to_extractor (const char *name);
+ static const char *extension_to_language (const char *extension);
+ 
++/* The output syntax: .pot or .properties or .strings.  */
++static catalog_output_format_ty output_syntax;
+ 
+ int
+ main (int argc, char *argv[])
+@@ -289,6 +240,56 @@
+   extractor_ty extractor = { NULL, NULL, NULL, NULL };
+   int cnt;
+   size_t i;
++  /* Long options.  */
++  const struct option long_options[] =
++  {
++    { "add-comments", optional_argument, NULL, 'c' },
++    { "add-location", no_argument, &line_comment, 1 },
++    { "boost", no_argument, NULL, CHAR_MAX + 11 },
++    { "c++", no_argument, NULL, 'C' },
++    { "copyright-holder", required_argument, NULL, CHAR_MAX + 1 },
++    { "debug", no_argument, &do_debug, 1 },
++    { "default-domain", required_argument, NULL, 'd' },
++    { "directory", required_argument, NULL, 'D' },
++    { "escape", no_argument, NULL, 'E' },
++    { "exclude-file", required_argument, NULL, 'x' },
++    { "extract-all", no_argument, NULL, 'a' },
++    { "files-from", required_argument, NULL, 'f' },
++    { "flag", required_argument, NULL, CHAR_MAX + 8 },
++    { "force-po", no_argument, &force_po, 1 },
++    { "foreign-user", no_argument, NULL, CHAR_MAX + 2 },
++    { "from-code", required_argument, NULL, CHAR_MAX + 3 },
++    { "help", no_argument, NULL, 'h' },
++    { "indent", no_argument, NULL, 'i' },
++    { "join-existing", no_argument, NULL, 'j' },
++    { "kde", no_argument, NULL, CHAR_MAX + 10 },
++    { "keyword", optional_argument, NULL, 'k' },
++    { "language", required_argument, NULL, 'L' },
++    { "msgid-bugs-address", required_argument, NULL, CHAR_MAX + 5 },
++    { "msgstr-prefix", optional_argument, NULL, 'm' },
++    { "msgstr-suffix", optional_argument, NULL, 'M' },
++    { "no-escape", no_argument, NULL, 'e' },
++    { "no-location", no_argument, &line_comment, 0 },
++    { "no-wrap", no_argument, NULL, CHAR_MAX + 4 },
++    { "omit-header", no_argument, &xgettext_omit_header, 1 },
++    { "output", required_argument, NULL, 'o' },
++    { "output-dir", required_argument, NULL, 'p' },
++    { "package-name", required_argument, NULL, CHAR_MAX + 12 },
++    { "package-version", required_argument, NULL, CHAR_MAX + 13 },
++    { "properties-output", no_argument, NULL, CHAR_MAX + 6 },
++    { "qt", no_argument, NULL, CHAR_MAX + 9 },
++    { "sort-by-file", no_argument, NULL, 'F' },
++    { "sort-output", no_argument, NULL, 's' },
++    { "strict", no_argument, NULL, 'S' },
++    { "string-limit", required_argument, NULL, 'l' },
++    { "stringtable-output", no_argument, NULL, CHAR_MAX + 7 },
++    { "trigraphs", no_argument, NULL, 'T' },
++    { "version", no_argument, NULL, 'V' },
++    { "width", required_argument, NULL, 'w', },
++    { NULL, 0, NULL, 0 }
++  };
++
++  output_syntax = &output_format_po;
+ 
+   /* Set program name for messages.  */
+   set_program_name (argv[0]);
+@@ -1929,7 +1930,7 @@
+ 			       lex_pos_ty *pos, const char *pretty_msgstr)
+ {
+   size_t i;
+-
++  /* Table of all format string parsers.  */
+   if (context.is_format1 != undecided || context.is_format2 != undecided)
+     for (i = 0; i < NFORMATS; i++)
+       {
+@@ -2970,7 +2971,7 @@
+   };
+   typedef struct table_ty table_ty;
+ 
+-  static table_ty table[] =
++  table_ty table[] =
+   {
+     SCANNERS_C
+     SCANNERS_PO
+@@ -3051,7 +3052,7 @@
+   };
+   typedef struct table_ty table_ty;
+ 
+-  static table_ty table[] =
++  table_ty table[] =
+   {
+     EXTENSIONS_C
+     EXTENSIONS_PO
