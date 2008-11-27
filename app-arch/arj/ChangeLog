@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/arj
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.35 2008/07/13 06:35:42 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.36 2008/11/26 15:26:49 ranger Exp $
+
+  26 Nov 2008; Brent Baude <ranger@gentoo.org> arj-3.10.22-r2.ebuild:
+  Marking arj-3.10.22-r2 ~ppc64 for bug 247529
 
   13 Jul 2008; Joseph Jezak <josejx@gentoo.org> arj-3.10.22-r2.ebuild:
   Marked ppc stable for bug #231082.
