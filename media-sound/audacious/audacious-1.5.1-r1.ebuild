@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.2 2008/11/24 17:28:47 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.3 2008/11/26 16:29:10 ranger Exp $
 
 EAPI="prefix"
 
