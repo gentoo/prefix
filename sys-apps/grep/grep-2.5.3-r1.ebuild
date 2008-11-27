@@ -38,6 +38,7 @@ src_unpack() {
 	use static && append-ldflags -static
 
 	epatch "${FILESDIR}"/${P}-nls.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1a-mint.patch
 }
 
 src_compile() {
