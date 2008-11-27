@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lzop
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.25 2008/04/04 12:58:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.26 2008/11/26 21:01:10 gmsoft Exp $
+
+  26 Nov 2008; Guy Martin <gmsoft@gentoo.org> lzop-1.02_rc1-r1.ebuild:
+  hppa stable
 
   04 Apr 2008; Brent Baude <ranger@gentoo.org> lzop-1.02_rc1-r1.ebuild:
   stable ppc64, bug 214971
