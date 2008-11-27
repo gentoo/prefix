@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.338 2008/11/13 18:56:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.339 2008/11/27 01:51:33 leio Exp $
+
+*glib-2.18.3 (27 Nov 2008)
+
+  27 Nov 2008; Mart Raudsepp <leio@gentoo.org> +glib-2.18.3.ebuild:
+  New bug fix release - improves custom mimetype icons display, various
+  memory leak fixes, and GKeyFile improvements.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> glib-2.16.5.ebuild:
   Marking glib-2.16.5 ppc64 stable for bug 236971
