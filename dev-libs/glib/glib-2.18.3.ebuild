@@ -11,16 +11,15 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
 		 virtual/libiconv
+		>=sys-devel/gettext-0.11
 		 xattr? ( sys-apps/attr )
 		 fam? ( virtual/fam )"
-DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.16
-		>=sys-devel/gettext-0.11
+DEPEND=">=dev-util/pkgconfig-0.16
 		doc?	(
 					>=dev-libs/libxslt-1.0
 					>=dev-util/gtk-doc-1.8
@@ -31,7 +30,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-2.16.3-libtool.patch" #223845
+	#epatch "${FILESDIR}/${PN}-2.16.3-libtool.patch" #223845
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1
@@ -67,6 +66,9 @@ src_unpack() {
 	# on systems that have both "chown" and "utimes"
 	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
 
+	# build glib with parity for native win32
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
 	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
@@ -98,6 +100,10 @@ src_compile() {
 		export ac_cv_func_poll=no
 	}
 
+	local mythreads=posix
+
+	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
+
 	# always build static libs, see #153807
 	econf ${myconf}                 \
 		  $(use_enable xattr)       \
@@ -106,7 +112,7 @@ src_compile() {
 		  $(use_enable fam)         \
 		  $(use_enable selinux)     \
 		  --enable-static           \
-		  --with-threads=posix || die "configure failed"
+		  --with-threads=${mythreads} || die "configure failed"
 
 	emake || die "make failed"
 }

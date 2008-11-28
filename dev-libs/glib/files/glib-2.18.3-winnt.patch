@@ -1,0 +1,322 @@
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/Makefile.am glib-2.18.2/Makefile.am
+--- glib-2.18.2.orig/Makefile.am	2008-11-28 08:52:42 +0100
++++ glib-2.18.2/Makefile.am	2008-11-28 08:53:23 +0100
+@@ -3,7 +3,7 @@
+ 
+ AUTOMAKE_OPTIONS = 1.7
+ 
+-SUBDIRS = . m4macros glib gmodule gthread gobject gio tests po docs
++SUBDIRS = . m4macros glib gmodule gthread gobject gio tests docs
+ DIST_SUBDIRS = $(SUBDIRS) build
+ 
+ bin_SCRIPTS = glib-gettextize
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/configure.in glib-2.18.2/configure.in
+--- glib-2.18.2.orig/configure.in	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/configure.in	2008-11-28 08:40:14 +0100
+@@ -117,7 +117,7 @@
+ AC_MSG_CHECKING([for Win32])
+ LIB_EXE_MACHINE_FLAG=X86
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     glib_native_win32=yes
+     glib_pid_type='void *'
+     glib_cv_stack_grows=no
+@@ -142,6 +142,9 @@
+     ;;
+ esac
+ case $host in
++  *-winnt*)
++    glib_os_parity=yes
++	;;
+   *-*-linux*)
+     glib_os_linux=yes
+     ;;
+@@ -166,7 +169,7 @@
+ AM_CONDITIONAL(OS_LINUX, [test "$glib_os_linux" = "yes"])
+ AM_CONDITIONAL(OS_CARBON, [test "$glib_have_carbon" = "yes"])
+ 
+-if test "$glib_native_win32" = "yes"; then
++if test "$glib_native_win32" = "yes" -a "$glib_os_parity" != "yes"; then
+   AC_CHECK_TOOL(WINDRES, windres, no)
+   if test "$WINDRES" = no; then
+     AC_MSG_ERROR([*** Could not find an implementation of windres in your PATH.])
+@@ -180,7 +183,7 @@
+ fi
+ AM_CONDITIONAL(MS_LIB_AVAILABLE, [test x$ms_librarian = xyes])
+ 
+-if test "$glib_native_win32" != yes; then
++if test "$glib_native_win32" != yes -a "$glib_os_parity" != "yes"; then
+     # libtool option to control which symbols are exported
+     # right now, symbols starting with _ are not exported
+     LIBTOOL_EXPORT_OPTIONS='-export-symbols-regex "^g.*"'
+@@ -373,7 +376,7 @@
+ 
+ dnl On Windows we use a native implementation
+ 
+-if test x"$glib_native_win32" = xyes; then
++if test x"$glib_native_win32" = xyes -a "$glib_os_parity" != "yes"; then
+   with_libiconv=native
+ else
+   AC_ARG_WITH(libiconv,
+@@ -501,7 +504,7 @@
+ 
+ CPPFLAGS="$CPPFLAGS -DG_DISABLE_SINGLE_INCLUDES"
+ 
+-if test "$glib_native_win32" = "yes"; then
++if test "$glib_native_win32" = "yes" -a "$glib_os_parity" != "yes"; then
+   if test x$enable_static = xyes -a x$enable_shared = xyes; then
+     AC_MSG_ERROR([Can not build both shared and static at the same time on Windows.])
+   fi
+@@ -512,7 +515,7 @@
+     AC_SUBST(GLIB_WIN32_STATIC_COMPILATION_DEFINE)
+   fi
+ fi
+-AM_CONDITIONAL(OS_WIN32_AND_DLL_COMPILATION, [test x$glib_native_win32 = xyes -a x$glib_win32_static_compilation != xyes])
++AM_CONDITIONAL(OS_WIN32_AND_DLL_COMPILATION, [test x$glib_native_win32 = xyes -a x$glib_win32_static_compilation != xyes -a "$glib_os_parity" != "yes"])
+ 
+ dnl
+ dnl DU4 native cc currently needs -std1 for ANSI mode (instead of K&R)
+@@ -1309,7 +1312,7 @@
+ dnl *** force native WIN32 shared lib loader 
+ if test -z "$G_MODULE_IMPL"; then
+   case "$host" in
+-  *-*-mingw*|*-*-cygwin*) G_MODULE_IMPL=G_MODULE_IMPL_WIN32 ;;
++  *-*-mingw*|*-*-cygwin*|*-winnt*) G_MODULE_IMPL=G_MODULE_IMPL_WIN32 ;;
+   esac
+ fi
+ dnl *** force native AIX library loader
+@@ -1467,7 +1470,7 @@
+ 
+ AC_MSG_CHECKING(for gspawn implementation)
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     GSPAWN=gspawn-win32.lo
+     ;;
+   *)
+@@ -1483,7 +1486,7 @@
+ 
+ AC_MSG_CHECKING(for GIOChannel implementation)
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     GIO=giowin32.lo
+     ;;
+   *)
+@@ -1643,7 +1646,7 @@
+ 
+ AC_MSG_CHECKING(for platform-dependent source)
+ case "$host" in
+-  *-*-cygwin*|*-*-mingw*)
++  *-*-cygwin*|*-*-mingw*|*-winnt*)
+     PLATFORMDEP=gwin32.lo
+     ;;
+   *)
+@@ -1655,7 +1658,7 @@
+ 
+ AC_MSG_CHECKING([whether to compile timeloop])
+ case "$host" in
+-  *-*-cygwin*|*-*-mingw*|*-*-minix)
++  *-*-cygwin*|*-*-mingw*|*-*-minix|*-winnt*)
+     enable_timeloop=no
+     ;;
+   *)
+@@ -1667,7 +1670,7 @@
+ 
+ AC_MSG_CHECKING([if building for some Win32 platform])
+ case "$host" in
+-  *-*-mingw*|*-*-cygwin*)
++  *-*-mingw*|*-*-cygwin*|*-winnt*)
+     platform_win32=yes
+     ;;
+   *)
+@@ -1773,7 +1776,7 @@
+ fi
+ if test "x$want_threads" = xyes || test "x$want_threads" = xwin32; then
+        	case $host in
+-               	*-*-mingw*)
++               	*-*-mingw*|*-winnt*)
+ 		have_threads=win32
+ 		;;
+ 	esac
+@@ -1902,7 +1905,7 @@
+ 		G_THREAD_CFLAGS="-Kthread"
+ 		G_THREAD_LIBS=$G_THREAD_CFLAGS
+ 		;;
+-	*-mingw*)
++	*-mingw*|*-winnt*)
+ 		# No flag needed when using MSVCRT.DLL
+ 		G_THREAD_CFLAGS=""
+ 		;;
+@@ -3279,7 +3282,7 @@
+ #define G_PLATFORM_WIN32
+ #define G_WITH_CYGWIN"
+     ;;
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     glib_os="#define G_OS_WIN32
+ #define G_PLATFORM_WIN32"
+     ;;
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gio/Makefile.am glib-2.18.2/gio/Makefile.am
+--- glib-2.18.2.orig/gio/Makefile.am	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/gio/Makefile.am	2008-11-28 08:40:14 +0100
+@@ -62,7 +62,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=../gobject/glib-genmarshal
++  glib_genmarshal=../gobject/glib-genmarshal$(EXEEXT)
+ endif
+ 
+ gio-marshal.h: gio-marshal.list
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gio/glocalfile.c glib-2.18.2/gio/glocalfile.c
+--- glib-2.18.2.orig/gio/glocalfile.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/gio/glocalfile.c	2008-11-28 08:40:14 +0100
+@@ -91,6 +91,7 @@
+ #include <windows.h>
+ #include <io.h>
+ #include <direct.h>
++#include <shellapi.h>
+ 
+ #ifndef FILE_READ_ONLY_VOLUME
+ #define FILE_READ_ONLY_VOLUME           0x00080000
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gio/gwin32appinfo.c glib-2.18.2/gio/gwin32appinfo.c
+--- glib-2.18.2.orig/gio/gwin32appinfo.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/gio/gwin32appinfo.c	2008-11-28 08:40:14 +0100
+@@ -33,6 +33,7 @@
+ #include "glibintl.h"
+ 
+ #include <windows.h>
++#include <shellapi.h>
+ #include <shlwapi.h>
+ 
+ #include "gioalias.h"
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gio/gwin32mount.c glib-2.18.2/gio/gwin32mount.c
+--- glib-2.18.2.orig/gio/gwin32mount.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/gio/gwin32mount.c	2008-11-28 08:40:14 +0100
+@@ -28,6 +28,7 @@
+ #include <string.h>
+ #define WIN32_MEAN_AND_LEAN
+ #include <windows.h>
++#include <shellapi.h>
+ 
+ #include <glib.h>
+ #include "gwin32volumemonitor.h"
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/glib/gconvert.c glib-2.18.2/glib/gconvert.c
+--- glib-2.18.2.orig/glib/gconvert.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/glib/gconvert.c	2008-11-28 08:40:14 +0100
+@@ -24,7 +24,7 @@
+ 
+ #include "glib.h"
+ 
+-#ifndef G_OS_WIN32
++#if !defined G_OS_WIN32 || defined __PARITY__
+ #include <iconv.h>
+ #endif
+ #include <errno.h>
+@@ -36,7 +36,7 @@
+ #include "gthreadprivate.h"
+ #include "gunicode.h"
+ 
+-#ifdef G_OS_WIN32
++#if defined G_OS_WIN32 && !defined __PARITY__
+ #include "win_iconv.c"
+ #endif
+ 
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/glib/gspawn-win32-helper.c glib-2.18.2/glib/gspawn-win32-helper.c
+--- glib-2.18.2.orig/glib/gspawn-win32-helper.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/glib/gspawn-win32-helper.c	2008-11-28 08:40:14 +0100
+@@ -23,6 +23,10 @@
+ 
+ #include <fcntl.h>
+ 
++#ifdef __PARITY__
++# define HELPER_CONSOLE
++#endif
++
+ #undef G_LOG_DOMAIN
+ #include "glib.h"
+ #define GSPAWN_HELPER
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/glib/tests/strfuncs.c glib-2.18.2/glib/tests/strfuncs.c
+--- glib-2.18.2.orig/glib/tests/strfuncs.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/glib/tests/strfuncs.c	2008-11-28 08:40:14 +0100
+@@ -29,6 +29,10 @@
+ #include <string.h>
+ #include "glib.h"
+ 
++#ifdef __PARITY__
++# define isnan _isnan
++#endif
++
+ #define GLIB_TEST_STRING "el dorado "
+ 
+ #define FOR_ALL_CTYPE(macro)	\
+@@ -952,11 +956,13 @@
+   check_strtod_string ("-infinity", -our_inf, FALSE, 0);
+   check_strtod_string ("-.75,0", -0.75, TRUE, 4);
+   
++  #ifndef __PARITY__
+   d = 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0;
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
+ 
+   d = -179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0;
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
++  #endif
+   
+   d = pow (2.0, -1024.1);
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/gobject/Makefile.am glib-2.18.2/gobject/Makefile.am
+--- glib-2.18.2.orig/gobject/Makefile.am	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/gobject/Makefile.am	2008-11-28 08:40:14 +0100
+@@ -169,7 +169,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=./glib-genmarshal
++  glib_genmarshal=./glib-genmarshal$(EXEEXT)
+ endif
+ 
+ gmarshal.h: stamp-gmarshal.h
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/tests/gobject/Makefile.am glib-2.18.2/tests/gobject/Makefile.am
+--- glib-2.18.2.orig/tests/gobject/Makefile.am	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/tests/gobject/Makefile.am	2008-11-28 08:40:14 +0100
+@@ -25,7 +25,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=$(top_builddir)/gobject/glib-genmarshal
++  glib_genmarshal=$(top_builddir)/gobject/glib-genmarshal$(EXEEXT)
+ endif
+ 
+ testmarshal.h: stamp-testmarshal.h
+diff -ru -x '*.Po' -x '*.Plo' glib-2.18.2.orig/tests/refcount/signals.c glib-2.18.2/tests/refcount/signals.c
+--- glib-2.18.2.orig/tests/refcount/signals.c	2008-11-28 08:52:45 +0100
++++ glib-2.18.2/tests/refcount/signals.c	2008-11-28 08:40:14 +0100
+@@ -9,7 +9,7 @@
+ #define MY_IS_TEST_CLASS(tclass)   (G_TYPE_CHECK_CLASS_TYPE ((tclass), G_TYPE_TEST))
+ #define MY_TEST_GET_CLASS(test)    (G_TYPE_INSTANCE_GET_CLASS ((test), G_TYPE_TEST, GTestClass))
+ 
+-static GRand *rand;
++static GRand *g_rand;
+ 
+ typedef struct _GTest GTest;
+ typedef struct _GTestClass GTestClass;
+@@ -81,7 +81,7 @@
+       NULL
+     };
+ 
+-    rand = g_rand_new();
++    g_rand = g_rand_new();
+ 
+     test_type = g_type_register_static (G_TYPE_OBJECT, "GTest",
+         &test_info, 0);
+@@ -197,7 +197,7 @@
+ static void
+ my_test_do_prop (GTest * test)
+ {
+-  test->value = g_rand_int (rand);
++  test->value = g_rand_int (g_rand);
+   g_object_notify (G_OBJECT (test), "test-prop");
+ }
+ 
