@@ -1,0 +1,17 @@
+# ChangeLog for dev-libs/libgamin
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.2 2008/11/25 16:25:19 remi Exp $
+
+*libgamin-0.1.10-r1 (25 Nov 2008)
+
+  25 Nov 2008; Rémi Cardona <remi@gentoo.org> +libgamin-0.1.10-r1.ebuild:
+  fix python installation (see bug #248737)
+
+*libgamin-0.1.10 (24 Nov 2008)
+
+  24 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gamin-0.1.9-freebsd.patch, +files/libgamin-0.1.10-noinst-lib.patch,
+  +libgamin-0.1.10.ebuild, +metadata.xml:
+  New ebuild split off gamin. Initial ebuild inspired by Pacho Ramos, closes
+  bug #217861.
+
