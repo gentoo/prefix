@@ -1,0 +1,13 @@
+# ChangeLog for app-admin/gam-server
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.1 2008/11/24 23:10:29 eva Exp $
+
+*gam-server-0.1.10 (24 Nov 2008)
+
+  24 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gamin-0.1.9-freebsd.patch,
+  +files/gam-server-0.1.10-noinst-lib.patch, +metadata.xml,
+  +gam-server-0.1.10.ebuild:
+  New ebuild split off gamin. Initial ebuild inspired by Pacho Ramos, closes
+  bug #217861.
+
