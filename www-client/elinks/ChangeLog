@@ -1,6 +1,18 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.106 2008/11/26 16:44:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.108 2008/11/30 19:17:18 spock Exp $
+
+  30 Nov 2008; Michał Januszewski <spock@gentoo.org> elinks-0.11.3.ebuild,
+  elinks-0.11.4.ebuild:
+  Add a fix for bug #246575 for 0.11.3 and 0.11.4.
+
+*elinks-0.11.5 (30 Nov 2008)
+
+  30 Nov 2008; Michał Januszewski <spock@gentoo.org>
+  files/elinks-0.11.3-lua-5.patch, +files/elinks-0.11.5-makefile.patch,
+  +elinks-0.11.5.ebuild:
+  Version bump. Remove junk content from the lua patch. This commit fixes
+  bugs #246575, #248280, and #249020.
 
   26 Nov 2008; Brent Baude <ranger@gentoo.org> elinks-0.11.4.ebuild:
   stable ppc64, bug 239482

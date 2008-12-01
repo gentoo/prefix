@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.4.ebuild,v 1.6 2008/11/26 16:44:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.4.ebuild,v 1.7 2008/11/30 19:17:18 spock Exp $
 
 EAPI="prefix"
 
@@ -68,6 +68,7 @@ src_unpack() {
 
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
 
+	epatch "${FILESDIR}"/elinks-0.11.5-makefile.patch
 	sed -i -e 's/-Werror//' configure*
 	eautoreconf
 }

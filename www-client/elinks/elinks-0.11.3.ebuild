@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.3.ebuild,v 1.11 2008/03/09 23:52:31 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.3.ebuild,v 1.12 2008/11/30 19:17:18 spock Exp $
 
 EAPI="prefix"
 
@@ -67,6 +67,7 @@ src_unpack() {
 	fi
 
 	epatch ${FILESDIR}/elinks-po-path.patch
+	epatch ${FILESDIR}/elinks-0.11.5-makefile.patch
 
 	sed -i -e 's/-Werror//' configure*
 }

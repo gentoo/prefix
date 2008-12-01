@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2-r1.ebuild,v 1.10 2008/03/09 23:52:31 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.5.ebuild,v 1.1 2008/11/30 19:05:20 spock Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="http://elinks.or.cz/download/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bittorrent bzip2 debug finger ftp gopher gpm guile idn ipv6 \
 	  javascript lua nls nntp perl ruby ssl unicode X zlib"
 RESTRICT="test"
@@ -49,28 +49,29 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-	epatch ${FILESDIR}/${PN}-0.10.4.conf-syscharset.diff
+	epatch "${FILESDIR}"/${PN}-0.10.4.conf-syscharset.diff
 	mv "${PN}-0.10.4.conf" "${PN}.conf"
 	if ! use ftp ; then
 		sed -i -e 's/\(.*protocol.ftp.*\)/# \1/' ${PN}.conf
 	fi
 	sed -i -e 's/\(.*set protocol.ftp.use_epsv.*\)/# \1/' ${PN}.conf
-	cd ${S}
-	epatch ${FILESDIR}/${PN}-0.11.0-gcc4-inline.patch
-	epatch ${FILESDIR}/${PN}-0.11.0-ruby.patch
-	epatch ${FILESDIR}/${PN}-0.11.1-time.patch
-	epatch ${FILESDIR}/${PN}-0.11.2-lua-5.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-0.11.3-lua-5.patch
 
 	if use lua && has_version ">=dev-lang/lua-5.1"; then
-		epatch ${FILESDIR}/${PN}-0.11.2-lua-5.1.patch
+		epatch "${FILESDIR}"/${PN}-0.11.2-lua-5.1.patch
 	fi
 
 	if use unicode ; then
-		epatch ${FILESDIR}/elinks-0.10.1-utf_8_io-default.patch
+		epatch "${FILESDIR}"/elinks-0.10.1-utf_8_io-default.patch
 	fi
 
-	epatch ${FILESDIR}/elinks-po-path.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-0.11.4-interix3.patch
+
+	epatch "${FILESDIR}"/elinks-0.11.5-makefile.patch
+
 	sed -i -e 's/-Werror//' configure*
+	eautoreconf
 }
 
 src_compile() {
@@ -84,8 +85,6 @@ src_compile() {
 	sed -i -e "/for make in gnumake gmake make false; do/s/gnumake gmake//" \
 		${S}/configure.in
 
-	eautoreconf
-
 	if use debug ; then
 		myconf="--enable-debug"
 	else
@@ -93,7 +92,7 @@ src_compile() {
 	fi
 
 	if use ssl ; then
-		myconf="${myconf} --with-openssl"
+		myconf="${myconf} --with-openssl=${EPREFIX}/usr"
 	else
 		myconf="${myconf} --without-openssl --without-gnutls"
 	fi
@@ -122,7 +121,6 @@ src_compile() {
 		$(use_enable nntp) \
 		$(use_enable finger) \
 		${myconf} || die
-
 	emake || die "compile problem"
 }
 
