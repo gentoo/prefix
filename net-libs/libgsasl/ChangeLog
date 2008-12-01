@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libgsasl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libgsasl/ChangeLog,v 1.39 2008/11/02 12:42:38 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libgsasl/ChangeLog,v 1.40 2008/11/29 20:42:41 dertobi123 Exp $
+
+*libgsasl-0.2.29 (29 Nov 2008)
+
+  29 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  -libgsasl-0.2.3.ebuild, -libgsasl-0.2.10.ebuild, -libgsasl-0.2.21.ebuild,
+  -libgsasl-0.2.26.ebuild, +libgsasl-0.2.29.ebuild:
+  Version bump, bug #246507
 
   02 Nov 2008; Markus Meier <maekke@gentoo.org> libgsasl-0.2.28.ebuild:
   amd64/x86 stable, bug #243096
