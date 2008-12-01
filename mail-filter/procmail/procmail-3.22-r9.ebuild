@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r9.ebuild,v 1.1 2008/06/15 10:22:20 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r9.ebuild,v 1.5 2008/11/29 17:11:42 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -20,15 +20,9 @@ RDEPEND="virtual/libc
 	selinux? ( sec-policy/selinux-procmail )"
 PROVIDE="virtual/mda"
 
-src_compile() {
-	# -finline-functions (implied by -O3) leaves strstr() in an infinite loop.
-	# To work around this, we append -fno-inline-functions to CFLAGS
-	append-flags -fno-inline-functions
-
-	sed -e "s:CFLAGS0 = -O:CFLAGS0 = ${CFLAGS}:" \
-		-e "s:LOCKINGTEST=__defaults__:#LOCKINGTEST=__defaults__:" \
-		-e "s:#LOCKINGTEST=/tmp:LOCKINGTEST=${EPREFIX}/tmp:" \
-		-i Makefile || die "sed failed"
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
 
 	# disable flock, using both fcntl and flock style locking
 	# doesn't work with NFS with 2.6.17+ kernels, bug #156493
@@ -63,6 +57,17 @@ src_compile() {
 
 	# Fix for bug #200006
 	epatch "${FILESDIR}/${PN}-pipealloc.diff"
+}
+
+src_compile() {
+	# -finline-functions (implied by -O3) leaves strstr() in an infinite loop.
+	# To work around this, we append -fno-inline-functions to CFLAGS
+	append-flags -fno-inline-functions
+
+	sed -e "s:CFLAGS0 = -O:CFLAGS0 = ${CFLAGS}:" \
+		-e "s:LOCKINGTEST=__defaults__:#LOCKINGTEST=__defaults__:" \
+		-e "s:#LOCKINGTEST=/tmp:LOCKINGTEST=/tmp:" \
+		-i Makefile || die "sed failed"
 
 	emake || die
 }
