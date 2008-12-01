@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.90 2008/11/17 06:23:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.91 2008/11/27 06:58:57 graaff Exp $
+
+*activerecord-2.2.2 (27 Nov 2008)
+
+  27 Nov 2008; Hans de Graaff <graaff@gentoo.org>
+  +activerecord-2.2.2.ebuild:
+  Version bump for Rails 2.2.2
 
   17 Nov 2008; Hans de Graaff <graaff@gentoo.org>
   -activerecord-2.0.2.ebuild, -activerecord-2.0.4.ebuild,
