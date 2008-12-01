@@ -1,6 +1,14 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.99 2008/11/26 16:29:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.101 2008/11/30 20:02:58 armin76 Exp $
+
+  30 Nov 2008; Raúl Porcel <armin76@gentoo.org>
+  audacious-plugins-1.5.1-r3.ebuild:
+  sparc/x86 stable wrt #247287
+
+  27 Nov 2008; Jeroen Roovers <jer@gentoo.org>
+  audacious-plugins-1.5.1-r3.ebuild:
+  Stable for HPPA (bug #247287).
 
   26 Nov 2008; Brent Baude <ranger@gentoo.org>
   audacious-plugins-1.5.1-r3.ebuild:
