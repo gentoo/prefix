@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.92 2008/11/17 06:26:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.93 2008/11/27 06:56:27 graaff Exp $
+
+*actionpack-2.2.2 (27 Nov 2008)
+
+  27 Nov 2008; Hans de Graaff <graaff@gentoo.org> +actionpack-2.2.2.ebuild:
+  Version bump for Rails 2.2.2
 
   17 Nov 2008; Hans de Graaff <graaff@gentoo.org> -actionpack-2.0.2.ebuild,
   -actionpack-2.0.4.ebuild, -actionpack-2.1.0.ebuild,
