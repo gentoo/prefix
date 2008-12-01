@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/gnome2-vfs-perl
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/gnome2-vfs-perl/ChangeLog,v 1.40 2008/09/21 06:22:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/gnome2-vfs-perl/ChangeLog,v 1.41 2008/11/29 12:16:47 ssuominen Exp $
+
+  29 Nov 2008; <ssuominen@gentoo.org> gnome2-vfs-perl-1.061.ebuild:
+  Move extutils-pkgconfig to DEPEND wrt #223075.
 
 *gnome2-vfs-perl-1.081 (21 Sep 2008)
 
