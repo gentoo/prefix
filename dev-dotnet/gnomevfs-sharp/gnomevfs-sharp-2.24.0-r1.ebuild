@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/gnomevfs-sharp-2.24.0.ebuild,v 1.2 2008/11/26 10:46:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/gnomevfs-sharp-2.24.0-r1.ebuild,v 1.1 2008/11/28 00:23:28 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -14,4 +14,4 @@ IUSE=""
 
 RDEPEND=">=dev-dotnet/gtk-sharp-2.12.6[glade]
 	>=gnome-base/gnome-vfs-2.24"
-DEPEND="${RDEPEND} dev-util/pkgconfig"
+DEPEND="${RDEPEND}"
