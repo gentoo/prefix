@@ -1,6 +1,6 @@
-diff -r -U2 asymptote-1.51.orig/settings.cc asymptote-1.51/settings.cc
---- asymptote-1.51.orig/settings.cc	2008-11-11 15:34:40.000000000 +0600
-+++ asymptote-1.51/settings.cc	2008-11-15 18:14:37.000000000 +0600
+diff -r -U2 asymptote-1.53.orig/settings.cc asymptote-1.53/settings.cc
+--- asymptote-1.53.orig/settings.cc	2008-11-28 00:43:50.000000000 +0600
++++ asymptote-1.53/settings.cc	2008-11-29 03:15:52.000000000 +0600
 @@ -81,12 +81,12 @@
  const char *HOME="HOME";
  const char pathSeparator=':';

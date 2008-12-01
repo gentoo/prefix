@@ -1,7 +1,7 @@
-diff -r -U2 asymptote-1.51.orig/configure.ac asymptote-1.51/configure.ac
---- asymptote-1.51.orig/configure.ac	2008-11-11 15:34:58.000000000 +0600
-+++ asymptote-1.51/configure.ac	2008-11-15 18:20:10.000000000 +0600
-@@ -77,8 +77,14 @@
+diff -r -U2 asymptote-1.53.orig/configure.ac asymptote-1.53/configure.ac
+--- asymptote-1.53.orig/configure.ac	2008-11-28 00:44:44.000000000 +0600
++++ asymptote-1.53/configure.ac	2008-11-29 03:20:21.000000000 +0600
+@@ -80,8 +80,14 @@
  fi
  
 -AC_CHECK_HEADER(fftw3.h,
@@ -18,16 +18,16 @@ diff -r -U2 asymptote-1.51.orig/configure.ac asymptote-1.51/configure.ac
 +fi
  
  GCVERSION=gc-7.1
-@@ -117,5 +123,5 @@
+@@ -120,5 +126,5 @@
        CPPFLAGS_SAVE=$CPPFLAGS
        CPPFLAGS=$CPPFLAGS" $INCL"
 -      AC_CHECK_HEADER(gc.h,
 +      AC_CHECK_HEADER([gc/gc.h],
  	AC_CHECK_LIB([gc],[GC_malloc],[
  	  LIBS=$LIBS"-lgc "
-@@ -183,5 +189,14 @@
- AC_CHECK_LIB([m], [sqrt])
+@@ -187,5 +193,14 @@
  AC_CHECK_LIB([z], [deflate])
+ AC_CHECK_LIB([pthread], [pthread_create])
 -AC_CHECK_LIB([sigsegv], [stackoverflow_install_handler])
 +
 +AC_ARG_WITH(sigsegv,
@@ -41,7 +41,7 @@ diff -r -U2 asymptote-1.51.orig/configure.ac asymptote-1.51/configure.ac
 +fi
  
  AC_CHECK_LIB([readline], [rl_completion_matches],,
-@@ -200,9 +215,15 @@
+@@ -204,9 +219,15 @@
     AC_MSG_WARN([*** Broken rpc headers; XDR support disabled ***]))
  
 -AC_CHECK_HEADER(gsl/gsl_sf.h,
