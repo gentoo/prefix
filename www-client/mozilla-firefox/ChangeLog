@@ -1,6 +1,11 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.456 2008/11/23 17:14:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.457 2008/11/30 16:05:32 armin76 Exp $
+
+  30 Nov 2008; Raúl Porcel <armin76@gentoo.org>
+  -mozilla-firefox-3.0-r1.ebuild, -mozilla-firefox-3.0.4.ebuild:
+  Remove old, unfortunately 3.0-r1 also sigbuses on sparc, so no working
+  version there
 
 *mozilla-firefox-3.0.4-r1 (23 Nov 2008)
 
