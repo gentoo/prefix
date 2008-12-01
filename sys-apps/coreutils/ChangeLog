@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.238 2008/10/16 03:06:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.239 2008/11/27 18:38:13 vapier Exp $
+
+  27 Nov 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.12-r2.ebuild:
+  Block sys-apps/stat #248312 by Diego E. Pettenò.
 
 *coreutils-6.12-r2 (16 Oct 2008)
 *coreutils-6.10-r3 (16 Oct 2008)

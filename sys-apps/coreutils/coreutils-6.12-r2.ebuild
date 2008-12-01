@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.12-r2.ebuild,v 1.1 2008/10/16 03:06:16 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.12-r2.ebuild,v 1.2 2008/11/27 18:38:13 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
 	!<sys-apps/util-linux-2.13
+	!sys-apps/stat
 	!net-mail/base64
 	!sys-apps/mktemp
 	>=sys-libs/ncurses-5.3-r5"
