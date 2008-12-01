@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.1.0.ebuild,v 1.2 2008/07/04 07:00:57 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.2.2.ebuild,v 1.1 2008/11/27 06:59:53 graaff Exp $
 
 EAPI="prefix"
 
@@ -10,19 +10,18 @@ DESCRIPTION="ruby on rails is a web-application and persistance framework"
 HOMEPAGE="http://www.rubyonrails.org"
 
 LICENSE="MIT"
-SLOT="2.1"
+SLOT="2.2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="fastcgi"
 DEPEND=">=dev-lang/ruby-1.8.5
-	>=app-admin/eselect-rails-0.12
-	>=dev-ruby/rake-0.8.1
-	~dev-ruby/activerecord-2.1.0
-	~dev-ruby/activeresource-2.1.0
-	~dev-ruby/activesupport-2.1.0
-	~dev-ruby/actionmailer-2.1.0
-	~dev-ruby/actionpack-2.1.0
-	!<dev-ruby/rails-1.1.6-r1"
+	>=app-admin/eselect-rails-0.13
+	>=dev-ruby/rake-0.8.3
+	~dev-ruby/activerecord-2.2.2
+	~dev-ruby/activeresource-2.2.2
+	~dev-ruby/activesupport-2.2.2
+	~dev-ruby/actionmailer-2.2.2
+	~dev-ruby/actionpack-2.2.2"
 
 RDEPEND="${DEPEND}
 	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.6 )"
@@ -38,13 +37,11 @@ src_install() {
 pkg_postinst() {
 	einfo "To select between slots of rails, use:"
 	einfo "\teselect rails"
-	# Bring users to rails 2.1.x by default when updating
-	eselect rails update 2.1
-
-	ewarn "All database USE flags have been moved to dev-ruby/activerecord"
+	# Bring users to rails 2.2.x by default when updating
+	eselect rails update 2.2
 }
 
 pkg_postrm() {
-	# Drop users back to rails 2.0.x when they remove 2.1.x
-	eselect rails update 2
+	# Drop users back to rails 2.1.x when they remove 2.2.x
+	eselect rails update 2.1
 }
