@@ -1,11 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.109 2008/11/28 09:21:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev-stable,v 1.6 2008/11/28 09:19:41 vapier Exp $
 
-EPREFIX=$(portageq envvar EPREFIX)
-
-cd "${EPREFIX}"
+cd /
 umask 0022 #159111
 
 if [[ ${ROOT:-/} != "/" ]] ; then
@@ -13,7 +11,7 @@ if [[ ${ROOT:-/} != "/" ]] ; then
 	exit 2
 fi
 
-source "${EPREFIX}"/etc/init.d/functions.sh || exit 1
+source /etc/init.d/functions.sh || exit 1
 esyslog() { :; }
 die() {
 	echo
@@ -150,10 +148,6 @@ parse_target() {
 		      LCAT="dev-embedded"; LPKG="avr-libc";
 		      GUSE=${GUSE_DISABLE};;
 
-		# due to upstream lameness, build C/C++ at first glance
-		*-cygwin)
-		      GUSE_DISABLE=${GUSE_DISABLE/nocxx};;
-
 		mingw*|*-mingw*)
 		      WITH_DEF_HEADERS="yes";
 		      KCAT="dev-util"; KPKG="w32api";
@@ -203,12 +197,6 @@ parse_target() {
 		*-uclibc*)  LPKG="uclibc";;
 		*-uclinux)  LPKG="uclibc";;
 
-		# Windows targets
-		*-cygwin)
-			LCAT="dev-libs"; LPKG="cygwin";
-			KPKG="[none]";
-			;;
-
 		# Bare metal targets
 		*-newlib|*-elf)
 			LPKG="newlib"
@@ -222,8 +210,6 @@ parse_target() {
 			KPKG="[none]"
 			;;
 	esac
-
-	: ${LPKG=[none]}
 }
 
 setup_portage_vars() {
@@ -231,7 +217,7 @@ setup_portage_vars() {
 	PORTDIR_OVERLAY=${PORTDIR_OVERLAYS%% *}
 	PORTDIR=$(portageq envvar PORTDIR)
 	PORT_LOGDIR=$(portageq envvar PORT_LOGDIR)
-	PORT_LOGDIR=${PORT_LOGDIR:-${EPREFIX}/var/log/portage}
+	PORT_LOGDIR=${PORT_LOGDIR:-/var/log/portage}
 	export PKGDIR=$(portageq envvar PKGDIR)/cross/${CTARGET}
 	export PORTAGE_TMPDIR=$(portageq envvar PORTAGE_TMPDIR)/cross/${CTARGET}
 	[[ ! -d ${PORT_LOGDIR} ]] && mkdir -p ${PORT_LOGDIR}
@@ -245,9 +231,9 @@ uninstall() {
 
 	[[ -d ${PORTDIR_OVERLAY}/cross-${CTARGET} ]] \
 		&& rm -r ${PORTDIR_OVERLAY}/cross-${CTARGET}
-	sed -i -e "/^cross-${CTARGET}$/d" "${EPREFIX}"/etc/portage/categories
+	sed -i -e "/^cross-${CTARGET}$/d" /etc/portage/categories
 	for f in package.{mask,keywords,use} ; do
-		f="${EPREFIX}/etc/portage/${f}"
+		f="/etc/portage/${f}"
 		if [[ -d ${f} ]] ; then
 			rm -f "${f}"/cross-${CTARGET}
 		elif [[ -f ${f} ]] ; then
@@ -255,23 +241,23 @@ uninstall() {
 		fi
 	done
 
-	if [[ ! -d ${EPREFIX}/var/db/pkg/cross-${CTARGET} ]] ; then
+	if [[ ! -d /var/db/pkg/cross-${CTARGET} ]] ; then
 		eerror "${CTARGET} is not installed."
 		exit 1
 	fi
 
 	export CLEAN_DELAY=0
-	cd "${EPREFIX}"/var/db/pkg
+	cd /var/db/pkg
 	for p in cross-${CTARGET}/* ; do
 		emerge -C =${p} || exit 1
 	done
 	for b in addr2line ar as c++filt ld nm objcopy objdump ranlib readelf size strings strip ; do
-		rm -f "${EPREFIX}"/usr/bin/${CTARGET}-${b} "${EPREFIX}"/usr/${CTARGET}/bin/${b}
+		rm -f /usr/bin/${CTARGET}-${b} /usr/${CTARGET}/bin/${b}
 	done
-	rm -f "${EPREFIX}"/usr/${CTARGET}/{sys-include,usr}
-	rm -f "${EPREFIX}"/usr/bin/${CTARGET}-{gcc,{c,g}++,cpp,gfortran,gcov}
-	rmdir "${EPREFIX}"/usr/${CTARGET}/{include/asm,include} &> /dev/null
-	for d in "${EPREFIX}"/usr/${CTARGET} "${EPREFIX}"/usr/lib/gcc{,-lib}/${CTARGET} ; do
+	rm -f /usr/${CTARGET}/{sys-include,usr}
+	rm -f /usr/bin/${CTARGET}-{gcc,{c,g}++,cpp,gfortran,gcov}
+	rmdir /usr/${CTARGET}/{include/asm,include} &> /dev/null
+	for d in /usr/${CTARGET} /usr/lib/gcc{,-lib}/${CTARGET} ; do
 		if [[ ! -d ${d} ]] ; then
 			rm -f "${d}" &> /dev/null
 		else
@@ -279,8 +265,8 @@ uninstall() {
 			rm -ri "${d}"
 		fi
 	done
-	rm -f "${EPREFIX}"/etc/env.d/{binutils,gcc}/config-${CTARGET}
-	rmdir "${EPREFIX}"/var/db/pkg/cross-${CTARGET}
+	rm -f /etc/env.d/{binutils,gcc}/config-${CTARGET}
+	rmdir /var/db/pkg/cross-${CTARGET}
 
 	exit 0
 }
@@ -343,9 +329,8 @@ GCAT="sys-devel"  ; GPKG="gcc"           ; GVER="" ; GUSE=""
 KCAT="sys-kernel" ; KPKG="linux-headers" ; KVER="" ; KUSE=""
 LCAT="sys-libs"   ; LPKG=""              ; LVER="" ; LUSE=""
 DEFAULT_VER="[latest]"
-GUSE_DISABLE="-boundschecking -d -fortran -gtk -gcj -libffi -mudflap nocxx -objc -objc++ -objc-gc -openmp"
+GUSE_DISABLE="-boundschecking -d -fortran -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -openmp"
 GUSE_DISABLE_STAGE_2=${GUSE_DISABLE/-fortran}
-GUSE_DISABLE_STAGE_2=${GUSE_DISABLE_STAGE_2/nocxx}
 WITH_HEADERS="COW"   WITH_DEF_HEADERS="yes" #227065 gcc-4.3+ is a pita w/out headers
 EX_FAST="no"
 EX_GCC="no"
@@ -401,7 +386,7 @@ if ! binutils-config --version &> /dev/null ; then
 	eerror "both binutils and binutils-config."
 	exit 1
 fi
-if ! egrep -qs 'inherit.*toolchain( |$)' "${EPREFIX}"/var/db/pkg/sys-devel/gcc-*/*.ebuild ; then
+if ! egrep -qs 'inherit.*toolchain( |$)' /var/db/pkg/sys-devel/gcc-*/*.ebuild ; then
 	eerror "Sorry, but your host system needs to have"
 	eerror "an unstable version of gcc in order to"
 	eerror "keep from screwing things up."
@@ -423,14 +408,14 @@ fi
 
 # grab user settings
 for v in ABI UCLIBC_CPU USE BVER GVER KVER LVER STAGE CFLAGS LDFLAGS ASFLAGS ; do
-	if [[ -e ${EPREFIX}/etc/portage/crossdev/${CTARGET}/${v} ]] ; then
+	if [[ -e /etc/portage/crossdev/${CTARGET}/${v} ]] ; then
 		# yes, quotes are needed in this instance (export $var="...")
-		export ${v}="$(<${EPREFIX}/etc/portage/crossdev/${CTARGET}/${v})"
+		export ${v}="$(</etc/portage/crossdev/${CTARGET}/${v})"
 		einfo "Restoring user setting '${v}' to '${!v}'"
 	fi
-	if [[ -e ${EPREFIX}/etc/portage/crossdev/${CTARGET}/env ]] ; then
+	if [[ -e /etc/portage/crossdev/${CTARGET}/env ]] ; then
 		einfo "Restoring generic user env settings"
-		source ${EPREFIX}/etc/portage/crossdev/${CTARGET}/env
+		source /etc/portage/crossdev/${CTARGET}/env
 	fi
 done
 
@@ -546,11 +531,11 @@ set_portage() {
 	set_links ${cat} ${pkg}
 }
 
-mkdir -p "${EPREFIX}"/etc/portage
-grep -qs "^cross-${CTARGET}$" "${EPREFIX}"/etc/portage/categories \
-	|| echo cross-${CTARGET} >> "${EPREFIX}"/etc/portage/categories
+mkdir -p /etc/portage
+grep -qs "^cross-${CTARGET}$" /etc/portage/categories \
+	|| echo cross-${CTARGET} >> /etc/portage/categories
 mkdir -p "${PORTDIR_OVERLAY}"/cross-${CTARGET}
-cd "${EPREFIX}"/etc/portage
+cd /etc/portage
 for f in package.{keywords,mask,use} ; do
 	[[ -f ${f} ]] && continue
 	mkdir -p ${f}
@@ -567,7 +552,7 @@ set_portage dev-util insight
 #################
 emerged_with_use() {
 	local pkg=$1 use=$2
-	grep -qs ${use} "${EPREFIX}"/var/db/pkg/cross-${CTARGET}/${pkg}-*/USE
+	grep -qs ${use} /var/db/pkg/cross-${CTARGET}/${pkg}-*/USE
 }
 set_eopts_on_pkg_status() {
 	emerged_with_use "$@" \
@@ -631,7 +616,7 @@ USE="${KUSE} ${USE}" CROSSCOMPILE_OPTS="headers-only" \
 USE="${LUSE} ${USE}" CROSSCOMPILE_OPTS="headers-only" \
 	doemerge ${LPKG} ${LPKG}-headers
 fi
-USE="${GUSE} ${USE} ${GUSE_DISABLE}" CROSSCOMPILE_OPTS="bootstrap" \
+USE="${GUSE} ${USE} ${GUSE_DISABLE} nocxx" CROSSCOMPILE_OPTS="bootstrap" \
 	doemerge ${GPKG} ${GPKG}-stage1
 
 is_s2 || exit 0
