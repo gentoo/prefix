@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/gsasl-0.2.28.ebuild,v 1.1 2008/09/07 08:27:19 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/gsasl-0.2.29.ebuild,v 1.1 2008/11/29 20:44:21 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "einstall failed"
-	dodoc AUTHORS ChangeLog NEWS README README-alpha THANKS
+	dodoc AUTHORS ChangeLog NEWS README THANKS
 	doman doc/gsasl.1
 
 	if use doc; then
