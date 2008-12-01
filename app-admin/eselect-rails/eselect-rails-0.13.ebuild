@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/eselect-rails-0.11.ebuild,v 1.7 2008/05/16 17:28:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/eselect-rails-0.13.ebuild,v 1.1 2008/11/27 06:51:23 graaff Exp $
 
 EAPI="prefix"
 
