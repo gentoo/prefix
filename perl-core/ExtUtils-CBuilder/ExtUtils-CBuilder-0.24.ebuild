@@ -12,7 +12,7 @@ DESCRIPTION="Compile and link C code for Perl modules"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="dev-lang/perl"
