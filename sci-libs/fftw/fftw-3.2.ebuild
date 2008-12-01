@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.ebuild,v 1.1 2008/11/24 11:02:05 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.ebuild,v 1.2 2008/11/27 10:39:28 bicatali Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,12 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="altivec doc fortran openmp sse sse2 threads"
 
 pkg_setup() {
+	FFTW_THREADS="--disable-threads --disable-openmp"
+	if use openmp; then
+		FFTW_THREADS="--disable-threads --enable-openmp"
+	elif use threads; then
+		FFTW_THREADS="--enable-threads --disable-openmp"
+	fi
 	if use openmp &&
 		[[ $(tc-getCC)$ == *gcc* ]] &&
 		( [[ $(gcc-major-version)$(gcc-minor-version) -lt 42 ]] ||
@@ -24,8 +30,9 @@ pkg_setup() {
 		ewarn "You are using gcc and OpenMP is only available with gcc >= 4.2 "
 		ewarn "If you want to build fftw with OpenMP, abort now,"
 		ewarn "and switch CC to an OpenMP capable compiler"
-		ewarn "Otherwise the configure script will select POSIX threads."
+		ewarn "Otherwise, we will build using POSIX threads."
 		epause 5
+		FFTW_THREADS="--enable-threads --disable-openmp"
 	fi
 	FORTRAN="gfortran ifc g77"
 	use fortran && fortran_pkg_setup
@@ -41,6 +48,9 @@ src_unpack() {
 	# fix info file
 	sed -e 's/Texinfo documentation system/Libraries/' \
 		-i doc/fftw3.info || die "failed to fix info file"
+
+	rm m4/lt* m4/libtool.m4
+
 	AT_M4DIR=m4 eautoreconf
 	cd "${WORKDIR}"
 	mv ${P} ${P}-single
@@ -54,22 +64,9 @@ src_compile() {
 
 	local myconfcommon="
 		--enable-shared
-		$(use_enable threads)
-		$(use_enable fortran)"
+		$(use_enable fortran)
+		${FFTW_THREADS}"
 
-	if use openmp; then
-		myconfcommon="${myconfcommon}
-			--disable-threads
-			--enable-openmp"
-	elif use threads; then
-		myconfcommon="${myconfcommon}
-			--enable-threads
-			--disable-openmp"
-	else
-		myconfcommon="${myconfcommon}
-			--disable-threads
-			--disable-openmp"
-	fi
 	local myconfsingle=""
 	local myconfdouble=""
 	local myconflongdouble=""
