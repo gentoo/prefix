@@ -1,10 +1,43 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2094 2008/11/26 17:10:59 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2105 2008/11/30 21:32:45 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Nov 2008; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2008:
+  Slotmove app-doc/elisp-manual.
+
+  30 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mono-2 is ready for ~arch.
+
+  30 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add mono-addins-0.4 to mono-2 mask
+
+  30 Nov 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Package mask app-emacs/emacs-daemon.
+
+  30 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Fix loki_val's package.mask corruption typo.
+
+  30 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Something more for mono-2 package.mask.
+
+  29 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> desc/cameras.desc:
+  add description for a new kind of camera.
+
+  28 Nov 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  p.masked bluez and bluez-gnome-1.8
+
+  27 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Masking net-misc/logjam and net-news/straw
+
+  27 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  update gnome-mount/policykit mask for gnome-mount-0.8 bump.
+
+  27 Nov 2008; Mike Frysinger <vapier@gentoo.org> package.mask:
+  Remove ncurses-5.7 mask -- just disable berkdb in ebuild.
 
   26 Nov 2008; MATSUU Takuto <matsuu@gentoo.org> package.mask:
   remove posadis mask

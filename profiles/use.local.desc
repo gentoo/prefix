@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4034 2008/11/24 21:07:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4045 2008/11/30 22:27:47 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -223,6 +223,7 @@ app-emulation/uae:ui - Build the user interface (could be gtk or ncurses based, 
 app-emulation/vice:resid - Enable support for ReSID media-libs/resid
 app-emulation/vice:xrandr - Enable support for the X xrandr extension
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
+app-emulation/virtualbox-bin:chm - Install kchmviewer binary to enable online help (in MS CHM format)
 app-emulation/virtualbox-bin:headless - Install without any graphic frontend
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
@@ -618,8 +619,8 @@ dev-lang/swig:mzscheme - Enable PLT mzscheme support
 dev-lang/swig:octave - Enable Octave support
 dev-lang/swig:pike - Enable Pike scripting support
 dev-lang/vala:vapigen - Enable vala's library binding generator
-dev-libs/DirectFB:fusion - Add Multi Application support (fusion kernel device) 
-dev-libs/DirectFB:sysfs - Add support for the sysfs filesystem (requires Linux-2.6+) 
+dev-libs/DirectFB:fusion - Add Multi Application support (fusion kernel device)
+dev-libs/DirectFB:sysfs - Add support for the sysfs filesystem (requires Linux-2.6+)
 dev-libs/DirectFB-extra:flash - Add support for creating SWF files using Ming (media-libs/libflash)
 dev-libs/DirectFB-extra:fusion - Add Multi Application support (fusion kernel device) 
 dev-libs/STLport:boost - Enable the usage of dev-libs/boost
@@ -662,6 +663,7 @@ dev-libs/openobex:irda - Enable IrDA support
 dev-libs/opensc:openct - Build using dev-libs/openct compatibility 
 dev-libs/opensc:pcsc-lite - Build with sys-apps/pcsc-lite
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
+dev-libs/ppl:prolog - Build SWI Prolog interface
 dev-libs/qsa:ide - Enable the qsa ide
 dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support.
 dev-libs/soprano:redland - Enables support for the dev-libs/redland backend.
@@ -827,6 +829,7 @@ dev-util/svk:svn-mirror - Enable SVN-Mirror support
 games-action/abuse:demo - Use the demo data instead of the full game
 games-action/abuse:levels - Install user-created levels (fRaBs)
 games-action/abuse:sounds - Install optional sound data
+games-action/chromium:mixer -  Enables media-libs/sdl-mixer sound backend instead of media-libs/openal one. 
 games-action/d1x-rebirth:awe32 - Enable AWE32 support
 games-action/d1x-rebirth:demo - Use the demo data instead of the full game
 games-action/d1x-rebirth:mixer - Enable mixer support
@@ -1221,6 +1224,7 @@ media-libs/libcanberra:gtk - Enables building of gtk+ helper library, gtk+ runti
 media-libs/libcanberra:pulseaudio - Enables PulseAudio sound driver that should be able to support positional event sounds. This is the preferred choice for best sound events experience and picked by default if compiled in and possible to use at runtime.
 media-libs/libdc1394:juju - Use the new juju firewire stack in the Linux kernel
 media-libs/libggi:vis - Enables sparc vis support for libggi
+media-libs/libgphoto2:bonjour - Adds Bonjour/Zeroconf support.
 media-libs/libifp:module - Build kernel module for non-root usage
 media-libs/libsdl:custom-cflags - Allow users to use any CFLAGS they like completely (at their own risk)
 media-libs/libsdl:noaudio - Allow users to disable audio support completely (at their own risk)
@@ -1367,11 +1371,15 @@ media-sound/mumble:speech - Enables text-to-speech support in Mumble.
 media-sound/murmur:ice - Use dev-cpp/Ice to enable remote control capabilities
 media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
+media-sound/ncmpc:artist-screen - Enable artist screen
 media-sound/ncmpc:clock-screen - Enable clock screen
+media-sound/ncmpc:colors - Enable color support
+media-sound/ncmpc:help-screen - Enable the help screen
 media-sound/ncmpc:key-screen - Enable key editor screen
 media-sound/ncmpc:mouse - Enable curses getmouse support
-media-sound/ncmpc:raw-mode - raw terminal mode
-media-sound/ncmpc:search-screen - Enable search screen (EXPERIMENTAL)
+media-sound/ncmpc:raw-mode - Raw terminal mode
+media-sound/ncmpc:search-screen - Enable search screen
+media-sound/ncmpc:song-screen - Enable song viewer screen
 media-sound/noteedit:kmid - Use KDE's kmid to play sound
 media-sound/noteedit:tse3 - Use tse3 library to play/export sound
 media-sound/picard:cdaudio - Enable support for CD Index Lookups.
@@ -1651,6 +1659,7 @@ media-video/vlc:id3tag - Enables id3tag metadata reader plugin.
 media-video/vlc:kate - Adds support for Ogg Kate subtitles via libkate.
 media-video/vlc:libass - Enables subtitles support using libass.
 media-video/vlc:libgcrypt - Enables cryptography support via libgcrypt.
+media-video/vlc:libsysfs - Get user key from firewire connected iPod via libsysfs.
 media-video/vlc:libv4l2 - Enables Libv4l2 Video4Linux2 support (for conversion from various video formats to standard ones, needed to use v4l2 devices with strange formats).
 media-video/vlc:live - Enables LIVE.com support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
@@ -2017,6 +2026,7 @@ net-misc/directvnc:mouse - Adds mouse support
 net-misc/drivel:rhythmbox - Enables support for currently playing song in rhythmbox
 net-misc/dropbear:bsdpty - Add support for legacy BSD pty's rather than dynamic UNIX pty's -- do not use this flag unless you are absolutely sure you actually want it
 net-misc/dropbear:multicall - Build all the programs as one little binary (to save space)
+net-misc/freenet6:radvd - Enable support for net-misc/radvd
 net-misc/gwget:epiphany - Build epiphany extensions
 net-misc/hamachi:pentium - Add support for older Pentium based systems
 net-misc/htbinit:esfq - Add support for Enhanced Stochastic Fairness queueing discipline.
@@ -2160,11 +2170,12 @@ net-print/omni:epson - include the epson drivers
 net-print/pkpgcounter:psyco - psyco python accelerator
 net-proxy/dansguardian:kaspersky - Adds support for Kaspersky AntiVirus software
 net-proxy/dansguardian:ntlm - Enable support for the NTLM auth plugin
+net-proxy/squid:epoll - Enables Linux epoll() support
 net-proxy/squid:icap-client - Adds ICAP client support
 net-proxy/squid:ipf-transparent - Adds transparent proxy support for systems using IP-Filter (only for *bsd)
+net-proxy/squid:kqueue - Enables *BSD kqueue() support
 net-proxy/squid:logrotate - Use app-admin/logrotate for rotating logs
 net-proxy/squid:pf-transparent - Adds transparent proxy support for systems using PF (only for *bsd)
-net-proxy/squid:qos - Adds tcp_outgoing_priority for setting the Qdisc priority
 net-proxy/squid:zero-penalty-hit - Add Zero Penalty Hit patch (http://zph.bratcheda.org)
 net-proxy/sshproxy:client-only - Install only the client wrappers
 net-proxy/tinyproxy:transparent-proxy - Enables support for transparent proxies
@@ -2177,6 +2188,8 @@ net-voip/yate:gsm - Build gsm codec plugin
 net-voip/yate:h323 - Build H.323 Channel plugin
 net-voip/yate:ilbc - Build ILBC codec plugin
 net-voip/yate:zaptel - Build zaptel Channel plugin
+net-wireless/bluez:old-daemons - Install old daemons like hidd and sdpd that are deprecated by the new Service framework
+net-wireless/bluez:test-programs - Install l2test and rctest
 net-wireless/bluez-utils:old-daemons - Install old daemons like hidd and sdpd that are deprecated by the new Service framework
 net-wireless/bluez-utils:test-programs - Install l2test and rctest
 net-wireless/hostapd:logwatch - Install support files for sys-app/logwatch

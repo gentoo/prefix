@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9220 2008/11/26 17:10:59 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9229 2008/11/30 15:28:06 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,33 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ulrich Mueller <ulm@gentoo.org> (30 Nov 2008)
+# Depends on masked Emacs live CVS version; unmask after Emacs 23 release.
+app-emacs/emacs-daemon
+
+# Tiziano Müller <dev-zero@gentoo.org> (28 Nov 2008)
+# mask for testing/transition
+net-wireless/bluez
+>=net-wireless/bluez-gnome-1.8
+
+# Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
+# masked because no dev can test it and no proxy maintainer
+# steped up in a year, see bug #181236
+net-misc/logjam
+
+# Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
+# masked because no-one cares, and broken in many ways.
+# See bugs #187285, #147405, #233055, #205396.
+net-news/straw
+
+# Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
+# These might break automounting, so keep them masked for now.
+# Update by Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
+# gnome-mount 0.8 doesn't depend on policykit.
+=gnome-base/gnome-mount-0.7
+>=sys-auth/policykit-0.6
+>=gnome-extra/policykit-gnome-0.6
 
 # Peter Alfredsen <loki_val@gentoo.org> (26 Nov 2008)
 # Mask non-working version to force their removal.
@@ -88,47 +115,6 @@ net-im/gnome-jabber
 # 2. lack of developers interest it's maintainer-wanted
 # 3. nothing in the tree depends on it
 dev-db/fastdb
-
-# Peter Alfredsen <loki_val@gentoo.org> (19 Nov 2008)
-# Let's see if we can make this break something.
-# Masked for now. I hope to get some gtk-sharp etc. stuff
-# Into the tree along with it. I'll probably do a simplistic
-# Conversion from split ebuilds to monolithic ebuilds.
-# dotnet won't mind, I hope. I contacted them some time ago,
-# but never got an answer, so assuming they're AWOL.
-# Diego E. Pettenò <flameeyes@gentoo.org> (19 Nov 2008)
-# gtk-sharp and glade-sharp I took care of myself, merging them in a
-# monolithic ebuild with USE flag, and having a commodity ebuild for
-# glade-sharp using EAPI=2 until we port the ebuilds using it to the
-# new format.
->=dev-lang/mono-2
->=dev-dotnet/libgdiplus-2
->=dev-util/mono-debugger-2
->=dev-util/mono-tools-2
->=dev-util/monodoc-2
->=dev-lang/mono-basic-2
->=dev-dotnet/xsp-2
->=dev-dotnet/gtk-sharp-2.12
-~dev-dotnet/glade-sharp-9999
->=media-gfx/f-spot-0.5
->=media-sound/banshee-1.4
-dev-dotnet/webkit-sharp
->=media-sound/muine-0.8.10
->=app-misc/tomboy-0.12.1
->=net-news/blam-1.8.6
-=dev-dotnet/art-sharp-2.24*
-=dev-dotnet/gconf-sharp-2.24*
-=dev-dotnet/gnome-desktop-sharp-2.24*
-=dev-dotnet/gnome-panel-sharp-2.24*
-=dev-dotnet/gnome-print-sharp-2.24*
-=dev-dotnet/gnome-sharp-2.24*
-=dev-dotnet/gnomevfs-sharp-2.24*
-=dev-dotnet/gtkhtml-sharp-2.24*
-=dev-dotnet/gtksourceview-sharp-2.24*
-=dev-dotnet/nautilusburn-sharp-2.24*
-=dev-dotnet/rsvg-sharp-2.24*
-=dev-dotnet/vte-sharp-2.24*
-=dev-dotnet/wnck-sharp-2.24*
 
 # Jeremy Olexa <darkside@gentoo.org> (19 Nov 2008)
 # Stops playing at random intervals when HAL is used. Unmaintained upstream.
@@ -223,11 +209,6 @@ sys-apps/usbd
 # Daniel Black <dragonheart@gentoo.org> (4 Nov 2008)
 # Legal problems #241650 causing distribution problems #245322 and build problems #237493
 app-crypt/truecrypt
-
-# Jeremy Olexa <darkside@gentoo.org> (3 Nov 2008)
-# Proxy commit for Cardoe, ncurses-5.7 seems broke with USE=berkdb and is
-# causing issues for users, see bug #245370
-=sys-libs/ncurses-5.7
 
 # Daniel Gryniewicz <dang@gentoo.org> (2 Nov 2008)
 # Feed counts and updates seem to be broken
@@ -1080,12 +1061,6 @@ sys-kernel/hppa-sources
 =app-pda/libopensync-plugin-python-9999
 =app-pda/libopensync-plugin-syncml-9999
 =app-pda/libopensync-plugin-vformat-9999
-
-# Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
-# These might break automounting, so keep them masked for now.
->=sys-auth/policykit-0.6
->=gnome-base/gnome-mount-0.7
->=gnome-extra/policykit-gnome-0.6
 
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
