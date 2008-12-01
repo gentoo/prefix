@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/mongrel-1.1.5.ebuild,v 1.6 2008/10/28 01:21:23 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/mongrel-1.1.5.ebuild,v 1.7 2008/11/30 14:17:28 graaff Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-USE_RUBY="any"
+USE_RUBY="ruby18"
 DEPEND=">=dev-ruby/daemons-1.0.3
 	>=dev-ruby/gem_plugin-0.2.3
 	>=dev-ruby/fastthread-1.0.1
