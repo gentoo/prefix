@@ -1,6 +1,14 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.66 2008/09/21 08:43:56 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.67 2008/11/29 20:27:51 dertobi123 Exp $
+
+*ssmtp-2.62-r4 (29 Nov 2008)
+
+  29 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +files/ssmtp-2.62-authpass.patch, +ssmtp-2.62-r4.ebuild:
+  Revision bump, comment rewriteDomain (#243364), re-add mailbase dep
+  (#249269), fix AuthPass with '=' or ':' in it (#238724), setgid on ssmtp
+  binary (#239197)
 
   21 Sep 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   ssmtp-2.62-r3.ebuild:
