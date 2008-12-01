@@ -4,6 +4,7 @@
 <herd>no-herd</herd>
 <maintainer>
   <email>jer@gentoo.org</email>
+  <name>Jeroen Roovers</name>
 </maintainer>
 <longdescription>
 NcFTP Client (also known as just NcFTP) is a set of FREE application 
