@@ -1,10 +1,6 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.65 2008/01/07 14:24:43 drac Exp $
-
-  07 Jan 2008; Samuli Suominen <drac@gentoo.org> -faac-1.24.ebuild,
-  faac-1.24-r2.ebuild, -faac-1.24-r3.ebuild, -faac-1.26.ebuild:
-  Remove old ebuilds and leave ebuild behind with only KEYWORDS ~mips wrt #199973
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.66 2008/11/30 11:08:27 ssuominen Exp $
 
   26 Nov 2007; Jeroen Roovers <jer@gentoo.org> faac-1.26-r1.ebuild:
   Stable for HPPA (bug #199973).
