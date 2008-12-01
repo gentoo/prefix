@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.1 2008/11/03 06:24:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.2 2008/11/27 21:27:26 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,10 +16,10 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 LICENSE="MIT"
 SLOT="5"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ada berkdb debug doc gpm minimal nocxx profile trace unicode"
+IUSE="ada debug doc gpm minimal nocxx profile trace unicode"
 
-DEPEND="gpm? ( sys-libs/gpm )
-	berkdb? ( sys-libs/db )"
+DEPEND="gpm? ( sys-libs/gpm )"
+#	berkdb? ( sys-libs/db )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -90,11 +90,12 @@ do_compile() {
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 	# src_install() ...
+#		$(use_with berkdb hashed-db) \
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
 		--with-shared \
-		$(use_with berkdb hashed-db) \
+		--without-hashed-db \
 		--enable-overwrite \
 		$(use_with debug) \
 		$(use_with profile) \
