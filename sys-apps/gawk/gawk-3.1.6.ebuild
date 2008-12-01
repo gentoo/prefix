@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.6.ebuild,v 1.10 2008/10/28 10:45:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.6.ebuild,v 1.11 2008/11/28 07:28:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/autoconf-mktime-2.61.patch #220040
 	epatch "${FILESDIR}"/${PN}-3.1.3-getpgrp_void.patch
+	epatch "${FILESDIR}"/${P}-gnuinfo.patch #249130
+
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
 	# which's preprocessor understands '\'-linebreaks
 	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
