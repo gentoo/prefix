@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.142 2008/11/06 20:53:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.143 2008/11/28 12:19:21 fauli Exp $
+
+  28 Nov 2008; Christian Faulhammer <fauli@gentoo.org> metadata.xml:
+  change my email address
 
   06 Nov 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.5.ebuild:
   fix the HiPE warning...sounded really retarded and nobody noticed for ages
