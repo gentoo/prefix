@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.41.ebuild,v 1.1 2008/11/23 22:23:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.41.ebuild,v 1.2 2008/11/27 23:40:39 eva Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${PN}-0.2.39-fix-errno.patch"
+
+	# Fix compilation with USE="debug"
+	epatch "${FILESDIR}/${P}-debug.patch"
 
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-0.2.38-interix3.patch
 }
