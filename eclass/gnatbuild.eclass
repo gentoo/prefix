@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.42 2008/08/19 11:39:56 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.43 2008/11/29 00:46:02 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -326,7 +326,7 @@ gnatbuild_src_unpack() {
 	case $1 in
 		base_unpack)
 			unpack ${A}
-			pax-mark E $(find ${GNATBOOT} -name gnat1)
+			pax-mark pmsE $(find ${GNATBOOT} -name gnat1)
 
 			cd "${S}"
 			# patching gcc sources, following the toolchain

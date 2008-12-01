@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.366 2008/11/09 20:27:43 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.367 2008/11/28 09:20:34 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1363,6 +1363,7 @@ gcc_do_configure() {
 			*-gnu*)			 needed_libc=glibc;;
 			*-klibc)		 needed_libc=klibc;;
 			*-uclibc*)		 needed_libc=uclibc;;
+			*-cygwin)        needed_libc=cygwin;;
 			mingw*|*-mingw*) needed_libc=mingw-runtime;;
 			avr)			 confgcc="${confgcc} --enable-shared --disable-threads";;
 			*-apple-darwin*) confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
@@ -1382,7 +1383,7 @@ gcc_do_configure() {
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
 			confgcc="${confgcc} --disable-bootstrap --disable-libgomp"
 		fi
-	elif [[ ${CHOST} == mingw* ]] || [[ ${CHOST} == *-mingw* ]] ; then
+	elif [[ ${CHOST} == mingw* ]] || [[ ${CHOST} == *-mingw* ]] || [[ ${CHOST} == *-cygwin ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=win32"
 	else
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"

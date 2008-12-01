@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.14 2008/06/02 15:38:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.15 2008/11/27 18:36:29 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -33,7 +33,7 @@ mount-boot_mount_boot_partition() {
 			einfo "Your boot partition, detected as being mounted as /boot, is read-only."
 			einfo "Remounting it in read-write mode ..."
 			einfo
-			mount -o remount,rw /boot &>/dev/null
+			mount -o remount,rw /boot
 			if [ "$?" -ne 0 ]; then
 				eerror
 				eerror "Unable to remount in rw mode. Please do it manually!"
@@ -47,7 +47,7 @@ mount-boot_mount_boot_partition() {
 			einfo
 		fi
 	elif [ -n "${fstabstate}" ] && [ -z "${procstate}" ]; then
-		mount /boot -o rw &>/dev/null
+		mount /boot -o rw
 		if [ "$?" -eq 0 ]; then
 			einfo
 			einfo "Your boot partition was not mounted as /boot, but portage"
