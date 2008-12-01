@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.14 2008/11/26 21:27:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.15 2008/11/29 12:19:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -69,6 +69,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${ECVS_LOCALNAME}"
 
 EMACS_SUFFIX="emacs-${SLOT}"
+SITEFILE="20${PN}-${SLOT}-gentoo.el"
 
 src_unpack() {
 	cvs_src_unpack
@@ -240,21 +241,30 @@ src_install () {
 	keepdir /usr/share/emacs/site-lisp
 	keepdir /var/lib/games/emacs
 
+	local c=";;"
 	if use source; then
 		insinto /usr/share/emacs/${FULL_VERSION}/src
 		# This is not meant to install all the source -- just the
 		# C source you might find via find-function
 		doins src/*.[ch]
-		sed 's/^X//' >10${PN}-${SLOT}-gentoo.el <<-EOF
-
-		;;; ${PN}-${SLOT} site-lisp configuration
-
-		(if (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
-		X    (setq find-function-C-source-directory
-		X	  "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src"))
-		EOF
-		elisp-site-file-install 10${PN}-${SLOT}-gentoo.el
+		c=""
 	fi
+
+	sed 's/^X//' >"${ESITEFILE}" <<-EOF
+	X
+	;;; ${PN}-${SLOT} site-lisp configuration
+	X
+	(when (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
+	X  ${c}(setq find-function-C-source-directory
+	X  ${c}      "/usr/share/emacs/${FULL_VERSION}/src")
+	X  (let ((path (getenv "INFOPATH"))
+	X	(dir "/usr/share/info/${EMACS_SUFFIX}"))
+	X    (and path
+	X	 ;; move Emacs Info dir to beginning of list
+	X	 (setq Info-directory-list
+	X	       (cons dir (delete dir (split-string path ":" t)))))))
+	EOF
+	elisp-site-file-install "${ESITEFILE}" || die
 
 	dodoc README BUGS || die "dodoc failed"
 }
