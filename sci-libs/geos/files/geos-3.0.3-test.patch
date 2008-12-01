@@ -1,0 +1,10 @@
+--- tests/unit/geos_unit.cpp.orig	2008-11-27 11:21:28.000000000 +0000
++++ tests/unit/geos_unit.cpp	2008-11-27 11:22:12.000000000 +0000
+@@ -8,6 +8,7 @@
+ #include <tut.h>
+ #include <tut_reporter.h>
+ // STL
++#include <cstdlib>
+ #include <iostream>
+ #include <iomanip>
+ // GEOS
