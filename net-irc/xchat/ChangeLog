@@ -1,6 +1,15 @@
 # ChangeLog for net-irc/xchat
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.273 2008/09/28 06:29:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.274 2008/11/27 20:49:59 armin76 Exp $
+
+*xchat-2.8.6-r2 (27 Nov 2008)
+
+  27 Nov 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/xc284-fix-scrollbfdleak.diff, -files/xc284-scrollbmkdir.diff,
+  +files/xchat-2.8.6-shm-pixmaps.patch, -files/xc284-improvescrollback.diff,
+  -files/xchat-fix-uk_UA-locale.diff, -xchat-2.8.4-r3.ebuild,
+  +xchat-2.8.6-r2.ebuild:
+  Don't use included libsexy, bug #246138, make shm pixmaps optional, bug #241902
 
   28 Sep 2008; Mart Raudsepp <leio@gentoo.org> xchat-2.8.6-r1.ebuild:
   Fix compile against gtk+-2.14 by being forwards compatible, bug 234458

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.4-r3.ebuild,v 1.2 2008/02/07 22:54:45 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r2.ebuild,v 1.1 2008/11/27 20:49:59 armin76 Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,8 @@ HOMEPAGE="http://www.xchat.org/"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="perl dbus tcl python ssl mmx ipv6 libnotify nls spell xchatnogtk xchatdccserver"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="perl dbus tcl python ssl mmx ipv6 libnotify nls spell xchatnogtk xchatdccserver xft"
 
 RDEPEND=">=dev-libs/glib-2.6.0
 	!xchatnogtk? ( >=x11-libs/gtk+-2.10.0 )
@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/glib-2.6.0
 	python? ( >=dev-lang/python-2.2 )
 	tcl? ( dev-lang/tcl )
 	dbus? ( >=dev-libs/dbus-glib-0.71 )
-	spell? ( app-text/enchant )
+	spell? ( app-text/gtkspell )
 	libnotify? ( x11-libs/libnotify )
 	!<net-irc/xchat-gnome-0.9"
 
@@ -44,12 +44,13 @@ src_unpack() {
 			"${S}"/configure{,.in} || die
 	fi
 
-	epatch "${FILESDIR}"/xc284-scrollbmkdir.diff
-	epatch "${FILESDIR}"/xc284-improvescrollback.diff
-	epatch "${FILESDIR}"/xc284-fix-scrollbfdleak.diff
-	epatch "${FILESDIR}"/xchat-fix-uk_UA-locale.diff
+	epatch "${FILESDIR}"/xc286-smallfixes.diff
+	epatch "${FILESDIR}"/${P}-shm-pixmaps.patch
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	# don't disable deprecated gtk+ symbols, it's not forwards compatible, bug 234458
+	sed -i -e '/define GTK_DISABLE_DEPRECATED/d' src/fe-gtk/*.c
+
+	epatch "${FILESDIR}"/${PN}-2.8.4-interix.patch
 	eautoreconf # need new libtool for interix
 }
 
@@ -80,7 +81,8 @@ src_compile() {
 		$(use_enable ipv6) \
 		$(use_enable nls) \
 		$(use_enable dbus) \
-		$(use_enable spell spell static) \
+		$(use_enable xft) \
+		$(use_enable spell spell gtkspell) \
 		$(use_enable !xchatnogtk gtkfe) \
 		|| die "econf failed"
 
