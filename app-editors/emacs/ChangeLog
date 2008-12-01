@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.287 2008/11/26 21:11:49 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.288 2008/11/29 20:38:52 ulm Exp $
+
+*emacs-22.3-r1 (29 Nov 2008)
+
+  29 Nov 2008; Ulrich Mueller <ulm@gentoo.org> +emacs-22.3-r1.ebuild:
+  Add site initialisation for Info, so that Emacs' dir is first in list;
+  this will also help to get the right documentation if Emacs is started
+  as emacs-${SLOT}. Rename site-init file to 20${PN}-${SLOT}-gentoo.el.
 
   26 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r17.ebuild,
   emacs-22.3.ebuild:
