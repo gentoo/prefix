@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.0_rc1.ebuild,v 1.1 2008/11/25 19:12:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.0_rc1.ebuild,v 1.2 2008/11/27 07:35:33 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
@@ -92,7 +92,8 @@ src_install() {
 	# Install the compiler libs
 	dodir /usr/$(get_libdir)/ocaml/compiler-libs
 	insinto /usr/$(get_libdir)/ocaml/compiler-libs
-	doins {utils,typing,parsing}/*.{mli,cmi,cmo,cmx,o}
+	doins {utils,typing,parsing}/*.{mli,cmi,cmo}
+	use ocamlopt && doins {utils,typing,parsing}/*.{cmx,o}
 
 	# Symlink the headers to the right place
 	dodir /usr/include
