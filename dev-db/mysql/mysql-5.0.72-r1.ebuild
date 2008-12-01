@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.70.ebuild,v 1.12 2008/11/29 02:32:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.72-r1.ebuild,v 1.1 2008/11/29 12:03:59 robbat2 Exp $
 
 EAPI="prefix"
 
-MY_EXTRAS_VER="20080601"
+MY_EXTRAS_VER="20081129-1041Z"
 SERVER_URI="http://mirror.provenscaling.com/mysql/enterprise/source/5.0/${P}.tar.gz"
 
 inherit toolchain-funcs mysql
@@ -94,6 +94,14 @@ src_test() {
 					"$t" \
 					"OpenSSL tests broken on 5.0.56"
 			done
+		
+		# New test was broken in first time
+		# Upstream bug 41066
+		# http://bugs.mysql.com/bug.php?id=41066
+		[ "${PV}" == "5.0.72" ] && \
+			mysql_disable_test \
+				"status2" \
+				"Broken in 5.0.72, new test is broken, upstream bug #41066"
 
 		# create directories because mysqladmin might right out of order
 		mkdir -p "${S}"/mysql-test/var-{ps,ns}{,/log}

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.70.ebuild,v 1.12 2008/11/29 02:32:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.70-r1.ebuild,v 1.3 2008/11/30 18:03:43 maekke Exp $
 
 EAPI="prefix"
 
-MY_EXTRAS_VER="20080601"
+MY_EXTRAS_VER="20081129-1041Z"
 SERVER_URI="http://mirror.provenscaling.com/mysql/enterprise/source/5.0/${P}.tar.gz"
 
 inherit toolchain-funcs mysql
