@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/cameras.desc,v 1.4 2008/08/04 22:01:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/cameras.desc,v 1.5 2008/11/29 19:20:02 eva Exp $
 
 # This file contains descriptions of CAMERAS USE_EXPAND flags.
 
@@ -28,6 +28,7 @@ hp215 - libgphoto support for hp215 cameras
 iclick - libgphoto support for iclick cameras
 jamcam - libgphoto support for jamcam cameras
 jd11 - libgphoto support for jd11 cameras
+jl2005a - libgphoto support for "American Idol Keychain Camera"
 kodak - libgphoto support for kodak cameras
 kodak_dc120 - libgphoto support for kodak_dc120 cameras
 kodak_dc210 - libgphoto support for kodak_dc210 cameras
