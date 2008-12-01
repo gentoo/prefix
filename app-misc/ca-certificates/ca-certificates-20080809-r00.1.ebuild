@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.3 2008/11/08 09:30:36 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.4 2008/11/27 18:34:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -70,7 +70,7 @@ pkg_postinst() {
 		ewarn "You MUST remove the above broken symlinks"
 		ewarn "Otherwise any SSL validation that use the directory may fail!"
 		ewarn "To batch-remove them, run:"
-		ewarn "find -L ${EROOT}etc/ssl/certs/ -type l -exec rm \{} \;"
+		ewarn "find -L ${EROOT}etc/ssl/certs/ -type l -exec rm {} +"
 	fi
 
 	[[ ${ROOT} != "/" ]] && return 0
