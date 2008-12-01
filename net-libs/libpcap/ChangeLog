@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.114 2008/11/16 15:07:50 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.115 2008/11/28 14:08:23 aballier Exp $
+
+  28 Nov 2008; Alexis Ballier <aballier@gentoo.org> libpcap-1.0.0-r1.ebuild:
+  keyword ~x86-fbsd, bug #247076
 
 *libpcap-1.0.0-r1 (16 Nov 2008)
 
