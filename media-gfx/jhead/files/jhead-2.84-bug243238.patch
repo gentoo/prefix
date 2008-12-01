@@ -1,0 +1,122 @@
+this patch fixes gentoo bug #243238 (CVE-2008-{4640,4641})
+
+diff -ru jhead-2.84.orig/jhead.c jhead-2.84/jhead.c
+--- jhead-2.84.orig/jhead.c	2008-10-04 18:10:35.000000000 +0200
++++ jhead-2.84/jhead.c	2008-11-28 18:51:52.000000000 +0100
+@@ -295,44 +295,88 @@
+ 
+ 
+ //--------------------------------------------------------------------------
++// Escape an argument such that it is interpreted literally by the shell
++// (returns the number of written characters)
++//--------------------------------------------------------------------------
++static int shellescape(char* to, const char* from)
++{
++    int i, j;
++    i = j = 0;
++
++    // Enclosing characters in double quotes preserves the literal value of
++    // all characters within the quotes, with the exception of $, `, and \.
++    to[j++] = '"';
++    while(from[i])
++    {
++#ifdef _WIN32
++        // Under WIN32, there isn't really anything dangerous you can do with 
++        // escape characters, plus windows users aren't as sercurity paranoid.
++        // Hence, no need to do fancy escaping.
++        to[j++] = from[i++];
++#else
++        switch(from[i]) {
++            case '"':
++            case '$':
++            case '`':
++            case '\\':
++                to[j++] = '\\';
++            default:
++                to[j++] = from[i++];
++        }
++#endif 
++        if (j >= PATH_MAX) ErrFatal("max path exceeded");
++    }
++    to[j++] = '"';
++    return j;
++}
++
++
++//--------------------------------------------------------------------------
+ // Apply the specified command to the JPEG file.
+ //--------------------------------------------------------------------------
+ static void DoCommand(const char * FileName, int ShowIt)
+ {
+     int a,e;
+-    char ExecString[PATH_MAX*2];
+-    char TempName[PATH_MAX+1];
++    char ExecString[PATH_MAX*3];
++    char TempName[PATH_MAX+10];
+     int TempUsed = FALSE;
+ 
+     e = 0;
+ 
+-    // Make a temporary file in the destination directory by changing last char.
+-    strcpy(TempName, FileName);
+-    a = strlen(TempName)-1;
+-    TempName[a] = (char)(TempName[a] == 't' ? 'z' : 't');
++    // Generate an unused temporary file name in the destination directory
++    // (a is the number of characters to copy from FileName)
++    a = strlen(FileName)-1;
++    while(a > 0 && FileName[a-1] != '/') a--;
++    memcpy(TempName, FileName, a);
++    strcpy(TempName+a, "XXXXXX");
++    mkstemp(TempName);
++    if(!TempName[0]) {
++        ErrFatal("Cannot find available temporary file name");
++    }
++
++
+ 
+     // Build the exec string.  &i and &o in the exec string get replaced by input and output files.
+     for (a=0;;a++){
+         if (ApplyCommand[a] == '&'){
+             if (ApplyCommand[a+1] == 'i'){
+                 // Input file.
+-                e += sprintf(ExecString+e, "\"%s\"",FileName);
++                e += shellescape(ExecString+e, FileName);
+                 a += 1;
+                 continue;
+             }
+             if (ApplyCommand[a+1] == 'o'){
+                 // Needs an output file distinct from the input file.
+-                e += sprintf(ExecString+e, "\"%s\"",TempName);
++                e += shellescape(ExecString+e, TempName);
+                 a += 1;
+                 TempUsed = TRUE;
+-                unlink(TempName);// Remove any pre-existing temp file
+                 continue;
+             }
+         }
+         ExecString[e++] = ApplyCommand[a];
+         if (ApplyCommand[a] == 0) break;
+     }
+-
++ShowIt = 1;
+     if (ShowIt) printf("Cmd:%s\n",ExecString);
+ 
+     errno = 0;
+@@ -638,7 +682,7 @@
+                 ErrFatal("Orientation screwup");
+             }
+ 
+-            sprintf(RotateCommand, "jpegtran -%s -outfile &o &i", Argument);
++            sprintf(RotateCommand, "jpegtran -trim -%s -outfile &o &i", Argument);
+             ApplyCommand = RotateCommand;
+             DoCommand(FileName, FALSE);
+             ApplyCommand = NULL;
+@@ -657,7 +701,7 @@
+                 strcpy(ThumbTempName_out, FileName);
+                 strcat(ThumbTempName_out, ".tho");
+                 SaveThumbnail(ThumbTempName_in);
+-                sprintf(RotateCommand,"jpegtran -%s -outfile \"%s\" \"%s\"",
++                sprintf(RotateCommand,"jpegtran -trim -%s -outfile \"%s\" \"%s\"",
+                     Argument, ThumbTempName_out, ThumbTempName_in);
+ 
+                 if (system(RotateCommand) == 0){

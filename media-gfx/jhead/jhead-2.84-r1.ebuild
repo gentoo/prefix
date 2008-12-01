@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.82-r1.ebuild,v 1.5 2008/10/18 14:44:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.84-r1.ebuild,v 1.5 2008/11/30 17:15:35 maekke Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="Exif Jpeg camera setting parser and thumbnail remover"
 HOMEPAGE="http://www.sentex.net/~mwandel/jhead"
@@ -17,10 +17,8 @@ IUSE=""
 
 src_unpack() {
 	unpack ${A}
-	sed -i \
-		-e "s:-O3 -Wall:${CFLAGS}:" \
-		-e "s:\${CC} -o jhead \$(objs) -lm:\${CC} -o jhead \$(objs) -lm ${LDFLAGS}:" \
-		"${S}"/makefile || die
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-bug243238.patch
 }
 
 src_compile() {
