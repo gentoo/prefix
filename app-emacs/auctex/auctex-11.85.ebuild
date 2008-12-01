@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.7 2008/05/05 20:50:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.8 2008/11/28 15:29:28 ulm Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,9 @@ DEPEND="virtual/latex-base
 TEXMF="/usr/share/texmf-site"
 
 src_compile() {
+	# Remove broken Info file (will be recreated by the build system)
+	rm doc/auctex.info
+
 	EMACS_NAME=emacs EMACS_FLAVOUR=emacs econf --disable-build-dir-test \
 		--with-auto-dir="${EPREFIX}/var/lib/auctex" \
 		--with-lispdir="${ESITELISP}/${PN}" \

@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.92 2008/07/28 18:51:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.93 2008/11/28 15:29:28 ulm Exp $
+
+  28 Nov 2008; Ulrich Mueller <ulm@gentoo.org> auctex-11.85.ebuild:
+  Fix Info dir entry.
 
   28 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
