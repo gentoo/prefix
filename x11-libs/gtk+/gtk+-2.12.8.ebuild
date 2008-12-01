@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.8.ebuild,v 1.8 2008/04/13 22:51:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.8.ebuild,v 1.9 2008/11/30 13:13:59 eva Exp $
 
 EAPI="prefix"
 
@@ -191,5 +191,7 @@ pkg_postinst() {
 		elog "emerge -va1 \$(qfile -qC ${EPREFIX}/usr/lib/gtk-2.0/2.[^1]*)"
 	fi
 
-	elog "Please install app-text/evince for print preview functionality"
+	elog "Please install app-text/evince for print preview functionality."
+	elog "Alternatively, check \"gtk-print-preview-command\" documentation and"
+	elog "add it to your gtkrc."
 }
