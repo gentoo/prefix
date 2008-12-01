@@ -34,9 +34,9 @@ src_unpack() {
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
-	epatch "${FILESDIR}"/${PN}-5.6-darwin.patch
+#	epatch "${FILESDIR}"/${PN}-5.6-darwin.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
-	epatch "${FILESDIR}"/${PN}-5.6-solaris2.patch
+#	epatch "${FILESDIR}"/${PN}-5.6-solaris2.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
