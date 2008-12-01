@@ -3,9 +3,12 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-	<email>wschlich@gentoo.org</email>
-	<name>Wolfram Schlich</name>
-	<description>Primary maintainer</description>
+	<email>gentoofan23@gentoo.org</email>
+	<name>Thomas Anderson</name>
+</maintainer>
+<maintainer>
+	<email>ssuominen@gentoo.org</email>
+	<name>Samuli Suominen</name>
 </maintainer>
 <longdescription>
 htop is an interactive process viewer for Linux. It aims to be a 'better top':
