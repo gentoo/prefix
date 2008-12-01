@@ -1,38 +1,44 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.ebuild,v 1.10 2008/09/13 22:48:04 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.2.ebuild,v 1.1 2008/11/28 22:26:30 dertobi123 Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic fixheadtails multilib
+inherit autotools eutils flag-o-matic fixheadtails multilib versionator
+
+# for when rc1 is appended to release candidates:
+MY_PV=$(replace_version_separator 3 '');
+MY_P="${PN}-${MY_PV}"
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Clam Anti-Virus Scanner"
 HOMEPAGE="http://www.clamav.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE="bzip2 crypt iconv mailwrapper milter nls selinux test"
+IUSE="bzip2 crypt iconv mailwrapper milter nls selinux ipv6"
 
 COMMON_DEPEND="bzip2? ( app-arch/bzip2 )
 	crypt? ( >=dev-libs/gmp-4.1.2 )
 	milter? ( || ( mail-filter/libmilter mail-mta/sendmail ) )
 	iconv? ( virtual/libiconv )
 	nls? ( sys-devel/gettext )
-	test? ( dev-libs/check )
 	dev-libs/gmp
 	>=sys-libs/zlib-1.2.1-r3
 	>=sys-apps/sed-4"
 
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig"
+	>=dev-util/pkgconfig-0.20"
 
 RDEPEND="${COMMON_DEPEND}
 	selinux? ( sec-policy/selinux-clamav )
 	sys-apps/grep"
 
 PROVIDE="virtual/antivirus"
+
+RESTRICT="test"
 
 pkg_setup() {
 	if use milter; then
@@ -52,8 +58,17 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
 	eprefixify "${S}"/configure.in
 
-	epatch "${FILESDIR}"/${P}-buildfix.patch
-	epatch "${FILESDIR}"/${P}-nls.patch
+	# This newer version of ClamAV packages libtool.m4 and lt*.m4 in m4,
+	# while previous versions did not.
+	# Since autoreconf invokes libtoolize, a different version of ltmain.sh that doesn't
+	# match up with the version of the *.m4 files gets thrown into this directory.
+	# This problem showed up for me in the packages libtool's use of $ECHO while my
+	# system's libtool's instead used $echo internally, and the .m4 file provides the value of
+	# $echo or $ECHO.
+	einfo "removing possibly incompatible libtool-related m4 files"
+	rm m4/libtool.m4 m4/lt*.m4 || die "unable to remove possibly incompatible libtool-related m4 files"
+	epatch "${FILESDIR}"/${PN}-0.94.1-buildfix.patch
+	epatch "${FILESDIR}"/${PN}-0.94-nls.patch
 
 	# If nls flag is disabled, gettext may not be available, but eautoreconf
 	# needs this file (bug #218892).
@@ -89,6 +104,7 @@ src_compile() {
 	econf ${myconf} \
 		$(use_enable bzip2) \
 		$(use_enable nls) \
+		$(use_enable ipv6) \
 		$(use_with iconv) \
 		--disable-experimental \
 		--disable-clamav \
