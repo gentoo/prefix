@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/glib-perl
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/ChangeLog,v 1.98 2008/09/21 05:08:44 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/ChangeLog,v 1.100 2008/11/29 12:20:57 ssuominen Exp $
+
+  29 Nov 2008; <ssuominen@gentoo.org> glib-perl-1.144.ebuild:
+  Move extutils-pkgconfig to DEPEND wrt #223075.
+
+  28 Nov 2008; Markus Meier <maekke@gentoo.org> glib-perl-1.200.ebuild:
+  amd64/x86 stable, bug #248760
 
 *glib-perl-1.200 (21 Sep 2008)
 
