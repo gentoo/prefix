@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20060507.ebuild,v 1.11 2007/08/22 12:31:34 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20060507.ebuild,v 1.12 2008/11/27 15:50:23 jer Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ DEPEND=">=sys-libs/ncurses-5.2
 S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-as-needed.patch
 }

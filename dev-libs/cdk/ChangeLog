@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/cdk
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.51 2007/08/22 12:31:34 uberlord Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.52 2008/11/27 15:50:23 jer Exp $
+
+  27 Nov 2008; Jeroen Roovers <jer@gentoo.org> cdk-5.0.20060507.ebuild:
+  Stable for HPPA (bug #249039).
 
   22 Aug 2007; Roy Marples <uberlord@gentoo.org> cdk-5.0.20060507.ebuild:
   Keyworded ~x86-fbsd.
