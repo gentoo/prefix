@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ruby-fcgi-0.8.7.ebuild,v 1.4 2008/05/12 10:02:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ruby-fcgi-0.8.7.ebuild,v 1.7 2008/11/30 21:22:40 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ IUSE=""
 src_install() {
 	RUBY_ECONF="${RUBY_ECONF} ${EXTRA_ECONF}"
 
-	${RUBY} install.rb install --prefix=${D} "$@" \
+	${RUBY} install.rb install --prefix="${D}" "$@" \
 		${RUBY_ECONF} || die "install.rb install failed"
 
 	cd "${S}"
