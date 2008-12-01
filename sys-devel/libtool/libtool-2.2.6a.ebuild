@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.2 2008/10/26 00:21:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.3 2008/11/28 22:41:19 ulm Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,7 @@ S=${WORKDIR}/${P%a}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${PV}/${P}-gnuinfo.patch #249168
 
 	if ! use vanilla ; then
 		epunt_cxx

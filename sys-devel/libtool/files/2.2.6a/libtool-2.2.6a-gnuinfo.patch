@@ -1,0 +1,39 @@
+Fix broken Info files produced by texinfo 4.11
+http://bugs.gentoo.org/249168
+
+--- libtool-2.2.6/doc/libtool.info
++++ libtool-2.2.6/doc/libtool.info
+@@ -1,7 +1,7 @@
++This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
++
+ INFO-DIR-SECTION GNU programming tools
+ START-INFO-DIR-ENTRY
+-This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
+-
+ * Libtool: (libtool).           Generic shared library support script.
+ END-INFO-DIR-ENTRY
+ 
+--- libtool-2.2.6/doc/libtool.info-1
++++ libtool-2.2.6/doc/libtool.info-1
+@@ -1,7 +1,7 @@
++This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
++
+ INFO-DIR-SECTION GNU programming tools
+ START-INFO-DIR-ENTRY
+-This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
+-
+ * Libtool: (libtool).           Generic shared library support script.
+ END-INFO-DIR-ENTRY
+ 
+--- libtool-2.2.6/doc/libtool.info-2
++++ libtool-2.2.6/doc/libtool.info-2
+@@ -1,7 +1,7 @@
++This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
++
+ INFO-DIR-SECTION GNU programming tools
+ START-INFO-DIR-ENTRY
+-This is libtool.info, produced by makeinfo version 4.11 from /Users/gary/Devo/libtool/doc/libtool.texi.
+-
+ * Libtool: (libtool).           Generic shared library support script.
+ END-INFO-DIR-ENTRY
+ 
