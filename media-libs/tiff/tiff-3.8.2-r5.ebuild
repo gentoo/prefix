@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r5.ebuild,v 1.1 2008/09/19 22:43:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r5.ebuild,v 1.2 2008/11/27 06:09:09 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit eutils libtool
 DESCRIPTION="Library for manipulation of TIFF (Tag Image File Format) images"
 HOMEPAGE="http://www.remotesensing.org/libtiff/"
 SRC_URI="ftp://ftp.remotesensing.org/pub/libtiff/${P}.tar.gz
-	mirror://gentoo/${P}-tiff2pdf-20080903.patch.bz2"
+	mirror://gentoo/${P}-pdfsec-patches.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
@@ -28,7 +28,7 @@ src_unpack() {
 	if use jbig; then
 		epatch "${FILESDIR}"/${PN}-jbig.patch
 	fi
-	epatch "${FILESDIR}"/${P}-goo-sec.patch
+	epatch "${WORKDIR}"/${P}-goo-sec.patch
 	epatch "${FILESDIR}"/${P}-CVE-2008-2327.patch
 	elibtoolize
 }

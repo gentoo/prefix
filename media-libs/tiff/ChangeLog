@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.114 2008/09/22 21:08:23 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.115 2008/11/27 06:09:09 nerdboy Exp $
+
+  27 Nov 2008; Steve Arnold <nerdboy@gentoo.org> tiff-3.8.2-r4.ebuild,
+  tiff-3.8.2-r5.ebuild, -files/tiff-3.8.2-goo-sec.patch:
+  Incorporated both pdf and google security patches into a single patch 
+  tarball and updated both versions (closes bug 248989).
 
   22 Sep 2008; Markus Meier <maekke@gentoo.org> -tiff-3.8.2-r2.ebuild:
   old
