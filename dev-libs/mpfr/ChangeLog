@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.82 2008/09/22 04:29:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.83 2008/11/28 13:18:42 aballier Exp $
+
+  28 Nov 2008; Alexis Ballier <aballier@gentoo.org> mpfr-2.3.2.ebuild:
+  fix find call for bsd find compatibility, bug #236067
 
   22 Sep 2008; Jeroen Roovers <jer@gentoo.org> mpfr-2.3.1_p1.ebuild:
   Stable for HPPA (bug #238208).

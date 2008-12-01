@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.1 2008/09/20 18:29:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.2 2008/11/28 13:18:42 aballier Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,7 @@ src_unpack() {
 			die "patch ${i} missing - please report to bugs.gentoo.org"
 		fi
 	done
-	find -type f -print0 | xargs -0 touch -r configure
+	find . -type f -print0 | xargs -0 touch -r configure
 }
 
 src_install() {
