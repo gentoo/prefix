@@ -1,18 +1,18 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r1.ebuild,v 1.2 2008/11/14 16:01:18 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r1.ebuild,v 1.3 2008/11/27 16:30:59 lavajoe Exp $
 
 EAPI="prefix"
 
 inherit eutils autotools flag-o-matic versionator
 
-MAJOR_VER=$(get_version_component_range 1-3)
-MINOR_VER=$(get_version_component_range 4)
-if [ -n "$MINOR_VER" ]; then
-	MINOR_VER=${MINOR_VER/beta/beta.}
-	MY_PV="${MAJOR_VER}.${MINOR_VER}"
+POVRAY_MAJOR_VER=$(get_version_component_range 1-3)
+POVRAY_MINOR_VER=$(get_version_component_range 4)
+if [ -n "$POVRAY_MINOR_VER" ]; then
+	POVRAY_MINOR_VER=${POVRAY_MINOR_VER/beta/beta.}
+	MY_PV="${POVRAY_MAJOR_VER}.${POVRAY_MINOR_VER}"
 else
-	MY_PV=${MAJOR_VER}
+	MY_PV=${POVRAY_MAJOR_VER}
 fi
 
 DESCRIPTION="The Persistence of Vision Raytracer"
@@ -40,7 +40,7 @@ src_unpack() {
 
 	# Print info on how to extend the expiration date of the beta
 	# if it has expired.
-	epatch "${FILESDIR}"/${PN}-${MAJOR_VER}-print-extend-expiration-info.patch
+	epatch "${FILESDIR}"/${P}-print-extend-expiration-info.patch
 
 	# Change some destination directories that cannot be adjusted via configure
 	cp configure.ac configure.ac.orig
