@@ -1,17 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.11.ebuild,v 1.9 2008/02/19 22:33:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.2.ebuild,v 1.1 2008/11/27 23:57:06 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-SELINUX_PATCH="findutils-4.3.11-selinux.diff"
+SELINUX_PATCH="findutils-4.3.12-selinux.diff"
 
 DESCRIPTION="GNU utilities for finding files"
 HOMEPAGE="http://www.gnu.org/software/findutils/"
-# SRC_URI="mirror://gnu/${PN}/${P}.tar.gz mirror://gentoo/${P}.tar.gz"
-SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz"
+SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz
+	mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,9 +34,16 @@ src_unpack() {
 	# mounted filesystems.
 	# Need to patch configure directly besides ls-mntd-fs.m4,
 	# because during bootstrap not all m4-files might be installed.
-	epatch "${FILESDIR}"/${P}-interix.patch
-	touch aclocal.m4
-	touch configure
+	cp -a configure{,.ts} || die
+	cp -a find/fstype.c{,.ts} || die
+	cp -a gnulib/lib/mountlist.c{,.ts} || die
+	cp -a gnulib/m4/ls-mntd-fs.m4{,.ts} || die
+	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
+	# avoid regeneration
+	touch -r configure{.ts,} || die
+	touch -r find/fstype.c{.ts,} || die
+	touch -r gnulib/lib/mountlist.c{.ts,} || die
+	touch -r gnulib/m4/ls-mntd-fs.m4{.ts,} || die
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
@@ -49,7 +56,7 @@ src_compile() {
 	use static && append-ldflags -static
 
 	local myconf
-	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] && \
+	[[ ${USERLAND} != "GNU" ]] && \
 		myconf=" --program-prefix=g"
 
 	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
