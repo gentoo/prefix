@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.3.ebuild,v 1.1 2008/11/22 19:34:17 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.3.ebuild,v 1.2 2008/11/27 08:52:23 hanno Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2 fdo-mime multilib python
+inherit autotools eutils gnome2 fdo-mime multilib python
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
@@ -55,6 +55,15 @@ DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-asneeded.diff" || die
+
+	eautoreconf || die
+}
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
