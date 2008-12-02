@@ -1,0 +1,67 @@
+# ChangeLog for app-admin/eselect-python
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.13 2008/10/25 14:45:23 hawking Exp $
+
+*eselect-python-20080925 (25 Oct 2008)
+
+  25 Oct 2008; Ali Polatel <hawking@gentoo.org>
+  -eselect-python-20080124.ebuild, -eselect-python-20080620.ebuild,
+  -eselect-python-20080630.ebuild, +eselect-python-20080925.ebuild:
+  Version bump. Fixes bug 240149. Drop old.
+
+*eselect-python-20080630 (18 Sep 2008)
+
+  18 Sep 2008; Ali Polatel <hawking@gentoo.org>
+  +eselect-python-20080630.ebuild:
+  Version bump.
+
+  13 Jul 2008; Joseph Jezak <josejx@gentoo.org>
+  eselect-python-20080620.ebuild:
+  Marked ~ppc for bug #228611.
+
+  04 Jul 2008; <ricmm@gentoo.org> eselect-python-20080620.ebuild:
+  Add ~mips, bug #228611
+
+  01 Jul 2008; Jeroen Roovers <jer@gentoo.org>
+  eselect-python-20080620.ebuild:
+  Marked ~hppa (bug #228611).
+
+*eselect-python-20080620 (29 Jun 2008)
+
+  29 Jun 2008; Ali Polatel <hawking@gentoo.org>
+  +eselect-python-20080620.ebuild:
+  Version bump.
+
+  22 Jun 2008; Christian Faulhammer <opfer@gentoo.org>
+  eselect-python-20080521.ebuild:
+  stable x86, bug 228613
+
+  21 Jun 2008; Markus Rothe <corsair@gentoo.org>
+  eselect-python-20080521.ebuild:
+  Added ~ppc64; bug #228611
+
+  21 Jun 2008; Olivier Crête <tester@gentoo.org>
+  eselect-python-20080521.ebuild:
+  amd64 stable, bug #228613
+
+  21 Jun 2008; Raúl Porcel <armin76@gentoo.org>
+  eselect-python-20080521.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #228611
+
+*eselect-python-20080521 (21 May 2008)
+
+  21 May 2008; Ali Polatel <hawking@gentoo.org>
+  +eselect-python-20080521.ebuild:
+  Version bump. Implemented update --if-unset so it can be used from ebuilds
+  easily.
+
+  21 May 2008; Ali Polatel <hawking@gentoo.org>
+  eselect-python-20080124.ebuild:
+  Keyworded ~amd64
+
+*eselect-python-20080124 (24 Jan 2008)
+
+  24 Jan 2008; Ali Polatel <hawking@gentoo.org> +metadata.xml,
+  +eselect-python-20080124.ebuild:
+  eselect-python, initial version
+
