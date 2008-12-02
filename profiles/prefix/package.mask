@@ -1,5 +1,5 @@
 ####################################################################
-# $Id: package.mask 34149 2008-11-10 16:06:11Z darkside $
+# $Id: package.mask 35027 2008-12-01 21:46:05Z grobian $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked.  This file is for
 # Prefix profiles only!
@@ -31,6 +31,16 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+
+# Fabian Groffen <grobian@gentoo.org> (01 Dec 2008)
+# critical package and fully untested, too scary to put live
+~sys-libs/ncurses-5.7
+
+# Fabian Groffen <grobian@gentoo.org> (24 Nov 2008)
+# unmask, zmedico masked 2.2 for the moment for testing, but we only
+# have 2.2+
+->=sys-apps/portage-2.2_pre
 
 # Jeremy Olexa <darkside@gentoo.org> (10 Nov 2008)
 # The apache-2.eclass needs to be fixed to support 2.2.10, there is a failing
@@ -92,11 +102,8 @@ app-text/tetex
 
 # Fabian Groffen <grobian@gentoo.org> (31 Mar 2008)
 # Seems not to be ready for wide usage; multiple bugs and segfaults when
-# bootstrapping.
-~sys-devel/gcc-4.3.0
-~sys-devel/gcc-4.3.1
-# Avoid pain for Prefix users, power users can unmask
->=sys-devel/gcc-4.3.2
+# bootstrapping, e.g. bug #244479 and bug #245968
+>=sys-devel/gcc-4.3.0
 
 # Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
 # Screws up things, see bug #204998
@@ -136,6 +143,11 @@ dev-java/kaffe
 # echangelog is completely useless with SVN, probably remains like that
 # for a while
 >=app-portage/gentoolkit-dev-0.2.6.6
+
+# Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
+# Don't use this, it is only provided for experimentation and as tool to
+# recover from broken linker situations.
+sys-devel/native-cctools
 
 # Fabian Groffen <grobian@gentoo.org> (21 Jan 2007)
 # dies with "exhausted memory" errors on Darwin, doesn't understand
