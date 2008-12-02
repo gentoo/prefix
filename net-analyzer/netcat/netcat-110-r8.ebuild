@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/nc110/${MY_P}.tgz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="crypt ipv6 static"
 
 DEPEND="crypt? ( dev-libs/libmix )"
@@ -36,6 +36,7 @@ src_compile() {
 	use ipv6 && XFLAGS="${XFLAGS} -DINET6"
 	use static && export STATIC="-static"
 	use crypt && XFLAGS="${XFLAGS} -DAESCRYPT" && XLIBS="${XLIBS} -lmix"
+	[[ ${CHOST} == *-solaris* ]] && XLIBS="${XLIBS} -lnsl -lsocket"
 	make -e CC="$(tc-getCC) ${CFLAGS}" nc || die
 }
 
