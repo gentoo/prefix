@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (02 Dec 2008)
+# Reported to work. However, you will need to package.provide some deps. 
+# See bug 248809 for more details.
+net-fs/openafs
 
 # Fabian Groffen <grobian@gentoo.org> (01 Dec 2008)
 # critical package and fully untested, too scary to put live
