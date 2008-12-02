@@ -1,0 +1,21 @@
+--- acinclude.m4~	2007-10-31 22:05:57.000000000 +0200
++++ acinclude.m4	2007-10-31 22:06:30.000000000 +0200
+@@ -473,7 +473,7 @@
+ 			AFS_SYSNAME="ia64_linuxXX"
+ 			;;
+ 		powerpc-*-linux*)
+-			AFS_SYSNAME="`/bin/arch`_linuxXX"
++			AFS_SYSNAME="`uname -m`_linuxXX"
+ 			;;
+ 		powerpc64-*-linux*)
+ 			AFS_SYSNAME="ppc64_linuxXX"
+@@ -488,7 +488,7 @@
+ 			AFS_SYSNAME="s390x_linuxXX"
+ 			;;
+ 		sparc-*-linux*)
+-			AFS_SYSNAME="`/bin/arch`_linuxXX"
++			AFS_SYSNAME="`uname -m`_linuxXX"
+ 			;;
+ 		sparc64-*-linux*)
+ 			AFS_SYSNAME="sparc64_linuxXX"
+

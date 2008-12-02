@@ -1,0 +1,11 @@
+--- openafs-1.4.5/src/config/param.alpha_linux_26.h.old	2007-11-27 16:21:09.000000000 +0100
++++ openafs-1.4.5/src/config/param.alpha_linux_26.h	2007-11-27 15:07:30.000000000 +0100
+@@ -4,6 +4,8 @@
+ #ifndef AFS_PARAM_H
+ #define AFS_PARAM_H
+ 
++#define USE_UCONTEXT
++
+ /* Linux 2.2.16 kernel on Alpha with glibc 2.2 */
+ 
+ /* In user space the AFS_LINUX20_ENV should be sufficient. In the kernel,
