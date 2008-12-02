@@ -1,5 +1,10 @@
 # $Id$
 
+# Markus Duft <mduft@gentoo.org> (02 Dec 2008)
+# this version does not build correctly. config.status
+# dies with "shift: nothing to shift" (??)
+=dev-libs/libgcrypt-1.4.3*
+
 # Markus Duft <mduft@gentoo.org> (29 Oct 2008)
 # this version doesn't work on interix, since unconditional
 # usage of "mbsinit" and "mbrtowc" which don't exist.

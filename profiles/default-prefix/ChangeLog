@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  02 Dec 2008; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  added mask for recent libgcrypt on interix, since it does not build
+
   01 Dec 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask ~sys-libs/ncurses-5.7 because it's completely untested
 
