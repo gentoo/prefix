@@ -1,6 +1,9 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.85 2008/11/22 07:42:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.86 2008/12/01 21:23:48 ranger Exp $
+
+  01 Dec 2008; Brent Baude <ranger@gentoo.org> djvu-3.5.21.ebuild:
+  stable ppc64, bug 244258
 
   22 Nov 2008; Peter Volkov <pva@gentoo.org> djvu-3.5.21.ebuild:
   Added build time libXt dependency for nsplugin, bug #247963, thank Konrad

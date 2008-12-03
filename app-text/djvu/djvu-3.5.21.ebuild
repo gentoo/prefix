@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.10 2008/11/22 07:42:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21.ebuild,v 1.11 2008/12/01 21:23:48 ranger Exp $
 
 EAPI="prefix 1"
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
