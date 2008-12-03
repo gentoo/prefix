@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/wtf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.28 2008/10/27 15:48:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.29 2008/12/02 20:19:32 ranger Exp $
+
+  02 Dec 2008; Brent Baude <ranger@gentoo.org> wtf-20080912.ebuild:
+  stable ppc64, bug 241870
 
   27 Oct 2008; Jeroen Roovers <jer@gentoo.org> wtf-20080912.ebuild:
   Stable for HPPA (bug #241870).
