@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.4.3.ebuild,v 1.1 2008/11/10 18:00:52 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.4.3.ebuild,v 1.2 2008/12/01 10:38:51 angelos Exp $
 
 EAPI="prefix"
 
@@ -21,15 +21,16 @@ RDEPEND=">=x11-themes/gtk-engines-xfce-2.4.3
 	>=xfce-base/xfce-utils-4.4.3
 	>=xfce-base/xfdesktop-4.4.3
 	>=xfce-base/xfce4-session-4.4.3
-	>=x11-themes/xfce4-icon-theme-4.4.3
 	alsa? ( >=xfce-extra/xfce4-mixer-4.4.3 )
 	oss? ( >=xfce-extra/xfce4-mixer-4.4.3 )
 	cups? ( >=net-print/xfprint-4.4.3 )
 	!minimal? ( >=app-office/orage-4.4.3
 		>=app-editors/mousepad-0.2.14
+		>=x11-themes/xfce4-icon-theme-4.4.3
 		>=x11-themes/xfwm4-themes-4.4.3
 		>=x11-terms/terminal-0.2.8.3
 		>=xfce-extra/xfce4-appfinder-4.4.3 )
+	minimal? ( x11-themes/hicolor-icon-theme )
 	xscreensaver? ( || ( x11-misc/xscreensaver
 		gnome-extra/gnome-screensaver ) )"
 
