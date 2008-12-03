@@ -1,6 +1,15 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.182 2008/11/13 19:11:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.183 2008/12/01 09:44:35 leio Exp $
+
+*gnome-terminal-2.24.2 (01 Dec 2008)
+
+  01 Dec 2008; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-terminal-2.24.2-restore-switch-to-tab.patch,
+  +gnome-terminal-2.24.2.ebuild:
+  Version bump. Add patches to bring back "Switch to Tab <n>" functionality
+  completely, including the keyboard shortcuts dialog entries and
+  translations.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org>
   gnome-terminal-2.22.3-r1.ebuild:
