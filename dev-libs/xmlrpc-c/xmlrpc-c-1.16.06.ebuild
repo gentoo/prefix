@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.16.04.ebuild,v 1.1 2008/11/29 17:18:22 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.16.06.ebuild,v 1.1 2008/12/03 00:41:47 loki_val Exp $
 
 EAPI="prefix 1"
 
@@ -28,10 +28,7 @@ pkg_setup() {
 #FAIL
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${P}-abyss-disable.patch"
-	"${FILESDIR}/${P}-compile.patch"
-	"${FILESDIR}/${P}-linking-order.patch"
-	"${FILESDIR}/${P}-cpplinking.patch" )
+PATCHES=( "${FILESDIR}/${P}-no-undefined.patch" )
 
 src_unpack() {
 	base_src_unpack
