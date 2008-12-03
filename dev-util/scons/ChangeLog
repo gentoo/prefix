@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.64 2008/10/27 00:03:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.65 2008/12/02 23:18:23 ranger Exp $
+
+  02 Dec 2008; Brent Baude <ranger@gentoo.org> scons-1.0.0.ebuild:
+  stable ppc64, bug 242766
 
   27 Oct 2008; Jeroen Roovers <jer@gentoo.org> scons-1.0.0.ebuild:
   Stable for HPPA (bug #242766).
