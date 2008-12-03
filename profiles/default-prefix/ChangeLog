@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
+  sunos/solaris/5.10/x86/package.use.mask,
+  +sunos/solaris/5.11/x86/package.use.mask:
+  mask USE=jpeg2k on x86-solaris for media-libs/netpbm, bug #244797
+
   02 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask net-fs/openafs because it needs deps that cannot be provided from prefix
 
