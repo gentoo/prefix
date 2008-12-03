@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Dec 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask pax-utils/0.1.19 due to GNU-isms
+
   03 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
   sunos/solaris/5.10/x86/package.use.mask,
   sunos/solaris/5.11/x86/package.use.mask:
