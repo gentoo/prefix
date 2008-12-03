@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.157 2008/11/28 23:48:01 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.158 2008/12/01 20:33:31 dertobi123 Exp $
+
+  01 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  swi-prolog-5.6.62.ebuild:
+  ppc stable, bug #249435
 
   28 Nov 2008; <keri@gentoo.org> swi-prolog-5.7.2.ebuild:
   Update JPL test-suite in development snapshot
