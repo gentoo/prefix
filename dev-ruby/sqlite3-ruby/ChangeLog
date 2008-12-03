@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.26 2008/11/30 21:19:36 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.27 2008/12/01 21:18:04 ranger Exp $
+
+  01 Dec 2008; Brent Baude <ranger@gentoo.org> sqlite3-ruby-1.2.4.ebuild:
+  stable ppc64, bug 245574
 
   30 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   sqlite3-ruby-1.2.4.ebuild:
