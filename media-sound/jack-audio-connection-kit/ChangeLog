@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.109 2008/09/14 18:29:14 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.110 2008/12/02 06:43:59 jer Exp $
+
+  02 Dec 2008; Jeroen Roovers <jer@gentoo.org>
+  jack-audio-connection-kit-0.109.2-r1.ebuild:
+  Stable for HPPA (bug #236230).
 
   14 Sep 2008; Friedrich Oslage <bluebird@gentoo.org>
   jack-audio-connection-kit-0.109.2-r1.ebuild:
