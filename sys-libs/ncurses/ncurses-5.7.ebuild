@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.2 2008/11/27 21:27:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.3 2008/12/02 02:17:16 vapier Exp $
 
 EAPI="prefix"
 
@@ -167,7 +167,7 @@ src_install() {
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
 
-	if ! use berkdb ; then
+#	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
 		einfo "Installing basic terminfo files in /etc..."
 		for x in ansi console dumb linux rxvt screen sun vt{52,100,102,200,220} \
@@ -186,7 +186,7 @@ src_install() {
 
 		# Build fails to create this ...
 		dosym ../share/terminfo /usr/$(get_libdir)/terminfo
-	fi
+#	fi
 
 	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > "${T}"/50ncurses
 	doenvd "${T}"/50ncurses
