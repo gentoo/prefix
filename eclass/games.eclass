@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.128 2008/09/28 23:40:23 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.129 2008/12/01 20:36:43 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -155,7 +155,7 @@ games_src_compile() {
 games_pkg_preinst() {
 	local f
 
-	for f in $(find "${D}/${GAMES_STATEDIR}" -type f -printf '%P ' 2>/dev/null) ; do
+	while read f ; do
 		if [[ -e ${ROOT}/${GAMES_STATEDIR}/${f} ]] ; then
 			cp -p \
 				"${ROOT}/${GAMES_STATEDIR}/${f}" \
@@ -164,7 +164,7 @@ games_pkg_preinst() {
 			# make the date match the rest of the install
 			touch "${D}/${GAMES_STATEDIR}/${f}"
 		fi
-	done
+	done < <(find "${D}/${GAMES_STATEDIR}" -type f -printf '%P\n' 2>/dev/null)
 }
 
 # pkg_postinst function ... create env.d entry and warn about games group
@@ -200,11 +200,11 @@ games_ut_unpack() {
 			|| die "uncompressing file ${ut_unpack}"
 	fi
 	if [[ -d ${ut_unpack} ]] ; then
-		for f in $(find "${ut_unpack}" -name '*.uz2' -printf '%f ') ; do
-			uz2unpack "${ut_unpack}/${f}" "${ut_unpack}/${f/.uz2}" &>/dev/null \
+		while read f ; do
+			uz2unpack "${ut_unpack}/${f}" "${ut_unpack}/${f%.uz2}" &>/dev/null \
 				|| die "uncompressing file ${f}"
 			rm -f "${ut_unpack}/${f}" || die "deleting compressed file ${f}"
-		done
+		done < <(find "${ut_unpack}" -maxdepth 1 -name '*.uz2' -printf '%f\n' 2>/dev/null)
 	fi
 }
 
@@ -227,11 +227,11 @@ games_umod_unpack() {
 games_link_mods() {
 	if [[ -e ${GAMES_DATADIR}/${GAME} ]] ; then
 		cd "${GAMES_DATADIR}/${GAME}"
-		for mod in $(find . -type d -printf '%P ') ; do
+		while read mod ; do
 			if [[ ! -e ${Ddir}/${mod} ]] ; then
 				elog "Creating symlink for ${mod}"
 				dosym "${GAMES_DATADIR}"/${GAME}/${mod} "${dir}"/${mod} || die
 			fi
-		done
+		done < <(find . -type d -printf '%P\n' 2>/dev/null)
 	fi
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.5 2008/10/25 13:27:18 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.6 2008/12/01 14:29:06 eva Exp $
 
 # Original Author: Arun Raghavan <ford_prefect@gentoo.org> (based on the
 #		   gnome-python-desktop eclass by Jim Ramsay <lack@gentoo.org>)
@@ -36,7 +36,9 @@ HOMEPAGE="http://pygtk.org/"
 
 RESTRICT="${RESTRICT} test"
 
+GCONF_DEBUG="no"
 DOCS="AUTHORS ChangeLog NEWS README"
+
 if [[ ${G_PY_PN} != "gnome-python" ]]; then
 	DOCS="${DOCS} MAINTAINERS"
 fi
@@ -96,6 +98,7 @@ gnome-python-common_src_install() {
 
 gnome-python-common_pkg_postinst() {
 	python_version
+	python_need_rebuild
 	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 }
 
