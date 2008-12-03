@@ -1,6 +1,16 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.65 2008/10/31 16:04:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.66 2008/12/02 18:31:32 dberkholz Exp $
+
+*inputproto-1.5.0 (02 Dec 2008)
+
+  02 Dec 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +inputproto-1.5.0.ebuild:
+  Bump. Adds input device properties support. IDP are modelled after window
+  properties and work much in the same manner. Each X Input device can have
+  multiple properties of arbitrary types at any point in time. These
+  properties can be interpreted by the server and/or the driver and thus
+  allow cheap, easily expandable ways of configuring devices.
 
   31 Oct 2008; Jeroen Roovers <jer@gentoo.org> inputproto-1.4.2.1.ebuild:
   Stable for HPPA too.
