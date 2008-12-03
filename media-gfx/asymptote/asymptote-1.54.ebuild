@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.52.ebuild,v 1.1 2008/11/26 17:57:10 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.54.ebuild,v 1.1 2008/12/02 16:11:48 grozin Exp $
 EAPI="prefix 2"
 inherit eutils autotools elisp-common latex-package multilib python
 
@@ -8,10 +8,8 @@ DESCRIPTION="A vector graphics language that provides a framework for technical 
 HOMEPAGE="http://asymptote.sourceforge.net/"
 SRC_URI="mirror://sourceforge/asymptote/${P}.src.tgz"
 LICENSE="GPL-2"
-
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-
 IUSE="+boehm-gc doc emacs examples fftw gsl +imagemagick latex python sigsegv vim-syntax X"
 
 RDEPEND=">=sys-libs/readline-4.3-r5
@@ -31,44 +29,7 @@ RDEPEND=">=sys-libs/readline-4.3-r5
 DEPEND="${RDEPEND}
 	doc? ( dev-lang/perl virtual/texi2dvi virtual/latex-base media-gfx/imagemagick[png] )"
 
-pkg_setup() {
-	if use latex; then
-		# Calculating ASY_TEXMFDIR
-		local TEXMFPATH="$(kpsewhich -var-value=TEXMFSITE)"
-		local TEXMFCONFIGFILE="$(kpsewhich texmf.cnf)"
-
-		if [ -z "${TEXMFPATH}" ]; then
-			eerror "You haven't defined the TEXMFSITE variable in your TeX config."
-			eerror "Please do so in the file ${TEXMFCONFIGFILE:-/var/lib/texmf/web2c/texmf.cnf}"
-			die "Define TEXMFSITE in TeX configuration!"
-		else
-			# go through the colon separated list of directories
-			# (maybe only one) provided in the variable
-			# TEXMFPATH (generated from TEXMFSITE from TeX's config)
-			# and choose only the first entry.
-			# All entries are separated by colons, even when defined
-			# with semi-colons, kpsewhich changes
-			# the output to a generic format, so IFS has to be redefined.
-			local IFS="${IFS}:"
-
-			for strippedpath in ${TEXMFPATH}; do
-				if [ -d ${strippedpath} ]; then
-					ASY_TEXMFDIR="${strippedpath}"
-					break
-				fi
-			done
-
-			# verify if an existing path was chosen to prevent from
-			# installing into the wrong directory
-			if [ -z ${ASY_TEXMFDIR} ]; then
-				eerror "TEXMFSITE does not contain any existing directory."
-				eerror "Please define an existing directory in your TeX config file"
-				eerror "${TEXMFCONFIGFILE:-/var/lib/texmf/web2c/texmf.cnf} or create at least one of the there specified directories"
-				die "TEXMFSITE variable did not contain an existing directory"
-			fi
-		fi
-	fi
-}
+TEXMF=/usr/share/texmf-site
 
 src_prepare() {
 	# Fixing fftwl, gsl, sigsegv enabling
@@ -170,7 +131,7 @@ src_install() {
 	# LaTeX style
 	if use latex; then
 		cd doc
-		insinto "${ASY_TEXMFDIR#${EPREFIX}}"/tex/latex
+		insinto "${TEXMF}"/tex/latex/${PN}
 		doins ${PN}.sty asycolors.sty
 		if use examples; then
 			insinto /usr/share/${PN}/examples
