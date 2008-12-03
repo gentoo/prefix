@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.111 2008/11/14 14:05:29 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.112 2008/12/02 22:36:35 ranger Exp $
+
+  02 Dec 2008; Brent Baude <ranger@gentoo.org> rubygems-1.2.0.ebuild:
+  Marking rubygems-1.2.0 ppc64 for bug 244952
 
   14 Nov 2008; Hans de Graaff <graaff@gentoo.org>
   -files/0.8.11-install.rb.extract_files.patch,
