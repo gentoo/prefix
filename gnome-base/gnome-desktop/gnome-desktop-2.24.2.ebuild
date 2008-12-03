@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.2.ebuild,v 1.1 2008/11/27 02:58:13 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.2.ebuild,v 1.2 2008/12/01 23:45:14 eva Exp $
 
 EAPI="prefix"
 
@@ -14,13 +14,18 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc"
 
+# FIXME: Python deps are needed for gnome-about but not 
+# listed in configure.ac
 RDEPEND=">=dev-libs/libxml2-2.4.20
 	>=x11-libs/gtk+-2.11.3
 	>=dev-libs/glib-2.15.4
 	>=x11-libs/libXrandr-1.2
 	>=gnome-base/gconf-2
 	>=gnome-base/libgnomeui-2.6
-	>=x11-libs/startup-notification-0.5"
+	>=x11-libs/startup-notification-0.5
+	>=dev-python/pygtk-2.8
+	>=dev-python/pygobject-2.14
+	>=dev-python/libgnome-python-2.22"
 DEPEND="${RDEPEND}
 	app-text/scrollkeeper
 	>=dev-util/intltool-0.40
