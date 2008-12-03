@@ -100,5 +100,6 @@ dev-db/mysql-gui-tools workbench
 media-sound/lmms vst
 
 # Raúl Porcel <armin76@gentoo.org> (09 Nov 2008)
-# This needs amd64, x86 and ppc on some of them
-media-video/mplayer cpudetection custom-cpuopts bindist
+# CPU opts: This needs amd64, x86 and ppc on some of them
+# dvdnav: hard masked dependency
+media-video/mplayer cpudetection custom-cpuopts bindist dvdnav

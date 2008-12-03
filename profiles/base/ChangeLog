@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.59 2008/11/09 18:29:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.60 2008/12/02 02:54:34 beandog Exp $
+
+  02 Dec 2008; Steve Dibb <beandog@gentoo.org> package.use.mask:
+  Mask dvdnav use flag on mplayer
 
   09 Nov 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Fix masking of mplayer
