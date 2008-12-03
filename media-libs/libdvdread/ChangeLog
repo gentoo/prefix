@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libdvdread
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.57 2008/09/23 21:29:58 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.58 2008/12/03 02:50:01 beandog Exp $
+
+*libdvdread-4.1.3-r1 (03 Dec 2008)
+
+  03 Dec 2008; Steve Dibb <beandog@gentoo.org> +libdvdread-4.1.3-r1.ebuild:
+  Add css use flag, libdvdcss runtime dep for playback of encrypted DVDs
 
 *libdvdread-4.1.3 (23 Sep 2008)
 
