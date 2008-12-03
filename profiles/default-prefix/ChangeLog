@@ -4,6 +4,11 @@
 
   03 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
   sunos/solaris/5.10/x86/package.use.mask,
+  sunos/solaris/5.11/x86/package.use.mask:
+  mask USE=lcms on x86-solaris for media-gfx/inkscape, bug #245659
+
+  03 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
+  sunos/solaris/5.10/x86/package.use.mask,
   +sunos/solaris/5.11/x86/package.use.mask:
   mask USE=jpeg2k on x86-solaris for media-libs/netpbm, bug #244797
 

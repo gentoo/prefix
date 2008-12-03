@@ -5,3 +5,7 @@
 # Jeremy Olexa <darkside@gentoo.org> (03 Dec 2008)
 # Reported that this use flag does not work on x86-solaris, bug #244797
 media-libs/netpbm jpeg2k
+
+# Jeremy Olexa <darkside@gentoo.org> (03 Dec 2008)
+# Reported that this use flag does not work on x86-solaris, bug #245659
+media-gfx/inkscape lcms
