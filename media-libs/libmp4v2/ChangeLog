@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmp4v2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/ChangeLog,v 1.40 2008/10/30 10:26:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/ChangeLog,v 1.41 2008/12/02 23:13:32 ranger Exp $
+
+  02 Dec 2008; Brent Baude <ranger@gentoo.org> libmp4v2-1.5.0.1-r1.ebuild:
+  stable ppc64, bug 224217
 
   30 Oct 2008; Raúl Porcel <armin76@gentoo.org> libmp4v2-1.5.0.1-r1.ebuild:
   alpha/arm/ia64/sh/sparc stable #224217
