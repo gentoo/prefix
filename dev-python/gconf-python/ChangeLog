@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gconf-python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.3 2008/10/27 01:18:18 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.4 2008/12/01 14:31:01 eva Exp $
+
+  01 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -gconf-python-2.22.1.ebuild, gconf-python-2.22.3.ebuild:
+  Remove python_need_rebuild, it is now in the eclass.
 
   27 Oct 2008; Ali Polatel <hawking@gentoo.org> gconf-python-2.22.1.ebuild,
   gconf-python-2.22.3.ebuild:
