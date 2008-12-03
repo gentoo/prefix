@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2.ebuild,v 1.1 2008/09/27 16:15:44 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2.ebuild,v 1.2 2008/12/02 23:25:37 scarabeus Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 
 inherit elisp-common toolchain-funcs eutils versionator flag-o-matic
 
@@ -21,7 +21,7 @@ IUSE="emacs qt4 vim-syntax"
 DEPEND=">=net-misc/curl-7.16.4
 	>=dev-libs/expat-2.0.1
 	>=dev-libs/libxml2-2.6.28
-	>=dev-libs/xmlrpc-c-1.06.09
+	>=dev-libs/xmlrpc-c-1.06.09[curl]
 	emacs? ( virtual/emacs )
 	qt4? ( || ( ( x11-libs/qt-core:4
 			x11-libs/qt-gui:4 )
@@ -39,21 +39,7 @@ VIMFILE="${PN}.vim"
 
 S="${WORKDIR}/${MY_P}"
 
-pkg_setup() {
-	if ! built_with_use -o dev-libs/xmlrpc-c curl libwww; then
-		echo
-		eerror "${PN} requires dev-libs/xmlrpc-c to be built with either the 'libwww' or"
-		eerror "the 'curl' USE flag or both enabled."
-		eerror "Please re-emerge dev-libs/xmlrpc-c with USE=\"libwww\" or USE=\"curl\"."
-		echo
-		die "Please re-emerge dev-libs/xmlrpc-c with USE=\"libwww\" or USE=\"curl\"."
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Link against the shared Python library rather than the static one
 	epatch "${FILESDIR}/${PN}-FindPythonLibs.patch"
 
@@ -61,7 +47,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.6.0-interix.patch
 }
 
-src_compile() {
+src_configure() {
 	if [[ "$(gcc-major-version)" -eq "3" ]] ; then
 		append-flags "-fno-stack-protector"
 	fi
@@ -83,7 +69,9 @@ src_compile() {
 	else
 		par_arg="--parallel=1"
 	fi
+}
 
+src_compile() {
 	./bootstrap \
 		--system-libs \
 		--prefix="${EPREFIX}"/usr \
