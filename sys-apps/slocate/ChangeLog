@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/slocate
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.83 2008/08/19 01:11:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.84 2008/12/02 20:09:15 vapier Exp $
+
+  02 Dec 2008; Mike Frysinger <vapier@gentoo.org> files/updatedb.conf:
+  Add ocfs/ocfs2 to PRUNEFS #249590 by Oleg Gawriloff.
 
 *slocate-3.1-r2 (19 Aug 2008)
 
