@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.20.7_alpha.ebuild,v 1.3 2008/11/26 02:27:36 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.20.7_alpha.ebuild,v 1.4 2008/12/01 16:57:00 lack Exp $
 
 EAPI="prefix 1"
 
@@ -60,5 +60,13 @@ pkg_postinst() {
 		elog "If you were using nspluginwrapper for this plugin, you may want"
 		elog "to run 'nspluginwrapper -a -u' as root to clear out any old"
 		elog "wrappers."
+	fi
+
+	if has_version 'www-client/mozilla-firefox-bin'; then
+		eerror "This 64-bit plugin will not work with a 32-bit firefox."
+		eerror "If you wish to continue using flash with firefox-bin, you should"
+		eerror "mask this version:"
+		eerror "  =${CATEGORY}/${P}"
+		eerror "And re-emerge netscape-flash"
 	fi
 }
