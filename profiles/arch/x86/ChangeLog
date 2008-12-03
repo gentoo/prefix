@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/x86 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.13 2008/11/09 18:28:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.15 2008/12/02 22:18:08 armin76 Exp $
+
+  02 Dec 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  P.use.mask media-libs/realcodecs win32codecs USE-flag because repoman complains
 
   09 Nov 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Fix masking of mplayer

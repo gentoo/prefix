@@ -1,5 +1,8 @@
 # This file requires >=portage-2.1.1
 
+# Raúl Porcel <armin76@gentoo.org> (02 Dec 2008)
+media-libs/realcodecs win32codecs
+
 # Tomas Chvatal <scarabeus@gentoo.org> (24 Nov 2008)
 # masked in base, unmaks for x86/amd64
 sci-misc/boinc -bindist

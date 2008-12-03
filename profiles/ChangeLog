@@ -1,10 +1,55 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2105 2008/11/30 21:32:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2117 2008/12/02 23:13:18 mrness Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Dec 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Unmask net-misc/br2684ctl (#204186).
+
+  02 Dec 2008; Ulrich Mueller <ulm@gentoo.org> arch/amd64/package.use.mask,
+  default-linux/amd64/package.use.mask, hardened/amd64/package.use.mask,
+  hardened/linux/amd64/package.use.mask:
+  Remove app-editors/jove X from package.use.mask in amd64 profiles, since
+  the package doesn't have the flag anymore, bug 88334.
+
+  02 Dec 2008; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  mask mail-client/claws-mail-smime for removal as it has been integrated
+  into Claws Mail itself
+
+  02 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Mask x11-libs/xview for bugs bugs 88334, 244190, 245408 and 245409.
+
+  02 Dec 2008; Chris PeBenito <pebenito@gentoo.org>
+  default/linux/package.mask:
+  Update selinux package masking on non-selinux profiles for setools, which
+  depends on the masked libsepol.
+
+  02 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  p.mask mail-filter/procmail-3.22-r9
+
+  02 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask app-emulation/xcopilot, bug #246891
+
+  02 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask kde-misc/kio_perldoc, bug 249308
+
+  01 Dec 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-misc/br2684ctl (#248082).
+
+  01 Dec 2008; Christoph Mende <angelos@gentoo.org> profiles.desc:
+  Removed 2006.1 profiles
+
+  01 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org>
+  desc/foo2zjs_devices.desc:
+  Update foo2zjs devices list.
+
+  01 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Removed media-sound/cantus because it moved to new upstream and there is
+  nothing working out yet. Removed media-sound/workman because it's using
+  deprecated xview library.
 
   30 Nov 2008; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2008:
   Slotmove app-doc/elisp-manual.

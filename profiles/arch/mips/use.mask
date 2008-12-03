@@ -1,7 +1,17 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.10 2008/10/24 15:42:01 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.12 2008/12/02 21:34:59 ssuominen Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -mips
+
+# Samuli Suominen <ssuominen@gentoo.org>
+# Media cannot be tested for MIPS at the moment.
+# media-libs/libmpeg3
+# media-libs/portaudio
+# dev-libs/libcdio
+mpeg
+portaudio
+cdio
+cdda
 
 # Ryan Hill <dirtyepic@gentoo.org>
 # Various Gnome flags

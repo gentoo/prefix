@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.13 2008/11/05 14:53:47 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.14 2008/12/01 18:26:19 ssuominen Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -7,7 +7,7 @@ app-accessibility/perlbox-voice
 app-antivirus/bitdefender-console
 app-antivirus/f-prot
 app-antivirus/vlnx
-app-arch/rar
+<app-arch/rar-3.8.0
 app-arch/stuffit
 app-benchmarks/cpuburn
 app-cdr/cdrecord-prodvd

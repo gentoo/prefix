@@ -118,11 +118,6 @@ app-emulation/wine dbus hal nas scanner gnutls
 # missing the necessary linux-headers dep
 >=net-fs/netatalk-2.0.3-r3 xfs
 
-# 23 Jan 2008: Peter Weller <welp@gentoo.org>
-# Mask X USE flag for app-editors/jove;
-# Bug 202690
-app-editors/jove X
-
 # 28 Jan 2008: Wulf Krueger <philantrop@gentoo.org>
 # Mask bluetooth for the KDE 3.5.8 stabilisation.
 app-pda/pilot-link bluetooth
