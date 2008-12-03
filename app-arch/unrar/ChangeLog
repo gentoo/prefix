@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.126 2008/11/29 16:42:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.127 2008/12/01 21:27:59 ranger Exp $
+
+  01 Dec 2008; Brent Baude <ranger@gentoo.org> unrar-3.8.5.ebuild:
+  stable ppc64, bug 249060
 
   29 Nov 2008; Raúl Porcel <armin76@gentoo.org> unrar-3.8.5.ebuild:
   alpha/arm/ia64/sparc stable wrt #249060
