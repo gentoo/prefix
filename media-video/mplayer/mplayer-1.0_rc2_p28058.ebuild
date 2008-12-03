@@ -1,20 +1,22 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p26258.ebuild,v 1.4 2008/04/07 22:22:18 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p28058.ebuild,v 1.1 2008/12/02 03:41:26 beandog Exp $
 
 EAPI="prefix 1"
 
 inherit eutils flag-o-matic multilib
 
-RESTRICT="strip"
-IUSE="aqua 3dnow 3dnowext +a52 aac -aalib +alsa altivec amrnb amrwb -arts bidi bl
-bindist -color-console cddb cdio cdparanoia cpudetection custom-cflags debug
-dga doc dts dvb directfb +dvd dv enca encode esd -fbcon ftp -gif ggi gtk iconv
-ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo +mad -md5sum
-+mmx mmxext mp2 +mp3 musepack nas nemesi unicode +vorbis opengl openal oss -png
--pnm pulseaudio quicktime radio -rar real rtc -samba sdl speex srt sse sse2
-ssse3 svga teletext tga +theora -tivo +truetype v4l v4l2 vidix win32codecs +X
-x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
+# Ugly hack, feel free to fix
+MPLAYER_REVISION=28058
+
+IUSE="aqua 3dnow 3dnowext +a52 +aac -aalib +alsa altivec amrnb amrwb -arts +ass bidi bl
+bindist cddb cdio cdparanoia -cpudetection -custom-cflags -custom-cpuopts debug
+dga dirac doc dts dvb directfb +dvd dvdnav dv dxr3 enca +encode esd -fbcon ftp -gif ggi
+-gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo
++mad -md5sum +mmx mmxext mng mp2 +mp3 musepack nas nemesi opengl
+openal oss -png -pnm pulseaudio -pvr +quicktime radio -rar real rtc -samba schroedinger sdl
+speex sse sse2 ssse3 svga teletext tga +theora +truetype unicode v4l v4l2
+vidix +vorbis win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -52,20 +54,25 @@ RDEPEND="sys-libs/ncurses
 	amrnb? ( media-libs/amrnb )
 	amrwb? ( media-libs/amrwb )
 	arts? ( kde-base/arts )
+	ass? ( >=media-libs/freetype-2.1
+		media-libs/fontconfig )
 	openal? ( media-libs/openal )
 	bidi? ( dev-libs/fribidi )
 	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( media-sound/cdparanoia )
+	dirac? ( >=media-video/dirac-0.10.0 )
 	directfb? ( dev-libs/DirectFB )
 	dga? ( x11-libs/libXxf86dga  )
 	dts? ( media-libs/libdca )
+	dvdnav? ( >=media-libs/libdvdnav-4.1.3
+		>=media-libs/libdvdread-4.1.3 )
 	dv? ( media-libs/libdv )
 	dvb? ( media-tv/linuxtv-dvb-headers )
 	encode? (
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
 		mp3? ( media-sound/lame )
-		x264? ( media-libs/x264 )
+		x264? ( >=media-libs/x264-0.0.20080406 )
 		)
 	esd? ( media-sound/esound )
 	enca? ( app-i18n/enca )
@@ -83,6 +90,7 @@ RDEPEND="sys-libs/ncurses
 	lirc? ( app-misc/lirc )
 	lzo? ( >=dev-libs/lzo-2 )
 	mad? ( media-libs/libmad )
+	mng? ( media-libs/libmng )
 	musepack? ( >=media-libs/libmpcdec-1.2.2 )
 	nas? ( media-libs/nas )
 	opengl? ( virtual/opengl )
@@ -90,10 +98,9 @@ RDEPEND="sys-libs/ncurses
 	pnm? ( media-libs/netpbm )
 	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
+	schroedinger? ( media-libs/schroedinger )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
-	srt? ( >=media-libs/freetype-2.1
-		media-libs/fontconfig )
 	svga? ( media-libs/svgalib )
 	theora? ( media-libs/libtheora )
 	live? ( >=media-plugins/live-2007.02.20 )
@@ -116,11 +123,9 @@ RDEPEND="sys-libs/ncurses
 	)"
 
 DEPEND="${RDEPEND}
-	doc? ( >=app-text/docbook-sgml-dtd-4.1.2
-		app-text/docbook-xml-dtd
-		>=app-text/docbook-xml-simple-dtd-1.50.0
-		dev-libs/libxslt )
+	doc? ( dev-libs/libxslt )
 	dga? ( x11-proto/xf86dgaproto )
+	dxr3? ( media-video/em8300-libraries )
 	xinerama? ( x11-proto/xineramaproto )
 	xv? ( x11-proto/videoproto
 		  x11-proto/xf86vidmodeproto )
@@ -137,30 +142,54 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 pkg_setup() {
 
 	if [[ -n ${LINGUAS} ]]; then
-		elog "For MPlayer's language support, the configuration will"
-		elog "use your LINGUAS variable from /etc/make.conf.  If you have more"
-		elog "than one language enabled, then the first one in the list will"
-		elog "be used to output the messages, if a translation is available."
-		elog "man pages will be created for all languages where translations"
-		elog "are also available."
+		elog ""
+		elog "MPlayer's build system uses the LINGUAS variable for both"
+		elog "output messages and which man pages to build.  The first"
+		elog "language in the LINGUAS variable will be used to display"
+		elog "output messages.  See bug #228799."
 	fi
 
-	if use x86 || use amd64; then
-		if ! use mmx && use custom-cflags; then
-			ewarn "You have the 'mmx' use flag disabled for this package, which"
-			ewarn "means that no CPU optimizations will be used at all."
-			ewarn "The build will either break or encode very slowly.  Check your"
-			ewarn "/proc/cpuinfo for possible CPU optimization flags that"
-			ewarn "apply to this ebuild (mmx, mmxext, 3dnow, 3dnowext, sse,"
-			ewarn "sse2)."
-		fi
+	if use gtk; then
+		ewarn ""
+		ewarn "You've enabled the 'gtk' use flag which will build"
+		ewarn "GMPlayer, which is no longer actively developed upstream"
+		ewarn "and is not supported by Gentoo.  There are alternatives"
+		ewarn "for a GUI frontend: smplayer, gnome-mplayer and kmplayer."
 	fi
 
+	if use cpudetection; then
+		ewarn ""
+		ewarn "You've enabled the cpudetection flag.  This feature is"
+		ewarn "included mainly for people who want to use the same"
+		ewarn "binary on another system with a different CPU architecture."
+		ewarn "MPlayer will already detect your CPU settings by default at"
+		ewarn "buildtime; this flag is used for runtime detection."
+		ewarn "You won't need this turned on if you are only building"
+		ewarn "mplayer for this system.  Also, if your compile fails, try"
+		ewarn "disabling this use flag."
+	fi
+
+	if use custom-cpuopts; then
+		ewarn ""
+		ewarn "You are using the custom-cpuopts flag which will"
+		ewarn "specifically allow you to enable / disable certain"
+		ewarn "CPU optimizations."
+		ewarn ""
+		ewarn "Most desktop users won't need this functionality, but it"
+		ewarn "is included for corner cases like cross-compiling and"
+		ewarn "certain profiles.  If unsure, disable this flag and MPlayer"
+		ewarn "will automatically detect and use your available CPU"
+		ewarn "optimizations."
+		ewarn ""
+		ewarn "Using this flag means your build is unsupported, so"
+		ewarn "please make sure your CPU optimization use flags (3dnow"
+		ewarn "3dnowext mmx mmxext sse sse2 ssse3) are properly set."
+	fi
 }
 
 src_unpack() {
@@ -177,6 +206,12 @@ src_unpack() {
 	use svga && unpack "svgalib_helper-${SVGV}-mplayer.tar.bz2"
 
 	cd "${S}"
+
+	# Fix x264 compilation, bug 240347
+	epatch "${FILESDIR}/mplayer-1.0_rc2_p27725-libx264.patch"
+
+	# Set version #
+	sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
 
 	# Fix hppa compilation
 	use hppa && sed -i -e "s/-O4/-O1/" "${S}/configure"
@@ -195,16 +230,17 @@ src_unpack() {
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p25993-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26450-prefix.patch
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure || die
 }
 
 src_compile() {
 
 	local myconf=" --disable-tv-bsdbt848 \
-		--disable-faad-external"
+		--disable-faad"
 
 	# broken upstream, won't work with recent kernels
-	myconf="${myconf} --disable-ivtv --disable-pvr"
+	myconf="${myconf} --disable-ivtv"
 
 	# MPlayer reads in the LINGUAS variable from make.conf, and sets
 	# the languages accordingly.  Some will have to be altered to match
@@ -214,13 +250,13 @@ src_compile() {
 	################
 	#Optional features#
 	###############
+	use ass || myconf="${myconf} --disable-ass"
 	use bidi || myconf="${myconf} --disable-fribidi"
 	use bl && myconf="${myconf} --enable-bl"
-	use color-console && myconf="${myconf} --enable-color-console"
 	use enca || myconf="${myconf} --disable-enca"
+	use encode || myconf="${myconf} --disable-mencoder"
 	use ftp || myconf="${myconf} --disable-ftp"
 	use nemesi || myconf="${myconf} --disable-nemesi"
-	use tivo || myconf="${myconf} --disable-vstream"
 	use xscreensaver || myconf="${myconf} --disable-xss"
 
 	# libcdio support: prefer libcdio over cdparanoia
@@ -236,27 +272,21 @@ src_compile() {
 	# DVD support
 	# dvdread and libdvdcss are internal libs
 	# http://www.mplayerhq.hu/DOCS/HTML/en/dvd.html
-	# You can optionally use external dvdread support, but against
-	# upstream's suggestion.  We don't.
-	if ! use dvd; then
+	# You can optionally use external dvdread/dvdnav support.
+	if use dvdnav; then
+		myconf="${myconf} --with-dvdread-config=/usr/bin/dvdread-config \
+			--with-dvdnav-config=/usr/bin/dvdnav-config \
+			--disable-dvdread-internal"
+	elif ! use dvd && ! use dvdread; then
 		myconf="${myconf} --disable-dvdnav --disable-dvdread"
-		use a52 || myconf="${myconf} --disable-liba52"
-	fi
-
-	if use encode; then
-		use aac || myconf="${myconf} --disable-faac"
-		use dv || myconf="${myconf} --disable-libdv"
-		use x264 || myconf="${myconf} --disable-x264"
-	else
-		myconf="${myconf} --disable-mencoder --disable-libdv --disable-x264 \
-			--disable-faac"
+		use a52 || myconf="${myconf} --disable-liba52 \
+			--disable-liba52-internal"
 	fi
 
 	# SRT (subtitles) requires freetype support
 	# freetype support requires iconv
 	# iconv optionally can use unicode
-	if ! use srt; then
-		myconf="${myconf} --disable-ass"
+	if ! use ass; then
 		if ! use truetype; then
 			myconf="${myconf} --disable-freetype"
 			if ! use iconv; then
@@ -274,8 +304,9 @@ src_compile() {
 	use samba || myconf="${myconf} --disable-smb"
 
 	# DVB / Video4Linux / Radio support
-	if { use dvb || use v4l || use v4l2 || use radio; }; then
+	if { use dvb || use v4l || use v4l2 || use pvr || use radio; }; then
 		use dvb || myconf="${myconf} --disable-dvb --disable-dvbhead"
+		use pvr || myconf="${myconf} --disable-pvr"
 		use v4l	|| myconf="${myconf} --disable-tv-v4l1"
 		use v4l2 || myconf="${myconf} --disable-tv-v4l2"
 		use teletext || myconf="${myconf} --disable-tv-teletext"
@@ -287,39 +318,48 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
-			--disable-dvb --disable-dvbhead --disable-tv-teletext"
+			--disable-dvb --disable-dvbhead --disable-tv-teletext \
+			--disable-v4l2 --disable-pvr"
 	fi
 
 	#########
 	# Codecs #
 	########
-	for x in gif jpeg live mad musepack pnm speex tga theora xanim xvid; do
+	for x in gif jpeg live mad musepack pnm speex tga theora xanim; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
-	use aac || myconf="${myconf} --disable-faad-internal"
+	for x in dirac schroedinger ; do
+		use ${x} || myconf="${myconf} --disable-lib${x}-lavc"
+	done
+	use aac || myconf="${myconf} --disable-faac --disable-faac-lavc"
 	use amrnb || myconf="${myconf} --disable-libamr_nb"
 	use amrwb || myconf="${myconf} --disable-libamr_wb"
 	use dts || myconf="${myconf} --disable-libdca"
+	use dv || myconf="${myconf} --disable-libdv"
 	! use png && ! use gtk && myconf="${myconf} --disable-png"
 	use lzo || myconf="${myconf} --disable-liblzo"
 	use encode && use mp2 || myconf="${myconf} --disable-twolame \
 		--disable-toolame"
-	use mp3 || myconf="${myconf} --disable-mp3lib"
-	use quicktime || myconf="${myconf} --disable-qtx"
+	use mp3 || myconf="${myconf} --disable-mp3lame --disable-mp3lame-lavc"
 	use vorbis || myconf="${myconf} --disable-libvorbis"
+	use x264 || myconf="${myconf} --disable-x264 --disable-x264-lavc"
 	use xanim && myconf="${myconf} --xanimcodecsdir=${EPREFIX}/usr/lib/xanim/mods"
-	if use x86 || use amd64; then
-		# Real codec support, only available on x86, amd64
-		if use real && use x86; then
-			myconf="${myconf} --realcodecsdir=${EPREFIX}/opt/RealPlayer/codecs"
-		elif use real && use amd64; then
-			myconf="${myconf} --realcodecsdir=${EPREFIX}/usr/$(get_libdir)/codecs"
-		else
-			myconf="${myconf} --disable-real"
-		fi
-		if ! use bindist && ! use real; then
-			myconf="${myconf} $(use_enable win32codecs win32dll)"
-		fi
+	use xvid || myconf="${myconf} --disable-xvid --disable-xvid-lavc"
+
+	# Real codec support, only available on x86, amd64
+	if use real && use x86; then
+		myconf="${myconf} --realcodecsdir=${EPREFIX}/opt/RealPlayer/codecs"
+	elif use real && use amd64; then
+		myconf="${myconf} --realcodecsdir=${EPREFIX}/usr/$(get_libdir)/codecs"
+	else
+		myconf="${myconf} --disable-real"
+	fi
+	if ! use bindist && ! use real; then
+		myconf="${myconf} $(use_enable win32codecs win32dll)"
+	fi
+	# bug 213836
+	if ! use x86 || ! use win32codecs; then
+		use quicktime || myconf="${myconf} --disable-qtx"
 	fi
 
 	#############
@@ -335,10 +375,13 @@ src_compile() {
 	use libcaca || myconf="${myconf} --disable-caca"
 	use opengl || myconf="${myconf} --disable-gl"
 	use video_cards_vesa || myconf="${myconf} --disable-vesa"
-	use vidix || myconf="${myconf} --disable-vidix-internal \
-		--disable-vidix-external \
+	use vidix || myconf="${myconf} --disable-vidix \
 		--disable-vidix-pcidb"
 	use zoran || myconf="${myconf} --disable-zr"
+
+	# MPlayer incorrectly looks for DXR3 support, so forcibly enable
+	# if requested. See bug 223587
+	myconf="${myconf} $(use_enable dxr3)"
 
 	# GTK gmplayer gui
 	myconf="${myconf} $(use_enable gtk gui)"
@@ -378,25 +421,18 @@ src_compile() {
 	# Advanced Options #
 	#################
 	# Platform specific flags, hardcoded on amd64 (see below)
-	if use x86 || use amd64 || use ppc; then
-		if use cpudetection || use bindist; then
-			myconf="${myconf} --enable-runtime-cpudetection"
-		fi
+	if use cpudetection || use bindist; then
+		myconf="${myconf} --enable-runtime-cpudetection"
 	fi
-	# Letting users turn off optimizations results in epic build fail
-	# across the board.  MPlayer's build system by default will
-	# detect them and use them just fine, so don't let them change
-	# them unless they really know what they are doing anyway.
-	if use custom-cflags; then
-		if use mmx; then
-			for x in 3dnow 3dnowext mmxext sse sse2 ssse3; do
-				use ${x} || myconf="${myconf} --disable-${x}"
-			done
-		else
-			myconf="${myconf} --disable-mmx --disable-mmxext --disable-sse \
-			--disable-sse2 --disable-ssse3 --disable-3dnow \
-			--disable-3dnowext"
-		fi
+
+	# Turning off CPU optimizations usually will break the build.
+	# However, this use flag, if enabled, will allow users to completely
+	# specify which ones to use.  If disabled, mplayer will automatically
+	# enable all CPU optimizations that the host build supports.
+	if use custom-cpuopts; then
+		for x in 3dnow 3dnowext mmx mmxext sse sse2 ssse3; do
+			myconf="${myconf} $(use_enable $x)"
+		done
 	fi
 
 	use debug && myconf="${myconf} --enable-debug=3"
@@ -424,13 +460,16 @@ src_compile() {
 		--confdir=${EPREFIX}/etc/mplayer \
 		--datadir=${EPREFIX}/usr/share/mplayer \
 		--libdir=${EPREFIX}/usr/$(get_libdir) \
+		--with-extraincdir=${EPREFIX}/usr/include \
+		--with-extralibdir=${EPREFIX}/usr/$(get_libdir),${EPREFIX}/$(get_libdir) \
 		--enable-menu \
 		--enable-network \
 		$(use_enable aqua macosx) \
-		$(use_enable aqua macosx-finder-support) \
+		$(use_enable aqua macosx-finder) \
 		$(use_enable aqua macosx-bundle) \
 		$(use_enable aqua libdvdcss-internal) \
 		${myconf}"
+
 	#echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"
 	CFLAGS="${CFLAGS}" ./configure ${myconf} || die "configure died"
 
@@ -446,9 +485,10 @@ src_install() {
 		 CONFDIR="${ED}/etc/mplayer" \
 		 DATADIR="${ED}/usr/share/mplayer" \
 		 MANDIR="${ED}/usr/share/man" \
+		 INSTALLSTRIP="" \
 		 install || die "Failed to install MPlayer!"
 
-	dodoc AUTHORS Changelog README
+	dodoc AUTHORS Changelog README etc/codecs.conf
 	# Install the documentation; DOCS is all mixed up not just html
 	if use doc ; then
 		find "${S}/DOCS" -type d | xargs -- chmod 0755
@@ -473,7 +513,7 @@ src_install() {
 		dosym mplayer /usr/bin/gmplayer
 	fi
 
-	if ! use srt && ! use truetype; then
+	if ! use ass && ! use truetype; then
 		dodir /usr/share/mplayer/fonts
 		local x=
 		# Do this generic, as the mplayer people like to change the structure
@@ -490,7 +530,7 @@ src_install() {
 	insinto /etc/mplayer
 	newins "${S}/etc/example.conf" mplayer.conf
 
-	if use srt || use truetype;	then
+	if use ass || use truetype;	then
 		cat >> "${ED}/etc/mplayer/mplayer.conf" << EOT
 fontconfig=1
 subfont-osd-scale=4
@@ -500,7 +540,7 @@ EOT
 
 	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
 
-	dobin "${ED}/usr/share/doc/${PF}/TOOLS/midentify"
+	newbin "${S}/TOOLS/midentify.sh" midentify
 
 	insinto /usr/share/mplayer
 	doins "${S}/etc/input.conf"
