@@ -40,8 +40,9 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-noinst-lib.patch"
 
 	# (Open)Solaris necessary patches (changes configure.in), unfortunately
-	# conflicts with freebsd patch
-	[[ ${CHOST} != *-freebsd* ]] && \
+	# conflicts with freebsd patch and breaks some linux installs so it must
+	# only be applied if on solaris.
+	[[ ${CHOST} == *-solaris* ]] && \
 	epatch "${FILESDIR}"/${P}-opensolaris.patch
 
 	# autoconf is required as the user-cflags patch modifies configure.in
