@@ -33,7 +33,7 @@ src_unpack() {
 	cd "${S}"
 
 	# Fix compile warnings; bug #188923
-	[[ ${CHOST} == *-freebsd* ]] && \
+	[[ ${CHOST} != *-solaris* ]] && \
 	epatch "${FILESDIR}/${MY_PN}-0.1.9-freebsd.patch"
 
 	# Fix collision problem due to intermediate library, upstream bug #530635
