@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 MY_P="ORBit2-${PV}"
 PVP=(${PV//[-\._]/ })
@@ -16,13 +16,13 @@ SRC_URI="mirror://gnome/sources/ORBit2/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.8
 	>=dev-libs/libIDL-0.8.2"
 
-DEPEND="${RDEPEND}
+DEPEND="
 	>=dev-util/pkgconfig-0.18
 	doc? ( >=dev-util/gtk-doc-1 )"
 
@@ -40,6 +40,10 @@ src_unpack() {
 	
 	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+
+	eautoreconf # required for winnt
 }
 
 src_compile() {
