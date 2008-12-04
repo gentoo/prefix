@@ -26,6 +26,7 @@ src_unpack() {
 	epunt_cxx
 
 	epatch "${FILESDIR}"/${P}-bison-2.4.patch
+	epatch "${FILESDIR}"/${P}-winnt.patch
 
 	eautoreconf # required for winnt.
 }
@@ -35,7 +36,7 @@ src_compile() {
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		export ac_cv_func_popen=yes
-		export ac_cv_cpp_nostdinc="-nostdinc"
+		export ac_cv_cpp_nostdinc="-X"
 	fi
 
 	gnome2_src_compile
