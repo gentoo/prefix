@@ -33,15 +33,15 @@ src_unpack() {
 	cd "${S}"
 
 	# Fix compile warnings; bug #188923
-	[[ ${CHOST} == *-freebsd* ]] && \
+	[[ ${CHOST} != *-solaris* ]] && \
 	epatch "${FILESDIR}/${MY_PN}-0.1.9-freebsd.patch"
 
 	# Fix file-collision due to shared library, upstream bug #530635
 	epatch "${FILESDIR}/${P}-noinst-lib.patch"
 
 	# (Open)Solaris necessary patches (changes configure.in), unfortunately
-	# conflicts with freebsd patch
-	[[ ${CHOST} != *-freebsd* ]] && \
+	# conflicts with freebsd patch and messes up Linux
+	[[ ${CHOST} == *-solaris* ]] && \
 	epatch "${FILESDIR}"/libgamin-0.1.10-opensolaris.patch
 
 	# autoconf is required as the user-cflags patch modifies configure.in
