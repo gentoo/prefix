@@ -201,7 +201,7 @@ src_install () {
 		c=""
 	fi
 
-	sed 's/^X//' >"${ESITEFILE}" <<-EOF
+	sed 's/^X//' >"${SITEFILE}" <<-EOF
 	X
 	;;; ${PN}-${SLOT} site-lisp configuration
 	X
@@ -215,7 +215,7 @@ src_install () {
 	X	 (setq Info-directory-list
 	X	       (cons dir (delete dir (split-string path ":" t)))))))
 	EOF
-	elisp-site-file-install "${ESITEFILE}" || die
+	elisp-site-file-install "${SITEFILE}" || die
 
 	dodoc AUTHORS BUGS CONTRIBUTE README || die "dodoc failed"
 
