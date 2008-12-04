@@ -50,7 +50,7 @@ src_compile() {
 
 	# Respect the user's LDFLAGS.
 	export LADD=${LDFLAGS}
-	export CFLAGS_PERSONAL=${CFLAGS}
+	export CFLAGS_PERSONAL="${CFLAGS} --std=c99"	# solaris req. c99
 	econf	--disable-wininet-client \
 		--enable-libxml2-backend \
 		--disable-libwww-client \
