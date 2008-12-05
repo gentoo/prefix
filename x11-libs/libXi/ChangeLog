@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/libXi
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.57 2007/12/19 23:52:18 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.59 2008/12/04 04:46:08 dberkholz Exp $
+
+  04 Dec 2008; Donnie Berkholz <dberkholz@gentoo.org>; libXi-1.2.0.ebuild:
+  Require at least inputproto 1.5.
+
+*libXi-1.2.0 (04 Dec 2008)
+
+  04 Dec 2008; Donnie Berkholz <dberkholz@gentoo.org>; +libXi-1.2.0.ebuild:
+  Bump. Adds input device properties support. IDP are modelled after window
+  properties and work much in the same manner. Each X Input device can have
+  multiple properties of arbitrary types at any point in time. These
+  properties can be interpreted by the server and/or the driver and thus
+  allow cheap, easily expandable ways of configuring devices.
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libXi-1.1.3.ebuild:
   Stable on x86 (bug #202087)
