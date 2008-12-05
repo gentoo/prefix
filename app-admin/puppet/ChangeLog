@@ -1,0 +1,186 @@
+# ChangeLog for app-admin/puppet
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.31 2008/12/02 17:29:54 jmbsvicetto Exp $
+
+  02 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  ChangeLog:
+  Removed the executable bit from files/puppet.init and
+  files/puppetmaster.init as they're installed through newinitd, a wrapper
+  for doinitd, that calls doexe which uses the EXEOPTIONS variable that
+  defaults to -m0755.
+
+  02 Dec 2008; MATSUU Takuto <matsuu@gentoo.org> puppet-0.24.4.ebuild,
+  puppet-0.24.5-r4.ebuild, puppet-0.24.6-r1.ebuild:
+  Fixed dependency, bug #247273.
+
+*puppet-0.24.6-r1 (22 Nov 2008)
+
+  22 Nov 2008; MATSUU Takuto <matsuu@gentoo.org>
+  files/puppet-0.24.6-eix.patch, -puppet-0.24.5-r3.ebuild,
+  -puppet-0.24.6.ebuild, +puppet-0.24.6-r1.ebuild:
+  Fixed dependency. Fixed eix patch. Removed old versions.
+
+*puppet-0.24.6 (21 Nov 2008)
+
+  21 Nov 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/puppet-0.24.6-eix.patch, files/puppet.init,
+  files/puppetmaster.init, +puppet-0.24.6.ebuild:
+  Version bumped. Fixed eix-patch for new eix syntax.
+
+*puppet-0.24.5-r4 (06 Oct 2008)
+
+  06 Oct 2008; MATSUU Takuto <matsuu@gentoo.org> +files/puppetmaster.confd,
+  files/puppetmaster.init, -puppet-0.24.5-r1.ebuild,
+  -puppet-0.24.5-r2.ebuild, +puppet-0.24.5-r4.ebuild:
+  Added /etc/openldap/schema/puppet.schema, bug #239433. Removed
+  PUPPETMASTER_MANIFEST FROM /etc/init.d/puppetmaster, bug #240266. Removed
+  old versions.
+
+*puppet-0.24.5-r3 (02 Oct 2008)
+
+  02 Oct 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/puppet-0.24.5-eix-0.14.0.patch, +puppet-0.24.5-r3.ebuild:
+  Fixed rrdtool dependency, bug #238568. Fixed to work with
+  >=app-portage/eix-0.14.0.
+
+  29 Sep 2008; Tiziano Müller <dev-zero@gentoo.org> files/puppet.init,
+  files/puppetmaster.init:
+  Removed bashism from init-scripts
+
+  27 Sep 2008; Friedrich Oslage <bluebird@gentoo.org>
+  puppet-0.24.5-r2.ebuild:
+  Add ~sparc keyword, bug #238568
+
+*puppet-0.24.5-r2 (24 Sep 2008)
+
+  24 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> files/puppet.init,
+  files/puppetmaster.init, metadata.xml, +puppet-0.24.5-r2.ebuild:
+  Fixed init.d issue again, bug #237712. Added ldap and rrdtool USE flags,
+  bug #237717.
+
+  15 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> puppet-0.24.4.ebuild,
+  -puppet-0.24.5.ebuild, puppet-0.24.5-r1.ebuild:
+  Removed "|| die", bug #237279.
+
+*puppet-0.24.5-r1 (09 Sep 2008)
+
+  09 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> +files/puppet.init,
+  files/puppetmaster.init, +puppet-0.24.5-r1.ebuild:
+  Fixed init.d issue, bug 237071.
+
+*puppet-0.24.5 (13 Aug 2008)
+
+  13 Aug 2008; MATSUU Takuto <matsuu@gentoo.org>
+  -files/puppet-0.23.2-gentoo.patch, -files/puppet-0.24.1-gentoo.patch,
+  -files/puppet-0.24.1-service.patch, -puppet-0.23.2-r1.ebuild,
+  -puppet-0.24.1-r1.ebuild, -puppet-0.24.3.ebuild, +puppet-0.24.5.ebuild:
+  Version bumped. Removed old versions.
+
+  13 Aug 2008; Ferris McCormick <fmccor@gentoo.org> puppet-0.24.4.ebuild:
+  Add ~sparc keyword at user (Juan Daza) request --- Bug #234621.
+
+  26 Jun 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  puppet-0.24.4.ebuild:
+  stable amd64, bug 227375
+
+  20 Jun 2008; Christian Faulhammer <opfer@gentoo.org> puppet-0.24.4.ebuild:
+  stable x86, bug 227375
+
+  16 Jun 2008; nixnut <nixnut@gentoo.org> puppet-0.24.4.ebuild:
+  Stable on ppc wrt bug 227375
+
+  16 Jun 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/puppet-0.24.4-openrc_initd.patch, files/puppetmaster.init,
+  puppet-0.24.4.ebuild:
+  Added fix to make scripts work with baselayout-2/openrc (bug #218071)
+
+  01 May 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  puppet-0.24.4.ebuild:
+  Added ~ppc
+
+*puppet-0.24.4 (03 Apr 2008)
+
+  03 Apr 2008; MATSUU Takuto <matsuu@gentoo.org> +puppet-0.24.4.ebuild:
+  Version bumped, bug #215425.
+
+*puppet-0.24.3 (20 Mar 2008)
+
+  20 Mar 2008; MATSUU Takuto <matsuu@gentoo.org> -puppet-0.24.1.ebuild,
+  -puppet-0.24.2.ebuild, +puppet-0.24.3.ebuild:
+  Version bumped, bug #214085.
+  Removed old versions.
+
+*puppet-0.24.2 (05 Mar 2008)
+
+  05 Mar 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/puppet-0.24.2-gentoo.patch, +files/puppetmaster.init,
+  +puppet-0.24.2.ebuild:
+  Version bumped, bug #212262.
+  Fixed /etc/init.d/puppetmaster, bug #211910.
+
+*puppet-0.24.1-r1 (07 Feb 2008)
+
+  07 Feb 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/puppet-0.24.1-service.patch, +puppet-0.24.1-r1.ebuild:
+  Added vim-syntax USE flag, bug #208399.
+  Fixed ensure running services issue, bug #209218.
+
+*puppet-0.24.1 (07 Jan 2008)
+
+  07 Jan 2008; MATSUU Takuto <matsuu@gentoo.org>
+  +files/puppet-0.24.1-gentoo.patch, -puppet-0.22.4-r1.ebuild,
+  -puppet-0.23.0-r1.ebuild, -puppet-0.23.2.ebuild, +puppet-0.24.1.ebuild:
+  Version bumped.
+  Removed old versions.
+
+*puppet-0.23.2-r1 (08 Dec 2007)
+
+  08 Dec 2007; MATSUU Takuto <matsuu@gentoo.org>
+  +files/50puppet-mode-gentoo.el, +files/puppet-0.23.2-gentoo.patch,
+  metadata.xml, -puppet-0.22.4.ebuild, -puppet-0.23.0.ebuild,
+  +puppet-0.23.2-r1.ebuild:
+  Fixed some bugs and cleanup, bug #190840
+  maintainership takeover.
+  Removed old versions.
+
+*puppet-0.23.2 (07 Aug 2007)
+
+  07 Aug 2007; masatomo <masatomo@gentoo.org> +puppet-0.23.2.ebuild:
+  Version bump.
+
+*puppet-0.23.0-r1 (06 Aug 2007)
+*puppet-0.22.4-r1 (06 Aug 2007)
+
+  06 Aug 2007; Masatomo Nakano <nakano@gentoo.org> +puppet-0.22.4-r1.ebuild,
+  +puppet-0.23.0-r1.ebuild:
+  Fixed initial owner/permission problem reported in bug #187883. 
+
+*puppet-0.23.0 (08 Jul 2007)
+
+  08 Jul 2007; masatomo <masatomo@gentoo.org> -puppet-0.22.3.ebuild,
+  +puppet-0.23.0.ebuild:
+  Version bump
+
+*puppet-0.22.4 (02 May 2007)
+
+  02 May 2007; Masatomo Nakano <nakano@gentoo.org> -puppet-0.22.1.ebuild,
+  -puppet-0.22.2.ebuild, +puppet-0.22.4.ebuild:
+  Version bump.
+
+*puppet-0.22.3 (28 Mar 2007)
+
+  28 Mar 2007; Masatomo Nakano <nakano@gentoo.org> +puppet-0.22.3.ebuild:
+  Version bump.
+
+*puppet-0.22.2 (20 Mar 2007)
+
+  20 Mar 2007; Masatomo Nakano <nakano@gentoo.org> +puppet-0.22.2.ebuild:
+  Version bump.
+
+*puppet-0.22.1 (17 Mar 2007)
+
+  17 Mar 2007; Masatomo Nakano <nakano@gentoo.org> +metadata.xml,
+  +puppet-0.22.1.ebuild:
+  Initial import. Ebuild submitted by Jose Gonzalez Gomez
+  <jgonzalez.openinput@gmail.com>. #146712
+
