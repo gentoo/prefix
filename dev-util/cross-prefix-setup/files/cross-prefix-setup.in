@@ -112,6 +112,7 @@ ebegin "creating '${_target_prefix}/etc/profile'"
 # one to work with right now.
 export EPREFIX="${_target_prefix}"
 export PATH="${_target_prefix}/bin:${_target_prefix}/usr/bin:\${PATH}"
+export PKG_CONFIG_PATH="${_target_prefix}/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
 
 if [ -e "${_target_prefix}/etc/profile.env" ]; then
 	. "${_target_prefix}/etc/profile.env"
