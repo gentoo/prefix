@@ -17,7 +17,7 @@ SRC_URI="ftp://ftp.astron.com/pub/tcsh/${MY_P}.tar.gz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="perl catalogs"
 RESTRICT="test"
@@ -36,7 +36,6 @@ src_unpack() {
 	epatch "${FILESDIR}/${MY_P/16/14}"-debian-dircolors.patch # bug #120792
 	epatch "${FILESDIR}"/${PN}-6.14-makefile.patch # bug #151951
 	epatch "${FILESDIR}"/${PN}-6.14-use-ncurses.patch
-	epatch "${FILESDIR}"/${MY_P/16/15}-interix.patch
 	eautoreconf
 
 	if use catalogs ; then
