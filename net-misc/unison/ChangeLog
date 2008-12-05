@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/unison
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.58 2008/07/03 09:54:33 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.59 2008/12/04 18:48:33 darkside Exp $
+
+  04 Dec 2008; Jeremy Olexa <darkside@gentoo.org> unison-2.13.16-r1.ebuild,
+  unison-2.27.57-r1.ebuild:
+  s/gtk2-ssh-askpass/ssh-askpass-fullscreen/ due to a pkgmove
 
   03 Jul 2008; Alexis Ballier <aballier@gentoo.org> -unison-2.13.16.ebuild:
   remove unslotted version

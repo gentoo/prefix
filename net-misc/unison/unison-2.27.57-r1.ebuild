@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.10 2008/06/30 20:38:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.11 2008/12/04 18:48:33 darkside Exp $
 
 EAPI="prefix 1"
 
@@ -18,7 +18,7 @@ DEPEND=">=dev-lang/ocaml-3.04
 	gtk? ( >=dev-ml/lablgtk-2.2 )"
 
 RDEPEND="gtk? ( >=dev-ml/lablgtk-2.2
-|| ( net-misc/x11-ssh-askpass net-misc/gtk2-ssh-askpass ) )
+|| ( net-misc/x11-ssh-askpass net-misc/ssh-askpass-fullscreen ) )
 	!net-misc/unison:0
 	app-admin/eselect-unison"
 
