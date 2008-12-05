@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.8 2008/07/28 23:18:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.9 2008/12/04 22:08:27 eva Exp $
 
 EAPI="prefix"
 
@@ -88,7 +88,10 @@ src_unpack() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-	use python && python_mod_optimize /usr/share/dia
+	if use python; then
+		python_need_rebuild
+		python_mod_optimize /usr/share/dia
+	fi
 }
 
 pkg_postrm() {
