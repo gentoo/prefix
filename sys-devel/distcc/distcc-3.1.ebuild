@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r3.ebuild,v 1.4 2008/11/02 22:24:23 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1.ebuild,v 1.1 2008/12/03 09:19:07 matsuu Exp $
 
 EAPI="prefix"
 
@@ -37,7 +37,6 @@ RDEPEND="${RDEPEND}
 	selinux? ( sec-policy/selinux-distcc )
 	xinetd? ( sys-apps/xinetd )"
 
-DISTCC_POTENTIAL_HOSTS=""
 DISTCC_LOG=""
 DCCC_PATH="/usr/$(get_libdir)/distcc/bin"
 DISTCC_VERBOSE="0"
@@ -49,9 +48,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-gentoo.patch"
-	epatch "${FILESDIR}/${P}-svn617.patch"
-	epatch "${FILESDIR}/${P}-xinetd.patch"
+	epatch "${FILESDIR}/${PN}-3.0-xinetd.patch"
 	sed -i -e "/PATH/s:\$distcc_location:${DCCC_PATH}:" pump.in || die
 
 	# Bugs #120001, #167844 and probably more. See patch for description.
@@ -75,18 +72,20 @@ src_compile() {
 		$(use_with gtk) \
 		$(use_with gnome) \
 		$(use_enable ipv6 rfc2553) \
+		--disable-Werror \
 		--with-docdir="${EPREFIX}/usr/share/doc/${PF}" || die "econf failed"
 	emake || die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	# In rare cases, parallel make install failed
+	emake -j1 DESTDIR="${D}" install || die
 
-	dobin "${FILESDIR}/${PV}/distcc-config"
+	dobin "${FILESDIR}/3.0/distcc-config"
 
-	newinitd "${FILESDIR}/${PV}/init" distccd
+	newinitd "${FILESDIR}/3.0/init" distccd
 
-	cp "${FILESDIR}/${PV}/conf" "${T}/distccd"
+	cp "${FILESDIR}/3.0/conf" "${T}/distccd"
 	if use avahi; then
 		cat >> "${T}/distccd" <<-EOF
 
@@ -138,6 +137,10 @@ src_install() {
 pkg_postinst() {
 	use gnome && fdo-mime_desktop_database_update
 
+	if use ipv6; then
+		elog
+		elog "IPv6 has not supported yet by ${P}."
+	fi
 	elog
 	elog "Tips on using distcc with Gentoo can be found at"
 	elog "http://www.gentoo.org/doc/en/distcc.xml"
