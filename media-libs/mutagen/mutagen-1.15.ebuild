@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/mutagen/mutagen-1.13.ebuild,v 1.2 2007/12/15 08:44:35 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.15.ebuild,v 1.1 2008/12/04 05:25:34 ssuominen Exp $
 
 EAPI="prefix"
 
-inherit distutils
+inherit distutils eutils
 
 DESCRIPTION="Mutagen is an audio metadata tag reader and writer implemented in pure Python."
 HOMEPAGE="http://www.sacredchao.net/quodlibet/wiki/Development/Mutagen"
@@ -24,8 +24,12 @@ DEPEND="${RDEPEND}
 
 DOCS="API-NOTES NEWS README TODO TUTORIAL"
 
-RESTRICT="test"
-
 src_test() {
-	python setup.py test || die "src_test failed."
+	if ! built_with_use media-libs/flac ogg ; then
+		ewarn "You need media-libs/flac to be built with use ogg in order to"
+		ewarn "run the tests. Please re-install it with the ogg useflag enabled."
+		ewarn "Skipping tests."
+	else
+		python setup.py test || die "src_test failed."
+	fi
 }

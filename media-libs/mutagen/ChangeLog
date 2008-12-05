@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/mutagen
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.63 2008/08/13 07:51:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.64 2008/12/04 05:25:34 ssuominen Exp $
+
+*mutagen-1.15 (04 Dec 2008)
+
+  04 Dec 2008; <ssuominen@gentoo.org> +mutagen-1.15.ebuild:
+  Version bump for bug 249604, thanks to Kai Huuhko.
 
   13 Aug 2008; Alexis Ballier <aballier@gentoo.org> -mutagen-1.12.ebuild,
   -mutagen-1.13.ebuild:
