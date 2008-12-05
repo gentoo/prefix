@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-settings-daemon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.19 2008/12/02 15:02:18 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.20 2008/12/04 12:46:26 remi Exp $
+
+  04 Dec 2008; Rémi Cardona <remi@gentoo.org>
+  files/gnome-settings-daemon-2.24.1-check-for-server-side-XInput.patch:
+  upstream proposed a different patch, let's use that instead
 
 *gnome-settings-daemon-2.24.1-r1 (02 Dec 2008)
 

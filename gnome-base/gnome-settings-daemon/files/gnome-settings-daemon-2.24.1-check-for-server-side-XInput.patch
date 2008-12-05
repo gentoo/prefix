@@ -1,22 +1,20 @@
 Index: plugins/mouse/gsd-mouse-manager.c
 ===================================================================
---- plugins/mouse/gsd-mouse-manager.c	(révision 621)
-+++ plugins/mouse/gsd-mouse-manager.c	(copie de travail)
-@@ -328,6 +328,17 @@
+--- plugins/mouse/gsd-mouse-manager.c	(revision 621)
++++ plugins/mouse/gsd-mouse-manager.c	(working copy)
+@@ -329,9 +329,14 @@ devicepresence_filter (GdkXEvent *xevent
+ static void
  set_devicepresence_handler (GsdMouseManager *manager)
  {
-         Display *display = gdk_x11_get_default_xdisplay ();
-+ 
-+        XExtensionVersion *version = XGetExtensionVersion (display, INAME);
-+        if (!version || version == (XExtensionVersion*) NoSuchExtension)
-+            return;
-+
-+        if (!version->present)
-+        {
-+            XFree (version);
-+            return;
-+        }
-+
+-        Display *display = gdk_x11_get_default_xdisplay ();
++        Display *display;
          XEventClass class_presence;
          int xi_presence;
++
++        if (!supports_xinput_devices ())
++                return;
++
++        display = gdk_x11_get_default_xdisplay ();
  
+         gdk_error_trap_push ();
+         DevicePresence (display, xi_presence, class_presence);
