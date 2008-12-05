@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.200 2008/09/15 16:50:14 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.203 2008/12/04 19:37:42 betelgeuse Exp $
+
+  04 Dec 2008; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.6.6.2.ebuild:
+  Add link to upstream bug on doc naming schema.
+
+  04 Dec 2008; Zac Medico <zmedico@gentoo.org> sqlite-3.6.6.2.ebuild:
+  Bug #249737 - Fix incorrect path in dohtml call.
+
+*sqlite-3.6.6.2 (03 Dec 2008)
+
+  03 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org> -sqlite-3.6.2.ebuild,
+  +sqlite-3.6.6.2.ebuild:
+  Version bump, remove problematic one. Fixes bug #238978.
 
 *sqlite-3.6.2 (15 Sep 2008)
 

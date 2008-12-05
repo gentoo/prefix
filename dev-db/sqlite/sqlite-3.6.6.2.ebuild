@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.2.ebuild,v 1.1 2008/09/15 16:50:14 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.6.2.ebuild,v 1.3 2008/12/04 19:37:42 betelgeuse Exp $
 
 EAPI="prefix 1"
 
@@ -8,7 +8,8 @@ inherit versionator eutils flag-o-matic libtool autotools
 
 DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
-DOC_PV=$(replace_all_version_separators _)
+DOC_BASE="$(get_version_component_range 1-3)"
+DOC_PV="$(replace_all_version_separators _ ${DOC_BASE})"
 SRC_URI="http://www.sqlite.org/${P}.tar.gz
 	doc? ( http://www.sqlite.org/${PN}_docs_${DOC_PV}.zip )"
 
@@ -57,8 +58,7 @@ src_compile() {
 		$(use_enable threadsafe cross-thread-connections) \
 		$(use_enable tcl) \
 		$(use_enable tcl amalgamation) \
-		--with-readline-inc=-I"${EPREFIX}"/usr/include/readline \
-		|| die
+		--with-readline-inc=-I"${EPREFIX}"/usr/include/readline
 	emake all || die "emake all failed"
 }
 
@@ -80,11 +80,13 @@ src_install() {
 	doman sqlite3.1 || die
 
 	if use doc; then
-		dohtml -r "${WORKDIR}"/${PN}_docs_${DOC_PV}/* || die
+		# Naming scheme changes randomly between - and _ in releases
+		# http://www.sqlite.org/cvstrac/tktview?tn=3523
+		dohtml -r "${WORKDIR}"/${PN}-${DOC_PV}-docs/* || die
 	fi
 }
 
 pkg_postinst() {
-	elog "sqlite-3.6.0 is not totally backwards compatible, see"
+	elog "sqlite-3.6.X is not totally backwards compatible, see"
 	elog "http://www.sqlite.org/releaselog/3_6_0.html for full details."
 }
