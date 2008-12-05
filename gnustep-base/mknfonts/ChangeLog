@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/mknfonts
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.22 2008/08/27 15:41:36 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.23 2008/12/03 14:42:28 voyageur Exp $
+
+  03 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  mknfonts-0.5-r1.ebuild:
+  Fix compilation with --as-needed, bug #249507
 
   27 Aug 2008; Bernard Cafarelli <voyageur@gentoo.org> -mknfonts-0.5.ebuild:
   Remove old version
