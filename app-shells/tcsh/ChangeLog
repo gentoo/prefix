@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.84 2008/08/03 15:30:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.86 2008/12/04 20:50:30 grobian Exp $
+
+  04 Dec 2008; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r3.ebuild,
+  tcsh-6.14-r5.ebuild:
+  Remove old
+
+*tcsh-6.16 (04 Dec 2008)
+
+  04 Dec 2008; Fabian Groffen <grobian@gentoo.org> +tcsh-6.16.ebuild:
+  Version bump, thanks to Anton Yuzhaninov for notifying me
 
   03 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.

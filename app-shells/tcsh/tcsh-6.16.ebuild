@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15-r2.ebuild,v 1.12 2008/12/04 20:50:30 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.16.ebuild,v 1.1 2008/12/04 20:46:06 grobian Exp $
 
 EAPI="prefix"
 
@@ -33,11 +33,10 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${MY_P/15/14}"-debian-dircolors.patch # bug #120792
+	epatch "${FILESDIR}/${MY_P/16/14}"-debian-dircolors.patch # bug #120792
 	epatch "${FILESDIR}"/${PN}-6.14-makefile.patch # bug #151951
-	epatch "${FILESDIR}"/${MY_P}-normalize-command-fix.patch # bug #183754
 	epatch "${FILESDIR}"/${PN}-6.14-use-ncurses.patch
-	epatch "${FILESDIR}"/${MY_P}-interix.patch
+	epatch "${FILESDIR}"/${MY_P/16/15}-interix.patch
 	eautoreconf
 
 	if use catalogs ; then
@@ -83,13 +82,4 @@ src_install() {
 
 	# bug #119703: add csh -> tcsh symlink
 	dosym /bin/tcsh /bin/csh
-}
-
-pkg_postinst() {
-	elog "This revision of tcsh does use a completely revamped configuration"
-	elog "files system, which is based on the bash equivalents.  It should"
-	elog "fix issues for KDE users, and miscelaneous issues of environment"
-	elog "variables not set that should have, like EDITOR.  If you rely"
-	elog "on the /etc/csh.* files heavily, you may find your setup will be"
-	elog "broken now."
 }
