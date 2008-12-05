@@ -23,3 +23,4 @@ move dev-perl/Term-ANSIColor perl-core/Term-ANSIColor
 move dev-perl/Time-Piece perl-core/Time-Piece
 move dev-perl/version perl-core/version
 slotmove app-doc/elisp-manual 0 21
+move net-misc/gtk2-ssh-askpass net-misc/ssh-askpass-fullscreen

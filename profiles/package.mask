@@ -1,8 +1,10 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9240 2008/12/02 23:13:18 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9249 2008/12/04 23:11:59 scarabeus Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
-# an explanation of why something is getting masked
+# an explanation of why something is getting masked. Please be extremely
+# careful not to commit atoms that are not valid, as it can cause large-scale
+# breakage, especially if it ends up in the daily snapshot.
 #
 ## Example:
 ##
@@ -28,6 +30,34 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+# Tomas Chvatal <scarabeus@gentoo.org> (04 Dec 2008)
+# new version, can harm kittens masking for now.
+>=net-misc/networkmanager-0.7.0
+>=net-misc/networkmanager-vpnc-0.7.0
+>=net-misc/networkmanager-pptp-0.7.0
+>=net-misc/networkmanager-openvpn-0.7.0
+
+
+# Bernard Cafarelli <voyageur@gentoo.org> (04 Dec 2008)
+# Masked for removal in 30 days (bug #249799)
+# * Upstream closed web site and source downloads
+# * No updates since first release 2 years ago
+# * Still based on old NX 1.5 code, missing features and being mostly
+# incompatible with current NX servers/clients
+# * Client does not compile with gcc4.3 or --as-needed (bug #248138).
+# * Server includes old, unpatched xorg sources, probably vulnerable to GLSA
+# 200710-09 and 200804-05.
+# * GPL alternatives exist: net-misc/qtnx, net-misc/nxserver-freenx
+net-misc/nxclient-2xterminalserver
+net-misc/nxserver-2xterminalserver
+
+# Tomas Chvatal <scarabeus@gentoo.org> (03 Dec 2008)
+# Betaversion, has cool stuff like plasmoid and so on
+=net-p2p/ktorrent-3.2*
+
+# Samuli Suominen <ssuominen@gentoo.org> (03 Dec 2008)
+# Deprecated library for Portaudio v18. Removed in 30 days.
+media-sound/pablio
 
 # Christian Faulhammer <fauli@gentoo.org> (02 Dec 2008)
 # Removal because it has been integrated into Claws Mail
@@ -325,10 +355,6 @@ app-portage/genflags
 # Trying to resolve issue inside openrc
 >=sys-cluster/vzctl-3.0.22-r10
 
-# Michael Sterrett <mr_bones_@gentoo.org> (13 Oct 2008)
-# Maintainer mask of known broken version.
->=app-admin/syslog-ng-2.1
-
 # Rémi Cardona <remi@gentoo.org> (11 Oct 2008)
 # Old versions, those are no longer maintained and
 # should not be used, use 2.x instead
@@ -457,11 +483,6 @@ dev-tcltk/tclgpgme
 # Beta driver, masking corresponding nvidia-settings
 ~x11-drivers/nvidia-drivers-177.68
 ~media-video/nvidia-settings-177.68
-
-# Christian Hoffmann <hoffie@gentoo.org> (26 Aug 2008)
-# Masked for security, bug 235052; codebase seems to have lots of problems,
-# needs time to fix or final removing, see the referenced bug for progress
-www-apps/phpcollab
 
 # Ricardo Mendoza <ricmm@gentoo.org> (21 Aug 2008)
 # Beta driver, masking corresponding nvidia-settings
@@ -897,8 +918,6 @@ games-fps/quake4-demo
 # https://bugs.gentoo.org/show_bug.cgi?id=211166
 www-apps/joomla
 www-apps/mambo
-www-apps/moregroupware
-www-apps/net2ftp
 www-apps/wordpress
 www-apps/xoops
 

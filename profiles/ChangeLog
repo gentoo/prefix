@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2117 2008/12/02 23:13:18 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2124 2008/12/04 23:11:59 scarabeus Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  04 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Add new networkmanager stuff (0.7.0) to the package mask.
+
+  04 Dec 2008; Jeremy Olexa <darkside@gentoo.org> updates/4Q-2008:
+  pkgmove net-misc/gtk2-ssh-askpass net-misc/ssh-askpass-fullscreen due to a
+  name change from upstream
+
+  04 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Last rites mask net-misc/nxclient-2xterminalserver and
+  net-misc/nxserver-2xterminalserver, bug #249799
+
+  04 Dec 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Add warning to package.mask about invalid atoms.
+
+  03 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  ktorrent 3.2_beta added to the mask.
+
+  03 Dec 2008; <wrobel@gentoo.org> package.mask:
+  www-apps/phpcollab, www-apps/net2ftp, and www-apps/moregroupware were
+  removed from the tree.
+
+  03 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Mask media-libs/pablio which is a separate library for deprecated
+  Portaudio v18.
 
   02 Dec 2008; Alin Năstac <mrness@gentoo.org> package.mask:
   Unmask net-misc/br2684ctl (#204186).

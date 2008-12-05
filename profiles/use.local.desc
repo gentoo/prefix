@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4049 2008/12/02 20:27:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4053 2008/12/05 00:47:55 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -54,6 +54,7 @@ app-admin/system-tools-backends:policykit - Use sys-auth/policykit to gain privi
 app-admin/testdisk:ntfs - Include the ability to read NTFS filesystems
 app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/ulogd:ip-as-string - Logs IP addresses as stings
+app-admin/ulogd:logrotate - Install support files for logrotate
 app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
 app-arch/dump:ermt - encrypted rmt support
@@ -491,6 +492,7 @@ dev-embedded/ponyprog:epiphany - Enable support for www-client/epiphany
 dev-embedded/sdcc:boehm-gc - Enable Hans Boehm's garbage collector (dev-libs/boehm-gc)
 dev-embedded/urjtag:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
 dev-games/cegui:devil - Enable image loading via DevIL
+dev-games/cegui:freeimage - Enable image loading via FreeImage
 dev-games/cegui:irrlicht - Enable the Irrlicht renderer
 dev-games/cegui:xerces-c - Enable the Xerces-C++ XML parser module
 dev-games/crystalspace:3ds - Enables support for .3DS files in CrystalSpace
@@ -2047,6 +2049,10 @@ net-misc/mediatomb:libextractor - Use libextractor to gather files' metadata.
 net-misc/mediatomb:mysql -  Use dev-db/mysql as backend rather than SQLite3. If this USE flag is disabled, dev-db/sqlite is used in its stead. 
 net-misc/mediatomb:taglib -  Use media-libs/taglib for reading files' metadata rather than id3lib. If this USE flag is disabled media-libs/id3lib is used in its stead. 
 net-misc/neon:pkcs11 - Add support PKCS11 support
+net-misc/networkmanager:dhclient - Use dhclient from net-misc/dhcp for getting ip.
+net-misc/networkmanager:dhcpcd - Use net-misc/dhcpcd for getting ip.
+net-misc/networkmanager:nss - Use dev-libs/nss for cryptography.
+net-misc/networkmanager:resolvconf - Use net-dns/openresolv for managing DNS informations
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
 net-misc/nxcl:nxclient - Use nxssh from net-misc/nxclient instead of standard ssh
@@ -2145,8 +2151,10 @@ net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
 net-p2p/gift:openft - pull in OpenFT plugin
 net-p2p/ktorrent:bwscheduler - Enable the bwscheduler plugin
+net-p2p/ktorrent:downloadorder - Enable plugin for user selected download order
 net-p2p/ktorrent:infowidget - Enable the infowidget plugin
 net-p2p/ktorrent:ipfilter - Enable the ipfilter plugin
+net-p2p/ktorrent:kross - Enable kross scripting support
 net-p2p/ktorrent:logviewer - Enable the logviewer plugin
 net-p2p/ktorrent:mediaplayer - Enable the mediaplayer plugin
 net-p2p/ktorrent:scanfolder - Enable the scanfolder plugin
