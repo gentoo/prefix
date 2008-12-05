@@ -1,6 +1,13 @@
 # ChangeLog for dev-dotnet/art-sharp
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/art-sharp/ChangeLog,v 1.60 2008/11/28 00:21:07 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/art-sharp/ChangeLog,v 1.61 2008/12/03 16:50:14 loki_val Exp $
+
+*art-sharp-2.24.0-r2 (03 Dec 2008)
+
+  03 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -art-sharp-2.24.0-r1.ebuild, +art-sharp-2.24.0-r2.ebuild:
+  Bump libart_lgpl dependency to 2.3.20 to avoid empty package being
+  installed.
 
 *art-sharp-2.24.0-r1 (27 Nov 2008)
 
