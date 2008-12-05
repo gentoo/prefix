@@ -1,0 +1,45 @@
+# ChangeLog for dev-ruby/facter
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facter/ChangeLog,v 1.10 2008/09/09 09:33:56 matsuu Exp $
+
+*facter-1.5.2 (09 Sep 2008)
+
+  09 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> -facter-1.3.6.ebuild,
+  -facter-1.3.7.ebuild, +facter-1.5.2.ebuild:
+  Version bumped. Removed old versions.
+
+  13 Aug 2008; Ferris McCormick <fmccor@gentoo.org> facter-1.3.8.ebuild:
+  Add ~sparc, dependency required by Bug #234621.
+
+  26 Jun 2008; Thomas Anderson <gentoofan23@gentoo.org> facter-1.3.8.ebuild:
+  stable amd64, bug 227375
+
+  20 Jun 2008; Christian Faulhammer <opfer@gentoo.org> facter-1.3.8.ebuild:
+  stable x86, bug 227375
+
+  16 Jun 2008; nixnut <nixnut@gentoo.org> facter-1.3.8.ebuild:
+  Stable on ppc wrt bug 227375
+
+*facter-1.3.8 (08 Dec 2007)
+
+  08 Dec 2007; MATSUU Takuto <matsuu@gentoo.org> metadata.xml,
+  +facter-1.3.8.ebuild:
+  Version bumped.
+  maintainership takeover.
+
+  13 Oct 2007; Tom Gall <tgall@gentoo.org> facter-1.3.7.ebuild:
+  added ~ppc64
+
+  21 Sep 2007; René Nussbaumer <killerfox@gentoo.org> facter-1.3.7.ebuild:
+  Added to ~ppc.
+
+*facter-1.3.7 (13 Apr 2007)
+
+  13 Apr 2007; Masatomo Nakano <nakano@gentoo.org> +facter-1.3.7.ebuild:
+  Version bump.
+
+*facter-1.3.6 (17 Mar 2007)
+
+  17 Mar 2007; Masatomo Nakano <nakano@gentoo.org> +facter-1.3.6.ebuild:
+  Initial import. Ebuild submitted by Jose Gonzalez Gomez <jgonzalez.openinput@gmail.com>.
+  #146712
