@@ -44,6 +44,6 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog NEWS README
 
-	echo "export PKG_CONFIG_PATH=${EPREFIX}/usr/lib/pkgconfig:${EPREFIX}/usr/share/pkgconfig" >> "${T}"/99${PN}
+	echo "PKG_CONFIG_PATH=${EPREFIX}/usr/lib/pkgconfig:${EPREFIX}/usr/share/pkgconfig" >> "${T}"/99${PN}
 	doenvd "${T}"/99${PN}
 }
