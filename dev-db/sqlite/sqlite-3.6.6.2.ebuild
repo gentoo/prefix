@@ -42,9 +42,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/sandbox-fix2.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+#	epatch "${FILESDIR}"/${P}-interix.patch
 
-	eautoreconf # need new libtool for interix
+#	eautoreconf # need new libtool for interix
 	epunt_cxx
 }
 
