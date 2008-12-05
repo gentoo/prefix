@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.84 2008/11/26 22:23:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.85 2008/12/04 23:51:49 loki_val Exp $
+
+*gtk-sharp-2.12.7_pre20081204 (04 Dec 2008)
+
+  04 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +gtk-sharp-2.12.7_pre20081204.ebuild:
+  Bump for important fixes to Banshee edit boxes.
 
 *gtk-sharp-2.12.6-r1 (26 Nov 2008)
 
