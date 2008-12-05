@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-datetime
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.33 2008/11/20 16:46:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.34 2008/12/03 23:46:36 angelos Exp $
+
+  03 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-datetime-0.5.0.ebuild:
+  Removed old
 
   20 Nov 2008; Brent Baude <ranger@gentoo.org> xfce4-datetime-0.6.0.ebuild:
   Marking xfce4-datetime-0.6.0 ppc64 for bug 245970
