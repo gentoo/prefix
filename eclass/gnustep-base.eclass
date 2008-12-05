@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.8 2008/10/03 14:59:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.9 2008/12/03 14:29:05 voyageur Exp $
 
 inherit eutils flag-o-matic
 
@@ -16,7 +16,7 @@ IUSE="debug doc"
 
 # packages needed to build any base gnustep package
 GNUSTEP_CORE_DEPEND="virtual/libc
-	doc? ( virtual/texi2dvi =dev-tex/latex2html-2002* >=app-text/texi2html-1.64 )"
+	doc? ( virtual/texi2dvi dev-tex/latex2html app-text/texi2html )"
 
 # Where to install GNUstep
 GNUSTEP_PREFIX="${EPREFIX}/usr/GNUstep"

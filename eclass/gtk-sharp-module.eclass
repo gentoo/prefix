@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.6 2008/11/28 00:20:08 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.7 2008/12/03 20:44:04 loki_val Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>, butchered by ikelos, then loki_val.
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -114,7 +114,7 @@ gtk-sharp-module_src_prepare() {
 
 	cd "${S}/${GTK_SHARP_MODULE_DIR}"
 
-	gtk-sharp-module_fix_files
+	gtk-sharp-module_fix_files &> /dev/null
 }
 
 gtk-sharp-module_src_compile() {

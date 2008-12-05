@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.56 2008/10/31 22:01:32 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.57 2008/12/03 18:11:47 dsd Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -147,7 +147,7 @@ qeerror() { qout eerror "${@}" ; }
 # @DESCRIPTION:
 # It detects the value of the variable defined in the file configfile
 getfilevar() {
-local	ERROR workingdir basefname basedname myARCH="${ARCH}"
+local	ERROR basefname basedname myARCH="${ARCH}"
 	ERROR=0
 
 	[ -z "${1}" ] && ERROR=1
@@ -159,15 +159,12 @@ local	ERROR workingdir basefname basedname myARCH="${ARCH}"
 		eerror "getfilevar requires 2 variables, with the second a valid file."
 		eerror "   getfilevar <VARIABLE> <CONFIGFILE>"
 	else
-		workingdir="${PWD}"
 		basefname="$(basename ${2})"
 		basedname="$(dirname ${2})"
 		unset ARCH
 
-		cd "${basedname}"
 		echo -e "e:\\n\\t@echo \$(${1})\\ninclude ${basefname}" | \
-			make M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
-		cd "${workingdir}"
+			make -C "${basedname}" M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
 
 		ARCH=${myARCH}
 	fi
