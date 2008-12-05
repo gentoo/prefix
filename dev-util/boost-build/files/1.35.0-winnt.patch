@@ -1,6 +1,6 @@
 diff -ruN boost_1_35_0.orig/tools/build/v2/tools/common.jam boost_1_35_0/tools/build/v2/tools/common.jam
---- boost_1_35_0.orig/tools/build/v2/tools/common.jam	2008-09-08 08:10:48 +0200
-+++ boost_1_35_0/tools/build/v2/tools/common.jam	2008-09-05 11:00:25 +0200
+--- boost_1_35_0.orig/tools/build/v2/tools/common.jam	2008-12-05 14:12:10 +0100
++++ boost_1_35_0/tools/build/v2/tools/common.jam	2008-12-05 13:56:59 +0100
 @@ -737,6 +737,7 @@
          #case mingw* : tag += mgw ;
          case mipspro* : tag += mp ;
@@ -10,8 +10,8 @@ diff -ruN boost_1_35_0.orig/tools/build/v2/tools/common.jam boost_1_35_0/tools/b
          case tru64cxx* : tag += tru ;
          case vacpp* : tag += xlc ;
 diff -ruN boost_1_35_0.orig/tools/build/v2/tools/msvc.jam boost_1_35_0/tools/build/v2/tools/msvc.jam
---- boost_1_35_0.orig/tools/build/v2/tools/msvc.jam	2008-09-08 08:10:48 +0200
-+++ boost_1_35_0/tools/build/v2/tools/msvc.jam	2008-09-05 11:00:25 +0200
+--- boost_1_35_0.orig/tools/build/v2/tools/msvc.jam	2008-12-05 14:12:10 +0100
++++ boost_1_35_0/tools/build/v2/tools/msvc.jam	2008-12-05 13:56:59 +0100
 @@ -38,6 +38,12 @@
    # to be seen, though ;-)
    ;
@@ -25,10 +25,10 @@ diff -ruN boost_1_35_0.orig/tools/build/v2/tools/msvc.jam boost_1_35_0/tools/bui
  # List of all registered configurations
  .versions = [ new configurations ] ;
  
-diff -ruN boost_1_35_0/tools/build/v2/tools/parity.jam boost_1_35_0.new/tools/build/v2/tools/parity.jam
---- boost_1_35_0/tools/build/v2/tools/parity.jam	1970-01-01 01:00:00 +0100
-+++ boost_1_35_0.new/tools/build/v2/tools/parity.jam	2008-09-08 15:31:35 +0200
-@@ -0,0 +1,149 @@
+diff -ruN boost_1_35_0.orig/tools/build/v2/tools/parity.jam boost_1_35_0/tools/build/v2/tools/parity.jam
+--- boost_1_35_0.orig/tools/build/v2/tools/parity.jam	1970-01-01 01:00:00 +0100
++++ boost_1_35_0/tools/build/v2/tools/parity.jam	2008-12-05 14:18:48 +0100
+@@ -0,0 +1,150 @@
 +# Copyright (c) 2008 Markus Duft
 +#
 +# Use, modification and distribution is subject to the Boost Software
@@ -75,6 +75,7 @@ diff -ruN boost_1_35_0/tools/build/v2/tools/parity.jam boost_1_35_0.new/tools/bu
 +generators.register-c-compiler parity.compile.c   : C   : OBJ : <toolset>parity ;
 +generators.register-c-compiler parity.compile.asm : ASM : OBJ : <toolset>parity ;
 +
++generators.register-archiver parity.archive : OBJ : STATIC_LIB : <toolset>parity ;
 +generators.register-linker parity.link : OBJ SEARCHED_LIB STATIC_LIB IMPORT_LIB : EXE : <toolset>parity ;
 +generators.register-linker parity.link.dll : OBJ SEARCHED_LIB STATIC_LIB IMPORT_LIB : SHARED_LIB IMPORT_LIB : <toolset>parity ;
 +
