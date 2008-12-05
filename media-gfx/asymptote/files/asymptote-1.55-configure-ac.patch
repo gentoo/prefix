@@ -1,7 +1,9 @@
-diff -r -U2 asymptote-1.53.orig/configure.ac asymptote-1.53/configure.ac
---- asymptote-1.53.orig/configure.ac	2008-11-28 00:44:44.000000000 +0600
-+++ asymptote-1.53/configure.ac	2008-11-29 03:20:21.000000000 +0600
-@@ -80,8 +80,14 @@
+Index: asymptote-1.55/configure.ac
+===================================================================
+--- asymptote-1.55.orig/configure.ac
++++ asymptote-1.55/configure.ac
+@@ -79,10 +79,16 @@ if test "$GXX" = yes ; then
+    fi
  fi
  
 -AC_CHECK_HEADER(fftw3.h,
@@ -18,14 +20,18 @@ diff -r -U2 asymptote-1.53.orig/configure.ac asymptote-1.53/configure.ac
 +fi
  
  GCVERSION=gc-7.1
-@@ -120,5 +126,5 @@
+ 
+@@ -119,7 +125,7 @@ if test "x$ac_cv_use_gc" != "xno" ; then
+       fi
        CPPFLAGS_SAVE=$CPPFLAGS
        CPPFLAGS=$CPPFLAGS" $INCL"
 -      AC_CHECK_HEADER(gc.h,
 +      AC_CHECK_HEADER([gc/gc.h],
  	AC_CHECK_LIB([gc],[GC_malloc],[
  	  LIBS=$LIBS"-lgc "
-@@ -187,5 +193,14 @@
+ 	  AC_MSG_NOTICE([enabling system $GCNAME])],[
+@@ -186,7 +192,16 @@ AC_CHECK_LIB([ncurses], [setupterm], [AC
+ AC_CHECK_LIB([m], [sqrt])
  AC_CHECK_LIB([z], [deflate])
  AC_CHECK_LIB([pthread], [pthread_create])
 -AC_CHECK_LIB([sigsegv], [stackoverflow_install_handler])
@@ -41,7 +47,9 @@ diff -r -U2 asymptote-1.53.orig/configure.ac asymptote-1.53/configure.ac
 +fi
  
  AC_CHECK_LIB([readline], [rl_completion_matches],,
-@@ -204,9 +219,15 @@
+ AC_MSG_NOTICE(*** Could not find GNU readline 4.2 or later: will compile without readline support ***))
+@@ -203,11 +218,17 @@ AC_COMPILE_IFELSE(AC_LANG_PROGRAM([#incl
+ 		   [Define if you have a working <rpc/rpc.h> header file])],
     AC_MSG_WARN([*** Broken rpc headers; XDR support disabled ***]))
  
 -AC_CHECK_HEADER(gsl/gsl_sf.h,
@@ -58,3 +66,4 @@ diff -r -U2 asymptote-1.53.orig/configure.ac asymptote-1.53/configure.ac
 +fi
  
  case "$OSTYPE" in
+      cygwin) AC_CHECK_HEADER(GL/glut.h,

@@ -1,7 +1,9 @@
-diff -r -U2 asymptote-1.53.orig/settings.cc asymptote-1.53/settings.cc
---- asymptote-1.53.orig/settings.cc	2008-11-28 00:43:50.000000000 +0600
-+++ asymptote-1.53/settings.cc	2008-11-29 03:15:52.000000000 +0600
-@@ -81,12 +81,12 @@
+Index: asymptote-1.55/settings.cc
+===================================================================
+--- asymptote-1.55.orig/settings.cc
++++ asymptote-1.55/settings.cc
+@@ -80,14 +80,14 @@ const bool haveglut=false;
+ bool msdos=false;
  const char *HOME="HOME";
  const char pathSeparator=':';
 -string defaultPSViewer="gv";
@@ -17,3 +19,4 @@ diff -r -U2 asymptote-1.53.orig/settings.cc asymptote-1.53/settings.cc
 +string defaultDisplay="xdg-open";
  string defaultPython;
  const string docdir=ASYMPTOTE_DOCDIR;
+ void queryRegistry() {}
