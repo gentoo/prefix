@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/levee-3.5.ebuild,v 1.1 2008/05/25 15:52:56 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/levee-3.5.ebuild,v 1.2 2008/12/03 11:57:14 loki_val Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,8 @@ LICENSE="levee"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 IUSE=""
-DEPEND="sys-libs/ncurses"
+DEPEND="!app-text/lv
+	sys-libs/ncurses"
 
 src_unpack() {
 	unpack ${A}
