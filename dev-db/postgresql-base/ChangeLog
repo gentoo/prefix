@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.15 2008/11/01 07:37:11 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.16 2008/12/03 19:21:50 caleb Exp $
+
+*postgresql-base-8.3.5 (03 Dec 2008)
+*postgresql-base-8.2.11 (03 Dec 2008)
+
+  03 Dec 2008; Caleb Tennis <caleb@gentoo.org>
+  +postgresql-base-8.2.11.ebuild, -postgresql-base-8.3.4.ebuild,
+  +postgresql-base-8.3.5.ebuild:
+  bump versions
 
   01 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Fix Manifest corruption that was added by caleb on Sept 25, due to a
