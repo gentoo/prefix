@@ -1,0 +1,51 @@
+------------------------------------------------------------------------
+r134 | robbat2 | 2008-12-05 11:58:43 -0800 (Fri, 05 Dec 2008) | 1 line
+
+Bug #249891 - Add support for just calling another binary with the identical
+syntax to the package manager. Infra-requested feature, commit acked by
+hawking@gentoo.org.
+------------------------------------------------------------------------
+Index: python-updater
+===================================================================
+--- python-updater	(revision 133)
++++ python-updater	(revision 134)
+@@ -39,6 +39,7 @@
+ SUPPORTED_PMS="portage pkgcore paludis"
+ PMS_COMMAND=( "emerge" "pmerge" "paludis" )
+ PMS_OPTIONS=( "-vD1" "-Do" "-i1" )
++CUSTOM_PMS_COMMAND=""
+ 
+ # Checks
+ CHECK_ECLASS=0
+@@ -86,6 +87,9 @@
+     -c CMD, --command CMD
+                     Pipe found packages to command CMD instead of invoking package
+                     manager. Only for debug and script use.
++    --package-manager-command CMD
++                    Call CMD instead of the default command for the specified
++                    package manager.
+     -eCHECK --enable-CHECK
+                     Enable CHECK where CHECK can be one of:
+                     * eclass       (Disabled by default)
+@@ -220,6 +224,10 @@
+                 PMS_INDEX=$((${PMS_INDEX} + 1))
+             done
+             ;;
++        --package-manager-command)
++            shift
++            CUSTOM_PMS_COMMAND="$1"
++            ;;
+         -c|--command)
+             shift
+             PIPE_COMMAND="$1"
+@@ -429,7 +437,9 @@
+ 
+ # (Pretend to) remerge packages
+ if [[ -n "${PKGS_TO_REMERGE}" ]]; then
+-    cmd="${PMS_COMMAND[${PMS_INDEX}]} ${PMS_OPTIONS[${PMS_INDEX}]} ${PKGS_TO_REMERGE}"
++    pmscmd="${CUSTOM_PMS_COMMAND}"
++    [ -z "${pmscmd}" ] && pmscmd="${PMS_COMMAND[${PMS_INDEX}]}"
++    cmd="${pmscmd} ${PMS_OPTIONS[${PMS_INDEX}]} ${PKGS_TO_REMERGE}"
+     einfo ${cmd}
+     ${cmd}
+ else

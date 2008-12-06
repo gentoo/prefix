@@ -1,6 +1,15 @@
 # ChangeLog for app-admin/python-updater
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.32 2008/08/25 09:56:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.33 2008/12/05 20:03:52 robbat2 Exp $
+
+*python-updater-0.6-r1 (05 Dec 2008)
+
+  05 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +files/python-updater-r133-custom-package-manager-command.patch,
+  +python-updater-0.6-r1.ebuild:
+  Bug #249891 - Add support for just calling another binary with the
+  identical syntax to the package manager. Infra-requested feature, commit
+  acked by hawking@gentoo.org.
 
 *python-updater-0.6 (25 Aug 2008)
 
