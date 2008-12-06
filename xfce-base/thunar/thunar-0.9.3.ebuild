@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.2 2008/11/10 22:35:42 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.3 2008/12/05 14:46:49 angelos Exp $
 
 EAPI="prefix 1"
 
-inherit eutils virtualx xfce44
+inherit eutils virtualx xfce44 flag-o-matic
 
 MY_P=${P/t/T}
 S=${WORKDIR}/${MY_P}
@@ -73,6 +73,11 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.9.0-missing-audio-cds-for-volman.patch \
 		"${FILESDIR}"/${PN}-0.9.0-fix-defuncts.patch
+}
+
+src_compile() {
+	append-flags -Wno-error
+	xfce44_src_compile
 }
 
 src_test() {
