@@ -900,8 +900,12 @@ mysql_pkg_config() {
 	# (http://dev.mysql.com/doc/refman/5.0/en/bdb-storage-engine.html)
 	mysql_version_is_at_least "5.1" || options="${options} --skip-bdb"
 
-	built_with_use ${CATEGORY}/${PN} innodb && \
+	if mysql_version_is_at_least "5.1" ; then
+		built_with_use ${CATEGORY}/${PN} innodb && \
+			options="${options} --skip-innodb"
+	else
 		options="${options} --skip-innodb"
+	fi
 
 	if mysql_version_is_at_least "4.1.3" ; then
 		built_with_use ${CATEGORY}/${PN} cluster && \
