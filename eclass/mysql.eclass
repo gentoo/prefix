@@ -243,7 +243,7 @@ mysql_init_vars() {
 		if [[ -z "${PREVIOUS_DATADIR}" ]] ; then
 			if [[ -e "${EPREFIX}${MY_DATADIR}" ]] ; then
 				# If you get this and you're wondering about it, see bug #207636
-				elog "MySQL datadir found in ${MY_DATADIR}"
+				elog "MySQL datadir found in ${EPREFIX}${MY_DATADIR}"
 				elog "A new one will not be created."
 				PREVIOUS_DATADIR="yes"
 			else
