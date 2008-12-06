@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.12172 (06 Dec 2008)
+
+  06 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.12165.ebuild, +portage-2.2.00.12172.ebuild:
+  Fix issue with stripping unwritable files, fix backtrace on unmerge
+
 *portage-2.2.00.12165 (06 Dec 2008)
 
   06 Dec 2008; Fabian Groffen <grobian@gentoo.org>
