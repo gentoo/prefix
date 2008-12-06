@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.4.3.ebuild,v 1.1 2008/10/30 22:13:57 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.4.3.ebuild,v 1.2 2008/12/05 17:30:02 angelos Exp $
 
 EAPI="prefix 1"
 
@@ -29,6 +29,11 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	sys-devel/gettext
 	doc? ( dev-util/gtk-doc )"
+
+src_unpack() {
+	unpack ${A}
+	sed -i -e "/24x24/d" "${S}"/icons/Makefile.in
+}
 
 src_compile() {
 	local myconf="--enable-bsdlpr"
