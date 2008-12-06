@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ruby-fcgi-0.8.7.ebuild,v 1.7 2008/11/30 21:22:40 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ruby-fcgi-0.8.7.ebuild,v 1.8 2008/12/05 09:48:32 armin76 Exp $
 
 EAPI="prefix"
 
