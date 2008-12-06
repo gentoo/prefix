@@ -916,9 +916,7 @@ mysql_pkg_config() {
 		fi
 	fi
 
-	use prefix \
-		&& options="${options} --user=${PORTAGE_USER:-portage}" \
-		|| options="${options} --user=mysql"
+	use prefix || options="${options} --user=mysql"
 
 	local socket="${EROOT}/var/run/mysqld/mysqld${RANDOM}.sock"
 	local pidfile="${EROOT}/var/run/mysqld/mysqld${RANDOM}.pid"
