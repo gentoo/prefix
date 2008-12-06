@@ -56,6 +56,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-solaris64.patch
+	epatch "${FILESDIR}"/${PN}-0.4.9_p20070616-apple.patch
 
 	# Set version #
 	# Any better idea? We can't do much more as we use an exported svn snapshot.
