@@ -900,9 +900,12 @@ mysql_pkg_config() {
 	# (http://dev.mysql.com/doc/refman/5.0/en/bdb-storage-engine.html)
 	mysql_version_is_at_least "5.1" || options="--skip-bdb"
 
+	built_with_use ${CATEGORY}/${PN} innodb && \
+		options="${options} --skip-innodb"
+
 	if mysql_version_is_at_least "4.1.3" ; then
 		built_with_use ${CATEGORY}/${PN} cluster && \
-			options="--skip-ndbcluster"
+			options="${options} --skip-ndbcluster"
 
 		# Filling timezones, see
 		# http://dev.mysql.com/doc/mysql/en/time-zone-support.html
@@ -924,7 +927,6 @@ mysql_pkg_config() {
 		--skip-grant-tables \
 		--basedir=${EROOT}/usr \
 		--datadir=${EROOT}/${MY_DATADIR} \
-		--skip-innodb \
 		--skip-networking \
 		--max_allowed_packet=8M \
 		--net_buffer_length=16K \
