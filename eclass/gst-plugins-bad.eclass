@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.12 2008/06/29 16:49:40 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.13 2008/12/05 22:24:39 ssuominen Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -20,7 +20,7 @@ my_gst_plugins_bad="opengl vcd x alsa amrwb bz2 cdaudio directfb dts divx faac
 faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
 mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
 theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac mplex
-ofa oss4"
+ofa oss4 apexsink celt dvdnav jp2k twolame"
 
 #qtdemux spped tta
 

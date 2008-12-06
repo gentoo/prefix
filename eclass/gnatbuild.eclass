@@ -1,12 +1,19 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.43 2008/11/29 00:46:02 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.44 2008/12/05 08:36:00 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
 #
-# Note: HOMEPAGE and LICENSE are set in appropriate ebuild, as
-# gnat is developed by FSF and AdaCore "in parallel"
+# Notes:
+#  HOMEPAGE and LICENSE are set in appropriate ebuild, as
+#  gnat is developed by FSF and AdaCore "in parallel"
+#
+# The following vars can be set in ebuild before inheriting this eclass. They
+# will be respected:
+#  SLOT
+#  BOOT_SLOT - where old bootstrap is used as it works fine
+
 
 inherit eutils versionator toolchain-funcs flag-o-matic multilib autotools \
 	libtool fixheadtails gnuconfig pax-utils
@@ -409,10 +416,14 @@ gnatbuild_src_compile() {
 	else
 		# Set some paths to our bootstrap compiler.
 		export PATH="${GNATBOOT}/bin:${PATH}"
-		# !ATTN! the *installed* compilers have ${PN} as part of their
-		# LIBPATH, while the *bootstrap* uses hardset "gnatgcc" in theirs
-		# (which is referenced as GNATLIB below)
-		GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
+		# !ATTN! the bootstrap compilers have a very simplystic structure,
+		# so many paths are not identical to the installed ones.
+		# Plus it was simplified even more in new releases.
+		if [[ ${BOOT_SLOT} > 4.1 ]] ; then
+			GNATLIB="${GNATBOOT}/lib"
+		else
+			GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
+		fi
 
 		export CC="${GNATBOOT}/bin/gnatgcc"
 		export INCLUDE_DIR="${GNATLIB}/include"
@@ -494,13 +505,13 @@ gnatbuild_src_compile() {
 				# Compile helper tools
 				cd "${GNATBOOT}"
 				cp "${S}"/gcc/ada/xtreeprs.adb .
-				cp "${S}"/gcc/ada/xsinfo.adb .
-				cp "${S}"/gcc/ada/xeinfo.adb .
-				cp "${S}"/gcc/ada/xnmake.adb .
+				cp "${S}"/gcc/ada/xsinfo.adb   .
+				cp "${S}"/gcc/ada/xeinfo.adb   .
+				cp "${S}"/gcc/ada/xnmake.adb   .
 				gnatmake xtreeprs && \
-					gnatmake xsinfo && \
-					gnatmake xeinfo && \
-					gnatmake xnmake || die "building helper tools"
+				gnatmake xsinfo   && \
+				gnatmake xeinfo   && \
+				gnatmake xnmake   || die "building helper tools"
 			;;
 
 			bootstrap)

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.15 2008/06/29 15:21:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.16 2008/12/05 20:39:36 ssuominen Exp $
 
 # Author : foser <foser@gentoo.org>, zaheerm <zaheerm@gentoo.org>
 
@@ -30,7 +30,7 @@ MY_P=${MY_PN}-${PV}
 # This list is current to gst-plugins-good-0.10.6
 my_gst_plugins_good="gconf gconftool oss aalib aalibtest cairo cdio esd esdtest
 flac jpeg ladspa libcaca libdv libpng dv1394 shout2 shout2test speex annodex hal
-x taglib gdk_pixbuf gst_v4l2 sunaudio xshm xvideo zlib wavpack soup"
+x taglib gdk_pixbuf gst_v4l2 sunaudio xshm xvideo zlib wavpack soup pulse bz2"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-good/${MY_P}.tar.bz2"
