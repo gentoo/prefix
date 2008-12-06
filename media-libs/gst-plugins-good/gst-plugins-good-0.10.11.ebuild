@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.9.ebuild,v 1.1 2008/08/29 08:40:34 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.11.ebuild,v 1.2 2008/12/05 23:05:12 ssuominen Exp $
 
 EAPI="prefix"
 
@@ -15,13 +15,13 @@ LICENSE="LGPL-2.1"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND=">=media-libs/gst-plugins-base-0.10.18
-	 >=media-libs/gstreamer-0.10.18
+RDEPEND=">=media-libs/gst-plugins-base-0.10.21
+	 >=media-libs/gstreamer-0.10.21
 	 >=dev-libs/liboil-0.3.8"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11.5
 	dev-util/pkgconfig
-	!<media-libs/gst-plugins-bad-0.10.6"
+	!<media-libs/gst-plugins-bad-0.10.9"
 
 # overrides the eclass
 src_unpack() {
