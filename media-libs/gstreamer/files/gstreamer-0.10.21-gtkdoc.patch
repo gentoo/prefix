@@ -1,0 +1,15 @@
+diff -ur gstreamer-0.10.21.orig/common/gtk-doc.mak gstreamer-0.10.21/common/gtk-doc.mak
+--- gstreamer-0.10.21.orig/common/gtk-doc.mak	2008-09-10 12:13:16.000000000 +0300
++++ gstreamer-0.10.21/common/gtk-doc.mak	2008-12-05 21:09:04.000000000 +0200
+@@ -200,8 +200,8 @@
+         	    $(INSTALL_DATA) $(srcdir)/html/$(DOC_MODULE).devhelp2 \
+ 	           $(DESTDIR)$(TARGET_DIR)/$(DOC_MODULE)-@GST_MAJORMINOR@.devhelp2; \
+ 	  fi; \
+-	  which gtkdoc-rebase >/dev/null && \
+-	    gtkdoc-rebase --relative --dest-dir=$(DESTDIR) --html-dir=$(DESTDIR)$(TARGET_DIR) ; \
++	  (which gtkdoc-rebase >/dev/null && \
++	    gtkdoc-rebase --relative --dest-dir=$(DESTDIR) --html-dir=$(DESTDIR)$(TARGET_DIR)) || true ; \
+ 	fi) 
+ uninstall-local:
+ 	(installfiles=`echo ./html/*.html`; \
+Only in gstreamer-0.10.21.orig: gstreamer-0.10.21
