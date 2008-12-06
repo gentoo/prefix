@@ -20,6 +20,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-darwin-bool.patch
 	epatch "${FILESDIR}"/${PN}-5.1.22-min_max.patch
+	epatch "${FILESDIR}"/${P}-mysql_install_db.patch
 }
 
 src_test() {
