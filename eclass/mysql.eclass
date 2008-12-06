@@ -898,7 +898,7 @@ mysql_pkg_config() {
 	# BDB support will be removed.   Note that, as of MySQL 5.1, BDB isn't
 	# supported any longer.
 	# (http://dev.mysql.com/doc/refman/5.0/en/bdb-storage-engine.html)
-	mysql_version_is_at_least "5.1" || options="--skip-bdb"
+	mysql_version_is_at_least "5.1" || options="${options} --skip-bdb"
 
 	built_with_use ${CATEGORY}/${PN} innodb && \
 		options="${options} --skip-innodb"
