@@ -727,6 +727,7 @@ mysql_src_install() {
 		-e "s!= /var!= ${EPREFIX}/var!" \
 		"${FILESDIR}/my.cnf-${mysql_mycnf_version}" \
 		> "${TMPDIR}/my.cnf.ok"
+	use prefix && sed -i -e '/^user[ 	]*= mysql$/d' "${TMPDIR}/my.cnf.ok"
 	if mysql_version_is_at_least "4.1" && use latin1 ; then
 		sed -e "s|utf8|latin1|g" -i "${TMPDIR}/my.cnf.ok"
 	fi
