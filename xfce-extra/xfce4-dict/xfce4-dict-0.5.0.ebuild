@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/xfce4-dict-0.5.0.ebuild,v 1.1 2008/11/10 00:02:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/xfce4-dict-0.5.0.ebuild,v 1.2 2008/12/05 16:20:27 angelos Exp $
 
 EAPI="prefix 1"
 
@@ -36,6 +36,15 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
 	gnome2_icon_cache_update
+
+	if ! has_version app-text/aspell && ! has_version app-text/ispell \
+	&& ! has_version app-text/enchant; then
+		echo
+		elog "You need a spell check program for spell checking."
+		elog "xfce4-dict works with enchant, aspell, ispell or any other spell"
+		elog "check program which is compatible with the ispell command"
+		elog "The dictionary function will still work without those"
+	fi
 }
 
 pkg_postrm() {

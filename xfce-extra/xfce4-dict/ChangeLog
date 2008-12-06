@@ -1,6 +1,18 @@
 # ChangeLog for xfce-extra/xfce4-dict
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.23 2008/11/23 14:23:31 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.25 2008/12/05 16:20:27 angelos Exp $
+
+  05 Dec 2008; Christoph Mende <angelos@gentoo.org> xfce4-dict-0.3.0.ebuild,
+  xfce4-dict-0.4.1.ebuild, xfce4-dict-0.5.0.ebuild, xfce4-dict-0.5.1.ebuild,
+  xfce4-dict-0.5.2.ebuild:
+  Added an elog to let the user know we need aspell/ispell/enchant for spell
+  checking
+
+*xfce4-dict-0.5.2 (05 Dec 2008)
+
+  05 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  +xfce4-dict-0.5.2.ebuild:
+  Version bump
 
 *xfce4-dict-0.5.1 (23 Nov 2008)
 
