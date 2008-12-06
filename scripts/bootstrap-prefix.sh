@@ -840,9 +840,9 @@ DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
-GNU_URL="ftp://ftp.gnu.org/gnu"
+GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
-GENTOO_URL="http://gentoo.osuosl.org"
+GENTOO_URL=${GENTOO_URL:="http://gentoo.osuosl.org"}
 
 export CFLAGS CXXFLAGS MAKE
 
