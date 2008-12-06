@@ -895,8 +895,14 @@ mysql_pkg_config() {
 	chown -R mysql:mysql "${EROOT}/${MY_DATADIR}" 2>/dev/null
 	chmod 0750 "${EROOT}/${MY_DATADIR}" 2>/dev/null
 
+	# BDB support will be removed.   Note that, as of MySQL 5.1, BDB isn't
+	# supported any longer.
+	# (http://dev.mysql.com/doc/refman/5.0/en/bdb-storage-engine.html)
+	mysql_version_is_at_least "5.1" || options="--skip-bdb"
+
 	if mysql_version_is_at_least "4.1.3" ; then
-		options="--skip-ndbcluster"
+		built_with_use ${CATEGORY}/${PN} cluster && \
+			options="--skip-ndbcluster"
 
 		# Filling timezones, see
 		# http://dev.mysql.com/doc/mysql/en/time-zone-support.html
@@ -919,7 +925,6 @@ mysql_pkg_config() {
 		--basedir=${EROOT}/usr \
 		--datadir=${EROOT}/${MY_DATADIR} \
 		--skip-innodb \
-		--skip-bdb \
 		--skip-networking \
 		--max_allowed_packet=8M \
 		--net_buffer_length=16K \
