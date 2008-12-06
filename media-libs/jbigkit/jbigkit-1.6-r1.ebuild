@@ -29,7 +29,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake CC=$(tc-getCC) || die "emake failed"
+	emake CC=$(tc-getCC) LIBDIR="${EPREFIX}"/usr/$(get_libdir) || die "emake failed"
 }
 
 src_test() {
