@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2124 2008/12/04 23:11:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2129 2008/12/05 21:15:43 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  05 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Remove gst-plugins-good-0.10.9 mask which isn't in tree anymore.
+
+  05 Dec 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask www-client/opera-10.
+
+  05 Dec 2008; Robert Buchholz <rbu@gentoo.org> package.mask:
+  Update networkmanager-0.7.0 mask
+
+  05 Dec 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Masked sci-libs/scipy-0.7.0_beta1
+
+  05 Dec 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  2006.1 x86 profile has been removed
 
   04 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
   Add new networkmanager stuff (0.7.0) to the package mask.

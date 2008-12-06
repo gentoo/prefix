@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9249 2008/12/04 23:11:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9253 2008/12/05 21:15:43 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,8 +30,18 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeroen Roovers <jer@gentoo.org> (5 Dec 2008)
+# Snapshots, alphas and betas of Opera may delete kittens
+=www-client/opera-10*
+
+# Sébastien Fabbro <bicatali@gentoo.org> (05 Dec 2008)
+# beta version for testing, unmasked only when release.
+=sci-libs/scipy-0.7*
+
 # Tomas Chvatal <scarabeus@gentoo.org> (04 Dec 2008)
-# new version, can harm kittens masking for now.
+# new version, needs policykit which is masked
+>=gnome-extra/nm-applet-0.7.0
 >=net-misc/networkmanager-0.7.0
 >=net-misc/networkmanager-vpnc-0.7.0
 >=net-misc/networkmanager-pptp-0.7.0
@@ -469,10 +479,6 @@ app-portage/kuroo
 app-crypt/cryptplug
 dev-tcltk/tclgpgme
 ~app-crypt/gpgme-0.3.14
-
-# Rémi Cardona <remi@gentoo.org> (30 Aug 2008)
-# major file collisions, see bug #236124
-=media-libs/gst-plugins-good-0.10.9
 
 # Ricardo Mendoza <ricmm@gentoo.org> (28 Aug 2008)
 # Beta driver, masking corresponding packages
