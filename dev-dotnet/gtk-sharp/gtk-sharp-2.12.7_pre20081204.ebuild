@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/gtk-sharp-2.12.7_pre20081204.ebuild,v 1.1 2008/12/04 23:51:49 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/gtk-sharp-2.12.7_pre20081204.ebuild,v 1.2 2008/12/05 06:50:32 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -10,8 +10,7 @@ REQUIRE_GTK=2.12
 
 DESCRIPTION="Gtk# is a C# language binding for the GTK2 toolkit and GNOME libraries"
 HOMEPAGE="http://gtk-sharp.sourceforge.net/"
-SRC_URI="http://dev.gentoo.org/~loki_val/${P}.tar.gz"
-#SRC_URI="mirror://gentooe/${P}.tar.gz"
+SRC_URI="mirror://gentooe/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="2"
