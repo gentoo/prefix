@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.1 2008/10/30 22:15:10 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.3 2008/12/06 19:40:31 darkside Exp $
 
 EAPI="prefix 1"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://xfce/xfce-4.4.3/src/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="debug nls"
 
 RDEPEND=">=x11-libs/gtk+-2.6:2
