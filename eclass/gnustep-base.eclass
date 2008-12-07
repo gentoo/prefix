@@ -66,7 +66,7 @@ gnustep-base_src_configure() {
 
 gnustep-base_src_compile() {
 	egnustep_env
-	local eapi=${EAPI/prefix /}
+	local eapi=${EAPI/prefix/}
 	case ${EAPI:-0} in
 		0|1) gnustep-base_src_configure ;;
 	esac
@@ -121,6 +121,7 @@ egnustep_env() {
 			GNUSTEP_USER_DIR="${T}" \
 			GNUSTEP_USER_DEFAULTS_DIR="${T}"/Defaults \
 			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM \
+			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \
 			messages=yes \
 			-j1 )
@@ -221,7 +222,7 @@ EOF
 	doexe "${T}"/${cfile}
 }
 
-eapi=${EAPI/prefix /}
+eapi=${EAPI/prefix/}
 case ${eapi:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst ;;
