@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.18 2008/01/28 17:36:04 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.19 2008/12/07 06:00:15 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="build debug ipv6 nls socks5 ssl static elibc_FreeBSD"
+IUSE="debug ipv6 nls socks5 ssl static elibc_FreeBSD"
 
 RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6b )
 	socks5? ( net-proxy/dante )"
@@ -53,11 +53,6 @@ src_compile() {
 }
 
 src_install() {
-	if use build ; then
-		dobin "${S}"/src/wget || die "dobin"
-		return 0
-	fi
-
 	make DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog MAILING-LIST NEWS README TODO
 	dodoc doc/sample.wgetrc
