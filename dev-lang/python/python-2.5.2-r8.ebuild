@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r8.ebuild,v 1.3 2008/10/26 21:40:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r8.ebuild,v 1.4 2008/12/06 21:21:42 neurogeek Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -63,6 +63,10 @@ src_unpack() {
 	else
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
+
+	#Fixes some of the tr_TR locale issues. Bug #250075. Thanks Serkan for pointing it
+	#out
+	epatch "${FILESDIR}/${P}_turkish.patch"
 
 	# stupidos hardcoding GNU specifics
 	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \

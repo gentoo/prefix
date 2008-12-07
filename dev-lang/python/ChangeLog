@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.354 2008/11/17 21:44:44 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.355 2008/12/06 21:21:42 neurogeek Exp $
+
+  06 Dec 2008; Jesus Rivero <neurogeek@gentoo.org>
+  +files/python-2.5.2_turkish.patch, python-2.5.2-r8.ebuild:
+  Fixed support for tr_TR locale. Bug #250075. Thanks to Serkan
 
 *python-2.6-r5 (17 Nov 2008)
 
