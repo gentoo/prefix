@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.3 2008/12/05 14:46:49 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.5 2008/12/06 19:50:49 darkside Exp $
 
 EAPI="prefix 1"
 
