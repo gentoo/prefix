@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/make
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.59 2006/11/05 12:12:43 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.60 2008/12/07 03:18:17 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> make-3.80-r4.ebuild,
+  make-3.81.ebuild:
+  Switch to emake in src_install and drop USE=build cruft.
 
   05 Nov 2006; Mike Frysinger <vapier@gentoo.org>
   +files/make-3.81-tests-lang.patch, make-3.81.ebuild:
