@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.143 2008/11/28 12:19:21 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.144 2008/12/06 18:47:15 nixnut Exp $
+
+  06 Dec 2008; nixnut <nixnut@gentoo.org> erlang-12.2.5.ebuild:
+  Stable on ppc wrt bug 249960
 
   28 Nov 2008; Christian Faulhammer <fauli@gentoo.org> metadata.xml:
   change my email address

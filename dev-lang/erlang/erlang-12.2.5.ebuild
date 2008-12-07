@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.5.ebuild,v 1.2 2008/11/06 20:53:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.5.ebuild,v 1.3 2008/12/06 18:47:15 nixnut Exp $
 
 EAPI="prefix"
 
