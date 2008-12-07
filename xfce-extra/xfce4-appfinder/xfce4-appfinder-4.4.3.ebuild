@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/xfce4-appfinder-4.4.3.ebuild,v 1.1 2008/10/30 22:07:28 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/xfce4-appfinder-4.4.3.ebuild,v 1.3 2008/12/06 19:53:32 darkside Exp $
 
 EAPI="prefix 1"
 
