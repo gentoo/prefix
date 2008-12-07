@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.15 2008/07/06 18:10:29 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.16 2008/12/07 05:54:24 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,17 +14,17 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
-IUSE="build"
+IUSE=""
 
 DEPEND="sys-apps/diffutils
 	sys-apps/less"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${WORKDIR}/${P}-gentoo.diff
-	epatch ${FILESDIR}/${P}-segfault-fix.diff
-	epatch ${FILESDIR}/${P}-avoid-wraps.diff
+	cd "${S}"
+	epatch "${WORKDIR}"/${P}-gentoo.diff
+	epatch "${FILESDIR}"/${P}-segfault-fix.diff
+	epatch "${FILESDIR}"/${P}-avoid-wraps.diff
 	sed -i 's:-ltermcap:-lncurses:' configure
 }
 
@@ -34,18 +34,12 @@ src_compile() {
 	# options.
 
 	./configure --prefix="${EPREFIX}"/usr || die
-	echo '#define HAVE_TPUTS 1' >>config.h
+	echo '#define HAVE_TPUTS 1' >> config.h
 	emake || die
 }
 
 src_install() {
 	einstall || die
-
-	if ! use build
-	then
-		dodoc ChangeLog NEWS README
-		doman wdiff.1
-	else
-		rm -rf ${ED}/usr/share/info
-	fi
+	dodoc ChangeLog NEWS README
+	doman wdiff.1
 }

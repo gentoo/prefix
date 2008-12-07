@@ -1,6 +1,9 @@
 # ChangeLog for app-text/wdiff
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.28 2008/07/06 18:10:29 ricmm Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.29 2008/12/07 05:54:24 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> wdiff-0.5-r2.ebuild:
+  Remove pointless USE=build support.
 
   06 Jul 2008; <ricmm@gentoo.org> wdiff-0.5-r2.ebuild:
   Drop to ~mips due to unstable deps
