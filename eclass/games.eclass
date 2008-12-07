@@ -10,7 +10,7 @@
 
 inherit multilib eutils
 
-eapi=${EAPI/prefix /}
+eapi=${EAPI/prefix/}
 
 case ${eapi:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;

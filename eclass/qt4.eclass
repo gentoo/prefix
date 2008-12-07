@@ -31,7 +31,7 @@ QT4VERSIONS="4.4.2 4.4.1 4.4.0 4.4.0_beta1 4.4.0_rc1
 qt4_min_version() {
 	local deps="$@"
 	ewarn "${CATEGORY}/${PF}: qt4_min_version() is deprecated. Use slot dependencies instead."
-	eapi=${EAPI/prefix /}
+	eapi=${EAPI/prefix/}
 	case ${eapi:-0} in
 		# EAPIs without SLOT dependencies
 		0)	echo "|| ("

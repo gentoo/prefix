@@ -4,7 +4,7 @@
 
 # For GGZ Gaming Zone packages
 
-eapi=${EAPI/prefix /}
+eapi=${EAPI/prefix/}
 case ${eapi:-0} in
 	0|1) EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm ;;
 	2) EXPORT_FUNCTIONS src_configure src_compile src_install pkg_postinst pkg_postrm ;;
