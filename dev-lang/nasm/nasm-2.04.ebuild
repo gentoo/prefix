@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.04.ebuild,v 1.3 2008/10/09 20:15:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.04.ebuild,v 1.4 2008/12/07 05:58:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,9 +13,9 @@ SRC_URI="mirror://sourceforge/nasm/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="doc build"
+IUSE="doc"
 
-DEPEND="!build? ( dev-lang/perl )
+DEPEND="dev-lang/perl
 	doc? ( virtual/ghostscript sys-apps/texinfo )"
 RDEPEND=""
 
@@ -34,30 +34,22 @@ src_compile() {
 	strip-flags
 	econf || die
 
-	if use build; then
-		emake nasm || die "emake failed"
-	else
-		emake all || die "emake failed"
-		emake rdf || die "emake failed"
-		if use doc ; then
-			emake doc || die "emake failed"
-		fi
+	emake all || die "emake failed"
+	emake rdf || die "emake failed"
+	if use doc ; then
+		emake doc || die "emake failed"
 	fi
 }
 
 src_install() {
-	if use build; then
-		dobin nasm || die "dobin failed"
-	else
-		dobin nasm ndisasm rdoff/{ldrdf,rdf2bin,rdf2ihx,rdfdump,rdflib,rdx} \
-			|| die "dobin failed"
-		dosym /usr/bin/rdf2bin /usr/bin/rdf2com
-		doman nasm.1 ndisasm.1
-		dodoc AUTHORS CHANGES ChangeLog README TODO
-		if use doc; then
-			doinfo doc/info/*
-			dohtml doc/html/*
-			dodoc doc/nasmdoc.*
-		fi
+	dobin nasm ndisasm rdoff/{ldrdf,rdf2bin,rdf2ihx,rdfdump,rdflib,rdx} \
+		|| die "dobin failed"
+	dosym /usr/bin/rdf2bin /usr/bin/rdf2com
+	doman nasm.1 ndisasm.1
+	dodoc AUTHORS CHANGES ChangeLog README TODO
+	if use doc ; then
+		doinfo doc/info/*
+		dohtml doc/html/*
+		dodoc doc/nasmdoc.*
 	fi
 }

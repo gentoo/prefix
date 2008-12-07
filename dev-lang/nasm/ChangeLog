@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/nasm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.54 2008/10/30 02:07:24 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.55 2008/12/07 05:58:55 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> nasm-0.98.39-r3.ebuild,
+  nasm-2.03.01.ebuild, nasm-2.04.ebuild, nasm-2.05.01.ebuild:
+  Remove pointless USE=build support.
 
 *nasm-2.05.01 (30 Oct 2008)
 
