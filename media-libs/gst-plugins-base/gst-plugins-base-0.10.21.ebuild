@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21.ebuild,v 1.1 2008/12/05 19:45:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21.ebuild,v 1.2 2008/12/06 06:47:45 ssuominen Exp $
 
 EAPI="prefix"
 
 # order is important, gnome2 after gst-plugins
-inherit gst-plugins-base gst-plugins10 gnome2 flag-o-matic autotools
+inherit gst-plugins-base gst-plugins10 gnome2 flag-o-matic autotools eutils
 # libtool
 
 DESCRIPTION="Basepack of plugins for gstreamer"
