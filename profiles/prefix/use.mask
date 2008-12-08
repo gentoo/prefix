@@ -29,3 +29,7 @@ kernel_linux
 
 # re-add userland GNU
 -userland_GNU
+
+# USE flags inherited by the base/use.defaults file that shouldn't be in Prefix
+cups
+gpm
