@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 
 # EAPI="1"
 SLOT="2"
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 IUSE="hyperspec X new-clx fastcgi gdbm gtk pari pcre postgres readline svm zlib"
 
 RDEPEND="virtual/libiconv
@@ -112,7 +112,7 @@ src_compile() {
 		${myconf} --hyperspec="${CLHSROOT}" ${BUILDDIR} || die "./configure failed"
 	cd ${BUILDDIR}
 	sed -i 's,"vi","nano",g' config.lisp
-	IMPNOTES="file://${ROOT%/}/usr/share/doc/${PN}-${PVR}/html/impnotes.html"
+	IMPNOTES="file://${EROOT%/}/usr/share/doc/${PN}-${PVR}/html/impnotes.html"
 	sed -i "s,http://clisp.cons.org/impnotes/,${IMPNOTES},g" config.lisp
 	# parallel build fails
 	emake -j1 || die "emake failed"
