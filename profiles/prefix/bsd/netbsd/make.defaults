@@ -1,0 +1,12 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# System-wide defaults for all NetBSD profiles
+# This file should rarely need to be changed
+
+# 'Sane' defaults
+ELIBC="NetBSD"
+KERNEL="NetBSD"
+
+# Not sure if NetBSD can compile sandbox
+FEATURES="-sandbox"

@@ -1,0 +1,3 @@
+# Re-add HPUX OS
+kernel_HPUX
+elibc_HPUX

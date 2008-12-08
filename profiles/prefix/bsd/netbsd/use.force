@@ -1,0 +1,3 @@
+# Re-add NetBSD OS
+kernel_NetBSD
+elibc_NetBSD

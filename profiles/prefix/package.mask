@@ -1,5 +1,5 @@
 ####################################################################
-# $Id: package.mask 35027 2008-12-01 21:46:05Z grobian $
+# $Id: package.mask 35048 2008-12-03 21:17:57Z grobian $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked.  This file is for
 # Prefix profiles only!
@@ -36,6 +36,11 @@
 # Fabian Groffen <grobian@gentoo.org> (03 Dec 2008)
 # contains GNU-isms that the no-GNU-man should fix himself, bug #249731
 ~app-misc/pax-utils-0.1.19
+
+# Jeremy Olexa <darkside@gentoo.org> (02 Dec 2008)
+# Reported to work. However, you will need to package.provide some deps. 
+# See bug 248809 for more details.
+net-fs/openafs
 
 # Fabian Groffen <grobian@gentoo.org> (01 Dec 2008)
 # critical package and fully untested, too scary to put live

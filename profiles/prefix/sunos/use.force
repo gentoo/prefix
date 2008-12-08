@@ -1,0 +1,3 @@
+# Re-add Solaris OS
+kernel_SunOS
+elibc_SunOS

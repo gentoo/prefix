@@ -1,0 +1,4 @@
+# Re-add FreeBSD libc
+-elibc_FreeBSD
+-kernel_FreeBSD
+

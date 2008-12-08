@@ -1,0 +1,2 @@
+# must use toolchain-prefix-wrapper on aix
+sys-devel/binutils-config extwrapper

@@ -1,0 +1,4 @@
+# Re-add NetBSD libc
+-elibc_NetBSD
+-kernel_NetBSD
+
