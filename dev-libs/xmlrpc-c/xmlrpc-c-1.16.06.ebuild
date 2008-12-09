@@ -39,6 +39,13 @@ src_unpack() {
 		-e "/CXXFLAGS_COMMON/s:-g$:${CXXFLAGS}:" \
 		"${S}"/common.mk || die "404. File not found while sedding"
 
+	# solaris req. c99
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i \
+			-e "/^CFLAGS_COMMON/s/= /= -std=c99/" \
+			"${S}"/common.mk || die "404. File not found while sedding"
+	fi
+
 	sed -i \
 		-e "/^LIBINST_DIR = / s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
 		config.mk.in
@@ -50,7 +57,7 @@ src_compile() {
 
 	# Respect the user's LDFLAGS.
 	export LADD=${LDFLAGS}
-	export CFLAGS_PERSONAL="${CFLAGS} --std=c99"	# solaris req. c99
+	export CFLAGS_PERSONAL="${CFLAGS}"
 	econf	--disable-wininet-client \
 		--enable-libxml2-backend \
 		--disable-libwww-client \
