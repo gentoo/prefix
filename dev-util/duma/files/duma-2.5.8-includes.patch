@@ -1,0 +1,10 @@
+--- paging.h
++++ paging.h
+@@ -53,6 +53,7 @@
+  */
+ /* extern C_LINKAGE int mprotect(void * addr, size_t len, int prot); */
+ 
++#include <sys/types.h>
+ static caddr_t  startAddr = (caddr_t) 0;
+ 
+ /* Function: stringErrorReport

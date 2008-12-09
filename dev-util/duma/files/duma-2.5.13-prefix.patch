@@ -1,0 +1,14 @@
+--- duma.sh
++++ duma.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ #
+ # Simple script to run DUMA on stuff.  (needs libduma.so).
+@@ -14,4 +14,4 @@
+ fi
+ 
+ # Set the environment to (pre)load duma library.
+-(export LD_PRELOAD=libduma.so.0.0.0; export DYLD_INSERT_LIBRARIES=libduma.dylib; export DYLD_FORCE_FLAT_NAMESPACE=1; exec $*)
++(export LD_PRELOAD=libduma.so.0.0.0; export DYLD_INSERT_LIBRARIES=@GENTOO_PORTAGE_EPREFIX@/usr/lib/libduma.dylib; export DYLD_FORCE_FLAT_NAMESPACE=1; exec $*)

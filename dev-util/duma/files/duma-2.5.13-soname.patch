@@ -1,0 +1,11 @@
+--- Makefile
++++ Makefile
+@@ -158,7 +158,7 @@
+ #    DUMA_OPTIONS += -DDUMA_LIB_NO_LEAKDETECTION
+     CURPATH=./
+ #    DUMA_DYN_DEPS=
+-    DUMASO=libduma.dylib
++    DUMASO=libduma.0.0.0.dylib
+     DUMASO_LINK1=libduma.dylib
+     CFLAGS= -g -O0
+     CPPFLAGS= -g -O0
