@@ -426,7 +426,8 @@ test-flags-PROG() {
 
 	x=""
 	for x in "$@" ; do
-		test-flag-${comp} "${x}" && flags="${flags}${flags:+ }${x}"
+		test-flag-${comp} "${x}" && flags="${flags}${flags:+ }${x}" || \
+			ewarn "removing ${x} because ${comp} rejected it"
 	done
 
 	echo "${flags}"
