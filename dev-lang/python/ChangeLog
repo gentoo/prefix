@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.355 2008/12/06 21:21:42 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.357 2008/12/09 18:46:31 vapier Exp $
+
+  09 Dec 2008; Mike Frysinger <vapier@gentoo.org> python-2.5.2-r8.ebuild,
+  python-2.6-r5.ebuild:
+  Set expat to default to on.
+
+  08 Dec 2008; Mike Frysinger <vapier@gentoo.org> python-2.5.2-r8.ebuild,
+  python-2.6-r5.ebuild:
+  Make dev-libs/expat optional via USE=expat.
 
   06 Dec 2008; Jesus Rivero <neurogeek@gentoo.org>
   +files/python-2.5.2_turkish.patch, python-2.5.2-r8.ebuild:
