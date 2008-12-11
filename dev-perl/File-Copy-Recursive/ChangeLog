@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/File-Copy-Recursive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/ChangeLog,v 1.18 2008/10/20 20:07:24 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/ChangeLog,v 1.19 2008/12/08 02:15:49 robbat2 Exp $
+
+*File-Copy-Recursive-0.38 (08 Dec 2008)
+
+  08 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +File-Copy-Recursive-0.38.ebuild:
+  Version bump.
 
 *File-Copy-Recursive-0.37 (20 Oct 2008)
 
