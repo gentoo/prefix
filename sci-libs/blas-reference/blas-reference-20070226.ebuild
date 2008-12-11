@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226.ebuild,v 1.17 2008/04/21 15:44:56 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226.ebuild,v 1.18 2008/12/07 18:26:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -10,13 +10,13 @@ LAPACKPV="3.1.1"
 LAPACKPN="lapack-lite"
 
 DESCRIPTION="Basic Linear Algebra Subprograms F77 reference implementations"
-LICENSE="BSD"
 HOMEPAGE="http://www.netlib.org/blas/"
 SRC_URI="http://www.netlib.org/lapack/${LAPACKPN}-${LAPACKPV}.tgz"
 
+LICENSE="BSD"
 SLOT="0"
-IUSE="doc"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="doc"
 
 DEPEND="app-admin/eselect-blas"
 RDEPEND="${DEPEND}
