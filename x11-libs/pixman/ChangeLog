@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.21 2008/09/29 17:56:18 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.22 2008/12/07 11:54:15 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> pixman-0.12.0.ebuild:
+  Add s390 love #202529.
 
   29 Sep 2008; Donnie Berkholz <dberkholz@gentoo.org>; pixman-0.12.0.ebuild:
   (#238716) sse2 + gcc 4.2 check is only required for x86.
