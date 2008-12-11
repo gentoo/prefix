@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/pdv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.17 2008/03/18 13:26:08 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.18 2008/12/07 07:31:51 wormo Exp $
+
+  07 Dec 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +files/pdv-1.5.1-no-strip.patch, pdv-1.5.1-r2.ebuild:
+  Prevent pre-stripping binaries (bug #248713)
 
   18 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> pdv-1.5.1-r2.ebuild:
   Run eautoconf during unpack phase. Closes bug #207487.
