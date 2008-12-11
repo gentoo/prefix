@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.47 2008/12/05 23:26:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.48 2008/12/09 11:41:52 ssuominen Exp $
+
+  09 Dec 2008; <ssuominen@gentoo.org> gst-python-0.10.13.ebuild:
+  gst-python needs >= gstreamer-0.10.21 but configure.ac doesn't check for
+  it wrt #250358.
 
 *gst-python-0.10.13 (05 Dec 2008)
 
