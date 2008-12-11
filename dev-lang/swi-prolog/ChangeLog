@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.161 2008/12/04 22:56:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.163 2008/12/09 05:37:48 keri Exp $
+
+  09 Dec 2008; <keri@gentoo.org> -swi-prolog-5.6.49.ebuild,
+  -swi-prolog-5.6.50.ebuild, -swi-prolog-5.6.51.ebuild,
+  -swi-prolog-5.6.52.ebuild, -swi-prolog-5.6.54.ebuild,
+  -swi-prolog-5.6.55.ebuild, -swi-prolog-5.6.57.ebuild,
+  -swi-prolog-5.6.58.ebuild, -swi-prolog-5.6.59.ebuild,
+  -swi-prolog-5.6.60.ebuild, -swi-prolog-5.6.61.ebuild:
+  Remove old versions.
+
+  08 Dec 2008; Raúl Porcel <armin76@gentoo.org> swi-prolog-5.6.62.ebuild:
+  alpha/sparc stable wrt #249435
 
   04 Dec 2008; Markus Meier <maekke@gentoo.org> swi-prolog-5.6.62.ebuild:
   amd64/x86 stable, bug #249435
