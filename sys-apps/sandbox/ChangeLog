@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.94 2008/11/29 02:54:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.95 2008/12/09 12:31:09 aballier Exp $
+
+  09 Dec 2008; Alexis Ballier <aballier@gentoo.org> sandbox-1.3.0.ebuild,
+  sandbox-1.3.1.ebuild:
+  Keyword -sparc/x86-fbsd versions that do not build there, lets keep with
+  the half broken but half working old version, bug #250366
 
 *sandbox-1.3.1 (29 Nov 2008)
 
