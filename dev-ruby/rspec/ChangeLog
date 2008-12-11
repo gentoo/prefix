@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.33 2008/10/25 14:00:13 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.35 2008/12/10 14:36:24 fmccor Exp $
+
+  10 Dec 2008; Ferris McCormick <fmccor@gentoo.org> rspec-1.1.11.ebuild:
+  Add ~sparc keyword, part of Bug #250348.
+
+  09 Dec 2008; Brent Baude <ranger@gentoo.org> rspec-1.1.11.ebuild:
+  Marking rspec-1.1.11 ~ppc64 for bug 250348
 
   25 Oct 2008; Hans de Graaff <graaff@gentoo.org> rspec-1.1.11.ebuild:
   Add back hoe dependency because it is still listed as a runtime dependency
