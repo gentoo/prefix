@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.76 2008/11/30 09:05:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.78 2008/12/08 11:55:31 pva Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -97,7 +97,7 @@ enlightenment_warning_msg() {
 	fi
 	if [[ ${E_STATE} == "snap" ]] ; then
 		ewarn "Please do not contact the E team about bugs in Gentoo."
-		ewarn "Only contact vapier@gentoo.org via e-mail or bugzilla."
+		ewarn "Only contact enlightenment@gentoo.org via e-mail or bugzilla."
 		ewarn "Remember, this stuff is DEV only code so dont cry when"
 		ewarn "I break you :)."
 	elif [[ ${E_STATE} == "live" ]] ; then
@@ -110,7 +110,7 @@ enlightenment_warning_msg() {
 
 enlightenment_die() {
 	enlightenment_warning_msg
-	die "$@"$'\n'"!!! SEND BUG REPORTS TO vapier@gentoo.org NOT THE E TEAM"
+	die "$@"$'\n'"!!! SEND BUG REPORTS TO enlightenment@gentoo.org NOT THE E TEAM"
 }
 
 enlightenment_pkg_setup() {

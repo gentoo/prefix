@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.18 2008/11/22 01:23:31 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.19 2008/12/07 11:39:32 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -291,6 +291,7 @@ if [[ ${NEED_KDE} != none ]]; then
 			;;
 	esac
 
+	# Adding kdelibs, kdepimlibs and kdebase-data deps to all other packages.
 	# We only need to add the dependencies if ${PN} is not "kdelibs" or "kdepimlibs"
 	if [[ ${PN} != "kdelibs" ]]; then
 		case "${EAPI/prefix /}" in
@@ -312,7 +313,17 @@ if [[ ${NEED_KDE} != none ]]; then
 				*)
 					DEPEND="${DEPEND} ${_operator}kde-base/kdepimlibs${_pv}"
 					RDEPEND="${RDEPEND} ${_operator}kde-base/kdepimlibs${_pv}"
+			esac
+			if [[ ${PN} != "kdebase-data" ]]; then
+				case "${EAPI/prefix /}" in
+					2)
+						RDEPEND="${RDEPEND} ${_operator}kde-base/kdebase-data${_pv}[kdeprefix=]"
+						;;
+					*)
+						RDEPEND="${RDEPEND} ${_operator}kde-base/kdebase-data${_pv}"
+						;;
 				esac
+			fi
 		fi
 	fi
 

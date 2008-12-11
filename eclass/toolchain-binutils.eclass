@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.77 2007/11/11 19:55:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.78 2008/12/09 06:06:50 kumba Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -118,6 +118,10 @@ tc-binutils_apply_patches() {
 	if ! use vanilla ; then
 		if [[ -n ${PATCHVER} ]] ; then
 			EPATCH_SOURCE=${WORKDIR}/patch
+			if [[ ${CTARGET} == mips* ]] ; then
+				# remove gnu-hash for mips (bug #233233)
+				EPATCH_EXCLUDE="77_all_generate-gnu-hash.patch"
+			fi
 			[[ -n $(ls "${EPATCH_SOURCE}"/*.bz2 2>/dev/null) ]] \
 				&& EPATCH_SUFFIX="patch.bz2" \
 				|| EPATCH_SUFFIX="patch"
