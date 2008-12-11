@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/bcmail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bcmail/ChangeLog,v 1.24 2008/03/02 22:43:27 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bcmail/ChangeLog,v 1.25 2008/12/08 01:54:19 jmbsvicetto Exp $
+
+  08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing wltjr as a maintainer since he was retired.
 
   02 Mar 2008; Petteri Räty <betelgeuse@gentoo.org> -bcmail-1.37.ebuild,
   -bcmail-1.38.ebuild:
