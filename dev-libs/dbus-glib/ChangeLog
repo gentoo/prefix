@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.37 2008/08/15 13:47:27 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.40 2008/12/10 22:58:58 maekke Exp $
+
+  10 Dec 2008; Markus Meier <maekke@gentoo.org> dbus-glib-0.76.ebuild:
+  amd64/x86 stable, bug #250289
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org> dbus-glib-0.76.ebuild:
+  stable ppc64, bug 250289
+
+  08 Dec 2008; Ferris McCormick <fmccor@gentoo.org> dbus-glib-0.76.ebuild:
+  Sparc stable, Bug #250289.
 
 *dbus-glib-0.76 (15 Aug 2008)
 
