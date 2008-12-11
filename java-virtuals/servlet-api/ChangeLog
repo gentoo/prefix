@@ -1,6 +1,10 @@
 # ChangeLog for java-virtuals/servlet-api
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/servlet-api/ChangeLog,v 1.19 2008/10/25 17:04:31 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/servlet-api/ChangeLog,v 1.20 2008/12/08 03:06:32 jmbsvicetto Exp $
+
+  08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing wltjr as a maintainer since he was retired.
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> servlet-api-2.4.ebuild:
   Stable on ppc wrt bug 243118
