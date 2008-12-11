@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.122 2008/09/29 10:23:31 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.123 2008/12/07 11:32:37 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> dejavu-2.26.ebuild,
+  dejavu-2.27.ebuild:
+  Add arm/s390/sh love #224541.
 
 *dejavu-2.27 (29 Sep 2008)
 
