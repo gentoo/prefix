@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libuninameslist
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.29 2008/08/10 18:12:30 gentoofan23 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/ChangeLog,v 1.30 2008/12/07 11:25:49 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org>
+  libuninameslist-20080409.ebuild:
+  Add arm/s390/sh love #224541.
 
   10 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org>
   libuninameslist-20080409.ebuild:
