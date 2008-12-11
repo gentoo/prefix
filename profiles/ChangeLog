@@ -1,10 +1,50 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2133 2008/12/06 22:42:50 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2145 2008/12/11 01:02:11 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  11 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Removed dev-db/rekall and two unused mpeg4ip versions that have been
+  masked for months.
+
+  10 Dec 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask udev-135-r2 for redesign of init-script.
+
+  10 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Unmask media-sound/potamus which builds again.
+
+  10 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove pam_sha512 masking.
+
+  09 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Drop wvstreams p.mask as per bug 247677.
+
+  08 Dec 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask ~dev-perl/Net-Amazon-S3-0.48
+
+  08 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
+  arch/amd64/package.use.mask, default-linux/amd64/2007.0/package.use.mask:
+  Remove use flag mask on spell for opera ebuild because aspell works on amd64
+  now, bug 136853
+
+  07 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask dev-db/rekall, net-p2p/apollon, app-portage/kuroo, & kde-misc/komics
+  for removal in 60 days. bug #250217
+
+  07 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask net-analyzer/sysmon for removal in 60 days, bug #153258
+
+  07 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  sys-apps/usbd removed, bug #225301
+
+  07 Dec 2008; Luca Barbato <lu_zero@gentoo.org> package.mask:
+  FFmpeg live ebuild
+
+  07 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Removed sys-libs/detect from tree wrt #244411.
 
   06 Dec 2008; Robin H. Johnson <robbat2@gentoo.org> package.mask:
   Block >sys-process/audit-1.7.4 because the old init scripts+rules cause
@@ -19,9 +59,6 @@
 
   06 Dec 2008; <ssuominen@gentoo.org> package.mask:
   Removed unmaintained xfce-extra/pynetworkmanager.
-
-  05 Dec 2008; <ssuominen@gentoo.org> package.mask:
-  Remove gst-plugins-good-0.10.9 mask which isn't in tree anymore.
 
   05 Dec 2008; Jeroen Roovers <jer@gentoo.org> package.mask:
   Mask www-client/opera-10.

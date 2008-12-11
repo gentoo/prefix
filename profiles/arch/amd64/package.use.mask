@@ -79,10 +79,6 @@ media-plugins/vdr-softdevice -mmx -mmxext
 dev-libs/openssl -sse2
 media-libs/libsoundtouch -sse
 
-# Jan 14th 2007; blubb@gentoo.org
-# bug 136853: We'd need aspell in emul-libs to make this flag useful
-www-client/opera spell
-
 # Feb 17th 2007; drizzt@gentoo.org
 # amd64 does not have an emul libao package
 games-emulation/zsnes ao

@@ -2,6 +2,7 @@
 -s390
 
 # This file contains a list of useflags that cannot be used on s390.
+bluetooth
 dell
 pcmcia
 cdr
@@ -30,6 +31,7 @@ socks5
 mzscheme
 
 # masked until xorg builds
+cairo
 xv
 gtk
 gtk2
