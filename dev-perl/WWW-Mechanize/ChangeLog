@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/WWW-Mechanize
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.53 2008/11/03 12:36:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.54 2008/12/08 02:43:05 robbat2 Exp $
+
+*WWW-Mechanize-1.52 (08 Dec 2008)
+
+  08 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +WWW-Mechanize-1.52.ebuild:
+  Version bump.
 
   03 Nov 2008; Raúl Porcel <armin76@gentoo.org> WWW-Mechanize-1.50.ebuild:
   Add ~ia64 wrt #244620
