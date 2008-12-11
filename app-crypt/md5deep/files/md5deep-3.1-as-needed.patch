@@ -1,0 +1,27 @@
+--- hashdeep/Makefile.am
++++ hashdeep/Makefile.am
+@@ -1,5 +1,3 @@
+-# The math library is required for floor()
+-AM_LDFLAGS = -lm
+ INCLUDES   = -I@top_srcdir@/include
+ COMMON_DIR = @top_srcdir@/common
+ 
+@@ -26,7 +24,8 @@
+ # don't have it yet (e.g. OpenSolaris). We if don't have strsep
+ # we compile it ourselves using a local copy.
+ EXTRA_hashdeep_SOURCES = lib-strsep.c
+-hashdeep_LDADD = ${EXTRA_HASHDEEP}
++# The math library is required for floor()
++hashdeep_LDADD = ${EXTRA_HASHDEEP} -lm
+ hashdeep_DEPENDENCIES = ${EXTRA_HASHDEEP}
+ 
+ EXTRA_DIST = main.h strsep.h ${man_MANS}
+--- md5deep/Makefile.am
++++ md5deep/Makefile.am
+@@ -1,5 +1,5 @@
+ 
+-AM_LDFLAGS = -lm
++LDADD = -lm
+ INCLUDES   = -I@top_srcdir@/include
+ COMMON_DIR = @top_srcdir@/common
+ 
