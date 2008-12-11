@@ -1,6 +1,17 @@
 # ChangeLog for dev-java/ant-apache-bsf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.15 2008/09/27 11:48:47 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.17 2008/12/09 23:28:00 caster Exp $
+
+  09 Dec 2008; Vlastimil Babka <caster@gentoo.org>
+  ant-apache-bsf-1.7.1.ebuild:
+  Actually put -r0 back to EAPI=1.
+
+*ant-apache-bsf-1.7.1-r1 (09 Dec 2008)
+
+  09 Dec 2008; Vlastimil Babka <caster@gentoo.org>
+  +ant-apache-bsf-1.7.1-r1.ebuild:
+  Put -r0 back to EAPI=1 and do the change to EAPI=2 in revbump, for faster
+  stabilization.
 
   27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
   ant-apache-bsf-1.7.1.ebuild:
