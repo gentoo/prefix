@@ -1,6 +1,9 @@
 # ChangeLog for app-text/sloccount
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.21 2008/10/14 07:10:24 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.22 2008/12/09 21:33:31 armin76 Exp $
+
+  09 Dec 2008; Raúl Porcel <armin76@gentoo.org> sloccount-2.26-r1.ebuild:
+  Add ~alpha wrt #250343
 
   14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
   -files/sloccount-2.22-libexec.patch, -sloccount-2.22.ebuild,
