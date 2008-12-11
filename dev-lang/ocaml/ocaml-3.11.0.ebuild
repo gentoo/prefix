@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.0_rc1.ebuild,v 1.2 2008/11/27 07:35:33 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.0.ebuild,v 1.1 2008/12/08 08:46:03 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
