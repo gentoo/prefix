@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.666 2008/12/03 09:27:26 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.667 2008/12/07 19:06:45 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> gcc-4.3.2.ebuild:
+  Fix by Chi-Thanh Christopher Nguyen to pull in
+  app-emulation/emul-linux-x86-xlibs on amd64 multilib for USE=gcj #238297
+  by Andrey Vul.
 
   03 Dec 2008; <solar@gentoo.org> +files/4.3.2/gcc-4.3.2-softfloat.patch,
   gcc-4.3.2.ebuild:

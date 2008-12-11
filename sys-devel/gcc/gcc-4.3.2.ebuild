@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.2.ebuild,v 1.6 2008/12/03 09:27:26 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.2.ebuild,v 1.7 2008/12/07 19:06:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -50,7 +50,12 @@ DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	!kernel_Darwin? ( !kernel_AIX? (
-		!prefix? ( amd64? ( >=sys-libs/glibc-2.7-r2 ) )
+		!prefix? ( amd64? (
+			>=sys-libs/glibc-2.7-r2
+			multilib? (
+				gcj? ( app-emulation/emul-linux-x86-xlibs )
+			)
+		) )
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
