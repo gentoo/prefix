@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/vim-spell-en
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.13 2007/06/01 12:43:30 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.14 2008/12/09 21:32:29 armin76 Exp $
+
+  09 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  vim-spell-en-20060123.ebuild:
+  Add ~alpha wrt #250323
 
   01 Jun 2007; nixnut <nixnut@gentoo.org> vim-spell-en-20060123.ebuild:
   Stable on ppc wrt bug 176373
