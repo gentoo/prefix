@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/cooledit
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/cooledit/ChangeLog,v 1.25 2008/03/26 02:03:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/cooledit/ChangeLog,v 1.26 2008/12/07 13:04:19 ssuominen Exp $
+
+  07 Dec 2008; <ssuominen@gentoo.org>
+  +files/cooledit-3.17.17-asneeded.patch,
+  +files/cooledit-3.17.17-implicit_declarations.patch,
+  cooledit-3.17.17.ebuild:
+  Fix compilation with LDFLAGS -Wl,--as-needed and implicit declarations
+  because of missing string.h and stdlib.h wrt #246879.
 
   26 Mar 2008; Brent Baude <ranger@gentoo.org> cooledit-3.17.17.ebuild:
   stable ppc, bug 214573
