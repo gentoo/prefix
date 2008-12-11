@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/xfwm4-themes/xfwm4-themes-4.4.3.ebuild,v 1.3 2008/12/06 19:44:32 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/xfwm4-themes/xfwm4-themes-4.4.3.ebuild,v 1.4 2008/12/08 21:36:02 ranger Exp $
 
 EAPI="prefix"
 
