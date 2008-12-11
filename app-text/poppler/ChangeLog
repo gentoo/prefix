@@ -1,6 +1,15 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.182 2008/11/24 20:54:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.184 2008/12/10 17:05:35 loki_val Exp $
+
+*poppler-0.10.2 (10 Dec 2008)
+
+  10 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> +poppler-0.10.2.ebuild:
+  Bumb
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> poppler-0.10.0.ebuild,
+  poppler-0.10.1.ebuild:
+  Add back s390 #240520.
 
   24 Nov 2008; Brent Baude <ranger@gentoo.org> poppler-0.8.7.ebuild:
   Marking poppler-0.8.7 ppc64 for bug 239414
