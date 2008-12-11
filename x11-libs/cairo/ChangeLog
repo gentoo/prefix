@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/cairo
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.202 2008/12/04 16:45:36 cardoe Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.203 2008/12/07 11:57:27 vapier Exp $
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> cairo-1.6.4.ebuild,
+  cairo-1.6.4-r1.ebuild, cairo-1.8.0.ebuild, cairo-1.8.2.ebuild,
+  cairo-1.8.4.ebuild:
+  Add s390 love #202529.
 
 *cairo-1.8.4 (04 Dec 2008)
 
