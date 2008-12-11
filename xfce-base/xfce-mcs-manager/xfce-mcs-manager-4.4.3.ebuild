@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-manager/xfce-mcs-manager-4.4.3.ebuild,v 1.3 2008/12/06 19:49:55 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-manager/xfce-mcs-manager-4.4.3.ebuild,v 1.4 2008/12/08 21:38:26 ranger Exp $
 
 EAPI="prefix 1"
 
