@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/libxfce4mcs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4mcs/ChangeLog,v 1.106 2008/12/06 19:46:20 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4mcs/ChangeLog,v 1.107 2008/12/08 21:36:31 ranger Exp $
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org> libxfce4mcs-4.4.3.ebuild:
+  Marking libxfce4mcs-4.4.3 ppc64 stable for bug 249942
 
   06 Dec 2008; Jeremy Olexa <darkside@gentoo.org> libxfce4mcs-4.4.3.ebuild:
   amd64 stable, bug 249942
