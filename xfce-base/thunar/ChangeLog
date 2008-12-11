@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.61 2008/12/06 19:50:49 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.62 2008/12/08 21:37:58 ranger Exp $
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org> thunar-0.9.3.ebuild:
+  Marking thunar-0.9.3 ppc64 stable for bug 249942
 
   06 Dec 2008; Jeremy Olexa <darkside@gentoo.org> thunar-0.9.3.ebuild:
   amd64 stable, bug 249942
