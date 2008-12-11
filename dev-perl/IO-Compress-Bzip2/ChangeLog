@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/IO-Compress-Bzip2
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Bzip2/ChangeLog,v 1.10 2008/11/18 15:07:32 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Bzip2/ChangeLog,v 1.11 2008/12/10 17:14:16 aballier Exp $
+
+  10 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  IO-Compress-Bzip2-2.015.ebuild:
+  keyword ~sparc-fbsd
 
   04 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   IO-Compress-Bzip2-2.015.ebuild:
