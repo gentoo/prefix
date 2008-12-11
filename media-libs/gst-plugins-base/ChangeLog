@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.88 2008/12/05 19:45:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.89 2008/12/09 12:02:35 ssuominen Exp $
+
+  09 Dec 2008; <ssuominen@gentoo.org> gst-plugins-base-0.10.21.ebuild:
+  Depend on >= gstreamer-0.10.21 wrt #250339, thanks to Jeroen Roovers.
 
 *gst-plugins-base-0.10.21 (05 Dec 2008)
 

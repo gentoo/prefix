@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21.ebuild,v 1.2 2008/12/06 06:47:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21.ebuild,v 1.3 2008/12/09 12:02:35 ssuominen Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug nls"
 
 RDEPEND=">=dev-libs/glib-2.8
-	>=media-libs/gstreamer-0.10.19.1
+	>=media-libs/gstreamer-0.10.21
 	>=dev-libs/liboil-0.3.14"
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.11.5 )
