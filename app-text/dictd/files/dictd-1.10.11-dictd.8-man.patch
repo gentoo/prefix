@@ -1,5 +1,7 @@
 Use @SYSCONFDIR@ instead of /etc/
 
+https://sourceforge.net/tracker/index.php?func=detail&aid=2407717&group_id=605&atid=300605
+
 Index: dictd/dictd.8.in
 ===================================================================
 --- dictd.orig/dictd.8.in	2008-01-25 21:25:49.000000000 +0100

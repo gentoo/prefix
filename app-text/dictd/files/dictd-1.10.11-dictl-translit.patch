@@ -1,5 +1,6 @@
 Patch for  #378792: dictl should use iconv's //translit suffix
 
+https://sourceforge.net/tracker/index.php?func=detail&aid=2407725&group_id=605&atid=300605
 
 Index: dictd/dictl.in
 ===================================================================

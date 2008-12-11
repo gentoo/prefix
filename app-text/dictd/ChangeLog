@@ -1,6 +1,15 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.55 2008/12/01 21:41:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.56 2008/12/09 13:59:50 pva Exp $
+
+*dictd-1.11.0 (09 Dec 2008)
+
+  09 Dec 2008; Peter Volkov <pva@gentoo.org>
+  +files/dictd-1.11.0-automagic-plugins.patch,
+  +files/dictd-1.11.0-avoid-libs-in-LDFLAGS.patch,
+  +files/dictd-1.11.0-plugins-install-fix-and-cleanup.patch,
+  -dictd-1.9.11-r1.ebuild, +dictd-1.11.0.ebuild:
+  Version bump. Dropped keywords, due to new dependency. Removed old.
 
   01 Dec 2008; Brent Baude <ranger@gentoo.org> dictd-1.10.11-r2.ebuild,
   dictd-1.10.11-r3.ebuild:
