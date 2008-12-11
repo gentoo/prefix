@@ -1,6 +1,13 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.183 2008/12/01 09:44:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.184 2008/12/09 15:37:06 leio Exp $
+
+*gnome-terminal-2.24.2-r1 (09 Dec 2008)
+
+  09 Dec 2008; Mart Raudsepp <leio@gentoo.org>
+  files/gnome-terminal-2.24.2-restore-switch-to-tab.patch,
+  -gnome-terminal-2.24.2.ebuild, +gnome-terminal-2.24.2-r1.ebuild:
+  Fix patch to not crash in certain situations with >10 tabs
 
 *gnome-terminal-2.24.2 (01 Dec 2008)
 
