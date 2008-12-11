@@ -1,6 +1,21 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.240 2008/09/15 01:34:40 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.245 2008/12/10 10:30:57 armin76 Exp $
+
+  10 Dec 2008; Raúl Porcel <armin76@gentoo.org> xterm-237.ebuild:
+  alpha/ia64/sparc stable wrt #227525
+
+  10 Dec 2008; <solar@gentoo.org> xterm-237.ebuild:
+  make sure we link to the right libs when cross compiling
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org> xterm-237.ebuild:
+  stable ppc64, bug 227525
+
+  08 Dec 2008; Markus Meier <maekke@gentoo.org> xterm-237.ebuild:
+  x86 stable, bug #227525
+
+  07 Dec 2008; Jeremy Olexa <darkside@gentoo.org> xterm-237.ebuild:
+  amd64 stable, bug 227525
 
 *xterm-237 (15 Sep 2008)
 
