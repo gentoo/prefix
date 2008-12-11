@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/servletapi
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/servletapi/ChangeLog,v 1.63 2008/01/06 19:04:55 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/servletapi/ChangeLog,v 1.64 2008/12/08 02:12:17 jmbsvicetto Exp $
+
+  08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing wltjr as a maintainer since he was retired.
 
   06 Jan 2008; Vlastimil Babka <caster@gentoo.org> servletapi-2.2-r3.ebuild,
   servletapi-2.4-r5.ebuild:
