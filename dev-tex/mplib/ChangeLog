@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/mplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.8 2008/11/29 14:04:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.9 2008/12/08 11:22:17 aballier Exp $
+
+  08 Dec 2008; Alexis Ballier <aballier@gentoo.org> -mplib-1.091.ebuild:
+  remove old
 
 *mplib-1.110 (29 Nov 2008)
 
