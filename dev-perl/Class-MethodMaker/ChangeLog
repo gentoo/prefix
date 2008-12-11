@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/Class-MethodMaker
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.54 2008/11/18 14:37:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.56 2008/12/08 09:47:14 tove Exp $
+
+  08 Dec 2008; Torsten Veller <tove@gentoo.org>
+  Class-MethodMaker-2.12.ebuild, Class-MethodMaker-2.13.ebuild:
+  Add dev-lang/perl to DEPEND again.
+
+*Class-MethodMaker-2.13 (08 Dec 2008)
+
+  08 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +Class-MethodMaker-2.13.ebuild:
+  Version bump.
 
   18 Nov 2008; Torsten Veller <tove@gentoo.org>
   Class-MethodMaker-1.11.ebuild, Class-MethodMaker-2.10.ebuild,
