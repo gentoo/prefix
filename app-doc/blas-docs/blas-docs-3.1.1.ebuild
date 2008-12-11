@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/blas-docs/blas-docs-3.1.1.ebuild,v 1.9 2007/10/09 06:49:12 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/blas-docs/blas-docs-3.1.1.ebuild,v 1.10 2008/12/07 18:26:22 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,6 +9,7 @@ HOMEPAGE="http://www.netlib.org/blas"
 SRC_URI="mirror://gentoo/lapack-man-${PV}.tgz
 	http://www.netlib.org/blas/blasqr.ps
 	http://www.netlib.org/blas/blast-forum/blas-report.ps"
+
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
