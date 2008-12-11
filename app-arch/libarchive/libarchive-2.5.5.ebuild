@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.5.ebuild,v 1.4 2008/10/28 20:22:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.5.ebuild,v 1.5 2008/12/07 05:57:02 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,16 +15,17 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="build static acl xattr"
+IUSE="static acl xattr kernel_linux"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
 		acl? ( sys-apps/acl )
 		xattr? ( sys-apps/attr )
 	)
-	!static? ( !build? (
+	!static? (
 		app-arch/bzip2
-		sys-libs/zlib ) )"
+		sys-libs/zlib
+	)"
 DEPEND="${RDEPEND}
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
@@ -42,7 +43,7 @@ src_unpack() {
 src_compile() {
 	local myconf
 
-	if ! use static && ! use build ; then
+	if ! use static ; then
 		myconf="--enable-bsdtar=shared --enable-bsdcpio=shared"
 	fi
 
@@ -66,12 +67,6 @@ src_install() {
 	fi
 
 	dodoc NEWS README
-
-	if use build; then
-		rm -rf "${ED}"/usr
-		rm -rf "${ED}"/lib/*.so*
-		return 0
-	fi
 
 	# just don't do this for Darwin
 	if [[ ${CHOST} != *-darwin* ]]; then

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.902a.ebuild,v 1.1 2008/11/13 01:38:48 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.902a.ebuild,v 1.2 2008/12/07 05:57:02 vapier Exp $
 
 EAPI="prefix 1"
 
@@ -70,12 +70,6 @@ src_install() {
 	fi
 
 	dodoc NEWS README
-
-	if use build; then
-		rm -rf "${ED}"/usr
-		rm -rf "${ED}"/lib/*.so*
-		return 0
-	fi
 
 	# just don't do this for Darwin
 	if [[ ${CHOST} != *-darwin* ]]; then
