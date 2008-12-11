@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/Package-Constants
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Package-Constants/ChangeLog,v 1.9 2008/11/04 09:55:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Package-Constants/ChangeLog,v 1.10 2008/12/10 17:05:10 aballier Exp $
+
+  10 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  Package-Constants-0.01.ebuild:
+  keyword ~sparc-fbsd
 
   04 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   Package-Constants-0.01.ebuild:
