@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/portaudio
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.62 2008/12/04 22:21:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.63 2008/12/10 15:22:50 fmccor Exp $
+
+  10 Dec 2008; Ferris McCormick <fmccor@gentoo.org>
+  portaudio-19_pre20071207.ebuild:
+  Sparc stable, part of Bug #236230.
 
   04 Dec 2008; Markus Meier <maekke@gentoo.org>
   portaudio-19_pre20071207.ebuild:
