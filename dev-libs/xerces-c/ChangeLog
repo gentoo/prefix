@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/xerces-c
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.72 2008/11/20 16:42:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.74 2008/12/09 18:31:28 fmccor Exp $
+
+  09 Dec 2008; Ferris McCormick <fmccor@gentoo.org>
+  xerces-c-3.0.0-r1.ebuild:
+  Sparc stable (again) --- Security Bug #240496, which see for comments.
+
+  09 Dec 2008; Brent Baude <ranger@gentoo.org> xerces-c-3.0.0-r1.ebuild:
+  Marking xerces-c-3.0.0-r1 ppc64 for bug 240496
 
   20 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   files/xerces-c-2.8.0-IconvGNUTransService.cpp.patch:
