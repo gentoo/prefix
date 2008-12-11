@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.200 2008/12/02 23:19:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.202 2008/12/10 19:29:54 betelgeuse Exp $
+
+  10 Dec 2008; Petteri Räty <betelgeuse@gentoo.org> metadata.xml:
+  Add weisso as proxy maintainer.
+
+  08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing wltjr as a maintainer since he was retired.
 
   02 Dec 2008; Brent Baude <ranger@gentoo.org> tomcat-6.0.18-r1.ebuild:
   stable ppc64, bug 243162
