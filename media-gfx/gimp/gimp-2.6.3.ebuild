@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.3.ebuild,v 1.2 2008/11/27 08:52:23 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.3.ebuild,v 1.3 2008/12/07 23:29:54 hanno Exp $
 
 EAPI="prefix"
 
@@ -33,9 +33,7 @@ RDEPEND=">=dev-libs/glib-2.18.1
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	hal? ( sys-apps/hal )
-	gnome? ( gnome-base/gvfs
-		>=gnome-base/libgnomeui-2.10.0
-		>=gnome-base/gnome-keyring-0.4.5 )
+	gnome? ( gnome-base/gvfs )
 	webkit? ( net-libs/webkit-gtk )
 	jpeg? ( >=media-libs/jpeg-6b-r2 )
 	exif? ( >=media-libs/libexif-0.6.15 )
