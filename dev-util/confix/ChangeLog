@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/confix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/ChangeLog,v 1.5 2008/10/17 09:51:27 mduft Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/ChangeLog,v 1.6 2008/12/09 08:30:18 mduft Exp $
+
+*confix-2.1.0-r2 (09 Dec 2008)
+
+  09 Dec 2008; Markus Duft <mduft@gentoo.org>
+  +files/2.1.0/fast-install.patch, -confix-2.1.0-r1.ebuild,
+  +confix-2.1.0-r2.ebuild:
+  added patch to enable faster installation rules in generated makefiles
 
 *confix-2.1.0-r1 (17 Oct 2008)
 

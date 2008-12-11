@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/confix-2.1.0-r1.ebuild,v 1.1 2008/10/17 09:12:48 mduft Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/confix/confix-2.1.0-r2.ebuild,v 1.1 2008/12/09 08:30:18 mduft Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/ext-ac-archive.patch
 	# enable SET_FILE_PROPERTIES(file, { 'PRIVATE_CINCLUDE', 1 })
 	epatch "${FILESDIR}"/${PV}/private-headers.patch
+	# enable fast installation rules.
+	epatch "${FILESDIR}"/${PV}/fast-install.patch
 
 	# need to store repos in exact versioned share/confix-PV/repo
 	sed -i -e "s,'confix2','confix-${PV}'," \
