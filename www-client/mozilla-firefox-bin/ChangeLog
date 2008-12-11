@@ -1,6 +1,16 @@
 # ChangeLog for www-client/mozilla-firefox-bin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/ChangeLog,v 1.169 2008/11/15 15:59:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/ChangeLog,v 1.171 2008/12/10 10:22:00 armin76 Exp $
+
+  10 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-bin-3.1_beta2.ebuild:
+  Add en-GB to NOSHORTLANGS
+
+*mozilla-firefox-bin-3.1_beta2 (10 Dec 2008)
+
+  10 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-firefox-bin-3.1_beta2.ebuild:
+  Version bump
 
   15 Nov 2008; Markus Meier <maekke@gentoo.org>
   mozilla-firefox-bin-2.0.0.18.ebuild:
