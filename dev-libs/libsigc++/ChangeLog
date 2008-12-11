@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.130 2008/11/29 20:03:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.133 2008/12/08 19:58:08 ranger Exp $
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org> libsigc++-1.2.7.ebuild:
+  Marking libsigc++-1.2.7 ppc64 for bug 245636
+
+  08 Dec 2008; Jeremy Olexa <darkside@gentoo.org> libsigc++-1.2.5.ebuild,
+  libsigc++-1.2.7.ebuild:
+  dev-libs/libsigc++-1.2.7 stable on amd64, 1.2.5 reverted back to ~amd64
+  because of build failure. bug #245636
+
+  07 Dec 2008; Rémi Cardona <remi@gentoo.org> -libsigc++-2.0.17.ebuild,
+  -libsigc++-2.0.18.ebuild:
+  remove old versions
 
 *libsigc++-2.2.3 (29 Nov 2008)
 
