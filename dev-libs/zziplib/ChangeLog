@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.51 2008/11/17 22:34:49 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.52 2008/12/08 05:24:48 vapier Exp $
+
+  08 Dec 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/zziplib-0.13.49-parallel-docs.patch, zziplib-0.13.49-r1.ebuild:
+  Fix parallel build failure with docs #249153 by Stefaan De Roeck.
 
   17 Nov 2008; Friedrich Oslage <bluebird@gentoo.org>
   +files/zziplib-0.13.49-sparc-aligned-access.patch,

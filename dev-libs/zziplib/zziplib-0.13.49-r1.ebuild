@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.5 2008/11/17 22:34:49 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.49-r1.ebuild,v 1.6 2008/12/08 05:24:48 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-parallel-docs.patch #249153
 	epatch "${FILESDIR}"/${P}-python.patch
 	epatch "${FILESDIR}"/${P}-configure-sed.patch #240556
 	epatch "${FILESDIR}"/${P}-SDL-test.patch
