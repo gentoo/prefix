@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.2.2-r1.ebuild,v 1.1 2008/12/03 06:40:09 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.2.2-r1.ebuild,v 1.2 2008/12/08 20:29:27 graaff Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,8 @@ DEPEND=">=dev-lang/ruby-1.8.5
 	~dev-ruby/actionpack-2.2.2"
 
 RDEPEND="${DEPEND}
-	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.6 )"
+	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.6 )
+	>=dev-ruby/rubygems-1.3.1"
 
 src_install() {
 	gems_src_install
