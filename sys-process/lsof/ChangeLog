@@ -1,6 +1,10 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.53 2008/11/17 06:28:20 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.54 2008/12/10 10:44:07 aballier Exp $
+
+  10 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/lsof-4.81-recmake.patch, lsof-4.81-r2.ebuild:
+  Fix build on G/FreeBSD. Bug #250383
 
 *lsof-4.81-r2 (17 Nov 2008)
 
