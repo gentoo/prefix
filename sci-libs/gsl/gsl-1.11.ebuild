@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.11.ebuild,v 1.6 2008/11/09 16:46:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.11.ebuild,v 1.7 2008/12/07 18:39:06 vapier Exp $
 
 EAPI="prefix"
 
