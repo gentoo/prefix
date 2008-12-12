@@ -35,6 +35,7 @@ src_unpack() {
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
 	# which's preprocessor understands '\'-linebreaks
 	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
+	epatch "${FILESDIR}"/${P}-mint.patch
 }
 
 src_compile() {
