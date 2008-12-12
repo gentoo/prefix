@@ -306,7 +306,7 @@ bootstrap_odcctools() {
 	PV=20070412
 	A=odcctools-${PV}.tar.bz2
 
-	efetch http://dev.gentoo.org/~grobian/distfiles/${A}
+	efetch http://distfiles.gentoo.org/distfiles/${A}
 	
 	export S="${PORTAGE_TMPDIR}/odcctools-${PV}"
 	rm -rf "${S}"
@@ -476,7 +476,7 @@ bootstrap_python() {
 		A=python-${PV}-interix.tar.bz2
 		efetch http://dev.gentoo.org/~grobian/distfiles/${A}
 	else
-		efetch http://www.python.org/ftp/python/${PV%_*}/${A}
+		efetch http://distfiles.gentoo.org/distfiles/${A}
 	fi
 
 	einfo "Unpacking ${A%%-*}"
@@ -607,7 +607,7 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch http://www.bzip.org/${PV}/${A}
+	efetch http://distfiles.gentoo.org/${A}
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
