@@ -27,6 +27,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.16-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.19-hpux.patch
+	epatch "${FILESDIR}"/${P}-mint.patch
 
 	if ! use userland_GNU ; then
 		sed -i \
