@@ -1,0 +1,50 @@
+--- Makefile.am.old	2008-10-27 00:12:08.000000000 +0000
++++ Makefile.am	2008-10-27 00:12:31.000000000 +0000
+@@ -40,8 +40,7 @@
+ 
+ bin_PROGRAMS = flex
+ lib_LIBRARIES = \
+-	libfl.a \
+-	libfl_pic.a
++	libfl.a
+ 
+ flex_SOURCES = \
+ 	ccl.c \
+@@ -70,14 +69,6 @@
+ 	libmain.c \
+ 	libyywrap.c
+ 
+-libfl_pic_a_SOURCES = \
+-	libmain.c \
+-	libyywrap.c
+-
+-libfl_pic_a_CFLAGS =  \
+-	-fPIC         \
+-	$(AM_CFLAGS)
+-
+ noinst_HEADERS = \
+ 	flexdef.h \
+ 	flexint.h \
+--- Makefile.in.old	2008-10-27 01:30:55.000000000 +0000
++++ Makefile.in	2008-10-27 01:34:29.000000000 +0000
+@@ -135,8 +135,8 @@
+ LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+ LEXCOMPILE = $(LEX) $(LFLAGS) $(AM_LFLAGS)
+ YACCCOMPILE = $(YACC) $(YFLAGS) $(AM_YFLAGS)
+-SOURCES = $(libfl_a_SOURCES) $(libfl_pic_a_SOURCES) $(flex_SOURCES)
+-DIST_SOURCES = $(libfl_a_SOURCES) $(libfl_pic_a_SOURCES) \
++SOURCES = $(libfl_a_SOURCES) $(flex_SOURCES)
++DIST_SOURCES = $(libfl_a_SOURCES) \
+ 	$(flex_SOURCES)
+ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
+ 	html-recursive info-recursive install-data-recursive \
+@@ -274,8 +274,7 @@
+ m4 = @M4@
+ indent = @INDENT@
+ lib_LIBRARIES = \
+-	libfl.a \
+-	libfl_pic.a
++	libfl.a
+ 
+ flex_SOURCES = \
+ 	ccl.c \

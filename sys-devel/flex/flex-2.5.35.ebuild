@@ -25,7 +25,8 @@ src_unpack() {
 	cd "${S}"
 	[[ -n ${DEB_VER} ]] && epatch "${WORKDIR}"/${PN}_${PV}-${DEB_VER}.diff
 	epatch "${FILESDIR}"/${PN}-2.5.34-isatty.patch #119598
-	epatch "${FILESDIR}"/${PN}-2.5.33-pic.patch
+	[[ ${CHOST} != *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.33-pic.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.35-mint.patch
 }
 
 src_compile() {
