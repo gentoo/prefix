@@ -65,6 +65,10 @@ src_compile() {
 		*-darwin*)
 			emake ${makeopts} PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
 		;;
+		*-mint*)
+			# do nothing, no shared libraries
+			:
+		;;
 		*-aix*)
 			# AIX has shared object libbz2.so.1 inside libbz2.a.
 			# We build libbz2.a here to avoid static-only libbz2.a below.
@@ -90,6 +94,8 @@ src_install() {
 	dosym bzip2 /bin/bunzip2
 	into /
 
+	if [[ $(get_libname) != ".irrelevant" ]] ; then
+
 	if ! use static ; then
 		newbin bzip2-shared bzip2 || die "dobin shared"
 	fi
@@ -100,4 +106,6 @@ src_install() {
 		dosym libbz2$(get_libname ${PV}) /$(get_libdir)/${v}
 	done
 	gen_usr_ldscript libbz2$(get_libname)
+
+	fi
 }
