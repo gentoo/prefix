@@ -68,6 +68,7 @@ src_unpack() {
 	# as possible :)
 	[[ ${CHOST} == *-interix* || ${CHOST} == *-winnt* ]] && \
 		epatch "${FILESDIR}"/${PV}/${P}-parity.patch
+	epatch "${FILESDIR}"/1.5.26/libtool-1.5.26-mint.patch
 
 	ebegin "Generating ltmain.sh"
 	gen_ltmain_sh || die "Failed to generate ltmain.sh!"
