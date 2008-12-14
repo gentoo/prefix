@@ -366,6 +366,14 @@ switch_profile() {
 		}
 
 		case ${REAL_CHOST} in
+		*-mint*)
+			do_single_runtime() {
+				return 0
+			}
+			finish_runtime_dir() {
+				return 0
+			}
+			;;
 		*-aix*)
 			LIBSUFFIX="a"
 			AIXLIBS=
