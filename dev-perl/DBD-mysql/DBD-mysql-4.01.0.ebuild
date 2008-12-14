@@ -17,7 +17,7 @@ DESCRIPTION="The Perl DBD:mysql Module"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl
