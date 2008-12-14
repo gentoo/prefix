@@ -1,3 +1,5 @@
+https://savannah.gnu.org/patch/index.php?6691
+
 --- libtool-1.5.26/libtool.m4	Fri Feb  1 17:26:46 2008
 +++ libtool-1.5.26.mint/libtool.m4	Mon Apr  7 09:09:46 2008
 @@ -820,6 +820,12 @@
