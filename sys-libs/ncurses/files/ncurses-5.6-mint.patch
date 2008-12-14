@@ -1,0 +1,11 @@
+--- configure.old	2008-02-21 12:14:27.167615327 +0000
++++ configure	2008-02-21 12:14:04.497615002 +0000
+@@ -6065,7 +6065,7 @@
+ irix[56].*) #(vi
+ 	CPPFLAGS="$CPPFLAGS -D_SGI_SOURCE"
+ 	;;
+-linux*|gnu*) #(vi
++linux*|mint*|gnu*) #(vi
+ 
+ echo "$as_me:6070: checking if we must define _GNU_SOURCE" >&5
+ echo $ECHO_N "checking if we must define _GNU_SOURCE... $ECHO_C" >&6

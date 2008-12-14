@@ -37,6 +37,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.6-build.patch #184700
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${PN}-5.6-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${P}-solaris2.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
@@ -62,6 +63,7 @@ src_compile() {
 	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
 	use ada || myconf="${myconf} --without-ada"
 	
+	[[ ${CHOST} != *-mint* ]] && myconf="${myconf} --with-shared"
 	[[ ${CHOST} == *-aix5.3* ]] && myconf="${myconf} --with-libtool"
 
 	# First we build the regular ncurses ...
@@ -93,7 +95,6 @@ do_compile() {
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
-		--with-shared \
 		--enable-overwrite \
 		$(use_with debug) \
 		$(use_with profile) \
