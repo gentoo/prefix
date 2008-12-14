@@ -1,0 +1,18 @@
+# ChangeLog for dev-db/maatkit
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/ChangeLog,v 1.3 2008/12/13 23:36:26 bluebird Exp $
+
+  13 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> maatkit-2442.ebuild:
+  Add ~sparc keyword
+
+*maatkit-2442 (03 Nov 2008)
+
+  03 Nov 2008; Wolfram Schlich <wschlich@gentoo.org> +maatkit-2442.ebuild:
+  version bump
+
+*maatkit-2325 (06 Oct 2008)
+
+  06 Oct 2008; Wolfram Schlich <wschlich@gentoo.org> +metadata.xml,
+  +maatkit-2325.ebuild:
+  initial import
+
