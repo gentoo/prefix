@@ -49,6 +49,9 @@ src_install() {
 	keepdir /var/cache/revdep-rebuild
 	use prefix || fowners root:root /var/cache/revdep-rebuild
 	fperms 0700 /var/cache/revdep-rebuild
+
+	# remove on platforms where it's broken anyway
+	[[ ${CHOST} != *-aix* ]] && rm "${ED}"/usr/bin/revdep-rebuild
 }
 
 pkg_postinst() {
