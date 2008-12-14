@@ -531,7 +531,7 @@ get_libname() {
 		*-cygwin|mingw*|*-mingw*) libname="dll";;
 		*-darwin*)                libname="dylib";;
 		*-aix*)                   libname="a";;
-		*-mint*)                  libname="a";;
+		*-mint*)                  libname="irrelevant";;
 		*)                        libname="so";;
 	esac
 
@@ -542,7 +542,7 @@ get_libname() {
 			case ${CHOST} in
 				*-darwin*) echo ".${ver}.${libname}";;
 				*-aix*)    echo ".${libname}";;
-				*-mint*)    echo ".${libname}";;
+				*-mint*)   echo ".${libname}";;
 				*)         echo ".${libname}.${ver}";;
 			esac
 		done
