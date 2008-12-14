@@ -47,7 +47,7 @@ src_unpack() {
 src_compile() {
 	econf \
 		$(use_with slang slang-driver) \
-		$(use_with !slang nurses "${EPREFIX}"/usr) \
+		$(use_with !slang ncurses "${EPREFIX}"/usr) \
 		$(use_with X x11-driver) \
 		|| die
 	if [[ ${CHOST} == *-darwin* ]] && use X; then
