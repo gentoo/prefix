@@ -26,13 +26,13 @@ PERL_OLDVERSEN="5.8.0 5.8.2 5.8.4 5.8.5 5.8.6 5.8.7"
 
 DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.3 )
-	>=sys-devel/libperl-${PV}-r1
+	!m68k-mint? ( >=sys-devel/libperl-${PV}-r1 )
 	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs ) )
-	<sys-devel/libperl-5.9
+	!m68k-mint? ( <sys-devel/libperl-5.9 )
 	!<perl-core/File-Spec-0.87
 	!<perl-core/Test-Simple-0.47-r1"
 
-RDEPEND="~sys-devel/libperl-${PV}
+RDEPEND="!m68k-mint? ( ~sys-devel/libperl-${PV} )
 	berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.3 )
 	build? (
@@ -60,7 +60,7 @@ pkg_setup() {
 		epause 5
 	fi
 
-	if [[ ! -f "${EROOT}/usr/$(get_libdir)/${LIBPERL}" ]]
+	if [[ ${CHOST} != *-mint* && ! -f "${EROOT}/usr/$(get_libdir)/${LIBPERL}" ]]
 	then
 		# Make sure we have libperl installed ...
 		eerror "Cannot find ${EROOT}/usr/$(get_libdir)/${LIBPERL}!  Make sure that you"
@@ -71,6 +71,9 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
+
+	# MiNT patch
+	cd ${S}; epatch ${FILESDIR}/${P}-mint.patch
 
 	# Get -lpthread linked before -lc.  This is needed
 	# when using glibc >= 2.3, or else runtime signal
@@ -224,6 +227,7 @@ src_configure() {
 		*-aix*) osname="aix" ;;
 		*-hpux*) osname="hpux" ;;
 		*-interix*) osname='interix' ;;
+		*-mint*) osname="freemint" ;;
 
 		*) osname="linux" ;;
 	esac
@@ -357,11 +361,12 @@ src_install() {
 	# the library ...
 	local coredir="/usr/$(get_libdir)/perl5/${MY_PV}/${myarch}${mythreading}/CORE"
 	dodir ${coredir}
-	[[ $(get_libname) != .a ]] && { # for AIX
+	# for AIX and FreeMiNT
+	if [[ $(get_libname) != .a && $(get_libname) != .irrelevant ]] ; then
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${PERLSLOT})
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
-	}
+	fi
 
 	# Fix for "stupid" modules and programs
 	dodir /usr/$(get_libdir)/perl5/site_perl/${MY_PV}/${myarch}${mythreading}
