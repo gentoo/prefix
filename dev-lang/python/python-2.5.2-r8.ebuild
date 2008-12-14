@@ -90,6 +90,9 @@ src_unpack() {
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
+	# build static for mint
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.1-mint.patch
+
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files, however they are bundles
@@ -160,6 +163,7 @@ src_configure() {
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
 	filter-flags -malign-double
 
@@ -236,6 +240,7 @@ src_compile() {
 
 src_install() {
 	dodir /usr
+	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	src_configure
 	make DESTDIR="${D}" altinstall maninstall || die
 
