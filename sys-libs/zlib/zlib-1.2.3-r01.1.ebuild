@@ -42,6 +42,10 @@ src_compile() {
 		export RC=${CHOST}-windres DLLWRAP=${CHOST}-dllwrap
 		emake -f win32/Makefile.gcc prefix=/usr || die
 		;;
+	*-mint*)
+		./configure --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
+		emake || die
+		;;
 	*)
 		# not an autoconf script, so cant use econf
 		./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
@@ -68,6 +72,10 @@ src_install() {
 	case ${CHOST} in
 	*-mingw*|mingw*)
 		dolib zlib1.dll libzdll.a || die
+		;;
+	*-mint*)
+		# no shared libraries here
+		:
 		;;
 	*)
 		into /
