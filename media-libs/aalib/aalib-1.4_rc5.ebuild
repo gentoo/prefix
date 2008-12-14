@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.23 2008/11/02 06:46:40 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.24 2008/12/14 10:43:30 grobian Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.4_rc4-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-1.4_rc4-m4.patch
 
-	sed -i -e 's:#include <malloc.h>:#include <stdlib.h>:g' "${S}/src/*.c"
+	sed -i -e 's:#include <malloc.h>:#include <stdlib.h>:g' "${S}"/src/*.c
 
 	# Fix bug #165617.
 	use gpm && sed -i \
@@ -47,6 +47,7 @@ src_unpack() {
 src_compile() {
 	econf \
 		$(use_with slang slang-driver) \
+		$(use_with !slang nurses "${EPREFIX}"/usr) \
 		$(use_with X x11-driver) \
 		|| die
 	if [[ ${CHOST} == *-darwin* ]] && use X; then

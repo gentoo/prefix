@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/aalib
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.39 2008/11/04 13:04:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.40 2008/12/14 10:43:30 grobian Exp $
+
+  14 Dec 2008; Fabian Groffen <grobian@gentoo.org> aalib-1.4_rc5.ebuild:
+  Fix quoting n00bness
 
   04 Nov 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
   make video herd the maintainer
