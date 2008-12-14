@@ -1,8 +1,8 @@
 Patch by Alan Hourihane for FreeMiNT
 
-diff -ur gawk-3.1.6/array.c gawk-3.1.6-mint/array.c
+diff -u gawk-3.1.6/array.c gawk-3.1.6-mint/array.c
 --- gawk-3.1.6/array.c	2007-09-22 21:08:36.000000000 +0100
-+++ gawk-3.1.6-mint/array.c	2008-05-15 23:44:43.000000000 +0100
++++ gawk-3.1.6-mint/array.c	2008-12-14 17:29:35.975954961 +0000
 @@ -702,7 +702,7 @@
  	 * just jumping from 8K to 64K.
  	 */
@@ -12,10 +12,9 @@ diff -ur gawk-3.1.6/array.c gawk-3.1.6-mint/array.c
  				131101, 262147, 524309, 1048583, 2097169,
  				4194319, 8388617, 16777259, 33554467, 
  				67108879, 134217757, 268435459, 536870923,
-Only in gawk-3.1.6-mint: array.c.orig
-diff -ur gawk-3.1.6/awk.h gawk-3.1.6-mint/awk.h
+diff -u gawk-3.1.6/awk.h gawk-3.1.6-mint/awk.h
 --- gawk-3.1.6/awk.h	2007-09-30 20:50:43.000000000 +0100
-+++ gawk-3.1.6-mint/awk.h	2008-05-15 23:44:49.000000000 +0100
++++ gawk-3.1.6-mint/awk.h	2008-12-14 17:32:21.602955820 +0000
 @@ -195,9 +195,9 @@
  #define GFMT_WORKAROUND
  #endif	/* NeXT */
@@ -39,29 +38,29 @@ diff -ur gawk-3.1.6/awk.h gawk-3.1.6-mint/awk.h
  #ifndef HAVE_VPRINTF
  /* if you don't have vprintf, try this and cross your fingers. */
  #ifdef	HAVE_DOPRNT
-@@ -1235,7 +1231,6 @@
+@@ -1235,19 +1231,7 @@
  extern int strncasecmp P((const char *s1, const char *s2, register size_t n));
  #endif
  
 -#if defined(atarist)
- #if defined(PIPES_SIMULATED)
- /* unsupported/atari/tmpnam.c */
- extern char *tmpnam P((char *buf));
-@@ -1245,9 +1240,6 @@
- #endif
- #include <fcntl.h>
- #define INVALID_HANDLE  (__SMALLEST_VALID_HANDLE - 1)
+-#if defined(PIPES_SIMULATED)
+-/* unsupported/atari/tmpnam.c */
+-extern char *tmpnam P((char *buf));
+-extern char *tempnam P((const char *path, const char *base));
 -#else
--#define INVALID_HANDLE (-1)
+-#include <wait.h>
+-#endif
+-#include <fcntl.h>
+-#define INVALID_HANDLE  (__SMALLEST_VALID_HANDLE - 1)
+-#else
+ #define INVALID_HANDLE (-1)
 -#endif /* atarist */
  
  #ifdef HAVE_SYS_WAIT_H
  #include <sys/wait.h>
-Only in gawk-3.1.6-mint: awk.h.orig
-Only in gawk-3.1.6-mint: awk.h.rej
-diff -ur gawk-3.1.6/custom.h gawk-3.1.6-mint/custom.h
+diff -u gawk-3.1.6/custom.h gawk-3.1.6-mint/custom.h
 --- gawk-3.1.6/custom.h	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/custom.h	2008-05-15 23:44:43.000000000 +0100
++++ gawk-3.1.6-mint/custom.h	2008-12-14 17:29:35.976955738 +0000
 @@ -102,3 +102,8 @@
  #define HAVE_TZSET 1
  #define _TZSET 1
@@ -71,9 +70,9 @@ diff -ur gawk-3.1.6/custom.h gawk-3.1.6-mint/custom.h
 +#ifdef __MINT__
 +#define HAVE_MKTIME 1
 +#endif
-diff -ur gawk-3.1.6/gawkmisc.c gawk-3.1.6-mint/gawkmisc.c
+diff -u gawk-3.1.6/gawkmisc.c gawk-3.1.6-mint/gawkmisc.c
 --- gawk-3.1.6/gawkmisc.c	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/gawkmisc.c	2008-05-15 23:44:43.000000000 +0100
++++ gawk-3.1.6-mint/gawkmisc.c	2008-12-14 17:29:36.007527192 +0000
 @@ -40,15 +40,11 @@
  #if defined(VMS)
  #include "vms/gawkmisc.vms"
@@ -90,9 +89,9 @@ diff -ur gawk-3.1.6/gawkmisc.c gawk-3.1.6-mint/gawkmisc.c
  #endif /* not VMS */
  #endif /* not MSDOS, not OS2, not WIN32 */
  #endif /* not __EMX__ */
-diff -ur gawk-3.1.6/io.c gawk-3.1.6-mint/io.c
+diff -u gawk-3.1.6/io.c gawk-3.1.6-mint/io.c
 --- gawk-3.1.6/io.c	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/io.c	2008-05-15 23:44:43.000000000 +0100
++++ gawk-3.1.6-mint/io.c	2008-12-14 17:29:36.008955442 +0000
 @@ -111,10 +111,6 @@
  
  #endif /* HAVE_SOCKETS */
@@ -104,10 +103,9 @@ diff -ur gawk-3.1.6/io.c gawk-3.1.6-mint/io.c
  #if defined(GAWK_AIX)
  #undef TANDEM	/* AIX defines this in one of its header files */
  #undef MSDOS	/* For good measure, */
-Only in gawk-3.1.6-mint: io.c.orig
-diff -ur gawk-3.1.6/replace.c gawk-3.1.6-mint/replace.c
+diff -u gawk-3.1.6/replace.c gawk-3.1.6-mint/replace.c
 --- gawk-3.1.6/replace.c	2007-04-12 22:29:15.000000000 +0100
-+++ gawk-3.1.6-mint/replace.c	2008-05-15 23:44:43.000000000 +0100
++++ gawk-3.1.6-mint/replace.c	2008-12-14 17:29:36.008955442 +0000
 @@ -6,21 +6,8 @@
  #include "awk.h"
  
