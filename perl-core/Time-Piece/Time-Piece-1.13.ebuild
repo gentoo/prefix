@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Time-Piece/Time-Piece-1.13.ebuild,v 1.1 2008/11/02 07:32:11 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Time-Piece/Time-Piece-1.13.ebuild,v 1.2 2008/12/14 16:14:12 aballier Exp $
 
 EAPI="prefix"
 
