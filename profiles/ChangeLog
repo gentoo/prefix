@@ -1,10 +1,83 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2145 2008/12/11 01:02:11 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2171 2008/12/15 02:10:45 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Dec 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Unmasking fltk:2 and dillo-2.0, bug 246445
+
+  15 Dec 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  mask evdev version to go with xorg-server 1.5.3
+
+  15 Dec 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  update xorg-server 1.5.3 p.mask, should be there only a day or two
+
+  14 Dec 2008; Paul Varner <fuzzyray@gentoo.org> package.mask:
+  Package mask app-portage/udept due to dead upstream
+
+  14 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  more package removals cleanup
+
+  14 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Cleanup for non-existant packages - package removals
+
+  14 Dec 2008; Bjarke Istrup Pedersen <gurligebis@gentoo.org> use.local.desc:
+  Adding local use flags for psybnc.
+
+  14 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Masked gucharmap for testing until tree is fixed, see bug #243160.
+
+  14 Dec 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-proxy/squirm.
+
+  14 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  net-voip/linphone and media-libs/mediastreamer was removed for bug 189774,
+  plaase see bug 246494 for new versions.
+
+  13 Dec 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Add gnome-do-plugins to gnome-do mask
+
+  13 Dec 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove =net-proxy/privoxy-3.0.8 and net-dialup/{bewan-adsl,eagle-usb} atoms
+  from p.mask (packages were removed from the tree).
+
+  13 Dec 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask sv 1.4 along with vamp sdk 2.0
+
+  13 Dec 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask vamp-plugin-sdk 2.0; api changes
+
+  12 Dec 2008; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  masking soon to be removed nvidia-drivers versions package.mask
+
+  12 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Removing nemesi and fenice, masked since 05 Jan 2008 for security issues.
+  They are also deprecated and replaced by libnemesi and feng.
+
+  12 Dec 2008; Steve Dibb <beandog@gentoo.org> package.mask:
+  p.mask >=media-libs/xvid-1.2.0 for general testing, lots of reverse deps
+
+  11 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Unmask dev-php5/ffmpeg-php thanks to b3hzat at gmail.com wrt #250636.
+
+  11 Dec 2008; Santiago M. Mola <coldwind@gentoo.org> package.mask:
+  Unmask app-shells/bash-completion (bug #250027).
+
+  11 Dec 2008; Jim Ramsay <lack@gentoo.org> package.mask:
+  Masking live x11-wm/fluxbox-9999 ebuild
+
+  11 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Mask net-voip/linphone for removal in 30 days by treecleaners and media,
+  bugs 189774 and 218102.
+
+  11 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Removed DirectFB-extra. Doesn't work with recent DirectFB or FFMPEG.
+
+  11 Dec 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  adjust ocaml 3.11 mask reason
 
   11 Dec 2008; <ssuominen@gentoo.org> package.mask:
   Removed dev-db/rekall and two unused mpeg4ip versions that have been

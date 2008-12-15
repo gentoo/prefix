@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.9 2008/11/21 20:18:19 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.10 2008/12/14 14:13:56 loki_val Exp $
 
 ##
 # Ferris McCormick <fmccor@gentoo.org> (18 Nov. 2008)
@@ -46,4 +46,4 @@ dev-dotnet/pe-format
 dev-lang/mono
 dev-util/mono-tools
 dev-util/monodoc
-
+virtual/monodoc

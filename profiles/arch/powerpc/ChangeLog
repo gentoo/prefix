@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/PPC profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.22 2008/11/12 06:15:42 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.23 2008/12/14 15:04:39 loki_val Exp $
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +ppc32/package.use.mask:
+  Mask mono-tools[webkit] for bug 250934.
 
   12 Nov 2008; Joseph Jezak <josejx@gentoo.org> package.use.mask:
   Added use mask for pearpc - jit

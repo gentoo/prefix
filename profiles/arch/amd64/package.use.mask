@@ -3,6 +3,12 @@
 # default-linux/amd64/(dev)?/2007.0/package.use.mask IN SYNC
 # SEE BUG #168249 FOR DETAILS
 
+# Vlastimil Babka <caster@gentoo.org> (12 Dec 2008)
+# finally a 64bit java plugin
+>=dev-java/sun-jdk-1.6.0.12_beta2 -nsplugin
+# but not on 1.7 yet
+=dev-java/sun-jdk-1.7* nsplugin
+
 # Tomas Chvatal <scarabeus@gentoo.org> (24 Nov 2008)
 # masked in base, unmaks for x86/amd64
 sci-misc/boinc -bindist
