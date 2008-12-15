@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.51 2008/11/13 18:59:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.52 2008/12/14 23:25:11 eva Exp $
+
+  14 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  pygobject-2.14.0.ebuild, -pygobject-2.14.1.ebuild,
+  pygobject-2.14.2.ebuild, pygobject-2.15.4.ebuild:
+  Add python_need_rebuild per bug #244608.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> pygobject-2.14.2.ebuild:
   Marking pygobject-2.14.2 ppc64 stable for bug 236971

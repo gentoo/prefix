@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.15.4.ebuild,v 1.1 2008/10/19 11:41:44 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.15.4.ebuild,v 1.2 2008/12/14 23:25:11 eva Exp $
 
 EAPI="prefix"
 
@@ -75,6 +75,7 @@ pkg_postinst() {
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
 	python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py
+	python_need_rebuild
 }
 
 pkg_postrm() {
