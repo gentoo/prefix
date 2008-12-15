@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/babl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.3 2008/12/01 21:50:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.4 2008/12/11 21:15:24 klausman Exp $
+
+  11 Dec 2008; Tobias Klausmann <klausman@gentoo.org> babl-0.0.22.ebuild:
+  Keyworded on alpha, bug #240433
 
   01 Dec 2008; Brent Baude <ranger@gentoo.org> babl-0.0.22.ebuild:
   Marking babl-0.0.22 ~ppc64 for bug 240433
