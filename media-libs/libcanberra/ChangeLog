@@ -1,0 +1,26 @@
+# ChangeLog for media-libs/libcanberra
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.6 2008/11/23 20:15:53 leio Exp $
+
+  23 Nov 2008; Mart Raudsepp <leio@gentoo.org> libcanberra-0.10.ebuild:
+  Default enable USE=gtk as all current users of libcanberra need it
+
+  31 Oct 2008; Jeroen Roovers <jer@gentoo.org> libcanberra-0.10.ebuild:
+  Marked ~hppa (bug #239847).
+
+*libcanberra-0.10 (13 Oct 2008)
+
+  13 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +libcanberra-0.10.ebuild:
+  Bump to 0.10.0, fix bug #241708.
+
+  10 Oct 2008; Raúl Porcel <armin76@gentoo.org> libcanberra-0.9.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #239847
+
+*libcanberra-0.9 (05 Oct 2008)
+
+  05 Oct 2008; Mart Raudsepp <leio@gentoo.org> +metadata.xml,
+  +libcanberra-0.9.ebuild:
+  Initial import of libcanberra - a portable sound event library for
+  generating event sounds on free desktops.
+
