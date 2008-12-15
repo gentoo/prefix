@@ -1,22 +1,21 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3-r2.ebuild,v 1.1 2007/12/17 09:17:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.1.ebuild,v 1.2 2008/12/12 09:52:46 aballier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic eutils fixheadtails autotools
 
-MY_P=${PN}core-${PV}
+MY_PN="${PN}core"
+MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="XviD, a high performance/quality MPEG-4 video de-/encoding solution"
 HOMEPAGE="http://www.xvid.org"
-SRC_URI="http://downloads.xvid.org/downloads/${MY_P}.tar.bz2
-	mirror://gentoo/${PN}-1.1.2-noexec-stack.patch.bz2
-	mirror://gentoo/${P}-textrel-2.patch.bz2"
+SRC_URI="http://downloads.xvid.org/downloads/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="1"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="examples altivec"
 
 # once yasm-0.6.0+ comes out, we can switch this to
@@ -34,19 +33,7 @@ DEPEND="x86? ( ${NASM} )
 	amd64? ( ${NASM} )"
 RDEPEND=""
 
-S="${WORKDIR}"/${MY_P}/build/generic
-
-src_unpack() {
-	unpack ${A}
-	cd "${WORKDIR}"/${MY_P}
-	epatch "${FILESDIR}"/${PN}-1.1.0_beta2-altivec.patch
-	epatch "${WORKDIR}"/${PN}-1.1.2-noexec-stack.patch
-	epatch "${FILESDIR}"/${PN}-1.1.0-3dnow-2.patch
-	epatch "${FILESDIR}"/${P}-ia64-build.patch
-	epatch "${WORKDIR}/${P}-textrel-2.patch"
-	cd "${S}"
-	eautoreconf
-}
+S="${WORKDIR}/${MY_PN}/build/generic"
 
 src_compile() {
 	local myconf=""
@@ -68,7 +55,7 @@ src_install() {
 	else
 		local mylib=$(basename $(ls "${ED}"/usr/$(get_libdir)/libxvidcore.so*))
 		dosym ${mylib} /usr/$(get_libdir)/libxvidcore.so
-		dosym ${mylib} /usr/$(get_libdir)/${mylib/.1}
+		dosym ${mylib} /usr/$(get_libdir)/${mylib%.?}
 	fi
 
 	if use examples; then
