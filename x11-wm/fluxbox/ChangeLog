@@ -1,6 +1,11 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.260 2008/09/22 13:12:30 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.261 2008/12/11 16:04:23 lack Exp $
+
+*fluxbox-9999 (11 Dec 2008)
+
+  11 Dec 2008; Jim Ramsay <lack@gentoo.org> +fluxbox-9999.ebuild:
+  Adding live git ebuild (Bug #250526)
 
   22 Sep 2008; David Shakaryan <omp@gentoo.org> metadata.xml:
   Change herd from commonbox to desktop-wm.
