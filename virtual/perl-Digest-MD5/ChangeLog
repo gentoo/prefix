@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Digest-MD5
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/ChangeLog,v 1.17 2008/11/28 13:28:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/ChangeLog,v 1.18 2008/12/14 14:54:56 aballier Exp $
+
+  14 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  perl-Digest-MD5-2.38.ebuild:
+  keyword ~sparc-fbsd
 
   28 Nov 2008; Alexis Ballier <aballier@gentoo.org>
   perl-Digest-MD5-2.38.ebuild:
