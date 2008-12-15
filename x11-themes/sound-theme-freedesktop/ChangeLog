@@ -1,0 +1,24 @@
+# ChangeLog for x11-themes/sound-theme-freedesktop
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/ChangeLog,v 1.4 2008/11/19 22:19:48 eva Exp $
+
+*sound-theme-freedesktop-0.2 (19 Nov 2008)
+
+  19 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +sound-theme-freedesktop-0.2.ebuild:
+  Bump to 0.2. Some new and some updated sounds.
+
+  11 Oct 2008; Jeroen Roovers <jer@gentoo.org>
+  sound-theme-freedesktop-0.ebuild:
+  Marked ~hppa (bug #239847).
+
+  10 Oct 2008; Raúl Porcel <armin76@gentoo.org>
+  sound-theme-freedesktop-0.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #239847
+
+*sound-theme-freedesktop-0 (05 Oct 2008)
+
+  05 Oct 2008; Mart Raudsepp <leio@gentoo.org> +metadata.xml,
+  +sound-theme-freedesktop-0.ebuild:
+  Initial import - default freedesktop.org sound theme package
+
