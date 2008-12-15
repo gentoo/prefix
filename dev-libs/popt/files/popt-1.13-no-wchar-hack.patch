@@ -9,7 +9,7 @@ diff -ru popt-1.13.orig/popthelp.c popt-1.13/popthelp.c
  #endif
  
 -#define	POPT_WCHAR_HACK
-+#ifndef __INTERIX
++#if !defined(__INTERIX) && !defined(__MINT__)
 +# define POPT_WCHAR_HACK
 +#endif
  #ifdef 	POPT_WCHAR_HACK
