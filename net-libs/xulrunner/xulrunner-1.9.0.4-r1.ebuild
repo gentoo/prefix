@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.4-r1.ebuild,v 1.1 2008/11/15 18:25:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.4-r1.ebuild,v 1.4 2008/12/14 21:49:54 armin76 Exp $
 
 EAPI="prefix"
 
@@ -18,9 +18,10 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE=""
+IUSE="python"
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
+	python? ( >=dev-lang/python-2.3 )
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12
 	>=dev-libs/nspr-4.7.1
@@ -90,6 +91,11 @@ src_compile() {
 
 	mozconfig_init
 	mozconfig_config
+
+	MEXTENSIONS="default"
+	if use python; then
+		MEXTENSIONS="${MEXTENSIONS},python/xpcom"
+	fi
 
 	mozconfig_annotate '' --enable-extensions="${MEXTENSIONS}"
 	mozconfig_annotate '' --disable-mailnews
@@ -169,5 +175,19 @@ src_install() {
 	if use java ; then
 	    java-pkg_dojar "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
 	    rm -f "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
+	fi
+}
+
+pkg_postinst() {
+	if use python; then
+		python_version
+		python_mod_optimize ${EROOT}/usr/$(get_libdir)/${PN}-1.9/python/xpcom
+	fi
+}
+
+pkg_postrm() {
+	if use python; then
+		python_version
+		python_mod_cleanup ${EROOT}/usr/$(get_libdir)/${PN}-1.9/python/xpcom
 	fi
 }
