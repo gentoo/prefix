@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.5.ebuild,v 1.8 2008/07/04 02:33:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.6.ebuild,v 1.1 2008/12/12 12:29:05 ulm Exp $
 
 EAPI="prefix"
 
@@ -32,5 +32,4 @@ src_install() {
 	doins {emacs,etags}.eselect || die "doins failed"
 	doman {emacs,etags}.eselect.5 || die "doman failed"
 	dodoc ChangeLog || die "dodoc failed"
-	dosbin emacs-updater || die "dosbin failed"
 }
