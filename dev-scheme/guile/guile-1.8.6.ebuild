@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5-r1.ebuild,v 1.7 2008/12/14 17:00:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.6.ebuild,v 1.1 2008/12/11 16:17:19 hkbst Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools flag-o-matic elisp-common
+inherit flag-o-matic elisp-common
 
 DESCRIPTION="Scheme interpreter"
 HOMEPAGE="http://www.gnu.org/software/guile/"
@@ -37,11 +37,11 @@ src_unpack() {
 #	cp configure.in configure.in.old
 
 	#for libtool-2.2*, bug 212723
-	sed 's/AC_CONFIG_MACRO_DIR(\[m4\])/AC_CONFIG_MACRO_DIR(\[guile-config\])/' -i configure.in
+#	sed 's/AC_CONFIG_MACRO_DIR(\[m4\])/AC_CONFIG_MACRO_DIR(\[guile-config\])/' -i configure.in
 
 #	diff -u configure.in.old configure.in
 
-	eautoreconf
+#	eautoreconf
 }
 
 
