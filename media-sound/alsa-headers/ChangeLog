@@ -1,6 +1,18 @@
 # ChangeLog for media-sound/alsa-headers
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/ChangeLog,v 1.157 2008/11/11 17:11:37 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/ChangeLog,v 1.160 2008/12/12 17:08:26 klausman Exp $
+
+  12 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
+  alsa-headers-1.0.17.ebuild, alsa-headers-1.0.18.ebuild:
+  Brainfart during stabilization for bug #245517, going back to .17 for
+  stable on alpha
+
+  12 Dec 2008; Brent Baude <ranger@gentoo.org> alsa-headers-1.0.17.ebuild:
+  Marking alsa-headers-1.0.17 ppc64 for bug 245517
+
+  11 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
+  alsa-headers-1.0.18.ebuild:
+  Stable on alpha, bug #245517
 
 *alsa-headers-1.0.18 (11 Nov 2008)
 
