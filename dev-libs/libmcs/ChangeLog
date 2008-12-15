@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libmcs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.45 2008/11/30 20:01:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.46 2008/12/13 18:24:55 klausman Exp $
+
+  13 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
+  libmcs-0.7.1-r2.ebuild:
+  Stable on alpha, bug #247287
 
   30 Nov 2008; Raúl Porcel <armin76@gentoo.org> libmcs-0.7.1-r2.ebuild:
   sparc/x86 stable wrt #247287
