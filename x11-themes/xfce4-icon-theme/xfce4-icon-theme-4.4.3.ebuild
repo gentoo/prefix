@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/xfce4-icon-theme/xfce4-icon-theme-4.4.3.ebuild,v 1.4 2008/12/08 21:35:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/xfce4-icon-theme/xfce4-icon-theme-4.4.3.ebuild,v 1.6 2008/12/15 04:52:47 jer Exp $
 
 EAPI="prefix"
 
