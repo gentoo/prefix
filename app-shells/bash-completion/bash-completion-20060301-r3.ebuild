@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r3.ebuild,v 1.1 2008/06/15 23:22:31 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r3.ebuild,v 1.2 2008/12/14 12:30:31 coldwind Exp $
 
 EAPI="prefix"
 
@@ -89,6 +89,10 @@ pkg_postinst() {
 	elog
 	elog "Additional completion functions can also be enabled or"
 	elog "disabled using eselect's bashcomp module."
+	elog
+	elog "This will work only on login shells. If you are using non-login"
+	elog "interactive shells, you still need to source"
+	elog "/etc/profile.d/bash-completion.sh in your ~/.bashrc."
 	elog
 
 	if has_version 'app-shells/zsh' ; then
