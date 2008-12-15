@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Digest-MD5
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.18 2008/11/28 13:28:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.19 2008/12/14 14:54:04 aballier Exp $
+
+  14 Dec 2008; Alexis Ballier <aballier@gentoo.org> Digest-MD5-2.38.ebuild:
+  keyword ~sparc-fbsd
 
   28 Nov 2008; Alexis Ballier <aballier@gentoo.org> Digest-MD5-2.38.ebuild:
   keyword ~x86-fbsd, bug #247887
