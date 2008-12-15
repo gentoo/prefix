@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.3.ebuild,v 1.7 2008/07/30 21:36:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.5.ebuild,v 1.1 2008/12/14 18:42:30 eva Exp $
 
 EAPI="prefix 1"
 
@@ -65,19 +65,19 @@ pkg_setup() {
 		$(use_enable spell spellcheck)
 		$(use_with xml libxml2)
 		$(use_with !xml expat)
-		--disable-libabiword
-		--enable-printing
-		--enable-threads
-		--disable-scripting"
+		--enable-libabiword
+		--enable-printing"
 }
 
 src_install() {
 	# Install icon to pixmaps, bug #220097
-	sed -i 's:icondir = $(datadir)/icons:icondir = $(datadir)/pixmaps:'	GNUmakefile
+	sed 's:icondir = $(datadir)/icons:icondir = $(datadir)/pixmaps:'	\
+		-i GNUmakefile || die "sed 1 failed"
 
 	gnome2_src_install
 
-	sed -i "s:Exec=abiword:Exec=abiword-${MY_MAJORV}:" "${ED}"/usr/share/applications/abiword.desktop
+	sed "s:Exec=abiword:Exec=abiword-${MY_MAJORV}:" \
+		-i "${ED}"/usr/share/applications/abiword.desktop || die "sed 2 failed"
 
 	mv "${ED}/usr/bin/abiword" "${ED}/usr/bin/AbiWord-${MY_MAJORV}"
 	dosym AbiWord-${MY_MAJORV} /usr/bin/abiword-${MY_MAJORV}

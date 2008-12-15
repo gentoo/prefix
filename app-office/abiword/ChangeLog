@@ -1,6 +1,11 @@
 # ChangeLog for app-office/abiword
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.205 2008/09/20 20:20:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.206 2008/12/14 18:42:30 eva Exp $
+
+*abiword-2.6.5 (14 Dec 2008)
+
+  14 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> +abiword-2.6.5.ebuild:
+  Bump to 2.6.5.
 
   20 Sep 2008; Gilles Dartiguelongue <eva@gentoo.org> -abiword-2.6.3.ebuild:
   remove old revision.
