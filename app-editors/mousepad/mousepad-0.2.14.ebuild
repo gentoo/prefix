@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.4 2008/12/08 21:32:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.6 2008/12/15 04:49:46 jer Exp $
 
 EAPI="prefix 1"
 
