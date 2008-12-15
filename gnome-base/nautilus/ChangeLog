@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.281 2008/11/29 11:55:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.282 2008/12/11 10:32:53 armin76 Exp $
+
+  11 Dec 2008; Raúl Porcel <armin76@gentoo.org> nautilus-2.24.2.ebuild:
+  Add ~alpha/~ia64 wrt #242812
 
 *nautilus-2.24.2 (29 Nov 2008)
 
