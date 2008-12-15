@@ -93,101 +93,101 @@ bootstrap_setup() {
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
 		powerpc-apple-darwin7)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.3"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.3"
 			;;
 		powerpc-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc"
 			;;
 		powerpc64-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc64"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc64"
 			;;
 		i*86-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/x86"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/x86"
 			;;
 		powerpc-apple-darwin9)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/ppc"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc"
 			;;
 		i*86-apple-darwin9)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x86"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x86"
 			;;
 		x86_64-apple-darwin9)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x64"
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
+			profile="${PORTDIR}/profiles/prefix/linux/x86"
 			;;
 		x86_64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
+			profile="${PORTDIR}/profiles/prefix/linux/amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
+			profile="${PORTDIR}/profiles/prefix/linux/ia64"
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/ppc"
+			profile="${PORTDIR}/profiles/prefix/linux/ppc"
 			;;
 		sparc-sun-solaris2.9)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
 			;;
 		i386-pc-solaris2.10)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x86"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x86"
 			;;
 		x86_64-pc-solaris2.10)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x64"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x64"
 			;;
 		sparc-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc"
 			;;
 		sparcv9-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc64"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc64"
 			;;
 		i386-pc-solaris2.11)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/x86"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x86"
 			;;
 		x86_64-pc-solaris2.11)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/x64"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x64"
 			;;
 		sparc-sun-solaris2.11)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/sparc"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc"
 			;;
 		sparcv9-sun-solaris2.11)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.11/sparc64"
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc64"
 			;;
 		powerpc-ibm-aix*)
-			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
+			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			;;
 		mips-sgi-irix*)
-			profile="${PORTDIR}/profiles/default-prefix/irix/${CHOST#mips-sgi-irix}/mips"
+			profile="${PORTDIR}/profiles/prefix/irix/${CHOST#mips-sgi-irix}/mips"
 			;;
 		i586-pc-interix*)
-			profile="${PORTDIR}/profiles/default-prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
+			profile="${PORTDIR}/profiles/prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
 			;;
 		i586-pc-winnt*)
-			profile="${PORTDIR}/profiles/default-prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
+			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
 			;;
 		hppa*-hp-hpux11*)
-			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
+			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
 			case "${CHOST}" in
 			hppa2.0n*) profile="${profile}/hppa2.0/32" ;;
 			hppa2.0w*) profile="${profile}/hppa2.0/64" ;;
 			esac
 			;;
 		ia64-hp-hpux11*)
-			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
+			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
 			;;
 		i386-pc-freebsd*)
-			profile="${PORTDIR}/profiles/default-prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
+			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
 			;;
 		i386-pc-netbsd*)
-			profile="${PORTDIR}/profiles/default-prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
+			profile="${PORTDIR}/profiles/prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
 			;;
 		powerpc-unknown-openbsd*)
-			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
+			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
 			;;
 		i386-pc-openbsd*)
-			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
+			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
 			;;
 		x86_64-pc-openbsd*)
-			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
+			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
 			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
@@ -219,7 +219,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20081117"
+	local PV="20081214"
 	do_tree "${DISTFILES_URL}" prefix-overlay-${PV}.tar.bz2
 }
 
