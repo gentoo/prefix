@@ -38,7 +38,8 @@ src_unpack() {
 src_compile() {
 	tc-export CC LD
 
-	[[ ${CHOST} == *-darwin* ]] && append-ldflags -undefined dynamic_lookup
+	[[ ${CHOST} == *-darwin* ]] && \
+		append-ldflags -undefined dynamic_lookup -lcrypto
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/ssmtp \
 		$(use_enable ssl) \
