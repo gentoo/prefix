@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.13 2008/11/20 16:44:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r1.ebuild,v 1.14 2008/12/13 17:38:16 angelos Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ RDEPEND=">=dev-lang/perl-5.6
 	hal? ( >=sys-apps/hal-0.5.7.1 )
 	python? ( dev-python/pygtk )"
 DEPEND="${RDEPEND}
-	dev-util/gtk-doc-am
+	|| ( dev-util/gtk-doc-am <dev-util/gtk-doc-1.10-r1 )
 	dev-util/pkgconfig
 	dev-util/xfce4-dev-tools
 	doc? ( dev-util/gtk-doc )

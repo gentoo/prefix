@@ -1,6 +1,11 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.71 2008/12/01 19:36:08 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.72 2008/12/13 17:38:15 angelos Exp $
+
+  13 Dec 2008; Christoph Mende <angelos@gentoo.org> exo-0.3.4-r1.ebuild,
+  exo-0.3.4-r2.ebuild:
+  Depend on <gtk-doc-1.10 or gtk-doc-am for arches where gtk-doc-am is not
+  stable but gtk-doc-1.8 is
 
 *exo-0.3.4-r2 (01 Dec 2008)
 
