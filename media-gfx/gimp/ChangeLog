@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.275 2008/12/07 23:29:54 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.276 2008/12/11 21:17:53 klausman Exp $
+
+  11 Dec 2008; Tobias Klausmann <klausman@gentoo.org> gimp-2.6.2.ebuild:
+  Keyworded on alpha, bug #240433
 
   07 Dec 2008; Hanno Boeck <hanno@gentoo.org> gimp-2.6.3.ebuild:
   Remove unused dependencies.
