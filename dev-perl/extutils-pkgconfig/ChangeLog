@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/extutils-pkgconfig
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-pkgconfig/ChangeLog,v 1.27 2008/10/20 17:56:47 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-pkgconfig/ChangeLog,v 1.28 2008/12/13 13:05:37 aballier Exp $
+
+  13 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  extutils-pkgconfig-1.12.ebuild:
+  keyword ~x86-fbsd
 
 *extutils-pkgconfig-1.12 (20 Oct 2008)
 
