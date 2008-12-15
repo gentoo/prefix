@@ -1,31 +1,33 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.0.ebuild,v 1.12 2008/03/10 21:37:59 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.1 2008/12/15 03:47:23 yngwin Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 inherit autotools flag-o-matic eutils toolchain-funcs
 
-DESCRIPTION="the Ogg Vorbis sound file format library"
+MY_P=${P/_/}
+DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
 HOMEPAGE="http://xiph.org/vorbis"
-SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.bz2"
+SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2
+	aotuv? ( mirror://gentoo/aotuv-b5.6-1.2.1rc1.diff.bz2 )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE="+aotuv doc"
 
 RDEPEND=">=media-libs/libogg-1"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
+S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
-	unpack ${A}
+	unpack ${MY_P}.tar.bz2
 	cd "${S}"
+	use aotuv && epatch "${DISTDIR}"/aotuv-b5.6-1.2.1rc1.diff.bz2
 
-	eautoreconf # need new libtool for interix
-
-	epunt_cxx #74493
+	rm ltmain.sh
+	AT_M4DIR=m4 eautoreconf
 
 	# Insane.
 	sed -i -e "s:-O20::g" -e "s:-mfused-madd::g" configure
@@ -47,13 +49,14 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
 
-	rm -rf "${ED}"/usr/share/doc/${P}
-
+	rm -rf "${ED}"/usr/share/doc/*
 	dodoc AUTHORS CHANGES README todo.txt
-
+	use aotuv && dodoc aoTuV_README-1st.txt aoTuV_technical.txt
 	if use doc; then
 		docinto txt
 		dodoc doc/*.txt
-		dohtml -r doc
+		rm doc/*.txt
+		docinto html
+		dohtml -r doc/*
 	fi
 }
