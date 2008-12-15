@@ -49,14 +49,23 @@ src_compile() {
 		|| die
 	emake || die "emake failed"
 
+	if [[ $(get_libname) != .irrelevant ]] ; then
+
 	cd "${SFFS}"
 	emake CC=$(tc-getCC) LIBDIR="${EPREFIX}/$(get_libdir)" || die "filefuncs emake failed"
+
+	fi
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die "install failed"
+
+	if [[ $(get_libname) != .irrelevant ]] ; then
+
 	cd "${SFFS}"
 	emake LIBDIR="${EPREFIX}/$(get_libdir)" install || die "filefuncs install failed"
+
+	fi
 
 	dodir /usr/bin
 	# In some rare cases, (p)gawk gets installed as (p)gawk- and not
