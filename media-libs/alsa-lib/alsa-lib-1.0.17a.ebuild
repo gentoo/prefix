@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.1 2008/09/01 17:48:15 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.3 2008/12/12 16:25:40 ranger Exp $
 
 EAPI="prefix"
 
