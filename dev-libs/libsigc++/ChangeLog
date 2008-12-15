@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.133 2008/12/08 19:58:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.136 2008/12/15 02:54:53 jer Exp $
+
+  15 Dec 2008; Jeroen Roovers <jer@gentoo.org> libsigc++-1.2.7.ebuild:
+  Stable for HPPA (bug #245636).
+
+  14 Dec 2008; nixnut <nixnut@gentoo.org> libsigc++-1.2.7.ebuild:
+  Stable on ppc wrt bug 245636
+
+  13 Dec 2008; Raúl Porcel <armin76@gentoo.org> libsigc++-1.2.7.ebuild:
+  alpha/arm/ia64/sh/sparc/x86 stable wrt #245636
 
   08 Dec 2008; Brent Baude <ranger@gentoo.org> libsigc++-1.2.7.ebuild:
   Marking libsigc++-1.2.7 ppc64 for bug 245636
