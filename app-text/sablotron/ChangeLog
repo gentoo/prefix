@@ -1,6 +1,12 @@
 # ChangeLog for app-text/sablotron
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.56 2008/01/25 19:17:14 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.57 2008/12/12 19:19:40 flameeyes Exp $
+
+  12 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  sablotron-1.0.3.ebuild:
+  Simplify ebuild, make sure eautoreconf is executed during src_unpack
+  rather than compile, remove doc USE flag since it was automagic, remove
+  old workaround that is not useful right now.
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> sablotron-1.0.1.ebuild,
   sablotron-1.0.2.ebuild, sablotron-1.0.3.ebuild:
