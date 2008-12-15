@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/libafterimage-1.18.ebuild,v 1.1 2008/07/04 10:02:07 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/libafterimage-1.18.ebuild,v 1.2 2008/12/13 13:57:00 aballier Exp $
 
 EAPI="prefix"
 
@@ -38,6 +38,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-makefile.in.patch
 	# fix lib paths in afterimage-config
 	epatch "${FILESDIR}"/${PN}-config.patch
+	# Fix recursive make calls, bug #210965
+	epatch "${FILESDIR}"/${P}-recmake_bsd.patch
 	# remove forced flags
 	sed -i \
 		-e 's/CFLAGS="-O3"//' \

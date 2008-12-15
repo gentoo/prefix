@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libafterimage
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.17 2008/07/04 10:02:07 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.18 2008/12/13 13:57:00 aballier Exp $
+
+  13 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/libafterimage-1.18-recmake_bsd.patch, libafterimage-1.18.ebuild:
+  fix build on fbsd and keyword it x86-fbsd, bug #210965
 
 *libafterimage-1.18 (04 Jul 2008)
 
