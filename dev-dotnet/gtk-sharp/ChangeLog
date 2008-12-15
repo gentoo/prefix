@@ -1,6 +1,19 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.85 2008/12/04 23:51:49 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.87 2008/12/14 15:27:09 loki_val Exp $
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> gtk-sharp-2.8.2.ebuild,
+  gtk-sharp-2.10.0.ebuild, gtk-sharp-2.10.2.ebuild,
+  gtk-sharp-2.12.7_pre20081204.ebuild, gtk-sharp-2.12.7.ebuild:
+  Use virtual/monodoc to accomodate inclusion of monodoc in mono from
+  >=mono-2.2_pre1
+
+*gtk-sharp-2.12.7 (13 Dec 2008)
+
+  13 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -files/gtk-sharp-2.12.6-spinbutton-api-fix.patch,
+  -gtk-sharp-2.12.6-r1.ebuild, +gtk-sharp-2.12.7.ebuild:
+  Bump. Remove old.
 
 *gtk-sharp-2.12.7_pre20081204 (04 Dec 2008)
 

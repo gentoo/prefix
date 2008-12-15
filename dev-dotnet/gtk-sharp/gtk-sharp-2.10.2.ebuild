@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/gtk-sharp-2.10.2.ebuild,v 1.1 2008/01/13 02:25:08 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/gtk-sharp-2.10.2.ebuild,v 1.2 2008/12/14 15:27:09 loki_val Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RDEPEND=">=dev-lang/mono-1.1.9
 		 >=x11-libs/gtk+-2.10"
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.19
-		doc? ( >=dev-util/monodoc-1.1.8 )"
+		doc? ( >=virtual/monodoc-1.1.8 )"
 
 RESTRICT="test"
 MAKEOPTS="${MAKEOPTS} -j1"
