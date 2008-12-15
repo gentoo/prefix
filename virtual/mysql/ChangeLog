@@ -1,6 +1,11 @@
 # ChangeLog for virtual/mysql
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/mysql/ChangeLog,v 1.8 2007/06/27 03:39:15 mr_bones_ Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/mysql/ChangeLog,v 1.9 2008/12/14 20:15:11 klausman Exp $
+
+  14 Dec 2008; Tobias Klausmann <klausman@gentoo.org> mysql-4.0.ebuild,
+  mysql-4.1.ebuild:
+  Mysql 4 doesn't compile cleanly on alpha (bug 162062) and nothing depends
+  on it specifically, so dropping the keyword altogether
 
   27 Jun 2007; Michael Sterrett <mr_bones_@gentoo.org> mysql-4.1.ebuild:
   remove reference to dev-db/mysql-community-4 which has gone away.
