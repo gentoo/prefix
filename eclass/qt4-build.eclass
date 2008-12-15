@@ -177,8 +177,9 @@ standard_configure_options() {
 	case "${ARCH}" in
 		amd64) myconf="${myconf} -arch x86_64" ;;
 		ppc|ppc64) myconf="${myconf} -arch powerpc" ;;
+		sparc|sparc-*) myconf="${myconf} -arch sparc" ;;
 		x86|x86-*) myconf="${myconf} -arch i386" ;;
-		alpha|arm|ia64|mips|s390|sparc) myconf="${myconf} -arch ${ARCH}" ;;
+		alpha|arm|ia64|mips|s390) myconf="${myconf} -arch ${ARCH}" ;;
 		hppa|sh) myconf="${myconf} -arch generic" ;;
 		*) die "${ARCH} is unsupported by this eclass. Please file a bug." ;;
 	esac
@@ -458,6 +459,8 @@ qt_mkspecs_dir() {
 			spec="netbsd" ;;
 		*-darwin*)
 			spec="darwin" ;;
+		*-solaris*)
+			spec="solaris" ;;
 		*-linux-*|*-linux)
 			spec="linux" ;;
 		*)
