@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.11 2008/12/01 22:05:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.12 2008/12/11 21:16:37 klausman Exp $
+
+  11 Dec 2008; Tobias Klausmann <klausman@gentoo.org> gegl-0.0.20.ebuild:
+  Keyworded on alpha, bug #240433
 
   01 Dec 2008; Brent Baude <ranger@gentoo.org> gegl-0.0.20.ebuild:
   Marking gegl-0.0.20 ~ppc64 for bug 240433
