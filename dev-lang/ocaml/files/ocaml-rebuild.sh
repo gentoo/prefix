@@ -32,25 +32,15 @@ do
   category=`cat $dir/CATEGORY`
   slot=`cat $dir/SLOT`
 
-  toclean="=$category/$pkg $toclean"
-  tocleanstr="\"$category/$pkg\" $tocleanstr"
-
   tobuild=">=$category/$pkg:$slot $tobuild"
   tobuildstr="\">=$category/$pkg:$slot\" $tobuildstr"
 done
 
-echo Cleaning $tocleanstr
 echo Building $tobuildstr
 
-if [ "$toclean" != "" ]
+if [ $pretend -eq 1 ]
 then
-	if [ $pretend -eq 1 ]
-	then
-		$emerge --pretend $@ $tobuild
-	else
-		$emerge --unmerge $toclean
-		$emerge $@ $tobuild
-	fi
+	$emerge --pretend $@ $tobuild
 else
-	echo "Nothing to update"
+	$emerge --oneshot $@ $tobuild
 fi
