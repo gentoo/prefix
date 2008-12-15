@@ -1,6 +1,14 @@
 # ChangeLog for x11-themes/gtk-engines-xfce
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-xfce/ChangeLog,v 1.96 2008/12/08 21:35:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-xfce/ChangeLog,v 1.98 2008/12/15 04:52:18 jer Exp $
+
+  15 Dec 2008; Jeroen Roovers <jer@gentoo.org>
+  gtk-engines-xfce-2.4.3.ebuild:
+  Stable for HPPA (bug #249942).
+
+  13 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  gtk-engines-xfce-2.4.3.ebuild:
+  alpha/arm/ia64/sparc/x86 stable wrt #249942
 
   08 Dec 2008; Brent Baude <ranger@gentoo.org>
   gtk-engines-xfce-2.4.3.ebuild:
