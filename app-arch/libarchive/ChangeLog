@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.34 2008/12/07 05:57:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.35 2008/12/11 18:41:36 flameeyes Exp $
+
+*libarchive-2.5.904a (11 Dec 2008)
+
+  11 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  -files/libarchive-2.5.902a-automagic.patch, -libarchive-2.5.902a.ebuild,
+  +libarchive-2.5.904a.ebuild:
+  Version bump, the automagic patch has been merged upstream entirely. 903a
+  has been skipped for test failure.
 
   07 Dec 2008; Mike Frysinger <vapier@gentoo.org> libarchive-2.5.5.ebuild,
   libarchive-2.5.902a.ebuild:

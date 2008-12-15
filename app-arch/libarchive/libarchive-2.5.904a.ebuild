@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.902a.ebuild,v 1.2 2008/12/07 05:57:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.904a.ebuild,v 1.1 2008/12/11 18:41:36 flameeyes Exp $
 
 EAPI="prefix 1"
 
-inherit eutils libtool toolchain-funcs autotools
+inherit eutils libtool toolchain-funcs
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
@@ -13,11 +13,11 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="static acl xattr kernel_linux +bzip2 +lzma"
+IUSE="static acl xattr kernel_linux +bzip2 +lzma +zlib"
 
 COMPRESS_LIBS_DEPEND="lzma? ( app-arch/lzma-utils )
 		bzip2? ( app-arch/bzip2 )
-		sys-libs/zlib"
+		zlib? ( sys-libs/zlib )"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
@@ -34,10 +34,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-automagic.patch
-
-	eautoreconf
-
 	elibtoolize
 	epunt_cxx
 }
@@ -52,6 +48,7 @@ src_compile() {
 	econf --bindir="${EPREFIX}"/bin \
 		--enable-bsdtar --enable-bsdcpio \
 		$(use_enable acl) $(use_enable xattr) \
+		$(use_with zlib) \
 		$(use_with bzip2 bz2lib) $(use_with lzma lzmadec) \
 		${myconf} \
 		--disable-dependency-tracking || die "econf failed."
