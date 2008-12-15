@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.64 2008/12/10 14:21:14 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.66 2008/12/14 13:48:53 nixnut Exp $
+
+  14 Dec 2008; nixnut <nixnut@gentoo.org> rake-0.8.3.ebuild:
+  Stable on ppc wrt bug 250348
+
+  12 Dec 2008; Hans de Graaff <graaff@gentoo.org> -rake-0.8.0.ebuild,
+  -rake-0.8.2.ebuild:
+  Remove old versions
 
   10 Dec 2008; Ferris McCormick <fmccor@gentoo.org> rake-0.8.3.ebuild:
   Sparc stable, part of Bug #250348.
