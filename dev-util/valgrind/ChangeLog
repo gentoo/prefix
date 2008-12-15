@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.93 2008/08/24 11:41:59 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.94 2008/12/13 10:57:06 griffon26 Exp $
+
+*valgrind-3.3.1-r1 (13 Dec 2008)
+
+  13 Dec 2008; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.3.1-glibc-2.9.patch, +valgrind-3.3.1-r1.ebuild:
+  Added patch to support glibc-2.9, submitted by Bartosz Szreder
+  <cfiend@talent.edu.pl> in bug #250570.
 
   24 Aug 2008; Markus Rothe <corsair@gentoo.org> valgrind-3.3.1.ebuild:
   Stable on ppc64; bug #234526
