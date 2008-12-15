@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.2 2008/11/22 21:11:36 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.4 2008/12/12 23:10:52 josejx Exp $
 
 EAPI="prefix"
 
