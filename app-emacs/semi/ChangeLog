@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/semi
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.23 2007/10/16 06:30:21 opfer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.24 2008/12/12 06:28:25 ulm Exp $
+
+*semi-1.14.6-r1 (27 Nov 2008)
+
+  27 Nov 2008; Ulrich Mueller <ulm@gentoo.org> +semi-1.14.6-r1.ebuild:
+  Install Japanese documentation with LINGUAS=ja only.
 
   16 Oct 2007; Christian Faulhammer <opfer@gentoo.org> semi-1.14.6.ebuild:
   stable amd64, bug 195158
