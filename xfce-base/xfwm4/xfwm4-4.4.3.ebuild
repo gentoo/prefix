@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/xfwm4-4.4.3.ebuild,v 1.4 2008/12/08 21:41:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/xfwm4-4.4.3.ebuild,v 1.6 2008/12/15 05:00:13 jer Exp $
 
 EAPI="prefix 1"
 
