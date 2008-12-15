@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.10 2008/11/10 10:54:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.12 2008/12/13 10:00:35 ssuominen Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,8 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-shared-gcc4.1.patch"
+	epatch "${FILESDIR}"/${PN}-shared-gcc4.1.patch
+	epatch "${FILESDIR}"/${P}-sparc-gcc43.patch #247653
 
 	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-solaris64.patch

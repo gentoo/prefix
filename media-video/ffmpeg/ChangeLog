@@ -1,6 +1,16 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.238 2008/11/10 10:54:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.240 2008/12/13 10:00:35 ssuominen Exp $
+
+  13 Dec 2008; <ssuominen@gentoo.org>
+  +files/ffmpeg-0.4.9_p20081014-sparc-gcc43.patch,
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Backport upstream patch for sparc to allow compilation with GCC 4.3 wrt
+  #247653.
+
+  12 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Stable on alpha, bug #245285
 
   10 Nov 2008; Raúl Porcel <armin76@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild:
