@@ -1,6 +1,10 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.71 2008/06/28 19:59:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.72 2008/12/13 10:03:54 graaff Exp $
+#
+# @ECLASS: ruby.eclass
+# @MAINTAINER:
+# Ruby herd <ruby@gentoo.org>
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -34,7 +38,12 @@
 # RUBY_ECONF	You can pass extra arguments to econf by defining this
 #		variable. Note that you cannot specify them by command line
 #		if you are using <sys-apps/portage-2.0.49-r17.
-# PATCHES	Space delimited list of patch files.
+# @VARIABLE: PATCHES
+# @DESCRIPTION:
+# If you have any patches to apply, set PATCHES to their locations and
+# epatch will apply them. It also handles epatch-style bulk patches,
+# if you know how to use them and set the correct variables. If you
+# don't, read eutils.eclass.
 
 inherit eutils toolchain-funcs
 
@@ -75,10 +84,15 @@ ruby_src_unpack() {
 	#ruby_patch_mkmf
 	unpack ${A}
 	cd ${S}
-	# apply bulk patches
-	if [[ -n "${PATCHES}" ]] ; then
-		for p in ${PATCHES} ; do
-			epatch $p
+
+	# Apply any patches that have been provided.
+	if [[ ${#PATCHES[@]} -gt 1 ]]; then
+		for x in "${PATCHES[@]}"; do
+			epatch "${x}"
+		done
+	elif [[ -n "${PATCHES}" ]]; then
+		for x in ${PATCHES}; do
+			epatch "${x}"
 		done
 	fi
 }
