@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.0.ebuild,v 1.14 2008/11/13 19:25:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.2.ebuild,v 1.1 2008/12/16 00:06:25 tgurr Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,8 @@ SLOT="0"
 IUSE="debug doc test"
 
 RDEPEND=">=app-text/ghostscript-gpl-8.61-r1"
-DEPEND="doc? ( app-doc/doxygen )
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )
 	test? ( x11-libs/cairo
 		dev-util/pkgconfig )"
 
@@ -25,7 +26,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.2.0-interix.patch
 
 	eautoreconf # need new libtool for interix
 }
