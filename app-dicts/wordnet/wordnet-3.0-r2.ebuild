@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/wordnet-3.0-r2.ebuild,v 1.3 2008/09/17 20:31:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/wordnet-3.0-r2.ebuild,v 1.4 2008/12/16 00:48:25 pva Exp $
 
 EAPI="prefix"
 
@@ -46,16 +46,15 @@ src_unpack() {
 src_compile() {
 	append-flags -DUNIX -I${T}/usr/include
 
-	MAKEOPTS="-e"
 	PLATFORM=linux WN_ROOT="${T}/usr" \
 	WN_DICTDIR="${T}/usr/share/wordnet/dict" \
 	WN_MANDIR="${T}/usr/share/man" \
 	WN_DOCDIR="${T}/usr/share/doc/wordnet-${PV}" \
-	WNHOME="/usr/share/wordnet" \
+	WNHOME="${EPREFIX}/usr/share/wordnet" \
 	econf \
 		--with-tcl="${EPREFIX}"/usr/$(get_libdir) \
 		--with-tk="${EPREFIX}"/usr/$(get_libdir)
-	emake || die "emake Failed"
+	emake -e || die "emake Failed"
 }
 
 src_install() {
