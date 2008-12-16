@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.12 2008/12/13 10:00:35 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.14 2008/12/15 12:06:08 ssuominen Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 		theora? ( media-libs/libtheora media-libs/libogg )
 		x264? ( >=media-libs/x264-0.0.20081006 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
-	aac? ( media-libs/faad2 )
+	aac? ( >=media-libs/faad2-2.6.1 )
 	zlib? ( sys-libs/zlib )
 	ieee1394? ( media-libs/libdc1394
 				sys-libs/libraw1394 )
