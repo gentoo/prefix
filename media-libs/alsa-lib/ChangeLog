@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.266 2008/12/12 16:25:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.267 2008/12/15 07:40:55 ssuominen Exp $
+
+  15 Dec 2008; <ssuominen@gentoo.org> alsa-lib-1.0.17a.ebuild:
+  x86 stable wrt #245517
 
   12 Dec 2008; Brent Baude <ranger@gentoo.org> alsa-lib-1.0.17a.ebuild:
   Marking alsa-lib-1.0.17a ppc64 for bug 245517
