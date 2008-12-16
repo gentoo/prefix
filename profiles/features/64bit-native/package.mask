@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/features/64bit-native/package.mask,v 1.8 2008/12/01 18:31:57 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/64bit-native/package.mask,v 1.9 2008/12/15 10:14:10 angelos Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -195,7 +195,7 @@ sci-biology/foldingathome
 sys-apps/memtest86
 sys-apps/memtest86+
 sys-libs/lib-compat-loki
-www-client/opera
+<www-client/opera-9.62
 www-client/mozilla-bin
 www-client/mozilla-firefox-bin
 www-client/seamonkey-bin

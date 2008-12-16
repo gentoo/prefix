@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9294 2008/12/15 02:10:45 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9297 2008/12/15 12:43:31 remi Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,13 +30,6 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
-
-# Rémi Cardona <remi@gentoo.org> (15 Dec 2008)
-# version with _massive_ EXA patches from git master
-# hasn't killed kittens for weeks, please DO test it
-# and the evdev version to go along
-=x11-base/xorg-server-1.5.3
-=x11-drivers/xf86-input-evdev-2.1.0
 
 # Paul Varner <fuzzyray@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~30 to 60 days.
@@ -382,10 +375,6 @@ dev-perl/tagged
 # genflags should never have been born.  Output needs to be specific per GCC
 # version, and that's a big change.
 app-portage/genflags
-
-# Rémi Cardona <remi@gentoo.org> (19 Oct 2008)
-# pre-release, masked for testing
-=x11-drivers/xf86-video-intel-2.4.98*
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (15 Oct 2008)
 # Beta release
@@ -1276,10 +1265,6 @@ games-action/armagetronad
 # Mike Frysinger <vapier@gentoo.org> (28 Dec 2006)
 # Build failure on big-endian #154294 and breaks non-default journals #154974
 ~sys-fs/reiserfsprogs-3.6.20
-
-# Timothy Redaelli <drizzt@gentoo.org> (28 Nov 2006)
-# Masked for testing.
->=media-libs/spandsp-0.0.3_pre
 
 # Marcus D. Hanwell <cryos@gentoo.org> (03 Nov 2006)
 # 5.5.6 does not work with all projects, please use 5.4 or >=5.8
