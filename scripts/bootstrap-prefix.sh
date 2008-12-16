@@ -406,7 +406,7 @@ bootstrap_gnu() {
 	[[ $PN == "gzip" ]] && A=${PN}-${PV}.tar
 	einfo "Bootstrapping ${A%-*}"
 
-	URL=${3-${GNU_URL}/${PN}/${A}}
+	URL=${3-${GENTOO_MIRROR}/${A}}
 	efetch ${URL}
 
 	einfo "Unpacking ${A%-*}"
@@ -841,6 +841,7 @@ PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
+GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 GENTOO_URL=${GENTOO_URL:="http://gentoo.osuosl.org"}
 
