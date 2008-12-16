@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.136 2008/12/15 02:54:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.137 2008/12/15 07:15:31 remi Exp $
+
+  15 Dec 2008; Rémi Cardona <remi@gentoo.org> -libsigc++-1.2.5.ebuild:
+  remove broken 1.2.5 (see bug #245636)
 
   15 Dec 2008; Jeroen Roovers <jer@gentoo.org> libsigc++-1.2.7.ebuild:
   Stable for HPPA (bug #245636).
