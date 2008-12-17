@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.25 2008/06/05 20:04:07 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.26 2008/12/16 15:44:42 dev-zero Exp $
+
+*boost-build-1.37.0 (16 Dec 2008)
+*boost-build-1.36.0 (16 Dec 2008)
+*boost-build-1.35.0-r2 (16 Dec 2008)
+
+  16 Dec 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +boost-build-1.35.0-r2.ebuild, +boost-build-1.36.0.ebuild,
+  +boost-build-1.37.0.ebuild:
+  Version bump. Still p.masked since the new versions are slottable.
 
 *boost-build-1.35.0-r1 (05 Jun 2008)
 
