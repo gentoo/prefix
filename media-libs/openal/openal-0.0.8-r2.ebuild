@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-0.0.8-r2.ebuild,v 1.7 2008/12/07 11:55:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-0.0.8-r2.ebuild,v 1.8 2008/12/17 05:09:40 ssuominen Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit autotools eutils
 
 DESCRIPTION="an open, vendor-neutral, cross-platform API for interactive, primarily spatialized audio"
 HOMEPAGE="http://www.openal.org"
-SRC_URI="http://www.openal.org/openal_webstf/downloads/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
