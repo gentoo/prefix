@@ -1,0 +1,94 @@
+diff -aurN binutils-2.18.50.0.5/bfd/configure binutils-2.18.50.0.5.mint/bfd/configure
+--- binutils-2.18.50.0.5/bfd/configure	Wed Apr  2 11:51:30 2008
++++ binutils-2.18.50.0.5.mint/bfd/configure	Wed Apr  2 12:11:16 2008
+@@ -6925,7 +6925,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no
+diff -aurN binutils-2.18.50.0.5/binutils/configure binutils-2.18.50.0.5.mint/binutils/configure
+--- binutils-2.18.50.0.5/binutils/configure	Wed Apr  2 11:51:34 2008
++++ binutils-2.18.50.0.5.mint/binutils/configure	Wed Apr  2 12:09:40 2008
+@@ -6755,7 +6755,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no
+diff -aurN binutils-2.18.50.0.5/gas/configure binutils-2.18.50.0.5.mint/gas/configure
+--- binutils-2.18.50.0.5/gas/configure	Fri Mar 14 19:23:02 2008
++++ binutils-2.18.50.0.5.mint/gas/configure	Wed Apr  2 12:12:36 2008
+@@ -6753,7 +6753,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no
+diff -aurN binutils-2.18.50.0.5/gprof/configure binutils-2.18.50.0.5.mint/gprof/configure
+--- binutils-2.18.50.0.5/gprof/configure	Fri Mar 14 19:23:02 2008
++++ binutils-2.18.50.0.5.mint/gprof/configure	Wed Apr  2 12:10:04 2008
+@@ -6833,7 +6833,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no
+diff -aurN binutils-2.18.50.0.5/ld/configure binutils-2.18.50.0.5.mint/ld/configure
+--- binutils-2.18.50.0.5/ld/configure	Wed Apr  2 11:51:44 2008
++++ binutils-2.18.50.0.5.mint/ld/configure	Wed Apr  2 12:16:22 2008
+@@ -6987,7 +6987,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no
+diff -aurN binutils-2.18.50.0.5/libiberty/configure binutils-2.18.50.0.5.mint/libiberty/configure
+--- binutils-2.18.50.0.5/libiberty/configure	Wed Aug  1 14:11:52 2007
++++ binutils-2.18.50.0.5.mint/libiberty/configure	Wed Apr  2 12:08:36 2008
+@@ -3715,6 +3715,7 @@
+   frag=
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+diff -aurN binutils-2.18.50.0.5/libiberty/configure.ac binutils-2.18.50.0.5.mint/libiberty/configure.ac
+--- binutils-2.18.50.0.5/libiberty/configure.ac	Wed Aug  1 14:11:52 2007
++++ binutils-2.18.50.0.5.mint/libiberty/configure.ac	Wed Apr  2 12:08:12 2008
+@@ -203,6 +203,7 @@
+   frag=
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+diff -aurN binutils-2.18.50.0.5/opcodes/configure binutils-2.18.50.0.5.mint/opcodes/configure
+--- binutils-2.18.50.0.5/opcodes/configure	Fri Mar 14 19:23:02 2008
++++ binutils-2.18.50.0.5.mint/opcodes/configure	Wed Apr  2 12:15:24 2008
+@@ -6921,7 +6921,7 @@
+       # Instead, we relocate shared libraries at runtime.
+       ;;
+ 
+-    msdosdjgpp*)
++    msdosdjgpp* | mint*)
+       # Just because we use GCC doesn't mean we suddenly get shared libraries
+       # on systems that don't support them.
+       lt_prog_compiler_can_build_shared=no

@@ -10,6 +10,14 @@ inherit toolchain-binutils
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
+src_unpack() {
+	tc-binutils_unpack
+	cd "${S}"
+	epatch "${FILESDIR}"/binutils-2.18.50.0.7-mint.patch
+	epatch "${FILESDIR}"/binutils-2.18.50.0.7-mint2.patch
+	epatch "${FILESDIR}"/binutils-2.19.50.0.1-mint.patch
+}
+
 src_compile() {
 	if has noinfo "${FEATURES}" \
 	|| ! type -p makeinfo >/dev/null

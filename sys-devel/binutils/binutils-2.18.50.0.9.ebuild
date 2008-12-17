@@ -13,6 +13,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~
 src_unpack() {
 	tc-binutils_unpack
 	cd "${S}"
+	epatch "${FILESDIR}"/binutils-2.18.50.0.7-mint.patch
+	epatch "${FILESDIR}"/binutils-2.18.50.0.7-mint2.patch
 	epatch "${FILESDIR}"/${P}-reloc.patch
 	cd gas
 	epatch "${FILESDIR}"/${P}-solaris-eh-frame.patch
