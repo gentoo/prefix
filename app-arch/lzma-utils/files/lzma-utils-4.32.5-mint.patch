@@ -10,3 +10,15 @@
  
  install-data-hook:
  	cd $(DESTDIR)$(mandir)/man1 && \
+--- src/lzma/Makefile.in.old	2008-12-16 16:47:31.000000000 +0000
++++ src/lzma/Makefile.in	2008-12-16 16:47:42.000000000 +0000
+@@ -671,7 +671,8 @@
+ 	cd $(DESTDIR)$(bindir) && \
+ 	rm -f unlzma lzcat && \
+ 	$(LN_S) lzma unlzma && \
+-	$(LN_S) lzma lzcat
++	$(LN_S) lzma lzcat && \
++	stack -S 512K lzma
+ 
+ install-data-hook:
+ 	cd $(DESTDIR)$(mandir)/man1 && \
