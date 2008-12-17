@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -56,7 +56,10 @@ src_install() {
 	# copy from the host os
 	cd "${ED}${BINPATH}"
 	for b in ${what} ; do
-		if [[ -x ${nativepath}/g${b} ]] ; then
+		if [[ ${CHOST} == *-darwin* && ${b} == libtool ]] ; then
+			echo "linking darwin libtool ${nativepath}/${b}"
+			ln -s "${nativepath}/${b}" "${b}"
+		elif [[ -x ${nativepath}/g${b} ]] ; then
 			einfo "linking ${nativepath}/g${b}"
 			ln -s "${nativepath}/g${b}" "${b}"
 		elif [[ -x ${nativepath}/${b} ]] ; then
