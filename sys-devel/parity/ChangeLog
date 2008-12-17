@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*parity-1.2.1 (17 Dec 2008)
+
+  17 Dec 2008; Markus Duft <mduft@gentoo.org> -parity-1.1.0.ebuild,
+  +parity-1.2.1.ebuild:
+  updated to 1.2.1
+
   19 Nov 2008; Markus Duft <mduft@gentoo.org>
   +files/parity-1.2.0-exception-handling.patch, parity-1.2.0.ebuild:
   added patch to repair exception handling
