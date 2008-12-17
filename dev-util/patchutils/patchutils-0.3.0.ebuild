@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.3.0.ebuild,v 1.5 2008/12/15 03:50:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.3.0.ebuild,v 1.6 2008/12/16 15:36:24 ranger Exp $
 
 EAPI="prefix"
 
