@@ -36,8 +36,11 @@ emboss
 hardened
 jack
 lapack
+
+# Stuff we don't want
 networkmanager
 octave
+oracle
 timidity
 
 # Stuff that doesn't compile on ia64

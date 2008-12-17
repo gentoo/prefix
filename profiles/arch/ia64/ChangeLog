@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.21 2008/11/23 13:00:50 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.22 2008/12/16 19:34:34 armin76 Exp $
+
+  16 Dec 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add oracle to use.mask
 
   23 Nov 2008; Patrick Lauer <patrick@gentoo.org> package.use.mask:
   webkit is missing keywords, masking webkit useflag for PyQt4

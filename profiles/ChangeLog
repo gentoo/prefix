@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2174 2008/12/15 12:43:31 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2177 2008/12/16 22:57:35 cardoe Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  16 Dec 2008; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  unmask 100.14.19 since several users have reported this being the last
+  version that works with their hardware
+
+  16 Dec 2008; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added new slotted ebuilds for boost and boost-build as well as
+  eselect-boost
+
+  16 Dec 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking net-dialup/ivcall. Fails to build, bug #247946. Somebody needs to
+  port it to new spandsp interface
 
   15 Dec 2008; Rémi Cardona <remi@gentoo.org> package.mask:
   remove old intel p.mask entries
