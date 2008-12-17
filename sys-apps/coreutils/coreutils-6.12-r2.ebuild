@@ -70,6 +70,8 @@ src_unpack() {
 	# Do not blindly include libselinux
 	epatch "${FILESDIR}/${PN}"-6.10-selinux-opt.patch
 
+	epatch "${FILESDIR}"/${P}-mint.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
