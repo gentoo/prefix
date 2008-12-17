@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/zile
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.71 2008/10/08 12:13:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.72 2008/12/16 11:39:33 ulm Exp $
+
+*zile-2.3.0 (16 Dec 2008)
+
+  16 Dec 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/zile-2.3.0-splash.patch, +zile-2.3.0.ebuild:
+  Version bump.
 
   28 Sep 2008; Ulrich Mueller <ulm@gentoo.org> ChangeLog:
   Add FDL-1.2 to LICENSE.
