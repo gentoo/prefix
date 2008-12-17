@@ -88,6 +88,11 @@ src_unpack() {
 	# define _ALL_SOURCE by default on Interix
 	epatch "${FILESDIR}"/${P}-interix-all-source.patch
 
+	if [[ ${CHOST} == *-mint* ]] ; then
+		epatch "${FILESDIR}"/gcc-4.2.3-mint.patch
+		epatch "${FILESDIR}"/gcc-4.2.3-mint2.patch
+	fi
+
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
