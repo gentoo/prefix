@@ -13,7 +13,7 @@ SRC_URI="http://www.xfig.org/software/xfig/3.2.5/${MY_P}.full.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libXaw
@@ -41,6 +41,7 @@ src_unpack() {
 	find "${S}" -type f -exec chmod -x \{\} \;
 
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 }
 
 sed_Imakefile() {
@@ -65,10 +66,12 @@ sed_Imakefile() {
 }
 
 src_compile() {
+	local EXTCFLAGS=${CFLAGS}
 	sed_Imakefile Imakefile
 
 	xmkmf || die
-	emake CC="$(tc-getCC)" LOCAL_LDFLAGS="${LDFLAGS}" CDEBUGFLAGS="${CFLAGS}" \
+	[[ ${CHOST} == *-solaris* ]] && EXTCFLAGS="${EXTCFLAGS} -D_POSIX_SOURCE"
+	emake CC="$(tc-getCC)" LOCAL_LDFLAGS="${LDFLAGS}" CDEBUGFLAGS="${EXTCFLAGS}" \
 	USRLIBDIR="${EPREFIX}"/usr/$(get_libdir) || die
 }
 
