@@ -24,4 +24,6 @@ src_install() {
 	sed -i -e "s|\(EtcX11Directory \)\(/etc/X11$\)|\1${EPREFIX}\2|" ${ED}/usr/$(get_libdir)/X11/config/X11.tmpl || die "failed etcx11dir sed"
 	sed -i -e "/#  define Solaris64bitSubdir/d" ${ED}/usr/$(get_libdir)/X11/config/sun.cf
 	sed -i -e 's/-DNOSTDHDRS//g' ${ED}/usr/$(get_libdir)/X11/config/sun.cf
+	# switch to linux library model (stupid .sa files on Solaris...)
+	sed -i -e 's/sunLib/lnxLib/g' ${ED}/usr/$(get_libdir)/X11/config/sun.cf
 }
