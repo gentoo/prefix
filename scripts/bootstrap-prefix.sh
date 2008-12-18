@@ -114,16 +114,16 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
+			profile="${PORTDIR}/profiles/prefix/linux/x86"
 			;;
 		x86_64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
+			profile="${PORTDIR}/profiles/prefix/linux/amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
+			profile="${PORTDIR}/profiles/prefix/linux/ia64"
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="${PORTDIR}/profiles/default-prefix/linux/ppc"
+			profile="${PORTDIR}/profiles/prefix/linux/ppc"
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
