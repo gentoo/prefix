@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  18 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  portage-2.2.00.12182.ebuild:
+  Add back master mirror to avoid screwups due to unavailable distfiles, no
+  need for explicit mirror:// as portage should try that by default
+
 *portage-2.2.00.12182 (08 Dec 2008)
 
   08 Dec 2008; Fabian Groffen <grobian@gentoo.org>
