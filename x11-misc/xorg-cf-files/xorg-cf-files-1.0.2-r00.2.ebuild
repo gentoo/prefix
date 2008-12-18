@@ -7,7 +7,7 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular eutils
 
 DESCRIPTION="Old Imake-related build files"
 
@@ -15,6 +15,13 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 
 RDEPEND=""
 DEPEND=""
+
+src_unpack() {
+	x-modular_src_unpack
+	cd "${S}"
+	# switch to linux library model (stupid .sa files on Solaris...)
+	epatch "${FILESDIR}"/${P}-solaris-prefix.patch
+}
 
 src_install() {
 	x-modular_src_install
@@ -24,6 +31,4 @@ src_install() {
 	sed -i -e "s|\(EtcX11Directory \)\(/etc/X11$\)|\1${EPREFIX}\2|" ${ED}/usr/$(get_libdir)/X11/config/X11.tmpl || die "failed etcx11dir sed"
 	sed -i -e "/#  define Solaris64bitSubdir/d" ${ED}/usr/$(get_libdir)/X11/config/sun.cf
 	sed -i -e 's/-DNOSTDHDRS//g' ${ED}/usr/$(get_libdir)/X11/config/sun.cf
-	# switch to linux library model (stupid .sa files on Solaris...)
-	sed -i -e 's/sunLib/lnxLib/g' ${ED}/usr/$(get_libdir)/X11/config/sun.cf
 }
