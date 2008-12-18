@@ -72,30 +72,11 @@ src_compile() {
 	make includes || die
 	make depend || die
 	local extld=
-	if [[ ${CHOST} == *-solaris* ]] ; then
-		extld="-shared"
-		sed -i -e '/PICFLAGS/s/-pic/-fPIC/' Makefile || die "-fPIC"
-		emake CDEBUGFLAGS="${CFLAGS}" \
-			SHLIBLDFLAGS="${LDFLAGS} ${extld}" \
-			LD="$(tc-getCC)" \
-			CC="$(tc-getCC)" || die
-	else
-		emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
-	fi
+	emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
 }
 
 src_install() {
 	make INSTALLFLAGS="-c" DESTDIR="${D}" install || die
-	if [[ ${CHOST} == *-solaris* ]] ; then
-		# stupid so symlinks are missing :(
-		pushd "${ED}"/usr/$(get_libdir) > /dev/null
-		lib=$(echo libXaw3d.so.*)
-		ln -s ${lib} ${lib%.*}
-		ln -s ${lib} ${lib%.*.*}
-		# stupid misnamed static archive
-		mv libXaw3d.sa* libXaw3d.a
-		popd > /dev/null
-	fi
 
 	dodoc README.XAW3D
 }
