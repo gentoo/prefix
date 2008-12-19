@@ -20,7 +20,7 @@ SRC_URI="cjk? ( ftp://ftp.gyve.org/pub/gs-cjk/adobe-cmaps-200406.tar.gz
 
 LICENSE="GPL-2 CPL-1.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="bindist cairo cjk cups djvu gtk jpeg2k X"
 
 COMMON_DEPEND="media-libs/fontconfig
@@ -117,6 +117,7 @@ src_unpack() {
 		src/Makefile.in src/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-8.62-interix.patch
+	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
 
 	cd "${S}"
 	eautoreconf
