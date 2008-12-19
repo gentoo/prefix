@@ -40,6 +40,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-locale.patch
 	epatch "${FILESDIR}"/${P}-fig2ps2tex_bashisms.patch
 	epatch "${WORKDIR}"/${P}-fig2mpdf.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 }
 
 sed_Imakefile() {
@@ -47,6 +48,8 @@ sed_Imakefile() {
 	vars2subs="BINDIR=${EPREFIX}/usr/bin
 			MANDIR=${EPREFIX}/usr/share/man/man\$\(MANSUFFIX\)
 			XFIGLIBDIR=${EPREFIX}/usr/share/xfig
+			PNGINC=-I${EPREFIX}/usr/include/X11
+			XPMINC=-I${EPREFIX}/usr/include/X11
 			USEINLINE=-DUSE_INLINE
 			RGB=${EPREFIX}/usr/share/X11/rgb.txt
 			FIG2DEV_LIBDIR=${EPREFIX}/usr/share/fig2dev"
