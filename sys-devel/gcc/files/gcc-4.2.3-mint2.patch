@@ -21,8 +21,9 @@ diff -u gcc-4.2.3/libiberty/configure.ac gcc-4.2.3.mint/libiberty/configure.ac
      *-*-interix*)	;;
      alpha*-*-linux*)	frag=mh-elfalphapic ;;
      arm*-*-*)		frag=mh-armpic ;;
---- gcc/Makefile.in.old	2008-04-13 22:11:39.838023141 +0100
-+++ gcc/Makefile.in	2008-04-13 22:11:35.227023113 +0100
+diff -aurN gcc-4.2.3/gcc/Makefile.in.old gcc-4.2.3.mint/gcc/Makefile.in
+--- gcc-4.2.3/gcc/Makefile.in.old	2008-04-13 22:11:39.838023141 +0100
++++ gcc-4.2.3.mint/gcc/Makefile.in	2008-04-13 22:11:35.227023113 +0100
 @@ -1400,6 +1400,7 @@
  cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
  	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) cc1-checksum.o \
