@@ -12,7 +12,7 @@ SRC_URI="http://libspectre.freedesktop.org/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
 SLOT="0"
 IUSE="debug doc test"
 
