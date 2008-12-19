@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils fixheadtails libtool
+inherit eutils fixheadtails autotools libtool
 
 DESCRIPTION="GNU Portable Threads"
 HOMEPAGE="http://www.gnu.org/software/pth/"
@@ -23,16 +23,22 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
+	epatch "${FILESDIR}/${PN}-2.0.7-mint.patch"
 	epatch "${FILESDIR}"/${P}-libs.patch
 
 	ht_fix_file aclocal.m4 configure
 
+	eautoreconf
 	elibtoolize
 }
 
 src_compile() {
 	local conf
+
+	[[ ${CHOST} == *-mint* ]] && conf="${conf} --enable-pthread"
+
 	use debug && conf="${conf} --enable-debug"	# have a bug --disable-debug and shared
+
 	econf ${conf} || die
 	emake || die
 }
