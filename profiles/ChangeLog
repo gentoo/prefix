@@ -6,6 +6,12 @@
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
 
+  19 Dec 2008; Markus Duft <mduft@gentoo.org>
+  default-prefix/windows/interix/package.mask,
+  prefix/windows/interix/package.mask:
+  removed mask for libgcrypt, the failure was due to an automake problem,
+  fixed in 1.10.2-r00.1
+
   16 Dec 2008; Doug Goldstein <cardoe@gentoo.org> package.mask:
   unmask 100.14.19 since several users have reported this being the last
   version that works with their hardware
