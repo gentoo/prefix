@@ -68,6 +68,10 @@ src_unpack() {
 	# build glib with parity for native win32
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 
+	# makes the iconv check more general, needed for winnt, but could
+	# be usefull for others too.
+	epatch "${FILESDIR}"/${P}-iconv.patch
+
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
 	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am

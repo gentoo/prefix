@@ -1,0 +1,12 @@
+diff -ru glib-2.18.3.orig/configure.in glib-2.18.3/configure.in
+--- glib-2.18.3.orig/configure.in	2008-12-19 09:06:54 +0100
++++ glib-2.18.3/configure.in	2008-12-19 09:11:43 +0100
+@@ -470,7 +470,7 @@
+ dnl Now we are done with gettext checks, figure out ICONV_LIBS
+ dnl
+ 
+-if test x"$glib_native_win32" != xyes; then
++if test x$with_libiconv != xnative ; then
+   if test x$with_libiconv != xno ; then
+     case " $INTLLIBS " in
+     *[[\ \	]]-liconv[[\ \	]]*) ;;
