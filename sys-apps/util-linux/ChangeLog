@@ -1,0 +1,1095 @@
+# ChangeLog for sys-apps/util-linux
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.253 2008/12/06 01:35:54 vapier Exp $
+
+  06 Dec 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.14-AC_BIG_ENDIAN.patch, util-linux-2.14.1.ebuild:
+  Add fix from upstream for missing call to AC_BIG_ENDIAN in configure.
+
+  02 Dec 2008; Brent Baude <ranger@gentoo.org> util-linux-2.14.1.ebuild:
+  stable ppc64, bug 249107
+
+  02 Dec 2008; Raúl Porcel <armin76@gentoo.org> util-linux-2.14.1.ebuild:
+  alpha/ia64/sparc stable wrt #249107
+
+  30 Nov 2008; Markus Meier <maekke@gentoo.org> util-linux-2.14.1.ebuild:
+  amd64/x86 stable, bug #249107
+
+  29 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  util-linux-2.14.1.ebuild:
+  ppc stable, bug #249107
+
+  29 Nov 2008; <solar@gentoo.org> util-linux-2.14.1.ebuild:
+  - quick hack for dirty times
+
+  27 Nov 2008; Jeroen Roovers <jer@gentoo.org> util-linux-2.14.1.ebuild:
+  Stable for HPPA (bug #249107).
+
+  17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/util-linux-2.12q-debian-10cfdisk.patch:
+  Fix patch with absolute paths.
+
+  26 Oct 2008; Mike Frysinger <vapier@gentoo.org> files/crypto-loop.initd:
+  Apply POSIX patch #236858.
+
+  26 Oct 2008; Mike Frysinger <vapier@gentoo.org> util-linux-2.14.1.ebuild:
+  Update loop-aes support #242874 by Fabio Coatti and Lars (Polynomial-C).
+
+*util-linux-2.14.1 (20 Oct 2008)
+
+  20 Oct 2008; Mike Frysinger <vapier@gentoo.org> +util-linux-2.14.1.ebuild:
+  Version bump.
+
+  23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
+
+  28 Jun 2008; Mike Frysinger <vapier@gentoo.org> util-linux-2.14.ebuild:
+  Update loop-aes patch from upstream #228691.
+
+*util-linux-2.14 (21 Jun 2008)
+
+  21 Jun 2008; Mike Frysinger <vapier@gentoo.org> +util-linux-2.14.ebuild:
+  Version bump #228061 by Conrad Kostecki.
+
+  07 Jun 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13.1-no-a.out.patch, util-linux-2.13.1.1.ebuild:
+  Do not rely on a.out.h #221939 by Mart Raudsepp.
+
+  28 Apr 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  util-linux-2.13.1.1.ebuild:
+  ppc stable, bug #219202
+
+  27 Apr 2008; Markus Meier <maekke@gentoo.org> util-linux-2.13.1.1.ebuild:
+  amd64 stable, security bug #219202
+
+  27 Apr 2008; Markus Rothe <corsair@gentoo.org> util-linux-2.13.1.1.ebuild:
+  Stable on ppc64; bug #219202
+
+  25 Apr 2008; Raúl Porcel <armin76@gentoo.org> util-linux-2.13.1.1.ebuild:
+  alpha/ia64/x86 stable wrt security #219202
+
+  25 Apr 2008; Jeroen Roovers <jer@gentoo.org> util-linux-2.13.1.1.ebuild:
+  Stable for HPPA (bug #219202).
+
+  25 Apr 2008; Ferris McCormick <fmccor@gentoo.org>
+  util-linux-2.13.1.1.ebuild:
+  Sparc stable, Security Bug #219202.
+
+*util-linux-2.13.1.1 (21 Apr 2008)
+
+  21 Apr 2008; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13.1.1.ebuild:
+  Version bump.
+
+  31 Mar 2008; Jeroen Roovers <jer@gentoo.org> util-linux-2.13.1.ebuild:
+  Stable for HPPA (bug #215371).
+
+  30 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  util-linux-2.13.1.ebuild:
+  amd64 stable wrt bug #215371
+
+  30 Mar 2008; Raúl Porcel <armin76@gentoo.org> util-linux-2.13.1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #215371
+
+  30 Mar 2008; Brent Baude <ranger@gentoo.org> util-linux-2.13.1.ebuild:
+  stable ppc64, bug 215371
+
+  30 Mar 2008; Brent Baude <ranger@gentoo.org> util-linux-2.13.1.ebuild:
+  stable ppc, bug 215371
+
+  29 Mar 2008; Mike Frysinger <vapier@gentoo.org> util-linux-2.13.1.ebuild,
+  util-linux-9999.ebuild:
+  Add support for USE=unicode and USE=slang #208976. Update loop-aes cruft
+  #206331.
+
+  26 Feb 2008; Mike Frysinger <vapier@gentoo.org> util-linux-2.13.1.ebuild:
+  Add ioprio workaround back as it hasnt been properly fixed in this release
+  #211573 by Mike Hammill.
+
+  01 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  files/crypto-loop.initd:
+  Update init script to work with current development version of OpenRC
+  (checkroot -> root; checkfs -> fsck).
+
+  20 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.13.0.1.ebuild, util-linux-2.13.1.ebuild:
+  Document USE=crypt -> USE=loop-aes transition #206747 by Jan Schubert.
+
+*util-linux-2.13.1 (16 Jan 2008)
+
+  16 Jan 2008; Mike Frysinger <vapier@gentoo.org> +util-linux-2.13.1.ebuild:
+  Version bump.
+
+*util-linux-2.13.0.1 (12 Jan 2008)
+
+  12 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  -util-linux-2.13-r3.ebuild, +util-linux-2.13.0.1.ebuild:
+  Bump source tarball so that loop-aes applies again #205529 by Ryan Tandy.
+  Otherwise, there is no functional changes from previous version.
+
+  12 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-uclibc.patch, util-linux-2.13-r2.ebuild,
+  util-linux-2.13-r3.ebuild:
+  Fixup building on uClibc #203711.
+
+  11 Jan 2008; Richard Freeman <rich0@gentoo.org> util-linux-2.13-r2.ebuild:
+  amd64 stable - #202181
+
+  10 Jan 2008; Raúl Porcel <armin76@gentoo.org> util-linux-2.13-r2.ebuild:
+  alpha/ia64 stable wrt #205101
+
+  09 Jan 2008; Brent Baude <ranger@gentoo.org> util-linux-2.13-r2.ebuild:
+  Marking util-linux-2.13-r2 ppc64 for bug 202181
+
+  09 Jan 2008; Brent Baude <ranger@gentoo.org> util-linux-2.13-r2.ebuild:
+  Marking util-linux-2.13-r2 ppc for bug 202181
+
+  09 Jan 2008; Markus Meier <maekke@gentoo.org> util-linux-2.13-r2.ebuild:
+  x86 stable, bug #202181
+
+  09 Jan 2008; Ferris McCormick <fmccor@gentoo.org>
+  util-linux-2.13-r2.ebuild:
+  Sparc stable --- Bug #202181 --- utilities seem fine.
+
+  09 Jan 2008; Jeroen Roovers <jer@gentoo.org> util-linux-2.13-r2.ebuild:
+  Stable for HPPA (bug #202181).
+
+*util-linux-2.13-r3 (14 Dec 2007)
+
+  14 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-hwclock-rtc.patch,
+  +files/util-linux-2.13-losetup-P.patch, +util-linux-2.13-r3.ebuild:
+  Fix from upstream for rtc/hwclock handling #179780 and fix for losetup -P
+  with loop-aes #201981.
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> util-linux-2.12r-r8.ebuild:
+  Stable on mips, per #195390.
+
+  12 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  util-linux-2.12r-r8.ebuild:
+  ppc stable, bug #195390
+
+  11 Oct 2007; Raúl Porcel <armin76@gentoo.org> util-linux-2.12r-r8.ebuild:
+  alpha/ia64 stable wrt security #195390
+
+  11 Oct 2007; Tom Gall <tgall@gentoo.org> util-linux-2.12r-r8.ebuild:
+  stable on ppc64, bug #195390 
+
+  11 Oct 2007; Jeroen Roovers <jer@gentoo.org> util-linux-2.12r-r8.ebuild:
+  Stable for SPARC (bug #195390).
+
+  11 Oct 2007; Steve Dibb <beandog@gentoo.org> util-linux-2.12r-r8.ebuild:
+  amd64 stable, security bug 195390
+
+  11 Oct 2007; Jeroen Roovers <jer@gentoo.org> util-linux-2.12r-r8.ebuild:
+  Stable for HPPA (bug #195390).
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  util-linux-2.12r-r8.ebuild:
+  stable x86, security bug 195390
+
+*util-linux-2.13-r2 (05 Oct 2007)
+
+  05 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-script-SIGWINCH.patch,
+  +files/util-linux-2.13-setuid-checks.patch, files/crypto-loop.initd,
+  +util-linux-2.13-r2.ebuild:
+  Add fix from upstream for `script` breakage with SIGWINCH #191452 by
+  Eric Augustus.  Add security fix from upstream.  Fix from Petr Pisar
+  for swap on cryptoloop #182031.  Add by in loop-aes support via USE=crypt
+  #193088 by Hank Leininger and Alon Bar-Lev.
+
+*util-linux-2.12r-r8 (05 Oct 2007)
+
+  05 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-setuid-checks.patch, +util-linux-2.12r-r8.ebuild:
+  Add security fix from upstream.
+
+  04 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-ioprio-syscalls.patch, util-linux-2.13-r1.ebuild:
+  Stub out ioprio syscalls on dated systems #190613 by Panagiotis Christopoulos.
+
+  03 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.12r-r7.ebuild:
+  Delete default LDFLAGS setting to -s #191112 by Andrew Ross.
+
+*util-linux-2.13-r1 (03 Sep 2007)
+
+  03 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-locale.patch, +util-linux-2.13-r1.ebuild:
+  Fix up building with NLS disabled #191111 by Jason S. and fix locale dir
+  setting #190895 by Benno Schulenberg.
+
+*util-linux-2.13 (28 Aug 2007)
+
+  28 Aug 2007; Mike Frysinger <vapier@gentoo.org> +util-linux-2.13.ebuild:
+  Version bump.
+
+*util-linux-2.13_rc3 (10 Aug 2007)
+
+  10 Aug 2007; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13_rc3.ebuild:
+  Version bump.
+
+  23 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.12r-r7.ebuild:
+  Punt bindnow-flags usage.
+
+*util-linux-2.13_rc2 (17 Jul 2007)
+
+  17 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13_rc2.ebuild:
+  Version bump.
+
+  09 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.12r-r7.ebuild:
+  Pull in setarch for amd64/mips/ppc/sparc.
+
+*util-linux-2.13_rc1 (07 Jul 2007)
+
+  07 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13_rc1.ebuild:
+  Version bump.
+
+  15 Jun 2007; Joe Peterson <lavajoe@gentoo.org> util-linux-2.12r-r7.ebuild:
+  Add blocker: sys-apps/more (since both provide the "more" pager)
+
+  13 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.12r-r7.ebuild, util-linux-9999.ebuild:
+  Add /usr/bin/arch symlink needed by autotools.
+
+  19 May 2007; Raúl Porcel <armin76@gentoo.org> util-linux-2.12r-r7.ebuild:
+  alpha stable wrt #178444
+
+  19 May 2007; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r7.ebuild:
+  Stable on ppc64; bug #178444
+
+  16 May 2007; Joseph Jezak <josejx@gentoo.org> util-linux-2.12r-r7.ebuild:
+  Marked ppc stable for bug #178444.
+
+  16 May 2007; Daniel Gryniewicz <dang@gentoo.org>
+  util-linux-2.12r-r7.ebuild:
+  Marked stable on amd64 for bug #178444
+
+  15 May 2007; Jeroen Roovers <jer@gentoo.org> util-linux-2.12r-r7.ebuild:
+  Stable for HPPA (bug #178444).
+
+*util-linux-2.12r-r7 (13 May 2007)
+
+  13 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12r-r7.ebuild:
+  Delete nfs(5) man page #178348 by Diego Petteno.
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org> util-linux-2.12r-r6.ebuild:
+  Stable on mips.
+
+  23 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r6.ebuild:
+  Stable on sparc
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> util-linux-2.12r-r6.ebuild:
+  ia64 + x86 stable
+
+*util-linux-9999 (13 Apr 2007)
+
+  13 Apr 2007; Mike Frysinger <vapier@gentoo.org> +util-linux-9999.ebuild:
+  Testing ebuild for current git version.
+
+  03 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  files/util-linux-2.12r-HAVE_asm_page_h.patch,
+  +files/util-linux-2.12r-HAVE_asm_page_h-loop-aes.patch,
+  util-linux-2.12r-r6.ebuild:
+  Split the asm/page.h patch to account for USE=-crypt #169133 by Milan Barta.
+
+*util-linux-2.12r-r6 (03 Mar 2007)
+
+  03 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12r-r6.ebuild, util-linux-2.13_pre7.ebuild:
+  Update loop-aes version #168174 by Alon Bar-Lev.
+
+  03 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-HAVE_asm_page_h.patch, util-linux-2.12r-r5.ebuild:
+  Fix building when asm/page.h is not available #168278 by Daniel Black.
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r5.ebuild:
+  Stable on ppc64; bug #164011
+
+  29 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r5.ebuild:
+  Stable on sparc wrt #164011
+
+  27 Jan 2007; Jeroen Roovers <jer@gentoo.org> util-linux-2.12r-r5.ebuild:
+  Stable for HPPA (bug #164011).
+
+  27 Jan 2007; Joseph Jezak <josejx@gentoo.org> util-linux-2.12r-r5.ebuild:
+  Marked ppc stable for bug #164011.
+
+  27 Jan 2007; Raúl Porcel <armin76@gentoo.org> util-linux-2.12r-r5.ebuild:
+  x86 stable wrt bug 164011
+
+  27 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  util-linux-2.12r-r5.ebuild:
+  Stable on Alpha; bug #164011
+
+  27 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  util-linux-2.12r-r5.ebuild:
+  Stable on MIPS; bug #164011
+
+  27 Jan 2007; Olivier Crête <tester@gentoo.org>
+  util-linux-2.12r-r5.ebuild:
+  Stable on amd64 per bug #164011
+
+  31 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-no-_syscall.patch, util-linux-2.12r-r5.ebuild:
+  Fix building with linux-headers-2.6.18+ as _syscall#() no longer exists
+  #150852 by Mario Fetka.
+
+*util-linux-2.12r-r5 (28 Oct 2006)
+
+  28 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12r-r5.ebuild:
+  Version bump loop-aes support #153140 by Alon Bar-Lev.
+
+  04 Sep 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  util-linux-2.12r-r4.ebuild:
+  stable on x86 (bug #144712)
+
+  29 Aug 2006; Bryan Østergaard <kloeri@gentoo.org>
+  util-linux-2.12r-r4.ebuild:
+  Stable on alpha.
+
+  23 Aug 2006; <wormo@gentoo.org> util-linux-2.12r-r4.ebuild:
+  stable on ppc (Bug #144712)
+
+  23 Aug 2006; <malc@gentoo.org> util-linux-2.12r-r4.ebuild:
+  Stable on amd64
+
+  22 Aug 2006; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r4.ebuild:
+  Stable on ppc64; bug #144712
+
+*util-linux-2.13_pre7 (02 Jul 2006)
+
+  02 Jul 2006; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13_pre7.ebuild:
+  Version bump #138498 by David Watzke.
+
+  29 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r4.ebuild:
+  Stable on sparc
+
+  23 May 2006; <solar@gentoo.org> -util-linux-2.12i-r1.ebuild,
+  -util-linux-2.12q-r3.ebuild, -util-linux-2.12r-r2.ebuild:
+  - removed obsolete vuln ebuilds
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org>
+  files/digest-util-linux-2.12q-r3, files/digest-util-linux-2.12r-r3,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  29 Apr 2006; Joshua Kinard <kumba@gentoo.org> util-linux-2.12r-r4.ebuild:
+  Marked stable on mips.
+
+  21 Apr 2006; Stephen P. Becker <geoman@gentoo.org>
+  +files/util-linux-2.12-mips-lseek.patch, util-linux-2.12r-r3.ebuild,
+  util-linux-2.12r-r4.ebuild:
+  use lseek instead of llseek for mips, and mark -r3 stable on mips
+
+  17 Apr 2006; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r3.ebuild:
+  Stable on ppc64; bug #129540
+
+  12 Apr 2006; Emanuele Giaquinta <exg@gentoo.org>
+  util-linux-2.12r-r3.ebuild:
+  Stable on ppc; bug #129540
+
+  12 Apr 2006; Bryan Østergaard <kloeri@gentoo.org
+  util-linux-2.12r-r3.ebuild:
+  Stable on alpha, bug 129540.
+
+  11 Apr 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r3.ebuild:
+  Stable on sparc wrt #129540
+
+  11 Apr 2006; Patrick McLean <chutzpah@gentoo.org>
+  util-linux-2.12r-r3.ebuild:
+  Stable on amd64 (bug 129540)
+
+  11 Apr 2006; Joshua Jackson <tsunam@gentoo.org>
+  util-linux-2.12r-r3.ebuild:
+  Stable on x86; bug #129540
+
+*util-linux-2.12r-r4 (11 Apr 2006)
+
+  11 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-umount-no-special.patch,
+  +util-linux-2.12r-r4.ebuild:
+  Update loop aes #129496 by Alon Bar-Lev and fix building on sparc/arm
+  systems with gcc-4.1 by ignoring the bogus code.
+
+  13 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  util-linux-2.13_pre6.ebuild:
+  Drop pam support for 2.13 as done for 2.12, leave all up to shadow.
+
+  12 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  util-linux-2.12r-r3.ebuild:
+  Drop pam useflag and dependency over pam-login, as all the stuff that might
+  use pam is provided by shadow on modern systems.
+
+  07 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-umount-nosysfs.patch, util-linux-2.12r-r3.ebuild:
+  Grab patch from Fedora.
+
+  24 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.13-no-nls.patch, util-linux-2.13_pre6.ebuild:
+  Fix building with USE=-nls #123826 by Chris Fairles.
+
+  09 Feb 2006; Joshua Kinard <kumba@gentoo.org> util-linux-2.12r-r2.ebuild:
+  Marked stable on mips for Bug #120111.
+
+  29 Jan 2006; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.13_pre6.ebuild:
+  Block schedutils package since its been integrated.
+
+*util-linux-2.13_pre6 (25 Jan 2006)
+
+  25 Jan 2006; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.13_pre6.ebuild:
+  Add a pre version for people to play with #119734 by Matthew Schick.
+
+  24 Jan 2006; Jose Luis Rivero <yoswink@gentoo.org>
+  util-linux-2.12r-r2.ebuild:
+  Stable on alpha wrt bug #120111
+
+  24 Jan 2006; Ian Leitch <port001@gentoo.org> util-linux-2.12r-r2.ebuild:
+  Stable on x86 (bug #120111).
+
+  24 Jan 2006; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r2.ebuild:
+  Stable on ppc64; bug #120111
+
+  24 Jan 2006; Luca Barbato <lu_zero@gentoo.org> util-linux-2.12r-r2.ebuild:
+  Marked ppc
+
+  24 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r2.ebuild:
+  Stable on sparc wrt #120111
+
+  23 Jan 2006; Luis Medinas <metalgod@gentoo.org>
+  util-linux-2.12r-r2.ebuild:
+  Stable on amd64. See bug #120111.
+
+*util-linux-2.12r-r3 (23 Jan 2006)
+
+  23 Jan 2006; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12r-r3.ebuild:
+  Version bump the loop-aes support #119846 by Alon Bar-Lev.
+
+  27 Dec 2005; Bryan Østergaard <kloeri@gentoo.org
+  util-linux-2.12r-r1.ebuild:
+  Stable on alpha.
+
+  25 Dec 2005; Diego Pettenò <flameeyes@gentoo.org>
+  util-linux-2.12r-r2.ebuild:
+  Use bindnow-flags function instead of -Wl,-z,now.
+
+  25 Dec 2005; Joshua Kinard <kumba@gentoo.org> util-linux-2.12r-r1.ebuild:
+  Marked stable on mips.
+
+  21 Dec 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  util-linux-2.12r-r1.ebuild:
+  Stable on amd64.
+
+  18 Dec 2005; Markus Rothe <corsair@gentoo.org> util-linux-2.12r-r1.ebuild:
+  Stable on ppc64
+
+*util-linux-2.12r-r2 (13 Dec 2005)
+
+  13 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-cal-dumb-terminal.patch,
+  +util-linux-2.12r-r2.ebuild:
+  Fix cal display with dumb terminals #112406 by Chris Smith.
+
+  11 Dec 2005; Michael Hanselmann <hansmi@gentoo.org>
+  util-linux-2.12r-r1.ebuild:
+  Stable on ppc.
+
+  09 Dec 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  util-linux-2.12r-r1.ebuild:
+  Stable on sparc
+
+  09 Dec 2005; Mark Loeser <halcy0n@gentoo.org> util-linux-2.12r-r1.ebuild:
+  Stable on x86; bug #114883
+
+  04 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12r-cracklib-words.patch, util-linux-2.12r-r1.ebuild:
+  Fall back to cracklib-{words,small} if the words dict doesnt exist #114416.
+
+*util-linux-2.12r-r1 (15 Oct 2005)
+
+  15 Oct 2005; <solar.@gentoo.org>
+  +files/util-linux-2.12r-fdisk-frame-pointers.patch,
+  +util-linux-2.12r-r1.ebuild:
+  - bug #108988 fdisk is unable to always lseek when omiting frame pointers
+
+*util-linux-2.12r (05 Oct 2005)
+
+  05 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  -util-linux-2.12q-r2.ebuild, +util-linux-2.12r.ebuild:
+  Version bump #108042 by Alon Bar-Lev.
+
+  20 Sep 2005; Hardave Riar <hardave@gentoo.org> util-linux-2.12q-r3.ebuild:
+  Stable on mips, bug #105805.
+
+  19 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  util-linux-2.12q-r3.ebuild:
+  Stable on hppa and ppc.
+
+  19 Sep 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  util-linux-2.12q-r3.ebuild:
+  stable on alph, wrt bug #105805
+
+  19 Sep 2005; Mark Loeser <halcy0n@gentoo.org> util-linux-2.12q-r3.ebuild:
+  Stable on x86
+
+  19 Sep 2005; Jason Wever <weeve@gentoo.org> util-linux-2.12q-r3.ebuild:
+  Stable on SPARC wrt security bug #105805.
+
+  19 Sep 2005; Luis Medinas <metalgod@gentoo.org>
+  util-linux-2.12q-r3.ebuild:
+  Marked Stable on amd64. Bug #105805.
+
+  18 Sep 2005; Markus Rothe <corsair@gentoo.org> util-linux-2.12q-r3.ebuild:
+  Stable on ppc64 (bug #105805)
+
+*util-linux-2.12q-r3 (14 Sep 2005)
+
+  14 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/util-linux-2.12q-use-update_mtab-for-fake.patch,
+  +util-linux-2.12q-r3.ebuild:
+  Fix 'mount -f' adding dups in mtab.  Bump rev for security fix to umount
+  (bug #105805).
+
+  14 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  files/util-linux-2.12q-update_mtab-fixes.patch:
+  Do not leak memory.
+
+  14 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  files/util-linux-2.12q-update-mtab-when-moving.patch:
+  Use xstrdup() instead of strdup() to catch out of memory issues.
+
+  14 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/util-linux-2.12q-update_mtab-fixes.patch,
+  util-linux-2.12q-r2.ebuild:
+  Fix various issues with update_mtab(), causing 'mount -f' to not update mtab
+  as expected, bug #105641.
+
+  14 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12q-umount-dont-write-mtab-with-remount.patch,
+  util-linux-2.12q-r2.ebuild:
+  Fix by Derick Swanepoel to have umount respect -n when using -r #98675.
+
+  13 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12-only-root-can-remount.patch,
+  util-linux-2.12i-r1.ebuild, util-linux-2.12q-r2.ebuild:
+  Fix small security issue with umount and remount #105805.
+
+*util-linux-2.12q-r2 (13 Sep 2005)
+
+  13 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/util-linux-2.12q-more-fake-checks-v2.patch,
+  +util-linux-2.12q-r2.ebuild:
+  Fix 'mount -f' not updating /etc/mtab, bug #105641.
+
+  05 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12q-update-mtab-when-moving.patch,
+  util-linux-2.12q-r1.ebuild:
+  Fix `mount --move` mtab updating #104697 by Jakub Jozwicki.
+
+  03 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12q-more-fake-checks.patch,
+  util-linux-2.12q-r1.ebuild:
+  Add some fixes for -f handling.
+
+  18 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12q-dont-umask.patch, util-linux-2.12q-r1.ebuild:
+  Dont force umask to 022 all the time #93671 by Clock / Daniel Drake.
+
+*util-linux-2.12q-r1 (13 Jun 2005)
+
+  13 Jun 2005; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12q-r1.ebuild:
+  Update loop-aes patch #95939 by Alon Bar-Lev.
+
+  30 Apr 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12q-i18n-update.patch, util-linux-2.12q.ebuild:
+  Fix typo in french translation #75693 by DELACOUR Guillaume.
+
+  29 Apr 2005; Mike Frysinger <vapier@gentoo.org> +files/crypto-loop.confd,
+  +files/crypto-loop.initd, util-linux-2.12i-r1.ebuild,
+  util-linux-2.12p-r1.ebuild, util-linux-2.12q.ebuild:
+  Move the crypto-loop script from baselayout to here.
+
+*util-linux-2.12q (21 Feb 2005)
+
+  21 Feb 2005; Mike Frysinger <vapier@gentoo.org> +util-linux-2.12q.ebuild:
+  Version bump.
+
+*util-linux-2.12p-r1 (06 Feb 2005)
+
+  06 Feb 2005; Mike Frysinger <vapier@gentoo.org>
+  files/util-linux-2.12p-swapon-check-symlinks.patch:
+  Touchup the swapon patch to work properly.
+
+  14 Jan 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  util-linux-2.12i-r1.ebuild, util-linux-2.12p.ebuild:
+  Added virtual/os-headers to DEPEND. It was missing and as such util-linux
+  was trying to update before linux-headers... thus missing the fix I placed
+  in 2.6.8.1-r4 for 2.12p.
+
+  11 Jan 2005; Stephen P. Becker <geoman@gentoo.org>
+  util-linux-2.12i-r1.ebuild:
+  stable on mips
+
+  10 Jan 2005; Aron Griffis <agriffis@gentoo.org> util-linux-2.12i-r1.ebuild:
+  stable on alpha (needed now that 2.12-r5 is pmasked)
+
+*util-linux-2.12p (09 Jan 2005)
+
+  09 Jan 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-2.12p-fat-LABEL-support.patch,
+  +files/util-linux-2.12p-swapon-check-symlinks.patch,
+  +util-linux-2.12p.ebuild:
+  Version bump. Change default crypto to loop-aes (since its actually
+  maintained upstream) #69082 by Arnvid L. Karstad.
+
+  09 Jan 2005; Jason Wever <weeve@gentoo.org> util-linux-2.12i-r1.ebuild:
+  Stable on sparc, resolves bug #77295.
+
+  20 Dec 2004; Dylan Carlson <absinthe@gentoo.org>
+  util-linux-2.12i-r1.ebuild:
+  Stable on amd64.
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> util-linux-2.12i-r1.ebuild:
+  Stable on ppc64
+
+  15 Nov 2004; Mike Frysinger <vapier@gentoo.org>
+  util-linux-2.12i-r1.ebuild:
+  Only include compiler.h if using 2.6 headers #71330.
+
+*util-linux-2.12i-r1 (14 Nov 2004)
+
+  14 Nov 2004; Mike Frysinger <vapier@gentoo.org>
+  +util-linux-2.12i-r1.ebuild, -util-linux-2.12i.ebuild:
+  Disable aes-loop and forward port the cryptoapi patch. Devices encrypted
+  with the old cryptoapi arent compatible with the aes-loop work.
+
+*util-linux-2.12i (11 Nov 2004)
+
+  11 Nov 2004; Mike Frysinger <vapier@gentoo.org>
+  files/util-linux-2.12b-pic.patch,
+  +files/util-linux-2.12i-fat-LABEL-support.patch,
+  +files/util-linux-2.12i-ignore-managed.patch,
+  +files/util-linux-2.12i-nfsv4.patch, +files/util-linux-2.12i-pic.patch,
+  +files/util-linux-2.12i-swapon-check-symlinks.patch,
+  +util-linux-2.12i.ebuild:
+  Version bump. Add loop-aes patch (#24458 / #25192). Punt gcloop/cryptoapi
+  patches. Add patch to ignore managed/kudzu options #70873.
+
+*util-linux-2.12b-r1 (30 Oct 2004)
+
+  30 Oct 2004; Mike Frysinger <vapier@gentoo.org>
+  +files/util-linux-swapon-check-symlinks.patch,
+  +util-linux-2.12b-r1.ebuild:
+  Add a fallback routine to swapon -a that checks symlinks #69162.
+
+  15 Sep 2004; Martin Schlemmer <azarah@gentoo.org> util-linux-2.12b.ebuild:
+  Add >=sys-fs/e2fsprogs-1.34 dependency (blkid_known_fstype in
+  /usr/include/blkid/blkid.h introduced in 1.34).
+  Pointed out by Maximilian Decker <burbon04@gmx.de>.
+
+  04 Sep 2004; <solar@gentoo.org> files/util-linux-2.12b-pic.patch,
+  util-linux-2.12-r4.ebuild, util-linux-2.12b.ebuild:
+  updated util-linux-2.12b-pic.patch to fix BREG problem that just showed up the
+  the new partx to util-linux. use non-lazy bindings for +s apps installed by
+  util-linux
+
+*util-linux-2.12b (03 Sep 2004)
+
+  03 Sep 2004; Martin Schlemmer <azarah@gentoo.org>
+  +files/util-linux-2.12b-fat-LABEL-support.patch,
+  +files/util-linux-2.12b-gcloop-with-crypt.patch,
+  +files/util-linux-2.12b-gcloop.patch, +files/util-linux-2.12b-pic.patch,
+  +util-linux-2.12b.ebuild:
+  Update version; also build partx. SELinux users should erify support, as it
+  seems it was merged upstream.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  util-linux-2.11z-r8.ebuild, util-linux-2.11z-r9.ebuild,
+  util-linux-2.12-r2.ebuild, util-linux-2.12-r3.ebuild,
+  util-linux-2.12-r4.ebuild, util-linux-2.12-r5.ebuild:
+  virtual/glibc -> virtual/libc
+
+  30 Jun 2004; Aron Griffis <agriffis@gentoo.org> util-linux-2.12-r5.ebuild:
+  stable on alpha and ia64
+
+  28 Jun 2004; Luca Barbato <lu_zero@gentoo.org> util-linux-2.12-r5.ebuild:
+  Marked ppc
+
+  27 Jun 2004; Aron Griffis <agriffis@gentoo.org> util-linux-2.11z-r8.ebuild,
+  util-linux-2.11z-r9.ebuild, util-linux-2.12-r2.ebuild,
+  util-linux-2.12-r3.ebuild, util-linux-2.12-r4.ebuild:
+  QA - fix use invocation
+
+  16 Jun 2004; Daniel Black <dragonheart@gentoo.org>
+  util-linux-2.12-r4.ebuild, util-linux-2.12-r5.ebuild:
+  uclibc fixes thanks to Peter S. Mazinger <ps.m@gmx.net>
+
+  02 Jun 2004; Travis Tilley <lv@gentoo.org> util-linux-2.12-r5.ebuild:
+  stable on amd64
+
+  08 May 2004; <solar@gentoo.org> util-linux-2.12-r4.ebuild,
+  util-linux-2.12-r5.ebuild, files/util-linux-2.12-swapon-unistd.patch:
+  access() is a macro which uses R_OK. However R_OK is not defined on sparc
+  during a bootstrap unless we actually include unistd.h
+
+  19 Apr 2004; Travis Tilley <lv@gentoo.org> util-linux-2.11z-r9.ebuild,
+  util-linux-2.12-r2.ebuild, util-linux-2.12-r3.ebuild,
+  util-linux-2.12-r4.ebuild:
+  filtering -fPIC on amd64 is a dumb idea
+
+  07 Apr 2004; Joshua Kinard <kumba@gentoo.org> util-linux-2.12-r5.ebuild:
+  Marked stable on mips.
+
+  02 Apr 2004; <solar@gentoo.org> util-linux-2.12-r5.ebuild:
+  util-linux gives additional -fPIC errors on amd64 with -pie. Bugzilla Bug 46366
+
+  01 Apr 2004; Jon Portnoy <avenj@gentoo.org> util-linux-2.12-r4.ebuild :
+  Stable on AMD64.
+
+  09 Mar 2004; <agriffis@gentoo.org> util-linux-2.12-r4.ebuild:
+  stable on alpha and ia64
+
+  07 Mar 2004; Joshua Kinard <kumba@gentoo.org> util-linux-2.12-r4.ebuild:
+  Marked stable on mips.
+
+  27 Feb 2004; Seemant Kulleen <seemant@gentoo.org>
+  util-linux-2.11z-r8.ebuild:
+  move the filter-flags statement into src_compile
+
+  22 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.12-r5.ebuild:
+  Add installation of rdev on amd64. Closing #35902.
+
+*util-linux-2.12-r5 (17 Feb 2004)
+
+  17 Feb 2004; Luca Barbato <lu_zero@gentoo.org> util-linux-2.12-r5.ebuild,
+  files/util-linux-2.12-gcloop.patch:
+  Added support for gcloop in losetup
+
+  09 Feb 2004; <gustavoz@gentoo.org> util-linux-2.12-r4.ebuild:
+  stable on hppa and sparc
+
+  06 Feb 2004; Martin Schlemmer <azarah@gentoo.org> util-linux-2.12-r4.ebuild:
+  Bump to stable for x86.
+
+  03 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org>
+  util-linux-2.12-r3.ebuild:
+  set ppc in keywords
+
+*util-linux-2.12-r4 (30 Dec 2003)
+
+  30 Dec 2003; Martin Schlemmer <azarah@gentoo.org> util-linux-2.12-r4.ebuild,
+  files/util-linux-2.12-fat-LABEL-support.patch:
+  Add support to read fat/fat32 labels, bug #36722.
+
+  11 Dec 2003; Mike Frysinger <vapier@gentoo.org> util-linux-2.12-r3.ebuild :
+  Add patch to compile against 2.6.x headers #31286.
+
+*util-linux-2.11z-r9 (06 Dec 2003)
+*util-linux-2.11z-r8 (08 Dec 2003)
+*util-linux-2.12-r2 (08 Dec 2003)
+*util-linux-2.12-r3 (08 Dec 2003)
+
+  06 Dec 2003; Seemant Kulleen <seemant@gentoo.org>
+  util-linux-2.11z-r6.ebuild, util-linux-2.11z-r7.ebuild,
+  util-linux-2.11z-r8.ebuild, util-linux-2.11z-r9.ebuild,
+  util-linux-2.12-r1.ebuild, util-linux-2.12-r2.ebuild,
+  util-linux-2.12-r3.ebuild, util-linux-2.12.ebuild,
+  files/util-linux-no-kill.patch:
+  /bin/kill used to be part of this package. procps will now be the only one
+  providing that
+
+*util-linux-2.12-r1 (02 Dec 2003)
+
+  02 Dec 2003; Brad House <brad_mssw@gentoo.org> util-linux-2.12-r1.ebuild:
+  Add cryptoapi support to util-linux-2.12
+  Mailing list post with info:
+  http://www.kerneli.org/pipermail/cryptoapi-devel/2003-September/000634.html
+  Follow thread for usage.
+
+  28 Oct 2003; Chris PeBenito <pebenito@gentoo.org> util-linux-2.12.ebuild,
+  files/util-linux-2.12-selinux.diff.bz2:
+  Add new API SELinux patch
+
+  09 Oct 2003; Alexander Gabert <pappy@gentoo.org> util-linux-2.11z-r6.ebuild:
+  removed hardened-gcc appendix flags again
+
+  03 Oct 2003; Alexander Gabert <pappy@gentoo.org> util-linux-2.11z-r6.ebuild:
+  added libgcc.a problem evasion and removed overwriting of LDFLAGS in ebuild
+
+  20 Sep 2003; Alexander Gabert <pappy@gentoo.org> util-linux-2.11z-r6.ebuild:
+  removed check again, only caused by problems with __libc_csu in hardened-gcc
+
+  20 Sep 2003; Alexander Gabert <pappy@gentoo.org> util-linux-2.11z-r6.ebuild:
+  added yet_exec exclusion flag for hardened-gcc
+
+  19 Sep 2003; Seemant Kulleen <seemant@gentoo.org>
+  util-linux-2.11z-r6.ebuild, util-linux-2.11z-r7.ebuild,
+  util-linux-2.12.ebuild:
+  fix for USE=static, thanks to: Sascha Silbe <sascha-gentoo-bugzilla@silbe.org>
+  in bug #29160
+
+  10 Aug 2003; Martin Schlemmer <azarah@gentoo.org>
+  util-linux-2.11z-r6.ebuild:
+  Mark stable.
+
+*util-linux-2.12 (24 Jul 2003)
+
+  28 Jul 2003; <solar@gentoo.org> util-linux-2.12.ebuild:
+  util-linux was overriding all LDFLAGS for when use static was enabled, please
+  dont export LDFLAGS=-static alone in this or any other packages
+
+  24 Jul 2003; Martin Schlemmer <azarah@gentoo.org> util-linux-2.12.ebuild:
+  New version, bug #24880.
+
+  21 Jul 2003; <solar@gentoo.org> util-linux-2.11z-r7.ebuild:
+  verified -fPIC works with this pkg on x86, sparc64, ppc and hppa
+
+  20 Jul 2003; Martin Schlemmer <azarah@gentoo.org>
+  util-linux-2.11z-r7.ebuild, files/util-linux-2.11z-01-nfsv4-crypt.dif:
+  Fix NFS4 patch to work with crypt in USE.
+
+*util-linux-2.11z-r7 (20 Jul 2003)
+
+  04 Aug 2003; Joshua Kinard <kumba@gentoo.org> util-linux-2.11z-r7.ebuild:
+  Changed ~mips to mips in KEYWORDS
+  Added mips to the list of archs that can use -fPIC
+
+  20 Jul 2003; Martin Schlemmer <azarah@gentoo.org>
+  util-linux-2.11z-r7.ebuild, files/util-linux-2.11z-01-nfsv4.dif:
+  Add NFS4 support (kernel 2.5/2.6).  Notified by Michael Locher
+  <locher@iam.unibe.ch>.
+
+*util-linux-2.11z-r6 (17 Jul 2003)
+
+  17 Jul 2003; Martin Schlemmer <azarah@gentoo.org>
+  util-linux-2.11z-r6.ebuild,
+  files/util-linux-2.11z-agetty-domainname-option.patch:
+  Add the O option to agetty to display DNS domainname in the issue file, thanks
+  to Marius Mauch <genone@genone.de>, bug #22275.
+
+  13 Jul 2003; <solar@gentoo.org> util-linux-2.11z-r5.ebuild:
+  verified -fPIC works with this pkg on sparc,ppc and hppa
+
+*util-linux-2.11z-r5 (12 Jul 2003)
+
+  12 Jul 2003; <solar@gentoo.org> util-linux-2.11z-r5.ebuild,
+  files/util-linux-2.11z-pic.patch:
+  Added defines for fPIC code to avoid the use the of old __NR* inline assembly
+  construction of syscalls
+
+  05 Jul 2003; Luca Barbato <lu_zero@gentoo.org> util-linux-2.11z-r4.ebuild:
+  Keyworded ppc
+
+  29 Jun 2003; Chris PeBenito <pebenito@gentoo.org>
+  util-linux-2.11z-r4.ebuild:
+  Remove selinux stuff, as its no longer needed.  Using pam-login again.
+
+  26 Jun 2003; Joshua Brindle <method@gentoo.org> util-linux-2.11z-r4.ebuild:
+  Added -e s:SUIDMODE=.*4755:SUIDMODE=4711: for more secure suid permissions
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> util-linux-2.11z-r4.ebuild:
+  Mark stable on alpha
+
+*util-linux-2.11z-r4 (01 Jun 2003)
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> util-linux-2.11z-r4.ebuild :
+  Marked stable on hppa.
+
+  22 Jun 2003; Joshua Kinard <kumba@gentoo.org> util-linux-2.11z-r4.ebuild:
+  Changed ~sparc & ~mips to sparc & mips
+
+  09 Jun 2003; Nick Hadaway <raker@gentoo.org> util-linux-2.11z-r4.ebuild:
+  If pam was disabled in IUSE, src_unpack would fail.  Fixed the logic.
+
+  01 Jun 2003; Brandon Low <lostlogic@gentoo.org> util-linux-2.11z-r4.ebuild:
+  Add enhancement to script command from bug 21147
+
+  26 May 2003; Patrick Kursawe <phosphan@gentoo.org>
+  util-linux-2.11z-r3.ebuild:
+  category was missing with sed dependency
+
+  25 May 2003; Martin Holzer <mholzer@gentoo.org> util-linux-2.11o-r3.ebuild,
+  util-linux-2.11y.ebuild, util-linux-2.11z-r1.ebuild,
+  util-linux-2.11z-r2.ebuild, util-linux-2.11z-r3.ebuild:
+  now uses mirror://kernel
+
+  25 May 2003; Seemant Kulleen <seemant@gentoo.org>
+  util-linux-2.11z-r3.ebuild:
+  pam fix
+
+*util-linux-2.11z-r3 (24 May 2003)
+
+  29 May 2003; Joshua Brindle <method@gentoo.org> util-linux-2.11z-r3.ebuild:
+  fixed selinux dependancy issue
+
+  24 May 2003; Joshua Brindle <method@gentoo.org> util-linux-2.11z-r3.ebuild:
+  added support for pam optionally
+
+*util-linux-2.11z-r2 (24 Apr 2003)
+
+  24 Apr 2003; Brandon Low <lostlogic@gentoo.org> util-linux-2.11z-r2.ebuild:
+  Several changes, including support for USE=static the use of sed -i, proper
+  die messages, econf instead of ./configure. Please test this and let me know
+  if there are any regressions
+
+  See bug 19597
+
+*util-linux-2.11z (03 Feb 2003)
+
+  22 Apr 2003; Joshua Kinard <kumba@gentoo.org> util-linux-2.11z-r1.ebuild:
+  added patch from util-linux maintainer that makes fdisk function correctly on mips
+  patch only gets added on "mips" archs, but will be standard in util-linux 2.12
+
+  23 Mar 2003; Joshua Brindle <method@gentoo.org> util-linux-2.11z-r1.ebuild:
+  added selinux support, thanks sindian
+  
+  27 Feb 2003; Jan Seidel <tuxus@gentoo.org>  util-linux-2.11z-r1.ebuild :
+  Mark as unstable for mips
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> util-linux-2.11z-r1.ebuild :
+  Mark as stable for mips.
+
+  21 Feb 2003; Zach Welch <zwelch@gentoo.org> :
+  Added arm to keywords.
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+  07 Feb 2003; Jon Portnoy <avenj@gentoo.org>
+  util-linux-2.11z-r1.ebuild files/no-symlink-resolve.patch :
+
+  Added a patch to keep mount from resolving symlinks, which
+  makes the output of programs like `df` unreadable with devfs.
+
+  03 Feb 2003; Seemant Kulleen <seemant@gentoo.org>
+  util-linux-2.11z.ebuild files/util-linux-2.11z-parallel-make.patch
+  files/digest-util-linux-2.11z :
+
+  Version bump.  Closes bug #14955 by lone_iguana@hotmail.com
+
+*util-linux-2.11y (27 Oct 2002)
+
+  11 Jan 2003; Seemant Kulleen <seemant@gentoo.org> util-linux-2.11y.ebuild :
+
+  filtered out -fPIC from user's CFLAGS
+
+  16 Dec 2002; Martin Schlemmer <azarah@gentoo.org> util-linux-2.11y.ebuild :
+  Fix rare failures with parallel makes.  Update to use epatch.
+
+  10 Dec 2002; Martin Schlemmer <azarah@gentoo.org> util-linux-2.11y.ebuild :
+  Mark stable.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> :
+  Changed sparc ~sparc keywords
+ 
+  13 Dec 2002; Martin Holzer <mholzer@gentoo.org> util-linux-2.11y.ebuild files/digest-util-linux-2.11y Changelog :
+	Changed from tar.gz to tar.bz2
+
+  29 Nov 2002; Nicholas Jones <carpaski@gentoo.org> :
+	Latest release. Patched 2.11r crypto patch for this version.
+	On mirrors as util-linux-2.11y-crypt-gentoo.patch.gz
+	Updates are mostly cleanups.
+
+*util-linux-2.11w (27 Oct 2002)
+
+  27 Oct 2002; Donny Davies <woodchip@gentoo.org> :
+  Chase latest release.  Fixes potential root exploit.
+
+*util-linux-2.11u (14 Aug 2002)
+
+  14 Aug 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11u.ebuild:
+  Version bump.  Added patch for chfn.
+
+*util-linux-2.11t (05 Aug 2002)
+
+  05 Aug 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11t.ebuild:
+  Version bump.  
+
+*util-linux-2.11r-r1 (9 Jul 2002)
+
+  24 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11r-r1.ebuild :
+  Added LICENSE, KEYWORDS.
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11r.ebuild :
+  Added LICENSE, KEYWORDS.
+
+  9 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11r-r1.ebuild files/digest-util-linux-2.11r-r1 :
+
+  Crypto patch only applied if USE setting "crypt" is enabled.
+
+*util-linux-2.11r (7 Jul 2002)
+
+  7 Jul 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Version update.
+
+*util-linux-2.11o-r3 (28 Apr 2002)
+
+  18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> util-linux-2.11o-r3.ebuild :
+  Added LICENSE, KEYWORDS.
+
+  28 Apr 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Removed /bin/login in favour of pam-login.
+
+*util-linux-2.11o-r2 (25 Apr 2002)
+
+  25 Apr 2002; Ryan Phillips <rphillips@gentoo.org> util-linux-2.11o-r2.ebuild
+  files/digest-util-linux-2.11o-r2
+
+  patch util-linux with the international crypto patch.  This patch
+  does not contain any cryptographic components. (#1607)
+
+*util-linux-2.11o-r1 (11 Apr 2002)
+
+  11 Apr 2002; Seemant Kulleen <seemant@gentoo.org> util-linux-2.11o-r1.ebuild
+  files/digest-util-linux-2.11o-r1
+
+  USE dependent nls compilation.
+
+*util-linux-2.11o (8 Apr 2002)
+  
+  8 Apr 2002; M.Schlemmer <azarah@gentoo.org> util-linux-2.11o :
+
+  /bin/login that comes with sys-apps/shadow has a bug that gives a normal
+  user root priviliges in certain (usually if pam_limits is used).
+
+*util-linux-2.11l-r1 (1 Apr 2002)
+
+  1 Apr 2002; Seemant Kulleen <seemant@gentoo.org> util-linux-2.11l-r1.ebuild :
+
+  USE dependent nls compilation.
+
+*util-linux-2.11l (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
