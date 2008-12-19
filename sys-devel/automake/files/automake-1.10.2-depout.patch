@@ -1,0 +1,11 @@
+diff -ru automake-1.10.2.orig/m4/depout.m4 automake-1.10.2/m4/depout.m4
+--- automake-1.10.2.orig/m4/depout.m4	2008-12-19 11:34:32 +0100
++++ automake-1.10.2/m4/depout.m4	2008-12-19 11:44:06 +0100
+@@ -72,6 +72,6 @@
+ # need in order to bootstrap the dependency handling code.
+ AC_DEFUN([AM_OUTPUT_DEPENDENCY_COMMANDS],
+ [AC_CONFIG_COMMANDS([depfiles],
+-     [test x"$AMDEP_TRUE" != x"" || _AM_OUTPUT_DEPENDENCY_COMMANDS],
++     [test x"$AMDEP_TRUE" != x"" || { _AM_OUTPUT_DEPENDENCY_COMMANDS }],
+      [AMDEP_TRUE="$AMDEP_TRUE" ac_aux_dir="$ac_aux_dir"])
+ ])
