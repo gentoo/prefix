@@ -1,6 +1,6 @@
 diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.0/libconfix/core/automake/file_installer.py
 --- Confix-2.1.0.orig/libconfix/core/automake/file_installer.py	2008-10-21 11:17:30 +0200
-+++ Confix-2.1.0/libconfix/core/automake/file_installer.py	2008-11-05 13:17:14 +0100
++++ Confix-2.1.0/libconfix/core/automake/file_installer.py	2008-12-17 11:58:32 +0100
 @@ -22,6 +22,11 @@
  from libconfix.core.utils.paragraph import Paragraph
  from libconfix.core.utils import const
@@ -50,7 +50,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
  ##         buildmod.makefile_am().add_lines(helper_automake.format_rule(
  ##             targets=[FileInstaller.TARGET_INSTALL_PUBLIC]))
  
-@@ -264,6 +279,55 @@
+@@ -264,6 +279,56 @@
                  files=filelist)
              pass
          pass
@@ -89,12 +89,13 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
 +            _i=0
 +            _f=[]
 +            for f in files:
++                makefile_am.add_extra_dist(f)
 +                _f.append(f)
 +                _i+=1
 +                if len(_f) >= FileInstaller.MAX_SIMULTANOUS_INSTALL or _i >= len(files):
 +                    # is this rule name unique enough?
 +                    rulename='.installstamp.public_' + my_md5(str(hash(self)) + targetdir + str(_i)).hexdigest()
-+                    self.fast_general_install(makefile_am, rulename, targetdir, _f, '0644')
++                    self.fast_general_install(makefile_am, rulename, '$(DESTDIR)' + targetdir, _f, '0644')
 +                    install_public_rule.add_prerequisite(rulename)
 +                    uninstall_public_rule.add_prerequisite(rulename + '_clean')
 +                    _f=[]
@@ -106,7 +107,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
      
      def automake_install_datafiles_(self, makefile_am):
          for dirname, filelist in self.dir2filedict_(file2dirdict=self.datafiles_).iteritems():
-@@ -278,6 +342,50 @@
+@@ -278,6 +343,51 @@
              pass
          pass
  
@@ -140,12 +141,13 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
 +            _i=0
 +            _f=[]
 +            for f in files:
++                makefile_am.add_extra_dist(f)
 +                _f.append(f)
 +                _i+=1
 +                if len(_f) >= FileInstaller.MAX_SIMULTANOUS_INSTALL or _i >= len(files):
 +                    # is this rule name unique enough?
 +                    rulename='.installstamp.public_data_' + my_md5(str(hash(self)) + targetdir + str(_i)).hexdigest()
-+                    self.fast_general_install(makefile_am, rulename, targetdir, _f, '0644')
++                    self.fast_general_install(makefile_am, rulename, '$(DESTDIR)' + targetdir, _f, '0644')
 +                    install_public_data_rule.add_prerequisite(rulename)
 +                    uninstall_public_data_rule.add_prerequisite(rulename + '_clean')
 +                    _f=[]
@@ -157,7 +159,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
      def automake_install_prefixfiles_(self, makefile_am):
          for dirname, filelist in self.dir2filedict_(file2dirdict=self.prefixfiles_).iteritems():
              # define directory
-@@ -291,17 +399,92 @@
+@@ -291,17 +401,93 @@
              pass
          pass
  
@@ -192,12 +194,13 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
 +            _i=0
 +            _f=[]
 +            for f in files:
++                makefile_am.add_extra_dist(f)
 +                _f.append(f)
 +                _i+=1
 +                if len(_f) >= FileInstaller.MAX_SIMULTANOUS_INSTALL or _i >= len(files):
 +                    # is this rule name unique enough?
 +                    rulename='.installstamp.public_prefix_' + my_md5(str(hash(self)) + targetdir + str(_i)).hexdigest()
-+                    self.fast_general_install(makefile_am, rulename, targetdir, _f, '0644')
++                    self.fast_general_install(makefile_am, rulename, '$(DESTDIR)' + targetdir, _f, '0644')
 +                    install_public_prefix_rule.add_prerequisite(rulename)
 +                    uninstall_public_prefix_rule.add_prerequisite(rulename + '_clean')
 +                    _f=[]
@@ -255,7 +258,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
          makefile_am.add_element(install_local_rule)        
          makefile_am.add_element(clean_local_rule)
  
-@@ -321,20 +504,36 @@
+@@ -321,20 +507,37 @@
                       commands=['-$(mkinstalldirs) '+targetdir]))
  
              # copy files
@@ -292,6 +295,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
 -                         commands=['rm -f '+targetfile]))
 -                install_local_rule.add_prerequisite(targetfile)
 -                clean_local_rule.add_prerequisite(targetfile+'-clean')
++                makefile_am.add_extra_dist(f)
 +                _f.append(f)
 +                _i+=1
 +                if len(_f) >= FileInstaller.MAX_SIMULTANOUS_INSTALL or _i >= len(files):
