@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/ess
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.34 2008/12/08 15:48:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.35 2008/12/17 22:24:45 maekke Exp $
+
+  17 Dec 2008; Markus Meier <maekke@gentoo.org> ess-5.3.8.ebuild:
+  amd64 stable, bug #250221
 
   08 Dec 2008; Raúl Porcel <armin76@gentoo.org> ess-5.3.8.ebuild:
   alpha/x86 stable wrt #250221
