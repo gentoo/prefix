@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.6.372.ebuild,v 1.1 2008/12/17 05:09:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.6.372.ebuild,v 1.3 2008/12/19 05:56:11 kumba Exp $
 
 EAPI="prefix"
 
