@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-ubuntulooks
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-ubuntulooks/ChangeLog,v 1.6 2008/11/24 17:26:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-ubuntulooks/ChangeLog,v 1.7 2008/12/18 10:44:49 ssuominen Exp $
+
+  18 Dec 2008; <ssuominen@gentoo.org>
+  gtk-engines-ubuntulooks-0.9.12-r2.ebuild:
+  x86 stable
 
   24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
   Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org.
