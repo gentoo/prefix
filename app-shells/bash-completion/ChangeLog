@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.143 2008/12/14 12:30:31 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.144 2008/12/18 22:54:51 coldwind Exp $
+
+*bash-completion-20081218 (18 Dec 2008)
+
+  18 Dec 2008; Santiago M. Mola <coldwind@gentoo.org>
+  +bash-completion-20081218.ebuild:
+  Version bump, #249271. Fixes #145727, #193731, #204702, #211250, #226009
+  and #251096.
 
   14 Dec 2008; Santiago M. Mola <coldwind@gentoo.org>
   bash-completion-20060301-r3.ebuild:
