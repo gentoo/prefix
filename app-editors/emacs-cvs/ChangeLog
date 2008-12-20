@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.225 2008/11/29 12:19:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.226 2008/12/17 09:42:19 ulm Exp $
+
+  17 Dec 2008; Ulrich Mueller <ulm@gentoo.org>
+  files/emacs-cvs-freebsd-sparc-1.patch:
+  New patch for sparc-fbsd, bug 159584.
 
   29 Nov 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
   Add site initialisation for Info, so that Emacs' dir is first in list;
