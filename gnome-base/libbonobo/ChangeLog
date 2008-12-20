@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libbonobo
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.171 2008/11/13 19:03:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.172 2008/12/17 14:32:55 ranger Exp $
+
+  17 Dec 2008; Brent Baude <ranger@gentoo.org> libbonobo-2.24.0.ebuild:
+  Marking libbonobo-2.24.0 ppc64 for bug 244457
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> libbonobo-2.22.0.ebuild:
   Marking libbonobo-2.22.0 ppc64 stable for bug 236971
