@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.192 2008/12/14 16:43:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.193 2008/12/19 00:51:49 matsuu Exp $
+
+  19 Dec 2008; MATSUU Takuto <matsuu@gentoo.org> distcc-3.0-r4.ebuild:
+  Added -j1 to emake install, bug #249695.
 
   14 Dec 2008; Raúl Porcel <armin76@gentoo.org> distcc-3.0-r4.ebuild:
   arm/ia64/sh/x86 stable wrt #249695

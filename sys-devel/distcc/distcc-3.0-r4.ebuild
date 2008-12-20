@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r4.ebuild,v 1.9 2008/12/14 16:43:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r4.ebuild,v 1.10 2008/12/19 00:51:49 matsuu Exp $
 
 EAPI="prefix"
 
@@ -83,7 +83,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	# In rare cases, parallel make install failed, bug #249695
+	emake -j1 DESTDIR="${D}" install || die
 
 	dobin "${FILESDIR}/${PV}/distcc-config"
 
