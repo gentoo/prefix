@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.184 2008/12/10 17:05:35 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.185 2008/12/17 19:30:04 loki_val Exp $
+
+  17 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
+  Adding myself as maintainer, I've been de-facto maintainer for six months
+  anyway.
 
 *poppler-0.10.2 (10 Dec 2008)
 
