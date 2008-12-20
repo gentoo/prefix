@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-237.ebuild,v 1.7 2008/12/14 13:27:32 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-237.ebuild,v 1.8 2008/12/18 01:07:51 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -67,7 +67,7 @@ src_compile() {
 		--enable-logging \
 		--enable-dabbrev \
 		--with-app-defaults=${DEFAULTS_DIR} \
-		--x-libraries=${EROOT}/usr/lib \
+		--x-libraries=${EPREFIX}/usr/lib \
 		$(use_enable toolbar) \
 		$(use_enable truetype freetype) \
 		$(use_enable unicode luit) $(use_enable unicode mini-luit) \
