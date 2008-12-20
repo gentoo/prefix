@@ -3,6 +3,15 @@
 # $Id$
 
   20 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  +sunos/solaris/5.9/sparc/deprecated, +sunos/solaris/5.10/sparc/deprecated,
+  +sunos/solaris/5.10/sparc64/deprecated,
+  +sunos/solaris/5.10/x64/deprecated, +sunos/solaris/5.10/x86/deprecated,
+  +sunos/solaris/5.11/sparc/deprecated,
+  +sunos/solaris/5.11/sparc64/deprecated,
+  +sunos/solaris/5.11/x64/deprecated, +sunos/solaris/5.11/x86/deprecated:
+  Deprecate old SunOS profiles
+
+  20 Dec 2008; Fabian Groffen <grobian@gentoo.org>
   +darwin/macos/10.3/deprecated, +darwin/macos/10.4/ppc/deprecated,
   +darwin/macos/10.4/ppc64/deprecated, +darwin/macos/10.4/x86/deprecated,
   +darwin/macos/10.5/ppc/deprecated, +darwin/macos/10.5/x86/deprecated:
