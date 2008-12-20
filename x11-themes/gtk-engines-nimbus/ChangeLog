@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-nimbus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.15 2008/10/15 22:15:45 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.17 2008/12/18 19:03:33 ssuominen Exp $
+
+  18 Dec 2008; <ssuominen@gentoo.org> gtk-engines-nimbus-0.1.1.ebuild:
+  Add pkg_preinst and pkg_postrm phases for gtk-update-icon-cache.
+  Fix test suite and mark it stable for x86.
 
   15 Oct 2008; Diego Pettenò <flameeyes@gentoo.org>
   gtk-engines-nimbus-0.1.0.ebuild, gtk-engines-nimbus-0.1.1.ebuild:
