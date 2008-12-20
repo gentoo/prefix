@@ -1,16 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2177 2008/12/16 22:57:35 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2181 2008/12/20 01:28:06 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
 
-  19 Dec 2008; Markus Duft <mduft@gentoo.org>
-  default-prefix/windows/interix/package.mask,
-  prefix/windows/interix/package.mask:
-  removed mask for libgcrypt, the failure was due to an automake problem,
-  fixed in 1.10.2-r00.1
+  20 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Freetype has been pruned, punting pkg.mask
+
+  19 Dec 2008; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Unmask sys-fs/udev-135-r2 and sys-apps/openrc-0.4.0
+
+  19 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  targets/desktop/make.defaults:
+  Add xulrunner USE-flag to the make.default of desktop profile
+
+  17 Dec 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/SOAP for removal (#247410)
 
   16 Dec 2008; Doug Goldstein <cardoe@gentoo.org> package.mask:
   unmask 100.14.19 since several users have reported this being the last

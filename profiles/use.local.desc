@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4068 2008/12/15 09:48:04 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4073 2008/12/19 16:07:40 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -722,6 +722,7 @@ dev-python/docutils:glep - Install support for GLEPs
 dev-python/jinja2:i18n - Enables support for i18n with dev-python/Babel
 dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
+dev-python/matplotlib:excel - Pull dev-python/xlwt for the exceltools toolkit
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
@@ -1473,21 +1474,19 @@ media-tv/xdtv:schedule - Adds the possibility to schedule tv recording via xdtv_
 media-tv/xdtv:zvbi - Enable VBI Decoding Library for Zapping
 media-tv/xmltv:ar - Argentina tv listing grabber
 media-tv/xmltv:be - Belgium and Luxemburg tv listing grabber
-media-tv/xmltv:br - Brazil tv listing grabber
 media-tv/xmltv:brnet - Brazil cable tv listing grabber
 media-tv/xmltv:ch - Switzerland bluewin tv listing grabber
-media-tv/xmltv:de_tvtoday - Germany tv listing grabber
 media-tv/xmltv:dk - Denmark tv listing grabber
 media-tv/xmltv:dtvla - Latin America digital tv listing grabber
 media-tv/xmltv:ee - Estonia tv listing grabber
 media-tv/xmltv:es - Spain tv listing grabber
 media-tv/xmltv:es_laguiatv - Spain alternative grabber
+media-tv/xmltv:es_miguiatv - Spain alternative grabber
 media-tv/xmltv:eu_epg - EPG grabber for some European countries.
 media-tv/xmltv:fi - Finland tv listing grabber
 media-tv/xmltv:fr - France tv listing grabber
 media-tv/xmltv:hr - Croatia tv listing grabber
 media-tv/xmltv:huro - Hungarian tv listing grabber
-media-tv/xmltv:il - Israel tv listing grabber
 media-tv/xmltv:is - Iceland tv listing grabber
 media-tv/xmltv:it - Italy tv listing grabber
 media-tv/xmltv:jp - Japan tv listing grabber
@@ -2355,14 +2354,15 @@ sci-physics/geant:vrml - Enable output of geant4 in vrml formats
 sci-physics/hepmc:cm - Build with cm instead of default mm for length units
 sci-physics/hepmc:gev - Build with GeV instead of default MeV for momentum units
 sci-physics/pythia:hepmc - Adds support for High Energy Physics Monte Carlo Generators sci-physics/hepmc
-sci-physics/root:cern -  Build the HBOOK input/ouput functionality. HBOOK is a histogram library. On ROOT versions previous to 5.20.00, it will depend on sci-physics/cernlib. On versions above, it only need a FORTRAN compiler. 
-sci-physics/root:clarens -  Buld the Clarens and PEAC plug-ins, to use in a GRID enabled analysis. The Clarens Grid-Enabled Web Services Framework is an open source portal for ubiquitous access to data and computational resources provided by computing grids. PEAC is an interactive distributed analysis framework that uses Clarens as a glue protocol to advertise and communicate amongst SAM, Global Manager (GM), Local Manager (LM), DCache, and PROOF services. It doesn't need Clarens to build, however if you want to use it, you will require to build Clarens and PEAC on your own, it is not yet in the Gentoo Portage tree. See http://clarens.sourceforge.net/ for Clarens and http://physics.ucsd.edu/~schsu/project/peac.html for PEAC. 
-sci-physics/root:geant4 -  Build the sci-physics/geant (GEANT4) navigator. 
-sci-physics/root:math -  Build all math libraries plugins. It includes the sci-libs/gsl bindings in MathMore, the GenVector physical vectors package, the Minuit2 minimization library (same as standalone sci-libs/minuit), the RooFit toolkit for distribution modeling, and the Universal Non-Uniform RANdom number generators (UNURAN) library. 
-sci-physics/root:pythia6 -  Builds the interface to Pythia-6 (sci-physics/pythia) high energy physics generation events library. 
-sci-physics/root:pythia8 -  Builds the interface to Pythia-8 (sci-physics/pythia) high energy physics generation events library. 
-sci-physics/root:reflex -  Builds the reflection database for the C++ interpretor. 
-sci-physics/root:xrootd -  Build the xrootd low latency file server. For more on the eXtended Request Daemon (xrd) and associated software, please see http://xrootd.slac.stanford.edu. 
+sci-physics/root:cern - Build the HBOOK input/ouput functionality, needs fortran or sci-physics/cernlib
+sci-physics/root:cint7 - Build the *experimental* new C++ interpretor CINT7
+sci-physics/root:clarens -  Buld the Clarens and PEAC plug-ins, to use in a GRID enabled analysis.
+sci-physics/root:geant4 - Build the sci-physics/geant (GEANT4) navigator
+sci-physics/root:math - Build all math related libraries plugins, needs sci-libs/gsl 
+sci-physics/root:pythia6 -  Builds the interface to Pythia-6 (sci-physics/pythia) high energy physics generation events library 
+sci-physics/root:pythia8 -  Builds the interface to Pythia-8 (sci-physics/pythia) high energy physics generation events library 
+sci-physics/root:reflex - Builds the reflection database for the C++ interpretor 
+sci-physics/root:xrootd - Build the xrootd low latency file server
 sci-visualization/hippodraw:fits -  Enable HippoDraw's built-in support for reading FITS files, by using the CFITSIO library. FITS binary and ASCII tables are supported as well as images. When combine with numpy flag, it can also use the pyfits package. 
 sci-visualization/hippodraw:numpy -  Enable support for the numerical array manipulation and computational capabilities of numpy in python. HippoDraw can return a numerical array to Python from any of the type of objects that are supported. One can also import data to a HippoDraw from a numpy array. 
 sci-visualization/hippodraw:root -  Adds support for ROOT input/ouput system, storing a table of data as TBranch objects each with a single TLeaf. Files of this type can be imported by HippoDraw as a RootNTuple. Also if root flag is selected, it can use root::minuit for minimization instead of standalone minuit library. 
@@ -2531,10 +2531,6 @@ sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/gentoo-sources:ultra1 - Enable if you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documenation
-sys-kernel/mips-headers:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
-sys-kernel/mips-headers:ip27 - Enables support for SGI Origin (IP27)
-sys-kernel/mips-headers:ip28 - Enables support for SGI Indigo2 Impact R10000 (IP28)
-sys-kernel/mips-headers:ip30 - Enables support for SGI Octane (IP30, 'Speedracer')
 sys-kernel/mips-sources:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
 sys-kernel/mips-sources:ip27 - Enables support for SGI Origin (IP27)
 sys-kernel/mips-sources:ip28 - Enables support for SGI Indigo2 Impact R10000 (IP28)
