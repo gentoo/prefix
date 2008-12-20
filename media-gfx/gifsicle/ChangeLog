@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/gifsicle
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/ChangeLog,v 1.19 2008/05/22 18:40:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/ChangeLog,v 1.20 2008/12/17 20:45:44 maekke Exp $
+
+*gifsicle-1.52 (17 Dec 2008)
+
+  17 Dec 2008; Markus Meier <maekke@gentoo.org> +gifsicle-1.52.ebuild:
+  version bump, reported in bug #250596
 
   22 May 2008; Markus Meier <maekke@gentoo.org> gifsicle-1.44.ebuild:
   shorten DESCRIPTION
