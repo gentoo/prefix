@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/WWW-Mechanize-1.52.ebuild,v 1.1 2008/12/08 02:43:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/WWW-Mechanize-1.52.ebuild,v 1.2 2008/12/17 09:21:21 tove Exp $
 
 EAPI="prefix"
 
@@ -22,13 +22,22 @@ myconf="--local --nolive"
 
 RDEPEND="dev-lang/perl
 	dev-perl/IO-Socket-SSL
-	>=dev-perl/libwww-perl-5.815
+	>=dev-perl/libwww-perl-5.819
 	dev-perl/HTTP-Response-Encoding
-	>=dev-perl/URI-1.25
+	>=dev-perl/URI-1.36
 	>=dev-perl/HTML-Parser-3.34
 	dev-perl/Test-LongString"
 DEPEND="${RDEPEND}
 	test? ( dev-perl/Test-Pod
 		dev-perl/Test-Taint
-		dev-perl/Test-Warn
+		>=dev-perl/Test-Warn-0.11
 		dev-perl/Test-Memory-Cycle )"
+#		dev-perl/HTTP-Server-Simple )"
+
+# Remove test until the bug is fixed:
+# http://rt.cpan.org/Public/Bug/Display.html?id=41673
+src_unpack() {
+	perl-module_src_unpack
+	mv "${S}"/t/cookies.t{,.disable} || die
+	sed -i "/cookies.t/d" "${S}/MANIFEST" || die
+}

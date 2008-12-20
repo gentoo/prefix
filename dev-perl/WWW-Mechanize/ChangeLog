@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/WWW-Mechanize
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.54 2008/12/08 02:43:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.55 2008/12/17 09:21:21 tove Exp $
+
+  17 Dec 2008; Torsten Veller <tove@gentoo.org> WWW-Mechanize-1.52.ebuild:
+  Adjust DEPEND, remove test and fix #251212.
 
 *WWW-Mechanize-1.52 (08 Dec 2008)
 
