@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/blassic
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/ChangeLog,v 1.24 2008/01/11 21:51:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/ChangeLog,v 1.25 2008/12/17 22:32:15 mr_bones_ Exp $
+
+  17 Dec 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/blassic-0.10.0-gcc43.patch, blassic-0.10.0.ebuild:
+  add patch to enable building with gcc43 submitted by Yaroslav Gorbunov via bug
+  #250832
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> blassic-0.10.0.ebuild:
   Dropped ppc-macos keyword, see you in prefix

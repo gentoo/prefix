@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/blassic-0.10.0.ebuild,v 1.10 2008/01/11 21:51:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/blassic-0.10.0.ebuild,v 1.11 2008/12/17 22:32:15 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,12 @@ RDEPEND="sys-libs/ncurses
 	svga? ( media-libs/svgalib )"
 DEPEND="${RDEPEND}
 	X? ( x11-proto/xproto )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gcc43.patch
+}
 
 src_compile() {
 	econf \
