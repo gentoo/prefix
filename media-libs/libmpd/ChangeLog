@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmpd
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.35 2008/09/26 11:35:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.36 2008/12/17 21:36:33 maekke Exp $
+
+  17 Dec 2008; Markus Meier <maekke@gentoo.org> libmpd-0.16.1.ebuild:
+  amd64/x86 stable, bug #251332
 
   26 Sep 2008; Alexis Ballier <aballier@gentoo.org> libmpd-0.16.1.ebuild:
   keyword ~ppc64, working fine on a PowerMac 970
