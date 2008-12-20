@@ -1,11 +1,17 @@
---- emacs-orig/src/alloc.c	2008-07-09 19:33:18.000000000 +0200
-+++ emacs/src/alloc.c	2008-07-09 19:39:48.000000000 +0200
-@@ -4487,7 +4487,7 @@
-   /* Fixme: Code in the Boehm GC suggests flushing (with `flushrs') is
+http://bugs.gentoo.org/159584
+Patch taken from FreeBSD ports, by Giorgos Keramidas <keramida@freebsd.org>
+
+--- emacs-orig/src/alloc.c
++++ emacs/src/alloc.c
+@@ -4573,7 +4573,11 @@
       needed on ia64 too.  See mach_dep.c, where it also says inline
       assembler doesn't work with relevant proprietary compilers.  */
--#ifdef __sparc__
-+#if defined(__sparc__) && !defined(__FreeBSD__)
+ #ifdef __sparc__
++#ifdef __sparc64__
++  asm ("flushw");
++#else
    asm ("ta 3");
++#endif
  #endif
  
+   /* Save registers that we need to see on the stack.  We need to see

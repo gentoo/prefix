@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.288 2008/11/29 20:38:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.289 2008/12/17 09:54:09 ulm Exp $
+
+  17 Dec 2008; Ulrich Mueller <ulm@gentoo.org>
+  files/emacs-22.3-freebsd-sparc.patch:
+  New patch for sparc-fbsd, bug 159584.
 
 *emacs-22.3-r1 (29 Nov 2008)
 
