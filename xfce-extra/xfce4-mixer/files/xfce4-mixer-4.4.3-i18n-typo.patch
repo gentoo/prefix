@@ -1,0 +1,11 @@
+--- a/po/de.po	2008-10-26 23:05:50.000000000 +0100
++++ b/po/de.po	2008-12-17 18:41:53.000000000 +0100
+@@ -447,7 +447,7 @@
+ 
+ #: ../panel-plugin/xfce4-mixer.desktop.in.in.h:1
+ msgid "Change the Volume"
+-msgstr "Lautsträke ändern"
++msgstr "Lautstärke ändern"
+ 
+ #: ../settings/xfce-mixer-settings.desktop.in.h:1
+ msgid "Mixer Settings"

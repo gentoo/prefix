@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-mixer
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.110 2008/12/15 05:03:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.111 2008/12/17 17:49:37 angelos Exp $
+
+  17 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  +files/xfce4-mixer-4.4.3-i18n-typo.patch, xfce4-mixer-4.4.3.ebuild:
+  Fixed a typo in de.po
 
   15 Dec 2008; Jeroen Roovers <jer@gentoo.org> xfce4-mixer-4.4.3.ebuild:
   Stable for HPPA (bug #249942).
