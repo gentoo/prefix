@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.66 2008/11/30 11:08:27 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.67 2008/12/18 06:32:53 kumba Exp $
+
+  18 Dec 2008; Joshua Kinard <kumba@gentoo.org> faac-1.26-r1.ebuild:
+  Added ~mips to KEYWORDS, per #141975
 
   26 Nov 2007; Jeroen Roovers <jer@gentoo.org> faac-1.26-r1.ebuild:
   Stable for HPPA (bug #199973).
