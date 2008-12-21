@@ -43,7 +43,7 @@ pkg_setup() {
 			eerror "To build fluxbox with imlib in USE, you need an X enabled"
 			eerror "media-libs/imlib2 . Either recompile imlib2 with the X"
 			eerror "USE flag turned on or disable the imlib USE flag for fluxbox."
-			die "USE=imlib requires imlib2 with USE=X"
+#			die "USE=imlib requires imlib2 with USE=X"
 	fi
 }
 
@@ -55,6 +55,10 @@ src_unpack() {
 	# files in menu [include] items. This patch will allow us to do clever
 	# things with style ebuilds.
 	epatch "${FILESDIR}/gentoo_style_location-1.1.x.patch"
+	sed -i -e 's:\(/usr/share/fluxbox/menu.d/styles/\):'"${EPREFIX}"'\1:' \
+		util/fluxbox-generate_menu.in || die
+
+	epatch "${FILESDIR}"/${P}-osx-has-otool.patch
 
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then
