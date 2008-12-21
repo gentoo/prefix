@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.14.ebuild,v 1.8 2008/09/29 19:10:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.14.ebuild,v 1.9 2008/12/20 02:34:20 aballier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit eutils flag-o-matic elisp-common toolchain-funcs
 XDVIK_JP="${P}-j1.40.patch.gz"
 
 DESCRIPTION="DVI previewer for X Window System"
-HOMEPAGE="http://sourceforge.net/projects/xdvi/ http://xdvi.sourceforge.jp/"
+HOMEPAGE="http://xdvi.sourceforge.net/ http://xdvi.sourceforge.jp/"
 SRC_URI="mirror://sourceforge/xdvi/${P}.tar.gz
 	cjk? ( mirror://sourceforge.jp/xdvi/31972/${XDVIK_JP} )"
 

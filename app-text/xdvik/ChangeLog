@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.61 2008/10/02 18:20:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.62 2008/12/20 02:34:20 aballier Exp $
+
+  20 Dec 2008; Alexis Ballier <aballier@gentoo.org> xdvik-22.84.14.ebuild:
+  update homepage, by Pacho Ramos <pacho@condmat1.ciencias.uniovi.es>, bug
+  #250690
 
   02 Oct 2008; Alexis Ballier <aballier@gentoo.org>
   -files/xdvik-asneeded.patch, -xdvik-22.84.10.ebuild:
