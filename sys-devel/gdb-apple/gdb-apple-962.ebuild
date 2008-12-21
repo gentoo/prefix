@@ -53,3 +53,14 @@ src_install() {
 	rm -f "${ED}"/usr/bin/*
 	mv "${ED}"/gdb "${ED}"/usr/bin/
 }
+
+pkg_postinst() {
+	if [[ ${CHOST} == *-darwin* && ${CHOST#*-darwin} -ge 9 ]] ; then
+		ewarn "Due to increased security measures in 10.5 and up, gdb is"
+		ewarn "not able to get a mach task port when installed by Prefix"
+		ewarn "Portage, unprivileged.  To make gdb fully functional you'll"
+		ewarn "have to perform the following steps:"
+		ewarn "  % sudo chgrp procmod ${EPREFIX}/usr/bin/gdb"
+		ewarn "  % sudo chmod g+s ${EPREFIX}/usr/bin/gdb"
+	fi
+}

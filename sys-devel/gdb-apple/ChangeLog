@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gdb-apple
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
+# $Id$
+
+  21 Dec 2008; Fabian Groffen <grobian@gentoo.org> gdb-apple-962.ebuild,
+  gdb-apple-962.ebuild, gdb-apple-962.ebuild:
+  Add notice describing how to make gdb useful on 10.5 and up
 
 *gdb-apple-962 (21 Dec 2008)
 
