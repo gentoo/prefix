@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/color-theme/color-theme-6.6.0.ebuild,v 1.9 2007/09/08 10:18:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/color-theme/color-theme-6.6.0.ebuild,v 1.10 2008/12/19 09:51:40 ulm Exp $
 
 EAPI="prefix"
 
@@ -26,4 +26,12 @@ src_install() {
 	elisp_src_install
 	insinto /usr/share/emacs/site-lisp/color-theme/themes
 	doins themes/*
+}
+
+pkg_postinst() {
+	elisp-site-regen
+	elog "To use color-theme non-interactively, initialise it in your ~/.emacs"
+	elog "as in the following example (which is for the \"Blue Sea\" theme):"
+	elog "   (color-theme-initialize)"
+	elog "   (color-theme-blue-sea)"
 }
