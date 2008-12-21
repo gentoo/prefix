@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010800.ebuild,v 1.1 2008/12/08 02:26:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010800.ebuild,v 1.2 2008/12/21 01:48:05 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -24,8 +24,11 @@ SRC_TEST="do"
 # directory to where you build it. It does not need to compile it, but
 # it does need to be the same version as is installed, hence the hard
 # DEPEND below
+# Math::Pari does NOT work with 2.3. The Makefile.PL gives warnings, and if you
+# run the tests, you get failures.
 DEPEND="~sci-mathematics/pari-2.1.7
-	dev-lang/perl"
+		!=sci-mathematics/pari-2.3*
+		dev-lang/perl"
 
 PATCHES="${FILESDIR}"/${PN}-darwin.patch
 

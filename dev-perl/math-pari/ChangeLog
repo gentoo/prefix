@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/math-pari
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/ChangeLog,v 1.40 2008/12/08 02:26:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/ChangeLog,v 1.41 2008/12/21 01:48:05 robbat2 Exp $
+
+  21 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  math-pari-2.010800.ebuild:
+  Block the newer sci-mathematics/pari-2.3*.
 
 *math-pari-2.010800 (08 Dec 2008)
 
