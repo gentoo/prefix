@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.ebuild,v 1.1 2008/12/15 11:41:12 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.1 2008/12/19 15:47:55 bicatali Exp $
 
 WX_GTK_VER=2.8
 EAPI="prefix 2"
@@ -28,12 +28,12 @@ DEPEND=">=dev-python/numpy-1.1
 	wxwindows? ( dev-python/wxpython:2.8 )"
 
 RDEPEND="${DEPEND}
-	|| ( media-fonts/ttf-bitstream-vera media-fonts/dejavu )
 	latex? ( virtual/latex-base
 		virtual/ghostscript
 		app-text/dvipng
 		app-text/poppler )
 	cairo? ( dev-python/pycairo )
+	excel? ( dev-python/xlwt )
 	fltk?  ( dev-python/pyfltk )
 	qt3?   ( dev-python/PyQt )
 	qt4?   ( dev-python/PyQt4 )"
@@ -91,10 +91,6 @@ src_prepare() {
 		-e "s:os.path.dirname(__file__):'/usr/share/${PN}':g"  \
 		lib/matplotlib/{__init__,config/cutils}.py \
 		|| die "sed init for FHS failed"
-
-	# remove vera fonts (they are now a dependency)
-	cd lib/matplotlib/mpl-data
-	rm -f ttf/Vera*.ttf ttf/*.TXT ttf/local.conf pdfcorefonts/readme.txt
 }
 
 src_install() {

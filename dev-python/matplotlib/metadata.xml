@@ -8,4 +8,7 @@
   data analysis in python with a syntax similar to matlab. It provides a
   variety of backends and hard copy formats for almost ready publication plots.
 </longdescription>
+<use>
+  <flag name='excel'>Pull <pkg>dev-python/xlwt</pkg> for the exceltools toolkit</flag>
+</use>
 </pkgmetadata>
