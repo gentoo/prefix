@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/files/6/tomcat.init,v 1.8 2007/05/17 21:15:05 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/files/6/tomcat.init,v 1.10 2008/12/20 18:12:23 serkan Exp $
 
 init_env_vars() {
 	# Populate JAVA_HOME
@@ -60,6 +60,13 @@ depend() {
 start()	{
 	ebegin "Starting Tomcat"
 	init_env_vars
+
+	if [ ! -e "${CATALINA_TMPDIR}" ]; then
+		eerror "CATALINA_TMPDIR does not exist. Unable to start tomcat."
+		eerror "Please see /etc/conf.d/tomcat-6 for more information."
+		eend 1
+	fi
+
 	# Figure out what arguments to pass start_helper based on TOMCAT_START
 	if [ "${TOMCAT_START}" = "debug" ] ; then
 		start_helper ${JAVA_HOME}/bin/jdb \
@@ -89,7 +96,7 @@ stop()	{
 	ebegin "Stopping Tomcat"
 	init_env_vars
 	start-stop-daemon --stop --quiet \
-	       	--make-pidfile --pidfile /var/run/tomcat-6.pid \
+	       	--pidfile /var/run/tomcat-6.pid \
 			--exec ${JAVA_HOME}/bin/java -- ${OPTS_CP} ${CATALINA_ARGS} stop ${STD_OUT}
 	eend $?
 }
