@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/ant-apache-bsf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.17 2008/12/09 23:28:00 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.19 2008/12/20 19:52:56 ken69267 Exp $
+
+  20 Dec 2008; Kenneth Prugh <ken69267@gentoo.org>
+  ant-apache-bsf-1.7.1.ebuild:
+  amd64 stable, bug #250466
+
+  20 Dec 2008; nixnut <nixnut@gentoo.org> ant-apache-bsf-1.7.1.ebuild:
+  Stable on ppc wrt bug 250446
 
   09 Dec 2008; Vlastimil Babka <caster@gentoo.org>
   ant-apache-bsf-1.7.1.ebuild:
