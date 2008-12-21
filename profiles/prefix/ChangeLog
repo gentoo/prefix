@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.use.mask:
+  Use.mask some non-working flags for packages, by Elias Pipping
+
   03 Dec 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask pax-utils/0.1.19 due to GNU-isms
 
