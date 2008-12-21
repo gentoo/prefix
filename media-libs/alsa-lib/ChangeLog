@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.268 2008/12/16 15:12:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.270 2008/12/20 23:19:43 fmccor Exp $
+
+  20 Dec 2008; Ferris McCormick <fmccor@gentoo.org> alsa-lib-1.0.17a.ebuild:
+  Sparc stable, Bug #245517.
+
+  20 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  alsa-lib-1.0.17a.ebuild:
+  stable amd64, bug 245517
 
   16 Dec 2008; Jeroen Roovers <jer@gentoo.org> alsa-lib-1.0.17a.ebuild:
   Stable for HPPA (bug #245517).
