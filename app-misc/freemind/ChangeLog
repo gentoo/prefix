@@ -1,6 +1,13 @@
 # ChangeLog for app-misc/freemind
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.42 2008/10/05 13:35:01 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.43 2008/12/20 22:40:05 caster Exp $
+
+*freemind-0.9.0_beta20 (20 Dec 2008)
+
+  20 Dec 2008; Vlastimil Babka <caster@gentoo.org> metadata.xml,
+  +freemind-0.9.0_beta20.ebuild:
+  Version bump, bug #221749. Add local useflags for most of the optional
+  plugins, see metadata.xml for details.
 
   05 Oct 2008; Petteri Räty <betelgeuse@gentoo.org>
   freemind-0.8.0-r3.ebuild:
