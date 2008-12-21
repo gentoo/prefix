@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.59 2008/06/16 21:09:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.60 2008/12/20 11:00:28 pva Exp $
+
+  20 Dec 2008; Peter Volkov <pva@gentoo.org> netkit-rsh-0.17-r8.ebuild,
+  netkit-rsh-0.17-r9.ebuild:
+  ~mips rekeyworeded, bug #210783.
 
   16 Jun 2008; Mike Frysinger <vapier@gentoo.org> netkit-rsh-0.17-r9.ebuild:
   Fix building when ARG_MAX is not defined #225341 by Tobias Scherbaum.
