@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/facets
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/ChangeLog,v 1.19 2008/02/29 15:18:31 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/ChangeLog,v 1.21 2008/12/20 13:08:24 graaff Exp $
+
+*facets-2.5.0 (20 Dec 2008)
+
+  20 Dec 2008; Hans de Graaff <graaff@gentoo.org> +facets-2.5.0.ebuild:
+  Version bump with major changes compared to previous versions in Gentoo
+
+  20 Dec 2008; Hans de Graaff <graaff@gentoo.org> -facets-0.6.3.ebuild,
+  -facets-1.3.0.ebuild:
+  Remove old versions
 
   29 Feb 2008; nixnut <nixnut@gentoo.org> facets-1.8.54.ebuild:
   Added ~ppc wrt bug 211754
