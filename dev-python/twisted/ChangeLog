@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.98 2008/09/04 01:59:13 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.99 2008/12/20 18:26:47 nixnut Exp $
+
+  20 Dec 2008; nixnut <nixnut@gentoo.org> twisted-8.1.0.ebuild:
+  Stable on ppc wrt bug 231675
 
   04 Sep 2008; Rob Cakebread <pythonhead@gentoo.org> twisted-8.1.0.ebuild:
   Remove test if not using Python 2.5+ bug# 234370
