@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openal
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.98 2008/12/19 05:56:11 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.99 2008/12/20 20:44:27 maekke Exp $
+
+  20 Dec 2008; Markus Meier <maekke@gentoo.org> openal-1.5.304.ebuild:
+  amd64 stable, bug #251201
 
   19 Dec 2008; Joshua Kinard <kumba@gentoo.org> openal-1.6.372.ebuild:
   Added ~mips to KEYWORDS, per #245771.
