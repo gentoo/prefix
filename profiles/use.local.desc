@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4073 2008/12/19 16:07:40 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4075 2008/12/21 02:09:21 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -299,6 +299,10 @@ app-misc/digitemp:ds2490 - Build support for the ds2490 sensor
 app-misc/digitemp:ds9097 - Build support for the ds9097 sensor
 app-misc/digitemp:ds9097u - Build support for the ds9097u sensor
 app-misc/fdupes:md5sum-external - Use external md5sum program instead of bundled md5sum routines
+app-misc/freemind:groovy - Build plugin for scripting via Groovy
+app-misc/freemind:latex - Build plugin for inserting mathematical formulas in LaTeX syntax
+app-misc/freemind:pdf - Build plugin for exporting mindmaps to SVG and PDF
+app-misc/freemind:svg - Build plugin for exporting mindmaps to SVG and PDF
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/geneweb:ocamlopt - Enable ocamlopt support (dev-lang/ocaml native code compiler)
 app-misc/gourmet:print - Enable printing support using gnome-print.
@@ -1046,7 +1050,6 @@ kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpa
 mail-client/balsa:crypt - Adds support for GnuPG encryption
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Adds support for app-office/rubrica addressbook
-mail-client/claws-mail:aspell - Use enchant with aspell support.
 mail-client/claws-mail:bogofilter - Build mail-filter/bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline HTTP email viewing with a plugin (which depends on the www-client/dillo browser)
 mail-client/claws-mail:smime - Build plugin for S/MIME support

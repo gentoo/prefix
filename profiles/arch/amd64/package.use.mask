@@ -13,7 +13,6 @@
 # masked in base, unmaks for x86/amd64
 sci-misc/boinc -bindist
 
-
 # Serkan Kaba <serkan@gentoo.org> (20 Jul 2008)
 app-text/enchant -zemberek
 
@@ -51,49 +50,9 @@ media-sound/mpg123 mmx 3dnow 3dnowext sse
 # bug 152646
 x11-themes/polymer mmx sse2
 
-# Feb 10th 2007; blubb@gentoo.org
-# bug 166240
-media-libs/imlib2 mmx
-
-# Oct 24th 2006; blubb@gentoo.org
-# working asm; drop this list once the flags are unmasked globally (2007.0)
->=dev-libs/DirectFB-0.9.25.1 -mmx -sse
->=dev-libs/DirectFB-extra-0.9.25 -mmx
-games-engines/exult -mmx -3dnow
-media-gfx/gimp -mmx -sse
-media-gfx/optipng -mmx
-media-libs/libmpeg -mmx
-media-libs/flac -sse -3dnow
-media-libs/libggi -mmx
-media-libs/libquicktime -mmx
-media-libs/speex -sse
-media-sound/audacious -mmx
-media-sound/fluidsynth -sse
-media-tv/mythtv -mmx
-media-video/ogle -mmx
-media-video/transcode -3dnow -mmx -sse -sse2
->=sci-libs/fftw-3.1.2 -sse -sse2
-x11-libs/evas -mmx -sse
-x11-libs/libast -mmx
-x11-misc/rss-glx -sse -3dnow
-x11-misc/eterm -sse2
-x11-wm/afterstep -mmx
-media-video/ffmpeg -mmx
-media-video/mplayer -3dnow -3dnowext -mmx -mmxext -sse -sse2 -cpudetection -custom-cpuopts -dxr3 -bindist
-media-tv/xdtv -mmx
-media-plugins/vdr-softdevice -mmx -mmxext
-dev-libs/openssl -sse2
-media-libs/libsoundtouch -sse
-
 # Feb 17th 2007; drizzt@gentoo.org
 # amd64 does not have an emul libao package
 games-emulation/zsnes ao
-
-# Mar 17th 2007; Petteri Räty <betelgeuse@gentoo.org>
-# (Proxying for Diego Pettenò <flameeyes@gmail.com>)
-# ASIHPI driver is supported on 64-bit systems for newer versions
-<media-sound/alsa-driver-1.0.14_rc3 alsa_cards_asihpi
-
 
 # Apr 25th 2007: Alexis Ballier <aballier@gentoo.org>
 # Mask mmx for media-libs/mlt

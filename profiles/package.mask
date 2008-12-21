@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9306 2008/12/20 01:28:06 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9312 2008/12/20 23:04:42 remi Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,90 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Rémi Cardona <remi@gentoo.org> (21 Dec 2008)
+# Masked for treecleaning, see bug #228471
+# uses old gtkmm stack
+net-print/omni
+
+# Rémi Cardona <remi@gentoo.org> (21 Dec 2008)
+# Masked for treecleaning, see bug #228471 and bug #244543
+# uses broken and unmaintained gtkmm 2.2
+# other tools can change the X background
+x11-misc/fluxbg
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Masked for removal in 60 days. Security issues and unmaintained. bug 251490
+net-analyzer/hyperic-hq-agent
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days, doesn't compile with gcc-4.3 and upstream stopped dev't in
+# 2004. bug 251219
+media-sound/ecamegapedal
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Doesn't compile with gcc-4.3 and upstream won't fix it.
+# knetload requested to be removed at the same time by kde team because it
+# depends on libksnmp. bug 251452
+net-libs/libksnmp
+net-misc/knetload
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days, dead upstream for 7 years. Unmaintained in Gentoo for 4
+# years. bug 251057
+net-misc/ossh
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Does not compile with gcc-4.3. Use app-i18n/scim-m17n
+# instead, bug 250680
+app-i18n/scim-wijesekera
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Does not compile with gcc-4.3 and requires kernel patches
+# from a website that doesn't exist => unmaintained. bug 250679
+app-i18n/unicon
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Does not work anymore, dead upstream. Upstream website
+# suggest using media-sound/mpd. bug 249244
+media-sound/waif
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Does not compile with gcc-4.1+, uses gtk-1 and requires
+# other fixes. bug 247912
+media-video/tuxzap-programs
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Does not compile with gcc-4.1+, nothing depends on it. 
+# bug 240908
+net-libs/libopm
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days, multiple bugs - does not compile with recent kernels.
+# bug 251795
+sys-fs/cloop
+
+# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
+# Removed in 60 days. Many issues including a gcc-4.3 failure and dead upstream
+# see tracker bug (bug 251796)
+app-text/pdftk
+media-gfx/keyjnote
+
+# Christoph Mende <angelos@gentoo.org> (20 Dec 2008)
+# Masked for removal in 30 days, doesn't work with gcc-4.3 (bug 251748),
+# is unmaintained upstream and nothing in the tree uses it
+x11-libs/xfc
+
+# Peter Alfredsen <loki_val@gentoo.org> (20 Dec 2008)
+# Masked for removal in 30 days. Version that compiles with gcc-4.3
+# is not ready for stable ( bug 251566 ).
+# Upstream has abandoned it, alternatives such as gedit exist.
+app-editors/katoob
+
+# Hans de Graaff <graaff@gentoo.org> (20 Dec 2008)
+# Installs compiled code in the wrong directory. Masked
+# while we figure out how to fix this with the gem.
+=dev-ruby/hpricot-0.6.164
 
 # Daniel Drake <dsd@gentoo.org> (18 Dec 2008)
 # Unmaintained, unloved, and unwashed. Removing from Portage on on Dec 31st
@@ -243,11 +327,6 @@ app-admin/gps
 # nis-utils is dead, use LDAP you slackers.
 # Remove in Jan 2009
 net-nds/nis-utils
-
-# Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
-# Removed in 30 days by treecleaners at maintainer's request. bug #152940
-# Dead upstream, other alternatives.
-net-im/gnome-jabber
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
 # Removed in 60 days by treecleaners, comment on bug #247494
