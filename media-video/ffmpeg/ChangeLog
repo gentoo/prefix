@@ -1,6 +1,20 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.246 2008/12/16 16:41:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.250 2008/12/20 23:11:34 fmccor Exp $
+
+  20 Dec 2008; Ferris McCormick <fmccor@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  Sparc stable, Security Bug #245313.
+
+  20 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  ffmpeg-0.4.9_p20081014.ebuild:
+  stable amd64, security bug #245313
+
+*ffmpeg-0.4.9_p20081219 (19 Dec 2008)
+
+  19 Dec 2008; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.4.9_p20081219.ebuild:
+  push a new snapshot
 
   16 Dec 2008; Jeroen Roovers <jer@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild:
@@ -25,6 +39,11 @@
   12 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild:
   Stable on alpha, bug #245285
+
+*ffmpeg-9999 (07 Dec 2008)
+
+  07 Dec 2008; Luca Barbato <lu_zero@gentoo.org> +ffmpeg-9999.ebuild:
+  live ebuild
 
   10 Nov 2008; Raúl Porcel <armin76@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild:

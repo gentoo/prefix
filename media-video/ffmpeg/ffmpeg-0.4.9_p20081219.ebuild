@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.18 2008/12/20 23:11:34 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081219.ebuild,v 1.1 2008/12/19 11:10:24 aballier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
-FFMPEG_SVN_REV="15615"
+FFMPEG_SVN_REV="16238"
 
 DESCRIPTION="Complete solution to record, convert and stream audio and video.
 Includes libavcodec. svn revision ${FFMPEG_SVN_REV}"
@@ -21,7 +21,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris ~x86-solaris"
 IUSE="aac altivec amr debug dirac doc ieee1394 encode gsm ipv6 mmx mmxext vorbis
 	  test theora threads x264 xvid network zlib sdl X mp3 schroedinger
-	  hardcoded-tables bindist v4l v4l2 ssse3 vhook"
+	  hardcoded-tables bindist v4l v4l2 speex ssse3 vhook"
 
 RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	sdl? ( >=media-libs/libsdl-1.2.10 )
@@ -39,6 +39,7 @@ RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	schroedinger? ( media-libs/schroedinger )
+	speex? ( media-libs/speex )
 	X? ( x11-libs/libX11 x11-libs/libXext )
 	amr? ( media-libs/amrnb media-libs/amrwb )"
 
@@ -52,11 +53,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-shared-gcc4.1.patch
-	epatch "${FILESDIR}"/${P}-sparc-gcc43.patch #247653
 
-	epatch "${FILESDIR}"/${P}-solaris.patch
-	epatch "${FILESDIR}"/${P}-solaris64.patch
+	epatch "${FILESDIR}"/${PN}-0.4.9_p20081014-solaris.patch
+	epatch "${FILESDIR}"/${PN}-0.4.9_p20081014-solaris64.patch
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20070616-apple.patch
 
 	# Set version #
@@ -110,6 +109,7 @@ src_compile() {
 	use aac && myconf="${myconf} --enable-libfaad"
 	use dirac && myconf="${myconf} --enable-libdirac"
 	use schroedinger && myconf="${myconf} --enable-libschroedinger"
+	use speex && myconf="${myconf} --enable-libspeex"
 	if use gsm; then
 		myconf="${myconf} --enable-libgsm"
 		# Crappy detection or our installation is weird, pick one (FIXME)
@@ -188,14 +188,12 @@ src_compile() {
 		--cc="$(tc-getCC)" \
 		${myconf} || die "configure failed"
 
-	emake -j1 depend || die "depend failed"
 	emake || die "make failed"
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "Install Failed"
+	emake DESTDIR="${D}" install || die "Install Failed"
 
-	use doc && emake -j1 documentation
 	dodoc Changelog README INSTALL
 	dodoc doc/*
 }
@@ -205,10 +203,4 @@ src_test() {
 	for t in codectest libavtest servertest seektest ; do
 		emake ${t} || ewarn "Some tests in ${t} failed"
 	done
-}
-
-pkg_postinst() {
-	ewarn "ffmpeg may have had ABI changes, if ffmpeg based programs"
-	ewarn "like xine-lib or vlc stop working as expected please"
-	ewarn "rebuild them."
 }
