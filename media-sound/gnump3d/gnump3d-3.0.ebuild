@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/gnump3d-3.0.ebuild,v 1.5 2007/11/30 21:32:11 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/gnump3d-3.0.ebuild,v 1.6 2008/12/19 17:06:13 pva Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ RESTRICT="test"
 S="${WORKDIR}"/${MY_P}
 
 pkg_setup() {
-	enewuser gnump3d '' '' '' nogroup || die "Failed to add new user."
+	enewuser gnump3d '' '' '' nogroup
 	LIBDIR="${EPREFIX}"/usr/$(get_libdir)
 }
 

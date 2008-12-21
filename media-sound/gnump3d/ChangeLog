@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/gnump3d
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.64 2008/06/03 14:52:32 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.65 2008/12/19 17:06:13 pva Exp $
+
+  19 Dec 2008; Peter Volkov <pva@gentoo.org> gnump3d-2.9_pre7.ebuild,
+  gnump3d-2.9_pre99.ebuild, gnump3d-2.9.ebuild, gnump3d-3.0.ebuild:
+  Removed || die after enewuser, bug #237296.
 
   03 Jun 2008; Steve Dibb <beandog@gentoo.org> files/gnump3d.init.d:
   Add index option to init script, bug 204418
