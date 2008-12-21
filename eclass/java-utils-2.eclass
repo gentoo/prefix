@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.118 2008/11/09 00:12:57 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.119 2008/12/20 19:25:29 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -72,7 +72,7 @@ JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 # the version of java-config we want to use. Usually the latest stable version
 # so that ebuilds can use new features without depending on specific versions.
 # -----------------------------------------------------------------------------
-JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.0.33-r1 ${JAVA_PKG_PORTAGE_DEP} )"
+JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.6 ${JAVA_PKG_PORTAGE_DEP} )"
 hasq source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
 # -----------------------------------------------------------------------------
