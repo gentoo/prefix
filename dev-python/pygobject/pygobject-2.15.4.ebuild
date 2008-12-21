@@ -65,6 +65,9 @@ src_install() {
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# our python expects a bundle
+		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/gio/_gio.{so,bundle}
+		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/gio/unix.{so,bundle}
+		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/glib/_glib.{so,bundle}
 		mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/gobject/_gobject.{so,bundle}
 	fi
 }
