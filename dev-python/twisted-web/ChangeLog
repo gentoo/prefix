@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted-web
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.37 2008/08/13 08:46:47 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.38 2008/12/20 18:28:05 nixnut Exp $
+
+  20 Dec 2008; nixnut <nixnut@gentoo.org> twisted-web-8.1.0.ebuild:
+  Stable on ppc wrt bug 231675
 
   13 Aug 2008; Santiago M. Mola <coldwind@gentoo.org>
   twisted-web-8.1.0.ebuild:
