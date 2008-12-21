@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/gnome-light-2.22.0.ebuild,v 1.6 2008/12/16 16:10:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/gnome-light-2.22.0.ebuild,v 1.7 2008/12/20 14:02:58 gentoofan23 Exp $
 
 EAPI="prefix"
 
