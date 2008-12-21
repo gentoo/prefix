@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/ant-jdepend
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jdepend/ChangeLog,v 1.10 2008/07/14 21:57:42 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jdepend/ChangeLog,v 1.12 2008/12/20 19:46:12 ken69267 Exp $
+
+  20 Dec 2008; Kenneth Prugh <ken69267@gentoo.org> ant-jdepend-1.7.1.ebuild:
+  amd64 stable, bug #250466
+
+  20 Dec 2008; nixnut <nixnut@gentoo.org> ant-jdepend-1.7.1.ebuild:
+  Stable on ppc wrt bug 250446
 
 *ant-jdepend-1.7.1 (14 Jul 2008)
 
