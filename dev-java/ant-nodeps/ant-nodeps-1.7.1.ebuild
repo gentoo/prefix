@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-nodeps/ant-nodeps-1.7.1.ebuild,v 1.3 2008/12/20 19:43:23 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-nodeps/ant-nodeps-1.7.1.ebuild,v 1.4 2008/12/21 13:28:20 maekke Exp $
 
 EAPI="prefix"
 
