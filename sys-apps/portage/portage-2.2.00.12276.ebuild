@@ -10,7 +10,7 @@ inherit toolchain-funcs eutils flag-o-matic python multilib
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 # USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
@@ -53,9 +53,8 @@ prefix_src_archives() {
 
 PV_PL="2.1.2"
 PATCHVER_PL=""
-#mirror://gentoo/prefix-${PN}-${PV}.tar.bz2
 SRC_URI="
-	mirror://gentoo/prefix-${PN}-${PV}.tar.bz2
+	${SRC_ARCHIVES}/prefix-${PN}-${PV}.tar.bz2
 	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
 	${SRC_ARCHIVES}/${PN}-man-pl-${PV_PL}.tar.bz2 )"
 
@@ -80,7 +79,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12040-cross-prefix.patch
+	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12182-cross-prefix.patch
 }
 
 src_compile() {
