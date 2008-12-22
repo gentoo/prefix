@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r3.ebuild,v 1.1 2008/11/29 13:09:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r3.ebuild,v 1.3 2008/12/21 09:31:22 graaff Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.bz2"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
 
 LICENSE="Ruby"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -31,7 +31,6 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
-	>=dev-ruby/ruby-config-0.3.1
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"

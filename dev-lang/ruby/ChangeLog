@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.356 2008/11/29 13:09:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.359 2008/12/21 09:31:22 graaff Exp $
+
+  21 Dec 2008; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p114.ebuild,
+  ruby-1.8.6_p287-r1.ebuild, ruby-1.8.6_p287-r3.ebuild,
+  ruby-1.8.7_p72-r1.ebuild:
+  Drop dependency on ruby-config, which will be removed from the tree. We
+  currently only have one major version of ruby in the tree (Ruby 1.8), so there
+  is no need for ruby-config at this moment. For newer versions of Ruby we will
+  use eselect-ruby, which can be found in the ruby overlay at the moment.
+
+  21 Dec 2008; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p114.ebuild,
+  ruby-1.8.6_p287-r1.ebuild, ruby-1.8.6_p287-r3.ebuild:
+  Use mirror://ruby in SRC_URI, fixes #237392.
+
+  21 Dec 2008; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.6_p111.ebuild,
+  -ruby-1.8.6_p111-r1.ebuild, -ruby-1.8.6_p287-r2.ebuild,
+  -ruby-1.8.7_p72.ebuild:
+  Remove old versions. Leave one old stable version with cjk support.
 
 *ruby-1.8.6_p287-r3 (29 Nov 2008)
 
