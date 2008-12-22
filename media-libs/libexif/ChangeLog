@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.97 2008/11/02 12:55:22 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.98 2008/12/21 09:27:31 maekke Exp $
+
+*libexif-0.6.17 (21 Dec 2008)
+
+  21 Dec 2008; Markus Meier <maekke@gentoo.org> metadata.xml,
+  +libexif-0.6.17.ebuild:
+  bump to 0.6.17, bug #248249; graphics herd will maintain this.
 
   02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
