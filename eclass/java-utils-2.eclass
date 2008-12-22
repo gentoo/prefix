@@ -2058,6 +2058,9 @@ use_doc() {
 # -----------------------------------------------------------------------------
 java-pkg_init() {
 	debug-print-function ${FUNCNAME} $*
+
+	[[ ${CHOST} == *-winnt* ]] && return
+
 	unset JAVAC
 	unset JAVA_HOME
 
