@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.60 2008/12/19 23:37:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.61 2008/12/21 17:52:15 ulm Exp $
+
+*eselect-emacs-1.8 (21 Dec 2008)
+
+  21 Dec 2008; Ulrich Mueller <ulm@gentoo.org> +eselect-emacs-1.8.ebuild:
+  Version bump.
 
 *eselect-emacs-1.7 (19 Dec 2008)
 
