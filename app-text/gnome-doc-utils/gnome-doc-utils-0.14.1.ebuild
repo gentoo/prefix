@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.0.ebuild,v 1.11 2008/08/12 23:22:24 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.1.ebuild,v 1.1 2008/12/21 15:48:28 eva Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris"
 IUSE=""
 
 RDEPEND=">=dev-libs/libxml2-2.6.12
@@ -25,6 +25,16 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
+src_unpack() {
+	gnome2_src_unpack
+
+	# Make xml2po FHS compliant, bug #190798
+	epatch "${FILESDIR}/${PN}-0.14.0-fhs.patch"
+
+	# If there is a need to reintroduce eautomake or eautoreconf, make sure
+	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
+}
+
 pkg_setup() {
 	G2CONF="--disable-scrollkeeper"
 
@@ -35,11 +45,12 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	python_mod_optimize /usr/share/xml2po
+	python_version
+	python_mod_optimize /usr/lib/python${PYVER}/site-packages/xml2po
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/share/xml2po
+	python_mod_cleanup /usr/lib/python*/site-packages/xml2po
 	gnome2_pkg_postrm
 }
