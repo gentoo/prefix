@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/megapov/megapov-1.2.1.ebuild,v 1.3 2007/08/12 16:44:40 malc Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/megapov/megapov-1.2.1.ebuild,v 1.4 2008/12/21 22:03:29 maekke Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,7 @@ src_compile() {
 	econf CFLAGS="${CFLAGS}" CPPFLAGS="${CXXFLAGS}" \
 		--prefix="${EPREFIX}/usr" --libdir="${EPREFIX}/usr/share/${PN}" \
 		--sysconfdir="${EPREFIX}/etc" --without-svga --with-x \
+		--disable-strip \
 		COMPILED_BY="Gentoo Linux" || \
 		die './configure failed'
 	emake || \
