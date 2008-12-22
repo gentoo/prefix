@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.24.2.ebuild,v 1.1 2008/11/24 20:51:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.24.2.ebuild,v 1.2 2008/12/21 15:32:27 eva Exp $
 
 EAPI="prefix"
 
@@ -46,7 +46,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.10.3-use_bin_tar.patch
 
 	# use a local rpm2cpio script to avoid the dep
-	sed -e "s/rpm2cdio/rpm2cdio-file-roller/g" \
+	sed -e "s/rpm2cpio/rpm2cpio-file-roller/g" \
 		-i src/fr-command-rpm.c || die "sed failed"
 }
 

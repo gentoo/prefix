@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/file-roller
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.245 2008/11/24 20:51:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.246 2008/12/21 15:32:27 eva Exp $
+
+  21 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -file-roller-2.20.3.ebuild, -file-roller-2.24.1.ebuild,
+  file-roller-2.24.2.ebuild:
+  Fix bad sed, bug #250644. Clean up old revisions.
 
 *file-roller-2.24.2 (24 Nov 2008)
 
