@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-junit/ant-junit-1.7.1.ebuild,v 1.3 2008/12/20 19:58:10 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-junit/ant-junit-1.7.1.ebuild,v 1.4 2008/12/21 13:46:34 maekke Exp $
 
 EAPI="prefix 1"
 
