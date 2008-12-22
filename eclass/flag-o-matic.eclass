@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.126 2008/11/03 05:52:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.127 2008/12/21 21:40:49 solar Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -33,7 +33,7 @@ setup-allowed-flags() {
 		export ALLOWED_FLAGS="-pipe"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -O -O0 -O1 -O2 -mcpu -march -mtune"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fstack-protector -fstack-protector-all"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fbounds-checking"
+		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fbounds-checking -fno-strict-overflow"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-PIE -fno-pie -fno-unit-at-a-time"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-ident"
@@ -41,7 +41,7 @@ setup-allowed-flags() {
 	fi
 	# allow a bunch of flags that negate features / control ABI
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-stack-protector -fno-stack-protector-all \
-		-fno-strict-aliasing -fno-bounds-checking"
+		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow"
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mregparm -mno-app-regs -mapp-regs \
 		-mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-3dnow \
 		-mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 \
@@ -51,7 +51,7 @@ setup-allowed-flags() {
 		-mflat -mno-flat -mno-faster-structs -mfaster-structs \
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
 		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
-		-msecure-plt -m*-toc -D*"
+		-msecure-plt -m*-toc -D* -U*"
 	
 	# killing these two on OSX/Intel will disable SSE, resulting in failing
 	# compilations, as the headers expect SSE to be enabled (Apple knows what
