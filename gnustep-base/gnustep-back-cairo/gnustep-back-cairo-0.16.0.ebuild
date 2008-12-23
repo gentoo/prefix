@@ -1,8 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/gnustep-back-cairo-0.12.1.ebuild,v 1.4 2008/06/10 14:31:18 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/gnustep-back-cairo-0.16.0.ebuild,v 1.1 2008/12/22 14:02:52 voyageur Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit gnustep-base
 
@@ -32,22 +32,13 @@ RDEPEND="${GNUSTEP_CORE_DEPEND}
 	x11-libs/libXrender
 
 	>=media-libs/freetype-2.1.9
-	>=x11-libs/cairo-1.2.0
+	>=x11-libs/cairo-1.2.0[X]
 	!gnustep-base/gnustep-back-art
 	!gnustep-base/gnustep-back-xlib"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-pkg_setup() {
-	gnustep-base_pkg_setup
-
-	if ! built_with_use x11-libs/cairo X; then
-		eerror "x11-libs/cairo must be compiled with the X USE flag enabled"
-		die "x11-libs/cairo rebuild needed"
-	fi
-}
-
-src_compile() {
+src_configure() {
 	egnustep_env
 
 	use opengl && myconf="--enable-glx"
@@ -58,6 +49,4 @@ src_compile() {
 	#myconf="$myconf $(use_enable glitz)"
 
 	econf $myconf || die "configure failed"
-
-	egnustep_make
 }
