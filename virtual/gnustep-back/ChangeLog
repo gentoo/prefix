@@ -1,6 +1,12 @@
 # ChangeLog for virtual/gnustep-back
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.24 2008/11/17 13:43:04 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.25 2008/12/22 14:05:34 voyageur Exp $
+
+*gnustep-back-0.16.0 (22 Dec 2008)
+
+  22 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-back-0.16.0.ebuild:
+  Major version bump, general cleanup of code
 
   17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
   -gnustep-back-0.12.1.ebuild:
