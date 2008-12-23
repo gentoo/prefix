@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/gsm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.35 2008/11/10 10:51:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.36 2008/12/22 14:20:05 armin76 Exp $
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org> gsm-1.0.12-r1.ebuild:
+  arm/ia64 stable wrt #245285
 
   10 Nov 2008; Raúl Porcel <armin76@gentoo.org> gsm-1.0.12-r1.ebuild:
   Add ~ia64 wrt #241908
