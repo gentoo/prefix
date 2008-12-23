@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-mixer
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.111 2008/12/17 17:49:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.112 2008/12/22 17:07:56 angelos Exp $
+
+  22 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-mixer-4.4.2.ebuild:
+  Removed old
 
   17 Dec 2008; Christoph Mende <angelos@gentoo.org>
   +files/xfce4-mixer-4.4.3-i18n-typo.patch, xfce4-mixer-4.4.3.ebuild:
