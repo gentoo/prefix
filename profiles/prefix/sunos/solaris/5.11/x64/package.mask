@@ -1,4 +1,0 @@
-
-# Fabian Groffen <grobian@gentoo.org> (22 Dec 2008)
-# Can't compile itself
-=sys-devel/binutils-2.19.50.0.1
