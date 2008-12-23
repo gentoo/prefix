@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.11 2008/12/21 09:31:22 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.12 2008/12/22 21:17:44 graaff Exp $
 
 EAPI="prefix"
 
@@ -159,20 +159,5 @@ src_install() {
 	if use rubytests; then
 		dodir /usr/share/${PN}-${SLOT}
 		cp -pPR test "${ED}/usr/share/${PN}-${SLOT}"
-	fi
-}
-
-pkg_postinst() {
-
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
-	fi
-	elog
-	elog "You can change the default ruby interpreter by ${EROOT}usr/sbin/ruby-config"
-}
-
-pkg_postrm() {
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
 	fi
 }
