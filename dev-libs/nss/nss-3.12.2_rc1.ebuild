@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2_rc1.ebuild,v 1.1 2008/12/11 10:39:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2_rc1.ebuild,v 1.3 2008/12/22 20:55:56 tester Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ IUSE="utils"
 S="${WORKDIR}"
 
 DEPEND=">=dev-libs/nspr-${NSPR_VER}
-	>=dev-db/sqlite-3.6.2"
+	>=dev-db/sqlite-3.5"
 
 src_unpack() {
 	unpack ${A}
