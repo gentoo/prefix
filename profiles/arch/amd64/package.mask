@@ -1,10 +1,5 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.mask,v 1.8 2008/09/07 05:14:12 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.mask,v 1.9 2008/12/23 03:30:23 darkside Exp $
 
 # 2005.0 Jeremy Huddleston <eradicator@gentoo.org>
 # This is a stub file 'cause glibc provides 32bit libs on newer profiles
 =app-emulation/emul-linux-x86-glibc-1000
-
-# 2005/10/24 Simon Stelling <blubb@gentoo.org>
-# OpenOffice.org versions prior to 2.0.4 do not work in 64bit mode
-<app-office/openoffice-2.0.4
-

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4076 2008/12/21 19:07:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4078 2008/12/23 05:07:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2197,6 +2197,10 @@ net-proxy/squid:zero-penalty-hit - Add Zero Penalty Hit patch (http://zph.bratch
 net-proxy/sshproxy:client-only - Install only the client wrappers
 net-proxy/tinyproxy:transparent-proxy - Enables support for transparent proxies
 net-proxy/tsocks:tordns -  Apply tordns patch which allows transparent TORification of the DNS queries 
+net-voip/linphone:console - Build console interface
+net-voip/linphone:gsm - Include support for the gsm audio codec
+net-voip/linphone:ilbc - Build ILBC codec plugin
+net-voip/linphone:video - Enable video support (display/capture)
 net-voip/yate:gsm - Build gsm codec plugin
 net-voip/yate:h323 - Build H.323 Channel plugin
 net-voip/yate:ilbc - Build ILBC codec plugin
@@ -2679,6 +2683,7 @@ x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/fspanel:xft - Build with support for XFT font renderer (x11-libs/libXft)
 x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/openclipart:gzip - Compresses clip art using gzip
+x11-misc/slim:screenshot - Enable screenshot support (using media-gfx/imagemagick)
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM

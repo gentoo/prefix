@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2190 2008/12/21 17:49:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2196 2008/12/22 21:39:26 graaff Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 Dec 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Revert the ruby-config package.mask. It must stay around long enough for
+  currently installed dev-lang/ruby ebuilds to run their pkg_postrm and the
+  current situation also causes problems for paludis' resolver which uses the
+  actually installed ebuilds rather than the current portage ones.
+
+  22 Dec 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Unmask app-admin/eselect-{ctags,emacs}-1.8.
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Comment invalid profiles until they get removed
+
+  22 Dec 2008; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  unmask mail-client/claws-mail-3.7.0
+
+  22 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Mask new gnustep-base release until matching gorm is available
+
+  22 Dec 2008; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  mask mail-client/claws-mail and new plugins to make version bump painless
+  for users
 
   21 Dec 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Mask app-admin/eselect-{ctags,emacs}-1.8 for testing, bug 251847.

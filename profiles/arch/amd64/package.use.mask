@@ -32,7 +32,6 @@ games-emulation/xmame mmx
 games-emulation/xmess mmx
 media-gfx/inkscape mmx
 media-libs/allegro mmx sse
-media-libs/gdk-pixbuf mmx
 media-libs/libfame mmx
 media-libs/libmovtar mmx
 media-libs/sdl-gfx mmx
@@ -63,11 +62,6 @@ media-libs/mlt mmx
 # Mask doc flag for fop as nearly impossible to
 # run javadoc target.  see #177585
 >=dev-java/fop-0.93 doc
-
-# 26 July 2007: Alexis Ballier <aballier@gentoo.org>
-# Mask x86-32 asm only flags
-# bug #178033
-media-video/cinelerra-cvs mmx 3dnow
 
 # 31 Dec 2007: Peter Weller <welp@gentoo.org>
 # Mask dbus, hal, nas and scanner USE flags;

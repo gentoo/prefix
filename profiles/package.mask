@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9321 2008/12/22 21:05:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9322 2008/12/22 21:39:26 graaff Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -39,10 +39,6 @@
 =gnustep-base/gnustep-back-cairo-0.16.0
 =gnustep-base/gnustep-back-xlib-0.16.0
 =virtual/gnustep-back-0.16.0
-
-# Hans de Graaff <graaff@gentoo.org> (21 Dec 2008)
-# Masked for removal in 60 days, see bug #251833.
-dev-ruby/ruby-config
 
 # Rémi Cardona <remi@gentoo.org> (21 Dec 2008)
 # Masked for treecleaning, see bug #228471
