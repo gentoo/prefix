@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.5.ebuild,v 1.1 2008/12/17 21:36:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.5.ebuild,v 1.4 2008/12/23 00:17:34 tester Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
-PATCH="${PN}-3.0.1-patches-0.3"
+PATCH="${P}-patches-0.1"
 
 LANGS="af ar be bg bn-IN ca cs cy da de el en-GB en-US eo es-AR es-ES et eu fi fr fy-NL ga-IE gl gu-IN he hi-IN hu id is it ja ka kn ko ku lt lv mk mn mr nb-NO nl nn-NO oc pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE te th tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
@@ -198,14 +198,6 @@ src_compile() {
 
 	# Finalize and report settings
 	mozconfig_final
-
-	# -fstack-protector breaks us
-	if gcc-version ge 4 1; then
-		gcc-specs-ssp && append-flags -fno-stack-protector
-	else
-		gcc-specs-ssp && append-flags -fno-stack-protector-all
-	fi
-	filter-flags -fstack-protector -fstack-protector-all
 
 	####################################
 	#

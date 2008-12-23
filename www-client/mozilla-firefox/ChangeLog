@@ -1,6 +1,23 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.464 2008/12/22 01:56:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.468 2008/12/23 00:17:34 tester Exp $
+
+  23 Dec 2008; Olivier Crête <tester@gentoo.org>
+  mozilla-firefox-3.0.5.ebuild:
+  Unstable amd64, there is a file missing for xulrunner
+
+  22 Dec 2008; Olivier Crête <tester@gentoo.org>
+  mozilla-firefox-3.0.5.ebuild:
+  Stable on amd64, bug #234646
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.5.ebuild:
+  New patchset for bug #251818 and remove some hardened stuff not needed
+  anymore, bug #251471
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.19.ebuild:
+  alpha/arm/ia64/sparc stable wrt #251322
 
   22 Dec 2008; Brent Baude <ranger@gentoo.org>
   mozilla-firefox-2.0.0.19.ebuild:
