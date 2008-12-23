@@ -1,6 +1,14 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.78 2008/10/03 17:14:01 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.79 2008/12/22 12:54:26 voyageur Exp $
+
+*gnustep-make-2.0.7 (22 Dec 2008)
+
+  22 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-make-2.0.7.ebuild:
+  Version bump, some new features including support for source files with
+  same name but different extension (file.c/file.m), add dodoc for readme
+  and release notes
 
   03 Oct 2008; Friedrich Oslage <bluebird@gentoo.org>
   gnustep-make-2.0.6.ebuild:
