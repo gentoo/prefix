@@ -1,6 +1,12 @@
 # ChangeLog for x11-misc/notification-daemon
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.48 2008/11/20 14:48:07 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.50 2008/12/22 17:51:54 cardoe Exp $
+
+*notification-daemon-0.4.0 (22 Dec 2008)
+
+  22 Dec 2008; Doug Goldstein <cardoe@gentoo.org>
+  +notification-daemon-0.4.0.ebuild:
+  version bump. closes bump request #251865
 
 *notification-daemon-0.3.7-r1 (20 Nov 2008)
 
