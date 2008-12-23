@@ -1,12 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.8.ebuild,v 1.1 2008/12/21 17:52:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.8.ebuild,v 1.2 2008/12/22 19:31:42 fauli Exp $
 
 EAPI="prefix"
 
-inherit eutils
-
-DESCRIPTION="Manages Emacs versions"
+DESCRIPTION="Manage multiple Emacs versions on one system"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
@@ -29,7 +27,7 @@ src_unpack() {
 
 src_install() {
 	insinto /usr/share/eselect/modules
-	doins {emacs,etags}.eselect || die "doins failed"
-	doman {emacs,etags}.eselect.5 || die "doman failed"
-	dodoc ChangeLog || die "dodoc failed"
+	doins {emacs,etags}.eselect || die
+	doman {emacs,etags}.eselect.5 || die
+	dodoc ChangeLog || die
 }
