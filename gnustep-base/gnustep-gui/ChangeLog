@@ -1,6 +1,14 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.72 2008/11/17 13:39:22 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.73 2008/12/22 13:59:58 voyageur Exp $
+
+*gnustep-gui-0.16.0 (22 Dec 2008)
+
+  22 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-gui-0.16.0.ebuild:
+  Major version bump, Nib loading refractored and improved, support for
+  autosaving in NSDocuments, NSWindowController made a subclass of
+  NSResponder, NSTokenField and netokenFiledCell classes added
 
   17 Nov 2008; Bernard Cafarelli <voyageur@gentoo.org>
   -gnustep-gui-0.12.1.ebuild:
