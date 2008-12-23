@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-appfinder
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/ChangeLog,v 1.72 2008/12/15 05:02:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/ChangeLog,v 1.73 2008/12/22 17:07:17 angelos Exp $
+
+  22 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-appfinder-4.4.2.ebuild:
+  Removed old
 
   15 Dec 2008; Jeroen Roovers <jer@gentoo.org> xfce4-appfinder-4.4.3.ebuild:
   Stable for HPPA (bug #249942).
