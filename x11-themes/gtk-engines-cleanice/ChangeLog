@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-cleanice
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.27 2008/12/20 18:10:22 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.28 2008/12/22 15:48:59 armin76 Exp $
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  gtk-engines-cleanice-2.4.1.ebuild:
+  alpha/ia64/sparc stable wrt #251511
 
   20 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org>
   gtk-engines-cleanice-2.4.1.ebuild:
