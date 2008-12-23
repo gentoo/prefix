@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.109 2008/11/15 18:31:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.110 2008/12/22 20:55:19 tester Exp $
+
+  22 Dec 2008; Olivier Crête <tester@gentoo.org> nspr-4.7.3.ebuild:
+  Stable on amd64, bug #234646
 
   15 Nov 2008; Raúl Porcel <armin76@gentoo.org> nspr-4.6.8.ebuild,
   nspr-4.7.1.ebuild, nspr-4.7.2.ebuild, nspr-4.7.3.ebuild:
