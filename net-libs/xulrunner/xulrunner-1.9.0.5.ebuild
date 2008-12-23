@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.1 2008/12/17 21:33:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.4 2008/12/23 00:16:44 tester Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools
-PATCH="${PN}-1.9.0.1-patches-0.1"
+PATCH="${P}-patches-0.1"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
@@ -128,14 +128,6 @@ src_compile() {
 
 	# Finalize and report settings
 	mozconfig_final
-
-	# -fstack-protector breaks us
-	if gcc-version ge 4 1; then
-		gcc-specs-ssp && append-flags -fno-stack-protector
-	else
-		gcc-specs-ssp && append-flags -fno-stack-protector-all
-	fi
-	filter-flags -fstack-protector -fstack-protector-all
 
 	####################################
 	#
