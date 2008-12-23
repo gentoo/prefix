@@ -11,6 +11,7 @@ amd64-linux		default-prefix/linux/amd64				dev
 x86-linux		default-prefix/linux/x86				dev
 amd64-linux		prefix/linux/amd64				dev
 x86-linux		prefix/linux/x86				dev
+ia64-linux		prefix/linux/ia64				dev
 
 # Mac OS X Profiles
 ppc-macos	default-prefix/darwin/macos/10.3			dev
