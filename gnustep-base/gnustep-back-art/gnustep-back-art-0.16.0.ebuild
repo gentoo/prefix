@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/gnustep-back-art-0.12.1.ebuild,v 1.5 2008/03/23 18:37:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/gnustep-back-art-0.16.0.ebuild,v 1.1 2008/12/22 14:02:50 voyageur Exp $
 
 EAPI="prefix"
 
