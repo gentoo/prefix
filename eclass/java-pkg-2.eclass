@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.30 2008/10/11 21:07:13 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.31 2008/12/22 22:09:38 serkan Exp $
 
 inherit java-utils-2
 
@@ -107,6 +107,7 @@ java-pkg-2_src_compile() {
 java-pkg-2_pkg_preinst() {
 	if is-java-strict; then
 		if has_version dev-java/java-dep-check; then
+			[[ -e "${JAVA_PKG_ENV}" ]] || return
 			local output=$(GENTOO_VM= java-dep-check --image "${ED}" "${JAVA_PKG_ENV}")
 			if [[ ${output} ]]; then
 				ewarn "Possibly unneeded dependencies found in package.env:"

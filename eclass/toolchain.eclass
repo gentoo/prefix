@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.367 2008/11/28 09:20:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.368 2008/12/22 18:53:47 solar Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -2204,17 +2204,23 @@ do_gcc_PIE_patches() {
 
 	use vanilla && rm -f "${WORKDIR}"/piepatch/*/*uclibc*
 
-	guess_patch_type_in_dir "${WORKDIR}"/piepatch/upstream
+	if tc_version_is_at_least 4.3.2; then
+		guess_patch_type_in_dir "${WORKDIR}"/piepatch/
+		EPATCH_MULTI_MSG="Applying pie patches ..." \
+		epatch "${WORKDIR}"/piepatch/
+	else
+		guess_patch_type_in_dir "${WORKDIR}"/piepatch/upstream
 
-	# corrects startfile/endfile selection and shared/static/pie flag usage
-	EPATCH_MULTI_MSG="Applying upstream pie patches ..." \
-	epatch "${WORKDIR}"/piepatch/upstream
-	# adds non-default pie support (rs6000)
-	EPATCH_MULTI_MSG="Applying non-default pie patches ..." \
-	epatch "${WORKDIR}"/piepatch/nondef
-	# adds default pie support (rs6000 too) if DEFAULT_PIE[_SSP] is defined
-	EPATCH_MULTI_MSG="Applying default pie patches ..." \
-	epatch "${WORKDIR}"/piepatch/def
+		# corrects startfile/endfile selection and shared/static/pie flag usage
+		EPATCH_MULTI_MSG="Applying upstream pie patches ..." \
+		epatch "${WORKDIR}"/piepatch/upstream
+		# adds non-default pie support (rs6000)
+		EPATCH_MULTI_MSG="Applying non-default pie patches ..." \
+		epatch "${WORKDIR}"/piepatch/nondef
+		# adds default pie support (rs6000 too) if DEFAULT_PIE[_SSP] is defined
+		EPATCH_MULTI_MSG="Applying default pie patches ..." \
+		epatch "${WORKDIR}"/piepatch/def
+	fi
 
 	# we want to be able to control the pie patch logic via something other
 	# than ALL_CFLAGS...
