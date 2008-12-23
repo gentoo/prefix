@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfce4
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.131 2008/12/15 05:04:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.132 2008/12/22 17:03:24 angelos Exp $
+
+  22 Dec 2008; Christoph Mende <angelos@gentoo.org> -xfce4-4.4.2.ebuild:
+  Removed old
 
   15 Dec 2008; Jeroen Roovers <jer@gentoo.org> xfce4-4.4.3.ebuild:
   Stable for HPPA (bug #249942).
