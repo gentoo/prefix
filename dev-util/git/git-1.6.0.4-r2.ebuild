@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion vim-syntax"
 
 DEPEND="
@@ -93,6 +93,13 @@ exportmakeopts() {
 	use threads && myopts="${myopts} THREADED_DELTA_SEARCH=YesPlease"
 	use subversion || myopts="${myopts} NO_SVN_TESTS=YesPlease"
 
+	if [[ ${CHOST} == *-mint* ]] ; then
+		myopts="${myopts} NO_MMAP=YesPlease"
+		myopts="${myopts} NO_IPV6=YesPlease"
+		myopts="${myopts} NO_STRLCPY=YesPlease"
+		myopts="${myopts} NO_MEMMEM=YesPlease"
+		myopts="${myopts} NO_MKDTEMP=YesPlease"
+	fi
 	if [[ ${CHOST} == *-interix* ]] ; then
 		myopts="${myopts} NO_IPV6=YesPlease"
 		myopts="${myopts} NO_MEMMEM=YesPlease"
@@ -118,6 +125,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/20080626-git-1.5.6.1-noperl.patch
 	epatch "${FILESDIR}"/20081123-git-1.6.0.4-noperl-cvsserver.patch
 	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.0.4-mint.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
