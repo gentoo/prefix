@@ -1,0 +1,10 @@
+# ChangeLog for virtual/blas
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/blas/ChangeLog,v 1.1 2007/10/10 12:22:32 bicatali Exp $
+
+*blas-1.0 (10 Oct 2007)
+
+  10 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> +metadata.xml,
+  +blas-1.0.ebuild:
+  New style virtual for blas. Version number is abitrary.
+
