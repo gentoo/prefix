@@ -5,6 +5,7 @@ hppa-hpux
 x86-interix
 mips-irix
 amd64-linux
+ia64-linux
 x86-linux
 ppc-macos
 x86-macos
