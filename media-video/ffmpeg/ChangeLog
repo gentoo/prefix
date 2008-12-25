@@ -1,6 +1,10 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.252 2008/12/22 14:20:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.253 2008/12/23 12:13:03 aballier Exp $
+
+  23 Dec 2008; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Sync live ebuild with latest snapshot; merely add speex useflag and remove
+  unused make targets
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild, ffmpeg-0.4.9_p20081219.ebuild:
