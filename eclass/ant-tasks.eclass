@@ -3,7 +3,7 @@
 # Copyright 2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Vlastimil Babka <caster@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.6 2008/07/14 21:38:14 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.7 2008/12/25 00:39:03 caster Exp $
 
 # we set ant-core dep ourselves, restricted
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
@@ -103,6 +103,12 @@ RDEPEND=">=virtual/jre-${ANT_TASK_JREVER}
 	~dev-java/ant-core-${PV}"
 DEPEND=">=virtual/jdk-${ANT_TASK_JDKVER}
 	${RDEPEND}"
+
+# we need direct blockers with old ant-tasks for file collisions - bug #252324
+if version_is_at_least 1.7.1 ; then
+	DEPEND="${DEPEND}
+		!dev-java/ant-tasks"
+fi
 
 # Would run the full ant test suite for every ant task
 RESTRICT="test"

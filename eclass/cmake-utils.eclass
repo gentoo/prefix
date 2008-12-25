@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.15 2008/11/05 20:59:37 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.16 2008/12/24 15:41:06 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -116,7 +116,7 @@ cmake-utils_src_configurein() {
 	debug-print-function $FUNCNAME $*
 
 	_common_configure_code
-	local cmakeargs="${mycmakeargs} ${EXTRA_ECONF}"
+	local cmakeargs="${mycmakeargs} ${EXTRA_ECONF} -DCMAKE_INSTALL_DO_STRIP=OFF"
 
 	debug-print "$LINENO $ECLASS $FUNCNAME: mycmakeargs is $cmakeargs"
 	cmake -C "${TMPDIR}/gentoo_common_config.cmake" ${cmakeargs} . || die "Cmake failed"
@@ -130,7 +130,7 @@ cmake-utils_src_configureout() {
 	debug-print-function $FUNCNAME $*
 
 	_common_configure_code
-	local cmakeargs="${mycmakeargs} ${EXTRA_ECONF}"
+	local cmakeargs="${mycmakeargs} ${EXTRA_ECONF} -DCMAKE_INSTALL_DO_STRIP=OFF"
 	mkdir -p "${WORKDIR}"/${PN}_build
 	pushd "${WORKDIR}"/${PN}_build > /dev/null
 
