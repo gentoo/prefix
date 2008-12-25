@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.17.1.ebuild,v 1.5 2008/12/07 11:19:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.17.1.ebuild,v 1.6 2008/12/23 16:35:35 ranger Exp $
 
 EAPI="prefix"
 
