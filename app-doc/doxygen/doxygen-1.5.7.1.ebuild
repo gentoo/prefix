@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.7.1.ebuild,v 1.2 2008/11/04 09:49:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.7.1.ebuild,v 1.3 2008/12/24 02:18:09 nerdboy Exp $
 
 EAPI="prefix 1"
 
@@ -57,6 +57,7 @@ src_unpack() {
 	# Consolidate patches, apply FreeBSD configure patch, codepage patch,
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
 	epatch "${FILESDIR}/${PN}-1.5-legacy-patches.diff"
+	epatch "${FILESDIR}/${P}-substitute.patch"
 
 	# prefix search tools patch, plus OSX fixes
 	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch

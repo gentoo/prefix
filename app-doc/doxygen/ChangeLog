@@ -1,6 +1,10 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.154 2008/11/04 09:49:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.155 2008/12/24 02:18:09 nerdboy Exp $
+
+  24 Dec 2008; Steve Arnold <nerdboy@gentoo.org>
+  +files/doxygen-1.5.7.1-substitute.patch, doxygen-1.5.7.1.ebuild:
+  Updated with patch for bug #251533 (relpath empty string replacement issue).
 
   04 Nov 2008; Diego Pettenò <flameeyes@gentoo.org> doxygen-1.5.7.1.ebuild:
   Add flex dependency.
