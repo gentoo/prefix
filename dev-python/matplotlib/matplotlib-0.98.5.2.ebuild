@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.1 2008/12/19 15:47:55 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.2 2008/12/23 11:41:41 bicatali Exp $
 
 WX_GTK_VER=2.8
 EAPI="prefix 2"
@@ -13,7 +13,7 @@ HOMEPAGE="http://matplotlib.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 	doc? ( http://matplotlib.sourceforge.net/Matplotlib.pdf -> ${PDOC}.pdf )"
 
-IUSE="cairo doc examples fltk gtk latex qt3 qt4 tk wxwindows"
+IUSE="cairo doc excel examples fltk gtk latex qt3 qt4 tk wxwindows"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 LICENSE="PYTHON BSD stix bakoma"

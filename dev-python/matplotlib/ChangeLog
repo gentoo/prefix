@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.54 2008/12/19 15:47:55 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.55 2008/12/23 11:41:41 bicatali Exp $
+
+  23 Dec 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  matplotlib-0.98.5.2.ebuild:
+  Added excel in IUSE, closing bug #251768
 
 *matplotlib-0.98.5.2 (19 Dec 2008)
 
