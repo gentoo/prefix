@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.14 2008/05/21 16:48:00 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.15 2008/12/24 04:48:53 ali_bush Exp $
+
+*qtjambi-4.4.3 (24 Dec 2008)
+
+  24 Dec 2008; Alistair Bush <ali_bush@gentoo.org> metadata.xml,
+  +qtjambi-4.4.3.ebuild:
+  Version Bump qtjambi. Thanks to all the good work done by Fabian Koster
+  <koesterreich@gmx.net>.
 
   21 May 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   -files/generator-4.3.2.patch, -qtjambi-4.3.2_p1.ebuild:
