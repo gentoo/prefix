@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.14 2008/09/09 18:43:31 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.15 2008/12/23 13:41:16 tcunha Exp $
 # Please add a proper entry, like a ChangeLog file, to the top, thanks.
 
 # openct isn't keyworded anymore
-net-misc/kpvnc smartcard
+net-misc/kvpnc smartcard
 
 # depends on mpich2 which isn't keyworded (bug #217854)
 sci-libs/hdf5 mpi

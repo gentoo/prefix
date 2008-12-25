@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2196 2008/12/22 21:39:26 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2202 2008/12/24 13:21:53 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Dec 2008; <ssuominen@gentoo.org> package.mask:
+  Mask monolithic gstreamer. Drop .a and .la files.
+
+  24 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> updates/4Q-2008:
+  slotmove x11-themes/metacity-themes-1.1 to slot 0, bug #236226.
+
+  23 Dec 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Add >=obex-data-server-0.4 to net-wireless/bluez mask. Fixes
+  bug #249315.
+
+  23 Dec 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Provide better description for ruby 1.8.7 mask
+
+  23 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask udhcp and tinylogin.
+
+  23 Dec 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Remove ppc32 profiles that have been removed
 
   22 Dec 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
   Revert the ruby-config package.mask. It must stay around long enough for

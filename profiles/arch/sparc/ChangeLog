@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.35 2008/12/14 14:13:56 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.36 2008/12/23 13:41:16 tcunha Exp $
+
+  23 Dec 2008; Tiago Cunha <tcunha@gentoo.org> package.use.mask:
+  Fix package name
 
   14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Add virtual/monodoc to mono package.mask

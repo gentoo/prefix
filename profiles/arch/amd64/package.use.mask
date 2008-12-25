@@ -3,6 +3,11 @@
 # default-linux/amd64/(dev)?/2007.0/package.use.mask IN SYNC
 # SEE BUG #168249 FOR DETAILS
 
+# Jeremy Olexa <darkside@gentoo.org> (24 Dec 2008)
+# unmask USE=bindist on amd64 - also unmasking the other flags that were under a
+# bad comment heading. see bug #246144
+media-video/mplayer -cpudetection -custom-cpuopts -dxr3 -bindist
+
 # Vlastimil Babka <caster@gentoo.org> (12 Dec 2008)
 # finally a 64bit java plugin
 >=dev-java/sun-jdk-1.6.0.12_beta2 -nsplugin

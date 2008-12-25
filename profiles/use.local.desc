@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4078 2008/12/23 05:07:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4081 2008/12/24 20:07:53 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -571,6 +571,9 @@ dev-java/log4j:javamail - Build the SMTPAppender
 dev-java/log4j:jms - Build the JMSAppender
 dev-java/log4j:jmx - Build org.apace.log4j.jmx
 dev-java/proguard:j2me - Adds support for J2ME Wireless Toolkit
+dev-java/qtjambi:phonon - Enable bindings to QT Phonon
+dev-java/qtjambi:webkit - Enable bindings to QT Webkit
+dev-java/qtjambi:xmlpatterns - Enable bindings to QT xmlpatterns
 dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
 dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
 dev-lang/erlang:hipe - HIgh Performance Erlang extension
@@ -1224,6 +1227,8 @@ media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
 media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
+media-libs/gst-plugins-base:libvisual - Build libvisual plug-in
+media-libs/gst-plugins-base:pango - Build pango plug-in
 media-libs/libass:enca - Enables support for charset discovery and conversion.
 media-libs/libcanberra:alsa - Enables ALSA sound driver.
 media-libs/libcanberra:gstreamer - Enables gstreamer sound driver. Not useful when alsa or pulseaudio is available.
@@ -2417,6 +2422,7 @@ sys-apps/qtparted:jfs - Include JFS support
 sys-apps/qtparted:ntfs - Include NTFS support
 sys-apps/qtparted:reiserfs - Include ReiserFS support
 sys-apps/qtparted:xfs - Include XFS support
+sys-apps/s390-tools:zfcpdump - build the kernel disk dumping utility
 sys-apps/shadow:audit - Enable support for sys-process/audit
 sys-apps/shadow:nousuid - When nousuid is enabled only su from the shadow package will be installed with the setuid bit (mainly for single user systems)
 sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
