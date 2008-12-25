@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.307 2008/11/27 20:33:34 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.312 2008/12/23 19:33:57 armin76 Exp $
+
+  23 Dec 2008; Raúl Porcel <armin76@gentoo.org> git-1.6.0.6.ebuild:
+  alpha/arm/ia64 stable wrt #251343
+
+  23 Dec 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.6.0.6.ebuild:
+  Factor out the long emake invocation so that we can consistently call it
+  and avoid triggering a rebuild during install or test.
+
+  23 Dec 2008; Markus Meier <maekke@gentoo.org> git-1.6.0.6.ebuild:
+  amd64/x86 stable, bug #251343
+
+  23 Dec 2008; Ferris McCormick <fmccor@gentoo.org> git-1.6.0.6.ebuild:
+  Sparc stable --- Security Bug #251343 --- all tests expected to pass do pass.
+
+*git-1.6.0.6 (23 Dec 2008)
+
+  23 Dec 2008; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.0.6.ebuild:
+  Version bump.
 
   27 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> files/git-daemon.initd:
   Refix bug #238351 so that it works under baselayout1 and baselayout2.
