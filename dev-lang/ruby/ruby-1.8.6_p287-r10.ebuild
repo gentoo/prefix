@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.13 2008/12/23 20:20:12 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r10.ebuild,v 1.2 2008/12/24 07:51:43 bluebird Exp $
 
 EAPI="prefix"
 
@@ -19,12 +19,11 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
-	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="berkdb cjk debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -32,7 +31,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
-	>=dev-ruby/ruby-config-0.3.1
+	app-admin/eselect-ruby
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"
@@ -45,22 +44,15 @@ PROVIDE="virtual/ruby"
 src_unpack() {
 	unpack ${A}
 
-	if use cjk ; then
-		einfo "Applying ${ONIGURUMA}"
-		pushd "${WORKDIR}/oniguruma"
-		econf --with-rubydir="${S}" || die "oniguruma econf failed"
-		emake $MY_SUFFIX || die "oniguruma emake failed"
-		popd
-	fi
-
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
 
-	epatch "${FILESDIR}/${PN}-1.8.6_p111-r13657.patch"
-
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
+
+	epatch "${FILESDIR}/${P}-entity_expansion_limit.diff"
+	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -164,17 +156,19 @@ src_install() {
 }
 
 pkg_postinst() {
-
 	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
+		eselect ruby set ruby${MY_SUFFIX}
 	fi
+
 	elog
-	elog "You can change the default ruby interpreter by ${EROOT}usr/sbin/ruby-config"
+	elog "This ebuild is compatible to eselect-ruby"
+	elog "To switch between available Ruby profiles, execute as root:"
+	elog "\teselect ruby set ruby(18|19|...)"
 	elog
 }
 
 pkg_postrm() {
 	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
+		eselect ruby set ruby${MY_SUFFIX}
 	fi
 }

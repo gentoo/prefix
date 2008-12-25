@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.360 2008/12/22 21:17:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.363 2008/12/24 07:51:43 bluebird Exp $
+
+  24 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  ruby-1.8.6_p287-r10.ebuild:
+  Add ~sparc keyword, bug #252315
+
+*ruby-1.8.6_p287-r10 (23 Dec 2008)
+
+  23 Dec 2008; Hans de Graaff <graaff@gentoo.org>
+  +ruby-1.8.6_p287-r10.ebuild:
+  Version bump which switches from ruby-config to eselect-ruby. Dropped most
+  keywords since eselect-ruby does not yet have these keywords.
+
+  23 Dec 2008; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p114.ebuild,
+  ruby-1.8.6_p287-r1.ebuild, ruby-1.8.6_p287-r3.ebuild:
+  Revert the ruby-config changes. We can't remove them until we provide an
+  alternative outside the ebuilds, and eselect-ruby isn't stable yet. Apologies
+  for breaking things as mentioned in bug #251833.
 
   22 Dec 2008; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p114.ebuild,
   ruby-1.8.6_p287-r1.ebuild, ruby-1.8.6_p287-r3.ebuild,

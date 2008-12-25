@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r1.ebuild,v 1.3 2008/12/22 21:17:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r1.ebuild,v 1.4 2008/12/23 20:20:12 graaff Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
+	>=dev-ruby/ruby-config-0.3.1
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"
@@ -159,5 +160,21 @@ src_install() {
 	if use rubytests; then
 		dodir /usr/share/${PN}-${SLOT}
 		cp -pPR test "${ED}/usr/share/${PN}-${SLOT}"
+	fi
+}
+
+pkg_postinst() {
+
+	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
+		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
+	fi
+	elog
+	elog "You can change the default ruby interpreter by ${EROOT}usr/sbin/ruby-config"
+	elog
+}
+
+pkg_postrm() {
+	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
+		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
 	fi
 }
