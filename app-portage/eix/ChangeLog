@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.256 2008/11/28 01:23:23 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.258 2008/12/23 17:29:55 maekke Exp $
+
+  23 Dec 2008; Markus Meier <maekke@gentoo.org> eix-0.15.2.ebuild:
+  amd64/x86 stable, bug #252245
+
+  23 Dec 2008; Ferris McCormick <fmccor@gentoo.org> eix-0.15.2.ebuild:
+  Sparc stable, Bug #252245.
 
 *eix-0.15.2 (28 Nov 2008)
 
