@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/ufraw
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.37 2008/11/22 19:29:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.38 2008/12/23 16:37:41 ranger Exp $
+
+  23 Dec 2008; Brent Baude <ranger@gentoo.org> ufraw-0.14.1.ebuild:
+  Marking ufraw-0.14.1 ppc64 for bug 246826
 
   22 Nov 2008; Markus Meier <maekke@gentoo.org>
   -files/ufraw-0.13-Canon450D.patch, -ufraw-0.13-r1.ebuild,
