@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.95 2008/12/09 12:31:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.96 2008/12/23 12:30:14 vapier Exp $
+
+*sandbox-1.3.2 (23 Dec 2008)
+
+  23 Dec 2008; Mike Frysinger <vapier@gentoo.org> +sandbox-1.3.2.ebuild:
+  Fix some portability issues and more *at updates.
 
   09 Dec 2008; Alexis Ballier <aballier@gentoo.org> sandbox-1.3.0.ebuild,
   sandbox-1.3.1.ebuild:
