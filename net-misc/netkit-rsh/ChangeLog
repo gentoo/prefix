@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.61 2008/12/22 20:33:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.62 2008/12/23 16:00:14 armin76 Exp $
+
+  23 Dec 2008; Raúl Porcel <armin76@gentoo.org> netkit-rsh-0.17-r9.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #250892
 
   22 Dec 2008; Markus Meier <maekke@gentoo.org> netkit-rsh-0.17-r9.ebuild:
   amd64/x86 stable, bug #250892

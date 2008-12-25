@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.13 2008/12/22 20:33:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.14 2008/12/23 16:00:14 armin76 Exp $
 
 EAPI="prefix"
 
