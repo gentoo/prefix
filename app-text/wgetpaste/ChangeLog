@@ -1,6 +1,9 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.83 2008/12/14 13:29:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.84 2008/12/24 19:56:34 armin76 Exp $
+
+  24 Dec 2008; Raúl Porcel <armin76@gentoo.org> ChangeLog:
+  s390 stable wrt #250199
 
   14 Dec 2008; nixnut <nixnut@gentoo.org> wgetpaste-2.12.ebuild:
   Stable on ppc wrt bug 250199
