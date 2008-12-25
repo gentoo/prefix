@@ -1,6 +1,22 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.319 2008/11/22 15:50:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.323 2008/12/23 17:49:18 maekke Exp $
+
+  23 Dec 2008; Markus Meier <maekke@gentoo.org>
+  -imagemagick-6.3.5.10.ebuild, -imagemagick-6.4.0.6.ebuild,
+  -imagemagick-6.4.4.6-r1.ebuild:
+  old
+
+  23 Dec 2008; Brent Baude <ranger@gentoo.org>
+  imagemagick-6.4.4.6-r1.ebuild:
+  Mis-marked -6.4.4.6-r1; reverted to ~ppc64
+
+  23 Dec 2008; Brent Baude <ranger@gentoo.org>
+  imagemagick-6.4.4.6-r1.ebuild:
+  Marking imagemagick-6.4.4.6-r1 ppc64 for bug 246826
+
+  23 Dec 2008; Brent Baude <ranger@gentoo.org> imagemagick-6.4.4.6.ebuild:
+  Marking imagemagick-6.4.4.6 ppc64 for bug 246826
 
   22 Nov 2008; Markus Meier <maekke@gentoo.org> imagemagick-6.4.4.6.ebuild:
   amd64 stable, bug #246826
