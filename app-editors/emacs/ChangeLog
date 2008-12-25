@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.289 2008/12/17 09:54:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.291 2008/12/24 11:18:38 ulm Exp $
+
+  24 Dec 2008; Ulrich Mueller <ulm@gentoo.org>
+  -files/emacs-22.1-freebsd-sparc.patch,
+  -files/emacs-22.1-vcdiff-tmp-race.patch,
+  -files/emacs-22.2-fast-lock.patch, -files/emacs-22.2-heimdal-gentoo.patch,
+  -files/emacs-22.2-python-nopwd.patch, -emacs-21.4-r15.ebuild,
+  -emacs-22.2-r3.ebuild:
+  Remove old.
+
+  24 Dec 2008; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r17.ebuild,
+  emacs-22.3.ebuild:
+  arm/s390/sh stable
 
   17 Dec 2008; Ulrich Mueller <ulm@gentoo.org>
   files/emacs-22.3-freebsd-sparc.patch:
