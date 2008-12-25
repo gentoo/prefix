@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/maxima
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.60 2008/11/29 04:02:07 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.61 2008/12/20 09:36:19 grozin Exp $
+
+*maxima-5.17.1 (20 Dec 2008)
+
+  20 Dec 2008; Andrey Grozin <grozin@gentoo.org> +maxima-5.17.1.ebuild:
+  Version bump
 
   29 Nov 2008; Andrey Grozin <grozin@gentoo.org> maxima-5.16.3.ebuild:
   Path to texmf-site now hard-coded
