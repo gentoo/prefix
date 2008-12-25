@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/m2crypto
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.35 2008/07/05 14:34:15 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.36 2008/12/24 20:26:12 armin76 Exp $
+
+  24 Dec 2008; Raúl Porcel <armin76@gentoo.org> m2crypto-0.18.2.ebuild:
+  Add ~arm wrt #172817
 
   05 Jul 2008; Santiago M. Mola <coldwind@gentoo.org>
   m2crypto-0.18.2.ebuild:
