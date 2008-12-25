@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.83 2008/12/01 06:58:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.84 2008/12/24 12:50:14 eva Exp $
+
+  24 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.2.3.ebuild,
+  -gmime-2.2.11.ebuild, -gmime-2.2.17.ebuild, -gmime-2.2.22.ebuild,
+  -gmime-2.4.1.ebuild, -gmime-2.4.2.ebuild:
+  clean up old revisions.
 
   01 Dec 2008; Jeroen Roovers <jer@gentoo.org> gmime-2.2.23.ebuild:
   Stable for HPPA (bug #247633).
