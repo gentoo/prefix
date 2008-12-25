@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.4 2008/12/23 00:16:44 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.8 2008/12/24 17:32:44 armin76 Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,8 @@ DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM app
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
 SRC_URI="mirror://gentoo/${P}.tar.bz2
 	http://dev.gentoo.org/~armin76/dist/${P}.tar.bz2
-	mirror://gentoo/${PATCH}.tar.bz2"
+	mirror://gentoo/${PATCH}.tar.bz2
+	http://dev.gentoo.org/~armin76/dist/${PATCH}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
@@ -95,6 +96,9 @@ src_compile() {
 #	if use python; then
 #		MEXTENSIONS="${MEXTENSIONS},python/xpcom"
 #	fi
+
+	# It doesn't compile on alpha without this LDFLAGS 
+	use alpha && append-ldflags "-Wl,--no-relax" 
 
 	mozconfig_annotate '' --enable-extensions="${MEXTENSIONS}"
 	mozconfig_annotate '' --disable-mailnews
