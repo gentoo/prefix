@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2_rc1.ebuild,v 1.3 2008/12/22 20:55:56 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2_rc1.ebuild,v 1.5 2008/12/24 11:49:36 armin76 Exp $
 
 EAPI="prefix"
 

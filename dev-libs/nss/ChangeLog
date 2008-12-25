@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.132 2008/12/22 20:55:56 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.134 2008/12/24 11:49:36 armin76 Exp $
+
+  24 Dec 2008; Raúl Porcel <armin76@gentoo.org> -nss-3.12-r1.ebuild,
+  nss-3.12.2_rc1.ebuild:
+  alpha/arm/ia64 stable wrt #234646
+
+  23 Dec 2008; Markus Meier <maekke@gentoo.org> nss-3.12.2_rc1.ebuild:
+  x86 stable, bug #234646
 
   22 Dec 2008; Olivier Crête <tester@gentoo.org> nss-3.12.2_rc1.ebuild:
   Stable on amd64, bug #234646
