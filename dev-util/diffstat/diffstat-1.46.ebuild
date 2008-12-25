@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.46.ebuild,v 1.1 2008/09/04 10:47:58 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.46.ebuild,v 1.2 2008/12/24 21:20:35 vapier Exp $
 
 EAPI="prefix"
 
