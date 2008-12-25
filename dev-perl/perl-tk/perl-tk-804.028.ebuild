@@ -1,16 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/perl-tk-804.027.ebuild,v 1.26 2008/12/23 18:54:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/perl-tk-804.028.ebuild,v 1.1 2008/12/23 18:54:48 robbat2 Exp $
 
 EAPI="prefix"
 
+MODULE_AUTHOR="SREZIC"
+MY_P=Tk-${PV}
 inherit perl-module eutils multilib
 
-MY_P=Tk-${PV}
 S=${WORKDIR}/${MY_P}
 DESCRIPTION="A Perl Module for Tk"
-HOMEPAGE="http://search.cpan.org/~ni-s/"
-SRC_URI="mirror://cpan/authors/id/N/NI/NI-S/${MY_P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
@@ -36,5 +35,5 @@ src_unpack() {
 
 	# this should help on all other platforms too, to find the
 	# correct X11 version from EPREFIX.
-	epatch "${FILESDIR}"/${P}-interix-x11.patch
+	epatch "${FILESDIR}"/${PN}-804.027-interix-x11.patch
 }
