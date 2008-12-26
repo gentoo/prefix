@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.15.ebuild,v 1.1 2008/12/04 05:25:34 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.15.ebuild,v 1.4 2008/12/25 16:46:21 bluebird Exp $
 
 EAPI="prefix"
 
