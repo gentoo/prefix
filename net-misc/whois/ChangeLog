@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.111 2008/08/17 17:19:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.113 2008/12/25 22:18:11 gmsoft Exp $
+
+  25 Dec 2008; Guy Martin <gmsoft@gentoo.org> whois-4.7.27.ebuild:
+  hppa stable, #252525
+
+*whois-4.7.30 (25 Dec 2008)
+
+  25 Dec 2008; Mike Frysinger <vapier@gentoo.org> +whois-4.7.30.ebuild:
+  Version bump #252435 by Arfrever Frehtes Taifersar Arahesis.
 
 *whois-4.7.27 (17 Aug 2008)
 

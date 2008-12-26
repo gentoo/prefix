@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.27.ebuild,v 1.2 2008/12/25 22:18:11 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.30.ebuild,v 1.1 2008/12/25 21:19:42 vapier Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ src_unpack() {
 
 src_compile() {
 	tc-export CC
-	emake OPTS="${CFLAGS}" HAVE_LIBIDN=1 || die
+	emake CFLAGS="${CFLAGS} ${CPPFLAGS}" HAVE_LIBIDN=1 || die
 }
 
 src_install() {
