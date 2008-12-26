@@ -1,0 +1,53 @@
+# ChangeLog for app-emacs/mmm-mode
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/mmm-mode/ChangeLog,v 1.14 2007/11/15 06:55:05 ulm Exp $
+
+  15 Nov 2007; Ulrich Mueller <ulm@gentoo.org> -mmm-mode-0.4.7.ebuild:
+  Remove old.
+
+  06 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  mmm-mode-0.4.8-r1.ebuild:
+  stable amd64 (bug 195041), no parallel build
+
+  08 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  mmm-mode-0.4.8-r1.ebuild:
+  stable x86, bug 195041
+
+  07 Oct 2007; Ulrich Mueller <ulm@gentoo.org> mmm-mode-0.4.8-r1.ebuild:
+  Add die commands to elisp-install. Don't dodoc INSTALL file.
+
+  04 Jul 2007; Christian Faulhammer <opfer@gentoo.org>
+  mmm-mode-0.4.8-r1.ebuild:
+  removed virtual/emacs from DEPEND; manual make and configure calls to emake
+  and econf; added some die comments; added some quotes
+
+  27 May 2007; Ulrich Mueller <ulm@gentoo.org> -mmm-mode-0.4.8.ebuild:
+  Remove old.
+
+  08 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  files/50mmm-mode-gentoo.el:
+  add load path correctly, fixes bug 169588, reported by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+*mmm-mode-0.4.8-r1 (13 Mar 2006)
+
+  13 Mar 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +mmm-mode-0.4.8-r1.ebuild:
+  Make sure --with-emacs is given to prevent compilation with XEmacs; Resolves
+  Bug #126024.
+
+*mmm-mode-0.4.8 (07 Mar 2006)
+
+  07 Mar 2006; Matthew Kennedy <mkennedy@gentoo.org> +mmm-mode-0.4.8.ebuild:
+  New upstream version; Resolves Bug #115599.
+
+  24 Oct 2005; Joseph Jezak <josejx@gentoo.org> mmm-mode-0.4.7.ebuild:
+  Marked ~ppc.
+
+*mmm-mode-0.4.7 (31 Oct 2002)
+
+  31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  mmm-mode-0.4.7.ebuild, files/50mmm-mode-gentoo.el, 
+  files/digest-mmm-mode-0.4.7 :
+
+  Initial import.
