@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.12 2008/12/11 21:16:37 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.13 2008/12/25 15:52:25 bluebird Exp $
+
+  25 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> gegl-0.0.20.ebuild:
+  Add ~sparc keyword, bug #240433
 
   11 Dec 2008; Tobias Klausmann <klausman@gentoo.org> gegl-0.0.20.ebuild:
   Keyworded on alpha, bug #240433
