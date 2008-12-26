@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.1.ebuild,v 1.1 2008/10/26 03:40:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.3.ebuild,v 1.1 2008/12/25 21:30:53 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls selinux static"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -39,6 +39,7 @@ src_unpack() {
 	cp -a gnulib/lib/mountlist.c{,.ts} || die
 	cp -a gnulib/m4/ls-mntd-fs.m4{,.ts} || die
 	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.5.1-mint.patch
 	# avoid regeneration
 	touch -r configure{.ts,} || die
 	touch -r find/fstype.c{.ts,} || die
