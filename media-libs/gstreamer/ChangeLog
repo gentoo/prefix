@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.213 2008/12/05 19:16:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.215 2008/12/24 13:39:17 ssuominen Exp $
+
+*gstreamer-0.10.21-r2 (24 Dec 2008)
+
+  24 Dec 2008; <ssuominen@gentoo.org> +gstreamer-0.10.21-r2.ebuild:
+  Drop .la files as unnecessary libtool files.
+
+*gstreamer-0.10.21-r1 (24 Dec 2008)
+
+  24 Dec 2008; <ssuominen@gentoo.org>
+  +files/gstreamer-0.10.21-bison241.patch, +gstreamer-0.10.21-r1.ebuild:
+  Patch configure to support three components in bisons versioning. 
+  Use versionator not to show bad example to our new developers.
+  Speed up build time by disabling both static libs and examples.
+  Use EAPI=2 functions. It will be required for -r2.
 
 *gstreamer-0.10.21 (05 Dec 2008)
 
