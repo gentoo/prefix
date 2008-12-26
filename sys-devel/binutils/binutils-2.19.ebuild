@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.19.ebuild,v 1.9 2008/12/14 14:19:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.19.ebuild,v 1.11 2008/12/25 23:38:56 vapier Exp $
 
 EAPI="prefix"
 
