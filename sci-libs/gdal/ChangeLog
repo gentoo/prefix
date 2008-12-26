@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.52 2008/12/14 13:15:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.53 2008/12/25 13:40:29 bluebird Exp $
+
+  25 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> gdal-1.5.2.ebuild:
+  Stable on sparc, bug #241500
 
   14 Dec 2008; Markus Meier <maekke@gentoo.org> gdal-1.5.2.ebuild:
   amd64/x86 stable, bug #241500
