@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="pymacs"
 
 DEPEND="pymacs? ( app-emacs/pymacs )"
