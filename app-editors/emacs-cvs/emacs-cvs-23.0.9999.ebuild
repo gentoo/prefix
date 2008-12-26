@@ -256,9 +256,9 @@ src_install () {
 	X
 	(when (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 	X  ${c}(setq find-function-C-source-directory
-	X  ${c}      "/usr/share/emacs/${FULL_VERSION}/src")
+	X  ${c}      "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src")
 	X  (let ((path (getenv "INFOPATH"))
-	X	(dir "/usr/share/info/${EMACS_SUFFIX}"))
+	X	(dir "${EPREFIX}/usr/share/info/${EMACS_SUFFIX}"))
 	X    (and path
 	X	 ;; move Emacs Info dir to beginning of list
 	X	 (setq Info-directory-list
