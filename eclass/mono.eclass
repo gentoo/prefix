@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.9 2008/12/13 13:59:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.10 2008/12/26 00:37:47 loki_val Exp $
 
 # @ECLASS: mono.eclass
 # @MAINTAINER:
@@ -22,7 +22,12 @@ export MONO_SHARED_DIR="${T}"
 # build with LC_ALL=C (see bugs #146424, #149817)
 export LC_ALL=C
 
-#Monodevelop-using applications need this to be set or they will try to create config
-#files in the user's ~ dir.
+# Monodevelop-using applications need this to be set or they will try to create config
+# files in the user's ~ dir.
 
 export XDG_CONFIG_HOME="${T}"
+
+# Fix bug 83020:
+# "Access Violations Arise When Emerging Mono-Related Packages with MONO_AOT_CACHE"
+
+unset MONO_AOT_CACHE
