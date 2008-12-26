@@ -1,0 +1,15 @@
+# ChangeLog for app-admin/eselect-ruby
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.2 2008/12/24 07:50:22 bluebird Exp $
+
+  24 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  eselect-ruby-20081211.ebuild:
+  Add ~sparc keyword, bug #252315
+
+*eselect-ruby-20081211 (23 Dec 2008)
+
+  23 Dec 2008; Hans de Graaff <graaff@gentoo.org> +metadata.xml,
+  +eselect-ruby-20081211.ebuild:
+  Initial import from the ruby overlay. All credits go to Alex Legler for
+  writing and testing the eselect module.
+
