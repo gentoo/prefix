@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.312 2008/12/23 19:33:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.313 2008/12/25 21:28:22 jer Exp $
+
+  25 Dec 2008; Jeroen Roovers <jer@gentoo.org> git-1.6.0.6.ebuild:
+  Stable for HPPA (bug #251343).
 
   23 Dec 2008; Raúl Porcel <armin76@gentoo.org> git-1.6.0.6.ebuild:
   alpha/arm/ia64 stable wrt #251343
