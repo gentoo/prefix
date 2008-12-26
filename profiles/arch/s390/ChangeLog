@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/s390 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.5 2008/12/07 18:04:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.6 2008/12/25 17:02:34 armin76 Exp $
+
+  25 Dec 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add raw to use.mask
 
   07 Dec 2008; Mike Frysinger <vapier@gentoo.org> use.mask:
   Mask cairo USE flag.

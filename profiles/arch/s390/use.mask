@@ -37,6 +37,7 @@ gtk
 gtk2
 gnome
 gnome-keyring
+raw
 X
 opengl
 xpm
