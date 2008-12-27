@@ -135,6 +135,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # may clash with native linker
 	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
 	epatch "${FILESDIR}"/${P}-solaris11.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 	epatch "${FILESDIR}"/${P}-usr-local.patch
 
@@ -226,10 +227,24 @@ src_configure() {
 			;;
 		*-aix*) osname="aix" ;;
 		*-hpux*) osname="hpux" ;;
+		*-irix*)
+			osname="irix"
+			myconf -Dcc="cc -n32 -mips4"
+			use ithreads && myconf -Dlibs="-lm -lpthread" || myconf -Dlibs="-lm"
+			;;
 		*-interix*) osname='interix' ;;
 		*-mint*) osname="freemint" ;;
 
 		*) osname="linux" ;;
+	esac
+
+	case ${CHOST} in
+		*-irix*)
+		myconf -Dccdlflags='-exports'
+		;;
+	*)
+		myconf -Dccdlflags='-rdynamic'
+		;;
 	esac
 
 	if use ithreads
@@ -313,7 +328,6 @@ src_configure() {
 		sh Configure -des \
 		-Darchname="${myarch}" \
 		-Dcccdlflags='-fPIC' \
-		-Dccdlflags='-rdynamic' \
 		-Dcc="$(tc-getCC)" \
 		-Dprefix="${EPREFIX}"'/usr' \
 		-Dvendorprefix="${EPREFIX}"'/usr' \
