@@ -1,0 +1,23 @@
+#!/sbin/runscript
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.1 2008/12/26 07:01:43 darkside Exp $
+
+depend() {
+	use net.*
+}
+
+start() {
+	ebegin "Starting rtorrent"
+	start-stop-daemon --start --chuid $USER \
+	--env TERM="xterm" \
+	--env HOME="/home/$USER" \
+	--exec /usr/bin/screen -- -dmS rtorrentd /usr/bin/rtorrent
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping rtorrent"
+	start-stop-daemon --stop --signal 2 --name rtorrent
+	eend $?
+}

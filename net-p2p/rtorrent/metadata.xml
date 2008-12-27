@@ -12,8 +12,17 @@
 	<name>Timothy Redaelli</name>
 	<description>Secondary Maintainer</description>
 </maintainer>
+<maintainer>
+	<email>darkside@gentoo.org</email>
+	<description>Only CC on bugs regarding the init script.</description>
+</maintainer>
 <longdescription lang="en">
 	Console BitTorrent client using ncurses based on libtorrent written in C++.
 </longdescription>
+<use>
+	<flag name='daemon'>Uses <pkg>app-misc/screen</pkg> to daemonize this
+		application"
+	</flag>
+</use>
 
 </pkgmetadata>
