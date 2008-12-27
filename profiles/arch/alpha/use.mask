@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.13 2008/11/10 11:02:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.14 2008/12/26 11:48:34 klausman Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -alpha
@@ -139,3 +139,8 @@ audit
 
 # This works
 -x264
+
+# too complicated/invovled to test and too small user base
+# Tobias Klausmann <klausman@gentoo.org>
+afs
+

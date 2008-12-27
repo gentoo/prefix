@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4081 2008/12/24 20:07:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4083 2008/12/26 13:08:00 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1227,6 +1227,12 @@ media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
 media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
+media-libs/gst-plugins-bad:amrwb - Enables support for Adaptive Multi-Rate Audio support (Wide Band) via amrwb
+media-libs/gst-plugins-bad:gsm - Enables support for the gsm lossy speech compression codec via libgsm
+media-libs/gst-plugins-bad:libmms - Enables support for accessing Microsoft Media Server (MMS) media streaming protocol via libmms
+media-libs/gst-plugins-bad:mythtv - Enables support for retrieval from media-tv/mythtv backend via gmyth
+media-libs/gst-plugins-bad:neon - Enables support for HTTP and WebDAV client library via neon
+media-libs/gst-plugins-bad:twolame - Enables support for MPEG Audio Layer 2 encoder via twolame
 media-libs/gst-plugins-base:libvisual - Build libvisual plug-in
 media-libs/gst-plugins-base:pango - Build pango plug-in
 media-libs/libass:enca - Enables support for charset discovery and conversion.
@@ -2176,6 +2182,7 @@ net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
 net-p2p/museek+:trayicon - Enable support for trayicon
+net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application" 
 net-print/hplip:cupsddk - Add support for net-print/cupsddk which enables dynamic PPD files (recommended)
 net-print/hplip:dbus - Add support for sys-apps/dbus which enables better communications with your device (recommended)
 net-print/hplip:doc - Build documentation

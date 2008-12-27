@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/Alpha profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.20 2008/11/23 12:59:23 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.21 2008/12/26 11:48:34 klausman Exp $
+
+  26 Dec 2008; Tobias Klausmann <klausman@gentoo.org> use.mask:
+  Masked openafs on alpha
 
   23 Nov 2008; Patrick Lauer <patrick@gentoo.org> package.use.mask:
   webkit is missing keywords, masking webkit useflag for PyQt4

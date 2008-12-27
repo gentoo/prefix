@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/make.defaults,v 1.2 2008/04/10 19:53:18 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/make.defaults,v 1.3 2008/12/26 11:09:43 bluebird Exp $
 
 ARCH="sparc"
 ACCEPT_KEYWORDS="${ARCH}"
@@ -21,12 +21,13 @@ LDFLAGS_sparc64="-m elf64_sparc"
 MULTILIB_ABIS="sparc32"
 DEFAULT_ABI="sparc32"
 ABI="${DEFAULT_ABI}"
-CFLAGS_sparc32="-m32"
-LDFLAGS_sparc32="-m elf32_sparc"
+CFLAGS_sparc32=""  # 32 bit is the default, so no need to set it.
+LDFLAGS_sparc32="" # setting it would make gcc use -m32 and -m64 at the same time
 CHOST_sparc32="sparc-unknown-linux-gnu"
 CTARGET_sparc32="sparc-unknown-linux-gnu"
 CDEFINE_sparc32="!__arch64__"
-LIBDIR_sparc32="lib"
+CFLAGS_sparc64="-m64"
+CDEFINE_sparc64="__arch64__"
 
 # Compiler flags
 CFLAGS="-O2 -mcpu=ultrasparc -pipe"

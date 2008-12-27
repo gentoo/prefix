@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9328 2008/12/25 12:23:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9330 2008/12/27 05:07:22 leio Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -34,6 +34,9 @@
 # Samuli Suominen <ssuominen@gentoo.org> (24 Dec 2008)
 # - drop .la files (and static libs)
 # - monolithic version, EAPI=2, commented versions for new devs
+# Talk with the actual gstreamer team before unmasking these -
+# we are completely against the notion of monolithic versions, these
+# here should be considered an experimentation
 >=media-libs/gstreamer-0.10.21-r2
 >=media-libs/gst-plugins-good-0.10.11-r1
 >=media-libs/gst-plugins-bad-0.10.9-r1
@@ -116,12 +119,6 @@ net-libs/libopm
 # Removed in 60 days, multiple bugs - does not compile with recent kernels.
 # bug 251795
 sys-fs/cloop
-
-# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
-# Removed in 60 days. Many issues including a gcc-4.3 failure and dead upstream
-# see tracker bug (bug 251796)
-app-text/pdftk
-media-gfx/keyjnote
 
 # Christoph Mende <angelos@gentoo.org> (20 Dec 2008)
 # Masked for removal in 30 days, doesn't work with gcc-4.3 (bug 251748),

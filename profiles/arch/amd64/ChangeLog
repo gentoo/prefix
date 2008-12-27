@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.34 2008/12/24 20:04:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.35 2008/12/27 04:59:14 darkside Exp $
+
+  27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
+  Add header to package.use.mask and mask USE=static for
+  >=app-arch/p7zip-4.58, bug 236591
 
   24 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
   re-add flags that I nuked by accident because they were under a mis-leading

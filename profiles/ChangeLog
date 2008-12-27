@@ -1,10 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2204 2008/12/25 12:23:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2206 2008/12/26 22:09:57 caster Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Dec 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Resurrect pdftk and keyjnote.
+
+  26 Dec 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  arch/amd64/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask:
+  package.masked dev-util/biew on amd64 no-multilib profiles
 
   25 Dec 2008; Mike Frysinger <vapier@gentoo.org> package.mask:
   Drop rlocate mask since the package is no longer in the tree.
