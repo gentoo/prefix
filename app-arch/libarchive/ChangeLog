@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.35 2008/12/11 18:41:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.36 2008/12/26 22:53:41 flameeyes Exp $
+
+*libarchive-2.5.905a (26 Dec 2008)
+
+  26 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  +libarchive-2.5.905a.ebuild:
+  Version bump.
 
 *libarchive-2.5.904a (11 Dec 2008)
 
