@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  27 Dec 2008; Fabian Groffen <grobian@gentoo.org> irix/package.use.mask:
+  Mask ipv6 USE-flag for python, as the latter seems not to be able to use the
+  former on IRIX
+
   27 Dec 2008; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
   Mask sys-apps/findutils-4.5.3 on Solaris, as it asserts there (maybe on
   other platforms too, but haven't encountered it yet)
