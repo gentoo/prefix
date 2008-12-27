@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.3.2.ebuild,v 1.1 2008/12/23 12:30:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.3.2.ebuild,v 1.2 2008/12/26 21:10:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 RESTRICT="test"
 
-DEPEND=""
+DEPEND="app-arch/lzma-utils"
+RDEPEND=""
 
 EMULTILIB_PKG="true"
 has sandbox_death_notice ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS="${EBUILD_DEATH_HOOKS} sandbox_death_notice"

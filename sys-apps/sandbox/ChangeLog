@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.96 2008/12/23 12:30:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.97 2008/12/26 21:10:04 vapier Exp $
+
+  26 Dec 2008; Mike Frysinger <vapier@gentoo.org> sandbox-1.3.2.ebuild:
+  Add lzma-utils to DEPEND #252598 by Albert W. Hopkins.
 
 *sandbox-1.3.2 (23 Dec 2008)
 
