@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/features/multilib/make.defaults,v 1.1 2008/04/01 17:41:09 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/multilib/make.defaults,v 1.2 2008/12/26 11:09:45 bluebird Exp $
 
 # This is so we build with multilib from the start
 STAGE1_USE="multilib nptl nptlonly unicode"
@@ -16,7 +16,9 @@ SYMLINK_LIB="yes"
 # 64-bit LIBDIR
 LIBDIR_amd64="lib64"
 LIBDIR_ppc64="lib64"
+LIBDIR_sparc64="lib64"
 
 # 32-bit LIBDIR
 LIBDIR_ppc="lib32"
 LIBDIR_x86="lib32"
+LIBDIR_sparc32="lib32"

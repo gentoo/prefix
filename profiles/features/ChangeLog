@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/features/ChangeLog,v 1.9 2008/12/19 22:33:17 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/ChangeLog,v 1.10 2008/12/27 05:09:36 darkside Exp $
+
+  27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> 64bit-native/package.mask:
+  Unmask media-video/dvdrip on no-multilib profiles based on Michael Lange's
+  testing in bug #252483
 
   19 Dec 2008; Christoph Mende <angelos@gentoo.org>
   64bit-native/package.mask:
