@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.262 2008/12/26 05:06:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.263 2008/12/26 06:06:06 darkside Exp $
+
+  26 Dec 2008; Jeremy Olexa <darkside@gentoo.org> -eix-0.14.2.ebuild,
+  -eix-0.15.1.ebuild, eix-0.15.2.ebuild:
+  New DESCRIPTION, requested by upstream
 
   26 Dec 2008; Jeroen Roovers <jer@gentoo.org> eix-0.15.2.ebuild:
   Stable for HPPA (bug #252245).
