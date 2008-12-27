@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/redcloth
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.22 2008/10/14 20:40:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.23 2008/12/26 15:10:01 graaff Exp $
+
+*redcloth-4.1.1 (26 Dec 2008)
+
+  26 Dec 2008; Hans de Graaff <graaff@gentoo.org> +redcloth-4.1.1.ebuild:
+  Version bump
 
   14 Oct 2008; Brent Baude <ranger@gentoo.org> redcloth-4.0.4.ebuild:
   keyworded ~arch for ppc, bug 240301
