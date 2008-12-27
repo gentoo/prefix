@@ -1,6 +1,14 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.75 2008/12/25 17:06:15 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.77 2008/12/26 16:20:49 armin76 Exp $
+
+  26 Dec 2008; Raúl Porcel <armin76@gentoo.org> pidgin-2.5.2.ebuild:
+  ia64 stable wrt #248137
+
+*pidgin-2.5.3 (26 Dec 2008)
+
+  26 Dec 2008; Olivier Crête <tester@gentoo.org> +pidgin-2.5.3.ebuild:
+  Version bump
 
   25 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> pidgin-2.5.2.ebuild:
   Stable on sparc, bug #248137
