@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.19-r1.ebuild,v 1.7 2008/02/27 10:46:09 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.21.ebuild,v 1.1 2008/12/27 03:24:11 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
 RDEPEND=""
@@ -24,11 +24,10 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-gnu-inline.patch #198817
-	epatch "${FILESDIR}"/${P}-update-flag.patch #200315
 
-	epatch "${FILESDIR}"/tar-1.16-darwin.patch
-	epatch "${FILESDIR}"/${P}-hpux.patch
+	epatch "${FILESDIR}"/${PN}-1.16-darwin.patch
+	epatch "${FILESDIR}"/${PN}-1.19-hpux.patch
+	epatch "${FILESDIR}"/${PN}-1.20-mint.patch
 
 	if ! use userland_GNU ; then
 		sed -i \
