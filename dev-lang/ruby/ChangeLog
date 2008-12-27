@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.363 2008/12/24 07:51:43 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.364 2008/12/26 19:07:09 armin76 Exp $
+
+  26 Dec 2008; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p287-r10.ebuild:
+  Add ~alpha/~arm/~ia64/~s390/~sh wrt #251159
 
   24 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   ruby-1.8.6_p287-r10.ebuild:
