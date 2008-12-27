@@ -17,7 +17,7 @@ HOMEPAGE="http://www.windowmaker.info/"
 
 IUSE="gif gnustep jpeg nls png tiff modelock +vdesktop xinerama"
 DEPEND="x11-libs/libXv
-	x11-libs/libXft
+	>=x11-libs/libXft-2.1.0
 	x11-libs/libXt
 	media-libs/fontconfig
 	gif? ( >=media-libs/giflib-4.1.0-r3 )
@@ -30,7 +30,7 @@ RDEPEND="${DEPEND}
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	is-flag -fstack-protector && filter-flags -fstack-protector \
@@ -74,13 +74,16 @@ src_unpack() {
 	epatch "${psd}"/WindowMaker-0.91.0-sga-swpanel-customization.patch
 	epatch "${psd}"/WindowMaker-0.92.0-alt-newpo.patch
 
-	# Interix 3.5: could be usefull for others with -nls, but to
-	# not break others, i apply conditionally ...
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PV}/${P}-interix3.patch
+	epatch "${FILESDIR}"/${PV}/${P}-darwin-setlocale.patch
+	epatch "${FILESDIR}"/${PV}/${P}-nls.patch
+	#use nls && sed -i -e 's/#NLSENABLE //' configure.ac
+	#touch ABOUT-NLS config.rpath
 
 	# Add UK localisation
 	cp "${psd}"/WindowMaker-uk.po po/uk.po
 	cp "${psd}"/WPrefs-uk.po WPrefs.app/po/uk.po
+
 
 	# Add newbuttons resources
 	cp "${psd}"/WindowMaker-newbuttons.nextstyle.tiff \
