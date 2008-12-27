@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.277 2008/12/25 15:54:35 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.278 2008/12/26 11:55:28 klausman Exp $
+
+  26 Dec 2008; Tobias Klausmann <klausman@gentoo.org> gimp-2.6.3.ebuild:
+  Keyworded on alpha, bug #240433
 
   25 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> gimp-2.6.2.ebuild,
   gimp-2.6.3.ebuild:
