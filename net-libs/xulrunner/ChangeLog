@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.172 2008/12/24 17:32:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.173 2008/12/26 19:07:10 jer Exp $
+
+  26 Dec 2008; Jeroen Roovers <jer@gentoo.org> xulrunner-1.9.0.5.ebuild:
+  Stable for HPPA (bug #234646). Fix whitespace.
 
   24 Dec 2008; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.0.5.ebuild:
   Add missing workaround for alpha

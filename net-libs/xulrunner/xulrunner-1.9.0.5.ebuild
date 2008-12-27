@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.8 2008/12/24 17:32:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.9 2008/12/26 19:07:10 jer Exp $
 
 EAPI="prefix"
 
@@ -98,7 +98,7 @@ src_compile() {
 #	fi
 
 	# It doesn't compile on alpha without this LDFLAGS 
-	use alpha && append-ldflags "-Wl,--no-relax" 
+	use alpha && append-ldflags "-Wl,--no-relax"
 
 	mozconfig_annotate '' --enable-extensions="${MEXTENSIONS}"
 	mozconfig_annotate '' --disable-mailnews
