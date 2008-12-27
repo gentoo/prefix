@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  27 Dec 2008; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
+  Mask sys-apps/findutils-4.5.3 on Solaris, as it asserts there (maybe on
+  other platforms too, but haven't encountered it yet)
+
   23 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +linux/ia64,
   +linux/ia64/make.defaults, +linux/ia64/parent:
   Initial commit of ia64-linux profiles (it returns!)
