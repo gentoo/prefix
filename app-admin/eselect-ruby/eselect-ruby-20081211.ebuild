@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20081211.ebuild,v 1.2 2008/12/24 07:50:22 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20081211.ebuild,v 1.3 2008/12/26 19:06:16 armin76 Exp $
 
 EAPI="prefix"
 
