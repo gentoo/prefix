@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.134 2008/12/24 11:49:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.135 2008/12/26 19:03:14 jer Exp $
+
+  26 Dec 2008; Jeroen Roovers <jer@gentoo.org> nss-3.12.2_rc1.ebuild:
+  Stable for HPPA (bug #234646).
 
   24 Dec 2008; Raúl Porcel <armin76@gentoo.org> -nss-3.12-r1.ebuild,
   nss-3.12.2_rc1.ebuild:
