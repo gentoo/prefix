@@ -1,18 +1,17 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.0_p2.ebuild,v 1.1 2008/08/02 07:16:53 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.1.ebuild,v 1.1 2008/12/26 21:10:53 dertobi123 Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 MY_PN=${PN//-tools}
-MY_PV=${PV/_p2/-P2}
-MY_P="${MY_PN}-${MY_PV}"
+MY_P="${MY_PN}-${PV}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
 HOMEPAGE="http://www.isc.org/products/BIND/bind9.html"
-SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.isc.org/isc/bind9/${PV}/${MY_P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
@@ -84,7 +83,7 @@ src_install() {
 
 	cd "${S}"/bin/nsupdate
 	dobin nsupdate || die
-	doman nsupdate.8 || die
+	doman nsupdate.1 || die
 	dohtml nsupdate.html || die
 
 	cd "${S}"/bin/dnssec

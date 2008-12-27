@@ -1,22 +1,21 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.2_p1.ebuild,v 1.7 2008/07/10 20:55:39 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.0.ebuild,v 1.1 2008/12/26 22:34:47 dertobi123 Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic
 
 MY_PN=${PN//-tools}
-MY_PV=${PV/_p1/-P1}
-MY_P="${MY_PN}-${MY_PV}"
+MY_P="${MY_PN}-${PV}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
 HOMEPAGE="http://www.isc.org/products/BIND/bind9.html"
-SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.isc.org/isc/bind9/${PV}/${MY_P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="idn ipv6"
 
 DEPEND="idn? ( || ( sys-libs/glibc dev-libs/libiconv )
@@ -35,6 +34,8 @@ src_unpack() {
 		cd -
 	}
 
+	epatch "${FILESDIR}"/${PN}-9.5.0_p1-lwconfig.patch
+
 	# bug #151839
 	sed -e \
 		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
@@ -51,6 +52,9 @@ src_compile() {
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
 	myconf="${myconf} --with-openssl=no"
+
+	# bug #227333
+	append-flags -D_GNU_SOURCE
 
 	econf ${myconf} || die "Configure failed"
 
@@ -79,7 +83,7 @@ src_install() {
 
 	cd "${S}"/bin/nsupdate
 	dobin nsupdate || die
-	doman nsupdate.8 || die
+	doman nsupdate.1 || die
 	dohtml nsupdate.html || die
 
 	cd "${S}"/bin/dnssec
