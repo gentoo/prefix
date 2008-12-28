@@ -2,6 +2,12 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  28 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  +aix/5.2.0.0/ppc/deprecated, +aix/5.3.0.0/ppc/deprecated,
+  +hpux/B.11.11/hppa/deprecated, +hpux/B.11.23/ia64/deprecated,
+  +hpux/B.11.31/ia64/deprecated, +irix/6.5/mips/deprecated:
+  Deprecate HPUX, IRIX and AIX profiles
+
   20 Dec 2008; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.9/sparc/deprecated, +sunos/solaris/5.10/sparc/deprecated,
   +sunos/solaris/5.10/sparc64/deprecated,
@@ -69,7 +75,7 @@
   10 Nov 2008; Jeremy Olexa <darkside@gentoo.org> package.mask:
   unmask apache and mask >=2.2.10
 
-  03 Nov 2008; Fabian Groffen <fabian@gentoo.org> package.mask:
+  03 Nov 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   mask >=net-print/xfprint-4.4.3 because it needs cups or lprng which we both
   don't have
 
