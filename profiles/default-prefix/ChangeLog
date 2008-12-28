@@ -3,6 +3,12 @@
 # $Id$
 
   28 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  +bsd/freebsd/6.2/x86/deprecated, +bsd/freebsd/6.3/x86/deprecated,
+  +bsd/netbsd/4.0/x86/deprecated, +bsd/openbsd/4.2/ppc/deprecated,
+  +bsd/openbsd/4.2/x64/deprecated, +bsd/openbsd/4.2/x86/deprecated:
+  Deprecate FreeBSD, NetBSD and OpenBSD profiles
+
+  28 Dec 2008; Fabian Groffen <grobian@gentoo.org>
   +aix/5.2.0.0/ppc/deprecated, +aix/5.3.0.0/ppc/deprecated,
   +hpux/B.11.11/hppa/deprecated, +hpux/B.11.23/ia64/deprecated,
   +hpux/B.11.31/ia64/deprecated, +irix/6.5/mips/deprecated:
