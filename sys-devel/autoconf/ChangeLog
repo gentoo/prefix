@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.122 2008/09/25 00:13:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.123 2008/12/27 18:50:15 ranger Exp $
+
+  27 Dec 2008; Brent Baude <ranger@gentoo.org> autoconf-2.63.ebuild:
+  stable ppc64, bug 245067
 
   25 Sep 2008; Mike Frysinger <vapier@gentoo.org> autoconf-2.63.ebuild:
   Make sure we pull in latest autoconf-wrapper #238368 by Josef Reidinger.
