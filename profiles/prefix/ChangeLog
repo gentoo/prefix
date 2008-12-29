@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +linux/package.mask:
+  unmask app-misc/pax-utils-0.1.19 on linux
+
   27 Dec 2008; Fabian Groffen <grobian@gentoo.org> irix/package.use.mask:
   Mask ipv6 USE-flag for python, as the latter seems not to be able to use the
   former on IRIX
