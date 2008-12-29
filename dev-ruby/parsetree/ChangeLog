@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/parsetree
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.8 2008/11/19 07:01:20 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.9 2008/12/28 09:40:45 graaff Exp $
+
+*parsetree-3.0.2 (28 Dec 2008)
+
+  28 Dec 2008; Hans de Graaff <graaff@gentoo.org> +parsetree-3.0.2.ebuild:
+  Version bump with new dependency on sexp-processor which used to be
+  distributed as part of parsetree.
 
   19 Nov 2008; Hans de Graaff <graaff@gentoo.org> -parsetree-2.0.1.ebuild,
   -parsetree-2.0.2.ebuild:

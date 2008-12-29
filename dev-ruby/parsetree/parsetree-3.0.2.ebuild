@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/parsetree-2.0.1.ebuild,v 1.1 2007/08/25 12:47:56 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/parsetree-3.0.2.ebuild,v 1.1 2008/12/28 09:40:45 graaff Exp $
 
 EAPI="prefix"
 
-inherit ruby gems
+inherit gems
 
 MY_PN="ParseTree"
 MY_P="${MY_PN}-${PV}"
@@ -17,7 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-USE_RUBY="ruby18"
-DEPEND=">=dev-lang/ruby-1.8.4
-		>=dev-ruby/ruby-inline-3.6.0
-		>=dev-ruby/hoe-1.3.0"
+DEPEND=">=dev-ruby/ruby-inline-3.7.0
+		>=dev-ruby/sexp-processor-3.0.0
+		>=dev-ruby/hoe-1.8.0"
+
+USE_RUBY="ruby18 ruby19"
