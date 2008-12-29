@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.116 2008/12/26 18:19:39 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.118 2008/12/28 17:22:22 dertobi123 Exp $
+
+  28 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org> whois-4.7.27.ebuild:
+  ppc stable, bug #252525
+
+  27 Dec 2008; Brent Baude <ranger@gentoo.org> whois-4.7.27.ebuild:
+  stable ppc64, bug 252525
 
   26 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> whois-4.7.27.ebuild:
   Stable on sparc, bug #252525
