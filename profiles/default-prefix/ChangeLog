@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +linux/amd64/deprecated,
+  +linux/ppc/deprecated, +linux/x86/deprecated:
+  Deprecate old linux profiles as well
+
   28 Dec 2008; Fabian Groffen <grobian@gentoo.org> +mint/m68k/deprecated,
   +windows/interix/3.5/x86/deprecated, +windows/interix/5.2/x86/deprecated,
   +windows/interix/6.0/x86/deprecated, +windows/winnt/3.5/x86/deprecated,

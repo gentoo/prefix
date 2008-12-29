@@ -1,0 +1,4 @@
+prefix/linux/x86
+# cd ${EPREFIX}/etc/
+# rm make.profile
+# ln -s ../usr/portage/profiles/prefix/linux/x86 make.profile
