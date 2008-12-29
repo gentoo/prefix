@@ -4,7 +4,7 @@
 
 EAPI="prefix 1"
 
-inherit eutils libtool toolchain-funcs
+inherit eutils libtool toolchain-funcs autotools
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
@@ -35,7 +35,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	elibtoolize
+	epatch "${FILESDIR}"/${P}-solaris.patch
+
+	#elibtoolize
+	eautoreconf
 	epunt_cxx
 }
 
