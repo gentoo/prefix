@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.26.ebuild,v 1.1 2008/08/20 02:57:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.28.ebuild,v 1.3 2008/12/27 11:14:16 bluebird Exp $
 
 EAPI="prefix"
 
@@ -24,18 +24,27 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/${PV}
+	# workaround #244640
+	mkdir arch/sparc64
+	touch arch/sparc64/Makefile
 }
 
 src_install() {
 	kernel-2_src_install
 	cd "${ED}"
 	egrep -r \
-		-e '[[:space:]](asm|volatile|inline)[[:space:](]' \
+		-e '(^|[[:space:](])(asm|volatile|inline)[[:space:](]' \
 		-e '\<([us](8|16|32|64))\>' \
 		.
 	headers___fix $(find -type f)
+
+	# hrm, build system sucks
+	find "${ED}" '(' -name '.install' -o -name '*.cmd' ')' -print0 | xargs -0 rm -f
+
+	# provided by libdrm (for now?)
+	rm -rf "${ED}"/usr/include/drm
 }
 
 src_test() {
-	emake -j1 ARCH=$(tc-arch-kernel) headers_check || die
+	emake ARCH=$(tc-arch-kernel) headers_check || die
 }

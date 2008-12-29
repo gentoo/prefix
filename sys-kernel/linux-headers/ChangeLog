@@ -1,6 +1,17 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.276 2008/11/02 09:31:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.278 2008/12/27 11:14:16 bluebird Exp $
+
+  27 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  linux-headers-2.6.28.ebuild:
+  Mark -sparc because we can't compile sys-libs/glibc with this one.
+  http://lkml.org/lkml/2008/12/16/60
+
+*linux-headers-2.6.28 (27 Dec 2008)
+
+  27 Dec 2008; Mike Frysinger <vapier@gentoo.org>
+  +linux-headers-2.6.28.ebuild:
+  Version bump.
 
   02 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   linux-headers-2.6.27-r2.ebuild:
