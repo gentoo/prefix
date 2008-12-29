@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.100 2008/11/17 19:53:51 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.101 2008/12/27 22:04:05 caleb Exp $
+
+*rpm-5.1.6 (27 Dec 2008)
+
+  27 Dec 2008; Caleb Tennis <caleb@gentoo.org> +rpm-5.1.6.ebuild:
+  version bump, from 223481
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/rpm-4.4.7-config.rpath.patch:
