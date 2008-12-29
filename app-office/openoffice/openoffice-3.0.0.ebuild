@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.18 2008/11/18 15:56:04 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.19 2008/12/28 18:40:51 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -10,7 +10,7 @@ inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV="3.0.0.3.5"
+MY_PV="3.0.0.3.6"
 PATCHLEVEL="OOO300"
 SRC="OOo_${PV}_src"
 MST="ooo300-m9"
@@ -48,7 +48,7 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	http://download.go-oo.org/SRC680/extras-3.tar.bz2
 	http://download.go-oo.org/SRC680/biblio.tar.bz2
 	http://download.go-oo.org/SRC680/lp_solve_5.5.0.12_source.tar.gz
-	http://download.go-oo.org/DEV300/scsolver.2008-10-07.tar.bz2
+	http://download.go-oo.org/DEV300/scsolver.2008-10-30.tar.bz2
 	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
 	http://download.go-oo.org/SRC680/libwpg-0.1.3.tar.gz"
 
@@ -87,7 +87,6 @@ COMMON_DEPEND="!app-office/openoffice-bin
 		virtual/glu )
 	>=net-misc/neon-0.24.7
 	>=dev-libs/openssl-0.9.8g
-	>=x11-libs/startup-notification-0.5
 	>=media-libs/freetype-2.1.10-r2
 	>=media-libs/fontconfig-2.3.0
 	cups? ( net-print/cups )
@@ -101,10 +100,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	>=sys-libs/db-4.3
 	>=app-text/libwpd-0.8.8
 	>=media-libs/vigra-1.4
-	>=app-text/poppler-0.8.0
-	linguas_ja? ( >=media-fonts/kochi-substitute-20030809-r3 )
-	linguas_zh_CN? ( >=media-fonts/arphicfonts-0.1-r2 )
-	linguas_zh_TW? ( >=media-fonts/arphicfonts-0.1-r2 )"
+	>=app-text/poppler-0.8.0"
 
 RDEPEND="java? ( >=virtual/jre-1.5 )
 	${COMMON_DEPEND}"
@@ -132,7 +128,6 @@ DEPEND="${COMMON_DEPEND}
 	>=net-misc/curl-7.12
 	sys-libs/zlib
 	sys-apps/coreutils
-	media-gfx/imagemagick
 	pam? ( sys-libs/pam )
 	!dev-util/dmake
 	>=dev-lang/python-2.3.4
@@ -269,6 +264,7 @@ src_unpack() {
 	epatch "${FILESDIR}/ooo-env_log.diff"
 	cp -f "${FILESDIR}/nojavanostax.diff" "${S}/patches/dev300" || die
 	cp -f "${FILESDIR}/hunspell-one-dir-nocrash.diff" "${S}/patches/dev300" || die
+	cp -f "${FILESDIR}/fixsandbox.diff" "${S}/patches/dev300" || die
 
 	#Use flag checks
 	if use java ; then
@@ -388,7 +384,7 @@ src_install() {
 	make DESTDIR="${D}" install || die "Installation failed!"
 
 	# Fix the permissions for security reasons
-	chown -R root:0 "${ED}"
+#	chown -RP root:0 "${ED}"
 
 	# record java libraries
 	use java && java-pkg_regjar "${ED}"/usr/$(get_libdir)/openoffice/basis3.0/program/classes/*.jar
