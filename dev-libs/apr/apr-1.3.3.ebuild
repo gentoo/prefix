@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-hpux ~m68k-mint ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-freebsd ~x86-interix ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="doc +urandom debug"
 RESTRICT="test"
 
@@ -35,10 +35,13 @@ src_unpack() {
 	AT_M4DIR="build" eautoreconf
 
 	epatch "${FILESDIR}"/config.layout.patch
+
+	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
 }
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
 	# For now we always enable ipv6. Testing has shown that is still works
 	# correctly in ipv4 systems, and currently, the ipv4-only support
@@ -55,6 +58,8 @@ src_compile() {
 		myconf="${myconf} --enable-maintainer-mode"
 		myconf="${myconf} --enable-pool-debug=all"
 	fi
+
+	[[ ${CHOST} == *-mint* ]] && myconf="${myconf} --disable-dso"
 
 	# We pre-load the cache with the correct answer!  This avoids
 	# it violating the sandbox.  This may have to be changed for
