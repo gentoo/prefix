@@ -1,6 +1,13 @@
 # ChangeLog for mail-filter/procmail
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.35 2008/12/02 06:51:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.36 2008/12/27 17:09:00 dertobi123 Exp $
+
+*procmail-3.22-r10 (27 Dec 2008)
+
+  27 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  +procmail-3.22-r10.ebuild:
+  Add note to configure a default mail storage location when using maildir
+  (#249579), do not strip binaries and respect LDFLAGS (#249202)
 
   02 Dec 2008; Jeroen Roovers <jer@gentoo.org> procmail-3.22-r9.ebuild:
   Stable for HPPA (bug #233595).
