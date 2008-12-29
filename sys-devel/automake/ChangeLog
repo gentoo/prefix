@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.123 2008/11/23 14:52:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.126 2008/12/28 17:08:59 dertobi123 Exp $
+
+  28 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  automake-1.10.2.ebuild:
+  ppc stable, bug #252667
+
+  28 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  automake-1.10.2.ebuild:
+  stable amd64, bug 252667
+
+  27 Dec 2008; Brent Baude <ranger@gentoo.org> automake-1.10.2.ebuild:
+  stable ppc64, bug 252667
 
 *automake-1.10.2 (23 Nov 2008)
 
