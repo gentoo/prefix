@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/ruby-debug
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug/ChangeLog,v 1.3 2007/08/04 11:51:07 graaff Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug/ChangeLog,v 1.4 2008/12/28 13:19:39 graaff Exp $
+
+*ruby-debug-0.10.3 (28 Dec 2008)
+
+  28 Dec 2008; Hans de Graaff <graaff@gentoo.org> +ruby-debug-0.10.3.ebuild:
+  Version bump with new dependency on dev-ruby/columnize. Dropped ppc keyword
+  because of this: #252815.
 
 *ruby-debug-0.9.3 (04 Aug 2007)
 
