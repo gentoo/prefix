@@ -1,6 +1,21 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.323 2008/12/23 17:49:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.325 2008/12/29 05:15:22 robbat2 Exp $
+
+  29 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  imagemagick-6.3.3.ebuild, imagemagick-6.3.4.ebuild,
+  imagemagick-6.4.4.6.ebuild, imagemagick-6.4.5.7.ebuild,
+  imagemagick-6.4.5.7-r1.ebuild, imagemagick-6.4.5.9.ebuild:
+  Add thirdpartymirror for imagemagick, so that there are upstream http
+  sources available instead of only ftp. Also include an optional /legacy/
+  path, as upstream moves the files there after a while, but some mirrors
+  explicitly place the legacy content in the main directory still.
+
+*imagemagick-6.4.5.9 (29 Dec 2008)
+
+  29 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +imagemagick-6.4.5.9.ebuild:
+  Minor version bump that improves PerlMagick and OpenMP usage.
 
   23 Dec 2008; Markus Meier <maekke@gentoo.org>
   -imagemagick-6.3.5.10.ebuild, -imagemagick-6.4.0.6.ebuild,

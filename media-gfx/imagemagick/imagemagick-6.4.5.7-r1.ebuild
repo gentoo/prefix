@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.5.7-r1.ebuild,v 1.1 2008/11/16 21:21:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.5.7-r1.ebuild,v 1.2 2008/12/29 05:15:22 robbat2 Exp $
 
 EAPI="prefix 2"
 
@@ -12,7 +12,8 @@ MY_P2=${MY_PN}-${PV%.*}-${PV#*.*.*.}
 
 DESCRIPTION="A collection of tools and libraries for many image formats"
 HOMEPAGE="http://www.imagemagick.org/"
-SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
+SRC_URI="mirror://imagemagick/${MY_P2}.tar.bz2
+		 mirror://imagemagick/legacy/${MY_P2}.tar.bz2"
 
 LICENSE="imagemagick"
 SLOT="0"

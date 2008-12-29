@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.0.6.ebuild,v 1.6 2008/07/04 15:13:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.5.9.ebuild,v 1.2 2008/12/29 05:15:22 robbat2 Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
-inherit eutils multilib perl-app
+inherit eutils multilib perl-app toolchain-funcs
 
 MY_PN=ImageMagick
 MY_P=${MY_PN}-${PV%.*}
@@ -12,16 +12,17 @@ MY_P2=${MY_PN}-${PV%.*}-${PV#*.*.*.}
 
 DESCRIPTION="A collection of tools and libraries for many image formats"
 HOMEPAGE="http://www.imagemagick.org/"
-SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
+SRC_URI="mirror://imagemagick/${MY_P2}.tar.bz2
+		 mirror://imagemagick/legacy/${MY_P2}.tar.bz2"
 
 LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bzip2 djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k lcms nocxx
-	openexr perl png q8 q32 svg tiff truetype X wmf xml zlib"
+IUSE="bzip2 +corefonts djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k
+	lcms nocxx openexr openmp perl png q8 q32 raw svg tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
-	djvu? ( app-text/djvu )
+	djvu? ( app-text/djvu[threads] )
 	fontconfig? ( media-libs/fontconfig )
 	fpx? ( media-libs/libfpx )
 	graphviz? ( >=media-gfx/graphviz-2.6 )
@@ -33,10 +34,12 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	openexr? ( media-libs/openexr )
 	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
 	png? ( media-libs/libpng )
+	raw? ( media-gfx/ufraw )
 	tiff? ( >=media-libs/tiff-3.5.5 )
-	xml? ( >=dev-libs/libxml2-2.4.10 )
-	truetype? ( =media-libs/freetype-2* media-fonts/corefonts )
+	truetype? ( =media-libs/freetype-2*
+		corefonts? ( media-fonts/corefonts ) )
 	wmf? ( >=media-libs/libwmf-0.2.8 )
+	xml? ( >=dev-libs/libxml2-2.4.10 )
 	zlib? ( sys-libs/zlib )
 	X? (
 		x11-libs/libXext
@@ -46,39 +49,37 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 		svg? ( >=gnome-base/librsvg-2.9.0 )
 	)
 	!dev-perl/perlmagick
-	!sys-apps/compare"
+	!sys-apps/compare
+	>=sys-devel/libtool-1.5.2-r6"
 
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
-	>=sys-devel/libtool-1.5.2-r6
 	X? ( x11-proto/xextproto )"
 
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	if use djvu && ! built_with_use app-text/djvu threads; then
-		eerror "app-text/djvu has to be built with threads support."
-		die "build app-text/djvu with USE=\"threads\""
-	fi
 	# for now, only build svg support when X is enabled, as librsvg
 	# pulls in quite some X dependencies.
 	if use svg && ! use X ; then
 		elog "the svg USE-flag requires the X USE-flag set."
 		elog "disabling svg support for now."
 	fi
+
+	if use corefonts && ! use truetype ; then
+		elog "corefonts USE-flag requires the truetype USE-flag to be set."
+		elog "disabling corefonts support for now"
+	fi
 }
 
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
 	# fix doc dir, bug 91911
 	sed -i -e \
 		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="${EPREFIX}/usr/share/doc/${PF}":g' \
 		"${S}"/configure || die
-
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	if use q32 ; then
 		myconf="${myconf} --with-quantum-depth=32"
@@ -94,6 +95,22 @@ src_compile() {
 		myconf="${myconf} --without-rsvg"
 	fi
 
+	#openmp support only works with >=sys-devel/gcc-4.3
+	# see bug #223825
+	if use openmp && built_with_use --missing false sys-devel/gcc openmp; then
+		if [[ $(gcc-version) != "4.3" ]] ; then
+			ewarn "you need sys-devel/gcc-4.3 to be able to use openmp, disabling."
+			myconf="${myconf} --disable-openmp"
+		else
+			myconf="${myconf} --enable-openmp"
+		fi
+	else
+		elog "disabling openmp support"
+		myconf="${myconf} --disable-openmp"
+	fi
+
+	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir /usr/share/fonts/corefonts)"
+
 	econf \
 		${myconf} \
 		--without-included-ltdl \
@@ -104,7 +121,6 @@ src_compile() {
 		$(use_with perl) \
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
 		$(use_enable hdri) \
-		$(use_with truetype windows-font-dir "${EPREFIX}"/usr/share/fonts/corefonts) \
 		$(use_with !nocxx magick-plus-plus) \
 		$(use_with bzip2 bzlib) \
 		$(use_with djvu) \
@@ -117,6 +133,7 @@ src_compile() {
 		$(use_with jpeg jpeg) \
 		$(use_with jpeg2k jp2) \
 		$(use_with lcms) \
+		$(use_with openexr) \
 		$(use_with png) \
 		$(use_with svg rsvg) \
 		$(use_with tiff) \
@@ -125,9 +142,15 @@ src_compile() {
 		$(use_with xml) \
 		$(use_with zlib) \
 		$(use_with X x) \
-		$(use_with openexr) \
 		|| die "econf failed"
-	emake || die "compile problem"
+}
+
+src_test() {
+	# make check only works after make install,
+	# --> only run if this version is already installed
+	if has_version ~${CATEGORY}/${P} ; then
+		emake -j1 check || die "make check failed"
+	fi
 }
 
 src_install() {
