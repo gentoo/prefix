@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/ruby-debug-base
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug-base/ChangeLog,v 1.3 2007/08/04 11:50:05 graaff Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug-base/ChangeLog,v 1.4 2008/12/28 13:18:06 graaff Exp $
+
+*ruby-debug-base-0.10.3 (28 Dec 2008)
+
+  28 Dec 2008; Hans de Graaff <graaff@gentoo.org>
+  +ruby-debug-base-0.10.3.ebuild:
+  Version bump with new dependency on dev-ruby/linecache. Dropped ppc keyword
+  because of this: #252815.
 
 *ruby-debug-base-0.9.3 (04 Aug 2007)
 
