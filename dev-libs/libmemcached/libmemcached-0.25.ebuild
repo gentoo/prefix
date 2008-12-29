@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/libmemcached-0.20.ebuild,v 1.1 2008/05/05 21:38:34 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/libmemcached-0.25.ebuild,v 1.1 2008/12/28 00:37:24 caleb Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
-	sed -i -e "s:-O3:${CFLAGS}:" "${S}"/configure
+	#sed -i -e "s:-O3:${CFLAGS}:" "${S}"/configure
 }
 
 src_install() {
