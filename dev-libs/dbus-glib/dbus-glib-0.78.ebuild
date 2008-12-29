@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.78.ebuild,v 1.1 2008/12/23 22:27:08 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.78.ebuild,v 1.2 2008/12/27 16:05:59 cardoe Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ RDEPEND=">=sys-apps/dbus-1.1.0
 	>=dev-libs/expat-1.95.8"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( app-doc/doxygen app-text/xmlto )"
+	doc? ( app-doc/doxygen app-text/xmlto )
+	dev-util/gtk-doc-am"
 
 BASH_COMPLETION_NAME="dbus"
 
