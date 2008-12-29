@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/pyxml-0.8.4-r1.ebuild,v 1.10 2008/11/10 11:31:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/pyxml-0.8.4-r1.ebuild,v 1.11 2008/12/27 18:31:28 neurogeek Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,10 @@ src_install() {
 		insinto /usr/share/doc/${PF} && doins doc/*.tex
 	fi
 	use examples && cp -r demo "${ED}"/usr/share/doc/${PF}
+}
+
+pkg_postinst(){
+	python_mod_optimize "$(python_get_sitedir)/_xmlplus"
 }
 
 src_test() {
