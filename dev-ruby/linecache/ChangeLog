@@ -1,0 +1,10 @@
+# ChangeLog for dev-ruby/linecache
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/ChangeLog,v 1.1 2008/12/28 11:11:40 graaff Exp $
+
+*linecache-0.43 (28 Dec 2008)
+
+  28 Dec 2008; Hans de Graaff <graaff@gentoo.org> +metadata.xml,
+  +linecache-0.43.ebuild:
+  Initial import. Dependency of dev-ruby/ruby-debug-base.
+
