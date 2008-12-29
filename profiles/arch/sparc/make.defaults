@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/make.defaults,v 1.3 2008/12/26 11:09:43 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/make.defaults,v 1.4 2008/12/27 10:58:46 bluebird Exp $
 
 ARCH="sparc"
 ACCEPT_KEYWORDS="${ARCH}"
@@ -26,7 +26,8 @@ LDFLAGS_sparc32="" # setting it would make gcc use -m32 and -m64 at the same tim
 CHOST_sparc32="sparc-unknown-linux-gnu"
 CTARGET_sparc32="sparc-unknown-linux-gnu"
 CDEFINE_sparc32="!__arch64__"
-CFLAGS_sparc64="-m64"
+# do NOT set CFLAGS_sparc64 here it'd break linux-headers for non-multilib
+# profiles
 CDEFINE_sparc64="__arch64__"
 
 # Compiler flags

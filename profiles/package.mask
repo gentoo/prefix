@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9330 2008/12/27 05:07:22 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9334 2008/12/29 02:45:50 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Gilles Dartiguelongue <eva@gentoo.org> (27 Dec 2008)
+# Dead upstream, does not compile with recent gcc/glibc.
+# Replacements: tomboy, sticky-notes applet (from gnome-applets)
+# See bug #248564 for details, removal in 30 days.
+x11-misc/goats
 
 # Samuli Suominen <ssuominen@gentoo.org> (24 Dec 2008)
 # - drop .la files (and static libs)
@@ -89,11 +95,6 @@ net-misc/knetload
 # Removed in 60 days, dead upstream for 7 years. Unmaintained in Gentoo for 4
 # years. bug 251057
 net-misc/ossh
-
-# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
-# Removed in 60 days. Does not compile with gcc-4.3. Use app-i18n/scim-m17n
-# instead, bug 250680
-app-i18n/scim-wijesekera
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
 # Removed in 60 days. Does not compile with gcc-4.3 and requires kernel patches
@@ -211,13 +212,6 @@ net-analyzer/sysmon
 # Do not use the old ones with the new versions of audit, you will get weird
 # crashes.
 >sys-process/audit-1.7.4
-
-# Arun Raghavan <ford_prefect@gentoo.org> (6 Dec 2008)
-# Masking till the required gnome-extra/gnome-do-plugins-0.6 gets into the tree
-# Hans de Graaff <graaff@gentoo.org> (13 Dec 2008)
-# Add gnome-do-plugins to the mask so that both can be tested before unleashing them.
-=gnome-extra/gnome-do-0.6*
-=gnome-extra/gnome-do-plugins-0.6*
 
 # Jeroen Roovers <jer@gentoo.org> (5 Dec 2008)
 # Snapshots, alphas and betas of Opera may delete kittens
@@ -369,10 +363,6 @@ games-mud/ytin
 # Hanno Boeck <hanno@gentoo.org> (14 Nov 2008)
 # Broken, waits endless on some systems, 4.2.0 is ok.
 =sys-libs/libchipcard-4.2.3
-
-# Diego Pettenò <flameeyes@gentoo.org> (13 Nov 2008)
-# Pre-release versions for 2.6, unsuitable for production use.
->=app-arch/libarchive-2.5.900
 
 # Mike Doty <kingtaco@gentoo.org> (9 Nov 2008)
 # Masked for testing
