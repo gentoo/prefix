@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.36 2008/12/26 22:53:41 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.37 2008/12/29 02:45:00 flameeyes Exp $
+
+*libarchive-2.6.0 (29 Dec 2008)
+
+  29 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  -libarchive-2.5.904a.ebuild, -libarchive-2.5.905a.ebuild,
+  +libarchive-2.6.0.ebuild:
+  Version bump, 2.6.0 final released. Move the primary download URI to
+  google's servers.
 
 *libarchive-2.5.905a (26 Dec 2008)
 

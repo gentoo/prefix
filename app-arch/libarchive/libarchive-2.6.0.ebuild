@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.905a.ebuild,v 1.1 2008/12/26 22:53:41 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.6.0.ebuild,v 1.1 2008/12/29 02:45:00 flameeyes Exp $
 
 EAPI="prefix 1"
 
@@ -8,7 +8,8 @@ inherit eutils libtool toolchain-funcs
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
-SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
+SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
+	http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
