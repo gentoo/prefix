@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/babl
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.5 2008/12/25 15:51:03 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.6 2008/12/28 18:09:29 armin76 Exp $
+
+  28 Dec 2008; Raúl Porcel <armin76@gentoo.org> babl-0.0.22.ebuild:
+  Add ~ia64 wrt #240433
 
   25 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> babl-0.0.22.ebuild:
   Add ~sparc keyword, bug #240433
