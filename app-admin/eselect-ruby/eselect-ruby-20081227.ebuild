@@ -1,10 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20081211.ebuild,v 1.3 2008/12/26 19:06:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20081227.ebuild,v 1.1 2008/12/27 12:13:58 graaff Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="Manages multiple Ruby versions"
 HOMEPAGE="http://www.gentoo.org"
@@ -19,10 +17,8 @@ RDEPEND=">=app-admin/eselect-1.0.2"
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
 	sed -i -e "/^\(bindir\|man1dir\)=/s|=|=\"${EPREFIX}\"|" \
-		ruby.eselect-20081211 || die "failed to prefixify"
+		ruby.eselect-${PVR} || die "failed to prefixify"
 }
 
 src_install() {
