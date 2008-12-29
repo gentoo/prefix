@@ -1,0 +1,26 @@
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-runtime/intl/localename.c gettext-0.17/gettext-runtime/intl/localename.c
+--- gettext-0.17.orig/gettext-runtime/intl/localename.c	2008-12-29 08:15:58 +0100
++++ gettext-0.17/gettext-runtime/intl/localename.c	2008-12-29 09:12:24 +0100
+@@ -1387,7 +1387,9 @@
+ 	switch (sub)
+ 	  {
+ 	  case SUBLANG_SINDHI_PAKISTAN: return "sd_PK";
++#if SUBLANG_SINDHI_PAKISTAN != SUBLANG_SINDHI_AFGHANISTAN
+ 	  case SUBLANG_SINDHI_AFGHANISTAN: return "sd_AF";
++#endif
+ 	  }
+ 	return "sd";
+       case LANG_SINHALESE: return "si_LK";
+diff -ru -x '*.Po' -x '*.Plo' gettext-0.17.orig/gettext-tools/gnulib-lib/localename.c gettext-0.17/gettext-tools/gnulib-lib/localename.c
+--- gettext-0.17.orig/gettext-tools/gnulib-lib/localename.c	2008-12-29 08:17:45 +0100
++++ gettext-0.17/gettext-tools/gnulib-lib/localename.c	2008-12-29 09:31:23 +0100
+@@ -1387,7 +1387,9 @@
+ 	switch (sub)
+ 	  {
+ 	  case SUBLANG_SINDHI_PAKISTAN: return "sd_PK";
++#if SUBLANG_SINDHI_PAKISTAN != SUBLANG_SINDHI_AFGHANISTAN
+ 	  case SUBLANG_SINDHI_AFGHANISTAN: return "sd_AF";
++#endif
+ 	  }
+ 	return "sd";
+       case LANG_SINHALESE: return "si_LK";

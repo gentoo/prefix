@@ -52,6 +52,7 @@ src_unpack() {
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${P}-winnt.patch
+		epatch "${FILESDIR}"/${P}-winnt-vs9.patch
 
 		cp -f "$(dirname "$(type -P libtoolize)")"/../share/aclocal/libtool.m4 "${S}"/m4/libtool.m4
 		eautoreconf # required for winnt
