@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.9 2008/06/29 14:49:31 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.10 2008/12/29 03:50:08 solar Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -85,20 +85,20 @@ gst-plugins-base_src_unpack() {
 
 	# Link with the syswide installed gst-libs if needed
 	gst-plugins10_find_plugin_dir
-	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstinterfaces:${EPREFIX}/usr/$(get_libdir)/libgstinterfaces:" \
-		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:${EPREFIX}/usr/$(get_libdir)/libgstinterfaces:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:${EPREFIX}/usr/$(get_libdir)/libgstaudio:" \
-		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:${EPREFIX}/usr/$(get_libdir)/libgstaudio:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:${EPREFIX}/usr/$(get_libdir)/libgstriff:" \
-		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:${EPREFIX}/usr/$(get_libdir)/libgstriff:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:${EPREFIX}/usr/$(get_libdir)/libgsttag:" \
-		-e "s:\${top_builddir}/gst-libs/gst/tag/libgsttag:${EPREFIX}/usr/$(get_libdir)/libgsttag:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:${EPREFIX}/usr/$(get_libdir)/libgstvideo:" \
-		-e "s:\${top_builddir}/gst-libs/gst/video/libgstvideo:${EPREFIX}/usr/$(get_libdir)/libgstvideo:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:${EPREFIX}/usr/$(get_libdir)/libgstnetbuffer:" \
-		-e "s:\${top_builddir}/gst-libs/gst/netbuffer/libgstnetbuffer:${EPREFIX}/usr/$(get_libdir)/libgstnetbuffer:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:${EPREFIX}/usr/$(get_libdir)/libgstrtp:" \
-		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:${EPREFIX}/usr/$(get_libdir)/libgstrtp:" \
+	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstinterfaces:${EROOT}/usr/$(get_libdir)/libgstinterfaces:" \
+		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:${EROOT}/usr/$(get_libdir)/libgstinterfaces:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:${EROOT}/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:${EROOT}/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:${EROOT}/usr/$(get_libdir)/libgstriff:" \
+		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:${EROOT}/usr/$(get_libdir)/libgstriff:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:${EROOT}/usr/$(get_libdir)/libgsttag:" \
+		-e "s:\${top_builddir}/gst-libs/gst/tag/libgsttag:${EROOT}/usr/$(get_libdir)/libgsttag:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:${EROOT}/usr/$(get_libdir)/libgstvideo:" \
+		-e "s:\${top_builddir}/gst-libs/gst/video/libgstvideo:${EROOT}/usr/$(get_libdir)/libgstvideo:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:${EROOT}/usr/$(get_libdir)/libgstnetbuffer:" \
+		-e "s:\${top_builddir}/gst-libs/gst/netbuffer/libgstnetbuffer:${EROOT}/usr/$(get_libdir)/libgstnetbuffer:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:${EROOT}/usr/$(get_libdir)/libgstrtp:" \
+		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:${EROOT}/usr/$(get_libdir)/libgstrtp:" \
 		-i Makefile.in
 	cd ${S}
 

@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.119 2008/12/20 19:25:29 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.120 2008/12/29 00:16:40 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1838,6 +1838,9 @@ java-utils-2_src_prepare() {
 # EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
 #                         gentoo.classpath property. Be sure to call
 #                         java-ant_rewrite-classpath in src_unpack.
+# EANT_NEEDS_TOOLS - add tools.jar to the gentoo.classpath. Should only be used
+#                    for build-time purposes, the dependency is not recorded to
+#                    package.env!
 # JAVA_PKG_NO_BUNDLED_SEARCH - Don't search for bundled jars or class files
 # *ANT_TASKS - used to determine ANT_TASKS before calling Ant.
 # ------------------------------------------------------------------------------
@@ -1941,6 +1944,8 @@ eant() {
 	for atom in ${gcp}; do
 		cp="${cp}:$(java-pkg_getjars ${getjarsarg} ${atom})"
 	done
+
+	[[ -n "${EANT_NEEDS_TOOLS}" ]] && cp="${cp}:$(java-config --tools)"
 
 	if [[ ${cp} ]]; then
 		# It seems ant does not like single quotes around ${cp}
