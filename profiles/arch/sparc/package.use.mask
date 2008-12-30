@@ -1,7 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.15 2008/12/23 13:41:16 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.17 2008/12/30 04:20:18 yngwin Exp $
 # Please add a proper entry, like a ChangeLog file, to the top, thanks.
+
+# Ben de Groot <yngwin@gentoo.org> (30 Dec 2008)
+# mask because mozilla-firefox-3 is -sparc keyworded
+x11-themes/gtk-engines-qtcurve firefox3
 
 # openct isn't keyworded anymore
 net-misc/kvpnc smartcard

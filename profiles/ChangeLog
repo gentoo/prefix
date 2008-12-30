@@ -1,10 +1,43 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2209 2008/12/29 02:45:50 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2219 2008/12/30 04:16:34 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Dec 2008; Ben de Groot <yngwin@gentoo.org> arch/sparc/package.use.mask:
+  Add firefox3 useflag mask for gtk-engines-qtcurve on sparc
+
+  30 Dec 2008; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Remove x264 entry, no longer needed. Fixes bug 105016 from my side.
+
+  29 Dec 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Masks for dev-perl/tagged and =perl-core/File-Spec-3.2701 no longer needed
+
+  29 Dec 2008; Gordon Malm <gengor@gentoo.org> package.mask:
+  Masked RSBAC-related ebuilds for eventual removal.
+
+  29 Dec 2008; Paul Varner <fuzzyray@gentoo.org> package.mask:
+  Bug #105016 - Remove mask for app-portage/gentoolkit-0.2.4_rc1 since it is
+  no longer in the tree.
+
+  29 Dec 2008; Zac Medico <zmedico@gentoo.org> package.mask:
+  Bug #105016 - Remove foomatic-db-20000000 masks. Masks for pseudo-downgrades
+  like these typically aren't needed now that bug #252167 is fixed.
+
+  29 Dec 2008; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Remove hpricot mask since the broken version is removed from the tree.
+
+  29 Dec 2008; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Remove duped profiles on profiles.desc
+
+  29 Dec 2008; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask mail-client/xfmail, mail-client/elm, net-mail/ezmlm,
+  net-mail/ezmlm-idx, net-mail/ezmlm-idx-mysql, net-mail/ezmlm-idx-pgsql
+
+  29 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Unmask new gnustep release, gorm 1.2.8 is here
 
   29 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
   Remove mask on libarchive 2.6 since it has been released.
