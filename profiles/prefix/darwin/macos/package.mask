@@ -1,4 +1,4 @@
-# $Header: $
+# $Id$
 
 # Fabian Groffen <grobian@gentoo.org> (02 Aug 2008)
 # Crappy code makes it bus error on Darwin, bug #233600

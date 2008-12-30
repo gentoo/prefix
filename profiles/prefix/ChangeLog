@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Dec 2008; Fabian Groffen <grobian@gentoo.org> ChangeLog:
+  Mask aqua USE-flag for app-editors/emacs-cvs on request of pipping
+
   29 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +linux/package.mask:
   unmask app-misc/pax-utils-0.1.19 on linux
 

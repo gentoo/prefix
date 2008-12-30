@@ -1,3 +1,9 @@
+# $Id$
+
+# Fabian Groffen <grobian@gentoo.org> (30 Dec 2008)
+# +     pipping | grobian: please package.use.mask aqua for emacs-cvs for now
+# +     pipping | grobian: hopefully i find the time to fix it at some point
+app-editors/emacs-cvs aqua
 
 # Fabian Groffen <grobian@gentoo.org> (21 Dec 2008)
 # Proxying for Elias Pipping, broken combinations
