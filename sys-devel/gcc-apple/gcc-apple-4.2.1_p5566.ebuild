@@ -72,7 +72,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-dsymutil.patch
 
 	# bootstrapping might fail with host provided gcc on 10.4/x86
-	if ! is_crosscompile && ! echo "int main(){return 0;}" | gcc -o /dev/null \
+	if ! is_crosscompile && ! echo "int main(){return 0;}" | gcc -o "${T}"/foo \
 		-mdynamic-no-pic -x c - >/dev/null 2>&1;
 	then
 		einfo "-mdynamic-no-pic doesn't work - disabling..."

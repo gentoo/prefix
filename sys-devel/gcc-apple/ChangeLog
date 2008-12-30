@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Dec 2008; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.2.1_p5564.ebuild, gcc-apple-4.2.1_p5566.ebuild:
+  Fix nasty problem caught by fafhrd in #gentoo-prefix: don't overwrite
+  /dev/null, that truely ain't cool
+
 *gcc-apple-4.2.1_p5566 (21 Dec 2008)
 *gcc-apple-4.0.1_p5490 (21 Dec 2008)
 
