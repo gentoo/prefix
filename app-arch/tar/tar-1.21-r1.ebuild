@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.21.ebuild,v 1.1 2008/12/27 03:24:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.21-r1.ebuild,v 1.1 2008/12/29 10:03:44 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.16-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.19-hpux.patch
 	epatch "${FILESDIR}"/${PN}-1.20-mint.patch
+
+	epatch "${FILESDIR}"/${P}-revert-pipe.patch #252680
 
 	if ! use userland_GNU ; then
 		sed -i \
