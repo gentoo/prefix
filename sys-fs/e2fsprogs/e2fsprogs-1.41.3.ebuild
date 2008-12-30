@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.3.ebuild,v 1.4 2008/12/27 16:36:01 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.3.ebuild,v 1.9 2008/12/30 04:19:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,14 @@ RDEPEND="~sys-libs/${PN}-libs-${PV}
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	sys-apps/texinfo"
+
+pkg_setup() {
+	if [[ ! -e ${EROOT}/etc/mtab ]] ; then
+		# add some crap to deal with missing /etc/mtab #217719
+		ewarn "No /etc/mtab file, creating one temporarily"
+		echo "${PN} crap for src_test" > "${EROOT}"/etc/mtab
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -69,6 +77,14 @@ src_compile() {
 	if use elibc_FreeBSD ; then
 		cp "${FILESDIR}"/fsck_ext2fs.c .
 		emake fsck_ext2fs || die
+	fi
+}
+
+pkg_preinst() {
+	if [[ -r ${EROOT}/etc/mtab ]] ; then
+		if [[ $(<"${EROOT}"/etc/mtab) == "${PN} crap for src_test" ]] ; then
+			rm -f "${EROOT}"/etc/mtab
+		fi
 	fi
 }
 

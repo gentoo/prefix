@@ -1,6 +1,20 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.169 2008/12/27 16:36:01 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.173 2008/12/30 04:19:18 vapier Exp $
+
+  30 Dec 2008; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.3.ebuild:
+  Create temp /etc/mtab for random test failures #217719.
+
+  29 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  e2fsprogs-1.41.3.ebuild:
+  ppc stable, bug #251808
+
+  29 Dec 2008; Brent Baude <ranger@gentoo.org> e2fsprogs-1.41.3.ebuild:
+  Marking e2fsprogs-1.41.3 ppc64 for bug 251808
+
+  29 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  e2fsprogs-1.41.3.ebuild:
+  Stable on sparc, bug #251808
 
   27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> e2fsprogs-1.41.3.ebuild:
   amd64 stable, bug 251808
