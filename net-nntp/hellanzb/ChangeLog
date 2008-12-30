@@ -1,6 +1,9 @@
 # ChangeLog for net-nntp/hellanzb
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.10 2008/09/08 10:13:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.11 2008/12/29 14:04:58 ranger Exp $
+
+  29 Dec 2008; Brent Baude <ranger@gentoo.org> hellanzb-0.13-r7.ebuild:
+  Marking hellanzb-0.13-r7 ~ppc64 for bug 251525
 
 *hellanzb-0.13-r7 (30 Aug 2008)
 
