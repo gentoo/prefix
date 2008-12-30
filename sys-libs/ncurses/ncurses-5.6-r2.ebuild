@@ -64,7 +64,7 @@ src_compile() {
 	use ada || myconf="${myconf} --without-ada"
 	
 	[[ ${CHOST} != *-mint* ]] && myconf="${myconf} --with-shared"
-	[[ ${CHOST} == *-aix5.3* ]] && myconf="${myconf} --with-libtool"
+	[[ ${CHOST} == *-aix[5-9]* ]] && myconf="${myconf} --with-libtool"
 
 	# First we build the regular ncurses ...
 	mkdir "${WORKDIR}"/narrowc
