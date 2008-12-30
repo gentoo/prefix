@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.2.ebuild,v 1.8 2008/12/22 19:09:31 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.2.ebuild,v 1.9 2008/12/29 09:38:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,18 +8,6 @@ PATCH_VER="1.2"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
-
-# Hardened gcc 4 stuff
-PIE_VER="10.1.2"
-PIE_GCC_VER="4.3.2"
-#SPECS_VER="0.9.0"
-#SPECS_GCC_VER="4.3.2"
-
-# arch/libc configurations known to be stable or untested with {PIE,SSP,FORTIFY}-by-default
-PIE_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
-PIE_UCLIBC_STABLE="x86 arm"
-#SSP_STABLE="amd64 x86 ppc ppc64 ~arm ~sparc"
-#SSP_UCLIBC_STABLE=""
 
 # whether we should split out specs files for multiple {PIE,SSP}-by-default
 # and vanilla configurations.
