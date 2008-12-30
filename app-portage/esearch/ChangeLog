@@ -1,6 +1,15 @@
 # ChangeLog for app-portage/esearch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.51 2008/11/17 20:24:13 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.52 2008/12/30 05:29:12 fuzzyray Exp $
+
+*esearch-0.7.1-r5 (30 Dec 2008)
+
+  30 Dec 2008; Paul Varner <fuzzyray@gentoo.org>
+  +files/244450-deprecated.patch, -esearch-0.7.1-r2.ebuild,
+  -esearch-0.7.1-r3.ebuild, -esearch-0.7.1-r4.ebuild,
+  +esearch-0.7.1-r5.ebuild:
+  Bug #244450: Add patch from zmedico to fix portage deprecation warnings.
+  Removed outdated versions
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/97969-ignore-missing-ebuilds.patch:

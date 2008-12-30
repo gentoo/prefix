@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r4.ebuild,v 1.4 2007/05/09 15:50:05 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r5.ebuild,v 1.1 2008/12/30 05:29:12 fuzzyray Exp $
 
 EAPI="prefix"
 
@@ -29,32 +29,31 @@ pkg_setup() {
 }
 
 src_compile() {
-	epatch ${FILESDIR}/97462-esearch-metadata.patch || die "Failed to patch sources!"
-	epatch ${FILESDIR}/97969-ignore-missing-ebuilds.patch || die "Failed to patch sources!"
-	epatch ${FILESDIR}/120817-unset-emergedefaultopts.patch || die "Failed to patch sources!"
-	epatch ${FILESDIR}/132548-multiple-overlay.patch || die "Failed to patch sources!"
-	epatch "${FILESDIR}"/${PN}-0.7.1-prefix.patch
-	eprefixify "${S}"/*.py
+	epatch "${FILESDIR}/97462-esearch-metadata.patch" || die "Failed to patch sources!"
+	epatch "${FILESDIR}/97969-ignore-missing-ebuilds.patch" || die "Failed to patch sources!"
+	epatch "${FILESDIR}/120817-unset-emergedefaultopts.patch" || die "Failed to patch sources!"
+	epatch "${FILESDIR}/132548-multiple-overlay.patch" || die "Failed to patch sources!"
+	epatch "${FILESDIR}/244450-deprecated.patch" || die "Failed to patch sources!"
 	echo "Fixing deprecated emerge syntax."
 	sed -i -e 's:/usr/bin/emerge sync:/usr/bin/emerge --sync:g' esync.py
 
 }
 
 src_install() {
-	dodir /usr/bin/ /usr/sbin/
+	dodir /usr/bin/ /usr/sbin/ || die "dodir failed"
 
 	exeinto /usr/lib/esearch
 	doexe eupdatedb.py esearch.py esync.py common.py || die "doexe failed"
 
-	dosym /usr/lib/esearch/esearch.py /usr/bin/esearch
-	dosym /usr/lib/esearch/eupdatedb.py /usr/sbin/eupdatedb
-	dosym /usr/lib/esearch/esync.py /usr/sbin/esync
+	dosym /usr/lib/esearch/esearch.py /usr/bin/esearch || die "dosym failed"
+	dosym /usr/lib/esearch/eupdatedb.py /usr/sbin/eupdatedb || die "dosym failed"
+	dosym /usr/lib/esearch/esync.py /usr/sbin/esync || die "dosym failed"
 
-	doman en/{esearch,eupdatedb,esync}.1
-	dodoc ChangeLog "${FILESDIR}/eupdatedb.cron"
+	doman en/{esearch,eupdatedb,esync}.1 || die "doman failed"
+	dodoc ChangeLog "${FILESDIR}/eupdatedb.cron" || die "dodoc failed"
 
 	if use linguas_it ; then
 		insinto /usr/share/man/it/man1
-		doins it/{esearch,eupdatedb,esync}.1
+		doins it/{esearch,eupdatedb,esync}.1 || die "doins failed"
 	fi
 }
