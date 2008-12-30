@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.1.ebuild,v 1.12 2008/12/06 01:35:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.1.ebuild,v 1.13 2008/12/30 04:33:58 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ IUSE="crypt loop-aes nls old-linux selinux slang uclibc unicode"
 RDEPEND="!sys-process/schedutils
 	!sys-apps/setarch
 	>=sys-libs/ncurses-5.2-r2
-	>=sys-fs/e2fsprogs-1.34
+	>=sys-libs/e2fsprogs-libs-1.41
 	selinux? ( sys-libs/libselinux )
 	slang? ( sys-libs/slang )"
 DEPEND="${RDEPEND}
