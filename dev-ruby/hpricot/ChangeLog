@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/hpricot
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/ChangeLog,v 1.12 2008/12/20 13:37:14 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/ChangeLog,v 1.13 2008/12/29 15:54:27 graaff Exp $
+
+  29 Dec 2008; Hans de Graaff <graaff@gentoo.org> -hpricot-0.6.164.ebuild:
+  Remove known to be broken version since we can't fix the gem easily.
 
 *hpricot-0.6.164 (20 Dec 2008)
 
