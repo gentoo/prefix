@@ -1,0 +1,7 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+ARCH="ppc-aix"
+CHOST="powerpc-ibm-aix6.1.0.0"
+ACCEPT_KEYWORDS="~ppc-aix"

@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +aix/6.1.0.0,
+  +aix/6.1.0.0/package.provided, +aix/6.1.0.0/parent, +aix/6.1.0.0/ppc,
+  +aix/6.1.0.0/ppc/make.defaults, +aix/6.1.0.0/ppc/parent:
+  Adding AIX-6.1 profiles
+
   30 Dec 2008; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   Mask aqua USE-flag for app-editors/emacs-cvs on request of pipping
 
