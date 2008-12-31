@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pexpect
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.37 2008/07/11 05:57:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.38 2008/12/31 02:46:17 bluebird Exp $
+
+  31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> pexpect-2.3.ebuild:
+  Stable on sparc, bug #252761
 
   09 Jul 2008; Markus Rothe <corsair@gentoo.org> pexpect-2.3.ebuild:
   Stable on ppc64; bug #212241
