@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.227 2008/12/26 12:48:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.228 2008/12/30 18:52:14 armin76 Exp $
+
+  30 Dec 2008; Raúl Porcel <armin76@gentoo.org> emacs-cvs-23.0.9999.ebuild:
+  Add ~arm/~s390 wrt #238712
 
 *emacs-cvs-23.0.60_pre20081226 (26 Dec 2008)
 
