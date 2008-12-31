@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21-r1.ebuild,v 1.1 2008/12/24 16:19:24 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21-r1.ebuild,v 1.2 2008/12/31 03:30:28 mr_bones_ Exp $
 
 EAPI="prefix 2"
 
@@ -37,7 +37,7 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	dev-util/pkgconfig
 	X? ( x11-proto/xproto )
-	xv? ( x11-proto/videoproto 
+	xv? ( x11-proto/videoproto
 		x11-proto/xextproto
 		x11-proto/xproto )
 	v4l? ( virtual/os-headers )
