@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.35 2008/12/27 04:59:14 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.36 2008/12/30 15:58:25 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  no-multilib/package.mask:
+  Unmasked vmware-workstation-6.5 on no-multilib
 
   27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
   Add header to package.use.mask and mask USE=static for

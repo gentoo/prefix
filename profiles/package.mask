@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9343 2008/12/30 01:16:31 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9347 2008/12/31 03:50:01 fuzzyray Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Paul Varner <fuzzyray@gentoo.org> (31 Dec 2008)
+# Masked due to being broken with portage 2.1 and 2.2.
+# Users can use either the unstable versions or switch to app-portage/eix
+=app-portage/esearch-0.7.1
+
+# Ben de Groot <yngwin@gentoo.org> (31 Dec 2008)
+# Masked due to security issues, bug 251017, pending removal
+~media-video/mplayer-1.0_rc2_p27725
 
 # Torsten Veller <tove@gentoo.org> (29 Dec 2008)
 # Unmaintained net-mail packages
@@ -713,10 +722,6 @@ dev-db/pgst
 # Masked until somebody picks it up
 dev-cpp/bakery
 
-# Diego Pettenò <flameeyes@gentoo.org> (11 May 2008)
-# Release candidate version, masked for testing.
-=app-admin/sudo-1.7.0_rc*
-
 # Ulrich Mueller <ulm@gentoo.org> (10 May 2008)
 # LessTif is unsupported since it has open issues with several packages.
 # See bug 193505 and bug 204249. You are on your own here.
@@ -923,7 +928,6 @@ games-fps/quake4-demo
 # https://bugs.gentoo.org/show_bug.cgi?id=211166
 www-apps/joomla
 www-apps/mambo
-www-apps/wordpress
 www-apps/xoops
 
 # Alon Bar-Lev <alonbl@gentoo.org> (23 Feb 2008)
@@ -1274,7 +1278,6 @@ games-strategy/ufo2000
 # use these versions by adding "**" for them in package.keywords.
 ~media-sound/alsa-driver-9999
 ~media-sound/alsa-headers-9999
-~media-sound/alsa-lib-9999
 
 # Raúl Porcel <armin76@gentoo.org> (24 Jan 2007)
 # Mask cvs version of net-p2p/linuxdcpp

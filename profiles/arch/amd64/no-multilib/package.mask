@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.16 2008/12/26 08:01:24 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.17 2008/12/30 15:58:25 angelos Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -22,7 +22,7 @@ app-emulation/vmware-dsp
 app-emulation/vmware-player
 app-emulation/vmware-server
 app-emulation/vmware-server-console
-app-emulation/vmware-workstation
+<app-emulation/vmware-workstation-6.5
 app-emulation/winex-transgaming
 app-i18n/kurso-de-esperanto
 app-office/mozilla-sunbird-bin
