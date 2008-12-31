@@ -152,7 +152,9 @@ src_compile() {
 		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
 	# make sure we never do multilib stuff, for that we need a different Prefix
-	myconf="${myconf} --disable-multilib"
+	[[ -z ${I_KNOW_WHAT_IM_DOING_I_WANT_APPLE_MULTILIB} ]] \
+		&& myconf="${myconf} --disable-multilib"
+
 
 	#libstdcxx does not support this one
 	local gccconf="${myconf} --enable-languages=${langs}"
