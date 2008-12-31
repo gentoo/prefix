@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.22.3.ebuild,v 1.8 2008/12/01 23:45:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.22.3.ebuild,v 1.9 2008/12/31 03:26:31 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc"
 
-# FIXME: Python deps are needed for gnome-about but not 
+# FIXME: Python deps are needed for gnome-about but not
 # listed in configure.ac
 RDEPEND=">=dev-libs/libxml2-2.4.20
 	>=x11-libs/gtk+-2.11.3
