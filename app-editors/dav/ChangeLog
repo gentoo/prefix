@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/dav
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/dav/ChangeLog,v 1.11 2007/03/12 18:29:52 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/dav/ChangeLog,v 1.12 2008/12/30 18:35:33 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  +files/dav-0.8.5-asneeded.patch, dav-0.8.5.ebuild:
+  QA: Respect LDFLAGS and CC (bug 243556), fixed building with --as-needed
+  (bug 246881)
 
   12 Mar 2007; Raúl Porcel <armin76@gentoo.org> dav-0.8.5.ebuild:
   x86 stable
