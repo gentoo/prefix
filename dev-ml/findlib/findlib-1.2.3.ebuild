@@ -1,11 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.3.ebuild,v 1.1 2008/11/15 12:11:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.3.ebuild,v 1.2 2008/12/31 03:20:04 mr_bones_ Exp $
 
 EAPI="prefix 2"
 
 inherit multilib
-
 
 RESTRICT="installsources"
 
