@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/features/ChangeLog,v 1.10 2008/12/27 05:09:36 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/ChangeLog,v 1.11 2008/12/30 15:58:16 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  64bit-native/package.mask:
+  Unmasked vmware-workstation-6.5 on 64bit-native
 
   27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> 64bit-native/package.mask:
   Unmask media-video/dvdrip on no-multilib profiles based on Michael Lange's
