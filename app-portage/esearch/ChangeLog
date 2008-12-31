@@ -1,6 +1,17 @@
 # ChangeLog for app-portage/esearch
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.52 2008/12/30 05:29:12 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.54 2008/12/31 05:11:19 fuzzyray Exp $
+
+*esearch-0.7.1-r6 (31 Dec 2008)
+
+  31 Dec 2008; Paul Varner <fuzzyray@gentoo.org>
+  +files/231223-fix-deprecated.patch, +files/253216-fix-ebuild-option.patch,
+  +esearch-0.7.1-r6.ebuild:
+  Fix deprecation warning when using --verbose and fix traceback when using
+  --ebuild. (Bugs 231223 and 253216)
+
+  31 Dec 2008; Jeremy Olexa <darkside@gentoo.org> esearch-0.7.1.ebuild:
+  reverted amd64 kw due to bug 253172
 
 *esearch-0.7.1-r5 (30 Dec 2008)
 
