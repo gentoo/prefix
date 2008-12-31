@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/dvorak7min
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/dvorak7min/ChangeLog,v 1.12 2008/02/03 15:24:05 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/dvorak7min/ChangeLog,v 1.13 2008/12/30 19:46:34 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org> dvorak7min-1.6.1.ebuild:
+  QA: Respect CC (bug 243634) and CFLAGS (bug 240069)
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> dvorak7min-1.6.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
