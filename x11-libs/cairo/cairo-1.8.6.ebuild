@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.6.ebuild,v 1.1 2008/12/24 17:17:57 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.6.ebuild,v 1.2 2008/12/30 17:11:09 cardoe Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug directfb doc glitz opengl svg X xcb aqua"
+IUSE="cleartype debug directfb doc glitz opengl svg X xcb aqua"
 
 # Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
 RESTRICT="test"
@@ -60,6 +60,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# ClearType-like patches applied by ArchLinux
+	use cleartype && epatch "${FILESDIR}"/cairo-1.2.4-lcd-cleartype-like.diff
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	elibtoolize

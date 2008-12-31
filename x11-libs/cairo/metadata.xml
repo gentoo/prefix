@@ -10,6 +10,8 @@
   <email>compnerd@gentoo.org</email>
 </maintainer>
 <use>
+	<flag name='cleartype'>Add ClearType-style behavior for sub-pixel hinting.
+		Patch taken from Arch Linux</flag>
 	<flag name='glitz'>Build with glitz support, which replaces some software
 		render operations with Mesa OpenGL operations</flag>
 	<flag name='opengl'>When used along with USE=glitz, enables glitz-glx usage.
