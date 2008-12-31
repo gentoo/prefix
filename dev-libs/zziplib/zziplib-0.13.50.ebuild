@@ -21,7 +21,7 @@ RDEPEND=">=dev-lang/python-2.3
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	test? ( app-arch/zip )
-	kernel_Darwin? ( app-text/docbook-xml-dtd:4.1.2 app-text/xmlto )"
+	kernel_Darwin? ( app-text/xmlto )"
 
 src_unpack() {
 	unpack ${A}
