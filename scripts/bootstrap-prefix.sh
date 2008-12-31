@@ -299,6 +299,11 @@ bootstrap_portage() {
 
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
+
+	# Some people will skip the tree() step and hence var/log is not created 
+	# As such, portage complains..
+	[[ ! -d $EPREFIX/var/log ]] && mkdir ${EPREFIX}/var/log
+
 	einfo "${A%-*} successfully bootstrapped"
 }
 
