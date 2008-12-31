@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3-r1.ebuild,v 1.1 2008/11/13 17:25:54 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3-r1.ebuild,v 1.2 2008/12/31 03:26:50 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -55,7 +55,7 @@ src_unpack() {
 	# Get rid of random asserts in tons of programs due to development versions
 	epatch "${FILESDIR}/${PN}-2.19.2-no-asserts.patch"
 
-	# Spawn GSD instead of relying on D-Bus, as this falls down quite 
+	# Spawn GSD instead of relying on D-Bus, as this falls down quite
 	# spectacularly on SMP systems (bug #239293)
 	epatch "${FILESDIR}/${P}-gsd-spawn.patch"
 	eautoreconf
