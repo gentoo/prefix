@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/bsign
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/bsign/ChangeLog,v 1.9 2007/10/13 17:51:36 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/bsign/ChangeLog,v 1.10 2008/12/30 17:50:04 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org> bsign-0.4.5.ebuild:
+  QA: Respect CC/CXX (bug 243536), respect CFLAGS and install the unstripped
+  bsign
 
   13 Oct 2007; Christian Heim <phreak@gentoo.org> bsign-0.4.5.ebuild:
   Updating the HOMEPAGE, fixing #191330.
