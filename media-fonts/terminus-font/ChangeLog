@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/terminus-font
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.64 2008/12/28 17:19:27 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.65 2008/12/30 23:49:40 bluebird Exp $
+
+  30 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  terminus-font-4.28.ebuild:
+  Stable on sparc, bug #252648
 
   28 Dec 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   terminus-font-4.28.ebuild:
