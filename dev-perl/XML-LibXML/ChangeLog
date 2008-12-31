@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/XML-LibXML
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/ChangeLog,v 1.91 2008/11/21 09:40:54 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/ChangeLog,v 1.92 2008/12/30 16:26:19 tove Exp $
+
+  30 Dec 2008; Torsten Veller <tove@gentoo.org> -XML-LibXML-1.65.ebuild,
+  -XML-LibXML-1.66.ebuild:
+  Cleanup
 
 *XML-LibXML-1.69 (21 Nov 2008)
 
