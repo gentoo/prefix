@@ -346,7 +346,7 @@ prep_gcc-fsf() {
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
-	efetch ${GNU_URL}/gcc/gcc-${GCC_PV}/${GCC_A}
+	efetch ${GENTOO_MIRROR}/${GCC_A}
 
 }
 
@@ -371,6 +371,7 @@ bootstrap_gcc() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
+	einfo "Unpacking ${GCC_A}"
 	$TAR ${TAROPTS} "${DISTDIR}"/${GCC_A} || exit 1
 
 	rm -rf "${S}"/build
