@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.19.ebuild,v 1.2 2008/12/09 12:08:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.19.ebuild,v 1.4 2008/12/31 02:46:42 darkside Exp $
 
 EAPI="prefix"
 
