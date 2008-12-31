@@ -397,6 +397,7 @@ bootstrap_gcc() {
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
+	einfo "${GCC_A%-*} successfully bootstrapped"
 }
 
 bootstrap_gnu() {
