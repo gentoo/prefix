@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/DBD-mysql
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-mysql/ChangeLog,v 1.94 2008/12/08 02:11:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-mysql/ChangeLog,v 1.95 2008/12/30 15:57:58 tove Exp $
+
+  30 Dec 2008; Torsten Veller <tove@gentoo.org> -files/sqlstate-purge.patch,
+  -DBD-mysql-2.9007.ebuild, -DBD-mysql-4.00.7.ebuild,
+  -DBD-mysql-4.00.8.ebuild:
+  Cleanup
 
 *DBD-mysql-4.01.0 (08 Dec 2008)
 
