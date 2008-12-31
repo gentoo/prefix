@@ -20,7 +20,8 @@ RDEPEND=">=dev-lang/python-2.3
 	sdl? ( >=media-libs/libsdl-1.2.6 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	test? ( app-arch/zip )"
+	test? ( app-arch/zip )
+	kernel_Darwin? ( app-text/docbook-xml-dtd:4.1.2 app-text/xmlto )"
 
 src_unpack() {
 	unpack ${A}
@@ -51,4 +52,9 @@ src_install() {
 	emake DESTDIR="${D}" install install-man3 || die "make install failed"
 	dodoc ChangeLog README TODO
 	dohtml docs/*
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# I really got tired of this package, bug #240566
+		rm "${ED}"/usr/$(get_libdir)/libzzip\*.so.{10,11,12}
+	fi
 }
