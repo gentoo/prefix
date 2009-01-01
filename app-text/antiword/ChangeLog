@@ -1,6 +1,9 @@
 # ChangeLog for app-text/antiword
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/ChangeLog,v 1.38 2008/08/16 17:03:07 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/ChangeLog,v 1.39 2008/12/30 20:56:25 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org> antiword-0.37.ebuild:
+  QA: Respect CC (bug 243708), respect LDFLAGS
 
   16 Aug 2008; Torsten Veller <tove@gentoo.org> metadata.xml:
   Remove pclouds from metadata.xml (#49680)
