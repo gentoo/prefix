@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.50.ebuild,v 1.1 2008/12/27 19:44:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.50.ebuild,v 1.2 2008/12/31 22:40:02 vapier Exp $
 
 EAPI="prefix"
 
-inherit libtool fixheadtails eutils
+inherit libtool fixheadtails eutils flag-o-matic
 
 DESCRIPTION="Lightweight library used to easily extract data from files archived in a single zip file"
 HOMEPAGE="http://zziplib.sourceforge.net/"
@@ -38,6 +38,7 @@ src_unpack() {
 }
 
 src_compile() {
+	use sparc && append-flags -DZZIP_HAVE_ALIGNED_ACCESS_REQUIRED
 	econf $(use_enable sdl) || die
 	emake || die "emake failed"
 }

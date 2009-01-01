@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.55 2008/12/30 15:28:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.57 2008/12/31 22:40:02 vapier Exp $
+
+  31 Dec 2008; Mike Frysinger <vapier@gentoo.org>
+  files/zziplib-0.13.50-sparc-aligned-access.patch, zziplib-0.13.50.ebuild:
+  Update by Friedrich Oslage to use ZZIP_HAVE_ALIGNED_ACCESS_REQUIRED.
+
+  31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  zziplib-0.13.49-r1.ebuild:
+  Stable on sparc, bug #252736
 
   30 Dec 2008; Brent Baude <ranger@gentoo.org> zziplib-0.13.49-r1.ebuild:
   stable ppc64, bug 252736

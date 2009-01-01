@@ -1,12 +1,13 @@
-XXX: should investigate ZZIP_HAVE_ALIGNED_ACCESS_REQUIRED
-
 This patch for zziplib (0.13.50) fixes a bus error on Linux/SPARC.
 
 Since SPARC machines are big endian and zip files are stored in little endian,
 zziplib needs to do byte swapping. On GNU/Linux this is usually done using
 glibc's bswap_{16,32,64} functions but in this case calling one of these
-functions triggers a bus error. This patch makes zziplib use it's own byte
-swapping functions (which do work) on Linux/SPARC instead of glibc's.
+functions triggers a bus error. This patch completes upstreams work to
+implement ZZIP_HAVE_ALIGNED_ACCESS_REQUIRED for machines which required aligned
+access.
+After applying the patch zziplib needs to be compiled with
+-DZZIP_HAVE_ALIGNED_ACCESS_REQUIRED
 
 To reproduce it run (in the src dir):
 	cd Linux_*_sparc64.d && ./bins/zzcat test/test/README
@@ -26,18 +27,7 @@ http://bugs.gentoo.org/239472
  
  #if defined ZZIP_WORDS_BIGENDIAN && \
 -   defined bswap_16 && defined bswap_32 && defined bswap_64
-+   defined bswap_16 && defined bswap_32 && defined bswap_64 && !defined(__sparc__)
++   defined bswap_16 && defined bswap_32 && defined bswap_64 && !defined(ZZIP_HAVE_ALIGNED_ACCESS_REQUIRED)
  # define __ZZIP_GET16(__p)                        bswap_16(*(uint16_t*)(__p))
  # define __ZZIP_GET32(__p)                        bswap_32(*(uint32_t*)(__p))
  # define __ZZIP_SET16(__p,__x) (*(uint16_t*)(__p) = bswap_16((uint16_t)(__x)))
---- zzip/fetch.h
-+++ zzip/fetch.h
-@@ -24,7 +24,7 @@ extern uint64_t __zzip_get64(zzip_byte_t * s) __zzip_attribute__((const));
- extern void     __zzip_set64(zzip_byte_t * s, uint64_t v);
- 
- #ifdef ZZIP_WORDS_BIGENDIAN
--# if defined bswap_16 && defined bswap_32 && defined bswap_64 /* i.e. linux */
-+# if defined bswap_16 && defined bswap_32 && defined bswap_64 && !defined(__sparc__) /* i.e. linux */
- # ifndef ZZIP_HAVE_ALIGNED_ACCESS_REQUIRED
- # define _ZZIP_USE_BSWAP
- # endif
