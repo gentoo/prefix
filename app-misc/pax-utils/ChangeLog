@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/pax-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.106 2008/12/31 02:46:42 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.107 2008/12/31 18:16:46 bluebird Exp $
+
+  31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  pax-utils-0.1.19.ebuild:
+  Stable on sparc, bug #253124
 
   31 Dec 2008; Jeremy Olexa <darkside@gentoo.org> pax-utils-0.1.19.ebuild:
   amd64 stable, bug 253124
