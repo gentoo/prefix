@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/hunspell-1.2.7.ebuild,v 1.2 2008/09/26 06:13:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/hunspell-1.2.7.ebuild,v 1.3 2008/12/30 18:48:24 armin76 Exp $
 
 EAPI="prefix"
 

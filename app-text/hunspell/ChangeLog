@@ -1,6 +1,9 @@
 # ChangeLog for app-text/hunspell
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.52 2008/12/26 19:04:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/ChangeLog,v 1.53 2008/12/30 18:48:24 armin76 Exp $
+
+  30 Dec 2008; Raúl Porcel <armin76@gentoo.org> hunspell-1.2.7.ebuild:
+  arm stable
 
   26 Dec 2008; Jeroen Roovers <jer@gentoo.org> hunspell-1.2.6.ebuild:
   Stable for HPPA (bug #234646).
