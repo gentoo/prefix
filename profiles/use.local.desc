@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4087 2008/12/30 17:27:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4088 2008/12/31 10:07:47 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1755,16 +1755,26 @@ net-analyzer/scanlogd:nids - Use net-libs/libnids for packet capturing
 net-analyzer/scanlogd:pcap - Use net-libs/libpcap for packet capturing
 net-analyzer/scapy:pyx - Enable dev-python/pyx support for psdump/pdfdump commands
 net-analyzer/scapy:visual - Enable dev-python/visual support for 3d graphs
+net-analyzer/snort:aruba - Enable Aruba support
+net-analyzer/snort:community-rules - Include Community rules
+net-analyzer/snort:decoder-preprocessor-rules - 
 net-analyzer/snort:dynamicplugin - Enable ability to dynamically load preprocessors, detection engine, and rules library
 net-analyzer/snort:flexresp - Enable new connection tearing (not recommended)
 net-analyzer/snort:flexresp2 - Enable new connection tearing
 net-analyzer/snort:gre - Enable GRE support
 net-analyzer/snort:inline - Enable snort-inline for accepting packets from net-firewall/iptables, via libipq, rather than net-libs/libpcap.
+net-analyzer/snort:inline-init-failopen - Enable inline-init-failopen support
 net-analyzer/snort:linux-smp-stats - Enable statistics reporting through proc on smp systems
+net-analyzer/snort:memory-cleanup - Enable memory-cleanup support
+net-analyzer/snort:mpls - Enable support for mpls networks
 net-analyzer/snort:perfprofiling - Enable preprocessor and rule performance profiling
+net-analyzer/snort:ppm - Enable ppm support
 net-analyzer/snort:react - Enable interception and termination of offending HTTP accesses
+net-analyzer/snort:ruleperf - Enable ruleperf support
 net-analyzer/snort:sguil - Enable sguil (The Analyst Console for Network Security Monitoring) support
 net-analyzer/snort:snortsam - patches net-analyzer/snort for use with net-analyzer/snortsam
+net-analyzer/snort:stream4udp - Enable stream4udp support
+net-analyzer/snort:targetbased - Enable targetbased support
 net-analyzer/snort:timestats - Enable TimeStats functionality
 net-analyzer/symon:perl - Enables a generic perl symux client
 net-analyzer/symon:symon - Enables the lightweight system monitor. Offers no functionality but monitoring and forwarding of measured data

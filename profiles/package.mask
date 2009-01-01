@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9347 2008/12/31 03:50:01 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9349 2008/12/31 16:38:52 jmbsvicetto Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Paul Varner <fuzzyray@gentoo.org> (31 Dec 2008)
+# Masked for testing of echangelog subversion/git support. Bug 176337
+=app-portage/gentoolkit-dev-0.2.6.9
 
 # Paul Varner <fuzzyray@gentoo.org> (31 Dec 2008)
 # Masked due to being broken with portage 2.1 and 2.2.
@@ -268,6 +272,7 @@ mail-client/claws-mail-smime
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (02 Dec 2008)
 # Added patch to enable compiz to build with the snapshots for KDE 4.2 /
 # live ebuilds. This revision is masked until 4.2 is added to the tree
+=x11-wm/compiz-0.7.8-r2
 =x11-wm/compiz-0.7.8-r1
 
 # Jeremy Olexa <darkside@gentoo.org> (02 Dec 2008)
