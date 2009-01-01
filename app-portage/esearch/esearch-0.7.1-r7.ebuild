@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r5.ebuild,v 1.1 2008/12/30 05:29:12 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r7.ebuild,v 1.1 2009/01/01 02:39:33 fuzzyray Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit base eutils
 
 DESCRIPTION="Replacement for 'emerge --search' with search-index"
 HOMEPAGE="http://david-peter.de/esearch.html"
@@ -18,6 +18,16 @@ IUSE="linguas_it"
 RDEPEND=">=dev-lang/python-2.2
 	>=sys-apps/portage-2.0.50"
 
+PATCHES=( "${FILESDIR}"/97462-esearch-metadata.patch
+	"${FILESDIR}"/97969-ignore-missing-ebuilds.patch
+	"${FILESDIR}"/120817-unset-emergedefaultopts.patch
+	"${FILESDIR}"/124601-remove-deprecated-syntax.patch
+	"${FILESDIR}"/132548-multiple-overlay.patch
+	"${FILESDIR}"/231223-fix-deprecated.patch
+	"${FILESDIR}"/253216-fix-ebuild-option.patch
+	"${FILESDIR}"/186994-esync-quiet.patch
+	"${FILESDIR}"/146555-esearch-manifest2.patch )
+
 pkg_setup() {
 	if ! built_with_use dev-lang/python readline ; then
 		eerror "Python has to be build with 'readline' support!"
@@ -28,16 +38,7 @@ pkg_setup() {
 	fi
 }
 
-src_compile() {
-	epatch "${FILESDIR}/97462-esearch-metadata.patch" || die "Failed to patch sources!"
-	epatch "${FILESDIR}/97969-ignore-missing-ebuilds.patch" || die "Failed to patch sources!"
-	epatch "${FILESDIR}/120817-unset-emergedefaultopts.patch" || die "Failed to patch sources!"
-	epatch "${FILESDIR}/132548-multiple-overlay.patch" || die "Failed to patch sources!"
-	epatch "${FILESDIR}/244450-deprecated.patch" || die "Failed to patch sources!"
-	echo "Fixing deprecated emerge syntax."
-	sed -i -e 's:/usr/bin/emerge sync:/usr/bin/emerge --sync:g' esync.py
-
-}
+src_compile() { :; }
 
 src_install() {
 	dodir /usr/bin/ /usr/sbin/ || die "dodir failed"

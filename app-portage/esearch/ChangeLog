@@ -1,6 +1,17 @@
 # ChangeLog for app-portage/esearch
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.54 2008/12/31 05:11:19 fuzzyray Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.55 2009/01/01 02:39:33 fuzzyray Exp $
+
+*esearch-0.7.1-r7 (01 Jan 2009)
+
+  01 Jan 2009; Paul Varner <fuzzyray@gentoo.org>
+  +files/146555-esearch-manifest2.patch, +files/186994-esync-quiet.patch,
+  -files/105234-fix-2.1-cache.patch,
+  files/124601-remove-deprecated-syntax.patch,
+  -files/244450-deprecated.patch, files/97462-esearch-metadata.patch,
+  -esearch-0.7.1-r5.ebuild, +esearch-0.7.1-r7.ebuild:
+  Update ebuild to use the base eclass. Add patches for manifest2 support
+  (Bug #146555) and add a --quiet option to esync (Bug #186994).
 
 *esearch-0.7.1-r6 (31 Dec 2008)
 
