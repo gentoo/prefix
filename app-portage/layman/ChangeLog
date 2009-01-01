@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/layman
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.64 2008/12/29 19:47:02 wrobel Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.65 2009/01/01 05:36:40 wrobel Exp $
+
+  01 Jan 2009; Gunnar Wrobel <wrobel@gentoo.org> -layman-1.0.6.ebuild,
+  -layman-1.0.10.ebuild:
+  Removed old app-portage/layman-{1.0.6,1.0.10} with bad download locations.
 
   29 Dec 2008; Gunnar Wrobel <wrobel@gentoo.org> Manifest:
   Manifest
