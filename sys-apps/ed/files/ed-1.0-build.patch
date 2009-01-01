@@ -1,6 +1,10 @@
+http://lists.gnu.org/archive/html/bug-ed/2008-12/msg00002.html
+
 2008-09-03  Doug Goldstein  <cardoe@gentoo.org>
 	* Make red man page a symlink instead of a hard link
 	* install man pages by default
+
+http://lists.gnu.org/archive/html/bug-ed/2008-12/msg00001.html
 
 2007-04-16  Mike Frysinger  <vapier@gentoo.org>
 
@@ -9,9 +13,8 @@
 	  override if they so choose.
 	* Only set CFLAGS/CXXFLAGS if user did not specify any.
 
-diff -u ed-1.0/configure ed-1.0-new-patch/configure
---- ed-1.0/configure	2008-08-21 14:34:24.000000000 -0400
-+++ ed-1.0-new-patch/configure	2008-09-03 10:33:16.000000000 -0400
+--- ed-1.0/configure
++++ ed-1.0/configure
 @@ -14,6 +14,19 @@
  progversion=1.0
  srctrigger=ed.h
@@ -50,20 +53,18 @@ diff -u ed-1.0/configure ed-1.0-new-patch/configure
  done
  
 +# Defaults if the user did not select any
-+if [ x"${CFLAGS}" = x ] ; then
++if [ x"${CFLAGS+set}" != xset ] ; then
 +	CFLAGS='-Wall -W -O2'
 +fi
-+if [ x"${CXXFLAGS}" = x ] ; then
++if [ x"${CXXFLAGS+set}" != xset ] ; then
 +	CXXFLAGS='-Wall -W -O2'
 +fi
 +
  # Find the source files, if location was not specified.
  srcdirtext=
  if [ x"${srcdir}" = x ] ; then
-Common subdirectories: ed-1.0/doc and ed-1.0-new-patch/doc
-diff -u ed-1.0/Makefile.in ed-1.0-new-patch/Makefile.in
---- ed-1.0/Makefile.in	2008-05-04 11:57:10.000000000 -0400
-+++ ed-1.0-new-patch/Makefile.in	2008-09-03 10:38:37.000000000 -0400
+--- ed-1.0/Makefile.in
++++ ed-1.0/Makefile.in
 @@ -44,11 +44,11 @@
  check : $(progname) $(VPATH)/testsuite/check.sh
  	@$(VPATH)/testsuite/check.sh $(VPATH)/testsuite
@@ -87,4 +88,3 @@ diff -u ed-1.0/Makefile.in ed-1.0-new-patch/Makefile.in
  
  install-strip : all
  	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' install
-Common subdirectories: ed-1.0/testsuite and ed-1.0-new-patch/testsuite

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-0.8.ebuild,v 1.9 2007/12/11 10:19:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-1.1.ebuild,v 1.1 2008/12/31 09:38:42 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,15 +12,16 @@ SRC_URI="mirror://gnu/ed/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="sys-apps/texinfo"
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.5-build.patch
+	epatch "${FILESDIR}"/${PN}-1.0-build.patch
 }
 
 src_compile() {
@@ -36,7 +37,5 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	doman doc/ed.1
-	dosym ed.1 /usr/share/man/man1/red.1
 	dodoc AUTHORS ChangeLog NEWS README TODO
 }
