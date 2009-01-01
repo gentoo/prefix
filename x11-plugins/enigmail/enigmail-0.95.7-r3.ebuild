@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.6-r4.ebuild,v 1.6 2008/08/04 15:03:30 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r3.ebuild,v 1.1 2008/12/31 15:28:14 armin76 Exp $
 
 EAPI="prefix"
 
@@ -8,12 +8,12 @@ WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils nsplugins mozcoreconf mozextension makeedit multilib autotools
 
-LANGS="de el es-ES nb-NO pt-BR zh-CN"
-NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sl-SI sv-SE tr-TR zh-TW"
+LANGS="ar de el es-ES nb-NO pt-BR zh-CN"
+NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sk-SK sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
-TBVER="2.0.0.16"
-TBPATCH="2.0.0.14-patches-0.1"
+TBVER="2.0.0.19"
+TBPATCH="2.0.0.16-patches-0.1"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
 HOMEPAGE="http://enigmail.mozdev.org"
@@ -78,6 +78,14 @@ linguas() {
 	done
 }
 
+pkg_setup() {
+	if has_version '>=app-crypt/gnupg-2.0.1-r2'; then
+		if ! built_with_use -o app-crypt/pinentry gtk qt3; then
+			die "You must build app-crypt/pinentry with GTK or QT3 support"
+		fi
+	fi
+}
+
 src_unpack() {
 	unpack thunderbird-${TBVER}-source.tar.bz2 mozilla-thunderbird-${TBPATCH}.tar.bz2 || die "unpack failed"
 
@@ -128,6 +136,12 @@ src_compile() {
 		--with-system-nss \
 		--with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME} \
 		--with-user-appdir=.thunderbird
+
+	# Bug 246421
+	# Breaks builds with gcc-4.3 on amd64
+	if use amd64 && [[ $(gcc-version) == "4.3" ]]; then
+		mozconfig_annotate 'gcc-4.3 breaks build on amd64 with -O2+' --enable-optimize=-Os
+	fi
 
 	# Finalize and report settings
 	mozconfig_final
