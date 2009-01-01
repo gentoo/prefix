@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.59 2008/12/27 18:49:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.60 2008/12/31 19:54:49 bluebird Exp $
+
+  31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
+  autoconf-wrapper-6.ebuild:
+  Stable on sparc, bug #245067
 
   27 Dec 2008; Brent Baude <ranger@gentoo.org> autoconf-wrapper-6.ebuild:
   stable ppc64, bug 245067
