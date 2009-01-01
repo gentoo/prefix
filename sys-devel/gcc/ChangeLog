@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.673 2008/12/29 23:04:15 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.674 2008/12/31 21:33:46 solar Exp $
+
+  31 Dec 2008; <solar@gentoo.org> gcc-4.3.2-r2.ebuild:
+  - specs bump
 
   29 Dec 2008; Javier Villavicencio <the_paya@gentoo.org>
   gcc-4.3.2-r2.ebuild:
