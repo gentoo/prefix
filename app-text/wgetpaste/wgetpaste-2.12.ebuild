@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/wgetpaste-2.12.ebuild,v 1.6 2008/12/14 13:29:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/wgetpaste-2.12.ebuild,v 1.7 2008/12/31 18:34:05 armin76 Exp $
 
 EAPI="prefix"
 
