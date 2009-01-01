@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.58 2008/04/25 21:21:54 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.59 2008/12/31 21:47:20 fuzzyray Exp $
+
+*gentoolkit-dev-0.2.6.9 (31 Dec 2008)
+
+  31 Dec 2008; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-dev-0.2.6.9.ebuild:
+  Version bump to update echangelog with better subversion/git support
 
   25 Apr 2008; <ricmm@gentoo.org> gentoolkit-dev-0.2.6.2.ebuild:
   Drop to ~mips due to unstable deps
