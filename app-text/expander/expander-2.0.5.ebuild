@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/expander/expander-2.0.5.ebuild,v 1.8 2008/01/25 19:36:19 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/expander/expander-2.0.5.ebuild,v 1.9 2008/12/30 21:43:53 angelos Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Expander is a utility that acts as a filter for text editors."
 HOMEPAGE="http://www.nedit.org"
@@ -21,14 +21,14 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-gentoo.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gentoo.patch
 
 }
 
 src_compile() {
 	cd src
-	make || die "make failed"
+	emake compiler="$(tc-getCC) ${CFLAGS}" || die "make failed"
 }
 
 src_install() {
@@ -37,22 +37,22 @@ src_install() {
 	dosym /usr/bin/boxcomment /usr/bin/unboxcomment
 
 	insinto /usr/share/${P}
-	doins ${S}/service
+	doins "${S}"/service
 	for x in defs macros misc templates ; do
 		insinto /usr/share/${P}/${x}
-		doins ${S}/${x}/*
+		doins "${S}"/${x}/*
 	done
 
-	cd ${S}/docs
+	cd "${S}"/docs
 	doman *.1
 
-	cd ${S}
+	cd "${S}"
 	dodoc ChangeLog INSTALL README USAGE
 }
 
 pkg_postinst() {
 	elog
-	elog "Instructions for using expander with NEdit are in /usr/share/doc/${P}/INSTALL"
+	elog "Instructions for using expander with NEdit are in /usr/share/doc/${PF}/INSTALL"
 	elog "Macro, definition and template files can be found in /usr/share/${P}"
 	elog
 }
