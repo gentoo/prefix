@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.75 2008/12/31 00:23:24 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.76 2008/12/31 16:23:31 armin76 Exp $
+
+  31 Dec 2008; Raúl Porcel <armin76@gentoo.org> bzr-1.9.ebuild:
+  x86 stable wrt #252656
 
   31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> bzr-1.9.ebuild:
   Stable on sparc, bug #252656
