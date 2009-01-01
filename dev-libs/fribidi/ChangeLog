@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/fribidi
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.32 2007/12/11 22:48:06 matsuu Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.33 2009/01/01 03:36:41 matsuu Exp $
+
+*fribidi-0.19.1 (01 Jan 2009)
+
+  01 Jan 2009; MATSUU Takuto <matsuu@gentoo.org>
+  -files/fribidi-0.10.5-darwin.patch, -fribidi-0.10.5.ebuild,
+  +fribidi-0.19.1.ebuild:
+  Version bumped. Removed old version.
 
 *fribidi-0.10.9 (11 Dec 2007)
 
