@@ -1,6 +1,9 @@
 # ChangeLog for app-text/o3read
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.14 2008/10/18 15:06:48 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.15 2008/12/30 21:36:23 angelos Exp $
+
+  30 Dec 2008; Christoph Mende <angelos@gentoo.org> o3read-0.0.4.ebuild:
+  QA: Respect CC (bug 243738), respect CFLAGS (bug 240139), fix test suite
 
   18 Oct 2008; nixnut <nixnut@gentoo.org> o3read-0.0.4.ebuild:
   Stable on ppc wrt bug 233424
