@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.186 2008/11/20 20:57:20 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.187 2008/12/31 18:35:24 bluebird Exp $
+
+  31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> bash-3.2_p39.ebuild:
+  Stable on sparc, bug #235020
 
 *bash-3.2_p48 (20 Nov 2008)
 
