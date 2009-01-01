@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/sazanami
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/sazanami/ChangeLog,v 1.15 2008/01/15 18:04:48 grobian Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/sazanami/ChangeLog,v 1.16 2009/01/01 04:35:47 matsuu Exp $
+
+  01 Jan 2009; MATSUU Takuto <matsuu@gentoo.org> -sazanami-20040621.ebuild:
+  Removed old version.
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> sazanami-20040629.ebuild:
   Dropped ppc-macos keyword, see you in prefix
