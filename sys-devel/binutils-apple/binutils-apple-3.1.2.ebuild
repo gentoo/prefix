@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -101,6 +101,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.1.1-no-efi-man.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1-no-headers.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1-no-oss-dir.patch
+	epatch "${FILESDIR}"/${PN}-3.1.2-as-Makefile.patch
 	cd "${S}"/${LD64}
 	epatch "${FILESDIR}"/${PN}-3.1.1-testsuite.patch
 
@@ -126,10 +127,6 @@ compile_cctools() {
 		COMMON_SUBDIRS='libstuff ar misc otool' \
 		RC_CFLAGS="${CFLAGS}" || die "emake failed for the cctools"
 	cd "${S}"/${CCTOOLS}/as
-	# the errors can be ignored
-	emake -k \
-		BUILD_OBSOLETE_ARCH= \
-		RC_CFLAGS="-DASLIBEXECDIR=\"\\\"${EPREFIX}${LIBPATH}/\\\"\" ${CFLAGS}"
 	emake \
 		BUILD_OBSOLETE_ARCH= \
 		RC_CFLAGS="-DASLIBEXECDIR=\"\\\"${EPREFIX}${LIBPATH}/\\\"\" ${CFLAGS}" \
