@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.4.ebuild,v 1.2 2008/12/07 11:57:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.4.ebuild,v 1.3 2008/12/31 21:48:56 cardoe Exp $
 
 EAPI="prefix"
 
@@ -81,7 +81,7 @@ src_compile() {
 		$(use_enable directfb) $(use_enable xcb) \
 		$(use_enable svg) $(use_enable glitz) $(use_enable X xlib-xrender) \
 		$(use_enable debug test-surfaces) --enable-pdf  --enable-png \
-		--enable-freetype --enable-ps \
+		--enable-ft --enable-ps \
 		$(use_enable aqua quartz) $(use_enable aqua atsui) \
 		|| die "configure failed"
 

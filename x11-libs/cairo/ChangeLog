@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.205 2008/12/30 17:11:09 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.206 2008/12/31 21:48:56 cardoe Exp $
+
+  31 Dec 2008; Doug Goldstein <cardoe@gentoo.org> cairo-1.8.0.ebuild,
+  cairo-1.8.2.ebuild, cairo-1.8.4.ebuild, cairo-1.8.6.ebuild:
+  --enable-freetype became --enable-ft. Forgot to update this a while back.
+  bug #253224
 
   30 Dec 2008; Doug Goldstein <cardoe@gentoo.org>
   +files/cairo-1.2.4-lcd-cleartype-like.diff, metadata.xml,
