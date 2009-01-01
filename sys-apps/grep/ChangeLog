@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/grep
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.78 2008/10/07 09:39:19 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.79 2008/12/31 16:35:44 the_paya Exp $
+
+  31 Dec 2008; Javier Villavicencio <the_paya@gentoo.org>
+  +files/grep-2.5.3-po-builddir-fix.patch, grep-2.5.3-r1.ebuild:
+  Fix for bug 238475.
 
   07 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
   +files/grep-2.5.3-yesno-test-fix.patch, grep-2.5.3-r1.ebuild:
