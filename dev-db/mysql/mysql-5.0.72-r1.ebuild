@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.72-r1.ebuild,v 1.3 2008/12/03 14:22:19 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.72-r1.ebuild,v 1.4 2008/12/31 03:18:12 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -94,7 +94,7 @@ src_test() {
 					"$t" \
 					"OpenSSL tests broken on 5.0.56"
 			done
-		
+
 		# New test was broken in first time
 		# Upstream bug 41066
 		# http://bugs.mysql.com/bug.php?id=41066
