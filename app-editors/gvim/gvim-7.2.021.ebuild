@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.021.ebuild,v 1.1 2008/09/19 18:53:19 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.021.ebuild,v 1.2 2009/01/04 22:43:51 ulm Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ DEPEND="${DEPEND}
 		x11-libs/libXext
 		gtk? (
 			>=x11-libs/gtk+-2.6
-			virtual/xft
+			x11-libs/libXft
 			gnome? ( >=gnome-base/libgnomeui-2.6 )
 		)
 		!gtk? (

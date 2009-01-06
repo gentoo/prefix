@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/gvim
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.283 2008/08/30 07:56:48 hawking Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.284 2009/01/04 22:43:51 ulm Exp $
+
+  04 Jan 2009; Ulrich Mueller <ulm@gentoo.org> gvim-7.0.235.ebuild,
+  gvim-7.1.123.ebuild, gvim-7.2.ebuild, gvim-7.2.021.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
 
   30 Aug 2008; Ali Polatel <hawking@gentoo.org> -gvim-6.4.ebuild,
   -gvim-7.1.042.ebuild, -gvim-7.1.164.ebuild, -gvim-7.1.213.ebuild,
