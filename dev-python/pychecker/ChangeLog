@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pychecker
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pychecker/ChangeLog,v 1.38 2008/09/01 22:03:58 hawking Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pychecker/ChangeLog,v 1.39 2009/01/04 19:46:19 patrick Exp $
+
+*pychecker-0.8.18 (04 Jan 2009)
+
+  04 Jan 2009; Patrick Lauer <patrick@gentoo.org>
+  +files/pychecker-0.8.18-pychecker2.patch, +pychecker-0.8.18.ebuild:
+  Bump to 0.8.18, fixes part of #216970, thanks to Frank Richter
 
 *pychecker-0.8.17-r1 (01 Sep 2008)
 
