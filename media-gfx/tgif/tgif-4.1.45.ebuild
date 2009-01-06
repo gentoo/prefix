@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.3 2008/02/19 01:46:18 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.4 2009/01/04 22:39:19 gentoofan23 Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,8 @@ src_compile() {
 }
 
 src_install() {
-	emake -f Makefile.noimake DESTDIR="${ED}" install || die "emake install failed"
+	emake -f Makefile.noimake CC=$(tc-getCC) DESTDIR="${ED}" install \
+		|| die "emake install failed"
 
 	## example-files
 	dodoc tgif.Xdefaults tgificon.eps tgificon.obj \

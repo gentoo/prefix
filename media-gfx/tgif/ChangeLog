@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/tgif
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.10 2008/02/19 01:46:18 ingmar Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.11 2009/01/04 22:39:19 gentoofan23 Exp $
+
+  04 Jan 2009; Thomas Anderson <gentoofan23@gentoo.org> tgif-4.1.45.ebuild:
+  QA: Respect CC in src_install: bug 244168
 
   19 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> tgif-4.1.45.ebuild:
   Update kde-base/* dependencies so that KDE 4 doesn't satisfy it. bug 206528.
