@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/grep
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.79 2008/12/31 16:35:44 the_paya Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.80 2009/01/04 21:07:46 the_paya Exp $
+
+  04 Jan 2009; Javier Villavicencio <the_paya@gentoo.org>
+  +files/grep-2.5.3-nls.patch, grep-2.5.3-r1.ebuild:
+  Fix compilation with -nls useflag. Bug 253777.
 
   31 Dec 2008; Javier Villavicencio <the_paya@gentoo.org>
   +files/grep-2.5.3-po-builddir-fix.patch, grep-2.5.3-r1.ebuild:

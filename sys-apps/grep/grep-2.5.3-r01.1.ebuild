@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.3-r1.ebuild,v 1.3 2008/12/31 16:35:44 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.3-r1.ebuild,v 1.4 2009/01/04 21:07:46 the_paya Exp $
 
 EAPI="prefix"
 
@@ -38,6 +38,7 @@ src_unpack() {
 	epatch ${P}~dfsg/debian/patches/
 	epatch "${FILESDIR}"/${P}-yesno-test-fix.patch
 	epatch "${FILESDIR}"/${P}-po-builddir-fix.patch
+	epatch "${FILESDIR}"/${P}-nls.patch
 	use static && append-ldflags -static
 
 	epatch "${FILESDIR}"/${P}-nls.patch
