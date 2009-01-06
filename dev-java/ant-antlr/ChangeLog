@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-antlr
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.17 2008/12/21 13:44:57 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.18 2009/01/03 15:55:36 armin76 Exp $
+
+  03 Jan 2009; Raúl Porcel <armin76@gentoo.org> ant-antlr-1.7.0.ebuild,
+  ant-antlr-1.7.1.ebuild, ant-antlr-1.7.1-r1.ebuild:
+  Drop ia64 keyword
 
   21 Dec 2008; Markus Meier <maekke@gentoo.org> ant-antlr-1.7.1.ebuild:
   x86 stable, bug #250466
