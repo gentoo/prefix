@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgamin
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.3 2008/12/29 15:15:36 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.4 2009/01/05 21:53:44 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> libgamin-0.1.10.ebuild:
+  amd64/x86 stable, bug #252350
 
   29 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   libgamin-0.1.10.ebuild:
