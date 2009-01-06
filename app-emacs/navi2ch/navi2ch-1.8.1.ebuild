@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/navi2ch/navi2ch-1.8.1.ebuild,v 1.1 2008/12/01 00:45:34 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/navi2ch/navi2ch-1.8.1.ebuild,v 1.5 2009/01/05 17:52:20 armin76 Exp $
 
 EAPI="prefix"
 
