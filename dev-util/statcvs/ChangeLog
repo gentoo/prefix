@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/statcvs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/statcvs/ChangeLog,v 1.1 2008/10/03 21:39:24 serkan Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/statcvs/ChangeLog,v 1.2 2009/01/05 22:56:48 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> statcvs-0.4.0.ebuild:
+  amd64/x86 stable, bug #253359
 
 *statcvs-0.4.0 (03 Oct 2008)
 
