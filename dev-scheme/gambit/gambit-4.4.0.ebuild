@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/gambit-4.4.0.ebuild,v 1.2 2008/12/31 03:24:00 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/gambit-4.4.0.ebuild,v 1.3 2009/01/05 21:16:19 hkbst Exp $
 
 EAPI="prefix"
 
-inherit eutils elisp-common check-reqs autotools multilib
+inherit eutils elisp-common check-reqs multilib
 
 MY_PN=gambc
 MY_PV=${PV//./_}
@@ -24,9 +24,9 @@ SITEFILE="50gambit-gentoo.el"
 
 S=${WORKDIR}/${MY_P} #-devel
 
-IUSE="big-iron emacs static"
+IUSE="emacs static"
 
-pkg_setup() {
+_pkg_setup() {
 	if use big-iron; then
 		ewarn "compiling each Scheme module as a single C function"
 		ewarn "using gcc specific optimizations"
@@ -55,7 +55,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable !static shared) $(use_enable big-iron single-host) $(use_enable big-iron gcc-opts) --disable-absolute-shared-libs
+	econf $(use_enable !static shared) --enable-single-host --disable-absolute-shared-libs
 
 	emake bootstrap || die
 
