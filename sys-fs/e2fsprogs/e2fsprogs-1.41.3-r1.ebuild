@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.3.ebuild,v 1.10 2009/01/01 15:47:52 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.3-r1.ebuild,v 1.1 2009/01/04 17:08:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
 	epatch "${FILESDIR}"/${PN}-1.41.2-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
+	epatch "${FILESDIR}"/${P}-tune2fs-opt.patch #253162
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
 	sed -i -r \

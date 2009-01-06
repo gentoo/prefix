@@ -1,6 +1,15 @@
 # ChangeLog for sys-fs/e2fsprogs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.173 2008/12/30 04:19:18 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.175 2009/01/04 17:08:36 vapier Exp $
+
+*e2fsprogs-1.41.3-r1 (04 Jan 2009)
+
+  04 Jan 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/e2fsprogs-1.41.3-tune2fs-opt.patch, +e2fsprogs-1.41.3-r1.ebuild:
+  Add fix from upstream for slow tune2fs usage #253162 by candrews.
+
+  01 Jan 2009; Guy Martin <gmsoft@gentoo.org> e2fsprogs-1.41.3.ebuild:
+  hppa stable, #251808
 
   30 Dec 2008; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.3.ebuild:
   Create temp /etc/mtab for random test failures #217719.
