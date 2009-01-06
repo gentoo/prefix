@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/gnome-control-center
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.14 2008/12/03 10:29:04 leio Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.15 2009/01/04 23:11:33 ulm Exp $
+
+  04 Jan 2009; Ulrich Mueller <ulm@gentoo.org>
+  gnome-control-center-2.20.3.ebuild, gnome-control-center-2.22.2.1.ebuild,
+  gnome-control-center-2.24.0.1.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
 
   03 Dec 2008; Mart Raudsepp <leio@gentoo.org>
   gnome-control-center-2.24.0.1.ebuild:
