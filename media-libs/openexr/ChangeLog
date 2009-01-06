@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openexr
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.74 2008/08/06 23:42:11 aballier Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.75 2009/01/01 18:31:09 armin76 Exp $
+
+  01 Jan 2009; Raúl Porcel <armin76@gentoo.org> openexr-1.6.1.ebuild:
+  Add -arm/~s390
 
   06 Aug 2008; Alexis Ballier <aballier@gentoo.org>
   -files/openexr-1.2.2-asneeded.patch, -files/openexr-1.2.2-gcc4.patch,
