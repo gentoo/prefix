@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4088 2008/12/31 10:07:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4107 2009/01/05 22:07:54 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -14,7 +14,6 @@
 # disallowed.
 # Test for commit block
 
-app-accessibility/brltty:icu - Adds unicode support using dev-libs/icu
 app-accessibility/festival:mbrola - Adds support for mbrola voices
 app-accessibility/freetts:jsapi - build Java Speech API (JSAPI)
 app-accessibility/freetts:mbrola - Adds support for mbrola voices
@@ -151,7 +150,6 @@ app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-cvs:hesiod - Enable support for net-dns/hesiod
 app-editors/emacs-cvs:sound - Enable sound
 app-editors/emacs-cvs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
-app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer
 app-editors/fe:sendmail - Send mail after editor abend
 app-editors/gvim:aqua - Include support for the Aqua / Carbon GUI
 app-editors/gvim:carbon - Include support for the Carbon GUI
@@ -207,12 +205,10 @@ app-emulation/libvirt:lvm - Add support for the Logical Volume Manager sys-apps/
 app-emulation/libvirt:openvz - Add support for sys-kernel/openvz-sources OpenVZ-based virtual machines
 app-emulation/libvirt:parted - Add support for the sys-apps/parted partition editor
 app-emulation/libvirt:qemu - Add support for app-emulation/qemu based virtual machines
-app-emulation/libvirt:server - Enables support for libvirtd
 app-emulation/libvirt:xen - Add support for app-emulation/xen based virtual machines
 app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
 app-emulation/mol:pci - Experimental PCI proxy support
 app-emulation/mol:sheep - Support for the sheep net driver
-app-emulation/open-vm-tools:icu - Enable unicode support using dev-libs/icu
 app-emulation/open-vm-tools:unity - Enable host unity support
 app-emulation/pearpc:jit - Use the JITC-x86 CPU
 app-emulation/point2play:emerald - For people who are in the Transgaming Emerald Club
@@ -261,6 +257,9 @@ app-i18n/ibus-table:erbi-qs - Enable to generate ErBi-QS Engine
 app-i18n/ibus-table:extra-phrases - Add extra phrases into builded Engine
 app-i18n/ibus-table:wubi - Enable to generate WuBi86 and WuBi98 Engine
 app-i18n/ibus-table:zhengma - Enable to generate ZhengMa Engine
+app-i18n/ibus-table-erbi:extra-phrases - Add extra phrases into builded Engine
+app-i18n/ibus-table-wubi:extra-phrases - Add extra phrases into builded Engine
+app-i18n/ibus-table-zhengma:extra-phrases - Add extra phrases into builded Engine
 app-i18n/im-ja:anthy - Support for Anthy input method
 app-i18n/im-ja:skk - Support for SKK input method
 app-i18n/kimera:anthy - Support for Anthy input method
@@ -323,7 +322,6 @@ app-misc/lirc:transmitter - Add transmitter support to some lirc-drivers (e.g. s
 app-misc/mc:7zip - Add support for 7zip archives
 app-misc/note:general - Add support for ascii flatfile backend
 app-misc/note:text - Add support for text backend
-app-misc/pal:ical - Add support for converting ical format to pal (dev-libs/libical) 
 app-misc/roadnav:festival - Enable support for app-accessibility/festival
 app-misc/roadnav:flite - Enable support for app-accessibility/flite (festival-lite)
 app-misc/roadnav:openstreetmap - Enable openstreetmap support
@@ -425,9 +423,7 @@ app-text/namazu:kakasi - Enable kakasi support (dev-perl/Text-Kakasi)
 app-text/noweb:icon - Enable dev-lang/icon language support
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
 app-text/sgmltools-lite:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
-app-text/sword:icu - Enable dev-libs/icu support for sword
 app-text/sword:lucene - Enable lucene support for faster searching (dev-cpp/clucene)
-app-text/sword-modules:intl - Enable different languages
 app-text/texlive:context - Add support for the ConTeXt format (dev-texlive/texlive-context)
 app-text/texlive:cyrillic - Add support for Cyrillic (dev-texlive/texlive-langcyrillic)
 app-text/texlive:detex - Add support for dev-tex/detex, a filter program that removes the LaTeX (or TeX) control sequences
@@ -449,7 +445,6 @@ app-text/webgen:builder - Enable programmatic HTML/XML generation
 app-text/webgen:exif - Enable EXIF information in image galleries
 app-text/webgen:highlight - Enable syntax highlighting for certain plugins
 app-text/webgen:markdown - Markdown support
-app-text/webgen:textile - Textile support
 app-text/webgen:thumbnail - Thumbnail creation support using rmagick
 app-text/wklej:vim - Install vim plugin allowing to paste from vim by :Wklej
 app-text/xpdf:nodrm - Disable the drm feature decoder
@@ -486,7 +481,6 @@ dev-db/postgresql-server:uuid - Enable server side UUID generation (via dev-libs
 dev-db/sqlite:nothreadsafe - Turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
-dev-dotnet/gtk-sharp:glade -  Build the C#/Mono bindings for libglade (Glade#). This flag replaces the separate dev-dotnet/glade-sharp package that was available up to version 2.10.0. If a package require Glade# make sure to use a USE-based dependency from EAPI 2. 
 dev-embedded/openocd:ft2232 - Enable support for USB chips via dev-embedded/libftd2xx
 dev-embedded/openocd:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
 dev-embedded/openocd:parport - Enable support for parport JTAG devices
@@ -587,6 +581,7 @@ dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC install
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/idb:icc - Use dev-lang/icc to install idb (default)
 dev-lang/idb:ifc - Use dev-lang/ifc to install idb
+dev-lang/io:dbi - Enables dev-db/libdbi support
 dev-lang/lisaac:vim - install a syntax file for vim
 dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/luarocks:curl - Uses net-misc/curl for fetching lua packages instead of net-misc/wget.
@@ -635,7 +630,6 @@ dev-libs/ace:tao - Include the ACE ORB (CORBA stuff) (called tao) into the build
 dev-libs/apr:urandom - Use /dev/urandom instead of /dev/random
 dev-libs/boost:bcp - Install the bcp tool http://www.boost.org/tools/bcp/bcp.html
 dev-libs/boost:bjam - Install the BoostJam tool http://www.boost.org/tools/build/jam_src/index.html
-dev-libs/boost:icu - Add unicode support to boost.regex using dev-libs/icu
 dev-libs/boost:pyste - Add support for the pyste frontend
 dev-libs/boost:threadsonly - Only build multithreaded libs
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
@@ -658,7 +652,6 @@ dev-libs/libjit:new-reg-alloc - Enable new register allocator
 dev-libs/libmix:no-net2 - Disable support for virtual/libpcap and net-libs/libnet
 dev-libs/libprelude:swig - Enable rebuild of swig bindings
 dev-libs/libpreludedb:swig - Enable rebuild of swig bindings
-dev-libs/libproccpuinfo:sender - Build a utility for sending the author your /proc/cpuinfo file
 dev-libs/libsqlora8:orathreads - Use Oracle threads
 dev-libs/libtomcrypt:libtommath - Use the portable math library (dev-libs/libtommath)
 dev-libs/libtomcrypt:tomsfastmath - Use the optimized math library (dev-libs/tomsfastmath)
@@ -675,13 +668,11 @@ dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support.
 dev-libs/soprano:redland - Enables support for the dev-libs/redland backend.
 dev-libs/soprano:sesame2 - Enables support for the virtual/jre-1.6.0 (sesame2) backend.
 dev-libs/xerces-c:iconv - Use iconv (virtual/libiconv) as message loader and transcoder (in general it would be possible to use iconv only as message loader and something else like icu or the native method as transcoder and vice-versa, but this is a less common case and hard to handle)
-dev-libs/xerces-c:icu - Use ICU (dev-libs/icu) as message loader and transcoder. ICU supports over 180 different encodings and/or locale specific message support
 dev-libs/xerces-c:libwww - Use the net-libs/libwww library for fetching URLs, instead of the builtin method
 dev-libs/xerces-c:threads - Enable threading support through pthread (or other libraries on AIX, IRIX, HPUX, Solars). Highly recommended
 dev-libs/xerces-c:xqilla - Apply patches from the XQilla project and install additional header files
 dev-libs/xqilla:faxpp - Use dev-libs/faxpp instead of Xerces-C for certain tasks
 dev-libs/xqilla:htmltidy - Use app-text/htmltidy when parsing HTML
-dev-libs/yaz:icu - Enable ICU (Internationalization Components for Unicode) support, using dev-libs/icu
 dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
 dev-lisp/abcl:clisp - Build Armed Bear Common Lisp using GNU CLISP
 dev-lisp/abcl:cmucl - Build Armed Bear Common Lisp using CMU Common Lisp
@@ -768,12 +759,9 @@ dev-scheme/guile:discouraged -  (implied by deprecated) enable merely discourage
 dev-scheme/guile:elisp - Enable Emacs Lisp support
 dev-scheme/guile:networking - Include networking interfaces
 dev-scheme/guile:regex -  Include regular expression interfaces
-dev-scheme/plt-scheme:3m -  Compile drscheme3m binary that uses the 3m GC instead of the Boehm GC 
 dev-scheme/plt-scheme:backtrace -  Support GC backtrace dumps 
 dev-scheme/plt-scheme:cgc -  Compile and install additional executables which use the conservative garbage collector 
 dev-scheme/plt-scheme:llvm -  Add support for compiling to the low-level virtual machine (llvm) 
-dev-scheme/plt-scheme:xft -  Add support for xft 
-dev-scheme/plt-scheme:xrender -  Add support for xrender 
 dev-tex/dot2texi:pgf - Enable support for dev-tex/pgf (The TeX Portable Graphic Format)
 dev-tex/dot2texi:pstricks - Enable pstricks support
 dev-tex/latex-beamer:lyx - Install with app-office/lyx layouts
@@ -830,9 +818,9 @@ dev-util/subversion:nowebdav - Disables WebDAV support via neon library
 dev-util/subversion:svnserve - Install scripts for svnserve
 dev-util/subversion:webdav-neon - Enable WebDAV support using net-misc/neon
 dev-util/subversion:webdav-serf - Enable WebDAV support using net-libs/serf
+dev-util/svk:log4p - Enable perl logger support
 dev-util/svk:pager - Enable perl pager selection support
 dev-util/svk:patch - Enable patch creation, import support
-dev-util/svk:svn-mirror - Enable SVN-Mirror support
 games-action/abuse:demo - Use the demo data instead of the full game
 games-action/abuse:levels - Install user-created levels (fRaBs)
 games-action/abuse:sounds - Install optional sound data
@@ -980,7 +968,6 @@ kde-base/gwenview:semantic-desktop -  Semantic desktop allows for storage of dig
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work
 kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via app-mobilephone/gnokii
-kde-base/kalzium:cviewer - Enable Kalzium compound viewer
 kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-base/kalzium:solver - Enable the equation solver
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
@@ -1337,6 +1324,7 @@ media-sound/aqualung:loop-playback - Enable adjustable loop playback support
 media-sound/aqualung:systray - Enable system tray support
 media-sound/ardour:freesound - Enables direct searching and download of samples from Freesound via the Import dialog
 media-sound/ario:audioscrobbler - Enable song tracking via last.fm
+media-sound/ario:idle - Enable experimental support for MPD's idle command to reduce bandwith and cpu usage, requires MPD 0.14
 media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-sound/audacity:id3tag - Enables ID3 tagging with id3tag library
 media-sound/audacity:midi - Enables MIDI support
@@ -1414,6 +1402,7 @@ media-sound/pulseaudio:glib - Enable glib eventloop support
 media-sound/pulseaudio:gnome -  Use GConf to store user preferences on streams and so on. Don't enable this flag if you want to use a system wide instance. If unsure, enable this flag. 
 media-sound/pulseaudio:oss -  Enable OSS sink/source (output/input). Also build the padsp script to make OSS software use PulseAudio. 
 media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
+media-sound/qmmp:scrobbler - Enable audioscrobbler/last.fm support
 media-sound/qsampler:libgig - Enable libgig support for loading Gigasampler files and DLS (Downloadable Sounds) Level 1/2 files
 media-sound/qtractor:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/qtractor:rubberband - Enable support for in-place audio clip pitch-shifting through the rubberband library
@@ -1960,8 +1949,11 @@ net-irc/kvirc:qt-webkit - enable use of Qt's WebKit
 net-irc/kvirc:transparency - compile in fake-transparency
 net-irc/ngircd:ident - Enables support for net-libs/libident
 net-irc/psybnc:oidentd - Adds support for oidentd
+net-irc/psybnc:scripting - Adds scripting support
 net-irc/quassel:X -  Build the Qt 4 GUI client for quassel. If this USE flag is disabled, the GUI is not built, and cannot be used. You might want to disable this on the server, but you need it enabled on the client. 
+net-irc/quassel:phonon -  Build client with phonon backend support. This enables sound playback in client. 
 net-irc/quassel:server -  Build the server binary. If this USE flag is disabled, the 'core' server binary for quassel is not built, and cannot be used. You need this enabled on the server, but you might want to disable it on the client. 
+net-irc/quassel:webkit -  Use qt-webkit rendering engine for showing url thumbmails and for other things that needs webbrowser intergration. 
 net-irc/rbot:aspell -  Use aspell instead of ispell in the "spell" plugin for rbot. The vanilla plugin uses ispell, but enabling this flag makes it use the ispell interface from aspell instead. 
 net-irc/rbot:cal -  Add dependency over a package providing the /usr/bin/cal command, which is needed to enable the "cal" plugin for rbot. If the USE flag is disabled the plugin is also disabled by default. 
 net-irc/rbot:dict -  Add dependency over dev-ruby/ruby-dict, which is needed to enable the "dict" plugin for rbot. If the USE flag is disabled the plugin is also disabled by default. 
@@ -1980,7 +1972,6 @@ net-irc/unrealircd:prefixaq - Enable chanadmin and chanowner prefixes
 net-irc/unrealircd:showlistmodes - Support displaying channel modes during compilation
 net-irc/xchat:xchatdccserver - Enables support for the /dccserver command via a patch
 net-irc/xchat:xchatnogtk - Disables building the GTK front end to XChat
-net-irc/xchat:xft - Build xchat with support for the XFT font renderer
 net-irc/xchat-gnome:libsexy - Enable x11-libs/libsexy support
 net-irc/xchat-gnome:sound - Enable sound event support with media-libs/libcanberra
 net-irc/xchat-xsys:audacious - Enables media-sound/audacious integration
@@ -2333,7 +2324,6 @@ sci-libs/mkl:fortran95 - Installs the BLAS/LAPACK FORTRAN95 static libraries
 sci-libs/mkl:int64 - Installs the 64 bits integer libraries
 sci-libs/mkl:serial - Installs the serial (as non-threaded) libraries
 sci-libs/plplot:ada - Add bindings for the ADA programming language
-sci-libs/plplot:fortran95 - Add bindings for FORTRAN 95 programming language
 sci-libs/plplot:itcl - Add bindings for dev-tcltk/itcl
 sci-libs/plplot:jadetex - Add device for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 sci-libs/plplot:octave - Add bindings for sci-mathematics/octave
@@ -2583,6 +2573,7 @@ sys-libs/ncurses:trace - Enable test trace() support in ncurses calls
 sys-libs/pam:audit - Enable support for sys-process/audit
 sys-libs/uclibc:pregen - Use pregenerated locales
 sys-libs/uclibc:savedconfig - Adds support for user defined configs
+sys-libs/uclibc:ssp - Force the use of ssp to be built into a hardened uclibc setup
 sys-libs/uclibc:uclibc-compat - Build uclibc with backwards compatible options
 sys-libs/uclibc:userlocales - Build only the locales specified in /etc/locales.build
 sys-libs/uclibc:wordexp - Add support for word expansion (wordexp.h)
@@ -2621,7 +2612,6 @@ www-apps/lxr:freetext - Adds support for freetext search using swish-e
 www-apps/mediawiki:math - Ads math rendering support
 www-apps/mediawiki:restrict - Initial setup will only allow sysop user to create new accounts, read and edit any pages
 www-apps/rt:lighttpd - Add www-servers/lighttpd support
-www-apps/trac:silvercity - Add app-text/silvercity support to colourize code stored in the repository
 www-apps/viewvc:cvsgraph - Add dev-util/cvsgraph support to show graphical views of revisions and branches
 www-apps/viewvc:highlight - Add app-text/highlight support to colourize code stored in the repository
 www-apps/viewvc:mod_python - Add www-apache/mod_python support
@@ -2686,11 +2676,12 @@ x11-libs/cairo:cleartype - Add ClearType-style behavior for sub-pixel hinting. P
 x11-libs/cairo:glitz - Build with glitz support, which replaces some software render operations with Mesa OpenGL operations
 x11-libs/cairo:opengl - When used along with USE=glitz, enables glitz-glx usage. Requires hardware OpenGL support
 x11-libs/fltk:noxft - Disables xft; use for non-english characters
-x11-libs/fltk:xft - Build with support for XFT font renderer (x11-libs/libXft)
 x11-libs/gtkmathview:t1lib - Enable media-libs/t1lib support
 x11-libs/libmatchbox:pango - Enable x11-libs/pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management
-x11-libs/openmotif:xft - Build OpenMotif with support for XFT font renderer (x11-libs/libXft)
+x11-libs/libqxt:crypt -  Enable support for blowfish encryption using dev-libs/openssl 
+x11-libs/libqxt:sql -  Enable support for SQL databases using x11-libs/qt-sql 
+x11-libs/libqxt:web -  Enable web support using dev-libs/fcgi 
 x11-libs/vte:nowheelscroll - Disable annoying mouse wheel is arrow up/down behaviour
 x11-libs/qt:glib - Enable dev-libs/glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
@@ -2707,7 +2698,6 @@ x11-libs/wxGTK:gnome -  Use gnome-base/libgnomeprintui for printing tasks.
 x11-libs/wxGTK:gstreamer -  Enable the wxMediaCtrl class for playing audio and video through gstreamer. 
 x11-libs/wxGTK:sdl -  Use Simple Directmedia Layer (media-libs/libsdl) for audio. 
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
-x11-misc/fspanel:xft - Build with support for XFT font renderer (x11-libs/libXft)
 x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/slim:screenshot - Enable screenshot support (using media-gfx/imagemagick)
@@ -2716,7 +2706,6 @@ x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserv
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
 x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
 x11-misc/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
-x11-misc/zim:trayicon - Enable support for trayicon
 x11-plugins/bfm:gkrellm - Enable building of app-admin/gkrellm module
 x11-plugins/gkrellm-plugins:audacious - Enable the audacious plugin x11-plugins/gkrellmms
 x11-plugins/gkrellmbups:nut - Enable monitoring Network-UPS via sys-power/nut

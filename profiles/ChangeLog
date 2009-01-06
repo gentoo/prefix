@@ -1,10 +1,52 @@
 # ChangeLog for profile directory
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2224 2008/12/31 15:40:08 fuzzyray Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2237 2009/01/06 02:41:34 zmedico Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Jan 2009; Zac Medico <zmedico@gentoo.org> package.mask:
+  Bug #253802 - Update comment to note that Portage 2.2 is masked due
+  to known bugs in the package sets and preserve-libs features.
+
+  05 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Remove net-misc/logjam and net-news/straw mask per bug #181236 and
+  bug #187285.
+
+  05 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add gnome-extra/gnome-user-share-0.41 to bluez-4 mask
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> use.desc:
+  add global icu and xft USE-flags
+
+  05 Jan 2009; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  =net-www/xxv-1.2.1383 , =x11-themes/xxv-skins-1.2.1383 masked for utf8
+  handle testing
+
+  04 Jan 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  mail-client/claws-mail-smime has been removed, see bug 253707
+
+  03 Jan 2009; Mike Auty <ikelos@gentoo.org> package.mask:
+  Mask off insecure versions of vmware-workstation and vmware-player.
+
+  03 Jan 2009; Daniel Black <dragonheart@gentoo.org> thirdpartymirrors:
+  remove ftp://ftp.digitaltrust.it due to lack of response
+
+  03 Jan 2009; Daniel Black <dragonheart@gentoo.org> package.mask:
+  app-crypt/tpm-module mask pending removal as per gentoo-dev-announce list
+
+  02 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask packages that should only be used by crossdev.
+
+  02 Jan 2009; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
+  Adding local use flags for app-i18n/ibus-table-{erbi,wubi,zhengma}.
+
+  01 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing gtksourceview-sharp mask
+
+  01 Jan 2009; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Fix my mask
 
   31 Dec 2008; Paul Varner <fuzzyray@gentoo.org> package.mask:
   Add mask for gentoolkit-dev-0.2.6.9 for testing of echangelog

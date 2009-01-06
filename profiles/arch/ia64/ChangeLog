@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.22 2008/12/16 19:34:34 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.23 2009/01/03 15:52:57 armin76 Exp $
+
+  03 Jan 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add antlr to use.mask
 
   16 Dec 2008; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add oracle to use.mask

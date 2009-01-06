@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9349 2008/12/31 16:38:52 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9364 2009/01/06 02:41:34 zmedico Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,41 @@
 
 #--- END OF EXAMPLES ---
 
+# Zac Medico <zmedico@gentoo.org> (05 Jan 2009)
+# Portage 2.2 is masked due to known bugs in the
+# package sets and preserve-libs features.
+>=sys-apps/portage-2.2_pre
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (05 Jan 2009)
+# masked for testing
+# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
+=net-www/xxv-1.2.1383
+=x11-themes/xxv-skins-1.2.1383
+
+# Mike Auty <ikelos@gentoo.org> (03 Jan 2009)
+# Masking insecure versions
+# See bug 245941 for more details
+# Stable versions are not being masked, but should be really
+=app-emulation/vmware-workstation-5.5.8.108000
+=app-emulation/vmware-workstation-6.0.4.93057
+=app-emulation/vmware-workstation-6.0.5.109488
+=app-emulation/vmware-player-1.0.8.108000
+=app-emulation/vmware-player-2.0.4.93057
+=app-emulation/vmware-player-2.0.5.109488
+
+# Daniel Black <dragonheart@gentoo.org> (03 Jan 2009)
+# mask pending removal
+# compile faults as per bug #249291 and is now in linux mainstream
+# kernel
+app-crypt/tpm-module
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (03 Jan 2009)
+# These packages are not supposed to be merged directly, instead
+# please use sys-devel/crossdev to install them.
+dev-libs/cygwin
+dev-util/mingw-runtime
+dev-util/w32api
+
 # Paul Varner <fuzzyray@gentoo.org> (31 Dec 2008)
 # Masked for testing of echangelog subversion/git support. Bug 176337
 =app-portage/gentoolkit-dev-0.2.6.9
@@ -53,7 +88,6 @@ mail-client/xfmail
 mail-client/elm
 # 251383 - 29 Dec 2008
 net-mail/ezmlm
-net-mail/ezmlm-idx
 net-mail/ezmlm-idx-mysql
 net-mail/ezmlm-idx-pgsql
 
@@ -117,6 +151,7 @@ net-misc/ossh
 # Removed in 60 days. Does not compile with gcc-4.3 and requires kernel patches
 # from a website that doesn't exist => unmaintained. bug 250679
 app-i18n/unicon
+app-i18n/chinput
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
 # Removed in 60 days. Does not work anymore, dead upstream. Upstream website
@@ -148,11 +183,6 @@ x11-libs/xfc
 # is not ready for stable ( bug 251566 ).
 # Upstream has abandoned it, alternatives such as gedit exist.
 app-editors/katoob
-
-# Daniel Drake <dsd@gentoo.org> (18 Dec 2008)
-# Unmaintained, unloved, and unwashed. Removing from Portage on on Dec 31st
-# (bug #193250 and others)
-net-misc/arpstar
 
 # Mike Pagano <mpagano@gentoo.org> (17 Dec 2008)
 # Masked waiting on >=portage-2.2* to be unmasked
@@ -258,12 +288,6 @@ net-misc/nxserver-2xterminalserver
 # Betaversion, has cool stuff like plasmoid and so on
 =net-p2p/ktorrent-3.2*
 
-# Christian Faulhammer <fauli@gentoo.org> (02 Dec 2008)
-# Removal because it has been integrated into Claws Mail
-# Either use mail-client/claws-mail-3.6.1 (plain) or 3.6.1-r1
-# (USE=smime)
-mail-client/claws-mail-smime
-
 # Tobias Scherbaum <dertobi123@gentoo.org> (02 Dec 2008)
 # Mask because of broken upgrade path. Need to investigate what the real
 # problem is. bug #249579
@@ -294,16 +318,7 @@ app-emacs/emacs-daemon
 net-wireless/bluez
 >=net-wireless/bluez-gnome-1.8
 >=app-mobilephone/obex-data-server-0.4
-
-# Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
-# masked because no dev can test it and no proxy maintainer
-# steped up in a year, see bug #181236
-net-misc/logjam
-
-# Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
-# masked because no-one cares, and broken in many ways.
-# See bugs #187285, #147405, #233055, #205396.
-net-news/straw
+>=gnome-extra/gnome-user-share-0.41
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # These might break automounting, so keep them masked for now.
@@ -312,17 +327,6 @@ net-news/straw
 =gnome-base/gnome-mount-0.7
 >=sys-auth/policykit-0.6
 >=gnome-extra/policykit-gnome-0.6
-
-# Peter Alfredsen <loki_val@gentoo.org> (26 Nov 2008)
-# Mask non-working version to force their removal.
-<dev-dotnet/gtksourceview-sharp-0.12
-
-# Zac Medico <zmedico@gentoo.org> (24 Nov 2008)
-# In order to ensure that portage-2.1.6 gets sufficient testing,
-# portage-2.2 will be masked in package.mask until portage-2.1.6 has
-# been marked stable. If you would like to continue using portage-2.2
-# then you should unmask it (instead of downgrading to portage-2.1.6).
->=sys-apps/portage-2.2_pre
 
 # Peter Alfredsen <loki_val@gentoo.org> (22 Nov 2008)
 # Packages not building with mono-2
@@ -791,20 +795,13 @@ media-sound/lastfmproxy
 
 # Raúl Porcel <armin76@gentoo.org> (8 Apr 2008)
 # Masked for testing
->=mail-client/mozilla-thunderbird-3.0_alpha1
+#>=mail-client/mozilla-thunderbird-3.0_alpha1
 >=mail-client/mozilla-thunderbird-bin-3.0_alpha1
 
 # Benedikt Böhm <hollow@gentoo.org> (6 Apr 2008)
 # Mask ebuilds using new qmail.eclass for testing
-=mail-mta/mini-qmail-1.06
 =mail-mta/netqmail-1.06
 =mail-mta/qmail-ldap-1.03-r8
-=net-mail/checkpassword-0.90-r3
-=net-mail/cmd5checkpw-0.30-r1
-=net-mail/dot-forward-0.71-r3
-=sys-apps/ucspi-ssl-0.70-r1
-=sys-apps/ucspi-tcp-0.88-r17
-=sys-process/daemontools-0.76-r6
 
 # Christian Faulhammer <fauli@gentoo.org> (01 Apr 2008)
 # Masked for security reasons: bug 215699
@@ -840,12 +837,6 @@ media-sound/lastfmproxy
 # is unmasked or stabilized.
 net-p2p/limewire
 
-# Joerg Bornkessel <hd_brummy@gentoo.org> (11 Mar 2008)
-# masked for testing
-# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
-=net-www/xxv-1.2.1308
-=net-www/xxv-1.2.1315
-
 # Colin Morey <peitolm@gentoo.org> (20 Mar 2008)
 # Masked for testing, closing lots of little bugs
 =mail-mta/exim-4.69-r1
@@ -863,7 +854,7 @@ sys-apps/mindi
 sys-apps/mindi-busybox
 
 # Christian Faulhammer <fauli@gentoo.org> (11 Mar 2008)
-# masked for testing
+# Live SVN ebuild
 =app-portage/gatt-9999
 
 # Doug Goldstein <cardoe@gentoo.org> (10 Mar 2008)

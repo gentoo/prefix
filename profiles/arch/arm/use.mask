@@ -5,6 +5,10 @@ networkmanager
 # Unmask the flag which corresponds to ARCH.
 -arm
 
+# Raúl Porcel <armin76@gentoo.org>
+# Fails to build/work
+openexr
+
 # Samuli Suominen <drac@gentoo.org>
 # media-libs/amrnb and media-libs/amrwb not tested.
 amr

@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.17 2008/12/30 15:58:25 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.19 2009/01/05 03:45:07 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -52,6 +52,7 @@ app-emulation/winex
 app-emulation/winex-cvs
 app-text/acroread
 app-text/bibus
+dev-embedded/libftd2xx
 <dev-java/blackdown-jdk-1.4.2
 <dev-java/blackdown-jre-1.4.2
 dev-lang/dmd-bin
@@ -59,6 +60,7 @@ dev-lang/anubis
 dev-lang/icc
 dev-lang/idb
 dev-lang/ifc
+dev-lang/realbasic
 dev-lang/sunstudioexpress
 dev-perl/Archive-Rar
 dev-util/biew
