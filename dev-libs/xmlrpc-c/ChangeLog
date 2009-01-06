@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/xmlrpc-c
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.75 2008/12/03 13:30:17 loki_val Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.78 2009/01/03 17:52:01 loki_val Exp $
+
+  03 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  xmlrpc-c-1.16.06-r1.ebuild:
+  Bug 251415 not solved, reverting previous change.
+
+  03 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  xmlrpc-c-1.16.06-r1.ebuild:
+  We need to "emake all" or we'll run into bug 251415. Per suggestion from
+  upstream.
+
+*xmlrpc-c-1.16.06-r1 (02 Jan 2009)
+
+  02 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/xmlrpc-c-1.16.06-parallel-make.patch, +xmlrpc-c-1.16.06-r1.ebuild:
+  Fix bug 251850, parallel make issue that would cause xmlrpc.h to not be
+  installed. Thanks to Diego for the report.
 
   03 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
   xmlrpc-c-1.16.06.ebuild:
