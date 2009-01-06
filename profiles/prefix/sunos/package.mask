@@ -1,10 +1,5 @@
 # $Header: $
 
-# Fabian Groffen <grobian@gentoo.org> (27 Dec 2008)
-# asserts:
-# Assertion failed: state.type != 0, file ftsfind.c, line 475, function consider_visiting
-=sys-apps/findutils-4.5.3
-
 # Fabian Groffen <grobian@gentoo.org> (02 Oct 2008)
 # Doesn't compile on Solaris.
 =app-shells/ksh-93.20080725
