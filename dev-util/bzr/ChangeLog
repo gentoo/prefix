@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/bzr
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.76 2008/12/31 16:23:31 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.77 2009/01/03 15:06:33 nixnut Exp $
+
+  03 Jan 2009; nixnut <nixnut@gentoo.org> bzr-1.9.ebuild:
+  ppc stable #252656
 
   31 Dec 2008; Raúl Porcel <armin76@gentoo.org> bzr-1.9.ebuild:
   x86 stable wrt #252656
