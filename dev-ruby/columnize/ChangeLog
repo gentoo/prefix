@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/columnize
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/ChangeLog,v 1.1 2008/12/28 12:06:09 graaff Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/ChangeLog,v 1.2 2009/01/02 09:28:48 graaff Exp $
+
+*columnize-0.2.1 (02 Jan 2009)
+
+  02 Jan 2009; Hans de Graaff <graaff@gentoo.org> +columnize-0.2.1.ebuild:
+  Version bump: Add ability to run columns horizontally
 
 *columnize-0.2 (28 Dec 2008)
 
