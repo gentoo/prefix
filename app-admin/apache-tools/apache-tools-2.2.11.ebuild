@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.8-r1.ebuild,v 1.3 2008/06/15 15:40:46 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.11.ebuild,v 1.1 2009/01/01 16:22:25 hollow Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x64-solaris"
 IUSE="ssl"
 RESTRICT="test"
 
@@ -55,7 +55,6 @@ src_compile() {
 
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
-
 	econf \
 		--sbindir="${EPREFIX}"/usr/sbin \
 		--with-perl="${EPREFIX}"/usr/bin/perl \
