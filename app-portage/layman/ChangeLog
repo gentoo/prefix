@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.65 2009/01/01 05:36:40 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.66 2009/01/01 07:54:04 wrobel Exp $
+
+*layman-1.2.3 (01 Jan 2009)
+
+  01 Jan 2009; Gunnar Wrobel <wrobel@gentoo.org> +layman-1.2.3.ebuild:
+  Added app-portage/layman-1.2.3.
 
   01 Jan 2009; Gunnar Wrobel <wrobel@gentoo.org> -layman-1.0.6.ebuild,
   -layman-1.0.10.ebuild:
