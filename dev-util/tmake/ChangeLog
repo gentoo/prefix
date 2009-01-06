@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/tmake
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/tmake/ChangeLog,v 1.23 2008/02/07 20:59:42 grobian Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tmake/ChangeLog,v 1.24 2009/01/01 20:45:10 armin76 Exp $
+
+  01 Jan 2009; Raúl Porcel <armin76@gentoo.org> tmake-1.8-r1.ebuild,
+  tmake-1.11.ebuild, tmake-1.13.ebuild, tmake-2.12.ebuild:
+  Re-add ~s390
 
   07 Feb 2008; Fabian Groffen <grobian@gentoo.org> tmake-2.12.ebuild:
   Dropped ppc-macos keyword, see you in prefix
