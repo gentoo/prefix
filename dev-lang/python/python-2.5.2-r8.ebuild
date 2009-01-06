@@ -158,6 +158,9 @@ src_configure() {
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
 	fi
+	# http://bugs.python.org/issue4026
+	[[ ${CHOST} == *-aix6* ]] && \
+		export PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} fcntl"
 	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 }
 
