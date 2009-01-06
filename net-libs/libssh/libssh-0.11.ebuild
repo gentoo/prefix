@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/libssh-0.11.ebuild,v 1.4 2007/08/13 21:41:37 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/libssh-0.11.ebuild,v 1.5 2009/01/02 05:32:01 vapier Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,6 @@ DEPEND="sys-libs/zlib
 	dev-libs/openssl"
 
 src_install() {
-	make prefix="${D}/usr" install || die "make install failed"
-	chmod a-x ${ED}/usr/include/libssh/*
+	emake prefix="${D}/usr" install || die "make install failed"
+	chmod a-x "${ED}"/usr/include/libssh/*
 }
