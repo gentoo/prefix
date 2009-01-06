@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.134 2008/06/29 10:46:16 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.135 2009/01/04 15:43:20 tove Exp $
+
+*zsh-4.3.9 (04 Jan 2009)
+
+  04 Jan 2009; Torsten Veller <tove@gentoo.org>
+  +files/prompt_gentoo_setup-1, +zsh-4.3.9.ebuild:
+  Version bump (#246544)
 
   29 Jun 2008; Torsten Veller <tove@gentoo.org> zsh-4.3.4-r1.ebuild:
   Add missing die: || "..." -> || die "..."
