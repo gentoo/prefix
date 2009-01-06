@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/antlr
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.65 2008/06/26 21:04:58 serkan Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/ChangeLog,v 1.66 2009/01/03 15:54:52 armin76 Exp $
+
+  03 Jan 2009; Raúl Porcel <armin76@gentoo.org> antlr-2.7.7.ebuild:
+  Drop ia64 keyword
 
   26 Jun 2008; Serkan Kaba <serkan@gentoo.org> antlr-2.7.7.ebuild:
   Fix antlr2 website. Thanks calculus <calculuspenguin@yahoo.com> for
