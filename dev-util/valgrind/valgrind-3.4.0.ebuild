@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.3.0.ebuild,v 1.3 2008/07/27 17:55:23 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.4.0.ebuild,v 1.1 2009/01/05 19:08:16 griffon26 Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,10 @@ src_unpack() {
 	if use ppc64 && ! has_multilib_profile; then
 		epatch "${FILESDIR}/valgrind-3.3.0-only64bit.patch"
 	fi
+
+	# Use local labels in inline asm to prevent 'symbol already defined' errors
+	# when optimisation is on (bug #234644).
+	epatch "${FILESDIR}/valgrind-3.3.1-local-labels.patch"
 
 	# Regenerate autotools files
 	eautoreconf

@@ -1,6 +1,19 @@
 # ChangeLog for dev-util/valgrind
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.94 2008/12/13 10:57:06 griffon26 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.95 2009/01/05 19:08:16 griffon26 Exp $
+
+*valgrind-3.4.0 (05 Jan 2009)
+
+  05 Jan 2009; Maurice van der Pot <griffon26@gentoo.org>
+  -files/valgrind-3.2.1-only64bit.patch,
+  -files/valgrind-3.2.3-glibc-2.6.patch,
+  -files/valgrind-3.2.3-glibc-2.7.patch,
+  -files/valgrind-3.2.3-unhandled-instr-amd64.patch,
+  -files/valgrind-3.3.0-massif-cplusplus.patch, -valgrind-3.2.3.ebuild,
+  -valgrind-3.2.3-r1.ebuild, -valgrind-3.3.0.ebuild,
+  -valgrind-3.3.0-r1.ebuild, +valgrind-3.4.0.ebuild:
+  Added valgrind-3.4.0, which has a fix for CVE-2008-4865 (bug #245317).
+  Removed old ebuilds.
 
 *valgrind-3.3.1-r1 (13 Dec 2008)
 
