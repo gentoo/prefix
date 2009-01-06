@@ -1,7 +1,7 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.7.ebuild,v 1.2 2008/11/03 16:38:59 mr_bones_ Exp $
-EAPI="prefix 1"
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.7.1.ebuild,v 1.2 2009/01/03 06:32:35 grozin Exp $
+EAPI="prefix 2"
 inherit autotools
 MY_P=${P/tex/TeX}-src
 DESCRIPTION="Wysiwyg text processor with high-quality maths"
@@ -10,16 +10,17 @@ SRC_URI="ftp://ftp.texmacs.org/pub/TeXmacs/targz/${MY_P}.tar.gz
 	ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-600dpi-fonts.tar.gz"
 
 HOMEPAGE="http://www.texmacs.org/"
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 IUSE="imlib jpeg netpbm -qt4 svg spell"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 
-RDEPEND="virtual/latex-base
+RDEPEND="dev-scheme/guile[deprecated]
+	virtual/latex-base
 	virtual/ghostscript
-	>=dev-scheme/guile-1.4
 	media-libs/freetype
 	x11-libs/libXext
+	x11-apps/xmodmap
 	qt4? ( x11-libs/qt-gui:4 )
 	imlib? ( media-libs/imlib2 )
 	jpeg? ( || ( media-gfx/imagemagick media-gfx/jpeg2ps ) )
@@ -39,13 +40,7 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# macx-g++ -> linux-g++
-	epatch "${FILESDIR}"/${P}-autotroll.patch
-
+src_prepare() {
 	# don't strip
 	epatch "${FILESDIR}"/${P}-strip.patch
 
@@ -54,7 +49,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	econf $(use_with imlib imlib2) \
 		--enable-optimize="${CXXFLAGS}" \
 		$(use_enable qt4 qt)
