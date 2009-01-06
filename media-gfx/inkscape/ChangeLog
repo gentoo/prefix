@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/inkscape
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.109 2008/11/24 21:11:03 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.111 2009/01/04 23:14:07 ulm Exp $
+
+  04 Jan 2009; Ulrich Mueller <ulm@gentoo.org> inkscape-0.46-r5.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
+
+  04 Jan 2009; Markus Meier <maekke@gentoo.org> -inkscape-0.46-r2.ebuild,
+  -inkscape-0.46-r4.ebuild:
+  old
 
   24 Nov 2008; Brent Baude <ranger@gentoo.org> inkscape-0.46-r5.ebuild:
   Marking inkscape-0.46-r5 ppc64 for bug 239414

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.8 2008/11/24 21:11:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.9 2009/01/04 23:14:07 ulm Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ COMMON_DEPEND="
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/libpng
-	virtual/xft
+	x11-libs/libXft
 	>=x11-libs/gtk+-2.10.7
 	>=x11-libs/pango-1.4.0
 	gnome? ( >=gnome-base/gnome-vfs-2.0 )
