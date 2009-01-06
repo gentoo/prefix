@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.4.ebuild,v 1.9 2008/09/18 00:26:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.4.ebuild,v 1.10 2009/01/04 22:51:26 ulm Exp $
 
 EAPI="prefix 1"
 
@@ -19,11 +19,11 @@ IUSE="debug gnome spell xml"
 
 # FIXME: gsf could probably be conditional
 
-RDEPEND="virtual/xft
-	dev-libs/popt
+RDEPEND="dev-libs/popt
 	sys-libs/zlib
 	>=dev-libs/glib-2
 	>=x11-libs/gtk+-2.6
+	x11-libs/libXft
 	>=x11-libs/pango-1.2
 	>=gnome-base/libglade-2
 	>=gnome-base/libgnomeprint-2.2
@@ -32,7 +32,6 @@ RDEPEND="virtual/xft
 	>=media-libs/libpng-1.2
 	>=media-libs/fontconfig-2.1
 	>=media-libs/freetype-2.1
-	>=x11-libs/pango-1.2
 	>=app-text/wv-1.2
 	>=dev-libs/fribidi-0.10.4
 	xml? ( >=dev-libs/libxml2-2.4.10 )
