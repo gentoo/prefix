@@ -1,6 +1,12 @@
 # ChangeLog for net-fs/openafs
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.156 2008/12/26 11:26:21 klausman Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.157 2009/01/04 13:04:33 stefaan Exp $
+
+*openafs-1.4.8-r1 (04 Jan 2009)
+
+  04 Jan 2009; Stefaan De Roeck <stefaan@gentoo.org>
+  +openafs-1.4.8-r1.ebuild:
+  Fix QA bug #240770
 
   26 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
   -files/openafs-alpha-ucontext.patch, openafs-1.4.6.ebuild,
