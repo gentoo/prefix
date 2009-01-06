@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jtreemap
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jtreemap/ChangeLog,v 1.1 2008/10/03 21:34:39 serkan Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jtreemap/ChangeLog,v 1.2 2009/01/05 22:56:07 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> jtreemap-1.1.0.ebuild:
+  amd64/x86 stable, bug #253359
 
 *jtreemap-1.1.0 (03 Oct 2008)
 
