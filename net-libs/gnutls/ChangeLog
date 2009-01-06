@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/gnutls
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.175 2008/11/18 11:56:26 dragonheart Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.176 2009/01/05 07:44:37 dragonheart Exp $
+
+*gnutls-2.6.3 (05 Jan 2009)
+
+  05 Jan 2009; Daniel Black <dragonheart@gentoo.org>
+  files/gnutls-2.6.0-cxx-configure.in.patch, gnutls-2.6.0-r2.ebuild,
+  gnutls-2.6.2.ebuild, +gnutls-2.6.3.ebuild:
+  version bump as per bug #250987 thanks to Arfrever. USE=-cxx fix as per bug
+  #249326 by Lars Strojny with patch thanks to Arfrever. Fix libtool cleanup
+  on 2.6.0 version.
 
   18 Nov 2008; Daniel Black <dragonheart@gentoo.org>
   -files/gnutls-2.2.5-CVE-2008-4989.patch, -gnutls-2.4.1-r1.ebuild,

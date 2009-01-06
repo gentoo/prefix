@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.0-r2.ebuild,v 1.2 2009/01/05 07:44:37 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.3.ebuild,v 1.1 2009/01/05 07:44:37 dragonheart Exp $
 
+EAPI="prefix 2"
 inherit eutils libtool autotools
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
@@ -21,14 +22,13 @@ unset MINOR_VERSION
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-EAPI="prefix 1"
 IUSE="bindist +cxx doc guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
 	>=dev-libs/libgcrypt-1.4.0
 	>=dev-libs/libtasn1-0.3.4
 	nls? ( virtual/libintl )
-	guile? ( dev-scheme/guile )
+	guile? ( dev-scheme/guile[networking] )
 	zlib? ( >=sys-libs/zlib-1.1 )
 	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
 DEPEND="${RDEPEND}
@@ -37,11 +37,6 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 pkg_setup() {
-	if use guile && ! built_with_use dev-scheme/guile networking; then
-		eerror "You are trying to compile ${PN} package with USE=\"guile\""
-		eerror "while dev-scheme/guile does not have USE=\"networking\""
-		die
-	fi
 	if use lzo && use bindist; then
 		ewarn "lzo support was disabled for binary distribution of gnutls"
 		ewarn "due to licensing issues. See Bug 202381 for details."
@@ -57,16 +52,17 @@ src_unpack() {
 	done
 	find . -name ltmain.sh -exec rm {} \;
 
-	epatch "${FILESDIR}"/${P}-cxx-configure.in.patch
+	# the below patch is in 2.7.* as per
+	# https://savannah.gnu.org/support/?106542
+	epatch "${FILESDIR}"/gnutls-2.6.0-cxx-configure.in.patch
 	eautoreconf
-	epatch "${FILESDIR}"/gnutls-2.2.5-CVE-2008-4989-V2.patch
 
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 
 	elibtoolize # for sane .so versioning on FreeBSD
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
 	econf  \
@@ -76,7 +72,6 @@ src_compile() {
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		${myconf}
-	emake || die "emake failed"
 }
 
 src_install() {

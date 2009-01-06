@@ -8,11 +8,13 @@
  AC_PROG_LN_S
  GTK_DOC_CHECK(1.1)
  AC_PATH_PROG([GAA], [gaa])
-@@ -114,6 +113,7 @@
+@@ -114,6 +113,9 @@
    AC_LANG_PUSH(C++)
    AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])], use_cxx=yes, use_cxx=no)
    AC_LANG_POP(C++)
 +  AC_PROG_CXX
++else
++  AM_CONDITIONAL([am__fastdepCXX], [false])
  fi
  
  AC_MSG_CHECKING([whether C99 macros are supported])
