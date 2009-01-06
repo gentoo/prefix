@@ -72,6 +72,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-mint.patch
 
+	# Fix build problem on aix6 - in next upstream release, >7.0_alpha
+	# http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=commitdiff;h=f4871c025a82
+	epatch "${FILESDIR}/${P}-aix.patch"
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
