@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/gforth
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.26 2008/09/06 06:50:36 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.27 2009/01/04 22:47:42 patrick Exp $
+
+*gforth-0.7.0 (04 Jan 2009)
+
+  04 Jan 2009; Patrick Lauer <patrick@gentoo.org> +gforth-0.7.0.ebuild:
+  Bumping to 0.7. Fixes #180918. Thanks to Scott McClung for the ebuild
 
   06 Sep 2008; Ulrich Mueller <ulm@gentoo.org> files/gforth.el-gentoo.patch,
   gforth-0.6.2-r1.ebuild:
