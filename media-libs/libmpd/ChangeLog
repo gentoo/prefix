@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libmpd
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.39 2008/12/29 23:17:03 tcunha Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/ChangeLog,v 1.40 2009/01/04 00:11:39 angelos Exp $
+
+  04 Jan 2009; Christoph Mende <angelos@gentoo.org> -libmpd-0.15.0.ebuild,
+  -libmpd-0.15.0-r1.ebuild:
+  Removed old
 
   29 Dec 2008; Tiago Cunha <tcunha@gentoo.org> libmpd-0.16.1.ebuild:
   stable sparc, bug 251332
