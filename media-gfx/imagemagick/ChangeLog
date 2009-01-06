@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/imagemagick
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.325 2008/12/29 05:15:22 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.327 2009/01/03 12:26:25 maekke Exp $
+
+*imagemagick-6.4.8.3 (03 Jan 2009)
+
+  03 Jan 2009; Markus Meier <maekke@gentoo.org> +imagemagick-6.4.8.3.ebuild:
+  bump to 6.4.8.3, bug #252956
+
+  01 Jan 2009; Raúl Porcel <armin76@gentoo.org> imagemagick-6.4.5.9.ebuild:
+  Re-add ~arm/~s390/~sh wrt #242236
 
   29 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
   imagemagick-6.3.3.ebuild, imagemagick-6.3.4.ebuild,

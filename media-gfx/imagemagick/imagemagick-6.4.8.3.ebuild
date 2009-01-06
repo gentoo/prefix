@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.5.9.ebuild,v 1.3 2009/01/01 18:32:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.8.3.ebuild,v 1.1 2009/01/03 12:26:25 maekke Exp $
 
 EAPI="prefix 2"
 
@@ -56,7 +56,7 @@ DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
 	X? ( x11-proto/xextproto )"
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_P2}"
 
 pkg_setup() {
 	# for now, only build svg support when X is enabled, as librsvg
@@ -141,8 +141,7 @@ src_configure() {
 		$(use_with wmf) \
 		$(use_with xml) \
 		$(use_with zlib) \
-		$(use_with X x) \
-		|| die "econf failed"
+		$(use_with X x)
 }
 
 src_test() {
