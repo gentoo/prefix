@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.6.ebuild,v 1.9 2008/08/20 17:26:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.7-r1.ebuild,v 1.1 2009/01/01 12:30:30 loki_val Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
 
 LICENSE="FTL GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="X bindist debug doc utils"
 
 DEPEND="X?	( x11-libs/libX11
@@ -62,6 +62,12 @@ src_unpack() {
 	disable_option FT_CONFIG_OPTION_OLD_INTERNALS
 
 	epatch "${FILESDIR}"/${PN}-2.3.2-enable-valid.patch
+	epatch "${FILESDIR}"/${P}-b.g.o-247104.patch
+	epatch "${FILESDIR}"/${P}-b.g.o-253029.patch
+	#Fixes Debian bug #487101.
+	epatch "${FILESDIR}"/${P}-no-segfault-on-load_mac_face.patch
+	#Fixes Savannah bug #23973.
+	epatch "${FILESDIR}"/${P}-fix-incorrect-scaling.patch
 
 	if use utils; then
 		cd "${WORKDIR}"/ft2demos-${PV}
