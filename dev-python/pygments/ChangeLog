@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygments
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.23 2008/12/09 13:16:33 caleb Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.24 2009/01/04 21:28:48 patrick Exp $
+
+  04 Jan 2009; Patrick Lauer <patrick@gentoo.org> pygments-1.0.ebuild:
+  Fixing deps of pygments-1.0 for bug #250498
 
 *pygments-1.0 (09 Dec 2008)
 
