@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libsvg
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsvg/ChangeLog,v 1.35 2008/03/12 14:14:25 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsvg/ChangeLog,v 1.36 2009/01/04 15:42:10 angelos Exp $
+
+  04 Jan 2009; Christoph Mende <angelos@gentoo.org>
+  +files/libsvg-0.1.4-asneeded.patch, libsvg-0.1.4.ebuild:
+  QA: Link against libjpeg, bug 247739
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Peter Johanson (latexer, #206688) from metadata.xml.
