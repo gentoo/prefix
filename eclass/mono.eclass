@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.10 2008/12/26 00:37:47 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.11 2009/01/05 17:12:34 loki_val Exp $
 
 # @ECLASS: mono.eclass
 # @MAINTAINER:
@@ -12,6 +12,8 @@
 # dotnet packages.  Currently, it provides no functions, just exports
 # MONO_SHARED_DIR and sets LC_ALL in order to prevent errors during compilation
 # of dotnet packages.
+
+inherit multilib
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
 # shared dir to ${T} so that ${T}/.wapi can be used during the install process.
@@ -31,3 +33,35 @@ export XDG_CONFIG_HOME="${T}"
 # "Access Violations Arise When Emerging Mono-Related Packages with MONO_AOT_CACHE"
 
 unset MONO_AOT_CACHE
+
+egacinstall() {
+	gacutil -i "${1}" \
+		-root "${ED}"/usr/$(get_libdir) \
+		-gacdir /usr/$(get_libdir) \
+		-package ${2:-${GACPN:-${PN}}} \
+		|| die "installing ${1} into the Global Assembly Cache failed"
+}
+
+mono_multilib_comply() {
+	local dir finddirs=()
+	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]
+	then
+		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
+		then
+			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${ED}/usr/$(get_libdir)"
+		fi
+		cp -ar "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
+		rm -rf "${ED}"/usr/lib
+		for dir in "${ED}"/usr/"$(get_libdir)"/pkgconfig "${ED}"/usr/share/pkgconfig
+		do
+			[[ -d "${dir}" ]] && finddirs=( "${finddirs[@]}" "${dir}" )
+		done
+		if ! [[ -z "${finddirs[@]// /}" ]]
+		then
+			sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
+				$(find "${finddirs[@]}" -name '*.pc') \
+				|| die "Sedding some sense into pkgconfig files failed."
+		fi
+
+	fi
+}

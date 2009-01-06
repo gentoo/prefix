@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.19 2008/12/07 11:39:32 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.20 2009/01/03 18:20:00 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -18,7 +18,7 @@ inherit base cmake-utils eutils kde4-functions multilib
 
 case "${EAPI/prefix /}" in
 	2)
-		EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_test src_install pkg_postinst pkg_postrm
+		EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_test src_install pkg_postinst pkg_postrm
 		;;
 	*)
 		EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
@@ -531,6 +531,12 @@ kde4-base_src_unpack() {
 	if [[ -n ${KDE_LINGUAS} ]]; then
 		enable_selected_linguas
 	fi
+}
+
+
+# transition function so we will be compatible with soon to come eclasses
+kde4-base_src_prepare() {
+	echo
 }
 
 # @FUNCTION: kde4-base_src_compile

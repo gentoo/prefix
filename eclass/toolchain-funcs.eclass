@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.79 2008/09/16 06:40:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.80 2009/01/02 22:14:18 gengor Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -403,6 +403,12 @@ gcc-specs-ssp-to-all() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
 	return $([[ ${directive/\{!fno-stack-protector-all:} != ${directive} ]])
+}
+# Returns true if gcc builds with fno-strict-overflow
+gcc-specs-nostrict() {
+	local directive
+	directive=$(gcc-specs-directive cc1)
+	return $([[ ${directive/\{!fstrict-overflow:} != ${directive} ]])
 }
 
 

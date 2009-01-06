@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.30 2007/03/12 11:57:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.31 2009/01/04 22:09:06 ulm Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -11,7 +11,7 @@ IUSE="debug gnome ipv6 moznoxft truetype xinerama xprint"
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
 	x11-libs/libXmu
-	!moznoxft? ( virtual/xft )
+	!moznoxft? ( x11-libs/libXft )
 	>=media-libs/fontconfig-2.1
 	>=sys-libs/zlib-1.1.4
 	>=media-libs/jpeg-6b

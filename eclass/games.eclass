@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.129 2008/12/01 20:36:43 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.130 2009/01/05 01:24:52 mr_bones_ Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -8,7 +8,7 @@
 # you better have a *good* reason why you're *not* using games.eclass
 # in a games-* ebuild
 
-inherit multilib eutils
+inherit base multilib eutils
 
 eapi=${EAPI/prefix/}
 
