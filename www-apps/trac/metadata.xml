@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>web-apps</herd>
-<use>
-	<flag name='silvercity'>Add <pkg>app-text/silvercity</pkg> support to
-		colourize code stored in the repository</flag>
-</use>
 </pkgmetadata>
