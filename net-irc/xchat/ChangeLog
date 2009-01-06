@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/xchat
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.274 2008/11/27 20:49:59 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.275 2009/01/05 21:50:32 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  drop local xft USE-flag description, as it's global now
 
 *xchat-2.8.6-r2 (27 Nov 2008)
 

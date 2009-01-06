@@ -5,6 +5,5 @@
 <use>
 <flag name='xchatdccserver'>Enables support for the /dccserver command via a patch</flag>
 <flag name='xchatnogtk'>Disables building the GTK front end to XChat</flag>
-<flag name='xft'>Build xchat with support for the XFT font renderer</flag>
 </use>
 </pkgmetadata>
