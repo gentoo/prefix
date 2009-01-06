@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs-cvs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.228 2008/12/30 18:52:14 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.231 2009/01/05 21:49:06 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  drop local xft USE-flag description, as it's global now
+
+  04 Jan 2009; Ulrich Mueller <ulm@gentoo.org>
+  emacs-cvs-23.0.60_pre20081226.ebuild, emacs-cvs-23.0.9999.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
 
   30 Dec 2008; Raúl Porcel <armin76@gentoo.org> emacs-cvs-23.0.9999.ebuild:
   Add ~arm/~s390 wrt #238712

@@ -25,6 +25,5 @@
   <flag name='sound'>Enable sound</flag>
   <flag name='toolkit-scroll-bars'>Use the selected toolkit's scrollbars in
     preference to Emacs' own scrollbars</flag>
-  <flag name='xft'>Build Emacs with support for the XFT font renderer</flag>
 </use>
 </pkgmetadata>
