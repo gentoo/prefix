@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/igal
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/ChangeLog,v 1.16 2008/04/21 17:31:35 phreak Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/ChangeLog,v 1.17 2009/01/03 14:03:00 ssuominen Exp $
+
+*igal-2.0 (03 Jan 2009)
+
+  03 Jan 2009; <ssuominen@gentoo.org> +igal-2.0.ebuild:
+  Version bump for bug 250491, thanks to Maciej Zielenkiewicz.
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
