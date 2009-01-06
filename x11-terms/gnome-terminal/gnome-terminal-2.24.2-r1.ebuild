@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.24.2-r1.ebuild,v 1.1 2008/12/09 15:37:06 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.24.2-r1.ebuild,v 1.2 2009/01/05 13:42:59 remi Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND="virtual/xft
+RDEPEND="x11-libs/libXft
 	>=dev-libs/glib-2.16.0
 	>=x11-libs/gtk+-2.13.6
 	>=gnome-base/gconf-2.14

@@ -1,6 +1,18 @@
 # ChangeLog for x11-terms/gnome-terminal
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.184 2008/12/09 15:37:06 leio Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.186 2009/01/06 01:57:42 leio Exp $
+
+  06 Jan 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/gnome-terminal-2.22.0-fix-detach-tab.patch,
+  gnome-terminal-2.18.2.ebuild, -gnome-terminal-2.18.4.ebuild,
+  -gnome-terminal-2.22.3.ebuild, -gnome-terminal-2.24.1.ebuild:
+  Remove old
+
+  05 Jan 2009; Rémi Cardona <remi@gentoo.org> gnome-terminal-2.18.2.ebuild,
+  gnome-terminal-2.18.4.ebuild, gnome-terminal-2.22.3.ebuild,
+  gnome-terminal-2.22.3-r1.ebuild, gnome-terminal-2.24.1.ebuild,
+  gnome-terminal-2.24.2-r1.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
 
 *gnome-terminal-2.24.2-r1 (09 Dec 2008)
 
