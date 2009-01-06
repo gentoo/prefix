@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/xerces-c
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.77 2008/12/14 12:43:46 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.78 2009/01/05 21:43:57 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  drop local icu USE-flag description, as it's global now
 
   14 Dec 2008; Markus Meier <maekke@gentoo.org> xerces-c-3.0.0-r1.ebuild:
   amd64/x86 stable, bug #240496

@@ -9,9 +9,6 @@
     message loader and something else like icu or the native method as
     transcoder and vice-versa, but this is a less common case and hard to
     handle)</flag>
-  <flag name='icu'>Use ICU (<pkg>dev-libs/icu</pkg>) as message loader and
-    transcoder. ICU supports over 180 different encodings and/or locale
-    specific message support</flag>
   <flag name='libwww'>Use the <pkg>net-libs/libwww</pkg> library for fetching
     URLs, instead of the builtin method</flag>
   <flag name='threads'>Enable threading support through pthread (or other
