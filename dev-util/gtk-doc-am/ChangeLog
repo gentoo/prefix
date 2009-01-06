@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc-am
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.14 2008/08/14 00:15:19 leio Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/ChangeLog,v 1.15 2009/01/02 12:27:21 armin76 Exp $
+
+  02 Jan 2009; Raúl Porcel <armin76@gentoo.org> gtk-doc-am-1.10-r1.ebuild:
+  arm/s390/sh stable
 
   14 Aug 2008; Mart Raudsepp <leio@gentoo.org> -gtk-doc-am-1.10.ebuild:
   Remove old
