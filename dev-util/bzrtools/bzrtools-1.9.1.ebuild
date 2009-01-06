@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.9.1.ebuild,v 1.3 2008/12/31 16:24:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.9.1.ebuild,v 1.4 2009/01/03 15:08:08 nixnut Exp $
 
 EAPI="prefix"
 
