@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/boost
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.141 2008/12/16 16:37:27 dev-zero Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.142 2009/01/05 21:42:04 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  drop local icu USE-flag description, as it's global now
 
 *boost-1.37.0 (16 Dec 2008)
 *boost-1.36.0 (16 Dec 2008)

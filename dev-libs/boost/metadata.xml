@@ -14,8 +14,6 @@ Boost is a free peer-reviewed portable C++ source libraries.
     http://www.boost.org/tools/bcp/bcp.html</flag>
   <flag name='bjam'>Install the BoostJam tool
     http://www.boost.org/tools/build/jam_src/index.html</flag>
-  <flag name='icu'>Add unicode support to boost.regex using
-    <pkg>dev-libs/icu</pkg></flag>
   <flag name='pyste'>Add support for the pyste frontend</flag>
   <flag name='threadsonly'>Only build multithreaded libs</flag>
   <flag name='tools'>Build and install the boost tools (bcp, quickbook,
