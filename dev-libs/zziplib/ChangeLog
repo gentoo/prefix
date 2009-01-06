@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/zziplib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.57 2008/12/31 22:40:02 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.60 2009/01/05 17:49:20 jer Exp $
+
+  05 Jan 2009; Jeroen Roovers <jer@gentoo.org> zziplib-0.13.49-r1.ebuild:
+  Stable for HPPA (bug #252736).
+
+  04 Jan 2009; Raúl Porcel <armin76@gentoo.org> zziplib-0.13.49-r1.ebuild:
+  alpha/ia64 stable wrt #252736
+
+  02 Jan 2009; Torsten Veller <tove@gentoo.org> zziplib-0.13.49-r1.ebuild:
+  Stable on x86 (#252736)
 
   31 Dec 2008; Mike Frysinger <vapier@gentoo.org>
   files/zziplib-0.13.50-sparc-aligned-access.patch, zziplib-0.13.50.ebuild:
