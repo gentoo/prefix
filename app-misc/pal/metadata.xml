@@ -10,9 +10,4 @@
   track of events. It has similarities with the Unix cal command, the more
   complex GNU gcal program and the calendar program distributed with the BSDs.
 </longdescription>
-<use>
-  <flag name='ical'>Add support for converting ical format to pal
-    (<pkg>dev-libs/libical</pkg>)
-</flag>
-</use>
 </pkgmetadata>
