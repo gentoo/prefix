@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/cmake
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.76 2008/12/02 23:25:37 scarabeus Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.77 2009/01/03 22:05:12 scarabeus Exp $
+
+*cmake-2.6.2-r1 (03 Jan 2009)
+
+  03 Jan 2009; Tomas Chvatal <scarabeus@gentoo.org>
+  +files/cmake-FindPythonInterp.patch, +cmake-2.6.2-r1.ebuild:
+  Add patch for python lib detection. Per bug #253593. Thanks to Oldrich
+  Jedlicka for patch.
 
   02 Dec 2008; Tomas Chvatal <scarabeus@gentoo.org>
   -files/cmake-2.6.1-gc-sections.patch, -files/cmake-2.6.1-rpath.patch,
