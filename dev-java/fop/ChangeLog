@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/fop
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.60 2008/09/27 11:27:19 betelgeuse Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.61 2009/01/05 20:27:57 serkan Exp $
+
+  05 Jan 2009; Serkan Kaba <serkan@gentoo.org> fop-0.93-r1.ebuild:
+  Migrate to EAPI 2 to fix the dependencies.
 
   27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org> fop-0.94-r1.ebuild:
   Migrate to EAPI 2 for USE dependencies.
