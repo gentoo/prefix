@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.114 2008/10/25 13:16:09 hollow Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.115 2009/01/04 02:28:51 maekke Exp $
+
+  04 Jan 2009; Markus Meier <maekke@gentoo.org> apr-1.3.3.ebuild:
+  amd64/x86 stable, bug #246003
 
   25 Oct 2008; Benedikt Böhm <hollow@gentoo.org> apr-1.3.3.ebuild:
   fix typo wrt #236156

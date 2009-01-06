@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.3.ebuild,v 1.3 2008/10/25 13:16:09 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.3.ebuild,v 1.4 2009/01/04 02:28:51 maekke Exp $
 
 EAPI="prefix 1"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64-linux ~ia64-hpux ~m68k-mint ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-freebsd ~x86-interix ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc +urandom debug"
 RESTRICT="test"
 
