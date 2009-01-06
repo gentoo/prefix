@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/webpy
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/webpy/ChangeLog,v 1.4 2008/02/11 10:54:51 wrobel Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/ChangeLog,v 1.5 2009/01/04 20:24:24 patrick Exp $
+
+*webpy-0.30 (04 Jan 2009)
+
+  04 Jan 2009; Patrick Lauer <patrick@gentoo.org> +webpy-0.30.ebuild:
+  Bump to 0.3, named 0.30 because of upstream versioning, fixes #251035
 
 *webpy-0.23 (11 Feb 2008)
 
