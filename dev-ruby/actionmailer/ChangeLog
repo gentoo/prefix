@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/actionmailer
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.92 2008/11/27 06:57:22 graaff Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.93 2009/01/04 16:13:34 maekke Exp $
+
+  04 Jan 2009; Markus Meier <maekke@gentoo.org> actionmailer-2.2.2.ebuild:
+  amd64/x86 stable, bug #253425
 
 *actionmailer-2.2.2 (27 Nov 2008)
 
