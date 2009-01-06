@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/R
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.142 2008/11/09 13:20:56 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.143 2009/01/02 21:15:40 markusle Exp $
+
+*R-2.8.1 (02 Jan 2009)
+
+  02 Jan 2009; Markus Dittrich <markusle@gentoo.org> +R-2.8.1.ebuild:
+  Version bump (fixes bug #253117).
 
   09 Nov 2008; nixnut <nixnut@gentoo.org> R-2.7.2.ebuild:
   Stable on ppc wrt bug 244621
