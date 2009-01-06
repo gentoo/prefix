@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-desktop
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.230 2008/12/01 23:45:14 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.231 2009/01/04 00:20:24 eva Exp $
+
+*gnome-desktop-2.24.2-r1 (04 Jan 2009)
+
+  04 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-desktop-2.24.2-background.patch,
+  +gnome-desktop-2.24.2-r1.ebuild:
+  Avoid uselessly loading background, bug #251350.
 
   01 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-desktop-2.22.3.ebuild, gnome-desktop-2.24.2.ebuild:
