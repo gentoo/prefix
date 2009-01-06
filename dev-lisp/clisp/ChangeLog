@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/clisp
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.86 2008/11/02 13:06:44 hkbst Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.87 2009/01/05 21:44:03 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> clisp-2.47.ebuild:
+  amd64/x86 stable, bug #246074
 
 *clisp-2.47 (02 Nov 2008)
 
