@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/plotutils
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.49 2008/12/26 19:10:35 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.50 2009/01/05 17:49:13 jer Exp $
+
+  05 Jan 2009; Jeroen Roovers <jer@gentoo.org> plotutils-2.5.1.ebuild:
+  Stable for HPPA (bug #245690).
 
   26 Dec 2008; Raúl Porcel <armin76@gentoo.org> plotutils-2.5.1.ebuild:
   ia64/s390 stable wrt #245690
