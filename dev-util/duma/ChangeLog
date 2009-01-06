@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/duma
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.7 2008/11/22 17:54:01 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.8 2009/01/03 11:56:19 patrick Exp $
+
+*duma-2.5.14 (03 Jan 2009)
+
+  03 Jan 2009; Patrick Lauer <patrick@gentoo.org> +duma-2.5.14.ebuild:
+  Bump to 2.5.14
 
   22 Nov 2008; Markus Meier <maekke@gentoo.org> duma-2.5.13.ebuild:
   amd64 stable, bug #243332
