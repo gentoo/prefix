@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.4.ebuild,v 1.1 2008/08/29 11:53:43 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.4.ebuild,v 1.2 2009/01/04 02:29:51 maekke Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64-linux ~ia64-hpux ~m68k-mint ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-freebsd ~x86-interix ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb doc freetds gdbm ldap mysql odbc postgres sqlite sqlite3"
 RESTRICT="test"
 
