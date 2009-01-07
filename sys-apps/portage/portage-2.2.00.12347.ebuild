@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -79,7 +79,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12182-cross-prefix.patch
+	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12387-cross-prefix.patch
 }
 
 src_compile() {
