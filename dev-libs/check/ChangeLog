@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/check
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.45 2008/12/05 05:10:28 dirtyepic Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.46 2009/01/06 14:17:44 fmccor Exp $
+
+  06 Jan 2009; Ferris McCormick <fmccor@gentoo.org> check-0.9.5-r1.ebuild:
+  Sparc stable, Bug #253939.
 
   05 Dec 2008; Ryan Hill <dirtyepic@gentoo.org> ChangeLog, Manifest:
   Fix Changelog.
