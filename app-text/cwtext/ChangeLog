@@ -1,6 +1,10 @@
 # ChangeLog for app-text/cwtext
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.15 2008/04/07 20:18:14 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.16 2009/01/04 15:09:35 angelos Exp $
+
+  04 Jan 2009; Christoph Mende <angelos@gentoo.org>
+  +files/cwtext-0.94-asneeded.patch, cwtext-0.94.ebuild:
+  QA: Fix compilation with --as-needed (bug 246958), respect LDFLAGS
 
   07 Apr 2008; Raúl Porcel <armin76@gentoo.org> cwtext-0.94.ebuild:
   Some fixes and sparc stable, thanks to Tiago Cunha
