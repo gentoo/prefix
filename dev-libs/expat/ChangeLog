@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.73 2009/01/05 17:36:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.74 2009/01/06 14:06:21 fmccor Exp $
+
+  06 Jan 2009; Ferris McCormick <fmccor@gentoo.org> expat-2.0.1-r1.ebuild:
+  Sparc stable --- Bug #252607 --- tests succeed.
 
   05 Jan 2009; Jeroen Roovers <jer@gentoo.org> expat-2.0.1-r1.ebuild:
   Stable for HPPA (bug #252607).
