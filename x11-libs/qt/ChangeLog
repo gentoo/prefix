@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.550 2009/01/02 20:03:01 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.551 2009/01/06 14:20:12 yngwin Exp $
+
+  06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-3.3.8b.ebuild,
+  -qt-4.4.0.ebuild, -qt-4.4.1.ebuild, -qt-4.4.1-r1.ebuild:
+  Remove 3.3.8b in preparation of stabling 3.3.8b-r1. Removing old 4.4.{0,1}
+  meta ebuilds.
 
 *qt-3.3.8b-r1 (02 Jan 2009)
 
