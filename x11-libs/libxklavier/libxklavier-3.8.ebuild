@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.5.ebuild,v 1.1 2008/03/17 23:24:13 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.1 2009/01/04 00:36:08 eva Exp $
 
 EAPI="prefix"
 
@@ -8,22 +8,26 @@ inherit eutils
 
 DESCRIPTION="High level XKB library"
 HOMEPAGE="http://www.freedesktop.org/Software/LibXklavier"
-SRC_URI="mirror://sourceforge/gswitchit/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/gswitchit/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc"
 
-RDEPEND="|| ( x11-misc/xkeyboard-config x11-misc/xkbdata )
-		 x11-libs/libX11
-		 x11-apps/xkbcomp
-		 x11-libs/libxkbfile
-		 >=dev-libs/glib-2.6
-		 >=dev-libs/libxml2-2.0"
+RDEPEND="|| (
+		x11-misc/xkeyboard-config
+		x11-misc/xkbdata )
+	x11-libs/libX11
+	>=x11-libs/libXi-1.1.3
+	x11-apps/xkbcomp
+	x11-libs/libxkbfile
+	>=dev-libs/glib-2.16
+	>=dev-libs/libxml2-2.0
+	app-text/iso-codes"
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig
-		doc? ( app-doc/doxygen )"
+	dev-util/pkgconfig
+	doc? ( app-doc/doxygen )"
 
 src_compile() {
 	local xkbbase
@@ -35,14 +39,16 @@ src_compile() {
 		xkbbase=/usr/$(get_libdir)/X11/xkb
 	fi
 
-	econf --with-xkb-base="${EPREFIX}"${xkbbase} --with-xkb-bin-base="${EPREFIX}"/usr/bin \
-		  $(use_enable doc doxygen) || die
+	econf \
+		--with-xkb-base="${EPREFIX}"${xkbbase} \
+		--with-xkb-bin-base="${EPREFIX}"/usr/bin \
+		$(use_enable doc doxygen)
 
 	emake || die "emake failed"
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die "emake install failed"
 
 	insinto /usr/share/libxklavier
 	use sparc && doins "${FILESDIR}/sun.xml"
