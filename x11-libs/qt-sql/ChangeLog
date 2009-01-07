@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-sql
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.17 2008/09/19 00:16:01 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.18 2009/01/06 15:13:38 yngwin Exp $
+
+  06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-sql-4.4.0.ebuild,
+  -qt-sql-4.4.1.ebuild:
+  Clean out old ebuilds
 
 *qt-sql-4.4.2 (19 Sep 2008)
 
