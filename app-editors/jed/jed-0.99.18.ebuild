@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.15 2008/03/11 17:32:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.16 2009/01/04 19:46:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -19,8 +19,8 @@ IUSE="X gpm truetype"
 RDEPEND=">=sys-libs/slang-2
 	X? ( x11-libs/libX11
 		truetype? ( x11-libs/libXext
+			x11-libs/libXft
 			x11-libs/libXrender
-			virtual/xft
 			>=media-libs/freetype-2.0 ) )
 	gpm? ( sys-libs/gpm )"
 DEPEND="${RDEPEND}"
