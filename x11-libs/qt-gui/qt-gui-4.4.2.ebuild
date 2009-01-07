@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.2.ebuild,v 1.1 2008/09/19 00:12:12 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/Attic/qt-gui-4.4.2.ebuild,v 1.2 2009/01/01 21:54:02 yngwin Exp $
 
 EAPI="prefix 1"
 inherit eutils qt4-build
@@ -69,6 +69,9 @@ src_unpack() {
 	${QT4_EXTRACT_DIRECTORIES}"
 
 	qt4-build_src_unpack
+
+	# fix for bug 253044
+	epatch "${FILESDIR}"/0254-fix-qgraphicsproxywidget-deletion-crash.diff
 
 	# Don't build plugins this go around, because they depend on qt3support lib
 	sed -i -e "s:CONFIG(shared:# &:g" "${S}"/tools/designer/src/src.pro
