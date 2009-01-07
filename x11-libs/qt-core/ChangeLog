@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.14 2009/01/05 22:31:38 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.15 2009/01/06 14:49:53 yngwin Exp $
+
+  06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-core-4.4.0.ebuild,
+  -qt-core-4.4.1.ebuild, -qt-core-4.4.1-r1.ebuild:
+  Clean out old ebuilds
 
   05 Jan 2009; Ben de Groot <yngwin@gentoo.org> qt-core-4.4.2.ebuild:
   Add fix to prevent pre-stripping, bug 235026.
