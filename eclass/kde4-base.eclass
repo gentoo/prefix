@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.20 2009/01/03 18:20:00 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.21 2009/01/06 10:55:41 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -536,7 +536,7 @@ kde4-base_src_unpack() {
 
 # transition function so we will be compatible with soon to come eclasses
 kde4-base_src_prepare() {
-	echo
+	base_src_prepare
 }
 
 # @FUNCTION: kde4-base_src_compile

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.41 2009/01/02 09:42:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.42 2009/01/06 19:24:06 grobian Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
@@ -81,7 +81,6 @@ font_xft_config() {
 	if ! has_version '>=media-libs/fontconfig-2.4'; then
 		# create fontconfig cache
 		einfo "Creating fontconfig cache ..."
-		# Mac OS X has fc-cache at /usr/X11R6/bin
 		fc-cache -sf "${ED}${FONTDIR}"
 	fi
 }

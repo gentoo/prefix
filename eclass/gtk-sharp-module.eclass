@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.10 2009/01/05 22:10:44 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.11 2009/01/06 19:37:18 grobian Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>, butchered by ikelos, then loki_val.
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -358,10 +358,10 @@ generate_pkgconfig() {
 		Version: ${pkgconfig_version}
 	EOF
 
-        for gfile in "${ED}"/usr/${apifile%/*}/*-api.xml
-        do
-                CSTRING="${CSTRING} -I:"'${gapidir}'"/${gfile##*/}"
-        done
+	for gfile in "${ED}"/usr/${apifile%/*}/*-api.xml
+	do
+		CSTRING="${CSTRING} -I:"'${gapidir}'"/${gfile##*/}"
+	done
 	echo "${CSTRING}" >> "${ED}/usr/$(get_libdir)/pkgconfig/${pkgconfig_filename}.pc"
 
 
