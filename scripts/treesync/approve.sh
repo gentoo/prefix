@@ -28,11 +28,19 @@ fi
 # else, do an interactive session
 echo "Semi auto-sync" > eupdate.msg
 echo "-------------------------------------------------------------------"
+thinking=$(date +%s)
 while [[ -z $do_update ]]; do
 	echo -n "commit this update? [y/n/e] "
 	read do_update
 	case $do_update in
 		y|Y|yes)
+			etime=$(date +%s)
+			if [[ -z ${didedit} ]] ; then
+				echo "(reviewed in $((etime - thinking)) seconds)" >> eupdate.msg
+			else
+				etime=$((etime - thinking))
+				echo "(manually editted for $((etime / 60))m $((etime % 60))s)" >> eupdate.msg
+			fi
 			break
 		;;
 		n|N|no)
@@ -44,6 +52,7 @@ while [[ -z $do_update ]]; do
 			unset do_update
 			$SHELL
 			svn status --no-ignore
+			didedit=yes
 		;;
 		*)
 			echo "response $do_update not understood"
