@@ -1,6 +1,10 @@
 # ChangeLog for sys-kernel/linux-headers
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.280 2008/12/30 22:25:34 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.281 2009/01/04 02:26:57 maekke Exp $
+
+  04 Jan 2009; Markus Meier <maekke@gentoo.org>
+  linux-headers-2.6.27-r2.ebuild:
+  amd64/x86 stable, bug #252645
 
   30 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   linux-headers-2.6.27-r2.ebuild:
