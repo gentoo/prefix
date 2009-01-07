@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.12.ebuild,v 1.8 2007/12/11 22:01:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.12.ebuild,v 1.9 2009/01/05 13:26:13 remi Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND="!aqua? (
 				x11-libs/libXrender
 				x11-libs/libXext
 				x11-libs/libX11
-				virtual/xft
+				x11-libs/libXft
 				xcb? ( x11-libs/libxcb
 						x11-libs/xcb-util )
 			)

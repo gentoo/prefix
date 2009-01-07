@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.7 2008/12/31 21:48:56 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.0.ebuild,v 1.8 2009/01/05 13:26:13 remi Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ RDEPEND="media-libs/fontconfig
 	X? ( 	>=x11-libs/libXrender-0.6
 		x11-libs/libXext
 		x11-libs/libX11
-		virtual/xft )
+		x11-libs/libXft )
 	xcb? (	>=x11-libs/libxcb-0.92
 		x11-libs/xcb-util )"
 #	test? (
