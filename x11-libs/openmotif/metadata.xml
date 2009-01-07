@@ -5,8 +5,4 @@
 <maintainer>
   <email>ulm@gentoo.org</email>
 </maintainer>
-<use>
-  <flag name='xft'>Build OpenMotif with support for XFT font renderer
-    (<pkg>x11-libs/libXft</pkg>)</flag>
-</use>
 </pkgmetadata>

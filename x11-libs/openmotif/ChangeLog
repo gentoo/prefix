@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/openmotif
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.210 2008/11/12 22:25:13 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.211 2009/01/05 21:55:18 maekke Exp $
+
+  05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  drop local xft USE-flag description, as it's global now
 
   12 Nov 2008; Ulrich Mueller <ulm@gentoo.org>
   -files/openmotif-2.3.1-XmRenderT-no-xft.patch,
