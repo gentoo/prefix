@@ -2,11 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>fonts</herd>
-  <maintainer>
-    <email>dirtyepic@gentoo.org</email>
-    <name>Ryan Hill</name>
-    <description>co-maintainer</description>
-  </maintainer>
   <use>
     <flag name="kpathsea">Enable TeX support (ttf2pk and ttf2pfb)</flag>
     <flag name="utils">Install utilities and examples from ft2demos</flag>
