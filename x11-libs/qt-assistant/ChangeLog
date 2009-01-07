@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-assistant
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.16 2008/10/01 21:46:23 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.17 2009/01/05 23:55:06 yngwin Exp $
+
+*qt-assistant-4.4.2-r1 (05 Jan 2009)
+
+  05 Jan 2009; Ben de Groot <yngwin@gentoo.org>
+  +qt-assistant-4.4.2-r1.ebuild:
+  Add fix to install correct icon, bug 241208.
 
   01 Oct 2008; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
   Fix unicode apostrophe that was causing an error during use.local.desc
