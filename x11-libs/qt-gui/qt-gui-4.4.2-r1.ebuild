@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.0.ebuild,v 1.5 2008/06/13 23:21:49 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.2-r1.ebuild,v 1.1 2009/01/05 22:58:28 yngwin Exp $
 
 EAPI="prefix 1"
 inherit eutils qt4-build
@@ -8,15 +8,14 @@ inherit eutils qt4-build
 DESCRIPTION="The GUI module(s) for the Qt toolkit."
 HOMEPAGE="http://www.trolltech.com/"
 
-LICENSE="|| ( QPL-1.0 GPL-3 GPL-2 )"
+LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 IUSE="+accessibility cups dbus debug glib mng nas nis tiff +qt3support xinerama ${IUSE_INPUT_DEVICES}"
 
-RDEPEND="
-	!<=x11-libs/qt-4.4.0_alpha:${SLOT}
+RDEPEND="!<=x11-libs/qt-4.4.0_alpha:${SLOT}
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/jpeg
@@ -39,6 +38,7 @@ DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
 	x11-proto/xextproto
 	x11-proto/inputproto"
+PDEPEND="qt3support? ( ~x11-libs/qt-qt3support-${PV} )"
 
 QT4_TARGET_DIRECTORIES="
 src/gui
@@ -69,11 +69,11 @@ src_unpack() {
 
 	qt4-build_src_unpack
 
+	# fix for bug 253044
+	epatch "${FILESDIR}"/0254-fix-qgraphicsproxywidget-deletion-crash.diff
+
 	# Don't build plugins this go around, because they depend on qt3support lib
 	sed -i -e "s:CONFIG(shared:# &:g" "${S}"/tools/designer/src/src.pro
-
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-scrollbars.patch"
 }
 
 src_compile() {
@@ -88,7 +88,7 @@ src_compile() {
 		$(qt_use mng libmng system)
 		$(qt_use nis)
 		$(qt_use tiff libtiff system)
-		$(qt_use qdbus)
+		$(qt_use dbus qdbus)
 		$(qt_use qt3support)
 		$(qt_use xinerama)"
 
@@ -119,7 +119,18 @@ src_install() {
 	$(use xinerama && echo QT_XINERAMA) QT_XFIXES QT_XKB QT_XRANDR QT_XRENDER"
 	qt4-build_src_install
 
-	domenu "${FILESDIR}"/{Designer,Linguist}.desktop
+	# install correct designer and linguist icons, bug 241208
+	dodir /usr/share/pixmaps/ || die "dodir failed"
+	insinto /usr/share/pixmaps/ || die "insinto failed"
+	doins tools/linguist/linguist/images/icons/linguist-128-32.png \
+		tools/designer/src/designer/images/designer.png || die "doins failed"
+	# Note: absolute image path required here!
+	make_desktop_entry /usr/bin/linguist Linguist \
+		/usr/share/pixmaps/linguist-128-32.png 'Qt;Development;GUIDesigner' \
+		|| die "make_desktop_entry failed"
+	make_desktop_entry /usr/bin/designer Designer \
+		/usr/share/pixmaps/designer.png 'Qt;Development;GUIDesigner' \
+		|| die "make_desktop_entry failed"
 }
 
 pkg_postinst()
