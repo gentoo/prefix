@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/swfdec-0.8.4.ebuild,v 1.1 2008/12/24 14:25:44 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/swfdec-0.8.4.ebuild,v 1.2 2009/01/07 02:33:31 dang Exp $
 
 EAPI="prefix 1"
 
@@ -15,7 +15,7 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
-IUSE="alsa doc ffmpeg gstreamer +gtk oss pulseaudio"
+IUSE="alsa doc ffmpeg gstreamer +gtk pulseaudio"
 
 RDEPEND=">=dev-libs/glib-2.16
 	>=dev-libs/liboil-0.3.1
@@ -61,9 +61,8 @@ pkg_setup() {
 
 src_compile() {
 	# Backend logic is from configure.ac:
-	# alsa > pulseaudio > oss
+	# alsa > pulseaudio
 	local audio="none"
-	use oss && audio="oss"
 	use pulseaudio && audio="pulse"
 	use alsa && audio="alsa"
 
