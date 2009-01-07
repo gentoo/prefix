@@ -43,7 +43,7 @@ src_unpack() {
 	# solaris req. c99
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i \
-			-e "/^CFLAGS_COMMON/s/= /= -std=c99/" \
+			-e "/^CFLAGS_COMMON/s/= /= -std=c99 /" \
 			"${S}"/common.mk || die "404. File not found while sedding"
 	fi
 
