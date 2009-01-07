@@ -12,13 +12,11 @@
     <flag name="ass">Internal SRT/SSA/ASS (SubRip / SubStation Alpha) subtitle support</flag>
     <flag name="bl">Enables Blinkenlights support in mplayer</flag>
     <flag name="cdio">Use libcdio for CD support (instead of cdparanoia)</flag>
-    <flag name="color-console">Enable color console output (UNSUPPORTED)</flag>
     <flag name="cpudetection">Enables runtime cpudetection (useful for bindist, compatability on other CPUs)</flag>
     <flag name="custom-cflags">Enables custom CFLAGS (UNSUPPORTED)</flag>
     <flag name="custom-cpuopts">Fine-tune custom CPU optimizations (UNSUPPORTED)</flag>
 	<flag name="dirac">Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.</flag>
     <flag name="dvdnav">Use forked libdvdnav, navigate menus in GUIs</flag>
-    <flag name="dxr2">Enable DXR2 video output</flag>
     <flag name="dxr3">Enable DXR3/H+ video output</flag>
     <flag name="enca">Enables support for charset discovery and conversion</flag>
     <flag name="live">Enables live.com streaming media support</flag>
@@ -38,7 +36,6 @@
     <flag name="ssse3">faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)</flag>
     <flag name="teletext">Support for TV teletext interface</flag>
     <flag name="tga">Enables Targa video output</flag>
-    <flag name="tivo">Enables TiVo vstream client support</flag>
     <flag name="vidix">Support for vidix video output</flag>
     <flag name="xanim">Enables support for xanim based codecs</flag>
     <flag name="xvmc">Enables X-Video Motion Compensation support</flag>
