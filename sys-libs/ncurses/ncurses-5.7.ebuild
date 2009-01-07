@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.3 2008/12/02 02:17:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.4 2009/01/06 20:59:57 vapier Exp $
 
 EAPI="prefix"
 
@@ -162,8 +162,6 @@ src_install() {
 	fi
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		[[ -f ${ED}/$(get_libdir)/libcursesw$(get_libname) ]] && \
-			gen_usr_ldscript libcursesw$(get_libname)
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
 
