@@ -1,10 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/HTTP-Server-Simple-0.35.ebuild,v 1.1 2008/10/23 07:24:03 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/HTTP-Server-Simple-0.37.ebuild,v 1.1 2009/01/04 11:33:58 tove Exp $
 
 EAPI="prefix"
 
-MODULE_AUTHOR=ALEXMV
+#MODULE_AUTHOR=ALEXMV
+MODULE_AUTHOR=JESSE
 inherit perl-module eutils
 
 DESCRIPTION="Lightweight HTTP Server"
@@ -21,4 +22,4 @@ DEPEND="${RDEPEND}
 		dev-perl/Test-Pod-Coverage )"
 
 SRC_TEST="do"
-PATCHES="${FILESDIR}/${PV}-debian.patch"
+#PATCHES=( "${FILESDIR}/${PV}-debian.patch" )
