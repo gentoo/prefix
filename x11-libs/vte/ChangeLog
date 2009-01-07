@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.214 2008/12/09 03:33:48 dang Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.215 2009/01/05 13:29:29 remi Exp $
+
+  05 Jan 2009; Rémi Cardona <remi@gentoo.org> vte-0.16.8.ebuild,
+  vte-0.16.13.ebuild, vte-0.16.14.ebuild, vte-0.17.4.ebuild,
+  vte-0.17.4-r2.ebuild, vte-0.17.4-r3.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
 
 *vte-0.17.4-r3 (09 Dec 2008)
 

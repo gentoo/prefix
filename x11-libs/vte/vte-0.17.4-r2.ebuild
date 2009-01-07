@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.17.4-r2.ebuild,v 1.1 2008/11/01 17:41:23 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.17.4-r2.ebuild,v 1.2 2009/01/05 13:29:29 remi Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ RDEPEND=">=dev-libs/glib-2.14
 		>=dev-lang/python-2.4.4-r5
 	)
 	x11-libs/libX11
-	virtual/xft"
+	x11-libs/libXft"
 
 DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1.0 )
