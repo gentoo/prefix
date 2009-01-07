@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/autoconf
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.124 2008/12/31 19:56:31 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.127 2009/01/04 02:25:53 maekke Exp $
+
+  04 Jan 2009; Markus Meier <maekke@gentoo.org> autoconf-2.63.ebuild:
+  amd64/x86 stable, bug #245067
+
+  03 Jan 2009; nixnut <nixnut@gentoo.org> autoconf-2.63.ebuild:
+  ppc stable #245067
+
+  01 Jan 2009; Jeroen Roovers <jer@gentoo.org> autoconf-2.63.ebuild:
+  Stable for HPPA (bug #245067).
 
   31 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> autoconf-2.63.ebuild:
   Stable on sparc, bug #245067
