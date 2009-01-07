@@ -158,9 +158,6 @@ src_configure() {
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
 	fi
-	# http://bugs.python.org/issue4026
-	[[ ${CHOST} == *-aix6* ]] && \
-		export PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} fcntl"
 	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 }
 
@@ -225,6 +222,10 @@ src_compile() {
 
 	# python defaults to use 'cc_r' on aix
 	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
+	# http://bugs.python.org/issue4026
+	if [[ ${CHOST} == *-aix6* ]]; then
+		sed -i -e 's:-lm :-lm -lbsd :' Modules/ld_so_aix || die "sed failure"
+	fi
 
 	econf \
 		--with-fpectl \
