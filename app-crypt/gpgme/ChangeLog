@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/gpgme
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.149 2008/11/17 19:56:16 flameeyes Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.153 2009/01/05 08:34:47 tove Exp $
+
+*gpgme-1.1.8 (03 Jan 2009)
+
+  03 Jan 2009; Daniel Black <dragonheart@gentoo.org> +gpgme-1.1.8.ebuild:
+  version bump. patch and ebuild cleanup by Arfrever in bug #253616
+
+*gpgme-1.1.7 (03 Jan 2009)
+
+  03 Jan 2009; Daniel Black <dragonheart@gentoo.org>
+  +files/gpgme-1.1.7-_gpgme_cancel_with_err.patch, +gpgme-1.1.7.ebuild:
+  version bump. patch and ebuild cleanup byArfrever in bug #242572
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/gpgme3.m4.patch:
