@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/aesutil
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/aesutil/ChangeLog,v 1.7 2008/12/30 16:35:22 mpagano Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/aesutil/ChangeLog,v 1.8 2009/01/03 17:57:52 angelos Exp $
+
+  03 Jan 2009; Christoph Mende <angelos@gentoo.org> aesutil-1.0.7.ebuild:
+  QA: Respect LDFLAGS
 
   30 Dec 2008; Mike Pagano <mpagano@gentoo.org> aesutil-1.0.7.ebuild:
   Fixed hardcoded CC as per bug #243534
