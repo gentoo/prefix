@@ -4,7 +4,5 @@
 <herd>base-system</herd>
 <use>
 	<flag name='loop-aes'>include support for Loop AES encryption</flag>
-	<flag name='old-crypt'>build support for the older cryptoapi that earlier
-		util-linux's included</flag>
 </use>
 </pkgmetadata>
