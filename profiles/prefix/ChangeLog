@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  08 Jan 2009; Jeremy Olexa <darkside@gentoo.org> aix/package.mask:
+  p.mask >=net-misc/openssh-5.0_p1-r2 on aix
+
   07 Jan 2009; Jeremy Olexa <darkside@gentoo.org> aix/package.mask:
   p.mask >=dev-libs/openssl-0.9.8i on aix
 
