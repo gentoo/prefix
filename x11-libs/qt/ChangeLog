@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.551 2009/01/06 14:20:12 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.552 2009/01/07 19:45:06 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> qt-3.3.8b-r1.ebuild:
+  stable ppc64, bug 253978
 
   06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-3.3.8b.ebuild,
   -qt-4.4.0.ebuild, -qt-4.4.1.ebuild, -qt-4.4.1-r1.ebuild:
