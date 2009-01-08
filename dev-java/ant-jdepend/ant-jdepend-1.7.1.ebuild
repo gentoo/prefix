@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jdepend/ant-jdepend-1.7.1.ebuild,v 1.4 2008/12/21 13:31:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-jdepend/ant-jdepend-1.7.1.ebuild,v 1.5 2009/01/07 19:15:52 ranger Exp $
 
 EAPI="prefix 1"
 
