@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/log4j
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.71 2008/11/01 14:57:32 serkan Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.72 2009/01/07 16:05:24 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> log4j-1.2.15-r1.ebuild:
+  stable ppc64, bug 242980
 
   01 Nov 2008; Serkan Kaba <serkan@gentoo.org> log4j-1.2.15-r1.ebuild:
   Fix bug #245147. Thanks to Graham Derryberry <asterion@alum.mit.edu> for
