@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9364 2009/01/06 02:41:34 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9367 2009/01/07 19:44:41 dang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Daniel Gryniewicz <dang@gentoo.org> (07 Jan 2009)
+# Mask gnome-base/gnome-vfs-monikers for removal
+# REASON:
+# Nothing uses it anymore (gnome-vfs used to) and it's depricated. Bug #253826
+gnome-base/gnome-vfs-monikers
+
+# Tomas Chvatal <scarabeus@gentoo.org> (07 Jan 2009)
+# Mask kde-base/pykde-3.5* for removal
+# REASON:
+# broken and nobody seems to care for fix, also replacement as
+# dev-python/pykde can be used
+=kde-base/pykde-3.5*
 
 # Zac Medico <zmedico@gentoo.org> (05 Jan 2009)
 # Portage 2.2 is masked due to known bugs in the
@@ -270,19 +283,6 @@ net-analyzer/sysmon
 >=net-misc/networkmanager-vpnc-0.7.0
 >=net-misc/networkmanager-pptp-0.7.0
 >=net-misc/networkmanager-openvpn-0.7.0
-
-# Bernard Cafarelli <voyageur@gentoo.org> (04 Dec 2008)
-# Masked for removal in 30 days (bug #249799)
-# * Upstream closed web site and source downloads
-# * No updates since first release 2 years ago
-# * Still based on old NX 1.5 code, missing features and being mostly
-# incompatible with current NX servers/clients
-# * Client does not compile with gcc4.3 or --as-needed (bug #248138).
-# * Server includes old, unpatched xorg sources, probably vulnerable to GLSA
-# 200710-09 and 200804-05.
-# * GPL alternatives exist: net-misc/qtnx, net-misc/nxserver-freenx
-net-misc/nxclient-2xterminalserver
-net-misc/nxserver-2xterminalserver
 
 # Tomas Chvatal <scarabeus@gentoo.org> (03 Dec 2008)
 # Betaversion, has cool stuff like plasmoid and so on
@@ -946,11 +946,6 @@ sys-fs/redirfs
 # Sebastien Fabbro <bicatali@gentoo.org> (05 Feb 2008)
 # sci-libs/metis-5.* still experimental
 >=sci-libs/metis-4.99
-
-# Wulf C. Krueger <philantrop@gentoo.org> (04 Feb 2008)
-# This package has been pretty much broken since 3.5.6.
-# cf. bug 164027
->=kde-base/pykde-3.5.6
 
 # Ulrich Mueller <ulm@gentoo.org> (01 Feb 2008)
 # Emacs 23 virtual, unmask after Emacs 23 release

@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.19 2009/01/05 03:45:07 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.20 2009/01/06 07:20:47 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -66,6 +66,7 @@ dev-perl/Archive-Rar
 dev-util/biew
 dev-util/dialogblocks
 dev-util/helpblocks
+dev-util/nvidia-cuda-profiler
 games-action/descent3
 games-action/descent3-demo
 games-action/heretic2
@@ -204,6 +205,7 @@ net-voip/wengophone-bin
 sci-biology/foldingathome
 sys-apps/memtest86
 sys-apps/memtest86+
+sys-block/hpacucli
 sys-libs/lib-compat-loki
 <www-client/opera-9.62
 www-client/mozilla-bin
