@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/swfdec-0.8.4.ebuild,v 1.2 2009/01/07 02:33:31 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/swfdec-0.8.4.ebuild,v 1.3 2009/01/07 15:29:33 dang Exp $
 
 EAPI="prefix 1"
 
@@ -76,8 +76,6 @@ src_compile() {
 		$(use_enable doc gtk-doc) \
 		$(use_enable gstreamer) \
 		$(use_enable gtk) \
-		--disable-ffmpeg \
-		--disable-mad \
 		--with-audio=${audio} || die "configure failed"
 
 	# bug #216284 image tests are not ready yet
