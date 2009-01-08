@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1-r1.ebuild,v 1.4 2009/01/06 14:06:21 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1-r1.ebuild,v 1.6 2009/01/07 18:32:54 armin76 Exp $
 
 EAPI="prefix"
 
