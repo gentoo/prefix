@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.127 2009/01/04 02:25:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.128 2009/01/07 20:03:32 armin76 Exp $
+
+  07 Jan 2009; Raúl Porcel <armin76@gentoo.org> autoconf-2.63.ebuild:
+  alpha/ia64 stable wrt #2475067
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org> autoconf-2.63.ebuild:
   amd64/x86 stable, bug #245067
