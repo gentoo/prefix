@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-apache-bcel
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bcel/ChangeLog,v 1.13 2008/12/21 13:39:15 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bcel/ChangeLog,v 1.14 2009/01/07 19:01:45 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> ant-apache-bcel-1.7.1.ebuild:
+  Marking ant-apache-bcel-1.7.1 ppc64 for bug 250466
 
   21 Dec 2008; Markus Meier <maekke@gentoo.org>
   ant-apache-bcel-1.7.1.ebuild:
