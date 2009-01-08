@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.189 2009/01/04 15:36:37 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.190 2009/01/07 16:37:00 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> bash-3.2_p39.ebuild:
+  stable ppc64, bug 235020
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org> bash-3.2_p39.ebuild:
   amd64/x86 stable, bug #235020
