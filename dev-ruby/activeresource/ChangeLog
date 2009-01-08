@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/activeresource
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.24 2009/01/04 16:12:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.26 2009/01/07 18:07:57 fmccor Exp $
+
+  07 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
+  activeresource-2.2.2.ebuild:
+  Sparc stable, Bug #253425.
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> activeresource-2.2.2.ebuild:
+  Marking activeresource-2.2.2 ppc64 for bug 253425
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org> activeresource-2.2.2.ebuild:
   amd64/x86 stable, bug #253425
