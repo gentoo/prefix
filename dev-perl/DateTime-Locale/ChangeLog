@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/DateTime-Locale
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-Locale/ChangeLog,v 1.52 2008/11/18 14:42:41 tove Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-Locale/ChangeLog,v 1.53 2009/01/07 20:37:15 fmccor Exp $
+
+  07 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
+  DateTime-Locale-0.42.ebuild:
+  Sparc stable, part of Bug #254143.
 
   18 Nov 2008; Torsten Veller <tove@gentoo.org> DateTime-Locale-0.34.ebuild,
   DateTime-Locale-0.35.ebuild, DateTime-Locale-0.41.ebuild,
