@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.49 2009/01/04 14:51:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.50 2009/01/07 15:19:29 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> apache-tools-2.2.10.ebuild:
+  Marking apache-tools-2.2.10 ppc64 for bug 252432
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org> apache-tools-2.2.10.ebuild:
   amd64/x86 stable, bug #252432
