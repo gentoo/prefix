@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant/ChangeLog,v 1.118 2008/12/21 13:47:17 maekke Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant/ChangeLog,v 1.119 2009/01/07 19:28:30 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> ant-1.7.1.ebuild:
+  Marking ant-1.7.1 ppc64 for bug 250466
 
   21 Dec 2008; Markus Meier <maekke@gentoo.org> ant-1.7.1.ebuild:
   x86 stable, bug #250466
