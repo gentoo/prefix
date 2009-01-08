@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.7.ebuild,v 1.1 2009/01/04 22:04:19 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.7.ebuild,v 1.2 2009/01/07 18:06:39 patrick Exp $
 
 EAPI="prefix"
 
@@ -40,15 +40,13 @@ src_compile() {
 	# Bug 34609 (joe 2.9.8 editor seg-faults on 'find and replace' when compiled with -Os)
 	replace-flags "-Os" "-O2"
 
-	econf || die
+	econf --docdir=/usr/share/doc/${PF} || die
 	emake || die
 }
 
 src_install() {
 	make install DESTDIR="${D}" || die "make install failed"
 	dodoc ChangeLog HACKING HINTS LIST NEWS README TODO
-	# remove superfluous documentation, fixes bug #116861
-	rm -rf "${ED}"/etc/joe/doc
 }
 
 pkg_postinst() {

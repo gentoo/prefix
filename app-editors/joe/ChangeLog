@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/joe
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.62 2009/01/04 22:04:19 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.63 2009/01/07 18:06:39 patrick Exp $
+
+  07 Jan 2009; Patrick Lauer <patrick@gentoo.org> joe-3.7.ebuild:
+  Small fix for docs, fixes #254007
 
 *joe-3.7 (04 Jan 2009)
 
