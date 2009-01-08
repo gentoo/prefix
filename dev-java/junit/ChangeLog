@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junit
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.48 2009/01/04 17:35:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.49 2009/01/07 15:00:59 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> junit-4.5.ebuild:
+  Marking junit-4.5 ppc64 for bug 252819
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org> junit-4.5.ebuild:
   amd64/x86 stable, bug #252819
