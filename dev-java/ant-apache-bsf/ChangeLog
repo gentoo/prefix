@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-apache-bsf
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.20 2008/12/21 13:38:28 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ChangeLog,v 1.21 2009/01/07 19:05:11 ranger Exp $
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org>
+  ant-apache-bsf-1.7.1-r1.ebuild:
+  Marking ant-apache-bsf-1.7.1-r1 ppc64 for bug 250466
 
   21 Dec 2008; Markus Meier <maekke@gentoo.org> ant-apache-bsf-1.7.1.ebuild:
   x86 stable, bug #250466
