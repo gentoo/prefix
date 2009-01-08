@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/gentoo-syntax
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.28 2008/12/27 22:47:31 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.29 2009/01/07 12:35:48 ulm Exp $
+
+*gentoo-syntax-1.11 (07 Jan 2009)
+
+  07 Jan 2009; Ulrich Mueller <ulm@gentoo.org> +gentoo-syntax-1.11.ebuild:
+  Version bump.
 
 *gentoo-syntax-1.10 (27 Dec 2008)
 
