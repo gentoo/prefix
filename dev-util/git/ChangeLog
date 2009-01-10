@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.316 2009/01/06 22:48:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.317 2009/01/08 19:00:42 ranger Exp $
+
+  08 Jan 2009; Brent Baude <ranger@gentoo.org> git-1.6.0.6.ebuild:
+  Marking git-1.6.0.6 ppc64 for bug 251343
 
 *git-1.6.1 (06 Jan 2009)
 
