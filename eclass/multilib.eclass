@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.69 2008/11/28 09:20:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.70 2009/01/09 06:59:45 vapier Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -654,6 +654,18 @@ multilib_env() {
 # specific ABI when run on another ABI (like x86-specific packages on amd64)
 multilib_toolchain_setup() {
 	export ABI=$1
+
+	# disable ccache for non-native builds #196243.  this is because how
+	# we cram ABI related CFLAGS behind the back of the gcc frontend with
+	# the gcc-config wrapper.
+	if [[ ${ABI} != ${DEFAULT_ABI} ]] ; then
+		: ${CCACHE_DISABLE:=multilib-disable}
+	else
+		if [[ ${CCACHE_DISABLE} == "multilib-disable" ]] ; then
+			unset CCACHE_DISABLE
+		fi
+	fi
+	export CCACHE_DISABLE
 
 	if has_version app-admin/eselect-compiler ; then
 		# Binutils doesn't have wrappers for ld and as (yet).  Eventually it

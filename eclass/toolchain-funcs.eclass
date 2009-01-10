@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.80 2009/01/02 22:14:18 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.84 2009/01/08 11:06:10 gengor Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -378,37 +378,37 @@ gcc-specs-directive() {
 gcc-specs-relro() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ ${directive/\{!norelro:} != ${directive} ]])
+	return $([[ "${directive/\{!norelro:}" != "${directive}" ]])
 }
 # Returns true if gcc sets now
 gcc-specs-now() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ ${directive/\{!nonow:} != ${directive} ]])
+	return $([[ "${directive/\{!nonow:}" != "${directive}" ]])
 }
 # Returns true if gcc builds PIEs
 gcc-specs-pie() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ ${directive/\{!nopie:} != ${directive} ]])
+	return $([[ "${directive/\{!nopie:}" != "${directive}" ]])
 }
 # Returns true if gcc builds with the stack protector
 gcc-specs-ssp() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ ${directive/\{!fno-stack-protector:} != ${directive} ]])
+	return $([[ "${directive/\{!fno-stack-protector:}" != "${directive}" ]])
 }
 # Returns true if gcc upgrades fstack-protector to fstack-protector-all
 gcc-specs-ssp-to-all() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ ${directive/\{!fno-stack-protector-all:} != ${directive} ]])
+	return $([[ "${directive/\{!fno-stack-protector-all:}" != "${directive}" ]])
 }
 # Returns true if gcc builds with fno-strict-overflow
 gcc-specs-nostrict() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ ${directive/\{!fstrict-overflow:} != ${directive} ]])
+	return $([[ "${directive/\{!fstrict-overflow:}" != "${directive}" ]])
 }
 
 
