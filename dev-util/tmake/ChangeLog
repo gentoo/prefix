@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/tmake
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/tmake/ChangeLog,v 1.24 2009/01/01 20:45:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tmake/ChangeLog,v 1.25 2009/01/08 02:54:54 darkside Exp $
+
+  08 Jan 2009; Jeremy Olexa <darkside@gentoo.org> tmake-2.12.ebuild:
+  add ~amd64 kw and QA fixes. bug 253385
 
   01 Jan 2009; Raúl Porcel <armin76@gentoo.org> tmake-1.8-r1.ebuild,
   tmake-1.11.ebuild, tmake-1.13.ebuild, tmake-2.12.ebuild:
