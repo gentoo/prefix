@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-2.0.2.ebuild,v 1.2 2009/01/02 21:07:08 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-2.0.2.ebuild,v 1.4 2009/01/09 22:34:17 josejx Exp $
 
 EAPI="prefix 2"
 
