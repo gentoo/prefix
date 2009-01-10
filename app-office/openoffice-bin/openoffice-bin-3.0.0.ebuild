@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.6 2008/10/21 06:31:16 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.0.ebuild,v 1.7 2009/01/09 10:56:02 suka Exp $
 
 EAPI="prefix"
 
@@ -159,7 +159,7 @@ src_install () {
 	dosym ${INSTDIR}/program/spadmin /usr/bin/ooffice-printeradmin
 	dosym ${INSTDIR}/program/soffice /usr/bin/soffice
 
-	rm -f "${ED}"/${INSTDIR}/basis-link || die
+	rm -f "${ED}${INSTDIR}/basis-link" || die
 	dosym ${INSTDIR}/basis3.0 ${INSTDIR}/basis-link
 
 	# Change user install dir
