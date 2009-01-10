@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/liblbxutil
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/liblbxutil/ChangeLog,v 1.28 2006/07/19 13:39:15 gmsoft Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/liblbxutil/ChangeLog,v 1.29 2009/01/10 03:52:53 miknix Exp $
+
+  10 Jan 2009; <miknix@gentoo.org> liblbxutil-1.0.1.ebuild:
+  Workaround to cross-compile.
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> liblbxutil-1.0.1.ebuild:
   Stable on hppa.
