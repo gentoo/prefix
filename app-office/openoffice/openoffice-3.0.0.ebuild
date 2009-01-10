@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.19 2008/12/28 18:40:51 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.0.ebuild,v 1.20 2009/01/09 10:44:52 suka Exp $
 
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
@@ -204,24 +204,6 @@ pkg_setup() {
 		fi
 	fi
 
-	if use kde; then
-		ewarn " Please note that this version of OpenOffice.org will NOT build "
-		ewarn " if you have kde-base/kdelibs or kde-base/kdepimlibs 4.1.x installed "
-		ewarn " without kdeprefix"
-		ewarn
-		ewarn " Until this is resolved, either disable the kde-use-flag or "
-		ewarn " rebuild KDE with USE='kdeprefix'. "
-		ewarn
-
-		if has_version kde-base/kdelibs:4.1; then
-			built_with_use kde-base/kdelibs:4.1 kdeprefix || die "rebuild kde-4.1 with USE='kdeprefix'"
-		fi
-
-		if has_version kde-base/kdepimlibs:4.1; then
-			built_with_use kde-base/kdepimlibs:4.1 kdeprefix || die "rebuild kde-4.1 with USE='kdeprefix'"
-		fi
-	fi
-
 	if use nsplugin; then
 		if pkg-config --exists libxul; then
 			BRWS="libxul"
@@ -265,6 +247,7 @@ src_unpack() {
 	cp -f "${FILESDIR}/nojavanostax.diff" "${S}/patches/dev300" || die
 	cp -f "${FILESDIR}/hunspell-one-dir-nocrash.diff" "${S}/patches/dev300" || die
 	cp -f "${FILESDIR}/fixsandbox.diff" "${S}/patches/dev300" || die
+	cp -f "${FILESDIR}/solenv.workaround-for-the-kde-mess.diff" "${S}/patches/dev300" || die
 
 	#Use flag checks
 	if use java ; then

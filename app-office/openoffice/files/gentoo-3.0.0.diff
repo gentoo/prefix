@@ -10,6 +10,16 @@
      chmod 755 $1
 --- patches/dev300/apply 
 +++ patches/dev300/apply 
+@@ -259,6 +259,9 @@
+ # (happened to me with DirectX SDK)
+ buildfix-directx-path.diff, i#93333, jholesov
+ 
++# workaround for building with KDE when both KDE 3.5 and 4.1 are present
++solenv.workaround-for-the-kde-mess.diff, i#95552, dtardon
++
+ [ CJK ]
+ #set default CJK font fontsize as 10.5pt
+ sw-default-cjk-fontsize.diff i#72010, jianhua
 @@ -1458,6 +1458,12 @@
  [ GentooOnly ]
  SectionOwner => aprosky
