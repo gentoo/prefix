@@ -1,6 +1,14 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.281 2009/01/04 02:26:57 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.283 2009/01/09 22:57:24 josejx Exp $
+
+  09 Jan 2009; Joseph Jezak <josejx@gentoo.org>
+  linux-headers-2.6.27-r2.ebuild:
+  Marked ppc/ppc64 for bug #262645.
+
+  08 Jan 2009; Jeroen Roovers <jer@gentoo.org>
+  linux-headers-2.6.27-r2.ebuild:
+  Stable for HPPA (bug #252645).
 
   04 Jan 2009; Markus Meier <maekke@gentoo.org>
   linux-headers-2.6.27-r2.ebuild:
