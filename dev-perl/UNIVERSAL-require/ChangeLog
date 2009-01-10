@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/UNIVERSAL-require
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/ChangeLog,v 1.9 2008/01/23 19:17:14 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/ChangeLog,v 1.10 2009/01/08 14:32:38 armin76 Exp $
+
+  08 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  UNIVERSAL-require-0.11.ebuild:
+  Add ~ia64 wrt #253448
 
   23 Jan 2008; Raúl Porcel <armin76@gentoo.org>
   UNIVERSAL-require-0.11.ebuild:
