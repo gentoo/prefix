@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/turbojson
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/ChangeLog,v 1.3 2008/07/02 05:35:57 pythonhead Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/ChangeLog,v 1.4 2009/01/08 23:37:59 patrick Exp $
+
+  08 Jan 2009; Patrick Lauer <patrick@gentoo.org> -turbojson-1.0.ebuild,
+  -turbojson-1.1.2.ebuild:
+  Remove old
 
 *turbojson-1.1.3 (02 Jul 2008)
 
