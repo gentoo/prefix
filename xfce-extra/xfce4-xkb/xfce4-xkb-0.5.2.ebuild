@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.5.2.ebuild,v 1.1 2008/11/10 09:36:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.5.2.ebuild,v 1.2 2009/01/09 22:16:21 darkside Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,8 @@ RDEPEND=">=x11-libs/libxklavier-3.2
 	x11-libs/libwnck"
 DEPEND="${RDEPEND}
 	dev-util/intltool
-	x11-proto/kbproto"
+	x11-proto/kbproto
+	gnome-base/librsvg"
 
 DOCS="AUTHORS ChangeLog NEWS README"
 

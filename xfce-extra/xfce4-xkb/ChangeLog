@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-xkb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.33 2008/12/03 23:52:23 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.34 2009/01/09 22:16:21 darkside Exp $
+
+  09 Jan 2009; Jeremy Olexa <darkside@gentoo.org> xfce4-xkb-0.5.1.ebuild,
+  xfce4-xkb-0.5.2.ebuild:
+  Add missing dep on gnome-base/librsvg, bug 254276
 
   03 Dec 2008; Christoph Mende <angelos@gentoo.org>
   -xfce4-xkb-0.4.3-r1.ebuild:
