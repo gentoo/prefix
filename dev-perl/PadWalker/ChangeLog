@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/PadWalker
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.13 2008/10/05 14:35:55 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.14 2009/01/09 21:31:19 josejx Exp $
+
+  09 Jan 2009; Joseph Jezak <josejx@gentoo.org> PadWalker-1.5.ebuild,
+  PadWalker-1.7.ebuild:
+  Marked ~ppc for bug #253430.
 
 *PadWalker-1.7 (05 Oct 2008)
 
