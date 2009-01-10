@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/mutagen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.68 2009/01/03 14:27:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.69 2009/01/08 20:40:16 ranger Exp $
+
+  08 Jan 2009; Brent Baude <ranger@gentoo.org> mutagen-1.15.ebuild:
+  stable ppc64, bug 251844
 
   03 Jan 2009; nixnut <nixnut@gentoo.org> mutagen-1.15.ebuild:
   ppc stable #251844
