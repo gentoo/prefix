@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV="-r1"
+PATCHSET_REV=""
 
 SIDEBAR_PATCH_N="patch-1.5.18.sidebar.20080611.txt"
 
@@ -15,10 +15,9 @@ HOMEPAGE="http://www.mutt.org"
 SRC_URI="ftp://ftp.mutt.org/mutt/devel/${PN}-${PV}.tar.gz
 	!vanilla? (
 		!sidebar? (
-			mirror://gentoo/${PN}-1.5.16-gentoo-patches${PATCHSET_REV}.tar.bz2
+			http://dev.gentoo.org/~grobian/distfiles/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
+			mirror://gentoo/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
 		)
-		http://www.mutt.org.ua/download/mutt-1.5.18/patch-1.5.18.rr.compressed.gz
-		http://www.mutt.org.ua/download/mutt-1.5.18/patch-1.5.18.vvv.nntp.gz
 	)
 	sidebar? (
 		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
@@ -62,42 +61,22 @@ DEPEND="${RDEPEND}
 		|| ( www-client/lynx www-client/w3m www-client/elinks )
 	)"
 
-PATCHDIR="${WORKDIR}"/${PN}-1.5.16-gentoo-patches${PATCHSET_REV}
-#S="${WORKDIR}"/${PN}-${PV%_p*}cvs
+PATCHDIR="${WORKDIR}"/${P}-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
 	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
 	use sidebar && mkdir -p "${PATCHDIR}"
-	mv "${WORKDIR}"/patch-1.5.18.rr.compressed "${PATCHDIR}"/02-compressed.patch
-	mv "${WORKDIR}"/patch-1.5.18.vvv.nntp "${PATCHDIR}"/06-nntp.patch
-	cp "${FILESDIR}"/mutt-1.5.18-mbox_hook.patch "${PATCHDIR}"/04-mbox_hook.patch
 
-	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
 	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
-	# get back real change-folder-next behaviour!
-	pushd "${WORKDIR}" > /dev/null
-	cp "${FILESDIR}"/mutt-1.5.18cvs-change-folder-next.patch .
-	sed -i -e 's/mutt-1.5.18cvs/mutt-1.5.19/g' \
-		mutt-1.5.18cvs-change-folder-next.patch || die
-	epatch mutt-1.5.18cvs-change-folder-next.patch
-	popd > /dev/null
-	# fix bdb detection
-	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch
+
+	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
-	epatch "${FILESDIR}"/mutt-1.5.18cvs-change-subject.patch
-	epatch "${FILESDIR}"/mutt-1.5.18cvs-imap-folders.patch
 
 	if ! use vanilla && ! use sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
-####
-		use nntp && ewarn "nntp patch is broken on this snapshot, sorry"
-		rm -f "${PATCHDIR}"/06-nntp.patch
-		ewarn "compressed patch needs fixing up to compile on cvs sources, sorry"
-		rm -f "${PATCHDIR}"/02-compressed.patch
-####
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done
