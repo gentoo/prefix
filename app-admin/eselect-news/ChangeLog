@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-news
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-news/ChangeLog,v 1.15 2009/01/01 19:25:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-news/ChangeLog,v 1.16 2009/01/08 20:35:29 ranger Exp $
+
+  08 Jan 2009; Brent Baude <ranger@gentoo.org> eselect-news-20080320.ebuild:
+  stable ppc64, bug 251810
 
   01 Jan 2009; Raúl Porcel <armin76@gentoo.org>
   eselect-news-20080320.ebuild:
