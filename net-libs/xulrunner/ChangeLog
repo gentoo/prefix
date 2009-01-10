@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/xulrunner
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.176 2008/12/30 19:24:26 gengor Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.177 2009/01/08 07:10:59 gengor Exp $
+
+  08 Jan 2009; Gordon Malm <gengor@gentoo.org> xulrunner-1.8.1.19.ebuild:
+  Only necessary to filter-flags stack-protector, it does append-flags safely.
 
   30 Dec 2008; Gordon Malm <gengor@gentoo.org> xulrunner-1.9.0.5.ebuild:
   Add back filtering of stack-protector for <gcc-4 on amd64, bug #252459
