@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/yelp
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/ChangeLog,v 1.198 2008/11/13 19:41:58 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/ChangeLog,v 1.199 2009/01/08 16:53:50 armin76 Exp $
+
+  08 Jan 2009; Raúl Porcel <armin76@gentoo.org> yelp-2.22.1-r11.ebuild,
+  yelp-2.24.0-r10.ebuild:
+  Mark -sparc due to bug #253541
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> yelp-2.22.1-r2.ebuild:
   Marking yelp-2.22.1-r2 ppc64 stable for bug 236971
