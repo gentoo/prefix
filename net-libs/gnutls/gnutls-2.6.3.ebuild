@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.3.ebuild,v 1.1 2009/01/05 07:44:37 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.3.ebuild,v 1.2 2009/01/10 01:33:11 dragonheart Exp $
 
 EAPI="prefix 2"
 inherit eutils libtool autotools
@@ -55,6 +55,7 @@ src_unpack() {
 	# the below patch is in 2.7.* as per
 	# https://savannah.gnu.org/support/?106542
 	epatch "${FILESDIR}"/gnutls-2.6.0-cxx-configure.in.patch
+	epatch "${FILESDIR}"/gnutls-2.6.0-openpgp-selftest.patch
 	eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch

@@ -1,0 +1,14 @@
+--- tests/openpgp/Makefile.am.orig	2009-01-10 11:48:55.000000000 +1100
++++ tests/openpgp/Makefile.am	2009-01-10 11:49:13.000000000 +1100
+@@ -30,10 +30,7 @@
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/includes -I$(top_builddir)/includes	\
+ 	      -I$(top_srcdir)/tests
+-LDADD = -L$(top_builddir)/libextra -lgnutls-extra	\
+-        -L$(top_builddir)/lib      -lgnutls		\
+-	-L$(top_builddir)/tests    -lutils
+-
++LDADD = ../lib/libgnutls.la ../lib/libgnutls-extra.la ../libutils.la
+ else
+ 
+ EXTRA_DIST = $(openpgp_sources)

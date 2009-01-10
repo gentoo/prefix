@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.0-r2.ebuild,v 1.2 2009/01/05 07:44:37 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.0-r2.ebuild,v 1.3 2009/01/10 01:33:11 dragonheart Exp $
 
 inherit eutils libtool autotools
 
@@ -58,6 +58,7 @@ src_unpack() {
 	find . -name ltmain.sh -exec rm {} \;
 
 	epatch "${FILESDIR}"/${P}-cxx-configure.in.patch
+	epatch "${FILESDIR}"/${P}-openpgp-selftest.patch
 	eautoreconf
 	epatch "${FILESDIR}"/gnutls-2.2.5-CVE-2008-4989-V2.patch
 
