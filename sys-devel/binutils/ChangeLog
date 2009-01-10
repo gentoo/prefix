@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/binutils
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.346 2008/12/14 14:19:52 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.347 2009/01/08 10:08:37 the_paya Exp $
+
+  08 Jan 2009; Javier Villavicencio <the_paya@gentoo.org>
+  binutils-2.19.ebuild:
+  Keyworded ~x86-fbsd.
 
   14 Dec 2008; Alexis Ballier <aballier@gentoo.org> binutils-2.19.ebuild:
   keyword ~sparc-fbsd
