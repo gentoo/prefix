@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/icecream
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.26 2008/12/30 23:33:44 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.27 2009/01/09 17:13:24 ranger Exp $
+
+  09 Jan 2009; Brent Baude <ranger@gentoo.org> icecream-0.9.2.ebuild:
+  stable ppc, bug 253203
 
   30 Dec 2008; Friedrich Oslage <bluebird@gentoo.org> icecream-0.9.2.ebuild:
   Stable on sparc, bug #253203
