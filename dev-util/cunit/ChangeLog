@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/cunit
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.23 2008/10/27 07:25:02 pva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.25 2009/01/09 21:36:29 josejx Exp $
+
+  09 Jan 2009; Joseph Jezak <josejx@gentoo.org> cunit-2.1-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #241732.
+
+*cunit-2.1-r1 (08 Jan 2009)
+
+  08 Jan 2009; Peter Volkov <pva@gentoo.org> +cunit-2.1-r1.ebuild:
+  Don't install documentation into /usr/doc, bug #247234, don't call
+  eautoreconf in src_compile, bug #241348, thank Diego E. 'Flameeyes'
+  Pettenò for reports.
 
   27 Oct 2008; Peter Volkov <pva@gentoo.org> cunit-2.1.ebuild:
   ~mips keyworded, bug #242546
