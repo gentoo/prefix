@@ -1,14 +1,14 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.1 2008/12/29 09:46:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.4 2009/01/08 06:16:16 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs autotools
+inherit eutils flag-o-matic
 
 DESCRIPTION="File transfer program to keep remote files into sync"
 HOMEPAGE="http://rsync.samba.org/"
-SRC_URI="http://rsync.samba.org/ftp/rsync/${P/_/}.tar.gz"
+SRC_URI="http://rsync.samba.org/ftp/rsync/src/${P/_/}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -60,14 +60,6 @@ src_compile() {
 	emake || die "emake failed"
 }
 
-pkg_preinst() {
-	if [[ -e ${EROOT}/etc/rsync/rsyncd.conf ]] && [[ ! -e ${EROOT}/etc/rsyncd.conf ]] ; then
-		mv "${EROOT}"/etc/rsync/rsyncd.conf "${EROOT}"/etc/rsyncd.conf
-		rm -f "${EROOT}"/etc/rsync/.keep
-		rmdir "${EROOT}"/etc/rsync >& /dev/null
-	fi
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	newconfd "${T}"/rsyncd.conf.d rsyncd
@@ -86,9 +78,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "The rsyncd.conf file has been moved for you to ${EPREFIX}/etc/rsyncd.conf"
-	echo
-	ewarn "Please make sure you do NOT disable the rsync server running"
-	ewarn "in a chroot.  Please check ${EPREFIX}/etc/rsyncd.conf and make sure"
-	ewarn "it says: use chroot = yes"
+	if egrep -qs '^[[:space:]]use chroot[[:space:]]*=[[:space:]]*(no|0|false)' \
+		"${EROOT}"/etc/rsyncd.conf "${EROOT}"/etc/rsync/rsyncd.conf ; then
+		ewarn "You have disabled chroot support in your rsyncd.conf.  This"
+		ewarn "is a security risk which you should fix.  Please check your"
+		ewarn "${EPREFIX}/etc/rsyncd.conf file and fix the setting 'use chroot'."
+	fi
 }

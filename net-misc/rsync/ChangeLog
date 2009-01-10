@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/rsync
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.178 2008/12/29 09:46:14 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.180 2009/01/08 06:13:46 vapier Exp $
+
+  08 Jan 2009; Mike Frysinger <vapier@gentoo.org> rsync-3.0.5.ebuild:
+  Drop code to move rsyncd.conf around since everyone is converted now
+  #201223 by Paul Hewlett. Also tweak chroot check so it only warns when
+  people have bad config files.
+
+  08 Jan 2009; Mike Frysinger <vapier@gentoo.org> rsync-3.0.4.ebuild,
+  rsync-3.0.5.ebuild:
+  Have SRC_URI look in a slightly diff path where all upstream versions are
+  kept #254060 by Maryasin Semen.
 
 *rsync-3.0.5 (29 Dec 2008)
 
