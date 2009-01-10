@@ -1,0 +1,13 @@
+need all symbols to be satisfied
+
+--- unix/Makefile.in
++++ unix/Makefile.in
+@@ -35,7 +35,7 @@
+ 
+ LIBSO     = -lc @ALIB@ @TCL_LIB_SPEC@
+ 
+-LIBSN     = -lc @TK_LIBS@ @ALIB@ @TCL_LIB_SPEC@ @TK_LIB_SPEC@
++LIBSN     = -lc -lX11 -ltk @TK_LIBS@ @ALIB@ @TCL_LIB_SPEC@ @TK_LIB_SPEC@
+ 
+ SHLIB_LD     = @SHLIB_LD@
+ SHLIB_SUFFIX = @SHLIB_SUFFIX@
