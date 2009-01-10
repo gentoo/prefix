@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.474 2008/12/29 21:50:29 gengor Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.475 2009/01/08 07:22:07 gengor Exp $
+
+  08 Jan 2009; Gordon Malm <gengor@gentoo.org>
+  mozilla-firefox-2.0.0.19.ebuild:
+  Only necessary to filter-flags stack-protector, it does append-flags safely.
 
   29 Dec 2008; Gordon Malm <gengor@gentoo.org> mozilla-firefox-3.0.5.ebuild:
   Filter stack-protector for <gcc-4 on amd64, bug #252459.
