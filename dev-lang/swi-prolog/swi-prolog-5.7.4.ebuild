@@ -1,22 +1,22 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.6.59.ebuild,v 1.3 2008/09/20 21:45:41 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.7.4.ebuild,v 1.1 2009/01/08 18:58:37 keri Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
-PATCHSET_VER="1"
+PATCHSET_VER="0"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
-SRC_URI="http://gollem.science.uva.nl/cgi-bin/nph-download/SWI-Prolog/pl-${PV}.tar.gz
+SRC_URI="http://gollem.science.uva.nl/cgi-bin/nph-download/SWI-Prolog/BETA/pl-${PV}.tar.gz
 	mirror://gentoo/${P}-gentoo-patchset-${PATCHSET_VER}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static latex test threads zlib X"
+IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
 DEPEND="!media-libs/ploticus
 	sys-libs/ncurses
@@ -56,18 +56,6 @@ src_compile() {
 	use hardened && append-flags -fno-unit-at-a-time
 	use debug && append-flags -DO_DEBUG
 
-	local threadconf
-	if use java && ! use minimal || use threads ; then
-		threadconf="--enable-mt"
-	else
-		threadconf="--disable-mt"
-	fi
-
-	local jpltestconf
-	if use java && use test ; then
-		jpltestconf="--with-junit=$(java-config --classpath junit)"
-	fi
-
 	# ARCH is used in the configure script to figure out host and target
 	# specific stuff
 	export ARCH=${CHOST}
@@ -75,7 +63,6 @@ src_compile() {
 	cd "${S}"/src
 	econf \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		${threadconf} \
 		$(use_enable gmp) \
 		$(use_enable readline) \
 		$(use_enable !static shared) \
@@ -86,10 +73,14 @@ src_compile() {
 	if ! use minimal ; then
 		einfo "Building SWI-Prolog additional packages"
 
+		local jpltestconf
+		if use java && use test ; then
+			jpltestconf="--with-junit=$(java-config --classpath junit)"
+		fi
+
 		cd "${S}/packages"
 		econf \
 			--libdir="${EPREFIX}"/usr/$(get_libdir) \
-			${threadconf} \
 			$(use_enable !static shared) \
 			--without-C-sicstus \
 			--with-chr \
@@ -101,7 +92,7 @@ src_compile() {
 			--with-http \
 			--without-jasmine \
 			$(use_with java jpl) \
-			$(use_with latex ltx2htm) \
+			${jpltestconf} \
 			--with-nlp \
 			$(use_with odbc) \
 			--with-pldoc \
@@ -131,7 +122,7 @@ src_install() {
 		fi
 	fi
 
-	dodoc ANNOUNCE ChangeLog INSTALL INSTALL.notes PORTING README README.GUI VERSION
+	dodoc ChangeLog INSTALL PORTING README VERSION
 }
 
 src_test() {
