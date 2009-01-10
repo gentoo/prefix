@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.3-r2.ebuild,v 1.6 2009/01/09 14:41:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.4.ebuild,v 1.2 2009/01/09 14:41:53 remi Exp $
 
 EAPI="prefix"
 
@@ -35,8 +35,7 @@ src_unpack() {
 
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-no-scroll-with-buffer.patch"
-	epatch "${FILESDIR}/${P}-display-security.patch"
+	epatch "${FILESDIR}/${P}-001-fix-segfault-when-wd-empty.patch"
 
 }
 

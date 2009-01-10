@@ -1,6 +1,17 @@
 # ChangeLog for x11-terms/mrxvt
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.68 2008/08/21 22:29:14 cardoe Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.70 2009/01/09 14:41:53 remi Exp $
+
+  09 Jan 2009; Rémi Cardona <remi@gentoo.org> mrxvt-0.5.3-r2.ebuild,
+  mrxvt-0.5.3-r3.ebuild, mrxvt-0.5.4.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
+
+*mrxvt-0.5.4 (08 Jan 2009)
+
+  08 Jan 2009; <nelchael@gentoo.org>
+  +files/mrxvt-0.5.4-001-fix-segfault-when-wd-empty.patch,
+  +mrxvt-0.5.4.ebuild:
+  Version bump, see bug #237260.
 
   21 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
