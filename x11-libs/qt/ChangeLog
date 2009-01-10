@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.552 2009/01/07 19:45:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.555 2009/01/09 17:28:02 gmsoft Exp $
+
+  09 Jan 2009; Guy Martin <gmsoft@gentoo.org> qt-3.3.8b-r1.ebuild:
+  hppa stable, #253978
+
+  09 Jan 2009; Rémi Cardona <remi@gentoo.org> qt-3.3.8-r4.ebuild,
+  qt-3.3.8b-r1.ebuild:
+  Change virtual/xft dependency to x11-libs/libXft, bug 253771.
+
+  07 Jan 2009; Thomas Anderson <gentoofan23@gentoo.org> qt-3.3.8b-r1.ebuild:
+  stable amd64, bug 253978
 
   07 Jan 2009; Brent Baude <ranger@gentoo.org> qt-3.3.8b-r1.ebuild:
   stable ppc64, bug 253978
