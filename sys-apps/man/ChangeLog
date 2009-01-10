@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/man
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.142 2008/10/02 16:52:21 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.143 2009/01/08 01:53:38 darkside Exp $
+
+*man-1.6f-r3 (08 Jan 2009)
+
+  08 Jan 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/man-1.6f-compress.patch, metadata.xml, +man-1.6f-r3.ebuild:
+  Add new USE flag (lzma) and patch to squash automagic dep on lzma-utils, see
+  bug 205147
 
   02 Oct 2008; Brent Baude <ranger@gentoo.org> man-1.6f-r2.ebuild:
   stable ppc, bug 239117
