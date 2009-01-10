@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9367 2009/01/07 19:44:41 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9375 2009/01/09 15:47:17 remi Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Rémi Cardona <remi@gentoo.org> (09 Jan 2009)
+# old virtual left from the transition from monolithic
+# to modular X. Use x11-libs/libXft directly
+virtual/xft
+
+# Michael Sterrett <mr_bones_@gentoo.org> (09 Jan 2009)
+# missing a license file
+sys-block/hpacucli
+
+# Christoph Mende <angelos@gentoo.org> (07 Jan 2009)
+# Masked for removal in 30 days, this plugin has been integrated into gmpc
+media-plugins/gmpc-stopbutton
 
 # Daniel Gryniewicz <dang@gentoo.org> (07 Jan 2009)
 # Mask gnome-base/gnome-vfs-monikers for removal
@@ -116,7 +129,7 @@ x11-misc/goats
 # Talk with the actual gstreamer team before unmasking these -
 # we are completely against the notion of monolithic versions, these
 # here should be considered an experimentation
->=media-libs/gstreamer-0.10.21-r2
+>=media-libs/gstreamer-0.10.21-r10
 >=media-libs/gst-plugins-good-0.10.11-r1
 >=media-libs/gst-plugins-bad-0.10.9-r1
 >=media-libs/gst-plugins-ugly-0.10.10-r1
@@ -304,11 +317,6 @@ net-analyzer/sysmon
 # upstream for quite some time now. bug #246891
 app-emulation/xcopilot
 
-# Jeremy Olexa <darkside@gentoo.org> (02 Dec 2008)
-# Removed in 30 days at maintainer's request. No interest and doesn't work with
-# newer gcc versions. bug #249308
-kde-misc/kio_perldoc
-
 # Ulrich Mueller <ulm@gentoo.org> (30 Nov 2008)
 # Depends on masked Emacs live CVS version; unmask after Emacs 23 release.
 app-emacs/emacs-daemon
@@ -331,9 +339,7 @@ net-wireless/bluez
 # Peter Alfredsen <loki_val@gentoo.org> (22 Nov 2008)
 # Packages not building with mono-2
 # Masked for removal in 60 days.
-app-misc/gnutu
 app-pda/dopi
-media-sound/monopod
 
 # Jeremy Olexa <darkside@gentoo.org> (22 Nov 2008)
 # Masked for removal in 30 days, requested by maintainers. bug #173584
@@ -393,13 +399,6 @@ games-mud/ytin
 media-video/realplayer
 media-libs/amd64codecs
 media-libs/realcodecs
-
-# Jeremy Olexa <darkside@gentoo.org> (4 Nov 2008)
-# Masked for removal in 60 days by treecleaners. No maintainer, broken package.
-# Year old bug, dead upstream. old patchset to compiling tools. bug #245476
-# dev-lang/palmos-sdk depends on prc-tools, so that is to be removed as well.
-dev-lang/prc-tools
-dev-lang/palmos-sdk
 
 # Daniel Black <dragonheart@gentoo.org> (4 Nov 2008)
 # Legal problems #241650 causing distribution problems #245322 and build problems #237493
@@ -1177,11 +1176,6 @@ sys-power/powersave
 #  Has a hard dependency on wxGTK-2.4 (bug #121818)
 #  Masked until we can update it for 2.6.
 app-pda/plucker
-
-# Bryan Stine <battousai@gentoo.org> (26 Apr 2007)
-# Masked until it works with current baselayout and
-# application locations.
-app-admin/bastille
 
 # Tristan Heaven <nyhm@gentoo.org> (25 Apr 2007)
 # Masked until it's updated to use >=wxpython-2.6
