@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.45.01.ebuild,v 1.1 2008/12/08 03:25:26 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.45.01.ebuild,v 1.5 2009/01/09 15:17:15 josejx Exp $
 
 EAPI="prefix"
 
