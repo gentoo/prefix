@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-2.5.0.ebuild,v 1.3 2008/05/25 20:23:51 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.2.0.ebuild,v 1.1 2009/01/08 22:44:59 patrick Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ MY_P=TwistedCore-${PV}
 
 DESCRIPTION="An asynchronous networking framework written in Python"
 HOMEPAGE="http://www.twistedmatrix.com/"
-SRC_URI="http://tmrc.mit.edu/mirror/twisted/Twisted/$(get_version_component_range 1-2)/${MY_P}.tar.bz2"
+SRC_URI="http://tmrc.mit.edu/mirror/${PN}/Core/$(get_version_component_range 1-2)/${MY_P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
@@ -26,9 +26,10 @@ DEPEND=">=dev-lang/python-2.3
 
 S=${WORKDIR}/${MY_P}
 
-DOCS="CREDITS INSTALL NEWS README"
+DOCS="CREDITS NEWS README"
 
 src_unpack() {
+	python_version
 	unpack ${A}
 	cd "${S}"
 
@@ -37,6 +38,12 @@ src_unpack() {
 
 	# Pass valid arguments to "head" in the zsh completion function.
 	epatch "${FILESDIR}/${PN}-2.1.0-zsh-head.patch"
+
+	# Skip test that only works with Python >=2.5 (won't byte-compile)
+	if [ "${PYVER_MINOR}" -lt 5 ]; then
+		echo "'''skip'''" > "${S}"/twisted/test/generator_failure_tests.py || die
+	fi
+
 }
 
 src_install() {

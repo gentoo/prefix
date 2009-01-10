@@ -1,6 +1,23 @@
 # ChangeLog for dev-python/twisted
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.99 2008/12/20 18:26:47 nixnut Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.103 2009/01/08 23:30:39 patrick Exp $
+
+  08 Jan 2009; Patrick Lauer <patrick@gentoo.org> +twisted-1.2.0.ebuild:
+  Undoing breakage
+
+  08 Jan 2009; Patrick Lauer <patrick@gentoo.org> +twisted-1.3.0.ebuild:
+  Readding 1.3.0. Ooopsie ...
+
+  08 Jan 2009; Patrick Lauer <patrick@gentoo.org> -twisted-1.2.0.ebuild,
+  -twisted-1.3.0.ebuild, -twisted-2.0.1.ebuild, -twisted-2.1.0.ebuild,
+  -twisted-2.2.0.ebuild, -twisted-2.4.0.ebuild, -twisted-2.5.0.ebuild,
+  -twisted-8.0.1.ebuild:
+  Remove old
+
+*twisted-8.2.0 (08 Jan 2009)
+
+  08 Jan 2009; Patrick Lauer <patrick@gentoo.org> +twisted-8.2.0.ebuild:
+  Bump to 8.2.0
 
   20 Dec 2008; nixnut <nixnut@gentoo.org> twisted-8.1.0.ebuild:
   Stable on ppc wrt bug 231675
