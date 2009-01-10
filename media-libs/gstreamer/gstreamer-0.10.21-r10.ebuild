@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.21-r2.ebuild,v 1.3 2008/12/31 03:30:47 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.21-r10.ebuild,v 1.1 2009/01/09 12:54:19 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -30,7 +30,8 @@ src_prepare() {
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	#elibtoolize
 	epatch "${FILESDIR}"/${P}-gtkdoc.patch \
-		"${FILESDIR}"/${P}-bison241.patch
+		"${FILESDIR}"/${P}-bison241.patch \
+		"${FILESDIR}"/${P}-b.g.o-555631.patch
 	AT_M4DIR="common/m4" eautoreconf
 }
 

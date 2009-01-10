@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/gstreamer
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.215 2008/12/24 13:39:17 ssuominen Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.216 2009/01/09 12:54:19 loki_val Exp $
+
+*gstreamer-0.10.21-r10 (09 Jan 2009)
+*gstreamer-0.10.21-r3 (09 Jan 2009)
+
+  09 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/gstreamer-0.10.21-b.g.o-555631.patch, -gstreamer-0.10.21-r1.ebuild,
+  -gstreamer-0.10.21-r2.ebuild, +gstreamer-0.10.21-r3.ebuild,
+  +gstreamer-0.10.21-r10.ebuild:
+  Fix bug 250704, upstream bug 555631, Banshee crashing or doing a tail-spin
+  with gstreamer. Bump masked version to -r10, the new 'ordinary' version is
+  -r3.
 
 *gstreamer-0.10.21-r2 (24 Dec 2008)
 
