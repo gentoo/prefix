@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/latex2html
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.42 2008/10/31 22:02:46 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.44 2009/01/09 18:15:34 josejx Exp $
+
+  09 Jan 2009; Joseph Jezak <josejx@gentoo.org> latex2html-2008.ebuild:
+  Marked ppc/ppc64 stable for bug #253990.
+
+  09 Jan 2009; Ferris McCormick <fmccor@gentoo.org> latex2html-2008.ebuild:
+  Sparc stable, Bug #253990.
 
 *latex2html-2008 (31 Oct 2008)
 

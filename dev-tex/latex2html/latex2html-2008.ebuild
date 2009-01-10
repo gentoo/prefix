@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.1 2008/10/31 22:02:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.3 2009/01/09 18:15:34 josejx Exp $
 
 EAPI="prefix"
 
