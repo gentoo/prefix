@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.129 2009/01/07 18:14:18 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.130 2009/01/09 17:37:56 ranger Exp $
+
+  09 Jan 2009; Brent Baude <ranger@gentoo.org> rails-1.2.6-r1.ebuild,
+  rails-2.0.5-r1.ebuild, rails-2.1.2-r1.ebuild, rails-2.2.2-r1.ebuild:
+  rails-1.2.6-r1 rails-2.0.5-r1 rails-2.1.2-r1 rails-2.2.2-r1 ppc stable for
+  bug 253425
 
   07 Jan 2009; Ferris McCormick <fmccor@gentoo.org> rails-2.2.2-r1.ebuild:
   Sparc stable, Bug #253425.
