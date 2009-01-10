@@ -1,6 +1,10 @@
 # ChangeLog for app-text/scrollkeeper
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.91 2008/07/05 05:14:46 ricmm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.92 2009/01/08 14:30:49 armin76 Exp $
+
+  08 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  scrollkeeper-9999-r1.ebuild:
+  Add ~arm/~s390/~sh
 
   05 Jul 2008; <ricmm@gentoo.org> scrollkeeper-0.3.14-r2.ebuild:
   Drop to ~mips due to unstable deps
