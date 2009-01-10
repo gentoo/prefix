@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.88 2009/01/07 13:12:02 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.89 2009/01/08 15:20:03 hkbst Exp $
+
+  08 Jan 2009; Marijn Schouten <hkBst@gentoo.org> +files/pari.patch,
+  clisp-2.47-r1.ebuild:
+  fix pari doesn't compile
 
 *clisp-2.47-r1 (07 Jan 2009)
 

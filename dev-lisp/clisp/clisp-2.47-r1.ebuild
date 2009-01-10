@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.47-r1.ebuild,v 1.1 2009/01/07 13:12:02 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.47-r1.ebuild,v 1.2 2009/01/08 15:20:03 hkbst Exp $
 
 EAPI="prefix"
 
@@ -59,6 +59,8 @@ BUILDDIR="builddir"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/pari.patch #bug 246074
 
 	# More than -O1 breaks alpha/ia64
 	use alpha || use ia64 && sed -i -e 's/-O2//g' src/makemake.in
