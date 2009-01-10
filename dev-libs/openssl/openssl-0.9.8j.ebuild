@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g-r1.ebuild,v 1.2 2008/05/16 15:52:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8j.ebuild,v 1.4 2009/01/09 09:50:45 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="bindist gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
@@ -31,27 +31,37 @@ src_unpack() {
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-0.9.7-alpha-default-gcc.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8b-parallel-build.patch
+	#Forward port of the -b patch. Parallel make fails though.
+	epatch "${FILESDIR}"/${PN}-0.9.8j-parallel-build.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
-	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
+		|| die "Removing fips from openssl failed."
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
+	if [[ ${CHOST} == *-interix* ]] ; then
+		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
+	fi
+
+	# again, this windows patch should not do any harm to others, but
+	# header files are copied instead of linked now, so leave it conditional.
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8h-winnt.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
-	eprefixify gentoo.config
+	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp gentoo.config failed"
 	chmod a+rx gentoo.config
 
 	# Don't build manpages if we don't want them
@@ -69,6 +79,8 @@ src_unpack() {
 	[[ $(tc-arch) == *-macos   ]] ||
 	[[ $(tc-arch) == *-aix     ]] ||
 	[[ $(tc-arch) == *-interix ]] ||
+	[[ $(tc-arch) == *-winnt*  ]] ||
+	[[ ${CHOST} == *-mint* ]] ||
 		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
@@ -81,6 +93,13 @@ src_unpack() {
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
 	[[ ${CHOST} == *-hpux* ]] && sed -i -e 's,stty,true,g' -e 's,read waste,true,g' config
+
+	# Upstream insists that the GNU assembler fails, so insist on calling the
+	# vendor assembler. However, I find otherwise. At least on Solaris-9
+	# --darkside (26 Aug 2008)
+	if [[ ${CHOST} == sparc-sun-solaris2.9 ]]; then
+		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
+	fi
 
 	./config --test-sanity || die "I AM NOT SANE"
 }
@@ -156,8 +175,7 @@ src_compile() {
 	# depend is needed to use $confopts
 	# rehash is needed to prep the certs/ dir
 	emake -j1 depend || die "depend failed"
-	emake all || die "make all failed"
-	emake rehash || die "make rehash failed"
+	emake -j1 all rehash || die "make all failed"
 }
 
 src_test() {
