@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.27 2009/01/07 16:44:39 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.28 2009/01/09 17:29:21 ranger Exp $
+
+  09 Jan 2009; Brent Baude <ranger@gentoo.org> eselect-rails-0.14.ebuild:
+  Marking eselect-rails-0.14 ppc for bug 253425
 
   07 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
   eselect-rails-0.14.ebuild:
