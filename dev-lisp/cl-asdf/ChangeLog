@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/cl-asdf
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.30 2008/07/07 13:21:39 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.31 2009/01/10 15:31:00 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> cl-asdf-1.89.ebuild:
+  alpha/ia64/s390/sparc/x86 stable
 
   07 Jul 2008; Raúl Porcel <armin76@gentoo.org> cl-asdf-1.89.ebuild:
   Add ~alpha/~ia64 wrt #229217
