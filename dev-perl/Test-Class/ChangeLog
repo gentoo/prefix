@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Class
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/ChangeLog,v 1.43 2009/01/09 18:34:29 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/ChangeLog,v 1.44 2009/01/10 17:12:50 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> Test-Class-0.31.ebuild:
+  ia64 stable wrt #254337
 
   09 Jan 2009; Ferris McCormick <fmccor@gentoo.org> Test-Class-0.31.ebuild:
   Sparc stable, Bug #254337.
