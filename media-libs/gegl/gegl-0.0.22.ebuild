@@ -1,12 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.15 2009/01/10 16:50:30 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.22.ebuild,v 1.4 2009/01/10 23:08:30 mr_bones_ Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=latest
-
-inherit eutils autotools
+inherit eutils
 
 DESCRIPTION="A graph based image processing framework"
 HOMEPAGE="http://www.gegl.org/"
@@ -44,49 +42,27 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	#HACK!GACK!HACK!
-	#Interface name changed, we change with it.
-	if has_version '>=media-video/ffmpeg-0.4.9_p20081014'
-	then
-		sed -i \
-			-e 's:p->enc->error_resilience:p->enc->error_recognition:' \
-			operations/external/ff-load.c || die "404"
-	fi
-
-	epatch "${FILESDIR}/gegl-20-configure-ac.patch" || die
-	epatch "${FILESDIR}/gegl-0.0.18-newffmpeg.diff" || die
-
-	eautoreconf
-}
-
 src_compile() {
-	econf --enable-gtk --enable-pango --enable-gdkpixbuf \
+	econf --with-gtk --with-pango --with-gdk-pixbuf \
 		$(use_enable debug) \
 		$(use_with cairo) \
-		$(use_with v4l) \
+		$(use_with cairo pangocairo) \
+		$(use_with v4l libv4l) \
 		$(use_enable doc docs) \
-		$(use_with doc asciidoc) \
-		$(use_with doc enscript) \
 		$(use_with doc graphviz) \
 		$(use_with doc lua) \
-		$(use_with doc ruby) \
 		$(use_enable doc workshop) \
-		$(use_with ffmpeg libavcodec) \
 		$(use_with ffmpeg libavformat) \
 		$(use_with jpeg libjpeg) \
 		$(use_enable mmx) \
 		$(use_with openexr) \
 		$(use_with png libpng) \
 		$(use_with raw libopenraw) \
-		$(use_with sdl libsdl) \
+		$(use_with sdl) \
 		$(use_with svg librsvg) \
 		$(use_enable sse) \
 		|| die "econf failed"
-	env GEGL_SWAP="${WORKDIR}" emake || die "emake failed"
+	emake || die "emake failed"
 }
 
 src_install() {
