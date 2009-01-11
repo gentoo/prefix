@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.32 2008/03/11 14:52:45 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.33 2009/01/10 14:00:15 beandog Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
@@ -21,6 +21,9 @@ DEPEND="${DEPEND}
 		>=sys-apps/sed-4"
 
 S="${WORKDIR}/mythplugins-${MY_PV}"
+
+# bug 240325
+RESTRICT="strip"
 
 # hijacks the plugins checkout to be:
 # /usr/portage/distfiles/svn-src/mythplugins/mythplugins/mythvideo/

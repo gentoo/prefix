@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.378 2009/01/06 03:53:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.380 2009/01/10 12:53:50 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1097,6 +1097,7 @@ gcc_src_unpack() {
 	do_gcc_HTB_patches
 	do_gcc_SSP_patches
 	do_gcc_PIE_patches
+	do_gcc_USER_patches
 
 	${ETYPE}_src_unpack || die "failed to ${ETYPE}_src_unpack"
 
@@ -1137,11 +1138,6 @@ gcc_src_unpack() {
 			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
 			echo "" > "${S}"/gcc/DATESTAMP
 		fi
-	fi
-
-	# Misdesign in libstdc++ (Redhat)
-	if [[ ${GCCMAJOR} -ge 3 ]] && [[ -e ${S}/libstdc++-v3/config/cpu/i486/atomicity.h ]] ; then
-		cp -pPR "${S}"/libstdc++-v3/config/cpu/i{4,3}86/atomicity.h
 	fi
 
 	# >= gcc-4.3 doesn't bundle ecj.jar, so copy it
@@ -2125,6 +2121,22 @@ do_gcc_stub() {
 			EPATCH_SINGLE_MSG="Applying stub patch for $1 ..." \
 			epatch "${stub_patch}"
 			return 0
+		fi
+	done
+}
+
+do_gcc_USER_patches() {
+	local check base=${PORTAGE_CONFIGROOT}/etc/portage/patches
+	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
+		EPATCH_SOURCE=${base}/${CTARGET}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
+		if [[ -d ${EPATCH_SOURCE} ]] ; then
+			EPATCH_SUFFIX="patch"
+			EPATCH_FORCE="yes" \
+			EPATCH_MULTI_MSG="Applying user patches from ${EPATCH_SOURCE} ..." \
+			epatch
+			break
 		fi
 	done
 }

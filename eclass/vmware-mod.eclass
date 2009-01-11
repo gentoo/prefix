@@ -1,11 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.17 2008/01/26 13:11:23 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.18 2009/01/10 12:26:04 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
 # pkg_postinst, along with our own pkg_setup, src_unpack and src_compile
-inherit eutils vmware linux-mod
+inherit flag-o-matic eutils vmware linux-mod
 
 DESCRIPTION="Modules for Vmware Programs"
 HOMEPAGE="http://www.vmware.com/"
@@ -53,6 +53,8 @@ vmware-mod_pkg_setup() {
 				;;
 		esac
 	fi
+
+	filter-flags -mfpmath=sse
 
 	for mod in ${VMWARE_MODULE_LIST}; do
 	MODULE_NAMES="${MODULE_NAMES}

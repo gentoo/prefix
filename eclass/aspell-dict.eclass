@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/aspell-dict.eclass,v 1.40 2008/03/29 02:02:37 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/aspell-dict.eclass,v 1.41 2009/01/10 16:16:19 pva Exp $
 
 # @ECLASS: aspell-dict.eclass
 # @MAINTAINER: 
@@ -32,7 +32,7 @@ SPELLANG=${PN/aspell-/}
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="${ASPELL_LANG} language dictionary for aspell"
 HOMEPAGE="http://aspell.net"
-SRC_URI="ftp://ftp.gnu.org/gnu/aspell/dict/${SPELLANG}/${MY_P}.tar.bz2"
+SRC_URI="mirror://gnu/aspell/dict/${SPELLANG}/${MY_P}.tar.bz2"
 
 IUSE=""
 SLOT="0"
