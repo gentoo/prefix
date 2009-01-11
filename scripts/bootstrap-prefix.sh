@@ -311,7 +311,7 @@ bootstrap_odcctools() {
 	PV=20070412
 	A=odcctools-${PV}.tar.bz2
 
-	efetch http://distfiles.gentoo.org/distfiles/${A}
+	efetch ${GENTOO_MIRROR}/${A}
 	
 	export S="${PORTAGE_TMPDIR}/odcctools-${PV}"
 	rm -rf "${S}"
@@ -481,9 +481,9 @@ bootstrap_python() {
 
 	if [[ ${CHOST} == *-interix* ]] ; then
 		A=python-${PV}-interix.tar.bz2
-		efetch http://dev.gentoo.org/~grobian/distfiles/${A}
+		efetch ${DISTFILES_URL}/${A}
 	else
-		efetch http://distfiles.gentoo.org/distfiles/${A}
+		efetch ${GENTOO_MIRROR}/${A}
 	fi
 
 	einfo "Unpacking ${A%%-*}"
@@ -583,8 +583,7 @@ bootstrap_make() {
 }
 
 bootstrap_patch9() {
-	bootstrap_gnu patch 2.5.9 \
-		"http://distfiles.gentoo.org/distfiles/patch-2.5.9.tar.gz"
+	bootstrap_gnu patch 2.5.9 ${GENTOO_MIRROR}/patch-2.5.9.tar.gz
 }
 
 bootstrap_gawk() {
@@ -614,7 +613,7 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch http://distfiles.gentoo.org/${A}
+	efetch ${GENTOO_MIRROR}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
