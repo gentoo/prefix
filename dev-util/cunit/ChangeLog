@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/cunit
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.25 2009/01/09 21:36:29 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/ChangeLog,v 1.27 2009/01/10 16:14:10 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> cunit-2.1-r1.ebuild:
+  alpha/ia64/sparc stable wrt #241732
+
+  10 Jan 2009; Markus Meier <maekke@gentoo.org> cunit-2.1-r1.ebuild:
+  amd64/x86 stable, bug #241732
 
   09 Jan 2009; Joseph Jezak <josejx@gentoo.org> cunit-2.1-r1.ebuild:
   Marked ppc/ppc64 stable for bug #241732.
