@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.45 2009/01/03 15:08:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.47 2009/01/10 13:26:41 pva Exp $
+
+  10 Jan 2009; Peter Volkov <pva@gentoo.org> -bzrtools-1.5.0.ebuild,
+  -bzrtools-1.6.0.ebuild, -bzrtools-1.7.0.ebuild, -bzrtools-1.8.0.ebuild:
+  Clean old.
+
+  10 Jan 2009; Friedrich Oslage <bluebird@gentoo.org> bzrtools-1.9.1.ebuild:
+  Stable on sparc, bug #252656
 
   03 Jan 2009; nixnut <nixnut@gentoo.org> bzrtools-1.9.1.ebuild:
   ppc stable #252656
