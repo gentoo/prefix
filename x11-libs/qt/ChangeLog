@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.555 2009/01/09 17:28:02 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.556 2009/01/10 15:17:57 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> qt-3.3.8b-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #253978
 
   09 Jan 2009; Guy Martin <gmsoft@gentoo.org> qt-3.3.8b-r1.ebuild:
   hppa stable, #253978
