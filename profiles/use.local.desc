@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4121 2009/01/10 04:47:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4123 2009/01/10 23:47:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1568,7 +1568,6 @@ media-video/mplayer:rar - Enable Unique RAR File Library
 media-video/mplayer:real - Adds real video support
 media-video/mplayer:rtc - Enables usage of the linux real time clock. The alternative is software emulation of rtc
 media-video/mplayer:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
-media-video/mplayer:srt - Internal SRT/SSA/ASS (SubRip / SubStation Alpha) subtitle support
 media-video/mplayer:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
 media-video/mplayer:teletext - Support for TV teletext interface
 media-video/mplayer:tga - Enables Targa video output
@@ -2405,7 +2404,9 @@ sys-apps/paludis:glsa - Enable parsing of GLSA files
 sys-apps/paludis:inquisitio - Enable inquisitio, the search client
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
 sys-apps/paludis:portage - Enable experimental support for Portage configuration formats
+sys-apps/paludis:python-bindings - Enable Python bindings. Requires a lot of RAM to build (~700Mbyes per job) and adds a dependency upon dev-libs/boost
 sys-apps/paludis:qa - Enable QA tools
+sys-apps/paludis:ruby-bindings - Enable Ruby bindings.
 sys-apps/paludis:visibility - Enable visibility support (g++ >=4.1)
 sys-apps/paludis:zsh-completion - Enable zsh completion support
 sys-apps/parted:device-mapper - Enable sys-fs/device-mapper support in parted

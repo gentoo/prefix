@@ -1,10 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2247 2009/01/09 15:47:17 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2249 2009/01/10 22:42:43 dragonheart Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  10 Jan 2009; Daniel Black <dragonheart@gentoo.org> package.mask:
+  package mask >=net-libs/gnutls-2.7.0 to allow dependant packages to resolve
+  bug #253709
+
+  10 Jan 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask for app-emacs/navi2ch, since the masked version is no longer
+  in the tree.
 
   09 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
   add virtual/xft to p.mask
