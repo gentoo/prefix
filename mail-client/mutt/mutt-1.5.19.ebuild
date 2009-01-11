@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: this is fake $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.1 2009/01/11 11:19:55 grobian Exp $
 
 EAPI="prefix"
 
@@ -8,15 +8,17 @@ inherit eutils flag-o-matic autotools
 
 PATCHSET_REV=""
 
+# note: latest sidebar patches can be found here:
+# http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
 SIDEBAR_PATCH_N="patch-1.5.18.sidebar.20080611.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="ftp://ftp.mutt.org/mutt/devel/${PN}-${PV}.tar.gz
+SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 	!vanilla? (
 		!sidebar? (
-			http://dev.gentoo.org/~grobian/distfiles/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
 			mirror://gentoo/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
+			http://dev.gentoo.org/~grobian/distfiles/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
 		)
 	)
 	sidebar? (
@@ -65,7 +67,6 @@ PATCHDIR="${WORKDIR}"/${P}-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
 	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
-	use sidebar && mkdir -p "${PATCHDIR}"
 
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
@@ -74,6 +75,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
+	epatch "${FILESDIR}"/mutt-1.5.19-wcfuncs.patch
 
 	if ! use vanilla && ! use sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
@@ -120,6 +122,11 @@ src_compile() {
 		*-darwin7)
 			# locales are broken on Panther
 			myconf="${myconf} --enable-locales-fix --without-wc-funcs"
+			myconf="${myconf} --disable-fcntl --enable-flock"
+		;;
+		*-darwin*)
+			# wc-funcs are buggy on OSX
+			myconf="${myconf} --without-wc-funcs"
 			myconf="${myconf} --disable-fcntl --enable-flock"
 		;;
 		*-solaris*)
