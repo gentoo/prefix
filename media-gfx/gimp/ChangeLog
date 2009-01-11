@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/gimp
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.279 2008/12/28 18:12:08 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.280 2009/01/10 17:10:51 hanno Exp $
+
+*gimp-2.6.4 (10 Jan 2009)
+
+  10 Jan 2009; Hanno Boeck <hanno@gentoo.org> +gimp-2.6.4.ebuild:
+  Version bump.
 
   28 Dec 2008; Raúl Porcel <armin76@gentoo.org> gimp-2.6.3.ebuild:
   Add ~ia64 wrt #240433
