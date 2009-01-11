@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.130 2009/01/09 17:37:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.131 2009/01/10 16:36:32 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> rails-1.2.6-r1.ebuild,
+  rails-2.1.2-r1.ebuild, rails-2.2.2-r1.ebuild:
+  ia64 stable wrt #253425
 
   09 Jan 2009; Brent Baude <ranger@gentoo.org> rails-1.2.6-r1.ebuild,
   rails-2.0.5-r1.ebuild, rails-2.1.2-r1.ebuild, rails-2.2.2-r1.ebuild:
