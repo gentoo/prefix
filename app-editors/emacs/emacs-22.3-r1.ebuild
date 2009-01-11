@@ -219,7 +219,7 @@ src_install () {
 
 	dodoc AUTHORS BUGS CONTRIBUTE README || die "dodoc failed"
 
-	if use carbon; then
+	if use aqua; then
 		einfo "Emacs.app is in $EPREFIX/Applications/Gentoo."
 		einfo "You may want to copy or symlink it into /Applications by yourself."
 	fi
