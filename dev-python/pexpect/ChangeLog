@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pexpect
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.41 2009/01/09 21:20:20 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.42 2009/01/10 16:55:09 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> pexpect-2.3.ebuild:
+  ia64/s390 stable wrt #252761
 
   09 Jan 2009; Tobias Klausmann <klausman@gentoo.org> pexpect-2.3.ebuild:
   Stable on alpha, bug #252761
