@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.1.ebuild,v 1.2 2008/12/07 18:03:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.3.ebuild,v 1.1 2009/01/10 22:32:48 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -23,7 +23,7 @@ SRC_URI="http://poppler.freedesktop.org/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="gtk qt3 cairo qt4 test"
 
 RDEPEND="~app-text/poppler-${PV}

@@ -1,6 +1,13 @@
 # ChangeLog for app-text/poppler-bindings
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.121 2008/12/17 19:30:36 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.122 2009/01/10 22:32:48 loki_val Exp $
+
+*poppler-bindings-0.10.3 (10 Jan 2009)
+
+  10 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-bindings-0.10.0-r1.ebuild, -poppler-bindings-0.10.1.ebuild,
+  -poppler-bindings-0.10.2.ebuild, +poppler-bindings-0.10.3.ebuild:
+  Bump
 
   17 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Adding myself as maintainer, I've been de-facto maintainer for six months
