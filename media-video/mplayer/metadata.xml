@@ -32,7 +32,6 @@
     <flag name="real">Adds real video support</flag>
     <flag name="rtc">Enables usage of the linux real time clock. The alternative is software emulation of rtc</flag>
     <flag name="schroedinger">Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).</flag>
-    <flag name="srt">Internal SRT/SSA/ASS (SubRip / SubStation Alpha) subtitle support</flag>
     <flag name="ssse3">faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)</flag>
     <flag name="teletext">Support for TV teletext interface</flag>
     <flag name="tga">Enables Targa video output</flag>
