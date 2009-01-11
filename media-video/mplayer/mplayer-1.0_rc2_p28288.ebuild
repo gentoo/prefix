@@ -229,9 +229,8 @@ src_unpack() {
 	# Fix polish spelling errors
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
 
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p26450-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28288-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-warnings.patch
 	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure || die
 }
 
