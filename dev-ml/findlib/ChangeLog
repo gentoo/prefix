@@ -1,6 +1,9 @@
 # ChangeLog for dev-ml/findlib
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.50 2009/01/09 17:16:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.51 2009/01/10 16:04:45 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> findlib-1.2.3.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #254069
 
   09 Jan 2009; Brent Baude <ranger@gentoo.org> findlib-1.2.3.ebuild:
   stable ppc, bug 254069
