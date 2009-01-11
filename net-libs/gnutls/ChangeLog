@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.177 2009/01/10 01:33:11 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.178 2009/01/10 22:45:35 dragonheart Exp $
+
+*gnutls-2.7.4 (10 Jan 2009)
+
+  10 Jan 2009; Daniel Black <dragonheart@gentoo.org> +gnutls-2.7.4.ebuild:
+  version bump as per bug #254445 - still masked - it breaks a few packages as
+  per bug #253709
 
   10 Jan 2009; Daniel Black <dragonheart@gentoo.org>
   +files/gnutls-2.6.0-openpgp-selftest.patch, gnutls-2.6.0-r2.ebuild,
