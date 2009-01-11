@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jython
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.58 2009/01/01 11:20:28 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.59 2009/01/10 13:13:06 ali_bush Exp $
+
+  10 Jan 2009; Alistair Bush <ali_bush@gentoo.org> -jython-2.1-r10.ebuild,
+  jython-2.1-r11.ebuild:
+  Cleanup old ebuild and fix incorrect licence see #252951
 
   01 Jan 2009; Alistair Bush <ali_bush@gentoo.org> jython-2.2.1-r1.ebuild:
   Corrent Licence. See #252951
