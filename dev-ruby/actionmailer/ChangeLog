@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.96 2009/01/09 17:35:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.97 2009/01/10 16:31:08 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> actionmailer-2.2.2.ebuild:
+  ia64 stable wrt #253425
 
   09 Jan 2009; Brent Baude <ranger@gentoo.org> actionmailer-2.2.2.ebuild:
   Marking actionmailer-2.2.2 ppc for bug 253425
