@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/common-lisp-controller
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/ChangeLog,v 1.37 2008/07/07 13:22:43 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/ChangeLog,v 1.38 2009/01/10 15:32:31 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  common-lisp-controller-5.13-r1.ebuild:
+  alpha/ia64 stable wrt #246074
 
   07 Jul 2008; Raúl Porcel <armin76@gentoo.org>
   common-lisp-controller-5.13-r1.ebuild:
