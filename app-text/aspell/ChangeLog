@@ -1,6 +1,13 @@
 # ChangeLog for app-text/aspell
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.101 2008/04/27 17:52:51 philantrop Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.103 2009/01/10 14:39:01 pva Exp $
+
+  10 Jan 2009; Peter Volkov <pva@gentoo.org> aspell-0.60.6.ebuild:
+  Fixed LINGUAS handling, bug #245399, thank Michael Laß for report.
+
+  10 Jan 2009; Peter Volkov <pva@gentoo.org> aspell-0.60.6.ebuild:
+  Added hack to make aspell buildable with old libtool. We need to remove it
+  later and depend on >=libtool-2.2.
 
 *aspell-0.60.6 (27 Apr 2008)
 
