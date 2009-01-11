@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigsegv
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.33 2008/10/25 20:23:07 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.34 2009/01/10 15:24:17 armin76 Exp $
+
+  10 Jan 2009; Raúl Porcel <armin76@gentoo.org> libsigsegv-2.6.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #246074
 
 *libsigsegv-2.6 (25 Oct 2008)
 
