@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.210 2009/01/09 10:56:02 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.211 2009/01/11 20:48:10 suka Exp $
+
+  11 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.0.0.ebuild:
+  Add missing ru-language-pack, closes bug #246531
 
   09 Jan 2009; Andreas Proschofsky <suka@gentoo.org> openoffice-bin-3.0.0.ebuild:
   Fix sandbox problems, see bug #251249
