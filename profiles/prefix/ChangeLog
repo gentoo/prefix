@@ -3,6 +3,9 @@
 # $Id$
 
   12 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask mutt-1.5.19, I^W we are hardcore
+
+  12 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask git-1.6.1 till bug #254029 is solved
 
   12 Jan 2009; Fabian Groffen <grobian@gentoo.org>
