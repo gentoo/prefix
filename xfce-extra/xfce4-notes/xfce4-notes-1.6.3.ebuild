@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/xfce4-notes-1.6.3.ebuild,v 1.1 2008/11/22 17:56:52 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/xfce4-notes-1.6.3.ebuild,v 1.2 2009/01/12 00:09:13 darkside Exp $
 
 EAPI="prefix"
 
