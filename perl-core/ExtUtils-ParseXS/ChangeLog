@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/ExtUtils-ParseXS
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ChangeLog,v 1.1 2008/11/02 07:22:04 tove Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ChangeLog,v 1.2 2009/01/11 15:07:28 tove Exp $
+
+  11 Jan 2009; Torsten Veller <tove@gentoo.org>
+  ExtUtils-ParseXS-2.18.ebuild, ExtUtils-ParseXS-2.19.ebuild:
+  Remove Module-Build from RDEPEND (#246942)
 
 *ExtUtils-ParseXS-2.19 (01 Nov 2008)
 *ExtUtils-ParseXS-2.18 (01 Nov 2008)
