@@ -1,6 +1,11 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.441 2009/01/09 10:44:52 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.442 2009/01/12 00:07:58 suka Exp $
+
+  12 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
+  files/gentoo-3.0.0.diff, openoffice-3.0.0.ebuild:
+  Fix parallel build problems, bug #253386. Fix RDEPEND with nsplugin, bug
+  #243034. Remove blocker on dmake, bug #252827
 
   09 Jan 2009; Andreas Proschofsky <suka@gentoo.org> files/gentoo-3.0.0.diff,
   +files/solenv.workaround-for-the-kde-mess.diff, openoffice-3.0.0.ebuild:
