@@ -1,0 +1,5 @@
+
+# Fabian Groffen <grobian@gentoo.org> (12 Jan 2008)
+# fails to compile:
+# zzipwrap.c:(.text+0x7e): undefined reference to `zzip_opendir_ext_io64'
+=dev-libs/zziplib-0.13.50

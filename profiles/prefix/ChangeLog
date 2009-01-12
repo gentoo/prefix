@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 Jan 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/5.11/x64/package.mask:
+  mask dev-libs/zziplib-0.13.50 on Solaris 11/x64
+
   08 Jan 2009; Jeremy Olexa <darkside@gentoo.org> aix/package.mask:
   p.mask >=net-misc/openssh-5.0_p1-r2 on aix
 
@@ -39,7 +43,7 @@
   sunos/solaris/5.11/x64/package.mask:
   Move mask up because it fails on linux too
 
-  22 Dec 2008; Fabian Groffen <fabian@gentoo.org>
+  22 Dec 2008; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.11/x64/package.mask:
   Mask binutils-2.19.50.0.1 on x64/OpenSolaris since it seems it can't
   recompile itself
