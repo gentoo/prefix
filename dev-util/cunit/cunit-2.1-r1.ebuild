@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf --docdir=/usr/share/doc/${PF}
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF}
 	emake || die "make failed"
 }
 
