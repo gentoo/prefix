@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.3.ebuild,v 1.5 2009/01/10 16:04:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.3.ebuild,v 1.7 2009/01/12 04:15:25 jer Exp $
 
 EAPI="prefix 2"
 
