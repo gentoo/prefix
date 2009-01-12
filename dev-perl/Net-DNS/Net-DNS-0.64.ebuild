@@ -24,6 +24,7 @@ DEPEND="${RDEPEND}
 	test? ( virtual/perl-Test-Simple
 		dev-perl/Test-Pod )"
 
+PATCHES=( ${FILESDIR}/${P}-ar.patch )
 SRC_TEST="do"
 mydoc="TODO"
 myconf="--no-online-tests"
