@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4123 2009/01/10 23:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4126 2009/01/11 17:27:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -56,6 +56,7 @@ app-admin/ulogd:ip-as-string - Logs IP addresses as stings
 app-admin/ulogd:logrotate - Install support files for logrotate
 app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
+app-arch/cabextract:extra-tools - Install experimental tools: wince_info and wince_rename for examining and processing Windows CE installation cabinet header files; cabinfo for examining the structure of a cab file.
 app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable file-roller to integrate with gnome-base/nautilus by providing entries in its context menu.
 app-arch/libarchive:bzip2 -  Allow accessing bzip2-compressed archives through libbz2 (which comes with bzip2). 
@@ -1670,6 +1671,7 @@ media-video/vlc:libsysfs - Get user key from firewire connected iPod via libsysf
 media-video/vlc:libv4l2 - Enables Libv4l2 Video4Linux2 support (for conversion from various video formats to standard ones, needed to use v4l2 devices with strange formats).
 media-video/vlc:live - Enables LIVE.com support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
+media-video/vlc:pda - Builds a GTK+ interface suitable for PDA devices.
 media-video/vlc:pvr - Enables PVR cards access module.
 media-video/vlc:qt4 - Builds a x11-libs/qt based frontend. It is now the most up-to-date graphical interface available.
 media-video/vlc:remoteosd - Enables RemoteOSD plugin (VNC client as video filter).
@@ -2400,7 +2402,6 @@ sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to peri
 sys-apps/man:lzma - Uses app-arch/lzma-utils for the COMPRESS feature. Could also be used to guarantee that lzma is on the system.
 sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/memtest86+:serial - Compile with serial console support
-sys-apps/paludis:glsa - Enable parsing of GLSA files
 sys-apps/paludis:inquisitio - Enable inquisitio, the search client
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
 sys-apps/paludis:portage - Enable experimental support for Portage configuration formats

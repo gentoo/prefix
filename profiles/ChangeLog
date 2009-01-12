@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2249 2009/01/10 22:42:43 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2255 2009/01/11 20:56:47 pva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  11 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  EC fonts are tex fonts, this package was used by lilypond at some point of
+  time, but now nothing uses them, no maintainer so it looks like time to
+  remove them from the tree has come. Objections? Report to bug 183730.
+
+  11 Jan 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Remove mask on oooqs and ooqstart-gnome, both are now gone from the tree
+
+  11 Jan 2009; Mike Auty <ikelos@gentoo.org> package.mask:
+  Adding x.5.0 series mask for vmware, since they're also vulnerable (bug
+  245941).
+
+  11 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask mutt-1.5.19 as it won't have a working sidebar patch for now.
+
+  11 Jan 2009; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  net-analyzer/rtg bundles *very* outdated versions of gd, zlib and
+  libpng libraries, static links, upstream seems dead, removal in 30
+  days. bug #247958 and bug #251425
 
   10 Jan 2009; Daniel Black <dragonheart@gentoo.org> package.mask:
   package mask >=net-libs/gnutls-2.7.0 to allow dependant packages to resolve
