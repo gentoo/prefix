@@ -1,0 +1,109 @@
+Upstream SVN trunk revision 3807
+
+This solves huge PHP problems in combination with a PHP patch using this
+new xmlParserOption per gentoo bug #249703:
+
+
+Mon Jan 05 18:28:41 CET 2009 Rob Richards
+
+* include/libxml/parser.h parser.c: add XML_PARSE_OLDSAX parser 
+  option to enable pre 2.7 SAX behavior.
+
+diff --git a/include/libxml/parser.h b/include/libxml/parser.h
+index 24d5cf9..01de128 100644
+--- a/include/libxml/parser.h
++++ b/include/libxml/parser.h
+@@ -1096,7 +1096,8 @@ typedef enum {
+ 				   crash if you try to modify the tree) */
+     XML_PARSE_OLD10	= 1<<17,/* parse using XML-1.0 before update 5 */
+     XML_PARSE_NOBASEFIX = 1<<18,/* do not fixup XINCLUDE xml:base uris */
+-    XML_PARSE_HUGE      = 1<<19 /* relax any hardcoded limit from the parser */
++    XML_PARSE_HUGE      = 1<<19, /* relax any hardcoded limit from the parser */
++    XML_PARSE_OLDSAX    = 1<<20 /* parse using SAX2 interface from before 2.7.0 */
+ } xmlParserOption;
+ 
+ XMLPUBFUN void XMLCALL
+diff --git a/parser.c b/parser.c
+index c52d360..9db664f 100644
+--- a/parser.c
++++ b/parser.c
+@@ -7047,9 +7047,11 @@ xmlParseEntityRef(xmlParserCtxtPtr ctxt) {
+     /*
+      * Predefined entites override any extra definition
+      */
+-    ent = xmlGetPredefinedEntity(name);
+-    if (ent != NULL)
+-        return(ent);
++    if ((ctxt->options & XML_PARSE_OLDSAX) == 0) {
++        ent = xmlGetPredefinedEntity(name);
++        if (ent != NULL)
++            return(ent);
++    }
+ 
+     /*
+      * Increate the number of entity references parsed
+@@ -7063,6 +7065,9 @@ xmlParseEntityRef(xmlParserCtxtPtr ctxt) {
+     if (ctxt->sax != NULL) {
+ 	if (ctxt->sax->getEntity != NULL)
+ 	    ent = ctxt->sax->getEntity(ctxt->userData, name);
++	if ((ctxt->wellFormed == 1 ) && (ent == NULL) && 
++	    (ctxt->options & XML_PARSE_OLDSAX))
++	    ent = xmlGetPredefinedEntity(name);
+ 	if ((ctxt->wellFormed == 1 ) && (ent == NULL) &&
+ 	    (ctxt->userData==ctxt)) {
+ 	    ent = xmlSAX2GetEntity(ctxt, name);
+@@ -7135,6 +7140,7 @@ xmlParseEntityRef(xmlParserCtxtPtr ctxt) {
+      */
+     else if ((ctxt->instate == XML_PARSER_ATTRIBUTE_VALUE) &&
+ 	     (ent != NULL) && (ent->content != NULL) &&
++	     (ent->etype != XML_INTERNAL_PREDEFINED_ENTITY) &&
+ 	     (xmlStrchr(ent->content, '<'))) {
+ 	xmlFatalErrMsgStr(ctxt, XML_ERR_LT_IN_ATTRIBUTE,
+     "'<' in entity '%s' is not allowed in attributes values\n", name);
+@@ -7231,11 +7237,13 @@ xmlParseStringEntityRef(xmlParserCtxtPtr ctxt, const xmlChar ** str) {
+     /*
+      * Predefined entites override any extra definition
+      */
+-    ent = xmlGetPredefinedEntity(name);
+-    if (ent != NULL) {
+-        xmlFree(name);
+-        *str = ptr;
+-        return(ent);
++    if ((ctxt->options & XML_PARSE_OLDSAX) == 0) {
++        ent = xmlGetPredefinedEntity(name);
++        if (ent != NULL) {
++            xmlFree(name);
++            *str = ptr;
++            return(ent);
++        }
+     }
+ 
+     /*
+@@ -7250,6 +7258,8 @@ xmlParseStringEntityRef(xmlParserCtxtPtr ctxt, const xmlChar ** str) {
+     if (ctxt->sax != NULL) {
+ 	if (ctxt->sax->getEntity != NULL)
+ 	    ent = ctxt->sax->getEntity(ctxt->userData, name);
++	if ((ent == NULL) && (ctxt->options & XML_PARSE_OLDSAX))
++	    ent = xmlGetPredefinedEntity(name);
+ 	if ((ent == NULL) && (ctxt->userData==ctxt)) {
+ 	    ent = xmlSAX2GetEntity(ctxt, name);
+ 	}
+@@ -7318,6 +7328,7 @@ xmlParseStringEntityRef(xmlParserCtxtPtr ctxt, const xmlChar ** str) {
+      */
+     else if ((ctxt->instate == XML_PARSER_ATTRIBUTE_VALUE) &&
+ 	     (ent != NULL) && (ent->content != NULL) &&
++	     (ent->etype != XML_INTERNAL_PREDEFINED_ENTITY) &&
+ 	     (xmlStrchr(ent->content, '<'))) {
+ 	xmlFatalErrMsgStr(ctxt, XML_ERR_LT_IN_ATTRIBUTE,
+      "'<' in entity '%s' is not allowed in attributes values\n",
+@@ -14211,6 +14222,10 @@ xmlCtxtUseOptionsInternal(xmlParserCtxtPtr ctxt, int options, const char *encodi
+ 	ctxt->options |= XML_PARSE_HUGE;
+         options -= XML_PARSE_HUGE;
+     }
++    if (options & XML_PARSE_OLDSAX) {
++	ctxt->options |= XML_PARSE_OLDSAX;
++        options -= XML_PARSE_OLDSAX;
++    }
+     ctxt->linenumbers = 1;
+     return (options);
+ }

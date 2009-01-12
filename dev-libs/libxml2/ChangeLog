@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libxml2
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.244 2008/12/23 04:56:02 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.245 2009/01/11 19:46:59 leio Exp $
+
+*libxml2-2.7.2-r2 (11 Jan 2009)
+
+  11 Jan 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/libxml2-2.7.2-old-sax-parser-behaviour-option.patch,
+  +files/libxml2-2.7.2-xmlAddChildList-pointer.patch,
+  +files/libxml2-2.7.2-xmlTextWriterFullEndElement-indent.patch,
+  +libxml2-2.7.2-r2.ebuild:
+  Add a patch to allow a fix for bug 249703 - xml_parse_into_struct php
+  function breakage. Also a few more patches from upstream while at it.
 
   23 Dec 2008; Robin H. Johnson <robbat2@gentoo.org>
   +files/libxml2-2.6.32-CVE-2008-422x.patch, +libxml2-2.6.32-r1.ebuild:
