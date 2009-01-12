@@ -49,6 +49,9 @@ src_install() {
 		diropts -m0700
 		dodir /root/.ccache
 		keepdir /root/.ccache
+	else
+		sed -i -e "s:/usr/:${EPREFIX}/usr/:" \
+			${ED}/usr/bin/ccache-config || die
 	fi
 }
 
