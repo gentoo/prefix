@@ -17,7 +17,7 @@ SRC_URI="mirror://imagemagick/${MY_P2}.tar.bz2
 
 LICENSE="imagemagick"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 +corefonts djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k
 	lcms nocxx openexr openmp perl png q8 q32 raw svg tiff truetype X wmf xml zlib"
 
