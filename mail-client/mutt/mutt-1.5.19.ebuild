@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.1 2009/01/11 11:19:55 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.2 2009/01/12 19:10:58 grobian Exp $
 
 EAPI="prefix"
 
@@ -122,11 +122,6 @@ src_compile() {
 		*-darwin7)
 			# locales are broken on Panther
 			myconf="${myconf} --enable-locales-fix --without-wc-funcs"
-			myconf="${myconf} --disable-fcntl --enable-flock"
-		;;
-		*-darwin*)
-			# wc-funcs are buggy on OSX
-			myconf="${myconf} --without-wc-funcs"
 			myconf="${myconf} --disable-fcntl --enable-flock"
 		;;
 		*-solaris*)

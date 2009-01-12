@@ -1,6 +1,16 @@
 # ChangeLog for mail-client/mutt
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.122 2008/08/23 01:43:01 cardoe Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.124 2009/01/12 19:10:58 grobian Exp $
+
+  12 Jan 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.19.ebuild:
+  Drop wc-func bit for darwin, it doesn't change a thing on Darwin8 and simply
+  breaks Darwin9
+
+*mutt-1.5.19 (11 Jan 2009)
+
+  11 Jan 2009; Fabian Groffen <grobian@gentoo.org> +mutt-1.5.19.ebuild:
+  Version bump. Added new patches in Gentoo patchset. Masked because sidebar
+  patch does not apply.
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
