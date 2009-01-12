@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/rej/rej-0.16.ebuild,v 1.5 2008/11/19 18:14:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/rej/rej-0.16.ebuild,v 1.6 2009/01/12 04:03:24 jer Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ IUSE=""
 DEPEND=""
 RDEPEND="
 	dev-lang/perl
-	!app-editors/mp
+	!<app-editors/mp-5
 	!dev-lang/qu-prolog
 	!dev-util/mpatch
 	"

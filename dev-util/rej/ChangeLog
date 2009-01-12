@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/rej
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/rej/ChangeLog,v 1.12 2008/11/19 18:14:52 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/rej/ChangeLog,v 1.13 2009/01/12 04:03:24 jer Exp $
+
+  12 Jan 2009; Jeroen Roovers <jer@gentoo.org> rej-0.16.ebuild:
+  Do not block app-editors/mp any longer, thanks to Guenther Brunthaler (bug
+  #254363).
 
   19 Nov 2008; Jeroen Roovers <jer@gentoo.org> rej-0.16.ebuild:
   Block packages that install mp and/or qp (bugs #189857 and #247434).
