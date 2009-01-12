@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/xarchiver
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.5 2008/11/12 09:49:23 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.6 2009/01/12 00:04:00 darkside Exp $
+
+  12 Jan 2009; Jeremy Olexa <darkside@gentoo.org> xarchiver-0.5.2.ebuild:
+  amd64 stable, bug 254440
 
 *xarchiver-0.5.2 (12 Nov 2008)
 
