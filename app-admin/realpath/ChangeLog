@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/realpath
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.35 2009/01/10 16:52:41 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.36 2009/01/12 04:28:47 jer Exp $
+
+  12 Jan 2009; Jeroen Roovers <jer@gentoo.org> realpath-1.12.ebuild:
+  Stable for HPPA (bug #254432).
 
   10 Jan 2009; Thomas Anderson <gentoofan23@gentoo.org>
   realpath-1.12.ebuild:
