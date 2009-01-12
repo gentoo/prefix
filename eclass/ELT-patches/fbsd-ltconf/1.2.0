@@ -9,11 +9,11 @@ Index: jpeg-6b/ltconfig
 -freebsd2* | freebsd3*)
 -  version_type=sunos
 -  library_names_spec='${libname}${release}.so.$versuffix $libname.so'
-+freebsd[23456]*)
++freebsd[234567]*)
 +  case $host_vendor in
 +    gentoo)
 +      version_type=linux
-+      library_names_spec='${libname}${release}.so$versuffix ${libname}${release}.so$major ${libname}.so'
++      library_names_spec='${libname}${release}.so.$versuffix ${libname}${release}.so.$major ${libname}.so'
 +      soname_spec='${libname}${release}.so.$major'
 +      ;;
 +    *)

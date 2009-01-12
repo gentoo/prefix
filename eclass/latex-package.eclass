@@ -1,11 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.37 2008/08/30 13:49:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.38 2009/01/11 21:46:39 ulm Exp $
 
 # @ECLASS: latex-package.eclass
 # @MAINTAINER:
 # TeX team <tex@gentoo.org>
-# 
+#
 # Author Matthew Turk <satai@gentoo.org>
 # Martin Ehmsen <ehmsen@gentoo.org>
 # @BLURB: An eclass for easy installation of LaTeX packages
@@ -67,7 +67,7 @@ TEXMF="/usr/share/texmf"
 # @DESCRIPTION:
 # This refers to the font supplier; it should be overridden (see eclass
 # DESCRIPTION above)
-SUPPLIER="misc" 
+SUPPLIER="misc"
 
 # @FUNCTION: latex-package_has_tetex3
 # @RETURN: true if at least one of (>=tetex-3 or >=ptex-3.1.8 or >=texlive-core-2007) is installed, else false
@@ -199,7 +199,7 @@ latex-package_src_install() {
 	fi
 }
 
-# @FUNCTION: latex-pacakge_pkg_postinst
+# @FUNCTION: latex-package_pkg_postinst
 # @DESCRIPTION:
 # Calls latex-package_rehash to ensure the TeX installation is consistent with
 # the kpathsea database
