@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.0.ebuild,v 1.3 2008/10/17 12:53:08 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.1 2009/01/11 21:40:21 eva Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ src_unpack() {
 	gnome2_src_unpack
 
 	# Make xml2po FHS compliant, bug #190798
-	epatch "${FILESDIR}/${P}-fhs.patch"
+	epatch "${FILESDIR}/${PN}-0.14.0-fhs.patch"
 
 	# If there is a need to reintroduce eautomake or eautoreconf, make sure
 	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
