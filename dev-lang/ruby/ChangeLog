@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/ruby
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.365 2008/12/29 13:58:16 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.366 2009/01/11 18:21:40 graaff Exp $
+
+*ruby-1.8.6_p287-r11 (11 Jan 2009)
+
+  11 Jan 2009; Hans de Graaff <graaff@gentoo.org>
+  +files/ruby-1.8.6-openssl.patch, +ruby-1.8.7_p287-r4,
+  +ruby-1.8.6_p287-r11.ebuild:
+  Backport conditional definition of missing openssl functions from ruby 1.8.7.
+  Fixes #254307.
 
   29 Dec 2008; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p287-r10.ebuild:
   Marking ruby-1.8.6_p287-r10 ~ppc64 for bug 252315

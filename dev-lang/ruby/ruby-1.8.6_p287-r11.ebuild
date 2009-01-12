@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r10.ebuild,v 1.4 2008/12/29 13:58:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r11.ebuild,v 1.1 2009/01/11 18:21:40 graaff Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${P}-entity_expansion_limit.diff"
 	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6-openssl.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
