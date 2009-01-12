@@ -32,6 +32,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Fabian Groffen <grobian@gentoo.org> (12 Jan 2009)
+# fsck-ing perl issue, bug #254029
+=dev-util/git-1.6.1
+
 # Fabian Groffen <grobian@gentoo.org> (27 Dec 2008)
 # asserts:
 # Assertion failed: state.type != 0, file ftsfind.c, line 475, function consider_visiting
