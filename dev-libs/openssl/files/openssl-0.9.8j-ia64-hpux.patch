@@ -1,0 +1,10 @@
+http://cvs.openssl.org/filediff?f=openssl/crypto/sha/asm/sha1-ia64.pl&v1=1.6&v2=1.7
+
+--- crypto/sha/asm/sha1-ia64.pl.orig	2009-01-13 16:10:52 +0100
++++ crypto/sha/asm/sha1-ia64.pl	2009-01-13 16:11:18 +0100
+@@ -302,4 +302,5 @@
+ stringz	"SHA1 block transform for IA64, CRYPTOGAMS by <appro\@openssl.org>"
+ ___
+ 
++$output=shift and open STDOUT,">$output";
+ print $code;
