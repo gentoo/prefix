@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Jan 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask >=sandbox-1.3.0, bug 254358
+
   12 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmask mutt-1.5.19, I^W we are hardcore
 

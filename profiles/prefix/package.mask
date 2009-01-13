@@ -32,6 +32,9 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (13 Jan 2009)
+# sandbox-1.3.* is broken on linux, bug 254358
+>=sys-apps/sandbox-1.3.0
 
 # Fabian Groffen <grobian@gentoo.org> (12 Jan 2009)
 # Prefix users are hardcore
