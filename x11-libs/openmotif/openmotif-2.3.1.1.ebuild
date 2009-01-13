@@ -20,7 +20,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/${MY_PV%.*}/${MY_PV}/${SRC_P}.tar.gz
 
 LICENSE="MOTIF libXpm doc? ( OPL )"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc examples jpeg png unicode xft"
 
 # make people unmerge motif-config and all previous slots
@@ -79,6 +79,9 @@ src_unpack() {
 
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
+
+	# have lib/Mrm and lib/Xm not overwrite LDFLAGS
+	epatch "${FILESDIR}"/${MY_P}-ldflags.patch
 
 	# remove non-prefix paths
 	epatch "${FILESDIR}"/${PN}-2.3.1-prefix-sanitise.patch
