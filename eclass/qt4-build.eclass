@@ -14,11 +14,15 @@ inherit eutils multilib toolchain-funcs flag-o-matic
 IUSE="${IUSE} debug pch aqua"
 
 case "${PV}" in
-	4.4.0_beta*)
+	4.5.*_beta*)
 		SRCTYPE="${SRCTYPE:-opensource-src}"
 		MY_PV="${PV/_beta/-beta}"
 		;;
-	4.4.0_rc*)
+	4.4.*_beta*)
+		SRCTYPE="${SRCTYPE:-opensource-src}"
+		MY_PV="${PV/_beta/-beta}"
+		;;
+	4.*.*_rc*)
 		SRCTYPE="${SRCTYPE:-opensource-src}"
 		MY_PV="${PV/_rc/-rc}"
 		;;
@@ -27,14 +31,20 @@ case "${PV}" in
 		MY_PV="${PV}"
 		;;
 esac
-MY_P=qt-x11-${SRCTYPE}-${MY_PV}
+
+use aqua \
+	&& MY_GE=mac \
+	|| MY_GE=x11
+MY_P="qt-${MY_GE}-${SRCTYPE}-${MY_PV}"
 S=${WORKDIR}/${MY_P}
 
-SRC_URI="ftp://ftp.trolltech.com/qt/source/${MY_P}.tar.bz2"
+SRC_URI=" aqua? ( ftp://ftp.trolltech.com/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.bz2 )
+         !aqua? ( ftp://ftp.trolltech.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2 )"
 
 case "${PV}" in
 	4.4.2|4.4.1|4.4.0|4.4.0_rc*)
-		SRC_URI="${SRC_URI} mirror://gentoo/${MY_P}-headers.tar.bz2"
+		SRC_URI="${SRC_URI}
+		         !aqua? ( mirror://gentoo/qt-x11-${SRCTYPE}-${MY_PV}-headers.tar.bz2 )"
 		;;
 	*)
 		;;
@@ -66,6 +76,22 @@ qt4-build_pkg_setup() {
 		LD_LIBRARY_PATH="${S}/lib:${LD_LIBRARY_PATH}"
 	else
 		DYLD_LIBRARY_PATH="${S}/lib:${DYLD_LIBRARY_PATH}"
+		#on mac we *need* src/gui/kernel/qapplication_mac.cpp for platfrom detection
+		#since the x11-headers package b0rkens the header installation, we have
+		#to extract src/ and includes/ completely on mac
+		#tools is needed for qt-demo
+		QT4_EXTRACT_DIRECTORIES="
+			${QT4_EXTRACT_DIRECTORIES}
+			src
+			include
+		"
+		
+		if [[ ${PN} == qt-demo ]]; then
+			QT4_EXTRACT_DIRECTORIES="
+				${QT4_EXTRACT_DIRECTORIES}
+				tools
+			"
+		fi
 	fi
 }
 
@@ -80,12 +106,14 @@ qt4_unpack() {
 	echo tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
 	tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
 
-	case "${PV}" in
-		4.4.2|4.4.1|4.4.0|4.4.0_rc*)
-			echo tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
-			tar xjpf "${DISTDIR}"/${MY_P}-headers.tar.bz2
-			;;
-	esac
+	if [[ ${CHOST} != *-darwin* ]]; then
+		case "${PV}" in
+			4.4.2|4.4.1|4.4.0|4.4.0_rc*)
+				echo tar xjpf "${DISTDIR}"/qt-x11-${SRCTYPE}-${MY_PV}-headers.tar.bz2
+				tar xjpf "${DISTDIR}"/qt-x11-${SRCTYPE}-${MY_PV}-headers.tar.bz2
+				;;
+		esac
+	fi
 }
 
 qt4-build_src_unpack() {
@@ -110,10 +138,17 @@ qt4-build_src_unpack() {
 		-e "s:X11R6/::" \
 		-i "${S}"/mkspecs/$(qt_mkspecs_dir)/qmake.conf || die "sed ${S}/mkspecs/$(qt_mkspecs_dir)/qmake.conf failed"
 
-	sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
-		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
-		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
-		-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
+	if [[ ${CHOST} != *-darwin* ]]; then
+		sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
+			-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
+	else	
+		sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
+			-i "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/mkspecs/common/mac-g++.conf failed"
+	fi
 }
 
 qt4-build_src_compile() {
@@ -134,6 +169,39 @@ qt4-build_src_compile() {
 	fi
 
 	myconf="$(standard_configure_options) ${myconf}"
+
+	if use glib; then
+		#use -I from configure
+		myconf="${myconf} $(pkg-config --cflags glib-2.0)"
+		#use -L and -l from configure
+		myconf="${myconf} $(pkg-config --libs glib-2.0 gthread-2.0)"
+	fi
+
+	case "${PV}" in
+		4.5.*)
+			if use aqua ; then
+				# on leopard use the new cocoa code
+				if [[ ${CHOST} == *-darwin9 ]] ; then
+					# needs framework! no qt3support!
+					myconf="${myconf} -cocoa -framework -no-qt3support"
+
+					# for module compilation we need the source's headers, not
+					# the installed ones
+					if [[ ${PN} != qt-demo ]]; then
+						myconf="${myconf} -I${S}/include"
+					fi
+
+					myconf="${myconf} -F${QTLIBDIR}"
+
+					# move this into the unpack function
+					echo "CONFIG+=app_bundle" >> "${S}"/mkspecs/macx-g++/qmake.conf || \
+						die "echo app_bundle failed"
+				fi
+			fi
+			;;
+		*)
+			;;
+	esac
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die "./configure failed"
