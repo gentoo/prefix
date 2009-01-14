@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.13 2008/01/23 04:32:20 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.14 2009/01/12 14:02:52 fmccor Exp $
 
 EAPI="prefix"
 
