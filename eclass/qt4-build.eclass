@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.16 2008/09/18 22:07:50 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.17 2009/01/12 23:47:16 yngwin Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -319,6 +319,20 @@ qt4-build_pkg_postrm() {
 
 qt4-build_pkg_postinst() {
 	generate_qconfigs
+	echo
+	ewarn "After a rebuild or upgrade of Qt, it can happen that Qt plugins (such as Qt"
+	ewarn "and KDE styles and widgets) can no longer be loaded. In this situation you"
+	ewarn "should recompile the packages providing these plugins. Also, make sure you"
+	ewarn "compile the Qt packages, and the packages that depend on it, with the same"
+	ewarn "GCC version and the same USE flag settings (especially the debug flag)."
+	ewarn
+	ewarn "Packages that typically need to be recompiled are kdelibs from KDE4, any"
+	ewarn "additional KDE4/Qt4 styles, qscintilla and PyQt4. Before filing a bug report,"
+	ewarn "make sure all your Qt4 packages are up-to-date and built with the same"
+	ewarn "configuration."
+	ewarn
+	ewarn "For more information, see http://doc.trolltech.com/4.4/plugins-howto.html"
+	echo
 }
 
 skip_qmake_build_patch() {

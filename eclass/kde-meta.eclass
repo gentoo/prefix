@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.86 2008/09/13 21:30:21 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.87 2009/01/12 23:03:08 maekke Exp $
 
 # @ECLASS: kde-meta.eclass
 # @MAINTAINER:
@@ -88,7 +88,7 @@ if [[ "${KMNAME}" != "koffice" ]]; then
 else
 	eapi=${EAPI/prefix/}
 	case ${eapi:-0} in
-		0)  
+		0)
 		# EAPIs without SLOT dependencies.
 		IFSBACKUP="$IFS"
 		IFS=".-_"

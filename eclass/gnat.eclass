@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.36 2008/07/19 09:20:06 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.37 2009/01/12 22:55:53 maekke Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -276,7 +276,7 @@ gnat_pkg_setup() {
 	# check whether all the primary compilers are installed
 	. ${GnatCommon} || die "failed to source gnat-common lib"
 	for fn in $(cat ${PRIMELIST}); do
-		if [[ ! -f ${SPECSDIR}/${fn} ]]; then 
+		if [[ ! -f ${SPECSDIR}/${fn} ]]; then
 			elog "The ${fn} Ada compiler profile is specified as primary, but is not installed."
 			elog "Please rectify the situation before emerging Ada library!"
 			elog "Please either install again all the missing compilers listed"
@@ -288,7 +288,7 @@ gnat_pkg_setup() {
 			die "Primary compiler is missing"
 		fi
 	done
-	
+
 	export ADAC=${ADAC:-gnatgcc}
 	export ADAMAKE=${ADAMAKE:-gnatmake}
 	export ADABIND=${ADABIND:-gnatbind}

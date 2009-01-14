@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.57 2008/12/03 18:11:47 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.58 2009/01/12 23:04:54 maekke Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -527,7 +527,7 @@ check_extra_config() {
 	fi
 
 	einfo "Checking for suitable kernel configuration options..."
-	
+
 	for config in ${CONFIG_CHECK}
 	do
 		# if we specify any fatal, ensure we honor them

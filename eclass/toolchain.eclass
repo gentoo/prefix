@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.380 2009/01/10 12:53:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.381 2009/01/12 22:51:38 maekke Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -348,8 +348,8 @@ get_gcc_src_uri() {
 		GCC_SRC_URI="${GCC_SRC_URI} !nopie? ( $(gentoo_urls ${PIE_CORE}) )"
 
 	# gcc minispec for the hardened gcc 4 compiler
-        [[ -n ${SPECS_VER} ]] && \
-                GCC_SRC_URI="${GCC_SRC_URI} !nopie? ( $(gentoo_urls gcc-${SPECS_GCC_VER}-specs-${SPECS_VER}.tar.bz2) )"
+	[[ -n ${SPECS_VER} ]] && \
+		GCC_SRC_URI="${GCC_SRC_URI} !nopie? ( $(gentoo_urls gcc-${SPECS_GCC_VER}-specs-${SPECS_VER}.tar.bz2) )"
 
 	# gcc bounds checking patch
 	if [[ -n ${HTB_VER} ]] ; then
@@ -722,7 +722,7 @@ setup_minispecs_gcc_build_specs() {
 	# Setup the "build.specs" file for gcc to use when building.
 	if want_minispecs ; then
 		if hardened_gcc_works pie ; then
-        		cat "${WORKDIR}"/specs/pie.specs >> "${WORKDIR}"/build.specs
+			cat "${WORKDIR}"/specs/pie.specs >> "${WORKDIR}"/build.specs
 		fi
 		for s in nostrict znow; do
 			cat "${WORKDIR}"/specs/${s}.specs >> "${WORKDIR}"/build.specs
@@ -739,7 +739,7 @@ copy_minispecs_gcc_specs() {
 		cat "${WORKDIR}"/build.specs >> "${WORKDIR}"/specs/specs
 		insinto ${LIBPATH}
 		doins "${WORKDIR}"/specs/* || die "failed to install specs"
-        fi
+	fi
 }
 add_profile_eselect_conf() {
 	local compiler_config_file=$1

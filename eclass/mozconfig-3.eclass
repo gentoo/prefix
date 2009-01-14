@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.5 2008/07/29 20:50:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.6 2009/01/12 23:07:03 maekke Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -20,7 +20,7 @@ RDEPEND="x11-libs/libXrender
 	>=x11-libs/pango-1.10.1
 	>=dev-libs/libIDL-0.8.0
 	gnome? ( >=gnome-base/gnome-vfs-2.16.3
-		>=gnome-base/libgnomeui-2.16.1 
+		>=gnome-base/libgnomeui-2.16.1
 		>=gnome-base/gconf-2.16.0
 		>=gnome-base/libgnome-2.16.0 )
 	dbus? ( >=dev-libs/dbus-glib-0.72 )

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.33 2009/01/10 14:00:15 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.34 2009/01/13 23:16:10 gentoofan23 Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
@@ -14,11 +14,13 @@ MTVCONF=${MTVCONF:=""}
 SLOT="0"
 IUSE="${IUSE} debug mmx"
 
+if [[ -z $MYTHTV_NODEPS ]] ; then
 RDEPEND="${RDEPEND}
 		=media-tv/mythtv-${MY_PV}*"
 DEPEND="${DEPEND}
 		=media-tv/mythtv-${MY_PV}*
 		>=sys-apps/sed-4"
+fi
 
 S="${WORKDIR}/mythplugins-${MY_PV}"
 

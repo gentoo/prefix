@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.21 2008/03/19 09:27:28 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.22 2009/01/12 23:09:02 maekke Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -71,7 +71,7 @@ php-pear-r1_src_install() {
 	esac
 
 	cd "${S}"
-	
+
 	if [[ -f "${WORKDIR}"/package2.xml ]] ; then
 		mv -f "${WORKDIR}/package2.xml" "${S}"
 		if has_version '>=dev-php/PEAR-PEAR-1.7.0' ; then

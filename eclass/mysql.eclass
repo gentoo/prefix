@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.102 2008/11/29 02:30:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.103 2009/01/12 23:08:17 maekke Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -363,7 +363,7 @@ configure_40_41_50() {
 			myconf="${myconf} --without-openssl"
 		fi
 	fi
-	
+
 	if mysql_version_is_at_least "5.0.60" ; then
 			if use berkdb ; then
 				elog "Berkeley DB support was disabled due to build failures"
@@ -518,7 +518,7 @@ mysql_pkg_setup() {
 		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 	fi
-	
+
 	# This should come after all of the die statements
 	enewgroup mysql 60 || die "problem adding 'mysql' group"
 	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.42 2009/01/06 19:24:06 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.43 2009/01/12 22:54:46 maekke Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
@@ -23,31 +23,31 @@ FONT_SUFFIX=""
 # @ECLASS-VARIABLE: FONT_S
 # @DESCRIPTION:
 # Dir containing the fonts
-FONT_S=${S} 
+FONT_S=${S}
 
 # @ECLASS-VARIABLE: FONT_PN
 # @DESCRIPTION:
 # Last part of $FONTDIR
-FONT_PN=${PN} 
+FONT_PN=${PN}
 
 # @ECLASS-VARIABLE: FONTDIR
 # @DESCRIPTION:
 # This is where the fonts are installed
-FONTDIR=/usr/share/fonts/${FONT_PN} 
+FONTDIR=/usr/share/fonts/${FONT_PN}
 
 # @ECLASS-VARIABLE: FONT_CONF
 # @DESCRIPTION:
 # Array, which element(s) is(are) path(s) of fontconfig-2.4 file(s) to install
-FONT_CONF=( "" )  
+FONT_CONF=( "" )
 
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
 # Docs to install
-DOCS="" 
+DOCS=""
 
 IUSE="X"
 
-DEPEND="X? ( x11-apps/mkfontdir 
+DEPEND="X? ( x11-apps/mkfontdir
 			media-fonts/encodings )
 		media-libs/fontconfig"
 

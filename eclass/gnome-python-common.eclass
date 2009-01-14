@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.6 2008/12/01 14:29:06 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome-python-common.eclass,v 1.7 2009/01/12 23:09:46 maekke Exp $
 
 # Original Author: Arun Raghavan <ford_prefect@gentoo.org> (based on the
 #		   gnome-python-desktop eclass by Jim Ramsay <lack@gentoo.org>)
@@ -25,7 +25,7 @@
 # So, for example, with the bonobo bindings, the original package is libbonobo
 # and the packages is named dev-python/libbonobo-python
 
-inherit versionator python autotools gnome2 
+inherit versionator python autotools gnome2
 
 G_PY_PN=${G_PY_PN:-gnome-python}
 G_PY_BINDINGS=${G_PY_BINDINGS:-${PN%-python}}

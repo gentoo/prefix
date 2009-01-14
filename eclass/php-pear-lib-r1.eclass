@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.14 2008/03/19 09:27:28 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.15 2009/01/12 22:48:06 maekke Exp $
 #
 # Author: Luca Longinotti <chtekk@gentoo.org>
 
@@ -45,29 +45,29 @@ php-pear-lib-r1_src_install() {
 
 	cd "${S}"
 
-        if [[ -f "${WORKDIR}"/package2.xml ]] ; then
-                mv -f "${WORKDIR}/package2.xml" "${S}"
-                if has_version '>=dev-php/PEAR-PEAR-1.7.0' ; then
-                        local WWW_DIR="/usr/share/webapps/${PN}/${PVR}/htdocs"
-                        pear -d php_bin="${PHP_BIN}" -d www_dir="${WWW_DIR}" \
-                                install --force --loose --nodeps --offline --packagingroot="${ED}" \
-                                "${S}/package2.xml" || die "Unable to install PEAR package"
-                else
-                        pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
-                                "${S}/package2.xml" || die "Unable to install PEAR package"
-                fi
-        else
-                mv -f "${WORKDIR}/package.xml" "${S}"
-                if has_version '>=dev-php/PEAR-PEAR-1.7.0' ; then
-                        local WWW_DIR="/usr/share/webapps/${PN}/${PVR}/htdocs"
-                        pear -d php_bin="${PHP_BIN}" -d www_dir="${WWW_DIR}" \
-                                install --force --loose --nodeps --offline --packagingroot="${ED}" \
-                                "${S}/package.xml" || die "Unable to install PEAR package"
-                else
-                        pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
-                                "${S}/package.xml" || die "Unable to install PEAR package"
-                fi
-        fi
+	if [[ -f "${WORKDIR}"/package2.xml ]] ; then
+		mv -f "${WORKDIR}/package2.xml" "${S}"
+		if has_version '>=dev-php/PEAR-PEAR-1.7.0' ; then
+			local WWW_DIR="/usr/share/webapps/${PN}/${PVR}/htdocs"
+			pear -d php_bin="${PHP_BIN}" -d www_dir="${WWW_DIR}" \
+				install --force --loose --nodeps --offline --packagingroot="${ED}" \
+				"${S}/package2.xml" || die "Unable to install PEAR package"
+		else
+			pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
+				"${S}/package2.xml" || die "Unable to install PEAR package"
+		fi
+	else
+		mv -f "${WORKDIR}/package.xml" "${S}"
+		if has_version '>=dev-php/PEAR-PEAR-1.7.0' ; then
+			local WWW_DIR="/usr/share/webapps/${PN}/${PVR}/htdocs"
+			pear -d php_bin="${PHP_BIN}" -d www_dir="${WWW_DIR}" \
+				install --force --loose --nodeps --offline --packagingroot="${ED}" \
+					"${S}/package.xml" || die "Unable to install PEAR package"
+		else
+			pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
+				"${S}/package.xml" || die "Unable to install PEAR package"
+		fi
+	fi
 
 	rm -Rf "${ED}/usr/share/php/.channels" \
 	"${ED}/usr/share/php/.depdblock" \

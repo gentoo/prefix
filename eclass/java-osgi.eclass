@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.4 2008/01/14 16:48:38 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.5 2009/01/12 22:58:36 maekke Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -192,7 +192,7 @@ _java-osgi_makejar-fromfile() {
 
 	local absoluteJarPath="$(_canonicalise ${1})"
 	local jarName="$(basename ${1})"
-	
+
 	mkdir "${_OSGI_T}/tmp_jar" || die "Unable to create directory ${_OSGI_T}/tmp_jar"
 	[[ -d "${_OSGI_T}/osgi" ]] || mkdir "${_OSGI_T}/osgi" || die "Unable to create directory ${_OSGI_T}/osgi"
 
