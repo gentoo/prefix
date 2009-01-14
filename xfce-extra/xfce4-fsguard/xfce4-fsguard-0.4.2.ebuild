@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-fsguard/xfce4-fsguard-0.4.2.ebuild,v 1.2 2009/01/12 00:08:27 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-fsguard/xfce4-fsguard-0.4.2.ebuild,v 1.3 2009/01/13 15:37:23 ranger Exp $
 
 EAPI="prefix"
 
