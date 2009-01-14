@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.2 2009/01/12 00:04:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.3 2009/01/13 15:32:35 ranger Exp $
 
 EAPI="prefix 1"
 
