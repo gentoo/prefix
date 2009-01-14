@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/pbzip2
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.53 2008/12/22 05:11:40 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.54 2009/01/13 05:08:20 jer Exp $
+
+*pbzip2-1.0.5 (13 Jan 2009)
+
+  13 Jan 2009; Jeroen Roovers <jer@gentoo.org> +pbzip2-1.0.5.ebuild:
+  Version bump.
 
 *pbzip2-1.0.4 (22 Dec 2008)
 
