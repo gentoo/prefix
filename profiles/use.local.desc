@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4126 2009/01/11 17:27:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4129 2009/01/13 18:08:17 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -891,6 +891,7 @@ games-fps/warsow:irc - Enable IRC support
 games-fps/worldofpadman:maps - Install extra maps (PadPack)
 games-kids/gcompris:gnet - will let GCompris fetch content from a web server
 games-mud/mmucl:mccp - adds support for the Mud Client Compression Protocol
+games-puzzle/xlogical:alt_gfx - Use alternate graphics which are closer to the original Amiga version
 games-rpg/drascula:audio - Install optional audio files
 games-rpg/eternal-lands-data:music - Install optional music files (extra 30 meg)
 games-rpg/eternal-lands-data:sound - Install optional sound files (extra 40 meg)
@@ -1047,6 +1048,7 @@ mail-client/claws-mail:bogofilter - Build mail-filter/bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline HTTP email viewing with a plugin (which depends on the www-client/dillo browser)
 mail-client/claws-mail:smime - Build plugin for S/MIME support
 mail-client/claws-mail:spamassassin - Build mail-filter/spamassassin plugin
+mail-client/claws-mail:ssl - Use gnutls for Secure Socket Layer transactions (deprecated, USE=gnutls should be used)
 mail-client/evolution:crypt - Enable GPG encryption support using app-crypt/gnupg and app-crypt/pinentry
 mail-client/evolution:dbus - Allow the Mail Notification plugin to notify you about new messages via an icon in the tray using sys-apps/dbus
 mail-client/evolution:hal - Enable support for auto-detection of inserted iPods and syncing data with them using sys-apps/hal
@@ -2235,6 +2237,7 @@ net-www/mplayerplug-in:divx - Divx Playback Support
 net-www/mplayerplug-in:gmedia - Google Media Playback Support
 net-www/mplayerplug-in:realmedia - Real Media Playback Support
 net-www/mplayerplug-in:wmp - Windows Media Playback Support
+net-www/vdradmin-am:vdr -  Support for media-video/vdr. Disable this if the VDR you want to control runs at a remote machine. 
 net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins
 rox-base/rox:video - Enable rox-extra/videothumbnail for creating thumbnails of videos with mplayer or totem.
 rox-extra/archive:ace - Enable .ace extraction via app-arch/unace

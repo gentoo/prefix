@@ -1,10 +1,27 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2255 2009/01/11 20:56:47 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2260 2009/01/13 21:31:47 remi Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  13 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-base/xorg-server-1.5.3-r1 to p.mask
+
+  13 Jan 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask ~dev-perl/Net-Amazon-S3-0.49 too
+
+  13 Jan 2009; Zac Medico <zmedico@gentoo.org> package.mask:
+  Mask =sys-apps/portage-2.1.6.5 due to bug 254860.
+
+  13 Jan 2009; Petteri Räty <betelgeuse@gentoo.org> thirdpartymirrors:
+  Add internap to sourceforge mirrors.
+
+  13 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Mask >=sci-chemistry/burrow-owl-1.4 pending unmasking of
+  guile-gnome-platform 2.16. The whole mess is blocking on the separate
+  libffi package.
 
   11 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
   EC fonts are tex fonts, this package was used by lilypond at some point of
