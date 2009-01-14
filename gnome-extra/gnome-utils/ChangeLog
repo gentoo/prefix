@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gnome-utils
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.166 2008/10/22 22:59:00 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.167 2009/01/12 20:25:34 armin76 Exp $
+
+  12 Jan 2009; Raúl Porcel <armin76@gentoo.org> gnome-utils-2.24.1.ebuild:
+  Add ~arm/~sh
 
 *gnome-utils-2.24.1 (22 Oct 2008)
 
