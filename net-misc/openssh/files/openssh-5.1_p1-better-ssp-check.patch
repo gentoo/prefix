@@ -15,7 +15,7 @@ https://bugs.gentoo.org/244776
 -#include <stdlib.h>
 -int main(void){exit(0);}
 +#include <stdio.h>
-+int main(void){char foo[[1024]];return sprintf(foo, "moo cow");}
++int main(void){char foo[[1024]];return sprintf(foo, "moo cow") == 7;}
  			])],
  			[ AC_MSG_RESULT(yes)
  			  break ],
