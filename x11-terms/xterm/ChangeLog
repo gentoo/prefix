@@ -1,6 +1,13 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.249 2009/01/05 17:30:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.250 2009/01/13 05:01:45 dberkholz Exp $
+
+*xterm-239 (13 Jan 2009)
+
+  13 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>; +xterm-239.ebuild:
+  Bump. Drop USE=paste64, which is now enabled by default and can be
+  disabled at runtime with allowWindowOps. Fix for Turkish locale, fixes
+  #212546 (vim cursor keys), assorted other bugfixes.
 
   05 Jan 2009; Jeroen Roovers <jer@gentoo.org> xterm-237.ebuild:
   Stable for HPPA (bug #227525).
