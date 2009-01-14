@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/aget
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aget/ChangeLog,v 1.13 2008/02/04 17:07:10 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aget/ChangeLog,v 1.14 2009/01/14 03:27:27 vapier Exp $
+
+  14 Jan 2009; Mike Frysinger <vapier@gentoo.org> aget-0.4.ebuild:
+  Fix building with glibc-2.8 #240914 by Diego E. Pettenò.
 
   04 Feb 2008; Fabian Groffen <grobian@gentoo.org> aget-0.4.ebuild:
   Dropped ppc-macos keyword, see you in prefix
