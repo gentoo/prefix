@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/HTTP-Server-Simple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/ChangeLog,v 1.35 2009/01/04 11:33:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/ChangeLog,v 1.36 2009/01/13 19:53:01 robbat2 Exp $
+
+*HTTP-Server-Simple-0.38 (13 Jan 2009)
+
+  13 Jan 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +HTTP-Server-Simple-0.38.ebuild:
+  Version bump via perl-bump experimental tool.
 
 *HTTP-Server-Simple-0.37 (04 Jan 2009)
 
