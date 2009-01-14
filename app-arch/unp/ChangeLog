@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/unp
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.21 2008/10/09 01:45:18 hanno Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.22 2009/01/12 12:32:59 hanno Exp $
+
+*unp-1.0.15-r1 (12 Jan 2009)
+
+  12 Jan 2009; Hanno Boeck <hanno@gentoo.org>
+  +files/unp-1.0.15-lzma-7z.patch, +unp-1.0.15-r1.ebuild:
+  Support lzma and 7z, patch from http://bugs.debian.org/492369.
 
 *unp-1.0.15 (09 Oct 2008)
 
