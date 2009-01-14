@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-datetime
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.35 2009/01/12 00:06:56 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.36 2009/01/13 15:36:22 ranger Exp $
+
+  13 Jan 2009; Brent Baude <ranger@gentoo.org> xfce4-datetime-0.6.1.ebuild:
+  Marking xfce4-datetime-0.6.1 ppc64 and ppc for bug 254440
 
   12 Jan 2009; Jeremy Olexa <darkside@gentoo.org>
   xfce4-datetime-0.6.1.ebuild:
