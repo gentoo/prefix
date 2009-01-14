@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/xextproto
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.28 2008/10/05 17:50:06 remi Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.29 2009/01/13 02:29:36 dberkholz Exp $
+
+*xextproto-7.0.4 (13 Jan 2009)
+
+  13 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xextproto-7.0.4.ebuild:
+  Bump. Cleanups for XGE (the X Generic Event extension).
 
   05 Oct 2008; Rémi Cardona <remi@gentoo.org> xextproto-7.0.2.ebuild,
   xextproto-7.0.3.ebuild:
