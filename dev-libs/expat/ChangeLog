@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.76 2009/01/07 18:32:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.77 2009/01/14 00:49:14 josejx Exp $
+
+  14 Jan 2009; Joseph Jezak <josejx@gentoo.org> expat-2.0.1-r1.ebuild:
+  Marked ppc stable for bug #252607.
 
   07 Jan 2009; Raúl Porcel <armin76@gentoo.org> expat-2.0.1-r1.ebuild:
   alpha/ia64 stable wrt #252607
