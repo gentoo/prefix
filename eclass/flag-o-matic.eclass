@@ -313,9 +313,16 @@ strip-flags() {
 	local NEW_FCFLAGS=""
 
 	# Allow unstable C[XX]FLAGS if we are using unstable profile ...
-	if has ~$(tc-arch) ${ACCEPT_KEYWORDS} ; then
-		ALLOWED_FLAGS="${ALLOWED_FLAGS} ${UNSTABLE_FLAGS}"
-	fi
+
+	#
+	#
+	# In Gentoo Prefix, this is useless. Not a problem, but on aix6 it causes
+	# bash to hang and I can't figure it out. So it is disabled for now.
+	# --darkside@g.o (14 Jan 2009)
+
+	#if has ~$(tc-arch) ${ACCEPT_KEYWORDS} ; then
+	#	ALLOWED_FLAGS="${ALLOWED_FLAGS} ${UNSTABLE_FLAGS}"
+	#fi
 
 	set -f	# disable pathname expansion
 
