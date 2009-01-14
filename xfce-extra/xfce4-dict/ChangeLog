@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-dict
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.27 2009/01/12 00:07:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.28 2009/01/13 15:36:41 ranger Exp $
+
+  13 Jan 2009; Brent Baude <ranger@gentoo.org> xfce4-dict-0.5.2.ebuild:
+  Marking xfce4-dict-0.5.2 ppc64 and ppc for bug 254440
 
   12 Jan 2009; Jeremy Olexa <darkside@gentoo.org> xfce4-dict-0.5.2.ebuild:
   amd64 stable, bug 254440
