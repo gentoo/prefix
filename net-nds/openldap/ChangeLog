@@ -1,6 +1,10 @@
 # ChangeLog for net-nds/openldap
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.337 2008/10/14 10:29:44 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.338 2009/01/13 20:20:08 armin76 Exp $
+
+  13 Jan 2009; Raúl Porcel <armin76@gentoo.org> openldap-2.3.43.ebuild,
+  openldap-2.3.43-r1.ebuild, openldap-2.4.11-r1.ebuild:
+  Move to USE-deps to fix bug #253964, acked by robbat2
 
   14 Oct 2008; Robin H. Johnson <robbat2@gentoo.org> files/slapd-initd:
   Bug #229289, --quiet is no longer needed.

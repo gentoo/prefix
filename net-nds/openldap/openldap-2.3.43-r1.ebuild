@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43-r1.ebuild,v 1.2 2008/10/14 10:08:38 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43-r1.ebuild,v 1.3 2009/01/13 20:20:08 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -34,7 +34,7 @@ RDEPEND="!x86-winnt? ( sys-libs/ncurses )
 	!minimal? (
 		odbc? ( dev-db/unixODBC )
 		slp? ( net-libs/openslp )
-		perl? ( dev-lang/perl )
+		perl? ( dev-lang/perl[-build] )
 		samba? ( dev-libs/openssl )
 		kerberos? ( virtual/krb5 )
 		berkdb? (

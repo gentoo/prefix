@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11-r1.ebuild,v 1.3 2008/10/28 02:10:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11-r1.ebuild,v 1.4 2009/01/13 20:20:08 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
 
 DESCRIPTION="LDAP suite of application and development tools"
@@ -30,7 +30,7 @@ RDEPEND="sys-libs/ncurses
 		odbc? ( !iodbc? ( dev-db/unixODBC )
 			iodbc? ( dev-db/libiodbc ) )
 		slp? ( net-libs/openslp )
-		perl? ( dev-lang/perl )
+		perl? ( dev-lang/perl[-build] )
 		samba? ( !gnutls? ( dev-libs/openssl )
 			gnutls? ( net-libs/gnutls ) )
 		berkdb? ( sys-libs/db:4.5 )
