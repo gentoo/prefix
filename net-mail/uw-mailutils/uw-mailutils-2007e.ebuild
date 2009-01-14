@@ -1,34 +1,35 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2004g.ebuild,v 1.13 2007/08/02 17:34:12 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007e.ebuild,v 1.1 2009/01/13 17:44:34 dertobi123 Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic
 
 MY_P="imap-${PV}"
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Mail utilities from the UW"
 HOMEPAGE="http://www.washington.edu/imap/"
 SRC_URI="ftp://ftp.cac.washington.edu/imap/${MY_P}.tar.Z"
 
-LICENSE="as-is"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="virtual/libc
-	!<net-mail/uw-imap-2004g-r1
 	!<mail-client/pine-4.64-r1"
+RDEPEND="${DEPEND}
+	!<net-mail/uw-imap-${PV}"
 
 src_unpack() {
 	unpack ${A}
-	chmod -R ug+w ${S}
+	chmod -R ug+w "${S}"
 
-	cd ${S}
+	cd "${S}"
 
-	epatch ${FILESDIR}/${P}.patch || die "epatch failed"
+	epatch "${FILESDIR}/${PN}-2004g.patch" || die "epatch failed"
 
 	sed -i -e "s|\`cat \$C/CFLAGS\`|${CFLAGS}|g" \
 		src/mailutil/Makefile \
