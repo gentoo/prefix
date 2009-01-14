@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/texlive-pstricks-2008-r1.ebuild,v 1.1 2008/11/06 20:04:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/texlive-pstricks-2008-r1.ebuild,v 1.2 2009/01/13 08:19:51 aballier Exp $
 
 EAPI="prefix"
 
@@ -17,5 +17,6 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solari
 IUSE=""
 DEPEND=">=dev-texlive/texlive-basic-2008
 "
-RDEPEND="${DEPEND} "
+RDEPEND="${DEPEND} dev-texlive/texlive-genericrecommended
+"
 TEXLIVE_MODULE_BINSCRIPTS="texmf-dist/scripts/pst2pdf/pst2pdf.pl"

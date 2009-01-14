@@ -1,6 +1,15 @@
 # ChangeLog for dev-texlive/texlive-pstricks
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/ChangeLog,v 1.19 2008/11/06 20:04:49 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/ChangeLog,v 1.21 2009/01/13 08:19:51 aballier Exp $
+
+  13 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  texlive-pstricks-2008-r1.ebuild:
+  depend on genericrecommended for multido for the 2008 version too
+
+  13 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  texlive-pstricks-2007.ebuild:
+  depend on texlive-genericrecommended for multido by Daniel Bick
+  <dansku@gmail.com>, bug #254642
 
 *texlive-pstricks-2008-r1 (06 Nov 2008)
 
