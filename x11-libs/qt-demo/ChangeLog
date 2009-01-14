@@ -1,0 +1,37 @@
+# ChangeLog for x11-libs/qt-demo
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.8 2009/01/06 14:54:28 yngwin Exp $
+
+  06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-demo-4.4.0.ebuild,
+  -qt-demo-4.4.1.ebuild:
+  Clean out old ebuilds
+
+*qt-demo-4.4.2 (18 Sep 2008)
+
+  18 Sep 2008; Ben de Groot <yngwin@gentoo.org> +qt-demo-4.4.2.ebuild:
+  Version bump
+
+*qt-demo-4.4.1 (11 Aug 2008)
+
+  11 Aug 2008; Ben de Groot <yngwin@gentoo.org> +qt-demo-4.4.1.ebuild:
+  Version bump
+
+  24 Jul 2008; Raúl Porcel <armin76@gentoo.org> qt-demo-4.4.0.ebuild:
+  Re-add ~x86 wrt #224569
+
+  18 Jul 2008; Jeroen Roovers <jer@gentoo.org> qt-demo-4.4.0.ebuild:
+  Apply LIBS fix by Bernd Steinhauser (bug #224569). Marked ~hppa (bug #223557).
+
+  13 Jun 2008; Ingmar Vanhassel <ingmar@gentoo.org> qt-demo-4.4.0.ebuild:
+  Make all split Qt4 ebuilds block the old monolithic ebuild.
+
+  25 May 2008; Markus Rothe <corsair@gentoo.org> qt-demo-4.4.0.ebuild:
+  Added ~ppc/~ppc64
+
+*qt-demo-4.4.0 (25 May 2008)
+
+  25 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> +metadata.xml,
+  +qt-demo-4.4.0.ebuild:
+  Import x11-libs/qt-demo, thanks to Bernd Steinhauser <berniyh@exherbo.org>
+  for the ebuild.
+
