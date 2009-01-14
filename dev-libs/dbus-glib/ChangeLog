@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/dbus-glib
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.45 2008/12/30 19:18:01 cardoe Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.46 2009/01/13 15:23:36 cardoe Exp $
+
+  13 Jan 2009; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  gentopia is becoming freedesktop
 
   30 Dec 2008; Doug Goldstein <cardoe@gentoo.org>
   files/dbus-glib-0.78-as-needed.patch,
