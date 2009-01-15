@@ -1,4 +1,4 @@
-# Copyright 2008-2008 Gentoo Foundation
+# Copyright 2008-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -14,14 +14,6 @@ LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~x86-winnt"
 IUSE=""
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-winnt-version.patch
-	epatch "${FILESDIR}"/${P}-exception-handling.patch
-}
 
 pkg_setup() {
 	if [ -z "${MSSDK}" ]; then
