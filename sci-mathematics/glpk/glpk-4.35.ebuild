@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.32.ebuild,v 1.2 2008/10/28 08:54:09 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.35.ebuild,v 1.1 2009/01/15 17:52:05 bicatali Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ src_compile() {
 		$(use_with gmp) \
 		$(use_enable odbc) \
 		$(use_enable mysql) \
-		${myconf} || die "econf failed"
+		${myconf}
 	emake || die "emake failed"
 }
 
@@ -54,7 +54,7 @@ src_install() {
 	fi
 	if use doc; then
 		cd "${S}"/doc
-		doins notes/gomory.djvu || die "failed to instal memo"
-		dodoc *.ps *.txt || die "failed to install manual files"
+		doins *.pdf notes/gomory.djvu || die "failed to instal djvu and pdf"
+		dodoc *.txt || die "failed to install manual files"
 	fi
 }
