@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/genlop
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.69 2007/11/19 01:40:13 kumba Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.70 2009/01/14 23:46:26 zmedico Exp $
+
+*genlop-0.30.8-r2 (14 Jan 2009)
+
+  14 Jan 2009; Zac Medico <zmedico@gentoo.org> +genlop-0.30.8-r2.ebuild,
+  +files/genlop-0.30.8-compiling-category.patch:
+  Bug #254972 - Fix genlop -c to work with both new and old portage.
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> genlop-0.30.8-r1.ebuild:
   Stable on mips, per #197215.
