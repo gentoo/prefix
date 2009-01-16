@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.4.ebuild,v 1.11 2008/12/07 12:13:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.4.ebuild,v 1.12 2009/01/15 08:04:40 hollow Exp $
 
 EAPI="prefix 1"
 WANT_AUTOMAKE="none"
@@ -13,7 +13,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~amd64-linux ~m68k-mint ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-interix ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="apache2 berkdb debug doc +dso emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 

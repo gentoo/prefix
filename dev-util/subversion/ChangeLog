@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/subversion
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.343 2008/11/25 14:25:32 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.344 2009/01/15 08:04:40 hollow Exp $
+
+*subversion-1.5.5 (15 Jan 2009)
+
+  15 Jan 2009; Benedikt Böhm <hollow@gentoo.org> -subversion-1.5.2.ebuild,
+  +subversion-1.5.5.ebuild:
+  version bump wrt #252211
 
   25 Nov 2008; Raúl Porcel <armin76@gentoo.org> subversion-1.5.4.ebuild:
   alpha/arm/ia64 stable wrt #247072

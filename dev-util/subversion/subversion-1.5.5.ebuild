@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.2.ebuild,v 1.10 2008/11/04 09:28:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.5.ebuild,v 1.1 2009/01/15 08:04:40 hollow Exp $
 
 EAPI="prefix 1"
 WANT_AUTOMAKE="none"
@@ -13,7 +13,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="apache2 berkdb debug doc +dso emacs extras java nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
 RESTRICT="test"
 
@@ -71,6 +71,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/1.5.0/disable-unneeded-linking.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	sed -i \
 		-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
@@ -152,10 +153,9 @@ src_compile() {
 	fi
 
 	if use emacs; then
-		elisp-compile contrib/client-side/emacs/dsvn.el || die "Compilation of Emacs module failed"
-		elisp-compile contrib/client-side/emacs/psvn.el || die "Compilation of Emacs module failed"
-		elisp-compile doc/svn-doc.el || die "Compilation of Emacs module failed"
-		elisp-compile doc/tools/svnbook.el || die "Compilation of Emacs module failed"
+		elisp-compile contrib/client-side/emacs/{dsvn,psvn,vc-svn}.el \
+			doc/svn-doc.el doc/tools/svnbook.el \
+			|| die "Compilation of Emacs modules failed"
 	fi
 
 	if use extras; then
@@ -267,11 +267,14 @@ EOF
 
 	# Install Emacs Lisps.
 	if use emacs; then
-		elisp-install ${PN} contrib/client-side/emacs/dsvn.el*
-		elisp-install ${PN} contrib/client-side/emacs/psvn.el*
-		elisp-install ${PN} doc/svn-doc.el*
-		elisp-install ${PN} doc/tools/svnbook.el*
-		elisp-site-file-install "${FILESDIR}"/1.5.0/70svn-gentoo.el
+		elisp-install ${PN} contrib/client-side/emacs/{dsvn,psvn}.{el,elc} \
+			doc/svn-doc.{el,elc} doc/tools/svnbook.{el,elc} \
+			|| die "Installation of Emacs modules failed"
+		elisp-install ${PN}/compat contrib/client-side/emacs/vc-svn.{el,elc} \
+			|| die "Installation of Emacs modules failed"
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
+		elisp-site-file-install "${FILESDIR}"/1.5.0/70svn-gentoo.el \
+			|| die "Installation of Emacs site-init file failed"
 	fi
 	rm -fr contrib/client-side/emacs
 
@@ -332,25 +335,25 @@ pkg_postinst() {
 	elog
 	elog " - svnserve daemon: "
 	elog "   1. Edit /etc/conf.d/svnserve"
-	elog "   2. Start daemon: /etc/init.d/svnserve start"
-	elog "   3. Make persistent: rc-update add svnserve default"
+	elog "   2. Fix the repository permissions (see \"Fixing the repository permissions\")"
+	elog "   3. Start daemon: /etc/init.d/svnserve start"
+	elog "   4. Make persistent: rc-update add svnserve default"
 	elog
 	elog " - svnserve via xinetd:"
 	elog "   1. Edit /etc/xinetd.d/svnserve (remove disable line)"
-	elog "   2. Restart xinetd.d: /etc/init.d/xinetd restart"
+	elog "   2. Fix the repository permissions (see \"Fixing the repository permissions\")"
+	elog "   3. Restart xinetd.d: /etc/init.d/xinetd restart"
 	elog
 	elog " - svn over ssh:"
-	elog "   1. Fix the repository permissions:"
+	elog "   1. Fix the repository permissions (see \"Fixing the repository permissions\")"
+	elog "      Additionally run:"
 	elog "        groupadd svnusers"
-	elog "        chown -R root:svnusers ${SVN_REPOS_LOC}/repos/"
-	elog "        chmod -R g-w ${SVN_REPOS_LOC}/repos"
-	elog "        chmod -R g+rw ${SVN_REPOS_LOC}/repos/db"
-	elog "        chmod -R g+rw ${SVN_REPOS_LOC}/repos/locks"
+	elog "        chown -R root:svnusers ${SVN_REPOS_LOC}/repos"
 	elog "   2. Create an svnserve wrapper in /usr/local/bin to set the umask you"
 	elog "      want, for example:"
 	elog "         #!/bin/bash"
 	elog "         . /etc/conf.d/svnserve"
-	elog "         umask 002"
+	elog "         umask 007"
 	elog "         exec /usr/bin/svnserve \${SVNSERVE_OPTS} \"\$@\""
 	elog
 
@@ -359,8 +362,17 @@ pkg_postinst() {
 		elog "   1. Edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
 		elog "   2. Create an htpasswd file:"
 		elog "      htpasswd2 -m -c ${SVN_REPOS_LOC}/conf/svnusers USERNAME"
+		elog "   3. Fix the repository permissions (see \"Fixing the repository permissions\")"
+		elog "   4. Restart Apache: /etc/init.d/apache2 restart"
 		elog
 	fi
+
+	elog "   Fixing the repository permissions:"
+	elog "        chmod -Rf go-rwx ${SVN_REPOS_LOC}/conf"
+	elog "        chmod -Rf g-w,o-rwx ${SVN_REPOS_LOC}/repos"
+	elog "        chmod -Rf g+rw ${SVN_REPOS_LOC}/repos/db"
+	elog "        chmod -Rf g+rw ${SVN_REPOS_LOC}/repos/locks"
+	elog
 
 	elog "If you intend to use svn-hot-backup, you can specify the number of"
 	elog "backups to keep per repository by specifying an environment variable."
@@ -390,7 +402,7 @@ pkg_config() {
 	einfo ">>> Initializing the database in ${EROOT}${SVN_REPOS_LOC} ..."
 	if [[ -e "${EROOT}${SVN_REPOS_LOC}/repos" ]] ; then
 		echo "A Subversion repository already exists and I will not overwrite it."
-		echo "Delete ${EROOT}${SVN_REPOS_LOC}/repos first if you're sure you want to have a clean version."
+		echo "Delete \"${EROOT}${SVN_REPOS_LOC}/repos\" first if you're sure you want to have a clean version."
 	else
 		mkdir -p "${EROOT}${SVN_REPOS_LOC}/conf"
 
@@ -408,9 +420,10 @@ pkg_config() {
 			[[ -z "${SVNSERVE_USER}" ]] && SVNSERVE_USER="svn"
 			[[ -z "${SVNSERVE_GROUP}" ]] && SVNSERVE_GROUP="svnusers"
 			enewgroup "${SVNSERVE_GROUP}"
-			enewuser "${SVNSERVE_USER}" -1 -1 ${SVN_REPOS_LOC} "${SVNSERVE_GROUP}"
+			enewuser "${SVNSERVE_USER}" -1 -1 "${SVN_REPOS_LOC}" "${SVNSERVE_GROUP}"
 		fi
 		chown -Rf "${SVNSERVE_USER}:${SVNSERVE_GROUP}" "${EROOT}${SVN_REPOS_LOC}/repos"
-		chmod -Rf 755 "${EROOT}${SVN_REPOS_LOC}/repos"
+		chmod -Rf go-rwx "${EROOT}${SVN_REPOS_LOC}/conf"
+		chmod -Rf o-rwx "${EROOT}${SVN_REPOS_LOC}/repos"
 	fi
 }
