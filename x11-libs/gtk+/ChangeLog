@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/gtk+
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.407 2008/11/30 13:13:59 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.408 2009/01/15 00:58:21 leio Exp $
+
+*gtk+-2.14.7 (15 Jan 2009)
+
+  15 Jan 2009; Mart Raudsepp <leio@gentoo.org> +gtk+-2.14.7.ebuild:
+  Version bump for various bug fixes. This is a stable candidate.
 
   30 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org> gtk+-2.10.14.ebuild,
   gtk+-2.12.8.ebuild, gtk+-2.12.11.ebuild, gtk+-2.12.12.ebuild,
