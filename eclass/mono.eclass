@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.11 2009/01/05 17:12:34 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.12 2009/01/14 17:17:17 loki_val Exp $
 
 # @ECLASS: mono.eclass
 # @MAINTAINER:
@@ -43,14 +43,14 @@ egacinstall() {
 }
 
 mono_multilib_comply() {
-	local dir finddirs=()
+	local dir finddirs=() mv_command=${mv_command:-mv}
 	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]
 	then
 		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
 		then
 			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${ED}/usr/$(get_libdir)"
 		fi
-		cp -ar "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
+		${mv_command} "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
 		rm -rf "${ED}"/usr/lib
 		for dir in "${ED}"/usr/"$(get_libdir)"/pkgconfig "${ED}"/usr/share/pkgconfig
 		do
@@ -61,6 +61,17 @@ mono_multilib_comply() {
 			sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
 				$(find "${finddirs[@]}" -name '*.pc') \
 				|| die "Sedding some sense into pkgconfig files failed."
+		fi
+		if [[ -d "${ED}/usr/bin" ]]
+		then
+			for exe in "${ED}/usr/bin"/*
+			do
+				if [[ "$(file "${exe}")" == *"shell script text"* ]]
+				then
+					sed -r -i -e ":/lib(/|$): s:/lib(/|$):/$(get_libdir)\1:" \
+						"${exe}" || die "Sedding some sense into ${exe} failed"
+				fi
+			done
 		fi
 
 	fi
