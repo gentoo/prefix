@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.208 2009/01/05 13:26:13 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.209 2009/01/15 22:35:35 loki_val Exp $
+
+  15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
+  Compnerd retired.
 
   05 Jan 2009; Rémi Cardona <remi@gentoo.org> cairo-1.4.12.ebuild,
   cairo-1.4.14.ebuild, cairo-1.6.4.ebuild, cairo-1.6.4-r1.ebuild,
