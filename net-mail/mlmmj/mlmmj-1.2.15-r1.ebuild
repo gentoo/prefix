@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mlmmj/mlmmj-1.2.15-r1.ebuild,v 1.2 2008/02/03 14:28:05 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mlmmj/mlmmj-1.2.15-r1.ebuild,v 1.3 2009/01/15 22:03:05 maekke Exp $
 
 EAPI="prefix"
 
