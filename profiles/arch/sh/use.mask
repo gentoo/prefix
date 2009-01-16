@@ -25,6 +25,8 @@ java-external
 ffmpeg
 
 # havent tested yet
+mythtv
+dvb
 qt3
 dell
 qt4

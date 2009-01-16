@@ -19,10 +19,6 @@ media-libs/gst-plugins-base debug
 # app-xemacs/ruby-modes is not keyworded on this arch
 dev-lang/ruby xemacs
 
-# Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
-# media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux,bad} not keyworded
-media-plugins/gst-plugins-meta dvb mythtv
-
 # Christoph Mende <angelos@gentoo.org> (14 May 2008)
 # media-sound/wavpack is not keyworded
 media-sound/mpd wavpack

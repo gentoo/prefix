@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.6 2008/11/05 18:05:18 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.7 2009/01/15 21:51:00 armin76 Exp $
 
 # Jim Ramsay <lack@gentoo.org> (5 Nov 2008)
 # app-admin/gkrellm may pull in net-libs/libntlm, which is not keyworded
@@ -23,10 +23,6 @@ dev-lang/ruby xemacs
 
 # Masking this so repoman shuts up about paludis
 sys-apps/paludis ruby python
-
-# Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
-# media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux} not keyworded
-media-plugins/gst-plugins-meta dvb mythtv
 
 # missing keyword for sys-cluster/openmpi sys-cluster/mpich2
 dev-libs/boost mpi

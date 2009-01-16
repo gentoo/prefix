@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4129 2009/01/13 18:08:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4135 2009/01/15 15:48:26 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -282,6 +282,7 @@ app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - Enable support for thinkpad models 760 and 765
 app-misc/anki:furigana -  Enable support for furigana generation 
 app-misc/anki:graph -  Enable support for making graphs 
+app-misc/anki:latex -  Enable support for LaTeX 
 app-misc/anki:sound -  Enable support for adding sound to cards 
 app-misc/beagle:chm - Enables support for indexing of the MS CHM (Compressed HTML) file format using app-doc/chmlib.
 app-misc/beagle:debug - Enables debug XML dumps of all messages passed between the daemons and the UIs. WARNING, this option will fill up your Beagle Log directory very quickly.
@@ -729,6 +730,7 @@ dev-python/jinja2:i18n - Enables support for i18n with dev-python/Babel
 dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/matplotlib:excel - Pull dev-python/xlwt for the exceltools toolkit
+dev-python/matplotlib:traits - Pull dev-python/traits for the experimental enthought traits support
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
@@ -1289,7 +1291,6 @@ media-plugins/audacious-plugins:tta - Build with TTA (True-Audio Loseless) suppo
 media-plugins/audacious-plugins:wma - Build with WMA (Windows Media Audio) support
 media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compression library
 media-plugins/gst-plugins-meta:mythtv - Support for retrieval from media-tv/mythtv backend
-media-plugins/mythdvd:transcode - Enable DVD ripping and transcoding
 media-plugins/mythmusic:libvisual - Enables media-libs/libvisual support for effects
 media-plugins/mythphone:festival - Enable app-accessibility/festival support
 media-plugins/vdr-burn:projectx - Enables support for media-video/projectx
@@ -1312,7 +1313,6 @@ media-sound/alsa-driver:midi - Build the sequencer (midi) modules
 media-sound/alsa-tools:midi - Build the sequencer (midi) utilities
 media-sound/alsa-utils:midi - Build the sequencer (midi) utilities
 media-sound/amarok:amazon - Enable support for downloading covers from amazon.com
-media-sound/amarok:cdaudio - Enable cdaudio functionality
 media-sound/amarok:daap -  Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing. 
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
 media-sound/amarok:mp3tunes - Enable mp3tunes integration
@@ -1445,21 +1445,12 @@ media-tv/kdetv:zvbi - Enable VBI Decoding Library for Zapping
 media-tv/mythtv:alsa - Allows MythTV to directly output sound to ALSA devices, this is needed if you are using ALSA dmix or SPDIF. Note, you will have to physically type your device into the MythTV configuration since it will only give you /dev/dsp devices in the drop down.
 media-tv/mythtv:altivec - Builds ffmpeg's codec libraries with altivec support.
 media-tv/mythtv:autostart - Uses a custom autostart configuration gleened from expierence with MythTV since it's early versions and discussed with other MythTV maintainers and users. Does not rely on KDE being installed like most methods do.
-media-tv/mythtv:backendonly - Allows one to build only the backend and it's components. This is not a supported configuration any long and will be removed in future versions. It's also known that it does not compile all the addon programs that the backend may use.
-media-tv/mythtv:crciprec - describe
-media-tv/mythtv:dbox2 - describe
 media-tv/mythtv:debug - Instructs Qt to use the 'debug' target instead of 'release' target. If your MythTV is crashing or you need a backtrace, you need to compile it with this option otherwise the debugging data is useless.
 media-tv/mythtv:directv - Installs the DirecTV channel changing script so that you can configure MythTV to use it to change the channels on your DirecTV box.
-media-tv/mythtv:dts - Enables the support of DTS sound from DVDs.
 media-tv/mythtv:dvb - Enables support for Linux DVB cards. These include all cards that work with digital signals such as ATSC, DVB-T, DVB-C, and DVB-S, QAM-64, and QAM-256.
 media-tv/mythtv:dvd - Adds support for MythTV's internal player to support media files found on DVDs. You still need media-plugins/mythdvd installed to play DVDs from MythTV.
-media-tv/mythtv:freebox - describe
-media-tv/mythtv:frontendonly - Allows one to build only the frontend and it's components. This is not a supported configuration any long and will be removed in future versions. It's also known that it does not compile all the addon programs that the frontend may use.
-media-tv/mythtv:hdhomerun - Allows MythTV to communicate to HDHomeRun devices and receive your TV input from those sources.
 media-tv/mythtv:ieee1394 - Allows MythTV to communicate and use Firewire enabled Cable boxes. These are typically found in the United States, where such support is required by law. This will also install Firewire test programs and external channel changers if the internal changer does not work.
-media-tv/mythtv:ivtv - Adds support for ivtv based cards. Typically these are Hauppauge cards which output analog TV directly in MPEG2 format. Essentially, hardware encoding of analog TV.
 media-tv/mythtv:jack - Allows MythTV to use JACK as your sound output device. You will have to manually configure the path to your JACK settings.
-media-tv/mythtv:joystick - Allows you to configure MythTV to be controlled by a joystick rather then a remote or keyboard.
 media-tv/mythtv:lcd - Tells MythTV that you have an instance of app-misc/lcdproc configured on your machine and it should output information such as current time, show name, episode name, etc to that LCD.
 media-tv/mythtv:lirc - Adds LIRC support directly to MythTV allowing for built in control via a LIRC device.
 media-tv/mythtv:mmx - Builds ffmpeg's codec libraries with mmx support.
@@ -1467,8 +1458,6 @@ media-tv/mythtv:opengl - Builds MythTV with support for using OpenGL as the outp
 media-tv/mythtv:perl - Builds the perl bindings for MythTV. Allows you to write scripts in Perl to control your MythTV setup or communicate with it.
 media-tv/mythtv:tiff - Add support for tiff loading and rendering which is only used by media-plugins/mythgallery
 media-tv/mythtv:video_cards_nvidia - When combined with the xvmc USE flag, enables NVIDIA specific XvMC extension usage.
-media-tv/mythtv:video_cards_via - When combined with the xvmc USE flag, enables VIA specific XvMC extension usage.
-media-tv/mythtv:vorbis - Adds support for the Vorbis container format to MythTV.
 media-tv/mythtv:xvmc - Instructs MythTV to use XvMC for it's video output. By default, this will use the generic XvMC wrapper unless a specific video card driver is enabled via their VIDEO_CARDS USE flags.
 media-tv/tvbrowser:themes - Install extra theme packs
 media-tv/xawtv:xext - Enable use of XFree extensions (DGA,VidMode,DPMS)
@@ -2408,7 +2397,7 @@ sys-apps/memtest86+:serial - Compile with serial console support
 sys-apps/paludis:inquisitio - Enable inquisitio, the search client
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
 sys-apps/paludis:portage - Enable experimental support for Portage configuration formats
-sys-apps/paludis:python-bindings - Enable Python bindings. Requires a lot of RAM to build (~700Mbyes per job) and adds a dependency upon dev-libs/boost
+sys-apps/paludis:python-bindings - Enable Python bindings. Requires a lot of RAM to build (~700Mbytes per job) and adds a dependency upon dev-libs/boost
 sys-apps/paludis:qa - Enable QA tools
 sys-apps/paludis:ruby-bindings - Enable Ruby bindings.
 sys-apps/paludis:visibility - Enable visibility support (g++ >=4.1)
@@ -2572,7 +2561,6 @@ sys-libs/uclibc:uclibc-compat - Build uclibc with backwards compatible options
 sys-libs/uclibc:userlocales - Build only the locales specified in /etc/locales.build
 sys-libs/uclibc:wordexp - Add support for word expansion (wordexp.h)
 sys-power/acpid:logrotate - Use app-admin/logrotate for rotating logs
-sys-power/apcupsd:lighttpd - Enable support for www-servers/lighttpd
 sys-power/cpufreqd:nforce2 - Enable support for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (media-video/nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in

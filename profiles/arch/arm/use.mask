@@ -50,6 +50,8 @@ java-external
 3dfx
 
 # havent tested yet
+mythtv
+dvb
 qt3
 qt4
 arts
