@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.674 2008/12/31 21:33:46 solar Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.675 2009/01/15 19:06:53 halcy0n Exp $
+
+*gcc-4.2.4-r1 (15 Jan 2009)
+
+  15 Jan 2009; Mark Loeser <halcy0n@gentoo.org> +gcc-4.2.4-r1.ebuild:
+  New patchset to fix bug #228287 for HPPA
 
   31 Dec 2008; <solar@gentoo.org> gcc-4.3.2-r2.ebuild:
   - specs bump
