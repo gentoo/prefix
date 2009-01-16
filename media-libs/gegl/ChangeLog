@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.18 2009/01/10 23:08:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.19 2009/01/15 14:01:07 hanno Exp $
+
+  15 Jan 2009; Hanno Boeck <hanno@gentoo.org>
+  +files/gegl-0.0.22-locale_h.diff, gegl-0.0.22.ebuild:
+  Add missing include, fixes #254619.
 
   10 Jan 2009; Michael Sterrett <mr_bones_@gentoo.org> gegl-0.0.22.ebuild:
   inherit goes near the top
