@@ -1,6 +1,15 @@
 # ChangeLog for app-text/pdfjam
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdfjam/ChangeLog,v 1.16 2008/06/10 18:28:54 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdfjam/ChangeLog,v 1.18 2009/01/15 22:00:54 maekke Exp $
+
+  15 Jan 2009; Markus Meier <maekke@gentoo.org> pdfjam-1.20-r1.ebuild:
+  amd64/x86 stable, bug #252734
+
+*pdfjam-1.20-r1 (15 Jan 2009)
+
+  15 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  +files/pdfjam-1.20-security.patch, +pdfjam-1.20-r1.ebuild:
+  Security fixes by Martin Väth for bug #252734
 
   10 Jun 2008; Alexis Ballier <aballier@gentoo.org> -pdfjam-1.10.ebuild:
   remove old
