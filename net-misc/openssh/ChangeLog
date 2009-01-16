@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.325 2009/01/13 02:38:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.326 2009/01/15 04:55:30 robbat2 Exp $
+
+  15 Jan 2009; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Re-add my <description> tag for metadata.xml, because it's a full
+  description, not just a restrict based on USE flags. And spanky didn't
+  have a changelog entry either.
 
   13 Jan 2009; Mike Frysinger <vapier@gentoo.org>
   files/openssh-5.1_p1-better-ssp-check.patch:
