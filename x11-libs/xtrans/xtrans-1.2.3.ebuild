@@ -17,7 +17,10 @@ RDEPEND=""
 DEPEND="${RDEPEND}"
 
 src_unpack() {
-	PATCHES="${FILESDIR}"/${PN}-1.2.1-winnt.patch
+	PATCHES=(
+		"${FILESDIR}"/${PN}-1.2.1-winnt.patch
+		"${FILESDIR}"/${P}-winnt-ipv6.patch
+	)
 
 	x-modular_src_unpack
 }
