@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/vim-spell-en
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.14 2008/12/09 21:32:29 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.15 2009/01/15 21:45:34 armin76 Exp $
+
+  15 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  vim-spell-en-20060123.ebuild:
+  Add ~arm wrt #254673
 
   09 Dec 2008; Raúl Porcel <armin76@gentoo.org>
   vim-spell-en-20060123.ebuild:
