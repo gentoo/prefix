@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.20 2008/12/22 14:20:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081014.ebuild,v 1.21 2009/01/15 07:40:25 aballier Exp $
 
 EAPI="prefix"
 
@@ -189,6 +189,7 @@ src_compile() {
 		${myconf} || die "configure failed"
 
 	emake -j1 depend || die "depend failed"
+	emake version.h || die #252269
 	emake || die "make failed"
 }
 
