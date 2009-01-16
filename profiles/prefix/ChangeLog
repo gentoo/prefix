@@ -4,6 +4,11 @@
 
   16 Jan 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
+  mask media-video/mplayer-1.0_rc2_p28288 on Solaris because it doesn't
+  compile, sigh
+
+  16 Jan 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
   Mask sys-devel/binutils-2.19.51.0.1 on Solaris as it makes other
   packages fail to compile.
 
