@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="dbus"
 
 DEPEND="~x11-libs/qt-gui-${PV}
+	aqua? ( ~x11-libs/qt-opengl-${PV} )
 	!<=x11-libs/qt-4.4.0_alpha:${SLOT}
 	!media-sound/phonon
 	media-libs/gstreamer
