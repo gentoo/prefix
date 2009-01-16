@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11-r1.ebuild,v 1.4 2009/01/13 20:20:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11-r1.ebuild,v 1.5 2009/01/15 11:12:28 armin76 Exp $
 
 EAPI="prefix 2"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -165,10 +165,7 @@ pkg_setup() {
 	enewuser ldap 439 -1 /usr/$(get_libdir)/openldap ldap
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# ensure correct SLAPI path by default
 	sed -i -e 's,\(#define LDAPI_SOCK\).*,\1 "'"${EPREFIX}"'/var/run/openldap/slapd.sock",' \
 		"${S}"/include/ldap_defaults.h
@@ -200,7 +197,7 @@ build_contrib_module() {
 		${LDFLAGS} -o $3.so $2 || die "building $3 failed"
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	#Fix for glibc-2.8 and ucred. Bug 228457.
@@ -276,7 +273,9 @@ src_compile() {
 	econf \
 		--libexecdir=/usr/$(get_libdir)/openldap \
 		${myconf} || die "configure failed"
+}
 
+src_compile() {
 	emake depend || die "emake depend failed"
 	emake CC=$(tc-getCC) AR=$(tc-getAR) || die "emake failed"
 

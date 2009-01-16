@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43-r1.ebuild,v 1.3 2009/01/13 20:20:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43-r1.ebuild,v 1.4 2009/01/15 11:12:28 armin76 Exp $
 
 EAPI="prefix 2"
 
@@ -191,9 +191,7 @@ pkg_setup() {
 	use prefix || enewuser ldap 439 -1 /usr/$(get_libdir)/openldap ldap
 }
 
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
 	# According to MDK, the link order needs to be changed so that
 	# on systems w/ MD5 passwords the system crypt library is used
 	# (the net result is that "passwd" can be used to change ldap passwords w/
@@ -258,7 +256,7 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	#Fix for glibc-2.8 and ucred. Bug 228457.
@@ -367,7 +365,9 @@ src_compile() {
 		--enable-shared \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/openldap \
 		${myconf} || die "configure failed"
+}
 
+src_compile() {
 	emake depend || die "make depend failed"
 	emake || die "make failed"
 
