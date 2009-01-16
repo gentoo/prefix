@@ -1,0 +1,25 @@
+--- python-tz-2008i.orig/pytz/__init__.py
++++ python-tz-2008i/pytz/__init__.py
+@@ -49,15 +49,11 @@
+ 
+     Uses the pkg_resources module if available.
+     """
+-    if resource_stream is not None:
+-        return resource_stream(__name__, 'zoneinfo/' + name)
+-    else:
+-        name_parts = name.lstrip('/').split('/')
+-        for part in name_parts:
+-            if part == os.path.pardir or os.path.sep in part:
+-                raise ValueError('Bad path segment: %r' % part)
+-        filename = os.path.join(os.path.dirname(__file__),
+-                                'zoneinfo', *name_parts)
+-        return open(filename, 'rb')
+-
++    # use the system zoninfo from timezone-data
++    name_parts = name.lstrip('/').split('/')
++    for part in name_parts:
++        if part == os.path.pardir or os.path.sep in part:
++            raise ValueError('Bad path segment: %r' % part)
++    filename = os.path.join('/usr/share/zoneinfo', *name_parts)
++    return open(filename, 'rb')
+ 
