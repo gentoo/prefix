@@ -1,5 +1,9 @@
 # $Id$
 
+# Fabian Groffen <grobian@gentoo.org> (16 Jan 2009)
+# makes packages fail to compile: libcharset.a is not a valid archive
+=sys-devel/binutils-2.19.51.0.1
+
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
 # fails to compile on amd64 because it doesn't use -fPIC everywhere
 >=x11-libs/vte-0.17.4

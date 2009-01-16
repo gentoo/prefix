@@ -1,6 +1,11 @@
-# ChangeLog for <CATEGORY>/<PACKAGE_NAME>
+# ChangeLog for profiles/prefix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
+
+  16 Jan 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Mask sys-devel/binutils-2.19.51.0.1 on Solaris as it makes other
+  packages fail to compile.
 
   15 Jan 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Also mask sandbox-1.2.20_alpha2-r1, bug 255019
