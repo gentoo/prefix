@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/giggle
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.7 2008/01/27 07:59:19 compnerd Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.8 2009/01/15 23:42:31 ikelos Exp $
+
+  15 Jan 2009; Mike Auty <ikelos@gentoo.org> metadata.xml:
+  Compnerd's retired, taking over giggle.
 
 *giggle-0.4 (27 Jan 2008)
 
