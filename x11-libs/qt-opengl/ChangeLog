@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/qt-opengl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/ChangeLog,v 1.11 2008/08/11 13:04:25 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/ChangeLog,v 1.14 2009/01/06 14:59:36 yngwin Exp $
+
+  06 Jan 2009; Ben de Groot <yngwin@gentoo.org> -qt-opengl-4.4.0.ebuild,
+  -qt-opengl-4.4.1.ebuild:
+  Clean out old ebuilds
+
+*qt-opengl-4.4.2 (19 Sep 2008)
+
+  19 Sep 2008; Ben de Groot <yngwin@gentoo.org> +qt-opengl-4.4.2.ebuild:
+  Version bump
+
+  16 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  add GLEP 56 USE flag desc from use.local.desc
 
 *qt-opengl-4.4.1 (11 Aug 2008)
 
