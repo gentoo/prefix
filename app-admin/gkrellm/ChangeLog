@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.167 2009/01/11 21:00:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.168 2009/01/15 02:44:31 jer Exp $
+
+  15 Jan 2009; Jeroen Roovers <jer@gentoo.org> gkrellm-2.3.2.ebuild:
+  Stable for HPPA (bug #254203).
 
   11 Jan 2009; Markus Meier <maekke@gentoo.org> gkrellm-2.3.2.ebuild:
   x86 stable, bug #254203
