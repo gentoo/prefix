@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.63.ebuild,v 1.8 2009/01/07 20:03:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.63.ebuild,v 1.9 2009/01/15 16:03:00 vapier Exp $
 
 EAPI="prefix"
 
