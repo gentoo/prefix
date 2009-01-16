@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.3.ebuild,v 1.3 2008/08/29 00:35:11 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.3.ebuild,v 1.4 2009/01/14 19:11:06 bicatali Exp $
 
 EAPI="prefix"
 
@@ -164,7 +164,7 @@ src_install () {
 	cp "${FILESDIR}"/blas.pc.in blas.pc
 	cp "${FILESDIR}"/cblas.pc.in cblas.pc
 	sed -i \
-		-e "s:@LIBDIR@:$(get_libdir):" \
+		-e "s:@LIBDIR@:$(get_libdir)/blas/atlas:" \
 		-e "s:@PV@:${PV}:" \
 		-e "s:@EXTLIBS@:${extlibs}:g" \
 		-e "s:@THREADLIBS@:${threadlibs}:g" \
@@ -186,7 +186,7 @@ src_install () {
 		cp "${FILESDIR}"/cblas.pc.in cblas.pc
 		threadlibs="-lpthread"
 		sed -i \
-			-e "s:@LIBDIR@:$(get_libdir):" \
+			-e "s:@LIBDIR@:$(get_libdir)/blas/threaded-atlas:" \
 			-e "s:@PV@:${PV}:" \
 			-e "s:@EXTLIBS@:${extlibs}:g" \
 			-e "s:@THREADLIBS@:${threadlibs}:g" \

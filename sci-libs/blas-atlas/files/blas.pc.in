@@ -1,6 +1,6 @@
 prefix=/usr
 exec_prefix=${prefix}
-libdir=/usr/@LIBDIR@
+libdir=${prefix}/@LIBDIR@
 includedir=${prefix}/include
 
 Name: blas
