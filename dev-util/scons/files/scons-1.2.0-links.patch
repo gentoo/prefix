@@ -1,0 +1,24 @@
+--- engine/SCons/Script/Main.py.orig	2009-01-15 11:07:33.000000000 +0000
++++ engine/SCons/Script/Main.py	2009-01-15 11:09:12.000000000 +0000
+@@ -328,6 +328,10 @@
+                     # then delete dir itself
+                     if remove: os.rmdir(path)
+                     display("Removed directory " + pathstr)
++            else:
++                if os.path.islink(path):
++                    if remove: os.unlink(path)
++                    display("Removed " + pathstr)
+         except (IOError, OSError), e:
+             print "scons: Could not remove '%s':" % pathstr, e.strerror
+ 
+--- engine/SCons/Tool/javac.py.orig	2009-01-15 11:05:46.000000000 +0000
++++ engine/SCons/Tool/javac.py	2009-01-15 11:06:41.000000000 +0000
+@@ -94,6 +94,8 @@
+     version = env.get('JAVAVERSION', '1.4')
+     full_tlist = []
+     for f in slist:
++        if not os.path.exists(f.rfile().get_abspath()):
++            continue
+         tlist = []
+         source_file_based = True
+         pkg_dir = None
