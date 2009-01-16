@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libsexy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsexy/ChangeLog,v 1.36 2009/01/13 15:50:31 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsexy/ChangeLog,v 1.37 2009/01/15 23:09:51 loki_val Exp $
+
+  15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
+  Compnerd retired.
 
   13 Jan 2009; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   gentopia is becoming freedesktop
