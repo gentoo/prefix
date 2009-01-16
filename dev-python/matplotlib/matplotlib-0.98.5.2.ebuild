@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.2 2008/12/23 11:41:41 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.3 2009/01/15 09:57:46 bicatali Exp $
 
 WX_GTK_VER=2.8
 EAPI="prefix 2"
@@ -39,7 +39,7 @@ RDEPEND="${DEPEND}
 	qt4?   ( dev-python/PyQt4 )"
 
 DOCS="INTERACTIVE"
-
+RESTRICT="mirror"
 use_setup() {
 	local uword="${2}"
 	[ -z "${2}" ] && uword="${1}"
