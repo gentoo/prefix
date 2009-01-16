@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Attic/Module-Build-0.31.011.ebuild,v 1.1 2009/01/13 20:49:40 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.31.012.ebuild,v 1.1 2009/01/14 14:31:44 tove Exp $
 
 EAPI="prefix"
 
