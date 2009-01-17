@@ -1,0 +1,48 @@
+# ChangeLog for www-client/arora
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.8 2008/11/06 00:58:12 yngwin Exp $
+
+  06 Nov 2008; Ben de Groot <yngwin@gentoo.org> arora-0.4.ebuild:
+  Die when make install fails, fixes bug 245454. And not allowing parallel
+  make should fix the failure.
+
+  01 Oct 2008; Ben de Groot <yngwin@gentoo.org> arora-0.4.ebuild:
+  Fix to prevent pre-stripping binary (bug 239206)
+
+*arora-0.4 (01 Oct 2008)
+
+  01 Oct 2008; Ben de Groot <yngwin@gentoo.org>
+  -arora-0.3_pre20080705.ebuild, -arora-0.3_pre20080720.ebuild,
+  +arora-0.4.ebuild:
+  Version bump, adding linguas support. Drop old versions.
+
+*arora-0.3 (05 Aug 2008)
+
+  05 Aug 2008; Ben de Groot <yngwin@gentoo.org> +arora-0.3.ebuild:
+  Version bump to release 0.3
+
+*arora-0.3_pre20080720 (20 Jul 2008)
+
+  20 Jul 2008; Ben de Groot <yngwin@gentoo.org> -arora-0.2_p20080604.ebuild,
+  -arora-0.2_p20080618.ebuild, +arora-0.3_pre20080720.ebuild:
+  New snapshot, removing old versions
+
+*arora-0.3_pre20080705 (05 Jul 2008)
+
+  05 Jul 2008; Ben de Groot <yngwin@gentoo.org>
+  +arora-0.3_pre20080705.ebuild:
+  New snapshot
+
+*arora-0.2_p20080618 (18 Jun 2008)
+
+  18 Jun 2008; Ben de Groot <yngwin@gentoo.org> +arora-0.2_p20080618.ebuild:
+  New snapshot
+
+*arora-0.2_p20080604 (04 Jun 2008)
+
+  04 Jun 2008; Ben de Groot <yngwin@gentoo.org> +metadata.xml,
+  +arora-0.2_p20080604.ebuild:
+  Initial import. Ebuild by me. This is a git snapshot, and as such
+  considered experimental. Hard-masked for now, as it depends on hard-masked
+  qt-webkit-4.4.
+
