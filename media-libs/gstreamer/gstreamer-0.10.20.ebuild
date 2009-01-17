@@ -17,7 +17,7 @@ SRC_URI="http://${PN}.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT=${PV_MAJ_MIN}
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug nls test"
 
 RDEPEND=">=dev-libs/glib-2.12

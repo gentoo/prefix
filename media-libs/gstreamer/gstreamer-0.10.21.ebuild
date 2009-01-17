@@ -18,7 +18,7 @@ SRC_URI="http://${PN}.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT=${PV_MAJ_MIN}
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug nls test"
 
 RDEPEND=">=dev-libs/glib-2.12
@@ -34,14 +34,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-# time these get sent upstream!
-	#epatch "${FILESDIR}"/${PN}-0.10.17-interix.patch
-	#epatch "${FILESDIR}"/${PN}-0.10.19-interix.patch
-	#[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
-
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	# elibtoolize
-	epatch "${FILESDIR}"/${P}-gtkdoc.patch
+	epatch "${FILESDIR}"/${P}-gtkdoc.patch \
+		"${FILESDIR}"/${P}-bison241.patch
 	AT_M4DIR="common/m4" eautoreconf
 }
 
