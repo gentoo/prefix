@@ -13,7 +13,7 @@ HOMEPAGE="http://gstreamer.sourceforge.net"
 SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug nls"
 
 RDEPEND=">=dev-libs/glib-2.8

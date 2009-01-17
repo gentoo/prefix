@@ -14,7 +14,7 @@ SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT=${PV_MAJ_MIN}
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="alsa cdparanoia debug gnome nls libvisual ogg pango test theora vorbis v4l X xv"
 
 RDEPEND=">=dev-libs/glib-2.16:2
