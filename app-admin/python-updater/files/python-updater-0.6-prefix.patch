@@ -55,12 +55,14 @@
  
      if [[ -z "${portdir}" ]]; then
          eerror "Unable to proceed. Can not find PORTDIR. Make sure the command:"
-@@ -280,7 +280,7 @@
+@@ -280,7 +280,9 @@
          CHECK_SONAME=0
      else
          veinfo 1 'check "soname" enabled.'
 -        OLD_SONAME="$(readlink -n /usr/lib/libpython${OLD_PY_VER}.so)"
-+        OLD_SONAME="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${OLD_PY_VER}.so)"
++        OLD_SONAME=@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${OLD_PY_VER}@GENTOO_PORTAGE_LIBSUFFIX@"
++        [[ -e "${OLD_SONAME}" ]] || OLD_SONAME=""
++        [[ -L "${OLD_SONAME}" ]] && OLD_SONAME="$(readlink -n ${OLD_SONAME})"
          if [[ -z "${OLD_SONAME}" ]]; then
              ewarn "Couldn't find old libpython soname"
              ewarn "Disabling soname check."

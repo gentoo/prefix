@@ -25,7 +25,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-r133-custom-package-manager-command.patch
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify ${PN}
+	sed -i \
+		-e "s:@GENTOO_PORTAGE_EPREFIX@:${EPREFIX}:g" \
+		-e "s:@GENTOO_PORTAGE_LIBSUFFIX@:$(get_libname):g" \
+		"${PN}" || die "eprefixify failed"
 }
 
 src_install()
