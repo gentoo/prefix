@@ -5,7 +5,7 @@
 EAPI="prefix"
 RESTRICT="test"
 
-inherit toolchain-funcs eutils flag-o-matic python multilib
+inherit eutils multilib python
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
@@ -13,24 +13,25 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
-# USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
-IUSE_ELIBC="elibc_glibc elibc_uclibc elibc_FreeBSD"
-IUSE_KERNEL="kernel_linux"
-IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_KERNEL} cross-prefix"
-DEPEND=">=dev-lang/python-2.4
+IUSE="build doc epydoc selinux linguas_pl cross-prefix"
+
+python_dep=">=dev-lang/python-2.4"
+
+DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 )"
-RDEPEND=">=dev-lang/python-2.4
+RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-3.2_p17 )
+		>=app-shells/bash-3.2_p17
+		>=app-admin/eselect-news-20071201 )
 	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-bin ) )
-	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
-	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
-	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
-	kernel_SunOS? ( >=app-misc/pax-utils-0.1.13 )
-	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.13 )
-	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18_pre0002 )
+	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 !mips? ( >=sys-apps/sandbox-1.2.18.1-r2 ) )
+	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 !mips? ( >=sys-apps/sandbox-1.2.18.1-r2 ) )
+	kernel_linux? ( >=app-misc/pax-utils-0.1.17 )
+	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
+	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
+	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
@@ -40,7 +41,8 @@ PDEPEND="
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
-SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
+
+SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles http://dev.gentoo.org/~zmedico/portage/archives"
 
 prefix_src_archives() {
 	local x y
@@ -53,23 +55,20 @@ prefix_src_archives() {
 
 PV_PL="2.1.2"
 PATCHVER_PL=""
-SRC_URI="
-	${SRC_ARCHIVES}/prefix-${PN}-${PV}.tar.bz2
+TARBALL_PV="${PV}"
+SRC_URI="mirror://gentoo/prefix-${PN}-${TARBALL_PV}.tar.bz2
+	$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
 	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
-	${SRC_ARCHIVES}/${PN}-man-pl-${PV_PL}.tar.bz2 )"
+		$(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
 
-#PATCHVER=${PVR}  # in prefix we don't do this
+#PATCHVER=$PV  # in prefix we don't do this
 if [ -n "${PATCHVER}" ]; then
 	SRC_URI="${SRC_URI} mirror://gentoo/${PN}-${PATCHVER}.patch.bz2
-	${SRC_ARCHIVES}/${PN}-${PATCHVER}.patch.bz2"
+	$(prefix_src_archives ${PN}-${PATCHVER}.patch.bz2)"
 fi
 
-S="${WORKDIR}"/prefix-${PN}-${PV}
+S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
-
-pkg_setup() {
-	MINOR_UPGRADE=$(has_version '>=sys-apps/portage-2.2_alpha' && echo true)
-}
 
 src_unpack() {
 	unpack ${A}
@@ -79,7 +78,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12387-cross-prefix.patch
+	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12425-cross-prefix.patch
 }
 
 src_compile() {
@@ -107,12 +106,17 @@ src_compile() {
 	if use epydoc; then
 		einfo "Generating api docs"
 		mkdir "${WORKDIR}"/api
-		local my_modules
+		local my_modules epydoc_opts=""
+		# A name collision between the portage.dbapi class and the
+		# module with the same name triggers an epydoc crash unless
+		# portage.dbapi is excluded from introspection.
+		ROOT=/ has_version '>=dev-python/epydoc-3_pre0' && \
+			epydoc_opts='--exclude-introspect portage\.dbapi'
 		my_modules="$(find "${S}/pym" -name "*.py" \
 			| sed -e 's:/__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
 			 -e 's:/:.:g' | sort)" || die "error listing modules"
 		PYTHONPATH="${S}/pym:${PYTHONPATH}" epydoc -o "${WORKDIR}"/api \
-			-qqqqq --no-frames --show-imports \
+			-qqqqq --no-frames --show-imports $epydoc_opts \
 			--name "${PN}" --url "${HOMEPAGE}" \
 			${my_modules} || die "epydoc failed"
 	fi
@@ -151,9 +155,6 @@ src_install() {
 	use epydoc && dohtml -r "${WORKDIR}"/api
 	dodir /etc/portage
 	keepdir /etc/portage
-
-	echo "PYTHONPATH=\"${EPREFIX}${portage_base}/pym\"" > "${WORKDIR}"/05portage.envd
-	doenvd "${WORKDIR}"/05portage.envd
 }
 
 pkg_preinst() {
@@ -167,24 +168,20 @@ pkg_preinst() {
 			ewarn "See bug #198398 for more information."
 		fi
 	fi
-
-	if [[ ! -e ${EROOT}/var/lib/portage/world_sets ]] ; then
-		ewarn "This version of Portage has 'sets' stored separately.  Your"
-		ewarn "'world' file is now automatically split into multiple files"
-		ewarn "to reflect the new situation.  A backup of your 'world' file"
-		ewarn "is stored at:"
-		ewarn "  ${EPREFIX}/var/lib/portage/world.pre-sets-split"
-		ewarn "If your installation appears to works fine, it is safe to"
-		ewarn "remove the backup file."
-		cp -a "${EPREFIX}"/var/lib/portage/world{,.pre-sets-split}
-		grep "^@" "${EPREFIX}"/var/lib/portage/world > \
-			"${EPREFIX}"/var/lib/portage/world_sets
-		sed -i -e '/^@/d' "${EPREFIX}"/var/lib/portage/world
+	if [ -f "${EROOT}/etc/make.globals" ]; then
+		rm "${EROOT}/etc/make.globals"
 	fi
 
-	pushd "${EROOT}/var/db/pkg" > /dev/null
+}
+
+pkg_postinst() {
+	# Compile all source files recursively. Any orphans
+	# will be identified and removed in postrm.
+	python_mod_optimize /usr/$(get_libdir)/portage/pym
+
+	pushd "${EROOT}var/db/pkg" > /dev/null
 	local didwork=
-	for cpv in */*/NEEDED ; do
+	[[ ! -e "${EROOT}"var/lib/portage/preserved_libs_registry ]] && for cpv in */*/NEEDED ; do
 		if [[ ${CHOST} == *-darwin* && ! -f ${cpv}.MACHO.3 ]] ; then
 			while read line; do
 				scanmacho -BF "%a;%F;%S;%n" ${line% *} >> "${cpv}".MACHO.3
@@ -207,24 +204,12 @@ pkg_preinst() {
 			einfo "converting NEEDED files to new syntax, please wait"
 	done
 	popd > /dev/null
-}
-
-pkg_postinst() {
-	for x in ${EROOT}/etc/._cfg????_make.globals; do
-		# Overwrite the globals file automatically.
-		[ -e "${x}" ] && mv -f "${x}" "${EROOT}/etc/make.globals"
-	done
-
-	# Compile all source files recursively. Any orphans
-	# will be identified and removed in postrm.
-	python_mod_optimize /usr/$(get_libdir)/portage/pym
-
 	elog
 	elog "For help with using portage please consult the Gentoo Handbook"
 	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
 	elog
 
-	if [ -z "${MINOR_UPGRADE}" ]; then
+	if [ x$MINOR_UPGRADE = x0 ] ; then
 		elog "If you're upgrading from a pre-2.2 version of portage you might"
 		elog "want to remerge world (emerge -e world) to take full advantage"
 		elog "of some of the new features in 2.2."
