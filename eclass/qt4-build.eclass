@@ -86,7 +86,7 @@ qt4-build_pkg_setup() {
 			include
 		"
 		
-		if [[ ${PN} == qt-demo ]]; then
+		if [[ ${PN} == qt-demo || ${PN} == qt-qt3support || ${PN} == qt-webkit ]]; then
 			QT4_EXTRACT_DIRECTORIES="
 				${QT4_EXTRACT_DIRECTORIES}
 				tools
@@ -244,7 +244,7 @@ standard_configure_options() {
 	# ${ARCH}. Therefore we convert it to supported values.
 	case "${ARCH}" in
 		amd64) myconf="${myconf} -arch x86_64" ;;
-		ppc|ppc64) myconf="${myconf} -arch powerpc" ;;
+		ppc|ppc64|ppc-*) myconf="${myconf} -arch powerpc" ;;
 		sparc|sparc-*) myconf="${myconf} -arch sparc" ;;
 		x86|x86-*) myconf="${myconf} -arch i386" ;;
 		alpha|arm|ia64|mips|s390) myconf="${myconf} -arch ${ARCH}" ;;
