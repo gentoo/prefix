@@ -1,0 +1,37 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/files/ntpd.rc,v 1.23 2007/02/23 11:26:26 uberlord Exp $
+
+depend() {
+	need net
+	use dns logger
+	after ntp-client
+}
+
+checkconfig() {
+	if [ ! -f /etc/ntp.conf ] ; then
+		eerror "Please create /etc/ntp.conf"
+		eerror "Sample conf: /usr/share/ntp/ntp.conf"
+		return 1
+	fi
+	return 0
+}
+
+start() {
+	checkconfig || return $?
+
+	ebegin "Starting ntpd"
+	start-stop-daemon --start --exec /usr/sbin/ntpd \
+	    --pidfile /var/run/ntpd.pid \
+	    -- -p /var/run/ntpd.pid ${NTPD_OPTS}
+	eend $? "Failed to start ntpd"
+}
+
+stop() {
+	ebegin "Stopping ntpd"
+	start-stop-daemon --stop \
+		--pidfile /var/run/ntpd.pid \
+		--exec /usr/sbin/ntpd
+	eend $? "Failed to stop ntpd"
+}
