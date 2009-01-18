@@ -25,11 +25,11 @@ main.c: Addition of prefix to various paths
 -char portdir[_Q_PATH_MAX] = "/usr/portage";
 +char portdir[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@/usr/portage";
  char portarch[20] = "";
- char portvdb[] = "var/db/pkg";
+-char portvdb[] = "var/db/pkg";
++char portvdb[] = "@GENTOO_PORTAGE_EPREFIX@/var/db/pkg";
  char portcachedir[] = "metadata/cache";
--char portroot[_Q_PATH_MAX] = "/";
+ char portroot[_Q_PATH_MAX] = "/";
 -char config_protect[_Q_PATH_MAX] = "/etc/";
-+char portroot[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@";
 +char config_protect[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@/etc/";
  
 -char pkgdir[512] = "/usr/portage/packages/";
