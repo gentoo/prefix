@@ -448,15 +448,13 @@ bootstrap_gnu() {
 
 bootstrap_python() {
 	PV=2.5.2
-	A=Python-${PV}.tar.bz2
+	A=python-${PV}-patched.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
-	if [[ ${CHOST} == *-interix* ]] ; then
-		A=python-${PV}-interix.tar.bz2
-		efetch ${DISTFILES_URL}/${A}
-	else
-		efetch ${GENTOO_MIRROR}/${A}
-	fi
+	[[ ${CHOST} == *-interix* ]] && A=python-${PV}-interix.tar.bz2
+	# don't really want to put this on the mirror, since they are
+	# non-vanilla sources, bit specific for us
+	efetch ${DISTFILES_URL}/${A}
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
