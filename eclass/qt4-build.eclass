@@ -243,7 +243,7 @@ standard_configure_options() {
 	# ARCH is set on Gentoo. QT now falls back to generic on an unsupported
 	# ${ARCH}. Therefore we convert it to supported values.
 	case "${ARCH}" in
-		amd64) myconf="${myconf} -arch x86_64" ;;
+		amd64|x64-*) myconf="${myconf} -arch x86_64" ;;
 		ppc|ppc64|ppc-*) myconf="${myconf} -arch powerpc" ;;
 		sparc|sparc-*) myconf="${myconf} -arch sparc" ;;
 		x86|x86-*) myconf="${myconf} -arch i386" ;;
