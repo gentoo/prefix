@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="extra-tools"
 
-DEPEND="x86-interix? ( >=sys-devel/gettext-0.16 )"
+DEPEND="x86-interix? ( >=sys-devel/gettext-0.16 )
+	mips-irix? ( >=sys-devel/gettext-0.16 )"
 RDEPEND="extra-tools? ( dev-lang/perl )
 	${DEPEND}"
 
@@ -23,7 +24,7 @@ src_compile() {
 	# cabextract doesn't think about linking libintl at all.
 	# on interix[35] this means linking fails, since there is no
 	# getopt(), and only the included getopt needs gettext.
-	[[ ${CHOST} == *-interix[35]* ]] && append-ldflags -lintl
+	[[ ${CHOST} == *-interix[35]* || ${CHOST} == *-irix* ]] && append-libs intl
 
 	econf || die "econf failed"
 	emake || die "emake failed"
