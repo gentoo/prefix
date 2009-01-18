@@ -31,9 +31,9 @@ pkg_setup() {
 }
 
 src_unpack() {
-#	PATCHES=(
-#		"${FILESDIR}"/${PN}-1.0.3-darwin.patch
-#	)
+	PATCHES=(
+		"${FILESDIR}"/${PN}-1.0.5-darwin.patch
+	)
 	x-modular_src_unpack
 	eautoreconf # eautoreconf gets ran by the eclass only if SNAPSHOT="yes", so
 				# we need it for prefix.
