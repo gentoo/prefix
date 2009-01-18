@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright Gentoo Foundation 2006-2009
 # $Id$
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
@@ -305,34 +305,6 @@ bootstrap_portage() {
 	[[ ! -d $EPREFIX/var/log ]] && mkdir ${EPREFIX}/var/log
 
 	einfo "${A%-*} successfully bootstrapped"
-}
-
-bootstrap_odcctools() {
-	PV=20070412
-	A=odcctools-${PV}.tar.bz2
-
-	efetch ${GENTOO_MIRROR}/${A}
-	
-	export S="${PORTAGE_TMPDIR}/odcctools-${PV}"
-	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || exit 1
-
-	rm -rf "${S}/build"
-	mkdir -p "${S}/build"
-	cd "${S}/build"
-
-	"${S}"/odcctools-${PV}/configure \
-		--prefix="${ROOT}"/usr \
-		--mandir="${ROOT}"/usr/share/man \
-		|| exit 1
-	$MAKE ${MAKEOPTS} || exit 1
-
-	$MAKE install || exit 1
-
-	cd "${ROOT}"
-	rm -Rf "${S}"
 }
 
 prep_gcc-apple() {
