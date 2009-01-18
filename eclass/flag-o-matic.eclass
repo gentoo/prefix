@@ -664,6 +664,21 @@ replace-sparc64-flags() {
 	export CFLAGS CXXFLAGS
 }
 
+# @FUNCTION: append-libs
+# @USAGE: <libs>
+# @DESCRIPTION:
+# Add extra <libs> to the current LIBS.  Currently Prefix only.
+append-libs() {
+	[[ -z $* ]] && return 0
+	local flag
+	for flag in "$@"; do
+		[[ ${flag} == -l* ]] && flag=${flag#-l}
+		export LIBS="${LIBS} -l${flag}"
+	done
+
+	return 0
+}
+
 # @FUNCTION: append-ldflags
 # @USAGE: <flags>
 # @DESCRIPTION:

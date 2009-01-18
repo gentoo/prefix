@@ -212,7 +212,7 @@ toolchain-binutils_src_compile() {
 	use nls \
 		&& myconf="${myconf} --without-included-gettext" \
 		|| myconf="${myconf} --disable-nls"
-	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-ldflags -lintl
+	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-libs -lintl
 	use multitarget && myconf="${myconf} --enable-targets=all"
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
