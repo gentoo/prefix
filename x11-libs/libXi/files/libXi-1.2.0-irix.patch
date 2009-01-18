@@ -1,0 +1,13 @@
+http://bugs.gentoo.org/show_bug.cgi?id=255027
+
+--- src/XListDProp.c.orig	2009-01-18 13:42:55 +0100
++++ src/XListDProp.c	2009-01-18 13:43:15 +0100
+@@ -50,7 +50,7 @@
+ 
+     LockDisplay(dpy);
+     if (_XiCheckExtInit(dpy, XInput_Initial_Release, info) == -1)
+-	return (NoSuchExtension);
++	return ((Atom*)NoSuchExtension);
+ 
+     GetReq(ListDeviceProperties, req);
+     req->reqType = info->codes->major_opcode;

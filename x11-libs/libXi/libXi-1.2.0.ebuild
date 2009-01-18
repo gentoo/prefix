@@ -19,6 +19,8 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto
 	>=x11-proto/inputproto-1.5"
 
+PATCHES=( "${FILESDIR}"/${P}-irix.patch )
+
 pkg_postinst() {
 	x-modular_pkg_postinst
 
