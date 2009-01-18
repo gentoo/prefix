@@ -190,8 +190,9 @@ sys-devel/native-cctools
 
 # These masks are because the packages need root access to run, even
 # though they compile fine
-net-analyzer/mtr
-net-analyzer/tcpdump
 app-admin/bcfg2
 net-analyzer/arping
+net-analyzer/mtr
+net-analyzer/tcpdump
+net-misc/ntp
 sys-apps/preload
