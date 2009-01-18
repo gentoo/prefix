@@ -402,16 +402,14 @@ bootstrap_gnu() {
 	cd "${S}"
 
 	local myconf=""
-	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
-	# when it's not.  Solaris and Linux build fine with --disable-nls.
-	# However, (horror) grep on OSX fails with --disable-nls :(
 	if [[ ${A%-*} == "grep" ]] ; then
-		[[ ${CHOST} == *-aix* || ${CHOST} == *-darwin* ]] || \
-			myconf="${myconf} --disable-nls"
+		# Solaris, AIX and OSX don't like it when --disable-nls is set,
+		# so just don't set it at all.
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
 		myconf="${myconf} --disable-perl-regexp"
 	else
+		# AIX doesn't like --disable-nls in general
 		[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
 	fi
 
