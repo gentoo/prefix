@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="ICE authority file utility"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libICE"
