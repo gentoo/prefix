@@ -12,7 +12,7 @@ SRC_URI="http://www.bzip.org/${PV}/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static"
 
 DEPEND=""
@@ -101,6 +101,13 @@ src_install() {
 	fi
 
 	dolib.so libbz2$(get_libname ${PV}) || die "dolib shared"
+	if [[ ${CHOST} == *-winnt* ]]; then
+		dolib.so libbz2$(get_libname ${PV}).dll || die "dolib shared"
+
+		# on windows, we want to continue using bzip2 from interix.
+		# building bzip2 on windows gives the libraries only!
+		rm -rf "${ED}"/bin "${ED}"/usr/bin
+	fi
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		[[ libbz2$(get_libname ${PV}) != ${v} ]] &&
 		dosym libbz2$(get_libname ${PV}) /$(get_libdir)/${v}
