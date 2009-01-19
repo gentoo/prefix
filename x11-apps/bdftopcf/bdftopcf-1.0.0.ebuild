@@ -11,7 +11,12 @@ inherit x-modular
 
 DESCRIPTION="X.Org bdftopcf application"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libXfont"
 DEPEND="${RDEPEND}"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-winnt.patch
+)
+
