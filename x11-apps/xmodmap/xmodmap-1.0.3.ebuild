@@ -11,7 +11,17 @@ inherit x-modular
 
 DESCRIPTION="utility for modifying keymaps and pointer button mappings in X"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11"
 DEPEND="${RDEPEND}"
+
+src_compile() {
+	# on winnt, strncasecmp is there, but as static function in a
+	# header file, which - of course - makes the link test fail which
+	# does not include that file.
+	[[ ${CHOST} == *-winnt* ]] && export ac_cv_func_strncasecmp=yes
+
+	x-modular_src_compile || die "src_compile failed"
+}
+
