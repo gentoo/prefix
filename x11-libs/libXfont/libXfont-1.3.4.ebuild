@@ -11,20 +11,25 @@ inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xfont library"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/xtrans
 	x11-libs/libfontenc
 	x11-proto/xproto
 	x11-proto/fontsproto
-	>=media-libs/freetype-2"
-DEPEND="${RDEPEND}
-	x11-proto/fontcacheproto"
+	x11-proto/fontcacheproto
+	>=media-libs/freetype-2
+	app-arch/bzip2"
+DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="$(use_enable ipv6)
 	--with-bzip2
 	--with-encodingsdir=/usr/share/fonts/encodings"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-winnt.patch
+)
 
 pkg_setup() {
 	# No such function yet
@@ -40,6 +45,14 @@ src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
+	fi
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		# windows uses stdcall here, resulting in different
+		# symbol names for the linker. thus the configure check
+		# fails (it wouldn't if it would include the correct
+		# header file, of course)
+		export ac_cv_lib_bz2_BZ2_bzopen=yes
 	fi
 
 	x-modular_src_compile
