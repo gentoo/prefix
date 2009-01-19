@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils games
+inherit flag-o-matic eutils games toolchain-funcs
 
 DESCRIPTION="A Boulderdash clone"
 HOMEPAGE="http://www.artsoft.org/rocksndiamonds/"
@@ -22,10 +22,11 @@ SRC_URI="http://www.artsoft.org/RELEASES/unix/rocksndiamonds/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-winnt"
 IUSE="X sdl"
 
-DEPEND="app-arch/unzip
+DEPEND="app-arch/unzip"
+RDEPEND="
 	X? ( x11-libs/libX11 )
 	!sdl? ( x11-libs/libX11 )
 	sdl? (
@@ -35,6 +36,11 @@ DEPEND="app-arch/unzip
 		>=media-libs/sdl-image-1.2.2
 		media-libs/smpeg
 	)"
+
+pkg_setup() {
+	# let auto-detection detect unix, not ms-dos.
+	[[ ${CHOST} == *-winnt* ]] && unset COMSPEC
+}
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -46,6 +52,8 @@ src_unpack() {
 
 	# make it parallel-friendly.
 	epatch "${FILESDIR}"/${P}-parallel-build.patch
+	# make it build on windows with X11
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 	sed -i \
 		-e 's:\$(MAKE_CMD):$(MAKE) -C $(SRC_DIR):' \
 		-e '/^MAKE/d' \
@@ -66,7 +74,7 @@ src_unpack() {
 src_compile() {
 	replace-cpu-flags k6 k6-1 k6-2 i586
 
-	local makeopts="RO_GAME_DIR=${GAMES_DATADIR}/${PN} RW_GAME_DIR=${GAMES_STATEDIR}/${PN}"
+	local makeopts="RO_GAME_DIR=${GAMES_DATADIR}/${PN} RW_GAME_DIR=${GAMES_STATEDIR}/${PN} CC=$(tc-getCC) X11_PATH=${EPREFIX}/usr"
 	if use X || { ! use X && ! use sdl; } ; then
 		make clean || die
 		emake ${makeopts} OPTIONS="${CFLAGS}" x11 || die
@@ -85,9 +93,9 @@ src_install() {
 	fi
 	if use sdl ; then
 		dogamesbin rocksndiamonds.sdl || die "dogamesbin failed"
-		dosym rocksndiamonds.sdl "${GAMES_BINDIR}/rocksndiamonds"
+		dosym rocksndiamonds.sdl "${GAMES_BINDIR#${EPREFIX}}/rocksndiamonds"
 	else
-		dosym rocksndiamonds.x11 "${GAMES_BINDIR}/rocksndiamonds"
+		dosym rocksndiamonds.x11 "${GAMES_BINDIR#${EPREFIX}}/rocksndiamonds"
 	fi
 	insinto "${GAMES_DATADIR#${EPREFIX}}/${PN}"
 	doins -r graphics levels music sounds || die "doins failed"
