@@ -11,7 +11,11 @@ inherit x-modular
 
 DESCRIPTION="X.Org xlsfonts application"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-winnt"
 
 RDEPEND="x11-libs/libX11"
 DEPEND="${RDEPEND}"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-winnt.patch
+)
