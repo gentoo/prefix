@@ -11,10 +11,9 @@ inherit x-modular
 
 DESCRIPTION="X.Org fontenc library"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
-RDEPEND=""
-DEPEND="${RDEPEND}
-	x11-proto/xproto"
+RDEPEND="sys-libs/zlib"
+DEPEND="x11-proto/xproto"
 
 CONFIGURE_OPTIONS="--with-encodingsdir=/usr/share/fonts/encodings"
