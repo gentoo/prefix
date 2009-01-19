@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="window information utility for X"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libXmu
 	x11-libs/libX11"
