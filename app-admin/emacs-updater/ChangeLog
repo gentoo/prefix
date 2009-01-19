@@ -1,0 +1,44 @@
+# ChangeLog for app-admin/emacs-updater
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/ChangeLog,v 1.9 2009/01/18 12:37:33 ulm Exp $
+
+*emacs-updater-1.3 (18 Jan 2009)
+
+  18 Jan 2009; Ulrich Mueller <ulm@gentoo.org> -emacs-updater-1.2.ebuild,
+  +emacs-updater-1.3.ebuild:
+  Version bump. Remove intermediate version.
+
+*emacs-updater-1.2 (30 Dec 2008)
+
+  30 Dec 2008; Ulrich Mueller <ulm@gentoo.org> -emacs-updater-1.1.ebuild,
+  +emacs-updater-1.2.ebuild:
+  Version bump. Remove intermediate version.
+
+*emacs-updater-1.1 (04 Nov 2008)
+
+  04 Nov 2008; Ulrich Mueller <ulm@gentoo.org> +emacs-updater-1.1.ebuild:
+  Version bump: new --exact option; respect TMPDIR; man page added.
+
+  30 Sep 2008; Jeroen Roovers <jer@gentoo.org> emacs-updater-1.0.ebuild:
+  Stable for HPPA (bug #238021).
+
+  20 Sep 2008; Raúl Porcel <armin76@gentoo.org> emacs-updater-1.0.ebuild:
+  alpha/ia64 stable wrt #238021
+
+  19 Sep 2008; Brent Baude <ranger@gentoo.org> emacs-updater-1.0.ebuild:
+  Marking emacs-updater-1.0 ppc64 and ppc for bug 238021
+
+  18 Sep 2008; Markus Meier <maekke@gentoo.org> emacs-updater-1.0.ebuild:
+  amd64/x86 stable, bug #238021
+
+  18 Sep 2008; Ferris McCormick <fmccor@gentoo.org>
+  emacs-updater-1.0.ebuild:
+  Sparc stable, part of Bug #238021.
+
+*emacs-updater-1.0 (04 Sep 2008)
+
+  04 Sep 2008; Ulrich Mueller <ulm@gentoo.org> +metadata.xml,
+  +emacs-updater-1.0.ebuild:
+  Initial import of stand-alone emacs-updater, package split off from
+  app-admin/eselect-emacs.
+
