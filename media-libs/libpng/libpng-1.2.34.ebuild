@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool multilib eutils
+inherit autotools multilib eutils
 
 MY_PV=${PV/_}
 DESCRIPTION="Portable Network Graphics library"
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/libpng/${PN}-${MY_PV}.tar.lzma"
 
 LICENSE="as-is"
 SLOT="1.2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 RDEPEND="sys-libs/zlib"
@@ -29,7 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.2.25-interix.patch
 
 	# So we get sane .so versioning on FreeBSD
-	elibtoolize
+	eautoreconf # required for winnt, was elibtoolize originally.
 }
 
 src_install() {
