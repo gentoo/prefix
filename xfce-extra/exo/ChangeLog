@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.74 2009/01/13 15:34:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.75 2009/01/18 16:17:18 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> exo-0.3.4-r2.ebuild:
+  x86 stable, bug #254440
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> exo-0.3.4-r2.ebuild:
   Marking exo-0.3.4-r2 ppc64 and ppc for bug 254440
