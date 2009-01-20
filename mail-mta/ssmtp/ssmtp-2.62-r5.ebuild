@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r4.ebuild,v 1.5 2009/01/18 16:29:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r5.ebuild,v 1.1 2009/01/17 09:15:12 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -71,7 +71,7 @@ src_install() {
 	dosbin ssmtp || die
 	fperms 755 /usr/sbin/ssmtp
 
-	doman ssmtp.8
+	doman ssmtp.8 ssmtp.conf.5
 	dodoc INSTALL README TLS CHANGELOG_OLD
 	newdoc ssmtp.lsm DESC
 
