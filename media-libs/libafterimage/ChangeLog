@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libafterimage
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.18 2008/12/13 13:57:00 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.19 2009/01/17 11:25:09 maekke Exp $
+
+*libafterimage-1.18-r1 (17 Jan 2009)
+
+  17 Jan 2009; Markus Meier <maekke@gentoo.org>
+  +files/libafterimage-1.18-glx.patch, +libafterimage-1.18-r1.ebuild:
+  fix x11-terms/rxvt-unicode segfault by Martin von Gagern in bug #252651;
+  don't use internal copy of libungif wrt bug #252917
 
   13 Dec 2008; Alexis Ballier <aballier@gentoo.org>
   +files/libafterimage-1.18-recmake_bsd.patch, libafterimage-1.18.ebuild:
