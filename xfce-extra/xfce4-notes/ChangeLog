@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-notes
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.59 2009/01/13 15:38:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.60 2009/01/18 16:21:56 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> xfce4-notes-1.6.3.ebuild:
+  x86 stable, bug #254440
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> xfce4-notes-1.6.3.ebuild:
   Marking xfce4-notes-1.6.3 ppc64 and ppc for bug 254440
