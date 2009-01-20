@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.35 2008/11/09 15:47:47 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.37 2009/01/18 18:21:08 loki_val Exp $
 
 # @ECLASS: base.eclass
 # @MAINTAINER:
@@ -39,8 +39,7 @@ base_src_unpack() {
 
 	debug-print-function $FUNCNAME "$@"
 
-	if [ -z "$1" ]
-	then
+	if [ -z "$1" ] ; then
 		eapi=${EAPI/prefix/}
 		case "${eapi:-0}" in
 			2)
@@ -82,7 +81,9 @@ base_src_util() {
 	case $1 in
 		unpack)
 			debug-print-section unpack
-			unpack ${ONLYA:-${A}}
+			if [ ! -z "$A" ] ; then
+				unpack ${A}
+			fi
 			;;
 		patch)
 			debug-print-section patch
@@ -93,7 +94,7 @@ base_src_util() {
 			debug-print-section autopatch
 			debug-print "$FUNCNAME: autopatch: PATCHES=$PATCHES, PATCHES1=$PATCHES1"
 			cd "${S}"
-			if [[ ${#PATCHES[@]} -gt 1 ]]; then
+			if [[ ${#PATCHES[@]} -gt 1 ]] ; then
 				for x in "${PATCHES[@]}"; do
 					debug-print "$FUNCNAME: autopatch: patching from ${x}"
 					epatch "${x}"
@@ -168,11 +169,17 @@ base_src_work() {
 	case $1 in
 		configure)
 			debug-print-section configure
-			econf || die "died running econf, $FUNCNAME:configure"
+			if [[ -x ${ECONF_SOURCE:-.}/configure ]]
+			then
+				econf || die "died running econf, $FUNCNAME:configure"
+			fi
 			;;
 		make)
 			debug-print-section make
-			emake || die "died running emake, $FUNCNAME:make"
+			if [ -f Makefile ] || [ -f GNUmakefile ] || [ -f makefile ]
+			then
+				emake || die "died running emake, $FUNCNAME:make"
+			fi
 			;;
 		all)
 			debug-print-section all

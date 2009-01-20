@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.72 2008/12/13 10:03:54 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.73 2009/01/18 17:06:32 a3li Exp $
 #
 # @ECLASS: ruby.eclass
 # @MAINTAINER:
@@ -234,12 +234,13 @@ prepall() {
 		[[ ! -x ${EPREFIX}/usr/bin/ruby16 ]] && export USE_RUBY=${USE_RUBY/ruby16/}
 		[[ ! -x ${EPREFIX}/usr/bin/ruby18 ]] && export USE_RUBY=${USE_RUBY/ruby18/}
 		[[ ! -x ${EPREFIX}/usr/bin/ruby19 ]] && export USE_RUBY=${USE_RUBY/ruby19/}
+		[[ ! -x ${EPREFIX}/usr/bin/rubyee ]] && export USE_RUBY=${USE_RUBY/rubyee/}
 
 		local ruby_slots=$(echo "${USE_RUBY}" | wc -w)
 
 		if [ "$ruby_slots" -ge 2 ] ; then
 			einfo "Now we are building the package for ${USE_RUBY}"
-			for rb in ${USE_RUBY} ruby ; do
+			for rb in ${USE_RUBY} ; do
 				einfo "Using $rb"
 				export RUBY="${EPREFIX}"/usr/bin/$rb
 				ruby() { "${EPREFIX}"/usr/bin/$rb "$@" ; }

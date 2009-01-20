@@ -36,7 +36,7 @@ unset MONO_AOT_CACHE
 
 egacinstall() {
 	gacutil -i "${1}" \
-		-root "${ED}"/usr/$(get_libdir) \
+		-root "${D}"/usr/$(get_libdir) \
 		-gacdir /usr/$(get_libdir) \
 		-package ${2:-${GACPN:-${PN}}} \
 		|| die "installing ${1} into the Global Assembly Cache failed"
@@ -44,15 +44,15 @@ egacinstall() {
 
 mono_multilib_comply() {
 	local dir finddirs=() mv_command=${mv_command:-mv}
-	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]
+	if [[ -d "${D}/usr/lib" && "$(get_libdir)" != "lib" ]]
 	then
-		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
+		if ! [[ -d "${D}"/usr/"$(get_libdir)" ]]
 		then
-			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${ED}/usr/$(get_libdir)"
+			mkdir "${D}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${D}/usr/$(get_libdir)"
 		fi
-		${mv_command} "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
-		rm -rf "${ED}"/usr/lib
-		for dir in "${ED}"/usr/"$(get_libdir)"/pkgconfig "${ED}"/usr/share/pkgconfig
+		${mv_command} "${D}"/usr/lib/* "${D}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
+		rm -rf "${D}"/usr/lib
+		for dir in "${D}"/usr/"$(get_libdir)"/pkgconfig "${D}"/usr/share/pkgconfig
 		do
 			[[ -d "${dir}" ]] && finddirs=( "${finddirs[@]}" "${dir}" )
 		done
@@ -62,9 +62,9 @@ mono_multilib_comply() {
 				$(find "${finddirs[@]}" -name '*.pc') \
 				|| die "Sedding some sense into pkgconfig files failed."
 		fi
-		if [[ -d "${ED}/usr/bin" ]]
+		if [[ -d "${D}/usr/bin" ]]
 		then
-			for exe in "${ED}/usr/bin"/*
+			for exe in "${D}/usr/bin"/*
 			do
 				if [[ "$(file "${exe}")" == *"shell script text"* ]]
 				then
