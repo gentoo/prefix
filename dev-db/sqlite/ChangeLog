@@ -1,6 +1,20 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.207 2009/01/13 19:39:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.211 2009/01/18 17:44:57 betelgeuse Exp $
+
+*sqlite-3.6.10 (18 Jan 2009)
+
+  18 Jan 2009; Petteri Räty <betelgeuse@gentoo.org> +sqlite-3.6.10.ebuild:
+  Version bump. Fixes bug #255406.
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> sqlite-3.6.6.2.ebuild:
+  amd64/x86 stable, bug #254864
+
+  18 Jan 2009; Tobias Klausmann <klausman@gentoo.org> ChangeLog:
+  Stable on alpha, bug #254864
+
+  16 Jan 2009; Steve Dibb <beandog@gentoo.org> ChangeLog:
+  amd64 stable, bug 254864
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.6.2.ebuild:
   Marking sqlite-3.6.6.2 ppc for bug 254864
