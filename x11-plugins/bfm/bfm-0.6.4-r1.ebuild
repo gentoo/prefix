@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/bfm-0.6.4-r1.ebuild,v 1.5 2008/01/31 16:13:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/bfm-0.6.4-r1.ebuild,v 1.6 2009/01/19 14:17:44 s4t4n Exp $
 
 EAPI="prefix"
 
@@ -24,8 +24,10 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	sed -e 's:CFLAGS =:CFLAGS +=:' -e 's:LDFLAGS =:LDFLAGS +=:' \
-		-e 's:strip:true:' -i "${S}"/Makefile
+	sed -e 's:CFLAGS =:CFLAGS +=:' -e 's:LDFLAGS =:LDFLAGS +=:' -e 's:strip:true:' \
+		-e 's:$(CFLAGS) -o $(BUBBLEFISHYMON):$(CFLAGS) $(SRCS) -o $(BUBBLEFISHYMON):' \
+		-e 's:$(LIBS) $(GTK2_LIBS) $(SRCS):$(LIBS) $(GTK2_LIBS):' \
+		-i "${S}"/Makefile
 }
 
 src_compile() {
