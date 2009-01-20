@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.36 2009/01/13 15:40:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.37 2009/01/18 16:24:59 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> xfce4-xkb-0.5.2.ebuild:
+  x86 stable, bug #254440
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> xfce4-xkb-0.5.2.ebuild:
   Marking xfce4-xkb-0.5.2 ppc64 and ppc for bug 254440
