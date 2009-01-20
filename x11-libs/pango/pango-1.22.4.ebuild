@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4.ebuild,v 1.1 2008/12/21 23:28:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4.ebuild,v 1.2 2009/01/18 21:02:37 eva Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 			 )
 		X? ( x11-proto/xproto )"
 
-DOCS="AUTHORS ChangeLog* NEWS README TODO*"
+DOCS="AUTHORS ChangeLog* NEWS README THANKS"
 
 function multilib_enabled() {
 	has_multilib_profile || ( use x86 && [ "$(get_libdir)" == "lib32" ] )
