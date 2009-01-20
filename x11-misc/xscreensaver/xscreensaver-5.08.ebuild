@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.05.ebuild,v 1.11 2008/05/07 19:03:33 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.08.ebuild,v 1.3 2009/01/19 15:09:11 ssuominen Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit autotools eutils flag-o-matic multilib pam
 
@@ -12,10 +12,16 @@ HOMEPAGE="http://www.jwz.org/xscreensaver"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="jpeg new-login opengl pam suid xinerama"
 
-RDEPEND="x11-libs/libXxf86misc
+RDEPEND="x11-libs/libXmu
+	x11-libs/libXxf86vm
+	x11-libs/libXrandr
+	x11-libs/libXxf86misc
+	x11-libs/libXt
+	x11-libs/libX11
+	x11-libs/libXext
 	x11-apps/xwininfo
 	x11-apps/appres
 	media-libs/netpbm
@@ -39,23 +45,14 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	xinerama? ( x11-proto/xineramaproto )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	EPATCH_SUFFIX="patch" EPATCH_EXCLUDE="07_all_xinerama.patch" epatch	"${FILESDIR}"/${PV}
-	epatch "${FILESDIR}"/${P}-interix.patch
-	eautoreconf # bug 113681
+src_prepare() {
+	EPATCH_SUFFIX="patch" epatch "${FILESDIR}"/${PV}
+	epatch "${FILESDIR}"/${PN}-5.05-interix.patch
+	eautoreconf #113681
 }
 
-src_compile() {
-	if use ppc || use ppc64; then
-		# Simple workaround for the ppc* arches flurry screensaver, needed for <=5.04
-		filter-flags -mabi=altivec
-		filter-flags -maltivec
-		append-flags -U__VEC__
-	fi
-
-	unset BC_ENV_ARGS
+src_configure() {
+	unset BC_ENV_ARGS #24568
 
 	econf \
 		--with-x-app-defaults="${EPREFIX}"/usr/share/X11/app-defaults \
@@ -66,36 +63,42 @@ src_compile() {
 		--with-dpms-ext \
 		--with-xf86vmode-ext \
 		--with-xf86gamma-ext \
+		--with-randr-ext \
 		--with-proc-interrupts \
-		--with-xpm \
 		--with-xshm-ext \
 		--with-xdbe-ext \
 		--enable-locking \
 		--without-kerberos \
 		--without-gle \
 		--with-gtk \
+		--with-pixbuf \
+		--with-text-file=/etc/gentoo-release \
 		$(use_with suid setuid-hacks) \
 		$(use_with new-login login-manager) \
 		$(use_with xinerama xinerama-ext) \
 		$(use_with pam) \
 		$(use_with opengl gl) \
 		$(use_with jpeg)
+}
 
-	# Bug 155049.
-	emake -j1 || die "emake failed."
+src_compile() {
+	if use ppc || use ppc64; then
+		# Still fails to build "flurry" screensaver.
+		filter-flags -mabi=altivec
+		filter-flags -maltivec
+		append-flags -U__VEC__
+	fi
+
+	emake -j1 || die "emake failed." #155049
 }
 
 src_install() {
 	emake install_prefix="${D}" install || die "emake install failed."
-
-	dodoc README*
+	dodoc README{,.hacking}
 
 	use pam && fperms 755 /usr/bin/${PN}
 	pamd_mimic_system ${PN} auth
 
-	# Bug 135549.
+	# Collision with electricsheep, bug 135549
 	rm -f "${ED}"/usr/share/${PN}/config/{electricsheep,fireflies}.xml
-	dodir /usr/share/man/man6x
-	mv "${ED}"/usr/share/man/man6/worm.6 \
-		"${ED}"/usr/share/man/man6x/worm.6x
 }

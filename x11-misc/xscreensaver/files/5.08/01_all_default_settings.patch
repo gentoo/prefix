@@ -1,0 +1,128 @@
+diff --git a/driver/XScreenSaver.ad.in b/driver/XScreenSaver.ad.in
+index af651d7..470297c 100644
+--- a/driver/XScreenSaver.ad.in
++++ b/driver/XScreenSaver.ad.in
+@@ -31,36 +31,36 @@
+ *mode:			random
+ *timeout:		0:10:00
+ *cycle:			0:10:00
+-*lockTimeout:		0:00:00
++*lockTimeout:		0:20:00
+ *passwdTimeout:		0:00:30
+-*dpmsEnabled:		False
+-*dpmsStandby:		2:00:00
+-*dpmsSuspend:		2:00:00
+-*dpmsOff:		4:00:00
+-*grabDesktopImages:	True
++*dpmsEnabled:		True
++*dpmsStandby:		1:00:00
++*dpmsSuspend:		1:00:00
++*dpmsOff:		2:00:00
++*grabDesktopImages:	False
+ *grabVideoFrames:	False
+ *chooseRandomImages:	@DEFAULT_IMAGES_P@
+ *imageDirectory:	@DEFAULT_IMAGE_DIRECTORY@
+ *nice:			10
+ *memoryLimit:		0
+-*lock:			False
++*lock:			True
+ *verbose:		False
+ *timestamp:		True
+ *fade:			True
+ *unfade:		False
+ *fadeSeconds:		0:00:03
+ *fadeTicks:		20
+-*splash:		True
++*splash:		False
+ *splashDuration:	0:00:05
+ *visualID:		default
+ *captureStderr: 	True
+ *ignoreUninstalledPrograms: False
+ 
+-*textMode:		file
+-*textLiteral:		XScreenSaver
++*textMode:		literal
++*textLiteral:		Gentoo Linux
+ *textFile:		@DEFAULT_TEXT_FILE@
+-*textProgram:		fortune
+-*textURL:		http://www.livejournal.com/stats/latest-rss.bml
++*textProgram:		/usr/bin/fortune
++*textURL:		http://planet.gentoo.org/rss20.xml
+ !*textURL:		http://twitter.com/statuses/public_timeline.atom
+ 
+ *overlayTextForeground:	#FFFF00
+@@ -118,7 +118,10 @@ GetViewPortIsFullOfLies: False
+ 
+ ! The format used for printing the date and time in the password dialog box
+ ! (see the strftime(3) manual page for details.)
+-*dateFormat:		%d-%b-%y (%a); %I:%M %p
++! Preferred time representation for the current locale
++*dateFormat:    %x %X
++! Xscreensaver's default
++! *dateFormat:		%d-%b-%y (%a); %I:%M %p
+ ! To show the time only:
+ ! *dateFormat:		%I:%M %p
+ ! For 24 hour time:
+diff --git a/hacks/barcode.c b/hacks/barcode.c
+index 61b0c23..946a6fd 100644
+--- a/hacks/barcode.c
++++ b/hacks/barcode.c
+@@ -131,7 +131,6 @@ static const char *words[] =
+   "children",
+   "chocolate",
+   "CLONE",
+-  "cock",
+   "constriction",
+   "contrition",
+   "cop",
+@@ -265,7 +264,6 @@ static const char *words[] =
+   "punishment",
+   "punk rock",
+   "punk",
+-  "pussy",
+   "quagmire",
+   "quarantine",
+   "quartz",
+@@ -333,8 +331,6 @@ static const char *words[] =
+   "vegetarian",
+   "venom",
+   "verifiability",
+-  "viagra",
+-  "vibrator",
+   "victim",
+   "vignette",
+   "villainy",
+diff --git a/hacks/glx/glsnake.c b/hacks/glx/glsnake.c
+index f2a0b5f..da2721b 100644
+--- a/hacks/glx/glsnake.c
++++ b/hacks/glx/glsnake.c
+@@ -565,17 +565,17 @@ static const struct model_s model[] = {
+ 	ZERO, PIN, ZERO, ZERO, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, ZERO,
+ 	ZERO, PIN, ZERO }
+     },
+-    { "erect penis",     /* thanks benno */
++    { "shuffle board",     /* thanks benno */
+       { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
+ 	PIN, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO,
+ 	ZERO, ZERO }
+     },
+-    { "flaccid penis",
++    { "flaccid anchor",
+       { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
+ 	PIN, ZERO, ZERO, ZERO, RIGHT, PIN, ZERO, ZERO, ZERO, ZERO, ZERO,
+ 	ZERO, ZERO }
+     },
+-    { "vagina",
++    { "engagement ring",
+       { RIGHT, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, PIN, ZERO, ZERO,
+ 	LEFT, ZERO, ZERO, ZERO, LEFT, ZERO, LEFT, PIN, LEFT, PIN, RIGHT,
+ 	PIN, RIGHT, ZERO }
+@@ -995,7 +995,7 @@ static const struct model_s model[] = {
+     { "Parrot",
+         { ZERO, ZERO, ZERO, ZERO, RIGHT, RIGHT, ZERO, LEFT, PIN, RIGHT, ZERO, RIGHT, ZERO, RIGHT, ZERO, RIGHT, PIN, LEFT, ZERO, RIGHT, LEFT, ZERO, PIN, ZERO }
+     },
+-    { "Penis",
++    { "Shuttle",
+         { PIN, PIN, RIGHT, ZERO, PIN, PIN, ZERO, PIN, ZERO, ZERO, RIGHT, PIN, LEFT, ZERO, ZERO, PIN, ZERO, PIN, PIN, ZERO, LEFT, PIN, PIN, ZERO }
+     },
+     { "PictureComingSoon",

@@ -1,6 +1,19 @@
 # ChangeLog for x11-misc/xscreensaver
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.244 2008/11/24 15:55:35 ssuominen Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.246 2009/01/19 15:06:44 ssuominen Exp $
+
+  19 Jan 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.08.ebuild:
+  Use EAPI2. Restore -j1 to emake in src_compile, it still doesn't work.
+  Translations for .desktop file are still broken with invalid intltool
+  remove patch.
+
+*xscreensaver-5.08 (19 Jan 2009)
+
+  19 Jan 2009; Peter Volkov <pva@gentoo.org>
+  +files/5.08/01_all_default_settings.patch,
+  +files/5.08/02_all_no_intltool.patch, +xscreensaver-5.08.ebuild:
+  Version bump.
 
   24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
   Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org.
