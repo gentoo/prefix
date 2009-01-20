@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/DBD-Pg
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.60 2008/09/15 18:00:08 tove Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.61 2009/01/16 10:52:00 robbat2 Exp $
+
+*DBD-Pg-2.11.8 (16 Jan 2009)
+
+  16 Jan 2009; Robin H. Johnson <robbat2@gentoo.org> +DBD-Pg-2.11.8.ebuild:
+  Version bump, passes on 8.3 split and 8.2 non-split for me.
 
   15 Sep 2008; Torsten Veller <tove@gentoo.org> -DBD-Pg-1.42.ebuild,
   -DBD-Pg-1.43.ebuild, -DBD-Pg-1.48.ebuild:
