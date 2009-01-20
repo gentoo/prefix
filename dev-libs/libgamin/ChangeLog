@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.7 2009/01/10 11:07:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.8 2009/01/20 03:17:52 tcunha Exp $
+
+  20 Jan 2009; Tiago Cunha <tcunha@gentoo.org> libgamin-0.1.10-r1.ebuild:
+  stable sparc, bug 252350
 
   10 Jan 2009; Markus Meier <maekke@gentoo.org> libgamin-0.1.10-r1.ebuild:
   amd64/x86 stable, bug #252350
