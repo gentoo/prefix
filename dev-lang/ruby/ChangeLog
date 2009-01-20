@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.370 2009/01/15 22:37:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.371 2009/01/17 15:38:11 nixnut Exp $
+
+  17 Jan 2009; nixnut <nixnut@gentoo.org> ruby-1.8.6_p287-r4.ebuild:
+  ppc stable #254307
 
   15 Jan 2009; Markus Meier <maekke@gentoo.org> ruby-1.8.6_p287-r4.ebuild:
   amd64/x86 stable, bug #254307
