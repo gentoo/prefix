@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pygobject
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.52 2008/12/14 23:25:11 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.53 2009/01/19 03:22:32 leio Exp $
+
+*pygobject-2.16.0 (19 Jan 2009)
+
+  19 Jan 2009; Mart Raudsepp <leio@gentoo.org> +pygobject-2.16.0.ebuild:
+  Version bump. Correct libffi handling for configure
 
   14 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
   pygobject-2.14.0.ebuild, -pygobject-2.14.1.ebuild,
