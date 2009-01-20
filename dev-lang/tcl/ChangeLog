@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/tcl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.102 2008/10/26 11:20:41 mescalinum Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.103 2009/01/17 13:34:46 mescalinum Exp $
+
+*tcl-8.5.6 (17 Jan 2009)
+
+  17 Jan 2009; Federico Ferri <mescalinum@gentoo.org> -tcl-8.5.5.ebuild,
+  +tcl-8.5.6.ebuild:
+  version bump, #253571
 
 *tcl-8.4.19 (26 Oct 2008)
 
@@ -26,7 +32,7 @@
   18 Feb 2008; Brent Baude <ranger@gentoo.org> tcl-8.4.18.ebuild:
   Marking tcl-8.4.18 ppc64 for bug 210326
 
-  17 Feb 2008; Raúl Porcel <armin76@gentoo.org> tcl-8.4.18.ebuild:
+  17 Feb 2008; RaÃºl Porcel <armin76@gentoo.org> tcl-8.4.18.ebuild:
   alpha/ia64/sparc stable wrt #210326
 
   17 Feb 2008; nixnut <nixnut@gentoo.org> tcl-8.4.18.ebuild:
@@ -83,7 +89,7 @@
   14 Aug 2007; Markus Rothe <corsair@gentoo.org> tcl-8.4.15.ebuild:
   Stable on ppc64; bug #178320
 
-  14 Aug 2007; Raúl Porcel <armin76@gentoo.org> tcl-8.4.15.ebuild:
+  14 Aug 2007; RaÃºl Porcel <armin76@gentoo.org> tcl-8.4.15.ebuild:
   alpha/ia64/x86 stable wrt #178320
 
   13 Aug 2007; Ferris McCormick <fmccor@gentoo.org> tcl-8.4.15.ebuild:
@@ -104,7 +110,7 @@
   12 Jul 2007; MATSUU Takuto <matsuu@gentoo.org> +tcl-8.4.14-r1.ebuild:
   Fixed library filenames issue, bug #149037.
 
-  24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> tcl-8.4.9.ebuild,
+  24 Jun 2007; Piotr JaroszyÅski <peper@gentoo.org> tcl-8.4.9.ebuild,
   tcl-8.4.14.ebuild:
   (QA) Fix ${ROOT} abuse. bug #167271.
 
@@ -117,7 +123,7 @@
   16 May 2007; Christian Faulhammer <opfer@gentoo.org> tcl-8.4.14.ebuild:
   stable amd64, bug 178320
 
-  15 May 2007; Raúl Porcel <armin76@gentoo.org> tcl-8.4.14.ebuild:
+  15 May 2007; RaÃºl Porcel <armin76@gentoo.org> tcl-8.4.14.ebuild:
   alpha/ia64/x86 stable wrt #178320
 
   15 May 2007; Ferris McCormick <fmccor@gentoo.org> tcl-8.4.14.ebuild:
@@ -144,7 +150,7 @@
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> tcl-8.4.13.ebuild:
   Added ~sparc-fbsd keyword.
 
-  04 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> tcl-8.4.13.ebuild:
+  04 Jun 2006; Diego PettenÃ² <flameeyes@gentoo.org> tcl-8.4.13.ebuild:
   Export CC variable to be safe on cross-distcc.
 
 *tcl-8.4.13 (03 Jun 2006)
@@ -156,7 +162,7 @@
   Added soname patch, Bug 125971.
   Removed PDEPEND.
 
-  11 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> tcl-8.4.12.ebuild:
+  11 Apr 2006; Diego PettenÃ² <flameeyes@gentoo.org> tcl-8.4.12.ebuild:
   Add ~x86-fbsd keyword.
 
   21 Mar 2006; Aron Griffis <agriffis@gentoo.org> tcl-8.4.9.ebuild:
@@ -185,7 +191,7 @@
   08 Jan 2006; MATSUU Takuto <matsuu@gentoo.org> +tcl-8.4.11-r1.ebuild:
   Fixed fails with bash 3.1, Bug 117744.
 
-  03 Aug 2005; Bryan Østergaard <kloeri@gentoo.org> tcl-8.4.9.ebuild:
+  03 Aug 2005; Bryan Ãstergaard <kloeri@gentoo.org> tcl-8.4.9.ebuild:
   Stable on alpha.
 
   02 Jul 2005; MATSUU Takuto <matsuu@gentoo.org> tcl-8.4.11.ebuild:
@@ -240,7 +246,7 @@
   01 Nov 2004; Lars Weiler <pylon@gentoo.org> tcl-8.4.6-r1.ebuild:
   Stable on ppc for PHP5, Bug #60442.
 
-  19 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> :
+  19 Oct 2004; Bryan Ãstergaard <kloeri@gentoo.org> :
   Stable on alpha.
 
   21 Sep 2004; Doug Goldstein <cardoe@gentoo.org> tcl-8.4.6-r1.ebuild:
