@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libsoup
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.165 2008/11/29 12:00:03 eva Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.166 2009/01/19 03:40:38 leio Exp $
+
+*libsoup-2.24.3 (19 Jan 2009)
+
+  19 Jan 2009; Mart Raudsepp <leio@gentoo.org> -libsoup-2.24.1.ebuild,
+  -libsoup-2.24.2.ebuild, -libsoup-2.24.2.1.ebuild, +libsoup-2.24.3.ebuild:
+  Version bump with various fixes, including preferral of http digest auth
+  over basic auth when both are available. Don't install static library and
+  don't duplicate gnome2.eclass USE=debug handling
 
 *libsoup-2.24.2.1 (29 Nov 2008)
 
