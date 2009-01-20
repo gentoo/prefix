@@ -1,0 +1,180 @@
+fix from upstream:
+
+Incorrect directed rounding in mpfr_strtofr. In mpfr_strtofr, rounding
+"1.00000000000000000006" upward to 32 bits returns 1 with ternary value 0
+instead of 1+ with positive ternary value. This bug also affects the result of
+mpfr_set_str (as it is based on mpfr_strtofr).
+[Changesets: 5664 5752]
+
+https://gforge.inria.fr/tracker/index.php?func=detail&aid=6604&group_id=136&atid=619
+
+Index: branches/2.3/strtofr.c
+===================================================================
+--- branches/2.3/strtofr.c	(revision 5663)
++++ branches/2.3/strtofr.c	(revision 5664)
+@@ -473,7 +473,7 @@ parsed_string_to_mpfr (mpfr_t x, struct 
+ 
+       if (pstr_size >= pstr->prec)
+         pstr_size = pstr->prec;
+-      MPFR_ASSERTD ((mp_exp_t) pstr_size == (mp_exp_t) pstr_size);
++      MPFR_ASSERTD (pstr_size == (mp_exp_t) pstr_size);
+ 
+       /* convert str into binary */
+       real_ysize = mpn_set_str (y, pstr->mant, pstr_size, pstr->base);
+@@ -656,6 +656,19 @@ parsed_string_to_mpfr (mpfr_t x, struct 
+           err = 0;
+         }
+ 
++      if (pstr_size < pstr->prec && exact
++          && ((rnd == GMP_RNDN)
++              || ((rnd == GMP_RNDD && pstr->negative)
++                  || (rnd == GMP_RNDU && !pstr->negative))))
++        {
++          /* Some significant digits might have been forgotten, if so result
++             is not exact. */
++          size_t i;
++
++          for (i = pstr_size; exact && i < pstr->prec; i++)
++            exact = pstr->mant[i] == 0;
++        }
++
+       /* test if rounding is possible, and if so exit the loop */
+       if (exact || mpfr_can_round_raw (result, ysize,
+                                        (pstr->negative) ? -1 : 1,
+Index: branches/2.3/tests/tstrtofr.c
+===================================================================
+--- branches/2.3/tests/tstrtofr.c	(revision 5663)
++++ branches/2.3/tests/tstrtofr.c	(revision 5664)
+@@ -27,28 +27,7 @@ MA 02110-1301, USA. */
+ 
+ #include "mpfr-test.h"
+ 
+-static void check_reftable (void);
+-static void check_special  (void);
+-static void check_retval   (void);
+-static void check_overflow (void);
+-static void check_parse    (void);
+-
+-int
+-main (int argc, char *argv[])
+-{
+-  tests_start_mpfr ();
+-
+-  check_special();
+-  check_reftable ();
+-  check_parse ();
+-  check_overflow ();
+-  check_retval ();
+-
+-  tests_end_mpfr ();
+-  return 0;
+-}
+-
+-void
++static void
+ check_special (void)
+ {
+   mpfr_t x, y;
+@@ -551,8 +530,7 @@ static struct dymmy_test {
+ "1.001000010110011011000101100000101111101001100011101101001111110111000010010110010001100e-16920"}
+ };
+ 
+-
+-void
++static void
+ check_reftable ()
+ {
+   int i, base;
+@@ -597,7 +575,7 @@ check_reftable ()
+   mpfr_clear (x);
+ }
+ 
+-void
++static void
+ check_parse (void)
+ {
+   mpfr_t x;
+@@ -951,3 +929,46 @@ check_retval (void)
+ 
+   mpfr_clear (x);
+ }
++
++/* Bug found by Christoph Lauter (in mpfr_set_str). */
++static void
++bug20081028 (void)
++{
++  mpfr_t x;
++  const char *s = "0.10000000000000000000000000000001E1";
++  int res, err = 0;
++
++  mpfr_init2 (x, 32);
++  res = mpfr_strtofr (x, "1.00000000000000000006", NULL, 10, GMP_RNDU);
++  if (res <= 0)
++    {
++      printf ("Error in bug20081028: expected positive ternary value,"
++              " got %d\n", res);
++      err = 1;
++    }
++  if (! mpfr_greater_p (x, __gmpfr_one))
++    {
++      printf ("Error in bug20081028:\nExpected %s\nGot      ", s);
++      mpfr_dump (x);
++      err = 1;
++    }
++  mpfr_clear (x);
++  if (err)
++    exit (1);
++}
++
++int
++main (int argc, char *argv[])
++{
++  tests_start_mpfr ();
++
++  check_special();
++  check_reftable ();
++  check_parse ();
++  check_overflow ();
++  check_retval ();
++  bug20081028 ();
++
++  tests_end_mpfr ();
++  return 0;
++}
+Index: branches/2.3/tests/tset_str.c
+===================================================================
+--- branches/2.3/tests/tset_str.c	(revision 5663)
++++ branches/2.3/tests/tset_str.c	(revision 5664)
+@@ -81,6 +81,24 @@ check_underflow (void)
+   mpfr_clear (a);
+ }
+ 
++/* Bug found by Christoph Lauter. */
++static void
++bug20081028 (void)
++{
++  mpfr_t x;
++  const char *s = "0.10000000000000000000000000000001E1";
++
++  mpfr_init2 (x, 32);
++  mpfr_set_str (x, "1.00000000000000000006", 10, GMP_RNDU);
++  if (! mpfr_greater_p (x, __gmpfr_one))
++    {
++      printf ("Error in bug20081028:\nExpected %s\nGot      ", s);
++      mpfr_dump (x);
++      exit (1);
++    }
++  mpfr_clear (x);
++}
++
+ int
+ main (int argc, char *argv[])
+ {
+@@ -845,6 +863,7 @@ main (int argc, char *argv[])
+   mpfr_clear (y);
+ 
+   check_underflow ();
++  bug20081028 ();
+ 
+   tests_end_mpfr ();
+   return 0;

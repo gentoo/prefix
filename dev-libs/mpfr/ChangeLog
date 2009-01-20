@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/mpfr
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.83 2008/11/28 13:18:42 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.88 2009/01/18 16:55:39 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> mpfr-2.3.2.ebuild:
+  x86 stable, bug #255195
+
+  17 Jan 2009; Jeroen Roovers <jer@gentoo.org> mpfr-2.3.2.ebuild:
+  Stable for HPPA (bug #255195).
+
+  16 Jan 2009; Steve Dibb <beandog@gentoo.org> mpfr-2.3.2.ebuild:
+  amd64 stable, bug 255195
+
+  16 Jan 2009; Ferris McCormick <fmccor@gentoo.org> mpfr-2.3.2.ebuild:
+  Sparc stable --- Bug #255195 --- all tests pass.
+
+*mpfr-2.3.2-r1 (16 Jan 2009)
+
+  16 Jan 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/2.3.2/mpfr-2.3.2-svn5664.patch,
+  +files/2.3.2/mpfr-2.3.2-svn5752.patch, +mpfr-2.3.2-r1.ebuild:
+  Grab upstream fixes for upstream bug 6604.
 
   28 Nov 2008; Alexis Ballier <aballier@gentoo.org> mpfr-2.3.2.ebuild:
   fix find call for bsd find compatibility, bug #236067
