@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gdb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.144 2008/08/02 11:53:35 pchrist Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.147 2009/01/18 16:28:22 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> gdb-6.8-r1.ebuild:
+  amd64/x86 stable, bug #255219
+
+  18 Jan 2009; Tobias Klausmann <klausman@gentoo.org> gdb-6.8-r1.ebuild:
+  Stable on alpha, bug #255219
+
+  18 Jan 2009; Guy Martin <gmsoft@gentoo.org> gdb-6.8-r1.ebuild:
+  hppa stable, #255219
 
   02 Aug 2008; Panagiotis Christopoulos <pchrist@gentoo.org> metadata.xml:
   Update metadata.xml to include USE flag descriptions. Entries taken from
