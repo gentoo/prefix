@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/alsa-lib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.272 2008/12/22 16:26:34 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.273 2009/01/19 15:06:06 chainsaw Exp $
+
+*alsa-lib-1.0.19 (19 Jan 2009)
+
+  19 Jan 2009; <chainsaw@gentoo.org> +alsa-lib-1.0.19.ebuild:
+  Version bump. The ChangeLog may interest you, which you can find here:
+  http://www.alsa-project.org/main/index.php/Changes_v1.0.18_v1.0.19
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org> alsa-lib-1.0.17a.ebuild:
   ia64 stable wrt #245517
