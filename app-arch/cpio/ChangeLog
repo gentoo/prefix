@@ -1,6 +1,24 @@
 # ChangeLog for app-arch/cpio
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.90 2008/06/01 23:04:31 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.95 2009/01/19 01:53:56 tcunha Exp $
+
+  19 Jan 2009; Tiago Cunha <tcunha@gentoo.org> cpio-2.9-r2.ebuild:
+  stable sparc, bug 255288
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> cpio-2.9-r2.ebuild:
+  amd64/x86 stable, bug #255288
+
+  18 Jan 2009; Tobias Klausmann <klausman@gentoo.org> cpio-2.9-r2.ebuild:
+  Stable on alpha, bug #255280
+
+  18 Jan 2009; Tobias Scherbaum <dertobi123@gentoo.org> cpio-2.9-r2.ebuild:
+  ppc stable, bug #255288
+
+*cpio-2.9-r3 (17 Jan 2009)
+
+  17 Jan 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.9-packed.patch, +cpio-2.9-r3.ebuild:
+  Add fix from Debian for struct packing (i.e. arm) #255096 by Raúl Porcel.
 
 *cpio-2.9-r2 (01 Jun 2008)
 
