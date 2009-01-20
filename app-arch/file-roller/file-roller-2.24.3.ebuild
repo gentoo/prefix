@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.24.2.ebuild,v 1.2 2008/12/21 15:32:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.24.3.ebuild,v 1.1 2009/01/19 03:01:10 leio Exp $
 
 EAPI="prefix"
+
+GCONF_DEBUG="no"
 
 inherit eutils gnome2
 
@@ -31,7 +33,7 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README TODO"
 
 pkg_setup() {
-	G2CONF="${G2CONF} --disable-scrollkeeper"
+	G2CONF="${G2CONF} --disable-scrollkeeper --disable-static"
 
 	if ! use nautilus ; then
 		G2CONF="${G2CONF} --disable-nautilus-actions"

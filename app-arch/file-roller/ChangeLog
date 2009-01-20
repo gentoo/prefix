@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/file-roller
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.246 2008/12/21 15:32:27 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.247 2009/01/19 03:01:10 leio Exp $
+
+*file-roller-2.24.3 (19 Jan 2009)
+
+  19 Jan 2009; Mart Raudsepp <leio@gentoo.org> -file-roller-2.24.2.ebuild,
+  +file-roller-2.24.3.ebuild:
+  Version bump with bug fixes. Do not build useless static library and
+  remove useless debug USE flag in packaging.
 
   21 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -file-roller-2.20.3.ebuild, -file-roller-2.24.1.ebuild,
