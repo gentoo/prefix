@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r1.ebuild,v 1.3 2008/11/27 16:30:59 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r2.ebuild,v 1.1 2009/01/16 21:09:50 lavajoe Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,7 @@ src_unpack() {
 	# Print info on how to extend the expiration date of the beta
 	# if it has expired.
 	epatch "${FILESDIR}"/${P}-print-extend-expiration-info.patch
+	epatch "${FILESDIR}"/${P}-fix-expiration-bug.patch
 
 	# Change some destination directories that cannot be adjusted via configure
 	cp configure.ac configure.ac.orig
