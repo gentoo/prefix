@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.78.ebuild,v 1.3 2008/12/30 19:18:01 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.78.ebuild,v 1.4 2009/01/18 20:34:47 eva Exp $
 
 EAPI="prefix"
 
@@ -13,15 +13,18 @@ SRC_URI="http://dbus.freedesktop.org/releases/${PN}/${P}.tar.gz"
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bash-completion debug doc selinux test"
+IUSE="bash-completion debug doc test"
 
 RDEPEND=">=sys-apps/dbus-1.1.0
 	>=dev-libs/glib-2.10
-	selinux? ( sys-libs/libselinux )
 	>=dev-libs/expat-1.95.8"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( app-doc/doxygen app-text/xmlto )
+	sys-devel/gettext
+	doc? (
+		app-doc/doxygen
+		app-text/xmlto
+		>=dev-util/gtk-doc-1.4 )
 	dev-util/gtk-doc-am"
 
 BASH_COMPLETION_NAME="dbus"
@@ -42,20 +45,14 @@ src_unpack() {
 src_compile() {
 	econf \
 		$(use_enable bash-completion) \
-		$(use_enable selinux) \
 		$(use_enable debug verbose-mode) \
 		$(use_enable debug checks) \
 		$(use_enable debug asserts) \
 		$(use_enable test tests) \
 		$(use_with test test-socket-dir "${T}"/dbus-test-socket) \
-		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid \
-		--with-system-socket="${EPREFIX}"/var/run/dbus/system_bus_socket \
-		--with-session-socket-dir="${EPREFIX}"/tmp \
-		--with-dbus-user=messagebus \
 		--localstatedir="${EPREFIX}"/var \
 		$(use_enable doc doxygen-docs) \
-		--disable-xml-docs \
-		|| die "econf failed"
+		$(use_enable doc gtk-doc)
 
 	# after the compile, it uses a selinuxfs interface to
 	# check if the SELinux policy has the right support
