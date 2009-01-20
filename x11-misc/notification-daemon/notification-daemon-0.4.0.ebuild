@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.4.0.ebuild,v 1.1 2008/12/22 17:29:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.4.0.ebuild,v 1.2 2009/01/18 13:25:37 pva Exp $
 
 EAPI="prefix"
 
@@ -23,6 +23,7 @@ RDEPEND=">=dev-libs/glib-2.4.0
 		 >=x11-libs/libsexy-0.1.3
 		 >=dev-libs/dbus-glib-0.71
 		 x11-libs/libwnck
+		 x11-libs/libnotify
 		 >=gnome-base/libglade-2
 		 gstreamer? ( >=media-libs/gstreamer-0.10 )"
 DEPEND="${RDEPEND}
