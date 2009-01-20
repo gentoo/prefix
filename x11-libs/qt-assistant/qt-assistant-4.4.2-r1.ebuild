@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.4.2-r1.ebuild,v 1.1 2009/01/05 23:55:06 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.4.2-r1.ebuild,v 1.3 2009/01/18 20:00:12 maekke Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
