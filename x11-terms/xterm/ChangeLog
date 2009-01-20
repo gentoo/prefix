@@ -1,6 +1,15 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.250 2009/01/13 05:01:45 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.253 2009/01/19 16:10:44 ranger Exp $
+
+  19 Jan 2009; Brent Baude <ranger@gentoo.org> xterm-239.ebuild:
+  Marking xterm-239 ppc64 for bug 253155
+
+  19 Jan 2009; Ferris McCormick <fmccor@gentoo.org> xterm-239.ebuild:
+  Sparc stable, Security Bug #253155.
+
+  19 Jan 2009; Jeroen Roovers <jer@gentoo.org> xterm-239.ebuild:
+  Stable for HPPA (bug #253155).
 
 *xterm-239 (13 Jan 2009)
 
