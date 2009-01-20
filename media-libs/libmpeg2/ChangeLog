@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libmpeg2
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.63 2008/11/17 21:15:26 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.66 2009/01/18 17:10:00 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> libmpeg2-0.5.1.ebuild:
+  x86 stable, bug #255151
+
+  17 Jan 2009; nixnut <nixnut@gentoo.org> libmpeg2-0.5.1.ebuild:
+  ppc stable #255151
+
+  16 Jan 2009; Steve Dibb <beandog@gentoo.org> libmpeg2-0.5.1.ebuild:
+  amd64 stable, bug 255151
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/altivec-fix-0.4.0b.diff:
