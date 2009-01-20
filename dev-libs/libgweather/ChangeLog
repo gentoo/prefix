@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libgweather
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.19 2008/11/27 03:00:45 leio Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.20 2009/01/19 02:34:39 leio Exp $
+
+*libgweather-2.24.3 (19 Jan 2009)
+
+  19 Jan 2009; Mart Raudsepp <leio@gentoo.org> -libgweather-2.24.2.ebuild,
+  +libgweather-2.24.3.ebuild:
+  Version bump. Disable static libraries in packaging
 
 *libgweather-2.24.2 (27 Nov 2008)
 

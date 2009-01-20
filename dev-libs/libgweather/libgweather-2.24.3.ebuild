@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.24.2.ebuild,v 1.1 2008/11/27 03:00:45 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.24.3.ebuild,v 1.1 2009/01/19 02:34:39 leio Exp $
 
 EAPI="prefix 1"
 
@@ -31,6 +31,6 @@ DOCS="AUTHORS ChangeLog MAINTAINERS NEWS"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
-		--disable-all-translations-in-one-xml
+		--disable-all-translations-in-one-xml --disable-static
 		$(use_enable python)"
 }
