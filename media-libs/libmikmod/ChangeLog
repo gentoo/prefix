@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libmikmod
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/ChangeLog,v 1.53 2008/03/25 21:46:36 coldwind Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/ChangeLog,v 1.54 2009/01/17 00:26:39 aballier Exp $
+
+  17 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  libmikmod-3.1.11-r5.ebuild:
+  use latest automake, bug #186808
 
   25 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   libmikmod-3.1.11-r4.ebuild:
