@@ -1,6 +1,12 @@
 # ChangeLog for Gentoo/sh profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.8 2009/01/15 21:57:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.13 2009/01/19 11:12:31 armin76 Exp $
+
+  19 Jan 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Some reordering, and use.mask tracker, fuse, gphoto2 and laptop
+
+  16 Jan 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask chicken, clisp, R, octave
 
   15 Jan 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask, use.mask:
   Move dvb and mythtv p.use.mask to use.mask

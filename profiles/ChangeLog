@@ -1,10 +1,48 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2268 2009/01/16 00:56:48 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2279 2009/01/19 22:54:21 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  arch/x86-fbsd/package.use.mask, default-bsd/fbsd/package.use.mask,
+  default/bsd/fbsd/package.use.mask:
+  no need to mask and then unmask avahi[python] for x86-fbsd since its not
+  keyworded for sparc-fbsd
+
+  19 Jan 2009; Alexis Ballier <aballier@gentoo.org> profiles.desc:
+  Add a (commented out for now) entry for FreeBSD 7.1 profiles
+
+  19 Jan 2009; Ben de Groot <yngwin@gentoo.org>
+  default-bsd/package.use.mask, default-linux/package.use.mask,
+  default/linux/package.use.mask, hardened/package.use.mask, package.mask:
+  Masks needed for Qt 4.4 split ebuilds stabilization, bug 248038
+
+  19 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask libdrm-2.4.4
+
+  19 Jan 2009; Christoph Mende <angelos@gentoo.org> package.mask:
+  Removed x11-libs/xfc
+
+  19 Jan 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  process treecleaner queue, multiple packages added, 2 removed from tree
+
+  18 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  provide a bluez-4 compatible totem, bug #249257.
+
+  18 Jan 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Mask release candidates for OpenOffice.org 3.0.1
+
+  18 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove dev-ruby/test-unit mask, tests now fixed.
+
+  16 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Add mask for dev-ruby/test-unit.
+
+  16 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-libs/libdrm-2.4.4 to p.mask
 
   16 Jan 2009; Mike Auty <ikelos@gentoo.org> package.mask:
   Mask out further vulnerable vmware software versions.

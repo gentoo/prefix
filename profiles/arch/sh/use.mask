@@ -5,7 +5,6 @@
 # net-misc/networkmanager not keyworded
 networkmanager
 
-
 hardened
 
 # dmidecode bios decoder
@@ -18,17 +17,27 @@ java
 java-internal
 java-external
 
-# dont make sense on this arch
-3dfx
-
 # broken upstream, see libavcodec/sh4/idct_sh4.c:#error
 ffmpeg
 
+# Stuff we don't want
+chicken
+clisp
+fuse
+R
+octave
+tracker
+
+# Stuff that doesn't make sense on this arch
+3dfx
+dell
+laptop
+
 # havent tested yet
+gphoto2
 mythtv
 dvb
 qt3
-dell
 qt4
 arts
 kde

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9397 2009/01/16 00:56:48 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9408 2009/01/20 01:41:19 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,42 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ben de Groot <yngwin@gentoo.org> (19 Jan 2009)
+# Masked because of bug 248038 which requires mask of qt-4.3*
+# Newer versions of these do work with split Qt 4.4
+<media-sound/qsynth-0.3.2
+~sci-libs/vtk-5.0.3
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Jan 2009)
+# Removed by treecleaners in 60 days. Doesn't build, uses old macros, uses
+# non-existant header files, & unmaintianed upstream and in Gentoo. bug 241452
+www-servers/tux
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Jan 2009)
+# Removed by treecleaners in 60 days. Doesn't build with gcc-4.3, unmaintained
+# upstream and in Gentoo, & file collisions with media-libs/audiofile
+# See bug 251154
+media-libs/osalp
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Jan 2009)
+# Removed by treecleaners in 30 days. No use for this, included in util-linux
+# bug 254329
+sys-process/schedutils
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Jan 2009)
+# Removed by treecleaners in 60 days. Dead package completely, cvs repo doesn't
+# exist anymore, bug 196982
+x11-wm/stumpwm-cvs
+
+# Jeremy Olexa <darkside@gentoo.org> (19 Jan 2009)
+# Removed by treecleaners in 60 says. www-apps/gallery includes a java webstart
+# for gallery remote now, use that instead. bug 111025
+app-misc/gallery-remote
+
+# Andreas Proschofsky <suka@gentoo.org> (18 Jan 2009)
+# Mask release candidates for OpenOffice.org 3.0.1
+>=app-office/openoffice-3.0.1_rc2
 
 # Sébastien Fabbro <bicatali@gentoo.org> (15 Jan 2009)
 # Masked for removal in 30 days. f2py hase been integrated in
@@ -245,11 +281,6 @@ net-libs/libopm
 # bug 251795
 sys-fs/cloop
 
-# Christoph Mende <angelos@gentoo.org> (20 Dec 2008)
-# Masked for removal in 30 days, doesn't work with gcc-4.3 (bug 251748),
-# is unmaintained upstream and nothing in the tree uses it
-x11-libs/xfc
-
 # Peter Alfredsen <loki_val@gentoo.org> (20 Dec 2008)
 # Masked for removal in 30 days. Version that compiles with gcc-4.3
 # is not ready for stable ( bug 251566 ).
@@ -362,6 +393,7 @@ net-wireless/bluez
 >=net-wireless/bluez-gnome-1.8
 >=app-mobilephone/obex-data-server-0.4
 >=gnome-extra/gnome-user-share-0.41
+>=media-video/totem-2.24.3-r1
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # These might break automounting, so keep them masked for now.
@@ -376,33 +408,14 @@ net-wireless/bluez
 # Masked for removal in 60 days.
 app-pda/dopi
 
-# Jeremy Olexa <darkside@gentoo.org> (22 Nov 2008)
-# Masked for removal in 30 days, requested by maintainers. bug #173584
-# Does not compile, old, unmaintained, depends on gtk-1.
-app-admin/gps
-
 # Alec Warner <antarus@gentoo.org> (22 Nov 2008)
 # nis-utils is dead, use LDAP you slackers.
 # Remove in Jan 2009
 net-nds/nis-utils
 
-# Jeremy Olexa <darkside@gentoo.org> (20 Nov 2008)
-# Removed in 60 days by treecleaners, comment on bug #247494
-# 1. lack of users interest - I see zero version bump requests for this package
-# although version currently in the tree more then year and a half old (released
-# 03.03.2007)
-# 2. lack of developers interest it's maintainer-wanted
-# 3. nothing in the tree depends on it
-dev-db/fastdb
-
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
 =media-fonts/ja-ipafonts-0.0.20040715
-
-# Michael Sterrett <mr_bones_@gentoo.org> (18 Nov 2008)
-# ytin hasn't been updated in years.  Use games-mud/tintin instead
-# which is still being maintained.
-games-mud/ytin
 
 # Peter Volkov <pva@gentoo.org> (16 Nov 2008)
 # This is developemnt version. Why it was not masked from the beginning?
@@ -766,11 +779,6 @@ x11-libs/lesstif
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-173.08
 ~media-video/nvidia-settings-173.08
-
-# Michael Sterrett <mr_bones_@gentoo.org> (05 May 2008)
-# masked until bug #217901 is fixed, again.
-# Still has broken deps and missing license.
-games-server/greenhouse
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (04 May 2008)
 # Some of the older 0.9x regex packages are experimental versions and does

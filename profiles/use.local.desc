@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4135 2009/01/15 15:48:26 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4143 2009/01/19 19:27:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -233,6 +233,7 @@ app-emulation/virtualbox-ose:sdk - Enable building of SDK
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/wine:samba - Add support for NTLM auth. see http://wiki.winehq.org/NtlmAuthSetupGuide and http://wiki.winehq.org/NtlmSigningAndSealing
+app-emulation/wine:win64 - Build a 64bit version of Wine
 app-emulation/xen:acm - Enable the ACM/sHype XSM module from IBM
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen:flask - Enable the Flask XSM module from NSA
@@ -282,7 +283,6 @@ app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - Enable support for thinkpad models 760 and 765
 app-misc/anki:furigana -  Enable support for furigana generation 
 app-misc/anki:graph -  Enable support for making graphs 
-app-misc/anki:latex -  Enable support for LaTeX 
 app-misc/anki:sound -  Enable support for adding sound to cards 
 app-misc/beagle:chm - Enables support for indexing of the MS CHM (Compressed HTML) file format using app-doc/chmlib.
 app-misc/beagle:debug - Enables debug XML dumps of all messages passed between the daemons and the UIs. WARNING, this option will fill up your Beagle Log directory very quickly.
@@ -485,6 +485,8 @@ dev-db/postgresql-server:uuid - Enable server side UUID generation (via dev-libs
 dev-db/sqlite:nothreadsafe - Turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
+dev-dotnet/libgdiplus:pango - Use pango instead of cairo to render text.
+dev-dotnet/xsp:debug - Enable tracing messages (RECOMMENDED)
 dev-embedded/openocd:ft2232 - Enable support for USB chips via dev-embedded/libftd2xx
 dev-embedded/openocd:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
 dev-embedded/openocd:parport - Enable support for parport JTAG devices
@@ -596,7 +598,8 @@ dev-lang/lua:deprecated - make deprecated data structures/routines available
 dev-lang/luarocks:curl - Uses net-misc/curl for fetching lua packages instead of net-misc/wget.
 dev-lang/luarocks:openssl - Uses dev-libs/openssl for verifying lua packages instead of md5sum.
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
-dev-lang/mono:moonlight - add moonlight support
+dev-lang/mono:moonlight - Generate Moonlight 2.1 assemblies
+dev-lang/mono:xen - Make mono generate code that is considerably faster on xen VMs but slightly slower on for normal systems.
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
 dev-lang/php:cli - Enable CLI SAPI
@@ -749,6 +752,8 @@ dev-python/sympy:texmacs - Add support for app-office/texmacs
 dev-python/twisted:serial - include serial port support
 dev-python/visual:numarray - enable support for numarray
 dev-python/visual:numeric - enable support for numeric
+dev-python/wxpython:doc - Install HTML wxWidgets docs and wxpython API reference.
+dev-python/wxpython:examples - Install interactive demo module browser and sample applets.
 dev-python/zsi:twisted - add support for dev-python/twisted
 dev-ruby/camping:mongrel - Also install dev-ruby/mongrel
 dev-ruby/nitro:lighttpd - Also install www-servers/lighttpd
@@ -1935,6 +1940,7 @@ net-irc/ngircd:ident - Enables support for net-libs/libident
 net-irc/psybnc:oidentd - Adds support for oidentd
 net-irc/psybnc:scripting - Adds scripting support
 net-irc/quassel:X -  Build the Qt 4 GUI client for quassel. If this USE flag is disabled, the GUI is not built, and cannot be used. You might want to disable this on the server, but you need it enabled on the client. 
+net-irc/quassel:monolithic -  Build monolitic client. Only useful if one don't want to use quassels client/server model. The server and X flags are probably not needed but it is possible to enable them tooy. 
 net-irc/quassel:phonon -  Build client with phonon backend support. This enables sound playback in client. 
 net-irc/quassel:server -  Build the server binary. If this USE flag is disabled, the 'core' server binary for quassel is not built, and cannot be used. You need this enabled on the server, but you might want to disable it on the client. 
 net-irc/quassel:webkit -  Use qt-webkit rendering engine for showing url thumbmails and for other things that needs webbrowser intergration. 
@@ -2294,7 +2300,7 @@ sci-libs/gdal:gml - Enable support for dev-libs/xerces-c C++ API
 sci-libs/gdal:hdf - Add support for the Hierarchical Data Format v. 4 (sci-libs/hdf)
 sci-libs/gdal:ogdi - Enable support for the open geographic datastore interface (sci-libs/ogdi)
 sci-libs/gerris:dx - Enable support for sci-visualization/opendx
-sci-libs/gsl:cblas - Build gsl with external cblas by default (virtual/cblas)
+sci-libs/gsl:cblas - Link gsl with external cblas provided by (virtual/cblas)
 sci-libs/hdf5:f90 - Override Fortran for externel compilers
 sci-libs/hdf5:hlapi - Enable support for high-level library
 sci-libs/hdf5:tools - Install support and test tools
@@ -2465,6 +2471,7 @@ sys-cluster/lam-mpi:xmpi - Build support for the external XMPI debugging GUI
 sys-cluster/mpich2:fast - Enabling fast turns off error checking and timing collection
 sys-cluster/mpich2:mpe - Add mpe support
 sys-cluster/mpich2:mpe-sdk - Include additional SDK support, jar files
+sys-cluster/mpich2:mpi-threads - Enable MPI_THREAD_MULTIPLE
 sys-cluster/mpich2:pvfs2 - Add pvfs2 support
 sys-cluster/mpich2:romio - Enable romio, a high-performance portable MPI-IO implementation
 sys-cluster/ocfs:aio - Add aio support

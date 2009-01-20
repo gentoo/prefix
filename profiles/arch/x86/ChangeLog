@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/x86 profile directory
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.15 2008/12/02 22:18:08 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.16 2009/01/18 20:10:46 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  mask this version for a smooth upgrade wrt bug #248038
 
   02 Dec 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   P.use.mask media-libs/realcodecs win32codecs USE-flag because repoman complains

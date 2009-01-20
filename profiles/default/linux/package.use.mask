@@ -1,3 +1,7 @@
+# Mask until Qt 4.4 works with this package, as we need to mask 4.3
+# because of bug 248038. See also bug 243362.
+sci-visualization/paraview qt4
+
 # Note that this requires portage-2.1.1+ so if you need this functionality,
 # make sure your package forces a new-enough portage.
 
