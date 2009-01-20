@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.61 2009/01/06 17:18:33 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.62 2009/01/16 09:55:16 remi Exp $
+
+*libdrm-2.4.4 (16 Jan 2009)
+
+  16 Jan 2009; Rémi Cardona <remi@gentoo.org> +libdrm-2.4.4.ebuild:
+  bump to 2.4.4 (p.masked for now though, a few functions of its API were
+  dropped)
 
   06 Jan 2009; Rémi Cardona <remi@gentoo.org> libdrm-2.4.3.ebuild:
   remove cruft and change elogs into ewarns
