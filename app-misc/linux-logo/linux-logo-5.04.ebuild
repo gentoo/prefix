@@ -14,7 +14,7 @@ SRC_URI="http://www.deater.net/weave/vmwprod/linux_logo/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
@@ -33,10 +33,15 @@ src_unpack() {
 	echo "./logos/classic.logo" >> logo_config
 	cp "${FILESDIR}"/gentoo{,2}.logo "${S}"/logos/
 	echo "NAME gentoo" >> "${S}"/logos/gentoo.logo
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${P}-interix.patch
+		epatch "${FILESDIR}"/${P}-no-i18n.patch
+	fi
 }
 
 src_compile() {
-	./configure --prefix="${ED}"/usr || die
+	"${BASH}" ./configure --prefix="${ED}"/usr || die
 	emake CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
 }
 
