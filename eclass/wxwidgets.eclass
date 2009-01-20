@@ -56,12 +56,12 @@ if [[ -z ${WX_CONFIG} ]]; then
 		for wxtoolkit in gtk2 base; do
 			for wxdebug in release debug; do
 				wxconf="${wxtoolkit}-${wxchar}-${wxdebug}-${WX_GTK_VER}"
-				if [[ -f /usr/$(get_libdir)/wx/config/${wxconf} ]]; then
+				if [[ -f "${EPREFIX}"/usr/$(get_libdir)/wx/config/${wxconf} ]]; then
 					[[ $wxtoolkit == "base" ]] && WXBASE_DIE=1 # see wxwidgets_pkg_setup
 				else
 					continue
 				fi
-				WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
+				WX_CONFIG="${EPREFIX}/usr/$(get_libdir)/wx/config/${wxconf}"
 				# TODO: needed for the wx-config wrapper
 				WX_ECLASS_CONFIG="${WX_CONFIG}"
 				break
@@ -215,7 +215,7 @@ need-wxwidgets() {
 	debug-print "wxconf is ${wxconf}"
 
 	# if this doesn't work, something is seriously screwed
-	if [[ ! -f /usr/$(get_libdir)/wx/config/${wxconf} ]]; then
+	if [[ ! -f "${EPREFIX}"/usr/$(get_libdir)/wx/config/${wxconf} ]]; then
 		echo
 		eerror "Failed to find configuration ${wxconf}"
 		echo
@@ -224,7 +224,7 @@ need-wxwidgets() {
 
 	debug-print "Found config ${wxconf} - setting WX_CONFIG"
 
-	export WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
+	export WX_CONFIG=""${EPREFIX}"/usr/$(get_libdir)/wx/config/${wxconf}"
 
 	debug-print "WX_CONFIG is ${WX_CONFIG}"
 
