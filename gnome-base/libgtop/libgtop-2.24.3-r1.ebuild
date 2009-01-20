@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.24.0.ebuild,v 1.1 2008/10/06 00:34:50 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.24.3-r1.ebuild,v 1.1 2009/01/19 01:29:28 leio Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.23.90-solaris.patch
 }
 
-pkg_config() {
-	G2CONF="${G2CONF} $(use_enable debug)"
+pkg_setup() {
+	G2CONF="${G2CONF} --disable-static"
 }

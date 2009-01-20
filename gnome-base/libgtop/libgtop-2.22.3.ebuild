@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.22.3.ebuild,v 1.7 2008/11/13 19:12:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.22.3.ebuild,v 1.8 2009/01/19 01:29:28 leio Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,3 @@ DEPEND="${RDEPEND}
 		>=dev-util/intltool-0.35"
 
 DOCS="AUTHORS ChangeLog NEWS README"
-
-pkg_config() {
-	G2CONF="${G2CONF} $(use_enable debug)"
-}
