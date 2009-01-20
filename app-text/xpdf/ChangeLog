@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xpdf
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.170 2008/10/14 21:12:27 loki_val Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.171 2009/01/16 15:50:18 loki_val Exp $
+
+  16 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/xpdf-3.02-as-needed.patch, xpdf-3.02-r1.ebuild:
+  Fix as-needed, bug 247003.
 
   14 Oct 2008; Peter Alfredsen <loki_val@gentoo.org>
   -files/poppler-0.5.9.patch, +files/poppler-0.10.0.patch,

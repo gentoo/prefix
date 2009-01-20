@@ -1,0 +1,11 @@
+--- a/Makefile	2009-01-01 12:11:09.000000000 -0600
++++ b/Makefile	2009-01-01 12:11:14.000000000 -0600
+@@ -5,7 +5,7 @@
+ CPPFLAGS+= $(INCLUDES) -DHAVE_DIRENT_H
+ 
+ xpdf: CoreOutputDev.o GlobalParams.o ImageOutputDev.o PDFCore.o XPDFApp.o XPDFCore.o XPDFTree.o XPDFViewer.o parseargs.o xpdf.o 
+-	$(CXX) -o xpdf $(LIBS) *.o
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o xpdf *.o $(LIBS)
+ 
+ clean:
+ 	rm -f *.o xpdf
