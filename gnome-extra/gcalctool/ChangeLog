@@ -1,6 +1,13 @@
 # ChangeLog for gnome-extra/gcalctool
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.167 2008/11/29 12:08:56 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.168 2009/01/18 23:40:24 leio Exp $
+
+*gcalctool-5.24.3 (18 Jan 2009)
+
+  18 Jan 2009; Mart Raudsepp <leio@gentoo.org> -gcalctool-5.24.1.ebuild,
+  -gcalctool-5.24.2.ebuild, +gcalctool-5.24.3.ebuild:
+  Version bump. Gives binary invert operation higher precedence and
+  translation updates.
 
 *gcalctool-5.24.2 (29 Nov 2008)
 
