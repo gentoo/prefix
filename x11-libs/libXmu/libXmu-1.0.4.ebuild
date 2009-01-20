@@ -22,8 +22,8 @@ DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="$(use_enable ipv6)"
 
-src_unpack() {
-	PATCHES="${FILESDIR}"/${P}-winnt.patch
+PATCHES=(
+	"${FILESDIR}"/${P}-winnt.patch
+	"${FILESDIR}"/${P}-winnt-sharedvar.patch
+)
 
-	x-modular_src_unpack
-}
