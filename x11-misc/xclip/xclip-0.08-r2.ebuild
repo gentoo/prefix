@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/xclip-0.08-r2.ebuild,v 1.10 2008/03/31 01:50:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/xclip-0.08-r2.ebuild,v 1.11 2009/01/18 23:09:50 nelchael Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
-DESCRIPTION="Command-line utility to read data from standard in and place it in an X selection for pasting into X applications."
+DESCRIPTION="Command-line utility to read data from standard in and place it in an X selection"
 SRC_URI="http://people.debian.org/~kims/${PN}/${P}.tar.gz
 	mirror://debian/pool/main/x/${PN}/${PN}_${PV}-7.diff.gz"
 HOMEPAGE="http://people.debian.org/~kims/xclip"
