@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.4.3.ebuild,v 1.1 2008/12/24 04:48:53 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.4.3.ebuild,v 1.2 2009/01/19 15:15:48 yngwin Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE="debug sqlite opengl phonon webkit xmlpatterns examples"
 
-DEPEND="~x11-libs/qt-${QTVERSION}
+DEPEND=">=x11-libs/qt-gui-${QTVERSION}
 	>=virtual/jdk-1.5
 	dev-java/ant-trax
 	sqlite? ( dev-db/sqlite )
@@ -34,7 +34,7 @@ DEPEND="~x11-libs/qt-${QTVERSION}
 	webkit? ( >=x11-libs/qt-webkit-${QTVERSION} )
 	xmlpatterns? ( >=x11-libs/qt-xmlpatterns-${QTVERSION} )"
 
-RDEPEND="~x11-libs/qt-${QTVERSION}
+RDEPEND=">=x11-libs/qt-gui-${QTVERSION}
 	>=virtual/jre-1.5
 	sqlite? ( dev-db/sqlite )
 	opengl? ( >=x11-libs/qt-opengl-${QTVERSION} )

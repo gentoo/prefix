@@ -1,0 +1,24 @@
+Index: qtjambi-src-gpl-4.4.3_01/com/trolltech/tools/ant/InitializeTask.java
+===================================================================
+--- qtjambi-src-gpl-4.4.3_01.orig/com/trolltech/tools/ant/InitializeTask.java
++++ qtjambi-src-gpl-4.4.3_01/com/trolltech/tools/ant/InitializeTask.java
+@@ -323,7 +323,7 @@ public class InitializeTask extends Task
+     }
+ 
+     private String decideQtDir() {
+-        qtdir = System.getenv("QTDIR");
++        qtdir = "/usr/lib/qt4";
+         if (qtdir == null)
+             throw new BuildException("QTDIR environment variable missing");
+         if (!new File(qtdir).exists())
+@@ -346,8 +346,8 @@ public class InitializeTask extends Task
+         StringBuilder path = new StringBuilder();
+         path.append(props.getProperty(null, QTDIR));
+         path.append("/");
+-        path.append(props.getProperty(null, LIBSUBDIR));
+-        path.append("/");
++        //path.append(props.getProperty(null, LIBSUBDIR));
++        //path.append("/");
+         path.append(LibraryEntry.formatQtName(name, debug, version));
+         return new File(path.toString()).exists();
+     }
