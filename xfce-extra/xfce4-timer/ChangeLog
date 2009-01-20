@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-timer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-timer/ChangeLog,v 1.22 2009/01/13 15:39:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-timer/ChangeLog,v 1.23 2009/01/18 16:24:11 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> xfce4-timer-0.6.1.ebuild:
+  x86 stable, bug #254440
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> xfce4-timer-0.6.1.ebuild:
   Marking xfce4-timer-0.6.1 ppc64 and ppc for bug 254440
