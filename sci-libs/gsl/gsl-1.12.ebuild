@@ -1,10 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.10.ebuild,v 1.4 2008/01/09 16:15:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.12.ebuild,v 1.1 2009/01/19 19:22:30 bicatali Exp $
 
-EAPI="prefix"
-
-inherit eutils flag-o-matic toolchain-funcs autotools
+EAPI="prefix 2"
+inherit eutils flag-o-matic autotools
 
 DESCRIPTION="The GNU Scientific Library"
 HOMEPAGE="http://www.gnu.org/software/gsl/"
@@ -15,35 +14,36 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="cblas"
 
-RDEPEND="app-admin/eselect-cblas
-	cblas? ( virtual/cblas )"
-
+RDEPEND="cblas? ( virtual/cblas )"
 DEPEND="${RDEPEND}
+	app-admin/eselect-cblas
 	dev-util/pkgconfig"
 
 pkg_setup() {
-	# icc-10.0.026 did not pass rng tests (last check: gsl-1.10)
-	if [[ $(tc-getCC) == icc ]]; then
-		eerror "icc known to fail tests. Revert to safer compiler and re-emerge."
-		die "gsl does not work when compiled with icc"
+	ESELECT_PROF="gsl"
+	# prevent to use external cblas from a previously installed gsl
+	local current_lib=$(eselect cblas show | cut -d' ' -f2)
+	if use cblas && [[ ${current_lib} == gsl ]]; then
+		ewarn "USE flag cblas is set: linking gsl with an external cblas."
+		ewarn "However the current selected external cblas is gsl."
+		ewarn "Please install and/or eselect another cblas"
+		die "Circular gsl dependency"
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/gsl-cblas.patch
+src_prepare() {
+	filter-flags -ffast-math
+	replace-cpu-flags k6 k6-2 k6-3 i586
+	epatch "${FILESDIR}"/${P}-cblas.patch
 	eautoreconf
 }
 
-src_compile() {
-	# could someone check if they are still needed?
-	replace-cpu-flags k6 k6-2 k6-3 i586
-	filter-flags -ffast-math
-	local myconf=
-	use cblas && myconf="--with-cblas=$(pkg-config --libs cblas)"
-	econf "${myconf}"|| die "econf failed"
-	emake || die "emake failed"
+src_configure() {
+	if use cblas; then
+		export CBLAS_LIBS="$(pkg-config --libs cblas)"
+		export CBLAS_CFLAGS="$(pkg-config --cflags cblas)"
+	fi
+	econf $(use_with cblas)
 }
 
 src_install() {
@@ -58,8 +58,8 @@ src_install() {
 		|| die "sed cblas.pc failed"
 	insinto /usr/$(get_libdir)/blas/gsl
 	doins cblas.pc || die "installing cblas.pc failed"
-	ESELECT_PROF=gsl
-	eselect cblas add $(get_libdir) "${FILESDIR}"/eselect.cblas.gsl ${ESELECT_PROF}
+	eselect cblas add $(get_libdir) "${FILESDIR}"/eselect.cblas.gsl \
+		${ESELECT_PROF}
 }
 
 pkg_postinst() {

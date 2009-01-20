@@ -1,6 +1,13 @@
 # ChangeLog for sci-libs/gsl
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.49 2008/11/09 16:46:11 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.50 2009/01/19 19:22:30 bicatali Exp $
+
+*gsl-1.12 (19 Jan 2009)
+
+  19 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/gsl-1.12-cblas.patch, -gsl-1.10.ebuild, +gsl-1.12.ebuild:
+  Version bump. cblas patch adapted and added a check on the external
+  cblas lib not to be gsl itself.
 
   09 Nov 2008; Raúl Porcel <armin76@gentoo.org> gsl-1.11.ebuild:
   alpha/ia64 stable wrt #245838
