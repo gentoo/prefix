@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.61 2008/12/17 22:04:50 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.62 2009/01/16 20:49:04 tgurr Exp $
+
+*ghostscript-gpl-8.63-r1 (16 Jan 2009)
+
+  16 Jan 2009; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.63-r1.ebuild:
+  Revbump adding workaround for broken parallel install (bug #234378). Fix
+  pre-stripping and respecting ldflags in X11.so (bug #215913, thanks Kevin
+  Pyle for the patch).
 
   17 Dec 2008; Markus Meier <maekke@gentoo.org> ghostscript-gpl-8.63.ebuild:
   amd64 stable, bug #249871
