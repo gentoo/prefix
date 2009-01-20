@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/verve
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/ChangeLog,v 1.22 2009/01/13 15:35:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/ChangeLog,v 1.23 2009/01/18 16:25:45 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> verve-0.3.6.ebuild:
+  x86 stable, bug #254440
 
   13 Jan 2009; Brent Baude <ranger@gentoo.org> verve-0.3.6.ebuild:
   Marking verve-0.3.6 ppc64 and ppc for bug 254440

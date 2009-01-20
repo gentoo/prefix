@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/verve-0.3.6.ebuild,v 1.3 2009/01/13 15:35:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/verve-0.3.6.ebuild,v 1.4 2009/01/18 16:25:45 maekke Exp $
 
 EAPI="prefix"
 
