@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.4.ebuild,v 1.6 2009/01/09 17:32:39 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.4.ebuild,v 1.7 2009/01/18 12:04:25 klausman Exp $
 
 EAPI="prefix"
 
