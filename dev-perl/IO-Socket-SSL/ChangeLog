@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/IO-Socket-SSL
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.97 2009/01/09 23:03:35 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.98 2009/01/16 10:37:32 robbat2 Exp $
+
+*IO-Socket-SSL-1.20 (16 Jan 2009)
+
+  16 Jan 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +IO-Socket-SSL-1.20.ebuild:
+  Version bump via perl-bump experimental tool.
 
   09 Jan 2009; Joseph Jezak <josejx@gentoo.org> IO-Socket-SSL-1.18.ebuild,
   IO-Socket-SSL-1.19.ebuild:
