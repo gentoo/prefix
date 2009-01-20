@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/wxGTK
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.209 2008/11/22 20:40:24 dirtyepic Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.211 2009/01/18 19:27:54 maekke Exp $
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org> wxGTK-2.8.9.1-r3.ebuild:
+  amd64/x86 stable, bug #254696
+
+  18 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
+  wxGTK-2.8.9.1-r3.ebuild:
+  Stable on alpha, bug #254696
 
   22 Nov 2008; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.6.4.0-r1.ebuild:
   Drop all but arm and sh until they keyword eselect-wxwidgets.
