@@ -1,6 +1,11 @@
 # ChangeLog for net-dns/c-ares
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/c-ares/ChangeLog,v 1.45 2008/09/18 08:12:32 pva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/c-ares/ChangeLog,v 1.46 2009/01/18 18:02:36 pva Exp $
+
+*c-ares-1.6.0 (18 Jan 2009)
+
+  18 Jan 2009; Peter Volkov <pva@gentoo.org> +c-ares-1.6.0.ebuild:
+  Version bump.
 
 *c-ares-1.5.3 (18 Sep 2008)
 
