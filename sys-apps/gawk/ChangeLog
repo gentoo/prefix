@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/gawk
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.125 2008/11/28 07:28:08 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.126 2009/01/16 17:16:47 truedfx Exp $
+
+  16 Jan 2009; Harald van Dĳk <truedfx@gentoo.org>
+  files/filefuncs/Makefile:
+  Fix typo, to use CFLAGS when compiling
 
   28 Nov 2008; Ulrich Mueller <ulm@gentoo.org>
   +files/gawk-3.1.6-gnuinfo.patch, gawk-3.1.6.ebuild:
