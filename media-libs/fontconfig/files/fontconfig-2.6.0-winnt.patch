@@ -1,0 +1,128 @@
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/Makefile.am fontconfig-2.6.0/Makefile.am
+--- fontconfig-2.6.0.orig/Makefile.am	2009-01-21 09:47:40 +0100
++++ fontconfig-2.6.0/Makefile.am	2009-01-21 09:45:10 +0100
+@@ -60,6 +60,12 @@
+   RUN_FC_CACHE_TEST=test -z "$(DESTDIR)"
+ endif
+ 
++if DONT_CREATE_CACHEDIR_RULES
++  CREATE_CACHE_DIR=no
++else
++  CREATE_CACHE_DIR=yes
++endif
++
+ # Creating ChangeLog from git log:
+ 
+ MAINTAINERCLEANFILES += ChangeLog
+@@ -82,7 +88,10 @@
+ .PHONY: ChangeLog
+ 
+ install-data-local:
+-	$(mkinstalldirs) $(DESTDIR)$(configdir) $(DESTDIR)$(fc_cachedir)
++	$(mkinstalldirs) $(DESTDIR)$(configdir)
++	if test $(CREATE_CACHE_DIR) = "yes"; then \
++		$(mkinstalldirs) $(DESTDIR)$(fc_cachedir); \
++	fi
+ 	if [ -f $(DESTDIR)$(configdir)/fonts.conf ]; then \
+ 	  echo "backing up existing $(DESTDIR)$(configdir)/fonts.conf"; \
+ 	  mv $(DESTDIR)$(configdir)/fonts.conf $(DESTDIR)$(configdir)/fonts.conf.bak; \
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/configure.in fontconfig-2.6.0/configure.in
+--- fontconfig-2.6.0.orig/configure.in	2009-01-21 09:47:40 +0100
++++ fontconfig-2.6.0/configure.in	2009-01-21 09:48:00 +0100
+@@ -71,10 +71,14 @@
+   *-*-mingw*)
+     os_win32=yes
+     ;;
++  *-winnt*)
++  	os_parity=yes
++	;;
+   *)
+     os_win32=no
+ esac
+ AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
++AM_CONDITIONAL(DONT_CREATE_CACHEDIR_RULES, test "$os_win32" = "yes" || test "$os_parity" = "yes")
+ 
+ if test "$os_win32" = "yes"; then
+   AC_CHECK_PROG(ms_librarian, lib.exe, yes, no)
+@@ -381,7 +385,7 @@
+ 
+ case "$default_fonts" in
+ yes)
+-	if test "$os_win32" = "yes"; then
++	if test "$os_win32" = "yes" || test "$os_parity" = "yes"; then
+ 		FC_DEFAULT_FONTS="WINDOWSFONTDIR"
+ 		AC_DEFINE_UNQUOTED(FC_DEFAULT_FONTS, "WINDOWSFONTDIR", 
+ 				   [Windows font directory])
+@@ -460,7 +464,7 @@
+ 
+ case $fc_cachedir in
+ no|yes)
+-	if test "$os_win32" = "yes"; then
++	if test "$os_win32" = "yes" || test "$os_parity" = "yes"; then
+ 		fc_cachedir="WINDOWSTEMPDIR_FONTCONFIG_CACHE"
+ 	else
+ 		fc_cachedir=`eval echo "${localstatedir}/cache/"${PACKAGE}`
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/fc-cache/Makefile.am fontconfig-2.6.0/fc-cache/Makefile.am
+--- fontconfig-2.6.0.orig/fc-cache/Makefile.am	2009-01-21 09:47:41 +0100
++++ fontconfig-2.6.0/fc-cache/Makefile.am	2009-01-21 09:45:10 +0100
+@@ -27,7 +27,7 @@
+ 
+ SGML = ${FC_CACHE_SRC}/fc-cache.sgml
+ 
+-if OS_WIN32
++if DONT_CREATE_CACHEDIR_RULES
+ else
+ install-data-local:
+ 	-$(mkinstalldirs) "$(DESTDIR)$(fc_cachedir)"
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/src/fccfg.c fontconfig-2.6.0/src/fccfg.c
+--- fontconfig-2.6.0.orig/src/fccfg.c	2009-01-21 09:47:41 +0100
++++ fontconfig-2.6.0/src/fccfg.c	2009-01-21 09:45:10 +0100
+@@ -1671,9 +1671,10 @@
+ #ifdef _WIN32
+ 	if (fontconfig_path[0] == '\0')
+ 	{
++		char *p;
+ 		if(!GetModuleFileName(NULL, fontconfig_path, sizeof(fontconfig_path)))
+ 			goto bail1;
+-		char *p = strrchr (fontconfig_path, '\\');
++		p = strrchr (fontconfig_path, '\\');
+ 		if (p) *p = '\0';
+ 		strcat (fontconfig_path, "\\fonts");
+ 	}
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/src/fcint.h fontconfig-2.6.0/src/fcint.h
+--- fontconfig-2.6.0.orig/src/fcint.h	2009-01-21 09:47:41 +0100
++++ fontconfig-2.6.0/src/fcint.h	2009-01-21 09:45:10 +0100
+@@ -36,7 +36,12 @@
+ #elif defined(HAVE_STDINT_H)
+ #include <stdint.h>
+ #else
+-#error missing C99 integer data types
++# ifdef _WIN32
++typedef int int32_t;
++typedef short int16_t;
++# else
++#  error missing C99 integer data types
++# endif
+ #endif
+ #include <string.h>
+ #include <ctype.h>
+diff -ru -x '*.Po' -x '*.Plo' fontconfig-2.6.0.orig/src/fcxml.c fontconfig-2.6.0/src/fcxml.c
+--- fontconfig-2.6.0.orig/src/fcxml.c	2009-01-21 09:47:41 +0100
++++ fontconfig-2.6.0/src/fcxml.c	2009-01-21 09:45:10 +0100
+@@ -2060,6 +2060,7 @@
+ #ifdef _WIN32
+ 	if (strcmp (data, "CUSTOMFONTDIR") == 0)
+ 	{
++		char *p;
+ 		FcStrFree (data);
+ 		data = malloc (1000);
+ 		if (!data)
+@@ -2074,7 +2075,7 @@
+ 			FcStrFree (data);
+ 			break;
+ 		}
+-		char *p = strrchr (data, '\\');
++		p = strrchr (data, '\\');
+ 		if (p) *p = '\0';
+ 		strcat (data, "\\fonts");
+ 	}

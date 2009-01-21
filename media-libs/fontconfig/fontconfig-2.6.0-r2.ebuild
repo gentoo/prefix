@@ -14,7 +14,7 @@ SRC_URI="http://fontconfig.org/release/${P}.tar.gz"
 
 LICENSE="fontconfig"
 SLOT="1.0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc"
 
 # Purposefully dropped the xml USE flag and libxml2 support. Having this is
@@ -26,12 +26,14 @@ IUSE="doc"
 
 RDEPEND=">=media-libs/freetype-2.2.1
 	>=dev-libs/expat-1.95.3"
-DEPEND="${RDEPEND}
+DEPEND="
 	dev-util/pkgconfig
 	doc? (	app-text/docbook-sgml-utils
 		=app-text/docbook-sgml-dtd-3.1*	)"
-PDEPEND="app-admin/eselect-fontconfig
-	media-fonts/corefonts"
+PDEPEND="!x86-winnt? (
+		app-admin/eselect-fontconfig
+		media-fonts/corefonts
+	)"
 # *some* fonts are needed by nearly every gui application. corefonts satisfies
 # this. In Gentoo Prefix, there is no fonts automatically pulled in by X, etc.
 # So we must install them here. (bug #235553)
@@ -53,11 +55,11 @@ src_unpack() {
 
 	epunt_cxx #74077
 	epatch "${FILESDIR}"/${P}-parallel.patch
+	epatch "${FILESDIR}"/${P}-winnt.patch
 	# Neeeded to get a sane .so versionning on fbsd, please dont drop
 	# If you have to run eautoreconf, you can also leave the elibtoolize call as
 	# it will be a no-op.
-	eautomake
-	elibtoolize
+	eautoreconf # required for winnt, was eautomake and elibtoolize
 }
 
 src_compile() {
