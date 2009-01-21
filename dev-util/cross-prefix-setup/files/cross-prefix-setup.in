@@ -113,6 +113,7 @@ ebegin "creating '${_target_prefix}/etc/profile'"
 export EPREFIX="${_target_prefix}"
 export PATH="${_target_prefix}/bin:${_target_prefix}/usr/bin:\${PATH}"
 export PKG_CONFIG_PATH="${_target_prefix}/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
+export MANPATH="${_target_prefix}/usr/share/man:\$MANPATH"
 
 if [ -e "${_target_prefix}/etc/profile.env" ]; then
 	. "${_target_prefix}/etc/profile.env"
