@@ -7,11 +7,11 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular flag-o-matic
 
 DESCRIPTION="analog / digital clock for X"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-winnt"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
@@ -19,6 +19,17 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libXft
 	x11-libs/libxkbfile
 	x11-libs/libXaw"
-DEPEND="${RDEPEND}"
+DEPEND=""
 
 CONFIGURE_OPTIONS="--disable-xprint"
+
+pkg_setup() {
+	if [[ ${CHOST} == *-winnt* ]]; then
+		append-flags -xc++ -DNO_I18N
+
+		PATCHES=(
+			"${FILESDIR}"/${P}-winnt.patch
+		)
+	fi
+}
+
