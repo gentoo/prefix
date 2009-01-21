@@ -7,11 +7,11 @@ EAPI="prefix"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit eutils x-modular autotools
+inherit eutils x-modular autotools flag-o-matic
 
 DESCRIPTION="X.Org Xaw library"
 
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXt
@@ -34,7 +34,19 @@ src_unpack() {
 	PATCHES=(
 		"${FILESDIR}"/${PN}-1.0.5-darwin.patch
 	)
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		PATCHES[${#PATCHES[*]}]="${FILESDIR}"/${P}-winnt-cpp.patch
+		PATCHES[${#PATCHES[*]}]="${FILESDIR}"/${P}-winnt-no-libtool-hack.patch
+	fi
+
 	x-modular_src_unpack
 	eautoreconf # eautoreconf gets ran by the eclass only if SNAPSHOT="yes", so
 				# we need it for prefix.
+}
+
+src_compile() {
+	[[ ${CHOST} == *-winnt* ]] && append-flags -xc++
+
+	x-modular_src_compile
 }
