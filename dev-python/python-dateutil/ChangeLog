@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/python-dateutil
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-dateutil/ChangeLog,v 1.16 2009/01/14 17:39:15 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-dateutil/ChangeLog,v 1.17 2009/01/20 13:56:28 neurogeek Exp $
+
+*python-dateutil-1.4.1-r1 (20 Jan 2009)
+
+  20 Jan 2009; Jesus Rivero <neurogeek@gentoo.org>
+  -python-dateutil-1.4.1.ebuild, +python-dateutil-1.4.1-r1.ebuild:
+  Fixed DEPEND typo, Added setuptools to DEPEND. Removed old version
 
 *python-dateutil-1.4.1 (14 Jan 2009)
 

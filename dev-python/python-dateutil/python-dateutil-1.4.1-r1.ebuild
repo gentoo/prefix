@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-dateutil/python-dateutil-1.4.1.ebuild,v 1.1 2009/01/14 17:39:15 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-dateutil/python-dateutil-1.4.1-r1.ebuild,v 1.1 2009/01/20 13:56:28 neurogeek Exp $
 
 EAPI="prefix 2"
 NEED_PYTHON=2.3
-inherit eutils distutils
+inherit distutils
 
 DESCRIPTION="dateutil datetime math and logic library for python"
 HOMEPAGE="http://labix.org/python-dateutil"
@@ -17,7 +17,10 @@ IUSE=""
 
 DOCS="NEWS README"
 
-DEPENDS="sys-libs/timezone-data"
+DEPEND=">=dev-python/setuptools-0.6_rc7-r1
+	      sys-libs/timezone-data"
+RDEPEND=""
+
 PYTHON_MODNAME=dateutil
 
 src_prepare() {
