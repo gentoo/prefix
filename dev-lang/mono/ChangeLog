@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.150 2009/01/19 21:30:19 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.151 2009/01/20 13:51:44 loki_val Exp $
+
+*mono-2.2-r2 (20 Jan 2009)
+
+  20 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/mono-2.2-r121596-work-around-runtime-crash.patch,
+  -mono-2.2-r1.ebuild, +mono-2.2-r2.ebuild:
+  Fix bug 255610, /usr/bin/mod doesn't work. Also include patch for upstream
+  bug 458168, crasher bug that could be triggered during compilation.
 
 *mono-2.2-r1 (19 Jan 2009)
 

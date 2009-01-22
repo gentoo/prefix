@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/Attic/mono-2.2-r1.ebuild,v 1.2 2009/01/19 23:10:02 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r2.ebuild,v 1.2 2009/01/20 22:44:06 mr_bones_ Exp $
 
 EAPI="prefix 2"
 
@@ -15,19 +15,20 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="xen moonlight minimal"
 
 #Bash requirement is for += operator
-RDEPEND=">=app-shells/bash-3.2
-	!<dev-dotnet/pnet-0.6.12
+COMMONDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
 	dev-libs/glib:2
-	!minimal? (
-		=dev-dotnet/libgdiplus-${GO_MONO_REL_PV}*
-		=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*
-	)
+	!minimal? ( =dev-dotnet/gluezilla-${GO_MONO_REL_PV}* )
 	ia64? (
 		sys-libs/libunwind
 	)"
-DEPEND="${RDEPEND}
-	sys-devel/bc"
+RDEPEND="${COMMONDEPEND}
+	!minimal? ( =dev-dotnet/libgdiplus-${GO_MONO_REL_PV}* )
+	|| ( www-client/links www-client/lynx )"
+
+DEPEND="${COMMONDEPEND}
+	sys-devel/bc
+	>=app-shells/bash-3.2"
 PDEPEND="dev-dotnet/pe-format"
 
 MAKEOPTS="${MAKEOPTS} -j1"
@@ -38,6 +39,7 @@ PATCHES=(
 	"${WORKDIR}/mono-2.2-libdir126.patch"
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
+	"${FILESDIR}/mono-2.2-r121596-work-around-runtime-crash.patch"
 )
 
 pkg_setup() {
@@ -86,6 +88,9 @@ src_test() {
 
 src_install() {
 	go-mono_src_install
+	#Bug 255610
+	sed -i -e "s:mono/2.0/mod.exe:mono/1.0/mod.exe:" \
+		"${ED}"/usr/bin/mod || die "Failed to fix mod."
 
 	docinto docs
 	dodoc docs/*
