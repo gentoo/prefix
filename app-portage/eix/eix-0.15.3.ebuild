@@ -22,6 +22,12 @@ DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	doc? ( dev-python/docutils )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-const_backward_iterator.patch
+}
+
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
 		--with-ebuild-sh-default="/usr/$(get_libdir)/portage/bin/ebuild.sh" \
