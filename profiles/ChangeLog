@@ -1,10 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2279 2009/01/19 22:54:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2283 2009/01/20 14:14:57 tove Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  20 Jan 2009; Torsten Veller <tove@gentoo.org> updates/1Q-2009,
+  package.mask:
+  Remove temporary mask of new perl virtuals. Add move entries to updates
+
+  20 Jan 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Package mask ~sys-fs/udev-136 until 135-r3 is tested good enough and the
+  upstream rule-changes have been reviewed
+
+  20 Jan 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Temporary mask of new perl virtuals
+
+  20 Jan 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Remove dev-perl/SOAP mask
 
   19 Jan 2009; Alexis Ballier <aballier@gentoo.org>
   arch/x86-fbsd/package.use.mask, default-bsd/fbsd/package.use.mask,

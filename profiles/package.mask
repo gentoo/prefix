@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9408 2009/01/20 01:41:19 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9415 2009/01/21 11:15:20 mescalinum Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,26 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Federico Ferri <mescalinum@gentoo.org> (21 Jan 2009)
+# Still under test and probably wont work for the most of people
+# as there are a number of open issues
+=app-pda/synce-gvfs-0.2*
+=app-pda/synce-libsynce-0.13*
+=app-pda/synce-librapi2-0.13*
+=app-pda/synce-librra-0.13*
+=app-pda/synce-sync-engine-0.13*
+=app-pda/synce-hal-0.13*
+=app-pda/synce-trayicon-0.13*
+=app-pda/synce-0.13*
+=app-pda/synce-kpm-0.13*
+=app-pda/synce-gnomevfs-0.13*
+=app-pda/synce-odccm-0.13*
+
+# Matthias Schwarzott <zzam@gentoo.org> (20 Jan 2009)
+# Masked until udev-135-r3 is tested good enough and stable
+# and until all (upstream) rule changes are reviewed
+~sys-fs/udev-136
 
 # Ben de Groot <yngwin@gentoo.org> (19 Jan 2009)
 # Masked because of bug 248038 which requires mask of qt-4.3*
@@ -290,10 +310,6 @@ app-editors/katoob
 # Mike Pagano <mpagano@gentoo.org> (17 Dec 2008)
 # Masked waiting on >=portage-2.2* to be unmasked
 >=app-portage/portpeek-1.6
-
-# Torsten Veller <tove@gentoo.org> (17 Dec 2008)
-# Masked for removal
-dev-perl/SOAP
 
 # Tiziano Müller <dev-zero@gentoo.org> (16 Dec 2008)
 # Mask for testing
