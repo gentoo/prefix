@@ -1,6 +1,9 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.256 2009/01/19 09:28:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.257 2009/01/20 19:44:28 aballier Exp $
+
+  20 Jan 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  set empty keywords for the live ebuild
 
   19 Jan 2009; Alexis Ballier <aballier@gentoo.org>
   ffmpeg-0.4.9_p20081014.ebuild, ffmpeg-0.4.9_p20081219.ebuild,
