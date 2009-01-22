@@ -1,6 +1,11 @@
 # ChangeLog for app-text/djvu
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.86 2008/12/01 21:23:48 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.88 2009/01/20 19:00:44 pva Exp $
+
+*djvu-3.5.21_p20090103 (20 Jan 2009)
+
+  20 Jan 2009; Peter Volkov <pva@gentoo.org> +djvu-3.5.21_p20090103.ebuild:
+  Bump to CVS snapshot as it fixes plugin crash on amd64.
 
   01 Dec 2008; Brent Baude <ranger@gentoo.org> djvu-3.5.21.ebuild:
   stable ppc64, bug 244258
