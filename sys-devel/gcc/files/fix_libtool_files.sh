@@ -41,10 +41,11 @@ ARGV3=$3
 source "@GENTOO_PORTAGE_EPREFIX@"/etc/profile || exit 1
 source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || exit 1
 
-if [[ ${EUID} -ne 0 ]] ; then
-	eerror "${0##*/}: Must be root."
-	exit 1
-fi
+# Prefix: no!
+#if [[ ${EUID} -ne 0 ]] ; then
+#	eerror "${0##*/}: Must be root."
+#	exit 1
+#fi
 
 # make sure the files come out sane
 umask 0022
