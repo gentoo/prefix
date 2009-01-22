@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/pccts
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/ChangeLog,v 1.25 2008/01/27 10:49:36 grobian Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/ChangeLog,v 1.26 2009/01/20 22:21:56 aballier Exp $
+
+  20 Jan 2009; Alexis Ballier <aballier@gentoo.org> pccts-1.33.33.ebuild:
+  keyword ~x86-fbsd
 
   27 Jan 2008; Fabian Groffen <grobian@gentoo.org> pccts-1.33.33.ebuild:
   Dropped ppc-macos keyword, see you in prefix
