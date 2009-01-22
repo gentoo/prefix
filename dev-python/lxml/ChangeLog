@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/lxml
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.46 2008/08/19 10:07:42 hawking Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.47 2009/01/20 13:37:39 neurogeek Exp $
+
+*lxml-2.1.5 (20 Jan 2009)
+
+  20 Jan 2009; Jesus Rivero <neurogeek@gentoo.org>
+  +files/lxml-2.1.5_unicode_test.patch, +lxml-2.1.5.ebuild:
+  Version bump. Closes bug #255545
 
 *lxml-2.1.1 (19 Aug 2008)
 
