@@ -1,6 +1,15 @@
 # ChangeLog for app-text/pdfjam
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdfjam/ChangeLog,v 1.19 2009/01/18 11:12:20 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdfjam/ChangeLog,v 1.21 2009/01/20 07:55:23 aballier Exp $
+
+  20 Jan 2009; Alexis Ballier <aballier@gentoo.org> pdfjam-1.20.ebuild,
+  pdfjam-1.20-r1.ebuild:
+  assign RDEPEND to DEPEND
+
+*pdfjam-1.21 (20 Jan 2009)
+
+  20 Jan 2009; Alexis Ballier <aballier@gentoo.org> +pdfjam-1.21.ebuild:
+  version bump, security fixes merged upstream
 
   18 Jan 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   pdfjam-1.20-r1.ebuild:
