@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.61 2008/12/30 20:50:39 pchrist Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.62 2009/01/20 13:33:53 loki_val Exp $
+
+  20 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.use.mask:
+  Pango is a Work-In-Progress for libgdiplus
 
   30 Dec 2008; Panagiotis Christopoulos <pchrist@gentoo.org> packages:
   put back sys-fs/e2fsprogs in system set, after fixing e2fsprogs-libs
