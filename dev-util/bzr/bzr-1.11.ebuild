@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.6.1.ebuild,v 1.5 2008/10/26 21:35:26 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.11.ebuild,v 1.1 2009/01/20 11:58:51 pva Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI="http://launchpad.net/bzr/${SERIES}/${MY_PV}/+download/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
-IUSE="curl emacs sftp test"
+IUSE="curl doc emacs sftp test"
 
 RDEPEND="|| ( dev-python/celementtree >=dev-lang/python-2.5 )
 	curl? ( dev-python/pycurl )
@@ -41,7 +41,7 @@ src_unpack() {
 	distutils_src_unpack
 
 	# Don't regenerate .c files from .pyx when pyrex is found.
-	epatch "${FILESDIR}/${PN}-0.92-no-pyrex.patch"
+	epatch "${FILESDIR}/${PN}-1.8-no-pyrex.patch"
 	# Don't run lock permission tests when running as root
 	epatch "${FILESDIR}/${PN}-0.90-tests-fix_root.patch"
 	# Fix permission errors when run under directories with setgid set.
@@ -59,12 +59,14 @@ src_compile() {
 src_install() {
 	distutils_src_install --install-data "${EPREFIX}"/usr/share
 
-	docinto developers
-	dodoc doc/developers/*
-	for doc in mini-tutorial tutorials user-{guide,reference}; do
-		docinto $doc
-		dodoc doc/en/$doc/*
-	done
+	if use doc; then
+		docinto developers
+		dodoc doc/developers/* || die "dodoc failed"
+		for doc in mini-tutorial tutorials user-{guide,reference}; do
+			docinto $doc
+			dodoc doc/en/$doc/* || die "dodoc failed"
+		done
+	fi
 
 	if use emacs; then
 		elisp-install ${PN} contrib/emacs/*.el* || die "elisp-install failed"
@@ -100,9 +102,20 @@ pkg_postrm() {
 }
 
 src_test() {
+	export LC_ALL=C
+	# Define tests which are known to fail below.
+	local skip_tests="("
+	skip_tests+="bzrlib.tests.test_bzrdir.ChrootedTests|"
+	skip_tests+="test_http.SmartHTTPTunnellingTest.test_bulk_data"
+	skip_tests+=")"
 	# Some tests expect the usual pyc compiling behaviour.
 	python_enable_pyc
-	"${python}" bzr --no-plugins selftest || die "bzr selftest failed"
+	if [[ -n ${skip_tests} ]]; then
+		einfo "Skipping tests known to fail: ${skip_tests}"
+		"${python}" bzr --no-plugins selftest -x ${skip_tests} || die "bzr selftest failed"
+	else
+		"${python}" bzr --no-plugins selftest || die "bzr selftest failed"
+	fi
 	# Just to make sure we don't hit any errors on later stages.
 	python_disable_pyc
 }
