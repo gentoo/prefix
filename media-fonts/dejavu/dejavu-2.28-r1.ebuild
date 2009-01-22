@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.28.ebuild,v 1.1 2008/12/21 17:48:39 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.28-r1.ebuild,v 1.1 2009/01/21 03:58:03 dirtyepic Exp $
 
 EAPI="prefix 1"
 
@@ -50,10 +50,13 @@ else
 	FONT_S=${S}/ttf
 fi
 
-FONT_CONF=( 	"${S}/fontconfig/20-unhint-small-dejavu.conf"
-		"${S}/fontconfig/20-unhint-small-dejavu-experimental.conf"
-		"${S}/fontconfig/57-dejavu.conf"
-		"${S}/fontconfig/61-dejavu-experimental.conf" )
+FONT_CONF=(
+		"${S}"/fontconfig/20-unhint-small-dejavu-sans-mono.conf
+		"${S}"/fontconfig/20-unhint-small-dejavu-sans.conf
+		"${S}"/fontconfig/20-unhint-small-dejavu-serif.conf
+		"${S}"/fontconfig/57-dejavu-sans-mono.conf
+		"${S}"/fontconfig/57-dejavu-sans.conf
+		"${S}"/fontconfig/57-dejavu-serif.conf )
 
 FONT_SUFFIX="ttf"
 DOCS="AUTHORS NEWS README status.txt langcover.txt unicover.txt"
