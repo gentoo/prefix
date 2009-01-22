@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  22 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask sys-apps/groff-1.20.1-r1 cause it generates too many bugs
+
   18 Jan 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask net-misc/ntp as it obviously needs root privileges
 
