@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.253 2009/01/19 16:10:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.254 2009/01/20 10:36:05 armin76 Exp $
+
+  20 Jan 2009; Raúl Porcel <armin76@gentoo.org> xterm-239.ebuild:
+  alpha/arm/ia64/s390/sh/x86 stable wrt #253155
 
   19 Jan 2009; Brent Baude <ranger@gentoo.org> xterm-239.ebuild:
   Marking xterm-239 ppc64 for bug 253155
