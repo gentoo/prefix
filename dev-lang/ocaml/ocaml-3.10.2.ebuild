@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.10 2008/09/22 18:56:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.12 2009/01/20 08:43:57 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
@@ -20,6 +20,7 @@ DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
 	ncurses? ( sys-libs/ncurses )
 	X? ( x11-libs/libX11 x11-proto/xproto )
 	gdbm? ( sys-libs/gdbm )"
+RDEPEND="${DEPEND}"
 
 PDEPEND="emacs? ( app-emacs/ocaml-mode )
 	xemacs? ( app-xemacs/ocaml )"
@@ -62,6 +63,7 @@ src_unpack() {
 }
 
 src_compile() {
+	export LC_ALL=C
 	local myconf="--host ${CHOST}"
 
 	# dev-lang/ocaml tends to break/give unexpected results with "unsafe" CFLAGS.
