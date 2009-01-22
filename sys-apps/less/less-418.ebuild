@@ -29,6 +29,12 @@ yesno() { use $1 && echo yes || echo no ; }
 src_compile() {
 	export ac_cv_lib_ncursesw_initscr=$(yesno unicode)
 	export ac_cv_lib_ncurses_initscr=$(yesno !unicode)
+	# Solaris includes regcmp in it's libc, but configure wrongly checks -lgen
+	# and -lintl, which obviously both "provide" regcmp.
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		export ac_cv_lib_gen_regcmp=no
+		export ac_cv_lib_intl_regcmp=no
+	fi
 	econf || die
 	emake || die
 }
