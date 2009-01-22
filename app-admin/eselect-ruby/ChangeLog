@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.6 2009/01/14 18:34:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.7 2009/01/20 20:40:30 aballier Exp $
+
+  20 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  eselect-ruby-20081227.ebuild:
+  keyword ~x86-fbsd, bug #252315
 
   14 Jan 2009; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20081227.ebuild:
   Marked ~hppa (bug #252315).
