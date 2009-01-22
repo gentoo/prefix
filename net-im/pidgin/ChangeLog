@@ -1,6 +1,16 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.80 2009/01/20 01:26:32 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.83 2009/01/21 01:12:51 tester Exp $
+
+  21 Jan 2009; Olivier Crête <tester@gentoo.org> pidgin-2.5.4.ebuild:
+  Remove autotools dep
+
+  20 Jan 2009; Ferris McCormick <fmccor@gentoo.org> pidgin-2.5.4.ebuild:
+  Add back ~sparc --- Bug #255579 --- we p.use.masked zephyr because we don't
+  want krb4.
+
+  20 Jan 2009; Olivier Crête <tester@gentoo.org> pidgin-2.5.4.ebuild:
+  Use gtk by default
 
 *pidgin-2.5.4 (20 Jan 2009)
 
