@@ -1,0 +1,55 @@
+# ChangeLog for dev-libs/libdshconfig
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdshconfig/ChangeLog,v 1.14 2008/05/12 16:17:09 maekke Exp $
+
+  12 May 2008; Markus Meier <maekke@gentoo.org> libdshconfig-0.20.12.ebuild:
+  amd64 stable, bug #217599
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libdshconfig-0.20.8.ebuild:
+  Clean up.
+
+  23 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  libdshconfig-0.20.12.ebuild:
+  Keyword ~amd64 wrt #198457.
+
+  26 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml:
+  Update for cluster herd split to hp-cluster and ha-cluster.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; +metadata.xml:
+  Grab for cluster herd.
+
+*libdshconfig-0.20.12 (10 Oct 2006)
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libdshconfig-0.20.12.ebuild:
+  Bump.
+
+*libdshconfig-0.20.11 (09 Aug 2004)
+
+  09 Aug 2004; Mike Frysinger <vapier@gentoo.org>
+  +libdshconfig-0.20.11.ebuild:
+  Version bump #59773 by Jens Braeuer.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libdshconfig-0.20.8.ebuild:
+  virtual/glibc -> virtual/libc
+
+*libdshconfig-0.20.8 (13 Aug 2003)
+
+  13 Aug 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bumpage.
+
+*libdshconfig-0.20.7-r1 (20 Mar 2003)
+
+  20 Mar 2003; Graham Forest <vladimir@gentoo.org>
+  libdshconfig-0.20.7-r1.ebuild:
+  Removed usage of pic USE flag
+
+*libdshconfig-0.20.7 (23 Nov 2002)
+
+  23 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Enrico Morelli <morelli@cerm.unifi.it>.
