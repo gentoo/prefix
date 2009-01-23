@@ -162,6 +162,14 @@ src_install() {
 
 	cd "${S}"/ijs
 	emake DESTDIR="${D}" install || die "emake ijs install failed"
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# this is just lazy, but fixing up the build system is no fun
+		for f in "${EPREFIX}"/usr/bin/{gsc,gsx} ; do
+			install_name_tool -id "${f}" "${D}${f}" || \
+				die "failed to fix self reference install_name for ${f}"
+		done
+	fi
 }
 
 pkg_postinst() {
