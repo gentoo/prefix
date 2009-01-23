@@ -173,6 +173,10 @@ src_compile() {
 		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die
 
+	if [[ ${CHOST} == *-winnt* ]]; then
+		( cd fips && emake -j1 links ) || die "make links in fips failed"
+	fi
+
 	# depend is needed to use $confopts
 	# rehash is needed to prep the certs/ dir
 	emake -j1 depend || die "depend failed"
