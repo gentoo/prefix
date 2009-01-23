@@ -192,10 +192,10 @@ src_unpack() {
 			"${S}/usr/bin/ghci-${PV}" \
 			"${S}/usr/bin/ghc-pkg-${PV}" \
 			"${S}/usr/bin/hsc2hs" \
-			"${S}/usr/$(get_libdir)/${P}/package.conf" \
+			"${S}"/usr/lib*/${P}/package.conf \
 			|| die "Relocating ghc from /usr to /opt/ghc failed"
 
-		sed -i -e "s|/usr/$(get_libdir)|${LOC}/$(get_libdir)|" \
+		sed -i -e "s|/usr/lib[^/]|${LOC}/$(get_libdir)|" \
 			"${S}/usr/bin/ghcprof"
 
 	else
