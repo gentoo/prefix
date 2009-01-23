@@ -12,7 +12,7 @@ esac
 
 # parity is not very picky about getting options not required for
 # the current pass, so give them always.
-link_add="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib -rpath ${EPREFIX}/lib -rpath ${EPREFIX}/usr/lib"
+link_add="-cfg SysLibraryPaths=${EPREFIX}/lib -cfg SysLibraryPaths=${EPREFIX}/usr/lib -cfg RunPaths=${EPREFIX}/lib -cfg RunPaths=${EPREFIX}/usr/lib"
 comp_add="-I${EPREFIX}/include -I${EPREFIX}/usr/include"
 
 # options added at end of command line intentionally, to keep up
