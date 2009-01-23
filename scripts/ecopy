@@ -10,7 +10,7 @@ EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 source "${EPREFIX}/etc/init.d/functions.sh"
 
 if ! type -P qatom > /dev/null ; then
-	ewarn "This script suggests to use qatom, please emerge"
+	ewarn "This script *highly* suggests to use qatom, please emerge"
 	ewarn "app-portage/portage-utils to use this improved logic."
 	QATOM="false"
 fi
@@ -23,6 +23,8 @@ if [[ -z ${1} ]] ; then
 	einfo "- you can also specify a specific version, using the '=' prefix"
 	einfo "and appending a version"
 	einfo
+	einfo "ecopy is a best effort script only. It doesn't guarantee a working"
+	einfo "result"
 	exit 0
 fi
 
@@ -52,6 +54,9 @@ return_greatest() {
 # positive.
 return_greatest_wrapper() {
 	if [[ "${QATOM}" == "false" ]]; then
+		ewarn "Using outdated logic, might be broken."
+		ewarn "emerge app-portage/portage-utils"
+		ewarn
 		echo "$( wget -q "${RSURL}/${catpkg}" -O - | \
 		egrep "href=\"[^\"]+\.ebuild\"" -o | \
 		sed -e 's/^href="//' -e 's/"$//' | \
