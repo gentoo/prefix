@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/netio
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/ChangeLog,v 1.18 2008/01/19 12:57:04 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/ChangeLog,v 1.19 2009/01/22 20:03:52 jer Exp $
+
+  22 Jan 2009; Jeroen Roovers <jer@gentoo.org> netio-1.26.ebuild:
+  Do not install the Linux binary executable (found through bug #240766).
 
   19 Jan 2008; Raúl Porcel <armin76@gentoo.org> -netio-1.23.ebuild:
   old

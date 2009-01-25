@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/netio-1.26.ebuild,v 1.7 2008/01/16 20:21:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/netio-1.26.ebuild,v 1.8 2009/01/22 20:03:52 jer Exp $
 
 EAPI="prefix"
 
@@ -46,7 +46,7 @@ src_install() {
 		netb_2_c.h netio.doc getopt.c Makefile netbios.c
 
 	# also install binaries
-	dodoc bin/os2-i386.exe bin/win32-i386.exe bin/linux-i386
+	dodoc bin/os2-i386.exe bin/win32-i386.exe
 }
 
 pkg_postinst() {
