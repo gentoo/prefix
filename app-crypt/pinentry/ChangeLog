@@ -1,6 +1,11 @@
 # ChangeLog for app-crypt/pinentry
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.91 2009/01/06 21:16:22 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.92 2009/01/22 19:17:41 swegener Exp $
+
+*pinentry-0.7.5-r1 (22 Jan 2009)
+
+  22 Jan 2009; Sven Wegener <swegener@gentoo.org> +pinentry-0.7.5-r1.ebuild:
+  Add support for the static USE flag, bug #247770.
 
   06 Jan 2009; Sven Wegener <swegener@gentoo.org>
   -files/pinentry-0.7.2-grab.patch, -files/0.7.2-info.patch,
