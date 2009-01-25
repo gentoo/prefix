@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.97 2009/01/09 17:28:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.98 2009/01/23 11:29:41 armin76 Exp $
+
+  23 Jan 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.10.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #252432
 
   09 Jan 2009; Brent Baude <ranger@gentoo.org> apache-2.2.10.ebuild:
   Marking apache-2.2.10 ppc for bug 252432
