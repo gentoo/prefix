@@ -180,7 +180,19 @@ qt4-build_src_compile() {
 		#use -I from configure
 		myconf="${myconf} $(pkg-config --cflags glib-2.0)"
 		#use -L and -l from configure
-		myconf="${myconf} $(pkg-config --libs glib-2.0 gthread-2.0)"
+		if use aqua; then
+			myconf="${myconf} $(pkg-config --libs glib-2.0 gthread-2.0)"
+		else
+			# avoid the -pthread argument
+			myconf="${myconf} $(pkg-config --libs glib-2.0)"
+		fi
+
+	fi
+
+	# freetype2 include dir is non-standard, thus include it on configure
+	if ! use aqua; then
+		# use -I from configure
+		myconf="${myconf} $(pkg-config --cflags freetype2)"
 	fi
 
 	case "${PV}" in
