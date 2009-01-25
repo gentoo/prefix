@@ -1,0 +1,58 @@
+diff -u -r a/configure.in b/configure.in
+--- a/configure.in	2009-01-23 17:22:08.468513692 +0100
++++ b/configure.in	2009-01-23 17:24:07.636680538 +0100
+@@ -172,6 +172,21 @@
+ esac
+ AC_SUBST([PTHREAD_LIBS])
+ 
++dnl **********************************
++dnl *** check if we have _NL_TIME_FIRST_WEEKDAY 
++dnl *** note that it is an enum and not a define
++dnl **********************************
++AC_MSG_CHECKING([for _NL_TIME_FIRST_WEEKDAY])
++AC_TRY_LINK([#include <langinfo.h>], [
++char c;
++c = *((unsigned char *)  nl_langinfo(_NL_TIME_FIRST_WEEKDAY));
++], nl_ok=yes, nl_ok=no)
++AC_MSG_RESULT($nl_ok)
++if test "$nl_ok" = "yes"; then
++  AC_DEFINE([HAVE__NL_TIME_FIRST_WEEKDAY], [1],
++      [Define if _NL_TIME_FIRST_WEEKDAY is available])
++fi
++
+ AM_CONDITIONAL([INCLUDED_LIBICAL], [test x"$ac_INCLUDED_LIBICAL" = x"yes"])
+ AM_CONDITIONAL([HAVE_PTHREAD], [test x"$have_pthread" = x"yes"])
+ AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
+diff -u -r a/src/parameters.c b/src/parameters.c
+--- a/src/parameters.c	2009-01-23 17:22:08.529511185 +0100
++++ b/src/parameters.c	2009-01-23 17:23:43.167509746 +0100
+@@ -30,7 +30,10 @@
+ 
+ #include <stdio.h>
+ #include <locale.h>
++
++#ifdef HAVE__NL_TIME_FIRST_WEEKDAY
+ #include <langinfo.h>
++#endif
+ 
+ #include <glib.h>
+ #include <glib/gprintf.h>
+@@ -129,6 +132,7 @@
+  *     to return 0..6 mon..sun, which is what libical uses */
+ int get_first_weekday_from_locale()
+ {
++#ifdef HAVE__NL_TIME_FIRST_WEEKDAY
+     union { unsigned int word; char *string; } langinfo;
+     int week_1stday = 0;
+     int first_weekday = 1;
+@@ -147,6 +151,10 @@
+         orage_message(150, "get_first_weekday: unknown value of _NL_TIME_WEEK_1STDAY.");
+ 
+     return((week_1stday + first_weekday - 2 + 7) % 7);
++#else
++    orage_message(150, "get_first_weekday: Can not find first weekday. Using default: Monday=0. If this is wrong guess. please set undocumented parameter: Ical week start day (Sunday=6)");
++    return(0);
++#endif
+ }
+ 
+ static void dialog_response(GtkWidget *dialog, gint response_id
