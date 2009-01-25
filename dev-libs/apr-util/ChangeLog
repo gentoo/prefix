@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.122 2009/01/18 12:04:25 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.123 2009/01/23 11:43:14 armin76 Exp $
+
+  23 Jan 2009; Raúl Porcel <armin76@gentoo.org> apr-util-1.3.4.ebuild:
+  arm/ia64/s390/sh stable wrt #246003
 
   18 Jan 2009; Tobias Klausmann <klausman@gentoo.org> apr-util-1.3.4.ebuild:
   Stable on alpha, bug #246003
