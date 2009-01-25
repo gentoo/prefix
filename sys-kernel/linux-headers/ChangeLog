@@ -1,6 +1,10 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.283 2009/01/09 22:57:24 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.284 2009/01/23 11:32:05 armin76 Exp $
+
+  23 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  linux-headers-2.6.27-r2.ebuild:
+  alpha/ia64 stable wrt #252645
 
   09 Jan 2009; Joseph Jezak <josejx@gentoo.org>
   linux-headers-2.6.27-r2.ebuild:
