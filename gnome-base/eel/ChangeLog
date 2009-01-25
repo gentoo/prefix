@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/eel
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.205 2008/11/13 19:10:07 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.206 2009/01/22 13:16:04 armin76 Exp $
+
+  22 Jan 2009; Raúl Porcel <armin76@gentoo.org> eel-2.24.1.ebuild:
+  Add ~sh
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> eel-2.22.2.ebuild:
   Marking eel-2.22.2 ppc64 stable for bug 236971

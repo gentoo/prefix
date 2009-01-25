@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.1 2008/10/20 19:44:07 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.2 2009/01/22 13:16:04 armin76 Exp $
 
 EAPI="prefix"
 
