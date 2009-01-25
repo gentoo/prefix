@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.247 2009/01/20 17:23:06 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.248 2009/01/23 16:43:43 ranger Exp $
+
+  23 Jan 2009; Brent Baude <ranger@gentoo.org> libxml2-2.7.2-r2.ebuild:
+  Marking libxml2-2.7.2-r2 ppc64 for bug 249703
 
   20 Jan 2009; Tobias Heinlein <keytoaster@gentoo.org>
   libxml2-2.7.2-r2.ebuild:
