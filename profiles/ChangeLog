@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2283 2009/01/20 14:14:57 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2289 2009/01/24 19:25:16 flameeyes Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask mikachan-font for removal.
+
+  24 Jan 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Also add sys-fs/udev-137 to package.mask
+
+  24 Jan 2009; Javier Villavicencio <the_paya@gentoo.org> profiles.desc:
+  Uncomment the Gentoo/FreeBSD-7.1 profile.
+
+  22 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Unmasking ~net-wireless/iwl3945-ucode-15.28.2.8 since it's good idea to
+  use it with 2.6.28 kernels.
+
+  22 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked net-wireless/iwl3945-ucode for tests. Please, report success and
+  failures in bug #246045
+
+  22 Jan 2009; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Mask sdricoh_cs, included in kernel 2.6.27.
 
   20 Jan 2009; Torsten Veller <tove@gentoo.org> updates/1Q-2009,
   package.mask:

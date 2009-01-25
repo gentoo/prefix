@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4149 2009/01/21 23:07:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4155 2009/01/24 10:07:47 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -84,9 +84,12 @@ app-backup/kdar:dar64 - Support libdar64.so usage
 app-benchmarks/bootchart:acct - Enable process accounting
 app-benchmarks/jmeter:beanshell - Enable BeanShell scripting support
 app-cdr/brasero:beagle - Enable app-misc/beagle support for searches
+app-cdr/brasero:cdrkit - Enable app-cdr/cdrkit backend
+app-cdr/brasero:cdrtools - Enable app-cdr/cdrtools backend
 app-cdr/brasero:gdl - Enable gdl support for customisable GUI
 app-cdr/brasero:gnome - Enable integration with the gnome-base/gnome desktop (help, session management, etc.)
 app-cdr/brasero:libburn - Enable dev-libs/libburn backend
+app-cdr/brasero:nautilus -  Build gnome-base/nautilus extension
 app-cdr/brasero:totem - Enable support for media-video/totem playlists
 app-cdr/cdrdao:gcdmaster - Enable building of gcdmaster application
 app-cdr/cdrdao:pccts - Use dev-util/pccts instead of the built-in substitution
@@ -340,6 +343,8 @@ app-misc/strigi:hyperestraier - Enable app-text/hyperestraier backend support.
 app-misc/strigi:inotify - Enable support for inotify.
 app-misc/strigi:log - Enables advanced logging through dev-libs/log4cxx.
 app-misc/tablix:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
+app-misc/tasque:hiveminder -  Allows you to use http://www.hiveminder.com/ as your storage backend. 
+app-misc/tasque:rememberthemilk -  Allows you to use http://www.rememberthemilk.com/ as your storage backend. 
 app-misc/tomboy:galago - Add support for the galago desktop presence framework (dev-dotnet/galago-sharp)
 app-misc/towitoko:moneyplex - Makes libtowitoko work for the moneyplex home banking software
 app-misc/tracker:applet - Build tracker monitor applet
@@ -2075,7 +2080,7 @@ net-misc/networkmanager:resolvconf - Use net-dns/openresolv for managing DNS inf
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
 net-misc/nxcl:nxclient - Use nxssh from net-misc/nxclient instead of standard ssh
-net-misc/nxserver-freenx:nxclient - Add support for the commercial nxclient
+net-misc/nxserver-freenx:nxclient - Allow to install net-misc/nxclient in parallel with this package, using it to display messages in the sessions
 net-misc/oidentd:masquerade - Enable support for masqueraded/NAT connections
 net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
@@ -2407,6 +2412,7 @@ sys-apps/hal:laptop - Adds support for power management scripts (sys-power/pm-ut
 sys-apps/hal:pcmcia - Allows HAL to process PCMCIA/CardBus slot data which includes inserts and removals and act on these events.
 sys-apps/hal:selinux - Installs SELinux policies and links HAL to the SELinux libraries.
 sys-apps/hwdata-gentoo:binary-drivers - Adds support for ATI/NVIDIA binary drivers
+sys-apps/kexec-tools:xen - Enable extended xen support
 sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/man:lzma - Uses app-arch/lzma-utils for the COMPRESS feature. Could also be used to guarantee that lzma is on the system.
 sys-apps/memtest86:serial - Compile with serial console support
@@ -2523,15 +2529,15 @@ sys-devel/gcc-nios2:multislot - Allow for SLOTs to include minor version (3.3.4 
 sys-devel/gdb:multitarget - Support all known targets in one gdb binary
 sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (eg. 3.3.4 instead of just 3.3)
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
-sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)
-sys-freebsd/freebsd-lib:hesiod - Enable hesiod support
+sys-freebsd/freebsd-lib:gpib - Enable General Purpose Interface Bus support
+sys-freebsd/freebsd-lib:hesiod - Enable support for net-dns/hesiod
 sys-freebsd/freebsd-sbin:ipfilter - Enable ipfilter firewall support
 sys-freebsd/freebsd-sbin:vinum - Enable vinum support (TODO improve description)
 sys-freebsd/freebsd-share:isdn - Enable ISDN support
-sys-freebsd/freebsd-usbin:ipfilter - Enable ipfilter firewall support
-sys-freebsd/freebsd-usbin:ipsec - Enable IPSec support
-sys-freebsd/freebsd-usbin:isdn - Enable ISDN support
-sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support
+sys-freebsd/freebsd-usbin:ipfilter - Enable building of ipfilter firewall support.
+sys-freebsd/freebsd-usbin:ipsec - Enable IPSec support.
+sys-freebsd/freebsd-usbin:isdn - Enable ISDN support.
+sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support daemon.
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/ecryptfs-utils:gpg - Enable app-crypt/gnupg key module
 sys-fs/ecryptfs-utils:openssl - Enable dev-libs/openssl key module
@@ -2603,7 +2609,10 @@ www-apps/Embperl:modperl - Enable www-apache/mod_perl support
 www-apps/Embperl:xalan - Enable dev-java/xalan support
 www-apps/bugzilla:extras - Optional Perl modules
 www-apps/bugzilla:modperl - Enable www-apache/mod_perl support
+www-apps/egroupware:gallery - Install gallery2 port for eGW
+www-apps/egroupware:icalsrv - Install iCal Server (eGroupware-iCalSrv)
 www-apps/egroupware:jpgraph - Add dev-php5/jpgraph support
+www-apps/egroupware:mydms - Install eGroupware-MyDMS
 www-apps/gallery:netpbm - Add media-libs/netpbm support
 www-apps/gallery:unzip - Add app-arch/unzip support for the archive upload module
 www-apps/gallery:zip - Add app-arch/zip for the zip download module

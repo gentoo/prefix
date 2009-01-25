@@ -1,8 +1,15 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.mask,v 1.11 2009/01/19 01:04:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.mask,v 1.12 2009/01/21 23:38:14 maekke Exp $
 
 # Markus Meier <maekke@gentoo.org> (18 Jan 2009)
-# mask this version for a smooth upgrade wrt bug #248038
-#=x11-libs/qt-4.3*
+# mask these versions for a smooth upgrade of x11-libs/qt-4.4.2 wrt bug #248038.
+=x11-libs/qt-4.3*
+~dev-java/qtjambi-4.3.3_p1
+<dev-python/PyQt4-4.4
+<dev-python/PyQt-3.17.6
+~dev-util/qgit-2.0
+~media-plugins/vdr-graphtft-0.1.18_alpha
+<=net-misc/italc-1.0.3
+<=x11-misc/qterm-0.5.2-r1
 
 # 2005.0 Jeremy Huddleston <eradicator@gentoo.org>
 # This is a stub file 'cause glibc provides 32bit libs on newer profiles
