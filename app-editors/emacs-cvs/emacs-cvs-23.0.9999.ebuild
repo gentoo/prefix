@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.18 2009/01/04 19:15:44 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999.ebuild,v 1.19 2009/01/23 06:50:35 ulm Exp $
 
 EAPI="prefix"
 
@@ -86,8 +86,6 @@ src_unpack() {
 	[ "${FULL_VERSION%.*}" = ${PV%.*} ] \
 		|| die "Upstream version number changed to ${FULL_VERSION}"
 	echo
-
-	epatch "${FILESDIR}/${PN}-freebsd-sparc-1.patch"
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \

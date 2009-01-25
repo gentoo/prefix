@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.231 2009/01/05 21:49:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.232 2009/01/23 06:50:35 ulm Exp $
+
+  23 Jan 2009; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.9999.ebuild:
+  Remove patch for sparc-fbsd since it was applied upstream, bug 159584.
 
   05 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   drop local xft USE-flag description, as it's global now
