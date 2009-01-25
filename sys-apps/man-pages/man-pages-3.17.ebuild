@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.14.ebuild,v 1.2 2008/12/06 06:24:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.17.ebuild,v 1.1 2009/01/21 15:41:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://kernel/linux/docs/manpages/Archive/${P}.tar.bz2
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="nls linguas_cs linguas_da linguas_de linguas_es linguas_fr linguas_it
 	linguas_ja linguas_nl linguas_pl linguas_ro linguas_ru linguas_zh_CN"
 RESTRICT="binchecks"
@@ -43,9 +43,10 @@ src_install() {
 	dodoc man-pages-*.Announce README Changes*
 
 	# Override with Gentoo specific or additional Gentoo pages
+	cd "${WORKDIR}"/man-pages-gentoo
 	insinto /usr/share/man
-	doins -r "${S}"/../man-pages-gentoo/* || die
-	dodoc "${S}"/../man-pages-gentoo/README.Gentoo
+	doman */* || die
+	dodoc README.Gentoo
 }
 
 pkg_postinst() {
