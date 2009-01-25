@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/readline
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.117 2008/11/23 18:24:10 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.118 2009/01/23 17:37:20 ranger Exp $
+
+  23 Jan 2009; Brent Baude <ranger@gentoo.org> readline-5.2_p13.ebuild:
+  stable ppc64, bug 255707
 
 *readline-5.2_p13 (23 Nov 2008)
 
