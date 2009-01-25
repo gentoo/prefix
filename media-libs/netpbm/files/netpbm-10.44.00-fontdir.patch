@@ -1,0 +1,50 @@
+fix from upstream
+
+http://bugs.gentoo.org/249384#c6
+
+Index: converter/ppm/picttoppm.c
+===================================================================
+--- converter/ppm/picttoppm.c	(revision 811)
++++ converter/ppm/picttoppm.c	(revision 812)
+@@ -4056,6 +4056,23 @@
+ 
+ 
+ 
++static void
++loadDefaultFontDir(void) {
++/*----------------------------------------------------------------------------
++   Load the fonts from the font directory file "fontdir" (in the current
++   directory), if it exists.
++-----------------------------------------------------------------------------*/
++    struct stat statbuf;
++    int rc;
++
++    rc = stat("fontdir", &statbuf);
++    
++    if (rc == 0)
++        load_fontdir("fontdir");
++}
++
++
++
+ int
+ main(int argc, char * argv[]) {
+     int argn;
+@@ -4092,8 +4109,6 @@
+         ++argn;
+     }
+ 
+-    load_fontdir("fontdir");
+-
+     if (argn < argc) {
+         ifp = pm_openr(argv[argn]);
+         ++argn;
+@@ -4103,6 +4118,8 @@
+     if (argn != argc)
+         pm_usage(usage);
+ 
++    loadDefaultFontDir();
++
+     if (header) {
+         stage = "Reading 512 byte header";
+         skip(512);
