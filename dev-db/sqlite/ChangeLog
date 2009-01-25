@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.211 2009/01/18 17:44:57 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.212 2009/01/23 11:34:26 armin76 Exp $
+
+  23 Jan 2009; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.6.2.ebuild:
+  arm/ia64/s390/sh stable wrt #254684
 
 *sqlite-3.6.10 (18 Jan 2009)
 
