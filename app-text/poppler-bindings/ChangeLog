@@ -1,6 +1,12 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.122 2009/01/10 22:32:48 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.123 2009/01/23 20:42:39 loki_val Exp $
+
+  23 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-bindings-0.6.3.ebuild, poppler-bindings-0.8.7.ebuild,
+  poppler-bindings-0.10.3.ebuild:
+  Fix qt dependency to not pull in qt-4.4, but only the modules. Also make
+  it more readable and remove 0.6.3.
 
 *poppler-bindings-0.10.3 (10 Jan 2009)
 
