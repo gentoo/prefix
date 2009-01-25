@@ -1,6 +1,11 @@
 # ChangeLog for virtual/perl-Storable
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/ChangeLog,v 1.18 2008/07/15 18:45:43 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/ChangeLog,v 1.19 2009/01/22 09:34:59 aballier Exp $
+
+  22 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  perl-Storable-2.16.ebuild:
+  remove x86-fbsd keyword from old version as we have no provider for this
+  version but newer ones are ok
 
   15 Jul 2008; Raúl Porcel <armin76@gentoo.org> perl-Storable-2.18.ebuild:
   alpha/ia64/sparc/x86 stable
