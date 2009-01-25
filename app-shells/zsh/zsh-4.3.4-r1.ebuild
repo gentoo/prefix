@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4-r1.ebuild,v 1.10 2008/06/29 10:46:16 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4-r1.ebuild,v 1.11 2009/01/21 11:20:25 tove Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}"-init.d-gentoo.diff
 	epatch "${FILESDIR}/${P}"-configure-changequote.patch
+	epatch "${FILESDIR}/${P}"-mkmakemod.patch
 	eautoreconf
 
 	cp "${FILESDIR}"/zprofile "${T}"/zprofile
