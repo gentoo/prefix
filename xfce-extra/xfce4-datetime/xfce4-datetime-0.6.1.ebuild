@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/xfce4-datetime-0.6.1.ebuild,v 1.4 2009/01/18 16:19:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/xfce4-datetime-0.6.1.ebuild,v 1.5 2009/01/21 19:43:02 jer Exp $
 
 EAPI="prefix"
 
