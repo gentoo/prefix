@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.254 2009/01/20 10:36:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.256 2009/01/22 19:57:23 betelgeuse Exp $
+
+  22 Jan 2009; Petteri Räty <betelgeuse@gentoo.org> xterm-239.ebuild:
+  Add back ROOT until xterm build system is fixed to behave properly.
+
+  21 Jan 2009; Markus Meier <maekke@gentoo.org> xterm-239.ebuild:
+  amd64 stable, bug #253155
 
   20 Jan 2009; Raúl Porcel <armin76@gentoo.org> xterm-239.ebuild:
   alpha/arm/ia64/s390/sh/x86 stable wrt #253155
