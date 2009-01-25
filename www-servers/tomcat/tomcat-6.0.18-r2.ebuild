@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.18-r2.ebuild,v 1.1 2008/12/19 20:48:47 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.18-r2.ebuild,v 1.2 2009/01/23 21:55:55 maekke Exp $
 
 EAPI="prefix 1"
 JAVA_PKG_IUSE="doc source"
