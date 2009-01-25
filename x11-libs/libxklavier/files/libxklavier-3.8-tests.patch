@@ -1,0 +1,43 @@
+# https://bugs.freedesktop.org/show_bug.cgi?id=19645
+# https://bugs.gentoo.org/show_bug.cgi?id=253773
+--- a/libxklavier-3.8/configure.in
++++ b/libxklavier-3.8/configure.in
+@@ -126,9 +126,9 @@
+ AM_CONDITIONAL(ENABLE_XMODMAP_SUPPORT, test "$enable_xmodmap_support" = "yes")
+ 
+ AC_MSG_CHECKING(whether at least one libxklavier backend is enabled)
+-if test \( "$enable_xkb_support" == "yes" -a \
+-          "$libxkbfile_present" == "yes" \) -o \
+-        "$enable_xmodmap_support" == "yes" ; then
++if test \( "$enable_xkb_support" = "yes" -a \
++          "$libxkbfile_present" = "yes" \) -o \
++        "$enable_xmodmap_support" = "yes" ; then
+   AC_MSG_RESULT(yes)
+ else
+   AC_MSG_RESULT(no)
+@@ -184,8 +184,8 @@
+ 
+ echo '**********************************************************'
+ echo '  Libxklavier is configured with the following backends:'
+-if test "$enable_xkb_support" == "yes" ; then
+-  if test "$libxkbfile_present" == "yes" ; then
++if test "$enable_xkb_support" = "yes" ; then
++  if test "$libxkbfile_present" = "yes" ; then
+     echo "    XKB, libxkbfile is present"
+     echo "         default ruleset: $xkb_default_ruleset"
+     echo "         base: $xkb_base"
+@@ -195,12 +195,12 @@
+     echo "    XKB, libxkbfile is NOT present"
+   fi
+ fi
+-if test "$enable_xmodmap_support" == "yes" ; then
++if test "$enable_xmodmap_support" = "yes" ; then
+   echo "    xmodmap, default ruleset: $xmodmap_default_ruleset"
+   echo "             base: $xmodmap_base"
+ fi
+ 
+-if test "$enable_gtk_doc" == "yes" ; then
++if test "$enable_gtk_doc" = "yes" ; then
+   echo "  gtk-doc enabled"
+ else
+   echo "  gtk-doc disabled"

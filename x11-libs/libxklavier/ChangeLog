@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.117 2009/01/04 00:36:08 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.118 2009/01/21 23:21:34 eva Exp $
+
+  21 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libxklavier-1.14-werror.patch, +files/libxklavier-3.8-tests.patch,
+  libxklavier-3.8.ebuild:
+  Fix doc DEPEND and bashism in tests, bug #253773.
 
 *libxklavier-3.8 (04 Jan 2009)
 

@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.1 2009/01/04 00:36:08 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.2 2009/01/21 23:21:34 eva Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit autotools eutils
 
 DESCRIPTION="High level XKB library"
 HOMEPAGE="http://www.freedesktop.org/Software/LibXklavier"
@@ -27,7 +27,18 @@ RDEPEND="|| (
 	app-text/iso-codes"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( app-doc/doxygen )"
+	doc? ( >=dev-util/gtk-doc-1.4 )
+	dev-util/gtk-doc-am"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Fix tests in configure.in, bug #253773
+	epatch "${FILESDIR}/${P}-tests.patch"
+
+	eautoreconf
+}
 
 src_compile() {
 	local xkbbase
@@ -42,7 +53,7 @@ src_compile() {
 	econf \
 		--with-xkb-base="${EPREFIX}"${xkbbase} \
 		--with-xkb-bin-base="${EPREFIX}"/usr/bin \
-		$(use_enable doc doxygen)
+		$(use_enable doc gtk-doc)
 
 	emake || die "emake failed"
 }
