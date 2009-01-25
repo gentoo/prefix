@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmpeg2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.66 2009/01/18 17:10:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.67 2009/01/23 17:42:34 ranger Exp $
+
+  23 Jan 2009; Brent Baude <ranger@gentoo.org> libmpeg2-0.5.1.ebuild:
+  stable ppc64, bug 255151
 
   18 Jan 2009; Markus Meier <maekke@gentoo.org> libmpeg2-0.5.1.ebuild:
   x86 stable, bug #255151
