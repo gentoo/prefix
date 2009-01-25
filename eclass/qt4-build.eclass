@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.17 2009/01/12 23:47:16 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.18 2009/01/21 08:55:28 gengor Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -132,6 +132,12 @@ qt4-build_src_unpack() {
 		symlink_binaries_to_buildtree
 	fi
 
+	# Bug 253127
+	if [[ $(gcc-major-version) -lt "4" ]] ; then
+		sed -e "/^QMAKE_CFLAGS\t/ s:$: -fno-stack-protector-all:" \
+		-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
+	fi
+
 	sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
 		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
 		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
@@ -157,9 +163,9 @@ qt4-build_src_compile() {
 	strip-flags
 	replace-flags -O3 -O2
 
-	if [[ $(gcc-fullversion) == "3.4.6" && gcc-specs-ssp ]] ; then
-		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
-		append-flags -fno-stack-protector
+	if [[ $(gcc-major-version) -lt "4" ]] ; then
+		ewarn "Appending -fno-stack-protector to CXXFLAGS"
+		append-cxxflags -fno-stack-protector
 	fi
 
 	# Bug 178652

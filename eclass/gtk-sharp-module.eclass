@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.11 2009/01/06 19:37:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.13 2009/01/23 20:28:58 loki_val Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>, butchered by ikelos, then loki_val.
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -78,6 +78,9 @@ gsm_get_tarball() {
 }
 
 [[ "${PN}" != "gtk-sharp-gapi" ]] && add_bdepend "=dev-dotnet/gtk-sharp-gapi-${GTK_SHARP_REQUIRED_VERSION}*"
+[[ "${PN}" != "gtk-sharp-gapi" ]] && add_bdepend "!!=dev-dotnet/gtk-sharp-gapi-2.12.7-r5"
+[[ "${PN}" != "gtk-sharp-gapi" ]] && add_bdepend "!!=dev-dotnet/gtk-sharp-gapi-2.12.7-r6"
+
 has "${GTK_SHARP_MODULE}" ${gnome_sharp_module_list} ${gnome_desktop_sharp_module_list} gtk-dotnet glade \
 	&& add_depend "=dev-dotnet/gtk-sharp-${GTK_SHARP_REQUIRED_VERSION}*"
 has "${GTK_SHARP_MODULE}" gtk gdk atk pango gtk-dotnet parser \
@@ -292,7 +295,7 @@ gtk-sharp-module_src_compile() {
 
 gtk-sharp-module_src_install() {
 
-	cd "${GTK_SHARP_MODULE_DIR}"
+	cd "${S}/${GTK_SHARP_MODULE_DIR}"
 	emake DESTDIR=${D} install || die "emake install failed"
 	mono_multilib_comply
 	find "${ED}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
