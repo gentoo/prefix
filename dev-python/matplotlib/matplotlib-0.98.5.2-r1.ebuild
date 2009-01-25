@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r1.ebuild,v 1.1 2009/01/15 09:57:46 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r1.ebuild,v 1.2 2009/01/21 09:32:07 bicatali Exp $
 
 WX_GTK_VER=2.8
 EAPI="prefix 2"
@@ -50,7 +50,6 @@ RDEPEND="${CDEPEND}
 			 app-text/tetex
 			 app-text/ptex ) )"
 
-RESTRICT=mirror
 DOCS="INTERACTIVE"
 
 use_setup() {
