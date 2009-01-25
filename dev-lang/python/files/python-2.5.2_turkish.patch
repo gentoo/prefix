@@ -79,7 +79,7 @@ diff -uNr Python-2.5.2.orig/Lib/locale.py Python-2.5.2/Lib/locale.py
      """
      # Normalize the locale name and extract the encoding
 -    fullname = localename.lower()
-+    fullname = localename.translate(_ascii_lower_map)
++    fullname = localename.encode('ascii').translate(_ascii_lower_map)
      if ':' in fullname:
          # ':' is sometimes used as encoding delimiter.
          fullname = fullname.replace(':', '.')
