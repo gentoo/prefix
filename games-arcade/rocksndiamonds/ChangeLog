@@ -1,6 +1,10 @@
 # ChangeLog for games-arcade/rocksndiamonds
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/ChangeLog,v 1.31 2008/11/26 02:12:40 mr_bones_ Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/ChangeLog,v 1.32 2009/01/21 21:34:28 mr_bones_ Exp $
+
+  21 Jan 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  rocksndiamonds-3.2.6.0.ebuild:
+  EAPI=2; add use-based deps
 
 *rocksndiamonds-3.2.6.0 (26 Nov 2008)
 
