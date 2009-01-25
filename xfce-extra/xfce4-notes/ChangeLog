@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-notes
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.60 2009/01/18 16:21:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.61 2009/01/21 19:46:03 jer Exp $
+
+  21 Jan 2009; Jeroen Roovers <jer@gentoo.org> xfce4-notes-1.6.3.ebuild:
+  Stable for HPPA (bug #254440).
 
   18 Jan 2009; Markus Meier <maekke@gentoo.org> xfce4-notes-1.6.3.ebuild:
   x86 stable, bug #254440
