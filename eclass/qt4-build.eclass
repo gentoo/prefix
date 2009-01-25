@@ -258,7 +258,11 @@ standard_configure_options() {
 		*) die "${ARCH} is unsupported by this eclass. Please file a bug." ;;
 	esac
 
-	myconf="${myconf} -stl -verbose -largefile -confirm-license -no-rpath
+	# don't do this in Prefix, or we will end up with non-working stuff
+	# on ELF systems
+	use prefix || myconf="${myconf} -no-rpath"
+
+	myconf="${myconf} -stl -verbose -largefile -confirm-license
 		-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR}
 		-datadir ${QTDATADIR} -docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR}
 		-plugindir ${QTPLUGINDIR} -sysconfdir ${QTSYSCONFDIR}
