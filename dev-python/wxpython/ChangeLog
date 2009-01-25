@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/wxpython
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.111 2009/01/19 23:43:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.112 2009/01/22 12:51:58 armin76 Exp $
+
+  22 Jan 2009; Raúl Porcel <armin76@gentoo.org> wxpython-2.6.4.0-r2.ebuild,
+  wxpython-2.8.9.1-r3.ebuild:
+  Readd ~arm/~sh
 
   19 Jan 2009; Alexis Ballier <aballier@gentoo.org>
   wxpython-2.8.9.1-r3.ebuild:
