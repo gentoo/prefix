@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-cleanice
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.28 2008/12/22 15:48:59 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/ChangeLog,v 1.29 2009/01/21 20:14:42 jer Exp $
+
+  21 Jan 2009; Jeroen Roovers <jer@gentoo.org>
+  gtk-engines-cleanice-2.4.1.ebuild:
+  Stable for HPPA (bug #251511).
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org>
   gtk-engines-cleanice-2.4.1.ebuild:
