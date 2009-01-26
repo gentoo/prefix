@@ -14,7 +14,7 @@ SRC_URI="ftp://oss.sgi.com/projects/xfs/download/cmd_tars/${MY_P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-#KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )
