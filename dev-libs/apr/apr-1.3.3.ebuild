@@ -61,6 +61,9 @@ src_compile() {
 
 	[[ ${CHOST} == *-mint* ]] && myconf="${myconf} --disable-dso"
 
+	# shl_load does not search runpath, but hpux11 supports dlopen
+	[[ ${CHOST} == *-hpux11* ]] && myconf="${myconf} --enable-dso=dlfcn"
+
 	# We pre-load the cache with the correct answer!  This avoids
 	# it violating the sandbox.  This may have to be changed for
 	# non-Linux systems or if sem_open changes on Linux.  This
