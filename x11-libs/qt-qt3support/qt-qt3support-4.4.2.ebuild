@@ -24,14 +24,15 @@ src/qt3support
 src/tools/uic3
 tools/designer/src/plugins/widgets
 tools/porting"
-QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
-src/tools/uic/
-"
 
 # mac version does not contain qtconfig?
 if [[ ${CHOST} != *-darwin* ]]; then
 	QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} tools/qtconfig"
 fi
+
+QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
+src/tools/uic/
+"
 
 pkg_setup() {
 	QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
