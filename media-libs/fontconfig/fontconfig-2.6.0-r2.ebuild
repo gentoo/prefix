@@ -55,7 +55,7 @@ src_unpack() {
 
 	epunt_cxx #74077
 	epatch "${FILESDIR}"/${P}-parallel.patch
-	epatch "${FILESDIR}"/${P}-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 	# Neeeded to get a sane .so versionning on fbsd, please dont drop
 	# If you have to run eautoreconf, you can also leave the elibtoolize call as
 	# it will be a no-op.
