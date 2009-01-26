@@ -38,6 +38,7 @@ src_unpack() {
 	if [[ ${CHOST} == *-winnt* ]]; then
 		PATCHES[${#PATCHES[*]}]="${FILESDIR}"/${P}-winnt-cpp.patch
 		PATCHES[${#PATCHES[*]}]="${FILESDIR}"/${P}-winnt-no-libtool-hack.patch
+		PATCHES[${#PATCHES[*]}]="${FILESDIR}"/${P}-winnt-externalref.patch
 	fi
 
 	x-modular_src_unpack
