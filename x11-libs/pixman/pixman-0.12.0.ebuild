@@ -10,13 +10,13 @@ EAPI="prefix"
 inherit x-modular toolchain-funcs versionator
 
 DESCRIPTION="Low-level pixel manipulation routines"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="altivec mmx sse sse2"
 
 CONFIGURE_OPTIONS="$(use_enable altivec vmx) $(use_enable mmx) \
 $(use_enable sse2) --disable-gtk"
 # (Open)Solaris /bin/sh is broken (at least on ~x64-solaris)
-export CONFIG_SHELL="${EPREFIX}"/bin/bash
+export CONFIG_SHELL="${BASH}"
 
 pkg_setup() {
 	if use sse2 && ! use sse; then
