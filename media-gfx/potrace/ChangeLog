@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/potrace
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/ChangeLog,v 1.24 2008/10/02 16:59:31 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/ChangeLog,v 1.25 2009/01/24 10:28:56 maekke Exp $
+
+  24 Jan 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  as discussed with pva, graphics herd will co-maintain this package
 
   02 Oct 2008; Brent Baude <ranger@gentoo.org> potrace-1.8.ebuild:
   stable ppc, bug 239031
