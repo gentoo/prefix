@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.52.ebuild,v 1.1 2008/12/17 20:45:44 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.52.ebuild,v 1.2 2009/01/24 14:25:14 nixnut Exp $
 
 EAPI="prefix"
 
