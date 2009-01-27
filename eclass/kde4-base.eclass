@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.24 2009/01/18 15:12:01 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.25 2009/01/24 23:24:13 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -331,7 +331,7 @@ case ${SLOT} in
 		if [[ -n $KMNAME ]]; then
 		    ESVN_PROJECT="${KMNAME}"
 			if [[ -z ${KMNOMODULE} && -z ${KMMODULE} ]]; then
-				KMMODULE="${PN}/"
+				KMMODULE="${PN}"
 			fi
 			# Split kde-base/ ebuilds: (they reside in trunk/KDE)
 			case ${KMNAME} in
@@ -339,7 +339,7 @@ case ${SLOT} in
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/kdebase/${KMNAME#kdebase-}/"
 					;;
 				kdereview)
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
+					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
 					;;
 				kde*)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/${KMNAME}"
@@ -347,11 +347,11 @@ case ${SLOT} in
 				extragear*|playground*)
 					case ${PN} in
 						*-plasma)
-							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
-							ESVN_PROJECT="${KMNAME}/${KMMODULE}"
+							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
+							ESVN_PROJECT="${KMNAME}/${KMMODULE}/"
 							;;
 						*)
-							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
+							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
 							;;
 					esac
 				;;
