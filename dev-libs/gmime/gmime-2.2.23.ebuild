@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.23.ebuild,v 1.6 2008/12/01 06:58:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.23.ebuild,v 1.7 2009/01/26 00:13:01 loki_val Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils mono libtool
+inherit gnome2 eutils mono libtool autotools
 
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
 SRC_URI="http://spruce.sourceforge.net/${PN}/sources/v${PV%.*}/${P}.tar.gz"
@@ -30,7 +30,8 @@ DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
+	epatch "${FILESDIR}/gmime-2.2.23-sign-assembly.patch"
+	cp "${FILESDIR}/gmime-sharp.snk" mono/
 	if use doc ; then
 		#db2html should be docbook2html
 		sed -i -e 's:db2html:docbook2html -o gmime-tut:g' \
@@ -41,12 +42,7 @@ src_unpack() {
 			gtk-doc.make docs/reference/Makefile.in || die "sed failed (3)"
 	fi
 
-	# Use correct libdir for mono assembly
-	sed -i -e 's:^libdir.*:libdir=@libdir@:' \
-		   -e 's:^prefix=:exec_prefix=:' \
-		   -e 's:prefix)/lib:libdir):' \
-		mono/gmime-sharp.pc.in mono/Makefile.{am,in} || die "sed failed (2)"
-
+	eautoreconf
 	elibtoolize
 }
 
@@ -56,8 +52,7 @@ src_compile() {
 }
 
 src_install() {
-	emake GACUTIL_FLAGS="${EPREFIX}/root '${ED}/usr/$(get_libdir)' ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${PN}" \
-		DESTDIR="${ED}" install || die "installation failed"
+	emake DESTDIR="${D}" install || die "installation failed"
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
@@ -69,4 +64,5 @@ src_install() {
 	# (bug #70392)	Ticho, 2004-11-10
 	mv "${ED}/usr/bin/uuencode" "${ED}/usr/bin/gmime-uuencode"
 	mv "${ED}/usr/bin/uudecode" "${ED}/usr/bin/gmime-uudecode"
+	mono_multilib_comply
 }

@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/gmime
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.84 2008/12/24 12:50:14 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.85 2009/01/26 00:13:01 loki_val Exp $
+
+  26 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/gmime-2.2.23-sign-assembly.patch, +files/gmime-sharp.snk,
+  gmime-2.2.23.ebuild:
+  Non-maintainer-commit: Fix bug 248657. Import signing key from upstream,
+  fix assemblyinfo.cs and Makefile.am to actually sign the assembly.
 
   24 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.2.3.ebuild,
   -gmime-2.2.11.ebuild, -gmime-2.2.17.ebuild, -gmime-2.2.22.ebuild,
