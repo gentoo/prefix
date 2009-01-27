@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.151 2009/01/20 13:51:44 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.152 2009/01/25 13:23:40 loki_val Exp $
+
+*mono-2.2-r3 (25 Jan 2009)
+
+  25 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/mono-2.2-r123987-bless-crash.patch, -mono-2.2-r2.ebuild,
+  +mono-2.2-r3.ebuild:
+  Add fix for bug 256153, bless crash upstream bug 469213
 
 *mono-2.2-r2 (20 Jan 2009)
 
