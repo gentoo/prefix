@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.62 2009/01/23 12:02:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.63 2009/01/24 13:16:42 nixnut Exp $
+
+  24 Jan 2009; nixnut <nixnut@gentoo.org> x11vnc-0.9.6.ebuild:
+  ppc stable #256029
 
   23 Jan 2009; Raúl Porcel <armin76@gentoo.org> x11vnc-0.9.6.ebuild:
   arm/ia64/sh/sparc/x86 stable wrt #256029
