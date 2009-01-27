@@ -271,8 +271,11 @@ eqmake4() {
 		QMAKE_CXXFLAGS_DEBUG="${CXXFLAGS}" \
 		QMAKE_LFLAGS_RELEASE="${LDFLAGS}" \
 		QMAKE_LFLAGS_DEBUG="${LDFLAGS}" \
-		QMAKE_RPATH= \
 		"${@}" >> ${LOGFILE} 2>&1
+		# gentoo-x86 relies on ld.so.conf to get the correct LDPATH, Gentoo
+		# Prefix can't do that, so use don't explicitly set RPATH and hence use
+		# the defaults - which works and is desired in this case.
+		#QMAKE_RPATH= \
 
 	local result=$?
 	eend ${result}
