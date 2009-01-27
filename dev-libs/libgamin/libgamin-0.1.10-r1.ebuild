@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r1.ebuild,v 1.4 2009/01/20 03:17:52 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r1.ebuild,v 1.5 2009/01/25 15:19:44 klausman Exp $
 
 EAPI="prefix"
 
