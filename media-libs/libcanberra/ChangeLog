@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libcanberra
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.7 2008/12/17 15:22:55 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.8 2009/01/25 11:42:08 armin76 Exp $
+
+  25 Jan 2009; Raúl Porcel <armin76@gentoo.org> libcanberra-0.10.ebuild:
+  Add ~arm/~sh
 
   17 Dec 2008; Brent Baude <ranger@gentoo.org> libcanberra-0.9.ebuild:
   Marking libcanberra-0.9 ~ppc64 for bug 239847
