@@ -1,0 +1,20 @@
+diff --git a/.libs/bsdcpio b/.libs/bsdcpio
+index 765bdfa..0cfa0f2 100755
+Binary files a/.libs/bsdcpio and b/.libs/bsdcpio differ
+diff --git a/cpio/bsdcpio-cpio.o b/cpio/bsdcpio-cpio.o
+index 691d75e..c17a703 100644
+Binary files a/cpio/bsdcpio-cpio.o and b/cpio/bsdcpio-cpio.o differ
+diff --git a/cpio/cpio.c b/cpio/cpio.c
+index 50bc997..1484582 100644
+--- a/cpio/cpio.c
++++ b/cpio/cpio.c
+@@ -60,6 +60,9 @@ __FBSDID("$FreeBSD: src/usr.bin/cpio/cpio.c,v 1.15 2008/12/06 07:30:40 kientzle
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
++#ifdef HAVE_SYS_TIME_H
++#include <sys/time.h>
++#endif
+ 
+ #include "cpio.h"
+ #include "matching.h"

@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.40 2009/01/20 11:09:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.41 2009/01/26 04:39:28 vapier Exp $
+
+  26 Jan 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/libarchive-2.6.1-headers.patch, libarchive-2.6.1.ebuild:
+  Fix missing prototypes for *times functions.
 
   20 Jan 2009; Raúl Porcel <armin76@gentoo.org> libarchive-2.6.1.ebuild:
   Add ~arm/~sh

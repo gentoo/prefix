@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.6.1.ebuild,v 1.2 2009/01/20 11:09:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.6.1.ebuild,v 1.3 2009/01/26 04:39:28 vapier Exp $
 
 EAPI="prefix 1"
 
@@ -37,6 +37,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.6.0-solaris.patch
 
+	epatch "${FILESDIR}"/${P}-headers.patch
 	#elibtoolize
 	eautoreconf
 	epunt_cxx
