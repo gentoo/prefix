@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.22 2008/12/27 04:59:14 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.23 2009/01/24 11:53:35 angelos Exp $
 
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -92,7 +92,7 @@ media-libs/mlt mmx
 # Bug 203680
 # 28 Oct 2008: Diego Pettenò <flameeyes@gentoo.org>
 # Mask GnuTLS (not available as 32-bit library)
-app-emulation/wine dbus hal nas scanner gnutls
+app-emulation/wine dbus hal ldap nas scanner gnutls
 
 # missing the necessary linux-headers dep
 >=net-fs/netatalk-2.0.3-r3 xfs

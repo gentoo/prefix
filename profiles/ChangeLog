@@ -1,10 +1,37 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2289 2009/01/24 19:25:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2297 2009/01/26 22:51:03 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add gvfs-1.0.3-r10 to bluez-4 mask.
+
+  26 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked www-misc/zoneminder due to security vulnerabilities.
+
+  26 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Unmasked www-apps/dotproject as security issue is resolved, bug #236518.
+
+  26 Jan 2009; Mike Frysinger <vapier@gentoo.org> arch/hppa/make.defaults,
+  default-linux/hppa/make.defaults, use.desc:
+  Remove USE=pic as a global flag so people (hopefully) stop screwing up its
+  usage.
+
+  25 Jan 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask x11-misc/hotkeys for removal.
+
+  25 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-apps/xphelloworld to p.mask
+
+  25 Jan 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-base/kdrive to p.mask, pending removal
+
+  25 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Change reason for mask. Dopi doesn't fail with mono-2.x. It's more a
+  general thing.
 
   24 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
   Mask mikachan-font for removal.

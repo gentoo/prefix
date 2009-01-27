@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9422 2009/01/25 00:15:28 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9430 2009/01/26 22:52:47 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,23 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Peter Volkov <pva@gentoo.org> (26 Jan 2009)
+# Security vulnerabilities (one of them is critical), bug 236517
+www-misc/zoneminder
+
+# Ulrich Mueller <ulm@gentoo.org> (25 Jan 2009)
+# Masked for removal in 60 days. Produces segfaults and doesn't work
+# with recent X server due to API changes. Upstream dead. Bug 242462.
+x11-misc/hotkeys
+
+# Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
+# xprint is dead, for real (see bug #254874)
+x11-apps/xphelloworld
+
+# Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
+# masked for removal, use x11-base/xorg-server with USE=kdrive instead
+x11-base/kdrive
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (24 Jan 2009)
 # Masked until KDE-4.2.0 is put in the tree.
@@ -677,6 +694,7 @@ net-wireless/bluez
 >=app-mobilephone/obex-data-server-0.4
 >=gnome-extra/gnome-user-share-0.41
 >=media-video/totem-2.24.3-r1
+=gnome-base/gvfs-1.0.3-r10
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # These might break automounting, so keep them masked for now.
@@ -686,9 +704,9 @@ net-wireless/bluez
 >=sys-auth/policykit-0.6
 >=gnome-extra/policykit-gnome-0.6
 
-# Peter Alfredsen <loki_val@gentoo.org> (22 Nov 2008)
-# Packages not building with mono-2
-# Masked for removal in 60 days.
+# Peter Alfredsen <loki_val@gentoo.org> (25 Jan 2008)
+# Fails to compile, bug 212097.
+# Masked for removal in 30 days.
 app-pda/dopi
 
 # Alec Warner <antarus@gentoo.org> (22 Nov 2008)
@@ -811,11 +829,6 @@ net-im/tmsnc
 # Christian Parpart <trapni@gentoo.org> (04 Oct 2008)
 # for testing/experienced users only
 >=games-rpg/mangos-9999
-
-# Gunnar Wrobel <wrobel@gentoo.org> 023 Oct 2008)
-# Masked due to security issues.
-# https://bugs.gentoo.org/show_bug.cgi?id=236518
-www-apps/dotproject
 
 # Christian Parpart <trapni@gentoo.org> (25 Sep 2008)
 # for testing/experienced users only
