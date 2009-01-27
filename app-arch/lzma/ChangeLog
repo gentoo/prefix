@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/lzma
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.11 2008/05/11 19:44:38 solar Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.12 2009/01/25 19:56:29 radek Exp $
+
+*lzma-4.63 (25 Jan 2009)
+
+  25 Jan 2009; Radoslaw Stachowiak <radek@gentoo.org> +lzma-4.63.ebuild:
+  Version bump, and changed binary name due to #218459
 
   11 May 2008; <solar@gentoo.org> lzma-4.57.ebuild:
   - Keyworded ~arm
