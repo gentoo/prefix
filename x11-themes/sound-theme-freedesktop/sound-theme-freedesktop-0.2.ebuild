@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/sound-theme-freedesktop-0.2.ebuild,v 1.1 2008/11/19 22:19:48 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/sound-theme-freedesktop-0.2.ebuild,v 1.2 2009/01/25 11:44:35 armin76 Exp $
 
 EAPI="prefix"
 
