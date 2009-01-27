@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libgcrypt
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.116 2008/11/06 08:10:02 dragonheart Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.117 2009/01/25 21:30:26 dragonheart Exp $
+
+*libgcrypt-1.4.4 (25 Jan 2009)
+
+  25 Jan 2009; Daniel Black <dragonheart@gentoo.org>
+  -files/libgcrypt-1.2.3-strict-aliasing.patch, -libgcrypt-1.2.4.ebuild,
+  -libgcrypt-1.4.1.ebuild, +libgcrypt-1.4.4.ebuild:
+  version bump as per bug #256049 thanks Arfrever Frehtes Taifersar Arahesis.
+  Dropped IDEA support in this release. removed old versions
 
 *libgcrypt-1.4.3-r1 (06 Nov 2008)
 
