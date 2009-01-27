@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.6.0.ebuild,v 1.2 2009/01/21 21:34:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.6.0.ebuild,v 1.3 2009/01/25 22:56:56 mr_bones_ Exp $
 
 EAPI="prefix 2"
 inherit flag-o-matic eutils games toolchain-funcs
@@ -43,14 +43,14 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${P}.tar.gz
-}
-
-src_prepare() {
+	cd "${S}"
 	unpack \
 		rockslevels-emc-1.0.tar.gz \
 		rockslevels-sp-1.0.tar.gz \
 		rockslevels-dx-1.0.tar.gz
+}
 
+src_prepare() {
 	# make it parallel-friendly.
 	epatch "${FILESDIR}"/${P}-parallel-build.patch
 	# make it build on windows with X11
