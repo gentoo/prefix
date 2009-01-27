@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.206 2009/01/07 21:41:14 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.207 2009/01/25 03:36:03 ali_bush Exp $
+
+*java-config-2.1.7 (25 Jan 2009)
+
+  25 Jan 2009; Alistair Bush <ali_bush@gentoo.org>
+  +java-config-2.1.7.ebuild:
+  Version Bump java-config. This version is to stop python-2.6
+  DeprecationWarning messages.
 
   07 Jan 2009; Vlastimil Babka <caster@gentoo.org>
   -files/java-config-2.0.33-r1.patch, -files/java-config-2.1.2-r1.patch,

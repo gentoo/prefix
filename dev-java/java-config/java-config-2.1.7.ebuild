@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.6.ebuild,v 1.6 2008/06/26 16:34:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.7.ebuild,v 1.1 2009/01/25 03:36:03 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lang/python"
@@ -22,8 +22,7 @@ RDEPEND="${DEPEND}
 PYTHON_MODNAME="java_config_2"
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
+	distutils_src_unpack
 	epatch "${FILESDIR}"/${PN}-2.1.6-prefix.patch
 
 	eprefixify \
@@ -32,9 +31,6 @@ src_unpack() {
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
-
-	# fix for newer portages
-	find . -name "*.py" -print0 | xargs -0 sed -i -e 's/portage_dep/portage.dep/g'
 }
 
 src_install() {
@@ -43,6 +39,9 @@ src_install() {
 	local a=${ARCH}
 	case $a in
 		x86-freebsd)  a=x86-fbsd;; # as long as we don't push patch upstream
+		sparc64-solaris) a=sparc-solaris;; # as long as it isn't upstream
+		x64-solaris)  a=x86-solaris;; # as long as it isn't upstream
+		ppc*-aix)     a=${a%-aix};; # as long as ppc*-linux defaults to ibm-jdk-bin
 		*-linux)      a=${a%-linux};;
 	esac
 
