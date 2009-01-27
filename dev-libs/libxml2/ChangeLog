@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.248 2009/01/23 16:43:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.251 2009/01/26 00:34:45 eva Exp $
+
+  26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libxml2-2.6.30-CVE-2007-6284.patch,
+  -files/libxml2-2.6.32-CVE-2008-422x.patch, -libxml2-2.6.30-r1.ebuild,
+  -libxml2-2.6.31.ebuild, -libxml2-2.6.32.ebuild, -libxml2-2.6.32-r1.ebuild,
+  -libxml2-2.7.1.ebuild, -libxml2-2.7.2.ebuild, libxml2-2.7.2-r1.ebuild,
+  libxml2-2.7.2-r2.ebuild:
+  Clean up old security flawed revisions. Make sure python bindings are
+  optimized, bug #251550.
+
+  25 Jan 2009; Markus Meier <maekke@gentoo.org> libxml2-2.7.2-r2.ebuild:
+  x86 stable, bug #249703
+
+  24 Jan 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxml2-2.7.2-r2.ebuild:
+  ppc stable, bug #249703
 
   23 Jan 2009; Brent Baude <ranger@gentoo.org> libxml2-2.7.2-r2.ebuild:
   Marking libxml2-2.7.2-r2 ppc64 for bug 249703
