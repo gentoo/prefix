@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-ctags
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/ChangeLog,v 1.24 2009/01/23 19:43:47 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/ChangeLog,v 1.25 2009/01/25 15:36:52 maekke Exp $
+
+  25 Jan 2009; Markus Meier <maekke@gentoo.org> eselect-ctags-1.8.ebuild:
+  amd64/x86 stable, bug #256113
 
   23 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
   eselect-ctags-1.8.ebuild:
