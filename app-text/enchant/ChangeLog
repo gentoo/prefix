@@ -1,6 +1,9 @@
 # ChangeLog for app-text/enchant
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.85 2009/01/23 22:37:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.86 2009/01/24 14:13:42 nixnut Exp $
+
+  24 Jan 2009; nixnut <nixnut@gentoo.org> enchant-1.4.2.ebuild:
+  ppc stable #255691
 
   23 Jan 2009; Markus Meier <maekke@gentoo.org> enchant-1.4.2.ebuild:
   amd64/x86 stable, bug #255691
