@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-panel
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.264 2008/12/23 14:23:13 eva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.265 2009/01/24 11:20:29 armin76 Exp $
+
+  24 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-panel-2.24.2-r1.ebuild:
+  Add ~arm/~sh
 
 *gnome-panel-2.24.2-r1 (23 Dec 2008)
 
