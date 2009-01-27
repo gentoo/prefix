@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.93 2009/01/06 15:52:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.94 2009/01/25 15:22:00 klausman Exp $
+
+  25 Jan 2009; Tobias Klausmann <klausman@gentoo.org> gamin-0.1.10.ebuild:
+  Stable on alpha, bug #252350
 
   06 Jan 2009; Brent Baude <ranger@gentoo.org> gamin-0.1.10.ebuild:
   Marking gamin-0.1.10 ppc64 and ppc for bug 252350
