@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.101 2009/01/22 14:22:27 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.102 2009/01/25 14:02:10 maekke Exp $
+
+  25 Jan 2009; Markus Meier <maekke@gentoo.org> libIDL-0.8.12.ebuild:
+  amd64/x86 stable, bug #255843
 
   22 Jan 2009; Ferris McCormick <fmccor@gentoo.org> libIDL-0.8.12.ebuild:
   Sparc stable, Bug #255843.
