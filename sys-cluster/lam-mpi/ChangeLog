@@ -1,6 +1,13 @@
 # ChangeLog for sys-cluster/lam-mpi
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.69 2008/11/18 14:35:25 jer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.70 2009/01/25 21:01:30 jsbronder Exp $
+
+*lam-mpi-7.1.4-r1 (25 Jan 2009)
+
+  25 Jan 2009; Justin Bronder <jsbronder@gentoo.org>
+  +files/lam-mpi-7.1.4-libtool.patch, +lam-mpi-7.1.4-r1.ebuild:
+  Patch to fix when using libtool-2.2+, #228183. Also remove sweep to avoid
+  file conflict with media-libs/sweep, #245439 c2.
 
   18 Nov 2008; Jeroen Roovers <jer@gentoo.org> lam-mpi-7.1.4.ebuild:
   Stable for HPPA (bug #245439).
