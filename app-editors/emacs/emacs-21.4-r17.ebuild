@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.15 2008/12/24 10:45:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.16 2009/01/25 17:43:40 ulm Exp $
 
 EAPI="prefix"
 
@@ -88,7 +88,7 @@ src_compile() {
 			--with-png"
 
 		if use Xaw3d ; then
-			einfo "Configuring to build with Xaw3d (Athena) toolkit"
+			einfo "Configuring to build with Xaw3d (Athena/Lucid) toolkit"
 			myconf="${myconf} --with-x-toolkit=athena"
 			use motif \
 				&& ewarn "USE flag \"motif\" ignored (superseded by \"Xaw3d\")"
