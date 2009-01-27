@@ -83,10 +83,10 @@ newpamsecurity() {
 # Returns the pam modules' directory for current implementation
 getpam_mod_dir() {
 	if has_version sys-libs/pam || has_version sys-libs/openpam; then
-		PAM_MOD_DIR="${EPREFIX}"/$(get_libdir)/security
+		PAM_MOD_DIR=/$(get_libdir)/security
 	else
 		# Unable to find PAM implementation... defaulting
-		PAM_MOD_DIR="${EPREFIX}"/$(get_libdir)/security
+		PAM_MOD_DIR=/$(get_libdir)/security
 	fi
 
 	echo ${PAM_MOD_DIR}
