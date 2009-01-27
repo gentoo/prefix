@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/goffice
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.53 2008/09/28 07:59:23 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.54 2009/01/25 23:16:36 eva Exp $
+
+*goffice-0.6.6 (26 Jan 2009)
+
+  26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> +goffice-0.6.6.ebuild:
+  Bump to 0.6.6. Bug fixes.
 
   28 Sep 2008; Alexis Ballier <aballier@gentoo.org> goffice-0.6.5.ebuild:
   keyword ~x86-fbsd
