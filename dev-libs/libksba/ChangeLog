@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libksba
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.91 2008/11/04 10:19:49 dragonheart Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.93 2009/01/25 21:50:29 dragonheart Exp $
+
+  25 Jan 2009; Daniel Black <dragonheart@gentoo.org>
+  -files/libksba-1.0.2-segfault.patch, -libksba-1.0.2-r1.ebuild:
+  australia day cleanup
+
+*libksba-1.0.5 (25 Jan 2009)
+
+  25 Jan 2009; Daniel Black <dragonheart@gentoo.org> libksba-1.0.4.ebuild,
+  +libksba-1.0.5.ebuild:
+  version bump as per bug #254449 with QA fixes thanks to Arfrever Frehtes
+  Taifersar Arahesis
 
 *libksba-1.0.4 (04 Nov 2008)
 

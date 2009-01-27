@@ -1,10 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.2-r1.ebuild,v 1.3 2008/01/02 18:35:56 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.5.ebuild,v 1.1 2009/01/25 21:47:50 dragonheart Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="makes X.509 certificates and CMS easily accessible to applications"
 HOMEPAGE="http://www.gnupg.org/related_software/libksba"
@@ -15,17 +13,10 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND=">=dev-libs/libgpg-error-1.2
-	dev-libs/libgcrypt"
+DEPEND=">=dev-libs/libgpg-error-1.2"
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-segfault.patch"
-}
-
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO VERSION
 }
