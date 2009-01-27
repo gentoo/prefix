@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/cdrkit
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.62 2008/11/02 13:37:45 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.63 2009/01/25 15:32:37 maekke Exp $
+
+  25 Jan 2009; Markus Meier <maekke@gentoo.org> cdrkit-1.1.9.ebuild:
+  amd64/x86 stable, bug #256106
 
 *cdrkit-1.1.9 (02 Nov 2008)
 
