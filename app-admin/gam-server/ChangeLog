@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gam-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.4 2009/01/06 15:52:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.5 2009/01/25 15:21:30 klausman Exp $
+
+  25 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
+  gam-server-0.1.10.ebuild:
+  Stable on alpha, bug #252350
 
   06 Jan 2009; Brent Baude <ranger@gentoo.org> gam-server-0.1.10.ebuild:
   Marking gam-server-0.1.10 ppc64 and ppc for bug 252350

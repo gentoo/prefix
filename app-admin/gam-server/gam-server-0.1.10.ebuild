@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.4 2009/01/06 15:52:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.5 2009/01/25 15:21:30 klausman Exp $
 
 EAPI="prefix"
 
