@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/zentest
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/zentest/ChangeLog,v 1.46 2008/12/26 15:51:02 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/zentest/ChangeLog,v 1.47 2009/01/24 09:41:25 graaff Exp $
+
+*zentest-3.11.1 (24 Jan 2009)
+
+  24 Jan 2009; Hans de Graaff <graaff@gentoo.org> +zentest-3.11.1.ebuild:
+  Minor version bump: fixed growl plugin.
 
   26 Dec 2008; Raúl Porcel <armin76@gentoo.org> zentest-3.11.0.ebuild:
   ia64 stable wrt #250348
