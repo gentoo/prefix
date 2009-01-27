@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.57 2009/01/21 09:32:07 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.58 2009/01/25 16:01:56 patrick Exp $
+
+*matplotlib-0.98.5.2-r2 (25 Jan 2009)
+
+  25 Jan 2009; Patrick Lauer <patrick@gentoo.org>
+  +matplotlib-0.98.5.2-r2.ebuild:
+  Fixing pyparsing dep, closes #256256
 
   21 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org>
   matplotlib-0.98.5.2.ebuild, matplotlib-0.98.5.2-r1.ebuild:
