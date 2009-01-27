@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 
 LICENSE="CRACKLIB"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls python"
 
 DEPEND="python? ( dev-lang/python )"
@@ -54,7 +54,8 @@ src_install() {
 
 	# move shared libs to /
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "could not move shared"
+	[[ ${CHOST} != *-mint* ]] && \
+		mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "could not move shared"
 	gen_usr_ldscript libcrack$(get_libname)
 
 	insinto /usr/share/dict
