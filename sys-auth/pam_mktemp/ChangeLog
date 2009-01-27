@@ -1,0 +1,60 @@
+# ChangeLog for sys-auth/pam_mktemp
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_mktemp/ChangeLog,v 1.16 2008/06/14 08:25:05 nixnut Exp $
+
+  14 Jun 2008; nixnut <nixnut@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Stable on ppc wrt bug 225901
+
+  13 Jun 2008; Tobias Klausmann <klausman@gentoo.org>
+  pam_mktemp-1.0.3.ebuild:
+  Stable on alpha, bug #225901
+
+  13 Jun 2008; Brent Baude <ranger@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Marking pam_mktemp-1.0.3 ppc64 for bug 225901
+
+  13 Jun 2008; Raúl Porcel <armin76@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  ia64/sparc stable wrt #225901
+
+  13 Jun 2008; Jeroen Roovers <jer@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Stable for HPPA (bug #225901).
+
+  10 Jun 2008; Alexis Ballier <aballier@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  keyword ~sparc-fbsd
+
+  08 Jun 2008; Javier Villavicencio <the_paya@gentoo.org>
+  pam_mktemp-1.0.3.ebuild:
+  Keyworded ~x86-fbsd.
+
+  06 Apr 2008; Joseph Jezak <josejx@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Marked ~ppc/~ppc64.
+
+  13 Mar 2008; Jeroen Roovers <jer@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Marked ~hppa (bug #212437).
+
+  11 Mar 2008; Raúl Porcel <armin76@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Add ~alpha/~ia64
+
+  06 Mar 2008; Ferris McCormick <fmccor@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Add ~sparc for testing, required for re-keyword request in Bug #212437.
+
+  27 Oct 2007; Christoph Mende <angelos@gentoo.org> pam_mktemp-1.0.3.ebuild:
+  Stable on amd64 wrt bug #194439
+
+  02 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  pam_mktemp-1.0.3.ebuild:
+  stable x86, bug 194439
+
+  25 Sep 2007; Sven Wegener <swegener@gentoo.org> -pam_mktemp-1.0.2.ebuild:
+  Cleanup.
+
+*pam_mktemp-1.0.3 (22 Jul 2007)
+
+  22 Jul 2007; Sven Wegener <swegener@gentoo.org> +pam_mktemp-1.0.3.ebuild:
+  Version bump.
+
+*pam_mktemp-1.0.2 (17 Apr 2007)
+
+  17 Apr 2007; Sven Wegener <swegener@gentoo.org> +metadata.xml,
+  +pam_mktemp-1.0.2.ebuild:
+  Initial commit, ebuild written by me.
+
