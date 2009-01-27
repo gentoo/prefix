@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r2.ebuild,v 1.6 2009/01/21 19:41:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.4-r2.ebuild,v 1.7 2009/01/25 16:29:35 klausman Exp $
 
 EAPI="prefix"
 
