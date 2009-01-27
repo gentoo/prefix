@@ -1,0 +1,85 @@
+# ChangeLog for dev-libs/libedit
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.25 2009/01/04 22:15:44 angelos Exp $
+
+  04 Jan 2009; Christoph Mende <angelos@gentoo.org>
+  +files/libedit-20061103-ldflags.patch, libedit-20061103.ebuild,
+  libedit-20061103-r1.ebuild, libedit-20061103-r2.ebuild:
+  QA: Fixed typo in freebsd-lib blocker, respect CC (bug 243916), respect
+  LDFLAGS
+
+*libedit-20061103-r2 (21 Jul 2007)
+
+  21 Jul 2007; Roy Marples <uberlord@gentoo.org>
+  files/libedit-20061103-freebsd.patch, +libedit-20061103-r2.ebuild:
+  Don't define get_alias_text on FreeBSD until our sh supports it.
+
+  14 Jun 2007; Ferris McCormick <fmccor@gentoo.org>
+  libedit-20061103-r1.ebuild:
+  Add ~sparc keyword --- required for testing Bug #181811
+
+*libedit-20061103-r1 (16 Mar 2007)
+
+  16 Mar 2007; Roy Marples <uberlord@gentoo.org>
+  +libedit-20061103-r1.ebuild:
+  Bump fo fix #169515.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  29 Dec 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libedit-20061103.ebuild:
+  Add ~sparc-fbsd keyword.
+
+  28 Dec 2006; Diego Pettenò <flameeyes@gentoo.org>
+  files/libedit-20061103-debian-to-gentoo.patch,
+  +files/libedit-20061103-freebsd.patch,
+  +files/libedit-20061103-glibc.patch, libedit-20061103.ebuild:
+  Split the build-system changes from the glibc changes, and add a tiny patch
+  to build on FreeBSD, according to bug #157407.
+
+*libedit-20061103 (03 Nov 2006)
+
+  03 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/libedit-20061103-debian-to-gentoo.patch, +libedit-20061103.ebuild:
+  Version bump and include readline.h #153675 by Ming-Wei.
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libedit-20050930.ebuild:
+  ppc stable
+
+  20 Feb 2006; Markus Rothe <corsair@gentoo.org> libedit-20050930.ebuild:
+  Stable on ppc64
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> libedit-20050531.ebuild:
+  Mark 20050531 stable on alpha
+
+*libedit-20050930 (01 Oct 2005)
+
+  01 Oct 2005; Mike Frysinger <vapier@gentoo.org> +libedit-20050930.ebuild:
+  Update cvs snapshot.
+
+*libedit-20050531 (01 Jun 2005)
+
+  01 Jun 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/libedit-20050531-debian-to-gentoo.patch, +libedit-20050531.ebuild:
+  Update CVS snapshot.
+
+*libedit-20050118 (18 Jan 2005)
+
+  18 Jan 2005; Mike Frysinger <vapier@gentoo.org> -libedit-20040907.ebuild,
+  +libedit-20050118.ebuild:
+  Version bump to install header file #78496 by Vlado.
+
+  07 Nov 2004; Markus Rothe <corsair@gentoo.org> libedit-20040907.ebuild:
+  Stable on ppc64; bug #60442
+
+*libedit-20040907 (07 Nov 2004)
+
+  07 Nov 2004; Markus Rothe <corsair@gentoo.org> libedit-20040907.ebuild:
+  Marked ~ppc64
+
+*libedit-YYYYMMDD (22 Dec 2003)
+
+  22 Dec 2003; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me! [it's cvs snapshot stuff]
