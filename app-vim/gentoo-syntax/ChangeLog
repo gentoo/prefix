@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/gentoo-syntax
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.88 2008/10/06 12:49:02 hawking Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.89 2009/01/25 18:38:24 darkside Exp $
+
+  25 Jan 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  edit metadata - I have access to the repo, so I should be CC'd on bugs now
 
 *gentoo-syntax-20081006 (06 Oct 2008)
 
