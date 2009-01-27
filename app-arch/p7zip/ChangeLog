@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/p7zip
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.103 2008/12/27 05:00:55 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.104 2009/01/25 19:29:15 radek Exp $
+
+  25 Jan 2009; Radoslaw Stachowiak <radek@gentoo.org> p7zip-4.58.ebuild:
+  Removed unnecesary warning as per bug #126722
 
   27 Dec 2008; Jeremy Olexa <darkside@gentoo.org> p7zip-4.58.ebuild:
   amd64 stable, bug #236591
