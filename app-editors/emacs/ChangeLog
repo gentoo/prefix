@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.292 2009/01/23 16:53:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.295 2009/01/26 16:14:24 ranger Exp $
+
+  26 Jan 2009; Brent Baude <ranger@gentoo.org> emacs-22.3-r1.ebuild:
+  stable ppc64, bug 256382
+
+  26 Jan 2009; Tiago Cunha <tcunha@gentoo.org> emacs-22.3-r1.ebuild:
+  stable amd64, bug 256382
+
+  26 Jan 2009; Ferris McCormick <fmccor@gentoo.org> emacs-22.3-r1.ebuild:
+  Sparc stable, Bug #256382 (been around some time now).
 
 *emacs-18.59-r6 (23 Jan 2009)
 
