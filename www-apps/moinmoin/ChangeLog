@@ -1,6 +1,17 @@
 # ChangeLog for www-apps/moinmoin
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.52 2008/08/05 07:57:29 wrobel Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.55 2009/01/26 14:20:32 fmccor Exp $
+
+  26 Jan 2009; Ferris McCormick <fmccor@gentoo.org> moinmoin-1.8.1.ebuild:
+  Sparc stable, Security Bug #256128.
+
+  26 Jan 2009; Dawid Węgliński <cla@gentoo.org> moinmoin-1.8.1.ebuild:
+  Stable on amd64 (bug #256128)
+
+*moinmoin-1.8.1 (26 Jan 2009)
+
+  26 Jan 2009; <chainsaw@gentoo.org> +moinmoin-1.8.1.ebuild:
+  Version bump for security bug #256128.
 
   05 Aug 2008; wrobel@gentoo.org -moinmoin-1.6.3.ebuild:
   Removed vulnerable moinmoin-1.6.3.

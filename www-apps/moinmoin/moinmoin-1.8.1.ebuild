@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-apps/moinmoin/moinmoin-1.6.3.ebuild,v 1.4 2008/04/28 18:11:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/moinmoin-1.8.1.ebuild,v 1.3 2009/01/26 14:20:32 fmccor Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ src_install() {
 	webapp_src_preinst
 	distutils_src_install
 
-	dodoc README docs/CHANGES* docs/HACKS docs/README.migration
+	dodoc README docs/CHANGES* docs/README.migration
 	dohtml docs/INSTALL.html
 	rm -rf README docs/
 
@@ -59,7 +59,7 @@ src_install() {
 	done
 
 	webapp_configfile "${MY_HOSTROOTDIR#${EPREFIX}}"/${PF}/wikiconfig.py
-	webapp_hook_script "${FILESDIR}"/reconfig-2
+	webapp_hook_script "${FILESDIR}"/reconfig-3
 	webapp_postinst_txt en "${FILESDIR}"/postinstall-en.txt
 
 	webapp_src_install
