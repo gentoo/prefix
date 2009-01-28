@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4-r1.ebuild,v 1.1 2009/01/25 21:01:30 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4-r1.ebuild,v 1.2 2009/01/26 15:12:01 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/7.1.2-lam_prog_f77.m4.patch
 	epatch "${FILESDIR}"/7.1.2-liblam-use-extra-libs.patch
 	epatch "${FILESDIR}"/7.1.4-as-needed.patch
-	epatch "${FILESDIR}"/${PN}-7.1.4-libtool.patch
+
+	if has_version '>=sys-devel/libtool-2.2'; then
+		# Compatibility patch for the newer libtools, uses LT_INIT
+		# which is not compatible with older versions.
+		epatch "${FILESDIR}"/${PN}-7.1.4-libtool.patch
+	fi
 
 	# gcc-4.3.0 fix.  char *argv[] -> char **argv.
 	# replaces a few more than necessary, but should be harmless.

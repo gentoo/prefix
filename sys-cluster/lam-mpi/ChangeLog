@@ -1,6 +1,10 @@
 # ChangeLog for sys-cluster/lam-mpi
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.70 2009/01/25 21:01:30 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.71 2009/01/26 15:12:01 jsbronder Exp $
+
+  26 Jan 2009; Justin Bronder <jsbronder@gentoo.org>
+  lam-mpi-7.1.4-r1.ebuild:
+  Conditionally apply the libtool compatibility patch.
 
 *lam-mpi-7.1.4-r1 (25 Jan 2009)
 
