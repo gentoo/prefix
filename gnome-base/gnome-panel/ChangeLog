@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.265 2009/01/24 11:20:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.266 2009/01/26 22:48:27 eva Exp $
+
+*gnome-panel-2.24.3 (26 Jan 2009)
+
+  26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-panel-2.24.3.ebuild:
+  Bump to 2.24.3. Bug fixes and translation updates.
 
   24 Jan 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-panel-2.24.2-r1.ebuild:
