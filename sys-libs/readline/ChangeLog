@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.120 2009/01/24 15:04:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.121 2009/01/26 18:16:27 klausman Exp $
+
+  26 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
+  readline-5.2_p13.ebuild:
+  Stable on alpha, bug #255707
 
   24 Jan 2009; Jeroen Roovers <jer@gentoo.org> readline-5.2_p13.ebuild:
   Stable for HPPA (bug #255707).
