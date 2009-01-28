@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.2-r1.ebuild,v 1.10 2008/11/09 11:29:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.12.2-r1.ebuild,v 1.11 2009/01/26 23:00:17 eva Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,7 @@ RDEPEND=">=dev-libs/libxml2-2.6.12
 	 >=dev-libs/libxslt-1.1.8
 	 >=dev-lang/python-2"
 DEPEND="${RDEPEND}
+	dev-libs/glib
 	sys-devel/gettext
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
@@ -31,11 +32,11 @@ src_unpack() {
 	# Make xml2po FHS compliant, bug #190798
 	epatch "${FILESDIR}/${P}-fhs.patch"
 
-	# Beware of first install, bug #224609
-	AT_M4DIR="tools" eautomake
-
 	# Fix LINGUAS
 	intltoolize --force || die "intltoolize failed"
+
+	# Beware of first install, bug #224609
+	AT_M4DIR="tools" eautomake
 }
 
 pkg_setup() {

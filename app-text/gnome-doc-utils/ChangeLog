@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.123 2009/01/11 21:40:21 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.124 2009/01/26 23:00:17 eva Exp $
+
+  26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild, gnome-doc-utils-0.14.2.ebuild:
+  dev-libs/glib is needed for eautofoo, bug #255114.
 
 *gnome-doc-utils-0.14.2 (11 Jan 2009)
 

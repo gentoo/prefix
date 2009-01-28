@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.1 2009/01/11 21:40:21 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.2 2009/01/26 23:00:17 eva Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
 	~app-text/docbook-xml-dtd-4.4"
+# dev-libs/glib needed for eautofoo, bug #255114.
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
