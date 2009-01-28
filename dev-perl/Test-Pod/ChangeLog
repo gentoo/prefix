@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Pod
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/ChangeLog,v 1.49 2008/11/18 15:38:22 tove Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod/ChangeLog,v 1.50 2009/01/26 11:49:54 tove Exp $
+
+  26 Jan 2009; Torsten Veller <tove@gentoo.org> -Test-Pod-1.22.ebuild:
+  Cleanup
 
   18 Nov 2008; Torsten Veller <tove@gentoo.org> Test-Pod-1.22.ebuild,
   Test-Pod-1.26.ebuild:
