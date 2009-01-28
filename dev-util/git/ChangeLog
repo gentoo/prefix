@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.317 2009/01/08 19:00:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.318 2009/01/26 12:16:53 robbat2 Exp $
+
+*git-1.6.1.1 (26 Jan 2009)
+
+  26 Jan 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +files/20090126-git-1.6.1.1-noperl.patch, +git-1.6.1.1.ebuild:
+  Version bump. Also bug #254029 - fix noperl patch.
 
   08 Jan 2009; Brent Baude <ranger@gentoo.org> git-1.6.0.6.ebuild:
   Marking git-1.6.0.6 ppc64 for bug 251343
