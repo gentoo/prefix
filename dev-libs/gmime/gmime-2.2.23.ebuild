@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.23.ebuild,v 1.7 2009/01/26 00:13:01 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.23.ebuild,v 1.8 2009/01/26 23:06:53 loki_val Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ RDEPEND=">=dev-libs/glib-2
 	sys-libs/zlib"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig
+		dev-util/gtk-doc-am
 		doc? (
 			>=dev-util/gtk-doc-1.0
 			app-text/docbook-sgml-utils )"
