@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/lzma-4.63.ebuild,v 1.1 2009/01/25 19:56:29 radek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/lzma-4.63.ebuild,v 1.2 2009/01/26 23:18:01 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -33,5 +33,3 @@ src_install() {
 	einfo "Starting from app-arch/lzma version 4.63 binary name was changed"
 	einfo "to /usr/bin/lzma_alone to avoid conflict with lzma-utils package"
 }
-
-
