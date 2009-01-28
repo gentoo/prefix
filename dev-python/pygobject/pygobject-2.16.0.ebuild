@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.0.ebuild,v 1.1 2009/01/19 03:22:32 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.0.ebuild,v 1.2 2009/01/26 06:07:53 leio Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.pygtk.org/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="doc examples libffi"
+IUSE="doc examples" # libffi
 
 RDEPEND=">=dev-lang/python-2.4.4-r5
 	>=dev-libs/glib-2.16
@@ -24,11 +24,11 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
-	if use libffi && ! built_with_use sys-devel/gcc libffi; then
-		eerror "libffi support not found in sys-devel/gcc." && die
-	fi
+#	if use libffi && ! built_with_use sys-devel/gcc libffi; then
+#		eerror "libffi support not found in sys-devel/gcc." && die
+#	fi
 
-	G2CONF="${G2CONF} $(use_enable doc docs) $(use_with libffi ffi)"
+	G2CONF="${G2CONF} $(use_enable doc docs)" # $(use_with libffi ffi)
 }
 
 src_unpack() {
