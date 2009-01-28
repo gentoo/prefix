@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.3 2009/01/20 15:22:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.4 2009/01/27 01:36:09 loki_val Exp $
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -35,7 +35,7 @@ DEPEND="${DEPEND}
 	>=dev-util/pkgconfig-0.23
 	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
 
-if [[ "${GO_MONO_REL_PV}" = "2.2" ]]
+if [[ "${GO_MONO_REL_PV}" = "2.4" ]]
 then
 	PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 fi
@@ -43,12 +43,12 @@ fi
 if [[ "${PV%_rc*}" != "${PV}" ]]
 then
 	GO_MONO_P="${P%_rc*}"
-	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P} -> ${P}.tar.bz2"
+	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P}.tar.bz2 -> ${P}.tar.bz2"
 	S="${WORKDIR}/${GO_MONO_P}"
 elif [[ "${PV%_pre*}" != "${PV}" ]]
 then
 	GO_MONO_P="${P%_pre*}"
-	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P} -> ${P}.tar.bz2"
+	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P}.tar.bz2 -> ${P}.tar.bz2"
 	S="${WORKDIR}/${GO_MONO_P}"
 else
 	GO_MONO_P=${P}
