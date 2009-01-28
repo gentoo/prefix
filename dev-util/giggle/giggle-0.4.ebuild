@@ -1,13 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/giggle-0.4.ebuild,v 1.1 2008/01/27 07:59:19 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/giggle-0.4.ebuild,v 1.2 2009/01/26 20:24:45 ikelos Exp $
 
 EAPI="prefix 1"
 
 inherit gnome2
 
 DESCRIPTION="GTK+ Frontend for GIT"
-HOMEPAGE="http://developer.imendio.com/projects/giggle"
+HOMEPAGE="http://live.gnome.org/giggle"
 SRC_URI="http://ftp.imendio.com/pub/imendio/${PN}/src/${P}.tar.gz"
 
 LICENSE="GPL-2"
