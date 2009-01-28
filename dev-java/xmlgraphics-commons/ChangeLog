@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/xmlgraphics-commons
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/ChangeLog,v 1.14 2008/12/20 20:20:29 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/ChangeLog,v 1.15 2009/01/26 15:08:12 betelgeuse Exp $
+
+  26 Jan 2009; Petteri Räty <betelgeuse@gentoo.org>
+  xmlgraphics-commons-1.3.1.ebuild:
+  Fix use source (reported in bug #255649) and use EANT_GENTOO_CLASSPATH.
 
 *xmlgraphics-commons-1.3.1 (20 Dec 2008)
 
