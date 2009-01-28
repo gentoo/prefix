@@ -1,6 +1,15 @@
 # ChangeLog for app-misc/when
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.26 2008/07/07 16:07:25 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.28 2009/01/26 22:01:07 tcunha Exp $
+
+  26 Jan 2009; Tiago Cunha <tcunha@gentoo.org> when-1.1.13.ebuild:
+  stable amd64/sparc, bug 256450
+
+*when-1.1.16 (26 Jan 2009)
+
+  26 Jan 2009; Peter Volkov <pva@gentoo.org> +when-1.1.16.ebuild:
+  Version bump, bug #252436, thank Arfrever Frehtes Taifersar Arahesis for
+  report.
 
 *when-1.1.13 (07 Jul 2008)
 
