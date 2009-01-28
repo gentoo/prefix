@@ -1,6 +1,6 @@
 diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.0/libconfix/core/automake/file_installer.py
 --- Confix-2.1.0.orig/libconfix/core/automake/file_installer.py	2008-10-21 11:17:30 +0200
-+++ Confix-2.1.0/libconfix/core/automake/file_installer.py	2008-12-17 11:58:32 +0100
++++ Confix-2.1.0/libconfix/core/automake/file_installer.py	2009-01-26 15:02:50 +0100
 @@ -22,6 +22,11 @@
  from libconfix.core.utils.paragraph import Paragraph
  from libconfix.core.utils import const
@@ -159,7 +159,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
      def automake_install_prefixfiles_(self, makefile_am):
          for dirname, filelist in self.dir2filedict_(file2dirdict=self.prefixfiles_).iteritems():
              # define directory
-@@ -291,17 +401,93 @@
+@@ -291,17 +401,92 @@
              pass
          pass
  
@@ -232,12 +232,11 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
 +                           'done; \\',
 +						   'test -z "$${__f}" && exit 0; \\',
 +                           'cp -fp $${__f} ' + targetdir + ' || exit 1; \\',
-+                           'chmod ' + mode + ' $${__tf} || exit 1; \\',
-+						   'touch ' + rulename + ';']))
++                           'chmod ' + mode + ' $${__tf} || exit 1;']))
 +        makefile_am.add_element(
 +            Rule(targets=[rulename + '_clean'],
 +                 prerequisites=[],
-+                 commands=['rm -f ' + rulename + ' ' + str(' ' + targetdir + '/').join([''] + files) + ';']))
++                 commands=['rm -f ' + str(' ' + targetdir + '/').join([''] + files) + ';']))
 +        pass
 +
 +    def fast_install_private_headers_(self, makefile_am):
@@ -258,7 +257,7 @@ diff -ru Confix-2.1.0.orig/libconfix/core/automake/file_installer.py Confix-2.1.
          makefile_am.add_element(install_local_rule)        
          makefile_am.add_element(clean_local_rule)
  
-@@ -321,20 +507,37 @@
+@@ -321,20 +506,37 @@
                       commands=['-$(mkinstalldirs) '+targetdir]))
  
              # copy files
