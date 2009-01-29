@@ -174,7 +174,7 @@ src_compile() {
 		Makefile || die
 
 	if [[ ${CHOST} == *-winnt* ]]; then
-		( cd fips && emake -j1 links ) || die "make links in fips failed"
+		( cd fips && emake -j1 links PERL=$(type -P perl) ) || die "make links in fips failed"
 	fi
 
 	# depend is needed to use $confopts
