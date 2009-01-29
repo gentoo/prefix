@@ -1,0 +1,87 @@
+# ChangeLog for x11-apps/xev
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xev/ChangeLog,v 1.22 2008/10/03 08:41:50 armin76 Exp $
+
+  03 Oct 2008; Raúl Porcel <armin76@gentoo.org> xev-1.0.3.ebuild:
+  Add ~ia64 wrt #237411
+
+  26 Sep 2008; Jeroen Roovers <jer@gentoo.org> xev-1.0.3.ebuild:
+  Marked ~hppa (bug #237411).
+
+*xev-1.0.3 (10 Mar 2008)
+
+  10 Mar 2008; Donnie Berkholz <dberkholz@gentoo.org>; +xev-1.0.3.ebuild:
+  Bump.
+
+  28 Feb 2007; Peter Weller <welp@gentoo.org> xev-1.0.2.ebuild:
+  Keyworded x86-fbsd
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; xev-1.0.2.ebuild:
+  Update description to be less generic.
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; xev-1.0.2.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; -xev-1.0.1.ebuild:
+  Pull old version.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xev-1.0.2.ebuild:
+  Stable on amd64 and x86.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xev-1.0.2.ebuild:
+  Stable on ppc64
+
+*xev-1.0.2 (03 Jun 2006)
+
+  03 Jun 2006; Joshua Baergen <joshuabaergen@gentoo.org> +xev-1.0.2.ebuild:
+  Version bump.  Runs some internal filtering on all events, instead of just
+  keypresses.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xev-1.0.1.ebuild:
+  Added ~ppc64
+
+  07 Jan 2006; <nixnut@gentoo.org> xev-1.0.1.ebuild:
+  Add ~ppc keyword
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> -xev-0.99.2.ebuild,
+  -xev-1.0.0.ebuild:
+  Pull old versions.
+
+*xev-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; +xev-1.0.1.ebuild:
+  Bump for 7.0.
+
+*xev-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> +xev-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -xev-0.99.0.ebuild,
+  -xev-0.99.1.ebuild:
+  Pull old versions.
+
+*xev-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> +xev-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+*xev-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +xev-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  23 Aug 2005; Herbie Hopkins <herbs@gentoo.org> xev-0.99.0.ebuild:
+  Marked ~amd64.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xev-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*xev-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +xev-0.99.0.ebuild:
+  Initial commit for modular X.
+
