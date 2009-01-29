@@ -433,9 +433,12 @@ egetent() {
 # /bin/false, default homedir is /dev/null, there are no default groups,
 # and default params sets the comment as 'added by portage for ${PN}'.
 enewuser() {
-	# in prefix portage, we don't know how to handle this yet
-	ewarn "'enewuser()' currently disabled in prefixed portage"
-	return 0
+	# in Prefix Portage, we may be unprivileged, such that we can't handle this
+	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
+	if [[ ${rootuid} != 0 ]] ; then
+		ewarn "'enewuser()' disabled in Prefixed Portage with non root user"
+		return 0
+	fi
 
 	case ${EBUILD_PHASE} in
 		unpack|compile|test|install)
@@ -642,9 +645,12 @@ enewuser() {
 # do the rest.  You may specify the gid for the group or allow the group to
 # allocate the next available one.
 enewgroup() {
-	# in prefix portage, we don't know how to handle this yet
-	ewarn "'enewgroup()' currently disabled in prefixed portage"
-	return 0
+	# in Prefix Portage, we may be unprivileged, such that we can't handle this
+	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
+	if [[ ${rootuid} != 0 ]] ; then
+		ewarn "'enewgroup()' disabled in Prefixed Portage with non root user"
+		return 0
+	fi
 
 	case ${EBUILD_PHASE} in
 		unpack|compile|test|install)
