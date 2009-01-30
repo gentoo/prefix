@@ -162,9 +162,9 @@ ${c_compile_object}
 ${cxx_compile_object}
 ${c_link_executable}
 ${cxx_link_executable}
-SET(CMAKE_INSTALL_PREFIX ${PREFIX:-/usr} CACHE FILEPATH "install path prefix")
+SET(CMAKE_INSTALL_PREFIX ${EPREFIX}${PREFIX:-/usr} CACHE FILEPATH "install path prefix")
 SET(LIB_SUFFIX ${tmp_libdir/lib} CACHE FILEPATH "library path suffix")
-SET(LIB_INSTALL_DIR ${PREFIX:-/usr}/${tmp_libdir} CACHE FILEPATH "library install directory")
+SET(LIB_INSTALL_DIR ${EPREFIX}${PREFIX:-/usr}/${tmp_libdir} CACHE FILEPATH "library install directory")
 
 _EOF_
 
