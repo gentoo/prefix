@@ -97,6 +97,7 @@ src_compile() {
 		$(use_with tk) \
 		${myconf} \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
+		--with-readline-dir="${EPREFIX}"/usr \
 		|| die "econf failed"
 
 	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
