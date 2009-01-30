@@ -101,5 +101,4 @@ x86-netbsd	default-prefix/bsd/netbsd/4.0/x86			dev
 x86-netbsd	prefix/bsd/netbsd/4.0/x86			dev
 
 # FreeMiNT
-m68k-mint	default-prefix/mint/m68k					dev
 m68k-mint	prefix/mint/m68k					dev
