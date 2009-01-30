@@ -1,4 +1,0 @@
-prefix/bsd/netbsd/4.0/x86
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/bsd/netbsd/4.0/x86 make.profile

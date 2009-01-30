@@ -1,4 +1,0 @@
-# Re-add OpenBSD libc
--elibc_OpenBSD
--kernel_OpenBSD
-

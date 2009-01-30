@@ -1,4 +1,0 @@
-ARCH="x86-openbsd"
-CHOST="i686-pc-openbsd4.2"
-ACCEPT_KEYWORDS="~x86-openbsd"
-

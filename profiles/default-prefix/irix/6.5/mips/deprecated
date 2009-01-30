@@ -1,4 +1,0 @@
-prefix/irix/6.5/mips
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/irix/6.5/mips make.profile

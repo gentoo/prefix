@@ -1,5 +1,0 @@
-# retain backwards compatability for freebsd keywords/conditionals
-ARCH="x86-fbsd"
-CHOST="i686-pc-freebsd6.2"
-ACCEPT_KEYWORDS="~x86-freebsd"
-

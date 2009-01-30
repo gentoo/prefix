@@ -1,4 +1,0 @@
-
-# Fabian Groffen <grobian@gentoo.org> (06 Aug 2008)
-# Causes extra compilation problems, bug #234253
-dev-util/subversion dso

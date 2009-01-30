@@ -1,4 +1,0 @@
-prefix/bsd/openbsd/4.2/ppc
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/bsd/openbsd/4.2/ppc make.profile
