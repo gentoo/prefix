@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.cs.pdx.edu/pub/elvis/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris"
 IUSE="X"
 
 DEPEND=">=sys-libs/ncurses-5.2
@@ -37,6 +37,7 @@ src_unpack() {
 
 src_compile() {
 	./configure \
+		--libs="-lncurses" \
 		--prefix="${EPREFIX}"/usr \
 		--bindir="${EPREFIX}"/usr/bin \
 		--datadir="${EPREFIX}"/usr/share/elvis \
