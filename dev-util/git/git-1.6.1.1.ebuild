@@ -124,7 +124,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/20090126-git-1.6.1.1-noperl.patch
 	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.0.4-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.1.1-mint.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
