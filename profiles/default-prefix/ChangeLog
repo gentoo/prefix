@@ -1,6 +1,12 @@
 # ChangeLog for default-prefix
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
+
+  30 Jan 2009; Jeremy Olexa <darkside@gentoo.org> -mint, -mint/m68k,
+  -mint/m68k/deprecated, -mint/m68k/make.defaults, -mint/m68k/parent,
+  -mint/m68k/use.mask, -mint/make.defaults, -mint/package.provided,
+  -mint/packages, -mint/parent, -mint/use.mask, -mint/virtuals:
+  Remove mint old-style profile
 
   29 Dec 2008; Jeremy Olexa <darkside@gentoo.org> +linux/amd64/deprecated,
   +linux/ppc/deprecated, +linux/x86/deprecated:
