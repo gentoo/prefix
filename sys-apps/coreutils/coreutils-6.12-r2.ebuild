@@ -136,10 +136,16 @@ src_compile() {
 	# kill/uptime - procps
 	# groups/su   - shadow
 	# hostname    - net-tools
+	if [[ ${CHOST} == *-mint* ]]; then
+		myconf="${myconf} --enable-install-program=\"arch,hostname,kill,uptime\""
+		myconf="${myconf} --enable-no-install-program=\"groups,su\"" 
+	else
+		myconf="${myconf} --enable-install-program=\"arch\""
+		myconf="${myconf} --enable-no-install-program=\"groups,hostname,kill,su,uptime\""
+	fi
 	econf \
-		--enable-install-program="arch" \
-		--enable-no-install-program="groups,hostname,kill,su,uptime" \
 		--enable-largefile \
+		${myconf} \
 		$(use_enable nls) \
 		$(use_enable acl) \
 		$(use_enable xattr) \
@@ -179,6 +185,8 @@ src_install() {
 		# getting a list of mounted filesystems.
 		[[ ${CHOST} != *-interix* ]] && fhs="${fhs} df"
 
+		[[ ${CHOST} == *-mint* ]] && fhs="${fhs} hostname"
+
 		mv ${fhs} ../../bin/ || die "could not move fhs bins"
 		# move critical binaries into /bin (common scripts)
 		local com="basename chroot cut dir dirname du env expr head mkfifo
@@ -189,6 +197,8 @@ src_install() {
 		for x in ${com} uname ; do
 			dosym /bin/${x} /usr/bin/${x} || die
 		done
+
+		[[ ${CHOST} == *-mint* ]] && rm -f "${ED}"/usr/share/man/man1/groups.1
 	else
 		# For now, drop the man pages, collides with the ones of the system.
 		rm -rf "${ED}"/usr/share/man

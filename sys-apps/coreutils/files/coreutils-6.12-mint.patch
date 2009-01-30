@@ -133,63 +133,6 @@ diff -ur src/uptime.c src/uptime.c
    if (fp != NULL)
      {
        char buf[BUFSIZ];
-diff -ur lib/physmem.c lib/physmem.c
---- lib/physmem.c	Sat Jan 13 05:23:36 2007
-+++ lib/physmem.c	Mon Dec 24 20:56:36 2007
-@@ -25,6 +25,31 @@
- 
- #include <unistd.h>
- 
-+#ifdef __MINT__
-+#include <mint/osbind.h>
-+#include <mint/sysctl.h>
-+
-+static double
-+freemem(void)
-+{
-+  int call[2] = { CTL_HW, HW_FREEPHYSMEM };
-+  unsigned long free;
-+  unsigned long freesize = sizeof (free);
-+  long ret;
-+
-+  ret = sysctl (call, 2, &free, &freesize, NULL, 0);
-+  if (ret == 0)
-+    return free / 2;
-+  
-+  ret = Malloc(-1);
-+  if (ret > 0)
-+    return ret / 2;
-+  
-+  /* Guess 1 MB.  */
-+  return 1024 * 1024;
-+}
-+#endif
-+
- #if HAVE_SYS_PSTAT_H
- # include <sys/pstat.h>
- #endif
-@@ -91,6 +116,10 @@
-   }
- #endif
- 
-+#ifdef __MINT__
-+  return freemem();
-+#endif
-+
- #if HAVE_PSTAT_GETSTATIC
-   { /* This works on hpux11.  */
-     struct pst_static pss;
-@@ -193,6 +222,10 @@
-     if (0 <= pages && 0 <= pagesize)
-       return pages * pagesize;
-   }
-+#endif
-+
-+#ifdef __MINT__
-+  return freemem();
- #endif
- 
- #if HAVE_PSTAT_GETSTATIC && HAVE_PSTAT_GETDYNAMIC
 diff -u lib/fpurge.c.old lib/fpurge.c
 --- lib/fpurge.c.old	2008-04-17 10:59:17.000000000 +0100
 +++ lib/fpurge.c	2008-05-21 22:49:04.000000000 +0100
@@ -225,31 +168,16 @@ diff -u lib/freadahead.c.old lib/freadahead.c
 diff -u lib/freading.c.old lib/freading.c
 --- lib/freading.c.old	2008-04-17 10:59:17.000000000 +0100
 +++ lib/freading.c	2008-05-21 23:25:32.000000000 +0100
-@@ -47,6 +47,13 @@
+@@ -47,6 +47,10 @@
  #elif defined __QNX__               /* QNX */
    return ((fp->_Mode & 0x2 /* _MOPENW */) == 0
  	  || (fp->_Mode & 0x1000 /* _MREAD */) != 0);
 +#elif defined __MINT__
 +  if (!fp->__mode.__write && fp->__mode.__read)
 +    return 1;
-+  return (fp->__mode.__read &&
-+          fp->__get_limit > fp->__bufp &&
-+          fp->__get_limit > fp->__put_limit &&
-+          fp->__bufp > fp->__buffer);
++  return (fp->__flags & _IO_CURRENTLY_GETTING) != 0;
  #else
   #error "Please port gnulib freading.c to your platform!"
- #endif
-diff -u lib/fseeko.c.old lib/fseeko.c
---- lib/fseeko.c.old	2008-04-19 22:36:52.000000000 +0100
-+++ lib/fseeko.c	2008-05-22 10:30:33.000000000 +0100
-@@ -107,6 +107,8 @@
-   if ((fp->_Mode & _MWRITE ? fp->_Next == fp->_Buf : fp->_Next == fp->_Rend)
-       && fp->_Rback == fp->_Back + sizeof (fp->_Back)
-       && fp->_Rsave == NULL)
-+#elif defined __MINT__
-+  if (0)
- #else
-   #error "Please port gnulib fseeko.c to your platform! Look at the code in fpurge.c, then report this to bug-gnulib."
  #endif
 diff -u lib/fseterr.c.old lib/fseterr.c
 --- lib/fseterr.c.old	2008-04-17 10:59:17.000000000 +0100
