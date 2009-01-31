@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.4.2.ebuild,v 1.3 2009/01/18 20:05:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.4.2.ebuild,v 1.4 2009/01/29 20:06:29 aballier Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ RDEPEND="~x11-libs/qt-gui-${PV}
 	~x11-libs/qt-test-${PV}
 	~x11-libs/qt-assistant-${PV}
 	~x11-libs/qt-xmlpatterns-${PV}
-	!sparc? ( !alpha? ( !ia64? ( ~x11-libs/qt-webkit-${PV} ) ) )
+	!sparc? ( !alpha? ( !ia64? ( !x86-fbsd? ( ~x11-libs/qt-webkit-${PV} ) ) ) )
 	dbus? ( ~x11-libs/qt-dbus-${PV} )
 	opengl? ( ~x11-libs/qt-opengl-${PV} )
 	qt3support? ( ~x11-libs/qt-qt3support-${PV} )"

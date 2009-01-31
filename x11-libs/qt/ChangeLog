@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.559 2009/01/18 20:05:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.560 2009/01/29 20:06:29 aballier Exp $
+
+  29 Jan 2009; Alexis Ballier <aballier@gentoo.org> qt-4.4.2.ebuild:
+  keyword ~x86-fbsd
 
   18 Jan 2009; Markus Meier <maekke@gentoo.org> qt-4.4.2.ebuild:
   amd64/x86 stable, bug #248038
