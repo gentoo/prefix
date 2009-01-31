@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.18 2009/01/21 08:55:28 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.19 2009/01/29 18:45:29 aballier Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -279,7 +279,7 @@ standard_configure_options() {
 		-datadir ${QTDATADIR} -docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR}
 		-plugindir ${QTPLUGINDIR} -sysconfdir ${QTSYSCONFDIR}
 		-translationdir ${QTTRANSDIR} -examplesdir ${QTEXAMPLESDIR}
-		-demosdir ${QTDEMOSDIR} -silent -fast -reduce-relocations
+		-demosdir ${QTDEMOSDIR} -silent -fast $(use x86-fbsd || echo -reduce-relocations)
 		-nomake examples -nomake demos"
 
 	myconf="${myconf} -silent -fast -reduce-relocations -nomake examples -nomake demos"

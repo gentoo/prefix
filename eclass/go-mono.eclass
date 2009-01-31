@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.4 2009/01/27 01:36:09 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.5 2009/01/29 16:26:48 loki_val Exp $
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -16,7 +16,6 @@ inherit base versionator mono
 NO_MONO_DEPEND=(
 	"dev-lang/mono"
 	"dev-dotnet/libgdiplus"
-	"dev-dotnet/gluezilla"
 )
 
 GO_MONO_REL_PV="$(get_version_component_range 1-2)"
