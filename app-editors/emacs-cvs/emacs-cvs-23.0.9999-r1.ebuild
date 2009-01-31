@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.1 2009/01/25 19:25:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.2 2009/01/28 07:49:44 ulm Exp $
 
 EAPI="prefix 2"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
@@ -25,7 +24,7 @@ else
 	# FULL_VERSION keeps the full version number, which is needed in
 	# order to determine some path information correctly for copy/move
 	# operations later on
-	FULL_VERSION="${PV%_*}"
+	FULL_VERSION="${PV%%_*}"
 	S="${WORKDIR}/emacs-${FULL_VERSION}"
 fi
 
