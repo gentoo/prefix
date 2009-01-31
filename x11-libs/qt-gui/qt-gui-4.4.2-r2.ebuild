@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.2-r1.ebuild,v 1.4 2009/01/29 18:51:06 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.2-r2.ebuild,v 1.1 2009/01/30 22:15:33 yngwin Exp $
 
 EAPI="prefix 1"
 inherit eutils qt4-build
 
-DESCRIPTION="The GUI module(s) for the Qt toolkit."
+DESCRIPTION="The GUI module for the Qt toolkit"
 HOMEPAGE="http://www.trolltech.com/"
 
 LICENSE="|| ( GPL-3 GPL-2 )"
@@ -13,10 +13,9 @@ SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
-IUSE="+accessibility cups dbus debug glib mng nas nis tiff +qt3support xinerama ${IUSE_INPUT_DEVICES}"
+IUSE="+accessibility cups +dbus debug +glib mng nas nis tiff +qt3support xinerama ${IUSE_INPUT_DEVICES}"
 
-RDEPEND="!<=x11-libs/qt-4.4.0_alpha:${SLOT}
-	media-libs/fontconfig
+RDEPEND="media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/jpeg
 	media-libs/libpng
@@ -69,8 +68,13 @@ src_unpack() {
 
 	qt4-build_src_unpack
 
-	# fix for bug 253044
+	# Apply bugfix patches from qt-copy
+	epatch "${FILESDIR}"/0248-fix-qwidget-scroll-slowness.diff
 	epatch "${FILESDIR}"/0254-fix-qgraphicsproxywidget-deletion-crash.diff
+	epatch "${FILESDIR}"/0256-fix-recursive-backingstore-sync-crash.diff
+	epatch "${FILESDIR}"/0262-fix-treeview-animation-crash.diff
+	epatch "${FILESDIR}"/0263-fix-fontconfig-handling.diff
+	epatch "${FILESDIR}"/0265-fix-formlayoutcrash.diff
 
 	# Don't build plugins this go around, because they depend on qt3support lib
 	sed -i -e "s:CONFIG(shared:# &:g" "${S}"/tools/designer/src/src.pro
