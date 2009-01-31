@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>scheme</herd>
-<use>
-	<flag name='big-iron'>Use expensive GCC optimizations and compile syntax-case macro
-	system, try only if you have more than 2GB RAM</flag>
-</use>
 </pkgmetadata>
