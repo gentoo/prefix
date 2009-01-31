@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/paredit
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/paredit/ChangeLog,v 1.8 2008/07/25 22:15:32 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/paredit/ChangeLog,v 1.9 2009/01/29 02:39:46 fauli Exp $
+
+  29 Jan 2009; Christian Faulhammer <fauli@gentoo.org>
+  -paredit-20-r1.ebuild:
+  clean up
 
 *paredit-21 (25 Jul 2008)
 
