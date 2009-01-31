@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.37 2009/01/24 09:33:00 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.38 2009/01/29 21:02:41 flameeyes Exp $
+
+  29 Jan 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  rubyforge-1.0.1.ebuild, rubyforge-1.0.2.ebuild:
+  Fix HOMEPAGE for 1.0.x releases.
 
 *rubyforge-1.0.2 (24 Jan 2009)
 

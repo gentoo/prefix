@@ -1,13 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-1.0.1.ebuild,v 1.7 2008/12/26 15:49:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-1.0.1.ebuild,v 1.8 2009/01/29 21:02:41 flameeyes Exp $
 
 EAPI="prefix"
 
 inherit gems
 
 DESCRIPTION="Simplistic script which automates a limited set of rubyforge operations"
-HOMEPAGE="http://codeforpeople.com/lib/ruby/rubyforge/"
+HOMEPAGE="http://codeforpeople.rubyforge.org/rubyforge/"
 
 USE_RUBY="ruby18 ruby19"
 
