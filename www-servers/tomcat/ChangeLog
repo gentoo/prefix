@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.206 2009/01/23 21:55:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.207 2009/01/27 19:11:18 ranger Exp $
+
+  27 Jan 2009; Brent Baude <ranger@gentoo.org> tomcat-6.0.18-r2.ebuild:
+  stable ppc64, bug 255469
 
   23 Jan 2009; Markus Meier <maekke@gentoo.org> tomcat-6.0.18-r2.ebuild:
   amd64/x86 stable, bug #255469
