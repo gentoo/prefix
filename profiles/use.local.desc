@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4156 2009/01/26 18:47:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4174 2009/01/30 21:47:46 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -237,7 +237,7 @@ app-emulation/virtualbox-ose:sdk - Enable building of SDK
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/wine:samba - Add support for NTLM auth. see http://wiki.winehq.org/NtlmAuthSetupGuide and http://wiki.winehq.org/NtlmSigningAndSealing
-app-emulation/wine:win64 - Build a 64bit version of Wine
+app-emulation/wine:win64 - Build a 64bit version of Wine (won't run Win32 binaries)
 app-emulation/xen:acm - Enable the ACM/sHype XSM module from IBM
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen:flask - Enable the Flask XSM module from NSA
@@ -296,6 +296,7 @@ app-misc/beagle:eds - Enables Beagle to index the Addressbook and Calendar from 
 app-misc/beagle:epiphany - Compiles and installs the extension for either www-client/epiphany. This extension helps Beagle index the websites you visit.
 app-misc/beagle:firefox - Compiles and installs the extension for either www-client/mozilla-firefox or www-client/mozilla-firefox-bin. This extension helps Beagle index the websites you visit.
 app-misc/beagle:galago - Allows Beagle to get status information from applications such as Pidgin to show in the search results.
+app-misc/beagle:google - Enables google (gmail etc.) indexing support.
 app-misc/beagle:gtk - Enables the GTK+ Beagle Search UI for showing search results. This is the default GUI for Beagle.
 app-misc/beagle:inotify - Enable inotify filesystem monitoring support 
 app-misc/beagle:ole - Enables OLE (Object Linking and Editing) support via dev-dotnet/gsf-sharp, app-text/wv, and app-office/gnumeric(ssindex). These allow Beagle to index MS Powerpoint, Word, and Spreadsheet Documents.
@@ -771,7 +772,6 @@ dev-ruby/ruby-sdl:mixer - Enable media-libs/sdl-mixer support
 dev-ruby/ruby-sdl:sge - Enable sdl-sge support
 dev-ruby/rubygems:server - Install support for the rubygems server
 dev-ruby/sqlite3-ruby:swig - Use dev-lang/swig to generate bindings
-dev-scheme/gambit:big-iron - Use expensive GCC optimizations and compile syntax-case macro system, try only if you have more than 2GB RAM
 dev-scheme/gauche-gl:cg - Enable NVidia Cg binding
 dev-scheme/gauche-gtk:glgd - Enable GL graph draw
 dev-scheme/guile:debug-freelist - Include garbage collector freelist debugging code
@@ -825,8 +825,6 @@ dev-util/mercurial:gpg - Support signing with GnuPG.
 dev-util/mercurial:tk - Install dev-lang/tk for hgk script.
 dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/mono-tools:webkit - Use net-libs/webkit-gtk for rendering.
-dev-util/monodevelop:aspnet - Enable ASP.NET support
-dev-util/monodevelop:c++ - Enable support for C/C++ programming languages
 dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
@@ -981,7 +979,10 @@ gnustep-base/gnustep-back-cairo:glitz - Build with media-libs/glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Use dev-libs/libffi from sys-devel/gcc instead of dev-libs/ffcall. Requires sys-devel/gcc built with USE=libffi
+gnustep-base/gnustep-make:native-exceptions - Enables use of the native Objective-C exception support (@try/@catch/@finally) built-in objective-c exceptions with compilers that support it 
 kde-base/akonadi:nepomuk - Enable desktop-wide tagging support
+kde-base/akonadi:opensync - Enables OpenSync data synchronization protocol support.
+kde-base/akonadi:semantic-desktop - Enables desktop-wide tagging support.
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
 kde-base/ark:zip - Enable zip support through LibZip
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard
@@ -991,12 +992,14 @@ kde-base/gwenview:semantic-desktop -  Semantic desktop allows for storage of dig
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work
 kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via app-mobilephone/gnokii
+kde-base/kalzium:cviewer - Enable Kalzium compound viewer
 kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-base/kalzium:solver - Enable the equation solver
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
-kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice
+kde-base/kcontrol:logitech-mouse -  Build the Control Center module to configure logitech mice 
 kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
+kde-base/kdebase-meta:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible 
 kde-base/kdeedu:kig-scripting - Support Python scripting in kig
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
 kde-base/kdegraphics:kpathsea - Enable integration with kpathsea search library (TeX related)
@@ -1010,37 +1013,49 @@ kde-base/kdenetwork:sametime - Support for the Sametime protocol for instant mes
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
 kde-base/kdeutils-meta:floppy - Install kfloppy to format and create DOS or ext2fs filesystems in a floppy.
+kde-base/kdm:consolekit - Enables support for authorization using consolekit
 kde-base/kdvi:kpathsea - Enable integration with kpathsea search library (TeX related)
+kde-base/kget:bittorrent - Enable embedded bittorrent transport plugin
+kde-base/kget:bittorrent-external - Enable external bittorrent transport plugin via ktorrent
+kde-base/kget:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kig:kig-scripting - Support Python scripting
 kde-base/kmail:nepomuk - Enable desktop-wide tagging support
+kde-base/kmail:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
-kde-base/kopete:addbookmarks - Enable the addbookmarks plugin
-kde-base/kopete:alias - Enable the alias plugin
-kde-base/kopete:autoreplace - Enable the autoreplace plugin
+kde-base/kopete:addbookmarks - Automaticaly add incoming urls to bookmarks.
+kde-base/kopete:alias - Enables creating of your own aliases for commands.
+kde-base/kopete:autoreplace - Automaticaly replace selected text
+kde-base/kopete:bonjour - Enable Link-Local Messaging via the bonjour protocol.
 kde-base/kopete:connectionstatus - Builds Connection Status plugin
-kde-base/kopete:contactnotes - Enable the contactnotes plugin
-kde-base/kopete:gadu - Enable the gadu protocol plugin
-kde-base/kopete:groupwise - Enable the groupwise protocol plugin
-kde-base/kopete:highlight - Enable the highlight plugin
-kde-base/kopete:history - Enable the history plugin
-kde-base/kopete:irc - Builds IRC protocol handler
-kde-base/kopete:jabber - Enable the Jabber protocol plugin
-kde-base/kopete:messenger - Enable the Windows LIVE!-Messenger protocol plugin
+kde-base/kopete:contactnotes - Enables writing personal notes for contacts.
+kde-base/kopete:gadu - Enable the Gadu protocol handler.
+kde-base/kopete:groupwise - Enable the Groupwise protocol handler.
+kde-base/kopete:highlight - Allows you to specify highlights on specific events.
+kde-base/kopete:history - Enables saving chat history.
+kde-base/kopete:irc - Enable the IRC protocol handler.
+kde-base/kopete:jabber - Enable XMPP protocol handler (this is also gmail).
+kde-base/kopete:latex - Embed latex formatted text into messages.
+kde-base/kopete:meanwhile - Enable the Sametime protocol handler.
+kde-base/kopete:messenger - Enable support for MSN and Windows live protocols (old implementation).
+kde-base/kopete:msn - Enable support for MSN (old microsoft protocol).
 kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
-kde-base/kopete:nowlistening - Enable the nowlistening plugin
-kde-base/kopete:otr - Encryption for IMs, using libotr
-kde-base/kopete:pipes - Enable support for the pipes plugin
-kde-base/kopete:privacy - plugin to selectively filter messages
-kde-base/kopete:qq - enable support for the chinese network protocol
+kde-base/kopete:nowlistening - Shows song you currently listen to in your status/etc. Bindings for many players.
+kde-base/kopete:oscar - Enable support for AIM and ICQ protocols.
+kde-base/kopete:otr - Allows crypting your chat (drugs and talking nonsense are considered as good alternatives ;]).
+kde-base/kopete:pipes - Send messages to external pipe.
+kde-base/kopete:privacy - Filter for incomming messages
+kde-base/kopete:qq - enable support for the chinese network protocol.
 kde-base/kopete:sametime - Enables support for the Sametime protocol for instant messaging
-kde-base/kopete:sms - Enable the sms protocol plugin
-kde-base/kopete:statistics - Enable the statistics plugin
-kde-base/kopete:testbed - Enable the testbed protocol plugin
-kde-base/kopete:texteffect - Enable the texteffect plugin
-kde-base/kopete:translator - Enable the translator plugin
-kde-base/kopete:urlpicpreview - plugin to allow users to send photos through URLs
-kde-base/kopete:webpresence - Enable the webpresence plugin
-kde-base/kopete:winpopup - Enable support for the winpopup plugin
+kde-base/kopete:sms - Enable the sms sending plugin.
+kde-base/kopete:statistics - Everybody loves statistic graphs, especialy cake ones. ;]
+kde-base/kopete:testbed - Enable the testbed protocol.
+kde-base/kopete:texteffect - Various fancy text effects for your messages (dont ever consider writing us with this enabled ;]).
+kde-base/kopete:translator - Translate incoming and outgoing messages.
+kde-base/kopete:urlpicpreview - Enables in conversation pictures preview.
+kde-base/kopete:webpresence - Show your status and some more informations on web.
+kde-base/kopete:winpopup - Enable pop-up messages sending on windows. (same as good old "net send" messages ;])
+kde-base/kopete:wlm - Enable "Windows live messenger" protocol support (New protocol from MS).
+kde-base/kopete:yahoo - Enable yahoo protocol support.
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
 kde-base/kstars:nova - Enable support for libnova.
 kde-base/kstars:sbig - Enable support for SBIG.
@@ -1050,6 +1065,11 @@ kde-base/kttsd:phonon - Enable support for the KDE multimedia API
 kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
+kde-base/okular:ebook - Add E-Book suppport
+kde-base/okular:ps - Add PostScript support
+kde-base/plasma-workspace:google-gadgets - Add google-gadgets support
+kde-base/pykde4:akonadi - Builds Akonadi python language bindings
+kde-base/pykde4:semantic-desktop - Enables Nemomuk and Soprano python language bindings
 kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
@@ -1264,6 +1284,7 @@ media-libs/libsdl:nojoystick - Allow users to disable joystick support completel
 media-libs/libsdl:novideo - Allow users to disable video support completely (at their own risk) (deprecated)
 media-libs/libsdl:video - Allow users to disable video support completely (at their own risk)
 media-libs/libvorbis:aotuv - Applies the aoTuV patches. Aoyumi's Tuned Vorbis is a third-party patchset that improves the vorbis encoding quality. A previous version of the aoTuV patchset has already been merged with the official libvorbis release. The current patchset especially improves encoding quality at low bitrate settings, and is very likely to be merged at some point in the future. It is recommended that all users enable this useflag. 
+media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
 media-libs/netpbm:rle - Build converters for the RLE format (utah raster toolkit)
 media-libs/opencv:demos - Install applications that demo OpenCV library functions
 media-libs/openjpeg:tools - Installs tools (j2k_to_image and image_to_j2k)
@@ -1315,6 +1336,7 @@ media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compre
 media-plugins/gst-plugins-meta:mythtv - Support for retrieval from media-tv/mythtv backend
 media-plugins/mythmusic:libvisual - Enables media-libs/libvisual support for effects
 media-plugins/mythphone:festival - Enable app-accessibility/festival support
+media-plugins/mythzoneminder:minimal - Don't build the mythtv side of this plugin, only the part that communicates with zoneminder. 
 media-plugins/vdr-burn:projectx - Enables support for media-video/projectx
 media-plugins/vdr-dvdconvert:projectx - Enable support for media-video/projectx
 media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
@@ -1404,9 +1426,10 @@ media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
 media-sound/mpg123:network - Enable network support (http streams / webradio)
-media-sound/mumble:speech - Enables text-to-speech support in Mumble.
-media-sound/murmur:ice - Use dev-cpp/Ice to enable remote control capabilities
-media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs
+media-sound/mumble:g15 - Enable support for the Logitech G15 LCD (and compatible devices).
+media-sound/mumble:speech - Enable text-to-speech support in Mumble.
+media-sound/murmur:ice - Use dev-cpp/Ice to enable remote control capabilities.
+media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs.
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
 media-sound/ncmpc:artist-screen - Enable artist screen
 media-sound/ncmpc:clock-screen - Enable clock screen
@@ -1418,6 +1441,7 @@ media-sound/ncmpc:mouse - Enable curses getmouse support
 media-sound/ncmpc:raw-mode - Raw terminal mode
 media-sound/ncmpc:search-screen - Enable search screen
 media-sound/ncmpc:song-screen - Enable song viewer screen
+media-sound/ncmpcpp:clock - Enable clock screen
 media-sound/noteedit:kmid - Use KDE's kmid to play sound
 media-sound/noteedit:tse3 - Use tse3 library to play/export sound
 media-sound/picard:cdaudio - Enable support for CD Index Lookups.
@@ -2233,8 +2257,6 @@ net-wireless/bluez-utils:test-programs - Install l2test and rctest
 net-wireless/hostapd:logwatch - Install support files for sys-app/logwatch
 net-wireless/hostapd:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/hostapd:wps - Add support for Wi-Fi Protected Setup
-net-wireless/iwlwifi:ipw3945 - Add support for the IPW3945 wireless card
-net-wireless/iwlwifi:ipw4965 - Add support for the IPW4965 wireless card
 net-wireless/kdebluetooth:irmc - Enable the kitchensync(Multisynk)'s IrMCSync konnector
 net-wireless/madwifi-ng:injection - Adds support for net-wireless/aircrack-ng aireplay-ng packet injection
 net-wireless/madwifi-old:amrr - Use Adaptive Multi Rate Retry bit rate control algorithm

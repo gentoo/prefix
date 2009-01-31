@@ -1,10 +1,56 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2297 2009/01/26 22:51:03 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2312 2009/01/31 08:16:43 tove Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Jan 2009; Daniel Black <dragonheart@gentoo.org> package.mask:
+  app-crypt/tpm-module removed from portage. removed from package.mask also
+
+  30 Jan 2009; Thomas Anderson <gentoofan23@gentoo.org> package.mask:
+  Mask mythzoneminder as it depends on security-vulnerable zoneminder.
+
+  30 Jan 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Removed the global KDE-4.2.0 mask and left the experimental printer
+  packages until the deps are added to the tree.
+
+  30 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  P.mask gtkgl-sharp
+
+  30 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mask mcatalog for removal
+
+  30 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  jscall-sharp is gone from tree
+
+  29 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  remove x11-misc/goats mask since it is now gone from the tree, #248564.
+
+  29 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
+  Add kde-base/konq-plugins-4.2.0 to mask
+
+  29 Jan 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Added media-sound/phonon-4.3.0 to the KDE-4.2.0 p. mask.
+
+  28 Jan 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Masked for testing (#249629 and 79685#c14)
+
+  28 Jan 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Added meta ebuilds to the KDE-4.2.0 mask.
+
+  27 Jan 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Removed mask for iwlwifi which was removed from the tree, bug #207698.
+
+  27 Jan 2009; Wolfram Schlich <wschlich@gentoo.org> package.mask:
+  remove hpacucli mask as the license file is now in portage
+
+  27 Jan 2009; Federico Ferri <mescalinum@gentoo.org> package.mask:
+  unmask synce-0.13 as the issues are now solved
 
   26 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Add gvfs-1.0.3-r10 to bluez-4 mask.
