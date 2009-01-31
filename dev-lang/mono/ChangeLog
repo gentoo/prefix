@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.152 2009/01/25 13:23:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.153 2009/01/29 15:59:19 loki_val Exp $
+
+  29 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> mono-2.2-r3.ebuild:
+  Add postinst message pointing to the additional packages that must be
+  installed to support all mono namespaces w.r.t. bug 151315 and bug 256506.
+  Further investigation has revealed that the gluezilla package is not a
+  build-time dependency. The same is true for the Oracle instantclient. The
+  mono dlls for these will be built regardless, one only has to install the
+  packages to get support for them.
 
 *mono-2.2-r3 (25 Jan 2009)
 
