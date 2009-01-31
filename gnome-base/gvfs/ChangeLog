@@ -1,6 +1,19 @@
 # ChangeLog for gnome-base/gvfs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.43 2009/01/26 22:53:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.46 2009/01/30 18:52:15 aballier Exp $
+
+  30 Jan 2009; Alexis Ballier <aballier@gentoo.org> gvfs-1.0.3.ebuild,
+  gvfs-1.0.3-r10.ebuild:
+  keyword ~x86-fbsd
+
+  29 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gvfs-1.0.3-posixtest.patch, -gvfs-0.2.5.ebuild,
+  -gvfs-0.2.5-r1.ebuild, -gvfs-1.0.1.ebuild, -gvfs-1.0.2.ebuild,
+  gvfs-1.0.3.ebuild, gvfs-1.0.3-r10.ebuild:
+  Use posix tests in configure.ac, bug #256305. Clean up old revisions.
+
+  27 Jan 2009; Raúl Porcel <armin76@gentoo.org> gvfs-1.0.3-r10.ebuild:
+  Re-add ~arm/~sh
 
 *gvfs-1.0.3-r10 (26 Jan 2009)
 

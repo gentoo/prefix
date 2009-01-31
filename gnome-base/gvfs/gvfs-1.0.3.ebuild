@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.0.3.ebuild,v 1.2 2009/01/20 11:13:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.0.3.ebuild,v 1.4 2009/01/30 18:52:15 aballier Exp $
 
 EAPI="prefix"
 
-inherit bash-completion gnome2 eutils flag-o-matic
+inherit autotools bash-completion gnome2 eutils flag-o-matic
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
@@ -39,7 +39,8 @@ RDEPEND=">=dev-libs/glib-2.17.6
 DEPEND="${RDEPEND}
 		>=dev-util/intltool-0.40
 		>=dev-util/pkgconfig-0.19
-		doc? ( >=dev-util/gtk-doc-1 )"
+		doc? ( >=dev-util/gtk-doc-1 )
+		dev-util/gtk-doc-am"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
@@ -82,6 +83,15 @@ src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_header_stropts_h=no
 
 	gnome2_src_compile
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Fix non posixy tests, bug #256305
+	epatch "${FILESDIR}/${P}-posixtest.patch"
+
+	eautoreconf
 }
 
 src_install() {
