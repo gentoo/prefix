@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/pax-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.110 2009/01/05 20:44:40 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.111 2009/01/29 07:17:19 the_paya Exp $
+
+  29 Jan 2009; Javier Villavicencio <the_paya@gentoo.org>
+  pax-utils-0.1.19.ebuild:
+  Rekeyword ~sparc/x86-fbsd. strndup(3) is now backported on
+  freebsd-lib-7.1-r1.
 
   05 Jan 2009; Jose Luis Rivero <yoswink@gentoo.org>
   pax-utils-0.1.19.ebuild:
