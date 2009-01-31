@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/eselect-ctags-1.8.ebuild,v 1.4 2009/01/25 15:36:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/eselect-ctags-1.8.ebuild,v 1.5 2009/01/27 10:43:42 armin76 Exp $
 
 EAPI="prefix"
 
