@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.252 2009/01/26 08:09:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.253 2009/01/29 21:58:29 eva Exp $
+
+  29 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  libxml2-2.7.2-r1.ebuild, libxml2-2.7.2-r2.ebuild, libxml2-2.7.3.ebuild:
+  Applying suggested changes in bug #251550 comment #9.
 
 *libxml2-2.7.3 (26 Jan 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.2-r1.ebuild,v 1.10 2009/01/26 00:34:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.2-r1.ebuild,v 1.11 2009/01/29 21:58:29 eva Exp $
 
 EAPI="prefix"
 
@@ -128,6 +128,7 @@ pkg_preinst() {
 pkg_postinst() {
 	if use python; then
 		python_version
+		python_need_rebuild
 		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
 	fi
 
@@ -152,5 +153,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	use python && python_mod_cleanup
+	python_mod_cleanup /usr/$(get_libdir)/python*/site-packages
 }
