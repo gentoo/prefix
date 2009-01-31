@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.214 2009/01/24 21:15:32 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.215 2009/01/28 20:41:36 ranger Exp $
+
+  28 Jan 2009; Brent Baude <ranger@gentoo.org> wxGTK-2.8.9.1-r3.ebuild:
+  Marking wxGTK-2.8.9.1-r3 ppc64 for bug 254696
 
   24 Jan 2009; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.6.4.0-r1.ebuild:
   Drop ancient ebuild.
