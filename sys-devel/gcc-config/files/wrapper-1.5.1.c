@@ -1,27 +1,45 @@
 /*
  * Copyright 1999-2008 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
- * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.1.c,v 1.1 2008/03/16 01:20:11 vapier Exp $
+ * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.1.c,v 1.2 2009/01/02 00:43:32 vapier Exp $
  * Author: Martin Schlemmer <azarah@gentoo.org>
  * az's lackey: Mike Frysinger <vapier@gentoo.org>
  */
 
+#ifdef DEBUG
+# define USE_DEBUG 1
+#else
+# define USE_DEBUG 0
+#endif
+
 #define _GNU_SOURCE
 
+#include <errno.h>
+#include <libgen.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/param.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <libgen.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/wait.h>
 #include <stdarg.h>
-#include <errno.h>
 
 #define GCC_CONFIG "@GENTOO_PORTAGE_EPREFIX@/usr/bin/gcc-config"
 #define ENVD_BASE  "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05gcc"
+
+#define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
+
+/* basename(3) is allowed to modify memory */
+#undef basename
+#define basename(path) \
+({ \
+	char *__path = path; \
+	char *__ret = strrchr(__path, '/'); \
+	__ret ? __ret + 1 : __path; \
+})
 
 struct wrapper_data {
 	char *name, *fullname, *bin, *path;
@@ -33,27 +51,19 @@ static const struct {
 } wrapper_aliases[] = {
 	{ "cc",  "gcc" },
 	{ "f77", "g77" },
-	{ NULL, NULL }
 };
 
-static void wrapper_err(char *msg, ...)
-{
-	va_list args;
-	fprintf(stderr, "gcc-config error: ");
-	va_start(args, msg);
-	vfprintf(stderr, msg, args);
-	va_end(args);
-	fprintf(stderr, "\n");
-	exit(1);
-}
+#define wrapper_warn(fmt, ...) fprintf(stderr, "%s" fmt "\n", "gcc-config: ", ## __VA_ARGS__)
+#define wrapper_err(fmt, ...) ({ wrapper_warn("%s" fmt, "error: ", ## __VA_ARGS__); exit(1); })
 #define wrapper_errp(fmt, ...) wrapper_err(fmt ": %s", ## __VA_ARGS__, strerror(errno))
+#define wrapper_dbg(fmt, ...) ({ if (USE_DEBUG) wrapper_warn(fmt, ## __VA_ARGS__); })
 
 #define xmemwrap(func, proto, use) \
 static void *x ## func proto \
 { \
 	void *ret = func use; \
 	if (!ret) \
-		wrapper_err(#func "out of memory"); \
+		wrapper_err(#func "%s", ": out of memory"); \
 	return ret; \
 }
 xmemwrap(malloc, (size_t size), (size))
@@ -67,25 +77,34 @@ xmemwrap(strdup, (const char *s), (s))
 static int check_for_target(char *path, struct wrapper_data *data)
 {
 	struct stat sbuf;
-	char str[MAXPATHLEN + 1];
-	size_t len = strlen(path) + strlen(data->name) + 2;
+	char str[PATH_MAX + 1];
+	size_t path_len = strlen(path);
+	size_t len = path_len + strlen(data->name) + 2;
 
-	snprintf(str, sizeof(str), "%s/%s", path, data->name);
+	if (sizeof(str) < len)
+		wrapper_warn("path too long: %s", path);
+
+	strcpy(str, path);
+	str[path_len] = '/';
+	str[path_len+1] = '\0';
+	strcat(str, data->name);
 
 	/* Stat possible file to check that
 	 * 1) it exist and is a regular file, and
 	 * 2) it is not the wrapper itself, and
 	 * 3) it is in a /gcc-bin/ directory tree
 	 */
-	if (stat(str, &sbuf) == 0 &&
-	    (S_ISREG(sbuf.st_mode) || S_ISLNK(sbuf.st_mode)) &&
-	    (strcmp(str, data->fullname) != 0) &&
-	    (strstr(str, "/gcc-bin/") != 0))
+	if (strcmp(str, data->fullname) != 0 &&
+	    strstr(str, "/gcc-bin/") != NULL &&
+	    stat(str, &sbuf) == 0 &&
+	    (S_ISREG(sbuf.st_mode) || S_ISLNK(sbuf.st_mode)))
 	{
+		wrapper_dbg("%s: found in %s", data->name, path);
 		data->bin = xstrdup(str);
 		return 1;
 	}
 
+	wrapper_dbg("%s: did not find in %s", data->name, path);
 	return 0;
 }
 
@@ -112,6 +131,7 @@ static int find_target_in_path(struct wrapper_data *data)
 		token = strtok_r(NULL, ":", &state);
 	}
 
+	wrapper_dbg("%s: did not find in PATH", data->name);
 	return 0;
 }
 
@@ -123,9 +143,9 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
 {
 	FILE *envfile = NULL;
 	char *token = NULL, *state;
-	char str[MAXPATHLEN + 1];
+	char str[PATH_MAX + 1];
 	char *strp = str;
-	char envd_file[MAXPATHLEN + 1];
+	char envd_file[PATH_MAX + 1];
 
 	if (!cross_compile) {
 		/* for the sake of speed, we'll keep a symlink around for
@@ -138,7 +158,7 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
 			return 0;
 		ctarget = xstrdup(data->name);
 		ctarget[end - data->name] = '\0';
-		snprintf(envd_file, MAXPATHLEN, "%s-%s", ENVD_BASE, ctarget);
+		snprintf(envd_file, PATH_MAX, "%s-%s", ENVD_BASE, ctarget);
 		free(ctarget);
 	}
 
@@ -146,7 +166,7 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
 	if (envfile == NULL)
 		return 0;
 
-	while (fgets(strp, MAXPATHLEN, envfile) != NULL) {
+	while (fgets(strp, PATH_MAX, envfile) != NULL) {
 		/* Keep reading ENVD_FILE until we get a line that
 		 * starts with 'GCC_PATH=' ... keep 'PATH=' around
 		 * for older gcc versions.
@@ -156,13 +176,13 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
 			continue;
 
 		token = strtok_r(strp, "=", &state);
-		if ((token != NULL) && strlen(token))
+		if ((token != NULL) && token[0])
 			/* The second token should be the value of PATH .. */
 			token = strtok_r(NULL, "=", &state);
 		else
 			goto bail;
 
-		if ((token != NULL) && strlen(token)) {
+		if ((token != NULL) && token[0]) {
 			strp = token;
 			/* A bash variable may be unquoted, quoted with " or
 			 * quoted with ', so extract the value without those ..
@@ -202,8 +222,8 @@ static void find_wrapper_target(struct wrapper_data *data)
 	if (inpipe == NULL)
 		wrapper_errp("could not open pipe");
 
-	char str[MAXPATHLEN + 1];
-	if (fgets(str, MAXPATHLEN, inpipe) == 0)
+	char str[PATH_MAX + 1];
+	if (fgets(str, PATH_MAX, inpipe) == 0)
 		wrapper_errp("could not get compiler binary path");
 
 	/* chomp! */
@@ -211,7 +231,7 @@ static void find_wrapper_target(struct wrapper_data *data)
 	if (str[plen-1] == '\n')
 		str[plen-1] = '\0';
 
-	data->bin = xmalloc(strlen(str) + 1 + strlen(data->name) + 1);
+	data->bin = xmalloc(plen + 1 + strlen(data->name) + 1);
 	sprintf(data->bin, "%s/%s", str, data->name);
 
 	pclose(inpipe);
@@ -221,28 +241,28 @@ static void find_wrapper_target(struct wrapper_data *data)
 static void modify_path(struct wrapper_data *data)
 {
 	char *newpath = NULL, *token = NULL, *state;
-	char dname_data[MAXPATHLEN + 1], str[MAXPATHLEN + 1];
+	char dname_data[PATH_MAX + 1], str[PATH_MAX + 1];
 	char *str2 = dname_data, *dname = dname_data;
 	size_t len = 0;
 
 	if (data->bin == NULL)
 		return;
 
-	snprintf(str2, MAXPATHLEN + 1, "%s", data->bin);
+	if (data->path == NULL)
+		return;
+
+	snprintf(str2, PATH_MAX + 1, "%s", data->bin);
 
 	if ((dname = dirname(str2)) == NULL)
 		return;
 
-	if (data->path == NULL)
-		return;
-
 	/* Make a copy since strtok_r will modify path */
-	snprintf(str, MAXPATHLEN + 1, "%s", data->path);
+	snprintf(str, PATH_MAX + 1, "%s", data->path);
 
 	token = strtok_r(str, ":", &state);
 
 	/* Check if we already appended our bin location to PATH */
-	if ((token != NULL) && strlen(token))
+	if ((token != NULL) && token[0])
 		if (!strcmp(token, dname))
 			return;
 
@@ -256,7 +276,7 @@ static void modify_path(struct wrapper_data *data)
 }
 
 static char *abi_flags[] = {
-	"-m32", "-m64", "-mabi", NULL
+	"-m32", "-m64", "-mabi",
 };
 static char **build_new_argv(char **argv, const char *newflags_str)
 {
@@ -274,7 +294,7 @@ static char **build_new_argv(char **argv, const char *newflags_str)
 	 * of the time ...
 	 */
 	for (argc = 0; argv[argc]; ++argc)
-		for (i = 0; abi_flags[i]; ++i)
+		for (i = 0; i < ARRAY_SIZE(abi_flags); ++i)
 			if (!strncmp(argv[argc], abi_flags[i], strlen(abi_flags[i])))
 				return retargv;
 
@@ -308,11 +328,11 @@ int main(int argc, char *argv[])
 		data.path = xstrdup(getenv("PATH"));
 
 	/* What should we find ? */
-	data.name = basename(xstrdup(argv[0]));
+	data.name = basename(argv[0]);
 
 	/* Allow for common compiler names like cc->gcc */
 	size_t i;
-	for (i = 0; wrapper_aliases[i].alias; ++i)
+	for (i = 0; i < ARRAY_SIZE(wrapper_aliases); ++i)
 		if (!strcmp(data.name, wrapper_aliases[i].alias))
 			data.name = wrapper_aliases[i].target;
 

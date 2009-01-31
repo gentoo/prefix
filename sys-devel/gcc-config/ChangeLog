@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc-config
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.177 2008/03/16 12:40:34 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.178 2009/01/28 02:32:51 vapier Exp $
+
+  28 Jan 2009; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.1,
+  gcc-config-1.4.1.ebuild:
+  Update libgcj.pc symlinks #136382 #216241 and set GCC_SPECS with -E
+  #251271 by Diego E. Pettenò.
 
   16 Mar 2008; Christian Heim <phreak@gentoo.org> Manifest:
   Fixing the Manifest (emerge is complaining about missing
