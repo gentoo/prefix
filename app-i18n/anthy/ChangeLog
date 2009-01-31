@@ -1,6 +1,11 @@
 # ChangeLog for app-i18n/anthy
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.119 2008/07/31 10:03:35 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.120 2009/01/29 15:12:01 matsuu Exp $
+
+*anthy-9100g (29 Jan 2009)
+
+  29 Jan 2009; MATSUU Takuto <matsuu@gentoo.org> +anthy-9100g.ebuild:
+  Version bumped.
 
   31 Jul 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56. Add pkg tags in
