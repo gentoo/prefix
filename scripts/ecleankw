@@ -13,7 +13,7 @@
 # these need to reflect the keywords that are valid for the tree
 my_keywords="
 	ppc-aix
-	x86-freebsd
+	x86-freebsd x64-freebsd
 	hppa-hpux ia64-hpux
 	x86-interix
 	amd64-linux x86-linux ia64-linux
