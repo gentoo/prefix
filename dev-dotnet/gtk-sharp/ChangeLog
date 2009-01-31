@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.91 2009/01/06 12:51:21 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.92 2009/01/29 22:41:53 loki_val Exp $
+
+*gtk-sharp-2.12.7-r10 (29 Jan 2009)
+
+  29 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -gtk-sharp-2.12.7-r5.ebuild, +gtk-sharp-2.12.7-r10.ebuild:
+  Bump for new eclass
 
   06 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> gtk-sharp-2.8.2.ebuild,
   gtk-sharp-2.10.0.ebuild, gtk-sharp-2.10.2.ebuild:
