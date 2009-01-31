@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.19 2009/01/15 14:01:07 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.20 2009/01/31 09:26:08 mabi Exp $
+
+  31 Jan 2009; Matti Bickel <mabi@gentoo.org> gegl-0.0.22.ebuild:
+  added ~ppc for bug #240433
 
   15 Jan 2009; Hanno Boeck <hanno@gentoo.org>
   +files/gegl-0.0.22-locale_h.diff, gegl-0.0.22.ebuild:
