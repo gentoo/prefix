@@ -1,6 +1,11 @@
 # ChangeLog for x11-wm/metacity
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.220 2008/11/13 19:15:19 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.221 2009/01/31 11:46:54 eva Exp $
+
+  31 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/metacity-2.24.0-fbsd.patch, metacity-2.20.1.ebuild,
+  -metacity-2.20.2.ebuild, metacity-2.24.0.ebuild:
+  Fix compilation for *bsd, bug #256224. Clean up old revisions.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> metacity-2.22.0.ebuild:
   Marking metacity-2.22.0 ppc64 stable for bug 236971

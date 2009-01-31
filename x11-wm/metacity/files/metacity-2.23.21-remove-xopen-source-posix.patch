@@ -11,17 +11,6 @@ diff -x '*.*~' -x '*.orig' -x '*.rej' -rup ../metacity-2.23.21/src/compositor/co
  
  #include <config.h>
  
-diff -x '*.*~' -x '*.orig' -x '*.rej' -rup ../metacity-2.23.21/src/core/util.c metacity-2.23.21/src/core/util.c
---- ../metacity-2.23.21/src/core/util.c	2008-06-02 17:03:51.884081000 +0200
-+++ metacity-2.23.21/src/core/util.c	2008-06-02 17:06:31.561130000 +0200
-@@ -23,7 +23,6 @@
-  */
- 
- #define _GNU_SOURCE
--#define _POSIX_C_SOURCE /* for fdopen() */
- 
- #include <config.h>
- #include "util.h"
 diff -x '*.*~' -x '*.orig' -x '*.rej' -rup ../metacity-2.23.21/src/tools/metacity-mag.c metacity-2.23.21/src/tools/metacity-mag.c
 --- ../metacity-2.23.21/src/tools/metacity-mag.c	2008-06-02 17:03:52.073605000 +0200
 +++ metacity-2.23.21/src/tools/metacity-mag.c	2008-06-02 17:06:45.953211000 +0200
