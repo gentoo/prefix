@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/colordiff
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.69 2008/04/25 20:39:02 ricmm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.70 2009/01/31 07:41:38 dberkholz Exp $
+
+  31 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml:
+  Give up maintainership; reassign to maintainer-needed.
 
   25 Apr 2008; <ricmm@gentoo.org> colordiff-1.0.6-r1.ebuild:
   Drop to ~mips due to unstable deps
