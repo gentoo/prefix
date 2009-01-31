@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/gnomevfs-sharp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/ChangeLog,v 1.36 2009/01/05 17:16:45 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/ChangeLog,v 1.37 2009/01/29 22:45:13 loki_val Exp $
+
+*gnomevfs-sharp-2.24.0-r10 (29 Jan 2009)
+
+  29 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -gnomevfs-sharp-2.24.0-r5.ebuild, +gnomevfs-sharp-2.24.0-r10.ebuild:
+  Bump for new eclass
 
 *gnomevfs-sharp-2.24.0-r5 (05 Jan 2009)
 
