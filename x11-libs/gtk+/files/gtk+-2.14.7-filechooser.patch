@@ -1,0 +1,392 @@
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN gtk+-2.14.7.orig/gtk/gtkfilechooserdefault.c gtk+-2.14.7/gtk/gtkfilechooserdefault.c
+--- gtk+-2.14.7.orig/gtk/gtkfilechooserdefault.c	2009-01-07 11:32:57.000000000 -0500
++++ gtk+-2.14.7/gtk/gtkfilechooserdefault.c	2009-01-29 14:51:40.000000000 -0500
+@@ -34,6 +34,7 @@
+ #include "gtkexpander.h"
+ #include "gtkfilechooserprivate.h"
+ #include "gtkfilechooserdefault.h"
++#include "gtkfilechooserdialog.h"
+ #include "gtkfilechooserembed.h"
+ #include "gtkfilechooserentry.h"
+ #include "gtkfilechoosersettings.h"
+@@ -273,6 +274,7 @@ static void     gtk_file_chooser_default
+ 						       GParamSpec            *pspec);
+ static void     gtk_file_chooser_default_dispose      (GObject               *object);
+ static void     gtk_file_chooser_default_show_all       (GtkWidget             *widget);
++static void     gtk_file_chooser_default_realize        (GtkWidget             *widget);
+ static void     gtk_file_chooser_default_map            (GtkWidget             *widget);
+ static void     gtk_file_chooser_default_unmap          (GtkWidget             *widget);
+ static void     gtk_file_chooser_default_hierarchy_changed (GtkWidget          *widget,
+@@ -565,6 +567,7 @@ _gtk_file_chooser_default_class_init (Gt
+   gobject_class->dispose = gtk_file_chooser_default_dispose;
+ 
+   widget_class->show_all = gtk_file_chooser_default_show_all;
++  widget_class->realize = gtk_file_chooser_default_realize;
+   widget_class->map = gtk_file_chooser_default_map;
+   widget_class->unmap = gtk_file_chooser_default_unmap;
+   widget_class->hierarchy_changed = gtk_file_chooser_default_hierarchy_changed;
+@@ -1156,9 +1159,6 @@ change_folder_and_display_error (GtkFile
+ static void
+ emit_default_size_changed (GtkFileChooserDefault *impl)
+ {
+-  if (!GTK_WIDGET_MAPPED (impl))
+-    return;
+-
+   profile_msg ("    emit default-size-changed start", NULL);
+   g_signal_emit_by_name (impl, "default-size-changed");
+   profile_msg ("    emit default-size-changed end", NULL);
+@@ -1192,7 +1192,8 @@ update_preview_widget_visibility (GtkFil
+   else
+     gtk_widget_hide (impl->preview_box);
+ 
+-  emit_default_size_changed (impl);
++  if (!GTK_WIDGET_MAPPED (impl))
++    emit_default_size_changed (impl);
+ }
+ 
+ static void
+@@ -5986,6 +5987,31 @@ settings_load (GtkFileChooserDefault *im
+ }
+ 
+ static void
++save_dialog_geometry (GtkFileChooserDefault *impl, GtkFileChooserSettings *settings)
++{
++  GtkWindow *toplevel;
++  int x, y, width, height;
++
++  /* We don't save the geometry in non-expanded "save" mode, so that the "little
++   * dialog" won't make future Open dialogs too small.
++   */
++  if (!(impl->action == GTK_FILE_CHOOSER_ACTION_OPEN
++	|| impl->action == GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
++	|| impl->expand_folders))
++    return;
++
++  toplevel = get_toplevel (GTK_WIDGET (impl));
++
++  if (!(toplevel && GTK_IS_FILE_CHOOSER_DIALOG (toplevel)))
++    return;
++
++  gtk_window_get_position (toplevel, &x, &y);
++  gtk_window_get_size (toplevel, &width, &height);
++
++  _gtk_file_chooser_settings_set_geometry (settings, x, y, width, height);
++}
++
++static void
+ settings_save (GtkFileChooserDefault *impl)
+ {
+   GtkFileChooserSettings *settings;
+@@ -5996,12 +6022,28 @@ settings_save (GtkFileChooserDefault *im
+   _gtk_file_chooser_settings_set_show_hidden (settings, gtk_file_chooser_get_show_hidden (GTK_FILE_CHOOSER (impl)));
+   _gtk_file_chooser_settings_set_expand_folders (settings, impl->expand_folders);
+ 
++  save_dialog_geometry (impl, settings);
++
+   /* NULL GError */
+   _gtk_file_chooser_settings_save (settings, NULL);
+ 
+   g_object_unref (settings);
+ }
+ 
++/* GtkWidget::realize method */
++static void
++gtk_file_chooser_default_realize (GtkWidget *widget)
++{
++  GtkFileChooserDefault *impl;
++  char *current_working_dir;
++
++  impl = GTK_FILE_CHOOSER_DEFAULT (widget);
++
++  GTK_WIDGET_CLASS (_gtk_file_chooser_default_parent_class)->realize (widget);
++
++  emit_default_size_changed (impl);
++}
++
+ /* GtkWidget::map method */
+ static void
+ gtk_file_chooser_default_map (GtkWidget *widget)
+@@ -6055,8 +6097,6 @@ gtk_file_chooser_default_map (GtkWidget 
+ 
+   settings_load (impl);
+ 
+-  emit_default_size_changed (impl);
+-
+   profile_end ("end", NULL);
+ }
+ 
+@@ -7886,6 +7926,20 @@ gtk_file_chooser_default_get_default_siz
+       || impl->action == GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
+       || impl->expand_folders)
+     {
++      GtkFileChooserSettings *settings;
++      int x, y, width, height;
++
++      settings = _gtk_file_chooser_settings_new ();
++      _gtk_file_chooser_settings_get_geometry (settings, &x, &y, &width, &height);
++      g_object_unref (settings);
++
++      if (x >= 0 && y >= 0 && width > 0 && height > 0)
++	{
++	  *default_width = width;
++	  *default_height = height;
++	  return;
++	}
++
+       find_good_size_from_style (GTK_WIDGET (chooser_embed), default_width, default_height);
+ 
+       if (impl->preview_widget_active &&
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN gtk+-2.14.7.orig/gtk/gtkfilechooserdialog.c gtk+-2.14.7/gtk/gtkfilechooserdialog.c
+--- gtk+-2.14.7.orig/gtk/gtkfilechooserdialog.c	2009-01-07 11:32:57.000000000 -0500
++++ gtk+-2.14.7/gtk/gtkfilechooserdialog.c	2009-01-29 14:51:40.000000000 -0500
+@@ -25,6 +25,7 @@
+ #include "gtkfilechooserwidget.h"
+ #include "gtkfilechooserutils.h"
+ #include "gtkfilechooserembed.h"
++#include "gtkfilechoosersettings.h"
+ #include "gtkfilesystem.h"
+ #include "gtktypebuiltins.h"
+ #include "gtkintl.h"
+@@ -154,37 +155,33 @@ file_chooser_widget_file_activated (GtkF
+   g_list_free (children);
+ }
+ 
++#if 0
++/* FIXME: to see why this function is ifdef-ed out, see the comment below in
++ * file_chooser_widget_default_size_changed().
++ */
+ static void
+-clamp_to_screen (GtkWidget *widget,
+-		 gint      *width,
+-		 gint      *height)
+-{
+-  GdkScreen *screen;
+-  int monitor_num;
+-  GdkRectangle monitor;
+-
+-  g_return_if_fail (GTK_WIDGET_REALIZED (widget));
+-  
+-  screen = gtk_widget_get_screen (widget);
+-  monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+-
+-  gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
++load_position (int *out_xpos, int *out_ypos)
++{
++  GtkFileChooserSettings *settings;
++  int x, y, width, height;
+ 
+-  if (width)
+-    *width = MIN (*width, (monitor.width * 3) / 4);
++  settings = _gtk_file_chooser_settings_new ();
++  _gtk_file_chooser_settings_get_geometry (settings, &x, &y, &width, &height);
++  g_object_unref (settings);
+ 
+-  if (height)
+-    *height = MIN (*height, (monitor.height * 3) / 4);
++  *out_xpos = x;
++  *out_ypos = y;
+ }
++#endif
+ 
+ static void
+ file_chooser_widget_default_size_changed (GtkWidget            *widget,
+ 					  GtkFileChooserDialog *dialog)
+ {
+   GtkFileChooserDialogPrivate *priv;
+-  gint width, height;
+   gint default_width, default_height;
+   GtkRequisition req, widget_req;
++  int xpos, ypos;
+ 
+   priv = GTK_FILE_CHOOSER_DIALOG_GET_PRIVATE (dialog);
+ 
+@@ -197,27 +194,29 @@ file_chooser_widget_default_size_changed
+        * that widget->requisition is meaningful. */
+       gtk_widget_size_request (GTK_WIDGET (dialog), &req);
+       gtk_widget_size_request (widget, &widget_req);
+-
+-      width = req.width - widget_req.width;
+-      height = req.height - widget_req.height;
+-    }
+-  else
+-    {
+-      width = GTK_WIDGET (dialog)->allocation.width - widget->allocation.width;
+-      height = GTK_WIDGET (dialog)->allocation.height - widget->allocation.height;
+     }
+ 
+   _gtk_file_chooser_embed_get_default_size (GTK_FILE_CHOOSER_EMBED (priv->widget),
+ 					    &default_width, &default_height);
+ 
+-  /* Ideal target size plus any extra size */
+-  width = default_width + width + (2 * GTK_CONTAINER (dialog)->border_width);
+-  height = default_height + height + (2 * GTK_CONTAINER (dialog)->border_width);
+-
+-  if (GTK_WIDGET_REALIZED (dialog))
+-    clamp_to_screen (GTK_WIDGET (dialog), &width, &height);
++  gtk_window_resize (GTK_WINDOW (dialog), default_width, default_height);
+ 
+-  gtk_window_resize (GTK_WINDOW (dialog), width, height);
++  if (!GTK_WIDGET_MAPPED (dialog))
++    {
++#if 0
++      /* FIXME: the code to restore the position does not work yet.  It is not
++       * clear whether it is actually desirable --- if enabled, applications
++       * would not be able to say "center the file chooser on top of my toplevel
++       * window".  So, we don't use this code at all.
++       */
++      load_position (&xpos, &ypos);
++      if (xpos >= 0 && ypos >= 0)
++	{
++	  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_NONE);
++	  gtk_window_move (GTK_WINDOW (dialog), xpos, ypos);
++	}
++#endif
++    }
+ }
+ 
+ static void
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN gtk+-2.14.7.orig/gtk/gtkfilechoosersettings.c gtk+-2.14.7/gtk/gtkfilechoosersettings.c
+--- gtk+-2.14.7.orig/gtk/gtkfilechoosersettings.c	2009-01-07 11:32:57.000000000 -0500
++++ gtk+-2.14.7/gtk/gtkfilechoosersettings.c	2009-01-29 14:53:10.000000000 -0500
+@@ -41,6 +41,10 @@
+ #define LOCATION_MODE_KEY	"LocationMode"
+ #define SHOW_HIDDEN_KEY		"ShowHidden"
+ #define EXPAND_FOLDERS_KEY	"ExpandFolders"
++#define GEOMETRY_X_KEY		"GeometryX"
++#define GEOMETRY_Y_KEY		"GeometryY"
++#define GEOMETRY_WIDTH_KEY	"GeometryWidth"
++#define GEOMETRY_HEIGHT_KEY	"GeometryHeight"
+ 
+ #define MODE_PATH_BAR          "path-bar"
+ #define MODE_FILENAME_ENTRY    "filename-entry"
+@@ -60,6 +64,24 @@ get_config_filename (void)
+ }
+ 
+ static void
++get_int_key (GKeyFile *key_file, const char *group, const char *key, int *out_value)
++{
++  GError *error;
++  int val;
++
++  error = NULL;
++  val = g_key_file_get_integer (key_file, group, key, &error);
++
++  if (val == 0 && error != NULL)
++    {
++      *out_value = -1;
++      g_error_free (error);
++    }
++  else
++    *out_value = val;
++}
++
++static void
+ ensure_settings_read (GtkFileChooserSettings *settings)
+ {
+   GError *error;
+@@ -127,6 +149,11 @@ ensure_settings_read (GtkFileChooserSett
+   else
+     settings->expand_folders = value != FALSE;
+ 
++  get_int_key (key_file, SETTINGS_GROUP, GEOMETRY_X_KEY, &settings->geometry_x);
++  get_int_key (key_file, SETTINGS_GROUP, GEOMETRY_Y_KEY, &settings->geometry_y);
++  get_int_key (key_file, SETTINGS_GROUP, GEOMETRY_WIDTH_KEY, &settings->geometry_width);
++  get_int_key (key_file, SETTINGS_GROUP, GEOMETRY_HEIGHT_KEY, &settings->geometry_height);
++
+  out:
+ 
+   g_key_file_free (key_file);
+@@ -148,6 +175,10 @@ _gtk_file_chooser_settings_init (GtkFile
+   settings->location_mode = LOCATION_MODE_PATH_BAR;
+   settings->show_hidden = FALSE;
+   settings->expand_folders = FALSE;
++  settings->geometry_x	    = -1;
++  settings->geometry_y	    = -1;
++  settings->geometry_width  = -1;
++  settings->geometry_height = -1;
+ }
+ 
+ GtkFileChooserSettings *
+@@ -198,6 +229,34 @@ _gtk_file_chooser_settings_set_expand_fo
+   settings->expand_folders = expand_folders != FALSE;
+ }
+ 
++void
++_gtk_file_chooser_settings_get_geometry (GtkFileChooserSettings *settings,
++					 int                    *out_x,
++					 int                    *out_y,
++					 int                    *out_width,
++					 int                    *out_height)
++{
++  ensure_settings_read (settings);
++
++  *out_x      = settings->geometry_x;
++  *out_y      = settings->geometry_y;
++  *out_width  = settings->geometry_width;
++  *out_height = settings->geometry_height;
++}
++
++void
++_gtk_file_chooser_settings_set_geometry (GtkFileChooserSettings *settings,
++					 int                     x,
++					 int                     y,
++					 int                     width,
++					 int                     height)
++{
++  settings->geometry_x	    = x;
++  settings->geometry_y	    = y;
++  settings->geometry_width  = width;
++  settings->geometry_height = height;
++}
++
+ gboolean
+ _gtk_file_chooser_settings_save (GtkFileChooserSettings *settings,
+ 				 GError                **error)
+@@ -238,6 +297,14 @@ _gtk_file_chooser_settings_save (GtkFile
+ 			  SHOW_HIDDEN_KEY, settings->show_hidden);
+   g_key_file_set_boolean (key_file, SETTINGS_GROUP,
+ 			  EXPAND_FOLDERS_KEY, settings->expand_folders);
++  g_key_file_set_integer (key_file, SETTINGS_GROUP,
++			  GEOMETRY_X_KEY, settings->geometry_x);
++  g_key_file_set_integer (key_file, SETTINGS_GROUP,
++			  GEOMETRY_Y_KEY, settings->geometry_y);
++  g_key_file_set_integer (key_file, SETTINGS_GROUP,
++			  GEOMETRY_WIDTH_KEY, settings->geometry_width);
++  g_key_file_set_integer (key_file, SETTINGS_GROUP,
++			  GEOMETRY_HEIGHT_KEY, settings->geometry_height);
+ 
+   contents = g_key_file_to_data (key_file, &len, error);
+   g_key_file_free (key_file);
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN gtk+-2.14.7.orig/gtk/gtkfilechoosersettings.h gtk+-2.14.7/gtk/gtkfilechoosersettings.h
+--- gtk+-2.14.7.orig/gtk/gtkfilechoosersettings.h	2009-01-07 11:32:57.000000000 -0500
++++ gtk+-2.14.7/gtk/gtkfilechoosersettings.h	2009-01-29 14:53:44.000000000 -0500
+@@ -38,6 +38,11 @@ struct _GtkFileChooserSettings
+ 
+   LocationMode location_mode;
+ 
++  int geometry_x;
++  int geometry_y;
++  int geometry_width;
++  int geometry_height;
++
+   guint settings_read : 1;
+ 
+   guint show_hidden : 1;
+@@ -66,6 +71,17 @@ gboolean _gtk_file_chooser_settings_get_
+ void     _gtk_file_chooser_settings_set_expand_folders (GtkFileChooserSettings *settings,
+ 							gboolean                expand_folders);
+ 
++void _gtk_file_chooser_settings_get_geometry (GtkFileChooserSettings *settings,
++					      int                    *out_x,
++					      int                    *out_y,
++					      int                    *out_width,
++					      int                    *out_heigth);
++void _gtk_file_chooser_settings_set_geometry (GtkFileChooserSettings *settings,
++					      int                     x,
++					      int                     y,
++					      int                     width,
++					      int                     heigth);
++
+ gboolean _gtk_file_chooser_settings_save (GtkFileChooserSettings *settings,
+ 					  GError                **error);
+ 

@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.408 2009/01/15 00:58:21 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.409 2009/01/29 20:28:37 dang Exp $
+
+*gtk+-2.14.7-r1 (29 Jan 2009)
+
+  29 Jan 2009; Daniel Gryniewicz <dang@gentoo.org>
+  +files/gtk+-2.14.7-filechooser.patch, +gtk+-2.14.7-r1.ebuild:
+  Fix for filechooser centering: bug #239360
 
 *gtk+-2.14.7 (15 Jan 2009)
 
