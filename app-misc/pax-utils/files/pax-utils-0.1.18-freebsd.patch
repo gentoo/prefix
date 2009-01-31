@@ -1,0 +1,17 @@
+Author: Heiko Przybyl &lt;zuxez@cs.tu-berlin.de>
+Date:   Sat Jan 31 14:16:06 2009 +0100
+
+    *added app-misc/pax-utils
+
+--- porting.h.orig	2009-01-31 13:56:52.000000000 +0100
++++ porting.h	2009-01-31 14:02:48.000000000 +0100
+@@ -33,7 +33,9 @@
+ #include <pwd.h>
+ #include <fnmatch.h>
+ #include <regex.h>
++#ifndef __FreeBSD__
+ #include <alloca.h>
++#endif
+ 
+ #include <sys/mman.h>
+ #include "elf.h"

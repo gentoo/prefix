@@ -26,6 +26,12 @@ DEPEND="caps? ( sys-libs/libcap )
 	x64-solaris? ( dev-libs/gnulib )
 "
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-freebsd.patch
+}
+
 src_compile() {
 	local libs
 	if [[ ${CHOST} == *-solaris* ]]; then
