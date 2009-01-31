@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/fish
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.35 2008/06/15 22:27:56 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.36 2009/01/31 07:42:30 dberkholz Exp $
+
+  31 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml:
+  Give up maintainership; reassign to maintainer-needed.
 
   15 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
   +files/fish-1.23.0-glibc-2.8.patch, fish-1.23.0.ebuild:
