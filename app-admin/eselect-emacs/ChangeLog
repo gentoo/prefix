@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.66 2009/01/25 15:37:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.67 2009/01/27 10:44:22 armin76 Exp $
+
+  27 Jan 2009; Raúl Porcel <armin76@gentoo.org> eselect-emacs-1.8.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #256113
 
   25 Jan 2009; Markus Meier <maekke@gentoo.org> eselect-emacs-1.8.ebuild:
   amd64/x86 stable, bug #256113
