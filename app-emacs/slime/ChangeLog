@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/slime
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.61 2008/08/27 08:41:25 ulm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.62 2009/01/29 07:31:27 fauli Exp $
+
+  29 Jan 2009; Christian Faulhammer <fauli@gentoo.org>
+  -files/2.0_p20070816/70slime-gentoo.el,
+  -files/2.0_p20070816/changelog-date.patch,
+  -files/2.0_p20070816/save-restriction-if-possible.patch,
+  -files/2.0_p20070816/swank.asd, -slime-2.0_p20070816-r3.ebuild:
+  clean up
 
   27 Aug 2008; Ulrich Mueller <ulm@gentoo.org> slime-2.0_p20061118.ebuild,
   slime-2.0_p20070816-r3.ebuild, slime-2.0_p20080731.ebuild:
