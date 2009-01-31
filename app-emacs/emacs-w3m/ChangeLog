@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/emacs-w3m
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-w3m/ChangeLog,v 1.58 2008/11/27 00:40:05 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-w3m/ChangeLog,v 1.59 2009/01/29 01:29:28 fauli Exp $
+
+  29 Jan 2009; Christian Faulhammer <fauli@gentoo.org>
+  -emacs-w3m-1.4.4_p20070726.ebuild:
+  clean up
 
   27 Nov 2008; Ulrich Mueller <ulm@gentoo.org>
   emacs-w3m-1.4.4_p20070726.ebuild, emacs-w3m-1.4.4_p20080214.ebuild:
