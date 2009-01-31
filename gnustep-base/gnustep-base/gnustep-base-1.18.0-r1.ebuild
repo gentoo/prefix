@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.18.0.ebuild,v 1.2 2008/12/22 16:14:18 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.18.0-r1.ebuild,v 1.1 2009/01/28 13:05:33 voyageur Exp $
 
 EAPI="prefix 2"
 
@@ -18,7 +18,8 @@ IUSE="gcc-libffi gnutls"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
 	>=gnustep-base/gnustep-make-2.0
-	!gcc-libffi? ( dev-libs/ffcall )
+	!gcc-libffi? ( dev-libs/ffcall
+		gnustep-base/gnustep-make[-native-exceptions] )
 	gcc-libffi? ( >=sys-devel/gcc-3.3.5[libffi] )
 	gnutls? ( net-libs/gnutls )
 	>=dev-libs/libxml2-2.6

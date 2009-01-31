@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-base
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.80 2008/12/22 16:14:18 voyageur Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.81 2009/01/28 13:05:33 voyageur Exp $
+
+*gnustep-base-1.18.0-r1 (28 Jan 2009)
+
+  28 Jan 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  -gnustep-base-1.18.0.ebuild, +gnustep-base-1.18.0-r1.ebuild:
+  Check that native exceptions are disabled in gnustep-make when using
+  ffcall, they only work with libffi
 
   22 Dec 2008; Bernard Cafarelli <voyageur@gentoo.org>
   -files/gnustep-base-1.18.0-unexpected_check.patch,
