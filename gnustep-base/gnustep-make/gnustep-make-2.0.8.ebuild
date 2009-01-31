@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.7.ebuild,v 1.1 2008/12/22 12:54:26 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.8.ebuild,v 1.1 2009/01/28 12:56:33 voyageur Exp $
 
 EAPI="prefix 2"
 
@@ -11,7 +11,7 @@ DESCRIPTION="GNUstep Makefile Package"
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/${P}.tar.gz"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE=""
+IUSE="native-exceptions"
 SLOT="0"
 LICENSE="GPL-2"
 
@@ -30,7 +30,7 @@ src_configure() {
 	local myconf
 	myconf="--prefix=${GNUSTEP_PREFIX} --with-layout=gnustep"
 	myconf="$myconf --with-config-file=${EPREFIX}/etc/GNUstep/GNUstep.conf"
-	myconf="$myconf --enable-native-objc-exceptions"
+	myconf="$myconf $(use_enable native-exceptions native-objc-exceptions)"
 	econf $myconf || die "configure failed"
 }
 

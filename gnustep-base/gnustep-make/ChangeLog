@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-make
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.79 2008/12/22 12:54:26 voyageur Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.80 2009/01/28 12:56:33 voyageur Exp $
+
+*gnustep-make-2.0.8 (28 Jan 2009)
+
+  28 Jan 2009; Bernard Cafarelli <voyageur@gentoo.org> metadata.xml,
+  -gnustep-make-2.0.7.ebuild, +gnustep-make-2.0.8.ebuild:
+  Version bump, fixes a bug relating to installation in a different domain.
+  Adds USE flag for native exceptions, fixes bug #192394 and #255630
 
 *gnustep-make-2.0.7 (22 Dec 2008)
 
