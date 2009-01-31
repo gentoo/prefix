@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xcb-proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.22 2009/01/23 21:45:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.23 2009/01/28 20:38:32 ranger Exp $
+
+  28 Jan 2009; Brent Baude <ranger@gentoo.org> xcb-proto-1.1.ebuild:
+  Marking xcb-proto-1.1 ppc64 for bug 244210
 
   23 Jan 2009; Markus Meier <maekke@gentoo.org> xcb-proto-1.1.ebuild:
   amd64/x86 stable, bug #244210
