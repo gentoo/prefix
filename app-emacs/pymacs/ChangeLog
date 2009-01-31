@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/pymacs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/ChangeLog,v 1.39 2008/11/24 11:00:55 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/ChangeLog,v 1.40 2009/01/29 07:20:41 fauli Exp $
+
+  29 Jan 2009; Christian Faulhammer <fauli@gentoo.org>
+  -files/0.22-character-encoding-gentoo.patch, -pymacs-0.22-r1.ebuild:
+  clean up
 
   24 Nov 2008; Ulrich Mueller <ulm@gentoo.org> pymacs-0.23.ebuild:
   Remove test from IUSE, bug 232497.
