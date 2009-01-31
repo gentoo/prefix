@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.143 2009/01/02 21:15:40 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.144 2009/01/29 10:45:01 bicatali Exp $
+
+  29 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/R-2.8.0-without-X.patch, R-2.7.2.ebuild, -R-2.8.0.ebuild,
+  R-2.8.1.ebuild:
+  Move 2.7.2 to EAPI=2 and close bug #252661
 
 *R-2.8.1 (02 Jan 2009)
 
