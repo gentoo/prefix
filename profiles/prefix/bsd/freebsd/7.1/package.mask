@@ -1,0 +1,6 @@
+# $Header: $
+
+# Diego Pettenò <flameeyes@gentoo.org> (21 Oct 2006)
+# need a newer version of sandbox, as it's the only one working for us
+->=sys-apps/sandbox-1.2.20_alpha1
+<sys-apps/sandbox-1.2.20_alpha2
