@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.8 2008/10/27 05:43:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.9 2009/01/30 11:24:42 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
 SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2
 	!bindist? (
-		idea? ( ftp://ftp.gnupg.dk/pub/contrib-dk/idea.c.gz )
+		idea? ( mirror://gentoo/idea.c.gz )
 		ecc? ( http://www.calcurco.cat/eccGnuPG/src/${ECC_PATCH}.bz2 )
 		)"
 
@@ -47,6 +47,7 @@ S="${WORKDIR}/${MY_P}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gcc43.patch
 
 	if use idea; then
 		if use bindist; then

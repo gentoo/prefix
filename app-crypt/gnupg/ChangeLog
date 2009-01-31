@@ -1,6 +1,14 @@
 # ChangeLog for app-crypt/gnupg
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.334 2008/09/09 09:52:48 robbat2 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.335 2009/01/30 11:24:42 dragonheart Exp $
+
+  30 Jan 2009; Daniel Black <dragonheart@gentoo.org>
+  -files/gnupg-1.4.3-keyserver.patch, -files/gnupg-1.4.3-selftest.patch,
+  +files/gnupg-1.4.9-gcc43.patch, -files/gnupg-2.0.4-idea.patch,
+  -gnupg-1.4.7-r1.ebuild, -gnupg-1.4.8-r1.ebuild, gnupg-1.4.9.ebuild,
+  -gnupg-2.0.7-r1.ebuild:
+  gcc-4.3 patch from redhat as per bug #256671 thanks cilly. old version
+  cleanout too
 
 *gnupg-2.0.9-r1 (09 Sep 2008)
 
