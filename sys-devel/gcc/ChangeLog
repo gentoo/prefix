@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.677 2009/01/19 16:36:33 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.679 2009/01/27 21:32:01 vapier Exp $
+
+*gcc-4.3.3 (27 Jan 2009)
+
+  27 Jan 2009; Mike Frysinger <vapier@gentoo.org> +gcc-4.3.3.ebuild:
+  Version bump.
+
+*gcc-4.3.2-r3 (27 Jan 2009)
+
+  27 Jan 2009; Mike Frysinger <vapier@gentoo.org> +gcc-4.3.2-r3.ebuild:
+  Add some fixes from Debian, and fixes for PR34571, PR37489, PR37661, and
+  hppa slot issue #228287.
 
   19 Jan 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.1.2.ebuild:
   Another patchset bump because I forgot a patch for arm
