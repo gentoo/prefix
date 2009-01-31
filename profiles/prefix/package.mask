@@ -33,6 +33,11 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (31 Jan 2009)
+# heiko_ and I are done with it, it doesn't compile on Darwin and
+# Solaris
+=media-video/ffmpeg-0.4.9_p20090121
+
 # Fabian Groffen <grobian@gentoo.org> (25 Jan 2009)
 # Some weird libtool breakage on Solaris and Darwin
 =dev-python/pygobject-2.16.0
