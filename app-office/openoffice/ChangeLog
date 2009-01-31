@@ -1,6 +1,23 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.443 2009/01/18 19:12:40 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.446 2009/01/29 08:06:13 suka Exp $
+
+  29 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.0.1.ebuild:
+  Silent bump to ooo-build-3.0.1.1 patchset, some minor bugfixes, for
+  instance Bug #256700
+
+*openoffice-3.0.1 (28 Jan 2009)
+
+  28 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.0.1_rc2.diff, +files/gentoo-3.0.1.diff,
+  -openoffice-3.0.1_rc2.ebuild, +openoffice-3.0.1.ebuild:
+  Bump to final release for OpenOffice.org 3.0.1
+
+  27 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
+  +files/buildfix-mono-2-2.diff, files/gentoo-3.0.1_rc2.diff,
+  openoffice-3.0.1_rc2.ebuild:
+  Fix build problems with Mono 2.2, see bug #255845
 
 *openoffice-3.0.1_rc2 (18 Jan 2009)
 
