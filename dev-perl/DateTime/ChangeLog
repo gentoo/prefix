@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/DateTime
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/ChangeLog,v 1.71 2009/01/11 21:34:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/ChangeLog,v 1.72 2009/01/30 12:21:02 tove Exp $
+
+  30 Jan 2009; Torsten Veller <tove@gentoo.org> metadata.xml,
+  -DateTime-0.39.ebuild:
+  Cleanup
 
   11 Jan 2009; Markus Meier <maekke@gentoo.org> DateTime-0.45.01.ebuild:
   amd64 stable, bug #254143
