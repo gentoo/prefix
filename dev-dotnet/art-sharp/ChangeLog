@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/art-sharp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/art-sharp/ChangeLog,v 1.62 2009/01/05 17:12:54 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/art-sharp/ChangeLog,v 1.63 2009/01/29 22:43:00 loki_val Exp $
+
+*art-sharp-2.24.0-r10 (29 Jan 2009)
+
+  29 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -art-sharp-2.24.0-r5.ebuild, +art-sharp-2.24.0-r10.ebuild:
+  Bump for rewritten eclass.
 
 *art-sharp-2.24.0-r5 (05 Jan 2009)
 
