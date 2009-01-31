@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/binutils-config
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.35 2007/05/06 09:04:01 vapier Exp $
+
+*binutils-config-1.9-r04.13 (31 Jan 2009)
+
+  31 Jan 2009; Fabian Groffen <grobian@gentoo.org>
+  +binutils-config-1.9-r04.13.ebuild:
+  Bumped to toolchain-prefix-wrapper-0.3.1637, with support for FreeBSD,
+  NetBSD and OpenBSD.
 
 *binutils-config-1.9-r04.12 (24 Jun 2008)
 
