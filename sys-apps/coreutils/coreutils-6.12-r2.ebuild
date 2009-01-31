@@ -137,11 +137,11 @@ src_compile() {
 	# groups/su   - shadow
 	# hostname    - net-tools
 	if [[ ${CHOST} == *-mint* ]]; then
-		myconf="${myconf} --enable-install-program=\"arch,hostname,kill,uptime\""
-		myconf="${myconf} --enable-no-install-program=\"groups,su\"" 
+		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
+		myconf="${myconf} --enable-no-install-program=groups,su" 
 	else
-		myconf="${myconf} --enable-install-program=\"arch\""
-		myconf="${myconf} --enable-no-install-program=\"groups,hostname,kill,su,uptime\""
+		myconf="${myconf} --enable-install-program=arch"
+		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
 	fi
 	econf \
 		--enable-largefile \
@@ -197,8 +197,6 @@ src_install() {
 		for x in ${com} uname ; do
 			dosym /bin/${x} /usr/bin/${x} || die
 		done
-
-		[[ ${CHOST} == *-mint* ]] && rm -f "${ED}"/usr/share/man/man1/groups.1
 	else
 		# For now, drop the man pages, collides with the ones of the system.
 		rm -rf "${ED}"/usr/share/man
