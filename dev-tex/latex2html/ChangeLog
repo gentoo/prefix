@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/latex2html
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.47 2009/01/23 11:31:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.48 2009/01/30 22:47:19 jer Exp $
+
+  30 Jan 2009; Jeroen Roovers <jer@gentoo.org> latex2html-2008.ebuild:
+  Stable for HPPA (bug #253990).
 
   23 Jan 2009; Raúl Porcel <armin76@gentoo.org> latex2html-2008.ebuild:
   arm/ia64/s390/sh stable wrt #253990
