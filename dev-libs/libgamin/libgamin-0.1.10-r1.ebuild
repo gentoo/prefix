@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r1.ebuild,v 1.5 2009/01/25 15:19:44 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r1.ebuild,v 1.6 2009/01/31 11:33:27 eva Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ IUSE="debug kernel_linux python"
 RESTRICT="test" # need gam-server
 
 RDEPEND="python? ( virtual/python )
+	!app-admin/fam
 	!<app-admin/gamin-0.1.10"
 
 DEPEND="${RDEPEND}
