@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.206 2009/01/21 16:06:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.207 2009/01/30 02:39:01 fmccor Exp $
+
+  30 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
+  freetype-2.3.7-r1.ebuild:
+  Sparc stable, Bug #256872.
 
 *freetype-2.3.8 (21 Jan 2009)
 
