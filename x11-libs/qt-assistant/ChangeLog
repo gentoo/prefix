@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-assistant
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.20 2009/01/18 20:00:12 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.21 2009/01/29 19:59:29 aballier Exp $
+
+  29 Jan 2009; Alexis Ballier <aballier@gentoo.org>
+  qt-assistant-4.4.2-r1.ebuild:
+  keyword ~x86-fbsd
 
   18 Jan 2009; Markus Meier <maekke@gentoo.org>
   qt-assistant-4.4.2-r1.ebuild:
