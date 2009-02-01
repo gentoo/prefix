@@ -1,3 +1,5 @@
+https://sourceforge.net/tracker/index.php?func=detail&aid=2555389&group_id=2406&atid=302406
+
 --- lib/Makefile.darwin-lib
 +++ lib/Makefile.darwin-lib
 @@ -1,50 +1,69 @@
