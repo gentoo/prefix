@@ -55,15 +55,10 @@ src_unpack() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# add support for reading file systems on interix.
 	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
-
-	# properly keep symbols inside; bug #221075
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
-
-	# fix a wrong preprocessor directive (which is not noticed
-	# on systems that have both "chown" and "utimes"
 	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# build glib with parity for native win32
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt.patch
@@ -71,9 +66,6 @@ src_unpack() {
 	# makes the iconv check more general, needed for winnt, but could
 	# be usefull for others too.
 	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
-
-	# MIPSpro on IRIX fix
-	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool

@@ -1,4 +1,7 @@
+* srcshelton@gmail.com: MIPSpro on IRIX fix
+
 http://bugs.gentoo.org/show_bug.cgi?id=256916
+http://bugzilla.gnome.org/show_bug.cgi?id=570068
 
 --- glib-2.18.4/glib/tests/option-context.c
 +++ glib-2.18.4/glib/tests/option-context.c

@@ -1,4 +1,7 @@
-* http://bugs.gentoo.org/show_bug.cgi?id=221075
+* s.cloherty@ieee.org: properly keep symbols inside on OSX
+
+http://bugs.gentoo.org/show_bug.cgi?id=221075
+http://bugzilla.gnome.org/show_bug.cgi?id=570072
 
 --- glib/gutils.h
 +++ glib/gutils.h

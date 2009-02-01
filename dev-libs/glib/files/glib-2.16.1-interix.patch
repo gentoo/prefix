@@ -1,4 +1,7 @@
-diff -ru -x '*.Po' -x '*.Plo' glib-2.16.1.orig/gio/gunixmounts.c glib-2.16.1/gio/gunixmounts.c
+* mduft@gentoo.org: add support for reading file systems on interix.
+
+http://bugzilla.gnome.org/show_bug.cgi?id=570073
+
 --- glib-2.16.1.orig/gio/gunixmounts.c	2008-03-25 13:39:53 +0100
 +++ glib-2.16.1/gio/gunixmounts.c	2008-03-25 14:13:10 +0100
 @@ -45,6 +45,11 @@
