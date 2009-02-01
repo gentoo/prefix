@@ -14,11 +14,6 @@ x86-linux		prefix/linux/x86				dev
 ia64-linux		prefix/linux/ia64				dev
 
 # Mac OS X Profiles
-ppc-macos	default-prefix/darwin/macos/10.3			dev
-ppc-macos	default-prefix/darwin/macos/10.4/ppc		dev
-x86-macos	default-prefix/darwin/macos/10.4/x86		dev
-ppc-macos	default-prefix/darwin/macos/10.5/ppc		dev
-x86-macos	default-prefix/darwin/macos/10.5/x86		dev
 ppc-macos	prefix/darwin/macos/10.3			dev
 ppc-macos	prefix/darwin/macos/10.4/ppc		dev
 x86-macos	prefix/darwin/macos/10.4/x86		dev
@@ -26,15 +21,6 @@ ppc-macos	prefix/darwin/macos/10.5/ppc		dev
 x86-macos	prefix/darwin/macos/10.5/x86		dev
 
 # Solaris Profiles
-sparc-solaris	default-prefix/sunos/solaris/5.9/sparc	dev
-sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
-sparc64-solaris default-prefix/sunos/solaris/5.10/sparc64 dev
-x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
-x64-solaris		default-prefix/sunos/solaris/5.10/x64	dev
-sparc-solaris	default-prefix/sunos/solaris/5.11/sparc	dev
-sparc64-solaris default-prefix/sunos/solaris/5.11/sparc64 dev
-x86-solaris		default-prefix/sunos/solaris/5.11/x86	dev
-x64-solaris		default-prefix/sunos/solaris/5.11/x64	dev
 sparc-solaris	prefix/sunos/solaris/5.9/sparc	dev
 sparc-solaris	prefix/sunos/solaris/5.10/sparc	dev
 sparc64-solaris prefix/sunos/solaris/5.10/sparc64 dev
@@ -56,17 +42,11 @@ ppc-aix		prefix/aix/6.1.0.0/ppc				dev
 mips-irix	prefix/irix/6.5/mips				dev
 
 # Interix Profiles
-x86-interix	default-prefix/windows/interix/3.5/x86		dev
-x86-interix	default-prefix/windows/interix/5.2/x86		dev
-x86-interix	default-prefix/windows/interix/6.0/x86		dev
 x86-interix	prefix/windows/interix/3.5/x86		dev
 x86-interix	prefix/windows/interix/5.2/x86		dev
 x86-interix	prefix/windows/interix/6.0/x86		dev
 
 # Windows Profiles
-x86-winnt   default-prefix/windows/winnt/3.5/x86        dev
-x86-winnt   default-prefix/windows/winnt/5.2/x86        dev
-x86-winnt   default-prefix/windows/winnt/6.0/x86        dev
 x86-winnt   prefix/windows/winnt/3.5/x86        dev
 x86-winnt   prefix/windows/winnt/5.2/x86        dev
 x86-winnt   prefix/windows/winnt/6.0/x86        dev

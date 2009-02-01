@@ -1,5 +1,9 @@
 # $Id$
 
+# Fabian Groffen <grobian@gentoo.org> (01 Feb 2009)
+# Doesn't compile, bug #257225
+media-video/ffmpeg mmx
+
 # Fabian Groffen <grobian@gentoo.org> (30 Dec 2008)
 # +     pipping | grobian: please package.use.mask aqua for emacs-cvs for now
 # +     pipping | grobian: hopefully i find the time to fix it at some point
