@@ -1,0 +1,24 @@
+http://bugs.gentoo.org/show_bug.cgi?id=256111
+
+--- lib/mpi-libgcrypt.c.dist	2009-02-01 10:59:26.311423000 +0000
++++ lib/mpi-libgcrypt.c	2009-02-01 11:00:20.202915000 +0000
+@@ -120,7 +120,7 @@ wrap_gcry_mpi_get_nbits (bigint_t a)
+ static void
+ wrap_gcry_mpi_release (bigint_t a)
+ {
+-  return gcry_mpi_release (a);
++  gcry_mpi_release (a);
+ }
+ 
+ #undef _gnutls_mpi_alloc_like
+--- lib/mac-libgcrypt.c.dist	2009-02-01 10:59:44.626115120 +0000
++++ lib/mac-libgcrypt.c	2009-02-01 11:00:28.485708680 +0000
+@@ -93,7 +93,7 @@ wrap_gcry_md_copy (void **bhd, void *ahd
+ static void
+ wrap_gcry_md_close (void *hd)
+ {
+-  return gcry_md_close (hd);
++  gcry_md_close (hd);
+ }
+ 
+ static int
