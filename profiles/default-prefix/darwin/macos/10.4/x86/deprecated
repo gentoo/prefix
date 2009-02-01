@@ -1,4 +1,0 @@
-prefix/darwin/macos/10.4/x86
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/darwin/macos/10.4/x86 make.profile

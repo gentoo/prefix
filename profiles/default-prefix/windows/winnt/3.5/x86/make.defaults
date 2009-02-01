@@ -1,3 +1,0 @@
-ARCH="x86-winnt"
-CHOST="i586-pc-winnt3.5"
-ACCEPT_KEYWORDS="~x86-winnt"

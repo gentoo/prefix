@@ -1,4 +1,0 @@
-prefix/sunos/solaris/5.10/x64
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/sunos/solaris/5.10/x64 make.profile

@@ -1,4 +1,0 @@
-prefix/windows/interix/3.5/x86
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/windows/interix/3.5/x86 make.profile

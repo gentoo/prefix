@@ -1,7 +1,0 @@
-# Copyright 2007 Gentoo Foundation.
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
-# Use this virtuals file to either override the Darwin base profile's defined
-# virtuals, or add virtuals that are specific to the Mac OS X profiles
-

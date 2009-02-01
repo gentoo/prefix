@@ -1,6 +1,0 @@
-# Copyright 2007 Gentoo Foundation.
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
-virtual/libc		sys-sunos/libc
-virtual/os-headers	sys-sunos/libc

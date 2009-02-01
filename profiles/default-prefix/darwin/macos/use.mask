@@ -1,3 +1,0 @@
-
-# mask opengl use until eselect opengl set apple works
-opengl

@@ -1,9 +1,0 @@
-
-# Fabian Groffen <grobian@gentoo.org> (06 Aug 2008)
-# runtime loading is horribly broken (it uses fixed .so.0, but when
-# that's fixed it still doesn't work)
-dev-util/subversion dso
-
-# Elias Pipping <pipping@gentoo.org> (25 Nov 2007)
-# there's no (official) java6 on macosx
-dev-util/checkstyle test

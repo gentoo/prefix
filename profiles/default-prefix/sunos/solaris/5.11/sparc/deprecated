@@ -1,4 +1,0 @@
-prefix/sunos/solaris/5.11/sparc
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/sunos/solaris/5.11/sparc make.profile

@@ -1,5 +1,0 @@
-# in OSX one should have objc available
-USE="objc objc++"
-
-# we have OSX, so let's use it's virtues
-USE="${USE} aqua coreaudio"

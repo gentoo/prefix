@@ -1,4 +1,0 @@
-prefix/windows/winnt/6.0/x86
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/windows/winnt/6.0/x86 make.profile

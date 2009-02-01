@@ -1,4 +1,0 @@
-prefix/windows/interix/6.0/x86
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/windows/interix/6.0/x86 make.profile
