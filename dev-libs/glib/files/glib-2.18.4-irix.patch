@@ -1,0 +1,13 @@
+http://bugs.gentoo.org/show_bug.cgi?id=256916
+
+--- glib-2.18.4/glib/tests/option-context.c
++++ glib-2.18.4/glib/tests/option-context.c
+@@ -428,7 +428,7 @@ assert_no_error (GError *error)
+ 
+ static void
+ assert_error (GError *error, 
+-              GQuark *domain, 
++              GQuark  domain, 
+               gint    code)
+ {
+   g_assert (error && error->domain == domain && error->code == code);

@@ -72,6 +72,9 @@ src_unpack() {
 	# be usefull for others too.
 	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
 
+	# MIPSpro on IRIX fix
+	epatch "${FILESDIR}"/${P}-irix.patch
+
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
 	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
