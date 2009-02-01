@@ -26,6 +26,7 @@ src_unpack() {
 	# include sys/time.h for fd_set on interix
 	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix3.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# remove the included libtool.m4 to force a new libtool
 	# to be used.
