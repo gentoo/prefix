@@ -1,6 +1,6 @@
 --- lib/Makefile.darwin-lib
 +++ lib/Makefile.darwin-lib
-@@ -1,50 +1,70 @@
+@@ -1,50 +1,69 @@
  #
 -# This is a Makefile stub which handles the creation of Darwin BSD shared
 -# libraries.
@@ -92,7 +92,6 @@
 +	$(RM) -f $(DESTDIR)$(ELF_INSTALL_DIR)/$(ELF_LIB) \
 +		$(DESTDIR)$(ELF_INSTALL_DIR)/$(ELF_SONAME) \
 +		$(DESTDIR)$(libdir)/$(ELF_IMAGE).dylib
-+	-$(LDCONFIG)
  
  clean::
  	$(RM) -rf pic
