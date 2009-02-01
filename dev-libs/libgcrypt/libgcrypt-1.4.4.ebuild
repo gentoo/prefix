@@ -23,7 +23,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# include sys/time.h for fd_set on interix
 	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix3.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
