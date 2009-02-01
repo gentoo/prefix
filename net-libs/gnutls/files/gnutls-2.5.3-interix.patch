@@ -1,4 +1,5 @@
-diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/cli.c gnutls-2.5.3/src/cli.c
+https://savannah.gnu.org/support/index.php?106627
+
 --- gnutls-2.5.3.orig/src/cli.c	2008-08-20 11:04:44 +0200
 +++ gnutls-2.5.3/src/cli.c	2008-08-20 11:29:02 +0200
 @@ -102,10 +102,14 @@
@@ -129,7 +130,6 @@ diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/cli.c gnutls-2.5.3/src/cli.c
 +
    return;
  }
-diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/serv.c gnutls-2.5.3/src/serv.c
 --- gnutls-2.5.3.orig/src/serv.c	2008-08-20 11:04:45 +0200
 +++ gnutls-2.5.3/src/serv.c	2008-08-20 11:31:59 +0200
 @@ -776,9 +776,9 @@
@@ -169,7 +169,6 @@ diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/serv.c gnutls-2.5.3/src/serv
    socklen_t calen;
  
  #ifndef _WIN32
-diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/tests.c gnutls-2.5.3/src/tests.c
 --- gnutls-2.5.3.orig/src/tests.c	2008-08-20 11:04:45 +0200
 +++ gnutls-2.5.3/src/tests.c	2008-08-20 11:29:02 +0200
 @@ -512,7 +512,7 @@
@@ -196,7 +195,6 @@ diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/tests.c gnutls-2.5.3/src/tes
    if (WSAGetLastError () == WSAETIMEDOUT ||
        WSAGetLastError () == WSAECONNABORTED)
      alrm = 1;
-diff -ru -x '*.Po' -x '*.Plo' gnutls-2.5.3.orig/src/tls_test.c gnutls-2.5.3/src/tls_test.c
 --- gnutls-2.5.3.orig/src/tls_test.c	2008-08-20 11:04:45 +0200
 +++ gnutls-2.5.3/src/tls_test.c	2008-08-20 11:29:03 +0200
 @@ -156,6 +156,8 @@
