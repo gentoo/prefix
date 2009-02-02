@@ -1,6 +1,15 @@
 # ChangeLog for app-misc/colordiff
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.70 2009/01/31 07:41:38 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.72 2009/02/02 04:34:07 darkside Exp $
+
+*colordiff-1.0.8a (02 Feb 2009)
+
+  02 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  -colordiff-1.0.6-r1.ebuild, +colordiff-1.0.8a.ebuild:
+  version bump, bug 256386. remove old version
+
+  31 Jan 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  new metadata, I'll maintain this
 
   31 Jan 2009; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml:
   Give up maintainership; reassign to maintainer-needed.
