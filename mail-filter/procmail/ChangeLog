@@ -1,6 +1,16 @@
 # ChangeLog for mail-filter/procmail
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.36 2008/12/27 17:09:00 dertobi123 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.39 2009/02/01 20:54:50 maekke Exp $
+
+  01 Feb 2009; Markus Meier <maekke@gentoo.org> procmail-3.22-r10.ebuild:
+  x86 stable, bug #257184
+
+  01 Feb 2009; Tiago Cunha <tcunha@gentoo.org> procmail-3.22-r10.ebuild:
+  stable amd64/sparc, bug 257184
+
+  01 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  procmail-3.22-r10.ebuild:
+  Stable on alpha, bug #257184
 
 *procmail-3.22-r10 (27 Dec 2008)
 
