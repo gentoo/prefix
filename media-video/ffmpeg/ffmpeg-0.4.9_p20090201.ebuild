@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20081219.ebuild,v 1.8 2009/01/31 20:26:02 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20090201.ebuild,v 1.1 2009/02/01 16:23:10 aballier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
-FFMPEG_SVN_REV="16238"
+FFMPEG_SVN_REV="16916"
 
 DESCRIPTION="Complete solution to record, convert and stream audio and video.
 Includes libavcodec. svn revision ${FFMPEG_SVN_REV}"
@@ -19,12 +19,13 @@ S=${WORKDIR}/ffmpeg
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris ~x86-solaris"
-IUSE="aac altivec amr debug dirac doc ieee1394 encode gsm ipv6 mmx mmxext vorbis
-	  test theora threads x264 xvid network zlib sdl X mp3 schroedinger
+IUSE="3dnow aac alsa altivec amr debug dirac doc ieee1394 encode gsm ipv6 mmx mmxext vorbis
+	  test theora threads x264 xvid network zlib sdl X mp3 oss schroedinger
 	  hardcoded-tables bindist v4l v4l2 speex ssse3 vhook"
 
 RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	sdl? ( >=media-libs/libsdl-1.2.10 )
+	alsa? ( media-libs/alsa-lib )
 	encode? (
 		aac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
@@ -98,8 +99,13 @@ src_compile() {
 
 	# libavdevice options
 	use ieee1394 && myconf="${myconf} --enable-libdc1394"
-	for i in v4l v4l2 ; do
+	# Demuxers
+	for i in v4l v4l2 alsa oss ; do
 		use $i || myconf="${myconf} --disable-demuxer=$i"
+	done
+	# Muxers
+	for i in alsa oss ; do
+		use $i || myconf="${myconf} --disable-muxer=$i"
 	done
 	use X && myconf="${myconf} --enable-x11grab"
 
@@ -130,6 +136,7 @@ src_compile() {
 		use $i ||  myconf="${myconf} --disable-$i"
 	done
 	use mmxext || myconf="${myconf} --disable-mmx2"
+	use 3dnow || myconf="${myconf} --disable-amd3dnow"
 	# disable mmx accelerated code if PIC is required
 	# as the provided asm decidedly is not PIC.
 	if gcc-specs-pie ; then
@@ -141,10 +148,7 @@ src_compile() {
 	# We need to do this so that features of that CPU will be better used
 	# If they contain an unknown CPU it will not hurt since ffmpeg's configure
 	# will just ignore it.
-	local mymarch=$(get-flag march)
-	local mymcpu=$(get-flag mcpu)
-	local mymtune=$(get-flag mtune)
-	for i in $mymarch $mymcpu $mymtune ; do
+	for i in $(get-flag march) $(get-flag mcpu) $(get-flag mtune) ; do
 		myconf="${myconf} --cpu=$i"
 		break
 	done
@@ -202,7 +206,7 @@ src_install() {
 
 # Never die for now...
 src_test() {
-	for t in codectest libavtest servertest seektest ; do
+	for t in codectest libavtest seektest ; do
 		emake ${t} || ewarn "Some tests in ${t} failed"
 	done
 }
