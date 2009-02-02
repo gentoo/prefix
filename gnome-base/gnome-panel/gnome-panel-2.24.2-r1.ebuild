@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.2-r1.ebuild,v 1.2 2009/01/24 11:20:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.2-r1.ebuild,v 1.3 2009/02/01 11:08:16 eva Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ RDEPEND=">=gnome-base/gnome-desktop-2.12
 	>=x11-libs/libwnck-2.19.5
 	>=gnome-base/gconf-2.6.1
 	>=gnome-base/gnome-menus-2.11.1
-	>=gnome-base/libbonobo-2
+	>=gnome-base/libbonobo-2.20.4
 	gnome-base/librsvg
 	>=dev-libs/dbus-glib-0.71
 	>=sys-apps/dbus-1.1.2
