@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/babl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.6 2008/12/28 18:09:29 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.7 2009/01/31 09:11:00 mabi Exp $
+
+  31 Jan 2009; Matti Bickel <mabi@gentoo.org> babl-0.0.22.ebuild:
+  added ~ppc for bug #240433
 
   28 Dec 2008; Raúl Porcel <armin76@gentoo.org> babl-0.0.22.ebuild:
   Add ~ia64 wrt #240433
