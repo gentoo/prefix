@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="general purpose crypto library based on the code used in GnuPG"
 HOMEPAGE="http://www.gnupg.org/"
