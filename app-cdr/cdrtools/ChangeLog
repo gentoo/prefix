@@ -1,6 +1,14 @@
 # ChangeLog for app-cdr/cdrtools
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.220 2008/11/15 13:54:35 gmsoft Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.221 2009/02/01 13:45:32 loki_val Exp $
+
+*cdrtools-2.01.01_alpha57 (01 Feb 2009)
+
+  01 Feb 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -cdrtools-2.01.01_alpha41.ebuild, -cdrtools-2.01.01_alpha42.ebuild,
+  -cdrtools-2.01.01_alpha50-r3.ebuild, -cdrtools-2.01.01_alpha52.ebuild,
+  +cdrtools-2.01.01_alpha57.ebuild:
+  Bump, fix bug 253229. Also fix bug 198779, acl automagic dependency.
 
   15 Nov 2008; Guy Martin <gmsoft@gentoo.org>
   cdrtools-2.01.01_alpha51.ebuild:
