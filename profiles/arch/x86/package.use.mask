@@ -5,7 +5,7 @@ media-libs/realcodecs win32codecs
 
 # Tomas Chvatal <scarabeus@gentoo.org> (24 Nov 2008)
 # masked in base, unmaks for x86/amd64
-sci-misc/boinc -bindist
+sci-misc/boinc -cuda
 
 # Robert Buchholz <rbu@gentoo.org> (16 Aug 2008)
 # masked in base, unmask for x86/amd64

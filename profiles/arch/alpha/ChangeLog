@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/Alpha profile directory
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.21 2008/12/26 11:48:34 klausman Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.22 2009/01/31 18:00:20 klausman Exp $
+
+  31 Jan 2009; Tobias Klausmann <klausman@gentoo.org> package.use.mask:
+  Webkit still isn't keyworded, so mask the use flag for qt-assistant, too.
 
   26 Dec 2008; Tobias Klausmann <klausman@gentoo.org> use.mask:
   Masked openafs on alpha

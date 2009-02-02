@@ -1,3 +1,6 @@
+# Mask since there are no targets for other archs than x86 and amd64
+sci-misc/boinc cuda
+
 # Mask until Qt 4.4 works with this package, as we need to mask 4.3
 # because of bug 248038. See also bug 243362.
 sci-visualization/paraview qt4

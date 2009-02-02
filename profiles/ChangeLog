@@ -1,10 +1,51 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2312 2009/01/31 08:16:43 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2325 2009/02/02 00:33:03 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Feb 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Package mask Emacs 23 live ebuild.
+
+  02 Feb 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Mask dev-ruby/qt4-qtruby for being broken. See tracker bug 224951.
+
+  01 Feb 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Removing qt-4.4.0 mask, as this version is no longer in tree
+
+  01 Feb 2009; Mike Auty <ikelos@gentoo.org> package.mask:
+  Last-rites for vmware-esx-emulation.
+
+  01 Feb 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask dri2proto that was already in portage
+
+  01 Feb 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add newer versions of xf86-video-intel and mesa to p.mask
+
+  01 Feb 2009; Markus Ullmann <jokey@gentoo.org> updates/1Q-2009:
+  Package move from games-puzzle/ksudoku
+
+  01 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  arch/alpha/package.use.mask:
+  ups needs nut, nagios-game needs qstat. Neither is keyworded on alpha,
+  hence mask them.
+
+  01 Feb 2009; Markus Ullmann <jokey@gentoo.org> package.mask:
+  Drop package mask for bug #257162
+
+  02 Feb 2009; Jim Ramsay <lack@gentoo.org> package.mask:
+  Masking net-misc/amazonmp3-libcompat until it is actually used
+
+  01 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mask monopod for removal.
+
+  01 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Mask sci-astronomy/setiathome for removal.
+
+  31 Jan 2009; <jokey@gentoo.org> package.mask:
+  Mask games-puzzle/ksudoku for removal
 
   30 Jan 2009; Daniel Black <dragonheart@gentoo.org> package.mask:
   app-crypt/tpm-module removed from portage. removed from package.mask also
