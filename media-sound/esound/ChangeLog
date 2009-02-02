@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.123 2009/01/25 14:22:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.124 2009/02/01 15:14:37 klausman Exp $
+
+  01 Feb 2009; Tobias Klausmann <klausman@gentoo.org> esound-0.2.41.ebuild:
+  Stable on alpha, bug #255851
 
   25 Jan 2009; Markus Meier <maekke@gentoo.org> esound-0.2.41.ebuild:
   amd64/x86 stable, bug #255851
