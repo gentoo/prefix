@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r1.ebuild,v 1.5 2009/01/26 16:14:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r1.ebuild,v 1.8 2009/02/01 21:12:01 maekke Exp $
 
 EAPI="prefix"
 
