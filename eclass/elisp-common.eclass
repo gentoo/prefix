@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.52 2008/11/24 14:21:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.54 2009/01/31 21:31:42 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
 # Copyright 2004-2005 Mamoru Komachi <usata@gentoo.org>
 # Copyright 2007-2008 Christian Faulhammer <opfer@gentoo.org>
-# Copyright 2007-2008 Ulrich Müller <ulm@gentoo.org>
+# Copyright 2007-2009 Ulrich Müller <ulm@gentoo.org>
 #
 # @ECLASS: elisp-common.eclass
 # @MAINTAINER:
@@ -433,15 +433,6 @@ elisp-site-regen() {
 		that you use app-admin/emacs-updater to rebuild the installed
 		Emacs packages.
 		EOF
-
-		# Kludge for backwards compatibility: During pkg_postrm, old versions
-		# of this eclass (saved in the VDB) won't find packages' site-init
-		# files in the new location. So we copy them to an auxiliary file
-		# that is visible to old eclass versions.
-		for sf in "${sflist[@]}"; do
-			[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
-				&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
-		done
 	fi
 
 	# cleanup

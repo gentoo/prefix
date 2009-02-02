@@ -1,6 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.4 2008/10/11 01:36:47 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.5 2009/02/01 17:44:23 mr_bones_ Exp $
+
+inherit base
 
 # For GGZ Gaming Zone packages
 

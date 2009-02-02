@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.26 2009/01/31 14:00:22 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.27 2009/01/31 21:31:35 patrick Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -166,6 +166,11 @@ case ${NEED_KDE} in
 	latest)
 		if [[ $KDEBASE = kde-base ]]; then
 			case ${PV} in
+				4.2.6*)
+                                        _kdedir="4.3"
+                                        _pv="-${PV}:4.3"
+                                        _pvn="-${PV}"
+                                         ;;
 				4.2* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*)
 					_kdedir="4.2"
 					_pv="-${PV}:4.2"
@@ -211,6 +216,12 @@ case ${NEED_KDE} in
 		_pvn="-${NEED_KDE}"
 		export NEED_KDE="live"
 		;;
+	4.2.6*)
+                _kdedir="4.3"
+                _pv="-${NEED_KDE}:4.3"
+                _pvn="-${NEED_KDE}"
+                _operator=">="
+                ;;
 	4.2 | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*)
 		_kdedir="4.2"
 		_pv="-${NEED_KDE}:4.2"
@@ -383,6 +394,10 @@ case ${SLOT} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
+						4.2.60)
+							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.svn912032tar.bz2" ;;
+						4.2.61)
+							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.svn917530.tar.bz2" ;;
 						4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						*)	SRC_URI="mirror://kde/stable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
