@@ -26,20 +26,4 @@ src_unpack() {
 	cp "${FILESDIR}"/Makefile.PL "${S}"/Makefile.PL
 	epatch "${FILESDIR}"/sgmlspl.patch
 	mv "${S}"/sgmlspl{.pl,}
-
-	sed -i \
-		-e "s:PERL = :PERL = ${EPREFIX}:" \
-		-e "s:PERL5DIR = \${D}:PERL5DIR = ${ED}:" \
-		-e "s:BINDIR = \${D}:BINDIR = ${ED}:" \
-		-e "s:HTMLDIR = \${D}:HTMLDIR = ${ED}:" Makefile
-}
-
-src_install () {
-	dodir /usr/bin
-	dodir /usr/lib/${package}/vendor_perl/${version}
-	dodir /usr/share/SGMLS
-	dodoc BUGS ChangeLog README TODO
-	make install -f "${S}"/Makefile || die
-	make docs -f "${S}"/Makefile || die
-#	cd ${ED}/usr/lib/${package}/vendor_perl/${version}
 }
