@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.2.ebuild,v 1.8 2009/01/31 18:07:32 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.2-r1.ebuild,v 1.1 2009/01/31 16:46:47 yngwin Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.trolltech.com/"
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc glib +qt3support ssl"
+IUSE="doc +glib +qt3support +ssl"
 
 RDEPEND="sys-libs/zlib
 	glib? ( dev-libs/glib )
