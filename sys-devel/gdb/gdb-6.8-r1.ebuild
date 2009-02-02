@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r1.ebuild,v 1.7 2009/01/23 18:00:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r1.ebuild,v 1.8 2009/02/01 19:29:31 nixnut Exp $
 
 EAPI="prefix"
 
