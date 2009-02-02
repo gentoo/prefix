@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.13.ebuild,v 1.2 2009/01/26 22:01:07 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.13.ebuild,v 1.4 2009/02/01 21:28:32 maekke Exp $
 
 EAPI="prefix"
 
