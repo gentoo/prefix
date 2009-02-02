@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/distcc
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.193 2008/12/19 00:51:49 matsuu Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.194 2009/02/01 16:16:51 matsuu Exp $
+
+*distcc-3.1-r1 (01 Feb 2009)
+
+  01 Feb 2009; MATSUU Takuto <matsuu@gentoo.org>
+  +files/distcc-3.1-freedesktop.patch, +distcc-3.1-r1.ebuild:
+  Fixed RFC2553 issue, bug #254176. Fixed icon and menu location, bug
+  #255188.
 
   19 Dec 2008; MATSUU Takuto <matsuu@gentoo.org> distcc-3.0-r4.ebuild:
   Added -j1 to emake install, bug #249695.
