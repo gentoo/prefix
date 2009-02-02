@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-test
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.16 2009/01/29 18:54:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.17 2009/01/31 18:56:04 klausman Exp $
+
+  31 Jan 2009; Tobias Klausmann <klausman@gentoo.org> qt-test-4.4.2.ebuild:
+  Stable on alpha, bug #248038
 
   29 Jan 2009; Alexis Ballier <aballier@gentoo.org> qt-test-4.4.2.ebuild:
   keyword ~x86-fbsd
