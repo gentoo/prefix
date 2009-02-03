@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib flag-o-matic
+inherit eutils multilib flag-o-matic autotools
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
