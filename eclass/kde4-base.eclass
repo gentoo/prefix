@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.27 2009/01/31 21:31:35 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.28 2009/02/02 21:35:08 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -167,10 +167,10 @@ case ${NEED_KDE} in
 		if [[ $KDEBASE = kde-base ]]; then
 			case ${PV} in
 				4.2.6*)
-                                        _kdedir="4.3"
-                                        _pv="-${PV}:4.3"
-                                        _pvn="-${PV}"
-                                         ;;
+					_kdedir="4.3"
+					_pv="-${PV}:4.3"
+					_pvn="-${PV}"
+					;;
 				4.2* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*)
 					_kdedir="4.2"
 					_pv="-${PV}:4.2"
@@ -217,11 +217,11 @@ case ${NEED_KDE} in
 		export NEED_KDE="live"
 		;;
 	4.2.6*)
-                _kdedir="4.3"
-                _pv="-${NEED_KDE}:4.3"
-                _pvn="-${NEED_KDE}"
-                _operator=">="
-                ;;
+		_kdedir="4.3"
+		_pv="-${NEED_KDE}:4.3"
+		_pvn="-${NEED_KDE}"
+		_operator=">="
+		;;
 	4.2 | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*)
 		_kdedir="4.2"
 		_pv="-${NEED_KDE}:4.2"
