@@ -1,27 +1,27 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.5 2008/10/27 10:26:06 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.14.0.ebuild,v 1.1 2009/02/02 21:46:31 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome.org python flag-o-matic eutils virtualx
+inherit eutils flag-o-matic gnome.org python virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc examples"
 
 RDEPEND=">=dev-libs/glib-2.8.0
 	>=x11-libs/pango-1.16.0
 	>=dev-libs/atk-1.12.0
-	>=x11-libs/gtk+-2.11.6
+	>=x11-libs/gtk+-2.13.6
 	>=gnome-base/libglade-2.5.0
 	>=dev-lang/python-2.4.4-r5
 	>=dev-python/pycairo-1.0.2
-	>=dev-python/pygobject-2.14
+	>=dev-python/pygobject-2.15.3
 	!arm? ( dev-python/numeric )"
 
 DEPEND="${RDEPEND}
@@ -30,6 +30,10 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
+
+	# Fix declaration of codegen in .pc
+	epatch "${FILESDIR}/${PN}-2.13.0-fix-codegen-location.patch"
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
@@ -38,21 +42,33 @@ src_unpack() {
 
 src_compile() {
 	use hppa && append-flags -ffunction-sections
-	econf $(use_enable doc docs) --enable-thread || die
-	# possible problems with parallel builds (#45776)
-	#emake -j1 || die
-	emake || die
+	econf $(use_enable doc docs) --enable-thread
+
+	emake || die "emake failed"
 }
 
 src_install() {
-	python_need_rebuild
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
 	if use examples; then
 		rm examples/Makefile*
 		insinto /usr/share/doc/${PF}
 		doins -r examples
+	fi
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		python_version
+		for f in \
+				atk \
+				gtkunixprint \
+				pango \
+				pangocairo \
+				gtk/_gtk \
+				gtk/glade \
+		; do
+			mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0/${f}.{so,bundle} || die "failed to rename $f"
+		done
 	fi
 }
 
@@ -63,13 +79,13 @@ src_test() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize /usr/share/pygtk/2.0/codegen /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
+	python_need_rebuild
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 }
 
 pkg_postrm() {
 	python_version
-	python_mod_cleanup /usr/share/pygtk/2.0/codegen
-	python_mod_cleanup
+	python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gtk-2.0
 	rm -f "${EROOT}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.{py,pth}
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
