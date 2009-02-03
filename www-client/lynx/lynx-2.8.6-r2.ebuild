@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.13 2007/07/12 08:46:46 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.14 2009/02/02 16:50:24 drizzt Exp $
 
 EAPI="prefix"
 
@@ -66,7 +66,7 @@ src_compile() {
 		$(use_with bzip2 bzlib) \
 		${myconf} || die
 
-	emake -j1 || die
+	emake || die
 }
 
 src_install() {

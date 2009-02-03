@@ -1,6 +1,9 @@
 # ChangeLog for www-client/lynx
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.70 2008/02/06 00:11:36 opfer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.71 2009/02/02 16:50:24 drizzt Exp $
+
+  02 Feb 2009; <drizzt@gentoo.org> lynx-2.8.6-r2.ebuild:
+  Remove -j1 to emake wrt #236003
 
   06 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
   -lynx-2.8.6-r1.ebuild:
