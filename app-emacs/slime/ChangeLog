@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/slime
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.63 2009/02/01 20:37:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.64 2009/02/02 13:50:58 tcunha Exp $
+
+  02 Feb 2009; Tiago Cunha <tcunha@gentoo.org> slime-2.0_p20080731.ebuild:
+  stable sparc, bug 257082
 
   01 Feb 2009; Markus Meier <maekke@gentoo.org> slime-2.0_p20080731.ebuild:
   amd64/x86 stable, bug #257082
