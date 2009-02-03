@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/scm
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/ChangeLog,v 1.7 2008/11/17 13:40:07 pchrist Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/ChangeLog,v 1.8 2009/02/02 22:19:35 hkbst Exp $
+
+*scm-5.5.5 (02 Feb 2009)
+
+  02 Feb 2009; Marijn Schouten <hkBst@gentoo.org> +scm-5.5.5.ebuild:
+  bump
 
   17 Nov 2008; Panagiotis Christopoulos <pchrist@gentoo.org>
   scm-5.5.4.ebuild:
