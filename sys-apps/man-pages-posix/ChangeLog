@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/man-pages-posix
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages-posix/ChangeLog,v 1.9 2008/08/25 17:32:27 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages-posix/ChangeLog,v 1.10 2009/02/02 08:00:28 aballier Exp $
+
+  02 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  man-pages-posix-2003a.ebuild:
+  keyword ~x86-fbsd
 
   25 Aug 2008; Jeroen Roovers <jer@gentoo.org> man-pages-posix-2003a.ebuild:
   Stable for HPPA (bug #235246).
