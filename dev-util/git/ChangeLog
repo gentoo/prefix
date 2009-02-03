@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.318 2009/01/26 12:16:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.319 2009/02/02 17:52:28 gregkh Exp $
+
+*git-1.6.1.2 (02 Feb 2009)
+
+  02 Feb 2009; Greg Kroah-Hartman <gregkh@gentoo.org> +git-1.6.1.2.ebuild:
+  version bump to 1.6.1.2 to fix pack-objects problem in 1.6.1.1
 
 *git-1.6.1.1 (26 Jan 2009)
 
