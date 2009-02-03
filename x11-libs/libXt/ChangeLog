@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXt
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.49 2008/01/31 04:27:47 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.50 2009/02/02 19:44:57 solar Exp $
+
+  02 Feb 2009; <solar@gentoo.org> +files/libXt-1.0.5-cross.patch,
+  libXt-1.0.5.ebuild:
+  - Make libXt cross-compile aware by allowing host system makestrs to be used
+  as a fallback when cross-compile one fails
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>; -libXt-1.0.2.ebuild:
   Clean up.
