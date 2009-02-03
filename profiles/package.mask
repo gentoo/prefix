@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9461 2009/02/02 00:33:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9465 2009/02/02 22:33:55 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -48,13 +48,6 @@ dev-ruby/qt4-qtruby
 # for a very old version.  See bug 143232.
 app-emulation/vmware-esx-console
 
-# Rémi Cardona <remi@gentoo.org> (1 Feb 2009)
-# Temporary mask for xf86-video-intel and friends while they get a wee bit more
-# testing. Will be unmasked shortly.
->=media-libs/mesa-7.3
->=x11-apps/mesa-progs-7.3
->=x11-drivers/xf86-video-intel-2.6.1
-
 # Jim Ramsay <lack@gentoo.org> (1 Feb 2008)
 # This isn't actually used by anyone, but hopefully will be soon to allow
 # net-misc/amazonmp3 to be used by amd64 users.  Once I get around to it.
@@ -75,11 +68,6 @@ games-fps/anaglyph-stereo-quake
 # Tomas Chvatal <scarabeus@gentoo.org> (1 Feb 2009)
 # mask for removal in 30 days. Not needed anymore integrated in boinc
 sci-astronomy/setiathome
-
-# Thomas Sachau <tommy@gentoo.org> (30 Jan 2009)
-# Masked as requested by mr_bones_@gentoo.org because of freenet not in the main tree
-# just unmask it for freenet install
-net-libs/NativeThread
 
 # Thomas Anderson <gentoofan23@gentoo.org> (30 Jan 2009)
 # Depends on security-vulnerable zoneminder. Leave masked
@@ -489,6 +477,7 @@ net-wireless/bluez
 >=gnome-extra/gnome-user-share-0.41
 >=media-video/totem-2.24.3-r1
 =gnome-base/gvfs-1.0.3-r10
+=gnome-base/gvfs-1.0.3-r11
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # These might break automounting, so keep them masked for now.
@@ -711,10 +700,6 @@ dev-tcltk/tclgpgme
 # Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
 # mask live ebuild (no bundled sqlalchemy anymore)
 =media-video/griffith-9999
-
-# Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
-# Masked for testing
->=dev-python/sqlalchemy-0.5.0_beta3
 
 # Tiziano Müller <dev-zero@gentoo.org> (15 Aug 2008)
 # Masked for testing (works with >=dev-libs/xerces-c-3.0.0)

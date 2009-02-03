@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2325 2009/02/02 00:33:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2327 2009/02/02 22:33:54 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add gnome-base/gvfs-1.0.3-r11 to bluez-4 mask.
+
+  02 Feb 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unleash xf86-video-intel 2.6.1 and mesa 7.3
 
   02 Feb 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Package mask Emacs 23 live ebuild.
