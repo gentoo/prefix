@@ -1,6 +1,11 @@
 # ChangeLog for x11-themes/gnome-themes
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.197 2009/01/14 22:26:22 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.198 2009/02/02 22:05:41 eva Exp $
+
+  02 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-themes-2.24.3-bashism.patch, -gnome-themes-2.20.2.ebuild,
+  -gnome-themes-2.24.1.ebuild, gnome-themes-2.24.3.ebuild:
+  Fix bashisms, bug #256337. Clean up old revisions.
 
 *gnome-themes-2.24.3 (14 Jan 2009)
 
