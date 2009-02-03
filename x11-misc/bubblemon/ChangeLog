@@ -1,11 +1,14 @@
 # ChangeLog for x11-misc/bubblemon
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.32 2009/01/18 23:19:03 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.33 2009/02/02 23:58:53 nelchael Exp $
+
+  02 Feb 2009; Krzysiek Pawlik <nelchael@gentoo.org> ChangeLog, Manifest:
+  Fix ChangeLog entries.
 
 *bubblemon-2.0.9 (18 Jan 2009)
 
-  18 Jan 2009; <nelchael@gentoo.org> -bubblemon-2.0.8-r1.ebuild,
-  +bubblemon-2.0.9.ebuild:
+  18 Jan 2009; Krzysiek Pawlik <nelchael@gentoo.org>
+  -bubblemon-2.0.8-r1.ebuild, +bubblemon-2.0.9.ebuild:
   Version bump, ebuild by Tiziano Müller <dev-zero@gentoo.org>, bug #235710.
   Fixes also bug #229065: missing gnome-base/libgtop from DEPEND.
 
