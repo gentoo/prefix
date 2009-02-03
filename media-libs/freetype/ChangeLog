@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.210 2009/02/01 18:52:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.211 2009/02/02 15:52:13 ranger Exp $
+
+  02 Feb 2009; Brent Baude <ranger@gentoo.org> freetype-2.3.7-r1.ebuild:
+  stable ppc64, bug 256872
 
   01 Feb 2009; nixnut <nixnut@gentoo.org> freetype-2.3.7-r1.ebuild:
   ppc stable #256872
