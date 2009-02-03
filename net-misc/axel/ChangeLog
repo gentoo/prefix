@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/axel
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.44 2009/01/25 01:56:11 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.45 2009/02/02 17:17:48 drizzt Exp $
+
+*axel-2.3 (02 Feb 2009)
+
+  02 Feb 2009; <drizzt@gentoo.org> +axel-2.3.ebuild:
+  Version Bump
 
   25 Jan 2009; Jeremy Olexa <darkside@gentoo.org>
   -files/axel-1.0b-strcpy-fix.patch, -axel-1.0b.ebuild,

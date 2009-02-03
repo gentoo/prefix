@@ -1,30 +1,31 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-1.0b-r2.ebuild,v 1.8 2008/02/03 16:13:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-2.3.ebuild,v 1.2 2009/02/02 17:30:20 drizzt Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs
 
 DESCRIPTION="light Unix download accelerator"
-HOMEPAGE="http://wilmer.gaast.net/main.php/axel.html"
-SRC_URI="http://wilmer.gaast.net/downloads/${P}.tar.gz"
+HOMEPAGE="http://axel.alioth.debian.org/"
+SRC_URI="http://alioth.debian.org/frs/download.php/2287/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="debug nls"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="debug kde nls"
 
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
+RDEPEND="${RDEPEND}
+	kde? ( kde-misc/kaptain )"
+
+S="${WORKDIR}/${PN}-1.1"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Patch to fix buffer overflows #162005
-	epatch "${FILESDIR}"/${P}-strcpy-fix.patch
 	# Set LDFLAGS and fix expr
 	sed -i -e 's/expr/& --/' -e "s/^LFLAGS=$/&${LDFLAGS}/" configure
 }
@@ -45,6 +46,13 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	if use kde; then
+		dobin gui/kapt/axel-kapt || die
+		doman gui/kapt/axel-kapt.1 || die
+		domenu gui/kapt/axel-kapt.desktop || die
+	fi
+
 	dodoc API CHANGES CREDITS README axelrc.example
 }
 
