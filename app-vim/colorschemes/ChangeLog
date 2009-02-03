@@ -1,10 +1,14 @@
 # ChangeLog for app-vim/colorschemes
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/ChangeLog,v 1.34 2009/01/18 20:49:12 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/ChangeLog,v 1.35 2009/02/02 23:40:50 nelchael Exp $
+
+  02 Feb 2009; Krzysiek Pawlik <nelchael@gentoo.org> ChangeLog:
+  Fix ChangeLog entries.
 
 *colorschemes-20090118 (18 Jan 2009)
 
-  18 Jan 2009; <nelchael@gentoo.org> +colorschemes-20090118.ebuild:
+  18 Jan 2009; Krzysiek Pawlik <nelchael@gentoo.org>
+  +colorschemes-20090118.ebuild:
   New snapshot of available color schemes.
 
   09 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org>
