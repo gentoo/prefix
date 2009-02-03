@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/gnulib-9999.ebuild,v 1.2 2007/10/28 21:03:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/gnulib-9999-r1.ebuild,v 1.3 2009/02/02 18:55:47 drizzt Exp $
 
 EAPI="prefix"
 
@@ -66,6 +66,8 @@ src_install() {
 	doins -r lib
 	doins -r m4
 	doins -r modules
+	doins -r build-aux
+	doins -r top
 
 	# remove CVS dirs
 	#find "${ED}" -name CVS -type d -print0 | xargs -0 rm -r
