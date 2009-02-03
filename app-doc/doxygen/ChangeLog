@@ -1,6 +1,11 @@
 # ChangeLog for app-doc/doxygen
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.155 2008/12/24 02:18:09 nerdboy Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.156 2009/02/03 04:45:40 nerdboy Exp $
+
+*doxygen-1.5.8 (03 Feb 2009)
+
+  03 Feb 2009; Steve Arnold <nerdboy@gentoo.org> +doxygen-1.5.8.ebuild:
+  Update to latest version with qt4 support (closes bug #252978).
 
   24 Dec 2008; Steve Arnold <nerdboy@gentoo.org>
   +files/doxygen-1.5.7.1-substitute.patch, doxygen-1.5.7.1.ebuild:
