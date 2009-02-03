@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-texinfo
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/ChangeLog,v 1.18 2008/10/31 14:48:58 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/ChangeLog,v 1.19 2009/02/02 07:16:33 aballier Exp $
+
+  02 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  texlive-texinfo-2007.ebuild, texlive-texinfo-2008.ebuild:
+  Depend on tl-genericrecommended for epsf.tex, bug #257082
 
   31 Oct 2008; Alexis Ballier <aballier@gentoo.org>
   texlive-texinfo-2008.ebuild:
