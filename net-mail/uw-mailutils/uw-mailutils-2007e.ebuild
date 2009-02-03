@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007e.ebuild,v 1.6 2009/01/31 16:07:51 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007e.ebuild,v 1.7 2009/02/02 19:27:26 armin76 Exp $
 
 EAPI="prefix"
 
