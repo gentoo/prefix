@@ -165,7 +165,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo ppc-macos;;
 		powerpc64-apple-darwin*)
 					echo ppc64-macos;;
-		i*-apple-darwin*)
+		i?86-apple-darwin*)
 					echo x86-macos;;
 		x86_64-apple-darwin*)
 					echo x64-macos;;
@@ -173,7 +173,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo sparc-solaris;;
 		sparcv9-sun-solaris*)
 					echo sparc64-solaris;;
-		i*-pc-solaris*)
+		i?86-pc-solaris*)
 					echo x86-solaris;;
 		x86_64-pc-solaris*)
 					echo x64-solaris;;
@@ -183,6 +183,10 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo mips-irix;;
 		ia64-hp-hpux*)
 					echo ia64-hpux;;
+		i?86-pc-freebsd*)
+					echo x86-freebsd;;
+		x86_64-pc-freebsd*)
+					echo x64-freebsd;;
 		i?86-pc-netbsd*)
 					echo x86-netbsd;;
 		i?86-pc-interix*)
@@ -519,7 +523,7 @@ gen_usr_ldscript() {
 			${output_format}
 			GROUP ( ${EPREFIX}/${libdir}/${tlib} )
 			END_LDSCRIPT
-			fperms a+x "${EPREFIX}/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
+			fperms a+x "/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
 			;;
 		esac
 		fperms a+x "/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
