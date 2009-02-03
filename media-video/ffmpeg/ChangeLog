@@ -1,6 +1,18 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.264 2009/02/01 16:23:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.267 2009/02/02 23:59:01 keytoaster Exp $
+
+  02 Feb 2009; Tobias Heinlein <keytoaster@gentoo.org>
+  ffmpeg-0.4.9_p20090201.ebuild:
+  amd64 stable wrt security bug 257217
+
+  02 Feb 2009; Brent Baude <ranger@gentoo.org>
+  ffmpeg-0.4.9_p20090201.ebuild:
+  Marking ffmpeg-0.4.9_p20090201 ppc64 for bug 257217
+
+  02 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  ffmpeg-0.4.9_p20090201.ebuild:
+  Stable on alpha, bug #257217
 
 *ffmpeg-0.4.9_p20090201 (01 Feb 2009)
 
