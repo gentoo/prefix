@@ -4,13 +4,15 @@
 
 EAPI="prefix"
 
+inherit eutils autotools
+
 DESCRIPTION="A dynamic, any to any, pixel format conversion library"
 HOMEPAGE="http://www.gegl.org/babl/"
 SRC_URI="ftp://ftp.gtk.org/pub/${PN}/0.0/${P}.tar.bz2"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="sse mmx"
 
 DEPEND="virtual/libc"
@@ -19,6 +21,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i -e "1c\#!${EPREFIX}/bin/bash" docs/tools/xml_insert.sh || die
+	epatch "${FILESDIR}"/${P}-darwin.patch
+	eautoreconf
 }
 
 src_compile() {
