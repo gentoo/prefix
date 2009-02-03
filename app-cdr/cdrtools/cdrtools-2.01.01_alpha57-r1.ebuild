@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha57.ebuild,v 1.1 2009/02/01 13:45:32 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha57-r1.ebuild,v 1.1 2009/02/02 22:49:38 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -26,8 +26,7 @@ PROVIDE="virtual/cdrtools"
 S="${WORKDIR}/${PN}-2.01.01"
 
 src_prepare() {
-	#Adjust paths
-
+	#"Adjust paths. Upstream is clearly on drugs, hardcoding paths into .c files.
 	sed -i -e 's:opt/schily:usr:' \
 		$(grep -l --include='*.1' --include='*.8' -r 'opt/schily' .) \
 		$(grep -l --include='*.c' --include='*.h' -r 'opt/schily' .) \
@@ -37,18 +36,17 @@ src_prepare() {
 		$(grep -l -r 'INSDIR.\+doc' .) \
 		|| die "404 on doc sed"
 
+	# Upstream should be hanged from the yardarm, possibly keelhauled for
+	# not respecting libdir.
 	sed -i -e "s:\(^INSDIR=\t\t\)lib:\1$(get_libdir):" \
 		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
 		|| die "404 on multilib-sed"
 
-	sed -i -e "s:\(^INSDIR=\t\t\)\(etc/default\):\1../\2:" \
-		$(grep -l -r '^INSDIR.\+default' .) \
-		|| die "404 on etc sed"
-
+	# See previous comment s/libdir/--disable-static/
 	sed -i -e 's:include\t\t.*rules.lib::' \
 		$(grep -l -r '^include.\+rules\.lib' .) \
 		|| die "404 on rules sed"
-	#Remove profiled make files
+	#Remove profiled make files (wtf?)
 	rm -f $(find . -name '*_p.mk') || die "rm failed"
 
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
@@ -99,7 +97,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 MANDIR="share/man" INS_BASE="${D}/usr/" INS_RBASE="${D}/etc/default" install
+	emake -j1 MANDIR="share/man" INS_BASE="${D}/usr/" INS_RBASE="${D}" install
 
 	#These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib
