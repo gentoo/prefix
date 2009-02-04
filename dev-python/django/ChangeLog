@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/django
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.28 2008/11/05 01:17:05 fmccor Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.29 2009/02/03 09:21:28 patrick Exp $
+
+*django-1.0.2 (03 Feb 2009)
+
+  03 Feb 2009; Patrick Lauer <patrick@gentoo.org> +django-1.0.2.ebuild:
+  New and improved django-1.0.2 ebuild. Thanks to Matt Summers and Nirbheek
+  Chauhan.
 
   05 Nov 2008; Ferris McCormick <fmccor@gentoo.org> django-1.0.ebuild:
   Add ~sparc for testing and support of some Foundation work.
