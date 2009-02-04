@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8.ebuild,v 1.1 2009/02/03 04:45:40 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8.ebuild,v 1.2 2009/02/03 21:40:43 mr_bones_ Exp $
 
 EAPI="prefix 1"
 
@@ -100,7 +100,7 @@ src_compile() {
 	export CC="${QMAKE_CC}"
 	export CXX="${QMAKE_CXX}"
 	export LINK="${QMAKE_LINK}"
-	export LINK_SHLIB="${QMAKE_CXX}" 
+	export LINK_SHLIB="${QMAKE_CXX}"
 
 	if use qt4; then
 		export QTDIR="/usr"
