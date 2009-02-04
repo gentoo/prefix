@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/faac/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="digitalradio"
 
 RDEPEND=""
