@@ -18,7 +18,7 @@ S=${WORKDIR}/ffmpeg
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="aac altivec amr debug dirac doc ieee1394 encode gsm ipv6 mmx mmxext vorbis
 	  test theora threads x264 xvid network zlib sdl X mp3 schroedinger
 	  hardcoded-tables bindist v4l v4l2 speex ssse3 vhook"
