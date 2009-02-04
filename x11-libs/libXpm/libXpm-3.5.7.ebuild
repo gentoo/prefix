@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/libXpm-3.5.7.ebuild,v 1.8 2008/02/05 11:44:48 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/libXpm-3.5.7.ebuild,v 1.9 2009/02/03 19:23:30 beandog Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libXt
 	x11-libs/libXext"
 DEPEND="${RDEPEND}
+	sys-devel/gettext
 	x11-proto/xproto"
 
 src_unpack() {
