@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  04 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  net-analyzer/pchar requires root access
+
   02 Feb 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
   Fails to compile, complaining about a missing target for gmon.o, maybe

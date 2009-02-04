@@ -207,6 +207,7 @@ sys-devel/native-cctools
 app-admin/bcfg2
 net-analyzer/arping
 net-analyzer/mtr
+net-analyzer/pchar
 net-analyzer/tcpdump
 net-misc/ntp
 sys-apps/preload
