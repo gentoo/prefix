@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.1 2009/01/03 22:05:12 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.3 2009/02/03 23:03:42 mr_bones_ Exp $
 
 EAPI="prefix 2"
 
@@ -48,20 +48,24 @@ src_prepare() {
 }
 
 src_configure() {
+	# due to bootstrap, everything is done in src_compile
+	true
+}
+
+src_compile() {
+	local qt_arg par_arg
 	if [[ "$(gcc-major-version)" -eq "3" ]] ; then
 		append-flags "-fno-stack-protector"
 	fi
 
 	tc-export CC CXX LD
 
-	local qt_arg
 	if use qt4; then
 		qt_arg="--qt-gui"
 	else
 		qt_arg="--no-qt-gui"
 	fi
 
-	local par_arg
 	echo $MAKEOPTS | egrep -o '(\-j|\-\-jobs)(=?|[[:space:]]*)[[:digit:]]+' > /dev/null
 	if [ $? -eq 0 ]; then
 		par_arg=$(echo $MAKEOPTS | egrep -o '(\-j|\-\-jobs)(=?|[[:space:]]*)[[:digit:]]+' | egrep -o '[[:digit:]]+')
@@ -69,9 +73,7 @@ src_configure() {
 	else
 		par_arg="--parallel=1"
 	fi
-}
 
-src_compile() {
 	./bootstrap \
 		--system-libs \
 		--prefix="${EPREFIX}"/usr \
