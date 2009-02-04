@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/lighttpd
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.192 2008/10/06 20:09:17 hoffie Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.193 2009/02/03 12:46:51 betelgeuse Exp $
+
+  03 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> lighttpd-1.4.20.ebuild:
+  Block lighttpd until spawn-fcgi collision is fixed. See bug #224781.
 
   06 Oct 2008; Christian Hoffmann <hoffie@gentoo.org> metadata.xml:
   adding myself to metadata (should've done that earlier probably; got

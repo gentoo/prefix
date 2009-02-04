@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.20.ebuild,v 1.7 2008/10/01 17:39:57 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.20.ebuild,v 1.8 2009/02/03 12:46:51 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,11 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="bzip2 doc fam fastcgi gdbm ipv6 ldap lua minimal memcache mysql pcre php rrdtool ssl test webdav xattr"
 
-RDEPEND=">=sys-libs/zlib-1.1
+# cherokee block should be resolved properly
+# http://bugs.gentoo.org/show_bug.cgi?id=224781
+RDEPEND="
+	!www-servers/cherokee
+	>=sys-libs/zlib-1.1
 	bzip2?    ( app-arch/bzip2 )
 	fam?      ( virtual/fam )
 	gdbm?     ( sys-libs/gdbm )
