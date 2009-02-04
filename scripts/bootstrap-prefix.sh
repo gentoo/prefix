@@ -749,7 +749,11 @@ case ${CHOST} in
 		MAKE=make
 	;;
 	*-*-solaris*)
-		MAKE=gmake
+		if type -P gmake > /dev/null ; then
+			MAKE=gmake
+		else
+			MAKE=make
+		fi
 	;;
 	*-ibm-aix*)
 		MAKE=make
