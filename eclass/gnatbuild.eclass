@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.45 2008/12/08 13:29:19 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.46 2009/02/03 13:58:54 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -384,6 +384,11 @@ gnatbuild_src_unpack() {
 				cd ada
 				epatch "${FILESDIR}"/gnat-Make-lang.in.patch
 			fi
+
+			# gcc sources as of 4.3 seem to have a common omission of $(DESTDIR),
+			# that leads to make install trying to rm -f file on live system.
+			# As we do not need this rm, we simply remove the whole line
+			sed -i -e "/\$(RM) \$(bindir)/d" "${S}"/gcc/ada/Make-lang.in
 
 			mkdir -p "${GNATBUILD}"
 		;;

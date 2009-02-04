@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.78 2008/12/08 11:55:31 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.79 2009/02/03 09:05:27 pva Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -171,7 +171,9 @@ enlightenment_src_compile() {
 enlightenment_src_install() {
 	emake install DESTDIR="${D}" || enlightenment_die
 	find "${ED}" '(' -name CVS -o -name .svn -o -name .git ')' -type d -exec rm -rf '{}' \; 2>/dev/null
-	dodoc AUTHORS ChangeLog NEWS README TODO ${EDOCS}
+	for d in AUTHORS ChangeLog NEWS README TODO ${EDOCS}; do
+		[[ -f ${d} ]] && dodoc ${d}
+	done
 	use doc && [[ -d doc ]] && dohtml -r doc/*
 }
 
