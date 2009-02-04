@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.3.ebuild,v 1.1 2009/01/01 07:54:04 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.3.ebuild,v 1.2 2009/02/03 15:58:50 pva Exp $
 
 EAPI="prefix"
 
