@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9465 2009/02/02 22:33:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9467 2009/02/04 05:14:55 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,22 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (04 Feb 2009)
+# Masked for removal in 30 days. Dead upstream, unmaintained. Needs multiple
+# fixes to even work. collides with other sysloggers bug 239863
+app-admin/sdsc-syslog
+
+# Jeremy Olexa <darkside@gentoo.org> (04 Feb 2009)
+# Masked for removal in 60 days. Use sys-cluster/torque instead. bug 255425
+sys-cluster/openpbs-common
+
+# Santiago M. Mola <coldwind@gentoo.org> (03 Feb 2009)
+# Masked for removal in 30 days,
+# Pando for Linux is not a priority for upstream.
+# No release since 2007, ebuild uses pre-compiled libs
+# that are, probably, affected by security issues.
+net-p2p/pandodl
 
 # Ulrich Mueller <ulm@gentoo.org> (02 Feb 2009)
 # Emacs 23 live CVS ebuild and packages depending on it.

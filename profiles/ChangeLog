@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2327 2009/02/02 22:33:54 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2329 2009/02/04 05:14:55 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  04 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask sdsc-syslog (bug 239863) and openpbs-common (bug 255425) for removal
+
+  03 Feb 2009; Santiago M. Mola <coldwind@gentoo.org> package.mask:
+  Pando masked for removal in 30 days.
 
   02 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Add gnome-base/gvfs-1.0.3-r11 to bluez-4 mask.
