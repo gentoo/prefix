@@ -12,7 +12,7 @@ SRC_URI="http://plasmasturm.org/programs/gtk-chtheme/${P}.tar.bz2"
 
 IUSE=""
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 LICENSE="GPL-2"
 
 RDEPEND=">=x11-libs/gtk+-2"
