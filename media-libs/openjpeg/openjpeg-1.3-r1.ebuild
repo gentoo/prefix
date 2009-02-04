@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/openjpeg-1.3.ebuild,v 1.10 2009/02/03 15:34:37 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/openjpeg-1.3-r1.ebuild,v 1.1 2009/02/03 15:34:37 drizzt Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ src_compile() {
 	# AltiVec on OSX/PPC screws up the build :(
 	[[ ${CHOST} == powerpc*-apple-darwin* ]] && filter-flags -m*
 
-	emake CC="$(tc-getCC)" AR="$(tc-getAR)" PREFIX="${EPREFIX}/usr" TARGOS=$(uname) COMPILERFLAGS="${CFLAGS} -std=c99 -fPIC" || die "emake failed"
+	emake CC="$(tc-getCC)" AR="$(tc-getAR)" LIBRARIES="-lm" PREFIX="${EPREFIX}/usr" TARGOS=$(uname) COMPILERFLAGS="${CFLAGS} -std=c99 -fPIC" || die "emake failed"
 	if use tools; then
 		emake -C codec CC="$(tc-getCC)" || die "emake failed"
 	fi
