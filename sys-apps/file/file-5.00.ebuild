@@ -25,8 +25,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 
-	epatch "${FILESDIR}"/${PN}-4.25-interix.patch
-
 	elibtoolize
 	epunt_cxx
 
