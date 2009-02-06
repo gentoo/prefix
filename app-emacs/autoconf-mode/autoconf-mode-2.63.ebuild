@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/autoconf/autoconf-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 SITEFILE=50${PN}-gentoo.el
