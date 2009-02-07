@@ -146,7 +146,7 @@ _common_configure_code() {
 	# here we set the compiler explicitly, set install directories prefixes, and
 	# make sure that the gentoo user compiler flags trump those set in the
 	# program
-	local modules_dir=/usr/share/cmake/Modules
+	local modules_dir="${EPREFIX}"/usr/share/cmake/Modules
 	local cxx_create_shared_library=$(sed -n -e 's/)/ CACHE STRING "")/' -e "s/<TARGET_SONAME>/<TARGET_SONAME> ${CXXFLAGS}/" -e '/SET(CMAKE_CXX_CREATE_SHARED_LIBRARY/,/)/p' "${modules_dir}/CMakeCXXInformation.cmake")
 	local c_create_shared_library=$(sed -n -e 's/)/ CACHE STRING "")/' -e "s/<TARGET_SONAME>/<TARGET_SONAME> ${CFLAGS}/" -e '/SET(CMAKE_C_CREATE_SHARED_LIBRARY/,/)/p' "${modules_dir}/CMakeCInformation.cmake")
 	local c_compile_object=$(sed -n -e 's/)/ CACHE STRING "")/' -e "s/<FLAGS>/<FLAGS> ${CFLAGS}/" -e '/SET(CMAKE_C_COMPILE_OBJECT/,/)/p' "${modules_dir}/CMakeCInformation.cmake")
