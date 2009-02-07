@@ -110,6 +110,9 @@ src_configure() {
 
 	myconf="${myconf} ${directfbconf}"
 
+	# somehow the build depends on it, but doesn't understand it needs it
+	[[ ${CHOST} == *-darwin* ]] && append-ldflags -Wl,-framework -Wl,OpenGL
+
 	econf \
 		--disable-rpath \
 		--enable-events \
