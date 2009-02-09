@@ -80,7 +80,7 @@ src_install() {
 		dohtml txt -r docs/_build/html/*
 	fi
 
-	insinto "${MY_HTDOCSDIR}"
+	insinto "${MY_HTDOCSDIR#${EPREFIX}}"
 	doins -r "${ED}/${site_pkgs}"/django/contrib/admin/media/*
 
 	#webapp_postinst_txt en "${WORKDIR}"/postinstall-en.txt
