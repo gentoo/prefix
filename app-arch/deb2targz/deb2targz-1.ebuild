@@ -20,10 +20,10 @@ S=${WORKDIR}
 
 src_unpack() {
 	cp "${DISTDIR}"/${PN} "${S}"
+	sed -i -e 's,#!/usr/bin/perl,#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl,' ${PN}
+	eprefixify ${PN}
 }
 
 src_install() {
-	sed -i -e 's,#!/usr/bin/perl,#!/bin/env perl,' ${PN}
-
 	dobin ${PN}
 }
