@@ -1,0 +1,84 @@
+# ChangeLog for dev-python/pygtksourceview
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtksourceview/ChangeLog,v 1.18 2008/12/14 23:22:58 eva Exp $
+
+  14 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild, pygtksourceview-2.2.0.ebuild,
+  pygtksourceview-2.4.0.ebuild:
+  Add python_need_rebuild per bug #244610.
+
+  13 Nov 2008; Brent Baude <ranger@gentoo.org> pygtksourceview-2.2.0.ebuild:
+  Marking pygtksourceview-2.2.0 ppc64 stable for bug 236971
+
+*pygtksourceview-2.4.0 (19 Oct 2008)
+
+  19 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +pygtksourceview-2.4.0.ebuild:
+  New version for GNOME 2.24. Drop gnome-vfs dependency and requires new
+  gtksourceview-2.3.
+
+  25 Sep 2008; Jeroen Roovers <jer@gentoo.org> pygtksourceview-2.2.0.ebuild:
+  Stable for HPPA (bug #236971).
+
+  12 Aug 2008; Raúl Porcel <armin76@gentoo.org>
+  pygtksourceview-2.2.0.ebuild:
+  alpha/ia64/sparc stable wrt #229709
+
+  10 Aug 2008; Markus Meier <maekke@gentoo.org>
+  pygtksourceview-2.2.0.ebuild:
+  x86 stable, bug #229709
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org> pygtksourceview-2.2.0.ebuild:
+  Marking pygtksourceview-2.2.0 ppc stable for bug 229709
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org>
+  pygtksourceview-2.2.0.ebuild:
+  Stable on amd64, bug #229709
+
+  29 May 2008; Ali Polatel <hawking@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild, pygtksourceview-2.2.0.ebuild:
+  python_mod_optimize is ROOT aware. Run python_mod_cleanup in pkg_postrm.
+
+*pygtksourceview-2.2.0 (11 Mar 2008)
+
+  11 Mar 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -pygtksourceview-2.0.0.ebuild, +pygtksourceview-2.2.0.ebuild:
+  bump to 2.2.0 (masked) in preparation to gnome 2.22
+
+  29 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  Stable for HPPA (bug #199740).
+
+  26 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  Stable on ppc64; bug #199740
+
+  24 Nov 2007; Brent Baude <ranger@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  Marking pygtksourceview-2.0.0-r1 ppc stable for bug 199740
+
+  22 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  alpha/ia64/sparc stable wrt #199740
+
+  21 Nov 2007; Dawid Węgliński <cla@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  Stable on x86 (bug #199740)
+
+  20 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  pygtksourceview-2.0.0-r1.ebuild:
+  amd64 stable wrt #199740
+
+*pygtksourceview-2.0.0-r1 (01 Nov 2007)
+
+  01 Nov 2007; Ali Polatel <hawking@gentoo.org>
+  pygtksourceview-2.0.0.ebuild, +pygtksourceview-2.0.0-r1.ebuild:
+  revbump. added doc USE flag and dependencies needed (bug 196726). dropped
+  mips keyword.
+
+*pygtksourceview-2.0.0 (10 Oct 2007)
+
+  10 Oct 2007; Rémi Cardona <remi@gentoo.org>
+  +pygtksourceview-2.0.0.ebuild:
+  new version for Gnome 2.20
+
