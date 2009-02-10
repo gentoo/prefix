@@ -99,6 +99,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-root-uid.patch
+	epatch "${FILESDIR}"/${P}-interix-uidswap.patch
 
 	# fix #191665
 	epatch "${FILESDIR}"/openssh-4.7p1-selinux.diff
