@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${PN}${PV/.}.tar.gz"
 
 LICENSE="Info-ZIP"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -50,6 +50,7 @@ src_compile() {
 		mips-sgi-irix*) TARGET=sgi ;;
 		*-interix*)   TARGET=gcc; append-flags "-DUNIX" ;;
 		*-aix*)       TARGET=gcc ;;
+		*-mint*)      TARGET=generic ;;
 		*)            die "Unknown target, you suck" ;;
 	esac
 	append-lfs-flags #104315
