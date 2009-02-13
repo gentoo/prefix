@@ -126,8 +126,8 @@ src_configure() {
 	if use gnutls ; then
 		einfo "Disabling NSS, using GnuTLS"
 		myconf="${myconf} --enable-nss=no --enable-gnutls=yes"
-		myconf="${myconf} --with-gnutls-includes=/usr/include/gnutls"
-		myconf="${myconf} --with-gnutls-libs=/usr/$(get_libdir)"
+		myconf="${myconf} --with-gnutls-includes=${EPREFIX}/usr/include/gnutls"
+		myconf="${myconf} --with-gnutls-libs=${EPREFIX}/usr/$(get_libdir)"
 	else
 		einfo "Disabling GnuTLS, using NSS"
 		myconf="${myconf} --enable-gnutls=no --enable-nss=yes"
