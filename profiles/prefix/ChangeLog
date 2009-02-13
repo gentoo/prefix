@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
+  mask USE=ssl on dev-lang/pike globally, bug 256699
+
   13 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
   darwin/macos/package.use.mask:
   mask USE=python on libgsf for macos, bug 257572
