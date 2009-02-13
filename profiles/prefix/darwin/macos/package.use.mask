@@ -1,5 +1,9 @@
 # $Id$
 
+# Jeremy Olexa <darkside@gentoo.org> (12 Feb 2009)
+# Doesn't work with python support, bug 257572
+gnome-extra/libgsf python
+
 # Fabian Groffen <grobian@gentoo.org> (01 Feb 2009)
 # Doesn't compile, bug #257225
 media-video/ffmpeg mmx

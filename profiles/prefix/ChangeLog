@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  darwin/macos/package.use.mask:
+  mask USE=python on libgsf for macos, bug 257572
+
   13 Feb 2009; Jeremy Olexa <darkside@gentoo.org> darwin/use.mask:
   mask USE=sdl on darwin, bug 257960
 
