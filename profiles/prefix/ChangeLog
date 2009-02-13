@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Feb 2009; Jeremy Olexa <darkside@gentoo.org> darwin/use.mask:
+  mask USE=sdl on darwin, bug 257960
+
   13 Feb 2009; Jeremy Olexa <darkside@gentoo.org> ChangeLog:
   unmask USE={sse2,ssse3} on macos 10.5 x86
 
