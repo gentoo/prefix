@@ -1,0 +1,10 @@
+--- configure.orig	2009-02-12 14:04:00.765543277 +0100
++++ configure	2009-02-12 14:04:54.964345082 +0100
+@@ -1437,6 +1437,7 @@
+         SHFLAGS='-shared -Wl,-h,$$(@F)'
+         network_extralibs="-lsocket -lnsl"
+         add_cflags -D__EXTENSIONS__
++	osextralibs="-lrt"
+         ;;
+     netbsd)
+         oss_demuxer_extralibs="-lossaudio"

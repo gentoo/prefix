@@ -1,0 +1,17 @@
+--- configure.orig	2009-02-12 14:19:38.688598969 +0100
++++ configure	2009-02-12 14:20:15.806640646 +0100
+@@ -1327,12 +1327,12 @@
+ check_cflags -std=c99
+ 
+ case "$arch" in
+-    i386|i486|i586|i686|i86pc|BePC)
++    i386|i486|i586|i686|BePC)
+         arch="x86"
+         subarch="x86_32"
+         enable fast_unaligned
+     ;;
+-    x86_64|amd64)
++    x86_64|amd64|i86pc)
+         arch="x86"
+         subarch="x86_32"
+         enable cmov
