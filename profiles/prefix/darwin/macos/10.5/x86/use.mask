@@ -13,8 +13,8 @@
 -mmx
 -mmxext
 -sse
-#-sse2 gcc-apple 4.0.1 can't do these
-#-ssse3
+-sse2
+-ssse3
 -svga
 -kqemu
 
