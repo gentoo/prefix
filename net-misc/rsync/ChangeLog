@@ -1,6 +1,24 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.180 2009/01/08 06:13:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.186 2009/02/12 21:22:01 ranger Exp $
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> rsync-3.0.5.ebuild:
+  stable ppc64, bug 258367
+
+  12 Feb 2009; nixnut <nixnut@gentoo.org> rsync-3.0.5.ebuild:
+  ppc stable #258367
+
+  12 Feb 2009; Jeremy Olexa <darkside@gentoo.org> rsync-3.0.5.ebuild:
+  amd64 stable, bug 258367
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> rsync-3.0.5.ebuild:
+  Stable for HPPA (bug #258367).
+
+  11 Feb 2009; Raúl Porcel <armin76@gentoo.org> rsync-3.0.5.ebuild:
+  arm/ia64/s390/sh/sparc/x86 stable wrt #258367
+
+  09 Feb 2009; Tobias Klausmann <klausman@gentoo.org> rsync-3.0.5.ebuild:
+  Stable on alpha, bug #258367
 
   08 Jan 2009; Mike Frysinger <vapier@gentoo.org> rsync-3.0.5.ebuild:
   Drop code to move rsyncd.conf around since everyone is converted now
