@@ -1,6 +1,23 @@
 # ChangeLog for sys-libs/cracklib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.122 2008/11/16 18:30:32 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.127 2009/02/13 19:17:18 fmccor Exp $
+
+  13 Feb 2009; Ferris McCormick <fmccor@gentoo.org> cracklib-2.8.13.ebuild:
+  Sparc stable, bug #258530.
+
+  13 Feb 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  cracklib-2.8.13.ebuild:
+  stable amd64, bug 258530
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> cracklib-2.8.13.ebuild:
+  stable ppc64, bug 258530
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> cracklib-2.8.13.ebuild:
+  Stable for HPPA (bug #258530).
+
+  11 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  cracklib-2.8.13.ebuild:
+  Stable on alpha, bug #258530
 
   16 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   +files/cracklib-2.8.13-python-linkage.patch, cracklib-2.8.13.ebuild:
