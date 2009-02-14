@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/liblrdf
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.33 2008/10/27 01:24:30 jer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.34 2009/02/12 17:41:53 jer Exp $
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> liblrdf-0.4.0.ebuild:
+  Stable for HPPA (bug #253493).
 
   27 Oct 2008; Jeroen Roovers <jer@gentoo.org> liblrdf-0.4.0.ebuild:
   Marked ~hppa (bug #244360).
