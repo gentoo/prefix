@@ -6,3 +6,5 @@ move dev-perl/Module-Load perl-core/Module-Load
 move dev-perl/Module-Load-Conditional perl-core/Module-Load-Conditional
 move dev-perl/IPC-Cmd perl-core/IPC-Cmd
 move games-puzzle/ksudoku kde-base/ksudoku
+move net-p2p/azureus net-p2p/vuze
+move xfce-extra/verve xfce-extra/xfce4-verve
