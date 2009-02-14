@@ -1,0 +1,15 @@
+# https://bugs.gentoo.org/attachment.cgi?id=181415
+diff -up a/src/core/edge-resistance.c b/src/core/edge-resistance.c
+--- a/src/core/edge-resistance.c	2008-09-14 22:39:38.000000000 -0400
++++ b/src/core/edge-resistance.c	2008-09-14 22:43:28.000000000 -0400
+@@ -985,8 +985,8 @@ meta_display_compute_resistance_and_snap
+       cur_window_iter = cur_window_iter->next;
+     }
+   /* Put 'em in bottom to top order */
+-  rem_windows       = g_slist_reverse (obscuring_windows);
+-  rem_win_stacking  = g_slist_reverse (window_stacking);
++  rem_windows = obscuring_windows = g_slist_reverse (obscuring_windows);
++  rem_win_stacking = window_stacking = g_slist_reverse (window_stacking);
+ 
+   /*
+    * 3rd: loop over the windows again, this time getting the edges from

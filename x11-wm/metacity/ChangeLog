@@ -1,6 +1,20 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.221 2009/01/31 11:46:54 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.223 2009/02/09 22:38:51 eva Exp $
+
+*metacity-2.24.0-r2 (09 Feb 2009)
+
+  09 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/metacity-2.24.0-gslist-leak.patch,
+  +files/metacity-2.24.0-string-leak.patch, +metacity-2.24.0-r2.ebuild:
+  Bump to 2.24.0-r2. Fix a leak misused gslist function, bug #258301. Fix a
+  string leak, bug #258302.
+
+*metacity-2.24.0-r1 (08 Feb 2009)
+
+  08 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/metacity-2.24.0-crash-login.patch, +metacity-2.24.0-r1.ebuild:
+  Add patch to fix crash on login.
 
   31 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
   +files/metacity-2.24.0-fbsd.patch, metacity-2.20.1.ebuild,
