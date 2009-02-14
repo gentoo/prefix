@@ -1,6 +1,21 @@
 # ChangeLog for sys-process/lsof
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.54 2008/12/10 10:44:07 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.59 2009/02/12 21:19:50 ranger Exp $
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> lsof-4.81-r2.ebuild:
+  stable ppc64, bug 258195
+
+  09 Feb 2009; Markus Meier <maekke@gentoo.org> lsof-4.81-r2.ebuild:
+  amd64/x86 stable, bug #258195
+
+  09 Feb 2009; nixnut <nixnut@gentoo.org> lsof-4.81-r2.ebuild:
+  ppc stable #258195
+
+  09 Feb 2009; Tobias Klausmann <klausman@gentoo.org> lsof-4.81-r2.ebuild:
+  Stable on alpha, bug #258195
+
+  09 Feb 2009; Jeroen Roovers <jer@gentoo.org> lsof-4.81-r2.ebuild:
+  Stable for HPPA (bug #244660).
 
   10 Dec 2008; Alexis Ballier <aballier@gentoo.org>
   +files/lsof-4.81-recmake.patch, lsof-4.81-r2.ebuild:
