@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/qt-assistant
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.22 2009/01/31 18:15:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.26 2009/02/11 23:15:09 yngwin Exp $
+
+*qt-assistant-4.5.0_rc1 (11 Feb 2009)
+
+  11 Feb 2009; Ben de Groot <yngwin@gentoo.org>
+  +qt-assistant-4.5.0_rc1.ebuild:
+  Version bump. Dropping keywords for arches that don't have qt-webkit
+  keyworded, which is now a hard dependency.
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  qt-assistant-4.4.2-r1.ebuild:
+  ia64/sparc stable wrt #248038
+
+  04 Feb 2009; Brent Baude <ranger@gentoo.org> qt-assistant-4.4.2-r1.ebuild:
+  Marking qt-assistant-4.4.2-r1 ppc64 stable for bug 248038
+
+  04 Feb 2009; Ben de Groot <yngwin@gentoo.org> qt-assistant-4.4.2-r1:
+  Clean up DEPEND now that proper webkit useflag masks are in profiles
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
   qt-assistant-4.4.2-r1.ebuild:
