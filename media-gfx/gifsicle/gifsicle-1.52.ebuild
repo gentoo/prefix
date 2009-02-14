@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.52.ebuild,v 1.3 2009/01/27 10:48:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.52.ebuild,v 1.4 2009/02/07 21:23:53 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ IUSE="X"
 DEPEND="X? ( x11-libs/libX11
 		x11-libs/libXt
 		x11-proto/xproto )"
+RDEPEND="${DEPEND}"
 
 src_compile() {
 	local myconf
