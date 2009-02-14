@@ -12,14 +12,16 @@ HOMEPAGE="http://www.videolan.org/developers/x264.html"
 SRC_URI="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/${MY_P}.tar.bz2"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="debug +threads"
 
 RDEPEND=""
 DEPEND="amd64? ( >=dev-lang/yasm-0.6.2 )
 	x86? ( >=dev-lang/yasm-0.6.2 )
 	x86-fbsd? ( >=dev-lang/yasm-0.6.2 )
-	x86-macos? ( >=dev-lang/yasm-0.6.2 )"
+	x86-macos? ( >=dev-lang/yasm-0.6.2 )
+	x86-solaris? ( >=dev-lang/yasm-0.6.2 )
+	x64-solaris? ( >=dev-lang/yasm-0.6.2 )"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -28,6 +30,9 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-nostrip.patch"
 	epatch "${FILESDIR}/${PN}-onlylib-20080406.patch"
+
+	# Solaris' /bin/sh doesn't grok the syntax in these files
+	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
 
 src_compile() {
