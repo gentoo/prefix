@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.99 2009/01/29 07:07:30 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.103 2009/02/11 00:43:15 vapier Exp $
+
+*sandbox-1.3.6 (11 Feb 2009)
+
+  11 Feb 2009; Mike Frysinger <vapier@gentoo.org> +sandbox-1.3.6.ebuild:
+  Version bump.
+
+*sandbox-1.3.5 (08 Feb 2009)
+
+  08 Feb 2009; Mike Frysinger <vapier@gentoo.org> +sandbox-1.3.5.ebuild:
+  Version bump for regressions.
+
+  07 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/0001-sandbox-fix-typo-in-struct-sandbox_info_t-decl.patch,
+  sandbox-1.3.4.ebuild:
+  Fix for hardened systems #258031.
+
+*sandbox-1.3.4 (07 Feb 2009)
+
+  07 Feb 2009; Mike Frysinger <vapier@gentoo.org> +sandbox-1.3.4.ebuild:
+  Version bump.
 
   29 Jan 2009; Javier Villavicencio <the_paya@gentoo.org>
   sandbox-1.3.3.ebuild:
