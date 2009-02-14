@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.6.21_p3-r1.ebuild,v 1.3 2008/09/09 05:38:29 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.6.21_p3-r1.ebuild,v 1.5 2009/02/07 09:10:23 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ done
 LICENSE="OracleDB"
 SLOT="4.6"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="tcl java doc nocxx bootstrap"
+IUSE="tcl java doc nocxx"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
@@ -73,12 +73,7 @@ src_unpack() {
 	#see below
 	#sh ./s_config || die "Cannot execute ./s_config"
 
-	# This patch and sed statement only matter when USE=bootstrap is in effect
-	# because the build system is regenerated otherwise.
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
-	sed -i \
-		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
-		"${S}"/../dist/configure
 
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
@@ -93,43 +88,38 @@ src_unpack() {
 		-e '/jarfile=.*\.jar$/s,(.jar$),-$(LIBVERSION)\1,g' \
 		"${S}"/../dist/Makefile.in
 
-	# During bootstrap, libtool etc might not yet be available
-	if use !bootstrap; then
-		cd "${S}"/../dist
-		rm -f aclocal/libtool.m4
-		sed -i \
-			-e '/AC_PROG_LIBTOOL$/aLT_OUTPUT' \
-			configure.ac
-		sed -i \
-			-e '/^AC_PATH_TOOL/s/ sh, none/ bash, none/' \
-			aclocal/programs.m4
-		AT_M4DIR="aclocal aclocal_java" eautoreconf
-		# Upstream sucks - they do autoconf and THEN replace the version variables.
-		. ./RELEASE
-		sed -i \
-			-e "s/__EDIT_DB_VERSION_MAJOR__/$DB_VERSION_MAJOR/g" \
-			-e "s/__EDIT_DB_VERSION_MINOR__/$DB_VERSION_MINOR/g" \
-			-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
-			-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
-			-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
-			-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
-	fi
+	cd "${S}"/../dist
+	rm -f aclocal/libtool.m4
+	sed -i \
+		-e '/AC_PROG_LIBTOOL$/aLT_OUTPUT' \
+		configure.ac
+	sed -i \
+		-e '/^AC_PATH_TOOL/s/ sh, none/ bash, none/' \
+		aclocal/programs.m4
+	AT_M4DIR="aclocal aclocal_java" eautoreconf
+	# Upstream sucks - they do autoconf and THEN replace the version variables.
+	. ./RELEASE
+	sed -i \
+		-e "s/__EDIT_DB_VERSION_MAJOR__/$DB_VERSION_MAJOR/g" \
+		-e "s/__EDIT_DB_VERSION_MINOR__/$DB_VERSION_MINOR/g" \
+		-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
+		-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
+		-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
+		-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
 }
 
 src_compile() {
 	# compilation with -O0 fails on amd64, see bug #171231
 	if use amd64; then
 		replace-flags -O0 -O2
-		is-flag -O[s123] || append-flags -O2
+		is-flagq -O[s123] || append-flags -O2
 	fi
 
 	local myconf=""
 
 	use amd64 && myconf="${myconf} --with-mutex=x86/gcc-assembly"
 
-	use bootstrap \
-		&& myconf="${myconf} --disable-cxx" \
-		|| myconf="${myconf} $(use_enable !nocxx cxx)"
+	myconf="${myconf} $(use_enable !nocxx cxx)"
 
 	use tcl \
 		&& myconf="${myconf} --enable-tcl --with-tcl=${EPREFIX}/usr/$(get_libdir)" \
