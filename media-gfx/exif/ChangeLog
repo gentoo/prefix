@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/exif
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.28 2009/01/26 18:15:00 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.31 2009/02/07 14:34:37 maekke Exp $
+
+  07 Feb 2009; Markus Meier <maekke@gentoo.org> -exif-0.6.15.ebuild:
+  old
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> exif-0.6.17.ebuild:
+  Stable for HPPA (bug #256174).
+
+  05 Feb 2009; Raúl Porcel <armin76@gentoo.org> exif-0.6.17.ebuild:
+  ia64/sparc stable wrt #256174
 
   26 Jan 2009; Tobias Klausmann <klausman@gentoo.org> exif-0.6.17.ebuild:
   Stable on alpha, bug #256174
