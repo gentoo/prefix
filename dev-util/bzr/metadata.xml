@@ -10,6 +10,10 @@
   	<email>pva@gentoo.org</email>
 	<name>Peter Volkov</name>
   </maintainer>
+  <maintainer>
+  	<email>fauli@gentoo.org</email>
+	<name>Christian Faulhammer</name>
+  </maintainer>
   <longdescription lang="en">
 	Bazaar (``bzr``) is a decentralized revision control system, designed to be
 	easy for developers and end users alike.  Bazaar is part of the GNU project
