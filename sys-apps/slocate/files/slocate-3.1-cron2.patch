@@ -1,6 +1,6 @@
 --- debian/cron.daily
 +++ debian/cron.daily
-@@ -1,12 +1,18 @@
+@@ -1,12 +1,21 @@
  #! /bin/sh
  
 -if [ -x /usr/bin/slocate ]
@@ -19,7 +19,10 @@
 +
 +	# run on active process in case ionice isnt installed, or
 +	# system is really old and ionice doesnt work ...
-+	ionice -c ${IONICE_CLASS:-2} -n ${IONICE_PRIORITY:-7} -p $$ 2>/dev/null
++	ioflags=
++	[ -n "${IONICE_CLASS}"    ] && ioflags="-c ${IONICE_CLASS}"
++	[ -n "${IONICE_PRIORITY}" ] && ioflags="-n ${IONICE_PRIORITY}"
++	[ -n "${ioflags}" ] && ionice ${ioflags} -p $$ 2>/dev/null
 +
 +	nice -n ${NICE:-10} /usr/bin/updatedb ${args}
  fi
