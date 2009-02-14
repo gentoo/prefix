@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p28450.ebuild,v 1.1 2009/02/03 06:13:05 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p28450.ebuild,v 1.8 2009/02/12 15:05:02 beandog Exp $
 
 EAPI="prefix 1"
 
@@ -11,12 +11,13 @@ MPLAYER_REVISION=28450
 
 IUSE="aqua 3dnow 3dnowext +a52 +aac -aalib +alsa altivec amrnb amrwb -arts +ass bidi bl
 bindist cddb cdio cdparanoia -cpudetection -custom-cflags -custom-cpuopts debug
-dga dirac doc dts dvb directfb +dvd dvdnav dv dxr3 enca +encode esd -fbcon ftp -gif ggi
--gtk iconv ipv6 jack joystick -jpeg kernel_linux ladspa -libcaca lirc live lzo
-+mad -md5sum +mmx mmxext mng mp2 +mp3 musepack nas nemesi opengl
-openal oss -png -pnm pulseaudio -pvr +quicktime radio -rar real rtc -samba schroedinger sdl
+dga dirac doc +dts dvb directfb +dvd dvdnav +dv dxr3 enca +encode esd -fbcon ftp
++gif ggi
+-gtk iconv ipv6 jack joystick +jpeg kernel_linux ladspa -libcaca lirc +live lzo
++mad +md5sum +mmx mmxext mng +mp2 +mp3 musepack nas nemesi opengl
+openal +oss +png -pnm pulseaudio -pvr +quicktime radio -rar real rtc -samba schroedinger sdl
 speex sse sse2 ssse3 svga teletext tga +theora +truetype unicode v4l v4l2
-vidix +vorbis win32codecs +X x264 xanim xinerama +xscreensaver +xv xvid xvmc zoran"
+vidix +vorbis win32codecs +X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
