@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.59.ebuild,v 1.1 2009/01/19 15:10:48 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.62.ebuild,v 1.1 2009/02/09 15:20:20 grozin Exp $
 EAPI="prefix 2"
 inherit eutils autotools elisp-common latex-package multilib python
 
@@ -42,7 +42,7 @@ src_prepare() {
 	# Changing pdf, ps, image viewers to xdg-open
 	epatch "${FILESDIR}/${P}-xdg-utils.patch"
 
-	epatch "${FILESDIR}"/${PN}-1.49-darwin.patch
+	# see if this is still necessary: epatch "${FILESDIR}"/${PN}-1.49-darwin.patch
 
 	eautoreconf
 }
