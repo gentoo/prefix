@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>qt</herd> 
+<herd>qt</herd>
 <use>
 	<flag name='glib'>Enable <pkg>dev-libs/glib</pkg> eventloop support</flag>
 	<flag name='immqt-bc'>Enable binary compatible version of immodule for
@@ -9,5 +9,6 @@
 	<flag name='immqt'>Enable binary incompatible version of immodule for
 		Qt</flag>
 	<flag name='qt3support'>Enable the Qt3Support libraries for Qt4</flag>
+	<flag name='phonon'>Enable support for the Phonon multimedia package</flag>
 </use>
 </pkgmetadata>

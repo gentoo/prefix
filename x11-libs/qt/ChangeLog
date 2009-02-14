@@ -1,6 +1,20 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.561 2009/01/31 19:03:24 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.565 2009/02/14 00:37:14 yngwin Exp $
+
+*qt-4.5.0_rc1 (13 Feb 2009)
+
+  13 Feb 2009; Ben de Groot <yngwin@gentoo.org> +qt-4.5.0_rc1.ebuild:
+  Add meta ebuild, on popular request, see bug 258712.
+
+  11 Feb 2009; Markos Chandras <hwoarang@gentoo.org> qt-4.4.2.ebuild:
+  Remove duplicate x11-libs/qt-test RDEPEND ( see bug #258533 )
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> qt-4.4.2.ebuild:
+  ia64/sparc stable wrt #248038
+
+  04 Feb 2009; Brent Baude <ranger@gentoo.org> qt-4.4.2.ebuild:
+  Marking qt-4.4.2 ppc64 stable for bug 248038
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org> qt-4.4.2.ebuild:
   Stable on alpha, bug #248038

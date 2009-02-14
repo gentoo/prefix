@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.4.2.ebuild,v 1.5 2009/01/31 19:03:24 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.4.2.ebuild,v 1.8 2009/02/11 10:05:08 hwoarang Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,6 @@ RDEPEND="~x11-libs/qt-gui-${PV}
 	~x11-libs/qt-test-${PV}
 	~x11-libs/qt-sql-${PV}
 	~x11-libs/qt-script-${PV}
-	~x11-libs/qt-test-${PV}
 	~x11-libs/qt-assistant-${PV}
 	~x11-libs/qt-xmlpatterns-${PV}
 	!sparc? ( !alpha? ( !ia64? ( !x86-fbsd? ( ~x11-libs/qt-webkit-${PV} ) ) ) )
