@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r3.ebuild,v 1.2 2009/01/21 05:04:51 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.1_p1-r3.ebuild,v 1.3 2009/02/08 17:14:24 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic ccc multilib autotools pam
+inherit eutils flag-o-matic multilib autotools pam
 
 # Make it more portable between straight releases
 # and _p? releases.
