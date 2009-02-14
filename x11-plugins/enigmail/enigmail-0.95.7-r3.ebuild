@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r3.ebuild,v 1.5 2009/01/05 13:32:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r3.ebuild,v 1.6 2009/02/12 16:25:57 armin76 Exp $
 
 EAPI="prefix"
 
@@ -38,7 +38,8 @@ for X in ${NOSHORTLANGS} ; do
 done
 #( mirror://gentoo/${PN}-${X}-0.9x.xpi )"
 
-DEPEND=">=mail-client/mozilla-thunderbird-${TBVER}"
+DEPEND=">=mail-client/mozilla-thunderbird-${TBVER}
+	!>=mail-client/mozilla-thunderbird-3"
 RDEPEND="${DEPEND}
 	>=app-crypt/gnupg-1.4
 	>=www-client/mozilla-launcher-1.56"

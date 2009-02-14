@@ -1,6 +1,9 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.151 2009/01/05 13:32:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.152 2009/02/12 16:25:57 armin76 Exp $
+
+  12 Feb 2009; Raúl Porcel <armin76@gentoo.org> enigmail-0.95.7-r3.ebuild:
+  Add blocker for thunderbird-3, bug #253331
 
   05 Jan 2009; Brent Baude <ranger@gentoo.org> enigmail-0.95.7-r3.ebuild:
   Marking enigmail-0.95.7-r3 ppc64 for bug 251322
