@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.129 2009/01/15 16:04:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.130 2009/02/08 19:42:55 vapier Exp $
+
+  08 Feb 2009; Mike Frysinger <vapier@gentoo.org> automake-1.9.6-r2.ebuild,
+  automake-1.10.2.ebuild, automake-9999.ebuild:
+  Fix help2man invocation to use local version #249047 by en.ABCD.
 
   03 Jan 2009; Jeroen Roovers <jer@gentoo.org> automake-1.10.2.ebuild:
   Stable for HPPA (bug #252667).

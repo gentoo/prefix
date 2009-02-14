@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.2.ebuild,v 1.7 2009/01/03 05:18:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.2.ebuild,v 1.8 2009/02/08 19:42:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -55,7 +55,7 @@ src_install() {
 	# SLOT the docs and junk
 	local x
 	for x in aclocal automake ; do
-		help2man ./${x} > ${x}-${SLOT}.1
+		help2man "perl -Ilib ${x}" > ${x}-${SLOT}.1
 		doman ${x}-${SLOT}.1
 		rm -f "${ED}"/usr/bin/${x}
 	done
