@@ -1,6 +1,18 @@
 # ChangeLog for xfce-extra/xfce4-xkb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.41 2009/01/31 12:40:55 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/ChangeLog,v 1.44 2009/02/09 20:06:47 angelos Exp $
+
+  09 Feb 2009; Christoph Mende <angelos@gentoo.org> -xfce4-xkb-0.5.1.ebuild:
+  Removed old
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org> xfce4-xkb-0.5.2.ebuild:
+  arm/ia64/sparc stable wrt #254440
+
+*xfce4-xkb-0.5.3.2 (04 Feb 2009)
+
+  04 Feb 2009; Christoph Mende <angelos@gentoo.org>
+  +xfce4-xkb-0.5.3.2.ebuild:
+  Version bump
 
 *xfce4-xkb-0.5.3.1 (31 Jan 2009)
 
