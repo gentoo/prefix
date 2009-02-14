@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/qt-script
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.17 2009/01/31 18:11:12 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.22 2009/02/14 00:56:52 hwoarang Exp $
+
+*qt-script-4.5.0_rc1-r1 (14 Feb 2009)
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qt-script-4.5.0_rc1-r1.ebuild:
+  Added scripttools target, PDEPEND on qt-gui
+
+*qt-script-4.5.0_rc1 (11 Feb 2009)
+
+  11 Feb 2009; Ben de Groot <yngwin@gentoo.org> +qt-script-4.5.0_rc1.ebuild:
+  Version bump
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> qt-script-4.4.2.ebuild:
+  ia64/sparc stable wrt #248038
+
+  04 Feb 2009; Brent Baude <ranger@gentoo.org> qt-script-4.4.2.ebuild:
+  Marking qt-script-4.4.2 ppc64 stable for bug 248038
+
+  04 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> qt-script-4.4.2.ebuild:
+  Add ~mips keywords to qt-4.4.2
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
   qt-script-4.4.2.ebuild:
