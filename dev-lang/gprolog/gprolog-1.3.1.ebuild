@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.6 2008/04/27 19:47:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.1 2009/02/12 05:53:26 keri Exp $
 
 EAPI="prefix"
 
@@ -8,8 +8,8 @@ inherit eutils flag-o-matic
 
 DESCRIPTION="GNU Prolog is a native Prolog compiler with constraint solving over finite domains (FD)"
 HOMEPAGE="http://www.gprolog.org/"
-SRC_URI="ftp://ftp.gnu.org/gnu/gprolog/gprolog-1.3.0.tar.gz"
-S=${WORKDIR}/${P}/src
+SRC_URI="ftp://ftp.gnu.org/gnu/gprolog/${P}.tar.gz"
+S="${WORKDIR}"/${P}/src
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,14 +23,11 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CFLAGS_MACHINE.patch
 	epatch "${FILESDIR}"/${P}-TXT_FILES.patch
-	epatch "${FILESDIR}"/${P}-linedit.patch
-	epatch "${FILESDIR}"/${P}-test.patch
 }
 
 src_compile() {
 	CFLAGS_MACHINE="`get-flag -march` `get-flag -mcpu` `get-flag -mtune`"
 
-	use amd64 && append-flags -fno-tree-dce
 	use debug && append-flags -DDEBUG
 
 	econf \
