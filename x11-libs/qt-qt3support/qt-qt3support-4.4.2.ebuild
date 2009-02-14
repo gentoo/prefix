@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.4.2.ebuild,v 1.5 2009/01/31 18:14:27 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.4.2.ebuild,v 1.8 2009/02/06 16:24:25 armin76 Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
