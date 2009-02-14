@@ -1,6 +1,33 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.23 2009/01/31 18:15:08 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.30 2009/02/13 23:05:35 hwoarang Exp $
+
+  13 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-gui-4.5.0_rc1.ebuild:
+  Added warning message about raster use flag
+
+  13 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-gui-4.5.0_rc1.ebuild:
+  Adding x11-libs/libXi on DEPEND. Fixing bug #258788
+
+  12 Feb 2009; Ben de Groot <yngwin@gentoo.org>
+  +files/hardcoded_fonts.patch:
+  Add patch. Fixes bug 258670.
+
+*qt-gui-4.5.0_rc1 (11 Feb 2009)
+
+  11 Feb 2009; Ben de Groot <yngwin@gentoo.org> +qt-gui-4.5.0_rc1.ebuild:
+  Version bump
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> qt-gui-4.4.2-r1.ebuild:
+  ia64/sparc stable wrt #248038
+
+  04 Feb 2009; Brent Baude <ranger@gentoo.org> qt-gui-4.4.2-r1.ebuild:
+  Marking qt-gui-4.4.2-r1 ppc64 stable for bug 248038
+
+  04 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> qt-gui-4.4.2-r1.ebuild,
+  qt-gui-4.4.2-r2.ebuild:
+  Add ~mips keywords to qt-4.4.2
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
   qt-gui-4.4.2-r1.ebuild:
