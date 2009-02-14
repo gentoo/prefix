@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.1_p1.ebuild,v 1.1 2009/01/07 19:50:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.1_p1.ebuild,v 1.2 2009/02/11 16:30:59 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ MY_P="${MY_PN}-${MY_PV}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
 HOMEPAGE="http://www.isc.org/products/BIND/bind9.html"
-SRC_URI="ftp://ftp.isc.org/isc/bind9/${PV}/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
