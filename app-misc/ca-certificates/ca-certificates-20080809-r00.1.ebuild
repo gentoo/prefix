@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.10 2008/12/28 17:21:27 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.11 2009/02/08 19:37:12 vapier Exp $
 
 EAPI="prefix"
 
