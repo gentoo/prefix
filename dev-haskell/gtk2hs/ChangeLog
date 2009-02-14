@@ -1,6 +1,13 @@
 # ChangeLog for dev-haskell/gtk2hs
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.48 2008/08/05 19:17:02 ulm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.49 2009/02/10 19:32:40 kolmodin Exp $
+
+  10 Feb 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  +files/gtk2hs-0.9.12.1-librsvg-2.22.3.patch, gtk2hs-0.9.12.1.ebuild:
+  Support >=gnome-base/librsvg-2.22.3 with its slightly changed API.
+  Patch from upstream, unconditionally patching, see bug #240704.
+  Reported by Paulo Jorge de Oliveira Cantante de Matos <pocmatos@gmail.com>,
+  handled by Sebastian Magrí <sebasmagri@gmail.com>.
 
   05 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.8 2008/07/16 11:47:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.9 2009/02/10 19:32:40 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,9 @@ src_unpack() {
 		   -e '/$(foreach LETTER,/,+1 d' \
 		   -e '\|\tdocs/reference/gtk2hs.haddock| s/\\//' \
 		   "${S}/Makefile.in"
+
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-librsvg-2.22.3.patch"
 }
 
 src_compile() {
