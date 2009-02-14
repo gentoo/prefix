@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.207 2009/01/25 03:36:03 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.208 2009/02/13 18:41:37 armin76 Exp $
+
+  13 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  java-config-1.2.11-r1.ebuild, java-config-2.1.6-r1.ebuild,
+  java-config-2.1.7.ebuild:
+  Drop s390/sh, no java there, add ~alpha to 2.1.7 as jikes is keyworded,
+  stabilize 2.1.6-r1 on arm
 
 *java-config-2.1.7 (25 Jan 2009)
 
