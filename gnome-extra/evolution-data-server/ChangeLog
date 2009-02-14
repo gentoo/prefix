@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/evolution-data-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.202 2009/02/03 20:49:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.203 2009/02/06 03:08:47 jer Exp $
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org>
+  evolution-data-server-2.22.3-r1.ebuild:
+  Stable for HPPA (bug #250728).
 
   03 Feb 2009; Alexis Ballier <aballier@gentoo.org>
   evolution-data-server-2.24.4.ebuild:
