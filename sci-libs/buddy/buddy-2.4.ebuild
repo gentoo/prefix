@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/buddy-2.4.ebuild,v 1.2 2008/06/03 10:37:38 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/buddy-2.4.ebuild,v 1.3 2009/02/10 04:29:43 dirtyepic Exp $
 
 EAPI="prefix"
+
+inherit eutils
 
 DESCRIPTION="BuDDY - A Binary Decision Diagram Package"
 HOMEPAGE="http://sourceforge.net/projects/buddy"
@@ -15,8 +17,15 @@ KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 DEPEND="virtual/libc"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-gcc43.patch
+}
+
 src_install() {
-	make install DESTDIR="${D}" || die "make install failed"
+	emake install DESTDIR="${D}" || die "emake install failed"
 
 	dodoc ChangeLog NEWS AUTHORS README doc/*.txt || \
 		die "failed to install docs"

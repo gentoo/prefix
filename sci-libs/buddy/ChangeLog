@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/buddy
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/ChangeLog,v 1.5 2008/06/03 10:37:38 markusle Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/ChangeLog,v 1.6 2009/02/10 04:29:43 dirtyepic Exp $
+
+  10 Feb 2009; Ryan Hill <dirtyepic@gentoo.org>
+  +files/buddy-2.4-gcc43.patch, buddy-2.4.ebuild:
+  Fix building with GCC 4.3
 
   03 Jun 2008; Markus Dittrich <markusle@gentoo.org> buddy-2.2.ebuild,
   buddy-2.4.ebuild:
