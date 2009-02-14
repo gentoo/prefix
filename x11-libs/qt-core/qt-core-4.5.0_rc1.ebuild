@@ -1,27 +1,26 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.1.ebuild,v 1.2 2008/08/16 15:06:01 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.0_rc1.ebuild,v 1.4 2009/02/14 00:04:03 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 inherit qt4-build
 
-DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework."
-HOMEPAGE="http://www.trolltech.com/"
-
+DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="doc glib +qt3support ssl"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="doc +glib +qt3support +ssl"
 
 RDEPEND="sys-libs/zlib
 	glib? ( dev-libs/glib )
 	ssl? ( dev-libs/openssl )
-	!<=x11-libs/qt-4.4.0_alpha:${SLOT}"
+	!<x11-libs/qt-4.4.0:4"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
-PDEPEND="qt3support? ( ~x11-libs/qt-gui-${PV} )"
+PDEPEND="qt3support? ( ~x11-libs/qt-gui-${PV}[qt3support] )"
 
 QT4_TARGET_DIRECTORIES="
+src/tools/bootstrap
 src/tools/moc/
 src/tools/rcc/
 src/tools/uic/
@@ -29,6 +28,9 @@ src/corelib/
 src/xml/
 src/network/
 src/plugins/codecs/"
+
+# Most ebuilds inlude almost everything for testing
+# Will clear out unneeded directories after everything else works OK
 QT4_EXTRACT_DIRECTORIES="
 include/Qt/
 include/QtCore/
@@ -76,7 +78,7 @@ pkg_setup() {
 			if [[ -n ${need_to_remove} ]]; then
 				die "You must first uninstall these packages before continuing: \n\t\t${need_to_remove}"
 			fi
-		elif ! use qt3support && built_with_use x11-libs/qt-core qt3support; then
+		elif ! use qt3support && built_with_use x11-libs/qt-core qt3support ; then
 			local need_to_remove
 			ewarn "You have changed the \"qt3support\" use flag since the last time you have emerged this package."
 			for x in sql opengl gui qt3support; do
@@ -93,36 +95,47 @@ pkg_setup() {
 }
 
 src_unpack() {
-	use doc && QT4_EXTRACT_DIRECTORIES="${QT4_EXTRACT_DIRECTORIES}
-		doc/
-		tools/qdoc3/"
+	if use doc; then
+		QT4_EXTRACT_DIRECTORIES="${QT4_EXTRACT_DIRECTORIES}
+		doc/"
+		QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
+		tools/qdoc3"
+	fi
 	QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
 	${QT4_EXTRACT_DIRECTORIES}"
 
 	qt4-build_src_unpack
+
+	# Don't pre-strip, bug 235026
+	for i in kr jp cn tw ; do
+		echo "CONFIG+=nostrip" >> "${S}"/src/plugins/codecs/${i}/${i}.pro
+	done
 }
 
-src_compile() {
+src_configure() {
 	unset QMAKESPEC
-	local myconf
 
 	myconf="${myconf}
 		$(qt_use glib)
 		$(qt_use ssl openssl)
 		$(qt_use qt3support)"
 
-	myconf="${myconf} -no-xkb -no-tablet -no-fontconfig -no-xrender -no-xrandr
+	myconf="${myconf} -no-xkb  -no-fontconfig -no-xrender -no-xrandr
 		-no-xfixes -no-xcursor -no-xinerama -no-xshape -no-sm -no-opengl
-		-no-nas-sound -no-dbus -iconv -no-cups -no-nis -no-gif -no-libpng
+		-no-nas-sound -no-dbus -iconv -no-cups -no-gif -no-libpng
 		-no-libmng -no-libjpeg -system-zlib -no-webkit -no-phonon -no-xmlpatterns
 		-no-freetype -no-libtiff  -no-accessibility -no-fontconfig -no-opengl
-		-no-svg"
+		-no-svg -no-gtkstyle"
 
 	if ! use doc; then
 		myconf="${myconf} -nomake docs"
 	fi
 
-	qt4-build_src_compile
+	cp -f "${FILESDIR}"/moc.pro "${S}"/src/tools/moc/
+	cp -f "${FILESDIR}"/rcc.pro "${S}"/src/tools/rcc/
+	cp -f "${FILESDIR}"/uic.pro "${S}"/src/tools/uic/
+
+	qt4-build_src_configure
 }
 
 src_install() {
@@ -147,7 +160,7 @@ src_install() {
 	done
 
 	cat <<-EOF > "${T}/44qt4"
-	LDPATH=${libdirs:1}
+	LDPATH="${EPREFIX}/${libdirs:1}"
 	EOF
 	doenvd "${T}/44qt4"
 
@@ -164,6 +177,12 @@ src_install() {
 		$(use ssl && echo QT_OPENSSL)"
 		install_qconfigs
 	fi
+
+	# remove some unnecessary headers
+	rm -f "${ED}${QTHEADERDIR}"/{Qt,QtCore}/{\
+qatomic_windows.h,\
+qatomic_windowsce.h,\
+qt_windows.h}
 
 	keepdir "${QTSYSCONFDIR#${EPREFIX}}"
 }
