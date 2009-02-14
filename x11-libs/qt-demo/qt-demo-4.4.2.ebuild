@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/qt-demo-4.4.2.ebuild,v 1.3 2009/01/18 20:06:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/qt-demo-4.4.2.ebuild,v 1.4 2009/02/04 23:28:44 ranger Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
