@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/mysql
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.482 2008/12/14 20:17:13 klausman Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.483 2009/02/11 12:22:14 robbat2 Exp $
+
+*mysql-5.0.76 (11 Feb 2009)
+
+  11 Feb 2009; Robin H. Johnson <robbat2@gentoo.org> +mysql-5.0.76.ebuild:
+  Version bump. Includes new patches for bad whitespace in the HTML encoding
+  testcase, plus SIGBUS fixes for sparc. -r1 will contain the Percona
+  patchset.
 
   14 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
   mysql-4.0.27-r1.ebuild, mysql-4.1.22-r1.ebuild,
