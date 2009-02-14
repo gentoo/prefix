@@ -1,0 +1,12 @@
+http://bugs.gentoo.org/82081
+
+--- openmotif-2.3.1-orig/configure.ac	2008-08-30 13:10:19.000000000 +0200
++++ openmotif-2.3.1/configure.ac	2009-02-04 19:28:02.000000000 +0100
+@@ -75,6 +75,7 @@
+ AC_CHECK_LIB(Xmu,XmuNCopyISOLatin1Lowered ,
+ AC_DEFINE(HAVE_XMU_N_COPY_ISO,1,Have XmuNCopyISOLatin1Lowered)
+ , , -lXt -lX11)
++,,[[#include <X11/Intrinsic.h>]]
+ )
+ 
+ 

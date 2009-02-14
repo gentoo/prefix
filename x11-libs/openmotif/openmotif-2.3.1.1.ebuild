@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.1.ebuild,v 1.7 2008/11/12 22:07:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.1.1.ebuild,v 1.8 2009/02/04 21:04:38 ulm Exp $
 
 EAPI="prefix"
 
@@ -70,9 +70,8 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# display stippled multilist items correctly, bug 215984
-	epatch "${FILESDIR}/${MY_P}-multilist-stipple.patch"
+	epatch "${FILESDIR}/${MY_P}-multilist-stipple.patch" #215984
+	epatch "${FILESDIR}/${MY_P}-ac-editres.patch" #82081
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
