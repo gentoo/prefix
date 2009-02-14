@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/erlang
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.148 2008/12/18 10:27:58 fauli Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.149 2009/02/05 01:50:45 fauli Exp $
+
+*erlang-12.2.5-r1 (05 Feb 2009)
+
+  05 Feb 2009; Christian Faulhammer <fauli@gentoo.org>
+  +files/erlang-12.2.5-amd64_segfault.patch,
+  +files/erlang-12.2.5-remove_execstack.patch, +erlang-12.2.5-r1.ebuild:
+  revbump to fix executable stacks (see bug 249328 by Lars Strojny <lars AT
+  strojny DOT net>) and a segfault on amd64; both taken from upstream, hint
+  and inspiration by Davide Pesavento <davidepesa AT gmail DOT com>
 
   18 Dec 2008; Christian Faulhammer <fauli@gentoo.org>
   -files/erlang-12.2.3-gethostbyname.patch,

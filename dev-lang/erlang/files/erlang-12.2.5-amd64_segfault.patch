@@ -1,0 +1,139 @@
+--- otp_src_R12B-5/lib/hipe/amd64/hipe_amd64_registers.erl.~1~	2007-11-26 19:59:44.000000000 +0100
++++ otp_src_R12B-5/lib/hipe/amd64/hipe_amd64_registers.erl	2009-01-21 14:54:23.000000000 +0100
+@@ -268,8 +268,7 @@ tailcall_clobbered() ->		% tailcall crap
+   | fp_call_clobbered()].
+ 
+ live_at_return() ->
+-    [{?RAX,tagged}
+-     ,{?RSP,untagged}
++    [{?RSP,untagged}
+      ,{?PROC_POINTER,untagged}
+      ,{?FCALLS,untagged}
+      ,{?HEAP_LIMIT,untagged}
+--- otp_src_R12B-5/lib/hipe/rtl/hipe_rtl.erl.~1~	2008-11-04 11:51:39.000000000 +0100
++++ otp_src_R12B-5/lib/hipe/rtl/hipe_rtl.erl	2009-01-21 14:54:36.000000000 +0100
+@@ -882,15 +882,17 @@ args(I) ->
+     #alub{} -> [alub_src1(I), alub_src2(I)];
+     #branch{} -> [branch_src1(I), branch_src2(I)];
+     #call{} -> 
++      Args = call_arglist(I) ++ hipe_rtl_arch:call_used(),
+       case call_is_known(I) of
+-	false -> [call_fun(I)|call_arglist(I)];
+-	true -> call_arglist(I)
++	false -> [call_fun(I) | Args];
++	true -> Args
+       end;
+     #comment{} -> [];
+     #enter{} ->
++      Args = enter_arglist(I) ++ hipe_rtl_arch:tailcall_used(),
+       case enter_is_known(I) of
+-	false -> hipe_rtl_arch:add_ra_reg([enter_fun(I)|enter_arglist(I)]);
+-	true -> hipe_rtl_arch:add_ra_reg(enter_arglist(I))
++	false -> [enter_fun(I) | Args];
++	true -> Args
+       end;
+     #fconv{} -> [fconv_src(I)];
+     #fixnumop{} -> [fixnumop_src(I)];
+@@ -910,7 +912,7 @@ args(I) ->
+     #move{} -> [move_src(I)];
+     #multimove{} -> multimove_srclist(I);
+     #phi{} -> phi_args(I);
+-    #return{} -> hipe_rtl_arch:add_ra_reg(return_varlist(I));
++    #return{} -> return_varlist(I) ++ hipe_rtl_arch:return_used();
+     #store{} -> [store_base(I), store_offset(I), store_src(I)];
+     #switch{} -> [switch_src(I)]
+   end.
+@@ -924,7 +926,7 @@ defines(Instr) ->
+ 	   #alu{} -> [alu_dst(Instr)];
+ 	   #alub{} -> [alub_dst(Instr)];
+ 	   #branch{} -> [];
+-	   #call{} -> call_dstlist(Instr);
++	   #call{} -> call_dstlist(Instr) ++ hipe_rtl_arch:call_defined();
+ 	   #comment{} -> [];
+ 	   #enter{} -> [];
+ 	   #fconv{} -> [fconv_dst(Instr)];
+@@ -990,7 +992,7 @@ subst_uses(Subst, I) ->
+       end;
+     #comment{} ->
+       I;
+-    #enter{} -> %% XXX: Check why ra_reg is added in uses() but not updated here
++    #enter{} ->
+       case enter_is_known(I) of
+ 	false -> 
+ 	  I0 = enter_fun_update(I, subst1(Subst, enter_fun(I))),
+--- otp_src_R12B-5/lib/hipe/rtl/hipe_rtl_arch.erl.~1~	2008-06-10 14:47:41.000000000 +0200
++++ otp_src_R12B-5/lib/hipe/rtl/hipe_rtl_arch.erl	2009-01-21 14:56:26.000000000 +0100
+@@ -22,9 +22,12 @@
+ 	 heap_pointer/0,
+ 	 heap_limit/0,
+ 	 fcalls/0,
+-	 add_ra_reg/1,
+ 	 reg_name/1,
+ 	 is_precoloured/1,
++	 call_defined/0,
++	 call_used/0,
++	 tailcall_used/0,
++	 return_used/0,
+ 	 live_at_return/0,
+ 	 endianess/0,
+ 	 load_big_2/4,
+@@ -164,22 +167,6 @@ fcalls_from_pcb() ->
+   Reg = hipe_rtl:mk_new_reg(),
+   {pcb_load(Reg, ?P_FCALLS), Reg, pcb_store(?P_FCALLS, Reg)}.
+ 
+--spec(add_ra_reg/1 :: ([X]) -> [X]).
+-
+-add_ra_reg(Rest) ->
+-  case get(hipe_target_arch) of
+-    ultrasparc ->
+-      [hipe_rtl:mk_reg(hipe_sparc_registers:return_address()) | Rest];
+-    powerpc ->
+-      Rest;	% do not include LR: it's not a normal register
+-    arm ->
+-      [hipe_rtl:mk_reg(hipe_arm_registers:lr()) | Rest];
+-    x86 ->
+-      Rest;
+-    amd64 ->
+-      Rest
+-  end.
+-
+ reg_name(Reg) ->
+   case get(hipe_target_arch) of
+     ultrasparc ->
+@@ -225,6 +212,18 @@ is_precolored_regnum(RegNum) ->
+       hipe_amd64_registers:is_precoloured(RegNum)
+   end.
+ 
++call_defined() ->
++  call_used().
++
++call_used() ->
++  live_at_return().
++
++tailcall_used() ->
++  call_used().
++
++return_used() ->
++  tailcall_used().
++
+ live_at_return() ->
+   case get(hipe_target_arch) of
+     ultrasparc ->
+--- otp_src_R12B-5/lib/hipe/x86/hipe_x86_registers.erl.~1~	2007-11-26 19:58:49.000000000 +0100
++++ otp_src_R12B-5/lib/hipe/x86/hipe_x86_registers.erl	2009-01-21 14:53:33.000000000 +0100
+@@ -224,14 +224,8 @@ all_x87_pseudos() ->
+    {4,double}, {5,double}, {6,double}].
+ 
+ live_at_return() ->
+-    [{?EAX,tagged}
+-     %% XXX: should the following (fixed) regs be included or not?
+-     ,{?ESP,untagged}
++    [{?ESP,untagged}
+      ,{?PROC_POINTER,untagged}
+-     %% Lets try not!
+-     %% If these are included they will interfere with other
+-     %% temps during regalloc, but regs FCALLS and HEAP_LIMIT
+-     %% don't even exist at regalloc.
+      ,{?FCALLS,untagged}
+      ,{?HEAP_LIMIT,untagged}
+      | ?LIST_HP_LIVE_AT_RETURN
