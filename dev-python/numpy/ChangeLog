@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.70 2009/01/24 18:15:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.71 2009/02/12 11:22:10 bicatali Exp $
+
+  12 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org> ChangeLog:
+  Fixed a syntax error. Re-added ppc and x86-fbsd now that nose is
+  keyworded.
 
   24 Jan 2009; Brent Baude <ranger@gentoo.org> numpy-1.2.1.ebuild:
   Marking numpy-1.2.1 ~ppc64 for bug 23354

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.1.ebuild,v 1.4 2009/01/24 18:15:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.1.ebuild,v 1.5 2009/02/12 11:22:10 bicatali Exp $
 
 EAPI="prefix"
 
@@ -90,7 +90,7 @@ src_unpack() {
 				cblas blas lapack | sed -e \
 				's/^-L//' -e 's/ -L/:/g' -e 's/ //g'):"${EPREFIX}"/usr/$(get_libdir)
 			atlas_libs = $(pkg-config --libs-only-l \
-				cbas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+				cblas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 			lapack_libs = $(pkg-config --libs-only-l \
 				lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 			[blas_opt]
