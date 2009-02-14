@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jikes
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jikes/ChangeLog,v 1.50 2006/10/15 18:39:57 dertobi123 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jikes/ChangeLog,v 1.51 2009/02/13 18:51:51 armin76 Exp $
+
+  13 Feb 2009; Raúl Porcel <armin76@gentoo.org> jikes-1.22-r13.ebuild:
+  Add ~alpha
 
   15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   jikes-1.22-r13.ebuild:
