@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/libgadu-1.8.0.ebuild,v 1.1 2008/04/21 13:27:17 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/libgadu-1.8.2.ebuild,v 1.7 2009/02/11 17:01:30 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,9 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="ssl threads"
 
 DEPEND="ssl? ( >=dev-libs/openssl-0.9.6m )"
+RDEPEND="${DEPEND}
+	!=net-im/kadu-0.6.0.2
+	!=net-im/kadu-0.6.0.1"
 
 src_compile() {
 	econf \
