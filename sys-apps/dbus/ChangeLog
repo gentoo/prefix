@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.230 2009/01/15 22:37:33 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.231 2009/02/05 19:03:24 aballier Exp $
+
+  05 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  +files/dbus-1.2.3-bsd.patch, dbus-1.2.3-r1.ebuild:
+  Backport an upstream patch to fix runtime error on FreeBSD, bug #236779
+  and rekeyword it for x86-fbsd
 
   15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Compnerd retired.

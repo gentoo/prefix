@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.3-r1.ebuild,v 1.9 2008/11/25 05:15:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.3-r1.ebuild,v 1.10 2009/02/05 19:03:24 aballier Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,9 @@ src_unpack() {
 	cd "${S}"
 	# Fix potential DoS issue. fdo bug #17803. Gentoo bug #240308
 	epatch "${FILESDIR}"/${PN}-1.2.3-panic-from-dbus_signature_validate.patch
+	# Fix runtime error on FreeBSD. Gentoo bug #236779, fdo bug #17061
+	# From upstream, drop at next bump
+	epatch "${FILESDIR}"/${P}-bsd.patch
 
 	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
