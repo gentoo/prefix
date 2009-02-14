@@ -1,6 +1,16 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.58 2009/02/03 18:47:32 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.60 2009/02/13 16:59:23 dang Exp $
+
+  13 Feb 2009; Daniel Gryniewicz <dang@gentoo.org> iso-codes-3.5.1.ebuild,
+  iso-codes-3.6.ebuild:
+  Update USE flags to require xml from python; bug #233166
+
+*iso-codes-3.6 (10 Feb 2009)
+
+  10 Feb 2009; Peter Volkov <pva@gentoo.org> -iso-codes-3.5.1-r1.ebuild,
+  +iso-codes-3.6.ebuild:
+  Version bump. Removed 3.5.1-r1 since fix is broken, bug #233166.
 
 *iso-codes-3.5.1-r1 (03 Feb 2009)
 

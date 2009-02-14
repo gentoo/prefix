@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.5.1.ebuild,v 1.1 2009/01/18 21:53:13 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.5.1.ebuild,v 1.2 2009/02/13 16:59:23 dang Exp $
 
 EAPI="prefix 2"
 
@@ -18,7 +18,7 @@ IUSE=""
 RDEPEND=""
 DEPEND="sys-devel/gettext
 	|| (
-		>=dev-lang/python-2.3[-build]
+		>=dev-lang/python-2.3[-build,xml]
 		dev-python/pyxml )"
 
 src_unpack() {

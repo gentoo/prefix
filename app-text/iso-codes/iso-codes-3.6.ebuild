@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.5.1-r1.ebuild,v 1.1 2009/02/03 18:47:32 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.6.ebuild,v 1.2 2009/02/13 16:59:23 dang Exp $
 
 EAPI="prefix 2"
 
