@@ -10,4 +10,8 @@
 		<email>pva@gentoo.org</email>
 		<name>Peter Volkov</name>
 	</maintainer>
+	<maintainer>
+		<email>fauli@gentoo.org</email>
+		<name>Christian Faulhammer</name>
+	</maintainer>
 </pkgmetadata>
