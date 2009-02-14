@@ -1,22 +1,18 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.0.ebuild,v 1.8 2008/06/20 10:28:07 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.0_rc1.ebuild,v 1.1 2009/02/11 23:19:38 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 inherit qt4-build
 
-DESCRIPTION="The SQL module for the Qt toolkit."
-HOMEPAGE="http://www.trolltech.com/"
-
-LICENSE="|| ( QPL-1.0 GPL-3 GPL-2 )"
+DESCRIPTION="The SQL module for the Qt toolkit"
+LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 IUSE="firebird mysql odbc postgres +qt3support +sqlite"
 
-DEPEND="
-	~x11-libs/qt-core-${PV}
-	!<=x11-libs/qt-4.4.0_alpha:${SLOT}
+DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
 	firebird? ( dev-db/firebird )
 	sqlite? ( dev-db/sqlite:3 )
 	mysql? ( virtual/mysql )
@@ -25,7 +21,17 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 QT4_TARGET_DIRECTORIES="src/sql src/plugins/sqldrivers"
-QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}"
+QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
+include/Qt/
+include/QtCore/
+include/QtSql/
+include/QtScript/
+src/src.pro
+src/corelib/
+src/plugins
+src/sql
+src/3rdparty
+src/tools"
 
 pkg_setup() {
 	if ! (use firebird || use mysql || use odbc || use postgres || use sqlite); then
@@ -33,9 +39,6 @@ pkg_setup() {
 		ewarn "one of these USE flags: \"firebird mysql odbc postgres sqlite\""
 		die "Enable at least one SQL driver."
 	fi
-
-	use qt3support && QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
-		~x11-libs/qt-core-${PV} qt3support"
 
 	qt4-build_pkg_setup
 }
@@ -47,8 +50,7 @@ src_unpack() {
 		|| die 'Sed to fix postgresql usage in ./configure failed.'
 }
 
-src_compile() {
-	local myconf
+src_configure() {
 	# Don't support sqlite2 anymore
 	myconf="${myconf} -no-sql-sqlite2
 		$(qt_use mysql sql-mysql plugin) $(use mysql && echo "-I/usr/include/mysql -L/usr/$(get_libdir)/mysql ")
@@ -57,12 +59,12 @@ src_compile() {
 		$(qt_use odbc sql-odbc plugin)
 		$(qt_use qt3support)"
 
-	myconf="${myconf} -no-xkb -no-tablet -no-fontconfig -no-xrender -no-xrandr
+	myconf="${myconf} -no-xkb  -no-fontconfig -no-xrender -no-xrandr
 		-no-xfixes -no-xcursor -no-xinerama -no-xshape -no-sm -no-opengl
 		-no-nas-sound -no-dbus -iconv -no-cups -no-nis -no-gif -no-libpng
 		-no-libmng -no-libjpeg -no-openssl -system-zlib -no-webkit -no-phonon
 		-no-xmlpatterns -no-freetype -no-libtiff  -no-accessibility -no-fontconfig
-		-no-glib -no-opengl -no-svg"
+		-no-glib -no-opengl -no-svg -no-gtkstyle"
 
-	qt4-build_src_compile
+	qt4-build_src_configure
 }
