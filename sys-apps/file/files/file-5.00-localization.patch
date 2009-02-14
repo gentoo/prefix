@@ -1,0 +1,80 @@
+http://bugs.gentoo.org/258452
+
+From: christos@zoulas.com (Christos Zoulas)
+To: file@mx.gw.com
+Date: Fri, 13 Feb 2009 13:46:12 -0500
+Subject: Re: file 5.00 error with a French .doc file
+
+On Feb 12,  5:05am, dnovotny@redhat.com (Daniel Novotny) wrote:
+-- Subject: file 5.00 error with a French .doc file
+
+| 
+| ------=_Part_10359_582458326.1234433130940
+| Content-Type: text/plain; charset=utf-8
+| Content-Transfer-Encoding: 7bit
+| 
+| hello,
+| 
+| the new file 5.00 returns error exit code for a .DOC file:
+| 
+| $ file ~/Download/PMD.doc 
+| /home/pmatilai/Download/PMD.doc: ERROR: CDF V2 Document, Little Endian, Os:
+| Windows, Version 5.1, Code page: 1252vasprintf failed (Invalid or incomplete
+| multibyte or wide character)
+| 
+| I am attaching the file for analysis
+| 
+| (btw this corrupts rpmbuild process, which checks every file it packs)
+| 
+| best regards,
+
+$ file -m ../magic/magic.mgc PMD.doc 
+PMD.doc: CDF V2 Document, Little Endian, Os: Windows, Version 5.1, Code page: 1252, Title: \225, Subject: , Author: Bekrar, Keywords: , Comments: , Template: Normal.dot, Last Saved By: Bekrar, Revision Number: 2, Name of Creating Application: Microsoft Office Word, Total Editing Time: 01:00, Create Time/Date: Mon Aug 15 10:51:00 2005, Last Saved Time/Date: Mon Aug 15 11:02:00 2005, Number of Pages: 2, Number of Words: 646, Number of Characters: 3555, Security: 0
+
+It must be the \225 character. Since we don't handle localization, I will
+just eat the bad strings. Here is the output after the change:
+
+PMD.doc: CDF V2 Document, Little Endian, Os: Windows, Version 5.1, Code page: 1252, Author: Bekrar, Template: Normal.dot, Last Saved By: Bekrar, Revision Number: 2, Name of Creating Application: Microsoft Office Word, Total Editing Time: 01:00, Create Time/Date: Mon Aug 15 10:51:00 2005, Last Saved Time/Date: Mon Aug 15 11:02:00 2005, Number of Pages: 2, Number of Words: 646, Number of Characters: 3555, Security: 0
+
+
+Index: readcdf.c
+===================================================================
+RCS file: /p/file/cvsroot/file/src/readcdf.c,v
+retrieving revision 1.11
+diff -u -u -r1.11 readcdf.c
+--- src/readcdf.c	3 Feb 2009 20:27:51 -0000	1.11
++++ src/readcdf.c	13 Feb 2009 18:45:33 -0000
+@@ -75,9 +75,23 @@
+ 			if (len > 1) {
+ 				s = info[i].pi_str.s_buf;
+ 				if (NOTMIME(ms)) {
+-					if (file_printf(ms, ", %s: %.*s", buf,
+-					    len, s) == -1)
+-						return -1;
++					char vbuf[1024];
++					size_t j;
++					for (j = 0; j < sizeof(vbuf) && len--;
++					    j++, s++) {
++						if (*s == '\0')
++							break;
++						if (isprint((unsigned char)*s))
++							vbuf[j] = *s;
++					}
++					if (j == sizeof(vbuf))
++						--j;
++					vbuf[j] = '\0';
++					if (vbuf[0]) {
++						if (file_printf(ms, ", %s: %s",
++						    buf, vbuf) == -1)
++							return -1;
++					}
+ 				} else if (info[i].pi_id == 
+ 					CDF_PROPERTY_NAME_OF_APPLICATION) {
+ 					if (strstr(s, "Word"))
+
+christos
+
+_______________________________________________
+File mailing list
+File@mx.gw.com
+http://mx.gw.com/mailman/listinfo/file
