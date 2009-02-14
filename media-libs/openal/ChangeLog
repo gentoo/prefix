@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.105 2009/01/26 04:37:26 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.106 2009/02/04 21:38:21 armin76 Exp $
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org> openal-1.6.372.ebuild:
+  arm/ia64/sparc stable wrt #254583
 
   26 Jan 2009; Jeroen Roovers <jer@gentoo.org> openal-1.6.372.ebuild:
   Stable for HPPA (bug #254583).
