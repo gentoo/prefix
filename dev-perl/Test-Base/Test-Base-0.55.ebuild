@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/Test-Base-0.55.ebuild,v 1.1 2008/12/08 02:40:32 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/Test-Base-0.55.ebuild,v 1.2 2009/02/13 11:50:34 armin76 Exp $
 
 EAPI="prefix"
 
