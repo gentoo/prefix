@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.298 2009/02/01 21:12:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.301 2009/02/06 07:28:08 ulm Exp $
+
+  06 Feb 2009; Ulrich Mueller <ulm@gentoo.org> -emacs-22.3.ebuild:
+  Remove old.
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> emacs-22.3-r1.ebuild:
+  Stable for HPPA (bug #256382).
+
+  05 Feb 2009; Raúl Porcel <armin76@gentoo.org> emacs-22.3-r1.ebuild:
+  arm/ia64/s390/sh stable wrt #256382
 
   01 Feb 2009; Markus Meier <maekke@gentoo.org> emacs-22.3-r1.ebuild:
   x86 stable, bug #256382
