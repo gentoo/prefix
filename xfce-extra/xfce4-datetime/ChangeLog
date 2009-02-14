@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/xfce4-datetime
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.39 2009/01/25 16:37:23 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-datetime/ChangeLog,v 1.41 2009/02/09 19:57:24 angelos Exp $
+
+  09 Feb 2009; Christoph Mende <angelos@gentoo.org>
+  -xfce4-datetime-0.6.0.ebuild:
+  Removed old
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  xfce4-datetime-0.6.1.ebuild:
+  arm/ia64/sparc stable wrt #254440
 
   25 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
   xfce4-datetime-0.6.1.ebuild:
