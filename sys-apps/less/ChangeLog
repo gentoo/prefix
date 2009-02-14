@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.95 2009/02/02 19:44:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.96 2009/02/09 18:58:35 vapier Exp $
+
+*less-424 (09 Feb 2009)
+
+  09 Feb 2009; Mike Frysinger <vapier@gentoo.org> +less-424.ebuild:
+  Version bump.
 
   02 Feb 2009; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
   Add support for .lz/.xz and unify more places with ${DECOMPRESSOR}.

@@ -217,7 +217,7 @@ lesspipe() {
 		# Maybe we didn't match due to case issues ...
 		if [[ ${recur} == 0 ]] ; then
 			recur=1
-			lesspipe "$1" "$(echo $1 | tr '[:upper:]' '[:lower:]')"
+			lesspipe "$1" "$(echo $1 | LC_ALL=C tr '[:upper:]' '[:lower:]')"
 
 		# Maybe we didn't match because the file is named weird ...
 		else
@@ -234,7 +234,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.32 2009/02/02 19:44:13 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.33 2009/02/09 18:58:10 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2009 Gentoo Foundation
