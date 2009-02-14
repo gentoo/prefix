@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.11.ebuild,v 1.1 2009/01/07 12:35:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.11.ebuild,v 1.5 2009/02/12 21:15:16 ranger Exp $
 
 EAPI="prefix"
 
