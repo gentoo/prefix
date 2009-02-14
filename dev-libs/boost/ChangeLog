@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.143 2009/01/06 15:13:01 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.144 2009/02/07 19:58:38 klausman Exp $
+
+  07 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  boost-1.35.0-r1.ebuild:
+  Stable on alpha, bug #245192
 
 *boost-1.35.0-r4 (06 Jan 2009)
 
