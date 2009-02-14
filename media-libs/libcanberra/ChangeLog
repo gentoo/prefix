@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.8 2009/01/25 11:42:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.10 2009/02/11 22:58:02 eva Exp $
+
+*libcanberra-0.11 (11 Feb 2009)
+
+  11 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +libcanberra-0.11.ebuild:
+  bump to 0.11, bug #258590. Add oss use flag, bug #258566.
+
+  11 Feb 2009; Alexis Ballier <aballier@gentoo.org> libcanberra-0.10.ebuild:
+  keyword ~x86-fbsd, bug #244354
 
   25 Jan 2009; Raúl Porcel <armin76@gentoo.org> libcanberra-0.10.ebuild:
   Add ~arm/~sh
