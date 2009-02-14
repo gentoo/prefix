@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.362 2009/01/24 01:58:57 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.365 2009/02/10 16:18:40 neurogeek Exp $
+
+  10 Feb 2009; <neurogeek@gentoo.org> python-2.6-r5.ebuild,
+  python-2.6.1.ebuild:
+  Python 2.6 series. Added +xml use flag to standarize.
+
+  10 Feb 2009; <neurogeek@gentoo.org> python-2.5.2-r7.ebuild,
+  python-2.5.2-r8.ebuild, python-2.5.4-r2.ebuild:
+  Python 2.5 series. Added +xml use flag to standarize.
+
+  10 Feb 2009; <neurogeek@gentoo.org> python-2.4.4-r5.ebuild,
+  python-2.4.4-r6.ebuild, python-2.4.4-r14.ebuild, python-2.4.4-r15.ebuild:
+  Python 2.4.4 series. Added +xml use flag to standarize.
 
 *python-2.5.4-r2 (24 Jan 2009)
 

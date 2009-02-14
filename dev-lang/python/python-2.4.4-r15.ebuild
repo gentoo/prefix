@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r15.ebuild,v 1.2 2008/10/26 21:40:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r15.ebuild,v 1.3 2009/02/10 16:03:34 neurogeek Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -26,7 +26,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.4"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 doc +cxx +threads examples elibc_uclibc wininst"
+IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 doc +cxx +threads examples elibc_uclibc wininst +xml"
 
 # Can't be compiled against db-4.5 Bug #179377
 DEPEND=">=sys-libs/zlib-1.1.3
@@ -38,7 +38,7 @@ DEPEND=">=sys-libs/zlib-1.1.3
 		gdbm? ( sys-libs/gdbm )
 		ssl? ( dev-libs/openssl )
 		doc? ( dev-python/python-docs:2.4 )
-		dev-libs/expat
+		xml? ( dev-libs/expat )
 	)"
 
 # NOTE: changed RDEPEND to PDEPEND to resolve bug 88777. - kloeri
@@ -133,8 +133,18 @@ src_configure() {
 			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} _curses _curses_panel"
 		use ssl \
 			|| export PYTHON_DISABLE_SSL=1
+		use xml \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} pyexpat"
+
 		export PYTHON_DISABLE_MODULES
-		echo $PYTHON_DISABLE_MODULES
+
+		if use !xml; then
+			ewarn "You have configured Python without XML support."
+			ewarn "This is NOT a recommended configuration as you"
+			ewarn "may face problems parsing any XML documents."
+		fi
+
+		einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 	fi
 }
 

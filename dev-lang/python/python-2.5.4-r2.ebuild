@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r2.ebuild,v 1.1 2009/01/24 01:58:57 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r2.ebuild,v 1.2 2009/02/10 16:11:57 neurogeek Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -157,7 +157,6 @@ src_configure() {
 	fi
 
 	if use !xml; then
-		${PYTHON_DISABLE_MODULES}="${PYTHON_DISABLE_MODULES} pyexpat"
 		ewarn "You have configured Python without XML support."
 		ewarn "This is NOT a recommended configuration as you"
 		ewarn "may face problems parsing any XML documents."

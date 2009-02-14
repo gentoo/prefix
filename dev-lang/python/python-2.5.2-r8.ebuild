@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r8.ebuild,v 1.6 2008/12/09 18:46:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.2-r8.ebuild,v 1.7 2009/02/10 16:11:57 neurogeek Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -27,7 +27,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.5"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="+expat ncurses gdbm ssl readline tk berkdb ipv6 build ucs2 sqlite doc +threads examples elibc_uclibc wininst"
+IUSE="+xml ncurses gdbm ssl readline tk berkdb ipv6 build ucs2 sqlite doc +threads examples elibc_uclibc wininst"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
 #       do not conflict with the ones in python proper. - liquidx
@@ -43,7 +43,7 @@ DEPEND=">=sys-libs/zlib-1.1.3
 		gdbm? ( sys-libs/gdbm )
 		ssl? ( dev-libs/openssl )
 		doc? ( dev-python/python-docs:2.5 )
-		expat? ( dev-libs/expat )
+		xml? ( dev-libs/expat )
 	)"
 
 # NOTE: changed RDEPEND to PDEPEND to resolve bug 88777. - kloeri
@@ -149,7 +149,7 @@ src_configure() {
 		local disable
 		use berkdb   || use gdbm || disable="${disable} dbm"
 		use berkdb   || disable="${disable} bsddb"
-		use expat    || disable="${disable} pyexpat"
+		use xml      || disable="${disable} pyexpat"
 		use gdbm     || disable="${disable} gdbm"
 		use ncurses  || disable="${disable} _curses _curses_panel"
 		use readline || disable="${disable} readline"
@@ -158,6 +158,13 @@ src_configure() {
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
 	fi
+
+	if use !xml; then
+		ewarn "You have configured Python without XML support."
+		ewarn "This is NOT a recommended configuration as you"
+		ewarn "may face problems parsing any XML documents."
+	fi
+
 	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 }
 
