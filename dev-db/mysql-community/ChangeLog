@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/mysql-community
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.23 2008/11/18 21:53:43 robbat2 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.24 2009/02/12 09:05:55 robbat2 Exp $
+
+*mysql-community-5.0.75-r1 (12 Feb 2009)
+*mysql-community-5.0.75 (12 Feb 2009)
+
+  12 Feb 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.0.75.ebuild, +mysql-community-5.0.75-r1.ebuild:
+  Version bump using the latest Gentoo patchset. Also include the Percona
+  patchset in the -r1 ebuild per bug #237721.
 
   18 Nov 2008; Robin H. Johnson <robbat2@gentoo.org>
   mysql-community-5.0.67.ebuild:
