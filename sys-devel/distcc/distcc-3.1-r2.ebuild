@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1.ebuild,v 1.1 2008/12/03 09:19:07 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r2.ebuild,v 1.1 2009/02/10 00:09:35 matsuu Exp $
 
 EAPI="prefix"
 
@@ -49,6 +49,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-3.0-xinetd.patch"
+	# bug #253786
+	epatch "${FILESDIR}/${PN}-3.0-fix-fortify.patch"
+	# bug #255188
+	epatch "${FILESDIR}/${P}-freedesktop.patch"
 	sed -i -e "/PATH/s:\$distcc_location:${DCCC_PATH}:" pump.in || die
 
 	# Bugs #120001, #167844 and probably more. See patch for description.
@@ -61,19 +65,18 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf="--disable-Werror --with-docdir=${EPREFIX}/usr/share/doc/${PF}"
 	# More legacy stuff?
 	[ "$(gcc-major-version)" = "2" ] && filter-lfs-flags
 
-	# -O? is required
-	[ "${CFLAGS/-O}" = "${CFLAGS}" ] && CFLAGS="${CFLAGS} -O2"
+	# --disable-rfc2553 b0rked, bug #254176
+	use ipv6 && myconf="${myconf} --enable-rfc2553"
 
 	econf \
 		$(use_with avahi) \
 		$(use_with gtk) \
 		$(use_with gnome) \
-		$(use_enable ipv6 rfc2553) \
-		--disable-Werror \
-		--with-docdir="${EPREFIX}/usr/share/doc/${PF}" || die "econf failed"
+		${myconf} || die "econf failed"
 	emake || die "emake failed"
 }
 

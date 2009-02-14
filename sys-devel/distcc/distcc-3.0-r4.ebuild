@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r4.ebuild,v 1.10 2008/12/19 00:51:49 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r4.ebuild,v 1.11 2009/02/10 00:09:35 matsuu Exp $
 
 EAPI="prefix"
 
@@ -52,6 +52,8 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-svn617.patch"
 	epatch "${FILESDIR}/${P}-xinetd.patch"
 	epatch "${FILESDIR}/${P}-uninitialized.patch"
+	# bug #253786
+	epatch "${FILESDIR}/${PN}-3.0-fix-fortify.patch"
 	sed -i -e "/PATH/s:\$distcc_location:${DCCC_PATH}:" pump.in || die
 
 	# Bugs #120001, #167844 and probably more. See patch for description.
