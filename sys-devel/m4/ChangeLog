@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/m4
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.116 2008/10/25 20:20:12 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.122 2009/02/12 21:02:10 ranger Exp $
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> m4-1.4.12.ebuild:
+  Marking m4-1.4.12 ppc64 for bug 258525
+
+  12 Feb 2009; nixnut <nixnut@gentoo.org> m4-1.4.12.ebuild:
+  ppc stable #258525
+
+  12 Feb 2009; Ferris McCormick <fmccor@gentoo.org> m4-1.4.12.ebuild:
+  Sparc stable, Bug #258525.
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> m4-1.4.12.ebuild:
+  Stable for HPPA (bug #258525).
+
+  11 Feb 2009; Tobias Klausmann <klausman@gentoo.org> m4-1.4.12.ebuild:
+  Stable on alpha, bug #258525
+
+  11 Feb 2009; Mike Frysinger <vapier@gentoo.org> m4-1.4.12.ebuild:
+  Drop unused USE=nls #253600 by Arfrever Frehtes Taifersar Arahesis.
 
 *m4-1.4.12 (25 Oct 2008)
 
