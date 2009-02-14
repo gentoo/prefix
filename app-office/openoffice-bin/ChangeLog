@@ -1,6 +1,13 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.211 2009/01/11 20:48:10 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.212 2009/02/04 09:15:26 suka Exp $
+
+*openoffice-bin-3.0.1 (04 Feb 2009)
+
+  04 Feb 2009; Andreas Proschofsky <suka@gentoo.org>
+  +openoffice-bin-3.0.1.ebuild:
+  Bump to openoffice-bin 3.0.1, no amd64 support atm though, as upstream did
+  no corresponding package until now.
 
   11 Jan 2009; Andreas Proschofsky <suka@gentoo.org>
   openoffice-bin-3.0.0.ebuild:
