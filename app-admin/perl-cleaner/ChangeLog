@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/perl-cleaner
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.51 2008/03/07 22:10:05 coldwind Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.52 2009/02/05 05:39:37 darkside Exp $
+
+  05 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  perl-cleaner-1.04.1.ebuild, perl-cleaner-1.04.3.ebuild:
+  (non maintainer commit) [QA] fix HOMEPAGE, bug 249679
 
   07 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
   perl-cleaner-1.05.ebuild:

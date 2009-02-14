@@ -1,13 +1,13 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-1.04.3.ebuild,v 1.12 2006/10/17 09:01:27 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-1.04.3.ebuild,v 1.13 2009/02/05 05:39:37 darkside Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="User land tool for cleaning up old perl installs"
-HOMEPAGE="http://dev.gentoo.org/~mcummings/"
+HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
