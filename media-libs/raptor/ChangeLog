@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/raptor
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.60 2008/10/27 01:20:05 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.61 2009/02/12 17:41:30 jer Exp $
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> raptor-1.4.18.ebuild:
+  Stable for HPPA (bug #253493).
 
   27 Oct 2008; Jeroen Roovers <jer@gentoo.org> raptor-1.4.18.ebuild:
   Marked ~hppa (bug #244360).
