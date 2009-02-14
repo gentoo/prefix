@@ -59,6 +59,9 @@ xemacs
 
 # Other
 
+# Ben de Groot <yngwin@gentoo.org> 11 Feb 2009
+# both x11-libs/qt-phonon and media-sound/phonon are unkeyworded
+phonon
 
 # see email to gentoo-dev with subject "use.mask and PHP5's crazy IUSE"
 # Dated Sat, 31 Jul 2004 14:49:28 -0700, from robbat2@gentoo.org

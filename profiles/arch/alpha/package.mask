@@ -19,3 +19,8 @@ dev-util/jarwizard
 # https://bugs.freedesktop.org/show_bug.cgi?id=16060
 =x11-drivers/xf86-video-glint-1.2.0
 
+# Raúl Porcel <armin76@gentoo.org> (06 Feb 2009)
+# mask these versions for a smooth upgrade of x11-libs/qt-4.4.2 wrt bug #248038.
+=x11-libs/qt-4.3*
+<dev-python/PyQt4-4.4
+<dev-python/PyQt-3.17.6

@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sh profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.13 2009/01/19 11:12:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.14 2009/02/06 16:29:54 armin76 Exp $
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask, use.mask:
+  Use.mask xemacs, not keyworded
 
   19 Jan 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Some reordering, and use.mask tracker, fuse, gphoto2 and laptop

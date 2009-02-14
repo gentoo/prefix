@@ -1,3 +1,8 @@
+# Brent Baude <ranger@gentoo.org> (6  Feb 2009)
+# Masking solver/ocaml USE from kalzium to fix tree borkage
+
+kde-base/kalzium solver
+
 # Brent Baude <ranger@gentoo.org> (28 January 2009)
 # Masking zemberek for enchant
 app-text/enchant zemberek

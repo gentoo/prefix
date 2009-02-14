@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9467 2009/02/04 05:14:55 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9485 2009/02/13 15:38:09 flameeyes Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,43 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (13 Feb 2009)
+# Masked because of bug 237887, fails to fetch (git repository moved).
+dev-lang/rubinius
+
+# René Nussbaumer <killerfox@gentoo.org> (10 Feb 2009)
+# I gave away maintainership a while ago nobody took it on. Prepare for remove.
+app-emulation/ganeti
+app-emulation/ganeti-instance-debian-etch
+
+# Peter Volkov <pva@gentoo.org> (10 Feb 2009)
+# Masking release candidate.
+=dev-util/bzr-1.12_rc1
+=dev-util/bzrtools-1.12.0
+
+# MATSUU Takuto <matsuu@gentoo.org> (07 Feb 2009)
+# Masked for testing
+=x11-wm/awesome-3.2*
+=x11-libs/xcb-util-0.3.3*
+
+# MATSUU Takuto <matsuu@gentoo.org> (05 Feb 2009)
+# Masked for testing
+>=app-i18n/ibus-1.1
+>=app-i18n/ibus-anthy-1.1
+>=app-i18n/ibus-hangul-1.1
+>=app-i18n/ibus-m17n-1.1
+>=app-i18n/ibus-pinyin-1.1
+
+# Hanno Böck <hanno@gentoo.org> (05 Feb 2009)
+# Seems something is broken with crypt mount in 1.17 (bug 257302)
+=sys-auth/pam_mount-1.17
+
+# Jeremy Olexa <darkside@gentoo.org> (05 Feb 2009)
+# libjingle-0.3.11 was created by the tapioca team
+# libjingle-0.3.12 was created by the farsight team
+# As a result, some things don't work with 0.3.12 (bug 256953)
+=net-libs/libjingle-0.3.12
 
 # Jeremy Olexa <darkside@gentoo.org> (04 Feb 2009)
 # Masked for removal in 30 days. Dead upstream, unmaintained. Needs multiple
@@ -184,10 +221,6 @@ x11-wm/stumpwm-cvs
 # Removed by treecleaners in 60 says. www-apps/gallery includes a java webstart
 # for gallery remote now, use that instead. bug 111025
 app-misc/gallery-remote
-
-# Andreas Proschofsky <suka@gentoo.org> (18 Jan 2009)
-# Mask release candidates for OpenOffice.org 3.0.1
->=app-office/openoffice-3.0.1_rc2
 
 # Sébastien Fabbro <bicatali@gentoo.org> (15 Jan 2009)
 # Masked for removal in 30 days. f2py hase been integrated in
@@ -418,10 +451,6 @@ app-portage/udept
 # Alin Năstac <mrness@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~60 days.
 net-proxy/squirm
-
-# Steve Dibb <beandog@gentoo> (11 Dec 2008)
-# Needs some testing
->=media-libs/xvid-1.2.0
 
 # Jim Ramsay <lack@gentoo.org> (11 Dec 2008)
 # Live ebuild, for advanced users only
@@ -744,10 +773,6 @@ dev-python/twibber
 # Masked due to build failure, bug 234448
 =app-emulation/emul-linux-x86-gtklibs-20080810
 
-# Michael Sterrett <mr_bones_@gentoo.org> (04 Aug 2008)
-# Security masked: bug #233929
-<games-simulation/openttd-0.6.3
-
 # Samuli Suominen <ssuominen@gentoo.org> (3 Aug 2008)
 # Unmaintained. Masked for removal wrt #233394.
 # Open security bugs  #208566, #215006 and #231836.
@@ -756,6 +781,7 @@ media-video/mplayer-bin
 # Raúl Porcel <armin76@gentoo.org> (1 Aug 2008)
 # This is just for preview
 >=www-client/mozilla-firefox-bin-3.1_alpha1
+>=www-client/seamonkey-bin-2.0_alpha1
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (28 Jul 2008)
 # These are masked for removal.  Please leave this mask in place, even after the
@@ -1140,11 +1166,6 @@ dev-lang/entity
 ~app-emacs/gentoo-syntax-9999
 ~app-emacs/ngnus-9999
 
-# Jeroen Roovers <jer@gentoo.org> (17 Dec 2007)
-# Masked pending removal - see bug #202391
-# Please switch to sys-kernel/gentoo-sources
-sys-kernel/hppa-sources
-
 # Peter Volkov <pva@gentoo.org> (13 Dec 2007)
 # Live svn ebuild... 0.9.4 branch is not supported atm.
 =net-im/sim-9999
@@ -1461,11 +1482,6 @@ app-benchmarks/ltp
 # Robin H. Johnson <robbat2@gentoo.org> (11 Feb 2006)
 # zlib interaction is badly broken. See bug #124733.
 =dev-util/cvs-1.12.13*
-
-# Gordon Malm <gengor@gentoo.org> (29 Dec 2008)
-# Masked for removal after January 31st, 2009
-sys-apps/rsbac-admin
-sys-kernel/rsbac-sources
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
 # This is the Gentoo Linux Installer.  This is currently masked because it will

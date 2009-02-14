@@ -1,7 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.19 2009/01/20 20:50:09 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.20 2009/02/04 21:09:33 yngwin Exp $
 # Please add a proper entry, like a ChangeLog file, to the top, thanks.
+
+# Ben de Groot <yngwin@gentoo.org> (4 Feb 2009)
+# needs qt-webkit which is -sparc keyworded
+x11-libs/qt-assistant webkit
+dev-python/PyQt4 webkit
 
 # Ben de Groot <yngwin@gentoo.org> (30 Dec 2008)
 # mask because mozilla-firefox-3 is -sparc keyworded

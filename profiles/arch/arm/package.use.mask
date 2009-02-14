@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.7 2009/01/15 21:51:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/package.use.mask,v 1.8 2009/02/06 16:29:07 armin76 Exp $
 
 # Jim Ramsay <lack@gentoo.org> (5 Nov 2008)
 # app-admin/gkrellm may pull in net-libs/libntlm, which is not keyworded
@@ -16,10 +16,6 @@ app-admin/gkrellm ntlm
 # Needs valgrind
 media-libs/gstreamer debug
 media-libs/gst-plugins-base debug
-
-# Richard Brown <rbrown@gentoo.org> (23 Dec 2007)
-# app-xemacs/ruby-modes is not keyworded on this arch
-dev-lang/ruby xemacs
 
 # Masking this so repoman shuts up about paludis
 sys-apps/paludis ruby python

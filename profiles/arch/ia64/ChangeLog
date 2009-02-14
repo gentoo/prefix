@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.24 2009/01/07 17:15:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.25 2009/02/06 16:43:05 armin76 Exp $
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> +package.mask:
+  Mask old versions of qt related packages, bug #248038
 
   07 Jan 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add v4l and v4l2 to use.mask, no hardware to test

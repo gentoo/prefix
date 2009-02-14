@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.14 2008/12/26 11:48:34 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.15 2009/02/11 22:56:43 yngwin Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -alpha
@@ -60,8 +60,12 @@ ocamlopt
 
 # Other
 
+# Ben de Groot <yngwin@gentoo.org> 11 Feb 2009
+# both x11-libs/qt-phonon and media-sound/phonon are unkeyworded
+phonon
+
 # 13 Jun 2007 Jose Luis Rivero <yoswink@gentoo.org>
-# acpid masked and acpi use flag is deprecated now. 
+# acpid masked and acpi use flag is deprecated now.
 acpi
 
 # 14 May 2007 Raúl Porcel <armin76@gentoo.org>
@@ -133,7 +137,7 @@ mpd
 d
 
 # USE=audit masked prior to testing on alpha, arm, hppa, ppc64, s390, sh.
-# Bug #184563, 18 Sep 2007 
+# Bug #184563, 18 Sep 2007
 # Robin H. Johnson <robbat2@gentoo.org>
 audit
 

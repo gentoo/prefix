@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.407 2009/01/26 18:43:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.408 2009/02/11 21:57:31 yngwin Exp $
 
 # Keep them sorted
 
@@ -64,6 +64,7 @@ ctype - Enables ctype functions
 cups - Add support for CUPS (Common Unix Printing System)
 curl - Adds support for client-side URL transfer library
 curlwrappers - Adds support for using curl in streams
+custom-cxxflags - Build with user-specified CXXFLAGS (unsupported)
 cvs - Enable CVS (Concurrent Versions System) integration
 cxx - Builds support for C++ (bindings, extra libraries, code generation, ...)
 db2 - Enables support for IBM DB2 database server

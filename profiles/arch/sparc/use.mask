@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.17 2008/11/24 23:00:25 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.18 2009/02/11 22:56:44 yngwin Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -sparc
@@ -41,7 +41,7 @@ dar32
 dar64
 
 # Patrick McLean <chutzpah@gentoo.org> - 02 Jun 2006
-# Mask bmpx USE flag since new versions don't work on sparc (comment #11 
+# Mask bmpx USE flag since new versions don't work on sparc (comment #11
 # on bug #111975)
 bmpx
 
@@ -136,7 +136,7 @@ pike
 # requires a JDK
 mpe-sdk
 
-# This should probably never be touched 
+# This should probably never be touched
 
 # Unmask sparc-only video cards
 -video_cards_sunbw2
@@ -228,3 +228,7 @@ alsa_cards_wavefront
 # The default on SPARC is non-multilib
 # if a sub-profile want's it, it can -use.mask it
 multilib
+
+# Ben de Groot <yngwin@gentoo.org> 11 Feb 2009
+# both x11-libs/qt-phonon and media-sound/phonon are unkeyworded
+phonon

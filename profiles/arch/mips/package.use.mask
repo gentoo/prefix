@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/package.use.mask,v 1.4 2008/11/10 11:17:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/package.use.mask,v 1.6 2009/02/14 00:27:29 yngwin Exp $
 
 # Jim Ramsay <lack@gentoo.org> (5 Nov 2008)
 # app-admin/gkrellm may pull in net-libs/libntlm, which is not keyworded
@@ -67,3 +67,8 @@ net-dialup/ppp atm
 # Richard Brown <rbrown@gentoo.org> (23 Dec 2007)
 # app-xemacs/ruby-modes is not keyworded on this arch
 dev-lang/ruby xemacs
+
+# Ben de Groot <yngwin@gentoo.org> 13 Feb 2009
+# Mask for unkeyworded deps
+x11-libs/qt phonon
+

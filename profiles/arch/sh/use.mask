@@ -57,6 +57,7 @@ nvtv
 xine
 ocaml
 gimp
+xemacs
 
 # 2006/03/07 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures lacking direct rendering      

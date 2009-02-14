@@ -1,10 +1,113 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2329 2009/02/04 05:14:55 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2354 2009/02/14 00:27:21 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/alpha/package.use.mask,
+  arch/ia64/package.use.mask, arch/mips/package.use.mask,
+  arch/x86-fbsd/package.use.mask, default-bsd/fbsd/package.use.mask,
+  default-linux/alpha/package.use.mask, default-linux/ia64/package.use.mask,
+  default-linux/mips/package.use.mask:
+  Reverting most of my previous changes, am gonna do this another way
+
+  13 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/alpha/package.use.mask,
+  arch/ia64/package.use.mask, arch/mips/package.use.mask,
+  arch/x86-fbsd/package.use.mask, default-bsd/fbsd/package.use.mask,
+  default-linux/alpha/package.use.mask, default-linux/ia64/package.use.mask,
+  default-linux/mips/package.use.mask:
+  Mask phonon and webkit useflags of qt meta ebuild, for arches on which
+  those deps are not keyworded
+
+  13 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
+  Added libsexy local use flag for app-dicts/gwaei
+
+  13 Feb 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask dev-lang/rubinius per bug #237887.
+
+  11 Feb 2009; Gordon Malm <gengor@gentoo.org> package.mask:
+  Remove sys-apps/rsbac-admin and sys-kernel/rsbac-sources. Packages are no
+  longer in the tree.
+
+  11 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/alpha/use.mask,
+  arch/ia64/use.mask, arch/sparc/use.mask:
+  Mask phonon useflag on arches where x11-libs/qt-phonon and
+  media-sound/phonon are unkeyworded
+
+  11 Feb 2009; Ben de Groot <yngwin@gentoo.org> use.desc:
+  Add custom-cxxflags global useflag, used in all qt-* libs
+
+  11 Feb 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Add dev-util/bzrtools-1.12.0 to mask as it depends on bzr-1.12
+
+  10 Feb 2009; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask xvid 1.2 as everything seems fine
+
+  10 Feb 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masking release candidate of dev-util/bzr
+
+  09 Feb 2009; Christoph Mende <angelos@gentoo.org> updates/1Q-2009:
+  Moved xfce-extra/verve to xfce-extra/xfce4-verve
+
+  08 Feb 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Remove mask on OpenOffice.org 3.0.1, officially released now
+
+  08 Feb 2009; Mike Frysinger <vapier@gentoo.org> package.mask:
+  Remove wrong sandbox mask.
+
+  07 Feb 2009; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Update sandbox mask.
+
+  07 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  added =x11-wm/awesome-3.2* and =x11-libs/xcb-util-0.3.3* to p.mask.
+
+  06 Feb 2009; Vlastimil Babka <caster@gentoo.org> updates/1Q-2009:
+  Package move net-p2p/azureus to net-p2p/vuze
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove hppa-sources from package.mask (bug #202391).
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> profiles.desc:
+  Define new hppa default profiles (bug #253572).
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org>
+  -default-linux/hppa/2007.0/deprecated,
+  -default-linux/hppa/2007.0/desktop/deprecated,
+  -default-linux/hppa/2007.0/desktop/make.defaults,
+  -default-linux/hppa/2007.0/desktop/parent,
+  -default-linux/hppa/2007.0/desktop/virtuals,
+  -default-linux/hppa/2007.0/make.defaults,
+  -default-linux/hppa/2007.0/package.use.force,
+  -default-linux/hppa/2007.0/packages, -default-linux/hppa/2007.0/parent,
+  -default-linux/hppa/2007.0/server/deprecated,
+  -default-linux/hppa/2007.0/server/make.defaults,
+  -default-linux/hppa/2007.0/server/parent,
+  -default-linux/hppa/2007.0/use.mask, -default-linux/hppa/make.defaults,
+  -default-linux/hppa/package.mask, -default-linux/hppa/package.use.mask,
+  -default-linux/hppa/packages, -default-linux/hppa/parent,
+  -default-linux/hppa/use.mask, -default-linux/hppa/virtuals:
+  Remove default-linux/hppa (bug #253572).
+
+  05 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  p.mask >=app-i18n/ibus*-1.1
+
+  05 Feb 2009; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Mask pam_mount 1.17, broken with crypto.
+
+  05 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  libjingle-0.3.12 is not backwards compatible, p.mask for now. bug 256953
+
+  04 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/ia64/package.use.mask,
+  arch/sparc/package.use.mask, arch/x86-fbsd/package.use.mask:
+  Add proper webkit useflag masks for affected arches
+
+  04 Feb 2009; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Mask sys-apps/sandbox-1.3.3 until bug #256953 is resolved.
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Add >=seamonkey-bin-2.0_alpha1 mask
 
   04 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask sdsc-syslog (bug 239863) and openpbs-common (bug 255425) for removal

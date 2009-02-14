@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4185 2009/02/03 22:07:50 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4200 2009/02/14 00:47:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -53,7 +53,6 @@ app-admin/system-tools-backends:policykit - Use sys-auth/policykit to gain privi
 app-admin/testdisk:ntfs - Include the ability to read NTFS filesystems
 app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/ulogd:ip-as-string - Logs IP addresses as stings
-app-admin/ulogd:logrotate - Install support files for logrotate
 app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
 app-arch/cabextract:extra-tools - Install experimental tools: wince_info and wince_rename for examining and processing Windows CE installation cabinet header files; cabinfo for examining the structure of a cab file.
@@ -132,6 +131,7 @@ app-crypt/seahorse:ldap - Enable seahorse to manipulate GPG keys on a LDAP serve
 app-crypt/seahorse:nautilus - Enable file encryption plugin to integrate into gnome-base/nautilus context menu.
 app-crypt/seahorse:xulrunner - Selects which gecko engine against which to build the www-client/epiphany plugin.
 app-dicts/aspell-be:classic - Support classic spelling by default
+app-dicts/gwaei:libsexy - Enable support for x11-libs/libsexy
 app-dicts/stardict:espeak - Enable text to speech synthesizer using espeak engine
 app-dicts/stardict:festival - Enable text to speech synthesizer using festival engine
 app-dicts/stardict:gucharmap - Enable gucharmap dictionary plugin
@@ -258,12 +258,6 @@ app-forensics/samhain:userfiles - Compile in the module to check for files in us
 app-forensics/sleuthkit:dbtool - Add patch for dbtool interface from PyFlag
 app-i18n/anthy:ucs4 - Enable ucs4 support
 app-i18n/atokx2:ext-iiimf - Link with the system IIIMF, rather than the bundled version
-app-i18n/ibus-table:additional - Enable to generate additional Engine
-app-i18n/ibus-table:cangjie5 - Enable to generate CangJie5 Engine
-app-i18n/ibus-table:erbi-qs - Enable to generate ErBi-QS Engine
-app-i18n/ibus-table:extra-phrases - Add extra phrases into builded Engine
-app-i18n/ibus-table:wubi - Enable to generate WuBi86 and WuBi98 Engine
-app-i18n/ibus-table:zhengma - Enable to generate ZhengMa Engine
 app-i18n/ibus-table-erbi:extra-phrases - Add extra phrases into builded Engine
 app-i18n/ibus-table-wubi:extra-phrases - Add extra phrases into builded Engine
 app-i18n/ibus-table-zhengma:extra-phrases - Add extra phrases into builded Engine
@@ -410,6 +404,7 @@ app-portage/layman:git - Support dev-util/git based overlays
 app-portage/portato:etc-proposals - Use app-portage/etc-proposals for updating CONFIG_PROTECTed stuff
 app-portage/portato:userpriv - Allow emerge processes as normal user
 app-shells/bash:bashlogger - Log ALL commands typed into bash; should ONLY be used in restricted environments such as honeypots
+app-shells/bash:net - Enable /dev/tcp/host/port redirection
 app-shells/bash:plugins - Add support for loading builtins at runtime via 'enable'
 app-shells/pdsh:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites. sftp is a much more secure protocol and is preferred.
 app-shells/scsh:scsh - Use a non-FHS directory layout
@@ -830,6 +825,7 @@ dev-util/nsis:config-log - Enable the logging facility (useful in debugging inst
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/nvidia-cuda-sdk:emulation -  Build binaries for device emulation mode. These binaries will not require a CUDA-capable GPU to run. 
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
+dev-util/radare:gui -  Enable the graphical user interface of radare (broken) 
 dev-util/strace:aio - Enable libaio support
 dev-util/subversion:dso - Enable runtime module search
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
@@ -855,8 +851,8 @@ games-arcade/bomns:editor - enables building the level editor
 games-arcade/lbreakout2:themes - Install additional themes
 games-arcade/stepmania:force-oss - force using OSS
 games-arcade/triplexinvaders:psyco - psyco python accelerator
-games-arcade/ultrastar-ng:novideo - Disable smpeg video support
-games-arcade/ultrastar-ng:songs - Build with few demo songs
+games-arcade/ultrastar-ng:songs - Install a few demo songs
+games-arcade/ultrastar-ng:video - Enable smpeg video support
 games-board/chessdb:tb4 - Install 4 pieces table bases
 games-board/crafty:no-opts - Don't try to enable crazy CFLAG options
 games-board/freedoko:altenburgcards - Use the Altenburg card set
@@ -1021,6 +1017,8 @@ kde-base/kig:kig-scripting - Support Python scripting
 kde-base/kmail:nepomuk - Enable desktop-wide tagging support
 kde-base/kmail:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
+kde-base/konqueror:auth - Add dependency on authentization packages
+kde-base/konqueror:bookmarks - Add dependency on bookmark package.
 kde-base/kopete:addbookmarks - Automaticaly add incoming urls to bookmarks.
 kde-base/kopete:alias - Enables creating of your own aliases for commands.
 kde-base/kopete:autoreplace - Automaticaly replace selected text
@@ -1209,7 +1207,9 @@ media-gfx/blender:blender-game -  Adds game engine support to blender
 media-gfx/blender:player -  Enable blender player 
 media-gfx/blender:verse -  Adds verse clustering features to blender 
 media-gfx/comix:rar -  Pulls app-arch/unrar for rar file support 
-media-gfx/digikam:nfs -  Create sqlite db within ~/.kde, instead in the albums base directory. 
+media-gfx/digikam:addressbook - Add support for kdepim
+media-gfx/digikam:geolocation - Add support for marble
+media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
 media-gfx/eog:xmp - Adds support for XMP metadata
 media-gfx/exiv2:xmp -  Adds support for Adobe XMP 
 media-gfx/fontforge:cjk - Controls whether fontforge understands the gb12345 encoding and installs cidmap package to edit CID-keyed fonts
@@ -1693,7 +1693,8 @@ media-video/vdr:wareagleicon - Replace original icon set in menu
 media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
 media-video/vlc:X - Enables support for, e.g., fullscreen mode via the X Window System. By itself, this flag does not build a graphical interface.
 media-video/vlc:atmo - Enables support for AtmoLight (homebrew Ambient Lighting Technology)
-media-video/vlc:cdda - Enables libcdda cd audio playback support.
+media-video/vlc:cdda - Enables audio CD and VCD playback support.
+media-video/vlc:cddax - Enables audio CD plugin with CD Text and CD paranoia via libcdio
 media-video/vlc:cdio - Enables CD input and control library support.
 media-video/vlc:dc1394 - Enables IIDC cameras support.
 media-video/vlc:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
@@ -1775,6 +1776,7 @@ net-analyzer/scanlogd:nids - Use net-libs/libnids for packet capturing
 net-analyzer/scanlogd:pcap - Use net-libs/libpcap for packet capturing
 net-analyzer/scapy:pyx - Enable dev-python/pyx support for psdump/pdfdump commands
 net-analyzer/scapy:visual - Enable dev-python/visual support for 3d graphs
+net-analyzer/smokeping:speedy - Use dev-perl/SpeedyCGI instead of perl to speed up cgi scripts
 net-analyzer/snort:aruba - Enable Aruba support
 net-analyzer/snort:community-rules - Include Community rules
 net-analyzer/snort:decoder-preprocessor-rules - 
@@ -1936,7 +1938,6 @@ net-im/kadu:amarok - Enables amarok support in kadu
 net-im/kadu:config_wizard - Enables configuration wizard module
 net-im/kadu:extraicons - Enables extra icon set
 net-im/kadu:extramodules - Enables extra module in kadu
-net-im/kadu:libgadu - Build against existing libgadu rather than built-in 
 net-im/kadu:mail - Enables mail module in kadu
 net-im/kadu:powerkadu - Installs extra powerkadu modules
 net-im/kadu:speech - Enables speech module in kadu
@@ -2147,7 +2148,7 @@ net-misc/strongswan:cisco - Enable support of Cisco VPN client
 net-misc/strongswan:nat - Enable NAT traversal with IPsec transport mode
 net-misc/termpkg:uucp -  Adds support for uucp style device locking 
 net-misc/tightvnc:server - Build vncserver. Allows us to only build server on one machine if set, build only viewer otherwise.
-net-misc/tor:logrotate - Enable logrotate file installation
+net-misc/tor:bundledlibevent - USE bundled libevent for asynchronous DNS requests (provides a tiny bit more anonymity)
 net-misc/vnc:server - Build VNC server
 net-misc/vnc:xorgmodule - Build the Xorg module
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
@@ -2459,7 +2460,6 @@ sys-apps/pcmcia-cs:xforms - Enable building the xforms based cardinfo binary
 sys-apps/pcmcia-cs-modules:cardbus - Enable 32bit CardBus support
 sys-apps/pcmciautils:staticsocket - Add support for static sockets
 sys-apps/portage:epydoc - Build html API documentation with epydoc.
-sys-apps/qingy:logrotate - Enable app-admin/logrotate support
 sys-apps/qingy:opensslcrypt - Encrypt communications between qingy and its GUI using dev-libs/openssl
 sys-apps/qtparted:jfs - Include JFS support
 sys-apps/qtparted:ntfs - Include NTFS support
@@ -2576,7 +2576,6 @@ sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, co
 sys-fs/lvm2:clvm - Allow users to build clustered lvm2
 sys-fs/lvm2:cman - Cman support for clustered lvm
 sys-fs/lvm2:lvm1 - Allow users to build lvm2 with lvm1 support
-sys-fs/lvm2:nolvm1 - Allow supports to build lvm2 without lvm1 support
 sys-fs/lvm2:nolvmstatic - Allow users to build lvm2 dynamically
 sys-fs/ntfsprogs:fuse - Build a FUSE module
 sys-fs/owfs:ftpd - Enable building the OWFS FTP server (owftpd)
@@ -2721,13 +2720,17 @@ x11-libs/vte:nowheelscroll - Disable annoying mouse wheel is arrow up/down behav
 x11-libs/qt:glib - Enable dev-libs/glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
+x11-libs/qt:phonon - Enable support for the Phonon multimedia package
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-assistant:webkit -  Enable x11-libs/qt-webkit support, for more sophisticated online help display using webkit's HTML renderer. 
 x11-libs/qt-core:glib - Enable dev-libs/glib eventloop support
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4.
 x11-libs/qt-gui:glib -  Enable dev-libs/glib eventloop support 
+x11-libs/qt-gui:gtkstyle -  Build the Qt-GTK+ style, which integrates Qt4 apps with the GTK+ theme 
 x11-libs/qt-gui:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4. 
+x11-libs/qt-gui:raster -  Use the alternative raster graphicssystem as default rendering engine 
 x11-libs/qt-opengl:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-qt3support:phonon -  Enable phonon configuration dialog in qtconfig 
 x11-libs/qt-sql:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/wxGTK:gnome -  Use gnome-base/libgnomeprintui for printing tasks. 
 x11-libs/wxGTK:gstreamer -  Enable the wxMediaCtrl class for playing audio and video through gstreamer. 

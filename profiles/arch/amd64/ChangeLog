@@ -1,6 +1,12 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.39 2009/01/24 11:53:35 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.41 2009/02/07 04:37:41 darkside Exp $
+
+  07 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
+  mask USE=mmx on imlib2 again, it causes problems with other apps. bug 218382
+
+  05 Feb 2009; Serkan Kaba <serkan@gentoo.org> package.use.mask:
+  Unmask nsplugin for >=dev-java/sun-jre-bin-1.6.0.12
 
   24 Jan 2009; Christoph Mende <angelos@gentoo.org> package.use.mask:
   Added LDAP to wine's USE mask (bug 256105)
