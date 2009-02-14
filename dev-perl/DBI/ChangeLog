@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/DBI
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.113 2008/11/26 09:07:11 tove Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.114 2009/02/13 10:26:54 armin76 Exp $
+
+  13 Feb 2009; Raúl Porcel <armin76@gentoo.org> DBI-1.607.ebuild:
+  Re-add ~arm/~s390/~sh
 
 *DBI-1.607 (26 Nov 2008)
 
