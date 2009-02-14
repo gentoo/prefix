@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.156 2009/02/03 04:45:40 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.157 2009/02/04 14:53:34 yngwin Exp $
+
+  04 Feb 2009; Ben de Groot <yngwin@gentoo.org> doxygen-1.5.8:
+  Correct qt:4 dep to use split deps
 
 *doxygen-1.5.8 (03 Feb 2009)
 
