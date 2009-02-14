@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.6 2009/01/25 16:24:53 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.8 2009/02/09 19:35:01 angelos Exp $
 
 EAPI="prefix 1"
 
-inherit fdo-mime gnome2-utils
+inherit eutils fdo-mime gnome2-utils
 
-DESCRIPTION="a GTK+ based and advanced archive manager that can be used with Thunar file manager."
+DESCRIPTION="a GTK+ based and advanced archive manager that can be used with Thunar"
 HOMEPAGE="http://xarchiver.xfce.org"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
@@ -21,13 +21,19 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	dev-util/pkgconfig"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-stack-smash.patch
+}
+
 src_compile() {
 	econf --disable-dependency-tracking $(use_enable debug)
-	emake || die "emake failed."
+	emake || die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO
 }
 

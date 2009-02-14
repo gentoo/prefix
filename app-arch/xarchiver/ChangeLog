@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/xarchiver
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.10 2009/01/25 16:24:53 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/ChangeLog,v 1.12 2009/02/09 19:35:01 angelos Exp $
+
+  09 Feb 2009; Christoph Mende <angelos@gentoo.org>
+  +files/xarchiver-0.5.2-stack-smash.patch, -xarchiver-0.4.6.ebuild,
+  -xarchiver-0.5.0.ebuild, -xarchiver-0.5.1.ebuild, xarchiver-0.5.2.ebuild:
+  Cleaned up and applied a patch to fix stack smashing (bug 256539 by
+  Frederic Johansson)
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org> xarchiver-0.5.2.ebuild:
+  arm/ia64/sparc stable wrt #254440
 
   25 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
   xarchiver-0.5.2.ebuild:
