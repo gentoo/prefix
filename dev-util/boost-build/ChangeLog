@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/boost-build
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.26 2008/12/16 15:44:42 dev-zero Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.27 2009/02/07 17:00:36 klausman Exp $
+
+  07 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  boost-build-1.35.0-r1.ebuild:
+  Stable on alpha, bug #245192
 
 *boost-build-1.37.0 (16 Dec 2008)
 *boost-build-1.36.0 (16 Dec 2008)

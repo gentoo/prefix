@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r1.ebuild,v 1.1 2008/06/05 20:04:07 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r1.ebuild,v 1.2 2009/02/07 17:00:36 klausman Exp $
 
 EAPI="prefix"
 
