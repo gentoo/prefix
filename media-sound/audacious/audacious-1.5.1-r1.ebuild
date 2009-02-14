@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.6 2008/12/13 18:31:00 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.7 2009/02/11 01:01:46 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,6 @@ RDEPEND=">=dev-libs/dbus-glib-0.60
 	>=dev-libs/libmcs-0.7.1-r1
 	>=dev-libs/libmowgli-0.7.0
 	dev-libs/libxml2
-	>=gnome-base/libglade-2.3.1
 	>=x11-libs/cairo-1.2.4
 	>=x11-libs/gtk+-2.10
 	>=x11-libs/pango-1.8.0

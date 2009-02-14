@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/audacious
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.154 2008/12/13 18:31:00 klausman Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.155 2009/02/11 01:01:46 chainsaw Exp $
+
+  11 Feb 2009; <chainsaw@gentoo.org> audacious-1.5.1-r1.ebuild:
+  Remove obsolete glade dependency as requested by Patrizio Bassi
+  <hetfield666@gmail.com> in bug #258091.
 
   13 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
   audacious-1.5.1-r1.ebuild:
