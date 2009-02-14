@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.131 2009/01/25 22:03:17 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.135 2009/02/13 18:13:41 klausman Exp $
+
+  13 Feb 2009; Tobias Klausmann <klausman@gentoo.org> curl-7.19.3.ebuild:
+  Stable on alpha, bug #258618
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> curl-7.19.3.ebuild:
+  Marking curl-7.19.3 ppc64 for bug 258618
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> curl-7.19.3.ebuild:
+  Stable for HPPA (bug #258618).
+
+  12 Feb 2009; nixnut <nixnut@gentoo.org> curl-7.19.3.ebuild:
+  ppc stable #258618
 
 *curl-7.19.3 (25 Jan 2009)
 
