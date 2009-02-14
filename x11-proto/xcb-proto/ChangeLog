@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xcb-proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.25 2009/02/01 18:47:46 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.26 2009/02/06 10:29:14 armin76 Exp $
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org> xcb-proto-1.1.ebuild:
+  arm/ia64/s390/sh stable wrt #244210
 
   01 Feb 2009; nixnut <nixnut@gentoo.org> xcb-proto-1.1.ebuild:
   ppc stable #244210
