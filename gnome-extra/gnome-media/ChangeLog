@@ -1,6 +1,18 @@
 # ChangeLog for gnome-extra/gnome-media
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.181 2008/11/13 19:33:17 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.183 2009/02/08 22:05:33 eva Exp $
+
+  08 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-media-2.20.1.ebuild, gnome-media-2.24.0.1.ebuild,
+  gnome-media-2.24.0.1-r1.ebuild:
+  TODO does not exist, bug #258084.
+
+*gnome-media-2.24.0.1-r1 (07 Feb 2009)
+
+  07 Feb 2009; Arun Raghavan <ford_prefect@gentoo.org>
+  +gnome-media-2.24.0.1-r1.ebuild:
+  Add --enable-cddbslave so gnome-cd will be built. Thanks to Joeri Capens
+  <joeri@capens.net> for the investigation on bug #257692.
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> gnome-media-2.22.0.ebuild:
   Marking gnome-media-2.22.0 ppc64 stable for bug 236971
