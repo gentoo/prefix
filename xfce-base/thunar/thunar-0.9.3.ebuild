@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.8 2008/12/15 04:56:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.9 2009/02/05 22:42:50 betelgeuse Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 
 inherit eutils virtualx xfce44 flag-o-matic
 
@@ -21,7 +21,7 @@ RDEPEND=">=dev-lang/perl-5.6
 	x11-libs/libSM
 	>=x11-libs/gtk+-2.6
 	>=dev-libs/glib-2.6
-	>=xfce-extra/exo-0.3.4
+	>=xfce-extra/exo-0.3.4[hal?]
 	>=x11-misc/shared-mime-info-0.20
 	>=dev-util/desktop-file-utils-0.14
 	>=xfce-base/libxfce4util-${XFCE_MASTER_VERSION}
@@ -60,20 +60,15 @@ pkg_setup() {
 	else
 		XFCE_CONFIG+=" --disable-tpa-plugin"
 	fi
-
-	local fail="Re-emerge xfce-extra/exo with USE hal."
-	if use hal && ! built_with_use xfce-extra/exo hal; then
-		eerror "${fail}"
-		die "${fail}"
-	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.0-missing-audio-cds-for-volman.patch \
 		"${FILESDIR}"/${PN}-0.9.0-fix-defuncts.patch
 }
+
+# xfce44 is not EAPI 2 aware yet
+src_configure() { :; }
 
 src_compile() {
 	append-flags -Wno-error

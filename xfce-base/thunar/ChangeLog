@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/thunar
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.65 2008/12/22 17:02:57 angelos Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.66 2009/02/05 22:42:50 betelgeuse Exp $
+
+  05 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> thunar-0.9.3.ebuild:
+  EAPI 2 instead of built_with_use. xfce44.eclass is not EAPI 2 aware so
+  going with a QA warning about econf in src_compile for now.
 
   22 Dec 2008; Christoph Mende <angelos@gentoo.org> -thunar-0.9.0-r2.ebuild:
   Removed old
