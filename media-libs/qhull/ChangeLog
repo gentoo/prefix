@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/qhull
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.27 2008/11/17 21:47:54 flameeyes Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.28 2009/02/08 15:22:14 klausman Exp $
+
+  08 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  qhull-2003.1-r1.ebuild:
+  Stable on alpha, bug #245707
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/qhull-2003.1-makefile.patch:
