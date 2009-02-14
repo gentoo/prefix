@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.2.10.ebuild,v 1.2 2008/12/09 12:44:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.2.10.ebuild,v 1.5 2009/02/12 21:16:04 ranger Exp $
 
 EAPI="prefix"
 
