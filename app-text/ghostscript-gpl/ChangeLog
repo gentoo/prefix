@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.62 2009/01/16 20:49:04 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.63 2009/02/06 00:06:30 tgurr Exp $
+
+*ghostscript-gpl-8.64 (06 Feb 2009)
+
+  06 Feb 2009; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.61-r1.ebuild,
+  +ghostscript-gpl-8.64.ebuild:
+  Version bump. Adds support for libpaper. Don't install gsc anymore in
+  favor of gambit (bug #253064).
 
 *ghostscript-gpl-8.63-r1 (16 Jan 2009)
 
