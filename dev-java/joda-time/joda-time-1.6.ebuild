@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/joda-time-1.5.2.ebuild,v 1.2 2009/02/04 21:44:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/joda-time-1.6.ebuild,v 1.1 2009/02/04 17:09:14 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -18,14 +18,10 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-COMMON_DEP="elibc_glibc? ( >=sys-libs/timezone-data-2007h ) "
-
 DEPEND="
 	>=virtual/jdk-1.4
-	test? ( dev-java/ant-junit )
-	${COMMON_DEP}"
-RDEPEND=">=virtual/jre-1.4
-	${COMMON_DEP}"
+	test? ( dev-java/ant-junit )"
+RDEPEND=">=virtual/jre-1.4"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -43,14 +39,6 @@ EANT_FILTER_COMPILER="jikes"
 EANT_EXTRA_ARGS="-Djunit.ant=1 -Djunit.present=1"
 
 src_test() {
-	if has_version "<sys-libs/timezone-data-2007c"; then
-		ewarn "Tests are known to fail with older versions of"
-		ewarn "sys-libs/timezone-data. Please update to the latest stable"
-		ewarn "version. We don't force it because not all libc"
-		ewarn "implementations use that package. See bugzilla for details:"
-		ewarn "https://bugs.gentoo.org/show_bug.cgi?id=170189"
-	fi
-
 	ANT_TASKS="ant-junit" eant -Djunit.jar="$(java-pkg_getjars junit)" test
 }
 
