@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/xfce4-extras
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/ChangeLog,v 1.83 2008/08/05 21:05:46 cardoe Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/ChangeLog,v 1.84 2009/02/09 19:53:11 angelos Exp $
+
+  09 Feb 2009; Christoph Mende <angelos@gentoo.org>
+  xfce4-extras-4.4.2.ebuild:
+  Moved xfce-extra/verve to xfce-extra/xfce4-verve
 
   05 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc

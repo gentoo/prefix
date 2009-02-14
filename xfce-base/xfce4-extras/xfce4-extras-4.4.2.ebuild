@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-base/xfce4-extras/xfce4-extras-4.4.2.ebuild,v 1.8 2007/12/17 18:56:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/xfce4-extras-4.4.2.ebuild,v 1.9 2009/02/09 19:53:11 angelos Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,7 @@ RDEPEND=">=xfce-extra/xfce4-time-out-0.1.1
 	>=xfce-extra/xfce4-mailwatch-1.0.1
 	>=xfce-extra/xfce4-places-1
 	>=xfce-extra/xfce4-eyes-4.4
-	>=xfce-extra/verve-0.3.5
+	>=xfce-extra/xfce4-verve-0.3.6
 	>=xfce-extra/thunar-thumbnailers-0.3
 	>=xfce-extra/thunar-archive-0.2.4-r1
 	>=xfce-extra/thunar-media-tags-0.1.2
