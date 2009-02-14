@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.47 2009/01/18 20:34:47 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.48 2009/02/06 03:02:40 jer Exp $
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.76.ebuild:
+  Stable for HPPA (bug #250289).
 
   18 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org> dbus-glib-0.78.ebuild:
   Clean up econf per bug #253596 and add missing deps.
