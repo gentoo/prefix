@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13-r1.ebuild,v 1.2 2009/01/30 05:31:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13-r1.ebuild,v 1.7 2009/02/12 20:36:19 jer Exp $
 
 EAPI="prefix 2"
-inherit flag-o-matic toolchain-funcs eutils libtool autotools
+inherit flag-o-matic toolchain-funcs eutils libtool
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"

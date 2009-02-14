@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.148 2009/01/30 05:31:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.153 2009/02/12 20:36:19 jer Exp $
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> libsdl-1.2.13-r1.ebuild:
+  Stable for HPPA (bug #258230).
+
+  09 Feb 2009; Michael Sterrett <mr_bones_@gentoo.org> libsdl-1.2.13.ebuild,
+  libsdl-1.2.13-r1.ebuild:
+  no need for autotools
+
+  09 Feb 2009; Tiago Cunha <tcunha@gentoo.org> libsdl-1.2.13-r1.ebuild:
+  stable sparc, bug 258230
+
+  09 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  libsdl-1.2.13-r1.ebuild:
+  Stable on alpha, bug #258230
+
+  09 Feb 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  libsdl-1.2.13-r1.ebuild:
+  stable amd64, bug 258230
 
   30 Jan 2009; Michael Sterrett <mr_bones_@gentoo.org>
   libsdl-1.2.13-r1.ebuild:
