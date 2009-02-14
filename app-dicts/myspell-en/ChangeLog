@@ -1,6 +1,9 @@
 # ChangeLog for app-dicts/myspell-en
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/ChangeLog,v 1.19 2009/01/17 15:23:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/ChangeLog,v 1.20 2009/02/06 04:30:37 jer Exp $
+
+  06 Feb 2009; Jeroen Roovers <jer@gentoo.org> myspell-en-20081002.ebuild:
+  Stable for HPPA (bug #254636).
 
   17 Jan 2009; nixnut <nixnut@gentoo.org> myspell-en-20081002.ebuild:
   ppc stable #254636
