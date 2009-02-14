@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/nss
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.136 2008/12/27 16:15:54 ranger Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.139 2009/02/12 17:59:48 ranger Exp $
+
+  12 Feb 2009; Brent Baude <ranger@gentoo.org> nss-3.12.2.ebuild:
+  Marking nss-3.12.2 ppc64 and ppc for bug 257577
+
+  12 Feb 2009; Jeroen Roovers <jer@gentoo.org> nss-3.12.2.ebuild:
+  Stable for HPPA (bug #257577).
+
+*nss-3.12.2 (04 Feb 2009)
+
+  04 Feb 2009; Raúl Porcel <armin76@gentoo.org> +nss-3.12.2.ebuild:
+  Version bump
 
   27 Dec 2008; Brent Baude <ranger@gentoo.org> nss-3.12.2_rc1.ebuild:
   Marking nss-3.12.2_rc1 ppc64 and ppc for bug 234646
