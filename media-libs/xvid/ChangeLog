@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/xvid
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.103 2008/12/12 09:52:46 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.104 2009/02/11 19:35:19 aballier Exp $
+
+  11 Feb 2009; Alexis Ballier <aballier@gentoo.org> xvid-1.2.1.ebuild:
+  depend on nasm-2 as that is what is required; use it on bsd too; dont
+  inherit autotools since we are not eautoreconfing
 
   12 Dec 2008; Alexis Ballier <aballier@gentoo.org> xvid-1.2.1.ebuild:
   fix shared lib install

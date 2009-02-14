@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.1.ebuild,v 1.2 2008/12/12 09:52:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.1.ebuild,v 1.3 2009/02/11 19:35:19 aballier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils fixheadtails autotools
+inherit eutils fixheadtails
 
 MY_PN="${PN}core"
 MY_P="${MY_PN}-${PV}"
@@ -18,19 +18,10 @@ SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="examples altivec"
 
-# once yasm-0.6.0+ comes out, we can switch this to
-# dev-lang/nasm >=dev-lang/yasm-0.6.0
-# and then drop the quotes from section in the noexec-stack.patch
-
-# yasm < 0.6.2 has a bug when computing pic adresses.
-# See http://www.tortall.net/projects/yasm/ticket/114
-# the build system prefers yasm if it finds it
-# thus if we intend to have || (yasm nasm) for building
-# we need to make it block yasm < 0.6.2 on x86
-# otherwise it will compile wrong code
-NASM=">=dev-lang/yasm-0.6.2"
+NASM=">=dev-lang/nasm-2.04"
 DEPEND="x86? ( ${NASM} )
-	amd64? ( ${NASM} )"
+	amd64? ( ${NASM} )
+	x86-fbsd? ( ${NASM} )"
 RDEPEND=""
 
 S="${WORKDIR}/${MY_PN}/build/generic"
