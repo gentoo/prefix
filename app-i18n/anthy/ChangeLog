@@ -1,6 +1,11 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.120 2009/01/29 15:12:01 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.121 2009/02/10 00:04:50 matsuu Exp $
+
+*anthy-9100h (10 Feb 2009)
+
+  10 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> +anthy-9100h.ebuild:
+  Version bumped.
 
 *anthy-9100g (29 Jan 2009)
 
