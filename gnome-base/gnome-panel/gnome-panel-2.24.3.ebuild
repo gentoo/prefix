@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.3.ebuild,v 1.2 2009/02/01 11:08:16 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.3.ebuild,v 1.3 2009/02/05 19:25:25 aballier Exp $
 
 EAPI="prefix"
 
@@ -68,6 +68,8 @@ src_unpack() {
 	# Allow logout/shutdown without gnome-session 2.24, bug #246170
 	epatch "${WORKDIR}/${MY_P}-logout.patch"
 	epatch "${WORKDIR}/${MY_P}-po.patch"
+	# Fixes build on BSD, bug #256859
+	epatch "${FILESDIR}/${P}-daylight.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautomake

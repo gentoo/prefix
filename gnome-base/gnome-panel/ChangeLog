@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.267 2009/02/01 11:08:16 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.268 2009/02/05 19:25:25 aballier Exp $
+
+  05 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  +files/gnome-panel-2.24.3-daylight.patch, gnome-panel-2.24.3.ebuild:
+  Add a patch to build on FreeBSD and rekeyword it; bug #256859
 
   01 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-panel-2.20.3.ebuild, -gnome-panel-2.24.1.ebuild,
