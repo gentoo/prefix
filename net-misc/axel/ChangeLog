@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/axel
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.45 2009/02/02 17:17:48 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.47 2009/02/07 10:28:35 drizzt Exp $
+
+*axel-2.3-r1 (07 Feb 2009)
+
+  07 Feb 2009; Timothy Redaelli <drizzt@gentoo.org> -axel-2.3.ebuild,
+  +axel-2.3-r1.ebuild:
+  I hate alioth! (fixed download URL)
+
+  04 Feb 2009; <drizzt@gentoo.org> axel-2.3.ebuild:
+  Fix FETCHCOMMAND for bug #165449
 
 *axel-2.3 (02 Feb 2009)
 
