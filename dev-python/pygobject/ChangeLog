@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.54 2009/01/26 06:07:53 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.55 2009/02/07 14:46:28 eva Exp $
+
+  07 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  pygobject-2.16.0.ebuild:
+  Fix building on libtool-1 systems, bug #255542.
 
   26 Jan 2009; Mart Raudsepp <leio@gentoo.org> pygobject-2.16.0.ebuild:
   Disable USE=libffi for the time being due to bug 255488

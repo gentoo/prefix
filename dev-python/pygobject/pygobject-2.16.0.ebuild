@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.0.ebuild,v 1.2 2009/01/26 06:07:53 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.0.ebuild,v 1.3 2009/02/07 14:46:28 eva Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,9 @@ src_unpack() {
 
 	# Fix FHS compliance, see upstream bug #535524
 	epatch "${FILESDIR}/${PN}-2.15.4-fix-codegen-location.patch"
+
+	# needed to build on a libtool-1 system, bug #255542
+	rm m4/lt* m4/libtool.m4 ltmain.sh
 
 	eautoreconf
 
