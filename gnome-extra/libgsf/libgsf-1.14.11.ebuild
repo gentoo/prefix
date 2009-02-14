@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.9.ebuild,v 1.2 2008/10/12 10:34:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.11.ebuild,v 1.1 2009/02/09 23:10:03 eva Exp $
 
 EAPI="prefix"
 
@@ -28,17 +28,17 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	>=dev-util/intltool-0.29
+	>=dev-util/intltool-0.35.0
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 PDEPEND="gnome? ( media-gfx/imagemagick )"
 
 DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README TODO"
 
-# FIXME: requires gio-standalone, what is it ?
 pkg_setup() {
 	G2CONF="${G2CONF}
 		--with-gio
+		--disable-static
 		$(use_with bzip2 bz2)
 		$(use_with gnome gnome-vfs)
 		$(use_with gnome bonobo)
@@ -51,8 +51,6 @@ src_unpack() {
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
-
-	intltoolize --force || die "intltoolize failed"
 }
 
 pkg_preinst() {
@@ -78,7 +76,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-	if use python; then
-		python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
-	fi
+	python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
 }
