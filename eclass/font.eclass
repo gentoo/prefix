@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.43 2009/01/12 22:54:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.44 2009/02/08 18:22:39 pva Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
@@ -151,7 +151,7 @@ font_pkg_postinst() {
 		| xargs -0 chmod -v 0644 2>/dev/null
 
 	if has_version '>=media-libs/fontconfig-2.4'; then
-		if [ ${ROOT} == "/" ]; then
+		if [[ ${ROOT} == "/" ]]; then
 			ebegin "Updating global fontcache"
 			fc-cache -fs
 			eend $?
@@ -168,7 +168,7 @@ font_pkg_postrm() {
 		| xargs -0 chmod -v 0644 2>/dev/null
 
 	if has_version '>=media-libs/fontconfig-2.4'; then
-		if [ ${ROOT} == "/" ]; then
+		if [[ ${ROOT} == "/" ]]; then
 			ebegin "Updating global fontcache"
 			fc-cache -fs
 			eend $?

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.70 2009/01/09 06:59:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.71 2009/02/09 19:53:14 maekke Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -339,7 +339,7 @@ prep_ml_includes() {
 		if is_final_abi; then
 			base=${T}/gentoo-multilib
 			pushd "${base}"
-			find . | tar -c -T - -f - | tar -x --no-same-owner -f - -C ${D}
+			find . | tar -c -T - -f - | tar -x --no-same-owner -f - -C "${D}"
 			popd
 
 			# This 'set' stuff is required by mips profiles to properly pass
@@ -483,8 +483,8 @@ create_ml_includes-makedestdirs() {
 	local basedir
 	for basedir in ${basedirs}; do
 		local dir
-		for dir in $(find ${D}/${basedir} -type d); do
-			dodir ${dest}/${dir/${D}\/${basedir}/}
+		for dir in $(find "${ED}"/${basedir} -type d); do
+			dodir ${dest}/${dir/${ED}\/${basedir}/}
 		done
 	done
 }
@@ -493,8 +493,8 @@ create_ml_includes-makedestdirs() {
 create_ml_includes-allfiles() {
 	local basedir file
 	for basedir in "$@" ; do
-		for file in $(find "${D}"/${basedir} -type f); do
-			echo ${file/${D}\/${basedir}\//}
+		for file in $(find "${ED}"/${basedir} -type f); do
+			echo ${file/${ED}\/${basedir}\//}
 		done
 	done | sort | uniq
 }

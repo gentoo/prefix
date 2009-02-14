@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.120 2008/12/29 00:16:40 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.121 2009/02/11 16:13:38 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -61,9 +61,9 @@ export WANT_JAVA_CONFIG="2"
 #
 # The version of portage we need to function properly. Previously it was
 # portage with phase hooks support but now we use a version with proper env
-# saving.
+# saving. For EAPI 2 we have new enough stuff so let's have cleaner deps.
 # -----------------------------------------------------------------------------
-JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
+hasq "${EAPI//prefix }" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 
 # -----------------------------------------------------------------------------
 # @variable-internal JAVA_PKG_E_DEPEND

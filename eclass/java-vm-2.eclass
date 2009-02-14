@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.23 2008/08/29 19:10:19 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.26 2009/02/11 16:13:38 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -14,12 +14,17 @@
 
 inherit eutils fdo-mime
 
-DEPEND="
-	=dev-java/java-config-2*
-	>=sys-apps/portage-2.1"
+DEPEND="=dev-java/java-config-2*"
+hasq "${EAPI//prefix }" 0 1 && DEPEND="${DEPEND} >=sys-apps/portage-2.1"
+
 RDEPEND="
-	=dev-java/java-config-2*
-	=dev-java/java-config-1.3*"
+	=dev-java/java-config-2*"
+
+# bug #176784
+if [[ ${JAVA_SUPPORTS_GENERATION_1} == 'true' && ${JAVA_VM_NO_GENERATION1} != 'true' ]]; then
+	DEPEND="${DEPEND} =dev-java/java-config-1.3*"
+	RDEPEND="${RDEPEND} =dev-java/java-config-1.3*"
+fi
 
 export WANT_JAVA_CONFIG=2
 
@@ -232,7 +237,7 @@ java-vm_revdep-mask() {
 
 	dodir /etc/revdep-rebuild/
 	echo "SEARCH_DIRS_MASK=\"${VMROOT}\""> "${ED}/etc/revdep-rebuild/61-${VMHANDLE}"
-	
+
 	elog "A revdep-rebuild control file was installed to prevent reinstalls due to"
 	elog "missing dependencies (see bug #177925 for more info). Note that some parts"
 	elog "of the JVM may require dependencies that are pulled only through respective"

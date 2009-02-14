@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.36 2008/11/16 10:23:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.37 2009/02/07 11:32:45 fauli Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -62,7 +62,7 @@ elisp_pkg_setup() {
 elisp_src_unpack() {
 	[ -n "${A}" ] && unpack ${A}
 	if [ -f ${P}.el ]; then
-		mv ${P}.el ${PN}.el || die "mv ${P}.el ${PN}.el failed"
+		mv ${P}.el ${PN}.el || die
 	fi
 }
 
@@ -76,7 +76,7 @@ elisp_src_install() {
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 	fi
 	if [ -n "${DOCS}" ]; then
-		dodoc ${DOCS} || die "dodoc failed"
+		dodoc ${DOCS} || die
 	fi
 }
 

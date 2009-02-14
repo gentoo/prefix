@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.21 2008/03/09 21:07:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.22 2009/02/12 05:05:14 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -106,7 +106,13 @@ mysql_mv_patches() {
 		[[ -d "${filesdir}" ]] || die "No patches directory found!"
 	fi
 
-	local index_file="${1:-"${filesdir}/000_index.txt"}"
+	for i in "$1" "${filesdir}/0000_index.txt" "${filesdir}/000_index.txt" ; do
+		if [ -n "$i" -a -f "$i" ]; then
+			local index_file="$i"
+			break
+		fi
+	done
+
 	local my_ver="${2:-"${MYSQL_VERSION_ID}"}"
 	local my_test_fx=${3:-"_mysql_test_patch_ver_pn"}
 	_mysql_mv_patches "${index_file}" "${my_ver}" "${my_test_fx}"
@@ -176,6 +182,7 @@ mysql_version_is_at_least() {
 # library to the best version available.
 #
 mysql_lib_symlinks() {
+	einfo "Updating MySQL .so symlinks"
 	local d dirlist maxdots soname sonameln reldir
 	reldir="${1}"
 	pushd "${reldir}/usr/$(get_libdir)" &> /dev/null

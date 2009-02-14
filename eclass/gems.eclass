@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.23 2008/11/14 13:56:56 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.24 2009/02/08 20:48:01 a3li Exp $
 #
 # Author: Rob Cakebread <pythonhead@gentoo.org>
 # Current Maintainer: Ruby Herd <ruby@gentoo.org>
@@ -80,8 +80,8 @@ gems_src_install() {
 
 	if [[ -d "${ED}/${GEMSDIR}/bin" ]] ; then
 		exeinto /usr/bin
-		for exe in ${ED}/${GEMSDIR}/bin/* ; do
-			doexe ${exe}
+		for exe in "${ED}"/${GEMSDIR}/bin/* ; do
+			doexe "${exe}"
 		done
 	fi
 }

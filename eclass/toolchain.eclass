@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.389 2009/01/29 06:06:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.390 2009/02/09 19:56:07 maekke Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1048,26 +1048,26 @@ do_gcc_rename_java_bins() {
 	# 1) Move the man files if present (missing prior to gcc-3.4)
 	for manfile in rmic rmiregistry; do
 		[[ -f ${S}/gcc/doc/${manfile}.1 ]] || continue
-		mv ${S}/gcc/doc/${manfile}.1 ${S}/gcc/doc/g${manfile}.1
+		mv "${S}"/gcc/doc/${manfile}.1 "${S}"/gcc/doc/g${manfile}.1
 	done
 	# 2) Fixup references in the docs if present (mission prior to gcc-3.4)
 	for jfile in gcc/doc/gcj.info gcc/doc/grmic.1 gcc/doc/grmiregistry.1 gcc/java/gcj.texi; do
 		[[ -f ${S}/${jfile} ]] || continue
-		sed -i -e 's:rmiregistry:grmiregistry:g' ${S}/${jfile} ||
+		sed -i -e 's:rmiregistry:grmiregistry:g' "${S}"/${jfile} ||
 			die "Failed to fixup file ${jfile} for rename to grmiregistry"
-		sed -i -e 's:rmic:grmic:g' ${S}/${jfile} ||
+		sed -i -e 's:rmic:grmic:g' "${S}"/${jfile} ||
 			die "Failed to fixup file ${jfile} for rename to grmic"
 	done
 	# 3) Fixup Makefiles to build the changed executable names
 	#	 These are present in all 3.x versions, and are the important bit
 	#	 to get gcc to build with the new names.
 	for jfile in libjava/Makefile.am libjava/Makefile.in gcc/java/Make-lang.in; do
-		sed -i -e 's:rmiregistry:grmiregistry:g' ${S}/${jfile} ||
+		sed -i -e 's:rmiregistry:grmiregistry:g' "${S}"/${jfile} ||
 			die "Failed to fixup file ${jfile} for rename to grmiregistry"
 		# Careful with rmic on these files; it's also the name of a directory
 		# which should be left unchanged.  Replace occurrences of 'rmic$',
 		# 'rmic_' and 'rmic '.
-		sed -i -e 's:rmic\([$_ ]\):grmic\1:g' ${S}/${jfile} ||
+		sed -i -e 's:rmic\([$_ ]\):grmic\1:g' "${S}"/${jfile} ||
 			die "Failed to fixup file ${jfile} for rename to grmic"
 	done
 }
@@ -2040,7 +2040,7 @@ gcc_quick_unpack() {
 		# We want branch updates to be against a release tarball
 		if [[ -n ${BRANCH_UPDATE} ]] ; then
 			pushd "${S}" > /dev/null
-			epatch ${DISTDIR}/gcc-${GCC_RELEASE_VER}-branch-update-${BRANCH_UPDATE}.patch.bz2
+			epatch "${DISTDIR}"/gcc-${GCC_RELEASE_VER}-branch-update-${BRANCH_UPDATE}.patch.bz2
 			popd > /dev/null
 		fi
 	fi

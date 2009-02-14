@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.54 2009/01/31 21:31:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.55 2009/02/13 17:15:58 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -315,11 +315,14 @@ elisp-site-file-install() {
 elisp-site-regen() {
 	local i sf line firstrun obsolete
 	local -a sflist
-	# Work around Paludis borkage: variable T is empty in pkg_postrm
-	local tmpdir=${T:-$(mktemp -d)}
 
 	if [ ! -d "${EROOT}${SITELISP}" ]; then
 		eerror "elisp-site-regen: Directory ${SITELISP} does not exist"
+		return 1
+	fi
+
+	if [ ! -d "${T}" ]; then
+		eerror "elisp-site-regen: Temporary directory ${T} does not exist"
 		return 1
 	fi
 
@@ -327,7 +330,7 @@ elisp-site-regen() {
 
 	if [ "${firstrun}" ] && [ ! -e "${EROOT}${SITELISP}"/site-start.el ]; then
 		einfo "Creating default ${SITELISP}/site-start.el ..."
-		cat <<-EOF >"${tmpdir}"/site-start.el
+		cat <<-EOF >"${T}"/site-start.el
 		;;; site-start.el
 
 		;;; Commentary:
@@ -368,7 +371,7 @@ elisp-site-regen() {
 
 	eval "${old_shopts}"
 
-	cat <<-EOF >"${tmpdir}"/site-gentoo.el
+	cat <<-EOF >"${T}"/site-gentoo.el
 	;;; site-gentoo.el --- site initialisation for Gentoo-installed packages
 
 	;;; Commentary:
@@ -378,8 +381,8 @@ elisp-site-regen() {
 	;;; Code:
 	EOF
 	# Use sed instead of cat here, since files may miss a trailing newline.
-	sed '$q' "${sflist[@]}" </dev/null >>"${tmpdir}"/site-gentoo.el
-	cat <<-EOF >>"${tmpdir}"/site-gentoo.el
+	sed '$q' "${sflist[@]}" </dev/null >>"${T}"/site-gentoo.el
+	cat <<-EOF >>"${T}"/site-gentoo.el
 
 	(provide 'site-gentoo)
 
@@ -389,17 +392,17 @@ elisp-site-regen() {
 	;;; site-gentoo.el ends here
 	EOF
 
-	if cmp -s "${EROOT}${SITELISP}"/site-gentoo.el "${tmpdir}"/site-gentoo.el
+	if cmp -s "${EROOT}${SITELISP}"/site-gentoo.el "${T}"/site-gentoo.el
 	then
 		# This prevents outputting unnecessary text when there
 		# was actually no change.
 		# A case is a remerge where we have doubled output.
-		einfo " no changes."
+		echo " no changes."
 	else
-		mv "${tmpdir}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
-		[ -f "${tmpdir}"/site-start.el ] \
+		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
+		[ -f "${T}"/site-start.el ] \
 			&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ] \
-			&& mv "${tmpdir}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
+			&& mv "${T}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
 		echo
 		einfo "... ${#sflist[@]} site initialisation file(s) included."
 	fi
@@ -436,7 +439,7 @@ elisp-site-regen() {
 	fi
 
 	# cleanup
-	rm -f "${tmpdir}"/site-{gentoo,start}.el
+	rm -f "${T}"/site-{gentoo,start}.el
 
 	return 0
 }

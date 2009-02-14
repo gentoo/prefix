@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.11 2009/01/12 19:40:34 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.12 2009/02/10 20:07:24 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -226,45 +226,43 @@ get_build_type() {
 # We can check for kdelibs because it is the most basic package; no KDE package
 # working without it. This might be changed in future.
 get_latest_kdedir() {
-	if [[ $NEED_KDE = latest && $KDEBASE != kde-base ]]; then
-		case ${KDE_WANTED} in
-			# note this will need to be updated as stable moves and so on
-			live)
-				_versions="9999 4.1.69 4.1.0"
+	case ${KDE_WANTED} in
+		# note this will need to be updated as stable moves and so on
+		live)
+			_versions="9999 4.1.69 4.1.0"
+			;;
+		snapshot)
+			_versions="4.1.69 4.1.0 9999"
+			;;
+		testing)
+			_versions="4.1.0 4.1.69 9999"
+			;;
+		stable)
+			_versions="4.1.0 4.1.69 9999"
+			;;
+		*) die "KDE_WANTED=${KDE_WANTED} not supported here." ;;
+	esac
+	# check if exists and fallback as we go
+	for X in ${_versions}; do
+		if has_version ">=kde-base/kdelibs-${X}"; then
+			# figure out which X we are in and set it into _kdedir
+			case ${X} in
+				# also keep track here same for kde_wanted
+				9999)
+					_kdedir="live"
+					break
 				;;
-			snapshot)
-				_versions="4.1.69 4.1.0 9999"
+				4.1.69)
+					_kdedir="4.2"
+					break
 				;;
-			testing)
-				_versions="4.1.0 4.1.69 9999"
+				4.1.0)
+					_kdedir="4.1"
+					break
 				;;
-			stable)
-				_versions="4.1.0 4.1.69 9999"
-				;;
-			*) die "KDE_WANTED=${KDE_WANTED} not supported here." ;;
-		esac
-		# check if exists and fallback as we go
-		for X in ${_versions}; do
-			if has_version ">=kde-base/kdelibs-${X}"; then
-				# figure out which X we are in and set it into _kdedir
-				case ${X} in
-					# also keep track here same for kde_wanted
-					9999)
-						_kdedir="live"
-						break
-					;;
-					4.1.69)
-						_kdedir="4.2"
-						break
-					;;
-					4.1.0)
-						_kdedir="4.1"
-						break
-					;;
-				esac
-			fi
-		done
-	fi
+			esac
+		fi
+	done
 }
 
 # @FUNCTION: migrate_store_dir

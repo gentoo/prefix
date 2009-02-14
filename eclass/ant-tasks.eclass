@@ -3,7 +3,7 @@
 # Copyright 2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Vlastimil Babka <caster@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.7 2008/12/25 00:39:03 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.8 2009/02/08 16:12:16 serkan Exp $
 
 # we set ant-core dep ourselves, restricted
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
@@ -133,7 +133,7 @@ ant-tasks_src_unpack() {
 				cd "${S}"
 
 				# replace build.xml with our modified for split building
-				mv -f ${WORKDIR}/build.xml .
+				mv -f "${WORKDIR}"/build.xml .
 
 				cd lib
 				# remove bundled xerces

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/myspell.eclass,v 1.5 2006/07/08 15:20:13 kevquinn Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/myspell.eclass,v 1.6 2009/02/09 08:21:00 pva Exp $
 
 # Author: Kevin F. Quinn <kevquinn@gentoo.org>
 # Packages: app-dicts/myspell-*
@@ -118,7 +118,7 @@ get_myspell_ooo_uri() {
 
 myspell_src_install() {
 	local filen fields entry dictlst
-	cd ${WORKDIR}
+	cd "${WORKDIR}"
 	# Install the dictionary, hyphenation and thesaurus files.
 	# Create dictionary.lst.<lang> file containing the parts of
 	# OOo's dictionary.lst file for this language, indicating

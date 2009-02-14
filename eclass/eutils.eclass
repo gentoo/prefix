@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.308 2008/09/28 04:37:29 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.309 2009/02/07 10:57:38 pva Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -107,7 +107,7 @@ EPATCH_FORCE="no"
 #
 # Patches are applied in current directory.
 #
-# Bulk Patches should preferibly have the form of:
+# Bulk Patches should preferably have the form of:
 #
 #	??_${ARCH}_foo.${EPATCH_SUFFIX}
 #

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.87 2009/01/12 23:03:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.89 2009/02/08 21:33:06 carlo Exp $
 
 # @ECLASS: kde-meta.eclass
 # @MAINTAINER:
@@ -33,6 +33,7 @@ if [[ "${KMNAME}" = "koffice" ]]; then
 	case "$PV" in
 		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
 		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
+		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
 	esac
 fi
 
@@ -67,6 +68,8 @@ elif [[ "$KMNAME" == "koffice" ]]; then
 			;;
 		1.6_beta1)
 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
+			;;
+		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
 			;;
 		*)
 			# Identify beta and rc versions by underscore
@@ -318,7 +321,7 @@ kde-meta_src_unpack() {
 		# Avoid syncing if possible
 		# No idea what the above comment means...
 		if [[ -n "$RAWTARBALL" ]]; then
-			rm -f $T/$RAWTARBALL
+			rm -f "${T}"/$RAWTARBALL
 		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S

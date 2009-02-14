@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/findlib.eclass,v 1.8 2008/02/24 15:46:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/findlib.eclass,v 1.9 2009/02/08 21:30:12 maekke Exp $
 
 # @ECLASS: findlib.eclass
 # @MAINTAINER:
@@ -55,5 +55,5 @@ findlib_src_preinst() {
 # Install with a properly setup findlib
 findlib_src_install() {
 	findlib_src_preinst
-	make DESTDIR=${D} "$@" install || die "make failed"
+	make DESTDIR="${D}" "$@" install || die "make failed"
 }

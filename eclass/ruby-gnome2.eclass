@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.12 2008/04/12 08:36:28 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.13 2009/02/08 21:09:54 a3li Exp $
 #
 # This eclass simplifies installation of the various pieces of
 # ruby-gnome2 since they share a very common installation procedure.
@@ -32,7 +32,7 @@ RDEPEND="virtual/ruby"
 
 ruby-gnome2_src_unpack() {
 	if [ ! -x /bin/install -a -x /usr/bin/install ]; then
-		cat <<END >${T}/mkmf.rb
+		cat <<END >"${T}"/mkmf.rb
 require 'mkmf'
 
 STDERR.puts 'patching mkmf'
@@ -44,7 +44,7 @@ END
 	fi
 
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	# apply bulk patches
 	if [[ ${#PATCHES[@]} -gt 1 ]]; then
 		for x in "${PATCHES[@]}"; do
@@ -64,12 +64,12 @@ ruby-gnome2_src_compile() {
 
 ruby-gnome2_src_install() {
 	dodir $(ruby -r rbconfig -e 'print Config::CONFIG["sitearchdir"]')
-	make DESTDIR=${D} install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 	for doc in ../AUTHORS ../NEWS ChangeLog README; do
 		[ -s "$doc" ] && dodoc $doc
 	done
 	if [[ -d sample ]]; then
 		dodir /usr/share/doc/${PF}
-		cp -a sample ${D}/usr/share/doc/${PF} || die "cp failed"
+		cp -a sample "${ED}"/usr/share/doc/${PF} || die "cp failed"
 	fi
 }

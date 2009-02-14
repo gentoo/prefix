@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.43 2008/10/07 14:41:13 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.44 2009/02/08 15:50:21 maekke Exp $
 
 inherit java-utils-2
 
@@ -55,9 +55,9 @@ fi
 # We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
 # and ant dependencies constructed above.
 JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND}
-       ${ANT_TASKS_DEPEND}
-       ${JAVA_PKG_PORTAGE_DEP}
-       >=dev-java/javatoolkit-0.3.0-r2"
+	${ANT_TASKS_DEPEND}
+	${JAVA_PKG_PORTAGE_DEP}
+	>=dev-java/javatoolkit-0.3.0-r2"
 
 # this eclass must be inherited after java-pkg-2 or java-pkg-opt-2
 # if it's java-pkg-opt-2, ant dependencies are pulled based on USE flag
@@ -148,7 +148,7 @@ java-ant-2_src_configure() {
 
 	java-ant_bsfix
 	touch "${T}/java-ant-2_src_configure-run"
-} 
+}
 
 # ------------------------------------------------------------------------------
 # @private java-ant_bsfix

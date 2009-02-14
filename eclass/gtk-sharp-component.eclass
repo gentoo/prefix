@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.29 2008/11/25 20:44:25 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.30 2009/02/08 20:29:53 loki_val Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -109,10 +109,10 @@ gtk-sharp-component_fix_makefiles() {
 
 gtk-sharp-component_src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# Make the components configurable
-	epatch ${WORKDIR}/${MY_P}-configurable.diff
+	epatch "${WORKDIR}"/${MY_P}-configurable.diff
 
 	# XXX: Gross hack to disable the GLADESHARP checks
 	# in the gnome-sharp-2.16.0 release unless you really
@@ -126,31 +126,31 @@ gtk-sharp-component_src_unpack() {
 	# fixes support with pkgconfig-0.17, bug #92503
 	sed -i -e 's/\<PKG_PATH\>/GTK_SHARP_PKG_PATH/g' \
 		-e ':^CFLAGS=:d' \
-		${S}/configure.in
+		"${S}"/configure.in
 
 	# Use correct libdir in pkgconfig files
 	sed -i -e 's:^libdir.*:libdir=@libdir@:' \
-		${S}/*/*.pc.in || die
+		"${S}"/*/*.pc.in || die
 
 	if [ -d "${S}/gconf/GConf" ]
 	then
 		sed -i -e 's:^libdir.*:libdir=@libdir@:' \
-			${S}/gconf/GConf/*.pc.in || die
+			"${S}"/gconf/GConf/*.pc.in || die
 	fi
 
 	if [ -f "${S}/sample/gconf/Makefile.am" ]
 	then
 		# Fix install data hook (bug #161093)
 		sed -i -e 's/^install-hook/install-data-hook/' \
-			${S}/sample/gconf/Makefile.am || die "sed failed"
+			"${S}"/sample/gconf/Makefile.am || die "sed failed"
 	fi
 
 	# disable building of samples (#16015)
-	sed -i -e "s:sample::" ${S}/Makefile.am || die
+	sed -i -e "s:sample::" "${S}"/Makefile.am || die
 
 	eautoreconf
 
-	cd ${S}/${GTK_SHARP_COMPONENT_BUILD_DIR}
+	cd "${S}"/${GTK_SHARP_COMPONENT_BUILD_DIR}
 
 	gtk-sharp-component_fix_makefiles
 }
@@ -172,20 +172,20 @@ gtk-sharp-component_src_configure() {
 		gtk_sharp_conf="${gtk_sharp_conf} --enable-${component} "
 	done
 
-	cd ${S}
+	cd "${S}"
 	econf ${@} ${gtk_sharp_conf} || die "./configure failure"
 }
 
 gtk-sharp-component_src_compile() {
 	gtk-sharp-component_src_configure ${@}
 
-	cd ${S}/${GTK_SHARP_COMPONENT_BUILD_DIR}
+	cd "${S}"/${GTK_SHARP_COMPONENT_BUILD_DIR}
 	LANG=C emake -j1 || die "compile failure"
 }
 
 gtk-sharp-component_src_install() {
 	cd ${GTK_SHARP_COMPONENT_BUILD_DIR}
-	LANG=C make GACUTIL_FLAGS="/root ${ED}/usr/$(get_libdir) /gacdir /usr/$(get_libdir) /package gtk-sharp${GTK_SHARP_COMPONENT_SLOT_DEC}" \
+	LANG=C make GACUTIL_FLAGS="/root ${ED}/usr/$(get_libdir) /gacdir ${EPREFIX}/usr/$(get_libdir) /package gtk-sharp${GTK_SHARP_COMPONENT_SLOT_DEC}" \
 		DESTDIR=${D} install || die
 }
 

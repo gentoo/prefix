@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.14 2009/01/29 22:48:20 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.15 2009/02/08 17:23:40 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -82,15 +82,13 @@ case ${GTK_SHARP_MODULE} in
 	glib|glade|gtk|gdk|atk|pango|gtk-dotnet|gtk-gapi|gtk-docs)
 		TARBALL="gtk-sharp"
 		case ${PVR} in
-			2.12.7-r1*)
-				SRC_URI="mirror://gentoo/gtk-sharp-2.12.0-patches.tar.bz2
-					mirror://gentoo/gtk-sharp-2.12.7.patch.bz2"
+			2.12.*)
+				SRC_URI="mirror://gentoo/gtk-sharp-2.12.7.patch.bz2"
 				#Upstream: https://bugzilla.novell.com/show_bug.cgi?id=$bugno
-				#Upstream bug #421063 for the parallel-make patches
 				#Upstream bug #470390 for the gtk-sharp-2.12.7.patch
-				PATCHES=( "${WORKDIR}/patches/${TARBALL}-2.12.0-parallelmake.patch"
-				        "${WORKDIR}/patches/${TARBALL}-2.12.0-doc-parallelmake.patch"
-					"${WORKDIR}/${TARBALL}-2.12.7.patch" )
+				PATCHES=(
+					"${WORKDIR}/${TARBALL}-2.12.7.patch"
+				)
 				EAUTORECONF="YES"
 				add_bdepend "=sys-devel/automake-1.10*"
 				add_bdepend ">=sys-devel/autoconf-2.61"

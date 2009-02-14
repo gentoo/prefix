@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.28 2009/02/02 21:35:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.29 2009/02/10 20:07:24 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -439,17 +439,15 @@ kde4-base_pkg_setup() {
 
 	# Search for best suitable kde installation for misc kde package.
 	# Computation based on NEED_KDE and KDE_MINIMAL
-	get_latest_kdedir
+	[[ ${NEED_KDE} = latest || ${NEED_KDE} = none ]] && get_latest_kdedir
 
-	if [[ $NEED_KDE != none ]]; then
-		# Set PREFIX
-		if use kdeprefix; then
-			KDEDIR="/usr/kde/${_kdedir}"
-			KDEDIRS="/usr/local/:/usr:${KDEDIR}"
-		else
-			KDEDIR="/usr"
-			KDEDIRS="/usr/local/:/usr"
-		fi
+	# Set PREFIX
+	if use kdeprefix; then
+		KDEDIR="/usr/kde/${_kdedir}"
+		KDEDIRS="/usr/local/:/usr:${KDEDIR}"
+	else
+		KDEDIR="/usr"
+		KDEDIRS="/usr/local/:/usr"
 	fi
 	# Set the prefix based on KDEDIR
 	# Make it a consequence of kdeprefix
