@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/orage/orage-4.5.14.0.ebuild,v 1.2 2009/01/23 16:30:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/orage/orage-4.5.14.0.ebuild,v 1.3 2009/02/04 18:45:02 angelos Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2-utils
+inherit autotools eutils gnome2-utils
 
 DESCRIPTION="Calendar suite for Xfce4"
 HOMEPAGE="http://www.kolumbus.fi/~w408237/orage"
@@ -28,12 +28,17 @@ RDEPEND=">=dev-libs/glib-2.6
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/intltool
+	dev-util/xfce4-dev-tools
 	sys-devel/gettext"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-bsd.patch
+
+	# remove -I m4, there's no m4 dir
+	sed -i -e "/^ACLOCAL_AMFLAGS/d" Makefile.am
+	AT_M4DIR="/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 
 	# Patch needed for Solaris. Took from
 	# http://foo-projects.org/pipermail/xfce/2008-July/023569.html
