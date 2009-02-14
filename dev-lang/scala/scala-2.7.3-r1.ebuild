@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3.ebuild,v 1.2 2009/02/05 08:13:53 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3-r1.ebuild,v 1.2 2009/02/11 21:25:32 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -56,6 +56,7 @@ pkg_setup() {
 		else
 			CHECKREQS_MEMORY="512"
 		fi
+
 		check_reqs
 	fi
 }
@@ -65,6 +66,9 @@ src_unpack() {
 	cd "${S}"
 
 	if ! use binary; then
+
+		epatch "${FILESDIR}/${P}-build.xml.patch"
+
 		cd lib || die
 		# other jars are needed for bootstrap
 		rm -v jline.jar #cldcapi10.jar midpapi10.jar msil.jar *.dll || die
@@ -75,30 +79,21 @@ src_unpack() {
 
 src_compile() {
 	if ! use binary; then
-		# this is needed with apple-jdk-bin:1.6 at least, because it's 64bit
-		# apple-jdk-bin:1.[45] might work with 512MB
-		if use amd64 || use x86-macos; then
-			export ANT_OPTS="-Xmx1024M -Xms1024M"
-		else
-			export ANT_OPTS="-Xmx512M -Xms512M -Xss1024k"
-		fi
-
-		#Try setting -Djava.flags="${ANT_OPTS}"
-		eant clean docsclean dist.done $(use_doc docs)
+		eant all.clean dist.done
 	else
 		einfo "Skipping compilation, USE=binary is set."
 	fi
 }
 
 src_test() {
-	bash test/scalatest || die "Some tests aren't passed"
+	eant test.suite || die "Some tests aren't passed"
 }
 
 scala_launcher() {
-	local SCALADIR="/usr/share/${PN}"
-	local bcp="${SCALADIR}/lib/scala-library.jar"
-	java-pkg_dolauncher "${1}" --main "${2}" ${3} \
-		--java_args "-Xmx256M -Xms16M -Xbootclasspath/a:${EPREFIX}${bcp} -Dscala.home=\\\"${EPREFIX}${SCALADIR}\\\" -Denv.classpath=\\\"\${CLASSPATH}\\\""
+	local SCALADIR="${EPREFIX}/usr/share/${PN}"
+	local bcp="${EPREFIX}${SCALADIR}/lib/scala-library.jar"
+	java-pkg_dolauncher "${1}" --main "${2}" \
+		--java_args "-Xmx256M -Xms32M -Dscala.home=\\\"${SCALADIR}\\\" -Denv.emacs=\\\"\${EMACS}\\\""
 }
 
 src_install() {
@@ -121,6 +116,7 @@ src_install() {
 	use binary && java-pkg_register-dependency jline
 
 	doman man/man1/*.1 || die
+
 	local docdir="doc/${PN}-devel-docs"
 	dodoc "${docdir}/README" ../../docs/TODO || die
 	if use doc; then
@@ -133,5 +129,5 @@ src_install() {
 	scala_launcher fsc scala.tools.nsc.CompileClient
 	scala_launcher scala scala.tools.nsc.MainGenericRunner
 	scala_launcher scalac scala.tools.nsc.Main
-	scala_launcher scaladoc scala.tools.nsc.Main "--pkg_args -doc"
+	scala_launcher scaladoc scala.tools.nsc.ScalaDoc
 }
