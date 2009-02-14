@@ -1,6 +1,13 @@
 # ChangeLog for app-text/xdvik
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.62 2008/12/20 02:34:20 aballier Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.63 2009/02/08 11:07:00 aballier Exp $
+
+*xdvik-22.84.14-r1 (08 Feb 2009)
+
+  08 Feb 2009; Alexis Ballier <aballier@gentoo.org> +files/xdvik.png,
+  +xdvik-22.84.14-r1.ebuild:
+  Add a desktop entry, by Pacho Ramos <pacho@condmat1.ciencias.uniovi.es>,
+  bug #250693
 
   20 Dec 2008; Alexis Ballier <aballier@gentoo.org> xdvik-22.84.14.ebuild:
   update homepage, by Pacho Ramos <pacho@condmat1.ciencias.uniovi.es>, bug
