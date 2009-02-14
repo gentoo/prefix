@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/glpk
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.28 2009/01/15 17:52:05 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.29 2009/02/08 15:49:35 klausman Exp $
+
+  08 Feb 2009; Tobias Klausmann <klausman@gentoo.org> glpk-4.35.ebuild:
+  Stable on alpha, bug #245707
 
 *glpk-4.35 (15 Jan 2009)
 
