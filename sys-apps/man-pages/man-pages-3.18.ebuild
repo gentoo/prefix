@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.15.ebuild,v 1.2 2009/01/13 02:34:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.18.ebuild,v 1.1 2009/02/11 01:52:27 vapier Exp $
 
 EAPI="prefix"
 
@@ -43,9 +43,10 @@ src_install() {
 	dodoc man-pages-*.Announce README Changes*
 
 	# Override with Gentoo specific or additional Gentoo pages
+	cd "${WORKDIR}"/man-pages-gentoo
 	insinto /usr/share/man
-	doins -r "${S}"/../man-pages-gentoo/* || die
-	dodoc "${S}"/../man-pages-gentoo/README.Gentoo
+	doman */* || die
+	dodoc README.Gentoo
 }
 
 pkg_postinst() {
