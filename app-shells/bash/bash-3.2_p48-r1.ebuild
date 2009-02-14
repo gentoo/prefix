@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.16 2009/02/05 19:06:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.1 2009/02/09 01:07:59 vapier Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
@@ -33,8 +33,8 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs bashlogger examples nls plugins vanilla"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="afs bashlogger examples +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	sys-devel/bison"
@@ -71,6 +71,8 @@ src_unpack() {
 		epatch "${FILESDIR}"/autoconf-mktime-2.59.patch #220040
 		epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
 		epatch "${FILESDIR}"/${PN}-3.2-loadables.patch
+		epatch "${FILESDIR}"/${PN}-3.2-protos.patch
+		epatch "${FILESDIR}"/${PN}-3.2-session-leader.patch #231775
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
 		epatch "${FILESDIR}"/${PN}-3.2-ldflags-for-build.patch #211947
 
@@ -99,8 +101,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 
-	# intmax_t and uintmax_t should be looked for in stdint.h on interix
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-3.2-mint.patch
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
@@ -155,6 +157,7 @@ src_compile() {
 
 	econf \
 		$(use_with afs) \
+		$(use_with net net-redirections) \
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die

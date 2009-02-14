@@ -1,6 +1,17 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.192 2009/01/31 15:54:09 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.194 2009/02/09 01:07:59 vapier Exp $
+
+*bash-3.2_p48-r1 (09 Feb 2009)
+
+  09 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.2-protos.patch, +files/bash-3.2-session-leader.patch,
+  metadata.xml, +bash-3.2_p48-r1.ebuild:
+  Add fix from upstream #231775 by Joe Peterson and allow people to turn off
+  net redirection #242412 by Chris Frederick.
+
+  05 Feb 2009; Raúl Porcel <armin76@gentoo.org> bash-3.2_p39.ebuild:
+  arm/ia64/s390/sh stable wrt #235020
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org> bash-3.2_p39.ebuild:
   Stable on alpha, bug #235020

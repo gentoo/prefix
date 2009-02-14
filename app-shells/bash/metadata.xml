@@ -5,6 +5,7 @@
 <use>
   <flag name='bashlogger'>Log ALL commands typed into bash; should ONLY be
     used in restricted environments such as honeypots</flag>
+  <flag name='net'>Enable /dev/tcp/host/port redirection</flag>
   <flag name='plugins'>Add support for loading builtins at runtime via
     'enable'</flag>
 </use>
