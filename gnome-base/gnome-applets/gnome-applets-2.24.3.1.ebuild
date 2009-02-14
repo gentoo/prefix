@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.24.3.1.ebuild,v 1.1 2009/01/15 10:36:45 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.24.3.1.ebuild,v 1.2 2009/02/05 22:49:29 aballier Exp $
 
 EAPI="prefix"
 
