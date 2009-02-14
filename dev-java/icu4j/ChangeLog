@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/icu4j
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.28 2008/11/24 10:21:50 caster Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.29 2009/02/04 12:25:53 betelgeuse Exp $
+
+  04 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> -icu4j-3.0-r1.ebuild,
+  -icu4j-3.6.1.ebuild, -icu4j-3.6.1-r1.ebuild:
+  Remove old ebuilds.
 
   24 Nov 2008; Vlastimil Babka <caster@gentoo.org> icu4j-4.0.ebuild:
   Restrict jdk deps to rule out 1.7, fails with it.
