@@ -185,7 +185,7 @@ src_compile() {
 	fi
 
 	cd "${S}"
-	./configure \
+	${EPREFIX}/bin/sh ./configure \
 		--prefix="${EPREFIX}"/usr \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--shlibdir="${EPREFIX}"/usr/$(get_libdir) \
