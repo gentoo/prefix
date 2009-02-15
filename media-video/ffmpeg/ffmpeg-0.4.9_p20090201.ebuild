@@ -58,7 +58,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris64.patch
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
+# drop for bug #257477, aballier says it should be unnecessary
+#	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
 
 	# Set version #
 	# Any better idea? We can't do much more as we use an exported svn snapshot.
@@ -120,7 +121,7 @@ src_compile() {
 	if use gsm; then
 		myconf="${myconf} --enable-libgsm"
 		# Crappy detection or our installation is weird, pick one (FIXME)
-		append-flags -I/usr/include/gsm
+		append-flags -I$"{EPREFIX}"/usr/include/gsm
 	fi
 	if use bindist
 	then

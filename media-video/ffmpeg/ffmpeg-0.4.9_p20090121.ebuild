@@ -55,10 +55,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20081014-solaris.patch
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20081014-solaris64.patch
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20070616-apple.patch
-
 	# Set version #
 	# Any better idea? We can't do much more as we use an exported svn snapshot.
 	sed -i s/UNKNOWN/SVN-r${FFMPEG_SVN_REV}/ "${S}/version.sh"

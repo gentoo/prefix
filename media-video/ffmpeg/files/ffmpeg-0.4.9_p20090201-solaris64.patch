@@ -1,5 +1,8 @@
---- configure.orig	2009-02-12 14:19:38.688598969 +0100
-+++ configure	2009-02-12 14:20:15.806640646 +0100
+* grobian@gentoo.org: uname -m on Solaris/Intel returns i86pc for both
+                      x86 and x64
+
+--- configure
++++ configure
 @@ -1327,12 +1327,12 @@
  check_cflags -std=c99
  

@@ -1,4 +1,5 @@
-The use of nanosleep requires librealtime (-lrt) on Solaris
+* grobian@gentoo.org: the use of nanosleep requires librealtime (-lrt)
+                      on Solaris
 
 --- configure
 +++ configure
