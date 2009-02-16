@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.309 2009/02/07 10:57:38 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.310 2009/02/15 20:09:09 grobian Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -389,10 +389,26 @@ emktemp() {
 # usata@gentoo.org (OS X)
 # Aaron Walker <ka0ttic@gentoo.org> (FreeBSD)
 # @DESCRIPTION:
-# Small wrapper for getent (Linux), nidump (Mac OS X),
+# Small wrapper for getent (Linux),
+# nidump (< Mac OS X 10.5), dscl (Mac OS X 10.5),
 # and pw (FreeBSD) used in enewuser()/enewgroup()
 egetent() {
 	case ${CHOST} in
+	*-darwin9)
+		local mytype=$1
+		[[ "passwd" == $mytype ]] && mytype="Users"
+		[[ "group" == $mytype ]] && mytype="Groups"
+		case "$2" in
+		*[!0-9]*) # Non numeric
+			dscl . -read /$mytype/$2 2>/dev/null |grep RecordName
+			;;
+		*)	# Numeric
+			local mykey="UniqueID"
+			[[ $mytype == "Groups" ]] && mykey="PrimaryGroupID"
+			dscl . -search /$mytype $mykey $2 2>/dev/null
+			;;
+		esac
+		;;
 	*-darwin*)
 		case "$2" in
 		*[!0-9]*) # Non numeric

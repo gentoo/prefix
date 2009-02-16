@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.44 2009/02/08 15:50:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.45 2009/02/15 01:24:59 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -307,7 +307,8 @@ java-ant_bsfix_files() {
 			local bsfix_extra_args=""
 			# WARNING KEEP THE ORDER, ESPECIALLY FOR CHANGED ATTRIBUTES!
 			if [[ -n ${JAVA_ANT_REWRITE_CLASSPATH} ]]; then
-				bsfix_extra_args="${bsfix_extra_args} -g -e javac -e xjavac "
+				local cp_tags="${JAVA_ANT_CLASSPATH_TAGS// / -e }"
+				bsfix_extra_args="${bsfix_extra_args} -g -e ${cp_tags}"
 				bsfix_extra_args="${bsfix_extra_args} -a classpath -v '\${gentoo.classpath}'"
 			fi
 			if [[ -n ${JAVA_ANT_JAVADOC_INPUT_DIRS} ]]; then
@@ -346,6 +347,8 @@ java-ant_bsfix_files() {
 
 			[[ -n ${JAVA_ANT_BSFIX_EXTRA_ARGS} ]] \
 				&& bsfix_extra_args="${bsfix_extra_args} ${JAVA_ANT_BSFIX_EXTRA_ARGS}"
+
+			debug-print "bsfix_extra_args: ${bsfix_extra_args}"
 
 			eval ${rewriter3}  ${files} \
 				-c --source-element ${JAVA_PKG_BSFIX_SOURCE_TAGS// / --source-element } \

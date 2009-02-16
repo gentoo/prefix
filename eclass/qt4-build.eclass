@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.20 2009/02/11 21:14:59 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.24 2009/02/15 00:11:50 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -106,6 +106,17 @@ qt4-build_pkg_setup() {
 		echo
 		ebeep 5
 	fi
+
+	if use custom-cxxflags; then
+		echo
+		ewarn "You have set USE=custom-cxxflags, which means Qt will be built with the"
+		ewarn "CXXFLAGS you have set in /etc/make.conf. This is not supported, and we"
+		ewarn "recommend to unset this useflag. But you are free to experiment with it."
+		ewarn "Just do not start crying if it breaks your system, or eats your kitten"
+		ewarn "for breakfast. ;-) "
+		echo
+	fi
+
 }
 
 qt4-build_src_unpack() {
@@ -149,12 +160,26 @@ qt4-build_src_prepare() {
 		symlink_binaries_to_buildtree
 	fi
 
-	# Bug 253127
-	if [[ $(gcc-major-version) -lt "4" ]] ; then
-		sed -e "/^QMAKE_CFLAGS\t/ s:$: -fno-stack-protector-all:" \
-		-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
+	if ! use custom-cxxflags;then
+		# Don't let the user go too overboard with flags.
+		strip-flags
+		replace-flags -O3 -O2
 	fi
 
+	# Bug 253127
+	# Unsupported old gcc versions - hardened needs this :(
+	if [[ $(gcc-major-version) -lt "4" ]] ; then
+		ewarn "Appending -fno-stack-protector to CXXFLAGS"
+		append-cxxflags -fno-stack-protector
+	fi
+
+	# Bug 178652
+	if [[ "$(gcc-major-version)" == "3" ]] && use amd64; then
+		ewarn "Appending -fno-gcse to CFLAGS/CXXFLAGS"
+		append-flags -fno-gcse
+	fi
+
+	# Bug 172219
 	sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
 		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
 		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
@@ -172,34 +197,10 @@ qt4-build_src_prepare() {
 			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
 			-i "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/mkspecs/common/mac-g++.conf failed"
 	fi
+
 }
 
 qt4-build_src_configure() {
-	if use custom-cxxflags; then
-		echo
-		ewarn "You have set USE=custom-cxxflags, which means Qt will be built with the"
-		ewarn "CXXFLAGS you have set in /etc/make.conf. This is not supported, and we"
-		ewarn "recommend to unset this useflag. But you are free to experiment with it."
-		ewarn "Just do not start crying if it breaks your system, or eats your kitten"
-		ewarn "for breakfast. ;-) "
-		echo
-	else
-		# Don't let the user go too overboard with flags.
-		strip-flags
-		replace-flags -O3 -O2
-	fi
-
-	# Unsupported old gcc versions - hardened needs this :(
-	if [[ $(gcc-major-version) -lt "4" ]] ; then
-		ewarn "Appending -fno-stack-protector to CXXFLAGS"
-		append-cxxflags -fno-stack-protector
-	fi
-
-	# Bug 178652
-	if [[ "$(gcc-major-version)" == "3" ]] && use amd64; then
-		ewarn "Appending -fno-gcse to CFLAGS/CXXFLAGS"
-		append-flags -fno-gcse
-	fi
 
 	myconf="$(standard_configure_options) ${myconf}"
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.390 2009/02/09 19:56:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.391 2009/02/15 23:04:39 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1612,10 +1612,10 @@ gcc_do_filter_flags() {
 
 	case ${GCC_BRANCH_VER} in
 	3.2|3.3)
+		replace-cpu-flags k8 athlon64 opteron i686
+		replace-cpu-flags pentium-m pentium3m pentium3
 		case $(tc-arch) in
-			x86)   filter-flags '-mtune=*';;
-			amd64) filter-flags '-mtune=*'
-				replace-cpu-flags k8 athlon64 opteron i686;;
+			amd64|x86) filter-flags '-mtune=*';;
 		esac
 		;;
 	3.4|4.*)
