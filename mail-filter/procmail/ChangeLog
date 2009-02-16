@@ -1,6 +1,9 @@
 # ChangeLog for mail-filter/procmail
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.41 2009/02/06 03:24:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.42 2009/02/15 13:49:23 ranger Exp $
+
+  15 Feb 2009; Brent Baude <ranger@gentoo.org> procmail-3.22-r10.ebuild:
+  stable ppc, bug 257184
 
   06 Feb 2009; Jeroen Roovers <jer@gentoo.org> procmail-3.22-r10.ebuild:
   Stable for HPPA (bug #257184).
