@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.217 2009/02/07 18:54:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.219 2009/02/15 19:55:04 dirtyepic Exp $
+
+  15 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.8.8.1.ebuild,
+  -wxGTK-2.8.9.1-r2.ebuild:
+  Remove old.
+
+  15 Feb 2009; Brent Baude <ranger@gentoo.org> wxGTK-2.8.9.1-r3.ebuild:
+  Marking wxGTK-2.8.9.1-r3 ppc for bug 254696
 
   07 Feb 2009; Raúl Porcel <armin76@gentoo.org> wxGTK-2.8.9.1-r3.ebuild:
   arm/ia64/sh/sparc stable wrt #254696
