@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.9-r1.ebuild,v 1.3 2009/02/15 05:10:20 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.10.ebuild,v 1.1 2009/02/15 05:10:20 dragonheart Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
@@ -13,12 +13,11 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="bzip2 doc ldap nls openct pcsc-lite static selinux smartcard"
+IUSE="bzip2 caps doc ldap nls openct pcsc-lite static selinux smartcard"
 
 COMMON_DEPEND_LIBS="
-	virtual/libc
 	>=dev-libs/pth-1.3.7
-	>=dev-libs/libgcrypt-1.2.2
+	>=dev-libs/libgcrypt-1.4
 	>=dev-libs/libksba-1.0.2
 	>=dev-libs/libgpg-error-1.4
 	>=net-misc/curl-7.7.2
@@ -43,23 +42,18 @@ RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
 	selinux? ( sec-policy/selinux-gnupg )
 	nls? ( virtual/libintl )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-gcc-4.3.patch"
-}
-
 src_compile() {
 	# 'USE=static' support was requested:
 	# gnupg1: bug #29299
 	# gnupg2: bug #159623
 	use static && append-ldflags -static
 
-	# symcryptrun does some non-portable stuff, which breaks on Solaris,
-	# disable for now, can't easily come up with a patch
-	[[ ${CHOST} != *-solaris* ]] \
-		&& myconf="${myconf} --enable-symcryptrun" \
-		|| myconf="${myconf} --disable-symcryptrun"
+	local myconf=--enable-symcryptrun
+#	# symcryptrun does some non-portable stuff, which breaks on Solaris,
+#	# disable for now, can't easily come up with a patch
+#	[[ ${CHOST} != *-solaris* ]] \
+#		&& myconf="${myconf} --enable-symcryptrun" \
+#		|| myconf="${myconf} --disable-symcryptrun"
 
 	econf \
 		--docdir="/usr/share/doc/${PF}" \
@@ -71,22 +65,21 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable ldap) \
 		$(use_enable static) \
-		--disable-capabilities \
-		CC_FOR_BUILD=$(tc-getBUILD_CC) \
-		${myconf} \
-		|| die
-	emake || die
+		$(use_enable caps capabilities) \
+		CC_FOR_BUILD=$(tc-getBUILD_CC)
+		${myconf}
+	emake || die "emake failed"
 	if use doc; then
 		cd doc
-		emake html || die
+		emake html || die "emake html failed"
 	fi
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog NEWS README THANKS TODO VERSION
 
-	mv "${ED}/usr/share/gnupg"/{help*,faq*,FAQ} "${ED}/usr/share/doc/${PF}"
+	mv "${ED}/usr/share/gnupg"/help* "${ED}/usr/share/doc/${PF}"
 
 	dosym gpg2 /usr/bin/gpg
 	dosym gpgv2 /usr/bin/gpgv
