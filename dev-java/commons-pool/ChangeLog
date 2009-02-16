@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/commons-pool
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-pool/ChangeLog,v 1.42 2007/05/17 20:18:30 caster Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-pool/ChangeLog,v 1.43 2009/02/15 20:55:30 caster Exp $
+
+*commons-pool-1.4 (15 Feb 2009)
+
+  15 Feb 2009; Vlastimil Babka <caster@gentoo.org> +commons-pool-1.4.ebuild:
+  Version bump.
 
   17 May 2007; Vlastimil Babka <caster@gentoo.org> -commons-pool-1.2.ebuild,
   commons-pool-1.3.ebuild:
