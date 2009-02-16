@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/quixote
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.23 2008/02/23 23:04:32 hollow Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.24 2009/02/15 15:10:32 patrick Exp $
+
+*quixote-2.6 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +quixote-2.6.ebuild:
+  Bump to 2.6
 
 *quixote-2.5 (23 Feb 2008)
 *quixote-1.2 (23 Feb 2008)
