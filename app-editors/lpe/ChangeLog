@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/lpe
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.21 2008/03/10 14:10:52 drac Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.22 2009/02/15 06:34:45 dragonheart Exp $
+
+  15 Feb 2009; Daniel Black <dragonheart@gentoo.org> lpe-1.2.6.13.ebuild:
+  QA - no more preparealldocs
 
   10 Mar 2008; Samuli Suominen <drac@gentoo.org>
   -files/lpe-1.2.6.12-slang.patch, -lpe-1.2.6.12.ebuild,

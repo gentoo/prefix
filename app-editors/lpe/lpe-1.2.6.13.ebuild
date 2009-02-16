@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.13.ebuild,v 1.8 2008/03/10 14:10:52 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.13.ebuild,v 1.9 2009/02/15 06:34:45 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -33,5 +33,4 @@ src_install() {
 		docdir="${ED}/usr/share/doc/${PF}" \
 		exdir="${ED}/usr/share/doc/${PF}/examples" \
 		install || die "emake install failed."
-	prepalldocs
 }
