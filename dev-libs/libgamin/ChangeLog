@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libgamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.13 2009/02/07 01:30:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.14 2009/02/15 23:15:12 eva Exp $
+
+*libgamin-0.1.10-r2 (15 Feb 2009)
+
+  15 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/libgamin-0.1.10-compilewarnings.patch, +libgamin-0.1.10-r2.ebuild:
+  Fix QA warnings: poor programming practices, bug #257281
 
   07 Feb 2009; Jeroen Roovers <jer@gentoo.org> libgamin-0.1.10-r1.ebuild:
   Stable for HPPA (bug #252350).
