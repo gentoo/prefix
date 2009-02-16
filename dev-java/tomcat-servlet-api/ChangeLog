@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/tomcat-servlet-api
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.57 2008/12/08 02:34:28 jmbsvicetto Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.58 2009/02/14 19:28:26 betelgeuse Exp $
+
+  14 Feb 2009; Petteri Räty <betelgeuse@gentoo.org>
+  tomcat-servlet-api-3.ebuild:
+  Fix README installation for bug #258990.
 
   08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
