@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/checkstyle
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.38 2008/03/10 21:59:21 ken69267 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.39 2009/02/15 18:24:16 caster Exp $
+
+  15 Feb 2009; Vlastimil Babka <caster@gentoo.org> -checkstyle-4.3.ebuild,
+  checkstyle-4.4.ebuild:
+  Cleanup and use slot deps.
 
   10 Mar 2008; Kenneth Prugh <ken69267@gentoo.org> checkstyle-4.4.ebuild:
   amd64 stable, bug #212666

@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-4.4.ebuild,v 1.4 2008/03/10 21:59:21 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-4.4.ebuild,v 1.5 2009/02/15 18:24:16 caster Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 1"
 WANT_ANT_TASKS="ant-antlr ant-nodeps"
 JAVA_PKG_IUSE="doc source test"
 
@@ -17,12 +16,13 @@ SRC_URI="mirror://sourceforge/checkstyle/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+IUSE=""
 
-COMMON_DEP="dev-java/antlr
-	=dev-java/commons-beanutils-1.7*
-	=dev-java/commons-cli-1*
-	dev-java/commons-logging
-	dev-java/commons-collections"
+COMMON_DEP="dev-java/antlr:0
+	dev-java/commons-beanutils:1.7
+	dev-java/commons-cli:1
+	dev-java/commons-logging:0
+	dev-java/commons-collections:0"
 
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
@@ -33,7 +33,7 @@ DEPEND="!test? ( >=virtual/jdk-1.4 )
 	test? (
 		dev-java/ant-junit
 		dev-java/ant-trax
-		dev-java/emma
+		dev-java/emma:0
 	)"
 
 S="${WORKDIR}/${MY_P}"
