@@ -1,9 +1,13 @@
 # ChangeLog for app-emacs/autoconf-mode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/autoconf-mode/ChangeLog,v 1.17 2009/02/06 16:51:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/autoconf-mode/ChangeLog,v 1.18 2009/02/14 11:59:12 ulm Exp $
+
+  14 Feb 2009; Ulrich Mueller <ulm@gentoo.org> -autoconf-mode-2.61.ebuild,
+  -autoconf-mode-2.62.ebuild, autoconf-mode-2.63.ebuild:
+  All stable, bug 257699. Remove old.
 
   06 Feb 2009; Raúl Porcel <armin76@gentoo.org> autoconf-mode-2.63.ebuild:
-  alpha/arm/ia64/s390/sh/x86 stable wrt #257697
+  alpha/arm/ia64/s390/sh/x86 stable wrt #257699
 
   06 Feb 2009; Tiago Cunha <tcunha@gentoo.org> autoconf-mode-2.63.ebuild:
   stable amd64/sparc, bug 257699
