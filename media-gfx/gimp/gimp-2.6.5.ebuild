@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.2.ebuild,v 1.5 2009/01/10 17:10:51 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.5.ebuild,v 1.1 2009/02/15 22:39:04 hanno Exp $
 
 EAPI="prefix"
 
@@ -12,30 +12,27 @@ SRC_URI="mirror://gimp/v2.6/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
+IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
 
 RDEPEND=">=dev-libs/glib-2.18.1
 	>=x11-libs/gtk+-2.12.5
 	>=x11-libs/pango-1.18.0
 	>=media-libs/freetype-2.1.7
 	>=media-libs/fontconfig-2.2.0
-	>=media-libs/libart_lgpl-2.3.8-r1
 	sys-libs/zlib
 	dev-libs/libxml2
 	dev-libs/libxslt
-	x11-misc/xdg-utils
+	!aqua? ( x11-misc/xdg-utils )
 	x11-themes/hicolor-icon-theme
-	media-libs/gegl
+	>=media-libs/gegl-0.0.22
 	aalib? ( media-libs/aalib )
 	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	hal? ( sys-apps/hal )
-	gnome? ( gnome-base/gvfs
-		>=gnome-base/libgnomeui-2.10.0
-		>=gnome-base/gnome-keyring-0.4.5 )
+	gnome? ( gnome-base/gvfs )
 	webkit? ( net-libs/webkit-gtk )
 	jpeg? ( >=media-libs/jpeg-6b-r2 )
 	exif? ( >=media-libs/libexif-0.6.15 )
@@ -64,6 +61,10 @@ pkg_setup() {
 	if use alsa && ! built_with_use media-libs/alsa-lib midi; then
 		eerror "This package requires media-libs/alsa-lib compiled with midi support."
 		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
+	fi
+	if use aqua && ! built_with_use x11-libs/gtk+ aqua; then
+		eerror "This package requires x11-libs/gtk+ compiled with aqua support."
+		die "Please reemerge x11-libs/gtk+ with USE=\"aqua\"."
 	fi
 
 	G2CONF="--enable-default-binary \
