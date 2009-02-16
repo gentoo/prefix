@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.15.ebuild,v 1.7 2009/02/14 18:13:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.15-r1.ebuild,v 1.2 2009/02/15 22:51:49 maekke Exp $
 
 EAPI="prefix"
 
-inherit fdo-mime gnome2-utils eutils
+inherit fdo-mime gnome2-utils autotools
 
 DESCRIPTION="RAW Image format viewer and GIMP plugin"
 HOMEPAGE="http://ufraw.sourceforge.net/"
@@ -29,12 +29,17 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-configure.patch
 	epatch "${FILESDIR}"/${PN}-0.14.1-solaris-ctime_r.patch
+	eautoreconf
 }
 
 src_compile() {
 	econf \
+		--without-cinepaint \
 		$(use_enable contrast) \
+		$(use_with exif exiv2) \
+		$(use_with gimp) \
 		$(use_enable gnome mime) \
 		$(use_enable openmp) \
 		$(use_enable timezone dst-correction)
