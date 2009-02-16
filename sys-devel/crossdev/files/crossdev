@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.109 2008/11/28 09:21:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.110 2009/02/15 23:43:11 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -148,7 +148,8 @@ parse_target() {
 	case ${CTARGET} in
 		avr*) KPKG="[none]"; STAGE_DEFAULT=${STAGE_LIBC};
 		      LCAT="dev-embedded"; LPKG="avr-libc";
-		      GUSE=${GUSE_DISABLE};;
+		      GUSE=${GUSE_DISABLE}
+		      WITH_DEF_HEADERS="no";;
 
 		# due to upstream lameness, build C/C++ at first glance
 		*-cygwin)

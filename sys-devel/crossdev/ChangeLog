@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/crossdev
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.61 2008/11/28 09:21:10 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.62 2009/02/15 23:43:11 vapier Exp $
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org> files/crossdev:
+  Do not build with headers by default for avr #230343.
 
 *crossdev-0.9.19 (28 Nov 2008)
 
