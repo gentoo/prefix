@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3-r1.ebuild,v 1.2 2009/02/11 21:25:32 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3-r1.ebuild,v 1.4 2009/02/14 21:05:59 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ SRC_URI="!binary? ( http://www.scala-lang.org/downloads/distrib/files/${MY_P}.tg
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="binary"
+IUSE="binary emacs"
 # one fails with 1.7, two with 1.4 (blackdown)
 RESTRICT="test"
 
@@ -33,7 +33,10 @@ DEPEND=">=virtual/jdk-1.5
 		dev-java/jline
 	)"
 RDEPEND=">=virtual/jre-1.5
-	dev-java/jline"
+	dev-java/jline
+	!dev-java/scala-bin"
+
+PDEPEND="emacs? ( app-emacs/scala-mode )"
 
 S="${WORKDIR}/${MY_P}"
 
