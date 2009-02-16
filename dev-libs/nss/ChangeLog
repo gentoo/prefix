@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.139 2009/02/12 17:59:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.141 2009/02/15 11:32:16 armin76 Exp $
+
+  15 Feb 2009; Raúl Porcel <armin76@gentoo.org> -nss-3.12.2_rc1.ebuild,
+  nss-3.12.2.ebuild:
+  alpha/arm/ia64 stable wrt #257577
+
+  14 Feb 2009; Markus Meier <maekke@gentoo.org> nss-3.12.2.ebuild:
+  amd64/x86 stable, bug #257577
 
   12 Feb 2009; Brent Baude <ranger@gentoo.org> nss-3.12.2.ebuild:
   Marking nss-3.12.2 ppc64 and ppc for bug 257577
