@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-sql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.26 2009/02/11 23:19:38 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.27 2009/02/14 15:46:37 hwoarang Exp $
+
+*qt-sql-4.4.2-r1 (14 Feb 2009)
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/0234-fix-mysql-threaded.diff, +qt-sql-4.4.2-r1.ebuild:
+  revbump with qt-copy patches. Thanks to Maciej Mrozowski (reavertm)
+  <reavertm@poczta.fm>
 
 *qt-sql-4.5.0_rc1 (11 Feb 2009)
 
