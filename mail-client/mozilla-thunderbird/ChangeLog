@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.283 2009/01/05 13:32:27 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.284 2009/02/15 19:00:55 armin76 Exp $
+
+  15 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-thunderbird-2.0.0.19.ebuild:
+  Bump patchset to fix failure with gcc-4.3, bug #258075
 
   05 Jan 2009; Brent Baude <ranger@gentoo.org>
   mozilla-thunderbird-2.0.0.19.ebuild:
