@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/wxpython
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.117 2009/02/07 19:50:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.120 2009/02/15 19:52:50 dirtyepic Exp $
+
+  15 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> ChangeLog, Manifest:
+  Fix broken commit.
+
+  15 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> ChangeLog, Manifest:
+  Remove old.
+
+  15 Feb 2009; Brent Baude <ranger@gentoo.org> wxpython-2.8.9.1-r2.ebuild:
+  Marking wxpython-2.8.9.1-r2 ppc for bug 254696
 
   07 Feb 2009; Raúl Porcel <armin76@gentoo.org> wxpython-2.8.9.1-r2.ebuild,
   wxpython-2.8.9.1-r3.ebuild:
