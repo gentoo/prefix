@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gconf-python
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.4 2008/12/01 14:31:01 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.5 2009/02/14 14:17:32 klausman Exp $
+
+  14 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  gconf-python-2.22.3.ebuild:
+  Stable on alpha, bug #258040
 
   01 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -gconf-python-2.22.1.ebuild, gconf-python-2.22.3.ebuild:

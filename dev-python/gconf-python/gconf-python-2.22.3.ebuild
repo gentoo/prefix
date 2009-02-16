@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/gconf-python-2.22.3.ebuild,v 1.4 2008/12/31 03:21:36 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/gconf-python-2.22.3.ebuild,v 1.5 2009/02/14 14:17:32 klausman Exp $
 
 EAPI="prefix"
 
