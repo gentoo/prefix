@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/django
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.29 2009/02/03 09:21:28 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.30 2009/02/15 17:25:42 patrick Exp $
+
+*django-1.0.2-r1 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +django-1.0.2-r1.ebuild:
+  Few small fixes to close #247204
 
 *django-1.0.2 (03 Feb 2009)
 
