@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.683 2009/02/03 23:57:32 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.685 2009/02/15 23:03:11 vapier Exp $
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild:
+  Use the replace-cpu-flags logic in the eclass #252698 by Le retraité.
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild,
+  gcc-3.4.6-r2.ebuild:
+  Add fix from upstream for open() arguments #256638 by Martin von Gagern.
 
   03 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> Manifest:
   Fix Manifest. Bug #257538.
