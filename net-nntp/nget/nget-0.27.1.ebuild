@@ -1,14 +1,17 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/nget-0.27.1.ebuild,v 1.10 2008/05/04 01:34:25 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/nget-0.27.1.ebuild,v 1.11 2009/02/15 22:38:29 vapier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic eutils
 
+DEB_VER="10"
+DEB_PATCH="${PN}_${PV}-${DEB_VER}.diff"
 DESCRIPTION="Network utility to retrieve files from an NNTP news server"
 HOMEPAGE="http://nget.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
+	mirror://debian/pool/main/n/nget/${DEB_PATCH}.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,9 +25,11 @@ RDEPEND="dev-libs/popt
 DEPEND="dev-libs/uulib"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
+	epatch "${WORKDIR}"/${DEB_PATCH}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-gcc-4.3.patch
+	epatch debian/patches/*.patch "${FILESDIR}"/${P}-headers.patch
+	sed -i '/^install_bin/s:-s::' Makefile.in
 }
 
 src_compile() {

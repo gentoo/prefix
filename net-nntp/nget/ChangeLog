@@ -1,6 +1,12 @@
 # ChangeLog for net-nntp/nget
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.12 2008/05/04 01:34:25 dragonheart Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/ChangeLog,v 1.13 2009/02/15 22:38:29 vapier Exp $
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  -files/nget-0.27.1-gcc-4.3.patch, +files/nget-0.27.1-headers.patch,
+  nget-0.27.1.ebuild:
+  Fix building with newer toolchains by using Debian patches #251529 by
+  Diego E. Flameeyes Pettenò.
 
   04 May 2008; Daniel Black <dragonheart@gentoo.org>
   +files/nget-0.27.1-gcc-4.3.patch, nget-0.27.1.ebuild:
