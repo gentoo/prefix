@@ -1,6 +1,11 @@
 # ChangeLog for app-text/txt2tags
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.32 2007/10/01 18:12:26 opfer Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.33 2009/02/15 17:42:56 patrick Exp $
+
+*txt2tags-2.5 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +txt2tags-2.5.ebuild:
+  Bump to 2.5, closes #234844
 
   01 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   -files/50txt2tags-gentoo.el, -txt2tags-2.1.ebuild, -txt2tags-2.3.ebuild:
