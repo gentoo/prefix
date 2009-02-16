@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.59 2009/02/12 21:19:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.60 2009/02/14 15:00:41 armin76 Exp $
+
+  14 Feb 2009; Raúl Porcel <armin76@gentoo.org> lsof-4.81-r2.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #258195
 
   12 Feb 2009; Brent Baude <ranger@gentoo.org> lsof-4.81-r2.ebuild:
   stable ppc64, bug 258195
