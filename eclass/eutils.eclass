@@ -514,7 +514,7 @@ enewuser() {
 		fi
 	else
 		for shell in /sbin/nologin /usr/sbin/nologin /bin/false /usr/bin/false /dev/null ; do
-			[[ -x ${EROOT}${shell} ]] && break
+			[[ -x ${ROOT}${shell} ]] && break
 		done
 
 		if [[ ${shell} == "/dev/null" ]] ; then
