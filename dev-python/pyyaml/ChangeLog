@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pyyaml
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.4 2008/08/06 19:22:02 neurogeek Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.5 2009/02/15 15:13:07 patrick Exp $
+
+*pyyaml-3.08 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +pyyaml-3.08.ebuild:
+  Bump to 3.08
 
   06 Aug 2008; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
