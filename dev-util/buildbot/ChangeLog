@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.30 2009/02/13 18:50:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.31 2009/02/15 11:53:12 patrick Exp $
+
+*buildbot-0.7.9-r1 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +buildbot-0.7.9-r1.ebuild:
+  Adding twisted-mail to deps, making twisted-web unconditional as it is
+  used in the default config. Fixes #258465.
 
   13 Feb 2009; Raúl Porcel <armin76@gentoo.org> buildbot-0.7.9.ebuild:
   Add ~arm/~s390/~sh wrt #234894
