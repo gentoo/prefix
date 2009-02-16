@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.181 2009/02/14 04:59:04 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.182 2009/02/14 16:06:39 armin76 Exp $
+
+  14 Feb 2009; Raúl Porcel <armin76@gentoo.org> e2fsprogs-1.41.3-r1.ebuild:
+  arm/ia64/s390/sh/sparc/x86 stable wrt #258527
 
   14 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
   e2fsprogs-1.41.3-r1.ebuild:
