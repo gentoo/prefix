@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.1.ebuild,v 1.13 2008/12/30 04:33:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.1.ebuild,v 1.14 2009/02/15 00:19:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -92,8 +92,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "USE=crypt has been changed to USE=loop-aes.  If you need"
-	ewarn "support for it, make sure to update your USE accordingly."
+	ewarn "The loop-aes code has been split out of USE=crypt and into USE=loop-aes."
+	ewarn "If you need support for it, make sure to update your USE accordingly."
 	use prefix && ewarn "Be warned that this package is modified to not do:
 	'chgrp tty ${EPREFIX}/usr/bin/write' "
 	use prefix && ewarn "breakage may occur."

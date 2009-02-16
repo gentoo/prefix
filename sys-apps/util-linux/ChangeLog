@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.255 2009/02/10 00:42:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.257 2009/02/15 00:21:10 vapier Exp $
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.14.2.ebuild:
+  Update loop-aes patch #258456.
+
+  15 Feb 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.14.1.ebuild,
+  util-linux-2.14.2.ebuild:
+  Touchup wording on USE=loop-aes info.
 
 *util-linux-2.14.2 (10 Feb 2009)
 
