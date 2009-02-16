@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/giggle
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.10 2009/02/14 01:07:32 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.12 2009/02/15 14:25:01 ikelos Exp $
+
+  15 Feb 2009; Mike Auty <ikelos@gentoo.org> giggle-0.4.90.ebuild:
+  Giggle-0.4.90 depends on glib-2.18, thanks to Jose Marino (bug 259054).
+
+  14 Feb 2009; Mike Auty <ikelos@gentoo.org> giggle-0.4.90.ebuild:
+  Add in dependency on evolution-data-server, which can't be configured out,
+  and is needed for a giggle plugin.
 
 *giggle-0.4.90 (14 Feb 2009)
 
