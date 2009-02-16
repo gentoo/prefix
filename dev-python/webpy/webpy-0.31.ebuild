@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/webpy/webpy-0.23.ebuild,v 1.1 2008/02/11 10:54:51 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/webpy-0.31.ebuild,v 1.1 2009/02/15 14:10:01 patrick Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ MY_PN="web.py"
 
 DESCRIPTION="A small and simple web framework for python"
 HOMEPAGE="http://www.webpy.org"
-SRC_URI="http://www.webpy.org/static/${MY_PN}-${PV}.tar.gz"
+SRC_URI="http://www.webpy.org/static/${MY_PN}-0.3.tar.gz"
 
 LICENSE="public-domain"
 SLOT="0"
@@ -20,7 +20,7 @@ IUSE=""
 DEPEND=">=dev-lang/python-2.3"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/webpy"
 PYTHON_MODNAME="web"
 
 src_test() {
