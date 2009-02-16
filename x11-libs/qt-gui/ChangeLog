@@ -1,6 +1,36 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.30 2009/02/13 23:05:35 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.33 2009/02/15 22:05:35 hwoarang Exp $
+
+  15 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  -qt-gui-4.5.0_rc1.ebuild, qt-gui-4.5.0_rc1-r1.ebuild:
+  Added gtk+:2 dependency. Fixes bug #259119
+
+*qt-gui-4.4.2-r3 (14 Feb 2009)
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/0195-compositing-properties.diff,
+  +files/0203-qtexthtmlparser-link-color.diff,
+  +files/0224-fast-qpixmap-fill.diff,
+  +files/0225-invalidate-tabbar-geometry-on-refresh.patch,
+  +files/0226-qtreeview-column_resize_when_needed.diff,
+  +files/0238-fix-qt-qttabbar-size.diff,
+  +files/0245-fix-randr-changes-detecting.diff,
+  +files/0255-qtreeview-selection-columns-hidden.diff,
+  +files/0258-windowsxpstyle-qbrush.diff,
+  +files/0260-fix-qgraphicswidget-deletionclearFocus.diff,
+  +files/0261-sync-before-reset-errorhandler.patch,
+  +files/0264-fix-zero-height-qpixmap-isnull.diff,
+  +files/0266-fix-focusChain1.diff, +files/0267-fix-focusChain2.diff,
+  +qt-gui-4.4.2-r3.ebuild:
+  revbump with qt-copy patches. Thanks to Maciej Mrozowski (reavertm)
+  <reavertm@poczta.fm>
+
+*qt-gui-4.5.0_rc1-r1 (14 Feb 2009)
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qt-gui-4.5.0_rc1-r1.ebuild:
+  Build qtscript debugger, fixes bug #258961
 
   13 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
   qt-gui-4.5.0_rc1.ebuild:
