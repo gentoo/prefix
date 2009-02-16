@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="debug sdl xv"
 
 RDEPEND="dev-libs/popt
@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.99-2.6.patch
 	epatch "${WORKDIR}"/${PN}-1.0.0-pic.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0-solaris.patch
+	epatch "${FILESDIR}"/${PN}-1.0.0-darwin.patch
 	elibtoolize
 	epunt_cxx #74497
 }
