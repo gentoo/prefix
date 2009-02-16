@@ -1,6 +1,12 @@
 # ChangeLog for app-text/html-xml-utils
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/html-xml-utils/ChangeLog,v 1.33 2008/01/11 21:14:34 grobian Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/html-xml-utils/ChangeLog,v 1.34 2009/02/15 18:20:16 patrick Exp $
+
+*html-xml-utils-4.7 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org>
+  +html-xml-utils-4.7.ebuild:
+  Bump to 4.7, new dep on gperf, added ~amd64 keyword, close #203795
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   html-xml-utils-3.7.ebuild:
