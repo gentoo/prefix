@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.28 2009/02/14 00:04:03 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.31 2009/02/14 23:53:26 hwoarang Exp $
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-core-4.5.0_rc1.ebuild:
+  fixing src_prepare. Thanks to Arfrever
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-core-4.5.0_rc1.ebuild:
+  Fixing bug #172219. Thanks to Arfrever Frehtes Taifersar Arahesis
+  <Arfrever.FTA@GMail.Com>
+
+*qt-core-4.4.2-r2 (14 Feb 2009)
+
+  14 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/0167-fix-group-reading.diff,
+  +files/0253-qmake_correct_path_separators.diff,
+  +files/0257-qurl-validate-speedup.diff, +qt-core-4.4.2-r2.ebuild:
+  revbump with a couple of patches from qt-copy
 
   14 Feb 2009; Ben de Groot <yngwin@gentoo.org> qt-core-4.5.0_rc1:
   Correct <qt-4.4.0 blocker
