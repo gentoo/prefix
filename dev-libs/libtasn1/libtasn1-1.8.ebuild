@@ -17,6 +17,15 @@ DEPEND=">=dev-lang/perl-5.6
 	sys-devel/bison"
 RDEPEND=""
 
+src_compile() {
+	econf || die
+	# Darwin's ar doesn't like creating empty archives, so just skip doing so
+	# https://savannah.gnu.org/support/?106611
+	[[ ${CHOST} == *-darwin* ]] \
+		&& sed -i -e '/^SUBDIRS = gllib/d' lib/Makefile
+	emake || die
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "installed failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS
