@@ -1,10 +1,27 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2354 2009/02/14 00:27:21 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2359 2009/02/15 23:15:23 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Katoob has been removed. bug 251566.
+
+  15 Feb 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Remove mask of mail-client/xfmail, mail-client/elm
+
+  15 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Masking media-video/gephex for removal
+
+  14 Feb 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  remove mask for dev-util/bzr and bzrtools, stable versions of 1.12
+  released
+
+  14 Feb 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking =x11-libs/qt-script-4.5.0_rc1-r1 because of build failures, bug
+  258961
 
   14 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/alpha/package.use.mask,
   arch/ia64/package.use.mask, arch/mips/package.use.mask,

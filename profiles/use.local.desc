@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4200 2009/02/14 00:47:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4202 2009/02/15 23:27:39 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -162,7 +162,6 @@ app-editors/gvim:nextaw - Include support for the neXtaw GUI
 app-editors/jasspa-microemacs:nanoemacs - Build NanoEmacs instead of MicroEmacs
 app-editors/joe:xterm - Enable full xterm clipboard support
 app-editors/jove:unix98 - Use Unix 98 pty's instead of BSD pts's
-app-editors/katoob:highlight - Enable source code highlighting
 app-editors/nano:justify - Toggle the justify option
 app-editors/nvu:moznoxft - Placeholder until mozilla eclass is modified for nvu
 app-editors/tea:enchant - Enable spell checking using enchant
@@ -2058,6 +2057,7 @@ net-mail/tpop3d:passwd - Enable /etc/passwd authentication
 net-mail/tpop3d:sha1 - Use OpenSSL for sha1 encrypted passwords.
 net-mail/tpop3d:shadow - Enable /etc/shadow authentication
 net-mail/uw-imap:clearpasswd - Enables cleartext logins outside of SSL sessions
+net-mail/vchkuser:debug - Enables debug messages to syslog
 net-mail/vimap:clearpasswd - Enables cleartext logins outside of SSL sessions
 net-mail/vpopmail:clearpasswd - Enables cleartext password storage in the vpasswd files
 net-mail/vpopmail:ipalias - Enables enable-ip-alias-domains

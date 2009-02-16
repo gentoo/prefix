@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9485 2009/02/13 15:38:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9493 2009/02/16 04:18:54 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,15 @@
 
 #--- END OF EXAMPLES ---
 
+# Peter Alfredsen <loki_val@gentoo.org> (15 Feb 2009)
+# Masking for removal in 30 days.
+# Fails to build with gcc-4.3, bug 250712
+media-video/gephex
+
+# Ben de Groot <yngwin@gentoo.org> (14 Feb 2009)
+# Masking because of build failures, bug 258961
+=x11-libs/qt-script-4.5.0_rc1-r1
+
 # Diego E. Pettenò <flameeyes@gentoo.org> (13 Feb 2009)
 # Masked because of bug 237887, fails to fetch (git repository moved).
 dev-lang/rubinius
@@ -39,11 +48,6 @@ dev-lang/rubinius
 # I gave away maintainership a while ago nobody took it on. Prepare for remove.
 app-emulation/ganeti
 app-emulation/ganeti-instance-debian-etch
-
-# Peter Volkov <pva@gentoo.org> (10 Feb 2009)
-# Masking release candidate.
-=dev-util/bzr-1.12_rc1
-=dev-util/bzrtools-1.12.0
 
 # MATSUU Takuto <matsuu@gentoo.org> (07 Feb 2009)
 # Masked for testing
@@ -65,7 +69,7 @@ app-emulation/ganeti-instance-debian-etch
 # Jeremy Olexa <darkside@gentoo.org> (05 Feb 2009)
 # libjingle-0.3.11 was created by the tapioca team
 # libjingle-0.3.12 was created by the farsight team
-# As a result, some things don't work with 0.3.12 (bug 256953)
+# As a result, some things don't work with 0.3.12 (bug 248008)
 =net-libs/libjingle-0.3.12
 
 # Jeremy Olexa <darkside@gentoo.org> (04 Feb 2009)
@@ -257,8 +261,8 @@ net-analyzer/rtg
 
 # mask pending removal
 # Benedikt Böhm <hollow@gentoo.org> (10 Jan 2009)
-# baselayout-vserver is unmaintained and obsoleted by
-# baselayout-2/openrc. please upgrade. removal in 30 days.
+# baselayout-vserver is unmaintained and obsoleted by baselayout-2/openrc.
+# Please, upgrade to openrc. removal after openrc goes stable, bug #254519
 sys-apps/baselayout-vserver
 
 # Christoph Mende <angelos@gentoo.org> (07 Jan 2009)
@@ -335,10 +339,6 @@ dev-util/w32api
 # Torsten Veller <tove@gentoo.org> (29 Dec 2008)
 # Unmaintained net-mail packages
 # Masked for removal in 30 days
-# 251377 - 29 Dec 2008
-mail-client/xfmail
-# 251381 - 29 Dec 2008
-mail-client/elm
 # 251383 - 29 Dec 2008
 net-mail/ezmlm
 net-mail/ezmlm-idx-mysql
@@ -419,12 +419,6 @@ net-libs/libopm
 # Removed in 60 days, multiple bugs - does not compile with recent kernels.
 # bug 251795
 sys-fs/cloop
-
-# Peter Alfredsen <loki_val@gentoo.org> (20 Dec 2008)
-# Masked for removal in 30 days. Version that compiles with gcc-4.3
-# is not ready for stable ( bug 251566 ).
-# Upstream has abandoned it, alternatives such as gedit exist.
-app-editors/katoob
 
 # Mike Pagano <mpagano@gentoo.org> (17 Dec 2008)
 # Masked waiting on >=portage-2.2* to be unmasked
