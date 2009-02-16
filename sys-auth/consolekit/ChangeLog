@@ -1,6 +1,25 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.38 2009/02/12 21:16:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.40 2009/02/15 22:33:16 eva Exp $
+
+*consolekit-0.2.10-r1 (15 Feb 2009)
+
+  15 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/consolekit-0.2.10-directory-leak.patch, +files/90-consolekit,
+  +files/consolekit-0.2.10-cleanup_console_tags.patch,
+  +files/consolekit-0.2.10-pam-add-nox11.patch,
+  +files/consolekit-0.2.10-polkit-automagic.patch,
+  +files/pam-foreground-compat.ck, -consolekit-0.2.1.ebuild,
+  +consolekit-0.2.10-r1.ebuild:
+  Bump to 0.2.10-r1.
+   * Add compatibility script for at_console dependant programs, bug #257761.
+   * Remove unneeded rm, bug #259096.
+   * Add a Xsession script for people not using gdm, bug #257763.
+   * Plug a leak, bug #258685.
+   * Add keepdirs and fix localstatedir, bug #257164.
+
+  15 Feb 2009; Markus Meier <maekke@gentoo.org> consolekit-0.2.10.ebuild:
+  x86 stable, bug #242270
 
   12 Feb 2009; Brent Baude <ranger@gentoo.org> consolekit-0.2.10.ebuild:
   stable ppc64, bug 242270
