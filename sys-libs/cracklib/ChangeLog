@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.127 2009/02/13 19:17:18 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.129 2009/02/15 16:33:41 maekke Exp $
+
+  15 Feb 2009; Markus Meier <maekke@gentoo.org> cracklib-2.8.13.ebuild:
+  x86 stable, bug #258530
+
+  14 Feb 2009; Brent Baude <ranger@gentoo.org> cracklib-2.8.13.ebuild:
+  stable ppc, bug 258530
 
   13 Feb 2009; Ferris McCormick <fmccor@gentoo.org> cracklib-2.8.13.ebuild:
   Sparc stable, bug #258530.
