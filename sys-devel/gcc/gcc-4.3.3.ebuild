@@ -84,7 +84,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.3.0/solarisx86_64.patch
+	epatch "${FILESDIR}"/4.3.3/solarisx86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
