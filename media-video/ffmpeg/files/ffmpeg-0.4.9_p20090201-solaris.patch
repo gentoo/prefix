@@ -2,6 +2,8 @@
                       on Solaris, OpenSolaris however doesn't need it
                       anymore
 
+SABENA: http://thread.gmane.org/gmane.comp.video.ffmpeg.devel/83705
+
 --- configure
 +++ configure
 @@ -1904,6 +1904,13 @@
