@@ -51,7 +51,7 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-solaris* ]] && append-flags -lnsl -lsocket
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lnsl -lsocket
 	tc-export CC CXX RANLIB AR
 
 	# the debug option is bogus ... all it does is add extra
