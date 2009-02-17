@@ -16,11 +16,11 @@
  TARGET  = openjpeg
  STATICLIB = lib$(TARGET).a
 +ifeq ($(TARGOS),Darwin)
-+SHAREDLIB = lib$(TARGET)-$(VER_MAJOR).$(VER_MINOR).dylib
++SHAREDLIB = lib$(TARGET).$(VER_MAJOR).$(VER_MINOR).dylib
 +LIBNAME = lib$(TARGET).$(VER_MAJOR).dylib
 +LIBCMD = -dynamiclib -install_name $(INSTALL_LIBDIR)/$(LIBNAME)
 +else
- SHAREDLIB = lib$(TARGET)-$(VER_MAJOR).$(VER_MINOR).so
+ SHAREDLIB = lib$(TARGET).so.$(VER_MAJOR).$(VER_MINOR)
  LIBNAME = lib$(TARGET).so.$(VER_MAJOR)
 +LIBCMD = -shared -Wl,-soname,$(LIBNAME)
 +endif
