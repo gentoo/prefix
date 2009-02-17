@@ -12,7 +12,7 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="bzip2 caps doc ldap nls openct pcsc-lite static selinux smartcard"
 
 COMMON_DEPEND_LIBS="
@@ -48,15 +48,15 @@ src_compile() {
 	# gnupg2: bug #159623
 	use static && append-ldflags -static
 
-	local myconf=--enable-symcryptrun
-#	# symcryptrun does some non-portable stuff, which breaks on Solaris,
-#	# disable for now, can't easily come up with a patch
-#	[[ ${CHOST} != *-solaris* ]] \
-#		&& myconf="${myconf} --enable-symcryptrun" \
-#		|| myconf="${myconf} --disable-symcryptrun"
+	local myconf=
+	# symcryptrun does some non-portable stuff, which breaks on Solaris,
+	# disable for now, can't easily come up with a patch
+	[[ ${CHOST} != *-solaris* ]] \
+		&& myconf="${myconf} --enable-symcryptrun" \
+		|| myconf="${myconf} --disable-symcryptrun"
 
 	econf \
-		--docdir="/usr/share/doc/${PF}" \
+		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--enable-gpg \
 		--enable-gpgsm \
 		--enable-agent \
@@ -66,7 +66,7 @@ src_compile() {
 		$(use_enable ldap) \
 		$(use_enable static) \
 		$(use_enable caps capabilities) \
-		CC_FOR_BUILD=$(tc-getBUILD_CC)
+		CC_FOR_BUILD=$(tc-getBUILD_CC) \
 		${myconf}
 	emake || die "emake failed"
 	if use doc; then
