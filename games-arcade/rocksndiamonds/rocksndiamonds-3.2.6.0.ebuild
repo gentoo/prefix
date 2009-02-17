@@ -21,7 +21,7 @@ SRC_URI="http://www.artsoft.org/RELEASES/unix/rocksndiamonds/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-winnt"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris ~x86-winnt"
 IUSE="X sdl"
 
 DEPEND="app-arch/unzip"
