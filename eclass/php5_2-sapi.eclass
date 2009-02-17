@@ -632,7 +632,7 @@ php5_2-sapi_src_compile() {
 	tc-export CC
 
 	# We don't use econf, because we need to override all of its settings
-	./configure --prefix="${EPREFIX}"${destdir} --host=${CHOST}	--mandir="${EPREFIX}"${destdir}/man --infodir="${EPREFIX}"${destdir}/info --sysconfdir="${EPREFIX}"/etc --cache-file=./config.cache ${my_conf} ${EXTRA_ECONF} || die "configure failed"
+	./configure --prefix="${EPREFIX}"${destdir} --host=${CHOST} --mandir="${EPREFIX}"${destdir}/man --infodir="${EPREFIX}"${destdir}/info --sysconfdir="${EPREFIX}"/etc --cache-file=./config.cache ${my_conf} ${EXTRA_ECONF} || die "configure failed"
 	emake || die "make failed"
 }
 
