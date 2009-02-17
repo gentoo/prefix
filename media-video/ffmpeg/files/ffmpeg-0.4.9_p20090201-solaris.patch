@@ -4,11 +4,17 @@
 
 --- configure
 +++ configure
-@@ -1437,6 +1437,7 @@
-         SHFLAGS='-shared -Wl,-h,$$(@F)'
-         network_extralibs="-lsocket -lnsl"
-         add_cflags -D__EXTENSIONS__
-+        osextralibs="-lrt"
-         ;;
-     netbsd)
-         oss_demuxer_extralibs="-lossaudio"
+@@ -1904,6 +1904,13 @@
+     fi
+ done
+ 
++# Solaris has nanosleep in -lrt, OpenSolaris no longer needs that
++if check_func nanosleep; then
++	:
++elif check_func nanosleep -lrt; then
++	add_extralibs -lrt
++fi
++
+ check_lib math.h sin -lm
+ 
+ # test for C99 functions in math.h
