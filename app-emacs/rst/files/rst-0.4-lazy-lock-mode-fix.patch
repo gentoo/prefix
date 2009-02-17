@@ -1,0 +1,36 @@
+--- rst.el.orig	2005-12-27 14:12:04.000000000 +0100
++++ rst.el	2008-01-14 18:49:33.000000000 +0100
+@@ -2199,20 +2199,30 @@
+   (when (boundp 'font-lock-support-mode)
+     ;; rst-mode has its own mind about font-lock-support-mode
+     (make-local-variable 'font-lock-support-mode)
++    ;; jit-lock-mode replaced lazy-lock-mode in GNU Emacs 22
++    (let ((jit-or-lazy-lock-mode
++           (cond
++            ((fboundp 'jit-lock-mode) 'jit-lock-mode)
++            ((fboundp 'lazy-lock-mode) 'lazy-lock-mode)
++            ;; if neither lazy-lock nor jit-lock is supported,
++            ;; tell user and disable rst-mode-lazy
++            (t (when rst-mode-lazy
++                 (message "Disabled lazy fontification, because no known support mode found.")
++                 (setq rst-mode-lazy nil))))))
+     (cond
+      ((and (not rst-mode-lazy) (not font-lock-support-mode)))
+      ;; No support mode set and none required - leave it alone
+      ((or (not font-lock-support-mode) ;; No support mode set (but required)
+ 	  (symbolp font-lock-support-mode)) ;; or a fixed mode for all
+       (setq font-lock-support-mode
+-	    (list (cons 'rst-mode (and rst-mode-lazy 'lazy-lock-mode))
++	    (list (cons 'rst-mode (and rst-mode-lazy jit-or-lazy-lock-mode))
+ 		  (cons t font-lock-support-mode))))
+      ((and (listp font-lock-support-mode)
+ 	   (not (assoc 'rst-mode font-lock-support-mode)))
+       ;; A list of modes missing rst-mode
+       (setq font-lock-support-mode
+-	    (append '((cons 'rst-mode (and rst-mode-lazy 'lazy-lock-mode)))
+-		    font-lock-support-mode)))))
++	    (cons (cons 'rst-mode (and rst-mode-lazy jit-or-lazy-lock-mode))
++		  font-lock-support-mode))))))
+ 
+   ;; Names and hooks
+   (setq mode-name "reST")
