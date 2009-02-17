@@ -408,6 +408,10 @@ src_compile() {
 		myconf="${myconf} --disable-3dfx --disable-tdfxvid --disable-tdfxfb"
 	fi
 
+	# too bizarre to be true, assuming all solaris installations have a Sun
+	# videocard is insane, #258729
+	myconf="${myconf} --disable-xvr100"
+
 	#############
 	# Audio Output #
 	#############

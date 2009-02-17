@@ -273,10 +273,10 @@ src_compile() {
 	# dvdread and libdvdcss are internal libs
 	# http://www.mplayerhq.hu/DOCS/HTML/en/dvd.html
 	# You can optionally use external dvdread/dvdnav support.
+	myconf="${myconf} --disable-dvdread-internal"
 	if use dvdnav; then
-		myconf="${myconf} --with-dvdread-config=/usr/bin/dvdread-config \
-			--with-dvdnav-config=/usr/bin/dvdnav-config \
-			--disable-dvdread-internal"
+		myconf="${myconf} --with-dvdread-config=${EPREFIX}/usr/bin/dvdread-config \
+			--with-dvdnav-config=${EPREFIX}/usr/bin/dvdnav-config"
 	elif ! use dvd && ! use dvdread; then
 		myconf="${myconf} --disable-dvdnav --disable-dvdread"
 		use a52 || myconf="${myconf} --disable-liba52 \
