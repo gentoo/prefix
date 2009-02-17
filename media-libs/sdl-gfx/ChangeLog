@@ -1,0 +1,187 @@
+# ChangeLog for media-libs/sdl-gfx
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/ChangeLog,v 1.51 2008/12/21 23:27:47 mr_bones_ Exp $
+
+  21 Dec 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/sdl-gfx-2.0.18-gcc43.patch, +sdl-gfx-2.0.18.ebuild:
+  version bump
+
+*sdl-gfx-2.0.18 (21 Dec 2008)
+
+  21 Dec 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/sdl-gfx-2.0.18-gcc43.patch, +sdl-gfx-2.0.18.ebuild:
+  version bump
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> sdl-gfx-2.0.17.ebuild:
+  Stable for HPPA (bug #236246).
+
+  11 Sep 2008; Raúl Porcel <armin76@gentoo.org> sdl-gfx-2.0.17.ebuild:
+  alpha/ia64/sparc stable wrt #236246
+
+  06 Sep 2008; nixnut <nixnut@gentoo.org> sdl-gfx-2.0.17.ebuild:
+  Stable on ppc wrt bug 236246
+
+  31 Aug 2008; Markus Meier <maekke@gentoo.org> sdl-gfx-2.0.17.ebuild:
+  amd64/x86 stable, bug #236246
+
+*sdl-gfx-2.0.17 (06 Jun 2008)
+
+  06 Jun 2008; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/sdl-gfx-2.0.17-gcc43.patch, +sdl-gfx-2.0.17.ebuild:
+  version bump
+
+  20 May 2008; Raúl Porcel <armin76@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  ia64 stable wrt #221203
+
+  17 May 2008; Tobias Klausmann <klausman@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Stable on alpha, bug #221203
+
+  16 May 2008; Ferris McCormick <fmccor@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Sparc stable --- Bug #221203 --- lincity-ng still works using it.
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Stable for HPPA (bug #221203).
+
+  11 May 2008; Markus Meier <maekke@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  amd64/x86 stable, bug #221203
+
+  10 May 2008; nixnut <nixnut@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Stable on ppc wrt bug 221203
+
+  10 May 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/sdl-gfx-2.0.16-gcc43.patch, sdl-gfx-2.0.16.ebuild:
+  Add fix from Debian for building with gcc-4.3 #219621 by Peter Alfredsen.
+
+  06 Mar 2008; Chris Gianelloni <wolf31o2@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Added ~x86-fbsd since it was likely needed to be added for bug #175779,
+  which has ~x86-fbsd KEYWORDS.
+
+  14 Feb 2008; Tristan Heaven <nyhm@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Respect LDFLAGS, bug #210137
+
+  14 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  Run elibtoolize.
+
+  03 Aug 2007; Tristan Heaven <nyhm@gentoo.org> sdl-gfx-2.0.16.ebuild:
+  HOMEPAGE update, bug #187473
+
+*sdl-gfx-2.0.16 (06 Feb 2007)
+
+  06 Feb 2007; Michael Sterrett <mr_bones_@gentoo.org>
+  +sdl-gfx-2.0.16.ebuild:
+  version bump
+
+  25 Dec 2006; Tristan Heaven <nyhm@gentoo.org> sdl-gfx-2.0.14.ebuild:
+  Add a revdep-rebuild warning, bug #159045
+
+*sdl-gfx-2.0.14 (19 Dec 2006)
+
+  19 Dec 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/sdl-gfx-2.0.14-gcc34.patch, +sdl-gfx-2.0.14.ebuild:
+  version bump
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> sdl-gfx-2.0.13-r1.ebuild:
+  Mark 2.0.13-r1 stable on ia64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> sdl-gfx-2.0.13-r1.ebuild:
+  Mark 2.0.13-r1 ~ia64
+
+*sdl-gfx-2.0.13-r1 (10 Dec 2005)
+
+  10 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/sdl-gfx-2.0.13-gcc34.patch, +sdl-gfx-2.0.13-r1.ebuild:
+  Fix build error with newer versions of gcc #115087 by charly.
+
+  21 Apr 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  sdl-gfx-2.0.13.ebuild:
+  filter -funroll-loops for bug #89749
+
+*sdl-gfx-2.0.13 (19 Apr 2005)
+
+  19 Apr 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  +sdl-gfx-2.0.13.ebuild:
+  version bump (bug #89587)
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  27 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> sdl-gfx-2.0.12.ebuild:
+  Stable on sparc
+
+  27 Sep 2004; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.12.ebuild:
+  stable on x86
+
+  21 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> sdl-gfx-2.0.11.ebuild:
+  Stable on sparc
+
+*sdl-gfx-2.0.12 (30 Aug 2004)
+
+  30 Aug 2004; Michael Sterrett <mr_bones_@gentoo.org> +sdl-gfx-2.0.12.ebuild:
+  version bump
+
+  07 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> sdl-gfx-2.0.11.ebuild:
+  Stable on alpha.
+
+  02 Jul 2004; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.11.ebuild:
+  stable on x86
+
+*sdl-gfx-2.0.11 (24 May 2004)
+
+  24 May 2004; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.11.ebuild:
+  version bump
+
+  19 Jan 2004; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.10.ebuild:
+  mark stable for x86; IUSE="mmx"
+
+  10 Jan 2004; <augustus@gentoo.org> sdl-gfx-2.0.10.ebuild:
+  Needed to disable mmx optimizations for amd64 too.
+
+*sdl-gfx-2.0.10 (11 Dec 2003)
+
+  11 Dec 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.10.ebuild:
+  version bump
+
+  27 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.8.ebuild:
+  clean known-buggy 2.0.8 from portage
+
+*sdl-gfx-2.0.9 (27 Oct 2003)
+
+  27 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.9.ebuild:
+  version bump
+
+  30 Sep 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.8.ebuild:
+  Use replace-flags instead of filter-flags to replace -O? (This was added
+  before, probably for some other bug, but brought up again in bug 30034)
+
+*sdl-gfx-2.0.8 (30 Sep 2003)
+
+  30 Sep 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-gfx-2.0.8.ebuild:
+  version bump, added more docs (bug 30014)
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*sdl-gfx-2.0.3 (9 Sep 2002)
+
+  changed econf to econf ${myconf} || die
+
+
+*sdl-gfx-2.0.3 (5 Jul 2002)
+
+  10 Mar 2003; Aron Griffis <agriffis@gentoo.org> sdl-gfx-2.0.3.ebuild:
+  Mark stable on alpha
+
+  04 Mar 2003; Seemant Kulleen <seemant@gentoo.org> sdl-gfx-2.0.3.ebuild:
+  filter flags to change the -O to -O2
+
+  27 Aug 2002; Seemant Kulleen <seemant@gentoo.org> sdl-gfx-2.0.3 :
+
+  Removed mmx stuff if not in USE -- which means compilation on non-x86
+  Many thanks to: justinb@imsa.edu (Justin Blanchard) in bug #6989.
+
+  06 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  05 Jul 2002; Seemant Kulleen <seemant@gentoo.org> sdl-gfx-2.0.3.ebuild
+  files/digest-sdl-gfx-2.0.3 :
+
+  New package, submitted by: acme@astray.com (Leon Brocard) in bug #4487
