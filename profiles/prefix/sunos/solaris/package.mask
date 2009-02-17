@@ -1,5 +1,9 @@
 # $Id$
 
+# Fabian Groffen <grobian@gentoo.org> (17 Feb 2009)
+# /usr/include/signal.h:201: error: expected ‘;’, ‘,’ or ‘)’ before ‘*’ token
+=x11-wm/metacity-2.24.0*
+
 # Fabian Groffen <grobian@gentoo.org> (02 Feb 2009)
 # Fails to compile, complaining about a missing target for gmon.o, maybe
 # related to http://gcc.gnu.org/ml/gcc-patches/2008-11/msg00990.html
