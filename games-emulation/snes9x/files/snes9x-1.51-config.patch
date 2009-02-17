@@ -1,0 +1,13 @@
+--- configure.in.old
++++ configure.in
+@@ -506,9 +506,9 @@
+   fi
+ ])
+ 
++AC_CHECK_HEADERS(zlib.h)
+ if test x$with_zlib = xyes ; then
+   SNES9X_FEATURE_NODEP(Gz)
+-  AC_CHECK_HEADERS(zlib.h)
+   if test $ac_cv_header_zlib_h = yes ; then
+     AC_MSG_CHECKING([if zlib.h is new enough])
+     AC_TRY_LINK([
