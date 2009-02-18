@@ -1,6 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ppc64/64ul/package.mask,v 1.3 2008/10/29 00:01:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ppc64/64ul/package.mask,v 1.4 2009/02/16 21:07:27 ranger Exp $
+
+# Brent Baude <ranger@gentoo.org> (16 Feb 2009)
+# Mask qt versions for smooth upgrades
+=x11-libs/qt-4.3*
+<dev-python/PyQt4-4.4
+<dev-python/PyQt-3.17.6
+
 
 # <gcc-4 does not compile with >=gcc-4 on ppc64
 sys-libs/libstdc++-v3
