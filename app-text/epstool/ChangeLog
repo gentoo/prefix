@@ -1,6 +1,13 @@
 # ChangeLog for app-text/epstool
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/epstool/ChangeLog,v 1.23 2008/01/22 19:16:47 grobian Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/epstool/ChangeLog,v 1.25 2009/02/17 21:23:39 phosphan Exp $
+
+  17 Feb 2009; Patrick Kursawe <phosphan@gentoo.org> +files/gcc43.patch,
+  epstool-3.08.ebuild:
+  Fix for gcc 4.3 and newer (bug #259305).
+
+  17 Feb 2009; Patrick Kursawe <phosphan@gentoo.org> -epstool-3.06.ebuild:
+  Removed obsolete version.
 
   22 Jan 2008; Fabian Groffen <grobian@gentoo.org> epstool-3.08.ebuild:
   Dropped ppc-macos keyword, see you in prefix
