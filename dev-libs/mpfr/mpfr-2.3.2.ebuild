@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.8 2009/01/25 16:02:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.9 2009/02/16 14:16:24 ranger Exp $
 
 EAPI="prefix"
 
