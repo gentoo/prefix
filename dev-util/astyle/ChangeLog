@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/astyle
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.35 2008/12/02 22:49:28 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.36 2009/02/18 03:03:32 nerdboy Exp $
+
+  18 Feb 2009; Steve Arnold <nerdboy@gentoo.org> astyle-1.22.ebuild:
+  updated DEPs to use jdk instead of jre (fixes bug #256610)
 
   02 Dec 2008; Brent Baude <ranger@gentoo.org> astyle-1.22.ebuild:
   Marking astyle-1.22 ~ppc64 for bug 220379
@@ -66,7 +69,7 @@
   Dropped ppc-macos keyword, see you in prefix
 
   14 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> astyle-1.21.ebuild:
-  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.35 2008/12/02 22:49:28 ranger Exp $ string.
+  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.36 2009/02/18 03:03:32 nerdboy Exp $ string.
 
 *astyle-1.21 (07 Oct 2007)
 
