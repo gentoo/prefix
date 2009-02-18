@@ -4,20 +4,10 @@
 # Doesn't work with python support, bug 257572
 gnome-extra/libgsf python
 
-# Fabian Groffen <grobian@gentoo.org> (01 Feb 2009)
-# Doesn't compile, bug #257225
-media-video/ffmpeg mmx
-
 # Fabian Groffen <grobian@gentoo.org> (30 Dec 2008)
 # +     pipping | grobian: please package.use.mask aqua for emacs-cvs for now
 # +     pipping | grobian: hopefully i find the time to fix it at some point
 app-editors/emacs-cvs aqua
-
-# Fabian Groffen <grobian@gentoo.org> (21 Dec 2008)
-# Proxying for Elias Pipping, broken combinations
-x11-terms/eterm sse2 mmx
-net-irc/xchat mmx
-dev-lisp/clisp X
 
 # Fabian Groffen <grobian@gentoo.org> (06 Aug 2008)
 # runtime loading is horribly broken (it uses fixed .so.0, but when

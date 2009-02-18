@@ -1,4 +1,14 @@
 
+# Fabian Groffen <grobian@gentoo.org> (01 Feb 2009)
+# Doesn't compile, bug #257225
+media-video/ffmpeg mmx
+
+# Fabian Groffen <grobian@gentoo.org> (21 Dec 2008)
+# Proxying for Elias Pipping, broken combinations
+x11-terms/eterm sse2 mmx
+net-irc/xchat mmx
+dev-lisp/clisp X
+
 # Fabian Groffen <grobian@gentoo.org> (28 Apr 2008)
 # http://www.erlang.org/pipermail/erlang-questions/2007-July/027870.html
 dev-lang/erlang hipe

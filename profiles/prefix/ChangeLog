@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  18 Feb 2009; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.5/x86/package.use.mask, darwin/macos/package.use.mask:
+  Move mmx masks into the x86 profile, since there an unmask is being done,
+  overriding the masks
+
   16 Feb 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
   Mask sys-devel/binutils-2.19.51.0.2 on Solaris as well
