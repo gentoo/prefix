@@ -1,6 +1,29 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.154 2009/02/15 15:41:37 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.158 2009/02/17 18:15:39 mr_bones_ Exp $
+
+  17 Feb 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/libsdl-1.2.11-audioConv.patch,
+  -files/libsdl-1.2.11-cdrom-correct-free-func.patch,
+  -files/libsdl-1.2.11-fbcon-page-header.patch,
+  -files/libsdl-1.2.11-libcaca-new-api.patch,
+  -files/libsdl-1.2.11-no-inline-BlitRGBtoRGBPixelAlphaMMX3DNOW.patch,
+  -files/libsdl-1.2.11-sdl-config.patch,
+  -files/libsdl-1.2.11-xinerama-head-0.patch,
+  -files/libsdl-1.2.11-yasm-checks.patch,
+  +files/libsdl-1.2.13-sdl-config.patch,
+  +files/libsdl-1.2.13-xinerama-head-0.patch, -libsdl-1.2.11-r2.ebuild,
+  -libsdl-1.2.13.ebuild, libsdl-1.2.13-r1.ebuild:
+  fix up the patch names and remove old ebuilds
+
+  17 Feb 2009; Raúl Porcel <armin76@gentoo.org> libsdl-1.2.13-r1.ebuild:
+  arm/ia64/sh stable wrt #258230
+
+  16 Feb 2009; Brent Baude <ranger@gentoo.org> libsdl-1.2.13-r1.ebuild:
+  stable ppc64, bug 258230
+
+  16 Feb 2009; Brent Baude <ranger@gentoo.org> libsdl-1.2.13-r1.ebuild:
+  stable ppc, bug 258230
 
   15 Feb 2009; Markus Meier <maekke@gentoo.org> libsdl-1.2.13-r1.ebuild:
   x86 stable, bug #258230

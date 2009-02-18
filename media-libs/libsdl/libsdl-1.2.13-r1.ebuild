@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13-r1.ebuild,v 1.8 2009/02/15 15:41:37 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13-r1.ebuild,v 1.12 2009/02/17 18:15:39 mr_bones_ Exp $
 
 EAPI="prefix 2"
 inherit flag-o-matic toolchain-funcs eutils libtool
@@ -73,9 +73,9 @@ pkg_setup() {
 src_prepare() {
 	# patches for bugs #40224 #145917 #198147 #217097
 	epatch \
-		"${FILESDIR}"/${PN}-1.2.13-libcaca-new-api.patch \
-		"${FILESDIR}"/${PN}-1.2.11-sdl-config.patch \
-		"${FILESDIR}"/${PN}-1.2.11-xinerama-head-0.patch \
+		"${FILESDIR}"/${P}-libcaca-new-api.patch \
+		"${FILESDIR}"/${P}-sdl-config.patch \
+		"${FILESDIR}"/${P}-xinerama-head-0.patch \
 		"${FILESDIR}"/${P}-pulseaudio.patch \
 		"${FILESDIR}"/${P}-cld.patch
 
