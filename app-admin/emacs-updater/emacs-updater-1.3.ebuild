@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/emacs-updater-1.3.ebuild,v 1.1 2009/01/18 12:37:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/emacs-updater-1.3.ebuild,v 1.3 2009/02/17 17:28:18 armin76 Exp $
 
 EAPI="prefix"
 
