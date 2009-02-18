@@ -78,7 +78,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12425-cross-prefix.patch
+	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12574-cross-prefix.patch
 }
 
 src_compile() {
