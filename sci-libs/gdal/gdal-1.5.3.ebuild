@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.3.ebuild,v 1.2 2008/11/10 23:30:30 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.3.ebuild,v 1.3 2009/02/18 04:03:47 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -64,6 +64,23 @@ pkg_setup() {
 	    elog "User-specified configure options are not set."
 	    elog "If needed, set GDAL_CONFIGURE_OPTS to enable grass support."
 	fi
+
+	if useq hdf; then
+	    einfo	"Checking if HDF4 is compiled with szip..."
+	    if built_with_use sci-libs/hdf szip ; then
+		einfo	"Found HDF4 compiled with szip. Nice."
+	    else
+		ewarn 	"HDF4 (sci-libs/hdf) must be compiled with the szip USE flag!"
+		einfo 	"Please emerge hdf with szip USE flag and then emerge GDAL."
+		die 	"HDF4 not merged with szip use flag"
+	    fi
+
+	    if useq netcdf; then
+		ewarn "Netcdf and HDF4 are incompatible due to certain tools in"
+		ewarn "common; HDF5 is now the preferred choice for HDF data."
+		die "Please disable either the hdf or netcdf use flag."
+	    fi
+	fi
 }
 
 src_unpack() {
@@ -82,17 +99,6 @@ src_unpack() {
 	    "${FILESDIR}"/${PN}-1.5.0-makefile.patch \
 	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
 	    "${FILESDIR}"/${PN}-1.5.2-xerces-64-bit.patch
-
-	if useq netcdf && useq hdf; then
-	    einfo	"Checking if HDF4 is compiled with szip..."
-	    if built_with_use sci-libs/hdf szip ; then
-		einfo	"Found HDF4 compiled with szip. Nice."
-	    else
-		ewarn 	"HDF4 (sci-libs/hdf) must be compiled with the szip USE flag!"
-		einfo 	"Please emerge hdf with szip USE flag and then emerge GDAL."
-		die 	"HDF4 not merged with szip use flag"
-	    fi
-	fi
 }
 
 src_compile() {
