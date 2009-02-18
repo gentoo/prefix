@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.08.ebuild,v 1.1 2009/02/15 15:13:07 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.08.ebuild,v 1.2 2009/02/17 17:58:23 patrick Exp $
 
 EAPI="prefix"
 
@@ -25,14 +25,6 @@ RDEPEND="libyaml? ( dev-libs/libyaml )"
 S="${WORKDIR}/${MY_P}"
 
 PYTHON_MODNAME="yaml"
-
-src_unpack() {
-	distutils_src_unpack
-	if use libyaml; then
-		cd "${S}"
-		epatch "${FILESDIR}/${P}-libyaml.diff"
-	fi
-}
 
 src_install() {
 	distutils_src_install
