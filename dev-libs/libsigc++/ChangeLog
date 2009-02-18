@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.141 2009/02/06 03:32:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.142 2009/02/17 18:27:06 armin76 Exp $
+
+  17 Feb 2009; Raúl Porcel <armin76@gentoo.org> libsigc++-2.2.3.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #255844
 
   06 Feb 2009; Jeroen Roovers <jer@gentoo.org> libsigc++-2.2.3.ebuild:
   Stable for HPPA (bug #255844).
