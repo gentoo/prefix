@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.333 2009/02/15 12:38:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.335 2009/02/16 16:50:17 ranger Exp $
+
+  16 Feb 2009; Brent Baude <ranger@gentoo.org> openssh-5.1_p1-r2.ebuild:
+  stable ppc64, bug 258940
 
   15 Feb 2009; Markus Meier <maekke@gentoo.org> openssh-5.1_p1-r2.ebuild:
   amd64/x86 stable, bug #258940
@@ -16,7 +19,8 @@
   Stable on alpha, bug #258940
 
   14 Feb 2009; Mike Frysinger <vapier@gentoo.org>
-  +files/openssh-5.1_p1-x509-headers.patch, openssh-5.1_p1-r3.ebuild:
+  +files/openssh-5.1_p1-x509-headers.patch, openssh-5.1_p1-r2.ebuild,
+  openssh-5.1_p1-r3.ebuild:
   Fix implicit strsep() prototype in x509 code #258795 by orlin.
 
   08 Feb 2009; Mike Frysinger <vapier@gentoo.org> openssh-4.4_p1-r6.ebuild,
