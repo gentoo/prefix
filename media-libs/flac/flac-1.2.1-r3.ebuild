@@ -35,6 +35,8 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf
+	[[ ${CHOST} == *-darwin* ]] && myconf="--disable-asm-optimizations"
 	econf $(use_enable ogg) \
 		$(use_enable sse) \
 		$(use_enable 3dnow) \
@@ -44,7 +46,7 @@ src_compile() {
 		--disable-examples \
 		--disable-doxygen-docs \
 		--disable-dependency-tracking \
-		--disable-xmms-plugin
+		--disable-xmms-plugin ${myconf}
 
 	emake || die "emake failed."
 }
