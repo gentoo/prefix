@@ -1,0 +1,18 @@
+diff -ur openssl-0.9.8j/crypto/sha/asm/sha1-ia64.pl 
+openssl-0.9.8j-local/crypto/sha/asm/sha1-ia64.pl
+--- openssl-0.9.8j/crypto/sha/asm/sha1-ia64.pl  2007-11-11 06:34:08.000000000 
+-0700
++++ openssl-0.9.8j-local/crypto/sha/asm/sha1-ia64.pl    2009-02-03 
+12:15:47.592829480 -0700
+@@ -14,6 +14,10 @@
+ # Performance under big-endian OS such as HP-UX is 179MBps*1GHz, which
+ # is >50% better than HP C and >2x better than gcc.
+ 
++$output=shift;
++
++open STDOUT,">$output" || die "can't open $output: $!";
++
+ $code=<<___;
+ .ident  \"sha1-ia64.s, version 1.2\"
+ .ident  \"IA-64 ISA artwork by Andy Polyakov <app...@fy.chalmers.se>\"
+
