@@ -10,6 +10,5 @@
   <flag name='soundex'>Enable the soundex function to compute soundex
     encodings of strings</flag>
   <flag name='threadsafe'>Enable thread safe operation of sqlite</flag>
-  <flag name='nothreadsafe'>Turn off thread safe operation of sqlite</flag>
 </use>
 </pkgmetadata>

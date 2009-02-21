@@ -9,7 +9,20 @@
  		-module -avoid-version
  
  sqlite3$(TEXE):	$(TOP)/src/shell.c libsqlite3.la sqlite3.h
-@@ -765,8 +765,13 @@
+@@ -754,9 +754,11 @@
+ 		$(TEMP_STORE) -o $@ $(TESTFIXTURE_SRC) $(LIBTCL)
+ 
+ 
+-install:	sqlite3$(BEXE) libsqlite3.la sqlite3.h ${HAVE_TCL:1=tcl_install}
++lib_install:	libsqlite3.la
+ 	$(INSTALL) -d $(DESTDIR)$(libdir)
+ 	$(LTINSTALL) libsqlite3.la $(DESTDIR)$(libdir)
++
++install:	sqlite3$(BEXE) lib_install sqlite3.h ${HAVE_TCL:1=tcl_install}
+ 	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 	$(LTINSTALL) sqlite3$(BEXE) $(DESTDIR)$(bindir)
+ 	$(INSTALL) -d $(DESTDIR)$(includedir)
+@@ -765,8 +767,13 @@
  	$(INSTALL) -d $(DESTDIR)$(pkgconfigdir)
  	$(INSTALL) -m 0644 sqlite3.pc $(DESTDIR)$(pkgconfigdir)
  
@@ -17,7 +30,7 @@
 -	$(TCLSH_CMD) $(TOP)/tclinstaller.tcl $(RELEASE)
 +pkgIndex.tcl:
 +	echo 'package ifneeded sqlite3 $(RELEASE) [list load $(libdir)/sqlite3/libtclsqlite3.so sqlite3]' > $@
-+tcl_install:	libtclsqlite3.la pkgIndex.tcl
++tcl_install:	lib_install libtclsqlite3.la pkgIndex.tcl
 +	$(INSTALL) -d $(DESTDIR)$(libdir)/sqlite3
 +	$(LTINSTALL) libtclsqlite3.la $(DESTDIR)$(libdir)/sqlite3
 +	rm -f $(DESTDIR)$(libdir)/sqlite3/libtclsqlite3.a $(DESTDIR)$(libdir)/sqlite3/libtclsqlite3.la

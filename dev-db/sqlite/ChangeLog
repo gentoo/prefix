@@ -1,6 +1,24 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.215 2009/01/31 20:11:20 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.220 2009/02/20 16:40:00 armin76 Exp $
+
+  20 Feb 2009; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.10.ebuild:
+  alpha/arm/ia64/s390/sh/x86 stable wrt #259462
+
+  19 Feb 2009; nixnut <nixnut@gentoo.org> sqlite-3.6.10.ebuild:
+  ppc stable #259462
+
+  18 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  files/sqlite-3.6.10-tcl-install.patch:
+  Fix installing when sqlite isnt installed already.
+
+  18 Feb 2009; Ferris McCormick <fmccor@gentoo.org> sqlite-3.6.10.ebuild:
+  Sparc stable, Bug #259462.
+
+  18 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> -sqlite-3.4.1.ebuild,
+  -sqlite-3.5.3.ebuild, -sqlite-3.5.6.ebuild, -sqlite-3.5.9.ebuild,
+  -sqlite-3.6.8.ebuild:
+  Remove old versions.
 
   31 Jan 2009; Tobias Klausmann <klausman@gentoo.org> sqlite-3.6.6.2.ebuild:
   Stable on alpha, bug #254864
