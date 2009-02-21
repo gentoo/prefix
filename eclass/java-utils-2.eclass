@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.121 2009/02/11 16:13:38 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.122 2009/02/19 05:10:37 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1819,6 +1819,33 @@ java-utils-2_src_prepare() {
 		echo "Search done."
 	fi
 	touch "${T}/java-utils-2_src_prepare-run"
+}
+
+# ------------------------------------------------------------------------------
+# @eclass-pkg_preinst
+#
+# pkg_preinst Searches for missing and unneeded dependencies
+# Don't call directly, but via java-pkg-2_pkg_preinst!
+# ------------------------------------------------------------------------------
+
+java-utils-2_pkg_preinst() {
+	if is-java-strict; then
+		if has_version dev-java/java-dep-check; then
+			[[ -e "${JAVA_PKG_ENV}" ]] || return
+			local output=$(GENTOO_VM= java-dep-check --image "${ED}" "${JAVA_PKG_ENV}")
+			if [[ ${output} && has_version <=dev-java/java-dep-check-0.2 ]]; then
+				ewarn "Possibly unneeded dependencies found in package.env:"
+				for dep in ${output}; do
+					ewarn "\t${dep}"
+				done
+			fi
+			if [[ ${output} && has_version >dev-java/java-dep-check-0.2 ]]; then
+				ewarn "${output}"
+			fi
+		else
+			eerror "Install dev-java/java-dep-check for dependency checking"
+		fi
+	fi
 }
 
 # ------------------------------------------------------------------------------

@@ -1,11 +1,12 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.14 2008/06/16 11:22:38 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.15 2009/02/19 17:07:28 scarabeus Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
 # modified for git by Donnie Berkholz <spyderous@gentoo.org>
 # improved by Fernando J. Pereda <ferdy@gentoo.org>
+# you should currently poke with updates Tomas Chvatal <scarabeus@gentoo.org>
 #
 # The git eclass is written to fetch the software sources from
 # git repositories like the subversion eclass.
@@ -39,7 +40,7 @@ EGIT_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/git-src"
 
 ## -- EGIT_FETCH_CMD:  git clone command
 #
-EGIT_FETCH_CMD="git clone --bare"
+EGIT_FETCH_CMD="git clone --bare --depth 1"
 
 ## -- EGIT_UPDATE_CMD:  git fetch command
 #

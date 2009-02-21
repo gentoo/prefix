@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.71 2009/02/09 19:53:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.72 2009/02/20 23:20:22 vapier Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -653,29 +653,34 @@ multilib_env() {
 # Hide multilib details here for packages which are forced to be compiled for a
 # specific ABI when run on another ABI (like x86-specific packages on amd64)
 multilib_toolchain_setup() {
+	local v vv
+
 	export ABI=$1
 
-	# disable ccache for non-native builds #196243.  this is because how
-	# we cram ABI related CFLAGS behind the back of the gcc frontend with
-	# the gcc-config wrapper.
+	# We want to avoid the behind-the-back magic of gcc-config as it
+	# screws up ccache and distcc.  See #196243 for more info.
 	if [[ ${ABI} != ${DEFAULT_ABI} ]] ; then
-		: ${CCACHE_DISABLE:=multilib-disable}
-	else
-		if [[ ${CCACHE_DISABLE} == "multilib-disable" ]] ; then
-			unset CCACHE_DISABLE
+		if [[ ${DEFAULT_ABI_SAVED} != "true" ]] ; then
+			for v in CHOST CBUILD AS CC CXX LD ; do
+				export __abi_saved_${v}="${!v}"
+			done
+			export DEFAULT_ABI_SAVED="true"
 		fi
-	fi
-	export CCACHE_DISABLE
 
-	if has_version app-admin/eselect-compiler ; then
-		# Binutils doesn't have wrappers for ld and as (yet).  Eventually it
-		# will, and all this can just be handled with CHOST.
-		export LD="ld $(get_abi_LDFLAGS $1)"
-		export AS="as $(get_abi_ASFLAGS $1)"
-
+		# Set the CHOST native first so that we pick up the native
+		# toolchain and not a cross-compiler by accident #202811.
+		export CHOST=$(get_abi_CHOST ${DEFAULT_ABI})
+		export AS="$(tc-getAS) $(get_abi_ASFLAGS)"
+		export CC="$(tc-getCC) $(get_abi_CFLAGS)"
+		export CXX="$(tc-getCXX) $(get_abi_CFLAGS)"
+		export LD="$(tc-getLD) $(get_abi_LDFLAGS)"
 		export CHOST=$(get_abi_CHOST $1)
 		export CBUILD=$(get_abi_CHOST $1)
-	else
-		tc-export CC
+
+	elif [[ ${DEFAULT_ABI_SAVED} == "true" ]] ; then
+		for v in CHOST CBUILD AS CC CXX LD ; do
+			vv="__abi_saved_${v}"
+			export ${v}=${!vv}
+		done
 	fi
 }

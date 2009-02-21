@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.54 2008/10/28 21:29:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.55 2009/02/18 14:43:31 pva Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -16,6 +16,16 @@
 # It inherits python, multilib, and eutils
 
 inherit python multilib eutils
+
+eapi=${EAPI//prefix }
+case "${eapi:-0}" in
+	0|1)
+		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
+		;;
+	*)
+		EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install pkg_postinst pkg_postrm
+		;;
+esac
 
 # @ECLASS-VARIABLE: PYTHON_SLOT_VERSION
 # @DESCRIPTION:
@@ -43,6 +53,14 @@ distutils_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	local eapi=${EAPI//prefix /}
+	has ${eapi:-0} 0 1 && distutils_src_prepare
+}
+
+# @FUNCTION: distutils_src_prepare
+# @DESCRIPTION:
+# The distutils src_prepare function, this function is exported
+distutils_src_prepare() {
 	# remove ez_setup stuff to prevent packages
 	# from installing setuptools on their own
 	rm -rf ez_setup*
@@ -160,4 +178,3 @@ distutils_python_tkinter() {
 	python_tkinter_exists
 }
 
-EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
