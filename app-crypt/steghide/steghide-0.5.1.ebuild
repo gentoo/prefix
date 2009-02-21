@@ -42,5 +42,4 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}" install \
 		|| die "emake install failed."
-	prepalldocs
 }
