@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.35 2009/01/29 14:13:30 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.36 2009/02/18 14:24:27 pva Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -135,6 +135,7 @@ tr - Turkish locale
 ts - Tsonga locale
 uk - Ukrainian locale
 ur_IN - Urdu locale for India
+ur_PK - Urdu language locale for Pakistan
 uz - Uzbek locale
 uz@cyrillic - Uzbek (cyrillic) locale
 ve - Venda locale
