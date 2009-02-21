@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/libmpeg2-0.5.1.ebuild,v 1.6 2009/02/06 20:03:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/libmpeg2-0.5.1.ebuild,v 1.9 2009/02/18 19:03:52 armin76 Exp $
 
 EAPI="prefix"
 
@@ -31,12 +31,8 @@ src_unpack() {
 
 	# Fix problem that the test for external symbols
 	# uses nm which also displays hidden symbols. Bug #130831
-	# Don't do this on platforms where scanelf doesn't exist
-	case ${CHOST} in
-		*-linux-gnu|*-solaris*|*bsd*)
-			epatch "${FILESDIR}"/${PN}-0.4.1-use-readelf-for-test.patch
-		;;
-	esac
+	# Breaks tests on other platforms: bug #255151
+	# epatch "${FILESDIR}"/${PN}-0.4.1-use-readelf-for-test.patch
 
 	elibtoolize
 }
