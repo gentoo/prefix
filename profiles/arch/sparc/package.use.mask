@@ -1,7 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.20 2009/02/04 21:09:33 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.22 2009/02/20 23:01:13 yngwin Exp $
 # Please add a proper entry, like a ChangeLog file, to the top, thanks.
+
+# Ben de Groot <yngwin@gentoo.org> (20 Feb 2009)
+# needs kde4 keyworded
+x11-themes/qtcurve-qt4 kde
+
+# Raúl Porcel <armin76@gentoo.org>
+# Depends on dev-java/fop which requires java...
+sci-geosciences/gpsbabel doc
 
 # Ben de Groot <yngwin@gentoo.org> (4 Feb 2009)
 # needs qt-webkit which is -sparc keyworded

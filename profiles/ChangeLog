@@ -1,10 +1,47 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2360 2009/02/17 11:42:09 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2371 2009/02/21 04:37:10 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  21 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove mask entries for non-existant packages after they were removed
+
+  20 Feb 2009; Ben de Groot <yngwin@gentoo.org> arch/alpha/package.use.mask,
+  arch/sparc/package.use.mask, default-linux/alpha/package.use.mask,
+  arch/hppa/package.use.mask, default-linux/sparc/package.use.mask:
+  Add p.use.mask entries on alpha, hppa and sparc due to unkeyworded kde4
+  for x11-themes/qtcurve-qt4
+
+  20 Feb 2009; Theo Chatzimichos <tampakrap@gentoo.org> package.mask:
+  remove ktorrent from profiles/package.mask
+
+  19 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add net-wireless/libbtctl-0.11.0 to bluez-4 mask.
+
+  19 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
+  Drop p.mask for kde 4.1.4 since it was removed and for compiz-0.7.8-r1,2
+  since kde-4.2.0 already in tree
+
+  19 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask dev-java/jdbc2-postgresql. See bug #259559.
+
+  19 Feb 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Add sys-fs/udev-138 to masked ebuilds.
+
+  18 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org> base/package.use.mask:
+  Add policykit use.mask for consolekit.
+
+  18 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removed masking for sci-libs/scipy
+
+  18 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Masking sci-calculators/tilp and dependencies for removal in 30 days
+
+  18 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removed dev-python/f2py from masking package now longer in the tree
 
   17 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
   mask kde 4.1.4 for removing
@@ -1386,7 +1423,7 @@
   Adding gst-plugins-ffmpeg-0.10.5 to ffmpeg mask.
 
   14 Oct 2008; Andreas Proschofsky <suka@gentoo.org> use.local.desc:
-  Add local "templates" use-flag for openoffice 
+  Add local "templates" use-flag for openoffice
 
   14 Oct 2008; Peter Volkov <pva@gentoo.org> package.mask:
   Masking >=sys-cluster/vzctl-3.0.22-r10 until it'll start to work with
@@ -1526,7 +1563,7 @@
 
   02 Oct 2008; Gunnar Wrobel <wrobel@gentoo.org> package.mask:
   Masking www-apps/dotproject for security reasons (bug #236518)
-  
+
   02 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> use.desc:
   Added description for the kdeprefix use flag.
 

@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/PPC profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.25 2009/01/10 00:18:17 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.26 2009/02/18 13:50:38 chainsaw Exp $
+
+  18 Feb 2009; <chainsaw@gentoo.org> package.use.mask:
+  Dependency tree in sys-apps/hal is fixed up for USE=laptop on PowerPC.
+  Remove use.mask for bug #259080.
 
   10 Jan 2009; Joseph Jezak <josejx@gentoo.org> ChangeLog:
   Reverting pm-utils change until it goes stable.

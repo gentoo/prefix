@@ -1,9 +1,5 @@
 # This file requires >=portage-2.1.1
 
-# nixnut <nixnut@gentoo.org> (4 jun 2008)
-# USE=laptop wants x86 specific packages which can't be build on ppc
-sys-apps/hal laptop
-
 # Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
 # media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux} not keyworded
 media-plugins/gst-plugins-meta dvb mythtv

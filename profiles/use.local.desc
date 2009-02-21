@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4208 2009/02/17 22:28:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4217 2009/02/20 20:27:45 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -120,7 +120,6 @@ app-crypt/mit-krb5:doc -  Creates and installs the API and implementation docume
 app-crypt/mit-krb5:ipv6 -  Enables ipv6 support which is default in actual releases. This flag is marked for removal. 
 app-crypt/mit-krb5:krb4 -  This option enables Kerberos V4 backwards compatibility using the builtin Kerberos V4 library. This is really outdated and dangerous to use because not safe. 
 app-crypt/mit-krb5:tcl -  Some of the unit-tests in the build tree rely upon using a program in Tcl. This flag is marked for removal. 
-app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
 app-crypt/ophcrack-tables:xpfast - Installs the fast XP ophcrack tables
 app-crypt/ophcrack-tables:xpsmall - Installs the small free XP ophcrack tables
@@ -184,6 +183,7 @@ app-emacs/remember:bbdb - Include support for app-emacs/bbdb
 app-emacs/remember:planner - Include support for app-emacs/planner
 app-emacs/vm:bbdb - Include support for app-emacs/bbdb
 app-emacs/wanderlust:bbdb - Include support for app-emacs/bbdb
+app-emacs/wikipedia-mode:outline-magic - Enable support for outline-mode extensions (app-emacs/outline-magic)
 app-emulation/basiliskII-jit:fbdev - Enables framebuffer support
 app-emulation/basiliskII-jit:jit - Enables the jit compiler
 app-emulation/bochs:debugger - Enable the bochs debugger
@@ -482,7 +482,6 @@ dev-db/postgis:proj - Add the sci-libs/proj library for reprojection features
 dev-db/postgresql:pg-intdatetime - Enable --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage
 dev-db/postgresql-base:pg-intdatetime - Enable --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage
 dev-db/postgresql-server:uuid - Enable server side UUID generation (via dev-libs/ossp-uuid)
-dev-db/sqlite:nothreadsafe - Turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
 dev-dotnet/libgdiplus:pango - Use pango instead of cairo to render text.
@@ -976,7 +975,6 @@ gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Use dev-libs/libffi from sys-devel/gcc instead of dev-libs/ffcall. Requires sys-devel/gcc built with USE=libffi
 gnustep-base/gnustep-make:native-exceptions - Enables use of the native Objective-C exception support (@try/@catch/@finally) built-in objective-c exceptions with compilers that support it 
-kde-base/akonadi:nepomuk - Enable desktop-wide tagging support
 kde-base/akonadi:semantic-desktop - Enables desktop-wide tagging support.
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
 kde-base/ark:zip - Enable zip support through LibZip
@@ -1013,7 +1011,6 @@ kde-base/kget:bittorrent - Enable embedded bittorrent transport plugin
 kde-base/kget:bittorrent-external - Enable external bittorrent transport plugin via ktorrent
 kde-base/kget:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kig:kig-scripting - Support Python scripting
-kde-base/kmail:nepomuk - Enable desktop-wide tagging support
 kde-base/kmail:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
 kde-base/konqueror:auth - Add dependency on authentization packages
@@ -1032,7 +1029,6 @@ kde-base/kopete:irc - Enable the IRC protocol handler.
 kde-base/kopete:jabber - Enable XMPP protocol handler (this is also gmail).
 kde-base/kopete:latex - Embed latex formatted text into messages.
 kde-base/kopete:meanwhile - Enable the Sametime protocol handler.
-kde-base/kopete:messenger - Enable support for MSN and Windows live protocols (old implementation).
 kde-base/kopete:msn - Enable support for MSN (old microsoft protocol).
 kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
 kde-base/kopete:nowlistening - Shows song you currently listen to in your status/etc. Bindings for many players.
@@ -1053,8 +1049,6 @@ kde-base/kopete:winpopup - Enable pop-up messages sending on windows. (same as g
 kde-base/kopete:wlm - Enable "Windows live messenger" protocol support (New protocol from MS).
 kde-base/kopete:yahoo - Enable yahoo protocol support.
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
-kde-base/kstars:nova - Enable support for libnova.
-kde-base/kstars:sbig - Enable support for SBIG.
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kttsd:ktts - Enable KDE Text To Speech modules
 kde-base/kttsd:phonon - Enable support for the KDE multimedia API
@@ -1277,9 +1271,6 @@ media-libs/libifp:module - Build kernel module for non-root usage
 media-libs/libsdl:audio - Allow users to disable audio support completely (at their own risk)
 media-libs/libsdl:custom-cflags - Allow users to use any CFLAGS they like completely (at their own risk)
 media-libs/libsdl:joystick - Allow users to disable joystick support completely (at their own risk)
-media-libs/libsdl:noaudio - Allow users to disable audio support completely (at their own risk) (deprecated)
-media-libs/libsdl:nojoystick - Allow users to disable joystick support completely (at their own risk) (deprecated)
-media-libs/libsdl:novideo - Allow users to disable video support completely (at their own risk) (deprecated)
 media-libs/libsdl:video - Allow users to disable video support completely (at their own risk)
 media-libs/libvorbis:aotuv - Applies the aoTuV patches. Aoyumi's Tuned Vorbis is a third-party patchset that improves the vorbis encoding quality. A previous version of the aoTuV patchset has already been merged with the official libvorbis release. The current patchset especially improves encoding quality at low bitrate settings, and is very likely to be merged at some point in the future. It is recommended that all users enable this useflag. 
 media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
@@ -1332,6 +1323,9 @@ media-plugins/audacious-plugins:tta - Build with TTA (True-Audio Loseless) suppo
 media-plugins/audacious-plugins:wma - Build with WMA (Windows Media Audio) support
 media-plugins/gst-plugins-farsight:gsm - Support for the gsm lossy speech compression library
 media-plugins/gst-plugins-meta:mythtv - Support for retrieval from media-tv/mythtv backend
+media-plugins/kipi-plugins:linguas_zn_CN - Add zn_CN lingua suppport
+media-plugins/kipi-plugins:mjpeg - Add mjpeg suppport
+media-plugins/kipi-plugins:redeyes - Add redeyes removal suppport
 media-plugins/mythmusic:libvisual - Enables media-libs/libvisual support for effects
 media-plugins/mythphone:festival - Enable app-accessibility/festival support
 media-plugins/mythzoneminder:minimal - Don't build the mythtv side of this plugin, only the part that communicates with zoneminder. 
@@ -1982,6 +1976,7 @@ net-irc/psybnc:oidentd - Adds support for oidentd
 net-irc/psybnc:scripting - Adds scripting support
 net-irc/quassel:X -  Build the Qt 4 GUI client for quassel. If this USE flag is disabled, the GUI is not built, and cannot be used. You might want to disable this on the server, but you need it enabled on the client. 
 net-irc/quassel:monolithic -  Build Standalone client with integrated core, no external quasselcore needed. Only useful if one don't want to use quassels client/server model. The server and X flags are not needed in this case but it is possible to enable them too. 
+net-irc/quassel:oxygen -  Install oxygen icons. Highly recommended for KDE-4.1 and KDE-4.2 (or usage without kde). KDE-4.3 will ship the icons by default. 
 net-irc/quassel:phonon -  Build client with phonon backend support. This enables sound playback in client. 
 net-irc/quassel:server -  Build the server binary. If this USE flag is disabled, the 'core' server binary for quassel is not built, and cannot be used. You need this enabled on the server, but you might want to disable it on the client. 
 net-irc/quassel:webkit -  Use qt-webkit rendering engine for showing url thumbmails and for other things that needs webbrowser intergration. 
@@ -2474,6 +2469,7 @@ sys-apps/ucspi-ssl:tls - Add TLS support (see also http://www.suspectclass.com/~
 sys-apps/usbutils:network-cron - Monthly cronjob the update-usbids script
 sys-apps/util-linux:loop-aes - include support for Loop AES encryption
 sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
+sys-auth/consolekit:policykit -  Use the PolicyKit framework (sys-auth/policykit) to get authorization for suspend/shutdown. 
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support
 sys-auth/pam_pkcs11:pcsc-lite - build with sys-apps/pcsc-lite instead of dev-libs/openct
 sys-auth/pambase:consolekit -  Enable pam_ck_connector module on local system logins. This allows for console logins to make use of ConsoleKit authorization. 
