@@ -66,12 +66,12 @@ src_install() {
 	# dir for pidfile
 	dodir /var/run/${PN} || die "dodir failed"
 	keepdir /var/run/${PN}
-	fowners ${PN}:${PN} /var/run/${PN} || die "fowners failed"
+	use prefix || fowners ${PN}:${PN} /var/run/${PN} || die "fowners failed"
 
 	# fetchmail's homedir (holds fetchmail's .fetchids)
 	dodir /var/lib/${PN} || die "dodir failed"
 	keepdir /var/lib/${PN}
-	fowners ${PN}:${PN} /var/lib/${PN} || die "fowners failed"
+	use prefix || fowners ${PN}:${PN} /var/lib/${PN} || die "fowners failed"
 	fperms 700 /var/lib/${PN} || die "fperms failed"
 
 	emake DESTDIR="${D}" install || die
