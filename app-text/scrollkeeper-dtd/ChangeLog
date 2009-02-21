@@ -1,6 +1,10 @@
 # ChangeLog for app-text/scrollkeeper-dtd
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper-dtd/ChangeLog,v 1.1 2008/07/01 21:27:15 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper-dtd/ChangeLog,v 1.2 2009/02/18 23:53:36 eva Exp $
+
+  18 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  scrollkeeper-dtd-1.0.ebuild:
+  Add a blocker against older scrollkeeper ebuilds, bug #259413.
 
 *scrollkeeper-dtd-1.0 (01 Jul 2008)
 
