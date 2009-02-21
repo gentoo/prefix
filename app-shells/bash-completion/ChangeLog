@@ -1,6 +1,30 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.150 2009/02/11 19:07:44 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.153 2009/02/20 16:22:54 darkside Exp $
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-20081218-r1.ebuild, +bash-completion-20081219.ebuild:
+  New snapshot from upstream repo, only change is subversion module is now
+  split up. Fixes bug 171909
+
+*bash-completion-20081219 (20 Feb 2009)
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-20081218-r1.ebuild, +bash-completion-20081219.ebuild:
+  New snapshot from upstream, only change is subversion module is now split
+  up. Fixes bug 171909
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  bash-completion-20081218-r1.ebuild:
+  don't provide svk completion. svk upstream provides it and we assume that
+  copy is as good or better. bug #146726
+
+*bash-completion-20081218-r1 (20 Feb 2009)
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-20081218.ebuild, +bash-completion-20081218-r1.ebuild:
+  Fix bug in bash completion for lzma man pages. Fix by Jan Hruban in bug
+  254814. Convert to EAPI-2, add die() messages as needed
 
   11 Feb 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
   add myself to metadata
