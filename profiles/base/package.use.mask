@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Gilles Dartiguelongue <eva@gentoo.org (18 Feb 2009)
+# policykit is masked
+sys-auth/consolekit policykit
+
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (31 Jan 2009)
 # networkmanager-0.7.0 is masked because of policykit
 kde-base/solid networkmanager
