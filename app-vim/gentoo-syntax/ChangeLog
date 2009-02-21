@@ -1,6 +1,25 @@
 # ChangeLog for app-vim/gentoo-syntax
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.89 2009/01/25 18:38:24 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.93 2009/02/20 17:40:42 darkside Exp $
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  gentoo-syntax-20090220.ebuild:
+  I uploaded a bad distfile to the mirrors. This change will fix it and offer
+  a definitive source for the distfile that I *know* works.
+
+*gentoo-syntax-20090220 (20 Feb 2009)
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  +gentoo-syntax-20090220.ebuild:
+  New version bump, fixes bugs 253401 & 254208
+
+  20 Feb 2009; Tiago Cunha <tcunha@gentoo.org>
+  gentoo-syntax-20081006.ebuild:
+  stable amd64, bug 248220
+
+  20 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
+  gentoo-syntax-20081006.ebuild:
+  Sparc stable, Bug #248220.
 
   25 Jan 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
   edit metadata - I have access to the repo, so I should be CC'd on bugs now
