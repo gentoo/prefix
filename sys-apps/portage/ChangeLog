@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.12671 (21 Feb 2009)
+
+  21 Feb 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.12528.ebuild, +portage-2.2.00.12671.ebuild:
+  New snapshot, includes code that makes resolving much faster for packages
+  without a category.
+
 *portage-2.2.00.12652 (19 Feb 2009)
 
   19 Feb 2009; Fabian Groffen <grobian@gentoo.org>
