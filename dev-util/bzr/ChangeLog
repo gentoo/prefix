@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.82 2009/02/14 16:30:35 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.84 2009/02/20 19:02:42 fauli Exp $
+
+  20 Feb 2009; Christian Faulhammer <fauli@gentoo.org> bzr-1.12.ebuild:
+  make USE=sftp default with EAPI=1
+
+  20 Feb 2009; Christian Faulhammer <fauli@gentoo.org> bzr-1.12.ebuild:
+  make Python 2.5 first choice so people get that pulled in in every case
 
 *bzr-1.12 (14 Feb 2009)
 
