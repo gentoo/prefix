@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.4-r1.ebuild,v 1.1 2009/02/08 13:17:40 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.4-r1.ebuild,v 1.2 2009/02/20 17:23:27 tester Exp $
 
 EAPI="prefix 2"
 
@@ -85,6 +85,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-icq.patch
+	epatch "${FILESDIR}"/${P}-icq-messages-magic.patch
 }
 
 src_configure() {
