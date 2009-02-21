@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/tcpdump
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.133 2008/11/16 15:18:00 pva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.134 2009/02/20 18:57:18 armin76 Exp $
+
+  20 Feb 2009; Raúl Porcel <armin76@gentoo.org> tcpdump-4.0.0.ebuild:
+  Add ~arm/~s390/~sh wrt #247076
 
 *tcpdump-4.0.0 (16 Nov 2008)
 
