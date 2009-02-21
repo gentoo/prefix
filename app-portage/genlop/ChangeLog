@@ -1,6 +1,24 @@
 # ChangeLog for app-portage/genlop
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.70 2009/01/14 23:46:26 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.76 2009/02/19 22:38:51 tcunha Exp $
+
+  19 Feb 2009; Tiago Cunha <tcunha@gentoo.org> genlop-0.30.8-r2.ebuild:
+  stable amd64, bug 259360
+
+  19 Feb 2009; tgall_foo <tgall@gentoo.org> genlop-0.30.8-r2.ebuild:
+  stable on ppc64 bug #259360
+
+  19 Feb 2009; nixnut <nixnut@gentoo.org> genlop-0.30.8-r2.ebuild:
+  ppc stable #259360
+
+  19 Feb 2009; Raúl Porcel <armin76@gentoo.org> genlop-0.30.8-r2.ebuild:
+  alpha/arm/ia64/s390/sh/x86 stable wrt #259360
+
+  18 Feb 2009; Jeroen Roovers <jer@gentoo.org> genlop-0.30.8-r2.ebuild:
+  Stable for HPPA (bug #259360).
+
+  18 Feb 2009; Ferris McCormick <fmccor@gentoo.org> genlop-0.30.8-r2.ebuild:
+  Sparc stable, Bug #259360 --- looks fine.
 
 *genlop-0.30.8-r2 (14 Jan 2009)
 
