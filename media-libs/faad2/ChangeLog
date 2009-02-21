@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/faad2
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/ChangeLog,v 1.117 2008/11/05 04:10:23 beandog Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/ChangeLog,v 1.118 2009/02/19 23:08:41 aballier Exp $
+
+*faad2-2.7 (19 Feb 2009)
+
+  19 Feb 2009; Alexis Ballier <aballier@gentoo.org> +faad2-2.7.ebuild:
+  version bump
 
   05 Nov 2008; Steve Dibb <beandog@gentoo.org> metadata.xml,
   faad2-2.6.1-r2.ebuild:
