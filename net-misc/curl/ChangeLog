@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.136 2009/02/15 11:47:04 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.137 2009/02/17 17:12:51 armin76 Exp $
+
+  17 Feb 2009; Raúl Porcel <armin76@gentoo.org> curl-7.19.3.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #258618
 
   15 Feb 2009; Markus Meier <maekke@gentoo.org> curl-7.19.3.ebuild:
   amd64/x86 stable, bug #258618
