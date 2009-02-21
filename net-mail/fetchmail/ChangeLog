@@ -1,6 +1,14 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.154 2009/01/11 15:56:08 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.157 2009/02/20 16:49:50 dertobi123 Exp $
+
+*fetchmail-6.3.9-r1 (20 Feb 2009)
+
+  20 Feb 2009; Jeremy Olexa <darkside@gentoo.org> +files/fetchmail.new,
+  +fetchmail-6.3.9-r1.ebuild:
+  (non maintainer commit) don't run fetchmail as root - create new fetchmail
+  user instead, long standing bug in Gentoo. Fixed by Brian Verkley in bug
+  124387
 
   11 Jan 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   -files/fetchmail-6.3.7-poll-again.patch, -fetchmail-6.3.6.ebuild,
