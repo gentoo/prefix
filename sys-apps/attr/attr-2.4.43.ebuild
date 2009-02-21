@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.1 2008/08/17 14:37:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.3 2009/02/19 18:45:08 tgall Exp $
 
 EAPI="prefix"
 
@@ -65,7 +65,6 @@ src_install() {
 	emake DIST_ROOT="${D}" install install-lib install-dev || die
 	# the man-pages packages provides the man2 files
 	rm -r "${ED}"/usr/share/man/man2
-	prepalldocs
 
 	# move shared libs to /
 	dodir /$(get_libdir)

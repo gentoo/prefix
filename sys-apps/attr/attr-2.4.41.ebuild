@@ -65,7 +65,6 @@ src_install() {
 	emake DIST_ROOT="${D}" install install-lib install-dev || die
 	# the man-pages packages provides the man2 files
 	rm -r "${ED}"/usr/share/man/man2
-	prepalldocs
 
 	# move shared libs to /
 	dodir /$(get_libdir)
