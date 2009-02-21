@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.28 2008/12/05 09:50:05 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.29 2009/02/20 13:25:49 flameeyes Exp $
+
+  20 Feb 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  sqlite3-ruby-1.2.1.ebuild, sqlite3-ruby-1.2.4.ebuild:
+  Remove checks for swig USE flags since the last version does not have them
+  and they were unneeded before, too. Closes bug #249565.
 
   05 Dec 2008; Raúl Porcel <armin76@gentoo.org> sqlite3-ruby-1.2.4.ebuild:
   ia64 stable wrt #245574
