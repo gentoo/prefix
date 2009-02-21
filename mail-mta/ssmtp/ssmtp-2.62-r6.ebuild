@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r5.ebuild,v 1.1 2009/01/17 09:15:12 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r6.ebuild,v 1.1 2009/02/18 18:47:48 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ src_unpack() {
 	fi
 
 	# CVE-2008-3962
-	epatch "${FILESDIR}/CVE-2008-3962.patch"
+	epatch "${FILESDIR}/CVE-2008-3962-r2.patch"
 
 	# Fix AuthPass parsing (bug #238724)
 	epatch "${FILESDIR}/${P}-authpass.patch"

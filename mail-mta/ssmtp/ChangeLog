@@ -1,6 +1,13 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.75 2009/02/04 21:11:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.76 2009/02/18 18:47:48 dertobi123 Exp $
+
+*ssmtp-2.62-r6 (18 Feb 2009)
+
+  18 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  +files/CVE-2008-3962-r2.patch, -ssmtp-2.62-r5.ebuild,
+  +ssmtp-2.62-r6.ebuild:
+  Revbump, update patch for #259472 (CVE-2008-3962)
 
   04 Feb 2009; Raúl Porcel <armin76@gentoo.org> ssmtp-2.62-r4.ebuild:
   arm/ia64/s390/sh stable wrt #255244
