@@ -1,6 +1,20 @@
 # ChangeLog for app-editors/vim
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.321 2008/09/19 18:50:37 hawking Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.323 2009/02/20 15:48:40 lack Exp $
+
+*vim-7.1.330 (20 Feb 2009)
+*vim-7.0.243 (20 Feb 2009)
+
+  20 Feb 2009; Jim Ramsay <lack@gentoo.org> +vim-7.0.243.ebuild,
+  +vim-7.1.330.ebuild:
+  Added latest patchlevels of 7.0 and 7.1
+
+*vim-7.2.108 (19 Feb 2009)
+
+  19 Feb 2009; Jim Ramsay <lack@gentoo.org> -vim-7.2.021.ebuild,
+  +vim-7.2.108.ebuild:
+  Version 7.2.021 wasn't actually applying any patches (It was equivalent to
+  7.2), and patchset 108 is now out. Bug #238120
 
 *vim-7.2.021 (19 Sep 2008)
 
