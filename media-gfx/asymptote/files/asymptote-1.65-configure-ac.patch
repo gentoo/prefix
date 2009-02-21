@@ -1,7 +1,7 @@
-Index: asymptote-1.62/configure.ac
+Index: asymptote-1.65/configure.ac
 ===================================================================
---- asymptote-1.62.orig/configure.ac
-+++ asymptote-1.62/configure.ac
+--- asymptote-1.65.orig/configure.ac
++++ asymptote-1.65/configure.ac
 @@ -79,10 +79,16 @@ if test "$GXX" = yes ; then
     fi
  fi

@@ -1,7 +1,7 @@
-Index: asymptote-1.62/settings.cc
+Index: asymptote-1.65/settings.cc
 ===================================================================
---- asymptote-1.62.orig/settings.cc
-+++ asymptote-1.62/settings.cc
+--- asymptote-1.65.orig/settings.cc
++++ asymptote-1.65/settings.cc
 @@ -80,15 +80,15 @@ const bool haveglut=false;
  bool msdos=false;
  const char *HOME="HOME";
