@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/semi
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.26 2009/01/18 17:21:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.28 2009/02/19 20:02:58 ulm Exp $
+
+  19 Feb 2009; Ulrich Mueller <ulm@gentoo.org> -files/comp.el,
+  -semi-1.14.6.ebuild:
+  Remove old.
+
+  19 Feb 2009; nixnut <nixnut@gentoo.org> semi-1.14.6-r1.ebuild:
+  ppc stable #254620
 
   18 Jan 2009; Markus Meier <maekke@gentoo.org> semi-1.14.6-r1.ebuild:
   amd64 stable, bug #254620

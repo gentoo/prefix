@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/semi-1.14.6-r1.ebuild,v 1.3 2009/01/18 17:21:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/semi-1.14.6-r1.ebuild,v 1.5 2009/02/19 20:02:58 ulm Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="linguas_ja"
 
 DEPEND=">=app-emacs/apel-10.6
 	virtual/flim"
-SITEFILE=65${PN}-gentoo.el
+SITEFILE="65${PN}-gentoo.el"
 
 src_unpack() {
 	unpack ${A}
@@ -43,7 +43,8 @@ src_compile() {
 src_install() {
 	emake PREFIX="${ED}/usr" \
 		LISPDIR="${ED}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" install || die "emake install failed"
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" install \
+		|| die "emake install failed"
 
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 
