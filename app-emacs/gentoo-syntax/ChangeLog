@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/gentoo-syntax
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.34 2009/02/12 21:15:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.36 2009/02/19 22:34:56 fauli Exp $
+
+  19 Feb 2009; Christian Faulhammer <fauli@gentoo.org>
+  -gentoo-syntax-1.9.ebuild:
+  clean up
+
+  19 Feb 2009; nixnut <nixnut@gentoo.org> gentoo-syntax-1.11.ebuild:
+  ppc stable #257695
 
   12 Feb 2009; Brent Baude <ranger@gentoo.org> gentoo-syntax-1.11.ebuild:
   stable ppc64, bug 257695
