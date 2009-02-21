@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.79 2009/02/03 21:58:07 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.80 2009/02/20 23:25:54 jer Exp $
+
+  20 Feb 2009; Jeroen Roovers <jer@gentoo.org> cmake-2.6.2-r1.ebuild:
+  Stable for HPPA (bug #259741).
 
   03 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org> cmake-2.6.2-r1.ebuild:
   Fix src_configure. Per bug #254898.
