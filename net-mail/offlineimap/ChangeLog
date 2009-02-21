@@ -1,6 +1,10 @@
 # ChangeLog for net-mail/offlineimap
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/ChangeLog,v 1.34 2008/10/06 16:35:51 gregkh Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/ChangeLog,v 1.35 2009/02/18 18:20:12 klausman Exp $
+
+  18 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  offlineimap-6.0.3.ebuild:
+  Stable on alpha, bug #251087
 
 *offlineimap-6.0.3 (06 Oct 2008)
 
