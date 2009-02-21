@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.50 2009/02/11 09:08:50 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.52 2009/02/20 19:14:27 fauli Exp $
+
+  20 Feb 2009; Christian Faulhammer <fauli@gentoo.org>
+  bzrtools-1.12.0.ebuild:
+  add explicit RDEPEND to quiten repoman
+
+  20 Feb 2009; Christian Faulhammer <fauli@gentoo.org>
+  bzrtools-1.12.0.ebuild:
+  fix HOMEPAGE
 
 *bzrtools-1.12.0 (11 Feb 2009)
 
