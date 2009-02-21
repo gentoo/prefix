@@ -1,0 +1,34 @@
+# ChangeLog for dev-util/gitosis-gentoo
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gitosis-gentoo/ChangeLog,v 1.5 2008/11/24 01:26:33 robbat2 Exp $
+
+  24 Nov 2008; Robin H. Johnson <robbat2@gentoo.org>
+  gitosis-gentoo-0.2_p20080711.ebuild, gitosis-gentoo-0.2_p20081028.ebuild:
+  Bug #247322 - gitosis does actually need setuptools at runtime.
+
+*gitosis-gentoo-0.2_p20081028 (28 Oct 2008)
+
+  28 Oct 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +gitosis-gentoo-0.2_p20081028.ebuild:
+  Version bump per bug #236185, fixes for git-1.6.
+
+  17 Jul 2008; Robin H. Johnson <robbat2@gentoo.org>
+  gitosis-gentoo-0.2_p20080711.ebuild:
+  setuptools should only be in DEPEND, not RDEPEND, but git needs to be in
+  both.
+
+*gitosis-gentoo-0.2_p20080711 (11 Jul 2008)
+
+  11 Jul 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +gitosis-gentoo-0.2_p20080711.ebuild:
+  Minor version bump: New version ignore comments and excess whitespace in
+  SSH keys. Allows commenting of keydir contents.
+
+*gitosis-gentoo-0.2_p20080203 (04 Apr 2008)
+
+  04 Apr 2008; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
+  +gitosis-gentoo-0.2_p20080203.ebuild:
+  Specifically package the Gitosis fork that powers git.overlays.gentoo.org.
+  Upstream has not responded to multiple requests to integrate these
+  features.
+
