@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.1.ebuild,v 1.5 2009/02/12 11:22:10 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.1.ebuild,v 1.6 2009/02/18 14:44:33 bicatali Exp $
 
 EAPI="prefix"
 
@@ -12,9 +12,7 @@ DESCRIPTION="Fast array and numerical python library"
 SRC_URI="mirror://sourceforge/numpy/${P}.tar.gz"
 HOMEPAGE="http://numeric.scipy.org/"
 
-RDEPEND="!dev-python/f2py
-	lapack? ( virtual/cblas virtual/lapack )"
-
+RDEPEND="lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
 	test? ( >=dev-python/nose-0.10 )
 	lapack? ( dev-util/pkgconfig )"

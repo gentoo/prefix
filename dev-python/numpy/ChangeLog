@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.71 2009/02/12 11:22:10 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.72 2009/02/18 14:44:33 bicatali Exp $
+
+  18 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  numpy-1.0.4-r2.ebuild, numpy-1.1.1.ebuild, numpy-1.2.1.ebuild:
+  Removed f2py block since it's not in the tree anymore
 
   12 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org> ChangeLog:
   Fixed a syntax error. Re-added ppc and x86-fbsd now that nose is
