@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.2 2009/01/26 23:00:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.3 2009/02/19 15:37:32 dang Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit eutils python gnome2
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris"
 IUSE=""
 
-RDEPEND=">=dev-libs/libxml2-2.6.12
+RDEPEND=">=dev-libs/libxml2-2.6.12[python]
 	 >=dev-libs/libxslt-1.1.8
 	 >=dev-lang/python-2"
 DEPEND="${RDEPEND}
@@ -38,11 +38,6 @@ src_unpack() {
 
 pkg_setup() {
 	G2CONF="--disable-scrollkeeper"
-
-	if ! built_with_use dev-libs/libxml2 python; then
-		eerror "Please re-emerge dev-libs/libxml2 with the python use flag set"
-		die "dev-libs/libxml2 needs python use flag"
-	fi
 }
 
 pkg_postinst() {
