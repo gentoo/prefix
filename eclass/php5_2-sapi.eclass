@@ -388,6 +388,11 @@ php5_2-sapi_src_unpack() {
 		fi
 	fi
 
+	sed -i \
+		-e 's|/usr/local /usr|'"${EPREFIX}"'/usr/local '"${EPREFIX}"'/usr|g' \
+		ext/gettext/config.m4 \
+		|| die "Failed to fix gettext include paths for prefix"
+
 	# We are heavily patching autotools base files (configure.in) because
 	# of suhosin etc., so let's regenerate the whole stuff now
 
