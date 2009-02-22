@@ -1,6 +1,11 @@
 # ChangeLog for www-client/lynx
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.71 2009/02/02 16:50:24 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.72 2009/02/21 10:22:46 drizzt Exp $
+
+*lynx-2.8.6-r3 (21 Feb 2009)
+
+  21 Feb 2009; Timothy Redaelli <drizzt@gentoo.org> +lynx-2.8.6-r3.ebuild:
+  Migrate to EAPI=2
 
   02 Feb 2009; <drizzt@gentoo.org> lynx-2.8.6-r2.ebuild:
   Remove -j1 to emake wrt #236003
