@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>php</herd>
+	<use>
+		<flag name='cli'>Enable CLI SAPI</flag>
+		<flag name='concurrentmodphp'>Make it possible to load both mod_php4 and mod_php5 into the same Apache2 instance (experimental)</flag>
+		<flag name='discard-path'>Switch on common security setting for CGI SAPI</flag>
+		<flag name='fastbuild'>Build PHP quicker (experimental)</flag>
+		<flag name='fdftk'>Add supports for Adobe's FDF toolkit.</flag>
+		<flag name='filter'>Add filter extension support</flag>
+		<flag name='force-cgi-redirect'>Switch on common security setting for CGI SAPI</flag>
+		<flag name='hash'>Enable the hash extension</flag>
+		<flag name='java-external'>Use the external java extension rather than the bundled one</flag>
+		<flag name='json'>Enable JSON support</flag>
+		<flag name='ldap-sasl'>Add SASL support for the PHP LDAP extension</flag>
+		<flag name='pic'>Force shared modules to build as PIC on x86 (speed tradeoff with memory usage)</flag>
+		<flag name='pdo'>Enable the bundled PDO extensions</flag>
+		<flag name='reflection'>Enable the reflection extension (Reflection API)</flag>
+		<flag name='suhosin'>Add Suhosin support (patch and extension from http://www.suhosin.org/)</flag>
+		<flag name='xmlreader'>Enable XMLReader support</flag>
+		<flag name='xmlwriter'>Enable XMLWriter support</flag>
+		<flag name='zip'>Enable ZIP file support</flag>
+		<flag name='zip-external'>Enable ZIP file support (external PECL extension)</flag>
+	</use>
+</pkgmetadata>
