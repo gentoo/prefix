@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/perl-tk
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.43 2008/12/23 18:54:48 robbat2 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.44 2009/02/21 14:18:01 tove Exp $
+
+*perl-tk-804.028-r1 (21 Feb 2009)
+
+  21 Feb 2009; Torsten Veller <tove@gentoo.org> +files/804.028-FBox.patch,
+  +files/804.028-MouseWheel.patch, +files/804.028-path.patch,
+  +perl-tk-804.028-r1.ebuild:
+  Fix bug #200859 (anti-aliased fonts) and bug #238079 (mouse wheel
+  problem). Add jpeg and png dependencies.
 
 *perl-tk-804.028 (23 Dec 2008)
 
