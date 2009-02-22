@@ -107,12 +107,12 @@ uses_php5() {
 	# cache this
 	libdir=$(get_libdir)
 
-	PHPIZE="/usr/${libdir}/php5/bin/phpize"
-	PHPCONFIG="/usr/${libdir}/php5/bin/php-config"
-	PHPCLI="/usr/${libdir}/php5/bin/php"
-	PHPCGI="/usr/${libdir}/php5/bin/php-cgi"
+	PHPIZE="${EPREFIX}/usr/${libdir}/php5/bin/phpize"
+	PHPCONFIG="${EPREFIX}/usr/${libdir}/php5/bin/php-config"
+	PHPCLI="${EPREFIX}/usr/${libdir}/php5/bin/php"
+	PHPCGI="${EPREFIX}/usr/${libdir}/php5/bin/php-cgi"
 	PHP_PKG="$(best_version =dev-lang/php-5*)"
-	PHPPREFIX="/usr/${libdir}/php5"
+	PHPPREFIX="${EPREFIX}/usr/${libdir}/php5"
 	EXT_DIR="$(${PHPCONFIG} --extension-dir 2>/dev/null)"
 
 	einfo
