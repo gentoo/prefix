@@ -280,8 +280,8 @@ src_compile_fastbuild() {
 	fi
 
 	if use pcre || phpconfutils_usecheck pcre ; then
-		myconf="${my_conf} --with-pcre-dir=/usr"
-		phpconfutils_extension_with "pcre-regex" "pcre" 0 "/usr"
+		myconf="${my_conf} --with-pcre-dir=${EPREFIX}/usr"
+		phpconfutils_extension_with "pcre-regex" "pcre" 0 "${EPREFIX}/usr"
 	fi
 
 	# Now we know what we are building, build it
@@ -349,8 +349,8 @@ src_compile_normal() {
 
 	for x in ${PHPSAPIS} ; do
 		if use pcre || phpconfutils_usecheck pcre ; then
-			myconf="${my_conf} --with-pcre-dir=/usr"
-			phpconfutils_extension_with "pcre-regex" "pcre" 0 "/usr"
+			myconf="${my_conf} --with-pcre-dir=${EPREFIX}/usr"
+			phpconfutils_extension_with "pcre-regex" "pcre" 0 "${EPREFIX}/usr"
 		fi
 
 		# Support the Apache2 extras, they must be set globally for all
