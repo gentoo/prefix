@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.111 2009/02/06 16:13:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.112 2009/02/21 22:06:16 vapier Exp $
+
+  21 Feb 2009; Mike Frysinger <vapier@gentoo.org> +files/4.2.4/mpf_eq.diff,
+  +files/4.2.4/mpf_set_str.c.4.diff, +files/4.2.4/perfpow.c.diff:
+  Grab fixes from upstream.
 
   06 Feb 2009; Raúl Porcel <armin76@gentoo.org> gmp-4.2.4.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #255703

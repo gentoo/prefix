@@ -1,0 +1,169 @@
+Copyright 1998, 1999, 2000, 2001, 2005, 2008 Free Software Foundation, Inc.
+
+This file is part of the GNU MP Library.
+
+The GNU MP Library is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 3 of the License, or (at your
+option) any later version.
+
+The GNU MP Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the GNU MP Library.  If not, see http://www.gnu.org/licenses/.
+
+Index: mpz/perfpow.c
+===================================================================
+RCS file: /home/cvsfiles/gmp42/mpz/perfpow.c,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -p -2 -r1.2 -r1.3
+*** mpz/perfpow.c	30 Aug 2007 18:19:44 -0000	1.2
+--- mpz/perfpow.c	26 Dec 2008 19:46:24 -0000	1.3
+***************
+*** 2,6 ****
+     zero otherwise.
+  
+! Copyright 1998, 1999, 2000, 2001, 2005 Free Software Foundation, Inc.
+  
+  This file is part of the GNU MP Library.
+--- 2,6 ----
+     zero otherwise.
+  
+! Copyright 1998, 1999, 2000, 2001, 2005, 2008 Free Software Foundation, Inc.
+  
+  This file is part of the GNU MP Library.
+*************** static const unsigned short primes[] =
+*** 60,63 ****
+--- 60,65 ----
+  
+  
++ #define POW2P(a) (((a) & ((a) - 1)) == 0)
++ 
+  int
+  mpz_perfect_power_p (mpz_srcptr u)
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 73,78 ****
+    TMP_DECL;
+  
+!   if (usize == 0)
+!     return 1;			/* consider 0 a perfect power */
+  
+    n2 = mpz_scan1 (u, 0);
+--- 75,80 ----
+    TMP_DECL;
+  
+!   if (mpz_cmpabs_ui (u, 1) <= 0)
+!     return 1;			/* -1, 0, and +1 are perfect powers */
+  
+    n2 = mpz_scan1 (u, 0);
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 80,86 ****
+      return 0;			/* 2 divides exactly once.  */
+  
+-   if (n2 != 0 && (n2 & 1) == 0 && usize < 0)
+-     return 0;			/* 2 has even multiplicity with negative U */
+- 
+    TMP_MARK;
+  
+--- 82,85 ----
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 90,93 ****
+--- 89,100 ----
+  
+    mpz_tdiv_q_2exp (u2, u, n2);
++   mpz_abs (u2, u2);
++ 
++   if (mpz_cmp_ui (u2, 1) == 0)
++     {
++       TMP_FREE;
++       /* factoring completed; consistent power */
++       return ! (usize < 0 && POW2P(n2));
++     }
+  
+    if (isprime (n2))
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 98,101 ****
+--- 105,111 ----
+        prime = primes[i];
+  
++       if (mpz_cmp_ui (u2, prime) < 0)
++ 	break;
++ 
+        if (mpz_divisible_ui_p (u2, prime))	/* divisible by this prime? */
+  	{
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 116,125 ****
+  	    }
+  
+- 	  if ((n & 1) == 0 && usize < 0)
+- 	    {
+- 	      TMP_FREE;
+- 	      return 0;		/* even multiplicity with negative U, reject */
+- 	    }
+- 
+  	  n2 = gcd (n2, n);
+  	  if (n2 == 1)
+--- 126,129 ----
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 129,136 ****
+  	    }
+  
+! 	  if (mpz_cmpabs_ui (u2, 1) == 0)
+  	    {
+  	      TMP_FREE;
+! 	      return 1;		/* factoring completed; consistent power */
+  	    }
+  
+--- 133,141 ----
+  	    }
+  
+! 	  if (mpz_cmp_ui (u2, 1) == 0)
+  	    {
+  	      TMP_FREE;
+! 	      /* factoring completed; consistent power */
+! 	      return ! (usize < 0 && POW2P(n2));
+  	    }
+  
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 170,173 ****
+--- 175,182 ----
+      {
+        unsigned long int nth;
++ 
++       if (usize < 0 && POW2P(n2))
++ 	return 0;
++ 
+        /* We found some factors above.  We just need to consider values of n
+  	 that divides n2.  */
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 185,190 ****
+  	  if (exact)
+  	    {
+! 	      TMP_FREE;
+! 	      return 1;
+  	    }
+  	  if (mpz_cmp_ui (q, SMALLEST_OMITTED_PRIME) < 0)
+--- 194,202 ----
+  	  if (exact)
+  	    {
+! 	      if (! (usize < 0 && POW2P(nth)))
+! 		{
+! 		  TMP_FREE;
+! 		  return 1;
+! 		}
+  	    }
+  	  if (mpz_cmp_ui (q, SMALLEST_OMITTED_PRIME) < 0)
+*************** mpz_perfect_power_p (mpz_srcptr u)
+*** 200,203 ****
+--- 212,218 ----
+  
+  n2prime:
++   if (usize < 0 && POW2P(n2))
++     return 0;
++ 
+    exact = mpz_root (NULL, u2, n2);
+    TMP_FREE;
