@@ -1,0 +1,163 @@
+From: christos@zoulas.com (Christos Zoulas)
+Date: Fri, 20 Feb 2009 10:49:11 -0500
+To: File Utility <file@mx.gw.com>
+Subject: Re: Error: file-5.00: Thumbs.db : Cannot read short stream (Invalid argument)
+
+On Feb 18,  9:14am, dnovotny@redhat.com (Daniel Novotny) wrote:
+-- Subject: Error: file-5.00: Thumbs.db :  Cannot read short stream (Invalid 
+
+| hello,
+| 
+| because the Fedora rpm building process runs "file" on every file it packs
+| and fails if there is an error, I have another bug report with
+| a crash in file 
+| 
+| $ file ~/work/file-testfiles/Thumbs.db 
+| /home/dnovotny/work/file-testfiles/Thumbs.db: ERROR: Cannot read short stream (Invalid argument)
+| 
+| the previous version 4.26 goes like this:
+| 
+| $ file /usr/share/FlightGear/Aircraft/c172p/Models/Immat/Thumbs.db
+| /usr/share/FlightGear/Aircraft/c172p/Models/Immat/Thumbs.db: Microsoft Office
+| Document
+| 
+| the file is probably not MS Office document at all, it just confuses the file logic
+| and this remained not repaired, because it did not return error, which now does
+| 
+|  regards,
+| 
+|    Daniel Novotny
+
+Here's a patch.
+
+christos
+
+Index: cdf.c
+===================================================================
+RCS file: /p/file/cvsroot/file/src/cdf.c,v
+retrieving revision 1.17
+diff -u -u -r1.17 cdf.c
+--- file/src/cdf.c	3 Feb 2009 20:27:51 -0000	1.17
++++ file/src/cdf.c	20 Feb 2009 15:45:39 -0000
+@@ -239,7 +239,9 @@
+ 	cdf_unpack_header(h, buf);
+ 	cdf_swap_header(h);
+ 	if (h->h_magic != CDF_MAGIC) {
+-		DPRINTF(("Bad magic 0x%x != 0x$x\n", h->h_magic, CDF_MAGIC));
++		DPRINTF(("Bad magic 0x%llx != 0x%llx\n",
++		    (unsigned long long)h->h_magic,
++		    (unsigned long long)CDF_MAGIC));
+ 		errno = EFTYPE;
+ 		return -1;
+ 	}
+@@ -539,10 +541,11 @@
+ 		if (dir->dir_tab[i].d_type == CDF_DIR_TYPE_ROOT_STORAGE)
+ 			break;
+ 
++	/* If the it is not there, just fake it; some docs don't have it */
+ 	if (i == dir->dir_len) {
+-		DPRINTF(("Cannot find root storage node\n"));
+-		errno = EFTYPE;
+-		return -1;
++		scn->sst_tab = NULL;
++		scn->sst_len = 0;
++		return 0;
+ 	}
+ 	d = &dir->dir_tab[i];
+ 
+Index: readcdf.c
+===================================================================
+RCS file: /p/file/cvsroot/file/src/readcdf.c,v
+retrieving revision 1.12
+diff -u -u -r1.12 readcdf.c
+--- file/src/readcdf.c	13 Feb 2009 18:46:48 -0000	1.12
++++ file/src/readcdf.c	20 Feb 2009 15:45:39 -0000
+@@ -129,7 +129,10 @@
+ 		case CDF_CLIPBOARD:
+ 			break;
+ 		default:
+-			file_error(ms, 0, "Internal parsing error");
++#ifndef EFTYPE	/* XXX: vapier: copied from cdf.c for now ... */
++#define EFTYPE EINVAL
++#endif
++			errno = EFTYPE;
+ 			return -1;
+ 		}
+ 	}
+@@ -202,6 +202,7 @@
+ 	cdf_stream_t sst, scn;
+ 	cdf_dir_t dir;
+ 	int i;
++	const char *expn = "";
+ 	(void)&nbytes;
+ 	(void)&buf;
+ 
+@@ -214,7 +215,7 @@
+ #endif
+ 
+ 	if (cdf_read_sat(fd, &h, &sat) == -1) {
+-		file_error(ms, errno, "Can't read SAT");
++		expn = "Can't read SAT";
+ 		return -1;
+ 	}
+ #ifdef CDF_DEBUG
+@@ -222,7 +223,7 @@
+ #endif
+ 
+ 	if ((i = cdf_read_ssat(fd, &h, &sat, &ssat)) == -1) {
+-		file_error(ms, errno, "Can't read SAT");
++		expn = "Can't read SSAT";
+ 		goto out1;
+ 	}
+ #ifdef CDF_DEBUG
+@@ -230,12 +231,12 @@
+ #endif
+ 
+ 	if ((i = cdf_read_dir(fd, &h, &sat, &dir)) == -1) {
+-		file_error(ms, errno, "Can't read directory");
++		expn = "Can't read directory";
+ 		goto out2;
+ 	}
+ 
+ 	if ((i = cdf_read_short_stream(fd, &h, &sat, &dir, &sst)) == -1) {
+-		file_error(ms, errno, "Cannot read short stream");
++		expn = "Cannot read short stream";
+ 		goto out3;
+ 	}
+ 
+@@ -244,19 +245,14 @@
+ #endif
+ 	if ((i = cdf_read_summary_info(fd, &h, &sat, &ssat, &sst, &dir, &scn))
+ 	    == -1) {
+-		/* Some files don't have summary info! */
+-#ifdef notyet
+-		file_error(ms, errno, "Can't read summary_info");
+-#else
+-		i = 0;
+-#endif
++		expn = "";
+ 		goto out4;
+ 	}
+ #ifdef CDF_DEBUG
+ 	cdf_dump_summary_info(&h, &scn);
+ #endif
+ 	if ((i = cdf_file_summary_info(ms, &scn)) == -1)
+-		file_error(ms, errno, "Can't expand summary_info");
++		expn = "Can't expand summary_info";
+ 	free(scn.sst_tab);
+ out4:
+ 	free(sst.sst_tab);
+@@ -266,5 +262,13 @@
+ 	free(ssat.sat_tab);
+ out1:
+ 	free(sat.sat_tab);
++	if (i != 1) {
++		if (file_printf(ms, "CDF V2 Document") == -1)
++			return -1;
++		if (*expn)
++			if (file_printf(ms, ", corrupt: %s", expn) == -1)
++				return -1;
++		i = 1;
++	}
+ 	return i;
+ }
