@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.153 2009/02/20 16:22:54 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.154 2009/02/21 18:52:50 darkside Exp $
+
+*bash-completion-20081219-r1 (21 Feb 2009)
+
+  21 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-20081219.ebuild, +bash-completion-20081219-r1.ebuild:
+  remove hg completion. dev-util/mercurial provides it & upstream b-c dropped
+  it as well in future versions. bug 259818
 
   20 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
   -bash-completion-20081218-r1.ebuild, +bash-completion-20081219.ebuild:

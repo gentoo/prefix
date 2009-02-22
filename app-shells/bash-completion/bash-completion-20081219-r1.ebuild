@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20081219.ebuild,v 1.1 2009/02/20 16:22:54 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20081219-r1.ebuild,v 1.1 2009/02/21 18:52:50 darkside Exp $
 
 EAPI="prefix 2"
 
@@ -30,6 +30,8 @@ src_prepare() {
 		-e '0,/gz|bz2/s//gz|bz2|lzma/' bash_completion || die "sed failed"
 	# bug 146726
 	rm contrib/svk || die "rm failed"
+	# bug 259818
+	rm contrib/hg || die "rm failed"
 }
 
 src_install() {
