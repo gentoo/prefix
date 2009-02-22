@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.272 2009/02/11 17:07:42 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.273 2009/02/21 23:30:55 lu_zero Exp $
+
+*ffmpeg-0.4.9_p20090201-r1 (21 Feb 2009)
+
+  21 Feb 2009; Luca Barbato <lu_zero@gentoo.org>
+  +ffmpeg-0.4.9_p20090201-r1.ebuild:
+  Set some useflag defaults and other minor changes
 
   11 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   ffmpeg-0.4.9_p20090201.ebuild:
