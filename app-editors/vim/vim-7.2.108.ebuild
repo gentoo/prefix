@@ -35,7 +35,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
 		epatch "${FILESDIR}"/${PN}-7.1.319-interix-cflags.patch
 	fi
-#	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
+	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 	epatch "${FILESDIR}"/${PN}-7.2.021-mint.patch
 }
 
