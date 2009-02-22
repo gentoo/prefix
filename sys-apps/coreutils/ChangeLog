@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/coreutils
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.239 2008/11/27 18:38:13 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.240 2009/02/22 00:12:50 vapier Exp $
+
+*coreutils-7.1 (22 Feb 2009)
+
+  22 Feb 2009; Mike Frysinger <vapier@gentoo.org> +coreutils-7.1.ebuild:
+  Version bump #242566.
 
   27 Nov 2008; Mike Frysinger <vapier@gentoo.org> coreutils-6.12-r2.ebuild:
   Block sys-apps/stat #248312 by Diego E. Pettenò.
