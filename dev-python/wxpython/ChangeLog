@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/wxpython
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.120 2009/02/15 19:52:50 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.121 2009/02/21 22:36:28 dirtyepic Exp $
+
+*wxpython-2.8.9.2 (21 Feb 2009)
+
+  21 Feb 2009; Ryan Hill <dirtyepic@gentoo.org>
+  +files/wxpython-2.8.9-wxversion-scripts.patch,
+  +files/wxpython-2.8-drop-editra.patch, +wxpython-2.8.9.2.ebuild:
+  Version bump.
+  Split editra out into its own package: app-editors/editra
+  Install desktop entries for utilities.
 
   15 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> ChangeLog, Manifest:
   Fix broken commit.
