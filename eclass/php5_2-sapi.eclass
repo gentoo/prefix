@@ -424,7 +424,7 @@ php5_2-sapi_src_compile() {
 	phpconfutils_extension_disable	"dom"			"xml"			0
 	phpconfutils_extension_enable	"exif"			"exif"			1
 	phpconfutils_extension_with	"fbsql"			"frontbase"		1
-	phpconfutils_extension_with	"fdftk"			"fdftk"			1 "/opt/fdftk-6.0"
+	phpconfutils_extension_with	"fdftk"			"fdftk"			1 "${EPREFIX}/opt/fdftk-6.0"
 	phpconfutils_extension_disable	"filter"		"filter"		0
 	phpconfutils_extension_enable	"ftp"			"ftp"			1
 	phpconfutils_extension_with	"gettext"		"nls"			1
@@ -433,7 +433,7 @@ php5_2-sapi_src_compile() {
 	phpconfutils_extension_without	"iconv"			"iconv"			0
 	phpconfutils_extension_disable	"ipv6"			"ipv6"			0
 	phpconfutils_extension_disable	"json"			"json"			0
-	phpconfutils_extension_with	"kerberos"		"kerberos"		0 "/usr"
+	phpconfutils_extension_with	"kerberos"		"kerberos"		0 "${EPREFIX}/usr"
 	phpconfutils_extension_disable	"libxml"		"xml"			0
 	phpconfutils_extension_enable	"mbstring"		"unicode"		1
 	phpconfutils_extension_with	"mcrypt"		"crypt"			1
@@ -442,7 +442,7 @@ php5_2-sapi_src_compile() {
 	phpconfutils_extension_with	"mssql"			"mssql"			1
 	phpconfutils_extension_with	"ncurses"		"ncurses"		1
 	phpconfutils_extension_with	"openssl"		"ssl"			0
-	phpconfutils_extension_with	"openssl-dir"		"ssl"			0 "/usr"
+	phpconfutils_extension_with	"openssl-dir"		"ssl"			0 "${EPREFIX}/usr"
 	phpconfutils_extension_enable	"pcntl" 		"pcntl" 		1
 	phpconfutils_extension_without	"pcre-regex"		"pcre"			0
 	phpconfutils_extension_disable	"pdo"			"pdo"			0
@@ -494,17 +494,17 @@ php5_2-sapi_src_compile() {
 
 	# Support for the GD graphics library
 	if use gd-external || phpconfutils_usecheck gd-external ; then
-		phpconfutils_extension_with	"freetype-dir"	"truetype"		0 "/usr"
-		phpconfutils_extension_with	"t1lib"		"truetype"		0 "/usr"
+		phpconfutils_extension_with	"freetype-dir"	"truetype"		0 "${EPREFIX}/usr"
+		phpconfutils_extension_with	"t1lib"		"truetype"		0 "${EPREFIX}/usr"
 		phpconfutils_extension_enable	"gd-jis-conv"	"cjk" 			0
-		phpconfutils_extension_with 	"gd" 		"gd-external"		1 "/usr"
+		phpconfutils_extension_with 	"gd" 		"gd-external"		1 "${EPREFIX}/usr"
 	else
-		phpconfutils_extension_with	"freetype-dir"	"truetype"		0 "/usr"
-		phpconfutils_extension_with	"t1lib"		"truetype"		0 "/usr"
+		phpconfutils_extension_with	"freetype-dir"	"truetype"		0 "${EPREFIX}/usr"
+		phpconfutils_extension_with	"t1lib"		"truetype"		0 "${EPREFIX}/usr"
 		phpconfutils_extension_enable	"gd-jis-conv"	"cjk"			0
-		phpconfutils_extension_with	"jpeg-dir"	"gd"			0 "/usr"
-		phpconfutils_extension_with 	"png-dir" 	"gd" 			0 "/usr"
-		phpconfutils_extension_with 	"xpm-dir" 	"xpm" 			0 "/usr"
+		phpconfutils_extension_with	"jpeg-dir"	"gd"			0 "${EPREFIX}/usr"
+		phpconfutils_extension_with 	"png-dir" 	"gd" 			0 "${EPREFIX}/usr"
+		phpconfutils_extension_with 	"xpm-dir" 	"xpm" 			0 "${EPREFIX}/usr"
 		# enable gd last, so configure can pick up the previous settings
 		phpconfutils_extension_with 	"gd" 		"gd" 			0
 	fi
@@ -537,16 +537,16 @@ php5_2-sapi_src_compile() {
 
 	# MySQL support
 	if use mysql ; then
-		phpconfutils_extension_with	"mysql"			"mysql"		1 "/usr"
-		phpconfutils_extension_with	"mysql-sock"		"mysql"		0 "/var/run/mysqld/mysqld.sock"
+		phpconfutils_extension_with	"mysql"			"mysql"		1 "${EPREFIX}/usr"
+		phpconfutils_extension_with	"mysql-sock"		"mysql"		0 "${EPREFIX}/var/run/mysqld/mysqld.sock"
 	fi
 
 	# MySQLi support
-	phpconfutils_extension_with		"mysqli"		"mysqli"	1 "/usr/bin/mysql_config"
+	phpconfutils_extension_with		"mysqli"		"mysqli"	1 "${EPREFIX}/usr/bin/mysql_config"
 
 	# ODBC support
 	if use odbc || phpconfutils_usecheck odbc ; then
-		phpconfutils_extension_with	"unixODBC"		"odbc"		1 "/usr"
+		phpconfutils_extension_with	"unixODBC"		"odbc"		1 "${EPREFIX}/usr"
 
 		phpconfutils_extension_with	"adabas"		"adabas"	1
 		phpconfutils_extension_with	"birdstep"		"birdstep"	1
@@ -557,7 +557,7 @@ php5_2-sapi_src_compile() {
 		fi
 		phpconfutils_extension_with	"esoob"			"esoob"		1
 		phpconfutils_extension_with	"ibm-db2"		"db2"		1
-		phpconfutils_extension_with	"iodbc"			"iodbc"		1 "/usr"
+		phpconfutils_extension_with	"iodbc"			"iodbc"		1 "${EPREFIX}/usr"
 		phpconfutils_extension_with	"sapdb"			"sapdb"		1
 		phpconfutils_extension_with	"solid"			"solid"		1
 	fi
@@ -569,7 +569,7 @@ php5_2-sapi_src_compile() {
 	if use oci8-instant-client ; then
 		OCI8IC_PKG="`best_version dev-db/oracle-instantclient-basic`"
 		OCI8IC_PKG="`printf ${OCI8IC_PKG} | sed -e 's|dev-db/oracle-instantclient-basic-||g' | sed -e 's|-r.*||g'`"
-		phpconfutils_extension_with	"oci8"			"oci8-instant-client"	1	"instantclient,/usr/lib/oracle/${OCI8IC_PKG}/client/lib"
+		phpconfutils_extension_with	"oci8"			"oci8-instant-client"	1	"instantclient,${EPREFIX}/usr/lib/oracle/${OCI8IC_PKG}/client/lib"
 	fi
 
 	# PDO support
@@ -577,7 +577,7 @@ php5_2-sapi_src_compile() {
 		phpconfutils_extension_with		"pdo-dblib"	"mssql"		1
 		# The PDO-Firebird driver is broken and unmaintained upstream
 		# phpconfutils_extension_with	"pdo-firebird"	"firebird"		1
-		phpconfutils_extension_with		"pdo-mysql"	"mysql"		1 "/usr"
+		phpconfutils_extension_with		"pdo-mysql"	"mysql"		1 "${EPREFIX}/usr"
 		if use oci8 ; then
 			phpconfutils_extension_with	"pdo-oci"	"oci8"		1
 		fi
@@ -586,9 +586,9 @@ php5_2-sapi_src_compile() {
 			OCI8IC_PKG="`printf ${OCI8IC_PKG} | sed -e 's|dev-db/oracle-instantclient-basic-||g' | sed -e 's|-r.*||g'`"
 			phpconfutils_extension_with	"pdo-oci"	"oci8-instant-client"	1	"instantclient,/usr,${OCI8IC_PKG}"
 		fi
-		phpconfutils_extension_with		"pdo-odbc"	"odbc"		1 "unixODBC,/usr"
+		phpconfutils_extension_with		"pdo-odbc"	"odbc"		1 "unixODBC,${EPREFIX}/usr"
 		phpconfutils_extension_with		"pdo-pgsql"	"postgres"	1
-		phpconfutils_extension_with		"pdo-sqlite"	"sqlite"	1 "/usr"
+		phpconfutils_extension_with		"pdo-sqlite"	"sqlite"	1 "${EPREFIX}/usr"
 	fi
 
 	# readline/libedit support
@@ -607,7 +607,7 @@ php5_2-sapi_src_compile() {
 	if ! use sqlite && ! phpconfutils_usecheck sqlite ; then
 		phpconfutils_extension_without		"sqlite"	"sqlite"	0
 	else
-		phpconfutils_extension_with		"sqlite"	"sqlite"	0 "/usr"
+		phpconfutils_extension_with		"sqlite"	"sqlite"	0 "${EPREFIX}/usr"
 		phpconfutils_extension_enable		"sqlite-utf8"	"unicode"	0
 	fi
 
