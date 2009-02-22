@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/gentoo-bashcomp
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.20 2008/05/21 19:00:17 nyhm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.21 2009/02/21 20:29:09 darkside Exp $
+
+*gentoo-bashcomp-20080521-r1 (21 Feb 2009)
+
+  21 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  +gentoo-bashcomp-20080521-r1.ebuild:
+  Now use the 'eselect way' for gentoo-bashcomp. This is desired for future
+  development of the gentoo bash-completion modules
 
 *gentoo-bashcomp-20080521 (21 May 2008)
 
