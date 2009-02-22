@@ -295,8 +295,8 @@ src_compile_fastbuild() {
 		einfo "Building CLI SAPI"
 		einfo
 
-		sed -e 's|^#define PHP_CONFIG_FILE_PATH.*|#define PHP_CONFIG_FILE_PATH "${EPREFIX}/etc/php/cli-php5"|g;' -i main/build-defs.h
-		sed -e 's|^#define PHP_CONFIG_FILE_SCAN_DIR.*|#define PHP_CONFIG_FILE_SCAN_DIR "${EPREFIX}/etc/php/cli-php5/ext-active"|g;' -i main/build-defs.h
+		sed -e 's|^#define PHP_CONFIG_FILE_PATH.*|#define PHP_CONFIG_FILE_PATH "'"${EPREFIX}"'/etc/php/cli-php5"|g;' -i main/build-defs.h
+		sed -e 's|^#define PHP_CONFIG_FILE_SCAN_DIR.*|#define PHP_CONFIG_FILE_SCAN_DIR "'"${EPREFIX}"'/etc/php/cli-php5/ext-active"|g;' -i main/build-defs.h
 		for x in main/main.o main/main.lo main/php_ini.o main/php_ini.lo ; do
 			[[ -f ${x} ]] && rm -f ${x}
 		done
@@ -309,8 +309,8 @@ src_compile_fastbuild() {
 		einfo "Building CGI SAPI"
 		einfo
 
-		sed -e 's|^#define PHP_CONFIG_FILE_PATH.*|#define PHP_CONFIG_FILE_PATH "${EPREFIX}/etc/php/cgi-php5"|g;' -i main/build-defs.h
-		sed -e 's|^#define PHP_CONFIG_FILE_SCAN_DIR.*|#define PHP_CONFIG_FILE_SCAN_DIR "${EPREFIX}/etc/php/cgi-php5/ext-active"|g;' -i main/build-defs.h
+		sed -e 's|^#define PHP_CONFIG_FILE_PATH.*|#define PHP_CONFIG_FILE_PATH "'"${EPREFIX}"'/etc/php/cgi-php5"|g;' -i main/build-defs.h
+		sed -e 's|^#define PHP_CONFIG_FILE_SCAN_DIR.*|#define PHP_CONFIG_FILE_SCAN_DIR "'"${EPREFIX}"'/etc/php/cgi-php5/ext-active"|g;' -i main/build-defs.h
 		for x in main/main.o main/main.lo main/php_ini.o main/php_ini.lo ; do
 			[[ -f ${x} ]] && rm -f ${x}
 		done
