@@ -1,5 +1,7 @@
---- execute_cmd.c	2006-11-01 18:32:36 +0000
-+++ execute_cmd.c	2006-11-01 18:32:42 +0000
+Fix process substitution on BSD
+
+--- execute_cmd.c
++++ execute_cmd.c
 @@ -2672,6 +2672,7 @@
  
  	  do_piping (pipe_in, pipe_out);
