@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9505 2009/02/21 04:37:11 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9506 2009/02/21 10:38:00 angelos Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -277,10 +277,6 @@ net-analyzer/rtg
 # baselayout-vserver is unmaintained and obsoleted by baselayout-2/openrc.
 # Please, upgrade to openrc. removal after openrc goes stable, bug #254519
 sys-apps/baselayout-vserver
-
-# Christoph Mende <angelos@gentoo.org> (07 Jan 2009)
-# Masked for removal in 30 days, this plugin has been integrated into gmpc
-media-plugins/gmpc-stopbutton
 
 # Daniel Gryniewicz <dang@gentoo.org> (07 Jan 2009)
 # Mask gnome-base/gnome-vfs-monikers for removal
