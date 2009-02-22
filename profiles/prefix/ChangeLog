@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  22 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unleash ncurses-5.7, leash readline-6 because some packages need readline-5,
+  depending on it, causing our depgraph to break, waiting for gentoo-x86 to
+  resolve it in some way
+
   18 Feb 2009; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/10.5/x86/package.use.mask, darwin/macos/package.use.mask:
   Move mmx masks into the x86 profile, since there an unmask is being done,
