@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.8.1.ebuild,v 1.7 2008/10/27 18:52:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.2.ebuild,v 1.1 2009/02/21 22:20:39 dirtyepic Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit eutils versionator flag-o-matic
 
@@ -54,17 +54,15 @@ LICENSE="wxWinLL-3
 
 S="${WORKDIR}/wxPython-src-${PV}"
 
-src_unpack() {
-	unpack ${A}
+src_prepare() {
 	cd "${S}"
-
 	epatch "${FILESDIR}"/${PN}-2.6.3-unicode-odbc.patch
 	epatch "${FILESDIR}"/${PN}-2.8.8-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.6-wxrc_link_fix.patch
-	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch			# Bug #174874
+	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	append-flags -fno-strict-aliasing
@@ -75,11 +73,14 @@ src_compile() {
 			--enable-unicode
 			--with-regex=builtin
 			--with-zlib=sys
-			--with-expat
+			--with-expat=sys
 			$(use_enable debug)
 			$(use_enable pch precomp-headers)
-			$(use_with sdl)
-			$(use_with odbc)"
+			$(use_with sdl)"
+
+	use odbc \
+		&& myconf="${myconf} --with-odbc=sys" \
+		|| myconf="${myconf} $(use_with odbc)"
 
 	# wxGTK options
 	#   --enable-graphics_ctx - needed for webkit, editra
@@ -89,10 +90,10 @@ src_compile() {
 		myconf="${myconf}
 			--enable-graphics_ctx
 			--enable-gui
-			--with-libpng
-			--with-libxpm
-			--with-libjpeg
-			--with-libtiff
+			--with-libpng=sys
+			--with-libxpm=sys
+			--with-libjpeg=sys
+			--with-libtiff=sys
 			$(use_enable gstreamer mediactrl)
 			$(use_enable opengl)
 			$(use_with opengl)
@@ -108,6 +109,10 @@ src_compile() {
 	cd "${S}"/wxgtk_build
 
 	ECONF_SOURCE="${S}" econf ${myconf} || die "configure failed."
+}
+
+src_compile() {
+	cd "${S}"/wxgtk_build
 
 	emake || die "make failed."
 
