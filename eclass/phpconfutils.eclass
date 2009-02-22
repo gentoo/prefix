@@ -429,7 +429,7 @@ phpconfutils_built_with_use() {
 	local PHP_PKG=$(best_version $1)
 	shift
 
-	local PHP_USEFILE="${ROOT}/var/lib/php-pkg/${PHP_PKG}/PHP_USEFILE"
+	local PHP_USEFILE="${EROOT}/var/lib/php-pkg/${PHP_PKG}/PHP_USEFILE"
 
 	[[ ! -e "${PHP_USEFILE}" ]] && return 0
 
@@ -455,7 +455,7 @@ phpconfutils_built_with_use() {
 phpconfutils_generate_usefile() {
 	phpconfutils_sort_flags
 
-	local PHP_USEFILE="${D}/var/lib/php-pkg/${CATEGORY}/${PN}-${PVR}/PHP_USEFILE"
+	local PHP_USEFILE="${ED}/var/lib/php-pkg/${CATEGORY}/${PN}-${PVR}/PHP_USEFILE"
 
 	# Write the auto-enabled USEs into the correct file
 	dodir "/var/lib/php-pkg/${CATEGORY}/${PN}-${PVR}/"
