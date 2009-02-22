@@ -133,6 +133,9 @@ src_install() {
 		# For now, drop the man pages, collides with the ones of the system.
 		rm -rf "${ED}"/usr/share/man
 	fi
+
+	# collision with libiconv
+	rm -rf "${ED}"/usr/$(get_libdir)/charset.alias
 }
 
 pkg_postinst() {
