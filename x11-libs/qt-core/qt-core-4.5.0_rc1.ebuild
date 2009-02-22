@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.0_rc1.ebuild,v 1.6 2009/02/14 23:53:26 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.0_rc1.ebuild,v 1.7 2009/02/21 19:23:11 hwoarang Exp $
 
 EAPI="prefix 2"
 inherit qt4-build
@@ -145,6 +145,12 @@ src_configure() {
 	cp -f "${FILESDIR}"/uic.pro "${S}"/src/tools/uic/
 
 	qt4-build_src_configure
+}
+
+src_compile() {
+	# bug #259736
+	unset QMAKESPEC
+	qt4-build_src_compile
 }
 
 src_install() {
