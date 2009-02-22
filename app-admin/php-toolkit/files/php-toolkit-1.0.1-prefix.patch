@@ -1,0 +1,37 @@
+diff -u php-toolkit-1.0.1.orig/php-select php-toolkit-1.0.1/php-select
+--- php-toolkit-1.0.1.orig/php-select	2008-04-06 12:04:04 +0200
++++ php-toolkit-1.0.1/php-select	2009-02-22 22:18:19 +0100
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ #
+ # /usr/sbin/php-select
+ #		Tool for managing PHP symlinks on Gentoo Linux
+@@ -39,10 +39,10 @@
+ G_COPYRIGHT[0]="Copyright (c) 2005 Gentoo Foundation, Inc."
+ G_COPYRIGHT[1]="Released under v2 of the GNU General Public License"
+ G_EXITSTATUS=0
+-G_LIBDIR[0]="/usr/lib64"
+-G_LIBDIR[1]="/usr/lib32"
+-G_LIBDIR[2]="/usr/lib"
+-G_MODULE_PATH="/usr/share/php-select"
++G_LIBDIR[0]="@GENTOO_PORTAGE_EPREFIX@/usr/lib64"
++G_LIBDIR[1]="@GENTOO_PORTAGE_EPREFIX@/usr/lib32"
++G_LIBDIR[2]="@GENTOO_PORTAGE_EPREFIX@/usr/lib"
++G_MODULE_PATH="@GENTOO_PORTAGE_EPREFIX@/usr/share/php-select"
+ G_NEED_COMPONENT=0
+ G_NEED_PHPVERSION=0
+ G_PN="$0"
+@@ -106,8 +106,8 @@
+ 	echo
+ 	echo "    apache1   - Apache webserver v1.x"
+ 	echo "    apache2   - Apache webserver v2.x"
+-	echo "    php       - /usr/bin/php (the CLI SAPI)"
+-	echo "    php-cgi   - /usr/bin/php-cgi (the CGI SAPI)"
++	echo "    php       - @GENTOO_PORTAGE_EPREFIX@/usr/bin/php (the CLI SAPI)"
++	echo "    php-cgi   - @GENTOO_PORTAGE_EPREFIX@/usr/bin/php-cgi (the CGI SAPI)"
+ 	echo "    php-devel - the scripts used to build PECL extensions"
+ 	echo
+ 	echo "and where <php-version> is one of:"
+Common subdirectories: php-toolkit-1.0.1.orig/php-select-modules and php-toolkit-1.0.1/php-select-modules
+Only in php-toolkit-1.0.1: prefix.patch
