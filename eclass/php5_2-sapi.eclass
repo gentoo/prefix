@@ -229,16 +229,16 @@ php5_2-sapi_check_use_flags() {
 }
 
 php5_2-sapi_set_php_ini_dir() {
-	PHP_INI_DIR="/etc/php/${PHPSAPI}-php5"
+	PHP_INI_DIR="${EPREFIX}/etc/php/${PHPSAPI}-php5"
 	PHP_EXT_INI_DIR="${PHP_INI_DIR}/ext"
 	PHP_EXT_INI_DIR_ACTIVE="${PHP_INI_DIR}/ext-active"
 }
 
 php5_2-sapi_install_ini() {
-	destdir=/usr/$(get_libdir)/php5
+	destdir="${EPREFIX}"/usr/$(get_libdir)/php5
 
 	# get the extension dir, if not already defined
-	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`"
+	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${D}/${destdir}/bin/php-config" --extension-dir`"
 
 	# work out where we are installing the ini file
 	php5_2-sapi_set_php_ini_dir
@@ -256,7 +256,7 @@ php5_2-sapi_install_ini() {
 
 	# Set the include path to point to where we want to find PEAR packages
 	einfo "Setting correct include_path"
-	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:/usr/share/php5:/usr/share/php"|' -i ${phpinisrc}
+	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:${EPREFIX}/usr/share/php5:${EPREFIX}/usr/share/php"|' -i ${phpinisrc}
 
 	# Add needed MySQL extensions charset configuration
 	local phpmycnfcharset=""
@@ -289,20 +289,20 @@ php5_2-sapi_install_ini() {
 		echo ";pdo_mysql.connect_charset = utf8" >> ${phpinisrc}
 	fi
 
-	dodir ${PHP_INI_DIR}
-	insinto ${PHP_INI_DIR}
+	dodir ${PHP_INI_DIR#${EPREFIX}}
+	insinto ${PHP_INI_DIR#${EPREFIX}}
 	newins ${phpinisrc} ${PHP_INI_FILE}
 
-	dodir ${PHP_EXT_INI_DIR}
-	dodir ${PHP_EXT_INI_DIR_ACTIVE}
+	dodir ${PHP_EXT_INI_DIR#${EPREFIX}}
+	dodir ${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}
 
 	# Install any extensions built as shared objects
 	if use sharedext ; then
-		for x in `ls "${ED}/${PHPEXTDIR}/"*.so | sort` ; do
+		for x in `ls "${D}/${PHPEXTDIR}/"*.so | sort` ; do
 			inifilename=${x/.so/.ini}
 			inifilename=`basename ${inifilename}`
-			echo "extension=`basename ${x}`" >> "${ED}/${PHP_EXT_INI_DIR}/${inifilename}"
-			dosym "${PHP_EXT_INI_DIR}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE}/${inifilename}"
+			echo "extension=`basename ${x}`" >> "${D}/${PHP_EXT_INI_DIR}/${inifilename}"
+			dosym "${PHP_EXT_INI_DIR#${EPREFIX}}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}/${inifilename}"
 		done
 	fi
 }
@@ -403,7 +403,7 @@ php5_2-sapi_src_unpack() {
 # Takes care of compiling php according to USE flags set by user (and those automagically
 # enabled via phpconfutils eclass if unavoidable).
 php5_2-sapi_src_compile() {
-	destdir=/usr/$(get_libdir)/php5
+	destdir="${EPREFIX}"/usr/$(get_libdir)/php5
 
 	php5_2-sapi_set_php_ini_dir
 
@@ -632,7 +632,7 @@ php5_2-sapi_src_compile() {
 	tc-export CC
 
 	# We don't use econf, because we need to override all of its settings
-	./configure --prefix="${EPREFIX}"${destdir} --host=${CHOST} --mandir="${EPREFIX}"${destdir}/man --infodir="${EPREFIX}"${destdir}/info --sysconfdir="${EPREFIX}"/etc --cache-file=./config.cache ${my_conf} ${EXTRA_ECONF} || die "configure failed"
+	./configure --prefix=${destdir} --host=${CHOST} --mandir=${destdir}/man --infodir=${destdir}/info --sysconfdir="${EPREFIX}"/etc --cache-file=./config.cache ${my_conf} ${EXTRA_ECONF} || die "configure failed"
 	emake || die "make failed"
 }
 
@@ -679,7 +679,7 @@ php5_2-sapi_src_install() {
 		for x in `ls "${S}/modules/"*.so | sort` ; do
 			module=`basename ${x}`
 			modulename=${module/.so/}
-			insinto "${PHPEXTDIR}"
+			insinto "${PHPEXTDIR#${EPREFIX}}"
 			einfo "Installing PHP ${modulename} extension"
 			doins "modules/${module}"
 		done
