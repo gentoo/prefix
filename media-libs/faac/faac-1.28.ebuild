@@ -26,6 +26,11 @@ src_unpack() {
 	eautoreconf
 	elibtoolize
 	epunt_cxx
+
+	# altivec stuff triggers a definition of bool which causes faac to fail
+	# http://archives.postgresql.org/pgsql-hackers/2005-11/msg00104.php
+	[[ ${CHOST} == *-darwin* ]] && \
+		filter-flags "-faltivec" "-mabi=altivec" "-maltivec" "-mcpu=*"
 }
 
 src_install() {
