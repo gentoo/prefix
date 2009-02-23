@@ -13,7 +13,7 @@ xfce44
 
 DESCRIPTION="Command line panel plugin"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE="dbus debug"
 
 RDEPEND=">=xfce-extra/exo-0.3.2
