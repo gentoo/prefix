@@ -1,0 +1,21 @@
+# ChangeLog for x11-themes/gtk-engines-aurora
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-aurora/ChangeLog,v 1.4 2008/11/24 17:25:56 ssuominen Exp $
+
+  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
+  Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org.
+
+  18 Jul 2008; Christian Faulhammer <opfer@gentoo.org>
+  gtk-engines-aurora-1.4.ebuild:
+  stable x86, bug 231181
+
+  11 Jul 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  gtk-engines-aurora-1.4.ebuild:
+  stable amd64, bug 231181
+
+*gtk-engines-aurora-1.4 (14 May 2008)
+
+  14 May 2008; Samuli Suominen <drac@gentoo.org>
+  +gtk-engines-aurora-1.4.ebuild:
+  Initial commit wrt #213577, thanks to Angelo Arrifano and Josh Saddler.
+
