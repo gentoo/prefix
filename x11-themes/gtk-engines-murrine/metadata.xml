@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+
+<pkgmetadata>
+<herd>no-herd</herd>
+	<maintainer>
+		<email>jokey@gentoo.org</email>
+		<name>Markus Ullmann</name>
+	</maintainer>
+	<maintainer>
+		<email>atj@pulsewidth.org.uk</email>
+		<name>Adam James</name>
+	</maintainer>
+	<longdescription>
+"Murrine" is an Italian word meaning the glass artworks done by Venicians glass
+blowers. They're absolutely wonderful and colorful.
+
+Murrine has this object to provide the ability to make your desktop look like a
+"Murrina", which is the Italian singular of the name "Murrine".
+
+The Engine is cairo-based, and it's very fast compared to clearlooks-cairo and
+ubuntulooks (30% faster and more), since I have tried to optimize the code and
+removed a lot of slow gradients to provide this unique style.
+	</longdescription>
+</pkgmetadata>
