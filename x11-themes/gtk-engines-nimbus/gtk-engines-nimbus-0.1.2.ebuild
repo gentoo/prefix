@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2-utils
+inherit gnome2-utils autotools
 
 MY_PN=nimbus
 MY_P=${MY_PN}-${PV}
@@ -30,6 +30,9 @@ src_unpack() {
 	unpack ${A}
 	# Fix src_test.
 	echo dark-index.theme.in >> "${S}"/po/POTFILES.skip
+
+	cd "${S}"
+	eautoreconf # required for interix
 }
 
 src_compile() {
