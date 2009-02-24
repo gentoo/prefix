@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 DESCRIPTION="A library that provides top functionality to applications"
 HOMEPAGE="http://www.gnome.org/"
@@ -25,6 +25,7 @@ src_unpack() {
 	gnome2_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.23.90-solaris.patch
+	eautoreconf
 }
 
 pkg_setup() {
