@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  24 Feb 2009; Fabian Groffen <fabian@cwi.nl> package.mask:
+  Mask x11-misc/xscreensaver-5.08, waiting for bug #256072
+
   22 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unleash ncurses-5.7, leash readline-6 because some packages need readline-5,
   depending on it, causing our depgraph to break, waiting for gentoo-x86 to
