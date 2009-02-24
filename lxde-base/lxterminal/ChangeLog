@@ -1,0 +1,16 @@
+# ChangeLog for lxde-base/lxterminal
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxterminal/ChangeLog,v 1.2 2009/01/12 23:31:27 bluebird Exp $
+
+*lxterminal-0.1.4 (12 Jan 2009)
+
+  12 Jan 2009; Friedrich Oslage <bluebird@gentoo.org>
+  -lxterminal-0.1.3.ebuild, +lxterminal-0.1.4.ebuild:
+  Version bump
+
+*lxterminal-0.1.3 (07 Nov 2008)
+
+  07 Nov 2008; Ben de Groot <yngwin@gentoo.org> +metadata.xml,
+  +lxterminal-0.1.3.ebuild:
+  Initial import of ebuild from lxde overlay
+
