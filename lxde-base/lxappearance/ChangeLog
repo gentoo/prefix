@@ -1,0 +1,22 @@
+# ChangeLog for lxde-base/lxappearance
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxappearance/ChangeLog,v 1.1 2008/11/07 14:28:51 yngwin Exp $
+
+  07 Nov 2008; Ben de Groot <yngwin@gentoo.org> +metadata.xml,
+  +lxappearance-0.2.ebuild:
+  Moving package to lxde-base category. Use slot dep for gtk+.
+
+  24 Oct 2008; Pieter Van den Abeele <pvdabeel@gentoo.org> lxappearance-0.2.ebuild:
+  Keyworded ~ppc. Closes bug #235333
+
+  04 Sep 2008; Ben de Groot <yngwin@gentoo.org> metadata.xml:
+  LXDE team is taking over this package
+
+  23 May 2008; Denis Dupeyron <calchan@gentoo.org> lxappearance-0.2.ebuild:
+  Fixed DESCRIPTION, thanks to nightmorph.
+
+*lxappearance-0.2 (17 May 2008)
+
+  17 May 2008; Samuli Suominen <drac@gentoo.org> +lxappearance-0.2.ebuild:
+  Initial commit wrt #157989, thanks to Ryoichiro Suzuki and Jonathan Dehan.
+
