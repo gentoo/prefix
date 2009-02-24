@@ -72,7 +72,7 @@ src_configure() {
 		--without-gle \
 		--with-gtk \
 		--with-pixbuf \
-		--with-text-file=/etc/gentoo-release \
+		--with-text-file="${EPREFIX}"/etc/gentoo-release \
 		$(use_with suid setuid-hacks) \
 		$(use_with new-login login-manager) \
 		$(use_with xinerama xinerama-ext) \
