@@ -1,6 +1,36 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.374 2009/02/10 18:11:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.380 2009/02/24 10:15:24 a3li Exp $
+
+  24 Feb 2009; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p287-r5.ebuild,
+  ruby-1.8.6_p287-r12.ebuild, ruby-1.8.7_p72-r2.ebuild:
+  Fixing Tk USE flag test, bug 258893.
+
+  23 Feb 2009; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p287-r5.ebuild:
+  Marking ruby-1.8.6_p287-r5 ppc64 for bug 260006
+
+  23 Feb 2009; Tobias Heinlein <keytoaster@gentoo.org>
+  ruby-1.8.6_p287-r5.ebuild:
+  amd64 stable wrt security bug #260006
+
+  23 Feb 2009; Jeroen Roovers <jer@gentoo.org> ruby-1.8.6_p287-r5.ebuild:
+  Stable for HPPA (bug #260006).
+
+  23 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  ruby-1.8.6_p287-r5.ebuild:
+  Stable on alpha, bug #260006
+
+*ruby-1.8.7_p72-r2 (23 Feb 2009)
+*ruby-1.8.6_p287-r12 (23 Feb 2009)
+*ruby-1.8.6_p287-r5 (23 Feb 2009)
+
+  23 Feb 2009; Alex Legler <a3li@gentoo.org> +files/ruby-mkconfig.patch,
+  +files/ruby-ossl_ocsp-verification.patch, +ruby-1.8.6_p287-r5.ebuild,
+  +ruby-1.8.6_p287-r12.ebuild, +ruby-1.8.7_p72-r2.ebuild:
+  Revision bumps for security bug 260006 (X.509 certificate spoofing). Also
+  fixing bugs 234877 (backported patch for mkconfig), 258893 (ebuild dies
+  now before compilation if Tk useflags don't match) and 230748 (adding
+  --enable-option-checking=no for newer versions of autoconf).
 
   10 Feb 2009; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p287-r4.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #254307
