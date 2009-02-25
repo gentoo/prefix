@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9506 2009/02/21 10:38:00 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9513 2009/02/24 23:42:19 yngwin Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,8 +31,35 @@
 
 #--- END OF EXAMPLES ---
 
-# Petteri Räty <betelgeuse@gentoo.org (19 Feb 2009)
-# The newer versions of the driver found in 
+# Ben de Groot <yngwin@gentoo.org> (24 Feb 2009)
+# Compilation failure that I hope someone can test and fix
+=x11-themes/qtcurve-qt4-0.61.2
+
+# Joe Sapp <nixphoeni@gentoo.org> (22 Feb 2009)
+# These packages don't live on gdesklets.de any more,
+# which can be taken to mean they aren't supported
+# by anybody upstream.  Masking for removal in
+# 30 days (bug #259971).
+x11-plugins/desklet-discreetclock
+x11-plugins/desklet-regexp
+x11-plugins/desklet-rssgrab
+x11-plugins/desklet-rsstickerbar
+x11-plugins/desklet-scweather
+x11-plugins/desklet-sidecandy
+x11-plugins/desklet-sidecandygmail
+x11-plugins/desklet-sidecandyrhythmbox
+
+# Joe Sapp <nixphoeni@gentoo.org> (22 Feb 2009)
+# The following have made their way into the upstream
+# core package.  Unless there's a reason to keep
+# 0.35.4 around, I'd like them all gone in 30 days
+# too.  Masking for removal in 30 days (bug #259971).
+x11-plugins/desklet-calendar
+x11-plugins/desklet-clock
+=gnome-extra/gdesklets-core-0.35.4
+
+# Petteri Räty <betelgeuse@gentoo.org> (19 Feb 2009)
+# The newer versions of the driver found in
 # dev-java/jdbc-postgresql also work with PostgreSQL
 # version >=7.2 so there is no need to keep these old
 # versions around any more. See bug #259559 for more
@@ -302,33 +329,6 @@ gnome-base/gnome-vfs-monikers
 =net-www/xxv-1.2.1383
 =x11-themes/xxv-skins-1.2.1383
 
-# Mike Auty <ikelos@gentoo.org> (03 Jan 2009)
-# Masking insecure versions
-# See bug 245941 for more details
-# Stable versions are not being masked, but should be really
-# 11-Jan-2009 Adding in x.5.0 series, since they're also vulnerable
-# 16-Jan-2009 Adding in 5.5.7 and 1.0.7, since later versions are now stable
-# 16-Jan-2009 Adding in all vulnerable server versions
-# 16-Jan-2009 Adding all unnnecessary vmware-modules
-=app-emulation/vmware-workstation-5.5.7.91707
-=app-emulation/vmware-workstation-5.5.8.108000
-=app-emulation/vmware-workstation-6.0.4.93057
-=app-emulation/vmware-workstation-6.0.5.109488
-=app-emulation/vmware-workstation-6.5.0.118166
-=app-emulation/vmware-player-1.0.7.91707
-=app-emulation/vmware-player-1.0.8.108000
-=app-emulation/vmware-player-2.0.4.93057
-=app-emulation/vmware-player-2.0.5.109488
-=app-emulation/vmware-player-2.5.0.118166
-=app-emulation/vmware-server-1.0.5.80187
-=app-emulation/vmware-server-1.0.6.91891
-=app-emulation/vmware-server-1.0.7.108231
-=app-emulation/vmware-server-console-1.0.5.80187-r1
-=app-emulation/vmware-server-console-1.0.6.91891
-=app-emulation/vmware-server-console-1.0.7.108231
-=app-emulation/vmware-modules-1.0.0.20
-=app-emulation/vmware-modules-1.0.0.22
-
 # Diego E. Pettenò <flameeyes@gentoo.org> (03 Jan 2009)
 # These packages are not supposed to be merged directly, instead
 # please use sys-devel/crossdev to install them.
@@ -404,10 +404,6 @@ net-dialup/ivcall
 # Paul Varner <fuzzyray@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~30 to 60 days.
 app-portage/udept
-
-# Gilles Dartiguelongue <eva@gentoo.org> (14 Dec 2008)
-# Masked for testing until tree is fixed, see bug #243160.
->=gnome-extra/gucharmap-2.24
 
 # Alin Năstac <mrness@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~60 days.
@@ -555,10 +551,6 @@ dev-python/pyframer
 # version, and that's a big change.
 app-portage/genflags
 
-# Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (15 Oct 2008)
-# Beta release
->=kde-misc/krusader-2.0.0_beta1
-
 # Alexis Ballier <aballier@gentoo.org> (15 Oct 2008)
 # Breaks ocamlduce
 >=dev-lang/ocaml-3.11.0_beta1
@@ -666,10 +658,6 @@ dev-tcltk/tclgpgme
 # Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
 # Beta driver, unsupported by nVidia
 ~x11-drivers/nvidia-drivers-177.67
-
-# Tiziano Müller <dev-zero@gentoo.org> (16 Aug 2008)
-# mask live ebuild (no bundled sqlalchemy anymore)
-=media-video/griffith-9999
 
 # Tiziano Müller <dev-zero@gentoo.org> (15 Aug 2008)
 # Masked for testing (works with >=dev-libs/xerces-c-3.0.0)
@@ -1169,14 +1157,6 @@ sci-chemistry/nmrview
 # Sven Wegener <swegener@gentoo.org> (07 Jul 2007)
 # Development releases
 =dev-db/opendbx-1.3*
-
-# Petteri Räty <betelgeuse@gentoo.org> (01 Jul 2007)
-# Upstream describes this as:
-# Buggy and unmaintained D-BUS service browser for KDE.
-# Seems to segmentation fault on me on startup with current
-# dbus. Removal in 30 days unless someone else takes this
-# package and fixes the problems.
-kde-misc/kdbus
 
 # Jurek Bartuszek <jurek@gentoo.org> (23 Jun 2007)
 # Beta versions, testing required

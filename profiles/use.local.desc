@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4220 2009/02/21 23:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4224 2009/02/24 17:07:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -263,6 +263,8 @@ app-i18n/ibus-table-zhengma:extra-phrases - Add extra phrases into builded Engin
 app-i18n/im-ja:anthy - Support for Anthy input method
 app-i18n/im-ja:skk - Support for SKK input method
 app-i18n/kimera:anthy - Support for Anthy input method
+app-i18n/libtomoe-gtk:gucharmap - Enable gucharmap dictionary plugin
+app-i18n/scim-tomoe:gucharmap - Enable gucharmap dictionary plugin
 app-i18n/tomoe:hyperestraier - Enable support for app-text/hyperestraier
 app-i18n/uim:anthy - Enable support for app-i18n/anthy input method 
 app-i18n/uim:eb - Enable support for dev-libs/eb
@@ -1059,7 +1061,7 @@ kde-base/okular:ebook - Add E-Book suppport
 kde-base/okular:ps - Add PostScript support
 kde-base/plasma-workspace:google-gadgets - Add google-gadgets support
 kde-base/pykde4:akonadi - Builds Akonadi python language bindings
-kde-base/pykde4:semantic-desktop - Enables Nemomuk and Soprano python language bindings
+kde-base/pykde4:semantic-desktop - Enables Nepomuk and Soprano python language bindings
 kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
@@ -1962,6 +1964,7 @@ net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
 net-im/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
 net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermann 
 net-irc/atheme:largenet - Enable support/tweaks for large networks
+net-irc/bip:oidentd - Enable oidentd support
 net-irc/ezbounce:boost - Compile against dev-libs/boost libraries
 net-irc/inspircd:openssl - Build dev-libs/openssl module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
@@ -2107,6 +2110,7 @@ net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
 net-misc/openssh:hpn - Enable high performance ssh
 net-misc/openssh:ldap - Add support for storing SSH public keys in LDAP
+net-misc/openssh:pkcs11 - Enable PKCS#11 smartcard support
 net-misc/openswan:curl - Include curl support (used for fetching CRLs)
 net-misc/openswan:extra-algorithms - Include additional strong algorithms (Blowfish, Twofish, Serpent and SHA2)
 net-misc/openswan:ldap - Include LDAP support (used for fetching CRLs)
