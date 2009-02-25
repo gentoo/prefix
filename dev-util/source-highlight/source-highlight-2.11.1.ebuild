@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.10.ebuild,v 1.1 2008/07/21 06:20:36 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.11.1.ebuild,v 1.1 2009/02/23 20:41:09 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit bash-completion
 DESCRIPTION="Generate highlighted source code as an (x)html document"
 HOMEPAGE="http://www.gnu.org/software/src-highlite/source-highlight.html"
 SRC_URI="mirror://gnu/src-highlite/${P}.tar.gz"
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 SLOT="0"
 IUSE="doc"
@@ -21,10 +21,10 @@ RDEPEND="${DEPEND}"
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	dobashcompletion "${FILESDIR}/${PN}-2.10.bash-completion"
+	dobashcompletion source-highlight-bash-completion
 
 	# That's not how we want it
-	rm -fr "${ED}/usr/share/doc"
+	rm -fr "${ED}/usr/share/doc" "${ED}/etc"
 	dodoc AUTHORS ChangeLog CREDITS NEWS README THANKS TODO.txt
 
 	if use doc ; then
