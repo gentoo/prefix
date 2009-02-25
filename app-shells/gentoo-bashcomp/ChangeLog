@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/gentoo-bashcomp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.21 2009/02/21 20:29:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.22 2009/02/23 03:45:24 darkside Exp $
+
+*gentoo-bashcomp-20090222 (23 Feb 2009)
+
+  23 Feb 2009; Jeremy Olexa <darkside@gentoo.org>
+  +gentoo-bashcomp-20090222.ebuild:
+  Version bump. Includes new portage options and a new repoman bash-completion
+  module
 
 *gentoo-bashcomp-20080521-r1 (21 Feb 2009)
 
