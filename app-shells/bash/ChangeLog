@@ -1,6 +1,28 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.196 2009/02/21 23:03:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.201 2009/02/24 22:13:40 vapier Exp $
+
+  24 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-pcomplete-save-parser-state.patch, bash-4.0.ebuild:
+  Add another fix from upstream.
+
+  24 Feb 2009; Mike Frysinger <vapier@gentoo.org> bash-4.0.ebuild:
+  Drop BSD patch as it causes bad behavior on Linux #259860.
+
+  24 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-exit-checkjobs.patch,
+  +files/bash-4.0-negative-return.patch,
+  +files/bash-4.0-save-current-token.patch, bash-4.0.ebuild:
+  Add fixes from upstream.
+
+  23 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-comsub-backslash-metacharacters.patch, bash-4.0.ebuild:
+  Add fix from upstream for escaped semicolons in $(...) subshells.
+
+  23 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  -files/bash-4.0-protos.patch, bash-4.0.ebuild:
+  The prototypes have been fixed in a different way apparently, so drop this
+  patch.
 
 *bash-4.0 (21 Feb 2009)
 

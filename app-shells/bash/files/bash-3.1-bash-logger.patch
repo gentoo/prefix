@@ -1,7 +1,7 @@
 Add support for logging bash commands via syslog().
 Useful for deploying in honeypot environments.
 
-http://bugs.gentoo.org/show_bug.cgi?id=91327
+http://bugs.gentoo.org/91327
 http://www.nardware.co.uk/Security/html/bashlogger.htm
 
 --- bashhist.c
@@ -35,7 +35,7 @@ http://www.nardware.co.uk/Security/html/bashlogger.htm
  	    if (HIST_TIMESTAMP_START(line_start) == 0)
  	      {
 -		add_history (line_start);
-+		add_history (line_start,0);
++		add_history (line_start, 0);
  		if (last_ts)
  		  {
  		    add_history_time (last_ts);
@@ -50,7 +50,7 @@ http://www.nardware.co.uk/Security/html/bashlogger.htm
  #if defined (HAVE_STDLIB_H)
  #  include <stdlib.h>
  #else
-@@ -246,10 +250,24 @@
+@@ -246,10 +250,23 @@
  /* Place STRING at the end of the history list.  The data field
     is  set to NULL. */
  void
@@ -62,16 +62,15 @@ http://www.nardware.co.uk/Security/html/bashlogger.htm
  {
    HIST_ENTRY *temp;
 +  if (logme) {
-+    if (strlen(string)<600) {
++    char trunc[600]; /* arbitrary max size of 600 bytes */
++    if (strlen(string) < sizeof(trunc)) {
 +      syslog(LOG_LOCAL5 | LOG_INFO, "HISTORY: PID=%d UID=%d %s",
 +        getpid(), getuid(), string);
-+    }
-+    else {
-+      char trunc[600];
-+      strncpy(trunc,string,sizeof(trunc));
-+      trunc[sizeof(trunc)-1]='\0';
++    } else {
++      memcpy(trunc, string, sizeof(trunc));
++      trunc[sizeof(trunc) - 1] = '\0';
 +      syslog(LOG_LOCAL5 | LOG_INFO, "HISTORY: PID=%d UID=%d %s(++TRUNC)",
-+          getpid(), getuid(), trunc);
++        getpid(), getuid(), trunc);
 +    }
 +  }
  
