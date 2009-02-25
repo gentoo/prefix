@@ -27,6 +27,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.5.3-po-builddir-fix.patch
 
 	epatch "${FILESDIR}"/${PN}-2.5.1a-mint.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 }
 
 src_compile() {
