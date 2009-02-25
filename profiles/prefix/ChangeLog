@@ -2,7 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
-  24 Feb 2009; Fabian Groffen <fabian@cwi.nl> package.mask:
+  25 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask bash-4.0 as I don't dare kicking it straight into everyone's system
+
+  24 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask x11-misc/xscreensaver-5.08, waiting for bug #256072
 
   22 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
