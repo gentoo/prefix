@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/pixman
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.22 2008/12/07 11:54:15 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.23 2009/02/24 18:18:51 armin76 Exp $
+
+  24 Feb 2009; Raúl Porcel <armin76@gentoo.org> pixman-0.10.0.ebuild,
+  pixman-0.11.6.ebuild, pixman-0.11.8.ebuild:
+  Fix some s390 keywording
 
   07 Dec 2008; Mike Frysinger <vapier@gentoo.org> pixman-0.12.0.ebuild:
   Add s390 love #202529.
