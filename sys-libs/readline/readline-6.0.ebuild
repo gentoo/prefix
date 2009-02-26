@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0.ebuild,v 1.1 2009/02/21 21:38:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0.ebuild,v 1.4 2009/02/24 08:57:47 kumba Exp $
 
 EAPI="prefix"
 
@@ -12,16 +12,24 @@ PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
 [[ ${PV} != *_p* ]] && PLEVEL=0
+patches() {
+	[[ ${PLEVEL} -eq 0 ]] && return 1
+	local opt=$1
+	eval set -- {1..${PLEVEL}}
+	set -- $(printf "${PN}${MY_PV/\.}-%03d " "$@")
+	if [[ ${opt} == -s ]] ; then
+		echo "${@/#/${DISTDIR}\/}"
+	else
+		local u
+		for u in ftp://ftp.cwru.edu/pub/bash mirror://gnu/${PN} ; do
+			printf "${u}/${PN}-${MY_PV}-patches/%s " "$@"
+		done
+	fi
+}
 
 DESCRIPTION="Another cute console display library"
 HOMEPAGE="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
-SRC_URI="mirror://gnu/readline/${MY_P}.tar.gz
-	$(for ((i=1; i<=PLEVEL; i++)); do
-		printf 'ftp://ftp.cwru.edu/pub/bash/readline-%s-patches/readline%s-%03d\n' \
-			${MY_PV} ${MY_PV/\.} ${i}
-		printf 'mirror://gnu/bash/readline-%s-patches/readline%s-%03d\n' \
-			${MY_PV} ${MY_PV/\.} ${i}
-	done)"
+SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -40,11 +48,7 @@ src_unpack() {
 	unpack ${MY_P}.tar.gz
 
 	cd "${S}"
-	# Official patches
-	local i
-	for ((i=1; i<=PLEVEL; i++)); do
-		epatch "${DISTDIR}"/${PN}${MY_PV/\.}-$(printf '%03d' ${i})
-	done
+	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
 	# missing patch for 'support/shlib-install' in p12 (netbsd, aix5, interix).
 	epatch "${FILESDIR}"/${PN}-5.2_p12-shlib-install.patch
 
@@ -79,17 +83,21 @@ src_compile() {
 	econf --with-curses || die
 	emake || die
 
-	cd examples/rlfe
-	append-ldflags -Lreadline
-	econf || die
-	emake || die "make rlfe failed"
+	if ! tc-is-cross-compiler ; then
+		cd examples/rlfe
+		append-ldflags -Lreadline
+		econf || die
+		emake || die "make rlfe failed"
+	fi
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
 	gen_usr_ldscript -a readline history #4411
 
-	dobin examples/rlfe/rlfe || die
+	if ! tc-is-cross-compiler; then
+		dobin examples/rlfe/rlfe || die
+	fi
 
 	dodoc CHANGELOG CHANGES README USAGE NEWS
 	docinto ps

@@ -1,6 +1,14 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.125 2009/02/21 21:38:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.127 2009/02/24 08:57:46 kumba Exp $
+
+  24 Feb 2009; Joshua Kinard <kumba@gentoo.org> readline-6.0.ebuild:
+  Skip the rlfe bits if doing cross-compiling.
+
+*readline-4.3_p5 (23 Feb 2009)
+
+  23 Feb 2009; Mike Frysinger <vapier@gentoo.org> +readline-4.3_p5.ebuild:
+  Add a readline-4.x ebuild for the ABI lib only.
 
 *readline-6.0 (21 Feb 2009)
 
