@@ -1,6 +1,10 @@
 # ChangeLog for net-p2p/mutella
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.24 2008/04/13 21:52:25 betelgeuse Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.25 2009/02/24 02:21:11 dirtyepic Exp $
+
+  24 Feb 2009; Ryan Hill <dirtyepic@gentoo.org>
+  +files/mutella-0.4.5-gcc43.patch, mutella-0.4.5.ebuild:
+  Fix building w/ gcc-4.3 (bug #251555). Patch from Gene Seto
 
   13 Apr 2008; Petteri Räty <betelgeuse@gentoo.org> mutella-0.4.5.ebuild:
   Remove DEPEND on virtual/libc.
