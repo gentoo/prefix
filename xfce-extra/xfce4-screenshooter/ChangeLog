@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-screenshooter
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.52 2009/02/19 07:59:09 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.53 2009/02/23 21:40:32 angelos Exp $
+
+  23 Feb 2009; Christoph Mende <angelos@gentoo.org>
+  xfce4-screenshooter-1.5.0.ebuild:
+  Removed the MY_P/MY_PN hack, fix is in the eclass
 
   19 Feb 2009; Christoph Mende <angelos@gentoo.org>
   xfce4-screenshooter-1.5.0.ebuild:

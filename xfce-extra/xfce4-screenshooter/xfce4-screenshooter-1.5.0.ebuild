@@ -1,12 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.5.0.ebuild,v 1.2 2009/02/19 07:59:09 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.5.0.ebuild,v 1.3 2009/02/23 21:40:33 angelos Exp $
 
 EAPI="prefix"
-
-# needed because the eclass sucks
-MY_P=${P}
-MY_PN=${PN}
 
 inherit eutils xfce44
 
