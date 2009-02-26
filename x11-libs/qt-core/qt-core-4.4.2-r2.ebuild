@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.2-r2.ebuild,v 1.1 2009/02/14 15:09:31 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.2-r2.ebuild,v 1.2 2009/02/25 09:17:26 hwoarang Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.trolltech.com/"
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc +glib +qt3support +ssl"
+IUSE="doc +glib +iconv +qt3support +ssl"
 
 RDEPEND="sys-libs/zlib
 	glib? ( dev-libs/glib )
@@ -121,12 +121,13 @@ src_compile() {
 
 	myconf="${myconf}
 		$(qt_use glib)
+		$(qt_use iconv)
 		$(qt_use ssl openssl)
 		$(qt_use qt3support)"
 
 	myconf="${myconf} -no-xkb -no-tablet -no-fontconfig -no-xrender -no-xrandr
 		-no-xfixes -no-xcursor -no-xinerama -no-xshape -no-sm -no-opengl
-		-no-nas-sound -no-dbus -iconv -no-cups -no-nis -no-gif -no-libpng
+		-no-nas-sound -no-dbus -no-cups -no-nis -no-gif -no-libpng
 		-no-libmng -no-libjpeg -system-zlib -no-webkit -no-phonon -no-xmlpatterns
 		-no-freetype -no-libtiff  -no-accessibility -no-fontconfig -no-opengl
 		-no-svg"
