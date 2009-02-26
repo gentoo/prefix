@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.13.ebuild,v 1.5 2009/02/16 16:52:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.13.ebuild,v 1.8 2009/02/25 21:42:35 maekke Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,12 @@ src_unpack() {
 src_compile() {
 	use static && append-ldflags -static
 	econf $(use_enable nls) || die
+
+	# Make cross-compiler safe (#196041)
+	if tc-is-cross-compiler; then
+		emake -C tools/gnulib/lib || die "emake -C tools/gnulib/lib"
+	fi
+
 	emake || die "emake"
 }
 

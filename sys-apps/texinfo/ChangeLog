@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.104 2009/02/16 16:52:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.107 2009/02/25 21:42:35 maekke Exp $
+
+  25 Feb 2009; Markus Meier <maekke@gentoo.org> texinfo-4.13.ebuild:
+  amd64/x86 stable, bug #259121
+
+  24 Feb 2009; Joshua Kinard <kumba@gentoo.org> texinfo-4.13.ebuild:
+  Make texinfo cross-compiler safe (#196041)
+
+  22 Feb 2009; Tobias Klausmann <klausman@gentoo.org> texinfo-4.13.ebuild:
+  Stable on alpha, bug #259121
 
   16 Feb 2009; Brent Baude <ranger@gentoo.org> texinfo-4.13.ebuild:
   stable ppc64, bug 259121
