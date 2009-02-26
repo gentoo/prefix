@@ -1,6 +1,14 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.187 2009/01/23 20:36:12 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.189 2009/02/25 22:13:04 maekke Exp $
+
+  25 Feb 2009; Markus Meier <maekke@gentoo.org> poppler-0.10.4.ebuild:
+  amd64/x86 stable, bug #260266
+
+*poppler-0.10.4 (25 Feb 2009)
+
+  25 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> +poppler-0.10.4.ebuild:
+  Bump w.r.t. bug 260266.
 
   23 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
   -poppler-0.6.3-r1.ebuild:
