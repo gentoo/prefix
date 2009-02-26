@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/optipng
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.45 2008/12/07 13:41:52 nyhm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.47 2009/02/25 20:10:47 maekke Exp $
+
+  25 Feb 2009; Markus Meier <maekke@gentoo.org> optipng-0.6.2-r1.ebuild:
+  amd64/x86 stable, bug #260265
+
+*optipng-0.6.2-r1 (25 Feb 2009)
+
+  25 Feb 2009; Tristan Heaven <nyhm@gentoo.org> +optipng-0.6.2-r1.ebuild:
+  Security patch, bug #260265
 
   07 Dec 2008; Tristan Heaven <nyhm@gentoo.org> optipng-0.6.2.ebuild:
   Pick up CFLAGS in src_compile instead of src_unpack, bug #240800
