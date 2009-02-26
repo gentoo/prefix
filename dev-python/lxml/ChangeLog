@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.47 2009/01/20 13:37:39 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.48 2009/02/23 16:34:05 josejx Exp $
+
+  23 Feb 2009; Joseph Jezak <josejx@gentoo.org> lxml-2.0.3.ebuild:
+  Marked ~ppc for bug #215557.
 
 *lxml-2.1.5 (20 Jan 2009)
 
