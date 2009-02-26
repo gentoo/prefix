@@ -1,6 +1,9 @@
 # ChangeLog for www-client/elinks
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.108 2008/11/30 19:17:18 spock Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.109 2009/02/26 03:58:19 josejx Exp $
+
+  26 Feb 2009; Joseph Jezak <josejx@gentoo.org> elinks-0.11.5.ebuild:
+  Marked ppc/ppc64 stable for bug #260193.
 
   30 Nov 2008; Michał Januszewski <spock@gentoo.org> elinks-0.11.3.ebuild,
   elinks-0.11.4.ebuild:
