@@ -45,6 +45,7 @@ src_unpack() {
 
 	#epatch "${FILESDIR}"/6.9-without-mountfs.patch
 	#epatch "${FILESDIR}"/${P}-mint.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
