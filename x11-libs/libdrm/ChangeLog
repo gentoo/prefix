@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.63 2009/02/05 13:33:40 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.64 2009/02/26 05:38:42 dberkholz Exp $
+
+*libdrm-2.4.5 (26 Feb 2009)
+
+  26 Feb 2009; Donnie Berkholz <dberkholz@gentoo.org>; +libdrm-2.4.5.ebuild:
+  Version bump. Bugfixes and off-by-default nouveau changes.
 
   05 Feb 2009; Rémi Cardona <remi@gentoo.org> libdrm-2.4.4.ebuild:
   disable tests since they require user intervention (see bug #236845)
