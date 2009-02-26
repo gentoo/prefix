@@ -1,6 +1,15 @@
 # ChangeLog for x11-themes/gtk-chtheme
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/ChangeLog,v 1.19 2008/06/29 14:08:45 nixnut Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-chtheme/ChangeLog,v 1.20 2009/02/25 23:56:53 eva Exp $
+
+*gtk-chtheme-0.3.1-r2 (25 Feb 2009)
+
+  25 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gtk-chtheme-0.3.1-asneeded.patch,
+  +files/gtk-chtheme-0.3.1-qgtkstyle.patch, -gtk-chtheme-0.3.1.ebuild,
+  +gtk-chtheme-0.3.1-r2.ebuild:
+  Bump to 0.3.1-r2. Fix forced as-needed, bug #248655. Make it work with
+  qgtkstyle, bug #250504.
 
   29 Jun 2008; nixnut <nixnut@gentoo.org> gtk-chtheme-0.3.1-r1.ebuild:
   Stable on ppc wrt bug 215121
