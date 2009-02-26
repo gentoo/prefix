@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.380 2009/02/24 10:15:24 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.382 2009/02/25 16:31:29 dertobi123 Exp $
+
+  25 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  ruby-1.8.6_p287-r5.ebuild:
+  ppc stable, bug #260006
+
+  25 Feb 2009; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p287-r5.ebuild:
+  arm/ia64/s390/sh/sparc/x86 stable wrt #260006
 
   24 Feb 2009; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p287-r5.ebuild,
   ruby-1.8.6_p287-r12.ebuild, ruby-1.8.7_p72-r2.ebuild:
