@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.302 2009/02/17 19:43:10 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.304 2009/02/22 17:27:23 ulm Exp $
+
+  22 Feb 2009; Ulrich Mueller <ulm@gentoo.org> -emacs-18.59-r5.ebuild:
+  Remove old.
+
+  22 Feb 2009; Raúl Porcel <armin76@gentoo.org> emacs-18.59-r6.ebuild:
+  x86 stable wrt #259916
 
   17 Feb 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r1.ebuild:
   Prefer aspell over ispell, following upstream.
