@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.24.3.ebuild,v 1.2 2009/02/02 22:05:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.24.3.ebuild,v 1.3 2009/02/26 01:04:50 leio Exp $
 
 EAPI="prefix"
 
 GCONF_DEBUG="no"
 
-inherit gnome2
+inherit eutils gnome2
 
 DESCRIPTION="A set of GNOME themes, with sets for users with limited or low vision"
 HOMEPAGE="http://www.gnome.org/"
