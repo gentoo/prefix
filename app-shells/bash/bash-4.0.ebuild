@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0.ebuild,v 1.6 2009/02/24 22:13:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0.ebuild,v 1.10 2009/02/25 22:46:41 vapier Exp $
 
 EAPI="prefix 1"
 
@@ -72,6 +72,9 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-comsub-backslash-metacharacters.patch
 		epatch "${FILESDIR}"/${P}-save-current-token.patch
 		epatch "${FILESDIR}"/${P}-exit-checkjobs.patch
+		epatch "${FILESDIR}"/${P}-declare-identifier.patch
+		epatch "${FILESDIR}"/${P}-reset-parser-current-token.patch
+		epatch "${FILESDIR}"/${P}-pipeline-reserved-word.patch
 		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then
@@ -218,12 +221,6 @@ pkg_preinst() {
 	if [[ -e ${EROOT}/etc/bashrc ]] && [[ ! -d ${EROOT}/etc/bash ]] ; then
 		mkdir -p "${EROOT}"/etc/bash
 		mv -f "${EROOT}"/etc/bashrc "${EROOT}"/etc/bash/
-	fi
-
-	# our bash_logout is just a place holder so dont
-	# force users to go through etc-update all the time
-	if [[ -e ${EROOT}/etc/bash/bash_logout ]] ; then
-		rm -f "${ED}"/etc/bash/bash_logout
 	fi
 
 	if [[ -L ${EROOT}/bin/sh ]]; then

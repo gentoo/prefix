@@ -1,6 +1,23 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.201 2009/02/24 22:13:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.205 2009/02/25 22:46:41 vapier Exp $
+
+  25 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-pipeline-reserved-word.patch, bash-4.0.ebuild:
+  Fix from upstream for new |& construct.
+
+  25 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-reset-parser-current-token.patch, bash-4.0.ebuild:
+  Add a fix for quotes from upstream.
+
+  25 Feb 2009; Mike Frysinger <vapier@gentoo.org> bash-3.2_p39.ebuild,
+  bash-3.2_p48.ebuild, bash-3.2_p48-r1.ebuild, bash-4.0.ebuild:
+  Stop auto-removing bash_logout in pkg_preinst() as this confuses newer
+  versions of portage.
+
+  25 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-declare-identifier.patch, bash-4.0.ebuild:
+  Add fix from upstream for infinite loop with arrays.
 
   24 Feb 2009; Mike Frysinger <vapier@gentoo.org>
   +files/bash-4.0-pcomplete-save-parser-state.patch, bash-4.0.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.17 2009/02/21 21:58:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.18 2009/02/25 21:20:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -213,12 +213,6 @@ pkg_preinst() {
 	if [[ -e ${EROOT}/etc/bashrc ]] && [[ ! -d ${EROOT}/etc/bash ]] ; then
 		mkdir -p "${EROOT}"/etc/bash
 		mv -f "${EROOT}"/etc/bashrc "${EROOT}"/etc/bash/
-	fi
-
-	# our bash_logout is just a place holder so dont
-	# force users to go through etc-update all the time
-	if [[ -e ${EROOT}/etc/bash/bash_logout ]] ; then
-		rm -f "${ED}"/etc/bash/bash_logout
 	fi
 
 	if [[ -L ${EROOT}/bin/sh ]]; then
