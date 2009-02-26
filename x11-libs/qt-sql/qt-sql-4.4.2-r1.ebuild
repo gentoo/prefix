@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.2-r1.ebuild,v 1.1 2009/02/14 15:46:37 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.2-r1.ebuild,v 1.2 2009/02/25 09:32:29 hwoarang Exp $
 
 EAPI="prefix 1"
 inherit qt4-build
@@ -12,7 +12,7 @@ LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="firebird mysql odbc postgres +qt3support +sqlite"
+IUSE="firebird +iconv mysql odbc postgres +qt3support +sqlite"
 
 DEPEND="
 	~x11-libs/qt-core-${PV}
@@ -60,9 +60,9 @@ src_compile() {
 		$(qt_use odbc sql-odbc plugin)
 		$(qt_use qt3support)"
 
-	myconf="${myconf} -no-xkb -no-tablet -no-fontconfig -no-xrender -no-xrandr
+	myconf="${myconf} $(qt_use iconv) -no-xkb -no-tablet -no-fontconfig -no-xrender -no-xrandr
 		-no-xfixes -no-xcursor -no-xinerama -no-xshape -no-sm -no-opengl
-		-no-nas-sound -no-dbus -iconv -no-cups -no-nis -no-gif -no-libpng
+		-no-nas-sound -no-dbus -no-cups -no-nis -no-gif -no-libpng
 		-no-libmng -no-libjpeg -no-openssl -system-zlib -no-webkit -no-phonon
 		-no-xmlpatterns -no-freetype -no-libtiff  -no-accessibility -no-fontconfig
 		-no-glib -no-opengl -no-svg"

@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-sql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.28 2009/02/18 19:52:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.29 2009/02/25 09:32:29 hwoarang Exp $
+
+  25 Feb 2009; Markos Chandras <hwoarang@gentoo.org> qt-sql-4.4.2-r1.ebuild,
+  qt-sql-4.5.0_rc1.ebuild:
+  Added iconv use flag ( bug #260145 )
 
   18 Feb 2009; Jeroen Roovers <jer@gentoo.org> qt-sql-4.4.2.ebuild:
   Stable for HPPA (bug #248083).
