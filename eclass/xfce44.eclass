@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.22 2008/03/22 10:19:05 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.23 2009/02/23 21:38:01 angelos Exp $
 
 # Xfce44 Eclass
 #
@@ -80,7 +80,7 @@ xfce44_thunar_plugin() {
 xfce44_goodies() {
 	[[ -z ${HOMEPAGE} ]] && HOMEPAGE="http://goodies.xfce.org"
 	S="${WORKDIR}/${MY_P:-${P}}"
-	SRC_URI="http://goodies.xfce.org/releases/${MY_PN}/${MY_P}${COMPRESS}"
+	SRC_URI="http://goodies.xfce.org/releases/${MY_PN:-${PN}}/${MY_P:-${P}}${COMPRESS}"
 }
 
 ## goodies_panel_plugin calls panel_plugin and goodies funtions in correct order

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.15 2009/02/08 17:23:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.17 2009/02/25 06:48:13 zmedico Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -191,10 +191,10 @@ case ${PF} in
 		;;
 	#gnome-desktop-sharp tarball
 	gnome-desktop-sharp-*)
-		add_depend "=gnome-base/gnome-desktop-${PV_MAJOR}*"
+		add_depend ">=gnome-base/gnome-desktop-${PV_MAJOR}"
 		;;
 	gnome-panel-sharp-*)
-		add_depend "=gnome-base/gnome-panel-${PV_MAJOR}*"
+		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
 		;;
 	gnome-print-sharp-*)
 		add_depend ">=gnome-base/libgnomeprint-${API_VERSION}"

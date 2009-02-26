@@ -10,7 +10,7 @@
 #       Removed phase hooks because Portage does proper env saving now.
 #       <betelgeuse@gentoo.org>
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-opt-2.eclass,v 1.12 2009/02/19 05:22:47 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-opt-2.eclass,v 1.13 2009/02/25 17:41:16 serkan Exp $
 
 inherit java-utils-2
 
@@ -59,6 +59,6 @@ java-pkg-opt-2_src_prepare() {
 #
 # wrapper for java-utils-2_pkg_preinst
 # ------------------------------------------------------------------------------
-java-pkg-2_pkg_preinst() {
+java-pkg-opt-2_pkg_preinst() {
 	use ${JAVA_PKG_OPT_USE} && java-utils-2_pkg_preinst
 }

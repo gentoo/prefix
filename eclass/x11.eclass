@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x11.eclass,v 1.10 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x11.eclass,v 1.11 2009/02/22 12:31:19 loki_val Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 #
@@ -83,7 +83,7 @@ strip_bins() {
 	einfo "Stripping binaries ..."
 	# This bit I got from Redhat ... strip binaries and drivers ..
 	# NOTE:  We do NOT want to strip the drivers, modules or DRI modules!
-	for x in $(find ${D}/ -type f -perm +0111 -exec file {} \; | \
+	for x in $(find ${D}/ -type f -perm +0111 -exec file {} ';' | \
 		grep -v ' shared object,' | \
 		sed -n -e 's/^\(.*\):[  ]*ELF.*, not stripped/\1/p')
 	do

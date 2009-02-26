@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.6 2009/01/12 23:07:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-3.eclass,v 1.7 2009/02/23 16:36:12 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
 inherit multilib flag-o-matic mozcoreconf-2
 
-IUSE="gnome ipv6 dbus startup-notification"
+IUSE="gnome dbus startup-notification"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
@@ -39,27 +39,21 @@ mozconfig_config() {
 	else
 	    mozconfig_annotate -thebes --enable-default-toolkit=gtk2
 	fi
-	mozconfig_use_enable ipv6
 
 	if ! use dbus; then
 		mozconfig_annotate '' --disable-dbus
 	fi
 	mozconfig_use_enable startup-notification
-	# We use --enable-pango to do truetype fonts, and currently pango
-	# is required for it to build
-	mozconfig_annotate gentoo --disable-freetype2
 
 #	if use debug; then
 #		mozconfig_annotate +debug \
 #			--enable-debug \
 #			--enable-tests \
-#			--disable-reorder \
 #			--enable-debugger-info-modules=ALL_MODULES
 #	else
 	mozconfig_annotate -debug \
 		--disable-debug \
-		--disable-tests \
-		--enable-reorder
+		--disable-tests
 
 	# Currently --enable-elf-dynstr-gc only works for x86 and ppc,
 	# thanks to Jason Wever <weeve@gentoo.org> for the fix.

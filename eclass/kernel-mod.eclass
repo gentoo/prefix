@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-mod.eclass,v 1.15 2006/02/28 03:05:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-mod.eclass,v 1.16 2009/02/23 05:51:14 vapier Exp $
 
 # !!!!!!!!!!
 #
@@ -94,7 +94,7 @@ kernel-mod_configoption_present() {
 	then
 		return 0
 	else
-		return -1
+		return 1
 	fi
 }
 
@@ -105,7 +105,7 @@ kernel-mod_configoption_module() {
 	then
 		return 0
 	else
-		return -1
+		return 1
 	fi
 }
 
@@ -116,7 +116,7 @@ kernel-mod_configoption_builtin() {
 	then
 		return 0
 	else
-		return -1
+		return 1
 	fi
 }
 

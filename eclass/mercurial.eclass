@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.3 2006/10/13 23:45:03 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.4 2009/02/22 13:01:17 nelchael Exp $
 
 # mercurial: Fetch sources from mercurial repositories, similar to cvs.eclass.
 # To use this from an ebuild, set EHG_REPO_URI in your ebuild.  Then either
@@ -14,12 +14,12 @@ DEPEND="dev-util/mercurial net-misc/rsync"
 EHG_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/hg-src"
 
 # This must be set by the ebuild
-: ${EHG_REPO_URI:=}              # repository uri
+: ${EHG_REPO_URI:=}                 # repository uri
 
 # These can be set by the ebuild but are usually fine as-is
-: ${EHG_PROJECT:=$PN}            # dir under EHG_STORE_DIR
-: ${EHG_CLONE_CMD:=hg clone}     # clone cmd
-: ${EHG_PULL_CMD:=hg pull -u}    # pull cmd
+: ${EHG_PROJECT:=$PN}               # dir under EHG_STORE_DIR
+: ${EHG_CLONE_CMD:=hg clone --pull} # clone cmd
+: ${EHG_PULL_CMD:=hg pull -u}       # pull cmd
 
 # should be set but blank to prevent using $HOME/.hgrc
 export HGRCPATH=

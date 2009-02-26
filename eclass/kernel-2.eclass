@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.217 2009/01/28 21:01:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.218 2009/02/23 05:51:14 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -107,7 +107,7 @@ debug-print-kernel2-variables() {
 #==============================================================
 handle_genpatches() {
 	local tarball
-	[[ -z ${K_WANT_GENPATCHES} || -z ${K_GENPATCHES_VER} ]] && return -1
+	[[ -z ${K_WANT_GENPATCHES} || -z ${K_GENPATCHES_VER} ]] && return 1
 
 	for i in ${K_WANT_GENPATCHES} ; do
 		tarball="genpatches-${OKV}-${K_GENPATCHES_VER}.${i}.tar.bz2"
