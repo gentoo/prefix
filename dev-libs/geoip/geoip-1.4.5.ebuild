@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/geoip-1.4.5.ebuild,v 1.6 2008/12/28 18:20:32 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/geoip-1.4.5.ebuild,v 1.7 2009/02/24 18:40:07 armin76 Exp $
 
 EAPI="prefix"
 
