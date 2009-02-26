@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/diffstat
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.65 2008/09/04 10:47:58 swegener Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.68 2009/02/25 20:56:40 josejx Exp $
+
+  25 Feb 2009; Joseph Jezak <josejx@gentoo.org> diffstat-1.46.ebuild:
+  Marked ppc/ppc64 stable for bug #260012.
+
+  24 Feb 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  diffstat-1.46.ebuild:
+  stable amd64, bug 260012
+
+  23 Feb 2009; Raúl Porcel <armin76@gentoo.org> diffstat-1.46.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable
 
 *diffstat-1.46 (04 Sep 2008)
 
