@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.339 2009/02/24 21:56:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.340 2009/02/25 18:13:18 vapier Exp $
+
+  25 Feb 2009; Mike Frysinger <vapier@gentoo.org> openssh-5.2_p1-r1.ebuild:
+  Update pkcs11 patch #152170.
 
 *openssh-5.2_p1-r1 (24 Feb 2009)
 

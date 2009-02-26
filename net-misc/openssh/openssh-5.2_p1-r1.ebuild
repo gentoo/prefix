@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.1 2009/02/24 21:56:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.2 2009/02/25 18:13:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ PARCH=${P/_/}
 
 #HPN_PATCH="${PARCH/2/1}-hpn13v5.diff.gz"
 LDAP_PATCH="${PARCH/openssh/openssh-lpk}-0.3.11.patch.gz"
-#PKCS11_PATCH="${PARCH/2p1/1}pkcs11-0.26.tar.bz2"
+PKCS11_PATCH="${PARCH/p1}pkcs11-0.26.tar.bz2"
 X509_VER="6.2" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
