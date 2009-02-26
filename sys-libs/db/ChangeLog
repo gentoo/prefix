@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.274 2009/02/07 09:10:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.275 2009/02/24 16:16:43 kumba Exp $
+
+  24 Feb 2009; Joshua Kinard <kumba@gentoo.org> db-4.6.21_p3-r1.ebuild:
+  Add ~mips to KEYWORDS
 
   07 Feb 2009; Mike Frysinger <vapier@gentoo.org> db-4.5.20_p2.ebuild,
   db-4.5.20_p2-r1.ebuild, db-4.6.21_p1.ebuild, db-4.6.21_p3.ebuild,
