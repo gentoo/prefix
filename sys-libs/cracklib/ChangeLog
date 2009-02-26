@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.129 2009/02/15 16:33:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.130 2009/02/22 18:19:27 armin76 Exp $
+
+  22 Feb 2009; Raúl Porcel <armin76@gentoo.org> cracklib-2.8.13.ebuild:
+  arm/ia64/s390/sh stable wrt #258530
 
   15 Feb 2009; Markus Meier <maekke@gentoo.org> cracklib-2.8.13.ebuild:
   x86 stable, bug #258530
