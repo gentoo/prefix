@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.4.ebuild,v 1.7 2009/02/20 13:25:49 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.4.ebuild,v 1.8 2009/02/22 13:23:46 graaff Exp $
 
 EAPI="prefix"
 
@@ -24,8 +24,7 @@ DEPEND="${RDEPEND}
 pkg_setup() {
 	if ! use swig ; then
 		elog "${PN} will work a lot better with swig; it is suggested"
-		elog "that you install swig with the 'ruby' USE flag, and then"
-		elog "install ${PN} with the swig USE flag"
+		elog "that you install ${PN} with the swig USE flag."
 		ebeep
 		epause 5
 	fi
