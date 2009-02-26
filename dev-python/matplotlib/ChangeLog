@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.58 2009/01/25 16:01:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.59 2009/02/25 20:33:41 bicatali Exp $
+
+*matplotlib-0.98.5.2-r3 (25 Feb 2009)
+
+  25 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/matplotlib-0.98.5.2-literal.patch, +matplotlib-0.98.5.2-r3.ebuild:
+  Re-added pyparsing (hopefully temporarily) for proper outputs and
+  stix-fonts for ttf, but added media-fonts/texcm-ttf. More information on
+  bundled packages, see bug #260025, thanks Michael Droettboom for
+  explanations. Also now builds documentation from source (html and pdf),
+  and added a src_test for regression. Finally added a small patch on string
+  literal from Mandriva.
 
 *matplotlib-0.98.5.2-r2 (25 Jan 2009)
 
