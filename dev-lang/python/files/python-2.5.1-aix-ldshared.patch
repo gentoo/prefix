@@ -1,3 +1,5 @@
+build shared library on aix
+
 --- configure.in.orig	2007-11-24 22:39:22 +0100
 +++ configure.in	2007-11-24 22:40:50 +0100
 @@ -561,7 +561,7 @@

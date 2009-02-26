@@ -1,5 +1,5 @@
 * The last file's patch is thanks to Philipp Bunge in bug #189982
-* This patch just makes OSX/Darwin/NeXT use .bundle as extention for
+* This patch just makes OSX/Darwin/NeXT use .bundle as extension for
   dynamic libraries, as .so is an ugly thing on Darwin.
 
 --- Python-2.5.1/configure.in

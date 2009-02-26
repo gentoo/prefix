@@ -90,14 +90,11 @@ src_unpack() {
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.1-mint.patch
 
-	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
-	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	# python doesn't build a libpython2.5.dylib by itself...
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-libpython2.5.patch
-	# and to build this lib, we need -fno-common, which python doesn't use, and
-	# to have _NSGetEnviron being used, which by default it isn't...
+	# to build libpython.dylib, we need -fno-common, which python doesn't use,
+	# and to have _NSGetEnviron being used, which by default it isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
@@ -108,29 +105,21 @@ src_unpack() {
 	# set RUNSHARED for 'regen' in Lib/plat-*
 	epatch "${FILESDIR}"/${PN}-2.5.1-platdir-runshared.patch
 
-	# on hpux, use gcc to link if used to compile
 	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
-
-	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
-	# better use mutexes on aix5 instead of semaphores.
-#	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
-	# build shared library on aix
 	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
-	# at least IRIX starts spitting out ugly errors, but we want to use prefix
-	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
-	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
+	epatch "${FILESDIR}"/${P}-irix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
-	[[ ${CHOST} == *-interix* ]] && {
+	if [[ ${CHOST} == *-interix* ]] ; then
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix.patch
 		# this one could be applied unconditionally, but to keep it
-		# clean, i do it together with the conditional one.
+		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
-	}
+	fi
 
 	eautoreconf
 }

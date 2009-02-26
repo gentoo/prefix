@@ -1,3 +1,5 @@
+do not use 'which' to find binaries, but go through the PATH.
+
 diff -ru Python-2.3.5.orig/Modules/ld_so_aix Python-2.3.5/Modules/ld_so_aix
 --- Python-2.3.5.orig/Modules/ld_so_aix	1997-09-03 02:45:30.000000000 +0200
 +++ Python-2.3.5/Modules/ld_so_aix	2005-09-15 10:35:08.000000000 +0200

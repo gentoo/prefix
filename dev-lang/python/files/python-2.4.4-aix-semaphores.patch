@@ -1,5 +1,7 @@
 http://bugs.python.org/issue1234
 
+better use mutexes on aix5 instead of semaphores.
+
 --- Python-2.4.2/configure.in.orig	2007-10-25 10:07:57.295538000 +0200
 +++ Python-2.4.2/configure.in	2007-10-25 10:08:10.555139000 +0200
 @@ -1794,6 +1794,9 @@
