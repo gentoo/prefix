@@ -1,18 +1,18 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-gfx/gthumb/gthumb-2.10.8.ebuild,v 1.6 2008/04/03 14:18:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.11.ebuild,v 1.1 2009/02/25 23:22:20 eva Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
-inherit gnome2
+inherit eutils gnome2
 
 DESCRIPTION="Image viewer and browser for Gnome"
 HOMEPAGE="http://gthumb.sourceforge.net"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="gphoto2 iptc raw tiff"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
+IUSE="+gphoto2 iptc raw tiff test"
 
 # Unknown item missing from deps, gtkunique.
 RDEPEND=">=dev-libs/glib-2.6
@@ -31,17 +31,37 @@ RDEPEND=">=dev-libs/glib-2.6
 	>=gnome-base/gconf-2.6
 	media-libs/jpeg
 	tiff? ( media-libs/tiff )
-	raw? ( media-libs/libopenraw )"
+	raw? ( media-libs/libopenraw )
+	x11-libs/libXrender
+	x11-libs/libXtst
+	x11-libs/libXext
+	x11-libs/libXxf86vm"
 DEPEND="${RDEPEND}
 	x11-proto/inputproto
+	x11-proto/xextproto
 	>=dev-util/pkgconfig-0.9.0
 	app-text/scrollkeeper
 	>=dev-util/intltool-0.29
-	app-text/gnome-doc-utils"
+	app-text/gnome-doc-utils
+	test? ( ~app-text/docbook-xml-dtd-4.1.2 )"
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
+src_unpack() {
+	gnome2_src_unpack
+	# solaris glibc has no mkdtemp so here we need a patch
+	epatch "${FILESDIR}/${PN}-2.10.10-solaris.patch"
+}
+
 pkg_setup() {
-	G2CONF="${G2CONF} $(use_enable gphoto2) $(use_enable raw libopenraw)
-		$(use_enable iptc iptcdata) $(use_enable tiff)"
+	G2CONF="${G2CONF}
+		$(use_enable gphoto2)
+		$(use_enable raw libopenraw)
+		$(use_enable iptc iptcdata)
+		$(use_enable tiff)"
+}
+
+src_prepare() {
+	# Fix tests
+	echo "data/gthumb-import.desktop.in" >> po/POTFILES.in
 }
