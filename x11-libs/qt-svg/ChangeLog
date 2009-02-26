@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-svg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.22 2009/02/18 19:56:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.23 2009/02/25 09:36:17 hwoarang Exp $
+
+  25 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-svg-4.5.0_rc1.ebuild:
+  Added iconv use flag ( bug #260145 )
 
   18 Feb 2009; Jeroen Roovers <jer@gentoo.org> qt-svg-4.4.2.ebuild:
   Stable for HPPA (bug #248083).
