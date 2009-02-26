@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.196 2009/02/21 19:34:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.197 2009/02/22 17:58:47 eva Exp $
+
+  22 Feb 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/pygtk-2.12.0-extrafuncs.patch, -pygtk-2.12.0.ebuild,
+  -pygtk-2.13.0.ebuild:
+  Clean up old revisions, closes #226323.
 
   21 Feb 2009; Raúl Porcel <armin76@gentoo.org> pygtk-2.12.1-r2.ebuild:
   arm/sh stable wrt #226323
