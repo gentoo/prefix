@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4224 2009/02/24 17:07:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4225 2009/02/25 23:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2063,14 +2063,12 @@ net-misc/aria2:ares - Enables support for asynchronous DNS using the c-ares libr
 net-misc/aria2:bittorrent - Enables support for the bittorrent protocol
 net-misc/aria2:metalink - Enables support for metalink
 net-misc/asterisk:bri - Enable ISDN BRI support (bristuff)
-net-misc/asterisk:genericjb - Enable experimental generic jitter buffer
 net-misc/asterisk:h323 - Build the H.323 channel driver bundled with Asterisk
 net-misc/asterisk:lowmem - Build Asterisk for environments with low amounts of memory (embedded devices)
 net-misc/asterisk:nosamples - Don't install sample sound and configuration files
 net-misc/asterisk:osp - Enable support for the Open Settlement Protocol
-net-misc/asterisk:pri - Enables pri support (>=asterisk-1.0.1)
-net-misc/asterisk:ukcid - Enable UK callerid support
-net-misc/asterisk:zaptel - Enables zaptel support (>=asterisk-1.0.1)
+net-misc/asterisk:pri - Enables pri support
+net-misc/asterisk:zaptel - Enables zaptel support
 net-misc/asterisk-addons:h323 - Build the chan_ooh323c H.323 channel driver
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2

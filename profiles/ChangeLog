@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2378 2009/02/24 23:42:19 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2384 2009/02/25 22:51:35 maekke Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  25 Feb 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  fix hugin-0.8.0 beta mask
+
+  25 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  remove ibus* from package.mask
+
+  25 Feb 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Mask media-plugins/vdr-streamdev-{client,server} for removal. They are
+  replaced by media-plugins/vdr-streamdev.
+
+  25 Feb 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove mikachan-font mask now that it's gone.
+
+  25 Feb 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  mask beta releases of media-gfx/hugin-0.8.0
+
+  25 Feb 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Remove mask for qtcurve-qt4-0.61.2, now that compilation issue has been
+  solved
 
   24 Feb 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
   Mask x11-themes/qtcurve-qt4-0.61.2 for compilation failure

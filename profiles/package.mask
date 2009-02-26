@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9513 2009/02/24 23:42:19 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9519 2009/02/25 22:51:35 maekke Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,9 +31,15 @@
 
 #--- END OF EXAMPLES ---
 
-# Ben de Groot <yngwin@gentoo.org> (24 Feb 2009)
-# Compilation failure that I hope someone can test and fix
-=x11-themes/qtcurve-qt4-0.61.2
+# Matthias Schwarzott <zzam@gentoo.org> (25 Feb 2009)
+# masked for removal in 30days
+# Got replaced by media-plugins/vdr-streamdev
+media-plugins/vdr-streamdev-client
+media-plugins/vdr-streamdev-server
+
+# Markus Meier <maekke@gentoo.org> (25 Feb 2009)
+# mask beta releases of media-gfx/hugin-0.8.0
+>=media-gfx/hugin-0.8.0_beta1
 
 # Joe Sapp <nixphoeni@gentoo.org> (22 Feb 2009)
 # These packages don't live on gdesklets.de any more,
@@ -97,14 +103,6 @@ app-emulation/ganeti-instance-debian-etch
 # Masked for testing
 =x11-wm/awesome-3.2*
 =x11-libs/xcb-util-0.3.3*
-
-# MATSUU Takuto <matsuu@gentoo.org> (05 Feb 2009)
-# Masked for testing
->=app-i18n/ibus-1.1
->=app-i18n/ibus-anthy-1.1
->=app-i18n/ibus-hangul-1.1
->=app-i18n/ibus-m17n-1.1
->=app-i18n/ibus-pinyin-1.1
 
 # Hanno Böck <hanno@gentoo.org> (05 Feb 2009)
 # Seems something is broken with crypt mount in 1.17 (bug 257302)
@@ -218,13 +216,6 @@ x11-apps/xphelloworld
 # Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
 # masked for removal, use x11-base/xorg-server with USE=kdrive instead
 x11-base/kdrive
-
-# Diego E. Pettenò <flameeyes@gentoo.org> (24 Jan 2009)
-# Finally get rid of the combined mikachan-font package.
-# These fonts can now be installed through the split packages
-# mikachan-font-{ttf,ttc,otf}
-# Removal scheduled for 24 Feb 2009.
-media-fonts/mikachan-font
 
 # Hanno Boeck <hanno@gentoo.org (22 Jan 2009)
 # This has been included in kernel 2.6.27 and shouldn't be used
