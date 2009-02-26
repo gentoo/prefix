@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/dialog
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.114 2008/09/09 16:37:02 truedfx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.118 2009/02/25 19:52:30 armin76 Exp $
+
+  25 Feb 2009; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20080819.ebuild:
+  arm/ia64/s390/sh/x86 stable wrt #259919
+
+  24 Feb 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  dialog-1.1.20080819.ebuild:
+  stable amd64, bug 259919
+
+  23 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  dialog-1.1.20080819.ebuild:
+  Stable on alpha, bug #259919
+
+  23 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
+  dialog-1.1.20080819.ebuild:
+  Sparc stable, Bug #259919.
 
 *dialog-1.1.20080819 (09 Sep 2008)
 
