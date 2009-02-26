@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.4 2009/02/20 23:25:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.5 2009/02/22 15:05:02 klausman Exp $
 
 EAPI="prefix 2"
 
