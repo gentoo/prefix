@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.6.ebuild,v 1.5 2009/02/15 11:34:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.6.ebuild,v 1.6 2009/02/23 16:38:09 armin76 Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
@@ -183,7 +183,7 @@ src_compile() {
 	mozconfig_annotate '' --with-system-nss
 	mozconfig_annotate '' --enable-system-lcms
 	mozconfig_annotate '' --enable-oji --enable-mathml
-	mozconfig_annotate 'places' --enable-storage --enable-places --enable-places_bookmarks
+	mozconfig_annotate 'places' --enable-storage --enable-places
 
 	# Other ff-specific settings
 	#mozconfig_use_enable mozdevelop jsd
@@ -197,6 +197,8 @@ src_compile() {
 
 	if ! use bindist && ! use iceweasel; then
 		mozconfig_annotate '' --enable-official-branding
+	elif use bindist && ! use iceweasel; then
+		mozconfig_annotate 'bindist' --with-branding=browser/branding/unofficial
 	fi
 
 	# Finalize and report settings
@@ -274,7 +276,7 @@ src_install() {
 		newicon "${S}"/browser/base/branding/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			mozilla-firefox-3.0.desktop
-		sed -i -e "s/Bon Echo/Minefield/" "${ED}"/usr/share/applications/mozilla-firefox-3.0.desktop
+		sed -i -e "s/Bon Echo/Gran Paradiso/" "${ED}"/usr/share/applications/mozilla-firefox-3.0.desktop
 	fi
 
 	if use xulrunner; then
