@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.685 2009/02/15 23:03:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.686 2009/02/24 23:20:55 kumba Exp $
+
+  24 Feb 2009; Joshua Kinard <kumba@gentoo.org> gcc-4.3.2-r3.ebuild,
+  gcc-4.3.3.ebuild:
+  Add ~mips to gcc-4.3.2-r3 and 4.3.3
 
   15 Feb 2009; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild:
   Use the replace-cpu-flags logic in the eclass #252698 by Le retraité.
