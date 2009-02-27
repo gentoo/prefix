@@ -408,6 +408,8 @@ bootstrap_gnu() {
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
 		myconf="${myconf} --disable-perl-regexp"
+		# Except interix really needs it for grep.
+		[[ $CHOST == *interix* ]] && myconf="${myconf} --disable-nls"
 	else
 		# AIX doesn't like --disable-nls in general
 		[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
