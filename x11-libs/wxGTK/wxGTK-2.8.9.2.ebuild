@@ -4,7 +4,7 @@
 
 EAPI="prefix 2"
 
-inherit eutils versionator flag-o-matic
+inherit eutils versionator flag-o-matic autotools
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
@@ -16,7 +16,7 @@ BASE_P="${PN}-${BASE_PV}"
 # docs, and are released more frequently than wxGTK.
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="X doc debug gnome gstreamer odbc opengl pch sdl"
 
 RDEPEND="
@@ -60,6 +60,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.8.8-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.6-wxrc_link_fix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
+	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-x11-search.patch
+
+	eprefixify "${S}"/configure.in
+
+	AT_M4DIR="${S}/build/aclocal" eautoreconf
+	eautoconf -B "build/autoconf_prepend-include"
 }
 
 src_configure() {
