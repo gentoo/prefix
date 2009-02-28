@@ -1,6 +1,19 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.205 2009/02/25 22:46:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.208 2009/02/27 00:43:38 vapier Exp $
+
+  27 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-comsub-herestring.patch, bash-4.0.ebuild:
+  Fix from upstream for regression with subshells/herestrings found via
+  revdep-rebuild script.
+
+  26 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-4.0-associative-array-subscripts.patch, bash-4.0.ebuild:
+  Add upstream patch for associative array issues.
+
+  26 Feb 2009; Mike Frysinger <vapier@gentoo.org>
+  files/bash-4.0-declare-identifier.patch:
+  Newer patch from upstream.
 
   25 Feb 2009; Mike Frysinger <vapier@gentoo.org>
   +files/bash-4.0-pipeline-reserved-word.patch, bash-4.0.ebuild:
