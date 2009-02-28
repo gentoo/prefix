@@ -1,10 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2384 2009/02/25 22:51:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2394 2009/02/28 00:32:29 je_fro Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 Feb 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Mask sci-chemistry/gchempaint as it is now provided by gchemutils.
+
+  28 Feb 2009; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added new version for obexftp to p.mask since tested with p.masked
+  bluez-4.31.
+
+  27 Feb 2009; Steve Dibb <beandog@gentoo.org> package.mask:
+  Remove p.mask for media-video/mplayer-20090226.28734
+
+  27 Feb 2009; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask vlc 0.9.9 rc
+
+  27 Feb 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  add beta of media-libs/libpano13 to the hugin mask
+
+  26 Feb 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Also add sys-fs/udev-139 to masked versions until 135-r4 is stable.
+
+  26 Feb 2009; Timothy Redaelli <drizzt@gentoo.org package.mask:
+  Mask ~dev-libs/libedit-20090111.3.0 for testing
+
+  26 Feb 2009; Steve Dibb <beandog@gentoo.org> package.mask:
+  Mask >=media-video/mplayer-20090226.28734 for dvdnav, real cleanup, use
+  flag cleanup, vdpau support
+
+  26 Feb 2009; Konstantin V. Arkhipov <voxus@gentoo.org> use.local.desc:
+  random-index flag added for www-servers/nginx.
+
+  26 Feb 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add xf86-video-intel-2.6.2 to p.mask
 
   25 Feb 2009; Markus Meier <maekke@gentoo.org> package.mask:
   fix hugin-0.8.0 beta mask

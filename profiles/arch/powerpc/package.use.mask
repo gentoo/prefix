@@ -2,7 +2,9 @@
 
 # Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
 # media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux} not keyworded
-media-plugins/gst-plugins-meta dvb mythtv
+# Joseph Jezak <josejx@gentoo.org> (27 Feb 2009)
+# Marked ~ppc, but masking current versions because of stable keyword
+<=media-plugins/gst-plugins-meta-0.10-r2 dvb mythtv
 
 # nixnut <nixnut@gentoo.org> (11 mar 2008)
 # USE=musepack wants musepack-tools which can't be build on ppc

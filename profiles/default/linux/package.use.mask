@@ -27,3 +27,6 @@ sys-libs/glibc hardened
 games-fps/doom-data doomsday
 games-fps/freedoom doomsday
 
+# Steve Dibb <beandog@gentoo.org> (26 Feb 2009)
+# General mask of VDPAU support, only available on x86 and amd64
+media-video/mplayer vdpau

@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/PPC profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.26 2009/02/18 13:50:38 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.27 2009/02/27 20:37:39 josejx Exp $
+
+  27 Feb 2009; Joseph Jezak <josejx@gentoo.org> package.use.mask:
+  Marked plugins ~ppc, but masking current versions on gst-plugins-meta
+  because of stable keyword.
 
   18 Feb 2009; <chainsaw@gentoo.org> package.use.mask:
   Dependency tree in sys-apps/hal is fixed up for USE=laptop on PowerPC.
