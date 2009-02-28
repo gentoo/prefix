@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/makeself
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/makeself/ChangeLog,v 1.20 2008/07/24 17:33:26 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/makeself/ChangeLog,v 1.21 2009/02/26 19:27:42 vapier Exp $
+
+  26 Feb 2009; Mike Frysinger <vapier@gentoo.org> +files/makeself-unpack,
+  makeself-2.1.5.ebuild:
+  Add a script to unpack makeself archives.
 
   24 Jul 2008; Raúl Porcel <armin76@gentoo.org> makeself-2.1.5.ebuild:
   x86 stable wrt #231074
