@@ -1,41 +1,39 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.5.5.ebuild,v 1.5 2008/12/07 05:57:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.6.2.ebuild,v 1.1 2009/02/27 09:59:57 flameeyes Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
-MY_P="${P/_beta/b}"
-
-inherit eutils libtool toolchain-funcs
+inherit eutils libtool toolchain-funcs autotools
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
-SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
+SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
+	http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="static acl xattr kernel_linux"
+IUSE="static acl xattr kernel_linux +bzip2 +lzma +zlib"
+
+COMPRESS_LIBS_DEPEND="lzma? ( app-arch/lzma-utils )
+		bzip2? ( app-arch/bzip2 )
+		zlib? ( sys-libs/zlib )"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
 		acl? ( sys-apps/acl )
 		xattr? ( sys-apps/attr )
 	)
-	!static? (
-		app-arch/bzip2
-		sys-libs/zlib
-	)"
+	!static? ( ${COMPRESS_LIBS_DEPEND} )"
 DEPEND="${RDEPEND}
+	${COMPRESS_LIBS_DEPEND}
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
-
-S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
 	elibtoolize
 	epunt_cxx
 }
@@ -50,6 +48,8 @@ src_compile() {
 	econf --bindir="${EPREFIX}"/bin \
 		--enable-bsdtar --enable-bsdcpio \
 		$(use_enable acl) $(use_enable xattr) \
+		$(use_with zlib) \
+		$(use_with bzip2 bz2lib) $(use_with lzma lzmadec) \
 		${myconf} \
 		--disable-dependency-tracking || die "econf failed."
 
@@ -57,7 +57,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed."
 
 	# Create tar symlink for FreeBSD
 	if [[ ${CHOST} == *-freebsd* ]]; then
