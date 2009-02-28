@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/imaging
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.34 2009/02/25 21:00:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.36 2009/02/27 14:54:27 ranger Exp $
+
+  27 Feb 2009; Brent Baude <ranger@gentoo.org> imaging-1.1.6.ebuild:
+  stable ppc64, bug 182454
+
+  26 Feb 2009; Raúl Porcel <armin76@gentoo.org> imaging-1.1.6.ebuild:
+  alpha/ia64/sparc stable wrt #182454
 
   25 Feb 2009; Markus Meier <maekke@gentoo.org> imaging-1.1.6.ebuild:
   amd64/x86 stable, bug #182454
