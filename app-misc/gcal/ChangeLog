@@ -1,6 +1,13 @@
 # ChangeLog for app-misc/gcal
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.23 2008/09/17 10:12:51 pva Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.24 2009/02/26 21:41:23 ulm Exp $
+
+*gcal-3.01-r3 (26 Feb 2009)
+
+  26 Feb 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/gcal-3.01-gettext-charset.patch, +gcal-3.01-r3.ebuild:
+  Change region codes for Germany and Switzerland according to ISO 3166-2,
+  bug 144813. Specify input file encoding for xgettext. Assign RDEPEND.
 
   17 Sep 2008; Peter Volkov <pva@gentoo.org> gcal-3.01-r2.ebuild:
   Fixed glibc-2.8 build issue, bug #227121, thank Evil Compile Person for
