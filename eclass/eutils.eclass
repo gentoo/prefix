@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.315 2009/02/21 23:28:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.316 2009/02/27 01:49:41 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1630,7 +1630,7 @@ strip-linguas() {
 		fi
 	done
 	[[ -n ${nols} ]] \
-		&& ewarn "Sorry, but ${PN} does not support the LINGUAs:" ${nols}
+		&& ewarn "Sorry, but ${PN} does not support the LINGUAS:" ${nols}
 	export LINGUAS=${newls:1}
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/zproduct.eclass,v 1.26 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/zproduct.eclass,v 1.27 2009/02/26 14:25:44 tupone Exp $
 # Author: Jason Shoemaker <kutsuya@gentoo.org>
 
 # This eclass is designed to streamline the construction of
@@ -40,7 +40,7 @@ zproduct_src_install() {
 				## Create .zfolders.lst from $ZPROD_LIST.
 				debug-print-section do_zpfolders
 				for N in ${ZPROD_LIST} ; do
-					echo ${N} >> ${D}/${DOT_ZFOLDER_FPATH}
+					echo ${N} >> "${D}"/${DOT_ZFOLDER_FPATH}
 				done
 				;;
 			do_docs)
@@ -55,7 +55,7 @@ zproduct_src_install() {
 				debug-print-section do_install
 				# Copy everything that's left to ${ED}${ZP_DIR}
 				# modified to not copy ownership (QA)
-				cp --recursive --no-dereference --preserve=timestamps,mode,links ${S}/* ${D}/${ZP_DIR}/${PF}
+				cp --recursive --no-dereference --preserve=timestamps,mode,links "${S}"/* "${D}"/${ZP_DIR}/${PF}
 				;;
 			all)
 				debug-print-section all

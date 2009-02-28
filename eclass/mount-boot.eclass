@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.15 2008/11/27 18:36:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.16 2009/02/27 01:53:34 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -25,7 +25,7 @@ mount-boot_mount_boot_partition() {
 	# note that /dev/BOOT is in the Gentoo default /etc/fstab file
 	local fstabstate=$(awk '!/^#|^[[:blank:]]+#|^\/dev\/BOOT/ {print $2}' /etc/fstab | egrep "^/boot$" )
 	local procstate=$(awk '$2 ~ /^\/boot$/ {print $2}' /proc/mounts)
-	local proc_ro=$(awk '{ print $2, $4 }' /proc/mounts | sed -n '/\/boot/{ /[ ,]\?ro[ ,]\?/p }' )
+	local proc_ro=$(awk '{ print $2 " ," $4 "," }' /proc/mounts | sed -n '/\/boot .*,ro,/p')
 
 	if [ -n "${fstabstate}" ] && [ -n "${procstate}" ]; then
 		if [ -n "${proc_ro}" ]; then
