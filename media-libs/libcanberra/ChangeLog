@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.10 2009/02/11 22:58:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.11 2009/02/27 18:36:49 josejx Exp $
+
+  27 Feb 2009; Joseph Jezak <josejx@gentoo.org> libcanberra-0.9.ebuild,
+  libcanberra-0.11.ebuild:
+  Marked ~ppc for bug #239847.
 
 *libcanberra-0.11 (11 Feb 2009)
 
