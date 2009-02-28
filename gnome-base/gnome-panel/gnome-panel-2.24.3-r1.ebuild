@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.2-r1.ebuild,v 1.3 2009/02/01 11:08:16 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.3-r1.ebuild,v 1.1 2009/02/26 23:23:29 eva Exp $
 
 EAPI="prefix"
 
@@ -8,10 +8,11 @@ GCONF_DEBUG="no"
 
 inherit autotools gnome2
 
+MY_P="${PN}-2.24.2"
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 SRC_URI="${SRC_URI}
-	mirror://gentoo/${P}-logout+po.tar.bz2"
+	mirror://gentoo/${MY_P}-logout+po.tar.bz2"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
@@ -65,9 +66,16 @@ src_unpack() {
 	gnome2_src_unpack
 
 	# Allow logout/shutdown without gnome-session 2.24, bug #246170
-	epatch "${WORKDIR}/${P}-logout.patch"
-	epatch "${WORKDIR}/${P}-po.patch"
+	epatch "${WORKDIR}/${MY_P}-logout.patch"
+	epatch "${WORKDIR}/${MY_P}-po.patch"
 
+	# Fixes build on BSD, bug #256859
+	epatch "${FILESDIR}/${P}-daylight.patch"
+
+	# Fixes shutdown without gdm, bug #259138
+	epatch "${FILESDIR}/${P}-shutdown.patch"
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautomake
 }
 
