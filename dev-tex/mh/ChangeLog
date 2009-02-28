@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/mh
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/mh/ChangeLog,v 1.10 2008/10/06 04:45:16 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/mh/ChangeLog,v 1.11 2009/02/27 15:39:39 fmccor Exp $
+
+  27 Feb 2009; Ferris McCormick <fmccor@gentoo.org> mh-20080903.ebuild:
+  Sparc stable, part of Bug #253551.
 
   06 Oct 2008; Jeroen Roovers <jer@gentoo.org> mh-20080903.ebuild:
   Marked ~hppa (bug #237202).
