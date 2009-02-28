@@ -44,8 +44,9 @@ src_unpack() {
 	fi
 
 	#epatch "${FILESDIR}"/6.9-without-mountfs.patch
-	#epatch "${FILESDIR}"/${P}-mint.patch
+	epatch "${FILESDIR}"/${P}-mint.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${P}-solaris-sparc64.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a

@@ -1,0 +1,281 @@
+http://bugs.gentoo.org/show_bug.cgi?id=260551
+
+diff -u lib/fpurge.c lib/fpurge.c
+--- lib/fpurge.c	2009-01-11 11:46:33.000000000 +0000
++++ lib/fpurge.c	2009-04-08 04:04:19.000000000 +0000
+@@ -114,6 +114,12 @@
+     /* fp->_Buf <= fp->_Next <= fp->_Rend */
+     fp->_Rend = fp->_Next;
+   return 0;
++# elif defined __MINT__
++  fp->__pushback_bufp = 0;
++  if (fp->__mode.__write)
++    fp->__put_limit = fp->__buffer;
++  fp->__bufp = fp->__get_limit;
++  return 0;
+ # else
+  #error "Please port gnulib fpurge.c to your platform! Look at the definitions of fflush, setvbuf and ungetc on your system, then report this to bug-gnulib."
+ # endif
+diff -u lib/freadahead.c lib/freadahead.c
+--- lib/freadahead.c	2009-01-11 11:46:33.000000000 +0000
++++ lib/freadahead.c	2009-04-08 04:05:07.000000000 +0000
+@@ -70,6 +70,12 @@
+ 	 + (fp->_Mode & 0x4000 /* _MBYTE */
+ 	    ? (fp->_Back + sizeof (fp->_Back)) - fp->_Rback
+ 	    : 0);
++#elif defined __MINT__
++  if (fp->__mode.__write)
++    return 0;
++  if (fp->__pushed_back)
++    return (fp->__get_limit - fp->__pushback_bufp + 1);
++  return (fp->__get_limit - fp->__bufp);
+ #elif defined SLOW_BUT_NO_HACKS     /* users can define this */
+   abort ();
+   return 0;
+diff -u lib/freading.c lib/freading.c
+--- lib/freading.c	2009-01-11 11:46:33.000000000 +0000
++++ lib/freading.c	2009-04-08 04:04:19.000000000 +0000
+@@ -46,6 +46,10 @@
+ #elif defined __QNX__               /* QNX */
+   return ((fp->_Mode & 0x2 /* _MOPENW */) == 0
+ 	  || (fp->_Mode & 0x1000 /* _MREAD */) != 0);
++#elif defined __MINT__
++  if (!fp->__mode.__write && fp->__mode.__read)
++    return 1;
++  return (fp->__flags & _IO_CURRENTLY_GETTING) != 0;
+ #else
+  #error "Please port gnulib freading.c to your platform!"
+ #endif
+diff -u lib/freadptr.c lib/freadptr.c
+--- lib/freadptr.c	2009-01-11 11:46:33.000000000 +0000
++++ lib/freadptr.c	2009-04-08 04:05:37.000000000 +0000
+@@ -85,6 +85,14 @@
+     return NULL;
+   *sizep = size;
+   return (const char *) fp->_Next;
++#elif defined __MINT__
++  if (fp->__mode.__write)
++    return NULL;
++  size = fp->__get_limit - fp->__bufp;
++  if (size == 0)
++    return NULL;
++  *sizep = size;
++  return (const char *) fp->__bufp;
+ #elif defined SLOW_BUT_NO_HACKS     /* users can define this */
+   /* This implementation is correct on any ANSI C platform.  It is just
+      awfully slow.  */
+diff -u lib/freadseek.c lib/freadseek.c
+--- lib/freadseek.c	2009-01-11 11:46:33.000000000 +0000
++++ lib/freadseek.c	2009-04-08 04:06:35.000000000 +0000
+@@ -53,6 +53,8 @@
+ # endif
+ #elif defined __QNX__               /* QNX */
+   fp->_Next += increment;
++#elif defined __MINT__
++  fp->__bufp += increment;
+ #elif defined SLOW_BUT_NO_HACKS     /* users can define this */
+ #else
+  #error "Please port gnulib freadseek.c to your platform! Look at the definition of getc, getc_unlocked on your system, then report this to bug-gnulib."
+diff -u lib/fseterr.c lib/fseterr.c
+--- lib/fseterr.c	2009-01-11 11:46:34.000000000 +0000
++++ lib/fseterr.c	2009-04-08 04:04:19.000000000 +0000
+@@ -41,6 +41,8 @@
+   fp->__modeflags |= __FLAG_ERROR;
+ #elif defined __QNX__               /* QNX */
+   fp->_Mode |= 0x200 /* _MERR */;
++#elif defined __MINT__
++  fp->__error |= 1;
+ #elif 0                             /* unknown  */
+   /* Portable fallback, based on an idea by Rich Felker.
+      Wow! 6 system calls for something that is just a bit operation!
+diff -u lib/mgetgroups.c lib/mgetgroups.c
+--- lib/mgetgroups.c	2009-01-27 21:11:25.000000000 +0000
++++ lib/mgetgroups.c	2009-04-08 04:07:53.000000000 +0000
+@@ -36,6 +36,9 @@
+ static GETGROUPS_T *
+ realloc_groupbuf (GETGROUPS_T *g, size_t num)
+ {
++#ifdef __MINT__
++  return calloc (1, num * sizeof(GETGROUPS_T));
++#else
+   if (xalloc_oversized (num, sizeof (*g)))
+     {
+       errno = ENOMEM;
+@@ -43,6 +46,7 @@
+     }
+ 
+   return realloc (g, num * sizeof (*g));
++#endif
+ }
+ 
+ /* Like getugroups, but store the result in malloc'd storage.
+diff -u lib/mountlist.c lib/mountlist.c
+--- lib/mountlist.c	2009-02-07 09:58:37.000000000 +0000
++++ lib/mountlist.c	2009-04-08 04:04:19.000000000 +0000
+@@ -336,6 +336,7 @@
+    If NEED_FS_TYPE is true, ensure that the file system type fields in
+    the returned list are valid.  Otherwise, they might not be.  */
+ 
++#ifndef __MINT__
+ struct mount_entry *
+ read_file_system_list (bool need_fs_type)
+ {
+@@ -881,3 +882,82 @@
+     return NULL;
+   }
+ }
++
++#else /* __MINT__ */
++
++#include <mintbind.h>
++#include <osbind.h>
++#include <sys/statfs.h>
++#include <mint/dcntl.h>
++
++/* get the list of available drives */
++static long
++get_drives(void)
++{
++	long drive_bits;
++	
++	drive_bits = Dsetdrv(Dgetdrv());
++	drive_bits &= ~(1|2); /* exclude all floppies */
++		
++	return drive_bits;
++}
++
++struct mount_entry *
++read_file_system_list (bool need_fs_type)
++{
++	struct mount_entry *mount_list;
++	struct mount_entry *me;
++	struct mount_entry *mtail;
++	struct statfs fsp;
++	struct fs_info info;
++	long drive_bits;
++	int i, j;
++	char lw[] = "a:/", str[25];
++	
++	/* Start the list off with a dummy entry. */
++	me = xmalloc (sizeof (*me));
++	me->me_next = NULL;
++	mount_list = mtail = me;
++	
++	drive_bits = get_drives();
++	for (i = 0; i < 32; i++)
++	{
++		if (drive_bits & (1L << i))
++		{
++			if (i < 26)
++				lw[0] = 'a' + i;
++			else
++				lw[0] = '1' + i - 26;
++			
++			if(statfs(lw, &fsp) == 0)
++			{
++				char name[32];
++
++				me = xmalloc (sizeof (*me));
++				
++				me->me_devname  = xstrdup(lw);
++				me->me_mountdir = xstrdup("u:/");
++				
++				if (lw[0] < 'a')				/* 1: .. 6: */
++					me->me_dev = lw[0] - '1' + 27;
++				else
++					me->me_dev = lw[0] - 'a';
++				
++				get_fsname(lw, NULL, name);
++				me->me_type = xstrdup(name);
++				/* Add to the linked list. */
++				me->me_next = NULL;
++				mtail->me_next = me;
++				mtail = me;
++			}
++		}
++	}
++	
++	/* Free the dummy head. */
++	me = mount_list;
++	mount_list = mount_list->me_next;
++	free(me);
++	return mount_list;
++}
++
++#endif /* __MINT__ */
+diff -u src/df.c src/df.c
+--- src/df.c	2009-02-14 10:18:27.000000000 +0000
++++ src/df.c	2009-04-08 04:04:19.000000000 +0000
+@@ -337,7 +337,12 @@
+      It would be better to report on the unmounted file system,
+      but statfs doesn't do that on most systems.  */
+   if (!stat_file)
++#ifndef __MINT__
+     stat_file = mount_point ? mount_point : disk;
++#else
++    /* MiNT: mount_point is always u:/, so use disk */
++    stat_file = disk;
++#endif
+ 
+   if (force_fsu)
+     fsu = *force_fsu;
+diff -u src/uptime.c src/uptime.c
+--- src/uptime.c	2009-01-21 13:33:41.000000000 +0000
++++ src/uptime.c	2009-04-08 04:04:19.000000000 +0000
+@@ -17,6 +17,9 @@
+ /* Created by hacking who.c by Kaveh Ghazi ghazi@caip.rutgers.edu.  */
+ 
+ #include <config.h>
++#ifdef __MINT__
++#define HAVE_PROC_UPTIME 1
++#endif
+ #include <getopt.h>
+ #include <stdio.h>
+ 
+@@ -62,7 +65,11 @@
+ #ifdef HAVE_PROC_UPTIME
+   FILE *fp;
+ 
++#ifdef __MINT__
++  fp = fopen ("/kern/uptime", "r");
++#else
+   fp = fopen ("/proc/uptime", "r");
++#endif
+   if (fp != NULL)
+     {
+       char buf[BUFSIZ];
+--- lib/fseeko.c	2009-04-08 13:08:27.000000000 +0000
++++ lib/fseeko.c	2009-04-08 13:09:56.000000000 +0000
+@@ -85,6 +85,8 @@
+   if ((fp->_Mode & _MWRITE ? fp->_Next == fp->_Buf : fp->_Next == fp->_Rend)
+       && fp->_Rback == fp->_Back + sizeof (fp->_Back)
+       && fp->_Rsave == NULL)
++#elif defined __MINT__
++  if (0)
+ #else
+   #error "Please port gnulib fseeko.c to your platform! Look at the code in fpurge.c, then report this to bug-gnulib."
+ #endif
+--- lib/gai_strerror.c	2009-04-09 01:47:59.000000000 +0000
++++ lib/gai_strerror.c	2009-04-09 01:48:54.000000000 +0000
+@@ -53,7 +53,7 @@
+     { EAI_SOCKTYPE, N_("ai_socktype not supported") },
+     { EAI_SYSTEM, N_("System error") },
+     { EAI_OVERFLOW, N_("Argument buffer too small") },
+-#ifdef __USE_GNU
++#ifdef EAI_INPROGRESS
+     { EAI_INPROGRESS, N_("Processing request in progress") },
+     { EAI_CANCELED, N_("Request canceled") },
+     { EAI_NOTCANCELED, N_("Request not canceled") },
+--- src/timeout.c	2009-04-10 01:37:34.000000000 +0000
++++ src/timeout.c	2009-04-10 01:38:20.000000000 +0000
+@@ -202,6 +202,10 @@
+   return true;
+ }
+ 
++#ifdef __MINT__
++#define SA_RESTART 0
++#endif
++
+ static void
+ install_signal_handlers (void)
+ {
