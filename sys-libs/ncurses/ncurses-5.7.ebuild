@@ -34,9 +34,8 @@ src_unpack() {
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
-#	epatch "${FILESDIR}"/${PN}-5.6-darwin.patch
+	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
-#	epatch "${FILESDIR}"/${PN}-5.6-solaris2.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 #	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
@@ -76,6 +75,9 @@ src_compile() {
 }
 do_compile() {
 	ECONF_SOURCE=${S}
+	local myconf
+
+	[[ ${CHOST} == *-mint* ]] || myconf="--with-shared"
 
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
@@ -94,7 +96,7 @@ do_compile() {
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
-		--with-shared \
+		${myconf} \
 		--without-hashed-db \
 		--enable-overwrite \
 		$(use_with debug) \

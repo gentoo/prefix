@@ -1,0 +1,13 @@
+https://savannah.gnu.org/support/index.php?106655
+
+--- configure.old	2009-04-07 17:36:12.000000000 +0000
++++ configure	2009-04-07 17:36:32.000000000 +0000
+@@ -6233,7 +6233,7 @@
+ irix[56].*) #(vi
+ 	CPPFLAGS="$CPPFLAGS -D_SGI_SOURCE"
+ 	;;
+-linux*|gnu*|k*bsd*-gnu) #(vi
++linux*|gnu*|k*bsd*-gnu|mint*) #(vi
+ 
+ echo "$as_me:6238: checking if we must define _GNU_SOURCE" >&5
+ echo $ECHO_N "checking if we must define _GNU_SOURCE... $ECHO_C" >&6
