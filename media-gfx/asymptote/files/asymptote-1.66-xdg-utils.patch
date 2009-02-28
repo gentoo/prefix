@@ -1,0 +1,23 @@
+Index: asymptote-1.66/settings.cc
+===================================================================
+--- asymptote-1.66.orig/settings.cc
++++ asymptote-1.66/settings.cc
+@@ -80,15 +80,15 @@ const bool haveglut=false;
+ bool msdos=false;
+ const char *HOME="HOME";
+ const char pathSeparator=':';
+-string defaultPSViewer="gv";
++string defaultPSViewer="xdg-open";
+ #ifdef __APPLE__
+ string defaultPDFViewer="open";
+ #else  
+-string defaultPDFViewer="acroread";
++string defaultPDFViewer="xdg-open";
+ #endif  
+ string defaultGhostscript="gs";
+ string defaultPython;
+-string defaultDisplay="display";
++string defaultDisplay="xdg-open";
+ string systemDir=ASYMPTOTE_SYSDIR;
+ const string docdir=ASYMPTOTE_DOCDIR;
+ void queryRegistry() {}
