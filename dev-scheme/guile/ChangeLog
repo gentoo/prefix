@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.69 2008/12/14 17:00:56 maekke Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.70 2009/02/26 14:22:00 josejx Exp $
+
+  26 Feb 2009; Joseph Jezak <josejx@gentoo.org> guile-1.8.5-r1.ebuild:
+  Marked ppc stable for bug #245701.
 
   14 Dec 2008; Markus Meier <maekke@gentoo.org> guile-1.8.5-r1.ebuild:
   amd64/x86 stable, bug #245701
