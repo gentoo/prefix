@@ -1,6 +1,31 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.619 2009/02/12 15:05:02 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.623 2009/02/26 23:47:29 beandog Exp $
+
+  26 Feb 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-20090226.28734.ebuild:
+  Don't enable cpudetection for bindist
+
+  26 Feb 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-20090226.28734.ebuild:
+  Fix vorbis dep
+
+  26 Feb 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-20090226.28734.ebuild:
+  Add nvidia card to use flags
+
+*mplayer-20090226.28734 (26 Feb 2009)
+
+  26 Feb 2009; Steve Dibb <beandog@gentoo.org> metadata.xml,
+  +mplayer-20090226.28734.ebuild:
+  Split real use flag into two: real for internal, realcodecs for binary;
+  Add faad, faac use flags for external AAC support; Add vdpau use flag; Add
+  more use flags to be enabled by default for that fresh just-works feeling;
+  Add tremor use flag for internal Vorbis support; Cleanup use flags, bug
+  254661; Install more docs by default, bug 254671; Check for mng use flag,
+  bug 256054; Use unrar, add to mplayer.conf, bug 256203; Remove deprecated
+  DEPEND, bug 256146; New naming scheme DATE.SVN_REVISION; Add more
+  documentation to ebuild
 
   12 Feb 2009; Steve Dibb <beandog@gentoo.org>
   mplayer-1.0_rc2_p28450.ebuild:
