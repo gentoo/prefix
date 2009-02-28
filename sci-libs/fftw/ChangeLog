@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/fftw
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.75 2008/11/27 10:39:28 bicatali Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.76 2009/02/26 17:38:05 bicatali Exp $
+
+*fftw-3.2.1 (26 Feb 2009)
+
+  26 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/fftw-3.2.1-as-needed.patch, +fftw-3.2.1.ebuild:
+  Version bump. More as-needed fixes, and general cleanup.
 
   27 Nov 2008; Sébastien Fabbro <bicatali@gentoo.org> fftw-3.2.ebuild:
   Fixed for older libtool versions and forcing posix threads in the ebuild
