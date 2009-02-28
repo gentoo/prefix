@@ -115,4 +115,14 @@ media-sound/lmms vst
 # Raúl Porcel <armin76@gentoo.org> (09 Nov 2008)
 # CPU opts: This needs amd64, x86 and ppc on some of them
 # dvdnav: hard masked dependency
-media-video/mplayer cpudetection custom-cpuopts bindist dvdnav
+# vdpau: availble on x86, amd64 only
+media-video/mplayer cpudetection custom-cpuopts bindist vdpau
+
+# Steve Dibb <beandog@gentoo.org> (26 Feb 2009)
+# dvdnav support moved internally with newer versions, old ones
+# still depend on external, masked dep
+<media-video/mplayer-20090226.28734 dvdnav
+
+# Steve Dibb <beandog@gentoo.org> (26 Feb 2009)
+# Unmask internal real player codec support on newer mplayer
+>=media-video/mplayer-20090226.28734 -real

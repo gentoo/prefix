@@ -17,6 +17,7 @@ ssse3
 svga
 win32codecs
 real
+realcodecs
 nvram
 
 # ppc arch specific USE flags
