@@ -240,6 +240,9 @@ mysql_init_vars() {
 		if [[ -z "${MY_DATADIR}" ]] ; then
 			MY_DATADIR="${MY_LOCALSTATEDIR}"
 			einfo "Using default MY_DATADIR"
+		else
+			# strip leading EPREFIX returned by already installed mysql
+			MY_DATADIR="${MY_DATADIR#${EPREFIX}}"
 		fi
 		elog "MySQL MY_DATADIR is ${EPREFIX}${MY_DATADIR}"
 
