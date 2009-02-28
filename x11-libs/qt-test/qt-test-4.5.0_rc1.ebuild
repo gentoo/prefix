@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/qt-test-4.5.0_rc1.ebuild,v 1.1 2009/02/11 23:20:44 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/qt-test-4.5.0_rc1.ebuild,v 1.2 2009/02/27 21:37:25 hwoarang Exp $
 
 EAPI="prefix 2"
 inherit qt4-build
@@ -18,8 +18,7 @@ QT4_TARGET_DIRECTORIES="src/testlib"
 QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
 include/QtTest/
 include/QtCore/
-src/corelib/
-src/testlib/"
+src/corelib/"
 
 src_configure() {
 	myconf="${myconf} -no-xkb  -no-fontconfig -no-xrender -no-xrandr
