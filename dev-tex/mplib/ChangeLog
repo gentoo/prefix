@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/mplib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.9 2008/12/08 11:22:17 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.10 2009/02/27 14:25:59 fmccor Exp $
+
+  27 Feb 2009; Ferris McCormick <fmccor@gentoo.org> mplib-1.110.ebuild:
+  Sparc stable, preparation for Bug #253551.
 
   08 Dec 2008; Alexis Ballier <aballier@gentoo.org> -mplib-1.091.ebuild:
   remove old
