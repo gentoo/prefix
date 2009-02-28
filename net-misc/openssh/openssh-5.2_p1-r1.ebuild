@@ -105,9 +105,6 @@ src_unpack() {
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
-	# Patch in Leopard's X forwarding magic
-	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-4.7_p1-darwin9-display.patch
-
 # bug #238631
 #	epatch "${FILESDIR}"/${P}-interix.patch
 #	epatch "${FILESDIR}"/${PN}-5.1_p1-root-uid.patch
