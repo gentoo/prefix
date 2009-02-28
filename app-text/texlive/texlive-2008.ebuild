@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.4 2008/10/04 09:14:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.5 2009/02/27 15:47:32 fmccor Exp $
 
 EAPI="prefix 2"
 
