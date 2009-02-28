@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.93 2009/02/26 03:08:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.94 2009/02/27 14:46:52 ranger Exp $
+
+  27 Feb 2009; Brent Baude <ranger@gentoo.org> mpfr-2.3.2.ebuild:
+  stable ppc64, bug 255195
 
 *mpfr-2.4.1 (26 Feb 2009)
 
