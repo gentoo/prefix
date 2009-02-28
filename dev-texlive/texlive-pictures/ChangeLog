@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-pictures
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.20 2008/11/06 20:03:31 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/ChangeLog,v 1.21 2009/02/27 15:32:52 fmccor Exp $
+
+  27 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
+  texlive-pictures-2008-r1.ebuild:
+  Sparc stable, part of Bug #253551.
 
 *texlive-pictures-2008-r1 (06 Nov 2008)
 
