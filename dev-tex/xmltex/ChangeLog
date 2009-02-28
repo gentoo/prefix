@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/xmltex
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.24 2008/10/06 04:40:43 jer Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/ChangeLog,v 1.25 2009/02/27 15:38:27 fmccor Exp $
+
+  27 Feb 2009; Ferris McCormick <fmccor@gentoo.org> xmltex-1.9-r2.ebuild:
+  Sparc stable, part of Bug #253551.
 
   06 Oct 2008; Jeroen Roovers <jer@gentoo.org> xmltex-1.9-r2.ebuild:
   Marked ~hppa (bug #237202).
