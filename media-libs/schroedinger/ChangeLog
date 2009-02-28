@@ -1,0 +1,107 @@
+# ChangeLog for media-libs/schroedinger
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.24 2008/12/22 14:21:50 armin76 Exp $
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org> schroedinger-1.0.5.ebuild:
+  arm stable
+
+  10 Nov 2008; Raúl Porcel <armin76@gentoo.org> schroedinger-1.0.5.ebuild:
+  ia64 stable
+
+  10 Nov 2008; Raúl Porcel <armin76@gentoo.org> schroedinger-1.0.5.ebuild:
+  Add ~ia64 wrt #241908
+
+  08 Nov 2008; Tobias Klausmann <klausman@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  Stable on alpha, bug #239130
+
+  06 Nov 2008; Ferris McCormick <fmccor@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  Sparc stable, part of Bug #245774.
+
+  30 Oct 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  ppc stable, bug #239130
+
+  21 Oct 2008; Markus Rothe <corsair@gentoo.org> schroedinger-1.0.5.ebuild:
+  Stable on ppc64; bug #239130
+
+  20 Oct 2008; Guy Martin <gmsoft@gentoo.org> schroedinger-1.0.5.ebuild:
+  hppa stable, #239130
+
+  19 Oct 2008; Markus Meier <maekke@gentoo.org> schroedinger-1.0.5.ebuild:
+  amd64/x86 stable, bug #239130
+
+  16 Sep 2008; Jeroen Roovers <jer@gentoo.org> schroedinger-1.0.5.ebuild:
+  Marked ~hppa (bug #234629).
+
+  31 Aug 2008; Tobias Klausmann <klausman@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  Keyworded on alpha, bug #235636
+
+  28 Aug 2008; Friedrich Oslage <bluebird@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  Add ~sparc keyword, bug #235636
+
+  24 Aug 2008; Markus Rothe <corsair@gentoo.org> schroedinger-1.0.5.ebuild:
+  Added ~ppc64; bug #234629
+
+  17 Aug 2008; Alexis Ballier <aballier@gentoo.org>
+  schroedinger-1.0.5.ebuild:
+  keyword ~x86-fbsd
+
+*schroedinger-1.0.5 (20 Jul 2008)
+
+  20 Jul 2008; Alexis Ballier <aballier@gentoo.org>
+  +schroedinger-1.0.5.ebuild:
+  version bump
+
+*schroedinger-1.0.3 (22 Apr 2008)
+
+  22 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  -files/schroedinger-0.9.0-asneeded.patch, -schroedinger-0.9.0.ebuild,
+  +schroedinger-1.0.3.ebuild:
+  Version bump wrt #218550, thanks to Michael Evans for reporting.
+
+*schroedinger-0.9.0 (26 Jan 2008)
+
+  26 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  -files/schroedinger-0.6.1-asneeded.patch,
+  +files/schroedinger-0.9.0-asneeded.patch, -schroedinger-0.6.1.ebuild,
+  +schroedinger-0.9.0.ebuild:
+  Version bump. Patch Makefile.in instead of Makefile.am to avoid the need for
+  .m4 macro from gtk-doc wrt #205755. Stop depending on gtk-doc, the
+  documentation has been prebuilt and is installed anyway.
+
+*schroedinger-0.6.1 (23 Sep 2007)
+
+  23 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  +files/schroedinger-0.6.1-asneeded.patch, +schroedinger-0.6.1.ebuild:
+  Version bump, fixing also compatibility problems with liboil wrt #193450.
+  Also include a patch to build with ldflag asneeded.
+
+  10 May 2007; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  Fix metadata
+
+  01 Feb 2007; Steve Dibb <beandog@gentoo.org> schroedinger-0.3.0.0.ebuild:
+  Add ~amd64, bug 164157
+
+*schroedinger-0.3.0.0 (05 Dec 2006)
+
+  05 Dec 2006; Hanno Boeck <hanno@gentoo.org> +schroedinger-0.3.0.0.ebuild:
+  Version bump.
+
+  12 Jul 2006; Danny van Dyk <kugelfang@gentoo.org>
+  schroedinger-0.2.0.0.ebuild:
+  QA: Added doc to IUSE.
+
+  02 Jun 2006; Luca Barbato <lu_zero@gentoo.org>
+  schroedinger-0.2.0.0.ebuild:
+  Useflag fix
+
+*schroedinger-0.2.0.0 (31 May 2006)
+
+  31 May 2006; Luca Barbato <lu_zero@gentoo.org> +metadata.xml,
+  +schroedinger-0.2.0.0.ebuild:
+  First commit, thanks to Ed Catmur <ed@catmur.co.uk> for the ebuild
+
