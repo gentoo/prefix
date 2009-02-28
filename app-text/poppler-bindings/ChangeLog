@@ -1,6 +1,20 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.126 2009/02/25 22:14:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.129 2009/02/27 14:41:52 armin76 Exp $
+
+  27 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  poppler-bindings-0.8.7.ebuild, poppler-bindings-0.10.3.ebuild,
+  poppler-bindings-0.10.4.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #260266, drop s390 keyword since it
+  needs an USE-flag set, and s390 has all of them use.masked
+
+  26 Feb 2009; Jeroen Roovers <jer@gentoo.org>
+  poppler-bindings-0.10.4.ebuild:
+  Stable for HPPA (bug #260266).
+
+  26 Feb 2009; Brent Baude <ranger@gentoo.org>
+  poppler-bindings-0.10.4.ebuild:
+  Marking poppler-bindings-0.10.4 ppc64 for bug 260266
 
   25 Feb 2009; Markus Meier <maekke@gentoo.org>
   poppler-bindings-0.10.4.ebuild:

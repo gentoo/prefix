@@ -1,10 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.4.ebuild,v 1.3 2009/02/25 22:14:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.4.ebuild,v 1.7 2009/02/27 14:41:52 armin76 Exp $
 
 EAPI="prefix 2"
 
-inherit autotools eutils multilib flag-o-matic
+#Inherit qt3 to get QTDIR even if the env file has not yet been sourced.
+
+inherit qt3 autotools eutils multilib
 
 MY_P=${P/-bindings/}
 DESCRIPTION="rendering bindings for GUI toolkits for poppler"
