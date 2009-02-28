@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.22.87.ebuild,v 1.1 2009/02/25 19:32:09 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.22.87.ebuild,v 1.2 2009/02/26 14:00:56 lack Exp $
 
 EAPI="prefix 1"
 inherit nsplugins rpm multilib
@@ -11,10 +11,12 @@ MY_64B_URI="http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer
 DESCRIPTION="Adobe Flash Player"
 SRC_URI="x86? ( ${MY_32B_URI} )
 amd64? ( ${MY_64B_URI}
-	multilib? ( ${MY_32B_URI} mirror://gentoo/flash-libcompat-0.2.tar.bz2 )
+	multilib? ( 32bit? (
+		${MY_32B_URI} mirror://gentoo/flash-libcompat-0.2.tar.bz2
+	) )
 )"
 HOMEPAGE="http://www.adobe.com/"
-IUSE="multilib"
+IUSE="multilib +32bit"
 SLOT="0"
 
 KEYWORDS="~amd64-linux ~x86-linux"
@@ -30,12 +32,12 @@ RDEPEND="x11-libs/gtk+:2
 	!prefix? ( >=sys-libs/glibc-2.4 )
 	|| ( media-fonts/freefont-ttf media-fonts/corefonts )
 	amd64? (
-		multilib? (
+		multilib? ( 32bit? (
 			app-emulation/emul-linux-x86-baselibs
 			app-emulation/emul-linux-x86-gtklibs
 			app-emulation/emul-linux-x86-soundlibs
 			app-emulation/emul-linux-x86-xlibs
-		)
+		) )
 	)
 "
 
@@ -59,7 +61,7 @@ src_install() {
 	# 64b tarball has no readme file.
 	use x86 && dodoc "${S}/usr/share/doc/flash-plugin-${PV}/readme.txt"
 
-	if use amd64 && has_multilib_profile; then
+	if use amd64 && has_multilib_profile && use 32bit; then
 		oldabi="${ABI}"
 		ABI="x86"
 

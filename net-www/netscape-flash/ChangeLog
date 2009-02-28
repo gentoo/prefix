@@ -1,6 +1,11 @@
 # ChangeLog for net-www/netscape-flash
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.89 2009/02/25 19:41:34 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.90 2009/02/26 14:00:56 lack Exp $
+
+  26 Feb 2009; Jim Ramsay <lack@gentoo.org> metadata.xml,
+  netscape-flash-10.0.22.87.ebuild:
+  Added new '32-bit' local USE flag which specifies whether amd64-multilib
+  platforms get both 32- and 64-bit plugins, or just the 64-bit one.
 
 *netscape-flash-9.0.159.0 (25 Feb 2009)
 
