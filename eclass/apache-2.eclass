@@ -478,7 +478,12 @@ apache-2_src_unpack() {
 apache-2_src_compile() {
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
-	append-ldflags -Wl,--no-as-needed
+	# ... but only on platforms that use a GNU linker, you tools!
+	case ${CHOST} in
+		*-solaris* | *-*bsd* | *-linux-gnu)
+			append-ldflags -Wl,--no-as-needed
+		;;
+	esac
 
 	# peruser MPM debugging with -X is nearly impossible
 	if has peruser ${IUSE_MPMS} && use apache2_mpms_peruser ; then
