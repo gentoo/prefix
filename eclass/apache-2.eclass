@@ -441,12 +441,12 @@ apache-2_src_unpack() {
 		;;
 		*-darwin*)
 			sed -i -e 's/-Wl,-z,now/-Wl,-bind_at_load/g' \
-				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
+				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo_apache-tools.patch
 		;;
 		*)
 			# patch it out to be like upstream
 			sed -i -e 's/-Wl,-z,now//g' \
-				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo-apache-tools.patch
+				"${GENTOO_PATCHDIR}"/patches/03_all_gentoo_apache-tools.patch
 		;;
 	esac
 
