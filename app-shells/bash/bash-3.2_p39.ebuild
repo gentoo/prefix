@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs multilib autotools
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 # Official patchlevel
 # See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
@@ -36,8 +36,7 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger examples nls plugins vanilla"
 
-DEPEND=">=sys-libs/ncurses-5.2-r2
-	sys-devel/bison"
+DEPEND=">=sys-libs/ncurses-5.2-r2"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.5
 	!<sys-apps/paludis-0.26.0_alpha5"
@@ -108,8 +107,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/bashrc-prefix.patch
 	eprefixify "${T}"/bashrc
 
-	cd "${S}"
-	eautoreconf
+	# DON'T YOU EVER PUT eautoreconf OR SIMILAR HERE!  THIS IS A CRITICAL
+	# PACKAGE THAT MUST NOT RELY ON AUTOTOOLS, USE A SELF-SUFFICIENT PATCH
+	# INSTEAD!!!
 }
 
 src_compile() {
@@ -140,26 +140,23 @@ src_compile() {
 	# ebuild code.
 	eval $(echo export $(ac_default_prefix="${EPREFIX}/usr"; eval echo $(grep DEBUGGER_START_FILE= configure)))
 
-	use plugins && case ${CHOST} in
-		*-linux-gnu | *-solaris* | *-freebsd* )
-			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
-		;;
-		# Darwin doesn't need an rpath here
-	esac
-
 	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_header_inttypes_h=no
 		export gt_cv_header_inttypes_h=no
 		export jm_ac_cv_header_inttypes_h=no
 	fi
 
+	use plugins && case ${CHOST} in
+		*-linux-gnu | *-solaris* | *-freebsd* )
+			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
+		;;
+		# Darwin doesn't need an rpath here
+	esac
 	econf \
 		$(use_with afs) \
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die
-	# avoid parallel make breaking
-	emake -j1 -C lib/intl libintl.h || die "make libintl.h failed"
 	emake || die "make failed"
 
 	if use plugins ; then
