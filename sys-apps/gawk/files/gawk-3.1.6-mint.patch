@@ -1,8 +1,7 @@
 Patch by Alan Hourihane for FreeMiNT
 
-diff -u gawk-3.1.6/array.c gawk-3.1.6-mint/array.c
---- gawk-3.1.6/array.c	2007-09-22 21:08:36.000000000 +0100
-+++ gawk-3.1.6-mint/array.c	2008-12-14 17:29:35.975954961 +0000
+--- gawk-3.1.6/array.c
++++ gawk-3.1.6/array.c
 @@ -702,7 +702,7 @@
  	 * just jumping from 8K to 64K.
  	 */
@@ -12,9 +11,8 @@ diff -u gawk-3.1.6/array.c gawk-3.1.6-mint/array.c
  				131101, 262147, 524309, 1048583, 2097169,
  				4194319, 8388617, 16777259, 33554467, 
  				67108879, 134217757, 268435459, 536870923,
-diff -u gawk-3.1.6/awk.h gawk-3.1.6-mint/awk.h
---- gawk-3.1.6/awk.h	2007-09-30 20:50:43.000000000 +0100
-+++ gawk-3.1.6-mint/awk.h	2008-12-14 17:32:21.602955820 +0000
+--- gawk-3.1.6/awk.h
++++ gawk-3.1.6/awk.h
 @@ -195,9 +195,9 @@
  #define GFMT_WORKAROUND
  #endif	/* NeXT */
@@ -58,9 +56,8 @@ diff -u gawk-3.1.6/awk.h gawk-3.1.6-mint/awk.h
  
  #ifdef HAVE_SYS_WAIT_H
  #include <sys/wait.h>
-diff -u gawk-3.1.6/custom.h gawk-3.1.6-mint/custom.h
---- gawk-3.1.6/custom.h	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/custom.h	2008-12-14 17:29:35.976955738 +0000
+--- gawk-3.1.6/custom.h
++++ gawk-3.1.6/custom.h
 @@ -102,3 +102,8 @@
  #define HAVE_TZSET 1
  #define _TZSET 1
@@ -70,9 +67,8 @@ diff -u gawk-3.1.6/custom.h gawk-3.1.6-mint/custom.h
 +#ifdef __MINT__
 +#define HAVE_MKTIME 1
 +#endif
-diff -u gawk-3.1.6/gawkmisc.c gawk-3.1.6-mint/gawkmisc.c
---- gawk-3.1.6/gawkmisc.c	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/gawkmisc.c	2008-12-14 17:29:36.007527192 +0000
+--- gawk-3.1.6/gawkmisc.c
++++ gawk-3.1.6/gawkmisc.c
 @@ -40,15 +40,11 @@
  #if defined(VMS)
  #include "vms/gawkmisc.vms"
@@ -89,9 +85,8 @@ diff -u gawk-3.1.6/gawkmisc.c gawk-3.1.6-mint/gawkmisc.c
  #endif /* not VMS */
  #endif /* not MSDOS, not OS2, not WIN32 */
  #endif /* not __EMX__ */
-diff -u gawk-3.1.6/io.c gawk-3.1.6-mint/io.c
---- gawk-3.1.6/io.c	2007-08-11 20:39:49.000000000 +0100
-+++ gawk-3.1.6-mint/io.c	2008-12-14 17:29:36.008955442 +0000
+--- gawk-3.1.6/io.c
++++ gawk-3.1.6/io.c
 @@ -111,10 +111,6 @@
  
  #endif /* HAVE_SOCKETS */
@@ -103,9 +98,8 @@ diff -u gawk-3.1.6/io.c gawk-3.1.6-mint/io.c
  #if defined(GAWK_AIX)
  #undef TANDEM	/* AIX defines this in one of its header files */
  #undef MSDOS	/* For good measure, */
-diff -u gawk-3.1.6/replace.c gawk-3.1.6-mint/replace.c
---- gawk-3.1.6/replace.c	2007-04-12 22:29:15.000000000 +0100
-+++ gawk-3.1.6-mint/replace.c	2008-12-14 17:29:36.008955442 +0000
+--- gawk-3.1.6/replace.c
++++ gawk-3.1.6/replace.c
 @@ -6,21 +6,8 @@
  #include "awk.h"
  
