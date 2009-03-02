@@ -48,7 +48,7 @@ src_unpack() {
 src_compile() {
 	tc-export CC LD
 	# on solaris -lintl is needed to compile
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags "-lintl"
+	[[ ${CHOST} == *-solaris* ]] && append-libs "-lintl"
 	# --without-included-gettext means we always use system headers
 	# and library
 	econf --without-included-gettext $(use_enable nls) || die "econf failed"
