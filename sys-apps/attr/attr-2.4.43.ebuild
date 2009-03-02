@@ -44,7 +44,7 @@ src_unpack() {
 		sed -i -e 's/__THROW//g' include/xattr.h
 		sed -i -e '/^LTLDFLAGS/d' libattr/Makefile
 		append-flags -fno-strict-aliasing
-		append-ldflags -lintl
+		append-libs -lintl
 	fi
 }
 
