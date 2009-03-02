@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 src_compile() {
-	use elibc_glibc || append-ldflags -liconv
+	use elibc_glibc || append-libs -liconv
 	econf \
 		$(use_enable unicode multibyte) \
 		|| die "econf failed"
