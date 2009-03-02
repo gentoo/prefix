@@ -26,12 +26,14 @@ RDEPEND=""
 
 S="${WORKDIR}/${MY_PN}/build/generic"
 
+src_unpack() {
+	unpack ${A}
+	cd "${WORKDIR}"/${MY_PN}
+	epatch "${FILESDIR}"/${P}-ncpu.patch
+}
+
 src_compile() {
-	local myconf=""
-
-	[[ ${CHOST} == *-darwin* ]] && myconf="--disable-assembly"
-
-	econf $(use_enable altivec) ${myconf}
+	econf $(use_enable altivec)
 	emake || die "emake failed."
 }
 
