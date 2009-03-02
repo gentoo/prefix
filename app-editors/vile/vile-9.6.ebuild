@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 	app-admin/eselect-vi"
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-ldflags -liconv
+	[[ ${CHOST} == *-interix* ]] && append-libs -liconv
 
 	econf \
 		--with-ncurses \
