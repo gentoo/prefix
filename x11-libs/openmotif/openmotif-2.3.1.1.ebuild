@@ -95,7 +95,7 @@ src_compile() {
 	if use !elibc_glibc; then
 		# configure script is messed up in libiconv detection (thinks it isn't
 		# necessary)
-		use unicode && append-ldflags -liconv
+		use unicode && append-libs -liconv
 	fi
 
 	# get around some LANG problems in make (#15119)
