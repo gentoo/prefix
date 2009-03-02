@@ -133,7 +133,7 @@ src_compile() {
 		;;
 		*-*-solaris*)
 			# -lintl isn't added for some reason
-			use nls && append-ldflags -lintl
+			use nls && append-libs -lintl
 		;;
 	esac
 

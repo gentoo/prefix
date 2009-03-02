@@ -106,7 +106,7 @@ src_compile() {
 		;;
 		*-solaris*)
 			# -lintl isn't added for some reason
-			use nls && append-ldflags -lintl
+			use nls && append-libs -lintl
 		;;
 		*-aix*)
 			# avoid recording immediate path to sharedlibs into executables
