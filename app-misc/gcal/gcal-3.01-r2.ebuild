@@ -29,7 +29,7 @@ src_unpack() {
 src_compile() {
 	# i'm really out of ideas here...
 	if [[ ${CHOST} == *-interix* ]]; then
-		use nls && append-ldflags -lintl
+		use nls && append-libs -lintl
 	fi
 
 	append-flags -D_GNU_SOURCE
