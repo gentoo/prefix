@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lrt # for nanosleep
 
 	econf \
 		--disable-poppler-qt4 \

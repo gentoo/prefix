@@ -35,7 +35,7 @@ src_unpack() {
 }
 
 src_configure() {
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lrt # for nanosleep
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lrt # for nanosleep
 
 	econf 	--disable-static		\
 		--disable-poppler-qt4		\
