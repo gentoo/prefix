@@ -22,7 +22,7 @@ LICENSE="GPL-2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 src_compile() {
-	use elibc_glibc || append-ldflags -liconv
+	use elibc_glibc || append-libs -liconv
 	econf $(use_enable ipv6) || die "econf failed"
 	emake || die "emake failed"
 }
