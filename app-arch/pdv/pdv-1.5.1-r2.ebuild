@@ -48,7 +48,7 @@ src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		# seems like a bug in openmotiv build on interix, but i can't find it.
 		# if this is missing i get unresolved libiconv_* symbols for libXm.so
-		use X && append-ldflags -liconv
+		use X && append-libs -liconv
 	fi
 
 	local myconf=""
