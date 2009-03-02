@@ -29,6 +29,6 @@ src_compile() {
 	# the gettext configure check and code in sxpm are incorrect; they assume
 	# gettext being in libintl, whereas Solaris has gettext by default
 	# resulting in libintl not being added to LIBS
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lintl
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lintl
 	x-modular_src_compile
 }
