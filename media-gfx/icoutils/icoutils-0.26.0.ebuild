@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 		nls? ( sys-devel/gettext )"
 
 src_compile() {
-	[[ ${CHOST} != *-linux-gnu* ]] && use nls && append-ldflags -lintl
+	[[ ${CHOST} != *-linux-gnu* ]] && use nls && append-libs -lintl
 	econf \
 		`use_enable nls` \
 		--disable-dependency-tracking || die
