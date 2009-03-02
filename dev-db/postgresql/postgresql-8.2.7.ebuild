@@ -87,7 +87,7 @@ src_compile() {
 	filter-flags -ffast-math -feliminate-dwarf2-dups
 
 	# maybe this is for all non-GNU libc babies...
-	[[ ${CHOST} == *-solaris* ]] && use nls && append-ldflags -lintl
+	[[ ${CHOST} == *-solaris* ]] && use nls && append-libs -lintl
 
 	econf --prefix="${EPREFIX}"/usr \
 		--includedir="${EPREFIX}"/usr/include/postgresql/pgsql \
