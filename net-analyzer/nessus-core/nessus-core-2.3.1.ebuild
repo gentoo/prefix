@@ -31,7 +31,7 @@ src_unpack() {
 
 src_compile() {
 	export CC="$(tc-getCC)"
-	[[ ${CHOST} == *-darwin* ]] && append-ldflags -lintl
+	[[ ${CHOST} == *-darwin* ]] && append-libs -lintl
 	econf \
 		$(use_enable tcpd tcpwrappers) \
 		$(use_enable debug) \
