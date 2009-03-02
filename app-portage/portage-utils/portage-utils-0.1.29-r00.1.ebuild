@@ -39,7 +39,8 @@ src_compile() {
 	tc-export CC
 	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
-		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib -lgnu
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
+		append-libs -lgnu
 	fi
 	emake || die
 }
