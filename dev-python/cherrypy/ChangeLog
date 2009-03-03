@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/cherrypy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.31 2009/02/15 14:31:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.32 2009/02/28 19:01:51 patrick Exp $
+
+*cherrypy-3.1.1 (28 Feb 2009)
+
+  28 Feb 2009; Patrick Lauer <patrick@gentoo.org> +cherrypy-3.1.1.ebuild:
+  Bump to 3.1.1, closes #260387
 
   15 Feb 2009; Patrick Lauer <patrick@gentoo.org> cherrypy-2.3.0.ebuild:
   Adding ~amd64 keyword to 2.3.0
