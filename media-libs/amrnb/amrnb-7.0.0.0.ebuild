@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.0.ebuild,v 1.9 2008/05/25 09:03:07 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.0.ebuild,v 1.10 2009/03/01 14:06:28 loki_val Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,9 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 RDEPEND=""
 DEPEND="app-arch/unzip"
+
+#Bug 232636
+export LC_ALL=C
 
 src_unpack() {
 	unpack ${P}.tar.bz2
