@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/notification-daemon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.52 2009/01/18 13:25:37 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.53 2009/03/01 18:23:41 patrick Exp $
+
+  01 Mar 2009; Patrick Lauer <patrick@gentoo.org>
+  notification-daemon-0.4.0.ebuild:
+  Adding missing intltool dep
 
   18 Jan 2009; Peter Volkov <pva@gentoo.org>
   notification-daemon-0.4.0.ebuild:
