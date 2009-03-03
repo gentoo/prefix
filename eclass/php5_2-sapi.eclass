@@ -256,7 +256,7 @@ php5_2-sapi_install_ini() {
 
 	# Set the include path to point to where we want to find PEAR packages
 	einfo "Setting correct include_path"
-	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:${EPREFIX}/usr/share/php5:${EPREFIX}/usr/share/php"|' -i ${phpinisrc}
+	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:'"${EPREFIX}"'/usr/share/php5:'"${EPREFIX}"'/usr/share/php"|' -i ${phpinisrc}
 
 	# Add needed MySQL extensions charset configuration
 	local phpmycnfcharset=""
@@ -390,7 +390,7 @@ php5_2-sapi_src_unpack() {
 
 	sed -i \
 		-e 's|/usr/local /usr|'"${EPREFIX}"'/usr/local '"${EPREFIX}"'/usr|g' \
-		ext/gettext/config.m4 \
+		ext/*/config.m4 \
 		|| die "Failed to fix gettext include paths for prefix"
 
 	# We are heavily patching autotools base files (configure.in) because
