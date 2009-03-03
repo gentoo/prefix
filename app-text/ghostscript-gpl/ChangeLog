@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.63 2009/02/06 00:06:30 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.64 2009/02/28 19:19:10 tgurr Exp $
+
+*ghostscript-gpl-8.64-r1 (28 Feb 2009)
+
+  28 Feb 2009; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.64-r1.ebuild:
+  Revbump applying upstream regression fix (bug #259774) and ldflags patches
+  which went upstream (bug #215913 and #258313, thanks to Kevin Pyle and
+  Hanno Boeck).
 
 *ghostscript-gpl-8.64 (06 Feb 2009)
 
