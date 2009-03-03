@@ -1,10 +1,59 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2394 2009/02/28 00:32:29 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2409 2009/03/02 17:13:56 jer Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Mar 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Correct app-admin/sysstat mask.
+
+  02 Mar 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Limit app-admin/sysstat mask to the 8.1 versions.
+
+  02 Mar 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> package.mask:
+  Mask net-libs/fec for removal
+
+  01 Mar 2009; Olivier Crête <tester@gentoo.org> package.mask,
+  use.local.desc:
+  Removed net-im/tmsnc from the tree
+
+  01 Mar 2009; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  kmobiletools-0.5.0_beta3 left the tree
+
+  01 Mar 2009; Theo Chatzimichos <tampakrap@gentoo.org> package.mask:
+  Mask Beta versions of KDevelop4 and KDevplatform
+
+  01 Mar 2009; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Added blueman to p.mask since it needs p.masked packages.
+
+  28 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing monopod package.mask entry since it's been removed from tree per
+  last-rite announcement.
+
+  28 Feb 2009; <solar@gentoo.org> categories, info_vars:
+  Added gpe-base category and PORTAGE_CONFIGROOT to info_vars
+
+  28 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing dopi package.mask entry since it's been removed from tree per
+  last-rite announcement.
+
+  28 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing gtkgl-sharp package.mask entry since it's been removed from tree
+  per last-rite announcement.
+
+  28 Feb 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Removing mcatalog package.mask, since it's been removed
+
+  28 Feb 2009; Markus Meier <maekke@gentoo.org> use.desc:
+  new global USE-flags: custom-cflags and semantic-desktop
+
+  28 Feb 2009; Alin Năstac <mrness@gentoo.org> package.mask:
+  Unmask mail-filter/sid-milter (#208685).
+
+  28 Feb 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove entries for treecleaned packages (kdrive, omni and fluxbg)
 
   28 Feb 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
   Mask sci-chemistry/gchempaint as it is now provided by gchemutils.

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9528 2009/02/28 00:32:29 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9544 2009/03/02 17:13:56 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,24 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Thomas Sachau <tommy@gentoo.org> (2 Mar 2009)
+# Mask for removal, was merged into dev-java/fec
+net-libs/fec
+
+# Matti Bickel <mabi@gentoo.org> (1 Mar 2009)
+# Mask testing branch
+=x11-libs/fox-1.7*
+
+# Theo Chatzimichos <tampakrap@gentoo.org> (1 Mar 2009)
+# Mask Beta versions of KDevelop 4 and KDevplatform
+>=dev-util/kdevelop-3.9.91
+>=dev-util/kdevplatform-0.9.91
+
+# Michael Sterrett <mr_bones_@gentoo.org> (28 Feb 2009)
+# mask for removal in 30 days.  Old and unmaintained.  Upstream seems dead.
+# Segfaults after the opening menu.
+games-action/parsec
 
 # Jeffrey Gardner <je_fro@gentoo.org> (27 Feb 2009)
 # Masked while we switch to sci-chemistry/gchemutils
@@ -172,17 +190,6 @@ app-emulation/vmware-esx-console
 # Until then, mask it.
 net-misc/amazonmp3-libcompat
 
-# Peter Alfredsen <loki_val@gentoo.org> (1 Feb 2009)
-# Masked for removal in 30 days.  Old and unmaintained.  Upstream is gone.
-# Does not work with current ipod-sharp versions, see 195746. This
-# removes half of its functionality.
-# Is faily, see bug 256473.
-media-sound/monopod
-
-# Michael Sterrett <mr_bones_@gentoo.org> (01 Feb 2009)
-# mask for removal in 30 days.  Old and unmaintained.  Upstream is gone.
-games-fps/anaglyph-stereo-quake
-
 # Tomas Chvatal <scarabeus@gentoo.org> (1 Feb 2009)
 # mask for removal in 30 days. Not needed anymore integrated in boinc
 sci-astronomy/setiathome
@@ -197,16 +204,6 @@ media-plugins/mythzoneminder
 # Masked until the deps are put in the tree
 >=kde-base/printer-applet-4.1.96
 >=kde-base/system-config-printer-kde-4.1.96
-
-# Peter Alfredsen <loki_val@gentoo.org> (30 Jan 2009)
-# Nothing uses this anymore, depends on gtk-sharp:1
-# Masked for removal in 30 days.
-dev-dotnet/gtkgl-sharp
-
-# Peter Alfredsen <loki_val@gentoo.org> (30 Jan 2009)
-# No longer maintained upstream, depends on gtk-sharp:1
-# Masked for removal in 30 days.
-dev-dotnet/mcatalog
 
 # Michael Sterrett <mr_bones_@gentoo.org> (29 Jan 2009)
 # Old and unmaintained.  Used games-action/extreme-tuxracer instead.
@@ -231,10 +228,6 @@ x11-misc/hotkeys
 # Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
 # xprint is dead, for real (see bug #254874)
 x11-apps/xphelloworld
-
-# Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
-# masked for removal, use x11-base/xorg-server with USE=kdrive instead
-x11-base/kdrive
 
 # Hanno Boeck <hanno@gentoo.org (22 Jan 2009)
 # This has been included in kernel 2.6.27 and shouldn't be used
@@ -382,17 +375,6 @@ net-mail/ezmlm-idx-pgsql
 net-misc/udhcp
 sys-apps/tinylogin
 
-# Rémi Cardona <remi@gentoo.org> (21 Dec 2008)
-# Masked for treecleaning, see bug #228471
-# uses old gtkmm stack
-net-print/omni
-
-# Rémi Cardona <remi@gentoo.org> (21 Dec 2008)
-# Masked for treecleaning, see bug #228471 and bug #244543
-# uses broken and unmaintained gtkmm 2.2
-# other tools can change the X background
-x11-misc/fluxbg
-
 # Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
 # Removed in 60 days, multiple bugs - does not compile with recent kernels.
 # bug 251795
@@ -454,6 +436,7 @@ net-proxy/squirm
 
 # Tiziano Müller <dev-zero@gentoo.org> (28 Nov 2008)
 # mask for testing/transition
+# blueman needs policykit-gnome
 net-wireless/bluez
 >=net-wireless/bluez-gnome-1.8
 >=app-mobilephone/obex-data-server-0.4
@@ -463,6 +446,7 @@ net-wireless/bluez
 =gnome-base/gvfs-1.0.3-r11
 >=net-wireless/libbtctl-0.11.0
 >=app-mobilephone/obexftp-0.23
+net-wireless/blueman
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # These might break automounting, so keep them masked for now.
@@ -471,11 +455,6 @@ net-wireless/bluez
 =gnome-base/gnome-mount-0.7
 >=sys-auth/policykit-0.6
 >=gnome-extra/policykit-gnome-0.6
-
-# Peter Alfredsen <loki_val@gentoo.org> (25 Jan 2008)
-# Fails to compile, bug 212097.
-# Masked for removal in 30 days.
-app-pda/dopi
 
 # Alec Warner <antarus@gentoo.org> (22 Nov 2008)
 # nis-utils is dead, use LDAP you slackers.
@@ -576,10 +555,6 @@ app-portage/genflags
 # Old versions, those are no longer maintained and
 # should not be used, use 2.x instead
 <x11-drivers/xf86-video-intel-2.0.0
-
-# Olivier Crete <tester@gentoo.org> (06 Oct 2008)
-# Masked for removal, upstream dead (bug #240045)
-net-im/tmsnc
 
 # Alexis Ballier <aballier@gentoo.org> (06 Oct 2008)
 # API changes, the only reverse dep fails to build against it.
@@ -945,7 +920,7 @@ sys-apps/mindi-busybox
 
 # Jeroen Roovers <jer@gentoo.org> (10 Mar 2008)
 # development version:
->=app-admin/sysstat-8.1.1
+=app-admin/sysstat-8.1*
 
 # MATSUU Takuto <matsuu@gentoo.org> (8 Mar 2008)
 # Masked for Bug 173467
@@ -1331,10 +1306,6 @@ net-dns/bind-dns-keygen
 =app-pda/synce-librapi2-0.9.2
 =app-pda/synce-libsynce-0.9.2
 
-# Tuấn Văn <langthang@gentoo.org> (15 Jul 2006)
-# Initial import. Masked for testing
-mail-filter/sid-milter
-
 # Colin Kingsley <tercel@gentoo.org> (24 Jun 2006)
 # Masked for testing
 =dev-python/visual-4*
@@ -1342,10 +1313,6 @@ mail-filter/sid-milter
 # Luca Longinotti <chtekk@gentoo.org> (24 May 2006)
 # Masked for more testing, breaks with stealth mode.
 =app-forensics/samhain-2.2.0
-
-# Diego Pettenò <flameeyes@gentoo.org> (24 Apr 2006)
-# Pre-release snapshots
-=app-mobilephone/kmobiletools-0.5*
 
 # Brent Baude <ranger@gentoo.org> (18 Apr 2006)
 # Masked pending removal. This package had been deprecated

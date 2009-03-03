@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.408 2009/02/11 21:57:31 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.409 2009/02/28 10:14:17 maekke Exp $
 
 # Keep them sorted
 
@@ -64,6 +64,7 @@ ctype - Enables ctype functions
 cups - Add support for CUPS (Common Unix Printing System)
 curl - Adds support for client-side URL transfer library
 curlwrappers - Adds support for using curl in streams
+custom-cflags - Build with user-specified CFLAGS (unsupported)
 custom-cxxflags - Build with user-specified CXXFLAGS (unsupported)
 cvs - Enable CVS (Concurrent Versions System) integration
 cxx - Builds support for C++ (bindings, extra libraries, code generation, ...)
@@ -305,6 +306,7 @@ scanner - Adds support for scanner hardware (e.g. build the sane frontend in kde
 sdl - Adds support for Simple Direct Layer (media library)
 seamonkey - Adds support for the Seamonkey web-browser
 selinux - !!internal use only!! Security Enhanced Linux support, this must be set by the selinux profile or breakage will occur
+semantic-desktop - Cross-KDE support for semantic search and information retrieval
 session - Adds persistent session support
 sharedext - Adds support for building shared extensions in PHP
 sharedmem - Adds support for shared memory use
