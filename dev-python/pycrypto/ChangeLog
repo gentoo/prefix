@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pycrypto
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.63 2008/08/21 06:20:27 ricmm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.64 2009/03/01 08:24:02 neurogeek Exp $
+
+*pycrypto-2.0.1-r7 (01 Mar 2009)
+
+  01 Mar 2009; <neurogeek@gentoo.org>
+  +files/pycrypto-2.0.1-2.6_hashlib.patch, +pycrypto-2.0.1-r7.ebuild:
+  Version bump. Fixes bug #246406 2.6 (deprecation warnings). Thanks to
+  Christian Becke for the patches.
 
   21 Aug 2008; Ricardo Mendoza <ricmm@gentoo.org> pycrypto-2.0.1-r5.ebuild,
   pycrypto-2.0.1-r6.ebuild:
