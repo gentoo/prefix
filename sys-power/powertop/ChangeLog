@@ -1,6 +1,11 @@
 # ChangeLog for sys-power/powertop
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/ChangeLog,v 1.23 2008/08/31 22:21:07 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/ChangeLog,v 1.24 2009/03/01 19:12:11 tester Exp $
+
+*powertop-1.11 (01 Mar 2009)
+
+  01 Mar 2009; Olivier Crête <tester@gentoo.org> +powertop-1.11.ebuild:
+  Version bump, bug #254678
 
 *powertop-1.10 (31 Aug 2008)
 
