@@ -412,13 +412,13 @@ src_install() {
 		case ${x} in
 			cli)
 				einfo "Installing CLI SAPI"
-				into ${destdir}
+				into ${destdir#${EPREFIX}}
 				newbin php-cli php || die "Unable to install ${x} sapi"
 				php5_2-sapi_install_ini
 				;;
 			cgi)
 				einfo "Installing CGI SAPI"
-				into ${destdir}
+				into ${destdir#${EPREFIX}}
 				dobin php-cgi || die "Unable to install ${x} sapi"
 				php5_2-sapi_install_ini
 				;;
