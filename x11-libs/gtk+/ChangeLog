@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.410 2009/02/15 12:40:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.411 2009/03/01 23:01:14 eva Exp $
+
+*gtk+-2.14.7-r2 (01 Mar 2009)
+
+  01 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gtk+-2.14.7-ignore-gtkcurve.patch,
+  +files/gtk+-2.14.7-uncertain-mime.patch, +gtk+-2.14.7-r2.ebuild:
+  Bump to 2.14.7-r2. Hopefully fix test failures, bug #238995, and enhance
+  mime-type resolution, bug #257980.
 
   15 Feb 2009; Raúl Porcel <armin76@gentoo.org> gtk+-2.12.11.ebuild:
   arm/sh stable
