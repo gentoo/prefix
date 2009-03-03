@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/keepassx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/ChangeLog,v 1.36 2009/02/01 19:20:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/ChangeLog,v 1.37 2009/02/28 19:44:44 tgurr Exp $
+
+*keepassx-0.4.0_beta1 (28 Feb 2009)
+
+  28 Feb 2009; Timo Gurr <tgurr@gentoo.org> +keepassx-0.4.0_beta1.ebuild:
+  Version bump, fixing bug #260104. Also removing pre-stripping workaround
+  since it's handled at eclass level now and upstream added a nostrip
+  option, fixing bug #248711.
 
   01 Feb 2009; nixnut <nixnut@gentoo.org> keepassx-0.3.4.ebuild:
   ppc stable #256415
