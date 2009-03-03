@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3.ebuild,v 1.7 2008/11/13 19:29:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3.ebuild,v 1.8 2009/02/28 11:39:24 eva Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,6 @@ RDEPEND=">=dev-libs/glib-2.13
 		 >=x11-libs/libnotify-0.2.1
 		 x11-libs/libXau
 		 x11-apps/xdpyinfo
-		 gnome-base/gnome-settings-daemon
 		 >=gnome-base/gconf-2
 		 tcpd? ( >=sys-apps/tcp-wrappers-7.6 )"
 DEPEND="${RDEPEND}
