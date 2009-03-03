@@ -14,7 +14,7 @@ SRC_URI="http://www.maxmind.com/download/geoip/api/c/${MY_P}.tar.gz"
 # GPL-2 for md5.c - part of libGeoIPUpdate, MaxMind for GeoLite Country db
 LICENSE="LGPL-2.1 GPL-2 MaxMind"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}/${MY_P}
