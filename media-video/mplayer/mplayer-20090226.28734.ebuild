@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-20090226.28734.ebuild,v 1.4 2009/02/26 23:47:29 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-20090226.28734.ebuild,v 1.5 2009/03/01 06:00:39 mr_bones_ Exp $
 
 EAPI="prefix 1"
 
@@ -389,7 +389,6 @@ src_compile() {
 			--disable-twolame --disable-toolame"
 	fi
 
-
 	###############
 	# Binary codecs
 	###############
@@ -407,7 +406,7 @@ src_compile() {
 	# - win32codecs
 	# - realcodecs (win32codecs libs)
 	# - realcodecs (realplayer libs)
-	# 
+	#
 
 	# internal
 	use real || myconf="${myconf} --disable-real"
@@ -421,7 +420,6 @@ src_compile() {
 	elif ! use bindist; then
 			myconf="${myconf} $(use_enable win32codecs win32dll)"
 	fi
-
 
 	#############
 	# Video Output #

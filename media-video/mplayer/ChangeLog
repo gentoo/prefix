@@ -1,6 +1,9 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.623 2009/02/26 23:47:29 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.624 2009/02/28 10:25:49 maekke Exp $
+
+  28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  custom-cflags is a global USE-flag
 
   26 Feb 2009; Steve Dibb <beandog@gentoo.org>
   mplayer-20090226.28734.ebuild:

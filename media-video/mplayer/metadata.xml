@@ -13,7 +13,6 @@
     <flag name="bl">Enables Blinkenlights support in mplayer</flag>
     <flag name="cdio">Use libcdio for CD support (instead of cdparanoia)</flag>
     <flag name="cpudetection">Enables runtime cpudetection (useful for bindist, compatability on other CPUs)</flag>
-    <flag name="custom-cflags">Enables custom CFLAGS (UNSUPPORTED)</flag>
     <flag name="custom-cpuopts">Fine-tune custom CPU optimizations (UNSUPPORTED)</flag>
 	<flag name="dirac">Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.</flag>
     <flag name="dvdnav">Use forked libdvdnav, navigate menus in GUIs</flag>
