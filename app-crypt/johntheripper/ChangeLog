@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/johntheripper
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.87 2008/11/04 08:06:54 dragonheart Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.88 2009/02/28 10:17:01 maekke Exp $
+
+  28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  custom-cflags is a global USE-flag
 
 *johntheripper-1.7.3.1 (04 Nov 2008)
 
