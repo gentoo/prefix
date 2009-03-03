@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.9 2008/10/04 23:44:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.10 2009/03/01 19:52:19 loki_val Exp $
 
 EAPI="prefix"
 
@@ -43,7 +43,7 @@ src_compile() {
 pkg_postinst() {
 	elog "rtorrent now supports a configuration file."
 	elog "A sample configuration file for rtorrent is can be found"
-	elog "in ${EROOT}usr/share/doc/${PF}/rtorrent.rc.gz."
+	elog "in rtorrent.rc in ${EROOT}usr/share/doc/${PF}/"
 }
 
 src_install() {
