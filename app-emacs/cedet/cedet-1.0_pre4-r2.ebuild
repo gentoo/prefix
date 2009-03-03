@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre4-r2.ebuild,v 1.7 2008/01/23 10:14:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre4-r2.ebuild,v 1.8 2009/03/01 15:38:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -16,13 +16,14 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
-DEPEND="!app-emacs/semantic
+DEPEND=""
+RDEPEND="!app-emacs/semantic
 	!app-emacs/eieio
 	!app-emacs/speedbar"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
-SITEFILE=60${PN}-gentoo.el
+SITEFILE="60${PN}-gentoo.el"
 
 src_unpack() {
 	unpack ${A}

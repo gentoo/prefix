@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/cedet
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.39 2008/01/23 10:14:36 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.40 2009/03/01 15:38:25 ulm Exp $
+
+*cedet-1.0_pre6 (01 Mar 2009)
+
+  01 Mar 2009; Ulrich Mueller <ulm@gentoo.org> +files/50cedet-gentoo.el,
+  +cedet-1.0_pre6.ebuild:
+  Version bump, bug 260694. Add src_test ebuild function. Install templates
+  and icons in SITEETC directory.
 
   23 Jan 2008; Raúl Porcel <armin76@gentoo.org> cedet-1.0_pre4-r2.ebuild:
   sparc stable wrt #206584
