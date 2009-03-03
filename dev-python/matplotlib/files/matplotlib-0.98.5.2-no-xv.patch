@@ -1,5 +1,5 @@
---- examples/pylab_examples/to_numeric.py.orig	2009-02-27 17:10:43.000000000 +0000
-+++ examples/pylab_examples/to_numeric.py	2009-02-27 17:06:20.000000000 +0000
+--- doc/mpl_examples/pylab_examples/to_numeric.py.orig	2009-02-27 17:10:43.000000000 +0000
++++ doc/mpl_examples/pylab_examples/to_numeric.py	2009-02-27 17:06:20.000000000 +0000
 @@ -28,6 +28,6 @@
  X = fromstring(s, uint8)
  X.shape = h, w, 3

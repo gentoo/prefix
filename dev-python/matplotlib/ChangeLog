@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.60 2009/02/27 17:49:50 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.61 2009/02/28 21:18:57 bicatali Exp $
+
+  28 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  files/matplotlib-0.98.5.2-no-xv.patch, matplotlib-0.98.5.2-r3.ebuild:
+  More documentation building fixes: added graphviz dependency, and applied
+  patch on doc examples instead of regular examples
 
   27 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
   +files/matplotlib-0.98.5.2-no-xv.patch, matplotlib-0.98.5.2-r3.ebuild:
