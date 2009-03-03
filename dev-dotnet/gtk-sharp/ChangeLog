@@ -1,6 +1,10 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.93 2009/02/08 17:22:17 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.94 2009/03/01 00:57:42 loki_val Exp $
+
+  01 Mar 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -gtk-sharp-1.0.10.ebuild:
+  Clean out -sharp 1.0 ebuilds
 
 *gtk-sharp-2.12.8 (08 Feb 2009)
 
