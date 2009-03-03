@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.178 2009/01/10 22:45:35 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.180 2009/03/01 20:01:43 dragonheart Exp $
+
+*gnutls-2.6.4 (01 Mar 2009)
+
+  01 Mar 2009; Daniel Black <dragonheart@gentoo.org> +gnutls-2.6.4.ebuild:
+  version bump as per bug #259018  thanks to Arfrever
+
+*gnutls-2.7.6 (28 Feb 2009)
+
+  28 Feb 2009; Daniel Black <dragonheart@gentoo.org> -gnutls-2.6.2.ebuild,
+  +gnutls-2.7.6.ebuild:
+  version bump as per bug #259018 patch thanks to Arfrever Frehtes Taifersar
+  Arahesis
 
 *gnutls-2.7.4 (10 Jan 2009)
 
