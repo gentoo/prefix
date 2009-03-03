@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pmw/pmw-1.3.2.ebuild,v 1.2 2008/08/06 15:28:53 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pmw/pmw-1.3.2-r1.ebuild,v 1.1 2009/03/01 20:34:32 neurogeek Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 PYTHON_MODNAME="Pmw"
 
 inherit distutils
@@ -19,15 +18,11 @@ KEYWORDS="~amd64-linux ~x86-linux"
 LICENSE="BSD"
 IUSE="doc examples"
 
-DEPEND="virtual/python"
+DEPEND="dev-lang/python[tk]"
+RDEPEND="${DEPEND}"
 
 DOCS="${PYTHON_MODNAME}/README"
 S="${WORKDIR}/${MY_P}/src"
-
-pkg_setup() {
-	# check for Tkinter support in python
-	distutils_python_tkinter
-}
 
 src_unpack() {
 	distutils_src_unpack
