@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/libsndfile
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.84 2008/04/21 07:15:33 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.86 2009/02/28 12:45:00 aballier Exp $
+
+  28 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  libsndfile-1.0.17-r1.ebuild:
+  fixup invalid configure argument (werror -> gcc-werror), bug #256882
+
+*libsndfile-1.0.18 (28 Feb 2009)
+
+  28 Feb 2009; Alexis Ballier <aballier@gentoo.org>
+  +files/libsndfile-1.0.18-less_strict_tests.patch,
+  +files/libsndfile-1.0.18-m4macro.patch, +libsndfile-1.0.18.ebuild:
+  version bump
 
   21 Apr 2008; Mike Frysinger <vapier@gentoo.org>
   +files/libsndfile-1.0.17-autotools.patch, libsndfile-1.0.17-r1.ebuild:
