@@ -1,6 +1,13 @@
 # ChangeLog for app-i18n/enca
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.26 2008/11/16 20:31:51 halcy0n Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.28 2009/03/01 17:11:23 loki_val Exp $
+
+  01 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> enca-1.0.ebuild,
+  enca-1.9.ebuild, enca-1.9-r1.ebuild:
+  Use mirror://gentoo/ for SRC_URI w.r.t. bug 260741.
+
+  01 Mar 2009; Patrick Lauer <patrick@gentoo.org> Manifest:
+  Manifest fix, closes #260741
 
 *enca-1.9-r1 (16 Nov 2008)
 
