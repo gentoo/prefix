@@ -1,6 +1,12 @@
 # ChangeLog for dev-db/mysql-community
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.24 2009/02/12 09:05:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.25 2009/02/28 10:41:43 robbat2 Exp $
+
+*mysql-community-5.0.77 (28 Feb 2009)
+
+  28 Feb 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.0.77.ebuild:
+  Version bump.
 
 *mysql-community-5.0.75-r1 (12 Feb 2009)
 *mysql-community-5.0.75 (12 Feb 2009)
