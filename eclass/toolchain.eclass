@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.391 2009/02/15 23:04:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.393 2009/03/01 20:41:26 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1149,10 +1149,7 @@ gcc_src_unpack() {
 	# disable --as-needed from being compiled into gcc specs
 	# natively when using a gcc version < 3.4.4
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=14992
-	if [[ ${GCCMAJOR} < 3 ]] || \
-	   [[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] || \
-	   [[ ${GCCMAJOR}.${GCCMINOR}.${GCCMICRO} < 3.4.4 ]]
-	then
+	if ! tc_version_is_at_least 3.4.4 ; then
 		sed -i -e s/HAVE_LD_AS_NEEDED/USE_LD_AS_NEEDED/g "${S}"/gcc/config.in
 	fi
 
@@ -1173,7 +1170,7 @@ gcc_src_unpack() {
 	# update configure files
 	local f
 	einfo "Fixing misc issues in configure files"
-	[[ ${GCCMAJOR} -ge 4 ]] && epatch "${GCC_FILESDIR}"/gcc-configure-texinfo.patch
+	tc_version_is_at_least 4.1 && epatch "${GCC_FILESDIR}"/gcc-configure-texinfo.patch
 	for f in $(grep -l 'autoconf version 2.13' $(find "${S}" -name configure)) ; do
 		ebegin "  Updating ${f/${S}\/} [LANG]"
 		patch "${f}" "${GCC_FILESDIR}"/gcc-configure-LANG.patch >& "${T}"/configure-patch.log \
@@ -1612,11 +1609,28 @@ gcc_do_filter_flags() {
 
 	case ${GCC_BRANCH_VER} in
 	3.2|3.3)
-		replace-cpu-flags k8 athlon64 opteron i686
+		replace-cpu-flags k8 athlon64 opteron i686 x86-64
 		replace-cpu-flags pentium-m pentium3m pentium3
 		case $(tc-arch) in
-			amd64|x86) filter-flags '-mtune=*';;
+			amd64|x86) filter-flags '-mtune=*' ;;
+			# in gcc 3.3 there is a bug on ppc64 where if -mcpu is used,
+			# the compiler wrongly assumes a 32bit target
+			ppc64) filter-flags "-mcpu=*";;
 		esac
+		case $(tc-arch) in
+			amd64) replace-cpu-flags core2 nocona;;
+			x86)   replace-cpu-flags core2 prescott;;
+		esac
+
+		replace-cpu-flags G3 750
+		replace-cpu-flags G4 7400
+		replace-cpu-flags G5 7400
+
+		# XXX: should add a sed or something to query all supported flags
+		#      from the gcc source and trim everything else ...
+		filter-flags -f{no-,}unit-at-a-time -f{no-,}web -mno-tls-direct-seg-refs
+		filter-flags -f{no-,}stack-protector{,-all}
+		filter-flags -fvisibility-inlines-hidden -fvisibility=hidden
 		;;
 	3.4|4.*)
 		case $(tc-arch) in

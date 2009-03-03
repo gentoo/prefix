@@ -1,6 +1,6 @@
-# Copyright 2007-2008 Gentoo Foundation
+# Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.29 2009/02/10 20:07:24 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.30 2009/03/01 11:44:09 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -16,7 +16,7 @@
 inherit base cmake-utils eutils multilib kde4-functions
 
 get_build_type
-if [[ $BUILD_TYPE = live ]]; then
+if [[ ${BUILD_TYPE} = live ]]; then
 	inherit subversion
 fi
 
@@ -59,15 +59,36 @@ kde4-base_set_qt_dependencies() {
 }
 kde4-base_set_qt_dependencies
 
-# Set the cmake dependencies
-# Quite a few packages fail with cmake-2.4 even for KDE 4.1, so we just require 2.6.2
-CMAKEDEPEND=">=dev-util/cmake-2.6.2"
+# Xorg
+COMMONDEPEND="${COMMONDEPEND}
+	>=x11-base/xorg-server-1.5.2
+"
 
-# Set the common dependencies
-DEPEND="${DEPEND} ${COMMONDEPEND} ${CMAKEDEPEND}
-	dev-util/pkgconfig
+# X11 libs
+COMMONDEPEND="${COMMONDEPEND}
+	x11-libs/libXext
 	x11-libs/libXt
-	x11-proto/xf86vidmodeproto"
+	x11-libs/libXxf86vm
+"
+
+# localization deps 
+# DISABLED UNTIL PMS decide correct approach :(
+if [[ -n ${KDE_LINGUAS} ]]; then
+	LNG_DEP=""
+	for _lng in ${KDE_LINGUAS}; do
+		# there must be or due to issue if lingua is not present in kde-l10n so
+		# it wont die but pick kde-l10n as-is.
+		LNG_DEP="${LNG_DEP}
+			|| ( kde-base/kde-l10n[linguas_${_lng},kdeprefix=] kde-base/kde-l10n[kdeprefix=] )"
+	done
+fi
+
+# Set common dependencies for all ebuilds that inherit this eclass
+DEPEND="${DEPEND} ${COMMONDEPEND}
+	>=dev-util/cmake-2.6.2
+	dev-util/pkgconfig
+	>=sys-apps/sandbox-1.3.2
+"
 RDEPEND="${RDEPEND} ${COMMONDEPEND}"
 
 if [[ $BUILD_TYPE = live ]]; then
@@ -137,7 +158,7 @@ export NEED_KDE
 # @CODE
 # Note: default minimal version is kde-4.1, which means that the apps will work
 # with any KDE version >=${KDE_MINIMAL}
-KDE_MINIMAL="${KDE_MINIMAL:=4.1}"
+KDE_MINIMAL="${KDE_MINIMAL:=4.2}"
 export KDE_MINIMAL
 
 # FIXME: the code section, explanation of live. The last sentence needs other
@@ -166,7 +187,7 @@ case ${NEED_KDE} in
 	latest)
 		if [[ $KDEBASE = kde-base ]]; then
 			case ${PV} in
-				4.2.6*)
+				4.3* | 4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
 					_kdedir="4.3"
 					_pv="-${PV}:4.3"
 					_pvn="-${PV}"
@@ -198,7 +219,7 @@ case ${NEED_KDE} in
 					;;
 				*)
 					die "NEED_KDE=latest not supported for PV=${PV}" ;;
-				esac
+			esac
 			_operator=">="
 		else
 			# this creates dependency on any version of kde4
@@ -216,7 +237,7 @@ case ${NEED_KDE} in
 		_pvn="-${NEED_KDE}"
 		export NEED_KDE="live"
 		;;
-	4.2.6*)
+	4.3 | 4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
 		_kdedir="4.3"
 		_pv="-${NEED_KDE}:4.3"
 		_pvn="-${NEED_KDE}"
@@ -258,10 +279,9 @@ case ${NEED_KDE} in
 esac
 
 if [[ ${NEED_KDE} != none ]]; then
-
 	#Set the SLOT
-	if [[ -n $KDEBASE ]]; then
-		if [[ $NEED_KDE = live ]]; then
+	if [[ -n ${KDEBASE} ]]; then
+		if [[ ${NEED_KDE} = live ]]; then
 			SLOT="live"
 		else
 			case ${KMNAME} in
@@ -286,12 +306,13 @@ if [[ ${NEED_KDE} != none ]]; then
 				*)
 					case ${PV} in
 						9999*) SLOT="live" ;;
+						4.3* | 4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*) SLOT="4.3" ;;
 						4.2* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*) SLOT="4.2" ;;
 						4.1* | 4.0.9* | 4.0.8*) SLOT="4.1" ;;
 						*) SLOT="4.1" ;;
 					esac
 					;;
-				esac
+			esac
 		fi
 	fi
 
@@ -309,21 +330,21 @@ if [[ ${NEED_KDE} != none ]]; then
 
 	# Adding kdelibs, kdepimlibs and kdebase-data deps to all other packages.
 	# We only need to add the dependencies if ${PN} is not "kdelibs" or "kdepimlibs"
-	if [[ $PN != kdelibs ]]; then
+	if [[ ${PN} != kdelibs ]]; then
 		DEPEND="${DEPEND}
 				kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
 				!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )"
 		RDEPEND="${RDEPEND}
 				kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
 				!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )"
-		if [[ $PN != kdepimlibs ]]; then
+		if [[ ${PN} != kdepimlibs ]]; then
 			DEPEND="${DEPEND}
 				kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix] )
 				!kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pvn}[-kdeprefix] )"
 			RDEPEND="${RDEPEND}
 				kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix] )
 				!kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pvn}[-kdeprefix] )"
-			if [[ $PN != kdebase-data ]]; then
+			if [[ ${PN} != kdebase-data ]]; then
 				RDEPEND="${RDEPEND}
 					kdeprefix? ( ${_operator}kde-base/kdebase-data${_pv}[kdeprefix] )
 					!kdeprefix? ( ${_operator}kde-base/kdebase-data${_pvn}[-kdeprefix] )"
@@ -335,11 +356,12 @@ fi
 
 # Fetch section - If the ebuild's category is not 'kde-base' and if it is not a
 # koffice ebuild, the URI should be set in the ebuild itself
-case ${SLOT} in
+case ${BUILD_TYPE} in
 	live)
+		SRC_URI=""
 		ESVN_MIRROR=${ESVN_MIRROR:=svn://anonsvn.kde.org/home/kde}
 		# Split ebuild, or extragear stuff
-		if [[ -n $KMNAME ]]; then
+		if [[ -n ${KMNAME} ]]; then
 		    ESVN_PROJECT="${KMNAME}"
 			if [[ -z ${KMNOMODULE} && -z ${KMMODULE} ]]; then
 				KMMODULE="${PN}"
@@ -347,31 +369,22 @@ case ${SLOT} in
 			# Split kde-base/ ebuilds: (they reside in trunk/KDE)
 			case ${KMNAME} in
 				kdebase-*)
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/kdebase/${KMNAME#kdebase-}/"
+					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/kdebase/${KMNAME#kdebase-}"
 					;;
 				kdereview)
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
+					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
 					;;
 				kde*)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/${KMNAME}"
 					;;
 				extragear*|playground*)
-					case ${PN} in
-						*-plasma)
-							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
-							ESVN_PROJECT="${KMNAME}/${KMMODULE}/"
-							;;
-						*)
-							ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
-							;;
-					esac
-				;;
+					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
+					;;
 				koffice)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}"
 					;;
 				*)
-					# Extragear material
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}/"
+					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
 					;;
 			esac
 		else
@@ -383,9 +396,14 @@ case ${SLOT} in
 		ESVN_UP_FREQ=${ESVN_UP_FREQ:-1}
 		;;
 	*)
-		if [[ -n $KDEBASE ]]; then
+		if [[ -n ${KDEBASE} ]]; then
 			if [[ -n ${KMNAME} ]]; then
-				_kmname=${KMNAME}
+				case ${KMNAME} in
+					kdebase-apps)
+						_kmname="kdebase" ;;
+					*)
+						_kmname=${KMNAME} ;;
+				esac
 			else
 				_kmname=${PN}
 			fi
@@ -394,11 +412,7 @@ case ${SLOT} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
-						4.2.60)
-							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.svn912032tar.bz2" ;;
-						4.2.61)
-							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.svn917530.tar.bz2" ;;
-						4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
+						4.2.6* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						*)	SRC_URI="mirror://kde/stable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
@@ -408,8 +422,8 @@ case ${SLOT} in
 				;;
 			esac
 			fi
-				unset _kmname _kmname_pv
-			fi
+			unset _kmname _kmname_pv
+		fi
 		;;
 esac
 
@@ -432,14 +446,14 @@ debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SLOT ${SLOT} - NEED_KDE ${NEED_KDE
 # errors and die if any required flags listed in $QT4_BUILT_WITH_USE_CHECK or
 # $KDE4_BUILT_WITH_USE_CHECK are missing.
 kde4-base_pkg_setup() {
-	debug-print-function $FUNCNAME "$@"
+	debug-print-function ${FUNCNAME} "$@"
 
 	# Don't set KDEHOME during compile, it will cause access violations
 	unset KDEHOME
 
 	# Search for best suitable kde installation for misc kde package.
 	# Computation based on NEED_KDE and KDE_MINIMAL
-	[[ ${NEED_KDE} = latest || ${NEED_KDE} = none ]] && get_latest_kdedir
+	[[ ${KDEBASE} != kde-base ]] && [[ ${NEED_KDE} = latest || ${NEED_KDE} = none ]] && get_latest_kdedir
 
 	# Set PREFIX
 	if use kdeprefix; then
@@ -451,7 +465,7 @@ kde4-base_pkg_setup() {
 	fi
 	# Set the prefix based on KDEDIR
 	# Make it a consequence of kdeprefix
-	PREFIX=$KDEDIR
+	PREFIX=${KDEDIR}
 
 	unset _kdedir
 
@@ -459,7 +473,7 @@ kde4-base_pkg_setup() {
 	[[ -n ${QT4_BUILT_WITH_USE_CHECK} || -n ${KDE4_BUILT_WITH_USE_CHECK[@]} ]] && \
 		die "built_with_use illegal in this EAPI!"
 
-	if [[ $BUILD_TYPE = live && -z $I_KNOW_WHAT_I_AM_DOING ]]; then
+	if [[ ${BUILD_TYPE} = live && -z ${I_KNOW_WHAT_I_AM_DOING} ]]; then
 		echo
 		elog "WARNING! This is an experimental live ebuild of ${KMNAME:-${PN}}"
 		elog "Use it at your own risk."
@@ -471,30 +485,14 @@ kde4-base_pkg_setup() {
 # @FUNCTION: kde4-base_src_unpack
 # @DESCRIPTION:
 # This function unpacks the source tarballs for KDE4 applications.
-#
-# If no argument is passed to this function, then standard src_unpack is
-# executed. Otherwise, options are passed to base_src_unpack.
 kde4-base_src_unpack() {
-	debug-print-function $FUNCNAME "$@"
+	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ $BUILD_TYPE = live ]]; then
+	if [[ ${BUILD_TYPE} = live ]]; then
 		migrate_store_dir
 		subversion_src_unpack
 	else
-		[[ -z $KDE_S ]] && KDE_S="${S}"
-		if [[ -z $* ]]; then
-			# Unpack first and deal with KDE patches after examing possible patch sets.
-			# To be picked up, patches need to conform to the guidelines stated before.
-			# Monolithic ebuilds will use the split ebuild patches.
-			[[ -d "${KDE_S}" ]] || unpack ${A}
-		fi
-		# Updated cmake dir
-		if [[ -d "${WORKDIR}/cmake" && -d "${KDE_S}/cmake" ]]; then
-			ebegin "Updating cmake/ directory..."
-			rm -rf "${KDE_S}/cmake" || die "Unable to remove old cmake/ directory"
-			ln -s "${WORKDIR}/cmake" "${KDE_S}/cmake" || die "Unable to symlink the new cmake/ directory"
-			eend 0
-		fi
+		base_src_unpack
 	fi
 }
 
@@ -507,7 +505,7 @@ kde4-base_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Only enable selected languages, used for KDE extragear apps.
-	if [[ -n $KDE_LINGUAS ]]; then
+	if [[ -n ${KDE_LINGUAS} ]]; then
 		enable_selected_linguas
 	fi
 
@@ -515,12 +513,12 @@ kde4-base_src_prepare() {
 	base_src_prepare
 
 	# Save library dependencies
-	if [[ -n $KMSAVELIBS ]] ; then
+	if [[ -n ${KMSAVELIBS} ]] ; then
 		save_library_dependencies
 	fi
 
 	# Inject library dependencies
-	if [[ -n $KMLOADLIBS ]] ; then
+	if [[ -n ${KMLOADLIBS} ]] ; then
 		load_library_dependencies
 	fi
 }
@@ -549,7 +547,7 @@ kde4-base_src_configure() {
 	mycmakeargs="${mycmakeargs} -DKDE4_BUILD_TESTS=OFF"
 
 	# Set distribution name
-	[[ $PN = kdelibs ]] && mycmakeargs="${mycmakeargs} -DKDE_DISTRIBUTION_TEXT=Gentoo"
+	[[ ${PN} = kdelibs ]] && mycmakeargs="${mycmakeargs} -DKDE_DISTRIBUTION_TEXT=Gentoo"
 
 	# runpath linking
 	mycmakeargs="${mycmakeargs} -DKDE4_USE_ALWAYS_FULL_RPATH=ON"
@@ -562,26 +560,22 @@ kde4-base_src_configure() {
 
 	# Set environment
 	QTEST_COLORED=1
-	QT_PLUGIN_PATH=${KDEDIR}/$(get_libdir)/kde4/plugins/
+	QT_PLUGIN_PATH="${KDEDIR}/$(get_libdir)/kde4/plugins/"
 
-	# hardcode path to *.cmake KDE files
+	# Hardcode path to *.pc KDE files
 	export PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+${PKG_CONFIG_PATH}:}${KDEDIR}/$(get_libdir)/pkgconfig"
 
-	# additonal arguments for KOFFICE
-	if [[ $KMNAME = koffice ]]; then
-		case ${PN} in
-			koffice-data) : ;;
-			*)
-				mycmakeargs="${mycmakeargs}
-					-DWITH_OpenEXR=ON
-					$(cmake-utils_use_with crypt QCA2)
-					$(cmake-utils_use_with opengl OpenGL)"
-				if use crypt; then
-					mycmakeargs="${mycmakeargs}
-						-DQCA2_LIBRARIES=/usr/$(get_libdir)/qca2/libqca.so.2"
-				fi
-				;;
-		esac
+	# Override some environment variables
+	PATH="${KDEDIR}/bin:${PATH}"
+	LDPATH="${KDEDIR}/$(get_libdir):${LDPATH}"
+
+	# Set cmake prefixes to allow buildsystem to localize valid KDE installation when more are present
+	if use kdeprefix; then
+		mycmakeargs="${mycmakeargs}
+			-DCMAKE_SYSTEM_INCLUDE_PATH=${KDEDIR}/include
+			-DCMAKE_SYSTEM_LIBRARY_PATH=${KDEDIR}/$(get_libdir)
+			-DCMAKE_SYSTEM_PREFIX_PATH=${KDEDIR}
+			-DCMAKE_SYSTEM_PROGRAM_PATH=${KDEDIR}/bin"
 	fi
 
 	[ -e CMakeLists.txt ] && cmake-utils_src_configure
@@ -604,7 +598,7 @@ kde4-base_src_make() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ -d "$WORKDIR/${PN}_build" ]]; then
-		pushd "${WORKDIR}"/${PN}_build > /dev/null
+		pushd "${WORKDIR}/${PN}_build" > /dev/null
 	fi
 	[ -e [Mm]akefile ] && cmake-utils_src_make "$@"
 }
@@ -617,7 +611,8 @@ kde4-base_src_test() {
 
 	# Override this value, set in kde4-base_src_configure()
 	mycmakeargs="${mycmakeargs} -DKDE4_BUILD_TESTS=ON"
-	cmake-utils_src_compile
+	cmake-utils_src_configure
+	kde4-base_src_compile
 
 	cmake-utils_src_test
 }
@@ -628,13 +623,13 @@ kde4-base_src_test() {
 kde4-base_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ -n $KMSAVELIBS ]] ; then
+	if [[ -n ${KMSAVELIBS} ]] ; then
 		install_library_dependencies
 	fi
 
 	kde4-base_src_make_doc
 	if [[ -d "$WORKDIR/${PN}_build" ]]; then
-		pushd "${WORKDIR}"/${PN}_build > /dev/null
+		pushd "${WORKDIR}/${PN}_build" > /dev/null
 	fi
 	[ -e [Mm]akefile ] && cmake-utils_src_install
 }
@@ -647,12 +642,12 @@ kde4-base_src_make_doc() {
 
 	local doc
 	for doc in AUTHORS ChangeLog* README* NEWS TODO; do
-		[[ -s $doc ]] && dodoc ${doc}
+		[[ -s ${doc} ]] && dodoc ${doc}
 	done
 
-	if [[ -z $KMNAME ]]; then
+	if [[ -z ${KMNAME} ]]; then
 		for doc in {apps,runtime,workspace,.}/*/{AUTHORS,README*}; do
-			if [[ -s $doc ]]; then
+			if [[ -s ${doc} ]]; then
 				local doc_complete=${doc}
 				doc="${doc#*/}"
 				newdoc "$doc_complete" "${doc%/*}.${doc##*/}"
@@ -663,7 +658,7 @@ kde4-base_src_make_doc() {
 	if [[ -n ${KDEBASE} && -d "${ED}/usr/share/doc/${PF}" ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/kde && \
-			mv "${ED}"/usr/share/doc/${PF} "${ED}"/usr/share/doc/kde/ || \
+			mv "${ED}/usr/share/doc/${PF}" "${ED}"/usr/share/doc/kde/ || \
 			die "Failed to move docs to kde/ failed."
 	fi
 }
@@ -672,6 +667,8 @@ kde4-base_src_make_doc() {
 # @DESCRIPTION:
 # Function to rebuild the KDE System Configuration Cache after an application has been installed.
 kde4-base_pkg_postinst() {
+	debug-print-function ${FUNCNAME} "$@"
+
 	buildsycoca
 }
 
@@ -679,5 +676,7 @@ kde4-base_pkg_postinst() {
 # @DESCRIPTION:
 # Function to rebuild the KDE System Configuration Cache after an application has been removed.
 kde4-base_pkg_postrm() {
+	debug-print-function ${FUNCNAME} "$@"
+
 	buildsycoca
 }

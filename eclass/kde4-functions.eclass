@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.12 2009/02/10 20:07:24 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.13 2009/03/01 11:44:09 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -38,7 +38,7 @@ fi
 # @DESCRIPTION:
 # The slots used by all KDE versions later than 4.0. The live-ebuilds use
 # KDE_LIVE_SLOTS instead.
-KDE_SLOTS=( kde-4 4.1 4.2 )
+KDE_SLOTS=( kde-4 4.1 4.2 4.3 )
 
 # @ECLASS-VARIABLE: KDE_LIVE_SLOTS
 # @DESCRIPTION:
@@ -64,7 +64,7 @@ buildsycoca() {
 
 		ebegin "Running kbuildsycoca4 to build global database"
 		# This is needed because we support multiple kde versions installed together.
-		XDG_DATA_DIRS="${EPREFIX}/usr/share:${KDEDIRS//:/\/share:}/share:${EPREFIX}/usr/local/share" \
+		XDG_DATA_DIRS="${EPREFIX}/usr/share:${KDEDIR}/share:/usr/local/share" \
 			DISPLAY="" DBUS_SESSION_BUS_ADDRESS="" \
 			${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
@@ -102,14 +102,6 @@ done
 # but this default can be overridden by defining KDE_LINGUAS_DIR.
 enable_selected_linguas() {
 	local lingua sr_mess wp
-	# inform user about kde-l10n for full translation.
-	if ! has_version kde-base/kde-l10n; then
-		echo
-		elog "For fully translated application you should also emerge"
-		elog "kde-base/kde-l10n package which ships translated kde core"
-		elog "strings."
-		echo
-	fi
 
 	# ebuild overridable linguas directory definition
 	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:=${S}/po}
@@ -150,63 +142,6 @@ enable_selected_linguas() {
 	done
 }
 
-# @FUNCTION: koffice_fix_libraries
-# @DESCRIPTION:
-# replace the weird koffice lib search with hardcoded one, so it
-# actually builds and works.
-koffice_fix_libraries() {
-	local LIB_ARRAY R_QT_kostore R_BAS_kostore R_BAS_koodf R_KROSS_kokross R_QT_komain
-	local R_CMS_pigmentcms R_BAS_pigmentcms R_BAS_koresources R_BAS_flake R_BAS_koguiutils
-	local R_BAS_kopageapp R_BAS_kotext R_BAS_kowmf libname R
-	case ${PN} in
-		koffice-data|koffice-libs)
-			;;
-		*)
-			### basic array
-			LIB_ARRAY="kostore koodf kokross komain pigmentcms koresources flake koguiutils kopageapp kotext kowmf"
-			### dep array
-			R_QT_kostore="\"/usr/$(get_libdir)/qt4/libQtCore.so\"
-				\"/usr/$(get_libdir)/qt4/libQtXml.so\"
-				\"${KDEDIR}/$(get_libdir)/libkdecore.so\""
-			R_BAS_kostore="libkostore ${R_QT_kostore}"
-			R_BAS_koodf="libkoodf ${R_BAS_kostore}"
-			R_KROSS_kokross="
-				\"${KDEDIR}/$(get_libdir)/libkrossui.so\"
-				\"${KDEDIR}/$(get_libdir)/libkrosscore.so\""
-			R_BAS_kokross="libkokross ${R_BAS_koodf} ${R_KROSS_kokross}"
-			R_QT_komain="\"/usr/$(get_libdir)/qt4/libQtGui.so\""
-			R_BAS_komain="libkomain ${R_BAS_koodf} ${R_QT_komain}"
-			R_CMS_pigmentcms="\"/usr/$(get_libdir)/liblcms.so\""
-			R_BAS_pigmentcms="libpigmentcms ${R_BAS_komain} ${R_CMS_pigmentcms}"
-			R_BAS_koresources="libkoresources ${R_BAS_pigmentcms}"
-			R_BAS_flake="libflake ${R_BAS_pigmentcms}"
-			R_BAS_koguiutils="libkoguiutils libkoresources libflake ${R_BAS_pigmentcms}"
-			R_BAS_kopageapp="libkopageapp ${R_BAS_koguitls}"
-			R_BAS_kotext="libkotext libkoresources libflake ${R_BAS_pigmentcms}"
-			### additional unmentioned stuff
-			R_BAS_kowmf="libkowmf"
-			for libname in ${LIB_ARRAY}; do
-				ebegin "Fixing library ${libname} with hardcoded path"
-				for libpath in $(eval "echo \$R_BAS_${libname}"); do
-					if [[ "${libpath}" != "\"/usr/"* ]]; then
-						R="${R} \"${KDEDIR}/$(get_libdir)/${libpath}.so\""
-					else
-						R="${R} ${libpath}"
-					fi
-				done
-				find "${S}" -name CMakeLists.txt -print| xargs -i \
-					sed -i \
-						-e "s: ${libname} : ${R} :g" \
-						-e "s: ${libname}): ${R}):g" \
-						-e "s:(${libname} :(${R} :g" \
-						-e "s:(${libname}):(${R}):g" \
-						-e "s: ${libname}$: ${R}:g" \
-					{} || die "Fixing library names failed."
-				eend $?
-			done
-			;;
-	esac
-}
 # @FUNCTION: get_build_type
 # @DESCRIPTION:
 # Determine whether we are using live ebuild or tbzs.
@@ -229,16 +164,16 @@ get_latest_kdedir() {
 	case ${KDE_WANTED} in
 		# note this will need to be updated as stable moves and so on
 		live)
-			_versions="9999 4.1.69 4.1.0"
+			_versions="9999 4.2.61 4.2.0 4.1.0"
 			;;
 		snapshot)
-			_versions="4.1.69 4.1.0 9999"
+			_versions="4.2.61 4.2.0 4.1.0 9999"
 			;;
 		testing)
-			_versions="4.1.0 4.1.69 9999"
+			_versions="4.2.0 4.1.0 4.2.61 9999"
 			;;
 		stable)
-			_versions="4.1.0 4.1.69 9999"
+			_versions="4.2.0 4.1.0 4.1.61 9999"
 			;;
 		*) die "KDE_WANTED=${KDE_WANTED} not supported here." ;;
 	esac
@@ -252,7 +187,11 @@ get_latest_kdedir() {
 					_kdedir="live"
 					break
 				;;
-				4.1.69)
+				4.3.0 | 4.2.61)
+					_kdedir="4.3"
+					break
+				;;
+				4.2.0 | 4.1.61)
 					_kdedir="4.2"
 					break
 				;;
@@ -263,6 +202,8 @@ get_latest_kdedir() {
 			esac
 		fi
 	done
+
+	debug-print-function ${FUNCNAME} "$@" "KDE_WANTED=${KDE_WANTED} -> _kdedir=${_kdedir}"
 }
 
 # @FUNCTION: migrate_store_dir

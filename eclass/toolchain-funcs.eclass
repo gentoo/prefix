@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.86 2009/02/25 00:25:51 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.87 2009/03/01 08:09:44 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -517,10 +517,11 @@ gen_usr_ldscript() {
 			fi
 			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
-			   Since Gentoo has critical dynamic libraries
-			   in /lib, and the static versions in /usr/lib,
-			   we need to have a "fake" dynamic lib in /usr/lib,
-			   otherwise we run into linking problems.
+			   Since Gentoo has critical dynamic libraries in /lib, and the static versions
+			   in /usr/lib, we need to have a "fake" dynamic lib in /usr/lib, otherwise we
+			   run into linking problems.  This "fake" dynamic lib is a linker script that
+			   redirects the linker to the real lib.  And yes, this works in the cross-
+			   compiling scenario as the sysroot-ed linker will prepend the real path.
 
 			   See bug http://bugs.gentoo.org/4411 for more info.
 			 */

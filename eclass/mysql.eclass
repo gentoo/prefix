@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.106 2009/02/11 11:29:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.109 2009/02/28 10:51:57 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -16,19 +16,11 @@ inherit eutils flag-o-matic gnuconfig autotools mysql_fx versionator
 # and we will run a mysql server during test phase
 S="${WORKDIR}/mysql"
 
-[[ "${MY_EXTRAS_VER}" == "latest" ]] && MY_EXTRAS_VER="20070108"
+[[ "${MY_EXTRAS_VER}" == "latest" ]] && MY_EXTRAS_VER="20090228-0714Z"
 if [[ "${MY_EXTRAS_VER}" == "live" ]]; then
 	EGIT_PROJECT=mysql-extras
 	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
 	inherit git
-fi
-
-if [[ ${PR#r} -lt 60 ]] ; then
-	IS_BITKEEPER=0
-elif [[ ${PR#r} -lt 90 ]] ; then
-	IS_BITKEEPER=60
-else
-	IS_BITKEEPER=90
 fi
 
 # MYSQL_VERSION_ID will be:
@@ -74,11 +66,7 @@ mysql_version_is_at_least "5.1" \
 
 # compile-time-only
 mysql_version_is_at_least "5.1.12" \
-&& DEPEND="${DEPEND} innodb? ( >=dev-util/cmake-2.4.3 )"
-
-# BitKeeper dependency, compile-time only
-[[ ${IS_BITKEEPER} -eq 90 ]] && DEPEND="${DEPEND} dev-util/bk_client"
-
+&& DEPEND="${DEPEND} >=dev-util/cmake-2.4.3"
 
 # dev-perl/DBD-mysql is needed by some scripts installed by MySQL
 PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
@@ -126,9 +114,6 @@ mysql_version_is_at_least "5.0.18" \
 && IUSE="${IUSE} max-idx-128"
 
 mysql_version_is_at_least "5.1" \
-&& IUSE="${IUSE} innodb"
-
-mysql_version_is_at_least "5.1" \
 || IUSE="${IUSE} berkdb"
 
 mysql_version_is_at_least "5.1.12" \
@@ -140,69 +125,6 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst \
 #
 # HELPER FUNCTIONS:
 #
-
-bitkeeper_fetch() {
-	local reposuf
-	if [[ -z "${1}" ]] ; then
-		local tpv
-		tpv=( ${PV//[-._]/ } )
-		reposuf="mysql-${tpv[0]}.${tpv[1]}"
-	else
-		reposuf="${1}"
-	fi
-	einfo "Using '${reposuf}' repository."
-	local repo_uri="bk://mysql.bkbits.net/${reposuf}"
-	## -- ebk_store_dir: bitkeeper sources store directory
-	local ebk_store_dir="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/bk-src"
-	## -- ebk_fetch_cmd: bitkeeper fetch command
-	# always fetch the latest revision, use -r<revision> if a specified revision is wanted
-	# hint: does not work
-	local ebk_fetch_cmd="sfioball"
-	## -- ebk_update_cmd: bitkeeper update command
-	local ebk_update_cmd="update"
-
-	# addread "/etc/bitkeeper"
-	addwrite "${ebk_store_dir}"
-
-	if [[ ! -d "${ebk_store_dir}" ]] ; then
-		debug-print "${FUNCNAME}: initial checkout, creating bitkeeper directory ..."
-		mkdir -p "${ebk_store_dir}" || die "BK: couldn't mkdir ${ebk_store_dir}"
-	fi
-
-	pushd "${ebk_store_dir}" || die "BK: couldn't chdir to ${ebk_store_dir}"
-
-	local wc_path=${reposuf}
-
-	if [[ ! -d "${wc_path}" ]] ; then
-		local options="-r+"
-
-		# first checkout
-		einfo "bitkeeper checkout start -->"
-		einfo "    repository: ${repo_uri}"
-
-		${ebk_fetch_cmd} ${options} "${repo_uri}" "${wc_path}" \
-		|| die "BK: couldn't fetch from ${repo_uri}"
-	else
-		if [[ ! -d "${wc_path}/BK" ]] ; then
-			popd
-			die "Looks like ${wc_path} is not a bitkeeper path"
-		fi
-
-		# update working copy
-		einfo "bitkeeper update start -->"
-		einfo "    repository: ${repo_uri}"
-
-		${ebk_update_cmd} "${repo_uri}" "${wc_path}" \
-		|| die "BK: couldn't update from ${repo_uri} to ${wc_path}"
-	fi
-
-	einfo "  working copy: ${wc_path}"
-	cd "${wc_path}"
-	rsync -rlpgo --exclude="BK/" . "${S}" || die "BK: couldn't export to ${S}"
-
-	echo
-	popd
-}
 
 mysql_disable_test() {
 	local testname="${1}" ; shift
@@ -449,9 +371,8 @@ configure_51() {
 		elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
 	fi
 
-	if use innodb ; then
-		plugins="${plugins},innobase"
-	fi
+	# Upstream specifically requests that InnoDB always be built.
+	plugins="${plugins},innobase"
 
 	# like configuration=max-no-ndb
 	if use cluster ; then
@@ -541,22 +462,9 @@ mysql_src_unpack() {
 	unpack ${A}
 	# Grab the patches
 	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git_src_unpack
-	# Bitkeeper checkout support
-	if [[ ${IS_BITKEEPER} -eq 90 ]] ; then
-		if mysql_check_version_range "5.1 to 5.1.99" ; then
-			bitkeeper_fetch "mysql-5.1-ndb"
-		elif mysql_check_version_range "5.2 to 5.2.99" ; then
-			bitkeeper_fetch "mysql-5.2-falcon"
-		else
-			bitkeeper_fetch
-		fi
-		cd "${S}"
-		einfo "Running upstream autorun over BK sources ..."
-		BUILD/autorun.sh
-	else
-		mv -f "${WORKDIR}/${MY_SOURCEDIR}" "${S}"
-		cd "${S}"
-	fi
+	
+	mv -f "${WORKDIR}/${MY_SOURCEDIR}" "${S}"
+	cd "${S}"
 
 	# Apply the patches for this MySQL version
 	EPATCH_SUFFIX="patch"
@@ -592,8 +500,7 @@ mysql_src_unpack() {
 	if mysql_version_is_at_least "5.1.12" ; then
 		rebuilddirlist="."
 		# TODO: check this with a cmake expert
-		use innodb \
-		&& cmake \
+		cmake \
 			-DCMAKE_C_COMPILER=$(type -P $(tc-getCC)) \
 			-DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX)) \
 			"storage/innobase"
