@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.15.ebuild,v 1.7 2009/02/14 18:13:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.15.ebuild,v 1.8 2009/02/28 10:51:57 armin76 Exp $
 
 EAPI="prefix"
 
