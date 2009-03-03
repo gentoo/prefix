@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/mysql
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.483 2009/02/11 12:22:14 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.485 2009/03/01 10:50:36 armin76 Exp $
+
+  01 Mar 2009; Raúl Porcel <armin76@gentoo.org> mysql-5.0.70-r1.ebuild:
+  s390/sh stable wrt #246652
+
+  28 Feb 2009; Robin H. Johnson <robbat2@gentoo.org> mysql-4.1.22-r1.ebuild,
+  mysql-4.1.23_alpha20070101-r61.ebuild:
+  Bug #259977: apply the automake patch so that older 4.1 still compiles.
 
 *mysql-5.0.76 (11 Feb 2009)
 
