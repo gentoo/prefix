@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.167 2009/02/21 19:35:53 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.171 2009/02/28 23:25:16 keri Exp $
+
+  28 Feb 2009; <keri@gentoo.org> swi-prolog-5.6.64.ebuild:
+  Support gmp-allocation checks and thread resource exceptions
+
+  28 Feb 2009; <keri@gentoo.org> swi-prolog-5.6.62.ebuild,
+  swi-prolog-5.6.63.ebuild, swi-prolog-5.6.64.ebuild,
+  swi-prolog-5.7.6.ebuild:
+  Update SRC_URI
+
+  28 Feb 2009; <keri@gentoo.org> -swi-prolog-5.7.1.ebuild,
+  -swi-prolog-5.7.2.ebuild, -swi-prolog-5.7.3.ebuild,
+  -swi-prolog-5.7.4.ebuild, -swi-prolog-5.7.5.ebuild:
+  Remove old -5.7 development versions
+
+*swi-prolog-5.7.7 (28 Feb 2009)
+
+  28 Feb 2009; <keri@gentoo.org> +swi-prolog-5.7.7.ebuild:
+  Bump -5.7 development version
 
 *swi-prolog-5.7.6 (21 Feb 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.7.4.ebuild,v 1.1 2009/01/08 18:58:37 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.7.7.ebuild,v 1.2 2009/02/28 19:43:04 keri Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ PATCHSET_VER="0"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
-SRC_URI="http://gollem.science.uva.nl/cgi-bin/nph-download/SWI-Prolog/BETA/pl-${PV}.tar.gz
+SRC_URI="http://www.swi-prolog.org/download/devel/src/pl-${PV}.tar.gz
 	mirror://gentoo/${P}-gentoo-patchset-${PATCHSET_VER}.tar.gz"
 
 LICENSE="LGPL-2.1"
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
-DEPEND="!media-libs/ploticus
+RDEPEND="!media-libs/ploticus
 	sys-libs/ncurses
 	zlib? ( sys-libs/zlib )
 	odbc? ( dev-db/unixODBC )
@@ -35,8 +35,10 @@ DEPEND="!media-libs/ploticus
 		x11-libs/libXpm
 		x11-libs/libXt
 		x11-libs/libICE
-		x11-libs/libSM
-		x11-proto/xproto )"
+		x11-libs/libSM )"
+
+DEPEND="${RDEPEND}
+	X? ( x11-proto/xproto )"
 
 S="${WORKDIR}/pl-${PV}"
 
