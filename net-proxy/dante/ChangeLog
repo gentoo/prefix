@@ -1,6 +1,12 @@
 # ChangeLog for net-proxy/dante
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.43 2008/06/25 20:42:56 mrness Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.44 2009/02/28 09:53:41 mrness Exp $
+
+*dante-1.1.19-r3 (28 Feb 2009)
+
+  28 Feb 2009; Alin Năstac <mrness@gentoo.org> files/dante-sockd-init,
+  -dante-1.1.19-r2.ebuild, +dante-1.1.19-r3.ebuild:
+  Fix bashisms in dante-sockd init.d script (#260151).
 
   25 Jun 2008; Alin Năstac <mrness@gentoo.org>
   files/dante-1.1.19-libpam.patch:

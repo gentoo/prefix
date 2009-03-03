@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/dante-1.1.19-r2.ebuild,v 1.1 2008/06/24 20:59:04 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/dante-1.1.19-r3.ebuild,v 1.1 2009/02/28 09:53:41 mrness Exp $
 
 EAPI="prefix"
 
