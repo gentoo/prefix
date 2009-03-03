@@ -1,0 +1,21 @@
+--- Makefile.in	2009-02-15 14:07:08.000000000 +0100
++++ /root/Makefile.in	2009-02-28 18:02:27.000000000 +0100
+@@ -163,7 +163,7 @@
+ 
+ # Object files for the SQLite library (non-amalgamation).
+ #
+-OBJS0 = alter.lo analyze.lo attach.lo auth.lo bitvec.lo btmutex.lo \
++OBJS0 = alter.lo analyze.lo attach.lo auth.lo backup.lo bitvec.lo btmutex.lo \
+         btree.lo build.lo callback.lo complete.lo date.lo \
+         delete.lo expr.lo fault.lo func.lo global.lo \
+         hash.lo journal.lo insert.lo legacy.lo loadext.lo \
+@@ -518,6 +518,9 @@
+ auth.lo:	$(TOP)/src/auth.c $(HDR)
+ 	$(LTCOMPILE) $(TEMP_STORE) -c $(TOP)/src/auth.c
+ 
++backup.lo:	$(TOP)/src/backup.c $(HDR)
++	$(LTCOMPILE) $(TEMP_STORE) -c $(TOP)/src/backup.c
++
+ bitvec.lo:	$(TOP)/src/bitvec.c $(HDR)
+ 	$(LTCOMPILE) $(TEMP_STORE) -c $(TOP)/src/bitvec.c
+ 
