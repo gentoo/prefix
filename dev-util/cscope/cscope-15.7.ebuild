@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.6-r2.ebuild,v 1.7 2009/03/01 09:41:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.7.ebuild,v 1.1 2009/03/01 09:41:40 ulm Exp $
 
 EAPI="prefix"
 
@@ -8,11 +8,11 @@ inherit elisp-common eutils
 
 DESCRIPTION="Interactively examine a C program"
 HOMEPAGE="http://cscope.sourceforge.net/"
-SRC_URI="mirror://sourceforge/cscope/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/cscope/${P}.tar.bz2"
 
 LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="emacs"
 
 RDEPEND=">=sys-libs/ncurses-5.2"
@@ -26,12 +26,10 @@ SITEFILE="50${PN}-gentoo.el"
 
 src_unpack() {
 	unpack ${A}
-
-	# warn users of insecure web frontend, see bug #158831
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-158831-warning_webscope.patch"
-	epatch "${FILESDIR}"/${P}-darwin.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+
+	epatch "${FILESDIR}"/${PN}-15.6-darwin.patch
+	epatch "${FILESDIR}"/${PN}-15.6-r3-interix.patch
 }
 
 src_compile() {
@@ -43,7 +41,7 @@ src_compile() {
 
 	if use emacs ; then
 		cd "${S}"/contrib/xcscope || die
-		elisp-compile *.el || die "elisp-compile failed"
+		elisp-compile *.el || die
 	fi
 }
 
@@ -53,9 +51,8 @@ src_install() {
 
 	if use emacs ; then
 		cd "${S}"/contrib/xcscope || die
-		elisp-install ${PN} *.el *.elc || die "elisp-install failed"
-		elisp-site-file-install "${FILESDIR}/${SITEFILE}" \
-			|| die "elisp-site-file-install failed"
+		elisp-install ${PN} *.el *.elc || die
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 		dobin cscope-indexer || die "dobin failed"
 	fi
 

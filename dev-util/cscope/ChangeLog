@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/cscope
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.102 2008/10/24 19:20:43 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.103 2009/03/01 09:41:40 ulm Exp $
+
+*cscope-15.7 (01 Mar 2009)
+
+  01 Mar 2009; Ulrich Mueller <ulm@gentoo.org> cscope-15.6-r2.ebuild,
+  cscope-15.6-r3.ebuild, +cscope-15.7.ebuild:
+  Version bump, bug 260585. LICENSE is BSD, not as-is.
 
 *cscope-15.6-r3 (24 Oct 2008)
 
