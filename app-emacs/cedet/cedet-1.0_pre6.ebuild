@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.2 2009/03/01 16:10:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.3 2009/03/03 07:45:42 ulm Exp $
 
 EAPI="prefix"
 
@@ -44,11 +44,14 @@ src_install() {
 				| renamelist.txt | semanticdb.sh)
 				docinto "${dir}"
 				dodoc "${target}" || die ;;
-			*.el | *.elc | *.by | *.wy)
+			*.el | *.by | *.wy)
 				# install grammar sources along with the elisp files, since
 				# the location where semantic expects them is not configurable
 				insinto "${SITELISP}/${PN}/${dir}"
 				doins "${target}" || die ;;
+			*.elc)
+				# we are in a subshell, so collecting in a variable won't work
+				echo "${target}" >>"${T}/elc-list.txt" ;;
 			*.srt | *.xpm)
 				insinto "${SITEETC}/${PN}/${dir}"
 				doins "${target}" || die ;;
@@ -58,6 +61,14 @@ src_install() {
 				die "Unrecognised file ${target}" ;;
 		esac
 	done
+
+	# make sure that the compiled elisp files have a later time stamp than
+	# the corresponding sources, in order to suppress warnings at run time
+	while read target; do
+		dir=${target%/*}; dir=${dir#./}
+		insinto "${SITELISP}/${PN}/${dir}"
+		doins "${target}" || die
+	done <"${T}/elc-list.txt"
 
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 }

@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/cedet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.40 2009/03/01 15:38:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.41 2009/03/03 07:45:42 ulm Exp $
+
+  03 Mar 2009; Ulrich Mueller <ulm@gentoo.org> cedet-1.0_pre6.ebuild:
+  Make sure that the compiled elisp files have a later time stamp than the
+  corresponding sources, in order to suppress warnings at run time.
 
 *cedet-1.0_pre6 (01 Mar 2009)
 
