@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pycrypto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.64 2009/03/01 08:24:02 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.65 2009/03/04 04:44:45 neurogeek Exp $
+
+*pycrypto-2.0.1-r8 (04 Mar 2009)
+
+  04 Mar 2009; Jesus Rivero <neurogeek@gentoo.org>
+  +files/pycrypto-2.0.1-CVE-2009-0544.patch, +pycrypto-2.0.1-r8.ebuild:
+  Added patch for Buffer Overflow in ARC2 module. Bug #258049. CVE-2009-0544
 
 *pycrypto-2.0.1-r7 (01 Mar 2009)
 
