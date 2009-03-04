@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.105 2009/02/18 19:22:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.106 2009/03/03 20:32:41 ranger Exp $
+
+  03 Mar 2009; Brent Baude <ranger@gentoo.org> libIDL-0.8.12.ebuild:
+  Marking libIDL-0.8.12 ppc64 for bug 255843
 
   18 Feb 2009; Jeroen Roovers <jer@gentoo.org> libIDL-0.8.12.ebuild:
   Stable for HPPA (bug #255843).
