@@ -1,0 +1,28 @@
+Timothy Redaelli <drizzt@gentoo.org>:
+Respect CPPFLAGS and LIBS
+Solaris does not support echo -n so I need to use printf instead
+
+--- Makefile.in.orig	2009-03-03 16:48:21.791649594 +0100
++++ Makefile.in	2009-03-03 16:48:31.668832182 +0100
+@@ -7,8 +7,8 @@
+ euses: euses.c
+ 	@echo
+ 	@echo ' = Compiling $@ ='
+-	$(CC) $(CFLAGS) $(DEFS) $< -o $@.o -c
+-	$(CC) $(CFLAGS) $(LDFLAGS) $(DEFS) $@.o -o $@
++	$(CC) $(CFLAGS) $(DEFS) $(CPPFLAGS) $< -o $@.o -c
++	$(CC) $(CFLAGS) $(LDFLAGS) $(DEFS) $@.o -o $@ $(LIBS)
+ 
+ test: euses
+ 	@echo
+--- euses.c.orig	2009-03-03 16:13:49.691626838 +0100
++++ euses.c	2009-03-03 16:14:40.760617374 +0100
+@@ -144,7 +144,7 @@
+ 		/* Open a pipe. */
+ 		fd = popen(" . " SYSCONFDIR "/make.globals;" " . "
+ 			   SYSCONFDIR "/make.conf" ";"
+-			   "echo -n ${PORTDIR}", "r");
++			   "printf \"%s\" \"${PORTDIR}\"", "r");
+ 
+ 		/* Get the first line from the pipe */
+ 		if (fgets(portdir, (int)FILENAME_MAX, fd) == NULL)
