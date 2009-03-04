@@ -1,4 +1,0 @@
-prefix/hpux/B.11.11/hppa
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/hpux/B.11.11/hppa make.profile

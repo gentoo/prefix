@@ -1,4 +1,0 @@
-prefix/aix/5.2.0.0/ppc
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/aix/5.2.0.0/ppc make.profile

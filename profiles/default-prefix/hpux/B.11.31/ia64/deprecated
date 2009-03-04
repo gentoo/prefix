@@ -1,4 +1,0 @@
-prefix/hpux/B.11.31/ia64
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/hpux/B.11.31/ia64 make.profile

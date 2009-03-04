@@ -1,4 +1,0 @@
-
-# Fabian Groffen <grobian@gentoo.org> (27 Jul 2008)
-# Masked because it needs getopt_long which is still in the pipe
-~sys-apps/file-4.25
