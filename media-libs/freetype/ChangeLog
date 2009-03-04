@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.214 2009/02/25 19:52:54 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.215 2009/03/02 16:45:08 ranger Exp $
+
+  02 Mar 2009; Brent Baude <ranger@gentoo.org> freetype-2.3.8.ebuild:
+  Marking freetype-2.3.8 ppc64 for bug 260288
 
   25 Feb 2009; Ferris McCormick <fmccor@gentoo.org> ChangeLog:
   Sparc stable, needed for Bug #260288.
