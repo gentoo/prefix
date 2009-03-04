@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4249 2009/03/01 21:03:01 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4251 2009/03/03 21:07:46 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -230,6 +230,7 @@ app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
 app-emulation/virtualbox-ose:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-ose:headless - Build without any graphic frontend
 app-emulation/virtualbox-ose:sdk - Enable building of SDK
+app-emulation/virtualbox-ose:vboxwebsrv - Build and install the VirtualBox webservice
 app-emulation/vov:gprof - build with profiling support
 app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/wine:samba - Add support for NTLM auth. see http://wiki.winehq.org/NtlmAuthSetupGuide and http://wiki.winehq.org/NtlmSigningAndSealing
@@ -1828,6 +1829,8 @@ net-dialup/freeradius:frascend - Enables Ascend binary mode
 net-dialup/freeradius:frnothreads - Disables thread support
 net-dialup/freeradius:frxp - Enables experimental modules
 net-dialup/freeradius:udpfromto - Compile in UDPFROMTO support (enables freeradius to specify source address correctly in multi-homed setups)
+net-dialup/freeradius-client:scp - Add service type hints derived from username prefix
+net-dialup/freeradius-client:shadow - Enable shadow password support
 net-dialup/isdn4k-utils:activefilter - Enable activefilter support for ipppd
 net-dialup/isdn4k-utils:eurofile - Support for EUROFILE Transfer Procotol
 net-dialup/isdn4k-utils:ipppd - Build the (ISDN) PPP daemon for synchronous PPP for ISDN connections

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9544 2009/03/02 17:13:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9546 2009/03/03 17:23:18 cardoe Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,13 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Doug Goldstein <cardoe@gentoo.org> (3 Mar 2009)
+# After discussing it with NVIDIA, issues with
+# signal handling for many users require this
+# to be masked. However, some users my experience
+# better functionality with this driver
+=x11-drivers/nvidia-drivers-180.35
 
 # Thomas Sachau <tommy@gentoo.org> (2 Mar 2009)
 # Mask for removal, was merged into dev-java/fec
@@ -628,24 +635,6 @@ app-crypt/cryptplug
 dev-tcltk/tclgpgme
 ~app-crypt/gpgme-0.3.14
 
-# Ricardo Mendoza <ricmm@gentoo.org> (28 Aug 2008)
-# Beta driver, masking corresponding packages
-~x11-drivers/nvidia-drivers-177.70
-~media-video/nvidia-settings-177.70
-
-# Ricardo Mendoza <ricmm@gentoo.org> (27 Aug 2008)
-# Beta driver, masking corresponding nvidia-settings
-~x11-drivers/nvidia-drivers-177.68
-~media-video/nvidia-settings-177.68
-
-# Ricardo Mendoza <ricmm@gentoo.org> (21 Aug 2008)
-# Beta driver, masking corresponding nvidia-settings
-~media-video/nvidia-settings-177.67
-
-# Ricardo Mendoza <ricmm@gentoo.org> (20 Aug 2008)
-# Beta driver, unsupported by nVidia
-~x11-drivers/nvidia-drivers-177.67
-
 # Tiziano Müller <dev-zero@gentoo.org> (15 Aug 2008)
 # Masked for testing (works with >=dev-libs/xerces-c-3.0.0)
 =dev-libs/xqilla-9999
@@ -708,11 +697,6 @@ net-irc/bitchx
 # >0.13 breaks a lot of stuff, only qbittorrent works fine
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
-
-# Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
-# Beta driver, unsupported by nVidia
-~x11-drivers/nvidia-drivers-177.13
-~media-video/nvidia-settings-177.13
 
 # Ryan Hill <dirtyepic@gentoo.org> (18 Jun 2008)
 # Consolidated linuxfromscratch ebuilds into one.
@@ -782,11 +766,6 @@ dev-cpp/bakery
 # LessTif is unsupported since it has open issues with several packages.
 # See bug 193505 and bug 204249. You are on your own here.
 x11-libs/lesstif
-
-# Tony Vroon <chainsaw@gentoo.org> (08 May 2008)
-# Beta driver, unsupported by nVidia
-~x11-drivers/nvidia-drivers-173.08
-~media-video/nvidia-settings-173.08
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (04 May 2008)
 # Some of the older 0.9x regex packages are experimental versions and does
@@ -1096,10 +1075,6 @@ dev-lang/entity
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
 # You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
 dev-lang/ghc-bin
-
-# Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
-# beta NVIDIA drivers, not supported. bug #196679
-~x11-drivers/nvidia-drivers-100.14.23
 
 # Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
 # Development release

@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.15 2008/12/10 07:09:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.16 2009/03/03 12:44:49 pva Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -mips
@@ -24,6 +24,10 @@ esd
 gstreamer
 gtkhtml
 gnome
+
+# Peter Volkov <pva@gentoo.org> MPI was never tested on mips, but
+# some programs with this useflag are useful, e.g #227631
+mpi
 
 # Ryan Hill <dirtyepic@gentoo.org>
 # No version of xulrunner keyworded at the moment
