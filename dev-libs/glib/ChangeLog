@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.348 2009/02/16 15:38:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.349 2009/03/02 21:01:23 ranger Exp $
+
+  02 Mar 2009; Brent Baude <ranger@gentoo.org> glib-2.16.6.ebuild:
+  Marking glib-2.16.6 ppc64 for bug 245092
 
   16 Feb 2009; Brent Baude <ranger@gentoo.org> glib-2.16.6.ebuild:
   stable ppc, bug 245092
