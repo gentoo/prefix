@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.86 2009/02/28 12:45:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.87 2009/03/03 10:18:58 aballier Exp $
+
+*libsndfile-1.0.18-r1 (03 Mar 2009)
+
+  03 Mar 2009; Alexis Ballier <aballier@gentoo.org>
+  +libsndfile-1.0.18-r1.ebuild:
+  force disabling octave module which was automagic because it seems it
+  installs files at bad locations (bug #260769), may fail to build (bug
+  #260853) and to link (bug #260835).
 
   28 Feb 2009; Alexis Ballier <aballier@gentoo.org>
   libsndfile-1.0.17-r1.ebuild:
