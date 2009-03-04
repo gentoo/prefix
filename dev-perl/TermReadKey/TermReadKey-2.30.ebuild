@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/J/JS/JSTOWE/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
 IUSE=""
 
 DEPEND="dev-lang/perl"
