@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.ebuild,v 1.5 2009/03/03 06:00:26 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6-r1.ebuild,v 1.1 2009/03/03 09:04:23 pva Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu/aspell/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="gpm nls examples"
+IUSE="nls examples"
 # Note; app-text/aspell-0.6 and app-dicts/aspell-en-0.6 must go stable together
 
 # Build PDEPEND from list of language codes provided in the tree.
@@ -40,7 +40,6 @@ PDEPEND="${PDEPEND}
 ${def}"
 
 RDEPEND=">=sys-libs/ncurses-5.2
-	gpm? ( sys-libs/gpm )
 	nls? ( virtual/libintl )"
 # English dictionary 0.5 is incompatible with aspell-0.6
 
@@ -62,13 +61,17 @@ src_unpack() {
 }
 
 src_compile() {
-	use gpm && append-ldflags -lgpm
 	filter-flags -fno-rtti
 	filter-flags -fvisibility=hidden #77109
 	filter-flags -maltivec -mabi=altivec
 	use ppc && append-flags -mno-altivec
 
-	econf \
+	# Was bug #46432. Ncurses changed linking with gpm, from NEWS:
+	# "20041009 change GPM initialization, using dl library to load it dynamically
+	# at runtime (Debian #110586)"
+	# and as a side effect it looks like we don't need add gpm library. (20090302)
+	#built_with_use sys-libs/ncurses gpm && mylibs="-lgpm"
+	LIBS="${mylibs}" econf \
 		$(use_enable nls) \
 		--disable-static \
 		--sysconfdir="${EPREFIX}"/etc/aspell \

@@ -1,6 +1,18 @@
 # ChangeLog for app-text/aspell
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.103 2009/01/10 14:39:01 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.106 2009/03/03 09:04:23 pva Exp $
+
+*aspell-0.60.6-r1 (03 Mar 2009)
+
+  03 Mar 2009; Peter Volkov <pva@gentoo.org> +aspell-0.60.6-r1.ebuild:
+  Fixed QA warning append-ldflags is used to pass libraries, bug #226873,
+  thank Diego E. 'Flameeyes' Pettenò for report.
+
+  03 Mar 2009; Jeremy Olexa <darkside@gentoo.org> aspell-0.60.6.ebuild:
+  amd64 stable, bug 259542
+
+  02 Mar 2009; Ferris McCormick <fmccor@gentoo.org> aspell-0.60.6.ebuild:
+  Sparc stable, Bug #259542.
 
   10 Jan 2009; Peter Volkov <pva@gentoo.org> aspell-0.60.6.ebuild:
   Fixed LINGUAS handling, bug #245399, thank Michael Laß for report.
