@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.0.2.ebuild,v 1.2 2008/08/31 11:44:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.0.4.ebuild,v 1.1 2009/03/03 21:05:31 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/linux/libs/pam/library/${MY_P}.tar.bz2"
 
 LICENSE="PAM"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="cracklib nls elibc_FreeBSD selinux vim-syntax audit test elibc_glibc"
 
 RDEPEND="nls? ( virtual/libintl )
@@ -110,7 +110,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${MY_PN}-0.99.8.1-xtests.patch"
 
 	# Remove NIS dependencies, see bug #235431
-	epatch "${FILESDIR}/${MY_P}-noyp.patch"
+	epatch "${FILESDIR}/${MY_PN}-1.0.2-noyp.patch"
 
 	AT_M4DIR="m4" eautoreconf
 
@@ -120,17 +120,13 @@ src_unpack() {
 src_compile() {
 	local myconf
 
-	# Workarounds autoconf 2.62 bug, libintl.h is included before
-	# _GNU_SOURCE is defined in config.h. See bug #217154
-	append-flags -D_GNU_SOURCE
-
 	if use hppa || use elibc_FreeBSD; then
 		myconf="${myconf} --disable-pie"
 	fi
 
 	# KEEP COMMENTED OUT! It seems like it fails to build with USE=debug!
 	# Do _not_ move this to $(use_enable) without checking if the
-	# configure.in has been fixed. As of 2008/07/31 it's still broken
+	# configure.in has been fixed. As of 2009/03/03 it's still broken
 	# on upstream's CVS, and --disable-debug means --enable-debug too.
 	# if use debug; then
 	# 	myconf="${myconf} --enable-debug"

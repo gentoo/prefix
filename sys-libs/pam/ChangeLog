@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/pam
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.226 2008/12/10 10:37:32 flameeyes Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.228 2009/03/03 21:07:31 flameeyes Exp $
+
+  03 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  pam-0.99.8.1-r1.ebuild:
+  De-keyword all arches but mips.
+
+*pam-1.0.4 (03 Mar 2009)
+
+  03 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -pam-0.99.9.0.ebuild, -pam-1.0.2.ebuild, -pam-1.0.3.ebuild,
+  +pam-1.0.4.ebuild:
+  Version bump, cleanup old versions. pam-1.0.4 is stable candidate.
 
 *pam-1.0.3 (10 Dec 2008)
 
