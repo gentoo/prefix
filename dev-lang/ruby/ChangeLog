@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.382 2009/02/25 16:31:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.383 2009/03/03 11:35:14 pva Exp $
+
+  03 Mar 2009; Peter Volkov <pva@gentoo.org> ruby-1.8.6_p287-r12.ebuild:
+  ~mips keyworded, bug #252315.
 
   25 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   ruby-1.8.6_p287-r5.ebuild:
