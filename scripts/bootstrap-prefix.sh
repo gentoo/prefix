@@ -426,13 +426,17 @@ bootstrap_gnu() {
 	# coreutils completely useless (install failing on everything)
 	[[ ${A%-*} == "coreutils" ]] && myconf="${myconf} --disable-acl"
 
-	# Interix doesn't have filesystem listing stuff, but that means all
-	# other utilities but df aren't useless at all, so don't die
-	[[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] && \
+	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] ; then
+		# Interix doesn't have filesystem listing stuff, but that means all
+		# other utilities but df aren't useless at all, so don't die
 		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
-	# Fix a compilation error due to a missing definition
-	[[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] && \
+
+		# try to make id() not poll the entire domain before returning
+		export CFLAGS="${CFLAGS} -Dgetgrgid=getgrgid_nomembers -Dgetgrent=getgrent_nomembers -Dgetgrnam=getgrnam_nomembers"
+
+		# Fix a compilation error due to a missing definition
 		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
+	fi
 
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
