@@ -1,6 +1,10 @@
 # ChangeLog for net-ftp/ncftp
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.88 2008/11/27 19:39:37 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.89 2009/03/03 18:16:45 jer Exp $
+
+  03 Mar 2009; Jeroen Roovers <jer@gentoo.org> ncftp-3.2.2-r1.ebuild:
+  Prevent installation to /--prefix/usr/bin/ncftp with non-standard LC_ALL,
+  thanks to Mart Stöör. Set RDEPEND too.
 
   27 Nov 2008; Jeroen Roovers <jer@gentoo.org> metadata.xml,
   -ncftp-3.2.1.ebuild, -files/ncftp-3.2.1-build.patch:
