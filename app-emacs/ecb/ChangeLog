@@ -1,6 +1,15 @@
 # ChangeLog for app-emacs/ecb
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ChangeLog,v 1.34 2007/09/24 12:03:55 opfer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ChangeLog,v 1.35 2009/03/04 00:20:42 ulm Exp $
+
+*ecb-2.32-r3 (03 Mar 2009)
+
+  03 Mar 2009; Ulrich Mueller <ulm@gentoo.org> +files/ecb-2.32-gentoo.patch,
+  +ecb-2.32-r3.ebuild:
+  Install pixmaps under SITEETC instead of SITELISP. Use proper patch for
+  help and info paths, instead of sed tweaks. Allow any compress extension
+  of Info files; don't hardcode .gz. Add alternative load-path for jde, in
+  order to prepare for a later change of its install location.
 
   24 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
   -files/70ecb-gentoo.el, -ecb-2.32-r1.ebuild:
@@ -85,7 +94,7 @@
   eieio and semantic; bug #64395.
 
   27 Aug 2004; Jared Hudson <jhhudso@gentoo.org> : Added ~amd64 keyword
-	
+
   01 Jun 2004; Aron Griffis <agriffis@gentoo.org> ecb-2.21.ebuild,
   ecb-2.24.ebuild:
   Fix use invocation
