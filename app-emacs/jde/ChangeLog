@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/jde
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.29 2008/05/01 19:16:44 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.31 2009/03/02 23:01:57 ulm Exp $
+
+*jde-2.3.5.1-r1 (02 Mar 2009)
+
+  02 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/jde-2.3.5.1-fix-efc.patch, jde-2.3.5.1.ebuild,
+  +jde-2.3.5.1-r1.ebuild:
+  Fix byte compilation with current Emacs. Clean up src_install() function.
+  Add some "die" commands.
 
   01 May 2008; Ulrich Mueller <ulm@gentoo.org> -files/2.3.5-70jde-gentoo.el,
   -files/2.3.5.1-70jde-gentoo.el,
