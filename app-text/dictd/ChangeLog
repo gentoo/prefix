@@ -1,6 +1,10 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.62 2009/03/01 09:29:08 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.63 2009/03/02 08:59:56 pva Exp $
+
+  02 Mar 2009; Peter Volkov <pva@gentoo.org>
+  files/dictd-1.10.11-colorit-nopp-fix.patch:
+  Update fix for colorit, now it comes from upstream.
 
 *dictd-1.11.1 (01 Mar 2009)
 
