@@ -32,8 +32,6 @@ x86-solaris		prefix/sunos/solaris/5.11/x86	dev
 x64-solaris		prefix/sunos/solaris/5.11/x64	dev
 
 # AIX Profiles
-ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
-ppc-aix		default-prefix/aix/5.3.0.0/ppc				dev
 ppc-aix		prefix/aix/5.2.0.0/ppc				dev
 ppc-aix		prefix/aix/5.3.0.0/ppc				dev
 ppc-aix		prefix/aix/6.1.0.0/ppc				dev
@@ -52,10 +50,6 @@ x86-winnt   prefix/windows/winnt/5.2/x86        dev
 x86-winnt   prefix/windows/winnt/6.0/x86        dev
 
 # HP-UX Profiles
-hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa1.1	dev
-hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa2.0/32	dev
-hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa2.0/64	dev
-ia64-hpux	default-prefix/hpux/B.11.23/ia64			dev
 hppa-hpux	prefix/hpux/B.11.11/hppa/hppa1.1	dev
 hppa-hpux	prefix/hpux/B.11.11/hppa/hppa2.0/32	dev
 hppa-hpux	prefix/hpux/B.11.11/hppa/hppa2.0/64	dev
