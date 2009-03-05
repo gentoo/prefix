@@ -38,7 +38,7 @@ src_unpack() {
 
 	# remove -I m4, there's no m4 dir
 	sed -i -e "/^ACLOCAL_AMFLAGS/d" Makefile.am
-	AT_M4DIR="/usr/share/xfce4/dev-tools/m4macros" eautoreconf
+	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 
 	# Patch needed for Solaris. Took from
 	# http://foo-projects.org/pipermail/xfce/2008-July/023569.html
