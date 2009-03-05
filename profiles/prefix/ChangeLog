@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  05 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask libtool-2.2, bootstrapping seems to work on it at least
+
   25 Feb 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask bash-4.0 as I don't dare kicking it straight into everyone's system
 
