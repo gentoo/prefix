@@ -1,0 +1,65 @@
+--- a/libgphoto2_port/configure.ac	2008-11-29 22:04:31.000000000 +0100
++++ b/libgphoto2_port/configure.ac	2008-11-29 22:10:50.000000000 +0100
+@@ -161,14 +161,25 @@
+ ])
+ ])
+ 
++dnl ---------------------------------------------------------------------------
+ dnl Apple Bonjour / mDNSResponder multicast DNS queries.
++dnl ---------------------------------------------------------------------------
++
+ MDNS_LIBS=
+-AC_CHECK_HEADER([dns_sd.h],[
+-		AC_CHECK_LIB(dns_sd,DNSServiceResolve,[
+-			MDNS_LIBS="-ldns_sd"
+-			AC_DEFINE(HAVE_MDNS_BONJOUR,1,[Define if you have Bonjour/mDNSResponder.])
+-		])
+-])
++have_bonjour=false
++
++AC_ARG_ENABLE([bonjour],
++	AS_HELP_STRING([--disable-bonjour], [disable Bonjour support]),
++	,enable_bonjour=yes)
++
++if test "x$enable_bonjour" = "xyes"; then
++   AC_CHECK_HEADER([dns_sd.h],[
++      AC_CHECK_LIB(dns_sd,DNSServiceResolve,[
++         MDNS_LIBS="-ldns_sd"
++	 AC_DEFINE(HAVE_MDNS_BONJOUR,1,[Define if you have Bonjour/mDNSResponder.])
++      ])
++   ])
++fi
+ 
+ dnl Check for mnt_mountp in struct mnttab
+ AC_MSG_CHECKING([for mnt_mountp in struct mnttab])
+@@ -347,15 +358,24 @@
+ dnl ---------------------------------------------------------------------------
+ dnl disk - hal and various stuff
+ dnl ---------------------------------------------------------------------------
+-PKG_CHECK_MODULES(HAL, [dbus-1 >= 0.31 hal >= 0.5.0], 
++have_hal=false
++
++AC_ARG_ENABLE([hal],
++	AS_HELP_STRING([--disable-hal], [disable HAL support]),
++	,enable_hal=yes)
++
++if test "x$enable_hal" = "xyes"; then
++   PKG_CHECK_MODULES(HAL, [dbus-1 >= 0.31 hal >= 0.5.0], 
+ 		       [have_hal=true], 
+ 		       [have_hal=false])
+-if test "x$have_hal" = "xtrue"; then
+-   AC_SUBST(HAL_CFLAGS)
+-   AC_SUBST(HAL_LIBS)
+-   AC_DEFINE(HAVE_HAL,1,[defined if HAL is available])
++   if test "x$have_hal" = "xtrue"; then
++      AC_SUBST(HAL_CFLAGS)
++      AC_SUBST(HAL_LIBS)
++      AC_DEFINE(HAVE_HAL,1,[defined if HAL is available])
++      IOLIB_SUBDIRS="$IOLIB_SUBDIRS disk"
++   fi
+ fi
+-IOLIB_SUBDIRS="$IOLIB_SUBDIRS disk"
++
+ 
+ dnl ptpip - works 'everywhere' with TCP/IP stack.
+ IOLIB_SUBDIRS="$IOLIB_SUBDIRS ptpip"
