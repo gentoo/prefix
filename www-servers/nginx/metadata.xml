@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+	<email>voxus@gentoo.org</email>
+</maintainer>
+<use>
+	<flag name='addition'>Enables HTTP addition filter module</flag>
+	<flag name='flv'>Enables special processing module for flv files</flag>
+	<flag name='random-index'>Enables HTTP random index module</flag>
+	<flag name='status'>Enables stub_status module</flag>
+	<flag name='sub'>Enables sub_filter module</flag>
+	<flag name='webdav'>Enable webdav support</flag>
+</use>
+</pkgmetadata>
