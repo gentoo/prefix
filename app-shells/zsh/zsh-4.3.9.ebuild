@@ -39,7 +39,7 @@ SRC_URI="${ZSH_URI}
 
 LICENSE="ZSH gdbm? ( GPL-2 )"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="caps debug doc examples gdbm maildir pcre static unicode"
 
 RDEPEND=">=sys-libs/ncurses-5.1
