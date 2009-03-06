@@ -99,11 +99,6 @@ net-fs/openafs
 # have 2.2+
 ->=sys-apps/portage-2.2_pre
 
-# Jeremy Olexa <darkside@gentoo.org> (10 Nov 2008)
-# The apache-2.eclass needs to be fixed to support 2.2.10, there is a failing
-# patch for this version. 2.2.9-r1 works due to the hard work in bug 238595.
->=www-servers/apache-2.2.10
-
 # Fabian Groffen <grobian@gentoo.org> (03 Nov 2008)
 # needs cups or lprng which we both don't have
 >=net-print/xfprint-4.4.3
