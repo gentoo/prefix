@@ -128,6 +128,9 @@ bootstrap_setup() {
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
 			;;
+		sparcv9-sun-solaris2.9)
+			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc64"
+			;;
 		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x86"
 			;;
