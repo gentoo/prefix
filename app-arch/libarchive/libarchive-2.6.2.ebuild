@@ -59,6 +59,13 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
 
+	# Create tar symlink for FreeBSD
+	if ! use prefix && [[ ${CHOST} == *-freebsd* ]]; then
+		dosym bsdtar /bin/tar
+		dosym bsdtar.1 /usr/share/man/man1/tar.1
+		# We may wish to switch to symlink bsdcpio to cpio too one day
+	fi
+
 	dodoc NEWS README
 
 	# just don't do this for Darwin
