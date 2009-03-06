@@ -28,7 +28,7 @@ src_unpack() {
 
 	ht_fix_file aclocal.m4 configure
 
-	[[ ${CHOST} == *-mint* ]] && eautoreconf
+	eautoconf
 	elibtoolize
 }
 
