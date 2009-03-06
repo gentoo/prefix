@@ -1,6 +1,11 @@
 # $Id$
 
 # Markus Duft <mduft@gentoo.org> (06 Mar 2009)
+# seems i have to start porting from zero again
+# for this to work correctly.
+>=sys-apps/coreutils-7.1
+
+# Markus Duft <mduft@gentoo.org> (06 Mar 2009)
 # this is even worse than on other systems, since the
 # workaround doesn't work either.
 =sys-libs/ncurses-5.7*

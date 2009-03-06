@@ -3,6 +3,9 @@
 # $Id$
 
   06 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  masked new coreutils 7.1 on interix for now. needs some more touching.
+
+  06 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   masked ncurses 5.7 on interix.
 
   05 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
