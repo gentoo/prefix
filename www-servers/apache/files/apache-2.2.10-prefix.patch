@@ -181,17 +181,6 @@
 +	proxycachedir:   @GENTOO_PORTAGE_EPREFIX@/var/cache/apache2
  </Layout>
  
---- patches/21_all_itk_20080105.patch
-+++ patches/21_all_itk_20080105.patch
-@@ -25,7 +25,7 @@
-    MPM_SUBDIR_NAME=$MPM_NAME
-  fi
- +
--+if "$apache_cv_mpm" = "itk" ; then
-++if test "$apache_cv_mpm" = "itk" ; then
- +  AC_CHECK_LIB(cap, cap_init)
- +fi
- +
 --- scripts/apache2-logrotate
 +++ scripts/apache2-logrotate
 @@ -1,11 +1,11 @@
