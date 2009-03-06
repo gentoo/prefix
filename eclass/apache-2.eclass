@@ -401,7 +401,7 @@ apache-2_src_unpack() {
 	cd "${S}"
 
 	pushd "${GENTOO_PATCHDIR}"
-		epatch "${FILESDIR}"/${PN}-2.2.9-r1-prefix.patch
+		epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
 		eprefixify \
 			conf/httpd.conf \
 			docs/ip-based-vhost.conf.example \
@@ -412,6 +412,7 @@ apache-2_src_unpack() {
 			patches/config.layout \
 			scripts/gentestcrt.sh \
 			scripts/apache2-logrotate \
+			scripts/apache2ctl \
 			conf/modules.d/00_apache_manual.conf \
 			conf/modules.d/00_default_settings.conf \
 			conf/modules.d/00_error_documents.conf \
