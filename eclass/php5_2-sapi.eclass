@@ -391,7 +391,7 @@ php5_2-sapi_src_unpack() {
 	sed -i \
 		-e 's|/usr/local /usr|'"${EPREFIX}"'/usr/local '"${EPREFIX}"'/usr|g' \
 		ext/*/config.m4 \
-		|| die "Failed to fix gettext include paths for prefix"
+		|| die "Failed to fix extensions include paths for prefix"
 
 	# We are heavily patching autotools base files (configure.in) because
 	# of suhosin etc., so let's regenerate the whole stuff now
@@ -435,7 +435,7 @@ php5_2-sapi_src_compile() {
 	phpconfutils_extension_with	"gettext"		"nls"			1
 	phpconfutils_extension_with	"gmp"			"gmp"			1
 	phpconfutils_extension_disable	"hash"			"hash"			0
-	phpconfutils_extension_without	"iconv"			"iconv"			0
+	phpconfutils_extension_with	"iconv"			"iconv"			0 "${EPREFIX}/usr"
 	phpconfutils_extension_disable	"ipv6"			"ipv6"			0
 	phpconfutils_extension_disable	"json"			"json"			0
 	phpconfutils_extension_with	"kerberos"		"kerberos"		0 "${EPREFIX}/usr"
