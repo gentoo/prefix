@@ -1324,9 +1324,10 @@ gcc_do_configure() {
 
 	# On Darwin we need libdir to be set in order to get correct install names
 	# for things like libobjc-gnu, libgcj and libfortran.  If we enable it on
-	# non-Darwin we break compilation interestingly.
+	# non-Darwin we screw up the behaviour this eclass relies on.  We in
+	# particular need this over --libdir for bug #255315.
 	[[ ${CHOST} == *-darwin* ]] && \
-		confgcc="${confgcc} --libdir=${EPREFIX}${LIBPATH}"
+		confgcc="${confgcc} --enable-version-specific-runtime-libs"
 
 	# All our cross-compile logic goes here !  woo !
 	confgcc="${confgcc} --host=${CHOST}"
