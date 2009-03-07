@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.34 2009/02/25 09:17:26 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.35 2009/03/04 21:08:32 yngwin Exp $
+
+*qt-core-4.5.0 (04 Mar 2009)
+
+  04 Mar 2009; Ben de Groot <yngwin@gentoo.org> +qt-core-4.5.0.ebuild:
+  Version bump
 
   25 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
   -qt-core-4.4.2-r1.ebuild, qt-core-4.4.2-r2.ebuild,
