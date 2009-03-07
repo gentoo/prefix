@@ -26,7 +26,8 @@ PATCHES=( "${FILESDIR}"/97462-esearch-metadata.patch
 	"${FILESDIR}"/231223-fix-deprecated.patch
 	"${FILESDIR}"/253216-fix-ebuild-option.patch
 	"${FILESDIR}"/186994-esync-quiet.patch
-	"${FILESDIR}"/146555-esearch-manifest2.patch )
+	"${FILESDIR}"/146555-esearch-manifest2.patch
+	"${FILESDIR}"/${P}-prefix.patch )
 
 pkg_setup() {
 	if ! built_with_use dev-lang/python readline ; then
