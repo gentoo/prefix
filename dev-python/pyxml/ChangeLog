@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/pyxml
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.48 2008/12/27 18:31:28 neurogeek Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.49 2009/03/04 19:46:54 neurogeek Exp $
+
+*pyxml-0.8.4-r2 (04 Mar 2009)
+
+  04 Mar 2009; Jesus Rivero <neurogeek@gentoo.org>
+  +files/pyxml-0.8.4-python-2.6.patch, pyxml-0.8.4.ebuild,
+  +pyxml-0.8.4-r2.ebuild:
+  Version bump. Closes bug #250999. Thanks to Nanikata for the patch.
+  Changes to 0.8.4 to fix ebuild.minorsyn
 
   27 Dec 2008; Jesus Rivero <neurogeek@gentoo.org> pyxml-0.8.4-r1.ebuild:
   Added python_mod_optimize to postinstall phase
