@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.5.ebuild,v 1.13 2009/01/21 06:34:50 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.7.ebuild,v 1.1 2009/03/05 17:13:59 armin76 Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools
-PATCH="${P}-patches-0.1"
+PATCH="${PN}-1.9.0.5-patches-0.1"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
@@ -23,8 +23,8 @@ IUSE=""
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12
-	>=dev-libs/nspr-4.7.1
+	>=dev-libs/nss-3.12.2
+	>=dev-libs/nspr-4.7.3
 	>=app-text/hunspell-1.1.9
 	>=media-libs/lcms-1.17"
 
@@ -172,7 +172,8 @@ src_install() {
 		>> "${ED}"${MOZILLA_FIVE_HOME}/defaults/pref/vendor.js
 
 	if use java ; then
-	    java-pkg_dojar "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
-	    rm -f "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
+	    java-pkg_regjar "${ED}"${MOZILLA_FIVE_HOME}/javaxpcom.jar
+	    java-pkg_regjar "${ED}"${MOZILLA_FIVE_HOME}/sdk/lib/MozillaGlue.jar
+	    java-pkg_regjar "${ED}"${MOZILLA_FIVE_HOME}/sdk/lib/MozillaInterfaces.jar
 	fi
 }
