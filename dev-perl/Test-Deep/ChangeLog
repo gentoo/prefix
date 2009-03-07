@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Test-Deep
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/ChangeLog,v 1.24 2008/07/18 13:17:03 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/ChangeLog,v 1.25 2009/03/06 12:48:36 tove Exp $
+
+*Test-Deep-0.104 (06 Mar 2009)
+
+  06 Mar 2009; Torsten Veller <tove@gentoo.org> +Test-Deep-0.104.ebuild:
+  Version bump
 
   18 Jul 2008; Torsten Veller <tove@gentoo.org> -Test-Deep-0.096.ebuild,
   -Test-Deep-0.097.ebuild:
