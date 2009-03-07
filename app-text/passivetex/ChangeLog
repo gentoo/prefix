@@ -1,6 +1,9 @@
 # ChangeLog for app-text/passivetex
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/passivetex/ChangeLog,v 1.24 2009/02/27 15:40:58 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/passivetex/ChangeLog,v 1.25 2009/03/06 20:30:20 jer Exp $
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> passivetex-1.25.ebuild:
+  Stable for HPPA (bug #253551).
 
   27 Feb 2009; Ferris McCormick <fmccor@gentoo.org> passivetex-1.25.ebuild:
   Sparc stable, part of Bug #253551.
