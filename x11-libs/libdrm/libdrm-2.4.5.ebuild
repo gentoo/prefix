@@ -13,12 +13,14 @@ DESCRIPTION="X.Org libdrm library"
 HOMEPAGE="http://dri.freedesktop.org/"
 SRC_URI="http://dri.freedesktop.org/libdrm/${P}.tar.gz"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 RESTRICT="test" # see bug #236845
 
 RDEPEND="dev-libs/libpthread-stubs"
 DEPEND="${RDEPEND}"
+
+PATCHES=( "${FILESDIR}"/${P}-solaris.patch )
 
 # FIXME, we should try to see how we can fit the --enable-udev configure flag
 
