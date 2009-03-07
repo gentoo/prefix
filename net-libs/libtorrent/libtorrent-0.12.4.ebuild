@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.4.ebuild,v 1.4 2009/02/15 15:04:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.4.ebuild,v 1.6 2009/03/06 00:11:38 jer Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,8 @@ IUSE="debug ipv6"
 RDEPEND=">=dev-libs/libsigc++-2.2.2"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
+
+PATCHES=( "${FILESDIR}/${P}-gcc44.patch" )
 
 src_unpack() {
 	base_src_unpack
