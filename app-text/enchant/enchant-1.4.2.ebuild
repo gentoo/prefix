@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/enchant-1.4.2.ebuild,v 1.10 2009/02/24 17:49:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/enchant-1.4.2.ebuild,v 1.12 2009/03/06 15:51:16 ranger Exp $
 
 EAPI="prefix 1"
 inherit libtool confutils autotools
