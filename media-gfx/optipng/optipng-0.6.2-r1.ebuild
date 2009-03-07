@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.6.2-r1.ebuild,v 1.2 2009/02/25 20:10:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.6.2-r1.ebuild,v 1.4 2009/03/06 16:27:44 armin76 Exp $
 
 EAPI="prefix"
 
