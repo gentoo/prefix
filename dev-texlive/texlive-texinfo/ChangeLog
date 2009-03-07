@@ -1,6 +1,9 @@
 # ChangeLog for dev-texlive/texlive-texinfo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/ChangeLog,v 1.20 2009/02/27 15:35:09 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/ChangeLog,v 1.21 2009/03/06 22:00:57 jer Exp $
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> texlive-texinfo-2008.ebuild:
+  Stable for HPPA (bug #253551).
 
   27 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
   texlive-texinfo-2008.ebuild:
