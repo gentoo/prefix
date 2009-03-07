@@ -194,6 +194,11 @@ src_install() {
 	emake -j1 DESTDIR="${D}" install || die
 	cd "${WORKDIR}"/build
 
+	# Punt some tools which are really only useful while building gcc
+	find "${ED}" -name install-tools -prune -type d -exec rm -rf "{}" \;
+	# This one comes with binutils
+	find "${ED}" -name libiberty.a -exec rm -f "{}" \;
+
 	# Basic sanity check
 	if ! is_crosscompile ; then
 		local EXEEXT

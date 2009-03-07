@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  07 Mar 2009; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5490-r1.ebuild, gcc-apple-4.0.1_p5490-r1.ebuild,
+  gcc-apple-4.2.1_p5566-r1.ebuild, gcc-apple-4.2.1_p5566-r1.ebuild:
+  Remove libiberty.a, it is not needed and it conflicts with slots
+
 *gcc-apple-4.2.1_p5566-r1 (07 Mar 2009)
 *gcc-apple-4.0.1_p5490-r1 (07 Mar 2009)
 
