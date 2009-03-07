@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.11.ebuild,v 1.1 2009/02/09 23:10:03 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.11.ebuild,v 1.3 2009/03/06 15:50:18 ranger Exp $
 
 EAPI="prefix"
 
