@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.18-r1.ebuild,v 1.1 2009/03/03 10:18:58 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.18-r1.ebuild,v 1.2 2009/03/04 13:59:42 loki_val Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-1.0.17-regtests-need-sqlite.patch"
 	epatch "${FILESDIR}/${PN}-1.0.18-m4macro.patch"
 	epatch "${FILESDIR}/${PN}-1.0.18-less_strict_tests.patch"
+	rm M4/libtool.m4 M4/lt*.m4 || die "rm failed"
 
 	AT_M4DIR=M4 eautoreconf
 	epunt_cxx
