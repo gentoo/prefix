@@ -1,6 +1,14 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.186 2009/01/06 01:57:42 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.188 2009/03/06 15:37:47 ranger Exp $
+
+  06 Mar 2009; Brent Baude <ranger@gentoo.org>
+  gnome-terminal-2.24.2-r1.ebuild:
+  Marking gnome-terminal-2.24.2-r1 ppc stable for bug 260063
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org>
+  gnome-terminal-2.24.2-r1.ebuild:
+  Marking gnome-terminal-2.24.2-r1 ppc64 stable for bug 260063
 
   06 Jan 2009; Mart Raudsepp <leio@gentoo.org>
   -files/gnome-terminal-2.22.0-fix-detach-tab.patch,
