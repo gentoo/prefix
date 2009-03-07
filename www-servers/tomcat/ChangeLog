@@ -1,6 +1,15 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.207 2009/01/27 19:11:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.208 2009/03/06 18:50:13 betelgeuse Exp $
+
+*tomcat-6.0.18-r3 (06 Mar 2009)
+*tomcat-5.5.27-r3 (06 Mar 2009)
+
+  06 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
+  +files/5.5/examples-cal.patch, +files/6/examples-cal.patch,
+  +tomcat-5.5.27-r3.ebuild, +tomcat-6.0.18-r3.ebuild:
+  Add patch for XSS issue in examples for security bug #261460. Use use deps
+  in 5.5.
 
   27 Jan 2009; Brent Baude <ranger@gentoo.org> tomcat-6.0.18-r2.ebuild:
   stable ppc64, bug 255469

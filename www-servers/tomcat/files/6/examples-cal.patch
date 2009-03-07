@@ -1,0 +1,11 @@
+--- webapps/examples/jsp/cal/cal2.jsp	2008-07-21 17:01:28.000000000 -0700
++++ webapps/examples/jsp/cal/cal2-new.jsp	2009-03-06 08:22:39.000000000 -0800
+@@ -35,7 +35,7 @@
+ <FORM METHOD=POST ACTION=cal1.jsp>
+ <BR> 
+ <BR> <INPUT NAME="date" TYPE=HIDDEN VALUE="current">
+-<BR> <INPUT NAME="time" TYPE=HIDDEN VALUE=<%= util.HTMLFilter.filter(time) %>
++<BR> <INPUT NAME="time" TYPE=HIDDEN VALUE="<%= util.HTMLFilter.filter(time) %>">
+ <BR> <h2> Description of the event <INPUT NAME="description" TYPE=TEXT SIZE=20> </h2>
+ <BR> <INPUT TYPE=SUBMIT VALUE="submit">
+ </FORM>
