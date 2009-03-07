@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.274 2009/02/28 10:23:12 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.275 2009/03/05 19:20:34 flameeyes Exp $
+
+  05 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml,
+  ffmpeg-9999.ebuild:
+  Fix build with recent changes upstream (vhook removed in favour of
+  libavfilter, swscale cannot be disabled anylonger); merge the EAPI=1
+  changes from the snapshotted version; add 3dnowext USE flag.
 
   28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   custom-cflags is a global USE-flag
