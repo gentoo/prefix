@@ -1,6 +1,14 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.164 2009/01/03 08:28:18 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.166 2009/03/06 00:35:27 jer Exp $
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Add myself as maintainer.
+
+*lftp-3.7.9 (06 Mar 2009)
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> +lftp-3.7.9.ebuild:
+  Version bump thanks to Lars (Polynomial-C) (bug #261394).
 
 *lftp-3.7.7 (03 Jan 2009)
 

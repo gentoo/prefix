@@ -8,5 +8,9 @@
     <description>I seem to have inherited this one through consistant maintaince. I you want 
 to version bump it go ahead.</description>
 </maintainer>
+<maintainer>
+  <email>jer@gentoo.org</email>
+  <name>Jeroen Roovers</name>
+</maintainer>
 <longdescription></longdescription>
 </pkgmetadata>
