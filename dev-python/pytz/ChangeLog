@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.18 2009/03/02 18:20:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.19 2009/03/07 04:44:36 darkside Exp $
+
+  07 Mar 2009; Jeremy Olexa <darkside@gentoo.org> pytz-2008i.ebuild:
+  amd64 stable, bug 260857
 
   02 Mar 2009; Raúl Porcel <armin76@gentoo.org> pytz-2008i.ebuild:
   ia64/sparc/x86 stable wrt #260857
