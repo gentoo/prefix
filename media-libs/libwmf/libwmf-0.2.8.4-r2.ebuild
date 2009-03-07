@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r1.ebuild,v 1.2 2008/06/30 23:10:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r2.ebuild,v 1.1 2009/03/06 05:18:15 darkside Exp $
 
 EAPI="prefix"
 
@@ -93,11 +93,15 @@ set_gtk_confdir() {
 }
 
 pkg_postinst() {
-	set_gtk_confdir
-	gdk-pixbuf-query-loaders > "${GTK2_CONFDIR}/gdk-pixbuf.loaders"
+	if use gtk; then
+		set_gtk_confdir
+		gdk-pixbuf-query-loaders > "${GTK2_CONFDIR}/gdk-pixbuf.loaders"
+	fi
 }
 
 pkg_postrm() {
-	set_gtk_confdir
-	gdk-pixbuf-query-loaders > "${GTK2_CONFDIR}/gdk-pixbuf.loaders"
+	if use gtk; then
+		set_gtk_confdir
+		gdk-pixbuf-query-loaders > "${GTK2_CONFDIR}/gdk-pixbuf.loaders"
+	fi
 }
