@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.16.ebuild,v 1.7 2009/02/15 12:34:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.16.ebuild,v 1.8 2009/03/05 22:31:19 ranger Exp $
 
 EAPI="prefix"
 
