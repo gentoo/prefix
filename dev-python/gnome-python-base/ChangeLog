@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gnome-python-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python-base/ChangeLog,v 1.6 2009/03/03 20:51:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python-base/ChangeLog,v 1.7 2009/03/05 23:29:56 ranger Exp $
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org>
+  gnome-python-base-2.22.3.ebuild:
+  Marking gnome-python-base-2.22.3 ppc stable for bug 258040
 
   03 Mar 2009; Brent Baude <ranger@gentoo.org>
   gnome-python-base-2.22.3.ebuild:
