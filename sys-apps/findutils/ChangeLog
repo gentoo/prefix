@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/findutils
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.177 2008/12/25 21:30:53 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.178 2009/03/04 07:15:25 vapier Exp $
+
+*findutils-4.5.3-r1 (04 Mar 2009)
+
+  04 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/findutils-4.5.3-curdepth.patch,
+  +files/findutils-4.5.3-fts-assert.patch, +findutils-4.5.3-r1.ebuild:
+  Add fix from upstream for #253119 by Gilles Dartiguelongue and a change to
+  hopefully fix #253570 by Barbu Eros Iulian.
 
 *findutils-4.5.3 (25 Dec 2008)
 
