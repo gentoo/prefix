@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.171 2009/02/28 23:25:16 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.173 2009/03/06 08:11:17 keri Exp $
+
+  06 Mar 2009; <keri@gentoo.org> swi-prolog-5.6.64.ebuild,
+  swi-prolog-5.7.7.ebuild:
+  Fix stream encoding in rdf_write_xml/2
+
+  06 Mar 2009; <keri@gentoo.org> swi-prolog-5.7.7.ebuild:
+  Remove redundant arguments to econf
 
   28 Feb 2009; <keri@gentoo.org> swi-prolog-5.6.64.ebuild:
   Support gmp-allocation checks and thread resource exceptions
