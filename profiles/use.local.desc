@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4251 2009/03/03 21:07:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4256 2009/03/07 04:47:46 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -215,7 +215,14 @@ app-emulation/mol:sheep - Support for the sheep net driver
 app-emulation/open-vm-tools:unity - Enable host unity support
 app-emulation/pearpc:jit - Use the JITC-x86 CPU
 app-emulation/point2play:emerald - For people who are in the Transgaming Emerald Club
-app-emulation/qemu-softmmu:kqemu - Enables the kernel acceleration module on a x86 cpu
+app-emulation/qemu-softmmu:alsa - Enable alsa output for sound emulation
+app-emulation/qemu-softmmu:esd - Enable esound output for sound emulation
+app-emulation/qemu-softmmu:gnutls - Enable TLS support for the VNC console server
+app-emulation/qemu-softmmu:kqemu - Enables the kernel acceleration module on a x86/x86-64 cpu
+app-emulation/qemu-softmmu:ncurses - Enable the ncurses-based console
+app-emulation/qemu-softmmu:pulseaudio - Enable pulseaudio output for sound emulation
+app-emulation/qemu-softmmu:sdl - Enable the SDL-based console
+app-emulation/qemu-softmmu:vde - Enable VDE-based networking
 app-emulation/uade:audacious - Enables support for media-sound/audacious
 app-emulation/uae:scsi - Enable the uaescsi.device
 app-emulation/uae:sdl-sound - Use media-sound/sdl-sound for audio output
@@ -1056,6 +1063,7 @@ kde-base/kopete:webpresence - Show your status and some more informations on web
 kde-base/kopete:winpopup - Enable pop-up messages sending on windows. (same as good old "net send" messages ;])
 kde-base/kopete:wlm - Enable "Windows live messenger" protocol support (New protocol from MS).
 kde-base/kopete:yahoo - Enable yahoo protocol support.
+kde-base/kpilot:avantgo - Add support for syncing Avantgo accounts
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kttsd:ktts - Enable KDE Text To Speech modules
@@ -1255,6 +1263,9 @@ media-libs/faad2:digitalradio - Digital Radio Mondiale (warning: disables other 
 media-libs/freetype:fontforge - Install internal headers required for truetype debugger in media-gfx/fontforge (built with USE=fontforge-debugger)
 media-libs/freetype:kpathsea - Enable TeX support (ttf2pk and ttf2pfb)
 media-libs/freetype:utils - Install utilities and examples from ft2demos
+media-libs/freeverb3:audacious - Build Audacious plugin
+media-libs/freeverb3:forcefpu - Disable assembly code
+media-libs/freeverb3:plugdouble - Build plugins in double precision mode (default is float)
 media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
 media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
@@ -1559,6 +1570,7 @@ media-video/dv2sub:kino - install kino plugin
 media-video/dvd-slideshow:themes - Install theme pack
 media-video/dvdrip:fping - Enables fping support for cluster rendering
 media-video/dvdrip:subtitles - Enables support for subtitle ripping
+media-video/ffmpeg:3dnowext -  Enable manually-optimised routines using the AMD 3DNow!Ex SIMD instruction set, present in modern AMD CPUs. (Check for 3dnowext in /proc/cpuinfo to know whehter you support it). 
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
 media-video/ffmpeg:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
 media-video/ffmpeg:gsm - Enables support for the gsm lossy speech compression codec via libgsm.
@@ -2309,6 +2321,7 @@ sci-biology/biopython:kdtree - Do not build KDTree module and its dependencies (
 sci-biology/clustalw-mpi:mpi_njtree - Use MPI (as opposed to serial) code for computing neighbor-joining trees
 sci-biology/clustalw-mpi:static_pairalign - Use static (as opposed to dynamic) scheduling for pair alignments
 sci-biology/hmmer:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
+sci-biology/plink:webcheck -  add support for online update checking every time the program starts 
 sci-biology/vienna-rna:no-readseq - Do not include the modified version of Don Gilbert's readseq program
 sci-biology/vienna-rna:no-utils - Do not include sequence format conversion and representation utilities
 sci-chemistry/avogadro:glsl - Enable glsl features via GLEW.

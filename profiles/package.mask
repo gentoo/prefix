@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9546 2009/03/03 17:23:18 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9551 2009/03/06 22:45:01 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,12 +31,25 @@
 
 #--- END OF EXAMPLES ---
 
+# Tomas Chvatal <scarabeus@gentoo.org> (6 Mar 2009)
+# Mask for removal per bug #261285
+# Unmaintained, broken, no new releases, don't work
+# due to 6.4.09
+net-misc/kickpim
+
+# Diego E. Pettenò <flameeyes@gmail.com> (5 Mar 2009)
+# Masked pending removal for bug #261288, multiple issues.
+# Removal scheduled for April 5th, 2009.
+dev-ruby/ruby-gdchart
+
 # Doug Goldstein <cardoe@gentoo.org> (3 Mar 2009)
 # After discussing it with NVIDIA, issues with
 # signal handling for many users require this
 # to be masked. However, some users my experience
 # better functionality with this driver
 =x11-drivers/nvidia-drivers-180.35
+
+# Tomas Chvatal <scarabeus@gentoo.org> (6 Mar 2009)
 
 # Thomas Sachau <tommy@gentoo.org> (2 Mar 2009)
 # Mask for removal, was merged into dev-java/fec
@@ -211,11 +224,6 @@ media-plugins/mythzoneminder
 # Masked until the deps are put in the tree
 >=kde-base/printer-applet-4.1.96
 >=kde-base/system-config-printer-kde-4.1.96
-
-# Michael Sterrett <mr_bones_@gentoo.org> (29 Jan 2009)
-# Old and unmaintained.  Used games-action/extreme-tuxracer instead.
-# mask for removal in 30 days.
-games-arcade/ppracer
 
 # Torsten Veller <tove@gentoo.org> (28 Jan 2009)
 # Masked for testing (#249629)
