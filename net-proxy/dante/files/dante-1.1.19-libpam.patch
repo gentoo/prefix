@@ -20,6 +20,25 @@ diff -Nru dante-1.1.19.orig/configure.ac dante-1.1.19/configure.ac
  AC_PROG_LIBTOOL
  autoconf_compflags=$CFLAGS
  CFLAGS=$oCFLAGS
+@@ -30,18 +30,6 @@
+ 
+ AM_CONDITIONAL(PRERELEASE, test x$prerelease != x)
+ 
+-#known keywords for --enable/disable-foo(=yes/no)?
+-LTINTERNAL="dlopen|dlopen_self|dlopen_self_static|fast_install|libtool_lock|win32_dll|shared_with_static_runtimes|shared_with_static_runtimes_CXX|shared_with_static_runtimes_F77"
+-KNOWN_KEYWORDS="$LTINTERNAL|shared|static|debug|warnings|diagnostic|profiling|linting|libwrap|preload|serverdl|clientdl|internal|pidfile"
+-for keyword in `set | egrep '^enable_' | sed -e 's/^enable_\(.*\)=.*/\1/'`;
+-do
+-	echo $keyword | egrep "^(${KNOWN_KEYWORDS})$" > /dev/null
+-	if test $? -ne 0; then
+-		AC_MSG_WARN([unknown option '$keyword', ignoring ...])
+-		sleep 10;
+-	fi
+-done
+-
+ #Solaris 2.5.1 is broken in many places
+ case $host in
+     *-*-solaris2.5.1)
 @@ -1288,15 +1288,18 @@
   [  --without-pam           disable pam support @<:@default=detect@:>@],
   [PAM=$withval])
