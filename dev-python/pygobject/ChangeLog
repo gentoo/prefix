@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.56 2009/02/22 20:21:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.58 2009/03/06 15:31:45 ranger Exp $
+
+  06 Mar 2009; Brent Baude <ranger@gentoo.org> pygobject-2.16.1.ebuild:
+  Marking pygobject-2.16.1 ppc stable for bug 260063
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org> pygobject-2.16.1.ebuild:
+  Marking pygobject-2.16.1 ppc64 stable for bug 260063
 
 *pygobject-2.16.1 (22 Feb 2009)
 
