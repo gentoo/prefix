@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.19.4.ebuild,v 1.2 2009/03/03 19:38:09 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.19.4.ebuild,v 1.5 2009/03/04 20:00:22 dertobi123 Exp $
 
 EAPI="prefix"
 
