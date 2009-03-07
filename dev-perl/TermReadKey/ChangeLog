@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/TermReadKey
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/TermReadKey/ChangeLog,v 1.26 2008/09/10 04:53:46 tove Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/TermReadKey/ChangeLog,v 1.27 2009/03/06 11:57:51 tove Exp $
+
+  06 Mar 2009; Torsten Veller <tove@gentoo.org> TermReadKey-2.30.ebuild:
+  Use EAPI=2 to depend on dev-lang/perl[-build]. Fixes #254980
 
   10 Sep 2008; Torsten Veller <tove@gentoo.org> TermReadKey-2.30.ebuild:
   Remove mymake="/usr"
