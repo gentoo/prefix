@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/javatoolkit-0.3.0-r2.ebuild,v 1.7 2008/09/24 20:22:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/javatoolkit-0.3.0-r2.ebuild,v 1.8 2009/03/04 20:40:54 betelgeuse Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit distutils eutils multilib
 
@@ -15,7 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE=""
 
 RDEPEND="dev-python/pyxml
-		|| ( >=dev-lang/python-2.5 dev-python/celementtree )"
+		|| ( >=dev-lang/python-2.5[xml] dev-python/celementtree )"
 
 PYTHON_MODNAME="javatoolkit"
 
