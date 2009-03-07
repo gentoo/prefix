@@ -1,6 +1,27 @@
 # ChangeLog for sys-libs/pam
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.228 2009/03/03 21:07:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.234 2009/03/06 19:12:38 armin76 Exp $
+
+  06 Mar 2009; Raúl Porcel <armin76@gentoo.org> pam-1.0.4.ebuild:
+  alpha/arm/ia64/s390/sh/x86 stable wrt #261108
+
+  05 Mar 2009; Jeroen Roovers <jer@gentoo.org> pam-1.0.4.ebuild:
+  Stable for HPPA (bug #261108).
+
+  05 Mar 2009; Ferris McCormick <fmccor@gentoo.org> pam-1.0.4.ebuild:
+  Sparc stable --- Bug #261108 --- tests now fixed and pass.
+
+  05 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/Linux-PAM-1.0.4-fix-tests.patch, -files/other.pamd,
+  -files/system-auth.pamd.epam, -pam-0.99.8.1-r1.ebuild, pam-1.0.4.ebuild:
+  Fix tests on architectures where pointers have a size different from 8.
+  Remove old version.
+
+  04 Mar 2009; Brent Baude <ranger@gentoo.org> pam-1.0.4.ebuild:
+  Marking pam-1.0.4 ppc64 for bug 261108
+
+  04 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> pam-1.0.4.ebuild:
+  Fix for libtool-1.5*, bug 261167.
 
   03 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   pam-0.99.8.1-r1.ebuild:
