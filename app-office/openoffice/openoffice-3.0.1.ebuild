@@ -1,23 +1,22 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.1.ebuild,v 1.3 2009/01/31 15:21:03 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.1.ebuild,v 1.5 2009/03/06 18:12:23 mr_bones_ Exp $
 
-WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.9"
-EAPI="prefix 1"
+EAPI="prefix 2"
 
-inherit autotools check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib toolchain-funcs
+inherit check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib toolchain-funcs
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV="3.0.1.2"
-PATCHLEVEL="OOO300"
-SRC="OOo_${PV}_src"
-MST="ooo300-m15"
-DEVPATH="http://download.go-oo.org/${PATCHLEVEL}/${MST}"
-S="${WORKDIR}/ooo"
-S_OLD="${WORKDIR}/ooo-build-${MY_PV}"
-CONFFILE="${S}/distro-configs/Gentoo.conf.in"
+MY_PV=3.0.1.2
+PATCHLEVEL=OOO300
+SRC=OOo_${PV}_src
+MST=ooo300-m15
+DEVPATH=http://download.go-oo.org/${PATCHLEVEL}/${MST}
+S=${WORKDIR}/ooo
+S_OLD=${WORKDIR}/ooo-build-${MY_PV}
+CONFFILE=${S}/distro-configs/Gentoo.conf.in
 DESCRIPTION="OpenOffice.org, a full office productivity suite."
 
 SRC_URI="${DEVPATH}-artwork.tar.bz2
@@ -131,8 +130,9 @@ DEPEND="${COMMON_DEPEND}
 	>=net-misc/curl-7.12
 	sys-libs/zlib
 	sys-apps/coreutils
-	pam? ( sys-libs/pam )
-	>=dev-lang/python-2.3.4
+	pam? ( sys-libs/pam
+		sys-apps/shadow[pam] )
+	>=dev-lang/python-2.3.4[threads]
 	java? ( || ( =virtual/jdk-1.6* =virtual/jdk-1.5* )
 		>=dev-java/ant-core-1.7 )
 	ldap? ( net-nds/openldap )"
@@ -168,8 +168,7 @@ pkg_setup() {
 		ewarn " To get a localized build, set the according LINGUAS variable(s). "
 		ewarn
 	else
-		export LINGUAS_OOO=`echo ${LINGUAS} | \
-			sed -e 's/\ben\b/en_US/g' -e 's/_/-/g'`
+		export LINGUAS_OOO=$(echo ${LINGUAS} | sed -e 's/\ben\b/en_US/g;s/_/-/g')
 	fi
 
 	if use !java; then
@@ -195,14 +194,6 @@ pkg_setup() {
 		die
 	fi
 
-	if use pam; then
-		if ! built_with_use sys-apps/shadow pam; then
-			eerror " shadow needs to be built with pam-support. "
-			eerror " rebuild it accordingly or remove the pam use-flag "
-			die
-		fi
-	fi
-
 	if use nsplugin; then
 		if pkg-config --exists libxul; then
 			BRWS="libxul"
@@ -215,17 +206,10 @@ pkg_setup() {
 		fi
 	fi
 
-	# Check python
-	if ! built_with_use dev-lang/python threads
-	then
-	    eerror "Python needs to be built with threads."
-	    die
-	fi
-
 	java-pkg-opt-2_pkg_setup
 
 	# sys-libs/db version used
-	local db_ver="$(db_findver '>=sys-libs/db-4.3')"
+	local db_ver=$(db_findver '>=sys-libs/db-4.3')
 
 }
 
@@ -266,19 +250,19 @@ src_unpack() {
 		echo "--without-system-mozilla" >> ${CONFFILE}
 	fi
 
-	echo "`use_enable binfilter`" >> ${CONFFILE}
-	echo "`use_enable cups`" >> ${CONFFILE}
-	echo "`use_enable dbus`" >> ${CONFFILE}
-	echo "`use_enable eds evolution2`" >> ${CONFFILE}
-	echo "`use_enable gnome gnome-vfs`" >> ${CONFFILE}
-	echo "`use_enable gnome lockdown`" >> ${CONFFILE}
-	echo "`use_enable gstreamer`" >> ${CONFFILE}
-	echo "`use_enable gtk systray`" >> ${CONFFILE}
-	echo "`use_enable ldap`" >> ${CONFFILE}
-	echo "`use_enable opengl`" >> ${CONFFILE}
-	echo "`use_with ldap openldap`" >> ${CONFFILE}
-	echo "`use_enable debug crashdump`" >> ${CONFFILE}
-	echo "`use_enable debug strip-solver`" >> ${CONFFILE}
+	echo $(use_enable binfilter) >> ${CONFFILE}
+	echo $(use_enable cups) >> ${CONFFILE}
+	echo $(use_enable dbus) >> ${CONFFILE}
+	echo $(use_enable eds evolution2) >> ${CONFFILE}
+	echo $(use_enable gnome gnome-vfs) >> ${CONFFILE}
+	echo $(use_enable gnome lockdown) >> ${CONFFILE}
+	echo $(use_enable gstreamer) >> ${CONFFILE}
+	echo $(use_enable gtk systray) >> ${CONFFILE}
+	echo $(use_enable ldap) >> ${CONFFILE}
+	echo $(use_enable opengl) >> ${CONFFILE}
+	echo $(use_with ldap openldap) >> ${CONFFILE}
+	echo $(use_enable debug crashdump) >> ${CONFFILE}
+	echo $(use_enable debug strip-solver) >> ${CONFFILE}
 
 	# Extension stuff
 	echo "--with-extension-integration" >> ${CONFFILE}
@@ -289,14 +273,12 @@ src_unpack() {
 	# Use splash screen without Sun logo
 	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.bmp\\\"" >> ${CONFFILE}
 
-	eautoreconf
-
 }
 
-src_compile() {
+src_configure() {
 
 	# Use multiprocessing by default now, it gets tested by upstream
-	export JOBS=`echo "${MAKEOPTS}" | sed -e "s/.*-j\([0-9]\+\).*/\1/"`
+	export JOBS=$(echo "${MAKEOPTS}" | sed -e "s/.*-j\([0-9]\+\).*/\1/")
 
 	# Compile problems with these ...
 	filter-flags "-funroll-loops"
@@ -322,12 +304,11 @@ src_compile() {
 
 	# Make sure gnome-users get gtk-support
 	local GTKFLAG="--disable-gtk --disable-cairo --without-system-cairo"
-	( use gtk || use gnome ) && GTKFLAG="--enable-gtk --enable-cairo --with-system-cairo"
+	{ use gtk || use gnome; } && GTKFLAG="--enable-gtk --enable-cairo --with-system-cairo"
 
 	cd "${S}"
-	./configure \
+	./configure --with-distro="Gentoo" \
 		--prefix="${EPREFIX}"/usr \
-		--with-distro="Gentoo" \
 		--with-arch="${ARCH}" \
 		--with-srcdir="${DISTDIR}" \
 		--with-lang="${LINGUAS_OOO}" \
@@ -336,13 +317,13 @@ src_compile() {
 		--with-installed-ooo-dirname="openoffice" \
 		--with-tag="${MST}" \
 		${GTKFLAG} \
-		`use_enable mono` \
-		`use_enable kde` \
-		`use_enable !debug strip` \
-		`use_enable odk` \
-		`use_enable pam` \
-		`use_with java` \
-		`use_with templates sun-templates` \
+		$(use_enable mono) \
+		$(use_enable kde) \
+		$(use_enable !debug strip) \
+		$(use_enable odk) \
+		$(use_enable pam) \
+		$(use_with java) \
+		$(use_with templates sun-templates) \
 		--disable-access \
 		--disable-post-install-scripts \
 		--enable-extensions \
@@ -351,7 +332,10 @@ src_compile() {
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		|| die "Configuration failed!"
 
-	einfo "Building OpenOffice.org..."
+}
+
+src_compile() {
+
 	use kde && set-kdedir 3
 	make || die "Build failed"
 
