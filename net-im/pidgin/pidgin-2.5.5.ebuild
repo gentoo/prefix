@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.4.ebuild,v 1.5 2009/03/04 23:53:29 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.5.ebuild,v 1.1 2009/03/04 23:53:29 tester Exp $
 
 EAPI="prefix 2"
 
@@ -81,6 +81,10 @@ pkg_setup() {
 		elog "will be built."
 		einfo
 	fi
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-2.5.4-icq.patch
 }
 
 src_configure() {

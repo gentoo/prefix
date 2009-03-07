@@ -1,6 +1,13 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.85 2009/02/20 17:23:27 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.86 2009/03/04 23:53:29 tester Exp $
+
+*pidgin-2.5.5 (04 Mar 2009)
+
+  04 Mar 2009; Olivier Crête <tester@gentoo.org>
+  files/pidgin-2.5.4-icq.patch, pidgin-2.5.4.ebuild, pidgin-2.5.4-r1.ebuild,
+  +pidgin-2.5.5.ebuild:
+  Version bump, update ICQ patch, remove gnome2.eclass EAPI 2 compat code
 
   20 Feb 2009; Olivier Crête <tester@gentoo.org>
   +files/pidgin-2.5.4-icq-messages-magic.patch, pidgin-2.5.4-r1.ebuild:
