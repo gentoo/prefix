@@ -1,6 +1,14 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.155 2009/02/27 05:56:24 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.157 2009/03/07 03:21:12 darkside Exp $
+
+  07 Mar 2009; Jeremy Olexa <darkside@gentoo.org>
+  bash-completion-20081219-r1.ebuild:
+  amd64 stable, bug 259724
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org>
+  bash-completion-20081219-r1.ebuild:
+  Stable for HPPA (bug #259724).
 
   27 Feb 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
   I will monitor this through the shell-tools alias
