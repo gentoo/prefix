@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/libgnome-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/libgnome-python/ChangeLog,v 1.4 2009/03/03 20:53:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/libgnome-python/ChangeLog,v 1.5 2009/03/05 23:31:31 ranger Exp $
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org>
+  libgnome-python-2.22.3.ebuild:
+  Marking libgnome-python-2.22.3 ppc stable for bug 258040
 
   03 Mar 2009; Brent Baude <ranger@gentoo.org>
   libgnome-python-2.22.3.ebuild:
