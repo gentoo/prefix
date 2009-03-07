@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/intltool-0.40.5.ebuild,v 1.2 2009/02/09 19:44:21 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/intltool-0.40.5.ebuild,v 1.4 2009/03/06 15:29:35 ranger Exp $
 
 EAPI="prefix"
 
