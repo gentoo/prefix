@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.17 2009/01/19 15:15:48 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.18 2009/03/04 09:36:28 ali_bush Exp $
+
+  04 Mar 2009; Alistair Bush <ali_bush@gentoo.org>
+  files/configuration-4.4.3.patch:
+  Update to correct configuration patch. Old patch must have been applied
+  from bug #233840 instead of latest.
 
   19 Jan 2009; Ben de Groot <yngwin@gentoo.org> qtjambi-4.4.3.ebuild:
   Fix qt dependency (nothing should depend on the meta ebuild)
