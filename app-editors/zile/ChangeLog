@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/zile
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.72 2008/12/16 11:39:33 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.74 2009/03/06 13:46:09 ulm Exp $
+
+  06 Mar 2009; Ulrich Mueller <ulm@gentoo.org> zile-2.3.3.ebuild:
+  Remove redundant src_unpack().
+
+*zile-2.3.3 (06 Mar 2009)
+
+  06 Mar 2009; Christian Faulhammer <fauli@gentoo.org> +zile-2.3.3.ebuild:
+  version bump and set RDEPEND explicitely
 
 *zile-2.3.0 (16 Dec 2008)
 
