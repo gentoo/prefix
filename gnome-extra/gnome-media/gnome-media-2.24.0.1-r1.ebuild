@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.24.0.1-r1.ebuild,v 1.2 2009/02/08 22:05:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.24.0.1-r1.ebuild,v 1.4 2009/03/06 15:53:14 ranger Exp $
 
 EAPI="prefix 1"
 
