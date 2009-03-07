@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mg/mg-20080610.ebuild,v 1.4 2009/03/06 07:01:11 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mg/mg-20090107.ebuild,v 1.1 2009/03/06 07:01:11 fauli Exp $
 
 EAPI="prefix"
 
@@ -18,10 +18,10 @@ IUSE=""
 src_compile() {
 	# econf won't work, as this script does not accept any parameters
 	./configure || die "configure failed"
-	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" || die "emake failed"
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" || die
 }
 
 src_install()  {
-	einstall || die "einstall failed"
-	dodoc README tutorial || die "dodoc failed"
+	einstall || die
+	dodoc README tutorial || die
 }
