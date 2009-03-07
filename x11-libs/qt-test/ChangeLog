@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/qt-test
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.23 2009/03/01 11:00:58 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.25 2009/03/04 21:00:05 yngwin Exp $
+
+*qt-test-4.5.0 (04 Mar 2009)
+
+  04 Mar 2009; Ben de Groot <yngwin@gentoo.org> +qt-test-4.5.0.ebuild:
+  Version bump
+
+  04 Mar 2009; Markos Chandras <hwoarang@gentoo.org>
+  qt-test-4.5.0_rc1.ebuild:
+  Adding iconv use flag ( bug #260145 )
 
   01 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> qt-test-4.4.2.ebuild,
   qt-test-4.5.0_rc1.ebuild:
