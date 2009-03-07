@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.13 2009/02/18 20:18:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.14 2009/03/05 13:38:43 hwoarang Exp $
+
+*qt-demo-4.5.0 (05 Mar 2009)
+
+  05 Mar 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/qt-demo-4.5.0-fixes.patch, +qt-demo-4.5.0.ebuild:
+  Initial import of qt-demo-4.5.0 ( fixed bug #259113 ). Thanks to Alex Alexander (
+  alex.alexander@gmail.com ) for the patch
 
   18 Feb 2009; Jeroen Roovers <jer@gentoo.org> qt-demo-4.4.2.ebuild:
   Stable for HPPA (bug #248083).
