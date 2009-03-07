@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libcroco
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.40 2009/02/11 22:19:07 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.42 2009/03/06 15:49:58 ranger Exp $
+
+  06 Mar 2009; Brent Baude <ranger@gentoo.org> libcroco-0.6.2.ebuild:
+  Marking libcroco-0.6.2 ppc stable for bug 260063
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org> libcroco-0.6.2.ebuild:
+  Marking libcroco-0.6.2 ppc64 stable for bug 260063
 
 *libcroco-0.6.2 (11 Feb 2009)
 
