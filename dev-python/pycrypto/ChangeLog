@@ -1,6 +1,22 @@
 # ChangeLog for dev-python/pycrypto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.65 2009/03/04 04:44:45 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.70 2009/03/06 16:31:09 armin76 Exp $
+
+  06 Mar 2009; Raúl Porcel <armin76@gentoo.org> pycrypto-2.0.1-r8.ebuild:
+  alpha/arm/ia64/s390/sh/x86 stable wrt #258049
+
+  05 Mar 2009; Jeroen Roovers <jer@gentoo.org> pycrypto-2.0.1-r8.ebuild:
+  Stable for HPPA (bug #258049).
+
+  04 Mar 2009; Tobias Scherbaum <dertobi123@gentoo.org> ChangeLog:
+  ppc stable, bug #258049
+
+  04 Mar 2009; Brent Baude <ranger@gentoo.org> pycrypto-2.0.1-r8.ebuild:
+  Marking pycrypto-2.0.1-r8 ppc64 for bug 258049
+
+  04 Mar 2009; Ferris McCormick <fmccor@gentoo.org>
+  pycrypto-2.0.1-r8.ebuild:
+  Sparc stable, security bug #258049.
 
 *pycrypto-2.0.1-r8 (04 Mar 2009)
 
