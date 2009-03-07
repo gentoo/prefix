@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*gcc-apple-4.2.1_p5566-r1 (07 Mar 2009)
+*gcc-apple-4.0.1_p5490-r1 (07 Mar 2009)
+
+  07 Mar 2009; Fabian Groffen <grobian@gentoo.org>
+  -gcc-apple-4.0.1_p5490.ebuild, +gcc-apple-4.0.1_p5490-r1.ebuild,
+  -gcc-apple-4.2.1_p5566.ebuild, +gcc-apple-4.2.1_p5566-r1.ebuild:
+  Revert back to using --enable-version-specific-runtime-libs instead of
+  --libdir to make sure we get a correct include path for g++, bug #255315
+
   18 Jan 2009; Fabian Groffen <grobian@gentoo.org>
   -gcc-apple-4.0.1_p5363-r1.ebuild, -gcc-apple-4.0.1_p5465-r1.ebuild,
   -gcc-apple-4.0.1_p5484.ebuild, -gcc-apple-4.0.1_p5488.ebuild,

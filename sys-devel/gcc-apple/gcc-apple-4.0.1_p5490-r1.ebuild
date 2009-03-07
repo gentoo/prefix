@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -77,9 +77,9 @@ src_compile() {
 		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
-		--libdir=${LIBPATH} \
 		--with-gxx-include-dir=${STDCXX_INCDIR} \
-		--host=${CHOST}"
+		--host=${CHOST}
+		--enable-version-specific-runtime-libs"
 
 	if is_crosscompile ; then
 		# Straight from the GCC install doc:
