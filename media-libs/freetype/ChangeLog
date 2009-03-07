@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.215 2009/03/02 16:45:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.216 2009/03/06 02:41:47 jer Exp $
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> freetype-2.3.8.ebuild:
+  Stable for HPPA (bug #260288).
 
   02 Mar 2009; Brent Baude <ranger@gentoo.org> freetype-2.3.8.ebuild:
   Marking freetype-2.3.8 ppc64 for bug 260288
