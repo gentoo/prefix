@@ -1,19 +1,20 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ruby2ruby-1.1.7.ebuild,v 1.2 2007/10/14 05:43:58 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ruby2ruby-1.2.2.ebuild,v 1.1 2009/03/06 06:55:11 graaff Exp $
 
 EAPI="prefix"
 
-inherit ruby gems
+inherit gems
 
 DESCRIPTION="Generates readable ruby from ParseTree"
 HOMEPAGE="http://seattlerb.rubyforge.org/"
-SRC_URI="http://gems.rubyforge.org/gems/${P}.gem"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="dev-ruby/parsetree
-		>=dev-ruby/hoe-1.3.0"
+DEPEND=">=dev-ruby/parsetree-3.0
+		>=dev-ruby/hoe-1.8.2"
+
+USE_RUBY="ruby18 ruby19"
