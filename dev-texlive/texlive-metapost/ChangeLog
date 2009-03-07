@@ -1,6 +1,9 @@
 # ChangeLog for dev-texlive/texlive-metapost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.20 2009/02/27 15:31:44 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.21 2009/03/06 21:30:05 jer Exp $
+
+  06 Mar 2009; Jeroen Roovers <jer@gentoo.org> texlive-metapost-2008.ebuild:
+  Stable for HPPA (bug #253551).
 
   27 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
   texlive-metapost-2008.ebuild:
