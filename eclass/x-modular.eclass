@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.105 2009/02/18 18:40:52 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.108 2009/03/06 21:00:00 dberkholz Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -192,11 +192,19 @@ x-modular_specs_check() {
 x-modular_dri_check() {
 	# (#120057) Enabling DRI in drivers requires that the server was built with
 	# support for it
+	# Starting with xorg-server 1.5.3, DRI support is always enabled unless
+	# USE=minimal is set (see bug #252084)
 	if [[ -n "${DRIVER}" ]]; then
 		if has dri ${IUSE} && use dri; then
 			einfo "Checking for direct rendering capabilities ..."
-			if ! built_with_use --missing true x11-base/xorg-server dri; then
-				die "You must build x11-base/xorg-server with USE=dri."
+			if has_version '>=x11-base/xorg-server-1.5.3'; then
+				if built_with_use x11-base/xorg-server minimal; then
+					die "You must build x11-base/xorg-server with USE=-minimal."
+				fi
+			else
+				if ! built_with_use x11-base/xorg-server dri; then
+					die "You must build x11-base/xorg-server with USE=dri."
+				fi
 			fi
 		fi
 	fi
@@ -390,7 +398,7 @@ x-modular_src_make() {
 	emake || die "emake failed"
 }
 
-# @FUNCTION: x-modular_src_configure
+# @FUNCTION: x-modular_src_compile
 # @USAGE:
 # @DESCRIPTION:
 # Compile a package, performing all X-related tasks.
@@ -406,10 +414,18 @@ x-modular_src_compile() {
 # Creates a ChangeLog from git if using live ebuilds.
 x-modular_src_install() {
 	# Install everything to ${XDIR}
-	make \
-		DESTDIR="${D}" \
-		install \
-		|| die
+	if [[ ${CATEGORY} = x11-proto ]]; then
+		make \
+			${PN/proto/}docdir=${EPREFIX}/usr/share/doc/${PF} \
+			DESTDIR="${D}" \
+			install \
+			|| die
+	else
+		make \
+			DESTDIR="${D}" \
+			install \
+			|| die
+	fi
 # Shouldn't be necessary in XDIR=/usr
 # einstall forces datadir, so we need to re-force it
 #		datadir=${XDIR}/share \

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.17 2009/02/25 06:48:13 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.18 2009/03/03 10:41:21 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -191,7 +191,9 @@ case ${PF} in
 		;;
 	#gnome-desktop-sharp tarball
 	gnome-desktop-sharp-*)
-		add_depend ">=gnome-base/gnome-desktop-${PV_MAJOR}"
+		# NOTE: This is REQUIRED to be locked to PV_MAJOR
+		# libgnome-desktop-2.so.INTEGER is hardcoded in gnomedesktop-sharp.dll.config
+		add_depend "=gnome-base/gnome-desktop-${PV_MAJOR}*"
 		;;
 	gnome-panel-sharp-*)
 		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
