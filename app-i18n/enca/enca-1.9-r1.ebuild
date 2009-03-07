@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.9-r1.ebuild,v 1.2 2009/03/01 17:11:23 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.9-r1.ebuild,v 1.4 2009/03/07 03:29:01 darkside Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
 
-DEPEND="app-text/recode"
+DEPEND=">=app-text/recode-3.6_p15"
 RDEPEND="${DEPEND}"
 
 src_compile() {
