@@ -216,6 +216,9 @@ src_unpack() {
 	# Security bug 251017
 	# epatch "${FILESDIR}"/mplayer-1.0_rc2_p28058-demux_vqf.patch
 
+	epatch "${FILESDIR}"/${P}-solaris.patch
+	sed -i -e '1c\#!/usr/bin/env bash' "${S}/version.sh"
+
 	# Set version #
 	sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
 
