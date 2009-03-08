@@ -172,7 +172,12 @@ qt4-build_src_prepare() {
 	if ! use custom-cxxflags;then
 		# Don't let the user go too overboard with flags.
 		strip-flags
-		replace-flags -O3 -O2
+		if [[ ${CHOST} == *86*-apple-darwin* ]] ; then
+			# qmake bus errors with -O2 but -O3 works
+			replace-flags -O2 -O3
+		else
+			replace-flags -O3 -O2
+		fi
 	fi
 
 	# Bug 253127
