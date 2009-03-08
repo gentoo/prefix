@@ -13,7 +13,7 @@
 # @ECLASS-VARIABLE: EAPI
 # @DESCRIPTION:
 # By default kde eclass wants eapi 2 which might be redefinable.
-case ${EAPI} in
+case ${EAPI/prefix/} in
 	2) : ;;
 	*) die "No way! EAPI older than 2 is not supported." ;;
 esac

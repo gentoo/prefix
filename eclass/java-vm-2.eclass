@@ -15,7 +15,8 @@
 inherit eutils fdo-mime
 
 DEPEND="=dev-java/java-config-2*"
-hasq "${EAPI//prefix }" 0 1 && DEPEND="${DEPEND} >=sys-apps/portage-2.1"
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+hasq "${eapi}" 0 1 && DEPEND="${DEPEND} >=sys-apps/portage-2.1"
 
 RDEPEND="
 	=dev-java/java-config-2*"

@@ -22,7 +22,8 @@
 
 inherit libtool toolchain-funcs
 
-case "${EAPI:-0}" in
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+case "${eapi:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS src_unpack src_compile src_install
 		;;
@@ -60,7 +61,8 @@ DEPEND="
 gpe_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	has "${EAPI:-0}" 0 1 && gpe_src_prepare "$@"
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
+	has "${eapi:-0}" 0 1 && gpe_src_prepare "$@"
 }
 
 # Do not call, use gpe_src_unpack() instead.
@@ -88,8 +90,9 @@ gpe_src_configure() {
 # @DESCRIPTION: (Cross-)Compiles a GPE package.
 gpe_src_compile() {
 	tc-export CC
-	has "${EAPI:-0}" 0 1 && gpe_src_configure "$@"
-	emake PREFIX=/usr || die "emake failed"
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
+	has "${eapi:-0}" 0 1 && gpe_src_configure "$@"
+	emake PREFIX=${EPREFIX}/usr || die "emake failed"
 }
 
 # @FUNCTION: gpe_src_install

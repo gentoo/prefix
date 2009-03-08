@@ -17,7 +17,7 @@
 
 inherit python multilib eutils
 
-eapi=${EAPI//prefix }
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
 case "${eapi:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
@@ -53,7 +53,7 @@ distutils_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	local eapi=${EAPI//prefix /}
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
 	has ${eapi:-0} 0 1 && distutils_src_prepare
 }
 

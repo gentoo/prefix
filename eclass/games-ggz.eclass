@@ -26,7 +26,8 @@ games-ggz_src_configure() {
 }
 
 games-ggz_src_compile() {
-	case ${EAPI:-0} in
+	local eapi=${EAPI/prefix/}
+	case ${eapi:-0} in
 		0|1) games-ggz_src_configure "$@" ;;
 	esac
 	emake || die "emake failed"

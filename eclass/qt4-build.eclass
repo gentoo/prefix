@@ -54,7 +54,7 @@ fi
 
 qt4-build_pkg_setup() {
 	# EAPI=2 ebuilds set use-deps, others need this:
-	if [[ ${EAPI//prefix } != 2 ]]; then
+	if [[ ${EAPI/prefix /} != 2 ]]; then
 		# Make sure debug setting corresponds with qt-core (bug 258512)
 		if [[ $PN != "qt-core" ]]; then
 			use debug && QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
@@ -149,7 +149,7 @@ qt4-build_src_unpack() {
 	fi
 
 	# Be backwards compatible for now
-	if [[ ${EAPI//prefix } != 2 ]]; then
+	if [[ ${EAPI/prefix /} != 2 ]]; then
 		qt4-build_src_prepare
 	fi
 }
@@ -264,7 +264,7 @@ qt4-build_src_configure() {
 
 qt4-build_src_compile() {
 	# Be backwards compatible for now
-	if [[ ${EAPI//prefix } != 2 ]]; then
+	if [[ ${EAPI/prefix /} != 2 ]]; then
 		qt4-build_src_configure
 	fi
 
@@ -619,7 +619,7 @@ qt_mkspecs_dir() {
 	echo "${spec}"
 }
 
-eapi=${EAPI//prefix }
+eapi=${EAPI/prefix/}
 case ${eapi:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postrm pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_install pkg_postrm pkg_postinst ;;
