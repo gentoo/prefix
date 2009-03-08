@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="cddb minimal +cxx"
 
 RDEPEND="cddb? ( >=media-libs/libcddb-1.0.1 )
@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-minimal.patch
 	epatch "${FILESDIR}"/${P}-fix-pkgconfig.patch
 	epatch "${FILESDIR}"/${P}-fbsd.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	sed -i -e 's:noinst_PROGRAMS:EXTRA_PROGRAMS:' test/Makefile.am \
 		|| die "unable to remove testdefault build"
