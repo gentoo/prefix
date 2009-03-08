@@ -48,6 +48,14 @@ src_configure() {
 	econf $myconf || die "configure failed"
 }
 
+src_compile() {
+	local dir
+	for dir in Source{,/Additions,/unix} SSL ; do
+		make -C ${dir} obj || die "stupid parallel fix hack fail"
+	done
+	gnustep_src_compile
+}
+
 src_install() {
 	# We need to set LD_LIBRARY_PATH because the doc generation program
 	# uses the gnustep-base libraries.  Since egnustep_env "cleans the
