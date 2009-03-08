@@ -607,7 +607,7 @@ EOT
 	# bug 256203
 	if use rar; then
 		cat >> "${ED}/etc/mplayer/mplayer.conf" << EOT
-unrarexec=/usr/bin/unrar
+unrarexec=${EPREFIX}/usr/bin/unrar
 EOT
 	fi
 
