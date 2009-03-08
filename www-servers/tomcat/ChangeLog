@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.208 2009/03/06 18:50:13 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.209 2009/03/07 10:54:41 maekke Exp $
+
+  07 Mar 2009; Markus Meier <maekke@gentoo.org> tomcat-5.5.27-r3.ebuild,
+  tomcat-6.0.18-r3.ebuild:
+  amd64/x86 stable, bug #261469
 
 *tomcat-6.0.18-r3 (06 Mar 2009)
 *tomcat-5.5.27-r3 (06 Mar 2009)
