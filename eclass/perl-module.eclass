@@ -14,7 +14,8 @@
 
 inherit eutils base
 
-case "${EAPI:-0}" in
+eai=${EAPI//prefix /}
+case "${eapi:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm src_compile src_install src_test src_unpack
 		;;
