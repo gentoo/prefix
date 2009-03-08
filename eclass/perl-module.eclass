@@ -84,7 +84,6 @@ perl-module_src_prep() {
 
 	if [[ "${PREFER_BUILDPL}" == "yes" && -f Build.PL ]] ; then
 		einfo "Using Module::Build"
-	elif [ -f Makefile.PL ] && [ ! ${PN} == "module-build" ]; then
 		perl Build.PL \
 			--installdirs=vendor \
 			--libdoc= \
@@ -176,11 +175,9 @@ if grep -q "${D}" "${f}" ; then ewarn "QA: File contains a temporary path ${f}" 
 	done
 }
 
-
 perl-module_pkg_setup() {
 	${perlinfo_done} || perlinfo
 }
-
 
 perl-module_pkg_preinst() {
 	${perlinfo_done} || perlinfo
