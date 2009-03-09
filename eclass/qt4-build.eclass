@@ -90,7 +90,7 @@ qt4-build_pkg_setup() {
 		# on mac we *need* src/gui/kernel/qapplication_mac.cpp for platfrom
 		# detection since the x11-headers package b0rkens the header
 		# installation, we have to extract src/ and includes/ completely on mac
-		# tools is needed for qt-demo
+		# tools is needed for qt-demo and some others
 		QT4_EXTRACT_DIRECTORIES="
 			${QT4_EXTRACT_DIRECTORIES}
 			src
