@@ -13,7 +13,7 @@ SRC_URI="http://launchpad.net/bzrtools/stable/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="=dev-util/bzr-$(get_version_component_range 1-2)*"
