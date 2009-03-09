@@ -180,6 +180,9 @@ bootstrap_setup() {
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
 			;;
+		x86_64-pc-freebsd*)
+			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
+			;;
 		i386-pc-netbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
 			;;
@@ -702,6 +705,9 @@ if [[ -z ${CHOST} ]]; then
 				case `uname -p` in
 					i386)
 						CHOST="i386-pc-freebsd`uname -r | sed 's|-.*$||'`"
+					;;
+					amd64)
+						CHOST="x86_64-pc-freebsd`uname -r | sed 's|-.*$||'`"
 					;;
 					*)
 						eerror "Sorry, don't know about FreeBSD on `uname -p` yet"
