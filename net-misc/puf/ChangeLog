@@ -1,0 +1,28 @@
+# ChangeLog for net-misc/puf
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/puf/ChangeLog,v 1.7 2009/02/05 13:29:11 drizzt Exp $
+
+  05 Feb 2009; Timothy Redaelli <drizzt@gentoo.org> puf-1.0.0.ebuild:
+  Add ~amd64 keyword
+
+*puf-1.0.0 (20 Jul 2007)
+
+  20 Jul 2007; Timothy Redaelli <drizzt@gentoo.org> metadata.xml,
+  +puf-1.0.0.ebuild:
+  Version bump
+  Take maintainership
+
+  14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  01 Jul 2004; Jon Hood <squinky86@gentoo.org> puf-0.93.2a.ebuild:
+  change virtual/glibc to virtual/libc
+
+*puf-0.93.2a (25 Jun 2003)
+
+  25 Jun 2003; Martin Holzer <mholzer@gentoo.org> puf-0.93.2a.ebuild:
+  Initial ebuild submitted by pst@ican.at in #22742.
+
