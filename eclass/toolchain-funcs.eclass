@@ -197,6 +197,10 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo x86-interix;;
 		i?86-pc-winnt*)
 					echo x86-winnt;;
+		i*-pc-freebsd*)
+					echo x86-freebsd;;
+		x86_64-pc-freebsd*)
+					echo x64-freebsd;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
