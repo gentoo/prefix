@@ -12,7 +12,7 @@ SRC_URI="http://alioth.debian.org/frs/download.php/2718/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris"
 IUSE="debug kde nls"
 
 RDEPEND="nls? ( virtual/libintl )"
