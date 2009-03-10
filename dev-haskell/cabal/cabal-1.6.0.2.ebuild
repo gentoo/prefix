@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.6.0.1.ebuild,v 1.3 2009/03/08 19:26:34 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.6.0.2.ebuild,v 1.2 2009/03/09 04:21:20 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ MY_P="${MY_PN}-${PV}"
 # Resolve cyclic dep between filepath and Cabal by using a private copy of
 # filepath when building Cabal.
 FP_PN=filepath
-FP_PV=1.1.0.0
+FP_PV=1.1.0.1
 FP_P=${FP_PN}-${FP_PV}
 
 DESCRIPTION="A framework for packaging Haskell software"
@@ -29,8 +29,6 @@ IUSE="doc"
 DEPEND=">=dev-lang/ghc-6.4"
 
 S="${WORKDIR}/${MY_P}"
-
-CABAL_CORE_LIB_GHC_PV="6.10.1"
 
 src_unpack() {
 	unpack ${A}
