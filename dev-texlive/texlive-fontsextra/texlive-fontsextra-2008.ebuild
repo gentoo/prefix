@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2008.ebuild,v 1.4 2009/03/06 21:13:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2008.ebuild,v 1.5 2009/03/07 10:56:44 fauli Exp $
 
 EAPI="prefix"
 

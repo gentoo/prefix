@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-fontsextra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.28 2009/03/06 21:13:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/ChangeLog,v 1.29 2009/03/07 10:56:44 fauli Exp $
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  texlive-fontsextra-2008.ebuild:
+  x86 stable, bug 253551
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org>
   texlive-fontsextra-2008.ebuild:
