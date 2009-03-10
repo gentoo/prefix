@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/epic4
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.86 2008/06/17 01:03:57 jer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.87 2009/03/07 21:14:47 cla Exp $
+
+  07 Mar 2009; Dawid Węgliński <cla@gentoo.org> epic4-2.10.ebuild:
+  Migrate to EAPI 2
 
   17 Jun 2008; Jeroen Roovers <jer@gentoo.org> epic4-2.10.ebuild:
   Stable for HPPA (bug #225023).
