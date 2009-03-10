@@ -1,6 +1,14 @@
 # ChangeLog for app-portage/esearch
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.57 2009/01/02 17:37:19 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.59 2009/03/07 19:54:57 betelgeuse Exp $
+
+  07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> esearch-0.7.1.ebuild,
+  esearch-0.7.1-r7.ebuild:
+  Migrate to EAPI 2.
+
+  07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -esearch-0.7.1-r6.ebuild:
+  Remove old ebuild.
 
   02 Jan 2009; Paul Varner <fuzzyray@gentoo.org>
   files/186994-esync-quiet.patch:

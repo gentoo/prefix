@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r7.ebuild,v 1.1 2009/01/01 02:39:33 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r7.ebuild,v 1.2 2009/03/07 19:54:57 betelgeuse Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit base eutils
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="linguas_it"
 
-RDEPEND=">=dev-lang/python-2.2
+RDEPEND=">=dev-lang/python-2.2[readline]
 	>=sys-apps/portage-2.0.50"
 
 PATCHES=( "${FILESDIR}"/97462-esearch-metadata.patch
@@ -28,16 +28,6 @@ PATCHES=( "${FILESDIR}"/97462-esearch-metadata.patch
 	"${FILESDIR}"/186994-esync-quiet.patch
 	"${FILESDIR}"/146555-esearch-manifest2.patch
 	"${FILESDIR}"/${P}-prefix.patch )
-
-pkg_setup() {
-	if ! built_with_use dev-lang/python readline ; then
-		eerror "Python has to be build with 'readline' support!"
-		eerror "To do so: USE=\"readline\" emerge python"
-		eerror "Or, add \"readline\" to your USE string in"
-		eerror "${EPREFIX}/etc/make.conf"
-		die "Works only with python readline support"
-	fi
-}
 
 src_compile() { :; }
 
