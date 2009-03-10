@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.22.87.ebuild,v 1.2 2009/02/26 14:00:56 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.22.87.ebuild,v 1.4 2009/03/08 14:39:36 maekke Exp $
 
 EAPI="prefix 1"
 inherit nsplugins rpm multilib
