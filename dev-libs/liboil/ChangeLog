@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/liboil
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.71 2008/12/25 06:48:49 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.73 2009/03/08 12:04:58 eva Exp $
+
+*liboil-0.3.15-r1 (08 Mar 2009)
+
+  08 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +liboil-0.3.15-r1.ebuild:
+  Bump to 0.3.5-r1.
+   * Don't build tests if not requested, bug #226219.
+   * Don't build examples if not requested bug #226303.
+   * Don't depend on glib if examples are not built, bug #204002.
+   * Don't forced uneeded make -j1, bug #236012.
+
+  08 Mar 2009; Joshua Kinard <kumba@gentoo.org> liboil-0.3.15.ebuild:
+  Added ~mips to KEYWORDS.
 
   25 Dec 2008; <ssuominen@gentoo.org> metadata.xml:
   Reassign to freedesktop herd.
