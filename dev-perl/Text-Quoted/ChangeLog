@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Text-Quoted
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/ChangeLog,v 1.18 2008/07/19 10:48:16 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/ChangeLog,v 1.19 2009/03/07 11:24:56 tove Exp $
+
+  07 Mar 2009; Torsten Veller <tove@gentoo.org> Text-Quoted-1.8.ebuild,
+  Text-Quoted-2.02.ebuild:
+  Fix: dev-perl/Text-Tabs+Wrap -> virtual/perl-Text-Tabs+Wrap
 
 *Text-Quoted-2.05 (19 Jul 2008)
 

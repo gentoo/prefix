@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/Text-Quoted-2.02.ebuild,v 1.4 2007/07/14 13:43:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/Text-Quoted-2.02.ebuild,v 1.5 2009/03/07 11:24:56 tove Exp $
 
 EAPI="prefix"
 
@@ -19,5 +19,5 @@ LICENSE="|| ( Artistic GPL-2 )"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
 DEPEND="dev-perl/text-autoformat
-	dev-perl/Text-Tabs+Wrap
+	virtual/perl-Text-Tabs+Wrap
 	dev-lang/perl"
