@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-mathextra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/ChangeLog,v 1.20 2009/03/06 21:55:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/ChangeLog,v 1.21 2009/03/07 11:21:07 fauli Exp $
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  texlive-mathextra-2008.ebuild:
+  x86 stable, bug 253551
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org>
   texlive-mathextra-2008.ebuild:
