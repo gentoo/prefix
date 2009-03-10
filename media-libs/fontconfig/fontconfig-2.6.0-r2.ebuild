@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.13 2008/12/07 11:50:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.14 2009/03/07 19:10:43 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 WANT_AUTOMAKE=1.9
 
 inherit eutils autotools libtool toolchain-funcs flag-o-matic
@@ -28,8 +27,10 @@ RDEPEND=">=media-libs/freetype-2.2.1
 	>=dev-libs/expat-1.95.3"
 DEPEND="
 	dev-util/pkgconfig
-	doc? (	app-text/docbook-sgml-utils
-		=app-text/docbook-sgml-dtd-3.1*	)"
+	doc? (
+		app-text/docbook-sgml-utils[jadetex]
+		=app-text/docbook-sgml-dtd-3.1*
+	)"
 PDEPEND="!x86-winnt? (
 		app-admin/eselect-fontconfig
 		media-fonts/corefonts
@@ -38,21 +39,7 @@ PDEPEND="!x86-winnt? (
 # this. In Gentoo Prefix, there is no fonts automatically pulled in by X, etc.
 # So we must install them here. (bug #235553)
 
-pkg_setup() {
-	#To get docbook2pdf
-	if use doc && !	{	built_with_use --missing false app-text/docbook-sgml-utils jadetex \
-				|| \
-				built_with_use --missing false app-text/docbook-sgml-utils tetex;
-			}
-	then
-		die "For this package to be built with the doc use flag, app-text/docbook-sgml-utils must be built with the jadetex use flag"
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epunt_cxx #74077
 	epatch "${FILESDIR}"/${P}-parallel.patch
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
@@ -62,7 +49,7 @@ src_unpack() {
 	eautoreconf # required for winnt, was eautomake and elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	# harvest some font locations, such that users can benefit from the
@@ -92,8 +79,6 @@ src_compile() {
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
 		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
 		${myconf} || die
-
-	emake || die
 }
 
 src_install() {
@@ -117,7 +102,7 @@ src_install() {
 		dodoc doc/fontconfig-devel.{txt,pdf}
 	fi
 
-	dodoc AUTHORS ChangeLog README
+	dodoc AUTHORS ChangeLog README || die
 
 	# Changes should be made to /etc/fonts/local.conf, and as we had
 	# too much problems with broken fonts.conf, we force update it ...

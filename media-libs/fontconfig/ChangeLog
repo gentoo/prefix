@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.131 2008/12/05 22:54:49 loki_val Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.132 2009/03/07 19:10:43 betelgeuse Exp $
+
+  07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
+  fontconfig-2.6.0-r2.ebuild:
+  Migrate to EAPI 2. Fixes bug #261600.
 
   05 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
   fontconfig-2.6.0-r2.ebuild:
