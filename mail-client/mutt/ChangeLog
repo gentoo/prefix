@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mutt
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.124 2009/01/12 19:10:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.125 2009/03/09 18:55:11 grobian Exp $
+
+  09 Mar 2009; Fabian Groffen <grobian@gentoo.org> metadata.xml,
+  mutt-1.5.19.ebuild:
+  Upstream has updated the sidebar patch
 
   12 Jan 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.19.ebuild:
   Drop wc-func bit for darwin, it doesn't change a thing on Darwin8 and simply

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.2 2009/01/12 19:10:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.3 2009/03/09 18:55:11 grobian Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ PATCHSET_REV=""
 
 # note: latest sidebar patches can be found here:
 # http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
-SIDEBAR_PATCH_N="patch-1.5.18.sidebar.20080611.txt"
+SIDEBAR_PATCH_N="patch-1.5.19.sidebar.20090308.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"

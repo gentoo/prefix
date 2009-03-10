@@ -6,6 +6,9 @@
 		<email>ferdy@gentoo.org</email>
 		<name>Fernando J. Pereda</name>
 	</maintainer>
+	<maintainer>
+		<email>grobian@gentoo.org></email>
+	</maintainer>
 	<use>
 		<flag name='buffysize'>Enable buffysize workaround, see
 			bug #72422</flag>
