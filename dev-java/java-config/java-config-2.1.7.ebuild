@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.7.ebuild,v 1.2 2009/02/13 18:41:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.7.ebuild,v 1.6 2009/03/09 22:35:55 ken69267 Exp $
 
 EAPI="prefix"
 
