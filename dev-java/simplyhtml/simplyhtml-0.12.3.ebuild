@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/simplyhtml-0.12.3.ebuild,v 1.2 2009/01/27 19:57:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/simplyhtml-0.12.3.ebuild,v 1.3 2009/03/09 21:22:45 maekke Exp $
 
 EAPI="prefix"
 
