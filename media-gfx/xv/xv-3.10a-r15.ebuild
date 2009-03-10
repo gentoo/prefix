@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.10 2008/11/10 06:36:46 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.11 2009/03/07 13:59:41 loki_val Exp $
 
 EAPI="prefix"
 
@@ -87,5 +87,5 @@ src_install() {
 
 	dodoc CHANGELOG BUGS IDEAS
 	doicon "${FILESDIR}"/${PN}.png
-	make_desktop_entry xv
+	make_desktop_entry xv "" "" "Graphics;Viewer"
 }
