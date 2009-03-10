@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.149 2009/02/05 01:50:45 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.151 2009/03/09 15:41:59 fmccor Exp $
+
+  09 Mar 2009; Ferris McCormick <fmccor@gentoo.org> erlang-12.2.5-r1.ebuild:
+  Sparc stable, Bug #261673.
+
+  08 Mar 2009; Markus Meier <maekke@gentoo.org> erlang-12.2.5-r1.ebuild:
+  amd64/x86 stable, bug #261673
 
 *erlang-12.2.5-r1 (05 Feb 2009)
 
