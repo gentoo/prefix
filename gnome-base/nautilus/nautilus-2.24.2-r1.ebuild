@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.1.ebuild,v 1.1 2008/10/20 21:55:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2-r1.ebuild,v 1.1 2009/03/09 23:55:52 eva Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit gnome2 eutils virtualx
 
@@ -51,6 +51,11 @@ pkg_setup() {
 		$(use_enable beagle)
 		$(use_enable tracker)
 		$(use_enable xmp)"
+}
+
+src_prepare() {
+	# Fix update of scrollbars, bug #260965
+	epatch "${FILESDIR}/${P}-scrollbars.patch"
 }
 
 src_test() {
