@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="contrast exif gimp gnome openmp timezone"
 
 RDEPEND="media-libs/jpeg
