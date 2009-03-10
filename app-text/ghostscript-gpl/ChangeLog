@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.64 2009/02/28 19:19:10 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.66 2009/03/08 11:24:19 armin76 Exp $
+
+  08 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.63.ebuild:
+  s390/sh stable
+
+  07 Mar 2009; Peter Volkov <pva@gentoo.org> ghostscript-gpl-8.64-r1.ebuild:
+  ~mips added, we need to kill ghostscript-esp.
 
 *ghostscript-gpl-8.64-r1 (28 Feb 2009)
 
