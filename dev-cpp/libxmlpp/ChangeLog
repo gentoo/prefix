@@ -1,6 +1,14 @@
 # ChangeLog for dev-cpp/libxmlpp
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/libxmlpp/ChangeLog,v 1.85 2009/02/26 14:57:05 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/libxmlpp/ChangeLog,v 1.86 2009/03/08 13:49:37 eva Exp $
+
+*libxmlpp-2.24.3 (08 Mar 2009)
+
+  08 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libxmlpp-1.0.4-r2.ebuild, -libxmlpp-2.24.1.ebuild,
+  +libxmlpp-2.24.3.ebuild:
+  Bump to 2.24.3. Break ABI in TextReader but shouldn't be a problem.
+  Clean up old revisions.
 
   26 Feb 2009; Joseph Jezak <josejx@gentoo.org> libxmlpp-1.0.5.ebuild:
   Marked ppc stable, ppc64 unstable for bug #245301.
