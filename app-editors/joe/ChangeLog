@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/joe
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.64 2009/02/17 14:37:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.66 2009/03/08 17:27:14 drizzt Exp $
+
+  08 Mar 2009; Timothy Redaelli <drizzt@gentoo.org> joe-3.7.ebuild:
+  Add ~x86-fbsd keyword wrt #261620
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org> joe-3.5.ebuild,
+  joe-3.7.ebuild:
+  prune built_with_use and thus depend on a higher version of xterm
 
   17 Feb 2009; Ulrich Mueller <ulm@gentoo.org> joe-3.5.ebuild,
   joe-3.7.ebuild:
