@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.13.0.ebuild,v 1.2 2008/10/27 10:26:06 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.14.1.ebuild,v 1.1 2009/03/08 01:05:47 eva Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ src_unpack() {
 	cd "${S}"
 
 	# Fix declaration of codegen in .pc
-	epatch "${FILESDIR}/${P}-fix-codegen-location.patch"
+	epatch "${FILESDIR}/${PN}-2.13.0-fix-codegen-location.patch"
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
@@ -48,7 +48,6 @@ src_compile() {
 }
 
 src_install() {
-	python_need_rebuild
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
@@ -80,6 +79,7 @@ src_test() {
 
 pkg_postinst() {
 	python_version
+	python_need_rebuild
 	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 }
 
