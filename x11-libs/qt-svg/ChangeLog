@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-svg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.24 2009/03/04 20:58:15 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.25 2009/03/07 23:16:06 hwoarang Exp $
+
+  08 Mar 2009; Markos Chandras <hwoarang@gentoo.org> qt-svg-4.5.0:
+  Removing duplicate folder from being extracted ( bug #261378 )
 
 *qt-svg-4.5.0 (04 Mar 2009)
 
