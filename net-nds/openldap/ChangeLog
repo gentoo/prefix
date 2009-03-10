@@ -1,6 +1,13 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.340 2009/03/05 10:30:36 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.341 2009/03/07 22:55:39 gentoofan23 Exp $
+
+  07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  openldap-2.3.39-r2.ebuild, openldap-2.3.40-r1.ebuild,
+  openldap-2.3.41.ebuild, openldap-2.3.41-r1.ebuild, openldap-2.3.43.ebuild,
+  openldap-2.3.43-r1.ebuild, openldap-2.4.7.ebuild, openldap-2.4.10.ebuild,
+  openldap-2.4.11.ebuild, openldap-2.4.11-r1.ebuild:
+  Fix elog which is innaccurate because of portage compression
 
   05 Mar 2009; Robin H. Johnson <robbat2@gentoo.org>
   files/openldap-2.3.34-slapd-conf:

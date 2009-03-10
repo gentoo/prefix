@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11.ebuild,v 1.1 2008/09/03 18:09:42 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.11.ebuild,v 1.2 2009/03/07 13:04:12 gentoofan23 Exp $
 
 EAPI="prefix 1"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -417,8 +417,8 @@ pkg_postinst() {
 	elog "Gentoo Guide to OpenLDAP Authentication"
 	elog "(http://www.gentoo.org/doc/en/ldap-howto.xml)"
 	elog "---"
-	elog "An example file for tuning BDB backends with openldap is:"
-	elog "/usr/share/doc/${PF}/DB_CONFIG.fast.example.gz"
+	elog "An example file for tuning BDB backends with openldap is"
+	elog "DB_CONFIG.fast.example in /usr/share/doc/${PF}/"
 
 	preserve_old_lib_notify
 	usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)

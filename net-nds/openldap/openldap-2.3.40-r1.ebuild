@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.5 2008/08/13 17:24:27 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.6 2009/03/07 13:04:12 gentoofan23 Exp $
 
 EAPI="prefix"
 
@@ -504,8 +504,8 @@ pkg_postinst() {
 	# note to bug #110412
 	echo
 	elog
-	elog "An example file for tuning BDB backends with openldap is:"
-	elog "${EPREFIX}/usr/share/doc/${PF}/DB_CONFIG.fast.example.gz"
+	elog "An example file for tuning BDB backends with openldap is"
+	elog "DB_CONFIG.fast.example in usr/share/doc/${PF}/"
 	elog
 
 	LIBSUFFIXES=".so.2.0.130 -2.2.so.7"
