@@ -1,0 +1,37 @@
+diff -ru ghostscript-8.64.orig/configure.ac ghostscript-8.64/configure.ac
+--- ghostscript-8.64.orig/configure.ac	2009-03-10 09:02:37 +0100
++++ ghostscript-8.64/configure.ac	2009-03-10 09:05:10 +0100
+@@ -994,6 +994,13 @@
+ 		DYNAMIC_LIBS=""
+ 		X_DEVS=""
+ 		;;
++		Interix)
++		INSTALL_SHARED="install-shared"
++		DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
++		DYNAMIC_LDFLAGS="-shared"
++		DYNAMIC_LIBS="-ldl"
++		X_DEVS=""
++		;;
+ 		*)
+ 		AC_MSG_ERROR([Sorry, dynamic driver support not available on this platform!])
+ 		;;
+diff -ru ghostscript-8.64.orig/contrib/gomni.c ghostscript-8.64/contrib/gomni.c
+--- ghostscript-8.64.orig/contrib/gomni.c	2009-03-10 09:02:37 +0100
++++ ghostscript-8.64/contrib/gomni.c	2009-03-10 09:07:12 +0100
+@@ -437,8 +437,14 @@
+    {
+       if (fDebugOutput) dprintf("Remapping color pointers\n");
+ 
+-      set_dev_proc(pdev, map_rgb_color, bmp_map_16m_rgb_color);
+-      set_dev_proc(pdev, map_color_rgb, bmp_map_16m_color_rgb);
++      eprintf ("\n<<<<<<<<<<<<<<<<<<<<<< ERROR >>>>>>>>>>>>>>>>>>>>>>>\n\n");
++      eprintf ("Error: bmp device needs to be dynamically accessed here!\n");
++
++	  // this cannot be done like this, because it introduces a hard
++	  // dependency to the bmp device. this would need to be done
++	  // dynamically.
++      //set_dev_proc(pdev, map_rgb_color, bmp_map_16m_rgb_color);
++      //set_dev_proc(pdev, map_color_rgb, bmp_map_16m_color_rgb);
+    }
+ 
+    if (pDev->iSync)

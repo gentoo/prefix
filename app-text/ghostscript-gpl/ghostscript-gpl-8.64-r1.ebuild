@@ -118,7 +118,7 @@ src_unpack() {
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		base/Makefile.in base/*.mak || die "sed failed"
 
-	#259641: epatch "${FILESDIR}"/${PN}-8.62-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
 
 	cd "${S}"
