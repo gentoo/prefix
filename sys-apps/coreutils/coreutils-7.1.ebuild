@@ -47,6 +47,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-mint.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
 	epatch "${FILESDIR}"/${P}-solaris-sparc64.patch
+	epatch "${FILESDIR}"/${P}-interix-fs.patch
+	epatch "${FILESDIR}"/${PN}-6.12-interix-sleep.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a

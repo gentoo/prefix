@@ -96,7 +96,7 @@ src_unpack() {
 	touch src/wheel.h
 
 	# interix requires a patch for nanosleep to work correctly.
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix-sleep.patch
+	epatch "${FILESDIR}"/${P}-interix-sleep.patch
 }
 
 src_compile() {
