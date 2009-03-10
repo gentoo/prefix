@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.252 2009/02/05 20:58:56 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.253 2009/03/07 21:50:55 fauli Exp $
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  sun-jdk-1.6.0.12.ebuild:
+  stable x86, bug 261500
 
 *sun-jdk-1.6.0.12 (05 Feb 2009)
 
