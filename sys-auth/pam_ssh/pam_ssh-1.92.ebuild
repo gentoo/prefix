@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_ssh/pam_ssh-1.92.ebuild,v 1.16 2008/12/07 11:00:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_ssh/pam_ssh-1.92.ebuild,v 1.17 2009/03/07 18:00:29 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,8 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO
+
+	find "${ED}" -name '*.la' -delete || die "Unable to remove libtool archives."
 }
 
 pkg_postinst() {
