@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r2.ebuild,v 1.2 2009/02/24 10:15:24 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r10.ebuild,v 1.1 2009/03/07 18:22:14 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
-	>=dev-ruby/ruby-config-0.3.1
+	app-admin/eselect-ruby
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"
@@ -184,17 +184,19 @@ src_install() {
 }
 
 pkg_postinst() {
-
 	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
+		eselect ruby set ruby${MY_SUFFIX}
 	fi
+
 	elog
-	elog "You can change the default ruby interpreter by ${EROOT}usr/sbin/ruby-config"
+	elog "This ebuild is compatible to eselect-ruby"
+	elog "To switch between available Ruby profiles, execute as root:"
+	elog "\teselect ruby set ruby(18|19|...)"
 	elog
 }
 
 pkg_postrm() {
 	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
+		eselect ruby set ruby${MY_SUFFIX}
 	fi
 }
