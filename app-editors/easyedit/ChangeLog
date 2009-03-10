@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/easyedit
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.18 2009/03/01 16:53:20 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.19 2009/03/09 11:25:05 hattya Exp $
+
+  09 Mar 2009; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.7.ebuild:
+  set default target to curses.
 
   01 Mar 2009; Patrick Lauer <patrick@gentoo.org> Manifest:
   Oops, Manifest fix

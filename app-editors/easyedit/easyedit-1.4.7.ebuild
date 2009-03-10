@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/easyedit-1.4.7.ebuild,v 1.1 2009/03/01 16:44:20 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/easyedit-1.4.7.ebuild,v 1.2 2009/03/09 11:25:05 hattya Exp $
 
 EAPI="prefix"
 
@@ -20,20 +20,30 @@ DEPEND=">=sys-libs/ncurses-5.0"
 RDEPEND="${DEPEND}"
 
 src_unpack() {
+
 	unpack ${A}
 	cd "${S}"
 
-	sed -i -e "s/\tcc /\t\\\\\$(CC) /" -e "/other_cflag/s/ *-s//" create.make
-	emake localmake
-	sed -i -e 's/-DNCURSES//' make.local
+	sed -i \
+		-e "s/\tcc /\t\\\\\$(CC) /" \
+		-e "/other_cflag/s/ *-s//" \
+		create.make
+
 }
 
 src_compile() {
-	emake -f make.local CC="$(tc-getCC)" curses || die
+
+	emake localmake
+	sed -i -e '/^all/s/ee/curses/' make.local
+
+	emake -f make.local CC="$(tc-getCC)" || die
+
 }
 
 src_install() {
+
 	dobin ee
 	doman ee.1
 	dodoc README.ee Changes ee.i18n.guide ee.msg
+
 }
