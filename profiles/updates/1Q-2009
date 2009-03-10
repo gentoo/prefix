@@ -8,3 +8,4 @@ move dev-perl/IPC-Cmd perl-core/IPC-Cmd
 move games-puzzle/ksudoku kde-base/ksudoku
 move net-p2p/azureus net-p2p/vuze
 move xfce-extra/verve xfce-extra/xfce4-verve
+move dev-perl/Text-Tabs+Wrap perl-core/Text-Tabs+Wrap
