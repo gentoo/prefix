@@ -1,6 +1,11 @@
 # ChangeLog for net-p2p/bittorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.132 2009/02/04 14:23:39 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.133 2009/03/07 16:01:00 betelgeuse Exp $
+
+  07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
+  bittorrent-5.0.9-r1.ebuild, -bittorrent-5.2.0.ebuild,
+  bittorrent-5.2.2.ebuild:
+  Migrate to EAPI 2.
 
 *bittorrent-5.2.2 (04 Feb 2009)
 

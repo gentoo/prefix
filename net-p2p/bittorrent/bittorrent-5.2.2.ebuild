@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2.ebuild,v 1.1 2009/02/04 14:23:39 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2.ebuild,v 1.2 2009/03/07 16:01:00 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 WX_GTK_VER="2.6"
+
 inherit distutils fdo-mime eutils wxwidgets
 
 MY_P="${P/bittorrent/BitTorrent}"
@@ -20,8 +20,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="aqua gtk"
 
-RDEPEND=">=dev-lang/python-2.3
-	gtk? ( =dev-python/wxpython-2.6* )
+RDEPEND=">=dev-lang/python-2.4.4-r14[threads]
+	gtk? ( =dev-python/wxpython-2.6*[unicode] )
 	>=dev-python/pycrypto-2.0
 	>=dev-python/twisted-2
 	dev-python/twisted-web
@@ -38,22 +38,13 @@ pkg_setup() {
 	if use gtk ; then
 		need-wxwidgets unicode ||
 			die "You must build wxGTK and wxpython with unicode support"
-
-		if ! built_with_use =dev-python/wxpython-2.6* unicode ; then
-			die "You must build wxGTK and wxpython with unicode support"
-		fi
-	fi
-
-	if ! built_with_use dev-lang/python threads; then
-		die "${PN} needs dev-lang/python with USE=\"threads\""
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	# path for documentation is in lowercase #109743
 	sed -i -r "s:(dp.*appdir):\1.lower():" BitTorrent/platform.py
+	distutils_src_prepare
 }
 
 src_install() {
