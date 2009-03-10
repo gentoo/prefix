@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ant-apache-bsf-1.7.1-r1.ebuild,v 1.2 2009/01/07 19:05:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ant-apache-bsf-1.7.1-r1.ebuild,v 1.3 2009/03/09 22:28:39 ken69267 Exp $
 
 EAPI="prefix 2"
 
