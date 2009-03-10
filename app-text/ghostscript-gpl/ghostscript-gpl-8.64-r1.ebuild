@@ -112,7 +112,7 @@ src_unpack() {
 
 	# search path fix
 	sed -i -e "s:\$\(gsdatadir\)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
-		-e "s:\$\(gsdir\)/fonts:${EPREFIX}/usr/share/fonts/default/ghostscript/:" \
+		-e 's:$(gsdir)/fonts:'"${EPREFIX}"'/usr/share/fonts/default/ghostscript/:' \
 		-e "s:exdir=.*:exdir=${EPREFIX}/usr/share/doc/${PF}/examples:" \
 		-e "s:docdir=.*:docdir=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
