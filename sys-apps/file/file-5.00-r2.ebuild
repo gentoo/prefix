@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils distutils libtool flag-o-matic
+inherit eutils distutils autotools flag-o-matic
 
 DESCRIPTION="identify a file's format by scanning binary data for patterns"
 HOMEPAGE="ftp://ftp.astron.com/pub/file/"
@@ -24,8 +24,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 	epatch "${FILESDIR}"/${P}-localization.patch #258452
 	epatch "${FILESDIR}"/${P}-short-read.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
-	elibtoolize
+	eautoreconf # required for interix, was elibtoolize
 	epunt_cxx
 
 	# make sure python links against the current libmagic #54401
