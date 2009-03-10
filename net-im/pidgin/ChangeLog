@@ -1,6 +1,10 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.86 2009/03/04 23:53:29 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.87 2009/03/07 20:36:17 gentoofan23 Exp $
+
+  07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org> pidgin-2.5.1.ebuild,
+  pidgin-2.5.2.ebuild, pidgin-2.5.3.ebuild:
+  Transition to eapi 2 use deps
 
 *pidgin-2.5.5 (04 Mar 2009)
 
