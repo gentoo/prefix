@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.9 2009/01/04 23:14:07 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.10 2009/03/08 22:05:44 maekke Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit gnome2 eutils
 
@@ -17,7 +17,7 @@ IUSE="dia doc gnome inkjar jabber lcms mmx perl postscript spell wmf"
 RESTRICT="test"
 
 COMMON_DEPEND="
-	>=app-text/poppler-bindings-0.8.3
+	>=app-text/poppler-bindings-0.8.3[cairo,gtk]
 	dev-cpp/glibmm
 	>=dev-cpp/gtkmm-2.10.0
 	>=dev-libs/boehm-gc-6.4
@@ -52,7 +52,7 @@ RDEPEND="
 	${COMMON_DEPEND}
 	dev-python/numpy
 	dia? ( app-office/dia )
-	postscript? ( >=media-gfx/pstoedit-3.44 media-gfx/skencil )
+	postscript? ( >=media-gfx/pstoedit-3.44[plotutils] media-gfx/skencil )
 	wmf? ( media-libs/libwmf )"
 
 DEPEND="${COMMON_DEPEND}
@@ -62,17 +62,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.29"
 
 pkg_setup() {
-	# bug 207070
-	if use postscript && ! built_with_use media-gfx/pstoedit plotutils ; then
-		eerror "you need to emerge media-gfx/pstoedit with plotutils support."
-		die "remerge media-gfx/pstoedit with USE=\"plotutils\""
-	fi
-	# bug 213026 and bug 213706
-	if ! built_with_use app-text/poppler-bindings cairo ; then
-		eerror "you need to emerge app-text/poppler-bindings with cairo	support."
-		die "remerge app-text/poppler-bindings with USE=\"cairo\""
-	fi
-
 	G2CONF="${G2CONF} --with-xft"
 	G2CONF="${G2CONF} $(use_with spell gtkspell)"
 	G2CONF="${G2CONF} $(use_enable jabber inkboard)"
@@ -83,10 +72,7 @@ pkg_setup() {
 	G2CONF="${G2CONF} $(use_with perl)"
 }
 
-src_unpack() {
-	gnome2_src_unpack
-
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-poppler-0.8.3.patch
 	epatch "${FILESDIR}"/${P}-bug-174720-0.patch
@@ -94,6 +80,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-bug-214171.patch
 
 	epatch "${FILESDIR}"/${P}-solaris.patch
+
+	gnome2_src_prepare
 }
 
 DOCS="AUTHORS ChangeLog NEWS README"
