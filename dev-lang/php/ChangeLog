@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.317 2009/02/02 05:41:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.318 2009/03/07 22:44:30 fauli Exp $
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org> php-5.2.8-r1.ebuild,
+  php-5.2.8-r2.ebuild:
+  use EAPI 2 for USE flag check
 
   02 Feb 2009; Mike Frysinger <vapier@gentoo.org> metadata.xml:
   Document local USE=pic flag.
