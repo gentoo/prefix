@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.84 2009/03/07 05:06:21 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.85 2009/03/08 21:16:05 maekke Exp $
+
+  08 Mar 2009; Markus Meier <maekke@gentoo.org> cmake-2.6.2-r1.ebuild:
+  x86 stable, bug #259741
 
   07 Mar 2009; Jeremy Olexa <darkside@gentoo.org> cmake-2.6.2-r1.ebuild:
   amd64 stable, bug 259741
