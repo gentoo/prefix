@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/perltidy
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perltidy/ChangeLog,v 1.36 2008/08/01 08:26:30 tove Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perltidy/ChangeLog,v 1.39 2009/03/09 23:26:19 fmccor Exp $
+
+  09 Mar 2009; Ferris McCormick <fmccor@gentoo.org>
+  perltidy-20071205.ebuild:
+  Sparc stable, Bug #261760.
+
+  09 Mar 2009; Markus Meier <maekke@gentoo.org> perltidy-20071205.ebuild:
+  amd64/x86 stable, bug #261760
+
+  08 Mar 2009; Torsten Veller <tove@gentoo.org> perltidy-20071205.ebuild:
+  EAPI=2, remove mymake, cleanup
 
   01 Aug 2008; Torsten Veller <tove@gentoo.org> -perltidy-20031021.ebuild,
   -perltidy-20060719.ebuild, -perltidy-20070424.ebuild:
