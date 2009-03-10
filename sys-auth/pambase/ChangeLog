@@ -1,6 +1,14 @@
 # ChangeLog for sys-auth/pambase
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.57 2008/11/09 12:21:27 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.59 2009/03/08 20:19:31 maekke Exp $
+
+  08 Mar 2009; Markus Meier <maekke@gentoo.org> pambase-20081028.ebuild:
+  amd64/x86 stable, bug #261595
+
+  07 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -pambase-20080730.ebuild, -pambase-20080801.ebuild,
+  -pambase-20080801-r1.ebuild:
+  Cleanup old versions.
 
   09 Nov 2008; Mike Frysinger <vapier@gentoo.org>
   pambase-20081028-r1.ebuild:
