@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.18 2009/03/03 10:41:21 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.20 2009/03/09 01:11:53 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -83,7 +83,7 @@ case ${GTK_SHARP_MODULE} in
 		TARBALL="gtk-sharp"
 		case ${PVR} in
 			2.12.*)
-				SRC_URI="mirror://gentoo/gtk-sharp-2.12.7.patch.bz2"
+				SRC_URI="mirror://gentoo/${TARBALL}-2.12.7.patch.bz2"
 				#Upstream: https://bugzilla.novell.com/show_bug.cgi?id=$bugno
 				#Upstream bug #470390 for the gtk-sharp-2.12.7.patch
 				PATCHES=(
@@ -100,6 +100,18 @@ case ${GTK_SHARP_MODULE} in
 		add_depend "=dev-dotnet/gtk-sharp-${GTK_SHARP_REQUIRED_VERSION}*"
 		has "${GTK_SHARP_MODULE}" "${gapi_users_list}" && \
 			add_bdepend "=dev-dotnet/gtk-sharp-gapi-${GTK_SHARP_REQUIRED_VERSION}*"
+		case ${PVR} in
+			2.24.1*)
+				SRC_URI="mirror://gentoo/${TARBALL}-2.24.1.patch.bz2"
+				# Upstream bug: https://bugzilla.novell.com/show_bug.cgi?id=483251
+				PATCHES=(
+					"${WORKDIR}/${TARBALL}-2.24.1.patch"
+				)
+				EAUTORECONF="YES"
+				add_bdepend "=sys-devel/automake-1.10*"
+				add_bdepend ">=sys-devel/autoconf-2.61"
+				;;
+		esac
 		;;
 	gnome-desktop|gnome-print|gnome-panel|gtkhtml|gtksourceview|nautilusburn|rsvg|vte|wnck)
 		TARBALL="gnome-desktop-sharp"
@@ -244,7 +256,7 @@ add_bdepend	">=dev-util/pkgconfig-0.23"
 add_bdepend	">=app-shells/bash-3.1"
 
 IUSE="debug"
-# @ECLASS-VARIABLE: HOMEPAGE
+# @ECLASS-VARIABLE: S
 # @DESCRIPTION:
 # Default value: ${WORKDIR}/${TARBALL}-${PV}
 S="${WORKDIR}/${TARBALL}-${PV}"

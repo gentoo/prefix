@@ -1,78 +1,111 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.4 2009/02/22 13:01:17 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.5 2009/03/09 20:09:24 nelchael Exp $
 
-# mercurial: Fetch sources from mercurial repositories, similar to cvs.eclass.
-# To use this from an ebuild, set EHG_REPO_URI in your ebuild.  Then either
-# leave the default src_unpack or call mercurial_src_unpack.
+# @ECLASS: mercurial.eclass
+# @MAINTAINER:
+# nelchael@gentoo.org
+# @BLURB: This eclass provides generic mercurial fetching functions
+# @DESCRIPTION:
+# This eclass provides generic mercurial fetching functions. To fetch sources
+# from mercurial repository just set EHG_REPO_URI to correct repository URI. If
+# you need to share single repository between several ebuilds set EHG_PROJECT to
+# project name in all of them.
 
 inherit eutils
 
 EXPORT_FUNCTIONS src_unpack
 
-DEPEND="dev-util/mercurial net-misc/rsync"
-EHG_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/hg-src"
+DEPEND="dev-util/mercurial"
 
-# This must be set by the ebuild
-: ${EHG_REPO_URI:=}                 # repository uri
+# @ECLASS-VARIABLE: EHG_REPO_URI
+# @DESCRIPTION:
+# Mercurial repository URI.
 
-# These can be set by the ebuild but are usually fine as-is
-: ${EHG_PROJECT:=$PN}               # dir under EHG_STORE_DIR
-: ${EHG_CLONE_CMD:=hg clone --pull} # clone cmd
-: ${EHG_PULL_CMD:=hg pull -u}       # pull cmd
+# @ECLASS-VARIABLE: EHG_REVISION
+# @DESCRIPTION:
+# Create working directory for specified revision, defaults to tip.
+[[ -z "${EHG_REVISION}" ]] && EHG_REVISION="tip"
 
-# should be set but blank to prevent using $HOME/.hgrc
-export HGRCPATH=
+# @ECLASS-VARIABLE: EHG_PROJECT
+# @DESCRIPTION:
+# Project name.
+#
+# This variable default to $PN, but can be changed to allow repository sharing
+# between several ebuilds.
+[[ -z "${EHG_PROJECT}" ]] && EHG_PROJECT="${PN}"
 
+# @ECLASS-VARIABLE: EHG_CLONE_CMD
+# @DESCRIPTION:
+# Command used to perform initial repository clone.
+[[ -z "${EHG_CLONE_CMD}" ]] && EHG_CLONE_CMD="hg clone --quiet --pull --noupdate"
+
+# @ECLASS-VARIABLE: EHG_PULL_CMD
+# @DESCRIPTION:
+# Command used to update repository.
+[[ -z "${EHG_PULL_CMD}" ]] && EHG_PULL_CMD="hg pull --quiet"
+
+# @FUNCTION: mercurial_fetch
+# @USAGE: [repository_uri] [module]
+# @DESCRIPTION:
+# Clone or update repository.
+#
+# If not repository URI is passed it defaults to EHG_REPO_URI, if module is
+# empty it defaults to basename of EHG_REPO_URI.
 function mercurial_fetch {
-	declare repo=${1:-$EHG_REPO_URI}
-	repo=${repo%/}  # remove trailing slash
-	[[ -n $repo ]] || die "EHG_REPO_URI is empty"
-	declare module=${2:-${repo##*/}}
+	debug-print-function ${FUNCNAME} ${*}
 
-	if [[ ! -d ${EHG_STORE_DIR} ]]; then
-		ebegin "create ${EHG_STORE_DIR}"
-		addwrite / &&
-			mkdir -p "${EHG_STORE_DIR}" &&
-			chmod -f g+rw "${EHG_STORE_DIR}" &&
-			export SANDBOX_WRITE="${SANDBOX_WRITE%:/}"
-		eend $? || die
+	EHG_REPO_URI=${1-${EHG_REPO_URI}}
+	[[ -z "${EHG_REPO_URI}" ]] && die "EHG_REPO_URI is empty"
+
+	local hg_src_dir="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/hg-src"
+	local module="${2-$(basename "${EHG_REPO_URI}")}"
+
+	# Should be set but blank to prevent using $HOME/.hgrc
+	export HGRCPATH=
+
+	# Check ${hg_src_dir} directory:
+	addwrite "$(dirname "${hg_src_dir}")" || die "addwrite failed"
+	if [[ ! -d "${hg_src_dir}" ]]; then
+		mkdir -p "${hg_src_dir}" || die "failed to create ${hg_src_dir}"
+		chmod -f g+rw "${hg_src_dir}" || \
+			die "failed to chown ${hg_src_dir}"
 	fi
 
-	pushd "${EHG_STORE_DIR}" >/dev/null \
-		|| die "can't chdir to ${EHG_STORE_DIR}"
-	addwrite "$(pwd -P)"
+	# Create project directory:
+	mkdir -p "${hg_src_dir}/${EHG_PROJECT}" || \
+		die "failed to create ${hg_src_dir}/${EHG_PROJECT}"
+	chmod -f g+rw "${hg_src_dir}/${EHG_PROJECT}" || \
+		die "failed to chwon ${EHG_PROJECT}"
+	cd "${hg_src_dir}/${EHG_PROJECT}" || \
+		die "failed to cd to ${hg_src_dir}/${EHG_PROJECT}"
 
-	if [[ ! -d ${EHG_PROJECT}/${module} ]]; then
-		# first check out
-		ebegin "${EHG_CLONE_CMD} ${repo}"
-		mkdir -p "${EHG_PROJECT}" &&
-			chmod -f g+rw "${EHG_PROJECT}" &&
-			cd "${EHG_PROJECT}" &&
-			${EHG_CLONE_CMD} "${repo}" "${module}" &&
-			cd "${module}"
-		eend $? || die
+	# Clone/update repository:
+	if [[ ! -d "${module}" ]]; then
+		einfo "Cloning ${EHG_REPO_URI} to ${hg_src_dir}/${EHG_PROJECT}/${module}"
+		${EHG_CLONE_CMD} "${EHG_REPO_URI}" "${module}" || {
+			rm -rf "${module}"
+			die "failed to clone ${EHG_REPO_URI}"
+		}
+		cd "${module}"
 	else
-		# update working copy
-		ebegin "${EHG_PULL_CMD} ${repo}"
-		cd "${EHG_PROJECT}/${module}" &&
-			${EHG_PULL_CMD}
-		case $? in
-			# hg pull returns status 1 when there were no changes to pull
-			1) eend 0 ;;
-			*) eend $? || die ;;
-		esac
+		einfo "Updating ${hg_src_dir}/${EHG_PROJECT}/${module} from ${EHG_REPO_URI}"
+		cd "${module}" || die "failed to cd to ${module}"
+		${EHG_PULL_CMD} || die "update failed"
 	fi
 
-	# use rsync instead of cp for --exclude
-	ebegin "rsync to ${WORKDIR}/${module}"
-	mkdir -p "${WORKDIR}/${module}" &&
-		rsync -a --delete --exclude=.hg/ . "${WORKDIR}/${module}"
-	eend $? || die
-
-	popd >/dev/null
+	# Checkout working copy:
+	einfo "Creating working directory in ${WORKDIR}/${module} (revision: ${EHG_REVISION})"
+	hg clone \
+		--quiet \
+		--rev="${EHG_REVISION}" \
+		"${hg_src_dir}/${EHG_PROJECT}/${module}" \
+		"${WORKDIR}/${module}" || die "hg archive failed"
 }
 
+# @FUNCTION: mercurial_src_unpack
+# @DESCRIPTION:
+# The mercurial src_unpack function, which will be exported.
 function mercurial_src_unpack {
 	mercurial_fetch
 }

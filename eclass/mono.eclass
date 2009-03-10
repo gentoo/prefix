@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.12 2009/01/14 17:17:17 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mono.eclass,v 1.13 2009/03/08 15:46:54 loki_val Exp $
 
 # @ECLASS: mono.eclass
 # @MAINTAINER:
@@ -44,27 +44,29 @@ egacinstall() {
 
 mono_multilib_comply() {
 	local dir finddirs=() mv_command=${mv_command:-mv}
-	if [[ -d "${D}/usr/lib" && "$(get_libdir)" != "lib" ]]
+	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]
 	then
-		if ! [[ -d "${D}"/usr/"$(get_libdir)" ]]
+		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
 		then
-			mkdir "${D}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${D}/usr/$(get_libdir)"
+			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${D}/usr/$(get_libdir)"
 		fi
-		${mv_command} "${D}"/usr/lib/* "${D}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
-		rm -rf "${D}"/usr/lib
-		for dir in "${D}"/usr/"$(get_libdir)"/pkgconfig "${D}"/usr/share/pkgconfig
+		${mv_command} "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
+		rm -rf "${ED}"/usr/lib
+		for dir in "${ED}"/usr/"$(get_libdir)"/pkgconfig "${ED}"/usr/share/pkgconfig
 		do
-			[[ -d "${dir}" ]] && finddirs=( "${finddirs[@]}" "${dir}" )
+
+			if [[ -d "${dir}" && "$(find "${dir}" -name '*.pc')" != "" ]]
+			then
+				pushd "${dir}" &> /dev/null
+				sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
+					*.pc \
+					|| die "Sedding some sense into pkgconfig files failed."
+				popd "${dir}" &> /dev/null
+			fi
 		done
-		if ! [[ -z "${finddirs[@]// /}" ]]
+		if [[ -d "${ED}/usr/bin" ]]
 		then
-			sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
-				$(find "${finddirs[@]}" -name '*.pc') \
-				|| die "Sedding some sense into pkgconfig files failed."
-		fi
-		if [[ -d "${D}/usr/bin" ]]
-		then
-			for exe in "${D}/usr/bin"/*
+			for exe in "${ED}/usr/bin"/*
 			do
 				if [[ "$(file "${exe}")" == *"shell script text"* ]]
 				then

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.13 2009/03/01 11:44:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.14 2009/03/09 19:41:26 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -12,10 +12,12 @@
 
 # @ECLASS-VARIABLE: EAPI
 # @DESCRIPTION:
-# By default kde eclass wants eapi 2 which might be redefinable.
-case ${EAPI/prefix/} in
+# By default kde4 eclasses wants eapi 2 which might be redefinable to newer
+# versions.
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+case ${eapi} in
 	2) : ;;
-	*) die "No way! EAPI older than 2 is not supported." ;;
+	*) die "No way! EAPI other than 2 is not supported for now." ;;
 esac
 
 # @ECLASS-VARIABLE: KDEBASE

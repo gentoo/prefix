@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.79 2009/02/03 09:05:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.80 2009/03/07 22:28:16 vapier Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -114,7 +114,7 @@ enlightenment_die() {
 }
 
 enlightenment_pkg_setup() {
-	enlightenment_warning_msg
+	: enlightenment_warning_msg
 }
 
 # the stupid gettextize script prevents non-interactive mode, so we hax it
@@ -178,7 +178,7 @@ enlightenment_src_install() {
 }
 
 enlightenment_pkg_postinst() {
-	enlightenment_warning_msg
+	: enlightenment_warning_msg
 }
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst

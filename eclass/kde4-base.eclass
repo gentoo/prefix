@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.30 2009/03/01 11:44:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.31 2009/03/09 19:41:26 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -13,7 +13,7 @@
 # NOTE: KDE 4 ebuilds by default define EAPI="2", this can be redefined but
 # eclass will fail with version older than 2.
 
-inherit base cmake-utils eutils multilib kde4-functions
+inherit base cmake-utils eutils kde4-functions
 
 get_build_type
 if [[ ${BUILD_TYPE} = live ]]; then
@@ -36,60 +36,82 @@ kde4-base_set_qt_dependencies() {
 		x11-libs/qt-sql:4[qt3support]
 		x11-libs/qt-svg:4
 		x11-libs/qt-test:4
-		x11-libs/qt-webkit:4"
-	qtopengldepend="x11-libs/qt-opengl:4"
+	"
+	qtwebkitdepend="
+		x11-libs/qt-webkit:4
+	"
+	qtopengldepend="
+		x11-libs/qt-opengl:4
+	"
 
+	case ${WEBKIT_REQUIRED} in
+		always)
+			qtdepend="${qtdepend}
+				${qtwebkitdepend}"
+			;;
+		optional)
+			IUSE="${IUSE} webkit"
+			qtdepend="${qtdepend}
+				webkit? ( ${qtwebkitdepend} )
+			"
+			;;
+		*) WEBKIT_REQUIRED="never" ;;
+	esac
 	# opengl dependencies
 	case ${OPENGL_REQUIRED} in
 		always)
 			qtdepend="${qtdepend}
-				${qtopengldepend}"
+				${qtopengldepend}
+			"
 			;;
 		optional)
 			IUSE="${IUSE} opengl"
 			qtdepend="${qtdepend}
-				opengl? ( ${qtopengldepend} )"
+				opengl? ( ${qtopengldepend} )
+			"
 			;;
-		*)
-			OPENGL_REQUIRED="never"
-			;;
+		*) OPENGL_REQUIRED="never" ;;
 	esac
 
 	COMMONDEPEND="${COMMONDEPEND} ${qtdepend}"
 }
-kde4-base_set_qt_dependencies
 
-# Xorg
-COMMONDEPEND="${COMMONDEPEND}
-	>=x11-base/xorg-server-1.5.2
-"
+if [[ ${NEED_KDE} != "none" ]] ; then
+	# Qt
+	kde4-base_set_qt_dependencies
 
-# X11 libs
-COMMONDEPEND="${COMMONDEPEND}
-	x11-libs/libXext
-	x11-libs/libXt
-	x11-libs/libXxf86vm
-"
+	# Xorg
+	COMMONDEPEND="${COMMONDEPEND}
+		>=x11-base/xorg-server-1.5.2
+	"
 
-# localization deps 
-# DISABLED UNTIL PMS decide correct approach :(
-if [[ -n ${KDE_LINGUAS} ]]; then
-	LNG_DEP=""
-	for _lng in ${KDE_LINGUAS}; do
-		# there must be or due to issue if lingua is not present in kde-l10n so
-		# it wont die but pick kde-l10n as-is.
-		LNG_DEP="${LNG_DEP}
-			|| ( kde-base/kde-l10n[linguas_${_lng},kdeprefix=] kde-base/kde-l10n[kdeprefix=] )"
-	done
-fi
+	# X11 libs
+	COMMONDEPEND="${COMMONDEPEND}
+		x11-libs/libXext
+		x11-libs/libXt
+		x11-libs/libXxf86vm
+	"
 
-# Set common dependencies for all ebuilds that inherit this eclass
-DEPEND="${DEPEND} ${COMMONDEPEND}
-	>=dev-util/cmake-2.6.2
-	dev-util/pkgconfig
-	>=sys-apps/sandbox-1.3.2
-"
-RDEPEND="${RDEPEND} ${COMMONDEPEND}"
+	# localization deps
+	# DISABLED UNTIL PMS decide correct approach :(
+	if [[ -n ${KDE_LINGUAS} ]]; then
+		LNG_DEP=""
+		for _lng in ${KDE_LINGUAS}; do
+			# there must be or due to issue if lingua is not present in kde-l10n so
+			# it wont die but pick kde-l10n as-is.
+			LNG_DEP="${LNG_DEP}
+				|| ( kde-base/kde-l10n[linguas_${_lng},kdeprefix=] kde-base/kde-l10n[kdeprefix=] )"
+		done
+	fi
+
+	# Set common dependencies for all ebuilds that inherit this eclass
+	DEPEND="${DEPEND} ${COMMONDEPEND}
+		>=dev-util/cmake-2.6.2
+		dev-util/pkgconfig
+		>=sys-apps/sandbox-1.3.2
+	"
+	RDEPEND="${RDEPEND} ${COMMONDEPEND}"
+fi # NEED_KDE != NONE block
 
 if [[ $BUILD_TYPE = live ]]; then
 	# Disable tests for live ebuilds
@@ -107,6 +129,12 @@ fi
 # This variable must be set before inheriting any eclasses. Defaults to 'never'.
 OPENGL_REQUIRED="${OPENGL_REQUIRED:-never}"
 
+# @ECLASS-VARIABLE: WEBKIT_REQUIRED
+# @DESCRIPTION:
+# Is qt-webkit requred? Possible values are 'always', 'optional' and 'never'.
+# This variable must be set before inheriting any eclasses. Defaults to 'never'.
+WEBKIT_REQUIRED="${WEBKIT_REQUIRED:-never}"
+
 # @ECLASS-VARIABLE: CPPUNIT_REQUIRED
 # @DESCRIPTION:
 # Is cppunit required for tests? Possible values are 'always', 'optional' and 'never'.
@@ -115,12 +143,15 @@ CPPUNIT_REQUIRED="${CPPUNIT_REQUIRED:-never}"
 
 case ${CPPUNIT_REQUIRED} in
 	always)
-		DEPEND="${DEPEND} dev-util/cppunit"
+		DEPEND="${DEPEND}
+			dev-util/cppunit
+		"
 		;;
 	optional)
 		IUSE="${IUSE} test"
 		DEPEND="${DEPEND}
-			test? ( dev-util/cppunit )"
+			test? ( dev-util/cppunit )
+		"
 		;;
 	*)
 		CPPUNIT_REQUIRED="never"
@@ -321,34 +352,27 @@ if [[ ${NEED_KDE} != none ]]; then
 		# block non kdeprefix ${PN} on other slots
 		# we do this only if we do not depend on any version of kde
 		if [[ ${SLOT} != ${KDE_SLOT} ]]; then
-			DEPEND="${DEPEND}
-				!kdeprefix? ( !kde-base/${PN}:${KDE_SLOT}[-kdeprefix] )"
 			RDEPEND="${RDEPEND}
-				!kdeprefix? ( !kde-base/${PN}:${KDE_SLOT}[-kdeprefix] )"
+				!kdeprefix? ( !kde-base/${PN}:${KDE_SLOT}[-kdeprefix] )
+			"
 		fi
 	done
 
-	# Adding kdelibs, kdepimlibs and kdebase-data deps to all other packages.
-	# We only need to add the dependencies if ${PN} is not "kdelibs" or "kdepimlibs"
+	# Adding kdelibs and kdebase-data deps to all other packages.
 	if [[ ${PN} != kdelibs ]]; then
 		DEPEND="${DEPEND}
-				kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
-				!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )"
+			kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
+			!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )
+		"
 		RDEPEND="${RDEPEND}
-				kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
-				!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )"
-		if [[ ${PN} != kdepimlibs ]]; then
-			DEPEND="${DEPEND}
-				kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix] )
-				!kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pvn}[-kdeprefix] )"
+			kdeprefix? ( ${_operator}kde-base/kdelibs${_pv}[kdeprefix] )
+			!kdeprefix? ( ${_operator}kde-base/kdelibs${_pvn}[-kdeprefix] )
+		"
+		if [[ ${PN} != kdepimlibs && ${PN} != kdebase-data ]]; then
 			RDEPEND="${RDEPEND}
-				kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pv}[kdeprefix] )
-				!kdeprefix? ( ${_operator}kde-base/kdepimlibs${_pvn}[-kdeprefix] )"
-			if [[ ${PN} != kdebase-data ]]; then
-				RDEPEND="${RDEPEND}
-					kdeprefix? ( ${_operator}kde-base/kdebase-data${_pv}[kdeprefix] )
-					!kdeprefix? ( ${_operator}kde-base/kdebase-data${_pvn}[-kdeprefix] )"
-			fi
+				kdeprefix? ( ${_operator}kde-base/kdebase-data${_pv}[kdeprefix] )
+				!kdeprefix? ( ${_operator}kde-base/kdebase-data${_pvn}[-kdeprefix] )
+			"
 		fi
 	fi
 	unset _operator _pv _pvn
@@ -412,7 +436,9 @@ case ${BUILD_TYPE} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
-						4.2.6* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
+						4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
+							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.lzma" ;;
+						4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						*)	SRC_URI="mirror://kde/stable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
@@ -509,7 +535,6 @@ kde4-base_src_prepare() {
 		enable_selected_linguas
 	fi
 
-	# Autopatch
 	base_src_prepare
 
 	# Save library dependencies
@@ -529,11 +554,9 @@ kde4-base_src_prepare() {
 kde4-base_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	# We prefer KDE's own Debugfull mode over the standard Debug
-	if has debug ${IUSE//+} && use debug ; then
-		ebegin "Enabling debug flag"
-		mycmakeargs="${mycmakeargs} -DCMAKE_BUILD_TYPE=Debugfull"
-		eend $?
+	# Handle common release builds
+	if ! has debug ${IUSE//+} || ! use debug; then
+		append-cppflags -DQT_NO_DEBUG
 	fi
 
 	 # Enable generation of HTML handbook

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.20 2008/11/07 00:53:30 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.21 2009/03/07 10:02:33 maekke Exp $
 #
 # Author: Danny van Dyk <kugelfang@gentoo.org>
 #
@@ -209,7 +209,7 @@ fortran_pkg_setup() {
 #  Run patch_fortran if no new src_unpack() is defined.
 fortran_src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	patch_fortran
 }
 
