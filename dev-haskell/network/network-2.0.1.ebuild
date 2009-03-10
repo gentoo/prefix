@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.0.1.ebuild,v 1.9 2008/07/15 16:24:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.0.1.ebuild,v 1.10 2009/03/08 19:13:14 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-DEPEND=">=dev-lang/ghc-6.6"
+DEPEND=">=dev-lang/ghc-6.6
+		dev-haskell/parsec"
 
 S="${WORKDIR}/ghc-${GHC_PV}/libraries/${PN}"
 
