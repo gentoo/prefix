@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/liboop
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboop/ChangeLog,v 1.12 2009/01/08 18:16:44 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboop/ChangeLog,v 1.13 2009/03/09 02:31:55 vapier Exp $
+
+  09 Mar 2009; Mike Frysinger <vapier@gentoo.org> liboop-1.0.ebuild:
+  Cleanup a bit and do not run ldconfig.
 
   08 Jan 2009; Jeroen Roovers <jer@gentoo.org> liboop-1.0.ebuild:
   Fix HOMEPAGE thanks to Kevin Bryan (bug #254244).

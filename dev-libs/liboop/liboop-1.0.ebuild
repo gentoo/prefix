@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboop/liboop-1.0.ebuild,v 1.11 2009/01/08 18:16:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboop/liboop-1.0.ebuild,v 1.12 2009/03/09 02:31:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -22,16 +22,17 @@ DEPEND="adns? ( net-libs/adns )
 	libwww? ( net-libs/libwww )"
 
 src_compile() {
+	export ac_cv_path_PROG_LDCONFIG=true
 	econf \
-		`use_with adns` \
-		`use_with gnome` \
-		`use_with tcl tcltk` \
-		`use_with readline` \
-		`use_with libwww` \
+		$(use_with adns) \
+		$(use_with gnome) \
+		$(use_with tcl tcltk) \
+		$(use_with readline) \
+		$(use_with libwww) \
 		|| die
 	emake -j1 || die
 }
 
 src_install() {
-	emake install DESTDIR=${D} || die
+	emake install DESTDIR="${D}" || die
 }
