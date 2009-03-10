@@ -1,0 +1,57 @@
+# Prevent gnome-vfs to show duplicate volumes due to LABEL and UUID in /etc/fstab
+#
+# Upstream: http://bugzilla.gnome.org/show_bug.cgi?id=357156
+# Gentoo: https://bugs.gentoo.org/attachment.cgi?id=131308
+# Similar to http://patches.ubuntu.com/by-release/extracted/ubuntu/g/gnome-vfs/1:2.24.0-1ubuntu2/15_uuid_mount.patch
+--- a/libgnomevfs/gnome-vfs-unix-mounts.c	2007-04-10 15:03:59.000000000 +0300
++++ b/libgnomevfs/gnome-vfs-unix-mounts.c	2007-09-18 17:48:49.000000000 +0300
+@@ -290,6 +290,15 @@ _gnome_vfs_get_current_unix_mounts (GLis
+ 
+ 		mount_entry->mount_path = g_strdup (mntent->mnt_dir);
+ 		mount_entry->device_path = g_strdup (mntent->mnt_fsname);
++
++		if (g_file_test (mntent->mnt_fsname, G_FILE_TEST_IS_SYMLINK)) {
++			char rpath[PATH_MAX];
++			if (realpath (mntent->mnt_fsname, rpath)) {
++				g_free (mount_entry->device_path);
++				mount_entry->device_path = g_strdup (rpath);
++			}
++		}
++
+ 		mount_entry->filesystem_type = g_strdup (mntent->mnt_type);
+ 		
+ 		g_hash_table_insert (mounts_hash,
+@@ -571,9 +580,31 @@ _gnome_vfs_get_unix_mount_table (GList *
+ 		}
+ 		
+ 		mount_entry = g_new0 (GnomeVFSUnixMountPoint, 1);
+-
++		
++		if(strlen(mntent->mnt_fsname) >= 5 && !strncmp (mntent->mnt_fsname, "UUID=", 5)) {
++			mount_entry->device_path = g_strdup_printf ("/dev/disk/by-uuid/%s", mntent->mnt_fsname+5);
++		}
++		else if(strlen(mntent->mnt_fsname) >= 6 && !strncmp (mntent->mnt_fsname, "LABEL=", 6)) {
++			mount_entry->device_path = g_strdup_printf ("/dev/disk/by-label/%s", mntent->mnt_fsname+6);
++		}
++		else {
++			mount_entry->device_path = g_strdup (mntent->mnt_fsname);
++		}
++		
++		if (g_file_test (mount_entry->device_path, G_FILE_TEST_IS_SYMLINK)) {
++			char rpath[PATH_MAX];
++			if (realpath (mount_entry->device_path, rpath)) {
++				g_free (mount_entry->device_path);
++				mount_entry->device_path = g_strdup (rpath);
++			}
++			else {
++				g_free (mount_entry->device_path);
++				g_free (mount_entry);
++				continue;
++			}
++		}
++		
+ 		mount_entry->mount_path = g_strdup (mntent->mnt_dir);
+-		mount_entry->device_path = g_strdup (mntent->mnt_fsname);
+ 		mount_entry->filesystem_type = g_strdup (mntent->mnt_type);
+ 
+ #ifdef HAVE_HASMNTOPT
