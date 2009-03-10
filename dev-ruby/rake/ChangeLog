@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rake
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.68 2008/12/26 15:48:41 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.69 2009/03/07 09:36:51 graaff Exp $
+
+*rake-0.8.4 (07 Mar 2009)
+
+  07 Mar 2009; Hans de Graaff <graaff@gentoo.org> +rake-0.8.4.ebuild:
+  Version bump with compatibility fixes.
 
   26 Dec 2008; Raúl Porcel <armin76@gentoo.org> rake-0.8.3.ebuild:
   alpha/ia64 stable wrt #250348
