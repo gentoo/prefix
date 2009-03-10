@@ -79,7 +79,7 @@
 # Assertion failed: state.type != 0, file ftsfind.c, line 475, function consider_visiting
 # Jeremy Olexa <darkside@gentoo.org> (06 Jan 2009)
 # Issues on Linux too, elevate mask to global, not solaris specific.
-=sys-apps/findutils-4.5.3
+~sys-apps/findutils-4.5.3
 
 # Fabian Groffen <grobian@gentoo.org> (22 Dec 2008)
 # Can't compile itself. On Solaris and Linux. (maybe others)
