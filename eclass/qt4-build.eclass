@@ -240,8 +240,9 @@ qt4-build_src_configure() {
 	case "${PV}" in
 		4.5.*)
 			if use aqua ; then
-				# on leopard use the new cocoa code
-				if [[ ${CHOST} == *-darwin9 ]] ; then
+				# on leopard use the new cocoa code (broken, as the eclass and
+				# me are not coping well with the framework stuff)
+				if [[ ${CHOST} == xxdisablexx-*-darwin9 ]] ; then
 					# needs framework! no qt3support!
 					myconf="${myconf} -cocoa -framework -no-qt3support"
 
