@@ -94,6 +94,9 @@ src_unpack() {
 	# For platforms which don't have /usr/bin/perl (like FreeBSD) make sure we
 	# don't regenerate wheel.h after above patches
 	touch src/wheel.h
+
+	# interix requires a patch for nanosleep to work correctly.
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix-sleep.patch
 }
 
 src_compile() {

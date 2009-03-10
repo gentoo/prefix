@@ -1,0 +1,16 @@
+diff -ru coreutils-6.12.orig/lib/nanosleep.c coreutils-6.12/lib/nanosleep.c
+--- coreutils-6.12.orig/lib/nanosleep.c	2009-03-10 09:29:13 +0100
++++ coreutils-6.12/lib/nanosleep.c	2009-03-10 09:31:58 +0100
+@@ -137,7 +137,11 @@
+ 	  tv_delay.tv_usec = 0;
+ 	}
+     }
+-  select (0, NULL, NULL, NULL, &tv_delay);
++  /* INTERIX 3.5 BUG: select with set-size = 0 returns
++   * immediately with an error (bad address). to avoid
++   * this, pass 1 as set size. this should not do any
++   * harm, since all pointers are NULL anyway. */
++  select (1, NULL, NULL, NULL, &tv_delay);
+ }
+ 
+ /* Suspend execution for at least *REQUESTED_DELAY seconds.  The
