@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.22 2009/01/21 17:33:07 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.24 2009/03/09 20:03:50 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -24,6 +24,7 @@ app-emulation/vmware-server
 app-emulation/vmware-server-console
 <app-emulation/vmware-workstation-6.5
 app-emulation/winex-transgaming
+>=app-i18n/atokx3-3.0.0
 app-i18n/kurso-de-esperanto
 app-office/mozilla-sunbird-bin
 app-office/ooextras
@@ -148,11 +149,14 @@ games-fps/sauerbraten
 games-fps/soldieroffortune
 games-fps/soldieroffortune-demo
 games-fps/tremulous-bin
+games-fps/unreal-tournament
 games-fps/ut2003
 games-fps/ut2003-demo
 games-fps/ut2004-demo
 games-fps/vendetta-online-bin
 games-puzzle/hoh-bin
+games-puzzle/world-of-goo-demo
+games-puzzle/world-of-goo
 games-roguelike/adom
 games-rpg/nwmouse
 games-rpg/nwmovies
