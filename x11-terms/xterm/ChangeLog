@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.258 2009/02/02 05:36:54 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.259 2009/03/07 13:04:36 armin76 Exp $
+
+*xterm-242 (07 Mar 2009)
+
+  07 Mar 2009; Raúl Porcel <armin76@gentoo.org> +xterm-242.ebuild:
+  Version bump wrt #259918
 
 *xterm-241 (02 Feb 2009)
 
