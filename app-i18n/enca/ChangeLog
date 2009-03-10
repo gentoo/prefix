@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/enca
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.30 2009/03/07 03:29:01 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.31 2009/03/09 22:49:32 maekke Exp $
+
+  09 Mar 2009; Markus Meier <maekke@gentoo.org> enca-1.9-r1.ebuild:
+  x86 stable, bug #261227
 
   07 Mar 2009; Jeremy Olexa <darkside@gentoo.org> enca-1.9-r1.ebuild:
   amd64 stable, bug 261227
