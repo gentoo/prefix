@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.20.4.ebuild,v 1.11 2009/03/08 01:19:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.24.1.ebuild,v 1.1 2009/03/08 01:19:09 eva Exp $
 
 EAPI="prefix"
 
@@ -11,17 +11,19 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="debug doc"
 
-RDEPEND=">=dev-libs/glib-2.8
+RDEPEND=">=dev-libs/glib-2.14
 	>=gnome-base/orbit-2.14.0
 	>=dev-libs/libxml2-2.4.20
+	>=sys-apps/dbus-1.0.0
+	>=dev-libs/dbus-glib-0.74
 	>=dev-libs/popt-1.5
-	sys-devel/flex
 	!gnome-base/bonobo-activation"
 DEPEND="${RDEPEND}
-	  x11-apps/xrdb
+	sys-devel/flex
+	x11-apps/xrdb
 	>=dev-util/pkgconfig-0.9
 	>=dev-util/intltool-0.35
 	doc? ( >=dev-util/gtk-doc-1 )"
@@ -30,14 +32,4 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_enable debug bonobo-activation-debug)"
-}
-
-src_unpack() {
-	gnome2_src_unpack
-
-	sed -i -e '/DISABLE_DEPRECATED/d' \
-		"${S}/activation-server/Makefile.am" "${S}/activation-server/Makefile.in" \
-		"${S}/bonobo/Makefile.am" "${S}/bonobo/Makefile.in"
-	sed -i -e 's:-DG_DISABLE_DEPRECATED ::g' \
-		"${S}/tests/test-activation/Makefile.am" "${S}/tests/test-activation/Makefile.in"
 }
