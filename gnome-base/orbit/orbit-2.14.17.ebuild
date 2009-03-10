@@ -1,10 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.14.ebuild,v 1.1 2008/08/25 21:05:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.1 2009/03/08 00:59:36 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+GCONF_DEBUG="no"
+
+inherit gnome2
 
 MY_P="ORBit2-${PV}"
 PVP=(${PV//[-\._]/ })
@@ -16,32 +18,17 @@ SRC_URI="mirror://gnome/sources/ORBit2/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.8
 	>=dev-libs/libIDL-0.8.2"
 
-DEPEND="${RDEPEND}
+DEPEND="
 	>=dev-util/pkgconfig-0.18
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-MAKEOPTS="${MAKEOPTS} -j1"
-
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
-
-src_unpack() {
-	gnome2_src_unpack
-
-	# Filter out G_DISABLE_DEPRECATED to be future-proof, related to bug 213434
-	sed -i -e '/DISABLE_DEPRECATED/d' \
-		"${S}/linc2/src/Makefile.am" "${S}/linc2/src/Makefile.in"
-
-	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' \
-		"${S}/configure.in" "${S}/configure"
-	
-	epatch "${FILESDIR}"/${P}-interix.patch
-}
 
 src_compile() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
@@ -53,4 +40,9 @@ src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
 	gnome2_src_compile
+}
+
+src_test() {
+	# can fail in parallel, see bug #235994
+	emake -j1 check || die "tests failed"
 }
