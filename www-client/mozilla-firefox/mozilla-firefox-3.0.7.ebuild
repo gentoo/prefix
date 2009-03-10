@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.7.ebuild,v 1.1 2009/03/05 17:15:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.7.ebuild,v 1.6 2009/03/09 14:26:41 jer Exp $
 EAPI="prefix 1"
 WANT_AUTOCONF="2.1"
 
