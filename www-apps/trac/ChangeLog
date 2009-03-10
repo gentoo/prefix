@@ -1,6 +1,9 @@
 # ChangeLog for www-apps/trac
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.84 2008/11/17 04:40:58 wrobel Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.85 2009/03/07 20:43:18 betelgeuse Exp $
+
+  07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> trac-0.11.2.ebuild:
+  Migrate to EAPI 2.
 
   17 Nov 2008; Gunnar Wrobel <wrobel@gentoo.org> -trac-0.10.5.ebuild:
   Removed vulnerable www-apps/trac-0.10.5 (sec issue #246130).
