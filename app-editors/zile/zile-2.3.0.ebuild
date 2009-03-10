@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.0.ebuild,v 1.1 2008/12/16 11:39:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.0.ebuild,v 1.2 2009/03/08 10:26:31 ulm Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-DEPEND="sys-libs/ncurses
+RDEPEND="sys-libs/ncurses"
+DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.3"
 
 src_unpack() {

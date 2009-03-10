@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.61.ebuild,v 1.6 2009/03/08 10:26:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.4.ebuild,v 1.2 2009/03/09 11:40:35 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -15,11 +15,12 @@ IUSE=""
 
 RDEPEND="sys-libs/ncurses"
 DEPEND="${RDEPEND}
+	sys-apps/help2man
 	>=sys-apps/texinfo-4.3"
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS NEWS README THANKS || die "dodoc failed"
+	emake DESTDIR="${D}" install || die
+	dodoc AUTHORS BUGS NEWS README THANKS || die
 
 	rm ${ED}/usr/lib/charset.alias
 }
