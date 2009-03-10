@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.3.ebuild,v 1.2 2009/02/03 15:58:50 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.3.ebuild,v 1.3 2009/03/07 20:14:32 betelgeuse Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit eutils distutils
 
@@ -18,14 +18,14 @@ IUSE="git subversion test"
 DEPEND="dev-python/pyxml
 	test? ( dev-util/subversion )"
 RDEPEND="git? ( dev-util/git )
-	subversion? ( dev-util/subversion )"
+	subversion? (
+		|| (
+			>=dev-util/subversion-1.5.4[webdav-neon]
+			>=dev-util/subversion-1.5.4[webdav-serf]
+		)
+	)"
 
 pkg_setup() {
-	if has_version dev-util/subversion && \
-	(! built_with_use --missing true dev-util/subversion webdav || built_with_use --missing false dev-util/subversion nowebdav); then
-		eerror "You must rebuild your Subversion with support for WebDAV."
-		die "You must rebuild your Subversion with support for WebDAV"
-	fi
 	if ! has_version dev-util/subversion; then
 		ewarn "You do not have dev-util/subversion installed!"
 		ewarn "While layman does not exactly depend on this"

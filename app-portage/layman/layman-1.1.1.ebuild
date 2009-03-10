@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.11 2008/08/30 18:42:43 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.12 2009/03/07 20:14:32 betelgeuse Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 NEED_PYTHON=2.5
 
 inherit eutils distutils
@@ -15,18 +14,16 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="test"
+IUSE="subversion test"
 
 DEPEND="test? ( dev-util/subversion )"
-RDEPEND=""
-
-pkg_setup() {
-	if has_version dev-util/subversion && \
-	(! built_with_use --missing true dev-util/subversion webdav || built_with_use --missing false dev-util/subversion nowebdav); then
-		eerror "You must rebuild your Subversion with support for WebDAV."
-		die "You must rebuild your Subversion with support for WebDAV"
-	fi
-}
+RDEPEND="
+	subversion? (
+		|| (
+			>=dev-util/subversion-1.5.4[webdav-neon]
+			>=dev-util/subversion-1.5.4[webdav-serf]
+		)
+	)"
 
 src_unpack() {
 	unpack ${A}
