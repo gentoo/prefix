@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.90 2009/02/02 23:44:12 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.92 2009/03/09 20:50:49 nelchael Exp $
+
+  09 Mar 2009; Krzysiek Pawlik <nelchael@gentoo.org> mercurial-1.2.ebuild:
+  Remove failing tests.
+
+*mercurial-9999 (09 Mar 2009)
+*mercurial-1.2 (09 Mar 2009)
+
+  09 Mar 2009; Krzysiek Pawlik <nelchael@gentoo.org>
+  -mercurial-1.1.1.ebuild, -mercurial-1.1.2.ebuild, +mercurial-1.2.ebuild,
+  +mercurial-9999.ebuild:
+  Version bump, remove old versions, add live (9999) version tracking crew
+  repository.
 
   02 Feb 2009; Krzysiek Pawlik <nelchael@gentoo.org> ChangeLog:
   Fix ChangeLog entries.

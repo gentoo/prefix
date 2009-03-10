@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.1.1.ebuild,v 1.1 2008/12/29 13:19:17 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.2.ebuild,v 1.2 2009/03/09 20:50:49 nelchael Exp $
 
 EAPI="prefix"
 
@@ -13,12 +13,13 @@ SRC_URI="http://www.selenic.com/mercurial/release/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bugzilla emacs gpg test zsh-completion"
+IUSE="bugzilla emacs gpg test tk zsh-completion"
 
 CDEPEND=">=dev-lang/python-2.3"
 RDEPEND="${CDEPEND}
 	bugzilla? ( dev-python/mysql-python )
 	gpg? ( app-crypt/gnupg )
+	tk? ( dev-lang/tk )
 	zsh-completion? ( app-shells/zsh )"
 DEPEND="${CDEPEND}
 	emacs? ( virtual/emacs )
@@ -81,7 +82,8 @@ src_test() {
 	local testdir="${T}/tests"
 	mkdir -p -m1777 "${testdir}" || die
 	cd "${S}/tests/"
-	rm -f *svn*		# Subversion tests fail with 1.5
+	rm -rf *svn*		# Subversion tests fail with 1.5
+	rm -f test-archive			# Fails due to verbose tar output changes
 	rm -f test-convert-baz*		# GNU Arch baz
 	rm -f test-convert-cvs*		# CVS
 	rm -f test-convert-darcs*	# Darcs
