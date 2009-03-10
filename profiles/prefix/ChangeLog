@@ -3,6 +3,9 @@
 # $Id$
 
   10 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  unmasked new coreutils 7.1 on windows, works now.
+
+  10 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   removed unmask for gcc version on interix, which does not exist any longer
 
   10 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
