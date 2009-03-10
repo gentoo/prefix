@@ -1,6 +1,14 @@
 # ChangeLog for www-client/mozilla-firefox-bin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/ChangeLog,v 1.178 2009/03/05 07:49:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/ChangeLog,v 1.180 2009/03/08 15:05:20 maekke Exp $
+
+  08 Mar 2009; Markus Meier <maekke@gentoo.org>
+  mozilla-firefox-bin-3.0.7.ebuild:
+  amd64 stable, bug #261585
+
+  08 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-bin-3.0.7.ebuild:
+  stable x86, security bug 261585
 
 *mozilla-firefox-bin-3.0.7 (05 Mar 2009)
 
