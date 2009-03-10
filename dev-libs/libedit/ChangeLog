@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.25 2009/01/04 22:15:44 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.26 2009/03/07 12:47:17 drizzt Exp $
+
+*libedit-20090111.3.0 (07 Mar 2009)
+
+  07 Mar 2009; Timothy Redaelli <drizzt@gentoo.org>
+  +files/libedit-20090111-3.0-weak_reference.patch, libedit-20061103.ebuild,
+  +libedit-20090111.3.0.ebuild:
+  Version bump (masked for haskell testing)
 
   04 Jan 2009; Christoph Mende <angelos@gentoo.org>
   +files/libedit-20061103-ldflags.patch, libedit-20061103.ebuild,
