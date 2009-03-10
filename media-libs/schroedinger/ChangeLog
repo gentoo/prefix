@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/schroedinger
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.24 2008/12/22 14:21:50 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.25 2009/03/08 07:44:17 kumba Exp $
+
+  08 Mar 2009; Joshua Kinard <kumba@gentoo.org> schroedinger-1.0.5.ebuild:
+  Added ~mips to KEYWORDS.
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org> schroedinger-1.0.5.ebuild:
   arm stable
