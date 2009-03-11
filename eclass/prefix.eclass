@@ -20,20 +20,23 @@
 # hence this eclass has nothing to do here in that case.
 # Note that setting EPREFIX in the environment with Prefix Portage sets
 # Portage into cross-prefix mode.
-use !prefix && EPREFIX=""
 
 # @ECLASS-VARIABLE: EROOT
 # @DESCRIPTION:
 # The offset prefix appended to ${ROOT}.  Prefix Portage sets this
 # variable automatically.
-[[ -z ${EROOT} ]] && EROOT=${ROOT%/}${EPREFIX}/
 
 # @ECLASS-VARIABLE: ED
 # @DESCRIPTION:
 # The offset prefix appended to ${D}.  Prefix Portage sets this variable
 # automatically.  It is questionable if ${D} is (supposed to be) set
 # when this eclass is sourced, so this might not work out in non-Prefix.
-[[ -z ${ED} ]] && ED=${D}${EPREFIX}
+
+if [[ ${EPREFIX+yes}${EROOT+we}${ED+can} != "yeswecan" ]]; then
+	export EPREFIX=''
+	export EROOT=${ROOT}
+	export ED=${D}
+fi
 
 # @FUNCTION: eprefixify
 # @USAGE: <list of to be eprefixified files>
