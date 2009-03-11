@@ -1,3 +1,6 @@
+reported upstream, 10 Mar 2009:
+http://lists.gnu.org/archive/html/bug-coreutils/2009-03/msg00087.html
+
 diff -ru coreutils-6.12.orig/lib/nanosleep.c coreutils-6.12/lib/nanosleep.c
 --- coreutils-6.12.orig/lib/nanosleep.c	2009-03-10 09:29:13 +0100
 +++ coreutils-6.12/lib/nanosleep.c	2009-03-10 09:31:58 +0100
