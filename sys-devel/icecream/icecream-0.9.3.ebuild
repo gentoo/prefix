@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/icecream-0.9.1-r2.ebuild,v 1.6 2008/11/24 23:34:41 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/icecream-0.9.3.ebuild,v 1.1 2009/03/07 11:46:44 bluebird Exp $
 
 EAPI="prefix"
 
@@ -34,9 +34,6 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-gentoo-multilib.patch"
 
 	use amd64 && append-flags -fPIC -DPIC
-
-# still yields in compilation errors, I'm done with this piece of crap
-#	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	eautoreconf
 
