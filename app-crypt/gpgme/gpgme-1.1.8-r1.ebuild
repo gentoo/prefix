@@ -1,10 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.8.ebuild,v 1.1 2009/01/03 22:43:16 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.8-r1.ebuild,v 1.1 2009/03/07 23:50:42 dragonheart Exp $
 
-EAPI="prefix"
-
-inherit libtool
+EAPI="prefix 2"
+inherit libtool eutils
 
 DESCRIPTION="GnuPG Made Easy is a library for making GnuPG easier to use"
 HOMEPAGE="http://www.gnupg.org/related_software/gpgme"
@@ -20,21 +19,14 @@ DEPEND=">=dev-libs/libgpg-error-1.4
 	pth? ( >=dev-libs/pth-1.2 )"
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-#	epatch "${FILESDIR}/${P}-cvs.patch"
-#	epatch "${FILESDIR}/${P}-darwin.patch"
-#	chmod a+x "tests/gpg/pinentry"
-#	AT_M4DIR=m4 eautoreconf
-
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-et_EE.patch
 	# We need to call elibtoolize so that we get sane .so versioning on
 	# fbsd.
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--includedir="${EPREFIX}"/usr/include/gpgme \
 		--with-gpg="${EPREFIX}"/usr/bin/gpg \
