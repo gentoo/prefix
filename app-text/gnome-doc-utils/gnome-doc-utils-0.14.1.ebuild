@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.1.ebuild,v 1.1 2008/12/21 15:48:28 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.1.ebuild,v 1.2 2009/03/07 14:40:24 gentoofan23 Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 inherit eutils python gnome2
 
 DESCRIPTION="A collection of documentation utilities for the Gnome project"
@@ -14,7 +13,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris"
 IUSE=""
 
-RDEPEND=">=dev-libs/libxml2-2.6.12
+RDEPEND=">=dev-libs/libxml2-2.6.12[python]
 	 >=dev-libs/libxslt-1.1.8
 	 >=dev-lang/python-2"
 DEPEND="${RDEPEND}
@@ -24,6 +23,7 @@ DEPEND="${RDEPEND}
 	~app-text/docbook-xml-dtd-4.4"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+G2CONF="--disable-scrollkeeper"
 
 src_unpack() {
 	gnome2_src_unpack
@@ -33,15 +33,6 @@ src_unpack() {
 
 	# If there is a need to reintroduce eautomake or eautoreconf, make sure
 	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
-}
-
-pkg_setup() {
-	G2CONF="--disable-scrollkeeper"
-
-	if ! built_with_use dev-libs/libxml2 python; then
-		eerror "Please re-emerge dev-libs/libxml2 with the python use flag set"
-		die "dev-libs/libxml2 needs python use flag"
-	fi
 }
 
 pkg_postinst() {

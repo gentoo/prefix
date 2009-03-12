@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.127 2009/03/06 15:35:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.130 2009/03/07 15:29:16 tove Exp $
+
+  07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild, gnome-doc-utils-0.14.1.ebuild:
+  Transition to eapi 2 use deps
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org>
   gnome-doc-utils-0.14.2.ebuild:
