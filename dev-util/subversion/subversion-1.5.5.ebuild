@@ -207,8 +207,8 @@ src_install() {
 
 	# Install Apache module configuration.
 	if use apache2; then
-		dodir "${APACHE_MODULES_CONFDIR}"
-		cat <<EOF >"${ED}/${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
+		dodir "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
+		cat <<EOF >"${D}/${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 LoadModule dav_svn_module modules/mod_dav_svn.so
 <IfDefine SVN_AUTHZ>
