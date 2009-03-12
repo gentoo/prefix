@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4259 2009/03/09 20:07:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4269 2009/03/12 05:07:48 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -979,12 +979,17 @@ gnome-extra/gnome-do-plugins:banshee - Enables the Banshee (media-sound/banshee)
 gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-lirc-properties:policykit - Use sys-auth/policykit to gain privileges to change configuration files
 gnome-extra/gnome-media:gnomecd - Builds the GNOME CD Player
+gnome-extra/gnome-power-manager:policykit - Enable sys-auth/policykit authentication support
 gnome-extra/libgda:mdb - Enables Microsoft Access DB support
 gnome-extra/libgda:xbase - Enables support for xbase databases (dBase, FoxPro, etc.)
-gnome-extra/nautilus-sendto:gajim - Enables support for the Gajim (net-im/gajim) IM client
-gnome-extra/nautilus-sendto:pidgin - Enables support for the Pidgin (net-im/pidgin) IM client
-gnome-extra/nautilus-sendto:sylpheed - Enables support for the Sylpheed (mail-client/sylpheed) mail client
-gnome-extra/nautilus-sendto:thunderbird - Enables support for the Mozilla Thunderbird (mail-client/mozilla-thunderbird) mail client
+gnome-extra/nautilus-sendto:balsa - Enables support for mail-client/balsa
+gnome-extra/nautilus-sendto:claws - Enables support for mail-client/claws
+gnome-extra/nautilus-sendto:eds - Enables support for evolution-sendto using gnome-extra/evolution-data-server
+gnome-extra/nautilus-sendto:gajim - Enables support for net-im/gajim
+gnome-extra/nautilus-sendto:pidgin - Enables support for net-im/pidgin
+gnome-extra/nautilus-sendto:sylpheed - Enables support for mail-client/sylpheed
+gnome-extra/nautilus-sendto:thunderbird - Enables support for mail-client/mozilla-thunderbird
+gnome-extra/nautilus-sendto:upnp - Enables support for sending files over upnp using net-libs/gupnp-av
 gnome-extra/sensors-applet:nvidia - Enables support for sensors on NVidia chips
 gnome-extra/yelp:beagle - Enables support for the Beagle (app-misc/beagle) desktop search tool
 gnome-extra/yelp:lzma - Enables support for LZMA compressed info and man pages
@@ -1009,6 +1014,7 @@ kde-base/kalzium:solver - Enable the equation solver
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
 kde-base/kcontrol:logitech-mouse -  Build the Control Center module to configure logitech mice 
 kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
+kde-base/kdeartwork-kscreensaver:eigen - Enable various aritmethic screensavers which use Eigen2 for computations.
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdeedu:kig-scripting - Support Python scripting in kig
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
@@ -1573,6 +1579,8 @@ media-video/dvdrip:subtitles - Enables support for subtitle ripping
 media-video/ffmpeg:3dnowext -  Enable manually-optimised routines using the AMD 3DNow!Ex SIMD instruction set, present in modern AMD CPUs. (Check for 3dnowext in /proc/cpuinfo to know whehter you support it). 
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
 media-video/ffmpeg:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
+media-video/ffmpeg:faac - Use external faac library for AAC encoding
+media-video/ffmpeg:faad - Use external faad library for AAC decoding (instead of internal libavcodec support)
 media-video/ffmpeg:gsm - Enables support for the gsm lossy speech compression codec via libgsm.
 media-video/ffmpeg:hardcoded-tables - Use pre-calculated tables rather than calculating them on the fly.
 media-video/ffmpeg:mmxext - Enables mmx2 support
@@ -2097,12 +2105,17 @@ net-misc/aria2:ares - Enables support for asynchronous DNS using the c-ares libr
 net-misc/aria2:bittorrent - Enables support for the bittorrent protocol
 net-misc/aria2:metalink - Enables support for metalink
 net-misc/asterisk:bri - Enable ISDN BRI support (bristuff)
+net-misc/asterisk:dahdi - Support Digium compatible hardware (formerly known as Zaptel).
 net-misc/asterisk:h323 - Build the H.323 channel driver bundled with Asterisk
+net-misc/asterisk:keepsrc - Install sources into /usr/src for custom patching
 net-misc/asterisk:lowmem - Build Asterisk for environments with low amounts of memory (embedded devices)
+net-misc/asterisk:misdn - Build with mISDN (chan_misdn) support for BRI ISDN cards
+net-misc/asterisk:newt - Include additional tools that require redhats windowing toolkit
 net-misc/asterisk:nosamples - Don't install sample sound and configuration files
 net-misc/asterisk:osp - Enable support for the Open Settlement Protocol
 net-misc/asterisk:pri - Enables pri support
-net-misc/asterisk:zaptel - Enables zaptel support
+net-misc/asterisk:span - Enable support for the spandsp codec
+net-misc/asterisk:zaptel - Enables deprecated zaptel support (use dahdi if available)
 net-misc/asterisk-addons:h323 - Build the chan_ooh323c H.323 channel driver
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2
@@ -2223,7 +2236,6 @@ net-p2p/amule:remote - Enable remote controlling of the client
 net-p2p/amule:stats - Enable statistic reporting
 net-p2p/amule:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:event-callback - Enable calling a script or executable for certain events
-net-p2p/btg:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:webinterface - install webBTG
 net-p2p/dbhub:switch_user - Enable support for switching user
 net-p2p/freenet:freemail - Add Freemail support
@@ -2774,6 +2786,7 @@ x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/slim:screenshot - Enable screenshot support (using media-gfx/imagemagick)
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
+x11-misc/xfce4-notifyd:libsexy - Enable support for x11-libs/libsexy
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
 x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
 x11-misc/zim:screenshot - Enable screenshot support (using media-gfx/scrot)
@@ -2843,6 +2856,8 @@ xfce-base/thunar:trash-plugin - Build Trash plug-in for panel
 xfce-base/xfce-utils:lock - Enable screen locking
 xfce-base/xfce4-extras:battery - Meta pulls in xfce-extra/xfce4-battery depend
 xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce-extra/xfce4-cpu-freq depend
+xfce-base/xfce4-settings:keyboard - Enable Keyboard layout selection with x11-libs/libxklavier
+xfce-base/xfce4-settings:sound - Enable sound event support with media-libs/libcanberra
 xfce-base/xfdesktop:file-icons - Build support for application launchers using xfce-base/thunar and libexo
 xfce-base/xfdesktop:menu-plugin - Build Menu plug-in for panel
 xfce-extra/thunar-thumbnailers:grace - Enable support for sci-visualization/grace thumbnails

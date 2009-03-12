@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9566 2009/03/09 21:05:47 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9572 2009/03/12 04:51:16 dirtyepic Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,34 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2009)
+# HPN patch contains some breakages with port forwarding.
+=net-misc/openssh-5.2_p1-r2
+
+# Nirbheek Chauhan <nirbheek@gentoo.org> (11 Mar 2009)
+# Masked due to CPUFreq regression (bug #247614)
+=gnome-extra/gnome-power-manager-2.24*
+
+# Nirbheek Chauhan <nirbheek@gentoo.org> (11 Mar 2009)
+# Needs net-wireless/bluez-gnome-1.8 and net-wireless/bluez-4
+=gnome-extra/nautilus-sendto-1.1*
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (11 Mar 2009)
+# Masked as it's a beta release.
+=app-admin/sudo-1.7.1_beta*
+
+# Tony Vroon <chainsaw@gentoo.org> (10 Mar 2009)
+# This is *very* new and will require an extensive rewrite of your 
+# configuration before it will work. If you are not ready to dedicate 
+# at least a day towards testing and another day towards configuring 
+# you simply do not want this yet. If you do have this amount of time 
+# on your hands please join #gentoo-voip and help us document the 
+# migration path. Thank you.
+net-misc/dahdi
+net-misc/dahdi-tools
+=net-misc/asterisk-1.6*
+=net-libs/libpri-1.4*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (09 Mar 2009)
 # Masked for removal in 30 days.
@@ -698,14 +726,6 @@ net-irc/bitchx
 # >0.13 breaks a lot of stuff, only qbittorrent works fine
 >=net-libs/rb_libtorrent-0.13_p2335
 >=net-p2p/qbittorrent-1.1.0_beta1
-
-# Ryan Hill <dirtyepic@gentoo.org> (18 Jun 2008)
-# Consolidated linuxfromscratch ebuilds into one.
-# Please use app-doc/linuxfromscratch instead.
-# Masked for removal 20080718.
-app-doc/linuxfromscratch-html
-app-doc/linuxfromscratch-pdf
-app-doc/linuxfromscratch-text
 
 # Jeroen Roovers <jer@gentoo.org> (17 Jun 2008)
 # Masked for security bug #226079.

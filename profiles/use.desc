@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.409 2009/02/28 10:14:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.410 2009/03/12 05:03:57 mr_bones_ Exp $
 
 # Keep them sorted
 
@@ -86,7 +86,6 @@ dv - Enables support for a codec used by many camcorders
 dvb - Adds support for DVB (Digital Video Broadcasting)
 dvd - Adds support for DVDs
 dvdr - Adds support for DVD writer hardware (e.g. in xcdroast)
-dvdread - Enables usage of Ogle's libdvdread for DVD playback
 eds - Enables support for Evolution-Data-Server (EDS)
 emacs - Adds support for GNU Emacs
 emboss - Adds support for the European Molecular Biology Open Software Suite

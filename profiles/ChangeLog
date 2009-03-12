@@ -1,10 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2425 2009/03/09 19:05:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2435 2009/03/12 04:51:16 dirtyepic Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Removed punted linuxfromscratch-* ebuilds.
+
+  12 Mar 2009; Ulrich Mueller <ulm@gentoo.org> updates/1Q-2009:
+  Move x11-misc/emacs-desktop to app-emacs/emacs-common-gentoo.
+
+  11 Mar 2009; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Some breakage with the latest OpenSSH HPN patch. p.mask while discussing
+  with upstream.
+
+  11 Mar 2009; Nirbheek Chauhan <nirbheek@gentoo.org> package.mask:
+  Mask gnome-base/gnome-power-manager-2.24* due to CPUFreq regression (bug
+  #247614)
+
+  11 Mar 2009; Nirbheek Chauhan <nirbheek@gentoo.org> package.mask:
+  Mask nautilus-sendto-1.1.2 (needs bluez-4)
+
+  11 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Add a mask for sudo new betas.
+
+  11 Mar 2009; Markus Ullmann <jokey@gentoo.org> arch/amd64/use.mask,
+  arch/x86/use.mask, base/use.mask:
+  Adjust mask/unmask of virtualbox use_expand
+
+  11 Mar 2009; Markus Ullmann <jokey@gentoo.org> desc/input_devices.desc:
+  Add description for input_devices virtualbox
+
+  11 Mar 2009; Markus Ullmann <jokey@gentoo.org> desc/video_cards.desc:
+  Add description for video_cards virtualbox
+
+  10 Mar 2009; <chainsaw@gentoo.org> package.mask:
+  Mask Asterisk 1.6 as the migration from 1.2 is long, tedious and not yet
+  documented fully.
 
   09 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmask mutt-1.5.19, since the sidebar patch was updated
