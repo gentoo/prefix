@@ -132,8 +132,8 @@ src_prepare() {
 	sed -i -e 's:  :\t:g' doc/info/Makefile.am || die
 
 	# fix for interix.
-	epatch "${FILESDIR}"/${PN}-2.18-interix.patch
-	epatch "${FILESDIR}"/${PN}-2.20.2-interix.patch
+	#epatch "${FILESDIR}"/${PN}-2.18-interix.patch
+	#epatch "${FILESDIR}"/${PN}-2.20.2-interix.patch
 
 	eautoreconf
 }
