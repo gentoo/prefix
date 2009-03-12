@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.9 2008/11/13 19:27:19 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.10 2009/03/07 14:47:36 gentoofan23 Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 inherit eutils gnome2
 
 DESCRIPTION="Simple document viewer for GNOME"
@@ -26,7 +25,7 @@ RDEPEND="
 	>=gnome-base/libglade-2
 	>=gnome-base/gconf-2
 	gnome? ( >=gnome-base/nautilus-2.10 )
-	>=app-text/poppler-bindings-0.6
+	>=app-text/poppler-bindings-0.6[gtk]
 	dvi? (
 		virtual/tex-base
 		t1lib? ( >=media-libs/t1lib-5.0.0 )
@@ -60,11 +59,6 @@ pkg_setup() {
 		$(use_enable t1lib)
 		$(use_enable tiff)
 		$(use_enable gnome nautilus)"
-
-	if ! built_with_use app-text/poppler-bindings gtk; then
-		einfo "Please re-emerge app-text/poppler-bindings with the gtk USE flag set"
-		die "poppler-bindings needs gtk flag set"
-	fi
 }
 
 src_unpack() {

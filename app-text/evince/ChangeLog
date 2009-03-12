@@ -1,6 +1,10 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.161 2009/03/06 15:49:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.162 2009/03/07 14:47:36 gentoofan23 Exp $
+
+  07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  evince-2.20.1.ebuild, evince-2.22.2-r1.ebuild, evince-2.24.2.ebuild:
+  Transition to eapi 2 use deps
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> evince-2.24.2.ebuild:
   Marking evince-2.24.2 ppc stable for bug 260063
