@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/tin/tin-1.8.3.ebuild,v 1.4 2008/09/23 07:22:00 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/tin/tin-1.8.3.ebuild,v 1.7 2009/03/08 10:30:25 cla Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit versionator eutils
 
@@ -15,22 +15,15 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="crypt debug idn ipv6 nls unicode"
 
-DEPEND="sys-libs/ncurses
-	dev-libs/libpcre
+DEPEND="dev-libs/libpcre
 	dev-libs/uulib
 	idn? ( net-dns/libidn )
-	unicode? ( dev-libs/icu )
+	unicode? ( dev-libs/icu sys-libs/ncurses[unicode] )
+	!unicode? ( sys-libs/ncurses )
 	nls? ( sys-devel/gettext )
 	crypt? ( app-crypt/gnupg )"
 RDEPEND="${DEPEND}
 	net-misc/urlview"
-
-pkg_setup() {
-	if use unicode && ! built_with_use sys-libs/ncurses unicode
-	then
-		die "For unicode support you need sys-libs/ncurses compiled with unicode support!"
-	fi
-}
 
 src_unpack() {
 	unpack ${A}
@@ -39,7 +32,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/1.8.2-various.patch
 }
 
-src_compile() {
+src_configure() {
 	local screen="ncurses"
 
 	use unicode && screen="ncursesw"
@@ -59,6 +52,9 @@ src_compile() {
 		$(use_enable crypt pgp-gpg) \
 		$(use_enable nls) \
 		|| die "econf failed"
+}
+
+src_compile() {
 	emake build || die "emake failed"
 }
 
