@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-db/postgis/postgis-1.3.3.ebuild,v 1.3 2008/05/21 15:57:24 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.3.ebuild,v 1.4 2009/03/07 06:27:50 zmedico Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ RESTRICT="test"
 
 pkg_setup(){
 	local tmp
-	tmp="$(portageq match / postgis | cut -d'.' -f2)"
+	tmp="$(portageq match / ${CATEGORY}/${PN} | cut -d'.' -f2)"
 	if [ "${tmp}" != "$(get_version_component_range 2)" ]; then
 		elog "You must soft upgrade your existing postgis enabled databases"
 		elog "using 'emerge --config postgis'."
