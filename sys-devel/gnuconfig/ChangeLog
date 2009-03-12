@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/gnuconfig
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.35 2008/10/09 20:01:16 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.38 2009/03/09 21:32:35 vapier Exp $
+
+*gnuconfig-20090203 (09 Mar 2009)
+
+  09 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20090203.ebuild:
+  Update snapshot.
+
+  09 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  -files/99999999/0003-add-more-superh-targets-to-config.sub.patch,
+  gnuconfig-99999999.ebuild:
+  Sync live-git/normal ebuilds and dropped merged sh patch.
+
+  09 Mar 2009; Mike Frysinger <vapier@gentoo.org> gnuconfig-20080928.ebuild:
+  Stabilize all relevant arches.
 
 *gnuconfig-20080928 (09 Oct 2008)
 
