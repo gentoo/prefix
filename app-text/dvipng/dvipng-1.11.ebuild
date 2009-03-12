@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.11.ebuild,v 1.13 2008/07/17 18:54:08 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.11.ebuild,v 1.14 2009/03/07 14:15:36 gentoofan23 Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 inherit eutils
 
 DESCRIPTION="A program to translate a DVI (DeVice Independent) files into PNG (Portable Network Graphics) bitmaps"
@@ -15,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="truetype test"
 
-RDEPEND="media-libs/gd
+RDEPEND="media-libs/gd[jpeg,png]
 	media-libs/libpng
 	virtual/latex-base
 	sys-libs/zlib
@@ -26,17 +25,9 @@ DEPEND="${RDEPEND}
 		( dev-texlive/texlive-fontsrecommended app-text/tetex app-text/ptex )
 	)"
 
-pkg_setup() {
-	if ! built_with_use media-libs/gd jpeg png; then
-		eerror "You must rebuild media-libs/gd with USE=\"jpeg png\""
-		die "You must rebuild media-libs/gd with USE=\"jpeg png\""
-	fi
-}
-
-src_compile() {
+src_configure() {
 	export VARTEXFONTS="${T}/fonts"
 	econf $(use_with truetype freetype) || die "Configure failed"
-	emake || die "Compile failed"
 }
 
 src_install() {

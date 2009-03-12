@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipng
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.43 2008/07/17 19:03:17 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.44 2009/03/07 14:15:36 gentoofan23 Exp $
+
+  07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org> dvipng-1.11.ebuild:
+  Transition to eapi 2 use deps
 
   17 Jul 2008; Christian Faulhammer <opfer@gentoo.org> -dvipng-1.9.ebuild:
   clean up
