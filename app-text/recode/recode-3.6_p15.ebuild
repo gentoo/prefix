@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p15.ebuild,v 1.5 2009/03/07 03:24:41 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p15.ebuild,v 1.6 2009/03/07 21:09:32 fauli Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solari
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 

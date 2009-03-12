@@ -1,6 +1,10 @@
 # ChangeLog for app-text/recode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.53 2009/03/07 03:24:41 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.54 2009/03/07 21:09:32 fauli Exp $
+
+  07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  recode-3.6_p15.ebuild:
+  x86 stable, bug 261220; set RDEPEND explicitely
 
   07 Mar 2009; Jeremy Olexa <darkside@gentoo.org> recode-3.6_p15.ebuild:
   amd64 stable, bug 261220
