@@ -1,5 +1,11 @@
 # $Id$
 
+# Markus Duft <mduft@gentoo.org> (12 Mar 2009)
+# this doesn't build at least on interix:
+# libtool: link: cannot find the library `../../libltdl/libltdlc.la' 
+#   or unhandled argument `../../libltdl/libltdlc.la'
+=media-gfx/graphviz-2.22.0
+
 # Markus Duft <mduft@gentoo.org> (06 Mar 2009)
 # this is even worse than on other systems, since the
 # workaround doesn't work either.

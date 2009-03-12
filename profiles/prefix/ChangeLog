@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  mask new graphviz 2.22.0 on interix. doesnt build
+
   10 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Enlarge findutils-4.5.3 mask, it still asserts like hell
 
