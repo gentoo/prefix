@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.82 2009/02/23 10:25:47 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.83 2009/03/11 14:15:53 voyageur Exp $
+
+*gnustep-base-1.18.0-r3 (11 Mar 2009)
+
+  11 Mar 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  +files/gnustep-base-1.18.0-mdns_configure.patch,
+  +gnustep-base-1.18.0-r3.ebuild:
+  Fix automagic dependency on mdns-responder, spotted by flameeyes
 
 *gnustep-base-1.18.0-r2 (23 Feb 2009)
 
