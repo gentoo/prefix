@@ -1,6 +1,9 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.62 2009/03/06 15:50:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.63 2009/03/11 01:53:25 dang Exp $
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> iso-codes-3.6.ebuild:
+  Marked stable on amd64
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> iso-codes-3.6.ebuild:
   Marking iso-codes-3.6 ppc stable for bug 260063
