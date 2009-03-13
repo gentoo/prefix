@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.151 2009/02/22 19:45:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.153 2009/03/12 04:31:01 vapier Exp $
+
+*gdb-6.8.50.20090302.8.11 (12 Mar 2009)
+
+  12 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +gdb-6.8.50.20090302.8.11.ebuild:
+  Add an ebuild for Fedora rpms (since they apply a ton of custom patches).
+
+*gdb-6.8-r2 (12 Mar 2009)
+
+  12 Mar 2009; Mike Frysinger <vapier@gentoo.org> +gdb-6.8-r2.ebuild:
+  Grab fix from Fedora for accessing tls vars (like errno).
 
   22 Feb 2009; Mike Frysinger <vapier@gentoo.org> gdb-6.8-r1.ebuild:
   Use system readline only if it is version 5 #259865 by michel.
