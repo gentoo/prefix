@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rpm.eclass,v 1.15 2006/06/27 06:49:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rpm.eclass,v 1.16 2009/03/12 04:29:09 vapier Exp $
 
 # Author : Alastair Tse <liquidx@gentoo.org> (21 Jun 2003)
 #
@@ -28,6 +28,7 @@
 #
 # USE_RPMOFFSET_ONLY="1"
 
+inherit eutils
 
 USE_RPMOFFSET_ONLY=${USE_RPMOFFSET_ONLY-""}
 
@@ -90,6 +91,27 @@ rpm_src_unpack() {
 			unpack ${x}
 			;;
 		esac
+	done
+}
+
+# @FUNCTION: rpm_spec_epatch
+# @USAGE: [spec]
+# @DESCRIPTION:
+# Read the specified spec (defaults to ${PN}.spec) and attempt to apply
+# all the patches listed in it.  If the spec does funky things like moving
+# files around, well this won't handle that.
+rpm_spec_epatch() {
+	local p spec=${1:-${PN}.spec}
+	local dir=${spec%/*}
+	grep '^%patch' "${spec}" | \
+	while read line ; do
+		set -- ${line}
+		p=$1
+		shift
+		EPATCH_OPTS="$*"
+		set -- $(grep "^P${p#%p}: " "${spec}")
+		shift
+		epatch "${dir:+${dir}/}$*"
 	done
 }
 

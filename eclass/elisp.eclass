@@ -1,11 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.37 2009/02/07 11:32:45 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.38 2009/03/12 12:08:47 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
-# Copyright 2007-2008 Christian Faulhammer <opfer@gentoo.org>
-# Copyright 2007-2008 Ulrich Müller <ulm@gentoo.org>
+# Copyright 2007-2009 Christian Faulhammer <fauli@gentoo.org>
+# Copyright 2007-2009 Ulrich Müller <ulm@gentoo.org>
 #
 # @ECLASS: elisp.eclass
 # @MAINTAINER:
@@ -14,7 +14,10 @@
 # @BLURB: Eclass for Emacs Lisp packages
 # @DESCRIPTION:
 #
-# This eclass sets the site-lisp directory for Emacs-related packages.
+# This eclass is designed to install elisp files of Emacs related
+# packages into the site-lisp directory. The majority of elisp packages
+# will only need to define the standard ebuild variables (like SRC_URI)
+# and optionally SITEFILE for successful installation.
 #
 # Emacs support for other than pure elisp packages is handled by
 # elisp-common.eclass where you won't have a dependency on Emacs itself.
@@ -24,6 +27,17 @@
 # file with the file name ${P}.el, then this eclass will move ${P}.el to
 # ${PN}.el in src_unpack().
 
+# @ECLASS-VARIABLE: NEED_EMACS
+# @DESCRIPTION:
+# If you need anything different from Emacs 21, use the NEED_EMACS
+# variable before inheriting elisp.eclass.  Set it to the major version
+# your package uses and the dependency will be adjusted.
+
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION:
+# DOCS="blah.txt ChangeLog" is automatically used to install the given
+# files by dodoc in src_install().
+
 # @ECLASS-VARIABLE: SITEFILE
 # @DESCRIPTION:
 # Name of package's site-init file.  The filename must match the shell
@@ -31,18 +45,11 @@
 # reserved for internal use.  "50${PN}-gentoo.el" is a reasonable choice
 # in most cases.
 
-# @ECLASS-VARIABLE: DOCS
-# @DESCRIPTION:
-# DOCS="blah.txt ChangeLog" is automatically used to install the given
-# files by dodoc in src_install().
-
-# @ECLASS-VARIABLE: NEED_EMACS
-# @DESCRIPTION:
-# If you need anything different from Emacs 21, use the NEED_EMACS
-# variable before inheriting elisp.eclass.  Set it to the major version
-# your package uses and the dependency will be adjusted.
-
 inherit elisp-common versionator
+
+EXPORT_FUNCTIONS \
+	src_unpack src_compile src_install \
+	pkg_setup pkg_postinst pkg_postrm
 
 DEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
 RDEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
@@ -87,7 +94,3 @@ elisp_pkg_postinst() {
 elisp_pkg_postrm() {
 	elisp-site-regen
 }
-
-EXPORT_FUNCTIONS \
-	src_unpack src_compile src_install \
-	pkg_setup pkg_postinst pkg_postrm

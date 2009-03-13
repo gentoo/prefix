@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.113 2009/03/06 11:42:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.114 2009/03/11 06:36:45 tove Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 
@@ -143,7 +143,12 @@ perl-module_src_install() {
 	local f
 	${perlinfo_done} || perlinfo
 
-	[[ -z ${mytargets} ]] && mytargets="pure_install"
+	if [[ -z ${mytargets} ]] ; then
+		case "${CATEGORY}" in
+			dev-perl|perl-core) mytargets="pure_install" ;;
+			*)                  mytargets="install" ;;
+		esac
+	fi
 
 	if [[ -f Build ]] ; then
 		./Build ${mytargets} \

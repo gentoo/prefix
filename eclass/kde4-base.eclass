@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.31 2009/03/09 19:41:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.32 2009/03/11 17:40:51 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -610,20 +610,7 @@ kde4-base_src_configure() {
 kde4-base_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	kde4-base_src_make
-}
-
-# @FUNCTION: kde4-base_src_make
-# @DESCRIPTION:
-# Function for building KDE4 applications.
-# Options are passed to cmake-utils_src_make.
-kde4-base_src_make() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	if [[ -d "$WORKDIR/${PN}_build" ]]; then
-		pushd "${WORKDIR}/${PN}_build" > /dev/null
-	fi
-	[ -e [Mm]akefile ] && cmake-utils_src_make "$@"
+	cmake-utils_src_compile
 }
 
 # @FUNCTION: kde4-base_src_test
@@ -651,10 +638,7 @@ kde4-base_src_install() {
 	fi
 
 	kde4-base_src_make_doc
-	if [[ -d "$WORKDIR/${PN}_build" ]]; then
-		pushd "${WORKDIR}/${PN}_build" > /dev/null
-	fi
-	[ -e [Mm]akefile ] && cmake-utils_src_install
+	cmake-utils_src_install
 }
 
 # @FUNCTION: kde4-base_src_make_doc

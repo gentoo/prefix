@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.5 2009/03/09 20:09:24 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.6 2009/03/11 18:56:28 nelchael Exp $
 
 # @ECLASS: mercurial.eclass
 # @MAINTAINER:
@@ -100,7 +100,7 @@ function mercurial_fetch {
 		--quiet \
 		--rev="${EHG_REVISION}" \
 		"${hg_src_dir}/${EHG_PROJECT}/${module}" \
-		"${WORKDIR}/${module}" || die "hg archive failed"
+		"${WORKDIR}/${module}" || die "hg clone failed"
 }
 
 # @FUNCTION: mercurial_src_unpack

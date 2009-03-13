@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.12 2009/03/09 19:41:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.15 2009/03/12 17:53:05 scarabeus Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -33,7 +33,7 @@ esac
 
 # Add dependencies that all packages in a certain module share.
 case ${KMNAME} in
-	kdebase|kdebase-{apps,workspace,runtime})
+	kdebase|kdebase-apps|kdebase-workspace|kdebase-runtime|kdegraphic)
 		DEPEND="${DEPEND}
 			>=kde-base/qimageblitz-0.0.4
 		"
@@ -132,7 +132,7 @@ debug-print "line ${LINENO} ${ECLASS}: DEPEND ${DEPEND} - after metapackage-spec
 debug-print "line ${LINENO} ${ECLASS}: RDEPEND ${RDEPEND} - after metapackage-specific dependencies"
 
 # Useful to build kde4-meta style stuff from extragear/playground (plasmoids etc)
-case ${SLOT} in
+case ${BUILD_TYPE} in
 	live)
 		case ${KMNAME} in
 			extragear*|playground*)
@@ -140,6 +140,7 @@ case ${SLOT} in
 				;;
 		esac
 		;;
+	*) ;;
 esac
 
 # @ECLASS-VARIABLE: KMNAME
@@ -633,7 +634,7 @@ kde4-meta_src_configure() {
 kde4-meta_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	kde4-base_src_make
+	kde4-base_src_compile
 }
 
 # @FUNCTION: kde4-meta_src_test
