@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.44 2009/03/07 14:15:36 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.45 2009/03/11 18:35:24 armin76 Exp $
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> dvipng-1.11.ebuild:
+  Add ~arm/~s390/~sh
 
   07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org> dvipng-1.11.ebuild:
   Transition to eapi 2 use deps
