@@ -1,6 +1,11 @@
 # ChangeLog for xfce-base/xfwm4
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.126 2008/12/22 17:06:50 angelos Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.127 2009/03/10 13:53:16 angelos Exp $
+
+*xfwm4-4.6.0 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org> +xfwm4-4.6.0.ebuild:
+  Xfce-4.6 bump
 
   22 Dec 2008; Christoph Mende <angelos@gentoo.org>
   -files/xfwm4-4.4.2-dock-window-fix.patch, -xfwm4-4.4.2.ebuild,
