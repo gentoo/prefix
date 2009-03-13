@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.16.ebuild,v 1.12 2008/03/09 21:36:14 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.16.ebuild,v 1.13 2009/03/11 20:18:32 grobian Exp $
 
 EAPI="prefix"
 
@@ -176,8 +176,9 @@ src_compile() {
 		# rr.compressed patch
 		myconf="${myconf} --enable-compressed"
 
-		# nntp patch
-		myconf="${myconf} $(use_enable nntp)"
+		# nntp patch applied conditionally, so avoid QA warning when doing
+		# --disable-nntp while patch not being applied, bug #262069
+		use nntp && myconf="${myconf} --enable-nntp"
 	fi
 
 	econf ${myconf} || die "configure failed"

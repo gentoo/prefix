@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mutt
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.125 2009/03/09 18:55:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.126 2009/03/11 20:18:32 grobian Exp $
+
+  11 Mar 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.16.ebuild,
+  mutt-1.5.19.ebuild:
+  Fix QA warning about --disable-nntp, bug #262069
 
   09 Mar 2009; Fabian Groffen <grobian@gentoo.org> metadata.xml,
   mutt-1.5.19.ebuild:
