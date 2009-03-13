@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/ilmbase
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ChangeLog,v 1.15 2009/01/01 18:30:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ChangeLog,v 1.16 2009/03/11 19:45:06 armin76 Exp $
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> ilmbase-1.0.1.ebuild:
+  s390/sh stable
 
   01 Jan 2009; Raúl Porcel <armin76@gentoo.org> ilmbase-1.0.1.ebuild:
   Add -arm/~s390
