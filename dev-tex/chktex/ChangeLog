@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/chktex
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/chktex/ChangeLog,v 1.31 2008/06/26 12:55:02 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/chktex/ChangeLog,v 1.32 2009/03/11 18:25:05 armin76 Exp $
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> chktex-1.6.4.ebuild:
+  Add ~arm/~s390/~sh
 
   26 Jun 2008; Alexis Ballier <aballier@gentoo.org> -chktex-1.6.2.ebuild,
   -chktex-1.6.3-r1.ebuild:

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/chktex/chktex-1.6.4.ebuild,v 1.9 2008/03/16 14:51:36 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/chktex/chktex-1.6.4.ebuild,v 1.10 2009/03/11 18:25:05 armin76 Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="http://baruch.ev-en.org/proj/chktex/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="debug doc"
 
 DEPEND="virtual/latex-base
