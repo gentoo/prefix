@@ -1,6 +1,11 @@
 # ChangeLog for xfce-base/xfdesktop
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.133 2008/12/22 17:06:23 angelos Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.134 2009/03/10 13:52:47 angelos Exp $
+
+*xfdesktop-4.6.0 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org> +xfdesktop-4.6.0.ebuild:
+  Xfce-4.6 bump
 
   22 Dec 2008; Christoph Mende <angelos@gentoo.org>
   -files/xfdesktop-4.4.2-relocation-and-memleak.patch,
