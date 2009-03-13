@@ -1,6 +1,23 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.275 2009/03/05 19:20:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.278 2009/03/11 23:11:39 beandog Exp $
+
+  11 Mar 2009; Steve Dibb <beandog@gentoo.org> metadata.xml,
+  ffmpeg-0.5-r1.ebuild, ffmpeg-9999.ebuild:
+  Fix faac local use flag desc; don't disable by default in IUSE
+
+*ffmpeg-0.5-r1 (10 Mar 2009)
+
+  10 Mar 2009; Steve Dibb <beandog@gentoo.org> metadata.xml,
+  -ffmpeg-0.5.ebuild, +ffmpeg-0.5-r1.ebuild, ffmpeg-9999.ebuild:
+  Drop aac use flag, split to faac / faad use flags - ffmpeg has native AAC
+  encoding / decoding which should be used by default; drop unused vhook use
+  flag on live ebuild
+
+*ffmpeg-0.5 (10 Mar 2009)
+
+  10 Mar 2009; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.5.ebuild:
+  Bump to the 0.5 release.
 
   05 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml,
   ffmpeg-9999.ebuild:
