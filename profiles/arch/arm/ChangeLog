@@ -1,6 +1,15 @@
 # ChangeLog for Gentoo/ARM profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.17 2009/02/20 18:06:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.20 2009/03/12 10:30:55 armin76 Exp $
+
+  12 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add video_cards_radeonhd and video_cards_ast to use.mask
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add lyx to use.mask
+
+  10 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add xindy to use.mask
 
   20 Feb 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Use.mask scanner, no hardware to test

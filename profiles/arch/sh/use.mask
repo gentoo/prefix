@@ -27,6 +27,8 @@ fuse
 R
 octave
 tracker
+xindy
+lyx
 
 # Stuff that doesn't make sense on this arch
 3dfx
@@ -65,8 +67,10 @@ xemacs
 dri
 
 # Only works on x86/amd64/ia64
-video_cards_vesa
+video_cards_ast
+video_cards_radeonhd
 video_cards_sis
+video_cards_vesa
 
 # nspr isnt ported to SuperH which means no seamonkey/firefox/etc...
 nsplugin

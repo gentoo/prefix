@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/use.mask,v 1.8 2008/11/06 00:07:04 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/use.mask,v 1.9 2009/03/11 08:10:11 jokey Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -x86
@@ -40,6 +40,7 @@
 
 # Modular X: unmask for architectures on which they are available
 -input_devices_synaptics
+-input_devices_virtualbox
 -input_devices_vmmouse
 -input_devices_wacom
 -video_cards_nvidia
@@ -48,6 +49,7 @@
 -video_cards_geode
 -video_cards_vermilion
 -video_cards_via
+-video_cards_virtualbox
 -video_cards_xgi
 
 # Modular X: mask for architectures on which they aren't available

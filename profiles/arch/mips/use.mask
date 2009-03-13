@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.16 2009/03/03 12:44:49 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/mips/use.mask,v 1.17 2009/03/12 15:16:33 pva Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -mips
@@ -154,6 +154,8 @@ video_cards_tga
 video_cards_tseng
 video_cards_vesa
 video_cards_vga
+video_cards_radeonhd
+video_cards_ast
 
 # Diego Pettenò <flameeyes@gentoo.org>
 # Until xine-lib's keywording can be maintained, please leave it masked.
