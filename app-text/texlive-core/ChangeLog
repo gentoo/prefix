@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.91 2009/03/07 11:28:29 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.93 2009/03/11 22:12:30 maekke Exp $
+
+  11 Mar 2009; Markus Meier <maekke@gentoo.org> texlive-core-2008-r4.ebuild:
+  amd64 stable, bug #253551
+
+  10 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  texlive-core-2008-r4.ebuild:
+  Add ~arm/~s390/~sh
 
   07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
   texlive-core-2008-r4.ebuild:
