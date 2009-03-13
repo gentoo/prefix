@@ -1,6 +1,11 @@
 # ChangeLog for app-text/tetex
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.173 2008/10/26 14:40:52 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.174 2009/03/12 00:12:35 fauli Exp $
+
+  10 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
+  tetex-2.0.2-r9.ebuild, tetex-3.0_p1-r6.ebuild:
+  Drop KEYWORDS for all architectures except mips and m68k to force users
+  upgrade to TeXLive
 
   26 Oct 2008; Alexis Ballier <aballier@gentoo.org> metadata.xml:
   Assign teTeX to maintainer-needed, after a long overdue...
