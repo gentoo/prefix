@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0.ebuild,v 1.14 2009/03/03 22:52:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p10.ebuild,v 1.2 2009/03/10 19:05:02 cardoe Exp $
 
 EAPI="prefix 1"
 
@@ -20,7 +20,7 @@ patches() {
 	eval set -- {1..${plevel}}
 	set -- $(printf "${pn}${pv/\.}-%03d " "$@")
 	if [[ ${opt} == -s ]] ; then
-		echo "${@/#/${DISTDIR}\/}"
+		echo "${@/#/${DISTDIR}/}"
 	else
 		local u
 		for u in ftp://ftp.cwru.edu/pub/bash mirror://gnu/${pn} ; do
@@ -34,7 +34,7 @@ HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 	$(patches ${READLINE_PLEVEL} readline ${READLINE_VER})"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger examples +net nls plugins vanilla"
@@ -67,17 +67,17 @@ src_unpack() {
 	if ! use vanilla ; then
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
 		epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
-		epatch "${FILESDIR}"/${P}-pcomplete-save-parser-state.patch
-		epatch "${FILESDIR}"/${P}-comsub-backslash-metacharacters.patch
-		epatch "${FILESDIR}"/${P}-save-current-token.patch
-		epatch "${FILESDIR}"/${P}-exit-checkjobs.patch
-		epatch "${FILESDIR}"/${P}-declare-identifier.patch
-		epatch "${FILESDIR}"/${P}-reset-parser-current-token.patch
-		epatch "${FILESDIR}"/${P}-pipeline-reserved-word.patch
-		epatch "${FILESDIR}"/${P}-associative-array-subscripts.patch
-		epatch "${FILESDIR}"/${P}-comsub-herestring.patch
-		epatch "${FILESDIR}"/${P}-comsub-comments.patch
-		epatch "${FILESDIR}"/${P}-read-timeout-reset.patch
+#2		epatch "${FILESDIR}"/${PN}-4.0-pcomplete-save-parser-state.patch
+#1		epatch "${FILESDIR}"/${PN}-4.0-comsub-backslash-metacharacters.patch
+#3		epatch "${FILESDIR}"/${PN}-4.0-save-current-token.patch
+#4		epatch "${FILESDIR}"/${PN}-4.0-exit-checkjobs.patch
+#5		epatch "${FILESDIR}"/${PN}-4.0-declare-identifier.patch
+#3		epatch "${FILESDIR}"/${PN}-4.0-reset-parser-current-token.patch
+#6		epatch "${FILESDIR}"/${PN}-4.0-pipeline-reserved-word.patch
+#7		epatch "${FILESDIR}"/${PN}-4.0-associative-array-subscripts.patch
+#8		epatch "${FILESDIR}"/${PN}-4.0-comsub-herestring.patch
+#10		epatch "${FILESDIR}"/${PN}-4.0-comsub-comments.patch
+#9		epatch "${FILESDIR}"/${PN}-4.0-read-timeout-reset.patch
 		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then

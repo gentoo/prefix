@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.210 2009/03/03 22:52:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.212 2009/03/10 19:05:02 cardoe Exp $
+
+  10 Mar 2009; Doug Goldstein <cardoe@gentoo.org> bash-4.0_p10.ebuild:
+  fix licensing issue. bug #262015
+
+*bash-4.0_p10 (10 Mar 2009)
+
+  10 Mar 2009; Mike Frysinger <vapier@gentoo.org> +bash-4.0_p10.ebuild:
+  Move to official bash patches and into ~arch #261905 by Lars
+  (Polynomial-C).
 
   03 Mar 2009; Mike Frysinger <vapier@gentoo.org>
   +files/bash-4.0-comsub-comments.patch, bash-4.0.ebuild:
