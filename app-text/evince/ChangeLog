@@ -1,6 +1,12 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.162 2009/03/07 14:47:36 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.164 2009/03/12 00:44:31 dang Exp $
+
+  12 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> evince-2.24.2.ebuild:
+  poppler-bindings needs cairo too; bug #262111
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> evince-2.24.2.ebuild:
+  Marked stable on amd64
 
   07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org>
   evince-2.20.1.ebuild, evince-2.22.2-r1.ebuild, evince-2.24.2.ebuild:
