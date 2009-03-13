@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.17 2009/03/12 01:00:05 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r18.ebuild,v 1.1 2009/03/12 10:19:38 ulm Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic eutils toolchain-funcs autotools
@@ -19,31 +18,28 @@ SLOT="21"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="X Xaw3d leim motif nls sendmail"
 
-RDEPEND="sys-libs/ncurses
+DEPEND="sys-libs/ncurses
+	>=app-admin/eselect-emacs-1.2
 	X? (
 		x11-libs/libXext
 		x11-libs/libICE
 		x11-libs/libSM
 		x11-libs/libXmu
 		x11-libs/libXpm
-		app-emacs/emacs-common-gentoo
+		x11-misc/xbitmaps
 		>=media-libs/giflib-4.1.0.1b
 		>=media-libs/jpeg-6b-r2
 		>=media-libs/tiff-3.5.5-r3
 		>=media-libs/libpng-1.2.1
 		Xaw3d? ( x11-libs/Xaw3d )
 		!Xaw3d? ( motif? ( x11-libs/openmotif ) )
-	)
-	sendmail? ( virtual/mta )
-	>=app-admin/eselect-emacs-1.2"
+	)"
 
-DEPEND="${RDEPEND}
-	X? ( x11-misc/xbitmaps )"
+RDEPEND="${DEPEND}
+	>=app-emacs/emacs-common-gentoo-1[X?]
+	sendmail? ( virtual/mta )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	EPATCH_SUFFIX=patch epatch
 
 	sed -i \
@@ -61,9 +57,7 @@ src_unpack() {
 	eautoconf
 }
 
-src_compile() {
-	export SANDBOX_ON=0
-
+src_configure() {
 	# -fstack-protector gets internal compiler error at xterm.c (bug 33265)
 	filter-flags -fstack-protector
 
@@ -104,6 +98,10 @@ src_compile() {
 		myconf="${myconf} --without-x"
 	fi
 	econf ${myconf} || die "econf failed"
+}
+
+src_compile() {
+	export SANDBOX_ON=0
 	emake CC="$(tc-getCC)" || die "emake failed"
 
 	einfo "Recompiling patched lisp files..."
@@ -145,7 +143,6 @@ src_install() {
 	find "${ED}" -type d |xargs chmod -f 755 2>/dev/null
 
 	keepdir /usr/share/emacs/${PV}/leim
-	keepdir /usr/share/emacs/site-lisp
 
 	dodoc BUGS ChangeLog README
 }
@@ -168,9 +165,6 @@ emacs-infodir-rebuild() {
 }
 
 pkg_postinst() {
-	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
-		cp "${EROOT}"/usr/share/emacs{/${PV},}/site-lisp/subdirs.el
-
 	emacs-infodir-rebuild
 
 	if [[ $(readlink "${EROOT}"/usr/bin/emacs) == emacs.emacs-${SLOT}* ]]; then

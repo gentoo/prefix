@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r2.ebuild,v 1.1 2009/02/28 17:56:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r2.ebuild,v 1.3 2009/03/12 10:19:38 ulm Exp $
 
 EAPI="prefix 2"
 
@@ -16,19 +16,16 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-so
 IUSE="aqua alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d +xpm"
 RESTRICT="strip"
 
-RDEPEND="!<app-editors/emacs-cvs-22.1
-	sys-libs/ncurses
+RDEPEND="sys-libs/ncurses
 	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
 	kerberos? ( virtual/krb5 )
-	spell? ( || ( app-text/aspell app-text/ispell ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
 		x11-libs/libXmu
 		x11-libs/libXt
 		x11-misc/xbitmaps
-		x11-misc/emacs-desktop
 		gif? ( media-libs/giflib )
 		jpeg? ( media-libs/jpeg )
 		tiff? ( media-libs/tiff )
@@ -45,6 +42,11 @@ DEPEND="${RDEPEND}
 	alsa? ( dev-util/pkgconfig )
 	X? ( gtk? ( dev-util/pkgconfig ) )
 	gzip-el? ( app-arch/gzip )"
+
+RDEPEND="${RDEPEND}
+	!<app-editors/emacs-cvs-22.1
+	>=app-emacs/emacs-common-gentoo-1[X?]
+	spell? ( || ( app-text/aspell app-text/ispell ) )"
 
 # FULL_VERSION keeps the full version number, which is needed in order to
 # determine some path information correctly for copy/move operations later on
@@ -188,7 +190,6 @@ src_install () {
 	# avoid collision between slots, see bug #169033 e.g.
 	rm "${ED}"/usr/share/emacs/site-lisp/subdirs.el
 	rm "${ED}"/var/lib/games/emacs/{snake,tetris}-scores
-	keepdir /usr/share/emacs/site-lisp
 	keepdir /var/lib/games/emacs
 
 	local c=";;"
@@ -242,9 +243,6 @@ emacs-infodir-rebuild() {
 }
 
 pkg_postinst() {
-	[ -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ] \
-		|| cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
-
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		[ -e "${f}" ] || touch "${f}"
