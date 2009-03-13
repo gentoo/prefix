@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnome
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.166 2009/03/06 15:36:27 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.167 2009/03/11 02:09:30 dang Exp $
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> libgnome-2.24.1.ebuild:
+  Marked stable on amd64
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> libgnome-2.24.1.ebuild:
   Marking libgnome-2.24.1 ppc stable for bug 260063
