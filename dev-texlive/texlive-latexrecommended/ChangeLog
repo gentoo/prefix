@@ -1,6 +1,14 @@
 # ChangeLog for dev-texlive/texlive-latexrecommended
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.27 2009/03/07 11:20:34 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.29 2009/03/11 23:13:34 maekke Exp $
+
+  11 Mar 2009; Markus Meier <maekke@gentoo.org>
+  texlive-latexrecommended-2008-r2.ebuild:
+  amd64 stable, bug #253551
+
+  10 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  texlive-latexrecommended-2008-r2.ebuild:
+  Add ~arm/~s390/~sh
 
   07 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
   texlive-latexrecommended-2008-r2.ebuild:
