@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.16 2009/03/06 15:32:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.17 2009/03/11 01:54:46 dang Exp $
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org>
+  libgamin-0.1.10-r2.ebuild:
+  Marked stable on amd64
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> libgamin-0.1.10-r2.ebuild:
   Marking libgamin-0.1.10-r2 ppc stable for bug 260063
