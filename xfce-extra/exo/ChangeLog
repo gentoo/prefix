@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.79 2009/02/09 19:45:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.81 2009/03/11 10:53:30 angelos Exp $
+
+  11 Mar 2009; Christoph Mende <angelos@gentoo.org> exo-0.3.100.ebuild:
+  Avoid pre-compiling py files (bug #262098)
+
+*exo-0.3.100 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org> +exo-0.3.100.ebuild:
+  Xfce-4.6 bump
 
   09 Feb 2009; Christoph Mende <angelos@gentoo.org> -exo-0.3.4-r1.ebuild:
   Removed old
