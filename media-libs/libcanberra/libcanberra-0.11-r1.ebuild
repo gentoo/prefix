@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.11.ebuild,v 1.5 2009/03/11 02:24:33 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.11-r1.ebuild,v 1.1 2009/03/11 02:24:33 dang Exp $
 
 EAPI="prefix 1"
 
@@ -13,11 +13,12 @@ SRC_URI="http://0pointer.de/lennart/projects/${PN}/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="alsa doc gstreamer +gtk oss"
+IUSE="alsa doc gstreamer +gtk oss pulseaudio"
 
 RDEPEND="media-libs/libvorbis
 	sys-devel/libtool
 	alsa? ( media-libs/alsa-lib )
+	pulseaudio? ( >=media-sound/pulseaudio-0.9.11 )
 	gstreamer? ( >=media-libs/gstreamer-0.10.15 )
 	gtk? ( dev-libs/glib:2
 		>=x11-libs/gtk+-2.13.4:2
@@ -32,8 +33,8 @@ src_compile() {
 		$(use_enable gstreamer) \
 		$(use_enable gtk) \
 		$(use_enable oss) \
+		$(use_enable pulseaudio pulse) \
 		$(use_enable doc gtk-doc) \
-		--disable-pulse \
 		--disable-tdb \
 		--disable-lynx
 	# tdb support would need a split-out from samba before we can use it
