@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.22.0.ebuild,v 1.1 2009/03/07 23:09:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.22.1.ebuild,v 1.2 2009/03/12 06:03:18 maekke Exp $
 
 EAPI="prefix 2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="cairo cgraph doc examples gnome gtk java jpeg nls perl png python ruby tcl"
+IUSE="cairo doc examples gnome gtk java jpeg nls perl png python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -150,7 +150,6 @@ src_configure() {
 	fi
 	myconf="${myconf}
 		$(use_with cairo pangocairo)
-		$(use_with cgraph)
 		$(use_with gtk)
 		--with-digcola
 		--with-fontconfig

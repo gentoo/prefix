@@ -1,6 +1,16 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.185 2009/03/07 23:09:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.187 2009/03/12 06:03:18 maekke Exp $
+
+  12 Mar 2009; Markus Meier <maekke@gentoo.org> -graphviz-2.22.0.ebuild,
+  graphviz-2.22.1.ebuild:
+  remove cgraph USE-flag as it is not ready yet according to upstream, bug
+  #261658; remove old
+
+*graphviz-2.22.1 (11 Mar 2009)
+
+  11 Mar 2009; Markus Meier <maekke@gentoo.org> +graphviz-2.22.1.ebuild:
+  bump to 2.22.1, should fix bug #261885
 
 *graphviz-2.22.0 (07 Mar 2009)
 
