@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.176 2009/03/06 16:07:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.177 2009/03/11 02:17:49 dang Exp $
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> gtkhtml-3.24.5.ebuild:
+  Marked stable on amd64
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> gtkhtml-3.24.5.ebuild:
   Marking gtkhtml-3.24.5 ppc for bug 260063
