@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/sox
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.104 2008/12/26 12:48:12 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/ChangeLog,v 1.105 2009/03/10 21:18:03 beandog Exp $
+
+*sox-14.2.0-r1 (10 Mar 2009)
+
+  10 Mar 2009; Steve Dibb <beandog@gentoo.org>
+  +files/sox-14.2.0-file-5.0.patch, +sox-14.2.0-r1.ebuild:
+  Add patch to build with file-5.0, bug 259652
 
   26 Dec 2008; Raúl Porcel <armin76@gentoo.org> sox-14.2.0.ebuild:
   sparc stable wrt #250671

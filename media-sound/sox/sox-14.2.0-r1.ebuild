@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.0.1.ebuild,v 1.10 2008/07/07 14:32:22 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0-r1.ebuild,v 1.1 2009/03/10 21:18:03 beandog Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils autotools
+inherit flag-o-matic autotools
 
 DESCRIPTION="The swiss army knife of sound processing programs"
 HOMEPAGE="http://sox.sourceforge.net"
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/sox/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="alsa amrnb amrwb ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss sndfile "
+IUSE="alsa amrnb amrwb ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss png sndfile wavpack"
 
 DEPEND="alsa? ( media-libs/alsa-lib )
 	encode? ( media-sound/lame )
@@ -28,15 +28,17 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	>=media-sound/gsm-1.0.12-r1
 	id3tag? ( media-libs/libid3tag )
 	amrnb? ( media-libs/amrnb )
-	amrwb? ( media-libs/amrwb )"
+	amrwb? ( media-libs/amrwb )
+	png? ( media-libs/libpng )
+	wavpack? ( media-sound/wavpack )"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-ffmpegheaders.patch"
-	epatch "${FILESDIR}/${P}-cross.patch"
-
-	AT_M4DIR="m4" eautoreconf
+	epatch "${FILESDIR}/${P}-distro.patch"
+	# bug 259652
+	epatch "${FILESDIR}/${P}-file-5.0.patch"
+	eautoreconf
 }
 
 src_compile () {
@@ -58,12 +60,13 @@ src_compile () {
 		$(use_with id3tag) \
 		$(use_with amrwb amr-wb) \
 		$(use_with amrnb amr-nb) \
+		$(use_with png) \
+		$(use_with wavpack) \
+		--with-distro="Gentoo" \
 		--enable-fast-ulaw \
 		--enable-fast-alaw \
 		|| die "configure failed"
 
-	#workaround for flac, it wants to include a damn config.h file
-	touch src/config.h
 	emake || die "emake failed."
 }
 
