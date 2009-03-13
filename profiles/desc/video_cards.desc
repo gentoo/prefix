@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.10 2008/10/22 14:49:32 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.11 2009/03/11 07:45:15 jokey Exp $
 
 # This file contains descriptions of VIDEO_CARDS USE_EXPAND flags.
 
@@ -58,6 +58,7 @@ vermilion - VIDEO_CARDS setting to build driver for Intel Vermilion video cards
 vesa - VIDEO_CARDS setting to build driver for vesa video cards
 vga - VIDEO_CARDS setting to build driver for vga video cards
 via - VIDEO_CARDS setting to build driver for via video cards
+virtualbox - VIDEO_CARDS setting to build driver for virtualbox emulation
 vmware - VIDEO_CARDS setting to build driver for vmware video cards
 voodoo - VIDEO_CARDS setting to build driver for voodoo video cards
 xgi - VIDEO_CARDS setting to build driver for xgi video cards
