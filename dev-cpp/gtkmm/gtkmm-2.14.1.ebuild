@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.14.1.ebuild,v 1.1 2008/11/08 22:52:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.14.1.ebuild,v 1.2 2009/03/11 19:34:01 dang Exp $
 
 EAPI="prefix"
 
@@ -40,4 +40,12 @@ src_unpack() {
 		# don't waste time building tests
 		sed -i 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' Makefile.in || die "sed failed"
 	fi
+}
+
+pkg_postinst() {
+	gnome2_pkg_postinst
+	ewarn "If you've changed the accessability USE flag on gtkmm, you've"
+	ewarn "silently broken ABI.  You will have to re-emerge everything that"
+	ewarn "depends on gtkmm.  You can find those packages with either"
+	ewarn "equery d or qdepends -Q"
 }

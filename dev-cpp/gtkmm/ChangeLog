@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/gtkmm
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.154 2008/11/14 10:50:29 remi Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.155 2009/03/11 19:34:01 dang Exp $
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> gtkmm-2.12.1.ebuild,
+  gtkmm-2.12.7.ebuild, gtkmm-2.14.1.ebuild, gtkmm-2.14.3.ebuild:
+  Add a big, fat warning about changing the accessibilty USE flag. Bug
+  #247249
 
 *gtkmm-2.14.3 (14 Nov 2008)
 
