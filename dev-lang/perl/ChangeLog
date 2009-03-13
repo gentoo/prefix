@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.275 2009/01/28 09:54:09 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.277 2009/03/11 21:55:45 flameeyes Exp $
+
+  11 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  perl-5.8.8-r5.ebuild:
+  Backport to stable, too.
+
+  11 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  perl-5.8.8-r6.ebuild:
+  Fix logic for applying the lib64 patch, use get_libdir to decide (should
+  fix 32-bit userland profiles).
 
 *perl-5.8.8-r6 (28 Jan 2009)
 
