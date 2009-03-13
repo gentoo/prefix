@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.3.ebuild,v 1.1 2008/11/27 01:51:33 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.6-r1.ebuild,v 1.1 2009/03/13 00:19:01 dang Exp $
 
 EAPI="prefix"
 
@@ -11,15 +11,16 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
 		 virtual/libiconv
-		>=sys-devel/gettext-0.11
 		 xattr? ( sys-apps/attr )
 		 fam? ( virtual/fam )"
-DEPEND=">=dev-util/pkgconfig-0.16
+DEPEND="${RDEPEND}
+		>=dev-util/pkgconfig-0.16
+		>=sys-devel/gettext-0.11
 		doc?	(
 					>=dev-libs/libxslt-1.0
 					>=dev-util/gtk-doc-1.8
@@ -30,6 +31,7 @@ DEPEND=">=dev-util/pkgconfig-0.16
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${PN}-2.16.3-libtool.patch" #223845
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1
@@ -48,29 +50,21 @@ src_unpack() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 
-	# Don't fail gio tests when ran without userpriv, upstream bug 552912
-	# This is only a temporary workaround, remove as soon as possible
-	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
+	# GNOME bug #538836, fix gio test failure on various arches
+	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
+		"${S}/gio/pltcheck.sh"
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
+
+	# Fix g_base64 overruns. bug #249214
+	epatch "${FILESDIR}"/glib2-CVE-2008-4316.patch
 
 	# add support for reading file systems on interix.
 	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 
 	# properly keep symbols inside; bug #221075
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
-
-	# fix a wrong preprocessor directive (which is not noticed
-	# on systems that have both "chown" and "utimes"
-	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
-
-	# build glib with parity for native win32
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
-
-	# makes the iconv check more general, needed for winnt, but could
-	# be usefull for others too.
-	epatch "${FILESDIR}"/${P}-iconv.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
@@ -103,10 +97,6 @@ src_compile() {
 		export ac_cv_func_poll=no
 	}
 
-	local mythreads=posix
-
-	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
-
 	# always build static libs, see #153807
 	econf ${myconf}                 \
 		  $(use_enable xattr)       \
@@ -115,7 +105,7 @@ src_compile() {
 		  $(use_enable fam)         \
 		  $(use_enable selinux)     \
 		  --enable-static           \
-		  --with-threads=${mythreads} || die "configure failed"
+		  --with-threads=posix || die "configure failed"
 
 	emake || die "make failed"
 }
