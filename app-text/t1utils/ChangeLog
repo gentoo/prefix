@@ -1,6 +1,9 @@
 # ChangeLog for app-text/t1utils
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/ChangeLog,v 1.43 2009/02/27 13:51:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/ChangeLog,v 1.44 2009/03/11 18:11:45 armin76 Exp $
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> t1utils-1.34.ebuild:
+  Add ~arm/~s390/~sh
 
   27 Feb 2009; Alexis Ballier <aballier@gentoo.org> t1utils-1.34.ebuild:
   explicitly assign RDEPEND
