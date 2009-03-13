@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/mplib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.12 2009/03/07 11:30:27 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/ChangeLog,v 1.14 2009/03/11 22:10:02 maekke Exp $
+
+  11 Mar 2009; Markus Meier <maekke@gentoo.org> mplib-1.110.ebuild:
+  amd64 stable, bug #253551
+
+  10 Mar 2009; Raúl Porcel <armin76@gentoo.org> mplib-1.110.ebuild:
+  Add ~arm/~s390/~sh
 
   07 Mar 2009; Christian Faulhammer <fauli@gentoo.org> mplib-1.110.ebuild:
   x86 stable, bug 253551

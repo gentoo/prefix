@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/mplib-1.110.ebuild,v 1.4 2009/03/07 11:30:27 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/mplib-1.110.ebuild,v 1.6 2009/03/11 22:10:02 maekke Exp $
 
 EAPI="prefix 1"
 
