@@ -10,7 +10,7 @@ SRC_URI="http://www.vergenet.net/~conrad/software/${PN}/download/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
