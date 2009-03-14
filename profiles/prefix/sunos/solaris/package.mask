@@ -3,7 +3,7 @@
 # Fabian Groffen <grobian@gentoo.org> (14 Mar 2009)
 # Fedora Linux cruft, doesn't compile, let's fix the patches once they
 # get in an official release
-=sys-devel/gdb-6.8.50.*
+=sys-devel/gdb-6.8.50*
 
 # Fabian Groffen <grobian@gentoo.org> (02 Feb 2009)
 # Fails to compile, complaining about a missing target for gmon.o, maybe
