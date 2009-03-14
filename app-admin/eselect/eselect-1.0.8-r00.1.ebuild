@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils autotools
+inherit eutils autotools prefix
 
 DESCRIPTION="Modular -config replacement utility"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
