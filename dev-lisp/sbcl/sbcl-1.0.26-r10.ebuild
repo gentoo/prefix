@@ -15,7 +15,7 @@ BV_ALPHA=0.9.12
 BV_MIPS=1.0.23
 BV_MIPSEL=1.0.23
 
-BV_PPC_MACOS=1.0.23
+BV_PPC_MACOS=1.0.22
 BV_X86_MACOS=1.0.23
 BV_X86_SOLARIS=1.0.23
 
@@ -97,7 +97,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.0.6-solaris.patch
-	epatch "${FILESDIR}"/${P}-leopard.patch
 #	epatch "${FILESDIR}/disable-tests-gentoo-${PV}.patch"
 	use source && sed 's%"$(BUILD_ROOT)%$(MODULE).lisp "$(BUILD_ROOT)%' -i contrib/vanilla-module.mk
 
