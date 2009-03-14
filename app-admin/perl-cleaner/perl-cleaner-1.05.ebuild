@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="User land tool for cleaning up old perl installs"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
