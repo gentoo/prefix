@@ -1,15 +1,12 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.91 2009/03/12 23:26:00 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.92 2009/03/13 10:47:14 ulm Exp $
 
   12 Mar 2009; Ferris McCormick <fmccor@gentoo.org> gnuplot-4.2.4-r1.ebuild:
   Sparc stable, Bug #262327.
 
   12 Mar 2009; Christian Faulhammer <fauli@gentoo.org> metadata.xml:
   remove myself as maintainer
-
-  02 Mar 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
-  stable ppc64, bug 259444
 
   02 Mar 2009; Brent Baude <ranger@gentoo.org> gnuplot-4.2.3-r2.ebuild:
   stable ppc64, bug 259444
@@ -336,7 +333,7 @@
 
   26 Feb 2007; Markus Dittrich <markusle@gentoo.org>
   +files/gnuplot-4.0-filled-arrow.patch, +gnuplot-4.0-r2.ebuild:
-  Added patch to fix problems with failing tests on amd64 
+  Added patch to fix problems with failing tests on amd64
   (see bug #159653).
 
   17 Jan 2007; Fabian Groffen <grobian@gentoo.org> gnuplot-4.0-r1.ebuild,
@@ -441,7 +438,7 @@
   Added gnuplot tutorial.
   Added documentation and files related to PostScript
   creation. (Fixes bug #41729.)
-  Provided access to /dev/svga from inside the sandbox 
+  Provided access to /dev/svga from inside the sandbox
   environment. (Fixes bug #41711.)
 
   31 Jul 2004; Tom Gall <tgall@gentoo.org> gnuplot-3.8j.ebuild:
@@ -540,14 +537,14 @@
 *gnuplot-3.7.1-r2 (12 Feb 2002)
 
   12 Feb 2002; T.Neidt <tod@gentoo.org> ChangeLog, gnuplot-3.7.1-r2.ebuild :
-  
+
   Added gnu plotutils support for gnuplot.  Dependency and configuration for
   plotutils requires 'plotutils' to be in the USE variable.
-  
+
 *gnuplot-3.7.1-r1 (1 Feb 2002)
 
   1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
-  
+
   Added initial ChangeLog which should be updated whenever the package is
   updated in any way. This changelog is targetted to users. This means that the
   comments should well explained and written in clean English. The details about
