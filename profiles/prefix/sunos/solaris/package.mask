@@ -16,8 +16,7 @@
 
 # Fabian Groffen <grobian@gentoo.org> (16 Jan 2009)
 # makes packages fail to compile: libcharset.a is not a valid archive
-=sys-devel/binutils-2.19.51.0.1
-=sys-devel/binutils-2.19.51.0.2
+=sys-devel/binutils-2.19.51*
 
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
 # fails to compile on amd64 because it doesn't use -fPIC everywhere
