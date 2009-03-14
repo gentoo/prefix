@@ -54,6 +54,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
+	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
