@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 Mar 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Mask gdb-6.8.50.20090302.8.11 and up, as it seems to be Fedora Linux only
+
   12 Mar 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   mask new graphviz 2.22.0 on interix. doesnt build
 
