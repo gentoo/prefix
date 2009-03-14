@@ -1,6 +1,9 @@
 # ChangeLog for app-text/passivetex
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/passivetex/ChangeLog,v 1.27 2009/03/11 23:28:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/passivetex/ChangeLog,v 1.28 2009/03/13 20:10:47 ranger Exp $
+
+  13 Mar 2009; Brent Baude <ranger@gentoo.org> passivetex-1.25.ebuild:
+  Marking passivetex-1.25 ppc64 stable for bug 235551
 
   11 Mar 2009; Markus Meier <maekke@gentoo.org> passivetex-1.25.ebuild:
   amd64 stable, bug #253551
