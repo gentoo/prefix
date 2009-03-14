@@ -111,7 +111,7 @@ src_compile() {
 	if use gsm; then
 		myconf="${myconf} --enable-libgsm"
 		# Crappy detection or our installation is weird, pick one (FIXME)
-		append-flags -I$"{EPREFIX}"/usr/include/gsm
+		append-flags -I"${EPREFIX}"/usr/include/gsm
 	fi
 	if use bindist
 	then
