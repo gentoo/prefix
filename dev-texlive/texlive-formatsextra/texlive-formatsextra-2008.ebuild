@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-formatsextra/texlive-formatsextra-2008.ebuild,v 1.7 2009/03/11 23:18:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-formatsextra/texlive-formatsextra-2008.ebuild,v 1.8 2009/03/13 20:35:49 ranger Exp $
 
 EAPI="prefix"
 
