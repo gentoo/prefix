@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.50 2009/03/11 23:29:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.51 2009/03/13 20:09:10 ranger Exp $
+
+  13 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-2008.ebuild:
+  Marking texlive-2008 ppc64 stable for bug 235551
 
   11 Mar 2009; Markus Meier <maekke@gentoo.org> texlive-2008.ebuild:
   amd64 stable, bug #253551
