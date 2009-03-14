@@ -10,3 +10,4 @@ move net-p2p/azureus net-p2p/vuze
 move xfce-extra/verve xfce-extra/xfce4-verve
 move dev-perl/Text-Tabs+Wrap perl-core/Text-Tabs+Wrap
 move x11-misc/emacs-desktop app-emacs/emacs-common-gentoo
+move media-plugins/gmpc-lastfm media-plugins/gmpc-last-fm
