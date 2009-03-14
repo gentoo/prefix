@@ -1,6 +1,11 @@
 # ChangeLog for virtual/perl-Time-Local
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/ChangeLog,v 1.29 2008/11/21 08:14:09 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Time-Local/ChangeLog,v 1.30 2009/03/13 22:00:31 tove Exp $
+
+  13 Mar 2009; Torsten Veller <tove@gentoo.org>
+  -perl-Time-Local-1.11.ebuild, -perl-Time-Local-1.12.ebuild,
+  -perl-Time-Local-1.13.ebuild:
+  Cleanup
 
 *perl-Time-Local-1.19.01 (21 Nov 2008)
 
