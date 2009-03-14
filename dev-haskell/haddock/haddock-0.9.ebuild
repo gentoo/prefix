@@ -5,7 +5,7 @@
 EAPI="prefix"
 
 CABAL_FEATURES="bin"
-inherit haskell-cabal eutils autotools
+inherit haskell-cabal eutils autotools prefix
 
 DESCRIPTION="A documentation tool for Haskell."
 HOMEPAGE="http://haskell.org/haddock/"

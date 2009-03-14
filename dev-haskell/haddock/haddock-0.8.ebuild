@@ -5,7 +5,7 @@
 EAPI="prefix"
 
 CABAL_FEATURES="bin"
-inherit haskell-cabal eutils versionator autotools
+inherit haskell-cabal eutils versionator autotools prefix
 
 MY_PF=$(replace_version_separator 3 '-' ${PF})
 
