@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic fixheadtails multilib versionator
+inherit autotools eutils flag-o-matic fixheadtails multilib versionator prefix
 
 # for when rc1 is appended to release candidates:
 MY_PV=$(replace_version_separator 3 '');
