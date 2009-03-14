@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Manages configuration of ESounD implementation or PulseAudio wrapper"
 HOMEPAGE="http://www.gentoo.org/"
