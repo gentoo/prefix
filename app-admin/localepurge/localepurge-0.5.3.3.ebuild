@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Script to recover diskspace wasted for unneeded locale files and localized man pages."
 HOMEPAGE="http://www.josealberto.org/blog/index.php?s=localepurge"
