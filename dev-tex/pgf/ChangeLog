@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/pgf
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.50 2008/07/18 18:07:50 aballier Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/ChangeLog,v 1.51 2009/03/11 18:07:15 armin76 Exp $
+
+  11 Mar 2009; Raúl Porcel <armin76@gentoo.org> pgf-2.00.ebuild:
+  Add ~arm/~s390/~sh
 
   18 Jul 2008; Alexis Ballier <aballier@gentoo.org> -pgf-1.18.ebuild:
   remove old
