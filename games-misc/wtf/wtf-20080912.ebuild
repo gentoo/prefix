@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="translates acronyms for you"
 HOMEPAGE="http://netbsd.org/"
