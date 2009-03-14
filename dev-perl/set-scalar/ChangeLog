@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/set-scalar
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/set-scalar/ChangeLog,v 1.27 2009/01/19 10:10:33 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/set-scalar/ChangeLog,v 1.28 2009/03/13 12:18:06 tove Exp $
+
+  13 Mar 2009; Torsten Veller <tove@gentoo.org> -set-scalar-1.19.ebuild,
+  -set-scalar-1.22.ebuild:
+  Cleanup
 
 *set-scalar-1.23 (19 Jan 2009)
 
