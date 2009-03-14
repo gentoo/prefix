@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit multilib eutils
+inherit multilib eutils prefix
 
 DESCRIPTION="Utility to change the default postgresql installation"
 HOMEPAGE="http://www.gentoo.org/"
