@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.8-r1.ebuild,v 1.1 2009/03/07 23:50:42 dragonheart Exp $
 
 EAPI="prefix 2"
-inherit libtool eutils
+inherit libtool eutils autotools
 
 DESCRIPTION="GnuPG Made Easy is a library for making GnuPG easier to use"
 HOMEPAGE="http://www.gnupg.org/related_software/gpgme"
@@ -23,7 +23,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-et_EE.patch
 	# We need to call elibtoolize so that we get sane .so versioning on
 	# fbsd.
-	elibtoolize
+	#elibtoolize
+	eautoreconf # heiko_ needs this on freebsd to get a (non-versioned) .so
+	            # next to a versioned one
 }
 
 src_configure() {
