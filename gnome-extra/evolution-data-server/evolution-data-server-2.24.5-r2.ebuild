@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.24.5-r1.ebuild,v 1.3 2009/03/12 21:42:05 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.24.5-r2.ebuild,v 1.2 2009/03/12 23:28:41 dang Exp $
 
 EAPI="prefix"
 
@@ -85,6 +85,9 @@ src_unpack() {
 
 	# Fix S/MIME verification.  Bug #258867
 	epatch "${FILESDIR}"/${P}-CVE-2009-0547.patch
+
+	# Fix NTLM SASL authentication. Bug #261203
+	epatch "${FILESDIR}"/${PN}-CVE-2009-0582.patch
 
 	if use doc; then
 		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/usr/bin/gtkdoc-rebase" -i gtk-doc.make
