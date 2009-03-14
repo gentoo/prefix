@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="An eselect module to manage /etc/fonts/conf.d symlinks."
 HOMEPAGE="http://www.gentoo.org"
