@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2435 2009/03/12 04:51:16 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2438 2009/03/13 22:35:33 tove Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  13 Mar 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Remove dual life modules for perl-5.10
+
+  13 Mar 2009; Christoph Mende <angelos@gentoo.org> updates/1Q-2009:
+  Moved media-plugins/gmpc-lastfm to media-plugins/gmpc-last-fm
+
+  13 Mar 2009; Raúl Porcel <armin76@gentoo.org> profiles.desc:
+  Sort profiles by arch
 
   12 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Removed punted linuxfromscratch-* ebuilds.

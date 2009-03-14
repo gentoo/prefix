@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4270 2009/03/12 13:27:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4271 2009/03/13 12:47:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2200,6 +2200,7 @@ net-misc/vnc:server - Build VNC server
 net-misc/vnc:xorgmodule - Build the Xorg module
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
+net-misc/x2goserver:fuse - Use sys-fs/sshfs-fuse to allow shared folders
 net-misc/xsupplicant:gsm - Add support for EAP-SIM authentication algorithm
 net-misc/zaptel:astribank - Install Xorcom Astribank utilities
 net-misc/zaptel:bri - Enable ISDN BRI support (bristuff)

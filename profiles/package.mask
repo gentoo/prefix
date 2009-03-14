@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9572 2009/03/12 04:51:16 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9573 2009/03/13 22:35:33 tove Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -539,16 +539,6 @@ app-crypt/truecrypt
 # Daniel Gryniewicz <dang@gentoo.org> (2 Nov 2008)
 # Feed counts and updates seem to be broken
 =net-news/liferea-1.4.21b
-
-# Torsten Veller <tove@gentoo.org> (1 Nov 2008)
-# Masking dual-lifed modules depending on perl-5.10
-~virtual/perl-Compress-Raw-Zlib-2.008
-~virtual/perl-Compress-Zlib-2.008
-~virtual/perl-ExtUtils-CBuilder-0.21
-~virtual/perl-IO-Compress-Base-2.008
-~virtual/perl-IO-Compress-Zlib-2.008
-~virtual/perl-Math-BigInt-FastCalc-0.16
-~virtual/perl-Time-Piece-1.12
 
 # Markus Dittrich <markusle@gentoo.org> (28 Oct 2008)
 # New upstream version is currently masked due to an interface
