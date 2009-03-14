@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Programmable Completion for bash"
 HOMEPAGE="http://www.caliban.org/bash/index.shtml#completion"

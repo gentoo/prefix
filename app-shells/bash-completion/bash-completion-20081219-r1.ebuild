@@ -4,6 +4,8 @@
 
 EAPI="prefix 2"
 
+inherit prefix
+
 DESCRIPTION="Programmable Completion for bash"
 HOMEPAGE="http://bash-completion.alioth.debian.org/"
 #SRC_URI="mirror://debian/pool/main/b/${PN}/${PN}_${PV}.tar.gz"
