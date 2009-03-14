@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.4 2009/01/04 22:39:19 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.5 2009/03/13 22:52:01 bangert Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ IUSE="kde"
 DEPEND="x11-libs/libX11
 	x11-proto/xproto"
 RDEPEND="${DEPEND}
+	media-libs/netpbm
 	kde? ( || ( =kde-base/kdeprint-3.5* =kde-base/kdebase-3.5* ) )"
 
 S=${WORKDIR}/${MY_P}

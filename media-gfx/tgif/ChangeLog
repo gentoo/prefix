@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/tgif
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.11 2009/01/04 22:39:19 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.12 2009/03/13 22:52:01 bangert Exp $
+
+  13 Mar 2009; Thilo Bangert <bangert@gentoo.org> tgif-4.1.45.ebuild:
+  add dep on netpbm - bug #259729
 
   04 Jan 2009; Thomas Anderson <gentoofan23@gentoo.org> tgif-4.1.45.ebuild:
   QA: Respect CC in src_install: bug 244168
