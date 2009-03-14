@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="MirBSD KSH Shell"
 HOMEPAGE="http://mirbsd.de/mksh"
