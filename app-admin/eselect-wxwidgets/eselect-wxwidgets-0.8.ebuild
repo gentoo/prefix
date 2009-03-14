@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Manage the system default for wxWidgets packages."
 HOMEPAGE="http://www.gentoo.org"
