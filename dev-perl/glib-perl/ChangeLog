@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/glib-perl
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/ChangeLog,v 1.101 2009/02/15 08:06:20 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/ChangeLog,v 1.102 2009/03/13 11:25:58 aballier Exp $
+
+  13 Mar 2009; Alexis Ballier <aballier@gentoo.org> glib-perl-1.201.ebuild:
+  keyword ~x86-fbsd
 
 *glib-perl-1.201 (15 Feb 2009)
 
