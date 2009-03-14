@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs autotools
+inherit eutils flag-o-matic toolchain-funcs autotools prefix
 
 RELEASE="2007-11-05"
 LOCALE_RELEASE="2007-11-05"
