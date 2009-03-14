@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.22 2009/03/11 22:10:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.23 2009/03/13 20:09:28 ranger Exp $
+
+  13 Mar 2009; Brent Baude <ranger@gentoo.org> luatex-0.30.3.ebuild:
+  Marking luatex-0.30.3 ppc64 stable for bug 235551
 
   11 Mar 2009; Markus Meier <maekke@gentoo.org> luatex-0.30.3.ebuild:
   amd64 stable, bug #253551
