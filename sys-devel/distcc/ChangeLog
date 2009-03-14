@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.195 2009/02/10 00:09:35 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.196 2009/03/13 17:10:24 armin76 Exp $
+
+  13 Mar 2009; Raúl Porcel <armin76@gentoo.org> distcc-3.0-r4.ebuild:
+  s390 stable wrt #249695
 
 *distcc-3.1-r2 (10 Feb 2009)
 
