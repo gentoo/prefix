@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Manages the /usr/bin/vi symlink"
 HOMEPAGE="http://www.gentoo.org/"
