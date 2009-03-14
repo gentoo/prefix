@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 S=${WORKDIR}
 DESCRIPTION="Password generator capable of generating pronounceable and/or secure passwords."
