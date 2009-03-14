@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-File-Spec
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/ChangeLog,v 1.36 2008/10/31 08:16:41 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/ChangeLog,v 1.37 2009/03/13 20:39:11 tove Exp $
+
+  13 Mar 2009; Torsten Veller <tove@gentoo.org> -perl-File-Spec-3.12.ebuild,
+  -perl-File-Spec-3.15.ebuild, -perl-File-Spec-3.24.ebuild:
+  Cleanup
 
 *perl-File-Spec-3.29 (31 Oct 2008)
 *perl-File-Spec-3.27.01 (31 Oct 2008)
