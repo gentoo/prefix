@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.lzma"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="userland_GNU"
 
 # NOTE: rpm2targz autodetects rpm2cpio at runtime, and uses it if available,
@@ -26,6 +26,7 @@ src_unpack() {
 	cd "${S}"
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
 
+	# also necessary for Solaris
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
