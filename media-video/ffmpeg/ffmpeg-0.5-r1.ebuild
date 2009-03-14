@@ -13,7 +13,7 @@ SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec amr custom-cflags debug dirac doc ieee1394
 	  +encode faac faad gsm ipv6 +mmx +mmxext vorbis test theora threads x264
 	  xvid network zlib sdl X mp3 oss schroedinger +hardcoded-tables bindist
