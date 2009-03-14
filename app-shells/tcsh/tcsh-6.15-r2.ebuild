@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic autotools
+inherit eutils flag-o-matic autotools prefix
 
 CONFVER="1.9"
 
