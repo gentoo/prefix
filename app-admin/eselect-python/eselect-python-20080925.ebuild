@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Manages multiple Python versions"
 HOMEPAGE="http://www.gentoo.org"
