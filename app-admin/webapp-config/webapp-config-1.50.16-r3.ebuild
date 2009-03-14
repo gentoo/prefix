@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils distutils
+inherit eutils distutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
 HOMEPAGE="http://www.gentoo.org/"
