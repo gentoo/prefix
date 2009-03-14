@@ -54,7 +54,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris64.patch
+	# /bin/sh on at least Solaris can't cope very will with these scripts
+	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
 
 src_compile() {
@@ -174,13 +175,18 @@ src_compile() {
 		fi
 	fi
 
+	local arch=${CHOST%%-*}
+	# Gentoo Linux ppc64 has powerpc64-* CHOST, but configure doesn't get that
+	[[ ${arch} == powerpc64 ]] && arch=ppc64
+
 	cd "${S}"
-	${EPREFIX}/bin/sh ./configure \
+	./configure \
 		--prefix="${EPREFIX}"/usr \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--shlibdir="${EPREFIX}"/usr/$(get_libdir) \
 		--mandir="${EPREFIX}"/usr/share/man \
 		--enable-static --enable-shared \
+		--arch=${CHOST%%-*} \
 		--cc="$(tc-getCC)" \
 		${myconf} || die "configure failed"
 
