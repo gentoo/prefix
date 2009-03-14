@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Script used to remerge python packages when changing Python version."
 HOMEPAGE="http://www.gentoo.org/proj/en/Python"
