@@ -4,7 +4,7 @@
 
 # This probably will blow up if not ran in a Prefix environment, sorry.
 
-RSURL="http://tinderbox.dev.gentoo.org/portage"
+RSURL=${RSURL:-"http://tinderbox.dev.gentoo.org/portage"}
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 
 source "${EPREFIX}/etc/init.d/functions.sh"
