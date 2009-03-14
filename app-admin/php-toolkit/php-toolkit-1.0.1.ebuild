@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Utilities for managing installed copies of PHP"
 HOMEPAGE="http://www.gentoo.org/proj/en/php/"
