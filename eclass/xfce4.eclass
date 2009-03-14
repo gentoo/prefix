@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.26 2009/03/10 11:25:17 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.27 2009/03/13 11:22:37 angelos Exp $
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
@@ -10,7 +10,7 @@
 # This eclass provides functions to install Xfce4 packages with a
 # minimum of duplication in ebuilds
 
-inherit fdo-mime gnome2-utils
+inherit fdo-mime gnome2-utils libtool
 [ -n ${XFCE4_PATCHES} ] && inherit eutils
 if [ ${PV} = 9999 ]; then
 	inherit autotools
@@ -158,6 +158,7 @@ xfce4_src_unpack() {
 		fi
 	else
 		unpack ${A}
+		elibtoolize
 	fi
 }
 
