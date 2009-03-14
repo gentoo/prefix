@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.90 2009/03/10 14:58:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.91 2009/03/13 21:24:04 jer Exp $
+
+  13 Mar 2009; Jeroen Roovers <jer@gentoo.org> libsndfile-1.0.19.ebuild:
+  Stable for HPPA (bug #261173).
 
   10 Mar 2009; Brent Baude <ranger@gentoo.org> libsndfile-1.0.19.ebuild:
   Marking libsndfile-1.0.19 ppc64 for bug 261173
