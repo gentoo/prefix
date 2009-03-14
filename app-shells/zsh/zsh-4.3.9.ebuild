@@ -7,7 +7,7 @@ EAPI="prefix"
 # doc package for -dev version exists?
 doc_available=true
 
-inherit flag-o-matic eutils multilib
+inherit flag-o-matic eutils multilib prefix
 
 MY_PV=${PV/_p/-dev-}
 S=${WORKDIR}/${PN}-${MY_PV}

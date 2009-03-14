@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib prefix
 
 LOVERS_PV=0.5
 LOVERS_P=zsh-lovers-${LOVERS_PV}
