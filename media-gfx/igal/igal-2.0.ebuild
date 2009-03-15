@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/igal-2.0.ebuild,v 1.1 2009/01/03 14:03:00 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/igal-2.0.ebuild,v 1.2 2009/03/14 12:02:20 maekke Exp $
 
 EAPI="prefix 2"
 
