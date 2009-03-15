@@ -41,7 +41,7 @@ src_unpack() {
 	# Fixes compilation issue in fbsd.
 	epatch "${FILESDIR}/${P}-fbsd.patch"
 	# ... and also fix it on Solaris (the same way)
-	epatch "${FILESDIR}"/${PN}-2.0.6-use-configure-or-die.patch
+	epatch "${FILESDIR}"/${P}-use-configure-or-die.patch
 }
 
 src_install() {
