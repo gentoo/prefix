@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Converts source files to colored HTML output."
 HOMEPAGE="http://www.palfrader.org/code2html/"
