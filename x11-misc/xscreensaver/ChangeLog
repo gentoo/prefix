@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.247 2009/03/13 20:31:32 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.248 2009/03/14 13:42:57 scarabeus Exp $
+
+  14 Mar 2009; Tomas Chvatal <scarabeus@gentoo.org>
+  -files/5.07/03_all_glforrestfire.patch:
+  The patch was supposed to hit only 5.08 in 5.07 it is in correct GL_EXES
+  part.
 
   13 Mar 2009; Tomas Chvatal <scarabeus@gentoo.org>
   +files/5.07/03_all_glforrestfire.patch,
