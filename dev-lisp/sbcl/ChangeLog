@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.152 2009/03/11 21:20:36 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.153 2009/03/14 13:52:55 nixnut Exp $
+
+  14 Mar 2009; nixnut <nixnut@gentoo.org> sbcl-1.0.19.ebuild:
+  ppc stable #261630
 
   11 Mar 2009; Ferris McCormick <fmccor@gentoo.org> sbcl-1.0.19.ebuild:
   Sparc stable, Bug #261630.
