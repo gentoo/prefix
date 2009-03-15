@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Simple Portage Log Analyzer Tool"
 HOMEPAGE="http://www.l8nite.net/projects/splat/"
