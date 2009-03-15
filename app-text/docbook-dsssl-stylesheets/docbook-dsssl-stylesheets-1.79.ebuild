@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit sgml-catalog
+inherit sgml-catalog prefix
 
 MY_P=${P/-stylesheets/}
 S=${WORKDIR}/${MY_P}
