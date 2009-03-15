@@ -4,7 +4,7 @@
 
 EAPI="prefix 2"
 
-inherit gnustep-base eutils
+inherit gnustep-base eutils prefix
 
 DESCRIPTION="GNUstep Makefile Package"
 
