@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.19 2009/03/12 08:45:52 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.20 2009/03/14 11:14:37 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -38,12 +38,12 @@ DEPEND=">=dev-util/cmake-2.4.6-r1"
 _use_me_now() {
 	debug-print-function ${FUNCNAME} "$@"
 	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
-	echo "-D$1_${3:-$2}=$(use $2 && echo ON || echo OFF)"
+	echo "-D$1${3:-$2}=$(use $2 && echo ON || echo OFF)"
 }
 _use_me_now_inverted() {
 	debug-print-function ${FUNCNAME} "$@"
 	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
-	echo "-D$1_${3:-$2}=$(use $2 && echo OFF || echo ON)"
+	echo "-D$1${3:-$2}=$(use $2 && echo OFF || echo ON)"
 }
 
 # @ECLASS-VARIABLE: DOCS
@@ -100,7 +100,7 @@ _check_build_dir() {
 #
 # `cmake-utils_use_with foo FOO` echoes -DWITH_FOO=ON if foo is enabled
 # and -DWITH_FOO=OFF if it is disabled.
-cmake-utils_use_with() { _use_me_now WITH "$@" ; }
+cmake-utils_use_with() { _use_me_now WITH_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_enable
 # @USAGE: <USE flag> [flag name]
@@ -109,7 +109,7 @@ cmake-utils_use_with() { _use_me_now WITH "$@" ; }
 #
 # `cmake-utils_use_enable foo FOO` echoes -DENABLE_FOO=ON if foo is enabled
 # and -DENABLE_FOO=OFF if it is disabled.
-cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
+cmake-utils_use_enable() { _use_me_now ENABLE_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_disable
 # @USAGE: <USE flag> [flag name]
@@ -118,7 +118,7 @@ cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
 #
 # `cmake-utils_use_enable foo FOO` echoes -DDISABLE_FOO=OFF if foo is enabled
 # and -DDISABLE_FOO=ON if it is disabled.
-cmake-utils_use_disable() { _use_me_now_inverted DISABLE "$@" ; }
+cmake-utils_use_disable() { _use_me_now_inverted DISABLE_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_no
 # @USAGE: <USE flag> [flag name]
@@ -127,7 +127,7 @@ cmake-utils_use_disable() { _use_me_now_inverted DISABLE "$@" ; }
 #
 # `cmake-utils_use_no foo FOO` echoes -DNO_FOO=OFF if foo is enabled
 # and -DNO_FOO=ON if it is disabled.
-cmake-utils_use_no() { _use_me_now_inverted NO "$@" ; }
+cmake-utils_use_no() { _use_me_now_inverted NO_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_want
 # @USAGE: <USE flag> [flag name]
@@ -136,7 +136,7 @@ cmake-utils_use_no() { _use_me_now_inverted NO "$@" ; }
 #
 # `cmake-utils_use_want foo FOO` echoes -DWANT_FOO=ON if foo is enabled
 # and -DWANT_FOO=OFF if it is disabled.
-cmake-utils_use_want() { _use_me_now WANT "$@" ; }
+cmake-utils_use_want() { _use_me_now WANT_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_build
 # @USAGE: <USE flag> [flag name]
@@ -145,7 +145,7 @@ cmake-utils_use_want() { _use_me_now WANT "$@" ; }
 #
 # `cmake-utils_use_build foo FOO` echoes -DBUILD_FOO=ON if foo is enabled
 # and -DBUILD_FOO=OFF if it is disabled.
-cmake-utils_use_build() { _use_me_now BUILD "$@" ; }
+cmake-utils_use_build() { _use_me_now BUILD_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use_has
 # @USAGE: <USE flag> [flag name]
@@ -154,12 +154,12 @@ cmake-utils_use_build() { _use_me_now BUILD "$@" ; }
 #
 # `cmake-utils_use_has foo FOO` echoes -DHAVE_FOO=ON if foo is enabled
 # and -DHAVE_FOO=OFF if it is disabled.
-cmake-utils_use_has() { _use_me_now HAVE "$@" ; }
+cmake-utils_use_has() { _use_me_now HAVE_ "$@" ; }
 
 # @FUNCTION: cmake-utils_has
 # @DESCRIPTION:
 # Deprecated, use cmake-utils_use_has, kept now for backcompat.
-cmake-utils_has() { ewarn "QA notice: using deprecated ${FUNCNAME} call, use cmake-utils_use_has instead." ; _use_me_now HAVE "$@" ; }
+cmake-utils_has() { ewarn "QA notice: using deprecated ${FUNCNAME} call, use cmake-utils_use_has instead." ; _use_me_now HAVE_ "$@" ; }
 
 # @FUNCTION: cmake-utils_use
 # @USAGE: <USE flag> [flag name]

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.81 2008/07/31 20:01:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.82 2009/03/14 13:02:08 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -14,6 +14,8 @@
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
 ELIBTOOL_VERSION="2.0.2"
+
+inherit toolchain-funcs
 
 ELT_PATCH_DIR="${ECLASSDIR}/ELT-patches"
 ELT_APPLIED_PATCHES=
@@ -123,7 +125,7 @@ elibtoolize() {
 	local do_force="no"
 	local deptoremove=
 	local my_dirlist=
-	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp"
+	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp cross"
 	local start_dir=${PWD}
 
 	my_dirlist=$(ELT_find_ltmain_sh)
@@ -324,6 +326,12 @@ elibtoolize() {
 				"install-sh")
 					ELT_walk_patches "${x}/install-sh" "${y}"
 					ret=$?
+					;;
+				"cross")
+					if tc-is-cross-compiler ; then
+						ELT_walk_patches "${x}/ltmain.sh" "${y}"
+						ret=$?
+					fi
 					;;
 				*)
 					ELT_walk_patches "${x}/ltmain.sh" "${y}"

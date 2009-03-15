@@ -1,74 +1,20 @@
-# Copyright 2005 Gentoo Foundation
+# Copyright 2005-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.50 2009/02/25 18:23:56 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.52 2009/03/14 23:30:05 yngwin Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
-# Caleb Tennis <caleb@gentoo.org>
+# Ben de Groot <yngwin@gentoo.org>,
+# Markos Chandras <hwoarang@gentoo.org>,
+# Caleb Tennis <caleb@gentoo.org>,
+# Przemyslaw Maciag <troll@gentoo.org>,
+# Davide Pesavento <davidepesa@gmail.com>
 # @BLURB: Eclass for Qt4 packages
 # @DESCRIPTION:
 # This eclass contains various functions that may be useful
 # when dealing with packages using Qt4 libraries.
 
-# 08.16.06 - Renamed qt_min_* to qt4_min_* to avoid conflicts with the qt3 eclass.
-#    - Caleb Tennis <caleb@gentoo.org>
-
-inherit eutils multilib toolchain-funcs versionator
-
-QTPKG="x11-libs/qt-"
-QT4MAJORVERSIONS="4.4 4.3 4.2 4.1 4.0"
-QT4VERSIONS="4.4.2 4.4.1 4.4.0 4.4.0_beta1 4.4.0_rc1
-	     4.3.4-r1 4.3.5 4.3.4 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1
-	     4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1
-	     4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0
-	     4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0
-	     4.0.1 4.0.0"
-
-# @FUNCTION: qt4_min_version
-# @USAGE: [minimum version]
-# @DESCRIPTION:
-# This function is deprecated. Use slot dependencies instead.
-qt4_min_version() {
-	local deps="$@"
-	ewarn "${CATEGORY}/${PF}: qt4_min_version() is deprecated. Use slot dependencies instead."
-	eapi=${EAPI/prefix/}
-	case ${eapi:-0} in
-		# EAPIs without SLOT dependencies
-		0)	echo "|| ("
-			qt4_min_version_list "${deps}"
-			echo ")"
-			;;
-		# EAPIS with SLOT dependencies.
-		*)	echo ">=${QTPKG}${1}:4"
-			;;
-	esac
-}
-
-qt4_min_version_list() {
-	local MINVER="$1"
-	local VERSIONS=""
-
-	case "${MINVER}" in
-		4|4.0|4.0.0) VERSIONS="=${QTPKG}4*";;
-		4.1|4.1.0|4.2|4.2.0|4.3|4.3.0|4.4|4.4.0)
-			for x in ${QT4MAJORVERSIONS}; do
-				if version_is_at_least "${MINVER}" "${x}"; then
-					VERSIONS="${VERSIONS} =${QTPKG}${x}*"
-				fi
-			done
-			;;
-		4*)
-			for x in ${QT4VERSIONS}; do
-				if version_is_at_least "${MINVER}" "${x}"; then
-					VERSIONS="${VERSIONS} =${QTPKG}${x}"
-				fi
-			done
-			;;
-		*) VERSIONS="=${QTPKG}4*";;
-	esac
-
-	echo "${VERSIONS}"
-}
+inherit base eutils multilib toolchain-funcs versionator
 
 qt4_monolithic_to_split_flag() {
 	case ${1} in
@@ -122,9 +68,6 @@ qt4_monolithic_to_split_flag() {
 }
 
 # @FUNCTION: qt4_pkg_setup
-# @MAINTAINER:
-# Caleb Tennis <caleb@gentoo.org>
-# Przemyslaw Maciag <troll@gentoo.org>
 # @DESCRIPTION:
 # Default pkg_setup function for packages that depends on qt4. If you have to
 # create ebuilds own pkg_setup in your ebuild, call qt4_pkg_setup in it.
@@ -135,6 +78,8 @@ qt4_monolithic_to_split_flag() {
 #   functionality, but can alternatively be disabled in ${CATEGORY}/${PN}
 #   (so qt4 don't have to be recompiled)
 #
+# NOTE: Using the above vars is now deprecated in favor of eapi-2 use deps
+#
 # flags to watch for for Qt4.4:
 # zlib png | opengl dbus qt3support | sqlite3 ssl
 qt4_pkg_setup() {
@@ -142,6 +87,9 @@ qt4_pkg_setup() {
 
 	# lots of has_version calls can be very expensive
 	if [[ -n ${QT4_BUILT_WITH_USE_CHECK}${QT4_OPTIONAL_BUILT_WITH_USE_CHECK} ]]; then
+		ewarn "QA notice: The QT4_BUILT_WITH_USE functionality is deprecated and"
+		ewarn "will be removed from future versions of qt4.eclass. Please update"
+		ewarn "the ebuild to use eapi-2 use dependencies instead."
 		has_version x11-libs/qt-core && local QT44=true
 	fi
 
@@ -220,11 +168,55 @@ qt4_pkg_setup() {
 	[[ -n ${diemessage} ]] && die "can't install ${CATEGORY}/${PN}: ${diemessage}"
 }
 
+# @ECLASS-VARIABLE: PATCHES
+# @DESCRIPTION:
+# In case you have patches to apply, specify them in the PATCHES variable.
+# Make sure to specify the full path. This variable is necessary for the
+# src_prepare phase.
+# example:
+# PATCHES="${FILESDIR}/mypatch.patch
+# 	${FILESDIR}/mypatch2.patch"
+#
+# @FUNCTION: qt4_src_prepare
+# @DESCRIPTION:
+# Default src_prepare function for packages that depend on qt4. If you have to
+# override src_prepare in your ebuild, you should call qt4_src_prepare in it,
+# otherwise autopatcher will not work!
+qt4_src_prepare() {
+	debug-print-function $FUNCNAME "$@"
+	base_src_prepare
+}
+
+# @FUNCTION: qt4_src_configure
+# @DESCRIPTION:
+# Default src_configure function for packages that depend on qt4. If you have to
+# override src_configure in your ebuild, call qt4_src_configure in it.
+#qt4_src_configure() {
+#    debug-print-function $FUNCNAME "$@"
+#    eqmake4
+#}
+
+# @FUNCTION: qt4_src_compile
+# @DESCRIPTION:
+# Default src_compile function for packages that depend on qt4. If you have to
+# override src_compile in your ebuild (probably you don't need to), call
+# qt4_src_compile in it.
+#qt4_src_compile() {
+#	debug-print-function $FUNCNAME "$@"
+#	case "${EAPI:-0}" in
+#		2)
+#			emake || die "emake failed"
+#			;;
+#		0|1)
+#			qt4_src_prepare
+#			qt4_src_configure
+#			emake || die "emake failed"
+#			;;
+#	esac
+#}
+
 # @FUNCTION: eqmake4
 # @USAGE: [.pro file] [additional parameters to qmake]
-# @MAINTAINER:
-# Przemyslaw Maciag <troll@gentoo.org>
-# Davide Pesavento <davidepesa@gmail.com>
 # @DESCRIPTION:
 # Runs qmake on the specified .pro file (defaults to
 # ${PN}.pro if eqmake4 was called with no argument).
@@ -294,4 +286,12 @@ eqmake4() {
 	return ${result}
 }
 
-EXPORT_FUNCTIONS pkg_setup
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+case ${eapi:-0} in
+	2)
+		EXPORT_FUNCTIONS pkg_setup src_prepare
+		;;
+	0|1)
+		EXPORT_FUNCTIONS pkg_setup
+		;;
+esac
