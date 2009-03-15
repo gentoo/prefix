@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="DocBook XML catalog auto-updater"
 HOMEPAGE="http://unknown/"
