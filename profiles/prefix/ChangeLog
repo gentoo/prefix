@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  15 Mar 2009; Fabian Groffen <grobian@gentoo.org> darwin/use.mask:
+  unmask sdl again, bug #257960
+
   15 Mar 2009; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask, darwin/macos/package.use.force,
   darwin/macos/use.mask:

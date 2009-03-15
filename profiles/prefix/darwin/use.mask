@@ -36,6 +36,3 @@ voodoo3
 pvm
 v4l
 v4l2
-
-# bug 257960
-sdl
