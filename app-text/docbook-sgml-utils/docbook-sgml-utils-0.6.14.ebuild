@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils autotools
+inherit eutils autotools prefix
 
 MY_PN=${PN/-sgml/}
 MY_P=${MY_PN}-${PV}
