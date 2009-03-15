@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit tetex-3 versionator virtualx autotools
+inherit tetex-3 versionator virtualx autotools prefix
 
 SMALL_PV=$(get_version_component_range 1-2 ${PV})
 TETEX_TEXMF_PV=${SMALL_PV}
