@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.4.ebuild,v 1.1 2009/01/28 05:43:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.4.ebuild,v 1.2 2009/03/15 05:01:39 vapier Exp $
+
+EAPI="prefix 2"
 
 inherit flag-o-matic toolchain-funcs
 
-EAPI="prefix 2"
 DESCRIPTION="e2fsprogs libraries (common error, subsystem, uuid, block id)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
@@ -14,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
-RDEPEND="!sys-libs/com_err
+RDEPEND="elibc_glibc? ( >=sys-libs/glibc-2.6 )
+	!sys-libs/com_err
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41"
 DEPEND="nls? ( sys-devel/gettext )
