@@ -1,10 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2438 2009/03/13 22:35:33 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2439 2009/03/14 08:36:11 zzam Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Mar 2009; Matthias Schwarzott <zzam@gentoo.org> package.mask:
+  Finally unmask newer udev versions.
 
   13 Mar 2009; Torsten Veller <tove@gentoo.org> package.mask:
   Remove dual life modules for perl-5.10

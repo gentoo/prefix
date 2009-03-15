@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sh profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.18 2009/03/12 10:32:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.19 2009/03/13 15:04:13 armin76 Exp $
+
+  13 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Masking a lot of video_cards which i doubt are available on SH
 
   12 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add video_cards_radeonhd and video_cards_ast to use.mask

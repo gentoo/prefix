@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9573 2009/03/13 22:35:33 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9574 2009/03/14 08:36:10 zzam Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -282,14 +282,6 @@ x11-apps/xphelloworld
 # any more. Will remove within a month, please contact me if you
 # think it should stay.
 app-misc/sdricoh_cs
-
-# Matthias Schwarzott <zzam@gentoo.org> (20 Jan 2009)
-# Masked until udev-135-r3 is tested good enough and stable
-# and until all (upstream) rule changes are reviewed
-~sys-fs/udev-136
-~sys-fs/udev-137
-~sys-fs/udev-138
-~sys-fs/udev-139
 
 # Ben de Groot <yngwin@gentoo.org> (19 Jan 2009)
 # Masked because of bug 248038 which requires mask of qt-4.3*

@@ -1,6 +1,10 @@
 # Unmask the flag which corresponds to ARCH.
 -arm
 
+# Raúl Porcel <armin76@gentoo.org>
+# I've been told xfs is broken on ARM
+xfs
+
 # Mart Raudsepp <leio@gentoo.org>
 # net-misc/networkmanager not keyworded
 networkmanager
@@ -59,6 +63,7 @@ xindy
 lyx
 
 # havent tested yet
+cupsddk
 gphoto2
 mythtv
 dvb
@@ -83,23 +88,38 @@ scanner
 video_cards_apm
 video_cards_ark
 video_cards_ast
+video_cards_ati
 video_cards_cirrus
+video_cards_chips
 video_cards_cyrix
+video_cards_glint
 video_cards_i128
 video_cards_i740
 video_cards_i810
 video_cards_imstt
 video_cards_intel
+video_cards_mach64
+video_cards_mga
 video_cards_neomagic
 video_cards_newport
 video_cards_nsc
+video_cards_nv
+video_cards_r128
+video_cards_radeon
 video_cards_radeonhd
 video_cards_rendition
+video_cards_s3
+video_cards_s3virge
+video_cards_savage
 video_cards_siliconmotion
 video_cards_sis
+video_cards_tdfx
 video_cards_tga
+video_cards_trident
 video_cards_tseng
 video_cards_vesa
+video_cards_via
+video_cards_voodoo
 
 # 2006/03/07 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures lacking direct rendering      

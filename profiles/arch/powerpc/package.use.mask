@@ -1,3 +1,9 @@
+
+# Brent Baude <ranger@gentoo.org>
+# masking zephyr USE on pidgin
+net-im/pidgin zephyr
+
+
 # Brent Baude <ranger@gentoo.org>
 # media-libs/libcanberra-0.11 masking pulseaudio
 =media-libs/libcanberra-0.11 pulseaudio
