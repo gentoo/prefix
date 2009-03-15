@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.84.ebuild,v 1.8 2008/10/23 18:23:34 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.86.ebuild,v 1.1 2009/03/14 11:18:31 maekke Exp $
 
 EAPI="prefix"
 
@@ -24,5 +24,5 @@ src_install() {
 	dobin ${PN} || die "dobin failed."
 	dodoc *.txt
 	dohtml *.html
-	doman ${PN}.1.gz
+	doman ${PN}.1
 }
