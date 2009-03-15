@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="autounmask - Unmasking packages the easy way"
 HOMEPAGE="http://download.mpsna.de/opensource/autounmask/"
