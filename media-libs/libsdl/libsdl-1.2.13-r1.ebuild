@@ -11,7 +11,7 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 # WARNING:
 # if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
 # in USE and something breaks, you pick up the pieces.  Be prepared for
@@ -79,6 +79,13 @@ src_prepare() {
 		"${FILESDIR}"/${P}-pulseaudio.patch \
 		"${FILESDIR}"/${P}-cld.patch
 
+	# darwin uses dlopen too
+	epatch "${FILESDIR}"/${P}-darwin-loadobj.patch
+	sed -e "s|@GENTOO_PREFIX_LIBDIR@|${EPREFIX}/usr/$(get_libdir)|g" \
+		-i "${S}/src/loadso/dlopen/SDL_sysloadso.c" \
+		-i "${S}/src/loadso/mint/SDL_sysloadso.c" \
+		|| die "sed loadso failed"
+
 	./autogen.sh
 	elibtoolize
 }
@@ -111,10 +118,12 @@ src_configure() {
 	myconf="${myconf} ${directfbconf}"
 
 	# somehow the build depends on it, but doesn't understand it needs it
-	[[ ${CHOST} == *-darwin* ]] && append-ldflags -Wl,-framework -Wl,OpenGL
+	[[ ${CHOST} == *-darwin* ]] && \
+		myconf="${myconf} --disable-video-carbon --enable-video-cocoa"
 
+	# enable rpath for Prefix!
 	econf \
-		--disable-rpath \
+		--enable-rpath \
 		--enable-events \
 		--enable-cdrom \
 		--enable-threads \

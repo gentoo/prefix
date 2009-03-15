@@ -1,0 +1,56 @@
+--- src/loadso/dlopen/SDL_sysloadso.c.orig	2009-03-09 11:43:21 +0100
++++ src/loadso/dlopen/SDL_sysloadso.c	2009-03-09 11:43:32 +0100
+@@ -31,13 +31,25 @@
+ 
+ #include "SDL_loadso.h"
+ 
++#define ADDITIONAL_SEARCH_PATH "@GENTOO_PREFIX_LIBDIR@"
++
+ void *SDL_LoadObject(const char *sofile)
+ {
+-	void *handle = dlopen(sofile, RTLD_NOW);
++	//try the specific offset first
++	char path[1024];
++	SDL_snprintf(path, SDL_arraysize(path), "%s/%s", ADDITIONAL_SEARCH_PATH, sofile);
++	
++	void *handle = dlopen(path, RTLD_NOW);
+ 	const char *loaderror = (char *)dlerror();
+ 	if ( handle == NULL ) {
+-		SDL_SetError("Failed loading %s: %s", sofile, loaderror);
++		//fall back to standard version
++		handle = dlopen(sofile, RTLD_NOW);
++		loaderror = (char *)dlerror();
++		if ( handle == NULL ) {
++			SDL_SetError("Failed loading %s: %s", sofile, loaderror);
++		}
+ 	}
++
+ 	return(handle);
+ }
+ 
+--- src/loadso/mint/SDL_sysloadso.c.orig	2009-03-09 12:10:08 +0100
++++ src/loadso/mint/SDL_sysloadso.c	2009-03-09 12:12:44 +0100
+@@ -32,12 +32,21 @@
+ 
+ #include "SDL_loadso.h"
+ 
++#define ADDITIONAL_SEARCH_PATH "@GENTOO_PREFIX_LIBDIR@"
++
+ void *SDL_LoadObject(const char *sofile)
+ {
+ 	const char *loaderror = "Unknown error";
+-	void *handle = (void *)ldg_open((char *)sofile, ldg_global);
++	//try the specific offset first
++	char path[1024];
++	SDL_snprintf(path, SDL_arraysize(path), "%s/%s", ADDITIONAL_SEARCH_PATH, sofile);
++	void *handle = (void *)ldg_open((char *)path, ldg_global);
+ 	if ( handle == NULL ) {
+-		SDL_SetError("Failed loading %s: %s", sofile, loaderror);
++		//fall back to standard version
++		handle = (void *)ldg_open((char *)sofile, ldg_global);
++		if ( handle == NULL ) {
++			SDL_SetError("Failed loading %s: %s", sofile, loaderror);
++		}
+ 	}
+ 	return(handle);
+ }
