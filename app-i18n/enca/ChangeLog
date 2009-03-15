@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/enca
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.32 2009/03/11 21:58:31 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.33 2009/03/14 18:41:08 armin76 Exp $
+
+  14 Mar 2009; Raúl Porcel <armin76@gentoo.org> enca-1.9-r1.ebuild:
+  ia64/sparc stable wrt #261227
 
   11 Mar 2009; Tobias Klausmann <klausman@gentoo.org> enca-1.9-r1.ebuild:
   Stable on alpha, bug #261227
