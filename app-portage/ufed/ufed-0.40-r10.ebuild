@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Gentoo Linux USE flags editor"
 HOMEPAGE="http://www.gentoo.org/"
