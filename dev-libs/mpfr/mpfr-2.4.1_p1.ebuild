@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.1_p1.ebuild,v 1.6 2009/03/07 14:23:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.1_p1.ebuild,v 1.7 2009/03/14 14:55:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,7 @@ src_unpack() {
 			die "patch ${i} missing - please report to bugs.gentoo.org"
 		fi
 	done
+	sed -i '/if test/s:==:=:' configure #261016
 	find . -type f -print0 | xargs -0 touch -r configure
 }
 
