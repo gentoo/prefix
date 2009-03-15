@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit perl-module eutils
+inherit perl-module eutils prefix
 DESCRIPTION="Portage abstraction layer for perl"
 HOMEPAGE="http://download.mpsna.de/opensource/PortageXS/"
 SRC_URI="http://download.mpsna.de/opensource/PortageXS/${P}.tar.gz"
