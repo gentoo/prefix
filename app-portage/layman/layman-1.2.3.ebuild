@@ -4,7 +4,7 @@
 
 EAPI="prefix 2"
 
-inherit eutils distutils
+inherit eutils distutils prefix
 
 DESCRIPTION="A python script for retrieving gentoo overlays."
 HOMEPAGE="http://layman.sourceforge.net"
