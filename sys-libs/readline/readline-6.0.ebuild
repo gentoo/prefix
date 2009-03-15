@@ -50,7 +50,7 @@ src_unpack() {
 	cd "${S}"
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
 	# missing patch for 'support/shlib-install' in p12 (netbsd, aix5, interix).
-	epatch "${FILESDIR}"/${PN}-5.2_p12-shlib-install.patch
+#	epatch "${FILESDIR}"/${PN}-5.2_p12-shlib-install.patch
 
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-6.0-rlfe-build.patch #151174
@@ -59,13 +59,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
-	epatch "${FILESDIR}"/${PN}-5.2-rlfe-irix.patch #209595
+#	epatch "${FILESDIR}"/${PN}-5.2-rlfe-irix.patch #209595
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
-	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
-	epatch "${FILESDIR}"/${PN}-5.2-mint.patch
-	epatch "${FILESDIR}"/${PN}-5.2-solaris-fPIC.patch
-	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch
+#	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
+#	epatch "${FILESDIR}"/${PN}-5.2-mint.patch
+#	epatch "${FILESDIR}"/${PN}-5.2-solaris-fPIC.patch
+#	[[ ${CHOST} == *-darwin9 ]] && epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
