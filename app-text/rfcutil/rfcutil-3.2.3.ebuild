@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 MY_PN="rfc"
 MY_P="${MY_PN}-${PV}"
