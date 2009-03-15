@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libmcs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.46 2008/12/13 18:24:55 klausman Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/ChangeLog,v 1.47 2009/03/14 21:25:29 nixnut Exp $
+
+  14 Mar 2009; nixnut <nixnut@gentoo.org> libmcs-0.7.1-r2.ebuild:
+  ppc stable #247287
 
   13 Dec 2008; Tobias Klausmann <klausman@gentoo.org>
   libmcs-0.7.1-r2.ebuild:
