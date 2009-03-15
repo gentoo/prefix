@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.97 2009/01/10 16:31:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.98 2009/03/15 01:10:51 robbat2 Exp $
+
+  15 Mar 2009; Robin H. Johnson <robbat2@gentoo.org>
+  actionmailer-2.1.2.ebuild:
+  Fix slot conflict: =dev-ruby/actionpack-2.1.2 required by ('installed',
+  '/', 'dev-ruby/actionmailer-2.1.2', 'nomerge')
 
   10 Jan 2009; Raúl Porcel <armin76@gentoo.org> actionmailer-2.2.2.ebuild:
   ia64 stable wrt #253425
