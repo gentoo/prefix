@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.86 2009/03/11 15:19:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.87 2009/03/14 15:38:40 armin76 Exp $
+
+  14 Mar 2009; Raúl Porcel <armin76@gentoo.org> cmake-2.6.2-r1.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #259741
 
   11 Mar 2009; Brent Baude <ranger@gentoo.org> cmake-2.6.2-r1.ebuild:
   Marking cmake-2.6.2-r1 ppc64 for bug 259741
