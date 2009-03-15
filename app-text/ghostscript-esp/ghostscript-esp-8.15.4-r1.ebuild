@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit autotools eutils versionator
+inherit autotools eutils versionator prefix
 
 DESCRIPTION="ESP Ghostscript -- an enhanced version of GPL Ghostscript with better printer support"
 HOMEPAGE="http://www.cups.org/espgs"
