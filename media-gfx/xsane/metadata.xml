@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+<email>phosphan@gentoo.org</email>
+<description>Package free for adoption, I don't have much time and my scanner is connected to a dialup machine</description>
+</maintainer>
+</pkgmetadata>
