@@ -4,9 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
-
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Tool to help select distfiles mirrors for Gentoo"
 HOMEPAGE="http://www.gentoo.org/"
