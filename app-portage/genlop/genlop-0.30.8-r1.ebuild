@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils bash-completion
+inherit eutils bash-completion prefix
 
 DESCRIPTION="A nice emerge.log parser"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl"
