@@ -4,7 +4,7 @@
 
 EAPI="prefix 2"
 
-inherit eutils versionator flag-o-matic autotools
+inherit eutils versionator flag-o-matic autotools prefix
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
