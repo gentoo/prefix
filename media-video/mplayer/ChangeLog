@@ -1,6 +1,14 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.624 2009/02/28 10:25:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.625 2009/03/14 09:57:42 yngwin Exp $
+
+*mplayer-20090226.28734-r1 (14 Mar 2009)
+
+  14 Mar 2009; Ben de Groot <yngwin@gentoo.org>
+  +mplayer-20090226.28734-r1.ebuild:
+  Up the dependency on x264 to latest stable, so we can drop the patch. Some
+  cosmetic changes (slot deps). Fix MPLAYER_REVISION handling. Fix mangled
+  unicode for Polish spelling.
 
   28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   custom-cflags is a global USE-flag
