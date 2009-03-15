@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="rpm workalike for Gentoo Linux"
 HOMEPAGE="http://www.gentoo.org/~agriffis/epm/"
