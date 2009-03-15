@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.0.ebuild,v 1.1 2009/03/04 21:09:36 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.0.ebuild,v 1.2 2009/03/14 19:49:53 hwoarang Exp $
 
 EAPI="prefix 2"
 inherit eutils qt4-build
@@ -50,12 +50,13 @@ tools/shared/"
 
 pkg_setup() {
 	if use raster; then
-		ewarn
-		ewarn "You have enabled raster backend rendering engine."
-		ewarn "This is a new feature and might lead to composite problems"
-		ewarn "or screen corruption."
-		ewarn
-		ebeep 3
+		ewarn "WARNING: You have enabled raster backend rendering engine."
+		ewarn "This is a new feature and may lead to composite problems"
+		ewarn "screen corruption and broken qt4 or kde4 applications. "
+		ewarn "If you encounter such problems please"
+		ewarn "remove 'raster' use flag and re-compile qt-gui before"
+		ewarn "filling a bug on gentoo bugzilla."
+		ebeep 5
 	fi
 	qt4-build_pkg_setup
 }
