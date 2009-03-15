@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.351 2009/03/10 21:26:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.352 2009/03/14 11:41:13 vapier Exp $
+
+*binutils-2.19.1-r1 (14 Mar 2009)
+
+  14 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.19.1-r1.ebuild:
+  Add strip fixes from upstream for #183725 by Harald van Dijk and #257783
+  by Alexey Shvetsov and Raúl Porcel.
 
 *binutils-2.19.51.0.3 (10 Mar 2009)
 
