@@ -4,5 +4,5 @@
 app-editor/gvim aqua
 
 # Elias Pipping <pipping@gentoo.org> (29 Nov 2007)
-# won't compile without -- currently masked, though
+# won't compile without
 media-libs/libsdl opengl
