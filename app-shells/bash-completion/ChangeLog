@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.160 2009/03/09 00:38:43 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.161 2009/03/14 17:22:11 armin76 Exp $
+
+  14 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  bash-completion-20081219-r1.ebuild:
+  arm/ia64/s390 stable wrt #259724
 
   09 Mar 2009; Tiago Cunha <tcunha@gentoo.org>
   bash-completion-20081219-r1.ebuild:
