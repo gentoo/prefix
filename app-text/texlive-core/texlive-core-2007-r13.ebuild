@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common
+inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common prefix
 
 PATCHLEVEL="6"
 TEXMFD_VERSION="2"
