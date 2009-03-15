@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF="2.1"
 WANT_AUTOMAKE="1.5"
 
-inherit autotools eutils
+inherit autotools eutils prefix
 
 DESCRIPTION="Base ISO character entities and utilities for SGML"
 HOMEPAGE="http://www.iso.ch/cate/3524030.html"
