@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.62 2009/03/09 11:05:30 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.63 2009/03/14 14:21:59 bicatali Exp $
+
+  14 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  matplotlib-0.91.2.ebuild, matplotlib-0.91.4.ebuild:
+  Switch to EAPI 2
 
   09 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
   matplotlib-0.98.5.2-r3.ebuild:
