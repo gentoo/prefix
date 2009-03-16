@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.261 2009/03/11 01:51:44 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.262 2009/03/15 22:29:25 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> gedit-2.24.3.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> gedit-2.24.3.ebuild:
   Marked stable on amd64
