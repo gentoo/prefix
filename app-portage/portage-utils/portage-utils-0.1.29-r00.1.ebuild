@@ -21,6 +21,7 @@ DEPEND="
 	sparc64-solaris? ( dev-libs/gnulib )
 	x86-solaris? ( dev-libs/gnulib )
 	x64-solaris? ( dev-libs/gnulib )
+	x86-interix? ( dev-libs/gnulib )
 "
 
 src_unpack() {
@@ -37,10 +38,11 @@ src_unpack() {
 
 src_compile() {
 	tc-export CC
-	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* ]]; then
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* || ${CHOST} == *-interix3* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
-		append-libs -lgnu
+		# append-libs doesn't work, since the Makefile doesn't know LIBS, it seems
+		append-ldflags -lgnu
 	fi
 	emake || die
 }
