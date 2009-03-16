@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyorbit
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyorbit/ChangeLog,v 1.62 2009/03/11 02:01:54 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyorbit/ChangeLog,v 1.63 2009/03/15 21:05:48 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> pyorbit-2.24.0.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> pyorbit-2.24.0.ebuild:
   Marked stable on amd64
