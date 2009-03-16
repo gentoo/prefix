@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.8.ebuild,v 1.3 2009/03/11 01:44:38 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.8.ebuild,v 1.5 2009/03/15 19:09:27 klausman Exp $
 
 EAPI="prefix"
 
