@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.14 2009/02/15 23:03:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.15 2009/03/16 00:57:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ PATCH_VER="1.6"
 UCLIBC_VER="1.0"
 PIE_VER="8.7.8"
 PP_VER="1.0"
-HTB_VER="1.00-r1"
+HTB_VER="1.00-r2"
 
 ETYPE="gcc-compiler"
 

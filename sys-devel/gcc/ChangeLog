@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.687 2009/03/01 20:46:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.688 2009/03/15 07:16:09 vapier Exp $
+
+*gcc-4.3.3-r1 (15 Mar 2009)
+
+  15 Mar 2009; Mike Frysinger <vapier@gentoo.org> +gcc-4.3.3-r1.ebuild:
+  Push out accumulated fixes and new uClibc patchset.
 
   24 Feb 2009; Joshua Kinard <kumba@gentoo.org> gcc-4.3.2-r3.ebuild,
   gcc-4.3.3.ebuild:
