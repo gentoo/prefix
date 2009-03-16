@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.170 2009/03/11 02:24:40 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.171 2009/03/15 21:00:47 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> libsoup-2.24.3.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> libsoup-2.24.3.ebuild:
   Marked stable on amd64
