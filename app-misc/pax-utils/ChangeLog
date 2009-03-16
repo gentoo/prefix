@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/pax-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.111 2009/01/29 07:17:19 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.112 2009/03/15 14:40:50 patrick Exp $
+
+  15 Mar 2009; Patrick Lauer <patrick@gentoo.org> Manifest:
+  Manifest fix
 
   29 Jan 2009; Javier Villavicencio <the_paya@gentoo.org>
   pax-utils-0.1.19.ebuild:
