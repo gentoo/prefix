@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.218 2009/03/11 02:28:43 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.219 2009/03/15 21:37:37 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> vte-0.17.4-r3.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> vte-0.17.4-r3.ebuild:
   Marked stable on amd64
