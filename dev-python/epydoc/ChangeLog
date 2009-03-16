@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/epydoc
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.40 2009/03/14 19:10:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.41 2009/03/15 13:21:09 ranger Exp $
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> epydoc-3.0.1.ebuild:
+  stable ppc64, bug 241572
 
   14 Mar 2009; nixnut <nixnut@gentoo.org> epydoc-3.0.1.ebuild:
   ppc stable #241572
