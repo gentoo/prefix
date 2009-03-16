@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/elfutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/ChangeLog,v 1.123 2009/02/14 05:40:18 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/ChangeLog,v 1.124 2009/03/15 11:29:33 pva Exp $
+
+*elfutils-0.140 (15 Mar 2009)
+
+  15 Mar 2009; Peter Volkov <pva@gentoo.org> elfutils-0.127.ebuild,
+  +elfutils-0.140.ebuild:
+  Version bump, bug #220577, thank Conrad Kostecki for report. Don't build
+  tests if tests are disabled, bug #226349, and added flex into DEPEND, bug
+  221381, thank Diego E. 'Flameeyes' Pettenò for both reports. Added nls
+  USE flag as requested in bug #225273 by Le retraité. New bzip2 and zlib
+  USE flags.
 
   14 Feb 2009; Kenneth Prugh <ken69267@gentoo.org> elfutils-0.131-r2.ebuild:
   amd64 stable, bug #245861
