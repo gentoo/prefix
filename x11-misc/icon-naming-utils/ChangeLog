@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/icon-naming-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.69 2009/03/11 02:29:24 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.70 2009/03/15 20:57:16 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org>
+  icon-naming-utils-0.8.7.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org>
   icon-naming-utils-0.8.7.ebuild:
