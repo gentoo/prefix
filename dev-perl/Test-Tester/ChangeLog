@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Tester
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.27 2008/12/22 16:33:49 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.28 2009/03/15 13:22:31 ranger Exp $
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> Test-Tester-0.107.ebuild:
+  Marking Test-Tester-0.107 ~ppc64 for bug 261707
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org> Test-Tester-0.107.ebuild:
   alpha/ia64 stable wrt #251352
