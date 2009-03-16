@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/htop
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.73 2009/03/08 14:16:47 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.74 2009/03/15 20:20:51 armin76 Exp $
+
+  15 Mar 2009; Raúl Porcel <armin76@gentoo.org> htop-0.8.1-r1.ebuild:
+  alpha stable
 
   08 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> htop-0.8.1-r1.ebuild:
   Migrate to EAPI 2.
