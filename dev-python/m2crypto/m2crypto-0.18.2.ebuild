@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/m2crypto-0.18.2.ebuild,v 1.5 2008/12/25 11:45:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/m2crypto-0.18.2.ebuild,v 1.6 2009/03/15 13:52:27 ranger Exp $
 
 EAPI="prefix"
 

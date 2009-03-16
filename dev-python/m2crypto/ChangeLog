@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/m2crypto
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.36 2008/12/24 20:26:12 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.37 2009/03/15 13:52:27 ranger Exp $
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> m2crypto-0.18.2.ebuild:
+  Marking m2crypto-0.18.2 ppc64 for bug 256245
 
   24 Dec 2008; Raúl Porcel <armin76@gentoo.org> m2crypto-0.18.2.ebuild:
   Add ~arm wrt #172817
