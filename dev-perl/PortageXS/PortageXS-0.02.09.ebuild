@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.09.ebuild,v 1.1 2008/12/01 20:34:22 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.09.ebuild,v 1.5 2009/01/19 11:39:49 jer Exp $
 
 EAPI="prefix"
 
@@ -32,19 +32,19 @@ src_unpack() {
 		usr/sbin/portagexsd
 
 	if use minimal ; then
-		rm -r ${S}/usr
-		rm -r ${S}/etc/init.d
-		rm -r ${S}/etc/pxs/certs
-		rm ${S}/etc/pxs/portagexsd.conf
-		rm -r ${S}/lib/PortageXS/examples
+		rm -r "${S}"/usr
+		rm -r "${S}"/etc/init.d
+		rm -r "${S}"/etc/pxs/certs
+		rm "${S}"/etc/pxs/portagexsd.conf
+		rm -r "${S}"/lib/PortageXS/examples
 	fi
 }
 
 pkg_preinst() {
 	if use !minimal ; then
-		cp -r ${S}/usr ${ED}
+		cp -r "${S}"/usr "${ED}"
 	fi
-	cp -r ${S}/etc ${ED}
+	cp -r "${S}"/etc "${ED}"
 }
 
 pkg_postinst() {
