@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/autounmask-0.23.ebuild,v 1.1 2008/12/01 20:50:58 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/autounmask-0.23.ebuild,v 1.5 2009/01/19 11:40:51 jer Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="autounmask - Unmasking packages the easy way"
 HOMEPAGE="http://download.mpsna.de/opensource/autounmask/"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.21-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify autounmask
 }
 
