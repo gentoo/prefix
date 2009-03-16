@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-assistant
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.28 2009/03/04 21:07:23 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/ChangeLog,v 1.29 2009/03/16 00:48:06 zmedico Exp $
+
+  16 Mar 2009; Zac Medico <zmedico@gentoo.org> qt-assistant-4.4.2-r1.ebuild,
+  qt-assistant-4.5.0_rc1.ebuild, qt-assistant-4.5.0.ebuild:
+  Bug #262457 - Add !<x11-libs/qt-4.4.0:4 blockers due to file collisions.
 
 *qt-assistant-4.5.0 (04 Mar 2009)
 

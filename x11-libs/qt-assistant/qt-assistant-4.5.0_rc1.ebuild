@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.5.0_rc1.ebuild,v 1.1 2009/02/11 23:15:09 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.5.0_rc1.ebuild,v 1.2 2009/03/16 00:48:06 zmedico Exp $
 
 EAPI="prefix 2"
 inherit qt4-build
@@ -16,7 +16,7 @@ IUSE=""
 DEPEND="~x11-libs/qt-gui-${PV}[debug=]
 	~x11-libs/qt-sql-${PV}[debug=,sqlite]
 	~x11-libs/qt-webkit-${PV}[debug=]"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND} !<x11-libs/qt-4.4.0:4"
 
 # Pixeltool isn't really assistant related, but it relies on
 # the assistant libraries. And qdoc3 is needed by qt-creator...
