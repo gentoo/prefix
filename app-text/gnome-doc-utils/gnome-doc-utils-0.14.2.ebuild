@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.6 2009/03/11 01:52:46 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.7 2009/03/15 20:48:34 maekke Exp $
 
 EAPI="prefix 2"
 
