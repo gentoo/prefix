@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.138 2009/03/15 00:29:46 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.139 2009/03/15 18:16:52 klausman Exp $
+
+  15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> zsh-4.3.9.ebuild:
+  Stable on alpha, bug #261488
 
   15 Mar 2009; Dawid Węgliński <cla@gentoo.org> zsh-4.3.9.ebuild:
   Stable on amd64 (bug #261488)
