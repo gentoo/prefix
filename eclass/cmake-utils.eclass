@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.20 2009/03/14 11:14:37 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.21 2009/03/15 16:54:32 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -32,7 +32,7 @@ EXPORT_FUNCTIONS ${EXPF}
 
 : ${DESCRIPTION:="Based on the ${ECLASS} eclass"}
 
-DEPEND=">=dev-util/cmake-2.4.6-r1"
+DEPEND=">=dev-util/cmake-2.6.2-r1"
 
 # Internal functions used by cmake-utils_use_*
 _use_me_now() {

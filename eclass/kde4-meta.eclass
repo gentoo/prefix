@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.15 2009/03/12 17:53:05 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.16 2009/03/15 15:27:13 alexxy Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -389,6 +389,13 @@ kde4-meta_create_extractlists() {
 				KMEXTRACTONLY="${KMEXTRACTONLY}
 					libkdepim"
 			fi
+			case ${SLOT} in
+				4.3|live)
+					KMEXTRACTONLY="${KMEXTRACTONLY}
+							kdepim-version.h
+							config-enterprise.h.cmake"
+					;;
+			esac
 			KMEXTRACTONLY="${KMEXTRACTONLY}
 				kleopatra/ConfigureChecks.cmake"
 			if has kontact ${IUSE//+} && use kontact; then
