@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.4 2009/03/06 15:38:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.5 2009/03/15 21:03:18 maekke Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.120 2009/03/06 15:38:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.121 2009/03/15 21:03:18 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> libxklavier-3.8.ebuild:
+  x86 stable, bug #260063
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> libxklavier-3.8.ebuild:
   Marking libxklavier-3.8 ppc stable for bug 260063
