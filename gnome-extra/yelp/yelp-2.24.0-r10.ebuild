@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.24.0-r10.ebuild,v 1.6 2009/03/11 02:20:23 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.24.0-r10.ebuild,v 1.7 2009/03/15 22:02:09 maekke Exp $
 
 EAPI="prefix 1"
 
