@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4273 2009/03/14 12:47:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4277 2009/03/15 16:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -675,6 +675,7 @@ dev-libs/cyrus-sasl:srp - Enable SRP
 dev-libs/cyrus-sasl:urandom - Use /dev/urandom instead of /dev/random
 dev-libs/fcgi:html - Install HTML documentation
 dev-libs/ferrisloki:stlport - Include support for dev-libs/STLport
+dev-libs/geoip:perl-geoipupdate - Install pure perl version of geoipupdate, with Proxy Server support via via the "http_proxy" environment variable and easy to customize.
 dev-libs/klibc:n32 - Force klibc to 32bit if on mips64 if not n32 userland
 dev-libs/libcdio:minimal -  Only build the libcdio library and little more, just to be used to link against from multimedia players. With this USE flag enabled, none of the command-line utilities are built, nor is the CDDA library. 
 dev-libs/libgcrypt:idea - Use the patented IDEA algorithm
@@ -697,6 +698,7 @@ dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/ppl:prolog - Build SWI Prolog interface
 dev-libs/qsa:ide - Enable the qsa ide
 dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support.
+dev-libs/soprano:raptor - Enables support for media-libs/raptor RDF parser/serializer.
 dev-libs/soprano:redland - Enables support for the dev-libs/redland backend.
 dev-libs/soprano:sesame2 - Enables support for the virtual/jre-1.6.0 (sesame2) backend.
 dev-libs/xerces-c:iconv - Use iconv (virtual/libiconv) as message loader and transcoder (in general it would be possible to use iconv only as message loader and something else like icu or the native method as transcoder and vice-versa, but this is a less common case and hard to handle)
@@ -1300,6 +1302,7 @@ media-libs/libsdl:joystick - Allow users to disable joystick support completely 
 media-libs/libsdl:video - Allow users to disable video support completely (at their own risk)
 media-libs/libvorbis:aotuv - Applies the aoTuV patches. Aoyumi's Tuned Vorbis is a third-party patchset that improves the vorbis encoding quality. A previous version of the aoTuV patchset has already been merged with the official libvorbis release. The current patchset especially improves encoding quality at low bitrate settings, and is very likely to be merged at some point in the future. It is recommended that all users enable this useflag. 
 media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
+media-libs/mlt:compressed-lumas - Compress the luma files in png.
 media-libs/netpbm:rle - Build converters for the RLE format (utah raster toolkit)
 media-libs/opencv:demos - Install applications that demo OpenCV library functions
 media-libs/openjpeg:tools - Installs tools (j2k_to_image and image_to_j2k)
@@ -1416,6 +1419,7 @@ media-sound/fapg:xspf - Enable support for saving XSPF playlists.
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gimmix:cover - Enable cover art fetching
 media-sound/gimmix:lyrics - Enable lyric fetching
+media-sound/gmpc:spiff - Use libspiff to parse XSPF playlists
 media-sound/gmusicbrowser:webkit - Enables gtk WebKit support
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/herrie:http - Enable http streaming
