@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-SSLeay
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SSLeay/ChangeLog,v 1.52 2009/03/08 10:54:41 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SSLeay/ChangeLog,v 1.53 2009/03/15 16:56:28 ranger Exp $
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> Net-SSLeay-1.35.ebuild:
+  stable ppc64, bug 261508
 
   08 Mar 2009; Benedikt Böhm <hollow@gentoo.org> Net-SSLeay-1.35.ebuild:
   stable on amd64 wrt #261508
