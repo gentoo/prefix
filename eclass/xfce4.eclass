@@ -182,7 +182,8 @@ xfce4_src_configure() {
 # Package compilation
 # Calls xfce4_src_configure for EAPI <= 1 and runs emake with ${JOBS}
 xfce4_src_compile() {
-	[ "${EAPI/prefix }" -le 1 ] && xfce4_src_configure
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
+	[ "${eapi}" -le 1 ] && xfce4_src_configure
 	emake ${JOBS} || die "emake failed"
 }
 
