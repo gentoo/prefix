@@ -1,6 +1,9 @@
 # ChangeLog for app-text/enchant
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.93 2009/03/11 01:52:04 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.94 2009/03/15 21:04:09 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> enchant-1.4.2.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> enchant-1.4.2.ebuild:
   Marked stable on amd64
