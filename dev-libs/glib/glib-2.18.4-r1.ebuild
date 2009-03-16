@@ -62,6 +62,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${P}-compile-warning-sol64.patch
 
 	# build glib with parity for native win32
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt.patch

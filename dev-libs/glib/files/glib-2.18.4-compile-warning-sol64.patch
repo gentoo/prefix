@@ -1,0 +1,14 @@
+fen-helper.c:240: warning: implicit declaration of function ‘g_file_new_for_path’
+
+portage barfs on this on 64-bits arches these days
+
+--- gio/fen/fen-helper.c
++++ gio/fen/fen-helper.c
+@@ -29,6 +29,7 @@
+ #include "fen-kernel.h"
+ #ifdef GIO_COMPILATION
+ #include "gfilemonitor.h"
++#include "gfile.h"
+ #else
+ #include "gam_event.h"
+ #include "gam_server.h"
