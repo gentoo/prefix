@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.1.ebuild,v 1.5 2009/03/13 05:20:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.1.ebuild,v 1.7 2009/03/15 23:43:11 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,8 @@ RDEPEND="caps? ( sys-libs/libcap )
 	!sys-apps/stat
 	!net-mail/base64
 	!sys-apps/mktemp
-	!app-forensics/tct
-	!net-fs/netatalk
+	!<app-forensics/tct-1.18-r1
+	!<net-fs/netatalk-2.0.3-r4
 	!sci-chemistry/ccp4
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
