@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/ess
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.42 2009/03/07 21:48:29 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.43 2009/03/15 17:53:24 klausman Exp $
+
+  15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> ess-5.3.11.ebuild:
+  Stable on alpha, bug #260710
 
   07 Mar 2009; Christian Faulhammer <fauli@gentoo.org> ess-5.3.11.ebuild:
   stable x86, bug 260710
