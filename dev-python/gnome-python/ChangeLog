@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/gnome-python
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python/ChangeLog,v 1.130 2009/03/08 16:01:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python/ChangeLog,v 1.131 2009/03/15 21:08:25 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> ChangeLog:
+  x86 stable, bug #260063
 
   08 Mar 2009; Markus Meier <maekke@gentoo.org> gnome-python-2.22.3.ebuild:
   amd64/x86 stable, bug #258040
