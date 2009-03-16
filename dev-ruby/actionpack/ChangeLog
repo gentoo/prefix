@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.99 2009/03/14 15:32:13 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.101 2009/03/15 15:06:33 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> actionpack-2.1.2-r1.ebuild:
+  amd64/x86 stable, bug #247549
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> actionpack-2.1.2-r1.ebuild:
+  Marking actionpack-2.1.2-r1 ppc64 for bug 247549
 
 *actionpack-2.1.2-r1 (14 Mar 2009)
 
