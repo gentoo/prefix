@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.25 2009/03/11 01:55:05 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.26 2009/03/15 21:28:19 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> libgweather-2.24.3.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org>
   libgweather-2.24.3.ebuild:
