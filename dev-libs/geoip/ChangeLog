@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/geoip
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.97 2009/02/24 18:40:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.100 2009/03/15 18:39:03 klausman Exp $
+
+  15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> geoip-1.4.6.ebuild:
+  Keyworded on alpha, bug #262547
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> geoip-1.4.6.ebuild:
+  Marking geoip-1.4.6 ~ppc64 for bug 262547
+
+*geoip-1.4.6 (15 Mar 2009)
+
+  15 Mar 2009; Peter Volkov <pva@gentoo.org> metadata.xml,
+  -geoip-1.4.4.ebuild, +geoip-1.4.6.ebuild:
+  Version bump, bug #262525, thank Allen Parker for report.
 
   24 Feb 2009; Raúl Porcel <armin76@gentoo.org> geoip-1.4.5.ebuild:
   Add ~arm/~s390/~sh
