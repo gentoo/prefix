@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.354 2009/03/13 00:20:12 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.359 2009/03/15 20:59:03 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> glib-2.18.4-r1.ebuild:
+  x86 stable, bug #260063
+
+  15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> glib-2.18.4-r1.ebuild:
+  Stable on alpha, bug #249214
+
+  15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> glib-2.16.6-r1.ebuild:
+  Stable on alpha, bug #249214
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> glib-2.16.6-r1.ebuild:
+  amd64/x86 stable, bug #249214
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> glib-2.16.6-r1.ebuild,
+  glib-2.18.4-r1.ebuild:
+  Marking glib-2.16.6-r1 glib-2.18.4-r1 ppc64 for bug 249214
 
   13 Mar 2009; Daniel Gryniewicz <dang@gentoo.org> glib-2.18.4-r1.ebuild:
   Oops, managed to get ~arch in ebuild
