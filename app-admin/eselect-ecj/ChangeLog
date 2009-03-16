@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-ecj
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ecj/ChangeLog,v 1.3 2008/12/06 18:54:09 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ecj/ChangeLog,v 1.4 2009/03/15 15:30:31 ranger Exp $
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> eselect-ecj-0.3.ebuild:
+  Marking eselect-ecj-0.3 ppc64 for bug 237689
 
   06 Dec 2008; nixnut <nixnut@gentoo.org> eselect-ecj-0.3.ebuild:
   Stable on ppc wrt bug 249521
