@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/file-roller
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.250 2009/03/11 01:51:23 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.251 2009/03/15 22:25:44 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> file-roller-2.24.3.ebuild:
+  x86 stable, bug #260063
 
   11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org>
   file-roller-2.24.3.ebuild:
