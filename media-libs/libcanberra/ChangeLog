@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.14 2009/03/11 02:24:33 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.15 2009/03/15 22:17:28 maekke Exp $
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> libcanberra-0.11.ebuild:
+  x86 stable, bug #260063
 
 *libcanberra-0.11-r1 (11 Mar 2009)
 
