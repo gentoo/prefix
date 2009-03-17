@@ -1,6 +1,13 @@
 # ChangeLog for app-text/gtkspell
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/ChangeLog,v 1.70 2008/11/22 16:11:33 jer Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/ChangeLog,v 1.71 2009/03/16 23:42:55 eva Exp $
+
+*gtkspell-2.0.15 (16 Mar 2009)
+
+  16 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtkspell-2.0.15.ebuild:
+  Bump to 2.0.15. Support for use in C++ code, integrate with devhelp,
+  closes #262103.
 
   22 Nov 2008; Jeroen Roovers <jer@gentoo.org> gtkspell-2.0.14.ebuild:
   Stable for HPPA (bug #246054).
