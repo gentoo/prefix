@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs eutils prefix
 
 DESCRIPTION="small and fast portage helper tools written in C"
 HOMEPAGE="http://www.gentoo.org/"
