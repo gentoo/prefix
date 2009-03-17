@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/patchutils
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/ChangeLog,v 1.54 2008/12/22 16:24:58 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/ChangeLog,v 1.56 2009/03/16 14:53:21 dev-zero Exp $
+
+  16 Mar 2009; Tiziano Müller <dev-zero@gentoo.org>
+  -patchutils-0.2.31.ebuild:
+  Dropped old.
+
+*patchutils-0.3.1 (16 Mar 2009)
+
+  16 Mar 2009; Tiziano Müller <dev-zero@gentoo.org>
+  +patchutils-0.3.1.ebuild:
+  Version bump.
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org> patchutils-0.3.0.ebuild:
   ia64 stable wrt #250745
