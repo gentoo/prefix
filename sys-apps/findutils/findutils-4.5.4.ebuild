@@ -39,7 +39,7 @@ src_unpack() {
 	cp -a gnulib/lib/mountlist.c{,.ts} || die
 	cp -a gnulib/m4/ls-mntd-fs.m4{,.ts} || die
 	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
-	epatch "${FILESDIR}"/${PN}-4.5.3-mint.patch
+#	epatch "${FILESDIR}"/${PN}-4.5.3-mint.patch
 	# avoid regeneration
 	touch -r configure{.ts,} || die
 	touch -r find/fstype.c{.ts,} || die
