@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.0.ebuild,v 1.1 2009/03/10 13:51:50 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.0.ebuild,v 1.2 2009/03/16 08:04:10 angelos Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RDEPEND=">=x11-themes/gtk-engines-xfce-2.6
 	>=xfce-base/xfce-utils-${XFCE_VERSION}
 	>=xfce-base/xfdesktop-${XFCE_VERSION}
 	>=xfce-base/xfce4-session-${XFCE_VERSION}
-	>=xfce-base/xfce4-settings-${XFCE_VERSION}
+	!alpha? ( >=xfce-base/xfce4-settings-${XFCE_VERSION} )
 	alsa? ( >=xfce-extra/xfce4-mixer-${XFCE_VERSION} )
 	oss? ( >=xfce-extra/xfce4-mixer-${XFCE_VERSION} )
 	cups? ( >=net-print/xfprint-${XFCE_VERSION} )

@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfce4
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.133 2009/03/10 13:51:50 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.134 2009/03/16 08:04:10 angelos Exp $
+
+  16 Mar 2009; Christoph Mende <angelos@gentoo.org> xfce4-4.6.0.ebuild:
+  Don't pull in xfce4-settings on alpha
 
 *xfce4-4.6.0 (10 Mar 2009)
 
