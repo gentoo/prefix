@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils fdo-mime rpm multilib
+inherit eutils fdo-mime rpm multilib prefix
 
 IUSE="gnome java kde"
 
