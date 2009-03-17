@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs versionator
+inherit eutils toolchain-funcs versionator prefix
 
 MY_P="${PN}_$(replace_all_version_separators '_')"
 S="${WORKDIR}/${MY_P}"
