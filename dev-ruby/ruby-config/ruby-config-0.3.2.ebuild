@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib prefix
 
 DESCRIPTION="Utility to switch the ruby interpreter being used"
 HOMEPAGE="http://www.gentoo.org/"
