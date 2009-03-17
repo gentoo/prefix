@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic toolchain-funcs eutils multilib
+inherit flag-o-matic toolchain-funcs eutils multilib prefix
 
 MAN_VER=10.33
 DESCRIPTION="A set of utilities for converting to/from the netpbm (and related) formats"
