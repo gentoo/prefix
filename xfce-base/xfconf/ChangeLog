@@ -1,0 +1,16 @@
+# ChangeLog for xfce-base/xfconf
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.3 2009/03/13 07:12:14 angelos Exp $
+
+  13 Mar 2009; Christoph Mende <angelos@gentoo.org> xfconf-4.6.0.ebuild:
+  Don't install perllocal.pod (bug 262017)
+
+  12 Mar 2009; Christoph Mende <angelos@gentoo.org> xfconf-4.6.0.ebuild:
+  Added USE=perl to install perl bindings
+
+*xfconf-4.6.0 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org> +metadata.xml,
+  +xfconf-4.6.0.ebuild:
+  Xfce-4.6 bump
+
