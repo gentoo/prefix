@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.23 2009/03/04 21:01:59 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.24 2009/03/16 21:47:00 aballier Exp $
+
+  16 Mar 2009; Alexis Ballier <aballier@gentoo.org> qt-webkit-4.5.0.ebuild:
+  keyword ~x86-fbsd
 
 *qt-webkit-4.5.0 (04 Mar 2009)
 
