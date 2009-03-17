@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.69 2009/03/07 09:36:51 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.70 2009/03/16 16:00:06 a3li Exp $
+
+  16 Mar 2009; Alex Legler <a3li@gentoo.org> rake-0.8.3.ebuild,
+  rake-0.8.4.ebuild:
+  Adding USE_RUBY entries
 
 *rake-0.8.4 (07 Mar 2009)
 
