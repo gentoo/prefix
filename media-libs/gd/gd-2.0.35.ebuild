@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools
+inherit autotools prefix
 
 DESCRIPTION="A graphics library for fast image creation"
 HOMEPAGE="http://libgd.org/"
