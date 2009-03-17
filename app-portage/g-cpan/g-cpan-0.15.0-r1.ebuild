@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit perl-module
+inherit perl-module prefix
 
 DESCRIPTION="g-cpan: generate and install CPAN modules using portage"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/g-cpan.xml"
