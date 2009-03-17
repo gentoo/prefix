@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.27 2009/03/13 11:22:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.28 2009/03/16 14:43:37 angelos Exp $
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
@@ -82,7 +82,8 @@ xfce4_panel_plugin() {
 	xfce4_plugin
 	xfce4_goodies
 	HOMEPAGE="http://goodies.xfce.org/projects/panel-plugins/${MY_PN}"
-	RDEPEND="${DEPEND} >=xfce-base/xfce4-panel-${XFCE_VERSION}"
+	RDEPEND="${RDEPEND} >=xfce-base/xfce4-panel-${XFCE_VERSION}"
+	DEPEND="${DEPEND} >=xfce-base/xfce4-panel-${XFCE_VERSION}"
 }
 
 # @FUNCTION: xfce4_thunar_plugin
@@ -94,6 +95,7 @@ xfce4_thunar_plugin() {
 	xfce4_goodies
 	HOMEPAGE="http://thunar.xfce.org/pwiki/projects/${MY_PN}"
 	RDEPEND="${RDEPEND} >=xfce-base/thunar-${THUNAR_VERSION}"
+	DEPEND="${DEPEND} >=xfce-base/thunar-${THUNAR_VERSION}"
 }
 
 # @FUNCTION: xfce4_core
