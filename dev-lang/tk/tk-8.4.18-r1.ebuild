@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
-inherit autotools eutils multilib toolchain-funcs
+inherit autotools eutils multilib toolchain-funcs prefix
 
 DESCRIPTION="Tk Widget Set"
 HOMEPAGE="http://dev.scriptics.com/software/tcltk/"

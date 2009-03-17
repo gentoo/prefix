@@ -7,7 +7,7 @@ EAPI="prefix"
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
-inherit autotools eutils multilib toolchain-funcs
+inherit autotools eutils multilib toolchain-funcs prefix
 
 MY_P="${PN}${PV/_beta/b}"
 DESCRIPTION="Tk Widget Set"
