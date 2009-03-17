@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Finds which ebuild provide a texmf file matching a grep regexp."
 HOMEPAGE="http://home.gna.org/texmfind"
