@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit bash-completion elisp-common flag-o-matic eutils distutils
+inherit bash-completion elisp-common flag-o-matic eutils distutils prefix
 
 DESCRIPTION="Scalable distributed SCM"
 HOMEPAGE="http://www.selenic.com/mercurial/"
