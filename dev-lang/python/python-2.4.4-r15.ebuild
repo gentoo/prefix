@@ -9,7 +9,7 @@
 
 EAPI="prefix 1"
 
-inherit autotools eutils flag-o-matic python multilib versionator toolchain-funcs alternatives
+inherit autotools eutils flag-o-matic python multilib versionator toolchain-funcs alternatives prefix
 
 # we need this so that we don't depends on python.eclass
 PYVER_MAJOR=$(get_major_version)
