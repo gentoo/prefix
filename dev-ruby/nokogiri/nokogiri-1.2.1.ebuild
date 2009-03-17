@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/nokogiri-1.2.1.ebuild,v 1.1 2009/02/27 16:10:41 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/nokogiri-1.2.1.ebuild,v 1.2 2009/03/16 16:56:37 a3li Exp $
 
 EAPI="prefix"
 
 inherit gems
+USE_RUBY="ruby18"
 
 DESCRIPTION="Nokogiri is an HTML, XML, SAX, and Reader parser."
 HOMEPAGE="http://nokogiri.rubyforge.org/"
