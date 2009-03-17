@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.688 2009/03/15 07:16:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.689 2009/03/16 08:03:16 vapier Exp $
+
+  16 Mar 2009; Mike Frysinger <vapier@gentoo.org> gcc-4.3.3-r1.ebuild:
+  Disable semi-broken patch for now so more people dont hit the bug #262567.
 
 *gcc-4.3.3-r1 (15 Mar 2009)
 
