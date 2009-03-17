@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib prefix
 
 MY_PV=${PV/9/9final}
 MY_P=${PN}-${MY_PV}
