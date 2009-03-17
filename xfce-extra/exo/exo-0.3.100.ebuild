@@ -38,21 +38,15 @@ src_unpack() {
 	ln -s "${EPREFIX}"/bin/true py-compile
 
 	epatch "${FILESDIR}"/${PN}-0.3.4-interix.patch
-}
-
-src_compile() {
 	if [[ ${CHOST} == *-interix* ]] ; then
 		# configure detects getmntent, which is false!
 		export ac_cv_func_getmntent=no
 	fi
-
-	xfce4_pkg_postinst
-	python_mod_optimize /usr/lib*/python*/site-packages
 }
 
 pkg_postinst() {
-	xfce4_pkg_postrm
-	python_mod_cleanup /usr/lib*/python*/site-packages
+	xfce4_pkg_postinst
+	python_mod_optimize /usr/lib*/python*/site-packages
 }
 
 pkg_postrm() {
