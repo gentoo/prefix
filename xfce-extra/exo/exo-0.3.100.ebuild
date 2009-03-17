@@ -37,7 +37,7 @@ src_unpack() {
 	rm py-compile
 	ln -s "${EPREFIX}"/bin/true py-compile
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.3.4-interix.patch
 }
 
 src_compile() {
