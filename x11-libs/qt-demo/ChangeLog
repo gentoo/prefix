@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.14 2009/03/05 13:38:43 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.15 2009/03/16 22:51:46 aballier Exp $
+
+  16 Mar 2009; Alexis Ballier <aballier@gentoo.org> qt-demo-4.5.0.ebuild:
+  keyword ~x86-fbsd
 
 *qt-demo-4.5.0 (05 Mar 2009)
 
