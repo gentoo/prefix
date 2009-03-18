@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit common-lisp elisp eutils
+inherit common-lisp elisp eutils prefix
 
 DESCRIPTION="SLIME, the Superior Lisp Interaction Mode (Extended)"
 HOMEPAGE="http://common-lisp.net/project/slime/"
