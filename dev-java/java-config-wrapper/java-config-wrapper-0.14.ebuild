@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Wrapper for java-config"
 HOMEPAGE="http://www.gentoo.org/proj/en/java"
