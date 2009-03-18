@@ -6,7 +6,7 @@ EAPI="prefix"
 
 # NOTE: If you bump this ebuild, make sure you bump dev-python/pycurl!
 
-inherit multilib eutils
+inherit multilib eutils prefix
 
 #MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
