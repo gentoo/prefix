@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib prefix
 
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
 SRC_URI="http://openvpn.net/release/${P}.tar.gz"
