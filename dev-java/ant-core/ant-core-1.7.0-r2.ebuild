@@ -8,7 +8,7 @@ EAPI="prefix"
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
 # rewriting build.xml files for the testcases has no reason atm
 JAVA_PKG_BSFIX_ALL=no
-inherit java-pkg-2 java-ant-2 eutils
+inherit java-pkg-2 java-ant-2 eutils prefix
 
 MY_P="apache-ant-${PV}"
 

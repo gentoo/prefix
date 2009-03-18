@@ -1,7 +1,24 @@
-Index: Javac.java
-===================================================================
---- src/main/org/apache/tools/ant/taskdefs/Javac.java	(revision 672109)
-+++ src/main/org/apache/tools/ant/taskdefs/Javac.java	(revision 743910)
+Backported changeset ensuring that package-info.class is
+created/touched when package-info.java is compiled.
+
+Originally derived from these changesets:
+r743910 #43114: ensuring that package-info.class is created/touched
+        when package-info.java is compiled.
+r744132 JDK 1.4 - unfortunately
+
+svn diff -r 738761:744132 http://svn.apache.org/repos/asf/ant/core/\
+trunk/src/main/org/apache/tools/ant/taskdefs/Javac.java
+
+2009-03-15 John W. Eckhart
+2009-03-17 Martin von Gagern
+
+References:
+https://bugs.gentoo.org/262511
+https://jira.jboss.org/jira/browse/JBSEAM-3386
+https://issues.apache.org/bugzilla/show_bug.cgi?id=43114
+
+--- apache-ant-1.7.1.orig/src/main/org/apache/tools/ant/taskdefs/Javac.java
++++ apache-ant-1.7.1/src/main/org/apache/tools/ant/taskdefs/Javac.java
 @@ -19,10 +19,12 @@
  package org.apache.tools.ant.taskdefs;
  
@@ -18,25 +35,17 @@ Index: Javac.java
  
  import org.apache.tools.ant.BuildException;
  import org.apache.tools.ant.DirectoryScanner;
-@@ -32,6 +34,7 @@
- import org.apache.tools.ant.taskdefs.compilers.CompilerAdapterFactory;
- import org.apache.tools.ant.types.Path;
- import org.apache.tools.ant.types.Reference;
-+import org.apache.tools.ant.util.FileUtils;
- import org.apache.tools.ant.util.GlobPatternMapper;
- import org.apache.tools.ant.util.JavaEnvUtils;
- import org.apache.tools.ant.util.SourceFileScanner;
-@@ -86,8 +89,7 @@
+@@ -86,9 +88,6 @@
      private static final String CLASSIC = "classic";
      private static final String EXTJAVAC = "extJavac";
  
 -    private static final String PACKAGE_INFO_JAVA = "package-info.java";
 -    private static final String PACKAGE_INFO_CLASS = "package-info.class";
-+    private static final FileUtils FILE_UTILS = FileUtils.getFileUtils();
- 
+-
      private Path src;
      private File destDir;
-@@ -115,6 +117,7 @@
+     private Path compileClasspath;
+@@ -115,6 +114,7 @@
      protected boolean failOnError = true;
      protected boolean listFiles = false;
      protected File[] compileList = new File[0];
@@ -44,7 +53,7 @@ Index: Javac.java
      // CheckStyle:VisibilityModifier ON
  
      private String source;
-@@ -124,7 +127,6 @@
+@@ -124,7 +124,6 @@
      private String errorProperty;
      private boolean taskSuccess = true; // assume the best
      private boolean includeDestClasses = true;
@@ -52,30 +61,7 @@ Index: Javac.java
  
      /**
       * Javac task for compilation of Java files.
-@@ -183,13 +185,16 @@
-     }
- 
-     /**
--     * Value of the -source command-line switch; will be ignored
--     * by all implementations except modern and jikes.
-+     * Value of the -source command-line switch; will be ignored by
-+     * all implementations except modern, jikes and gcj (gcj uses
-+     * -fsource).
-+     *
-+     * <p>If you use this attribute together with jikes or gcj, you
-+     * must make sure that your version of jikes supports the -source
-+     * switch.</p>
-      *
--     * If you use this attribute together with jikes, you must make
--     * sure that your version of jikes supports the -source switch.
--     * Legal values are 1.3, 1.4, 1.5, and 5 - by default, no
--     * -source argument will be used at all.
-+     * <p>Legal values are 1.3, 1.4, 1.5, and 5 - by default, no
-+     * -source argument will be used at all.</p>
-      *
-      * @param v  Value to assign to source.
-      */
-@@ -892,6 +897,7 @@
+@@ -892,6 +891,7 @@
       */
      protected void resetFileLists() {
          compileList = new File[0];
@@ -83,7 +69,7 @@ Index: Javac.java
      }
  
      /**
-@@ -909,8 +915,8 @@
+@@ -909,8 +909,8 @@
          SourceFileScanner sfs = new SourceFileScanner(this);
          File[] newFiles = sfs.restrictAsFiles(files, srcDir, destDir, m);
  
@@ -93,7 +79,7 @@ Index: Javac.java
              File[] newCompileList
                  = new File[compileList.length + newFiles.length];
              System.arraycopy(compileList, 0, newCompileList, 0,
-@@ -1063,10 +1069,12 @@
+@@ -1063,10 +1063,12 @@
  
              // finally, lets execute the compiler!!
              if (adapter.execute()) {
@@ -110,7 +96,7 @@ Index: Javac.java
                  }
              } else {
                  // Fail path
-@@ -1100,75 +1108,68 @@
+@@ -1100,72 +1102,69 @@
          }
      }
  
@@ -147,8 +133,16 @@ Index: Javac.java
 +            File f = newFiles[i];
 +            if (!f.getName().equals("package-info.java")) {
 +                continue;
-+            }
-+            String path = FILE_UTILS.removeLeadingPath(srcDir, f).
+             }
+-        }
+-        return (File[]) ret.toArray(new File[0]);
+-    }
+-
+-    private boolean hasPackageInfo(File[] newFiles) {
+-        for (int i = 0; i < newFiles.length; ++i) {
+-            if (newFiles[i].getName().equals(PACKAGE_INFO_JAVA)) {
+-                return true;
++            String path = relativePath(srcDir, f).
 +                    replace(File.separatorChar, '/');
 +            String suffix = "/package-info.java";
 +            if (!path.endsWith(suffix)) {
@@ -156,15 +150,32 @@ Index: Javac.java
 +                continue;
              }
 +            String pkg = path.substring(0, path.length() - suffix.length());
-+            packageInfos.put(pkg, Long.valueOf(f.lastModified()));
++            packageInfos.put(pkg, new Long(f.lastModified()));
          }
--        return (File[]) ret.toArray(new File[0]);
+-        return false;
      }
  
--    private boolean hasPackageInfo(File[] newFiles) {
--        for (int i = 0; i < newFiles.length; ++i) {
--            if (newFiles[i].getName().equals(PACKAGE_INFO_JAVA)) {
--                return true;
+-    private boolean needsCompilePackageFile(
+-        File file, File srcDir, File destDir) {
+-        if (!file.getName().equals(PACKAGE_INFO_JAVA)) {
+-            return true;
+-        }
+-        // return true if destDir contains the file
+-        String rel = relativePath(srcDir, file);
+-        File destFile = new File(destDir, rel);
+-        File parent = destFile.getParentFile();
+-        destFile = new File(parent, PACKAGE_INFO_CLASS);
+-        File sourceFile = new File(srcDir, rel);
+-        if (destFile.exists()) {
+-            return true;
+-        }
+-        // Dest file does not exist
+-        // Compile Source file if sourceFile is newer that destDir
+-        // TODO - use fs
+-        if (sourceFile.lastModified()
+-            > destFile.getParentFile().lastModified()) {
+-            updateDirList.add(destFile.getParentFile());
+-            return true;
 +    /**
 +     * Ensure that every {@code package-info.java} produced a {@code package-info.class}.
 +     * Otherwise this task's up-to-date tracking mechanisms do not work.
@@ -193,7 +204,7 @@ Index: Javac.java
 +                os.write(PACKAGE_INFO_CLASS_FOOTER);
 +            } finally {
 +                os.close();
-             }
++            }
          }
 -        return false;
      }
@@ -212,33 +223,5 @@ Index: Javac.java
 +        0x00, 0x00, 0x00, 0x02, 0x00, 0x04
 +    };
  
--    private boolean needsCompilePackageFile(
--        File file, File srcDir, File destDir) {
--        if (!file.getName().equals(PACKAGE_INFO_JAVA)) {
--            return true;
--        }
--        // return true if destDir contains the file
--        String rel = relativePath(srcDir, file);
--        File destFile = new File(destDir, rel);
--        File parent = destFile.getParentFile();
--        destFile = new File(parent, PACKAGE_INFO_CLASS);
--        File sourceFile = new File(srcDir, rel);
--        if (destFile.exists()) {
--            return true;
--        }
--        // Dest file does not exist
--        // Compile Source file if sourceFile is newer that destDir
--        // TODO - use fs
--        if (sourceFile.lastModified()
--            > destFile.getParentFile().lastModified()) {
--            updateDirList.add(destFile.getParentFile());
--            return true;
--        }
--        return false;
--    }
--
--    private String relativePath(File src, File file) {
--        return file.getAbsolutePath().substring(
--            src.getAbsolutePath().length() + 1);
--    }
- }
+     private String relativePath(File src, File file) {
+         return file.getAbsolutePath().substring(
