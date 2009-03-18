@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils mozilla-launcher multilib mozextension
+inherit eutils mozilla-launcher multilib mozextension prefix
 
 LANGS="af ar be bg bn-IN ca cs cy de el en-GB en-US eo es-AR es-ES et eu fi fr fy-NL ga-IE gu-IN he hi-IN hu id is it ja kn ko lt lv mr nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru si sk sl sq sv-SE te tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
