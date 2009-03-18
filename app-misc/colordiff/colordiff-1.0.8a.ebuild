@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Colorizes output of diff"
 HOMEPAGE="http://colordiff.sourceforge.net/"
