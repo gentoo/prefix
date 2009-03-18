@@ -4,7 +4,7 @@
 
 EAPI="prefix 2"
 
-inherit distutils
+inherit distutils prefix
 
 DESCRIPTION="Collection of Gentoo-specific tools for Java"
 HOMEPAGE="http://www.gentoo.org/proj/en/java/"
