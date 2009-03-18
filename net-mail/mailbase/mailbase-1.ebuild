@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit pam eutils
+inherit pam eutils prefix
 
 DESCRIPTION="MTA layout package"
 SRC_URI=""
