@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="prefix"
 
 RESTRICT="mirror"
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib prefix
 
 DESCRIPTION="Baselayout and init scripts (eventually)"
 HOMEPAGE="http://www.gentoo.org/"
