@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils prefix
 
 DESCRIPTION="IBM's open source, high performance Java compiler"
 HOMEPAGE="http://jikes.sourceforge.net/"
