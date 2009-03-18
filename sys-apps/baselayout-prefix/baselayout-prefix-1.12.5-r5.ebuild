@@ -68,9 +68,9 @@ src_install() {
 	for dir in ${libdirs}; do
 		libdirs_env=${libdirs_env:+$libdirs_env:}/${dir}:/usr/${dir}:/usr/local/${dir}
 		[[ ${dir} == "lib" && ${SYMLINK_LIB} == "yes" ]] && continue
-		dodir /${dir}
-		dodir /usr/${dir}
-		dodir /usr/local/${dir}
+		dodir /"${dir}"
+		dodir /usr/"${dir}"
+		dodir /usr/local/"${dir}"
 	done
 
 	# Ugly compatibility with stupid ebuilds and old profiles symlinks
