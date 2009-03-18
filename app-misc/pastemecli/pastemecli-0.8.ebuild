@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Pasteme.COM Command-Line-Client"
 HOMEPAGE="http://www.topfx.com"
@@ -12,7 +12,7 @@ SRC_URI="http://www.topfx.com/dist/${P}.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"
-KEYWORDS="~x86-linux ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 src_unpack() {
