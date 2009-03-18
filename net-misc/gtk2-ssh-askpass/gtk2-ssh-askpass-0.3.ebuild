@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit prefix
+
 DESCRIPTION="A small SSH Askpass replacement written with GTK2."
 HOMEPAGE="https://www.cgabriel.org/software/wiki/SshAskpassFullscreen"
 SRC_URI="http://www.cgabriel.org/sw/ssh-askpass-fullscreen/${P}.tar.gz"
