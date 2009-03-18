@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit base distutils eutils
+inherit base distutils eutils prefix
 
 DESCRIPTION="Java environment configuration tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/java/"

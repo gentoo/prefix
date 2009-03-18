@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit fdo-mime gnome2-utils distutils eutils
+inherit fdo-mime gnome2-utils distutils eutils prefix
 
 DESCRIPTION="Java environment configuration tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/java/"
