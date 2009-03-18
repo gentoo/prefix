@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs eutils prefix
 
 DESCRIPTION="pal command-line calendar program"
 HOMEPAGE="http://palcal.sourceforge.net/"
