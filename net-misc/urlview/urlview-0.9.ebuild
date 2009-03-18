@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="extracts urls from text and will send them to another app"
 HOMEPAGE="http://www.mutt.org"
