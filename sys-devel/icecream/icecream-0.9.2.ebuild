@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic
+inherit autotools eutils flag-o-matic prefix
 
 MY_P="icecc-${PV}"
 
