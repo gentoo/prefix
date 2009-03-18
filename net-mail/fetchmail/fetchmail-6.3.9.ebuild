@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit multilib python eutils
+inherit multilib python eutils prefix
 
 DESCRIPTION="the legendary remote-mail retrieval and forwarding utility"
 HOMEPAGE="http://fetchmail.berlios.de"
