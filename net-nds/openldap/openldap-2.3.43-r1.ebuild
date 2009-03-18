@@ -15,7 +15,7 @@ SRC_URI="mirror://openldap/openldap-release/${P}.tgz"
 
 LICENSE="OPENLDAP"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris ~x86-winnt"
 IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl samba sasl slp smbkrb5passwd ssl tcpd selinux"
 
 # note that the 'samba' USE flag pulling in OpenSSL is NOT an error.  OpenLDAP
@@ -217,6 +217,9 @@ src_prepare() {
 	# bug #189817
 	epatch "${FILESDIR}"/${PN}-2.3.37-libldap_r.patch
 
+	# missing --tag for libtool
+	epatch "${FILESDIR}"/${P}-tag-lt.patch
+
 	# fix up stuff for newer autoconf that simulates autoconf-2.13, but doesn't
 	# do it perfectly.
 	cd "${S}"/build
@@ -237,7 +240,7 @@ src_prepare() {
 	# the following is conditional, since its everything but clean.
 	# still this is the only solution that i could come up with after
 	# a few hours of troubles with eautoreconf and friends...
-	if [[ ${CHOST} == *-winnt* ]]; then
+	if [[ ${CHOST} == *-winnt* || ${CHOST} == *-aix* ]]; then
 		unset EPATCH_OPTS
 		cd "${S}"
 
