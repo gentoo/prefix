@@ -6,7 +6,7 @@ EAPI="prefix"
 
 NEED_PYTHON=2.4
 
-inherit distutils eutils multilib
+inherit distutils eutils multilib prefix
 
 DESCRIPTION="Set of python tools for processing plaintext docs into HTML, XML, etc..."
 HOMEPAGE="http://docutils.sourceforge.net/"
