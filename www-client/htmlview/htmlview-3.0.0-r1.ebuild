@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit rpm eutils
+inherit rpm eutils prefix
 
 IUSE=""
 
