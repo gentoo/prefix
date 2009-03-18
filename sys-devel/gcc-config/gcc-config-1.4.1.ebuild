@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 # Version of .c wrapper to use
 W_VER="1.5.1"
