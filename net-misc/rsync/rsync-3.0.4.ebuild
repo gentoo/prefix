@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic prefix
 
 DESCRIPTION="File transfer program to keep remote files into sync"
 HOMEPAGE="http://rsync.samba.org/"
