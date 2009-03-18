@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Common Lisp Controller"
 HOMEPAGE="http://packages.debian.org/unstable/devel/common-lisp-controller"
