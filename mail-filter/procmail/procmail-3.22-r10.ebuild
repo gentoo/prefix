@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs prefix
 
 DESCRIPTION="Mail delivery agent/filter"
 HOMEPAGE="http://www.procmail.org/"
