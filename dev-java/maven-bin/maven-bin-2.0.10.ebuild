@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit java-pkg-2
+inherit java-pkg-2 prefix
 
 MY_PN=apache-${PN%%-bin}
 MY_P="${MY_PN}-${PV}"
