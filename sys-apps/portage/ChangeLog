@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13133 (18 Mar 2009)
+
+  18 Mar 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.12699.ebuild, +portage-2.2.00.13133.ebuild:
+  New snapshot, portage no longer includes eprefixify, so you need to 'inherit
+  prefix' to use it
+
 *portage-2.2.00.12807 (12 Mar 2009)
 
   12 Mar 2009; Fabian Groffen <grobian@gentoo.org>

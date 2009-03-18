@@ -3,6 +3,7 @@
 # $Id$
 
 EAPI="prefix"
+
 RESTRICT="test"
 
 inherit eutils multilib python
@@ -100,7 +101,7 @@ src_compile() {
 	if use doc; then
 		cd "${S}"/doc
 		touch fragment/date
-		make xhtml xhtml-nochunks || die "failed to make docs"
+		emake xhtml xhtml-nochunks || die "failed to make docs"
 	fi
 
 	if use epydoc; then
@@ -131,8 +132,11 @@ src_install() {
 	local libdir=$(get_libdir)
 	local portage_base="/usr/${libdir}/portage"
 
-	make DESTDIR="${D}" install || die "make install failed."
+	emake DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
+
+	# die, stupid wrapper, die!
+	use prefix && rm -Rf "${ED}"${portage_base}/bin/ebuild-helpers/sed
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
