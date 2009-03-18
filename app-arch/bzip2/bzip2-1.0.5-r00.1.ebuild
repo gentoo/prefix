@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils multilib toolchain-funcs flag-o-matic
+inherit eutils multilib toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="A high-quality data compressor used extensively by Gentoo Linux"
 HOMEPAGE="http://www.bzip.org/"
