@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Adaptive readahead daemon."
 HOMEPAGE="http://sourceforge.net/projects/preload"
