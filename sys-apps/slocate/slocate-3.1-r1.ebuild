@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils
+inherit flag-o-matic eutils prefix
 
 DESCRIPTION="Secure way to index and quickly search for files on your system (drop-in replacement for 'locate')"
 HOMEPAGE="http://slocate.trakker.ca/"
