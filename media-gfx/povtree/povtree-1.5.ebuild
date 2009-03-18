@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit prefix
+
 S="${WORKDIR}"
 MY_P="${PN}${PV}"
 DESCRIPTION="Tree generator for POVray based on TOMTREE macro"
