@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic prefix
 
 DESCRIPTION="Standard GNU compressor"
 HOMEPAGE="http://www.gnu.org/software/gzip/"
