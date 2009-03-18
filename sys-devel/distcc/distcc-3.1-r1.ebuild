@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs fdo-mime
+inherit eutils flag-o-matic toolchain-funcs fdo-mime prefix
 
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"
 HOMEPAGE="http://distcc.org/"
