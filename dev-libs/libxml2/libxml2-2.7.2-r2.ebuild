@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic eutils python autotools
+inherit libtool flag-o-matic eutils python autotools prefix
 
 DESCRIPTION="Version 2 of the library to manipulate XML files"
 HOMEPAGE="http://www.xmlsoft.org/"
