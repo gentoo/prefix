@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit prefix
+
 DESCRIPTION="Convert a .deb file to a .tar.gz archive"
 HOMEPAGE="http://www.miketaylor.org.uk/tech/deb/"
 SRC_URI="http://www.miketaylor.org.uk/tech/deb/${PN}"
