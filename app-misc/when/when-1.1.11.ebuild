@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="Extremely simple personal calendar program aimed at the Unix geek who wants something minimalistic"
 HOMEPAGE="http://www.lightandmatter.com/when/when.html"
