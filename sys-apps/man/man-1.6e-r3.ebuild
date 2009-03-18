@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Standard commands to read man pages"
 HOMEPAGE="http://primates.ximian.com/~flucifredi/man/"
