@@ -4,8 +4,6 @@
 
 EAPI="prefix"
 
-inherit prefix
-
 DESCRIPTION="Convert a .deb file to a .tar.gz archive"
 HOMEPAGE="http://www.miketaylor.org.uk/tech/deb/"
 SRC_URI="http://www.miketaylor.org.uk/tech/deb/${PN}"
@@ -22,8 +20,7 @@ S=${WORKDIR}
 
 src_unpack() {
 	cp "${DISTDIR}"/${PN} "${S}"
-	sed -i -e 's,#!/usr/bin/perl,#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl,' ${PN}
-	eprefixify ${PN}
+	sed -i -e 's,#!/usr/bin/perl,#!'"${EPREFIX}"'/usr/bin/perl,' ${PN}
 }
 
 src_install() {
