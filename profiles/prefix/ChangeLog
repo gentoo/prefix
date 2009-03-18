@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  18 Mar 2009; Michael Haubenwallner <haubi@gentoo.org>
+  aix/package.use.force:
+  openldap builds with USE=minimal only on AIX, bug #261186
+
   15 Mar 2009; Fabian Groffen <grobian@gentoo.org> darwin/use.mask:
   unmask sdl again, bug #257960
 

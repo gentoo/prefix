@@ -3,3 +3,7 @@
 # might not support gcc-4. The first gcc-support (gcc-3.4) has come
 # with PurifyPlus Interim Fix v7.0.0.0-010 (released in February 2008).
 =sys-devel/gcc-3* nopie
+
+# Michael Haubenwallner <haubi@gentoo.org> (2009-03-18)
+# Plugins need to be built and installed using libtool (#261186)
+<net-nds/openldap-2.4.11-r1 minimal
