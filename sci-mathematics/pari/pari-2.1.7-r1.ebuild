@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs flag-o-matic
+inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="pari (or pari-gp) : a software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
