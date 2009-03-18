@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs prefix
 
 DESCRIPTION="Program to invoke an appropriate MTA based on a config file"
 HOMEPAGE="http://www.gentoo.org/"
