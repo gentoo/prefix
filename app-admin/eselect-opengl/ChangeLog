@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-opengl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.42 2008/11/02 06:20:44 jmbsvicetto Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.43 2009/03/18 14:31:23 ricmm Exp $
+
+  18 Mar 2009; <ricmm@gentoo.org> eselect-opengl-1.0.5.ebuild:
+  Drop down to ~mips due to unstable deps
 
   02 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
