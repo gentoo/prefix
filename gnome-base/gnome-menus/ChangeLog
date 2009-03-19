@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.123 2009/03/15 21:24:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.124 2009/03/18 14:54:18 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> gnome-menus-2.24.2.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> gnome-menus-2.24.2.ebuild:
   x86 stable, bug #260063
