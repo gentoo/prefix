@@ -1,6 +1,9 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.76 2009/02/18 18:47:48 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.77 2009/03/17 10:51:05 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> ssmtp-2.62-r4.ebuild:
+  m68k stable wrt #255244, thanks to kolla for testing
 
 *ssmtp-2.62-r6 (18 Feb 2009)
 
