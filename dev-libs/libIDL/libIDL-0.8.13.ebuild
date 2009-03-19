@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.11.ebuild,v 1.7 2008/11/22 16:02:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.13.ebuild,v 1.1 2009/03/18 23:34:55 eva Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,7 @@ src_unpack() {
 	gnome2_src_unpack
 	epunt_cxx
 
-	epatch "${FILESDIR}"/${P}-bison-2.4.patch
-	epatch "${FILESDIR}"/${P}-winnt.patch
+	epatch "${FILESDIR}"/${PN}-0.8.11-winnt.patch
 
 	eautoreconf # required for winnt.
 }

@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.108 2009/03/06 15:32:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.109 2009/03/18 23:34:55 eva Exp $
+
+*libIDL-0.8.13 (18 Mar 2009)
+
+  18 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libIDL-0.8.11-bison-2.4.patch, -libIDL-0.8.11.ebuild,
+  +libIDL-0.8.13.ebuild:
+  Bump to 0.8.13. Build fixes.
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking libIDL-0.8.12 ppc stable for bug 260063
