@@ -1,18 +1,17 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.2.ebuild,v 1.10 2008/04/20 01:36:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.4.ebuild,v 1.1 2009/03/18 23:59:37 eva Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
-# FIXME : catalog stuff
-inherit eutils gnome2 autotools
+inherit eutils gnome2 autotools flag-o-matic
 
 DESCRIPTION="Library to construct graphical interfaces at runtime"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="2.0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.10
@@ -31,14 +30,18 @@ src_unpack() {
 	gnome2_src_unpack
 
 	AT_M4DIR=m4 eautoreconf # need new libtool for interix
+	
+	# Needed for solaris, else gcc finds a syntax error in /usr/include/signal.h
+	[[ ${CHOST} == *-solaris* ]] && append-flags "-D__EXTENSIONS__"
 }
 
-src_compile() {
+src_prepare() {
 	# patch to stop make install installing the xml catalog
 	# because we do it ourselves in postinst()
 	epatch "${FILESDIR}"/Makefile.in.am-2.4.2-xmlcatalog.patch
 
-	gnome2_src_compile
+	# patch to not throw a warning with gtk+-2.14 during tests, as it triggers abort
+	epatch "${FILESDIR}/${PN}-2.6.3-fix_tests-page_size.patch"
 }
 
 src_install() {
@@ -55,6 +58,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+	gnome2_pkg_postrm
 	echo ">>> removing entries from the XML catalog"
 	/usr/bin/xmlcatalog --noout --del \
 		/usr/share/xml/libglade/glade-2.0.dtd /etc/xml/catalog

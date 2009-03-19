@@ -32,7 +32,7 @@ src_unpack() {
 
 	AT_M4DIR=m4 eautoreconf # need new libtool for interix
 	
-	# Needed for soalris, else gcc finds a syntax error in /usr/include/signal.h
+	# Needed for solaris, else gcc finds a syntax error in /usr/include/signal.h
 	[[ ${CHOST} == *-solaris* ]] && append-flags "-D__EXTENSIONS__"
 }
 

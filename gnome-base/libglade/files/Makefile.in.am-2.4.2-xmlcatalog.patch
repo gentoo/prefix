@@ -1,6 +1,5 @@
-diff -ur libglade-2.4.1/Makefile.am libglade-2.4.1-patched/Makefile.am
---- libglade-2.4.1/Makefile.am	2004-11-11 18:56:13.000000000 +0800
-+++ libglade-2.4.1-patched/Makefile.am	2004-12-06 11:00:24.501734048 +0800
+--- a/Makefile.am	2004-11-11 18:56:13.000000000 +0800
++++ b/Makefile.am	2004-12-06 11:00:24.501734048 +0800
 @@ -24,7 +24,7 @@
  
  if HAVE_XMLCATALOG
@@ -10,9 +9,8 @@ diff -ur libglade-2.4.1/Makefile.am libglade-2.4.1-patched/Makefile.am
  uninstall-local:
  	-$(XMLCATALOG) --noout --del $(xmldir)/glade-2.0.dtd $(XML_CATALOG_FILE)
  endif
-diff -ur libglade-2.4.1/Makefile.in libglade-2.4.1-patched/Makefile.in
---- libglade-2.4.1/Makefile.in	2004-11-11 19:21:38.000000000 +0800
-+++ libglade-2.4.1-patched/Makefile.in	2004-12-06 11:00:49.786890120 +0800
+--- a/Makefile.in	2004-11-11 19:21:38.000000000 +0800
++++ b/Makefile.in	2004-12-06 11:00:49.786890120 +0800
 @@ -819,7 +819,7 @@
  
  
