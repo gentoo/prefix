@@ -130,6 +130,9 @@ do_compile() {
 	[[ ${CHOST} == *-aix* ]] ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
+	# for IRIX to get tests compiling
+	epatch "${FILESDIR}"/${PN}-5.7-Makefile.patch
+
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
