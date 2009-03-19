@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.101 2009/03/14 14:55:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.102 2009/03/18 22:46:09 vapier Exp $
+
+*mpfr-2.4.1_p5 (18 Mar 2009)
+
+  18 Mar 2009; Mike Frysinger <vapier@gentoo.org> +files/2.4.1/patch02,
+  +files/2.4.1/patch03, +files/2.4.1/patch04, +files/2.4.1/patch05,
+  +mpfr-2.4.1_p5.ebuild:
+  Version bump.
 
   14 Mar 2009; Mike Frysinger <vapier@gentoo.org> mpfr-2.4.1_p1.ebuild:
   Fix up == usage in shell test #261016 by deadhead.
