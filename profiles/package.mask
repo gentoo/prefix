@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9578 2009/03/16 19:58:04 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9582 2009/03/18 18:19:28 chainsaw Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,17 +31,33 @@
 
 #--- END OF EXAMPLES ---
 
+# Ulrich Mueller <ulm@gentoo.org> (18 Mar 2009)
+# Depends on teTeX. Fails to build.
+# Newer version is included in app-text/texlive-core.
+# Masked for removal in 60 days, bug 227593.
+app-text/xetex
+
+# Ulrich Mueller <ulm@gentoo.org> (18 Mar 2009)
+# Depends on teTeX. Newer version is included
+# in dev-texlive/texlive-latexrecommended.
+# Masked for removal in 60 days, bug 262897.
+dev-tex/xkeyval
+
+# Nirbheek Chauhan <nirbheek@gentoo.org> (17 Mar 2009)
+# Session saving isn't implemented in >=gnome-session-2.24
+# And other stuff listed here needs gnome-session-2.24
+# GNOME bug #552387
+=gnome-base/gnome-session-2.24*
+=gnome-base/gnome-keyring-2.24*
+=app-crypt/seahorse-2.24*
+=app-crypt/seahorse-plugins-2.24*
+
 # Torsten Veller <tove@gentoo.org> (16 Mar 2009)
 # Mask for removal (#247409)
 dev-perl/OpenCA-CRL
 dev-perl/OpenCA-OpenSSL
 dev-perl/OpenCA-REQ
 dev-perl/OpenCA-X509
-
-# Peter Volkov <pva@gentoo.org> (15 Mar 2009)
-# Masked prerelease candidate and dependant
-=dev-util/bzr-1.13*
-=dev-util/bzrtools-1.13*
 
 # Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2009)
 # HPN patch contains some breakages with port forwarding.
@@ -70,6 +86,7 @@ net-misc/dahdi
 net-misc/dahdi-tools
 =net-misc/asterisk-1.6*
 =net-libs/libpri-1.4*
+>=media-libs/spandsp-0.0.6_pre7
 
 # Michael Sterrett <mr_bones_@gentoo.org> (09 Mar 2009)
 # Masked for removal in 30 days.
