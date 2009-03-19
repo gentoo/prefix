@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/igal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/ChangeLog,v 1.20 2009/03/15 18:27:30 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/ChangeLog,v 1.21 2009/03/18 15:05:03 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> igal-2.0.ebuild:
+  stable ppc, bug 262416
 
   15 Mar 2009; Tobias Klausmann <klausman@gentoo.org> igal-2.0.ebuild:
   Stable on alpha, bug #262416
