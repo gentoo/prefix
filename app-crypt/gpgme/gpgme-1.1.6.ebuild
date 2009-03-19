@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.6.ebuild,v 1.8 2008/03/24 10:57:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.6.ebuild,v 1.9 2009/03/17 08:17:29 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,8 @@ src_unpack() {
 
 	# We need to call elibtoolize so that we get sane .so versioning on fbsd.
 	#elibtoolize
+	cd gpgme
+	epatch "${FILESDIR}/${PN}-1.1.8-et_EE.patch"
 }
 
 src_compile() {
