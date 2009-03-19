@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.29 2009/03/15 20:54:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.30 2009/03/18 14:20:33 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> pixman-0.12.0.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> pixman-0.12.0.ebuild:
   x86 stable, bug #260063
