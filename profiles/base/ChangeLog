@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.66 2009/02/26 19:37:19 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.67 2009/03/17 09:22:52 nirbheek Exp $
+
+  17 Mar 2009; Nirbheek Chauhan <nirbheek@gentoo.org> package.use.mask:
+  package.use.mask policykit for gnome-extra/gnome-power-manager and
+  gnome-base/gnome-session
 
   26 Feb 2009; Steve Dibb <beandog@gentoo.org> package.use.mask:
   Unmask internal real player codec support on newer mplayer

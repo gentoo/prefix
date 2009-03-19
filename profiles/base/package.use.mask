@@ -1,5 +1,10 @@
 # This file requires >=portage-2.1.1
 
+# Nirbheek Chauhan <nirbheek@gentoo.org> (17 Mar 2009)
+# policykit is masked, has smelly pants
+gnome-extra/gnome-power-manager policykit
+gnome-base/gnome-session policykit
+
 # Gilles Dartiguelongue <eva@gentoo.org (18 Feb 2009)
 # policykit is masked
 sys-auth/consolekit policykit
