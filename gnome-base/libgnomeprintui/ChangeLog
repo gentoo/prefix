@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/libgnomeprintui
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/ChangeLog,v 1.144 2009/03/15 21:40:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/ChangeLog,v 1.145 2009/03/18 15:23:32 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  libgnomeprintui-2.18.3.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org>
   libgnomeprintui-2.18.3.ebuild:
