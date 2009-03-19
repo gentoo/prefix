@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.37 2009/03/15 22:11:28 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.41 2009/03/18 23:24:20 hwoarang Exp $
+
+  18 Mar 2009; Markos Chandras <hwoarang@gentoo.org> qt-gui-4.4.2-r3:
+  Adding inputmethods target on qt-gui-4.4.2-r3 as well ( bug #262917 )
+
+  18 Mar 2009; Markos Chandras <hwoarang@gentoo.org>
+  -qt-gui-4.5.0_rc1-r1.ebuild:
+  Dropping 4.5.0_rc1
+
+  18 Mar 2009; Markos Chandras <hwoarang@gentoo.org> qt-gui-4.5.0:
+  Add inputmethods on targets. Fixes bug #262917
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> qt-gui-4.5.0.ebuild:
+  Add ~arm wrt #262462
 
   15 Mar 2009; Markos Chandras <hwoarang@gentoo.org> qt-gui-4.5.0:
   Proper installation of accessibility widget ( fixes bug #262600 )

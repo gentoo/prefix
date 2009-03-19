@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.0.ebuild,v 1.3 2009/03/15 22:11:28 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.0.ebuild,v 1.5 2009/03/18 21:30:49 hwoarang Exp $
 
 EAPI="prefix 2"
 inherit eutils qt4-build
@@ -42,7 +42,9 @@ tools/designer
 tools/linguist
 src/plugins/imageformats/gif
 src/plugins/imageformats/ico
-src/plugins/imageformats/jpeg"
+src/plugins/imageformats/jpeg
+src/plugins/inputmethods"
+
 QT4_EXTRACT_DIRECTORIES="
 include/
 src/
