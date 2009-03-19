@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.163 2009/03/15 22:16:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.164 2009/03/18 14:24:35 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> gail-1000.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> gail-1000.ebuild:
   x86 stable, bug #260063
