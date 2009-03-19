@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnomekbd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.46 2009/03/15 22:15:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.47 2009/03/18 14:54:55 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> libgnomekbd-2.24.0.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> libgnomekbd-2.24.0.ebuild:
   x86 stable, bug #260063
