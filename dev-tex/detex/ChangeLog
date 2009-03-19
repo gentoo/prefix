@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/detex
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.28 2009/03/11 18:13:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.29 2009/03/18 19:06:35 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> detex-2.8-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #253551
 
   11 Mar 2009; Raúl Porcel <armin76@gentoo.org> detex-2.8-r1.ebuild:
   Add ~arm/~sh
