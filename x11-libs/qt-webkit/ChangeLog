@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.24 2009/03/16 21:47:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.27 2009/03/18 22:36:30 hwoarang Exp $
+
+  18 Mar 2009; Markos Chandras <hwoarang@gentoo.org>
+  -qt-webkit-4.5.0_rc1.ebuild:
+  Dropping 4.5.0_rc1
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> qt-webkit-4.5.0.ebuild:
+  Add ~alpha/~ia64
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> qt-webkit-4.5.0.ebuild:
+  Add ~arm wrt #262462
 
   16 Mar 2009; Alexis Ballier <aballier@gentoo.org> qt-webkit-4.5.0.ebuild:
   keyword ~x86-fbsd
