@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21_p20090103.ebuild,v 1.1 2009/01/20 18:38:36 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21_p20090103.ebuild,v 1.3 2009/03/18 19:46:16 klausman Exp $
 
 EAPI="prefix 1"
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="xml qt3 jpeg tiff debug threads nls nsplugin kde doc"
+IUSE="xml qt3 jpeg tiff debug nls nsplugin kde doc"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
 	tiff? ( media-libs/tiff )
@@ -67,17 +67,9 @@ src_compile() {
 		I18N="--disable-i18n"
 	fi
 
-	# When enabling qt it must be compiled with threads. See bug #89544.
-	if use qt3 ; then
-		QTCONF=" --with-qt --enable-threads "
-	elif use threads ; then
-		QTCONF=" --without-qt --disable-djview --enable-threads "
-	else
-		QTCONF=" --without-qt --disable-djview --disable-threads "
-	fi
-
 	# We install all desktop files by hand.
 	econf --disable-desktopfiles \
+		$(use_with qt3 qt) \
 		$(use_enable xml xmltools) \
 		$(use_with jpeg) \
 		$(use_with tiff) \
