@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.7.39.ebuild,v 1.1 2009/03/04 15:29:49 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.7.42.ebuild,v 1.1 2009/03/17 15:50:24 voxus Exp $
 
 EAPI="prefix"
 
-inherit eutils ssl-cert
+inherit eutils ssl-cert toolchain-funcs
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
 
@@ -23,9 +23,14 @@ DEPEND="dev-lang/perl
 
 pkg_setup() {
 	ebegin "Creating nginx user and group"
-	enewgroup nginx
-	enewuser nginx -1 -1 /dev/null nginx
+	enewgroup ${PN}
+	enewuser ${PN} -1 -1 -1 ${PN}
 	eend ${?}
+}
+
+src_unpack() {
+	unpack ${A}
+	sed -i 's/ make/ \\$(MAKE)/' "${S}"/auto/lib/perl/make || die
 }
 
 src_compile() {
@@ -58,6 +63,7 @@ src_compile() {
 	use sub		&& myconf="${myconf} --with-http_sub_module"
 	use random-index	&& myconf="${myconf} --with-http_random_index_module"
 
+	tc-export CC
 	./configure \
 		--prefix="${EPREFIX}"/usr \
 		--conf-path="${EPREFIX}"/etc/${PN}/${PN}.conf \
@@ -71,7 +77,7 @@ src_compile() {
 		--with-sha1-asm --with-sha1="${EPREFIX}"/usr/include \
 		${myconf} || die "configure failed"
 
-	emake || die "failed to compile"
+	emake LINK="${CC} ${LDFLAGS}" OTHERLDFLAGS="${LDFLAGS}" || die "failed to compile"
 }
 
 src_install() {
@@ -83,8 +89,8 @@ src_install() {
 
 	cp "${FILESDIR}"/nginx.conf-r4 conf/nginx.conf
 
-	dodir "${ROOT}"/etc/${PN}
-	insinto "${ROOT}"/etc/${PN}
+	dodir /etc/${PN}
+	insinto /etc/${PN}
 	doins conf/*
 
 	dodoc CHANGES{,.ru} README
@@ -98,10 +104,8 @@ src_install() {
 pkg_postinst() {
 	use ssl && {
 		if [ ! -f "${EROOT}"/etc/ssl/${PN}/${PN}.key ]; then
-			dodir "${EROOT}"/etc/ssl/${PN}
-			insinto "${EROOT}"etc/ssl/${PN}/
-			insopts -m0644 -o nginx -g nginx
-			install_cert /etc/ssl/nginx/nginx
+			install_cert /etc/ssl/${PN}/${PN}
+			chown ${PN}:${PN} "${EROOT}"/etc/ssl/${PN}/${PN}.{crt,csr,key,pem}
 		fi
 	}
 }
