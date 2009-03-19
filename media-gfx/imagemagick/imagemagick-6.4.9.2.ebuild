@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.9.2.ebuild,v 1.1 2009/02/08 17:01:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.9.2.ebuild,v 1.2 2009/03/17 11:40:24 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -22,7 +22,7 @@ IUSE="bzip2 +corefonts djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k
 	lcms nocxx openexr openmp perl png q8 q32 raw svg tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
-	djvu? ( app-text/djvu[threads] )
+	djvu? ( app-text/djvu )
 	fontconfig? ( media-libs/fontconfig )
 	fpx? ( media-libs/libfpx )
 	graphviz? ( >=media-gfx/graphviz-2.6 )
