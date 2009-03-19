@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-news/eselect-news-20080320.ebuild,v 1.10 2009/01/08 20:35:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-news/eselect-news-20080320.ebuild,v 1.11 2009/03/17 10:08:28 armin76 Exp $
 
 EAPI="prefix"
 
