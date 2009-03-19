@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/mechanize
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.16 2008/12/27 14:48:07 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.17 2009/03/18 18:00:04 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> mechanize-0.9.0.ebuild:
+  keyworded ~arch for ppc, bug 252676
 
   27 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   mechanize-0.9.0.ebuild:
