@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/linkers-and-loaders
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/ChangeLog,v 1.6 2008/06/28 15:26:38 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/ChangeLog,v 1.7 2009/03/18 18:01:14 ricmm Exp $
+
+  18 Mar 2009; <ricmm@gentoo.org> linkers-and-loaders-1.ebuild:
+  Drop down to ~mips due to unstable deps
 
   28 Jun 2008; Mike Frysinger <vapier@gentoo.org>
   linkers-and-loaders-1.ebuild:
