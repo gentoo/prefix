@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cfv
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/ChangeLog,v 1.32 2009/01/10 11:06:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/ChangeLog,v 1.33 2009/03/17 12:06:16 tcunha Exp $
+
+  17 Mar 2009; Tiago Cunha <tcunha@gentoo.org> cfv-1.18.2.ebuild:
+  stable sparc
 
   10 Jan 2009; Markus Meier <maekke@gentoo.org> cfv-1.18.2.ebuild:
   amd64/x86 stable, bug #249121
