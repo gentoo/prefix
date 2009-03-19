@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/euses-2.5.5.ebuild,v 1.7 2009/03/18 18:51:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/euses-2.5.6.ebuild,v 1.1 2009/03/18 18:51:13 jer Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,6 @@ S="${WORKDIR}"
 src_unpack() {
 	unpack ${A}
 	eautoconf
-
-	epatch "${FILESDIR}"/${P}-solaris.patch
 }
 
 src_compile() {
