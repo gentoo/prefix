@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langgerman/texlive-langgerman-2008.ebuild,v 1.8 2009/03/13 20:14:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langgerman/texlive-langgerman-2008.ebuild,v 1.10 2009/03/18 20:53:22 ranger Exp $
 
 EAPI="prefix"
 
