@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/libmpd-0.17.0.ebuild,v 1.2 2009/02/27 16:32:19 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/libmpd-0.17.0.ebuild,v 1.3 2009/03/18 18:01:13 ranger Exp $
 
 EAPI="prefix 1"
 
