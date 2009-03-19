@@ -1,6 +1,15 @@
 # ChangeLog for sci-mathematics/maxima
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.61 2008/12/20 09:36:19 grozin Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.62 2009/03/18 23:50:09 grozin Exp $
+
+*maxima-5.17.1-r1 (19 Mar 2009)
+
+  19 Mar 2009; Andrey Grozin <grozin@gentoo.org> files/50maxima-gentoo.el,
+  -maxima-5.13.0-r1.ebuild, -maxima-5.15.0-r1.ebuild, -maxima-5.16.3.ebuild,
+  -maxima-5.17.1.ebuild, +maxima-5.17.1-r1.ebuild:
+  maxima no longer installs imaxima - there is a separate package (bug
+  #260663, thanks to Ulrich Mueller). rmaxima is produced when no lisp USE
+  flags are given (bug #261455). Old versions cleaned.
 
 *maxima-5.17.1 (20 Dec 2008)
 

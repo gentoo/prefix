@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.16.3.ebuild,v 1.3 2008/11/29 04:02:07 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.17.1-r1.ebuild,v 1.1 2009/03/18 23:50:09 grozin Exp $
 
 EAPI="prefix"
 inherit eutils elisp-common
@@ -11,6 +11,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 AECA"
 SLOT="0"
+# ~sparc will be added back after keywording app-emacs/imaxima
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 # Supported lisps with readline
@@ -29,19 +30,18 @@ for lang in ${LANGS}; do
 	IUSE="${IUSE} linguas_${lang}"
 done
 
-# >=maxima-5.15.0 includes imaxima; it depends on dev-tex/mh
-RDEPEND="!app-emacs/imaxima
-	X? ( x11-misc/xdg-utils
+RDEPEND="X? ( x11-misc/xdg-utils
 		 sci-visualization/gnuplot
 		 tk? ( dev-lang/tk ) )
 	latex? ( || ( dev-texlive/texlive-latexrecommended
 				  >=app-text/tetex-3
 				  app-text/ptex ) )
 	emacs? ( virtual/emacs
-		latex? ( app-emacs/auctex dev-tex/mh ) )
+		latex? ( app-emacs/auctex ) )
 	xemacs? ( virtual/xemacs
-		latex? ( app-emacs/auctex
-				|| ( dev-tex/mh =dev-texlive/texlive-mathextra-2007* ) ) )"
+		latex? ( app-emacs/auctex ) )"
+
+PDEPEND="emacs? ( app-emacs/imaxima )"
 
 # create lisp dependencies
 for LISP in ${SUPP_LISPS}; do
@@ -73,16 +73,17 @@ pkg_setup() {
 		use ${LISP} && LISPS="${LISPS} ${LISP}"
 	done
 
-	if [ -z "${LISPS}" ]; then
-		ewarn "No lisp specified in USE flags, choosing ${DEF_LISP} as default"
-		LISPS="${DEF_LISP}"
-	fi
-
 	RL=""
 
 	for LISP in ${SUPP_NORL}; do
 		use ${LISP} && RL="yes"
 	done
+
+	if [ -z "${LISPS}" ]; then
+		ewarn "No lisp specified in USE flags, choosing ${DEF_LISP} as default"
+		LISPS="${DEF_LISP}"
+		RL="yes"
+	fi
 
 	if use gcl; then
 		if ! built_with_use dev-lisp/gcl ansi; then
@@ -90,7 +91,7 @@ pkg_setup() {
 			die "This package needs gcl with USE=ansi"
 		fi
 		# gcl in the main tree is broken (bug #205803)
-		ewarn "Please use gcl from http://repo.or.cz/w/gentoo-lisp-overlay.git"
+		ewarn "Please use gcl from the lisp overlay"
 	fi
 
 	if use X && ! built_with_use sci-visualization/gnuplot gd wxwindows; then
@@ -114,6 +115,9 @@ src_unpack() {
 			-i "${S}"/src/Makefile.in \
 			|| die "sed for rmaxima failed"
 	fi
+	# don't install imaxima, since we have a separate package for it
+	sed -i -e '/^SUBDIRS/s/imaxima//' interfaces/emacs/Makefile.in \
+		|| die "sed for imaxima failed"
 }
 
 src_compile() {
@@ -166,13 +170,7 @@ src_install() {
 	dosym ../${PN}/${PV}/doc /usr/share/doc/${PF} || die
 
 	if use emacs; then
-		elisp-site-file-install "${FILESDIR}"/50maxima-gentoo.el
-		# imaxima docs
-		cd interfaces/emacs/imaxima
-		insinto /usr/share/${PN}/${PV}/doc/imaxima
-		doins ChangeLog NEWS README || die "installing imaxima docs failed"
-		insinto /usr/share/${PN}/${PV}/doc/imaxima/imath-example
-		doins imath-example/*.txt || die "installing imaxima docs failed"
+		elisp-site-file-install "${FILESDIR}"/50maxima-gentoo.el || die
 	fi
 }
 
