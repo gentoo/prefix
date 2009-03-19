@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/perltidy
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perltidy/ChangeLog,v 1.41 2009/03/14 17:23:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perltidy/ChangeLog,v 1.42 2009/03/18 07:32:07 josejx Exp $
+
+  18 Mar 2009; Joseph Jezak <josejx@gentoo.org> perltidy-20071205.ebuild:
+  Marked ppc stable for bug #261760.
 
   14 Mar 2009; Raúl Porcel <armin76@gentoo.org> perltidy-20071205.ebuild:
   ia64 stable wrt #261760
