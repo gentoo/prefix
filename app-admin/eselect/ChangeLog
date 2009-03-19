@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.77 2008/12/29 16:14:28 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.78 2009/03/17 10:00:58 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> eselect-1.0.11-r1.ebuild:
+  m68k stable wrt #208898, thanks to kolla for testing
 
   29 Dec 2008; Raúl Porcel <armin76@gentoo.org> eselect-1.0.11-r1.ebuild:
   s390/sh stable wrt #208898
