@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ps2eps
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.15 2009/03/11 18:25:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.16 2009/03/18 19:16:50 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> ps2eps-1.64.ebuild:
+  arm/s390/sh stable wrt #253551
 
   11 Mar 2009; Raúl Porcel <armin76@gentoo.org> ps2eps-1.64.ebuild:
   Add ~arm/~s390/~sh
