@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.131 2009/01/10 16:36:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.132 2009/03/17 10:52:50 a3li Exp $
+
+*rails-2.3.2 (17 Mar 2009)
+
+  17 Mar 2009; Alex Legler <a3li@gentoo.org> +rails-2.3.2.ebuild:
+  Version bump
 
   10 Jan 2009; Raúl Porcel <armin76@gentoo.org> rails-1.2.6-r1.ebuild,
   rails-2.1.2-r1.ebuild, rails-2.2.2-r1.ebuild:
