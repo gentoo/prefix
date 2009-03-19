@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.151 2009/03/06 01:28:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.152 2009/03/17 09:50:47 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> man-1.6f-r3.ebuild:
+  m68k stable wrt #258767, thanks to kolla for testing
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org> man-1.6f-r3.ebuild:
   Stable for HPPA (bug #258767).
