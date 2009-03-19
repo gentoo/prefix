@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/libbonobo-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/libbonobo-python/ChangeLog,v 1.6 2009/03/08 15:58:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/libbonobo-python/ChangeLog,v 1.7 2009/03/17 17:23:29 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  libbonobo-python-2.22.3.ebuild:
+  ia64/sparc stable wrt #258040
 
   08 Mar 2009; Markus Meier <maekke@gentoo.org>
   libbonobo-python-2.22.3.ebuild:
