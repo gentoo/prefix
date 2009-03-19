@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.124 2009/02/24 19:19:49 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.125 2009/03/17 10:12:24 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> m4-1.4.12.ebuild:
+  m68k stable wrt #258525, thanks to kolla for testing
 
   24 Feb 2009; Thomas Anderson <gentoofan23@gentoo.org> m4-1.4.12.ebuild:
   stable amd64, bug 258525
