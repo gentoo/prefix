@@ -1,6 +1,17 @@
 # ChangeLog for app-shells/tcsh
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.86 2008/12/04 20:50:30 grobian Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.89 2009/03/18 19:50:28 klausman Exp $
+
+  18 Mar 2009; Tobias Klausmann <klausman@gentoo.org> tcsh-6.16.ebuild:
+  Stable on alpha, bug #262849
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> tcsh-6.16.ebuild:
+  stable ppc, bug 262849
+
+  17 Mar 2009; Fabian Groffen <grobian@gentoo.org> tcsh-6.14-r5.ebuild,
+  tcsh-6.15-r2.ebuild:
+  Change SRC_URI to reflect moved location, thanks phceac(at]yahoo_com in bug
+  #262757
 
   04 Dec 2008; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r3.ebuild,
   tcsh-6.14-r5.ebuild:
