@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.20 2009/03/09 01:11:53 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.23 2009/03/18 11:14:09 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -45,7 +45,7 @@ gapi_users_list="art gnome gnomevfs ${gnome_desktop_sharp_module_list} atk gtk g
 # The first two components of the PV variable.
 PV_MAJOR=$(get_version_component_range 1-2)
 
-# @FUNCTION: add_bdepends
+# @FUNCTION: add_bdepend
 # @USAGE: <package atom>
 # @DESCRIPTION:
 # Adds to the DEPEND variable
@@ -54,7 +54,7 @@ add_bdepend() {
 	DEPEND="${DEPEND} $@"
 }
 
-# @FUNCTION: add_rdepends
+# @FUNCTION: add_rdepend
 # @USAGE: <package atom>
 # @DESCRIPTION:
 # Adds to the RDEPEND variable
@@ -116,7 +116,7 @@ case ${GTK_SHARP_MODULE} in
 	gnome-desktop|gnome-print|gnome-panel|gtkhtml|gtksourceview|nautilusburn|rsvg|vte|wnck)
 		TARBALL="gnome-desktop-sharp"
 		add_depend "=dev-dotnet/gtk-sharp-${GTK_SHARP_REQUIRED_VERSION}*"
-		add_depend "=dev-dotnet/gnome-sharp-${PV_MAJOR}*"
+		add_depend "=dev-dotnet/gnome-sharp-2.24*"
 		add_bdepend "=dev-dotnet/gtk-sharp-gapi-${GTK_SHARP_REQUIRED_VERSION}*"
 		;;
 	*)
@@ -187,14 +187,14 @@ case ${PF} in
 		;;
 	gnome-sharp-*)
 		add_depend ">=gnome-base/libgnomeui-${PV_MAJOR}"
-		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
 		add_depend "~dev-dotnet/gnomevfs-sharp-${PV}"
 		add_depend "~dev-dotnet/art-sharp-${PV}"
 		add_depend ">=gnome-base/libgnomecanvas-${GNOMECANVAS_REQUIRED_VERSION}"
+		add_depend ">=x11-libs/gtk+-2.14.0"
 		;;
 	gconf-sharp-*)
 		add_depend ">=gnome-base/gconf-${PV_MAJOR}"
-		add_depend ">=dev-dotnet/glade-sharp-${GTK_SHARP_REQUIRED_VERSION}"
+		add_depend "=dev-dotnet/glade-sharp-${GTK_SHARP_REQUIRED_VERSION}*"
 		add_depend "~dev-dotnet/gnome-sharp-${PV}"
 		add_depend "~dev-dotnet/art-sharp-${PV}"
 		;;
@@ -224,7 +224,7 @@ case ${PF} in
 		add_depend ">=x11-libs/gtksourceview-${GTKSOURCEVIEW_REQUIRED_VERSION}:2.0"
 		;;
 	nautilusburn-sharp-*)
-		add_depend ">=gnome-extra/nautilus-cd-burner-${PV_MAJOR}"
+		add_depend ">=gnome-extra/nautilus-cd-burner-2.24.0"
 		;;
 	rsvg-sharp-*)
 		add_depend ">=gnome-base/librsvg-${RSVG_REQUIRED_VERSION}"
