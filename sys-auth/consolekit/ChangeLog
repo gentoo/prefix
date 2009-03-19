@@ -1,6 +1,13 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.44 2009/03/06 02:16:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.45 2009/03/17 22:48:43 loki_val Exp $
+
+  17 Mar 2009; Peter Alfredsen <loki_val@gentoo.org>
+  consolekit-0.2.10.ebuild, consolekit-0.2.10-r1.ebuild,
+  consolekit-0.3.0.ebuild:
+  Bump dev-libs/glib dependency, since GRegex (added in glib-2.14) is used
+  by consolekit. Choose 2.16 so we don't have to bump it for a while. Bug
+  262853.
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org> consolekit-0.2.10.ebuild:
   Stable for HPPA (bug #242270).

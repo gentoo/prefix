@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.3.0.ebuild,v 1.1 2009/02/18 22:16:04 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.3.0.ebuild,v 1.2 2009/03/17 22:48:43 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug doc pam policykit"
 
-RDEPEND=">=dev-libs/glib-2.7
+RDEPEND=">=dev-libs/glib-2.16
 	>=dev-libs/dbus-glib-0.61
 	>=x11-libs/libX11-1.0.0
 	pam? ( virtual/pam )

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.2.10.ebuild,v 1.9 2009/03/06 02:16:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.2.10.ebuild,v 1.10 2009/03/17 22:48:43 loki_val Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ IUSE="debug pam"
 # Not parallel make safe
 MAKEOPTS="$MAKEOPTS -j1"
 
-RDEPEND=">=dev-libs/glib-2.7
+RDEPEND=">=dev-libs/glib-2.16
 	>=dev-libs/dbus-glib-0.61
 	>=x11-libs/libX11-1.0.0
 	pam? ( virtual/pam )
