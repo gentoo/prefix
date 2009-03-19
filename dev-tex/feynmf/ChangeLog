@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.34 2009/03/11 18:36:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.35 2009/03/18 19:28:33 armin76 Exp $
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> feynmf-1.08-r3.ebuild:
+  arm/s390/sh stable wrt #253551
 
   11 Mar 2009; Raúl Porcel <armin76@gentoo.org> feynmf-1.08-r3.ebuild:
   Add ~arm/~s390/~sh
