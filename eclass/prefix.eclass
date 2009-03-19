@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-#
 # @ECLASS: prefix.eclass
 # @MAINTAINER:
 # Feel free to contact the Prefix team through <prefix@gentoo.org> if
@@ -59,6 +58,8 @@ eprefixify() {
 			die "${x} does not exist"
 		fi
 	done
+
+	return 0
 }
 
 
