@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.64 2009/03/15 13:36:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.65 2009/03/18 06:52:47 josejx Exp $
+
+  18 Mar 2009; Joseph Jezak <josejx@gentoo.org> dictd-1.11.1.ebuild:
+  Marked ~ppc for bug #250390.
 
   15 Mar 2009; Brent Baude <ranger@gentoo.org> dictd-1.11.1.ebuild:
   Marking dictd-1.11.1 ~ppc64 for bug 250390
