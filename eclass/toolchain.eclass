@@ -9,7 +9,7 @@ LICENSE="GPL-2 LGPL-2.1"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
 #---->> eclass stuff <<----
-inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails
+inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails prefix
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
 DESCRIPTION="Based on the ${ECLASS} eclass"

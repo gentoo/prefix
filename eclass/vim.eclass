@@ -21,7 +21,7 @@
 # -aqua -gtk -motif nextaw      NEXTAW (7+)
 # -aqua -gtk -motif -nextaw     ATHENA
 
-inherit eutils vim-doc flag-o-matic versionator fdo-mime
+inherit eutils vim-doc flag-o-matic versionator fdo-mime prefix
 
 # Support -cvs ebuilds, even though they're not in the official tree.
 MY_PN=${PN%-cvs}

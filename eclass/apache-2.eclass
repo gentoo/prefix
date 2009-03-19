@@ -10,7 +10,7 @@
 # This eclass handles apache-2.x ebuild functions such as LoadModule generation
 # and inter-module dependency checking.
 
-inherit autotools confutils eutils flag-o-matic multilib
+inherit autotools confutils eutils flag-o-matic multilib prefix
 
 # ==============================================================================
 # INTERNAL VARIABLES
