@@ -1,6 +1,12 @@
 # ChangeLog for dev-texlive/texlive-latex3
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex3/ChangeLog,v 1.24 2009/03/13 20:25:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex3/ChangeLog,v 1.26 2009/03/18 21:07:28 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-latex3-2008.ebuild:
+  Marking texlive-latex3-2008 ppc stable for bug 253551
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> texlive-latex3-2008.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #253551
 
   13 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-latex3-2008.ebuild:
   Marking texlive-latex3-2008 ppc64 stable for bug 235551
