@@ -1,6 +1,15 @@
 # ChangeLog for gnome-base/gnome-vfs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.298 2009/03/15 21:11:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.300 2009/03/19 00:42:09 eva Exp $
+
+*gnome-vfs-2.24.1 (19 Mar 2009)
+
+  19 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-vfs-2.24.1.ebuild:
+  Bump to 2.24.1. Build fixes for single includes and leak fixes.
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> gnome-vfs-2.24.0.ebuild:
+  alpha/ia64 stable wrt #260063
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> gnome-vfs-2.24.0.ebuild:
   x86 stable, bug #260063

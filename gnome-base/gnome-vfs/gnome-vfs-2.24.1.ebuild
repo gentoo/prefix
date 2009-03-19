@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.0.ebuild,v 1.6 2009/03/18 14:48:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.1.ebuild,v 1.1 2009/03/19 00:42:09 eva Exp $
 
 EAPI="prefix"
 
@@ -24,22 +24,18 @@ RDEPEND=">=gnome-base/gconf-2
 	>=dev-libs/dbus-glib-0.71
 	samba? ( >=net-fs/samba-3 )
 	gnutls?	(
-				net-libs/gnutls
-				!gnome-extra/gnome-vfs-sftp
-			)
-	ssl?	(
-		!gnutls?	(
-				>=dev-libs/openssl-0.9.5
-				!gnome-extra/gnome-vfs-sftp
-				)
-		)
+		net-libs/gnutls
+		!gnome-extra/gnome-vfs-sftp )
+	ssl? (
+		!gnutls? (
+			>=dev-libs/openssl-0.9.5
+			!gnome-extra/gnome-vfs-sftp ) )
 	hal? ( >=sys-apps/hal-0.5.7 )
 	avahi? ( >=net-dns/avahi-0.6 )
 	kerberos? ( virtual/krb5 )
 	acl? (
 		sys-apps/acl
-		sys-apps/attr
-	)"
+		sys-apps/attr )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	gnome-base/gnome-common
@@ -54,6 +50,7 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-schemas-install
+		--disable-static
 		--disable-cdda
 		--disable-howl
 		$(use_enable acl)
@@ -110,6 +107,12 @@ src_unpack() {
 	# thanks to debian folks
 	epatch "${FILESDIR}"/${PN}-2.20.0-home_dir_fakeroot.patch
 
+	# Configure with gnutls-2.7, bug #253729
+	epatch "${FILESDIR}"/${PN}-2.24.0-gnutls27.patch
+
+	# Prevent duplicated volumes, bug #193083
+	epatch "${FILESDIR}"/${PN}-2.24.0-uuid-mount.patch
+
 	# Fix deprecated API disabling in used libraries - this is not future-proof, bug 212163
 	# upstream bug #519632
 	sed -i -e '/DISABLE_DEPRECATED/d' \
@@ -129,6 +132,19 @@ src_unpack() {
 	# conditionally.
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.22.0-interix3.patch
 
+	# Fix use of broken gtk-doc.make
+	if use doc; then
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/usr/bin/gtkdoc-rebase" -i gtk-doc.make
+	else
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=true" -i gtk-doc.make
+	fi
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
-	intltoolize --force || die "intltoolize failed"
+}
+
+src_test() {
+	unset DISPLAY
+	#unset DBUS_SESSION_BUS_ADDRESS
+	emake check || die "tests failed"
 }
