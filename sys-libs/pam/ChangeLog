@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/pam
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.236 2009/03/08 13:34:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.237 2009/03/18 19:23:40 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> pam-1.0.4.ebuild:
+  Marking pam-1.0.4 ppc for bug 261108
 
   08 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org> pam-1.0.4.ebuild:
   Remove epam, closes bug #212323.
