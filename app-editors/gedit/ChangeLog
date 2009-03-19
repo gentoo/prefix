@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.263 2009/03/16 21:44:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.265 2009/03/18 19:32:55 klausman Exp $
+
+  18 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
+  gedit-2.22.3-r1.ebuild:
+  Stable on alpha, bug #257004
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org> gedit-2.24.3.ebuild:
+  alpha/ia64 stable wrt #260063
 
 *gedit-2.22.3-r2 (16 Mar 2009)
 
