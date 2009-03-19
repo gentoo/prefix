@@ -1,6 +1,11 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.174 2009/03/12 00:12:35 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.175 2009/03/17 15:01:40 mr_bones_ Exp $
+
+  17 Mar 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  tetex-3.0_p1-r6.ebuild:
+  restore KEYWORDS until app-text/xetex and dev-tex/xkeyval are modified to not
+  need this package.
 
   10 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
   tetex-2.0.2-r9.ebuild, tetex-3.0_p1-r6.ebuild:
