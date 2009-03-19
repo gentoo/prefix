@@ -1,6 +1,9 @@
 # ChangeLog for app-text/wgetpaste
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.85 2008/12/31 18:34:05 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.86 2009/03/17 13:57:06 armin76 Exp $
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org> wgetpaste-2.12.ebuild:
+  m68k stable, thanks to kolla for testing
 
   24 Dec 2008; Raúl Porcel <armin76@gentoo.org> wgetpaste-2.12.ebuild:
   s390 stable wrt #250199
