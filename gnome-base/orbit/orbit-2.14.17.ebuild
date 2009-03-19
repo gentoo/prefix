@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.1 2009/03/08 00:59:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.3 2009/03/17 15:48:59 leio Exp $
 
 EAPI="prefix"
 
 GCONF_DEBUG="no"
 
-inherit gnome2
+inherit gnome2 toolchain-funcs
 
 MY_P="ORBit2-${PV}"
 PVP=(${PV//[-\._]/ })
@@ -38,6 +38,13 @@ src_compile() {
 
 	# on interix poll is broken!
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
+	# We need to use the hosts IDL compiler if cross-compiling, bug #262741
+	if tc-is-cross-compiler; then
+		# check that host version is present and executable
+		[ -x "${EPREFIX}"/usr/bin/orbit-idl-2 ] || die "Please emerge ~${CATEGORY}/${P} on the host system first"
+		G2CONF="${G2CONF} --with-idl-compiler=${EPREFIX}/usr/bin/orbit-idl-2"
+	fi
 
 	gnome2_src_compile
 }
