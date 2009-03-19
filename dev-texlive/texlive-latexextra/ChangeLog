@@ -1,6 +1,14 @@
 # ChangeLog for dev-texlive/texlive-latexextra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.30 2009/03/13 20:34:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.32 2009/03/18 21:16:46 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org>
+  texlive-latexextra-2008-r1.ebuild:
+  Marking texlive-latexextra-2008-r1 ppc stable for bug 253551
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  texlive-latexextra-2008-r1.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #253551
 
   13 Mar 2009; Brent Baude <ranger@gentoo.org>
   texlive-latexextra-2008-r1.ebuild:
