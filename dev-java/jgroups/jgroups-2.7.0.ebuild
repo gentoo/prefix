@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/jgroups-2.7.0.ebuild,v 1.2 2009/03/15 20:40:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/jgroups-2.7.0.ebuild,v 1.3 2009/03/18 15:04:37 ranger Exp $
 
 EAPI="prefix 2"
 JAVA_PKG_IUSE="doc source"

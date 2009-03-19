@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jgroups
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/ChangeLog,v 1.27 2009/03/15 20:40:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/ChangeLog,v 1.28 2009/03/18 15:04:37 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> jgroups-2.7.0.ebuild:
+  stable ppc, bug 262539
 
   15 Mar 2009; Markus Meier <maekke@gentoo.org> jgroups-2.7.0.ebuild:
   amd64/x86 stable, bug #262539
