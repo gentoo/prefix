@@ -131,7 +131,7 @@ do_compile() {
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
 	# for IRIX to get tests compiling
-	epatch "${FILESDIR}"/${PN}-5.7-Makefile.patch
+	epatch "${FILESDIR}"/${PN}-5.7-irix.patch
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
