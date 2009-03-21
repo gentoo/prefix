@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-light
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.94 2008/12/20 14:02:58 gentoofan23 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.96 2009/03/19 22:30:05 eva Exp $
+
+  19 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-light-2.20.3.ebuild:
+  Clean up old revisions.
+
+  19 Mar 2009; Joseph Jezak <josejx@gentoo.org> gnome-light-2.24.1.ebuild:
+  Marked ~ppc/~ppc64 for bug #262029.
 
   20 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org>
   gnome-light-2.22.0.ebuild:
