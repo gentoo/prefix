@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.15 2009/02/19 17:07:28 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.16 2009/03/19 11:51:13 scarabeus Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -40,7 +40,7 @@ EGIT_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/git-src"
 
 ## -- EGIT_FETCH_CMD:  git clone command
 #
-EGIT_FETCH_CMD="git clone --bare --depth 1"
+EGIT_FETCH_CMD="git clone --bare"
 
 ## -- EGIT_UPDATE_CMD:  git fetch command
 #
@@ -189,6 +189,12 @@ git_fetch() {
 	[[ -z ${EGIT_REPO_URI##*/} ]] && EGIT_REPO_URI="${EGIT_REPO_URI%/}"
 	EGIT_CLONE_DIR="${EGIT_PROJECT}"
 
+	# determine whether to perform shallow clone
+	local EGIT_FETCH_OPTS
+	if [[ ${EGIT_BRANCH} = ${EGIT_TREE} ]] && [[ ${EGIT_BRANCH} = master ]] ; then
+		EGIT_FETCH_OPTS="--depth 1"
+	fi
+
 	debug-print "${FUNCNAME}: EGIT_OPTIONS = \"${EGIT_OPTIONS}\""
 
 	export GIT_DIR="${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
@@ -198,7 +204,7 @@ git_fetch() {
 		einfo "git clone start -->"
 		einfo "   repository: ${EGIT_REPO_URI}"
 
-		${EGIT_FETCH_CMD} ${EGIT_OPTIONS} "${EGIT_REPO_URI}" ${EGIT_PROJECT} \
+		${EGIT_FETCH_CMD} ${EGIT_FETCH_OPTS} ${EGIT_OPTIONS} "${EGIT_REPO_URI}" ${EGIT_PROJECT} \
 			|| die "${EGIT}: can't fetch from ${EGIT_REPO_URI}."
 
 		# We use --bare cloning, so git doesn't do this for us.
