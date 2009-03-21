@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.8 2009/03/03 11:32:45 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.9 2009/03/20 04:57:31 josejx Exp $
+
+  20 Mar 2009; Joseph Jezak <josejx@gentoo.org>
+  eselect-ruby-20081211.ebuild, eselect-ruby-20081227.ebuild:
+  Marked ~ppc for bug #252315.
 
   03 Mar 2009; Peter Volkov <pva@gentoo.org> eselect-ruby-20081227.ebuild:
   ~mips keyworded, bug #252315.
