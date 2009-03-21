@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/sqlalchemy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.24 2009/02/02 10:36:52 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.25 2009/03/20 13:15:50 josejx Exp $
+
+  20 Mar 2009; Joseph Jezak <josejx@gentoo.org> sqlalchemy-0.4.7_p1.ebuild,
+  sqlalchemy-0.5.2.ebuild:
+  Marked ~ppc for bug #256071.
 
 *sqlalchemy-0.5.2 (02 Feb 2009)
 

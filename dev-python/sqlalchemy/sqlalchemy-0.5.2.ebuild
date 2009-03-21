@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/sqlalchemy-0.5.2.ebuild,v 1.1 2009/02/02 10:36:52 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/sqlalchemy-0.5.2.ebuild,v 1.2 2009/03/20 13:15:50 josejx Exp $
 
 EAPI="prefix"
 
