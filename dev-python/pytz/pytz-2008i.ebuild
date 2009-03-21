@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/pytz-2008i.ebuild,v 1.4 2009/03/15 13:49:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/pytz-2008i.ebuild,v 1.5 2009/03/19 17:19:38 josejx Exp $
 
 NEED_PYTHON=2.3
 EAPI="prefix 2"
