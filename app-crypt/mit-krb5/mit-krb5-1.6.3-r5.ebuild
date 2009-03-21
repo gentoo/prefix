@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r2.ebuild,v 1.6 2008/10/28 16:11:11 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r5.ebuild,v 1.3 2009/03/20 23:36:44 maekke Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic versionator autotools
 
-PATCHV="0.3"
+PATCHV="0.5"
 MY_P=${P/mit-}
 P_DIR=$(get_version_component_range 1-2)
 DESCRIPTION="MIT Kerberos V"
@@ -20,7 +20,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="krb4 doc"
 
 RDEPEND="!virtual/krb5
-	|| ( ( >sys-libs/e2fsprogs-libs-1.40.11 ) ( sys-libs/com_err sys-libs/ss ) )"
+	>=sys-libs/e2fsprogs-libs-1.41.0"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
@@ -63,7 +63,7 @@ src_compile() {
 	if use doc ; then
 		cd ../doc
 		for dir in api implement ; do
-			make -C ${dir} || die
+			make -C "${dir}" || die
 		done
 	fi
 }

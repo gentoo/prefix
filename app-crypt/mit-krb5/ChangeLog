@@ -1,6 +1,24 @@
 # ChangeLog for app-crypt/mit-krb5
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.199 2008/12/29 14:11:43 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.203 2009/03/20 23:36:44 maekke Exp $
+
+  20 Mar 2009; Markus Meier <maekke@gentoo.org> mit-krb5-1.6.3-r5.ebuild:
+  amd64/x86 stable, bug #262736
+
+  20 Mar 2009; Brent Baude <ranger@gentoo.org> mit-krb5-1.6.3-r5.ebuild:
+  Marking mit-krb5-1.6.3-r5 ppc64 and ppc for bug 262736
+
+*mit-krb5-1.6.3-r5 (20 Mar 2009)
+
+  20 Mar 2009; Michael Hammer <mueli@gentoo.org> metadata.xml,
+  mit-krb5-1.6.3-r3.ebuild, mit-krb5-1.6.3-r4.ebuild,
+  +mit-krb5-1.6.3-r5.ebuild:
+  added mit-krb5-1.6.3-r5 with new patchset
+
+  20 Mar 2009; Michael Hammer <mueli@gentoo.org> -mit-krb5-1.5.3-r1.ebuild,
+  -mit-krb5-1.6.3.ebuild, -mit-krb5-1.6.3-r1.ebuild,
+  -mit-krb5-1.6.3-r2.ebuild:
+  removed old mit-krb5 versions
 
   29 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   mit-krb5-1.6.3-r4.ebuild:

@@ -14,13 +14,5 @@
     documentation. This is only useful if you want to develop software
     which depends on kerberos.
   </flag>
-  <flag name="tcl">
-    Some of the unit-tests in the build tree rely upon using a program
-    in Tcl. This flag is marked for removal.
-  </flag>
-  <flag name="ipv6">
-    Enables ipv6 support which is default in actual releases. This
-    flag is marked for removal.
-  </flag>
 </use>
 </pkgmetadata>

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r4.ebuild,v 1.12 2008/12/29 14:11:43 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r4.ebuild,v 1.13 2009/03/20 09:29:51 mueli Exp $
 
 EAPI="prefix"
 
@@ -63,7 +63,7 @@ src_compile() {
 	if use doc ; then
 		cd ../doc
 		for dir in api implement ; do
-			make -C ${dir} || die
+			make -C "${dir}" || die
 		done
 	fi
 }
