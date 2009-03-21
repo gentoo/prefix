@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libafterimage
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.23 2009/03/18 15:10:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.24 2009/03/21 01:59:20 jer Exp $
+
+  21 Mar 2009; Jeroen Roovers <jer@gentoo.org> libafterimage-1.18-r1.ebuild:
+  Stable for HPPA (bug #262418).
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> libafterimage-1.18-r1.ebuild:
   stable ppc, bug 262418
