@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.265 2009/03/18 19:32:55 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.266 2009/03/20 15:24:23 armin76 Exp $
+
+  20 Mar 2009; Raúl Porcel <armin76@gentoo.org> gedit-2.22.3-r1.ebuild:
+  ia64/sparc stable wrt #257004
 
   18 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
   gedit-2.22.3-r1.ebuild:
