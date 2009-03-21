@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>java</herd>
-  <maintainer>
-    <email>nichoj@gentoo.org</email>
-    <name>Joshua Nichols</name>
-  </maintainer>
 </pkgmetadata>
