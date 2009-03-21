@@ -1,6 +1,11 @@
 # ChangeLog for app-emulation/spim
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.44 2008/01/11 20:55:19 grobian Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.45 2009/03/20 03:25:55 jmbsvicetto Exp $
+
+  20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml, spim-7.2.1-r2.ebuild, spim-7.2.1-r3.ebuild, spim-7.3.ebuild:
+  Removing compnerd as a maintainer since he was retired. Fixed some QA
+  warnings.
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> spim-7.2.1-r2.ebuild,
   spim-7.2.1-r3.ebuild, spim-7.3.ebuild:
