@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xdvipdfmx
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.28 2008/09/04 08:12:42 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.29 2009/03/20 13:30:42 jmbsvicetto Exp $
+
+  20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing joslwah as a maintainer since he was retired.
 
   04 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   -xdvipdfmx-0.3.ebuild:
