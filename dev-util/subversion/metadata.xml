@@ -2,14 +2,14 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
+    <email>Arfrever@gentoo.org</email>
+    <name>Arfrever Frehtes Taifersar Arahesis</name>
+    <description>Gentoo Subversion maintainer and Subversion upstream representative</description>
+  </maintainer>
+  <maintainer>
     <email>hollow@gentoo.org</email>
     <name>Benedikt Böhm</name>
     <description>Gentoo Subversion maintainer</description>
-  </maintainer>
-  <maintainer>
-    <email>Arfrever.FTA@GMail.Com</email>
-    <name>Arfrever Frehtes Taifersar Arahesis</name>
-    <description>Subversion upstream representative</description>
   </maintainer>
   <use>
     <flag name="dso">Enable runtime module search</flag>
