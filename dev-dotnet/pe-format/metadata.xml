@@ -2,11 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>dotnet</herd>
-	<maintainer>
-		<email>compnerd@gentoo.org</email>
-		<name>Saleem Abdulrasool</name>
-	</maintainer>
 	<longdescription lang="en">
 	</longdescription>
 </pkgmetadata>
-
