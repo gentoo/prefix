@@ -1,6 +1,23 @@
 # ChangeLog for net-misc/youtube-dl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.37 2008/10/25 22:45:57 agorf Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.40 2009/03/20 18:27:51 bangert Exp $
+
+  20 Mar 2009; Thilo Bangert <bangert@gentoo.org>
+  -youtube-dl-2008.03.08.ebuild, -youtube-dl-2008.04.07.ebuild,
+  -youtube-dl-2008.04.20.ebuild, -youtube-dl-2008.06.08.ebuild,
+  -youtube-dl-2008.07.26.ebuild, -youtube-dl-2008.08.09.ebuild,
+  -youtube-dl-2008.09.20.ebuild, -youtube-dl-2008.10.16.ebuild:
+  remove old versions
+
+*youtube-dl-2009.03.03 (20 Mar 2009)
+
+  20 Mar 2009; Thilo Bangert <bangert@gentoo.org>
+  +youtube-dl-2009.03.03.ebuild:
+  version bump - bug #246674
+
+  20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing agorf as a maintainer since he was retired.
 
 *youtube-dl-2008.10.16 (25 Oct 2008)
 
