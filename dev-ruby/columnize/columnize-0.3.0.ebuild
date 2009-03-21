@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/columnize-0.3.0.ebuild,v 1.1 2009/03/04 06:55:12 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/columnize-0.3.0.ebuild,v 1.2 2009/03/20 05:08:01 josejx Exp $
 
 EAPI="prefix"
 
