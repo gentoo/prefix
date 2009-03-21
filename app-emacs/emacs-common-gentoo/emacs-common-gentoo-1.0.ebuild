@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.0.ebuild,v 1.5 2009/03/13 17:25:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.0.ebuild,v 1.6 2009/03/19 11:04:12 ulm Exp $
 
 EAPI="prefix"
 
@@ -46,12 +46,12 @@ src_install() {
 make-site-start() {
 	ebegin "Creating default ${SITELISP}/site-start.el"
 	cat <<-EOF >"${T}/site-start.el"
-	;;; site-start.el
+	;;; site-start.el			-*- no-byte-compile: t -*-
 
 	;;; Commentary:
-	;; This default site startup file was created by package
-	;; ${CATEGORY}/${PF}. You may modify this file, replace it
-	;; by your own site initialisation, or even remove it completely.
+	;; This default site startup file for Emacs was created by package
+	;; ${CATEGORY}/${PF}. You may modify this file, replace
+	;; it by your own site initialisation, or even remove it completely.
 
 	;;; Code:
 	;; Load site initialisation for Gentoo installed packages.
