@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libgadu
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/ChangeLog,v 1.31 2009/02/11 17:01:30 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/ChangeLog,v 1.32 2009/03/20 15:43:51 ranger Exp $
+
+  20 Mar 2009; Brent Baude <ranger@gentoo.org> libgadu-1.8.2.ebuild:
+  Marking libgadu-1.8.2 ppc64 for bug 261950
 
   11 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   libgadu-1.8.2.ebuild:
