@@ -42,7 +42,7 @@ gems_location() {
 	else
 		ruby_version=${1/ruby/gem}
 	fi
-	export GEMSDIR=$(/usr/bin/${ruby_version} env gemdir)
+	export GEMSDIR=$(${EPREFIX}/usr/bin/${ruby_version} env gemdir)
 	GEMSDIR=${GEMSDIR#${EPREFIX}}
 }
 
