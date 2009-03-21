@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.50 2009/01/19 19:22:30 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.51 2009/03/20 13:14:21 pva Exp $
+
+  20 Mar 2009; Peter Volkov <pva@gentoo.org> gsl-1.12.ebuild:
+  ~mips back, bug #204072
 
 *gsl-1.12 (19 Jan 2009)
 
