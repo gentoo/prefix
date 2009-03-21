@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/linecache
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/ChangeLog,v 1.1 2008/12/28 11:11:40 graaff Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/ChangeLog,v 1.2 2009/03/20 05:07:23 josejx Exp $
+
+  20 Mar 2009; Joseph Jezak <josejx@gentoo.org> linecache-0.43.ebuild:
+  Marked ~ppc for bug #252815.
 
 *linecache-0.43 (28 Dec 2008)
 
