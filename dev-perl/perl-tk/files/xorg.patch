@@ -39,11 +39,12 @@ diff -Naurp Tk-804.027/myConfig Tk-804.027.new/myConfig
    if (defined $X11INC)
      {
        $xinc = &IX11("$X11INC");
-@@ -321,6 +321,7 @@ if ($win_arch eq 'x') {
+@@ -321,6 +321,8 @@ if ($win_arch eq 'x') {
      {
        warn "Cannot find X include files via $base/include\n";
        $xinc = &IX11(map("$_/include",@xdirs),
 +            chooseX11(</usr/include/X11*>),
++		    '/usr/include',
  		    '/usr/openwin/include',
  		    chooseX11(</usr/X11*/include>),
  		    chooseX11(</usr/include/X11*>),

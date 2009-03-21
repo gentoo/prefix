@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/perl-tk
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.44 2009/02/21 14:18:01 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.45 2009/03/19 16:42:23 josejx Exp $
+
+  19 Mar 2009; Joseph Jezak <josejx@gentoo.org> files/xorg.patch:
+  Fix bug #198977.
 
 *perl-tk-804.028-r1 (21 Feb 2009)
 
