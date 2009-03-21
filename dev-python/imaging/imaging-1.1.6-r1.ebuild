@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6.ebuild,v 1.8 2009/03/20 18:52:16 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.1 2009/03/20 18:52:16 bicatali Exp $
 
 EAPI="prefix 2"
 inherit eutils distutils
@@ -16,22 +16,25 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc examples scanner tk X"
 
-DEPEND=">=media-libs/jpeg-6a
-	>=media-libs/freetype-2.1.5
+DEPEND="media-libs/jpeg
+	media-libs/freetype:2
 	tk? ( dev-lang/python[tk?] )
 	scanner? ( media-gfx/sane-backends )
-	X? ( media-gfx/xv )"
+	X? ( x11-misc/xdg-utils )"
 RDEPEND="${DEPEND}"
 
 PYTHON_MODNAME=PIL
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-no-xv.patch
+	epatch "${FILESDIR}"/${P}-sane.patch
+	epatch "${FILESDIR}"/${P}-giftrans.patch
+	epatch "${FILESDIR}"/${P}-tiffendian.patch
 	sed -i \
-		-e "s:/lib\":/$(get_libdir)\":" \
-		-e "s:\"lib\":\"$(get_libdir)\":" \
+		-e "s:/usr/lib\":/usr/$(get_libdir)\":" \
+		-e "s:\"lib\":\"$(get_libdir)\":g" \
 		setup.py || die "sed failed"
-
 	if ! use tk ; then
 		# Make the test always fail
 		sed -i \
@@ -46,6 +49,10 @@ src_compile() {
 		cd "${S}/Sane"
 		distutils_src_compile
 	fi
+}
+
+src_test() {
+	"${python}" selftest.py || die
 }
 
 src_install() {

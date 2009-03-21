@@ -1,6 +1,19 @@
 # ChangeLog for dev-python/imaging
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.38 2009/03/07 21:38:45 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.39 2009/03/20 18:52:16 bicatali Exp $
+
+*imaging-1.1.6-r1 (20 Mar 2009)
+
+  20 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/imaging-1.1.4-fPIC.patch, -files/imaging-1.1.4-ft-2.1.9.patch,
+  -files/imaging-1.1.4-setup.py.patch, +files/imaging-1.1.6-giftrans.patch,
+  +files/imaging-1.1.6-no-xv.patch, +files/imaging-1.1.6-sane.patch,
+  +files/imaging-1.1.6-tiffendian.patch, -imaging-1.1.5.ebuild,
+  imaging-1.1.6.ebuild, +imaging-1.1.6-r1.ebuild:
+  Added patches for GIF transparency, replace image viewer from xv to
+  desktop default one with xdg-open, support for TIFF 16 bit endian images
+  (bug #180549, thanks Tamas Haraszti). Also added unit test. Cleaned old
+  packages
 
   07 Mar 2009; Joseph Jezak <josejx@gentoo.org> imaging-1.1.6.ebuild:
   Marked ppc stable for bug #182425.
