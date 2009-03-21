@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-phonon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/ChangeLog,v 1.24 2009/03/18 22:25:40 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/ChangeLog,v 1.25 2009/03/20 12:25:47 armin76 Exp $
+
+  20 Mar 2009; Raúl Porcel <armin76@gentoo.org> qt-phonon-4.5.0.ebuild:
+  We don't want phonon on alpha/ia64
 
   18 Mar 2009; Markos Chandras <hwoarang@gentoo.org>
   -qt-phonon-4.5.0_rc1.ebuild:
