@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.2.2.ebuild,v 1.3 2009/03/18 19:48:15 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.2.2.ebuild,v 1.5 2009/03/20 23:39:52 maekke Exp $
 
 EAPI="prefix 2"
 inherit toolchain-funcs flag-o-matic bash-completion
