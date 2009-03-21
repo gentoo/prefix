@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.284 2009/03/18 20:08:52 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.285 2009/03/20 23:35:25 maekke Exp $
+
+  20 Mar 2009; Markus Meier <maekke@gentoo.org> gimp-2.6.4.ebuild:
+  amd64/x86 stable, bug #258344
 
 *gimp-2.6.6 (18 Mar 2009)
 
