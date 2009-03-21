@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/plan9port/plan9port-20070522.ebuild,v 1.2 2008/03/11 13:03:53 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/plan9port/plan9port-20070522.ebuild,v 1.3 2009/03/20 17:43:23 jmbsvicetto Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ src_compile() {
 
 src_install() {
 	dodir /usr/lib/plan9
-	mv ${S} ${ED}/usr/lib/
+	mv "${S}" "${ED}/usr/lib/"
 	sed "s:=:=${EPREFIX}:" "${FILESDIR}/30plan9" > "${T}"/30plan9
 	doenvd "${T}"/30plan9
 }
