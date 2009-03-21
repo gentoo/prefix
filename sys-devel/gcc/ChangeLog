@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.689 2009/03/16 08:03:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.690 2009/03/20 20:42:55 jmbsvicetto Exp $
+
+  20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing anant as a maintainer since he was retired.
 
   16 Mar 2009; Mike Frysinger <vapier@gentoo.org> gcc-4.3.3-r1.ebuild:
   Disable semi-broken patch for now so more people dont hit the bug #262567.
