@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.27 2009/02/26 19:04:02 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.28 2009/03/20 15:25:33 voyageur Exp $
 
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -17,6 +17,10 @@
 #
 
 #--- END OF EXAMPLES ---
+
+# Bernard Cafarelli <voyageur@gentoo.org> (20 Mar 2009)
+# Depends on packages not yet keyworded for amd64, cf bug #22042
+app-backup/backup-manager s3
 
 # Jeremy Olexa <darkside@gentoo.org> (07 Feb 2009)
 # USE=mmx on imlib2 causes issues with other apps. See bug 218382 (comments

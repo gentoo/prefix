@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.41 2009/02/07 04:37:41 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.42 2009/03/20 15:25:33 voyageur Exp $
+
+  20 Mar 2009; Bernard Cafarelli <voyageur@gentoo.org> package.use.mask:
+  Mask s3 USE flag for app-backup/backup-manager, required dependencies are
+  not ~amd64 yet
 
   07 Feb 2009; Jeremy Olexa <darkside@gentoo.org> package.use.mask:
   mask USE=mmx on imlib2 again, it causes problems with other apps. bug 218382

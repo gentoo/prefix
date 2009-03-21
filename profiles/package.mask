@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9582 2009/03/18 18:19:28 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9589 2009/03/21 00:14:02 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,34 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Peter Alfredsen <loki_val@gentoo.org> (21 Mar 2009)
+# Masked till Gnome-2.26 makes it into the tree.
+# A public service for the crazy gnome-overlay people
+# in the meantime. Bug 262863.
+=dev-dotnet/gnome-desktop-sharp-2.26*
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (20 mar 2009)
+# New version with net-wireless/bluez instead of bluez-lib
+# as dependency. Good luck if you want to test.
+~app-pda/libsyncml-0.5.2
+
+# Alex Legler <a3li@gentoo.org> (20 Mar 2009)
+# Ruby 1.9.1 for preliminary testing of libraries depending on it, bug 203706.
+# Expect (many) breakages and incompatibilities.
+# Want to help testing? #gentoo-ruby on Freenode
+>=dev-lang/ruby-1.9.1
+=dev-ruby/rubygems-1.3.1-r30
+
+# Markus Meier <maekke@gentoo.org> (19 Mar 2009)
+# No longer needed, use media-libs/libpano13
+# Masked for removal in 30 days
+media-libs/libpano12
+
+# Ulrich Mueller <ulm@gentoo.org> (19 Mar 2009)
+# No longer maintained as a separate package, use dev-tex/mh instead.
+# Masked for removal in 30 days, bug 262934.
+dev-tex/breqn
 
 # Ulrich Mueller <ulm@gentoo.org> (18 Mar 2009)
 # Depends on teTeX. Fails to build.
@@ -215,11 +243,6 @@ dev-lang/rubinius
 # I gave away maintainership a while ago nobody took it on. Prepare for remove.
 app-emulation/ganeti
 app-emulation/ganeti-instance-debian-etch
-
-# MATSUU Takuto <matsuu@gentoo.org> (07 Feb 2009)
-# Masked for testing
-=x11-wm/awesome-3.2*
-=x11-libs/xcb-util-0.3.3*
 
 # Hanno Böck <hanno@gentoo.org> (05 Feb 2009)
 # Seems something is broken with crypt mount in 1.17 (bug 257302)

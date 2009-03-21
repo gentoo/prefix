@@ -1,3 +1,8 @@
+# This file requires >=portage-2.1.1
+
+# Joseph Jezak <josejx@gentoo.org> (Mar 20 2009)
+# Mask Ruby -> Oracle bindings
+dev-ruby/ruby-dbi oracle
 
 # Brent Baude <ranger@gentoo.org>
 # masking zephyr USE on pidgin
@@ -7,8 +12,6 @@ net-im/pidgin zephyr
 # Brent Baude <ranger@gentoo.org>
 # media-libs/libcanberra-0.11 masking pulseaudio
 =media-libs/libcanberra-0.11 pulseaudio
-
-# This file requires >=portage-2.1.1
 
 # Mart Raudsepp <leio@gentoo.org> (02 Apr 2008)
 # media-plugins/gst-plugins-{mythtv,dvb,fluendo-mpegdemux} not keyworded
@@ -32,7 +35,6 @@ app-office/openoffice mono
 
 # Joseph Jezak <josejx@gentoo.org> (28 Jun 2007)
 # Masked Parallel LCD devices for bug #180683
-
 # app-misc/lcd4linux
 app-misc/lcd4linux lcd_devices_hd44780
 

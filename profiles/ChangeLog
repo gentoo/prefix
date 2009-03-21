@@ -1,10 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2447 2009/03/18 18:19:27 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2454 2009/03/21 00:14:02 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  21 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mask gnome-desktop-sharp-2.26 till gnome-2.26 is released. Bug 262863.
+
+  20 Mar 2009; Zac Medico <zmedico@gentoo.org> license_groups:
+  Add more licenses to GPL-COMPATIBLE and create new FSF-APPROVED and
+  OSI-APPROVED license groups. Thanks to Marek Aaron Sapota
+  <projects.gg.aaron@gmail.com> for submitting these changes (bug #152593).
+
+  20 Mar 2009; Alex Legler <a3li@gentoo.org> package.mask:
+  Masking Ruby 1.9.1 and a special Rubygems version for testing
+
+  20 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask libsyncml 0.5.2
+
+  19 Mar 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  mask media-libs/libpano12 for removal in 30 days
+
+  19 Mar 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Remove package.mask for =x11-wm/awesome-3.2*
+
+  19 Mar 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask dev-tex/breqn for removal.
 
   18 Mar 2009; <chainsaw@gentoo.org> package.mask:
   Mask media-libs/spandsp-0.0.6_pre7 prior to committing, it breaks API. See

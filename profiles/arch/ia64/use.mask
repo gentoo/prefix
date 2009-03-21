@@ -59,7 +59,11 @@ xemacs
 
 # Other
 
-# Ben de Groot <yngwin@gentoo.org> 11 Feb 2009
+# Raúl Porcel <armin76@gentoo.org> (20 Mar 2009)
+# Current webkit segfaults
+webkit
+
+# Ben de Groot <yngwin@gentoo.org> (11 Feb 2009)
 # both x11-libs/qt-phonon and media-sound/phonon are unkeyworded
 phonon
 
