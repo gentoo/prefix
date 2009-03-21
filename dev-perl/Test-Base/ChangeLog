@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/ChangeLog,v 1.41 2009/03/15 13:25:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/ChangeLog,v 1.42 2009/03/21 03:23:32 jer Exp $
+
+  21 Mar 2009; Jeroen Roovers <jer@gentoo.org> Test-Base-0.56.ebuild:
+  Marked ~hppa (bug #261707).
 
   15 Mar 2009; Brent Baude <ranger@gentoo.org> Test-Base-0.56.ebuild:
   Marking Test-Base-0.56 ~ppc64 for bug 261707
