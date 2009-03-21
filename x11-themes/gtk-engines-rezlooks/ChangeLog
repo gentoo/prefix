@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-rezlooks
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-rezlooks/ChangeLog,v 1.6 2008/12/20 18:58:42 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-rezlooks/ChangeLog,v 1.7 2009/03/20 04:17:52 jmbsvicetto Exp $
+
+  20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing compnerd as a maintainer since he was retired.
 
   20 Dec 2008; Markus Meier <maekke@gentoo.org>
   gtk-engines-rezlooks-0.6.ebuild:
