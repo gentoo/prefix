@@ -1,6 +1,13 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.90 2009/03/18 19:46:16 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.92 2009/03/20 23:47:12 maekke Exp $
+
+  20 Mar 2009; Markus Meier <maekke@gentoo.org>
+  djvu-3.5.21_p20090103.ebuild:
+  amd64/x86 stable, bug #262776
+
+  20 Mar 2009; Brent Baude <ranger@gentoo.org> djvu-3.5.21_p20090103.ebuild:
+  stable ppc, bug 262776
 
   18 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
   djvu-3.5.21_p20090103.ebuild:
