@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.187 2009/03/12 06:03:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.188 2009/03/19 18:18:29 maekke Exp $
+
+*graphviz-2.22.2 (19 Mar 2009)
+
+  19 Mar 2009; Markus Meier <maekke@gentoo.org> +graphviz-2.22.2.ebuild:
+  version bump
 
   12 Mar 2009; Markus Meier <maekke@gentoo.org> -graphviz-2.22.0.ebuild,
   graphviz-2.22.1.ebuild:
