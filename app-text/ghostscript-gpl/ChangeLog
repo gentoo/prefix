@@ -1,6 +1,21 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.66 2009/03/08 11:24:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.69 2009/03/20 23:37:53 maekke Exp $
+
+  20 Mar 2009; Markus Meier <maekke@gentoo.org>
+  ghostscript-gpl-8.64-r2.ebuild:
+  amd64/x86 stable, bug #261087
+
+  20 Mar 2009; Brent Baude <ranger@gentoo.org>
+  ghostscript-gpl-8.64-r2.ebuild:
+  Marking ghostscript-gpl-8.64-r2 ppc64 and ppc for bug 261087
+
+*ghostscript-gpl-8.64-r2 (19 Mar 2009)
+
+  19 Mar 2009; Peter Volkov <pva@gentoo.org>
+  +ghostscript-gpl-8.64-r2.ebuild:
+  Fixed security issue: integer overflows in ICC library, bug #261087, thank
+  Robert Buchholz for report. Finaly respect LDFLAGS, bug #209803.
 
   08 Mar 2009; Raúl Porcel <armin76@gentoo.org>
   ghostscript-gpl-8.63.ebuild:
