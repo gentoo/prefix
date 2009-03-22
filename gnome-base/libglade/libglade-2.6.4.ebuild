@@ -51,15 +51,15 @@ src_install() {
 
 pkg_postinst() {
 	echo ">>> Updating XML catalog"
-	/usr/bin/xmlcatalog --noout --add "system" \
+	"${EPREFIX}"/usr/bin/xmlcatalog --noout --add "system" \
 		"http://glade.gnome.org/glade-2.0.dtd" \
-		/usr/share/xml/libglade/glade-2.0.dtd /etc/xml/catalog
+		"${EPREFIX}"/usr/share/xml/libglade/glade-2.0.dtd "${EPREFIX}"/etc/xml/catalog
 	gnome2_pkg_postinst
 }
 
 pkg_postrm() {
 	gnome2_pkg_postrm
 	echo ">>> removing entries from the XML catalog"
-	/usr/bin/xmlcatalog --noout --del \
-		/usr/share/xml/libglade/glade-2.0.dtd /etc/xml/catalog
+	"${EPREFIX}"/usr/bin/xmlcatalog --noout --del \
+		"${EPREFIX}"/usr/share/xml/libglade/glade-2.0.dtd "${EPREFIX}"/etc/xml/catalog
 }
