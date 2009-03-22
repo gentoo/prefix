@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cogito
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.61 2008/05/29 07:17:23 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.62 2009/03/21 15:44:00 jmbsvicetto Exp $
+
+  21 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing ferdy as a maintainer since he was retired.
 
   29 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Carlos Silva (r3pek) from metadata.xml (as per #80351).
