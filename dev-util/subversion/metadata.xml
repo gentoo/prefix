@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
-    <email>Arfrever@gentoo.org</email>
+    <email>arfrever@gentoo.org</email>
     <name>Arfrever Frehtes Taifersar Arahesis</name>
     <description>Gentoo Subversion maintainer and Subversion upstream representative</description>
   </maintainer>
@@ -12,6 +12,7 @@
     <description>Gentoo Subversion maintainer</description>
   </maintainer>
   <use>
+    <flag name="ctypes-python">Build and install ctypes python bindings</flag>
     <flag name="dso">Enable runtime module search</flag>
     <flag name="extras">Install extras scripts (examples, tools, hooks)</flag>
     <flag name="nowebdav">Disables WebDAV support via neon library</flag>
