@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.3.ebuild,v 1.1 2009/01/18 14:40:59 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.5.ebuild,v 1.1 2009/03/21 22:09:01 darkside Exp $
 
 EAPI=prefix
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/eix/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="doc sqlite"
 
 RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
@@ -21,12 +21,6 @@ RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	doc? ( dev-python/docutils )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-const_backward_iterator.patch
-}
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
