@@ -1,0 +1,28 @@
+# ChangeLog for dev-python/py
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/py/ChangeLog,v 1.7 2008/10/07 00:00:16 ranger Exp $
+
+  06 Oct 2008; Brent Baude <ranger@gentoo.org> py-0.9.1.ebuild:
+  Marking py-0.9.1 ~ppc64 for bug 236705
+
+*py-0.9.1 (17 Jul 2008)
+
+  17 Jul 2008; Ali Polatel <hawking@gentoo.org> -py-0.9.0.ebuild,
+  +py-0.9.1.ebuild:
+  Version bump. This version works fine with python-2.6. Drop old.
+
+  29 Jun 2008; Raúl Porcel <armin76@gentoo.org> py-0.9.0.ebuild:
+  Add ~ia64/~sparc wrt #229393
+
+  25 Jun 2008; Tiziano Müller <dev-zero@gentoo.org> py-0.9.0.ebuild:
+  Added ~ppc keyword
+
+  31 Jul 2007; Tiziano Müller <dev-zero@gentoo.org> py-0.9.0.ebuild:
+  keyworded ~x86
+
+*py-0.9.0 (05 May 2007)
+
+  05 May 2007; Lukasz Strzygowski <lucass@gentoo.org> +metadata.xml,
+  +py-0.9.0.ebuild:
+  Initial commit.
+
