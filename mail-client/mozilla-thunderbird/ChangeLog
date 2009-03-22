@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.288 2009/03/21 00:18:57 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.289 2009/03/21 16:03:34 armin76 Exp $
+
+  21 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  -mozilla-thunderbird-2.0.0.19.ebuild, mozilla-thunderbird-2.0.0.21.ebuild:
+  alpha/ia64/sparc stable, fix gcc check, bug #263152
 
   21 Mar 2009; Markus Meier <maekke@gentoo.org>
   mozilla-thunderbird-2.0.0.21.ebuild:
