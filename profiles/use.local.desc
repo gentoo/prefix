@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4290 2009/03/20 15:27:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4295 2009/03/22 02:42:06 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -45,7 +45,6 @@ app-admin/prelude-manager:tcpwrapper - Add support for tcp_wrappers
 app-admin/puppet:rrdtool - Eanble rrdtool support
 app-admin/rsyslog:dbi - Add support for logging into various databases through dev-db/libdbi
 app-admin/rsyslog:relp - Add support for the Reliable Event Logging Protocol using dev-libs/librelp
-app-admin/sdsc-syslog:beep - USe beep libraries net-libs/roadrunner
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/syslog-ng:spoof-source - Enable support for spoofed source addresses
 app-admin/syslog-ng:sql - Enable support for SQL destinations
@@ -854,6 +853,7 @@ dev-util/nvidia-cuda-sdk:emulation -  Build binaries for device emulation mode. 
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
 dev-util/radare:gui -  Enable the graphical user interface of radare (broken) 
 dev-util/strace:aio - Enable libaio support
+dev-util/subversion:ctypes-python - Build and install ctypes python bindings
 dev-util/subversion:dso - Enable runtime module search
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
 dev-util/subversion:nowebdav - Disables WebDAV support via neon library
@@ -1393,7 +1393,9 @@ media-sound/amarok:python -  Install the Amarok scripts written in Python, depen
 media-sound/amarok:real -  Build the Helix engine for Amarok, linked against media-video/realplayer. This is an alternative engine to the xine one, which supports a different set of formats. Only available for x86 architecture as it uses the binary version of RealPlayer. Plase note that by enabling this USE flag, the resulting package will not be redistributable, as it links to the non-GPL compatible RealPlayer. 
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
 media-sound/aqualung:cdda - Enables libcdda cd audio playback support
+media-sound/aqualung:ifp - Enable support for iRiver iFP portable audio players
 media-sound/aqualung:loop-playback - Enable adjustable loop playback support
+media-sound/aqualung:lua - Enable support for programmable title formatting with dev-lang/lua
 media-sound/aqualung:systray - Enable system tray support
 media-sound/ardour:freesound - Enables direct searching and download of samples from Freesound via the Import dialog
 media-sound/ario:audioscrobbler - Enable song tracking via last.fm
@@ -1702,6 +1704,7 @@ media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.
 media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
 media-video/vdr:iptv - Enables support for vdr-iptv
 media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
+media-video/vdr:liemiext - Formerly known as AIO (all-in-one) patch, with additional changes from extensions patch
 media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
 media-video/vdr:lircsettings - Allows to change lirc settings delay, freq and timeout values in OSD
 media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
@@ -1712,11 +1715,13 @@ media-video/vdr:menuorg - Enables support for the menuorg-plugin
 media-video/vdr:noepg - Adds code to selectively disable epg-reception for specific channels
 media-video/vdr:osdmaxitems - Support for text2skin
 media-video/vdr:pinplugin - Support for pin plugin
+media-video/vdr:pluginparam - Enables parameter support for vdr-iptv and maybe also other plugins
 media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
 media-video/vdr:settime - set system time per script instead of via syscal
 media-video/vdr:setup - Enable support for the plugin vdr-setup
 media-video/vdr:setup-plugin - Enable support for the plugin vdr-setup
 media-video/vdr:shutdown_rewrite - use rewritten shutdown code from vdr-1.5
+media-video/vdr:softosd - Soft OSD fading with FF-Cards
 media-video/vdr:sortrecords - allows to change sort order of recordings
 media-video/vdr:sourcecaps - Adds the ability to define capabilities of dvb-cards (e.g. card1 can receive Sat @28.2E)
 media-video/vdr:submenu - Enable support for the plugin vdr-submenu.
@@ -2352,7 +2357,6 @@ sci-astronomy/orsa:cln - Use the Class Library for Numbers (sci-libs/cln) for ca
 sci-astronomy/predict:xforms - Add a "map" client which uses the x11-libs/xforms library for its GUI
 sci-astronomy/predict:xplanet - Project predict data onto world maps generated by x11-misc/xplanet / x11-misc/xearth
 sci-astronomy/scamp:plplot - Build with sci-libs/plplot to allow diagnostic plots during processing
-sci-astronomy/setiathome:server - Enable compilation of server
 sci-biology/bioperl:db - Install sci-biology/bioperl-run
 sci-biology/bioperl:network - Install sci-biology/bioperl-run
 sci-biology/bioperl:run - Install sci-biology/bioperl-run
@@ -2867,8 +2871,6 @@ x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.
 x11-wm/sawfish:pango - Enable pango support
 x11-wm/stumpwm:clisp - Use CLISP for the runtime
 x11-wm/stumpwm:sbcl - Use SBCL for the runtime
-x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
-x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime
 x11-wm/vtwm:rplay - Enable rplay support, needed for sound.
 x11-wm/windowmaker:modelock - Enable XKB language status lock support. README says: "If you don't know what it is you probably don't need it."
 x11-wm/windowmaker:vdesktop - Enable dynamic virtual desktop (conflicts with software that works on the edges of the screen)

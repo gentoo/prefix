@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.24 2009/03/09 20:03:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.25 2009/03/21 17:37:35 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -64,6 +64,7 @@ dev-lang/ifc
 dev-lang/realbasic
 dev-lang/sunstudioexpress
 dev-perl/Archive-Rar
+dev-python/skype4py
 dev-util/android-sdk
 dev-util/biew
 dev-util/dialogblocks

@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2454 2009/03/21 00:14:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2459 2009/03/21 23:24:22 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  21 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask sci-astronomy/maestro, x11-libs/xclass, net-p2p/knapster2,
+  dev-embedded/gezel, sys-devel/subterfugue, media-sound/cdmp3,
+  x11-misc/jaffm, kde-misc/kgraphspace - see file for bug numbers.
+
+  21 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  cleanup p.mask file after removing packages from tree
+
+  21 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Update gnome-base/gvfs mask for bluez4.
+
+  21 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  package.mask:
+  Masked dev-util/qgit-2.0-r1 waiting for Jokey feedback about the dep on
+  =x11-libs/qt-4.3*:4.
+
+  21 Mar 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/Java-Inline for removal (#206177,#220491)
 
   21 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Mask gnome-desktop-sharp-2.26 till gnome-2.26 is released. Bug 262863.
