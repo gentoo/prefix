@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.1.ebuild,v 1.4 2009/02/26 05:28:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.1-r1.ebuild,v 1.1 2009/03/21 23:26:28 neurogeek Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -56,6 +56,8 @@ src_prepare() {
 	default
 
 	if tc-is-cross-compiler ; then
+		[[ $(python -V 2>&1) != "Python ${PV}" ]] && \
+			die "Crosscompiling requires the same host and build versions."
 		epatch "${FILESDIR}"/python-2.6-test-cross.patch
 	else
 		rm "${WORKDIR}/${PYVER}"/*_all_crosscompile.patch
@@ -146,7 +148,7 @@ src_configure() {
 		use gdbm     || disable="${disable} gdbm"
 		use ncurses  || disable="${disable} _curses _curses_panel"
 		use readline || disable="${disable} readline"
-		use sqlite   || disable="${disable} sqlite3"
+		use sqlite   || disable="${disable} _sqlite3"
 		use ssl      || export PYTHON_DISABLE_SSL=1
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
@@ -189,7 +191,7 @@ src_configure() {
 
 	if tc-is-cross-compiler ; then
 		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
-		./configure --{build,host}=${CBUILD} || die "cross-configure failed"
+		./configure || die "cross-configure failed"
 		emake python Parser/pgen || die "cross-make failed"
 		mv python hostpython
 		mv Parser/pgen Parser/hostpgen
