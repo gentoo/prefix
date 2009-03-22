@@ -1,0 +1,22 @@
+--- configure.in
++++ configure.in
+@@ -2111,7 +2111,7 @@
+ 			esac
+ 		])
+ if test -z "$MANTYPE"; then
+-	AC_PATH_PROGS(NROFF, nroff awf, /bin/false, "/usr/bin:/usr/ucb")
++	AC_PATH_PROGS(NROFF, nroff awf, /bin/false)
+ 	if ${NROFF} -mdoc ${srcdir}/man/ruby.1 >/dev/null 2>&1; then
+ 		MANTYPE=doc
+ 	else
+--- configure
++++ configure
+@@ -22605,7 +22605,7 @@
+   ;;
+   *)
+   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-as_dummy=""/usr/bin:/usr/ucb""
++as_dummy=
+ for as_dir in $as_dummy
+ do
+   IFS=$as_save_IFS
