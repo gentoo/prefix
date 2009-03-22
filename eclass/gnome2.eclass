@@ -47,7 +47,7 @@ fi
 gnome2_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	local eapi=${EAPI/prefix/}
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
 	has ${eapi:-0} 0 1 && gnome2_src_prepare
 }
 
@@ -80,7 +80,7 @@ gnome2_src_configure() {
 }
 
 gnome2_src_compile() {
-	local eapi=${EAPI/prefix/}
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
 	has ${eapi:-0} 0 1 && gnome2_src_configure "$@"
 	emake || die "compile failure"
 }
