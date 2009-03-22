@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.322 2009/03/06 07:23:30 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.323 2009/03/21 15:47:56 jmbsvicetto Exp $
+
+  21 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing ferdy as a maintainer since he was retired.
 
   06 Mar 2009; Christian Faulhammer <fauli@gentoo.org> git-1.6.2.ebuild:
   fix HOMEPAGE
