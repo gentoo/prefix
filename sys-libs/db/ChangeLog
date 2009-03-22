@@ -1,6 +1,13 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.276 2009/03/14 12:54:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.277 2009/03/21 12:23:59 caleb Exp $
+
+*db-4.7.25_p3 (21 Mar 2009)
+*db-4.6.21_p4 (21 Mar 2009)
+
+  21 Mar 2009; Caleb Tennis <caleb@gentoo.org> +db-4.6.21_p4.ebuild,
+  +db-4.7.25_p3.ebuild:
+  Bumping db 4.6 and 4.7 per 259039
 
   14 Mar 2009; Mike Frysinger <vapier@gentoo.org> db-4.2.52_p4-r2.ebuild,
   db-4.2.52_p5.ebuild, db-4.2.52_p5-r1.ebuild, db-4.3.29-r2.ebuild,
