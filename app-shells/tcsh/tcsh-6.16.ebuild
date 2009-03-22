@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.16.ebuild,v 1.3 2009/03/18 19:50:28 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.16.ebuild,v 1.4 2009/03/21 17:16:22 jer Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ DEPEND=">=sys-libs/ncurses-5.1
 	sys-devel/gettext
 	perl? ( dev-lang/perl )
 	!app-shells/csh" # bug #119703
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
