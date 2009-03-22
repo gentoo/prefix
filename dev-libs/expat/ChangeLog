@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.79 2009/03/17 10:48:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.80 2009/03/21 22:48:49 eva Exp $
+
+  21 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org> -expat-1.95.8.ebuild,
+  -expat-2.0.1.ebuild, expat-2.0.1-r1.ebuild:
+  Add epunt_cxx per bug #185252. Add die messages and use emake.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> expat-2.0.1-r1.ebuild:
   m68k stable wrt #252607, thanks to kolla for testing
