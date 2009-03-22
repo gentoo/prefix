@@ -1,0 +1,23 @@
+#!/sbin/runscript
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/files/transmission-daemon,v 1.1 2008/05/13 02:54:28 compnerd Exp $
+
+depend() {
+   need net
+}
+
+start() {
+   ebegin "Starting transmission-daemon"
+   start-stop-daemon --start --quiet --pidfile /var/run/transmission-daemon.pid \
+      --exec /usr/bin/transmission-daemon -- --pidfile /var/run/transmission-daemon.pid
+   eend $?
+}
+
+stop() {
+   ebegin "Stopping transmission-daemon"
+   start-stop-daemon --stop --quiet --pidfile /var/run/transmission-daemon
+   eend $?
+}
+
+# vim: set ft=gentoo-init-d ts=3 sw=3 et:
