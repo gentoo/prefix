@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls"
 
-RDEPEND="elibc_glibc? ( >=sys-libs/glibc-2.6 )
+RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!sys-libs/com_err
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41"
