@@ -155,7 +155,7 @@ src_compile() {
 		--without-junit \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite=/usr
+		--with-sqlite="${EPREFIX}"/usr
 
 	einfo
 	einfo "Building of core of Subversion"
