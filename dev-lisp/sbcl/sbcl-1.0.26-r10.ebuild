@@ -15,8 +15,9 @@ BV_ALPHA=0.9.12
 BV_MIPS=1.0.23
 BV_MIPSEL=1.0.23
 
-BV_PPC_MACOS=1.0.22
-BV_X86_MACOS=1.0.23
+# for Mac OS X: 1.0.23 binaries are broken on Tiger (Bus Error)
+BV_PPC_MACOS=1.0.2
+BV_X86_MACOS=1.0.2
 BV_X86_SOLARIS=1.0.23
 
 
