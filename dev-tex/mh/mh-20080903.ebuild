@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.zip"
 LICENSE="LPPL-1.3"
 SLOT="0"
 IUSE="doc"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 RDEPEND="!dev-tex/breqn
 	dev-tex/xcolor
