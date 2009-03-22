@@ -13,7 +13,7 @@ HOMEPAGE="http://codespeak.net/lxml/"
 SRC_URI="http://codespeak.net/lxml/${P}.tgz"
 LICENSE="BSD ElementTree GPL-2 PSF-2.4"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc examples"
 
 RDEPEND=">=dev-libs/libxml2-2.6.21
