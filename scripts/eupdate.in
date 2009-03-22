@@ -54,9 +54,8 @@
 # can do it.)  For your convenience it is intended that you rename this
 # file to something without the .in and change the paths below.
 
-# Main Tree Directory, an rsynced portage tree is fine, http url also
-# allowed, but slower
-[[ -z $MTREEDIR ]] && MTREEDIR='http://prefix.gentooexperimental.org/rsync-gentoo-x86'
+# Main Tree Directory, an rsynced portage tree is fine
+[[ -z $MTREEDIR ]] && MTREEDIR='/path/to/rsync-gentoo-x86'
 # Prefix offset
 [[ -z $EPREFIX ]] && EPREFIX=$(portageq envvar EPREFIX)
 # Prefix Tree Directory
