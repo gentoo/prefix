@@ -442,6 +442,19 @@ fetch_files() {
 	local p=$pn-$pv
 	local t=""
 
+	# ebuild.sh and friends provided often occurring funcs
+	local funcs='
+	EXPORT_FUNCTIONS() { :; }
+	hasq() { :; }
+	use() { :; }
+	debug-print-function() { :; }
+	inherit() {
+		for p in $*; do
+			source '"${PTREEDIR}"'/eclass/${p}.eclass
+		done
+	}
+	:'
+
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
 	# path.
@@ -454,7 +467,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files $(type -P bash) -c "EXPORT_FUNCTIONS() { :; }; inherit() { for p in \$*; do source $PTREEDIR/eclass/\${p}.eclass; done }; source $1; echo $t")
+		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files $(type -P bash) -c "${funcs}; source $1; echo $t")
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
