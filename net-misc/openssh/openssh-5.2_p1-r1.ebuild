@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.3 2009/03/11 20:35:07 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.4 2009/03/21 13:06:59 vapier Exp $
 
 EAPI="prefix"
 
@@ -185,17 +185,16 @@ src_install() {
 }
 
 src_test() {
-	local failed="" passwd=""
+	local t failed passwd
 	for t in tests interop-tests compat-tests ; do
-		einfo "Starting ${t} testsuite"
-		emake -j1 ${t}
-		[[ $? -eq 0 ]] \
+		# Some tests read from stdin ...
+		emake -k -j1 ${t} </dev/null \
 			&& passed="${passed}${t} " \
 			|| failed="${failed}${t} "
 	done
-	einfo "Failed tests: ${failed}"
-	einfo "Passed tests: ${passed}"
-	if [[ -n "${failed}" ]]; then
+	if [[ -n ${failed} ]] ; then
+		einfo "Passed tests: ${passed}"
+		ewarn "Failed tests: ${failed}"
 		die "Some tests failed: ${failed}"
 	else
 		return 0
