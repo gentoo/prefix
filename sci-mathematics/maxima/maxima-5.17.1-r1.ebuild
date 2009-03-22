@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2 AECA"
 SLOT="0"
 # ~sparc will be added back after keywording app-emacs/imaxima
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 # Supported lisps with readline
 SUPP_RL="gcl clisp"
