@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/lua
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.121 2008/10/17 19:20:34 mabi Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.122 2009/03/21 12:42:02 mabi Exp $
+
+  21 Mar 2009; Matti Bickel <mabi@gentoo.org> files/lua-5.1-make.patch,
+  lua-5.1.4.ebuild:
+  fixed bug #253594, removed useless variable
 
   17 Oct 2008; Matti Bickel <mabi@gentoo.org> -lua-5.1.4-r1.ebuild:
   rolled back the -r1 ebuild b/c it breaks several packages (see bug #242174

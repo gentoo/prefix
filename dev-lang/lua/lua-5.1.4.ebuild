@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4.ebuild,v 1.1 2008/09/28 10:00:26 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4.ebuild,v 1.2 2009/03/21 12:42:02 mabi Exp $
 
 EAPI="prefix 1"
 
@@ -72,8 +72,8 @@ src_compile() {
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
-		liblibs="${liblibs} $(dlopen_lib)"
 	fi
+	liblibs="${liblibs} $(dlopen_lib)"
 
 	# what to link to the executables
 	mylibs=

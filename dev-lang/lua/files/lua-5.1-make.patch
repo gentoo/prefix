@@ -44,19 +44,19 @@
 +
 +$(LIB_NAME): $(LIB_OBJS)
 +	$(LIBTOOL) --mode=link $(CC) -version-info $(LIB_VERSION) \
-+            -rpath $(RPATH) -o $(LIB_NAME) $(LIB_OBJS) $(LIB_LIBS)
++            -rpath $(RPATH) $(LDFLAGS) -o $(LIB_NAME) $(LIB_OBJS) $(LIB_LIBS)
 +
 +$(LIB_NAME:.la=.a): $(LIB_OBJS)
-+	$(LIBTOOL) --mode=link $(CC) -static -o $(LIB_NAME:.la=.a) $(LIB_OBJS)
++	$(LIBTOOL) --mode=link $(CC) -static $(LDFLAGS) -o $(LIB_NAME:.la=.a) $(LIB_OBJS)
 +
 +$(LUA_T): $(LUA_O) $(LIB_NAME)
-+	$(LIBTOOL) --mode=link $(CC) -Wl,-E -o $@ $(LUA_O) $(LUA_LIBS) -llua
++	$(LIBTOOL) --mode=link $(CC) -Wl,-E $(LDFLAGS) -o $@ $(LUA_O) $(LUA_LIBS) -llua
 +
 +lua_test: $(LUA_O) $(LIB_NAME)
-+	$(LIBTOOL) --mode=link $(CC) -static -Wl,-E -o $@ $(LUA_O) $(LIB_NAME) $(LUA_LIBS)
++	$(LIBTOOL) --mode=link $(CC) -static -Wl,-E $(LDFLAGS) -o $@ $(LUA_O) $(LIB_NAME) $(LUA_LIBS)
 +
 +$(LUAC_T): $(LUAC_O) $(LIB_NAME)
-+	$(LIBTOOL) --mode=link $(CC) -static -o $@ $(LUAC_O) $(LIB_NAME)
++	$(LIBTOOL) --mode=link $(CC) -static $(LDFLAGS) -o $@ $(LUAC_O) $(LIB_NAME)
 +
 +gentoo_clean:
 +	$(LIBTOOL) --mode=clean $(RM) $(ALL_O:.o=.lo) $(LIB_NAME) lua luac
