@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/flex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.79 2009/02/09 20:14:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.80 2009/03/21 11:51:27 vapier Exp $
+
+  21 Mar 2009; Mike Frysinger <vapier@gentoo.org> flex-2.5.35.ebuild:
+  Fix tests with --as-needed #262989 by Nick Fortino.
 
   09 Feb 2009; Markus Meier <maekke@gentoo.org> flex-2.5.35.ebuild:
   amd64 stable, bug #244417
