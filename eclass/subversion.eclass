@@ -1,11 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.60 2008/05/27 09:49:09 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.61 2009/03/22 01:56:34 arfrever Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
 # Akinori Hattori <hattya@gentoo.org>
 # Bo Ørsted Andresen <zlin@gentoo.org>
+# Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
 #
 # Original Author: Akinori Hattori <hattya@gentoo.org>
 #
@@ -204,6 +205,10 @@ subversion_fetch() {
 	if [[ "${ESVN_OPTIONS}" = *-r* ]]; then
 		ewarn "\${ESVN_OPTIONS} contains -r, this usage is unsupported. Please"
 		ewarn "see \${ESVN_REPO_URI}"
+	fi
+
+	if has_version ">=dev-util/subversion-1.6.0"; then
+		options="${options} --config-option=config:auth:password-stores="
 	fi
 
 	debug-print "${FUNCNAME}: wc_path = \"${wc_path}\""
