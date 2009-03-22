@@ -34,6 +34,7 @@ src_unpack() {
 		epunt_cxx
 		cd libltdl/m4
 		epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
+		epatch "${FILESDIR}"/${PV}/${P}-darwin-module-bundle.patch
 		cd ..
 		eautoreconf
 		cd ..
