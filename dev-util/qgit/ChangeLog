@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/qgit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.43 2009/01/21 22:22:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.44 2009/03/21 16:07:50 jmbsvicetto Exp $
+
+  21 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing ferdy as a maintainer since he was retired.
 
   21 Jan 2009; Markus Meier <maekke@gentoo.org> qgit-2.2.ebuild:
   amd64/x86 stable, bug #248038
