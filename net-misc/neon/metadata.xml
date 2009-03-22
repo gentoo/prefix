@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>apache</herd>
+  <maintainer>
+    <email>arfrever@gentoo.org</email>
+    <name>Arfrever Frehtes Taifersar Arahesis</name>
+  </maintainer>
   <longdescription>
 neon is an HTTP and WebDAV client library for Unix
 systems, with a C language API. It provides high-level interfaces to

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.3.ebuild,v 1.12 2008/11/12 05:50:58 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.4.ebuild,v 1.1 2009/03/21 21:52:20 arfrever Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,10 @@ RDEPEND="expat? ( dev-libs/expat )
 		>=net-libs/gnutls-2.0
 		pkcs11? ( dev-libs/pakchois )
 	)
-	!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6f ) )
+	!gnutls? ( ssl? (
+		>=dev-libs/openssl-0.9.6f
+		pkcs11? ( dev-libs/pakchois )
+	) )
 	kerberos? ( virtual/krb5 )
 	nls? ( virtual/libintl )
 	socks5? ( net-proxy/dante )
