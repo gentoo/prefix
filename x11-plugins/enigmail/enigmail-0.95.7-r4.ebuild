@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.4 2009/03/21 00:17:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.5 2009/03/21 16:02:36 armin76 Exp $
 
 EAPI="prefix"
 
@@ -147,13 +147,9 @@ src_compile() {
 	# Finalize and report settings
 	mozconfig_final
 
-	# -fstack-protector breaks us
-	if gcc-version ge 4 1; then
-		gcc-specs-ssp && append-flags -fno-stack-protector
-	else
-		gcc-specs-ssp && append-flags -fno-stack-protector-all
+	if [[ $(gcc-major-version) -lt 4 ]]; then
+		append-cxxflags -fno-stack-protector
 	fi
-		filter-flags -fstack-protector -fstack-protector-all
 
 	####################################
 	#
