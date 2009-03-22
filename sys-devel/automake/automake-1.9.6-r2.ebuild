@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r2.ebuild,v 1.18 2009/02/08 19:42:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r2.ebuild,v 1.19 2009/03/21 11:39:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-include-dir-prefix.patch #107435
 	epatch "${FILESDIR}"/${P}-ignore-comments.patch #126388
 	epatch "${FILESDIR}"/${P}-aclocal7-test-sleep.patch #197366
+	epatch "${FILESDIR}"/${PN}-1.9.6-subst-test.patch #222225
 	export WANT_AUTOCONF=2.5
 }
 

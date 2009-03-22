@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.2.ebuild,v 1.8 2009/02/08 19:42:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.2.ebuild,v 1.9 2009/03/21 11:42:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ src_unpack() {
 		-e "s:automake.info:automake${SLOT}.info:" \
 		-e "s:automake.texi:automake${SLOT}.texi:" \
 		doc/Makefile.in || die "sed on Makefile.in failed"
+	epatch "${FILESDIR}"/${P}-bash4.patch #263068
 	export WANT_AUTOCONF=2.5
 
 	# this fixes --disable-dependency-tracking for all config.status files.

@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.130 2009/02/08 19:42:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.133 2009/03/21 11:42:54 vapier Exp $
+
+  21 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/automake-1.10.2-bash4.patch, automake-1.10.2.ebuild:
+  Fix from upstream for running tests under bash-4 #263068 by Nick Fortino.
+
+  21 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/automake-1.7.9-libtool-2.patch, automake-1.7.9-r1.ebuild:
+  Fix by Ryan Hill for tests w/libtool-2 #257544.
+
+  21 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/automake-1.9.6-subst-test.patch, automake-1.7.9-r1.ebuild,
+  automake-1.8.5-r3.ebuild, automake-1.9.6-r2.ebuild:
+  Fix from upstream for tests with newer autotools #222225 by Xake.
 
   08 Feb 2009; Mike Frysinger <vapier@gentoo.org> automake-1.9.6-r2.ebuild,
   automake-1.10.2.ebuild, automake-9999.ebuild:
