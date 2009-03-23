@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.410 2009/03/12 05:03:57 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.411 2009/03/23 00:29:05 tester Exp $
 
 # Keep them sorted
 
@@ -277,6 +277,7 @@ php - Include support for the PHP language
 plasma - Build optional plasma widgets that require kde-base/libplasma
 plotutils - Add support for plotutils (library for 2-D vector graphics)
 png - Adds support for libpng (PNG images)
+policykit - Use sys-auth/policykit to gain privileges
 portaudio - Adds support for the crossplatform portaudio audio API
 posix - Adds support for POSIX-compatible functions
 postgres - Adds support for the postgresql database

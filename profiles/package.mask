@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9595 2009/03/22 03:51:59 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9602 2009/03/23 01:09:29 tester Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
+# Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
+# bug 227743
+x11-misc/lavaps
+
+# Marijn Schouten <hkBst@gentoo.org> (22 Mar 2009)
+# Masked for removal. Dead upstream, does not build anymore. Bug 152060.
+dev-scheme/guile-pg
 
 # Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
 # Masked for removal in 60 days because of security issues. Comment on 
@@ -138,10 +147,6 @@ dev-perl/Inline-Java
 # Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2009)
 # HPN patch contains some breakages with port forwarding.
 =net-misc/openssh-5.2_p1-r2
-
-# Nirbheek Chauhan <nirbheek@gentoo.org> (11 Mar 2009)
-# Masked due to CPUFreq regression (bug #247614)
-=gnome-extra/gnome-power-manager-2.24*
 
 # Nirbheek Chauhan <nirbheek@gentoo.org> (11 Mar 2009)
 # Needs net-wireless/bluez-gnome-1.8 and net-wireless/bluez-4
@@ -439,11 +444,11 @@ dev-util/w32api
 # Talk with the actual gstreamer team before unmasking these -
 # we are completely against the notion of monolithic versions, these
 # here should be considered an experimentation
->=media-libs/gstreamer-0.10.21-r10
->=media-libs/gst-plugins-good-0.10.11-r1
->=media-libs/gst-plugins-bad-0.10.9-r1
->=media-libs/gst-plugins-ugly-0.10.10-r1
->=media-libs/gst-plugins-base-0.10.21-r1
+=media-libs/gstreamer-0.10.21-r10
+=media-libs/gst-plugins-good-0.10.11-r1
+=media-libs/gst-plugins-bad-0.10.9-r1
+=media-libs/gst-plugins-ugly-0.10.10-r1
+=media-libs/gst-plugins-base-0.10.21-r1
 
 # Diego Pettenò <flameeyes@gentoo.org> (23 Dec 2008)
 # Mask these for removal, busybox provides those already, and are
@@ -650,10 +655,6 @@ app-portage/genflags
 # Development version
 =dev-lang/swi-prolog-5.7*
 
-# MATSUU Takuto <matsuu@gentoo.org> (18 Sep 2008)
-# Masked for removal in 60 days.
-app-i18n/uim-svn
-
 # Doug Goldstein <cardoe@gentoo.org> (17 Sep 2008)
 # under development
 gnome-extra/gnome-lirc-properties
@@ -833,12 +834,6 @@ x11-libs/lesstif
 # Matthias Schwarzott <zzam@gentoo.org> (15 Apr 2008)
 # Superseded by vdr-dvdswitch and no longer maintained
 media-plugins/vdr-dvdselect
-
-# Marijn Schouten <hkBst@gentoo.org> (14 Apr 2008)
-# binary package, now subsumed by binary use flag on mlton itself
-# will be removed
-dev-lang/mlton-bin
-=dev-lang/mlton-20040227
 
 # Gilles Dartiguelongue <eva@gentoo.org> (12 Apr 2008)
 # Masking gnome-system-tools because it is broken,
@@ -1333,10 +1328,6 @@ net-dns/bind-dns-keygen
 # if you are running on IBM hardware, emerge ibm-powerpc-utils-papr
 # as well.
 sys-apps/ppc64-utils
-
-# Stefan Knoblich <stkn@gentoo.org> (18 Apr 2006)
-# Masking until asterisk-1.2 gets released into the wild
-net-misc/asterisk-app_authenticate_ldap
 
 # Tavis Ormandy <taviso@gentoo.org> (21 Mar 2006)
 # masked pending unresolved security issues #127319
