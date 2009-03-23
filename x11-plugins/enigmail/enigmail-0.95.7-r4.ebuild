@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.5 2009/03/21 16:02:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.6 2009/03/22 15:28:20 armin76 Exp $
 
 EAPI="prefix"
 
@@ -12,8 +12,8 @@ LANGS="ar de el es-ES nb-NO pt-BR zh-CN"
 NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sk-SK sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
-TBVER="2.0.0.19"
-TBPATCH="2.0.0.16-patches-0.1"
+TBVER="2.0.0.21"
+TBPATCH="2.0.0.21-patches-0.1"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
 HOMEPAGE="http://enigmail.mozdev.org"
