@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.11.0.ebuild,v 1.1 2009/01/12 15:39:53 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.11.0.ebuild,v 1.2 2009/03/22 13:07:47 jmbsvicetto Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="=dev-util/bzr-$(get_version_component_range 1-2)*"
+RDEPEND="${DEPEND}"
 
 DOCS="AUTHORS CREDITS NEWS NEWS.Shelf README README.Shelf TODO TODO.heads TODO.Shelf"
 
