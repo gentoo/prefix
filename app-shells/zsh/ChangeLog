@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.141 2009/03/21 05:47:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.143 2009/03/22 19:37:28 armin76 Exp $
+
+  22 Mar 2009; Raúl Porcel <armin76@gentoo.org> zsh-4.3.9.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #261488
+
+  22 Mar 2009; Markus Meier <maekke@gentoo.org> zsh-4.3.9.ebuild:
+  x86 stable, bug #261488
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> zsh-4.3.9.ebuild:
   Stable for HPPA (bug #261488).
