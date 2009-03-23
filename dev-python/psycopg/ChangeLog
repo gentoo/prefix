@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/psycopg
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.67 2008/10/15 21:17:57 caleb Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.68 2009/03/22 18:54:00 klausman Exp $
+
+  22 Mar 2009; Tobias Klausmann <klausman@gentoo.org> psycopg-2.0.8.ebuild:
+  Stable on alpha, bug #262739
 
 *psycopg-2.0.8 (15 Oct 2008)
 
