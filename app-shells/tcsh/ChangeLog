@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.90 2009/03/21 17:16:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.91 2009/03/22 16:28:55 maekke Exp $
+
+  22 Mar 2009; Markus Meier <maekke@gentoo.org> tcsh-6.16.ebuild:
+  amd64/x86 stable, bug #262849
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> tcsh-6.16.ebuild:
   Stable for HPPA (bug #262849). Explicate RDEPEND.
