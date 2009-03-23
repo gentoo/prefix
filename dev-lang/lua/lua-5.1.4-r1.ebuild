@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4.ebuild,v 1.3 2009/03/22 15:02:15 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r1.ebuild,v 1.3 2009/03/22 09:46:48 mabi Exp $
 
 EAPI="prefix 1"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="+deprecated readline static"
+IUSE="+deprecated emacs readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
 
@@ -22,7 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
 
 	# fix libtool and ld usage on OSX
@@ -56,7 +56,7 @@ src_unpack() {
 	# compiler (built statically) nor the lua libraries (both shared and static
 	# are installed)
 	if use static ; then
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static.patch
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static-r1.patch
 	fi
 
 	# We want packages to find our things...
