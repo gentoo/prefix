@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/libxfce4util
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/ChangeLog,v 1.118 2009/03/13 10:17:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/ChangeLog,v 1.119 2009/03/22 12:34:27 angelos Exp $
+
+  22 Mar 2009; Christoph Mende <angelos@gentoo.org>
+  libxfce4util-4.6.0.ebuild:
+  Bumped glib dependency to 2.12
 
   13 Mar 2009; Raúl Porcel <armin76@gentoo.org> libxfce4util-4.4.3.ebuild,
   libxfce4util-4.6.0.ebuild:
