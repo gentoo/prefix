@@ -1,6 +1,6 @@
-# ChangeLog for x11-misc/emacs-desktop
+# ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.4 2009/03/13 12:02:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.5 2009/03/22 12:18:00 swegener Exp $
 
   13 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
   emacs-common-gentoo-1.0.ebuild:
