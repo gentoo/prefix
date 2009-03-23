@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>no-herd</herd>
-	<maintainer>
-		<email>hawking@gentoo.org</email>
-		<name>Ali Polatel</name>
-	</maintainer>
-	<longdescription>
-		The meaning of pmk is "Pre Make Kit", a dependency configuring tool. It
-		aims to be considered as an alternative to GNU autoconf, GNU libtool
-		and pkg-config.
-	</longdescription>
+  <herd>no-herd</herd>
+  <maintainer>
+    <email>maintainer-needed@gentoo.org</email>
+  </maintainer>
+  <longdescription>
+    The meaning of pmk is "Pre Make Kit", a dependency configuring tool. It
+    aims to be considered as an alternative to GNU autoconf, GNU libtool
+    and pkg-config.
+  </longdescription>
 </pkgmetadata>
