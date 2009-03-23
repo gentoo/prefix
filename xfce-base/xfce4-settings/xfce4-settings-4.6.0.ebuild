@@ -21,7 +21,7 @@ RDEPEND=">=dev-libs/glib-2.12:2
 	x11-libs/libXi
 	x11-libs/libXrandr
 	x11-libs/libwnck
-	>=x11-base/xorg-server-1.5.3
+	!prefix? ( >=x11-base/xorg-server-1.5.3 )
 	>=xfce-base/libxfce4util-${XFCE_VERSION}
 	>=xfce-base/libxfcegui4-${XFCE_VERSION}
 	>=xfce-base/xfconf-${XFCE_VERSION}
