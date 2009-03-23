@@ -445,6 +445,7 @@ fetch_files() {
 	# ebuild.sh and friends provided often occurring funcs
 	local funcs='
 	EXPORT_FUNCTIONS() { :; }
+	has() { :; }
 	hasq() { :; }
 	use() { :; }
 	debug-print-function() { :; }
