@@ -38,7 +38,7 @@ src_compile() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake install DESTDIR="${ED}" || die
 
 	gen_usr_ldscript libcap.so
 	mv "${ED}"/$(get_libdir)/libcap.a "${ED}"/usr/$(get_libdir)/ || die
