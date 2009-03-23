@@ -293,7 +293,7 @@ elisp-site-file-install() {
 	ebegin "Installing site initialisation file for GNU Emacs"
 	cp "$1" "${sf}"
 	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
-		-e "s:@SITEETC@:${SITEETC}/${my_pn}:g;\$q" "${sf}"
+		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g;\$q" "${sf}"
 	( # subshell to avoid pollution of calling environment
 		insinto "${SITELISP}/site-gentoo.d"
 		doins "${sf}"
