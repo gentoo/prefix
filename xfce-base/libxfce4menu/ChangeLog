@@ -1,0 +1,10 @@
+# ChangeLog for xfce-base/libxfce4menu
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4menu/ChangeLog,v 1.5 2009/03/10 13:47:41 angelos Exp $
+
+*libxfce4menu-4.6.0 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org> +metadata.xml,
+  +libxfce4menu-4.6.0.ebuild:
+  Xfce-4.6 bump
+
