@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.0.ebuild,v 1.1 2009/03/10 13:52:47 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.0.ebuild,v 1.2 2009/03/22 12:16:32 angelos Exp $
 
 EAPI="prefix 1"
 
@@ -26,7 +26,7 @@ RDEPEND="gnome-base/libglade
 	>=xfce-base/libxfce4menu-${XFCE_VERSION}
 	>=xfce-base/xfconf-${XFCE_VERSION}
 	file-icons? ( >=xfce-base/thunar-0.9.92
-		>=xfce-extra/exo-0.3.92 dev-libs/dbus-glib )
+		>=xfce-extra/exo-0.3.100 dev-libs/dbus-glib )
 	menu-plugin? ( >=xfce-base/xfce4-panel-${XFCE_VERSION} )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
