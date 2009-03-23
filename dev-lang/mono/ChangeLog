@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.154 2009/02/12 01:23:02 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.155 2009/03/22 21:35:13 loki_val Exp $
+
+*mono-2.2-r4 (22 Mar 2009)
+
+  22 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> -mono-2.2-r3.ebuild,
+  +mono-2.2-r4.ebuild:
+  Fix bug 256264, mono-debugger-2.2 doesn't work. It seems mono-debugger
+  uses some symbols that are only available if mono is compiled statically.
+  Do --enable-static so we can debug our progams finally. Thanks to Jan
+  Oravec <jan.oravec@6com.sk> for the fix and ikelos for the report.
 
   12 Feb 2009; Ryan Hill <dirtyepic@gentoo.org>
   +files/mono-1.2-glibc28.patch, mono-1.2.5.1-r1.ebuild:

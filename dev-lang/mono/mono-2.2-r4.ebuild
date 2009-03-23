@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r3.ebuild,v 1.2 2009/01/29 15:59:19 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r4.ebuild,v 1.1 2009/03/22 21:35:13 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -62,7 +62,10 @@ src_configure() {
 	#Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
 
+	#NOTE: We need the static libs for now so mono-debugger works.
+	#See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
 	go-mono_src_configure \
+		--enable-static \
 		--disable-quiet-build \
 		--with-preview \
 		--with-glib=system \
