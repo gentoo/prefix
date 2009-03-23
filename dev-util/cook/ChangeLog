@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cook
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.22 2008/09/25 14:12:11 hawking Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.23 2009/03/22 13:12:08 jmbsvicetto Exp $
+
+  22 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing hawking as a maintainer since he was retired.
 
   25 Sep 2008; Ali Polatel <hawking@gentoo.org> metadata.xml:
   Add myself to metadata.xml
