@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.6.0.ebuild,v 1.2 2009/03/13 10:18:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.6.0.ebuild,v 1.3 2009/03/22 12:33:15 angelos Exp $
 
 EAPI="prefix 1"
 
@@ -16,7 +16,7 @@ IUSE="debug doc startup-notification"
 RDEPEND="gnome-base/libglade
 	x11-libs/libSM
 	x11-libs/libX11
-	>=x11-libs/gtk+-2.6:2
+	>=x11-libs/gtk+-2.10:2
 	>=xfce-base/libxfce4util-${XFCE_VERSION}
 	>=xfce-base/xfconf-${XFCE_VERSION}
 	startup-notification? ( x11-libs/startup-notification )"
