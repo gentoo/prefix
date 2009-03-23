@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.86 2009/03/17 11:35:49 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.87 2009/03/22 13:03:32 jmbsvicetto Exp $
+
+  22 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing hawking as a maintainer since he was retired.
 
 *bzr-1.13 (17 Mar 2009)
 
