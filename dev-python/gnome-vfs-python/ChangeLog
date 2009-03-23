@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gnome-vfs-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-vfs-python/ChangeLog,v 1.7 2009/03/17 17:11:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-vfs-python/ChangeLog,v 1.8 2009/03/23 04:41:06 jer Exp $
+
+  23 Mar 2009; Jeroen Roovers <jer@gentoo.org>
+  gnome-vfs-python-2.22.3.ebuild:
+  Stable for HPPA (bug #257004).
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-vfs-python-2.22.3.ebuild:
