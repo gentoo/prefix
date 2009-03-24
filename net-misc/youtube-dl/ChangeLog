@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/youtube-dl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.40 2009/03/20 18:27:51 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.41 2009/03/23 15:16:31 ricmm Exp $
+
+  23 Mar 2009; <ricmm@gentoo.org> metadata.xml:
+  Added myself to metadata.
 
   20 Mar 2009; Thilo Bangert <bangert@gentoo.org>
   -youtube-dl-2008.03.08.ebuild, -youtube-dl-2008.04.07.ebuild,
