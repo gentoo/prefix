@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.26 2008/01/06 19:30:24 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.27 2009/03/23 20:06:19 kolmodin Exp $
 #
 # Author: Andres Loeh <kosmikus@gentoo.org>
 # Maintained by: Haskell herd <haskell@gentoo.org>
@@ -31,7 +31,12 @@ ghc-getghcpkg() {
 # because for some reason the global package file
 # must be specified
 ghc-getghcpkgbin() {
-	if ghc-cabal; then
+	if version_is_at_least "6.10" "$(ghc-version)"; then
+		# the ghc-pkg executable changed name in ghc 6.10, as it no longer needs
+		# the wrapper script with the static flags
+		echo '[]' > "${T}/empty.conf"
+		echo "$(ghc-libdir)/ghc-pkg" "--global-conf=${T}/empty.conf"
+	elif ghc-cabal; then
 		echo '[]' > "${T}/empty.conf"
 		echo "$(ghc-libdir)/ghc-pkg.bin" "--global-conf=${T}/empty.conf"
 	else
@@ -142,7 +147,14 @@ ghc-makeghcilib() {
 
 # tests if a ghc package exists
 ghc-package-exists() {
-	$(ghc-getghcpkg) -s "$1" > /dev/null 2>&1
+	local describe_flag
+	if version_is_at_least "6.4" "$(ghc-version)"; then
+		describe_flag="describe"
+	else
+		describe_flag="--show-package"
+	fi
+
+	$(ghc-getghcpkg) "${describe_flag}" "$1" > /dev/null 2>&1
 }
 
 # creates a local (package-specific) package
@@ -155,8 +167,14 @@ ghc-setup-pkg() {
 	local localpkgconf
 	localpkgconf="${S}/$(ghc-localpkgconf)"
 	echo '[]' > "${localpkgconf}"
+	local update_flag
+	if version_is_at_least "6.4" "$(ghc-version)"; then
+		update_flag="update -"
+	else
+		update_flag="--update-package"
+	fi
 	for pkg in $*; do
-		$(ghc-getghcpkgbin) -f "${localpkgconf}" -u --force \
+		$(ghc-getghcpkgbin) -f "${localpkgconf}" ${update_flag} --force \
 			< "${pkg}" || die "failed to register ${pkg}"
 	done
 }
@@ -183,11 +201,20 @@ ghc-install-pkg() {
 ghc-register-pkg() {
 	local localpkgconf
 	localpkgconf="$(ghc-confdir)/$1"
+	local update_flag
+	local describe_flag
+	if version_is_at_least "6.4" "$(ghc-version)"; then
+		update_flag="update -"
+		describe_flag="describe"
+	else
+		update_flag="--update-package"
+		describe_flag="--show-package"
+	fi
 	if [[ -f "${localpkgconf}" ]]; then
 		for pkg in $(ghc-listpkg "${localpkgconf}"); do
 			ebegin "Registering ${pkg} "
-			$(ghc-getghcpkgbin) -f "${localpkgconf}" -s "${pkg}" \
-				| $(ghc-getghcpkg) -u --force > /dev/null
+			$(ghc-getghcpkgbin) -f "${localpkgconf}" "${describe_flag}" "${pkg}" \
+				| $(ghc-getghcpkg) ${update_flag} --force > /dev/null
 			eend $?
 		done
 	fi
@@ -197,11 +224,11 @@ ghc-register-pkg() {
 # package conf file, to be used on a ghc reinstallation
 ghc-reregister() {
 	einfo "Re-adding packages (may cause several harmless warnings) ..."
-	if [ -d "$(ghc-confdir)" ]; then
-		pushd "$(ghc-confdir)" > /dev/null
+	PATH="/usr/bin:${PATH}" CONFDIR="$(ghc-confdir)"
+	if [ -d "${CONFDIR}" ]; then
+		pushd "${CONFDIR}" > /dev/null
 		for conf in *.conf; do
-#			einfo "Processing ${conf} ..."
-			ghc-register-pkg "${conf}"
+			PATH="/usr/bin:${PATH}" ghc-register-pkg "${conf}"
 		done
 		popd > /dev/null
 	fi
@@ -215,7 +242,14 @@ ghc-unregister-pkg() {
 	local i
 	local pkg
 	local protected
+	local unregister_flag
 	localpkgconf="$(ghc-confdir)/$1"
+
+	if version_is_at_least "6.4" "$(ghc-version)"; then
+		unregister_flag="unregister"
+	else
+		unregister_flag="--remove-package"
+	fi
 
 	for i in $(ghc-confdir)/*.conf; do
 		[[ "${i}" != "${localpkgconf}" ]] && protected="${protected} $(ghc-listpkg ${i})"
@@ -231,7 +265,7 @@ ghc-unregister-pkg() {
 				# einfo "Package ${pkg} is not installed for ghc-$(ghc-version)."
 			else
 				ebegin "Unregistering ${pkg} "
-				$(ghc-getghcpkg) -r "${pkg}" --force > /dev/null
+				$(ghc-getghcpkg) "${unregister_flag}" "${pkg}" --force > /dev/null
 				eend $?
 			fi
 		done
