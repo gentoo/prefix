@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.193 2009/03/07 13:35:22 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.194 2009/03/23 12:37:37 remi Exp $
+
+*mesa-7.3-r2 (23 Mar 2009)
+
+  23 Mar 2009; Rémi Cardona <remi@gentoo.org> +mesa-7.3-r2.ebuild:
+  add another 60+ patches from the 7.4 branch (tarball now has 135 patches),
+  use the -9999 ebuild from the overlay which has all kinds of fixes (thanks
+  to scarabeus and magnus)
 
 *mesa-7.3-r1 (07 Mar 2009)
 
