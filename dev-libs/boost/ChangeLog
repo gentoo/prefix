@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.144 2009/02/07 19:58:38 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.147 2009/03/24 04:51:20 dirtyepic Exp $
+
+  24 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> boost-1.35.0-r3.ebuild,
+  boost-1.35.0-r4.ebuild:
+  1.35.0-r{3,4} need boost-build-1.35.0-r2 to build.
+
+  24 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> boost-1.35.0-r2.ebuild:
+  Because versions of boost-build greater than 1.35.0-r1 are slotted and
+  won't work with this ebuild, lock the dependency to 1.35.0-r1.
+
+  23 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> boost-1.35.0-r2.ebuild:
+  Fix testsuite postprocessing for bug #245192.
 
   07 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
   boost-1.35.0-r1.ebuild:

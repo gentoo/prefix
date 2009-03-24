@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.1 2008/09/01 18:37:20 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.3 2009/03/24 04:28:27 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	sys-libs/zlib
 	!x86-winnt? ( virtual/python )"
 DEPEND="${RDEPEND}
-	>=dev-util/boost-build-${PV}-r1"
+	=dev-util/boost-build-${PV}-r1"
 
 S=${WORKDIR}/${MY_P}
 
@@ -37,11 +37,11 @@ pkg_setup() {
 	if has test ${FEATURES} ; then
 		CHECKREQS_DISK_BUILD="1024"
 		check_reqs
-
-		ewarn "The tests may take several hours on a recent machine"
-		ewarn "but they will not fail (unless something weird happens ;-)"
-		ewarn "This is because the tests depend on the used compiler/-version"
-		ewarn "and the platform and upstream says that this is normal."
+		ewarn "The testsuite may take several hours to run on a modern system."
+		ewarn "It is normal to see some tests failing, as some are dependent"
+		ewarn "on compiler version and platform.  Unless something weird"
+		ewarn "happens, the ebuild should continue installing as normal."
+		ewarn
 		ewarn "If you are interested in the results, please take a look at the"
 		ewarn "generated results page:"
 		ewarn "  ${EROOT}usr/share/doc/${PF}/status/cs-$(uname).html"
@@ -80,7 +80,7 @@ generate_options() {
 	# Using optimization=off would for example add
 	# "-O0" and override "-O2" set by the user.
 	# Please take a look at the boost-build ebuild
-	# for more infomration.
+	# for more information.
 
 	OPTIONS="gentoorelease"
 	use debug && OPTIONS="gentoodebug"
@@ -186,6 +186,7 @@ src_compile() {
 			${OPTIONS} \
 			--prefix="${ED}/usr" \
 			--layout=system \
+			process_jam_log compiler_status \
 			|| die "building regression test helpers failed"
 	fi
 
@@ -314,7 +315,10 @@ src_test() {
 		--dump-tests 2>&1 | tee regress.log
 
 	# Postprocessing
-	cat regress.log | "${S}/dist/bin/process_jam_log" --v2
+	process_jam_log=$(find "${S}"/tools/regression/build/bin -name process_jam_log -print);
+	compiler_status=$(find "${S}"/tools/regression/build/bin -name compiler_status -print);
+
+	cat regress.log | "${process_jam_log}" --v2
 	if test $? != 0 ; then
 		die "Postprocessing the build log failed"
 	fi
@@ -324,7 +328,7 @@ src_test() {
 __EOF__
 
 	# Generate the build log html summary page
-	"${S}/dist/bin/compiler_status" --v2 \
+	"${compiler_status}" --v2 \
 		--comment "${S}/status/comment.html" "${S}" \
 		cs-$(uname).html cs-$(uname)-links.html
 	if test $? != 0 ; then
