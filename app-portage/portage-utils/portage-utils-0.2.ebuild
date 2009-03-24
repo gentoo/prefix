@@ -17,10 +17,6 @@ IUSE=""
 
 DEPEND="
 	ppc-aix? ( dev-libs/gnulib )
-	sparc-solaris? ( dev-libs/gnulib )
-	sparc64-solaris? ( dev-libs/gnulib )
-	x86-solaris? ( dev-libs/gnulib )
-	x64-solaris? ( dev-libs/gnulib )
 	x86-interix? ( dev-libs/gnulib )
 "
 
@@ -37,7 +33,9 @@ src_unpack() {
 
 src_compile() {
 	tc-export CC
-	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* || ${CHOST} == *-interix3* ]]; then
+	# note: Solaris 10+ fails to compile with gnulib, due to static/nonstatic
+	# declaration of strcasecmp, it doesn't need gnulib
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix3* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		# append-libs doesn't work, since the Makefile doesn't know LIBS, it seems
