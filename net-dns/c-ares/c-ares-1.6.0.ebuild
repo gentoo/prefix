@@ -10,7 +10,7 @@ SRC_URI="http://daniel.haxx.se/projects/c-ares/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris"
 IUSE=""
 
 DEPEND=""
