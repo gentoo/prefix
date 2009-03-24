@@ -1,0 +1,65 @@
+# ChangeLog for net-libs/libssh2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/ChangeLog,v 1.16 2009/01/24 12:33:45 aballier Exp $
+
+  24 Jan 2009; Alexis Ballier <aballier@gentoo.org> libssh2-0.18.ebuild:
+  keyword ~x86-fbsd
+
+  25 Aug 2008; Jeroen Roovers <jer@gentoo.org> libssh2-0.18.ebuild:
+  Stable for HPPA (bug #233122).
+
+  02 Aug 2008; Markus Rothe <corsair@gentoo.org> libssh2-0.18.ebuild:
+  Stable on ppc64; bug #233122
+
+  01 Aug 2008; nixnut <nixnut@gentoo.org> libssh2-0.18.ebuild:
+  Stable on ppc wrt bug 233122
+
+  30 Jul 2008; Dawid Węgliński <cla@gentoo.org> libssh2-0.18.ebuild:
+  Stable on amd64 (bug #233122)
+
+  29 Jul 2008; Raúl Porcel <armin76@gentoo.org> libssh2-0.18.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #233122
+
+  29 Apr 2008; <ricmm@gentoo.org> libssh2-0.18.ebuild:
+  Add ~mips, bug #215709
+
+  04 Apr 2008; Brent Baude <ranger@gentoo.org> libssh2-0.18.ebuild:
+  Marking libssh2-0.18 ~ppc
+
+  04 Apr 2008; Brent Baude <ranger@gentoo.org> libssh2-0.18.ebuild:
+  keyworded ~arch for ppc64, bug 215709
+
+  01 Apr 2008; Raúl Porcel <armin76@gentoo.org> libssh2-0.18.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #215709
+
+  01 Apr 2008; Jeroen Roovers <jer@gentoo.org> libssh2-0.18.ebuild:
+  Marked ~hppa.
+
+*libssh2-0.18 (23 Dec 2007)
+
+  23 Dec 2007; Cédric Krier <cedk@gentoo.org> +libssh2-0.18.ebuild:
+  Version bump
+
+  13 Sep 2007; Daniel Black <dragonheart@gentoo.org> libssh2-0.17.ebuild:
+  added ~amd64 keyword - works with curl-7.17.0-r1
+
+*libssh2-0.17 (29 Aug 2007)
+
+  29 Aug 2007; Cédric Krier <cedk@gentoo.org> +libssh2-0.17.ebuild:
+  Version bump
+
+*libssh2-0.15 (01 Jul 2007)
+
+  01 Jul 2007; Cédric Krier <cedk@gentoo.org> +libssh2-0.15.ebuild:
+  Version bump
+
+*libssh2-0.14 (27 Nov 2006)
+
+  27 Nov 2006; Markus Ullmann <jokey@gentoo.org>
+  +files/libssh2-0.14-banner-wait.patch,
+  +files/libssh2-0.14-channel-failure.patch,
+  +files/libssh2-0.14-configure.patch,
+  +files/libssh2-0.14-peer-shutdown.patch, +metadata.xml,
+  +libssh2-0.14.ebuild:
+  Import from sunrise for bug 113844 thanks to Joe and cedk
+
