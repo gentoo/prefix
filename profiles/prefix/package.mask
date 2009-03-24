@@ -32,6 +32,9 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (24 Mar 2009)
+# libgphoto2 will not build in prefix due to some udev-rules wierdness.
+media-libs/libgphoto2
 
 # Fabian Groffen <grobian@gentoo.org> (25 Feb 2009)
 # Go ahead and try it out!  Most bugs should have been plugged already,
