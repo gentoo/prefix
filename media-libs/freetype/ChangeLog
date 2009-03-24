@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.223 2009/03/18 14:56:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.224 2009/03/23 14:51:28 pva Exp $
+
+  23 Mar 2009; Peter Volkov <pva@gentoo.org>
+  +files/freetype-1.4_pre20080316-LDLFAGS.patch,
+  freetype-1.4_pre20080316-r1.ebuild:
+  Respect LDFLAGS, bug #263131 thank Davide Pesavento for report.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> freetype-2.3.8.ebuild:
   Marking freetype-2.3.8 ppc for bug 260288
