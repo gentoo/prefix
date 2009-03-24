@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.354 2009/03/22 18:32:16 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.355 2009/03/23 05:37:31 jer Exp $
+
+  23 Mar 2009; Jeroen Roovers <jer@gentoo.org> subversion-1.6.0.ebuild:
+  Marked ~hppa (bug #263337).
 
   22 Mar 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   subversion-1.6.0.ebuild:
