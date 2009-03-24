@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4300 2009/03/23 04:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4303 2009/03/24 05:47:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1256,7 +1256,10 @@ media-gfx/inkscape:dia -  pull in app-office/dia for dia import extension
 media-gfx/inkscape:inkjar -  enables support for OpenOffice.org SVG jar files 
 media-gfx/inkscape:postscript -  pull in dependencies needed for the postscript import extension 
 media-gfx/jpeg2ps:metric -  Default to A4 paper size 
-media-gfx/k3d:plib -  build plib-based import/export library 
+media-gfx/k3d:3ds - Enable support for 3D Studio models
+media-gfx/k3d:cuda - Use nvidia cuda toolkit for speeding up computations
+media-gfx/k3d:gts - Add Support for the GNU Triangulated Surface Library sci-libs/gts
+media-gfx/k3d:plib - build plib-based import/export library
 media-gfx/maya:bundled-libs -  Use the bundled versions of libs rather than system ones (libstdc++, libgcc_s, libqt, and libXm) 
 media-gfx/maya:maya-shaderlibrary -  Install the maya shader library 
 media-gfx/potrace:metric -  default to a4 paper size and metric measurement 
@@ -1391,7 +1394,8 @@ media-sound/amarok:visualization - Support visualization plugins through media-l
 media-sound/aqualung:cdda - Enables libcdda cd audio playback support
 media-sound/aqualung:ifp - Enable support for iRiver iFP portable audio players
 media-sound/aqualung:loop-playback - Enable adjustable loop playback support
-media-sound/aqualung:lua - Enable support for programmable title formatting with dev-lang/lua
+media-sound/aqualung:lua - Enable support for programmable title formatting with dev-lang/lua 
+media-sound/aqualung:podcast - Enable podcast support
 media-sound/aqualung:systray - Enable system tray support
 media-sound/ardour:freesound - Enables direct searching and download of samples from Freesound via the Import dialog
 media-sound/ario:audioscrobbler - Enable song tracking via last.fm
@@ -2661,6 +2665,7 @@ sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/gentoo-sources:ultra1 - Enable if you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documenation
 sys-kernel/mips-sources:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
+sys-kernel/mips-sources:impactdebug - Enables use of the Impact Early Console Hack. FOR DEBUGGING ONLY!
 sys-kernel/mips-sources:ip27 - Enables support for SGI Origin (IP27)
 sys-kernel/mips-sources:ip28 - Enables support for SGI Indigo2 Impact R10000 (IP28)
 sys-kernel/mips-sources:ip30 - Enables support for SGI Octane (IP30, 'Speedracer')

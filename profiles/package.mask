@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9602 2009/03/23 01:09:29 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9607 2009/03/23 19:14:33 hanno Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,11 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Rémi Cardona <remi@gentoo.org> (23 Mar 2009)
+# 120 patches, overhauled ebuild from the x11 overlay
+# it _needs_ more testing
+=media-libs/mesa-7.3-r2
 
 # Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
@@ -143,6 +148,8 @@ dev-perl/OpenCA-REQ
 dev-perl/OpenCA-X509
 # Masked for removal (#206177,#220491) (21 Mar 2009)
 dev-perl/Inline-Java
+# Masked for removal (#151986,#171649,#239222) (23 Mar 2009)
+dev-lang/pugs
 
 # Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2009)
 # HPN patch contains some breakages with port forwarding.
@@ -279,11 +286,6 @@ sci-libs/libticables
 sci-libs/libticalcs
 sci-libs/libtifiles
 
-# Peter Alfredsen <loki_val@gentoo.org> (15 Feb 2009)
-# Masking for removal in 30 days.
-# Fails to build with gcc-4.3, bug 250712
-media-video/gephex
-
 # Ben de Groot <yngwin@gentoo.org> (14 Feb 2009)
 # Masking because of build failures, bug 258961
 =x11-libs/qt-script-4.5.0_rc1-r1
@@ -296,10 +298,6 @@ dev-lang/rubinius
 # I gave away maintainership a while ago nobody took it on. Prepare for remove.
 app-emulation/ganeti
 app-emulation/ganeti-instance-debian-etch
-
-# Hanno Böck <hanno@gentoo.org> (05 Feb 2009)
-# Seems something is broken with crypt mount in 1.17 (bug 257302)
-=sys-auth/pam_mount-1.17
 
 # Jeremy Olexa <darkside@gentoo.org> (05 Feb 2009)
 # libjingle-0.3.11 was created by the tapioca team
@@ -549,10 +547,6 @@ net-nds/nis-utils
 =x11-drivers/ati-drivers-8.552
 =x11-drivers/ati-drivers-8.552-r1
 
-# Hanno Boeck <hanno@gentoo.org> (14 Nov 2008)
-# Broken, waits endless on some systems, 4.2.0 is ok.
-=sys-libs/libchipcard-4.2.3
-
 # Mike Doty <kingtaco@gentoo.org> (9 Nov 2008)
 # Masked for testing
 =app-emulation/emul-linux-x86-baselibs-20081109
@@ -768,12 +762,6 @@ net-irc/bitchx
 # User's who need to test these should unmask explicitly.
 =sys-fs/btrfs-9999
 =sys-fs/btrfs-progs-9999
-
-# Fernando J. Pereda <ferdy@gentoo.org> (07 Jun 2008)
-# Using the git porcelain is recommended over cogito.
-# gitweb is installed by the git ebuild
-dev-util/cogito
-www-apps/gitweb
 
 # Tiziano Müller <dev-zero@gentoo.org> (07 Jun 2008)
 # Live SVN Ebuild

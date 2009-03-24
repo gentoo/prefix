@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2463 2009/03/23 00:29:05 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2468 2009/03/23 19:14:33 hanno Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  23 Mar 2009; Hanno Boeck <hanno@gentoo.org> package.mask:
+  Remove masks of old broken versions, corresponding ebuilds removed.
+
+  23 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Gephex has been removed. Removing package.mask entry.
+
+  23 Mar 2009; Olivier Crête <tester@gentoo.org> package.mask:
+  Removed cogito and gitweb
+
+  23 Mar 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add mesa-7.3-r2 to package.mask
+
+  23 Mar 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Masked dev-lang/pugs for removal (#151986,#171649,#239222)
 
   23 Mar 2009; Olivier Crête <tester@gentoo.org> use.desc, use.local.desc:
   Make policykit into a global use flag

@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/hppa profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.14 2009/03/12 19:09:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.15 2009/03/24 03:30:54 jer Exp $
+
+  24 Mar 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Remove x11-themes/qtcurve-qt4 kde from package.use.mask now that
+  kde-base/kwin is keyworded (bug #259765).
 
   12 Mar 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
   Mask USE=sesame2 for dev-libs/soprano to avoid Java (bug #260777).
