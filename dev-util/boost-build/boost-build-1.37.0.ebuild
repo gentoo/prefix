@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.37.0.ebuild,v 1.1 2008/12/16 15:44:42 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.37.0.ebuild,v 1.2 2009/03/24 04:34:42 dirtyepic Exp $
 
 EAPI="prefix 2"
 
@@ -10,7 +10,7 @@ MY_PV=$(replace_all_version_separators _)
 MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))"
 
 DESCRIPTION="A system for large project software construction, which is simple to use and powerful."
-HOMEPAGE="http://www.boost.org/tools/build/v2/index.html"
+HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
 SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT="1.37"
