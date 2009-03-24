@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.338 2009/03/22 17:19:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.340 2009/03/23 17:15:20 jer Exp $
+
+  23 Mar 2009; Jeroen Roovers <jer@gentoo.org> gnupg-2.0.10.ebuild:
+  Stable for HPPA (bug #263321).
+
+  23 Mar 2009; Brent Baude <ranger@gentoo.org> gnupg-2.0.10.ebuild:
+  stable ppc64, bug 263321
 
   22 Mar 2009; Markus Meier <maekke@gentoo.org> gnupg-2.0.10.ebuild:
   amd64/x86 stable, bug #263321
