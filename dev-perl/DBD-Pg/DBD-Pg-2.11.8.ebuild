@@ -27,7 +27,7 @@ mydoc="README"
 SRC_TEST="skip"
 
 src_compile() {
-	postgres_include="$(readlink -f /usr/include/postgresql)"
+	postgres_include="$(readlink -f ${EPREFIX}/usr/include/postgresql)"
 	postgres_lib="${postgres_include//include/lib}"
 	# Fall-through case is the non-split postgresql
 	# The active cases instead get us the matching libdir for the includedir.
