@@ -60,6 +60,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${P}-inttypes.patch
 
 	elibtoolize # for sane .so versioning on FreeBSD
 }
