@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Sys-Syslog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.29 2009/03/21 10:22:12 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.30 2009/03/23 14:30:25 armin76 Exp $
+
+  23 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  perl-Sys-Syslog-0.27.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #262899
 
   21 Mar 2009; Tiago Cunha <tcunha@gentoo.org> perl-Sys-Syslog-0.27.ebuild:
   stable sparc, bug 262899
