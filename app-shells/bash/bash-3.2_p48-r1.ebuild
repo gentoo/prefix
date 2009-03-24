@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.3 2009/02/25 21:20:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.4 2009/03/23 18:34:21 grobian Exp $
 
 EAPI="prefix 1"
 
@@ -36,7 +36,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger examples +net nls plugins vanilla"
 
-DEPEND=">=sys-libs/ncurses-5.2-r2"
+DEPEND=">=sys-libs/ncurses-5.2-r2
+	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.5
 	!<sys-apps/paludis-0.26.0_alpha5"

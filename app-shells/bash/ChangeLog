@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.213 2009/03/14 18:12:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.214 2009/03/23 18:34:21 grobian Exp $
+
+  23 Mar 2009; Fabian Groffen <grobian@gentoo.org> bash-3.1_p17.ebuild,
+  bash-3.2_p39.ebuild, bash-3.2_p48.ebuild, bash-3.2_p48-r1.ebuild,
+  bash-4.0_p10.ebuild, bash-4.0_p10-r1.ebuild:
+  Add dependency on virtual/libintl for USE=nls, bug #261118
 
 *bash-4.0_p10-r1 (14 Mar 2009)
 
