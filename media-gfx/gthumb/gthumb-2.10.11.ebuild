@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/glib-2.6
 	>=gnome-base/gnome-vfs-2.6
 	>=gnome-base/libglade-2.4
 	>=media-libs/libexif-0.6.13
-	!prefix? gphoto2? ( >=media-libs/libgphoto2-2.1.3 )
+	!prefix? ( gphoto2? ( >=media-libs/libgphoto2-2.1.3 ) )
 	iptc? ( >=media-libs/libiptcdata-0.2.1 )
 	>=gnome-base/libbonobo-2.6
 	>=gnome-base/libbonoboui-2.6
