@@ -31,6 +31,8 @@ pkg_setup() {
 	XFCE_CONFIG+=" $(use_enable dbus) --with-vendor-info=Gentoo"
 	# Prefix cannot do --enable-gdm
 	use prefix || XFCE_CONFIG="${XFCE_CONFIG} --enable-gdm"
+	# and upstream insists on placing xfce.desktop in /usr
+	use prefix && XFCE_CONFIG="${XFCE_CONFIG} --with-xsession-prefix=${EPREFIX}/usr"
 }
 
 src_install() {
