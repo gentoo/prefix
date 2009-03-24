@@ -5,7 +5,9 @@
   <maintainer>
     <email>robbat2@gentoo.org</email>
     <name>Robin H. Johnson</name>
-    <description>Backup maintainer</description>
+  </maintainer>
+  <maintainer>
+    <email>ricmm@gentoo.org</email>
   </maintainer>
   <longdescription lang="en">
     Git - Fast Version Control System. Official titled
