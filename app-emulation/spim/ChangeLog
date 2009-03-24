@@ -1,6 +1,14 @@
 # ChangeLog for app-emulation/spim
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.45 2009/03/20 03:25:55 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.47 2009/03/24 03:02:16 ricmm Exp $
+
+*spim-7.4 (24 Mar 2009)
+
+  24 Mar 2009; <ricmm@gentoo.org> +spim-7.4.ebuild:
+  Version bump. Released 22-01-2009. Several fixes to the code.
+
+  23 Mar 2009; <ricmm@gentoo.org> metadata.xml:
+  Adding myself to metadata.
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml, spim-7.2.1-r2.ebuild, spim-7.2.1-r3.ebuild, spim-7.3.ebuild:

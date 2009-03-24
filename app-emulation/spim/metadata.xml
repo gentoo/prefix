@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>ricmm@gentoo.org</email>
 		</maintainer>
 	<longdescription lang="en">
 		A self-contained simulator that will run MIPS32 assembly language
