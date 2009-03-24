@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/geoip
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.102 2009/03/21 03:54:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.103 2009/03/23 14:16:13 armin76 Exp $
+
+  23 Mar 2009; Raúl Porcel <armin76@gentoo.org> geoip-1.4.6.ebuild:
+  Add ~arm/~ia64/~s390/~sh/~sparc wrt #262547
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> geoip-1.4.6.ebuild:
   Marked ~hppa (bug #262547).
