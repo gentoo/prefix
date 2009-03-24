@@ -6,8 +6,5 @@
 	<flag name='iptc'>
 		Add support for IPTC metadata
 	</flag>
-	<flag name='gphoto2'>
-		Enables a core feature, to fetch photos from your digital camera.
-	</flag>
 </use>
 </pkgmetadata>
