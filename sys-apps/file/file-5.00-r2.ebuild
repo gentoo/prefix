@@ -25,6 +25,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-localization.patch #258452
 	epatch "${FILESDIR}"/${P}-short-read.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-strtoull-limits.patch #263527
 
 	eautoreconf # required for interix, was elibtoolize
 	epunt_cxx
