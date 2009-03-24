@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/popt
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.62 2008/04/18 04:37:48 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.63 2009/03/23 18:11:03 jsbronder Exp $
+
+  23 Mar 2009; Justin Bronder <jsbronder@gentoo.org> popt-1.10.7.ebuild,
+  popt-1.12.ebuild, popt-1.13.ebuild, popt-1.14.ebuild:
+  Fix LICENSE, verified against all tarballs.
 
 *popt-1.14 (18 Apr 2008)
 
