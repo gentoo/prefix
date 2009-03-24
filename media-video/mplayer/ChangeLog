@@ -1,6 +1,25 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.625 2009/03/14 09:57:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.628 2009/03/23 23:26:37 beandog Exp $
+
+  23 Mar 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0_rc2_p20090226.ebuild, mplayer-1.0_rc2_p20090322.ebuild:
+  Don't enable vdpau, mad USE flags by default
+
+*mplayer-1.0_rc2_p20090322 (23 Mar 2009)
+
+  23 Mar 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc2_p20090322.ebuild:
+  Snapshot bump; Remove strip-flags when using custom-cflags use flag, bug
+  260064; Scale back default USE flags, bug 260588; Drop realplayer binary
+  support
+
+*mplayer-1.0_rc2_p20090226 (23 Mar 2009)
+
+  23 Mar 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc2_p20090226.ebuild, -mplayer-20090226.28734.ebuild,
+  -mplayer-20090226.28734-r1.ebuild:
+  Migrate to new naming scheme
 
 *mplayer-20090226.28734-r1 (14 Mar 2009)
 
