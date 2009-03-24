@@ -1,5 +1,7 @@
---- qsize.c.orig	2008-07-31 14:13:26.210628000 +0200
-+++ qsize.c	2008-07-31 14:14:47.968264000 +0200
+Committed in 0.2+
+
+--- qsize.c
++++ qsize.c
 @@ -40,6 +40,11 @@
  # define S_BLKSIZE DK_DEVID_BLKSIZE
  #endif
@@ -12,8 +14,8 @@
  int qsize_main(int argc, char **argv)
  {
  	DIR *dir, *dirp;
---- main.c.orig	2008-07-25 14:04:25 +0200
-+++ main.c	2008-07-25 14:07:59 +0200
+--- main.c
++++ main.c
 @@ -8,6 +8,9 @@
   */
  

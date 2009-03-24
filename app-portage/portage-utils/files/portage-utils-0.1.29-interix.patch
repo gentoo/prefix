@@ -1,12 +1,12 @@
-diff -ru portage-utils-0.1.29.orig/qsize.c portage-utils-0.1.29/qsize.c
---- portage-utils-0.1.29.orig/qsize.c	2009-02-26 16:02:56 +0100
-+++ portage-utils-0.1.29/qsize.c	2009-02-26 16:07:26 +0100
-@@ -45,6 +45,11 @@
+Committed in 0.2+
+
+--- portage-utils-0.1.29/qsize.c
++++ portage-utils-0.1.29/qsize.c
+@@ -45,6 +45,10 @@
  # define S_BLKSIZE DEV_BSIZE
  #endif
  
 +#ifdef __INTERIX
-+// >>> ?? <<<
 +# define S_BLKSIZE S_BLOCK_SIZE
 +#endif
 +

@@ -1,5 +1,7 @@
 * Darwin-style sysctl process handling
 
+Committed in 0.2+
+
 --- qlop.c
 +++ qlop.c
 @@ -21,6 +21,12 @@

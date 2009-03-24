@@ -1,4 +1,5 @@
 main.c: Addition of prefix to various paths
+qlop.c: Likewise
 
 --- main.c
 +++ main.c
