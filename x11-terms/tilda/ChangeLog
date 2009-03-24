@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/tilda
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.18 2008/08/08 18:11:19 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.19 2009/03/23 21:26:14 maekke Exp $
+
+  23 Mar 2009; Markus Meier <maekke@gentoo.org> tilda-0.9.6.ebuild:
+  amd64/x86 stable, bug #236885
 
   08 Aug 2008; Alexis Ballier <aballier@gentoo.org> tilda-0.9.6.ebuild:
   keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
