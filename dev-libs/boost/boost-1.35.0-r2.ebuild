@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.3 2009/03/24 04:28:27 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.4 2009/03/25 01:34:13 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -37,11 +37,11 @@ pkg_setup() {
 	if has test ${FEATURES} ; then
 		CHECKREQS_DISK_BUILD="1024"
 		check_reqs
-		ewarn "The testsuite may take several hours to run on a modern system."
-		ewarn "It is normal to see some tests failing, as some are dependent"
-		ewarn "on compiler version and platform.  Unless something weird"
-		ewarn "happens, the ebuild should continue installing as normal."
-		ewarn
+
+		ewarn "The tests may take several hours on a recent machine"
+		ewarn "but they will not fail (unless something weird happens ;-)"
+		ewarn "This is because the tests depend on the used compiler/-version"
+		ewarn "and the platform and upstream says that this is normal."
 		ewarn "If you are interested in the results, please take a look at the"
 		ewarn "generated results page:"
 		ewarn "  ${EROOT}usr/share/doc/${PF}/status/cs-$(uname).html"
@@ -82,8 +82,10 @@ generate_options() {
 	# Please take a look at the boost-build ebuild
 	# for more information.
 
-	OPTIONS="gentoorelease"
-	use debug && OPTIONS="gentoodebug"
+	BUILDNAME="gentoorelease"
+	use debug && BUILDNAME="gentoodebug"
+
+	OPTIONS="${BUILDNAME}"
 
 	use icu && OPTIONS="${OPTIONS} -sICU_PATH=${EPREFIX}/usr"
 	if use expat ; then
@@ -179,17 +181,6 @@ src_compile() {
 			--layout=system \
 			|| die "building tools failed"
 	fi
-
-	if has test ${FEATURES} ; then
-		cd "${S}/tools/regression/build"
-		bjam -q \
-			${OPTIONS} \
-			--prefix="${ED}/usr" \
-			--layout=system \
-			process_jam_log compiler_status \
-			|| die "building regression test helpers failed"
-	fi
-
 }
 
 src_install () {
@@ -258,8 +249,8 @@ src_install () {
 		doins -r share
 	fi
 
-	if has test ${FEATURES} ; then
-		cd "${S}/status"
+	cd "${S}/status"
+	if [ -f regress.log ]; then
 		docinto status
 		dohtml *.{html,gif} ../boost.png
 		dodoc regress.log
@@ -301,6 +292,14 @@ src_test() {
 
 	export BOOST_ROOT=${S}
 
+	cd "${S}/tools/regression/build"
+	bjam -q \
+		${OPTIONS} \
+		--prefix="${ED}/usr" \
+		--layout=system \
+		process_jam_log compiler_status \
+		|| die "building regression test helpers failed"
+
 	cd "${S}/status"
 
 	# Some of the test-checks seem to rely on regexps
@@ -315,10 +314,7 @@ src_test() {
 		--dump-tests 2>&1 | tee regress.log
 
 	# Postprocessing
-	process_jam_log=$(find "${S}"/tools/regression/build/bin -name process_jam_log -print);
-	compiler_status=$(find "${S}"/tools/regression/build/bin -name compiler_status -print);
-
-	cat regress.log | "${process_jam_log}" --v2
+	cat regress.log | "${S}/tools/regression/build/bin/gcc-$(gcc-version)/${BUILDNAME}/process_jam_log" --v2
 	if test $? != 0 ; then
 		die "Postprocessing the build log failed"
 	fi
@@ -328,7 +324,7 @@ src_test() {
 __EOF__
 
 	# Generate the build log html summary page
-	"${compiler_status}" --v2 \
+	"${S}/tools/regression/build/bin/gcc-$(gcc-version)/${BUILDNAME}/compiler_status" --v2 \
 		--comment "${S}/status/comment.html" "${S}" \
 		cs-$(uname).html cs-$(uname)-links.html
 	if test $? != 0 ; then
