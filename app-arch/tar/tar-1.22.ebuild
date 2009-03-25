@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.16-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.19-hpux.patch
 	epatch "${FILESDIR}"/${PN}-1.20-mint.patch
+	epatch "${FILESDIR}"/${PN}-1.22-solaris-sparc64.patch
 
 	epatch "${FILESDIR}"/${PN}-1.21-revert-pipe.patch #252680
 
