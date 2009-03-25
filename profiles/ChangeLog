@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2468 2009/03/23 19:14:33 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2470 2009/03/24 17:38:22 gengor Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Mar 2009; Gordon Malm <gengor@gentoo.org> profiles.desc:
+  hardened/x86/2.6 -> hardened/x86
+
+  24 Mar 2009; Steve Dibb <beandog@gentoo.org> package.mask:
+  Add p.mask for media-video/mplayer live ebuild
 
   23 Mar 2009; Hanno Boeck <hanno@gentoo.org> package.mask:
   Remove masks of old broken versions, corresponding ebuilds removed.

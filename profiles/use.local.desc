@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4303 2009/03/24 05:47:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4306 2009/03/24 21:47:48 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -846,6 +846,13 @@ dev-util/nsis:config-log - Enable the logging facility (useful in debugging inst
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/nvidia-cuda-sdk:emulation -  Build binaries for device emulation mode. These binaries will not require a CUDA-capable GPU to run. 
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
+dev-util/qt-creator:cmake - enable cmake project manager plugin
+dev-util/qt-creator:debugger - enable debugger plugin
+dev-util/qt-creator:designer - enable designer plugin
+dev-util/qt-creator:fakevim - enable vim-like key bindings plugin
+dev-util/qt-creator:git - enable git plugin
+dev-util/qt-creator:perforce - enable perforce software configuration manager plugin
+dev-util/qt-creator:subversion - enable subersion plugin
 dev-util/radare:gui -  Enable the graphical user interface of radare (broken) 
 dev-util/strace:aio - Enable libaio support
 dev-util/subversion:ctypes-python - Build and install ctypes python bindings
@@ -1369,9 +1376,13 @@ media-plugins/vdr-music:ff-card - Enables scrollmode on FF-Card
 media-plugins/vdr-music:graphtft - Enable support for media-plugins/vdr-graphtft
 media-plugins/vdr-pvr350:yaepg - Enables full support for the output format of media-plugins/vdr-yaepg
 media-plugins/vdr-softdevice:mmxext - enables MMXExt support
+media-plugins/vdr-streamdev:client -  Compile the VDR plugin vdr-streamdev-client that acts like a dvb-budget card 
+media-plugins/vdr-streamdev:server -  Compile the VDR plugin vdr-streamdev-server that allows remote systems to access the DVB cards used for the local VDR 
 media-plugins/vdr-text2skin:direct_blit - not buffer picture, faster, but only for modified skins
 media-plugins/vdr-weatherng:dxr3 - enables lower osd color depth for dxr3 cards
 media-plugins/vdr-xineliboutput:libextractor - Use media-libs/libextract to gather files' metadata in media-player
+media-plugins/vdr-xineliboutput:vdr - Compile the vdr output plugin to use local or remote xine as output
+media-plugins/vdr-xineliboutput:xine - Compile the xine input plugin for displaying vdr video and OSD
 media-radio/tucnak2:ftdi - Enable support for FTDI USB chips
 media-radio/tucnak2:hamlib - Enables support by the Hamlib amateur radio rig control library to get/set frequency and mode of the ham radio
 media-sound/abcde:id3 - Support ID3, ID3v2 tagging of audio files
