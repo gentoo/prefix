@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gjdoc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/ChangeLog,v 1.41 2009/03/18 15:05:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/ChangeLog,v 1.43 2009/03/24 19:38:04 betelgeuse Exp $
+
+  24 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> gjdoc-0.7.9.ebuild,
+  gjdoc-0.7.9-r1.ebuild:
+  Add slot deps for antlr.
+
+  24 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> -gjdoc-0.7.8.ebuild:
+  Remove old version.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> gjdoc-0.7.9-r1.ebuild:
   stable ppc, bug 262541

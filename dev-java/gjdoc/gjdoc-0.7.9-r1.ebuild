@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/gjdoc-0.7.9-r1.ebuild,v 1.4 2009/03/18 15:05:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/gjdoc-0.7.9-r1.ebuild,v 1.5 2009/03/24 19:38:04 betelgeuse Exp $
 
 EAPI="prefix 2"
 JAVA_PKG_IUSE="source"
@@ -25,7 +25,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="xmldoclet"
 
 RDEPEND=">=virtual/jre-1.4
-		>=dev-java/antlr-2.7.1[java]"
+		>=dev-java/antlr-2.7.1:0[java]"
 
 # Refused to emerge with sun-jdk-1.3* complaining about wanting a bigger stack size
 DEPEND="${RDEPEND}
