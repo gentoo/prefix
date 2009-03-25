@@ -47,7 +47,7 @@ src_install() {
 	ewarn "RUBYOPT=${RUBYOPT}"
 
 	# Force ebuild to use Ruby 1.8
-	export RUBY="/usr/bin/ruby18"
+	export RUBY="${EPREFIX}/usr/bin/ruby18"
 
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
