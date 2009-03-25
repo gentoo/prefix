@@ -7,4 +7,4 @@ diff -Naur ghostscript-8.64/gsdjvu ghostscript-8.64.new/gsdjvu
 -gsdir="$progdir"
 -GS_LIB="$gsdir/lib:$gsdir/fonts:$gsdir" exec "/usr/bin/gs" "$@"
 +gsdir="$(dirname $progdir)"
-+GS_LIB="$gsdir/lib:$gsdir/share/fonts:$gsdir" exec "$gsdir/bin/gs" "$@"
++GS_LIB="$gsdir/lib:$gsdir/fonts:$gsdir" exec "$gsdir/bin/gs" "$@"
