@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  25 Mar 2009; Fabian Groffen <fabian@gentoo.org> package.mask:
+  Mask =app-text/ghostscript-gpl-8.64* due to b0rkage in real life
+
   24 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask media-libs/libgphoto2
 
