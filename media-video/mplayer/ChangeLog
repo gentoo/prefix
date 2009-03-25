@@ -1,6 +1,20 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.628 2009/03/23 23:26:37 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.631 2009/03/24 21:32:35 yngwin Exp $
+
+  24 Mar 2009; Ben de Groot <yngwin@gentoo.org> mplayer-1.0_rc2_p28058-r1,
+  mplayer-1.0_rc2_p28288, mplayer-1.0_rc2_p28450, mplayer-1.0_rc2_p20090226,
+  mplayer-1.0_rc2_p20090322, mplayer-9999:
+  Fix mangled unicode
+
+*mplayer-9999 (24 Mar 2009)
+
+  24 Mar 2009; Steve Dibb <beandog@gentoo.org> +mplayer-9999.ebuild:
+  Add live ebuild
+
+  24 Mar 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0_rc2_p20090226.ebuild, mplayer-1.0_rc2_p20090322.ebuild:
+  Don't enable xvmc USE flag by default
 
   23 Mar 2009; Steve Dibb <beandog@gentoo.org>
   mplayer-1.0_rc2_p20090226.ebuild, mplayer-1.0_rc2_p20090322.ebuild:
