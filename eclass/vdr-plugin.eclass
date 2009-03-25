@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.68 2009/03/06 09:09:29 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.69 2009/03/24 21:10:13 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -79,6 +79,15 @@ DEPEND="${COMMON_DEPEND}
 	media-tv/linuxtv-dvb-headers"
 RDEPEND="${COMMON_DEPEND}
 	>=app-admin/eselect-vdr-0.0.2"
+
+# this is a hack for ebuilds like vdr-xineliboutput that want to
+# conditionally install a vdr-plugin
+if [[ "${GENTOO_VDR_CONDITIONAL:-no}" = "yes" ]]; then
+	# make DEPEND conditional
+	IUSE="${IUSE} vdr"
+	DEPEND="vdr? ( ${DEPEND} )"
+	RDEPEND="vdr? ( ${RDEPEND} )"
+fi
 
 # New method of storing plugindb
 #   Called from src_install
@@ -357,6 +366,9 @@ vdr-plugin_print_enable_command() {
 	elog
 }
 
+has_vdr() {
+	[[ -f "${VDR_INCLUDE_DIR}"/config.h ]]
+}
 
 ## exported functions
 
@@ -379,6 +391,20 @@ vdr-plugin_pkg_setup() {
 	TMP_LOCALE_DIR="${WORKDIR}/tmp-locale"
 	LOCDIR="/usr/share/vdr/locale"
 
+	if ! has_vdr; then
+		# set to invalid values to detect abuses
+		VDRVERSION="eclass_no_vdr_installed"
+		APIVERSION="eclass_no_vdr_installed"
+
+		if [[ "${GENTOO_VDR_CONDITIONAL:-no}" = "yes" ]] && ! use vdr; then
+			einfo "VDR not found!"
+		else
+			# if vdr is required
+			die "VDR not found!"
+		fi
+		return
+	fi
+	
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	[[ -z ${APIVERSION} ]] && APIVERSION="${VDRVERSION}"
