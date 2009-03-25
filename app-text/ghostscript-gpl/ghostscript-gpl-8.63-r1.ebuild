@@ -20,7 +20,7 @@ SRC_URI="cjk? ( ftp://ftp.gyve.org/pub/gs-cjk/adobe-cmaps-200406.tar.gz
 
 LICENSE="GPL-2 CPL-1.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bindist cairo cjk cups djvu gtk jpeg2k X"
 
 COMMON_DEPEND="media-libs/fontconfig
@@ -95,6 +95,8 @@ src_unpack() {
 		cp gsdjvu-${GSDJVU_PV}/gsdjvu "${S}"
 		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c "${S}/src"
 		epatch "${WORKDIR}/patches/${PN}-8.61-gsdjvu-1.3.patch"
+		# hard-coding paths sucks for Prefix
+		epatch "${FILESDIR}"/${PN}-8.64-gsdjvu-1.3-partial-revert.patch
 		cp gsdjvu-${GSDJVU_PV}/ps2utf8.ps "${S}/lib"
 		cp "${S}/src/contrib.mak" "${S}/src/contrib.mak.gsdjvu"
 		grep -q djvusep "${S}/src/contrib.mak" || \
@@ -120,6 +122,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-8.62-interix.patch
 	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
+	cd "${S}/src"
+	epatch "${FILESDIR}"/${PN}-8.64-darwin.patch
 
 	cd "${S}"
 	eautoreconf
