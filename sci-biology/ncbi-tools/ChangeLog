@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/ncbi-tools
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.65 2008/06/27 10:23:37 ulm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.66 2009/03/24 21:07:55 ribosome Exp $
+
+  24 Mar 2009; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
+  Giving up maintainership of this package.
 
   27 Jun 2008; Ulrich Mueller <ulm@gentoo.org> ncbi-tools-20060507.ebuild,
   ncbi-tools-20061015-r1.ebuild, ncbi-tools-20070826.ebuild,
