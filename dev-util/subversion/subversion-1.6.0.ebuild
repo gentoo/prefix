@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.0.ebuild,v 1.4 2009/03/23 05:37:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.0.ebuild,v 1.5 2009/03/25 03:33:10 josejx Exp $
 
 EAPI="prefix 1"
 

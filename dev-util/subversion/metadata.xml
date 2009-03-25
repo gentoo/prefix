@@ -6,11 +6,6 @@
     <name>Arfrever Frehtes Taifersar Arahesis</name>
     <description>Gentoo Subversion maintainer and Subversion upstream representative</description>
   </maintainer>
-  <maintainer>
-    <email>hollow@gentoo.org</email>
-    <name>Benedikt Böhm</name>
-    <description>Gentoo Subversion maintainer</description>
-  </maintainer>
   <use>
     <flag name="ctypes-python">Build and install ctypes python bindings</flag>
     <flag name="dso">Enable runtime module search</flag>
