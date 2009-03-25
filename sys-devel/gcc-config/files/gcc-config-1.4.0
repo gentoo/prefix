@@ -1,4 +1,4 @@
-#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+#!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.24 2007/12/27 19:01:06 vapier Exp $
@@ -248,7 +248,7 @@ switch_profile() {
 			if [[ ${ROOT} != "/" ]] ; then
 				echo "GCC_SPECS=\"\"" >> "${ENV_D}/05gcc-${CTARGET}"
 			else
-				if ! GCC_SPECS="" "${EPREFIX}"/usr/bin/gcc -v &>/dev/null ; then
+				if [[ -x "${EPREFIX}"/usr/bin/gcc ]] && ! GCC_SPECS="" "${EPREFIX}"/usr/bin/gcc -v &>/dev/null ; then
 					echo
 					ewarn "Your gcc has a bug with GCC_SPECS."
 					ewarn "Please re-emerge gcc."
@@ -471,10 +471,14 @@ switch_profile() {
 			local targetdir=$1; shift
 			local finaldir=$1; shift
 
-			cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
-			# we do not need the unversioned lib, as linking
-			# is done against the used gcc's private copy.
-			rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
+			# when using some simple shell script wrappers (again :)),
+			# there may be no libs around!
+			if [[ -n $(ls "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* 2>/dev/null) ]]; then
+				cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
+				# we do not need the unversioned lib, as linking
+				# is done against the used gcc's private copy.
+				rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
+			fi
 		}
 
 		finish_runtime_dir_elf() {
