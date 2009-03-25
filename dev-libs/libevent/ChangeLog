@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libevent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.97 2009/03/23 04:34:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.98 2009/03/24 20:42:02 ranger Exp $
+
+  24 Mar 2009; Brent Baude <ranger@gentoo.org> libevent-1.4.9.ebuild:
+  stable ppc64, bug 252430
 
   23 Mar 2009; Jeroen Roovers <jer@gentoo.org> libevent-1.4.9.ebuild:
   Stable for HPPA (bug #252430).
