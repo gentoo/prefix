@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/tilda
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.19 2009/03/23 21:26:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/ChangeLog,v 1.20 2009/03/24 22:45:14 josejx Exp $
+
+  24 Mar 2009; Joseph Jezak <josejx@gentoo.org> tilda-0.9.6.ebuild:
+  Marked ppc stable for bug #236885.
 
   23 Mar 2009; Markus Meier <maekke@gentoo.org> tilda-0.9.6.ebuild:
   amd64/x86 stable, bug #236885
