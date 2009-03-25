@@ -25,7 +25,7 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	sys-libs/zlib
 	!x86-winnt? ( virtual/python )"
 DEPEND="${RDEPEND}
-	=dev-util/boost-build-${PV}-r1"
+	=dev-util/boost-build-${PV}-r01.1"
 
 S=${WORKDIR}/${MY_P}
 
