@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.275 2009/03/22 18:40:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.276 2009/03/24 20:37:39 ranger Exp $
+
+  24 Mar 2009; Brent Baude <ranger@gentoo.org> eix-0.15.4.ebuild:
+  stable ppc64, bug 261569
 
   22 Mar 2009; Raúl Porcel <armin76@gentoo.org> eix-0.15.4.ebuild:
   arm/ia64/s390/sh stable wrt #262873, add ~m68k
