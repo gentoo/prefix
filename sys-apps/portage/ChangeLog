@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  26 Mar 2009; <mduft@gentoo.org>
+  -files/portage-2.2.00.12425-cross-prefix.patch,
+  -files/portage-2.2.00.12540-cross-prefix.patch,
+  -files/portage-2.2.00.12574-cross-prefix.patch,
+  +files/portage-2.2.00.13133-prefix-chaining.patch,
+  portage-2.2.00.13133.ebuild, portage-2.2.00.13133.ebuild:
+  removed cross-prefix stuff - not working since a few revisions now. added
+  prefix-chain stuff as a successor to cross-prefix
+
 *portage-2.2.00.13133 (18 Mar 2009)
 
   18 Mar 2009; Fabian Groffen <grobian@gentoo.org>

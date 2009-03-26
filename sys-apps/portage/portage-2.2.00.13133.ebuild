@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
-IUSE="build doc epydoc selinux linguas_pl cross-prefix"
+IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
 python_dep=">=dev-lang/python-2.4"
 
@@ -79,7 +79,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12574-cross-prefix.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
 }
 
 src_compile() {
