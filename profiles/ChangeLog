@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2470 2009/03/24 17:38:22 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2472 2009/03/25 15:05:14 bicatali Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  25 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  tilp and dependencies were removed, updating package.mask
+
+  25 Mar 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add mesa 7.4_rc1 to p.mask as well
 
   24 Mar 2009; Gordon Malm <gengor@gentoo.org> profiles.desc:
   hardened/x86/2.6 -> hardened/x86

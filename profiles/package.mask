@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9608 2009/03/24 14:17:04 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9610 2009/03/25 15:05:14 bicatali Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -36,9 +36,10 @@
 >=media-video/mplayer-9999
 
 # Rémi Cardona <remi@gentoo.org> (23 Mar 2009)
-# 120 patches, overhauled ebuild from the x11 overlay
-# it _needs_ more testing
+# overhauled ebuilds from the x11 overlay which _need_ more testing
+# both have 120+ patches since 7.3
 =media-libs/mesa-7.3-r2
+=media-libs/mesa-7.4_rc1
 
 # Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
@@ -280,15 +281,6 @@ x11-plugins/desklet-clock
 # versions around any more. See bug #259559 for more
 # information
 dev-java/jdbc2-postgresql
-
-# Sébastien Fabbro <bicatali@gentoo.org> (17 Feb 2009)
-# Masked for removal in 30 days, unsupported upstream and
-# renamed packages terminating with 2 available in tree
-# See bug #259483
-sci-calculators/tilp
-sci-libs/libticables
-sci-libs/libticalcs
-sci-libs/libtifiles
 
 # Ben de Groot <yngwin@gentoo.org> (14 Feb 2009)
 # Masking because of build failures, bug 258961

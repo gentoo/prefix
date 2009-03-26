@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4306 2009/03/24 21:47:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4311 2009/03/25 20:47:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -380,6 +380,7 @@ app-office/grisbi:print - Enable printing support
 app-office/imposter:iksemel - Enable external dev-libs/iksemel parsing support
 app-office/kmymoney2:hbci - Add HBCI online banking support
 app-office/kmymoney2:qtdesigner - Installs KMyMoney specific widget library for Qt-designer
+app-office/lyx:dia - Add support for diagrams (app-office/dia)
 app-office/lyx:docbook - Add support for docbook export
 app-office/lyx:dot - Add support for DOT import (media-gfx/graphviz) 
 app-office/lyx:html - Add support for HTML import
@@ -841,7 +842,7 @@ dev-util/mercurial:gpg - Support signing with GnuPG.
 dev-util/mercurial:tk - Install dev-lang/tk for hgk script.
 dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/mono-tools:webkit - Use net-libs/webkit-gtk for rendering.
-dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
+dev-util/netbeans:cxx - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/nvidia-cuda-sdk:emulation -  Build binaries for device emulation mode. These binaries will not require a CUDA-capable GPU to run. 
@@ -1370,6 +1371,7 @@ media-plugins/mythphone:festival - Enable app-accessibility/festival support
 media-plugins/mythzoneminder:minimal - Don't build the mythtv side of this plugin, only the part that communicates with zoneminder. 
 media-plugins/vdr-burn:projectx - Enables support for media-video/projectx
 media-plugins/vdr-dvdconvert:projectx - Enable support for media-video/projectx
+media-plugins/vdr-epgsearch:tre - Add support for unlimited fuzzy searching with help of dev-libs/tre library
 media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
 media-plugins/vdr-music:4mb-mod - Enables support for modded FF-Card to 4MB ram or softdecoder
 media-plugins/vdr-music:ff-card - Enables scrollmode on FF-Card
@@ -1469,7 +1471,6 @@ media-sound/mpg123:network - Enable network support (http streams / webradio)
 media-sound/mumble:g15 - Enable support for the Logitech G15 LCD (and compatible devices).
 media-sound/mumble:speech - Enable text-to-speech support in Mumble.
 media-sound/murmur:ice - Use dev-cpp/Ice to enable remote control capabilities.
-media-sound/murmur:logrotate - Use app-admin/logrotate for rotating logs.
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
 media-sound/ncmpc:artist-screen - Enable artist screen
 media-sound/ncmpc:clock-screen - Enable clock screen
@@ -1713,10 +1714,9 @@ media-video/vdr:dxr3-audio-denoise - Mutes audio noise occurring with dxr3-cards
 media-video/vdr:em84xx - Add support for em84xx plugin
 media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.7
 media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
-media-video/vdr:iptv - Enables support for vdr-iptv
+media-video/vdr:iptv - Enables channel parameters for vdr-iptv and other input plugins
 media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
-media-video/vdr:liemiext - Formerly known as AIO (all-in-one) patch, with additional changes from extensions patch
-media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
+media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves, plus changes from extensions patch
 media-video/vdr:lircsettings - Allows to change lirc settings delay, freq and timeout values in OSD
 media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
 media-video/vdr:lnbshare - Enables support for two or more dvb cards sharing the same cable to the lnb
@@ -1726,7 +1726,6 @@ media-video/vdr:menuorg - Enables support for the menuorg-plugin
 media-video/vdr:noepg - Adds code to selectively disable epg-reception for specific channels
 media-video/vdr:osdmaxitems - Support for text2skin
 media-video/vdr:pinplugin - Support for pin plugin
-media-video/vdr:pluginparam - Enables parameter support for vdr-iptv and maybe also other plugins
 media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
 media-video/vdr:settime - set system time per script instead of via syscal
 media-video/vdr:setup - Enable support for the plugin vdr-setup
