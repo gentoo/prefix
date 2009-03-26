@@ -6,7 +6,7 @@ EAPI="prefix"
 
 ETYPE="gcc-compiler"
 
-inherit eutils toolchain
+inherit eutils toolchain prefix
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
@@ -62,6 +62,9 @@ src_unpack() {
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 
 	epatch "${FILESDIR}"/${PN}-4.0.1_p5465-default-altivec.patch
+
+	epatch "${FILESDIR}"/${PN}-4.2.1-prefix-search-dirs.patch
+	eprefixify "${S}"/gcc/gcc.c
 }
 
 src_compile() {

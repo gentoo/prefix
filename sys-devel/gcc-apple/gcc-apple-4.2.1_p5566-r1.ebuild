@@ -6,7 +6,7 @@ EAPI="prefix"
 
 ETYPE="gcc-compiler"
 
-inherit eutils toolchain flag-o-matic autotools
+inherit eutils toolchain flag-o-matic autotools prefix
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
@@ -82,6 +82,9 @@ src_unpack() {
 		{x=1-x} else if (x) print}' $XD > t && mv t $XD \
 			|| die "Failed to rewrite $XD"
 	fi
+
+	epatch "${FILESDIR}"/${PN}-4.2.1-prefix-search-dirs.patch
+	eprefixify "${S}"/gcc/gcc.c
 
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
 	cd "${S}"/gcc && eautoconf
