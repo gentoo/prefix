@@ -12,7 +12,7 @@
 #
 # -----------------------------------------------------------------------------
 
-inherit eutils fdo-mime
+inherit eutils fdo-mime prefix
 
 DEPEND="=dev-java/java-config-2*"
 eapi=${EAPI/prefix/} ; eapi=${eapi# }
