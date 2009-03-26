@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="nls elibc_FreeBSD"
 
 RDEPEND="~sys-libs/${PN}-libs-${PV}
@@ -35,6 +35,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
 	epatch "${FILESDIR}"/${PN}-1.41.2-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
+	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
+	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
 	sed -i -r \
@@ -55,10 +57,25 @@ src_compile() {
 	export CC=$(tc-getCC)
 	export STRIP=:
 
+	# We want to use the "bsd" libraries while building on Darwin, but while
+	# building on other Gentoo/*BSD we prefer elf-naming scheme.
+	local libtype
+	case ${CHOST} in
+		*-darwin*) libtype=bsd;;
+		*)         libtype=elf;;
+	esac
+
+	# On MacOSX 10.4 using the assembly built-in bitoperation functions causes
+	# segmentation faults. Though this is likely fixable we can quickly make it
+	# at least work by using the C functions.
+	if [[ ${CHOST} == i?86-apple-darwin* ]]; then
+		append-flags -D_EXT2_USE_C_VERSIONS_
+	fi
+
 	econf \
 		--bindir="${EPREFIX}"/bin \
 		--sbindir="${EPREFIX}"/sbin \
-		--enable-elf-shlibs \
+		--enable-${libtype}-shlibs \
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable !elibc_uclibc tls) \
 		--without-included-gettext \
@@ -71,7 +88,8 @@ src_compile() {
 		eerror "attachment to http://bugs.gentoo.org/show_bug.cgi?id=81096"
 		die "Preventing included intl cruft from building"
 	fi
-	emake COMPILE_ET=compile_et MK_CMDS=mk_cmds || die
+	# MKDIR pic is done too late
+	emake -j1 COMPILE_ET=compile_et MK_CMDS=mk_cmds || die
 
 	# Build the FreeBSD helper
 	if use elibc_FreeBSD ; then
@@ -99,7 +117,7 @@ src_install() {
 	local lib slib
 	for lib in "${ED}"/usr/$(get_libdir)/*.a ; do
 		slib=${lib##*/}
-		mv "${lib%.a}"$(get_libname)* "${ED}"/$(get_libdir)/ || die "moving lib ${slib}"
+		mv "${lib%.a}"*$(get_libname)* "${ED}"/$(get_libdir)/ || die "moving lib ${slib}"
 		gen_usr_ldscript ${slib%.a}$(get_libname)
 	done
 
