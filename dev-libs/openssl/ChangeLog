@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.281 2009/02/19 10:40:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.283 2009/03/26 00:24:29 rich0 Exp $
+
+  26 Mar 2009; Richard Freeman <rich0@gentoo.org> openssl-0.9.8k.ebuild:
+  amd64 stable - 263751
+
+*openssl-0.9.8k (25 Mar 2009)
+
+  25 Mar 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-0.9.8k-toolchain.patch, +openssl-0.9.8k.ebuild:
+  Version bump #263751.
 
   19 Feb 2009; Raúl Porcel <armin76@gentoo.org>
   +files/openssl-0.9.8j-ia64.patch, openssl-0.9.8j.ebuild:
