@@ -1,0 +1,22 @@
+#!/bin/env bash
+
+. "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh
+einfo "entering chained prefix @GENTOO_PORTAGE_EPREFIX@ ..."
+. "@GENTOO_PORTAGE_EPREFIX@"/etc/profile
+
+# if there is no local portage, foreign portage instances need to know 
+# where to merge to - and thus we need to set EPREFIX.
+# the other way round, if there is a local portage, EPREFIX may not
+# point anywhere else than to our local EPREFIX or be unset...
+if [[ -x "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/emerge ]]; then
+	if [[ -n "${EPREFIX}" ]] && [[ "${EPREFIX}" != "@GENTOO_PORTAGE_EPREFIX@" ]]; then
+		ewarn "EPREFIX is set. this will render portage unusable, unsetting"
+		unset EPREFIX
+	fi
+else
+	export EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+fi
+
+${BASH} --noprofile
+einfo "leaving chained prefix @GENTOO_PORTAGE_EPREFIX@ ..."
+

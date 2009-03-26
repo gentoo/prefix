@@ -1,0 +1,53 @@
+#!/bin/env bash
+
+link_dirs=()
+opts=()
+chost="@GENTOO_PORTAGE_CHOST@"
+prefix="@GENTOO_PORTAGE_EPREFIX@"
+mode=link
+orig_args=("$@")
+
+for opt in "$@"; do
+ case "$opt" in
+  -L)	link_dirs=("${link_dirs[@]}" "-L$1"); shift ;;
+  -L*)	link_dirs=("${link_dirs[@]}" "${opt}") ;;
+  *)
+  	case "${opt}" in
+	-v)			mode=version ;;
+	-c|-E|-S)	mode=compile ;;
+	esac
+  	opts=("${opts[@]}" "${opt}")
+	;;
+ esac
+done
+
+save_ifs=$IFS
+IFS=':'
+new_path=
+for p in $PATH; do
+ IFS=$save_ifs
+ [[ "${p#${prefix}}" != "${p}" ]] && continue
+ if [[ -z "${new_path}" ]]; then
+  new_path="${p}"
+ else
+  new_path="${new_path}:${p}"
+ fi
+done
+IFS=$save_ifs
+
+PATH=${new_path}
+
+case "${chost}" in
+*) rpath_opt="-Wl,-rpath," ;;
+esac
+
+pfx_link=("-L${prefix}/lib" "-L${prefix}/usr/lib" "${rpath_opt}${prefix}/lib" "${rpath_opt}${prefix}/usr/lib")
+pfx_comp=("-I${prefix}/include" "-I${prefix}/usr/include")
+
+case "$mode" in
+link) 		exec "$(basename $0)" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
+compile)	exec "$(basename $0)" "${link_dirs[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
+version)	exec "$(basename $0)" "${orig_args[@]}" ;;
+*)			echo "cannot infer $0's mode from comamnd line arguments"; exit 1 ;;
+esac
+
