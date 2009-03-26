@@ -14,7 +14,8 @@ LIBSTDCXX_APPLE_VERSION=16
 DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode Tools 3.1.2"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_42-${APPLE_VERS}.tar.gz
-		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-${LIBSTDCXX_APPLE_VERSION}.tar.gz"
+		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-${LIBSTDCXX_APPLE_VERSION}.tar.gz
+		fortran? ( mirror://gnu/gcc/gcc-${GCC_VERS}/gcc-fortran-${GCC_VERS}.tar.bz2 )"
 LICENSE="APSL-2 GPL-2"
 
 if is_crosscompile; then
@@ -25,12 +26,16 @@ fi
 
 KEYWORDS="~ppc-macos ~x86-macos"
 
-IUSE="nls objc objc++ nocxx"
+IUSE="fortran nls objc objc++ nocxx"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-libs/ncurses-5.2-r2
 	nls? ( sys-devel/gettext )
-	>=sys-devel/gcc-config-1.3.12-r4"
+	>=sys-devel/gcc-config-1.3.12-r4
+	fortran? (
+		>=dev-libs/gmp-4.2.1
+		>=dev-libs/mpfr-2.2.0_p10
+	)"
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
@@ -53,6 +58,17 @@ STDCXX_INCDIR=${LIBPATH}/include/g++-v${GCC_VERS/\.*/}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# Support for fortran
+	if use fortran ; then
+		cd "${WORKDIR}"/gcc-${GCC_VERS}
+		# hmmm, just use rsync?
+		tar cf - * | ( cd "${S}" && tar xf - )
+		cd "${S}"
+		# from: http://r.research.att.com/tools/
+		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-gfortran.patch
+	fi
+
 	# we use our libtool
 	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/${CTARGET}-libtool:" \
 		gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
@@ -99,6 +115,7 @@ src_compile() {
 	use nocxx || langs="${langs},c++"
 	use objc && langs="${langs},objc"
 	use objc++ && langs="${langs/,objc/},objc,obj-c++" # need objc with objc++
+	use fortran && langs="${langs},fortran"
 
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
