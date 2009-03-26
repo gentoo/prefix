@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  26 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask gcc-4.3, we can compile @system with it, bootstrapping is still
+  initially done with 4.2 since 4.3 can't be bootstrapped (fails to compile)
+
   25 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   revert libgphoto2 mask, probably a libtool problem involved but not specific
   to this package
