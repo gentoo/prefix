@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/slime
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.66 2009/02/19 22:47:46 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/ChangeLog,v 1.67 2009/03/25 14:02:26 ulm Exp $
+
+  25 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
+  files/2.0_p20080731/70slime-gentoo.el:
+  Remove eval-after-load from site-init file since it was not working anyway.
 
   19 Feb 2009; Christian Faulhammer <fauli@gentoo.org>
   -files/2.0_p20061118/70slime-gentoo.el, -slime-2.0_p20061118.ebuild:
