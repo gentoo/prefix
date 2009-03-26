@@ -1,4 +1,0 @@
-prefix/linux/amd64
-# cd ${EPREFIX}/etc/
-# rm make.profile
-# ln -s ../usr/portage/profiles/prefix/linux/amd64 make.profile

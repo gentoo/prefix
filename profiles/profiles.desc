@@ -7,8 +7,6 @@
 #arch		profile_directory				status
 
 # Linux Profiles
-amd64-linux		default-prefix/linux/amd64				dev
-x86-linux		default-prefix/linux/x86				dev
 amd64-linux		prefix/linux/amd64				dev
 x86-linux		prefix/linux/x86				dev
 ia64-linux		prefix/linux/ia64				dev
