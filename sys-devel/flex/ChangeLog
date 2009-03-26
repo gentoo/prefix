@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/flex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.80 2009/03/21 11:51:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.81 2009/03/26 04:27:50 dirtyepic Exp $
+
+  26 Mar 2009; Ryan Hill <dirtyepic@gentoo.org>
+  +files/flex-2.5.35-gcc44.patch, flex-2.5.35.ebuild:
+  Include cstdio for GCC 4.4.
 
   21 Mar 2009; Mike Frysinger <vapier@gentoo.org> flex-2.5.35.ebuild:
   Fix tests with --as-needed #262989 by Nick Fortino.
