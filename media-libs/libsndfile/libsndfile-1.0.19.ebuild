@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.19.ebuild,v 1.5 2009/03/18 21:44:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.19.ebuild,v 1.6 2009/03/25 18:40:49 armin76 Exp $
 
 EAPI="prefix"
 
