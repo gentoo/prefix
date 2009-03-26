@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.254 2009/03/11 22:50:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.255 2009/03/26 04:44:37 serkan Exp $
+
+*sun-jdk-1.6.0.13 (26 Mar 2009)
+*sun-jdk-1.5.0.18 (26 Mar 2009)
+
+  26 Mar 2009; Serkan Kaba <serkan@gentoo.org> +sun-jdk-1.5.0.18.ebuild,
+  -sun-jdk-1.6.0.11.ebuild, +sun-jdk-1.6.0.13.ebuild:
+  Version bump wrt security bug #263810. Remove old.
 
   11 Mar 2009; Markus Meier <maekke@gentoo.org> sun-jdk-1.6.0.12.ebuild:
   amd64 stable, bug #261500
