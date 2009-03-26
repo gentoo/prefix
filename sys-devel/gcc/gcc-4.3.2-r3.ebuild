@@ -25,7 +25,7 @@ PIE_UCLIBC_STABLE="x86 arm"
 # and vanilla configurations.
 SPLIT_SPECS=no #${SPLIT_SPECS-true} hard disable until #106690 is fixed
 
-inherit toolchain flag-o-matic
+inherit toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
@@ -96,6 +96,11 @@ src_unpack() {
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
+	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
+	if use prefix; then
+		epatch "${FILESDIR}"/4.3.3/prefix-search-dirs.patch
+		eprefixify "${S}"/gcc/gcc.c
+	fi
 
 	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
 	#doesn't apply

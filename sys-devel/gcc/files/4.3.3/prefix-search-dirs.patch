@@ -1,0 +1,48 @@
+--- gcc/gcc.c.orig	2009-03-25 19:20:50 +0100
++++ gcc/gcc.c	2009-03-26 00:37:23 +0100
+@@ -1515,8 +1515,8 @@ static const char *const standard_startf
+ /* For native compilers, these are well-known paths containing
+    components that may be provided by the system.  For cross
+    compilers, these paths are not used.  */
+-static const char *const standard_exec_prefix_1 = "/usr/libexec/gcc/";
+-static const char *const standard_exec_prefix_2 = "/usr/lib/gcc/";
++static const char *const standard_exec_prefix_1 = "@GENTOO_PORTAGE_EPREFIX@/usr/libexec/gcc/";
++static const char *const standard_exec_prefix_2 = "@GENTOO_PORTAGE_EPREFIX@/usr/lib/gcc/";
+ static const char *md_exec_prefix = MD_EXEC_PREFIX;
+ static const char *md_startfile_prefix = MD_STARTFILE_PREFIX;
+ static const char *md_startfile_prefix_1 = MD_STARTFILE_PREFIX_1;
+@@ -2584,6 +2584,34 @@ add_to_obstack (char *path, void *data)
+ {
+   struct add_to_obstack_info *info = data;
+ 
++#if DISABLE_MULTILIB
++  /*
++   * Fix multilib paths for our prefix, that is alter lib64 and lib32 to lib.
++   * No allocation needed, since the path won't grow but only shrink by two
++   * chars. We should not modify host multilib dirs, otherwise libs might not
++   * be found in /lib64 or /usr/lib64
++   */
++  int elen = strlen("@GENTOO_PORTAGE_EPREFIX@");
++  if (strncmp(path, "@GENTOO_PORTAGE_EPREFIX@", elen) == 0) {
++    /* multilib dirs are put at the end like ../lib32/ ../lib64/ */
++    static char const *mdirs[] = { "../lib64/", "../lib32/" };
++    int plen = strlen(path);
++    unsigned int idx;
++    int mlen;
++
++    /* For each path replace the multilib dir at the end of the path. */
++    for (idx = 0; idx < (sizeof(mdirs) / sizeof(mdirs[0])); idx++) {
++      mlen = strlen(mdirs[idx]);
++      if (strncmp(path + plen - mlen, mdirs[idx], mlen) == 0) {
++        /* Overwrite the part with null-termination. In prefix the only multilib
++           occurence is the one added by gcc so we can end here. */
++        strcpy(path + plen - mlen, "../lib/");
++        break;
++      }
++    }
++  }
++#endif
++
+   if (info->check_dir && !is_directory (path, false))
+     return NULL;
+ 
