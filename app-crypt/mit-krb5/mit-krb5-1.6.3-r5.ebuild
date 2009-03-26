@@ -50,7 +50,7 @@ src_unpack() {
 
 src_compile() {
 	# needed to work with sys-libs/e2fsprogs-libs <- should be removed!!
-	append-flags "-I/usr/include/et"
+	append-flags "-I${EPREFIX}/usr/include/et"
 	econf \
 		$(use_with krb4) \
 		--enable-shared \
