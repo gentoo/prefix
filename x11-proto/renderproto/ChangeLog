@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/renderproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.32 2007/12/20 06:34:38 cla Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.33 2009/03/25 13:47:10 remi Exp $
+
+*renderproto-0.9.3-r1 (25 Mar 2009)
+
+  25 Mar 2009; Rémi Cardona <remi@gentoo.org>
+  +files/0.9.3-fix-render-h-compilation.patch, +renderproto-0.9.3-r1.ebuild:
+  add patch to fix build error (see bug #238665)
 
   20 Dec 2007; Dawid Węgliński <cla@gentoo.org> renderproto-0.9.3.ebuild:
   Reverting back to ~x86
