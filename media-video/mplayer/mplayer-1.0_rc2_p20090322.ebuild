@@ -235,7 +235,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p20090322-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
-	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure || die
+	epatch "${FILESDIR}"/${PN}-20090226.28734-solaris.patch
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
 }
 
 src_compile() {
@@ -606,7 +607,7 @@ EOT
 	# bug 256203
 	if use rar; then
 		cat >> "${ED}/etc/mplayer/mplayer.conf" << EOT
-unrarexec=/usr/bin/unrar
+unrarexec=${EPREFIX}/usr/bin/unrar
 EOT
 	fi
 
