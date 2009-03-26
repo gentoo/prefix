@@ -162,7 +162,7 @@ src_compile() {
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
 
 	# Specific workarounds for too-few-registers arch...
-	if [[ $(tc-arch) == "x86" ]]; then
+	if [[ $(tc-arch) == "x86" || $(tc-arch) == x86-* ]]; then
 		filter-flags -fforce-addr -momit-leaf-frame-pointer
 		append-flags -fomit-frame-pointer
 		is-flag -O? || append-flags -O2
