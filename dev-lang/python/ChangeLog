@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.368 2009/03/21 23:26:28 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.369 2009/03/26 05:10:31 zmedico Exp $
+
+  26 Mar 2009; Zac Medico <zmedico@gentoo.org> python-2.5.2-r7.ebuild,
+  python-2.5.2-r8.ebuild, python-2.5.4-r2.ebuild, python-2.6-r5.ebuild,
+  python-2.6.1-r1.ebuild:
+  In src_test, redirect stdin from /dev/tty as a workaround for bug #248081.
 
 *python-2.6.1-r1 (21 Mar 2009)
 

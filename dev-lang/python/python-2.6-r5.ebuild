@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6-r5.ebuild,v 1.6 2009/02/26 05:28:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6-r5.ebuild,v 1.7 2009/03/26 05:10:31 zmedico Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -314,8 +314,9 @@ src_test() {
 		mv "${S}"/Lib/test/test_${test}.py "${T}"
 	done
 
+	# Redirect stdin from /dev/tty as a workaround for bug #248081.
 	# rerun failed tests in verbose mode (regrtest -w)
-	EXTRATESTOPTS="-w" make test || die "make test failed"
+	EXTRATESTOPTS="-w" make test < /dev/tty || die "make test failed"
 
 	for test in ${skip_tests} ; do
 		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
