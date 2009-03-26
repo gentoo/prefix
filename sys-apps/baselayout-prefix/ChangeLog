@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*baselayout-prefix-1.12.5-r6 (26 Mar 2009)
+
+  26 Mar 2009; <mduft@gentoo.org>
+  +files/baselayout-1.12.5-prefix-chaining.patch,
+  -baselayout-prefix-1.12.5-r5.ebuild, +baselayout-prefix-1.12.5-r6.ebuild:
+  added prefix-chaining support. usefull together with a recent/patched
+  portage, and app-portage/prefix-chain-setup.
+
   18 Mar 2009; Fabian Groffen <grobian@gentoo.org>
   baselayout-prefix-1.12.5-r5.ebuild, baselayout-prefix-1.12.5-r5.ebuild:
   inherit prefix
