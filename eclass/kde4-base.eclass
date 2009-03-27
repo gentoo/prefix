@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.32 2009/03/11 17:40:51 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.33 2009/03/26 21:55:09 jmbsvicetto Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -79,11 +79,6 @@ kde4-base_set_qt_dependencies() {
 if [[ ${NEED_KDE} != "none" ]] ; then
 	# Qt
 	kde4-base_set_qt_dependencies
-
-	# Xorg
-	COMMONDEPEND="${COMMONDEPEND}
-		>=x11-base/xorg-server-1.5.2
-	"
 
 	# X11 libs
 	COMMONDEPEND="${COMMONDEPEND}

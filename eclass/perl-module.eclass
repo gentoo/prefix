@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.114 2009/03/11 06:36:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.115 2009/03/26 17:40:23 tove Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 
@@ -91,7 +91,7 @@ perl-module_src_prep() {
 			--create_packlist=0 \
 			--extra_linker_flags="${LDFLAGS}" \
 			${myconf} \
-			<<< ${pm_echovar} \
+			<<< "${pm_echovar}" \
 				|| die "Unable to build! (are you using USE=\"build\"?)"
 	elif [[ -f Makefile.PL ]] ; then
 		einfo "Using ExtUtils::MakeMaker"
@@ -101,7 +101,7 @@ perl-module_src_prep() {
 			INSTALLMAN3DIR='none' \
 			DESTDIR="${D}" \
 			${myconf} \
-			<<< ${pm_echovar} \
+			<<< "${pm_echovar}" \
 				|| die "Unable to build! (are you using USE=\"build\"?)"
 	fi
 	if [[ ! -f Build.PL && ! -f Makefile.PL ]] ; then
@@ -158,9 +158,11 @@ perl-module_src_install() {
 			|| die "emake ${myinst} ${mytargets} failed"
 	fi
 
-#	einfo "Cleaning out stray man files"
-	find "${ED}" -type f -name "*.3pm" -delete
-	find "${ED}"/usr/share/man -depth -type d -empty -delete 2>/dev/null
+	if [[ -d "${ED}"/usr/share/man ]] ; then
+#		einfo "Cleaning out stray man files"
+		find "${ED}"/usr/share/man -type f -name "*.3pm" -delete
+		find "${ED}"/usr/share/man -depth -type d -empty -delete
+	fi
 
 	fixlocalpod
 
@@ -168,9 +170,11 @@ perl-module_src_install() {
 		[[ -s "${f}" ]] && dodoc ${f}
 	done
 
-	find "${D}/${VENDOR_LIB}" -type f -a \( -name .packlist \
-		-o \( -name '*.bs' -a -empty \) \) -delete
-	find "${D}/${VENDOR_LIB}" -depth -mindepth 1 -type d -empty -delete
+	if [[ -d "${D}/${VENDOR_LIB}" ]] ; then
+		find "${D}/${VENDOR_LIB}" -type f -a \( -name .packlist \
+			-o \( -name '*.bs' -a -empty \) \) -delete
+		find "${D}/${VENDOR_LIB}" -depth -mindepth 1 -type d -empty -delete
+	fi
 
 	find "${ED}" -type f -not -name '*.so' -print0 | while read -rd '' f ; do
 		if file "${f}" | grep -q -i " text" ; then

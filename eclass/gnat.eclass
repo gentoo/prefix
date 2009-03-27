@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.37 2009/01/12 22:55:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.38 2009/03/26 09:56:51 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -130,18 +130,32 @@ get_ada_dep() {
 #  $1 - the requested gnat profile in usual form (e.g. x86_64-pc-linux-gnu-gnat-gcc-4.1)
 #  $2 - Ada standard specification, as would be specified in DEPEND. 
 #       Valid  values: ada-1995, ada-2005, ada
-#       Since standard variants are (mostly) backwards-compatible, ada-1995 and
-#       simply "ada" produce the same results (at least until ada-1983 is adde,
-#       which is rather unlikely).
+#
+#       This used to treat ada-1995 and ada alike, but some packages (still
+#       requested by users) no longer compile with new compilers (not the
+#       standard issue, but rather compiler becoming stricter most of the time).
+#       Plus there are some "intermediary versions", not fully 2005 compliant
+#       but already causing problems.  Therefore, now we do exact matching.
 belongs_to_standard() {
 #	debug-print-function $FUNCNAME $*
 	. ${GnatCommon} || die "failed to source gnat-common lib"
-	if [[ $2 == 'ada' ]] || [[ $2 == 'ada-1995' ]]; then
+	local GnatSlot=$(get_gnat_SLOT $1)
+	local ReducedSlot=${GnatSlot//\./}
+	#
+	if [[ $2 == 'ada' ]] ; then
 #		debug-print-function "ada or ada-1995 match"
 		return 0 # no restrictions imposed
-	elif [[ "$2" == 'ada-2005' ]]; then
-		local GnatSlot=$(get_gnat_SLOT $1)
-		local ReducedSlot=${GnatSlot//\./}
+	elif [[ "$2" == 'ada-1995' ]] ; then
+		if [[ $(get_gnat_Pkg $1) == "gcc" ]]; then
+#			debug-print-function "got gcc profile, GnatSlot=${ReducedSlot}"
+			[[ ${ReducedSlot} -le "42" ]] && return 0 || return 1
+		elif [[ $(get_gnat_Pkg $1) == "gpl" ]]; then
+#			debug-print-function "got gpl profile, GnatSlot=${ReducedSlot}"
+			[[ ${ReducedSlot} -lt "41" ]] && return 0 || return 1
+		else
+			return 1 # unknown compiler encountered
+		fi
+	elif [[ "$2" == 'ada-2005' ]] ; then
 		if [[ $(get_gnat_Pkg $1) == "gcc" ]]; then
 #			debug-print-function "got gcc profile, GnatSlot=${ReducedSlot}"
 			[[ ${ReducedSlot} -ge "43" ]] && return 0 || return 1
