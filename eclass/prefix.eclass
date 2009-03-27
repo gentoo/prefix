@@ -19,7 +19,7 @@
 # hence this eclass has nothing to do here in that case.
 # Note that setting EPREFIX in the environment with Prefix Portage sets
 # Portage into cross-prefix mode.
-if [[ -z ${EPREFIX} ]]; then
+if [[ ! ${EPREFIX:set} ]]; then
 	export EPREFIX=''
 fi
 
@@ -34,6 +34,7 @@ eprefixify() {
 	[[ $# -lt 1 ]] && die "at least one argument needed"
 
 	einfo "Adjusting to prefix"
+	local x
 	for x in "$@" ; do
 		if [[ -e ${x} ]] ; then
 			ebegin "  ${x##*/}"
