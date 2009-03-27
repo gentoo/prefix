@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.120 2009/03/19 22:37:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.121 2009/03/26 12:07:45 armin76 Exp $
+
+  26 Mar 2009; Raúl Porcel <armin76@gentoo.org> intltool-0.40.5.ebuild:
+  arm/s390/sh/sparc stable
 
 *intltool-0.40.6 (19 Mar 2009)
 
