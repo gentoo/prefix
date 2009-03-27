@@ -19,7 +19,7 @@
 # hence this eclass has nothing to do here in that case.
 # Note that setting EPREFIX in the environment with Prefix Portage sets
 # Portage into cross-prefix mode.
-if [[ ! ${EPREFIX:set} ]]; then
+if [[ ! ${EPREFIX+set} ]]; then
 	export EPREFIX=''
 fi
 
