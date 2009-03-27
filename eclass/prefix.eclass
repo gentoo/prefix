@@ -38,9 +38,7 @@ eprefixify() {
 		if [[ -e ${x} ]] ; then
 			ebegin "  ${x##*/}"
 			sed -i -e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" "${x}"
-			r=$?
-			eend ${r}
-			[[ ${r} != 0 ]] && die "failed to eprefixify ${x}"
+			eend $? || die "failed to eprefixify ${x}"
 		else
 			die "${x} does not exist"
 		fi
