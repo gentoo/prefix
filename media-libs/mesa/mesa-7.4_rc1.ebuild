@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4_rc1.ebuild,v 1.1 2009/03/25 13:15:28 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4_rc1.ebuild,v 1.2 2009/03/26 18:58:36 scarabeus Exp $
 
 EAPI="prefix 2"
 
@@ -63,7 +63,7 @@ IUSE="${IUSE_VIDEO_CARDS}
 RDEPEND="${drm_depend}
 	app-admin/eselect-opengl
 	dev-libs/expat
-	x11-libs/libX11[xcb=]
+	x11-libs/libX11[xcb?]
 	x11-libs/libXext
 	x11-libs/libXxf86vm
 	x11-libs/libXi
