@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9610 2009/03/25 15:05:14 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9613 2009/03/27 00:35:27 loki_val Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,15 +31,13 @@
 
 #--- END OF EXAMPLES ---
 
+# Peter Alfredsen <loki_val@gentoo.org> (27 Mar 2009)
+# Breaks compilation of KDE4 packages - bug 263823
+=x11-proto/renderproto-0.9.3-r1
+
 # Steve Dibb <beandog@gentoo.org> (24 Mar 2009)
 # Live ebuild for testing / debugging
 >=media-video/mplayer-9999
-
-# Rémi Cardona <remi@gentoo.org> (23 Mar 2009)
-# overhauled ebuilds from the x11 overlay which _need_ more testing
-# both have 120+ patches since 7.3
-=media-libs/mesa-7.3-r2
-=media-libs/mesa-7.4_rc1
 
 # Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
@@ -524,11 +522,6 @@ net-wireless/blueman
 =gnome-base/gnome-mount-0.7
 >=sys-auth/policykit-0.6
 >=gnome-extra/policykit-gnome-0.6
-
-# Alec Warner <antarus@gentoo.org> (22 Nov 2008)
-# nis-utils is dead, use LDAP you slackers.
-# Remove in Jan 2009
-net-nds/nis-utils
 
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340

@@ -1,10 +1,17 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2472 2009/03/25 15:05:14 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2474 2009/03/27 00:35:26 loki_val Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  27 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mask xrenderproto-0.9.3-r1 w.r.t. bug 263823, breaks compilation of KDE1
+  stuff.
+
+  26 Mar 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask mesa 7.4_rc1, 7.3-r2 is no longer in portage
 
   25 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
   tilp and dependencies were removed, updating package.mask
