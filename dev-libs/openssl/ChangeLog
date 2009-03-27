@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.283 2009/03/26 00:24:29 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.286 2009/03/26 17:09:28 jer Exp $
+
+  26 Mar 2009; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8k.ebuild:
+  Stable for HPPA (bug #263751).
+
+  26 Mar 2009; Brent Baude <ranger@gentoo.org> openssl-0.9.8k.ebuild:
+  Marking openssl-0.9.8k ppc64 and ppc for bug 263751
+
+  26 Mar 2009; Ferris McCormick <fmccor@gentoo.org> openssl-0.9.8k.ebuild:
+  Sparc stable --- security Bug #263751 --- All tests run as they should.
 
   26 Mar 2009; Richard Freeman <rich0@gentoo.org> openssl-0.9.8k.ebuild:
   amd64 stable - 263751
