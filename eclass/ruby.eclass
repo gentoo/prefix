@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.75 2009/03/03 15:51:54 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/uuby.eclass,v 1.75 2009/03/03 15:51:54 a3li Exp $
 #
 # @ECLASS: ruby.eclass
 # @MAINTAINER:
@@ -147,7 +147,7 @@ doruby() {
 	( # dont want to pollute calling env
 		insinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
 		insopts -m 0644
-		doins "$@"
+		doins "$@#${EPREFIX}"
 	) || die "failed to install $@"
 }
 
