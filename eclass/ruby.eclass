@@ -145,9 +145,10 @@ ruby_src_compile() {
 
 doruby() {
 	( # dont want to pollute calling env
-		insinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
+		sitedir=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
+		insinto ${sitedir#${EPREFIX}}
 		insopts -m 0644
-		doins "$@#${EPREFIX}"
+		doins "$@"
 	) || die "failed to install $@"
 }
 
