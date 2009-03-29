@@ -17,8 +17,8 @@
 		<flag name="selinux">
 			probably some SElinux crap
 		</flag>
-		<flag name="cross-prefix">
-			mduft's cross interix/winnt patch that is not documented
+		<flag name="prefix-chaining">
+			mduft's experimental prefix chaining facilities
 		</flag>
 	</use>
 </pkgmetadata>
