@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.47 2009/01/24 09:36:58 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.48 2009/03/27 06:54:16 graaff Exp $
+
+*hoe-1.11.0 (27 Mar 2009)
+
+  27 Mar 2009; Hans de Graaff <graaff@gentoo.org> +hoe-1.11.0.ebuild:
+  Version bump
 
 *hoe-1.8.3 (24 Jan 2009)
 
