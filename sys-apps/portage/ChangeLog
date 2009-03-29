@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13243 (29 Mar 2009)
+
+  29 Mar 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.12807.ebuild, +portage-2.2.00.13243.ebuild:
+  Version bump, this is a hybrid Portage that accepts both EAPI with and
+  without 'prefix' meant to be used only during the transition period of our
+  tree while EAPI=prefix is being removed.
+
 *portage-2.2.00.13200 (26 Mar 2009)
 
   26 Mar 2009; Fabian Groffen <grobian@gentoo.org>

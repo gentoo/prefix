@@ -3,6 +3,7 @@
 # $Id$
 
 EAPI="prefix"
+
 RESTRICT="test"
 
 inherit eutils multilib python
@@ -13,7 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
-IUSE="build doc epydoc selinux linguas_pl cross-prefix"
+IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
 python_dep=">=dev-lang/python-2.4"
 
@@ -78,7 +79,7 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use cross-prefix && epatch "${FILESDIR}"/${PN}-2.2.00.12574-cross-prefix.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
 }
 
 src_compile() {
@@ -100,7 +101,7 @@ src_compile() {
 	if use doc; then
 		cd "${S}"/doc
 		touch fragment/date
-		make xhtml xhtml-nochunks || die "failed to make docs"
+		emake xhtml xhtml-nochunks || die "failed to make docs"
 	fi
 
 	if use epydoc; then
@@ -131,8 +132,11 @@ src_install() {
 	local libdir=$(get_libdir)
 	local portage_base="/usr/${libdir}/portage"
 
-	make DESTDIR="${D}" install || die "make install failed."
+	emake DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
+
+	# die, stupid wrapper, die!
+	use prefix && rm -Rf "${ED}"${portage_base}/bin/ebuild-helpers/sed
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
