@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r4.ebuild,v 1.1 2009/03/22 21:35:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r4.ebuild,v 1.2 2009/03/28 00:53:50 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -40,6 +40,7 @@ PATCHES=(
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
 	"${FILESDIR}/mono-2.2-r121596-work-around-runtime-crash.patch"
 	"${FILESDIR}/mono-2.2-r123987-bless-crash.patch"
+	"${FILESDIR}/mono-2.2-freebsd-elf_common.patch"
 )
 
 pkg_setup() {
@@ -73,7 +74,8 @@ src_configure() {
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
 		$(use_with xen xen_opt) \
 		--without-ikvm-native \
-		--with-jit
+		--with-jit \
+		--disable-dtrace
 
 }
 
@@ -94,12 +96,6 @@ src_install() {
 	#Bug 255610
 	sed -i -e "s:mono/2.0/mod.exe:mono/1.0/mod.exe:" \
 		"${ED}"/usr/bin/mod || die "Failed to fix mod."
-
-	docinto docs
-	dodoc docs/*
-
-	docinto libgc
-	dodoc libgc/ChangeLog
 
 	find "${ED}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
 

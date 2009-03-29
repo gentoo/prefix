@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1-r1.ebuild,v 1.2 2009/01/18 17:45:22 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1-r1.ebuild,v 1.3 2009/03/27 15:50:10 ranger Exp $
 
 EAPI="prefix 2"
 
