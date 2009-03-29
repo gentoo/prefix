@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.0.4.ebuild,v 1.10 2009/03/18 19:23:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.0.4.ebuild,v 1.11 2009/03/27 17:08:40 armin76 Exp $
 
 EAPI="prefix"
 
