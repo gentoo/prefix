@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.690 2009/03/20 20:42:55 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.691 2009/03/27 20:52:29 loki_val Exp $
+
+*gcc-4.3.3-r2 (27 Mar 2009)
+
+  27 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> -gcc-4.3.3-r1.ebuild,
+  +gcc-4.3.3-r2.ebuild:
+  Revbump with broken patch disabled to stop duplicates of bug 262567 from
+  flowing in. Bug wranglers know this bug by heart now.
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
