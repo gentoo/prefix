@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.59 2009/03/26 20:13:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.60 2009/03/27 22:25:05 jer Exp $
+
+  27 Mar 2009; Jeroen Roovers <jer@gentoo.org> libassuan-1.0.5.ebuild:
+  Stable for HPPA (bug #263875).
 
   26 Mar 2009; Brent Baude <ranger@gentoo.org> libassuan-1.0.5.ebuild:
   Marking libassuan-1.0.5 ppc64 and ppc for bug 263875
