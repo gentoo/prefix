@@ -1,10 +1,28 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2474 2009/03/27 00:35:26 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2480 2009/03/28 22:35:01 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  28 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Mask dev-util/intltool-0.40.6, bug #264114.
+
+  28 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask sys-apps/sreadahead due to possible bad patches
+
+  27 Mar 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking media-sound/ermixer pending removal in 30 days. Bug 207324.
+
+  27 Mar 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Masking qt{,-embedded,-unixODBC}-3.3.8 pending removal
+
+  27 Mar 2009; Zac Medico <zmedico@gentoo.org> arch/m68k/packages,
+  +default/linux/m68k/2008.0/packages:
+  Move ->=sys-libs/glibc-2.4-r4 unmask atom from arch/m68k/packages to
+  default/linux/m68k/2008.0/packages, for correct inheritance order. Thanks
+  to Raúl Porcel <armin76@gentoo.org> for reporting.
 
   27 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
   Mask xrenderproto-0.9.3-r1 w.r.t. bug 263823, breaks compilation of KDE1

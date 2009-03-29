@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4315 2009/03/26 21:07:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4318 2009/03/28 22:27:46 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -222,6 +222,7 @@ app-emulation/qemu-softmmu:alsa - Enable alsa output for sound emulation
 app-emulation/qemu-softmmu:esd - Enable esound output for sound emulation
 app-emulation/qemu-softmmu:gnutls - Enable TLS support for the VNC console server
 app-emulation/qemu-softmmu:kqemu - Enables the kernel acceleration module on a x86/x86-64 cpu
+app-emulation/qemu-softmmu:kvm - Use the KVM (Kernel Virtual Machine) infrastructure on compatible hardware
 app-emulation/qemu-softmmu:ncurses - Enable the ncurses-based console
 app-emulation/qemu-softmmu:pulseaudio - Enable pulseaudio output for sound emulation
 app-emulation/qemu-softmmu:sdl - Enable the SDL-based console
@@ -1463,8 +1464,10 @@ media-sound/mixxx:vinylcontrol - Enable vinylcontrol feature
 media-sound/moc:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mp3blaster:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mp3splt-gtk:audacious - Include media-sound/audacious support.
+media-sound/mpd:curl - Support for web streams
 media-sound/mpd:icecast - Enable support for Icecast2
 media-sound/mpd:id3 - Support for ID3 tags
+media-sound/mpd:lame - Support for MP3 streaming via Icecast2
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
@@ -2758,6 +2761,7 @@ www-client/mozilla-firefox-bin:restrict-javascript - Pull in x11-plugins/noscrip
 www-client/opera:ia32 - Install 32-bit binaries instead of 64-bit binaries
 www-client/opera:qt-static - Install binaries statically linked to Qt
 www-client/opera:qt3-static - Install binaries statically linked to Qt 3
+www-client/pybugz:zsh-completion - Enables zsh completion for pybugz
 www-client/seamonkey:mozdevelop - Enable features for web developers (e.g. Venkman)
 www-client/seamonkey:moznocompose - Disable building of mozilla's HTML editor component
 www-client/seamonkey:moznoirc - Disable building of mozilla's IRC client

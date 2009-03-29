@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/s390 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.10 2009/03/11 18:17:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.11 2009/03/27 11:01:23 armin76 Exp $
+
+  27 Mar 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  P.use.mask net-dns/avahi python, since it needs gtk USe-flag
 
   11 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add lyx to use.mask

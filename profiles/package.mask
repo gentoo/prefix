@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9613 2009/03/27 00:35:27 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9619 2009/03/28 22:35:01 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,13 +31,35 @@
 
 #--- END OF EXAMPLES ---
 
+# Gilles Dartiguelongue <eva@gentoo.org> (28 Mar 2009)
+# this release is badly broken, does not install locales
+# See bug #264114
+=dev-util/intltool-0.40.6
+
+# Jeremy Olexa <darkside@gentoo.org> (28 Mar 2009)
+# Upstream is very unresponsive and we had to guess at which kernel patch was
+# needed. May not work and/or may be harmful. You have been warned.
+sys-apps/sreadahead
+
+# Ben de Groot <yngwin@gentoo.org> (27 Mar 2009)
+# Scheduled for removal in 30 days. Does not build: bug 207324.
+# Upstream inactive, last release over 6 years ago.
+media-sound/ermixer
+
+# Ben de Groot <yngwin@gentoo.org> (27 Mar 2009)
+# Scheduled for removal. Just masking now, to make sure there are no problems
+# Everyone should be using qt-3.3.8b-r1 by now
+=x11-libs/qt-3.3.8-r4
+=dev-db/qt-unixODBC-3.3.8
+=x11-libs/qt-embedded-3.3.8
+
 # Peter Alfredsen <loki_val@gentoo.org> (27 Mar 2009)
 # Breaks compilation of KDE4 packages - bug 263823
 =x11-proto/renderproto-0.9.3-r1
 
 # Steve Dibb <beandog@gentoo.org> (24 Mar 2009)
 # Live ebuild for testing / debugging
->=media-video/mplayer-9999
+~media-video/mplayer-9999
 
 # Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
@@ -49,7 +71,7 @@ x11-misc/lavaps
 dev-scheme/guile-pg
 
 # Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days because of security issues. Comment on 
+# Masked for removal in 60 days because of security issues. Comment on
 # bug 251612 if desired.
 sci-astronomy/maestro
 sci-astronomy/maestro-data
@@ -167,11 +189,11 @@ dev-lang/pugs
 =app-admin/sudo-1.7.1_beta*
 
 # Tony Vroon <chainsaw@gentoo.org> (10 Mar 2009)
-# This is *very* new and will require an extensive rewrite of your 
-# configuration before it will work. If you are not ready to dedicate 
-# at least a day towards testing and another day towards configuring 
-# you simply do not want this yet. If you do have this amount of time 
-# on your hands please join #gentoo-voip and help us document the 
+# This is *very* new and will require an extensive rewrite of your
+# configuration before it will work. If you are not ready to dedicate
+# at least a day towards testing and another day towards configuring
+# you simply do not want this yet. If you do have this amount of time
+# on your hands please join #gentoo-voip and help us document the
 # migration path. Thank you.
 net-misc/dahdi
 net-misc/dahdi-tools

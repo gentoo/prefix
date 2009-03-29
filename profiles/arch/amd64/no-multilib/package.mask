@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.25 2009/03/21 17:37:35 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.26 2009/03/28 02:31:13 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -202,6 +202,7 @@ media-video/realplayer
 net-dialup/slmodem
 net-im/aim
 net-im/skype
+net-im/skysentials
 net-im/ymessenger
 net-libs/xulrunner-bin
 net-misc/icaclient
