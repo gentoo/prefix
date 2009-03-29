@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/commons-cli-1.0-r5.ebuild,v 1.13 2007/08/03 15:30:33 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/commons-cli-1.0-r5.ebuild,v 1.14 2009/03/27 19:54:47 elvanor Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2 eutils
 
-DESCRIPTION="The CLI library provides a simple and easy to use API for working with the command line arguments and options."
+DESCRIPTION="A Java library for working with the command line arguments and options."
 HOMEPAGE="http://jakarta.apache.org/commons/cli/"
 SRC_URI="mirror://apache/jakarta/commons/cli/source/cli-${PV}-src.tar.gz"
 

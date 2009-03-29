@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/commons-cli
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/ChangeLog,v 1.39 2008/10/27 23:13:59 ranger Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-cli/ChangeLog,v 1.40 2009/03/27 19:54:47 elvanor Exp $
+
+*commons-cli-1.2 (27 Mar 2009)
+
+  27 Mar 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  +files/build-1.2.xml, commons-cli-1.0-r5.ebuild, +commons-cli-1.2.ebuild:
+  Bump to 1.2 (upstream now uses Maven, Ant buildfile generated from Maven).
 
   27 Oct 2008; Brent Baude <ranger@gentoo.org> commons-cli-1.1.ebuild:
   stable ppc64, bug 242960
