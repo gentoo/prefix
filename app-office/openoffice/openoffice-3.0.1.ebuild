@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.1.ebuild,v 1.5 2009/03/06 18:12:23 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.1.ebuild,v 1.6 2009/03/27 23:07:01 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="prefix 2"
@@ -9,7 +9,7 @@ inherit check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functi
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.0.1.2
+MY_PV=3.0.1.3
 PATCHLEVEL=OOO300
 SRC=OOo_${PV}_src
 MST=ooo300-m15
@@ -157,7 +157,7 @@ pkg_setup() {
 
 	# Check if we have enough RAM and free diskspace to build this beast
 	CHECKREQS_MEMORY="512"
-	use debug && CHECKREQS_DISK_BUILD="8192" || CHECKREQS_DISK_BUILD="5120"
+	use debug && CHECKREQS_DISK_BUILD="8192" || CHECKREQS_DISK_BUILD="6144"
 	check_reqs
 
 	strip-linguas ${LANGS}
