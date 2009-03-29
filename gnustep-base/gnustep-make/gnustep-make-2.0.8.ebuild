@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.8.ebuild,v 1.1 2009/01/28 12:56:33 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.8.ebuild,v 1.2 2009/03/27 10:11:51 voyageur Exp $
 
 EAPI="prefix 2"
 
@@ -16,7 +16,7 @@ SLOT="0"
 LICENSE="GPL-2"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
-	sys-devel/gcc[objc]
+	>=sys-devel/gcc-3.3[objc]
 	>=sys-devel/make-3.75"
 RDEPEND="${DEPEND}"
 
