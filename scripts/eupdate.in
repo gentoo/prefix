@@ -448,6 +448,8 @@ fetch_files() {
 	has() { :; }
 	hasq() { :; }
 	use() { :; }
+	addwrite() { :; }
+	addpredict() { :; }
 	debug-print-function() { :; }
 	inherit() {
 		for p in $*; do
