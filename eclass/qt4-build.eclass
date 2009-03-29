@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.28 2009/03/16 08:21:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.31 2009/03/28 02:29:24 gengor Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -108,7 +108,7 @@ qt4-build_pkg_setup() {
 	if ! version_is_at_least 4.1 $(gcc-version) ; then
 		ewarn "Using a GCC version lower than 4.1 is not supported!"
 		echo
-		ebeep 5
+		ebeep 3
 	fi
 
 	if use custom-cxxflags; then
@@ -180,17 +180,19 @@ qt4-build_src_prepare() {
 		fi
 	fi
 
-	# Bug 253127
-	# Unsupported old gcc versions - hardened needs this :(
-	if [[ $(gcc-major-version) -lt "4" ]] ; then
-		ewarn "Appending -fno-stack-protector to CXXFLAGS"
-		append-cxxflags -fno-stack-protector
-	fi
-
 	# Bug 178652
 	if [[ "$(gcc-major-version)" == "3" ]] && use amd64; then
 		ewarn "Appending -fno-gcse to CFLAGS/CXXFLAGS"
 		append-flags -fno-gcse
+	fi
+
+	# Unsupported old gcc versions - hardened needs this :(
+	if [[ $(gcc-major-version) -lt "4" ]] ; then
+		ewarn "Appending -fno-stack-protector to CXXFLAGS"
+		append-cxxflags -fno-stack-protector
+		# Bug 253127
+		sed -e "/^QMAKE_CFLAGS\t/ s:$: -fno-stack-protector-all:" \
+		-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
 	fi
 
 	# Bug 172219

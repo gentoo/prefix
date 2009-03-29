@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.122 2009/02/19 05:10:37 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.125 2009/03/27 20:58:57 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1811,6 +1811,9 @@ ejunit() {
 # ------------------------------------------------------------------------------
 
 java-utils-2_src_prepare() {
+	[[ ${EBUILD_PHASE} == prepare ]] &&
+		java-pkg_func-exists java_prepare && java_prepare
+
 	# Remember that eant will call this unless called via Portage
 	if [[ ! -e "${T}/java-utils-2_src_prepare-run" ]] && is-java-strict; then
 		echo "Searching for bundled jars:"

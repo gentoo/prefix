@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.58 2009/01/12 23:04:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.59 2009/03/27 20:13:04 loki_val Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -197,7 +197,7 @@ require_configured_kernel() {
 # @USAGE: option
 # @RETURN: true or false
 # @DESCRIPTION:
-# It checks that CONFIG_<option>=y or CONFIG_<option>=n is present in the current kernel .config
+# It checks that CONFIG_<option>=y or CONFIG_<option>=m is present in the current kernel .config
 linux_chkconfig_present() {
 local	RESULT
 	require_configured_kernel
