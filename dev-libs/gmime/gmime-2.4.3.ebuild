@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.3.ebuild,v 1.1 2008/11/19 22:31:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.3.ebuild,v 1.2 2009/03/27 15:59:23 ranger Exp $
 
 EAPI="prefix"
 
