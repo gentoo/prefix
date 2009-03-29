@@ -1,6 +1,9 @@
 # ChangeLog for dev-dotnet/gnomevfs-sharp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/ChangeLog,v 1.38 2009/03/10 15:14:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gnomevfs-sharp/ChangeLog,v 1.39 2009/03/27 15:55:39 ranger Exp $
+
+  27 Mar 2009; Brent Baude <ranger@gentoo.org> gnomevfs-sharp-2.24.1.ebuild:
+  Marking gnomevfs-sharp-2.24.1 ppc stable for bug 234305
 
 *gnomevfs-sharp-2.24.1 (10 Mar 2009)
 
