@@ -27,7 +27,7 @@ SRC_URI="http://dev.gentoo.org/~drizzt/distfiles/${PN}-${GNULIB_COMMIT_GITID}.ta
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~sparc-solaris ~sparc64-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~sparc-solaris ~sparc64-solaris"
 IUSE="doc"
 
 DEPEND=""
@@ -46,6 +46,9 @@ src_unpack() {
 		*-solaris2.9)
 			# Don't remove dirfd!
 			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr stdint strndup xvasprintf"
+			;;
+		*-aix*)
+			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr strndup xvasprintf"
 			;;
 	esac
 
