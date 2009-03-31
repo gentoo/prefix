@@ -45,6 +45,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-reference.patch
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf
 	epunt_cxx
