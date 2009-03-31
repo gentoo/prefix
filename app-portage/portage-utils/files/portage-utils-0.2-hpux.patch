@@ -1,0 +1,13 @@
+--- qsize.c.orig	2009-03-31 14:46:38 +0200
++++ qsize.c	2009-03-31 14:46:56 +0200
+@@ -44,6 +44,10 @@
+ # define S_BLKSIZE S_BLOCK_SIZE
+ #endif
+ 
++#ifdef __hpux
++# define S_BLKSIZE st.st_blksize
++#endif
++
+ int qsize_main(int argc, char **argv)
+ {
+ 	DIR *dir, *dirp;
