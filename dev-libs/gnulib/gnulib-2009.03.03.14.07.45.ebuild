@@ -27,7 +27,7 @@ SRC_URI="http://dev.gentoo.org/~drizzt/distfiles/${PN}-${GNULIB_COMMIT_GITID}.ta
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~sparc-solaris ~sparc64-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~sparc-solaris ~sparc64-solaris"
 IUSE="doc"
 
 DEPEND=""
@@ -52,6 +52,9 @@ src_unpack() {
 			;;
 		ia64*-hpux*)
 			requested_gnulib_modules="atoll dirfd getopt setenv strcasestr strndup xvasprintf"
+			;;
+		*-interix*)
+			requested_gnulib_modules="atoll getopt scandir setenv strcasestr strndup xvasprintf"
 			;;
 	esac
 
