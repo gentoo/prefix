@@ -64,11 +64,6 @@ src_unpack() {
 
 src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
-		# work around broken headers
-		export ac_cv_header_inttypes_h=no
-		export ac_cv_header_stdint_h=no
-		export gl_cv_header_inttypes_h=no
-		export gl_cv_header_stdint_h=no
 		append-flags "-Dgetgrgid=getgrgid_nomembers"
 		append-flags "-Dgetgrent=getgrent_nomembers"
 		append-flags "-Dgetgrnam=getgrnam_nomembers"
