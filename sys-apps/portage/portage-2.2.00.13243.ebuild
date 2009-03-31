@@ -79,7 +79,10 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
+	if use prefix-chaining; then
+		epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
+		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-utils.patch
+	fi
 }
 
 src_compile() {
@@ -137,6 +140,13 @@ src_install() {
 
 	# die, stupid wrapper, die!
 	use prefix && rm -Rf "${ED}"${portage_base}/bin/ebuild-helpers/sed
+
+	# live, stupid symlink, live!
+	if use prefix-chaining; then
+		# can't use dosym, since that adds EPREFIX to the real path...
+		ln -s "$(type -P bash)" "${ED}"${portage_base}/bin/ebuild-helpers/bash
+		ln -s "$(type -P mv)" "${ED}"${portage_base}/bin/ebuild-helpers/mv
+	fi
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
