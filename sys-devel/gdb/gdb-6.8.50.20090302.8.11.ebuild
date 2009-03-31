@@ -67,7 +67,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-6.8-solaris64.patch
 	# avoid using internal readline symbols, they are not exported on aix.
 	# patch is platform independent, but might reduce performance.
-	[[ ${CHOST} == *-aix* ]] && epatch "${FILESDIR}"/${P}-tui-rlapi.patch
+	[[ ${CHOST} == *-aix* ]] && epatch "${FILESDIR}"/${PN}-6.8-tui-rlapi.patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
