@@ -37,7 +37,7 @@ src_compile() {
 	tc-export CC
 	# note: Solaris 10+ fails to compile with gnulib, due to static/nonstatic
 	# declaration of strcasecmp, it doesn't need gnulib
-	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix3* || ${CHOST} == ia64*-hpux* ]]; then
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix[35]* || ${CHOST} == ia64*-hpux* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		# append-libs doesn't work, since the Makefile doesn't know LIBS, it seems
