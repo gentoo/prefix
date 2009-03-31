@@ -44,6 +44,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/sandbox-fix2.patch
 	epatch "${FILESDIR}"/${P}-reference.patch
 
+	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
+
 	eautoreconf
 	epunt_cxx
 }
