@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXrandr
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.49 2008/07/05 06:28:05 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.50 2009/03/29 18:07:41 armin76 Exp $
+
+  29 Mar 2009; Raúl Porcel <armin76@gentoo.org> libXrandr-1.2.2.ebuild:
+  arm/s390/sh stable
 
 *libXrandr-1.2.3 (05 Jul 2008)
 
