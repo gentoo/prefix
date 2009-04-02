@@ -31,6 +31,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/${P}-gnuinfo.patch #249168
 
 	if ! use vanilla ; then
+		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
+			epatch "${FILESDIR}"/${PV}/${P}-winnt.patch
+
 		epunt_cxx
 		cd libltdl/m4
 		epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
