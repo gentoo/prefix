@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.10.4.ebuild,v 1.6 2009/03/04 20:13:34 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.10.4.ebuild,v 1.7 2009/04/01 14:42:17 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -15,17 +15,26 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
-RDEPEND=">=media-libs/freetype-2.1.8
+RDEPEND="
+	>=media-libs/freetype-2.1.8
 	>=media-libs/fontconfig-2
 	app-text/poppler-data
 	>=media-libs/jpeg-6b
 	media-libs/openjpeg
 	sys-libs/zlib
 	dev-libs/libxml2
-	!app-text/pdftohtml"
-DEPEND="${RDEPEND}
+	!app-text/pdftohtml
+	!dev-libs/poppler-qt3
+	!dev-libs/poppler-qt4
+	!dev-libs/poppler
+	!dev-libs/poppler-glib
+	!app-text/poppler-utils
+	"
+DEPEND="
+	${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( >=dev-util/gtk-doc-1.0 )"
+	doc? ( >=dev-util/gtk-doc-1.0 )
+	"
 
 src_unpack() {
 	unpack ${A}
