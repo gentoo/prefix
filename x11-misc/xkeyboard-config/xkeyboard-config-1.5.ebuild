@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.5.ebuild,v 1.1 2009/01/28 10:19:11 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.5.ebuild,v 1.2 2009/03/31 14:15:43 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"
 SRC_URI="http://xlibs.freedesktop.org/xkbdesc/${P}.tar.bz2"
 
-LICENSE="MIT"
+LICENSE="xkeyboard-config"
 SLOT="0"
 
 IUSE=""
