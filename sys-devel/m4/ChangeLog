@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.125 2009/03/17 10:12:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.126 2009/04/01 15:56:38 vapier Exp $
+
+*m4-1.4.13 (01 Apr 2009)
+
+  01 Apr 2009; Mike Frysinger <vapier@gentoo.org> +m4-1.4.13.ebuild:
+  Version bump.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> m4-1.4.12.ebuild:
   m68k stable wrt #258525, thanks to kolla for testing
