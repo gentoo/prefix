@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: prefix.eclass,v 1.1 2009/04/02 17:36:53 grobian Exp $
 
 # @ECLASS: prefix.eclass
 # @MAINTAINER:
