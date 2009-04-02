@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.42 2009/02/25 22:06:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.43 2009/03/30 18:56:32 graaff Exp $
+
+  30 Mar 2009; Hans de Graaff <graaff@gentoo.org> -capistrano-2.5.2.ebuild,
+  -capistrano-2.5.3.ebuild:
+  Remove version that won't become stable.
 
 *capistrano-2.5.5 (25 Feb 2009)
 
