@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.7 2009/03/30 02:06:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r2.ebuild,v 1.2 2009/03/30 02:06:40 loki_val Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit eutils flag-o-matic
 
@@ -24,8 +24,7 @@ SRC_URI="http://gentooexperimental.org/~genstef/dist/${P}-poppler-20071121.tar.b
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="nodrm linguas_ar linguas_zh_CN linguas_zh_TW linguas_ru linguas_el
-linguas_he linguas_ja linguas_ko linguas_la linguas_th linguas_tr"
+IUSE="nodrm linguas_ar linguas_zh_CN linguas_zh_TW linguas_ru linguas_el linguas_he linguas_ja linguas_ko linguas_la linguas_th linguas_tr"
 
 RDEPEND=">=virtual/poppler-0.6.1
 	x11-libs/openmotif
@@ -36,9 +35,11 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${P}-poppler
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+pkg_setup() {
+	append-flags '-DSYSTEM_XPDFRC="\"/etc/xpdfrc\""'
+}
+
+src_prepare() {
 	use nodrm && \
 		epatch "${FILESDIR}"/${P}-poppler-nodrm.patch
 	has_version '>=virtual/poppler-0.10.0' && \
@@ -49,9 +50,9 @@ src_unpack() {
 
 src_install() {
 	dobin xpdf
-	doman xpdf.1 ${FILESDIR}/xpdfrc.5
+	doman xpdf.1 "${FILESDIR}"/xpdfrc.5
 	insinto /etc
-	newins ${FILESDIR}/sample-xpdfrc xpdfrc
+	newins "${FILESDIR}"/sample-xpdfrc xpdfrc
 	dodoc README ANNOUNCE CHANGES
 
 	use linguas_ar && install_lang arabic
@@ -69,7 +70,8 @@ src_install() {
 
 install_lang() {
 	cd ../xpdf-$1
-	sed 's,/usr/local/share/xpdf/,'"${EPREFIX}"'/usr/share/xpdf/,g' add-to-xpdfrc >> ${ED}/etc/xpdfrc
+	sed 's,/usr/local/share/xpdf/,'"${EPREFIX}"'/usr/share/xpdf/,g' add-to-xpdfrc >> "${ED}"/etc/xpdfrc
 	insinto /usr/share/xpdf/$1
-	doins -r *.unicodeMap *ToUnicode CMap
+	doins -r *.unicodeMap *ToUnicode
+	[[ -d CMap ]] && doins -r CMap
 }

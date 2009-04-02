@@ -1,6 +1,17 @@
 # ChangeLog for app-text/xpdf
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.171 2009/01/16 15:50:18 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.173 2009/03/30 02:06:40 loki_val Exp $
+
+  30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> xpdf-3.02-r1.ebuild,
+  xpdf-3.02-r2.ebuild:
+  Update dependencies w.r.t. bug 264230, fully-split-out poppler transition.
+
+*xpdf-3.02-r2 (29 Mar 2009)
+
+  29 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> +xpdf-3.02-r2.ebuild:
+  Bump. Fixes bug 200023. Thanks to KIMURA Masaru / hiyuh
+  <hiyuh.root@gmail.com> for the fix and Joseph <syscon780@gmail.com> for
+  the report.
 
   16 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
   +files/xpdf-3.02-as-needed.patch, xpdf-3.02-r1.ebuild:
