@@ -1,6 +1,11 @@
 # ChangeLog for www-client/arora
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.10 2009/03/25 07:08:20 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.11 2009/03/31 05:46:05 yngwin Exp $
+
+*arora-0.6 (31 Mar 2009)
+
+  31 Mar 2009; Ben de Groot <yngwin@gentoo.org> +arora-0.6.ebuild:
+  New release. The en_US locale is no longer optional.
 
   25 Mar 2009; Ben de Groot <yngwin@gentoo.org> metadata.xml:
   Transfer maintainership to qt herd
