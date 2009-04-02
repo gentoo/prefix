@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libssh2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/ChangeLog,v 1.16 2009/01/24 12:33:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/ChangeLog,v 1.17 2009/03/29 17:01:32 patrick Exp $
+
+*libssh2-1.0 (29 Mar 2009)
+
+  29 Mar 2009; Patrick Lauer <patrick@gentoo.org> +libssh2-1.0.ebuild:
+  Bump to 1.0. Fixes #261612
 
   24 Jan 2009; Alexis Ballier <aballier@gentoo.org> libssh2-0.18.ebuild:
   keyword ~x86-fbsd
