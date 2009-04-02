@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4318 2009/03/28 22:27:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4328 2009/04/01 14:47:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -441,6 +441,7 @@ app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search libra
 app-text/namazu:kakasi - Enable kakasi support (dev-perl/Text-Kakasi)
 app-text/noweb:icon - Enable dev-lang/icon language support
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
+app-text/poppler-utils:abiword -  Enable support for app-office/abiword output. Requires dev-libs/libxml2. 
 app-text/sgmltools-lite:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/sword:lucene - Enable lucene support for faster searching (dev-cpp/clucene)
 app-text/texlive:context - Add support for the ConTeXt format (dev-texlive/texlive-context)
@@ -695,6 +696,8 @@ dev-libs/openobex:irda - Enable IrDA support
 dev-libs/opensc:openct - Build using dev-libs/openct compatibility 
 dev-libs/opensc:pcsc-lite - Build with sys-apps/pcsc-lite
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
+dev-libs/poppler:abiword -  Enable support for app-office/abiword output. Requires dev-libs/libxml2. 
+dev-libs/poppler:poppler-data -  Pull in the free (as in beer) poppler-data package which is required at runtime for complete rendering of CJK PDFs. 
 dev-libs/ppl:prolog - Build SWI Prolog interface
 dev-libs/qsa:ide - Enable the qsa ide
 dev-libs/soprano:clucene - Enable dev-cpp/clucene backend support.
@@ -1678,7 +1681,6 @@ media-video/totem:bluetooth - Enable support for user-presence detection via the
 media-video/totem:galago - Enable the galago plugin
 media-video/totem:lirc - Enable support for controlling Totem with a remote control using app-misc/lirc
 media-video/totem:nautilus - Enable the nautilus extension
-media-video/totem:nsplugin - Build media plugin for Mozilla-based browsers such as www-client/mozilla-firefox
 media-video/totem:nvtv - Support for nvtv to use tv in on nvidia cards
 media-video/totem:python - Build support for dev-lang/python plugins
 media-video/totem:seamonkey - same as nsplugin description but build against www-client/seamonkey
@@ -2119,6 +2121,7 @@ net-mail/lbdb:abook - Enables app-misc/abook support
 net-mail/lbdb:finger - Enables finger support
 net-mail/qmailadmin:maildrop - Filter spam using maildrop
 net-mail/qpopper:apop - Enables the pop.auth file in /etc/pop.auth
+net-mail/qpopper:drac - Enables DRAC support
 net-mail/qpopper:mailbox - Enables mail spool file is in home directory ~/Mailbox
 net-mail/teapop:virtual - Enable teapop's virtual domain support.
 net-mail/tpop3d:authexternal - Enable authentication by an external program
@@ -2166,6 +2169,7 @@ net-misc/hylafax:faxonly - Don't depend on mgetty-fax
 net-misc/hylafax:html - Adds HTML documentation
 net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
 net-misc/iaxmodem:logrotate -  Install support files for app-admin/logrotate 
+net-misc/icaclient:motif - Provide the motif based connection manager
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/iputils:SECURITY_HAZARD - Allow non-root users to flood (ping -f). This is generally a very bad idea.
 net-misc/italc:system-libvncserver - Build against the system libvncserver (experimental)
@@ -2307,8 +2311,8 @@ net-print/hplip:gtk - Enable GTK+ dependencies, currently only the scanner GUI w
 net-print/hplip:minimal - Only build internal hpijs driver (not recommended at all, make sure you know what you are doing)
 net-print/hplip:parport - Enable parallel port for devices which require it
 net-print/hplip:ppds - Use precompiled PPD files (obsolete, use cupsddk instead)
-net-print/hplip:qt3 - Enable graphical interface using Qt 3 (recommended); when both qt3 and qt4 USE flags are enabled then qt3 is prioritary over qt4
-net-print/hplip:qt4 - Enable graphical interface using Qt 4 (experimental); when both qt3 and qt4 USE flags are enabled then qt3 is prioritary over qt4
+net-print/hplip:qt3 - Enable graphical interface using Qt 3; when both qt3 and qt4 USE flags are enabled then qt4 has priority over qt3
+net-print/hplip:qt4 - Enable graphical interface using Qt 4; when both qt3 and qt4 USE flags are enabled then qt4 has priority over qt3
 net-print/hplip:scanner - Enable scanner on multifunction devices which support it 
 net-print/hplip:snmp - Add support for net-analyzer/net-snmp which enables this driver to work over networks (both for server and client)
 net-print/pkpgcounter:psyco - psyco python accelerator
@@ -2532,6 +2536,7 @@ sys-apps/hal:laptop - Adds support for power management scripts (sys-power/pm-ut
 sys-apps/hal:pcmcia - Allows HAL to process PCMCIA/CardBus slot data which includes inserts and removals and act on these events.
 sys-apps/hal:selinux - Installs SELinux policies and links HAL to the SELinux libraries.
 sys-apps/hwdata-gentoo:binary-drivers - Adds support for ATI/NVIDIA binary drivers
+sys-apps/ipmitool:openipmi - Use the system OpenIPMI implementation.
 sys-apps/kexec-tools:xen - Enable extended xen support
 sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/man:lzma - Uses app-arch/lzma-utils for the COMPRESS feature. Could also be used to guarantee that lzma is on the system.
@@ -2660,8 +2665,10 @@ sys-freebsd/freebsd-usbin:isdn - Enable ISDN support.
 sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support daemon.
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/ecryptfs-utils:gpg - Enable app-crypt/gnupg key module
+sys-fs/ecryptfs-utils:nss - Enable support for dev-libs/nss
 sys-fs/ecryptfs-utils:openssl - Enable dev-libs/openssl key module
 sys-fs/ecryptfs-utils:pkcs11 - Enable PKCS#11 (Smartcards) key module
+sys-fs/ecryptfs-utils:tpm - Enable support for Trusted Platform Module (TPM) using app-crypt/trousers
 sys-fs/evms:hb - Enable support for heartbeat-1
 sys-fs/evms:hb2 - Enable support for heartbeat-2
 sys-fs/loop-aes:keyscrub - Protects the encryption key in memory but takes more cpu resources
@@ -2714,6 +2721,7 @@ sys-power/powerman:httppower -  Add support for HTTP based power controllers
 sys-power/suspend:fbsplash - Add support for framebuffer splash
 sys-process/cronie:inotify - Enable inotify filesystem monitoring support.
 sys-process/procps:n32 - Enable n32 ABI support on mips
+virtual/poppler-utils:abiword -  Enable support for app-office/abiword output. Requires dev-libs/libxml2. 
 www-apache/mod_ftpd:dbi - Enables dev-db/libdbi support
 www-apache/mod_log_sql:dbi - Enables dev-db/libdbi support
 www-apache/mod_mono:aspnet2 - Handle all applications using ASP.NET 2.0 engine by default
@@ -2905,3 +2913,4 @@ xfce-base/xfdesktop:file-icons - Build support for application launchers using x
 xfce-base/xfdesktop:menu-plugin - Build Menu plug-in for panel
 xfce-extra/thunar-thumbnailers:grace - Enable support for sci-visualization/grace thumbnails
 xfce-extra/xfce4-mpc:libmpd - Build using media-libs/libmpd backend, instead of native fallback which is preferred
+xfce-extra/xfce4-power-manager:xfce - Build Xfce4 panel plugins

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.411 2009/03/23 00:29:05 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.412 2009/04/01 09:23:02 fauli Exp $
 
 # Keep them sorted
 
@@ -247,7 +247,7 @@ nntp - Add support for newsgroups (Network News Transfer Protocol)
 nocd - Install all files required to run the application without a CD mounted
 nocxx - Disable support for C++ (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
 nptl - Enable support for Native POSIX Threads Library, the new threading module (requires linux-2.6 or better usually)
-nsplugin - Builds plugins for Netscape compatible browsers
+nsplugin - Build plugin for browsers supporting the Netscape plugin architecture (that is almost any modern browser)
 ocaml - Adds support/bindings for the Ocaml language
 ocamlopt - Enables ocamlopt support (ocaml native code compiler) -- Produces faster programs (Warning: you have to disable/enable it at a global scale)
 oci8 - Adds Oracle 8 Database Support

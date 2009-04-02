@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9619 2009/03/28 22:35:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9624 2009/04/01 17:56:25 jer Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,32 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ulrich Mueller <ulm@gentoo.org> (31 Mar 2009)
+# Ebuild rewritten and new intrusive patches. Needs testing.
+~sci-visualization/gnuplot-4.2.5
+
+# Peter Alfredsen <loki_val@gentoo.org> (30 Mar 2009)
+# HERE BE DRAGONS!
+# WARNING: Mono-2.4 will deplete your available RAM if you
+# try to compile app-office/openoffice[mono] with it.
+# See http://bugs.gentoo.org/257313 for reference.
+=www-apache/mod_mono-2.4
+=dev-dotnet/xsp-2.4
+=dev-dotnet/libgdiplus-2.4
+=dev-dotnet/gluezilla-2.4
+=dev-lang/mono-2.4
+=dev-lang/mono-basic-2.4
+=dev-util/mono-debugger-2.4
+=dev-util/mono-tools-2.4
+=virtual/monodoc-2.4
+
+# Tony Vroon <chainsaw@gentoo.org> (30 Mar 2009)
+# The v4 branch of DHCP has a new build system and a "minimal" dhclient-only 
+# build is not yet supported. The IPv6 support seems a bit rough at the edges 
+# as well. As such, this is for the adventurous only.
+# Bug reports are welcome if they carry patches.
+>=net-misc/dhcp-4.0.0
 
 # Gilles Dartiguelongue <eva@gentoo.org> (28 Mar 2009)
 # this release is badly broken, does not install locales
@@ -342,12 +368,6 @@ app-emacs/emacs-daemon
 # Masked because it's broken in current form. Several issues, see
 # tracker bug 224951
 dev-ruby/qt4-qtruby
-
-# Mike Auty <ikelos@gentoo.org> (1 Feb 2009)
-# Masked for removal in 30 days.  Old and unmaintained.
-# Vmware herd has no access to the product, and it's
-# for a very old version.  See bug 143232.
-app-emulation/vmware-esx-console
 
 # Jim Ramsay <lack@gentoo.org> (1 Feb 2008)
 # This isn't actually used by anyone, but hopefully will be soon to allow
@@ -672,14 +692,6 @@ gnome-extra/gnome-lirc-properties
 # Masked for removal. It's broken and abandoned.
 app-portage/kuroo
 
-# Tony Vroon <chainsaw@gentoo.org> (04 Sep 2008)
-# First v4 branch ebuild for DHCP. Further testing is required, especially of
-# the DHCP server. We can't yet inhibit the build of the server in this new
-# build system either. You can try this out if you're sufficiently confident
-# to send me patches or help me fix it. If that doesn't sound like you, this
-# software is not yet ready for you. Thanks.
-~net-misc/dhcp-4.0.0
-
 # Michael Marineau <marineam@gentoo.org> (03 Sep 2008)
 # Unmaintained and out of date security wise,
 # Please use 2.6.18 instead if it supports your hardware.
@@ -930,10 +942,6 @@ sys-apps/mindi-busybox
 >=media-plugins/mythweather-0.22_alpha1
 >=www-apps/mythweb-0.22_alpha1
 >=media-plugins/mythzoneminder-0.22_alpha1
-
-# Jeroen Roovers <jer@gentoo.org> (10 Mar 2008)
-# development version:
-=app-admin/sysstat-8.1*
 
 # MATSUU Takuto <matsuu@gentoo.org> (8 Mar 2008)
 # Masked for Bug 173467

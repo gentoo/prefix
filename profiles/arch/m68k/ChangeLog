@@ -1,3 +1,7 @@
 # ChangeLog for Gentoo/ia64 profile
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/m68k/ChangeLog,v 1.1 2008/04/01 17:39:57 wolf31o2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/m68k/ChangeLog,v 1.2 2009/03/29 18:10:26 armin76 Exp $
+
+  29 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add nss to use.mask
+

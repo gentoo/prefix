@@ -20,6 +20,7 @@ mzscheme
 emacs
 xemacs
 
+gnome-keyring
 afs
 tcl
 tk
@@ -45,6 +46,16 @@ ocaml
 guile
 lua
 djvu
+nss
+chicken
+clisp
+diet
+emf
+fusion
+pike
+R
+octave
+
 
 # USE=audit masked prior to testing on alpha, arm, hppa, ppc64, s390, sh.
 # Bug #184563, 18 Sep 2007 
