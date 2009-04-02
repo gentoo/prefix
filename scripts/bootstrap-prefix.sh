@@ -285,6 +285,7 @@ bootstrap_portage() {
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--with-eapi='"prefix"' \
+		--mandir="${ROOT}/automatically-removed"
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE ${MAKEOPTS} || exit 1
 
@@ -309,6 +310,10 @@ bootstrap_portage() {
 	# Some people will skip the tree() step and hence var/log is not created 
 	# As such, portage complains..
 	[[ ! -d $EPREFIX/var/log ]] && mkdir ${EPREFIX}/var/log
+	
+	# during bootstrap_portage(), man pages are not compressed. This is
+	# problematic once you have a working prefix. So, remove them now.
+	rm -rf "${ROOT}/automatically-removed"	
 
 	einfo "${A%-*} successfully bootstrapped"
 }
