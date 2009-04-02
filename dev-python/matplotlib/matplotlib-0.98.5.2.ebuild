@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.4 2009/01/21 09:32:07 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2.ebuild,v 1.5 2009/03/30 15:32:32 loki_val Exp $
 
 WX_GTK_VER=2.8
 EAPI="prefix 2"
@@ -31,7 +31,7 @@ RDEPEND="${DEPEND}
 	latex? ( virtual/latex-base
 		virtual/ghostscript
 		app-text/dvipng
-		app-text/poppler )
+		virtual/poppler-utils )
 	cairo? ( dev-python/pycairo )
 	excel? ( dev-python/xlwt )
 	fltk?  ( dev-python/pyfltk )
