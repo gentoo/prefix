@@ -25,9 +25,8 @@ src_unpack() {
 	gnome2_src_unpack
 	epunt_cxx
 
-	#epatch "${FILESDIR}"/${PN}-0.8.11-winnt.patch
-
-	#eautoreconf # required for winnt.
+	epatch "${FILESDIR}"/${P}-winnt.patch
+	eautoreconf # required for winnt.
 }
 
 src_compile() {

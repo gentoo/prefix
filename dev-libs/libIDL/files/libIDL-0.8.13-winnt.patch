@@ -1,0 +1,67 @@
+diff -ru libIDL-0.8.13.orig/configure.in libIDL-0.8.13/configure.in
+--- libIDL-0.8.13.orig/configure.in	2009-04-02 16:56:58 +0200
++++ libIDL-0.8.13/configure.in	2009-04-02 16:58:12 +0200
+@@ -57,7 +57,27 @@
+ AC_CPP_PIPE_STDIN
+ AC_CPP_NOSTDINC
+ CPP_PROGRAM="$CPP"
+-AC_DEFINE_UNQUOTED(CPP_PROGRAM, "$CPP")
++CPP_PATHS=
++
++case $host in
++*-winnt*)
++	# need to somehow findout which executable is called by parity, and
++	# use it directly.
++	set dummy $CPP_PROGRAM
++	shift
++	cpp_abs="$(bash -c "type -P $1")"
++	cpp_conf="$(dirname "$cpp_abs")/../../etc/parity.conf"
++	CPP_PROGRAM="$(unixpath2win "$(cat "$cpp_conf" | grep "CompilerExe" | sed -e 's,.*CompilerExe.*=[ \t]*,,')" | sed -e 's,\\,\\\\,g') /E /nologo"
++	while read line; do
++		CPP_PATHS="$CPP_PATHS;$(unixpath2win $line | sed -e 's,\\,\\\\,g')";
++	done << PARITY_EOF
++$(cat "$cpp_conf" | grep "AdditionalExecPaths" | sed -e 's,.*AdditionalExecPaths.*=[ \t]*,,')
++PARITY_EOF
++	;;
++esac
++
++AC_DEFINE_UNQUOTED(CPP_PROGRAM, "$CPP_PROGRAM")
++AC_DEFINE_UNQUOTED(CPP_PATHS, "$CPP_PATHS")
+ 
+ AM_PROG_LEX
+ if [[ "$LEX" != "flex" ]]; then
+diff -ru libIDL-0.8.13.orig/util.c libIDL-0.8.13/util.c
+--- libIDL-0.8.13.orig/util.c	2009-04-02 16:56:59 +0200
++++ libIDL-0.8.13/util.c	2009-04-02 16:58:12 +0200
+@@ -40,6 +40,11 @@
+ #include <direct.h>
+ #define popen _popen
+ #define pclose _pclose
++
++#ifdef __PARITY__
++# undef HAVE_SYMLINK
++# undef HAVE_CPP_PIPE_STDIN
++#endif
+ #endif
+ 
+ const char *IDL_tree_type_names[] = {
+@@ -249,6 +254,19 @@
+ 	GSList *slist;
+ 	int rv;
+ 
++#ifdef CPP_PATHS
++	if(strlen(CPP_PATHS) > 0) {
++		char* pPath = getenv("PATH");
++		char* pNewPath = (char*)malloc(strlen(pPath) + strlen(CPP_PATHS) + strlen("PATH=") + 1);
++
++		strcpy(pNewPath, "PATH=");
++		strcat(pNewPath, pPath);
++		strcat(pNewPath, CPP_PATHS); /* must have leading ';' or ':' */
++
++		putenv(pNewPath);
++	}
++#endif
++
+ #if 0 && defined(YYDEBUG)
+ 	{
+ 		extern int __IDL_debug;
