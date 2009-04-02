@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.16.ebuild,v 1.9 2008/06/05 07:39:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.16.ebuild,v 1.10 2009/03/31 09:32:45 armin76 Exp $
 
 EAPI="prefix"
 
