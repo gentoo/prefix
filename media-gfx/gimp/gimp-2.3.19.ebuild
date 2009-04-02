@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.7 2008/05/18 02:08:03 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.8 2009/03/30 13:28:41 loki_val Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 		>=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
-	pdf? ( >=app-text/poppler-bindings-0.3.1 )
+	pdf? ( >=virtual/poppler-glib-0.3.1 )
 	png? ( >=media-libs/libpng-1.2.2 )
 	python?	( >=dev-lang/python-2.2.1
 		>=dev-python/pygtk-2.10.4 )
@@ -50,16 +50,6 @@ DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.12.0
 		>=dev-util/intltool-0.31
 		doc? ( >=dev-util/gtk-doc-1 )"
-
-pkg_setup() {
-	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
-		eerror
-		eerror "This package requires app-text/poppler-bindings compiled with GTK+ support."
-		eerror "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
-		eerror
-		die "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
-	fi
-}
 
 src_compile() {
 	# workaround portage variable leakage
