@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.14 2009/01/03 15:54:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.16 2009/03/29 23:29:15 serkan Exp $
 
 EAPI="prefix 1"
 
@@ -23,7 +23,7 @@ DEPEND="${RDEPEND}
 	script? ( !dev-util/pccts )
 	source? ( app-arch/zip )"
 
-PATCHES=( "${FILESDIR}/2.7.7-gcc-4.3.patch" )
+PATCHES=( "${FILESDIR}/2.7.7-gcc-4.3.patch" "${FILESDIR}/2.7.7-gcc-4.4.patch" "${FILESDIR}/2.7.7-makefixes.patch" )
 
 src_unpack() {
 	base_src_unpack
