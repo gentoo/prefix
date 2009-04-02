@@ -65,7 +65,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-compile-warning-sol64.patch
 
 	# build glib with parity for native win32
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
 
 	# makes the iconv check more general, needed for winnt, but could
 	# be usefull for others too.

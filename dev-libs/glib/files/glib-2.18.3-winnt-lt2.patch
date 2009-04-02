@@ -1,0 +1,573 @@
+diff -ru glib-2.18.3.orig/Makefile.am glib-2.18.3/Makefile.am
+--- glib-2.18.3.orig/Makefile.am	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/Makefile.am	2008-12-04 13:33:24 +0100
+@@ -3,7 +3,7 @@
+ 
+ AUTOMAKE_OPTIONS = 1.7
+ 
+-SUBDIRS = . m4macros glib gmodule gthread gobject gio tests po docs
++SUBDIRS = . m4macros glib gmodule gthread gobject gio tests docs
+ DIST_SUBDIRS = $(SUBDIRS) build
+ 
+ bin_SCRIPTS = glib-gettextize
+diff -ru glib-2.18.3.orig/configure.in glib-2.18.3/configure.in
+--- glib-2.18.3.orig/configure.in	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/configure.in	2008-12-04 13:33:24 +0100
+@@ -117,7 +117,7 @@
+ AC_MSG_CHECKING([for Win32])
+ LIB_EXE_MACHINE_FLAG=X86
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     glib_native_win32=yes
+     glib_pid_type='void *'
+     glib_cv_stack_grows=no
+@@ -142,6 +142,9 @@
+     ;;
+ esac
+ case $host in
++  *-winnt*)
++    glib_os_parity=yes
++	;;
+   *-*-linux*)
+     glib_os_linux=yes
+     ;;
+@@ -166,7 +169,7 @@
+ AM_CONDITIONAL(OS_LINUX, [test "$glib_os_linux" = "yes"])
+ AM_CONDITIONAL(OS_CARBON, [test "$glib_have_carbon" = "yes"])
+ 
+-if test "$glib_native_win32" = "yes"; then
++if test "$glib_native_win32" = "yes" -a "$glib_os_parity" != "yes"; then
+   AC_CHECK_TOOL(WINDRES, windres, no)
+   if test "$WINDRES" = no; then
+     AC_MSG_ERROR([*** Could not find an implementation of windres in your PATH.])
+@@ -180,7 +183,7 @@
+ fi
+ AM_CONDITIONAL(MS_LIB_AVAILABLE, [test x$ms_librarian = xyes])
+ 
+-if test "$glib_native_win32" != yes; then
++if test "$glib_native_win32" != yes -a "$glib_os_parity" != "yes"; then
+     # libtool option to control which symbols are exported
+     # right now, symbols starting with _ are not exported
+     LIBTOOL_EXPORT_OPTIONS='-export-symbols-regex "^g.*"'
+@@ -373,7 +376,7 @@
+ 
+ dnl On Windows we use a native implementation
+ 
+-if test x"$glib_native_win32" = xyes; then
++if test x"$glib_native_win32" = xyes -a "$glib_os_parity" != "yes"; then
+   with_libiconv=native
+ else
+   AC_ARG_WITH(libiconv,
+@@ -502,7 +505,7 @@
+ 
+ CPPFLAGS="$CPPFLAGS -DG_DISABLE_SINGLE_INCLUDES"
+ 
+-if test "$glib_native_win32" = "yes"; then
++if test "$glib_native_win32" = "yes" -a "$glib_os_parity" != "yes"; then
+   if test x$enable_static = xyes -a x$enable_shared = xyes; then
+     AC_MSG_ERROR([Can not build both shared and static at the same time on Windows.])
+   fi
+@@ -513,7 +516,7 @@
+     AC_SUBST(GLIB_WIN32_STATIC_COMPILATION_DEFINE)
+   fi
+ fi
+-AM_CONDITIONAL(OS_WIN32_AND_DLL_COMPILATION, [test x$glib_native_win32 = xyes -a x$glib_win32_static_compilation != xyes])
++AM_CONDITIONAL(OS_WIN32_AND_DLL_COMPILATION, [test x$glib_native_win32 = xyes -a x$glib_win32_static_compilation != xyes -a "$glib_os_parity" != "yes"])
+ 
+ dnl
+ dnl DU4 native cc currently needs -std1 for ANSI mode (instead of K&R)
+@@ -1310,7 +1313,7 @@
+ dnl *** force native WIN32 shared lib loader 
+ if test -z "$G_MODULE_IMPL"; then
+   case "$host" in
+-  *-*-mingw*|*-*-cygwin*) G_MODULE_IMPL=G_MODULE_IMPL_WIN32 ;;
++  *-*-mingw*|*-*-cygwin*|*-winnt*) G_MODULE_IMPL=G_MODULE_IMPL_WIN32 ;;
+   esac
+ fi
+ dnl *** force native AIX library loader
+@@ -1468,7 +1471,7 @@
+ 
+ AC_MSG_CHECKING(for gspawn implementation)
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     GSPAWN=gspawn-win32.lo
+     ;;
+   *)
+@@ -1484,7 +1487,7 @@
+ 
+ AC_MSG_CHECKING(for GIOChannel implementation)
+ case "$host" in
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     GIO=giowin32.lo
+     ;;
+   *)
+@@ -1644,7 +1647,7 @@
+ 
+ AC_MSG_CHECKING(for platform-dependent source)
+ case "$host" in
+-  *-*-cygwin*|*-*-mingw*)
++  *-*-cygwin*|*-*-mingw*|*-winnt*)
+     PLATFORMDEP=gwin32.lo
+     ;;
+   *)
+@@ -1656,7 +1659,7 @@
+ 
+ AC_MSG_CHECKING([whether to compile timeloop])
+ case "$host" in
+-  *-*-cygwin*|*-*-mingw*|*-*-minix)
++  *-*-cygwin*|*-*-mingw*|*-*-minix|*-winnt*)
+     enable_timeloop=no
+     ;;
+   *)
+@@ -1668,7 +1671,7 @@
+ 
+ AC_MSG_CHECKING([if building for some Win32 platform])
+ case "$host" in
+-  *-*-mingw*|*-*-cygwin*)
++  *-*-mingw*|*-*-cygwin*|*-winnt*)
+     platform_win32=yes
+     ;;
+   *)
+@@ -1774,7 +1777,7 @@
+ fi
+ if test "x$want_threads" = xyes || test "x$want_threads" = xwin32; then
+        	case $host in
+-               	*-*-mingw*)
++               	*-*-mingw*|*-winnt*)
+ 		have_threads=win32
+ 		;;
+ 	esac
+@@ -1903,7 +1906,7 @@
+ 		G_THREAD_CFLAGS="-Kthread"
+ 		G_THREAD_LIBS=$G_THREAD_CFLAGS
+ 		;;
+-	*-mingw*)
++	*-mingw*|*-winnt*)
+ 		# No flag needed when using MSVCRT.DLL
+ 		G_THREAD_CFLAGS=""
+ 		;;
+@@ -3280,7 +3283,7 @@
+ #define G_PLATFORM_WIN32
+ #define G_WITH_CYGWIN"
+     ;;
+-  *-*-mingw*)
++  *-*-mingw*|*-winnt*)
+     glib_os="#define G_OS_WIN32
+ #define G_PLATFORM_WIN32"
+     ;;
+diff -ru glib-2.18.3.orig/gio/glocalfile.c glib-2.18.3/gio/glocalfile.c
+--- glib-2.18.3.orig/gio/glocalfile.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/gio/glocalfile.c	2008-12-04 13:33:24 +0100
+@@ -91,6 +91,7 @@
+ #include <windows.h>
+ #include <io.h>
+ #include <direct.h>
++#include <shellapi.h>
+ 
+ #ifndef FILE_READ_ONLY_VOLUME
+ #define FILE_READ_ONLY_VOLUME           0x00080000
+diff -ru glib-2.18.3.orig/gio/gwin32appinfo.c glib-2.18.3/gio/gwin32appinfo.c
+--- glib-2.18.3.orig/gio/gwin32appinfo.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/gio/gwin32appinfo.c	2008-12-04 13:33:24 +0100
+@@ -33,6 +33,7 @@
+ #include "glibintl.h"
+ 
+ #include <windows.h>
++#include <shellapi.h>
+ #include <shlwapi.h>
+ 
+ #include "gioalias.h"
+diff -ru glib-2.18.3.orig/gio/gwin32mount.c glib-2.18.3/gio/gwin32mount.c
+--- glib-2.18.3.orig/gio/gwin32mount.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/gio/gwin32mount.c	2008-12-04 13:33:24 +0100
+@@ -28,6 +28,7 @@
+ #include <string.h>
+ #define WIN32_MEAN_AND_LEAN
+ #include <windows.h>
++#include <shellapi.h>
+ 
+ #include <glib.h>
+ #include "gwin32volumemonitor.h"
+diff -ru glib-2.18.3.orig/glib/gconvert.c glib-2.18.3/glib/gconvert.c
+--- glib-2.18.3.orig/glib/gconvert.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gconvert.c	2008-12-04 13:33:24 +0100
+@@ -24,7 +24,7 @@
+ 
+ #include "glib.h"
+ 
+-#ifndef G_OS_WIN32
++#if !defined G_OS_WIN32 || defined __PARITY__
+ #include <iconv.h>
+ #endif
+ #include <errno.h>
+@@ -36,7 +36,7 @@
+ #include "gthreadprivate.h"
+ #include "gunicode.h"
+ 
+-#ifdef G_OS_WIN32
++#if defined G_OS_WIN32 && !defined __PARITY__
+ #include "win_iconv.c"
+ #endif
+ 
+diff -ru glib-2.18.3.orig/glib/gfileutils.c glib-2.18.3/glib/gfileutils.c
+--- glib-2.18.3.orig/glib/gfileutils.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gfileutils.c	2008-12-04 13:33:24 +0100
+@@ -41,6 +41,17 @@
+ #include <io.h>
+ #endif /* G_OS_WIN32 */
+ 
++#ifdef __PARITY__
++/*
++ * Parity provides automatic path conversion from interix -> windows,
++ * but only for the ACSII versions of stdio functions. since glib uses
++ * the wide char versions, we need to manually convert...
++ */
++# include <internal/pcrt.h>
++#else
++# define PCRT_CONV(x) x
++#endif
++
+ #ifndef S_ISLNK
+ #define S_ISLNK(x) 0
+ #endif
+@@ -191,7 +202,7 @@
+ #    define FILE_ATTRIBUTE_DEVICE 64
+ #  endif
+   int attributes;
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+ 
+   if (wfilename == NULL)
+     return FALSE;
+@@ -326,7 +337,7 @@
+ g_file_test (const gchar *filename,
+              GFileTest    test)
+ {
+-  gchar *utf8_filename = g_locale_to_utf8 (filename, -1, NULL, NULL, NULL);
++  gchar *utf8_filename = g_locale_to_utf8 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   gboolean retval;
+ 
+   if (utf8_filename == NULL)
+@@ -872,7 +883,7 @@
+                      gsize       *length,
+                      GError     **error)
+ {
+-  gchar *utf8_filename = g_locale_to_utf8 (filename, -1, NULL, NULL, error);
++  gchar *utf8_filename = g_locale_to_utf8 (PCRT_CONV(filename), -1, NULL, NULL, error);
+   gboolean retval;
+ 
+   if (utf8_filename == NULL)
+diff -ru glib-2.18.3.orig/glib/gmessages.c glib-2.18.3/glib/gmessages.c
+--- glib-2.18.3.orig/glib/gmessages.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gmessages.c	2008-12-04 13:37:02 +0100
+@@ -481,8 +481,12 @@
+ #ifdef G_OS_WIN32
+ 	      gchar *locale_msg = g_locale_from_utf8 (fatal_msg_buf, -1, NULL, NULL, NULL);
+ 	      
++#ifdef __PARITY__
++		  fprintf(stderr, locale_msg);
++#else
+ 	      MessageBox (NULL, locale_msg, NULL,
+ 			  MB_ICONERROR|MB_SETFOREGROUND);
++#endif
+ 	      if (IsDebuggerPresent () && !(test_level & G_LOG_FLAG_RECURSION))
+ 		G_BREAKPOINT ();
+ 	      else
+diff -ru glib-2.18.3.orig/glib/gspawn-win32-helper.c glib-2.18.3/glib/gspawn-win32-helper.c
+--- glib-2.18.3.orig/glib/gspawn-win32-helper.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gspawn-win32-helper.c	2008-12-04 13:33:24 +0100
+@@ -23,6 +23,10 @@
+ 
+ #include <fcntl.h>
+ 
++#ifdef __PARITY__
++# define HELPER_CONSOLE
++#endif
++
+ #undef G_LOG_DOMAIN
+ #include "glib.h"
+ #define GSPAWN_HELPER
+diff -ru glib-2.18.3.orig/glib/gstdio.c glib-2.18.3/glib/gstdio.c
+--- glib-2.18.3.orig/glib/gstdio.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gstdio.c	2008-12-04 13:33:24 +0100
+@@ -43,6 +43,17 @@
+ #include <utime.h>
+ #endif
+ 
++#ifdef __PARITY__
++/*
++ * Parity provides automatic path conversion from interix -> windows,
++ * but only for the ACSII versions of stdio functions. since glib uses
++ * the wide char versions, we need to manually convert...
++ */
++# include <internal/pcrt.h>
++#else
++# define PCRT_CONV(x) x
++#endif
++
+ #include "gstdio.h"
+ 
+ #include "galias.h"
+@@ -81,7 +92,7 @@
+ 	  int          mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+     
+@@ -132,7 +143,7 @@
+ 	 int          mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+     
+@@ -189,7 +200,7 @@
+ 	int          mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+     
+@@ -246,7 +257,7 @@
+ 	 int          mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+     
+@@ -289,7 +300,7 @@
+ 	  const gchar *newfilename)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *woldfilename = g_utf8_to_utf16 (oldfilename, -1, NULL, NULL, NULL);
++  wchar_t *woldfilename = g_utf8_to_utf16 (PCRT_CONV(oldfilename), -1, NULL, NULL, NULL);
+   wchar_t *wnewfilename;
+   int retval;
+   int save_errno = 0;
+@@ -300,7 +311,7 @@
+       return -1;
+     }
+ 
+-  wnewfilename = g_utf8_to_utf16 (newfilename, -1, NULL, NULL, NULL);
++  wnewfilename = g_utf8_to_utf16 (PCRT_CONV(newfilename), -1, NULL, NULL, NULL);
+ 
+   if (wnewfilename == NULL)
+     {
+@@ -361,7 +372,7 @@
+ 	 int          mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+@@ -400,7 +411,7 @@
+ g_chdir (const gchar *path)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wpath = g_utf8_to_utf16 (path, -1, NULL, NULL, NULL);
++  wchar_t *wpath = g_utf8_to_utf16 (PCRT_CONV(path), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+@@ -446,7 +457,8 @@
+ 	struct stat *buf)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  char* fnconv = PCRT_CONV(filename);
++  wchar_t *wfilename = g_utf8_to_utf16 (fnconv, -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+   int len;
+@@ -461,7 +473,7 @@
+   while (len > 0 && G_IS_DIR_SEPARATOR (wfilename[len-1]))
+     len--;
+   if (len > 0 &&
+-      (!g_path_is_absolute (filename) || len > g_path_skip_root (filename) - filename))
++      (!g_path_is_absolute (fnconv) || len > g_path_skip_root (fnconv) - fnconv))
+     wfilename[len] = '\0';
+ 
+   retval = _wstat (wfilename, (struct _stat *) buf);
+@@ -529,7 +541,7 @@
+ g_unlink (const gchar *filename)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+@@ -581,7 +593,7 @@
+ g_remove (const gchar *filename)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+@@ -624,7 +636,7 @@
+ g_rmdir (const gchar *filename)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+@@ -675,7 +687,7 @@
+ 	 const gchar *mode)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   wchar_t *wmode;
+   FILE *retval;
+   int save_errno;
+@@ -731,7 +743,7 @@
+ 	   FILE        *stream)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   wchar_t *wmode;
+   FILE *retval;
+   int save_errno;
+@@ -785,7 +797,7 @@
+ 	 struct utimbuf *utb)
+ {
+ #ifdef G_OS_WIN32
+-  wchar_t *wfilename = g_utf8_to_utf16 (filename, -1, NULL, NULL, NULL);
++  wchar_t *wfilename = g_utf8_to_utf16 (PCRT_CONV(filename), -1, NULL, NULL, NULL);
+   int retval;
+   int save_errno;
+ 
+diff -ru glib-2.18.3.orig/glib/gutils.c glib-2.18.3/glib/gutils.c
+--- glib-2.18.3.orig/glib/gutils.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/gutils.c	2008-12-04 13:33:24 +0100
+@@ -1485,6 +1485,18 @@
+     return g_strdup ("C:\\");
+ }
+ 
++static char *
++get_windows_tempdir (void)
++{
++	char tmpdir[MAX_PATH];
++
++	if(!GetTempPathA(MAX_PATH, tmpdir)) {
++		return g_strdup("C:\\");
++	}
++
++	return g_strdup(tmpdir);
++}
++
+ #endif
+ 
+ /* HOLDS: g_utils_global_lock */
+@@ -1493,16 +1505,15 @@
+ {
+   gchar hostname[100];
+ 
++#ifdef G_OS_WIN32
++  g_tmp_dir = get_windows_tempdir ();
++#else
+   g_tmp_dir = g_strdup (g_getenv ("TMPDIR"));
+   if (!g_tmp_dir)
+     g_tmp_dir = g_strdup (g_getenv ("TMP"));
+   if (!g_tmp_dir)
+     g_tmp_dir = g_strdup (g_getenv ("TEMP"));
+ 
+-#ifdef G_OS_WIN32
+-  if (!g_tmp_dir)
+-    g_tmp_dir = get_windows_directory_root ();
+-#else  
+ #ifdef P_tmpdir
+   if (!g_tmp_dir)
+     {
+@@ -1540,12 +1551,14 @@
+   /* In case HOME is Unix-style (it happens), convert it to
+    * Windows style.
+    */
++#ifndef __PARITY__
+   if (g_home_dir)
+     {
+       gchar *p;
+       while ((p = strchr (g_home_dir, '/')) != NULL)
+ 	*p = '\\';
+     }
++#endif
+ 
+   if (!g_home_dir)
+     {
+diff -ru glib-2.18.3.orig/glib/tests/strfuncs.c glib-2.18.3/glib/tests/strfuncs.c
+--- glib-2.18.3.orig/glib/tests/strfuncs.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/glib/tests/strfuncs.c	2008-12-04 13:33:24 +0100
+@@ -29,6 +29,10 @@
+ #include <string.h>
+ #include "glib.h"
+ 
++#ifdef __PARITY__
++# define isnan _isnan
++#endif
++
+ #define GLIB_TEST_STRING "el dorado "
+ 
+ #define FOR_ALL_CTYPE(macro)	\
+@@ -952,11 +956,13 @@
+   check_strtod_string ("-infinity", -our_inf, FALSE, 0);
+   check_strtod_string ("-.75,0", -0.75, TRUE, 4);
+   
++  #ifndef __PARITY__
+   d = 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0;
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
+ 
+   d = -179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0;
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
++  #endif
+   
+   d = pow (2.0, -1024.1);
+   g_assert (d == g_ascii_strtod (g_ascii_dtostr (buffer, sizeof (buffer), d), NULL));
+diff -ru glib-2.18.3.orig/tests/refcount/signals.c glib-2.18.3/tests/refcount/signals.c
+--- glib-2.18.3.orig/tests/refcount/signals.c	2008-12-04 13:34:21 +0100
++++ glib-2.18.3/tests/refcount/signals.c	2008-12-04 13:33:24 +0100
+@@ -9,7 +9,7 @@
+ #define MY_IS_TEST_CLASS(tclass)   (G_TYPE_CHECK_CLASS_TYPE ((tclass), G_TYPE_TEST))
+ #define MY_TEST_GET_CLASS(test)    (G_TYPE_INSTANCE_GET_CLASS ((test), G_TYPE_TEST, GTestClass))
+ 
+-static GRand *rand;
++static GRand *g_rand;
+ 
+ typedef struct _GTest GTest;
+ typedef struct _GTestClass GTestClass;
+@@ -81,7 +81,7 @@
+       NULL
+     };
+ 
+-    rand = g_rand_new();
++    g_rand = g_rand_new();
+ 
+     test_type = g_type_register_static (G_TYPE_OBJECT, "GTest",
+         &test_info, 0);
+@@ -197,7 +197,7 @@
+ static void
+ my_test_do_prop (GTest * test)
+ {
+-  test->value = g_rand_int (rand);
++  test->value = g_rand_int (g_rand);
+   g_object_notify (G_OBJECT (test), "test-prop");
+ }
+ 
