@@ -1,6 +1,6 @@
 # Copyright 2006-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/myspell-en-20081002.ebuild,v 1.7 2009/02/06 04:30:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/myspell-en-20081002.ebuild,v 1.8 2009/03/30 14:51:34 armin76 Exp $
 
 EAPI="prefix"
 
