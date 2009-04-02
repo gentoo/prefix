@@ -1,27 +1,27 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/awk/fixlafiles.awk-no_gcc_la,v 1.2 2006/05/15 00:17:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/awk/fixlafiles.awk-no_gcc_la,v 1.3 2009/03/31 07:59:19 drizzt Exp $
 
 #
 # Helper functions
 #
 function printn(string) {
-	system("echo -n \"" string "\"")
+	printf("%s", string)
 }
 function einfo(string) {
-	system("echo -e \" \\e[32;01m*\\e[0m " string "\"")
+	printf(" \033[32;01m*\033[0m %s\n", string)
 }
 function einfon(string) {
-	system("echo -ne \" \\e[32;01m*\\e[0m " string "\"")
+	printf(" \033[32;01m*\033[0m %s", string)
 }
 function ewarn(string) {
-	system("echo -e \" \\e[33;01m*\\e[0m " string "\"")
+	printf(" \033[33;01m*\033[0m %s\n", string)
 }
 function ewarnn(string) {
-	system("echo -ne \" \\e[33;01m*\\e[0m " string "\"")
+	printf(" \033[33;01m*\033[0m %s", string)
 }
 function eerror(string) {
-	system("echo -e \" \\e[31;01m*\\e[0m " string "\"")
+	printf(" \033[31;01m*\033[0m %s\n", string)
 }
 
 #

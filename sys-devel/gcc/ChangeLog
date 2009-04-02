@@ -1,6 +1,21 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.691 2009/03/27 20:52:29 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.695 2009/04/01 18:23:44 josejx Exp $
+
+  01 Apr 2009; Joseph Jezak <josejx@gentoo.org> gcc-4.3.2-r3.ebuild:
+  Marked ppc stable for bug #264121.
+
+  31 Mar 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.3.2-r3.ebuild:
+  Add fix for bug #264295
+
+  31 Mar 2009; Timothy Redaelli <drizzt@gentoo.org>
+  files/awk/fixlafiles.awk-no_gcc_la:
+  Fix files/awk/fixlafiles.awk-no_gcc_la for POSIX shell compliant. Output
+  functions taken from files/awk/fixlafiles.awk. Authorized by vapier wrt
+  #264309.
+
+  30 Mar 2009; Jeremy Olexa <darkside@gentoo.org> gcc-4.3.2-r3.ebuild:
+  amd64 stable, bug 264121
 
 *gcc-4.3.3-r2 (27 Mar 2009)
 
