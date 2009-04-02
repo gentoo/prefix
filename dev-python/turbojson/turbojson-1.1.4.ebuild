@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/turbojson-1.1.2.ebuild,v 1.1 2008/01/04 17:29:27 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/turbojson-1.1.4.ebuild,v 1.1 2009/04/01 11:47:19 patrick Exp $
 
 EAPI="prefix"
 
