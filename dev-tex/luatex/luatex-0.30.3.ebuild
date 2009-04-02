@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.3.ebuild,v 1.9 2009/03/18 20:47:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.3.ebuild,v 1.10 2009/03/30 01:28:27 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -21,7 +21,7 @@ IUSE="doc"
 RDEPEND="dev-tex/mplib[lua]
 	dev-libs/zziplib
 	media-libs/libpng
-	app-text/poppler
+	virtual/poppler
 	sys-libs/zlib"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"

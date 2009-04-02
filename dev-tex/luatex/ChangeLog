@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.25 2009/03/18 20:47:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.26 2009/03/30 01:28:27 loki_val Exp $
+
+  30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> luatex-0.30.3.ebuild:
+  Update dependencies w.r.t. bug 264230, fully-split-out poppler transition.
+  commit
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> luatex-0.30.3.ebuild:
   Marking luatex-0.30.3 ppc stable for bug 253551
