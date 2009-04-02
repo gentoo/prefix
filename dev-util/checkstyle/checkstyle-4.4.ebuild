@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-4.4.ebuild,v 1.5 2009/02/15 18:24:16 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-4.4.ebuild,v 1.6 2009/03/29 17:05:40 betelgeuse Exp $
 
-EAPI="prefix 1"
+EAPI="prefix 2"
 WANT_ANT_TASKS="ant-antlr ant-nodeps"
 JAVA_PKG_IUSE="doc source test"
 
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-COMMON_DEP="dev-java/antlr:0
+COMMON_DEP=">=dev-java/antlr-2.7.7:0[java]
 	dev-java/commons-beanutils:1.7
 	dev-java/commons-cli:1
 	dev-java/commons-logging:0
@@ -42,8 +42,7 @@ S="${WORKDIR}/${MY_P}"
 # and 1.5 for tests
 JAVA_PKG_BSFIX="off"
 
-src_unpack() {
-	unpack ${A}
+java_prepare() {
 	cd "${S}/lib"
 	rm -v *.jar || die
 	java-pkg_jar-from antlr
