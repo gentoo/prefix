@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/tmux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.11 2009/03/18 18:36:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.12 2009/03/31 18:43:22 tcunha Exp $
+
+  31 Mar 2009; Tiago Cunha <tcunha@gentoo.org> -tmux-0.6.ebuild:
+  Remove old.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> tmux-0.7.ebuild:
   stable ppc, bug 260357
