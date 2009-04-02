@@ -10,14 +10,14 @@
 -AC_TRY_LINK(,[putenv((char *)0);unsetenv((char *)0);], AC_MSG_RESULT(yes) ,  AC_MSG_RESULT(no);AC_DEFINE(NEEDPUTENV)
 -))
 +if test -z "$ac_setenv_args"; then
-+    AC_TRY_COMPILE(
++    AC_TRY_LINK(
 +    [#include <stdlib.h>],
 +    [
 +        setenv((char *) 0, (char *) 0, 0);
 +    ], ac_setenv_args=3)
 +fi
 +if test -z "$ac_setenv_args"; then
-+    AC_TRY_COMPILE(
++    AC_TRY_LINK(
 +    [#include <stdlib.h>],
 +    [
 +        setenv((char *) 0, (char *) 0);
