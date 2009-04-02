@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Apr 2009; Markus Duft <mduft@gentoo.org> files/prefix-chain-setup.in,
+  prefix-chain-setup-0.2.ebuild:
+  added SYNC to setup, keyworded ~x86-interix
+
 *prefix-chain-setup-0.2 (26 Mar 2009)
 
   26 Mar 2009; <mduft@gentoo.org> +., +files, +files/prefix-chain-setup.in,

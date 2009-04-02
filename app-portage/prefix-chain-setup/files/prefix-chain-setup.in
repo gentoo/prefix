@@ -89,6 +89,7 @@ ebegin "creating make.conf"
 	echo "# all that is possible"
 	echo "#"
 	echo "PORTDIR=\"$(portageq envvar PORTDIR)\""
+	echo "SYNC=\"$(portageq envvar SYNC)\""
 	case "${CHILD_PROFILE}" in
 	*winnt*)	echo "PORTAGE_TMPDIR=/var/tmp" ;;
 	*)			echo "PORTAGE_TMPDIR=\"${CHILD_EPREFIX}/var/tmp\"" ;;
