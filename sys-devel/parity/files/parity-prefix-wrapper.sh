@@ -3,45 +3,38 @@
 # This wrapper just adds the correct EPREFIX paths to the compiler
 # and/or linker call.
 
-compiler=$0
+compiler=$(basename $0)
 
 case "${compiler}" in
 *-ld) compiler=parity.gnu.ld@EXEEXT@ ;;
 *) compiler=parity.gnu.gcc@EXEEXT@ ;;
 esac
 
-opts=
-link_dirs=
+link_dirs=()
+opts=()
+mode=link
+orig_args=("$@")
 
-while test $# -gt 0; do
-	opt=$1
-
-	shift
-
-	case "${opt}" in
-	-L)
-		dir=$1
-		shift
-
-		link_dirs="${link_dirs} -L${dir}"
-		;;
-	-L*)
-		dir=${opt#-L}
-		link_dirs="${link_dirs} -L${dir}"
-		;;
-	*) ;;
+for opt in "$@"; do
+ case "$opt" in
+  -L)	link_dirs=("${link_dirs[@]}" "-L$1"); shift ;;
+  -L*)	link_dirs=("${link_dirs[@]}" "${opt}") ;;
+  *)
+  	case "${opt}" in
+	-v)			mode=version ;;
+	-c|-E|-S)	mode=compile ;;
 	esac
-
-	opts="${opts} ${opt}"
+  	opts=("${opts[@]}" "${opt}")
+	;;
+ esac
 done
 
-# parity is not very picky about getting options not required for
-# the current pass, so give them always.
-link_add="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib -rpath ${EPREFIX}/lib -rpath ${EPREFIX}/usr/lib"
-comp_add="-I${EPREFIX}/include -I${EPREFIX}/usr/include"
+pfx_link=("-L${EPREFIX}/lib" "-L${EPREFIX}/usr/lib" "-Wl,-rpath,${EPREFIX}/lib" "-Wl,-rpath,${EPREFIX}/usr/lib")
+pfx_comp=("-I${EPREFIX}/include" "-I${EPREFIX}/usr/include")
 
-# options added at end of command line intentionally, to keep up
-# correct search orders for user given paths, and allow overriding
-# single files from other directories. Cannot be done with link
-# relevant dirs, since library lookup is done in the correct order.
-exec $compiler $link_dirs $link_add $opts $comp_add
+case "$mode" in
+link) 		exec "${compiler}" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
+compile)	exec "${compiler}" "${link_dirs[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
+version)	exec "${compiler}" "${orig_args[@]}" ;;
+*)			echo "cannot infer $0's mode from comamnd line arguments"; exit 1 ;;
+esac
