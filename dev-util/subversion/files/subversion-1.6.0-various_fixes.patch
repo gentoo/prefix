@@ -2,7 +2,58 @@ https://svn.collab.net/viewvc/svn?view=revision&revision=36252
 https://svn.collab.net/viewvc/svn?view=revision&revision=36253
 https://svn.collab.net/viewvc/svn?view=revision&revision=36302
 https://svn.collab.net/viewvc/svn?view=revision&revision=36686
+https://svn.collab.net/viewvc/svn?view=revision&revision=36751
+https://svn.collab.net/viewvc/svn?view=revision&revision=36823
 
+--- build.conf
++++ build.conf
+@@ -3,7 +3,7 @@
+ #
+ ######################################################################
+ #
+-# Copyright (c) 2000-2008 CollabNet.  All rights reserved.
++# Copyright (c) 2000-2009 CollabNet.  All rights reserved.
+ #
+ # This software is licensed as described in the file COPYING, which
+ # you should have received as part of this distribution.  The terms
+@@ -256,7 +256,7 @@
+ type = lib
+ path = subversion/libsvn_fs
+ install = ramod-lib
+-libs = libsvn_subr fs-libs apr
++libs = libsvn_fs_util libsvn_subr fs-libs apr
+ # conditionally add more dependencies
+ add-deps = $(SVN_FS_LIB_DEPS)
+ add-install-deps = $(SVN_FS_LIB_INSTALL_DEPS)
+--- subversion/include/private/svn_fs_util.h
++++ subversion/include/private/svn_fs_util.h
+@@ -3,7 +3,7 @@
+  * consumed by only fs_* libs.
+  *
+  * ====================================================================
+- * Copyright (c) 2007 CollabNet.  All rights reserved.
++ * Copyright (c) 2007, 2009 CollabNet.  All rights reserved.
+  *
+  * This software is licensed as described in the file COPYING, which
+  * you should have received as part of this distribution.  The terms
+@@ -169,6 +169,17 @@
+                         const char *path,
+                         apr_pool_t *pool);
+ 
++/* Allocate an svn_fs_path_change2_t structure in POOL, initialize and
++   return it.
++
++   Set the node_rev_id field of the created struct to NODE_REV_ID, and
++   change_kind to CHANGE_KIND.  Set all other fields to their _unknown,
++   NULL or invalid value, respectively. */
++svn_fs_path_change2_t *
++svn_fs__path_change2_create(const svn_fs_id_t *node_rev_id,
++                            svn_fs_path_change_kind_t change_kind,
++                            apr_pool_t *pool);
++
+ #ifdef __cplusplus
+ }
+ #endif /* __cplusplus */
 --- subversion/libsvn_client/merge.c
 +++ subversion/libsvn_client/merge.c
 @@ -7948,7 +7948,7 @@
@@ -13,6 +64,63 @@ https://svn.collab.net/viewvc/svn?view=revision&revision=36686
 +  svn_boolean_t use_sleep = FALSE;
    svn_error_t *err;
    svn_boolean_t same_repos;
+ 
+--- subversion/libsvn_fs/fs-loader.c
++++ subversion/libsvn_fs/fs-loader.c
+@@ -2,7 +2,7 @@
+  * fs_loader.c:  Front-end to the various FS back ends
+  *
+  * ====================================================================
+- * Copyright (c) 2000-2008 CollabNet.  All rights reserved.
++ * Copyright (c) 2000-2009 CollabNet.  All rights reserved.
+  *
+  * This software is licensed as described in the file COPYING, which
+  * you should have received as part of this distribution.  The terms
+@@ -34,6 +34,7 @@
+ #include "svn_string.h"
+ #include "svn_private_config.h"
+ 
++#include "private/svn_fs_util.h"
+ #include "private/svn_utf_private.h"
+ 
+ #include "fs-loader.h"
+@@ -1320,6 +1321,13 @@
+   return SVN_NO_ERROR;
+ }
+ 
++svn_fs_path_change2_t *
++svn_fs_path_change2_create(const svn_fs_id_t *node_rev_id,
++                           svn_fs_path_change_kind_t change_kind,
++                           apr_pool_t *pool)
++{
++  return svn_fs__path_change2_create(node_rev_id, change_kind, pool);
++}
+ 
+ /* Return the library version number. */
+ const svn_version_t *
+--- subversion/libsvn_fs_util/fs-util.c
++++ subversion/libsvn_fs_util/fs-util.c
+@@ -2,7 +2,7 @@
+  * ends.
+  *
+  * ====================================================================
+- * Copyright (c) 2007 CollabNet.  All rights reserved.
++ * Copyright (c) 2007, 2009 CollabNet.  All rights reserved.
+  *
+  * This software is licensed as described in the file COPYING, which
+  * you should have received as part of this distribution.  The terms
+@@ -131,9 +131,9 @@
+ }
+ 
+ svn_fs_path_change2_t *
+-svn_fs_path_change2_create(const svn_fs_id_t *node_rev_id,
+-                           svn_fs_path_change_kind_t change_kind,
+-                           apr_pool_t *pool)
++svn_fs__path_change2_create(const svn_fs_id_t *node_rev_id,
++                            svn_fs_path_change_kind_t change_kind,
++                            apr_pool_t *pool)
+ {
+   svn_fs_path_change2_t *change;
  
 --- subversion/libsvn_wc/crop.c
 +++ subversion/libsvn_wc/crop.c
@@ -61,3 +169,27 @@ https://svn.collab.net/viewvc/svn?view=revision&revision=36686
      }
    else if (err)
      return err;
+--- subversion/libsvn_wc/update_editor.c
++++ subversion/libsvn_wc/update_editor.c
+@@ -2313,12 +2313,15 @@
+ 
+              A dir added with history is a tree conflict. */
+ 
+-          if (strcmp(entry->uuid, parent_entry->uuid) != 0)
+-            return svn_error_createf
+-              (SVN_ERR_WC_OBSTRUCTED_UPDATE, NULL,
+-               _("UUID mismatch: existing directory '%s' was checked out "
+-                 "from a different repository"),
+-               svn_path_local_style(db->path, pool));
++          if (entry->uuid && parent_entry->uuid)
++            {
++              if (strcmp(entry->uuid, parent_entry->uuid) != 0)
++                return svn_error_createf(
++                  SVN_ERR_WC_OBSTRUCTED_UPDATE, NULL,
++                  _("UUID mismatch: existing directory '%s' was checked out "
++                    "from a different repository"),
++                  svn_path_local_style(db->path, pool));
++            }
+ 
+           if (!eb->switch_url
+               && strcmp(db->new_URL, entry->url) != 0)

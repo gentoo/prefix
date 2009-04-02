@@ -1,4 +1,5 @@
-;;; svn site-lisp configuration
+
+;;; subversion site-lisp configuration
 
 (add-to-list 'load-path "@SITELISP@")
 (and (< emacs-major-version 22)
