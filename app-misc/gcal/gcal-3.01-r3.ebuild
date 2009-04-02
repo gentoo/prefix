@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/gcal-3.01-r3.ebuild,v 1.1 2009/02/26 21:41:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/gcal-3.01-r3.ebuild,v 1.2 2009/04/01 17:25:57 ulm Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-mandir.diff
 	epatch "${FILESDIR}"/${P}-gettext-charset.patch
 	epatch "${WORKDIR}"/${P}-iso3166.patch
-	find -name Makefile.in -print0 | \
-		xargs -0 -n1 sed -i "s:\(^CC = \).*:\1$(tc-getCC):"
 }
 
 src_compile() {
@@ -36,6 +34,7 @@ src_compile() {
 		use nls && append-ldflags -lintl
 	fi
 
+	tc-export CC
 	append-flags -D_GNU_SOURCE
 	econf $(use_enable nls) $(use_enable ncurses)
 	emake || die
