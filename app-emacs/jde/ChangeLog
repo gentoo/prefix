@@ -1,6 +1,18 @@
 # ChangeLog for app-emacs/jde
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.32 2009/03/21 08:16:44 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.33 2009/03/28 18:41:17 ulm Exp $
+
+*jde-2.3.6_pre20081208 (28 Mar 2009)
+
+  28 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/jde-2.3.6_pre20081208-classpath-gentoo.patch,
+  +files/jde-2.3.6_pre20081208-fix-paths-gentoo.patch,
+  +files/70jde-gentoo-2.3.6_pre20081208.el, +jde-2.3.6_pre20081208.ebuild:
+  Version bump, from Emacs overlay. Snapshot of upstream subversion
+  repository. Updated ebuild from Johan Andersson <re_jeep@hotmail.com>,
+  with changes by Alistair Bush <ali_bush@gentoo.org> and myself; bug 259933.
+  Install all Java files in proper locations outside of SITELISP. Make paths
+  configurable. Initialise classpath using java-config.
 
 *jde-2.3.5.1-r2 (21 Mar 2009)
 

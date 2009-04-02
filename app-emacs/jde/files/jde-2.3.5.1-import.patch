@@ -3,7 +3,8 @@ http://patch-tracking.debian.net/patch/series/view/jde/2.3.5.1-5/0008-lisp-jde-i
 
 --- jde-2.3.5.1-orig/lisp/jde-import.el	2006-02-19 15:22:36.000000000 +0100
 +++ jde-2.3.5.1/lisp/jde-import.el	2009-03-21 08:49:49.000000000 +0100
-@@ -495,15 +495,17 @@
+@@ -494,16 +494,18 @@
+                    (name (semantic-tag-name import))
                     (classname (jde-import-get-classname name))
                     (case-fold-search nil)
 -                   (number-of-matches 
