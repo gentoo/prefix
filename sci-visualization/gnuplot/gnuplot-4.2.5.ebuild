@@ -1,8 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4.ebuild,v 1.2 2008/10/28 07:34:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.5.ebuild,v 1.3 2009/04/01 20:26:54 ulm Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
+WX_GTK_VER="2.8"
 
 inherit autotools elisp-common eutils multilib wxwidgets flag-o-matic
 
@@ -10,75 +11,64 @@ MY_P="${P/_/.}"
 
 DESCRIPTION="Command-line driven interactive plotting program"
 HOMEPAGE="http://www.gnuplot.info/"
-SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz
+	mirror://gentoo/${P}-lua-term.patch.bz2"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="doc emacs gd ggi latex pdf plotutils readline svga wxwindows X xemacs"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="doc emacs gd ggi latex lua pdf plotutils readline svga wxwindows X xemacs"
 RESTRICT="wxwindows? ( test )"
 
 RDEPEND="
 	xemacs? ( virtual/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
 	emacs? ( virtual/emacs !app-emacs/gnuplot-mode )
 	pdf? ( media-libs/pdflib )
+	lua? ( >=dev-lang/lua-5.1 )
 	ggi? ( media-libs/libggi )
-	gd? ( >=media-libs/gd-2 )
+	gd? ( >=media-libs/gd-2[png] )
 	doc? ( virtual/latex-base
 		virtual/ghostscript )
-	latex? ( virtual/latex-base )
+	latex? ( virtual/latex-base
+		lua? ( dev-tex/pgf
+			|| ( >=dev-texlive/texlive-latexrecommended-2008-r2
+				=dev-texlive/texlive-xetex-2007* ) ) )
 	X? ( x11-libs/libXaw )
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
 	plotutils? ( media-libs/plotutils )
-	wxwindows? ( =x11-libs/wxGTK-2.6*
+	wxwindows? ( =x11-libs/wxGTK-2.8*
 		>=x11-libs/cairo-0.9
 		>=x11-libs/pango-1.10.3
 		>=x11-libs/gtk+-2.8 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-S=${WORKDIR}/${MY_P}
-
-E_SITEFILE=50${PN}-gentoo.el
-TEXMF=${EPREFIX}/usr/share/texmf-site
-
-latex_rehash() {
-	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' || has_version 'app-text/texlive'; then
-		texmf-update
-	else
-		texconfig rehash
-	fi
-}
+S="${WORKDIR}/${MY_P}"
+E_SITEFILE="50${PN}-gentoo.el"
+TEXMF="${EPREFIX}/usr/share/texmf-site"
 
 pkg_setup() {
-	if use gd && ! built_with_use media-libs/gd png; then
-		eerror "media-libs/gd needs to be built with PNG support"
-		die "please rebuilt media-libs/gd with USE=png"
-	fi
+	use wxwindows && wxwidgets_pkg_setup
 }
 
-src_unpack() {
+src_prepare() {
 	unpack ${A}
 	cd "${S}"
-	# Texinfo source is already shipped, so separate preparation not needed
-	# and error-prone, see bug 194216
-	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch
-	# Don't store resource files in deprecated location, reported upstream:
-	# http://sourceforge.net/tracker/index.php?func=detail&aid=1953742&group_id=2055&atid=102055
-	epatch "${FILESDIR}"/${PN}-4.2.3-app-defaults.patch
-	# Disable texhash to prevent sandbox violation, bug 201871
-	epatch "${FILESDIR}"/${PN}-4.2.3-disable-texhash.patch
+	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch #194216
+	epatch "${FILESDIR}"/${PN}-4.2.3-app-defaults.patch #219323
+	epatch "${FILESDIR}"/${PN}-4.2.3-disable-texhash.patch #201871
+	epatch "${WORKDIR}"/${P}-lua-term.patch #233475
+	epatch "${FILESDIR}"/${P}-configure-pkgconfig.patch #233475 c9
+	# Add Gentoo version identification since the licence requires it
+	epatch "${FILESDIR}"/${PN}-gentoo-version.patch
 
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# the compiler explodes if you try to use AltiVec on PPC
 	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -faltivec
-
-	# Prevent access violations, see bug 201871
-	VARTEXFONTS="${T}/fonts"
 
 	# See bug #156427.
 	if use latex ; then
@@ -89,11 +79,6 @@ src_compile() {
 			-e '/^SUBDIRS/ s/LaTeX//' share/LaTeX/Makefile.in || die
 	fi
 
-	if use wxwindows ; then
-		WX_GTK_VER="2.6"
-		need-wxwidgets unicode
-	fi
-
 	local myconf="--with-gihdir=${EPREFIX}/usr/share/${PN}/gih"
 
 	myconf="${myconf} $(use_with X x)"
@@ -102,6 +87,7 @@ src_compile() {
 	myconf="${myconf} $(use_enable wxwindows wxwidgets)"
 	myconf="${myconf} $(use_with plotutils plot "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/$(get_libdir))"
+	myconf="${myconf} $(use_with lua)"
 	myconf="${myconf} $(use_with doc tutorial)"
 
 	use ggi \
@@ -115,15 +101,24 @@ src_compile() {
 
 	myconf="${myconf} --without-lisp-files"
 
+	TEMACS=no
+	use xemacs && TEMACS=xemacs
+	use emacs && TEMACS=emacs
+
+	CFLAGS="${CFLAGS} -DGENTOO_REVISION=\\\"${PR}\\\"" \
+	EMACS=${TEMACS} \
+		econf ${myconf} || die
+}
+
+src_compile() {
+	# Prevent access violations, see bug 201871
+	VARTEXFONTS="${T}/fonts"
+
 	# This is a hack to avoid sandbox violations when using the Linux console.
 	# Creating the DVI and PDF tutorials require /dev/svga to build the
 	# example plots.
 	addwrite /dev/svga:/dev/mouse:/dev/tts/0
 
-	TEMACS=no
-	use xemacs && TEMACS=xemacs
-	use emacs && TEMACS=emacs
-	EMACS=${TEMACS} econf ${myconf} || die
 	emake || die
 
 	if use doc ; then
@@ -146,9 +141,9 @@ src_install () {
 		cd ..
 
 		# Gentoo emacs site-lisp configuration
-		string="(add-to-list 'load-path \"${EPREFIX}/usr/share/emacs/site-lisp/${PN}\")"
-		echo -e ";;; Gnuplot site-lisp configuration\n\n${string}\n" > ${E_SITEFILE}
-		sed '/^;; move/,+4 d' lisp/dotemacs >> ${E_SITEFILE}
+		echo -e "\n;;; ${PN} site-lisp configuration\n" > ${E_SITEFILE}
+		echo -e "(add-to-list 'load-path \"@SITELISP@\")\n" >> ${E_SITEFILE}
+		sed '/^;; move/,+3 d' lisp/dotemacs >> ${E_SITEFILE}
 		elisp-site-file-install ${E_SITEFILE}
 	fi
 
@@ -161,7 +156,15 @@ src_install () {
 		cd ..
 	fi
 
-	dodoc BUGS ChangeLog FAQ NEWS PATCHLEVEL PGPKEYS PORTING README* TODO VERSION
+	if use latex && use lua; then
+		# install style file in an (additional) place where TeX can find it
+		insinto "${TEXMF}/tex/latex/${PN}"
+		doins term/lua/gnuplot-lua-tikz.sty || die
+	fi
+
+	dodoc BUGS ChangeLog FAQ NEWS PATCHLEVEL PGPKEYS PORTING README* \
+		TODO VERSION
+	use lua && newdoc term/lua/README README-lua
 
 	if use doc; then
 		# Demo files
@@ -186,16 +189,17 @@ src_install () {
 
 pkg_postinst() {
 	use emacs && elisp-site-regen
+	use latex && texmf-update
+
 	if use svga ; then
 		einfo "In order to enable ordinary users to use SVGA console graphics"
 		einfo "gnuplot needs to be set up as setuid root.  Please note that"
 		einfo "this is usually considered to be a security hazard."
 		einfo "As root, manually \"chmod u+s /usr/bin/gnuplot\"."
 	fi
-	use latex && latex_rehash
 }
 
 pkg_postrm() {
 	use emacs && elisp-site-regen
-	use latex && latex_rehash
+	use latex && texmf-update
 }

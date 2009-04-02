@@ -1,6 +1,23 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.98 2009/03/27 23:19:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.101 2009/04/01 20:26:54 ulm Exp $
+
+  01 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/gnuplot-4.2.5-configure-pkgconfig.patch, gnuplot-4.2.5.ebuild:
+  Add proper texlive dependency for ifxetex.sty. Fix USE="wxwindows -lua"
+  build issue, bug 233475 comment #9; thanks to Ottxor <kleiner_otti@gmx.de>.
+
+*gnuplot-4.2.5 (31 Mar 2009)
+
+  31 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/gnuplot-gentoo-version.patch, +gnuplot-4.2.5.ebuild:
+  Version bump. Add support for PGF/TikZ terminal with USE=lua, bug 233475;
+  thanks to Thomas Fischer <fischer@unix-ag.uni-kl.de>. Add Gentoo version
+  identification and contact information, in order to fulfil provisions 2
+  through 4 of the gnuplot licence for redistribution of binaries. Remove
+  the built_with_use test for media-libs/gd from src_unpack and replace it
+  by a USE dependency; therefore bump EAPI to 2. latex_rehash is not needed
+  any more, replace it by texmf-update.
 
   27 Mar 2009; Jeroen Roovers <jer@gentoo.org> gnuplot-4.2.4-r1.ebuild:
   Stable for HPPA (bug #262327).

@@ -1,3 +1,7 @@
+http://bugs.gentoo.org/219323
+Don't store resource files in deprecated location
+Reported upstream: http://sourceforge.net/tracker/index.php?func=detail&aid=1953742&group_id=2055&atid=102055
+
 --- gnuplot-4.2.3-orig/configure.in	2008-03-04 19:36:53.000000000 +0100
 +++ gnuplot-4.2.3/configure.in	2008-04-26 11:44:59.000000000 +0200
 @@ -1024,6 +1024,10 @@

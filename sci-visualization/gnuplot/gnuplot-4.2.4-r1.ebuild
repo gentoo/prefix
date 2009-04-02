@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4-r1.ebuild,v 1.12 2009/03/27 23:19:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4-r1.ebuild,v 1.13 2009/04/01 20:26:54 ulm Exp $
 
 EAPI="prefix"
 
@@ -64,14 +64,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# Texinfo source is already shipped, so separate preparation not needed
-	# and error-prone, see bug 194216
-	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch
-	# Don't store resource files in deprecated location, reported upstream:
-	# http://sourceforge.net/tracker/index.php?func=detail&aid=1953742&group_id=2055&atid=102055
-	epatch "${FILESDIR}"/${PN}-4.2.3-app-defaults.patch
-	# Disable texhash to prevent sandbox violation, bug 201871
-	epatch "${FILESDIR}"/${PN}-4.2.3-disable-texhash.patch
+	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch #194216
+	epatch "${FILESDIR}"/${PN}-4.2.3-app-defaults.patch #219323
+	epatch "${FILESDIR}"/${PN}-4.2.3-disable-texhash.patch #201871
 
 	eautoreconf
 }

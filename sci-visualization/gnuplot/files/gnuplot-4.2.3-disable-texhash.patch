@@ -1,3 +1,6 @@
+http://bugs.gentoo.org/201871
+Disable texhash to prevent sandbox violation
+
 --- gnuplot-4.2.3-orig/share/LaTeX/Makefile.am	2006-10-02 23:05:30.000000000 +0200
 +++ gnuplot-4.2.3/share/LaTeX/Makefile.am	2008-08-26 20:09:43.000000000 +0200
 @@ -11,8 +11,7 @@

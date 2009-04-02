@@ -1,3 +1,7 @@
+http://bugs.gentoo.org/194216
+Texinfo source is already shipped, so separate preparation not needed
+and error-prone
+
 --- docs/Makefile.in	2007-10-30 20:35:47.000000000 +0100
 +++ docs/Makefile.in	2007-10-30 21:57:52.000000000 +0100
 @@ -348,16 +348,6 @@
