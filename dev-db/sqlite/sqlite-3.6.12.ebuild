@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.11.ebuild,v 1.2 2009/03/31 23:53:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.12.ebuild,v 1.2 2009/04/01 07:19:03 vapier Exp $
 
 EAPI="prefix 1"
 
@@ -40,21 +40,17 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# note: this sandbox fix is no longer needed with sandbox-1.3+
 	epatch "${FILESDIR}"/sandbox-fix2.patch
-	epatch "${FILESDIR}"/${P}-reference.patch
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
 
-	# avoid having to run autotools
-	sed -i 's:3\.6\.10:3.6.11:g' configure
 	epunt_cxx
 }
 
 src_compile() {
 	# not available via configure and requested in bug #143794
-	use soundex && append-cppflags -DSQLITE_SOUNDEX=1
+	use soundex && append-flags -DSQLITE_SOUNDEX=1
 
 	econf \
 		$(use_enable debug) \

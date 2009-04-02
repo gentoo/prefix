@@ -1,6 +1,17 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.223 2009/03/01 02:56:38 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.226 2009/04/01 07:19:03 vapier Exp $
+
+  01 Apr 2009; Mike Frysinger <vapier@gentoo.org> sqlite-3.6.12.ebuild:
+  Upstream changed the released tarball.
+
+*sqlite-3.6.12 (01 Apr 2009)
+
+  01 Apr 2009; Mike Frysinger <vapier@gentoo.org> +sqlite-3.6.12.ebuild:
+  Version bump.
+
+  31 Mar 2009; Mike Frysinger <vapier@gentoo.org> sqlite-3.6.11.ebuild:
+  Cleanup ebuild a bit and avoid running autotools.
 
 *sqlite-3.6.11 (01 Mar 2009)
 
