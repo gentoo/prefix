@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.128 2009/01/07 20:03:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.129 2009/04/01 16:35:57 vapier Exp $
+
+*autoconf-2.63b (01 Apr 2009)
+
+  01 Apr 2009; Mike Frysinger <vapier@gentoo.org> +autoconf-2.63b.ebuild:
+  Version bump.
 
   07 Jan 2009; Raúl Porcel <armin76@gentoo.org> autoconf-2.63.ebuild:
   alpha/ia64 stable wrt #2475067
