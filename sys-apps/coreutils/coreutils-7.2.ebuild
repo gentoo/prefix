@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.1.ebuild,v 1.8 2009/03/31 20:15:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.2.ebuild,v 1.2 2009/04/02 01:28:45 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-PATCH_VER="3"
+PATCH_VER="2"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.gz
@@ -46,11 +46,9 @@ src_unpack() {
 		epatch
 	fi
 
-	#epatch "${FILESDIR}"/6.9-without-mountfs.patch
-	epatch "${FILESDIR}"/${P}-mint.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
-	epatch "${FILESDIR}"/${P}-solaris-sparc64.patch
-	epatch "${FILESDIR}"/${P}-interix-fs.patch
+# fails, perhaps needs resubmission to gnu-coreutils ml iso bugtracker
+	#epatch "${FILESDIR}"/${PN}-7.1-mint.patch
+	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-6.12-interix-sleep.patch
 
 	# Since we've patched many .c files, the make process will try to

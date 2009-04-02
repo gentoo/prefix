@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.243 2009/03/12 13:15:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.245 2009/04/02 01:28:45 vapier Exp $
+
+  02 Apr 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.2.ebuild:
+  Add fix from upstream for mv/i-3 test failure #264455 by Ryan Hill.
+
+*coreutils-7.2 (31 Mar 2009)
+
+  31 Mar 2009; Mike Frysinger <vapier@gentoo.org> +coreutils-7.2.ebuild:
+  Version bump.
 
   12 Mar 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.1.ebuild:
   Fix some test failures #259876 by Ryan Hill.
