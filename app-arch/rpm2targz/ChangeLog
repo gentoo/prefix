@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/rpm2targz
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.73 2008/10/25 23:27:35 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.74 2009/03/31 23:59:05 josejx Exp $
+
+  31 Mar 2009; Joseph Jezak <josejx@gentoo.org> rpm2targz-9.0.0.3g.ebuild:
+  Marked ppc/ppc64 stable for bug #264429.
 
   25 Oct 2008; Mike Frysinger <vapier@gentoo.org> rpm2targz-9.0.0.3g.ebuild:
   Respect CC env var #243506.
