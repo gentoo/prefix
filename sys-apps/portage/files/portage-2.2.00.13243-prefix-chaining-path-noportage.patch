@@ -1,0 +1,51 @@
+diff -ru portage.orig/bin/ebuild.sh portage/bin/ebuild.sh
+--- portage.orig/bin/ebuild.sh	2009-04-02 15:24:15 +0200
++++ portage/bin/ebuild.sh	2009-04-02 15:23:46 +0200
+@@ -77,23 +77,32 @@
+ 
+ 	for eroot in ${PORTAGE_READONLY_EPREFIXES}:${EPREFIX}; do
+ 		IFS=$save_IFS
+-		[[ -f ${eroot}/usr/share/portage/config/make.globals ]] || continue
+-		defpath="$(. ${eroot}/etc/make.globals && echo $DEFAULT_PATH)"
+-		okpath=
+-		save_IFS2=$IFS
+-		IFS=':'
+-		for p in $defpath; do
++		if [[ -f ${eroot}/usr/share/portage/config/make.globals ]]; then
++			# ok, there is a portage instance installed in this prefix,
++			# so we can ask (politely) for the DEFAULT_PATH of it :)
++
++			defpath="$(. ${eroot}/etc/make.globals && echo $DEFAULT_PATH)"
++			okpath=
++			save_IFS2=$IFS
++			IFS=':'
++			for p in $defpath; do
++				IFS=$save_IFS2
++				[[ ":${new_PATH}:" == *":$p:"* ]] && continue
++				if [[ -z "${okpath}" ]]; then
++					okpath="${p}"
++				else
++					okpath="${okpath}:${p}"
++				fi
++			done
+ 			IFS=$save_IFS2
+-			[[ ":${new_PATH}:" == *":$p:"* ]] && continue
+-			if [[ -z "${okpath}" ]]; then
+-				okpath="${p}"
+-			else
+-				okpath="${okpath}:${p}"
+-			fi
+-		done
+-		IFS=$save_IFS2
+ 
+-		new_PATH="${okpath}:${new_PATH}"
++			new_PATH="${okpath}:${new_PATH}"
++		else
++			# no portage installed in this prefix. this means we have to
++			# somehow fiddle together a sane path for that prefix for at
++			# least the standard things to work.
++			new_PATH="${eroot}/usr/bin:${eroot}/usr/sbin:${eroot}/bin:${eroot}/sbin:${new_PATH}"
++		fi
+ 	done
+ 	IFS=$save_IFS
+ 

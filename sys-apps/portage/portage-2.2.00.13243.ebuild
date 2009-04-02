@@ -83,6 +83,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
 		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-utils.patch
 		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-sync.patch
+		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-path-noportage.patch
 	fi
 }
 
