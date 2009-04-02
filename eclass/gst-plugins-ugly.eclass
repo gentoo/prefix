@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-ugly.eclass,v 1.12 2008/12/05 21:45:58 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-ugly.eclass,v 1.13 2009/03/30 04:24:15 tester Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -26,7 +26,7 @@ MY_P=${MY_PN}-${PV}
 # All relevant configure options for gst-plugins
 # need a better way to extract these
 # gst-plugins-base 0.9
-my_gst_plugins_ugly="a52dec amrnb cdio dvdread dvdnav lame id3tag mad mpeg2dec sidplay"
+my_gst_plugins_ugly="a52dec amrnb cdio dvdread dvdnav lame id3tag mad mpeg2dec sidplay twolame"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-ugly/${MY_P}.tar.bz2"
@@ -74,22 +74,22 @@ gst-plugins-ugly_src_configure() {
 
 gst-plugins-ugly_src_unpack() {
 
-	local makefiles
+#	local makefiles
 
 	unpack ${A}
 
 	# Link with the syswide installed gst-libs if needed
-	gst-plugins10_find_plugin_dir
-	cd ${S}
+#	gst-plugins10_find_plugin_dir
+#	cd ${S}
 
 	# Remove generation of any other Makefiles except the plugin's Makefile
-	if [ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]; then
-		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	elif [ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]; then
-		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	fi
-	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
-		-i ${S}/configure
+#	if [ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]; then
+#		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	elif [ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]; then
+#		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	fi
+#	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
+#		-i ${S}/configure
 
 }
 

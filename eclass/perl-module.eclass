@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.115 2009/03/26 17:40:23 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.116 2009/03/29 17:32:31 tove Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 
@@ -89,7 +89,6 @@ perl-module_src_prep() {
 			--libdoc= \
 			--destdir="${D}" \
 			--create_packlist=0 \
-			--extra_linker_flags="${LDFLAGS}" \
 			${myconf} \
 			<<< "${pm_echovar}" \
 				|| die "Unable to build! (are you using USE=\"build\"?)"

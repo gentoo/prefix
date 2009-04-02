@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.87 2009/03/01 08:09:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.88 2009/03/28 11:09:27 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -512,8 +512,12 @@ gen_usr_ldscript() {
 			local tlib
 			if ${auto} ; then
 				lib="lib${lib}${suffix}"
+				tlib=$(scanelf -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
 				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
-				tlib=$(scanelf -qF'%S#F' "${ED}"/${libdir}/${lib})
+				# some SONAMEs are funky: they encode a version before the .so
+				if [[ ${tlib} != ${lib}* ]] ; then
+					mv "${ED}"/usr/${libdir}/${tlib}* "${ED}"/${libdir}/ || die
+				fi
 				[[ -z ${tlib} ]] && die "unable to read SONAME from ${lib}"
 				rm -f "${ED}"/${libdir}/${lib}
 			else

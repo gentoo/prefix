@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.13 2008/12/05 22:24:39 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.15 2009/03/30 05:20:29 tester Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -20,7 +20,7 @@ my_gst_plugins_bad="opengl vcd x alsa amrwb bz2 cdaudio directfb dts divx faac
 faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
 mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
 theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac mplex
-ofa oss4 apexsink celt dvdnav jp2k twolame"
+ofa oss4 apexsink celt dvdnav jp2k twolame mimic modplug"
 
 #qtdemux spped tta
 
@@ -40,27 +40,28 @@ RDEPEND="=media-libs/gstreamer-0.10*
 		>=dev-libs/liboil-0.3"
 DEPEND="${RDEPEND}
 		sys-apps/sed
+		dev-util/pkgconfig
 		sys-devel/gettext"
 fi
 S=${WORKDIR}/${MY_P}
 
 gst-plugins-bad_src_unpack() {
-	local makefiles
+#	local makefiles
 
 	unpack ${A}
 
-	gst-plugins10_find_plugin_dir
-	cd ${S}
+#	gst-plugins10_find_plugin_dir
+#	cd ${S}
 
 	# Remove generation of any other Makefiles except the plugin's Makefile
-	if [[ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]] ; then
-		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	elif [[ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]] ; then
-		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	fi
+#	if [[ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]] ; then
+#		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	elif [[ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]] ; then
+#		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	fi
 
-	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
-		-i ${S}/configure
+#	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
+#		-i ${S}/configure
 }
 
 gst-plugins-bad_src_configure() {

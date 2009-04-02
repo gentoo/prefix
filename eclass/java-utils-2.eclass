@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.125 2009/03/27 20:58:57 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.126 2009/03/31 19:19:20 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -368,6 +368,7 @@ java-pkg_regjar() {
 				eerror "has * in it. If you want it to glob in"
 				eerror '${ED} add ${ED} to the argument.'
 			fi
+			debug-print "${jar} or ${ED}${jar} not found"
 			die "${jar} does not exist"
 		fi
 	done
@@ -2453,11 +2454,7 @@ java-pkg_expand_dir_() {
 # @return 1 - function is undeclared
 # ------------------------------------------------------------------------------
 java-pkg_func-exists() {
-	if [[ -n "$(declare -f ${1})" ]]; then
-		return 0
-	else
-		return 1
-	fi
+	declare -F ${1} > /dev/null
 }
 
 # ------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.10 2008/12/29 03:50:08 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.11 2009/03/30 04:24:15 tester Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -79,7 +79,7 @@ gst-plugins-base_src_configure() {
 
 gst-plugins-base_src_unpack() {
 
-	local makefiles
+#	local makefiles
 
 	unpack ${A}
 
@@ -100,16 +100,16 @@ gst-plugins-base_src_unpack() {
 		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:${EROOT}/usr/$(get_libdir)/libgstrtp:" \
 		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:${EROOT}/usr/$(get_libdir)/libgstrtp:" \
 		-i Makefile.in
-	cd ${S}
+#	cd ${S}
 
 	# Remove generation of any other Makefiles except the plugin's Makefile
-	if [ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]; then
-		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	elif [ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]; then
-		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
-	fi
-	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
-		-i ${S}/configure
+#	if [ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]; then
+#		makefiles="Makefile sys/Makefile sys/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	elif [ -d "${S}/ext/${GST_PLUGINS_BUILD_DIR}" ]; then
+#		makefiles="Makefile ext/Makefile ext/${GST_PLUGINS_BUILD_DIR}/Makefile"
+#	fi
+#	sed -e "s:ac_config_files=.*:ac_config_files='${makefiles}':" \
+#		-i ${S}/configure
 
 }
 

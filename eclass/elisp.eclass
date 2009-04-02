@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.39 2009/03/26 14:14:22 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.41 2009/03/29 20:27:19 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -38,6 +38,11 @@
 # DOCS="blah.txt ChangeLog" is automatically used to install the given
 # files by dodoc in src_install().
 
+# @ECLASS-VARIABLE: ELISP_PATCHES
+# @DESCRIPTION:
+# Any patches to apply after unpacking the sources. Patches are searched
+# both in ${PWD} and ${FILESDIR}.
+
 # @ECLASS-VARIABLE: SITEFILE
 # @DESCRIPTION:
 # Name of package's site-init file.  The filename must match the shell
@@ -45,14 +50,18 @@
 # reserved for internal use.  "50${PN}-gentoo.el" is a reasonable choice
 # in most cases.
 
-inherit elisp-common versionator
+inherit elisp-common eutils versionator
 
-EXPORT_FUNCTIONS \
-	src_unpack src_compile src_install \
-	pkg_setup pkg_postinst pkg_postrm
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+case "${eapi:-0}" in
+	0|1) EXPORT_FUNCTIONS src_{unpack,compile,install} \
+		pkg_{setup,postinst,postrm} ;;
+	*) EXPORT_FUNCTIONS src_{unpack,prepare,configure,compile,install} \
+		pkg_{setup,postinst,postrm} ;;
+esac
 
 DEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
-RDEPEND=">=virtual/emacs-${NEED_EMACS:-21}"
+RDEPEND="${DEPEND}"
 IUSE=""
 
 elisp_pkg_setup() {
@@ -73,7 +82,28 @@ elisp_src_unpack() {
 		mv ${P}.el ${PN}.el || die
 		[ -d "${S}" ] || S=${WORKDIR}
 	fi
+
+	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
+	case "${eapi:-0}" in
+		0|1) [ -d "${S}" ] && cd "${S}"
+			elisp_src_prepare ;;
+	esac
 }
+
+elisp_src_prepare() {
+	local patch
+	for patch in ${ELISP_PATCHES}; do
+		if [ -f "${patch}" ]; then
+			epatch "${patch}"
+		elif [ -f "${FILESDIR}/${patch}" ]; then
+			epatch "${FILESDIR}/${patch}"
+		else
+			die "Cannot find ${patch}"
+		fi
+	done
+}
+
+elisp_src_configure() { :; }
 
 elisp_src_compile() {
 	elisp-compile *.el || die
