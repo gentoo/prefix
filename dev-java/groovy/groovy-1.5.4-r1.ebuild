@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.5.4-r1.ebuild,v 1.1 2008/07/04 20:00:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.5.4-r1.ebuild,v 1.2 2009/03/29 16:40:07 betelgeuse Exp $
 
 # Groovy's build system is Ant based, but they use Maven for fetching the dependencies.
 # We just have to remove the fetch dependencies target, and then we can use Ant for this ebuild.
@@ -15,9 +15,11 @@
 # TODO: We should implement the doc USE flag properly
 #
 
+EAPI="prefix 2"
+WANT_ANT_TASKS="ant-antlr ant-trax"
+
 inherit versionator java-pkg-2 java-ant-2
 
-EAPI="prefix 1"
 JAVA_PKG_IUSE="doc"
 MY_PV=${PV/_rc/-RC-}
 MY_P="${PN}-${MY_PV}"
@@ -33,7 +35,7 @@ IUSE="test"
 
 CDEPEND="
 	dev-java/asm:2.2
-	dev-java/antlr:0
+	>=dev-java/antlr-2.7.7:0[java]
 	>=dev-java/xstream-1.1.1
 	>=dev-java/junit-3.8.2:0
 	>=dev-java/jline-0.9.91
@@ -59,17 +61,14 @@ RDEPEND=">=virtual/jre-1.4
 	${CDEPEND}"
 
 DEPEND=">=virtual/jdk-1.4
-	dev-java/ant-antlr
+	app-arch/unzip
 	${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
 JAVA_PKG_BSFIX=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+java_prepare() {
 	epatch "${FILESDIR}/${PN}-build.xml.patch"
 	java-ant_xml-rewrite -f build.xml --delete -e junit -a fork
 
@@ -100,8 +99,6 @@ src_unpack() {
 }
 
 src_compile() {
-	ANT_TASKS="ant-antlr"
-
 	eant -DskipTests="true" -DruntimeLibDirectory="target/lib/compile" \
 		-DtoolsLibDirectory="target/lib/compile" createJars
 

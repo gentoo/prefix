@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/groovy
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.30 2009/03/24 18:43:36 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.31 2009/03/29 16:40:07 betelgeuse Exp $
+
+  29 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> -groovy-1.5.4.ebuild,
+  groovy-1.5.4-r1.ebuild:
+  Migrate the ebuild to EAPI 2.
 
   24 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> -groovy-1.0-r1.ebuild:
   Remove old version.
