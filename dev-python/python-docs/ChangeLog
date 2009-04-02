@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/python-docs
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.106 2008/12/24 20:28:56 neurogeek Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.107 2009/03/31 13:58:56 patrick Exp $
+
+*python-docs-2.5.4 (31 Mar 2009)
+
+  31 Mar 2009; Patrick Lauer <patrick@gentoo.org> +python-docs-2.5.4.ebuild:
+  Adding 2.5.4. Fixes half of #252317
 
 *python-docs-2.6.1 (24 Dec 2008)
 
