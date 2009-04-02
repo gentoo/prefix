@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.212 2009/03/18 22:36:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.213 2009/03/29 20:59:34 betelgeuse Exp $
+
+  29 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -tomcat-5.5.27-r1.ebuild, -tomcat-5.5.27-r2.ebuild,
+  -tomcat-6.0.18-r1.ebuild, -tomcat-6.0.18-r2.ebuild:
+  Remove revisions with a security problems.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> tomcat-6.0.18-r3.ebuild:
   Marking tomcat-6.0.18-r3 ppc for bug 261469
