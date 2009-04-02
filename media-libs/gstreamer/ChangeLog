@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.216 2009/01/09 12:54:19 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.220 2009/03/31 20:01:44 tester Exp $
+
+  31 Mar 2009; Olivier Crête <tester@gentoo.org> gstreamer-0.10.22.ebuild:
+  Let .la files be for now, bug #264249
+
+  30 Mar 2009; Olivier Crête <tester@gentoo.org> gstreamer-0.10.22.ebuild:
+  Remove +nls to make solar happy (but you really want nls)
+
+  30 Mar 2009; Olivier Crête <tester@gentoo.org> gstreamer-0.10.22.ebuild:
+  The debug use flag just enabled -g, use CFLAGS if you want that
+
+*gstreamer-0.10.22 (30 Mar 2009)
+
+  30 Mar 2009; Olivier Crête <tester@gentoo.org> +gstreamer-0.10.22.ebuild:
+  Version bump
 
 *gstreamer-0.10.21-r10 (09 Jan 2009)
 *gstreamer-0.10.21-r3 (09 Jan 2009)
