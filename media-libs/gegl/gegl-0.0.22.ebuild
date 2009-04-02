@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.22.ebuild,v 1.8 2009/03/22 15:17:04 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.22.ebuild,v 1.9 2009/03/31 14:14:40 armin76 Exp $
 
 EAPI="prefix"
 
